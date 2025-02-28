@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-152531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6972FA49617
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:56:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D0BA4961A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:57:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F36513A76B0
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:55:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E9F3188B769
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06EA02594B7;
-	Fri, 28 Feb 2025 09:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6862725A2B7;
+	Fri, 28 Feb 2025 09:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="LlhH6219"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="rI4kydmr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E637258CF9;
-	Fri, 28 Feb 2025 09:55:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 299A125A2CE;
+	Fri, 28 Feb 2025 09:56:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740736552; cv=none; b=DaaptdNFi0gJRoPhA9ymp/21ZpopTYOFZaR6iXTDwhhIhYgJufSr6c3fXgaqBD+eZqsOsQHCTq4ZshJ+Z12mKwylfJCmCF5uVmANGlOanDPgFR0dJaunYikdMJP3d8nySUPSNqdD/FQ1Ib/m3BJ9yOZq+T+z9m64WzNHWCf92LM=
+	t=1740736605; cv=none; b=TKxpFZGrb5JUXk5pL8L1YNUbnPYuyGNJ+iimK+l0GYvxFsklVNZTI8d5ff+tksJoYvnDaTbdZriTPvRtCyYqOHtIJwKhSC9X4zAtM0C04kbQ4RhNwj6Rgs3/HxHxdA3D7v5uiM3dTjo7TCCzWaEGNrEtka2lcoBpBjcxw4DmAU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740736552; c=relaxed/simple;
-	bh=tNVOhrB27dYY67z3p3+g4+cTL4xqzXotTOz8WDPW1jo=;
+	s=arc-20240116; t=1740736605; c=relaxed/simple;
+	bh=rSYwADEpFPpmAgx4fF0rvjP97pxuyd5uqw+Hg+v/7/I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XEShxOQOmeUB46zoYhIzrN3XWIoH+ANE9trRpJkkFXupw7/TCY95vLPYJ+PjChRmTz0XlpF38SmiIXE5Ic9X3hUHUm774h/SscyZeDZNTiF5c9V6ZrGi/pyciuple7jj9/jr5IbfgZQ8Q6omyNgutv0zfeH4L7mDqh8V96oTCrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=LlhH6219; arc=none smtp.client-ip=217.194.8.81
+	 Content-Type:Content-Disposition:In-Reply-To; b=MVSZLXxCIp75Rh2raN0/G3a5khBzk3GkwuXDGf3tJRJzgph0fVFVpPtC+LBuz3uhO0Y4yBa0gbTjxSb6/gIcdDRPkMZaLxUeWCc1Cx54zFdN9O7zD6qsWqyRekynXKHEm3y88dzx6mVtxl8tZ+XIssHHgBjp6I8yGZZX2l27CSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=rI4kydmr; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id DA92E1FC79;
-	Fri, 28 Feb 2025 10:55:40 +0100 (CET)
+	by mail11.truemail.it (Postfix) with ESMTPA id CF9171FB6E;
+	Fri, 28 Feb 2025 10:56:40 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1740736541;
-	bh=cH46OOSgHwOcrsTmEvl62W+8vy7UREwxuS3rPqQGW/c=; h=From:To:Subject;
-	b=LlhH6219zn1GoFwymXnt7mcFEYsJ0UWvq75dykzDgcV57guXyevGzRMHZR7emmEBY
-	 TBHxpwBMq69/INNYcU+UhEDOG7rsRJ9SCHXGYE1PkrGfW3MJwjkZcUB6JCZ8oi8B6Z
-	 CPPphU+PJ2DdzpFGLWjeoMuKUkmUKwFp50QL1cOO5dR7dCEXXKJjOnN4AZpudg4HHf
-	 CrLw+j7UfAYshsKO7Vys0/0fzhKCezJET9bx8u7B5sPtQ4BtmuCdCJnUjln5lQC7bo
-	 hlnQxDXmj1Nvfo2y+wCigz7G+66J4io5kp78P1fWQbQDJHCqVN2Lyx7jzn+O6fwqkL
-	 jcPgkjgPEWkOQ==
-Date: Fri, 28 Feb 2025 10:55:37 +0100
+	s=default; t=1740736601;
+	bh=XTocGVc2MASEq20lQzdg3r1UFQEPztqxGB68Vx/zNVc=; h=From:To:Subject;
+	b=rI4kydmrCNJr+mnASvcrsFRM5ZvE+xEroHyP76emsEsbXXTlqtsCg3pSSoVeM1bib
+	 4DV7t8E9JCgxncP7jiesSqYAgCx4JR3vX+8h6hfZ1SN1zG/6YiSvEHENCChEqifrfe
+	 R/uJd2V9QUZeJb/GKVQeEVyg3KjdUta8qWkXqnRk3+xV4CLuWU2mjAMuN8vbOobEra
+	 FpqqypTswRMUVmw0eO5w2Dkb5tyNVYrV3R5YeTWisQcUOP+f2MbI8wofMq5XVJVtLD
+	 ppLp9GAIr3nImacxjXswoNetUKOklG14D4f1vL8pFfqltON+Vd1udlhWh4kcedAxj3
+	 yk+/P/+fmNV4g==
+Date: Fri, 28 Feb 2025 10:56:39 +0100
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -54,10 +54,10 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
 	devicetree@vger.kernel.org, imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ARM: dts: apalis/colibri-imx6: Enable STMPE811 TS
-Message-ID: <20250228095537.GA16617@francesco-nb>
+Subject: Re: [PATCH 2/2] ARM: dts: apalis/colibri-imx6: Add support for v1.2
+Message-ID: <20250228095639.GB16617@francesco-nb>
 References: <20250227170556.589668-1-ernest.vanhoecke@toradex.com>
- <20250227170556.589668-2-ernest.vanhoecke@toradex.com>
+ <20250227170556.589668-3-ernest.vanhoecke@toradex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,12 +66,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250227170556.589668-2-ernest.vanhoecke@toradex.com>
+In-Reply-To: <20250227170556.589668-3-ernest.vanhoecke@toradex.com>
 
-On Thu, Feb 27, 2025 at 06:04:52PM +0100, Ernest Van Hoecke wrote:
-> Enable the STMPE811 touchscreen in the SOM dtsi files. The STMPE811 is
-> part of the SOM. It's self contained within it, therefore, disabling it
-> is not the correct default behavior.
+On Thu, Feb 27, 2025 at 06:04:53PM +0100, Ernest Van Hoecke wrote:
+> Apalis/Colibri iMX6 V1.2 replaced the STMPE811 ADC/touch controller,
+> which is EOL, with the TLA2024 ADC and AD7879 touch controller.
+> 
+> Accurately describe the new hardware.
+> 
+> v1.1 of these SoMs is still described by the following DTSI files:
+> imx6qdl-apalis.dtsi
+> imx6qdl-colibri.dtsi
+> 
+> v1.2 is now supported by a DTSI that modifies v1.1:
+> imx6qdl-apalis-v1.2.dtsi
+> imx6qdl-colibri-v1.2.dtsi
+> 
+> For each carrier board using these modules, a new DTS file was added
+> that includes the v1.1 DTS and modifies it with this v1.2 DTSI.
+> 
+> The original DTS can be used for modules up to and including v1.1.
 > 
 > Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 
