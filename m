@@ -1,108 +1,151 @@
-Return-Path: <devicetree+bounces-152753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9F3A4A173
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:27:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B7A2A4A03A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:23:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD667175719
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:27:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A988188A5C0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 17:24:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF422702BF;
-	Fri, 28 Feb 2025 18:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADAF31F4CAC;
+	Fri, 28 Feb 2025 17:23:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="RKRgORqc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rBnydU+K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E704D2702B6
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 18:27:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 886FE1F4C90
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 17:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740767244; cv=none; b=Q4Zk2v3Czc0O+jbIRvaVR6b+L38GtcN6TsxSem1D9ACP8geDGFCAPtKfFstc7S7o7t1u0zL8i049yZIVM2aKu0j51FLLDuQ14T7iqmcbA7h3fO1BAkSwYvUF8IMnONLM8zYBYvMlRiLGTJuHAahQOQymXFQh0jujTrXT/NIORK4=
+	t=1740763430; cv=none; b=HUE/Yv/Ph1d6qb1knzrKdcrgRMZEgGxxxIgrD5t2iNv2xB7AQEgaatJ+kJ9h99rtaS7wNg1Ea0U/zIp4C/BkEWikEqLNMZ8AxI3/uloffqylCEFAosuNcDwFjHYbeoAeE4nJr/fSk4tPAEvSxo/D9LvLoSvoJmHMtP68sehqvjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740767244; c=relaxed/simple;
-	bh=7lFHiCCc49mUKV4qIXaheDGkpka/KCY36TWr3pGtl/8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F47iyoFSea1/1Ov2L8zqmb5XvaphzRTUECCE2IWtT4J5BNaoT62vj55zqagL/KWTYbfXMdTDn/9nZYyAaNBKUIpLJcJ9D/X3ML5XIyysKteG5Fav/MZfiHM1gHKxqqXDgHYtV5ClJ/qpl5H9Pus+japlDOBEQnmxrXJkYgtd/70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=RKRgORqc; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C285C102901D4;
-	Fri, 28 Feb 2025 19:27:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1740767241;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EyEPM5mrGTn5rrR73FFHMdEx08PtiRTDMuqHCB2nPVc=;
-	b=RKRgORqcnqV3NSzwt7DVV5LwK/q/7kkOp1UUtaXPcHOdglNIfxmpVp6+KDJ9EXQXEJ90rK
-	2/OKj5kWm9R/F9XHGSmr+3wQtufmCv+k3CUVsYS4wAStAfurjNvneFGI21v/YwF4cbWeKM
-	sGRecKE06EFQFROt+lYKNJHUcX3T46u+cakOr8Ucnx6FS9pR4JmSENfjYMZT64aeW4P+r4
-	iDNBSiG5iD0B9Ryvc0HxqaG8/VsmzHlP83i8dM8sbL+dFCWLhQSxHs7G0PfBV0Wj6bYb+x
-	jo43dHzCVZR5WzZODLERiZTF5s7FIt3uIo+LdSmF8Dev8qMCLy/sDboa4dmkjg==
-Message-ID: <aa571158-a7ab-4bee-a7a7-e7a729301d7d@denx.de>
-Date: Fri, 28 Feb 2025 18:21:50 +0100
+	s=arc-20240116; t=1740763430; c=relaxed/simple;
+	bh=BPMdmayMKnKCf+wmiSD4Nr+WPj6p2B16Q/gtVT6ljF8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FoyUVtvl/2yjpyiAozNA9ladDB2ED8v7HixPWzkqX1/i35qQJ1iwF0dc38qbf7WE+U3sLPJ2OFkDzN2895R29oYj++dOHlQQ1JdkA0IYGlhlkU53O4P4+XMRetCD2PS9JUrd4RDcZ/zkX0bZGjpnqu8CLD0QL+If+MzhvUEDagA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rBnydU+K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6444FC4CEEA
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 17:23:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740763430;
+	bh=BPMdmayMKnKCf+wmiSD4Nr+WPj6p2B16Q/gtVT6ljF8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=rBnydU+K9B/Rzf0zhOx/76XqY/YLdjCMz3Vpeih2WcmKMONUqQzOP7A0vmzuEWZ18
+	 Pqid1Ax2pX/+qPe+VWeRu519Kk3JVjCH/YUB4r3tJOwtY1/Qz3ywPXp5qTPh9gsQwB
+	 zt6q0VyFqAN+PKzl3pnmBDQDvr6Lz1V0PnCGg8hSB4wm54jx46k+QVTbG9zAvvSVQJ
+	 Vom4IwpBoIHVnVmAWl9ErP1BIrFDSgVtDAmzraYi3J2gNHptat1/r35K57uYD00HTZ
+	 jCGutkXUKu8YJdUgLZ1xUhui9Dye4j6e3LoF32XH378Hk3JJhnaW6FkjX0xtrbTDar
+	 0uXbMVA5SmRpQ==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5dccaaca646so4488921a12.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 09:23:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV2f3JIb004FL0hjB3EnLRBonSdkDqzISlwYb5Bjuosuu7/0d+5PrQV1lIGezCgbH7adaDV/JxGGFfx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeLWDtJReUxmDaLXmW6iWzmQdQn9vDQNr4ml6hlj0dEz1Z7Yom
+	liM9Xee8iJD9DXJ3GPak89aYa1kf+upcFJjTfwsvCn1ks+F04h0PynrzQ2/9Rmo7JscHvS46m+F
+	fVOve6KJ63UIgagB36OwS74QAZQ==
+X-Google-Smtp-Source: AGHT+IEF4YJkKFTBhE9KWRl7WTdYoSsW8Pb5XbVNma0j2MhrQqNt9B/x5iHLLs444cMWjSTUJJ5Y1WrUIPN1MSKevKY=
+X-Received: by 2002:a05:6402:26c9:b0:5de:572c:72cf with SMTP id
+ 4fb4d7f45d1cf-5e4bfb8067bmr10617010a12.10.1740763428947; Fri, 28 Feb 2025
+ 09:23:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] drm/panthor: Add i.MX95 support
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, devicetree@vger.kernel.org, imx@lists.linux.dev
-References: <20250227170012.124768-1-marex@denx.de>
- <20250227170012.124768-9-marex@denx.de> <4658624.cEBGB3zze1@steina-w>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <4658624.cEBGB3zze1@steina-w>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20250220205948.1777200-1-eajames@linux.ibm.com>
+ <174015998324.3469672.1009055817022487781.robh@kernel.org>
+ <52f6f6fc93144b6bd93870e9ef054da19d809b05.camel@codeconstruct.com.au> <0801c8fc-97c8-4331-b31a-b60a90d683e5@linux.ibm.com>
+In-Reply-To: <0801c8fc-97c8-4331-b31a-b60a90d683e5@linux.ibm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 28 Feb 2025 11:23:36 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+QF6m1YD_MKi0mxJWtn0n+f+iL2x-jYv3NWytv0X4Jjg@mail.gmail.com>
+X-Gm-Features: AQ5f1JqBLw6WhoVAtURMFtGm6_JqPAKGxjGEqN_WcyPWC4VS-6OdV3fJ7PJIe-Q
+Message-ID: <CAL_Jsq+QF6m1YD_MKi0mxJWtn0n+f+iL2x-jYv3NWytv0X4Jjg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] ARM: dts: aspeed: Add Balcones system
+To: Eddie James <eajames@linux.ibm.com>
+Cc: Andrew Jeffery <andrew@codeconstruct.com.au>, krzk+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org, 
+	conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/28/25 11:21 AM, Alexander Stein wrote:
+On Fri, Feb 28, 2025 at 10:46=E2=80=AFAM Eddie James <eajames@linux.ibm.com=
+> wrote:
+>
+>
+> On 2/24/25 22:34, Andrew Jeffery wrote:
+> > On Fri, 2025-02-21 at 12:11 -0600, Rob Herring (Arm) wrote:
+> >> On Thu, 20 Feb 2025 14:59:45 -0600, Eddie James wrote:
+> >>> The Balcones system is similar to Bonnell but with a POWER11 processo=
+r.
+> >>>
+> >>> Changes since v1:
+> >>>   - Add all the ucd9000 driver supported compatible strings
+> >>>   - Fix node ordering in Balcones device tree
+> >>>   - Improve commit message to explain addition of ibm-power11-dual.dt=
+si
+> >>>
+> >>> Eddie James (3):
+> >>>    dt-bindings: arm: aspeed: add IBM Balcones board
+> >>>    dt-bindings: hwmon: ucd90320: Add additional compatible strings
+> >>>    ARM: dts: aspeed: Add Balcones system
+> >>>
+> >>>   .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+> >>>   .../bindings/hwmon/pmbus/ti,ucd90320.yaml     |   6 +
+> >>>   arch/arm/boot/dts/aspeed/Makefile             |   1 +
+> >>>   .../dts/aspeed/aspeed-bmc-ibm-balcones.dts    | 594 +++++++++++++
+> >>>   .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 +++++++++++++++=
++++
+> >>>   .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +--------------=
+--
+> >>>   6 files changed, 1383 insertions(+), 767 deletions(-)
+> >>>   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones=
+.dts
+> >>>   create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.dtsi
+> >>>
+> >>> --
+> >>> 2.43.5
+> >>>
+> >>>
+> >>>
+> >>
+> >> My bot found new DTB warnings on the .dts files added or changed in th=
+is
+> >> series.
+> >>
+> > ...
+> >
+> >> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: gpio@1e780000: '=
+usb-power-hog' does not match any of the regexes: 'pinctrl-[0-9]+'
+> >>          from schema $id: http://devicetree.org/schemas/gpio/aspeed,as=
+t2400-gpio.yaml#
+> > Ah, can you address this one?
+> >
+> >> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/bus@1e7=
+8a000/i2c@400/pwm@53: failed to match any schema with compatible: ['maxim,m=
+ax31785a']
+> >> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: pressure-sensor@=
+76: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+> >>          from schema $id: http://devicetree.org/schemas/trivial-device=
+s.yaml#
+> > And these also?
+> >
+> > The rest looked like the usual noise.
+>
+>
+> Well, all of these errors are also present in Blueridge. I would need to
+> write a new binding for dps310, move max31785 to yaml format, and I'm
+> not sure how to fix the gpio hog one. I don't see that error when I run
+> CHECK_DTBS myself... any suggestions?
 
-Hi,
+I think the hog one got fixed recently. The tests run on top of
+whatever b4 picks for the base or linux-next if it can't figure out
+the base. So that might be the difference.
 
->> diff --git a/drivers/gpu/drm/panthor/panthor_gpu.c b/drivers/gpu/drm/panthor/panthor_gpu.c
->> index 0f07ef7d9aea7..2371ab8e50627 100644
->> --- a/drivers/gpu/drm/panthor/panthor_gpu.c
->> +++ b/drivers/gpu/drm/panthor/panthor_gpu.c
->> @@ -67,6 +67,7 @@ struct panthor_model {
->>   }
->>   
->>   static const struct panthor_model gpu_models[] = {
->> +	GPU_MODEL(g310, 0, 0),	/* NXP i.MX95 */
-> 
-> Are you sure about 0, 0?
-
-I am not.
-
-> With this I get
->> [drm] mali-unknown id 0xac74 major 0x0 minor 0x0 status 0x1
-> 
-> Using GPU_MODEL(g310, 10, 4) I get:
->> [drm] mali-g310 id 0xac74 major 0x0 minor 0x0 status 0x1
-> 
-> Note the output is GPU_VER_MAJOR() but this table is for GPU_ARCH_MAJOR()
-> (and the corresponding minor).
-The major 0x0 minor 0x0 is where I took the 0,0 from. Lemme update this.
+Rob
 
