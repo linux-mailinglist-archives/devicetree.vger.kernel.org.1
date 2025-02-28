@@ -1,129 +1,122 @@
-Return-Path: <devicetree+bounces-152760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3A41A4A18E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:29:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE1DA4A189
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:29:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 608AC175CB0
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:29:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 622183A7B42
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:29:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF2E2755E9;
-	Fri, 28 Feb 2025 18:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9D2627426D;
+	Fri, 28 Feb 2025 18:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=crapouillou.net header.i=@crapouillou.net header.b="rRXuZPY5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jr2pyMZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from aposti.net (aposti.net [89.234.176.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58582755E5;
-	Fri, 28 Feb 2025 18:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.234.176.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD9C1F4C85;
+	Fri, 28 Feb 2025 18:29:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740767374; cv=none; b=pRebwCJBGWcNTtJZwMShou3W/osOQfEqHbX35ceYTMoilxiCq0yqId8ZF+2kTqkal5Ng/eb/WVxJpcTHtO+A/hlgHyHiogwe5scyKeEk9bLELVxF19cRcwqVijBeQMJJW8++qxnv4Y/+Pwc2E89ycC6oN/RkqHgsXf4Ufic8LiE=
+	t=1740767347; cv=none; b=A11VWzslD8kccaDcaU/CVTzH6RNP7usW+snKbwi2lw/QaiRsyt4fCAunM5G+2nt0xa4O1xSV8Z8sbwbkEP9eBtMy5UF1UJZx43EJUW7ES3KKlg9UxR/SILNtUHn7dqJ3wM6LJEl8lLqEG8Rf2Phg4VEKzTQiDgVBKJ1tPUxid6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740767374; c=relaxed/simple;
-	bh=GdT+FAgbr7YwWuisQ170ntVSMrN/XYHPwVBuOoYX/Zc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rESsofqQ9LnvPFxnLhiZM/i6e6bFyJXARQ3jxmzgHPoQbgvgdfNke6bcjm7sX3f2mBmVVGlnCZBMQKNPgViHzfALXh/9rflH7zB6iA+Xf/v9K/jN/TELS4A5jl27zvnakzWR6Qc4Iqa/Mwe+k3DjLdRhOGJkenZKbWE0GRLEgXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=crapouillou.net; spf=pass smtp.mailfrom=crapouillou.net; dkim=pass (1024-bit key) header.d=crapouillou.net header.i=@crapouillou.net header.b=rRXuZPY5; arc=none smtp.client-ip=89.234.176.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=crapouillou.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=crapouillou.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-	s=mail; t=1740767370;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=GdT+FAgbr7YwWuisQ170ntVSMrN/XYHPwVBuOoYX/Zc=;
-	b=rRXuZPY5ppmvJrIqNUkY2LCcwmGUj0xvFH3Ey5JXpY4l7FONLXUlZXmktoc1WX5o+tch7E
-	VRMTAo7GnVVTxfovz1qPaOie3uFo1DyeWDNVvhgWFhOvig5DZXxKMEMR132rIO8kWjhazL
-	/FVbC0mVSbYoIuFPmBESRc2d7cq+DSA=
-Message-ID: <3bf98fabea4b7b35816411a2253e08848d900401.camel@crapouillou.net>
-Subject: Re: [PATCH v2 0/4] pinctrl: ingenic: add support for x1600 SoC and
- MII and I2S for jz4730
-From: Paul Cercueil <paul@crapouillou.net>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>, Linus Walleij	
- <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Andreas Kemnade <andreas@kemnade.info>, Paul Boddie
- <paul@boddie.org.uk>,  Tim Bysun <tim.bysun@ingenic.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
-	letux-kernel@openphoenux.org, kernel@pyra-handheld.com
-Date: Fri, 28 Feb 2025 19:28:28 +0100
-In-Reply-To: <cover.1740749637.git.hns@goldelico.com>
-References: <cover.1740749637.git.hns@goldelico.com>
-Autocrypt: addr=paul@crapouillou.net; prefer-encrypt=mutual;
- keydata=mQENBF0KhcEBCADkfmrzdTOp/gFOMQX0QwKE2WgeCJiHPWkpEuPH81/HB2dpjPZNW03ZM
- LQfECbbaEkdbN4YnPfXgcc1uBe5mwOAPV1MBlaZcEt4M67iYQwSNrP7maPS3IaQJ18ES8JJ5Uf5Uz
- FZaUawgH+oipYGW+v31cX6L3k+dGsPRM0Pyo0sQt52fsopNPZ9iag0iY7dGNuKenaEqkYNjwEgTtN
- z8dt6s3hMpHIKZFL3OhAGi88wF/21isv0zkF4J0wlf9gYUTEEY3Eulx80PTVqGIcHZzfavlWIdzhe
- +rxHTDGVwseR2Y1WjgFGQ2F+vXetAB8NEeygXee+i9nY5qt9c07m8mzjABEBAAG0JFBhdWwgQ2VyY
- 3VlaWwgPHBhdWxAY3JhcG91aWxsb3UubmV0PokBTgQTAQoAOBYhBNdHYd8OeCBwpMuVxnPua9InSr
- 1BBQJdCoXBAhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEHPua9InSr1BgvIH/0kLyrI3V0f
- 33a6D3BJwc1grbygPVYGuC5l5eMnAI+rDmLR19E2yvibRpgUc87NmPEQPpbbtAZt8On/2WZoE5OIP
- dlId/AHNpdgAtGXo0ZX4LGeVPjxjdkbrKVHxbcdcnY+zzaFglpbVSvp76pxqgVg8PgxkAAeeJV+ET
- 4t0823Gz2HzCL/6JZhvKAEtHVulOWoBh368SYdolp1TSfORWmHzvQiCCCA+j0cMkYVGzIQzEQhX7U
- rf9N/nhU5/SGLFEi9DcBfXoGzhyQyLXflhJtKm3XGB1K/pPulbKaPcKAl6rIDWPuFpHkSbmZ9r4KF
- lBwgAhlGy6nqP7O3u7q23hRU=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1740767347; c=relaxed/simple;
+	bh=8rfbN9lNNqu4CaYs/gqLKzPE1yRFHM9492rIIuIEsIw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H0LYZSGsXpQCjdopqhH7Xi4QU2lxtRTVQffp01itR0uuhDIzeIYbS5vh7s3l2nkbhtXX6nooluVvdNNJNn34+xxgopZ9bewGIn28jx9l9ee1S/1xiIfb+YbegXx3g4DtL8vlA7Qm7v34pOqBsewZuuUVcfqi4D8kQW8zjNGk8m0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jr2pyMZM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BD1EC4CED6;
+	Fri, 28 Feb 2025 18:29:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740767347;
+	bh=8rfbN9lNNqu4CaYs/gqLKzPE1yRFHM9492rIIuIEsIw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jr2pyMZMej0fJcEh0WdcAr/PIZPUjpQ0aSo+bAyWzOqjk9XxBbMxj9pljkpNXYMMT
+	 8YgR6YTrfD4bmYsiv86ifj2Qm9Sa1fCYsvu1Tmfw5cl9mH1dXoAv0BcN9mx+PO3PMJ
+	 3jMRAAMruHjRTSP6B5XGMRaYT5x6aeK1uoIwX7BHIiNsSvsycsxKsqmJwmPwFEKD5Q
+	 DRdeChV/3+ih8gslITlN8QvQnbw749jcwT0rCqwS+UgYjNL16LGPRZ9rftIVbsCGkn
+	 OO9kzQ5IwgJJr0hRzfxNgAiAnJH145uc+DtEi0Y49LoS7uj/F++tIxz3wmwKOsSVw7
+	 IMfIy92h1oDZQ==
+Date: Fri, 28 Feb 2025 18:29:02 +0000
+From: Conor Dooley <conor@kernel.org>
+To: iansdannapel@gmail.com
+Cc: linux-fpga@vger.kernel.org, Moritz Fischer <mdf@kernel.org>,
+	Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [v4 1/3] dt-bindings: vendor-prefix: Add prefix for Efinix, Inc.
+Message-ID: <20250228-bonsai-aqua-7909be8ac466@spud>
+References: <20250228094732.54642-1-iansdannapel@gmail.com>
+ <20250228094732.54642-2-iansdannapel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ZKOxp+ln9WYwtaD8"
+Content-Disposition: inline
+In-Reply-To: <20250228094732.54642-2-iansdannapel@gmail.com>
 
-Hi Nikolaus,
 
-Le vendredi 28 f=C3=A9vrier 2025 =C3=A0 14:33 +0100, H. Nikolaus Schaller a
-=C3=A9crit=C2=A0:
-> PATCH V2 2025-02-28 14:33:57:
-> Fix pwm5/pwm6/pwm7 pin groups (each one can be muxed to one of two
-> pads while pwm0-4 have only one pad) for X1600.
->=20
-> PATCH V1 2025-02-26 18:14:53:
-> This series expands pinctrl support for some Ingenic/Lumissil SoC.
-> For the jz4730 we add MII and I2S pinctrl and general x1600 support.
->=20
-> The x1600 parts were jointly developed.
->=20
-> Code was tested on LX16 board (x1600) and Alpha400 (jz4730) and
-> on CI20 (jz4780).
->=20
-> Co-authored-by: Andreas Kemnade <andreas@kemnade.info>
-> Co-authored-by: H. Nikolaus Schaller <hns@goldelico.com>
+--ZKOxp+ln9WYwtaD8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
-
-For the whole patchset, with the nit on patch 4/4.
-
-Either fix it when sending a v3 with my reviewed-by tag above, unless
-Linus does it when merging.
-
-Cheers,
--Paul
-
+On Fri, Feb 28, 2025 at 10:47:30AM +0100, iansdannapel@gmail.com wrote:
+> From: Ian Dannapel <iansdannapel@gmail.com>
 >=20
+> Add entry for Efinix, Inc. (https://www.efinixinc.com/)
 >=20
-> H. Nikolaus Schaller (3):
-> =C2=A0 bindings: ingenic,pinctrl: add x1600
-> =C2=A0 pinctrl: ingenic: jz4730: add pinmux for MII
-> =C2=A0 pinctrl: ingenic: jz4730: add pinmux for I2S interface
+> Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 >=20
-> Paul Boddie (1):
-> =C2=A0 pinctrl: ingenic: add x1600 support
->=20
-> =C2=A0.../bindings/pinctrl/ingenic,pinctrl.yaml=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 2 +
-> =C2=A0drivers/pinctrl/pinctrl-ingenic.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 261
-> +++++++++++++++++-
-> =C2=A02 files changed, 261 insertions(+), 2 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index 5079ca6ce1d1..f0e0da4e1ec0 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -438,6 +438,8 @@ patternProperties:
+>      description: Emtop Embedded Solutions
+>    "^eeti,.*":
+>      description: eGalax_eMPIA Technology Inc
+> +  "^efinix,.*":
+> +    description: Efinix, Inc.
+>    "^einfochips,.*":
+>      description: Einfochips
+>    "^eink,.*":
+> --=20
+> 2.43.0
 >=20
 
+--ZKOxp+ln9WYwtaD8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IAbgAKCRB4tDGHoIJi
+0q22AQDQQnsMIZlCBZfy7MVBiqeuhbsI+GO/vHLDxSxgOxfNzQD+NKXmeouPoOZ4
++ESaZGkHcc8eBN/d7Etb5TOyOLzfCQs=
+=atR4
+-----END PGP SIGNATURE-----
+
+--ZKOxp+ln9WYwtaD8--
 
