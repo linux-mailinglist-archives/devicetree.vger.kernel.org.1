@@ -1,186 +1,114 @@
-Return-Path: <devicetree+bounces-152597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C8FA49911
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:21:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE95DA49924
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:25:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F91418953AA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 12:21:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCB2F3AF658
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 12:25:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45BB6268C6D;
-	Fri, 28 Feb 2025 12:21:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0868F26AAAB;
+	Fri, 28 Feb 2025 12:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KQ11s5eK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f+LfRLrw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEF91C5496;
-	Fri, 28 Feb 2025 12:21:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2CA626AA83;
+	Fri, 28 Feb 2025 12:25:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740745299; cv=none; b=ctXJ5KQ/MScxzNCedKwrizfD4FvWcGbYhKqSQzcW/gtsOmCyvklWKICMrqaxPgOKm05R7eqO7mTDxIdfwfGXm7wx640edFkO/LdOc9zcCgKNwlmFKVpBvVz3tg1U1011Sf7mAtW+2jZUvIV4RA0DBvyIba33m/agqFeo1IU5B98=
+	t=1740745512; cv=none; b=LpxhElCC4kjNIFJnmY64HOH+FmB+HEsw1hpdyUGJnuWFy8wnpwHZ04lpYH6FHBEFu4XodANpb0d962cYzFYCzufR6W/T7BYuRE0PzeotPovnQKvR4PNNQq2uRAZ7fkuNWnitN11CiGo3sgF9+V7C5BXjT5jvWDjifLraXAE/+Sw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740745299; c=relaxed/simple;
-	bh=1RHJBZDUXUBHP6vghQwxWM/sTBLxUHPQEENb08kH4dg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=uL1aEz3hMdVKXVewhkU7hE1ZId7J/w2gsXU3tJdW3mFkWLvxk96Mz63BcyXzOx4w+xFGZxO2mldWf5T+4w9LFqx6aiznPJDvticpxdjAZk/S8TbBvWK7tFXeLCz7S1E4Bq6WZ9dXDQxj6fmCpLQcFhYXaEH1qkpauaWT2V13XnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KQ11s5eK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51SAX5uq019994;
-	Fri, 28 Feb 2025 12:21:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1o1floG5tGSMr5ewIwV/3Fh48FgSUhrdTDL/EgcEvvc=; b=KQ11s5eK90l80CDI
-	72tF5GtIYUQXzHig3AXEVXFI4VTo7ndB++ae1UaMnOrGI6Nko0wyWGG9kwDD1mFK
-	84YvpqO44H/hCkcRVtE/dA+fluNr/SM43LEc5IMzTfjQbIaULj0djdkDhqV5NG+E
-	HndI9qQ59KCoCiDhxOULv/L51zSTJ0WkwEOio5/Sayr48/Wcny5INI4vEizMZq82
-	JneHePm5HSExZ2bnwev7xoDpNSE1ATBRsrHKwixp7SD88de8eISdw2Sdq04SbmmG
-	4uXCDDSR98bSkPJMqlLl6gyXQppfmFSWtfcjQcikMHa4aQnpove9D4jjgzDAI310
-	uRFGKQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4539upgn7y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Feb 2025 12:21:30 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51SCLTuR032368
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Feb 2025 12:21:29 GMT
-Received: from [10.50.19.252] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 28 Feb
- 2025 04:21:25 -0800
-Message-ID: <9799775e-f754-f717-538a-cfea3dbc794b@quicinc.com>
-Date: Fri, 28 Feb 2025 17:51:21 +0530
+	s=arc-20240116; t=1740745512; c=relaxed/simple;
+	bh=8xUimPw6k9q65+hF485fj/0AqnwZJKhGHir+ktIZLPI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AcoC2WyqchRCNkOGANFTyTUvKD0XP4n/jn8VvOL1z/32e9nQ9ECOlM/4/bPtyLkL4FqjV/8R1D7NGj0bis/yV6UjkXGf3WMfObJJ65xKfTm2VMXJD2gGzJwgvaTK+i7+lvBvlcuNhnwlIMClzA72FdOgheXlVbIcI3Dk9mUgCwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f+LfRLrw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C7A1C4CED6;
+	Fri, 28 Feb 2025 12:25:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740745512;
+	bh=8xUimPw6k9q65+hF485fj/0AqnwZJKhGHir+ktIZLPI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f+LfRLrw+TXG2vm0sDdtVDrAtD/TQmOeDHr4QC8Whf1R2tJuFBvXnzIycRY2KJF0K
+	 z33WOOtp+MXMqPWAm1KMVhF5iQOqQfdtdVft7rT5PsVWQDWTUS88CiIoimBX2Erjdf
+	 mZ8AUHJcObU9AdODGCdsOuA0nnli58kvWj/YNM1Q7K8RhECd+BZNgXz1krZzsGnhML
+	 7DbB8Uy7zReNcDgDTZ/rpNDuT1vKVnTePpQ9RMXCGRAPzVM9+VBSaIj3KacGC6TvTI
+	 dG4jYsZIyOLj2vv153M0Dfiw/RrH7GM8pmpz3DgOrYpqMced1CKUiOMDXHqAW+oAee
+	 zZTDI8Iv8OSPg==
+Date: Fri, 28 Feb 2025 06:25:10 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Steven Price <steven.price@arm.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	imx@lists.linux.dev, Conor Dooley <conor+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH 3/9] dt-bindings: gpu: mali-valhall-csf: Document
+ optional reset
+Message-ID: <174074550945.2320385.13428412876070691467.robh@kernel.org>
+References: <20250227170012.124768-1-marex@denx.de>
+ <20250227170012.124768-4-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/4] dt-bindings: media: qcom,sm8550-iris: document SM8650
- IRIS accelerator
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250225-topic-sm8x50-iris-v10-v1-0-128ef05d9665@linaro.org>
- <20250225-topic-sm8x50-iris-v10-v1-1-128ef05d9665@linaro.org>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <20250225-topic-sm8x50-iris-v10-v1-1-128ef05d9665@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: jzhqKxnEf_1tHWXcjbEJKXeH8GShUwxN
-X-Proofpoint-GUID: jzhqKxnEf_1tHWXcjbEJKXeH8GShUwxN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-28_02,2025-02-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- adultscore=0 phishscore=0 bulkscore=0 mlxlogscore=999 suspectscore=0
- impostorscore=0 mlxscore=0 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502280089
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250227170012.124768-4-marex@denx.de>
 
 
-
-On 2/25/2025 2:35 PM, Neil Armstrong wrote:
-> Document the IRIS video decoder and encoder accelerator found in the
-> SM8650 platform, it requires 2 more reset lines in addition to the
-> properties required for the SM8550 platform.
+On Thu, 27 Feb 2025 17:58:03 +0100, Marek Vasut wrote:
+> The instance of the GPU populated in Freescale i.MX95 does require
+> release from reset by writing into a single GPUMIX block controller
+> GPURESET register bit 0. Document support for one optional reset.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../bindings/media/qcom,sm8550-iris.yaml           | 33 ++++++++++++++++++----
->  1 file changed, 28 insertions(+), 5 deletions(-)
+> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Steven Price <steven.price@arm.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+>  .../devicetree/bindings/gpu/arm,mali-valhall-csf.yaml          | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> index e424ea84c211f473a799481fd5463a16580187ed..536cf458dcb08141e5a1ec8c3df964196e599a57 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> @@ -14,12 +14,11 @@ description:
->    The iris video processing unit is a video encode and decode accelerator
->    present on Qualcomm platforms.
->  
-> -allOf:
-> -  - $ref: qcom,venus-common.yaml#
-> -
->  properties:
->    compatible:
-> -    const: qcom,sm8550-iris
-> +    enum:
-> +      - qcom,sm8550-iris
-> +      - qcom,sm8650-iris
->  
->    power-domains:
->      maxItems: 4
-> @@ -49,11 +48,15 @@ properties:
->        - const: video-mem
->  
->    resets:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 3
->  
->    reset-names:
-> +    minItems: 1
->      items:
->        - const: bus
-> +      - const: xo
-> +      - const: core
->  
->    iommus:
->      maxItems: 2
-> @@ -75,6 +78,26 @@ required:
->    - iommus
->    - dma-coherent
->  
-> +allOf:
-> +  - $ref: qcom,venus-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,sm8650-iris
-> +    then:
-> +      properties:
-> +        resets:
-> +          minItems: 3
-> +        reset-names:
-> +          minItems: 3
-> +    else:
-> +      properties:
-> +        resets:
-> +          maxItems: 1
-> +        reset-names:
-> +          maxItems: 1
-> +
->  unevaluatedProperties: false
->  
->  examples:
-> 
-Since we are using same binding for SM8550 and SM8650, I think, it would be
-good to rename this file to qcom,iris-commom.yaml
 
-Thanks,
-Dikshita
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
