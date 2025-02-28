@@ -1,119 +1,105 @@
-Return-Path: <devicetree+bounces-152699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C9D2A49DF0
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 16:47:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DA31A49DE6
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 16:47:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F54A3BA26B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:45:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 765DA17796E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C90271835;
-	Fri, 28 Feb 2025 15:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AD3270EC9;
+	Fri, 28 Feb 2025 15:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H+KOHVkB"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Jvz7yJ45"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13CD7271818;
-	Fri, 28 Feb 2025 15:45:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A119186E20;
+	Fri, 28 Feb 2025 15:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740757549; cv=none; b=IjLIVv88CjMuhP6YmBMPtEy3npXTSrqAPxJoG1/qLPqZn7gHcnArUoisq4YUv5y0u11/daKQo501XdY141s7gV6LOX2SxxXsqPwiAeOjUptt+oVqitSJnWEuPZO/EOaHkuS688Z9LEezCDWYboB2UI1MWMqjjTmr6pnOVpEzYzE=
+	t=1740757579; cv=none; b=ZA22c+WTl/p+Mrb8Nwg4B/I3N8aQlfJcEKtYPeGjpdLf6F8usAZMNeU8NBml9bNE45eVKmQyRczf/oSsw8R7JwlOsfLs+dzctRnMp+6KsTqLkEa02Fj5dy6pwqRU4pK42ipgnerdlz3AVRKCTNcYsTMbCdovLlmGPhQoIk2YhLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740757549; c=relaxed/simple;
-	bh=Uts4A/r4zPPP3eb6uT940KohT1wufjWOeBrUa3ZwzW0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=bC5YlI1DkfOs3SkV/FSj7hHqa+6kapVh/RON14AL5iq9SDjoD4oNWv8bWbuOgpmG+h6wuOvc+MbeFl2iPntjIR0746l2P3c84BpaqwLGLuCosV9KHfVPbMVAPnI8panzRIRnBFUaTCx/Tdm5qZQ5ApDgKU87Nm0AiErkrHcrl/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H+KOHVkB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48564C4CED6;
-	Fri, 28 Feb 2025 15:45:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740757548;
-	bh=Uts4A/r4zPPP3eb6uT940KohT1wufjWOeBrUa3ZwzW0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=H+KOHVkBepTuiGOdNZCr1sE8MgPyu2ITrZv//mbC3+GgJW5VYhaMeeoM0FCPRzplZ
-	 QDhj3H44LgVoPA5mkE+fMPzmMBa5GPNc+G1ZR4KtpA7xkxcXDPshBwNtM7UyyRwHHc
-	 6MyVJSzoqWvd2g3XPwgWtIrINBwBzDuXmU+HJp6SFWjqu/OeDiHT/UonlcCKlCfitI
-	 G7hcCkRtoPbf7m33XSRqTYrJwkitZ8ZLiGfDqrJQT7H22CTKtyoYTKX+m5TGCjiMNm
-	 htCTDGaFQmYkSk9N+vMc90oXAEJvUSJtAqRfRkyVzhZqHsVE34iTVb4qPEXsA9whnV
-	 /1xSPsR/qD/Aw==
-Date: Fri, 28 Feb 2025 09:45:46 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1740757579; c=relaxed/simple;
+	bh=ZXBR5LYnXOurTmSvf/2h8CiBxpUcI0g6wzC2BoBWZNc=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=KpCkhsbAqzC9nEBlmKUb2kVDxkCnKith1v+sp7dYXzIJTWZ7essWyRfz0DFcl4AYW4de17XVBj2T9VBnbEWfdxYYAymgFXYix2gWSe6Cm3cWimnLV0wKzhvADCj6t2085DEuUxWi++lRYckz3WR4FTNpYEMiJCPEWmoq9sdBMR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Jvz7yJ45; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, devicetree@vger.kernel.org, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- kernel-team@android.com, linux-gpio@vger.kernel.org, 
- Kees Cook <kees@kernel.org>, linux-hardening@vger.kernel.org, 
- Lee Jones <lee@kernel.org>, Will McVicker <willmcvicker@google.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>
-To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-In-Reply-To: <20250228-max77759-mfd-v3-2-0c3627d42526@linaro.org>
-References: <20250228-max77759-mfd-v3-0-0c3627d42526@linaro.org>
- <20250228-max77759-mfd-v3-2-0c3627d42526@linaro.org>
-Message-Id: <174075754475.2982392.4279311619113496432.robh@kernel.org>
-Subject: Re: [PATCH v3 2/6] dt-bindings: nvmem: add max77759 binding
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1740757575;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=luIE0Lf4JAHBS8LhKxuyQef8bCGyud3N4ZNDHk+iEL8=;
+	b=Jvz7yJ452lR8t9YC1wIIxBp7ro7I7QTTxUlXDF7Oox+l6ZnknysKkZpnv7UnuJeiGoDQz8
+	gkH3gqeNzEBGoIa78J7NYQi5Y3bW+sYOl+EUvtzo+BsbBQ50iuINXLKEeztXQRPDCDOf0w
+	9WL/Mi7yluhc1X5awOdpq2CsCQqI+yEI5ykdtyzUie01AY7O62Grd2XFGSKPrdu4HO/Eo/
+	N8SMvn73edg3RWBySKjupI+YBBcGkmS0WiODzMiYvunvy7WO+lLBWC0iS1uDbvYjHjSBAC
+	J38ps6i8mBWDAVMuLu0b7WQoQ6QIaaiNseLdw721m133y0tqGLRzl8/av8TeVA==
+Date: Fri, 28 Feb 2025 16:46:15 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Olivier Benjamin <olivier.benjamin@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, oren@taumoda.com, Ondrej Jirman <megi@xff.cz>
+Subject: Re: [PATCH 0/2] Describe the cameras in the PinePhone Pro dts
+In-Reply-To: <20250228-camera-v1-0-c51869f94e97@bootlin.com>
+References: <20250228-camera-v1-0-c51869f94e97@bootlin.com>
+Message-ID: <0338826971bfdd5b771bc1c6ada795eb@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Hello Olivier,
 
-On Fri, 28 Feb 2025 14:25:16 +0000, André Draszik wrote:
-> The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
-> includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
-> Port Controller (TCPC), NVMEM, and a GPIO expander.
+On 2025-02-28 16:19, Olivier Benjamin wrote:
+> This series adds support for the Pine64 PinePhone Pro's rear and front
+> cameras in Device Tree.
+> This is based on some of Ondrej Jirman's patches hosted in his tree at
+> https://codeberg.org/megi/linux, but I have also fully reviewed and
+> re-written the code from the RK3399 datasheet, the PinePhone Pro
+> schematic, and the IMX258-0AQH5 software reference manual.
 > 
-> This describes its storage module (NVMEM).
+> I have tested these changes on my PinePhone Pro and am able to take
+> photos from both cameras using libcamera's cam.
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
+
+I'm afraid that you haven't addressed the notes from the feedback
+you received earlier? [*]  Also, this should be the v2 of the series,
+which should contain "PATCH v2" in the patch subjects, and provide
+a summary of changes in the cover letter.
+
+Or, did you just resend the v1 by mistake?
+
+[*] https://lore.kernel.org/linux-rockchip/5127541.31r3eYUQgx@phil/
+
 > ---
-> v2:
-> * drop example as the MFD binding has a complete one (Rob)
+> Olivier Benjamin (2):
+>       arm64: dts: PinePhone Pro: describe I2c Bus 1 and IMX258 world 
+> camera
+>       arm64: dts: PinePhone Pro: describe the OV8858 user camera
 > 
-> Note: MAINTAINERS doesn't need updating, the binding update for the
-> first leaf device (gpio) adds a wildcard matching all max77759 bindings
+>  .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 138 
+> +++++++++++++++++++++
+>  1 file changed, 138 insertions(+)
 > ---
->  .../bindings/nvmem/maxim,max77759-nvmem.yaml       | 32 ++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/nvmem/maxim,max77759-nvmem.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
-Documentation/devicetree/bindings/nvmem/maxim,max77759-nvmem.yaml: Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250228-max77759-mfd-v3-2-0c3627d42526@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
 
