@@ -1,262 +1,296 @@
-Return-Path: <devicetree+bounces-152456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F57AA4920F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:21:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70390A49215
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:22:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA3CF1681DA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 07:21:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EC47168758
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 07:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF491CACF3;
-	Fri, 28 Feb 2025 07:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8AB1C5D57;
+	Fri, 28 Feb 2025 07:22:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OlqJxuxI"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Hz2ViURM";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ogRXbwIh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900351C7010;
-	Fri, 28 Feb 2025 07:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DFDA276D12;
+	Fri, 28 Feb 2025 07:22:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740727267; cv=none; b=PshYcqyTfMH1oa4j0lHJ4D3P7YH3dNkNWU8TsjHeXCjiDLvQDA53riU0ClHI/Xv4QQRVa84nZvZMsw/1VNenJygoCUT5jnw3I3Qu/dnvQXegfUyC3/W0RCdqD6BOFh+rq8XycG9o0q8iNVND2f0CTg4DmGxvsnQNyqDE7fEzDCg=
+	t=1740727353; cv=none; b=ZbEoK18r3emxq2FXlf+VUK5/a3mnmgPZJJgg2Awta/T3v6Dwoo4Bvey8GrsJCZoPH0UqcD4cM//5fB/vCv61qiLcA0DG/w9fA6Uw1Ua0w34+hPTX5zzzVXuAAGOb37mF+GAbaXkE7eyT6G4yobiCkxO60hRKVR8YeQXqoIyFEE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740727267; c=relaxed/simple;
-	bh=sl9r9VQ6VexKVxeS2jQ44jEFHbpnEm4bkHQf6mGicRU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NOh0aJ8zOHF6D4FD3bB5WXGIXXx3cSkFFjNr9yZI2R0TqREc6jGsKWHLL1hi7T5njLwoIO/xqKWjeJCVkhyldTP39GBT47hRrDB2gP2zOukmWlCVr+FLOO7+60rpIdTdJDSAs6jH6K4LqrNplrlVodBAQrprgqpG0ED+s5TF2GM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OlqJxuxI; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51RL6ZHk004454;
-	Fri, 28 Feb 2025 07:20:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	COq625R9+If4QE8gOV9Ke/T020e16SpptKW3azs+Okw=; b=OlqJxuxIkVTSHXP+
-	jDR6RKK2zNWa64q1Rb9NI+MV3zkz8qmp5b+XTSiyxxj+T5w+R7aEyxWCXbcqu4+M
-	8h5KMgji8a9YNan+5FY3htFN3ZiIw4Ko9AIAZypw4rbowIQtKY6gI5uv2iHjRRyO
-	uXu09u58CTUOyP0bOtrGdX94kv4gH9WT0MCjUQljp0DeDOqrSYE/vQnrXY/AMW68
-	spauiuawVcNj+IkI6sbk8s9MrNAUGqvhvKkYIUQKstbOTF91OIJ3s//hd/RwGmQi
-	on86M3XTsrcBks39BglaOqx43r4yGl8NL12sREl8WsTlCQMgEV7MV3Vl7pL3Ij3h
-	mt+KOw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 452pm7k2bc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Feb 2025 07:20:39 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51S7KcRX004787
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Feb 2025 07:20:38 GMT
-Received: from [10.239.133.114] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 27 Feb
- 2025 23:20:29 -0800
-Message-ID: <1c483978-8e9d-4ba0-8c92-6b4f8c366e2a@quicinc.com>
-Date: Fri, 28 Feb 2025 15:20:27 +0800
+	s=arc-20240116; t=1740727353; c=relaxed/simple;
+	bh=bhxd/KfCNKiM9vyi/5pp6JzKN+UPILhE65qZ1iaU7xE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=afb1IMnAHSZp4XA2kkMrlIzE3lGo+YP+VEWPZx1sw5aKE9Y0votU6jkdYwvRQiNd3VFadqyaG53lhRf0qaIVs4mN0mvy1MJHt44dHaz+ENXsQHjPP3mqSty2SKppm4rLnMgMK7GjcLoYDXR+krfjbEvvzL3cC68IOMXm1IhI/io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Hz2ViURM; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ogRXbwIh reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1740727348; x=1772263348;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=TkFVKPQR+LQml2cZHEZ/ObJmevOgd54N2EFHAcZPN8M=;
+  b=Hz2ViURMJIEG5WNpEWKS/EUimoedEbFeg/5NuLnviuh2YRhzwJqVlYt2
+   mN+pECws8kv8jWKga2t/aeOU1qG6/XY39tH324wcyphKx24ljC2jXcIHO
+   +bmun+6aDVTXZxq+TsBYConMi9UrYjlNTNwHxHU+kpkOB6qaOM5imRdz2
+   dacecpsJq5zGrjqiJQKIW1JkxNe8Q7nnGaAFewkqegVLvWnTydOtXeyTU
+   6PiZYTQM5nWQk99hBPC2UcmvgTijQ9jRghGwb9herZKBIr0JAqq1Ct2Wf
+   ekWG2sGKaRSJdsRABBN9EYtfWHGNe2P+atUOCJGboofVrS0LHRJ88ekWm
+   A==;
+X-CSE-ConnectionGUID: Pwm/jGH8QIarCnxCey13iw==
+X-CSE-MsgGUID: Bb3tnsBjSVCJhB4/uuKrXA==
+X-IronPort-AV: E=Sophos;i="6.13,321,1732575600"; 
+   d="scan'208";a="42165579"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 28 Feb 2025 08:22:25 +0100
+X-CheckPoint: {67C16431-13-FDFF3AB5-CA03ADD1}
+X-MAIL-CPID: 4348E4AA195BD790F26CB356D6936DF1_2
+X-Control-Analysis: str=0001.0A00211D.67C1642F.00A8,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A999916AE35;
+	Fri, 28 Feb 2025 08:22:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1740727341;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TkFVKPQR+LQml2cZHEZ/ObJmevOgd54N2EFHAcZPN8M=;
+	b=ogRXbwIhZocCHuUkWQGFg2gbcCpc0BNHIU0NTP5Mt/Zq0r/UgzXW1ldBuvV6mLlKByTKu5
+	z0BwzkXLEF+i4tc6ORisef1h/QpgO/nfXEKgG8sQBQPiJ9GJPaNRWZslahpltwXjt40r8z
+	lxlyS5Tx8rONJeuucC31zomyPaTh6KrrQHrZzeIuPWepa5MEMxbLbEyO/AAaoaLDpfBEHx
+	cPrkpGvuCliTL8GZb8e/LbkEv7d58K+NIqJ8UUXPwmfIJnB76oouYK250Sh2Ts0wWetg3E
+	qHsA9/2YbducH85cQ243AiKAd02ECdhvzTxCf5GvGahHEKIW93px6JWacSlh2w==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, peter.chen@kernel.org,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ jun.li@nxp.com
+Subject:
+ Re: [PATCH v3 4/6] usb: chipidea: imx: add HSIO Block Control wakeup setting
+Date: Fri, 28 Feb 2025 08:22:19 +0100
+Message-ID: <4411149.ejJDZkT8p0@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250228023258.uznzhfnp7zsrxzed@hippo>
+References:
+ <20250227095348.837223-1-xu.yang_2@nxp.com> <3535014.QJadu78ljV@steina-w>
+ <20250228023258.uznzhfnp7zsrxzed@hippo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: arm: Add Coresight device Trace NOC
- definition
-To: Rob Herring <robh@kernel.org>
-CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <kernel@quicinc.com>,
-        <linux-kernel@vger.kernel.org>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kernel@oss.qualcomm.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20250221-trace-noc-driver-v1-0-0a23fc643217@quicinc.com>
- <20250221-trace-noc-driver-v1-1-0a23fc643217@quicinc.com>
- <20250221235307.GA401276-robh@kernel.org>
-Content-Language: en-US
-From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-In-Reply-To: <20250221235307.GA401276-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: g8-R13Gx_sxjZuIiU79pSGN8ljaQUnLU
-X-Proofpoint-GUID: g8-R13Gx_sxjZuIiU79pSGN8ljaQUnLU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-28_01,2025-02-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- impostorscore=0 spamscore=0 priorityscore=1501 suspectscore=0
- malwarescore=0 adultscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
- mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2502280051
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hi,
 
+Am Freitag, 28. Februar 2025, 03:33:29 CET schrieb Xu Yang:
+> On Thu, Feb 27, 2025 at 04:12:54PM +0100, Alexander Stein wrote:
+> > Hi,
+> >=20
+> > Am Donnerstag, 27. Februar 2025, 10:53:46 CET schrieb Xu Yang:
+> > > On i.MX95 platform, USB wakeup setting is controlled by HSIO Block
+> > > Control:
+> > >=20
+> > > HSIO Block Control Overview:
+> > > - The HSIO block control include configuration and status registers t=
+hat
+> > >   provide miscellaneous top-level controls for clocking, beat limiter
+> > >   enables, wakeup signal enables and interrupt status for the PCIe an=
+d USB
+> > >   interfaces.
+> > >=20
+> > > The wakeup function of HSIO blkctl is basically same as non-core, exc=
+ept
+> > > improvements about power lost cases. This will add the wakeup setting=
+ for
+> > > HSIO blkctl on i.MX95. It will firstly ioremap hsio blkctl memory, th=
+en do
+> > > wakeup setting as needs.
+> > >=20
+> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> > > Reviewed-by: Jun Li <jun.li@nxp.com>
+> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > >=20
+> > > ---
+> > > Changes in v3:
+> > >  - remove usbmisc_imx95_init(), use usbmisc_imx7d_init()
+> > > Changes in v2:
+> > >  - add Rb tag
+> > > ---
+> > >  drivers/usb/chipidea/usbmisc_imx.c | 72 ++++++++++++++++++++++++++++=
+++
+> > >  1 file changed, 72 insertions(+)
+> > >=20
+> > > diff --git a/drivers/usb/chipidea/usbmisc_imx.c b/drivers/usb/chipide=
+a/usbmisc_imx.c
+> > > index 1394881fde5f..8c30908c11ed 100644
+> > > --- a/drivers/usb/chipidea/usbmisc_imx.c
+> > > +++ b/drivers/usb/chipidea/usbmisc_imx.c
+> > > @@ -139,6 +139,22 @@
+> > >  #define MX6_USB_OTG_WAKEUP_BITS (MX6_BM_WAKEUP_ENABLE | MX6_BM_VBUS_=
+WAKEUP | \
+> > >  				 MX6_BM_ID_WAKEUP | MX6SX_BM_DPDM_WAKEUP_EN)
+> > > =20
+> > > +/*
+> > > + * HSIO Block Control Register
+> > > + */
+> > > +
+> > > +#define BLKCTL_USB_WAKEUP_CTRL		0x0
+> > > +#define BLKCTL_OTG_WAKE_ENABLE		BIT(31)
+> > > +#define BLKCTL_OTG_VBUS_SESSVALID	BIT(4)
+> > > +#define BLKCTL_OTG_ID_WAKEUP_EN		BIT(2)
+> > > +#define BLKCTL_OTG_VBUS_WAKEUP_EN	BIT(1)
+> > > +#define BLKCTL_OTG_DPDM_WAKEUP_EN	BIT(0)
+> > > +
+> > > +#define BLKCTL_WAKEUP_SOURCE		(BLKCTL_OTG_WAKE_ENABLE	   | \
+> > > +					 BLKCTL_OTG_ID_WAKEUP_EN   | \
+> > > +					 BLKCTL_OTG_VBUS_WAKEUP_EN | \
+> > > +					 BLKCTL_OTG_DPDM_WAKEUP_EN)
+> > > +
+> > >  struct usbmisc_ops {
+> > >  	/* It's called once when probe a usb device */
+> > >  	int (*init)(struct imx_usbmisc_data *data);
+> > > @@ -159,6 +175,7 @@ struct usbmisc_ops {
+> > > =20
+> > >  struct imx_usbmisc {
+> > >  	void __iomem *base;
+> > > +	void __iomem *blkctl;
+> > >  	spinlock_t lock;
+> > >  	const struct usbmisc_ops *ops;
+> > >  };
+> > > @@ -1016,6 +1033,41 @@ static int usbmisc_imx6sx_power_lost_check(str=
+uct imx_usbmisc_data *data)
+> > >  		return 0;
+> > >  }
+> > > =20
+> > > +static u32 usbmisc_blkctl_wakeup_setting(struct imx_usbmisc_data *da=
+ta)
+> > > +{
+> > > +	u32 wakeup_setting =3D BLKCTL_WAKEUP_SOURCE;
+> > > +
+> > > +	if (data->ext_id || data->available_role !=3D USB_DR_MODE_OTG)
+> > > +		wakeup_setting &=3D ~BLKCTL_OTG_ID_WAKEUP_EN;
+> > > +
+> > > +	if (data->ext_vbus || data->available_role =3D=3D USB_DR_MODE_HOST)
+> > > +		wakeup_setting &=3D ~BLKCTL_OTG_VBUS_WAKEUP_EN;
+> > > +
+> > > +	/* Select session valid as VBUS wakeup source */
+> > > +	wakeup_setting |=3D BLKCTL_OTG_VBUS_SESSVALID;
+> > > +
+> > > +	return wakeup_setting;
+> > > +}
+> > > +
+> > > +static int usbmisc_imx95_set_wakeup(struct imx_usbmisc_data *data, b=
+ool enabled)
+> > > +{
+> > > +	struct imx_usbmisc *usbmisc =3D dev_get_drvdata(data->dev);
+> > > +	unsigned long flags;
+> > > +	u32 val;
+> > > +
+> > > +	spin_lock_irqsave(&usbmisc->lock, flags);
+> > > +	val =3D readl(usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
+> > > +	val &=3D ~BLKCTL_WAKEUP_SOURCE;
+> > > +
+> > > +	if (enabled)
+> > > +		val |=3D usbmisc_blkctl_wakeup_setting(data);
+> > > +
+> > > +	writel(val, usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
+> > > +	spin_unlock_irqrestore(&usbmisc->lock, flags);
+> >=20
+> > usbmisc->blkctl is NULL if DT does not provide a 2nd IORESOURCE_MEM.
+>=20
+> Good catch. Thanks!
+>=20
+> It may return an errno if usbmisc->blkctl is NULL.
+>=20
+> >=20
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > >  static const struct usbmisc_ops imx25_usbmisc_ops =3D {
+> > >  	.init =3D usbmisc_imx25_init,
+> > >  	.post =3D usbmisc_imx25_post,
+> > > @@ -1068,6 +1120,14 @@ static const struct usbmisc_ops imx7ulp_usbmis=
+c_ops =3D {
+> > >  	.power_lost_check =3D usbmisc_imx7d_power_lost_check,
+> > >  };
+> > > =20
+> > > +static const struct usbmisc_ops imx95_usbmisc_ops =3D {
+> > > +	.init =3D usbmisc_imx7d_init,
+> > > +	.set_wakeup =3D usbmisc_imx95_set_wakeup,
+> > > +	.charger_detection =3D imx7d_charger_detection,
+> > > +	.power_lost_check =3D usbmisc_imx7d_power_lost_check,
+> > > +	.vbus_comparator_on =3D usbmisc_imx7d_vbus_comparator_on,
+> > > +};
+> > > +
+> > >  static inline bool is_imx53_usbmisc(struct imx_usbmisc_data *data)
+> > >  {
+> > >  	struct imx_usbmisc *usbmisc =3D dev_get_drvdata(data->dev);
+> > > @@ -1289,6 +1349,10 @@ static const struct of_device_id usbmisc_imx_d=
+t_ids[] =3D {
+> > >  		.compatible =3D "fsl,imx8ulp-usbmisc",
+> > >  		.data =3D &imx7ulp_usbmisc_ops,
+> > >  	},
+> > > +	{
+> > > +		.compatible =3D "fsl,imx95-usbmisc",
+> > > +		.data =3D &imx95_usbmisc_ops,
+> > > +	},
+> > >  	{ /* sentinel */ }
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
+> > > @@ -1296,6 +1360,7 @@ MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
+> > >  static int usbmisc_imx_probe(struct platform_device *pdev)
+> > >  {
+> > >  	struct imx_usbmisc *data;
+> > > +	struct resource *res;
+> > > =20
+> > >  	data =3D devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> > >  	if (!data)
+> > > @@ -1307,6 +1372,13 @@ static int usbmisc_imx_probe(struct platform_d=
+evice *pdev)
+> > >  	if (IS_ERR(data->base))
+> > >  		return PTR_ERR(data->base);
+> > > =20
+> > > +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> > > +	if (res) {
+> > > +		data->blkctl =3D devm_ioremap_resource(&pdev->dev, res);
+> > > +		if (IS_ERR(data->blkctl))
+> > > +			return PTR_ERR(data->blkctl);
+> > > +	}
+> > > +
+> >=20
+> > Any chance to ensure imx95 has actually data->blkctl?
+>=20
+> I think let usbmisc_imx95_set_wakeup() return an error should be enough.
 
-On 2/22/2025 7:53 AM, Rob Herring wrote:
-> On Fri, Feb 21, 2025 at 03:40:28PM +0800, Yuanfang Zhang wrote:
->> Adds new coresight-tnoc.yaml file describing the bindings required
->> to define Trace NOC in the device trees.
->>
->> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
->> ---
->>  .../bindings/arm/qcom,coresight-tnoc.yaml          | 107 +++++++++++++++++++++
->>  1 file changed, 107 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..b8c1aaf014fb483fd960ec55d1193fb3f66136d2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
->> @@ -0,0 +1,107 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/arm/qcom,coresight-tnoc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Ttrace NOC(Network On Chip)
->> +
->> +maintainers:
->> +  - yuanfang Zhang <quic_yuanfang@quicinc.com>
->> +
->> +description:
->> +  The Trace NoC is an integration hierarchy which is a replacement of Dragonlink tile configuration.
->> +  It brings together debug component like TPDA, funnel and interconnect Trace Noc which collects trace
->> +  from subsystems and transfers to QDSS sink.
->> +
->> +  It sits in the different subsystem of SOC and aggregates the trace and transports it to Aggregation TNoC
->> +  or to QDSS trace sink eventually. Trace NoC embeds bridges for all the interfaces(APB, ATB, QPMDA & NTS).
->> +
->> +  Trace NoC can take inputs from different trace sources i.e. ATB, QPMDA.
-> 
-> Wrap lines at 80 char. And you need '>' to preserve paragraphs.
-how to use '>' to preserve paragraphs? i don't find it on other yaml, could you share one example?
-> 
->> +
->> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
->> +select:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        enum:
->> +          - qcom,coresight-tnoc
->> +  required:
->> +    - compatible
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^tn(@[0-9a-f]+)$"
-> 
-> blank line
-Done in V2.
-> 
->> +  compatible:
->> +    items:
->> +      - const: qcom,coresight-tnoc
->> +      - const: arm,primecell
->> +
->> +  reg:
->> +    minItems: 1
->> +    maxItems: 2
-> 
-> Need to describe what each entry is.
-Update in V2.
-> 
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: apb_pclk
->> +
->> +  in-ports:
->> +    description: |
-> 
-> Don't need '|'
-Done in V2.
-> 
->> +      Input connections from subsystem to TNoC
->> +    $ref: /schemas/graph.yaml#/properties/ports
-> 
-> You have to define the 'port' nodes.
-Done in V2.
-> 
->> +
->> +  out-ports:
->> +    description: |
->> +      Output connections from the TNoC to Aggreg TNoC or to legacy CoreSight trace bus.
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port:
->> +        description: |
->> +          Output connections from the TNoC to Aggreg TNoC or to legacy CoreSight trace bus.
-> 
-> 'connections' sounds like more than 1, but you only have 1 port. 
-> 
-> Wrap at 80 char.
-Done in V2.
-> 
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - in-ports
->> +  - out-ports
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    tn@109ab000  {
->> +      compatible = "qcom,coresight-tnoc", "arm,primecell";
->> +      reg = <0x0 0x109ab000  0x0 0x4200>;
->> +
->> +      clocks = <&aoss_qmp>;
->> +      clock-names = "apb_pclk";
->> +
->> +      in-ports {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        port@0 {
->> +          reg = <0>;
->> +
->> +          tn_ag_in_tpdm_gcc: endpoint {
->> +            remote-endpoint = <&tpdm_gcc_out_tn_ag>;
->> +          };
->> +        };
->> +      };
->> +
->> +      out-ports {
->> +        port {
->> +          tn_ag_out_funnel_in1: endpoint {
->> +            remote-endpoint = <&funnel_in1_in_tn_ag>;
->> +          };
->> +        };
->> +      };
->> +    };
->> +...
->>
->> -- 
->> 2.34.1
->>
+Better fail early rather than later.
+
+> Some errors will be printed for user. Also dt-bindings has restriction for
+> imx95.
+
+That's true, but don't assume the DT is always setup correctly.
+
+Best regards
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
