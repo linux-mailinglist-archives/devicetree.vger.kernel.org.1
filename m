@@ -1,201 +1,116 @@
-Return-Path: <devicetree+bounces-152504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2350A493F3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:49:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78297A49405
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:52:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F9423A6F9A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:49:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A7D63AF7FB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5698253F2D;
-	Fri, 28 Feb 2025 08:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBE9253F36;
+	Fri, 28 Feb 2025 08:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UimGJTRL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oqv88IH0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D646276D3B;
-	Fri, 28 Feb 2025 08:49:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F79253F08
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 08:52:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740732589; cv=none; b=bOPdXD+bxUwQuNhKfSP2XCbtk2aOQZfkViu2Ji+nlQ9nHeUOVWLimLRWPT8g6WXT3Scqfu6gJfVOBS2/HHyOP348TF4KfnhmasOnG9uztyZCTnwUxHNC5pMyA5Rx6RIOGOiVSP+S79NT0pdPpfAdp1LxM9ggejqJqzsnO+jR5zY=
+	t=1740732750; cv=none; b=uA6RhqYnCUoD95PowMiJ5N+BH3tvt4cQmKvK5ZTuNrRnL7414ree7FlgQV1uvaxHk5NFYktGRFiPKp/FPFg0NtDA7Dnsr+T3Dhb8V3JaDVGM4mjUbDEt6VlkhqBO5zOSJ0nEMcUz+v79AOm32NsFxXw403SF6AVU1gsEgrVM7kI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740732589; c=relaxed/simple;
-	bh=hrumNHzaFlpOdg+6QSUhWy9VTkbT/XcBYRpYCCjZgnA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FD2/DFkhNTIyXwX2jIg8ssoeMz1diWar1tZpEGdAfNzhdk5wRHN+TFkVfxgNhOmD0vbiNi5nCjkOEyBH6Z13t7rMea2JSFcPnxFh0Oc1wXQscL4zBV3DIuMQnIMfM1NdEhzNkd59j+pl/qDyEJwZxwSch2hpUlXu+iqhq363keA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UimGJTRL; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1740732585;
-	bh=hrumNHzaFlpOdg+6QSUhWy9VTkbT/XcBYRpYCCjZgnA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UimGJTRL1tIv6J8a8JGGrwRYcp09VlmGWndhoaSNzJsNgxU7hQA+ao4Hq0/GfWjF/
-	 wxZlEyGFhmniAZCDvHnliCz6foiyg93iX2PxNAMnvCVILMxcdbdPtG+v+LzyIa9uVg
-	 /cxkO/SDiSu7lp/WfOTz6TvsqMWffZ5CRVsj+kX0m2TqeogpBHN39xDbQ+Hms7RYfF
-	 iG7A4vICu1W0aLiHAaY8dHohFzpKOwrgb98xtrrUJU7EXReL6fK+YSac6vO7UgOpFP
-	 ltTukYslZX6JP4UFZH5FF2SIQ9aoNvaApYT+K1rM1ucXDqWj0o1flWr/Xc5Zw428CE
-	 Qhp9PqIESQVhA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A97DB17E0673;
-	Fri, 28 Feb 2025 09:49:44 +0100 (CET)
-Message-ID: <4ae2ef45-93c8-4cac-8331-0962085cea10@collabora.com>
-Date: Fri, 28 Feb 2025 09:49:43 +0100
+	s=arc-20240116; t=1740732750; c=relaxed/simple;
+	bh=QAZ1XbH09v7b1zWZ0hsXWTy0W7e9HTzyQ7n3BOJSdIM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tVw0mmkwr19WCGdwciPjT3M10yu6CluzLkynQn4ZU9sQc+1sebPFhiDMamp7irMSAC1jrV2FE07K6zEqryoHv6gnyMAgL2Hc6vpBeklPVlTWNW8t5P5bws051wSd2iW1wnVqN0+CB2LF75JbflZCVHCI9oI9tcS4Hk0RpqAUqgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oqv88IH0; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5494bc4d741so945172e87.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 00:52:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740732746; x=1741337546; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QAZ1XbH09v7b1zWZ0hsXWTy0W7e9HTzyQ7n3BOJSdIM=;
+        b=oqv88IH0Fu58PpsE4em94prhjTzhdw48VwmrFHg7CdbdAwbavnegV9HfWzT0PJ3Bt2
+         +l1qTW6k/q7VXv2w7wSW5Ru5PK6aM8LUSQUEBFtQ8qPnaynrKg+d08WypuBImcDgrOC8
+         de+itt/MuoHgovngNLlaU1nKVOrLOXwC7O6OmR1JLEWL/5K/NQQvMw+BmxeYwZmT3yyS
+         arWmpvCXyXb4FmZIdutQYQCRWa5Xluz9xB5BsnuApoq004rt3T/bnidEHGyoKA45EUOA
+         wgXXRg7AHVt+vTLk38T90zT4x7LLETREkmz33fs1qHoMnyEEGNA5I05ubjFbYTWJoPaZ
+         qyWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740732746; x=1741337546;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QAZ1XbH09v7b1zWZ0hsXWTy0W7e9HTzyQ7n3BOJSdIM=;
+        b=FSPlBOVzaKMnYN7hfm9ShN36/hyLTOOgOAAUyihNoqGrPRkX6s9WgKZwxXroXrpSVj
+         RQ11bICaaq8U5BMCmkABU5A+QqAuBCnLkYW1fJ4UWfOrDCWYaEQ9lWPC/mbu/yHGL+Kb
+         tiDdgKwgQPS5FsSb/mzIbiIWpjxQdpAzQTOPrWzK4j83D+UqL0jIq2jQCSyMJdRpPkoC
+         YILzrxC0PEbPYxFN0REMSfBh5ZVbVEOhW17Fm+Jg7y4AVpwuqcPtaBJKLUxDbhEw+EL3
+         F6piU+Jple+Dxvyiv9MjlKRw2SQSspVBVx7434986AXlvOTyH3FdI4tt5oLqC8QdJm9Z
+         Mlwg==
+X-Forwarded-Encrypted: i=1; AJvYcCWovcx/39568Piuy681W+vEiuGkWHmbcFkng/jpHbTDH+6iAzVQy2hnE6wNxgbzReFt/hg06+haxar0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLclgLHZawu3NerYhYPNi+zeniYvBTuvcqNnQND09He+L77Y2Y
+	VAzxgXS0IkJeqJJuRLb4MUu+uP7sKSFFhcuFTnmvTMElQOaycOvhkviGJ8wTuXCKnUV52g9v5rF
+	cizTdT5KlYH9acygle9K9xq+vF5/K0QUAFY28HA==
+X-Gm-Gg: ASbGncvoLPdCCwVYt21SjHXVAdC7Msul4o7seC6188WOTOCtWbmtGvCmgZ5XerdEiwr
+	6sAfZY3ZHGOz3OigQepvNaNDD405AkG6xXvtYOPde1YOXt0Czrp6NzxI91cXzsxVP3DECShk7xy
+	65FnAaZsI=
+X-Google-Smtp-Source: AGHT+IFLrniw5jq4oWKYdbCJ1jDPnBqcD2jK1p8/hj2hMot5ls33gsWydkV0WZlBpXGLTrBYBZ2pqZLZjbYdrfBpayU=
+X-Received: by 2002:ac2:4c4f:0:b0:546:2f6f:83d7 with SMTP id
+ 2adb3069b0e04-5494c352318mr1042433e87.46.1740732746436; Fri, 28 Feb 2025
+ 00:52:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] pinctrl: mediatek: Add pinctrl driver on mt8196
-To: Cathy Xu <ot_cathy.xu@mediatek.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, Yong Mao <yong.mao@mediatek.com>,
- Axe Yang <axe.yang@mediatek.com>, Wenbin Mei <wenbin.mei@mediatek.com>,
- Lei Xue <lei.xue@mediatek.com>, Guodong Liu <guodong.liu@mediatek.com>
-References: <20250228011702.16493-1-ot_cathy.xu@mediatek.com>
- <20250228011702.16493-4-ot_cathy.xu@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250228011702.16493-4-ot_cathy.xu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <cover.1739368121.git.Jonathan.Santos@analog.com>
+ <62cb9786b02adde118db9349617cb796585ceb02.1739368121.git.Jonathan.Santos@analog.com>
+ <CACRpkdaSY7WH191makzPcZqLd-vBsC_f6yagWzBa65MrC+pjKA@mail.gmail.com> <7c5e2364-038b-48a8-ad67-3cf0f2fd2be3@baylibre.com>
+In-Reply-To: <7c5e2364-038b-48a8-ad67-3cf0f2fd2be3@baylibre.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 28 Feb 2025 09:52:15 +0100
+X-Gm-Features: AQ5f1Jrkm-kow3OXmnSJltTmG8QrhANbAwgPagCFyAFP-qUYHz9z9ilWano5H4U
+Message-ID: <CACRpkdbw3BkpzPQp2PdV8M61V2XXaLcmuOpGTsxSoiQTH7wZXw@mail.gmail.com>
+Subject: Re: [PATCH RESEND v3 12/17] iio: adc: ad7768-1: Add GPIO controller support
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de, Michael.Hennerich@analog.com, 
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, jonath4nns@gmail.com, 
+	marcelo.schmitt1@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 28/02/25 02:16, Cathy Xu ha scritto:
-> From: Guodong Liu <guodong.liu@mediatek.com>
-> 
-> Add pinctrl driver support for MediaTek Soc mt8196.
-> 
-> Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
-> Signed-off-by: Cathy Xu <ot_cathy.xu@mediatek.com>
-> ---
->   drivers/pinctrl/mediatek/Kconfig              |   12 +
->   drivers/pinctrl/mediatek/Makefile             |    1 +
->   drivers/pinctrl/mediatek/pinctrl-mt8196.c     | 1857 +++++++++++
->   drivers/pinctrl/mediatek/pinctrl-mtk-mt8196.h | 2789 +++++++++++++++++
->   4 files changed, 4659 insertions(+)
->   create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8196.c
->   create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8196.h
-> 
-> diff --git a/drivers/pinctrl/mediatek/Kconfig b/drivers/pinctrl/mediatek/Kconfig
-> index 58f32818a0e6..b59d94a0fe3b 100644
-> --- a/drivers/pinctrl/mediatek/Kconfig
-> +++ b/drivers/pinctrl/mediatek/Kconfig
-> @@ -263,6 +263,18 @@ config PINCTRL_MT8195
->   	default ARM64 && ARCH_MEDIATEK
->   	select PINCTRL_MTK_PARIS
->   
-> +config PINCTRL_MT8196
-> +	bool "MediaTek MT8196 pin control"
-> +	depends on OF
-> +	depends on ARM64 || COMPILE_TEST
-> +	default ARM64 && ARCH_MEDIATEK
-> +	select PINCTRL_MTK_PARIS
-> +	help
-> +	  Say yes here to support pin controller and gpio driver
-> +	  on MediaTek MT8196 SoC.
-> +	  In MTK platform, we support virtual gpio and use it to
-> +	  map specific eint which doesn't have real gpio pin.
-> +
->   config PINCTRL_MT8365
->   	bool "MediaTek MT8365 pin control"
->   	depends on OF
-> diff --git a/drivers/pinctrl/mediatek/Makefile b/drivers/pinctrl/mediatek/Makefile
-> index 721ae83476d0..08e7239fcd8b 100644
-> --- a/drivers/pinctrl/mediatek/Makefile
-> +++ b/drivers/pinctrl/mediatek/Makefile
-> @@ -36,6 +36,7 @@ obj-$(CONFIG_PINCTRL_MT8186)		+= pinctrl-mt8186.o
->   obj-$(CONFIG_PINCTRL_MT8188)		+= pinctrl-mt8188.o
->   obj-$(CONFIG_PINCTRL_MT8192)		+= pinctrl-mt8192.o
->   obj-$(CONFIG_PINCTRL_MT8195)		+= pinctrl-mt8195.o
-> +obj-$(CONFIG_PINCTRL_MT8196)		+= pinctrl-mt8196.o
->   obj-$(CONFIG_PINCTRL_MT8365)		+= pinctrl-mt8365.o
->   obj-$(CONFIG_PINCTRL_MT8516)		+= pinctrl-mt8516.o
->   obj-$(CONFIG_PINCTRL_MT6397)		+= pinctrl-mt6397.o
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mt8196.c b/drivers/pinctrl/mediatek/pinctrl-mt8196.c
-> new file mode 100644
-> index 000000000000..1baefdc7e36d
-> --- /dev/null
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mt8196.c
-> @@ -0,0 +1,1857 @@
+On Thu, Feb 20, 2025 at 11:27=E2=80=AFPM David Lechner <dlechner@baylibre.c=
+om> wrote:
+> On 2/19/25 2:34 PM, Linus Walleij wrote:
 
-..snip..
+> > Is it not possible to use the gpio regmap library in this driver
+> > like we do in drivers/iio/addac/stx104.c?
+> >
+> > It cuts down the code size of simple GPIO chips on random
+> > chips quite a lot.
+>
+> I think the answer is "no" since we need to hold a conditional lock
+> while accessing registers. Namely: iio_device_claim_direct_mode()/
+> iio_device_release_direct_mode().
 
-> +
-> +static const struct mtk_pin_soc mt8196_data = {
-> +	.reg_cal = mt8196_reg_cals,
-> +	.pins = mtk_pins_mt8196,
-> +	.npins = ARRAY_SIZE(mtk_pins_mt8196),
-> +	.ngrps = ARRAY_SIZE(mtk_pins_mt8196),
-> +	.eint_hw = &mt8196_eint_hw,
-> +	.nfuncs = 8,
-> +	.gpio_m = 0,
-> +	.base_names = mt8196_pinctrl_register_base_names,
-> +	.nbase_names = ARRAY_SIZE(mt8196_pinctrl_register_base_names),
-> +	.pull_type = mt8196_pull_type,
-> +	.pin_rsel = mt8196_pin_rsel_val_range,
-> +	.npin_rsel = ARRAY_SIZE(mt8196_pin_rsel_val_range),
-> +	.bias_set_combo = mtk_pinconf_bias_set_combo,
-> +	.bias_get_combo = mtk_pinconf_bias_get_combo,
-> +	.drive_set = mtk_pinconf_drive_set_rev1,
-> +	.drive_get = mtk_pinconf_drive_get_rev1,
-> +	.adv_drive_get = mtk_pinconf_adv_drive_get_raw,
-> +	.adv_drive_set = mtk_pinconf_adv_drive_set_raw,
+Sorry for potentially dumb question, but if this is required to access
+the registers, why is it not done in the regmap abstraction itself?
+It's kind of that stuff regmap is supposed to hide.
 
-In the cover letter, you said:
-
-"Add values in SI units option to |struct mtk_pin_soc| in pinctrl-mt8196.c"
-
-....I don't see that here though?
-
-> +};
-> +
-> +static const struct of_device_id mt8196_pinctrl_of_match[] = {
-> +	{ .compatible = "mediatek,mt8196-pinctrl", .data = &mt8196_data },
-> +	{ }
-
-{ /* sentinel */ }
-
-> +};
-> +
-> +static struct platform_driver mt8196_pinctrl_driver = {
-> +	.driver = {
-> +		.name = "mt8196-pinctrl",
-> +		.of_match_table = mt8196_pinctrl_of_match,
-> +		.pm = pm_sleep_ptr(&mtk_paris_pinctrl_pm_ops),
-> +	},
-> +	.probe = mtk_paris_pinctrl_probe,
-> +};
-> +
-> +static int __init mt8196_pinctrl_init(void)
-> +{
-> +	return platform_driver_register(&mt8196_pinctrl_driver);
-> +}
-> +arch_initcall(mt8196_pinctrl_init);
-> +
-> +MODULE_DESCRIPTION("MediaTek MT8196 Pinctrl Driver");
-
-MODULE_LICENSE is missing!
-
-Cheers,
-Angelo
-
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-mt8196.h b/drivers/pinctrl/mediatek/pinctrl-mtk-mt8196.h
-> new file mode 100644
-> index 000000000000..d342d091672c
+Yours,
+Linus Walleij
 
