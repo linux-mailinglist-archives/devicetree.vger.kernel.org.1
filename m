@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-152494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED3AA49355
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:22:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C2AA49360
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:24:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AE35170AAD
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:22:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA0697A50CD
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AA824291E;
-	Fri, 28 Feb 2025 08:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9842244EB6;
+	Fri, 28 Feb 2025 08:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GxbPKU9/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N+nGMUUR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE9E124291C
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 08:22:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1B024336B
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 08:22:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740730962; cv=none; b=p9gA+v0ZfA51usvGvklD0ZpsSmuFcR8xnsPH6OyzCGlPfgV35DTHDlruvx9xXFttrH03QDyQ03UL4Thme11t5hhaBYT8iSeaIrSLcLuAdQAoLOCfX5TwrPFxIhrb9YABWhkNiRYIecx+CJrklEKdRQBBVYwlwJTlDMKf/nZahJ8=
+	t=1740730963; cv=none; b=ghpMKamjIqRrJBPjl0S61ZaE96AFkDWFHfItZmkBXIksO6WhQKgJzftV6WaR0pkNZMjif392/wfskCuumP4DcNun+80VwHM800GBo6/1i29hLGyeVpGG0mHqja+bTOh5vW/D48uuUtk9+B5nYhmMDusfkZIYlzjZIM9u1t/71o0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740730962; c=relaxed/simple;
-	bh=qY4oRNEHrOsAJ8xWqz1Vs/rayvoY+PfxlLB1/jphBv0=;
+	s=arc-20240116; t=1740730963; c=relaxed/simple;
+	bh=Ei4jUH4UZc7x66tOrHfpI6mKDxIn8M6FEuQlF3nwXp8=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=eZBz6NcdBNAOIu1Ybw6f+TVAc0BOqdeI3GSYQI79aQ+1FVFKt8wZ2COxfR2/8mG1VDuPHN7q0cCdwZbOQAr7heWbiGLZvwqeTqurGW8zmQMZrvLjHI0c+lUvaqIIEZ1IQFlu1BGALBYUz1Mjnfgx0/ASoaBjObECOGruUYCh3EE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GxbPKU9/; arc=none smtp.client-ip=209.85.128.41
+	 MIME-Version:Content-Type; b=LXI/rJjNXnQIsvWeAS6IZpMTjn0v1rZSXm8A/iJHTin+EXztCeg/L/Tn6T6MUaEn7KQg/sgVxbHt6Ux58N2B7SEoeHe3yP477zuk2mtNtHHJdaIRgTDFnj2TeCpcZDxpJK9FZPP7k0okVOw51RZDF2fRxE1ksrM48Z+puu7gPO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N+nGMUUR; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43996e95114so12573075e9.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 00:22:40 -0800 (PST)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4398e839cd4so18306565e9.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 00:22:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740730959; x=1741335759; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1740730960; x=1741335760; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jHgNhNb80DQy4X7ezcT4lUUrnZzt8BAUNO4RPQLnr14=;
-        b=GxbPKU9/9TyW2Ioh7icrBo1J2JA3F0Ela3D8fx8qyS6YzxmfVA0q9fctAKpB1GRo6c
-         K6Mz5gOcxmS+T5FwEBJb4QP/hI6VuCvMgcPeZCIRiWVQ6XljcR22F6wu9qeACrQAxaeT
-         +btXqd1OXWx+1x4BNb23WMbDeTGbKNVxP1GXpax5EBOjTbxmdLqJxusKPWpEnYLXwDhy
-         h4Ko1gLWHVX08cu7+Ocn4xhkCZzO5cmdY+9eFZYKgKMyvveNGwaokr+z3mclXt1gI/cE
-         N9EAR8uPYi0n6HB1ec7jeQ0nFB3sg+qzuMzDwzeZSciz80f8IzTt/VBgw/wxCJ1iDwXp
-         oO8Q==
+        bh=5mjk45jguiUNe+AcHQUbiNYsEpUBPM+3F/r+trzFvSE=;
+        b=N+nGMUURT31NAiN4ymY6MzmgHoyQKaIw2xMWPJzpwtZQ0PKWUcbQSgzau20l7MY4oe
+         +kyAtFeMEv8PohOxTLDkzgixaHyo4RMxoBvQP7w7XyjeFxHPD2A+ubCKoPMwZET6qV52
+         eIuDO2eef38WeHzu1RXzdOyLh9PzqLLjlJ9yygxjbnuLZr3tJhfe0k6piDLMKKR7RNqy
+         2nSxV8rT/ULgX7Cf1rM3DHFtlaaxU+3CWq3l0jQH+gVnBLx+e65ZGTK54OZCaNq7VLVM
+         sEP/+yJQ3ruAxnF85aE5TPvcOl0D2VoTuMt2XvHBzjgJDUcPt12wwBYP9ZFH//jM14Fu
+         fUFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740730959; x=1741335759;
+        d=1e100.net; s=20230601; t=1740730960; x=1741335760;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jHgNhNb80DQy4X7ezcT4lUUrnZzt8BAUNO4RPQLnr14=;
-        b=DiAMoV1QF8Hej8SpiW88SR0ozNg1fBEsevOHQOM56TrWEFiA7fFWoT+xAoVe6VFUrN
-         +vlAnMTALV64/GJlFmg5RpdVGb2xR1TyRbFc6hXjtrocWBFW3/dIOHIXklf1/jRj0osu
-         j0pc3yTZnNiEQ9hbiq5/yRzry6LqENpJaAyY8JsNBB6FtTXrpMi3XW1Rul9sbnB71dQE
-         GD/8dsd8sTv9SJFWTZDhRYg1KtkI5p7ZGCNGLXNoGBVeCskAIJpExMueKbamr9JdlAiJ
-         sFxtBvaTHdMzDVp1QUxZga28xt16sHxit2IQ2GspPWvUsuj2aeJOdXRSHv1CTOKsuoUX
-         zGoA==
-X-Forwarded-Encrypted: i=1; AJvYcCUKMXySKvNiS7j+M9rlF99GdabO/y6LntRXdKxuhVVA+VacPVF0PBN+Skt/CZIYvGEyxSegsoUrQhs4@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywrcipe9lMs8bAUCDWEJh3IOZWkSVmFex+ZxCaweA4gw8g2aPav
-	Hh7A8qzu5dFAprazkyKiEP2CkrVr5qMZAcPrRi5bOlC5+WzD3pkNY6JW0PfILmo=
-X-Gm-Gg: ASbGncvPfxQG3THnjRWxXCX9viTAK+qbsWRe5/QvQFJIk/3GQ6w7qhzQgg+Wv5sumWZ
-	UlvqLsTZgOCPowX7SjFug4XbMkjxXkSteHnMMncs8bOeegc16GpGeBaAQ44xyu96wti0eh3kV9b
-	dpi3CzCIaXzZDfqIKdCvRulCr36UBIexSvc/+tzH8helUoFkkANCztKBaAyAL9T1R60PRSBETAy
-	HBZxGtgrRjjt8zsHy1PpuT0F/rtJbWHxlFXD/VS1nBf6rCzEoMpDb1SBuL143Mv2/c8vb5P5Eut
-	9QUhn+OVzA3HpzkHV9nbhK2c19RZpVA47Hpam0jCZP59wao=
-X-Google-Smtp-Source: AGHT+IFh9o/6ArnjhiUzlNBx86ioNJTlHz7etf9q2i/1fT39QQaodFUpScWDIhXR/Ov2pOocchf/qQ==
-X-Received: by 2002:a05:600c:1384:b0:439:9f42:8652 with SMTP id 5b1f17b1804b1-43ba6704748mr20910835e9.17.1740730959239;
-        Fri, 28 Feb 2025 00:22:39 -0800 (PST)
+        bh=5mjk45jguiUNe+AcHQUbiNYsEpUBPM+3F/r+trzFvSE=;
+        b=BpBgefEARD2EaeSP7LeX/HDzeP4DzAxdm8C5yrxA2j3LUFvswfNjJA6GVpSMMW2udF
+         lqYqgrxcdrE0zeN94ktA2yolBaGeIa5dQqIRMSDz+1O6QANPdqPkLjTHvQupQ5qdF3ND
+         zAhh8Tu4HTV13jOwyscNE+TFqcqjgtDoqr6HLjR770S/uMlKmcSPUby1XpUUe9A9YXf1
+         HNT72jv3kPqQkbVJEAG5RZyA3M+rcQhmHAaBwL7mD0yYnsYrZKimzKEpsQxOjbV8tb0f
+         a9ZE3/cliA6/MPt42uwiL0QuGvoV2m9OosxtYDbNQuMz3PfN4CcK4+dNyf0Cd749a+/R
+         6Lww==
+X-Forwarded-Encrypted: i=1; AJvYcCUcmpYmsrUDg67mdvUvAJGwV1DVZh2evr5P2iK+jB2dHJ8aooAiJqZ4lXHT3DUDdD7itALiO6b7nmF9@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKghZMAWFx3npVmDt7hodJ5FB1dPErMlp00S5pU0cw2hwkTMdw
+	36LJYb29Rnq5u3VPEumjf2m/Q69DWkzMtdOPcF3Ipx9EPUiY4mTVIkXB1pht1WI=
+X-Gm-Gg: ASbGncswuuFrv7jA6JLjDORjyD2NODwxuI7/kuOERYe6/csBHV2eQW3/ImjgJzliqyX
+	NfX21ZPJklz+QFz2MLf9NKkjP5LTcIf7wYOHHE4um+m3sBBq0eDkxFgRbwDf1m9q37hM51Y46ue
+	+UxvH7BWS5TX2BWRJn8iee8Y3Z+RAh1yBLjSJEuT61+x1ebxLnrl0lodDdsTT3IPL41x0oYYBOp
+	jWj/KKnsCDIlrEZyGz5B2sPrcgiAa/TfE2IiQXz9+sZ5DEn9dPOqycykTXwAnOsP/gSEbvrimuu
+	Ri8QzL9W2nGGi6+VY+7Jj3pEJueXHHcT+b5952Oc+WT+UCo=
+X-Google-Smtp-Source: AGHT+IH038oCeROvQ6tVC86akUZzZeoenUNBH2cva8eK5sDSrImvPU+Z4DWRdw7Bok77rrj1L+R8WQ==
+X-Received: by 2002:a05:600c:4f51:b0:43b:4829:8067 with SMTP id 5b1f17b1804b1-43b4829817amr44075105e9.6.1740730960086;
+        Fri, 28 Feb 2025 00:22:40 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43b737074d8sm48750365e9.16.2025.02.28.00.22.38
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43b737074d8sm48750365e9.16.2025.02.28.00.22.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Feb 2025 00:22:38 -0800 (PST)
+        Fri, 28 Feb 2025 00:22:39 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -81,13 +81,13 @@ To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
  Bartosz Golaszewski <brgl@bgdev.pl>, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20241113-a4_pinctrl-v7-0-0546a20c1c22@amlogic.com>
-References: <20241113-a4_pinctrl-v7-0-0546a20c1c22@amlogic.com>
-Subject: Re: [PATCH v7 0/5] Pinctrl: A4: Add pinctrl driver
-Message-Id: <174073095841.1139542.4947939584999923520.b4-ty@linaro.org>
-Date: Fri, 28 Feb 2025 09:22:38 +0100
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org
+In-Reply-To: <20250212-amlogic-pinctrl-v5-0-282bc2516804@amlogic.com>
+References: <20250212-amlogic-pinctrl-v5-0-282bc2516804@amlogic.com>
+Subject: Re: (subset) [PATCH v5 0/5] Pinctrl: Add Amlogic pinctrl driver
+Message-Id: <174073095934.1139542.13898190567088651391.b4-ty@linaro.org>
+Date: Fri, 28 Feb 2025 09:22:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,27 +100,19 @@ X-Mailer: b4 0.14.2
 
 Hi,
 
-On Wed, 13 Nov 2024 17:37:27 +0800, Xianwei Zhao wrote:
-> Add pinctrl driver support for Amloigc A4 SoC
+On Wed, 12 Feb 2025 13:20:49 +0800, Xianwei Zhao wrote:
+> Add pinctrl driver support for Amloigc SoCs
 > 
-> All of Amogic SoCs GPIO device requirement is met here by
-> adding GPIO bank definition instead of the pin definition.
-> Binding header files will no longer be added to future
-> SoCs's pin devices.
+> Base on the previous discussion,
+> https://lore.kernel.org/r/20241113-a4_pinctrl-v6-0-35ba2401ee35@amlogic.com
+> The existed meson driver failed to meet the requirement of the current dt-binding.
+> So we start this new pinctrl driver to solve problem.
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.15/arm64-dt)
 
-[1/5] dt-bindings: pinctrl: move gpio-cells and gpio-controller property
-      (no commit info)
-[2/5] dt-bindings: pinctrl: Add support for Amlogic A4 SoCs
-      (no commit info)
-[3/5] pinctrl: meson: add interface of of_xlate
-      (no commit info)
-[4/5] pinctrl: meson: Add driver support for Amlogic A4 SoCs
-      (no commit info)
-[5/5] arm64: dts: amlogic: a4: add pinctrl node
+[4/5] arm64: dts: amlogic: a4: add pinctrl node
       https://git.kernel.org/amlogic/c/ce78f679e08cc4f90db1ad8e61ba9f85530c701e
 
 These changes has been applied on the intermediate git tree [1].
