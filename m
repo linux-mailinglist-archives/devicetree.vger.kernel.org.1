@@ -1,255 +1,883 @@
-Return-Path: <devicetree+bounces-152506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F2C5A49417
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:54:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2962BA49435
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:59:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3DC7188F2A9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:54:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA5A91893229
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:59:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA36254850;
-	Fri, 28 Feb 2025 08:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30DB254AE6;
+	Fri, 28 Feb 2025 08:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="JQOkd/Y4";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="V53b0F/p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LIcBac+o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58905253F13;
-	Fri, 28 Feb 2025 08:54:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740732879; cv=fail; b=WbACCDmQBSI18U7YjI/aoemWzY2HarEu0CgIBYEd+dRvU9w3vdVEM7BZSzFY8HwUjLIRbF2DW41n8HgNZR7D6Q+8raRCw0KtEbv7ziYSnOD815zgErGJEH4JWm+uk7l/d6ZUrriLM2V/M5vOa9a/MprKVd1q4YL39uqHLoxV3t0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740732879; c=relaxed/simple;
-	bh=H0N332cUAwyMj4PmHbdrz0tjWE0qS1PM4OWbDjV/nys=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=HfG3/2lWjJxytSsXRaBSY0w8qOl1igFoW1MMRw1hqc47i1N77oWtXBISZjYtE5JDDCArn86FRILeKtD4I0oUO8oP3b6p9P0fs1PvR4lxjqw+TAz4P1l7PJC0EjbemSpVJ4+DtW/AHEDuCLMTrOjXhEz7CmqVr9Q52oIgwpFfhfg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=JQOkd/Y4; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=V53b0F/p; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 9f692c82f5b111efaae1fd9735fae912-20250228
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=H0N332cUAwyMj4PmHbdrz0tjWE0qS1PM4OWbDjV/nys=;
-	b=JQOkd/Y43lDgsroZNv/E9KbD3bSXsa3ChNzUiICnAdLc+0j0Vs9VbOnetcwSjwkw5F5qgvNMw7UrM0i9dwMb9dtxgMl3SvzfxU4p7bOf6ihMgqnGdkJA4TfF3MhHdqiC598iRBVcaOeM9Uh2FNucq4maQBREpLoJkzGavNave9A=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:7f114ce1-4682-435d-85c8-1959166e7e01,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:80e8a9a4-5c06-4e72-8298-91cabc9efadf,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
-	EDM:-3,IP:nil,URL:80|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
-	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 9f692c82f5b111efaae1fd9735fae912-20250228
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <ot_cathy.xu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1134552668; Fri, 28 Feb 2025 16:54:30 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Fri, 28 Feb 2025 16:54:29 +0800
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Fri, 28 Feb 2025 16:54:29 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gpUwYCPL8Iz5VEPl0dSfgaTwsA2Ka2mXsielqvek96A9P5MWFcOJeAlx3BcmG4Fu928i2XHljCLybODLuO1L1ST1NGNDDp/cqx5I/HL68Wno2zho4cAPC3pn+IFlIt6wARwbQRNBPn9rRB5thwrPVRgGMu3bo2a343exo5GG/zZgfvrEC7/dm5ak5zswGkR48DI/M3+IlzAnduFYpjqll4zAWK7EsnZ0oUrxTgW5YZZrdVMWJpuG8bfk8zJ8QAxTGXbMXVlmY5o4dji1IKVxvghpIJcnJXrS6TSCHC0g5puyCpw46X9xx+wahReiOhaS7ICORGYVtfPN6njxYRFnRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H0N332cUAwyMj4PmHbdrz0tjWE0qS1PM4OWbDjV/nys=;
- b=HSIu/mqY0WEjmnetWObos43nUvKToXa5/fN7EpMafl09/CihUo/lrHR3pyX3aO2psSdbEjbTKYtwKfdncDDf/HBL657/eBBGuOS7Cor97jmaNiXSt6D/ZLI4BL8i7QVt0oTChewD7SRfZqDYcNXvzjTGMP7Vr0d77DFIlpjl1je9o5KgAfxa2cwT5wpztJ7aiHQpYPzUIG8ZxHkRsWpJau+LgpyCV0yJuua7xQSigArhLBAC7FyGytI23QLkY53f4GJeedufRZheOYBWt1hArK0YzQWSs5jDGaXM2DGpx7lrWfUu4jWbCy5DqMbZlB6DpcZLtzQT9FcfY3G8O5lX8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H0N332cUAwyMj4PmHbdrz0tjWE0qS1PM4OWbDjV/nys=;
- b=V53b0F/pIBiuA2dQsm1XpOIVpKzhf/n+5At4K3y0kFNuXm8yTXEmLG7bx6FzwBdsA30ThjWbbo8ZsvESqkbJAM+Hg+XrLhwKhaY0PJUHbTWtQFQjto0nfLw11M68NKEXHUj/LEr9x5rwo8mMT+O2cyvOgiXGacb3NOiczDhsPpo=
-Received: from KL1PR03MB5683.apcprd03.prod.outlook.com (2603:1096:820:70::6)
- by SEZPR03MB6891.apcprd03.prod.outlook.com (2603:1096:101:a2::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.22; Fri, 28 Feb
- 2025 08:54:26 +0000
-Received: from KL1PR03MB5683.apcprd03.prod.outlook.com
- ([fe80::c413:8d96:8ae:370a]) by KL1PR03MB5683.apcprd03.prod.outlook.com
- ([fe80::c413:8d96:8ae:370a%2]) with mapi id 15.20.8489.018; Fri, 28 Feb 2025
- 08:54:25 +0000
-From: =?utf-8?B?Q2F0aHkgWHUgKOiuuOWNjuWptyk=?= <ot_cathy.xu@mediatek.com>
-To: "krzk@kernel.org" <krzk@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	=?utf-8?B?TGVpIFh1ZSAo6Jab56OKKQ==?= <Lei.Xue@mediatek.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	=?utf-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= <Wenbin.Mei@mediatek.com>,
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-	=?utf-8?B?R3VvZG9uZyBMaXUgKOWImOWbveagiyk=?= <Guodong.Liu@mediatek.com>,
-	=?utf-8?B?WW9uZyBNYW8gKOavm+WLhyk=?= <yong.mao@mediatek.com>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "sean.wang@kernel.org" <sean.wang@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	=?utf-8?B?QXhlIFlhbmcgKOadqOejiik=?= <Axe.Yang@mediatek.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: pinctrl: mediatek: Add support for
- mt8196
-Thread-Topic: [PATCH v4 1/3] dt-bindings: pinctrl: mediatek: Add support for
- mt8196
-Thread-Index: AQHbiX7EGXUdi4vVl0yAUIn/baARnLNb/UqAgAAMsACAAERZgIAAG2oA
-Date: Fri, 28 Feb 2025 08:54:25 +0000
-Message-ID: <065b0a342d251e1af6b90d4d3e3988971726b8cd.camel@mediatek.com>
-References: <20250228011702.16493-1-ot_cathy.xu@mediatek.com>
-	 <20250228011702.16493-2-ot_cathy.xu@mediatek.com>
-	 <174070957527.867625.13463640154036333781.robh@kernel.org>
-	 <d5bf6e1b6c277e6431cffeef66a4766f59f94fe5.camel@mediatek.com>
-	 <20250228-encouraging-trout-of-action-cfcd5a@krzk-bin>
-In-Reply-To: <20250228-encouraging-trout-of-action-cfcd5a@krzk-bin>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: KL1PR03MB5683:EE_|SEZPR03MB6891:EE_
-x-ms-office365-filtering-correlation-id: 92baa052-01bd-417c-f2fa-08dd57d580d7
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?UGtXRjQ3ZzdkYlNNbVg1NVNkdVB2eGhsalRYWUtHMjRNYVJWRUt5T2Faekgr?=
- =?utf-8?B?Q3o2a2c0cnJrVFllVHBlNU1LWjQvVUlnTGhQNnBIcFFJWG1ScjNjcFlvM09C?=
- =?utf-8?B?QWlQNzF2TmNSQ1l3cm9OYUhaVjNyZzFYdGZ3UENucTg2VE1lcUZsbTh3aDlS?=
- =?utf-8?B?KzR0QmsvUW9QTU9xVmlJSklwZVEwTWloL0pXeE9xYVA5dGY2eWpVblZSZXhJ?=
- =?utf-8?B?YlM5cDF4RXhoQnU4QzFCTnA2UkhnQjBXWStmTE9HNUpnSHBBZ0lqMkNQWlND?=
- =?utf-8?B?TnFTYU5Jc3V0eUdyajJwanBwNk4wSUxCTlRZZ3krNG1XRHU1c2pmMnFOdWR1?=
- =?utf-8?B?SnVJeWdnMXdwYXl5ZytWbmRvbFFDaVk5TnNMZXVwNFFCblh0Nkk5MTAxMllG?=
- =?utf-8?B?dTlWd0k2cnFCVU1XanRnZnhsVkhEZEF1SjRKRXpSZllUSVJZc3NaTDY5Z1JM?=
- =?utf-8?B?a1UwQkNNUEFGd3hDNmV5Q25TamtNYjd1RWVnVWxCU1JSRUpRSE53bG9BbERx?=
- =?utf-8?B?dzRaNG5McW9zczRXV3MyaHBPUkZxUVkvVzg0V2VDYkdtd0Q2MUNpSW9YMThE?=
- =?utf-8?B?elg2am9iV3NQc3JRYWs4RDJzWWZ4WEZSam5XYjNtZEczYWhMNElxa3FubUJN?=
- =?utf-8?B?dzd0SEx1b0pQYm8vMWNjaFJxMkg5dFFGam1LN0J4NmgrcEM5VWkyWGY2OU45?=
- =?utf-8?B?WU03bDEvbGMvUGFQdVFFZFdCQnV6blV6aU1nbXFPZ0RtNkNhWDdkME1rTjZw?=
- =?utf-8?B?dnpvekRIOGlMakwvS29tMldNZENucVI1cEZWV1AySXlPdTZEMVRXTXNlckZm?=
- =?utf-8?B?MHJIZ2FEZC90UGtnR1lrcmltektCSmFnOTBVRGNYbkxhalpJY1VRRlJUcUhR?=
- =?utf-8?B?d3VZb2lXSW5KL0JLL0lsRWNPMFRaS2pHZVBtWjB4K0NxeDdMdzhqZm1oeDh4?=
- =?utf-8?B?Nk9EQ3dGMXAvNjhMaXJacTcvVUF5dXFqYk9xbkkvcVhxbzNaRWRNMXFJWHhx?=
- =?utf-8?B?aEdJc2srYm4xNjZEYS9QVmpId3liOEl2VHg4Q0FHbkdveDh3TGJFaDErWUEz?=
- =?utf-8?B?K1dZYmNiV3VSQU9NeE96OTh0ZVNDTHg0ajN3ZVY3MFZJM3MxaVhoVXZ1VEp1?=
- =?utf-8?B?T3V3S0hVU01Ya0lNeWk3YWhYSVVZV2UyS1NQcS9qTklxRG1sdXNnZzFFL0xQ?=
- =?utf-8?B?Skw3cm8yaitnOWZ6cW5KblFpaVphODdWR3VIOVJ5ZGhhU2szZS9NcXpuaGR1?=
- =?utf-8?B?M0pNRGRDNkQ4UTdoUFFUV3JoRHNHVytVMVIzU0N0VjBoTzhnSlVpdXlJYklh?=
- =?utf-8?B?Z0Q3elV3OW5qUWplM2c0c3hBTTZ1NlhuV3cxSHUrSmFRWkJvTGE4S1JMNVRr?=
- =?utf-8?B?NmsxRjVYUW9EemVidjFuUGpvT1V2K2pZaURTM3RNMWRzbi8wMUVHbTJGUm5J?=
- =?utf-8?B?US9zNkdNVXdGRjhJcFViWVVzNGU1d3RnWGZuMnNYb3pEa01BWGJseEFOeHlC?=
- =?utf-8?B?bVdBSlZpVnhoMjZmcWVQc1ZhKzZ1cGppL2Fhc29ZUHdORStqZmI1K2lrbEhj?=
- =?utf-8?B?bEE0N2ZSZEZCdURsMXhZL1NSa0JSejRrNTI0RTRidTR5aDFVMTFGNmpPSG1X?=
- =?utf-8?B?bWRIV3NEZitnanJGWFFqL0VzbWc1OWw2N1NoTFVuNlAwY01UUnliam52TnQv?=
- =?utf-8?B?TmFtTjdwbVlic251cDRaYVB3UHZWVEYwdS9lVnJOUXJVQjBBY0hSbmlWcWdr?=
- =?utf-8?B?bUQzc25qWVVYbnBrOHNJZHQxakxiNENVd2dzWEhPQlB2YStWemxqZ2l4NzBj?=
- =?utf-8?B?dG83RWZqUVZpOFVveENOMjBTWWt6UlNhZUttTERQaWVUL0tQWklERjhadGR5?=
- =?utf-8?B?bTdUUlE2T3ZCWXFQZ29nOFdibWUrNHgwNEJkeXQwcVpFRDQ0ZDl2RHhRZlFt?=
- =?utf-8?Q?7tFoLCuuVBneZKkiuZnbdU+67uY7jEeu?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5683.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SnUvbVBhYjJ3WnRNbEMvMm1CenE0YyszLzVpNjZrbUd2cXVzOW90YU1SMzV0?=
- =?utf-8?B?VWxUaXlSdTg0dEp5UXJlQ0JxZnpycTRGUy9HSHdpV1FHaXVKMTcyR1BHM3ZV?=
- =?utf-8?B?WUx1WXpTYit2akU2MVNSWnA2V3FNbEtaT0hyWTZZdTcvZkVncnBRNEhGc3Ni?=
- =?utf-8?B?b3dyV3JJbkhJM2xHbEdWQ0gzMG5KelhjeWlyMWJwQVFpYkU1dU1xR1lTeS9t?=
- =?utf-8?B?Tjl2MSsvaGpNZmxxb2VrSTNHaWo0T3U3SXpvUlcyaEwzMFhka1BSdFJYdGlK?=
- =?utf-8?B?NUxDWDF0QzJjODJ4QTlNOUo1L0FaSzY5TnkzYjdvWk1UMFllRmRKNDljNnd3?=
- =?utf-8?B?MDhhaWdkMmZ2K2pXc3p3L3hkdlQzanZlMlZMb3ErbVI5TFY0bjV0MHMyRUxa?=
- =?utf-8?B?MVcyNUp0cFBhT0xJY2pGc3pvSzZtQjUzMXlnUnFxRmkrMlQ1c2VUWVh3dG1k?=
- =?utf-8?B?eVBNOTFJVnkzMGhNZ05hUTBqZTh3UUVLRC8rb04wVTZack5qZ2txaWZDZFNv?=
- =?utf-8?B?NVI1blNOeG1Iek9maUFsR0VFUnhTUjJzVmxSU2hiTDRwTDlETWpvOEFUYTV3?=
- =?utf-8?B?MlhSQVdnUVNPWWQwN3lwVHVEdC8xSzVGa2NGZ0F5Q2gzUGkzeS9VYWVjbEtN?=
- =?utf-8?B?SmF0MDZ4clhmZXloSFlQeTdsQjNGYXJ3dlYrQ0REQWpsUERDT0xjNWJDL29r?=
- =?utf-8?B?WU1zT1NmYXFWNStZNEgxKyswMi9QcmhyTld0QSt4bmdpR2Z1U0ZDcGwrZmRa?=
- =?utf-8?B?am45RnFWbWJkdEY1bEdoa2tYSTdqQkFiYWJWUVRUeEsxN3l0WmFPZWRsVSta?=
- =?utf-8?B?aE44ZjhHc0E1dHYzTkRmT1RXWTBqbCtoQlNsOTM3RkVZSzA0OEVWSCtmT0RH?=
- =?utf-8?B?bXRvdDVhK2duaCtuSzVWb2FOaENQcG53Ym80TVBtZ1VzYXhPL3FhYXZ3cU05?=
- =?utf-8?B?ZGVrbW40QnREamt1TlZDamJDaGFZaElneGlMK0wrSGw5eXpxMjJXNUZZVFdr?=
- =?utf-8?B?cFV5djZ2Q0kwTmhKM0JFeVYzMGxQMlN3bnJvT0RNN0VDbWgrNTdRN1pFRGcr?=
- =?utf-8?B?dlhPa09IYlpDM0xEVDNMRnN0NzIwdEdVMDJHOXJWWEJJMHUwVHBLN2J2L3Np?=
- =?utf-8?B?bGowTzY1N0lTWDVYOHdKTkE0VWlxL2lJWll1RTU3M2JRQTJTdlJyR0JERk8y?=
- =?utf-8?B?eGN1emREaktGMk5FUHRBYTQ5aWYxT3VTRURnelFOSGRTMVJMOTRmTFNPdHNQ?=
- =?utf-8?B?c2h5cFkzSk5CRlVkMUdkbEpjZkI3bFVDOFVSRGpIYkkyUEJyNy9kU1ByRlVo?=
- =?utf-8?B?Wk1qcVlhWWo0ek5Ma3VQeThjZVdHR1JDQWord0hTckdScHFVNG5INGh5TXhp?=
- =?utf-8?B?TTlXQTRNei85bEhBVTg3VXdXNlRzdmNMTWM1UmhHbERwcnBmNXoyTlhhZUpw?=
- =?utf-8?B?dDU3ejUvblJqUDdQK3ptNW0xUEQvTnJlM3JRYXdnUjFTYURFZmNEcFJTQUdJ?=
- =?utf-8?B?eUVtMFdQMTM0Skswb1NpWG1zMlRzMmZMb1YrYzlOQlNIaDZvZ0hDeTRnU1NC?=
- =?utf-8?B?RXR6dkNKMUVxbFlBeTZCRVF0cFpScFlERnlUdFcxNXhMN3hxMnBCNFNEWnBF?=
- =?utf-8?B?ejdmemN5cThZc2xieWJTbmFzV24yUnBlbS80YzM1QnF6VWtxeEtsejBvTW9l?=
- =?utf-8?B?bStTdGsrSkNjeldjUnFaeDlmSkpwYy94b09BNnpDaHVaYmgvQWswNnhNdzVa?=
- =?utf-8?B?MmpBdjBuT1VqTkZUVlJhZGxEZVNybmZjK1dzbThIc2RBV3poL0hmZG9VS0Va?=
- =?utf-8?B?MU5SRHVNNVNWdmNTMjA1cWtnNldLVlRSRGNMcTNxaEV2eUE2MUh5TTh4M0JC?=
- =?utf-8?B?SDU3Q0NJQTZWUjNtcGNqa3NRRmFSQUhrRXRtYmVqT0dHVDkwemZTYW1Cd3hv?=
- =?utf-8?B?a2FQQ01YZUg4WHdzVXhDdytsRTNhc2NuQXM2OU1XdVhuUXhvS09XSWZ6Z0ZP?=
- =?utf-8?B?S01hQ0s2WU5hdGlFNXFpZjlPa25GSkVaYmY2TUVZQjNwbnh1UXQ4bWhnUVRy?=
- =?utf-8?B?dE8rc2lNdkdlcG5QaWVxT1c1Z1hqSlkyajFoYzNJMkFRY3g0aXZML1E2cHZa?=
- =?utf-8?B?Z2ZIT21mczBwc3lkdEN6VEZSaUlvalpPWkVJSHRLam1IREN6UHNVRkcyYjNO?=
- =?utf-8?B?MHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2F9DE13D4175524D8E02B8EE57600C18@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E3E11DDA20;
+	Fri, 28 Feb 2025 08:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740733176; cv=none; b=kA9GYiqQMucKz8q61NgGtetFB1ZSl9Y7exrEuRnTzTYf2Gz8ra4Qai4XHYUvgn5QDxC8owBqIktb/Bgeo2A/8vkBtvWldgTz3uV8206HlTvdahYTIF5pFRflftfCMJpI6gHZxN74j1+YI7dauvxTYB/4tSBq74eYNQmfnKCBYrA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740733176; c=relaxed/simple;
+	bh=JH8KsO1DBqdQi/6JwlgKcuoItRQl049EoRkTHyx9Gjs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d0fIciHurv4UxHKAWgE1DjXrHDhZhv9BSmEwJ76qHJYQlj+RdlRpmsxRLom0iwJsfpMpxqaSsM3mfTwWR3OfBKmLFeFLtl5sR7VYqiLiW3HXpQl4U6scj5UeeBEOgLFLfaAn0bwfRmB0LmQnpZtyt2B9rHApWhW6dHOoEhtWxNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LIcBac+o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61218C4CED6;
+	Fri, 28 Feb 2025 08:59:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740733173;
+	bh=JH8KsO1DBqdQi/6JwlgKcuoItRQl049EoRkTHyx9Gjs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LIcBac+oYc2sqpwOrkiITQo2OakRb8qshwknaG0VzKgRAy5fjk8pUuVqqBIM5AnXO
+	 5S4LwdApIFUnWBOFSP38/5tmr6coFEL/2qBgIuszUc5ja2JWfnP4ywinfHi68sVrp9
+	 WqVPmJz9K+MLzoZRbq3Gf52VlmR+iMN0AAXNn+DYRUCSnuRhSqOol9gfzRa6PNP4L3
+	 XICyKSM7oa6pgWvJgfSxmqO5TpA+Bmfx1zIMwufHaK4+c/egZkqoIzQ2IvMUgAn+Vt
+	 lSCiPBxSNoUi1irtBMqN+YIVjIq2gqDQVxEpMeLEQiR0PbD52fchrmkjXyq7CAJq8l
+	 +lRxBZVx8Rirw==
+Date: Fri, 28 Feb 2025 08:59:27 +0000
+From: Lee Jones <lee@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] mfd: lm3533: convert to use OF
+Message-ID: <20250228085927.GM824852@google.com>
+References: <20250224114815.146053-1-clamor95@gmail.com>
+ <20250224114815.146053-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5683.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92baa052-01bd-417c-f2fa-08dd57d580d7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2025 08:54:25.7479
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 204AHd32GFhIAx9s/X3GoY7hYwHQEGLlKj8wEZE37medPN7U/gFnVo/dEmR+XaBJNnZN7OcQHo6xXsrzM7CJ3VPH9bSPlQWFaBueHwN85kA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6891
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250224114815.146053-3-clamor95@gmail.com>
 
-T24gRnJpLCAyMDI1LTAyLTI4IGF0IDA4OjE2ICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOg0KPiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3Bl
-biBhdHRhY2htZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRo
-ZSBjb250ZW50Lg0KPiANCj4gDQo+IE9uIEZyaSwgRmViIDI4LCAyMDI1IGF0IDAzOjExOjQxQU0g
-KzAwMDAsIENhdGh5IFh1ICjorrjljY7lqbcpIHdyb3RlOg0KPiA+IE9uIFRodSwgMjAyNS0wMi0y
-NyBhdCAyMDoyNiAtMDYwMCwgUm9iIEhlcnJpbmcgKEFybSkgd3JvdGU6DQo+ID4gPiBFeHRlcm5h
-bCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cw0K
-PiA+ID4gdW50aWwNCj4gPiA+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhlIGNv
-bnRlbnQuDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gT24gRnJpLCAyOCBGZWIgMjAyNSAwOToxNjoy
-NSArMDgwMCwgQ2F0aHkgWHUgd3JvdGU6DQo+ID4gPiA+IEFkZCB0aGUgbmV3IGJpbmRpbmcgZG9j
-dW1lbnQgZm9yIHBpbmN0cmwgb24gTWVkaWFUZWsgbXQ4MTk2Lg0KPiA+ID4gPiANCj4gPiA+ID4g
-U2lnbmVkLW9mZi1ieTogR3VvZG9uZyBMaXUgPGd1b2RvbmcubGl1QG1lZGlhdGVrLmNvbT4NCj4g
-PiA+ID4gU2lnbmVkLW9mZi1ieTogQ2F0aHkgWHUgPG90X2NhdGh5Lnh1QG1lZGlhdGVrLmNvbT4N
-Cj4gPiA+ID4gLS0tDQo+ID4gPiA+ICAuLi4vcGluY3RybC9tZWRpYXRlayxtdDgxOTYtcGluY3Ry
-bC55YW1sICAgICAgfCAyNDENCj4gPiA+ID4gKysrKysrKysrKysrKysrKysrDQo+ID4gPiA+ICAx
-IGZpbGUgY2hhbmdlZCwgMjQxIGluc2VydGlvbnMoKykNCj4gPiA+ID4gIGNyZWF0ZSBtb2RlIDEw
-MDY0NA0KPiA+ID4gPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGluY3RybC9t
-ZWRpYXRlayxtdDgxOTYtDQo+ID4gPiA+IHBpbmN0cmwueWFtbA0KPiA+ID4gPiANCj4gPiA+IA0K
-PiA+ID4gTXkgYm90IGZvdW5kIGVycm9ycyBydW5uaW5nICdtYWtlIGR0X2JpbmRpbmdfY2hlY2sn
-IG9uIHlvdXINCj4gPiA+IHBhdGNoOg0KPiA+IA0KPiA+ICAgU29ycnksIHRoaXMgcGF0Y2ggZGVw
-b25kIG9uIGFub3RoZXIgcGF0Y2g6DQo+ID4gDQo+ID4gDQpodHRwczovL3VybGRlZmVuc2UuY29t
-L3YzL19faHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LW1lZGlhdGVr
-L3BhdGNoLzIwMjUwMjI4MDExNzAyLjE2NDkzLTMtb3RfY2F0aHkueHVAbWVkaWF0ZWsuY29tL19f
-OyEhQ1RSTktBOXdNZzBBUmJ3IWo4OFJuY3pQeG43S3NXc0dnckpGeDk0VFdqN0FBa20xRjhNTEMx
-aGlvUVViLXpJVE5fUDNZRkgzYkJnbWRvNi0yQ055cU5xdERQSGxMZFFrUHckDQo+ID4gICBJbiB0
-aGlzIGNhc2UsIGRvZXMgdGhlIGR0LWJpbmRpbmcgc3RpbGwgbmVlZCBnbyBmaXJzdD8gSWYgc28s
-IEkNCj4gDQo+IFRoaXMgbWVhbnMgeW91ciBzZXJpZXMgYXJlIG5vbi1iaXNlY3RhYmxlIGJ1dCBl
-dmVuIHJlLW9yZGVyaW5nIHdpbGwNCj4gbnRvDQo+IGZpeCBpdC4gWW91IHVuZGVyc3RhbmQgeW91
-IHRhcmdldCBkaWZmZXJlbnQgdHJlZXM/DQoNCiAgVW5kZXJzdGFuZC4NCg0KPiANCj4gPiB3aWxs
-IGluY2x1ZGUgdGhlIGRlcGVuZGVuY3kgaW5mb3JtYXRpb24gaW4gdGhlIGNvbW1pdCBtZXNzYWdl
-IG9mDQo+ID4gdGhlIG5leHQgdmVyc2lvbi4gVGhhbmsgeW91fg0KPiANCj4gTm8sIGRlY291cGxl
-IGZyb20gZGVwZW5kZW5jaWVzLg0KDQogIE9rLCBpdCB3aWxsIGJlIGZpeGVkIGluIG5leHQgdmVy
-c2lvbi4NCg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCj4gDQo=
+On Mon, 24 Feb 2025, Svyatoslav Ryhel wrote:
+
+> Remove platform data and fully relay on OF and device tree
+> parsing and binding devices.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  drivers/iio/light/lm3533-als.c      |  40 ++++---
+>  drivers/leds/leds-lm3533.c          |  46 +++++---
+>  drivers/mfd/lm3533-core.c           | 159 ++++++++--------------------
+>  drivers/video/backlight/lm3533_bl.c |  71 ++++++++++---
+>  include/linux/mfd/lm3533.h          |  35 +-----
+>  5 files changed, 164 insertions(+), 187 deletions(-)
+> 
+> diff --git a/drivers/iio/light/lm3533-als.c b/drivers/iio/light/lm3533-als.c
+> index 99f0b903018c..cb52965e93c6 100644
+> --- a/drivers/iio/light/lm3533-als.c
+> +++ b/drivers/iio/light/lm3533-als.c
+> @@ -16,9 +16,12 @@
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+>  #include <linux/mfd/core.h>
+> +#include <linux/mod_devicetable.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/property.h>
+>  #include <linux/slab.h>
+>  #include <linux/uaccess.h>
+> +#include <linux/units.h>
+>  
+>  #include <linux/mfd/lm3533.h>
+>  
+> @@ -56,6 +59,9 @@ struct lm3533_als {
+>  
+>  	atomic_t zone;
+>  	struct mutex thresh_mutex;
+> +
+> +	unsigned pwm_mode:1;		/* PWM input mode (default analog) */
+> +	u8 r_select;			/* 1 - 127 (ignored in PWM-mode) */
+>  };
+>  
+>  
+> @@ -753,18 +759,17 @@ static int lm3533_als_set_resistor(struct lm3533_als *als, u8 val)
+>  	return 0;
+>  }
+>  
+> -static int lm3533_als_setup(struct lm3533_als *als,
+> -			    const struct lm3533_als_platform_data *pdata)
+> +static int lm3533_als_setup(struct lm3533_als *als)
+>  {
+>  	int ret;
+>  
+> -	ret = lm3533_als_set_input_mode(als, pdata->pwm_mode);
+> +	ret = lm3533_als_set_input_mode(als, als->pwm_mode);
+>  	if (ret)
+>  		return ret;
+>  
+>  	/* ALS input is always high impedance in PWM-mode. */
+> -	if (!pdata->pwm_mode) {
+> -		ret = lm3533_als_set_resistor(als, pdata->r_select);
+> +	if (!als->pwm_mode) {
+> +		ret = lm3533_als_set_resistor(als, als->r_select);
+
+You're already passing 'als'.
+
+Just teach lm3533_als_set_resistor that 'r_select' is now contained.
+
+>  		if (ret)
+>  			return ret;
+>  	}
+> @@ -828,22 +833,16 @@ static const struct iio_info lm3533_als_info = {
+>  
+>  static int lm3533_als_probe(struct platform_device *pdev)
+>  {
+> -	const struct lm3533_als_platform_data *pdata;
+>  	struct lm3533 *lm3533;
+>  	struct lm3533_als *als;
+>  	struct iio_dev *indio_dev;
+> +	u32 val;
+
+Value of what, potatoes?
+
+>  	int ret;
+>  
+>  	lm3533 = dev_get_drvdata(pdev->dev.parent);
+>  	if (!lm3533)
+>  		return -EINVAL;
+>  
+> -	pdata = dev_get_platdata(&pdev->dev);
+> -	if (!pdata) {
+> -		dev_err(&pdev->dev, "no platform data\n");
+> -		return -EINVAL;
+> -	}
+> -
+>  	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*als));
+>  	if (!indio_dev)
+>  		return -ENOMEM;
+> @@ -864,13 +863,21 @@ static int lm3533_als_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, indio_dev);
+>  
+> +	val = 200 * KILO; /* 200kOhm */
+
+Better to #define magic numbers; DEFAULT_{DESCRIPTION}_OHMS
+
+> +	device_property_read_u32(&pdev->dev, "ti,resistor-value-ohm", &val);
+> +
+> +	/* Convert resitance into R_ALS value with 2v / 10uA * R */
+
+Because ...
+
+> +	als->r_select = DIV_ROUND_UP(2 * MICRO, 10 * val);
+> +
+> +	als->pwm_mode = device_property_read_bool(&pdev->dev, "ti,pwm-mode");
+> +
+>  	if (als->irq) {
+>  		ret = lm3533_als_setup_irq(als, indio_dev);
+>  		if (ret)
+>  			return ret;
+>  	}
+>  
+> -	ret = lm3533_als_setup(als, pdata);
+> +	ret = lm3533_als_setup(als);
+>  	if (ret)
+>  		goto err_free_irq;
+>  
+> @@ -907,9 +914,16 @@ static void lm3533_als_remove(struct platform_device *pdev)
+>  		free_irq(als->irq, indio_dev);
+>  }
+>  
+> +static const struct of_device_id lm3533_als_match_table[] = {
+> +	{ .compatible = "ti,lm3533-als" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, lm3533_als_match_table);
+> +
+>  static struct platform_driver lm3533_als_driver = {
+>  	.driver	= {
+>  		.name	= "lm3533-als",
+> +		.of_match_table = lm3533_als_match_table,
+>  	},
+>  	.probe		= lm3533_als_probe,
+>  	.remove		= lm3533_als_remove,
+> diff --git a/drivers/leds/leds-lm3533.c b/drivers/leds/leds-lm3533.c
+> index 45795f2a1042..6e661a2a540f 100644
+> --- a/drivers/leds/leds-lm3533.c
+> +++ b/drivers/leds/leds-lm3533.c
+> @@ -10,8 +10,10 @@
+>  #include <linux/module.h>
+>  #include <linux/leds.h>
+>  #include <linux/mfd/core.h>
+> +#include <linux/mod_devicetable.h>
+>  #include <linux/mutex.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/property.h>
+>  #include <linux/slab.h>
+>  
+>  #include <linux/mfd/lm3533.h>
+> @@ -48,6 +50,9 @@ struct lm3533_led {
+>  
+>  	struct mutex mutex;
+>  	unsigned long flags;
+> +
+> +	u16 max_current;		/* 5000 - 29800 uA (800 uA step) */
+> +	u8 pwm;				/* 0 - 0x3f */
+
+This comment doesn't add anything.
+
+>  };
+>  
+>  
+> @@ -632,23 +637,22 @@ static const struct attribute_group *lm3533_led_attribute_groups[] = {
+>  	NULL
+>  };
+>  
+> -static int lm3533_led_setup(struct lm3533_led *led,
+> -					struct lm3533_led_platform_data *pdata)
+> +static int lm3533_led_setup(struct lm3533_led *led)
+>  {
+>  	int ret;
+>  
+> -	ret = lm3533_ctrlbank_set_max_current(&led->cb, pdata->max_current);
+> +	ret = lm3533_ctrlbank_set_max_current(&led->cb, led->max_current);
+
+Why not make max_current and attribute of lm3533_ctrlbank and drop the
+redundant parameter?
+
+>  	if (ret)
+>  		return ret;
+>  
+> -	return lm3533_ctrlbank_set_pwm(&led->cb, pdata->pwm);
+> +	return lm3533_ctrlbank_set_pwm(&led->cb, led->pwm);
+
+As above.
+
+>  }
+>  
+>  static int lm3533_led_probe(struct platform_device *pdev)
+>  {
+>  	struct lm3533 *lm3533;
+> -	struct lm3533_led_platform_data *pdata;
+>  	struct lm3533_led *led;
+> +	u32 val;
+>  	int ret;
+>  
+>  	dev_dbg(&pdev->dev, "%s\n", __func__);
+> @@ -657,12 +661,6 @@ static int lm3533_led_probe(struct platform_device *pdev)
+>  	if (!lm3533)
+>  		return -EINVAL;
+>  
+> -	pdata = dev_get_platdata(&pdev->dev);
+> -	if (!pdata) {
+> -		dev_err(&pdev->dev, "no platform data\n");
+> -		return -EINVAL;
+> -	}
+> -
+>  	if (pdev->id < 0 || pdev->id >= LM3533_LVCTRLBANK_COUNT) {
+>  		dev_err(&pdev->dev, "illegal LED id %d\n", pdev->id);
+>  		return -EINVAL;
+> @@ -673,8 +671,11 @@ static int lm3533_led_probe(struct platform_device *pdev)
+>  		return -ENOMEM;
+>  
+>  	led->lm3533 = lm3533;
+> -	led->cdev.name = pdata->name;
+> -	led->cdev.default_trigger = pdata->default_trigger;
+> +	led->cdev.name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "%s-%d",
+> +					pdev->name, pdev->id);
+> +	led->cdev.default_trigger = "none";
+> +	device_property_read_string(&pdev->dev, "linux,default-trigger",
+> +				    &led->cdev.default_trigger);
+>  	led->cdev.brightness_set_blocking = lm3533_led_set;
+>  	led->cdev.brightness_get = lm3533_led_get;
+>  	led->cdev.blink_set = lm3533_led_blink_set;
+> @@ -702,7 +703,17 @@ static int lm3533_led_probe(struct platform_device *pdev)
+>  
+>  	led->cb.dev = led->cdev.dev;
+>  
+> -	ret = lm3533_led_setup(led, pdata);
+> +	/* 5000 - 29800 uA (800 uA step) */
+> +	val = 5000;
+> +	device_property_read_u32(&pdev->dev, "ti,max-current-microamp", &val);
+> +	led->max_current = val;
+
+Why not just use 'led->max_current' from the offset and delete 'val'?
+
+> +
+> +	/* 0 - 0x3f */
+
+How does this improve readability?  Why would use this info?
+
+> +	val = 0;
+> +	device_property_read_u32(&pdev->dev, "ti,pwm-config-mask", &val);
+> +	led->pwm = val;
+> +
+> +	ret = lm3533_led_setup(led);
+>  	if (ret)
+>  		goto err_deregister;
+>  
+> @@ -739,9 +750,16 @@ static void lm3533_led_shutdown(struct platform_device *pdev)
+>  	lm3533_led_set(&led->cdev, LED_OFF);		/* disable blink */
+>  }
+>  
+> +static const struct of_device_id lm3533_led_match_table[] = {
+> +	{ .compatible = "ti,lm3533-leds" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, lm3533_led_match_table);
+> +
+>  static struct platform_driver lm3533_led_driver = {
+>  	.driver = {
+>  		.name = "lm3533-leds",
+> +		.of_match_table = lm3533_led_match_table,
+>  	},
+>  	.probe		= lm3533_led_probe,
+>  	.remove		= lm3533_led_remove,
+> diff --git a/drivers/mfd/lm3533-core.c b/drivers/mfd/lm3533-core.c
+> index 0a2409d00b2e..e1b8fe136af9 100644
+> --- a/drivers/mfd/lm3533-core.c
+> +++ b/drivers/mfd/lm3533-core.c
+> @@ -14,10 +14,13 @@
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/i2c.h>
+>  #include <linux/mfd/core.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/property.h>
+>  #include <linux/regmap.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/slab.h>
+>  #include <linux/uaccess.h>
+> +#include <linux/units.h>
+>  
+>  #include <linux/mfd/lm3533.h>
+>  
+> @@ -42,41 +45,41 @@
+>  
+>  #define LM3533_REG_MAX			0xb2
+>  
+> -
+> -static struct mfd_cell lm3533_als_devs[] = {
+> +static struct mfd_cell lm3533_child_devices[] = {
+
+Drop the child_ part.
+
+>  	{
+>  		.name	= "lm3533-als",
+>  		.id	= -1,
+> +		.of_compatible = "ti,lm3533-als",
+>  	},
+> -};
+> -
+> -static struct mfd_cell lm3533_bl_devs[] = {
+>  	{
+>  		.name	= "lm3533-backlight",
+>  		.id	= 0,
+> +		.of_compatible = "ti,lm3533-backlight",
+>  	},
+>  	{
+>  		.name	= "lm3533-backlight",
+>  		.id	= 1,
+> +		.of_compatible = "ti,lm3533-backlight",
+>  	},
+> -};
+> -
+> -static struct mfd_cell lm3533_led_devs[] = {
+>  	{
+>  		.name	= "lm3533-leds",
+>  		.id	= 0,
+
+Do you know if these are actually used for anything?
+
+Any reason to not just use PLATFORM_DEVID_AUTO?
+
+> +		.of_compatible = "ti,lm3533-leds",
+>  	},
+>  	{
+>  		.name	= "lm3533-leds",
+>  		.id	= 1,
+> +		.of_compatible = "ti,lm3533-leds",
+>  	},
+>  	{
+>  		.name	= "lm3533-leds",
+>  		.id	= 2,
+> +		.of_compatible = "ti,lm3533-leds",
+>  	},
+>  	{
+>  		.name	= "lm3533-leds",
+>  		.id	= 3,
+> +		.of_compatible = "ti,lm3533-leds",
+>  	},
+>  };
+>  
+> @@ -376,136 +379,60 @@ static struct attribute_group lm3533_attribute_group = {
+>  	.attrs		= lm3533_attributes
+>  };
+>  
+> -static int lm3533_device_als_init(struct lm3533 *lm3533)
+> -{
+> -	struct lm3533_platform_data *pdata = dev_get_platdata(lm3533->dev);
+> -	int ret;
+> -
+> -	if (!pdata->als)
+> -		return 0;
+> -
+> -	lm3533_als_devs[0].platform_data = pdata->als;
+> -	lm3533_als_devs[0].pdata_size = sizeof(*pdata->als);
+> -
+> -	ret = mfd_add_devices(lm3533->dev, 0, lm3533_als_devs, 1, NULL,
+> -			      0, NULL);
+> -	if (ret) {
+> -		dev_err(lm3533->dev, "failed to add ALS device\n");
+> -		return ret;
+> -	}
+> -
+> -	lm3533->have_als = 1;
+> -
+> -	return 0;
+> -}
+> -
+> -static int lm3533_device_bl_init(struct lm3533 *lm3533)
+> -{
+> -	struct lm3533_platform_data *pdata = dev_get_platdata(lm3533->dev);
+> -	int i;
+> -	int ret;
+> -
+> -	if (!pdata->backlights || pdata->num_backlights == 0)
+> -		return 0;
+> -
+> -	if (pdata->num_backlights > ARRAY_SIZE(lm3533_bl_devs))
+> -		pdata->num_backlights = ARRAY_SIZE(lm3533_bl_devs);
+> -
+> -	for (i = 0; i < pdata->num_backlights; ++i) {
+> -		lm3533_bl_devs[i].platform_data = &pdata->backlights[i];
+> -		lm3533_bl_devs[i].pdata_size = sizeof(pdata->backlights[i]);
+> -	}
+> -
+> -	ret = mfd_add_devices(lm3533->dev, 0, lm3533_bl_devs,
+> -			      pdata->num_backlights, NULL, 0, NULL);
+> -	if (ret) {
+> -		dev_err(lm3533->dev, "failed to add backlight devices\n");
+> -		return ret;
+> -	}
+> -
+> -	lm3533->have_backlights = 1;
+> -
+> -	return 0;
+> -}
+> -
+> -static int lm3533_device_led_init(struct lm3533 *lm3533)
+> -{
+> -	struct lm3533_platform_data *pdata = dev_get_platdata(lm3533->dev);
+> -	int i;
+> -	int ret;
+> -
+> -	if (!pdata->leds || pdata->num_leds == 0)
+> -		return 0;
+> -
+> -	if (pdata->num_leds > ARRAY_SIZE(lm3533_led_devs))
+> -		pdata->num_leds = ARRAY_SIZE(lm3533_led_devs);
+> -
+> -	for (i = 0; i < pdata->num_leds; ++i) {
+> -		lm3533_led_devs[i].platform_data = &pdata->leds[i];
+> -		lm3533_led_devs[i].pdata_size = sizeof(pdata->leds[i]);
+> -	}
+> -
+> -	ret = mfd_add_devices(lm3533->dev, 0, lm3533_led_devs,
+> -			      pdata->num_leds, NULL, 0, NULL);
+> -	if (ret) {
+> -		dev_err(lm3533->dev, "failed to add LED devices\n");
+> -		return ret;
+> -	}
+> -
+> -	lm3533->have_leds = 1;
+> -
+> -	return 0;
+> -}
+> -
+> -static int lm3533_device_setup(struct lm3533 *lm3533,
+> -					struct lm3533_platform_data *pdata)
+> +static int lm3533_device_setup(struct lm3533 *lm3533)
+>  {
+>  	int ret;
+>  
+> -	ret = lm3533_set_boost_freq(lm3533, pdata->boost_freq);
+> +	ret = lm3533_set_boost_freq(lm3533, lm3533->boost_freq);
+
+Same comments as before.
+
+Teach lm3533_set_boost_freq() that 'boost_freq' is contained in 'lm3533'.
+
+>  	if (ret)
+>  		return ret;
+>  
+> -	return lm3533_set_boost_ovp(lm3533, pdata->boost_ovp);
+> +	return lm3533_set_boost_ovp(lm3533, lm3533->boost_ovp);
+>  }
+>  
+>  static int lm3533_device_init(struct lm3533 *lm3533)
+>  {
+> -	struct lm3533_platform_data *pdata = dev_get_platdata(lm3533->dev);
+> +	u32 val;
+
+'uV' and 'hz' could be easier to follow.
+
+>  	int ret;
+>  
+> -	dev_dbg(lm3533->dev, "%s\n", __func__);
+> +	lm3533->hwen = devm_gpiod_get(lm3533->dev, "enable", GPIOD_OUT_LOW);
+> +	if (IS_ERR(lm3533->hwen))
+> +		return dev_err_probe(lm3533->dev, PTR_ERR(lm3533->hwen),
+> +				     "failed to request HWEN GPIO\n");
+>  
+> -	if (!pdata) {
+> -		dev_err(lm3533->dev, "no platform data\n");
+> -		return -EINVAL;
+> -	}
+> +	val = 16 * MICRO; /* 16V */
+> +	device_property_read_u32(lm3533->dev, "ti,boost-ovp-microvolt", &val);
+>  
+> -	lm3533->hwen = devm_gpiod_get(lm3533->dev, NULL, GPIOD_OUT_LOW);
+> -	if (IS_ERR(lm3533->hwen))
+> -		return dev_err_probe(lm3533->dev, PTR_ERR(lm3533->hwen), "failed to request HWEN GPIO\n");
+> -	gpiod_set_consumer_name(lm3533->hwen, "lm3533-hwen");
+> +	/* boost_ovp is defined in microvolts, convert to enum value */
+> +	lm3533->boost_ovp = val / (8 * MICRO) - 2;
+
+Wait, what.  Why?
+
+Converting a useful microvolt value to an arbitrary enum sounds fragile.
+
+> +
+> +	val = 500 * KILO; /* 500kHz */
+> +	device_property_read_u32(lm3533->dev, "ti,boost-freq-hz", &val);
+> +
+> +	/* boost_freq is defined in Hz, convert to enum value */
+> +	lm3533->boost_freq = val / (500 * KILO) - 1;
+>  
+>  	lm3533_enable(lm3533);
+>  
+> -	ret = lm3533_device_setup(lm3533, pdata);
+> +	ret = lm3533_device_setup(lm3533);
+>  	if (ret)
+>  		goto err_disable;
+>  
+> -	lm3533_device_als_init(lm3533);
+> -	lm3533_device_bl_init(lm3533);
+> -	lm3533_device_led_init(lm3533);
+> +	ret = devm_mfd_add_devices(lm3533->dev, 0, lm3533_child_devices,
+
+
+> +				   ARRAY_SIZE(lm3533_child_devices), NULL, 0, NULL);
+> +	if (ret) {
+> +		dev_err(lm3533->dev, "failed to add MFD devices: %d\n", ret);
+
+"child devices" or "sub-devices".
+
+> +		goto err_disable;
+> +	}
+>  
+>  	ret = sysfs_create_group(&lm3533->dev->kobj, &lm3533_attribute_group);
+>  	if (ret < 0) {
+>  		dev_err(lm3533->dev, "failed to create sysfs attributes\n");
+> -		goto err_unregister;
+> +		goto err_disable;
+>  	}
+>  
+>  	return 0;
+>  
+> -err_unregister:
+> -	mfd_remove_devices(lm3533->dev);
+>  err_disable:
+>  	lm3533_disable(lm3533);
+>  
+> @@ -517,8 +444,6 @@ static void lm3533_device_exit(struct lm3533 *lm3533)
+>  	dev_dbg(lm3533->dev, "%s\n", __func__);
+>  
+>  	sysfs_remove_group(&lm3533->dev->kobj, &lm3533_attribute_group);
+> -
+> -	mfd_remove_devices(lm3533->dev);
+>  	lm3533_disable(lm3533);
+>  }
+>  
+> @@ -591,6 +516,9 @@ static int lm3533_i2c_probe(struct i2c_client *i2c)
+>  	lm3533->dev = &i2c->dev;
+>  	lm3533->irq = i2c->irq;
+>  
+> +	i2c->dev.coherent_dma_mask = 0;
+> +	i2c->dev.dma_mask = &i2c->dev.coherent_dma_mask;
+
+Why are you manually doing this?
+
+The core should take care of this for you:
+
+drivers/mfd/mfd-core.c: pdev->dev.dma_mask = parent->dma_mask;
+drivers/mfd/mfd-core.c: pdev->dev.coherent_dma_mask = parent->coherent_dma_mask;
+
+> +
+>  	return lm3533_device_init(lm3533);
+>  }
+>  
+> @@ -603,6 +531,12 @@ static void lm3533_i2c_remove(struct i2c_client *i2c)
+>  	lm3533_device_exit(lm3533);
+>  }
+>  
+> +static const struct of_device_id lm3533_match_table[] = {
+> +	{ .compatible = "ti,lm3533" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, lm3533_match_table);
+> +
+>  static const struct i2c_device_id lm3533_i2c_ids[] = {
+>  	{ "lm3533" },
+>  	{ }
+> @@ -612,6 +546,7 @@ MODULE_DEVICE_TABLE(i2c, lm3533_i2c_ids);
+>  static struct i2c_driver lm3533_i2c_driver = {
+>  	.driver = {
+>  		   .name = "lm3533",
+> +		   .of_match_table = lm3533_match_table,
+>  	},
+>  	.id_table	= lm3533_i2c_ids,
+>  	.probe		= lm3533_i2c_probe,
+> diff --git a/drivers/video/backlight/lm3533_bl.c b/drivers/video/backlight/lm3533_bl.c
+> index babfd3ceec86..0827a5e98dbb 100644
+> --- a/drivers/video/backlight/lm3533_bl.c
+> +++ b/drivers/video/backlight/lm3533_bl.c
+> @@ -9,7 +9,9 @@
+>  
+>  #include <linux/module.h>
+>  #include <linux/init.h>
+> +#include <linux/mod_devicetable.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/property.h>
+>  #include <linux/backlight.h>
+>  #include <linux/slab.h>
+>  
+> @@ -19,6 +21,7 @@
+>  #define LM3533_HVCTRLBANK_COUNT		2
+>  #define LM3533_BL_MAX_BRIGHTNESS	255
+>  
+> +#define LM3533_REG_OUTPUT_CONF1		0x10
+>  #define LM3533_REG_CTRLBANK_AB_BCONF	0x1a
+>  
+>  
+> @@ -27,6 +30,11 @@ struct lm3533_bl {
+>  	struct lm3533_ctrlbank cb;
+>  	struct backlight_device *bd;
+>  	int id;
+> +
+> +	u16 max_current;		/* 5000 - 29800 uA (800 uA step) */
+> +	u8 pwm;				/* 0 - 0x3f */
+
+Remove or improve this comment.
+
+> +	bool linear;
+> +	bool hvled;
+>  };
+>  
+>  
+> @@ -246,25 +254,40 @@ static struct attribute_group lm3533_bl_attribute_group = {
+>  	.attrs		= lm3533_bl_attributes
+>  };
+>  
+> -static int lm3533_bl_setup(struct lm3533_bl *bl,
+> -					struct lm3533_bl_platform_data *pdata)
+> +static int lm3533_bl_setup(struct lm3533_bl *bl)
+>  {
+> +	int id = lm3533_bl_get_ctrlbank_id(bl);
+>  	int ret;
+>  
+> -	ret = lm3533_ctrlbank_set_max_current(&bl->cb, pdata->max_current);
+> +	if (bl->linear) {
+> +		ret = lm3533_update(bl->lm3533, LM3533_REG_CTRLBANK_AB_BCONF,
+> +				    BIT(2 * id + 1), BIT(2 * id + 1));
+
+These need to be defined as SHIFT values or whatever they are.
+
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	if (bl->hvled) {
+> +		ret = lm3533_update(bl->lm3533, LM3533_REG_OUTPUT_CONF1,
+> +				    id | id << 1, BIT(0) | BIT(1));
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = lm3533_ctrlbank_set_max_current(&bl->cb, bl->max_current);
+>  	if (ret)
+>  		return ret;
+>  
+> -	return lm3533_ctrlbank_set_pwm(&bl->cb, pdata->pwm);
+> +	return lm3533_ctrlbank_set_pwm(&bl->cb, bl->pwm);
+>  }
+>  
+>  static int lm3533_bl_probe(struct platform_device *pdev)
+>  {
+>  	struct lm3533 *lm3533;
+> -	struct lm3533_bl_platform_data *pdata;
+>  	struct lm3533_bl *bl;
+>  	struct backlight_device *bd;
+>  	struct backlight_properties props;
+> +	char *name;
+> +	u32 val;
+
+As above.
+
+>  	int ret;
+>  
+>  	dev_dbg(&pdev->dev, "%s\n", __func__);
+> @@ -273,12 +296,6 @@ static int lm3533_bl_probe(struct platform_device *pdev)
+>  	if (!lm3533)
+>  		return -EINVAL;
+>  
+> -	pdata = dev_get_platdata(&pdev->dev);
+> -	if (!pdata) {
+> -		dev_err(&pdev->dev, "no platform data\n");
+> -		return -EINVAL;
+> -	}
+> -
+>  	if (pdev->id < 0 || pdev->id >= LM3533_HVCTRLBANK_COUNT) {
+>  		dev_err(&pdev->dev, "illegal backlight id %d\n", pdev->id);
+>  		return -EINVAL;
+> @@ -295,13 +312,15 @@ static int lm3533_bl_probe(struct platform_device *pdev)
+>  	bl->cb.id = lm3533_bl_get_ctrlbank_id(bl);
+>  	bl->cb.dev = NULL;			/* until registered */
+>  
+> +	name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "%s-%d", pdev->name, pdev->id);
+
+Doesn't platform already provide enumerated names?
+
+> +
+>  	memset(&props, 0, sizeof(props));
+>  	props.type = BACKLIGHT_RAW;
+>  	props.max_brightness = LM3533_BL_MAX_BRIGHTNESS;
+> -	props.brightness = pdata->default_brightness;
+> -	bd = devm_backlight_device_register(&pdev->dev, pdata->name,
+> -					pdev->dev.parent, bl, &lm3533_bl_ops,
+> -					&props);
+> +	props.brightness = LM3533_BL_MAX_BRIGHTNESS;
+> +	device_property_read_u32(&pdev->dev, "default-brightness", &props.brightness);
+> +	bd = devm_backlight_device_register(&pdev->dev, name, pdev->dev.parent,
+> +					    bl, &lm3533_bl_ops, &props);
+>  	if (IS_ERR(bd)) {
+>  		dev_err(&pdev->dev, "failed to register backlight device\n");
+>  		return PTR_ERR(bd);
+> @@ -320,7 +339,20 @@ static int lm3533_bl_probe(struct platform_device *pdev)
+>  
+>  	backlight_update_status(bd);
+>  
+> -	ret = lm3533_bl_setup(bl, pdata);
+> +	/* 5000 - 29800 uA (800 uA step) */
+> +	val = 5000;
+> +	device_property_read_u32(&pdev->dev, "ti,max-current-microamp", &val);
+> +	bl->max_current = val;
+> +
+> +	/* 0 - 0x3f */
+> +	val = 0;
+> +	device_property_read_u32(&pdev->dev, "ti,pwm-config-mask", &val);
+> +	bl->pwm = val;
+> +
+> +	bl->linear = device_property_read_bool(&pdev->dev, "ti,linear-mapping-mode");
+> +	bl->hvled = device_property_read_bool(&pdev->dev, "ti,hardware-controlled");
+> +
+> +	ret = lm3533_bl_setup(bl);
+>  	if (ret)
+>  		goto err_sysfs_remove;
+>  
+> @@ -381,10 +413,17 @@ static void lm3533_bl_shutdown(struct platform_device *pdev)
+>  	lm3533_ctrlbank_disable(&bl->cb);
+>  }
+>  
+> +static const struct of_device_id lm3533_bl_match_table[] = {
+> +	{ .compatible = "ti,lm3533-backlight" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, lm3533_bl_match_table);
+> +
+>  static struct platform_driver lm3533_bl_driver = {
+>  	.driver = {
+>  		.name	= "lm3533-backlight",
+>  		.pm	= &lm3533_bl_pm_ops,
+> +		.of_match_table = lm3533_bl_match_table,
+>  	},
+>  	.probe		= lm3533_bl_probe,
+>  	.remove		= lm3533_bl_remove,
+> diff --git a/include/linux/mfd/lm3533.h b/include/linux/mfd/lm3533.h
+> index 69059a7a2ce5..3b28fc0970f6 100644
+> --- a/include/linux/mfd/lm3533.h
+> +++ b/include/linux/mfd/lm3533.h
+> @@ -27,6 +27,9 @@ struct lm3533 {
+>  	struct gpio_desc *hwen;
+>  	int irq;
+>  
+> +	u32 boost_ovp;
+> +	u32 boost_freq;
+> +
+>  	unsigned have_als:1;
+>  	unsigned have_backlights:1;
+>  	unsigned have_leds:1;
+> @@ -38,25 +41,6 @@ struct lm3533_ctrlbank {
+>  	int id;
+>  };
+>  
+> -struct lm3533_als_platform_data {
+> -	unsigned pwm_mode:1;		/* PWM input mode (default analog) */
+> -	u8 r_select;			/* 1 - 127 (ignored in PWM-mode) */
+> -};
+> -
+> -struct lm3533_bl_platform_data {
+> -	char *name;
+> -	u16 max_current;		/* 5000 - 29800 uA (800 uA step) */
+> -	u8 default_brightness;		/* 0 - 255 */
+> -	u8 pwm;				/* 0 - 0x3f */
+> -};
+> -
+> -struct lm3533_led_platform_data {
+> -	char *name;
+> -	const char *default_trigger;
+> -	u16 max_current;		/* 5000 - 29800 uA (800 uA step) */
+> -	u8 pwm;				/* 0 - 0x3f */
+> -};
+> -
+>  enum lm3533_boost_freq {
+>  	LM3533_BOOST_FREQ_500KHZ,
+>  	LM3533_BOOST_FREQ_1000KHZ,
+> @@ -69,19 +53,6 @@ enum lm3533_boost_ovp {
+>  	LM3533_BOOST_OVP_40V,
+>  };
+>  
+> -struct lm3533_platform_data {
+> -	enum lm3533_boost_ovp boost_ovp;
+> -	enum lm3533_boost_freq boost_freq;
+> -
+> -	struct lm3533_als_platform_data *als;
+> -
+> -	struct lm3533_bl_platform_data *backlights;
+> -	int num_backlights;
+> -
+> -	struct lm3533_led_platform_data *leds;
+> -	int num_leds;
+> -};
+> -
+>  extern int lm3533_ctrlbank_enable(struct lm3533_ctrlbank *cb);
+>  extern int lm3533_ctrlbank_disable(struct lm3533_ctrlbank *cb);
+>  
+> -- 
+> 2.43.0
+> 
+
+-- 
+Lee Jones [李琼斯]
 
