@@ -1,90 +1,154 @@
-Return-Path: <devicetree+bounces-152840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FA6A4A435
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 21:25:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD0EA4A449
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 21:30:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD7361772ED
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 20:24:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4679E16740E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 20:30:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F7A20296F;
-	Fri, 28 Feb 2025 20:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E3617AE11;
+	Fri, 28 Feb 2025 20:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fo4RKDdZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z6qJbMN0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E494223F36E;
-	Fri, 28 Feb 2025 20:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF61223F396;
+	Fri, 28 Feb 2025 20:30:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740774163; cv=none; b=heE/BcM3LZ2nx+iz1yyl2VjrtDtJiZbCKqxurKdikH2KL5O0jSgGCztjLYDo6tsnkqJsxUb0+gs0aJ4fOSCQlYipl8RfNotK6CrenznoXaWircf3Fq5yxVdLVL1kURQcyO0JqYtpI72Pv9NnIghYTFFVDVuiO3lNZQrhZtLueJM=
+	t=1740774650; cv=none; b=UlIfwvPy4OOJrJvzJnMWn2S5pvAPEXuzBY6nbpACndtejRxV/181ggRmlEoNaGiHqRFH9hTGxYkIutKJJyuc+G9KdDGFEVhvzYCDHqLhGqYLyCtl5M1G6CLN5hfZYc9e+a4VG0rZi9s02d+d18EVYVV0f17QL53SLZQ2EVDYKkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740774163; c=relaxed/simple;
-	bh=wfzANROPsaWWkrbci7qA/4XmAh6NIwZYuO5mE+y69ts=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X6LU2P9DxuLeqgWyApXEPn43YrQJZ4i6/7ULshZv2vbOH9+BSv+l1ksN8J3J5F20ngmJmevR5O/rv6YUF62qj/J3r0tQ8zFtz11ZVmi829/iNsfYBjhLf5ChHcWnaxAjZjWsKPHVGy3zc42b0cFtJicPX/w64xfol4E9TtyBnQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fo4RKDdZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9943C4CED6;
-	Fri, 28 Feb 2025 20:22:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740774162;
-	bh=wfzANROPsaWWkrbci7qA/4XmAh6NIwZYuO5mE+y69ts=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Fo4RKDdZT8HC+g+RwI0lGMwqaLJlwh8rxhiTYyqw9KgjrDktXJYU1nwEPPAWC/fB8
-	 oePssIAPkDjkYUD+o9575KTvwaKVNbnFqHjBbKJNkkDIYgfI4n+alfz5W3nibHQTnH
-	 gbtElWOEjFGyby6xJyOgVzw4ljdvaq1UcSlqcFhoy9OHeb4XaBYl/Sde1hc+ffWwJK
-	 7Fa2AVXhEUhHg/sZbfESY1XLHMRGZyShZsFbmeB2epNmBODWRQ8EA6LWYM/HBIWNKA
-	 i8Wp4kbIjCSIUm8f2tcX7UfHklguDYUP+8Z1qVVA4UIBO8qotz6XfUys0PVVJKzaMR
-	 VY4b/UwQxI8Pw==
-Date: Fri, 28 Feb 2025 14:22:40 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Baojun Xu <baojun.xu@ti.com>, Takashi Iwai <tiwai@suse.com>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Shi Fu <shifu0704@thundersoft.com>, linux-hwmon@vger.kernel.org,
-	Jean Delvare <jdelvare@suse.com>, Kevin Lu <kevin-lu@ti.com>,
-	Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
-	Dan Murphy <dmurphy@ti.com>, devicetree@vger.kernel.org,
-	Hector Martin <marcan@marcan.st>, Jaroslav Kysela <perex@perex.cz>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	asahi@lists.linux.dev, linux-sound@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Shenghao Ding <shenghao-ding@ti.com>
-Subject: Re: [PATCH v3 08/20] ASoC: dt-bindings: tas27xx: document
- ti,sdout-force-zero-mask property
-Message-ID: <174077415940.3647975.15902049404570656565.robh@kernel.org>
-References: <20250227-apple-codec-changes-v3-0-cbb130030acf@gmail.com>
- <20250227-apple-codec-changes-v3-8-cbb130030acf@gmail.com>
+	s=arc-20240116; t=1740774650; c=relaxed/simple;
+	bh=kXgIwUFfcnXRTfKL18xxHQyr5xsRYovfLqKmpOqaIBU=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=uaZwkzGd2qbPrvZkPOy7hn0yNzbtTm+hQOb4XQPnQAkJMl0/2AVunTsVXbZpJTSnqm7bbpytWMjyzW18ngFMrkkaGyJOti7cI2uKGPrf/L766JSBWGsTRBNGxrh6sAdSCHJYk4yXgjPUXnXXG7FTCts3umfCGELry1Qm+4Xs030=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z6qJbMN0; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e0373c7f55so3752256a12.0;
+        Fri, 28 Feb 2025 12:30:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740774647; x=1741379447; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kXgIwUFfcnXRTfKL18xxHQyr5xsRYovfLqKmpOqaIBU=;
+        b=Z6qJbMN0JUbdkC4hRcegbP5c5uJm7A0pYP4/9gMG6bLGpmAcSkgqAo8uLh8oP8T/jt
+         MK/ryjQz9DsJjsn2MDlMPId+OHNGWEKZqabq21OKtWiBKdLbWMR2RU8TX8p/QeVyb2rK
+         QxsO/JmGOOIAliv7pVfiCFMh+RLldgeP7r0R9vlFIJfJl3Q0Nf5GkEalZD2FOF6MLwAg
+         gKVU9G40lxc/hgT4TuK+XZG7/E/e3MKv+O8llp9T1zplpdSxCmraR+CHsIT4OFiz0POp
+         B/wbbQJo7qrRWiDVA8OuXbpus+59Rjn9cc0iQAwCLj6n0hUNuW4s4zzI7hyI1QiBeP9i
+         F0LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740774647; x=1741379447;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kXgIwUFfcnXRTfKL18xxHQyr5xsRYovfLqKmpOqaIBU=;
+        b=Eo1ojlow0q6Tk5cx1qpk+nZTcrtpm9riTBQGxLh4plm3o56AKY82ucbIt6dYyt9nxs
+         gZi+pTdjbwmkVd9APbd2/S4W+qpeBn56tZKtIX5/ImVU9bC3a0fezSasPn9lTuWHSely
+         /mhHTX9ptR3b7UGjwfaiotiZjfS+b43Uk8IZiZ4T9RcRzzuzKs4o4D/Wb5FvBR7k28P8
+         S1cQrIh6IO5P2Ucy2C852RN6g52538J+zzPwD8ofHfrW+jl0NfUn9Dh4dsRE+6wid6g/
+         NCY/JeaIisXoWycIyA4O+y6/C+8agIyRkmPX8U7GxtnFMNiV68AGFHr3z6QHJEd2t3C5
+         STwA==
+X-Forwarded-Encrypted: i=1; AJvYcCWoB9zHtqSPutTRCUV1aFtC90fQw0pkdzvOKYC/mYaceOPE8r61Q4WDv9jqiE+felwH+Y/6VBvc9pkrk5G9@vger.kernel.org, AJvYcCXx6CnQfsGRFROr8P2Q8DXVLwY/GpGIWiYhRdI1j++2iFwRT9/AYtz5VAdHO5V995gr+E1u25I6PDUv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgM1Bz28KVokIQjn+UzxFMqOV79B96sSwCD1ZHfclDTg8pNfNb
+	ISWkVzDz0Uvubuq9F7EvFnTdZwcn/Bz3xylnHgi+zcQszh/v03bS
+X-Gm-Gg: ASbGncvH56RD2UMG6SBLrlND8AEMdtGxLz9jC7Ad+/NKlzctnEj9uaImnSS+IaKoPDW
+	JJB+ZYdoFfllP2+QU+Npat/OgGFSxu3bo2E/tkMFMUKmM9Usu0LdQn+4IyZbZdTw8FSW1E0iPJq
+	wdVzOPWw3KlCczzPEhtJVxH6hEmLSd1NxxImXK3EZd8nUGtrTk9lusLsbxteFx2THzh8fCuGZHF
+	m3kaA4GwKvfxKdvuqfzp+ZBpawFkJN0DM5InrX2G6zng4M1zjZZdncdOwCq49/6qgkg17EMGUIj
+	1RyE1mIP4sTReRbNr47X0/acjdVbg2nQwXi1w7GN6BulbDawuTTZsJrDtgnvHHOpXAIxxMsYoG6
+	8E2zAQQ8=
+X-Google-Smtp-Source: AGHT+IG2W1DgzC5HFOlMxfquiHOJsjopf4V1IKQfO3ADcRZT8QfnlN9j9L7rrPBIsVSyavnVTfhblA==
+X-Received: by 2002:a17:907:9716:b0:abe:e1b3:78d with SMTP id a640c23a62f3a-abf261fba01mr544156566b.8.1740774646893;
+        Fri, 28 Feb 2025 12:30:46 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf508f2288sm890766b.2.2025.02.28.12.30.44
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 28 Feb 2025 12:30:46 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250227-apple-codec-changes-v3-8-cbb130030acf@gmail.com>
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
+Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20250223113036.74252-1-andyshrk@163.com>
+Date: Fri, 28 Feb 2025 21:30:33 +0100
+Cc: heiko@sntech.de,
+ neil.armstrong@linaro.org,
+ sebastian.reichel@collabora.com,
+ devicetree@vger.kernel.org,
+ hjc@rock-chips.com,
+ mripard@kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ yubing.zhang@rock-chips.com,
+ dri-devel@lists.freedesktop.org,
+ Andy Yan <andy.yan@rock-chips.com>,
+ krzk+dt@kernel.org,
+ robh@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <AC3DE87B-64B1-4C34-8E1B-3900E2C53AA3@gmail.com>
+References: <20250223113036.74252-1-andyshrk@163.com>
+To: Andy Yan <andyshrk@163.com>
+X-Mailer: Apple Mail (2.3826.400.131.1.6)
 
 
-On Thu, 27 Feb 2025 22:07:35 +1000, James Calligeros wrote:
-> TAS2764 can be programmed to zero-fill/ignore certain TDM slots on a
-> shared I2S bus. Since this is a per-chip setting that is a consequence
-> of how it is implemented on a specific board, express this as a Devicetree
-> property.
-> 
-> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
-> ---
->  .../bindings/sound/ti,tas27xx.yaml       | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
+23 lut 2025, o godz. 12:30:
+>=20
+> From: Andy Yan <andy.yan@rock-chips.com>
+>=20
+>=20
+> There are two DW DPTX based DisplayPort Controller on rk3588 which
+> are compliant with the DisplayPort Specification Version 1.4 with
+> the following features:
+>=20
+> * DisplayPort 1.4a
+> * Main Link: 1/2/4 lanes
+> * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
+> * AUX channel 1Mbps
+> * Single Stream Transport(SST)
+> * Multistream Transport (MST)
+> *=EF=81=AEType-C support (alternate mode)
+> * HDCP 2.2, HDCP 1.3
+> * Supports up to 8/10 bits per color component
+> * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
+> * Pixel clock up to 594MHz
+> * I2S, SPDIF audio interface
+>=20
+> The current version of this patch series only supports basic display =
+outputs.
+> I conducted tests in 1080p and 4K@60 YCbCr4:2:0 modes; the ALT/Type-C =
+mode
+> hasn't been tested yet, but I suspect it will likely work. HDCP and =
+audio
+> features remain unimplemented. For RK3588, it's only support SST, =
+while in
+> the upcoming RK3576, it can support MST output.
+>=20
 
+Andy,
+
+Is tis series enough to get usbc1/dp1 working as video output ?
+(assuming i will add necessary code in dt)=20
+
+rock5-itx has second hdmi port using usbc1/dp1 lanes 2,3 to ra620 =
+dp->hdmi converter
+
+is it worth to play with this or it is too early?
+=20
 
