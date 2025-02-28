@@ -1,321 +1,153 @@
-Return-Path: <devicetree+bounces-152555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DACA4979C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:41:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 771C0A497AE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:47:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A96E97A5AA5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:40:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FDF37A75DB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4130325E838;
-	Fri, 28 Feb 2025 10:41:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100DB25BAA0;
+	Fri, 28 Feb 2025 10:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="klou0WD4";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="AHJ7iCOL"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="cmspyZjB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80386255E58;
-	Fri, 28 Feb 2025 10:41:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CEB17BA3;
+	Fri, 28 Feb 2025 10:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740739313; cv=none; b=ICxQE7Tmr8/0SSUuQpqoaOBzEzXj8YjN/0HVjKk81EP9BGiQTGuhRywD3apHZ5QcH1qO/z6ay//DxGp3ObqnImSNhJY0D+aMyC8DWxeBZcw3AayBWXj98WZ3US9lfxU2PqrFUZWXv56++VJLQxaAPOdbg5QrtNPTOTyBTuYAUK0=
+	t=1740739614; cv=none; b=tSSv7j6dY+obbjKV9HNdbj3mNpwacyeNGskEnLno1aukaM1hizIw72lmcOqIqShhxZgTVB+6ioNNgHwH5A9V+HW6gQ1GZEN0LZLKKCNAj/wWixLBVw+coPiaQgyWb8XKm4d9NGAiX+8rCkx0tAg1NCdtr7NDUIJIbfjLhpn6Rwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740739313; c=relaxed/simple;
-	bh=5xcil/r5JW73KlfawvZB49bPh0ZZRpMyxGGFsHi3G1w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Utb4RO6NvZcTG1z5vvpUO+ylfmWHcLwJMyG/Gjq7kgjGS3OlLUWXdlYr72bPAtIk54ackC6yxUXPTxQZwS8XlaEnUE3LvY34bUdR8MCZp/TlX5qJ3sxoi83XbfWasUt1F271lgsMB/tNjN5c6U2TcuLFlmocMSB+E5Zch+6jdnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=klou0WD4; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=AHJ7iCOL reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1740739310; x=1772275310;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=oyWGs3qdIjKemTgJYOyzcBuANNWxuDbuvjzL4A5HLsk=;
-  b=klou0WD4fOEtApcwHAKkHuk3pQvSmhwIyjZYAPvhRE49DETmlwZNX3lI
-   gh2DoQG7ay/9t2D2pmQQZTBp0bK3oB5epIGvRkJgRwb3F+k0SblF9WTPE
-   DNFC7/zhLYn95gw6bXRBWSNmD40kdAmPC+tJy1I739o2cWQIufDkQxdl0
-   8s02RYOniqRgjD9KYjISMpfA7RigLxwABtkMuaeShAcUjMmoudzsJ2fAn
-   vcXynlIFxn5IUg840hnrp/hNUpevFRZgBR/0PyiiZ7zlEy+CPAAG01E94
-   kmZoXCc951V0UQKQYqn+Yta7Gty4TL9a/UnU+Qp1nqSWBtCelayZdAfXc
-   g==;
-X-CSE-ConnectionGUID: E8rrR1Z8SO6mi1hkH3fwiA==
-X-CSE-MsgGUID: xirA560ITpC9CKT9kPRfEg==
-X-IronPort-AV: E=Sophos;i="6.13,322,1732575600"; 
-   d="scan'208";a="42172048"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 28 Feb 2025 11:41:48 +0100
-X-CheckPoint: {67C192EC-17-A2FC2151-C3FA4B33}
-X-MAIL-CPID: 6C8E73D9657E1DAE5A775A85D6256D44_0
-X-Control-Analysis: str=0001.0A002109.67C192E8.0140,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 35F0B1664F6;
-	Fri, 28 Feb 2025 11:41:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1740739303;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oyWGs3qdIjKemTgJYOyzcBuANNWxuDbuvjzL4A5HLsk=;
-	b=AHJ7iCOL6F8ce2zMFGVVT00KHMIRTO/G8+r9q9UrdKkN1elJR/xIjMkwGNi65HPKKv27Mg
-	dnjdF33ZqsnBWRJ0AFUDKY361AHIzs60Ytd1GNbLjxfSnf7iASG0kUCakoh+dIW9ZaS4As
-	UQbmAN9qcbCihBFaBuKGZz/F/HcUt8iTSPHv26T/g3/fc3r+DICGOjnm+NHzcaeWBVz07R
-	+yiTGxuTZHHFmGj3qJePtBcRJRcU/9RHzbKWAbiMNTrQxMGiIaKchjkF6/kCg3SWoJxv06
-	sz047n2s1800Qyhz6Byvmdjnr31tVst5fMuhja/s7i5VTvx1BgOC/QaUXpom2w==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, peter.chen@kernel.org,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
- jun.li@nxp.com
-Subject:
- Re: [PATCH v3 4/6] usb: chipidea: imx: add HSIO Block Control wakeup setting
-Date: Fri, 28 Feb 2025 11:41:42 +0100
-Message-ID: <6777549.4vTCxPXJkl@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250228091649.prmpcyro27fekgzm@hippo>
-References:
- <20250227095348.837223-1-xu.yang_2@nxp.com> <4411149.ejJDZkT8p0@steina-w>
- <20250228091649.prmpcyro27fekgzm@hippo>
+	s=arc-20240116; t=1740739614; c=relaxed/simple;
+	bh=U4f39K22AT2uLhlBihafrDKiaAl4zq7R+BWNHeeQvIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=poEKBh4xK/gzQe1dqKUEN6aFvq//d7U7G1T9Zj8D5u7YCw8N+PT8HEJ5UZUMu6ymiF3PSG2SY6L0J9IWFyENF1KGfjWfAK2C18YfB9K1ZRzFLePKGbctj6z6Zh661wySVfFmYk6mojaP7Fh5BFr6C2tMomClmO/86/V2QMDOAEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=cmspyZjB; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 1F27725B10;
+	Fri, 28 Feb 2025 11:46:49 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id bzMnRzDWYUA6; Fri, 28 Feb 2025 11:46:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1740739608; bh=U4f39K22AT2uLhlBihafrDKiaAl4zq7R+BWNHeeQvIE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=cmspyZjBlr/nK/v9Lg8q2qjjEHQAXily7IiaveTLICIjaKnmm1F4qjVgw2KggkmKz
+	 WYEB/5j4AoNEtMr3KPKadNm9ZCjGIywSv5Tc+xDUJDMq3wkYB6qJjjApAZXuuLxqCz
+	 z3r79UNmdr3r9rsKt27LgDD5EqS5PB9TIbuUcW3Jr8xe4JvCOBks9Ll3BhpO4D4C22
+	 rhvCzjCOnX7eGbPgKsz0nJszJtkVXjJHqK2TvxbA4vZhXARy7W+Bz/oRz/KBu6jkY0
+	 qEkhOh9AlSpdIGCmqrQr3yTdfFd7TxpqpP9Z9vhGT7K5LbH/jbmkxVcykZxTvKpwV7
+	 sGAzXFRt5Mj5w==
+Date: Fri, 28 Feb 2025 10:46:29 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/7] arm64: dts: rockchip: Add pinctrl and gpio nodes for
+ RK3528
+Message-ID: <Z8GT3rUEyXrTUgtJ@pie.lan>
+References: <20250228064024.3200000-1-jonas@kwiboo.se>
+ <20250228064024.3200000-5-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250228064024.3200000-5-jonas@kwiboo.se>
 
-Am Freitag, 28. Februar 2025, 10:16:49 CET schrieb Xu Yang:
-> On Fri, Feb 28, 2025 at 08:22:19AM +0100, Alexander Stein wrote:
-> > Hi,
-> >=20
-> > Am Freitag, 28. Februar 2025, 03:33:29 CET schrieb Xu Yang:
-> > > On Thu, Feb 27, 2025 at 04:12:54PM +0100, Alexander Stein wrote:
-> > > > Hi,
-> > > >=20
-> > > > Am Donnerstag, 27. Februar 2025, 10:53:46 CET schrieb Xu Yang:
-> > > > > On i.MX95 platform, USB wakeup setting is controlled by HSIO Block
-> > > > > Control:
-> > > > >=20
-> > > > > HSIO Block Control Overview:
-> > > > > - The HSIO block control include configuration and status registe=
-rs that
-> > > > >   provide miscellaneous top-level controls for clocking, beat lim=
-iter
-> > > > >   enables, wakeup signal enables and interrupt status for the PCI=
-e and USB
-> > > > >   interfaces.
-> > > > >=20
-> > > > > The wakeup function of HSIO blkctl is basically same as non-core,=
- except
-> > > > > improvements about power lost cases. This will add the wakeup set=
-ting for
-> > > > > HSIO blkctl on i.MX95. It will firstly ioremap hsio blkctl memory=
-, then do
-> > > > > wakeup setting as needs.
-> > > > >=20
-> > > > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > > > Reviewed-by: Jun Li <jun.li@nxp.com>
-> > > > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > > > >=20
-> > > > > ---
-> > > > > Changes in v3:
-> > > > >  - remove usbmisc_imx95_init(), use usbmisc_imx7d_init()
-> > > > > Changes in v2:
-> > > > >  - add Rb tag
-> > > > > ---
-> > > > >  drivers/usb/chipidea/usbmisc_imx.c | 72 ++++++++++++++++++++++++=
-++++++
-> > > > >  1 file changed, 72 insertions(+)
-> > > > >=20
-> > > > > diff --git a/drivers/usb/chipidea/usbmisc_imx.c b/drivers/usb/chi=
-pidea/usbmisc_imx.c
-> > > > > index 1394881fde5f..8c30908c11ed 100644
-> > > > > --- a/drivers/usb/chipidea/usbmisc_imx.c
-> > > > > +++ b/drivers/usb/chipidea/usbmisc_imx.c
-> > > > > @@ -139,6 +139,22 @@
-> > > > >  #define MX6_USB_OTG_WAKEUP_BITS (MX6_BM_WAKEUP_ENABLE | MX6_BM_V=
-BUS_WAKEUP | \
-> > > > >  				 MX6_BM_ID_WAKEUP | MX6SX_BM_DPDM_WAKEUP_EN)
-> > > > > =20
-> > > > > +/*
-> > > > > + * HSIO Block Control Register
-> > > > > + */
-> > > > > +
-> > > > > +#define BLKCTL_USB_WAKEUP_CTRL		0x0
-> > > > > +#define BLKCTL_OTG_WAKE_ENABLE		BIT(31)
-> > > > > +#define BLKCTL_OTG_VBUS_SESSVALID	BIT(4)
-> > > > > +#define BLKCTL_OTG_ID_WAKEUP_EN		BIT(2)
-> > > > > +#define BLKCTL_OTG_VBUS_WAKEUP_EN	BIT(1)
-> > > > > +#define BLKCTL_OTG_DPDM_WAKEUP_EN	BIT(0)
-> > > > > +
-> > > > > +#define BLKCTL_WAKEUP_SOURCE		(BLKCTL_OTG_WAKE_ENABLE	   | \
-> > > > > +					 BLKCTL_OTG_ID_WAKEUP_EN   | \
-> > > > > +					 BLKCTL_OTG_VBUS_WAKEUP_EN | \
-> > > > > +					 BLKCTL_OTG_DPDM_WAKEUP_EN)
-> > > > > +
-> > > > >  struct usbmisc_ops {
-> > > > >  	/* It's called once when probe a usb device */
-> > > > >  	int (*init)(struct imx_usbmisc_data *data);
-> > > > > @@ -159,6 +175,7 @@ struct usbmisc_ops {
-> > > > > =20
-> > > > >  struct imx_usbmisc {
-> > > > >  	void __iomem *base;
-> > > > > +	void __iomem *blkctl;
-> > > > >  	spinlock_t lock;
-> > > > >  	const struct usbmisc_ops *ops;
-> > > > >  };
-> > > > > @@ -1016,6 +1033,41 @@ static int usbmisc_imx6sx_power_lost_check=
-(struct imx_usbmisc_data *data)
-> > > > >  		return 0;
-> > > > >  }
-> > > > > =20
-> > > > > +static u32 usbmisc_blkctl_wakeup_setting(struct imx_usbmisc_data=
- *data)
-> > > > > +{
-> > > > > +	u32 wakeup_setting =3D BLKCTL_WAKEUP_SOURCE;
-> > > > > +
-> > > > > +	if (data->ext_id || data->available_role !=3D USB_DR_MODE_OTG)
-> > > > > +		wakeup_setting &=3D ~BLKCTL_OTG_ID_WAKEUP_EN;
-> > > > > +
-> > > > > +	if (data->ext_vbus || data->available_role =3D=3D USB_DR_MODE_H=
-OST)
-> > > > > +		wakeup_setting &=3D ~BLKCTL_OTG_VBUS_WAKEUP_EN;
-> > > > > +
-> > > > > +	/* Select session valid as VBUS wakeup source */
-> > > > > +	wakeup_setting |=3D BLKCTL_OTG_VBUS_SESSVALID;
-> > > > > +
-> > > > > +	return wakeup_setting;
-> > > > > +}
-> > > > > +
-> > > > > +static int usbmisc_imx95_set_wakeup(struct imx_usbmisc_data *dat=
-a, bool enabled)
-> > > > > +{
-> > > > > +	struct imx_usbmisc *usbmisc =3D dev_get_drvdata(data->dev);
-> > > > > +	unsigned long flags;
-> > > > > +	u32 val;
-> > > > > +
-> > > > > +	spin_lock_irqsave(&usbmisc->lock, flags);
-> > > > > +	val =3D readl(usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
-> > > > > +	val &=3D ~BLKCTL_WAKEUP_SOURCE;
-> > > > > +
-> > > > > +	if (enabled)
-> > > > > +		val |=3D usbmisc_blkctl_wakeup_setting(data);
-> > > > > +
-> > > > > +	writel(val, usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
-> > > > > +	spin_unlock_irqrestore(&usbmisc->lock, flags);
-> > > >=20
-> > > > usbmisc->blkctl is NULL if DT does not provide a 2nd IORESOURCE_MEM.
-> > >=20
-> > > Good catch. Thanks!
-> > >=20
-> > > It may return an errno if usbmisc->blkctl is NULL.
-> > >=20
-> > > >=20
-> > > > > +
-> > > > > +	return 0;
-> > > > > +}
-> > > > > +
-> > > > >  static const struct usbmisc_ops imx25_usbmisc_ops =3D {
-> > > > >  	.init =3D usbmisc_imx25_init,
-> > > > >  	.post =3D usbmisc_imx25_post,
-> > > > > @@ -1068,6 +1120,14 @@ static const struct usbmisc_ops imx7ulp_us=
-bmisc_ops =3D {
-> > > > >  	.power_lost_check =3D usbmisc_imx7d_power_lost_check,
-> > > > >  };
-> > > > > =20
-> > > > > +static const struct usbmisc_ops imx95_usbmisc_ops =3D {
-> > > > > +	.init =3D usbmisc_imx7d_init,
-> > > > > +	.set_wakeup =3D usbmisc_imx95_set_wakeup,
-> > > > > +	.charger_detection =3D imx7d_charger_detection,
-> > > > > +	.power_lost_check =3D usbmisc_imx7d_power_lost_check,
-> > > > > +	.vbus_comparator_on =3D usbmisc_imx7d_vbus_comparator_on,
-> > > > > +};
-> > > > > +
-> > > > >  static inline bool is_imx53_usbmisc(struct imx_usbmisc_data *dat=
-a)
-> > > > >  {
-> > > > >  	struct imx_usbmisc *usbmisc =3D dev_get_drvdata(data->dev);
-> > > > > @@ -1289,6 +1349,10 @@ static const struct of_device_id usbmisc_i=
-mx_dt_ids[] =3D {
-> > > > >  		.compatible =3D "fsl,imx8ulp-usbmisc",
-> > > > >  		.data =3D &imx7ulp_usbmisc_ops,
-> > > > >  	},
-> > > > > +	{
-> > > > > +		.compatible =3D "fsl,imx95-usbmisc",
-> > > > > +		.data =3D &imx95_usbmisc_ops,
-> > > > > +	},
-> > > > >  	{ /* sentinel */ }
-> > > > >  };
-> > > > >  MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
-> > > > > @@ -1296,6 +1360,7 @@ MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
-> > > > >  static int usbmisc_imx_probe(struct platform_device *pdev)
-> > > > >  {
-> > > > >  	struct imx_usbmisc *data;
-> > > > > +	struct resource *res;
-> > > > > =20
-> > > > >  	data =3D devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> > > > >  	if (!data)
-> > > > > @@ -1307,6 +1372,13 @@ static int usbmisc_imx_probe(struct platfo=
-rm_device *pdev)
-> > > > >  	if (IS_ERR(data->base))
-> > > > >  		return PTR_ERR(data->base);
-> > > > > =20
-> > > > > +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> > > > > +	if (res) {
-> > > > > +		data->blkctl =3D devm_ioremap_resource(&pdev->dev, res);
-> > > > > +		if (IS_ERR(data->blkctl))
-> > > > > +			return PTR_ERR(data->blkctl);
-> > > > > +	}
-> > > > > +
-> > > >=20
-> > > > Any chance to ensure imx95 has actually data->blkctl?
-> > >=20
-> > > I think let usbmisc_imx95_set_wakeup() return an error should be enou=
-gh.
-> >=20
-> > Better fail early rather than later.
-> >=20
-> > > Some errors will be printed for user. Also dt-bindings has restrictio=
-n for
-> > > imx95.
-> >=20
-> > That's true, but don't assume the DT is always setup correctly.
->=20
-> Sure, I thought about this question again.
->=20
-> If 2nd IORESOURCE_MEM is not provided, the USB controller could still fun=
-ction
-> normally in most scenarios except when USB wakeup is required. So if the =
-probe()
-> return a failure just caused by improper wakeup configurations seems not =
-that
-> necessary. In this case, ensuring the kernel does not panic should suffic=
-e.
->=20
-> Therfore, I prefer to skip wakeup setting if blkctl is NULL now.
-> Do you have any ideas?
+On Fri, Feb 28, 2025 at 06:40:10AM +0000, Jonas Karlman wrote:
+> Add pinctrl and gpio nodes for RK3528 and import rk3528-pinctrl.dtsi
+> from vendor linux-6.1-stan-rkr5 kernel with the hdmi-pins-idle node
+> removed due to missing label reference to pcfg_output_low_pull_down.
+> 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> ---
+> This was mostly imported from vendor kernel, however the main commit [1]
+> list 28 signed-off-by tags, unclear who I should use as author and what
+> signed-off-by tags to include.
+> 
+> [1] https://github.com/rockchip-linux/kernel/commit/c17d6325959f0ec1af901e8a17919163454190a2
+> ---
+>  .../boot/dts/rockchip/rk3528-pinctrl.dtsi     | 1397 +++++++++++++++++
+>  arch/arm64/boot/dts/rockchip/rk3528.dtsi      |   82 +
+>  2 files changed, 1479 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi
+> 
 
-That also seems reasonable. So in case 2nd IORESOURCE_MEM is missing (only)
-for imx95 there should be a warning that wakeup is not possible/supported.
-But the driver itself should work without issue.
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> index 0fb90f5c291c..d3e2a64ff2d5 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> @@ -4,8 +4,10 @@
+>   * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
+>   */
+>  
+> +#include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+>  #include <dt-bindings/clock/rockchip,rk3528-cru.h>
+>  #include <dt-bindings/reset/rockchip,rk3528-cru.h>
+>  
+> @@ -17,6 +19,11 @@ / {
+>  	#size-cells = <2>;
+>  
+>  	aliases {
+> +		gpio0 = &gpio0;
+> +		gpio1 = &gpio1;
+> +		gpio2 = &gpio2;
+> +		gpio3 = &gpio3;
+> +		gpio4 = &gpio4;
+>  		serial0 = &uart0;
+>  		serial1 = &uart1;
+>  		serial2 = &uart2;
+> @@ -166,6 +173,11 @@ cru: clock-controller@ff4a0000 {
+>  			#reset-cells = <1>;
+>  		};
+>  
+> +		ioc_grf: syscon@ff540000 {
+> +			compatible = "rockchip,rk3528-ioc-grf", "syscon";
+> +			reg = <0x0 0xff540000 0x0 0x40000>;
+> +		};
+> +
+>  		uart0: serial@ff9f0000 {
+>  			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+>  			reg = <0x0 0xff9f0000 0x0 0x100>;
+> @@ -264,5 +276,75 @@ saradc: adc@ffae0000 {
+>  			#io-channel-cells = <1>;
+>  			status = "disabled";
+>  		};
+> +
+> +		pinctrl: pinctrl {
+> +			compatible = "rockchip,rk3528-pinctrl";
+> +			rockchip,grf = <&ioc_grf>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
 
-Best regards
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+I doubt whether the pincontroller should be placed under simple-bus:
+without a reg property, it doesn't look like a MMIO device.
 
+Actually it is, although all the registers stay in the ioc grf. Maybe
+it should be considered as child of the grf.
 
+Best regards,
+Yao Zi
 
