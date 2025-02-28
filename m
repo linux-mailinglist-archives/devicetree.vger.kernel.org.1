@@ -1,99 +1,152 @@
-Return-Path: <devicetree+bounces-152450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5705A491DE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:06:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA2A5A491EE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:11:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 929A73AF7F9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 07:06:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F260616FDB4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 07:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34FBF1BD9DE;
-	Fri, 28 Feb 2025 07:06:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAB001C5F29;
+	Fri, 28 Feb 2025 07:10:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ppqQfBTR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FgLa4Ayp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 012C1748F;
-	Fri, 28 Feb 2025 07:06:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B851D748F
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 07:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740726372; cv=none; b=uC5zNisSpLroWCJIUv+CftslHX3ux+ajZCLqe4rnZvKilazdrGub9ndibHYnXHfgPjBBAVvJ7UM8kxbSoiB+tEGRNS1rGxWphj3+WGOYAjhwv+DVefOBBEvw1IOoQVeZqr1WHAdidL6aEbqEvirGsm3vSXBu+qTlDHuxcTrV5Ro=
+	t=1740726655; cv=none; b=MdSRAm5Ai6Uf0QXzi+1yyPszB0ZV6Ys6QCSRwVLWJo/poz0lxqplYr64bZcavziBUjLtzW+fSMFNyCrRA5lc56B7ruA45tc9tt0p9rMaIEFw5kwb1G3s4WHuwu6ysWd6hbWgZOZmAhPgQI1/DlP6yqI+HAahyFu0sZ1zI3M0Xe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740726372; c=relaxed/simple;
-	bh=D9wj05ja4SlATslubM34glg0Z06kvmqZGlHnEMns0u4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EKMB7Tuz3bDK96M09uAXt8aHA79aIXs/uwLarOwJCGMh3016y4viq3P+wpkADppc8Tj+TNwrPuPn/m5FvfK+pxfpM0Z/r1ojfu16KMbGeQHSoTPdKYiAJjzK5dj2l/Sj4UzOMbS5UgZfMzdNjtKOCWlfkATu/clLBrvm/P94t40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ppqQfBTR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24C9AC4CED6;
-	Fri, 28 Feb 2025 07:06:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740726371;
-	bh=D9wj05ja4SlATslubM34glg0Z06kvmqZGlHnEMns0u4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ppqQfBTRPAea3NVDBmPmOAkx1JQxV9d9ZBddDcQrwpIZip1BQIDe91vU2/O5AuEGH
-	 TlcrcZ0efaCM1UgefqjzD5UmDmN/EuoTTtlch10mxn9/z8z/jELYt4n4F0CYkQRnXx
-	 Z3ORfrC8vCsvDONwA2bskfoEGhpn1Q7uUGtxt4JebthTAVLLevZXSf7rEvL85G4EEP
-	 ieVAnaw/h5N3AfHLbMCyL9GV6BDLkxjWBexr9PskvHVt4R7ZFVjzqkwyLdhma81HZH
-	 2HhNuI15dqJJcnoV0VhmnRyoGAvd+LjUL5zj/mYe1M1j8Q00YvukuMY0oDWGWT9UZ0
-	 npI/JsFelXg4w==
-Date: Fri, 28 Feb 2025 08:06:07 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: David Jander <david@protonic.nl>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [RFC PATCH 5/7] dt-bindings: motion: Add common motion device
- properties
-Message-ID: <20250228-statuesque-meerkat-of-novelty-b918f3@krzk-bin>
-References: <20250227162823.3585810-1-david@protonic.nl>
- <20250227162823.3585810-6-david@protonic.nl>
+	s=arc-20240116; t=1740726655; c=relaxed/simple;
+	bh=e5rDJP51pJSQA9OjMXcqMI2dne8pHRlzXVWljVTaMqU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FRGaRkMoyF8rb1ov0Zw/ndZobvgMxyKJS1TsoMR8Fvmrf+eff1MR+yOqc7L4MYrsKb9vWf10h58Izh5LzmtJMSrsf6a/etiokxd617QSDM1WcZPoMq3/P7HbvbxieZn3saNNJmR/GuuV0eBJBj+0F4/TOIilHalD/4uH3lRYe8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FgLa4Ayp; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-548878c6a5aso1859937e87.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2025 23:10:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740726652; x=1741331452; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6t8UyiXR6dJzEwnQ10IpflUTVUpmG0RA8RwVK5o31Pc=;
+        b=FgLa4AypjRg2k4PGgpJh47iyy/rk+LZMqTTQOFizacfm7rUpLBqAavE78clgPuhZGU
+         xu10q/QSArFRNXK5qcHKZYQk+UV3i9jg5T8Lmc+g3g57vo/WN55uttJhSqdWwRlrY69C
+         3XbN4252ku/368UI3CHlsLueGumYrC1MGc+ENg352GgepcSHiCi5qI3isbAovPgnd0hV
+         JxAGRfmkAUKNzyWRMSgL0iby5h7qXOKvFYRczufhVMAh2H3EusjULuQk+aZIGd+I9R1y
+         AkRPgHy4Qyqq+8KeCSWecbreycIwznp+m1ABeJI5DhLZ+H9Zxm1rJ8MCrYRkaSROpuyJ
+         NxEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740726652; x=1741331452;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6t8UyiXR6dJzEwnQ10IpflUTVUpmG0RA8RwVK5o31Pc=;
+        b=iGNi9VpBwEgV6qBRLIjfWWYuutqGncYtymY+E774Lv77LEr0B6+6N9X6VPzVcAmCpH
+         6Sm4ogN6oxk/Rwry10AyZ2xgSGaGp1uCjSEIR+c5Mpu7LO6DTQd2SeYfIjgsIzyq9ZyG
+         MVVAjd3S2Kz8MyVsRiu4NcgKcqvXshMxrPq6q3Ya/aUDLh/VnkHdyp/BqCRTm1xa+C1t
+         3pyppnn0prZuXFC6qVCHIBfaMpwzPnpnp7Z6wIb+Xesi1519g3JHsENlh9yvpg4AtsPX
+         vnw+4OakkGPc9VDnS96aHhGYRhYkeTxOG16j8TBMJrFeMD3qsL97LduLuMYM5Hy6uz4t
+         BQPg==
+X-Forwarded-Encrypted: i=1; AJvYcCUfJXnoL0qx4KpTQ8hp5pv3WnYg/BZxVTiegTAnlSOkIK7zUxd/aCyC7hDGRzMvk/4u32ZVRP38U17+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKBxfpO1bU99qACBBSf4MDAyO4wwgiTJjl3YL81Np7tvvdcG1X
+	R6OD96fNvOfE+FjslM0zf3IQO1UF/8eDJ2+6F1neiPH3FDMF2jqvMgfjMaSPb5GIrd6mPMEmLFz
+	+3wAe0opolY1gcZ3RYPIt2jEAxhKDL9wFGiJ3eg==
+X-Gm-Gg: ASbGncsU+Y46go4xXogdrjbtdyCMPqt48nN6nR76lYCT182Lx37RfC3b3b2WoElgcBP
+	9QLHeY8iz4GFgu2LOOE94Ybo25TN2Xm6Df2d1vQpWtWw8qML7p0BCtLF/ts1iVID62St0AJMvWZ
+	KnMpAlZP4=
+X-Google-Smtp-Source: AGHT+IEC8EFfAnGhrHuegVK0MjbEHUyO9MnPQrdToy4hgdsyyArn7uO/+zOsNOpafVCwixOTgScGZBK94+hpQYf/RDo=
+X-Received: by 2002:ac2:4e14:0:b0:545:93b:30bf with SMTP id
+ 2adb3069b0e04-5494c37d894mr945955e87.41.1740726651750; Thu, 27 Feb 2025
+ 23:10:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250227162823.3585810-6-david@protonic.nl>
+References: <20250226-max77759-mfd-v2-0-a65ebe2bc0a9@linaro.org> <20250226-max77759-mfd-v2-5-a65ebe2bc0a9@linaro.org>
+In-Reply-To: <20250226-max77759-mfd-v2-5-a65ebe2bc0a9@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 28 Feb 2025 08:10:39 +0100
+X-Gm-Features: AQ5f1JoHHtaG81ilR6V1iA1OlWE3XjM-gnPRidsiCBk8KODwITMM0tJzyfBKqBU
+Message-ID: <CACRpkdYoWuJzjqiKrSNzdXV+5N9Gp0n+pdCwSZgocwy0JHo7Vw@mail.gmail.com>
+Subject: Re: [PATCH v2 5/6] gpio: max77759: add Maxim MAX77759 gpio driver
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 27, 2025 at 05:28:21PM +0100, David Jander wrote:
-> +title: Common properties for motion control devices
+Hi Andr=C3=A9,
+
+thanks for your patch!
+
+mostly looks fine, given the MFD design is accepted.
+Nitpicks below:
+
+On Wed, Feb 26, 2025 at 6:51=E2=80=AFPM Andr=C3=A9 Draszik <andre.draszik@l=
+inaro.org> wrote:
+
+> +static irqreturn_t max77759_gpio_irqhandler(int irq, void *data)
+> +{
+> +       int handled =3D 0;
+
+bool handled =3D false;
+
+(...)
+> +               for_each_set_bit(offset, &pending, MAX77759_N_GPIOS) {
+> +                       unsigned int virq;
+
+I usually just call this "irq", as it's not any more virtual than any other
+Linux magic number, and it can confuse people working with
+actual virtualization when we call things virtual like this.
+
 > +
-> +maintainers:
-> +  - David Jander <david@protonic.nl>
+> +                       /*
+> +                        * ACK interrupt by writing 1 to bit 'offset', al=
+l
+> +                        * others need to be written as 0. This needs to =
+be
+> +                        * done unconditionally hence regmap_set_bits() i=
+s
+> +                        * inappropriate here.
+> +                        */
+> +                       regmap_write(chip->map, MAX77759_MAXQ_REG_UIC_INT=
+1,
+> +                                    BIT(offset));
 > +
-> +description: |
-> +  This document defines device tree properties common to several motion control
-> +  devices. It doesn't constitute a device tree binding specification by itself but
-
-Wrap at coding style, so at 80.
-
-> +  is meant to be referenced by device tree bindings.
+> +                       virq =3D irq_find_mapping(gc->irq.domain, offset)=
+;
+> +                       handle_nested_irq(virq);
 > +
-> +  When referenced from motion device tree bindings the properties defined in this
-> +  document are defined as follows. The motion device tree bindings are responsible
-> +  for defining whether each property is required or optional.
-> +
-> +properties:
-> +  motion,speed-conv-mul:
+> +                       handled =3D 1;
 
-Drop incorrect motion prefix.
+handled =3D true;
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 1
-> +    description: |
+> +       chip->gc.base =3D -1;
+> +       chip->gc.label =3D dev_name(&pdev->dev);
+> +       chip->gc.parent =3D &pdev->dev;
+> +       chip->gc.owner =3D THIS_MODULE;
 
-Do not need '|' unless you need to preserve formatting.
+The core already assigns THIS_MODULE so you can leave it
+unassigned.
 
-Best regards,
-Krzysztof
-
+Yours,
+Linus Walleij
 
