@@ -1,291 +1,140 @@
-Return-Path: <devicetree+bounces-152618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A921A49A84
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:29:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E44EEA49A92
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:34:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E6EF3B4A16
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:29:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BAA47A89ED
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:33:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7721C26D5A2;
-	Fri, 28 Feb 2025 13:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B955826D5D2;
+	Fri, 28 Feb 2025 13:34:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="QJkOEMCn";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="QtpN3u/x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA691D555;
-	Fri, 28 Feb 2025 13:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740749368; cv=none; b=EPDwY2wBuD1NmiNhvwQjo1QMzskC3Yp774ZwsPNZJBZZKGKYMY3Yj+Ay6PS9fhZv9rQwIcWADfnpGWzR2vldEByDlXECjAmGUThKeQqcec5C5KnYrujGok9UQSmatS3rw6CkP2IEqzrVFYBshGXJRYP/V+PPxjqBW5+F6HNzB+I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740749368; c=relaxed/simple;
-	bh=9nEznCs8TmXppNEP6Ri/KXbhxb9P855Eu4NIWIxpH2E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bzhO+EoBU6UcOimA7met6ipEe0e85jjew7EaWDN+dmrkh3sQFUEXmePOyalkcyxh0oiUQJW3Fef8LY9kTvWf76Jove7yCRr8haeXS6jmLFHNjrg6HnPt2CFsrhaNFKM1sNJshzE/BJ5+2Cs+PjawMMeEEBMV7ajunAN+8sSWlEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8C7541688;
-	Fri, 28 Feb 2025 05:29:39 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 679E23F673;
-	Fri, 28 Feb 2025 05:29:22 -0800 (PST)
-Date: Fri, 28 Feb 2025 13:29:08 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
- <wens@csie.org>, Samuel Holland <samuel@sholland.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 05/15] clk: sunxi-ng: Add support for the A523/T527
- CCU PLLs
-Message-ID: <20250228132908.632b82dd@donnerap.manchester.arm.com>
-In-Reply-To: <3341127.44csPzL39Z@jernej-laptop>
-References: <20250214125359.5204-1-andre.przywara@arm.com>
-	<20250214125359.5204-6-andre.przywara@arm.com>
-	<3341127.44csPzL39Z@jernej-laptop>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638071DFFD;
+	Fri, 28 Feb 2025 13:34:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.165
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740749669; cv=pass; b=trm8YbbVFkwX/e/QJy9jy/ex3x3AZWv2ESDyJQKckwAg7lv+rVer0jriLxs1MjYVhEgWnRMay8t/yIhWnaP2m3PDj+3bUsIlcUI87JwIBTpb2ZsytfcrihNelsiOgMhzf0Tg1FnEPDvIEilT3cmvWgwx6ESUhkwPD/mXkR8FJkk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740749669; c=relaxed/simple;
+	bh=+QXAJ6Due7ag8DHLEXxVo8vqZ5mIDBhxyds7hwve2Q0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jYFXHhZPpAMiBXKEjMDgSbL0/uB9mQPzkZxDro+HeViREU9XjHBu23FHpL/ZboxHC9kKvNUfIuPOfuuLXuir7YmXobKluTXLGZmn41FKZlQ/gUau5qo58oL3wFHIKiRzUbgBeetJ9VZxhPcYxA3ry7hDGEP2PRxu0vDhmZ+Rv28=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=QJkOEMCn; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=QtpN3u/x; arc=pass smtp.client-ip=81.169.146.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740749646; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=gu0k9z8hn8hUecmD9At9LzEpjLxSCS7r+xLTpNibxLisE7z9YmeJ34c3IfjZWZ2Bon
+    HUWfzMSUl1uebiAd/mLyiCIWQI71iu+lydHQO+gwWfJVuEPGDCNAWJTKlbDbQSRxxisI
+    fhwbcwZ1ZAvbyO+9v2p5v3mnupHzLk4V85avsxWl2TaLgvNjvQxxg7EWAsLJXgCoVHUA
+    MYrwun7LAM8MlVcljIAHm14cNSvlahuX71jcpagppgNUEOBgpPfEukI07rQmlYZqq73C
+    bM/h6N6GG61HOd04pf3/KMPEdVWdOrk4Pi/GyVsavnY7/r5H9YQd93P14NU8P0jVF5i1
+    s9eA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1740749646;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=v7NCNzZEF8ezbYStZO8Aa+bw52ePCswc3Dd8SuRG7mc=;
+    b=ApwrsgJ30AKDqNsI7AJJrA0zzavnKv6nFpoQpvgotz8CI60x/hXhQ/V+8rhluyV1DL
+    3b95GrPp9tlC6mteAjqVP1O1uz5hhrTz3s/iPGLIC9s4XYFd1HAQKl3E9zF9HY2zTcxd
+    ivt1e3ZMgTl1PVi4fwxpeGwfX9w/Wt0bYn/lYkq90viG8z03546imJDJNPCat57qmK9t
+    XOMHyY4odj00lpu2WI20n+oA1LMHQ+ajXfMmV4N2WSlTNW9WqyS3a1KzVIdTxPEaaPqM
+    L7qnhzR78fnGG4uEDvZnt7YWI+WCFyEQd1oJf69JKg49xtNsSSfrpdpkhIUE+iTxWL9y
+    s54w==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1740749646;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=v7NCNzZEF8ezbYStZO8Aa+bw52ePCswc3Dd8SuRG7mc=;
+    b=QJkOEMCnMV1B2t8jyB97UK7yArDMgQm872W/Mttm4HPhmU6A1VnuPkChCV5rbRbdWc
+    b1lJIMNZ/bAqvMJsaU+3JQsIGfQGTh+Mp+ocf1SBpMb6TEUpyKkhv5VPTsoYjkNfIDiT
+    gLl/oX93MK9z/yDUBhJd2idqGF1AyuJF3X/R9vEWSF3iD55a2TT+kKZxQW48suKMmh1J
+    5c+g2WG3RUSlBtaM1+OTVWSi3xCYjWzIhMn2ea72kf7Y1x0Olv/fmtuAansW1preSUG1
+    uDO8fbKSSRU1Ttc9BeHnfUE4AaipYY+kCDGaR0pltNabeCZ4kqnAU/rGT4Jj/QX9+4x4
+    hydg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1740749646;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=v7NCNzZEF8ezbYStZO8Aa+bw52ePCswc3Dd8SuRG7mc=;
+    b=QtpN3u/xY0+eUOx6/YOgUWfP7vPwXZHTz5d+H28Iqirj0c5UTKF3KbBYY+CcM1rWf0
+    o0V3/zh+Fc+sBEHV25Cw==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeTkZ"
+Received: from localhost.localdomain
+    by smtp.strato.de (RZmta 51.3.0 DYNA|AUTH)
+    with ESMTPSA id Q56adc11SDY5L5U
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Fri, 28 Feb 2025 14:34:05 +0100 (CET)
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Cercueil <paul@crapouillou.net>
+Cc: Andreas Kemnade <andreas@kemnade.info>,
+	Paul Boddie <paul@boddie.org.uk>,
+	Tim Bysun <tim.bysun@ingenic.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	letux-kernel@openphoenux.org,
+	kernel@pyra-handheld.com,
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH v2 0/4] pinctrl: ingenic: add support for x1600 SoC and MII and I2S for jz4730
+Date: Fri, 28 Feb 2025 14:33:54 +0100
+Message-ID: <cover.1740749637.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 18 Feb 2025 20:03:38 +0100
-Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
+PATCH V2 2025-02-28 14:33:57:
+Fix pwm5/pwm6/pwm7 pin groups (each one can be muxed to one of two
+pads while pwm0-4 have only one pad) for X1600.
 
-Hi Jernej,
+PATCH V1 2025-02-26 18:14:53:
+This series expands pinctrl support for some Ingenic/Lumissil SoC.
+For the jz4730 we add MII and I2S pinctrl and general x1600 support.
 
-many thanks for having a look!
+The x1600 parts were jointly developed.
 
-> Dne petek, 14. februar 2025 ob 13:53:49 Srednjeevropski standardni =C4=8D=
-as je Andre Przywara napisal(a):
-> > Add the PLL clocks of the main CCU of the Allwinner A523 and T527 SoCs.
-> > The clocks were modelled after the A523 and T527 manual, and double
-> > checked by writing all 1's into the respective register, to spot all
-> > implemented bits.
-> >=20
-> > The PLL and mod clocks for the two CPU clusters and the DSU are part of
-> > a separate CCU, also most audio clocks are collected in a DSP CCU, so
-> > both of these clock groups are missing from this driver.
-> >=20
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  drivers/clk/sunxi-ng/Kconfig           |   5 +
-> >  drivers/clk/sunxi-ng/Makefile          |   2 +
-> >  drivers/clk/sunxi-ng/ccu-sun55i-a523.c | 481 +++++++++++++++++++++++++
-> >  drivers/clk/sunxi-ng/ccu-sun55i-a523.h |  14 +
-> >  drivers/clk/sunxi-ng/ccu_mp.h          |  14 +-
-> >  5 files changed, 510 insertions(+), 6 deletions(-)
-> >  create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.c
-> >  create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.h
-> >=20
-> > diff --git a/drivers/clk/sunxi-ng/Kconfig b/drivers/clk/sunxi-ng/Kconfig
-> > index b547198a2c654..04efbda847cf9 100644
-> > --- a/drivers/clk/sunxi-ng/Kconfig
-> > +++ b/drivers/clk/sunxi-ng/Kconfig
-> > @@ -52,6 +52,11 @@ config SUN50I_H6_R_CCU
-> >  	default y
-> >  	depends on ARM64 || COMPILE_TEST
-> > =20
-> > +config SUN55I_A523_CCU
-> > +	tristate "Support for the Allwinner A523/T527 CCU"
-> > +	default y
-> > +	depends on ARM64 || COMPILE_TEST
-> > +
-> >  config SUN4I_A10_CCU
-> >  	tristate "Support for the Allwinner A10/A20 CCU"
-> >  	default y
-> > diff --git a/drivers/clk/sunxi-ng/Makefile b/drivers/clk/sunxi-ng/Makef=
-ile
-> > index 6b3ae2b620db6..01a887f7824bb 100644
-> > --- a/drivers/clk/sunxi-ng/Makefile
-> > +++ b/drivers/clk/sunxi-ng/Makefile
-> > @@ -33,6 +33,7 @@ obj-$(CONFIG_SUN50I_A100_R_CCU)	+=3D sun50i-a100-r-cc=
-u.o
-> >  obj-$(CONFIG_SUN50I_H6_CCU)	+=3D sun50i-h6-ccu.o
-> >  obj-$(CONFIG_SUN50I_H6_R_CCU)	+=3D sun50i-h6-r-ccu.o
-> >  obj-$(CONFIG_SUN50I_H616_CCU)	+=3D sun50i-h616-ccu.o
-> > +obj-$(CONFIG_SUN55I_A523_CCU)	+=3D sun55i-a523-ccu.o
-> >  obj-$(CONFIG_SUN4I_A10_CCU)	+=3D sun4i-a10-ccu.o
-> >  obj-$(CONFIG_SUN5I_CCU)		+=3D sun5i-ccu.o
-> >  obj-$(CONFIG_SUN6I_A31_CCU)	+=3D sun6i-a31-ccu.o
-> > @@ -58,6 +59,7 @@ sun50i-a100-r-ccu-y		+=3D ccu-sun50i-a100-r.o
-> >  sun50i-h6-ccu-y			+=3D ccu-sun50i-h6.o
-> >  sun50i-h6-r-ccu-y		+=3D ccu-sun50i-h6-r.o
-> >  sun50i-h616-ccu-y		+=3D ccu-sun50i-h616.o
-> > +sun55i-a523-ccu-y		+=3D ccu-sun55i-a523.o
-> >  sun4i-a10-ccu-y			+=3D ccu-sun4i-a10.o
-> >  sun5i-ccu-y			+=3D ccu-sun5i.o
-> >  sun6i-a31-ccu-y			+=3D ccu-sun6i-a31.o
-> > diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c b/drivers/clk/sunxi=
--ng/ccu-sun55i-a523.c
-> > new file mode 100644
-> > index 0000000000000..8374e841e9d82
-> > --- /dev/null
-> > +++ b/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
-> > @@ -0,0 +1,481 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2023-2024 Arm Ltd.
-> > + * Based on the D1 CCU driver:
-> > + *   Copyright (c) 2020 huangzhenwei@allwinnertech.com
-> > + *   Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
-> > + */
-> > +
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/io.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#include "../clk.h"
-> > +
-> > +#include "ccu_common.h"
-> > +#include "ccu_reset.h"
-> > +
-> > +#include "ccu_div.h"
-> > +#include "ccu_gate.h"
-> > +#include "ccu_mp.h"
-> > +#include "ccu_mult.h"
-> > +#include "ccu_nk.h"
-> > +#include "ccu_nkm.h"
-> > +#include "ccu_nkmp.h"
-> > +#include "ccu_nm.h"
-> > +
-> > +#include "ccu-sun55i-a523.h"
-> > +
-> > +/*
-> > + * The 24 MHz oscillator, the root of most of the clock tree.
-> > + * .fw_name is the string used in the DT "clock-names" property, used =
-to
-> > + * identify the corresponding clock in the "clocks" property.
-> > + */
-> > +static const struct clk_parent_data osc24M[] =3D {
-> > +	{ .fw_name =3D "hosc" }
-> > +};
-> > +
-> > +/*********************************************************************=
-*****
-> > + *                              PLLs                                  =
-    *
-> > + *********************************************************************=
-*****/
-> > +
-> > +/* Some PLLs are input * N / div1 / P. Model them as NKMP with no K */
-> > +#define SUN55I_A523_PLL_DDR0_REG		0x010
-> > +static struct ccu_nkmp pll_ddr0_clk =3D {
-> > +	.enable		=3D BIT(27),
-> > +	.lock		=3D BIT(28),
-> > +	.n		=3D _SUNXI_CCU_MULT_MIN(8, 8, 11),
-> > +	.m		=3D _SUNXI_CCU_DIV(1, 1), /* input divider */ =20
->=20
-> Newer manuals, for example A523 manual v1.4, don't mention input dividers=
- anymore.
-> Newer BSP driver doesn't have them either. Should we drop them (for all P=
-LLs)?
+Code was tested on LX16 board (x1600) and Alpha400 (jz4730) and
+on CI20 (jz4780).
 
-I don't know, as you figured, I found them in my copy of the manual. For
-the PLLs we need today (PLL_PERIPH0) it shouldn't matter anyway: it's
-programmed already, and AFAICS Linux actually never reprograms it(?).
+Co-authored-by: Andreas Kemnade <andreas@kemnade.info>
+Co-authored-by: H. Nikolaus Schaller <hns@goldelico.com>
 
-In any case, I just left it in for now: the bit is definitely there, I
-verified that in U-Boot by only seeing half of the MMC performance with
-bit 1 set. We can remove them anytime later, without issue, can't we?
 
-Actually, thinking about that: the manual pretty clearly says that for
-instance PLL_PERIPH0 should be set to 1.2GHz and never changed or even
-touched. I wonder if we should honour this somehow in the code? It seems
-like the CCF doesn't do this anyway at the moment, but it could, I guess?
+H. Nikolaus Schaller (3):
+  bindings: ingenic,pinctrl: add x1600
+  pinctrl: ingenic: jz4730: add pinmux for MII
+  pinctrl: ingenic: jz4730: add pinmux for I2S interface
 
->=20
-> > +	.p		=3D _SUNXI_CCU_DIV(0, 1), /* output divider */
-> > +	.common		=3D {
-> > +		.reg		=3D 0x010,
-> > +		.hw.init	=3D CLK_HW_INIT_PARENTS_DATA("pll-ddr0", osc24M,
-> > +							   &ccu_nkmp_ops,
-> > +							   CLK_SET_RATE_GATE |
-> > +							   CLK_IS_CRITICAL),
-> > +	},
-> > +};
-> > +
+Paul Boddie (1):
+  pinctrl: ingenic: add x1600 support
 
-....
+ .../bindings/pinctrl/ingenic,pinctrl.yaml     |   2 +
+ drivers/pinctrl/pinctrl-ingenic.c             | 261 +++++++++++++++++-
+ 2 files changed, 261 insertions(+), 2 deletions(-)
 
-> > diff --git a/drivers/clk/sunxi-ng/ccu_mp.h b/drivers/clk/sunxi-ng/ccu_m=
-p.h
-> > index 687bd2ec798e2..5311835a4db60 100644
-> > --- a/drivers/clk/sunxi-ng/ccu_mp.h
-> > +++ b/drivers/clk/sunxi-ng/ccu_mp.h
-> > @@ -100,20 +100,22 @@ struct ccu_mp { =20
->=20
-> These changes doesn't belong in this commit.
-
-Ah, indeed, I missed that. Moved that out into another patch now.
-
-Cheers,
-Andre
-
-> Other than that, this looks like a good start. Thanks!
->=20
-> Best regards,
-> Jernej
->=20
-> >  				   _muxshift, _muxwidth,		\
-> >  				   0, _flags)
-> > =20
-> > -#define SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents,=
- _reg, \
-> > +#define SUNXI_CCU_MP_MUX_GATE_POSTDIV_FEAT(_struct, _name, _parents, _=
-reg, \
-> >  					_mshift, _mwidth,		\
-> >  					_pshift, _pwidth,		\
-> >  					_muxshift, _muxwidth,		\
-> > -					_gate, _flags,			\
-> > -					_features)			\
-> > +					_gate, _postdiv,		\
-> > +					_flags, _features)		\
-> >  	struct ccu_mp _struct =3D {					\
-> >  		.enable	=3D _gate,					\
-> >  		.m	=3D _SUNXI_CCU_DIV(_mshift, _mwidth),		\
-> >  		.p	=3D _SUNXI_CCU_DIV(_pshift, _pwidth),		\
-> >  		.mux	=3D _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
-> > +		.fixed_post_div =3D _postdiv,				\
-> >  		.common	=3D {						\
-> >  			.reg		=3D _reg,				\
-> > -			.features	=3D _features,			\
-> > +			.features	=3D CCU_FEATURE_FIXED_POSTDIV |	\
-> > +						_features,		\
-> >  			.hw.init	=3D CLK_HW_INIT_PARENTS_DATA(_name, \
-> >  								   _parents, \
-> >  								   &ccu_mp_ops,\
-> > @@ -126,11 +128,11 @@ struct ccu_mp {
-> >  					_pshift, _pwidth,		\
-> >  					_muxshift, _muxwidth,		\
-> >  					_gate, _flags)			\
-> > -	SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents,	\
-> > +	SUNXI_CCU_MP_MUX_GATE_POSTDIV_FEAT(_struct, _name, _parents,	\
-> >  					     _reg, _mshift, _mwidth,	\
-> >  					     _pshift, _pwidth,		\
-> >  					     _muxshift, _muxwidth,	\
-> > -					     _gate, _flags, 0)
-> > +					     _gate, 1, _flags, 0)
-> > =20
-> >  #define SUNXI_CCU_MP_DATA_WITH_MUX(_struct, _name, _parents, _reg,	\
-> >  				   _mshift, _mwidth,			\
-> >  =20
->=20
->=20
->=20
->=20
+-- 
+2.47.0
 
 
