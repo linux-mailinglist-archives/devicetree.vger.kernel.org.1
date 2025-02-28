@@ -1,298 +1,262 @@
-Return-Path: <devicetree+bounces-152589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 480B7A4986E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 12:41:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD21A4989D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 12:57:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9D9A1741FF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:41:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BABF53B40EE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F342620C6;
-	Fri, 28 Feb 2025 11:41:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C7D26157F;
+	Fri, 28 Feb 2025 11:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nI0E7LPy"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="nKefsDd7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [94.124.121.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13087261579;
-	Fri, 28 Feb 2025 11:41:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3161A25F781
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 11:57:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740742865; cv=none; b=M9RHI3Mpsih3Kklj9gOWqBltmSQEGY7KvJ/6yr7NHtnih3ZTQys3+NOtLYBu8Gjjuxm06LeX8BxF8hR/8Gc/0Rl3fUvdjEXtmU61ruRpqKzVNYuBxNxYCWTpVeEyl1m3y35rLVfw/GVzCpBUcGjmoSvY4mOUMHbeE8ntOhPDjOI=
+	t=1740743854; cv=none; b=YrIe+ENBHdGxOIxVpC5tbf3JSTfkfTb6w1WtJSyKLg+sH+fBFfqb7ZkQKts1wxY1GRZFAn6C3hpqG3A7abu0MUJEo9cKC8ugAykxBF0M9T3piKwjd+0qsVPJqtQGIYV8WEACHpaUzjTWwCVXxu1MF7t7l8eQzxGa46w84tY9io4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740742865; c=relaxed/simple;
-	bh=vBU07kaMr1FzJ+y0p9rCJFx/6wSa6nMykFujbq+O/I4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z0ydTlmsuPRMeqyRBSR4b87h69Zxq1iIbkvuYaADwNnpopzF6WVLDtWTadECfCustn6wx5zRN25dx3oBA6EQKLl9DtQAxkVJZGj/3eXpO76P225SmKrvJQawj1akWSds24KjN+n6uOy8tm3iaLWcuPocEHtmU3Sq+o83dxGyrGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nI0E7LPy; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51SBel7e2038443
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Fri, 28 Feb 2025 05:40:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1740742847;
-	bh=c1YF4vPEmzeYXAeKXS+4M5oyhCfOioHPJms/kUt1TLQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=nI0E7LPyseymI3JWIAlIDP0xQXPwx+kjNezWTa6BhEBiwNZyUNB7YUc9ithgJ4BnT
-	 wfH/yGppSYe3P1Pgyx+Uy8JROfMEblN5P0blAfZuYzlggnqdtyuvO+N0nAPe8cqi8V
-	 qmoYrgi8eoXYb+zj6V0N5Dq2OSul7YsxaimulVJc=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51SBel8j038617;
-	Fri, 28 Feb 2025 05:40:47 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
- Feb 2025 05:40:46 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 28 Feb 2025 05:40:46 -0600
-Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [172.24.227.115])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51SBeWfd060249;
-	Fri, 28 Feb 2025 05:40:43 -0600
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-To: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <mripard@kernel.org>, <mchehab@kernel.org>, <jai.luthra@linux.dev>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devarsht@ti.com>, <vaishnav.a@ti.com>, <r-donadkar@ti.com>,
-        <u-kumar1@ti.com>, <y-abhilashchandra@ti.com>
-Subject: [PATCH v5 2/2] media: cadence: csi2rx: Enable csi2rx_err_irq interrupt and add support for VIDIOC_LOG_STATUS
-Date: Fri, 28 Feb 2025 17:10:30 +0530
-Message-ID: <20250228114030.1028443-3-y-abhilashchandra@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250228114030.1028443-1-y-abhilashchandra@ti.com>
-References: <20250228114030.1028443-1-y-abhilashchandra@ti.com>
+	s=arc-20240116; t=1740743854; c=relaxed/simple;
+	bh=RvFAS78f+99HBNR6SzbLni87srDvuljh18ChZseS+KU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UupCjvCvHhX4A339sSBtBQzWJtf6fi9id7NF/ufTHJyoPyqHv6tJcWAOXOHMRUrwuNtGZZeKG+8hJkwQesWkGG2ks/5KqIVRTFkOSlHwgf5DBJ56h2xvW3S4hQWZfUvehPoVDrszyLvr9zuUzctTC5yRqVEf5n9TKENpcNMqn8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=nKefsDd7; arc=none smtp.client-ip=94.124.121.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=vRFSBkesq/C2LJZo8naM/Q1cNr1mZmsYkaQzEjX9zhk=;
+	b=nKefsDd72p1gTkAq1a7G+hEFjAE5L6lgg8cegGBpZQQzWMszwhaWsbIajEMPMzlnWkeWbY9NztDg9
+	 O+Js9zCsksKfw3Jnfdq4tpLC0VPA7dkeYSco4yWWhISm0kav1YSNJJIygduSKWjmKZHQhk9t2ax9IN
+	 OToCnnLTchBVZnQ0ZkRqaAWze2pWs4aVEYK4pZ5hrPzUQaRoHocx5w/hFB+5SoDf8caOUN6RkzT/+J
+	 06/v612F7A3E9BKf0U4Eo5HnR0KWHNl8hSDeya5zZNzjuNs7ncmY7rkFC8UIk95t8wBnJQ0Jk27SN9
+	 XeeIcsCmpFEcDwhwcTvgNzcPyzq6oMg==
+X-MSG-ID: 2e5f1d48-f5cb-11ef-b5ca-0050568164d1
+Date: Fri, 28 Feb 2025 12:57:27 +0100
+From: David Jander <david@protonic.nl>
+To: Pavel Pisa <ppisa@pikron.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
+ <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
+ <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>
+Subject: Re: [RFC PATCH 0/7] Add Linux Motion Control subsystem
+Message-ID: <20250228125727.7f892552@erd003.prtnl>
+In-Reply-To: <202502281035.57489.ppisa@pikron.com>
+References: <20250227162823.3585810-1-david@protonic.nl>
+	<202502281035.57489.ppisa@pikron.com>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Enable the csi2rx_err_irq interrupt to record any errors during streaming
-and also add support for VIDIOC_LOG_STATUS ioctl. This allows users to
-retrieve detailed error information during streaming, including FIFO
-overflow, packet errors, and ECC errors.
 
-Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-Reviewed-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-Reviewed-by: Jai Luthra <jai.luthra@linux.dev>
-Tested-by: Jai Luthra <jai.luthra@linux.dev>
----
- drivers/media/platform/cadence/cdns-csi2rx.c | 129 +++++++++++++++++++
- 1 file changed, 129 insertions(+)
+Dear Pavel,
 
-diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-index cebcae196eec..30cf2da36023 100644
---- a/drivers/media/platform/cadence/cdns-csi2rx.c
-+++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-@@ -57,6 +57,25 @@
- #define CSI2RX_LANES_MAX	4
- #define CSI2RX_STREAMS_MAX	4
- 
-+#define CSI2RX_ERROR_IRQS_REG			0x28
-+#define CSI2RX_ERROR_IRQS_MASK_REG		0x2C
-+
-+#define CSI2RX_STREAM3_FIFO_OVERFLOW_IRQ	BIT(19)
-+#define CSI2RX_STREAM2_FIFO_OVERFLOW_IRQ	BIT(18)
-+#define CSI2RX_STREAM1_FIFO_OVERFLOW_IRQ	BIT(17)
-+#define CSI2RX_STREAM0_FIFO_OVERFLOW_IRQ	BIT(16)
-+#define CSI2RX_FRONT_TRUNC_HDR_IRQ		BIT(12)
-+#define CSI2RX_PROT_TRUNCATED_PACKET_IRQ	BIT(11)
-+#define CSI2RX_FRONT_LP_NO_PAYLOAD_IRQ		BIT(10)
-+#define CSI2RX_SP_INVALID_RCVD_IRQ		BIT(9)
-+#define CSI2RX_DATA_ID_IRQ			BIT(7)
-+#define CSI2RX_HEADER_CORRECTED_ECC_IRQ	BIT(6)
-+#define CSI2RX_HEADER_ECC_IRQ			BIT(5)
-+#define CSI2RX_PAYLOAD_CRC_IRQ			BIT(4)
-+
-+#define CSI2RX_ECC_ERRORS		GENMASK(7, 4)
-+#define CSI2RX_PACKET_ERRORS		GENMASK(12, 9)
-+
- enum csi2rx_pads {
- 	CSI2RX_PAD_SINK,
- 	CSI2RX_PAD_SOURCE_STREAM0,
-@@ -71,9 +90,32 @@ struct csi2rx_fmt {
- 	u8				bpp;
- };
- 
-+struct csi2rx_event {
-+	u32 mask;
-+	const char *name;
-+};
-+
-+static const struct csi2rx_event csi2rx_events[] = {
-+	{ CSI2RX_STREAM3_FIFO_OVERFLOW_IRQ, "Overflow of the Stream 3 FIFO detected" },
-+	{ CSI2RX_STREAM2_FIFO_OVERFLOW_IRQ, "Overflow of the Stream 2 FIFO detected" },
-+	{ CSI2RX_STREAM1_FIFO_OVERFLOW_IRQ, "Overflow of the Stream 1 FIFO detected" },
-+	{ CSI2RX_STREAM0_FIFO_OVERFLOW_IRQ, "Overflow of the Stream 0 FIFO detected" },
-+	{ CSI2RX_FRONT_TRUNC_HDR_IRQ, "A truncated header [short or long] has been received" },
-+	{ CSI2RX_PROT_TRUNCATED_PACKET_IRQ, "A truncated long packet has been received" },
-+	{ CSI2RX_FRONT_LP_NO_PAYLOAD_IRQ, "A truncated long packet has been received. No payload" },
-+	{ CSI2RX_SP_INVALID_RCVD_IRQ, "A reserved or invalid short packet has been received" },
-+	{ CSI2RX_DATA_ID_IRQ, "Data ID error in the header packet" },
-+	{ CSI2RX_HEADER_CORRECTED_ECC_IRQ, "ECC error detected and corrected" },
-+	{ CSI2RX_HEADER_ECC_IRQ, "Unrecoverable ECC error" },
-+	{ CSI2RX_PAYLOAD_CRC_IRQ, "CRC error" },
-+};
-+
-+#define CSI2RX_NUM_EVENTS		ARRAY_SIZE(csi2rx_events)
-+
- struct csi2rx_priv {
- 	struct device			*dev;
- 	unsigned int			count;
-+	int				error_irq;
- 
- 	/*
- 	 * Used to prevent race conditions between multiple,
-@@ -95,6 +137,7 @@ struct csi2rx_priv {
- 	u8				max_lanes;
- 	u8				max_streams;
- 	bool				has_internal_dphy;
-+	u32				events[CSI2RX_NUM_EVENTS];
- 
- 	struct v4l2_subdev		subdev;
- 	struct v4l2_async_notifier	notifier;
-@@ -124,6 +167,52 @@ static const struct csi2rx_fmt formats[] = {
- 	{ .code	= MEDIA_BUS_FMT_BGR888_1X24,  .bpp = 24, },
- };
- 
-+static void csi2rx_configure_error_irq_mask(void __iomem *base,
-+					    struct csi2rx_priv *csi2rx)
-+{
-+	u32 error_irq_mask = 0;
-+
-+	error_irq_mask |= CSI2RX_ECC_ERRORS;
-+	error_irq_mask |= CSI2RX_PACKET_ERRORS;
-+
-+	/*
-+	 * Iterate through all source pads and check if they are linked
-+	 * to an active remote pad. If an active remote pad is found,
-+	 * calculate the corresponding bit position and set it in
-+	 * mask, enabling the stream overflow error in the mask.
-+	 */
-+	for (int i = CSI2RX_PAD_SOURCE_STREAM0; i < CSI2RX_PAD_MAX; i++) {
-+		struct media_pad *remote_pad;
-+
-+		remote_pad = media_pad_remote_pad_first(&csi2rx->pads[i]);
-+		if (remote_pad) {
-+			int pad = i - CSI2RX_PAD_SOURCE_STREAM0;
-+			u32 bit_mask = CSI2RX_STREAM0_FIFO_OVERFLOW_IRQ << pad;
-+
-+			error_irq_mask |= bit_mask;
-+		}
-+	}
-+
-+	writel(error_irq_mask, base + CSI2RX_ERROR_IRQS_MASK_REG);
-+}
-+
-+static irqreturn_t csi2rx_irq_handler(int irq, void *dev_id)
-+{
-+	struct csi2rx_priv *csi2rx = dev_id;
-+	int i;
-+	u32 error_status;
-+
-+	error_status = readl(csi2rx->base + CSI2RX_ERROR_IRQS_REG);
-+
-+	for (i = 0; i < CSI2RX_NUM_EVENTS; i++)
-+		if (error_status & csi2rx_events[i].mask)
-+			csi2rx->events[i]++;
-+
-+	writel(error_status, csi2rx->base + CSI2RX_ERROR_IRQS_REG);
-+
-+	return IRQ_HANDLED;
-+}
-+
- static const struct csi2rx_fmt *csi2rx_get_fmt_by_code(u32 code)
- {
- 	unsigned int i;
-@@ -220,6 +309,9 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
- 	reset_control_deassert(csi2rx->p_rst);
- 	csi2rx_reset(csi2rx);
- 
-+	if (csi2rx->error_irq >= 0)
-+		csi2rx_configure_error_irq_mask(csi2rx->base, csi2rx);
-+
- 	reg = csi2rx->num_lanes << 8;
- 	for (i = 0; i < csi2rx->num_lanes; i++) {
- 		reg |= CSI2RX_STATIC_CFG_DLANE_MAP(i, csi2rx->lanes[i]);
-@@ -332,6 +424,8 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
- 	reset_control_assert(csi2rx->sys_rst);
- 	clk_disable_unprepare(csi2rx->sys_clk);
- 
-+	writel(0, csi2rx->base + CSI2RX_ERROR_IRQS_MASK_REG);
-+
- 	for (i = 0; i < csi2rx->max_streams; i++) {
- 		writel(CSI2RX_STREAM_CTRL_STOP,
- 		       csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
-@@ -363,6 +457,21 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
- 	}
- }
- 
-+static int csi2rx_log_status(struct v4l2_subdev *sd)
-+{
-+	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(sd);
-+	unsigned int i;
-+
-+	for (i = 0; i < CSI2RX_NUM_EVENTS; i++) {
-+		if (csi2rx->events[i])
-+			dev_info(csi2rx->dev, "%s events: %d\n",
-+				 csi2rx_events[i].name,
-+				 csi2rx->events[i]);
-+	}
-+
-+	return 0;
-+}
-+
- static int csi2rx_s_stream(struct v4l2_subdev *subdev, int enable)
- {
- 	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
-@@ -468,7 +577,12 @@ static const struct v4l2_subdev_video_ops csi2rx_video_ops = {
- 	.s_stream	= csi2rx_s_stream,
- };
- 
-+static const struct v4l2_subdev_core_ops csi2rx_core_ops = {
-+	.log_status	= csi2rx_log_status,
-+};
-+
- static const struct v4l2_subdev_ops csi2rx_subdev_ops = {
-+	.core		= &csi2rx_core_ops,
- 	.video		= &csi2rx_video_ops,
- 	.pad		= &csi2rx_pad_ops,
- };
-@@ -705,6 +819,21 @@ static int csi2rx_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_cleanup;
- 
-+	csi2rx->error_irq = platform_get_irq_byname_optional(pdev, "error_irq");
-+
-+	if (csi2rx->error_irq < 0) {
-+		dev_dbg(csi2rx->dev, "Optional interrupt not defined, proceeding without it\n");
-+	} else {
-+		ret = devm_request_irq(csi2rx->dev, csi2rx->error_irq,
-+				       csi2rx_irq_handler, 0,
-+				       dev_name(&pdev->dev), csi2rx);
-+		if (ret) {
-+			dev_err(csi2rx->dev,
-+				"Unable to request interrupt: %d\n", ret);
-+			goto err_cleanup;
-+		}
-+	}
-+
- 	ret = v4l2_subdev_init_finalize(&csi2rx->subdev);
- 	if (ret)
- 		goto err_cleanup;
+Thanks a lot for starting the discussion...
+
+On Fri, 28 Feb 2025 10:35:57 +0100
+Pavel Pisa <ppisa@pikron.com> wrote:
+
+> Hello David and others
+> 
+> On Thursday 27 of February 2025 17:28:16 David Jander wrote:
+> > Request for comments on: adding the Linux Motion Control subsystem to the
+> > kernel.  
+> 
+> I have noticed on Phoronix, that the new system is emerging.
+
+Being featured on Phoronix on day one wasn't on my bingo card for this year, to
+be honest... :-)
+
+> This is area where I have lot (more than 30 years) of experience
+> at my company and I have done even lot with my studnets at university.
+> I have big interest that this interface fits our use neeeds
+> and offers for future integration of our already open-source
+> systems/components.
+
+This is very impressive and I am honored to have gotten your attention. I am
+looking forward to discussing this, although I am not sure whether all of this
+should happen here on LKML?
+
+> This is preliminary reply, I want to find time for more discussion
+> and analysis (which is quite hard during summer term where I have
+> lot of teaching and even ongoing project now).
+> 
+> I would like to discuse even future subsystem evolution
+> which would allow coordinates axes groups creation, smooth
+> segments based on N-th order splines incremental attachment,
+> the path planning and re-planning if the target changes
+> as reaction to camera or other sensor needs etc.
+
+Right now LMC should be able to support hardware that has multiple channels
+(axes) per device. Its UAPI can describe position-based movements and
+time-based movements along any arbitrary combination of those channels using a
+pre-defined speed/acceleration profile.
+
+The profiles can be specified as an arbitrary number of speed and acceleration
+values. The idea is to describe a segmented profile with different
+acceleration values for segments between two different speed values. Simple
+examples are trapezoidal (accelerate from (near-)zero to Vmax with A1, and
+decelerate from Vmax back to zero with D1), dual-slope or S-curve, but the
+UAPI in theory permits an arbitrary number of segments if the underlying
+hardware supports it.
+
+I have some ideas for future extensions to the API that make coordinated
+multi-channel movements a bit easier, but that will not be in the initial push
+of LMC: For example torque-limit profiles for controlled torque movements,
+usable for example in sliding door controllers with AC machines or BLDC
+motors; or an ioctl to send a distance vector to a selected number of channels
+at once and apply a motion profile to the whole coordinated movement. In the
+current version you have to set up the distances and profiles for the
+individual channels and then trigger the start of the motion, which is more
+cumbersome. You can already use the finish event of a preceding motion to
+trigger the next one though.
+
+Another idea that has been floating in my head is to make a "virtual" motion
+device driver that combines individual "real" single-channel hardware drivers
+into one multi-channel device, but I am unsure whether it is really needed. It
+all depends on the latency limit differences between kernel-space and
+user-space whether there is something to gain.
+
+I think it is best to keep this initial version more limited in scope though,
+as long as the needed extensions are possible in the future without breaking
+existing UAPI.
+
+So I propose: Let's craft a draft UAPI (in a different place, not on LKML) that
+can do everything we can come up with and then reduce it to the basics for the
+first version. Otherwise it will get too complex to review, I'm afraid.
+
+> At this moment I have interrest if there is site which
+> would start to collect these ideas and where can be
+> some references added.
+
+I may put this on github and create a wiki there if you think that's a good
+enough place to discuss?
+
+> I think that I have quite some stuff to offer.
+
+That would be great! Looking forward to it :-)
+
+> To have idea about my direction of thinking and needs
+> of interface I would provide some references even
+> to our often commercially sold but mostly conceived
+> as hobby projects.
+
+I'll have to take some time to look into those more closely. My own experience
+as far as FOSS or OSHW concerns includes the reprap Kamaq project:
+
+https://reprap.org/wiki/Kamaq
+
+TL;DR: It is a 3D printer running only Linux and the whole controller software
+is entirely written in python (except for very little Cython/C code).
+This is still my 3D printer on which I satisfy all of my 3D print needs. I
+will need to port it to LMC one day.
+
+> Coordinated axes groups movement with incremental spline
+> segment addition into command queue (our COORDMV componet
+> of PXMC library) is demonstrated on old BOSCH SR 450 SCARA
+> system. The robot has never fully worked at Skoda Auto
+> with original BOSH control unit. But when it has been donated
+> to Czech Technical University, we have build control
+> unit at my copany based on Motorola 68376 MCU in around
+> 2000 year. I have later paid one student to prepare
+> demo in Python to demonstrate the system.
+> 
+> You can click on video
+> 
+>   MARS 8 BigBot and Robot Bosch SR 450 Drawing Roses 
+>   http://pikron.com/pages/products/motion_control.html
+
+Very impressive! Can you explain how the spline-segment information could be
+conveyed to the controller? Does the controller really do an infinitesimal
+spline interpolation, or does it create many small linear vectors?
+
+LMC will try to limit math operations in kernel space as much as possible, so
+hopefully all the calculations can be done in user-space (or on the controller
+if that is the case).
+
+Right now, my way of thinking was that of regular 3D printers which usually
+only implement G0/G1 G-codes (linear interpolation). G2/G3 (circular
+interpolation) doesn't sound practically very useful since it is special but
+not very flexible. Something like generalized spline interpolation sounds more
+valuable, but I hadn't seen any hardware that can do it.
+
+> The related python application is there
+> 
+>   https://github.com/cvut/pyrocon
+> 
+> In the far future, I can imagine that it can connect
+> to proposed LMC API and achieve the same results.
+
+Let's make it so!
+
+>[...]
+> which uses our PXMC motion control library
+> 
+>   https://gitlab.com/pikron/sw-base/pxmc
+> 
+> There is basic documentation for it on its site
+> 
+>   https://pxmc.org/
+>   https://pxmc.org/files/pxmc.pdf
+
+At first glance, this looks like a piece of hardware that would fit as a LMC
+device. What needs to be determined is where the boundaries lie between
+controller firmware, kernel-space and user-space code.
+
+Generally speaking, as a rough guideline, microsecond work is better done in
+the controller firmware if possible. millisecond work can be done in the kernel
+and 10's or more millisecond work can be done in user-space, notwithstanding
+latency limit requirements of course.
+
+>[...]
+> So in general, I think that we have large portfolio
+> of building blocks which would allow to build motion,
+> robotic controllers, communications etc. and I would be happy
+> if they are reused and even some project conceived
+> together with others to join the forces.
+
+This sounds very interesting. Ideally one would end up with LMC capable of
+interfacing all of those devices.
+
+> It would be ideal if the all motion control related
+> resources and links could be somehow collected
+> that wheel is not reinvented unnecessarily.
+
+I completely agree.
+
+> The most of my code is Mozilla, GPL etc... I have
+> right to relicence my company stuff if the license does
+> not fit. On the other hand, I do not intend to follow
+> such offers as of one well funded chip related association,
+> which offered us to relicense all to them with no retain
+> of any control and additional right and they would not
+> take care about the valuable project at all no looking
+> for funding etc... no promise for developmet etc...
+> So there are some limits.
+
+Understandable.
+
+Best regards,
+
 -- 
-2.34.1
-
+David Jander
 
