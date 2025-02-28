@@ -1,202 +1,291 @@
-Return-Path: <devicetree+bounces-152617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E17A2A49A6A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:22:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A921A49A84
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:29:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7DC13A87BA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:22:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E6EF3B4A16
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 13:29:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C153426D5BE;
-	Fri, 28 Feb 2025 13:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dJGgvPX1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7721C26D5A2;
+	Fri, 28 Feb 2025 13:29:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D981126BDA3;
-	Fri, 28 Feb 2025 13:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA691D555;
+	Fri, 28 Feb 2025 13:29:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740748935; cv=none; b=FpB5DfDARfkG8svp+ESyGzeQkrUgbyLWxM4sx99uZwaSZ/+B0n9tDoyXcRFTByJ/YIoE/SGGu7Thcshfm0aAPwMUjAOkvgYfEpJ6hcfwwJDkbxE/+4rZn1uFOIq8hmUeHW0w2cAHB4Bo2MNoGpOpr/KbnLo1seC8RSbuOKC28RU=
+	t=1740749368; cv=none; b=EPDwY2wBuD1NmiNhvwQjo1QMzskC3Yp774ZwsPNZJBZZKGKYMY3Yj+Ay6PS9fhZv9rQwIcWADfnpGWzR2vldEByDlXECjAmGUThKeQqcec5C5KnYrujGok9UQSmatS3rw6CkP2IEqzrVFYBshGXJRYP/V+PPxjqBW5+F6HNzB+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740748935; c=relaxed/simple;
-	bh=Kz7tQ7V+0+WAQoonVHNEEJH3MiDZITaZpOzO7CDVJMY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VKj1gkpAUSUb0H+o1Or+dXGALR71oB6OUTSsDAtkpxtGUElQNfbZW9vX1nJv2C2qiYUo8kAwP3w388EUTkwimZ2b070WOSTcA8SishzD0dHy9AekZUrAE2YYzwmmPpOfvQ125tufJwiI/ZeK02UWey4OxjI4sYU5YuvsE03/2vA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dJGgvPX1; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-390ec7c2d40so743795f8f.1;
-        Fri, 28 Feb 2025 05:22:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740748932; x=1741353732; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aLCskdkyDjKVzUbxWO5nRc2aTnNTpaWoydhtK7t4lAA=;
-        b=dJGgvPX1hkaccIYPc/qRD6g2Rdg8d/IUhokspQrQKp6ZRzs6wEd8fTk+GEgz14zWu1
-         Mt4YXejbw4rETgkKuj7c32F3+wlAwW+emaKo7po9Zydo7WJGI97hwEUEC3SAKgJ1vE2f
-         HmsuCTUQa/twYZw/Dzj0D9FJkHBCUAEcGeHwhDLcZDaLMJ/XkotIcww8AQ2u+USiaCE/
-         DR0bAjE9b0acRAofFAsdKJwAdjQMKwVoyXkAX9iyywAWcGFEq4fHwWqG2KZ/yO8cAzjO
-         t0CqIygYQ5/x/q9GPkd3BwrDahgewJJ+2VTFO1Xb6x/g02fONbiqcAXC0wtwuZAx7WDb
-         ijug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740748932; x=1741353732;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aLCskdkyDjKVzUbxWO5nRc2aTnNTpaWoydhtK7t4lAA=;
-        b=FXufwooiPBwNjQWBwrW9SQQl5Ham/gRiMDxB6TwXVUQ6ZA5yO21mksVNUz4MGY24b6
-         oHwpJa02EfJQB2RBembQE0BtYceobm2aNaF7a7oF6CC4Li2vfPMfmb27jZi61DsEgGuh
-         QBBCudJ2piUl4GYm6st/tvx3uSYx0RNM6o5JGwrI2zAiHGbnvVoLHacLDKFse4WP+mFp
-         bEloUmM/PPun1cihz4Vt5lXK2w7iNQkOh9MtIrZfaorZgNYK6kTxJMAFOy/3WgRSqVqZ
-         9StzhajFKR2yrpK4szsE++uGpnkAEdFYVqtERIAZCj43zuhcj1Th9nUy46Kp4g0QAgLB
-         u5/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW39YshyP/9q0ijekT5BcMS0UZWWiONEG2x3FfNMKdAYIRoMp9Ezqehvlj+/r+Ao/YJXUakP6fK6Mxx@vger.kernel.org, AJvYcCXQgwSOLvsEa0lsJjQjKSwCvBkHz8pZpjl9z2aJ0/c597I1eE5nVRTOlsS1zKcCS7ZPK3QuGnc886a96dKy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4y1jSdGjM8CfdCnnQvoBMRrByT4O1gwrJEn4VHm1iES+zxG4C
-	ljCHrkzAWXgI3V6cHbBAHz+24rOklxa860HmMQmMnYQO2uumEj3yNJJFKIGKUPxNsm9G323hTri
-	Akwmte5XMpXjaQbNF3ry2yLAZ9Tw=
-X-Gm-Gg: ASbGncusqYr8nIKVfgbp3eqncq5R94oQawdi2Os7OpMZwJFuMvhVz8dSFM4pDICm9XD
-	tbLc/QHB0AD9BG4mUGRxYaMva7P7pYbzqLf+pJqqXKC3+LQd9Ju+YWw3ohain0u7uOEeGPRxsLH
-	lzPGVLXDRA
-X-Google-Smtp-Source: AGHT+IEWGseohuDp7KhNAY0LdcYgEQH/Rbd9LdHbvgH4CFd0eo6h8IeKxvf7p55tqbikbGe86i4k9z8m3nzpWQsmL8w=
-X-Received: by 2002:a05:6000:401f:b0:38d:d664:67d8 with SMTP id
- ffacd0b85a97d-390ec7c6738mr3084072f8f.11.1740748931828; Fri, 28 Feb 2025
- 05:22:11 -0800 (PST)
+	s=arc-20240116; t=1740749368; c=relaxed/simple;
+	bh=9nEznCs8TmXppNEP6Ri/KXbhxb9P855Eu4NIWIxpH2E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bzhO+EoBU6UcOimA7met6ipEe0e85jjew7EaWDN+dmrkh3sQFUEXmePOyalkcyxh0oiUQJW3Fef8LY9kTvWf76Jove7yCRr8haeXS6jmLFHNjrg6HnPt2CFsrhaNFKM1sNJshzE/BJ5+2Cs+PjawMMeEEBMV7ajunAN+8sSWlEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8C7541688;
+	Fri, 28 Feb 2025 05:29:39 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 679E23F673;
+	Fri, 28 Feb 2025 05:29:22 -0800 (PST)
+Date: Fri, 28 Feb 2025 13:29:08 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
+ <wens@csie.org>, Samuel Holland <samuel@sholland.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 05/15] clk: sunxi-ng: Add support for the A523/T527
+ CCU PLLs
+Message-ID: <20250228132908.632b82dd@donnerap.manchester.arm.com>
+In-Reply-To: <3341127.44csPzL39Z@jernej-laptop>
+References: <20250214125359.5204-1-andre.przywara@arm.com>
+	<20250214125359.5204-6-andre.przywara@arm.com>
+	<3341127.44csPzL39Z@jernej-laptop>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250219082817.56339-1-clamor95@gmail.com> <20250219082817.56339-3-clamor95@gmail.com>
- <99ee61dc-abd5-45d9-8d26-a8f0ae94c8eb@arm.com>
-In-Reply-To: <99ee61dc-abd5-45d9-8d26-a8f0ae94c8eb@arm.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Fri, 28 Feb 2025 15:22:00 +0200
-X-Gm-Features: AQ5f1JqiEG1tJRPj2HmNZIqvEspltfMFIDE6rFA4YikSqMAQilmFeeVoGxd-Kho
-Message-ID: <CAPVz0n0uWEY+-evrfpci9-1c3icGyHfTHMbXi=P9Sv=Uh3AUaA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] thermal: thermal-generic-adc: add temperature
- sensor channel
-To: Lukasz Luba <lukasz.luba@arm.com>
-Cc: linux-pm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	Zhang Rui <rui.zhang@intel.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-=D0=BF=D1=82, 28 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 15:11 Luka=
-sz Luba <lukasz.luba@arm.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Hi Svyatoslav,
->
-> On 2/19/25 08:28, Svyatoslav Ryhel wrote:
-> > Add IIO sensor channel along with existing thermal sensor cell. This
-> > would benefit devices that use adc sensors to detect temperature and
-> > need a custom conversion table.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+On Tue, 18 Feb 2025 20:03:38 +0100
+Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
+
+Hi Jernej,
+
+many thanks for having a look!
+
+> Dne petek, 14. februar 2025 ob 13:53:49 Srednjeevropski standardni =C4=8D=
+as je Andre Przywara napisal(a):
+> > Add the PLL clocks of the main CCU of the Allwinner A523 and T527 SoCs.
+> > The clocks were modelled after the A523 and T527 manual, and double
+> > checked by writing all 1's into the respective register, to spot all
+> > implemented bits.
+> >=20
+> > The PLL and mod clocks for the two CPU clusters and the DSU are part of
+> > a separate CCU, also most audio clocks are collected in a DSP CCU, so
+> > both of these clock groups are missing from this driver.
+> >=20
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > > ---
-> >   drivers/thermal/thermal-generic-adc.c | 54 ++++++++++++++++++++++++++=
--
-> >   1 file changed, 53 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/th=
-ermal-generic-adc.c
-> > index ee3d0aa31406..a8f3b965b39b 100644
-> > --- a/drivers/thermal/thermal-generic-adc.c
-> > +++ b/drivers/thermal/thermal-generic-adc.c
-> > @@ -7,6 +7,7 @@
-> >    * Author: Laxman Dewangan <ldewangan@nvidia.com>
-> >    */
-> >   #include <linux/iio/consumer.h>
-> > +#include <linux/iio/iio.h>
-> >   #include <linux/kernel.h>
-> >   #include <linux/module.h>
-> >   #include <linux/platform_device.h>
-> > @@ -73,6 +74,57 @@ static const struct thermal_zone_device_ops gadc_the=
-rmal_ops =3D {
-> >       .get_temp =3D gadc_thermal_get_temp,
-> >   };
-> >
-> > +static const struct iio_chan_spec gadc_thermal_iio_channel[] =3D {
-> > +     {
-> > +             .type =3D IIO_TEMP,
-> > +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_PROCESSED),
-> > +     }
+> >  drivers/clk/sunxi-ng/Kconfig           |   5 +
+> >  drivers/clk/sunxi-ng/Makefile          |   2 +
+> >  drivers/clk/sunxi-ng/ccu-sun55i-a523.c | 481 +++++++++++++++++++++++++
+> >  drivers/clk/sunxi-ng/ccu-sun55i-a523.h |  14 +
+> >  drivers/clk/sunxi-ng/ccu_mp.h          |  14 +-
+> >  5 files changed, 510 insertions(+), 6 deletions(-)
+> >  create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+> >  create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.h
+> >=20
+> > diff --git a/drivers/clk/sunxi-ng/Kconfig b/drivers/clk/sunxi-ng/Kconfig
+> > index b547198a2c654..04efbda847cf9 100644
+> > --- a/drivers/clk/sunxi-ng/Kconfig
+> > +++ b/drivers/clk/sunxi-ng/Kconfig
+> > @@ -52,6 +52,11 @@ config SUN50I_H6_R_CCU
+> >  	default y
+> >  	depends on ARM64 || COMPILE_TEST
+> > =20
+> > +config SUN55I_A523_CCU
+> > +	tristate "Support for the Allwinner A523/T527 CCU"
+> > +	default y
+> > +	depends on ARM64 || COMPILE_TEST
+> > +
+> >  config SUN4I_A10_CCU
+> >  	tristate "Support for the Allwinner A10/A20 CCU"
+> >  	default y
+> > diff --git a/drivers/clk/sunxi-ng/Makefile b/drivers/clk/sunxi-ng/Makef=
+ile
+> > index 6b3ae2b620db6..01a887f7824bb 100644
+> > --- a/drivers/clk/sunxi-ng/Makefile
+> > +++ b/drivers/clk/sunxi-ng/Makefile
+> > @@ -33,6 +33,7 @@ obj-$(CONFIG_SUN50I_A100_R_CCU)	+=3D sun50i-a100-r-cc=
+u.o
+> >  obj-$(CONFIG_SUN50I_H6_CCU)	+=3D sun50i-h6-ccu.o
+> >  obj-$(CONFIG_SUN50I_H6_R_CCU)	+=3D sun50i-h6-r-ccu.o
+> >  obj-$(CONFIG_SUN50I_H616_CCU)	+=3D sun50i-h616-ccu.o
+> > +obj-$(CONFIG_SUN55I_A523_CCU)	+=3D sun55i-a523-ccu.o
+> >  obj-$(CONFIG_SUN4I_A10_CCU)	+=3D sun4i-a10-ccu.o
+> >  obj-$(CONFIG_SUN5I_CCU)		+=3D sun5i-ccu.o
+> >  obj-$(CONFIG_SUN6I_A31_CCU)	+=3D sun6i-a31-ccu.o
+> > @@ -58,6 +59,7 @@ sun50i-a100-r-ccu-y		+=3D ccu-sun50i-a100-r.o
+> >  sun50i-h6-ccu-y			+=3D ccu-sun50i-h6.o
+> >  sun50i-h6-r-ccu-y		+=3D ccu-sun50i-h6-r.o
+> >  sun50i-h616-ccu-y		+=3D ccu-sun50i-h616.o
+> > +sun55i-a523-ccu-y		+=3D ccu-sun55i-a523.o
+> >  sun4i-a10-ccu-y			+=3D ccu-sun4i-a10.o
+> >  sun5i-ccu-y			+=3D ccu-sun5i.o
+> >  sun6i-a31-ccu-y			+=3D ccu-sun6i-a31.o
+> > diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c b/drivers/clk/sunxi=
+-ng/ccu-sun55i-a523.c
+> > new file mode 100644
+> > index 0000000000000..8374e841e9d82
+> > --- /dev/null
+> > +++ b/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+> > @@ -0,0 +1,481 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (C) 2023-2024 Arm Ltd.
+> > + * Based on the D1 CCU driver:
+> > + *   Copyright (c) 2020 huangzhenwei@allwinnertech.com
+> > + *   Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
+> > + */
+> > +
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/io.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +#include "../clk.h"
+> > +
+> > +#include "ccu_common.h"
+> > +#include "ccu_reset.h"
+> > +
+> > +#include "ccu_div.h"
+> > +#include "ccu_gate.h"
+> > +#include "ccu_mp.h"
+> > +#include "ccu_mult.h"
+> > +#include "ccu_nk.h"
+> > +#include "ccu_nkm.h"
+> > +#include "ccu_nkmp.h"
+> > +#include "ccu_nm.h"
+> > +
+> > +#include "ccu-sun55i-a523.h"
+> > +
+> > +/*
+> > + * The 24 MHz oscillator, the root of most of the clock tree.
+> > + * .fw_name is the string used in the DT "clock-names" property, used =
+to
+> > + * identify the corresponding clock in the "clocks" property.
+> > + */
+> > +static const struct clk_parent_data osc24M[] =3D {
+> > +	{ .fw_name =3D "hosc" }
 > > +};
 > > +
-> > +static int gadc_thermal_read_raw(struct iio_dev *indio_dev,
-> > +                              struct iio_chan_spec const *chan,
-> > +                              int *temp, int *val2, long mask)
-> > +{
-> > +     struct gadc_thermal_info *gtinfo =3D iio_priv(indio_dev);
-> > +     int ret;
+> > +/*********************************************************************=
+*****
+> > + *                              PLLs                                  =
+    *
+> > + *********************************************************************=
+*****/
 > > +
-> > +     if (mask !=3D IIO_CHAN_INFO_PROCESSED)
-> > +             return -EINVAL;
-> > +
-> > +     ret =3D gadc_thermal_get_temp(gtinfo->tz_dev, temp);
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     *temp /=3D 1000;
-> > +
-> > +     return IIO_VAL_INT;
-> > +}
-> > +
-> > +static const struct iio_info gadc_thermal_iio_info =3D {
-> > +     .read_raw =3D gadc_thermal_read_raw,
+> > +/* Some PLLs are input * N / div1 / P. Model them as NKMP with no K */
+> > +#define SUN55I_A523_PLL_DDR0_REG		0x010
+> > +static struct ccu_nkmp pll_ddr0_clk =3D {
+> > +	.enable		=3D BIT(27),
+> > +	.lock		=3D BIT(28),
+> > +	.n		=3D _SUNXI_CCU_MULT_MIN(8, 8, 11),
+> > +	.m		=3D _SUNXI_CCU_DIV(1, 1), /* input divider */ =20
+>=20
+> Newer manuals, for example A523 manual v1.4, don't mention input dividers=
+ anymore.
+> Newer BSP driver doesn't have them either. Should we drop them (for all P=
+LLs)?
+
+I don't know, as you figured, I found them in my copy of the manual. For
+the PLLs we need today (PLL_PERIPH0) it shouldn't matter anyway: it's
+programmed already, and AFAICS Linux actually never reprograms it(?).
+
+In any case, I just left it in for now: the bit is definitely there, I
+verified that in U-Boot by only seeing half of the MMC performance with
+bit 1 set. We can remove them anytime later, without issue, can't we?
+
+Actually, thinking about that: the manual pretty clearly says that for
+instance PLL_PERIPH0 should be set to 1.2GHz and never changed or even
+touched. I wonder if we should honour this somehow in the code? It seems
+like the CCF doesn't do this anyway at the moment, but it could, I guess?
+
+>=20
+> > +	.p		=3D _SUNXI_CCU_DIV(0, 1), /* output divider */
+> > +	.common		=3D {
+> > +		.reg		=3D 0x010,
+> > +		.hw.init	=3D CLK_HW_INIT_PARENTS_DATA("pll-ddr0", osc24M,
+> > +							   &ccu_nkmp_ops,
+> > +							   CLK_SET_RATE_GATE |
+> > +							   CLK_IS_CRITICAL),
+> > +	},
 > > +};
 > > +
-> > +static int gadc_iio_register(struct device *dev, struct gadc_thermal_i=
-nfo *gti)
-> > +{
-> > +     struct gadc_thermal_info *gtinfo;
-> > +     struct iio_dev *indio_dev;
-> > +
-> > +     indio_dev =3D devm_iio_device_alloc(dev, sizeof(struct gadc_therm=
-al_info));
-> > +     if (!indio_dev)
-> > +             return -ENOMEM;
-> > +
-> > +     gtinfo =3D iio_priv(indio_dev);
-> > +     memcpy(gtinfo, gti, sizeof(struct gadc_thermal_info));
-> > +
-> > +     indio_dev->name =3D dev_name(dev);
-> > +     indio_dev->info =3D &gadc_thermal_iio_info;
-> > +     indio_dev->modes =3D INDIO_DIRECT_MODE;
-> > +     indio_dev->channels =3D gadc_thermal_iio_channel;
-> > +     indio_dev->num_channels =3D ARRAY_SIZE(gadc_thermal_iio_channel);
-> > +
-> > +     return devm_iio_device_register(dev, indio_dev);
->
-> I don't get the idea why we need iio device, while we already have the
-> hwmon.
->
 
-Idea behind this is to be able to convert adc iio channel into temp
-iio channel without introducing a new sensor which will duplicate
-behavior of existing one (by this I mean conversion table use). Not
-all devices can or have to use hwmon and some may require iio channel
-hooked up.
+....
 
-Real life example. I own a device (LG P985) which has a fuel gauge
-that does not support battery thermal readings. Vendor provided a
-dedicated adc sensor and one of its channels is used as thermal sensor
-with device specific conversion table. Fuel gauge on the other hand
-supports linking in a dedicated temp iio channel to get thermal
-readings.
+> > diff --git a/drivers/clk/sunxi-ng/ccu_mp.h b/drivers/clk/sunxi-ng/ccu_m=
+p.h
+> > index 687bd2ec798e2..5311835a4db60 100644
+> > --- a/drivers/clk/sunxi-ng/ccu_mp.h
+> > +++ b/drivers/clk/sunxi-ng/ccu_mp.h
+> > @@ -100,20 +100,22 @@ struct ccu_mp { =20
+>=20
+> These changes doesn't belong in this commit.
 
-> Could you explain this a bit more, the cover letter also misses
-> such justification and details.
->
-> Regards,
-> Lukasz
+Ah, indeed, I missed that. Moved that out into another patch now.
+
+Cheers,
+Andre
+
+> Other than that, this looks like a good start. Thanks!
+>=20
+> Best regards,
+> Jernej
+>=20
+> >  				   _muxshift, _muxwidth,		\
+> >  				   0, _flags)
+> > =20
+> > -#define SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents,=
+ _reg, \
+> > +#define SUNXI_CCU_MP_MUX_GATE_POSTDIV_FEAT(_struct, _name, _parents, _=
+reg, \
+> >  					_mshift, _mwidth,		\
+> >  					_pshift, _pwidth,		\
+> >  					_muxshift, _muxwidth,		\
+> > -					_gate, _flags,			\
+> > -					_features)			\
+> > +					_gate, _postdiv,		\
+> > +					_flags, _features)		\
+> >  	struct ccu_mp _struct =3D {					\
+> >  		.enable	=3D _gate,					\
+> >  		.m	=3D _SUNXI_CCU_DIV(_mshift, _mwidth),		\
+> >  		.p	=3D _SUNXI_CCU_DIV(_pshift, _pwidth),		\
+> >  		.mux	=3D _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
+> > +		.fixed_post_div =3D _postdiv,				\
+> >  		.common	=3D {						\
+> >  			.reg		=3D _reg,				\
+> > -			.features	=3D _features,			\
+> > +			.features	=3D CCU_FEATURE_FIXED_POSTDIV |	\
+> > +						_features,		\
+> >  			.hw.init	=3D CLK_HW_INIT_PARENTS_DATA(_name, \
+> >  								   _parents, \
+> >  								   &ccu_mp_ops,\
+> > @@ -126,11 +128,11 @@ struct ccu_mp {
+> >  					_pshift, _pwidth,		\
+> >  					_muxshift, _muxwidth,		\
+> >  					_gate, _flags)			\
+> > -	SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents,	\
+> > +	SUNXI_CCU_MP_MUX_GATE_POSTDIV_FEAT(_struct, _name, _parents,	\
+> >  					     _reg, _mshift, _mwidth,	\
+> >  					     _pshift, _pwidth,		\
+> >  					     _muxshift, _muxwidth,	\
+> > -					     _gate, _flags, 0)
+> > +					     _gate, 1, _flags, 0)
+> > =20
+> >  #define SUNXI_CCU_MP_DATA_WITH_MUX(_struct, _name, _parents, _reg,	\
+> >  				   _mshift, _mwidth,			\
+> >  =20
+>=20
+>=20
+>=20
+>=20
+
 
