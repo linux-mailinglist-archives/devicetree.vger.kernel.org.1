@@ -1,164 +1,213 @@
-Return-Path: <devicetree+bounces-152754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36A27A4A176
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A64A4A186
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:28:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90C0D3AAC82
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:27:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6CBC3A803B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:28:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBDC27426C;
-	Fri, 28 Feb 2025 18:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700C727427A;
+	Fri, 28 Feb 2025 18:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=crapouillou.net header.i=@crapouillou.net header.b="HIZLTQKa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g3txBAsk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from aposti.net (aposti.net [89.234.176.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14229274253;
-	Fri, 28 Feb 2025 18:27:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.234.176.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C6527426B;
+	Fri, 28 Feb 2025 18:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740767244; cv=none; b=feaML1Fa6QouG9VLQpWmpumD/pmshwWY18JnSUk2/RrrvmL/RzDZFsryh2sWAUucmT6MC4TqSmlvJeiaY8EsJf2K1730B4c2Id1Me5EbqymQKaqiFFRz3c3TXSRzr06dp+88+LdQJQWU2Ny6nOjAgQakPBcAhvTRudj54jIry3s=
+	t=1740767312; cv=none; b=snRg/lfG+tzpy3rppyTpsoqoVnGmsfQIU34YvzypXEqy0P6s9HTLha27pDNCL8rmYCupiJpqzgw2EtLUfjVeL95glUQaN/mpYZKMIWHtg0jppXeZXJGbc8STwj1qSNiDYWGJoZst1hFCCnNuvk/ZduI97hs/RMUuqwGMHGu1BX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740767244; c=relaxed/simple;
-	bh=67MIZhOGaz6uNuzThDvVgUejH2NJv/lVLfIlQwxWAaY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=GgGQnvXLHbvlYj+m0GBYcX/g5u654XjSYRqpPj42IPTYiDvoRmGnjcSSxrpXpH1CBYv6DTsFeaWc291HKBa41w8sttOi8WJhnlZ9uM3w5LWYO8cMwcBJaIxKx7QQXHPeE5C6ZZSfxZoXeo8TolNsXGSgm+beDB8eabSlBjkm6X0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=crapouillou.net; spf=pass smtp.mailfrom=crapouillou.net; dkim=pass (1024-bit key) header.d=crapouillou.net header.i=@crapouillou.net header.b=HIZLTQKa; arc=none smtp.client-ip=89.234.176.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=crapouillou.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=crapouillou.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-	s=mail; t=1740767234;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=hunC8aIjFL8iJizsnuivXHSj1ZxS4AePrCKLeqSA1Do=;
-	b=HIZLTQKaoDNgNrovU4MAqTxJVO4u5918To8gUH3iKzSPqqpvSO5wNcaqMxUeUgYVDcROxV
-	63pQc/UhJTi4wXY+QNXMuYup0rcA60Mm+b70j9yCpYYvdPjOKyPqcbGQxUXafevum9S24w
-	j7XIXsGattyqB6INNm6tK348Xunxw5s=
-Message-ID: <f1ffee11ef563d8c7486503eef3d21b8b7e2ccd9.camel@crapouillou.net>
-Subject: Re: [PATCH v2 4/4] pinctrl: ingenic: jz4730: add pinmux for I2S
- interface
-From: Paul Cercueil <paul@crapouillou.net>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>, Linus Walleij	
- <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Andreas Kemnade <andreas@kemnade.info>, Paul Boddie
- <paul@boddie.org.uk>,  Tim Bysun <tim.bysun@ingenic.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
-	letux-kernel@openphoenux.org, kernel@pyra-handheld.com
-Date: Fri, 28 Feb 2025 19:26:11 +0100
-In-Reply-To: <1d50f0c980155dd22ccd164a6d281e3ac68e7446.1740749637.git.hns@goldelico.com>
-References: <cover.1740749637.git.hns@goldelico.com>
-	 <1d50f0c980155dd22ccd164a6d281e3ac68e7446.1740749637.git.hns@goldelico.com>
-Autocrypt: addr=paul@crapouillou.net; prefer-encrypt=mutual;
- keydata=mQENBF0KhcEBCADkfmrzdTOp/gFOMQX0QwKE2WgeCJiHPWkpEuPH81/HB2dpjPZNW03ZM
- LQfECbbaEkdbN4YnPfXgcc1uBe5mwOAPV1MBlaZcEt4M67iYQwSNrP7maPS3IaQJ18ES8JJ5Uf5Uz
- FZaUawgH+oipYGW+v31cX6L3k+dGsPRM0Pyo0sQt52fsopNPZ9iag0iY7dGNuKenaEqkYNjwEgTtN
- z8dt6s3hMpHIKZFL3OhAGi88wF/21isv0zkF4J0wlf9gYUTEEY3Eulx80PTVqGIcHZzfavlWIdzhe
- +rxHTDGVwseR2Y1WjgFGQ2F+vXetAB8NEeygXee+i9nY5qt9c07m8mzjABEBAAG0JFBhdWwgQ2VyY
- 3VlaWwgPHBhdWxAY3JhcG91aWxsb3UubmV0PokBTgQTAQoAOBYhBNdHYd8OeCBwpMuVxnPua9InSr
- 1BBQJdCoXBAhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEHPua9InSr1BgvIH/0kLyrI3V0f
- 33a6D3BJwc1grbygPVYGuC5l5eMnAI+rDmLR19E2yvibRpgUc87NmPEQPpbbtAZt8On/2WZoE5OIP
- dlId/AHNpdgAtGXo0ZX4LGeVPjxjdkbrKVHxbcdcnY+zzaFglpbVSvp76pxqgVg8PgxkAAeeJV+ET
- 4t0823Gz2HzCL/6JZhvKAEtHVulOWoBh368SYdolp1TSfORWmHzvQiCCCA+j0cMkYVGzIQzEQhX7U
- rf9N/nhU5/SGLFEi9DcBfXoGzhyQyLXflhJtKm3XGB1K/pPulbKaPcKAl6rIDWPuFpHkSbmZ9r4KF
- lBwgAhlGy6nqP7O3u7q23hRU=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1740767312; c=relaxed/simple;
+	bh=fRUw9J5isgo7CUkPjJBB6fyMf/RKunUPdzbqGU6YYbk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XcVs+8/LtYXXrYVKyGPZT9e3hwYL7pD4qe8gHUQcoLvEBoCSZExd3l5Q+IheJVPJzVGxuuYRTgFkHheh+1zvKwNrF4pw7Dhqw7MpnDfpV27fo0c9yfy8pS17DfGqqxyDr5N5eryAT/GtUSJtYfDhjvLlYJk4VJinswqY4zEMY9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g3txBAsk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36E5FC4CED6;
+	Fri, 28 Feb 2025 18:28:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740767312;
+	bh=fRUw9J5isgo7CUkPjJBB6fyMf/RKunUPdzbqGU6YYbk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=g3txBAsksgq2aXXjgt3f2Pt4PahUNBA/lP/kw5mjXNKqL38Q9qffUVGRt3+urhUQx
+	 dlz4ICsa1Fu33s2cUFhCvFQk6QcLI/ipQgP0jSQh51dsj+B0mCHA1K2SBRANW6k6y5
+	 7UdZu394U03hXGPI6A4fxYjqfv+5AiUF2UPF/x+hiDyfjEDzZgjDTO6ctf0HqE74/i
+	 QmzA5cFclWw3xvxEpckilWXSXusqF+2bJNRsPCGoKI7FqMCMhVM2/Tic18EJyKu1vB
+	 g2mFElQ4FBzQPqerHB5kjJmXuxpAPsNqbQ17cRVfClXKWUysPGj7vPSzdsWBV+MN31
+	 hMFrXu4w9wFog==
+Date: Fri, 28 Feb 2025 18:28:27 +0000
+From: Conor Dooley <conor@kernel.org>
+To: iansdannapel@gmail.com
+Cc: linux-fpga@vger.kernel.org, Moritz Fischer <mdf@kernel.org>,
+	Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [v4 2/3] dt-bindings: fpga: Add Efinix SPI programming bindings
+Message-ID: <20250228-copilot-trekker-72a20709e9f7@spud>
+References: <20250228094732.54642-1-iansdannapel@gmail.com>
+ <20250228094732.54642-3-iansdannapel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="AS3vEBsZDnj/RgTT"
+Content-Disposition: inline
+In-Reply-To: <20250228094732.54642-3-iansdannapel@gmail.com>
 
-Hi Nikolaus,
 
-Le vendredi 28 f=C3=A9vrier 2025 =C3=A0 14:33 +0100, H. Nikolaus Schaller a
-=C3=A9crit=C2=A0:
-> I2S is used for the sound codec of the Alpha400.
+--AS3vEBsZDnj/RgTT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Feb 28, 2025 at 10:47:31AM +0100, iansdannapel@gmail.com wrote:
+> From: Ian Dannapel <iansdannapel@gmail.com>
 >=20
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Add device tree bindings documentation for configuring Efinix FPGA
+> using serial SPI passive programming mode.
+>=20
+> Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
 > ---
-> =C2=A0drivers/pinctrl/pinctrl-ingenic.c | 13 ++++++++++++-
-> =C2=A01 file changed, 12 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/fpga/efinix,spi.yaml  | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/efinix,spi.yaml
 >=20
-> diff --git a/drivers/pinctrl/pinctrl-ingenic.c
-> b/drivers/pinctrl/pinctrl-ingenic.c
-> index 08e082e84f5c6..6d7dc077c373e 100644
-> --- a/drivers/pinctrl/pinctrl-ingenic.c
-> +++ b/drivers/pinctrl/pinctrl-ingenic.c
-> @@ -209,10 +209,14 @@ static int jz4730_nand_cs4_pins[] =3D { 0x56, };
-> =C2=A0static int jz4730_nand_cs5_pins[] =3D { 0x57, };
-> =C2=A0static int jz4730_pwm_pwm0_pins[] =3D { 0x5e, };
-> =C2=A0static int jz4730_pwm_pwm1_pins[] =3D { 0x5f, };
-> -
+> diff --git a/Documentation/devicetree/bindings/fpga/efinix,spi.yaml b/Doc=
+umentation/devicetree/bindings/fpga/efinix,spi.yaml
+> new file mode 100644
+> index 000000000000..145c96f38e45
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fpga/efinix,spi.yaml
 
-Just a nit - but you remove a blank line in patch 4/4 that was added in
-3/4, better not add it in the first place :)
+Filename matching a compatible please.
 
-That's the only comment I have on the whole patchset, so either fix it
-in a v3 while adding my review tag, or maybe Linus can do it when
-applying the patchset.
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fpga/efinix,spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Efinix SPI FPGA Manager
+> +
+> +maintainers:
+> +  - Ian Dannapel <iansdannapel@gmail.com>
+> +
+> +description: |
+> +  Efinix FPGAs (Trion, Topaz, and Titanium families) support loading bit=
+streams
+> +  through "SPI Passive Mode".
+> +  Note 1: Only bus width 1x is supported.
+> +  Note 2: Additional pins hogs for bus width configuration must be set
+> +  elsewhere, if necessary.
+> +  Note 3: Topaz and Titanium support is based on documentation but remai=
+ns
+> +  untested.
+
+Points 1 and 3 here seem to be driver limitations, and shouldn't really
+be present in a document describing the hardware?
+
+> +
+> +  References:
+> +  - https://www.efinixinc.com/docs/an006-configuring-trion-fpgas-v6.3.pdf
+> +  - https://www.efinixinc.com/docs/an033-configuring-titanium-fpgas-v2.8=
+=2Epdf
+> +  - https://www.efinixinc.com/docs/an061-configuring-topaz-fpgas-v1.1.pdf
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - efinix,trion-spi
+> +      - efinix,titanium-spi
+> +      - efinix,topaz-spi
+
+> +      - efinix,fpga-spi
+
+What hardware does this device represent? Other ones are obvious matches
+to the families you mention, but what is this one?
 
 Cheers,
--Paul
+Conor.
 
-> =C2=A0static int jz4730_mii_pins[] =3D { 0x70, 0x71, 0x72, 0x73, 0x74, 0x=
-75,
-> 0x76,
-> =C2=A0				 0x77, 0x78, 0x19, 0x7a, 0x1b, 0x7c,
-> };
-> =C2=A0
-> +static int jz4730_i2s_mclk_pins[] =3D { 0x44, };
-> +static int jz4730_i2s_acreset_pins[] =3D { 0x45, };
-> +static int jz4730_i2s_data_pins[] =3D { 0x46, 0x47, };
-> +static int jz4730_i2s_clock_pins[] =3D { 0x4d, 0x4e, };
 > +
-> =C2=A0static u8 jz4730_lcd_8bit_funcs[] =3D { 1, 1, 1, 1, 1, 1, 1, 1, 2, =
-2,
-> 2, };
-> =C2=A0
-> =C2=A0static const struct group_desc jz4730_groups[] =3D {
-> @@ -235,6 +239,11 @@ static const struct group_desc jz4730_groups[] =3D
-> {
-> =C2=A0	INGENIC_PIN_GROUP("pwm0", jz4730_pwm_pwm0, 1),
-> =C2=A0	INGENIC_PIN_GROUP("pwm1", jz4730_pwm_pwm1, 1),
-> =C2=A0	INGENIC_PIN_GROUP("mii", jz4730_mii, 1),
-> +	INGENIC_PIN_GROUP("i2s-mclk-out", jz4730_i2s_mclk, 1),
-> +	INGENIC_PIN_GROUP("i2s-acreset", jz4730_i2s_acreset, 1),
-> +	INGENIC_PIN_GROUP("i2s-data", jz4730_i2s_data, 1),
-> +	INGENIC_PIN_GROUP("i2s-master", jz4730_i2s_clock, 1),
-> +	INGENIC_PIN_GROUP("i2s-slave", jz4730_i2s_clock, 2),
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const char *jz4730_mmc_groups[] =3D { "mmc-1bit", "mmc-4bit"=
-,
-> };
-> @@ -251,6 +260,7 @@ static const char *jz4730_nand_groups[] =3D {
-> =C2=A0static const char *jz4730_pwm0_groups[] =3D { "pwm0", };
-> =C2=A0static const char *jz4730_pwm1_groups[] =3D { "pwm1", };
-> =C2=A0static const char *jz4730_mii_groups[] =3D { "mii", };
-> +static const char *jz4730_i2s_groups[] =3D { "i2s-data", "i2s-master",
-> "i2s-slave", };
-> =C2=A0
-> =C2=A0static const struct function_desc jz4730_functions[] =3D {
-> =C2=A0	INGENIC_PIN_FUNCTION("mmc", jz4730_mmc),
-> @@ -263,6 +273,7 @@ static const struct function_desc
-> jz4730_functions[] =3D {
-> =C2=A0	INGENIC_PIN_FUNCTION("pwm0", jz4730_pwm0),
-> =C2=A0	INGENIC_PIN_FUNCTION("pwm1", jz4730_pwm1),
-> =C2=A0	INGENIC_PIN_FUNCTION("mii", jz4730_mii),
-> +	INGENIC_PIN_FUNCTION("i2s", jz4730_i2s),
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct ingenic_chip_info jz4730_chip_info =3D {
+> +  spi-cpha: true
+> +
+> +  spi-cpol: true
+> +
+> +  spi-max-frequency:
+> +    maximum: 25000000
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description:
+> +      reset and re-configuration trigger pin (low active)
+> +    maxItems: 1
+> +
+> +  cdone-gpios:
+> +    description:
+> +      optional configuration done status pin (high active)
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +      cs-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +      fpga-mgr@0 {
+> +        compatible =3D "efinix,trion-spi";
+> +        reg =3D <0>;
+> +        spi-max-frequency =3D <25000000>;
+> +        spi-cpha;
+> +        spi-cpol;
+> +        reset-gpios =3D <&gpio4 17 GPIO_ACTIVE_LOW>;
+> +        cdone-gpios =3D <&gpio0 9 GPIO_ACTIVE_HIGH>;
+> +      };
+> +    };
+> +...
+> --=20
+> 2.43.0
+>=20
 
+--AS3vEBsZDnj/RgTT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IASgAKCRB4tDGHoIJi
+0thJAQD4jSzMiXmJNGF3+fTuX3iqDrBrj7De8ZSSs9QXN5XNrQD/dmoWXwwVtGRl
+ZcTDYcWkEyhtzlIdRr+Goyx79zmRAgU=
+=s0W/
+-----END PGP SIGNATURE-----
+
+--AS3vEBsZDnj/RgTT--
 
