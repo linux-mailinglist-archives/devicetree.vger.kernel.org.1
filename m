@@ -1,135 +1,234 @@
-Return-Path: <devicetree+bounces-152863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC739A4A51D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:32:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55564A4A526
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:39:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADD13189BB44
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 21:33:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ACF73A40CA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 21:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1730A1C701A;
-	Fri, 28 Feb 2025 21:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E311CCEDB;
+	Fri, 28 Feb 2025 21:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="AHZM/KW2"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CDn4W0JQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31DC123F38A
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 21:32:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A51C23F38A;
+	Fri, 28 Feb 2025 21:39:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740778375; cv=none; b=HXRYPwbRqrpFBgvho4hFjfVnSvNpDnBYXiF+vl7du7Ti9XUdd03o2jLNG3Ba1UODj6AYR5Q/7/ekSAuhPArodX+ScxFxKyjqbjiyAhbHhAP5sHcaLnYVF0UJvuXqFPhoOsvYv0Cbv6bENRc75t5kbCrEpQFZXNY8EABYuktSK54=
+	t=1740778753; cv=none; b=JDCKM46sz79GnuM+O4mT5skE5q3KB3IsVLqFtFMPucOuj38BfrbE3A7pDFvA2ChGKXtN/bo2CaBqjd1Fk6mmW87dBOOjKAC/7w4R+oq4RKfQUNM/lAEeuZM5bYdVYI9+dX8nYjU84DFL0rASZO2VY3/zIheVOwGT1LI6DkMbUQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740778375; c=relaxed/simple;
-	bh=0bn7nOO12Db1/cprnEbj+LcZrOhAAVUZyUCa/CQIcms=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h1HVDklkoOm25TchShlw67bm1MopnkdS1zluzUOUD82oiZ4grzB2VbE3WxhoPBtJ7/a3YNsaHGAFWzSx2eNi8tBDhFEdIWZ70qsa3BXjxqo7ZIUe6raMbvUZjWJ4J3VgY/VZ8i3eSSSt5CW1jbhLJADSJYbFjFzlvaCbkR3Y3Ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=AHZM/KW2; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=0bn7
-	nOO12Db1/cprnEbj+LcZrOhAAVUZyUCa/CQIcms=; b=AHZM/KW2y8OvzP1SS/HP
-	f7rcyKf89+xVxVRx7NB+4z0c7wS3TDWUx77Lm/9+vodtjNTlHUGst9gH9gKcCLxI
-	A2AyUrF2+jUL+pXYHjFngBb2eexb04WV35TbUu85TrvRxLpzACreOY+QzwqsnjgN
-	rgHwepI/n/Crk9jZ3kxdI+8B43ZY1bVAyacHmBza2TJYI9VESXbeB+GC4OooLyrE
-	kxQ4ocvWVsX2tw0xTQln5KKksGEMbH9CCc1hN0Ug1xobUW0DiNZcHno8qMyD4LS5
-	bnHK8OVBCZGs8A+jGLQ2aGsaIUc6UqHBDzU8f6Z9Hi1GbmWrDiE/i6Ee9WI+m+74
-	ZQ==
-Received: (qmail 1430828 invoked from network); 28 Feb 2025 22:32:51 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Feb 2025 22:32:51 +0100
-X-UD-Smtp-Session: l3s3148p1@rzFwjDovNs0gAQnoAE04AOw9xELqAtuS
-Date: Fri, 28 Feb 2025 22:32:50 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: mmc: renesas,sdhi: Document RZ/G3E
- support
-Message-ID: <Z8IrgjMTrYtGGAqL@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-References: <20250228124713.153979-1-biju.das.jz@bp.renesas.com>
- <20250228124713.153979-2-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1740778753; c=relaxed/simple;
+	bh=v3sXt3CY02cedb5GqscLy9sHiG8Fcv9G1z+Ha1JSBbM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=O1CB9dZJz4sKkZSn8BS7KXI7Nydlyht17Jy/JpCLjdNJxHqymgVFEqQ0aR0K38mG0U/S+s4rvKSZIuH4RfCARhM1jzUNRCdlm0JtSnXRuLzcSt4cxvuhrb4SGbv4AKgrY5N1d4Kxp081KEJp7NQorvTdorw3l/wuLEao440uRg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CDn4W0JQ; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51SLckrU2748647
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 28 Feb 2025 15:38:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1740778726;
+	bh=dO4Q0rKs3aOccKblhFLjnf6xWDqgH+XFsez+Lbm3iTA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=CDn4W0JQyBCbwVL9uwkni4xkmL7EFK02NdreZeCtdMalj0IbxO1nTwEHReIUToyp5
+	 kGyRzTSlPZUmi3U9D99ASprxHIougk6jZBDszA2hDXmK05b1GK4l9T2zfMU1K/l45q
+	 3w/dBWLlw8bvc7owKhjqfLMdMma+TIU4iPopZvIA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51SLckFb121659
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 28 Feb 2025 15:38:46 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
+ Feb 2025 15:38:45 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 28 Feb 2025 15:38:45 -0600
+Received: from [10.249.135.49] ([10.249.135.49])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51SLcerL085241;
+	Fri, 28 Feb 2025 15:38:41 -0600
+Message-ID: <acde31c5-fe23-4c7b-a823-61ea0958504b@ti.com>
+Date: Sat, 1 Mar 2025 03:08:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZyYpMZHhkxk/PH7b"
-Content-Disposition: inline
-In-Reply-To: <20250228124713.153979-2-biju.das.jz@bp.renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/2] devicetree: bindings: mux: reg-mux: Update
+ bindings for reg-mux for new property
+To: Conor Dooley <conor@kernel.org>, Andrew Davis <afd@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Peter Rosin
+	<peda@axentia.se>,
+        <tglx@linutronix.de>, <gregkh@linuxfoundation.org>, <vigneshr@ti.com>,
+        <nm@ti.com>, <s-vadapalli@ti.com>, <danishanwar@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250227202206.2551305-1-c-vankar@ti.com>
+ <20250227202206.2551305-2-c-vankar@ti.com>
+ <f3e69904-92f0-4de8-bfef-a315a6554a1c@ti.com>
+ <20250228-recipient-unlinked-271fe63d7335@spud>
+Content-Language: en-US
+From: "Vankar, Chintan" <c-vankar@ti.com>
+In-Reply-To: <20250228-recipient-unlinked-271fe63d7335@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hello Conor, Andrew,
 
---ZyYpMZHhkxk/PH7b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 3/1/2025 12:22 AM, Conor Dooley wrote:
+> On Thu, Feb 27, 2025 at 03:26:31PM -0600, Andrew Davis wrote:
+>> On 2/27/25 2:22 PM, Chintan Vankar wrote:
+>>> DT-binding of reg-mux is defined in such a way that one need to provide
+>>> register offset and mask in a "mux-reg-masks" property and corresponding
+>>> register value in "idle-states" property. This constraint forces to define
+>>> these values in such a way that "mux-reg-masks" and "idle-states" must be
+>>> in sync with each other. This implementation would be more complex if
+>>> specific register or set of registers need to be configured which has
+>>> large memory space. Introduce a new property "mux-reg-masks-state" which
+>>> allow to specify offset, mask and value as a tuple in a single property.
+>>>
+>>> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+>>> ---
+>>>    .../devicetree/bindings/mux/reg-mux.yaml      | 29 +++++++++++++++++--
+>>>    1 file changed, 27 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mux/reg-mux.yaml b/Documentation/devicetree/bindings/mux/reg-mux.yaml
+>>> index dc4be092fc2f..a73c5efcf860 100644
+>>> --- a/Documentation/devicetree/bindings/mux/reg-mux.yaml
+>>> +++ b/Documentation/devicetree/bindings/mux/reg-mux.yaml
+>>> @@ -32,11 +32,36 @@ properties:
+>>>            - description: pre-shifted bitfield mask
+>>>        description: Each entry pair describes a single mux control.
+>>> -  idle-states: true
+>>> +  idle-states:
+>>> +    description: Each entry describes mux register state.
+>>> +
+>>> +  mux-reg-masks-state:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>>> +    items:
+>>> +      items:
+>>> +        - description: register offset
+>>> +        - description: pre-shifted bitfield mask
+>>> +        - description: register value to be set
+>>> +    description: This property is an extension of mux-reg-masks which
+>>> +                 allows specifying register offset, mask and register
+>>> +                 value to be set in a single property.
+>>> +
+>>> +allOf:
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - reg-mux
+>>> +              - mmio-mux
+>>
+>> These are the only two possible compatibles, is this "if" check needed?
+> 
+> Aye.
+> 
+>>> +    then:
+>>> +      properties:
+>>> +        mux-reg-masks: true
+>>> +        mux-reg-masks-state: true
+>>
+>> You need one, but cannot have both, right? There should be some
+>> way to describe that.
+>>
+>> Also an example added below would be good.
+> 
+>  From the example schema:
+> # if/then schema can be used to handle conditions on a property affecting
+> # another property. A typical case is a specific 'compatible' value changes the
+> # constraints on other properties.
+> #
+> # For multiple 'if' schema, group them under an 'allOf'.
+> #
+> # If the conditionals become too unweldy, then it may be better to just split
+> # the binding into separate schema documents.
+> allOf:
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              const: vendor,soc2-ip
+>      then:
+>        required:
+>          - foo-supply
+>      else:
+>        # If otherwise the property is not allowed:
+>        properties:
+>          foo-supply: false
+> 
+> What's missing from here is making one of the properties required,
+> so
+> oneOf:
+>    - required:
+>        - masks
+>    - required:
+>        - masks-state
+> 
+>>
+>> Andrew
 
-On Fri, Feb 28, 2025 at 12:47:08PM +0000, Biju Das wrote:
-> The SD/MMC block on the RZ/G3E ("R9A09G047") SoC is similar to that
-> of the RZ/V2H, but the SD0 channel has only dedicated pins, so we must
-> use SD_STATUS register to control voltage and power enable (internal
-> regulator), for non-fixed voltage (SD) MMC interface. However, it is
-> optional for fixed voltage MMC interface (eMMC).
->=20
-> For SD1 and SD2 channels, we can either use gpio regulator or internal
-> regulator (using SD_STATUS register) for voltage switching.
->=20
-> Document RZ/G3E SDHI IP support with optional internal regulator for
-> both RZ/G3E and RZ/V2H SoC.
->=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Thanks for reviewing this patch.
 
-=46rom what I know about bindings, this looks good to me.
+For the use-case we have following three rules to be followed:
+1. "mux-reg-masks" and "mux-reg-masks-state" should be mutually
+    exclusive.
+2. "mux-reg-masks-state" and "idle-states" should also be mutually
+    exclusive.
+3. If "mux-reg-masks" is present then "idle-states" might or might not
+    be there.
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+For the above conditions I have tried to write a binding as:
 
+allOf:
+   - not:
+       required: [mux-reg-masks, mux-reg-masks-state]
 
---ZyYpMZHhkxk/PH7b
-Content-Type: application/pgp-signature; name="signature.asc"
+   - if:
+       required: [mux-reg-masks-state]
+     then:
+       not:
+         required: [idle-states]
 
------BEGIN PGP SIGNATURE-----
+   - if:
+       required: [mux-reg-masks]
+     then:
+       properties:
+         idle-states:
+           description: It can be present with mux-reg-masks, but not 
+required
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmfCK4IACgkQFA3kzBSg
-KbYKnA//WpqYQBwjBnawRmKX3WoZzOW2NI8INuSlmCtOQ4hslf4eRRF+apnQWZ93
-KxvoFcq4M+CCreOn6JCSRIO0huhgMzb2IYfOa2XgeSUh8q3NkEwg8tyuezewGcJy
-B3zyaCJokDPHUOUGQxvX43nE7+DzbxUTsavGrDVDa0LKpYjIJvIf+k0+ID3GncO5
-qkoNP4KLHdcurSjtXrDlZoi2NSXGY4F5+P/1bL4gfxUZuSsM2waljrcbV7VqpVjI
-Wzv+Eei++WpTP9KPvXdhq9c9l36ebBABWSyTl6VQniYOoeWl3rL5hlZ9P0N6r6P5
-fKBvV67P+fEtvjxoGcK6rVHMdw7P0cSC8mKjrhIGLeAzRNcG2WqURX+J0FqjKAb3
-I2VSU8iXH6/h0eWWccJVQXDLX4NhCMpeRqiaCb0WKRjKl+gQ5vJS0YBYRWGW12WM
-DFHv8+4eDGb+oVHCcBr8ubmL8e/3ZYD3DoFfcGiSQKn/0ZAxf60lhkINGv8M4Lym
-lKhn46DUx0GexEkVjtbD6XL4D1bcgrWaYPsE/Wc+sJB++KmGhkjFS8wgzX36OIUA
-5yrd72NAyB56WdHESA/lOEMJ595y1JNnOscYfjV8J23C+SLzA4KHmnDDoHVAF6Xp
-8Ldg2rQhEmDmLjTsyWTwaa2vvz13/0+Bg2uLcE9doPUXMSqb0Gc=
-=uSff
------END PGP SIGNATURE-----
+It is passing dt_binding_check and dtbs_check against correct and
+incorrect properties provided in device tree node.
 
---ZyYpMZHhkxk/PH7b--
+Let me know if you find this correct.
+
+Regards,
+Chintan.
+
+>>
+>>> +      maxItems: 1
+>>>    required:
+>>>      - compatible
+>>> -  - mux-reg-masks
+>>>      - '#mux-control-cells'
+>>>    additionalProperties: false
 
