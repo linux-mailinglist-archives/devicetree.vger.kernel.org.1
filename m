@@ -1,127 +1,82 @@
-Return-Path: <devicetree+bounces-152727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8746A4A040
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:24:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67611A4A058
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:26:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6EFD175753
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 17:24:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2593F7A3495
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 17:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB563597A;
-	Fri, 28 Feb 2025 17:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZjHYKfuR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6A917B50F;
+	Fri, 28 Feb 2025 17:26:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5871F4CB4;
-	Fri, 28 Feb 2025 17:24:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45C411F4CBB;
+	Fri, 28 Feb 2025 17:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740763481; cv=none; b=C6QLiuLWauhonLAJ6/qYblLAL2xNdJLVcCVmwJdhRnWTgkwQxVzBLtGLg1Hbr43xq7mSDND+2UUbIeyUreUwRcPxgMqHaA0GENjRsTOZLsc2gZhsZyMxtWcGUPcIDMdajr3R6yoSBomCW35cQW2iY8rNCQG4aXzf8SuFZBsOzI4=
+	t=1740763601; cv=none; b=Xoq8wjFVc/6AzpIp3EZ7ofFoC3LtoKV6/YSIGfidk63dRgfzYv2xflQP5c+43AJAOy30ZTmqVUBY/AlDHgnIy+Yvy5GhJ/qh0F2eABSmZ0RAmwTizqFWSZPUhF+f4Uozgheqv9ZMJ4EChwg/E4oYZeHZD0RvyXOxX7TJ/mlg+CI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740763481; c=relaxed/simple;
-	bh=QxhgqHpvOR6xbCNfpUBF3xN4kdDKTxtbTr+dc49HtMg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k9AE5aGP3a1OfkNQuGmQa0iHJ+W2XlnSYSEG8S8mFYABIqJsOBJyPS6SGGtKNRIFpkWFuqyVfP87V4H2DWLLQcADxERYo04meKEsvqPbQkzQn8tPckWZN2R1YhFrC0hI+xOY8tKuzerTfe+kAPdkJmU9URIwOklyS4v+CptwstM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZjHYKfuR; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B205A44293;
-	Fri, 28 Feb 2025 17:24:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1740763476;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=lGJ4IMk/2S17LDkhvq63xf3GveG7JHLPRsDkZ58UWfU=;
-	b=ZjHYKfuReiCginek0gxRtQpQEORyx0FtOFMEQHOOGYi5/rLgqlO2nBEWF2MPHmLLDJf67q
-	doZ39uHef9kpzhrR07JLduVxaUly0YgJVndRcmHGl9wVHS5oezVNffdfBI2eOj9jatCRM3
-	fppR4sBcN8+RCWtfldFGmCF3cUt4+ZApNx9qlWs0Br/yG67bntPHFsKy5F4wR3Hug2+BA9
-	5qImyp03z9QovpbndR6K9UKlOlPC9JCSJueFHqftlrraGU02psiazdb3ign77W+G7KV2gu
-	s4DfRorOuC8ghThvxbt4rHMR1A1lYdJcpfW7DbdDZXhI27GKP5eKgoVvsuk0ZQ==
-Message-ID: <249cb614-5b4d-4bf2-b3ee-58534f4d7852@bootlin.com>
-Date: Fri, 28 Feb 2025 18:24:35 +0100
+	s=arc-20240116; t=1740763601; c=relaxed/simple;
+	bh=rqeIJF1R1xmOLdW1IFxpHK4KDEIQW/PJ6jCVivXuDBk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SHOmdNzVZzM3i8ZxWNsE+dlZGiwsb1vFcAv/gLhe3Leq9y/G1jJtAvKSAdQRaYc9C+qTD4KSCPK+Qo2bKjgTpvhf37++TZ9fQvvc1dmT9Rvr6Lt14Rpmyk7Xw+RKqqZC3gUMcsdnDZmHzIGH/YfAb4QX2bnhtrvmacuKompexu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C75DF150C;
+	Fri, 28 Feb 2025 09:26:54 -0800 (PST)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 08A043F6A8;
+	Fri, 28 Feb 2025 09:26:38 -0800 (PST)
+From: Robin Murphy <robin.murphy@arm.com>
+To: vkoul@kernel.org
+Cc: devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/2] dmaengine: Add Arm DMA-350 driver
+Date: Fri, 28 Feb 2025 17:26:31 +0000
+Message-Id: <cover.1740762136.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Describe the cameras in the PinePhone Pro dts
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, oren@taumoda.com, Ondrej Jirman <megi@xff.cz>
-References: <20250228-camera-v1-0-c51869f94e97@bootlin.com>
- <0338826971bfdd5b771bc1c6ada795eb@manjaro.org>
-Content-Language: en-US
-From: Olivier Benjamin <olivier.benjamin@bootlin.com>
-In-Reply-To: <0338826971bfdd5b771bc1c6ada795eb@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeltdellecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefqlhhivhhivghruceuvghnjhgrmhhinhcuoeholhhivhhivghrrdgsvghnjhgrmhhinhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeijeeiheffvefgleetjeehudfgvdejiedvtdegveeljeevheejkeekvefhudeunecuffhomhgrihhnpegtohguvggsvghrghdrohhrghdpkhgvrhhnvghlrdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehiedphhgvlhhopeglkffrggeimedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehiegnpdhmrghilhhfrhhomhepohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduvddprhgtphhtthhopegushhim
- hhitgesmhgrnhhjrghrohdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehhvghikhhosehsnhhtvggthhdruggvpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
-X-GND-Sasl: olivier.benjamin@bootlin.com
+
+Hi Vinod,
+
+As it says on the tin, here's an initial driver for the Arm DMA-350[1].
+This has the intentions of growing into a fully-featured driver, but so
+far my only development platform has been an Arm FVP (software model)
+which doesn't emulate peripheral requests, so this is as far as I've
+been able to get with dmatest alone. However, I figure it's enough to
+be worth posting for review, at the very least.
+
+Thanks,
+Robin.
+
+[1] https://developer.arm.com/Processors/CoreLink%20DMA-350
 
 
+Robin Murphy (2):
+  dt-bindings: dma: Add Arm DMA-350
+  dmaengine: Add Arm DMA-350 driver
 
-On 2/28/25 16:46, Dragan Simic wrote:
-> Hello Olivier,
-> 
-Hello Dragan,
-
-> On 2025-02-28 16:19, Olivier Benjamin wrote:
->> This series adds support for the Pine64 PinePhone Pro's rear and front
->> cameras in Device Tree.
->> This is based on some of Ondrej Jirman's patches hosted in his tree at
->> https://codeberg.org/megi/linux, but I have also fully reviewed and
->> re-written the code from the RK3399 datasheet, the PinePhone Pro
->> schematic, and the IMX258-0AQH5 software reference manual.
->>
->> I have tested these changes on my PinePhone Pro and am able to take
->> photos from both cameras using libcamera's cam.
->>
->> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
-> 
-> I'm afraid that you haven't addressed the notes from the feedback
-> you received earlier? [*]  Also, this should be the v2 of the series,
-> which should contain "PATCH v2" in the patch subjects, and provide
-> a summary of changes in the cover letter.
-> 
-> Or, did you just resend the v1 by mistake?
->
-I somehow missed Heiko's feedback in my email, and therefore intended to 
-resend v1, but b4 would not let me simply resend.
-My most sincere apologies for the noise, I'll address the feedback and 
-send a v2!
-
-> [*] https://lore.kernel.org/linux-rockchip/5127541.31r3eYUQgx@phil/
-> 
->> ---
->> Olivier Benjamin (2):
->>       arm64: dts: PinePhone Pro: describe I2c Bus 1 and IMX258 world 
->> camera
->>       arm64: dts: PinePhone Pro: describe the OV8858 user camera
->>
->>  .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 138 ++++++++++++ 
->> +++++++++
->>  1 file changed, 138 insertions(+)
->> ---
+ .../devicetree/bindings/dma/arm,dma-350.yaml  |  44 ++
+ drivers/dma/Kconfig                           |   7 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/arm-dma350.c                      | 659 ++++++++++++++++++
+ 4 files changed, 711 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+ create mode 100644 drivers/dma/arm-dma350.c
 
 -- 
-Olivier Benjamin, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.39.2.101.g768bb238c484.dirty
 
 
