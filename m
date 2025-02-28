@@ -1,138 +1,96 @@
-Return-Path: <devicetree+bounces-152871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31480A4A57D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:59:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E78D0A4A57F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 23:01:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8625189872D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 21:59:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C2AF7A3B10
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:00:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 353561DE2B9;
-	Fri, 28 Feb 2025 21:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97053187554;
+	Fri, 28 Feb 2025 22:01:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t6iZsuTi"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zZFpBdj3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC6923F388;
-	Fri, 28 Feb 2025 21:59:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0218623F368;
+	Fri, 28 Feb 2025 22:01:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740779972; cv=none; b=avfltcfCz/SDoMK+eXCZ0OIK/3hf/sMuiEw+F+MQQuysoQOlNF8bwUo2QBH2Y4z1z2695hiDTwaVLX3RKUQ8upTnvQmxJMyNHjM1ea6XXwyRybNGYTRwvDl8G8aFB9HZ1cP1lqYXthpaYG5615/SdHxjFP9yDxtYZR6jQfejXCg=
+	t=1740780105; cv=none; b=gvmWfZVguU5RHs4uSCMEBzVCyvgwR3whLuBuz9BorvtVUzlgbPy+4Jxp4Iq8sXBpmzjdSF/gassm9qpn6GXgKrjhYX/Ye5yd/ha6p6hAd4I5AkXB84g2peeMRY8EBJB3n/Da9sFJd/UidhcsZhL9GQwnV9suziQLvBvWH9abC7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740779972; c=relaxed/simple;
-	bh=1uXrApM/OZ45z97xOh8du0b899K24AGxc0xzc8B5RjY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pGO6rg06OsogFZCAER+l8NyG0m5xM8vL3Fph1BJfKIsTuqcmcGbdaGZJv9nCDYt0I+P89Cphs8QKvgCi/n98KeIeOnaP4OW9bNPpwJD56S++Gll7GpnXMow529V80/LmeJlC0B2/HP//LtyqFX0JAp5NcyAmBI0/fjhTfIgo7kY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t6iZsuTi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DEF8C4CED6;
-	Fri, 28 Feb 2025 21:59:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740779971;
-	bh=1uXrApM/OZ45z97xOh8du0b899K24AGxc0xzc8B5RjY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t6iZsuTi16cH8sv1FWBFvXaPNGRLY+mbxR3OEGWpPyyxZPjhYyUmFvX5JCbdK4kbd
-	 DOKqzY/dfkhuyo5OI3HKGe51rVoCpcEMr8v0SjURaEdFWKd5g5PT960h2INmZxjo3w
-	 hSGyumcYC4AexXjwaZIxWxeS0FjsNXU/lbUsHCpx+yEsavtEvyTYpT7IUOa+TEC2EV
-	 ykOpoxoUcuz1SonSJVq3fIuj34THF6ZVr//R66Fl37vNfIHOr6aODn9DHU5mal63Gr
-	 phPwv01OG3gxHpuNPrQdsyMo3tGKtSpIAOR2qKwRJbc6lHSaP+sEh6kOApmR8Y+sxV
-	 eQ6//ZgRcjk7Q==
-Date: Fri, 28 Feb 2025 15:59:29 -0600
-From: Rob Herring <robh@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: Re: [PATCH 1/8] dt-bindings: memory: Document RZ/G3E support
-Message-ID: <20250228215929.GA3763431-robh@kernel.org>
-References: <20250228160810.171413-1-biju.das.jz@bp.renesas.com>
- <20250228160810.171413-2-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1740780105; c=relaxed/simple;
+	bh=N6xBAActN4xoK2F3TbYfwRlYXNzM8tVoRboKiOYpvPY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z1DWBOaBfyNQzyYM7uiMXErjYaK5Y8ebfiNFfu6M5GkA4Mwu/gcaJnpuL7XKDIMnQ7SvrNnV/+1vBOVu8JwX7SJeDNzaeWYrHwqMWKXe/weXhhHS2UwJr80UdvcqsDvHr9Mk7nKeXDhoBDiMNA4MCAEaz2ILIilHjxevpiwfz2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zZFpBdj3; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=xk2zYtXp4iFJHcP/Qhn8mpCV+H+S+uHHYbsnZTGXr80=; b=zZFpBdj3jP+VFXqjYasjuI2NW3
+	yzcaqeYovFrHBY6kDmatbcRNVplUkXbLF9WUQwAkRcihNOygBSiECLkWvehFJkCn+5FJ7RK2aYZok
+	fMtK3LL69+vvmjGo0ksZM/XUNHEE3J9jsM7/AfiQfSdBLc9ym3mFHf0RK/IYWIdkkDCAz8VajKyoK
+	+SwrW7WV4HId4aAwU06zjRBDPh2S3hghrNNAjUPciWB0wS4ZXvon/8P9zf+/YLC4lMshNFOztL8BN
+	oZci4jbpa+EtTR1DpIQ/iH7gjGKtekAYxS49YsFf1ics4LLRLRNYIJ9ZkLhX0TUuXm/FdEnMEyo9D
+	kkHYgLzg==;
+Received: from i53875b47.versanet.de ([83.135.91.71] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1to8QO-0003wY-8l; Fri, 28 Feb 2025 23:01:40 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: quentin.schulz@cherry.de,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	dse@thaumatec.com,
+	Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH v4] arm64: dts: rockchip: add usb typec host support to rk3588-jaguar
+Date: Fri, 28 Feb 2025 23:01:27 +0100
+Message-ID: <174078008218.501190.3886529459427107122.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250228150853.329175-1-heiko@sntech.de>
+References: <20250228150853.329175-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250228160810.171413-2-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, Feb 28, 2025 at 04:07:55PM +0000, Biju Das wrote:
-> Document support for the Expanded Serial Peripheral Interface (xSPI)
-> Controller in the Renesas RZ/G3E (R9A09G047) SoC.
+
+On Fri, 28 Feb 2025 16:08:53 +0100, Heiko Stuebner wrote:
+> Jaguar has two type-c ports connected to fusb302 controllers that can
+> work both in host and device mode and can also run in display-port
+> altmode.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  .../memory-controllers/renesas,rz-xspi.yaml   | 137 ++++++++++++++++++
->  1 file changed, 137 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/renesas,rz-xspi.yaml
+> While these ports can work in dual-role data mode, they do not support
+> powering the device itself as power-sink. This causes issues because
+> the current infrastructure does not cope well with dual-role data
+> without dual-role power.
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rz-xspi.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rz-xspi.yaml
-> new file mode 100644
-> index 000000000000..84875cd28460
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rz-xspi.yaml
-> @@ -0,0 +1,137 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/renesas,rz-xspi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas Expanded Serial Peripheral Interface (xSPI)
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +description: |
-> +  Renesas xSPI allows a SPI flash connected to the SoC to be accessed via
-> +  the memory-mapping or the manual command mode.
-> +
-> +  The flash chip itself should be represented by a subnode of the XSPI node.
-> +  The flash interface is selected based on the "compatible" property of this
-> +  subnode:
-> +  -  "jedec,spi-nor";
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: renesas,r9a09g047-xspi  # RZ/G3E
-> +      - const: renesas,rz-xspi         # a generic RZ xSPI device
-> +
-> +  reg:
-> +    items:
-> +      - description: xSPI registers
-> +      - description: direct mapping area
-> +
-> +  reg-names:
-> +    items:
-> +      - const: regs
-> +      - const: dirmap
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Interrupt pulse signal by factors excluding errors
-> +      - description: Interrupt pulse signal by error factors
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: spi_pulse
-> +      - const: spi_err_pulse
+> [...]
 
-Drop 'spi'
+Applied, thanks!
 
-Otherwise,
+[1/1] arm64: dts: rockchip: add usb typec host support to rk3588-jaguar
+      commit: c55c9e91d1643493d0434f246917aea7a2653e0f
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
