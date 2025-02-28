@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-152745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B392DA4A156
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:22:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA37DA4A163
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 756FF189B152
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:22:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EFBB18917FE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:25:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102C826B971;
-	Fri, 28 Feb 2025 18:22:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF8B27604B;
+	Fri, 28 Feb 2025 18:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uHdJm99d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R7eV4+FK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83821A2554;
-	Fri, 28 Feb 2025 18:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5D2B276046;
+	Fri, 28 Feb 2025 18:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740766927; cv=none; b=TJA8gVFMzX5h/ppywCCS/8jwgwpAaPWcmEPQCo4OFYsibWdJTbUJFJLibbC0OicH9pK+iriyqt1en5sT0EtK+oxSYPBaiUXX5OAoUIN6i/z0xiUiqCD4jna5gnJ1/P9/2sXl5Iewh6nO4pY/9SSGDwzmH9reZp7IKYl5v9jwxWQ=
+	t=1740767075; cv=none; b=GeZ9a67Y6t4VYrzEUSEljgD22rCwCTRTVk+OLcqX294Q2FH42opBR/YtGBNz6v2J2nMyrHnrW5e6rkAKaSuoHa1JimCra+dQsnuRre8F6Nf8IBp/NYc0ZB2jFUhlPU0fo1qT7vRh6SLE+rQbiZLWElc4xek+X29vGAywnHpDt5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740766927; c=relaxed/simple;
-	bh=L7nx2qw0ww3IcjVdyW4mjPxnThBtNa64sCtxvSfHX1Y=;
+	s=arc-20240116; t=1740767075; c=relaxed/simple;
+	bh=hFss+V64FKtbHUiLgnvmpNjzRUCCQs/2WuN6Q/rdJEs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JHHFNfPUCID5SFL36WgO5sb1ddnTi2RYLdCh9A4IzrEPISbeQtFC/+KJXBhd7G0Vzvpbl3k48VXUhIklkk97l+YkaViauUDr72dHUw7do71x9X8fn6EzWU85LBo+/Bmj8GbCAwt5V6b725a9dmUsIMDSNvYDNDf6YZIRgBcRjdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uHdJm99d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DD57C4CED6;
-	Fri, 28 Feb 2025 18:22:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GI6WVQtoleeJOk5CZo/xlznRjPplz/b3gZYWKuDQB1bZwlm2HLkR/mMx/97K4Y/Q/NfFSkYoJNNmdT+7dyyX95H0I7Hytzu6JH3xjexqdAGK5x7dF67gc/1MYO/2eFUnfIGTwS84s1YhkzgPPwRKIOAuL7PDJhJomvoU2r9Hi78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R7eV4+FK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51D1EC4CEE2;
+	Fri, 28 Feb 2025 18:24:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740766927;
-	bh=L7nx2qw0ww3IcjVdyW4mjPxnThBtNa64sCtxvSfHX1Y=;
+	s=k20201202; t=1740767074;
+	bh=hFss+V64FKtbHUiLgnvmpNjzRUCCQs/2WuN6Q/rdJEs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uHdJm99dr70XTwFpyITFYJXriGp1uxqm7Hh5XDySE+HKhTi5RfIAWdPSJ3SSka/ZG
-	 1GyPH2hIvUrJX9dV0XwHXvSUNRddgbZ6RV6DW/Vqhefm5IZD9HupwFShXEX9GnwfJf
-	 r5mmMVxaCVpa3jNFbjseWAKTBLUxg0XECFMN5aMEWLY8c/nwA3jzfrYc7yUzJyer6j
-	 zzbftPKBIqvWs088hW0tBeLO9pbKyUhaao+UdS8Uk+9TQy0vCDJI1dVHkS+n0ZLua9
-	 b36k0X6FT1mRPnfHc5qlHt/oKwJDEylV6L7btZ9j7y2gm+eXUG7ASefUZ5srCf94us
-	 fUk+BWVLDujRw==
-Date: Fri, 28 Feb 2025 18:22:02 +0000
+	b=R7eV4+FKgbQlKK3BuaqhU2mEmGNYyMQfgn476SJd1/pZLHAF9wNpCgWSYypBotMrq
+	 SFTb6EJdvs3Vg1Zxl8ipIPnSuwh8sa0UF5pbasXl9L1OKV2aVtR6mBMk5y0RqnuYAF
+	 WzWiJ39gnvXww2DVbcxgBM32kVx5/5LmKo3+QbIZwEEmc2athx3AFX9QAlufp4WRRp
+	 OYBNRhqAu7vGxUb2+JkjP4JcieD8heVBeHizePdaFKgvm892ctkSq+Xsgz/46oc2Fz
+	 zMOSDcPktTbvZCZvkKbqYKyndZJhCxfUL2CgF+DkeDVW03bPDn0DrGVAuJ5xFLQik+
+	 EDs6/6PlJH77g==
+Date: Fri, 28 Feb 2025 18:24:30 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Zixian Zeng <sycamoremoon376@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev, chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com
-Subject: Re: [PATCH v2] riscv: sophgo: dts: Add spi controller for SG2042
-Message-ID: <20250228-factual-rage-0e1e1e48b009@spud>
-References: <20250228-sfg-spi-v2-1-8bbf23b85d0e@gmail.com>
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH 1/2] dt-bindings: leds: add Texas Instruments TPS6131x
+ flash LED driver
+Message-ID: <20250228-zipfile-net-69e4bbebd8d6@spud>
+References: <20250228-leds-tps6131x-v1-0-d1071d90f9ea@emfend.at>
+ <20250228-leds-tps6131x-v1-1-d1071d90f9ea@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,96 +62,183 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5HTFhaoNLB+m4rvM"
+	protocol="application/pgp-signature"; boundary="LTXo1e2XtcxG1y4X"
 Content-Disposition: inline
-In-Reply-To: <20250228-sfg-spi-v2-1-8bbf23b85d0e@gmail.com>
+In-Reply-To: <20250228-leds-tps6131x-v1-1-d1071d90f9ea@emfend.at>
 
 
---5HTFhaoNLB+m4rvM
-Content-Type: text/plain; charset=us-ascii
+--LTXo1e2XtcxG1y4X
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 28, 2025 at 08:40:23PM +0800, Zixian Zeng wrote:
-> Add spi controllers for SG2042.
+On Fri, Feb 28, 2025 at 11:31:23AM +0100, Matthias Fend wrote:
+> Document Texas Instruments TPS61310/TPS61311 flash LED driver devicetree
+> bindings.
 >=20
-> SG2042 uses the upstreamed Synopsys DW SPI IP.
->=20
-> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
+> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
 > ---
-> For this spi controller patch, only bindings are included.
-
-^^^ you've not actually included any bindings in this patch, copy-paste
-mistake?
-
-> This is tested on milkv-pioneer board. Using driver/spi/spidev.c
-> for creating /dev/spidevX.Y and tools/spi/spidev_test for testing
-> functionality.
-> ---
-> Changes in v2:
-> - rebase v1 to sophgo/master(github.com/sophgo/linux.git).
-> - order properties in device node.
-> - remove unevaluated properties `clock-frequency`.
-> - set default status to disable.
-> - Link to v1: https://lore.kernel.org/r/20250228-sfg-spi-v1-1-b989aed9491=
-1@gmail.com
-> ---
->  .../riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts |  8 +++++++
->  arch/riscv/boot/dts/sophgo/sg2042.dtsi             | 28 ++++++++++++++++=
+>  .../devicetree/bindings/leds/ti,tps6131x.yaml      | 123 +++++++++++++++=
 ++++++
->  2 files changed, 36 insertions(+)
+>  1 file changed, 123 insertions(+)
 >=20
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/r=
-iscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> index be596d01ff8d33bcdbe431d9731a55ee190ad5b3..c43a807af2f827b5267afe5e4=
-fdf6e9e857dfa20 100644
-> --- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> @@ -72,6 +72,14 @@ &uart0 {
->  	status =3D "okay";
->  };
-> =20
-> +&spi0 {
-> +	status =3D "okay";
-> +};
+> diff --git a/Documentation/devicetree/bindings/leds/ti,tps6131x.yaml b/Do=
+cumentation/devicetree/bindings/leds/ti,tps6131x.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..c08b3cef7abcec07237d32714=
+56ff1f888b2b809
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/ti,tps6131x.yaml
+
+With a filename matching one of the compatibles in the file,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/ti,tps6131x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +&spi1 {
-> +	status =3D "okay";
-> +};
+> +title: Texas Instruments TPS6131X flash LED driver
 > +
->  / {
->  	thermal-zones {
->  		soc-thermal {
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts=
-/sophgo/sg2042.dtsi
-> index e62ac51ac55abd922b5ef796ba8c2196383850c4..500645147b1f8ed0a08ad3caf=
-b38ea79cf57d737 100644
-> --- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> @@ -545,5 +545,33 @@ sd: mmc@704002b000 {
->  				      "timer";
->  			status =3D "disabled";
->  		};
+> +maintainers:
+> +  - Matthias Fend <matthias.fend@emfend.at>
 > +
-> +		spi0: spi@7040004000 {
-> +			compatible =3D "snps,dw-apb-ssi";
+> +description: |
+> +  The TPS61310/TPS61311 is a flash LED driver with I2C interface.
+> +  Its power stage is capable of supplying a maximum total current of rou=
+ghly 1500mA.
+> +  The TPS6131x provides three constant-current sinks, capable of sinking
+> +  up to 2 =D7 400mA (LED1 and LED3) and 800mA (LED2) in flash mode.
+> +  In torch mode, each sink (LED1, LED2, LED3) supports currents up to 17=
+5mA.
+> +
+> +  The data sheet can be found at:
+> +    https://www.ti.com/lit/ds/symlink/tps61310.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tps61310
+> +      - ti,tps61311
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: GPIO connected to NRESET pin
+> +
+> +  ti,valley-current-limit:
+> +    type: boolean
+> +    description:
+> +      Reduce the valley peak current limit from 1750mA to 1250mA (TPS613=
+10) or
+> +      from 2480mA to 1800mA (TPS61311).
+> +
+> +  led:
+> +    type: object
+> +    $ref: common.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      led-sources:
+> +        allOf:
+> +          - minItems: 1
+> +            maxItems: 3
+> +            items:
+> +              enum: [1, 2, 3]
+> +
+> +      led-max-microamp:
+> +        anyOf:
+> +          - minimum: 25000
+> +            maximum: 350000
+> +            multipleOf: 50000
+> +          - minimum: 25000
+> +            maximum: 525000
+> +            multipleOf: 25000
+> +
+> +      flash-max-microamp:
+> +        anyOf:
+> +          - minimum: 25000
+> +            maximum: 800000
+> +            multipleOf: 50000
+> +          - minimum: 25000
+> +            maximum: 1500000
+> +            multipleOf: 25000
+> +
+> +      flash-max-timeout-us:
+> +        enum: [ 5300, 10700, 16000, 21300, 26600, 32000, 37300, 68200, 7=
+1500,
+> +                102200, 136300, 170400, 204500, 340800, 579300, 852000 ]
+> +
+> +    required:
+> +      - led-sources
+> +      - led-max-microamp
+> +      - flash-max-microamp
+> +      - flash-max-timeout-us
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - led
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      led-controller@33 {
+> +        compatible =3D "ti,tps61310";
+> +        reg =3D <0x33>;
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        reset-gpios =3D <&gpio1 0 GPIO_ACTIVE_LOW>;
+> +
+> +        tps61310_flash: led {
+> +          function =3D LED_FUNCTION_FLASH;
+> +          color =3D <LED_COLOR_ID_WHITE>;
+> +          led-sources =3D <1>, <2>, <3>;
+> +          led-max-microamp =3D <525000>;
+> +          flash-max-microamp =3D <1500000>;
+> +          flash-max-timeout-us =3D <852000>;
+> +        };
+> +      };
+> +    };
+>=20
+> --=20
+> 2.34.1
+>=20
 
-I thought were were dropping the use of "snps,dw-abp-ssi" in isolation,
-and starting to require soc-specific compatibles now.
-
-Rob, Krzysztof?
-
-
---5HTFhaoNLB+m4rvM
+--LTXo1e2XtcxG1y4X
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8H+ygAKCRB4tDGHoIJi
-0n2wAQCLvQ8ZMOWUD0T2/OYl1/lAg6L9QMRCqx+crVNoQ6oyJAEAwoY+HGNeol8+
-sKuPMRdwNeSwauRr9jNk0DoRyGuLVw8=
-=HgAK
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8H/XgAKCRB4tDGHoIJi
+0jUeAP0a+qzuVsXmjlgmLl6z3Gyxonrx4RKhuAi9VtBd5aNZawD/Zgjrck1Y1OLR
+DjlVas5c3ZcarodzgxNWgZ/3Djf+sgg=
+=bVW4
 -----END PGP SIGNATURE-----
 
---5HTFhaoNLB+m4rvM--
+--LTXo1e2XtcxG1y4X--
 
