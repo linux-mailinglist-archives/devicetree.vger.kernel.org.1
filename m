@@ -1,160 +1,108 @@
-Return-Path: <devicetree+bounces-152411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 147CFA49065
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 05:34:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B1EBA490A6
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 05:57:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63D1B3B3AE9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 04:33:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B28016EB99
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 04:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EBEC1BDA97;
-	Fri, 28 Feb 2025 04:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77F51ADC79;
+	Fri, 28 Feb 2025 04:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UL9wv/K7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MlJg70sV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA5F1BD9C1;
-	Fri, 28 Feb 2025 04:32:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11BDD1A3140;
+	Fri, 28 Feb 2025 04:57:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740717171; cv=none; b=F/4of/dbHcleD6Rx0Scr80L62G5P02nrsve+a6RHEtlgiL/wduizGjXZA5dfjKsr2CMtuNolv2T5Loy5tXiwkKC34+1UQn4TeJ1Zhbwkw3pRHL3PnUg1VdV6viWp/bjCLyt0bCIgE1bggTdNTacL4lXG+10Ht4j8rmdbkRIAzlU=
+	t=1740718655; cv=none; b=CMsd1gML9zAUnAJbhyaYUPhguDtk28kFcZJjTkZpcBDs05Jtln3TJ/sEsYd6R9Ld17EpNZCTooeUeEhhXg4ULCG4F8TQLCHsXrzYhKYxADyMIc4HJ8MIQXyoSO8fiIJ7XHQu5tzc7FZEZFkJPmSTDTfP8oBTaMvaZboQh35F7Wo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740717171; c=relaxed/simple;
-	bh=qZhdXikI6UVY1zdlQzyoBJcvZeFaA39QMPy5jc+lJ4E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=X3Z+FlEr4JSaOQRfKPyJqERL8KYo99ShyDsvFSwJYfYaCPBQUG4xWH5iFgfgjXsM/K87M6o+pOfbF7rkk2NYWvOO43xCYYbfTqrvLYWSiU33s3kBVg+shPgrGvrt+WOdB+eKD+ER7z1hOQisXxp16BNN9BS2NiA93pXN+BhB3jQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UL9wv/K7; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22339936bbfso26758635ad.1;
-        Thu, 27 Feb 2025 20:32:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740717170; x=1741321970; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mY1ZEHmtwa1GitLrlmJuselIoFJmZMHZa/Euu9FfPU0=;
-        b=UL9wv/K7SSQQwZHgEQQRJvIgNO++fdoaGW/qQgkgRfq8sbp6CwtESx2qct3gdUYTYG
-         fkANkK9WJzxBzy5K00kb0EpibSQPAMx/Ey3g43jNLLKkY7aSh39pToevS+EBgKVITNEX
-         J8FbWRJnmhhCBbGhUsNUOY47xk0698I34BNVL3i8YuET5u7cFp+KKRrrQdQXkcqVaKkX
-         6VZPZdV2nJqfdq121GCI9gHd6y1osBNwlFw2a3LJMz+hm5t395+s8uhyzr/EYLGi0TXa
-         PlIAPyGXK1hZoznRP/njVKsH15wl0OQfnnkps5Icmma5O2Xi0KmGxR9vTNhf5QhE9Vb/
-         QqYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740717170; x=1741321970;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mY1ZEHmtwa1GitLrlmJuselIoFJmZMHZa/Euu9FfPU0=;
-        b=lLl/n6/AesnGC67th8Q5DNqiGYoIMo004hJdl0PiEcbjv4vkcBqubz58V0N63hh7R1
-         97B5Q1bSrbVs2IB91w3EE3E+6ONp39GB515RFOaAFAKJRfHtTbZJGEenp4+jW5qQX/+x
-         HaWQvp8kX5UVUjs4BEKT+/AwjLU08L5VcpKdopkmYPSOs327zcUliDWNhFDPJ+6jjGqZ
-         q9O+JChvMgjdk+Muo4uGYB9LalhGcCMNbkMSwvi+HRoHOLxbsEplKRGtPON8YMQt8dK0
-         jNMq2hz2E9LNSqbYGqLWcDmr45LrFjM9hTc2fsL1bl1YVhlc5e++J3F4tf86YMGl7iEC
-         f2Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCUEHi4gH7wSCDQY8i65fp0DZ8P1GxspS8xYKB3AEqGkfGGrCYBP6qXdO/jcdCcOVgIClFuaqDblzBEL@vger.kernel.org, AJvYcCVsf0VeUn5uvFOrlLUBgDfrn1Rywr8Q4hYFTJymoOjsC1hCJuM71toX08L0qmMyINjsA2OURNDp0qQabX8H@vger.kernel.org
-X-Gm-Message-State: AOJu0YzORpSv3fh+w7+vC8xCpKeJswbZmXCpZzCgb42wW08yGQgtofQ4
-	U9rv4TWKs4Bs0OJ2Ymv+DDO82/Vd9PMRXT/QldXUx4BVpa/Lw8MA1cJliQ==
-X-Gm-Gg: ASbGncu0z8eAGFlKtCLlDvtj6oiKhXX3bgycG60UatZtkRwmThCyntcF8BNb2Uqfzax
-	Csoonwy7rfnXBDOdg7vQK7riovb+/zBJAccla6B01aqDgyVyLoekFVC2UWpqUGtusaE5mpIQUwO
-	1EEbiMu+BwAsq9ogT/7oQDoDDM9DKUpgWooi+n+cTDvtslVlTnGkuQYmotj1+bpMXZHYs0YqzVt
-	zDBn452sfsdVTFO2L5c+SJ/2Ns2zBq65t5PoEYxyeKWWQIuw7HSSPuVbVua9vJb5T+KVgDHv3yt
-	Ewen6vfFITF9KzmS0Rn5erMn33Ec
-X-Google-Smtp-Source: AGHT+IEd45BbRxuJcc/ODzZoJKKfv+EegnhVjoVMaQy8U6rbvnXBM+bXYqV4j3BtClJXhPFYagq+JA==
-X-Received: by 2002:a05:6a20:7283:b0:1ee:e16a:cfa8 with SMTP id adf61e73a8af0-1f2f4e01863mr2897050637.34.1740717169879;
-        Thu, 27 Feb 2025 20:32:49 -0800 (PST)
-Received: from [127.0.1.1] ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-734a003dcafsm2738204b3a.132.2025.02.27.20.32.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 20:32:49 -0800 (PST)
-From: Nick Chan <towinchenmi@gmail.com>
-Date: Fri, 28 Feb 2025 12:32:16 +0800
-Subject: [PATCH RESEND v2 5/5] arm64: dts: apple: t8015: Add backlight
- nodes
+	s=arc-20240116; t=1740718655; c=relaxed/simple;
+	bh=QrNGroVYoQ/+Oe6QW8oV1ySJLkXG2GnrUIjFbYRGZW0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZucUkzYM11JFXRcLcF6zP8aE19aOXOeNmVvjn1TPq3HmHrfLmNqlENAkgOwS2MTbAnGnOwBWOb/5986PM8tA4JBcvZpH7bs+SxmwzrqNukXAxmmCPFMVm1MwuljGA1vLeIPDGb4mNlf7zm2sraFtCKl938Ye5B/noKTG558HHT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MlJg70sV; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740718654; x=1772254654;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=QrNGroVYoQ/+Oe6QW8oV1ySJLkXG2GnrUIjFbYRGZW0=;
+  b=MlJg70sV5AWC/SSfeen7/DxOW0N4ffX1ZtcSmdlHFKst4BYOk35V3B5a
+   lABJG0ZnTKIv1uUnJLjSj4ffwK5CYoSpCZsuWXozzOQsyBHwzjJnsUOu2
+   qAPr8Lr9JW/75jj4Et9G1HK+YufBKrPcqSejTIrscEQd1ZlMVbAv7Ll9d
+   ZcESaQfLIJ2hC4vEFyiGIjIbVE8x1gvEdJMoipyhmN/SLVeX7vFfxBPXZ
+   fBvYWelWihYy8zn9f37OkNaWcoSl00acQIvTTWV3tI3y3x9WImQfJaF3L
+   B8clL4l6JfKEAa0wO0QaJNhxLPmLactJAABBRxFs7yzJCHnPrKPkHDaP4
+   A==;
+X-CSE-ConnectionGUID: Xlda4NQqSVGy+ud8x74OUw==
+X-CSE-MsgGUID: h8JjRYz9TvaG3hg/wpktGw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="45554641"
+X-IronPort-AV: E=Sophos;i="6.13,321,1732608000"; 
+   d="scan'208";a="45554641"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 20:57:33 -0800
+X-CSE-ConnectionGUID: szytzD3xRbmOecp98ULNPQ==
+X-CSE-MsgGUID: eXIAEFFHRYKJvvNvGBm1Dw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,321,1732608000"; 
+   d="scan'208";a="122245976"
+Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
+  by orviesa004.jf.intel.com with ESMTP; 27 Feb 2025 20:57:31 -0800
+From: niravkumar.l.rabara@intel.com
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	niravkumar.l.rabara@intel.com,
+	nirav.rabara@altera.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH RESEND v3 2/2] arm64: dts: socfpga: agilex5: add clock-names property to nand node
+Date: Fri, 28 Feb 2025 12:53:49 +0800
+Message-Id: <20250228045349.1429680-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250228-dwi-dt-v2-5-69e450bc4bfb@gmail.com>
-References: <20250228-dwi-dt-v2-0-69e450bc4bfb@gmail.com>
-In-Reply-To: <20250228-dwi-dt-v2-0-69e450bc4bfb@gmail.com>
-To: Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Nick Chan <towinchenmi@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1410; i=towinchenmi@gmail.com;
- h=from:subject:message-id; bh=qZhdXikI6UVY1zdlQzyoBJcvZeFaA39QMPy5jc+lJ4E=;
- b=owEBbQKS/ZANAwAIAQHKCLemxQgkAcsmYgBnwTxhj6M3NanBr5AvddymnbZR2d8cHPaGW4NzK
- 2jryU6pj5GJAjMEAAEIAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCZ8E8YQAKCRABygi3psUI
- JKWhD/9Kye4j0aRu2dTcTj19vBKZO44Ncolu40yJZDoGyjZ61paCAKdGVjuTcWY9c7tit399/J/
- A2uRCQNQFddsl6uIBMMMHvkZd1ldws1boplm2P90ltqOkQ9IsQVcUqia/WlcR3Tx2GG2IOI6ee+
- ypekvAXxcSeKhAvjl4Ds410iPec+ueF9PWWP3eFDHojA7ge+DH4ummzhnrtVscaECWM3zpd5/AD
- 2lb4/jDhCWWZuWfdeUhTdl46zakdZIiFImP5OOHHbvpFUf+RPhcrV91g3BI7CVhL12TEZtmBNzW
- 5T+0buNt166NeM90BHShWxPKH7fofypOIQFjrXydSF9XKchP27u8TClv3gBRS7cyUcmd18CbFm0
- SM2Y+pbIv3aNU5uf+B1ctiARPi4Gv0oAXhj8Agg+D3hMEb7fG5gfFHNoHJSqChlbEXqsr3GgKhm
- JLlA41rfnGvnZYt/SbXF5Qo57Jul7m7ikBXE7d6LYuzQuM4a5BJ3ZZDBiHOfDrprrQPKsTO914A
- hLEWFZ4wzSvzFatsslxPy999apbmmWTjmHtBNyqDphTDeL2eK9Vl7AN3zPuNpbmZrjbzisQzKze
- uUywQTswPe+5TkBYL0T+gWSnNDbFnGiyCp5iSnhoXlohNdDvl0KhN6RlxrjaZgX7MyyaR1pxQ9O
- 5QOv4NskCVgf18Q==
-X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
- fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
+Content-Transfer-Encoding: 8bit
 
-Add DWI backlight controller nodes for Apple A11 SoC, and enable it for:
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-- iPhone 8
-- iPhone 8 Plus
+Add required clock-names property to the nand node.
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+Fixes: 2d599bc43813 (arm64: dts: agilex5: add initial support for Intel Agilex5 SoCFPGA)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 ---
- arch/arm64/boot/dts/apple/t8015-8.dtsi | 4 ++++
- arch/arm64/boot/dts/apple/t8015.dtsi   | 7 +++++++
- 2 files changed, 11 insertions(+)
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/apple/t8015-8.dtsi b/arch/arm64/boot/dts/apple/t8015-8.dtsi
-index b6505b5185bdd728a7416efaa3dd53d1c6a5fab9..0300ee1a2ffb7d2bd0558f6cb6f86514f4b433a4 100644
---- a/arch/arm64/boot/dts/apple/t8015-8.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8015-8.dtsi
-@@ -11,3 +11,7 @@
- / {
- 	chassis-type = "handset";
- };
-+
-+&dwi_bl {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/apple/t8015.dtsi b/arch/arm64/boot/dts/apple/t8015.dtsi
-index b68647bebd20782ba7a125e670b3264c184b62cd..4d54afcecd50b50ed1fd386ccfc46c373e190e6b 100644
---- a/arch/arm64/boot/dts/apple/t8015.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8015.dtsi
-@@ -262,6 +262,13 @@ pmgr: power-management@232000000 {
- 			reg = <0x2 0x32000000 0 0x8c000>;
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+index 51c6e19e40b8..27f75e1bc8eb 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+@@ -271,6 +271,7 @@ nand: nand-controller@10b80000 {
+ 			#size-cells = <0>;
+ 			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clkmgr AGILEX5_NAND_NF_CLK>;
++			clock-names = "nf_clk";
+ 			cdns,board-delay-ps = <4830>;
+ 			status = "disabled";
  		};
- 
-+		dwi_bl: backlight@232200080 {
-+			compatible = "apple,t8015-dwi-bl", "apple,dwi-bl";
-+			reg = <0x2 0x32200080 0x0 0x8>;
-+			power-domains = <&ps_dwi>;
-+			status = "disabled";
-+		};
-+
- 		pinctrl_ap: pinctrl@233100000 {
- 			compatible = "apple,t8015-pinctrl", "apple,pinctrl";
- 			reg = <0x2 0x33100000 0x0 0x1000>;
-
 -- 
-2.48.1
+2.25.1
 
 
