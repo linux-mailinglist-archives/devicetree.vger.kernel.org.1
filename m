@@ -1,102 +1,142 @@
-Return-Path: <devicetree+bounces-152876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37CDDA4A5A7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 23:08:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C29BA4A5B1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 23:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E502169746
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:08:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7624C16D6C9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759E41DE2C0;
-	Fri, 28 Feb 2025 22:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF91E1DE2CB;
+	Fri, 28 Feb 2025 22:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O8r9Chhc"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="TyCXX+0Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472491A254C;
-	Fri, 28 Feb 2025 22:08:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9071A254C;
+	Fri, 28 Feb 2025 22:11:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740780487; cv=none; b=J+ZMb0wV9au1rPEUABCdxmEJnSQXXcHq20T3S+fwOmmnjSfFguEqfyXJJigKPUSun8AjnA5FATuaVuDA1PFyom40QSgQqUc7Z7V1kplzlEzPxS1/0TrFIXeR7xbTUw0VjHyzA6yS5UmdBIVrfPiQFd11KzdaQE7lN9xkLZmgBOA=
+	t=1740780721; cv=none; b=mzUFPcgwg3oOj2hhlnXDkBzUsAtv96ouWqZuH7FGYjAztNQ2ww6r55MzUGgtBp8LVNA4mckGL1/rvqSiCJFvy/AFMM6l8Icq0y5uxao98Msix5DDHRzUJfY053PVFnDAbQwRJU7i0at0NAnGvc0ANYRYX+sj4npEgK0XcNLMseQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740780487; c=relaxed/simple;
-	bh=z8vdHh5U09vn686dTTiaeqn6j89eZ0MVs/V87u6spGQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nLCKl+cvjjq9RbShz9pfOXVYVjhSHBmiA989kf2wdjUEeS8N4+99kxGN5/yRruG1M6ZQoFbaPtFO1kfWtYyU5ai+y238Cfli/lzj4gQ0Rq0qcpV6LDj2vrD441jb9V0ST5PTXiC8X5J3laQrfySlSgb56Ix7dF5165JR5k3AQPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O8r9Chhc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F73AC4CED6;
-	Fri, 28 Feb 2025 22:08:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740780486;
-	bh=z8vdHh5U09vn686dTTiaeqn6j89eZ0MVs/V87u6spGQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O8r9Chhc2XYy+O/Zfty0uSGUWvEuLZUQsKbhn+iEJexYxeEgqzsQu1HqNV0V7/qi2
-	 k+sp+pcEaIy/dMGb/Og+WZxoeL4cIQQPIDdcXqpgbtDFXtYUPzVJ3Ucq1yL6vcUTu8
-	 iMSxlAM3vwZChl1+9bAfTii5ajhVKRhJc2ELqv3CcKw2mjSe4Ko4vZZFiGf/XTnhYW
-	 jlCTntMv96rI19KnXmxj29GQCgmIe6YNEJLXRwQc+l4batcktetLeh33tQmrktG6Ah
-	 cNq2ZNq8TgK0uNiUXsW3HMY7cxUOAQBgjkTORs/g2PEhQfOfGJTOseCkFERsGlbVew
-	 umlNbdVQCzL9w==
-Date: Fri, 28 Feb 2025 16:08:04 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
+	s=arc-20240116; t=1740780721; c=relaxed/simple;
+	bh=n0RDSDT7lrDfgY2gY0Jx1+2UsomVL7pe4VNMSvttegY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pCygiEf+cF+0lcBYaLrpC0A3kl3XHISBARAaqepMmzSBbxFHd0xhMF8oIJldMFt/zBo6uPw46cXHjSe7ubo9bj/uka+KaOJcXQVlEqAodLaHxFZK3k/mHWsH+5Rf5CQprgZkIkQXjn4LWd7GHd4zPdPSlY9IbtayRheicCtxbbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=TyCXX+0Y; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=VZfcm07W8RwEaBy9lSmqnHo6WL11ba796zrsT4TrXJI=; b=TyCXX+0Y4INx6O+beYAL/qfnpw
+	xrOw0ZkMweR/I6PkMC5d1ncuABaxrCMZo/JxoY7hyf68suXi20D9bp/o5Jog748TyIWhA5xTtfdhJ
+	N/9WXodyRsorIeLIQ9+zLGNTYFHVsdtiPcbsloZD0vCvQINbv/s67+lmDR7NQnuJUO/+ETU16Om6R
+	1HlG2XdFsLUUWvKRrskWKV9dYBOCOtVuiwOaOjEGed51G+ukhAj1rBpT5OxC8+BgQa35paN0TGDQr
+	4hOOmhezcDXfbRRCWzsWXdkF0cebcaY93q/VeB5g6WxSIRp5W7DnHlnEvuEUKFlAL6zEGHxplPFXS
+	kAZzc4mQ==;
+Received: from i53875b47.versanet.de ([83.135.91.71] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1to8Zk-00040X-Sb; Fri, 28 Feb 2025 23:11:20 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org,
+	Simon Xue <xxm@rock-chips.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	linux-usb@vger.kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Jamie Iles <jamie@jamieiles.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	linux-pci@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Johan Jonker <jbx6244@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-i2c@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	linux-pwm@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-serial@vger.kernel.org,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	ulf.hansson@linaro.org,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	devicetree@vger.kernel.org,
+	Diederik de Haas <didi.debian@cknow.org>,
+	linux-watchdog@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	Tim Lunn <tim@feathertop.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Mark Brown <broonie@kernel.org>,
+	linux-mmc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Claudiu Manoil <claudiu.manoil@nxp.com>,
-	Eric Dumazet <edumazet@google.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: net: Convert fsl,gianfar to YAML
-Message-ID: <174078048176.3776808.10087708366850919575.robh@kernel.org>
-References: <20250228-gianfar-yaml-v2-0-6beeefbd4818@posteo.net>
- <20250228-gianfar-yaml-v2-3-6beeefbd4818@posteo.net>
+	linux-spi@vger.kernel.org,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Subject: Re: (subset) [PATCH v3 00/15] rockchip: Add rk3562 SoC and evb support
+Date: Fri, 28 Feb 2025 23:10:48 +0100
+Message-ID: <174078063579.504376.4763347846550378295.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250227111913.2344207-1-kever.yang@rock-chips.com>
+References: <20250227111913.2344207-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250228-gianfar-yaml-v2-3-6beeefbd4818@posteo.net>
 
 
-On Fri, 28 Feb 2025 18:32:52 +0100, J. Neuschäfer wrote:
-> Add a binding for the "Gianfar" ethernet controller, also known as
-> TSEC/eTSEC.
+On Thu, 27 Feb 2025 19:18:58 +0800, Kever Yang wrote:
+> This patch set adds rk3562 SoC and its evb support.
 > 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> ---
+> I have split out patches need driver change for different subsystem.
+> And all the modules with dt-binding document update in this patch set
+> do not need any driver change. I put them together to make it clear we
+> have a new SoC and board to use the new compatible. Please pick up the
+> patch for your subsystem, or please let me know if the patch has to
+> send separate.
 > 
-> V2:
-> - change MAC address in example to 00:00:00:00:00:00 instead of a real
->   Motorola MAC address (suggested by Andrew Lunn)
-> - add constraints to #address/size-cells, fsl,num_tr/rx_queues
-> - remove unnecessary type from dma-coherent
-> - add minItems to interrupts
-> - remove unnecessary #address/size-cells from queue-group@.*
-> - describe interrupts of queue-group@.*
-> - remove unnecessary bus in example
-> - consistently use "type: boolean" for fsl,magic-packet,
->   instead of "$ref: /schemas/types.yaml#/definitions/flag"
-> - fix name of rx-stash-idx property
-> - fix type of rx-stash-len/idx properties
-> - actually reference fsl,gianfar-mdio schema for mdio@.* subnodes
-> - disambiguate compatible = "gianfar" schemas by using a "select:" schema
-> ---
->  .../devicetree/bindings/net/fsl,gianfar.yaml       | 248 +++++++++++++++++++++
->  .../devicetree/bindings/net/fsl-tsec-phy.txt       |  39 +---
->  2 files changed, 249 insertions(+), 38 deletions(-)
-> 
+> [...]
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
+[05/15] dt-bindings: gpu: Add rockchip,rk3562-mali compatible
+        commit: 049e7ac203d51fdc3a739f5f28906788e8eeea03
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
