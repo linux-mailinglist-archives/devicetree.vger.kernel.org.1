@@ -1,105 +1,97 @@
-Return-Path: <devicetree+bounces-152740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81570A4A109
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:00:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57EEBA4A119
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:05:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87E911897054
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:00:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 306F83ADE11
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF801ADC7E;
-	Fri, 28 Feb 2025 18:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA8A271277;
+	Fri, 28 Feb 2025 18:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="DZIk7HQs"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="eDwVDg0P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A45511C07F3;
-	Fri, 28 Feb 2025 18:00:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098D81F0994;
+	Fri, 28 Feb 2025 18:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740765617; cv=none; b=iRFVwnKCqVo3Xo4zQPQXy6m5RptZ1WZyTEZeG0l3RAei7OQFP+bFPa0GewEcSFXV7h3BrsqUkz3+DwGSvA6dUJXAJttUJyNkKcFscZOLgCRB14lDkrEdVgNCd7GbPdX97emDZEdpe/GMaX0heCx4XPH7bT37uds0wX9zRnmDvz8=
+	t=1740765922; cv=none; b=ns+MBfx9LQcnR1ae9uWBakBfRA80jOdJXyt+nLCotIacdXmh8cslU1OmzVCLXDhTC7G/2YE7dDHpAKYgy+r+6QrkFzjaiLyQIn+VeDNTC+Y1M/zkNqD7CvnAA7wV4HamizvmJSz4YjRiCTmIJTCGeF39qvRLubnGc0KjRELi7v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740765617; c=relaxed/simple;
-	bh=sTnsqvuknnrk7PfyI85T2uYsvkVUA1Bx/ewBwy69kWw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PGbylTFKra8fqeJ5t4w1iv2SDUWIT2lN6A7iWbliXNTtNmcWq8ejeIp20fkxWcG84Ml0evMEW2+AvVPu0cYBI2TwAxlMFb5Jcw0YQP9GUJx+Lc4oY9FdPUmOFBlr/OF8bsSLFSOK0O1778r/4zTk6g55H9bHskt2bax62Ps3rKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=DZIk7HQs; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id B39B225CD6;
-	Fri, 28 Feb 2025 19:00:12 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id cNSjyzCdGSLb; Fri, 28 Feb 2025 19:00:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1740765606; bh=sTnsqvuknnrk7PfyI85T2uYsvkVUA1Bx/ewBwy69kWw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=DZIk7HQsgnCdt7LmeYKxxyx0jrWWanw19QAHpdgf6BvsEtGCfLss75KAX5Kbxjfb/
-	 Mr7aKa8fBVFX1IZv4ZPSWoalLZXuJk8b6jJOLba5zd0N6959C/yhYGQIiDRy7SoeKd
-	 TWoQQGkjPvFawBwsRkU/5IvLO0qpVcUoGNKJM7G1KdqexI/7UK3MXkCxOxOr0L/knb
-	 xdYo6piOJedRv08JolbgcJhNxB6fT1iLmo8gMJS3pCq60+JWmJ+YY6F1dZYaIgbNet
-	 6/d3FiSnuRVDMLj1GKdl8xjMpoJ92E2rh9sheo2pDnEDVSRk28/53DoyXysap6u1dN
-	 QXdx2qnY8B4YA==
-Date: Fri, 28 Feb 2025 17:59:42 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: "Diederik de Haas" <didi.debian@cknow.org>,
-	"Rob Herring" <robh@kernel.org>,
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"Heiko Stuebner" <heiko@sntech.de>,
-	"Dragan Simic" <dsimic@manjaro.org>,
-	"Johan Jonker" <jbx6244@gmail.com>,
-	"Wenhao Cui" <lasstp5011@gmail.com>,
-	"Yuteng Zhong" <zonyitoo@gmail.com>
-Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-rockchip@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: Remove undocumented sdmmc property
- from lubancat-1
-Message-ID: <Z8H5jjE24cZb4IBQ@pie.lan>
-References: <20250228163117.47318-2-ziyao@disroot.org>
- <D848JET5TDL6.2L4ZQR0YHYQU6@cknow.org>
+	s=arc-20240116; t=1740765922; c=relaxed/simple;
+	bh=yMTMjx/KoDlP1RVq0AuEN0lZ1UnoF9941tNr72ZHNAE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jZ8SLfsIQrh8kNR/ivs2/Bg0+DQrCeZV0856rFyXc1D6Jnx8K/87OiTAXxEujxML7rBC2JRKpre3qRWw3kY/h9NfLAm8BxJtTYg5raHvxkhiNuyLSJox/rW9mY/i4mtiNF6nhonwhYccn/vRrwjxWTI1CkkKOmHST20HjlfUnEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=eDwVDg0P; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=hKcLFlYKbjpxYMs8Fklx2IH1FNht5aVxvzEZPs0pdpU=; b=eDwVDg0PXmNAFwj5aQqKLJfeBh
+	LNSxwiOXLviLdeOJVmeb8g+yT0h3Ho5IJDnx7a6/EI2zYRVlLrQGscJZtu8NF9YikoESnU6y+Gcza
+	G+O6yTGIbF4XG7n6y6//uQwe/cENsIZvSniq2lbFvrOikWTKE3fYjb7e+iAxTcoJi5wOgrlqw3+Dz
+	1/XBLjtNb+ZfPnf7xpZSdcLPJ/971tvo6IskOgeSiaPRfJSOqCF3+8FBwMcd6hZr47oHgwhwvqKvm
+	N2M35to+WgdsAdSE1BGrnKismvuHsXZ6LdpMeoJFNU2cffB/I6s+z9LS+tToeHzPpo4XAz0HKhDjp
+	ac0jwPOA==;
+Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1to4jP-0002Tv-IM; Fri, 28 Feb 2025 19:05:03 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+ Wenhao Cui <lasstp5011@gmail.com>, Yuteng Zhong <zonyitoo@gmail.com>,
+ Yao Zi <ziyao@disroot.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: Remove undocumented sdmmc property from
+ lubancat-1
+Date: Fri, 28 Feb 2025 19:05:02 +0100
+Message-ID: <5186166.e8TTKsaY2g@diego>
+In-Reply-To: <Z8H5jjE24cZb4IBQ@pie.lan>
+References:
+ <20250228163117.47318-2-ziyao@disroot.org>
+ <D848JET5TDL6.2L4ZQR0YHYQU6@cknow.org> <Z8H5jjE24cZb4IBQ@pie.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D848JET5TDL6.2L4ZQR0YHYQU6@cknow.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On Fri, Feb 28, 2025 at 05:55:47PM +0100, Diederik de Haas wrote:
-> On Fri Feb 28, 2025 at 5:31 PM CET, Yao Zi wrote:
-> > Property "supports-cd" isn't documented anywhere and is unnecessary for
+Hi,
+
+Am Freitag, 28. Februar 2025, 18:59:42 MEZ schrieb Yao Zi:
+> On Fri, Feb 28, 2025 at 05:55:47PM +0100, Diederik de Haas wrote:
+> > On Fri Feb 28, 2025 at 5:31 PM CET, Yao Zi wrote:
+> > > Property "supports-cd" isn't documented anywhere and is unnecessary for
+> > 
+> > s/supports-cd/supports-sd/ ?
 > 
-> s/supports-cd/supports-sd/ ?
+> Oops, yes, it's a typo.
+> 
+> As it's a trival patch, could it be fixed on merging? Or should I send
+> another version?
 
-Oops, yes, it's a typo.
+I can change that when applying.
 
-As it's a trival patch, could it be fixed on merging? Or should I send
-another version?
 
-> Cheers,
->   Diederik
+Heiko
 
-Thanks,
-Yao Zi
 
-> > mainline driver to function. It seems a property used by downstream
-> > kernel was brought into mainline.
-> >
-> > This should be reported by dtbs_check, but mmc-controller-common.yaml
-> > defaults additionalProperties to true thus allows it. Remove the
-> > property to clean the devicetree up and avoid possible confusion.
-> >
-> > Fixes: 8d94da58de53 ("arm64: dts: rockchip: Add EmbedFire LubanCat 1")
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
 
