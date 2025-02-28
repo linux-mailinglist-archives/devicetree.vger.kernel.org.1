@@ -1,109 +1,103 @@
-Return-Path: <devicetree+bounces-152470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B677FA4926D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:48:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 493BAA4927C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 08:53:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4A683B67F1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 07:48:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5560616F668
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 07:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BEFB1C3BF8;
-	Fri, 28 Feb 2025 07:48:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4301C701E;
+	Fri, 28 Feb 2025 07:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E+t4VKxl"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="M36+h/1W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B84276D12;
-	Fri, 28 Feb 2025 07:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 340B5276D12;
+	Fri, 28 Feb 2025 07:53:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740728889; cv=none; b=a6jBhBIWs5VmpnMLizKhawnnglD0jsVp9xlgxe34d1bPQ8tkjyGQCtRA9O7PrF/TVRXz6en54u7EFH0l4Za1jn6wTekAeRgl+4C1lnDc30aNjo2PiSWq6HonbSvlOhHr2vUYu50+KXgjRtLXTTmwMy7KwwHUisSdbwARE2iIN4M=
+	t=1740729217; cv=none; b=VfYMswSpdZRxInkrQGJ/MoGxhrd+LEVKHE8SwIMes9dptx7OkWIMwXPES/HJKLXtdQgZISJBHcJ11lzWh2as0bV/d3msjH1bt/Z+IADEhorTfI4KgX5ykiV1xv40iiIhcnc7c9TNCcew5W6SQ9RTbjV5+Gq3qWuN5rKgbIlJfiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740728889; c=relaxed/simple;
-	bh=HGpFNQkVjQxJJSTRdgfAfdyHw8/IugCBpe8cfIEU9HY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nqWSSrFLoTbvUOVh2FeN4vY+EmsNg36Spgu5NaBs7atr4nU454Ris8UyHkJHrl0vevL78BkquAjaKLnoEi+s5PDrJEI7jP2UWgQTUyseyL54sGSA/1q5afup+MD47J1ge37+EIJibEFPJr1kb70LnUVHLDw4RraP/ROzPZqRxag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E+t4VKxl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DCB5C4CED6;
-	Fri, 28 Feb 2025 07:48:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740728888;
-	bh=HGpFNQkVjQxJJSTRdgfAfdyHw8/IugCBpe8cfIEU9HY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E+t4VKxl6N336f3UvXWqZ7t3qEC8vaz8f+98vpwatU4Vw9yJTxvjUZ7ptJLIfvIoh
-	 ovDBmpyuVoJhMMID/nGlLfaUIhB9hGT43nhkKF3Cm6IblywQkSV3rZuzW3H2f05T8x
-	 IK8KBufVbG5utOIlzeEgGdLHaUaABgGLt6tE07qdJLPVzmGzkwLPdc6612+Bq1S8ad
-	 pXYKMpv22HW4yTRzWnzYZTYC2U+9Oq40WT8lzs97Ak3b9Oi+5oxMQn4okbR4o3AITF
-	 yjcBrf0G+lgNPiBNe/vexPhnIl3AQOC8bcxPkTdOUUXvjIX6drwquDzL481SleXkEs
-	 AhNi+MejdK0nw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tnv6c-000000000MQ-2JWK;
-	Fri, 28 Feb 2025 08:48:22 +0100
-Date: Fri, 28 Feb 2025 08:48:22 +0100
-From: Johan Hovold <johan@kernel.org>
-To: jens.glathe@oldschoolsolutions.biz
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-blackrock: switch to uefi rtc
- offset
-Message-ID: <Z8FqRmGeQMejGLXY@hovoldconsulting.com>
-References: <20250122-jg-blackrock-rtc-v1-1-3b05cd85bdfa@oldschoolsolutions.biz>
+	s=arc-20240116; t=1740729217; c=relaxed/simple;
+	bh=zzS8CQISV+5yhlCP3batqFzbj2l/A2CILvpJfZUPa1I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=h3c1Y1GpQPnLwzzN0PHE8oFNEZ5sERJci0FE963ll1kQR5FFswgcMVkdOBM1QSueGDD0g2LNMjKTomfD3pzsaDH2y4x7YNALvT+M/46sKGDCL3QDphHOw62OKuu7QiD/dbWJ+tTS+QaOixbrXlOnehA06CdJet+xgpuXpXgr378=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=M36+h/1W; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=F+JzjQxRNFL6yDNf9+7cJLcCGEom5mmTMhziYT1IXJM=; b=M36+h/1W2S0DYGTc6rbsLXw8jq
+	EcXI1tKGOGxAGW/eebzYTorjwGwTrVzsOwSQQNsB+MJAnd7xsE0MDjzel/cbK3ppft++P2TZJnk6O
+	xy56vOwsKsAWvTL4+fc9nNidH2IZw7Lmy7dv/U1Akb6mSfd9yS4O7i/p+GvXe6CaiPB9wPYMtd8h3
+	et4xXv5E88NOCku21rX1X8T1HBxLFcwud4y26eqbvpRFYCOqSEN6nAtd5H7hEgM5X47IcsyuLcXp8
+	28S3ByUVbsOWLtZPjqiitBwZifc1sOrQn2AYTn4X5HXphmjgpBLnjOclGxts8TACa8FIsYnHTX5d1
+	8DPgpYLw==;
+Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tnvBV-0007Zk-Qn; Fri, 28 Feb 2025 08:53:25 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>
+Cc: Yao Zi <ziyao@disroot.org>, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Jonas Karlman <jonas@kwiboo.se>
+Subject: Re: [PATCH 2/7] dt-bindings: pinctrl: Add pinctrl support for RK3528
+Date: Fri, 28 Feb 2025 08:53:24 +0100
+Message-ID: <13293325.ZYm5mLc6kN@diego>
+In-Reply-To: <20250228064024.3200000-3-jonas@kwiboo.se>
+References:
+ <20250228064024.3200000-1-jonas@kwiboo.se>
+ <20250228064024.3200000-3-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250122-jg-blackrock-rtc-v1-1-3b05cd85bdfa@oldschoolsolutions.biz>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-Hi Jens,
+Am Freitag, 28. Februar 2025, 07:40:08 MEZ schrieb Jonas Karlman:
+> Add compatible string for RK3528 pin controller.
+> 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
-On Wed, Jan 22, 2025 at 07:41:56AM +0100, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> 
-> On many Qualcomm platforms the PMIC RTC control and time registers are
-> read-only so that the RTC time can not be updated. Instead an offset
-> needs be stored in some machine-specific non-volatile memory, which a
-> driver can take into account.
-> 
-> Switch to using the Qualcomm specific UEFI variable that is used by the
-> UEFI firmware (and Windows) to store the RTC offset.
-> 
-> This specifically means that the RTC time will be synchronised between
-> the UEFI firmware setup (or UEFI shell), Windows and Linux.
-> 
-> Note however that Windows stores the RTC time in local time by default,
-> while Linux typically uses UTC (i.e. as on X86).
-> 
-> Based on a patch by Johan Hovold. [1]
-> 
-> Link: https://lore.kernel.org/all/20250120144152.11949-7-johan+linaro@kernel.org/ # [1]
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+
 > ---
-> This is a patch to switch the Windows Dev Kit 2023 over to
-> using the UEFI offset.
+>  Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> index 80a2b1934849..960758dc417f 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> @@ -44,6 +44,7 @@ properties:
+>        - rockchip,rk3328-pinctrl
+>        - rockchip,rk3368-pinctrl
+>        - rockchip,rk3399-pinctrl
+> +      - rockchip,rk3528-pinctrl
+>        - rockchip,rk3562-pinctrl
+>        - rockchip,rk3568-pinctrl
+>        - rockchip,rk3576-pinctrl
+> 
 
-Please try to avoid posting patches before their dependencies have been
-merged, but at least mention any such dependencies in the cover letter
-(or here under the --- line).
 
-The series this patch depends on has now been superseded with a v2
-dropping the DT property so this one will also need a respin once the
-driver changes have been merged:
 
-	https://lore.kernel.org/all/20250219134118.31017-1-johan+linaro@kernel.org/
 
-Johan
 
