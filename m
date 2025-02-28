@@ -1,138 +1,213 @@
-Return-Path: <devicetree+bounces-152756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8413A4A182
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:27:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA10EA4A0A5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:42:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDF103A9E1D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 18:27:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A064C1899A37
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 17:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50264274253;
-	Fri, 28 Feb 2025 18:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC602512E4;
+	Fri, 28 Feb 2025 17:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="MMAOQyq8"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iP+hXKnh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012059.outbound.protection.outlook.com [52.101.66.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD655272904
-	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 18:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740767251; cv=none; b=bRrjgQ5a2GxGIm87dApstAcJ36NO/+pdfu799zoFPl10TLVQwwzS5aAsPhBfYrRb8cFcfVou9wNTV4yRbY1BstMucW1IbKqkQSpG9J8NoomAJ0eeLKCRlCzd16v6J3Hy6wY6TlsjZU2pm+zkzIjNGTXB+UVkJ/DaMsx9R09GorY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740767251; c=relaxed/simple;
-	bh=n3z+Ajbx3YSIPCqatq11C2NU+71l/QFCYFd2JrCTTA0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mdPTduq6dteX3nctDtBWfhGX9X8d9sShHJLU2zu418M/SylOPZN1tYULXWioA2ZnLT1L5+E5c7IN4vq/19Ac0aHRbfWRIx1Ix+D4QeakktzmupIPeAUYpNwAL3Qx+S6mBcRnN9DMkuq8XC7HoClPep4g6jYB3w7aKCKRnxriQ9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=MMAOQyq8; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AC5A8102901CB;
-	Fri, 28 Feb 2025 19:27:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1740767247;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sZS4nj+6CXdvnwv7q5KXp5Uz0YuvWKS25Z4+jZ2AtgM=;
-	b=MMAOQyq8fDfYlgTpZqC/M+BGzgpy9ow1BJurDp10ybzZ0pWTxNGhGN3rhcaGG0+P7rjhit
-	mDM7zuoPQRTg0KVG0DhAmQp7kRrYuhbq+XMiu/iJ2VYPyRysu/zG21jO/2q1URP/DayWDr
-	TJrERFxmPTvwFlEM5fHjwvd+nZfq7j7BRbBSFEH3CkUu3oMopCHWUTVJhM/gGo33C+jlBs
-	QIvO0o1lQRG5q1f5Gx0R9jbHy+Xpsm6ZPIOcTYY+mSjcCWphqBUnAb7D6L4HalOXZLTY7t
-	elNTV2H+836UoG1zNCm6E1IMRT4k/FzSGlcRKKHtAifZja6oqOUsuTAjtiWOiA==
-Message-ID: <52f42263-d40e-449a-80f5-145a87fdfdd1@denx.de>
-Date: Fri, 28 Feb 2025 18:33:16 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE8D1F0991;
+	Fri, 28 Feb 2025 17:42:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740764557; cv=fail; b=pMx3992RVq7ot68xcCUrnsj1gN/xVylxe2Un/Ni9A+sQURoj1AHpUiDKfkpuBkIPlC6de6EBsKIgCI9OooBrRJ5LXdMCBBlzFBjDTct24/kRNtZDUuEjcmdpjbZ7kRcn+pEAJEuDbFLjN3TZLUDH10aX/ibqI9zFysTIRHt9MGM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740764557; c=relaxed/simple;
+	bh=oTjSEYnhDo9nAYFIC/QeOoe7IM9FvKQThAp+PYmyQEo=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=MIUsbptsJxj7lJJPmNfSk91cPmahpV9b/A/NlN/eXjriOkVVXwQVbjM8tX5qRsa6dAGijVI93r1P4zP5MiM/0DBerjXUvgQp8rzyl4ZtgCTcVwgBwmob9vHoJ8m+4kiJqskGOU9bna2KD6O4Nf2yuvVovjJHQAPm/zzkMb4hxL0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iP+hXKnh; arc=fail smtp.client-ip=52.101.66.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TYfZmYnOeGJ+XQ5Yzu6A8v05Xg3M+0E2Q7Bzv8+c4HAvdUzLotU+TvQUQfC7noUn5bPmRR5yvM4LpaTSL6Va8Xr955E3rBxokpeWkRRkiqgX5zJsMn/TPG0wkZQjUq9gfB6jGsZJnS4pgu8d5y4Bm+9J6mSwrt83c+W9vAOHelzjSLgrMGahjgoNJJZBYSEjhQURtRMjiMb2Gb3ETdKb+jycnMsqoU45AV1ikgrgk+yJ8KW6rVLPVYgLAqNfXuGwGOa+AqDKyX3H+dbOcbhqRPxPW/zKsFU/6H1xpLGBAV6h5B1inkucFH3+wzH4wVA2pMkch3RJBmw2Yzxr66V00Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PVn/3bOB40GUMzOnnlNWzrDdN4eXA2N+0zK22Y5JBh4=;
+ b=qqI8qQFcnr6m8jiR5eaOp4wjgA/3RUNVID1geJUS7icibl+Cyyr4/TWivVVNPkWew3XDrAKnYnqv95EgY4OAwNHa9xldr9XOV5TKolDX4f8U4UG3wxIrfTCMl3Lz3BOhs8Vks87Ft0Zc8JZiPQWV10/k5Q261TBO2qUlVGR5XZ0O76+1T+WJ5zfFUeySBhpxZO78g+tRNGvMeSblYpyTV7HqJMSmo5kCpy9ihP2PDNR/pvdiNsA6cKksVDXZIM06tqeRN/rx1ljj8aLl6AhR+4JRK8x8tgSRXG6t0Q0wWH3vP+K79EPE2IRkV1S+FTL1eXFWnFQdwgxstnBh3ijovg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PVn/3bOB40GUMzOnnlNWzrDdN4eXA2N+0zK22Y5JBh4=;
+ b=iP+hXKnhZMHoVsx9SXdix4Q0or0uapKvwD/s5h25MBWx2JhMXYE+MVzaRT6FN0lI8SoLD7JpmmUpyPsu2stmMSJMK5PptA1fTigK7jnskyc0aOg65uAv/F44cstrq8KxZS2dEjrDUbgPXBdSJ+LPuojEkA+QdN+0XKHdFjGORrqCblKJZuzBiz8cTVMmnJgKi3TXVkLsxf0gyfp/WgBcAoDFCSoiYl0C1rk6LiZYjcgWbzkZ+O6hJIObygmRNSDN8fHnzEpbrxWNRCsKcyuN7+XPQ7vw4dTwSvxVh7pmuH1dFdpdxUmbTRFl/tVOoVqTBnypcfy7cMXJQr9k6JKT+Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU4PR04MB10498.eurprd04.prod.outlook.com (2603:10a6:10:56a::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.20; Fri, 28 Feb
+ 2025 17:42:32 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8489.019; Fri, 28 Feb 2025
+ 17:42:31 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH 0/3] dmaengine: fsl-edma: add error irq to help debug
+ problem
+Date: Fri, 28 Feb 2025 12:42:02 -0500
+Message-Id: <20250228-edma_err-v1-0-d1869fe4163e@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGr1wWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDIyNT3dSU3MT41KIiXdNEc2ML01QTUwsDAyWg8oKi1LTMCrBR0bG1tQA
+ 4vpyFWgAAAA==
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: imx@lists.linux.dev, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>, 
+ Joy Zou <joy.zou@nxp.com>
+X-Mailer: b4 0.13-dev-e586c
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740764548; l=946;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=oTjSEYnhDo9nAYFIC/QeOoe7IM9FvKQThAp+PYmyQEo=;
+ b=fR7BbgEcmvHF2qsZeKpt+owiXtoP48K9JQdipeHm7L66lwTdI5lzSG7cqaJc0VqTSIAoYdpNf
+ 8Hmi4QpnEucCNvj1XAbLqAOI/9tNQYrExfYDIJnp2jpxdnWAcx9/KvR
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: SJ0PR13CA0012.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c0::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] arm64: dts: imx95: Describe Mali G310 GPU
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Frank Li <Frank.li@nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-References: <20250227170012.124768-1-marex@denx.de>
- <db903f36-e897-42ed-be46-f0b035303233@denx.de>
- <Z8DlYjq+87sjS9cU@lizhi-Precision-Tower-5810> <3332618.oiGErgHkdL@steina-w>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <3332618.oiGErgHkdL@steina-w>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU4PR04MB10498:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f42d537-1499-4aba-179d-08dd581f472f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?WEdRby9Ick83c3JRaVhseWRaeFd0L203ODlzU3JIVG5ieDBKM0xXOWU0enpt?=
+ =?utf-8?B?aldVbXEzWGRzbUNzRDJNaTBncXZIL01RVklXbVMzY01IVW1hVUdtb1RtOXdL?=
+ =?utf-8?B?RTFPeHpraXRteDVSWGJMRVRFTTdMN2dnQ0ppaWNwaVBUK28xSjd1N1M5Qksv?=
+ =?utf-8?B?TUdlUnZzSEd3VlNpTkwxZEpoNGpnTHREbTFRV0tSVlFObTlob1BPcVJyakFw?=
+ =?utf-8?B?K3FwbjBKM05EeHJDSTJtQ1pOSHV4SkExS0FjVU9IempRSjBGakdxUjBKM3VR?=
+ =?utf-8?B?WTc5VVhhQVlWSkJNTjVPVWs3YkU0SEYvL0ZrS2F4NWlsK2J3N2I4M3RXWGNL?=
+ =?utf-8?B?ZXZtVXRDNWNFd0lTTXpQajBkSDlrVGxFRlc3YWR4ZDVyaThNOURJTS9pWU1Y?=
+ =?utf-8?B?enR1czJCWXRram5uR0tWak1oK0Yyb3BFU21aUEZJMVozZUp6K2VHd0hqdm1v?=
+ =?utf-8?B?V0dUMHluMlhkc1NOK1h6eGgwTjJ6MjVrd3lzVWhmUUVRUWtwejQzb1F5WUhi?=
+ =?utf-8?B?QzQySnU1eE5yTTdzNDc1Zldqb3Z2SU1FejZNdGlZSllTbFpXV1BjMDFWTm43?=
+ =?utf-8?B?MENCaW9PTEY2QVAxNlpyd3U5bExkeGJFczZxNERkT1lrU1lnaExmWFE3NDFM?=
+ =?utf-8?B?bmVMTEgwbmxVaXpNcjNOenNPOEZXOFlLRVlrYzFmV3hsZFRnemNVWXBpYk5D?=
+ =?utf-8?B?NkZvRGNlaXZGUXAzenNGMENZcDJUaWl0TzNtNjhuZVN3Zkg2NFBDc2ZwTUFn?=
+ =?utf-8?B?NFpRdjBzcURwYmFvcHlrbXVMaXd1aHQvZDNUaFQ1MmZjcllVOGtwTmlVTlVi?=
+ =?utf-8?B?RXpRd0IwU0lSeU81TEd0TGNnamVYSFlBMU00NWViaC9ld3lyL3J0REhTSjN6?=
+ =?utf-8?B?enh2OVIzWW1ZWm5BY2YwbUJxWVEwRERidlBiZlIwODVJTzgrL0FoN0o3RXpk?=
+ =?utf-8?B?V1Q4UTlvWDZKUUovMFZDOU15RzdVMDQ3MjNlUGorOExhLzBPRnZaQWtrem9a?=
+ =?utf-8?B?WDR1N0xOdHdLL1ZTcUpQenhqK3V5QkFsQmZsRVhnRHNJNlVZWS9qWFVjK1JH?=
+ =?utf-8?B?aWxpcGlvNHFNTmpZSzd0aTROd0ZTT2Q3UTJCM1l3YThGTkFyNHJYcGZKQk1t?=
+ =?utf-8?B?Q1FnMHNqUWdyVWN5VXA2UFF3MG1QMDlhdldRd09yL3Nyb3hwVVVtNm5DY200?=
+ =?utf-8?B?Vy93MWo4VXpDSTdqTEY5blNWZzNhSnMxYitqbnczNnVuRnZ1ZDFKeHhVRHBK?=
+ =?utf-8?B?MHcvTnNMK3kzcXpwS2x5cUdBdmhGcUU2STZRTWR2UXQzbHVzU1RTakdrTzB0?=
+ =?utf-8?B?cktKQWwwMzk5TkhBdlpkb0NveEQ4WTc1M1hEQjlrT2hvY1ZSc1ZiS0d5aEtD?=
+ =?utf-8?B?VC9TZlFCeUxTdHZ0eGZJcVRiM29PaDZsdWk0QWt0Y1p1WHBRak9oL3NTcWhR?=
+ =?utf-8?B?N0lMTUZZVTRZS3ZHMnFzTThzUHNSUUUwb2hXQ2RSRlQ5TWorUVNwWDR1Y3g0?=
+ =?utf-8?B?MFNxd1VGWUQ5QVVicGhXR3VGZjROd2plNXFKa083TXZMYmJnVmdFUjI2Rm1Y?=
+ =?utf-8?B?cHBydDQwVmVxTVlONEVCT1BCMUpqT0VyTkFtSitTb3p3TklMVnA5ZGpUQ0o1?=
+ =?utf-8?B?aEMyY2ptSG02R1JHS28xUElSQm1mOWtmcE5KUDMrNGZ4eHE2RVE5bEljVEZl?=
+ =?utf-8?B?cWZhYTBocXdtV2hDcGxpaXBmVlUrMlg2K0lranMySTJ2aUpVOG9Ed2ZzcEQr?=
+ =?utf-8?B?MlpOcStjS3luT1RYeW1pSFNoZGpYeU5Nd1VyUHBjYVErYXVvMnVzQWExZ0lW?=
+ =?utf-8?B?VDcyZ0hiQTBhTGRXcmFoU3FMeHpCc09oOUFiakZyZm1ZQW0vb0ozMXBtMUJo?=
+ =?utf-8?B?a2Qrb0hMT3NzTko1c2czUWgyV01PTmZIMVNEMk1VQWMwdzFnczI3cFRMMnV0?=
+ =?utf-8?Q?qLgtm1q9pdnjk7NTQjTDlwEQMlI+lJvm?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VS9HT0dKcWpWd0lnMzFKWSthaXdhMkJrc2RRWUdmUHRiV2NrMVZnak5Gc3ho?=
+ =?utf-8?B?Q2tqYzAvaXdZTFpBTldsNlU1M01wWmxOR1VZSjlYL08rbXNSQ21PSEVpejFY?=
+ =?utf-8?B?a0FBdWtHQ0RqUXZRdXQ3dVh3TlhoRmlvaUNoUnVwMHgvbUtzcEdJS1hFSWF1?=
+ =?utf-8?B?UVJYLzFsbFBCUkdibUFjcTN5QUdlSTJHenNzakwyOVhlVE5PckY5czJOR3hE?=
+ =?utf-8?B?WVMyTDRyTmcwRmk4eVVQZVZ0WHJFRDFmdTk2R0VaMjFQUEFLSXI5eUgzamdj?=
+ =?utf-8?B?dFROWFIzS1NBcVBNUHp3OXhZL2lNYTUxWVQ4ZmV3ZWdWT0RHa0k4RzZhazli?=
+ =?utf-8?B?dTRWV2RBUFZkZXZRenNsa0x3RVN6eDBEL1QweG5ZUEFyRTdqdlNPbmdQemww?=
+ =?utf-8?B?dS9OK3JXSUxQMzZBRDBMQnRKTXAvY01sV1ZiL3lTWGJQY0Y2VVRpQWw2VnZH?=
+ =?utf-8?B?VUlNY2UrOXY0eXhxcURhME9NemZ3VkxRMnhKR3J0MHBDT1ZIWTIza1FVdDR0?=
+ =?utf-8?B?L3FLNjhOVjhDbWhoWTNXNHFTRDR1R1FuV1Y0c2RzYVFvU0laaDdQK2RFdnl4?=
+ =?utf-8?B?L2w4NWVza2lma29pRERsUjhzekdRTlBuODRFM2VsMXQvcStEeDhYSHEzQVE3?=
+ =?utf-8?B?OW12a2FuRm5RcHV2L3MyUU4zcTNBZkVmS3JIazhxVGMrekpYVFdYb1o2WWJk?=
+ =?utf-8?B?TmNMRFhrbnV0UDRtS09RSzVWcGk3RTBrblJpQWdRbG9rbmNoT3UzeDNBM05G?=
+ =?utf-8?B?U0FtdFdxM2ZXK01NOFFXUWpMVm5UcGExRnFsa0ZrL2VrZ1hrM0p1eVhzNVZ0?=
+ =?utf-8?B?aEFiU0djQkxRejNlY1lia0s5ZmJPb2JyaENWZDE3UWs0OE4zZ05henZWaUFN?=
+ =?utf-8?B?cktkZGRmL1FTdVFTaS9zTlhkUWZRMEpqdjN6VnIwczUyOEVVK2F6dmYwYU1G?=
+ =?utf-8?B?VmpERGN6cUhMRFFLZmVFVWVRTkFMRThnQStqYVd0L2wzY25UejhoMnJueC91?=
+ =?utf-8?B?d2ZlSEtIbVJYSlRMWkZTd2pRYTA0ejVuRUJJSzU0VUR1T2VpS25XMk11bmpU?=
+ =?utf-8?B?N1pMMUt5ekptRDY5NDRsWGU2alprWkxVaCtmM0xuMFk3S0FxemVDRE5nT0E5?=
+ =?utf-8?B?TlIrY2Z0a0laSEw1U0V0ckhjZDRHWHAwczc5TzlqZm1QTTFaeWRFQkxMVzQ2?=
+ =?utf-8?B?aU5VVElvbzJxN2RVNE54eTk5MHdmWDlJalBrOVBKT3hZY0tDMEJ2Z1ZsRHN5?=
+ =?utf-8?B?Vmc1OXhyVkdPQk9hZ1VYdVp4eGY5b0FOekc1M0xsNDhteTdNcWtLZnM3QXZE?=
+ =?utf-8?B?TEpWWFZCSmZiMWpvS1JYZTMreGV0TGJ5R2lkdG1FMVdsanRyZ3pvVEJJczA0?=
+ =?utf-8?B?K3Z1VnhvZnlwWXQ5Z3FQK2thTjUvc1JnS0cvUWF4RG1vWm8rUFdRWExoRUI0?=
+ =?utf-8?B?OExZK2xqU0pmOWxwQmdZcDRYbVNwcnE5SDdVM0QxbDIxV3hvelFiQkpvcTZB?=
+ =?utf-8?B?UnB6TituQmFhdFRkZE5wMUhwVjRicFdJRmNtOEtPU1Vja3pMVUttYlU2K1FC?=
+ =?utf-8?B?OUlRWGNGVkk5T1pqQTAvT2RDamFkKzhkNWFoeWlHQk8vTFIxTnJBN1RkdG9K?=
+ =?utf-8?B?QkxONExTUWo1WGFYQ2lIRklOWG0rU0liMjdVTC9YdHJxVnpTaEdSSzlIVkc4?=
+ =?utf-8?B?YmorUkdIK1RjeXhqdkpNc2U4STBxTXpYKzFWU3dOQ0U2MXNKblRBYm1TRnRN?=
+ =?utf-8?B?eEdMS0lDZExCa3FZWmp1SU1MeW5ZL3BBNWtTakd0ZlB3R250emt4bG1zUXg0?=
+ =?utf-8?B?QkxQNzZzUXJYNkw1ZldlR3NTLzcyTXdWQVlqcEFpbC9XbzlPQk1BdlFDSFQz?=
+ =?utf-8?B?OHVrUTdkMituSFo4TnF5U0V2Z2ptOUZqMHFqUzFDSmR4cjhLR09FYUVlNXpz?=
+ =?utf-8?B?T0xScVlHNGtJN3V3Y1ZDM3RaK3FEcis3SGlZQ0Z1TXVIekRlZlUrdTVBcmNp?=
+ =?utf-8?B?UWVPYU9LamtyTFlpdCtMQ3F2VmxuQm5MYXA1ZXZKUXlaVUtKUVpQYk15bTJZ?=
+ =?utf-8?B?eEQweC9kU3F2K25MNUh5bmxGMVZ1bHFkNXNMKzg4L2JiYlQ5Szl2T3I0MEtT?=
+ =?utf-8?Q?uwYLqldQC/ovfS8h685itknW/?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f42d537-1499-4aba-179d-08dd581f472f
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2025 17:42:31.9133
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 59EK4dFx1NvVVJOtDef9+mQaf2gflFmpk6cjPE02vLD7cBMbx7wSXqWOwCf6WalJjMozabGNGdfgivQN1s+h+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10498
 
-On 2/28/25 11:39 AM, Alexander Stein wrote:
-> Am Donnerstag, 27. Februar 2025, 23:21:22 CET schrieb Frank Li:
->> On Thu, Feb 27, 2025 at 10:34:20PM +0100, Marek Vasut wrote:
->>> On 2/27/25 10:27 PM, Frank Li wrote:
->>>
->>> [...]
->>>
->>>>>>> +		gpu: gpu@4d900000 {
->>>>>>> +			compatible = "fsl,imx95-mali", "arm,mali-valhall-csf";
->>>>>>> +			reg = <0 0x4d900000 0 0x480000>;
->>>>>>> +			clocks = <&scmi_clk IMX95_CLK_GPU>;
->>>>>>> +			clock-names = "core";
->>>>>>> +			interrupts = <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>,
->>>>>>> +				     <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
->>>>>>> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>;
->>>>>>> +			interrupt-names = "gpu", "job", "mmu";
->>>>>>> +			mali-supply = <&gpu_fixed_reg>;
->>>>>>> +			operating-points-v2 = <&gpu_opp_table>;
->>>>>>> +			power-domains = <&scmi_devpd IMX95_PD_GPU>, <&scmi_perf IMX95_PERF_GPU>;
->>>>>>> +			power-domain-names = "mix", "perf";
->>>>>>> +			resets = <&gpu_blk_ctrl 0>;
->>>>>>> +			#cooling-cells = <2>;
->>>>>>> +			dynamic-power-coefficient = <1013>;
->>>>>>> +			status = "disabled";
->>>>>>
->>>>>> GPU is internal module, which have not much dependence with other module
->>>>>> such as pinmux. why not default status is "disabled". Supposed gpu driver
->>>>>> will turn off clock and power if not used.
->>>>> My thinking was that there are MX95 SoC with GPU fused off, hence it is
->>>>> better to keep the GPU disabled in DT by default. But I can also keep it
->>>>> enabled and the few boards which do not have MX95 SoC with GPU can
->>>>> explicitly disable it in board DT.
->>>>>
->>>>> What do you think ?
->>>>
->>>> GPU Fuse off should use access-control, see thread
->>>> https://lore.kernel.org/imx/20250207120213.GD14860@localhost.localdomain/
->>> Did that thread ever go anywhere ? It seems there is no real conclusion, is
->>> there ? +Cc Alex .
->>
->> The direction is use access-control to indicate fuse disable. Only
->> implement detail is under discussion.
-> 
-> Well, the discussion ended up to be more complicated for i.MX8M.
+Change binding to support optional error irq.
+Add error irq handle for fsl-edma drivers.
+imx93 dts add dma error irq interupt.
 
-Aren't we missing the access controller in MX95 DT so far ?
-And maybe some driver to match ?
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Joy Zou (3):
+      dt-bindings: dma: fsl-edma: increase maxItems of interrupts and interrupt-names
+      dmaegnine: fsl-edma: add edma error interrupt handler
+      arm64: dtsi: imx93: add edma error interrupt support
 
-> For i.MX95
-> things are a bit easier, as fuses and clocks are controlled by System
-> Manager (SM), accessed using SCMI. [1] is more important for imx95.
-I think SCMI is replacing GPL code in kernel with stubs that call 
-non-free firmware, which removes flexibility and makes long term (or 
-any) maintenance much more complicated.
+ .../devicetree/bindings/dma/fsl,edma.yaml          |   4 +-
+ arch/arm64/boot/dts/freescale/imx93.dtsi           |   6 +-
+ drivers/dma/fsl-edma-common.c                      |  30 +++--
+ drivers/dma/fsl-edma-common.h                      |  18 +++
+ drivers/dma/fsl-edma-main.c                        | 121 +++++++++++++++++++--
+ 5 files changed, 158 insertions(+), 21 deletions(-)
+---
+base-commit: 8433c776e1eb1371f5cd40b5fd3a61f9c7b7f3ad
+change-id: 20250225-edma_err-5a7385e45800
+
+Best regards,
+---
+Frank Li <Frank.Li@nxp.com>
+
 
