@@ -1,152 +1,118 @@
-Return-Path: <devicetree+bounces-152790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23F30A4A279
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 20:11:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2560AA4A2A8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 20:35:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1BB3189866A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:11:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D72033B19BA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 19:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00911F8729;
-	Fri, 28 Feb 2025 19:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02F21F0981;
+	Fri, 28 Feb 2025 19:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gwP1+aqx"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="MmyKNJi5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953E727700D;
-	Fri, 28 Feb 2025 19:11:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E7D27702E;
+	Fri, 28 Feb 2025 19:35:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740769896; cv=none; b=dsUXz+ZL/wR7ryGrCLYnkqLNC5WbPSbjteu70Zlin42MJNXCi8G+aWxL0Go9YIOdTkkVJNhoPjWAXut7tq0y+zrY1bda38awFLLXDxyz519qGGfBsPfmKs+G0PqJbbjWfNdPR6Z+CoCQ8vDVUcWvwQacqcaiGGj0EEAp0kKF34k=
+	t=1740771352; cv=none; b=aJomGL/b6F4+l/jF1tFcWFJ83Q82oSMWM0W4MlB5dZU3LIOz4bBCKfy8oFGdCveFnntokRC0ZYXgSPdTm4ueI1QIDmArOc3lKX46tE42rQ2vD2XvGvd+3/bDMk2mvN3q9pS5YSr8atQY8I1davi5LBjS7eLbvmhHzpHmKt1h4gI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740769896; c=relaxed/simple;
-	bh=W/BKVB9AkMwAlyGZ1YJJyENUSPeJrYOUFfElGHnztP8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V/PJ4ftvwp6Iv9tngmKZjIPbHk7WjvBglHbsi1nwuzQrdoWF8KQYI0TtDRJfvQFgWQZF/Fy2fHKLLuFFY/fzQJZg8y7+DigD6kZ6zxcdb0r7HhnBbP5p2cY8xA9W7aEHKEYF0CEAtVsR0uglgsUeA6YKlVzLHhBO/2S6iWz8TR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gwP1+aqx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3CAFC4CED6;
-	Fri, 28 Feb 2025 19:11:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740769896;
-	bh=W/BKVB9AkMwAlyGZ1YJJyENUSPeJrYOUFfElGHnztP8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gwP1+aqx63z5J48CJYRA+C9L41jmmswahBmgGrraayPLR9J/cbNk4Fp/pDr9+LFb4
-	 0en5fCapFI6IqPg752Sa8ja5CfsDFNTuknWsyrwZEkl+T46UPu4VyJV6Nejl+IDv2V
-	 OiDUkunyWR4aO+uGpw06/6NVeEZ9kC9Mm2a2m8y7wKt3nw4ElsZtRkDCEl8J19i4GW
-	 WhHd+RkP5Ji9ghgwoodmXnLWpJVkgkLNfnNY5PV+TzrodQ13R31UjDLhJN9rFnyLn9
-	 8yYG6l/0um5mW35dckdIACpqCDOOtefM9qLU/Eu70jFM8DpsAzjXufGQFgeu6cpNNO
-	 TSEz1zKlAREaA==
-Date: Fri, 28 Feb 2025 19:11:31 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mathis Foerst <mathis.foerst@mt.com>, linux-kernel@vger.kernel.org,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, manuel.traut@mt.com
-Subject: Re: [PATCH v1 2/8] MT9M114: Add pad-slew-rate DT-binding
-Message-ID: <20250228-helpless-delivery-42162772caa3@spud>
-References: <20250226153929.274562-1-mathis.foerst@mt.com>
- <20250226153929.274562-3-mathis.foerst@mt.com>
- <Z8A66l02Et4J7hj4@kekkonen.localdomain>
+	s=arc-20240116; t=1740771352; c=relaxed/simple;
+	bh=bp6gbMUp3288WL0ToRvNVxjxkQMxQTnl5A0aQxSywk4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZpdmjtsVA3wH5izo9c5Bjm4M2SwmuFepXrG8lFhChIHtRtTsz/4OQ/J05ubJk1WB8hqLtxMWkXmS/PkOscEWuEwkFKIShVsPOYxd3nCjdXPzZyYdbjUf45z2t+MQ1mtyFrp4Kyalgok9j7I6/m2gg5kijwRTASdBkULMFPoJrA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=MmyKNJi5; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id B5784258FD;
+	Fri, 28 Feb 2025 20:35:41 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id C0E-YoFxkxdp; Fri, 28 Feb 2025 20:35:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1740771337; bh=bp6gbMUp3288WL0ToRvNVxjxkQMxQTnl5A0aQxSywk4=;
+	h=From:Subject:Date:To:Cc;
+	b=MmyKNJi5Dhjy0uJHfh8yvLRtVRE44e109l5GnaIQQW/dHucAbIZDyuBTP72inZOfh
+	 mX4QPOd6d0hpfGH6eAjq0WAwUk/VgnHte4DHsFj5OuY+zKny9NjlwIuKz7n9Hp6DII
+	 w1SrSCt/SwoTSbyEE9hfC7LrRUpXWOvDntN9Dq5zfaha3+PpnDnDjlpbnSjpH/y2A8
+	 CCnIjnlWpvX8zqLiVvXNmdriIj5Y2GFnte509d/v1zSNd3Gkp55h67hF5s/kxJE0sA
+	 jPtEu0GObgMY/melpG8z7CqJM/iz8ZPzQ6k+WzxYK8pbGpqZR17KOTapcyH0nxGXSg
+	 BDZptplsDf8wg==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH v3 0/3] Introduce pin controller support for Exynos7870
+Date: Sat, 01 Mar 2025 01:05:16 +0530
+Message-Id: <20250301-exynos7870-pinctrl-v3-0-ba1da9d3cd2f@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qCNovWBlHUc0Sp+m"
-Content-Disposition: inline
-In-Reply-To: <Z8A66l02Et4J7hj4@kekkonen.localdomain>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPQPwmcC/23NTQqDMBCG4atI1k2ZiT9juuo9SheNJhooRhIJi
+ nj3RqHQgsv3g3lmZUF7qwO7ZSvzOtpg3ZAiv2Ss6V9Dp7ltUzMBogQBOdfzMrhANQEf7dBM/s2
+ BRFUaQgkVsnQ4em3sfKCPZ+rehsn55fgRcV+/XHHGReTAiZSsAaiQiu6tDd656ep8x3Ywih8E5
+ SkiEoLGSIWgjMT8H9m27QNpOlNe+wAAAA==
+X-Change-ID: 20250203-exynos7870-pinctrl-07265f719061
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740771331; l=1455;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=bp6gbMUp3288WL0ToRvNVxjxkQMxQTnl5A0aQxSywk4=;
+ b=tCe2GcdQ+1bzf4pENv8Xc7aJ42CXG+7QuHLbOCQmo6xlDriCKCb9GFMvRIcY6vvE51kZQMDqp
+ ZUszi2MRbpUAslID4B/9HlVwGE1rcsBGtl2h+Tmm0rMkIPHiBvoUqU+
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
+Add support for exynos7870 in the pinctrl driver. Also, document the
+ALIVE pin controller's wakeup interrupt compatible.
 
---qCNovWBlHUc0Sp+m
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch series is a part of Exynos7870 upstreaming.
 
-On Thu, Feb 27, 2025 at 10:14:02AM +0000, Sakari Ailus wrote:
-> Hi Mathis,
->=20
-> On Wed, Feb 26, 2025 at 04:39:23PM +0100, Mathis Foerst wrote:
-> > The MT9M114 supports the different slew rates (0 to 7) on the output pa=
-ds.
->=20
-> "the output pads" probably means pixel data interface (DVP or CSI-2)
-> signals in this cases? I suppose this is about clock modulation?
-> It'd be good to say that.
->=20
-> > At the moment, this is hardcoded to 7 (the fastest rate).
-> > The user might want to change this values due to EMC requirements.
-> >=20
-> > Add the 'pad-slew-rate' property to the MT9M114 DT-bindings for selecti=
-ng
-> > the desired slew rate.
-> >=20
-> > Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
-> > ---
-> >  .../devicetree/bindings/media/i2c/onnn,mt9m114.yaml         | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.y=
-aml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > index 72e258d57186..666afe10c538 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > @@ -74,6 +74,12 @@ properties:
-> >      description: Bypass the internal PLL of the sensor to use EXTCLK d=
-irectly as SYSCLK.
-> >      type: boolean
-> > =20
-> > +  onnn,slew-rate:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
->=20
-> No need to make this 8-bit (i.e. just use 32 bits).
->=20
-> > +    description: Slew rate ot the output pads DOUT[7:0], LINE_VALID, F=
-RAME_VALID and PIXCLK
->=20
-> Please wrap at 80 characters.
->=20
-> Is there more information on the effect than 7 is the fastest?
->=20
-> > +    minimum: 0
-> > +    maximum: 7
->=20
-> Please also add a default.
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Changes in v3:
+- Reuse some structs and macros from exynos8895.
+- Link to v2: https://lore.kernel.org/r/20250219-exynos7870-pinctrl-v2-0-1ff9b10bf913@disroot.org
 
-It'd also be great (IMO) if it were given in terms of actual units, not
-nebulous values that I assume to be the register values.
+Changes in v2:
+- Take over ownership of patches by the co-author, upon their request.
+- Link to v1: https://lore.kernel.org/r/20250204-exynos7870-pinctrl-v1-0-77b9800749b7@disroot.org
 
->=20
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
->=20
-> --=20
-> Regards,
->=20
-> Sakari Ailus
+---
+Kaustabh Chakraborty (3):
+      dt-bindings: pinctrl: samsung: add exynos7870-pinctrl compatible
+      dt-bindings: pinctrl: samsung: add exynos7870-wakeup-eint compatible
+      pinctrl: samsung: add support for exynos7870 pinctrl
 
---qCNovWBlHUc0Sp+m
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../pinctrl/samsung,pinctrl-wakeup-interrupt.yaml  |   2 +
+ .../bindings/pinctrl/samsung,pinctrl.yaml          |   1 +
+ drivers/pinctrl/samsung/pinctrl-exynos-arm64.c     | 139 +++++++++++++++++++++
+ drivers/pinctrl/samsung/pinctrl-exynos.h           |  19 +++
+ drivers/pinctrl/samsung/pinctrl-samsung.c          |   2 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h          |   1 +
+ 6 files changed, 164 insertions(+)
+---
+base-commit: be5c7bbb3a64baf884481a1ba0c2f8fb2f93f7c3
+change-id: 20250203-exynos7870-pinctrl-07265f719061
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8IKYwAKCRB4tDGHoIJi
-0uKUAPwJ+iZVJPXHo7/4XtESXIajYoNUWJHiuCsZndzCr9009gEAvWWJzUZIFZIP
-kWmg97xy34Y90j6dyJyGKOZjTPG++Qg=
-=oWD8
------END PGP SIGNATURE-----
-
---qCNovWBlHUc0Sp+m--
 
