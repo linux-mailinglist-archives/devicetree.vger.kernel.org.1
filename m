@@ -1,160 +1,205 @@
-Return-Path: <devicetree+bounces-152581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0108BA49827
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 12:13:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2624A4982B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 12:15:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE64616474A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:13:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B94FC1896EE6
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCB37261365;
-	Fri, 28 Feb 2025 11:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C642E2580CC;
+	Fri, 28 Feb 2025 11:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KIO0uu2c"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="IrXbWTDt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17344260A55;
-	Fri, 28 Feb 2025 11:13:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB022620C8
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 11:15:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740741210; cv=none; b=X3OTLrzHHh7S/2u4N+qWgrm59AzITTNwEfzlIi84JleC7F+7/tZppM59q1qNTQvaIO2gQsbv3TyE5vpJmOO7Db/naU4i9T6xa/IdINdugDemR48ctjTxKS1nEP3LIWYb4TpdZVdYLv5EZc7WL3BQ5B0Qh/JlgMZOeOnW1M/Mh8Q=
+	t=1740741314; cv=none; b=FQD5gowl7Zgb+neksxGgqAUr+shHrSfSCq91tkB95xgOGL8GH/ypyrp9OTRVlAXV02d6ZDKv5q8p85tuW3l8GH4ATBawmzKb7Iy7BkUXks5BdoSkz0zzidgsAOhFcQfeZj9dTKISbVZjwYrkwEsxaR7Rd7Sbw7GNHf/+U1udSB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740741210; c=relaxed/simple;
-	bh=tU3ESWBJdJHFgQ9EMSUOom4KFt2zjDy3dIsf+0Q0N14=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=IaHdqm/9rIjftY/WUnugNRCmRz7EiKxQiVM/wU9UFbyQ6LLEapsmvghGnhx60OQi2CkfuTToPRC0dAbUOU64BV7SuLUhRY6XLyif0Q/W3wsVXHhS0xZ0H0RqnvYf93m2iglTFAEGwe6eynSumoddNXlKRhXadzgPhqY83oUBQxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KIO0uu2c; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 51SAXKgB031086;
-	Fri, 28 Feb 2025 11:13:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4+kfSnLgY5Wy5Nt9p7BHAeYDz9i9387LV7FAwpC/7gY=; b=KIO0uu2cqLAsmud5
-	vr5r2VHQi4VBQHiKR3ZgJEcQIGxjc/V29IxHbiAnXhu20uizsWwBkFL3FK0ULSex
-	RrCR7uHUWVh5qeWB3MJ/LTs1xxo+zBkgFdVo/6Jv1aL4jcixfcPJOB0AcWTkKexM
-	+qPi6Z+0gc16rlQYucXShc2sR0luungMyaGngcw+4e3DO0AYCDb8YipopsRTYs5o
-	OMFHAbum8myYJ7WgCgUPKwYdnlZUpXlNX4aFO0Qusj+LOfY+44HdxQfwfozwNo4G
-	gz3gTDn9Kat0cK8XVGjzeTrKBX35wq2pkXrLzb6t3dre/6ILC5dGTuuyHAiaRuf9
-	RxVD1g==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 451prms1tk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Feb 2025 11:13:25 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 51SBDOEi011059
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Feb 2025 11:13:24 GMT
-Received: from [10.151.36.43] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 28 Feb
- 2025 03:13:21 -0800
-Message-ID: <eae1f6a4-a407-98ce-7c45-2cdf27af3ef3@quicinc.com>
-Date: Fri, 28 Feb 2025 16:43:19 +0530
+	s=arc-20240116; t=1740741314; c=relaxed/simple;
+	bh=isHbY/IQxLptRIvosa0pjZEubSG4kQQCkajcw2CB5gI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mUwToTBKg6zHftjM1ICsDZNGV4/YRzeE9VaVtvARiyS2VFEpwThvm+I6sNv7/Snm77QRDQ53ZjDbRNxYaJRpHrd8HKYHp9KHbPvD1VoFcqoLHqHZTcoa1CYsF4BI4YtlwBCcYmrHQju0rwfvkzPWB2f73DTkLPlZPhhln6cZ6Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=IrXbWTDt; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1740741302; bh=isHbY/IQxLptRIvosa0pjZEubSG4kQQCkajcw2CB5gI=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=IrXbWTDt42YWW0LfUD6JRUzdY30YbkSXYXfEjbBQvSh5oqGzgCG9/B0KsLLNdchIZ
+	 lX04oNsne8r+Azz+kmHDH5/Hb5ZfaTLc2WAtKoctfQhgf8UqqCjBx4hqYV/CZT6zPj
+	 4EQUlYQfEAf4nGoU9ZHqQaaeLzDl17phtaILEnYw=
+Date: Fri, 28 Feb 2025 12:15:02 +0100
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: Jimmy Hon <honyuenkwun@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, 
+	Cenk Uluisik <cenk.uluisik@googlemail.com>, Chen-Yu Tsai <wens@csie.org>, Florian Klink <flokli@flokli.de>, 
+	Muhammed Efe Cetin <efectn@protonmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH UNTESTED 3/4] arm64: dts: rockchip: Enable HDMI1 on
+ Orange Pi 5 Plus
+Message-ID: <5qi24bxuamu3agtldyxhrnlefao6zy2mw2qmx62ycsdg3v6sbz@2jeawstukcyd>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	Jimmy Hon <honyuenkwun@gmail.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Cenk Uluisik <cenk.uluisik@googlemail.com>, Chen-Yu Tsai <wens@csie.org>, Florian Klink <flokli@flokli.de>, 
+	Muhammed Efe Cetin <efectn@protonmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20250227235623.1624-1-honyuenkwun@gmail.com>
+ <20250227235623.1624-4-honyuenkwun@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1 2/3] arm64: dts: qcom: ipq9574: Enable SPI NAND for
- ipq9574
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250224113742.2829545-1-quic_mdalam@quicinc.com>
- <20250224113742.2829545-3-quic_mdalam@quicinc.com>
- <51ceb7ae-0dbe-4585-a955-e84bcde6c8f9@oss.qualcomm.com>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <51ceb7ae-0dbe-4585-a955-e84bcde6c8f9@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2HRbun5o0aoiCrMImaDlrqOWVWPXtCY8
-X-Proofpoint-ORIG-GUID: 2HRbun5o0aoiCrMImaDlrqOWVWPXtCY8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-02-28_02,2025-02-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 phishscore=0 bulkscore=0 malwarescore=0 mlxscore=0
- priorityscore=1501 adultscore=0 spamscore=0 mlxlogscore=836
- lowpriorityscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2502100000 definitions=main-2502280080
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250227235623.1624-4-honyuenkwun@gmail.com>
+
+Hello Jimmy,
+
+On Thu, Feb 27, 2025 at 05:56:22PM -0600, Jimmy Hon wrote:
+> Enable the second HDMI output port on the Orange Pi 5 Plus
+
+RK3588 hardware design guide states that:
+
+  - When working in HDMI2.1 mode, HDMI0_TX_ON_H is configured as low level,
+    Q1700, Q1701, Q1702, and Q1703 are not turned on.
+  
+  - When working in HDMI2.0 and below modes, HDMI0_TX_ON_H is configured as high
+    level, Q5007, Q5004, Q5005, and Q5006 are turned on, and the 499ohm resistor
+    to ground and the 50ohm pull-up resistor at the Sink end form a DC bias of
+    about 3V.
+  
+  If you only need to support HDMI2.0 and below modes, Q5007, Q5004, Q5005, and
+  Q5006 cannot be omitted. It is necessary to ensure that the tube is not turned
+  on when the machine is not turned on, because the HDMI CTS Test ID 7-3 TMDS
+  Voff test item requires that the Voff voltage must be within AVcc+-10mV when
+  the DUT is not powered on, otherwise this test item cannot pass. 2: The Coss
+  of the control MOS tube cannot be too large, otherwise it will affect the
+  signal quality. It is recommended to follow the reference figure model or the
+  corresponding Coss value.
+
+And Orange Pi 5 schematic (which has almost the same circuit as Plus variant)
+states this explicitely too:
+
+  https://megous.com/dl/tmp/5dc98e91dfee3b5a.png
+
+The same applies to HDMI1.
+
+Maybe it would be better to pull up HDMI1_TX_ON_H more explicitely for now via:
+
+&hdmi1 {
++ pinctrl-0 = <&hdmim2_tx1_cec &hdmim0_tx1_hpd
++              &hdmim1_tx1_scl &hdmim1_tx1_sda
++              &hdmi1_tx_on_h>;
+};
+
+&pinctrl {
+...
++ hdmi {
++         hdmi1_tx_on_h: hdmi1-tx-on-h {
++                 rockchip,pins = <4 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>;
++         };
++ };
+...
+};
+
+AFAIK FRL is not supported, yet, so this may be a better default for HDMI1_TX_ON_H.
+
+In any case,
+
+Reviewed-by: Ondrej Jirman <megi@xff.cz>
 
 
+And I've also tested and used identical patch for a few weeks already on my
+Orange Pi 5+. :)
 
-On 2/25/2025 2:06 AM, Konrad Dybcio wrote:
-> On 24.02.2025 12:37 PM, Md Sadre Alam wrote:
->> Enable SPI NAND support for ipq9574 SoC.
->>
->> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->> ---
->> * Moved out ipq9574-rdp-common.dtsi changes into this patch from
->>    previous patch
->> ---
->>   .../boot/dts/qcom/ipq9574-rdp-common.dtsi     | 43 +++++++++++++++++++
->>   1 file changed, 43 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
->> index ae12f069f26f..6d1e84301671 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
->> @@ -139,6 +139,49 @@ gpio_leds_default: gpio-leds-default-state {
->>   		drive-strength = <8>;
->>   		bias-pull-up;
->>   	};
->> +
->> +	qpic_snand_default_state: qpic-snand-default-state {
->> +		clock-pins {
->> +			pins = "gpio5";
->> +			function = "qspi_clk";
->> +			drive-strength = <8>;
->> +			bias-disable;
->> +		};
->> +
->> +		cs-pins {
->> +			pins = "gpio4";
->> +			function = "qspi_cs";
->> +			drive-strength = <8>;
->> +			bias-disable;
->> +		};
->> +
->> +		data-pins {
->> +			pins = "gpio0", "gpio1", "gpio2", "gpio3";
->> +			function = "qspi_data";
->> +			drive-strength = <8>;
->> +			bias-disable;
->> +		};
->> +	};
->> +};
->> +
->> +&qpic_bam {
->> +	status = "okay";
->> +};
->> +
->> +&qpic_nand {
->> +	pinctrl-0 = <&qpic_snand_default_state>;
->> +	pinctrl-names = "default";
->> +	status = "okay";
+Kind regards,
+	o.
+
+> Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
+> ---
+>  .../dts/rockchip/rk3588-orangepi-5-plus.dts   | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 > 
-> Please add a newline before status
-Ok, will do in next revision.
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> index 0f874b87b47e..53797f633d3a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> @@ -26,6 +26,17 @@ hdmi0_con_in: endpoint {
+>  		};
+>  	};
+>  
+> +	hdmi1-con {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi1_con_in: endpoint {
+> +				remote-endpoint = <&hdmi1_out_con>;
+> +			};
+> +		};
+> +	};
+> +
+>  	ir-receiver {
+>  		compatible = "gpio-ir-receiver";
+>  		gpios = <&gpio4 RK_PB3 GPIO_ACTIVE_LOW>;
+> @@ -125,10 +136,30 @@ hdmi0_out_con: endpoint {
+>  	};
+>  };
+>  
+> +&hdmi1 {
+> +	status = "okay";
+> +};
+> +
+> +&hdmi1_in {
+> +	hdmi1_in_vp1: endpoint {
+> +		remote-endpoint = <&vp1_out_hdmi1>;
+> +	};
+> +};
+> +
+> +&hdmi1_out {
+> +	hdmi1_out_con: endpoint {
+> +		remote-endpoint = <&hdmi1_con_in>;
+> +	};
+> +};
+> +
+>  &hdptxphy0 {
+>  	status = "okay";
+>  };
+>  
+> +&hdptxphy1 {
+> +	status = "okay";
+> +};
+> +
+>  &hym8563 {
+>  	interrupt-parent = <&gpio0>;
+>  	interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+> @@ -342,3 +373,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+>  		remote-endpoint = <&hdmi0_in_vp0>;
+>  	};
+>  };
+> +
+> +&vp1 {
+> +	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
+> +		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
+> +		remote-endpoint = <&hdmi1_in_vp1>;
+> +	};
+> +};
+> -- 
+> 2.48.1
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> Konrad
 
