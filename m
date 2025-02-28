@@ -1,117 +1,164 @@
-Return-Path: <devicetree+bounces-152540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E89A496C5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:16:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 113BCA496C7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 11:16:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D907F3B2F9C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:16:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 251FD18867B9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:16:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87D225DAFD;
-	Fri, 28 Feb 2025 10:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3A825DB1C;
+	Fri, 28 Feb 2025 10:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h6pLw8qU"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="JXckqPJq";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="RZIbN3OU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC0725BAD0;
-	Fri, 28 Feb 2025 10:12:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0A825DCE3
+	for <devicetree@vger.kernel.org>; Fri, 28 Feb 2025 10:12:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740737539; cv=none; b=kIGCS80sChxFsNBegY9VBiNh8fWRzG/onippuruyEJDyQSc7W4zpRyeodNjOMzOC3Ims3EUpqW7Pn+whPh4fQ0ov0YZveqYiNlCU7juaIDzxydJg4Cb+3w7ma4r3I+6emShikP84W4t05Huc0P7Rnj+pVbe0WhE6QR1ya9xw634=
+	t=1740737566; cv=none; b=anXvX+rsfTN7ni4AlXNaTvp4szvkcWR3YJu5fCBYF8s+DVywHWRi8mieRTah1KmdydIuc1LKjWidDyIBP31bus1QUKCr60m2zhP6+okHxDhyUlyj5G0tcP2C3Qx4l93dHiNEvxcMFihnP+uG6W8hhDJqPsWKlEPvUSIk8gHO+Lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740737539; c=relaxed/simple;
-	bh=5nmhdVmkJjvM0GzyzeQCzlweufADquCQbW0TIn6T4pQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kNMt7iXjUVlDft/X+Xcn3x+M1wBvX3KGCtjhfYzkClt0CUnxCUm3qR2KzgHLvPVeaJpS6msrvBJ1Y3Yra8JquPXxatjnxmjkg/DBlcffnvTxI+5BECWnBE3cbgbC0EleVu/q8TfCBE+Z5C/lYBlyIMajyoVZ5d8rWu/D99iR6O4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6pLw8qU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35AC6C4CEE5;
-	Fri, 28 Feb 2025 10:12:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740737539;
-	bh=5nmhdVmkJjvM0GzyzeQCzlweufADquCQbW0TIn6T4pQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h6pLw8qUfvQNslHWoxqE871PS+g//RhNm0OCSFXfJLGLoZlg2fh++rA7JwM6nK0BO
-	 aK95rQ3IJwmaC+JaL1HeeYCMPozOfSUxUPD+Eb7JseclvznzxhUflHDWuq5QpDPxbI
-	 zrf1UFjGnYDygGK1SXrOaqlsYJUssPK91ox5aNq7DmaLRHIbjlvtNS1rEbsus9QIg1
-	 CBjDr7t9c3/Ii4uwlm/gqOqZ+oTPMLKU+QGbmwhtCRlhdvwSqNP1+6aXaY69AiWaN6
-	 X7G2cuoaUSES++DWBy/V2bO2CWE4Zml3gF1aXh2aQfsyltt28Y6l0K8SYjwM1X5Qch
-	 oWoVmCsICHKpw==
-Date: Fri, 28 Feb 2025 11:12:10 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Alistair Popple <apopple@nvidia.com>
-Cc: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
-	gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	robh@kernel.org, daniel.almeida@collabora.com, saravanak@google.com,
-	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com, paulmck@kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	rcu@vger.kernel.org
-Subject: Re: [PATCH v7 07/16] rust: add `io::{Io, IoRaw}` base types
-Message-ID: <Z8GL-plbtphS62hl@pollux>
-References: <20241219170425.12036-1-dakr@kernel.org>
- <20241219170425.12036-8-dakr@kernel.org>
- <g63h5f3zowy375yutftautqhurflahq3o5nmujbr274c5d7u7u@j5cbqi5aba6k>
- <CANiq72=gZhG8MOCqPi8F0yp3WR1oW77V+MXdLP=RK_R2Jzg-cw@mail.gmail.com>
- <wnzq3vlgawjdchjck7nzwlzmm5qbmactwlhtj44ak7s7kefphd@m7emgjnmnkjn>
- <Z72jw3TYJHm7N242@pollux>
- <nlngenb6udempavyevw62qvdzuo7jr4m5mt4fwvznza347vicl@ynn4c5lojoub>
- <Z8A4E_AyDlSUT5Bq@pollux>
- <w2udn7qfzcvncghilcwaz4qc6rv2si3dqpjcs2wrbvits3b44k@parw3mnusbuf>
+	s=arc-20240116; t=1740737566; c=relaxed/simple;
+	bh=Qdq5WAjFPi4TKMEVn4IsIN7wUCANmhG6byBsJnCflk8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FtyqMU4HNuDTOQNAKv/YJFPloZHADNJ7cef4yGX3yeZ7bsjazqnD0BDzb4LHQrKWywHMzKnjJkGVBZk35+B6p2Gv8FmgQaV1AjUXtT9qradoAqc/U4oxp/YZHav+tWAAQ4KoZwP4jmRTWpch3tlRW3VnFoUHDIlfmTv2tRvJiw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=JXckqPJq; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=RZIbN3OU reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1740737564; x=1772273564;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=wrZESIfIEMlm8bcE5XbWXGC11n9EvGXbhxL7sNZTaKg=;
+  b=JXckqPJq/NpU3rnbvEh6F+GISVZkBNRfJYSOLd9tcUE6ox3RV8q3Rtzb
+   Q1MQiy1n0DTBUvPX5Booth7I9QrpmXoZzn1EjSLOUdPsCv4Iei00b+Ohy
+   gaFtnQ0G83QvDu8IEfN/YwIw8XzAM/HaqDLBx3Mszppa51I/FTJnszAFa
+   +GWMTMj/QxAO+jmdg+GVhNRcofRHoZLQ0SN1XnbHxSlHGI2emyFF829xO
+   AaLid7QpVNl1bexkwaLwQtKt3hnOtOvVvJzKMVfinfaFNTaOZ/IeTRD1N
+   G5yStcG+AkzWofh/ovQ/YCYtqZTjLxdkIrJ6sz8opWt87gmqJQIVkoUQp
+   A==;
+X-CSE-ConnectionGUID: pa+KqxuLQCOJlUmpZ8dqOg==
+X-CSE-MsgGUID: XOcdYrqWQr2Yz50o0V+ekw==
+X-IronPort-AV: E=Sophos;i="6.13,322,1732575600"; 
+   d="scan'208";a="42171238"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 28 Feb 2025 11:12:41 +0100
+X-CheckPoint: {67C18C19-E-2895743E-CD1E7AB7}
+X-MAIL-CPID: 18FEA1C7F914205254E6E81087CE3540_4
+X-Control-Analysis: str=0001.0A002119.67C18C19.00E0,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D6AAB168CC3;
+	Fri, 28 Feb 2025 11:12:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1740737557;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wrZESIfIEMlm8bcE5XbWXGC11n9EvGXbhxL7sNZTaKg=;
+	b=RZIbN3OUvhZO996W35ymd+UmvU0Oe1s/ZIRdblX0G9pxMXjaPdqV3Si/TXhOId9nWCmi4P
+	5opWJlWKMH3LggKe/bDCqJkXBP4MYy12GrGsaasQWYP3JaQGj+Zdpg2TDyEiqLPmlGVvEf
+	a7oGgXhCV8ENhJXpx7RP4iwwqWQs8SRoSzLuif/iCFCSeH6pMlIWJq9p3GfmePgTt0sxGY
+	ZqZl3ZHOU0e/KmiFwlp7JILTqf6x0AZN4T7OJOgTdHU8AW1lM6RQiRL+cfGOKW90hrhESa
+	qOjpJvckYPsC91rSpqL/8PwGVYKWPrTMtn66RABwjrBDuv2LRT7uRf87Acr2HA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
+Cc: Marek Vasut <marex@denx.de>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, Marek Vasut <marex@denx.de>
+Subject:
+ Re: [PATCH 7/9] dt-bindings: gpu: mali-valhall-csf: Document i.MX95 support
+Date: Fri, 28 Feb 2025 11:12:35 +0100
+Message-ID: <4281241.1IzOArtZ34@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250227170012.124768-8-marex@denx.de>
+References:
+ <20250227170012.124768-1-marex@denx.de>
+ <20250227170012.124768-8-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <w2udn7qfzcvncghilcwaz4qc6rv2si3dqpjcs2wrbvits3b44k@parw3mnusbuf>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, Feb 28, 2025 at 04:29:04PM +1100, Alistair Popple wrote:
-> On Thu, Feb 27, 2025 at 11:01:55AM +0100, Danilo Krummrich wrote:
-> > On Thu, Feb 27, 2025 at 11:25:55AM +1100, Alistair Popple wrote:
-> 
-> > > To be honest I don't really understand the utility here because the compile-time
-> > > check can't be a definitive check. You're always going to have to fallback to
-> > > a run-time check because at least for PCI (and likely others) you can't know
-> > > for at compile time if the IO region is big enough or matches the compile-time
-> > > constraint.
-> > 
-> > That's not true, let me explain.
-> > 
-> > When you write a driver, you absolutely have to know the register layout. This
-> > means that you also know what the minimum PCI bar size has to be for your driver
-> > to work. If it would be smaller than what your driver expects, it can't function
-> > anyways. In Rust we make use of this fact.
-> > 
-> > When you map  a PCI bar through `pdev.iomap_region_sized` you pass in a const
-> > generic (`SIZE`) representing the *expected* PCI bar size. This can indeed fail
-> > on run-time, but that's fine, as mentioned, if the bar is smaller than what your
-> > driver expect, it's useless anyways.
-> > 
-> > If the call succeeds, it means that the actual PCI bar size is greater or equal
-> > to `SIZE`. Since `SIZE` is known at compile time all subsequent I/O operations
-> > can be boundary checked against `SIZE` at compile time, which additionally makes
-> > the call infallible. This works for most I/O operations drivers do.
-> 
-> Argh! That's the piece I was missing - that this makes the IO call infallible
-> and thus removes the need to write run-time error handling code. Sadly of course
-> that's not actually true, because I/O operations can always fail for reasons
-> other than what can be checked at compile time (eg. in particular PCI devices
-> can fall off the bus and return all 0xF's). But I guess existing drivers don't
-> really handle those cases either.
+Am Donnerstag, 27. Februar 2025, 17:58:07 CET schrieb Marek Vasut:
+> The instance of the GPU populated in Freescale i.MX95 is the
+> Mali G310, document support for this variant.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-We handle this case too by giving out a Devres<pci::Bar> rather than just a
-pci::Bar. The former gets revoked when the device falls off the bus.
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+> ---
+> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Steven Price <steven.price@arm.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+>  Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.y=
+aml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> index 0efa06822a543..3ab62bd424e41 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> @@ -18,6 +18,7 @@ properties:
+>      oneOf:
+>        - items:
+>            - enum:
+> +              - fsl,imx95-mali            # G310
+>                - rockchip,rk3588-mali
+>            - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revis=
+ion is fully discoverable
+> =20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
