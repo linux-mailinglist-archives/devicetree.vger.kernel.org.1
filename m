@@ -1,103 +1,138 @@
-Return-Path: <devicetree+bounces-152870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E93A4A571
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:56:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31480A4A57D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 22:59:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E631A175DFC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 21:56:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8625189872D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 21:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2615F1DE2B8;
-	Fri, 28 Feb 2025 21:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 353561DE2B9;
+	Fri, 28 Feb 2025 21:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YAxao5J2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t6iZsuTi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1C01D9A50;
-	Fri, 28 Feb 2025 21:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC6923F388;
+	Fri, 28 Feb 2025 21:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740779761; cv=none; b=Pl3ZysuBb8aziAdl9L5eg2fuLrwbC4anVJG2bUK0qUzAZzyv8lKhkGEO/M3dVXokQ5m4UPV8bXsBNy52lDjguzZ84+W0uD5S6MfdK4rM0brJfTMR1yzdMX9W4P4LU8uwwFRFjxlVw4CATbYIef8JHv8RPPI2L/WU6IkKTxfK43Y=
+	t=1740779972; cv=none; b=avfltcfCz/SDoMK+eXCZ0OIK/3hf/sMuiEw+F+MQQuysoQOlNF8bwUo2QBH2Y4z1z2695hiDTwaVLX3RKUQ8upTnvQmxJMyNHjM1ea6XXwyRybNGYTRwvDl8G8aFB9HZ1cP1lqYXthpaYG5615/SdHxjFP9yDxtYZR6jQfejXCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740779761; c=relaxed/simple;
-	bh=WzG/KNySzTFxJVLImnFPJc4V3svrWDbTCG0HQL5y8dc=;
+	s=arc-20240116; t=1740779972; c=relaxed/simple;
+	bh=1uXrApM/OZ45z97xOh8du0b899K24AGxc0xzc8B5RjY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=avd5d4EoA2G+ht/ro8aJEFlon8Zge8lnnuiHZtZZlwNKLrBzxrx5zCqLvdJIYU5Bwk6+TSgBDDRBk7MndkSZM97++NVMt4RC1nhtLuX5XoBxTI11QmMMHoFPQAamPGeSuSzGbczFHzACMpeXePAHMSGem0MOMW9BgE6EvZi7LS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YAxao5J2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B204C4CEE2;
-	Fri, 28 Feb 2025 21:56:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pGO6rg06OsogFZCAER+l8NyG0m5xM8vL3Fph1BJfKIsTuqcmcGbdaGZJv9nCDYt0I+P89Cphs8QKvgCi/n98KeIeOnaP4OW9bNPpwJD56S++Gll7GpnXMow529V80/LmeJlC0B2/HP//LtyqFX0JAp5NcyAmBI0/fjhTfIgo7kY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t6iZsuTi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DEF8C4CED6;
+	Fri, 28 Feb 2025 21:59:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740779760;
-	bh=WzG/KNySzTFxJVLImnFPJc4V3svrWDbTCG0HQL5y8dc=;
+	s=k20201202; t=1740779971;
+	bh=1uXrApM/OZ45z97xOh8du0b899K24AGxc0xzc8B5RjY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YAxao5J2J1HHb/UgaH5L4Az1eD1k0lkbp6bQgKG1x6hJDg87aaXApSu2GTUVtuxwz
-	 7SAvVZqC5Y5YVCmr2KYgJDF9n2+kGizrfKn6LTJzaKNLYHHS2brMeVi1UdiVJRsvak
-	 BPKx56n0RU0fgUaHsJJ7vKxA15Ub7WqM/m9xaPeqUA3Xf3Jd+XkVsO7kr2/OnoC6xs
-	 1Wqi6ry5Y7+g31liiCmNLOsOdo/QOPC7wNXC9a6PmHB8df2HDhb4TNqEeFu65gSaeJ
-	 4MdXG1qinZKwsaA4icCV2DfIfq04nrjIocKnS04WiOv1c1jC7egmJ18bi03GTGG0BN
-	 vFMlgUHFw3hOw==
-Date: Fri, 28 Feb 2025 15:55:58 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel-team@android.com,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	linux-gpio@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	devicetree@vger.kernel.org, Will McVicker <willmcvicker@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v3 3/6] dt-bindings: mfd: add max77759 binding
-Message-ID: <174077970526.3762322.8276687312075496853.robh@kernel.org>
-References: <20250228-max77759-mfd-v3-0-0c3627d42526@linaro.org>
- <20250228-max77759-mfd-v3-3-0c3627d42526@linaro.org>
+	b=t6iZsuTi16cH8sv1FWBFvXaPNGRLY+mbxR3OEGWpPyyxZPjhYyUmFvX5JCbdK4kbd
+	 DOKqzY/dfkhuyo5OI3HKGe51rVoCpcEMr8v0SjURaEdFWKd5g5PT960h2INmZxjo3w
+	 hSGyumcYC4AexXjwaZIxWxeS0FjsNXU/lbUsHCpx+yEsavtEvyTYpT7IUOa+TEC2EV
+	 ykOpoxoUcuz1SonSJVq3fIuj34THF6ZVr//R66Fl37vNfIHOr6aODn9DHU5mal63Gr
+	 phPwv01OG3gxHpuNPrQdsyMo3tGKtSpIAOR2qKwRJbc6lHSaP+sEh6kOApmR8Y+sxV
+	 eQ6//ZgRcjk7Q==
+Date: Fri, 28 Feb 2025 15:59:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: memory: Document RZ/G3E support
+Message-ID: <20250228215929.GA3763431-robh@kernel.org>
+References: <20250228160810.171413-1-biju.das.jz@bp.renesas.com>
+ <20250228160810.171413-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250228-max77759-mfd-v3-3-0c3627d42526@linaro.org>
+In-Reply-To: <20250228160810.171413-2-biju.das.jz@bp.renesas.com>
 
+On Fri, Feb 28, 2025 at 04:07:55PM +0000, Biju Das wrote:
+> Document support for the Expanded Serial Peripheral Interface (xSPI)
+> Controller in the Renesas RZ/G3E (R9A09G047) SoC.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../memory-controllers/renesas,rz-xspi.yaml   | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/renesas,rz-xspi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rz-xspi.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rz-xspi.yaml
+> new file mode 100644
+> index 000000000000..84875cd28460
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rz-xspi.yaml
+> @@ -0,0 +1,137 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-controllers/renesas,rz-xspi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas Expanded Serial Peripheral Interface (xSPI)
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +description: |
+> +  Renesas xSPI allows a SPI flash connected to the SoC to be accessed via
+> +  the memory-mapping or the manual command mode.
+> +
+> +  The flash chip itself should be represented by a subnode of the XSPI node.
+> +  The flash interface is selected based on the "compatible" property of this
+> +  subnode:
+> +  -  "jedec,spi-nor";
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: renesas,r9a09g047-xspi  # RZ/G3E
+> +      - const: renesas,rz-xspi         # a generic RZ xSPI device
+> +
+> +  reg:
+> +    items:
+> +      - description: xSPI registers
+> +      - description: direct mapping area
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: dirmap
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Interrupt pulse signal by factors excluding errors
+> +      - description: Interrupt pulse signal by error factors
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: spi_pulse
+> +      - const: spi_err_pulse
 
-On Fri, 28 Feb 2025 14:25:17 +0000, André Draszik wrote:
-> The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
-> includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
-> Port Controller (TCPC), NVMEM, and a GPIO expander.
-> 
-> This describes the top-level device.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> 
-> ---
-> v3:
-> * drop gpio-controller and gpio-cells, GPIO is provided by the child
->   (Rob)
-> 
-> v2:
-> * rename expected nvmem subdev nodename to 'nvmem-0'
->   I'd have preferred just 'nvmem', but that matches nvmem-consumer.yaml
->   and fails validation.
-> 
-> Note: MAINTAINERS doesn't need updating, the binding update for the
-> first leaf device (gpio) adds a wildcard matching all max77759 bindings
-> ---
->  .../devicetree/bindings/mfd/maxim,max77759.yaml    | 99 ++++++++++++++++++++++
->  1 file changed, 99 insertions(+)
-> 
+Drop 'spi'
+
+Otherwise,
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
 
