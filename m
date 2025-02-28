@@ -1,154 +1,148 @@
-Return-Path: <devicetree+bounces-152841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD0EA4A449
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 21:30:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB67A4A474
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 21:59:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4679E16740E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 20:30:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B400716D242
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 20:59:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E3617AE11;
-	Fri, 28 Feb 2025 20:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5C81C54B2;
+	Fri, 28 Feb 2025 20:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z6qJbMN0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tK/pGqUn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF61223F396;
-	Fri, 28 Feb 2025 20:30:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401F823F38F;
+	Fri, 28 Feb 2025 20:58:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740774650; cv=none; b=UlIfwvPy4OOJrJvzJnMWn2S5pvAPEXuzBY6nbpACndtejRxV/181ggRmlEoNaGiHqRFH9hTGxYkIutKJJyuc+G9KdDGFEVhvzYCDHqLhGqYLyCtl5M1G6CLN5hfZYc9e+a4VG0rZi9s02d+d18EVYVV0f17QL53SLZQ2EVDYKkM=
+	t=1740776338; cv=none; b=u/qM+Puh3JnY61W+Wgj6avrtmgRqW2AYNkTuxvkLyV9jEkyBVgxMbS/UBWAucRMLiO0LDLYDQV+7nGneB33/IcrjJAf4RQBe6gyS8Ob4b+N5R7v+aW5HQqn+yBarC3UKbbh/sf2x8hi+AMhojA+U1ea/GrmHv2Vz/OFu6xd+L2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740774650; c=relaxed/simple;
-	bh=kXgIwUFfcnXRTfKL18xxHQyr5xsRYovfLqKmpOqaIBU=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=uaZwkzGd2qbPrvZkPOy7hn0yNzbtTm+hQOb4XQPnQAkJMl0/2AVunTsVXbZpJTSnqm7bbpytWMjyzW18ngFMrkkaGyJOti7cI2uKGPrf/L766JSBWGsTRBNGxrh6sAdSCHJYk4yXgjPUXnXXG7FTCts3umfCGELry1Qm+4Xs030=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z6qJbMN0; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e0373c7f55so3752256a12.0;
-        Fri, 28 Feb 2025 12:30:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740774647; x=1741379447; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kXgIwUFfcnXRTfKL18xxHQyr5xsRYovfLqKmpOqaIBU=;
-        b=Z6qJbMN0JUbdkC4hRcegbP5c5uJm7A0pYP4/9gMG6bLGpmAcSkgqAo8uLh8oP8T/jt
-         MK/ryjQz9DsJjsn2MDlMPId+OHNGWEKZqabq21OKtWiBKdLbWMR2RU8TX8p/QeVyb2rK
-         QxsO/JmGOOIAliv7pVfiCFMh+RLldgeP7r0R9vlFIJfJl3Q0Nf5GkEalZD2FOF6MLwAg
-         gKVU9G40lxc/hgT4TuK+XZG7/E/e3MKv+O8llp9T1zplpdSxCmraR+CHsIT4OFiz0POp
-         B/wbbQJo7qrRWiDVA8OuXbpus+59Rjn9cc0iQAwCLj6n0hUNuW4s4zzI7hyI1QiBeP9i
-         F0LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740774647; x=1741379447;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kXgIwUFfcnXRTfKL18xxHQyr5xsRYovfLqKmpOqaIBU=;
-        b=Eo1ojlow0q6Tk5cx1qpk+nZTcrtpm9riTBQGxLh4plm3o56AKY82ucbIt6dYyt9nxs
-         gZi+pTdjbwmkVd9APbd2/S4W+qpeBn56tZKtIX5/ImVU9bC3a0fezSasPn9lTuWHSely
-         /mhHTX9ptR3b7UGjwfaiotiZjfS+b43Uk8IZiZ4T9RcRzzuzKs4o4D/Wb5FvBR7k28P8
-         S1cQrIh6IO5P2Ucy2C852RN6g52538J+zzPwD8ofHfrW+jl0NfUn9Dh4dsRE+6wid6g/
-         NCY/JeaIisXoWycIyA4O+y6/C+8agIyRkmPX8U7GxtnFMNiV68AGFHr3z6QHJEd2t3C5
-         STwA==
-X-Forwarded-Encrypted: i=1; AJvYcCWoB9zHtqSPutTRCUV1aFtC90fQw0pkdzvOKYC/mYaceOPE8r61Q4WDv9jqiE+felwH+Y/6VBvc9pkrk5G9@vger.kernel.org, AJvYcCXx6CnQfsGRFROr8P2Q8DXVLwY/GpGIWiYhRdI1j++2iFwRT9/AYtz5VAdHO5V995gr+E1u25I6PDUv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgM1Bz28KVokIQjn+UzxFMqOV79B96sSwCD1ZHfclDTg8pNfNb
-	ISWkVzDz0Uvubuq9F7EvFnTdZwcn/Bz3xylnHgi+zcQszh/v03bS
-X-Gm-Gg: ASbGncvH56RD2UMG6SBLrlND8AEMdtGxLz9jC7Ad+/NKlzctnEj9uaImnSS+IaKoPDW
-	JJB+ZYdoFfllP2+QU+Npat/OgGFSxu3bo2E/tkMFMUKmM9Usu0LdQn+4IyZbZdTw8FSW1E0iPJq
-	wdVzOPWw3KlCczzPEhtJVxH6hEmLSd1NxxImXK3EZd8nUGtrTk9lusLsbxteFx2THzh8fCuGZHF
-	m3kaA4GwKvfxKdvuqfzp+ZBpawFkJN0DM5InrX2G6zng4M1zjZZdncdOwCq49/6qgkg17EMGUIj
-	1RyE1mIP4sTReRbNr47X0/acjdVbg2nQwXi1w7GN6BulbDawuTTZsJrDtgnvHHOpXAIxxMsYoG6
-	8E2zAQQ8=
-X-Google-Smtp-Source: AGHT+IG2W1DgzC5HFOlMxfquiHOJsjopf4V1IKQfO3ADcRZT8QfnlN9j9L7rrPBIsVSyavnVTfhblA==
-X-Received: by 2002:a17:907:9716:b0:abe:e1b3:78d with SMTP id a640c23a62f3a-abf261fba01mr544156566b.8.1740774646893;
-        Fri, 28 Feb 2025 12:30:46 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf508f2288sm890766b.2.2025.02.28.12.30.44
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 28 Feb 2025 12:30:46 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1740776338; c=relaxed/simple;
+	bh=ZareocIr6rf/July5PaSSL4Wqz+XwvXpNXxxM8+Z9fE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=nNIvHhESVADzf3exsU5914eCKrlJb8IWXNmVc9hsp+ZlQY0O8nSKLeV+O7r8gXi4qURGy4YH+c38FQNshQzQmtmD1pVlT3nfShzXJnjblGvXLyeOSZHv3bxyP135QPwJz+Y5Vx2+VJPcclhr7MwiLRi2/GBUUCkUKN8YeTOsyUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tK/pGqUn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D2BAC4CED6;
+	Fri, 28 Feb 2025 20:58:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740776337;
+	bh=ZareocIr6rf/July5PaSSL4Wqz+XwvXpNXxxM8+Z9fE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=tK/pGqUn21d6SMEuUDYj53e0GS9clGkdoY/AIoO5qmmsgKfTnx5w/zfNyE61WvrWY
+	 bOtSo8XfNZ8tK/b3euIOm/mDb0SyECh5hdjpVhpQPRo2o+L+VU7XEeiihGZ8z6kB9L
+	 p2K+7lI9ir67dVz+TXKdXwAhCPh5hkvzOrJwTsLU4HdMj7GLO6Ps+nyOojC78pu75c
+	 l1g8wZvs3bVZdlVQuzPBYYvgE3vBv9Qbp5YwauYx3XxEDVEhM1ORiLPGawJr8hCO0h
+	 /TRvjx9hLp8xXeiq25yA7Wei+6OhYwKEZwvbZGsZT88A047vxCQNJz/qN1Muifep3q
+	 3gfP7Jncc88wg==
+Date: Fri, 28 Feb 2025 14:58:55 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v8 2/5] PCI: of: Use device_{add,remove}_of_node() to
+ attach of_node to existing device
+Message-ID: <20250228205855.GA67436@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
-Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20250223113036.74252-1-andyshrk@163.com>
-Date: Fri, 28 Feb 2025 21:30:33 +0100
-Cc: heiko@sntech.de,
- neil.armstrong@linaro.org,
- sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org,
- hjc@rock-chips.com,
- mripard@kernel.org,
- linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- yubing.zhang@rock-chips.com,
- dri-devel@lists.freedesktop.org,
- Andy Yan <andy.yan@rock-chips.com>,
- krzk+dt@kernel.org,
- robh@kernel.org,
- linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <AC3DE87B-64B1-4C34-8E1B-3900E2C53AA3@gmail.com>
-References: <20250223113036.74252-1-andyshrk@163.com>
-To: Andy Yan <andyshrk@163.com>
-X-Mailer: Apple Mail (2.3826.400.131.1.6)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250224141356.36325-3-herve.codina@bootlin.com>
 
+On Mon, Feb 24, 2025 at 03:13:52PM +0100, Herve Codina wrote:
+> The commit 407d1a51921e ("PCI: Create device tree node for bridge")
+> creates of_node for PCI devices. The newly created of_node is attached
+> to an existing device. This is done setting directly pdev->dev.of_node
+> in the code.
+> 
+> Even if pdev->dev.of_node cannot be previously set, this doesn't handle
+> the fwnode field of the struct device. Indeed, this field needs to be
+> set if it hasn't already been set.
+> 
+> device_{add,remove}_of_node() have been introduced to handle this case.
 
+I guess another way to say this is:
 
-> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
-23 lut 2025, o godz. 12:30:
->=20
-> From: Andy Yan <andy.yan@rock-chips.com>
->=20
->=20
-> There are two DW DPTX based DisplayPort Controller on rk3588 which
-> are compliant with the DisplayPort Specification Version 1.4 with
-> the following features:
->=20
-> * DisplayPort 1.4a
-> * Main Link: 1/2/4 lanes
-> * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
-> * AUX channel 1Mbps
-> * Single Stream Transport(SST)
-> * Multistream Transport (MST)
-> *=EF=81=AEType-C support (alternate mode)
-> * HDCP 2.2, HDCP 1.3
-> * Supports up to 8/10 bits per color component
-> * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
-> * Pixel clock up to 594MHz
-> * I2S, SPDIF audio interface
->=20
-> The current version of this patch series only supports basic display =
-outputs.
-> I conducted tests in 1080p and 4K@60 YCbCr4:2:0 modes; the ALT/Type-C =
-mode
-> hasn't been tested yet, but I suspect it will likely work. HDCP and =
-audio
-> features remain unimplemented. For RK3588, it's only support SST, =
-while in
-> the upcoming RK3576, it can support MST output.
->=20
+  - If dev->of_node has already been set, it is an error and we want
+    to do nothing.  The error is impossible in this case because
+    of_pci_make_dev_node() returns early if dev->of_node has been set.
 
-Andy,
+  - Otherwise, we want to set dev->of_node (just as we previously
+    did), and
 
-Is tis series enough to get usbc1/dp1 working as video output ?
-(assuming i will add necessary code in dt)=20
+  - if dev->fwnode has not been set, we want to set that too.
 
-rock5-itx has second hdmi port using usbc1/dp1 lanes 2,3 to ra620 =
-dp->hdmi converter
+So the whole point of this is to set dev->fwnode, which we didn't do
+before.  But has np->fwnode been set to anything?  Maybe it's buried
+somewhere inside of_changeset_create_node(), but I didn't see it.
 
-is it worth to play with this or it is too early?
-=20
+I can't tell if this actually *does* anything.  And if it does, all
+the above is basically C code translated into English, so it doesn't
+tell us *why* this is useful, which is what I try to put in the merge
+commit log.
+
+> Use them instead of the direct setting.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  drivers/pci/of.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index 7a806f5c0d20..fb5e6da1ead0 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -653,8 +653,8 @@ void of_pci_remove_node(struct pci_dev *pdev)
+>  	np = pci_device_to_OF_node(pdev);
+>  	if (!np || !of_node_check_flag(np, OF_DYNAMIC))
+>  		return;
+> -	pdev->dev.of_node = NULL;
+>  
+> +	device_remove_of_node(&pdev->dev);
+>  	of_changeset_revert(np->data);
+>  	of_changeset_destroy(np->data);
+>  	of_node_put(np);
+> @@ -711,11 +711,18 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+>  		goto out_free_node;
+>  
+>  	np->data = cset;
+> -	pdev->dev.of_node = np;
+> +
+> +	ret = device_add_of_node(&pdev->dev, np);
+> +	if (ret)
+> +		goto out_revert_cset;
+> +
+>  	kfree(name);
+>  
+>  	return;
+>  
+> +out_revert_cset:
+> +	np->data = NULL;
+> +	of_changeset_revert(cset);
+>  out_free_node:
+>  	of_node_put(np);
+>  out_destroy_cset:
+> -- 
+> 2.48.1
+> 
 
