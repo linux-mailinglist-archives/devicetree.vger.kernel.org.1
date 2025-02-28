@@ -1,350 +1,220 @@
-Return-Path: <devicetree+bounces-152511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E4D7A494B2
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:20:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA94A494B9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 10:21:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29CF93B70B4
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:20:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36B5C3B4AE3
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 09:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B8FE257427;
-	Fri, 28 Feb 2025 09:20:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DEE5256C98;
+	Fri, 28 Feb 2025 09:20:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="eNZVYnLn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O+F0/kZ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2044.outbound.protection.outlook.com [40.107.103.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572D8257AE4;
-	Fri, 28 Feb 2025 09:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740734418; cv=fail; b=uy/g1OOwMVTbVQXKiL+w2k/kvi/ad++AMi3wBokRpuhTYd53fKbF3vJ1965/SKh129w54ucvbcAmMiwtgwpeiOs2+yeF6QfsdvPQUkET46FkbLo0p4bdjAJUZmWjoejlzBxxh1JKPyjcl3hoP9xXpyfyXCyShi1Y1E6RpsabvKA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740734418; c=relaxed/simple;
-	bh=DBtIL8iVbBVBtTHlNDL4ozW1+hnkx+xSVt2b05ieUeQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ovgSNq7fNB3BWonx1ERu6D+NYtGXWW/0yFDJAvoc0KcOK/6VeJ5uobOmemPSi/DW85iNAnk4sDKAZoUlIGSLxtHX1ca//WYutcmtv7QChcpddhSUl+dG2W+YTgpoDvOLdAlncX9ReA6gFaGGnCGGd1CbQi6qeRIQbl7nTvE+7Mk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=eNZVYnLn; arc=fail smtp.client-ip=40.107.103.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b2JXxxUWdXxiBHTSJpnJgikiRsbRblkhR1DJYQvcx2Bc4RFfEUrb8OuWt8z6u0czcPEph+w8a05mdpirREq4UiWz1CtRWc/8dH8hYPTVVBW6ARDUOrM6JQBzhc9Zz3IftRs9r2TTnFDlA1/kc0hGpcztUFpYDKh9pHZFwU1hc0N/qScp32Fd0fF0K7NsQMcZvS9+lck2i8QOwnyuYK1ljKsVeS19D+5rMgB1HEKKThjTgUh/qiW3yhBt1uhldyZLqb8M7C8RIBWmDFTrl7sSav/0V7uTyh1aP6BZEZSbKyKr0cWWWA3KyENqyBiK3X7ucmy9Lm1Lr2YEfi1GM1qaHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EVx6MDX8h2hqYXJg3VX4HgdfRxSToJ3+ApEbkBheRt8=;
- b=R8m7SEZMOpADy0/jEpba4gKpTCcaaaPdL3+nDzLtKcM9/j+xEQf26dLjLxKVbSnd992j3TeXwaNcgROyc5C5+ce7UuWE2+z4pYUqIORdgJxkxzDip570QwkWPYMPFTcKjGAf7n3z2twJWloVY9+cGIkNZaoksav/ZfeLtyDhBEVFoZu8KLq7IDfmTBH/NPyzYCvWJ6Pni1EQxF+KEfd3ZxJEGJvK67nVfpGIjXGHmO7m3EPcQFTr3HQzPL2OHXrP0bNol3JcCIYNpcix+vn8jowLBG+ME1BbLwlCdN7xWRQmc+akeJ/YJo1OgH/rQN9QCqmxOeUIbBQYXJmpPypgHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EVx6MDX8h2hqYXJg3VX4HgdfRxSToJ3+ApEbkBheRt8=;
- b=eNZVYnLn32JZkD+0uIsggqYtEG6ApjZySk+jo2amJsu6FxK8tyWszc0k7F5r4LTV+53Fg3GObtFqsuedbzJsOIjg/u8vt2u5zRpeusMwt9eLgj5YDJq4z/trPx+86Ing1Y1a8IYpcxV1TG3h6ggE0hBq9eEzB6jx5xQJ29XjUBY0OjnwtKnXWdKrSWD4rg/9ONooWzLT63kXYLmh+b2ygg7iuAj8c8uqcASG0gB/NaXmYDssnzOhbOxlSUDi6DyA/nJA7ak2bHpRw6L1tJHKUiklxMOWJtnT1iyO1sPCAMxN8yrvj61jPUn/yFJbgviuHi7LS7AGWJjou4nTvX/K7g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by DB9PR04MB9233.eurprd04.prod.outlook.com (2603:10a6:10:361::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Fri, 28 Feb
- 2025 09:20:12 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%6]) with mapi id 15.20.8489.021; Fri, 28 Feb 2025
- 09:20:12 +0000
-Date: Fri, 28 Feb 2025 17:16:49 +0800
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, peter.chen@kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, jun.li@nxp.com
-Subject: Re: [PATCH v3 4/6] usb: chipidea: imx: add HSIO Block Control wakeup
- setting
-Message-ID: <20250228091649.prmpcyro27fekgzm@hippo>
-References: <20250227095348.837223-1-xu.yang_2@nxp.com>
- <3535014.QJadu78ljV@steina-w>
- <20250228023258.uznzhfnp7zsrxzed@hippo>
- <4411149.ejJDZkT8p0@steina-w>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4411149.ejJDZkT8p0@steina-w>
-X-ClientProxiedBy: SG3P274CA0009.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::21)
- To DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73667276D3B;
+	Fri, 28 Feb 2025 09:20:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740734454; cv=none; b=eglgmljqUx9n+rSaqoaTZ2YQdpOKIdg6BAwhxvHA3jlNqTAr399fJ/t3g+hSDD2Zirk1n1r/PuUhSGFagNmJHtZa1Yf4z7B9QTPDOjpkNcLn0IG1iWZq1tK8s+6uXCww1weYErPvPY8yo3RzL7R4lZ61pzHGFltDqK9+6DqTZ2A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740734454; c=relaxed/simple;
+	bh=pT8SYiw0Jf3GK6+hkue2igSEx8l2G2tJjL2ie6IuEjQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=POBdjDQ/hvBHTaKeRiR2PpnrVvK+sWA8E214Z5ebjxnS8WfO9C5b/R/eLV8omObV1AxmC4tpdNF+8wQbOpRf01GJ8m6UwDSH4WpCxKjVnRXE0BDXsILVNTUaR2MGDrRJkNA/OAFj98kbGcsNRbWqw1Nk8CuMzWPFLfaoDzKqVc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O+F0/kZ5; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7be8f281714so245441085a.1;
+        Fri, 28 Feb 2025 01:20:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740734451; x=1741339251; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dSPWzRvDH6bTdwnRoGnWYj88h3YoRDAMeqRglP+0iQ8=;
+        b=O+F0/kZ5s7XOhs2iSn3mSNH+dN5NgQYaEmJ92W25uzhC1E0kPxTxNd5nmoXcSVahHW
+         1v+Ga4QnAvsV1y48nawveYhfSFhd+GlZPP+bWsmilTSEUL+2edXCO24dvANp+SHkWIsD
+         43W4EfJipKn8A2U69Kc/QDZWGu9nzNlrjT6ODGzzv30F4+sgpRTKhg0mapsglNsBnB2m
+         1t+ZkqIssWHktyZH1w+LNk1BfrC18j/xY+lbgTU6BRvIARWfNw3Hy6RjDIQ2SxxP1lOL
+         shmew8cW6Ya9buH6dJOMNm6fIhqQRtbaJ7XfreAkzFu45BfUAe0tiN8y9gr4RjkKfkTU
+         Vr0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740734451; x=1741339251;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dSPWzRvDH6bTdwnRoGnWYj88h3YoRDAMeqRglP+0iQ8=;
+        b=X/frvj0sTyQ83MZZPFtY5e5pWC+G8uoWWAzvycufvks4BY7hr+A0se7ySGH/O857Rb
+         gF48uoM3x7elDwnOgA4SkooI5mTLaCBFBtkyEOdfVG64kEekwIIAS+NrmcO3/2KSV7VK
+         m9pWLDqlxSnTIUBa7xhJZYl3VMUarnLEzhgDYJ0/kwNB1/I3+0XBXTpi5174BMBDzh1s
+         r5iZcJISwdwLMmY1r0En6aCRtwkgCOAFzWe2JAy14t3npAJG8UVXKxzqHPgtMy3bvLuT
+         AebAQ6VIl3SYnEuDKcLGM5PtsoOan1xSM3KsgsMYhg3Kjf9U04cEyYqGgbBBOpjag2mI
+         Y4Tg==
+X-Forwarded-Encrypted: i=1; AJvYcCV300F2X/S/ML9MAR7IlvT4KxYuDU5pe5zJBKu63eiuyBUKHAHyW/fFO9UFunDwP1y7J1ycRR93+Gd7@vger.kernel.org, AJvYcCVBGwnMMKMRvy10HXT635A28f0piWQqcfCzMyzxMGDEmjVKMYQ3/CVQjfN1/Tpgr4doH9cI6bhTFVR1@vger.kernel.org, AJvYcCX+EMF9L/iMkUJxYg2uYjN1Ak0u1LRy86v+Ea4pKDOsp6RlBJDmh9ygu+AMQLDZbSOKYrNA2fbANkmeeJme@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxoYuLZiricQGHD2jHr4O6UW2fjTuVe7SChSJs73hB8xX6apkW
+	tNMksKlGckPctpeEsP6jEx4z4d+groE2vuRoS4YmbWg7ojJQXzjm
+X-Gm-Gg: ASbGncuVE5cOPwPU2zOlRkuaqNoS/TJ2sw2DehcuDb9wDWFvEucvH1h0n0jB94688Xn
+	4F5Vwn6E8hDYXWmMp55r2J/A7jEkB/VSceCTcZ6x6/QmvjfZcpAZSTA+b/yEpeW8xwdh31d3vMU
+	rDr2aAIX/e7iVH0srT+T0ou9UXLdNKiMd4i1cmWX4OaMJBuwceiLlsmbTuiJDUNY7tVWCmPbZEk
+	9AbxLHDDlUQtkzsC/6BNsA3rsNYBv+QnAnqD226ANlwToOPG2kJWUWhqJ6hg4rEZJkrReRRN+VR
+	Iw==
+X-Google-Smtp-Source: AGHT+IGaqnCcJ7W3QzbD5/MOWmJeyOSJ3VUovHm5pxJ14O5OpxxE+BEJWbEG0JBMkkwTfQFOvIVyFQ==
+X-Received: by 2002:a05:620a:44cd:b0:7c0:b714:7ec6 with SMTP id af79cd13be357-7c39c4cd13fmr388005285a.24.1740734451206;
+        Fri, 28 Feb 2025 01:20:51 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c378d9fec4sm222609485a.67.2025.02.28.01.20.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Feb 2025 01:20:50 -0800 (PST)
+Date: Fri, 28 Feb 2025 17:20:28 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Niklas Cassel <cassel@kernel.org>, 
+	Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pci: Add Sophgo SG2044 PCIe host
+Message-ID: <je4falvfemkemlvdfzdmgc7jx2gz6grpbmo6hwtpedjm7xi2gk@jr4frv3tn3l5>
+References: <20250221013758.370936-1-inochiama@gmail.com>
+ <20250221013758.370936-2-inochiama@gmail.com>
+ <20250221-cavalier-cramp-6235d4348013@spud>
+ <2egxw3r63cbsygpwqaltp4jjlkuwoh4rkwpgv4haj4sgz5sked@vkotadyk4g6y>
+ <20250224-enable-progress-e3a47fdb625c@spud>
+ <7ht3djv7zgrbkcvmdg6tp62nmxytlxzhaprsuvyeshyojhochn@ignvymxb3vfa>
+ <20250225-lapel-unhappy-9e7978e270e4@spud>
+ <ynefy5x672dlhctjzyhkitxoihuucxxki3xqvpimwpcedpfl2u@lmklah5egof4>
+ <pbj22qvat76t74nppabekvyncc4ptt6wede4q6wfygbrzcj3ag@ruvt26eqiybu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|DB9PR04MB9233:EE_
-X-MS-Office365-Filtering-Correlation-Id: 205bc6d4-5a6c-42a8-3c42-08dd57d91a9e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|52116014|7416014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?y6vcQwYS+tF9m2xx0s+LSLpXFdPIcqVdfXVAEkdcIOGT7+uqHDPSHayvmsnA?=
- =?us-ascii?Q?jX4oXJJuqsltmzer+oRc6r1Asf8e0NHRlrIy9UhuewuEEnbBmgqCrSI3Wjhk?=
- =?us-ascii?Q?uLalaYZdN7qZjLArGiMqFzII81Nk04oGk7xzKG4eWcB0/ose8aMy3KfaZuf7?=
- =?us-ascii?Q?bhLs6VGaW8ebMiT1FF6rw9fPutzbOeumjdIzEeC8s4cwtFHe/KMgIcDi/yFg?=
- =?us-ascii?Q?mTfnrSHcKYY00vJTXbk22FxeFr+WOmwAIDOC3UnHMERErbbQpS+j8ZZcGj8z?=
- =?us-ascii?Q?XdiI0NXKk1J7SquwrSK4Avs1aCsSmUfgYueqQYCUvB3Cq9yfpzkY2gq/nCtD?=
- =?us-ascii?Q?+0YD88QXkjg5Sk6qIApZirI6S+3KCFpm1y8NWDHjbR53ty+jQpO/nsS/pAMF?=
- =?us-ascii?Q?Q3WtYGgLIKPbN/gvZrG8gIqOQ1OoWn+YvVeOcnCLlw77z2gYTONtjD2kd4OJ?=
- =?us-ascii?Q?Fy3aaktJMJeuqSb64Mi4bhwhBslJc/zFBg2ZF+ub5Blh0dREPekJwkNRVdfn?=
- =?us-ascii?Q?RnlsVj3qvrEEZdocAH3tptw+Y6xI1dbXQ8civxanbqWz9CU1yJ+k/rspvHlt?=
- =?us-ascii?Q?OiLl6RzMsE5VV6I1FmqPjEkZOg6h5sDDrWHoBJLfrGHLqRIFclmssnjTnw2o?=
- =?us-ascii?Q?ackGab9J3EuQwa85Gsl2rrHUc2FJWJ09eNHm9F1tgaS0WAkdCXFnF0zATI/l?=
- =?us-ascii?Q?9q4DjAGjcMia+fyn30DI+7CvV8EHlOATPAqzpc4YLzBhzEUSGxtV8x7VznRt?=
- =?us-ascii?Q?bo3jMjMUH13d3WiBjslUIBfsJRof+S9/9+RKsI66m6wZ/MK76fxOYNDyRhZy?=
- =?us-ascii?Q?gZGLz82NXW6qKdIU85FV76AyStNajs2rw9SIACZa7c4yhD19M7OYDQKfcjjp?=
- =?us-ascii?Q?0d4h6Em+32UgtmI3CpEAxxvTJUNIpUGwgSScs7ZpJi3QuubB2lUXzrlmtowb?=
- =?us-ascii?Q?XgsMoqv6RBVpiXBvd6DHuvShYOKurUQ5lTrJDnLHU8o7IDBDjfpJPBVtizUn?=
- =?us-ascii?Q?YmlSHvCDodBvn2o2D+j/fkW18JN3qG2/Vt/rgMIw/w/LGYeqPOQbVjXAFMgg?=
- =?us-ascii?Q?1Y4GcW1fCGELA8stdi+1gIDFkUh8KdqShLXrXqGq2frrHDcDwrqs6bleL6tA?=
- =?us-ascii?Q?klrArZqhcaEF+I0D+YLqDefuTESpNYVkHvETcPQmmDRANon9Mypg0i8mwU85?=
- =?us-ascii?Q?87O5rtE6zXmqoDdLVqzKh/AuqgWJ8qrm2KzdGCmoQN84E+qB0afRlCl2WtIy?=
- =?us-ascii?Q?K3wPsFphXOhAXeRXINjJgY8LnbE/IHGDXhpLVV6DGBUJekEDKpOOlvZ1O/Jx?=
- =?us-ascii?Q?n/obqeAqr5H2D/Xd+KKwSEIF7XjQ8SpEQzZ0GQiiHwpaNZnBn9o3GxSDAN1L?=
- =?us-ascii?Q?lNXScwt+dGfLxdPh6L0qYlR9Yy5VYK1uLjLIlA6a7IsFntY5kbbTnhzIbqn1?=
- =?us-ascii?Q?iAEqRjlrzKY4Q28S2sX7DCq6W7wcA9/6?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(52116014)(7416014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?9dVZ9mRSXg4NTgHY3x48sClJ39MabTAKqcBNgFjQFrzZztyQkrU1Fje3nGNd?=
- =?us-ascii?Q?0VOYHq9fI4CGzP5Jyao+kD0CPlEna7QUQTl1TozEeLghEHjEafRa+QwuoLP+?=
- =?us-ascii?Q?9kBHg5nrtPJtsM6sLyMKwqghw7beMudPBP6pwI9T04t9Hv0O/ZP9eDZrMb//?=
- =?us-ascii?Q?k7jGIF6XYOWZwzWWEdz+x/1W0ZWpLrj5gHwMfPxEGs9Nw2sQJQmQ5gRMi39V?=
- =?us-ascii?Q?huJEvKgTzi9XQoxgQwF6XK1f4KEEdznliPor+PvVdLVfQbTJnt/ScE8AcoYs?=
- =?us-ascii?Q?jQY8ccO9ZCmAwtsS0p3u9dJr23oUFxhnb2HaQbNzyiYFT9dSsKP8we7n2c7i?=
- =?us-ascii?Q?ZIvTKO9Q8wIJ2lk6QnzrBFUMq4yYg4GTwK7P2Lh6jAn/qu5C2s49vJ3/3sLu?=
- =?us-ascii?Q?34MRSydLIVnOtaAAgRENRxfQnAl34dqOSk1zIdWXySzuBAHpO/fdLy5HBdAd?=
- =?us-ascii?Q?y7IKRj5YgQ37UHiFEOFjN5F21JEalISs9cNySdAWeUef2zWFU9I5cwJ4YCVW?=
- =?us-ascii?Q?ooENUDWTBJRIXEQ9iDxNmMzdVR3NpF5y/zVXiCu6U5wKJMuz/ac4fPJZ/+KV?=
- =?us-ascii?Q?Ie/X8GKUyrh3QjIoseKCj958tncH7gtj+lpgYoTpTx8oG2f84JI80z7q6QYc?=
- =?us-ascii?Q?Y1yp6rJoiCO8L6pH9m5r3sW6V9f+QllN3/08L+qrtrbIxOcdlMaLfvX7TcMn?=
- =?us-ascii?Q?1eZHELlfVMdhiRH9en29AD1trZofAx/X7VQrJgExsvhTsoBfb1iaF86Lg6l/?=
- =?us-ascii?Q?mlVOZTyLBzhbNZz9UXWZ99wovZMyUxu803Nxbl+g0q9uqfk93Cyn9cdxDFXn?=
- =?us-ascii?Q?S+gG7DJPUBrrQvz6ryQ6/NrdCen7Qu8ddZC9kkmZXN+2Snk++Q370n/T4bbR?=
- =?us-ascii?Q?HRpIOQb+XQaLNZTGRKkQ0hPUyrfezs62lEzj9dpGIXh+a0SlOSwqcKDhIhDR?=
- =?us-ascii?Q?YApzJ/ZBQCyElVGve2CdpLekGWjZSVjAL0eaISYmrjZxkcyD4qd5qe2BHmCn?=
- =?us-ascii?Q?S/gNdZGx3Cgm+vZWYOHiuY2Yyl+K09yIliKy/9lJh2YqrWxI7naeaMrf+mSZ?=
- =?us-ascii?Q?qlZZlTgQoMx6oZcjP9SnPuoTQfX7UtxTal0dEajVyALhJ0WHYPbZd9H3YQzU?=
- =?us-ascii?Q?tE2f54xIReuVKxzEdKt6C2qA7AjiuUc/+dzENzw/yKbpt1oDOPqfYcpXYDr1?=
- =?us-ascii?Q?eAu74EPVKl2t/Jmn75dG79wH95z5vbSoPuv7fzC3edBqTkFMJ/tabSRrce8D?=
- =?us-ascii?Q?6+AOe/MDK9BnVqMonxC9gojk97bNAqrXj2s1A53eRPrw2t9b90E9ie1QIlGJ?=
- =?us-ascii?Q?BPp/Xh9S5kW9a/RR00JGWYpbY4Zkf+ISD+Vu9gjEtKa1Z0aHXzx5hghU2egH?=
- =?us-ascii?Q?pyFGqe101gQK0PL/86mc32+pSaryFhdoT3TeH3jndeJJi6ncsOlmyI4CBKf+?=
- =?us-ascii?Q?/xsU4A02oz84bKpmGEJt1YnZamDS/HY31PJGYAaJm1yAXhB7cWsE584GRxB8?=
- =?us-ascii?Q?RFjDDR6pSGFKqG+4HlUV48Qbx2t4arLcNzdAIQBEbw1FeXsvNdGBrCSmthFT?=
- =?us-ascii?Q?pR5D5D8Is+KRiVMry5wgb6LBLkmVxrNqkuRY4Yb3?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 205bc6d4-5a6c-42a8-3c42-08dd57d91a9e
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2025 09:20:12.6575
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8kqpTsSbufeV7lYBEG4pGu7bNe4mD9gompAeletInpmUXk/VfFc3lZ0Kbs20HAWBnoi2oYmTg7OmoivKDmulUg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9233
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <pbj22qvat76t74nppabekvyncc4ptt6wede4q6wfygbrzcj3ag@ruvt26eqiybu>
 
-On Fri, Feb 28, 2025 at 08:22:19AM +0100, Alexander Stein wrote:
-> Hi,
-> 
-> Am Freitag, 28. Februar 2025, 03:33:29 CET schrieb Xu Yang:
-> > On Thu, Feb 27, 2025 at 04:12:54PM +0100, Alexander Stein wrote:
-> > > Hi,
+On Fri, Feb 28, 2025 at 04:46:22PM +0800, Inochi Amaoto wrote:
+> On Fri, Feb 28, 2025 at 02:34:00PM +0800, Inochi Amaoto wrote:
+> > On Tue, Feb 25, 2025 at 11:35:23PM +0000, Conor Dooley wrote:
+> > > On Tue, Feb 25, 2025 at 07:48:59AM +0800, Inochi Amaoto wrote:
+> > > > On Mon, Feb 24, 2025 at 06:54:51PM +0000, Conor Dooley wrote:
+> > > > > On Sat, Feb 22, 2025 at 08:34:10AM +0800, Inochi Amaoto wrote:
+> > > > > > On Fri, Feb 21, 2025 at 05:01:41PM +0000, Conor Dooley wrote:
+> > > > > > > On Fri, Feb 21, 2025 at 09:37:55AM +0800, Inochi Amaoto wrote:
+> > > > > > > > The pcie controller on the SG2044 is designware based with
+> > > > > > > > custom app registers.
+> > > > > > > > 
+> > > > > > > > Add binding document for SG2044 PCIe host controller.
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > > > > > > > ---
+> > > > > > > >  .../bindings/pci/sophgo,sg2044-pcie.yaml      | 125 ++++++++++++++++++
+> > > > > > > >  1 file changed, 125 insertions(+)
+> > > > > > > >  create mode 100644 Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml
+> > > > > > > > 
+> > > > > > > > diff --git a/Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml b/Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml
+> > > > > > > > new file mode 100644
+> > > > > > > > index 000000000000..040dabe905e0
+> > > > > > > > --- /dev/null
+> > > > > > > > +++ b/Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml
+> > > > > > > > @@ -0,0 +1,125 @@
+> > > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > > > +%YAML 1.2
+> > > > > > > > +---
+> > > > > > > > +$id: http://devicetree.org/schemas/pci/sophgo,sg2044-pcie.yaml#
+> > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > > +
+> > > > > > > > +title: DesignWare based PCIe Root Complex controller on Sophgo SoCs
+> > > > > > > > +
+> > > > > > > > +maintainers:
+> > > > > > > > +  - Inochi Amaoto <inochiama@gmail.com>
+> > > > > > > > +
+> > > > > > > > +description: |+
+> > > > > > > > +  SG2044 SoC PCIe Root Complex controller is based on the Synopsys DesignWare
+> > > > > > > > +  PCIe IP and thus inherits all the common properties defined in
+> > > > > > > > +  snps,dw-pcie.yaml.
+> > > > > > > > +
+> > > > > > > > +allOf:
+> > > > > > > > +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+> > > > > > > > +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> > > > > > > > +
+> > > > > > > > +properties:
+> > > > > > > > +  compatible:
+> > > > > > > > +    const: sophgo,sg2044-pcie
+> > > > > > > > +
+> > > > > > > > +  reg:
+> > > > > > > > +    items:
+> > > > > > > > +      - description: Data Bus Interface (DBI) registers
+> > > > > > > > +      - description: iATU registers
+> > > > > > > > +      - description: Config registers
+> > > > > > > > +      - description: Sophgo designed configuration registers
+> > > > > > > > +
+> > > > > > > > +  reg-names:
+> > > > > > > > +    items:
+> > > > > > > > +      - const: dbi
+> > > > > > > > +      - const: atu
+> > > > > > > > +      - const: config
+> > > > > > > > +      - const: app
+> > > > > > > > +
+> > > > > > > > +  clocks:
+> > > > > > > > +    items:
+> > > > > > > > +      - description: core clk
+> > > > > > > > +
+> > > > > > > > +  clock-names:
+> > > > > > > > +    items:
+> > > > > > > > +      - const: core
+> > > > > > > > +
+> > > > > > > > +  dma-coherent: true
+> > > > > > > 
+> > > > > > > Why's this here? RISC-V is dma-coherent by default, with dma-noncoherent
+> > > > > > > used to indicate systems/devices that are not.
+> > > > > > 
+> > > > > > The PCIe is dma coherent, but the SoC itself is marked as
+> > > > > > dma-noncoherent.
+> > > > > 
+> > > > > By "the SoC itself", do you mean that the bus that this device is on is
+> > > > > marked as dma-noncoherent? 
+> > > > 
+> > > > Yeah, I was told only PCIe device on SG2044 is dma coherent.
+> > > > The others are not.
+> > > > 
+> > > > > IMO, that should not be done if there are devices on it that are coherent.
+> > > > > 
+> > > > 
+> > > > It is OK for me. But I wonder how to handle the non coherent device
+> > > > in DT? Just Mark the bus coherent and mark all devices except the
+> > > > PCIe device non coherent?
 > > > 
-> > > Am Donnerstag, 27. Februar 2025, 10:53:46 CET schrieb Xu Yang:
-> > > > On i.MX95 platform, USB wakeup setting is controlled by HSIO Block
-> > > > Control:
-> > > > 
-> > > > HSIO Block Control Overview:
-> > > > - The HSIO block control include configuration and status registers that
-> > > >   provide miscellaneous top-level controls for clocking, beat limiter
-> > > >   enables, wakeup signal enables and interrupt status for the PCIe and USB
-> > > >   interfaces.
-> > > > 
-> > > > The wakeup function of HSIO blkctl is basically same as non-core, except
-> > > > improvements about power lost cases. This will add the wakeup setting for
-> > > > HSIO blkctl on i.MX95. It will firstly ioremap hsio blkctl memory, then do
-> > > > wakeup setting as needs.
-> > > > 
-> > > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > > Reviewed-by: Jun Li <jun.li@nxp.com>
-> > > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > > > 
-> > > > ---
-> > > > Changes in v3:
-> > > >  - remove usbmisc_imx95_init(), use usbmisc_imx7d_init()
-> > > > Changes in v2:
-> > > >  - add Rb tag
-> > > > ---
-> > > >  drivers/usb/chipidea/usbmisc_imx.c | 72 ++++++++++++++++++++++++++++++
-> > > >  1 file changed, 72 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/usb/chipidea/usbmisc_imx.c b/drivers/usb/chipidea/usbmisc_imx.c
-> > > > index 1394881fde5f..8c30908c11ed 100644
-> > > > --- a/drivers/usb/chipidea/usbmisc_imx.c
-> > > > +++ b/drivers/usb/chipidea/usbmisc_imx.c
-> > > > @@ -139,6 +139,22 @@
-> > > >  #define MX6_USB_OTG_WAKEUP_BITS (MX6_BM_WAKEUP_ENABLE | MX6_BM_VBUS_WAKEUP | \
-> > > >  				 MX6_BM_ID_WAKEUP | MX6SX_BM_DPDM_WAKEUP_EN)
-> > > >  
-> > > > +/*
-> > > > + * HSIO Block Control Register
-> > > > + */
-> > > > +
-> > > > +#define BLKCTL_USB_WAKEUP_CTRL		0x0
-> > > > +#define BLKCTL_OTG_WAKE_ENABLE		BIT(31)
-> > > > +#define BLKCTL_OTG_VBUS_SESSVALID	BIT(4)
-> > > > +#define BLKCTL_OTG_ID_WAKEUP_EN		BIT(2)
-> > > > +#define BLKCTL_OTG_VBUS_WAKEUP_EN	BIT(1)
-> > > > +#define BLKCTL_OTG_DPDM_WAKEUP_EN	BIT(0)
-> > > > +
-> > > > +#define BLKCTL_WAKEUP_SOURCE		(BLKCTL_OTG_WAKE_ENABLE	   | \
-> > > > +					 BLKCTL_OTG_ID_WAKEUP_EN   | \
-> > > > +					 BLKCTL_OTG_VBUS_WAKEUP_EN | \
-> > > > +					 BLKCTL_OTG_DPDM_WAKEUP_EN)
-> > > > +
-> > > >  struct usbmisc_ops {
-> > > >  	/* It's called once when probe a usb device */
-> > > >  	int (*init)(struct imx_usbmisc_data *data);
-> > > > @@ -159,6 +175,7 @@ struct usbmisc_ops {
-> > > >  
-> > > >  struct imx_usbmisc {
-> > > >  	void __iomem *base;
-> > > > +	void __iomem *blkctl;
-> > > >  	spinlock_t lock;
-> > > >  	const struct usbmisc_ops *ops;
-> > > >  };
-> > > > @@ -1016,6 +1033,41 @@ static int usbmisc_imx6sx_power_lost_check(struct imx_usbmisc_data *data)
-> > > >  		return 0;
-> > > >  }
-> > > >  
-> > > > +static u32 usbmisc_blkctl_wakeup_setting(struct imx_usbmisc_data *data)
-> > > > +{
-> > > > +	u32 wakeup_setting = BLKCTL_WAKEUP_SOURCE;
-> > > > +
-> > > > +	if (data->ext_id || data->available_role != USB_DR_MODE_OTG)
-> > > > +		wakeup_setting &= ~BLKCTL_OTG_ID_WAKEUP_EN;
-> > > > +
-> > > > +	if (data->ext_vbus || data->available_role == USB_DR_MODE_HOST)
-> > > > +		wakeup_setting &= ~BLKCTL_OTG_VBUS_WAKEUP_EN;
-> > > > +
-> > > > +	/* Select session valid as VBUS wakeup source */
-> > > > +	wakeup_setting |= BLKCTL_OTG_VBUS_SESSVALID;
-> > > > +
-> > > > +	return wakeup_setting;
-> > > > +}
-> > > > +
-> > > > +static int usbmisc_imx95_set_wakeup(struct imx_usbmisc_data *data, bool enabled)
-> > > > +{
-> > > > +	struct imx_usbmisc *usbmisc = dev_get_drvdata(data->dev);
-> > > > +	unsigned long flags;
-> > > > +	u32 val;
-> > > > +
-> > > > +	spin_lock_irqsave(&usbmisc->lock, flags);
-> > > > +	val = readl(usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
-> > > > +	val &= ~BLKCTL_WAKEUP_SOURCE;
-> > > > +
-> > > > +	if (enabled)
-> > > > +		val |= usbmisc_blkctl_wakeup_setting(data);
-> > > > +
-> > > > +	writel(val, usbmisc->blkctl + BLKCTL_USB_WAKEUP_CTRL);
-> > > > +	spin_unlock_irqrestore(&usbmisc->lock, flags);
-> > > 
-> > > usbmisc->blkctl is NULL if DT does not provide a 2nd IORESOURCE_MEM.
+> > > Don't mark the bus anything (default is coherent) and mark the devices.
 > > 
-> > Good catch. Thanks!
+> > I think this is OK for me.
 > > 
-> > It may return an errno if usbmisc->blkctl is NULL.
-> > 
-> > > 
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > > > +
-> > > >  static const struct usbmisc_ops imx25_usbmisc_ops = {
-> > > >  	.init = usbmisc_imx25_init,
-> > > >  	.post = usbmisc_imx25_post,
-> > > > @@ -1068,6 +1120,14 @@ static const struct usbmisc_ops imx7ulp_usbmisc_ops = {
-> > > >  	.power_lost_check = usbmisc_imx7d_power_lost_check,
-> > > >  };
-> > > >  
-> > > > +static const struct usbmisc_ops imx95_usbmisc_ops = {
-> > > > +	.init = usbmisc_imx7d_init,
-> > > > +	.set_wakeup = usbmisc_imx95_set_wakeup,
-> > > > +	.charger_detection = imx7d_charger_detection,
-> > > > +	.power_lost_check = usbmisc_imx7d_power_lost_check,
-> > > > +	.vbus_comparator_on = usbmisc_imx7d_vbus_comparator_on,
-> > > > +};
-> > > > +
-> > > >  static inline bool is_imx53_usbmisc(struct imx_usbmisc_data *data)
-> > > >  {
-> > > >  	struct imx_usbmisc *usbmisc = dev_get_drvdata(data->dev);
-> > > > @@ -1289,6 +1349,10 @@ static const struct of_device_id usbmisc_imx_dt_ids[] = {
-> > > >  		.compatible = "fsl,imx8ulp-usbmisc",
-> > > >  		.data = &imx7ulp_usbmisc_ops,
-> > > >  	},
-> > > > +	{
-> > > > +		.compatible = "fsl,imx95-usbmisc",
-> > > > +		.data = &imx95_usbmisc_ops,
-> > > > +	},
-> > > >  	{ /* sentinel */ }
-> > > >  };
-> > > >  MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
-> > > > @@ -1296,6 +1360,7 @@ MODULE_DEVICE_TABLE(of, usbmisc_imx_dt_ids);
-> > > >  static int usbmisc_imx_probe(struct platform_device *pdev)
-> > > >  {
-> > > >  	struct imx_usbmisc *data;
-> > > > +	struct resource *res;
-> > > >  
-> > > >  	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> > > >  	if (!data)
-> > > > @@ -1307,6 +1372,13 @@ static int usbmisc_imx_probe(struct platform_device *pdev)
-> > > >  	if (IS_ERR(data->base))
-> > > >  		return PTR_ERR(data->base);
-> > > >  
-> > > > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> > > > +	if (res) {
-> > > > +		data->blkctl = devm_ioremap_resource(&pdev->dev, res);
-> > > > +		if (IS_ERR(data->blkctl))
-> > > > +			return PTR_ERR(data->blkctl);
-> > > > +	}
-> > > > +
-> > > 
-> > > Any chance to ensure imx95 has actually data->blkctl?
-> > 
-> > I think let usbmisc_imx95_set_wakeup() return an error should be enough.
 > 
-> Better fail early rather than later.
+> In technical, I wonder a better way to "handle dma-noncoherent".
+> In the binding check, all devices with this property complains 
 > 
-> > Some errors will be printed for user. Also dt-bindings has restriction for
-> > imx95.
+> "Unevaluated properties are not allowed ('dma-noncoherent' was unexpected)"
 > 
-> That's true, but don't assume the DT is always setup correctly.
 
-Sure, I thought about this question again.
+> It is a pain as at least 10 devices' binding need to be modified.
+> So I wonder whether there is a way to simplify this.
+> 
 
-If 2nd IORESOURCE_MEM is not provided, the USB controller could still function
-normally in most scenarios except when USB wakeup is required. So if the probe()
-return a failure just caused by improper wakeup configurations seems not that
-necessary. In this case, ensuring the kernel does not panic should suffice.
+Ignore this, I misunderstood the dma device. it seems like 
+only dmac and eth needs it.
 
-Therfore, I prefer to skip wakeup setting if blkctl is NULL now.
-Do you have any ideas?
-
-Thanks,
-Xu Yang
+Regards,
+Inochi
 
