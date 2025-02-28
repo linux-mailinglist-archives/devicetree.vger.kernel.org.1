@@ -1,102 +1,221 @@
-Return-Path: <devicetree+bounces-152647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0E50A49BB5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:17:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50C0DA49BC4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 15:21:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6EEF188408E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:17:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 218AE3A5EA2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 14:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0BA26FA5E;
-	Fri, 28 Feb 2025 14:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UW2yj7OL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE53526D5AD;
+	Fri, 28 Feb 2025 14:21:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F98E26F479;
-	Fri, 28 Feb 2025 14:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1863653363;
+	Fri, 28 Feb 2025 14:21:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740752239; cv=none; b=ZLTA8njryTWH42w4KL5mCfSo0FiolNDzDx6DpTC4DMYdE4OuDMiqMV/Ysv35Qqbpws/FsW69LgqbMdsEtep6VyL+HT8i9WZtvkRLE2NwVFAbwUQYoIILdDWxteAxY39/YubnXCYAxVVifBVj1hXW7neJZOS9wBaH8vCED+0Y0HE=
+	t=1740752472; cv=none; b=avAZPUK3VYwtHUpwPPluHeH3BSi/RdyJU2NV490KOqlBO3MQWE5XGeAxzh1BQaH4M4ZdZ/AJKOD4irgksVhZ8orowUNsw1CCdsfU1XfyjUEzhOqxTJY9hJROfLxWxjSqZpN6nZ+E90MMWiGseDuYyqG3V4xzGtR2E9ow0cjDILc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740752239; c=relaxed/simple;
-	bh=+mews4wqirLVd+SJ74CQGKx7psfw9QW6POpNvpoLYPU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CGckX+885oPUy1E9Zk6XWyvQj0oMb8TbZ25ggI50mYP7EOPIrQIeqASoflD+eKVVU7/mvZNZObl/LR98mvbPXXblNSl77aIs2luqmvLE5VictKqRbL58skLAww3oOOzzFU59T70LL8bi2Up1n8/NGvMSuPPTfJrthXLLV95yHBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UW2yj7OL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BDA7C4CEEB;
-	Fri, 28 Feb 2025 14:17:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740752237;
-	bh=+mews4wqirLVd+SJ74CQGKx7psfw9QW6POpNvpoLYPU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=UW2yj7OLDI5zuEJjYp9kTPkjpNgQ5I+5MZ0ngBbIdzWUT7pqtBF/VMUzWoOBRRxEV
-	 l+ZuND44lv/fYfOZSZRdQWPfWdCcatWzjFS1YP17PrO3em6I3ASyQw0V7noEb/HxlW
-	 InWuj0scBFOSBOpfIDLEEGEaAYDpBNiUEKjBtcVAplnG1SBZPFrsu3ogya5jJXEYBq
-	 Tdhe757RdCnSrQBEfNFSymmt722b0CN0nyXuHQqFJfu+4pLQUHnwZTrJhWpw7+7WV4
-	 k45eB0y985+vt5zBOzh1TwBi4Bj7PXS488BKzyxpZzQoJW1exvzdiJmyvqnda4R1rl
-	 hw9hLPGt6KJTQ==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5e4dc3d22b8so1553482a12.0;
-        Fri, 28 Feb 2025 06:17:17 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVDsf7qboDPEGN4rmx0wWZXcK/y9yf71lLaYh4Tsfyn0v2QN2KAiI6YX1zx/wMY61RuDXE5+REGhQchVaBT@vger.kernel.org, AJvYcCVjyx4e9GtG2qwEMOAzsV5RUWHNx2SQexX7FPILqivdPnUAX6xwJx/iJcGDSnxPE9QE28rM+K3WrQ==@vger.kernel.org, AJvYcCXosqAZWbhUyHKL4dWn5tOw7Xk21FhsvJA1gHmz9eQNlI0xhzdJhDONHL/wEF3rZK3Pv2JpMzOoDO5ntw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIv48UhpqGmL/u6OOeuj6nEHQWQPcT30s66sxo5/tjPou8dEs+
-	jNrh3ub/GdITyA5PwPaV8G7ShaAKq+nuMbGUSstdekN8ioNatU9ViBkEHASl/h2xFW9zKDbx+1Y
-	e/lMp350Clrhr/QI2xvqx+XmUug==
-X-Google-Smtp-Source: AGHT+IHjthQkObX46y0x27qvzkeyln9C3sLlHRHU7eP7TpYLalIfwcDLQqE0mQgUy4ECwFqBSo9/JmpROBFMKVh/A3s=
-X-Received: by 2002:a17:907:6e92:b0:ab7:b7b5:2a0c with SMTP id
- a640c23a62f3a-abf2620774dmr419749466b.6.1740752236146; Fri, 28 Feb 2025
- 06:17:16 -0800 (PST)
+	s=arc-20240116; t=1740752472; c=relaxed/simple;
+	bh=9NBaILxd7R0N3z3x0yu/mSNRfbQS63Inmtd4qw4bXkc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q2QRBa47MHGEEqXlVRS+7PRSeb5KcH7yeZZz/vz7ryBSQ5P8qEJYpEe3LVgTkDgZBXSwLIEmKoRfJqc+Xm4+aWCQRuJ2LQlGz/c9RJMBi0jOQLLMucMB86/n98FdL9TpQDWcHn/G0sNmBUCjEgLNckZfqiTt20juIv2jbeeBEBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA84C1515;
+	Fri, 28 Feb 2025 06:21:25 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5DF833F6A8;
+	Fri, 28 Feb 2025 06:21:08 -0800 (PST)
+Date: Fri, 28 Feb 2025 14:21:05 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
+ <wens@csie.org>, Samuel Holland <samuel@sholland.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 13/15] clk: sunxi-ng: a523: add reset lines
+Message-ID: <20250228142105.3ce2f2df@donnerap.manchester.arm.com>
+In-Reply-To: <15399016.tv2OnDr8pf@jernej-laptop>
+References: <20250214125359.5204-1-andre.przywara@arm.com>
+	<20250214125359.5204-14-andre.przywara@arm.com>
+	<15399016.tv2OnDr8pf@jernej-laptop>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250226094456.2351571-1-peng.fan@oss.nxp.com>
- <20250226160945.GA2505223-robh@kernel.org> <20250227030924.GB11411@nxa18884-linux>
- <CAL_JsqJOqKeDRuASWxCT=EA5LJbONpCX=Re8=XxKUbPToWy2Dg@mail.gmail.com> <Z8HCZQQLofaiGtpG@bogus>
-In-Reply-To: <Z8HCZQQLofaiGtpG@bogus>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 28 Feb 2025 08:17:03 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLePri5m_dE989poUV4auasAxFvgAiYuXVuZHqLcOBGMg@mail.gmail.com>
-X-Gm-Features: AQ5f1JqWAly9mibB4Wnu0iSmsxkTmC_yUXZnPBFIrDHBvIgsef3vgrKT7bmbhac
-Message-ID: <CAL_JsqLePri5m_dE989poUV4auasAxFvgAiYuXVuZHqLcOBGMg@mail.gmail.com>
-Subject: Re: [RFC] dt-bindings: firmware: scmi: Introduce compatible string
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Peng Fan <peng.fan@oss.nxp.com>, saravanak@google.com, cristian.marussi@arm.com, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, arm-scmi@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 28, 2025 at 8:04=E2=80=AFAM Sudeep Holla <sudeep.holla@arm.com>=
- wrote:
->
-> On Fri, Feb 28, 2025 at 07:34:09AM -0600, Rob Herring wrote:
-> >
-> > - The parent driver creates child devices. The child devices can
-> > either reuse the parent DT node (i.e. set dev.of_node) or just get it
-> > from the parent device if needed.
-> >
->
-> This is exactly what I was thinking to deal with the issue since this
-> discussion started. I will give this a go. I believe this must solve
-> the issue, but I didn't want to spit it out loud until I tried to hack
-> and check.
+On Tue, 18 Feb 2025 21:29:37 +0100
+Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
 
-The issue with fw_devlink is that it only checks the dependency of the
-parent which won't be enough. When the parent's probe creates the
-child device, that doesn't mean the child has probed. The child driver
-might not be loaded and/or probe is async. I don't think there's
-anyway for the parent probe to wait for child drivers to be probed and
-ready. I think there's similar issues with the DWC3 wrapper and core
-driver split.
+Hi,
 
-Rob
+> Dne petek, 14. februar 2025 ob 13:53:57 Srednjeevropski standardni =C4=8D=
+as je Andre Przywara napisal(a):
+> > Allwinner SoCs do not contain a separate reset controller, instead the
+> > reset lines for the various devices are integrated into the "BGR" (Bus
+> > Gate / Reset) registers, for each device group: one for all UARTs, one
+> > for all SPI interfaces, and so on.
+> > The Allwinner CCU driver also doubles as a reset provider, and since the
+> > reset lines are indeed just single bits in those BGR register, we can
+> > represent them easily in an array of structs, just containing the
+> > register offset and the bit number.
+> >=20
+> > Add the location of the reset bits for all devices in the A523/T527
+> > SoCs, using the existing sunxi CCU infrastructure.
+> >=20
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  drivers/clk/sunxi-ng/ccu-sun55i-a523.c | 83 ++++++++++++++++++++++++++
+> >  1 file changed, 83 insertions(+)
+> >=20
+> > diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c b/drivers/clk/sunxi=
+-ng/ccu-sun55i-a523.c
+> > index fbed9b2b3b2f9..d57565f07a112 100644
+> > --- a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+> > +++ b/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+> > @@ -1475,11 +1475,94 @@ static struct clk_hw_onecell_data sun55i_a523_h=
+w_clks =3D {
+> >  	},
+> >  };
+> > =20
+> > +static struct ccu_reset_map sun55i_a523_ccu_resets[] =3D {
+> > +	[RST_MBUS]		=3D { 0x540, BIT(30) },
+> > +	[RST_BUS_NSI]		=3D { 0x54c, BIT(16) },
+> > +	[RST_BUS_DE]		=3D { 0x60c, BIT(16) },
+> > +	[RST_BUS_DI]		=3D { 0x62c, BIT(16) },
+> > +	[RST_BUS_G2D]		=3D { 0x63c, BIT(16) },
+> > +	[RST_BUS_SYS]		=3D { 0x64c, BIT(16) },
+> > +	[RST_BUS_GPU]		=3D { 0x67c, BIT(16) },
+> > +	[RST_BUS_CE]		=3D { 0x68c, BIT(16) },
+> > +	[RST_BUS_SYS_CE]	=3D { 0x68c, BIT(17) },
+> > +	[RST_BUS_VE]		=3D { 0x69c, BIT(16) },
+> > +	[RST_BUS_DMA]		=3D { 0x70c, BIT(16) },
+> > +	[RST_BUS_MSGBOX]	=3D { 0x71c, BIT(16) },
+> > +	[RST_BUS_SPINLOCK]	=3D { 0x72c, BIT(16) },
+> > +	[RST_BUS_CPUXTIMER]	=3D { 0x74c, BIT(16) },
+> > +	[RST_BUS_DBG]		=3D { 0x78c, BIT(16) },
+> > +	[RST_BUS_PWM0]		=3D { 0x7ac, BIT(16) },
+> > +	[RST_BUS_PWM1]		=3D { 0x7ac, BIT(17) },
+> > +	[RST_BUS_DRAM]		=3D { 0x80c, BIT(16) },
+> > +	[RST_BUS_NAND]		=3D { 0x82c, BIT(16) },
+> > +	[RST_BUS_MMC0]		=3D { 0x84c, BIT(16) },
+> > +	[RST_BUS_MMC1]		=3D { 0x84c, BIT(17) },
+> > +	[RST_BUS_MMC2]		=3D { 0x84c, BIT(18) },
+> > +	[RST_BUS_SYSDAP]	=3D { 0x88c, BIT(16) },
+> > +	[RST_BUS_UART0]		=3D { 0x90c, BIT(16) },
+> > +	[RST_BUS_UART1]		=3D { 0x90c, BIT(17) },
+> > +	[RST_BUS_UART2]		=3D { 0x90c, BIT(18) },
+> > +	[RST_BUS_UART3]		=3D { 0x90c, BIT(19) },
+> > +	[RST_BUS_UART4]		=3D { 0x90c, BIT(20) },
+> > +	[RST_BUS_UART5]		=3D { 0x90c, BIT(21) },
+> > +	[RST_BUS_UART6]		=3D { 0x90c, BIT(22) },
+> > +	[RST_BUS_UART7]		=3D { 0x90c, BIT(23) },
+> > +	[RST_BUS_I2C0]		=3D { 0x91c, BIT(16) },
+> > +	[RST_BUS_I2C1]		=3D { 0x91c, BIT(17) },
+> > +	[RST_BUS_I2C2]		=3D { 0x91c, BIT(18) },
+> > +	[RST_BUS_I2C3]		=3D { 0x91c, BIT(19) },
+> > +	[RST_BUS_I2C4]		=3D { 0x91c, BIT(20) },
+> > +	[RST_BUS_I2C5]		=3D { 0x91c, BIT(21) },
+> > +	[RST_BUS_CAN]		=3D { 0x92c, BIT(16) },
+> > +	[RST_BUS_SPI0]		=3D { 0x96c, BIT(16) },
+> > +	[RST_BUS_SPI1]		=3D { 0x96c, BIT(17) },
+> > +	[RST_BUS_SPI2]		=3D { 0x96c, BIT(18) },
+> > +	[RST_BUS_SPIFC]		=3D { 0x96c, BIT(19) },
+> > +	[RST_BUS_EMAC0]		=3D { 0x97c, BIT(16) },
+> > +	[RST_BUS_EMAC1]		=3D { 0x98c, BIT(16) | BIT(17) },	/* GMAC1-AXI */ =20
+>=20
+> GMAC AXI reset should be separate.
+
+I see where you are coming from, but what would be the advantage,
+really? At the moment the generic STMMAC code and binding only knows
+about one reset line, so we would need to add support for a second line
+first, potentially even in generic code, but without any real win, I think.
+
+On the other hand the reset struct supports a bit mask already, so
+toggling both bits at the same time seems perfectly fine.
+So to make things easier, I thought we should take advantage of that,
+and having one line covering both bits. There is only one clock gate
+bit for GMAC1 as well.
+
+And I know this isn't a good argument, but the BSP does it like this as wel=
+l ;-)
+
+>=20
+> > +	[RST_BUS_IR_RX]		=3D { 0x99c, BIT(16) },
+> > +	[RST_BUS_IR_TX]		=3D { 0x9cc, BIT(16) },
+> > +	[RST_BUS_GPADC0]	=3D { 0x9ec, BIT(16) },
+> > +	[RST_BUS_GPADC1]	=3D { 0x9ec, BIT(17) },
+> > +	[RST_BUS_THS]		=3D { 0x9fc, BIT(16) },
+> > +	[RST_USB_PHY0]		=3D { 0xa70, BIT(30) },
+> > +	[RST_USB_PHY1]		=3D { 0xa74, BIT(30) },
+> > +	[RST_BUS_OHCI0]		=3D { 0xa8c, BIT(16) },
+> > +	[RST_BUS_OHCI1]		=3D { 0xa8c, BIT(17) },
+> > +	[RST_BUS_EHCI0]		=3D { 0xa8c, BIT(20) },
+> > +	[RST_BUS_EHCI1]		=3D { 0xa8c, BIT(21) },
+> > +	[RST_BUS_OTG]		=3D { 0xa8c, BIT(24) },
+> > +	[RST_BUS_3]		=3D { 0xa8c, BIT(25) },	/* BSP + register */
+> > +	[RST_BUS_LRADC]		=3D { 0xa9c, BIT(16) },
+> > +	[RST_BUS_PCIE_USB3]	=3D { 0xaac, BIT(16) },
+> > +	[RST_BUS_DPSS_TOP]	=3D { 0xabc, BIT(16) }, =20
+>=20
+> Docs say that there is extra display top reset at 0xacc.
+
+Right, also the name is better there: RST_BUS_DISPLAY[01]. Fixed that.
+
+Cheers,
+Andre
+
+>=20
+> > +	[RST_BUS_HDMI_MAIN]	=3D { 0xb1c, BIT(16) },
+> > +	[RST_BUS_HDMI_SUB]	=3D { 0xb1c, BIT(17) },
+> > +	[RST_BUS_MIPI_DSI0]	=3D { 0xb4c, BIT(16) },
+> > +	[RST_BUS_MIPI_DSI1]	=3D { 0xb4c, BIT(17) },
+> > +	[RST_BUS_TCON_LCD0]	=3D { 0xb7c, BIT(16) },
+> > +	[RST_BUS_TCON_LCD1]	=3D { 0xb7c, BIT(17) },
+> > +	[RST_BUS_TCON_LCD2]	=3D { 0xb7c, BIT(18) },
+> > +	[RST_BUS_TCON_TV0]	=3D { 0xb9c, BIT(16) },
+> > +	[RST_BUS_TCON_TV1]	=3D { 0xb9c, BIT(17) },
+> > +	[RST_BUS_LVDS0]		=3D { 0xbac, BIT(16) },
+> > +	[RST_BUS_LVDS1]		=3D { 0xbac, BIT(17) },
+> > +	[RST_BUS_EDP]		=3D { 0xbbc, BIT(16) },
+> > +	[RST_BUS_VIDEO_OUT0]	=3D { 0xbcc, BIT(16) },
+> > +	[RST_BUS_VIDEO_OUT1]	=3D { 0xbcc, BIT(17) },
+> > +	[RST_BUS_LEDC]		=3D { 0xbfc, BIT(16) },
+> > +	[RST_BUS_CSI]		=3D { 0xc1c, BIT(16) },
+> > +	[RST_BUS_ISP]		=3D { 0xc2c, BIT(16) },	/* BSP + register */
+> > +};
+> > +
+> >  static const struct sunxi_ccu_desc sun55i_a523_ccu_desc =3D {
+> >  	.ccu_clks	=3D sun55i_a523_ccu_clks,
+> >  	.num_ccu_clks	=3D ARRAY_SIZE(sun55i_a523_ccu_clks),
+> > =20
+> >  	.hw_clks	=3D &sun55i_a523_hw_clks,
+> > +
+> > +	.resets		=3D sun55i_a523_ccu_resets,
+> > +	.num_resets	=3D ARRAY_SIZE(sun55i_a523_ccu_resets),
+> >  };
+> > =20
+> >  static const u32 pll_regs[] =3D {
+> >  =20
+>=20
+>=20
+>=20
+>=20
+
 
