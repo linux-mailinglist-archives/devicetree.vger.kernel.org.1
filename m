@@ -1,134 +1,128 @@
-Return-Path: <devicetree+bounces-152366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9606A48D82
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 01:45:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9AA2A48DA0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 02:06:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C401A16DEC6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 00:45:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2A1E3B5377
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2025 01:06:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1A0F1C01;
-	Fri, 28 Feb 2025 00:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38DDF14A91;
+	Fri, 28 Feb 2025 01:06:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YjiO7Vcl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ftf9AWD4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B2923CB;
-	Fri, 28 Feb 2025 00:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9CE224D6;
+	Fri, 28 Feb 2025 01:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740703500; cv=none; b=awIa1YQ34dqG21dX41cvHyraZcdVLHd75uRUN2H2OMr0TOCt98V7dCnFNjlBsGNtZ2GVPSs79wUc3ryyc9Dr6aMB9dbp2uKdcj7BVQq8Bn/d178++vMQgm/mVnwNGYHbJs/ltoBXfGLPqJ+tMb1FCEUpTBhWCbGkYzY9rSP+c4Y=
+	t=1740704809; cv=none; b=lOEwYOGI9p+OGiIlNNlM2Jwn55vCloWVBhG5esDm5wOQKPdD4hejG0LhxFZhhbmOiGi80vtmbAFKWQnzMyFMr2FMk4rqsEkBYknR3aQSv4CUzR6pUqgJtp6n6jEn3UvQO6CvNdIZLJG0NJuQZQYue6Aky49umZY3oqq9iPYq8wY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740703500; c=relaxed/simple;
-	bh=+BVA+LhlE0N6RUI8eaEd7kBrq7vA6h/z55gK4qTsgNc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pOsaQhFZIMFK9XLyeoAdaUQ3Yn9De2u6r9Pt3PjJTMDwMGp43x8odk/ifkbni469Eo/0Hmukmnu71ohLCatgdnOZNfpAxmjDqrUDknGt2vTRSbTEo+F4OdcO9TN59EwStFsg5VSeaUBHC3rrDjtuYVja1WAEqE9AbaYf2ELwZnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YjiO7Vcl; arc=none smtp.client-ip=209.85.219.43
+	s=arc-20240116; t=1740704809; c=relaxed/simple;
+	bh=CWxCWNQVtyMpHnHOhHMe+nNImxOeMjY7WzUZotGHo28=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=EeP+NblOhSRQbHzriyRU5xXJClvPQVudZxZwG083ga1b5yyoRMEJSsEY9mkq6brQxDpnIB5Jx1mkh+rdq084BITNSVfKwfVXN9eOn/PcC79T3Nd9H303GpQK+gSoTh/WYpW0FTxmpHe8atrLynQtz+Bf2n+NyXC6mmiev/tY2G8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ftf9AWD4; arc=none smtp.client-ip=209.85.214.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6e8978cca96so12679806d6.0;
-        Thu, 27 Feb 2025 16:44:58 -0800 (PST)
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22359001f1aso29985635ad.3;
+        Thu, 27 Feb 2025 17:06:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740703498; x=1741308298; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gLTJSgWRvjc6CoalvvtWWj0Jwj6OQsGx1YUrViRKarI=;
-        b=YjiO7VclNZMKrlsxvFqpnMczAgg2SflgNeJwWub3BaF+Lb5RbXs3Dn8RG/bUzOH5Qq
-         v6RuJpsXEHN/HX4ekajW8v57qrETGNKWqzZxrWQUeluluv2XaZAmuFgmGEHR2+LX00rH
-         KkMsotYwcQJdY4laBOo5AbEvIjoNl6d6NS0ZhKvtAGznkcqCi9NlhmY7tHHcyx9FHAK/
-         ztpwsqWq7P4kJlQR/apInQCtHm5PvemxwG+yV8SEeZUf1eswGDm3oQH7XWdJJOVYTnXI
-         U+EUCsgK5G5oDQpaPQ5KeGz8rvS/K8+EUjTpIefk5TEMdEe/ttKRjbP8B6sE3OQgVueT
-         Cj/g==
+        d=gmail.com; s=20230601; t=1740704807; x=1741309607; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Uq2rZxEkjFUo4QgyaS7BsaFsWHlPYAlTrAuuGWuK4to=;
+        b=Ftf9AWD40JEczR24pAUI1VntOjH+nmI9PK+XaedB/DrwGzqRzc5amejKnw/RZid7ua
+         rwG0EGd5C3flV2FjeEqHuzydFNMcl47pQLFqnVmKq3CESkAd7/ZZMv9bcXelMta1YSB2
+         wjkuoyZrqpwY/nNdCkh4Rvu3qGmaEVccl4igYMuNRkzFdkrPLXMiVfC3vouKV0uI2IM2
+         b0TUvz38foP8YQsTy1aeQIi3HQ0bhz4Ev7Y4SabUEnd3/drFpv0igOMjlsZU3ezXbO+5
+         W+7immoih7CosKhnXbUVF7rJVldbIPJLa+6p/bYc/PBW0g2hrY7lKjcvGpn0CXTGRkqx
+         cCLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740703498; x=1741308298;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gLTJSgWRvjc6CoalvvtWWj0Jwj6OQsGx1YUrViRKarI=;
-        b=W4VXyLiFHJfuQJFIUTHW/tKG78S4kMPuYFJ1pTchu8HfaSQ9Rjf7hZiX8ssgXdM2qs
-         35YJL/3zfibU0BTq07WgBcH7Bt/mzrv4Z6jLNqTcdfg/0r2qOvBnedOsB1bZs5eIPDkB
-         WyhrDGQt+4Ejj338JQpdWp7DSUr8TTs+MaZ+plrlS8wrMi9JPU0uFHZZ1yYbvmO4mcX6
-         S0vc3xu1yvhoXb3Aq7HdWb05Oh7xNocHYZMYPPT8PsYz5VxS6tXG03Zu6I8025l094pT
-         Am04n0+7xzNu1/yuK8divOEDoTOjCE3fGVfm01bUt7x0tmIxzny6Ji+Y6/X1poDvtNId
-         8uXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUmKa20jmEOomOYW0m8/SRU40PFPIiflzrGijxpyL8Ty7psU/3MaftKsil6QEahs4Qyx/DkrORxEEqt9pp8@vger.kernel.org, AJvYcCUzrMhK+1LFMCuP7BXrsHv5YgGNkLNWUnrqIkcM3kGK0tpJQn6eDvZdvk6+Vgjsk77eNXkp2k+JHyQc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyvhey7/+CmfPst7NyBaY3HMZjyhfCCRfXsfenjaaev7ifwC8DN
-	fWx21H31s8vRMjrbRbMNB1yfRpxOaGQuAiiMudfmCBNZGMhpCBz7
-X-Gm-Gg: ASbGnctgqqdEJhdCOGGa44HI6olKSPvEFomQoYUAY3emcyoKcK9PUXn7SDromGPoopw
-	CP5brxLxXqKIeyrQCjshDL9i9BWyjWEBCkSONLmKrObECemudM+idMnh0xClgH0eeM+MB/0qNkF
-	njPGHSXeZ+1dgSuKt5JMDUA+nMUBiIvBRCrB4mMrqvfZuVS1Z1+FCxtmbdT8XKarZ7BiIvCpxlg
-	1A56sW8GuIdt4qj/Z9UdPYgLD0+ochxOdn5jfaY4rk7guO4N+UJ2BI7pCHp1hcTavxShOMqrEuG
-	pg==
-X-Google-Smtp-Source: AGHT+IExRXiQaZ4T0Z6y1z1z0/2ROPkgKVD3wTCSJ4mh6iYNzRlAMui0YNy9pihJ29SSMbnFSyJyCA==
-X-Received: by 2002:a05:6214:f2d:b0:6e4:5b6a:9d48 with SMTP id 6a1803df08f44-6e8958a275emr85405086d6.7.1740703498090;
-        Thu, 27 Feb 2025 16:44:58 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e897651074sm16039276d6.29.2025.02.27.16.44.56
+        d=1e100.net; s=20230601; t=1740704807; x=1741309607;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uq2rZxEkjFUo4QgyaS7BsaFsWHlPYAlTrAuuGWuK4to=;
+        b=nOYEf/ZxTXDUB4PZimlnJDXT8apVMdAPxQm1HRVElg2xc73K6QmbW/UjQEt1PUi2Jc
+         lQylJtz2XZ15FtkD58PxF3aVjWaytUlBBSOIZFj1KLN5BW+7w4YvE+c/6maKl/QQG4nT
+         OXm7kn9NpMbjnOuSHAKPtruaf2QacGDU4S6de87OLSoW9At2Pu8MaJAx4OmYuGj+L6zI
+         v6PNwMlpe7zQapikNkRrInJEBoCm9CSX8FDyKfNecL0Tb87ZYp0gF1BHttNzSW4YdFLn
+         PHq0r0YzgIKOAkGFSf42ojigR0+MTkyNqUXQr9AloyLbj1EPJguJxjSPhfkcK9sGDFHQ
+         9oDg==
+X-Forwarded-Encrypted: i=1; AJvYcCUp+RxxWHhUpL4clXrmq1VZipawsJ2Z2AtpKOv/aIlqmLGNJ0GhfmQPLxLmAmC4sOsz/xI4Q3WVbNAK@vger.kernel.org, AJvYcCVuo3JQfez8yrNgq24/TaNMFMM7mK/AvU53fzBQM/QXR3jyacDPPlD6brNAynhgKcQ61+M3Wlcruds52czx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/3vP2XUfMC7tJN0gPTbVjk2DFAxd2xONkvm5W6eLyChTPNs8y
+	PRBJOTrblblfLiAmB6a/s7hCptnM+P6669y9xhT4udaV1XpsWMdq
+X-Gm-Gg: ASbGncttStUlinCP83LVZdXDJkskd8KGprCA/iU41C/4YcfncdPLVUb+gapkPppswVT
+	yE5Tz/Wl9y27hlLme/WD+9tLuM3rXA/guk8sUusLoxmYrst/0hL5xnoRQScGKOPUWQSYv5cQ8Pp
+	hzev51Z++8cTqviK2oIK9YkevDyRd/6N/QLZ0zqXH/f1urzp8xzlZT4w/9pxDnNF3themamFYVX
+	uYZ4Q+hxAVI6NNAedQaiKVZfkBT+A5RU3qM35GoT7pN21ja2go75///G42jo4D8K38hUeTzeEmE
+	ls+l/O0MPOYditaIies6fv/ip2I=
+X-Google-Smtp-Source: AGHT+IEY05DqcD7d/d/hx9lZw2rM1pWqCfuxgEXYDyFsBY8iXGRTCJJhKypPN8GGyJgBtsPN3whXjg==
+X-Received: by 2002:a05:6a20:3d87:b0:1f0:ee68:aab4 with SMTP id adf61e73a8af0-1f2f4d224cemr2207366637.23.1740704806777;
+        Thu, 27 Feb 2025 17:06:46 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:c0e7:f2be:7020:c4a6])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-aee7ddf23b6sm2198967a12.15.2025.02.27.17.06.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Feb 2025 16:44:57 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Guo Ren <guoren@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: (subset) [PATCH v2 0/8] riscv: sophgo: Add pinctrl support for SG2042
-Date: Fri, 28 Feb 2025 08:44:32 +0800
-Message-ID: <174070346793.192886.6076012325463673162.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250211051801.470800-1-inochiama@gmail.com>
-References: <20250211051801.470800-1-inochiama@gmail.com>
+        Thu, 27 Feb 2025 17:06:46 -0800 (PST)
+Date: Thu, 27 Feb 2025 17:06:43 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Markus Burri <markus.burri@mt.com>,
+	Manuel Traut <manuel.traut@mt.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: input: matrix_keypad - add wakeup-source
+ property
+Message-ID: <Z8EMI9ALqYY72VBV@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Tue, 11 Feb 2025 13:17:48 +0800, Inochi Amaoto wrote:
-> SG2042 has a simple pinctrl device for all configurable pins.
-> It supports setting pull up/down, drive strength and input schmitt
-> trigger.
-> 
-> Add support for SG2042 and SG2044 pinctrl device.
-> 
-> Changed from v1:
-> - https://lore.kernel.org/all/20241024064356.865055-1-inochiama@gmail.com/
-> 1. Fix the binding documentation error.
-> 2. Refactor the cv18xx code so SG2042 can uses the same code.
-> 3. Add SG2044 pinctrl support as it has the same layout.
-> 
-> [...]
+The driver recognizes standard "wakeup-source" property and there are
+DTS files using it. Add the property to the binding.
 
-Applied to for-next, thanks!
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202502280105.REZ29MVg-lkp@intel.com/
+Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+---
+ .../devicetree/bindings/input/gpio-matrix-keypad.yaml         | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-[8/8] riscv: dts: sophgo: sg2042: add pinctrl support
-      https://github.com/sophgo/linux/commit/5277657d53834cfbdbb9444088c1448b29bdfe98
+diff --git a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
+index 73bb153ed241..ebfff9e42a36 100644
+--- a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
++++ b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
+@@ -68,6 +68,8 @@ properties:
+       Drive inactive columns during scan,
+       default is to turn inactive columns into inputs.
+ 
++  wakeup-source: true
++
+ required:
+   - compatible
+   - row-gpios
+@@ -96,4 +98,6 @@ examples:
+                         0x0001006A
+                         0x0101001C
+                         0x0201006C>;
++
++        wakeup-source;
+     };
+-- 
+2.48.1.711.g2feabab25a-goog
 
-Thanks,
-Inochi
 
+-- 
+Dmitry
 
