@@ -1,137 +1,220 @@
-Return-Path: <devicetree+bounces-152935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55CA0A4AA98
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 12:12:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAE4DA4AAAE
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 12:37:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 222B23AD0F4
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 11:12:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B4CD1898C5F
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 11:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68EB91DE2C6;
-	Sat,  1 Mar 2025 11:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1B8A1DDC11;
+	Sat,  1 Mar 2025 11:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="1Zt7TsYu";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="3WyofDg3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C4YkjQGX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b8-smtp.messagingengine.com (fout-b8-smtp.messagingengine.com [202.12.124.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487CB1DD526;
-	Sat,  1 Mar 2025 11:12:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACD81CEAC3;
+	Sat,  1 Mar 2025 11:37:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740827539; cv=none; b=Zu09vXUJ1/Pp43/MqV5y3lGoZd6oQAZ+EL1hgrwGJw5v1cD88367wd/qo/GhEgbc6YvjdyRCO9WT3Kr+2gV25HswJm6AE0VSnQGi4ZWULgMBmRZW9de4nEjmiMmzexHsJIxSuuPAlSUOZRdVLVSxoxAPaIDTh7wJKGy8VM5Ssxs=
+	t=1740829039; cv=none; b=uIc28j42mnQRbpP+dFuiz33I8XDGH23/RtBVz0mlZjJJQU2UqwHWxKbLZmizkw6zoLj5JB5+B/tY5rlE9cWMp/8jWEbFLYxWqzeEleh1Ldp3Y9LdRi4x9vZ5+4BHzK+VjeHuxboZQIsdDVjiOKtUvU1FHE36uHe/3LdFoE2mrvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740827539; c=relaxed/simple;
-	bh=emQgneBQx2GkDTPzVDPMrpW49qKtnf5Ma/tpnHu+lM8=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=MgTSTsXrF1OecjA4wLxupmQrae7pBrT1cEgH6WtAvZ8kXMx9CM5ErVWC/eNxs0CwILG+a4U03HqJg5CxmNnpPnBCvDijQR3zvfpraVTdEYrYhh/vPCZ9DVeemKwxwVy1srI3j5unIgD+A+McJAYz1TAokJj1V2XGAqdvkLRvyis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=1Zt7TsYu; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=3WyofDg3; arc=none smtp.client-ip=202.12.124.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
-Received: from phl-compute-03.internal (phl-compute-03.phl.internal [10.202.2.43])
-	by mailfout.stl.internal (Postfix) with ESMTP id F422C114005D;
-	Sat,  1 Mar 2025 06:12:15 -0500 (EST)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-03.internal (MEProxy); Sat, 01 Mar 2025 06:12:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1740827535; x=1740913935; bh=emQgneBQx2GkDTPzVDPMrpW49qKtnf5M
-	a/tpnHu+lM8=; b=1Zt7TsYuUPsDseNNo+8ZboYjCukZzltRCNGiZobleRAAbZ61
-	+DEINfPW7ytAU8rVoVDJIB3DnW6CeFwaoks+WiJOFSJ74HD5L+5rhVwMgouXydkc
-	rr1a0/j1aDORpVQ48GqE5XG38eVlb+U3yttBq1tIQuwPVeptxGEEg3gEmL97XSop
-	+UTjQEI2uuTTZhEWUv0k5Qkor3EYFs7kz7QlXU/tT1lTBKo1PP5iUyfbu6qje0pc
-	3zBrTStTxf+1yz2SI7UBIwv3xJWNxPHwQ3P0u6Fy1etvTu70XwaRP541BuWhdGtt
-	mestxjOgZrG7vsXHwP/pSqBfKPq2AhfWQnh3Qw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1740827535; x=
-	1740913935; bh=emQgneBQx2GkDTPzVDPMrpW49qKtnf5Ma/tpnHu+lM8=; b=3
-	WyofDg34NEAmG1IIbppF+U+1WYRDdsyTAgbrRU5x4m/xU9ucGDhPnLRp/fXCUOps
-	LMEET1BKDEfKft3fpl+QEzAlweuwJLcnfb0Eab/xo1RvywpSWa/mI5OyK3fDU2qW
-	hJ7yGYltO9rjYeSDcH1S2aSByKMaomDA0wEG2KTS9gZfbsGENuWhRESrDhgh6Mb3
-	w49wb1xccO6vzHaQ6wT53y4lP4dbp/k8YzulaX1/ehAYU2mv39EMX/cjx41y7EAG
-	oNAQep5BFF7797+oMHuA2fRmkHLCKVBh2sEvPccIXWv035rrT7dM5wDqls1ZY3jQ
-	4u6XrOQWAB24UiRDpxT0Q==
-X-ME-Sender: <xms:j-vCZ7nS1S8n2KRkLrQ3IQd3zaGY8WHneGQou7T2mdXF_7mjf3chMQ>
-    <xme:j-vCZ-0K33EQgZhAoCbAZJkyJs_qYMFkkZ9ovSDTNMtxuoVdT01rVAlQEUswhMlx8
-    tOjtDsZYVPZnxojPVQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdelfedugecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredt
-    tdenucfhrhhomhepfdfuvhgvnhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvg
-    hrrdguvghvqeenucggtffrrghtthgvrhhnpeelfeetueegudduueduuefhfeehgeevkeeu
-    feffvdffkedtffffleevffdvvdeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
-    grmhepmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvhdpnhgspghr
-    tghpthhtohepuddtpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehtohifihhntg
-    hhvghnmhhisehgmhgrihhlrdgtohhmpdhrtghpthhtohepjhesjhgrnhhnrghurdhnvght
-    pdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhope
-    hkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhn
-    vghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsth
-    hsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheprghsrghhiheslhhishhtshdr
-    lhhinhhugidruggvvhdprhgtphhtthhopegrlhihshhsrgesrhhoshgvnhiifigvihhgrd
-    hiohdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhr
-    gh
-X-ME-Proxy: <xmx:j-vCZxrtpG8dOD1kK1nkjZB6mI2ZPo6C7AaojHHjZYhzH2iYKEshlg>
-    <xmx:j-vCZzm8GRtOJv5mWT60XiAx9_kTuadqz9kcfylk9k3RhgKAYnkjwQ>
-    <xmx:j-vCZ50e4NdzY9S2AKD3q7qkTIFNbU7Ea7adFSXec8amrAoc2EtrSQ>
-    <xmx:j-vCZyuzkCXjW1_BhRx-vmmfht-du1u8zjqt8y3z0zXqAcE7Z9qQBA>
-    <xmx:j-vCZzxd6ttZESm-38Va9fihMJk8oIDuoOU3vGte09e8X9CEzl7mxHl1>
-Feedback-ID: i51094778:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 02609BA006F; Sat,  1 Mar 2025 06:12:14 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1740829039; c=relaxed/simple;
+	bh=dT1M1OX+ylPajgi5Td8FsnYT9PqPEbMJ8aqpho8rjqg=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=f5tTayQWvl83Lm1moGzPOHS2jJdhwG7tlpGZfFyj6C10wa32ATpFNK94YzLJWQQC1tnj1rVZbFOKJKS4tRxwAZ+Q7XTP/qGqO147id7Jhp8TGLgW21nyVnvhiaVcnjfQ9M4nf3EUnlAcfG40vJZdl6olJXuT5OGrGQzJjROVlNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C4YkjQGX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A65B4C4CEDD;
+	Sat,  1 Mar 2025 11:37:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740829038;
+	bh=dT1M1OX+ylPajgi5Td8FsnYT9PqPEbMJ8aqpho8rjqg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=C4YkjQGX6x6uoqD6Yp0dQzTZmmjynM5ZIjQO1YdQc/B25rqm+rh5x1Bvsl3Dj58HK
+	 YScw9Ja1tcJ+UlVcN96f3Jy3ZvCLC1oGKJxQcwbyNt5yXICRQyar9NwH56rNV0topG
+	 jrVpGwESZOOLk5ipIfxlDX5vS8c+mUKwL0v88GwfqX20dXbetBND2cLR2SEdaQhU4k
+	 IITTb+dvnaHe598YW8cwOLVdH9RtR9jrl1Il7lpAqzLA/77pRVd8khTcG878nI227d
+	 QMiaFy+Li24BsLTa+GTXdBejTqgQ+27pLw8Y1XEw33fAy0FBukYnULAwheiuenQiU9
+	 unJQ/MU58slxQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1toL9f-009LZ4-9D;
+	Sat, 01 Mar 2025 11:37:15 +0000
+Date: Sat, 01 Mar 2025 11:37:14 +0000
+Message-ID: <86o6ylouc5.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,	"Rafael J. Wysocki"
+ <rafael@kernel.org>,	Thomas Gleixner <tglx@linutronix.de>,	Anup Patel
+ <apatel@ventanamicro.com>,	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,	Manivannan Sadhasivam
+ <manivannan.sadhasivam@linaro.org>,	Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?=
+ <kw@linux.com>,	Bjorn Helgaas <bhelgaas@google.com>,	Arnd Bergmann
+ <arnd@arndb.de>,	Shuah Khan <shuah@kernel.org>,	Richard Zhu
+ <hongxing.zhu@nxp.com>,	Lucas Stach <l.stach@pengutronix.de>,	Lorenzo
+ Pieralisi <lpieralisi@kernel.org>,	Rob Herring <robh@kernel.org>,	Shawn Guo
+ <shawnguo@kernel.org>,	Sascha Hauer <s.hauer@pengutronix.de>,	Pengutronix
+ Kernel Team <kernel@pengutronix.de>,	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,	Conor Dooley
+ <conor+dt@kernel.org>,	Niklas Cassel <cassel@kernel.org>,
+	dlemoal@kernel.org,	jdmason@kudzu.us,	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,	linux-pci@vger.kernel.org,
+	linux-kselftest@vger.kernel.org,	imx@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v15 04/15] irqchip/gic-v3-its: Add support for device tree msi-map and msi-mask
+In-Reply-To: <20250211-ep-msi-v15-4-bcacc1f2b1a9@nxp.com>
+References: <20250211-ep-msi-v15-0-bcacc1f2b1a9@nxp.com>
+	<20250211-ep-msi-v15-4-bcacc1f2b1a9@nxp.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Date: Sat, 01 Mar 2025 12:11:54 +0100
-From: "Sven Peter" <sven@svenpeter.dev>
-To: "Nick Chan" <towinchenmi@gmail.com>, "Janne Grunau" <j@jannau.net>,
- "Alyssa Rosenzweig" <alyssa@rosenzweig.io>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <4670e5f8-2a92-46bd-8faa-dd3774517f3e@app.fastmail.com>
-In-Reply-To: <20250220-caches-v1-0-2c7011097768@gmail.com>
-References: <20250220-caches-v1-0-2c7011097768@gmail.com>
-Subject: Re: [PATCH 0/9] arm64: dts: apple: Add CPU cache information for Apple A7-A11,
- T2 SoCs
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: Frank.Li@nxp.com, kishon@kernel.org, rafael@kernel.org, tglx@linutronix.de, apatel@ventanamicro.com, gregkh@linuxfoundation.org, dakr@kernel.org, manivannan.sadhasivam@linaro.org, kw@linux.com, bhelgaas@google.com, arnd@arndb.de, shuah@kernel.org, hongxing.zhu@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org, robh@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org, cassel@kernel.org, dlemoal@kernel.org, jdmason@kudzu.us, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, linux-kselftest@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Hi,
+On Tue, 11 Feb 2025 19:21:57 +0000,
+Frank Li <Frank.Li@nxp.com> wrote:
+>=20
+> Some platform devices create child devices dynamically and require the
+> parent device's msi-map to map device IDs to actual sideband information.
+>=20
+> A typical use case is using ITS as a PCIe Endpoint Controller(EPC)'s
+> doorbell function, where PCI hosts send TLP memory writes to the EP
+> controller. The EP controller converts these writes to AXI transactions
+> and appends platform-specific sideband information.  See below figure.
+>=20
+>                =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=90
+>                =E2=94=82                                =E2=94=82
+>                =E2=94=82     PCI Endpoint Controller    =E2=94=82
+>                =E2=94=82                                =E2=94=82
+>                =E2=94=82  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=90   =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=90     =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=90 =E2=94=82
+>     PCI Bus    =E2=94=82  =E2=94=82     =E2=94=82   =E2=94=82     =E2=94=
+=82     =E2=94=82     =E2=94=82 =E2=94=82
+>     =E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=96=BA =E2=94=82  =E2=94=82Func1=E2=94=82   =E2=94=82Func2=
+=E2=94=82 ... =E2=94=82Func =E2=94=82 =E2=94=82
+>     TLP Memory =E2=94=82  =E2=94=82     =E2=94=82   =E2=94=82     =E2=94=
+=82     =E2=94=82<n>  =E2=94=82 =E2=94=82
+>     Write Push =E2=94=82  =E2=94=82     =E2=94=82   =E2=94=82     =E2=94=
+=82     =E2=94=82     =E2=94=82 =E2=94=82
+>     DoorBell   =E2=94=82  =E2=94=94=E2=94=80=E2=94=AC=E2=94=80=E2=94=AC=
+=E2=94=80=E2=94=98   =E2=94=94=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=
+=E2=94=98     =E2=94=94=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=
+=98 =E2=94=82
+>                =E2=94=82    =E2=94=82 =E2=94=82        =E2=94=82         =
+  =E2=94=82    =E2=94=82
+>                =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=BC=E2=
+=94=80=E2=94=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=BC=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=98
+>         sideband    =E2=94=82 =E2=94=82 Address=E2=94=82           =E2=94=
+=82
+>         information =E2=96=BC =E2=96=BC /Data  =E2=96=BC           =E2=96=
+=BC
+>                    =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=90
+>                    =E2=94=82    MSI Controller      =E2=94=82
+>                    =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=98
+>
 
-On Thu, Feb 20, 2025, at 13:21, Nick Chan wrote:
-> Add CPU cache information for Apple A7-A11, T2 SoCs. On Apple
-> A10 (T8010), A10X (T8011), T2 (T8012), only the caches in one of the
-> CPU clusters can be used due to the "Apple Fusion Architecture"
-> big.LITTLE switcher. The values for the P-cluster is used in this
-> case.
+Please stop using these figures in commit messages. I don't think they
+help, and they are not in consistent with the way the commit messages
+are managed.
 
-So this means that the cache information will be "wrong" when the CPU
-is in the lower power states and only correct for the higher ones?
-I'm not familiar with how these values are used; are you and do you
-know if this will have any weird or unexpected effects?
-Would it be better to use the cache size for the lower rather than
-the higher states or does this not matter much?
+> EPC's DTS will provide such information by msi-map and msi-mask. A
+> simplified dts as
+>=20
+> pcie-ep@10000000 {
+> 	...
+> 	msi-map =3D <0 &its 0xc 8>;
+>                           ^^^ 0xc is implement defined sideband informati=
+on,
+> 			      which append to AXI write transaction.
+> 	           ^ 0 is function index.
 
+What does this sideband field represent? How is the ITS driver
+supposed to use that data? Is it the full devid as presented to the
+ITS? Something combined with the "function index"? Is the "function
+index" a full RID, as defined in the documentation?
 
+Also, msi-map is so far reserved to a PCIe RC, not this sort of wonky
+contraption. This needs to be documented.
 
-Best,
+>=20
+> 	msi-mask =3D <0x7>
+> }
+>=20
+> Check msi-map if msi-parent missed to keep compatility with existed syste=
+m.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> change from v14 to v15
+> - none
+>=20
+> change from v13 to v14
+> new patch
+> ---
+>  drivers/irqchip/irq-gic-v3-its-msi-parent.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/irqchip/irq-gic-v3-its-msi-parent.c b/drivers/irqchi=
+p/irq-gic-v3-its-msi-parent.c
+> index e150365fbe892..6c7389bb84a4a 100644
+> --- a/drivers/irqchip/irq-gic-v3-its-msi-parent.c
+> +++ b/drivers/irqchip/irq-gic-v3-its-msi-parent.c
+> @@ -118,6 +118,14 @@ static int of_pmsi_get_dev_id(struct irq_domain *dom=
+ain, struct device *dev,
+>  		index++;
+>  	} while (!ret);
+> =20
+> +	if (ret) {
+> +		struct device_node *np =3D NULL;
+> +
+> +		ret =3D of_map_id(dev->of_node, dev->id, "msi-map", "msi-map-mask", &n=
+p, dev_id);
+> +		if (np)
+> +			of_node_put(np);
+> +	}
+> +
+>  	return ret;
+>  }
+> =20
+>=20
 
+Thanks,
 
-Sven
+	M.
+
+--=20
+Without deviation from the norm, progress is not possible.
 
