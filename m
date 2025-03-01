@@ -1,130 +1,160 @@
-Return-Path: <devicetree+bounces-152913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F032DA4A9E2
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 10:08:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7171CA4A9E8
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 10:12:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FDA4189A511
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 09:08:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC22A3A3B27
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 09:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D701C8618;
-	Sat,  1 Mar 2025 09:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC401CBA02;
+	Sat,  1 Mar 2025 09:12:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eS66Wmqz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nJrNC32H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA7E1AB52D;
-	Sat,  1 Mar 2025 09:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719461C5D79;
+	Sat,  1 Mar 2025 09:12:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740820107; cv=none; b=UbXWS9t0laG9s5JAm9JDTaUzVdMvSNSFx0CvP0lTXo7ZLElWlNLnfahRZPQrTknnxCk3mJ6dscl+4nk+MUHuYbHAkZQcHwfiLY4iZVnZPx9HZzwciGuZeH6nPzfcLXWkPGEHzrvrECGS2E12Dhf2PuoEtRPM1hx6ngpsoIlQ5do=
+	t=1740820331; cv=none; b=GVs2HRKdVpgFOaitW3dWfYMY31pkzKMXqQYTxwoR2qjiXhZrS89uycmEFbV0fYq61VPtOwClehDGKaZX/HkTTmGvso6ouWFteBVNhyu+aTwUOnsQ0qj85Y1o++UJQvPq6brFpvseHWMm58zMBxuc8V246BTRmiKSTgfB7n7AN4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740820107; c=relaxed/simple;
-	bh=bQUvH/LR1KxS95c+RJnGjDSETbksb7G0/CS5aZy0gsA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wsx1lNBYinqUi17L9eS6aZiC6q6APBFha/U99VJD+QbpuDeGq8/v9FXMnIDHl1FU+8By/pzdoUKXVdZdUIyXa3djFDZXmg7Fis9xo/9woNaV9W5f6fi/MKV4rqW9244Ft00bNgmV1AFhGBdi5ZVq5G0oceFqoyAZr6ePda7j0dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eS66Wmqz; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740820106; x=1772356106;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bQUvH/LR1KxS95c+RJnGjDSETbksb7G0/CS5aZy0gsA=;
-  b=eS66WmqzNQGui6u5SSmjvn/tGera2jVFrNENpiAUILwc+JVTBr+C7woa
-   ViojhBWaUltF3RAoSHW/SNxVN+694OvExiC8ayJ5eJ0+7DyD7uzHA/lyl
-   NFO+NHQnDh9QwwVT77818rsKQRqGD2K2CU1ZDic65gvLvJVhsEsuB4k7y
-   +En5No2sKJKV/gU6hfzpBs7vHi1I2/JLe4VlXvgJx739571qR5zPJsGSm
-   S9gzqks8yYCWgOf7kd8qaP8GjtkWx/7PWrsU2L5J+mjW5tV8k9y0LkN9O
-   0nes7JiWy0T6CCVhovyfmbGti/cmUQ7BmHyDV0+LiCggK/pKBwQUmWdPw
-   A==;
-X-CSE-ConnectionGUID: nJcmozVSSx2Hu2GwQjNrfg==
-X-CSE-MsgGUID: zkTdSru0RF6DgqGS9D5NRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41596833"
-X-IronPort-AV: E=Sophos;i="6.13,325,1732608000"; 
-   d="scan'208";a="41596833"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2025 01:08:25 -0800
-X-CSE-ConnectionGUID: hUwnSczhT5aCxc0MFFZ1sQ==
-X-CSE-MsgGUID: 4nOe0TxbSYe4812Pe2RycA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,325,1732608000"; 
-   d="scan'208";a="117564427"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by orviesa006.jf.intel.com with ESMTP; 01 Mar 2025 01:08:22 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1toIpX-000G4Q-2G;
-	Sat, 01 Mar 2025 09:08:19 +0000
-Date: Sat, 1 Mar 2025 17:07:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] arm64: dts: exynos: add initial support for
- Samsung Galaxy S22+
-Message-ID: <202503011651.Vto3vDw7-lkp@intel.com>
-References: <20250223123044.725493-4-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1740820331; c=relaxed/simple;
+	bh=62M00yAg51rrJZ04g8zC95EvNZ84F8x3AjdAvJoHunw=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=na178HSb1DbRoVX5MQYICnd+wSfc/vLQX5LJRqAQZXuQPEM8myj0TSk6/TWfaWckVLMdyxhtm41FaWItiODOErebaEMduPtGpCV09VfVF34ELsgqQR/5Akp0BAZEliiCMWhCHAph2KPLG3ix93mVXwaGepI7UhuEIwE2wKbXkPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nJrNC32H; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e4ad1d67bdso4458983a12.2;
+        Sat, 01 Mar 2025 01:12:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740820328; x=1741425128; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=62M00yAg51rrJZ04g8zC95EvNZ84F8x3AjdAvJoHunw=;
+        b=nJrNC32HViEFftZ8PYK7V4DYwlat8wJPA9ubi3zwMc0s2vKEI7YgYN7Zyr3NPNmjoO
+         7TZvnZ71INCQqG/GWZl4YI06GEvYHhPZHasXCJq9RgsxoqVXDqYJsyqMLwpTKDDgTLKS
+         Q7vLG9dNML+FeBY1BfYSEa25A+sisfu9knaMhGqGFjbJUvvhllRsTqE1CLbnk8CPBWPJ
+         /c7qV62l9LbbjTFoAYibyer3EoyQyoPI4Kp1qlrfOFYzzP9UartbxiIOwI/EMFksU51A
+         JQ+rbBe+4sde5M+EgmxBOG0JmHkuqh/LYv5wpNDIOlitMPCakcfLFirzJLVK8XXhs11W
+         44+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740820328; x=1741425128;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=62M00yAg51rrJZ04g8zC95EvNZ84F8x3AjdAvJoHunw=;
+        b=bbSAfsuqX+SV6yOudy/jFI7wN/eNmub0YQn+IaJ6aH3GnoBg0ovm4gDRHuprRtEhcm
+         3DXwVrObheBz9/vtWJtCS/4CJj+4SPLTCV/Gm4cPjMbleUanfdtjxM/+oHs2lzdO6qzx
+         1lcz2u2ewulGtLOOAj++csYBZggqUAnDZgigxoT2XCf4fwA69+TCz4ymwqlw+QVSI+Pw
+         0DQxlC1WIWcH9zRuBDf5f3vhDWuYVGHoE0saXCte+vRSNzUyYLeCyfQ93rioj9VPl1+W
+         /8PBmn8qE9RKElYTDP4Rn+XFZ7vb9oHRxdGuAWJfygQAP0oL9mjQjkhkOtg3wdMxht0Q
+         //rA==
+X-Forwarded-Encrypted: i=1; AJvYcCVjC38v7JqGDxpglKnjsFfN5xhu5Vakf+RLaRjXlcR+89tNf0goBoPA2kqJIhJMBLV2WoIbLZdZkvoa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZ4yu8Y+TF8cMS5Qs0frcVz+qxaEEjsmHSobKHfjyxv3z6xP1I
+	bM1Z7b7Fp7DrF+ekCt9Cj8OQfqlaQCbIFV3zvIFqrxqyIMkv5pSR
+X-Gm-Gg: ASbGnctEPhLePWxOUEkct18d6KEAcnP2X7yXb+bI5HGhlc317LavSJaaiuyTPWvpt5S
+	nIIEfQYhE3xmw4mtdTpvWqGDdDqRSNeGfSH2gfJFjZgOXRudS2PnJwCzEWVKYc5rUMI2ewLzbDE
+	oPgusrXJfdIBVY1KfwaKwz4t9TqnFUgi0jFpi6JQzPRDayPNgyXMOYvpUJ/6GNBDVWHact3JkKZ
+	FjnjXKA7G+f3q10HE+aaBuzQm3Xoxz2GTAdxmkPTF4asxUEEDL1M3Uj4fblk5mvH8rz3PWSOsqF
+	r5/1q/EXu3c1CuboUY3YmUNH1MyCzXyPyaPuyqTktnhY21/AgMdtiZLk7auGXLZqKC2pbp92K8D
+	eKcIXlRYSvdOrRzphsTFXXp3jIA==
+X-Google-Smtp-Source: AGHT+IEV8xcpINPWUe49yXpBYPm3MtVspqPFUx6SBprxmJEllwjfLWfeeFh1xeuz1VE+t2lFH6t06w==
+X-Received: by 2002:a17:907:7288:b0:abf:5922:b7a8 with SMTP id a640c23a62f3a-abf5922dccamr135545766b.41.1740820327515;
+        Sat, 01 Mar 2025 01:12:07 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf0c0b98b5sm436358366b.3.2025.03.01.01.12.05
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 01 Mar 2025 01:12:07 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250223123044.725493-4-ivo.ivanov.ivanov1@gmail.com>
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
+Subject: Re: [PATCH v7 0/3] Add HDMI audio on the rk3588 SoC
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <3337030.aeNJFYEL58@trenzalore>
+Date: Sat, 1 Mar 2025 10:11:54 +0100
+Cc: linux-kernel@vger.kernel.org,
+ Algea Cao <algea.cao@rock-chips.com>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ dri-devel@lists.freedesktop.org,
+ Niklas Cassel <cassel@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ kernel@collabora.com,
+ David Airlie <airlied@gmail.com>,
+ Dragan Simic <dsimic@manjaro.org>,
+ Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sugar Zhang <sugar.zhang@rock-chips.com>,
+ linux-rockchip@lists.infradead.org,
+ Chen-Yu Tsai <wens@csie.org>,
+ FUKAUMI Naoki <naoki@radxa.com>,
+ devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Johan Jonker <jbx6244@gmail.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Alexey Charkov <alchark@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <0A30138B-183E-4816-80FF-AACDCFE3B3A6@gmail.com>
+References: <20250217215641.372723-1-detlev.casanova@collabora.com>
+ <87frk2sumw.wl-kuninori.morimoto.gx@renesas.com>
+ <8734g2sg4t.wl-kuninori.morimoto.gx@renesas.com>
+ <3337030.aeNJFYEL58@trenzalore>
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+X-Mailer: Apple Mail (2.3826.400.131.1.6)
 
-Hi Ivaylo,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on krzk/for-next]
-[also build test ERROR on robh/for-next krzk-dt/for-next pinctrl-samsung/for-next linus/master v6.14-rc4 next-20250228]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ivaylo-Ivanov/dt-bindings-arm-samsung-document-g0s-board-binding/20250223-203243
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250223123044.725493-4-ivo.ivanov.ivanov1%40gmail.com
-patch subject: [PATCH v2 3/4] arm64: dts: exynos: add initial support for Samsung Galaxy S22+
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20250301/202503011651.Vto3vDw7-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250301/202503011651.Vto3vDw7-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503011651.Vto3vDw7-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from arch/arm64/boot/dts/exynos/exynos2200-g0s.dts:9:
->> arch/arm64/boot/dts/exynos/exynos2200.dtsi:8:10: fatal error: 'dt-bindings/clock/samsung,exynos2200-cmu.h' file not found
-       8 | #include <dt-bindings/clock/samsung,exynos2200-cmu.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 error generated.
 
 
-vim +8 arch/arm64/boot/dts/exynos/exynos2200.dtsi
+> Wiadomo=C5=9B=C4=87 napisana przez Detlev Casanova =
+<detlev.casanova@collabora.com> w dniu 25 lut 2025, o godz. 15:58:
+>=20
+> =46rom what I see, the error is not present anymore on linux 6.14-rc4. =
+I tried=20
+> reverting your patch "ASoC: simple-card-utils.c: add missing =
+dlc->of_node"=20
+> (dabbd325b25edb5cdd99c94391817202dd54b651) and the error reappears.
 
-b661f5fc96c5e9 Ivaylo Ivanov 2025-02-23  @8  #include <dt-bindings/clock/samsung,exynos2200-cmu.h>
-b661f5fc96c5e9 Ivaylo Ivanov 2025-02-23   9  #include <dt-bindings/interrupt-controller/arm-gic.h>
-b661f5fc96c5e9 Ivaylo Ivanov 2025-02-23  10  
+Guys,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Just FYI:
+
+On 6.14-rc4 without =
+0001-ASoC-simple-card-utils-Don-t-use-__free-device_node-.patch - i =
+still have oops like this: =
+https://gist.github.com/warpme/ed75c05d3b68f995d429dbd9097005ba
+They are happening not every boot - but still happening.
+
+However applying =
+0001-ASoC-simple-card-utils-Don-t-use-__free-device_node-.patch (with =
+some adaptations as it not applies cleanly on 6.140rc4) - dmesg becomes =
+clean (10 boots; all ok)
+
+
+
+
+
 
