@@ -1,105 +1,127 @@
-Return-Path: <devicetree+bounces-152941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80506A4AAE8
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 13:25:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF277A4AAED
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 13:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9263A16BC8C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 12:25:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03DEF3AC7A5
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 12:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 606951DE4F1;
-	Sat,  1 Mar 2025 12:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EFC41D90B6;
+	Sat,  1 Mar 2025 12:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="S2wcqCYj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BCbys6NZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087ED1CAA99;
-	Sat,  1 Mar 2025 12:25:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42A11E519;
+	Sat,  1 Mar 2025 12:32:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740831947; cv=none; b=HFh/1ZFDEmrx9e6SRt785tvBlk+7mX7z3u4gRosTqWFh74T1MRp+2CiW6vRfwLlcgcSOht92gNnrS27CdjnSGylBxAi9gGLgh6DYZniHWltGFvBxAIm8wavXQGtOOMK5IzQWuMHz/IBDAGFqhnWCcy4e/i0m175mhQL5nlFE+Xg=
+	t=1740832338; cv=none; b=np+36HosLmf40U/tt+m8U5/t4vULf1FTxpvryHTSSM4Ly+IG74RnuVv8flMw58u5+oKl0qE/OldM+yp7G4GkDFaKDjbw1en16sXv/q5JuHdrydLqyxNo3e0D3EhOlImRnClLX9rmtK+kq2yNoHYnQwqV2fuuVPqSi6B1h0L01xA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740831947; c=relaxed/simple;
-	bh=uk/TVbQmEdhrRriBBk8oaPcQkjOcMSzkB2nVTddFJcY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=Jbcp6VPTaTewjz3q3UOmfIudu1mPt0VnxOMFXvRw9yS4awusJX53/UwXY7xnBCVfwkcj7NdFzYggxYvFmuMgaBRK4WdCX47MpkYm5vYHuiO6qxyLnyKZtzxzfzR4pco4q5PM1AKYhzmgzsVUvrxvmkVWSiBL7/vb5flt1unc8eo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=S2wcqCYj reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=OoaYmHX0XxMb3ZGRzqhrOqA+8ik0zFy9oaiXUktOM0A=; b=S
-	2wcqCYjrorMjz0J+aoOHGkQMzk1/HZoe378Dg6qq2Bvi3+iWO4pVzMiKlm51zlXM
-	NHUpBgtTGvLaityI1KHr6V/hyQNAdurRMt+4Bx9dU4aTL/rde6dix2eCHPFk5te1
-	ctQ9plpH2Zi2crBPTys9FKRwmlJtjWsvcS+UNB2Vl8=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-107 (Coremail) ; Sat, 1 Mar 2025 20:24:34 +0800 (CST)
-Date: Sat, 1 Mar 2025 20:24:34 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Piotr Oniszczuk" <piotr.oniszczuk@gmail.com>
-Cc: heiko@sntech.de, neil.armstrong@linaro.org,
-	sebastian.reichel@collabora.com, devicetree@vger.kernel.org,
-	hjc@rock-chips.com, mripard@kernel.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, yubing.zhang@rock-chips.com,
-	dri-devel@lists.freedesktop.org,
-	"Andy Yan" <andy.yan@rock-chips.com>, krzk+dt@kernel.org,
-	robh@kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re:Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2025 www.mailtech.cn 163com
-In-Reply-To: <AC3DE87B-64B1-4C34-8E1B-3900E2C53AA3@gmail.com>
-References: <20250223113036.74252-1-andyshrk@163.com>
- <AC3DE87B-64B1-4C34-8E1B-3900E2C53AA3@gmail.com>
-X-NTES-SC: AL_Qu2fAvSYvkAs4imaYekfmkcVgOw9UcO5v/Qk3oZXOJF8jCHpyAceeXBTHlbv/PCDBDqXkAiHVDdI89xeb5lhU4kMvpw71wI8xCMUqheypabd2w==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1740832338; c=relaxed/simple;
+	bh=ra8gIKFKFiVeUd/HquZVV+FuM2qhRTGX+65IuN5qPDE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jp9CcG9ewnRRUGbyWevpLNwU82fUrgaldGjA7LccDbi/IePqLM+ATTCxqG2bBKEhmExNb7DQfrAPn7/R+TKRMaqAn1zcNjq236IVEUFI8ZHoNE4fDUvmzzw6edarzbG2xc5XfJkx9BjqwV3NoEX/MefVqZwmehtIabhnumKS1aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BCbys6NZ; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2fea795bafeso4560900a91.1;
+        Sat, 01 Mar 2025 04:32:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740832335; x=1741437135; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ra8gIKFKFiVeUd/HquZVV+FuM2qhRTGX+65IuN5qPDE=;
+        b=BCbys6NZ5jNzNS/dH8lRQs/PfOyYNr4pCN6D0cMCc8YPMf8Unglr3tJv9b4xB7nl2i
+         cnCZajqy4UZKnUoSAIcLIfDzEwJIAOdiPjTsQJ+P1g0upGmDSyhlobWs+ceIplP0ib+0
+         uNTslGWhULzZQv/mcJWkqXUmOiSXJkDNAdKTqmw/41Xaq+hU5JWh78YLNn6K+p84yV40
+         xwKM4vOxQiK30/5UBIheJ1J265xTdUHs50fTSqAK5DXffqyfmvWsuTrlxAPZZzS8jaQH
+         smH63BNb2a0JKS4fsu4Rj5CTXuwab2RJWj3gpjmZSKlEAhwXej/1vwGJxstZoGej5F71
+         ZOxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740832335; x=1741437135;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ra8gIKFKFiVeUd/HquZVV+FuM2qhRTGX+65IuN5qPDE=;
+        b=DZ+GHphvl1Rqe4LpcmJcFcunqBBBkWSzY9tqG03El93D0U6+XtGlYIn+IjN3TfvHPP
+         Jk4D6fnZdtt7yU0mbv19L9AcLyKf/wBaEHGeVOtdMWU4hdtIr7LK4aRutodlS0S9q2lT
+         5IBJlZs8l+J9T9EV//X3fayAejcJONIfCP63nQWgfha9jt7+kvr20QBu9DisLr85OJ+4
+         E+MRoQoZXFtJhdCvppxM+Drv9yb/WB9rFIbdXk1gViEC/quYF+rNOHiVHMV9GJvQbqNT
+         eAslre0s49Oi4D4NXYn42mXbp4PRqftVddEW0x2SSpPVAYSLDJp0I6ZYHwG/l9tpTN8X
+         WrkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+zRhZ5bvjIb5YyWLu/VQ8Epr7rS3V3FnCQW83n3oMJ+LUppaXb5MZIOgUusvxUSQ7TlZpx3cTAVYNrlWZ@vger.kernel.org, AJvYcCWflUayYWTytunxHR+p0pFnaS2Ehc8oazXqEM1LdMq9+pnGE+yWPLn7uyUPlk++/tfT/xY5yxJLpFVd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNFVttTaQ7CVac8ro3uMN1rc/ode1YwBbi4qECcahwBq/R98My
+	+UwKBwMmsAyTqqJBothCgImancn8nlDDZ32jnSQp0ceVo3Uq2Ytt
+X-Gm-Gg: ASbGncsYe+Lor2rrZfIF6Fj961ZNtqDsQV9pU3tCdqL7eR/MjVVUOmYxME+IYJms1mu
+	S90HOWn5uqwzXmDTmFRWgWMM3V8HSqTsi1mAFjITJlYmXnLinybuJC0kl+CnlsNIY3MHZgQ6OpL
+	NIGPpHboeqVErbRhu8/SeJE85E5aT0RsTVFQj0L7huh9asm4ENu080obh7VwnzoUyq5oXaxtbQw
+	vMXR9PrnVyZshH0ArVEidvHVVOUR+3He0xsfH2WCe7pXKAKf2Jv0Bb19475+gDN5gIutvZS7Yu/
+	s++c5N+u4JflnTdxC8xSfdzynltpRIm9uUpWqD47FWOTh8Sjobn/dLZOYE5G40XL4wW9
+X-Google-Smtp-Source: AGHT+IF1mhUuctMChazLjJnYgbLD4i8xF/OkaFyb4KVb61pxcTtGOZi+8D/BZaLS5+Cyjw+B2Dpcww==
+X-Received: by 2002:a17:90b:1e51:b0:2ee:c30f:33c9 with SMTP id 98e67ed59e1d1-2feba92bfc9mr11663696a91.14.1740832334925;
+        Sat, 01 Mar 2025 04:32:14 -0800 (PST)
+Received: from [192.168.0.101] ([59.188.211.160])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fe825a99a7sm8346849a91.6.2025.03.01.04.32.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Mar 2025 04:32:14 -0800 (PST)
+Message-ID: <83130117-509a-45ff-bf96-26beb77246e1@gmail.com>
+Date: Sat, 1 Mar 2025 20:32:10 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <7b8767fc.3607.19551aa5f74.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:aygvCgA3X+eD_MJna0JzAA--.55803W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0hoDXmfC+twJKAABs2
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/9] arm64: dts: apple: Add CPU cache information for
+ Apple A7-A11, T2 SoCs
+To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250220-caches-v1-0-2c7011097768@gmail.com>
+ <4670e5f8-2a92-46bd-8faa-dd3774517f3e@app.fastmail.com>
+Content-Language: en-US
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <4670e5f8-2a92-46bd-8faa-dd3774517f3e@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-CkhpIFBpb3RyLAoK5ZyoIDIwMjUtMDMtMDEgMDQ6MzA6MzPvvIwiUGlvdHIgT25pc3pjenVrIiA8
-cGlvdHIub25pc3pjenVrQGdtYWlsLmNvbT4g5YaZ6YGT77yaCj4KPgo+PiBXaWFkb21vxZvEhyBu
-YXBpc2FuYSBwcnpleiBBbmR5IFlhbiA8YW5keXNocmtAMTYzLmNvbT4gdyBkbml1IDIzIGx1dCAy
-MDI1LCBvIGdvZHouIDEyOjMwOgo+PiAKPj4gRnJvbTogQW5keSBZYW4gPGFuZHkueWFuQHJvY2st
-Y2hpcHMuY29tPgo+PiAKPj4gCj4+IFRoZXJlIGFyZSB0d28gRFcgRFBUWCBiYXNlZCBEaXNwbGF5
-UG9ydCBDb250cm9sbGVyIG9uIHJrMzU4OCB3aGljaAo+PiBhcmUgY29tcGxpYW50IHdpdGggdGhl
-IERpc3BsYXlQb3J0IFNwZWNpZmljYXRpb24gVmVyc2lvbiAxLjQgd2l0aAo+PiB0aGUgZm9sbG93
-aW5nIGZlYXR1cmVzOgo+PiAKPj4gKiBEaXNwbGF5UG9ydCAxLjRhCj4+ICogTWFpbiBMaW5rOiAx
-LzIvNCBsYW5lcwo+PiAqIE1haW4gTGluayBTdXBwb3J0IDEuNjJHYnBzLCAyLjdHYnBzLCA1LjRH
-YnBzIGFuZCA4LjFHYnBzCj4+ICogQVVYIGNoYW5uZWwgMU1icHMKPj4gKiBTaW5nbGUgU3RyZWFt
-IFRyYW5zcG9ydChTU1QpCj4+ICogTXVsdGlzdHJlYW0gVHJhbnNwb3J0IChNU1QpCj4+ICrvga5U
-eXBlLUMgc3VwcG9ydCAoYWx0ZXJuYXRlIG1vZGUpCj4+ICogSERDUCAyLjIsIEhEQ1AgMS4zCj4+
-ICogU3VwcG9ydHMgdXAgdG8gOC8xMCBiaXRzIHBlciBjb2xvciBjb21wb25lbnQKPj4gKiBTdXBw
-b3J0cyBSQkcsIFlDYkNyNDo0OjQsIFlDYkNyNDoyOjIsIFlDYkNyNDoyOjAKPj4gKiBQaXhlbCBj
-bG9jayB1cCB0byA1OTRNSHoKPj4gKiBJMlMsIFNQRElGIGF1ZGlvIGludGVyZmFjZQo+PiAKPj4g
-VGhlIGN1cnJlbnQgdmVyc2lvbiBvZiB0aGlzIHBhdGNoIHNlcmllcyBvbmx5IHN1cHBvcnRzIGJh
-c2ljIGRpc3BsYXkgb3V0cHV0cy4KPj4gSSBjb25kdWN0ZWQgdGVzdHMgaW4gMTA4MHAgYW5kIDRL
-QDYwIFlDYkNyNDoyOjAgbW9kZXM7IHRoZSBBTFQvVHlwZS1DIG1vZGUKPj4gaGFzbid0IGJlZW4g
-dGVzdGVkIHlldCwgYnV0IEkgc3VzcGVjdCBpdCB3aWxsIGxpa2VseSB3b3JrLiBIRENQIGFuZCBh
-dWRpbwo+PiBmZWF0dXJlcyByZW1haW4gdW5pbXBsZW1lbnRlZC4gRm9yIFJLMzU4OCwgaXQncyBv
-bmx5IHN1cHBvcnQgU1NULCB3aGlsZSBpbgo+PiB0aGUgdXBjb21pbmcgUkszNTc2LCBpdCBjYW4g
-c3VwcG9ydCBNU1Qgb3V0cHV0Lgo+PiAKPgo+QW5keSwKPgo+SXMgdGlzIHNlcmllcyBlbm91Z2gg
-dG8gZ2V0IHVzYmMxL2RwMSB3b3JraW5nIGFzIHZpZGVvIG91dHB1dCA/Cj4oYXNzdW1pbmcgaSB3
-aWxsIGFkZCBuZWNlc3NhcnkgY29kZSBpbiBkdCkgCj4KPnJvY2s1LWl0eCBoYXMgc2Vjb25kIGhk
-bWkgcG9ydCB1c2luZyB1c2JjMS9kcDEgbGFuZXMgMiwzIHRvIHJhNjIwIGRwLT5oZG1pIGNvbnZl
-cnRlcgo+Cj5pcyBpdCB3b3J0aCB0byBwbGF5IHdpdGggdGhpcyBvciBpdCBpcyB0b28gZWFybHk/
-CgpJIHRoaW5rIHlvdSBjb3VsZCBnaXZlIGl0IGEgdHJ5IGlmIGl0IHVzaW5nIHRoZSBTdGFuZGFy
-ZCBEUO+8iG5vbi1BTFQgbW9kZe+8iSBwb3J0IGZvciBvdXRwdXQuIApTaW5jZSBJIGRvbid0IGN1
-cnJlbnRseSBoYXZlIGEgZGV2ZWxvcG1lbnQgYm9hcmQgd2l0aCBEUDEgb3V0cHV0IGF2YWlsYWJs
-ZSwgSSBoYXZlbid0IGJlZW4KYWJsZSB0byB0ZXN0IGl0IHlldC4gQXMgZm9yIHRoZSBUeXBlLUMg
-QWx0ZXJuYXRlIE1vZGUgb3V0cHV0LCBzb21lIHBhdGNoZXMgYXJlIHN0aWxsIHJlcXVpcmVkIApJ
-J2xsICBzZW5kIGl0IHdpdGggVjIgdG9tb3Jyb3cgb3IgbmV4dCB3ZWVrLgpGZWVsIGZyZWUgdG8g
-bGV0IG1lIGtub3cgaWYgSWYgeW91IGVuY291bnRlciBhbnkgaXNzdWVz44CCCgoKPiAK
+
+Sven Peter 於 2025/3/1 夜晚7:11 寫道:
+> Hi,
+>
+> On Thu, Feb 20, 2025, at 13:21, Nick Chan wrote:
+>> Add CPU cache information for Apple A7-A11, T2 SoCs. On Apple
+>> A10 (T8010), A10X (T8011), T2 (T8012), only the caches in one of the
+>> CPU clusters can be used due to the "Apple Fusion Architecture"
+>> big.LITTLE switcher. The values for the P-cluster is used in this
+>> case.
+> So this means that the cache information will be "wrong" when the CPU
+> is in the lower power states and only correct for the higher ones?
+> I'm not familiar with how these values are used; are you and do you
+> know if this will have any weird or unexpected effects?
+> Would it be better to use the cache size for the lower rather than
+> the higher states or does this not matter much?
+The information in the device tree is only used for reporting cache sizes in /sys/devices/system/cpu.
+It represents the physical cache size which may not be the same as the architecturally visible cache
+size. Cache operations in the kernel consult ccsidr_el1 and csselr_el1, so it should be fine.
+>
+>
+>
+> Best,
+>
+>
+> Sven
+Nick Chan
+
 
