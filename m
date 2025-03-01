@@ -1,239 +1,148 @@
-Return-Path: <devicetree+bounces-152894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E73AAA4A854
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 04:34:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42F94A4A85C
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 04:57:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CAE17A94C8
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 03:33:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14B843B5945
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 03:57:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630B01957FF;
-	Sat,  1 Mar 2025 03:34:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE08158535;
+	Sat,  1 Mar 2025 03:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r/gnFiBd"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Em96SsLL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5C32CA8;
-	Sat,  1 Mar 2025 03:34:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4FDD23F399;
+	Sat,  1 Mar 2025 03:57:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740800087; cv=none; b=sRSqzYprrzm1nx3BsOZyQnPI1KRwehfdwq7+X8roKScg7MFfBrrgEEZPvv0mXqGOu8U/wp59v/KTGg8lvqO/Zfj6NmEwffZmKTx3wCnCK7Af5nVlyQJ9G6Rrj6jp0slSCGHcNmw8HqEEYuhdReTh1gJI3zHFL5HXmFHKPHrodhI=
+	t=1740801461; cv=none; b=fHKFuB5+4aYfaJitM34JYI0tn/311kUdlnW6tNmANQZpwIKoWC92hXSL+q/CkLm1z/19XpGv2tOAX4/qFpi8ssE9dXitnpk5zPXHoA/Tml+hPhePdBzU7ehZeB4Ptyu3LfmJm+I3AcPopiXFu5lBI/K+7jsNCQuIFDthT2Sf454=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740800087; c=relaxed/simple;
-	bh=tAJNw2MDGLpKl93xpuAYLKLGIAWdQ8TUaSUVndweFds=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NujZjFcwn9hNyO8sfkJuYgyaqP0XIhYZc//yDhB3BvuURhWCIQKVXxqCmWcNSXm1fusZCaT5CV7kVpF8WXq5uhd3S7F0UCWUHOE5exHbZouC0Hv+HOwk6w4x+wEXJRFoJsOTnz40NSjcS2rDrAd1nAP8BZZYbCxtvbr0dHXjm3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r/gnFiBd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0621C4CEDD;
-	Sat,  1 Mar 2025 03:34:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740800086;
-	bh=tAJNw2MDGLpKl93xpuAYLKLGIAWdQ8TUaSUVndweFds=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=r/gnFiBdbhTk77m8x/7T1N/RoHmTyTOKUTDeoExUeG4jKnOq8Tpg8FFPQuwH3bKao
-	 P3MOpQIAwXjstduqGjiPsGBtNXUMiz9O4bxgOZn9LD7ot1HEIzFwtqAJweK/B0Ak2E
-	 KgdctjEidl/MBfbo1jM58cxjw0Z6jn41DSnRaZVuA2CLsHbpS4j8v0pVXigTgxR2gW
-	 8gQbsAGIq74G5GSAULbsVqYY4RpEeDM3iFRF5dc3ES91q+EuWTKGwN7/YU2KDS+NP8
-	 TSicT6qcMniR2lbbRAFazOug50agdl53DgU/94NEvV3N6ErUh5+47VwJUxsRvM8P5i
-	 Imgfft+VZaVlA==
-Date: Sat, 1 Mar 2025 03:34:28 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, Jonathan
- Hunter <jonathanh@nvidia.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Emil Gedenryd
- <emil.gedenryd@axis.com>, Arthur Becker <arthur.becker@sentec.com>, Mudit
- Sharma <muditsharma.info@gmail.com>, Per-Daniel Olsson
- <perdaniel.olsson@axis.com>, Subhajit Ghosh
- <subhajit.ghosh@tweaklogic.com>, Ivan Orlov <ivan.orlov0322@gmail.com>,
- David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] iio: light: Add support for AL3000a illuminance
- sensor
-Message-ID: <20250301033428.34b71e4d@jic23-huawei>
-In-Reply-To: <CAPVz0n1xCFKzCFf7oM0vYKLQX1eb4_JnehVNPz0Cpxfb5COfsA@mail.gmail.com>
-References: <20250217140336.107476-1-clamor95@gmail.com>
-	<20250217140336.107476-3-clamor95@gmail.com>
-	<20250222125335.177fc746@jic23-huawei>
-	<CAPVz0n3YHgct6x_3-mhzmTOTejLj19xDLm9C8Dqe-GHv8fJBrA@mail.gmail.com>
-	<20250222172536.5fb73658@jic23-huawei>
-	<CAPVz0n1xCFKzCFf7oM0vYKLQX1eb4_JnehVNPz0Cpxfb5COfsA@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740801461; c=relaxed/simple;
+	bh=rEHaf4maxyiGGOMN1IF2sOa3FpT4ACpF4a9JkiIWSt8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PbUewxnUvWvkHEqHLaOczbjoaadgFBSmTRLYDmL3KHNoWa8ufbnfunNemedcKTBvWL9YZAfGVc+cgzA7Otl5Cu3JhWISHeV+4Xwl62yzuJ0FtHdBLykDIsU7X6I5lSeVGvE4PQ3oQ6B1FnzUQabLamjUPDQb86RQO7u0Jig5LuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Em96SsLL; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 63C7E25F0B;
+	Sat,  1 Mar 2025 04:57:35 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id V-yxFxoy9gdi; Sat,  1 Mar 2025 04:57:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1740801454; bh=rEHaf4maxyiGGOMN1IF2sOa3FpT4ACpF4a9JkiIWSt8=;
+	h=From:Subject:Date:To:Cc;
+	b=Em96SsLLK3JE0voTXKEtlh2B1s35FP/WwdY8OEFy+JYsArqkr+MlBGDTtjD4ZsuJO
+	 3PnuYqNR7CYabtK2nP0UPImD+xOIhJEBxb5e6imz2MNd56nWcgbjc7N7QGirJp9Rmj
+	 GAHsnOA+Ggf+E7qq52HQ4rRhjqkeoNOzqxvWj9QNO4qKrRZcHxSdqIOPJINGvf1Vph
+	 pMqtDs+sO7/ovusCmZM+49Px0zkXTRJMw3TIg4X2dcCIJm8ixfiJK7jq+5ImMgIg6N
+	 Exsd4XxFlqAvzo6azbKBN+bV15x9uSSRwIOKi9n7hRSUrNDueD3avU+FfEesUXLjBc
+	 oeMGgH8mOLnQA==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH v5 0/2] Introduce support for Exynos7870 clocks
+Date: Sat, 01 Mar 2025 09:27:11 +0530
+Message-Id: <20250301-exynos7870-pmu-clocks-v5-0-715b646d5206@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJeFwmcC/3XNQQrCMBCF4auUrI1MOg2xrryHuEia0Qa1KYkGS
+ +ndTQVRkS7/B/PNyCIFR5Fti5EFSi463+WQq4I1re5OxJ3NzUooJZSAnB5D56PaKOD99c6bi2/
+ OkVswiFArIK1Yvu0DHd3j5e4PuVsXbz4MrzdJzOtbrBbEJDhwjYCgSRojcWddDN7f1j6c2Gwm/
+ HJEveRgdsAKqoSkmlD/O9XHQRBLTjU7RySFRoA16teZpukJ68xDzkwBAAA=
+X-Change-ID: 20250203-exynos7870-pmu-clocks-d0b330970ea7
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740801448; l=2719;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=rEHaf4maxyiGGOMN1IF2sOa3FpT4ACpF4a9JkiIWSt8=;
+ b=UoI5gUYpp/4io6yU8aYNLdhMOhmNT64JGVnwQXQ3FZWV6ZbYTsbxDzPz5RstcQpMzgFknW08c
+ vkVYlaNEjwCCgcFk+h/SLVmnQH7NAnmqniUxQoZs1CyylIE0U3wT0Qt
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-On Sat, 22 Feb 2025 19:27:22 +0200
-Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+Add a CMU driver for Exynos7870 devices. It handles the following
+clock banks:
+ * CMU_MIF
+ * CMU_DISPAUD
+ * CMU_FSYS
+ * CMU_G3D
+ * CMU_ISP
+ * CMU_MFCMSCL
+ * CMU_PERI
 
-> =D1=81=D0=B1, 22 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 19:25 Jo=
-nathan Cameron <jic23@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > On Sat, 22 Feb 2025 14:56:41 +0200
-> > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
-> > =20
-> > > =D1=81=D0=B1, 22 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 14:5=
-3 Jonathan Cameron <jic23@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5: =20
-> > > >
-> > > > On Mon, 17 Feb 2025 16:03:35 +0200
-> > > > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
-> > > > =20
-> > > > > AL3000a is a simple I2C-based ambient light sensor, which is
-> > > > > closely related to AL3010 and AL3320a, but has significantly
-> > > > > different way of processing data generated by the sensor.
-> > > > >
-> > > > > Tested-by: Robert Eckelmann <longnoserob@gmail.com>
-> > > > > Tested-by: Antoni Aloy Torrens <aaloytorrens@gmail.com>
-> > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > > Reviewed-by: David Heidelberg <david@ixit.cz> =20
-> > > >
-> > > > Whilst I am confused by earlier statements about not
-> > > > having information on the conversion to illuminance values, I'm
-> > > > going to assume the look up table in here is based on some
-> > > > reasonable data from somewhere and hence that this is a sensor
-> > > > with appropriate filtering of the light to be able to do a non line=
-ar
-> > > > conversion from the value read and standard light curves.
-> > > >
-> > > > As such the IIO_LIGHT channel type is fine for this device.
-> > > > =20
-> > >
-> > > Thank you, but IIO_INTENSITY may be proper channel as well, after your
-> > > explanations. If you wish, I may upload v5 with swapping LIGHT with
-> > > INTENSITY. =20
-> >
-> > Where does the lux_table set of values come from?
-> > That seems to be key question for this driver.
-> > =20
->=20
-> 3.1.10 kernel driver for this device
-Ok. So until we know otherwise let us trust that data as being
-correct.
+This patch series is a part of Exynos7870 upstreaming.
 
-Jonathan
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Changes in v5:
+- Fix dt_binding_check errors and fix dt example.
+- Link to v4: https://lore.kernel.org/r/20250301-exynos7870-pmu-clocks-v4-0-0f3e73b10db7@disroot.org
 
->=20
-> > > =20
-> > > > Applied patches 1 and 2 to the togreg branch of iio.git.
-> > > > Note that I'll initially push this out as testing to allow
-> > > > the autobuilders to see if they can find any issues that we missed.
-> > > > Patch 3 will need to go via the appropriate SoC tree as normal.
-> > > >
-> > > > Jonathan
-> > > > =20
-> > > > > ---
-> > > > >  drivers/iio/light/Kconfig   |  10 ++
-> > > > >  drivers/iio/light/Makefile  |   1 +
-> > > > >  drivers/iio/light/al3000a.c | 209 ++++++++++++++++++++++++++++++=
-++++++
-> > > > >  3 files changed, 220 insertions(+)
-> > > > >  create mode 100644 drivers/iio/light/al3000a.c
-> > > > >
-> > > > > diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-> > > > > index 29ffa8491927..37f83e1d8893 100644
-> > > > > --- a/drivers/iio/light/Kconfig
-> > > > > +++ b/drivers/iio/light/Kconfig
-> > > > > @@ -43,6 +43,16 @@ config ADUX1020
-> > > > >        To compile this driver as a module, choose M here: the
-> > > > >        module will be called adux1020.
-> > > > >
-> > > > > +config AL3000A
-> > > > > +     tristate "AL3000a ambient light sensor"
-> > > > > +     depends on I2C
-> > > > > +     help
-> > > > > +       Say Y here if you want to build a driver for the Dyna Ima=
-ge AL3000a
-> > > > > +       ambient light sensor.
-> > > > > +
-> > > > > +       To compile this driver as a module, choose M here: the
-> > > > > +       module will be called al3000a.
-> > > > > +
-> > > > >  config AL3010
-> > > > >       tristate "AL3010 ambient light sensor"
-> > > > >       depends on I2C
-> > > > > diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makef=
-ile
-> > > > > index f14a37442712..03f10786273a 100644
-> > > > > --- a/drivers/iio/light/Makefile
-> > > > > +++ b/drivers/iio/light/Makefile
-> > > > > @@ -7,6 +7,7 @@
-> > > > >  obj-$(CONFIG_ACPI_ALS)               +=3D acpi-als.o
-> > > > >  obj-$(CONFIG_ADJD_S311)              +=3D adjd_s311.o
-> > > > >  obj-$(CONFIG_ADUX1020)               +=3D adux1020.o
-> > > > > +obj-$(CONFIG_AL3000A)                +=3D al3000a.o
-> > > > >  obj-$(CONFIG_AL3010)         +=3D al3010.o
-> > > > >  obj-$(CONFIG_AL3320A)                +=3D al3320a.o
-> > > > >  obj-$(CONFIG_APDS9300)               +=3D apds9300.o
-> > > > > diff --git a/drivers/iio/light/al3000a.c b/drivers/iio/light/al30=
-00a.c
-> > > > > new file mode 100644
-> > > > > index 000000000000..e2fbb1270040
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/iio/light/al3000a.c
-> > > > > @@ -0,0 +1,209 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > > +#include <linux/array_size.h>
-> > > > > +#include <linux/bitfield.h>
-> > > > > +#include <linux/device.h>
-> > > > > +#include <linux/err.h>
-> > > > > +#include <linux/i2c.h>
-> > > > > +#include <linux/mod_devicetable.h>
-> > > > > +#include <linux/module.h>
-> > > > > +#include <linux/pm.h>
-> > > > > +#include <linux/regmap.h>
-> > > > > +#include <linux/regulator/consumer.h>
-> > > > > +#include <linux/types.h>
-> > > > > +
-> > > > > +#include <linux/iio/iio.h>
-> > > > > +
-> > > > > +#define AL3000A_REG_SYSTEM           0x00
-> > > > > +#define AL3000A_REG_DATA             0x05
-> > > > > +
-> > > > > +#define AL3000A_CONFIG_ENABLE                0x00
-> > > > > +#define AL3000A_CONFIG_DISABLE               0x0b
-> > > > > +#define AL3000A_CONFIG_RESET         0x0f
-> > > > > +#define AL3000A_GAIN_MASK            GENMASK(5, 0)
-> > > > > +
-> > > > > +/*
-> > > > > + * These are pre-calculated lux values based on possible output =
-of sensor
-> > > > > + * (range 0x00 - 0x3F)
-> > > > > + */
-> > > > > +static const u32 lux_table[] =3D {
-> > > > > +     1, 1, 1, 2, 2, 2, 3, 4,                                 /* =
-0 - 7 */
-> > > > > +     4, 5, 6, 7, 9, 11, 13, 16,                              /* =
-8 - 15 */
-> > > > > +     19, 22, 27, 32, 39, 46, 56, 67,                         /* =
-16 - 23 */
-> > > > > +     80, 96, 116, 139, 167, 200, 240, 289,                   /* =
-24 - 31 */
-> > > > > +     347, 416, 499, 600, 720, 864, 1037, 1245,               /* =
-32 - 39 */
-> > > > > +     1495, 1795, 2155, 2587, 3105, 3728, 4475, 5373,         /* =
-40 - 47 */
-> > > > > +     6450, 7743, 9296, 11160, 13397, 16084, 19309, 23180,    /* =
-48 - 55 */
-> > > > > +     27828, 33408, 40107, 48148, 57803, 69393, 83306, 100000 /* =
-56 - 63 */
-> > > > > +}; =20
-> > > > =20
-> > =20
->=20
+Changes in v4:
+- Fix clock dt-binding description and ordering in properties:required.
+- Change filenames of clock dt-binding and header to match the compatible.
+- Squash the following patches from v3 into one:
+  [1/5] dt-bindings: clock: add clock definitions for exynos7870 CMU
+  [2/5] dt-bindings: clock: document exynos7870 clock driver CMU bindings
+- Drop the following patches from v3:
+  [3/5] dt-bindings: soc: samsung: exynos-pmu: add exynos7870-pmu compatible
+  [5/5] clk: samsung: add exynos7870 CLKOUT support
+- Link to v3: https://lore.kernel.org/r/20250219-exynos7870-pmu-clocks-v3-0-0d1e415e9e3a@disroot.org
+
+Changes in v3:
+- Fix incorrect versioning (Link to v2: is labelled as v1).
+- Fix formatting issues in clk-exynos7870 DT docs (from v1).
+- Add myself as maintainer for clk-exynos7870.
+- Change clock name definitions in clk-exynos7870 DT docs.
+- Fix line wrapping in commit message of exynos7870-pmu DT docs.
+- Change a few ordinals of PERI* clocks in the clk-exynos7870 driver.
+- Take over ownership of patches by the co-author, upon their request.
+- Link to v2: https://lore.kernel.org/r/20250204-exynos7870-pmu-clocks-v1-0-a3030ae5bb53@disroot.org
+
+Changes in v2:
+- Drop all patches from v1 except:
+  - dt-bindings: clock: add clock definitions for exynos7870 CMU
+  - dt-bindings: clock: document exynos7870 clock driver CMU bindings
+- Add patch for adding appropriate PMU compatible.
+- Add patches for CMU and CLKOUT drivers.
+- Link to v1: https://lore.kernel.org/all/20250203-exynos7870-v1-0-2b6df476a3f0@disroot.org/
+
+---
+Kaustabh Chakraborty (2):
+      dt-bindings: clock: add clock definitions and documentation for exynos7870 CMU
+      clk: samsung: add initial exynos7870 clock driver
+
+ .../bindings/clock/samsung,exynos7870-cmu.yaml     |  227 +++
+ drivers/clk/samsung/Makefile                       |    1 +
+ drivers/clk/samsung/clk-exynos7870.c               | 1830 ++++++++++++++++++++
+ include/dt-bindings/clock/samsung,exynos7870-cmu.h |  324 ++++
+ 4 files changed, 2382 insertions(+)
+---
+base-commit: be5c7bbb3a64baf884481a1ba0c2f8fb2f93f7c3
+change-id: 20250203-exynos7870-pmu-clocks-d0b330970ea7
+
+Best regards,
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
 
