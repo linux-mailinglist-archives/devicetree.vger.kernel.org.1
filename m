@@ -1,126 +1,172 @@
-Return-Path: <devicetree+bounces-152975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F088A4AD58
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 19:28:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED6A4A4AD6B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 19:49:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EE6D3B52DF
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 18:28:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AA173B0BC7
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 18:49:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8721DF985;
-	Sat,  1 Mar 2025 18:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A5B1E3DDB;
+	Sat,  1 Mar 2025 18:49:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="RAXDiiw1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NszrmjNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 237D11C5D61;
-	Sat,  1 Mar 2025 18:28:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E155D1C3BE0;
+	Sat,  1 Mar 2025 18:49:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740853710; cv=none; b=YpmE6MoHFpuTerdQ4YPzvZrEH276bFNt+NFtDVrwfisMz5VBHPtbt0rO86DrkdRdT5jUMA8S+OYojVyKUZ8utc7EF7KaVse5T5kwouNKyckSaB2hqIkIjZ2H+kMWkifLEDO//IyO7b1KY2lLCe8a8uP8Bx+qeywB5avo5eH8dMY=
+	t=1740854994; cv=none; b=XXTYgKQXUpuEtfwnonvt5pk09feRnP1dIMxyGciC72tR1anZQMcMYFohUbZtOjnuQiYeWeV0OxS3QL9QyZnbJqUctXENY5kugUhHhLHz2cWOg8pKir3f12+JjrfVp5hYWw4Shr/50oGPZmyz0IhlPO1L44vLmQGBuFeQ4yHMmd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740853710; c=relaxed/simple;
-	bh=HbQ1yPq8BeEqX0CXAVNZ0UfzgnFZIeuoYkVsuEjiOew=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Dgyis+REQSUFMESONZnL1tvG/LQqgthwCSjfNh9g3d4Smm7Lv4adShHPeUdq/nLGhCueiPnFDm3g5JpSLUjy5xbDrWga/1Y+3dRg7uogSG/ywvI05bSPzB3PzxgAn73QHlw3WsTXcSLp+qtzM4WkRx2ACVo9PZEA+rFBHsX0qgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=RAXDiiw1; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=HbQ1yPq8BeEqX0CXAVNZ0UfzgnFZIeuoYkVsuEjiOew=; b=RAXDiiw1szmRllTLCsfWYIkABt
-	5M8maW8X5dftva5kJfNjYhbrEiREaIWbM3x+REQqlJL7bcCn1Z10xqzpbfZvPVIT45jUIVO9A+eKG
-	Cbz3lXNaXNOS3gfbZe/yiGJh+8tRby+A2h95UQq9uCqY9eh9Jwqza2aZ3B1OkJ5Ub9JEF0RIv0vGP
-	C/ExROWSCvB54jyp+5F+wTqmDq8p07T70hGukeIUGZH3yPeWFM+I9IDYdziOdyfh7/J5UvhOXmvm9
-	hpVnlBWNUkTlOZvyvlyvemfMDjWahGTZ48J0KUdCFiVEthOngTmp8xf9oJHRfGF9ogTWYCH9m137n
-	x7hiSpMw==;
-Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1toRZ4-0001tc-FW; Sat, 01 Mar 2025 19:27:54 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Detlev Casanova <detlev.casanova@collabora.com>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Algea Cao <algea.cao@rock-chips.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- dri-devel@lists.freedesktop.org, Niklas Cassel <cassel@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, kernel@collabora.com,
- David Airlie <airlied@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sugar Zhang <sugar.zhang@rock-chips.com>, linux-rockchip@lists.infradead.org,
- Chen-Yu Tsai <wens@csie.org>, FUKAUMI Naoki <naoki@radxa.com>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Johan Jonker <jbx6244@gmail.com>, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Alexey Charkov <alchark@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v7 0/3] Add HDMI audio on the rk3588 SoC
-Date: Sat, 01 Mar 2025 19:27:52 +0100
-Message-ID: <23891130.6Emhk5qWAg@diego>
-In-Reply-To: <0A30138B-183E-4816-80FF-AACDCFE3B3A6@gmail.com>
-References:
- <20250217215641.372723-1-detlev.casanova@collabora.com>
- <3337030.aeNJFYEL58@trenzalore>
- <0A30138B-183E-4816-80FF-AACDCFE3B3A6@gmail.com>
+	s=arc-20240116; t=1740854994; c=relaxed/simple;
+	bh=spCrMjTY6Hpbwf+1cmyrHlATFQqZasSJYz/+jT86L9s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QszSyaKKR7AfeCmYGTmhA4QK7/UM3zTX3NeAjmZmSDCHHtqr4JkogwNVqp6ZraGC4Skz62D8/f12B7QOE4AEXqNdYguPYsn5ra+sXjTHwctPrty5i3CMYvhaLBb3w3SvxIuzHHtcRa1E1sHnP8Sze95RW70uABIWwanyfNhdY40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NszrmjNc; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740854993; x=1772390993;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=spCrMjTY6Hpbwf+1cmyrHlATFQqZasSJYz/+jT86L9s=;
+  b=NszrmjNcnBjYpsU3cQMSRDF37V+deknv/rq3w1UTtgS+uivwNJ/M5Ix3
+   d2oZ2rB4Zj91My2+7gfOmLeCAuP7736LcFKPwsmhIN4au/arwHTzuwcmQ
+   LTAay2oZjznUFwURFrTjcI74tl9vmveA7LaoLiuHMr7QU0xUAtMJdJjnS
+   PtFtdzbLDgZvEj8H+obiXXltctIZkY5grpQaUBVOyaQex9XflouF9dN0g
+   3NleaVgO/Q4H2Uq5OAb6VzzI/MzeY/3DPm483c715boEwqsgbmbffFfnI
+   jbZXzzxcnCdGwSmxvgOrykQy/DW8uID40wl+kTQuaMJ36oyd5dzs0XDkP
+   A==;
+X-CSE-ConnectionGUID: /yS+vPAHTWqdCGv0PYWX6A==
+X-CSE-MsgGUID: uP8BQz8wSpexHefpwTVOxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11360"; a="45416184"
+X-IronPort-AV: E=Sophos;i="6.13,325,1732608000"; 
+   d="scan'208";a="45416184"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2025 10:49:53 -0800
+X-CSE-ConnectionGUID: FIUMgNttTQCCdvZJ9MVmMg==
+X-CSE-MsgGUID: rsFOSBnNRnSmClZcvBfr/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,325,1732608000"; 
+   d="scan'208";a="122762858"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+  by fmviesa004.fm.intel.com with ESMTP; 01 Mar 2025 10:49:50 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1toRuG-000GaE-16;
+	Sat, 01 Mar 2025 18:49:48 +0000
+Date: Sun, 2 Mar 2025 02:49:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Robin Murphy <robin.murphy@arm.com>, vkoul@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] dmaengine: Add Arm DMA-350 driver
+Message-ID: <202503020214.QiJLAEK2-lkp@intel.com>
+References: <55e084dd2b5720bdddf503ffac560d111032aa96.1740762136.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <55e084dd2b5720bdddf503ffac560d111032aa96.1740762136.git.robin.murphy@arm.com>
 
-Am Samstag, 1. M=C3=A4rz 2025, 10:11:54 MEZ schrieb Piotr Oniszczuk:
->=20
-> > Wiadomo=C5=9B=C4=87 napisana przez Detlev Casanova <detlev.casanova@col=
-labora.com> w dniu 25 lut 2025, o godz. 15:58:
-> >=20
-> > From what I see, the error is not present anymore on linux 6.14-rc4. I =
-tried=20
-> > reverting your patch "ASoC: simple-card-utils.c: add missing dlc->of_no=
-de"=20
-> > (dabbd325b25edb5cdd99c94391817202dd54b651) and the error reappears.
->=20
-> Guys,
->=20
-> Just FYI:
->=20
-> On 6.14-rc4 without 0001-ASoC-simple-card-utils-Don-t-use-__free-device_n=
-ode-.patch - i still have oops like this: https://gist.github.com/warpme/ed=
-75c05d3b68f995d429dbd9097005ba
-> They are happening not every boot - but still happening.
->=20
-> However applying 0001-ASoC-simple-card-utils-Don-t-use-__free-device_node=
-=2D.patch (with some adaptations as it not applies cleanly on 6.140rc4) - d=
-mesg becomes clean (10 boots; all ok)
+Hi Robin,
 
-that patch was submitted yesterday [0], so hopefully will make its
-way into 6.14-rc next week or so.
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on vkoul-dmaengine/next]
+[also build test WARNING on linus/master v6.14-rc4 next-20250228]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Robin-Murphy/dt-bindings-dma-Add-Arm-DMA-350/20250301-012733
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+patch link:    https://lore.kernel.org/r/55e084dd2b5720bdddf503ffac560d111032aa96.1740762136.git.robin.murphy%40arm.com
+patch subject: [PATCH 2/2] dmaengine: Add Arm DMA-350 driver
+config: hexagon-randconfig-001-20250302 (https://download.01.org/0day-ci/archive/20250302/202503020214.QiJLAEK2-lkp@intel.com/config)
+compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project 14170b16028c087ca154878f5ed93d3089a965c6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250302/202503020214.QiJLAEK2-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503020214.QiJLAEK2-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/dma/arm-dma350.c:485:13: warning: logical not is only applied to the left hand side of this bitwise operator [-Wlogical-not-parentheses]
+     485 |         } else if (!ch_status & CH_STAT_INTR_DONE) {
+         |                    ^          ~
+   drivers/dma/arm-dma350.c:485:13: note: add parentheses after the '!' to evaluate the bitwise operator first
+     485 |         } else if (!ch_status & CH_STAT_INTR_DONE) {
+         |                    ^                             
+         |                     (                            )
+   drivers/dma/arm-dma350.c:485:13: note: add parentheses around left hand side expression to silence this warning
+     485 |         } else if (!ch_status & CH_STAT_INTR_DONE) {
+         |                    ^
+         |                    (         )
+   1 warning generated.
 
 
+vim +485 drivers/dma/arm-dma350.c
 
-[0] https://lore.kernel.org/all/87eczisyhh.wl-kuninori.morimoto.gx@renesas.=
-com/T/#me866307a928c2d592a2ba883867f028c5c8b9b40
+   462	
+   463	static irqreturn_t d350_irq(int irq, void *data)
+   464	{
+   465		struct d350_chan *dch = data;
+   466		struct device *dev = dch->vc.chan.device->dev;
+   467		struct virt_dma_desc *vd = &dch->desc->vd;
+   468		u32 ch_status;
+   469	
+   470		ch_status = readl(dch->base + CH_STATUS);
+   471		if (!ch_status)
+   472			return IRQ_NONE;
+   473	
+   474		if (ch_status & CH_STAT_INTR_ERR) {
+   475			u32 errinfo = readl_relaxed(dch->base + CH_ERRINFO);
+   476	
+   477			if (errinfo & (CH_ERRINFO_AXIRDPOISERR | CH_ERRINFO_AXIRDRESPERR))
+   478				vd->tx_result.result = DMA_TRANS_READ_FAILED;
+   479			else if (errinfo & CH_ERRINFO_AXIWRRESPERR)
+   480				vd->tx_result.result = DMA_TRANS_WRITE_FAILED;
+   481			else
+   482				vd->tx_result.result = DMA_TRANS_ABORTED;
+   483	
+   484			vd->tx_result.residue = d350_get_residue(dch);
+ > 485		} else if (!ch_status & CH_STAT_INTR_DONE) {
+   486			dev_warn(dev, "Unexpected IRQ source? 0x%08x\n", ch_status);
+   487		}
+   488		writel_relaxed(ch_status, dch->base + CH_STATUS);
+   489	
+   490		spin_lock(&dch->vc.lock);
+   491		vchan_cookie_complete(vd);
+   492		if (ch_status & CH_STAT_INTR_DONE) {
+   493			dch->status = DMA_COMPLETE;
+   494			dch->residue = 0;
+   495			d350_start_next(dch);
+   496		} else {
+   497			dch->status = DMA_ERROR;
+   498			dch->residue = vd->tx_result.residue;
+   499		}
+   500		spin_unlock(&dch->vc.lock);
+   501	
+   502		return IRQ_HANDLED;
+   503	}
+   504	
 
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
