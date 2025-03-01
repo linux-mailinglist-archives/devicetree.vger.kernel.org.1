@@ -1,107 +1,133 @@
-Return-Path: <devicetree+bounces-152933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E1E9A4AA91
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 12:10:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E87F2A4AA93
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 12:11:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD69517006C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 11:10:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABDA73B6A6A
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 11:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B51261DE2B9;
-	Sat,  1 Mar 2025 11:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753301DD526;
+	Sat,  1 Mar 2025 11:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RqcJd/cY"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="wq4SDf5N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739FD1A5B97;
-	Sat,  1 Mar 2025 11:10:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908B61A5B97
+	for <devicetree@vger.kernel.org>; Sat,  1 Mar 2025 11:10:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740827441; cv=none; b=nJ0DAY7Z/b6WE/q8k7mPvc9MWPy/HMJ8M7dfF8/qJrVk61Q5hTQG9F5/fa7eZaho9HY8Cm17MJyKnu5jOnOTGuISuPbTVrYYikPplufwJsw80eEwOt8TJrLIseVUw3984xTEsdK+Tu1FvWRVcDXF2SWcjNnSyfRVom9+/T0/qkQ=
+	t=1740827449; cv=none; b=Ld4bZoEQu8AiZctjz7ZTZcu+ZQmZHr89VOoJEEX+HuNtv10QRrmv7N/GeY8MUz30KiYV98pweveW2jV/6NOvivjMWega4gHh8jfid7/IH6N9PYZujrCIdpGbzyZYSbaskZn0z8lSIf3Xu4WZgT0z1eqfRc8gfeOhH5sYz8zQSVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740827441; c=relaxed/simple;
-	bh=nNqG0GMewRObnyRAAVI9p6JFUYawaXI8WiP+ukd2A5o=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EwQutLlUhC5d/bIRepbzwDQYS+4msRVN867eRnRlViBd+OY9aQPmzqR2VSzWatfPnFC12zbhhl6UbREKZWEGndqOcV03jvtHFuLvMDJF8GA9ucjEUq2sNZPsshLXe2qHZ61++XYt3xKWpF6aaXADog1LOtlJ90K82fwhGvj4qL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RqcJd/cY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2E79C4CEDD;
-	Sat,  1 Mar 2025 11:10:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740827439;
-	bh=nNqG0GMewRObnyRAAVI9p6JFUYawaXI8WiP+ukd2A5o=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=RqcJd/cYGKltRT9h6KNka1heUSDbeIOA2o7SOUY8yXx1mXGc/buNEIQrzp8usT0R5
-	 oIIAoVNh0/DFsFRbxtgmVt5jIleViLUgMrXRnxLJeOPdu0Fhv6ZiVvg6T7/6vJBl6D
-	 QxEbxiEZeQC53aFcFH2ROVff6XP2uhKcZDO8GUBU/ndaT3+ZdKFvuOGWcf/+NkyIIM
-	 yOr4n7pLdKhjqdyyCBiHm4Pwpm650y90r0D/I6bYgRHAWjMSE7fV7tOKEP39Rb2RnM
-	 WyhQnNBNMTsQdpIlcwxbUoMhjZzG440kCGXu7d/ZX6w82326HJnqQ9NbHvq+EG7t9k
-	 ZI7SN1pmRobeA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1toKjt-009LKs-1e;
-	Sat, 01 Mar 2025 11:10:37 +0000
-Date: Sat, 01 Mar 2025 11:10:35 +0000
-Message-ID: <86plj1ovkk.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,	"Rafael J. Wysocki"
- <rafael@kernel.org>,	Thomas Gleixner <tglx@linutronix.de>,	Anup Patel
- <apatel@ventanamicro.com>,	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,	Manivannan Sadhasivam
- <manivannan.sadhasivam@linaro.org>,	Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?=
- <kw@linux.com>,	Bjorn Helgaas <bhelgaas@google.com>,	Arnd Bergmann
- <arnd@arndb.de>,	Shuah Khan <shuah@kernel.org>,	Richard Zhu
- <hongxing.zhu@nxp.com>,	Lucas Stach <l.stach@pengutronix.de>,	Lorenzo
- Pieralisi <lpieralisi@kernel.org>,	Rob Herring <robh@kernel.org>,	Shawn Guo
- <shawnguo@kernel.org>,	Sascha Hauer <s.hauer@pengutronix.de>,	Pengutronix
- Kernel Team <kernel@pengutronix.de>,	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,	Conor Dooley
- <conor+dt@kernel.org>,	Niklas Cassel <cassel@kernel.org>,
-	dlemoal@kernel.org,	jdmason@kudzu.us,	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,	linux-pci@vger.kernel.org,
-	linux-kselftest@vger.kernel.org,	imx@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v15 02/15] irqdomain: Add IRQ_DOMAIN_FLAG_MSI_IMMUTABLE and irq_domain_is_msi_immutable()
-In-Reply-To: <20250211-ep-msi-v15-2-bcacc1f2b1a9@nxp.com>
-References: <20250211-ep-msi-v15-0-bcacc1f2b1a9@nxp.com>
-	<20250211-ep-msi-v15-2-bcacc1f2b1a9@nxp.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1740827449; c=relaxed/simple;
+	bh=lDRtomi0Pjad46sl334n1zpZ/BijxYnra4AxLHGcRVc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aFlHfjWLctJUwu0/DtLlR4H3pseqp1NbZF9AV+5ylJaLpoN+w3dUFAmo2pXyq/EJEgBAkvTvebYH8gUjAfI4SHn+kkt0EGi1gcE2Y2nyduVNaG30TBmCviduXaSliwmMpva65vj6BewTvyHSNDqdLYLN54FGh/89GTrR+r+tHb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=wq4SDf5N; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=fWrJQQO1z1ieS3LPSgSxBoRM/rUdNEDOVIFkMVgWCtA=; b=wq4SDf5NC6U4ynKABYC9ryyTbN
+	xJ1TZTOPFknUkOJCCp+5enVb0+D31fKn5kOzz8/Elu6o9vDPbfvO3+3cLwwzk3jOQ7ZSx7YHWuly2
+	iHiimmw+uBVLHBBrmHNDmbbuh78IVrJZqDdish4Uf0b4/Ri/vZcZc9AAWb2ceOKwK8jELhCUhFESp
+	oNYA0HUWaTeIlt0PEycO/raBRgEapwLpXwHHRKDty8mIqqrvto1ts68XD/UGebFfYUXxS/Gv2sehx
+	z5m0uCobN+pU4a49FUINcfy+8553v7aNAGEg/hB4TPu/6E7iRWPVpyexbd0WLt6Ho+wkwPY3/MXG1
+	Xj4iojuA==;
+Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1toKjy-0007sS-JM; Sat, 01 Mar 2025 12:10:42 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Patrick Wildt <patrick@blueri.se>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, Kever Yang <kever.yang@rock-chips.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jimmy Hon <honyuenkwun@gmail.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: rockchip: add MNT Reform 2
+Date: Sat, 01 Mar 2025 12:10:41 +0100
+Message-ID: <3309912.5fSG56mABF@diego>
+In-Reply-To: <Z8LiJgNkurF3xt3k@windev.fritz.box>
+References:
+ <Z7OaTzIpeJ-IACrl@windev.fritz.box> <2700899.tdWV9SEqCh@phil>
+ <Z8LiJgNkurF3xt3k@windev.fritz.box>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: Frank.Li@nxp.com, kishon@kernel.org, rafael@kernel.org, tglx@linutronix.de, apatel@ventanamicro.com, gregkh@linuxfoundation.org, dakr@kernel.org, manivannan.sadhasivam@linaro.org, kw@linux.com, bhelgaas@google.com, arnd@arndb.de, shuah@kernel.org, hongxing.zhu@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org, robh@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org, cassel@kernel.org, dlemoal@kernel.org, jdmason@kudzu.us, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, linux-kselftest@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Tue, 11 Feb 2025 19:21:55 +0000,
-Frank Li <Frank.Li@nxp.com> wrote:
-> 
-> Add the flag IRQ_DOMAIN_FLAG_MSI_IMMUTABLE and the API function
-> irq_domain_is_msi_immutable() to check if the MSI controller retains an
-> immutable address/data pair during irq_set_affinity().
-> 
-> Ensure compatibility with MSI users like PCIe Endpoint Doorbell, which
-> require the address/data pair to remain unchanged after setup. Use this
-> function to verify if the MSI controller is immutable.
+Am Samstag, 1. M=C3=A4rz 2025, 11:32:06 MEZ schrieb Patrick Wildt:
+> On Sun, Feb 23, 2025 at 12:38:40AM +0100, Heiko Stuebner wrote:
+> > Hi Patrick,
+> >=20
+> > Am Montag, 17. Februar 2025, 21:22:28 MEZ schrieb Patrick Wildt:
+> > > MNT Reform 2 is an open source laptop with replaceable CPU modules,
+> > > including a version with the RK3588-based MNT RCORE[1], which is based
+> > > on Firefly's iCore-3588Q SoM:
+> > >=20
+> > > - Rockchip RK3588
+> > > - Quad A76 and Quad A55 CPU
+> > > - 6 TOPS NPU
+> > > - up to 32GB LPDDR4x RAM
+> > > - SD Card slot
+> > > - Gigabit ethernet port
+> > > - HDMI port
+> > > - 2x mPCIe ports for WiFi or NVMe
+> > > - 3x USB 3.0 Type-A HOST port
+> > >=20
+> > > [1] https://shop.mntre.com/products/mnt-reform
+> > >=20
+> > > Signed-off-by: Lukas F. Hartmann <lukas@mntre.com>
+> > > Signed-off-by: Patrick Wildt <patrick@blueri.se>
+> >=20
+> > bureaucracy question, what is Lukas' relationship with the patch?
+> > Two options:
+> > (1) Lukas initially developed the patch, then the "From:" should be
+> >     set accordingly
+> > (2) Both of you developed it together, then we should have a
+> >     Co-Developed-by: Lukas F. Hartmann <lukas@mntre.com>
+> >     up there
+> >=20
+>=20
+> Thanks, will send a v5 with Co-developed-by tag added! :)
+>=20
+> >=20
+> > Some more style things below...
+> >=20
+>=20
+> Are there further execptions to the alphabetical rule? For regulators
+> I often see min before max, which I think makes sense to understand
+> the range but isn't technically alphabetical. The same for pinctrl-0
+> and pinctrl-names.
 
-Why is that a requirement? Why should a driver even care?
+The "preferred" rules are in [0], and in recent times I've come to
+appreciate not needing to explain exceptions ;-) .
 
-	M.
+But I do see them as guidelines, especially in a leaf-dt (for a device)
+concessions are possible.
 
--- 
-Without deviation from the norm, progress is not possible.
+So yes, I can definitly see min before max as beneficial and if you want
+to sort that way, that is fine by me
+
+
+Heiko
+
+[0] https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/=
+tree/Documentation/devicetree/bindings/dts-coding-style.rst#n112
+
+
 
