@@ -1,359 +1,126 @@
-Return-Path: <devicetree+bounces-152974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07E10A4AD4D
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 19:19:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F088A4AD58
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 19:28:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F09316D3E4
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 18:19:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EE6D3B52DF
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 18:28:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAC41C5D61;
-	Sat,  1 Mar 2025 18:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8721DF985;
+	Sat,  1 Mar 2025 18:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lXIBxqdJ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="RAXDiiw1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084311B5EB5
-	for <devicetree@vger.kernel.org>; Sat,  1 Mar 2025 18:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 237D11C5D61;
+	Sat,  1 Mar 2025 18:28:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740853171; cv=none; b=RkruNZ0pUm+GqBuvZb1o1Kkmu2X2zJ92j9Y2NHOD2zqeofV+pujvuWi2jggru+FLecaAQa9CGckICFGCT/4DEZAK3a+kakAcDHCSystFD5y3GsZyhnincRxhr/tLI2052WiHkUXG2ejEhJQVI2o4fqvcEExjr8qpPw7scGqwSF8=
+	t=1740853710; cv=none; b=YpmE6MoHFpuTerdQ4YPzvZrEH276bFNt+NFtDVrwfisMz5VBHPtbt0rO86DrkdRdT5jUMA8S+OYojVyKUZ8utc7EF7KaVse5T5kwouNKyckSaB2hqIkIjZ2H+kMWkifLEDO//IyO7b1KY2lLCe8a8uP8Bx+qeywB5avo5eH8dMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740853171; c=relaxed/simple;
-	bh=f1Y/83UhEB3w2NOJ3UrPuuj++HCAPY0rig012cBFzxM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=obXcgQ700DukyBe2PCUdi2brTifi69yhHVXct8bJQnsJpIBHLIkSzzK8b5tI7YqFtw6H8JBzQDNuxByX5Gks9cA+m3bAp4iP5WjxcALSbMsu1PKOd7F2v/EahrVrxbeRDrtBZWnxGkzaXlY4aEdBHU9Qj9kexeA15YibyTN31wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lXIBxqdJ; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30bab0ad5a8so3573791fa.3
-        for <devicetree@vger.kernel.org>; Sat, 01 Mar 2025 10:19:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740853167; x=1741457967; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xHVrOp0plJEvKk4wQeeIG01mmBNV7pQdYoH12vmT7VE=;
-        b=lXIBxqdJfy0Lcb687LFq21l9JIP592iBntwhhaFRQaC4y3n7wmI3UwLArtgiTBPMvg
-         awl+jEYB7pUWg/YvMRqHPcIqmPKEwY4rRgCpDK5k+103pH7lvWzEUz5V4JauYamOoBhi
-         B4JPGPJj4mru/RuUYjTjILz8eZMF5rIaYgp69WB9HINLqbt7jb97VnlnxKhtYwR2ysAI
-         hfoQw5QzJe+mCkd1fdorU0hLl8TeaFW128DEFEGaPxgq9toCZSuKuAWfJl/B80h/0Ese
-         TGHOiaKRctjKQNEEHaM59mjV3LgKlB/dWlaO1MQn5ir3jXF+xnbmpS5P8jD71zMCECA8
-         G4Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740853167; x=1741457967;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xHVrOp0plJEvKk4wQeeIG01mmBNV7pQdYoH12vmT7VE=;
-        b=nc0sdFH6CNPHGWGsX2Vnc6OzpdmvzVE81NWNwN0CYGhcwuxNeJXNvzeyccf/fSFc90
-         svYtfksPSDqeLLf8RXW2bRGYKQtBzPuBL4uCG+nSDkMbYaW/cN4mPmTWAnQrjCuk+mgW
-         iKRl1X+K3PRuyfAwAiY+G+1+P3KhlEt2vxXSjQjTbtpWYRrKIaG+Nmt1PnhqzVKT3Z+r
-         ncrkBPGhvVemvFCDenSTI5duPOtAJMEs/3A5Q0IKh5KBhPVj7YS+Z4TENIT0IVtmm3Ip
-         708u03M+o5/n7AhstPXrBCBBLhUKaS4IeBC25DS9pT2xIlA+WxseqXBMxeJwOJ7uqGo4
-         JU2A==
-X-Forwarded-Encrypted: i=1; AJvYcCV58DDBbw8WHKlRvVstKlGuTiMyry9zUNzDsG/UnGA6PJSSBU7aLkKMjtqbIl6rDtcULW570IdtGVzA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjxvcThcSN3pVzcvF6KqyepkgPqwl8JAe25urK9U16wAN+Z1jz
-	iWk39QLFgIeiiK3p+Xo0hUYQczq1Wp8sZWzJSG5Fq1FQvLohzdlBsbfKxLNEKxU=
-X-Gm-Gg: ASbGncuhb/IE4iaXyJn5kvOvfl2sHhqjYmtdjNOw2vxHRsWVY+I3Vdfmy1EVJdGtmNP
-	DXHXPVzLgBPbKgzs2LYozOIl2xgO2bQHTw+oJ40j/Ge6wq8C/6QPLvSsCPKBzOXcR4wfTUhDY1t
-	CPliscxACu48OsrKiCHEQKY3GPXSOktSFaQtKMwV5REsnEQ5bDQv93SxBLrNn8vna4pTGKe8Us8
-	0LaL7dL0ZdGCxurAZZvGVF4KwBeQiC3hruxMjqkRqr7uYQigC4f8lve3i+Rj8c7qR6QEZEFB7DU
-	zf8WPVyEx8XlZ5w9TCQEIjOQ0U9rSx4dLMHWtX7UGebnr9LyLki/G1mf9VPfugxE6qcKbFEl2sN
-	AGZ8DKx2PJ/rud+y5T7Yv+fWb
-X-Google-Smtp-Source: AGHT+IFFcVTRvC9YdwZNm8nJgfhwKBjqdfFQxBpzhAJErNH+sMCCiPsq/QOE2ScPNRbYkr86zG7NVg==
-X-Received: by 2002:a2e:be21:0:b0:300:317c:9b75 with SMTP id 38308e7fff4ca-30b93215452mr26847451fa.12.1740853166988;
-        Sat, 01 Mar 2025 10:19:26 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30b86878855sm8497581fa.95.2025.03.01.10.19.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Mar 2025 10:19:26 -0800 (PST)
-Date: Sat, 1 Mar 2025 20:19:24 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org, 
-	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org, yubing.zhang@rock-chips.com, 
-	krzk+dt@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	robh@kernel.org, sebastian.reichel@collabora.com, 
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 3/6] drm/rockchip: Add RK3588 DPTX output support
-Message-ID: <63xbqyzdlv7jssbmvoeicz4gech3di6nr3tsyvhbhxrmvthh3f@tlf73esqcwgt>
-References: <20250223113036.74252-1-andyshrk@163.com>
- <20250223113036.74252-4-andyshrk@163.com>
+	s=arc-20240116; t=1740853710; c=relaxed/simple;
+	bh=HbQ1yPq8BeEqX0CXAVNZ0UfzgnFZIeuoYkVsuEjiOew=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Dgyis+REQSUFMESONZnL1tvG/LQqgthwCSjfNh9g3d4Smm7Lv4adShHPeUdq/nLGhCueiPnFDm3g5JpSLUjy5xbDrWga/1Y+3dRg7uogSG/ywvI05bSPzB3PzxgAn73QHlw3WsTXcSLp+qtzM4WkRx2ACVo9PZEA+rFBHsX0qgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=RAXDiiw1; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=HbQ1yPq8BeEqX0CXAVNZ0UfzgnFZIeuoYkVsuEjiOew=; b=RAXDiiw1szmRllTLCsfWYIkABt
+	5M8maW8X5dftva5kJfNjYhbrEiREaIWbM3x+REQqlJL7bcCn1Z10xqzpbfZvPVIT45jUIVO9A+eKG
+	Cbz3lXNaXNOS3gfbZe/yiGJh+8tRby+A2h95UQq9uCqY9eh9Jwqza2aZ3B1OkJ5Ub9JEF0RIv0vGP
+	C/ExROWSCvB54jyp+5F+wTqmDq8p07T70hGukeIUGZH3yPeWFM+I9IDYdziOdyfh7/J5UvhOXmvm9
+	hpVnlBWNUkTlOZvyvlyvemfMDjWahGTZ48J0KUdCFiVEthOngTmp8xf9oJHRfGF9ogTWYCH9m137n
+	x7hiSpMw==;
+Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1toRZ4-0001tc-FW; Sat, 01 Mar 2025 19:27:54 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Algea Cao <algea.cao@rock-chips.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ dri-devel@lists.freedesktop.org, Niklas Cassel <cassel@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, kernel@collabora.com,
+ David Airlie <airlied@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sugar Zhang <sugar.zhang@rock-chips.com>, linux-rockchip@lists.infradead.org,
+ Chen-Yu Tsai <wens@csie.org>, FUKAUMI Naoki <naoki@radxa.com>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Alexey Charkov <alchark@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v7 0/3] Add HDMI audio on the rk3588 SoC
+Date: Sat, 01 Mar 2025 19:27:52 +0100
+Message-ID: <23891130.6Emhk5qWAg@diego>
+In-Reply-To: <0A30138B-183E-4816-80FF-AACDCFE3B3A6@gmail.com>
+References:
+ <20250217215641.372723-1-detlev.casanova@collabora.com>
+ <3337030.aeNJFYEL58@trenzalore>
+ <0A30138B-183E-4816-80FF-AACDCFE3B3A6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250223113036.74252-4-andyshrk@163.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Sun, Feb 23, 2025 at 07:30:26PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> Add driver extension for Synopsys DesignWare DPTX IP used
-> on Rockchip RK3588 SoC.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> ---
-> 
->  drivers/gpu/drm/rockchip/Kconfig            |   7 +
->  drivers/gpu/drm/rockchip/Makefile           |   1 +
->  drivers/gpu/drm/rockchip/dw_dp-rockchip.c   | 162 ++++++++++++++++++++
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.c |   1 +
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.h |   1 +
->  5 files changed, 172 insertions(+)
->  create mode 100644 drivers/gpu/drm/rockchip/dw_dp-rockchip.c
-> 
-> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
-> index 26c4410b2407..c8638baf9641 100644
-> --- a/drivers/gpu/drm/rockchip/Kconfig
-> +++ b/drivers/gpu/drm/rockchip/Kconfig
-> @@ -8,6 +8,7 @@ config DRM_ROCKCHIP
->  	select DRM_PANEL
->  	select VIDEOMODE_HELPERS
->  	select DRM_ANALOGIX_DP if ROCKCHIP_ANALOGIX_DP
-> +	select DRM_DW_DP if ROCKCHIP_DW_DP
->  	select DRM_DW_HDMI if ROCKCHIP_DW_HDMI
->  	select DRM_DW_HDMI_QP if ROCKCHIP_DW_HDMI_QP
->  	select DRM_DW_MIPI_DSI if ROCKCHIP_DW_MIPI_DSI
-> @@ -58,6 +59,12 @@ config ROCKCHIP_CDN_DP
->  	  RK3399 based SoC, you should select this
->  	  option.
->  
-> +config ROCKCHIP_DW_DP
-> +	bool "Rockchip specific extensions for Synopsys DW DP"
-> +	help
-> +	  Choose this option for Synopsys DesignWare Cores DisplayPort
-> +	  transmit controller support on Rockchip SoC.
-> +
->  config ROCKCHIP_DW_HDMI
->  	bool "Rockchip specific extensions for Synopsys DW HDMI"
->  	help
-> diff --git a/drivers/gpu/drm/rockchip/Makefile b/drivers/gpu/drm/rockchip/Makefile
-> index 2b867cebbc12..097f062399c7 100644
-> --- a/drivers/gpu/drm/rockchip/Makefile
-> +++ b/drivers/gpu/drm/rockchip/Makefile
-> @@ -14,6 +14,7 @@ rockchipdrm-$(CONFIG_ROCKCHIP_DW_HDMI) += dw_hdmi-rockchip.o
->  rockchipdrm-$(CONFIG_ROCKCHIP_DW_HDMI_QP) += dw_hdmi_qp-rockchip.o
->  rockchipdrm-$(CONFIG_ROCKCHIP_DW_MIPI_DSI) += dw-mipi-dsi-rockchip.o
->  rockchipdrm-$(CONFIG_ROCKCHIP_DW_MIPI_DSI2) += dw-mipi-dsi2-rockchip.o
-> +rockchipdrm-$(CONFIG_ROCKCHIP_DW_DP) += dw_dp-rockchip.o
->  rockchipdrm-$(CONFIG_ROCKCHIP_INNO_HDMI) += inno_hdmi.o
->  rockchipdrm-$(CONFIG_ROCKCHIP_LVDS) += rockchip_lvds.o
->  rockchipdrm-$(CONFIG_ROCKCHIP_RGB) += rockchip_rgb.o
-> diff --git a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
-> new file mode 100644
-> index 000000000000..b41a41eb74d7
-> --- /dev/null
-> +++ b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
-> @@ -0,0 +1,162 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2020 Rockchip Electronics Co., Ltd.
-> + *
-> + * Author: Zhang Yubing <yubing.zhang@rock-chips.com>
-> + * Author: Andy Yan <andy.yan@rock-chips.com>
-> + */
-> +
-> +#include <linux/component.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <drm/bridge/dw_dp.h>
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_bridge_connector.h>
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/drm_probe_helper.h>
-> +#include <drm/drm_simple_kms_helper.h>
-> +
-> +#include <uapi/linux/media-bus-format.h>
-> +#include <uapi/linux/videodev2.h>
+Am Samstag, 1. M=C3=A4rz 2025, 10:11:54 MEZ schrieb Piotr Oniszczuk:
+>=20
+> > Wiadomo=C5=9B=C4=87 napisana przez Detlev Casanova <detlev.casanova@col=
+labora.com> w dniu 25 lut 2025, o godz. 15:58:
+> >=20
+> > From what I see, the error is not present anymore on linux 6.14-rc4. I =
+tried=20
+> > reverting your patch "ASoC: simple-card-utils.c: add missing dlc->of_no=
+de"=20
+> > (dabbd325b25edb5cdd99c94391817202dd54b651) and the error reappears.
+>=20
+> Guys,
+>=20
+> Just FYI:
+>=20
+> On 6.14-rc4 without 0001-ASoC-simple-card-utils-Don-t-use-__free-device_n=
+ode-.patch - i still have oops like this: https://gist.github.com/warpme/ed=
+75c05d3b68f995d429dbd9097005ba
+> They are happening not every boot - but still happening.
+>=20
+> However applying 0001-ASoC-simple-card-utils-Don-t-use-__free-device_node=
+=2D.patch (with some adaptations as it not applies cleanly on 6.140rc4) - d=
+mesg becomes clean (10 boots; all ok)
 
-I'd say, include those two headers directly. Rockchip / Synopsys are the
-only drivers including these uapi headers directly.
+that patch was submitted yesterday [0], so hopefully will make its
+way into 6.14-rc next week or so.
 
-> +
-> +#include "rockchip_drm_drv.h"
-> +#include "rockchip_drm_vop.h"
-> +
-> +struct rockchip_dw_dp {
-> +	struct dw_dp *base;
-> +	struct device *dev;
-> +	struct rockchip_encoder encoder;
-> +};
-> +
-> +static inline struct rockchip_dw_dp *encoder_to_dp(struct drm_encoder *encoder)
-> +{
-> +	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-> +
-> +	return container_of(rkencoder, struct rockchip_dw_dp, encoder);
-> +}
-> +
-> +static int dw_dp_encoder_atomic_check(struct drm_encoder *encoder,
-> +				      struct drm_crtc_state *crtc_state,
-> +				      struct drm_connector_state *conn_state)
-> +{
-> +	struct rockchip_crtc_state *s = to_rockchip_crtc_state(crtc_state);
-> +	struct drm_atomic_state *state = conn_state->state;
-> +	struct drm_display_info *di = &conn_state->connector->display_info;
-> +	struct drm_bridge *bridge  = drm_bridge_chain_get_first_bridge(encoder);
-> +	struct drm_bridge_state *bridge_state = drm_atomic_get_new_bridge_state(state, bridge);
-> +	u32 bus_format = bridge_state->input_bus_cfg.format;
-> +
-> +	switch (bus_format) {
-> +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> +		s->output_mode = ROCKCHIP_OUT_MODE_YUV420;
-> +		break;
-> +	case MEDIA_BUS_FMT_YUYV10_1X20:
-> +	case MEDIA_BUS_FMT_YUYV8_1X16:
-> +		s->output_mode = ROCKCHIP_OUT_MODE_S888_DUMMY;
-> +		break;
-> +	case MEDIA_BUS_FMT_RGB101010_1X30:
-> +	case MEDIA_BUS_FMT_RGB888_1X24:
-> +	case MEDIA_BUS_FMT_RGB666_1X24_CPADHI:
-> +	case MEDIA_BUS_FMT_YUV10_1X30:
-> +	case MEDIA_BUS_FMT_YUV8_1X24:
-> +	default:
-> +		s->output_mode = ROCKCHIP_OUT_MODE_AAAA;
-> +		break;
-> +	}
-> +
-> +	s->output_type = DRM_MODE_CONNECTOR_DisplayPort;
-> +	s->bus_format = bus_format;
-> +	s->bus_flags = di->bus_flags;
-> +	s->color_space = V4L2_COLORSPACE_DEFAULT;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_encoder_helper_funcs dw_dp_encoder_helper_funcs = {
-> +	.atomic_check		= dw_dp_encoder_atomic_check,
-> +};
-> +
-> +static int dw_dp_rockchip_bind(struct device *dev, struct device *master, void *data)
-> +{
-> +	struct dw_dp_plat_data plat_data;
-> +	struct drm_device *drm_dev = data;
-> +	struct rockchip_dw_dp *dp;
-> +	struct drm_encoder *encoder;
-> +	struct drm_connector *connector;
-> +	int ret;
-> +
-> +	dp = devm_kzalloc(dev, sizeof(*dp), GFP_KERNEL);
-> +	if (!dp)
-> +		return -ENOMEM;
-> +
-> +	dp->dev = dev;
-> +	plat_data.max_link_rate = 810000;
-> +	encoder = &dp->encoder.encoder;
-> +	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev, dev->of_node);
-> +	rockchip_drm_encoder_set_crtc_endpoint_id(&dp->encoder, dev->of_node, 0, 0);
-> +
-> +	drm_simple_encoder_init(drm_dev, encoder, DRM_MODE_ENCODER_TMDS);
 
-drmm_encoder_init() ? This will allow you to get rid of
-drm_encoder_cleanup() calls.
 
-> +	drm_encoder_helper_add(encoder, &dw_dp_encoder_helper_funcs);
-> +
-> +	dp->base = dw_dp_bind(dev, encoder, &plat_data);
-> +	if (IS_ERR(dp->base)) {
-> +		ret = PTR_ERR(dp->base);
-> +		drm_encoder_cleanup(encoder);
-> +		return ret;
-> +	}
-> +
-> +	connector = drm_bridge_connector_init(drm_dev, encoder);
-> +	if (IS_ERR(connector)) {
-> +		ret = PTR_ERR(connector);
-> +		dev_err(dev, "Failed to init bridge connector: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	drm_connector_attach_encoder(connector, encoder);
-> +
-> +	return 0;
-> +}
-> +
-> +static void dw_dp_rockchip_unbind(struct device *dev, struct device *master, void *data)
-> +{
-> +	struct rockchip_dw_dp *dp = dev_get_drvdata(dev);
-> +
-> +	drm_encoder_cleanup(&dp->encoder.encoder);
-> +}
-> +
-> +static const struct component_ops dw_dp_rockchip_component_ops = {
-> +	.bind = dw_dp_rockchip_bind,
-> +	.unbind = dw_dp_rockchip_unbind,
-> +};
-> +
-> +static int dw_dp_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +
-> +	return component_add(dev, &dw_dp_rockchip_component_ops);
-> +}
-> +
-> +static void dw_dp_remove(struct platform_device *pdev)
-> +{
-> +	struct rockchip_dw_dp *dp = platform_get_drvdata(pdev);
-> +
-> +	component_del(dp->dev, &dw_dp_rockchip_component_ops);
-> +}
-> +
-> +static const struct of_device_id dw_dp_of_match[] = {
-> +	{ .compatible = "rockchip,rk3588-dp", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, dw_dp_of_match);
-> +
-> +struct platform_driver dw_dp_driver = {
-> +	.probe	= dw_dp_probe,
-> +	.remove = dw_dp_remove,
-> +	.driver = {
-> +		.name = "dw-dp",
-> +		.of_match_table = dw_dp_of_match,
-> +	},
-> +};
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> index 9cf311b5dec1..2b245491c71d 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> @@ -529,6 +529,7 @@ static int __init rockchip_drm_init(void)
->  	ADD_ROCKCHIP_SUB_DRIVER(rockchip_dp_driver,
->  				CONFIG_ROCKCHIP_ANALOGIX_DP);
->  	ADD_ROCKCHIP_SUB_DRIVER(cdn_dp_driver, CONFIG_ROCKCHIP_CDN_DP);
-> +	ADD_ROCKCHIP_SUB_DRIVER(dw_dp_driver, CONFIG_ROCKCHIP_DW_DP);
->  	ADD_ROCKCHIP_SUB_DRIVER(dw_hdmi_rockchip_pltfm_driver,
->  				CONFIG_ROCKCHIP_DW_HDMI);
->  	ADD_ROCKCHIP_SUB_DRIVER(dw_hdmi_qp_rockchip_pltfm_driver,
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-> index c183e82a42a5..2e86ad00979c 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-> @@ -87,6 +87,7 @@ int rockchip_drm_encoder_set_crtc_endpoint_id(struct rockchip_encoder *rencoder,
->  					      struct device_node *np, int port, int reg);
->  int rockchip_drm_endpoint_is_subdriver(struct device_node *ep);
->  extern struct platform_driver cdn_dp_driver;
-> +extern struct platform_driver dw_dp_driver;
->  extern struct platform_driver dw_hdmi_rockchip_pltfm_driver;
->  extern struct platform_driver dw_hdmi_qp_rockchip_pltfm_driver;
->  extern struct platform_driver dw_mipi_dsi_rockchip_driver;
-> -- 
-> 2.34.1
-> 
+[0] https://lore.kernel.org/all/87eczisyhh.wl-kuninori.morimoto.gx@renesas.=
+com/T/#me866307a928c2d592a2ba883867f028c5c8b9b40
 
--- 
-With best wishes
-Dmitry
+
 
