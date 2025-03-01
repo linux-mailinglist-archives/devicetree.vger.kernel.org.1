@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-152955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84C10A4AB52
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 14:46:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A5A8A4AB59
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 14:49:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE0A71716DC
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 13:46:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98574189790B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 13:49:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE6A70808;
-	Sat,  1 Mar 2025 13:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 930F21DED51;
+	Sat,  1 Mar 2025 13:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dw29xOcK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uqwv1xUJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 179D163A9;
-	Sat,  1 Mar 2025 13:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678932FC23;
+	Sat,  1 Mar 2025 13:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740836774; cv=none; b=SnQcHDLsMihQe5QXAVPj99zdQXd8QImR8sh4WQTVEFmGL9l+6za6xIRf6q4sOSNZ2J+pXRJeE/iWvb7HcA66Uj9iimTEgekn+uQ6w3p7kHoYCs9xsxfYbRS9WhBvKBdIodocI3QKvY1pYUsV5F3FtIaccQ4EPP91Hf3E9IHmA0Y=
+	t=1740836955; cv=none; b=RlEYVWSJaJYWS6+sMhzKDQzVkm+lLPfXG0FZdOme4/T47744Mu4XJbPYwLmMOnwpQs3PBAPhj3Ey5F/op/FiC7BlO6YGAPLrjBhICfCqVr6nnEFLB2Fl4FtjGX8mI2Dga9ZZ0F+/+hG/1/JcnFnhZW9bOibfqL45e2vlYtMSlBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740836774; c=relaxed/simple;
-	bh=ooJVBlorMcSR8IUTzNfqc9lKv92sSxy2dVWtZFArdro=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qLslAkbtGrzJSSdnwUOw7c6/W3WlNPa+8Yef/yk0oGi5YWOW4FDa4Vg3wG/gDYM4btTHlATXH3M7/eDJLVVgZYiY5TYj9LiQX56gJn+cBVROtUwlH3NcZ639FXgFlxQrfOMdqVP0HERztkKRqi6J9saOdkiK7uBM0hFDcTzHxps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dw29xOcK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 891FEC4CEDD;
-	Sat,  1 Mar 2025 13:46:09 +0000 (UTC)
+	s=arc-20240116; t=1740836955; c=relaxed/simple;
+	bh=+7BkRCaAMc58KXpPqobpivf31lnIl3j+4Emd+l300nk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=olm0/NcixasupP1Qw1ONg6efD2JUGjjpTIkRCvDxX/7npc2f0PPyjwxAnw3QH3NqVrUwHQZacfCMOg7H9ipVx4326keKiK2301uOwj/IdAPYh0m0OmfL+vvIyfyAf2DQZdk0G+8iqi4l95EgwehR+eqSOX0YBzwHP3/LvYcGPuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uqwv1xUJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D19BC4CEDD;
+	Sat,  1 Mar 2025 13:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740836773;
-	bh=ooJVBlorMcSR8IUTzNfqc9lKv92sSxy2dVWtZFArdro=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dw29xOcKGqe7+Nabj3MmgCjhLsD+b7TbM2jHrbH3QBP8/ZBhbrM5pYcvDy7zMx8Ab
-	 yL+ybmuinPWdBTty+IrHiUdOzom57MkT9h4LH/f5NzU3MGeseYQ9wNBFTcExJymQEX
-	 LuWHnaBaCDsn2PqU1M2aanSScjKn378VvG705E1UQmSVT0iOoKAN3Yv0RFEP0MvbHA
-	 UXG/aNyBhrpL/P0gdFL19Yh5pu8dRZm0xtJjIWVf88hjyhC9iMAIGxruDL8t0yAE7H
-	 +mTK7Jjm7HEZ/ylM8NU/YYDwmKAKh/lIR2wkclUYPUHVh4VlMcMu2Yok/9HbvkP3S8
-	 WtT+HFUTb9jqA==
-Message-ID: <050ae833-10b5-4d80-9856-8bc2f434a74f@kernel.org>
-Date: Sat, 1 Mar 2025 14:46:06 +0100
+	s=k20201202; t=1740836954;
+	bh=+7BkRCaAMc58KXpPqobpivf31lnIl3j+4Emd+l300nk=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=uqwv1xUJNLzBJ1t/hU5t0tEi03hedao4PSnQpep+U31PEUwmomlVrYQDhxMiQ2IX3
+	 aSGYQTc5/kwE874DucxsVcSDX9vnvIa0xsqP7fmhGg1RW6VTSu53LR9OTBOhb763s9
+	 xR6dNiFs2skx2Xw+1F9GkAFheG2IwlFr8Y/i9Eya4FO+WbTzsei1/HBEy0LKUGwAOr
+	 Js874oreIerHFSk74MTLDXu1I+8l9E4mih8Zyer+MTaJE0mlKSAlCg09H3Oy9xsHr3
+	 lrUNxsnZgjUsO+Wq5CpnCoYtLrgZ0wMG+YAdeRUnQk+COyF5aMCBFCQSzl6PDjMpC4
+	 FurCXC3Wf+d7w==
+Message-ID: <20946ee0-4973-4831-bc77-4d9942f1a348@kernel.org>
+Date: Sat, 1 Mar 2025 14:49:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,6 +52,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [EXTERNAL] Re: [PATCH v3 3/3] arm64: dts: marvell: cp11x: Add
  reset controller node
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Wilson Ding <dingwei@marvell.com>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
@@ -67,7 +68,7 @@ References: <20250227192536.2426490-1-dingwei@marvell.com>
  <20250227192536.2426490-4-dingwei@marvell.com>
  <d085c34a-fdbf-4950-a2e3-b3d25a1c0145@kernel.org>
  <BY3PR18MB46730C150D4CB9619B3B05FBA7CC2@BY3PR18MB4673.namprd18.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <050ae833-10b5-4d80-9856-8bc2f434a74f@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -112,110 +113,99 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <BY3PR18MB46730C150D4CB9619B3B05FBA7CC2@BY3PR18MB4673.namprd18.prod.outlook.com>
+In-Reply-To: <050ae833-10b5-4d80-9856-8bc2f434a74f@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/02/2025 21:18, Wilson Ding wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Thursday, February 27, 2025 10:57 PM
->> To: Wilson Ding <dingwei@marvell.com>; linux-kernel@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
->> Cc: andrew@lunn.ch; gregory.clement@bootlin.com;
->> sebastian.hesselbarth@gmail.com; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; p.zabel@pengutronix.de; Sanghoon Lee
->> <salee@marvell.com>; Geethasowjanya Akula <gakula@marvell.com>
->> Subject: [EXTERNAL] Re: [PATCH v3 3/3] arm64: dts: marvell: cp11x: Add reset
->> controller node
->>
->> On 27/02/2025 20: 25, Wilson Ding wrote: > Add the reset controller node as
->> a sub-node to the system controller > node. > > Signed-off-by: Wilson Ding
->> <dingwei@ marvell. com> > --- > arch/arm64/boot/dts/marvell/armada-
->> cp11x. dtsi
->>
->> On 27/02/2025 20:25, Wilson Ding wrote:
->>> Add the reset controller node as a sub-node to the system controller
->>> node.
+On 01/03/2025 14:46, Krzysztof Kozlowski wrote:
+>>>> Signed-off-by: Wilson Ding <dingwei@marvell.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 8 ++++++++
+>>>>  1 file changed, 8 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+>>> b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+>>>> index 161beec0b6b0..c27058d1534e 100644
+>>>> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+>>>> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+>>>> @@ -226,6 +226,8 @@ CP11X_LABEL(rtc): rtc@284000 {
+>>>>  		CP11X_LABEL(syscon0): system-controller@440000 {
+>>>>  			compatible = "syscon", "simple-mfd";
+>>>>  			reg = <0x440000 0x2000>;
+>>>> +			#address-cells = <1>;
+>>>> +			#size-cells = <1>;
+>>>>
+>>>>  			CP11X_LABEL(clk): clock {
 >>>
->>> Signed-off-by: Wilson Ding <dingwei@marvell.com>
->>> ---
->>>  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 8 ++++++++
->>>  1 file changed, 8 insertions(+)
+>>> Wait, no unit address here.
+>>
+>> This subnode came from the existing code. I didn't touch this subnode
+>> in my patch. As you can see, the system-controller has a wide address
+>> range, which includes clock, GPIO registers as well as the unit-softreset
+>> register.
+>>
 >>>
->>> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
->> b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
->>> index 161beec0b6b0..c27058d1534e 100644
->>> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
->>> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
->>> @@ -226,6 +226,8 @@ CP11X_LABEL(rtc): rtc@284000 {
->>>  		CP11X_LABEL(syscon0): system-controller@440000 {
->>>  			compatible = "syscon", "simple-mfd";
->>>  			reg = <0x440000 0x2000>;
->>> +			#address-cells = <1>;
->>> +			#size-cells = <1>;
+>>>>  				compatible = "marvell,cp110-clock";
+>>>> @@ -273,6 +275,12 @@ CP11X_LABEL(gpio2): gpio@140 {
+>>>>  					 <&CP11X_LABEL(clk) 1 17>;
+>>>>  				status = "disabled";
+>>>>  			};
+>>>> +
+>>>> +			CP11X_LABEL(swrst): reset-controller@268 {
 >>>
->>>  			CP11X_LABEL(clk): clock {
+>>>
+>>> So why here it appeared? This is wrong and not even necessary. Entire
+>>> child should be folded into parent, so finally you will fix the
+>>> incomplete parent compatible.
 >>
->> Wait, no unit address here.
+>> We do need the reset-controller as a subnode under system-controller node
+>> for the following reasons:
+>>
+>> - We need to have 'reg' property in this subnode so that we can get the offset
+>>   to system-controller register base defined in parent node. This is suggested
+>>   by Rob in V2 comments. 
+>>   And we need to know the register size to calculate the number of reset lines.
+>>   This is suggested by Philipp in V1 comments.
 > 
-> This subnode came from the existing code. I didn't touch this subnode
-> in my patch. As you can see, the system-controller has a wide address
-> range, which includes clock, GPIO registers as well as the unit-softreset
-> register.
+> You do not need and you received that comment as well. It is implied by
+> compatible.
 > 
 >>
->>>  				compatible = "marvell,cp110-clock";
->>> @@ -273,6 +275,12 @@ CP11X_LABEL(gpio2): gpio@140 {
->>>  					 <&CP11X_LABEL(clk) 1 17>;
->>>  				status = "disabled";
->>>  			};
->>> +
->>> +			CP11X_LABEL(swrst): reset-controller@268 {
+>> - We also need to define the 'reset-cells' in this subnode. And the consumer of
+>>   the reset controller uses the label of this subnode for the phandle and reset
+>>   specifier pair. 
+> 
+> reset-cells will be in the parent once you fold it.
+> 
 >>
->>
->> So why here it appeared? This is wrong and not even necessary. Entire
->> child should be folded into parent, so finally you will fix the
->> incomplete parent compatible.
+>> As I mentioned in my reply to the first comment, the reset-controller is not the
+>> only device within the system-controller register spaces. Do you still think I
 > 
-> We do need the reset-controller as a subnode under system-controller node
-> for the following reasons:
-> 
-> - We need to have 'reg' property in this subnode so that we can get the offset
->   to system-controller register base defined in parent node. This is suggested
->   by Rob in V2 comments. 
->   And we need to know the register size to calculate the number of reset lines.
->   This is suggested by Philipp in V1 comments.
+> You provided very little hardware description of the device. So based on
+> hardware description you provided: yes.
 
-You do not need and you received that comment as well. It is implied by
-compatible.
+and to clarify - by device I mean the parent node, the system controller.
+
+Your commit even mentions driver, not the hardware:
+"Add device-tree binding documentation for the Armada8K reset driver..."
+not hardware, so you will get the review as good as you describe things.
+
+Bindings are about hardware so if you disagree with the review here,
+please provide arguments in terms of hardware.
 
 > 
-> - We also need to define the 'reset-cells' in this subnode. And the consumer of
->   the reset controller uses the label of this subnode for the phandle and reset
->   specifier pair. 
-
-reset-cells will be in the parent once you fold it.
-
+>> should fold it into the parent node. And what I proposed is exactly same as
+>> that the armada_thermal driver did (See below). I wonder why what was accepted
+>> in the past become not accepted now. 
 > 
-> As I mentioned in my reply to the first comment, the reset-controller is not the
-> only device within the system-controller register spaces. Do you still think I
+> We did not discuss here drivers, but if you insist talking about
+> "marvell,armada-cp110-thermal" then point me to review or ack from DT
+> people. You claim it was accepted so how did we accept it?
+> 
+> It was 2013 so that's another answer: many things done 12 years ago were
+> done not according to best practices. Also best practices evolved.
 
-You provided very little hardware description of the device. So based on
-hardware description you provided: yes.
 
-> should fold it into the parent node. And what I proposed is exactly same as
-> that the armada_thermal driver did (See below). I wonder why what was accepted
-> in the past become not accepted now. 
-
-We did not discuss here drivers, but if you insist talking about
-"marvell,armada-cp110-thermal" then point me to review or ack from DT
-people. You claim it was accepted so how did we accept it?
-
-It was 2013 so that's another answer: many things done 12 years ago were
-done not according to best practices. Also best practices evolved.
 
 Best regards,
 Krzysztof
