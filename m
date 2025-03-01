@@ -1,121 +1,142 @@
-Return-Path: <devicetree+bounces-152966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB731A4AB99
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 15:14:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3D9CA4AC5D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 15:50:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28ABF3B568A
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 14:14:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF2301896253
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 14:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328E51E0DC3;
-	Sat,  1 Mar 2025 14:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10C5A1E1C1F;
+	Sat,  1 Mar 2025 14:50:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WLP38u8Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tv0DE8Sb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC711E04BE
-	for <devicetree@vger.kernel.org>; Sat,  1 Mar 2025 14:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D30031DF986;
+	Sat,  1 Mar 2025 14:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740838418; cv=none; b=f/VjXaB4fuNZDN5KfLwc9tdhgr2Azknmrsoh7alK4mGXfoEzTsWMiyVIt6Dne+jA3nELJoXLLz6yarp8MOz/+HDMCI1Xn9D6hRc1Rt7fwTQfDeYPxNsJZhkMJ057i3vq81AD6GECmKPS3T/JIqg7GlDO7zkes+1DaUvTfZZZwqM=
+	t=1740840610; cv=none; b=mOx5k637wt34vJpqwWEImbtv4p5m+ANJhXMQdnTd1eus3pHJ26SDpqEfgofbH5ym7jDouukfaZiV6dMXtx7Ekv9coQINsK31DnrvxNPCmzflPH03XKsw2YNRJVJCYc9TDRfGMgfHLLaLo5UrmNVvVeRB0CrkTD/SHR33X9799tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740838418; c=relaxed/simple;
-	bh=kaLeNKCrV3DUrxPBC4orfb5NQSWt3UDFoXv2KQEv8y0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=oseBbaR+zOfVPuoXx56i8rqiO+dQudcAX6TPGOQWfysREGF2UqSci6RiYz6WMgyEo2xd6n18U5YviRpNWSHJL2OpRl3Uq9NJGxfXwAddVJnVGFd9u4z2rEMm0zs2kydmMqk9uQ6IvXmT86GLcBFLtYS6DsaLtvZTyORiAx76jeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WLP38u8Q; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-abf4145368dso15479766b.3
-        for <devicetree@vger.kernel.org>; Sat, 01 Mar 2025 06:13:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740838415; x=1741443215; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JF2SZUIZ+BCUsqS+/yls5B4+IVbjBfE9IjNCznqvy2o=;
-        b=WLP38u8QdiBjjb+kmfdvdhkkjvRGmFrdwKM3h7QyXEnbsJRNFXkDPjjnU+IIIbiT0r
-         5Ff1sjD7QNhhymMNyxbgwUauDLRxwqnPYU6p9H4FMYlfuzZdjkDKDv2QBmhKVkA9OdJT
-         VUaRZBubYyTTq5aGW/9QHhJ5NlsyJLrhZa1htmCL84q6q3bdY7IXyKG5ldyPqmcilyS2
-         OnkPfKxAOSEtRSBnP9ox5ar4/ZMO6LaKwlFVhBNzhXacKgY2jvcCxVTsXkbkBKZCh21p
-         DW/86jI8REEUM+FW7tZXrjJGZSlUAmLlnQnvQMhf0uVKY0L/p/wwqFZ08+e7whs49l+B
-         YUwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740838415; x=1741443215;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JF2SZUIZ+BCUsqS+/yls5B4+IVbjBfE9IjNCznqvy2o=;
-        b=TUrp/vHPMP0hh8/o7JkXSh9S5AGm01A17N9NgeLrgKV7Xk8UUVE2UsJkiMem6ZTzyS
-         50dDStqO3u2ZMvVgtJT/FysdXN0299PWalk/sak3fC9V+d3rNhBLHIGylgf/IDG9ApYV
-         4U/kzZYoJUCMgxYTZb0ZxxM+1OWoc//GnPPTMaCIfFC2c2bHUAYTGNy0o21VEwhxepgi
-         FyMdHvy9rsIZ9wFFsku1J/+hRxpqj2MOehI1zVLMJFvEcNe18Bgmpz+FFixh8Li8N4eF
-         FBxRE8vDLXJ+AfK6SKIUoBATK/w6D/SO+NlAB1/4B10BWctY3M6IwB4MFqo1tcemetq/
-         dcdA==
-X-Forwarded-Encrypted: i=1; AJvYcCWKB0tB2U3VmxAbhIaS81jdyfbgBYJmnYClWWncBexcB7W/chxKqID03hL8cUH0C3xdd3nJmeUbyQ7d@vger.kernel.org
-X-Gm-Message-State: AOJu0YzullO6+gzx/T8FXQYTPoDFA2WyKSQA7esoE28Ll2HYTu8G71EV
-	6TeU5uqy05cfAkE0ujl+giEOIyoKtxAsLWSs4oVVe8mylQXAdD28kzx+r7nTP7U=
-X-Gm-Gg: ASbGncsoYXMtCmoqbhkwZrDjbeYmXPp6CFGzgfQ2b0MUZsfUgGs2AWLNsk93ycuvI8/
-	gkDX5kJeAGY3ft/E08mh2903H4P85hA+VC9Ov8tTLu2yHuEobb068Apy1qvc6eiIXiqTHOK3JY0
-	a8zp/hUTooEpYaUoP91qzNtK2GN41xnOMu8G4vmm7sVEoaH7UsdFpHft+zDCRFQlbjvdLB8T1H5
-	yIihvM0garDgNcrB5OgcKnYvrm47tu4d6XN6wjXJWUoCMGuOIuHR/YTfQjcX1R/B3OGtPpF9Vx7
-	BvUebHkQM6p1FpYFYQ+YM5ys0SplRbwLYMMh0nd6prj2BhI7CDWx7qStMYLh
-X-Google-Smtp-Source: AGHT+IEXjfOAsbzmDdwBeUYHq/6or4MctOJ1aDy3KgGo+cF5AzBxwpd05SEBfk2hys/UsQO5ckCxQw==
-X-Received: by 2002:a17:907:3f2a:b0:ab6:b8e0:4f25 with SMTP id a640c23a62f3a-abf25fbaf6fmr324049266b.4.1740838414804;
-        Sat, 01 Mar 2025 06:13:34 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.206.225])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf0c0b9cbfsm485532366b.14.2025.03.01.06.13.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Mar 2025 06:13:34 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250301-exynos7870-pmu-clocks-v5-2-715b646d5206@disroot.org>
-References: <20250301-exynos7870-pmu-clocks-v5-0-715b646d5206@disroot.org>
- <20250301-exynos7870-pmu-clocks-v5-2-715b646d5206@disroot.org>
-Subject: Re: (subset) [PATCH v5 2/2] clk: samsung: add initial exynos7870
- clock driver
-Message-Id: <174083841272.17657.12697906967603393824.b4-ty@linaro.org>
-Date: Sat, 01 Mar 2025 15:13:32 +0100
+	s=arc-20240116; t=1740840610; c=relaxed/simple;
+	bh=dv6x0iYtgHNQ2ns9yHnsJFTE8xqU4p8nlVAKsdKx4Xw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u1lhHE5i4awL00/NpxlFeLJZ1buXcKBMzKWpiErUfbURJ2SxLZbzHYtp4HOKEJ3FILR2lH2MfAQkOktvjyyJrByqGDa1REarBBda9YeyxhC+8KMjjho7Xgznft6RuPA9wTTt109QonhlvKQkX2ghkIvDe3ZHsLxn9Rc4NUrz078=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tv0DE8Sb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5FCCC4CEDD;
+	Sat,  1 Mar 2025 14:50:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740840609;
+	bh=dv6x0iYtgHNQ2ns9yHnsJFTE8xqU4p8nlVAKsdKx4Xw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Tv0DE8SbU2QXAMEqip5cL2lbVT6xFD3q9xX8RfadIMDcBw00+f5b6/Ew+22qYEm8A
+	 ylulnSRt2tKpVGIC18KazaMLIAoL+CF7pIvhdh3S/SwtzjwTSMJih07IDm0U1glzbm
+	 zQ9j/5HzyI3spU/Cly8qqndz5a4tyGkd4W83x6CezsPUGo9BhrP2FUPdmkU3sfpxx3
+	 2WswbIuLqHvpW/HkSDmI46gBCu668l1no73tIDX1bmdsJB1h09mqngBIZFBAdWX2DG
+	 J0JBsre7jnDr2EY25S/UdC0hac1jXjKxhUA5CDxyypae7h6k+j/0KLKwqeCrbHp5tN
+	 37TiC46dS9T3Q==
+Message-ID: <7cd3bc4c-318e-4327-a00d-bfe42d4504c9@kernel.org>
+Date: Sat, 1 Mar 2025 15:50:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] MAINTAINERS: add entry for Samsung Exynos2200 SoC
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250223123044.725493-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250223123044.725493-5-ivo.ivanov.ivanov1@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250223123044.725493-5-ivo.ivanov.ivanov1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
 
-
-On Sat, 01 Mar 2025 09:27:13 +0530, Kaustabh Chakraborty wrote:
-> This is a basic implementation of the clock driver required by
-> Samsung's Exynos7870 SoC. It implements CMU_MIF, CMU_DISPAUD, CMU_FSYS,
-> CMU_G3D, CMU_ISP, CMU_MFCMSCL, and CMU_PERI. all other CMUs depend on
-> CMU_MIF.
+On 23/02/2025 13:30, Ivaylo Ivanov wrote:
+> Add maintainers entry for the Samsung Exynos2200 SoC based platforms.
 > 
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> ---
+>  MAINTAINERS | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e4f5d8f68..7da20faf7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20937,6 +20937,18 @@ B:	mailto:linux-samsung-soc@vger.kernel.org
+>  F:	Documentation/devicetree/bindings/sound/samsung*
+>  F:	sound/soc/samsung/
+>  
+> +SAMSUNG EXYNOS2200 SoC SUPPORT
+> +M:	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> +L:	linux-samsung-soc@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/clock/samsung,exynos2200-cmu.yaml
+> +F:	Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
+> +F:	arch/arm64/boot/dts/exynos/exynos2200*
+> +F:	drivers/clk/samsung/clk-exynos2200.c
+> +F:	drivers/phy/samsung/phy-exynos2200-usbcon.c
 
-Applied, thanks!
+Please add separate entry for the PHY driver.
 
-[2/2] clk: samsung: add initial exynos7870 clock driver
-      https://git.kernel.org/krzk/linux/c/4149066a5e958963f7123be51d3a65d336045c21
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Krzysztof
 
