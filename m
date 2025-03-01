@@ -1,194 +1,187 @@
-Return-Path: <devicetree+bounces-152953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3894AA4AB44
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 14:36:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83DB2A4AB4A
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 14:41:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A03716BA22
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 13:36:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8282016F17B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 13:41:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65D81DE4D2;
-	Sat,  1 Mar 2025 13:36:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6861DEFF3;
+	Sat,  1 Mar 2025 13:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kQmyFtbt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zs9jRDVC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9578579CD;
-	Sat,  1 Mar 2025 13:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868BC1DED79;
+	Sat,  1 Mar 2025 13:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740836183; cv=none; b=aKfjzYm9DFnd/O9b0MyLSVc6NSIX17iWMVhJKVb5jBnvvrlRE2YteR0R54FsUbptgbZhsDyPJ5Xj8zjO7sRzzXtbVnx0e19na3zRGfAw2quaZq6rUp3Ulbybfqz55pTj9wqTwUJCNvKeI9DaCvPUBrU8Ei+gUl98scxx25JzP4s=
+	t=1740836490; cv=none; b=OG7iHLTQNjAzRbFZS21eOjTqTu1Fw+HigMEI8Dz686NSxe6W+oEnBLFhTEO7612zW/uhSJCEQwRADxRAptGBCfTp6UMhGcgHbCD0zI11lcpSGHda3wz8mHjON8dWVpjVf/BcLE5cAl/7GNGrbQUqPYyQN8a42tPMeSeIi36NC1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740836183; c=relaxed/simple;
-	bh=+9olZMe927bo25HXvSSkBgPAgO3eFw27jWtLQ6l/+eU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UzvFN0YSXf+zJx/cohFlVKQ0veI/7Vg2kIXz8y0Y6Wq15JXV/Kfm2ZUR3iIlWbLsYaJNtusWCsLokZyQAbvLmeDfo/iYBDNziT4gcuiJi1HXKNG8eYVQOqkDRvqesOXVof5W86RBV0rswclbKf2HX1QRjCzssiSTNhjrmvELkSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kQmyFtbt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA96DC4CEDD;
-	Sat,  1 Mar 2025 13:36:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740836183;
-	bh=+9olZMe927bo25HXvSSkBgPAgO3eFw27jWtLQ6l/+eU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kQmyFtbtDyuo5bbqrr2PvxVxV4WLJ0eUsGg2Vf9cxH8PryGo4faSy7B022DLbwJjU
-	 2MkQwpATxW/D213tvfHM1CNNOtt0uxvH7T1fDkrI0VvceeVnCoAMC/UkU62+4CtaM6
-	 JAhttLlCy6z5u2VlVuXQeFqRfRuunExO0zt6Ct3qbTzd8VeZwA1h1pli53/PIq1yIN
-	 MPhFGA4hzatxFdXZF3h1LtfU/vyo7cPcksPJfBBblhdoZsQ6Bs+X/7dxH65S1Sv6sY
-	 M1MWqxx2XrRVqDSokvJJdlsG02ZfSdFNjn3yUGBNe3AjqzgryIyHR9pNYXsy2NlsTK
-	 qoEUXpx03IIrQ==
-Message-ID: <d5f67734-db1e-4096-98f9-3f026e4bd46b@kernel.org>
-Date: Sat, 1 Mar 2025 14:36:17 +0100
+	s=arc-20240116; t=1740836490; c=relaxed/simple;
+	bh=TLIhfOfTyCtDjvvlh1iDs9YNZo5D51zr3rSzpsvTr7g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ObPnSdeRH1ptSCscWN0J+3pDAnKLlcRTtWDqpjML0UrleaIhmeluzTXUgstr71K5NyANoQQM71lAqte85I3StM1HAcA2zO9UGz72aCrPpS6X+yWW2b8qAs3hnQC91si0gZo0i4vGS8dwUO1fU7LUUPQp4MrO+cpTEXEWttSVP9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zs9jRDVC; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e04861e7a6so5150565a12.1;
+        Sat, 01 Mar 2025 05:41:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740836486; x=1741441286; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=78FXd7H9s7OsBCpwurs18e3LRIW9gE8fGHh/i6qsJMY=;
+        b=Zs9jRDVCtvn2I8fKKGp476tsZ7VvuUBCqqLmRkRmZ5uJc8wcFyuPEpnmeX5hiBcivB
+         iJCuXI+OxTgELVLyyXJCQ/z0HhP5QHzXrVwcmwa5rEr8QlbJpT/11fvFgm+K8AVrsHRg
+         ZteGJNAs94xt7Neh74hHdDxm4gSQaoLXeU5MZA47rrmv7EUSep2dPDgYkui00DdQVjkZ
+         NYv4P8yozWCgST/mijT1Dy8vFYaHqGJiptEBYu/rQVp4OBmsB9bdc4mjjR41V50izLVj
+         F7xihl+e/aHaYCDjpsIKFA9U9g3BfxpK2grg81B/teV7Kt70K8JSWP1Td+I3rhbNe+Co
+         4ARA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740836486; x=1741441286;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=78FXd7H9s7OsBCpwurs18e3LRIW9gE8fGHh/i6qsJMY=;
+        b=cbVJG/W7J9Q7IyvOTzWwByrZghmQEqNPCvjAgxJ8POw0NM0kJbu+9MZ/pBT93Sc325
+         L96aVC12L8oyz1/o34CuerNSa9gyh9B9hbF6Ic8v2pdsxkYI1YtWiRWiSjWk7YSWGrAJ
+         MmLFtCwhW6Z/lPUWjt1Md68Pa7FJTx/VvkCDr/CsNQXAGtcnKq9KuHZEQ0YSa7ZS6/9Z
+         K4kr3I73ixOGDVQoEJYJWOr0uAxWBnjvbIuuk+FymwtAprD7arKfbnu1qZN68qQvhOqe
+         YQtywfniPKcZRNmm1dGz2OSFZ+Ct1IxdldzopEqFEJqo10Xmw2xxXeslGbQWlnVxXKGR
+         Z9yQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUoJ7ZJ6L2Vz8Mk/0WE0pOa5EgA2TrvgtMxr2Mq/T6J+e/McZXOm63cRq0s/cSVU3BqwaAz3p02zCoF@vger.kernel.org, AJvYcCVm4w73CmKkf6Z+rNWCjQa1lFIdTrozzzmhBXpZkw7BmroIOhSSYh/RGEv/q4uZDGihN1mdbqIbDqAvfWbK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxk2+nfJ2qVPhreyNacOG6Fen5KelFZ7TvkI++JTXCpognwaCUk
+	B2G5KF+XWgdugPcMTntNBlWj66Ec5gXo/ltwkyS9luLP0k76OXIjx5uQQrcfURG6zqOchVWWmPC
+	vJNwxhcIKFUG/M2NLA3W+VPdAv24=
+X-Gm-Gg: ASbGnctqGWyREQqu3dgfvew/f8+mR3vRDMvDLf1XrJoul7YjomYiG8vVAC+fY82Ipb/
+	nuzsdw27r+0QnW1jR8O5XX/SktsLsiT64pzCAhPpiEKn0cl6sPNGZLacJo1JQAr8cAu+pplozmt
+	7j85dA/8VtjR+S3JXjNERz6N6y+O/zld3mOKrk7vR8LuVNcT3Z9PlBQM+6
+X-Google-Smtp-Source: AGHT+IFLxVwOp5YMLsUkpptEmA0Qd2Flk1VNPL1BruQvXJdV1T6bcBXaIIh31J/l6mfSHIbhS/PJMvsfGdt69/SIBp4=
+X-Received: by 2002:a17:907:2d0b:b0:abb:9d27:290f with SMTP id
+ a640c23a62f3a-abf25da236emr881207766b.9.1740836485188; Sat, 01 Mar 2025
+ 05:41:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sa8775p: add QCrypto node
-To: Bjorn Andersson <andersson@kernel.org>,
- Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250227180817.3386795-1-quic_yrangana@quicinc.com>
- <2mlmhzllhb5fhcbwtupy2nk74my5hruliayyr3kayrjvmtou25@em5encygrn2i>
- <7b219289-4f3d-4428-a0af-42491acb1cbb@quicinc.com>
- <uohwigzosxv2onh7dtgvhqdkdu2jufiukp6ztxrvfbjoihrypx@cq3apkdx2rhw>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <uohwigzosxv2onh7dtgvhqdkdu2jufiukp6ztxrvfbjoihrypx@cq3apkdx2rhw>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250228-sfg-spi-v2-1-8bbf23b85d0e@gmail.com> <20250228-factual-rage-0e1e1e48b009@spud>
+In-Reply-To: <20250228-factual-rage-0e1e1e48b009@spud>
+From: damon <sycamoremoon376@gmail.com>
+Date: Sat, 1 Mar 2025 21:41:14 +0800
+X-Gm-Features: AQ5f1JpwJ3BP_PC0W0ktRvkC8fjTUkMCYP9UPIHRuRuOyqb-ZHyNsvBVo66Lwcc
+Message-ID: <CAKyUbwXUPBceR1ArZeLLjs1VNyRW=DngZyLTUCDGPFvT9wKikw@mail.gmail.com>
+Subject: Re: [PATCH v2] riscv: sophgo: dts: Add spi controller for SG2042
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, sophgo@lists.linux.dev, chao.wei@sophgo.com, 
+	xiaoguang.xing@sophgo.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 28/02/2025 15:14, Bjorn Andersson wrote:
-> On Fri, Feb 28, 2025 at 11:01:16AM +0530, Yuvaraj Ranganathan wrote:
->> On 2/28/2025 5:56 AM, Bjorn Andersson wrote:
->>> On Thu, Feb 27, 2025 at 11:38:16PM +0530, Yuvaraj Ranganathan wrote:
->>>> The initial QCE node change is reverted by the following patch 
->>>
->>> s/is/was/
->>>
->>>> https://lore.kernel.org/all/20250128115333.95021-1-krzysztof.kozlowski@linaro.org/
->>>> because of the build warning,
->>>>
->>>>   sa8775p-ride.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
->>>>     ...
->>>>     'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
->>>>
->>>> Add the QCE node back that fix the warnings.
->>>>
->>>
->>> Are you saying that adding this node back will fix the warning?
->>>
->>> I'd expect that you would say something like "The changes to the
->>> Devicetree binding has accepted, so add the node back".
->>>
->>> Regards,
->>> Bjorn
->>>
->>>> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 12 ++++++++++++
->>>>  1 file changed, 12 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>>> index 23049cc58896..b0d77b109305 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>>> @@ -2418,6 +2418,18 @@ cryptobam: dma-controller@1dc4000 {
->>>>  				 <&apps_smmu 0x481 0x00>;
->>>>  		};
->>>>  
->>>> +		crypto: crypto@1dfa000 {
->>>> +			compatible = "qcom,sa8775p-qce", "qcom,sm8150-qce", "qcom,qce";
->>>> +			reg = <0x0 0x01dfa000 0x0 0x6000>;
->>>> +			dmas = <&cryptobam 4>, <&cryptobam 5>;
->>>> +			dma-names = "rx", "tx";
->>>> +			iommus = <&apps_smmu 0x480 0x00>,
->>>> +				 <&apps_smmu 0x481 0x00>;
->>>> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE0 0
->>>> +					 &mc_virt SLAVE_EBI1 0>;
->>>> +			interconnect-names = "memory";
->>>> +		};
->>>> +
->>>>  		stm: stm@4002000 {
->>>>  			compatible = "arm,coresight-stm", "arm,primecell";
->>>>  			reg = <0x0 0x4002000 0x0 0x1000>,
->>>> -- 
->>>> 2.34.1
->>>>
->>
->> DeviceTree bindings were accepted but the comptabile string does not
->> properly bind to it. Hence, adding the correct binding string in the
->> compatible has resolved the issue.
->>
-> 
-> Please then write that in the commit message.
-> 
-> 
-> That said, what did you base this patch on? While I have picked
-> Krzysztof's two reverts in my local tree, I have not yet published them.
-> So your patch is not even based on v6.14-rc1, which now is 4 weeks old.
-> 
-> Patches sent upstream should be built and tested on a suitable upstream
-> branch!
+On 25/02/28 06:22PM, Conor Dooley wrote:
+> On Fri, Feb 28, 2025 at 08:40:23PM +0800, Zixian Zeng wrote:
+> > Add spi controllers for SG2042.
+> >
+> > SG2042 uses the upstreamed Synopsys DW SPI IP.
+> >
+> > Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
+> > ---
+> > For this spi controller patch, only bindings are included.
+>
+> ^^^ you've not actually included any bindings in this patch, copy-paste
+> mistake?
+>
+My bad, I was confused about what=E2=80=99s the =E2=80=9Cbinding=E2=80=9D m=
+eaning. I will
+remove this description in next revision.
+> > This is tested on milkv-pioneer board. Using driver/spi/spidev.c
+> > for creating /dev/spidevX.Y and tools/spi/spidev_test for testing
+> > functionality.
+> > ---
+> > Changes in v2:
+> > - rebase v1 to sophgo/master(github.com/sophgo/linux.git).
+> > - order properties in device node.
+> > - remove unevaluated properties `clock-frequency`.
+> > - set default status to disable.
+> > - Link to v1: https://lore.kernel.org/r/20250228-sfg-spi-v1-1-b989aed94=
+911@gmail.com
+> > ---
+> >  .../riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts |  8 +++++++
+> >  arch/riscv/boot/dts/sophgo/sg2042.dtsi             | 28 ++++++++++++++=
+++++++++
+> >  2 files changed, 36 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch=
+/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> > index be596d01ff8d33bcdbe431d9731a55ee190ad5b3..c43a807af2f827b5267afe5=
+e4fdf6e9e857dfa20 100644
+> > --- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> > +++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> > @@ -72,6 +72,14 @@ &uart0 {
+> >     status =3D "okay";
+> >  };
+> >
+> > +&spi0 {
+> > +   status =3D "okay";
+> > +};
+> > +
+> > +&spi1 {
+> > +   status =3D "okay";
+> > +};
+> > +
+> >  / {
+> >     thermal-zones {
+> >             soc-thermal {
+> > diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/d=
+ts/sophgo/sg2042.dtsi
+> > index e62ac51ac55abd922b5ef796ba8c2196383850c4..500645147b1f8ed0a08ad3c=
+afb38ea79cf57d737 100644
+> > --- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> > +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> > @@ -545,5 +545,33 @@ sd: mmc@704002b000 {
+> >                                   "timer";
+> >                     status =3D "disabled";
+> >             };
+> > +
+> > +           spi0: spi@7040004000 {
+> > +                   compatible =3D "snps,dw-apb-ssi";
+>
+> I thought were were dropping the use of "snps,dw-abp-ssi" in isolation,
+> and starting to require soc-specific compatibles now.
+>
+That=E2=80=99s better, I will do it in next revision.
+BTW, <https://lore.kernel.org/linux-riscv/20240703-garbage-explicit-bd95f8d=
+eb716@wendy>
+has similar situation,
+those patches only create binding but not implement the compatible
+property of "thead,th1520-spi=E2=80=9D in driver.
+When kernel matching, it will find out there=E2=80=99s no compatible of
+"thead,th1520-spi=E2=80=9D so fallback to "snps,dw-apb-ssi=E2=80=9D
 
-I sent reverts because author, even though pinged more than once (!),
-ignored reported problems.
+May I take you a few minutes for reason behind it? My understanding is
+that using soc-specific compatible is better
+for future maintaining, If the device actually comes with some unknown
+quirks not present in the generic IP.
+And all we need to do for fixing is implementing the soc-specific
+compatible property.
 
-It seems that reverting the code gets some attention, so maybe author
-will fix the original issue and my reverts can be dropped/ignored.
+> Rob, Krzysztof?
+>
 
 Best regards,
-Krzysztof
+Zixian Zeng
 
