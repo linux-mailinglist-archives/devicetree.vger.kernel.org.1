@@ -1,92 +1,93 @@
-Return-Path: <devicetree+bounces-152979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5471AA4ADCE
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 21:32:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83D05A4AE0C
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 22:46:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22D0B1892E54
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 20:32:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C3A13B4B64
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 21:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11F491E5716;
-	Sat,  1 Mar 2025 20:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787421E3DC4;
+	Sat,  1 Mar 2025 21:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R6VBYz5p"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZnLCXQt+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369C9182D7;
-	Sat,  1 Mar 2025 20:32:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1881182D7
+	for <devicetree@vger.kernel.org>; Sat,  1 Mar 2025 21:46:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740861148; cv=none; b=c6eyYnwrLkWeA6bmP/wHwd4l0/UP/NYkmyHkW+yz9ZEcZvRUW7R7ceEA5L1wn6Xxk2WeIN2KR4ya6j2kM1hkCF5AqbrZNJHOUNCniUPvDsKIluNNFXbP1nB8bwASOcwSLukBFPQSFeHeBOThNhqyAmA/vQvuyowdjyQleOyi9EQ=
+	t=1740865593; cv=none; b=ezdq93KDLRDBehSUc+xoDWhx/ZnpRIG3On0AIoJ9P/RuSWXh55yt395c34Bbez5UkbvVv2A374QsZAIH4oVJfbpdWF0WJbFWJI9QHon8EyHT9c5spGVsCWaXS/dX8ELQEGhCa9tR8l9lQ4N7l58m5E806rBmf9LQHZwta6nUfFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740861148; c=relaxed/simple;
-	bh=wBg5evaKt2ua+JSREx6VTzJBkp8N1lCxgbzNDRsoVo4=;
+	s=arc-20240116; t=1740865593; c=relaxed/simple;
+	bh=6l1uC5pceOA+uIFkP/26PTWpP7l3GTDpEwiEC3W1O4E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gxGYIP+TQu1vaMW+wXs4G4mhj+tAHHEVWKM1ECUfced8Oe57SFb+92VfK8wWxRwVN5Jq1BeORRc0PGbaVWMTd1H39Mrw4ExSjljTcXify9lbf3O/N/HdjSZfUr7A1P461exKWOLlAK+0xnNjib1VSFEWd774456miMdcXbg0Eis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R6VBYz5p; arc=none smtp.client-ip=192.198.163.18
+	 Content-Type:Content-Disposition:In-Reply-To; b=TjGMIEB0DJ5LD2A0+qIZydyGv0QYUdls8XcILqnOXiOYNxM2LYnZ4wsWhEViw6SEd7tQ2uWQo8nMlLDXel7cMpPHS77lhdKuQIUWuD49rGQtcXiW7PUfyRt7DMYU5CGzHhofAPI+WMl96gOFDxsO3S4W+rNlA9+D2YrhK0bksxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZnLCXQt+; arc=none smtp.client-ip=192.198.163.8
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740861147; x=1772397147;
+  t=1740865592; x=1772401592;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=wBg5evaKt2ua+JSREx6VTzJBkp8N1lCxgbzNDRsoVo4=;
-  b=R6VBYz5pp3bnUhaR6PIxY3wHf9DinLizZYHkg/MM6oAxZKUvQcWDdm6k
-   WyealKEFq5jnLGDADeaRA8LVuNMp1wvdQGh5sWjckNkPjUVTw0Nh2BKII
-   qxg7bJRnpjoWRNRcap3CWhsOGDq5stX9Pdjad74UaOs5jODRzxdCXFvIB
-   b5pxQ/RtfFWUOyLKTNoaSP5eTbgZN8/o42wg6nueOMl9H/5UUj46GxREl
-   VVeZBTjfhVwExfmcN3UlpJ/ZdrlIhhk2IXl67MbA3RHabAPFpkeEdvWId
-   6IYBxNRpI3O3G1jcwmytPa1T6u/oQcgM/D4nK2JkLeNYluYG+UCtDRWvx
-   g==;
-X-CSE-ConnectionGUID: ih6OA1alSQuDYJdBB20Gww==
-X-CSE-MsgGUID: uInj0QL6QQSsOYbEUUw9tA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11360"; a="41009976"
+  bh=6l1uC5pceOA+uIFkP/26PTWpP7l3GTDpEwiEC3W1O4E=;
+  b=ZnLCXQt+GUQwSK8QJJfKC1xgN0uIvhCCvk54CgjVAOA4qb/RHdkBzMZw
+   erylsmbyl7aYnHoGHpvUj5RizVMu2oMiv1/9q0K5uuxeeM3VIgRdnFLlU
+   CjuEybG1XtvtpGG2Li/ZcoXfTEfBhAOWUjzuTBv+fvliR9nuDt7NST10B
+   vh5gTcZ8aaSW6ll6unQ/1QqraGQBCz5KCspvxMDpDuCjQpqQRNaH6U1ml
+   YQPioOf5JF3wswchUTTRW79St68eX5hZ/QuTrVAbWttRq2TJMhFTSDIPr
+   e0Gh7ErocOC7+s4JJF81oblYEZxk6X18hcdYeSBrPKfHaRcyac1F0Odup
+   w==;
+X-CSE-ConnectionGUID: mCsgHLKjSZCKgT6TGxq/dQ==
+X-CSE-MsgGUID: fEGmtjNyQByjkFVKVETKvg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11360"; a="59316342"
 X-IronPort-AV: E=Sophos;i="6.13,326,1732608000"; 
-   d="scan'208";a="41009976"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2025 12:32:26 -0800
-X-CSE-ConnectionGUID: /I33WU5TQPCIw+82ZeJT1Q==
-X-CSE-MsgGUID: BSv1HP4jSiq/0Ee+64SyZA==
+   d="scan'208";a="59316342"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2025 13:46:32 -0800
+X-CSE-ConnectionGUID: 7J9dfahmT5WnwjSLafCx7Q==
+X-CSE-MsgGUID: YQEx4K2USDqm09yvEVjOqA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.13,326,1732608000"; 
-   d="scan'208";a="122590873"
+   d="scan'208";a="148453162"
 Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by orviesa003.jf.intel.com with ESMTP; 01 Mar 2025 12:32:20 -0800
+  by orviesa002.jf.intel.com with ESMTP; 01 Mar 2025 13:46:26 -0800
 Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1toTVL-000Gft-2i;
-	Sat, 01 Mar 2025 20:32:13 +0000
-Date: Sun, 2 Mar 2025 04:31:48 +0800
+	id 1toUfA-000GjY-01;
+	Sat, 01 Mar 2025 21:46:24 +0000
+Date: Sun, 2 Mar 2025 05:45:30 +0800
 From: kernel test robot <lkp@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>,
-	Wolfram Sang <wsa-dev@sang-engineering.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+To: Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, Marek Vasut <marex@denx.de>,
+	Boris Brezillon <bbrezillon@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Romain Gantois <romain.gantois@bootlin.com>
-Subject: Re: [PATCH v8 9/9] misc: add FPC202 dual port controller driver
-Message-ID: <202503020450.UW2PuA6X-lkp@intel.com>
-References: <20250227-fpc202-v8-9-b7994117fbe2@bootlin.com>
+	David Airlie <airlied@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Steven Price <steven.price@arm.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, imx@lists.linux.dev
+Subject: Re: [PATCH 4/9] drm/panthor: Implement optional reset
+Message-ID: <202503020521.MBUsoVte-lkp@intel.com>
+References: <20250227170012.124768-5-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,70 +96,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250227-fpc202-v8-9-b7994117fbe2@bootlin.com>
+In-Reply-To: <20250227170012.124768-5-marex@denx.de>
 
-Hi Romain,
+Hi Marek,
 
-kernel test robot noticed the following build errors:
+kernel test robot noticed the following build warnings:
 
-[auto build test ERROR on 2014c95afecee3e76ca4a56956a936e23283f05b]
+[auto build test WARNING on shawnguo/for-next]
+[also build test WARNING on robh/for-next arm64/for-next/core kvmarm/next rockchip/for-next soc/for-next linus/master v6.14-rc4 next-20250228]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Romain-Gantois/dt-bindings-misc-Describe-TI-FPC202-dual-port-controller/20250227-182532
-base:   2014c95afecee3e76ca4a56956a936e23283f05b
-patch link:    https://lore.kernel.org/r/20250227-fpc202-v8-9-b7994117fbe2%40bootlin.com
-patch subject: [PATCH v8 9/9] misc: add FPC202 dual port controller driver
-config: sparc-randconfig-r051-20250302 (https://download.01.org/0day-ci/archive/20250302/202503020450.UW2PuA6X-lkp@intel.com/config)
-compiler: sparc-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250302/202503020450.UW2PuA6X-lkp@intel.com/reproduce)
+url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Vasut/dt-bindings-reset-imx95-gpu-blk-ctrl-Document-Freescale-i-MX95-GPU-reset/20250228-011031
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250227170012.124768-5-marex%40denx.de
+patch subject: [PATCH 4/9] drm/panthor: Implement optional reset
+config: x86_64-kismet-CONFIG_RESET_SIMPLE-CONFIG_DRM_PANTHOR-0-0 (https://download.01.org/0day-ci/archive/20250302/202503020521.MBUsoVte-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20250302/202503020521.MBUsoVte-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503020450.UW2PuA6X-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503020521.MBUsoVte-lkp@intel.com/
 
-All error/warnings (new ones prefixed by >>):
-
-   drivers/misc/ti_fpc202.c: In function 'fpc202_read':
->> drivers/misc/ti_fpc202.c:104:15: error: implicit declaration of function 'i2c_smbus_read_byte_data' [-Wimplicit-function-declaration]
-     104 |         val = i2c_smbus_read_byte_data(priv->client, reg);
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/misc/ti_fpc202.c: In function 'fpc202_write':
->> drivers/misc/ti_fpc202.c:110:16: error: implicit declaration of function 'i2c_smbus_write_byte_data' [-Wimplicit-function-declaration]
-     110 |         return i2c_smbus_write_byte_data(priv->client, reg, value);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/misc/ti_fpc202.c: At top level:
->> drivers/misc/ti_fpc202.c:433:1: warning: data definition has no type or storage class
-     433 | module_i2c_driver(fpc202_driver);
-         | ^~~~~~~~~~~~~~~~~
->> drivers/misc/ti_fpc202.c:433:1: error: type defaults to 'int' in declaration of 'module_i2c_driver' [-Wimplicit-int]
->> drivers/misc/ti_fpc202.c:433:1: error: parameter names (without types) in function declaration [-Wdeclaration-missing-parameter-type]
->> drivers/misc/ti_fpc202.c:424:26: warning: 'fpc202_driver' defined but not used [-Wunused-variable]
-     424 | static struct i2c_driver fpc202_driver = {
-         |                          ^~~~~~~~~~~~~
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for I2C_ATR
-   Depends on [n]: I2C [=n]
-   Selected by [y]:
-   - TI_FPC202 [=y]
-
-
-vim +/i2c_smbus_read_byte_data +104 drivers/misc/ti_fpc202.c
-
-    99	
-   100	static int fpc202_read(struct fpc202_priv *priv, u8 reg)
-   101	{
-   102		int val;
-   103	
- > 104		val = i2c_smbus_read_byte_data(priv->client, reg);
-   105		return val;
-   106	}
-   107	
-   108	static int fpc202_write(struct fpc202_priv *priv, u8 reg, u8 value)
-   109	{
- > 110		return i2c_smbus_write_byte_data(priv->client, reg, value);
-   111	}
-   112	
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for RESET_SIMPLE when selected by DRM_PANTHOR
+   WARNING: unmet direct dependencies detected for RESET_SIMPLE
+     Depends on [n]: RESET_CONTROLLER [=n] && HAS_IOMEM [=y]
+     Selected by [y]:
+     - DRM_PANTHOR [=y] && HAS_IOMEM [=y] && DRM [=y] && (ARM || ARM64 || COMPILE_TEST [=y]) && !GENERIC_ATOMIC64 [=n] && MMU [=y] && SOC_IMX9 [=y]
 
 -- 
 0-DAY CI Kernel Test Service
