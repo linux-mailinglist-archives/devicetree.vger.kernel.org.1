@@ -1,118 +1,112 @@
-Return-Path: <devicetree+bounces-152971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6DA2A4ACF4
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 17:59:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78869A4AD3A
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 19:09:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A8003ABDE6
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 16:59:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A9F01895B1D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 18:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D7C1E521B;
-	Sat,  1 Mar 2025 16:59:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D145A1E4929;
+	Sat,  1 Mar 2025 18:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xoo37irw"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="wpczwOyW";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="bOD5z77+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47F61DE8A8
-	for <devicetree@vger.kernel.org>; Sat,  1 Mar 2025 16:59:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30CC31E49F;
+	Sat,  1 Mar 2025 18:09:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740848359; cv=none; b=f/GZ/OhKt1CYDjrtorAsNlydYN/36A4oOopH9nXCHvXqxU+g7IVvzHP8zPCvVAk0Q4/ZJfstav+AFdJ6vwd0r5ATc5iCCl5fykp+FDOVwY7eTbI68gia/Oxtwbe80jY+dRYaoI+Ynkce+ik3ruiGQNXXiqGlncPHBpSROBqmmo0=
+	t=1740852586; cv=none; b=MLsI8lHCsfOeuXNM2xgcmWl8uK7idwCD0KEqxgcn1H/737z8/ABiSeZztGMvg1q2RFQKooOw2vhWUbBEfIupVQud/YiWPjR0bEe37ACNNwgIsHJLq/HbHvoLxIk2tuTiwyL1lWFQzQwftFZBuo5pLQ0y/nmYjJ/Sgy/aGGWy7J0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740848359; c=relaxed/simple;
-	bh=iA5cPbq/9vj429yRUOv7R3QM0Odgw+vixO4V5xlgpBI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=luiWWvN4NfdpO39tCLtGKzVG1SVI48bS+bFUk4qGW/gbEHH66ayJR5aRPdGjoPqs7WC1jSAU+b8Od8tx44BbaQRbsSBorx4e7VrcrMxxHntIATXTa7kGh1V3cNJ7tfYSg4FG0KXXoV3CXGqDC5UkAp7ZxPLZqE6KPC8vdzGDCZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xoo37irw; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-307325f2436so32985581fa.0
-        for <devicetree@vger.kernel.org>; Sat, 01 Mar 2025 08:59:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740848355; x=1741453155; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8yH9gwYALLNPfPaQHLNB6Pw53oWquI/ljPL4PqtQc4A=;
-        b=Xoo37irwySjqTyepe78VUVBUucrV9s1MjFfKbCIJoDhk52TjLM0TNnDcz6mY4mveU/
-         u6gmi6rb0Wk4s2Hm7aI8M6OvasGTJM68GKEDV6/X1DhEGddz3YPDmKluSOPzyc1uE4qG
-         XsjX3Po5uxqGiku/PqXT6qEFvaf4SfEUJZqOM2oFsOWwGxlv2mkXSxc/jUbwHWphSoB3
-         nWpub7pyftHMYUklJk5MgaY8qE3vXWCeRzABRy8sITAoUhzC7zH7Y7p/LfcgUGf1woXe
-         xbONEDWHpUuUROoLwhG3M8UbptcVjlti9cP5UHsmIELC2IcYWEQMIh1muRQGab1eUblg
-         ziyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740848355; x=1741453155;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8yH9gwYALLNPfPaQHLNB6Pw53oWquI/ljPL4PqtQc4A=;
-        b=EKJT1L67p4rBkJ12rFuQv4tdKM2nxGJsuafaXagdp/cIInwNnfS0pwn977TjZTswDB
-         xvXcYJyK2DG+cMFk5NOytz7qCHXdg4HnYiPUA0wPLlFhMLluBMiBxQ9L0o1nzIUd1nM6
-         7/XfmJblx0mFYsnW1iXzgjVqgFALHr5nBWWJoc9zol5GCTVHjq7ofCIsf9lEiaguW7Su
-         B2F582q3BtVzu2K1YVNGyA3e4+SLuS8cUNkYo0RI4hofy/QdnCVMcTqTkSMpqMrcqdj+
-         NherbZFQHHTwTVDKpM4+HniyQ4ysnFHO3zi6Rs819lLxfcc/JSfO0sdIOTHKbuztPXFG
-         5hyg==
-X-Forwarded-Encrypted: i=1; AJvYcCV0kyYm/D4dx2hjXK/MJcvZzafXvau4BebiIv1Z21vmlR8HgABET5agyd8JfBLljJ1QreXX5crXPkNk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAMnqh6yA1m/ltv1dqkAXXqKLwrRzb/TpByGtXNNleLBHPs7s2
-	GFJZ77okVmodm9/vNsxbuhKMjhoAFFS4R4XpNPMlB71jwAO9VYxnJz8oZL6+FdE=
-X-Gm-Gg: ASbGncsIEWAlOLefQ2fXSO56ZQKDrAcseVIZItD01o+LQiUGHsDilUL3aXNiUhvtjV0
-	aD+vSaeAGvJISgXTV1/ftRy+GpoB6+dul6x6ZNG+jlub9/zXxz22AL2hxkcHwkgrI3JcA1aXolf
-	/L1G0/NB5G8Ec3MCoZmbKWEEDy2S/JrNImM1VF9MUpYCJixn543ZBabdgpmfct3VNSpxFZ1HnYK
-	/QYCcJ6yYHmsclxEAiwBUfob+/DD5+pXJgQj8LldQfkxjJFdo+Wz8rxTisVxPJ5i6C6GlzwsmtX
-	tMC8pkYX0kzNjTOmwaWp6n458xwqT2Xz2XR/ZgjqMqMSrV1X0XhGG2PVLbzC6+uHnACKtowUcEN
-	z0PqtPMu/0AEFJlh7NonbC3yo
-X-Google-Smtp-Source: AGHT+IEVHoucPnHehRJx7iK3J6AShz+KMdwofBAN581qWxfDGPZrVO0T7MEE9K9AUrnUMGyOVN+cYw==
-X-Received: by 2002:a2e:864d:0:b0:308:eb58:6580 with SMTP id 38308e7fff4ca-30b9345c812mr22403201fa.33.1740848354988;
-        Sat, 01 Mar 2025 08:59:14 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30ba9f3ccecsm1399641fa.7.2025.03.01.08.59.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Mar 2025 08:59:13 -0800 (PST)
-Date: Sat, 1 Mar 2025 18:59:11 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs8300: add QCrypto node
-Message-ID: <vrokhkstd3zbvdxcagjvbxnzdwznakwg2xitd7wpbdxogqvfkd@grleg3nqtoxm>
-References: <20250227180817.3386795-1-quic_yrangana@quicinc.com>
- <20250227180817.3386795-2-quic_yrangana@quicinc.com>
+	s=arc-20240116; t=1740852586; c=relaxed/simple;
+	bh=/1KRbZDrax+HBk2kFcZNxdQJ+mrMRQTrz435zMXn/NY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=sx8iOO+QjI2/rOWunInFbVLHmiLfLUrpT0TSPippTwL1LSvDRlgDP+fzv687Zu6qlBMw3upFbv2DJ1SUAnbTphi90fYKGrH81ia8OSyaJAgP3QoF6CWooQHGZUyQzjQdfbbe82/Z+UwRF7Bm9bVXUNlStmuWMA7lnFuBvrAHMQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=wpczwOyW; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=bOD5z77+; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1740852577;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7aAluflwF8uxqGPtsL2kQpy/Mt+z1OejY+ngR/xlVwA=;
+	b=wpczwOyWMsIC5xL2dzr/GEWVo681ybJMAa+f0e7K8fW51ZCfsUYSjDzvjIhWIvq2ud7yW+
+	9VbEDuNAYHIvhW7Xe4XhLYvHHR/YuPwqoL2uKsN58NaK3dLwf/3or9U9jMJBD5r7KJj3dL
+	WozYGrEoI0Q0QucZF5/RohIu1r5+xRbrpV3Oh8RocPpEVrsn+PjYpQmY4TW98MS0v9NwGs
+	cOPceCK9wps63cE0Ah0F2Dw3hGQ+hT4dxWRdeOBj2IF7lE7lvWCEf3CM8GnKCu9C7ifbbB
+	ycoHiW6RLyj+I6mnW4e4PsfoxEsh8Xru4haSb334UuKdXhW03TjurxMEgkEChg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1740852577;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7aAluflwF8uxqGPtsL2kQpy/Mt+z1OejY+ngR/xlVwA=;
+	b=bOD5z77+FsiaBwISDB+ppOhZwXZLsW93CjTdva9DyZjaS2IgUkbkM357Wb/3WsV+YQlN8Y
+	mMHtAgK+F3jkw3Aw==
+To: Marc Zyngier <maz@kernel.org>, Frank Li <Frank.li@nxp.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Anup Patel <apatel@ventanamicro.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich
+ <dakr@kernel.org>, Manivannan Sadhasivam
+ <manivannan.sadhasivam@linaro.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?=
+ <kw@linux.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, Shuah
+ Khan <shuah@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach
+ <l.stach@pengutronix.de>, Lorenzo
+ Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ dlemoal@kernel.org, jdmason@kudzu.us, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v15 00/15] PCI: EP: Add RC-to-EP doorbell with platform
+ MSI controller
+In-Reply-To: <86ldtpot6m.wl-maz@kernel.org>
+References: <20250211-ep-msi-v15-0-bcacc1f2b1a9@nxp.com>
+ <Z7eKBsxrmthtElpz@lizhi-Precision-Tower-5810>
+ <86ldtpot6m.wl-maz@kernel.org>
+Date: Sat, 01 Mar 2025 19:09:35 +0100
+Message-ID: <87senwd3mo.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250227180817.3386795-2-quic_yrangana@quicinc.com>
+Content-Type: text/plain
 
-On Thu, Feb 27, 2025 at 11:38:17PM +0530, Yuvaraj Ranganathan wrote:
-> The initial QCE node change is reverted by the following patch
-> https://lore.kernel.org/all/20250128115333.95021-2-krzysztof.kozlowski@linaro.org/
-> because of the build warning,
-> 
->   qcs8300-ride.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
->     ...
->     'qcom,qcs8300-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
-> 
-> 1. ICE crypto node is not sorted and fix to sort it.
-> 2. Add the QCE node back that fix the above warning.
+On Sat, Mar 01 2025 at 12:02, Marc Zyngier wrote:
+> - This IMMUTABLE thing serves no purpose, because you don't randomly
+>   plug this end-point block on any MSI controller. They come as part
+>   of an SoC.
 
-Two issues. Two commits. Pretty simple.
+Yes and no. The problem is that the EP implementation is meant to be a
+generic library and while GIC-ITS guarantees immutability of the
+address/data pair after setup, there are architectures (x86, loongson,
+riscv) where the base MSI controller does not and immutability is only
+achieved when interrupt remapping is enabled. The latter can be disabled
+at boot-time and then the EP implementation becomes a lottery across
+affinity changes.
 
-> 
-> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 22 +++++++++++++++++-----
->  1 file changed, 17 insertions(+), 5 deletions(-)
--- 
-With best wishes
-Dmitry
+That was my concern about this library implementation and that's why I
+asked for a mechanism to ensure that the underlying irqdomain provides a
+immutable address/data pair.
+
+So it does not matter for GIC-ITS, but in the larger picture it matters.
+
+Thanks,
+
+        tglx
 
