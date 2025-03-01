@@ -1,194 +1,245 @@
-Return-Path: <devicetree+bounces-152890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBEB8A4A7BE
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 02:58:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF5EA4A838
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 04:06:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5ACF1897E40
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 01:58:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AC0A1899B0D
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 03:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2FB215624D;
-	Sat,  1 Mar 2025 01:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6B3E7FBD6;
+	Sat,  1 Mar 2025 03:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ZB+v+4Ok"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n6RrAPlQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PNZPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19011038.outbound.protection.outlook.com [52.103.68.38])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCF1285C5E;
-	Sat,  1 Mar 2025 01:58:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.38
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740794319; cv=fail; b=ht5SJk93CLIJByXw0O2BkgcSiMyltn7+SNhwGtfE15nLaboFxG2elX6gukFElzyOmPAR5O2ZIhtFgkfovrzYEYzNu+aFc0Fcd1lR6dTMjaSSx+R5UdrtZQ8vGI4SGPgf6LnFnz0BP9Q44LOPd37o07N9AJCRXVtvsPxYCNLb960=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740794319; c=relaxed/simple;
-	bh=hdeKCfEI42cdHcKbpd334bYRQIlS78BUpKeq87FGAnc=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=lmpTbkvK5B2DNpANbvn5dnfaDESS7WHFHmGa4g3cINCgwUTa/1+sZL/fKoAYeecEfQ9IKVyqoKl+Qwma9Qab1N3ata02MYqgJygtJYCntQn5twd0PSlMXeipbnAmggbWfbuYsPOftGZ4uTJw+yUNeo3Z4CIwW0Xmot+qKkG2b0U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ZB+v+4Ok; arc=fail smtp.client-ip=52.103.68.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ctBNgsHlVkh6iOKDtnQWCGtrHmzfyzJbcXaR95LO8meaIPqu94sG+i5HiVSrtrmM06Ju1UhLwCnAv/t32fGbcLzy1FbHNctVZked6ekcFhfeM+mF4JKAk0unOuAOjf3Wk0qb3kNQiDV0TmoHWpDaCcnI3bta67pio+C9JE0yveJKzc+ndE/xoU818SjIxYRoEVqaz0iNukufiASSRqLJROFRk5PZ4rPQxRPXATa/btNsiavW0+CWdZE6VIlwgJnyAs+VmQa5tj97IBCnjQTMWxe2v2I5oEURmYLiupHgcGjl4Fp6+YFWXWE3Xxd2AIDQ93lv3WXjFsUIW+9/uybeTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SQmxoVjg+8/QMFEBFschOWaWX0CTsAVlSzF/CK/y9K0=;
- b=fpBbJDr2guX7VKTz5exSoenM6Ib+qGeKg8auePZC227AhGMCtGQKXzvjdNyg9wAHSRt6PM9KmNqcIBYXRgrbHHbBF+mAkIQYJA9WAsRWYBBL4A0bi84a04HI51XF1pcx/o5GSofbXAJWboBBbPw1vSqN2+moSbn0d6QzOTNYYKSMJnIpPuMI29wqmrgLzyviIBCx58npFtriZZxgDvfLK3yy7FuM6gIOSVXldpsb4fq03jLyEF7uMSLk71VzA2u0vHOvLItBjQF32ynpjddZn7hg9zwkCNRbi7F1hJeOGs6OaIwCw0SkjrVnJZbiFNXgXkLH0l9cfK9l4x5F4VLmHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SQmxoVjg+8/QMFEBFschOWaWX0CTsAVlSzF/CK/y9K0=;
- b=ZB+v+4OkbhNv/Sqc1wupjzxFdyzl5FPxZuRjqX/g8m2mWwaBf1zXa4LvCUJu4U28BhF/FZj8e4AAl6U+FCqy0J6vCIvptASxi5BJygXl5UNGsdkjTzRGJgE2igf9jSXhJ/feyhIa1dsMIkVcKDxGY4N1zlzFyVfDs4OkYg6Hir0aTX/ystAQPs/cMfChe6UXrzITSpizexBbRyLDrq0WXhRVJSXGrjZNkdzT5SgaPRj5TegBRaIk/lP6pekIr3v23dsphTy1vZ3mFiSwx73fOm38xOECX0sxkCHAdCS/0xFsYuxXzdLTNwxEk+cDCJf81hdyyfZlqn75IAkKlY3cYA==
-Received: from PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:1eb::14) by PN0PR01MB9098.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:161::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.24; Sat, 1 Mar
- 2025 01:58:30 +0000
-Received: from PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::1b4f:5587:7637:c5a5]) by PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::1b4f:5587:7637:c5a5%6]) with mapi id 15.20.8489.023; Sat, 1 Mar 2025
- 01:58:29 +0000
-Message-ID:
- <PN0PR01MB103937D1C23820E0FC43BEA33FECF2@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
-Date: Sat, 1 Mar 2025 09:58:24 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] riscv: sophgo: dts: Add spi controller for SG2042
-To: Conor Dooley <conor@kernel.org>, Zixian Zeng <sycamoremoon376@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Inochi Amaoto <inochiama@outlook.com>,
- Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- sophgo@lists.linux.dev, chao.wei@sophgo.com, xiaoguang.xing@sophgo.com
-References: <20250228-sfg-spi-v2-1-8bbf23b85d0e@gmail.com>
- <20250228-factual-rage-0e1e1e48b009@spud>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20250228-factual-rage-0e1e1e48b009@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR06CA0004.apcprd06.prod.outlook.com
- (2603:1096:4:186::20) To PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:1eb::14)
-X-Microsoft-Original-Message-ID:
- <9a7bc5ea-5448-4970-be58-40705e183c45@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E9A258A;
+	Sat,  1 Mar 2025 03:06:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740798401; cv=none; b=RGuhnpbLFAqvw+717v6jVHCEqI1t7cREu1ivqaSrzU3FymdtclTkzyfNRcrK7qjS1YTX7ITYuyqkz/LZ/2ouVKs9JeZoFla5eknt95oo4qwgldyd4DEhg3rN14jWW1XzG1jBC09OUpI7W2bCm8pBHPqTsmM6BfsSxmenDa95pPg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740798401; c=relaxed/simple;
+	bh=d4fr13w6NqBDZnKtfIoJruFH/zIQdAD23l+WW0qbwcg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Nq4ak+yAglqJSur2zEYFQWeR4yyHoE38ddgu0Wm9pT1n3EHRNnhM+4uH8JKEibQiSzq9JDShme0uES30X79Dj6yvSRqEj/OYiWA1YcPMdttFAyXCSC7Agc7VaNjLM1ybJReq6j3xmipXzfuyKO7ZhA5dwp9zuOzUtAeCHrr3M+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n6RrAPlQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E61DC4CED6;
+	Sat,  1 Mar 2025 03:06:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740798401;
+	bh=d4fr13w6NqBDZnKtfIoJruFH/zIQdAD23l+WW0qbwcg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=n6RrAPlQON/vV+L9tp2VbGXYcXIrNNCs66VcFCEEr1iHS8Ul3fWnWzaRWy8nvj4ob
+	 /H5LDlStxLwK+YnGedk3KJzjRFbf8xhuUOYMlndIbHPOwzaIOYcof9b3c4StlsW1U/
+	 4Upw7BNKycO3dbDKFOS19fnnqBfww2PYKGdOBpSlwvqiVKIUuTtBg4g5ZbJaDcquSH
+	 11W/0gUkW7IGOTAVQjLnrc1H/uS0cdsMrbjAL05U9BzoFdA5AeP0CCZbsPNjtY32D6
+	 03Kv7fkQXto2cMQjhqr1Ea54Kcs9rU0LiBuISJs31gvXly51ZTd7ICXocJyMAnNlln
+	 Utj4osVN4V5wA==
+Date: Sat, 1 Mar 2025 03:06:25 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa
+ <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Javier
+ Carrasco <javier.carrasco.cruz@gmail.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v3 9/9] iio: adc: ti-ads7924: Respect device tree config
+Message-ID: <20250301030625.54c43d37@jic23-huawei>
+In-Reply-To: <3279aa9348e7149bfbd433daaa201f2eb5873e1f.1739967040.git.mazziesaccount@gmail.com>
+References: <cover.1739967040.git.mazziesaccount@gmail.com>
+	<3279aa9348e7149bfbd433daaa201f2eb5873e1f.1739967040.git.mazziesaccount@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PN0PR01MB10393:EE_|PN0PR01MB9098:EE_
-X-MS-Office365-Filtering-Correlation-Id: e5c1a7c7-1035-46f2-2b65-08dd58648fc9
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|5072599009|6090799003|19110799003|8060799006|15080799006|7092599003|461199028|1602099012|10035399004|440099028|3412199025|4302099013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?akV3QTFZUFVCK1ExanhFTkp0amRRK25qMERxQ0pDdTRrMU9ZQ2E2TExsWDQ1?=
- =?utf-8?B?SmhjYjVaVS9rVldSL0JjdUVGdVF5VStzMW9keERKSHV1SjJwWHdhaVRTWlds?=
- =?utf-8?B?M1d5dWdUNVY4c0puTkEwU3pvZndib3RPR1NyeWdWR3VZZDhxcWxEN0VRZ29P?=
- =?utf-8?B?a0J0Z1k0Q3VYeWpwcW9BcjhvOWlOYWtESjVFd2l0Qk5ndmxSajhIbGdmVDhF?=
- =?utf-8?B?VXFDNTQ5TEp5TmdnZThPeUpjQXJZZjJZdnhMaDRMay9JU2JEandQS2Q3M2FM?=
- =?utf-8?B?NENERDQ1K2h6T3diSnNyZU5CWUErUkpSSUd5UjIxTUFZWG93SmJNcnhtMjJC?=
- =?utf-8?B?Uzg5QUM1dHZoM3hLc2s5bHYxS0QwWWJ0aWh4MmZoNk4xK1BjZGoxVHVLQmE2?=
- =?utf-8?B?TjFrQlFkckU3dW9CZlN3Q1BPTndzM1NSTCs4K3RGaDIyTk5SVDFrcXpNMHhj?=
- =?utf-8?B?STlwbjlkRzBiTU1tSlZha3ZNY1R3V2hubHp6VWdNYm1CaWhLcXVZVFEwcG1z?=
- =?utf-8?B?d2FJY1NCemNoSzJwWGNKd05KVXhPc2VWbHUvaHVuRjVYMUozTzNMcGFkZ0Q4?=
- =?utf-8?B?dTVDcUMyUGhRWklMdHhpcWoyOHlBRnFVbGFHbktzNFMwQTB6QVQxbUJjV1RD?=
- =?utf-8?B?azlEeE5ieDJXQzhsV3FBMmp2RDhqK1B3MnBxTGpmTFZSTTJCSnRlRzZqTkl0?=
- =?utf-8?B?Wkw4cnl6Ky9LdnE0NGVsdWVmMWVIOTZNLzNFSUJOL1lLZ2R4U2p6QUxRSXZI?=
- =?utf-8?B?TzJDRGFEN1BKZ1J5cktZSHdqR3VRVjZBR3kxNmpuWFdXZUhYTHJjbzBqOFZh?=
- =?utf-8?B?aE51VDNMMWJLcEc0a1NtTUUrMVFQeDRualZmWjBFMHNYOUJ4TG9iSkJtTm10?=
- =?utf-8?B?Z0xmeHRSd1BJOFFqTlMrVjJnbmJEakhJa1BwVnBucXBEZVJJSmpMdTBiZ2ZX?=
- =?utf-8?B?a3h6cFl1czdNK3NZUEhHT1F5SE9PZHlhb2YvVFJZT2RHK3B1YTMyMHZMUVNm?=
- =?utf-8?B?bSs4ZERlcWlqa1B5d0szSFdQcldUZEFJc2pyc2FHcUt5WVhkRnhoN3VlUW5a?=
- =?utf-8?B?VEtHRGNnSUR1NXpmbHVkVlBnU21rYXM5aHlKdEp5eE5jRmFLZkl1SUIzbWRD?=
- =?utf-8?B?TTdub0ZxNVNxZG4zSjdmdFduZXNhb3Z1VDZXNzgyRHQvUElwQ1FPU3d1eGNV?=
- =?utf-8?B?TWJkU0Vvc0hHdmNvaFpzVDA1KzJXRW1nT0RIOGFQb0RwdVZXUnM0bG1tNkxB?=
- =?utf-8?B?ak9aYWRjckZnOWJPbnJpVi9XSnB2V3NuN1JlMlZwdWlMRDNpY1pJVlFFZlBW?=
- =?utf-8?B?NElTMnV3SjB0UGNoMG5Tb0V6YjBiU1dyU01KWVBoZlVsc1FuNzMrV0RsY1Ar?=
- =?utf-8?B?Q3V0RzlST1J0S1lBRGhjRmlUSi9kNi9EV0xHSmJBckRoNXZidWx5VExEdnc5?=
- =?utf-8?B?T3kwVldKbnltN1NKVVZzUkhWSC96TDFDcTN3V3ZVbit4RExFWW9FQTNMUFVH?=
- =?utf-8?B?L3Nsb2t6ekdMaS9aNC9QSm5haWNlekJmOUtYY2MyRFdLQ2NIZkgrblFocVRk?=
- =?utf-8?B?cld5N2s2cmlxNjNoYXZKWldmRnVLZ2s0WU5Ma1VORXNaazFkdmNKb1hTL2VN?=
- =?utf-8?B?YmNFbW9IVHlwR1NudXRYZnlkemhNbXNnM1BmS3JOdCs0eDhzK0p3QmJJQXg3?=
- =?utf-8?B?NnkxM3VJbWZkWS8vaUlFNGZvODd6YTdhSEVhL0RzNzhkNmtBcFcxZjl3PT0=?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NE9Jemh1SFZvK2w4a0hzRDlEYnRtckJqSTJjSTVQQlY0VHV5WWhoV2FYZGdG?=
- =?utf-8?B?WnlQZVJaMzNFc0JSdlJIMnhIN2hYL2ozNUkzQk9kR05MbUNjU0VDYnIxaS83?=
- =?utf-8?B?VmhoNE5lRDVRZ2UwOUNyRnZVT0grWXFyTU51U3BCcFZxYjdvMEpFYWJ3NGps?=
- =?utf-8?B?enFtdkQvbEk1TjUzZy84YnArdU5RNEhSNm80Q1p3Wkd1N0Z6cW9TdkVBc3lk?=
- =?utf-8?B?SVU3VVNzT1JEV1hYYnhCT0kyT1hzMG9aR1BlNHg0c2pYUENZeUkxRytKNXpI?=
- =?utf-8?B?Rkk5eEZDSFhDRGpDNW02bmFjMzVUc0hxSnhlQ3lVaExaOWZRYmdHMDFmakdn?=
- =?utf-8?B?MlIrVDVtMTE0STY2RE5ta3dhdFBRMHBka2loZnVUSFhNbW9NcUU1STh3Z2Jh?=
- =?utf-8?B?ckNaYy9iT2RIQ0hHOGRIbjArSm9ocTN0RTlwZkZzY1ZERUZ1amFCMkw5YVY1?=
- =?utf-8?B?bzIrRTF1dW1VZnRKc1phV0lzMHVRYS9ISnRLNGtTL0JvS1k5NFhKRS9ua3Nn?=
- =?utf-8?B?UlVqT1BnaUFOdmEwczEvdS9JdUtXcUVURGlxYlNtWWxoQndDOFRUYzN1L24y?=
- =?utf-8?B?TCtxQW5ndGo5VXV0NzluUXo1M055SEhzeXh1OHNFRkZEWDI2OGxDdnhYdVNW?=
- =?utf-8?B?UUVxbzhnWFY5bU5qdFAxVmlaVWpVMHROV2REUmVSUnN5YzVhV3RSYW5LTW5k?=
- =?utf-8?B?Y05VM0RaV1BzbWtSSGlKa1A2UHhNZnM1a1JzKzZtQ1JtblFFanltYzl2VS9a?=
- =?utf-8?B?aUxaU044MHByU2F0U0xwZ2t4Wlc3OGF2cG5CZ3h0ZFp2WC9teFhHY24wZ3pH?=
- =?utf-8?B?V0ozQ1N2bFRWNFpwVVpDem1qYlV0RXZud1FSUHdkMGt5dEFFdEcvSVdaNUZh?=
- =?utf-8?B?TzI1RzhScVA2SHV6d2FZN25RWllZVTZNbXR5NTlSRzk2QVgzb002N00rY1U0?=
- =?utf-8?B?WmdJOEp0RWNMdFdXZUp6dDVVZ1RCZU4wNWdhb0I4QktBQlBCOHZUTk85ZzRu?=
- =?utf-8?B?bHRSbXVVc2w1d2pVNysybXI0d25LdVJCazV1UHdNWFpvMlk2UmxCeFBWNUxi?=
- =?utf-8?B?aFBTdXdYN3V5NUkraFFMOXBlS3VnV2RlWFZVSEZKUUFVQ1pIRERrRnZ1Mlhn?=
- =?utf-8?B?OHFFZEFTYVJKa3MyRmVBS1NXM3hidFhlRWJ4a0VQYmJwZEVLMFRWQVZoTW9T?=
- =?utf-8?B?Q3VzZlJWVXcxSTl0VFIzTVFEWFpVZTJsOEs4cDlVa0d1UUVNVS9yQU1YYjhS?=
- =?utf-8?B?bm51RXN1ejhuMERmOVVYSUNZdUpWWDd6b1RXNVlxeUZDMVlQcHRxN3lqa0RD?=
- =?utf-8?B?eHlMcFh2SW1JdGlOWFhRN0ZGRFdBajhEaVF0azY0VG1MZ29PQTArakNTVEgz?=
- =?utf-8?B?M1UvYUxXK0lsbzhTVHVLNGd5alZDSjROTklSWWUwR2s5ZnFLVmRHa2N6aFZy?=
- =?utf-8?B?MkR3L1lkczdwMzdhVGoveXZTOEgyRXBQU09iSGR0WWVnZHcvL2JrWTBHUURL?=
- =?utf-8?B?TWRKRmtHMWFYL1c5ZzNJa0FaU3JvVk5SaHpYU1FPRzh3Y1AwTm42MHZkb3l2?=
- =?utf-8?B?UW5HZUYzM29LQXZVMHFSY1FGQk9KSUFacHFQTXpkM3dOL0I5dGR5ZTQvZUR0?=
- =?utf-8?B?RG4zbmxSRFJCdmdYYmZkeGtjZkZWTzlCNnRaY3dWVTRTSStwWnNLbTNHRmV0?=
- =?utf-8?B?dHh6OEo2WnJ4ZmZWWUliMFFtdUdvbDNrbThqcTIvQmV5YzR4c2pRd0VzK2Zq?=
- =?utf-8?Q?jMT/ByEUYmEcrvJZHOcpxXNHPJIFT+Z68wWwVO9?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e5c1a7c7-1035-46f2-2b65-08dd58648fc9
-X-MS-Exchange-CrossTenant-AuthSource: PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2025 01:58:29.4010
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0PR01MB9098
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Wed, 19 Feb 2025 14:32:23 +0200
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-On 2025/3/1 2:22, Conor Dooley wrote:
-[......]
->> +
->> +		spi0: spi@7040004000 {
->> +			compatible = "snps,dw-apb-ssi";
-> I thought were were dropping the use of "snps,dw-abp-ssi" in isolation,
-> and starting to require soc-specific compatibles now.
->
-> Rob, Krzysztof?
-I'm also very interested to know why we can't just use 
-"snps,dw-abp-ssi", maybe I missed some discussion ...
-I googled examples of soc-specific defined in the code, and it doesn't 
-seem to be much, only arch/mips/boot/dts/mscc/ocelot.dtsi and 
-arch/riscv/boot/dts/thead/th1520.dtsi.
-Specially, I looked at the commits for th1520 and saw this 
-https://lore.kernel.org/linux-riscv/20240703-garbage-explicit-bd95f8deb716@wendy/. 
-It tells if the fallback works identically, then the specific compatible 
-is not needed.
+> The ti-ads7924 driver ignores the device-tree ADC channel specification
+> and always exposes all 4 channels to users whether they are present in
+> the device-tree or not. Additionally, the "reg" values in the channel
+> nodes are ignored, although an error is printed if they are out of range.
+> 
+> Register only the channels described in the device-tree, and use the reg
+> property as a channel ID.
 
-This makes me more confused :)
+No to this one in it's current form.  The nodes are just there to provide
+the labels.  Maybe it is fine if we fallback to registering them all if
+none are provided.
 
-Regards,
-
-Chen
-
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> 
+> ---
+> Revision history:
+> v2 => v3: New patch
+> 
+> Please note that this is potentially breaking existing users if they
+> have wrong values in the device-tree. I believe the device-tree should
+> ideally be respected, and if it says device X has only one channel, then
+> we should believe it and not register 4. Well, we don't live in the
+> ideal world, so even though I believe this is TheRightThingToDo - it may
+> cause havoc because correct device-tree has not been required from the
+> day 1. So, please review and test and apply at your own risk :)
+> 
+> As a side note, this might warrant a fixes tag but the adc-helper -stuff
+> is hardly worth to be backported... (And I've already exceeded my time
+> budget with this series - hence I'll leave crafting backportable fix to
+> TI people ;) )
+> 
+> This has only been compile tested! All testing is highly appreciated.
+> ---
+>  drivers/iio/adc/ti-ads7924.c | 80 +++++++++++++++++-------------------
+>  1 file changed, 37 insertions(+), 43 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ti-ads7924.c b/drivers/iio/adc/ti-ads7924.c
+> index b1f745f75dbe..a5b8f7c81b8a 100644
+> --- a/drivers/iio/adc/ti-ads7924.c
+> +++ b/drivers/iio/adc/ti-ads7924.c
+> @@ -22,6 +22,7 @@
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+>  
+> +#include <linux/iio/adc-helpers.h>
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/types.h>
+>  
+> @@ -119,15 +120,12 @@
+>  #define ADS7924_TOTAL_CONVTIME_US (ADS7924_PWRUPTIME_US + ADS7924_ACQTIME_US + \
+>  				   ADS7924_CONVTIME_US)
+>  
+> -#define ADS7924_V_CHAN(_chan, _addr) {				\
+> -	.type = IIO_VOLTAGE,					\
+> -	.indexed = 1,						\
+> -	.channel = _chan,					\
+> -	.address = _addr,					\
+> -	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW), 		\
+> -	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
+> -	.datasheet_name = "AIN"#_chan,				\
+> -}
+> +static const struct iio_chan_spec ads7924_chan_template = {
+> +	.type = IIO_VOLTAGE,
+> +	.indexed = 1,
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
+> +};
+>  
+>  struct ads7924_data {
+>  	struct device *dev;
+> @@ -182,13 +180,6 @@ static const struct regmap_config ads7924_regmap_config = {
+>  	.writeable_reg = ads7924_is_writeable_reg,
+>  };
+>  
+> -static const struct iio_chan_spec ads7924_channels[] = {
+> -	ADS7924_V_CHAN(0, ADS7924_DATA0_U_REG),
+> -	ADS7924_V_CHAN(1, ADS7924_DATA1_U_REG),
+> -	ADS7924_V_CHAN(2, ADS7924_DATA2_U_REG),
+> -	ADS7924_V_CHAN(3, ADS7924_DATA3_U_REG),
+> -};
+> -
+>  static int ads7924_get_adc_result(struct ads7924_data *data,
+>  				  struct iio_chan_spec const *chan, int *val)
+>  {
+> @@ -251,32 +242,38 @@ static const struct iio_info ads7924_info = {
+>  	.read_raw = ads7924_read_raw,
+>  };
+>  
+> -static int ads7924_get_channels_config(struct device *dev)
+> +static const struct iio_adc_props ads7924_chan_props = {
+> +	.required = IIO_ADC_CHAN_PROP_TYPE_REG,
+> +};
+> +
+> +static int ads7924_get_channels_config(struct iio_dev *indio_dev,
+> +				       struct device *dev)
+>  {
+> -	struct fwnode_handle *node;
+> -	int num_channels = 0;
+> +	struct iio_chan_spec *chan_array;
+> +	int num_channels = 0, i;
+>  
+> -	device_for_each_child_node(dev, node) {
+> -		u32 pval;
+> -		unsigned int channel;
+> +	num_channels = devm_iio_adc_device_alloc_chaninfo(dev,
+> +					&ads7924_chan_template, &chan_array,
+> +					&ads7924_chan_props);
+>  
+> -		if (fwnode_property_read_u32(node, "reg", &pval)) {
+> -			dev_err(dev, "invalid reg on %pfw\n", node);
+> -			continue;
+> -		}
+> +	if (num_channels < 0)
+> +		return num_channels;
+>  
+> -		channel = pval;
+> -		if (channel >= ADS7924_CHANNELS) {
+> -			dev_err(dev, "invalid channel index %d on %pfw\n",
+> -				channel, node);
+> -			continue;
+> -		}
+> +	if (!num_channels)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < num_channels; i++) {
+> +		static const char * const datasheet_names[] = {
+> +			"AIN0", "AIN1", "AIN2", "AIN3"
+> +		};
+> +		int ch_id = chan_array[i].channel;
+>  
+> -		num_channels++;
+> +		chan_array[i].address = ADS7924_DATA0_U_REG + ch_id;
+> +		chan_array[i].datasheet_name = datasheet_names[ch_id];
+>  	}
+>  
+> -	if (!num_channels)
+> -		return -EINVAL;
+> +	indio_dev->channels = chan_array;
+> +	indio_dev->num_channels = num_channels;
+>  
+>  	return 0;
+>  }
+> @@ -370,18 +367,15 @@ static int ads7924_probe(struct i2c_client *client)
+>  
+>  	mutex_init(&data->lock);
+>  
+> -	indio_dev->name = "ads7924";
+> -	indio_dev->modes = INDIO_DIRECT_MODE;
+> -
+> -	indio_dev->channels = ads7924_channels;
+> -	indio_dev->num_channels = ARRAY_SIZE(ads7924_channels);
+> -	indio_dev->info = &ads7924_info;
+> -
+> -	ret = ads7924_get_channels_config(dev);
+> +	ret = ads7924_get_channels_config(indio_dev, dev);
+>  	if (ret < 0)
+>  		return dev_err_probe(dev, ret,
+>  				     "failed to get channels configuration\n");
+>  
+> +	indio_dev->name = "ads7924";
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->info = &ads7924_info;
+> +
+>  	data->regmap = devm_regmap_init_i2c(client, &ads7924_regmap_config);
+>  	if (IS_ERR(data->regmap))
+>  		return dev_err_probe(dev, PTR_ERR(data->regmap),
 
 
