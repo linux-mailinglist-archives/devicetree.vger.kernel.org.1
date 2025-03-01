@@ -1,166 +1,144 @@
-Return-Path: <devicetree+bounces-152915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215BDA4AA09
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 10:29:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D932AA4AA28
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 11:04:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66C423B9D70
-	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 09:29:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F0C71897FF1
+	for <lists+devicetree@lfdr.de>; Sat,  1 Mar 2025 10:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87AEA1CAA9A;
-	Sat,  1 Mar 2025 09:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1071D7E3E;
+	Sat,  1 Mar 2025 10:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="COPRH/g0"
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="YCSL+ZCX";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="wcqUjdTw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989921C3BF1;
-	Sat,  1 Mar 2025 09:29:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740821363; cv=none; b=LGmg+TXfzvBk0GqtlYtxyPY0jJlq+DpuS4F/7C4gXQ/ipFDxoph2wWl5Ai7TulN1vdTOa+XQKo2xlgOhOKbQ3AFQ3QceKuFh/U5eCau2ZEccJBsbpoHDvwWbnzSOgfOtJLA7QAdPiU24vVticVSk/zQIiSdUr7OAU6TxJMEP7vo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740821363; c=relaxed/simple;
-	bh=jEwK21kfmrUQKCsYQRS+7dOxvBfeSC5o9qX2wR0QSPA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PsquN9m049gGKBTKj1yAYUd8M32dpP0bFccdADlo0TK5xF+0NByWewV1IlcWSg4ZshP7g5ojj761r5Wh2S5DNZX0JTjXA4YIw/3J6+sSzZOnqzqcDe5moAXAq/NIcDqC2+enZtlQNCG7HXkhDM18kjNr9lURq9zAtvt0EwX/qW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=COPRH/g0; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740821362; x=1772357362;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jEwK21kfmrUQKCsYQRS+7dOxvBfeSC5o9qX2wR0QSPA=;
-  b=COPRH/g0ChfrEhAgOkorUwZ9uxWvX3FomHf4jE8ld8pMDulek+MO4Z5D
-   woqKJF+a2OH9yTePVs0McqL//dDQ5MBB9QRPNpYuMFzboRICEyI6ca8GL
-   hsgRq96ljwEPpw3WeyD9RCS9BQeGt9t+m3iHJmlbuhCo+1/eHSOvQ7gze
-   FBuldFyyhmDTszg7hXeO5zwcSpcuZ6k0VF8nRSjQASArqJxHlT85QT9Ez
-   r3ykErZfva6R3GlVhv66k7/wmFpM6rFbxNqR3IbIhVPoyyyBnuBz1SX61
-   RAzZgxsnYpQYtDluuAB3auck8zqlvhXFRJ1BHXLBr7/MK6+SBVtsCmjHp
-   g==;
-X-CSE-ConnectionGUID: V/LraqzfQZaMf8rQoMzVSg==
-X-CSE-MsgGUID: GqpNC3agQ9+xFgVNAnmuww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="64209227"
-X-IronPort-AV: E=Sophos;i="6.13,325,1732608000"; 
-   d="scan'208";a="64209227"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2025 01:29:21 -0800
-X-CSE-ConnectionGUID: NCKkDS+UT02fzqZYoQG4hw==
-X-CSE-MsgGUID: rX+3mIBQT02FkU4evzR0wA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,325,1732608000"; 
-   d="scan'208";a="117336465"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmviesa006.fm.intel.com with ESMTP; 01 Mar 2025 01:29:17 -0800
-Date: Sat, 1 Mar 2025 17:27:19 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Marco Pagani <marco.pagani@linux.dev>
-Cc: Nava kishore Manne <nava.kishore.manne@amd.com>, git@amd.com,
-	mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-	trix@redhat.com, robh@kernel.org, saravanak@google.com,
-	linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [RFC v2 1/1] fpga-region: Add generic IOCTL interface for
- runtime FPGA programming
-Message-ID: <Z8LS93jh4KBvNlCd@yilunxu-OptiPlex-7050>
-References: <20241029091734.3288005-1-nava.kishore.manne@amd.com>
- <20241029091734.3288005-2-nava.kishore.manne@amd.com>
- <ZzwQrYeWVF6cRtgA@yilunxu-OptiPlex-7050>
- <9bfaf1cf-3313-4cb3-9963-2b4bad2d3165@redhat.com>
- <Z0fIiQPCS69O2d/n@yilunxu-OptiPlex-7050>
- <00e5c1c1-a98e-4360-b7e5-ffaa384e1036@linux.dev>
- <Z6RRAXocxWHsZZLF@yilunxu-OptiPlex-7050>
- <a51c0c24-fd21-42b3-9c4a-39ebc0751f03@linux.dev>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B031D6DC8;
+	Sat,  1 Mar 2025 10:03:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1740823436; cv=pass; b=pKiElAUIXMmsVhOtvQT6IgrIgHHZ+rSsuHGiAtmwRbKhT0CZ0o27xQ541G8GGvmRbDD2HlSwuS+Ij8WhdB8ZxIp3E02dCXkx2BUc4t3EsE6T43jrnWRtORMeQHuFlbYwgfnmOcho/qSIUDcwQM5pstEI2LdX/Eqzr4gAoKvxJd8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1740823436; c=relaxed/simple;
+	bh=Rn/w/lrOPl+6Z/ejlk3nn0vA6sXamygIoAjnNZ6QoL4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GMK2+MkFC5dhzKTs+4InvjY37dq0a3dYEGIMon6K0OhWUUwDe8R9mxYO6yeynuQgdVLw87vxU5KKC7ZeJPk0uP7Qh83r4djoA9F/OKw/rmsnNZ38eWG6wKeNcBT0i/Q4PZhaAew3V1aMwl0ENktkDSQqUhCfy5p83Hz3ACkNw7A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=YCSL+ZCX; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=wcqUjdTw; arc=pass smtp.client-ip=85.215.255.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
+ARC-Seal: i=1; a=rsa-sha256; t=1740823244; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=VfGLBiyuuul7M5Jh4cuZyMbLX48q2HddResoH33nydVhvupAHaLjbd+fQwTygLu3xd
+    xQcK+rz54QnUCGEP7PvUmzj4qIc7NE+zgVMQnvLC1FfsgZ6o1WeWmbNr3y83WeaTb1l4
+    Qsu5aoipVHWePuQ83IDJdcJ9eEScC6IqS7t8U/cpxIHhUQrY77Y0Yjgj84/dfqgg6huj
+    gidh9rXRglovd9s+TiEu8tzOcjMOzKgCvizjenapxJ8brTOXcvhncNhUuckBLrWH0M5r
+    6eGvqJKshk4altmp/zIC60nmP/1jVLnQqxH1PhBkBkSLuqd9Wupdxdl1fFIwm7HYC1EH
+    sVAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1740823244;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=jQHkoK6XIUS+W/XJnNra9kSPHkGbD84yfUBClpEfK14=;
+    b=owU9sDCrg3+r9Qe9omYgoNZObZ3GUHd+/YYbtFLwdflvTXi9/06XZBIVbQVdyLKYBl
+    HpPjL5Tb0StQHs4RFCQ11CD0goKi5kVy4pQMj2QiX2D2eJOMb1nAIOjyFUFeiryVlcSj
+    tfk1vBylRl5BSqrHrSckciTEuIDNatEfCCOgC2890q/NQf3GC4oBBhUiDyju5SHTbp2B
+    HPUfTxiDdRCGEceNTsSVQtZodqU20kx39AOdWxn+MVuNFjQ7mbTHXzm4+C40UDiY/d6H
+    HvB4prxUgvt85PBDdUjMq4+BUikOOyb342bWnFbP6+/NBvJt304YOaTNvNDFNHKbG53d
+    TaEw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1740823244;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=jQHkoK6XIUS+W/XJnNra9kSPHkGbD84yfUBClpEfK14=;
+    b=YCSL+ZCX1HMFEZz0lYwmft2xiKDXGknLSxammPr/P93NuBVBDPMHj3fdnva4afNSx+
+    PfUjryNeVZkebUjnaJn/McDNyUTDySQsmWqYV50GJQlAZCPPJ76oNzEQDoVjuCuvS/Yo
+    WE2AyV1z0ELj3xMAlMJdJru4/xZ6AG4rhGtgQyQOu33/hD6hDIHzYBln6l/feE+0cAkD
+    y4+v1clU2BAmvqR3EPIVrxCwAtBbADkZ2n6kmBM+5TeRChOyRxgS5MtYtt0n0r5PtEag
+    WKXWRYqAqYeqqoZBvmKJR+DE9ljDFJdHDoyz32Q5JI1Xwb+3nPHZS1G2VPvbd38Ty/7C
+    FoAg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1740823244;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=Message-ID:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=jQHkoK6XIUS+W/XJnNra9kSPHkGbD84yfUBClpEfK14=;
+    b=wcqUjdTw7TB0GskEKt703SipSmVMBCBl7OhgFwLkja9cGIzoyL3FExijRRWlXg3q8N
+    ywFNz5gv51mfYqD+HmCQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yfjEZ"
+Received: from localhost.localdomain
+    by smtp.strato.de (RZmta 51.3.0 DYNA|AUTH)
+    with ESMTPSA id Q56adc121A0hbff
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Sat, 1 Mar 2025 11:00:43 +0100 (CET)
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Cercueil <paul@crapouillou.net>
+Cc: Andreas Kemnade <andreas@kemnade.info>,
+	Paul Boddie <paul@boddie.org.uk>,
+	Tim Bysun <tim.bysun@ingenic.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	letux-kernel@openphoenux.org,
+	kernel@pyra-handheld.com,
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH v3 0/4] pinctrl: ingenic: add support for x1600 SoC and MII and I2S for jz4730
+Date: Sat,  1 Mar 2025 11:00:37 +0100
+Message-ID: <cover.1740823241.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a51c0c24-fd21-42b3-9c4a-39ebc0751f03@linux.dev>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Mon, Feb 17, 2025 at 04:18:36PM +0100, Marco Pagani wrote:
-> 
-> 
-> On 06/02/25 07:04, Xu Yilun wrote:
-> >>>> I'm currently working on an RFC to propose a rework of the fpga
-> >>>> subsystem in order to make it more aligned with the device model. One of
-> >>>> the ideas I'm experimenting with is having a bus (struct bus_type) for
-> >>>> fpga regions (devices) so that we can have region drivers that could
-> >>>> handle internal device enumeration/management whenever a new region is
-> >>>> configured on the fabric. Does this make sense in your opinions?
-> >>>
-> >>> mm.. I didn't fully understand the need to have a region driver, what's
-> >>> the issue to solve?
-> >>>
-> >>
-> >> Sorry for the late reply. The general idea is to handle regions in a way
-> >> that is more aligned with the device model without having to resort to
-> >> extra ops and additional devices.
-> >>
-> >> Having an fpga bus would allow us to handle enumeration using proper
-> >> region drivers (in the device model sense of the term, i.e., struct
-> >> device_driver) instead of derived region devices.
-> >>
-> >> On second thought, I think having a reconfiguration interface at the
-> >> fpga manager level is sounder than having it at the region level (one
-> >> for each region).
-> > 
-> > I don't think so. A firmware image may contain enumeration info, e.g.
-> > of-fpga-region. And I think the fpga-region should parse these
-> > enumeration info rather than fpga manager. fpga manager should only deal
-> > with content writing stuff and not be exposed to user.
-> 
-> I agree with that. In my proposal, the fpga manager should be
-> responsible only for writing the image into the configuration memory
-> and allocating region devices. In-region enumeration should be handled by
-> the region drivers.
-> 
-> My worry with having one reconfiguration interface for each region is
-> that it does not reflect how the hardware works. To my knowledge, all
-> major FPGA implementations use a DMA engine (controlled by the fpga
-> manager) that performs the reconfiguration through a single port. So,
-> having one interface per region might be conceptually confusing and give
-> the impression that it is possible to configure regions independently in
-> parallel.
+PATCH V3 2025-03-01 11:00:41:
+Fix some nits reported by Conor and Paul during their review and add
+their acked/reviewed-by.
 
-One interface per region means the regions could be independently
-reprogrammed, i.e. reprogramming of one region won't affect the working
-of another region. But they don't have to be reprogrammed in parallel.
-If it cannot be reprogrammed now, the interface call could fail.
+PATCH V2 2025-02-28 14:33:57:
+Fix pwm5/pwm6/pwm7 pin groups (each one can be muxed to one of two
+pads while pwm0-4 have only one pad) for X1600.
 
-> 
-> >> With that in place, the fpga manager could request a firmware image,
-> >> parse it, write the content into the fpga configuration memory, and then
-> >> instantiate the region devices and add them to its fpga bus. Then, if
-> > 
-> > I think an fpga-region is always there no matter it is cleared, being
-> > reprogrammed, or working. So I don't think an fpga-region needs to be
-> > re-instantated. The sub devices inside fpga-region needs
-> > re-instantating. That's also why I'm hesitating to fpga bus.
-> 
-> I think one of the issues with the current subsystem architecture is
-> that it coalesces two cases: full and partial images. With partial
-> images, it makes sense to keep the region devices and rerun the internal
-> enumeration. With full images, I believe it makes sense to clear and
-> reallocate new devices to set a new region tree.
+PATCH V1 2025-02-26 18:14:53:
+This series expands pinctrl support for some Ingenic/Lumissil SoC.
+For the jz4730 we add MII and I2S pinctrl and general x1600 support.
 
-MM.. I don't actually understand what's the fundamental differences
-between full & partial. If a full region supports full & partial
-reconfiguration, the full region contains partial regions as
-sub-devices. The partial reconfiguration reallocates it sub-devices and
-won't change partial region itself. The full reconfiguration also
-reallocates it sub-devices including partial regions, and won't change
-full region itself.
+The x1600 parts were jointly developed.
 
-Thanks,
-Yilun
+Code was tested on LX16 board (x1600) and Alpha400 (jz4730) and
+on CI20 (jz4780).
+
+Co-authored-by: Andreas Kemnade <andreas@kemnade.info>
+Co-authored-by: H. Nikolaus Schaller <hns@goldelico.com>
+
+
+H. Nikolaus Schaller (3):
+  bindings: pinctrl: ingenic: add x1600
+  pinctrl: ingenic: jz4730: add pinmux for MII
+  pinctrl: ingenic: jz4730: add pinmux for I2S interface
+
+Paul Boddie (1):
+  pinctrl: ingenic: add x1600 support
+
+ .../bindings/pinctrl/ingenic,pinctrl.yaml     |   2 +
+ drivers/pinctrl/pinctrl-ingenic.c             | 262 +++++++++++++++++-
+ 2 files changed, 262 insertions(+), 2 deletions(-)
+
+-- 
+2.47.0
+
 
