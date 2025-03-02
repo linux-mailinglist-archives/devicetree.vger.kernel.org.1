@@ -1,155 +1,127 @@
-Return-Path: <devicetree+bounces-152990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7EC4A4AEC2
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 03:44:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 231F6A4AEEC
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 03:50:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E78C918942F6
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 02:45:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE0EC3B3954
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 02:49:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5511245027;
-	Sun,  2 Mar 2025 02:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADA2D6F30C;
+	Sun,  2 Mar 2025 02:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aq+B1Vpc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K4eq/F5+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11BBB13AF2;
-	Sun,  2 Mar 2025 02:44:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9EB82AF06
+	for <devicetree@vger.kernel.org>; Sun,  2 Mar 2025 02:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740883493; cv=none; b=Je8B8XEAOGQ7bDnP4O+A3UZunFAjjNLlR6myW94KemevGqEd8UR18uAwx9M6ZJdZXNpm2TzEafB+zOBd+b0zoiVBCM54jDXcSZ7OG9p+TROV12FYovygNUV6kX9w/Ao86f+F4gnFLzE85eFOwVm7mo10gbKuD11B8mcD9xhis7I=
+	t=1740883805; cv=none; b=mf7oZy8QyFuBzKa4q2SV1Ytsfv/B3KW5HqorUVH5Lj+lR6maZY27+jRXmaDUH3Nj6o0FeFSJ1X+VHpNJ2RJIinUwmLJqK6ZOqwK8BoQ6LgEAVUTbTohiHlkNcrSsc7Ybc0AoiUbbzb1z2t2RQaKOC+odWV7bqpyeVTkDqP1I05w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740883493; c=relaxed/simple;
-	bh=G+2alXcQQeJKiXQVDp+o+8OioV+7Id2VP5GpWYu+a+s=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KxdwVV0KqV7rd9X2TGZqHyKRsstumquLrJAaSYVxmzsuwqYMqhp6wXIrRe3k7LxJFuv8AIMRBOX54TRB0O+LTommpVNCPVuhRHoQeG70+tWl3UcWhP6wEDvlMjbbMrdYbqwFAQyFpGK7UYirDKeB0N9/MZyMQzQ6zD34gAffhus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Aq+B1Vpc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95F6FC4CEDD;
-	Sun,  2 Mar 2025 02:44:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740883492;
-	bh=G+2alXcQQeJKiXQVDp+o+8OioV+7Id2VP5GpWYu+a+s=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Aq+B1VpcOnZfU4uix8FTan/0Ovik/EeAEUfJRZeJ4Z5L8EscdTZ8Lo6IMYKCFxYnO
-	 JNcwXmtwldEpVrxL/S/I7HKm8BMECtD34/PDeMzIb9eybaHhU3IdcJEUNA594h+YXp
-	 Rmnhl4cYlSNj9U4B+8OxYNnYOL8GKNan87gpkpbW0QfKLai456n8PGHNV0NYGC5MNo
-	 LTf1jJ9gsDCfqz4soGGQI51VUmMSCnXoh/LS1zqiU6TWAMzdk/bIqdoj1ZiPeuRfHZ
-	 PrFlvfId4gYEq58Ih9PZgiIg99QgDNSw1mJ0gGzvr6Qk4zJsIFhrmkdrAR32fLuuRW
-	 3macoJteXhUEQ==
-Date: Sun, 2 Mar 2025 02:44:34 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa
- <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Javier
- Carrasco <javier.carrasco.cruz@gmail.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v3 3/9] iio: adc: Support ROHM BD79124 ADC
-Message-ID: <20250302024434.67ef4c90@jic23-huawei>
-In-Reply-To: <125ab96e-1e92-4022-95fe-324cd47ce1d9@gmail.com>
-References: <cover.1739967040.git.mazziesaccount@gmail.com>
-	<67b7713724d7591f6321a8f5dfef8cd711f38d34.1739967040.git.mazziesaccount@gmail.com>
-	<20250223162807.41960b6b@jic23-huawei>
-	<125ab96e-1e92-4022-95fe-324cd47ce1d9@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1740883805; c=relaxed/simple;
+	bh=/IqzU/n63BAdW4SOmKEtnTe2FypNMZ+jDWC1G57xNmQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JpRWx54WIf3+3zz73J5Af/Iz2RIUMywXIX5JEzKNOpiv3DzdERfjiS0CNSY4GNC6ZczaTkQEjvQNrRanhjqxI64hin1Q1RjRDkbWMMsaooin6THDcTNCrgNA5gk852hfTidh1Vk6RsoadvBS7JPzEMK3sZpnnQO0jMF5S2ew1Zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K4eq/F5+; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso35579595e9.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Mar 2025 18:50:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740883802; x=1741488602; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iYec184ApMWFnwTMKcyq5mapVYraXn+V3R5ndkdcYqg=;
+        b=K4eq/F5+J4L/GAyrgb5kigsQnQzRvsbkUYJnBMWqJwXCvnkisvd5EqZJ8IbdplnHAq
+         PtALVZuxwDEafQAzBr4/yiEwRnSbwq7m62Y5w20ywIBIlStviaS6ihd8b6LEfDDdb9UF
+         23zgzN/DlLZ8ooi01iFqv6KXenv2C0baLX7QILkFO5egJoArrwnbSvKKl6ebw/iUs/m/
+         +f7mYO7CRCZ612OcGFUWh8Ag5w3eWGb3GDKsn8VwNbcHM9QTImrzlakV2dze1kPOztsr
+         5AmMYdPlKPBZtyi5C20RBbcmEzTt9dcO6GxblOVaQ0Orr1/Wh+WllHUPdlp+wGl/ueiG
+         Py/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740883802; x=1741488602;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iYec184ApMWFnwTMKcyq5mapVYraXn+V3R5ndkdcYqg=;
+        b=hae4qvking8toGZVRzcOYJJ5BxRB/SSA8j5/VTXgdxJyXlBCMiUALU80eoYbzuthel
+         ZVYqO8+bOskBKAjMm4s+I0dElYHKZe4uQXkES4WHymmYSHMLYIUXARUQ2NoHNti3bdM/
+         cg012fjH2Na+RuiQCkzYoXUR++kHUUXcclQV82biSO9CZ4oRE6TJojlOQ+ithPqXd7l9
+         tEJHqbG7ljBm8JeCVbrHWxHLr5975QJ/5tDKVIvOTcP3b/7WJtUmxEySHpce9e8ikAS4
+         /cepxl42LNF1njcOlRCDZhdj7DC7409tkpRD2LkSQJh5sYDPKFfs38hqzjbhuAwVw9F+
+         OgSw==
+X-Forwarded-Encrypted: i=1; AJvYcCVC7hMhDaC5lr4znZw8Stub95G3y0tPN2AakbQZimK7B4Ti7I9ZnQHVChpMhwug6g7dzmiygt3/a3DQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyB2OOZPSDDJV9hw6RBpHNoxrgqC8yN15rqLeWuEhW/Cc3K88EV
+	6lbujbQuVHUPT//bQsp+OHf2/8ykm+eFXc0s9rJIq/haJAEWyZXjGbpN4WcDm2Y=
+X-Gm-Gg: ASbGncuobbgGiN3vkGR71hRwHJkuu1cou0j8a6FWn50CL5yr8CKkSKdrTb0vst4AQ6c
+	9bJOsK3TU/hWBRg4kERlXf5Awf1lApEvgA2p+CcjMVNOHa4mnLYze0P1S24ka4jE14lhzeupODe
+	rbIbyV5IQb8otacYJqxrmh82FQ+DoXIQp3OuR8tymFFRdS65KiMT9JLefxZtOoo95e2dSa9H0F4
+	uwk7hYhvJ8YFBN7W064lg8c58iNXfZ8ykf+LdsR9iuGNzln4H3ACjPGzsqSWLtw/BGWQ+WG91c5
+	0GlPAN7AfLK58RYzsZAdI7FnEi5g5eNkSUGaR7hi5bZ432KpOCprwA==
+X-Google-Smtp-Source: AGHT+IGR5NlYEda30KBCY59v51iXTJ0sUgnzU+5tKf2Kw28XxjXtlDeFK9A3nguMlEjVQ5MSzY/kPQ==
+X-Received: by 2002:a05:600c:1990:b0:439:9b80:ca6f with SMTP id 5b1f17b1804b1-43bad205987mr69215705e9.5.1740883802036;
+        Sat, 01 Mar 2025 18:50:02 -0800 (PST)
+Received: from [127.0.1.1] ([2a02:c7c:7213:c700:e992:6869:474c:a63f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43aba532b0dsm137845975e9.13.2025.03.01.18.50.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Mar 2025 18:50:01 -0800 (PST)
+From: Alexey Klimov <alexey.klimov@linaro.org>
+Subject: [PATCH 0/5] qrb2210-rb1: HDMI/I2S audio playback support
+Date: Sun, 02 Mar 2025 02:49:50 +0000
+Message-Id: <20250302-rb1_hdmi_sound_first-v1-0-81a87ae1503c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE7Hw2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDYwMj3aIkw/iMlNzM+OL80ryU+LTMouISXTNT40QzE0tjw8RUUyWg1oK
+ i1LTMCrCx0bG1tQCSv5qFZgAAAA==
+X-Change-ID: 20250302-rb1_hdmi_sound_first-653a64931ae5
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
+ Alexey Klimov <alexey.klimov@linaro.org>
+X-Mailer: b4 0.14.2
 
-On Mon, 24 Feb 2025 08:14:23 +0200
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+This series adds a feature to playback/output audio via HDMI
+on the Qualcomm RB1 board. Since RB1 and RB2 are very similar
+to each and other and most likely use the same mainboard therefore
+this series is a rework of the similar patchset for RB2.
 
-> On 23/02/2025 18:28, Jonathan Cameron wrote:
-> > On Wed, 19 Feb 2025 14:30:43 +0200
-> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> >   
-> >> The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
-> >> an automatic measurement mode, with an alarm interrupt for out-of-window
-> >> measurements. The window is configurable for each channel.
-> >>
-> >> The I2C protocol for manual start of the measurement and data reading is
-> >> somewhat peculiar. It requires the master to do clock stretching after
-> >> sending the I2C slave-address until the slave has captured the data.
-> >> Needless to say this is not well suopported by the I2C controllers.
-> >>
-> >> Thus the driver does not support the BD79124's manual measurement mode
-> >> but implements the measurements using automatic measurement mode relying
-> >> on the BD79124's ability of storing latest measurements into register.
-> >>
-> >> The driver does also support configuring the threshold events for
-> >> detecting the out-of-window events.
-> >>
-> >> The BD79124 keeps asserting IRQ for as long as the measured voltage is
-> >> out of the configured window. Thus the driver masks the received event
-> >> for a fixed duration (1 second) when an event is handled. This prevents
-> >> the user-space from choking on the events
-> >>
-> >> The ADC input pins can be also configured as general purpose outputs.
-> >> Those pins which don't have corresponding ADC channel node in the
-> >> device-tree will be controllable as GPO.
-> >>
-> >> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> >>  
-> > Hi Matti,
-> > 
-> > Some fairly superficial review follows. I'm travelling for next few weeks
-> > so not sure when I'll get time to take a more thorough look.  
-> 
-> Yeah, unfortunately people are allowed to have other life beyond the 
-> ROHM drivers :D
-> Enjoy your journey(s) ;)
+Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+---
+Alexey Klimov (5):
+      dt-bindings: pinctrl: qcom,sm6115-lpass-lpi: add QCM2290 compatible
+      dt-bindings: sound: qcom,sm8250: add RB1 (QCM2290) soundcard
+      arm64: dts: qcom: qcm2290: add apr and its services
+      arm64: dts: qcom: qcm2290: add LPASS LPI pin controller
+      arm64: dts: qcom: qrb2210-rb1: add HDMI/I2S audio playback support
 
-So far so good.  Hi from Shenzhen.  Obligatory pilgrimage to SEG market
-done ;)
+ .../pinctrl/qcom,sm6115-lpass-lpi-pinctrl.yaml     |   8 +-
+ .../devicetree/bindings/sound/qcom,sm8250.yaml     |   4 +
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi              | 113 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           |  49 +++++++++
+ 4 files changed, 173 insertions(+), 1 deletion(-)
+---
+base-commit: be5c7bbb3a64baf884481a1ba0c2f8fb2f93f7c3
+change-id: 20250302-rb1_hdmi_sound_first-653a64931ae5
 
-> >> +	/* Set no channels to be manually measured */
-> >> +	ret = regmap_write(data->map, BD79124_REG_MANUAL_CHANNELS, 0x0);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	/* Set the measurement interval to 0.75 mS */
-> >> +	regval = FIELD_PREP(BD79124_MASK_AUTO_INTERVAL, BD79124_INTERVAL_075);
-> >> +	ret = regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
-> >> +			BD79124_MASK_AUTO_INTERVAL, regval);  
-> > 
-> > Where it doesn't make any other difference, align after (
-> > 
-> > If you are going shorter, single tab only.  
-> 
-> Single tab only? You mean like:
-> 
-> ret = regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
-> 	BD79124_MASK_AUTO_INTERVAL, regval);
-> 
-> Do you prefer that even if the variable holding the return value was 
-> longer than 8 chars? To me it looks odd if arguments on the next line 
-> begin earlier than the function on previous line:
-> 
-> longvariable = regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
-> 	BD79124_MASK_AUTO_INTERVAL, regval);
-> 
-> (Just ensuring I understood your preference).
-It's hard to come up with an absolute policy / preference on this but
-whilst I agree it looks a bit odd, I think it's easier to say one
-tab as 'default' choice.  Obviously if it's really hideous for some
-reason feel free to do something else ;)
+Best regards,
+-- 
+Alexey Klimov <alexey.klimov@linaro.org>
 
-Jonathan
 
