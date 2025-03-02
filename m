@@ -1,177 +1,246 @@
-Return-Path: <devicetree+bounces-153032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA2EA4B146
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 12:52:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF2DA4B14F
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 12:56:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 560F63B2E82
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 11:52:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44A3C1891FA2
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 11:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB5571D89E3;
-	Sun,  2 Mar 2025 11:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482691DE3BC;
+	Sun,  2 Mar 2025 11:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="jNFLVHYG"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="uRC8Zjvo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC82623F362;
-	Sun,  2 Mar 2025 11:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C301DC074
+	for <devicetree@vger.kernel.org>; Sun,  2 Mar 2025 11:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740916354; cv=none; b=ddwvfllA8vIP1duhkREtPx4zmEP2/yInQxGq5fLE0klOurMcaBD7G2xRnSe921ZXzr59r/M2qrXaQfapol1os2WMRSDI2ZmuyA2DwcpAzJLj+MQtpM/RHVurrJRumaPD9m9O6ONRIptrfJu9GQgJJ1khL4Uf2Lufd5NOiJl5O1c=
+	t=1740916615; cv=none; b=JZdu02LYfHp9xdfaYj0sud9Xe7d0PwwXJO/2T0sIs97FXAaAEjOEIqNIFEt7R1AdscEmEjEy4QXs9bRvJZOVTAhDEuWmAASsjIMUIxsZAYPZmUZODd2yAaThAZZDqoaKjv164ZOjTGH6nZVx2MvL3EhCzorUWDTZjz+pNZAgs08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740916354; c=relaxed/simple;
-	bh=ZZoLR+4gRG2huYnIBWUOHqpuRemTLVgz35uxJX22fXg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kHQbXH9fGSnEa+2lAZSt+fJqnqVhsZ3TkWW0arN3Y8CmK4xLR00/Pr9A5IeVGZ2ytTzPB+CysUPcXOAKUc4wRykBOaJ0UeUMJGJqGIhjLdbFC1l1n+eBnY6iQI9mUjkg0F7IZkCXodHAJ5XSGmw8VYnvXlI6DkRFYrkdjdCGkyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=jNFLVHYG; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=p1wO1tJNUWST5/aSO5B+d0Qst9czfwzaKgHwJnlCm8U=; b=jNFLVHYGlFE6ZGeuKX7kSTL6m3
-	5TMkL2oYxZW/PF9kfo2/t7Y52OJYoAjimFiuALIFyeHLYGC12FOM+bUmkSUcdqN9UUTYStk3sfM6q
-	b3oqJHViq35eiD9g0VW6Fw+LOSBBX4KP/ffom4beXhI7HjykR3uWdLTXtc+BW7sTCrTob9yWo/tAR
-	RCRFF4z8ZmEzqN1pjrpqUR1LYCZYklM15XDvRED48m8dlTMsuKhOMeynb/TbkDwqEyU5WVgPo0dV0
-	1+rfixyDTntDyfH+0m7LPAmDfduBwJm+BiloqDrdr4DaDfHDwfSo3qjHSpjyslEq9kF/ZhWFhOn0R
-	rYzKOOAA==;
-Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tohrn-0001yN-P2; Sun, 02 Mar 2025 12:52:19 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Yao Zi <ziyao@disroot.org>, Jonas Karlman <jonas@kwiboo.se>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 4/7] arm64: dts: rockchip: Add pinctrl and gpio nodes for RK3528
-Date: Sun, 02 Mar 2025 12:52:18 +0100
-Message-ID: <116104909.nniJfEyVGO@diego>
-In-Reply-To: <3f0cd767-1fd8-4c65-b8b4-e948288cd02a@kwiboo.se>
-References:
- <20250228064024.3200000-1-jonas@kwiboo.se> <Z8GT3rUEyXrTUgtJ@pie.lan>
- <3f0cd767-1fd8-4c65-b8b4-e948288cd02a@kwiboo.se>
+	s=arc-20240116; t=1740916615; c=relaxed/simple;
+	bh=LeU1/j2GyN8/R98di9cex4/Y8KIZ4qEiGtA3Wac87iQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rix2Cg2t3a6Nr4yDQyeFm8gN+4BE3gxLENxG8k3Wu0W0E9uJG3qpFwmEaTZoaI+KPXU8gCr1AG9CC/lDSmJIoVU5GHN5XW8iKhxM1aY6GaVlSblGQFUyW0FFRi/YCbSy1a2nd9duxSlApEsGN4KdPSiKxALqsdGE096NIymOgRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=uRC8Zjvo; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1740916612;
+ bh=29q7YvoaMhP8FsAjh3s2NLiuI28mnOHAXYyx1jVG3xA=;
+ b=uRC8ZjvoDjKXWExYgESFLw4p9Kp38v6cmhWo3Bdm19UIKvOOFhcgg2zNJir8JAm3M0Yr+TCvw
+ yqzJ5G6eEbWTk2h01ARLei6yQlQBtzHhcADJs9e96CIy6k4wPS/rZRyADRQKVjJI4WnS+Q0+2Mo
+ DNyr1SZ7YMY+BBrnxA/COLD+AwC/RkJPJg/719EkwgScAdTpnOeqeZDoKbY0TETd0Cc2b2awZ1m
+ vvcnYLIHpjCFEPr6WbN7IYl2AtS5Oeo0hARmoWWU2X3tGinN35JVwuTgfDLJk3ttTdHpZTc1FrP
+ 0J8nFPMybkSC2X64ZJdTXP7UjRIGHbAUk8bIbPXeSN7w==
+X-Forward-Email-ID: 67c447804a29b97c03d4e25b
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <d6928adc-1df2-494f-a3d3-7b028c220547@kwiboo.se>
+Date: Sun, 2 Mar 2025 12:56:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 8/8] arm64: dts: rockchip: Enable SD-card interface on
+ Radxa E20C
+To: Yao Zi <ziyao@disroot.org>, FUKAUMI Naoki <naoki@radxa.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Frank Wang <frank.wang@rock-chips.com>,
+ Shresth Prasad <shresthprasad7@gmail.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250301104250.36295-1-ziyao@disroot.org>
+ <20250301104835.36439-1-ziyao@disroot.org>
+ <0aefd292-7980-434d-9c18-4ab9f6a0b40e@kwiboo.se> <Z8MklJfFz2EA6oNS@pie.lan>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <Z8MklJfFz2EA6oNS@pie.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Am Sonntag, 2. M=C3=A4rz 2025, 12:14:48 MEZ schrieb Jonas Karlman:
-> Hi Yao Zi,
->=20
-> On 2025-02-28 11:46, Yao Zi wrote:
-> > On Fri, Feb 28, 2025 at 06:40:10AM +0000, Jonas Karlman wrote:
-> >> Add pinctrl and gpio nodes for RK3528 and import rk3528-pinctrl.dtsi
-> >> from vendor linux-6.1-stan-rkr5 kernel with the hdmi-pins-idle node
-> >> removed due to missing label reference to pcfg_output_low_pull_down.
-> >>
-> >> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> >> ---
-> >> This was mostly imported from vendor kernel, however the main commit [=
-1]
-> >> list 28 signed-off-by tags, unclear who I should use as author and what
-> >> signed-off-by tags to include.
-> >>
-> >> [1] https://github.com/rockchip-linux/kernel/commit/c17d6325959f0ec1af=
-901e8a17919163454190a2
-> >> ---
-> >>  .../boot/dts/rockchip/rk3528-pinctrl.dtsi     | 1397 +++++++++++++++++
-> >>  arch/arm64/boot/dts/rockchip/rk3528.dtsi      |   82 +
-> >>  2 files changed, 1479 insertions(+)
-> >>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-pinctrl.dtsi
-> >>
-> >=20
-> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boo=
-t/dts/rockchip/rk3528.dtsi
-> >> index 0fb90f5c291c..d3e2a64ff2d5 100644
-> >> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> >> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> >> @@ -4,8 +4,10 @@
-> >>   * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
-> >>   */
-> >> =20
-> >> +#include <dt-bindings/gpio/gpio.h>
-> >>  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >>  #include <dt-bindings/interrupt-controller/irq.h>
-> >> +#include <dt-bindings/pinctrl/rockchip.h>
-> >>  #include <dt-bindings/clock/rockchip,rk3528-cru.h>
-> >>  #include <dt-bindings/reset/rockchip,rk3528-cru.h>
-> >> =20
-> >> @@ -17,6 +19,11 @@ / {
-> >>  	#size-cells =3D <2>;
-> >> =20
-> >>  	aliases {
-> >> +		gpio0 =3D &gpio0;
-> >> +		gpio1 =3D &gpio1;
-> >> +		gpio2 =3D &gpio2;
-> >> +		gpio3 =3D &gpio3;
-> >> +		gpio4 =3D &gpio4;
-> >>  		serial0 =3D &uart0;
-> >>  		serial1 =3D &uart1;
-> >>  		serial2 =3D &uart2;
-> >> @@ -166,6 +173,11 @@ cru: clock-controller@ff4a0000 {
-> >>  			#reset-cells =3D <1>;
-> >>  		};
-> >> =20
-> >> +		ioc_grf: syscon@ff540000 {
-> >> +			compatible =3D "rockchip,rk3528-ioc-grf", "syscon";
-> >> +			reg =3D <0x0 0xff540000 0x0 0x40000>;
-> >> +		};
-> >> +
-> >>  		uart0: serial@ff9f0000 {
-> >>  			compatible =3D "rockchip,rk3528-uart", "snps,dw-apb-uart";
-> >>  			reg =3D <0x0 0xff9f0000 0x0 0x100>;
-> >> @@ -264,5 +276,75 @@ saradc: adc@ffae0000 {
-> >>  			#io-channel-cells =3D <1>;
-> >>  			status =3D "disabled";
-> >>  		};
-> >> +
-> >> +		pinctrl: pinctrl {
-> >> +			compatible =3D "rockchip,rk3528-pinctrl";
-> >> +			rockchip,grf =3D <&ioc_grf>;
-> >> +			#address-cells =3D <2>;
-> >> +			#size-cells =3D <2>;
-> >> +			ranges;
-> >=20
-> > I doubt whether the pincontroller should be placed under simple-bus:
-> > without a reg property, it doesn't look like a MMIO device.
-> >=20
-> > Actually it is, although all the registers stay in the ioc grf. Maybe
-> > it should be considered as child of the grf.
->=20
-> This follows how pinctrl was added for RK3576 and what is proposed for
-> RK3562 [2]. I have too little knowledge to know if this needs to change
-> or if this should follow similar SoCs.
->=20
-> [2] https://lore.kernel.org/r/20250227111913.2344207-15-kever.yang@rock-c=
-hips.com
+Hi Yao Zi,
 
-The reg address shouldn't matter here I think.
+On 2025-03-01 16:15, Yao Zi wrote:
+> On Sat, Mar 01, 2025 at 02:01:05PM +0100, Jonas Karlman wrote:
+>> Hi,
+>>
+>> On 2025-03-01 11:48, Yao Zi wrote:
+>>> SD-card is available on Radxa E20C board.
+>>>
+>>> Signed-off-by: Yao Zi <ziyao@disroot.org>
+>>> ---
+>>>  arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts | 14 ++++++++++++++
+>>>  1 file changed, 14 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+>>> index d2cdb63d4a9d..473065aa4228 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+>>> @@ -12,6 +12,10 @@ / {
+>>>  	model = "Radxa E20C";
+>>>  	compatible = "radxa,e20c", "rockchip,rk3528";
+>>>  
+>>> +	aliases {
+>>> +		mmc0 = &sdmmc;
+>>
+>> Suggest using mmc1 for sd-card because the e20c typically have onboard
+>> emmc, compared to removable sd-card.
+> 
+> My board doesn't have an eMMC: it's optional as well, but all variants
+> of Radxa E20C come with an SD-card interface. The vendor devicetree sets
+> sdmmc as mmc0 as well[1].
 
-The "soc"-bus describes the elements contained in the soc (surrounding the
-cpu cores) and the pinctrl controller definitly is part of the soc itself.
+This is strange as Radxa typically want to align with mmc0=emmc and
+mmc1=sd-card, as seen in [3] and [4].
 
-So when looking at the scope, it does belong there and also the
- gpio-controller elements do have mmio addresses :-)
+  Align with other Radxa products.
+  - mmc0 is eMMC
+  - mmc1 is microSD
 
+Also mainline U-Boot for Rockchip SoCs typically always treat mmc0 as
+emmc and mmc1 as sd-card, and for most SoCs it will even override the
+board aliases to have some predictability across boards.
 
-Heiko
+> 
+> I won't insist on it and am willing to take the change if you still
+> consider mmc0 is better.
 
+Yes, my position is that we should use following:
+
+  mmc0 = &sdhci;
+  mmc1 = &sdmmc;
+
+I will send out a short sdhci series based on top of v2 of this series.
+Driver changes was not needed to get basic sdhci working on RK3528 and
+is only required to get HS400 modes working.
+
+[3] https://lore.kernel.org/r/20240620224435.2752-1-naoki@radxa.com
+[4] https://lore.kernel.org/r/20240619050047.1217-2-naoki@radxa.com
+
+> 
+>>> +	};
+>>> +
+>>>  	chosen {
+>>>  		stdout-path = "serial0:1500000n8";
+>>>  	};
+>>> @@ -20,3 +24,13 @@ chosen {
+>>>  &uart0 {
+>>>  	status = "okay";
+>>>  };
+>>> +
+>>> +&sdmmc {
+
+This node should be placed above &uart0 to be in alphabetical order.
+
+>>> +	bus-width = <4>;
+>>> +	cap-mmc-highspeed;
+>>> +	cap-sd-highspeed;
+>>> +	disable-wp;
+>>> +	rockchip,default-sample-phase = <90>;
+>>> +	sd-uhs-sdr104;
+>>
+>> Are you sure uhs-sdr104 works as is should?
+> 
+> In fact yes, tuning succeeds at 148.5MHz and results in 66MB/s reading
+> speed.
+> 
+>> Vendor kernel use a different "v2" tuning
+> 
+> This isn't a problem. IMHO V2 tuning is more like a quick path, which
+> tries inheritting the phase from firmware and then re-tunes roughly.
+> Fine tunning is still a fallback here in case of failure, see the commit
+> message in the downstream kernel[2]. And testing proves it's okay for
+> RK3528 to issue fine-tuning always.
+
+Thanks for this information, I did not inspect exactly what the v2
+tuning meant, only observed that vendor kernel (incorrectly) used a DT
+prop to indicate when v2 tuning should be used.
+
+> 
+>> and this is also missing the vccio_sd vqmmc-supply to switch between
+>> 3v3 and 1v8.
+> 
+> But this is a problem, thanks for catching it! Somehow my card managed
+> to run at 148.5MHz with 3v3 voltage level, but it's definitely a
+> compatiblity issue. I'm surprised that the driver doesn't complain when
+> switching to SDR modes without a regulator configured.
+> 
+>> You could add following regulator for sdmmc:
+>>
+>> 	vccio_sd: regulator-vccio-sd {
+>> 		compatible = "regulator-gpio";
+>> 		gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+>> 		pinctrl-names = "default";
+>> 		pinctrl-0 = <&sdmmc_vol_ctrl_h>;
+>> 		regulator-name = "vccio_sd";
+>> 		regulator-min-microvolt = <1800000>;
+>> 		regulator-max-microvolt = <3300000>;
+>> 		states = <1800000 0x0>, <3300000 0x1>;
+
+This should also have something like:
+
+  vin-supply = <&vcc5v0_sys>;
+
+>> 	};
+>>
+>> and following pinctrl:
+>>
+>> 	sdmmc {
+>> 		sdmmc_vol_ctrl_h: sdmmc-vol-ctrl-h {
+>> 			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+>> 		};
+>> 	};
+>>
+>> add then the power supplies to the sdmmc node:
+>>
+>> 	vmmc-supply = <&vcc_3v3>;
+>> 	vqmmc-supply = <&vccio_sd>;
+>>
+>> That matches the schematics for e20c, and works when testing non-uhs modes.
+> 
+> Thanks for the hints. Will rebase on your pinctrl series and get
+> regulators and pinctrl settings applied in the next version.
+
+Thanks :-)
+
+Regards,
+Jonas
+
+> 
+>> Regards,
+>> Jonas
+>>
+>>> +	status = "okay";
+>>> +};
+>>
+> 
+> Cheers,
+> Yao Zi
+> 
+> [1]: https://github.com/radxa/kernel/blob/2b0c8de7dc4c68947cda206dcc2e457e9677e426/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts#L22-L26
+> [2]: https://github.com/rockchip-linux/kernel/commit/795e052cc8610aa59a64b104f975cc4a45493d5d
 
 
