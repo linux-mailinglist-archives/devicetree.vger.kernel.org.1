@@ -1,157 +1,121 @@
-Return-Path: <devicetree+bounces-153105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5B33A4B42F
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:48:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E1FA4B43A
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:58:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0A077A5A27
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 18:47:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76F6C3AE110
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 18:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648041EC009;
-	Sun,  2 Mar 2025 18:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02811EB1AA;
+	Sun,  2 Mar 2025 18:57:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="TAV7YFMC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zgr8VpMs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6115F1BF33F;
-	Sun,  2 Mar 2025 18:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBE8AD39;
+	Sun,  2 Mar 2025 18:57:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740941304; cv=none; b=p0IujvCYzVPTbwB8+6HZjYtCdiTNR8njbm2X9CYSLDS8ABMD4Scln4VjHQDgWQUug5v11BPfew5CavFrLDGVJ7Wo5T31Nto7QW1Ygv6YRjEYdULyex3Z2Ev1Wun+ik8Gnjk7d4FfFCxRRa/GGyfACrqXtL38we5JhtJPZ5uiGuA=
+	t=1740941879; cv=none; b=mrl6R7Mj21khkl84hkT4GuqX+CDgE7OB9rGkMfucMDcQojywLYrZplYQGr4aTS+oX9l5ccZBcQoPKCrd71y5sZyLqhCKX+PyQls9R0ZQVioPxySu9ZCUE0x3hREUuugzRl2VdI7vtiQIvhn0sIDF4KRD5njJfZ6cZ4SPvdBumvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740941304; c=relaxed/simple;
-	bh=18FfI+dsLifwhDLg5jKLgUcJyAh3mhlLFVvCSd4rWPE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HcJ3GszgbBSDf/aWmM0HvHQ1d0G8RxHcmFpu83CtBrkaY5rJOOb5kNpCpByr1QL497POPMDNYg2r/px8iRDBa0UhKffh1lpHT6lqkGK4GVfc+f5vape7EPN8uHvZ17yE2eMNlbF+jHPKrhS/cLB+eYHuj37LTMWKaDVtgtD9ams=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=TAV7YFMC; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1740941294;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=V3wYKQ9B1StVQbxu+s2BMJr618h1KoB+cCRUMH1wITk=;
-	b=TAV7YFMCSlqOGO9FnrQugJPHf9F5Ltie6z22xZZbPnZfr/1PPud07X1M1BVMiLb3iuBxv3
-	pTraaR4biBaK7AL9kRh6HZDUlFipSAziMM/9zJh1kX3/J4M2Q0sa65FbGZzOTUswh9OMFC
-	6rD+0PcykRn6UgyVylMtFHTvHwiVrIyxM7V9LvbTx+rqYJnl4G3VL/inJMAcv4t1M71Xx3
-	UCjvhkV9aVpUs20sdR5SAU9U7lu5SBTEKdAHjN1OwJ/l0wfmRrokE9VyQzjZjqHlt2ZK7e
-	g+uJ1k3Dgr0YObo1xgu/oHVijjyzl+0Mf2CSQ9L99Wxi16zQsJn2vkSzbiN9Yg==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	didi.debian@cknow.org,
-	chris@z9.de,
-	stable@vger.kernel.org,
-	Vincenzo Palazzo <vincenzopalazzodev@gmail.com>,
-	Peter Geis <pgwipeout@gmail.com>,
-	Bjorn Helgaas <helgaas@kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: Add missing PCIe supplies to RockPro64 board dtsi
-Date: Sun,  2 Mar 2025 19:48:04 +0100
-Message-Id: <b39cfd7490d8194f053bf3971f13a43472d1769e.1740941097.git.dsimic@manjaro.org>
-In-Reply-To: <cover.1740941097.git.dsimic@manjaro.org>
-References: <cover.1740941097.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1740941879; c=relaxed/simple;
+	bh=6f3nE4+hMUhuJGhAonwOZkstOaLpys8RfLEpGJOsxFs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tyXCVEH3akaZeRkjK6fTqFYJKNGg/hMGik6rCTyVccgMN1YqFpczU+A0W7/jR4nwOJuKGFVKjPac5EJ1K6sg/zNfEeJ505m26hdvIofAR/W9O1x6Zrvhh9DdSHxqWFgGaNR5O4ll5a7xAb7r/z2xnYbSWIlNKSWLjMD2myKFAmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zgr8VpMs; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=pPjgLLKWy2wvQvaiR+uGJguXDw1skCmohUdLq/bT13M=; b=zgr8VpMs2oAvmtSCdLZNlyiimz
+	8LpNFXehoTksa2gEf3aQkohP09ro+0qaqjvYXaQu+KxZB+sIKlyUbvUikUssDkhX7/7AP7k3KfEaz
+	CAyKltObROv4gAMOa6xExAlm0l0aEKhoX+c9Pu1qTiFRRCfGJmEIJqtREfcq73tx7Ws1YbwXRGKdw
+	WnzTTKVSCtKDSdIL8G1CshPaA0/1AhvPCLPnbygN/m2VtmmRPHGF/nWchoU07/hqyZW/BJqwtS6iH
+	00V1WJLr3B0KvowzlMahZEFATeTzBlelY/WUcLfEdDewwy1pfGP6nsBKk3XlXNJTeRn5QvR3q8al7
+	Q/n2u9kw==;
+Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tooVb-0004sB-28; Sun, 02 Mar 2025 19:57:51 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: hjc@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ derek.foreman@collabora.com, detlev.casanova@collabora.com,
+ daniel@fooishbar.org, robh@kernel.org, sebastian.reichel@collabora.com,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Michael Riesch <michael.riesch@wolfvision.net>
+Subject:
+ Re: [PATCH v15 07/13] drm/rockchip: vop2: Register the primary plane and
+ overlay plane separately
+Date: Sun, 02 Mar 2025 19:57:50 +0100
+Message-ID: <2759797.BddDVKsqQX@diego>
+In-Reply-To: <20250218112744.34433-8-andyshrk@163.com>
+References:
+ <20250218112744.34433-1-andyshrk@163.com>
+ <20250218112744.34433-8-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-Add missing "vpcie0v9-supply" and "vpcie1v8-supply" properties to the "pcie0"
-node in the Pine64 RockPro64 board dtsi file.  This eliminates the following
-warnings from the kernel log:
+Hi Andy,
 
-  rockchip-pcie f8000000.pcie: supply vpcie1v8 not found, using dummy regulator
-  rockchip-pcie f8000000.pcie: supply vpcie0v9 not found, using dummy regulator
+Am Dienstag, 18. Februar 2025, 12:27:34 MEZ schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> In the upcoming VOP of rk3576, a Window cannot attach to all Video Ports,
+> so make sure all VP find it's suitable primary plane, then register the
+> remain windows as overlay plane will make code easier.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Tested-by: Michael Riesch <michael.riesch@wolfvision.net> # on RK3568
+> Tested-by: Detlev Casanova <detlev.casanova@collabora.com>
+> 
+> ---
 
-These additions improve the accuracy of hardware description of the RockPro64
-and, in theory, they should result in no functional changes to the way board
-works after the changes, because the "vcca_0v9" and "vcca_1v8" regulators are
-always enabled. [1][2]  However, extended reliability testing, performed by
-Chris, [3] has proven that the age-old issues with some PCI Express cards,
-when used with a Pine64 RockPro64, are also resolved.
+patches 7-9 look good to go, but ...
 
-Those issues were already mentioned in the commit 43853e843aa6 (arm64: dts:
-rockchip: Remove unsupported node from the Pinebook Pro dts, 2024-04-01),
-together with a brief description of the out-of-tree enumeration delay patch
-that reportedly resolves those issues.  In a nutshell, booting a RockPro64
-with some PCI Express cards attached to it caused a kernel oops. [4]
+this needs a rebase to adapt to
+"drm/rockchip: vop2: Consistently use dev_err_probe()" [0]
 
-Symptomatically enough, to the commit author's best knowledge, only the Pine64
-RockPro64, out of all RK3399-based boards and devices supported upstream, has
-been reported to suffer from those PCI Express issues, and only the RockPro64
-had some of the PCI Express supplies missing in its DT.  Thus, perhaps some
-weird timing issues exist that caused the "vcca_1v8" always-on regulator,
-which is part of the RK808 PMIC, to actually not be enabled before the PCI
-Express is initialized and enumerated on the RockPro64, causing oopses with
-some PCIe cards, and the aforementioned enumeration delay patch [4] probably
-acted as just a workaround for the underlying timing issue.
+[0] https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/b06d1ef3355571383cdb463cf0195b7a02efdfbf
 
-Admittedly, the Pine64 RockPro64 is a bit specific board by having a standard
-PCI Express slot, allowing use of various standard cards, but pretty much
-standard PCI Express cards have been attached to other RK3399 boards as well,
-and the commit author is unaware ot such issues reported for them.
 
-It's quite hard to be sure that the PCI Express issues are fully resolved by
-these additions to the DT, without some really extensive and time-consuming
-testing.  However, these additions to the DT can result in good things and
-improvements anyway, making them perfectly safe from the standpoint of being
-unable to do any harm or cause some unforeseen regressions.
+> -		if (win->type == DRM_PLANE_TYPE_PRIMARY) {
+> -			vp = find_vp_without_primary(vop2);
+> -			if (vp) {
+> +			if (vop2_is_mirror_win(win))
+> +				continue;
+> +
+> +			if (win->type == DRM_PLANE_TYPE_PRIMARY) {
+>  				possible_crtcs = BIT(nvp);
+>  				vp->primary_plane = win;
+> +				ret = vop2_plane_init(vop2, win, possible_crtcs);
+> +				if (ret) {
+> +					drm_err(vop2->drm, "failed to init primary plane %s: %d\n",
+> +						win->data->name, ret);
 
-Shuffle and reorder the "vpcie*-supply" properties a bit, so they're sorted
-alphanumerically, which is a bit more logical and more useful than having
-these properties listed in their strict alphabetical order.
+should also use dev_err_probe
 
-These changes apply to the both supported hardware revisions of the Pine64
-RockPro64, i.e. to the production-run revisions 2.0 and 2.1. [1][2]
 
-[1] https://files.pine64.org/doc/rockpro64/rockpro64_v21-SCH.pdf
-[2] https://files.pine64.org/doc/rockpro64/rockpro64_v20-SCH.pdf
-[3] https://z9.de/hedgedoc/s/nF4d5G7rg#reboot-tests-for-PCIe-improvements
-[4] https://lore.kernel.org/lkml/20230509153912.515218-1-vincenzopalazzodev@gmail.com/T/#u
+Heiko
 
-Fixes: bba821f5479e ("arm64: dts: rockchip: add PCIe nodes on rk3399-rockpro64")
-Cc: stable@vger.kernel.org
-Cc: Vincenzo Palazzo <vincenzopalazzodev@gmail.com>
-Cc: Peter Geis <pgwipeout@gmail.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>
-Reported-by: Diederik de Haas <didi.debian@cknow.org>
-Tested-by: Chris Vogel <chris@z9.de>
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-index 47dc198706c8..41ee381ff81f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-@@ -673,8 +673,10 @@ &pcie0 {
- 	num-lanes = <4>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie_perst>;
--	vpcie12v-supply = <&vcc12v_dcin>;
-+	vpcie0v9-supply = <&vcca_0v9>;
-+	vpcie1v8-supply = <&vcca_1v8>;
- 	vpcie3v3-supply = <&vcc3v3_pcie>;
-+	vpcie12v-supply = <&vcc12v_dcin>;
- 	status = "okay";
- };
- 
 
