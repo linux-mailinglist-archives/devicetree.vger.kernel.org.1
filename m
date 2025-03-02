@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-153106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E1FA4B43A
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:58:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED4E6A4B443
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 20:10:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76F6C3AE110
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 18:57:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B1603B0E54
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:09:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02811EB1AA;
-	Sun,  2 Mar 2025 18:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0E71E9B14;
+	Sun,  2 Mar 2025 19:10:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zgr8VpMs"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="vzRlOXqs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBE8AD39;
-	Sun,  2 Mar 2025 18:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75E242E630;
+	Sun,  2 Mar 2025 19:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740941879; cv=none; b=mrl6R7Mj21khkl84hkT4GuqX+CDgE7OB9rGkMfucMDcQojywLYrZplYQGr4aTS+oX9l5ccZBcQoPKCrd71y5sZyLqhCKX+PyQls9R0ZQVioPxySu9ZCUE0x3hREUuugzRl2VdI7vtiQIvhn0sIDF4KRD5njJfZ6cZ4SPvdBumvc=
+	t=1740942601; cv=none; b=FnnvXPmO/fCbFXNxw+g9dDjJ/q+T8M5DktZvZvuVp5rEWin19P3zg5KbtARnCYFBL5agGwQe89P8+kT5LBX4PV3PquNtd46B1VQSzhKOaqLiC1LQ952akO881PdBOKQg/nNwZGsbRB8WhzIb1g7W4dsxisHevwbb6+t7U0EhXTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740941879; c=relaxed/simple;
-	bh=6f3nE4+hMUhuJGhAonwOZkstOaLpys8RfLEpGJOsxFs=;
+	s=arc-20240116; t=1740942601; c=relaxed/simple;
+	bh=goHEOgt6VKQLca6XUQdBBoD0f7uZKf9N8C9Pj+hERok=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tyXCVEH3akaZeRkjK6fTqFYJKNGg/hMGik6rCTyVccgMN1YqFpczU+A0W7/jR4nwOJuKGFVKjPac5EJ1K6sg/zNfEeJ505m26hdvIofAR/W9O1x6Zrvhh9DdSHxqWFgGaNR5O4ll5a7xAb7r/z2xnYbSWIlNKSWLjMD2myKFAmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zgr8VpMs; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=GB9o5wV6NIRaGvpfsHwpZ8KNWcRNo4EkBv9amGTxvCmb0ez9e6Tb8CDElhrwe5wF5R3PrfLzzVmX9pwimLWspdH5nfWoRQxyHq5dl7yL4OkSEEtUf2TYwk9cT4/WAkzJDs1KB8Fg+J7u2XYJ9iRCXAqYL/+mDa50wzZteoBytcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=vzRlOXqs; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,17 +37,17 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=pPjgLLKWy2wvQvaiR+uGJguXDw1skCmohUdLq/bT13M=; b=zgr8VpMs2oAvmtSCdLZNlyiimz
-	8LpNFXehoTksa2gEf3aQkohP09ro+0qaqjvYXaQu+KxZB+sIKlyUbvUikUssDkhX7/7AP7k3KfEaz
-	CAyKltObROv4gAMOa6xExAlm0l0aEKhoX+c9Pu1qTiFRRCfGJmEIJqtREfcq73tx7Ws1YbwXRGKdw
-	WnzTTKVSCtKDSdIL8G1CshPaA0/1AhvPCLPnbygN/m2VtmmRPHGF/nWchoU07/hqyZW/BJqwtS6iH
-	00V1WJLr3B0KvowzlMahZEFATeTzBlelY/WUcLfEdDewwy1pfGP6nsBKk3XlXNJTeRn5QvR3q8al7
-	Q/n2u9kw==;
+	bh=1uDnGle22h4BGQTP/aXxCDgxelViDKMg5h+i1dNf/tU=; b=vzRlOXqsyFZrCrhDIO02maxr2m
+	omB8tmfEYAsY04MiP87NnpI1TbiyyV8E1x7FLNVfzrIs2UYDSxfpr70QEEzywvjPSTkYLsreROz68
+	XLrzItSGERbXNB0qtnKy1nBVCzlBXMDZiBfjnZLT58tw05VyrCa+8BIYd9JXSTFFL456CI2L73fjq
+	Jjl5VbLCDLwxoApqRdX/I+Jtq+PT+qGhFNuqNhHYuy5znQM0HnGFPw9gihS7h6HJGdRX0O7YDhqyi
+	nfc2TBbQV7JDAIushfCoPTm+0M4oCpnA+01NMcF/KUYAtym3kGlLw0lXrtssdfm5tZExuCYRSRkXr
+	pBz1nfFg==;
 Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tooVb-0004sB-28; Sun, 02 Mar 2025 19:57:51 +0100
+	id 1toohF-0004vx-Im; Sun, 02 Mar 2025 20:09:53 +0100
 From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
 To: Andy Yan <andyshrk@163.com>
 Cc: hjc@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org,
@@ -57,15 +57,13 @@ Cc: hjc@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org,
  daniel@fooishbar.org, robh@kernel.org, sebastian.reichel@collabora.com,
  Andy Yan <andy.yan@rock-chips.com>,
  Michael Riesch <michael.riesch@wolfvision.net>
-Subject:
- Re: [PATCH v15 07/13] drm/rockchip: vop2: Register the primary plane and
- overlay plane separately
-Date: Sun, 02 Mar 2025 19:57:50 +0100
-Message-ID: <2759797.BddDVKsqQX@diego>
-In-Reply-To: <20250218112744.34433-8-andyshrk@163.com>
+Subject: Re: [PATCH v15 13/13] drm/rockchip: vop2: Add support for rk3576
+Date: Sun, 02 Mar 2025 20:09:52 +0100
+Message-ID: <2764042.X9hSmTKtgW@diego>
+In-Reply-To: <20250218112901.34564-1-andyshrk@163.com>
 References:
  <20250218112744.34433-1-andyshrk@163.com>
- <20250218112744.34433-8-andyshrk@163.com>
+ <20250218112901.34564-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,42 +75,101 @@ Content-Type: text/plain; charset="utf-8"
 
 Hi Andy,
 
-Am Dienstag, 18. Februar 2025, 12:27:34 MEZ schrieb Andy Yan:
+Am Dienstag, 18. Februar 2025, 12:28:58 MEZ schrieb Andy Yan:
 > From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> In the upcoming VOP of rk3576, a Window cannot attach to all Video Ports,
-> so make sure all VP find it's suitable primary plane, then register the
-> remain windows as overlay plane will make code easier.
+> VOP2 on rk3576:
+> Three video ports:
+> VP0 Max 4096x2160
+> VP1 Max 2560x1600
+> VP2 Max 1920x1080
+> 
+> 2 4K Cluster windows with AFBC/RFBC, line RGB and YUV
+> 4 Esmart windows with line RGB/YUV support:
+> Esmart0/1: 4K
+> Esmart2/3: 2k, or worked together as a single 4K plane at shared
+> line buffer mode.
+> 
+> Compared to the previous VOP, another difference is that each VP
+> has its own independent vsync interrupt number.
 > 
 > Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 > Tested-by: Michael Riesch <michael.riesch@wolfvision.net> # on RK3568
 > Tested-by: Detlev Casanova <detlev.casanova@collabora.com>
-> 
-> ---
 
-patches 7-9 look good to go, but ...
-
-this needs a rebase to adapt to
-"drm/rockchip: vop2: Consistently use dev_err_probe()" [0]
-
-[0] https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/b06d1ef3355571383cdb463cf0195b7a02efdfbf
+some minor style things, but overall looks really good
 
 
-> -		if (win->type == DRM_PLANE_TYPE_PRIMARY) {
-> -			vp = find_vp_without_primary(vop2);
-> -			if (vp) {
-> +			if (vop2_is_mirror_win(win))
-> +				continue;
+> @@ -2665,6 +2721,32 @@ static int vop2_bind(struct device *dev, struct device *master, void *data)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (vop2->version >= VOP_VERSION_RK3576) {
+> +		struct drm_crtc *crtc;
 > +
-> +			if (win->type == DRM_PLANE_TYPE_PRIMARY) {
->  				possible_crtcs = BIT(nvp);
->  				vp->primary_plane = win;
-> +				ret = vop2_plane_init(vop2, win, possible_crtcs);
-> +				if (ret) {
-> +					drm_err(vop2->drm, "failed to init primary plane %s: %d\n",
-> +						win->data->name, ret);
+> +		drm_for_each_crtc(crtc, drm) {
+> +			struct vop2_video_port *vp = to_vop2_video_port(crtc);
+> +			int vp_irq;
+> +			const char *irq_name = devm_kasprintf(dev, GFP_KERNEL, "vp%d", vp->id);
+> +
+> +			if (!irq_name)
+> +				return -ENOMEM;
+> +
+> +			vp_irq = platform_get_irq_byname(pdev, irq_name);
+> +			if (vp_irq < 0) {
+> +				DRM_DEV_ERROR(dev, "cannot find irq for vop2 vp%d\n", vp->id);
 
-should also use dev_err_probe
+return dev_err_probe
+
+> +				return vp_irq;
+> +			}
+> +
+> +			ret = devm_request_irq(dev, vp_irq, rk3576_vp_isr, IRQF_SHARED, irq_name,
+> +					       vp);
+> +			if (ret) {
+> +				DRM_DEV_ERROR(dev, "request irq for vop2 vp%d failed\n", vp->id);
+
+return dev_err_probe
+
+> +				return ret;
+> +			}
+> +		}
+> +	}
+> +
+>  	ret = vop2_find_rgb_encoder(vop2);
+>  	if (ret >= 0) {
+>  		vop2->rgb = rockchip_rgb_init(dev, &vop2->vps[ret].crtc,
+
+
+> +static void rk3576_vop2_setup_overlay(struct vop2_video_port *vp)
+> +{
+> +	struct vop2 *vop2 = vp->vop2;
+> +	struct drm_crtc *crtc = &vp->crtc;
+> +	struct drm_plane *plane;
+> +
+> +	vp->win_mask = 0;
+> +
+> +	drm_atomic_crtc_for_each_plane(plane, crtc) {
+> +		struct vop2_win *win = to_vop2_win(plane);
+> +
+> +		win->delay = win->data->dly[VOP2_DLY_MODE_DEFAULT];
+> +
+
+nit: we probably don't need this empty line
+
+> +		vp->win_mask |= BIT(win->data->phys_id);
+> +
+> +		if (vop2_cluster_window(win))
+> +			vop2_setup_cluster_alpha(vop2, win);
+> +	}
+> +
+> +	if (!vp->win_mask)
+> +		return;
+> +
+> +	rk3576_vop2_setup_layer_mixer(vp);
+> +	vop2_setup_alpha(vp);
+> +	rk3576_vop2_setup_dly_for_windows(vp);
+> +}
 
 
 Heiko
