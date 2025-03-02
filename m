@@ -1,180 +1,127 @@
-Return-Path: <devicetree+bounces-153059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF20EA4B2A9
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 16:42:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A477A4B2D2
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 17:07:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B523B1891E54
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 15:42:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DE2B188C716
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 16:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249871E8837;
-	Sun,  2 Mar 2025 15:42:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5011E7C32;
+	Sun,  2 Mar 2025 16:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Un8MpdeH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLEwWNmR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8A6D1E5B6D;
-	Sun,  2 Mar 2025 15:42:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010C81E3761;
+	Sun,  2 Mar 2025 16:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740930152; cv=none; b=srzosxumlJ/X4hh1v3WB3i4HI7f4QOX2oSXv9J7I04DaVm6T/qWHE7TvPMChYDx2VPpEhCF9zgSUY+zmzSHZgXKqLzgHJaLQEMWLJeKRjVmuG87an0KRukhKixArUti4sI3vyl55Lc0VehBY1fTNQwa/0h7l5IQyuQzw44Zw/q4=
+	t=1740931622; cv=none; b=bmXbSBoD944EhsnOQh/K2gjEnVHLByBN9lfXbPAD3URFHjRfqVPDb8DL7kncwn/yrSGDgSGofdEBgYHrplnOWH3A2SNjRcZFjFTlCasO6CjJBjjfBj54DoXguZD/O/JYaZ0hHnduOuYEtBAxm3+HwHYHaexLMWP+j7e5y034FU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740930152; c=relaxed/simple;
-	bh=WlsTDuDX6LrL+lhn4Ir6/IBTGSiKQ/HBJtQ7dayYG+E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Q6zbmONV11yZhq8wRefa6S4kBsIs3fmareAj1EmuEey6cR8+HaCkku9f7S/r7NBKjEmFBBHprQfRclsEsHv233B1TeQjlkwu6DTuOxWphnEtxZHpd8eDoe1RoX+gVJFKeznIz1dqUsg3KoiQJAfjctPpfnxEEAkFqXhGhKZyGmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Un8MpdeH; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2C6A044417;
-	Sun,  2 Mar 2025 15:42:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1740930142;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fdnQ5+Le+Og1Av7WQPN6X9ybA51iqbx7l8HzvezJN3g=;
-	b=Un8MpdeH2J+qxZ+MJKjzBwSk0gRRBdMDH0Yb0PBCqzgABRh5TYye6RlFUp0rjmWtvupTKR
-	p0NdqCgjCdTq6mxoDmVP+07LdwuLGBI6DMQBgCEmoyY8E0xqXyW+3UHL49xrWFMcoohKk+
-	f4iYa+e3v5LYDV7uGW8F3UChtmGiRvVHBP98DwkOOuvhJ3b7WNEj3g0i8bMPdziSUnTHXF
-	nqzq407zm0U35teBDqO/cfTbE3xMD41W2d9qeiYcbG3keRWKACxAS8Ozqs4OeY+6faxZ2c
-	hgMqQdkH5yxk2f2+rRE016YGLGi2frr82BU1eBZZ21xQ50ARKQwVj5SVuQdqHQ==
-From: Olivier Benjamin <olivier.benjamin@bootlin.com>
-Date: Sun, 02 Mar 2025 16:41:03 +0100
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: describe the OV8858 user
- camera on PinePhone Pro
+	s=arc-20240116; t=1740931622; c=relaxed/simple;
+	bh=6Z1K2XeEqTJ+PjSTHPmZvbQCAwrBgXMnsTzeuQ32us4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PYQM4fY3UUQXX0jw016HfZ/JbNSVgOWTq3LJ3PHnoX75L2mEZzmkW19Yhjz4rdO58r9WyXWb27frb+JTHTyuujiNvjeTyWL75OQgV/EyrGKSvcUd0a6RGOGVby8Fq5Z0uiol+hV2VnRgvzpDFBbSruqNIMXBG/99xy4AMoIXG3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TLEwWNmR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69D08C4CEEA;
+	Sun,  2 Mar 2025 16:07:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740931621;
+	bh=6Z1K2XeEqTJ+PjSTHPmZvbQCAwrBgXMnsTzeuQ32us4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=TLEwWNmRzoxu50gGetzLmCrV55ix9FhhrsO+ah2335y0pn9Qi3RFBfkZYkYOMS2ab
+	 j9TjFANBQb+7XL6fMzePFbbvwAN7fMzd+fPngIunbIpQ5mhvfdDzuEFiBkS9YU4WVs
+	 zpJ38yLhwZYTN79b/EvKXeFBpHgyPRR1LG8yei1iV882TMyauEBkHI0lhsvb9Udwhj
+	 khewVtukix9yqVAnPHB5w3JAXCfWS0Vtx3NR/1vcQp8NkoOoZZ97hBHfMdKuOTWxK3
+	 MpXDyRlc4Btp+XN74DkPAyeUa0/j+hd/C0QFzKjkDfGb4Ke4tQ/96asbH8mU6mELPR
+	 oVWCFltGcEQvg==
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2fef5c978ccso644254a91.1;
+        Sun, 02 Mar 2025 08:07:01 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUW5ouLqluKhtR6kbgCKj2q+0GW4GMPQrgkzX5JFiL6iwOUICAqtWM1/mlwvq2TeKUv8NlX8gSroXxM@vger.kernel.org, AJvYcCVlQXwbHDOh/s5LWPhOKrDFATodg+a9Hy0hsgC97/QTQNbrhXMRCIg9BC22JBnWOV8fVEkzGgV0iGuUW33e@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQJRKvg2xCQjlHWwbH23HZUZM/worhMBcwdQnrZYs1vLRvhKxE
+	oewGa9koFhDNeFyOPlnSOyYTWiEFaCE8HLTwhrKbynQQN+b9lpQc54WkYi+gv89PoooXF84pMgg
+	pVC96yKObqRuaS55tZ3k+cgRbwg==
+X-Google-Smtp-Source: AGHT+IGgpVK4aKVTw1AYLTQHunnH0lP0Xo7e0HySRK7+dlps4YjnoiELgWFMnKkx9EIddZ2irPPWBjpXbYwY6LnMy7Q=
+X-Received: by 2002:a17:90b:3511:b0:2fa:1f1b:3db2 with SMTP id
+ 98e67ed59e1d1-2febabcfedfmr14936364a91.25.1740931620948; Sun, 02 Mar 2025
+ 08:07:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250302-camera-v2-2-312b44b4a89c@bootlin.com>
-References: <20250302-camera-v2-0-312b44b4a89c@bootlin.com>
-In-Reply-To: <20250302-camera-v2-0-312b44b4a89c@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Olivier Benjamin <olivier.benjamin@bootlin.com>, oren@taumoda.com, 
- Dragan Simic <dsimic@manjaro.org>, Ondrej Jirman <megi@xff.cz>
-X-Mailer: b4 0.14.2
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdelieeitdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpefqlhhivhhivghruceuvghnjhgrmhhinhcuoeholhhivhhivghrrdgsvghnjhgrmhhinhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeeugeeivddvveevvedvudefjeevffdtuefgffekieelheehfeeihefgleefieelnecukfhppedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehiedphhgvlhhopegludelvddrudeikedruddrvddtngdpmhgrihhlfhhrohhmpeholhhivhhivghrrdgsvghnjhgrmhhinhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudefpdhrtghpthhtoheplhhinhhugidqrhhotghktghhihhpsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmvghgihesgihffhdrt
- giipdhrtghpthhtohepughsihhmihgtsehmrghnjhgrrhhordhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepohhrvghnsehtrghumhhouggrrdgtohhmpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhm
-X-GND-Sasl: olivier.benjamin@bootlin.com
+References: <20250218090427.20318-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250218090427.20318-1-angelogioacchino.delregno@collabora.com>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Mon, 3 Mar 2025 00:07:48 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__aFqL=LnE5vU2RP9JHmQEgkrvPmiYjxmETWo9CvwiwLA@mail.gmail.com>
+X-Gm-Features: AQ5f1JrHQ_avSblgi4HZQ7x19rsI4_LP2M6FFBaV9IRM5Ur_SJsfW7MiHzcF_cw
+Message-ID: <CAAOTY__aFqL=LnE5vU2RP9JHmQEgkrvPmiYjxmETWo9CvwiwLA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: mediatek: dsc: Add MT8188 compatible
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com, pablo.sun@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the description of the front/user camera (OV8858) on the PinePhone Pro
-to the device dts file.
-It receives commands over SCCB, an I2C-compatible protocol, at
-I2C address 0x36 and transmits data over CSI-MIPI.
-I confirmed this address experimentally.
+Hi, Angelo:
 
-The pin control mapping was again extracted from the PinePhone Pro
-schematic v1.0 as well as the RK3399 datasheet revision 1.8.
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
+=BC
+2025=E5=B9=B42=E6=9C=8818=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=885:0=
+4=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Add compatible for Display Stream Compression (DSC) IP found in
+> the display controller of the MT8188 SoC.
+>
+> This IP is fully compatible with the one found on MT8195.
 
-Table 2-3 in section 2.8 of the RK3399 datasheet contains the mapping
-of IO functions for the SoC pins. Page 52 shows GPIO1_A4, page 54 shows
-GPIO2_B4.
+Applied to mediatek-drm-next [1], thanks.
 
-For the reset (RESET) signal:
-page 11 quadrant D2             | p.18 q.B3-4 | p.18 q.C2
-RK3399_E.R28 -> GPIO1_A4 -> Camera2_RST -> MIPI_RST1 -> OV8858.12
+[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.=
+git/log/?h=3Dmediatek-drm-next
 
-For the powerdown (PWDN) signal:
-page 9 quadrants D4-5          | p.18 q.B2
-RK3399_L.F31 -> GPIO2_B4 -> DVP_PDN0_H -> OV8858.14
+Regards,
+Chun-Kuang.
 
-Helped-by: Dragan Simic <dsimic@manjaro.org>
-Co-developed-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
----
- .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 45 ++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 7f8fe7577d240f330328b6ea44ea6b06bbc8595b..9c965a00fcf6dbf4c618e1f4668d82a028c76143 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -479,6 +479,27 @@ wcam_lens: camera-lens@c {
- 		/* Same I2c bus as both cameras, depends on vcca1v8_codec for power. */
- 		vcc-supply = <&vcc1v8_dvp>;
- 	};
-+
-+	ucam: camera@36 {
-+		compatible = "ovti,ov8858";
-+		reg = <0x36>;
-+		clocks = <&cru SCLK_CIF_OUT>; /* MIPI_MCLK1, derived from CIF_CLK0 */
-+		clock-names = "xvclk";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ucam_rst &ucam_pwdn>;
-+		dovdd-supply = <&vcc1v8_dvp>;
-+		reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
-+		powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
-+		orientation = <0>; /* V4L2_CAMERA_ORIENTATION_FRONT */
-+		rotation = <90>;
-+
-+		port {
-+			ucam_out: endpoint {
-+				remote-endpoint = <&mipi_in_ucam>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
- };
- 
- &i2c3 {
-@@ -523,6 +544,24 @@ &io_domains {
- 	status = "okay";
- };
- 
-+&isp0 {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			mipi_in_ucam: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&ucam_out>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
-+
-+&isp0_mmu {
-+	status = "okay";
-+};
-+
- &isp1 {
- 	status = "okay";
- 
-@@ -598,6 +637,12 @@ camera {
- 		wcam_rst: wcam-rst {
- 			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-+		ucam_rst: ucam-rst {
-+			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		ucam_pwdn: ucam-pwdn {
-+			rockchip,pins = <2 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
- 	};
- 
- 	leds {
-
--- 
-2.48.1
-
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,dsc.yaml     | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+dsc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.=
+yaml
+> index 846de6c17d93..a5b88eb97e3b 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yam=
+l
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yam=
+l
+> @@ -22,6 +22,9 @@ properties:
+>      oneOf:
+>        - enum:
+>            - mediatek,mt8195-disp-dsc
+> +      - items:
+> +          - const: mediatek,mt8188-disp-dsc
+> +          - const: mediatek,mt8195-disp-dsc
+>
+>    reg:
+>      maxItems: 1
+> --
+> 2.48.1
+>
 
