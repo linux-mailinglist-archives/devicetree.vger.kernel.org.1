@@ -1,140 +1,185 @@
-Return-Path: <devicetree+bounces-153131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C6BA4B523
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 23:04:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA864A4B554
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 23:44:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 679E23B0882
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 22:04:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD847169546
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 22:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A4A1EF080;
-	Sun,  2 Mar 2025 22:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A3A1EF084;
+	Sun,  2 Mar 2025 22:44:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aiLKLSTG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KXXYIkrk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3400B1EEA5F;
-	Sun,  2 Mar 2025 22:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4641C5D5E;
+	Sun,  2 Mar 2025 22:44:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740953058; cv=none; b=h4nxuc9iXEweKJKJUQSxzAkDXq3FpUvW1WMu8a3SyHenAspP0KA7FSsmR1vuLtngcY96yYifCHd/sZf+z375V+SJv9+X6X4EepmQm7CMshKJ2wx58aUiCNX6sH+VZaD9XZf81RAahaFeva8aqlUoQ4l2VrFpgGulIJ3F38eIiqo=
+	t=1740955455; cv=none; b=SRJrN0I+yiFlqgikHR0GX8g3Ydah0K7jHuKQqjeiUfurwACi5cuGmHdnByO4hMBbCMZMi7eZwEAipNRWI5a/e4e/G/qAGx+9MdWHXjfTUcQ/GVT3l9HqrUzX71WWX7J4irx1O+D+FD4u/0ReXjmD0CD1Iy5Njcr5jLucqJ3OWfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740953058; c=relaxed/simple;
-	bh=G0vMHYKIc2Ay/+1HRnlZ2jVe2PJ28hKX7lpNtJythFU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EefZr0yGxu5rOJMpfiDY5GH8BVyug4YKtPusRpE3spKkTUpkXMGPPyA52cNjIejCRkdPfgkCfnrtbgnVH3rRwqAX1Q4zhHptM+BeT4OJxoCkgZQTClt637dCXUSSWCsXkG8Ucf9STJlw3fxdipSN6e5f1pecm0DWVGC8eNB/Ayo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aiLKLSTG; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1740955455; c=relaxed/simple;
+	bh=ni4JewE3sYVZYisMRjfTJPtBp8jUfifzDt0C7xVMFik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jIPbTdqrPaUb4uk/P9a0nD2HmH4euYsD969EMewdKPlcsrlmeRbVU9l6vvg2U5mDF612fSlj9sn1Qv5MXQEYnDZhjBpq+Vzfp9vT9/WP6M6vMRV2nLWvTdNGwaaEmqcL/yoIMGrnbcHkQ1GvNpW2pGQnhE9eB5cO8rkyw4UThrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KXXYIkrk; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4398ec2abc2so34160005e9.1;
-        Sun, 02 Mar 2025 14:04:15 -0800 (PST)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-390eebcc371so1190730f8f.0;
+        Sun, 02 Mar 2025 14:44:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740953054; x=1741557854; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zZsDVF7No2VH4zL0xV0L3RIQPevYbpgbeUgOON9v888=;
-        b=aiLKLSTGC/KWit4QDzAJsiSA1HEcNSvm7e8YdJsl4e5PEozjSAPAOqaLTH1ALtyuBR
-         p1cy4SqiOSbgt3gFQOpRB04dCA4TkfZvBrJHfewTIvc7f55p8B7D5rAqx/QiG35kXxB/
-         OEBRtAPqU+2CQpJgENqUCoqyytfnsx3xjJ3+urPYzgwLLq9dr3aFAsfijMVAqxe/aPtk
-         deeJzLzClpzorHr11V6ttne0g0xpMlVrgn9THCcH2/hrw69ghVi9Ltgn4WzD3pVTJs8+
-         QoT3w+T/FEauPDkZcdRwJIR31pe1F7A623LCk1cYKp/CTj7H65t3djd4g0XyuW/pCCKW
-         bcNg==
+        d=gmail.com; s=20230601; t=1740955452; x=1741560252; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B3nSz0Tm/9ALfIco44Ttp6VO9zHRPvQciCEJvIO+PRY=;
+        b=KXXYIkrkk6uHcpnCFFehYPmbjCOlVoNv9zp4hwdfjKJiufnbKTKKkNd89EioxXdu1V
+         WOt5NyljJiaxeKo3L0wQ6UBV25fMPQEmPeq5MrFZ86VLDerM84TA1A/fIc7bI8wxcsP7
+         zuzubaypgFWZafyjA19UsZe1aQ1+GQnEhDhVVyHCitc3jmxTPKtDROhSGpmXxM8sn0HT
+         mznz7lrIdFzIWMHaCSDeeOWeqSo4xZZsNpbu9N6MInFcy7Xoa2hbYGXT0OhQ+tEi8Kbp
+         71fskTaQZf6tGfZ2+Y0LYttgywqI3z6Z+XxhFIjnbrJ3jcSMsVk/Zr+jKQx4QZW0soUo
+         6cqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740953054; x=1741557854;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zZsDVF7No2VH4zL0xV0L3RIQPevYbpgbeUgOON9v888=;
-        b=mCCjP95B00lDsc8F2kuIjUUFtGyucDHu/M6NfsRCbLbZSXeZ+TWe2Vh+etNpSdjYc2
-         LAwLsB4GFx6/KkvsQnFXXSMtXct70n3cFai2QYo66CK4IFigxNFT/C8yt41+/lMB64aY
-         8T6Q7k5KAtXJbtHnRk2MkE5DBBLEf/PnGN3SVOapm4mM4DbkwEzi43yv4U4J79ZCnNCO
-         Zwey9B9xsDG7PaiORA3CXhqpqfyyoAb2pnBJevof235twhMIQ3d8c43/VdHN4O/hk+15
-         GJtGr67+zLiJKxVlebLvme/dP57vbXwlrmtAYPIIOjxottOtp9GHSy2rVMt7Y8jzqT+u
-         W69w==
-X-Forwarded-Encrypted: i=1; AJvYcCUShRwHU2EZ6f6hzFqRfQ6hgJRVmXKzFtDRIpVW5fr/MW++bQ6vJ4EMcs4+gD5NLGiHsNAAxE1eW8B4@vger.kernel.org, AJvYcCVvY+hlGfrthHcWFaOXOL3fLMZyj7m4+FTDMSf5FwXHrmlqZ8PsgfWX0CB8vK34AyRiqWj6dcCR@vger.kernel.org, AJvYcCWRzfQ2iA3IQYaA5TU7V32Lyr4JOSDsUgqPxyOmvmyM21A6yXDBIOLijDkZNjM9rjetNQtO+GvT5Iy+3LNk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQOQz+sLSlIS61wXg4/1B/JeXcc40ON7A0fngSRxA1Bb1uSZQj
-	nSKSdh1eMQQO7ZYce/QqtJdC/aoQYztY0WgDoJYKOGw9mFsfp2zChDRwTXfNNFZOwnV81F8qIuj
-	UrpGUfwLWK1DDGp+u4TgmCDqpw4Q9Xjk=
-X-Gm-Gg: ASbGncuaQFnc01gTujg5Co/tLIbXalVOuBjwtNzPZ7KuSWRCfW3+tZ4bDMtIB/xoIFV
-	tE42I+SLeTkIud+EW4qGECh+quEKqsqgc/YGqlzHp+LpLLWawMDPusln9DBgH/tvFbbxUmEg9P6
-	mlUoA1+fCbrA0xbQy/JYPPW0bg
-X-Google-Smtp-Source: AGHT+IHbf2F3wgrK745iu/slJiop7/BiO5rszzCiQCR0Q9CFsjReqMAjl4alyqu3WyHZsqI9eW+pqAIq45IKjh7/6jk=
-X-Received: by 2002:a05:600c:5494:b0:439:4700:9eb3 with SMTP id
- 5b1f17b1804b1-43ba66cfe3cmr88337165e9.3.1740953053930; Sun, 02 Mar 2025
- 14:04:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1740955452; x=1741560252;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B3nSz0Tm/9ALfIco44Ttp6VO9zHRPvQciCEJvIO+PRY=;
+        b=JMMzn2vQWmfohMd2Q/2tf7hXksQ/AspwiUesis9Ww0SaZfwm6u/jZ3/JSDoMbdiaaq
+         6dE3xSpmyvTy1x979K+l3IAQKigphvqlCzoEHbacXDeCqHh0zHWHKhFJozbwM8q9yJtS
+         ROjSvw9j9NTZRPmtH34NdJctnadWUbPjuScOHl9tzWgy72tqg1g5WJXhMIlEbUjxvCOy
+         aha8FuMmcNXQEI/YewZlr+VpbbCtqRiXRaUb60Ogw0vqkTdJ/RszrM0wUp3+a5Yn99Cv
+         HZfRi8vChqlhgVJXWiE6dAVD2fCNNlu4n4gzrbtqjK5ei89J9OBmnPK9eYXnAZ6XYp9s
+         sN5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVquMdbZYXTL5uTovvSeevl+aIr3kgy7SiIY6OyHgzsEFKyd5x6GwdkfuwLxBzwuh5rkw9NshEllOA=@vger.kernel.org, AJvYcCW6UiBJk4cGoUlElY6K4mCm6IKtwAY5WQYBNmSQkG+wQ+kMGMtZxosQoPcQSBqonJMG9DN6AoRQWVOU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCURiPi/moDKaNcFB5Gxgd5q4ai80D8sy8VUJolLyb8/ibe6NZ
+	+yvAaI55j3oiGPq3cvWAfhqmFgb+euMtjdcN0MnoZgeLISnuxxal
+X-Gm-Gg: ASbGncuBA73W6E4QBmeaLgSdootgz/KeVZkEXdbZJMzx+fqe8HXRarAQZtOd3SdKFro
+	5X+/qmDK3pqpXORmN02lKvttqgNsrdFKWSt5bQnW737ZyFTM4iHCmmLzyBWfum3wGQbb9lo0IZM
+	OlUrz/RvkM0LTHHEiuUJ63fpzW7VxhPeWsc7miVc4qV4MBh3gPcurWxRYNL+fOfrh6SbCEwbTq1
+	IEtwiApdtE/jFaGUNgJ9driE99qRz4D8VCq23tIxshdwoNrsHjGkHrJoaosR9mZ2Zt5Bb+0sAlW
+	EZHKwdxHcUmG+UIr1zGVWlqM0QxasbaIBA3p6f+f+gVvWu4yHzhRjFsqN3+BWN1QhD91J7ErDOP
+	zLsYOFRL9YjpZCIVEX60=
+X-Google-Smtp-Source: AGHT+IFSwDgCyqBHbrq2Yl2rg5agQteOsniIG4r4DpFhXYFaxZR5xy7+52k8VXpQGVa6zUoKmIRgVw==
+X-Received: by 2002:a05:6000:1789:b0:391:ba6:c066 with SMTP id ffacd0b85a97d-3910ba6c216mr967773f8f.35.1740955451848;
+        Sun, 02 Mar 2025 14:44:11 -0800 (PST)
+Received: from [10.13.13.3] (146.10-240-81.adsl-dyn.isp.belgacom.be. [81.240.10.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e4844ac6sm12407954f8f.71.2025.03.02.14.44.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Mar 2025 14:44:11 -0800 (PST)
+Message-ID: <01775d74-d72e-4a93-8a02-c13f7365d385@gmail.com>
+Date: Sun, 2 Mar 2025 23:44:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250227081357.25971-1-johan+linaro@kernel.org> <20250227081357.25971-5-johan+linaro@kernel.org>
-In-Reply-To: <20250227081357.25971-5-johan+linaro@kernel.org>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Sun, 2 Mar 2025 23:04:03 +0100
-X-Gm-Features: AQ5f1Jqzczj1wRss2EFO1WmYdsU6tQlXhWuUjnd4EuAkHlAIiGwHaq3WMgLV_O0
-Message-ID: <CAMcHhXp2im-55KxwSUj0pV_hmrg-HaV5RYB4jvPOoqOYjJuCYw@mail.gmail.com>
-Subject: Re: [PATCH 4/8] arm64: dts: qcom: x1e80100-dell-xps13-9345: mark l12b
- and l15b always-on
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] arm64: sunxi: h616: Enable Mali GPU
+To: Andre Przywara <andre.przywara@arm.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org
+References: <20250221005802.11001-1-andre.przywara@arm.com>
+Content-Language: en-US
+From: Philippe Simons <simons.philippe@gmail.com>
+In-Reply-To: <20250221005802.11001-1-andre.przywara@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 27 Feb 2025 at 09:15, Johan Hovold <johan+linaro@kernel.org> wrote:
->
-> The l12b and l15b supplies are used by components that are not (fully)
-> described (and some never will be) and must never be disabled.
+Tested this on a RG35XX-H (H700),
 
-Out of curiosity, what are these components?
+launching glmark2-es2-drm completely hangs the board.
 
->
-> Mark the regulators as always-on to prevent them from being disabled,
-> for example, when consumers probe defer or suspend.
->
-> Note that these supplies currently have no consumers described in
-> mainline.
->
-> Fixes: f5b788d0e8cd ("arm64: dts: qcom: Add support for X1-based Dell XPS 13 9345")
-> Cc: stable@vger.kernel.org      # 6.13
-> Cc: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+No kernel oops or error messages.
 
-Reviewed-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Tested-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Philippe
 
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts | 2 ++
->  1 file changed, 2 insertions(+)
+On 21/02/2025 01:57, Andre Przywara wrote:
+> The Allwinner H616/H618/H313/H700 SoCs contain a Mali G32 MP2 GPU. This
+> IP is from the Bifrost family and is already supported by the panfrost
+> driver, so enabling support for 3D graphics on this SoC is rather
+> straight-forward.
+> However Allwinner added some bits in the PRCM block, that control the
+> power domain for the GPU - on top of its power *supply*.
 >
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-> index 86e87f03b0ec..90f588ed7d63 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-> @@ -359,6 +359,7 @@ vreg_l12b_1p2: ldo12 {
->                         regulator-min-microvolt = <1200000>;
->                         regulator-max-microvolt = <1200000>;
->                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +                       regulator-always-on;
->                 };
+> This series enables the Mali GPU on those SoCs, by first introducing a
+> power domain driver for that SoC (patch 1/5: DT binding, patch 2/5:
+> the actual driver). For the Mali GPU to work we literally need to flip a
+> single bit (the BSP does this in the bootloader), and this full featured
+> power domain driver is admittedly a bit over the top for that purpose.
+> However it seems to be the right thing to do architecturally, and while
+> at it I added the other power domains (for analogue, PLLs, and the
+> management core), even though we won't use them in Linux and they would
+> be always on. I have a simpler version of the driver which just covers
+> this single bit controlling the GPU, please let me know if you prefer
+> that.
+> Please also note that this supersedes an RFC patch I sent a year ago,
+> which included this power domain in the R-CCU driver:
+> https://lore.kernel.org/linux-sunxi/20240225160616.15001-1-andre.przywara@arm.com/T/#u
 >
->                 vreg_l13b_3p0: ldo13 {
-> @@ -380,6 +381,7 @@ vreg_l15b_1p8: ldo15 {
->                         regulator-min-microvolt = <1800000>;
->                         regulator-max-microvolt = <1800000>;
->                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +                       regulator-always-on;
->                 };
+> The rest of the patches enable the Mali GPU on the DT side: patch 3/5
+> adds the compatible string to the Mali DT binding, while patch 4/5 adds
+> the purely SoC specific DT nodes, for both the power domain and the Mali
+> GPU. The final patch 5/5 then enables the GPU on all existing H616-family
+> boards.
 >
->                 vreg_l17b_2p5: ldo17 {
-> --
-> 2.45.3
+> There seems to be an existing problem with powering up the GPU, after it
+> has been turned off by the kernel. Chances are this is a problem with the
+> proper power-up (or power-down) sequence, where clock gates, reset lines
+> and the power domain must be asserted in a specific order.
+> A workaround used so far downstream is to keep the power domain enabled,
+> by ignoring the power-off request. Observing any assumed "proper" sequence
+> is a bit more tricky, since there is no Allwinner specific glue driver
+> or anything, so things would need be changed in the generic panfrost
+> code, where they have the potential of breaking other Mali users.
+> I would be interested in hearing opinions about this.
+>
+> Cheers,
+> Andre
+>
+> Andre Przywara (5):
+>    dt-bindings: power: Add Allwinner H6/H616 PRCM PPU
+>    pmdomain: sunxi: add H6 PRCM PPU driver
+>    dt-bindings: gpu: mali-bifrost: Add Allwinner H616 compatible
+>    arm64: dts: allwinner: h616: Add Mali GPU node
+>    arm64: dts: allwinner: h616: enable Mali GPU for all boards
+>
+>   .../bindings/gpu/arm,mali-bifrost.yaml        |   1 +
+>   .../power/allwinner,sun50i-h6-prcm-ppu.yaml   |  42 ++++
+>   .../dts/allwinner/sun50i-h313-tanix-tx1.dts   |   5 +
+>   .../sun50i-h616-bigtreetech-cb1.dtsi          |   5 +
+>   .../allwinner/sun50i-h616-orangepi-zero.dtsi  |   4 +
+>   .../allwinner/sun50i-h616-orangepi-zero2.dts  |   4 +
+>   .../dts/allwinner/sun50i-h616-x96-mate.dts    |   5 +
+>   .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |  21 ++
+>   .../sun50i-h618-longan-module-3h.dtsi         |   5 +
+>   .../allwinner/sun50i-h618-orangepi-zero2w.dts |   5 +
+>   .../allwinner/sun50i-h618-orangepi-zero3.dts  |   4 +
+>   .../sun50i-h618-transpeed-8k618-t.dts         |   5 +
+>   .../sun50i-h618-yuzukihd-chameleon.dts        |   5 +
+>   .../sun50i-h700-anbernic-rg35xx-2024.dts      |   5 +
+>   drivers/pmdomain/sunxi/Kconfig                |  10 +
+>   drivers/pmdomain/sunxi/Makefile               |   1 +
+>   drivers/pmdomain/sunxi/sun50i-h6-prcm-ppu.c   | 191 ++++++++++++++++++
+>   17 files changed, 318 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/power/allwinner,sun50i-h6-prcm-ppu.yaml
+>   create mode 100644 drivers/pmdomain/sunxi/sun50i-h6-prcm-ppu.c
 >
 
