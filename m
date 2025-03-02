@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-153051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36CE0A4B1F9
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 15:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26C77A4B1FE
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 15:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38ABE16B634
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 14:00:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3369216BB1C
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 14:05:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4706038FB9;
-	Sun,  2 Mar 2025 14:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207BE1E0B9C;
+	Sun,  2 Mar 2025 14:05:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="McIGGuoZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="feia/f3N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5E223F36D;
-	Sun,  2 Mar 2025 14:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E63CB1DE2D7;
+	Sun,  2 Mar 2025 14:05:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740924030; cv=none; b=tqKUTHV5zCL6/SVa64u2vSIztCcoTlgMgJXfgu4locAb1SkhgmJnqQ91YIftGhXsV/7ZwCRjY3M7uEg9Jj7VAAizU/o57XnhBBZejW9+9jGNfUNr1mk3fZkxCe54Es19xnBJhrbLgu/ja+NBb683S5AlSPECYNGtMvQSwr7+xG0=
+	t=1740924304; cv=none; b=ilkWYZg+x0HW37db0AkqWnCZSTlyAjn4Rbcck5SW7penHqAxt8WNNUUPgQMueDWlAqfR58II7P6bUVpy4qoVzv5J3GBdr/hqgQRE98gqb9PX0ygYMi6il2ZJVAoqzShPhG6b4dS72+HEtPZHq1Qj3RRYqqMJvUepvXXndDVp3bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740924030; c=relaxed/simple;
-	bh=Av/PzBkOyruXRWKNi7XdeiMIEbdI1P2Bm67kdtg1gjg=;
+	s=arc-20240116; t=1740924304; c=relaxed/simple;
+	bh=ACEiqu9VyNmqiDL7jDGjoGE0f92hgXDBZVuSdlhL6c4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MpXqcel3aaImxjoFrXxJd/BloG6NC9ps1eYiQ5zKbmOknu7tvXOZxZujq5eUpfcs/QlePhEk8U5AvRDKFNZacGpo7x9IyU627H9iPPvHEie4gp7+D0cJ9VGQ8QlHrURoNxbUha0tde3aFL/osvMVlw2oxF9vQenOVFzdPO24sPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=McIGGuoZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85A02C4CEEB;
-	Sun,  2 Mar 2025 14:00:29 +0000 (UTC)
+	 To:Cc:Content-Type; b=Z3UhycMJIHxgsFWl3gcMRut40cxqL3xzQOUmIkL25wHebxA6xW5Sdb6lS6MYpLFyFJmjtfEFe5LoeS+MYBku0UT+JUgczwF+X8/O8WchIlefTPLsDz9P6hcXzhZLi5uxbj1OeguzXTBK2eqTsjjKznoUhd9ItNYwSHwTCYey9Go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=feia/f3N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58488C4CED6;
+	Sun,  2 Mar 2025 14:05:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740924029;
-	bh=Av/PzBkOyruXRWKNi7XdeiMIEbdI1P2Bm67kdtg1gjg=;
+	s=k20201202; t=1740924303;
+	bh=ACEiqu9VyNmqiDL7jDGjoGE0f92hgXDBZVuSdlhL6c4=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=McIGGuoZ7gMk2Glgi+BCFR2gGNhEJVNnMtxtb7FuX2X0QS1okoEknf61jVDXoKwNn
-	 0nXZNH4n0Hpw4bRx3eyjRFFcF7EgEfBpg4uKzmjNYeB0JZuRxWWmNW0flo+PSESd23
-	 ztxe4Hw3qOelY7Gk8DnI5p1dH69WjRuOjVbGpmDty5zBYI/mFQEQzT2/F8qlZeyO+F
-	 1ymkoVUztYhkV2Ji7jOVozFBNwTvJilnMIOVRltO/p5JsSVPOXsxop3m5J2AZp+US8
-	 U1r5Igo4WtrAV+Nowb+QnB8neIzzYFnkX+l2S1ARK2cnpywKVgWZOf5RH2pGHc7vAs
-	 KsWaqJKxxnP3w==
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2238e884f72so11881075ad.3;
-        Sun, 02 Mar 2025 06:00:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW77skBb2CT60NrKOovQFwja2n1hojbNS57g8dxO+dm5lENgWXpo4AXLjLNLjN6FYwutaDJCjjqnqHfJLZB@vger.kernel.org, AJvYcCXhtCv6ymNQcdq21xbM7X31EgENYQh6MDbh8wuTSIA4TH1vQJFkZXJ34FvtsJxoRBOOEWAYYfz6DOj9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPWjSb8hFVvInkZkPKn3U5l1zQhBwgjZvcS67vTYLToPFsp9T6
-	s0griNk/7HPfScAPlfdMLkb80sA5Psszk7r4KV4BmoSmgJliSba65te1aYa6G9gIdcHlvX1JpCH
-	8u2dKKTdmcEYz7Q6FNyHe0cVvXQ==
-X-Google-Smtp-Source: AGHT+IG1UW/aTlTM1yyIsxH6m8pGtzQb2LXGDtI6T8t/hEX8x0qb7qhCvRhbTMRAi2KttaGOcJDuH66GaQNNrad3F3Y=
-X-Received: by 2002:a17:903:244d:b0:216:6901:d588 with SMTP id
- d9443c01a7336-22368f75980mr127122725ad.15.1740924028832; Sun, 02 Mar 2025
- 06:00:28 -0800 (PST)
+	b=feia/f3NOUJDjs0K1SnCGswU3g3gzbBeIKSDA/ChWT6xKyWlnHs1ayaXRl/uZKfAv
+	 wf3u3MtYT+Es8Kmf5uUW5gxsZhrz5HH5MheS4CMuI4943Dk+vhGJg7dAoX3WQRKgWZ
+	 pHmCZEgOmgahdTDdMoXMgwHs8uGJgCKF31NlvS52VP7Bcysu+9cElBpMmdccCjtITo
+	 xPGo0TWs4hfxm/yXi5Gnt7wTCbMRgsgid/X+PUU+OfBIgeZEtlCOiE8OxvMhD8sEwz
+	 3UmxWbsJuH8txJHlOLpFjk9S1oc5cpvU4U4jlLdceGdrCitabASCPgMyHcRWiU+dIF
+	 EpUe0sHVWhSpg==
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2feb9076a1cso5270792a91.0;
+        Sun, 02 Mar 2025 06:05:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU0ctyRU1oOd9kP9SQ5jFcJQP+XtBDDK2k3mrKHka0taPYhkqCX+fkoJJn94EwDOWnvcPEEbgeHHaVW@vger.kernel.org, AJvYcCVUkazRPvX2j/qbTIdNdvXmIPC3AHNvwmXNDzgcIvDLTpsiipM0L7vdN/th7jnGTqPIXVoKutHepkqLkzYu@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiM6VPbWOHYkLkejziHvK/DpHBrlUagX5iTwMVPv/RFEJ1CHha
+	g+jn3vEcewS0nmSV+j9Gse0qeE4HBoyARZft3W2XyCPNIpnI57ouPE+uQzF5+ht+J0M+NznYzpN
+	BoKPGgo0w8Ph+IyrXhgOw5EaByg==
+X-Google-Smtp-Source: AGHT+IG16EEdJJHvm6Oj64x4u72JISQwLPN9kfN5w5LtdjSW9aGHHuRsWNMb8JRAz2CRhaPVGvxVlY/s8nFADdCz3Og=
+X-Received: by 2002:a17:90b:4fd0:b0:2ee:aed6:9ec2 with SMTP id
+ 98e67ed59e1d1-2febab5e11dmr17308029a91.14.1740924302962; Sun, 02 Mar 2025
+ 06:05:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com>
- <20250217154836.108895-9-angelogioacchino.delregno@collabora.com> <CAAOTY_8kxxaj+jum6CkJGHKrpjiX_cNt4FT345yET8GWR2QSFA@mail.gmail.com>
-In-Reply-To: <CAAOTY_8kxxaj+jum6CkJGHKrpjiX_cNt4FT345yET8GWR2QSFA@mail.gmail.com>
+References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com> <20250217154836.108895-10-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250217154836.108895-10-angelogioacchino.delregno@collabora.com>
 From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Sun, 2 Mar 2025 22:01:15 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9tjf8xw8n9euVK1OH7LLopNYwx5qzLJpQyQ+sKfVH6og@mail.gmail.com>
-X-Gm-Features: AQ5f1Jo2Tbkh_sgx6kIGT6QdCzyACy__75IjpU71fY-nThmkgmTkCzBPqTB7-MQ
-Message-ID: <CAAOTY_9tjf8xw8n9euVK1OH7LLopNYwx5qzLJpQyQ+sKfVH6og@mail.gmail.com>
-Subject: Re: [PATCH v7 08/43] drm/mediatek: mtk_dpi: Support AFIFO 1T1P output
- and conversion
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, p.zabel@pengutronix.de, 
-	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, matthias.bgg@gmail.com, ck.hu@mediatek.com, 
-	jitao.shi@mediatek.com, jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
+Date: Sun, 2 Mar 2025 22:05:50 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__zrRM9oyDtuDAzJ+ddOU2as2-vy9FkGs_Wzqjo_==RvA@mail.gmail.com>
+X-Gm-Features: AQ5f1JoTySmTRsktldIsbqAg0MJ_QRQyHKP457TZ4jFIH5MH1bn0tYelMK9Vy-I
+Message-ID: <CAAOTY__zrRM9oyDtuDAzJ+ddOU2as2-vy9FkGs_Wzqjo_==RvA@mail.gmail.com>
+Subject: Re: [PATCH v7 09/43] drm/mediatek: mtk_dpi: Explicitly manage TVD
+ clock in power on/off
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
+	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
 	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
@@ -82,95 +81,80 @@ Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, p.zabe
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Chun-Kuang Hu <chunkuang.hu@kernel.org> =E6=96=BC 2025=E5=B9=B43=E6=9C=882=
-=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=887:29=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> Hi, Angelo:
->
-> AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=
-=96=BC
-> 2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=881=
-1:49=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > On some SoCs, like MT8195 and MT8188, the DPI's FIFO controller
-> > (afifo) supports outputting either one or two pixels per round
-> > regardless of the input being 1T1P or 1T2P.
-> >
-> > Add a `output_1pixel` member to struct mtk_dpi_conf which, if
-> > set, will enable outputting one pixel per clock.
-> >
-> > In case the input is two pixel per clock (1T2P), the AFIFO HW
-> > will automatically (and internally) convert it to 1T1P.
->
-> Applied to mediatek-drm-next [1], thanks.
->
-> [1] https://web.git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linu=
-x.git/log/?h=3Dmediatek-drm-next
+Hi, Angelo:
 
-Fix build error then apply. Be care of patch quality.
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
+=BC
+2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:=
+49=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> In preparation for adding support for MT8195's HDMI reserved
+> DPI, add calls to clk_prepare_enable() / clk_disable_unprepare()
+> for the TVD clock: in this particular case, the aforementioned
+> clock is not (and cannot be) parented to neither pixel or engine
+> clocks hence it won't get enabled automatically by the clock
+> framework.
+>
+> Please note that on all of the currently supported MediaTek
+> platforms, the TVD clock is always a parent of either pixel or
+> engine clocks, and this means that the common clock framework
+> is already enabling this clock before the children.
+> On such platforms, this commit will only increase the refcount
+> of the TVD clock without any functional change.
+
+Applied to mediatek-drm-next [1], thanks.
+
+[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.=
+git/log/?h=3Dmediatek-drm-next
 
 Regards,
 Chun-Kuang.
 
 >
-> Regards,
-> Chun-Kuang.
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 >
-> >
-> > Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
-llabora.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_dpi.c | 11 ++++++++++-
-> >  1 file changed, 10 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/media=
-tek/mtk_dpi.c
-> > index 9f83e82437dd..e12dc73ed79c 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > @@ -147,6 +147,8 @@ struct mtk_dpi_factor {
-> >   * @edge_cfg_in_mmsys: If the edge configuration for DPI's output need=
-s to be set in MMSYS.
-> >   * @clocked_by_hdmi: HDMI IP outputs clock to dpi_pixel_clk input cloc=
-k, needed
-> >   *                  for DPI registers access.
-> > + * @output_1pixel: Enable outputting one pixel per round; if the input=
- is two pixel per
-> > + *                 round, the DPI hardware will internally transform i=
-t to 1T1P.
-> >   */
-> >  struct mtk_dpi_conf {
-> >         const struct mtk_dpi_factor *dpi_factor;
-> > @@ -168,6 +170,7 @@ struct mtk_dpi_conf {
-> >         u32 pixels_per_iter;
-> >         bool edge_cfg_in_mmsys;
-> >         bool clocked_by_hdmi;
-> > +       bool output_1pixel;
-> >  };
-> >
-> >  static void mtk_dpi_mask(struct mtk_dpi *dpi, u32 offset, u32 val, u32=
- mask)
-> > @@ -653,7 +656,13 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi=
- *dpi,
-> >         if (dpi->conf->support_direct_pin) {
-> >                 mtk_dpi_config_yc_map(dpi, dpi->yc_map);
-> >                 mtk_dpi_config_2n_h_fre(dpi);
-> > -               mtk_dpi_dual_edge(dpi);
-> > +
-> > +               /* DPI can connect to either an external bridge or the =
-internal HDMI encoder */
-> > +               if (dpi->conf->output_1pixel)
-> > +                       mtk_dpi_mask(dpi, DPI_CON, DPI_OUTPUT_1T1P_EN, =
-DPI_OUTPUT_1T1P_EN);
-> > +               else
-> > +                       mtk_dpi_dual_edge(dpi);
-> > +
-> >                 mtk_dpi_config_disable_edge(dpi);
-> >         }
-> >         if (dpi->conf->input_2p_en_bit) {
-> > --
-> > 2.48.1
-> >
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
+k/mtk_dpi.c
+> index e12dc73ed79c..ee952785866c 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -499,6 +499,7 @@ static void mtk_dpi_power_off(struct mtk_dpi *dpi)
+>
+>         mtk_dpi_disable(dpi);
+>         clk_disable_unprepare(dpi->pixel_clk);
+> +       clk_disable_unprepare(dpi->tvd_clk);
+>         clk_disable_unprepare(dpi->engine_clk);
+>  }
+>
+> @@ -515,6 +516,12 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
+>                 goto err_refcount;
+>         }
+>
+> +       ret =3D clk_prepare_enable(dpi->tvd_clk);
+> +       if (ret) {
+> +               dev_err(dpi->dev, "Failed to enable tvd pll: %d\n", ret);
+> +               goto err_engine;
+> +       }
+> +
+>         ret =3D clk_prepare_enable(dpi->pixel_clk);
+>         if (ret) {
+>                 dev_err(dpi->dev, "Failed to enable pixel clock: %d\n", r=
+et);
+> @@ -524,6 +531,8 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
+>         return 0;
+>
+>  err_pixel:
+> +       clk_disable_unprepare(dpi->tvd_clk);
+> +err_engine:
+>         clk_disable_unprepare(dpi->engine_clk);
+>  err_refcount:
+>         dpi->refcount--;
+> --
+> 2.48.1
+>
 
