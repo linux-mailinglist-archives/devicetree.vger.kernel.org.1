@@ -1,107 +1,104 @@
-Return-Path: <devicetree+bounces-153102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5AE2A4B422
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:41:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F216A4B42A
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:48:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10E333B0B18
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 18:41:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BDFD188F53F
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 18:48:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8572A1EB1A4;
-	Sun,  2 Mar 2025 18:41:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8C81E9B04;
+	Sun,  2 Mar 2025 18:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VwxwC6j1"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="UOSYoFCl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3EE192B84;
-	Sun,  2 Mar 2025 18:41:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D99412B93;
+	Sun,  2 Mar 2025 18:48:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740940909; cv=none; b=RAB2V4bwg7wacXf4hiq3+QpqfvHWgv/LE0OODutJI4yWLeeRfG66xubbZ46U/QAwwIXDSfMId5N2X5NG8reKI5pzOiB5HTgT2+B8X2DeOQpAYp+ZWwf3s6Cg0vtPVXTd8cOStS1AqG5oV53RC27MToSFbwrStQHTwxIjwjWHjyc=
+	t=1740941303; cv=none; b=NLB175kyMZvI4bo2F0arZHf9OGQj+k+nfNJiCYAxWUUTH6jackygaxifM84EUux93O60iT63uXqNL451UwoLAMKWiaGmjmIvyemNCusB2KjOAXg8HvaYt0K/fuiMg9lKyHdtEgxpJdOz5CHAvlH3D3wk7toOhN7SuqcrKfb4z8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740940909; c=relaxed/simple;
-	bh=Abbwh+Z5xhlgNf2aQeAmhgLyl8Vao4lpBVn4LqriQrM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l+pNGVlIZbVCM8sT55gUJ5igfWAYsN+708BMc5wChOPDsJYxUB9szSr6n3pq4jt0rN+pgXpIBe9lA0c5UQ51KwE4mlNNbWCSPg1h9plJ9TfVRHq9uyS22LYLO/maaeyz5AGc8fUEPi4CobPHvgYCnWP/XEeBspAxpWTpIEedoyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VwxwC6j1; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2fea795bafeso5491192a91.1;
-        Sun, 02 Mar 2025 10:41:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740940907; x=1741545707; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8WQSVMiOMZEq/mCTCgIk0aL5AHS6jkSlau18UDaVyUs=;
-        b=VwxwC6j1b5xLBLOvmuCFhwDtoHw4aDBXrIz0fSyhE6/IhKVJ0B6Xa1PSKFRU5vledv
-         cXsMkMqfLYdhFWZpSXZFw6VSL1skAM7r28iOgCbkl+jpnKAsvonGMLKQkrXTrD1lTnDO
-         SMbFmwzHCwgGuyBrVVso2N2odl4LxMVbbBYe74j1EdTZ+Jk02t2Ps82fp8K79lSIxGHM
-         P9njbNJGENR0Omknix33z2b07Uv7ofaY7K5wggKBtA1ctdpXHiE/JajzlxJfC5m1Aejd
-         6mdlb2oD3IVJ7EJ2QIuNPS7B5HCalrkKn0ClZxTXCQHKe4/tQ85DmEeWK/XBTjDqCNsg
-         KXLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740940907; x=1741545707;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8WQSVMiOMZEq/mCTCgIk0aL5AHS6jkSlau18UDaVyUs=;
-        b=ILy4WCH4Bx2Uh5Hke6J9ag8f6AMJpnizqig1miYUnN08B9Pwdva8VmHlx9wJniL+I6
-         /2ZjX/cNSHNrqQJymwgfKb1t22d8XBTPCtA8Q0KyKQyxmAjPXWT9MliG4ZwPm7a9Ly5+
-         yphBa0XYGUwO3ioVQW7mPJczzAGCpQqy8dYVadZS7ccF0nYJAOmX6yvVBYutVfKSzAGk
-         /SQGIlsYqGpoPjLmg+28Cr2F8H71Ph6DtbhUv6GvuF3y4lFbWAuFmoyHTdEnkEWPSpdq
-         0/SPWTh8Itt6Py8EdTixAs22jzBjv+37gwTfNVs1OKY2+HVzVA8f/ktP0Mlm9e54ys2q
-         9W6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUaPM4l3DJ8Rv8EBg9RPrDyQ4TbiEexJsP9d6hsuofZWdaWlzLm4g7UUbihfIcgkoVmnwW12hxXPlahfGk=@vger.kernel.org, AJvYcCVXE1zAa/TB0TjjH/06MYJB6xQRLlj2zA6gpR18H3vueL0PY6LKA71jhYN4FJvvTmlFQZ60Fmo8o7s=@vger.kernel.org, AJvYcCVZq+zgu6v+37nwZ9l3WlmAWzSUGJHFky+fiJKrbT9zhYiQN9B+2DiRpbj2iH2DiPuLlnIQYc0eZhtH72kj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWDkp6KHU//2Ss3wKCXHiIelUaA5Y2XodpcfQFaNhpMcKAT4G0
-	VkCsyN/jcpB7Jhvlv96CTzRlogQ2aRvugJ0ZifQji/nvQs7UKJVO
-X-Gm-Gg: ASbGncve6O9XrdDosNBheYiDdhq/SpAQQyjMhZ79QKYOHCBtRHhy8Uq5krzT8HWRHmu
-	mRXAQXc0xtiX86ORyPMqJpW6NDv+dzMf2CXe16SRIX9YCdyUARD+Zes2NR0MQzneVJrR5IZsdW4
-	EZUu5s3psr1KkwiR3Ee4jo5LSKpSxIyWoHiEsc7U4HSeGBwREAsld9AE6knWcf2GTpjWq4d/He0
-	yiiccydse9X0aN9ChI3hQ3+96F0PtphVh5GlghwKwyo9NjZx042VBMBN1PDhj2boumuNohxXheO
-	Y2HmNop9hDWBZXiZ4P+3dclu7FShb1gGZ4iWeOPz9ykqGpS61kr4o+4FuQ==
-X-Google-Smtp-Source: AGHT+IHuEFWEguTkr+Uzcr9o5sfTXZM/Tyo2Aj8Ai3HrgXVsI97W4NxgUU8dI0/ICKERBy/329zs+w==
-X-Received: by 2002:a17:90b:4d04:b0:2fa:176e:9705 with SMTP id 98e67ed59e1d1-2feba7e66c2mr16501558a91.10.1740940907259;
-        Sun, 02 Mar 2025 10:41:47 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fea67a6fa4sm7320355a91.24.2025.03.02.10.41.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Mar 2025 10:41:46 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sun, 2 Mar 2025 10:41:45 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
-Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH 3/3] hwmon: (max31827) add max31875 support
-Message-ID: <a8fecfe9-6fd4-4dae-95e8-26e47e0424b2@roeck-us.net>
-References: <20250108082531.15467-1-johnerasmusmari.geronimo@analog.com>
- <20250108082531.15467-4-johnerasmusmari.geronimo@analog.com>
+	s=arc-20240116; t=1740941303; c=relaxed/simple;
+	bh=NcMqrBK+sAuTQH/6XuHuL+enLlKm5osmENyhl3lz37o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FcpXXjmYE1i4EQFp8ap71l86m19W7pR7zzb97+sgt6pOWz9Xz9zSrwL8Ptf6FXmMpBMkM3HM+q84jwL+TmYMSuyaBCbVSSFdmuah1TggHv6RJBNg1xh3bfmEJts8C2jCrXjzCMkrdIdpDjTk7iXmtS0keCpI4GdiaMKAYC/xqfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=UOSYoFCl; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1740941293;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=rQXew6m92deUN72dLBiwb/ih/m/f5d9GpQpBSeEN2Ro=;
+	b=UOSYoFClTic2PbsC9ZKZ1fJwDcihUrGT2sSqx5TQYRRDjOkhAl6cWyeyGeYDyMbHqe9vet
+	btRM9ugur0ouyrMDvvN2GvE9yZWSZfR51R1mhtxk+NkcUXMkYqof+fcghrOA5N9XLHsUsn
+	BhOEsztZ1BpWPpwjnNY5ubwihMSFSWMqywSYz1eZaWrMF74RhRswq+wZ7lUa3NV+3yyZoz
+	oVf+zkOEm4Whswh9i62CrOX+FysuxDrS+tdUdVzP5eOj6NlQjBqiyz/RP/ue/H7SY3LbCx
+	bVOR5CJHdRQFkyDWDeGwstvcDsXeIXU29pa1RylRbiVoOVcBTVA2i/HuLPQ0zA==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	didi.debian@cknow.org,
+	chris@z9.de
+Subject: [PATCH v2 0/2] Slightly improve hardware description of Pine64 RockPro64
+Date: Sun,  2 Mar 2025 19:48:02 +0100
+Message-Id: <cover.1740941097.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250108082531.15467-4-johnerasmusmari.geronimo@analog.com>
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Wed, Jan 08, 2025 at 04:25:31PM +0800, John Erasmus Mari Geronimo wrote:
-> Add support for max31875 which is similar to max31827 and other chips
-> of the series.
-> 
-No, it isn't. It is yet another LM75 variant, similar to max31725
-and max31726. Please add support for this chip to the lm75 driver.
+This is a small series that introduces small improvements to the way
+Pine64 RockPro64 [1] single-board-computer is described in the DT files.
+This applies to both production-run revisions of the RockPro64.
 
-Guenter
+The introduced improvements boil down to eliminating some warnings from
+the kernel log, by adding a previously undefined regulator and by adding
+some previously missing references to the regulators.
+
+The patch 2/2 also results in reliability improvements, by reportedly
+resolving (some of) the longstanding issues resulting from using certain
+PCI Express cards with the Pine64 RockPro64.
+
+Changes in v2:
+  - Dissolved the patch 2/2 notes into its description, according to the
+    numerous power cycling/rebooting tests performed on a Pine64 RockPro64
+    by @ChriChri and reported in the #rock64 channel on irc.pine64.org
+  - Adjusted the cover letter to match the latest test results
+  - Added "Fixes" and "Cc: stable" tags to both patches in the series
+  - Added "Tested-by" to the patch 2/2, thanks to Chris' testing [2]
+  - Added a few "Cc" tags to the patch 2/2, to make sure people involved
+    in the earlier related patch [3] are in the loop
+
+Link to v1: https://lore.kernel.org/linux-rockchip/cover.1740748439.git.dsimic@manjaro.org/T/#u
+
+[1] https://wiki.pine64.org/wiki/ROCKPro64
+[2] https://z9.de/hedgedoc/s/nF4d5G7rg#reboot-tests-for-PCIe-improvements
+[3] https://lore.kernel.org/lkml/20230509153912.515218-1-vincenzopalazzodev@gmail.com/T/#u
+
+Dragan Simic (2):
+  arm64: dts: rockchip: Add avdd HDMI supplies to RockPro64 board dtsi
+  arm64: dts: rockchip: Add missing PCIe supplies to RockPro64 board
+    dtsi
+
+ .../boot/dts/rockchip/rk3399-rockpro64.dtsi      | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
 
