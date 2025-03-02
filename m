@@ -1,92 +1,93 @@
-Return-Path: <devicetree+bounces-153088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A26B1A4B36B
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 17:36:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F7CCA4B37A
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 17:40:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D6081891F3A
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 16:36:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CEE016CC81
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 16:40:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3AA11E9B23;
-	Sun,  2 Mar 2025 16:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334121EA7F6;
+	Sun,  2 Mar 2025 16:40:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TSp4iSTQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="As6qQBMV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BC41E98F4;
-	Sun,  2 Mar 2025 16:35:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5F291E9B1D;
+	Sun,  2 Mar 2025 16:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740933321; cv=none; b=IhcdDfNsqjoDqM7C2WVAhiYN9gKZxzWGBECi9cL3GTETOCPYgpg1wRLfRV7Ny7RWrQCkcugdmRGbW60++tabp9jHM6fsdBXX8xjdA7eu0b0/q8BIHNfZQ2HyQmY38MIFUTA/ZLHz224+nWm2SPVEHYjUe67ojmugjit9L0aDcMU=
+	t=1740933601; cv=none; b=mrSk8GbfncqDWE8IrZjub+Wb1wkblQNblv8yjr/YBUQ01c4wC55H1iiOPKDQvgN2uW+F33/yDYoJgTxuUPr7/HasWYm5Lzau583e7ls6W7Qxs0vmgWluaoDvq6S1UGSsZtMhYm/9HFeIV6poWSDtiw7o8VKHq1Jqq31jeujo8qU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740933321; c=relaxed/simple;
-	bh=L5YDP777lXDS7043ebd8KiLqrAwpAn4X/TLqrT1de9c=;
+	s=arc-20240116; t=1740933601; c=relaxed/simple;
+	bh=kIkFM2FnSYhcuZP+xngaQrkrnntx4kvvYD0QqaLQZeY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S7KgvcVNGHG7yFYnniFciLeNSP5jGEahIyMoNTMHzuNSuhOxFgJV87xLGLngfv9Sxgu+rZWVhVsXNpoZunuLKzS35xE24rGVp2LlFmkcfYkosdaHvdDfbWhr5pHurr0n96dyPsteJa3+QhR1W3sIM3WslU4E8fSXI45Qsu5yUZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TSp4iSTQ; arc=none smtp.client-ip=209.85.216.43
+	 Content-Type:Content-Disposition:In-Reply-To; b=q01/WaUKjeQ3qG0ZfZ088l58aieNg+T0Ixzj7Q25f77WXGwMkjjFq7+42w1TnRuNoUqR1/i6WjiXwwUz5cfNrqAf4gkK1vRhJh7Ifcy2MHsfkKkvvIXppM8a7YrlQXQnYiyy/soLj3e38ewP2WfTyTgtLrOCfFAT1gpaZ+nsQMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=As6qQBMV; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2feb1d7a68fso6106151a91.1;
-        Sun, 02 Mar 2025 08:35:19 -0800 (PST)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2234e5347e2so72359595ad.1;
+        Sun, 02 Mar 2025 08:39:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740933319; x=1741538119; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1740933599; x=1741538399; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kYxTwQUP5klffG0amPd/Tb12A9um4AUq9vE7TamJHgo=;
-        b=TSp4iSTQP1ohRIE8FbEdBQdtbe42NiSR6RHJzCrDBenW2b8XhSpXZeN8yPqwxH49H4
-         fThvUMms8OVmwTi2uvVPkZJIF356onI79jMtVmg9qSypqpVaV0WbVm0SdLZOtvpiJVu2
-         YhuNLSx6SRFCuq0T+RlTJgjLnmkan0YUtkU4Fnr6Q7zl+spZ+s/0zVQF8d/5Az5G5n37
-         +sHbQMWOpiinVtSjhliEXg6ilcOqetaMxRDz8zPKCM/GJVHK47hzkp7KhYSufVvpaL+1
-         Wmw7EC6nqk6AVPy2YJ8VuUUOzfV7KygH5RPbY5W5SCFecNnzkyzYvoyKhEUYN4T6rcfy
-         51wQ==
+        bh=+jynVsTZDGE0JJ1A+9XYqEFiqc805kC8QjiGCQ3kbyw=;
+        b=As6qQBMVHjzVdKUbtnFm8Ljya0+FYQQprhxIBL1QoQmJGKVqq/7vBPK1Z0NP+LAKR0
+         gl03yDBZ+0o/Sk1nmBM4bRprFow1+JwWPZW6CrOUaxsSzLMjLhRi2U7cAznaHZUJgBwV
+         Woa7JKcYjZjPMcLvusywCzQugNwtb0tOsMAJiYAGgRNVfJQ/4rly+1FT8fsZU82iDv75
+         oO/VRd+sofTPzDDyG0OhKTO6ESQEmr+I5ViSb17bh6PKFALfeY6h3McxkH7o2DoFccGn
+         xd2tnDua1QCwTXZUccWxbKl5O6SbD20UAcXhfcqjibQVxga/tlcQ240WHMM1JRV/AWTA
+         se7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740933319; x=1741538119;
+        d=1e100.net; s=20230601; t=1740933599; x=1741538399;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kYxTwQUP5klffG0amPd/Tb12A9um4AUq9vE7TamJHgo=;
-        b=uUEXzzaJQvbRnaAKLPT6+pmfyZ4KwkRLoZbz42ygRqVkroKpkp37GvH1+XjbDMFjDl
-         t4LY8IkrFQvhc6QGdzanzrLBwAjhYIy0N4+DL/sVDxhUW4fY+6uS3FDU+HlLlv+mdM1l
-         yMwCKza9uMiRE8CI7OWTq9zXNMCg4nscRqqq2NfGhRUz7egwSYOOTznjKMqSpGbJWAHQ
-         qqzbyO6vDzvbcYPgDKkXuHC6+zwpGddwKI8YozZIkmKkRh1movFfGa3Ghx1LckM7nQPO
-         JJ7+vvf8FpS9qU5rMHZoH/k85ki8D5NSgIKgZhTnbwjGPI+LxI2BocuU+6mNS3Rr6Od5
-         68FA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLD3SVd3cpTTRkO0dg5gE/22UlYnQGGVygVI6x4lKqf/WfwgmlFkGFqO1qYcHqoA2SHvNkNqvvpkcgRvmP@vger.kernel.org, AJvYcCVhJyTYMPYUyV4htUOOsFjmOPfKcKrF7tXEsVZzh+YwZyaYpYFpZaQDDEchoZpqxUMiTn2EBeGgzBBUqWg=@vger.kernel.org, AJvYcCWACUE9lSqjvaR0yNKm2cSuXuIhbDa7Vqy8/4ZSluCEX0HQ1Yz70Vluz7yt9ZAGS6WTUi/sMpS59Pf+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyd+TDI4oWaqm6BpxuFNMUDN/PHmhUmt7KTM0ztFf5T78ol2nY+
-	NdP1mikCBmBI+IvdkCYnVbZlehlfbw9zkg43QAK6FrBg3WPnSQdt
-X-Gm-Gg: ASbGncuIgdI8Qd5q43cf5vgsrV8fMOXSXh80ofiDYYff6Arl7N/4Pjt2+l+UTH9VV11
-	Gii+gsReNhO08fVApWVE0tTj3cvYAjDAoceyeb7F57XO8pOJpg9GjJk83vzjbG8IR8Rtc0Jaae5
-	bZxawOg7QCjrL7LirrUpddtu7qXr1yuvNEl/17zIugR8d+/LaV+ZKDlvpH3ytSFBQNBKobgXLOA
-	QVqv5AJlZbUPpNJVBQKTBe50CmNdmuSxaDI75g1NunzUJ/fLmswMR6psccL7WmLIBo6/gChGi9y
-	K6zGy88Zw2Nl87ugMhVxJAi/3ucfcHY66ebswHMGnrUA5sxZEVa14gv+eg==
-X-Google-Smtp-Source: AGHT+IHja91W0EyanYeRx+xqsqa25zi0SvEJNEn3rdg6XU4bXHmYVqrKe00p9FaGbmf0MBpTeDgLVA==
-X-Received: by 2002:a17:90b:1b08:b0:2ee:c291:765a with SMTP id 98e67ed59e1d1-2febab3e2demr16976087a91.8.1740933319487;
-        Sun, 02 Mar 2025 08:35:19 -0800 (PST)
+        bh=+jynVsTZDGE0JJ1A+9XYqEFiqc805kC8QjiGCQ3kbyw=;
+        b=H0fK4pHpon/lnq4bakZMBF9T2HNIvOrG6basV69u/v64nwJHBCRTwIz7Cyz2IDJMLh
+         Yw4Jbz3TYQnBmOiv3QEY5XItpbJyhvAaSGXlPSvQoLoT1Imn1eX4SsPh2Mv8PzpkThIQ
+         G/NnzT4oW5Ax+ix3DF5DSQFVlbUJ+7pvq6JTDS+MWzZEdT04rd13AT8eZXHgMUDRkoiv
+         /ztW+2WnOVMXeeRKZy+dkH8sbAQrUYNvFYFIHw/gNMBi9g6kZgYbv10RH3funWabR/UV
+         Na+MrwoPsp/AxFs09ZPFFmeMufQYyMlKt3wmvlxN4MB5Mk5uL8HhaPRN6fx6JajGnq7+
+         OKDg==
+X-Forwarded-Encrypted: i=1; AJvYcCVKygMzgwYWeiaIRBYCt3OQBSs6y8u/ccdWiN4TG14na3BSnGrbtNNHhJHtom7wdV0u4VswMqxtwa9g@vger.kernel.org, AJvYcCVTfRjiaa7cYcpmpxhkHA0b2eC0G2CQNqKffwrBwXH3kslOxOrDnNP8tT/0JsTD1SYPhmjQbYyiIp+P+ss=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzlb0VTVL+eXNaNnruaIC2ZVi8zHEfAdlYwXO7V7IEIAy2asI2O
+	twdRUITR51Bt7VcWsy/oXuj2vGMArvMuZWeXtfZ9Iw9IgjBAYZ1R
+X-Gm-Gg: ASbGncsFVn7gUrFUUG8JpB8j3O08KGgVK+OsmMAvAIAh+H4byCiReZ5h/aBOR6IuD6f
+	bF7eZgBcLY21AoRA1EdvcBdd6WcydhGWorxWTETlt6MzIJ3g07sI2E0q280f4MBhHRBxf/r+he1
+	yM8/dAG5Iz3k1qBsnCYOvrxzkpYpXAUdusaVA02kXN3puEOqGoalQsiqvrC2edAl9FpkL8ITo8u
+	xuH9CojGQlrfabVVxIEiLVVhkskU7k9SPmgR+F6FaxFCAYlIN6D/lTJiG0GzHmYrX8zHdSj697X
+	0A5CW6EitgaZ2ggVYlTCFEY3VnaScU/JexM0hYJuYmq1sXCKHAbXBVkTlA==
+X-Google-Smtp-Source: AGHT+IE+Jyy8Tx/mENn01VEkJrjrGhp2+KJuLyhoBiUomCRHPrUc0boTpd0srOX2HCbUWZ0Be8BRZw==
+X-Received: by 2002:a17:903:2ca:b0:215:acb3:3786 with SMTP id d9443c01a7336-22368f94723mr165695975ad.19.1740933599084;
+        Sun, 02 Mar 2025 08:39:59 -0800 (PST)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-223504c59basm63137015ad.125.2025.03.02.08.35.18
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2fea6985226sm7196911a91.40.2025.03.02.08.39.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Mar 2025 08:35:18 -0800 (PST)
+        Sun, 02 Mar 2025 08:39:58 -0800 (PST)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sun, 2 Mar 2025 08:35:17 -0800
+Date: Sun, 2 Mar 2025 08:39:57 -0800
 From: Guenter Roeck <linux@roeck-us.net>
-To: maudspierings@gocontroll.com
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, Jonathan Stroud <jonathan.stroud@amd.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Joseph McNally <jmcna06@gmail.com>, linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] hwmon: (ntc_thermistor) Fix the ncpXXxh103 sensor
- table
-Message-ID: <e7bca709-dc91-4514-9407-bef1438a6d84@roeck-us.net>
-References: <20250227-ntc_thermistor_fixes-v1-0-70fa73200b52@gocontroll.com>
- <20250227-ntc_thermistor_fixes-v1-3-70fa73200b52@gocontroll.com>
+	Jean Delvare <jdelvare@suse.com>,
+	Jim Wright <wrightj@linux.vnet.ibm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add UCD90320 gpio description
+Message-ID: <68b60e48-4ba3-496c-bd24-4af81d163168@roeck-us.net>
+References: <662a050f3f8160fe7c80d4f19e45eb4fac0f2f0a.1740384385.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,22 +96,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250227-ntc_thermistor_fixes-v1-3-70fa73200b52@gocontroll.com>
+In-Reply-To: <662a050f3f8160fe7c80d4f19e45eb4fac0f2f0a.1740384385.git.michal.simek@amd.com>
 
-On Thu, Feb 27, 2025 at 01:57:53PM +0100, Maud Spierings via B4 Relay wrote:
-> From: Maud Spierings <maudspierings@gocontroll.com>
+On Mon, Feb 24, 2025 at 09:06:26AM +0100, Michal Simek wrote:
+> From: Jonathan Stroud <jonathan.stroud@amd.com>
 > 
-> I could not find a single table that has the values currently present in
-> the table, change it to the actual values that can be found in [1]/[2]
-> and [3] (page 15 column 2)
+> Add optional gpio device tree bindings to the UCD90320.
+> The binding's description is already mentioning the number of GPIOs but
+> without actual gpio controller description.
 > 
-> [1]: https://www.murata.com/products/productdetail?partno=NCP15XH103F03RC
-> [2]: https://www.murata.com/products/productdata/8796836626462/NTHCG83.txt?1437969843000
-> [3]: https://nl.mouser.com/datasheet/2/281/r44e-522712.pdf
-> 
-> Fixes: 54ce3a0d8011 ("hwmon: (ntc_thermistor) Add support for ncpXXxh103")
-> 
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+> Signed-off-by: Jonathan Stroud <jonathan.stroud@amd.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 Applied.
 
