@@ -1,210 +1,155 @@
-Return-Path: <devicetree+bounces-152989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-152990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFE80A4AEB7
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 03:19:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7EC4A4AEC2
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 03:44:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE9AA188D965
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 02:19:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E78C918942F6
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 02:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237CB2AF1B;
-	Sun,  2 Mar 2025 02:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5511245027;
+	Sun,  2 Mar 2025 02:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RC+Gcd6k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aq+B1Vpc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C631DA21;
-	Sun,  2 Mar 2025 02:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11BBB13AF2;
+	Sun,  2 Mar 2025 02:44:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740881949; cv=none; b=BBX85K84x8YX7dx7+4q41O5DUHPQ6W9/uaFDRNBcRM3rPUlSV1/H2nqEn27Jy6KvzNxsW2w/tB9XGK895w7M5qmvpgReJSQKqz2d/6Zg5C9vWlLEmSBhFYQRNzHlCN2TV2zOWdIv6e1t6CO8+W6WlYsheIZX7VzXtrzKzB0VsCs=
+	t=1740883493; cv=none; b=Je8B8XEAOGQ7bDnP4O+A3UZunFAjjNLlR6myW94KemevGqEd8UR18uAwx9M6ZJdZXNpm2TzEafB+zOBd+b0zoiVBCM54jDXcSZ7OG9p+TROV12FYovygNUV6kX9w/Ao86f+F4gnFLzE85eFOwVm7mo10gbKuD11B8mcD9xhis7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740881949; c=relaxed/simple;
-	bh=Q3jk66jHAAXQHX/Py7DUzr/pfHIcKPy2OogvHy2RdHE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bS/zxNPAyJ060UW7zM/McTOTjZQPmJ2OVEBbo0qsiTIhW6GZdYVjVUpaHLZv1tOKWH+UuTPr6kGMWN3cSUIa+WdDjPVaAd7IpG9Msf2ADv4RDbMwuH8okbZ5i3OyzRAUAJx8o9MY75IJpvcm5cyVj3XCDqNJAPJtDpk3FQFOHQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RC+Gcd6k; arc=none smtp.client-ip=209.85.219.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-6e89a2501a0so25674806d6.1;
-        Sat, 01 Mar 2025 18:19:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740881946; x=1741486746; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oPjKRzzKrglUg+fYVwz0cgQwVYZBInp7nhcExhwtF6w=;
-        b=RC+Gcd6keQSrtNLgcPfe8WBNYHr1XX09KmkXGYP9yOtroy9JIk3ubFEIyWeybUGE5V
-         mw/itx8F6imxYlsxgDXwngY86yTjLJq69oYyEYsHXfdAYNNcR1t59yTrK+63GnZaWg4C
-         KejcHzYwP0EVC/wWFL0VVxD82s1+mrs7e3uvRrHbZWedkdIpTv82pRwndMmjvt34MRU8
-         onJWBF4sp27EHRF3E1aCKAr/SQhdDiIzk/TVxMuZxBw0+K0jbvrtssKB6xljGcLyxTWD
-         LQK1FuFsGjc3m34rLNJTIXtuHcA+Q6XVRCyUXZWjuEP9Q9ndjkupZhK6e7Bz3X8zx9Cz
-         /VAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740881946; x=1741486746;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oPjKRzzKrglUg+fYVwz0cgQwVYZBInp7nhcExhwtF6w=;
-        b=fIsgUa7rZLrVtb4QvXR/u5WywJw1XuaomndNi0zE29Lz0/s3nri09Y2Fsvo57Jihht
-         uEEfx/9xV4xW8UsujSWUU9huNnrdYSwvxmFDjcIwOUtiq9xvGuzYlj2dFtFXpGPvVRg4
-         6p/hGo+uonGdRV5Q/FzgbiCzG9Na8ixPu8PfdZTbepgYEKM6cq/Oab/2ifbbC59SaG2c
-         aJG+5vWEFNMpGQjUHrV3a+rF8LpbScOOK61QFJCRv9QiTv6Uaih/dDsNkDh+5QLXj0It
-         XSNSz/FOEseiUW4yUMzNKvgPB98jc4gYb7ESG7gMUBPBgBkPj0BaCKqTarZz6aoXkuV4
-         zBAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX1OkQPZ2JI/n6pn+cf0rx6E70kDZ9JZNA/bYOAeJbY8qpl8iXoXFCNOTleGaj0DtsnpaZToaUajDnrs+o=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVm2Rfpx/ocenGesnDkaygvBF8b1J9ItIYdXG63YTZNtuc10cG
-	mHIGsb/b7vJabJhXP0PP05kAlJSVVlWWBSGe2wcOx3nTcxvqRz6I
-X-Gm-Gg: ASbGnctv8HtI+vbR9LmyFfC06o1am2e27lssEgEgdPcFoHCYAbrHqs0/M5mDN7RR76C
-	T6jVtZIGJtmwAFsRGxPQoVc0lGFOPtjBuVcayrDOV8YKeZ3UybljPGimTCrviqNYjVTv4C+ckhg
-	rFbTjHMG/CCaZdsgVNfyPLB2qFSkSYVHXU7GR0C3kvnS9EIeGREl+2XTEXW9Z/jJ5I43JBw0JAK
-	a5xZB0xJNnnw0uJ83gbBYXNuGjtNDlHYbgx4xvDglT0Fz2Y9IpLAU/jx8Vx+EBZZARhaTmoetH/
-	Uk6evFZAdth2M3+vcrRm
-X-Google-Smtp-Source: AGHT+IGrdEuBUkRKtS239DYTHqorXLkacSTFcSVvkbaNWolaWYlbaQEuA1xg/Dhtk3D1fi/XT3FAXQ==
-X-Received: by 2002:a05:6214:1bc9:b0:6e6:5d61:4f00 with SMTP id 6a1803df08f44-6e8a0c7da89mr139365716d6.4.1740881946305;
-        Sat, 01 Mar 2025 18:19:06 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c3b67458e0sm5920285a.57.2025.03.01.18.19.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Mar 2025 18:19:05 -0800 (PST)
-Date: Sun, 2 Mar 2025 10:18:42 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Zixian Zeng <sycamoremoon376@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@outlook.com>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, sophgo@lists.linux.dev, chao.wei@sophgo.com, 
-	xiaoguang.xing@sophgo.com
-Subject: Re: [PATCH v2] riscv: sophgo: dts: Add spi controller for SG2042
-Message-ID: <fllmh65x7ke4sfolxbdod73fx3fm45w7gy7x4pgamxnbhztjvk@wqd56dzxaa37>
-References: <20250228-sfg-spi-v2-1-8bbf23b85d0e@gmail.com>
+	s=arc-20240116; t=1740883493; c=relaxed/simple;
+	bh=G+2alXcQQeJKiXQVDp+o+8OioV+7Id2VP5GpWYu+a+s=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KxdwVV0KqV7rd9X2TGZqHyKRsstumquLrJAaSYVxmzsuwqYMqhp6wXIrRe3k7LxJFuv8AIMRBOX54TRB0O+LTommpVNCPVuhRHoQeG70+tWl3UcWhP6wEDvlMjbbMrdYbqwFAQyFpGK7UYirDKeB0N9/MZyMQzQ6zD34gAffhus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Aq+B1Vpc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95F6FC4CEDD;
+	Sun,  2 Mar 2025 02:44:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740883492;
+	bh=G+2alXcQQeJKiXQVDp+o+8OioV+7Id2VP5GpWYu+a+s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Aq+B1VpcOnZfU4uix8FTan/0Ovik/EeAEUfJRZeJ4Z5L8EscdTZ8Lo6IMYKCFxYnO
+	 JNcwXmtwldEpVrxL/S/I7HKm8BMECtD34/PDeMzIb9eybaHhU3IdcJEUNA594h+YXp
+	 Rmnhl4cYlSNj9U4B+8OxYNnYOL8GKNan87gpkpbW0QfKLai456n8PGHNV0NYGC5MNo
+	 LTf1jJ9gsDCfqz4soGGQI51VUmMSCnXoh/LS1zqiU6TWAMzdk/bIqdoj1ZiPeuRfHZ
+	 PrFlvfId4gYEq58Ih9PZgiIg99QgDNSw1mJ0gGzvr6Qk4zJsIFhrmkdrAR32fLuuRW
+	 3macoJteXhUEQ==
+Date: Sun, 2 Mar 2025 02:44:34 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa
+ <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Javier
+ Carrasco <javier.carrasco.cruz@gmail.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v3 3/9] iio: adc: Support ROHM BD79124 ADC
+Message-ID: <20250302024434.67ef4c90@jic23-huawei>
+In-Reply-To: <125ab96e-1e92-4022-95fe-324cd47ce1d9@gmail.com>
+References: <cover.1739967040.git.mazziesaccount@gmail.com>
+	<67b7713724d7591f6321a8f5dfef8cd711f38d34.1739967040.git.mazziesaccount@gmail.com>
+	<20250223162807.41960b6b@jic23-huawei>
+	<125ab96e-1e92-4022-95fe-324cd47ce1d9@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250228-sfg-spi-v2-1-8bbf23b85d0e@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 28, 2025 at 08:40:23PM +0800, Zixian Zeng wrote:
-> Add spi controllers for SG2042.
+On Mon, 24 Feb 2025 08:14:23 +0200
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+
+> On 23/02/2025 18:28, Jonathan Cameron wrote:
+> > On Wed, 19 Feb 2025 14:30:43 +0200
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >   
+> >> The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
+> >> an automatic measurement mode, with an alarm interrupt for out-of-window
+> >> measurements. The window is configurable for each channel.
+> >>
+> >> The I2C protocol for manual start of the measurement and data reading is
+> >> somewhat peculiar. It requires the master to do clock stretching after
+> >> sending the I2C slave-address until the slave has captured the data.
+> >> Needless to say this is not well suopported by the I2C controllers.
+> >>
+> >> Thus the driver does not support the BD79124's manual measurement mode
+> >> but implements the measurements using automatic measurement mode relying
+> >> on the BD79124's ability of storing latest measurements into register.
+> >>
+> >> The driver does also support configuring the threshold events for
+> >> detecting the out-of-window events.
+> >>
+> >> The BD79124 keeps asserting IRQ for as long as the measured voltage is
+> >> out of the configured window. Thus the driver masks the received event
+> >> for a fixed duration (1 second) when an event is handled. This prevents
+> >> the user-space from choking on the events
+> >>
+> >> The ADC input pins can be also configured as general purpose outputs.
+> >> Those pins which don't have corresponding ADC channel node in the
+> >> device-tree will be controllable as GPO.
+> >>
+> >> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >>  
+> > Hi Matti,
+> > 
+> > Some fairly superficial review follows. I'm travelling for next few weeks
+> > so not sure when I'll get time to take a more thorough look.  
 > 
-> SG2042 uses the upstreamed Synopsys DW SPI IP.
+> Yeah, unfortunately people are allowed to have other life beyond the 
+> ROHM drivers :D
+> Enjoy your journey(s) ;)
+
+So far so good.  Hi from Shenzhen.  Obligatory pilgrimage to SEG market
+done ;)
+
+> >> +	/* Set no channels to be manually measured */
+> >> +	ret = regmap_write(data->map, BD79124_REG_MANUAL_CHANNELS, 0x0);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	/* Set the measurement interval to 0.75 mS */
+> >> +	regval = FIELD_PREP(BD79124_MASK_AUTO_INTERVAL, BD79124_INTERVAL_075);
+> >> +	ret = regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
+> >> +			BD79124_MASK_AUTO_INTERVAL, regval);  
+> > 
+> > Where it doesn't make any other difference, align after (
+> > 
+> > If you are going shorter, single tab only.  
 > 
-> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
-> ---
-> For this spi controller patch, only bindings are included.
-> This is tested on milkv-pioneer board. Using driver/spi/spidev.c
-> for creating /dev/spidevX.Y and tools/spi/spidev_test for testing
-> functionality.
-
-I wonder whether this patch is tested (or at least can be
-tested), as I am not sure there are pins for spi or any
-onboard device on existing SG2042 board.
-
-> ---
-> Changes in v2:
-> - rebase v1 to sophgo/master(github.com/sophgo/linux.git).
-> - order properties in device node.
-> - remove unevaluated properties `clock-frequency`.
-> - set default status to disable.
-> - Link to v1: https://lore.kernel.org/r/20250228-sfg-spi-v1-1-b989aed94911@gmail.com
-> ---
->  .../riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts |  8 +++++++
->  arch/riscv/boot/dts/sophgo/sg2042.dtsi             | 28 ++++++++++++++++++++++
->  2 files changed, 36 insertions(+)
+> Single tab only? You mean like:
 > 
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> index be596d01ff8d33bcdbe431d9731a55ee190ad5b3..c43a807af2f827b5267afe5e4fdf6e9e857dfa20 100644
-> --- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-> @@ -72,6 +72,14 @@ &uart0 {
->  	status = "okay";
->  };
->  
-> +&spi0 {
-> +	status = "okay";
-> +};
-> +
-> +&spi1 {
-> +	status = "okay";
-> +};
-> +
->  / {
->  	thermal-zones {
->  		soc-thermal {
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> index e62ac51ac55abd922b5ef796ba8c2196383850c4..500645147b1f8ed0a08ad3cafb38ea79cf57d737 100644
-> --- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> @@ -545,5 +545,33 @@ sd: mmc@704002b000 {
->  				      "timer";
->  			status = "disabled";
->  		};
-> +
-> +		spi0: spi@7040004000 {
-> +			compatible = "snps,dw-apb-ssi";
-> +			reg = <0x70 0x40004000 0x00 0x1000>;
-
-> +			clocks = <&clkgen GATE_CLK_APB_SPI>,
-> +					<&clkgen GATE_CLK_SYSDMA_AXI>;
-
-Is the sysdma axi clock for the this device. IIRC is APB interface.
-
-Also, Are these clock aligned? If not, use space to align the two
-clocks. You also need to add the clock-names here.
-
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <110 IRQ_TYPE_LEVEL_HIGH>;
-
-> +			#address-cells = <0x01>;
-> +			#size-cells = <0x00>;
-> +			num-cs = <0x02>;
-
-Just use decimal number, no hex there.
-
-> +			resets = <&rstgen RST_SPI0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spi1: spi@7040005000 {
-> +			compatible = "snps,dw-apb-ssi";
-> +			reg = <0x70 0x40005000 0x00 0x1000>;
-
-> +			clocks = <&clkgen GATE_CLK_APB_SPI>,
-> +					<&clkgen GATE_CLK_SYSDMA_AXI>;
-
-The same as above.
-
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <111 IRQ_TYPE_LEVEL_HIGH>;
-
-> +			#address-cells = <0x01>;
-> +			#size-cells = <0x00>;
-> +			num-cs = <0x02>;
-
-The same as above.
-
-> +			resets = <&rstgen RST_SPI1>;
-> +			status = "disabled";
-> +		};
->  	};
->  };
+> ret = regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
+> 	BD79124_MASK_AUTO_INTERVAL, regval);
 > 
-> ---
-> base-commit: aa5ee7180ec41bb77c3e327e95d119f2294babea
-> change-id: 20250228-sfg-spi-e3f2aeca09ab
+> Do you prefer that even if the variable holding the return value was 
+> longer than 8 chars? To me it looks odd if arguments on the next line 
+> begin earlier than the function on previous line:
 > 
-> Best regards,
-> -- 
-> Zixian Zeng <sycamoremoon376@gmail.com>
+> longvariable = regmap_update_bits(data->map, BD79124_REG_OPMODE_CFG,
+> 	BD79124_MASK_AUTO_INTERVAL, regval);
 > 
+> (Just ensuring I understood your preference).
+It's hard to come up with an absolute policy / preference on this but
+whilst I agree it looks a bit odd, I think it's easier to say one
+tab as 'default' choice.  Obviously if it's really hideous for some
+reason feel free to do something else ;)
+
+Jonathan
 
