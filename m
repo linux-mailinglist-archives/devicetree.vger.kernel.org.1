@@ -1,164 +1,140 @@
-Return-Path: <devicetree+bounces-153094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 603C5A4B39E
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 18:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD076A4B3F4
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:18:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62D3116C955
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 17:02:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D550516A671
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 18:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFBA61E98ED;
-	Sun,  2 Mar 2025 17:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562321EA7EB;
+	Sun,  2 Mar 2025 18:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EWg+Jvgn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hCaCzuPR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2EF3398A;
-	Sun,  2 Mar 2025 17:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B31EAD39;
+	Sun,  2 Mar 2025 18:18:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740934918; cv=none; b=Zn0pM7BL5LwbHmqC0esTjrjbt0cgBxDIHm6bzWaUdrs3Y2uGg8IFyY3KD0r+BJN+HcfpSo6hUxvs6i/G+claxXCGZaOfdiFUO1GPfo3qZfUUigYwx7ZmH27qHFYRShjO8I+q2Bwu0UGaHOLHXqqDZx8wQi0RQrQPaAc8gPXnzE4=
+	t=1740939506; cv=none; b=cwvdut5pTp3xyIZ1CYcKqCO0DEXOu3zI/g1IDayldZYBJ4waTA+0T+BUa8pztYJ7g4zS9D6MXO8dfLusBPO4XtqRuZ4xsX4fVx3kb5YBqWi6KlI/GXevUg2anf10OEZJ2SLaH9yowMNhqIga/jG66iXOP3Ow/XzS6ytu5g4EDug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740934918; c=relaxed/simple;
-	bh=YuQt2U/8QSb3sbWPURxzGthMIlRF+5nkqkiLbVHTEe8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OTIbymeGI+S/MS3P3NOf+HK1XCBpeaser7ahPhZ3+XFdfCKs14s3xvYya1Z6vT/+tUvB0BBKIEePXLtmVgyaTZ3prpL1B131KN5MTay3lcpye3rWEutPSfMatOWU1zbkDdySFCe+tqc2HiPleJx1E9/ecgfQnPrgHJtiI6gvbGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EWg+Jvgn; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1740939506; c=relaxed/simple;
+	bh=da9Pi1D+SxCpTFyzRoBI0anziD4w2jaF7g3v8tBJb9c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FYCTU7lpiSC11mbZuLu2caaVA0de5QWWf7JAPGQS/E7esV7h1VIBB0YVoZP0/QzplvW6UEz4C6NYtzTGWk6AzHJQ6TjCZ3AB1nWHgQOxTenOWcb2UslDtx47J9hRUllWMPxC+8mqKJhOpFLAANKn0pF0ixMf25+g1UhkMNO8oY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hCaCzuPR; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22113560c57so69922675ad.2;
-        Sun, 02 Mar 2025 09:01:57 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43995b907cfso23222185e9.3;
+        Sun, 02 Mar 2025 10:18:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740934916; x=1741539716; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=T0a7qhGwKEpW5bi2H1C+aMLGQoy8HE9wO8KfFD8wrf8=;
-        b=EWg+JvgnBNdrrxrLPirlXt0692Wl8tvtxHWsUZmm868ZnJkOwNBE8S46Gj42knDXVh
-         Du8pcNPOrf6x5MARR5MOOP7F8eUQfAPrHk5XoZ9W7zwihVHIrPobEXbvBGPDtCFBlTU1
-         LrKiCObNpXpUrLvKxI2sJGPGO1NNAXyFHX5DTYQiV1Xq6ShSf2x5bzBdm7NRebYhTKg/
-         a9fIYwYsN0pVyLUTvvyA0oAKe9p8IbkRZOBP9Jc15CQqOzsxX8tmpKgiIqSM/JF5JfPk
-         3NUJEfQy3l9ZkQ2IoHYm3D3yY9x7TMxZGb01jzw2uqiGHH0zq7YZsU3F66Vxq4ab1thp
-         oUsQ==
+        d=gmail.com; s=20230601; t=1740939503; x=1741544303; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pWmZUAk3umBIzjV/bP0BmDq57J3C/hfv6T8fvl3vN48=;
+        b=hCaCzuPRSD8Nq9910JuGLXwmoC+Nd5Mv99NPu/sNox6oiSksyaWcx1P4X13DYYB6ZV
+         8fdHjyKcmiD0qAHrgvxk+VRFGQZflSFumajJAgfAuibR/dYMwFIwiT9nS/AXXRWDXPVJ
+         SRK1zXY6HToSS9x5awKgrF6Hvz3+cLcG5Ed/n5EAejDDZgHbUJfd38odQxFgx1hlR8Et
+         LN8J1Tgic3GTsWBZTD9UlJ6pbrSLabkbLxfQxdNHaFuBdVASK/23n6fZn9kx8fVb++E2
+         kqZ7NB22uJ3xI502SLwROgiW5Nn3aSY2dhb6bZVsgrgosz9cdis1pBxnMq3cFf+kXMwg
+         AiqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740934916; x=1741539716;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T0a7qhGwKEpW5bi2H1C+aMLGQoy8HE9wO8KfFD8wrf8=;
-        b=JcH5btBdi9eRaL10qTYJWtfYy7IYxQPcFTGfuWRe3QzkzywOKqqISY89FNOfQvtfjk
-         hOuGaORIZ2bedep3aAyIA3/4TGrXXBHSDXytdMghAf/SMd396kxLDFNKN1hw7x8Fe1fe
-         lncQjruPGdSEjUpRcWWESG68lAnLi1YwsE1cCgku7I54E9Qr47FJqtJgOiOn0Z/Fdsib
-         M86S8Np+BgbG7PUhzUQFtecnfQavAaxuadOPOWVs4J/JEApObZ/pZXMicD2DRHFOfJnI
-         6sguSgycDT6/9s7enFtpKlWzCpSyWHvJelOrAEgLvn05ItvtwaFWqrxVGUEXYoCB7JWm
-         z8JQ==
-X-Forwarded-Encrypted: i=1; AJvYcCULcKYjtbCb4nI5hHtSGFxp20+dLHQMK1hhy5Gcn5o8nuWf0vTMSAChZCExqBeRm5rTZnEnckrZdxdS@vger.kernel.org, AJvYcCULwXuF224zj24azM27TnM8thlBHx/Te4Xqaknz2nEAoe9nYjkA+iSXIxz/OmMaNyXft9cr4Jat5eNRu1Ns@vger.kernel.org, AJvYcCV6LYwLAxKQQiXuuC9E9BQZoyKk6kSx1Sx6dXXma7nXBJzybXbXbir5dYaZyECEsa3IZmQJse5Is/Ohu5A=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzULxIDvSH5SDXdhMvK9XbJbBnMDzDht4SSdu6uC8QPqJP5r6es
-	lF2hVHLOhdP4JEnZt3AXygSmd2dZ8noh5+zBRkrcXsSPexgbmWLy
-X-Gm-Gg: ASbGncsw43jEKYjHdHy9NFhhHF9ycGR+qwWdfBtjsWpISRt7eGYjidkp4R7WmufcdJ0
-	ugtvJ4NnExobwEEFvP6VOa1+AcWv+uS86OHct3x2acQYGmgMRuByidnXXpgL+CW78zBy6wfossU
-	25/YjfLi3+sF9NNYRCVCrCRjB8w6cb59e3b6wCuNVn9oOynpJVtPfWpb2BJwCpzGyLibVVCSOQK
-	Q8dZujYxTOU+HKHpTcuBmD+/Svucxj6zpV6Zcrq1BmtSxiLO8h97QTx5rt+550osKwf7inmIgHg
-	1MZ0tDL3xa5Q6Xdd8XRbUOPbu06cgXrNCQsjgvg1i+krYYLSaWB2uKP6UQcVfo/3oTo40ft0zZo
-	RfF9znMGfIpWfcPC7UQ==
-X-Google-Smtp-Source: AGHT+IHgqlzA5i0nCrronM75XZWW2F87AKaN4vOdx1hjJ54U3yo7vLK7/agc3ospbHaT/h0nqv9wvg==
-X-Received: by 2002:a17:903:2ca:b0:223:4998:a75e with SMTP id d9443c01a7336-22368f73c05mr158570295ad.3.1740934916518;
-        Sun, 02 Mar 2025 09:01:56 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2235051132asm62596885ad.221.2025.03.02.09.01.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Mar 2025 09:01:56 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <b1133989-368a-4933-b326-43edbf179d5c@roeck-us.net>
-Date: Sun, 2 Mar 2025 09:01:54 -0800
+        d=1e100.net; s=20230601; t=1740939503; x=1741544303;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pWmZUAk3umBIzjV/bP0BmDq57J3C/hfv6T8fvl3vN48=;
+        b=hfSkLvmt8vzH2TwzaooteIF6L0AqcHdJSAhJlN+wMD8fUlTzmcPc24SidOoSaTmkwn
+         3eeLyv2hgNJu4tfnItsxn1FGiH/1l4povyQ9HAMFoZFwl73s2vWE3hBzgAyR//KFbHH1
+         84KCKODAZIf5TQeYjPH4whRCk9oE7XremGUQN2HRJogQqzEwCCv/U/JUHGfyJyY4p58M
+         9x5UiVRSkVY4kzu6ckjOk3AVtsv//gdsSmPVCchQPLE9Ho30ICWXqbt0OtnRrrZmIRjc
+         tvxaHlZnrMRnWwhqcRCaELcX95C6LjD3ofEMweqhZ1VzFN+0bLi6cQx8R4otPn+y2l0r
+         dYAg==
+X-Forwarded-Encrypted: i=1; AJvYcCU5UqULcDv1o0vPbKe+58b34cI5EUzkrn6jAAr/zL1GhpmA0Q9WNxO35FbOdUcs6kS+9d5Ei/ChnKeJpv3u@vger.kernel.org, AJvYcCUBXbdo3kOGsd8gxAdUZQUlismeByrsD3wD36BiUqsh/Hm5CfM6wKx1OHlIkZYo4xLyZ5DI7DXdWPbZ+B9pUWTf7Zs=@vger.kernel.org, AJvYcCXuzyq3pTvY74VvWC2n/2KMdGAAMeIT/dE83SuL15ljDNxcKUcAw9qZjG18LBi3/4FMEGItbyUy6UrC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXIVyWSbVLeZWSMI6BIqv/V1ua+9PCCpKJn9Dx5f+vCxYpwtof
+	soC0vuxROPC1bL5xfvm+VwQf0N7wVxp5f6LW3C9eClWIJdOvlfSA
+X-Gm-Gg: ASbGncvK0H0N2X4vm9e9gqm2uHhHzsWWIL9eW3v/fuKB23scNvGTmDs9zJhGdPMWHlg
+	uJG0Wlo518wdoDShGOXQLdOwTDtyw5ufiMfTzf72QsEBzR+RgK2KfsFaHklQTe5nqR4PnMUgL8+
+	3UJnDf4YGsMe9xanC4nSCq+az5XOFTKJMYG2tOkOrU2dq6wmT6lDKVr0vm72lASLulbRYTgyHGa
+	1+M/3k+Ho0zXTWex4NJsKdZeOJCHDO3diGGhe1xkaauYnKCdUpTqxtzerpk5hKxtiOPCMDx1ewr
+	P4WI5HZLV2P6E27legpE5AXkP6GaMfFslwgXb+0Em3+lLvV6VTx50A7WNu0RTuCf/UnLLrw/jg=
+	=
+X-Google-Smtp-Source: AGHT+IFxa0eGfi7jDjqlZWvKJxR8cMzmbVfSLVbquzveU03p+XvzNIJlWU+PIp421mDqaR6GooEPaQ==
+X-Received: by 2002:a05:600c:1d20:b0:439:84ba:5773 with SMTP id 5b1f17b1804b1-43baec9c2c1mr52413685e9.31.1740939502500;
+        Sun, 02 Mar 2025 10:18:22 -0800 (PST)
+Received: from prasmi.Home ([2a06:5906:61b:2d00:989f:3a70:8430:2268])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43bc1b5db02sm9552655e9.19.2025.03.02.10.18.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Mar 2025 10:18:21 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/3] Add GBETH glue layer driver for Renesas RZ/V2H(P) SoC
+Date: Sun,  2 Mar 2025 18:18:05 +0000
+Message-ID: <20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] hwmon: (gpio-fan) Add regulator support
-To: Mark Brown <broonie@kernel.org>,
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250210145934.761280-1-alexander.stein@ew.tq-group.com>
- <20250210145934.761280-6-alexander.stein@ew.tq-group.com>
- <0c82f6dc-4f5b-4787-9e43-4990681ea6a2@sirena.org.uk>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <0c82f6dc-4f5b-4787-9e43-4990681ea6a2@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2/10/25 07:26, Mark Brown wrote:
-> On Mon, Feb 10, 2025 at 03:59:33PM +0100, Alexander Stein wrote:
-> 
->> +	fan_data->supply = devm_regulator_get_optional(dev, "fan");
->> +	if (IS_ERR(fan_data->supply)) {
->> +		err = PTR_ERR(fan_data->supply);
-> 
-> Unless fans are expected to operate without power (which does seem
-> unlikely) the supply should really be mandatory.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Agreed. devm_regulator_get() returns a dummy regulator of none is
-configured in devicetree, so this should be fine. Worse,
-regulator_get_optional() returns an error pointer if regulator
-support is disabled, while devm_regulator_get() returns NULL.
+Hi All,
 
-Guenter
+This patch series adds support for the GBETH (Gigabit Ethernet) interface
+on the Renesas RZ/V2H(P) SoC. The changes include updating the device tree
+bindings, documenting the GBETH bindings, and adding the DWMAC glue layer
+for the Renesas GBETH.
+ 
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: net: dwmac: Increase 'maxItems' for 'interrupts' and
+    'interrupt-names'
+  dt-bindings: net: Document GBETH bindings for Renesas RZ/V2H(P) SoC
+  net: stmmac: Add DWMAC glue layer for Renesas GBETH
+
+ .../bindings/net/renesas,r9a09g057-gbeth.yaml | 212 ++++++++++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   7 +-
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../stmicro/stmmac/dwmac-renesas-gbeth.c      | 118 ++++++++++
+ 5 files changed, 347 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
+
+-- 
+2.43.0
 
 
