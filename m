@@ -1,199 +1,153 @@
-Return-Path: <devicetree+bounces-153025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDDB8A4B113
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 12:07:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36936A4B116
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 12:12:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01E3B16A7A3
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 11:07:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C9CC16AA73
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 11:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A61B11DB148;
-	Sun,  2 Mar 2025 11:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87331DB148;
+	Sun,  2 Mar 2025 11:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YoACM7+c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aooXR+7V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9F7179BC;
-	Sun,  2 Mar 2025 11:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1FEF1DE89B
+	for <devicetree@vger.kernel.org>; Sun,  2 Mar 2025 11:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740913642; cv=none; b=k3XfNTg0lcsgpAR0enJ2sMSGqoZAi2UJGYyChurcYVPaTo3BO9Xr+CZiGaCGLmP14dbnYWa7WGKln5pZaBBu0qAPeCS92DUdAdyUIknxNQm5F8LTzmt5ulLpbiX99Df+4cOWRBRQsUH8hPXta+lwSiHWveOJJAfJO6zmXEMikPs=
+	t=1740913936; cv=none; b=DPBDKcI40UhwmcG6vdXV0SR/ic+iXRT7wYWGO7vpeFb1BMlkjQxb8YxmwiOK7kYQfmEMzJs5zq1wvN5npg0QU99R1rHOUenNskxMwHmV7rLqT9YgkPy0365R9ymGdT/V3Z7QoBgFg7YL8DAlh/avk5fA/5iAzGOfRbwX8LKhrFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740913642; c=relaxed/simple;
-	bh=3KC5ipDcjMMPu+IkC8vu+yztuxCxRp2YBcH3qbhnh3o=;
+	s=arc-20240116; t=1740913936; c=relaxed/simple;
+	bh=r/E6LYdvBIOak/3//3gj1xJnve0xQ99P5eZuiofdHBM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W9kQ248wNAWIsYiw7hOo4t91esJaGK713OrFTkpOmY/Mgz00VLTu6VraMqfD0sZ+1RBkUaVHQIH1wCR0u87Kwu2vlLhBPk67KB+cNpbj2dzIA8sULfhtfweENFsQx7kEyoDIRLHhp8LQ6q3mdiUrEijizDg2UcbosgN1Ew674m8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YoACM7+c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6772C4CEE6;
-	Sun,  2 Mar 2025 11:07:21 +0000 (UTC)
+	 To:Cc:Content-Type; b=u+oE8lWhdsVR/6Kx2yDb3JyKcyDn2oSdFSgIRk6XIjhwDizZNeZjCW+pFG6Uq4129P+GBz66+bu9Fsb6Jgwbn6U2ymGcbkqK4mLbFWZDEma7Zkybl003ACcpCcCo46BN0+Oy8YW/N4L/xFSXbwV+KpuqiWrHGdgLzdmCoDNaN9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aooXR+7V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15A6BC4CEE7
+	for <devicetree@vger.kernel.org>; Sun,  2 Mar 2025 11:12:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740913641;
-	bh=3KC5ipDcjMMPu+IkC8vu+yztuxCxRp2YBcH3qbhnh3o=;
+	s=k20201202; t=1740913936;
+	bh=r/E6LYdvBIOak/3//3gj1xJnve0xQ99P5eZuiofdHBM=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=YoACM7+cmAiLZ8vW4MhKxT1NNR+ivDz4sc4GQ26ENp3s2yJS9Q83KR0yGbGJq8fOW
-	 1lli9l7TH7EMQYiqIJpGYFZyM0091KfhwL7Qai4s/T2o/Tb3wEq5/NaP6Fex+WfCr1
-	 b5Jj9Zs+mg41ioh3KY+jiURTascd7c4+R3uCKLoKnbQQi9zG5KK1RBTYiJbbA6YJ2C
-	 nDhq2LDcA8/Q4iub/HIQfmzhehtws+y0CEemAI5CE0o3QKapmw56qECUr7H3oge9xB
-	 m41WoEcTG4LmCybVWKpW1Co3HfQ252L126S1MWfNEs0TeqZYHzTdcs6CU1sNeGn1Xt
-	 zqFMXvhjvsa5A==
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2fe848040b1so7398116a91.3;
-        Sun, 02 Mar 2025 03:07:21 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUjlR7O/dZSK3qKfF82WBz7xgT3TB6X7TfW79l4u/hvwAhd2hpV6/fiy3iEaDnuMOgOhPw29H12J+TD@vger.kernel.org, AJvYcCWoSue1DQu4sJJ5NaiPHcVHaVqStJ5b8wowxtuIFhcmO2Gl9Magu47x3eH+S52uoGN1vxJrcu1UeTD95p0w@vger.kernel.org
-X-Gm-Message-State: AOJu0YwojrjCXbrqwivmFJ+nsbkBD14mzNojv5Ohlth52OVnHLnCufqc
-	sHmWwcArZDcz6ELeF6P+S48Dz8gyjxffRxHYbc42a3qNLtiYngrooEmOUMPXjU9dHg/bJ3VvNk6
-	7X8ZF7elaUV8+Drsb5WORMj01qw==
-X-Google-Smtp-Source: AGHT+IH01Pb+Acrlm17K+9SKFrPTyC3svpmtUZZOMamUnprzp62lYR8CKSAPg6EiKdHhDLfl4WwIpNFLts/zm0G5jQ8=
-X-Received: by 2002:a17:90b:554f:b0:2ea:712d:9a82 with SMTP id
- 98e67ed59e1d1-2febabf8577mr14667145a91.29.1740913641527; Sun, 02 Mar 2025
- 03:07:21 -0800 (PST)
+	b=aooXR+7VXvcH/6f6zYxI/NB0+JCxNoNsNcXKPniLlNfl9QzReuxQUe6U+TObi3bJw
+	 8EKv7Lp2XjlglDw8aYX809DkRNHxb4CjV9mwjiANdoU515uFJdI0OSwmUcyOiq0pYk
+	 i3dkWhuoKm+ifsYcwOhGiidlkzWd4A54Qv/6j2l8rpC9c6SxfPZes52+f4LDdDzbWH
+	 fUkekrEFbjXMt7ou4u0DkmL1EeWCORefX55+pOtCSGZqIVLBH7m3Q1WN2m7AF6yOZg
+	 wXwCh0q8heLNsgpZVPp9rdJXXaZTffYcIqYJqZ0iM8A1A3bHP2XykyGh2Tps4N781K
+	 sSFPYDfJKzdEg==
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-aaec111762bso651157566b.2
+        for <devicetree@vger.kernel.org>; Sun, 02 Mar 2025 03:12:15 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX3kLvObHtZ5/ApG9+JujDI3cKjjplPZVH9lO37SZvSSHPt0zh2pbYr8GkLMV5m6N7loPLyFARSERrI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2veq4ABxSpurDLRTmPdPZjIrJ7ufZOxJ1KqDyKvGwuR4s1VxJ
+	whU3l2ZCWrYohxB8YQ6ZYkV9bTTLNFECPHUrQMpd4Li8rZqq62qXKdp49bzHsG8dxirR24U6Vz5
+	GOUY5qcF6eJ6As7Yjaoiaf+tMfHEd3s5uXLyDvQ==
+X-Google-Smtp-Source: AGHT+IFd32O0cccPkVHyQRUGAgtLUbYK+uQRte/DydLBmgbHW6tCrbh5UXeoEHiox6cW6eWJEnsnCGH2skEnueF6o6M=
+X-Received: by 2002:a17:906:6a04:b0:ab2:b84b:2dab with SMTP id
+ a640c23a62f3a-abf261cdfa0mr1142238466b.30.1740913934658; Sun, 02 Mar 2025
+ 03:12:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250217154836.108895-1-angelogioacchino.delregno@collabora.com> <20250217154836.108895-5-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250217154836.108895-5-angelogioacchino.delregno@collabora.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Sun, 2 Mar 2025 19:08:08 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__DqCA3+-nsi7+svqHTbjdpTU5+8yDqWwNMnU8V=euQbQ@mail.gmail.com>
-X-Gm-Features: AQ5f1JoGUFVsLmWfEOgrfpxwZh3naxz8ITQIPQgo0omrUXo2qHRWobPGb5JPDMg
-Message-ID: <CAAOTY__DqCA3+-nsi7+svqHTbjdpTU5+8yDqWwNMnU8V=euQbQ@mail.gmail.com>
-Subject: Re: [PATCH v7 04/43] drm/mediatek: mtk_dpi: Move pixel clock setting
- flow to function
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
-	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
-	dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com, 
-	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, 
-	jason-jh.lin@mediatek.com
+References: <20250228051521.138214-1-george.moussalem@outlook.com> <DS7PR19MB8883434CAA053648E22AA8AC9DCC2@DS7PR19MB8883.namprd19.prod.outlook.com>
+In-Reply-To: <DS7PR19MB8883434CAA053648E22AA8AC9DCC2@DS7PR19MB8883.namprd19.prod.outlook.com>
+From: Amit Kucheria <amitk@kernel.org>
+Date: Sun, 2 Mar 2025 16:42:03 +0530
+X-Gmail-Original-Message-ID: <CAHLCerN=jDXtsGCGUMaerh=-oSZf4+ExdnvVHFcXTjjTRvW-ig@mail.gmail.com>
+X-Gm-Features: AQ5f1Joo-9vQhdZihXI6_SZRgjhU3sAL0Uv-PUaO4J3qP3ecnI1uP64WCbn4VBE
+Message-ID: <CAHLCerN=jDXtsGCGUMaerh=-oSZf4+ExdnvVHFcXTjjTRvW-ig@mail.gmail.com>
+Subject: Re: [PATCH v9 3/6] thermal: qcom: tsens: update conditions to
+ strictly evaluate for IP v2+
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, daniel.lezcano@linaro.org, rafael@kernel.org, 
+	thara.gopinath@gmail.com, dmitry.baryshkov@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, quic_srichara@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi, Angelo:
-
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
-=BC
-2025=E5=B9=B42=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:=
-49=E5=AF=AB=E9=81=93=EF=BC=9A
+On Fri, Feb 28, 2025 at 10:46=E2=80=AFAM George Moussalem
+<george.moussalem@outlook.com> wrote:
 >
-> In preparation for adding support for the DPI IP found in MT8195
-> and in MT8188 used for HDMI, move the code flow for calculation
-> and setting of the DPI pixel clock to a separate function called
-> mtk_dpi_set_pixel_clk().
+> TSENS v2.0+ leverage features not available to prior versions such as
+> updated interrupts init routine, masked interrupts, and watchdog.
+> Currently, the checks in place evaluate whether the IP version is greater
+> than v1 which invalidates when updates to v1 or v1 minor versions are
+> implemented. As such, update the conditional statements to strictly
+> evaluate whether the version is greater than or equal to v2 (inclusive).
 >
-> This was done because, on those platforms, the DPI instance that
-> is used for HDMI will get its pixel clock from the HDMI clock,
-> hence it is not necessary, nor desirable, to calculate or set
-> the pixel clock in DPI.
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 
-After fix conflicts, applied to mediatek-drm-next [1], thanks.
+Reviewed-by: Amit Kucheria <amitk@kernel.org>
 
-[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.=
-git/log/?h=3Dmediatek-drm-next
-
-Regards,
-Chun-Kuang.
-
->
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 43 +++++++++++++++++-------------
->  1 file changed, 24 insertions(+), 19 deletions(-)
+>  drivers/thermal/qcom/tsens.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
-k/mtk_dpi.c
-> index 41fdc193891a..59c2e4f32a61 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -537,26 +537,17 @@ static unsigned int mtk_dpi_calculate_factor(struct=
- mtk_dpi *dpi, int mode_clk)
->         return dpi_factor[dpi->conf->num_dpi_factor - 1].factor;
->  }
->
-> -static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi,
-> -                                   struct drm_display_mode *mode)
-> +static void mtk_dpi_set_pixel_clk(struct mtk_dpi *dpi, struct videomode =
-*vm, int mode_clk)
->  {
-> -       struct mtk_dpi_polarities dpi_pol;
-> -       struct mtk_dpi_sync_param hsync;
-> -       struct mtk_dpi_sync_param vsync_lodd =3D { 0 };
-> -       struct mtk_dpi_sync_param vsync_leven =3D { 0 };
-> -       struct mtk_dpi_sync_param vsync_rodd =3D { 0 };
-> -       struct mtk_dpi_sync_param vsync_reven =3D { 0 };
-> -       struct videomode vm =3D { 0 };
->         unsigned long pll_rate;
->         unsigned int factor;
->
->         /* let pll_rate can fix the valid range of tvdpll (1G~2GHz) */
->         factor =3D mtk_dpi_calculate_factor(dpi, mode_clk);
-> -       drm_display_mode_to_videomode(mode, &vm);
-> -       pll_rate =3D vm.pixelclock * factor;
-> +       pll_rate =3D vm->pixelclock * factor;
->
->         dev_dbg(dpi->dev, "Want PLL %lu Hz, pixel clock %lu Hz\n",
-> -               pll_rate, vm.pixelclock);
-> +               pll_rate, vm->pixelclock);
->
->         clk_set_rate(dpi->tvd_clk, pll_rate);
->         pll_rate =3D clk_get_rate(dpi->tvd_clk);
-> @@ -566,20 +557,34 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi =
-*dpi,
->          * pixels for each iteration: divide the clock by this number and
->          * adjust the display porches accordingly.
->          */
-> -       vm.pixelclock =3D pll_rate / factor;
-> -       vm.pixelclock /=3D dpi->conf->pixels_per_iter;
-> +       vm->pixelclock =3D pll_rate / factor;
-> +       vm->pixelclock /=3D dpi->conf->pixels_per_iter;
->
->         if ((dpi->output_fmt =3D=3D MEDIA_BUS_FMT_RGB888_2X12_LE) ||
->             (dpi->output_fmt =3D=3D MEDIA_BUS_FMT_RGB888_2X12_BE))
-> -               clk_set_rate(dpi->pixel_clk, vm.pixelclock * 2);
-> +               clk_set_rate(dpi->pixel_clk, vm->pixelclock * 2);
+> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> index 1f5d4de017d9..43b388bcc7d6 100644
+> --- a/drivers/thermal/qcom/tsens.c
+> +++ b/drivers/thermal/qcom/tsens.c
+> @@ -447,7 +447,7 @@ static void tsens_set_interrupt(struct tsens_priv *pr=
+iv, u32 hw_id,
+>         dev_dbg(priv->dev, "[%u] %s: %s -> %s\n", hw_id, __func__,
+>                 irq_type ? ((irq_type =3D=3D 1) ? "UP" : "CRITICAL") : "L=
+OW",
+>                 enable ? "en" : "dis");
+> -       if (tsens_version(priv) > VER_1_X)
+> +       if (tsens_version(priv) >=3D VER_2_X)
+>                 tsens_set_interrupt_v2(priv, hw_id, irq_type, enable);
 >         else
-> -               clk_set_rate(dpi->pixel_clk, vm.pixelclock);
-> +               clk_set_rate(dpi->pixel_clk, vm->pixelclock);
+>                 tsens_set_interrupt_v1(priv, hw_id, irq_type, enable);
+> @@ -499,7 +499,7 @@ static int tsens_read_irq_state(struct tsens_priv *pr=
+iv, u32 hw_id,
+>         ret =3D regmap_field_read(priv->rf[LOW_INT_CLEAR_0 + hw_id], &d->=
+low_irq_clear);
+>         if (ret)
+>                 return ret;
+> -       if (tsens_version(priv) > VER_1_X) {
+> +       if (tsens_version(priv) >=3D VER_2_X) {
+>                 ret =3D regmap_field_read(priv->rf[UP_INT_MASK_0 + hw_id]=
+, &d->up_irq_mask);
+>                 if (ret)
+>                         return ret;
+> @@ -543,7 +543,7 @@ static int tsens_read_irq_state(struct tsens_priv *pr=
+iv, u32 hw_id,
 >
-> -
-> -       vm.pixelclock =3D clk_get_rate(dpi->pixel_clk);
-> +       vm->pixelclock =3D clk_get_rate(dpi->pixel_clk);
+>  static inline u32 masked_irq(u32 hw_id, u32 mask, enum tsens_ver ver)
+>  {
+> -       if (ver > VER_1_X)
+> +       if (ver >=3D VER_2_X)
+>                 return mask & (1 << hw_id);
 >
->         dev_dbg(dpi->dev, "Got  PLL %lu Hz, pixel clock %lu Hz\n",
-> -               pll_rate, vm.pixelclock);
-> +               pll_rate, vm->pixelclock);
-> +}
-> +
-> +static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi,
-> +                                   struct drm_display_mode *mode)
-> +{
-> +       struct mtk_dpi_polarities dpi_pol;
-> +       struct mtk_dpi_sync_param hsync;
-> +       struct mtk_dpi_sync_param vsync_lodd =3D { 0 };
-> +       struct mtk_dpi_sync_param vsync_leven =3D { 0 };
-> +       struct mtk_dpi_sync_param vsync_rodd =3D { 0 };
-> +       struct mtk_dpi_sync_param vsync_reven =3D { 0 };
-> +       struct videomode vm =3D { 0 };
-> +
-> +       drm_display_mode_to_videomode(mode, &vm);
-> +       mtk_dpi_set_pixel_clk(dpi, &vm, mode->clock);
+>         /* v1, v0.1 don't have a irq mask register */
+> @@ -733,7 +733,7 @@ static int tsens_set_trips(struct thermal_zone_device=
+ *tz, int low, int high)
+>  static int tsens_enable_irq(struct tsens_priv *priv)
+>  {
+>         int ret;
+> -       int val =3D tsens_version(priv) > VER_1_X ? 7 : 1;
+> +       int val =3D tsens_version(priv) >=3D VER_2_X ? 7 : 1;
 >
->         dpi_pol.ck_pol =3D MTK_DPI_POLARITY_FALLING;
->         dpi_pol.de_pol =3D MTK_DPI_POLARITY_RISING;
+>         ret =3D regmap_field_write(priv->rf[INT_EN], val);
+>         if (ret < 0)
+> @@ -1040,7 +1040,7 @@ int __init init_common(struct tsens_priv *priv)
+>                 }
+>         }
+>
+> -       if (tsens_version(priv) > VER_1_X &&  ver_minor > 2) {
+> +       if (tsens_version(priv) >=3D VER_2_X &&  ver_minor > 2) {
+>                 /* Watchdog is present only on v2.3+ */
+>                 priv->feat->has_watchdog =3D 1;
+>                 for (i =3D WDOG_BARK_STATUS; i <=3D CC_MON_MASK; i++) {
 > --
 > 2.48.1
 >
