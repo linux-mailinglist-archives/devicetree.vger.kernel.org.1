@@ -1,88 +1,83 @@
-Return-Path: <devicetree+bounces-153116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFC80A4B49B
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 21:02:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C523A4B49C
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 21:05:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFBAE3AFC7F
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 20:02:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B1921890502
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 20:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A143E1DF27C;
-	Sun,  2 Mar 2025 20:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CFC11EB1BC;
+	Sun,  2 Mar 2025 20:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=patrick-wildt-de.20230601.gappssmtp.com header.i=@patrick-wildt-de.20230601.gappssmtp.com header.b="oiluXkZo"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="E29usM+M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f97.google.com (mail-lf1-f97.google.com [209.85.167.97])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3F42EEB3
-	for <devicetree@vger.kernel.org>; Sun,  2 Mar 2025 20:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.97
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A03EEB3;
+	Sun,  2 Mar 2025 20:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740945744; cv=none; b=oCpEY98xywJ/ud7YHgZfM07QSqF8Gnsh7H6pexmk32lXlSFiEmrMvb1MUxLEhPhyq35/eCVX/Fow5irGgHUYFDd2FCdoy65iZMaaHO72k6xOGbutY79yjaxc7FPgMD02AI88bsYsYj7siDb3TVjVuzcq6Rfd29v3IDX4nB0FRhg=
+	t=1740945955; cv=none; b=pKlvK9AfWdT5IQoebwi2w4balXJHGA2G7pVkcKrINt6iU3pWFCsz+bftf+L1ri+MgohU2DnWoSRiJFE38fzrM4KC4EiOI8xaauIC/HWXuQJ8vXJWis8tfnNG+3z6NnoisCG5v+YhNQ53isrt06rNwHyJs/0NGZd5U/GDF7sN2Zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740945744; c=relaxed/simple;
-	bh=ycWZFjDwUWDTC7UePhckAGGu+d29weMfb3SYGhumi5Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=eM3InSUoR83Dt9+Qf2EtEtfvGFm757Jk28WgkfukStZA8n9qaZp4iG1VIbb+GLwe6cmyB9OEp/LtbvGHL/A/yzeuebqrw518zxk6SwU3tsQq/4Fx39Cx1hf4dTEb2p5W4tqk/OSp+676CQuC9EDy4qFz+M93cedJ5fBTa+zWdeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blueri.se; spf=pass smtp.mailfrom=blueri.se; dkim=pass (2048-bit key) header.d=patrick-wildt-de.20230601.gappssmtp.com header.i=@patrick-wildt-de.20230601.gappssmtp.com header.b=oiluXkZo; arc=none smtp.client-ip=209.85.167.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blueri.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blueri.se
-Received: by mail-lf1-f97.google.com with SMTP id 2adb3069b0e04-54965898051so473375e87.2
-        for <devicetree@vger.kernel.org>; Sun, 02 Mar 2025 12:02:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=patrick-wildt-de.20230601.gappssmtp.com; s=20230601; t=1740945741; x=1741550541; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0ktqAo906g1TKt406wyEYKOmiF5CVJ1rF2+5tYAkr74=;
-        b=oiluXkZomEXxGh+J1o4Hw8fsXVPtLp1EJ5/sgFdRbWumv3oKfLF8eQBnEjaRoiTKKc
-         R94LWFX0dcEBj3rMdH2w2+1Yq+b1s8BSZKWPNCyMpc7DHsmh+ZqZTyOlVcsVWqOkaE1j
-         50CwA5x2QvRfNXoOPPwlglkxTySG0tUzr0GidWP74FugDbIsrXj+evt8n1r/iLbaYCFG
-         CF9IQ1Iv1dDVsVFeOM0cRigWK3S7YTh8X+ZoFKJH515ZIQYAC/6UhcfXAcY+at/5kUi9
-         0plhZla4eJjkDmmioTOnE4bW+xDILmSmpEBWbdRSyh4LBFBktSBUuv/5R/waUQmCxJ/A
-         eRsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740945741; x=1741550541;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0ktqAo906g1TKt406wyEYKOmiF5CVJ1rF2+5tYAkr74=;
-        b=gBJBWSCu+opjsZvIZMc9lL9qLUuWAddGSscaxOXoC6FVwEAdqegotV/c7Oc9PnN6I8
-         X1pHUgJNnmcLA7xfQJ1ltENnQ7Mku+RzYvzbRTp6DWONLd1ae+R3pl7vTidbvCGGYNcD
-         P6yef32lKY1COvKo7qI+77nnm4t702SpOL5fzLSK8HIFj+kjItiCE129Ack+FFX/D9VX
-         UHqAUH42lONqD83mdFWdOXsXDtCqaSCH61paijKGFRUtwn1pcNqn0QqaQpwd+PkRQwDa
-         X3g++iZswtJihaopNdtJtV5Kmn09qZgCC/ruDPaBFjNebO1ucHWhkcdtxKG0kB+nu+/f
-         v+Mg==
-X-Forwarded-Encrypted: i=1; AJvYcCUs/3N13EbOZ5XgPD9zQdwxt+sfwRnAauGTsTMkWnH3VgZD/saKHjJ7MkSUfDAZRAGR0Pp9hAp0XkcG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYS8ulLjaFWNCFsNd8pC48zyNAKVwuwkjPbm7Ji3EPIi18aVtD
-	MPg6pckRIpz6dZ70tg8tayp0Mg9wTnEUsDNyfavbRemahsSmCf+z2Hdu5dhHozwBvTojbdBfjrZ
-	cLFo2+vKbci+s0UaXNkD0xf0tV1F7gs4y
-X-Gm-Gg: ASbGnctxmWqsvVIZ11nUwTTDo1kWSCsf3R7iJI3dzs7f+V77TaJzBl8afWJiE0Kb+t6
-	5iDnqHnxFsZeIMUzGJMfUz/ssJV9iZdO98d4yp7p7/h/J0yt83FJUKqcFCXjg5UlD5yVFjCdQKC
-	wo02bES+Bpfo8ILDGHYSCtJVzBQgweSS6DXWmUzKH9DSyUCyDAYJwsSFpLDK1BU3gXCP5IPEh4A
-	TqI8WZokjF6YnwPn21iyxp7h/cuBcQxBVkacP3/+d9bulWzoFspoDvSHaEno0iTNpEaXj8/BB62
-	3BzAsJNSV1XGi2vvBF1Zsopv0AyQxH6FYbuWOdSoWvM=
-X-Google-Smtp-Source: AGHT+IEoW2SHIDDk1aLDFV+GZp9bKgEaP+RRL4SkeATZfvS4Scg3SkpbOr9RjR6zN8pzWGl4nlfKBtFrcL0t
-X-Received: by 2002:a05:6512:3f02:b0:545:e2e:8425 with SMTP id 2adb3069b0e04-5494c32f8dcmr4146730e87.39.1740945740250;
-        Sun, 02 Mar 2025 12:02:20 -0800 (PST)
-Received: from windev.fritz.box (pc19f8e2d.dip0.t-ipconnect.de. [193.159.142.45])
-        by smtp-relay.gmail.com with ESMTPS id 2adb3069b0e04-54961daf36csm53433e87.112.2025.03.02.12.02.19
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Sun, 02 Mar 2025 12:02:20 -0800 (PST)
-X-Relaying-Domain: blueri.se
-Date: Sun, 2 Mar 2025 21:02:16 +0100
-From: Patrick Wildt <patrick@blueri.se>
-To: linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Kever Yang <kever.yang@rock-chips.com>,
+	s=arc-20240116; t=1740945955; c=relaxed/simple;
+	bh=l7r/HCUaTIK1g55CQDzaQ6ozYGYg/jgdbNNO3ks1Ya4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=shEQrg/c/odGxZ17zvWSvC2/aQr678ikeX1N6Y4eu16LPr7ENEzHWL7JUj6+s8tT/hHyU3CssxZbx/hi5dgkRnd6I959VkqiQ/VXe/za1pR8J48KbdTsVMcwaz/OFQtzSzY0MQSeKD59pMOF0Zhg7qaHN3oiTs1f7EokBwD784c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=E29usM+M; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=WzvWBw+oK+hBsKWeM78G3AyVRzsimST5eDKa118KrqU=; b=E29usM+Me+EHYxRpXxr2flusGl
+	Cj7NZbEQSPdciN+22cLWH89aCqLjc4/RdRCzpbadvfcaoaM4rb3GINBo748kTsc8MptQUelhMyz/d
+	r3O3raud4qWQACzd51t+lGZs5uwV8Wn2Pyi+p7l9duDYQJBr+v78D5DR/+cI7YJ+18bh2SDJgrjsN
+	noOoaYOejJprrH3624LokYIVTjpOse6LKcvikpN3pCzs/NLf0i95UNJCsHgf5WEw0RRDP0ETGqldZ
+	yhSPduh5BskDtw1Y76cYYGPPccema5dUEy3Ck/PDs2ANiwKDkdSQCRXGLAWItwyPoemmk2nOAQr41
+	OgLsa1oQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40514)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1topZB-00077z-2x;
+	Sun, 02 Mar 2025 20:05:37 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1topZ6-00031q-30;
+	Sun, 02 Mar 2025 20:05:32 +0000
+Date: Sun, 2 Mar 2025 20:05:32 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Jimmy Hon <honyuenkwun@gmail.com>
-Subject: [PATCH v5 1/2] dt-bindings: arm: rockchip: Add MNT Reform 2 (RCORE)
-Message-ID: <Z8S5SHqUqKYiT6Wd@windev.fritz.box>
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 3/3] net: stmmac: Add DWMAC glue layer for Renesas GBETH
+Message-ID: <Z8S6DM8ySpoyb8No@shell.armlinux.org.uk>
+References: <20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250302181808.728734-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Z8SydsdDsZfdrdbE@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,44 +86,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <Z8SydsdDsZfdrdbE@shell.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Document board compatible bindings for the MNT Reform 2 with it's RCORE
-SoM, which is based on Firefly's iCore-3588Q.
+On Sun, Mar 02, 2025 at 07:33:10PM +0000, Russell King (Oracle) wrote:
+> On Sun, Mar 02, 2025 at 06:18:08PM +0000, Prabhakar wrote:
+> > +	gbeth->dev = dev;
+> > +	gbeth->regs = stmmac_res.addr;
+> > +	plat_dat->bsp_priv = gbeth;
+> > +	plat_dat->set_clk_tx_rate = stmmac_set_clk_tx_rate;
+> 
+> Thanks for using that!
+> 
+> > +	plat_dat->flags |= STMMAC_FLAG_HWTSTAMP_CORRECT_LATENCY |
+> > +			   STMMAC_FLAG_EN_TX_LPI_CLOCKGATING |
+> 
+> I would like to know what value tx_clk_stop is in
+> stmmac_mac_enable_tx_lpi() for your setup. Ideally, stmmac should
+> use the capability report from the PHY to decide whether the
+> transmit clock can be gated, but sadly we haven't had any support
+> in phylib/phylink for that until recently, and I haven't modified
+> stmmac to allow use of that. However, it would be good to gain
+> knowledge in this area.
+> 
+> > +			   STMMAC_FLAG_RX_CLK_RUNS_IN_LPI |
+> 
+> What is the reason for setting this flag? If it's because of suspend/
+> resume failures, does my "net: stmmac: fix resume failures due to
+> RX clock" series solve this for you without requiring this flag?
 
-Signed-off-by: Patrick Wildt <patrick@blueri.se>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Changes for v5:
-- No changes
-Changes for v4:
-- Added acked-by
-Changes for v3:
-- Split DT as it's based on a Firefly iCore-3588Q SoM
-Changes for v2:
-- No changes
+https://lore.kernel.org/r/Z8B4tVd4nLUKXdQ4@shell.armlinux.org.uk
 
- Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 522a6f0450ea..e21c5c8fc2a3 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -178,6 +178,13 @@ properties:
-           - const: engicam,px30-core
-           - const: rockchip,px30
- 
-+      - description: Firefly iCore-3588Q-based boards
-+        items:
-+          - enum:
-+              - mntre,reform2-rcore
-+          - const: firefly,icore-3588q
-+          - const: rockchip,rk3588
-+
-       - description: Firefly Core-3588J-based boards
-         items:
-           - enum:
 -- 
-2.48.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
