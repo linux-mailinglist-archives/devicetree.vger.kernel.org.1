@@ -1,178 +1,115 @@
-Return-Path: <devicetree+bounces-153107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED4E6A4B443
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 20:10:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F94AA4B450
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 20:11:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B1603B0E54
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:09:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B0FE7A6147
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0E71E9B14;
-	Sun,  2 Mar 2025 19:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 467B11EB9FA;
+	Sun,  2 Mar 2025 19:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="vzRlOXqs"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="B6urSYUr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75E242E630;
-	Sun,  2 Mar 2025 19:09:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108531C5F3B;
+	Sun,  2 Mar 2025 19:10:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740942601; cv=none; b=FnnvXPmO/fCbFXNxw+g9dDjJ/q+T8M5DktZvZvuVp5rEWin19P3zg5KbtARnCYFBL5agGwQe89P8+kT5LBX4PV3PquNtd46B1VQSzhKOaqLiC1LQ952akO881PdBOKQg/nNwZGsbRB8WhzIb1g7W4dsxisHevwbb6+t7U0EhXTQ=
+	t=1740942645; cv=none; b=Q38uxAkHFo/AMrNFt2gQxNVPgON6PNxb1hJdrdnF65QZcgL5OZ3EZS7c7SjRXYceYwgMt1WkmV708LVsq10uaVHq1KkeNMagfLDXomKGD2i+ph5+VxuYIsGSJrbEVFfr7CCTujB9A3UuY2vmwbV54kgYnlzhUEEIPnl9M5Cuyvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740942601; c=relaxed/simple;
-	bh=goHEOgt6VKQLca6XUQdBBoD0f7uZKf9N8C9Pj+hERok=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GB9o5wV6NIRaGvpfsHwpZ8KNWcRNo4EkBv9amGTxvCmb0ez9e6Tb8CDElhrwe5wF5R3PrfLzzVmX9pwimLWspdH5nfWoRQxyHq5dl7yL4OkSEEtUf2TYwk9cT4/WAkzJDs1KB8Fg+J7u2XYJ9iRCXAqYL/+mDa50wzZteoBytcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=vzRlOXqs; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=1uDnGle22h4BGQTP/aXxCDgxelViDKMg5h+i1dNf/tU=; b=vzRlOXqsyFZrCrhDIO02maxr2m
-	omB8tmfEYAsY04MiP87NnpI1TbiyyV8E1x7FLNVfzrIs2UYDSxfpr70QEEzywvjPSTkYLsreROz68
-	XLrzItSGERbXNB0qtnKy1nBVCzlBXMDZiBfjnZLT58tw05VyrCa+8BIYd9JXSTFFL456CI2L73fjq
-	Jjl5VbLCDLwxoApqRdX/I+Jtq+PT+qGhFNuqNhHYuy5znQM0HnGFPw9gihS7h6HJGdRX0O7YDhqyi
-	nfc2TBbQV7JDAIushfCoPTm+0M4oCpnA+01NMcF/KUYAtym3kGlLw0lXrtssdfm5tZExuCYRSRkXr
-	pBz1nfFg==;
-Received: from i53875b47.versanet.de ([83.135.91.71] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1toohF-0004vx-Im; Sun, 02 Mar 2025 20:09:53 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: hjc@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- derek.foreman@collabora.com, detlev.casanova@collabora.com,
- daniel@fooishbar.org, robh@kernel.org, sebastian.reichel@collabora.com,
- Andy Yan <andy.yan@rock-chips.com>,
- Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v15 13/13] drm/rockchip: vop2: Add support for rk3576
-Date: Sun, 02 Mar 2025 20:09:52 +0100
-Message-ID: <2764042.X9hSmTKtgW@diego>
-In-Reply-To: <20250218112901.34564-1-andyshrk@163.com>
-References:
- <20250218112744.34433-1-andyshrk@163.com>
- <20250218112901.34564-1-andyshrk@163.com>
+	s=arc-20240116; t=1740942645; c=relaxed/simple;
+	bh=JcZ+vMl+zjXx8xup6J9H0ZAOoYMsQu0rU+fdJTwpaBQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LRn6TBdmJ1AyFYPEFSMbyiPPk8Hg40SHAl2lbFXkAdo5ncb8nJACQRGIjF45T0t8GVawhtLj90/65m/DC9jM4BtjRCkp0v6Y0ZVVyN8wsKbCaRJ1EVkGQ2wt5cSiY7djUR52w0Dd4dfcKE00piSXertDT+ByNc/LRh8wt6nLtWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=B6urSYUr; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=IXF/lf9RkTF+j5lpFGM8UfHTw5xM20aqNxmAtRUwCzw=; b=B6urSYUrW1kGOkKWa8yrFzgQFz
+	i7bW8dVlm4httBvPnSc8962fMMtl2HE2UYGVNLiWBhDfaV0vCeHJ575n9ruOggIFzCTj/+Uc7VMn3
+	20WbnWJ5smlSyqLEBuAAxCaXeY4Vuiv7BpTYcTjq0brUw5V/BMFxAgGgfjBd0YDJkCcY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1toohm-001aK9-IT; Sun, 02 Mar 2025 20:10:26 +0100
+Date: Sun, 2 Mar 2025 20:10:26 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 2/3] dt-bindings: net: Document GBETH bindings for
+ Renesas RZ/V2H(P) SoC
+Message-ID: <a1dbb3e8-4a52-4cc2-8e7b-cf240f726d5e@lunn.ch>
+References: <20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250302181808.728734-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250302181808.728734-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi Andy,
-
-Am Dienstag, 18. Februar 2025, 12:28:58 MEZ schrieb Andy Yan:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> VOP2 on rk3576:
-> Three video ports:
-> VP0 Max 4096x2160
-> VP1 Max 2560x1600
-> VP2 Max 1920x1080
-> 
-> 2 4K Cluster windows with AFBC/RFBC, line RGB and YUV
-> 4 Esmart windows with line RGB/YUV support:
-> Esmart0/1: 4K
-> Esmart2/3: 2k, or worked together as a single 4K plane at shared
-> line buffer mode.
-> 
-> Compared to the previous VOP, another difference is that each VP
-> has its own independent vsync interrupt number.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> Tested-by: Michael Riesch <michael.riesch@wolfvision.net> # on RK3568
-> Tested-by: Detlev Casanova <detlev.casanova@collabora.com>
-
-some minor style things, but overall looks really good
-
-
-> @@ -2665,6 +2721,32 @@ static int vop2_bind(struct device *dev, struct device *master, void *data)
->  	if (ret)
->  		return ret;
->  
-> +	if (vop2->version >= VOP_VERSION_RK3576) {
-> +		struct drm_crtc *crtc;
+> +  interrupts:
+> +    items:
+> +      - description: Subsystem interrupt
+> +      - description: The interrupt to manage the remote wake-up packet detection
+> +      - description: The interrupt that occurs when Tx/Rx enters/exits the LPI state
+> +      - description: Per-channel transmission-0 completion interrupt
+> +      - description: Per-channel transmission-1 completion interrupt
+> +      - description: Per-channel transmission-2 completion interrupt
+> +      - description: Per-channel transmission-3 completion interrupt
+> +      - description: Per-channel receive-0 completion interrupt
+> +      - description: Per-channel receive-1 completion interrupt
+> +      - description: Per-channel receive-2 completion interrupt
+> +      - description: Per-channel receive-3 completion interrupt
 > +
-> +		drm_for_each_crtc(crtc, drm) {
-> +			struct vop2_video_port *vp = to_vop2_video_port(crtc);
-> +			int vp_irq;
-> +			const char *irq_name = devm_kasprintf(dev, GFP_KERNEL, "vp%d", vp->id);
-> +
-> +			if (!irq_name)
-> +				return -ENOMEM;
-> +
-> +			vp_irq = platform_get_irq_byname(pdev, irq_name);
-> +			if (vp_irq < 0) {
-> +				DRM_DEV_ERROR(dev, "cannot find irq for vop2 vp%d\n", vp->id);
+> +  interrupt-names:
+> +    items:
+> +      - const: macirq
+> +      - const: eth_wake_irq
+> +      - const: eth_lpi
+> +      - const: tx0
+> +      - const: tx1
+> +      - const: tx2
+> +      - const: tx3
+> +      - const: rx0
+> +      - const: rx1
+> +      - const: rx2
+> +      - const: rx3
 
-return dev_err_probe
+There has already been a discussion about trying to make the clock
+names more uniform. But what about interrupts? Which of these are in
+the IP databook? What names does the databook use for these
+interrupts?
 
-> +				return vp_irq;
-> +			}
-> +
-> +			ret = devm_request_irq(dev, vp_irq, rk3576_vp_isr, IRQF_SHARED, irq_name,
-> +					       vp);
-> +			if (ret) {
-> +				DRM_DEV_ERROR(dev, "request irq for vop2 vp%d failed\n", vp->id);
-
-return dev_err_probe
-
-> +				return ret;
-> +			}
-> +		}
-> +	}
-> +
->  	ret = vop2_find_rgb_encoder(vop2);
->  	if (ret >= 0) {
->  		vop2->rgb = rockchip_rgb_init(dev, &vop2->vps[ret].crtc,
-
-
-> +static void rk3576_vop2_setup_overlay(struct vop2_video_port *vp)
-> +{
-> +	struct vop2 *vop2 = vp->vop2;
-> +	struct drm_crtc *crtc = &vp->crtc;
-> +	struct drm_plane *plane;
-> +
-> +	vp->win_mask = 0;
-> +
-> +	drm_atomic_crtc_for_each_plane(plane, crtc) {
-> +		struct vop2_win *win = to_vop2_win(plane);
-> +
-> +		win->delay = win->data->dly[VOP2_DLY_MODE_DEFAULT];
-> +
-
-nit: we probably don't need this empty line
-
-> +		vp->win_mask |= BIT(win->data->phys_id);
-> +
-> +		if (vop2_cluster_window(win))
-> +			vop2_setup_cluster_alpha(vop2, win);
-> +	}
-> +
-> +	if (!vp->win_mask)
-> +		return;
-> +
-> +	rk3576_vop2_setup_layer_mixer(vp);
-> +	vop2_setup_alpha(vp);
-> +	rk3576_vop2_setup_dly_for_windows(vp);
-> +}
-
-
-Heiko
-
-
+	Andrew
 
