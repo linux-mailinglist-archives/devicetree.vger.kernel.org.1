@@ -1,64 +1,75 @@
-Return-Path: <devicetree+bounces-153054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1749A4B299
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 16:26:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEAF3A4B29F
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 16:35:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11D3816C823
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 15:26:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B86B7A7060
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 15:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD1B1E5B99;
-	Sun,  2 Mar 2025 15:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C861D63C2;
+	Sun,  2 Mar 2025 15:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="RDKwCd0a"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="a+FU4jEC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300E71E5B72
-	for <devicetree@vger.kernel.org>; Sun,  2 Mar 2025 15:26:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40971172A;
+	Sun,  2 Mar 2025 15:35:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740929199; cv=none; b=q73PqpEjxgoLh7mE7jlWsBQcy9Hc9LEgDnNcSMZvAaECMFH5/9sJi2r7p/gRJK7RQPgNTX/s4LqxQUBZUwFe+uMEs46NgYtOkh/yoQhOKNx3XlenMKkdf1XWlxAbCK9y4JWEW7SfJI8QS11Vilcg3Qrws0XEWiYxvu2raqCmEjg=
+	t=1740929714; cv=none; b=FErC8vEqarycbhfALT5nRXoKD4h97mQHr6s7htNUIyo15pIvu3qTYFdE6EkAIa4xjXRzmAPYll6EuCLXx6x9uz1+DJ2afRptTv/mvgBKWWSUAx/2i93a5uJZ6dozNCbUYpdHEj3SuzkQdZpPEqyZMp04TKF0zCCPekEDrCfbQH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740929199; c=relaxed/simple;
-	bh=CxY29t1UN+j7Hz4GUlGAf94Ubr4nCAuExeITk0nr6NU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cwFeL0qTBIbJ2Fe3U7QYdLgA49lqV0ZBjW0h1udz0rcY9D0SMUsUWQJcJ5C72/JssROSxI7FEqjCpM693vICBfYw0zqQZi1jJL9S21RKed+ot7UT/6qLSWtOtjMbqpx0k6GkJFII9PVLCol2Un7ZfFpkbbp5nvbgISdRYO7uagI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=RDKwCd0a; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E020610382D03;
-	Sun,  2 Mar 2025 16:26:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1740929186;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=8Bh6bLjv98EA8P8H9SQlLoMe1/qkXz4wmKjkYzXqTxY=;
-	b=RDKwCd0anT/sAu/zkYm8sX7eP1ka+sonUhm6e1+GdVn6NGjZOqCZ7LeUhWAQUGAjxgye8v
-	sacKqGGvueFEptvu+Iu3l45yJIeMMEy1JdCSRCBllNpl3X3hPudOMZiHWk204hQqZq65pq
-	oQsDY3u57Kj1bStUlns2DQOVNAPF+/UV+KQP44lSbkwuOUawUqIK00Wyl8ewQxkCBEZWA3
-	o/a4iiToy/JZtABdK8qD5Mg9CrfwF37IMaNOqozClg76H49ADFbtLxtWQbzj5l46KYmKbo
-	nH25XteLnY5OaxnPbKebp0ac6x3jMqqTETmEds9gLGLAQVWH2hemAU/njZhNfw==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: Add support for STM32MP13xx DHCOR SoM and DHSBC rev.200 board
-Date: Sun,  2 Mar 2025 16:25:14 +0100
-Message-ID: <20250302152605.54792-1-marex@denx.de>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1740929714; c=relaxed/simple;
+	bh=sp+aBzUeoeWE0ZtxyqtC/x3EA65BT0kY57znG+bVzag=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FuZtnGjv9/AR5MHrswPs0fRzAG5XRav2ALZAUajqCzTBl9T1fT/dDuNHSQLtkFBCydMaoq+onmQPdXeunNF2NgArrHJ75i8wYHJPy1pPJDNepDCVqiD4SOc2GcWuDqiGvMJbkhtPzld5aOqPz6BxQl4lSlCirA/J0q0n0uQMfy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=a+FU4jEC; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 522FZ4G42556074
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sun, 2 Mar 2025 09:35:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1740929704;
+	bh=wdAoh/ayfnLnb4rljIhkNtkXJPCCVbcFapnePSxCyVQ=;
+	h=From:To:CC:Subject:Date;
+	b=a+FU4jEC28l5XEJbJ2NMrmbp4o6HUFInvm45S6lnBi8pRrTMDYQWQjR/vHEnkiu2E
+	 fsK7pRv+s/LprOOOt+pyYvrSVSakdxr9R2c8SD1go/yE5jWB0scRsuoZK+kmdxhC/T
+	 o0Hww0Qe3u3xGAnr3fmiQfKP9mYPlH4FCGrq44L8=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 522FZ4VP085114
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 2 Mar 2025 09:35:04 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 2
+ Mar 2025 09:35:04 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 2 Mar 2025 09:35:04 -0600
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 522FZ3a0120099;
+	Sun, 2 Mar 2025 09:35:03 -0600
+From: Chintan Vankar <c-vankar@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Tero Kristo
+	<kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
+	<nm@ti.com>
+CC: <s-vadapalli@ti.com>, <c-vankar@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v2 0/2] Add bootph-all property to necessary nodes to enable ethernet boot for AM68-SK, J722s and AM62p-SK
+Date: Sun, 2 Mar 2025 21:05:00 +0530
+Message-ID: <20250302153502.181832-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,99 +77,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-LDO2 is expansion connector supply on STM32MP13xx DHCOR DHSBC rev.200.
-LDO5 is carrier board supply on STM32MP13xx DHCOR DHSBC rev.200. Keep
-both regulators always enabled to make sure both the carrier board and
-the expansion connector is always powered on and supplied with correct
-voltage.
+This series adds bootph-all property to necessary nodes to enable
+ethernet boot support for AM68-SK, J722s and AM62p-SK.
 
-Describe ST33TPHF2XSPI TPM 2.0 chip interrupt and reset lines.
+This series is based on linux-next tagged next-20250228.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- .../boot/dts/st/stm32mp135f-dhcor-dhsbc.dts   | 30 +++++++++++++++++--
- 1 file changed, 28 insertions(+), 2 deletions(-)
+Link to v1:
+https://lore.kernel.org/r/20250106123122.3531845-1-c-vankar@ti.com/
 
-diff --git a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
-index 853dc21449d99..9902849ed0406 100644
---- a/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
-+++ b/arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts
-@@ -176,7 +176,7 @@ &gpioa {
- 	gpio-line-names = "", "", "", "",
- 			  "", "DHSBC_USB_PWR_CC1", "", "",
- 			  "", "", "", "DHSBC_nETH1_RST",
--			  "", "DHCOR_HW-CODING_0", "", "";
-+			  "", "DHCOR_HW-CODING_0", "", "DHSBC_HW-CODE_2";
- };
- 
- &gpiob {
-@@ -197,7 +197,7 @@ &gpiod {
- 	gpio-line-names = "", "", "", "",
- 			  "", "DHCOR_RAM-CODING_0", "", "",
- 			  "", "DHCOR_RAM-CODING_1", "", "",
--			  "", "", "", "";
-+			  "", "DHSBC_HW-CODE_1", "", "";
- };
- 
- &gpioe {
-@@ -221,6 +221,13 @@ &gpiog {
- 			  "DHSBC_ETH1_INTB", "", "", "DHSBC_ETH2_INTB";
- };
- 
-+&gpioh {
-+	gpio-line-names = "", "", "", "DHSBC_HW-CODE_0",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "";
-+};
-+
- &gpioi {
- 	gpio-line-names = "DHCOR_RTC_nINT", "DHCOR_HW-CODING_1",
- 			  "DHCOR_BT_REG_ON", "DHCOR_PMIC_nINT",
-@@ -296,6 +303,9 @@ &spi2 {
- 	st33htph: tpm@0 {
- 		compatible = "st,st33htpm-spi", "tcg,tpm_tis-spi";
- 		reg = <0>;
-+		interrupt-parent = <&gpioe>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+		reset-gpios = <&gpioe 12 GPIO_ACTIVE_LOW>;
- 		spi-max-frequency = <24000000>;
- 	};
- };
-@@ -419,3 +429,19 @@ connector {
- 		type = "micro";
- 	};
- };
-+
-+/* LDO2 is expansion connector 3V3 supply on STM32MP13xx DHCOR DHSBC rev.200 */
-+&vdd_ldo2 {
-+	regulator-always-on;
-+	regulator-boot-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+};
-+
-+/* LDO5 is carrier board 3V3 supply on STM32MP13xx DHCOR DHSBC rev.200 */
-+&vdd_sd {
-+	regulator-always-on;
-+	regulator-boot-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+};
+Changes from v1 to v2:
+- Updated order of "bootph-all" in [PATCH 1/1].
+
+Chintan Vankar (2):
+  arm64: dts: ti: k3-am68-sk/k3-j721s2-mcu: Add bootph-all property to
+    enable Ethernet boot
+  arm64: dts: ti: k3-am62p5*/k3-j722s: Add bootph-all property to enable
+    Ethernet boot
+
+ arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 +++
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts                | 2 ++
+ arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts       | 3 +++
+ arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi       | 4 ++++
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts                | 3 +++
+ 5 files changed, 15 insertions(+)
+
 -- 
-2.47.2
+2.34.1
 
 
