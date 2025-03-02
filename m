@@ -1,411 +1,133 @@
-Return-Path: <devicetree+bounces-153115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A545A4B490
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 20:52:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC80A4B49B
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 21:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C0EF188ECBB
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 19:52:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFBAE3AFC7F
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 20:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF07A1EE7BD;
-	Sun,  2 Mar 2025 19:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A143E1DF27C;
+	Sun,  2 Mar 2025 20:02:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MWeviYg7"
+	dkim=pass (2048-bit key) header.d=patrick-wildt-de.20230601.gappssmtp.com header.i=@patrick-wildt-de.20230601.gappssmtp.com header.b="oiluXkZo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-lf1-f97.google.com (mail-lf1-f97.google.com [209.85.167.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0B431EDA29;
-	Sun,  2 Mar 2025 19:52:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3F42EEB3
+	for <devicetree@vger.kernel.org>; Sun,  2 Mar 2025 20:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.97
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740945147; cv=none; b=HDrcUnfW0txMJ46XegNRJJy2+Js4XNXFSDp1REooMepyLZsxRbgjWDYNotb/PjLUEM5SrBvTqXUKn5cv2b4bpoY3eq9CXKturiKEwf+F11fcozNOej8DW7M0DLHYW5ie1xvy9bqpmpKk3TY9v7es1MsQwFVZKGCnen7hS8oFItE=
+	t=1740945744; cv=none; b=oCpEY98xywJ/ud7YHgZfM07QSqF8Gnsh7H6pexmk32lXlSFiEmrMvb1MUxLEhPhyq35/eCVX/Fow5irGgHUYFDd2FCdoy65iZMaaHO72k6xOGbutY79yjaxc7FPgMD02AI88bsYsYj7siDb3TVjVuzcq6Rfd29v3IDX4nB0FRhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740945147; c=relaxed/simple;
-	bh=B80PE1Vm4MvBM3NpDwi1bHwpSg2maEdXzFPTVdHk5dQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UJrEz19QvVHDwL+EHxuzsD9Jqc7jWVy3IF3KgP4edjLiSq9FqJ2FTjeDnnguiBRFBokJkzo/ro/QXPxLe65P3qPIeMs5TO+LEE6MhtZhlU4WNhCa+oqFqWuYHQ6fIfZR6xlIBOiR7lWVWpbEInKoEWt/aVCsSbD0QB5FhEshswE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MWeviYg7; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-abf57138cfaso221451366b.1;
-        Sun, 02 Mar 2025 11:52:25 -0800 (PST)
+	s=arc-20240116; t=1740945744; c=relaxed/simple;
+	bh=ycWZFjDwUWDTC7UePhckAGGu+d29weMfb3SYGhumi5Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=eM3InSUoR83Dt9+Qf2EtEtfvGFm757Jk28WgkfukStZA8n9qaZp4iG1VIbb+GLwe6cmyB9OEp/LtbvGHL/A/yzeuebqrw518zxk6SwU3tsQq/4Fx39Cx1hf4dTEb2p5W4tqk/OSp+676CQuC9EDy4qFz+M93cedJ5fBTa+zWdeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blueri.se; spf=pass smtp.mailfrom=blueri.se; dkim=pass (2048-bit key) header.d=patrick-wildt-de.20230601.gappssmtp.com header.i=@patrick-wildt-de.20230601.gappssmtp.com header.b=oiluXkZo; arc=none smtp.client-ip=209.85.167.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blueri.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blueri.se
+Received: by mail-lf1-f97.google.com with SMTP id 2adb3069b0e04-54965898051so473375e87.2
+        for <devicetree@vger.kernel.org>; Sun, 02 Mar 2025 12:02:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740945144; x=1741549944; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=geqIJH4ZbhDfifYmudp+lR9EwCjUFtE9Nbs9m0I7Hhw=;
-        b=MWeviYg7Lf0jDKVtwyucGbEYv7o8tItnFpF/qcK8KbT+5n276PC104ZwvCqhCHqqSp
-         S0e0PjICWzDh2dgvIB8n/LAUtTgo2oW0DB046tUAjcFXpMBy+7rKib0PipO1l6WsZKBn
-         l18gf3FwafpNBGjYnp/gqU2CWMJ6supADxq/Wbly0yjwwppk8T1aBB0COfu57Oj+EHe+
-         QE3O7ouoa64ww97oDFWEyPYRA4CQ5HO0VnNt7BxVKa270VWeqHu3eYRsMOj5GP+7mKKD
-         vXbefOOc5Iq7dZvhrZTdYnKINdEoM7upO2EwrVP6WyJmw/y7Wy74S/Ln27eukOhBiHqV
-         F63w==
+        d=patrick-wildt-de.20230601.gappssmtp.com; s=20230601; t=1740945741; x=1741550541; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0ktqAo906g1TKt406wyEYKOmiF5CVJ1rF2+5tYAkr74=;
+        b=oiluXkZomEXxGh+J1o4Hw8fsXVPtLp1EJ5/sgFdRbWumv3oKfLF8eQBnEjaRoiTKKc
+         R94LWFX0dcEBj3rMdH2w2+1Yq+b1s8BSZKWPNCyMpc7DHsmh+ZqZTyOlVcsVWqOkaE1j
+         50CwA5x2QvRfNXoOPPwlglkxTySG0tUzr0GidWP74FugDbIsrXj+evt8n1r/iLbaYCFG
+         CF9IQ1Iv1dDVsVFeOM0cRigWK3S7YTh8X+ZoFKJH515ZIQYAC/6UhcfXAcY+at/5kUi9
+         0plhZla4eJjkDmmioTOnE4bW+xDILmSmpEBWbdRSyh4LBFBktSBUuv/5R/waUQmCxJ/A
+         eRsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740945144; x=1741549944;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=geqIJH4ZbhDfifYmudp+lR9EwCjUFtE9Nbs9m0I7Hhw=;
-        b=CKPJ16lbHW/8JOG4fa9rF0P+yktYO9xZr/XyjWpqk7ts9D15o3mvbHlMwelzqL5d9y
-         Sh5Qp7Q1Bnyjed8eXyEXo9pfkvQ+g1yk1uYWcmu9HwnJkf3Q48mKQv/RXzhYrYUtNg6U
-         w63gfT3qXhDsS7Lfcd2WdRGBz/Dln8i0XcXFjDiLrky8O9hvsNb7SNtslW8N6etK1jeu
-         5d1jehvk4MooNCGymCdhrlfCjgSNsavBwcFwFGOqx2okm5FF5XpLFhTdoVZcISg3ketC
-         jQDAPjghI83cHzFNYVHEspbw5ftY/7ZCL5ZHfPqrH0BF2wZ1EHhNvbFBWbGoXhc0fn8Y
-         FPgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU0dbcWDd59YQu+R3c+ZR3oVrM0sDtyIZ8wtglvDnmj1n0mJinvcO1J6EfqLLxgWJTu7RbEAJtxjGGC@vger.kernel.org, AJvYcCXSowxxk4PLlytgAF/06zAqrHQkdu4sbJgVN7Db+pBcnB71vO25giAN5fRHRAIlyszkngS/WrNkBeM0NBE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjkPOH5e748IWHMM1p8PoEmjZsI6EtTwBCAZqNRFqu0XnuiQlZ
-	nGIbv2e81YdDcTmABAKdUmSS5DXV6MLaAj3FlO8mVcRy5W8bP0Mpe1bjzsu3
-X-Gm-Gg: ASbGncto9s65718wIpkN20uZCBWPcjnJY0lhBqatad6tKhuhmjJW5/VWQeTeL/Fojwk
-	yETvs2pZEKXm0GCXiSET2SxNXF6HIryHi5vrXsGCsMSpZaQ+MbacmGCAjPG/wUZ2UoNaw4T0MTD
-	x1NtWptWUZanAu845NU6DPZ0MGwdS0TlfzOjJae+S246sDa8vt5z0VEwJRFhKOhzS0NHVCy2r1Y
-	MB2GcpCKJpaRrql7Z7cWW43BVmnN3xNeNLDnIjuAd2GMDXtOg1Hmbajas+Tk8odCuHVlKrq2Vmo
-	tcIEmz3LtzbmnRIWeO/ZbMSFIxrAtwa4oK3Ca8y/yXgHkBDtHd2lO8SVLg==
-X-Google-Smtp-Source: AGHT+IEVQi87WpvJPE+ITZKW4KN8LE8ET2pDw7bFNwsDi7FEYME4D4Cx72dGVTss6isDxSYXAcgHKA==
-X-Received: by 2002:a17:907:9620:b0:abe:f8c0:c1ab with SMTP id a640c23a62f3a-abf265d3be4mr1399615466b.46.1740945143564;
-        Sun, 02 Mar 2025 11:52:23 -0800 (PST)
-Received: from giga-mm.. ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e4c43a5acdsm5809705a12.77.2025.03.02.11.52.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Mar 2025 11:52:23 -0800 (PST)
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-rtc@vger.kernel.org
-Cc: Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	dlan@gentoo.org,
-	linux-kernel@vger.kernel.org,
-	Lee Jones <lee@kernel.org>,
+        d=1e100.net; s=20230601; t=1740945741; x=1741550541;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0ktqAo906g1TKt406wyEYKOmiF5CVJ1rF2+5tYAkr74=;
+        b=gBJBWSCu+opjsZvIZMc9lL9qLUuWAddGSscaxOXoC6FVwEAdqegotV/c7Oc9PnN6I8
+         X1pHUgJNnmcLA7xfQJ1ltENnQ7Mku+RzYvzbRTp6DWONLd1ae+R3pl7vTidbvCGGYNcD
+         P6yef32lKY1COvKo7qI+77nnm4t702SpOL5fzLSK8HIFj+kjItiCE129Ack+FFX/D9VX
+         UHqAUH42lONqD83mdFWdOXsXDtCqaSCH61paijKGFRUtwn1pcNqn0QqaQpwd+PkRQwDa
+         X3g++iZswtJihaopNdtJtV5Kmn09qZgCC/ruDPaBFjNebO1ucHWhkcdtxKG0kB+nu+/f
+         v+Mg==
+X-Forwarded-Encrypted: i=1; AJvYcCUs/3N13EbOZ5XgPD9zQdwxt+sfwRnAauGTsTMkWnH3VgZD/saKHjJ7MkSUfDAZRAGR0Pp9hAp0XkcG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYS8ulLjaFWNCFsNd8pC48zyNAKVwuwkjPbm7Ji3EPIi18aVtD
+	MPg6pckRIpz6dZ70tg8tayp0Mg9wTnEUsDNyfavbRemahsSmCf+z2Hdu5dhHozwBvTojbdBfjrZ
+	cLFo2+vKbci+s0UaXNkD0xf0tV1F7gs4y
+X-Gm-Gg: ASbGnctxmWqsvVIZ11nUwTTDo1kWSCsf3R7iJI3dzs7f+V77TaJzBl8afWJiE0Kb+t6
+	5iDnqHnxFsZeIMUzGJMfUz/ssJV9iZdO98d4yp7p7/h/J0yt83FJUKqcFCXjg5UlD5yVFjCdQKC
+	wo02bES+Bpfo8ILDGHYSCtJVzBQgweSS6DXWmUzKH9DSyUCyDAYJwsSFpLDK1BU3gXCP5IPEh4A
+	TqI8WZokjF6YnwPn21iyxp7h/cuBcQxBVkacP3/+d9bulWzoFspoDvSHaEno0iTNpEaXj8/BB62
+	3BzAsJNSV1XGi2vvBF1Zsopv0AyQxH6FYbuWOdSoWvM=
+X-Google-Smtp-Source: AGHT+IEoW2SHIDDk1aLDFV+GZp9bKgEaP+RRL4SkeATZfvS4Scg3SkpbOr9RjR6zN8pzWGl4nlfKBtFrcL0t
+X-Received: by 2002:a05:6512:3f02:b0:545:e2e:8425 with SMTP id 2adb3069b0e04-5494c32f8dcmr4146730e87.39.1740945740250;
+        Sun, 02 Mar 2025 12:02:20 -0800 (PST)
+Received: from windev.fritz.box (pc19f8e2d.dip0.t-ipconnect.de. [193.159.142.45])
+        by smtp-relay.gmail.com with ESMTPS id 2adb3069b0e04-54961daf36csm53433e87.112.2025.03.02.12.02.19
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Sun, 02 Mar 2025 12:02:20 -0800 (PST)
+X-Relaying-Domain: blueri.se
+Date: Sun, 2 Mar 2025 21:02:16 +0100
+From: Patrick Wildt <patrick@blueri.se>
+To: linux-rockchip@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Kever Yang <kever.yang@rock-chips.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	sophgo@lists.linux.dev,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Subject: [PATCH v12 3/3] rtc: sophgo: add rtc support for Sophgo CV1800 SoC
-Date: Sun,  2 Mar 2025 20:51:56 +0100
-Message-ID: <20250302195205.3183174-4-alexander.sverdlin@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250302195205.3183174-1-alexander.sverdlin@gmail.com>
-References: <20250302195205.3183174-1-alexander.sverdlin@gmail.com>
+	Heiko Stuebner <heiko@sntech.de>, Jimmy Hon <honyuenkwun@gmail.com>
+Subject: [PATCH v5 1/2] dt-bindings: arm: rockchip: Add MNT Reform 2 (RCORE)
+Message-ID: <Z8S5SHqUqKYiT6Wd@windev.fritz.box>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Document board compatible bindings for the MNT Reform 2 with it's RCORE
+SoM, which is based on Firefly's iCore-3588Q.
 
-Implement the RTC driver for CV1800, which able to provide time alarm.
-
-Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Signed-off-by: Patrick Wildt <patrick@blueri.se>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-v12:
-- added MAINTAINERS entry
-- depends on cv1800-rtcsys MFD driver
-- use syscon for regmap
-- get named clock from parent MFD
-- corresponding platform device is expected to be instantiated by MFD stub
-Changes since v10:
-- only start RTC on set_time;
-Changes since v9:
-- further simplified bitmask macros;
-- unconditional RTC start (rtc_enable_sec_counter()), otherwise
-didn't start on SG2000;
-- dropped ANA_CALIB modification (has been forgotten in v8 with
-the drop of SW calibration to switch to HW calibration);
-- successfully tested on SG2000;
+Changes for v5:
+- No changes
+Changes for v4:
+- Added acked-by
+Changes for v3:
+- Split DT as it's based on a Firefly iCore-3588Q SoM
+Changes for v2:
+- No changes
 
- MAINTAINERS              |   1 +
- drivers/rtc/Kconfig      |  12 +++
- drivers/rtc/Makefile     |   1 +
- drivers/rtc/rtc-cv1800.c | 218 +++++++++++++++++++++++++++++++++++++++
- 4 files changed, 232 insertions(+)
- create mode 100644 drivers/rtc/rtc-cv1800.c
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 446156998380..d4e0569da602 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22186,6 +22186,7 @@ M:	Inochi Amaoto <inochiama@outlook.com>
- T:	git https://github.com/sophgo/linux.git
- S:	Maintained
- F:	drivers/mfd/cv1800-rtcsys.c
-+F:	drivers/rtc/rtc-cv1800.c
- N:	sophgo
- K:	sophgo
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 522a6f0450ea..e21c5c8fc2a3 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -178,6 +178,13 @@ properties:
+           - const: engicam,px30-core
+           - const: rockchip,px30
  
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 0bbbf778ecfa..9da247ec4084 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -1395,6 +1395,18 @@ config RTC_DRV_ASM9260
- 	  This driver can also be built as a module. If so, the module
- 	  will be called rtc-asm9260.
- 
-+config RTC_DRV_CV1800
-+	tristate "Sophgo CV1800 RTC"
-+	depends on MFD_CV1800_RTCSYS || COMPILE_TEST
-+	select MFD_SYSCON
-+	select REGMAP
-+	help
-+	  If you say yes here you get support the RTC driver for Sophgo CV1800
-+	  series SoC.
++      - description: Firefly iCore-3588Q-based boards
++        items:
++          - enum:
++              - mntre,reform2-rcore
++          - const: firefly,icore-3588q
++          - const: rockchip,rk3588
 +
-+	  This driver can also be built as a module. If so, the module will be
-+	  called rtc-cv1800.
-+
- config RTC_DRV_DIGICOLOR
- 	tristate "Conexant Digicolor RTC"
- 	depends on ARCH_DIGICOLOR || COMPILE_TEST
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 489b4ab07068..621b30a33dda 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -44,6 +44,7 @@ obj-$(CONFIG_RTC_DRV_CADENCE)	+= rtc-cadence.o
- obj-$(CONFIG_RTC_DRV_CMOS)	+= rtc-cmos.o
- obj-$(CONFIG_RTC_DRV_CPCAP)	+= rtc-cpcap.o
- obj-$(CONFIG_RTC_DRV_CROS_EC)	+= rtc-cros-ec.o
-+obj-$(CONFIG_RTC_DRV_CV1800)	+= rtc-cv1800.o
- obj-$(CONFIG_RTC_DRV_DA9052)	+= rtc-da9052.o
- obj-$(CONFIG_RTC_DRV_DA9055)	+= rtc-da9055.o
- obj-$(CONFIG_RTC_DRV_DA9063)	+= rtc-da9063.o
-diff --git a/drivers/rtc/rtc-cv1800.c b/drivers/rtc/rtc-cv1800.c
-new file mode 100644
-index 000000000000..18bc542bbdb8
---- /dev/null
-+++ b/drivers/rtc/rtc-cv1800.c
-@@ -0,0 +1,218 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * rtc-cv1800.c: RTC driver for Sophgo cv1800 RTC
-+ *
-+ * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/irq.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/rtc.h>
-+
-+#define SEC_PULSE_GEN          0x1004
-+#define ALARM_TIME             0x1008
-+#define ALARM_ENABLE           0x100C
-+#define SET_SEC_CNTR_VAL       0x1010
-+#define SET_SEC_CNTR_TRIG      0x1014
-+#define SEC_CNTR_VAL           0x1018
-+
-+/*
-+ * When in VDDBKUP domain, this MACRO register
-+ * does not power down
-+ */
-+#define MACRO_RO_T             0x14A8
-+#define MACRO_RG_SET_T         0x1498
-+
-+#define ALARM_ENABLE_MASK      BIT(0)
-+#define SEL_SEC_PULSE          BIT(31)
-+
-+struct cv1800_rtc_priv {
-+	struct rtc_device *rtc_dev;
-+	struct regmap *rtc_map;
-+	struct clk *clk;
-+	int irq;
-+};
-+
-+static bool cv1800_rtc_enabled(struct device *dev)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	u32 reg;
-+
-+	regmap_read(info->rtc_map, SEC_PULSE_GEN, &reg);
-+
-+	return (reg & SEL_SEC_PULSE) == 0;
-+}
-+
-+static void cv1800_rtc_enable(struct device *dev)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+
-+	/* Sec pulse generated internally */
-+	regmap_update_bits(info->rtc_map, SEC_PULSE_GEN, SEL_SEC_PULSE, 0);
-+}
-+
-+static int cv1800_rtc_alarm_irq_enable(struct device *dev, unsigned int enabled)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+
-+	regmap_write(info->rtc_map, ALARM_ENABLE, enabled);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	unsigned long alarm_time;
-+
-+	alarm_time = rtc_tm_to_time64(&alrm->time);
-+
-+	cv1800_rtc_alarm_irq_enable(dev, 0);
-+
-+	regmap_write(info->rtc_map, ALARM_TIME, alarm_time);
-+
-+	cv1800_rtc_alarm_irq_enable(dev, alrm->enabled);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	u32 enabled;
-+	u32 time;
-+
-+	if (!cv1800_rtc_enabled(dev)) {
-+		alarm->enabled = 0;
-+		return 0;
-+	}
-+
-+	regmap_read(info->rtc_map, ALARM_ENABLE, &enabled);
-+
-+	alarm->enabled = enabled & ALARM_ENABLE_MASK;
-+
-+	regmap_read(info->rtc_map, ALARM_TIME, &time);
-+
-+	rtc_time64_to_tm(time, &alarm->time);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	u32 sec;
-+
-+	if (!cv1800_rtc_enabled(dev))
-+		return -EINVAL;
-+
-+	regmap_read(info->rtc_map, SEC_CNTR_VAL, &sec);
-+
-+	rtc_time64_to_tm(sec, tm);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_set_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	unsigned long sec;
-+
-+	sec = rtc_tm_to_time64(tm);
-+
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_VAL, sec);
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_TRIG, 1);
-+
-+	regmap_write(info->rtc_map, MACRO_RG_SET_T, sec);
-+
-+	cv1800_rtc_enable(dev);
-+
-+	return 0;
-+}
-+
-+static irqreturn_t cv1800_rtc_irq_handler(int irq, void *dev_id)
-+{
-+	struct cv1800_rtc_priv *info = dev_id;
-+
-+	rtc_update_irq(info->rtc_dev, 1, RTC_IRQF | RTC_AF);
-+
-+	regmap_write(info->rtc_map, ALARM_ENABLE, 0);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static const struct rtc_class_ops cv1800_rtc_ops = {
-+	.read_time = cv1800_rtc_read_time,
-+	.set_time = cv1800_rtc_set_time,
-+	.read_alarm = cv1800_rtc_read_alarm,
-+	.set_alarm = cv1800_rtc_set_alarm,
-+	.alarm_irq_enable = cv1800_rtc_alarm_irq_enable,
-+};
-+
-+static int cv1800_rtc_probe(struct platform_device *pdev)
-+{
-+	struct cv1800_rtc_priv *rtc;
-+	int ret;
-+
-+	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
-+	if (!rtc)
-+		return -ENOMEM;
-+
-+	rtc->rtc_map = device_node_to_regmap(pdev->dev.parent->of_node);
-+	if (IS_ERR(rtc->rtc_map))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->rtc_map),
-+				     "cannot get parent regmap\n");
-+
-+	rtc->irq = platform_get_irq(pdev, 0);
-+	if (rtc->irq < 0)
-+		return rtc->irq;
-+
-+	rtc->clk = devm_clk_get_enabled(pdev->dev.parent, "rtc");
-+	if (IS_ERR(rtc->clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->clk),
-+				     "rtc clk not found\n");
-+
-+	platform_set_drvdata(pdev, rtc);
-+
-+	device_init_wakeup(&pdev->dev, 1);
-+
-+	rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
-+	if (IS_ERR(rtc->rtc_dev))
-+		return PTR_ERR(rtc->rtc_dev);
-+
-+	rtc->rtc_dev->ops = &cv1800_rtc_ops;
-+	rtc->rtc_dev->range_max = U32_MAX;
-+
-+	ret = devm_request_irq(&pdev->dev, rtc->irq, cv1800_rtc_irq_handler,
-+			       IRQF_TRIGGER_HIGH, "rtc alarm", rtc);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "cannot register interrupt handler\n");
-+
-+	return devm_rtc_register_device(rtc->rtc_dev);
-+}
-+
-+static const struct platform_device_id cv1800_rtc_id[] = {
-+	{ .name = "cv1800-rtc" },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(platform, cv1800_rtc_id);
-+
-+static struct platform_driver cv1800_rtc_driver = {
-+	.driver = {
-+		.name = "sophgo-cv1800-rtc",
-+	},
-+	.probe = cv1800_rtc_probe,
-+	.id_table = cv1800_rtc_id,
-+};
-+
-+module_platform_driver(cv1800_rtc_driver);
-+MODULE_AUTHOR("Jingbao Qiu");
-+MODULE_DESCRIPTION("Sophgo cv1800 RTC Driver");
-+MODULE_LICENSE("GPL");
+       - description: Firefly Core-3588J-based boards
+         items:
+           - enum:
 -- 
 2.48.1
 
