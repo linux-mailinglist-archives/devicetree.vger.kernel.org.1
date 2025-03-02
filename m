@@ -1,186 +1,205 @@
-Return-Path: <devicetree+bounces-153013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74307A4B0B2
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 09:34:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E7FA4B0CF
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 10:16:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D76993B51DA
-	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 08:34:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC30A16B91C
+	for <lists+devicetree@lfdr.de>; Sun,  2 Mar 2025 09:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85AE61CCEE7;
-	Sun,  2 Mar 2025 08:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96FE1D63C2;
+	Sun,  2 Mar 2025 09:16:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VqtUrY5n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C63B6192D96;
-	Sun,  2 Mar 2025 08:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA631C695;
+	Sun,  2 Mar 2025 09:16:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740904463; cv=none; b=p+ESFzbktlJvWUXeyhjl0StJx3EFHzi8QboDOq69ciySwf5GZ1I7KpgmOeHKiWN731oQ2sFqrP37YDWhqbNYe9Co8eQOd8DUCcC7EYgJEg21bNB8BXkqH14Turfchv13DBZBSphM/7WZMjKrPQGUWHaKHGMsPCp6H2FcH+VtlI8=
+	t=1740907004; cv=none; b=YJvsWRb6papDzna2BRRUqk9lZf2bGjGRMRMMANWB3EAeRSaLS6B21dQlLPPNlmIS5mpFGdvwELIdzkvhG++TeSU3GbZ3B2qd8BRx3pc695o+y2hR5r3YehnlovaKTP80SJfkwpuLn9SNy9/2jZ7IoJXNz9YpCt/dUfBVWnf8pE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740904463; c=relaxed/simple;
-	bh=5JJ8bWxyJ41/8t713l8MUHmkyDaXWeaPKkyDIdKnQCQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qczLvtYglpaiXNmzupqDTM1RlrexvcQvVQZQPxbME3XCMieHX2IObT+1GDOz5yIa6nbFZzgeBazrsFgk09tLRe4t7VatlmQf9ggAIq9YUUN2YCBmhid5gcfDYkMVwwtYhGb6FiAhRNmiaN8UzOAq21bgnkH7xWj9ih9jkTf0hw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.55.252])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id A56EC343175;
-	Sun, 02 Mar 2025 08:34:20 +0000 (UTC)
-Date: Sun, 2 Mar 2025 08:34:16 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Troy Mitchell <troymitchell988@gmail.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
-	linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5 0/2] riscv: spacemit: add i2c support to K1 SoC
-Message-ID: <20250302083416-GYA56903@gentoo>
-References: <20250302-k1-i2c-master-v5-0-fd77ad3c7e18@gmail.com>
+	s=arc-20240116; t=1740907004; c=relaxed/simple;
+	bh=H44sFfK1LqDLlQt24Q6gB7Vof+guX4WP72Q4KQ0UZj0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ugTtw3YvVCFWRBsNGYRNFEbB1uElRUqOvdNt8dWLFsV155lDt797DlUcgJf2FWQFUrF3ZqvJou4P5YZr2AneigG3k5pqCQrRVaIpa/o4tZ4ztEReRwYM5+ltYuF9vbN412+icKfmcxZbK1jCWCC15SXtX48bSrLdNYkjFUPIuIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VqtUrY5n; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5e04064af07so6296559a12.0;
+        Sun, 02 Mar 2025 01:16:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740907001; x=1741511801; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gt4e/Q1bzVAKDz/zUzGYf19qKql6n2SPXCwUMfSa3zM=;
+        b=VqtUrY5nnlS3Aa0vP/29A123vZXDlxGeVwUcqGepPVvQ0po5F6rAhby2K4gBfbfibH
+         uYEMTA05VtesO8Cp2mHTLNBOL+toWjmZK6AWKDLPWRHQSkln66+35ccHnWIQBlz70+3n
+         7IoECgvmrYYWkfTZMqjmTTnhVq+BCJEZeZbeNDiLNgC0EhoQnK5ddIfAG2WI6nhX0GEs
+         PU+hzwhcwfB48S6GQCN4xUPYwIoeP51dmulyUvljsR3EsW34ywhsCcXCb5ICxturaI5p
+         Ur3oleq2EnqA24bfMtGZlJq4PcLB+iaOPJAEmSeBFz0ySv9Hrfhgo/OvruGhAZ7VqnWj
+         k5DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740907001; x=1741511801;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gt4e/Q1bzVAKDz/zUzGYf19qKql6n2SPXCwUMfSa3zM=;
+        b=TSYjuwipiE0xp4T3wNDfNmhA6PIM8O74QzWo5e3pz26VLiexyfiTzHRI7dmvlfX0Pp
+         VSr52wMsnlMCwCQT66TCa1/rOivzwxavrHxS7JtQmkz7Gs9EAIZzS1tcOpk30fx7JJYR
+         LXv4tPrvRxdXlBDr+HrgvtWMk7+MdxeB/krC7wxR12O5CedwXOdrc9oec7AeqXnJvEEa
+         YqKwN9lQPH9+u7fIu1w4dRmzxTUdaeRanQ0xjLlpRsDQOzBOOnvDJWADuXPIadmFO77x
+         CvUcyqC/kWhSX1XhV11afUJXbrXqEPl3L13+6vXgT5aWVMgYosTAnKTCCY7+pLvomlKc
+         p2XQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUC0a/o3NqZpUMeN4awjJalGTvHi/GUOEJ58eNF367PgSmkhSQeJAshV8zCXbsQEQSgwYERRUAeGVAjwmJ9tQ==@vger.kernel.org, AJvYcCUVo9ipuNnuNp7jwfEut/XC8bpymJteYr79IvWyeYgvbRwyoRWIa2PK62b/hT344QxeMaCT3jhikEia@vger.kernel.org, AJvYcCUq3oDlGDGjdjYgJPViYmEwVPYiZYhNvkChWwTOSX24ZA2eOTrVLzwuwWG2vZE7uXZ6aJxuYdq6tfXFdRql@vger.kernel.org, AJvYcCXNWumUJqiVJ3cjvXtw97Ksexd4VTCHb29UbdHMtxClamEQ7IbWyIm14/fPeEGDaM5nesEe5gVn1LGtlnLddmW0m1o=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJNScHIaVjV0XMM2/WOtT4rvXgr0Yf5oH/l3KjoNh9Bb4FrZmA
+	WwDjibAf1DM+MgdEEcEx7odYYqWQ8NO7G6OWybKAANiOPADWe2/HluWLqA==
+X-Gm-Gg: ASbGnctZtldh1S7J2dc6p5Kh9AxfN6+9L3CMU7e5lvdkZAqGGS6VkjkyXBii55UgvjX
+	mEpSwO3JsjEfNs543l9FIb95lnIce7Z3l7fbLPLJ83pDBoUwmbGplmEMZxMI65QxM1NsU8A85tc
+	FyhEJQxF4ZS2iX6iUZs29Mhz9Q1/pU0lS+GOFZ6VEm9JuaTmc/3zxwjz9viscnffmxZiXIEkSe7
+	KsQhuIXEfCOMUQs8uHOmeF6mLuF+uqdcF3dRS02scQFKsM5AQHn0EkutzUdSD50U/1MWZzrBvuw
+	Ewmbygx1sxF6otwlKNNiig+q6sU268PDd/3+Xxs91wKbMsw1sUNr4yBv2Xj6TV2AESOQOcm/Cuz
+	8okVaE34F643xhLSzEjlbfNI=
+X-Google-Smtp-Source: AGHT+IEYSDw2sP7Dh+Z2pA1UtfA1dKfkOfTidFVCkHLXhYUdHVMwVkHLto91nPU2C2aCCuTbWanVJQ==
+X-Received: by 2002:a17:907:3f22:b0:abe:c3a8:7aa2 with SMTP id a640c23a62f3a-abf268228c1mr1096068066b.46.1740907000673;
+        Sun, 02 Mar 2025 01:16:40 -0800 (PST)
+Received: from [192.168.1.105] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf0c6ee49dsm624648366b.105.2025.03.02.01.16.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Mar 2025 01:16:39 -0800 (PST)
+Message-ID: <4502b578-96e6-49e0-8f3b-54f6e5640c55@gmail.com>
+Date: Sun, 2 Mar 2025 11:16:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250302-k1-i2c-master-v5-0-fd77ad3c7e18@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/8] dt-bindings: phy: add
+ samsung,exynos2200-usbcon-phy schema file
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Abel Vesa <abel.vesa@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250223122227.725233-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250223122227.725233-4-ivo.ivanov.ivanov1@gmail.com>
+ <20250224-curly-cyber-spaniel-efdc39@krzk-bin>
+ <a4f63721-d094-4eda-b68a-6ef62ff54680@gmail.com>
+ <c8184542-5dab-4403-bee4-867810397ae4@kernel.org>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <c8184542-5dab-4403-bee4-867810397ae4@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Troy:
+On 2/25/25 10:11, Krzysztof Kozlowski wrote:
+> On 24/02/2025 11:48, Ivaylo Ivanov wrote:
+>> On 2/24/25 10:56, Krzysztof Kozlowski wrote:
+>>> On Sun, Feb 23, 2025 at 02:22:22PM +0200, Ivaylo Ivanov wrote:
+>>>> The Exynos2200 SoC has a USB controller PHY, which acts as an
+>>>> intermediary between a USB controller (typically DWC3) and other PHYs
+>>>> (UTMI, PIPE3). Add a dt-binding schema for it.
+>>>>
+>>>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>>>> ---
+>>>>  .../phy/samsung,exynos2200-usbcon-phy.yaml    | 76 +++++++++++++++++++
+>>>>  1 file changed, 76 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
+>>> You have undocumented dependencies which prevent merging this file.
+>>> First, dependencies have to be clearly expressed.
+>> They are, in the cover letter.
+> Where? I read it twice. Dependencies is the most important thing and
+> should scream at beginning of the cover letter, so if you bury them
+> somewhere deep it also would not matter - just like they were missing.
+>
+>>> Second, you should
+>>> rather decouple the code from header dependencies, otherwise this cannot
+>>> be merged for current release (just use clocks with long names, without IDs).
+>> Sure
+>
+>>>> diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
+>>>> new file mode 100644
+>>>> index 000000000..7d879ec8b
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
+>>>> @@ -0,0 +1,76 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/phy/samsung,exynos2200-usbcon-phy.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Exynos2200 USB controller PHY
+>>>> +
+>>>> +maintainers:
+>>>> +  - Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>>>> +
+>>>> +description:
+>>>> +  Exynos2200 USB controller PHY is an intermediary between a USB controller
+>>>> +  (typically DWC3) and other PHYs (UTMI, PIPE3).
+>>> Isn't this the same as usbdrd phy? see: samsung,usb3-drd-phy.yaml
+>> It's not (I think). There's a few reasons I've decided to make this separate
+>> from the usb3-drd-phy bindings and exynos5-usbdrd driver:
+>>
+>> 1. This PHY does not provide UTMI and PIPE3 on its own. There's no tuning
+> USBDRD phy does not provide UTMI and PIPE on its own either if you look
+> at diagram - they call it phy controller.
 
-I'd like to have all spacemit patches Cc to its mailinglist[1]
-Can you do a resend version with "RESEND" prefix? no need to increase
-the version number, but should state the reason, thanks
+Ughm. What? So in most exynos cases, there's a combination of multiple phys?
 
-Link: https://lore.kernel.org/all/20250128-k1-maintainer-1-v1-1-e5dec4f379eb@gentoo.org [1]
+>
+>> for them, and all that is needed from it is to disable HWACG, assert/
+>> deassert reset and force bvalid/vbusvalid. After that SNPS eUSB2
+>> initialization can be done and USB2 works. If the USBCON phy is not set
+>> up before the eUSB2 one, the device hangs, so there is definitely a
+>> dependancy between them. For PIPE3 we'd need to control the pipe3
+>> attaching/deattaching and then initialize the synopsys USBDP combophy.
+> Does it mean there is no USB DRD phy controller as before?
+>
+> Anyway the problem is you have DWC3 -> PHY -> PHY. Looks one phy too many.
 
-On 12:51 Sun 02 Mar     , Troy Mitchell wrote:
-> Hi all,
-> 
-> This patch implements I2C driver for the SpacemiT K1 SoC,
-> providing basic support for I2C read/write communication which
-> compatible with standard I2C bus specifications.
-> 
-> In this version, the driver defaults to use fast-speed-mode and
-> interrupts for transmission, and does not support DMA, high-speed mode, or FIFO.
-> 
-> The docs of I2C can be found here, in chapter 16.1 I2C [1]
-> 
-> Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf#part5 [1]
-> ---
-> Change in v5:
-> - Path #1:
->         - Add `clock-names` property
->         - Modify the clock property into two
-> - Path #2:
->         - Enable the APB clock
->         - Fix comment and code styles
->         - Fix typo and drop unnecessary description in Kconfig
->         - Prefix all macro definitions with SPACEMIT_
->         - Rename `spacemit_i2c_bus_reset` to `spacemit_i2c_conditionally_reset_bus`
->         - Remove all `unlikely` and `likely`
->         - Remove unused register and bit macros
->         - Remove the "err" field, as it only contains a subset of the status field
->         - Retrieve `clock-frequency` from the device tree instead of using a macro
->         - Use a local variable to track the current message
->         - Use `i2c->read` to represent read and write statuses instead of `i2c->dir`
-> 
-> Link to v4:
-> https://lore.kernel.org/all/20241125-k1-i2c-master-v4-0-0f3d5886336b@gmail.com/
-> 
-> Change in v4:
-> - Patch #1:
-> 	- Change the default value of clock-frequency from 100000 to
-> 	  400000. This is to correspond to the driver's default value.
-> 	- Drop the minimum of clock-frequency
-> 	- Modify the description of clock-frequency
-> - Patch #2:
-> 	- Drop the `inline` qualifier from the `spacemit_i2c_xfer_core` function
-> 	- Drop the initialization of `ret` to 0 in `spacemit_i2c_xfer_core` function
-> 	- Drop useless wrap
-> Link to v3:
-> https://lore.kernel.org/all/20241112-k1-i2c-master-v3-0-5005b70dc208@gmail.com/
-> 
-> Change in v3:
-> - Patch #1:
-> 	- Change the maxItems of reg from 2 to 1 in properties
-> 	- Modify reg in dts example
-> 	- Changed the enum selection for clock-frequency to a range,
-> 	  setting a minimum value of 1 and a maximum value of 3,300,000.
-> - Patch #2:
-> 	- Drop unused judgement in `spacemit_i2c_xfer_msg`
-> 	- Fix the dangling else warning in `spacemit_i2c_is_last_msg`
-> 	- Fix the error check for `i2c->base`
-> 	- Modify Kconfig dependencies
-> Link to v2:
-> https://lore.kernel.org/all/20241028053220.346283-1-TroyMitchell988@gmail.com/
-> 
-> Change in v2:
-> - Patch #1:
-> 	- Change the maxItems of reg from 1 to 2 in properties
-> 	- Change 'i2c' to 'I2C' in the commit message.
-> 	- Drop fifo-disable property
-> 	- Drop alias in dts example
-> 	- Move `unevaluatedProperties` after `required:` block
-> - Patch #2:
-> 	- Alphabetize Makefile and Kconfig
-> 	- Change `.remove_new` to `.remove` in `struct platform_driver`
-> 	- Change `dev_alert` to `dev_warn_ratelimited` in `spacemit_i2c_bus_reset`
-> 	- Change `spacemit_i2c_read/write_reg` to `read/writel`
-> 	- Change `spacemit_i2c_dt_match` to `spacemit_i2c_of_match`
-> 	- Clean up code flow
-> 	- Fix unnecessary line wraps
-> 	- Move `spacemit_i2c_handle_err` to a suitable location
-> 	- Modify Kconfig dependencies
-> 	- Use `PTR_ERR(i2c->base)` directly as the `dev_err_probe` parameter instead of
-> 	  the intermediate variable
-> Link to v1:
-> https://lore.kernel.org/all/20241015075134.1449458-1-TroyMitchell988@gmail.com/
-> 
-> ---
-> Troy Mitchell (2):
->       dt-bindings: i2c: spacemit: add support for K1 SoC
->       i2c: spacemit: add support for SpacemiT K1 SoC
-> 
->  .../devicetree/bindings/i2c/spacemit,k1-i2c.yaml   |  59 ++
->  drivers/i2c/busses/Kconfig                         |  19 +
->  drivers/i2c/busses/Makefile                        |   1 +
->  drivers/i2c/busses/i2c-k1.c                        | 617 +++++++++++++++++++++
->  4 files changed, 696 insertions(+)
-> ---
-> base-commit: 8e929cb546ee42c9a61d24fae60605e9e3192354
-> change-id: 20241031-k1-i2c-master-fe7f7b0dce93
-> prerequisite-change-id: 20240626-k1-01-basic-dt-1aa31eeebcd2:v5
-> prerequisite-patch-id: 47dcf6861f7d434d25855b379e6d7ef4ce369c9c
-> prerequisite-patch-id: 77787fe82911923aff15ccf565e8fa451538c3a6
-> prerequisite-patch-id: b0bdb1742d96c5738f05262c3b0059102761390b
-> prerequisite-patch-id: 3927d39d8d77e35d5bfe53d9950da574ff8f2054
-> prerequisite-patch-id: a98039136a4796252a6029e474f03906f2541643
-> prerequisite-patch-id: c95f6dc0547a2a63a76e3cba0cf5c623b212b4e6
-> prerequisite-patch-id: 66e750e438ee959ddc2a6f0650814a2d8c989139
-> prerequisite-patch-id: 29a0fd8c36c1a4340f0d0b68a4c34d2b8abfb1ab
-> prerequisite-patch-id: 0bdfff661c33c380d1cf00a6c68688e05f88c0b3
-> prerequisite-patch-id: 99f15718e0bfbb7ed1a96dfa19f35841b004dae9
-> 
+So...
+
+DWC3 -> USBDRD (USBCON) -> PHYs?
+
+...with usbdrd controller connecting and controlling the USB2 and USB3
+phys, as well as dual role mode? Well, where is the DRD part in the exynos5
+driver?
+
+I guess it does perfectly fit the job of a usbdrd controller then (if it
+even deals with DRD). But then again,  this brings up two questions:
+1. Should this driver even be named exynos2200-usbcon and not, for
+example, exynos2200-usbdrd?
+2. Are the exynos5-usbdrd phys really only USBDRD, or do they implement
+USB speed functionality? What is the UTMI/PIPE3 setup for then?
+
+ps: dealing with this without any documentations sucks.
+
+Best regards,
+Ivaylo
+
+>
+>
+>> 2. With the way it's modelled, we need to parse phandles from eUSB2 and
+>> USBDP to the controller. Adding that to the usbdrd driver would be...
+>> weird. It makes more sense to model it as a separate driver, because
+>> it functions in a different way.
+> Just to be clear: we don't talk about drivers here.
+>
+>
 > Best regards,
-> -- 
-> Troy Mitchell <TroyMitchell988@gmail.com>
-> 
+> Krzysztof
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
 
