@@ -1,300 +1,287 @@
-Return-Path: <devicetree+bounces-153344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE63BA4C0E8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:47:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C34CA4C105
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:54:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A313C7A512F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:46:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B1221889360
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:54:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04374879B;
-	Mon,  3 Mar 2025 12:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A416220FA9D;
+	Mon,  3 Mar 2025 12:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qy4Y32JG"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="RD38Rfrb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [94.124.121.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C137D07D;
-	Mon,  3 Mar 2025 12:47:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E603F3BBD8
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 12:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741006046; cv=none; b=WKuB/fsPZwBN1FofX6EtmsLNjiiMu+2/BVH3T9txQGlsafNeUR3vYlqadnW63NkeKdidWzYR6RwGiEYbpyu7I2QAL3ynMijJ3ktFNG4Bboo+gOBOoE/FpI48GwlIB/8jMuaheCcy+szRSLwwjsNZsFuH3wiRofBAbPn6SQyISpQ=
+	t=1741006482; cv=none; b=TQoJwlcb4Ge7kFu8kf3ReHRaZXvLxTtckEK8WfStADFIHItR7Z0/z2VWXfs72Gnl7G3G0xlpGYIYHQAG2NFscBCC9iIKl/CsY9nSpFjtr5OBJBmvTxcxuYQ7e6YWzNzFKZHQAzF1voIn9Rx9rEmw1NBUFqyeyJ5bj1AV464bZjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741006046; c=relaxed/simple;
-	bh=oqjzi/zAhOsterMeAfvhd2Lrly5BuIHrXEyDJXM1IIY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NkO2DKa2XDcVRkNUMTHBOHrbW5b03u5VVXDOMwSJeoUiiPf3q9H8RGdI4dBf2+kP/z4s2la5ACAkNmsljcsPoTJ8ptBeUapn3eS3ZqXVItkT7qpNWJheIUg4DC4tWvAEls5vIa4dv2t74UlhKlJBFZBqC9CleL2LTzVMFud0jFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qy4Y32JG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523B8kNN025661;
-	Mon, 3 Mar 2025 12:47:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rN2bGVg8ZzYNF7l4VQygrAQDDlBNhEOeiHkgxlotQ7E=; b=Qy4Y32JGSiSmCU/w
-	RE3acnnO3HQsFwnkJGjzGvjL7RFItt6du1G+NBV0npjsxGKsXPVTL9Tre8fApAx2
-	r3WB+xgmZIGaYkFOFymYCW5bu6o+/s74NAqo4WSLD41CAtBdSK7C/lekbDPd5SsD
-	+zsIfx7d/q66yF/ncMI3yX+Rzq0nN4bW6tfhbJKvxZnoNB3gS7KwSDXp8a5FT2YZ
-	66nrFf/b6T3q8HK7CJoBniL/H4wbCy1OcRGIMyoTrkF8EUkLI+Iy4ddXMQVaz1pH
-	6yY8HKb3i9po4eU9IUVBesSvsuv0Ip4SX09ev/kbJLrWttHkH3T7Gs9cp5P0UaDu
-	feAdyg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 453t6k4rft-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Mar 2025 12:47:19 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 523ClI1M030976
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Mar 2025 12:47:18 GMT
-Received: from [10.216.31.193] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Mar 2025
- 04:47:12 -0800
-Message-ID: <f20b98fb-1cbc-4211-b616-5421bf43301f@quicinc.com>
-Date: Mon, 3 Mar 2025 18:17:09 +0530
+	s=arc-20240116; t=1741006482; c=relaxed/simple;
+	bh=rlTejGww3GQcdaCE0lGdR0xVCG5KcxUJXrQx3paY4gI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iCzKFo5TkXZC5w8yybOaDaj+LALT0FAmZm9awU/ys7/EqvTDxs9kgJ+Grzje1aa980eoygrqoBsKiwFH8xumrjMMzxSgILNL7GGQRzfmgDOIzgyRvaQ4yPUzHHi6H+D17cj3W3HTRlya00HmAVt4FDXNdJxCh20N5sRA1VUXyYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=RD38Rfrb; arc=none smtp.client-ip=94.124.121.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=HYNOahwtKoOEdFJgHijQNkEchw/+KmIF5XNlrs66Y0A=;
+	b=RD38RfrbMLHFIRCg9/+3j9jeYTiY6iP9DmgwPclo0hnp1mUtSmTcuyWMZQkjJMu1y4MbeSUCeBibS
+	 L86np1SKnar/GHxF/D6QRjr3p7G1TKOaci/QnMtR39CFDCHxft0KsFqCJ1tU0XjBZMyhaTSrf3xC51
+	 Axjrotmo9EjaYWxAgTPRWKRGV1b/36ArOUURfTZ9OIMPqHTNC7JqNijCVZgOgNCTPIAupWCunpT4o4
+	 j0Is8xKoIIJjrNZiX6JjtBPxeVtwdA3kHT5JDZV32Ra7a3wq/AmyZVvdibQ5HMEZ2k1dTuxGNdbmxy
+	 h36piBLw6uR7/h8Mtr7k9DPE3SDalmw==
+X-MSG-ID: a940bcd0-f82e-11ef-b5ca-0050568164d1
+Date: Mon, 3 Mar 2025 13:54:35 +0100
+From: David Jander <david@protonic.nl>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
+ <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
+ <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>
+Subject: Re: [RFC PATCH 7/7] dt-bindings: motion: Add motion-simple-pwm
+ bindings
+Message-ID: <20250303135435.509c230f@erd003.prtnl>
+In-Reply-To: <8db96db5-c258-4c42-a70a-56fdf24ecdc6@baylibre.com>
+References: <20250227162823.3585810-1-david@protonic.nl>
+	<20250227162823.3585810-8-david@protonic.nl>
+	<8db96db5-c258-4c42-a70a-56fdf24ecdc6@baylibre.com>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/8] soc: qcom: geni-se: Add support to load QUP SE
- Firmware via Linux subsystem
-To: Krzysztof Kozlowski <krzk@kernel.org>, <andi.shyti@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
-        <broonie@kernel.or>, <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <johan+linaro@kernel.org>, <dianders@chromium.org>,
-        <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>
-CC: <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
-References: <20250124105309.295769-1-quic_vdadhani@quicinc.com>
- <20250124105309.295769-6-quic_vdadhani@quicinc.com>
- <af27ae90-99d7-497f-b8f5-b8ca0b039753@kernel.org>
-Content-Language: en-US
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-In-Reply-To: <af27ae90-99d7-497f-b8f5-b8ca0b039753@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: M1Rln0lZesj2TR50AXa1YgGCXMKjmv9Q
-X-Proofpoint-ORIG-GUID: M1Rln0lZesj2TR50AXa1YgGCXMKjmv9Q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-03_07,2025-03-03_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 priorityscore=1501 bulkscore=0 mlxlogscore=999 mlxscore=0
- lowpriorityscore=0 clxscore=1015 spamscore=0 malwarescore=0 adultscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2503030098
 
 
+Hi David,
 
-On 1/27/2025 12:36 PM, Krzysztof Kozlowski wrote:
-> On 24/01/2025 11:53, Viken Dadhaniya wrote:
->>   /* Common SE registers */
->> @@ -891,6 +896,445 @@ int geni_icc_disable(struct geni_se *se)
->>   }
->>   EXPORT_SYMBOL_GPL(geni_icc_disable);
->>   
->> +/**
->> + * elf_phdr_valid: Function to validate elf header.
->> + * @phdr: A pointer to a elf header.
->> + *
->> + * This function validates elf header by comparing fields
-> 
-> Drop "This function" and use imperative. It's redundant and you keep
-> using it everywherre here
->  
+On Fri, 28 Feb 2025 16:41:29 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-Updated in V3.
+> On 2/27/25 10:28 AM, David Jander wrote:
+> > Add device-tree bindings for simple Linux Motion Control devices that
+> > are based on 1 or 2 PWM outputs.
+> > 
+> > Signed-off-by: David Jander <david@protonic.nl>
+> > ---
+> >  .../bindings/motion/motion-simple-pwm.yaml    | 55 +++++++++++++++++++
+> >  1 file changed, 55 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/motion/motion-simple-pwm.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/motion/motion-simple-pwm.yaml b/Documentation/devicetree/bindings/motion/motion-simple-pwm.yaml
+> > new file mode 100644
+> > index 000000000000..409e3aef6f3f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/motion/motion-simple-pwm.yaml
+> > @@ -0,0 +1,55 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/motion/motion-simple-pwm.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Simple PWM based motor controller  
+> 
+> I think it has been said many times before, in DT, there is no such thing as
+> a simple device! It will be much more future-proof if we write bindings for
+> actual individual motor controller chips than try to generalize all in a single
+> binding. The chip you gave as an example is far from the simplest H-bridge I
+> have seen!
 
-> ...
-> 
->> +static int qup_fw_load(struct qup_se_rsc *rsc, const char *fw_name)
->> +{
->> +	int ret;
->> +	const struct firmware *fw;
->> +	struct device *dev = rsc->se->dev;
->> +
->> +	ret = request_firmware(&fw, fw_name, dev);
->> +	if (ret) {
->> +		dev_err(dev, "request_firmware failed for %d: %d\n", rsc->protocol, ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = (rsc->protocol != GENI_SE_NONE) ? geni_load_se_fw(rsc, fw) : -EINVAL;
-> 
-> Drop ternary operator. Not easy to read
-Updated in V3.
+To clarify, my intention is not to generalize all existing DC motor controllers
+into one driver or dt-binding. I mentioned the drv8873, but only as an example.
+Actually my plan is to make a separate driver and separate bindings for the
+drv8873, but I haven't had time for that yet, and it would be too much for the
+first version of LMC.
 
-> 
->> +
->> +	release_firmware(fw);
->> +
->> +	return ret;
->> +}
-> 
->> +
->> +/**
->> + * geni_load_se_firmware: Function to initiate firmware loading.
->> + * @se: Serial engine details.
->> + * @protocol: protocol from spi, i2c or uart for which firmware to
->> + * be loaded
->> + *
->> + * This function is called from the probe function of protocol driver.
->> + * if dtsi properties are configured to load QUP firmware and firmware
->> + * is already not loaded, it will start firmware loading. if dtsi
->> + * properties are not defined,it will skip loading firmware assuming
->> + * it is already loaded by TZ.
->> + *
->> + * return: Return 0 if no error, else return error value.
->> + */
->> +int geni_load_se_firmware(struct geni_se *se,
->> +			  enum geni_se_protocol_type protocol)
->> +{
->> +	struct qup_se_rsc rsc;
->> +	const char *fw_name;
->> +	int ret;
->> +
->> +	ret = device_property_read_string(se->wrapper->dev, "firmware-name", &fw_name);
->> +	if (ret)
->> +		return  -EINVAL;
->> +
->> +	rsc.se = se;
->> +	rsc.protocol = protocol;
->> +
->> +	/* Set default xfer mode to FIFO*/
->> +	rsc.mode = GENI_SE_FIFO;
->> +	of_property_read_u32(se->dev->of_node, "qcom,xfer-mode", &rsc.mode);
->> +	switch (rsc.mode) {
->> +	case GENI_SE_FIFO:
->> +	case GENI_SE_DMA:
-> 
-> How value of 2 is acceptable? Your bindings said it is not.
+There are a lot of simple "dumb" devices though, that have integrated or even
+discrete H-bridges with fixed dead-time, that can't do more than just 2 PWM
+signals to control left-/right-speed. There are also lots of places where
+people connect a DC motor to just a simple power-MOSFET. All of these cases can
+be handled by this driver.
 
-Corrected in V3.
+Maybe the name "simple-pwm" isn't adequate. Should we name it "pwm-motor" or
+something liket that instead?
 
-> 
-> 
->> +	case GENI_GPI_DMA:
->> +		break;
->> +	default:
->> +		dev_err(se->dev, "Invalid xfer mode specified: %d\n", rsc.mode);
->> +		return -EINVAL;
->> +	}
->> +
->> +	ret = qup_fw_load(&rsc, fw_name);
->> +	if (ret) {
->> +		dev_err(se->dev,  "Firmware Loading failed for proto: %s Error: %d\n",
->> +			protocol_name[rsc.protocol], ret);
-> 
-> Aren't you printing same error multiple times?
+The intend of motion/simple-pwm.c is to be the analog of something like
+these other "simple" or "generic" drivers and corresponding dt-bindings, for
+example:
 
-Removed in V3.
+gpio_keys.c:
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/input/keyboard/gpio_keys.c
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/input/gpio-keys.yaml
 
-> 
->> +		return ret;
->> +	}
->> +
->> +	dev_dbg(se->dev, "Firmware load for %s protocol is Success for xfer mode %d\n",
->> +		protocol_name[rsc.protocol], rsc.mode);
->> +	return ret;
->> +}
->> +EXPORT_SYMBOL_GPL(geni_load_se_firmware);
->> +
->>   static int geni_se_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->> diff --git a/include/linux/soc/qcom/geni-se.h b/include/linux/soc/qcom/geni-se.h
->> index 2996a3c28ef3..289fa6675d2b 100644
->> --- a/include/linux/soc/qcom/geni-se.h
->> +++ b/include/linux/soc/qcom/geni-se.h
->> @@ -1,6 +1,7 @@
->>   /* SPDX-License-Identifier: GPL-2.0 */
->>   /*
->>    * Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
->>    */
->>   
->>   #ifndef _LINUX_QCOM_GENI_SE
->> @@ -72,6 +73,19 @@ struct geni_se {
->>   	struct geni_icc_path icc_paths[3];
->>   };
->>   
->> +/**
->> + * struct qup_se_rsc - Structure containing se details protocol and xfer mode
->> + *
->> + * @mode: transfer mode se fifo, dma or gsi.
->> + * @protocol: Protocol spi or i2c or serial.
->> + * @se: Pointer to the concerned serial engine.
->> + */
->> +struct qup_se_rsc {
->> +	struct geni_se *se;
->> +	enum geni_se_xfer_mode mode;
->> +	enum geni_se_protocol_type protocol;
->> +};
->> +
->>   /* Common SE registers */
->>   #define GENI_FORCE_DEFAULT_REG		0x20
->>   #define GENI_OUTPUT_CTRL		0x24
->> @@ -531,5 +545,8 @@ void geni_icc_set_tag(struct geni_se *se, u32 tag);
->>   int geni_icc_enable(struct geni_se *se);
->>   
->>   int geni_icc_disable(struct geni_se *se);
->> +
->> +int geni_load_se_firmware(struct geni_se *se,
->> +			  enum geni_se_protocol_type protocol);
->>   #endif
->>   #endif
->> diff --git a/include/linux/soc/qcom/qup-fw-load.h b/include/linux/soc/qcom/qup-fw-load.h
->> new file mode 100644
->> index 000000000000..b9b58e81f5cb
->> --- /dev/null
->> +++ b/include/linux/soc/qcom/qup-fw-load.h
->> @@ -0,0 +1,179 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +#ifndef _LINUX_QCOM_QUP_FW_LOAD
->> +#define _LINUX_QCOM_QUP_FW_LOAD
->> +
->> +#include <linux/device.h>
->> +#include <linux/elf.h>
->> +#include <linux/firmware.h>
->> +#include <linux/kernel.h>
->> +
->> +/*Magic numbers*/
->> +#define MAGIC_NUM_SE			0x57464553
->> +
->> +/* Common SE registers*/
->> +#define GENI_INIT_CFG_REVISION		0x0
->> +#define GENI_S_INIT_CFG_REVISION	0x4
->> +#define GENI_FORCE_DEFAULT_REG		0x20
->> +#define GENI_CGC_CTRL			0x28
->> +#define GENI_CFG_REG0			0x100
->> +
->> +#define	QUPV3_SE_HW_PARAM_1		0xE28
-> 
-> Drop indentation after 'define'
+gpio-regulator.c:
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/regulator/gpio-regulator.c
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
 
-Updated in V3.
+pwm-regulator.c:
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/regulator/pwm-regulator.c
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/pwm-regulator.yaml
 
+pwm_bl.c:
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/video/backlight/pwm_bl.c
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
+
+etc...
+
+Although the driver actually is simple, and intended for simple hardware.
+The fact that it can even be used with more complex chips, like the drv8873, if
+the requirements are simple enough, and as long as there is no dedicated
+driver yet, doesn't change that fact.
+
+> > +maintainers:
+> > +  - David Jander <david@protonic>
+> > +
+> > +description: |
+> > +   Simple motor control device based on 1 or 2 PWM outputs
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - motion-simple-pwm  
+> 
+> This should be e.g. ti,drv8873-q1. This device has much more pins that is given
+> in these bindings.
+
+Like I said, this driver isn't intended for the drv8873. It was merely an
+example where as a matter of fact this driver could be used for the drv8873,
+but that's not the intention. Sorry for not being clear. :-)
+
+> If we find more devices that have similar functionality/pinout we can add them
+> to the same bindings, but we will likely find that trying to cram all H-bridges
+> into a single binding is too much.
+> 
+> For starters, every H-bridge chip is going to have one or more power supplies.
+> ti,drv8873-q1 would need dvdd-supply and vm-supply properties for the DVDD and
+> VM pins.
+> 
+> Many have inputs for disabling the chip, e.g. for power management. And some
+> have outputs to indicate faults.
+> 
+> The TI DRV8873 in particular has an nSLEEP, DISABLE, nOL, SR, MODE and nITRIP
+> inputs in addition to the IN1 and IN2 that would be connected to the PWMs.
+> So we would have properties for all of these to either say how the pin is
+> hardwired or a *-gpios property if it needs to be controlled by the driver.
+
+Yes, sure. These will all be in the dt-binding for the drv8873. Our board
+actually uses the drv8873s, which has an SPI interface, so that will of course
+also be part of the bindings and of the driver.
+
+> The fault output would generally be an interrupts property.
+
+Ack.
+
+> The IPROPI1 and IPROPI2 output pins look like they would be connected to an
+> ADC, so it would make sense to have an io-channels property show that
+> connection.
+
+Ack. In fact, our board has these connected to the internal ADC of the SoC.
+
+> This chip also has a SPI interface. So it needs to have the possibility of
+> being a SPI peripheral node.
+
+Sure, like I said above.
+
+> And even if the Linux driver doesn't implement all of these features, we still
+> want the DT bindings to be as complete as possible, so we shouldn't be leaving
+> these out, at least for the trivial ones where there is an obvious correct
+> binding (which I think is the case for most of what I suggested).
+
+Completely agree. Will be done, but not for this first version. It is simply
+too much to review, I'm afraid. It will be a separate binding, in
+motion/ti,drv8873.yaml (not included in this version).
+
+> > +
+> > +  pwms:
+> > +    maxItems: 2
+> > +
+> > +  pwm-names:
+> > +    maxItems: 2  
+> 
+> Specifying what is wired up to the IN pins can be tricky. Using two PWMs is
+> the most sensible. But I've also seen devices where there was a single PWM
+> gated by two gpios. And for very basic H-bridges, there might not even be a
+> PWM. Just gpios to turn it on or off.
+
+That would be something for a future motion/gpio-motor.yaml, I guess.
+
+> > +
+> > +  motion,pwm-inverted:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      If present, this flag indicates that the PWM signal should be inverted.
+> > +      The duty-cycle will be scaled from 100% down to 0% instead 0% to 100%.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - pwms
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/motion/common.yaml#
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    // This example shows how to use the TI DRV8873 or similar motor controllers
+> > +    // with this driver
+> > +    motion-simple-pwm0 {
+> > +      compatible = "motion-simple-pwm";
+> > +      pwms = <&hpdcm0_pwm 0 50000 0>,
+> > +             <&hpdcm0_pwm 1 50000 0>;
+> > +      pwm-names = "left", "right";
+> > +      motion,pwm-inverted;  
 > 
 > 
-> Best regards,
-> Krzysztof
+> > +      motion,speed-conv-mul = <3600>;
+> > +      motion,speed-conv-div = <100000>;
+> > +      motion,acceleration-conv-mul = <3600>;
+> > +      motion,acceleration-conv-div = <100000>;  
+> 
+> This H-bridge controller doesn't have any kind of speed sensors that I can see
+> so these properties don't make sense to me. The H-bridge can control the voltage
+> sent to the motor, but there are more variables involved to convert voltage to
+> speed. It isn't a constant.
+
+Sure. In the most basic case, when there is no feedback signal for speed (like
+an encoder for example), the best thing you can do is assume an (imperfect)
+relation between duty-cycle and motor speed. That's what these factors are for.
+
+You could have a reduction gearbox even, so specifying some parameters for the
+user-space software to work with seems sensible. If you leave them out, the
+default values are used, which are all 1's, basically making the "speed" value
+equal to the (scaled) duty-cycle of the PWMs.
+
+The driver scales duty-cycle to 1/1000th of a percent, which seemed a sensible
+resolution to use and be intuitive enough, since due to the lack of floating
+point numbers in the kernel, it is common practice to scale values by a factor
+of 1000 to enhance resolution. If you prefer, we could also use
+parts-per-million, or ppm (1/1,000,000).
+
+With this in mind, setting the PWM outputs to 100% duty-cycle
+(0% if inverted), would correspond to setting a motor speed of 3600 in the
+case of the example scaling values given in the bindings.
+
+Best regards,
+
+-- 
+David Jander
 
