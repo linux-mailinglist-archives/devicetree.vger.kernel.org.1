@@ -1,98 +1,79 @@
-Return-Path: <devicetree+bounces-153228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4972DA4BA55
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 10:09:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A650A4BA58
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 10:09:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F3373AE085
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:08:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 016401891BB8
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45AC1F03C8;
-	Mon,  3 Mar 2025 09:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE7C1EFFB0;
+	Mon,  3 Mar 2025 09:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HHNc38pM"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dmgxez1k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C45551EA7E3
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 09:08:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1FE1DF721;
+	Mon,  3 Mar 2025 09:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740992935; cv=none; b=qX0reOVVm+evfnD8Ixt6zqs7/sZLdYYzqt62cWJ4B1ox9sTfe41QdpJiBfCKaHdqQZ4WLwmH9UgGhTOCKrULOOxzaCkL8et6C3UBClMt7IYOvEFoQtkoT6/lEKr0RF6rgXl3kMj3uBMHTUfsTNtT2/RVTA1a3KdNZKuVAqoyUVI=
+	t=1740992965; cv=none; b=XpwmTRzSe7SYubWx9rE5s5ktJ5Vbi5xYhNqy5WUNpIu7BBZg/fjphMGBsjejy1kQvW1yJmJgVz7vJBJwk/qXfXiq8KFIBQIs5t5RPlwyHzg/MANZuY7MugM2U09RfZX0ev3ldD6JzC84S5/qIyFkS8A3AaQFiVjYrBQ0/1SptBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740992935; c=relaxed/simple;
-	bh=KwdK1hh0pwYXDznk8CbHQleQFb+lcYppkzN3ytWbS68=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nny9EBIkEucaJmopVlbBDT555Sry8k/ij+q7mJ9srgZ8dMWJqGSaKnXvIqT+oq3OCPIL/fn5AWzUtvVcI3zaGm526yikGOt83okhY5pPKgrM0onvgbZB8xUVVfFCCuvbMZjbyIUYZ3Gfu6eVu9EjFoQ1mQRcqKHbaNv7dbaylbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HHNc38pM; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-390e87139d0so283949f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 01:08:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740992932; x=1741597732; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3NArLzMGeHWTWmPFGPl0UFGh/ozAvnT/Ug9Z5Z8/7zE=;
-        b=HHNc38pMimubHaZpr+UKZS3T0okpzMFBJmnCIQ2bmWOS69L+TMJ9xt8WLw1gmzvQaI
-         kXuEhoZFN4kX9728RUxJ5b0ycwNDWYvayEvCKqenQJzBTXpka+1lk6/Njlc3r3Svvb/h
-         ayVJ+XbPC9T9OBg8yXa0tQtLCntt5scikVg+xwrVENXGEzshooBRhCCeJ7KNYNozrRre
-         9AOzvlgYLL1p8SJ7eZkNlXVHnb3jQ7joY0KDhIfhoXWz9v7FTebmEDPzkCjuIAzS1DmF
-         8Gk9Dd7MwgPMKSJZOFwT0DwCyIycwtmV8S2MLi+rU/mF/UCJu1wy/KDW2ArVcBVKj2xw
-         vUPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740992932; x=1741597732;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3NArLzMGeHWTWmPFGPl0UFGh/ozAvnT/Ug9Z5Z8/7zE=;
-        b=g2QraonkE9faxt7gfpAMAlB2ehZPJocLxjI5F8sqFKDS/UhGBGEeIe9aqwtcqgbCEx
-         jBfYHiBG2zGhqVQucoRDT5bcUt/bXv/ZLqeN9FHydiDustHJz2yh2SX3G+lxFihxsgic
-         986fchc/vf1OA+HCSzxAwOiaBERFBa1xuDY9Q7h4yGOMgmmbtU0LfpWmxhI+jgMZNgvg
-         UVQuIdBmT5bn5s5alAngAy70M2WkD3G1EZi85oOcUqRw5Is3YzBXCmajDhRvwUK6gXC2
-         GgXF6klCA1LWWBeKaUG6bMxZ33oam1ZJ4Jb4VnnIV/7xrZy2dRBGkjjBh9kDnv9mPoc3
-         2FgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUcJpiuZTZrsyxwFpksLL3Gu2cmznhvDV0cfTiLajG1EbhYpcBMmt9Pv3I54tJxEM2W1+Fggj/1pDcQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxtgqw8T1G1Tr9ZN23UYZElv34VnICdY8pWyCVw9eL3IyRUmi1r
-	/FRCx2QSA0Zd+LlwGgdbsNL/R1UhBYASnnXiAK+FSe8GDZ+G7QlkP4O8MXCZicM=
-X-Gm-Gg: ASbGnctOtjFfDQtQRIEvykj4v9KdjGeCXnlphhsziOK5OOZSwpYBVePohxsUKHtqlBH
-	acIQLxm7bzymvZ9QqotnH5//Z91E3Q0Mc2amOZ061Zm1DWtkInjdjOvhQ5uZB6AxSbWLEKhsLDL
-	NpEpSCtzAzvkfxE2laT1vKN9GDZjPjn9hh/g8GjrmLx8NXr28Gm6T0TqWOtBntNF1EUhp4HMOeA
-	f38uCW52AU49szTn7xCblvswUtPurO544/jJxDOpXtVKn+cm7IMOSNRyBa+BabWE2YORBlbdHKm
-	212/azjXD366/HQeakq+X5zeqypFoWUs4TFoEzD7Czo3Mv+GLlYiYLL+ee4=
-X-Google-Smtp-Source: AGHT+IEFwQNruNu5mTaT+/YMJCqOub6ua/xucOR8SE1iPMFTevfv7HuPeLZAAmqrMseXFFEcLiiaaQ==
-X-Received: by 2002:a05:6000:1f82:b0:38a:8784:9137 with SMTP id ffacd0b85a97d-390eca88f78mr4072087f8f.9.1740992932006;
-        Mon, 03 Mar 2025 01:08:52 -0800 (PST)
-Received: from krzk-bin.. ([178.197.206.225])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e4796051sm14058418f8f.12.2025.03.03.01.08.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 01:08:51 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tomasz Figa <tomasz.figa@gmail.com>,
-	Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Introduce pin controller support for Exynos7870
-Date: Mon,  3 Mar 2025 10:08:47 +0100
-Message-ID: <174099291728.28792.4499836839323841404.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250301-exynos7870-pinctrl-v3-0-ba1da9d3cd2f@disroot.org>
-References: <20250301-exynos7870-pinctrl-v3-0-ba1da9d3cd2f@disroot.org>
+	s=arc-20240116; t=1740992965; c=relaxed/simple;
+	bh=SK1S7HC+F0RX5MreBPa9cOuVM4xw7HiLj2Szt7QCPUU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=n4PBAXPNtsfsQBO4B0QNkvWzVLv2GPFaK7CvqEhfal4rXtsgL9/LmzK8VWURTy2FcBuq8bQgP3nAezZP1MA5jsfaiNezvPfVxTjP2T4vU9xiGEaHo7hjuyjQH+jCBJD5HNlWjAomwiL5Wbg89Q9YZ2EvCRV61iCHNaAjHWV4s50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dmgxez1k; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740992964; x=1772528964;
+  h=from:to:cc:in-reply-to:references:subject:message-id:
+   date:mime-version:content-transfer-encoding;
+  bh=SK1S7HC+F0RX5MreBPa9cOuVM4xw7HiLj2Szt7QCPUU=;
+  b=dmgxez1k+bNXiZk3rJFilqg43r/gkMIwly0wDZIbnQf0pJ0RrojuifzF
+   n+Qy35HqLDDv79hcTJne5PYdrjjlgt57u2TAA/l1AmWb/+RvfFyWa2pgR
+   5xMQskhO/5/dDBzGPS4c+/9I0+FK+GGlH2ZLLQ/BRwzDrVZCR15EMHIis
+   7IZBpfvrie8Zka4aW5nevgb+pFXJToRyF2AAz2W7qdWci4pQLg0G3gUJl
+   AT4xCd1I5FMV9Sxyu8JgnQMpf7+jvbTh2pkAhnbXwF8CIC+tF+SSKNEp1
+   SOzVeE/MYEuGKmgltVf4KW2pej63q09cOv0f8xGKsPB3kJk8ScPjKKpX/
+   w==;
+X-CSE-ConnectionGUID: 1LuNZc6tTjO8CcGvGycE1Q==
+X-CSE-MsgGUID: bOuWak5ARBO0YDOvXuRASQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="41771196"
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; 
+   d="scan'208";a="41771196"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 01:09:23 -0800
+X-CSE-ConnectionGUID: KI32nAl3QpW+0soO/P2K+Q==
+X-CSE-MsgGUID: iR1NtjSnRn2CkFWbNEzgVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; 
+   d="scan'208";a="117951324"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.14])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 01:09:18 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Pengyu Luo <mitltlatltl@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ linux-hwmon@vger.kernel.org
+In-Reply-To: <20250214180656.28599-1-mitltlatltl@gmail.com>
+References: <20250214180656.28599-1-mitltlatltl@gmail.com>
+Subject: Re: [PATCH v7 0/3] platform: arm64: Huawei Matebook E Go embedded
+ controller
+Message-Id: <174099295441.1736.4659664887828946482.b4-ty@linux.intel.com>
+Date: Mon, 03 Mar 2025 11:09:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,27 +81,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
+On Sat, 15 Feb 2025 02:06:53 +0800, Pengyu Luo wrote:
 
-On Sat, 01 Mar 2025 01:05:16 +0530, Kaustabh Chakraborty wrote:
-> Add support for exynos7870 in the pinctrl driver. Also, document the
-> ALIVE pin controller's wakeup interrupt compatible.
+> This adds binding, drivers and the DT support for the Huawei Matebook E Go
+> (sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
+> E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform
+> tests, so this series enable support for sc8280xp variant only, this series
+> provides the following features:
 > 
-> This patch series is a part of Exynos7870 upstreaming.
+> - battery and charger information report
+> - charging thresholds control
+> - FN lock (An alternative method)
+> - LID switch detection
+> - Temperature sensors
+> - USB Type-C altmode
+> - USB Type-C PD(high power)
 > 
-> 
+> [...]
 
-Applied, thanks!
 
-[1/3] dt-bindings: pinctrl: samsung: add exynos7870-pinctrl compatible
-      https://git.kernel.org/pinctrl/samsung/c/129bdbd05650f4c11fb8995f8b6e63589ce4cb33
-[2/3] dt-bindings: pinctrl: samsung: add exynos7870-wakeup-eint compatible
-      https://git.kernel.org/pinctrl/samsung/c/c1ab2297bc746b07b96205dddc45979feac22f4d
-[3/3] pinctrl: samsung: add support for exynos7870 pinctrl
-      https://git.kernel.org/pinctrl/samsung/c/eb76dc973cef741f74ce17d3bba8a7c9f2cc6113
+Thank you for your contribution, it has been applied to my local
+review-ilpo-next branch. Note it will show up in the public
+platform-drivers-x86/review-ilpo-next branch only once I've pushed my
+local branch there, which might take a while.
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The list of commits applied:
+[1/3] dt-bindings: platform: Add Huawei Matebook E Go EC
+      commit: defcf2fb30f7bf128c0be5e571f4db2b7fff66cc
+[2/3] platform: arm64: add Huawei Matebook E Go EC driver
+      commit: 7636f090d02e791918bb3c924e695880123d0c59
+[3/3] arm64: dts: qcom: gaokun3: Add Embedded Controller node
+      commit: 0b6d8f9d2df78116afb159df05bbccf13a51b758
+
+--
+ i.
+
 
