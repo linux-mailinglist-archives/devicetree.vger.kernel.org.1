@@ -1,206 +1,145 @@
-Return-Path: <devicetree+bounces-153477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AD1BA4CA85
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:57:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED3D4A4CADC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 19:18:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFE6418950D1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:56:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F21461739A2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:18:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E1F218AA5;
-	Mon,  3 Mar 2025 17:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E12A215058;
+	Mon,  3 Mar 2025 18:18:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="VuXhDQ6e"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="b1vjctQa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F22C228CB7;
-	Mon,  3 Mar 2025 17:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7194213255
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 18:18:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741024555; cv=none; b=hG90F4p0gldtB3Fh5wjVjXi7TlBsw/mDqObU7wJx3xqRHgJcLQHgSi/n1japiOjrgQq+rJw+/zCRwqN9fDT2bzgjJY+GwY1DijWJ7H9bhfXrKP7ZNs84QxS0rD39aicDHJRzZRXt7pDpYQIghCE5osnWmZYGWEh2yFAR5HF/9Ik=
+	t=1741025890; cv=none; b=Na71Wccr/Tp5/m9IZ6L/ffcIbaOIgRc++0+Rtn+Jb4+4u+eOx3V92CIrwLGLwEZAEPPBJg+LJwKZE47Xi+k87Ae0XwdE4COBjSUBUFEY7xAsI8jUFHHA36IZw9kE9d8lauNOY2fvm6taY8TuwrZ1YGwddCKdo6PBto8CY677hFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741024555; c=relaxed/simple;
-	bh=FFa75hjKPxwn9nk90umMY5P1KnPLOGOOgrFEmMy74yA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GL+xwrUQTe7Yw/0EFiXiNMd0WniU2Cx8rHyswAa5OhJPjnbAwmC63fmYt4MvAIL+9GzqDl1BD4jfACQ2j8Zg6BSCyO5dT1G9M1R9NyLHpVlkCnuzA0uEGc86SuoAW64MTnieQ4u6F4QH2eoNMF8roOQTmMlxWSancruVrWdLHC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=VuXhDQ6e; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 3EAFE40E0217;
-	Mon,  3 Mar 2025 17:55:50 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id F6NmxbeL5VQP; Mon,  3 Mar 2025 17:55:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1741024545; bh=XR1jzLUSOCB344heFt8abZNteXZYan/jltUHuf6TFy4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VuXhDQ6e8gSDISmRMi7vKxncln2ZBZ2jdNiV4UEcJzJfxHyFLfw5OHFEiyX0EwlRJ
-	 x1D3+4pBB2SkTLo1BKumpmkWxgS97HW09/ATz1AD7L/ZLU8Lnah+NUfC3TYbr7v0/w
-	 VPCOK/aNvGVa6nZq09h3QzB9rocCGawhj6LnMakpjCisjOoTzG4JIfEL1cMHLaqVsa
-	 cHMliDmIrmdLMkijhQ1eIK8fZmBFHRqd8Ba9IlEE+d0OpVaa5Pm18qfjZ6rroiecxy
-	 MMtf7DEHjrG94HhdFve+h5zAUzyospP8xA2E28iW/vmnZxAPlNazvtmabbhakAdI+4
-	 x46B5mkK08UUOfhgmFZP8u9m2VVKuqO+SM6nURgfab/7NaGdYSSNrmXOieR3o+15hH
-	 zaCutAVMQbD4RmTmnzIuJcjp65GTxHmZtqHTT5G6+AiCd3WfdzMkrbL2HAFpB2ue+2
-	 vaUXnn37L6g+UDAxK4X9N/E7HiZDZ80zvgi21u8QCDeVJOIvAWtgT5wTySFLnRxPQb
-	 aDPQaNm8yXfy/VXrmqey46RbBMwhPqHRDbxccTIpZUGXOat2owZbfEaJ8CYx0fItvq
-	 lefXFm7amm0Chn9koRm7YNJUj9GFmvno/FfDDLY5GXq+skyQjyJT8zSO4tk1I8fiBP
-	 9yuCfDgSU3LjYsKniL9kW3bo=
-Received: from zn.tnic (pd95303ce.dip0.t-ipconnect.de [217.83.3.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 66C2C40E0215;
-	Mon,  3 Mar 2025 17:55:33 +0000 (UTC)
-Date: Mon, 3 Mar 2025 18:55:27 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Tony Luck <tony.luck@intel.com>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-	"git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [PATCH v5 5/5] EDAC: Versal NET: Add support for error
- notification
-Message-ID: <20250303175527.GDZ8XtD5pOTtLUe16B@fat_crate.local>
-References: <20250106053358.21664-1-shubhrajyoti.datta@amd.com>
- <20250106053358.21664-6-shubhrajyoti.datta@amd.com>
- <20250211094002.GAZ6sa8l_2BdJQfk0I@fat_crate.local>
- <SA1PR12MB89472E1EF3BDE072EEEF17B181CD2@SA1PR12MB8947.namprd12.prod.outlook.com>
+	s=arc-20240116; t=1741025890; c=relaxed/simple;
+	bh=Cqysm5r/yas8MaDIIvBTS6x0HPtZ6uODAZwykA8H9F8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jSut9QWH7fhjSe+8t4CY3bbGCLZHVVY+59dkR5j22DrjPc6eJJez3U6lBTQuPC7+3tBbvDpaeY7psrrj37fi7X64SRVFIenbnBlcsz4L3jX619TJszL+v0VyjPnd9tCWkLcjFzmW2gc95HtnJT5rKFEZSG4R8l6FUQBrvR2TJqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=b1vjctQa; arc=none smtp.client-ip=209.85.160.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-2bcdf5ea8faso2570116fac.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 10:18:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1741025888; x=1741630688; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=cP1pcPzTI23uLel2PWWjRilB7xFiwWgaGT+GbKyq7IU=;
+        b=b1vjctQabkmoCuvIEMyjzCxtJnRNAAyOjh8pRbWnNP2ma9xBdkO4rkBi1PdMVXYhSW
+         6Kr6EUPYU3Ld6KbYHzKTR/jk7QD4GC3yOju+oSZ3bXjCsugbGHLWbmG8/mhsom7iXRw+
+         ULL2rxaDpStVLU/h10NiU8ncVF3Y+QNghDXN8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741025888; x=1741630688;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cP1pcPzTI23uLel2PWWjRilB7xFiwWgaGT+GbKyq7IU=;
+        b=kI1ZoMUHnGwOJxCIOmqK2K1kYZISoLc1WjtcKYv90qLtlPETcF+zM0hvHY3l25pNyv
+         5RNQou+cajZX8MLTdR9+PCWdMB3tBQb3TvW/FNEqskM9hQvEyJxVx1sIg1eprpI6dK+b
+         5zYtIlw21tr8rDtT6q4Mwb1OoLQB4SlaPZNPuDJnn5lTuo+r3JSavHWoysT137zylaiJ
+         N9MybsS8yh7ZpF8Kvz77XXncC8vbSA7zduakZ4rWzFc63EW+jPzHGAT9qBgYP82rRXHt
+         SEntMkN5Y/ej8bK1LnnC8zKKed5gZtJjwfKOWS2dhkZ6hb2MgdXT6iCOJWrT1wArB0dz
+         x8IQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWvKky2LCrv7yHq+LVtQJBUWzMCUilhFYRKmW4XoP27SJH5/4H+rQlXIA+xsW9sxMPyirh8DN0AnQdu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+xHBiN+QCRapdNm91php7kvOqPGkhS2FVaH0KxX/znQRYZSpn
+	BZhW7JhZbosRAWVT9mAV5jrKXWgE1Xjg9GOdo8xHz8Uwdlpn0yFeMLP+5p6A7w==
+X-Gm-Gg: ASbGncteGW3vwEKBY6OxXx/UTiUkQ+oe3mO+VISDEoAQ6ZDmYhcxJlys9y9hVoOHBBe
+	hjAI+2JRfUmcWx66wavJleHF+ksK7RG6Z+jILMm2wxHmnVe7s4EuwLz6vrbkz/n/2JlX5CHGS2D
+	N6vltusdwAfHfB6KTuvZbLrEF+4glYXS1DV5DdknYPKU4B4uW9x1QIgilUSVOMbaxSjkIwL3x5h
+	CX9f3RL58AqsWS6eBNmCYPuwTYjz04ITCgBAWeol0oQlaUpp69J1q+Sq/dculwNZ+wUghzs401B
+	ij2v51qkaf0rtxiR+VqdUAJbZ6ebP662VkmNe/wJrNzRQiHb9v5u8HlqTcIfoQlouZBFLwU3qhK
+	5sUxkLrZS
+X-Google-Smtp-Source: AGHT+IHIeerp0csmjpgMhf9H65fzHI4UH0+WiPD+422dpOjHZ235fb7KyK/aUfyQ5/kOnzI7lKfpIw==
+X-Received: by 2002:a05:6870:8a11:b0:2c1:4d78:57b8 with SMTP id 586e51a60fabf-2c178789c90mr9441107fac.28.1741025887840;
+        Mon, 03 Mar 2025 10:18:07 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-728afd7695asm1804587a34.45.2025.03.03.10.18.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Mar 2025 10:18:06 -0800 (PST)
+Message-ID: <3555a62e-b0aa-4564-827f-98508ceb77d1@broadcom.com>
+Date: Mon, 3 Mar 2025 10:18:03 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <SA1PR12MB89472E1EF3BDE072EEEF17B181CD2@SA1PR12MB8947.namprd12.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: bcm2711: Don't mark timer regs unconfigured
+To: Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org,
+ bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org
+References: <20250222094113.48198-1-wahrenst@gmx.net>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250222094113.48198-1-wahrenst@gmx.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 27, 2025 at 11:32:10AM +0000, Datta, Shubhrajyoti wrote:
-> > > +union edac_info {
-> >
-> > What is an "edac_info"?
-> This is the row and column positions.
-> We are using it to extract the position from the address decoder registers.
-
-Needs a better name which is descriptive as to how it is used or what it
-represents.
-
-> > > +static void get_ddr_ue_error_info(u32 error_data[REGS_PER_CONTROLLER],
-> > struct edac_priv *priv)
-> >                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> > What is that for?
-> >
-> The error_data contains the register values. Linux does not have access to the DDRMC register
-> Space. It queries it from the NMC and gets the the data from the rpmsg callback.
-
-I wasn't clear. Arrays in C are passed as pointers - the compiler does that
-anyway.  You don't have to do this weird parameter specification.
-
-> > > +     mci->edac_cap = EDAC_FLAG_SECDED;
-> > > +     mci->ctl_name = "amd_ddr_controller";
-> > > +     mci->dev_name = dev_name(&pdev->dev);
-> > > +     mci->mod_name = "amd_edac";
-> >
-> > Do:
-> >
-> > git grep mod_name drivers/edac/
-> >
-> > to get an idea how those names are chosen.
-> #define EDAC_MOD_STR    "r82600_edac"
-> mci->mod_name = EDAC_MOD_STR;
-> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/r82600_edac.c?h=v6.14-rc4#n316
+On 2/22/25 01:41, Stefan Wahren wrote:
+> From: Phil Elwell <phil@raspberrypi.com>
 > 
-> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/i5000_edac.c?h=v6.14-rc4#n1424
-> mci->mod_name = "i5000_edac.c";
-> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/highbank_mc_edac.c?h=v6.14-rc4#n218
-> mci->mod_name = pdev->dev.driver->name;
+> During upstream process of Raspberry Pi 4 back in 2019 the ARMv7 stubs
+> didn't configured the ARM architectural timer. This firmware issue has
+> been fixed in 2020, which gave users enough time to update their system.
 > 
-> let me know if mci->mod_name = pdev->dev.driver->name; is fine.
-
-I think you didn't get me again.
-
-amd64_edac.c - the x86 driver is called this:
-
-#define EDAC_MOD_STR "amd64_edac"
-
-Calling yours "amd_edac" doesn't work.
-
-"versalnet_edac"? That's probably better.
-
-> > You don't need "inline" - the compiler can decide that itself. And
-> > "process_bit" needs a better name.
+> So drop this property to allow the use of the vDSO version of
+> clock_gettime.
 > 
-> Will rename it to populate_row_bit
+> Link: https://github.com/raspberrypi/tools/pull/113
+> Fixes: 7dbe8c62ceeb ("ARM: dts: Add minimal Raspberry Pi 4 support")
+> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 
-Or "assign_row_bit" or whatever.
-
-The function name should be describing what the function does as closely as
-possible.
-
-> > Why are those functions copying stuff around? Why aren't you using cols
-> > directly?
-> 
-> The column bit position is used in converting to the physical address.
-> We read it at init and use it every time an error occurs to get the address.
-> Did you mean to remove the regval. Or read the error_data every time.
-
-I mean simply use cols instead of assigning stuff to priv->col_bit* and then
-using that.
-
-> > Why is probing a work item?
-> >
-> > Explaining *that* is what a commit message is for - not for repeating useless
-> > info.
-> The RPMsg probe is invoked from a thread within the virtio driver responsible
-> for processing the response ring. If the probe initiates an mcdi API call, it blocks
-> until the mcdi response is received. However, since the mcdi response is also processed
-> by the same thread that triggered the rpmsg probe, the thread remains blocked,
-> preventing it from handling the response. This results in a deadlock.
-> 
-> To prevent it we have a work scheduled.
-
-This is just insane.
-
-I don't see anything in amd_setup_mcdi() that needs some response from some
-mcdi thing. If not, you don't need the work queue thing.
-
-> >
-> > > +     for (i = 0; i < NUM_CONTROLLERS; i++) {
-> > > +             config = priv->adec[CONF + i];
-> > > +             num_chans = FIELD_GET(DDRMC5_NUM_CHANS_MASK, config);
-> > > +             rank = FIELD_GET(DDRMC5_RANK_MASK, config);
-> > > +             rank = 1 << rank;
-> > > +             dwidth = FIELD_GET(DDRMC5_BUS_WIDTH_MASK, config);
-> > > +             dt = get_dwidth(dwidth);
-> > > +             if (dt != DEV_UNKNOWN)
-> > > +                     break;
-> > > +     }
-> >
-> > What is that loop supposed to do? Find the last controller before the one
-> > with DEV_UNKNOWN device width and register that one?
-> 
-> There are 8 controllers all we try to get the first one that is enabled and register that one.
-> We use the device unknown to know if that is enabled or not.
-
-The first one that is enabled has unknown device width? What?
-
+Applied to devicetree/fixes, thanks!
 -- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+Florian
 
