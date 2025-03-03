@@ -1,223 +1,250 @@
-Return-Path: <devicetree+bounces-153453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2882AA4C910
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:18:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC6D9A4C91F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:20:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3C8518871D3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:13:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC3381882B0E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D542262D2E;
-	Mon,  3 Mar 2025 16:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FAEA215191;
+	Mon,  3 Mar 2025 16:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q+fiwHUZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k91CO6+P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B4D262D12
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 16:54:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A53212B14;
+	Mon,  3 Mar 2025 16:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741020861; cv=none; b=BXvKLYhoCzwrUi3G9FNl0ZSGzRwk71zz9CzIa8TfCZDfuDMPmEhG2+fdJQehT3gnuFnyo8sCr3lxt7GtFm6lDMYvKJsQpVnU7vMg+Y+S2WqzeXNQy/ali4ApeY/jqb4zhKBaqBA6NzlE0Uy8U9Avqz9qqsDyIFWma7kI+FAJ9sw=
+	t=1741021112; cv=none; b=kYj9lrQtE6TAmzbfDSJm6pf4SVD9q/g+9VKY0ENS6Jeyr6Pii69lMrWb3gQlYZy+7Ypb4jF7W7i1pTfR64Iulk6q/GXKBGnJ7/2vhceiEYhMn3uPBhspnSreR2m9zDmZ417UM1pCnPArQGV3XOUnzsILhNKUfXvABMeB8mir/sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741020861; c=relaxed/simple;
-	bh=TqG4inTbI58GeXNn2jdYJcdrz/yN7Nwl/LBiE3hddGg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Ol2NKU/4fnNN2mfVken+41HKL9yHyv4vU+zMWctkG1bNUMj1ETa6leqRmAkPKrnWMVXmdMBYz905x9VvTEprhCQfYBBRWKX/VDgWTH3BqaN+7MTU4FutePoeBhv4yj4KNxs1IUEh5WYq3x1h+4ulUA3BWu2O/So+AYZjij7EyzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q+fiwHUZ; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-390effd3e85so3364627f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 08:54:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741020858; x=1741625658; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GxWgkFt79rQrjB13JnAOXFuAB8VTulqV3Xpey4gNzq4=;
-        b=Q+fiwHUZAx0dU0sF9xcKppDFltPuH3a1pyG2I1eo7wG6YGlxeNPNLodssMn+FKBIgA
-         B76GTEtUGsSdKZrldx0+dXSt6rjfFf9yyq4aK4rYwwOhE2e/vCeXFDykDUOqMx7W1nGc
-         dQfAuj8vnWRia8EU39JgVedK1hbLFGeZOF9mynoOKK7sDoUjBL6+dfep2F+Ljug8DGx0
-         AV46BPivQ2tIeg/5dHHoKkGa/AX6K+/bXou9SQURBKqNCXw7cGJ+OHIlHaioRWeRpER6
-         w75iLpgt9+xRzeVORi//jl1b6gEmXhQ/ay9uSxll/ASBXifMP2VdNqHuaKTg4WTwzhub
-         /G/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741020858; x=1741625658;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GxWgkFt79rQrjB13JnAOXFuAB8VTulqV3Xpey4gNzq4=;
-        b=EYcKCM6bySHIAG4l2DQly3AGc+DvO1CSQFKR+DZbL0y64e02J65ucf6xbEymSER1qk
-         V/SFTj8p0nueB0oKKPOFv0Cal5EIHN3iZyUub+3qCjjsnOEwEbohcMUS93bX+8PquoDD
-         9cuY/dvczKSY8TmCQBq+/8Zr2Bn5KPEdBpUN+VCs9LUXV+NcGyLVj5+bJYEQRphCFrh+
-         VKzAT9LBg5fdBt68P8rHJxyrpJxwQqSqpfYHT+02KCFvkyfY9WkDl1N8u0ML+TTnlmXs
-         zzgEkjjS+HmO+jrK56eM3zB/wbyTJnV5cMgfV+mL3dvoYsPal+kFAAuosiS0qhW9A+DQ
-         fg0A==
-X-Forwarded-Encrypted: i=1; AJvYcCWxcIaxVqh6mVvgZImDVotXSEqCaDPWaxZdMUnnNAjLHVfhlrDv+e9/bZWVDw5TNmcXvrTJLDGiL1jE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTWF13PX5JXbAFuekBYisJQ0CIiNMidYeSK3IvxCMf0PrFGXTk
-	NZAqNzT9RSivD9RWPkX2RRgVUi39E50YZb/D7eoEJynnsGHyBqruqcT2JHD8eWk=
-X-Gm-Gg: ASbGncsIjDPOSTG7cTr/SGUb4nDbE093Pqbh7glGtABBsepl6UDCnrlJu/VsYSockZQ
-	o9ZrZeOiJoIBMrwCysdHf64u7rjaCGABaVkMPzhRTD9LZe18EDhMAzJ3WbZoetDiV501NKAP+Eg
-	EjdR2yZ9LOs+X4+seURjgWP9E2bYKSttd9nGIte5lYnphUXfwvAzRMoP9CANadWXCPysKyEStW/
-	f5/KtLvmUBECwp84BjzCui9YYkzQlS9OE999VKI4COm8t1QYV0iKTpqyA5bMVDOQuhN9Bb6QLe9
-	yzEu0HdfPZxc9eFun16sNsG2JMpomcVsJF/ak7ajXO8aIcDNhmEikM2qkLTSwsa5+JHIdtM9uys
-	ag1jtVrED+o3NKHfKHa2Xdg==
-X-Google-Smtp-Source: AGHT+IEHzgntCiIyFIejt+velJ1DKYJeY/DP/PmofPesUSGSnk34CcJB8gGDJCJeXZwhol/qtJoMiQ==
-X-Received: by 2002:a05:6000:1789:b0:391:13d6:c9f0 with SMTP id ffacd0b85a97d-39113d6cc41mr1329180f8f.47.1741020857759;
-        Mon, 03 Mar 2025 08:54:17 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1c49:dea2:d749:5015? ([2a01:e0a:982:cbb0:1c49:dea2:d749:5015])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e47a6a5esm15251582f8f.35.2025.03.03.08.54.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Mar 2025 08:54:17 -0800 (PST)
-Message-ID: <1058b59c-af0c-45ba-87ac-e3e243883f3e@linaro.org>
-Date: Mon, 3 Mar 2025 17:54:16 +0100
+	s=arc-20240116; t=1741021112; c=relaxed/simple;
+	bh=vtkoHJ3gFGrir8hCO0gq2+nOrDMda467qqK7Y/SOhuY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oBIuZ5V8SWoTKo3NkueSN8mGgTd4/rkclUD6VUmzTPpvoNORqlrhiUGA1az6CTkiwK4lN1juVBdAyx9Cjo6ge0f6FPKg+NFWEh3kuFTHiuvVBagc5NyyeQIf3WhrXMIEqKpqGPvwsCbUsqnL+kBNf3hCiz8o+1vglJAgezfycqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k91CO6+P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17EE3C4CED6;
+	Mon,  3 Mar 2025 16:58:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741021111;
+	bh=vtkoHJ3gFGrir8hCO0gq2+nOrDMda467qqK7Y/SOhuY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k91CO6+Pqty8oVF+U32HsX9iLmlu7s8wcKO1z8ACLrxTAYAPPC7c2asxfXVcIa0od
+	 1dJwiAa7iJW/kjG9WN88+F9nm2DbU3V3+kOqfcxkdKyALTWHpE/YURL2u6/Wgd6aVj
+	 ocOf9vo85msUco7AwjOEHhdBKVgZrAhqLmoBqe7vLlgZ8kFIWGKibLAdhoKNx3F8bS
+	 ciVvGy+fuHKltu3uuuawm7L6CAlInsAj3f5yOba0VPUINb3mm0n7X4RK2ZYGSRTVWV
+	 9A5KARmQMqVGXjfBmSd9EWzZOqEQoVXxeAXS5T7WmZzRxrXC6zzz/61rdIAoLD2ynW
+	 sYAlcjAxL+vLQ==
+Date: Mon, 3 Mar 2025 16:58:26 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Vankar, Chintan" <c-vankar@ti.com>
+Cc: Andrew Davis <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Peter Rosin <peda@axentia.se>,
+	tglx@linutronix.de, gregkh@linuxfoundation.org, vigneshr@ti.com,
+	nm@ti.com, s-vadapalli@ti.com, danishanwar@ti.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 1/2] devicetree: bindings: mux: reg-mux: Update
+ bindings for reg-mux for new property
+Message-ID: <20250303-mummify-mutation-67595b7ceba5@spud>
+References: <20250227202206.2551305-1-c-vankar@ti.com>
+ <20250227202206.2551305-2-c-vankar@ti.com>
+ <f3e69904-92f0-4de8-bfef-a315a6554a1c@ti.com>
+ <20250228-recipient-unlinked-271fe63d7335@spud>
+ <acde31c5-fe23-4c7b-a823-61ea0958504b@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/4] dt-bindings: media: qcom,sm8550-iris: document SM8650
- IRIS accelerator
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250225-topic-sm8x50-iris-v10-v1-0-128ef05d9665@linaro.org>
- <20250225-topic-sm8x50-iris-v10-v1-1-128ef05d9665@linaro.org>
- <9799775e-f754-f717-538a-cfea3dbc794b@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <9799775e-f754-f717-538a-cfea3dbc794b@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="F7cMXlJo73Y+j5qV"
+Content-Disposition: inline
+In-Reply-To: <acde31c5-fe23-4c7b-a823-61ea0958504b@ti.com>
 
-On 28/02/2025 13:21, Dikshita Agarwal wrote:
-> 
-> 
-> On 2/25/2025 2:35 PM, Neil Armstrong wrote:
->> Document the IRIS video decoder and encoder accelerator found in the
->> SM8650 platform, it requires 2 more reset lines in addition to the
->> properties required for the SM8550 platform.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../bindings/media/qcom,sm8550-iris.yaml           | 33 ++++++++++++++++++----
->>   1 file changed, 28 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->> index e424ea84c211f473a799481fd5463a16580187ed..536cf458dcb08141e5a1ec8c3df964196e599a57 100644
->> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->> @@ -14,12 +14,11 @@ description:
->>     The iris video processing unit is a video encode and decode accelerator
->>     present on Qualcomm platforms.
->>   
->> -allOf:
->> -  - $ref: qcom,venus-common.yaml#
->> -
->>   properties:
->>     compatible:
->> -    const: qcom,sm8550-iris
->> +    enum:
->> +      - qcom,sm8550-iris
->> +      - qcom,sm8650-iris
->>   
->>     power-domains:
->>       maxItems: 4
->> @@ -49,11 +48,15 @@ properties:
->>         - const: video-mem
->>   
->>     resets:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 3
->>   
->>     reset-names:
->> +    minItems: 1
->>       items:
->>         - const: bus
->> +      - const: xo
->> +      - const: core
->>   
->>     iommus:
->>       maxItems: 2
->> @@ -75,6 +78,26 @@ required:
->>     - iommus
->>     - dma-coherent
->>   
->> +allOf:
->> +  - $ref: qcom,venus-common.yaml#
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - qcom,sm8650-iris
->> +    then:
->> +      properties:
->> +        resets:
->> +          minItems: 3
->> +        reset-names:
->> +          minItems: 3
->> +    else:
->> +      properties:
->> +        resets:
->> +          maxItems: 1
->> +        reset-names:
->> +          maxItems: 1
->> +
->>   unevaluatedProperties: false
->>   
->>   examples:
->>
-> Since we are using same binding for SM8550 and SM8650, I think, it would be
-> good to rename this file to qcom,iris-commom.yaml
 
-The usage is to name the file based on the first compatible introduce,
-and split/rename when adding new very different HW, here the difference
-is minimal so it's ok to keep the current name.
+--F7cMXlJo73Y+j5qV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Neil
+On Sat, Mar 01, 2025 at 03:08:40AM +0530, Vankar, Chintan wrote:
+> Hello Conor, Andrew,
+>=20
+> On 3/1/2025 12:22 AM, Conor Dooley wrote:
+> > On Thu, Feb 27, 2025 at 03:26:31PM -0600, Andrew Davis wrote:
+> > > On 2/27/25 2:22 PM, Chintan Vankar wrote:
+> > > > DT-binding of reg-mux is defined in such a way that one need to pro=
+vide
+> > > > register offset and mask in a "mux-reg-masks" property and correspo=
+nding
+> > > > register value in "idle-states" property. This constraint forces to=
+ define
+> > > > these values in such a way that "mux-reg-masks" and "idle-states" m=
+ust be
+> > > > in sync with each other. This implementation would be more complex =
+if
+> > > > specific register or set of registers need to be configured which h=
+as
+> > > > large memory space. Introduce a new property "mux-reg-masks-state" =
+which
+> > > > allow to specify offset, mask and value as a tuple in a single prop=
+erty.
+> > > >=20
+> > > > Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+> > > > ---
+> > > >    .../devicetree/bindings/mux/reg-mux.yaml      | 29 +++++++++++++=
+++++--
+> > > >    1 file changed, 27 insertions(+), 2 deletions(-)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/mux/reg-mux.yaml b/D=
+ocumentation/devicetree/bindings/mux/reg-mux.yaml
+> > > > index dc4be092fc2f..a73c5efcf860 100644
+> > > > --- a/Documentation/devicetree/bindings/mux/reg-mux.yaml
+> > > > +++ b/Documentation/devicetree/bindings/mux/reg-mux.yaml
+> > > > @@ -32,11 +32,36 @@ properties:
+> > > >            - description: pre-shifted bitfield mask
+> > > >        description: Each entry pair describes a single mux control.
+> > > > -  idle-states: true
+> > > > +  idle-states:
+> > > > +    description: Each entry describes mux register state.
+> > > > +
+> > > > +  mux-reg-masks-state:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > > +    items:
+> > > > +      items:
+> > > > +        - description: register offset
+> > > > +        - description: pre-shifted bitfield mask
+> > > > +        - description: register value to be set
+> > > > +    description: This property is an extension of mux-reg-masks wh=
+ich
+> > > > +                 allows specifying register offset, mask and regis=
+ter
+> > > > +                 value to be set in a single property.
+> > > > +
+> > > > +allOf:
+> > > > +  - if:
+> > > > +      properties:
+> > > > +        compatible:
+> > > > +          contains:
+> > > > +            enum:
+> > > > +              - reg-mux
+> > > > +              - mmio-mux
+> > >=20
+> > > These are the only two possible compatibles, is this "if" check neede=
+d?
+> >=20
+> > Aye.
+> >=20
+> > > > +    then:
+> > > > +      properties:
+> > > > +        mux-reg-masks: true
+> > > > +        mux-reg-masks-state: true
+> > >=20
+> > > You need one, but cannot have both, right? There should be some
+> > > way to describe that.
+> > >=20
+> > > Also an example added below would be good.
+> >=20
+> >  From the example schema:
+> > # if/then schema can be used to handle conditions on a property affecti=
+ng
+> > # another property. A typical case is a specific 'compatible' value cha=
+nges the
+> > # constraints on other properties.
+> > #
+> > # For multiple 'if' schema, group them under an 'allOf'.
+> > #
+> > # If the conditionals become too unweldy, then it may be better to just=
+ split
+> > # the binding into separate schema documents.
+> > allOf:
+> >    - if:
+> >        properties:
+> >          compatible:
+> >            contains:
+> >              const: vendor,soc2-ip
+> >      then:
+> >        required:
+> >          - foo-supply
+> >      else:
+> >        # If otherwise the property is not allowed:
+> >        properties:
+> >          foo-supply: false
+> >=20
+> > What's missing from here is making one of the properties required,
+> > so
+> > oneOf:
+> >    - required:
+> >        - masks
+> >    - required:
+> >        - masks-state
+> >=20
+> > >=20
+> > > Andrew
+>=20
+> Thanks for reviewing this patch.
+>=20
+> For the use-case we have following three rules to be followed:
+> 1. "mux-reg-masks" and "mux-reg-masks-state" should be mutually
+>    exclusive.
+> 2. "mux-reg-masks-state" and "idle-states" should also be mutually
+>    exclusive.
+> 3. If "mux-reg-masks" is present then "idle-states" might or might not
+>    be there.
+>=20
+> For the above conditions I have tried to write a binding as:
+>=20
+> allOf:
+>   - not:
+>       required: [mux-reg-masks, mux-reg-masks-state]
+>=20
+>   - if:
+>       required: [mux-reg-masks-state]
+>     then:
+>       not:
+>         required: [idle-states]
 
-> 
-> Thanks,
-> Dikshita
+Why'd you pick two different syntax here?
+The normal syntax for mutual exclusion is:
+if:
+  required:
+    - foo
+then:
+  properties:
+    foobar: false
 
+
+>=20
+
+>   - if:
+>       required: [mux-reg-masks]
+>     then:
+>       properties:
+>         idle-states:
+>           description: It can be present with mux-reg-masks, but not
+> required
+
+This one here is the default, I don't think it needs an if/else.
+
+
+--F7cMXlJo73Y+j5qV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8XfsgAKCRB4tDGHoIJi
+0o2LAQCMq4HpZu9jiaoJxc850JX+/MKfFHGz/sa7MSTRB+4e1gEA8Gz6xK4LVwXO
+zTxykzZs4br3042xroq9jAGVObGABQA=
+=bvpH
+-----END PGP SIGNATURE-----
+
+--F7cMXlJo73Y+j5qV--
 
