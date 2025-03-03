@@ -1,149 +1,186 @@
-Return-Path: <devicetree+bounces-154008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BB78A4E75E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:02:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AA42A4EB55
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:23:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C08D19C5B3F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:55:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24CDB1783AC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:18:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C636329DB9E;
-	Tue,  4 Mar 2025 16:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1077D250C18;
+	Tue,  4 Mar 2025 18:05:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WLzqKgeb"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AgG13HQC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F5129DB8C;
-	Tue,  4 Mar 2025 16:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0E12512C3
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741111513; cv=fail; b=NGvCWB68xJehnfhIv4q1j8CGKOtIAa38VPKwWyDs/TdOGou9NS/L85PVbieeeN4ETW5t4I6mWTS5v27Y7eyv02oLvXIhRhpYBH+ILsa+/wz1pnIUn4e7xhLTcNQRK9P9fj4l8JTeZ8EnLUuKLMXVoN4UNdBUkkruYAUZIkmKFMg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741111513; c=relaxed/simple;
+	bh=rzUyQYrmm6WCZfOwaxIbcCxCIxCM2u4PQR+rJUmwZtY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mz81pZW+NBeBPxBcGfp70ocXiw/1qWfPft/vY3UjdHyhIM6a8zU7skXck3r+erQ1ITrL4pHpyITQpKljDSQqTjW0cEN9xj1TzKCR0HQvYgemO6tK0YvgSF7VVSuzYa5cN7ruqFcHESMSKNcm2aR87uDjEF/MM+auXbEYmPCKQk4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AgG13HQC reason="signature verification failed"; arc=none smtp.client-ip=209.85.222.181; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; arc=fail smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
+Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 7F70B40D1F53
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:05:10 +0300 (+03)
+X-Envelope-From: <root@cc.itu.edu.tr>
+Authentication-Results: lesvatest1.cc.itu.edu.tr;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20230601 header.b=AgG13HQC
+Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6g5071VQzG1GR
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:45:56 +0300 (+03)
+Received: by le1 (Postfix, from userid 0)
+	id 3AFD242724; Tue,  4 Mar 2025 18:45:44 +0300 (+03)
+Authentication-Results: lesva1.cc.itu.edu.tr;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AgG13HQC
+X-Envelope-From: <linux-kernel+bounces-541070-bozkiru=itu.edu.tr@vger.kernel.org>
+Authentication-Results: lesva2.cc.itu.edu.tr;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AgG13HQC
+Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
+	by le2 (Postfix) with ESMTP id 90F6E41A7F
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 09:58:13 +0300 (+03)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by fgw2.itu.edu.tr (Postfix) with SMTP id 346CD2DCE0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 09:58:13 +0300 (+03)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FB4F3ABEB0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 06:57:35 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A1C1E98F2;
+	Mon,  3 Mar 2025 06:57:23 +0000 (UTC)
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5763B156237;
+	Mon,  3 Mar 2025 06:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741106005; cv=none; b=d7KmdiMjvpstRYNP782oTJfnuD+lzCmpY76xrQe5JFYy1UYjVpfKs1FL7yLOoAPNdcQltMzp0J9sGd1GTLUpAAOpnNMu0n/vL+L4gv/fxERVpIFDwbcH/nJwZpADGE7swnjumKgGzo7nODwLuRx8Tx1ft/N7MmKqLxIEuHYPX8k=
+	t=1740985040; cv=none; b=fU0hnrsejOHlquAasBpnKVXyVWh7UIDavvcW9wtJL7zz5r3y7irLWGWqHmJpmWAAYztiqZVIyQRwF5FI2t7NcI0bGRiwe0zpT+mfFJyTXuqKRV0LnJzhm0sjYDG8uV8bY7noqTi0nGOpWXgh7S3DKlQU9s2GQJV/168r1MnsL/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741106005; c=relaxed/simple;
-	bh=sVMNAHKUeuRT95+im4P0/jKAS/GgcfOXmRXfFHueNYU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zkd+/HYZ9kKIKL+Uo6gpwDbV+xY+f46ekM+H4qwPIOusQoJ/7NOBqOS8y2sn9igtGCPIEa6NZpA/xQF3NI3Nje5oaMyosbngSZdPmrQwtT1cPkCJLYE1nFbjtmcO9PI+phXZvKRQbylq16ZPSjYrHyHD493Mix/0CxZvTjnX9Dc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WLzqKgeb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30B13C4CEE7;
-	Tue,  4 Mar 2025 16:33:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741106005;
-	bh=sVMNAHKUeuRT95+im4P0/jKAS/GgcfOXmRXfFHueNYU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WLzqKgebR3Z1yyQWkkvDsRbvkJ0DR4h7CdicTt6kETDN7WiFUR0IZ2mFnvwFYvFki
-	 3wCFKEtwexcxSaTSYV+/A9/5S25Wmd8e+5Z0qvOxeEyEF0dLONG1ufDrRds6m3KOzq
-	 MILYp6ND7vin9qEwgEM59ydkSOG/ZQU9orONU8ZUKlBuaz9FTqA7yac7Tpk8HRnhFD
-	 SOXp+lSElrlCio1jTn0KAdE4h5BUjqhePtvHk8n2fqhaFlHC4PshfrhZDXEfP7pUsK
-	 zC1MzrJtoD5eiGlIEfLDwOVDZ0DJ1ZL3egfIZ+69FoITW0TvIoKaQ7pUcMaKOHWMLQ
-	 naBBllK6LaF6Q==
-Message-ID: <d4282923-63e4-4f14-b5ee-5e8bf1973893@kernel.org>
-Date: Tue, 4 Mar 2025 17:33:16 +0100
+	s=arc-20240116; t=1740985040; c=relaxed/simple;
+	bh=28Vxb9MlXzLgsQOz839ouf1ZOb6pV/zDw7qLv1Gk4Z8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nhHPyUsmyq7fGalwwYzBxH1/wp/i4YT15DVRr1tmj7dKQGKOLRfstznmaYXcDKkrJfMP+Yw3MeNSDqeCdLvyFoUuHx4/dwJXnntZtryPgJQjrq6xFx0dHipw4IxqIg6RqZK6+wR3P1iuHabrp8qkbOyHl/Vb7n8wprhNOH/tdIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AgG13HQC; arc=none smtp.client-ip=209.85.222.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7c0a159ded2so323373185a.0;
+        Sun, 02 Mar 2025 22:57:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740985038; x=1741589838; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dXZfifyJPh8wTQJHpr1hJkVkOZWigbIijHigtJZZIQY=;
+        b=AgG13HQC0jrPT4PRhvB22LG94PhT0Uhe4doWnPx+ID1PsF3L37ck05bxDl7MBXhelN
+         +sx6hojZvnNCWn9LyRqcObQSbh+0o6fjI5eWshPUYhNwtRiloSNfcfvrG//NWbSI18G1
+         LPqUCoBnzySZpOcrUkdk3CbJlHk8MogOG27RpHRJPYGhfWy4rpPdoc+hAaCiSSQNencs
+         XQOoXKs8+RGvQ6HBnO/fhcwBoCXqKBXIQsuFO/2CcaCMG7/eUhDvBZR0gw4j/3RpqGWF
+         HLSX0P55RrKKeJLggCaLDTGE6b2bvf9Ns9kEfiIoVQTPRs3K/gRa1r6Cvnqm6Lqff8C6
+         iOUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740985038; x=1741589838;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dXZfifyJPh8wTQJHpr1hJkVkOZWigbIijHigtJZZIQY=;
+        b=KihaSo/1XvGM9ufFHUrrE2SqNdC8BVNuwOKfRDiUvOqygflImnpD4u0LMxUjAJtXph
+         XkMSt8VGml9ypxrZS3fgujtDZqB/vc+odGlU47wvtdlmhDtzuAkOgeEN5NRknS5gz3Nt
+         6iyaba17oNeF1v4vUK39n8IkNbyzPbkvuAEELhf1Mrf/QIan98Yktlm0wiRf0YnJVqYh
+         bOQTwf7WUSfRh4d/oD1bDLe0lEizmRvwVAoeXdCedzZ6X/t5Sx+xeq4yizwbgZr70tJK
+         fONbzBLVO2aNybrD5fh0T7OMvwyBWZ2j2FgznwD4jW7gEDbu6qcgkKhJbjaGyv4l5taZ
+         MTaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUkj7zQcq07qDLqopG3i/WUQAS18RCgWaVR6mjjkVLe7kOO32/BBBbIgKSsvz5VZSuHRA4F184PYTYi/Z7e@vger.kernel.org, AJvYcCVnmEsslT2yEpbBXzvcd7iTNemOLK0cshv/R1bk0b9vj9XWrcLBqdpgQKTOTwahLR6Ce3vK5n82VXJS@vger.kernel.org, AJvYcCXh30+ZnJcHY+LTP7t76c+QieiaFonhm4NHdm5rY6PFe5x6qMs/XCeeCm/t9/Pi6ZstSmzBWORF0MOQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMRuOfqk9TNagClQpe9uBbwjusDAbAvbPOJSo9uva9JSuizgrM
+	YQvQlY6FpsnO4FdOQTMgjBOtkJJG6LzuWx7vbd2O7h+3RNBQLcAa
+X-Gm-Gg: ASbGncvf5ZlnHDw5npBTJc00Ac9JJU6wMOBhoBQm2nHEgoYBm8U6bnMmkICXrLOq8fj
+	jWoT2TfsFb89ekvp8zgEhUQsNDvSRhHdW1I9gTtn3jdLT/3VE+o7qUS5dlG6iRoQmBeMNhE4EtN
+	tzhXXv+TEGU5zjcqS+Ga6+xoFjAynY35I4W1Ejwf++yHGkXRrGE1lvoEqqJe/wVNsL0IdQxSbgs
+	9HsJOZ6OVgUMMHlVpbNd/G5wGHxF6MPjsrF1Qx4S8ZESUbniupoh/rR+673y9EMQWkZnKrJu/0h
+	Zgrwg3N5scqp1vlUZxHl
+X-Google-Smtp-Source: AGHT+IErdmW0jjNNNMzApy6HTTPEzszrqwNuoD6aXiczUEO8+rrdFm3G8YBCKzFZYWry8xg0LYIFVA==
+X-Received: by 2002:a05:620a:4392:b0:7c3:c1b4:c8f5 with SMTP id af79cd13be357-7c3c1b4cd30mr159420085a.15.1740985038075;
+        Sun, 02 Mar 2025 22:57:18 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c3c57684dasm17000885a.77.2025.03.02.22.57.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Mar 2025 22:57:17 -0800 (PST)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Inochi Amaoto <inochiama@gmail.com>,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH] dt-bindings: dma: snps,dw-axi-dmac: Allow devices to be marked as noncoherent
+Date: Mon,  3 Mar 2025 14:56:48 +0800
+Message-ID: <20250303065649.937233-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.48.1
+Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add Microchip emc2305 yaml
- schema
-To: florin.leotescu@oss.nxp.com, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Shych <michaelsh@nvidia.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: viorel.suman@nxp.com, carlos.song@nxp.com,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- festevam@gmail.com, Florin Leotescu <florin.leotescu@nxp.com>
-References: <20250304162136.1963384-1-florin.leotescu@oss.nxp.com>
- <20250304162136.1963384-2-florin.leotescu@oss.nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250304162136.1963384-2-florin.leotescu@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
+X-ITU-Libra-ESVA-ID: 4Z6g5071VQzG1GR
+X-ITU-Libra-ESVA: No virus found
+X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
+X-ITU-Libra-ESVA-Watermark: 1741716207.82235@SuW5RLs4xlaL77BC7QQuBw
+X-ITU-MailScanner-SpamCheck: not spam
 
-On 04/03/2025 17:21, florin.leotescu@oss.nxp.com wrote:
-> From: Florin Leotescu <florin.leotescu@nxp.com>
-> 
-> Introduce yaml schema for Microchip emc2305 pwm fan controller.
-> 
-> Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
-> ---
->  .../bindings/hwmon/microchip,emc2305.yaml     | 43 +++++++++++++++++++
+A RISC-V platform can have both DMA coherent/noncoherent devices.
+Since the RISC-V architecture is marked coherent, devices should
+be marked as noncoherent when coherent devices exist.
 
-I do not see improvements in the subject nor in missing $ref to common
-schema for fans.
+Add dma-noncoherent property for snps,dw-axi-dmac device. It will
+be used on SG2044, and it has other coherent devices.
 
-<form letter>
-This is a friendly reminder during the review process.
+Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+---
+Related discussion for this property.
 
-It looks like you received a tag and forgot to add it.
+https://lore.kernel.org/all/20250221013758.370936-1-inochiama@gmail.com/
+---
+ Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
+diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml =
+b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+index 525f5f3932f5..935735a59afd 100644
+--- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
++++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+@@ -59,6 +59,8 @@ properties:
+     minimum: 1
+     maximum: 8
 
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
++  dma-noncoherent: true
++
+   resets:
+     minItems: 1
+     maxItems: 2
+--
+2.48.1
 
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
 
-Best regards,
-Krzysztof
 
