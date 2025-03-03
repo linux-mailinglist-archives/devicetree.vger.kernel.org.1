@@ -1,168 +1,159 @@
-Return-Path: <devicetree+bounces-153394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69C24A4C429
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:05:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 788B4A4C56C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:41:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E62793A3B98
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:05:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 628E718875B6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:42:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68788212B0A;
-	Mon,  3 Mar 2025 15:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46944211261;
+	Mon,  3 Mar 2025 15:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="cFgkZnKI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C0184D13
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 15:05:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E948723F36F;
+	Mon,  3 Mar 2025 15:41:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741014314; cv=none; b=dm3YcdETxshYqnNVeXiQxNiSuDUAOE+jpQDjRbz5Xti2+q2JGUMVabOxr56eM3+l+BAeFOCYO1I1Adz71w0kCShzjbKhT4seN9jGihK55CVh5QwKjc4FzRyhAQLbTZwq937qZJ3EYYinpaQwqAzn9gE8Rs9dQpkcysJWNUQKP4c=
+	t=1741016515; cv=none; b=cSEdH2r3gRAs/28kfsRdVGEKF2qQTZL2hmYitwVTANKPAQrJCMoAxzRZj2w1Jw1S7XVMafj3FZgEWDwVnsZ3qoRNiH2mBjgfrDFQOce0pkVb4EhuLUZkVQ0R5+1jl8LAIMz+hcGMGGrF9BrSiO3z3PRsuNlKt/86iCh8Z7Y9/AQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741014314; c=relaxed/simple;
-	bh=TOtDL6Z6/gt6EoXED0yq3X+XftpMSW7Yrnxasp/jUpg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EpAZ+RCEhL3kHMOjBHLDOORxrW7mf9aRqXeT5tJLMvpImhzSfXC0/VVtjTMkwct/8Mqa5aMdZhjjGWZ8JWh5jIOoQXUm5BnTVdzF3t0IKX/Jtt4XQyE+SKdkMBAM/i1oD5J2RqowKEMMWIeH712LAxBuvuhPsW4EWbHeeeudlOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 470A7113E
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 07:05:20 -0800 (PST)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 006FA3F5A1
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 07:05:05 -0800 (PST)
-Date: Mon, 3 Mar 2025 15:04:42 +0000
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Marek Vasut <marex@denx.de>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Steven Price <steven.price@arm.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH 9/9] arm64: dts: imx95: Describe Mali G310 GPU
-Message-ID: <Z8XFCv6ku6mG1_x5@e110455-lin.cambridge.arm.com>
-References: <20250227170012.124768-1-marex@denx.de>
- <20250227170012.124768-10-marex@denx.de>
- <2153305.bB369e8A3T@steina-w>
- <4a27b6bf-aca8-4f29-9561-609a42eb81a0@denx.de>
+	s=arc-20240116; t=1741016515; c=relaxed/simple;
+	bh=m25FjPrgYwk7MjQZxfJGTGjcn2SPVYgupnmoKPBo3ug=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=LgRkwj4zJS9V28slU9SGVzkirA/QBJBKNIEg+BsHhXcAWdw1K/QIjTBMz71ApSyh3JpeV0bPAWmH9WQwJwz7tR2PJeNDD6r/Bmzla9b1k78WPtm5UxCeseQQAk71027j6CeHUIk1QS/z8iw0Flhhu2AW2Dwk7suz0ZSPGw9uAT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=cFgkZnKI; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=C/mjUrCDUh8TvGQ0TNP99UWlQJSkPZIBxxqCtz4GkI0=; b=cFgkZnKIv0/ZHT36d/Zwl7IRW1
+	fW9cvHeQLM8AeK7zGY/zPOWZy9w7wMXgJkCSy5z05SlMk8da27MCzCKt29/I0lhlBw2CscACezTh4
+	2mG4q/f/ES1WSSFlTCdeu0TFqSsnFwe8mN+Gu37FBSbil4W7sh78YpEv424PPHAysC1w=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:56514 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1tp7EM-0000V2-1t; Mon, 03 Mar 2025 09:57:18 -0500
+Date: Mon, 3 Mar 2025 09:57:17 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Nuno Sa <nuno.sa@analog.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, Guillaume Stols <gstols@baylibre.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>, Dumitru Ceclan
+ <mitrutzceclan@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>, Matteo
+ Martelli <matteomartelli3@gmail.com>, Alisa-Dariana Roman
+ <alisadariana@gmail.com>, Ramona Alexandra Nechita
+ <ramona.nechita@analog.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Message-Id: <20250303095717.56ef5ac016b99911fc34e198@hugovil.com>
+In-Reply-To: <7c79ce3a-0dc4-4aa4-941a-e05be9a34fb8@gmail.com>
+References: <cover.1740421248.git.mazziesaccount@gmail.com>
+	<20dd0e4ea72fe39b90b611f9c08dbd4bc1d5217f.1740421248.git.mazziesaccount@gmail.com>
+	<f0d0f114-3953-46b5-b9f6-9b35537e6f8e@baylibre.com>
+	<d391b012-0a8e-40ca-af56-ca73b3fd853b@gmail.com>
+	<20250302032713.1c834448@jic23-huawei>
+	<7c79ce3a-0dc4-4aa4-941a-e05be9a34fb8@gmail.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4a27b6bf-aca8-4f29-9561-609a42eb81a0@denx.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -2.6 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v4 07/10] iio: adc: ti-ads7924: Respect device tree
+ config
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On Fri, Feb 28, 2025 at 06:43:53PM +0100, Marek Vasut wrote:
-> On 2/28/25 11:36 AM, Alexander Stein wrote:
-> > Hi Marek,
-> 
-> Hi,
-> 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > index 3af13173de4bd..36bad211e5558 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > @@ -249,6 +249,37 @@ dummy: clock-dummy {
-> > >   		clock-output-names = "dummy";
-> > >   	};
-> > > +	gpu_fixed_reg: fixed-gpu-reg {
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-min-microvolt = <920000>;
-> > > +		regulator-max-microvolt = <920000>;
-> > > +		regulator-name = "vdd_gpu";
-> > > +		regulator-always-on;
-> > > +		regulator-boot-on;
-> > > +	};
-> > 
-> > Is this an internal voltage?
-> 
-> I think so.
-> 
-> > > +
-> > > +	gpu_opp_table: opp_table {
-> > 
-> > Node-Names use dash instead of underscore.
-> 
-> Fixed, thanks.
-> 
-> [...]
-> 
-> > > @@ -1846,6 +1877,37 @@ netc_emdio: mdio@0,0 {
-> > >   			};
-> > >   		};
-> > > +		gpu_blk_ctrl: reset-controller@4d810000 {
-> > > +			compatible = "fsl,imx95-gpu-blk-ctrl";
-> > > +			reg = <0x0 0x4d810000 0x0 0xc>;
-> > 
-> > Mh, GPU_BLK_CTRL is /just a bit) more than the GPU reset. Does it make sense
-> > to make this an gpu-reset-only node, located at 0x4d810008?
-> 
-> The block controller itself is larger, it spans 3 or 4 registers, so this
-> should describe the entire block controller here.
-> 
-> > > +			#reset-cells = <1>;
-> > > +			clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
-> > > +			assigned-clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
-> > > +			assigned-clock-parents = <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
-> > > +			assigned-clock-rates = <133333333>;
-> > > +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > > +		gpu: gpu@4d900000 {
-> > > +			compatible = "fsl,imx95-mali", "arm,mali-valhall-csf";
-> > > +			reg = <0 0x4d900000 0 0x480000>;
-> > > +			clocks = <&scmi_clk IMX95_CLK_GPU>;
-> > 
-> > There is also IMX95_CLK_GPUAPB. Is this only required for the rese control above?
-> 
-> I think I have to describe those clock here too, possibly as 'coregroup'
-> clock ?
+On Sun, 2 Mar 2025 15:10:12 +0200
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-The 'coregroup' clock does indeed control the MMU and L2$ blocks as well as the AXI interface,
-so if that is indeed a separate external clock source it should be defined. Could it be why
-you're seeing issues with L2$ resume on the fast reset path?
-
-Best regards,
-Liviu
-
-> 
-> > > +			clock-names = "core";
-> > > +			interrupts = <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "gpu", "job", "mmu";
+> On 02/03/2025 05:27, Jonathan Cameron wrote:
+> > On Wed, 26 Feb 2025 08:39:11 +0200
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 > > 
-> > DT bindings say this order: job, mmu, gpu
-> Yes, currently it is sorted by IRQ number, fixed.
+> >> On 26/02/2025 02:09, David Lechner wrote:
+> >>> On 2/24/25 12:34 PM, Matti Vaittinen wrote:
+> >>>> The ti-ads7924 driver ignores the device-tree ADC channel specification
+> >>>> and always exposes all 4 channels to users whether they are present in
+> >>>> the device-tree or not. Additionally, the "reg" values in the channel
+> >>>> nodes are ignored, although an error is printed if they are out of range.
+> >>>>
+> >>>> Register only the channels described in the device-tree, and use the reg
+> >>>> property as a channel ID.
+> >>>>
+> >>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >>>>
+> >>>> ---
+> >>>> Revision history:
+> >>>> v3 => v4:
+> >>>>    - Adapt to 'drop diff-channel support' changes to ADC-helpers
+> >>>>    - select ADC helpers in the Kconfig
+> >>>> v2 => v3: New patch
+> >>>>
+> >>>> Please note that this is potentially breaking existing users if they
+> >>>> have wrong values in the device-tree. I believe the device-tree should
+> >>>> ideally be respected, and if it says device X has only one channel, then
+> >>>> we should believe it and not register 4. Well, we don't live in the
+> >>>> ideal world, so even though I believe this is TheRightThingToDo - it may
+> >>>> cause havoc because correct device-tree has not been required from the
+> >>>> day 1. So, please review and test and apply at your own risk :)
+> >>>
+> >>> The DT bindings on this one are a little weird. Usually, if we don't
+> >>> use any extra properties from adc.yaml, we leave out the channels. In
+> >>> this case it does seem kind of like the original intention was to work
+> >>> like you are suggesting, but hard to say since the driver wasn't actually
+> >>> implemented that way. I would be more inclined to actually not make the
+> >>> breaking change here and instead relax the bindings to make channel nodes
+> >>> optional and just have the driver ignore the channel nodes by dropping
+> >>> the ads7924_get_channels_config() function completely. This would make
+> >>> the driver simpler instead of more complex like this patch does.
+> >>
+> >> I have no strong opinion on this. I see this driver says 'Supported' in
+> >> MAINTAINERS. Maybe Hugo is able to provide some insight?
+> >>
+> > This seems to be ABI breakage.  Never something we can take if there is
+> > a significant chance of anyone noticing.  Here it looks like risk
+> > is too high.
+> 
+> Ok. I'll just drop this patch then. Thanks David & Jonathan :)
 
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+Hi Matti,
+I haven't really been able to follow all discussions, but as an
+historic note I developped this driver for a prototype that never
+materialized. So any changes would not have an impact, as far as I am
+concerned.
+
+Hugo.
 
