@@ -1,139 +1,117 @@
-Return-Path: <devicetree+bounces-153865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5EEAA4E1A7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:49:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC8D7A4E226
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:02:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5776817E4AA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:43:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3F9D42144F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC4125D900;
-	Tue,  4 Mar 2025 14:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5FA25D53E;
+	Tue,  4 Mar 2025 14:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DXDwVUdr"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LDE7Vziq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
+Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787D9209669
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 14:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B413C254AFA
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 14:53:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.116
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741099240; cv=pass; b=ljX03JadC+doDi7yhQ7r0NfR0VVEpzYQP0htBnqguNLEkLTIrR0WD5ZKMYkdwyhffWJroUQM6Xi9jpz/rvHsAdV6akwovzrrgZKW4C757xeTyoAG5S9d+0FTZ1sNLrI/QQIb+65kO9bxZgajm065n+9AwZSD2U7DMUsDuW/WZlc=
+	t=1741100001; cv=fail; b=SXxUOoVXB3c0uCFq0EEUFQkfa2ECbYeBiexKyHBrp3faT7CWX5JHHRjiJiVqyCX5m1KIOK/3K7YGUFnnLQuYphENl0huMqVyOgrpHrNjcMyrXIRn2B6Y6Me5ix4PjptwCPZMkG1MFvWwatoLyioXl3sOKeWzp/DsjHV+Co9EP9M=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741099240; c=relaxed/simple;
-	bh=DhfNdV/O+uocDkBJFYE83PtsNs9K9z/PTwLsOVi9J/g=;
+	s=arc-20240116; t=1741100001; c=relaxed/simple;
+	bh=ZV0hyenL1Gr6zkBxI10zjtT9BOF6hJs4mewvNXd8do4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f/ttqMbD4BoQvZYALuxJ8sZOetRYYETwRpYeRzxwvQQw/tUPUK7qpUP5D/o1kboU0Cmug1bWIT7SXmcORzGUzmVBOx76oXTxakvU0TvXaMU/cpMJ0Vt709AS1GA2uXX3phMMLM8CeagxLouHO2Hs5e2zHyFmze1H7fPE2QqRZyI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DXDwVUdr; arc=none smtp.client-ip=209.85.208.177; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; arc=pass smtp.client-ip=160.75.25.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+	 Content-Type:Content-Disposition:In-Reply-To; b=tgqc3O7Ljk7IFOqqvj3SkUU9VLdC6RDPDk8Wp3WLyLPkvGxc8yGKLC/68siXbVF56gTOK0UojeVpP1Ii91Egx1dXR5JjVsmrh6q/I6qMn+U8W6ukmLFyTy47R5Fa0fWqnNVVIXznUphRDWEnH/3u+uMLuzhHnMdcYmhpohif6D8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDE7Vziq reason="signature verification failed"; arc=none smtp.client-ip=10.30.226.201; arc=fail smtp.client-ip=160.75.25.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
+Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id C62FA40CF12A
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:40:36 +0300 (+03)
+	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id EBC4C40D0532
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:53:17 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=DXDwVUdr
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=LDE7Vziq
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dcX6Kl8zFx9s
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:39:40 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dt92hKpzFxkF
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:51:29 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id B0C7042723; Tue,  4 Mar 2025 17:39:39 +0300 (+03)
+	id A5A894273A; Tue,  4 Mar 2025 17:51:25 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DXDwVUdr
-X-Envelope-From: <linux-kernel+bounces-541752-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDE7Vziq
+X-Envelope-From: <linux-kernel+bounces-541866-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DXDwVUdr
-Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 26FDB41E1E
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:03:42 +0300 (+03)
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDE7Vziq
+Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
+	by le2 (Postfix) with ESMTP id 3A16641CC5
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 17:00:40 +0300 (+03)
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id AF1383063EFC
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:03:41 +0300 (+03)
+	by fgw2.itu.edu.tr (Postfix) with SMTP id CA0B62DCE4
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 17:00:39 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83A803A9F53
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:03:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 654EF3A89E9
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8BA21148C;
-	Mon,  3 Mar 2025 13:03:16 +0000 (UTC)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E163F2135B9;
+	Mon,  3 Mar 2025 14:00:25 +0000 (UTC)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8495288D2
-	for <linux-kernel@vger.kernel.org>; Mon,  3 Mar 2025 13:03:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443818489;
+	Mon,  3 Mar 2025 14:00:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741006992; cv=none; b=JW5CenFoqcfRai+YlI4wgYjlMC/kr6c1/Uos7yPFn3IAf7t/MnQjWKpCnKiILBtwUYfcIukEtjczLt6djK33l88gIgJWpLRH7HE9Z6nuYGw5g00F95X2kJIiBcUFbnmaXLEHqolAJXncY4o8z7pW7JK6hrDs+n/fe/jPf9wL2q0=
+	t=1741010423; cv=none; b=TLl5Nx3N/EGjJzLzX8AgfxnYh/Z9hNoRhHBdZK2TMf1cBBVwV33jsSeLlJyiP8SYEqQYc03i3Z4MhCk+NyD+d7QnrKUorfu84+aeOK68IPdsPgFawkMHItUmg90fTSi40gmPw00GZcsxTAZN+2pm+dMU8SbKACaGJrE6J+lKSM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741006992; c=relaxed/simple;
-	bh=DhfNdV/O+uocDkBJFYE83PtsNs9K9z/PTwLsOVi9J/g=;
+	s=arc-20240116; t=1741010423; c=relaxed/simple;
+	bh=Kp+dH75fRkj4Yg2B/u14qSdnyXfV1851mjVlG/eyDkU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oPI7RUxV5vv1Op/BuDUa/ZWC/PEK2mlHsJgj67HvTLI8QI9JlGfZa2JQQFnioi4QcIylSqTYEU/CuhqTRuSSlyKFNzdcd4zzu2MV1jKQLOmBW2EUk7eAHZfp7ikCceGn3Ovb0qlYYmHV4Q33wzjN4j7olOVDtTg94Y8vKgZqx10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DXDwVUdr; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30bb2fdbb09so12803181fa.2
-        for <linux-kernel@vger.kernel.org>; Mon, 03 Mar 2025 05:03:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741006989; x=1741611789; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DuRt7sNsxjnBZpSJFW4wxc/r2PcIDt/KOhq8Vg4VK/w=;
-        b=DXDwVUdrSsk322dDuE/L5lNxzKO0jvB87EdzYcRP5Vd11T20vU0VTNeKiuqCLMLeL2
-         k2ruho4K1IWjXKIsxt9x1yrt07HeD0ScVdLkhON6ws9VS5OToCBdMcHkCkNpbIoaPlur
-         VAU2fxn5X7+SCLtZOLjCLTVVXgR9wzsx0+ftg97sMR0XNnMZvEHzDlJxqNn6AHaW/Ako
-         Ba9SvliI4uKdVzlICirU+0fIrfURpTQJXhsNGE+d/S8PBErEDZfNEUAifm9cfI6ds+fh
-         3puE4q7FZIilXLMLa3zS1GNjQCIgE8/RkIvI/MGIHuwHp5L8j0i47qqcyKQELgSFEpmA
-         M28A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741006989; x=1741611789;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DuRt7sNsxjnBZpSJFW4wxc/r2PcIDt/KOhq8Vg4VK/w=;
-        b=mVfXdJAZk7k/MeC9xtHdDiwFqnFylveYH81ang1dZAhJqgUwi3CuhuAMY05olG2usX
-         iUgTa2qH1ZLuFF//kT5ne1B6n+ga0ZRAflQ1Izo+jE76S2D9Qq5xQLQCDSUgSgZARoPp
-         xpAjREmJHL9MqBl+Vnmzw6Fy/njXNRZNOR3BAImtL+pySimTZ92nGnELR076pWO9SdM3
-         trrDzLefs0fxo+J42ECwbDhU49Tz2qTN2FXDALMmCoAXxirD9bx9y7a2/kAS9Zs1BjpI
-         BIgqfNdr4ii75BqZzPHz+mQdYzHxxxN5XzWIO4YN62QM5k1g/Nww9S/g3BM8UavOZLAL
-         ENdw==
-X-Forwarded-Encrypted: i=1; AJvYcCVNRjC8EZAIV85N75gPJVudnGexI/nC29RN4D0KOjIB0MM+US8vZjhpZTWiskCHl9nIaSehCGkppd0TjIc=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZUSIb1iSa9dT4iPTqunGGv2WkUwxT16k7LeiN0NkbmCTsWPo9
-	EeJyreJ8Cjfb40aRDNJhfYwynifaWttpiRGUDngWc8vjcpo86CVVlDVxZgkyQOw=
-X-Gm-Gg: ASbGnctAJF4YMtEGnlIBqeil5a70Wmb8M0kTKXbrMdXQZqvJxtrEe/PSFnSu522D/uf
-	B+7VS/FoRLnUHRMKhJQA423n5rMpADd64ZcCMUot6DomE2Xg6Tma1FvucF9x7bxtynNWscm9c/S
-	IEIJUrSReEviNtpsz91ptnvhZcqGW1y/CZVSjwsuM89N1BrBsGg16gt86zqEzUA3tgHbFgEivfI
-	bUw8hCT+JyGdpuaQzJrceH+xs0OaMwIyxHmO4Oo0nGl2KvRpvEByg50jl/ytZNcMGtS7vzeL7Xn
-	6UEWNSvIwI/lNmsnY/cn4Vy17l1HbQofgRg28EKMZZfvQLAxwPR2u+67rNTPyPoWOZv3CMNHrU+
-	yRJxSyryQJUAWGMNdue6IUcmI
-X-Google-Smtp-Source: AGHT+IF1PolbJR152vR5fP4sMo4m1QykoHvieTbCTpVgWNk/bMvUDzzFZWCKpBvAuMT571N86KTxyA==
-X-Received: by 2002:a2e:bc18:0:b0:30b:b7c3:ea71 with SMTP id 38308e7fff4ca-30bb7c3ef87mr18110021fa.15.1741006988806;
-        Mon, 03 Mar 2025 05:03:08 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30bba62b892sm3743161fa.66.2025.03.03.05.03.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 05:03:08 -0800 (PST)
-Date: Mon, 3 Mar 2025 15:03:06 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
-	manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH V3 1/2] dt-bindings: mailbox: Document qcom,tmel-qmp
-Message-ID: <5xjtb4cifjjagkeifpkgx4y5cb7mwrocv7sxq3lh4lhadtw2bn@umtwhw7eqkhe>
-References: <20250228045356.3527662-1-quic_srichara@quicinc.com>
- <20250228045356.3527662-2-quic_srichara@quicinc.com>
- <velvqajyhrdaipmqmsduv3l3dsv56sy4rfukwm2hrdvh47hgqx@7sbnrgkzsn67>
- <1a22a637-c3f1-49b3-adf5-3e952c7d336a@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=N4dOf+svt5Ia4GXZkAt6JeWK79X8QOvHg8GDDFjuXwyrES1W64+mvRpS/BM3+78wbuuZtZG1o2vrb4nAs/tm3mHy2KZa4CpZMhZTa/X2iLoWZFlTPC1GWPg3NOVUOQYssiTDrws1+bWKtzOl+88EuVLi7c92jzCGlbB6Qa26cgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDE7Vziq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78C4AC4CED6;
+	Mon,  3 Mar 2025 14:00:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741010422;
+	bh=Kp+dH75fRkj4Yg2B/u14qSdnyXfV1851mjVlG/eyDkU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LDE7VziqE8Z5eAcLy1ADJtkYPvmnQ1FWgShTdhPsi0Jp00/5H4ih7eFkudyTpV6Ey
+	 vzUekJexEEcxmdtofMzZn68/GabGTmMLoyDmPxm2kdElEPPLV3qZha5Aib/AxkKR7v
+	 m/mOgM3NliygKNSm4cdkNZYbDU4CUHy7o2nUsiBNydIculfOZE9XJX6vA2Cx8O7TEs
+	 nqGWAiDj2LY2VHmrB5jeTqSMkAWpR8/oVe9f3U39KoH0vSV+sGksApEvY4YbqOUYgD
+	 MEbgvDOyAHF9gVrkOu+yiC5BM/+QxMgNexT3mwUVWIsR0RWjNldR9e1Z2gFqBmOcaC
+	 wYe+elLtbMKhQ==
+Date: Mon, 3 Mar 2025 08:00:21 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
+Cc: Richard Weinberger <richard@nod.at>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Crystal Wood <oss@buserror.net>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	linux-mtd@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Naveen N Rao <naveen@kernel.org>, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: nand: Add fsl,elbc-fcm-nand
+Message-ID: <20250303140021.GA1732495-robh@kernel.org>
+References: <20250226-ppcyaml-elbc-v3-0-a90ed71da838@posteo.net>
+ <20250226-ppcyaml-elbc-v3-2-a90ed71da838@posteo.net>
+ <174059551678.3319332.12055848852503108874.robh@kernel.org>
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -141,141 +119,79 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1a22a637-c3f1-49b3-adf5-3e952c7d336a@quicinc.com>
+In-Reply-To: <174059551678.3319332.12055848852503108874.robh@kernel.org>
+Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6dcX6Kl8zFx9s
+X-ITU-Libra-ESVA-ID: 4Z6dt92hKpzFxkF
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741703986.62596@/aX4svbTMMutaE/KfgS8DA
+X-ITU-Libra-ESVA-Watermark: 1741704711.80189@kK6fIFuW7Ksmso8FkwZWJg
 X-ITU-MailScanner-SpamCheck: not spam
 
-On Mon, Mar 03, 2025 at 12:51:44PM +0530, Sricharan Ramabadhran wrote:
-> 
-> 
-> On 2/28/2025 11:36 AM, Dmitry Baryshkov wrote:
-> > On Fri, Feb 28, 2025 at 10:23:55AM +0530, Sricharan R wrote:
-> > > From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> > > 
-> > > TMEL SS provides different kinds of services like secureboot, remote image
-> > 
-> > What is TMEL SS? What is Q6, etc? Please provide a definition on the
-> > first usagem both in the commit message and in the bindings text. And in
-> > the cover letter. Also, in some places you use TME-L instead of TMEL.
-> > Please settle on one of those, unless there is a difference between
-> > them,
-> > 
-> ok, both are same, will expand and fix same in all places
-> 
-> > > authentication, key management, crypto, OEM provisioning etc. This patch
-> > > adds support for remote image authentication. Support for rest of the
-> > > services can be added.
-> > > 
-> > > The QMP mailbox is the primary means of communication between TMEL SS and
-> > > other subsystem on the SoC. A dedicated pair of inbound and outbound
-> > > mailboxes is implemented for each subsystem/external execution environment
-> > > which needs to communicate with TMEL for security services. The inbound
-> > > mailboxes are used to send IPC requests to TMEL, which are then processed
-> > > by TMEL firmware and accordingly the responses are sent back via outbound
-> > > mailboxes.
-> > > 
-> > > It is an IPC transport protocol which is light weight and supports a subset
-> > > of API's. It handles link initialization, negotiation, establishment and
-> > > communication across client(CPU/BTSS/AUDIOSS) and server(TMEL SS).
-> > > 
-> > >     -----------------------------------------------       ---------------------------------------------------
-> > >    |                                              |       |                                                 |
-> > >    |                 SOC  CLIENT                  | SOC   |                TMEL  SS                         |
-> > >    |                                              | AHB   |                                                 |
-> > >    |     ----------    ---------   ---------      |       | ------    -------     --------    ------------  |
-> > >    |     |        |    |       |   |       |      | WO    | |     | R |     |     |      |    |SERVICES   | |
-> > >    |     | CPU    |<-->| TMEL  |<->|       |------------->| | IN  |-->|     |     | TMEL |    |--------   | |
-> > >    |     |        |    | COM   |   | QMP   |      | RO    | |     | W | QMP |<--->| COM  |<-->| a) ATTEST | |
-> > >    |     |        |    |       |   |       |<-------------| | OUT |<--|     |     |      |    | b) CRYPTO | |
-> > >    |     |        |    |       |   |       |      |       | |     |   |     |     |      |    | .. more   | |
-> > >    |     ---------     ---------   ---------      |       | ------    -------     -------     ------------  |
-> > >    |                                              |       |                                                 |
-> > >     -----------------------------------------------       --------------------------------------------------
-> > > 
-> > > This binding describes the component responsible for communication between
-> > > the TMEL server based subsystems (Q6) and the TMEL client
-> > > (CPU/BTSS/AUDIOSS), used for security services like secure image
-> > > authentication, enable/disable efuses, crypto services. Each client in the
-> > > SoC has its own block of message RAM and IRQ for communication with the
-> > > TMEL SS.
-> > > 
-> > > Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> > > ---
-> > > #V3:
-> > 
-> > Creative. Where are the previous changelogs?
-> > 
-> ok, will add
-> 
-> > > ---
-> > >          Fixed wrappings.
-> > >          Made mailbox-cells as a required property and changed value to '1'.
-> > >          Fixed to use compatible as filename.
-> > >          Renamed compatible as per Krzystof's comments.
-> > >          Dropped unused label.
-> > > 
-> > >      Following tests were done and no issues.
-> > > 
-> > >         *)  Checkpatch
-> > >         *)  Codespell
-> > >         *)  Sparse
-> > >         *)  kerneldoc check
-> > >         *)  Kernel lock debugging
-> > >         *)  dt_binding_check and dtbs_check
-> > > 
-> > >   .../bindings/mailbox/qcom,ipq5424-tmel.yaml   | 62 +++++++++++++++++++
-> > >   1 file changed, 62 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml b/Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml
-> > > new file mode 100644
-> > > index 000000000000..2e3c79add405
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml
-> > > @@ -0,0 +1,62 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/mailbox/qcom,ipq5424-tmel.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Qualcomm TMEL IPCC channel
-> > > +
-> > > +maintainers:
-> > > +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> > > +
-> > > +description:
-> > > +  TMEL SS provides different kinds of services like secureboot, remote image authentication,
-> > > +  key management, crypto, OEM provisioning etc. This patch adds support for remote image
-> > > +  authentication. Support for rest of the services can be added.
-> > > +
-> > > +  The QMP mailbox is the primary means of communication between TMEL SS and other subsystem on
-> > > +  the SoC. A dedicated pair of inbound and outbound mailboxes is implemented for each
-> > > +  subsystem/external execution environment which needs to communicate with TMEL for security
-> > > +  services. The inbound mailboxes are used to send IPC requests to TMEL, which are then processed
-> > 
-> > This string is 100 chars long. What is the recommended wrapping
-> > boundary?
-> > 
-> I kept it as 100 and checkpatch did not throw any warnings.
+On Wed, Feb 26, 2025 at 12:45:17PM -0600, Rob Herring (Arm) wrote:
+>=20
+> On Wed, 26 Feb 2025 18:01:41 +0100, J. Neusch=E4fer wrote:
+> > Formalize the binding already supported by the fsl_elbc_nand.c driver
+> > and used in several device trees in arch/powerpc/boot/dts/.
+> >=20
+> > raw-nand-chip.yaml is referenced in order to accommodate situations i=
+n
+> > which the ECC parameters settings are set in the device tree. One suc=
+h
+> > example is in arch/powerpc/boot/dts/turris1x.dts:
+> >=20
+> > 	/* MT29F2G08ABAEAWP:E NAND */
+> > 	nand@1,0 {
+> > 		compatible =3D "fsl,p2020-fcm-nand", "fsl,elbc-fcm-nand";
+> > 		reg =3D <0x1 0x0 0x00040000>;
+> > 		nand-ecc-mode =3D "soft";
+> > 		nand-ecc-algo =3D "bch";
+> >=20
+> > 		partitions { ... };
+> > 	};
+> >=20
+> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> > Signed-off-by: J. Neusch=E4fer <j.ne@posteo.net>
+> > ---
+> >=20
+> > V3:
+> > - remove unnecessary #address/size-cells from nand node in example
+> > - add Frank Li's review tag
+> > - add missing end of document marker (...)
+> > - explain choice to reference raw-nand-chip.yaml
+> >=20
+> > V2:
+> > - split out from fsl,elbc binding patch
+> > - constrain #address-cells and #size-cells
+> > - add a general description
+> > - use unevaluatedProperties=3Dfalse instead of additionalProperties=3D=
+false
+> > - fix property order to comply with dts coding style
+> > - include raw-nand-chip.yaml instead of nand-chip.yaml
+> > ---
+> >  .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml | 68 ++++++++++++=
+++++++++++
+> >  1 file changed, 68 insertions(+)
+> >=20
+>=20
+> My bot found errors running 'make dt_binding_check' on your patch:
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/mtd/fsl,elbc-fcm-nand.example.dtb: nand@1,0: $nodename:0: 'nand@1,0' doe=
+s not match '^nand@[a-f0-9]$'
+> 	from schema $id: http://devicetree.org/schemas/mtd/fsl,elbc-fcm-nand.y=
+aml#
 
-"The preferred limit on the length of a single line is 80 columns."
+Drop the unit address in raw-nand-chip.yaml. So:=20
 
-Documentation/process/coding-style.rst
+properties:
+  $nodename:
+    pattern: "^nand@"
 
-> 
-> Regards,
->  Sricharan
-> 
-
--- 
-With best wishes
-Dmitry
 
 
