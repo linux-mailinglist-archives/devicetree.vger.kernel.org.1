@@ -1,145 +1,97 @@
-Return-Path: <devicetree+bounces-153958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD725A4E6BD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:50:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 686C3A4E6F8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:54:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F1E6885307
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:04:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B16EA8C47A7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA6D24EA8F;
-	Tue,  4 Mar 2025 15:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EB5F26A0ED;
+	Tue,  4 Mar 2025 15:50:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WaTvUjDQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gxu0A/+q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6F7204879
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:45:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEBC425DD04
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:50:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741103133; cv=fail; b=mlTkcHCEExJhf5hO7fMfYqJvzhKVIs/C3YplvJor0Zs3NBxbAk4DS0b44YM8RR/svD5TUarnwlLZhqvnl4B/sE8NRe3DO4CpYxQ6CNnlmmgN5b7mh3H8uz0tmdAMlm+0XStc2IQ0H0HKlfkdu1t1v4KwzRaajxoASpGeUUUx66k=
+	t=1741103445; cv=pass; b=YOcdTvBYb1VYqjycyX0jA4eOJNC87wpAJC73eH6G9AKpFbGIWMeR+81H+G8JawlBSJOWE1WeW6DSk0UFgzVv8YuonHYShnxqXvbTqPcrokze5G4HuS59Ymed4KBCJfOti7RQ/Rg9THOfee8UtsPJf88Ihc5lRT5J22hS8paLGrc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741103133; c=relaxed/simple;
-	bh=A2DhGNw9YXj+yiRvIrrUEzsMLlNCo746xfE24ULxn4g=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=q864XBnk6Q3IVmXxLVd1zcbl4M3qlYcETX7EXH6x5mlH55yWLmAmlkbkDHzuKJT9/tWIXJAt3i886V/g2e76pqu7fKd2rD3bW7iaANCVCfPfnxZ5hb3Kj2niw3r3DtYZfpblijppooYk/IQewCXM0jRdDqwhbMapqKdgZ2q22WU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WaTvUjDQ reason="signature verification failed"; arc=none smtp.client-ip=209.85.167.44; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; arc=fail smtp.client-ip=160.75.25.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1741103445; c=relaxed/simple;
+	bh=4NFD8mCLdjfFv7HK+TuasEXX4+ZXOu+KJooAIqhe+hQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XrKaMzMpBnI08UmXfKHSLqUk/6b6qG/ICwarUEN+vXrZiSR7DpRIZKK+STnHqAjtX0TSRG++x2ewunDRnLs8T9ZIFxH5LvZ6Nzw5BbfGER/ra1VZY71WWcw1DaSDqaA/U4bttaxvwHN8eL0eZWdEStUlic5/JOaq6gvwEwMOD2s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxu0A/+q; arc=none smtp.client-ip=10.30.226.201; arc=pass smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id EFD7C40CF4D9
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:45:29 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 2D4E040CEC89
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:50:42 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
+Authentication-Results: lesvatest1.cc.itu.edu.tr;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=gxu0A/+q
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6g2T1qNGzG1B2
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:43:45 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6g6k28WSzG1Tr
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:47:26 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id B3F9F4273A; Tue,  4 Mar 2025 18:43:36 +0300 (+03)
+	id B54D44274E; Tue,  4 Mar 2025 18:47:18 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WaTvUjDQ
-X-Envelope-From: <linux-kernel+bounces-541664-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxu0A/+q
+X-Envelope-From: <linux-kernel+bounces-541678-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WaTvUjDQ
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxu0A/+q
 Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
-	by le2 (Postfix) with ESMTP id 8D53D422D5
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:09:06 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 9344C4235B
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:14:26 +0300 (+03)
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw2.itu.edu.tr (Postfix) with SMTP id 22A5B2DCE1
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:09:05 +0300 (+03)
+	by fgw2.itu.edu.tr (Postfix) with SMTP id 285842DCE0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:14:25 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAF7E3AB209
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:05:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 472A33B0C23
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:12:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6C520E701;
-	Mon,  3 Mar 2025 12:05:15 +0000 (UTC)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7107520E716;
+	Mon,  3 Mar 2025 12:12:35 +0000 (UTC)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038261F3B92;
-	Mon,  3 Mar 2025 12:05:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2659204092;
+	Mon,  3 Mar 2025 12:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741003512; cv=none; b=LFLgEtpC9fs3AVG7Q/wvxFKtNPu1OR7Wl3Z1+eF1AgM+NonNykbDttG6SbmVUOr248ujIZ1gJMaz2M7PjrXhGTd1G2/bx8ieaPD1mI4NGmqAPJQj/jULS250gaiS6fuc4FDUYDUJ9WdU3GSMrkSvPnkQq+idWgLfIOhy19gPn98=
+	t=1741003952; cv=none; b=AcXRI2GiOSX6VIUJh0wXAvf0h/USpfcdUFUWFOaNNQ8pfhLQaQtX4Eh1rwOuvxXHUiJI3DJLKwZNafpo8RjQfU4jezIDwR650IJglJiM/f0rD0a32oyYT+W90q5iup2Pcf7atYBIlWvrJrnzohWc2W6jQ+JCO/2u5Um1V31rPuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741003512; c=relaxed/simple;
-	bh=KPrNJ2CjcJgUp4GR4bg6cHXy5cWcuRUCJUll2hZL/t8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oLVZ2E1RhgCeRkDrwVCEZc+TOf2cMIV8aJmamfqKfXK3LtHamgrLOjekaIqI5IjmeHs7UcH5/PiAZLlxRTAyD5qytxtTnxy9PNKVG6aUr+YBylJ7qEkzRc1hYz2KU/GH3Aibvxwe+Ttedt0RsuM8z+T9lsdzSlrELWt3yHklLDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WaTvUjDQ; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54957f0c657so2732891e87.0;
-        Mon, 03 Mar 2025 04:05:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741003509; x=1741608309; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZD/Y8XoH6xZnndtrVVRfg4SWXIuS1zcDn5ZHGdab0Cc=;
-        b=WaTvUjDQYBGNMCcbJlFB4tgXMQ1WqJXxA5dkRp+C0woXNfSGtI57GIH0u2nl4D48h3
-         atGGzTddo0L/tkBCH6vJ8KCbxvyrzZLamJ8Y6WNOKI5a2BseX2J3hdol9SHyoES5n/8j
-         BsJ7llJD1TkdGAvCm7rOxwEEgX70MKt9xeLpIpDH2rUcSt7zuOFYf8z9zp/+iOqKNxRY
-         S+569GXo7iqWAqT4AoeAWogl1N2i9aQuzGHgaz+pCoRC5ixK2mn0igCtpiR5TDXzaRFo
-         cW+KctsQCG7kJDRQ6uRUH6Uud4WQrXYeRD9e7+JkLoeD+EGtWvf9yRisn5wQYSrILKhA
-         OSog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741003509; x=1741608309;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZD/Y8XoH6xZnndtrVVRfg4SWXIuS1zcDn5ZHGdab0Cc=;
-        b=DHKhFP3y1k9Y9c4jC05Pl4e09XJbArX59rqAm5/o1Hs4oD6fcKrSoZOiKgY3mh5+cj
-         jcI28QtAeAahumuoJdZCraVauATvoIeaBsQlvEzEiSqjbmrK6ewuKllyGop0ARE7dUp2
-         TpBl6kwBSFEhCmJrC0JdnEPbOGFQG6bPUZn2LfnKimd9w//OCGOl0uUOnAjB1lNXiOZE
-         TIIzpmujk/LvXrJlzJ1LX6rCjqUGSBJ6V+G34atap0JywuV6NzQVZN6vomYt1le+tVc1
-         0GxGU7idUWT/BY+sQVNGgj3p3ihIMj/bTaQfzxLkvLaLrhSSdAWWVygFzncFcrO6EiSI
-         q/9A==
-X-Forwarded-Encrypted: i=1; AJvYcCVpPjbmt9KfM1N/5dmsSOQ5LFEp4W/wFQM90MLvmUrvVH9otURWN5oWeixpieCO/o1Sos2mb1l8T1VE6IhZ@vger.kernel.org, AJvYcCWBe0J4XDcxunKUsGE0NnwCjyrzSpgVTapw0rTVcLTZpj4neP1WgEP8VWSC17d+HV/xBSl8rZrS5biV@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZg1DkyUxmb6GEsK0KugHGn+zp3znHRoUvIwZqWaVgRdgTujQf
-	mngaGZGhcqKESTFmpi9fBKa272Cxnna0LrGZi44+h402yha/WCdp
-X-Gm-Gg: ASbGncsc/imUGeI56e0US2FIGsZFNa3rpVOgbfgGxxXKGMmEGF2LVb23D9dq66dlEjn
-	DFq2YgJQn8FTscfe4YoF3r1/zwHT1rSCuczoDJJvw9Ckh39Jj4OXiEHVmf8pIMiu06YSvapwzpN
-	ZmP6nBiGq2i58sPdZh2mBRCAotB6XK+VoIt/NM4w5Ry0rhRS5FguRBjXPZv/6rc+zrTknlOr8YJ
-	dYVzxOtBG6iKqts/7pSR0/9BrBUbJ9Lv7TtP1yPFbIDKpZUFVsDf8pYBwB21a/WhNzTwFSEYby3
-	hGHGvXqCONjeFfvGPEfTcQLrNxAJ9LmYyszA
-X-Google-Smtp-Source: AGHT+IFajLosPc/MMTY5likqjVO4/GgB93fvKU661xoydwj1RgBeY4c9Du1+nVVmh/F5sHfpMzHNmQ==
-X-Received: by 2002:a05:6512:ba8:b0:548:878b:ccb3 with SMTP id 2adb3069b0e04-5494c3756a6mr4633661e87.25.1741003508733;
-        Mon, 03 Mar 2025 04:05:08 -0800 (PST)
-Received: from xeon.. ([188.163.112.51])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549576b88d9sm869095e87.12.2025.03.03.04.05.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 04:05:08 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Maxim Schwalm <maxim.schwalm@gmail.com>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 0/3] drm: bridge: add support for Triple 10-BIT
-Date: Mon,  3 Mar 2025 14:04:52 +0200
-Message-ID: <20250303120455.90156-1-clamor95@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1741003952; c=relaxed/simple;
+	bh=4NFD8mCLdjfFv7HK+TuasEXX4+ZXOu+KJooAIqhe+hQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dx7J6WfbYW/ANJwLbJNF7jZlIG+PIYMTxd9uAAGBok9ahA4+LVSuujRHBFMOxILe55DFWzh/Sw+tVWxPcUTWRw3EKjhFRmdpRmbLbwqQbbszkOL0Neup1Vu6E9DGDgLOtDZuYFHn0qy3RUu/mmfEFosr4LWT7tzdLp68TC60W9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxu0A/+q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6797AC4CED6;
+	Mon,  3 Mar 2025 12:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741003952;
+	bh=4NFD8mCLdjfFv7HK+TuasEXX4+ZXOu+KJooAIqhe+hQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gxu0A/+qtayq7f9bVNUpb7d8CFiJLOMDjKotEE32PQzuGyMBf1iSVKY1Yp0qDNPny
+	 jFLZragyb/sCZog1Bip5ziVFU3ZZLgpK3WVa8hUQXWDKyT9E+TGL1QLr8/64eC/BgK
+	 1x/G1aptrFwA4m34hiRG1OZIGSURGNMIFyKew2BhBViKXGhQCTWFKJ2jHNLvEFfFcQ
+	 2TRyTe82HyGry37+094pLNk2sSk938euZY3enzSqcFoZypDq0LyLXJfEbguMakuiXy
+	 aivbSX8FSLjWkdews1IOwLnhNOT6Kq/CzlDcSSorB6MOmkYOEIYMFRGXzJYGDdg/AH
+	 As1sj2rnavWZg==
+Message-ID: <fa239ce1-add4-4199-a57b-3c91a2118e2a@kernel.org>
+Date: Mon, 3 Mar 2025 13:12:27 +0100
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -147,45 +99,92 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: drop video decoder and encoder
+ nodes
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250303-b4-media-v1-1-ddc5c81cc2b3@quicinc.com>
+ <9cf0f5cf-1287-485c-a75d-1a4333c6e457@kernel.org>
+ <7b3b52a7-5a4b-b34f-3450-8e4a60ade22c@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <7b3b52a7-5a4b-b34f-3450-8e4a60ade22c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6g2T1qNGzG1B2
+X-ITU-Libra-ESVA-ID: 4Z6g6k28WSzG1Tr
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741707840.26548@ZUglOIzSWuAh/wxL+BjWgA
+X-ITU-Libra-ESVA-Watermark: 1741708144.0277@lxEeALMgF1veVJB0dZzQ/g
 X-ITU-MailScanner-SpamCheck: not spam
 
-Triple 10-BIT LVDS Transmitter is used in Microsoft Surface RT and
-MStar TSUMU88ADT3-LF-1 HDMI bridge is used in ASUS Transformer AiO
-P1801-T.
+On 03/03/2025 12:59, Vikash Garodia wrote:
+> 
+> On 3/3/2025 5:06 PM, Krzysztof Kozlowski wrote:
+>> On 03/03/2025 12:01, Vikash Garodia wrote:
+>>> Decoder and encoder nodes are already deprecated from bindings. Update
+>>
+>> Deprecated since when? commit or release.
+> commit - 459997e8990d9cdf7fb126057c31ec0ca8ff66ca
+> 
+> https://lore.kernel.org/all/20241230-media-staging-24-11-25-rb3-hw-compat-string-v6-3-a4d5070d3aaa@linaro.org/
+> 
+>>> the venus node to align with bindings.
+>>
+>> Since which release kernel does not rely on these?
+> I can see in 6.14-rc1
+> 
+Then both or at least the second part should be in the commit msg.
 
----
-Changes on switching from v2 to v3:
-- place mstar,tsumu88adt3-lf-1 alphabetically
-- fix typos
-
-Changes on switching from v1 to v2:
-- sort compatible alphabetically in schema
----
-
-David Heidelberg (1):
-  dt-bindings: display: extend the LVDS codec with Triple 10-BIT LVDS
-    Transmitter
-
-Maxim Schwalm (1):
-  drm/bridge: simple-bridge: Add support for MStar TSUMU88ADT3-LF-1
-
-Svyatoslav Ryhel (1):
-  dt-bindings: display: extend the simple bridge with MStar
-    TSUMU88ADT3-LF-1
-
- .../devicetree/bindings/display/bridge/lvds-codec.yaml       | 1 +
- .../devicetree/bindings/display/bridge/simple-bridge.yaml    | 1 +
- drivers/gpu/drm/bridge/simple-bridge.c                       | 5 +++++
- 3 files changed, 7 insertions(+)
-
---=20
-2.43.0
-
+Best regards,
+Krzysztof
 
 
