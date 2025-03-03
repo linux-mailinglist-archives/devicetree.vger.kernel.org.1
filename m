@@ -1,215 +1,515 @@
-Return-Path: <devicetree+bounces-153457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85123A4C940
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:23:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49692A4C961
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:28:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0323E1888B63
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:18:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD5E916C35E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAF221E091;
-	Mon,  3 Mar 2025 17:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A66C23ED58;
+	Mon,  3 Mar 2025 17:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MJugn+Cj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YyhMCfz9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013004.outbound.protection.outlook.com [52.101.67.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D842C214A7F;
-	Mon,  3 Mar 2025 17:02:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.4
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741021335; cv=fail; b=YNAIc5saj3gxpUo1BHSJEQTihmZLwimAHUCaJhLdYd85TavaSVOeKNSQb6VtCEoOtqPV8r9zXNuR1uHUbtvE0pNm8ASub/IwiOGCBUXy2xOUlBmv2tueLbSVAmZ7xR2LKIyBdqTkNQczeBJ7lWrtB0SwIAmjYYxGDR+sE1Ct6No=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741021335; c=relaxed/simple;
-	bh=xEevRscg2+BJVnLTuSOpzr0SQezERrqhexc9nAQjfTM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=gQx7b7zMST0w3OBqMnfKE29bzbsl2yejLkq2hFmGvrye2l0BEsB2of8iLL0OVPfOzedxyqURAbNN8ZOmAvMrY4rAhLQLY/kESFrh90Q+vxpwdRQTkxZLYwbF7W/kfTl61SDBKKt0LIcLpLNiy509p26WpMmyQ8i0wycI2aUnqzs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MJugn+Cj; arc=fail smtp.client-ip=52.101.67.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jhFwIvydVdT9yspwdS5VulKdwS5bzev8VVx7EMXwm28g13ATxVPv6okSgsTqNvHHmIruQ1VINkiiEDDhELJLedVCZ9zvx8ZtZ6SINrf9C0p8Hv9+TcjJ1szXCo2m3EBuzAjVxmXuAFWZdqK1HD5H8gBKa/HgSTdQGKdW+mhw4zPuOUW6Bsb6wi6JZbWQQ9HAgRx1B8KutzDMFtQt+svub/BAbTFYNTWDlXTQ+JJ/+tnz0689wNb/Qr3o2ppMGPA4em7Agl9ggTctbO+W92QqBX2Jbr6bmILUZJNSsmEJYz0Dogu2t5F2XQoMjBHTHhjMl1L7dgjr5KyBjAX8IcOwtw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mSZ8Nij9Yn/j6LkC5iT4+Fg9imcYLwhsRLDRaTlquRw=;
- b=r4uVUaBthvjV0TXYUX3R0ZNucZ1juEeTyPXObJd8k+V3F7DhMa4QVM86yT6o5e4maI9kotsgeWDTPZSSgl7l8E1YhLswVK0z8yvG+8j09aIsXfZek72Y8ITr/ac/vp1TOVwZiNWphMFK9QSB/Q0oI6M2PgmzfBEYFXuAEE5gCVB3tbGcmhrgybVhnA6bEeX+PVZBovn37jEQ6i3HCtyYGx0Jda2SzuodA9NkwUcCNSeYabmOlHV/BdTYAerdG9zR8RCdDU+IV27LWqyVG36s2PmfcPllB+6g9/3F+DtveclrLzYcKg5D2j6iG1y+ghCaqr4J0euhas7st6sQvk6otg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mSZ8Nij9Yn/j6LkC5iT4+Fg9imcYLwhsRLDRaTlquRw=;
- b=MJugn+CjmNTIyN4cmpgyAcKNUZbqUAjtGbM/7GaWZofXhsTwyFtcPXNRlhhs/Znu509L0IRZWdyExyLmCINrDmC6wnHcznGrPFjguLIl+vVS8opgnaRuVkr9F4bVTmnoSpwMvLYArBBbmv+qa88WM8BR+Jftg2Zsy4BCie9rvJlPlj0dy1sQZZrAhKc+q9Hj4Fqvme9EWfMIFdADA7CqAyBoB/b6F4zy8CqgtOMgZdPBjkPacQhnRQXc5He35ZRTMm4CEFujR1e5p5time3gRLHlOqbzE6JtAzOieu5ayD7MeZnmoauObicLWalp4d8X1ApSwvbY+YE4YiapQjWzvw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DBAPR04MB7208.eurprd04.prod.outlook.com (2603:10a6:10:1a8::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.29; Mon, 3 Mar
- 2025 17:02:08 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8489.019; Mon, 3 Mar 2025
- 17:02:07 +0000
-Date: Mon, 3 Mar 2025 12:01:56 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>,
-	Shuah Khan <shuah@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org,
-	jdmason@kudzu.us, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v15 02/15] irqdomain: Add IRQ_DOMAIN_FLAG_MSI_IMMUTABLE
- and irq_domain_is_msi_immutable()
-Message-ID: <Z8XghE/VUrggdN7V@lizhi-Precision-Tower-5810>
-References: <20250211-ep-msi-v15-0-bcacc1f2b1a9@nxp.com>
- <20250211-ep-msi-v15-2-bcacc1f2b1a9@nxp.com>
- <86plj1ovkk.wl-maz@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86plj1ovkk.wl-maz@kernel.org>
-X-ClientProxiedBy: PH2PEPF0000385C.namprd17.prod.outlook.com
- (2603:10b6:518:1::6a) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39BA31C84A0
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 17:03:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741021424; cv=none; b=R8x/Nop82RkVj1sSjRSDhBhKwWlajsThuEB1Vx5XxuHtfg/DoWnxqslNRA7T9GULKwjT6sfL4avlGd2r5brrsLW2CMskU8SmP4WcdpVl4gvQbKGL0wzxQbvGok1fQ1vFQJA0u5wIS4f4AzLB4dFbdU8V29jFp+pIM4dsdd4Pyf8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741021424; c=relaxed/simple;
+	bh=GvokUAQtkkNe/nhzRAoGGafvW7hRfXZL+Qub0ygrecE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=B1+sQTJgbrxhENPCyRbJTMW1QXSKCqaUZykyduQ7nyDxhSxwTcGGuKqK8QYO6jn6MwBPvRxyzzLY3BowMvw0pRqeN8D3rSXUnt/YM2ZNi52RXgQZtSKirLVPJLk4KktCFWR2jgBOMCWM1DRPzmFjxnhrz/N6MF2jWNM7ecDNQUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YyhMCfz9; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43bbd711eedso12379055e9.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 09:03:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741021419; x=1741626219; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WttFvxMnC39t+/uLxm6NMSdvdaSmYQi6clvcuXpgabg=;
+        b=YyhMCfz9ZQRIZ4KyZlVa6tSMt+dm/pQEqIFiWFEmfsLRyR6TZSD5Pp3fl34sKmSq3R
+         DyOcmu+JNfDX/dCaEluDkU3wImfPESqABAOMo4c/fHQ8mTTreLjRZH1OOwJ7JxtB9Z7C
+         W9yuz5gcbgRV0pC452YQx0BCdwcN8t+TAD7PZFLTvLAIZlF9HwTGGqfGIu2e7WEyS+Km
+         HpxICI+ka+hJtgAGoXHLage0e/7zqXB4rTfE7+oUi59bx2dPFlhn6tdS2OKettesaTVu
+         wKN1lxcp7OU7wkgBT3U1qfJT7EVXNyzSmxke207oBBXF1pytrBBzb+HrlNKCWBcEnNkv
+         VtcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741021419; x=1741626219;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WttFvxMnC39t+/uLxm6NMSdvdaSmYQi6clvcuXpgabg=;
+        b=FiE/wt3/FkZVrvY5MsZxmo5k3b8SynN7O7PyMNRwyHJG2tMUNDMmXbg6mtAQz+iakz
+         fHLamWTgWcHiZxaAYw6nsXnNvnXk6g77THIx+9TFpGXPMRYY/w/tFFL3zN6c7WbMGlsV
+         AnVUXzWQ7MrpZr6H1r/xfEIyWEoPD36/rEh+SHGfD27LL+NpLnhYvR38i7nv+tpsq8+n
+         n49uJ36K+X7trjVw6hxj29JDDeSOZnkL5giwAUxzyCo3FsX7+fq3AkJtrGNuv4cZjpSf
+         aRC2GFhzmuvF7jZD08VogANi0ZscuhLBxM9MOf2dwcufvTlz2WwqFIxLMKRQ9MTAKZth
+         Tjvw==
+X-Forwarded-Encrypted: i=1; AJvYcCX/TxuCp2snWyahjf6VUd1Mzk6QKvKAXpNNrIgyKUFRATRHZZolXWW6nLGmoHzim37dWLot4CBlYpJV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwATBEhVBxifyXjRYsxXFIdOQuI2hAQpx04nZW/lL10ZQtsKeqh
+	dP2ERo5gphqfBSFIRNAnFdWKpu0BuATkCiLydLj8e2JLLV/r8wKpMng4XrxjJkI=
+X-Gm-Gg: ASbGncvvs13KXepWzk0RuNqcDdM6K8P/V4pAq0U2usxe2ENM33hqPKU91F9SnecFBld
+	0VGOEZXr58ze9vW4eT4f2ntlUl52U0qNt/2wvnLVSE3JnwqsZxxK0ybtV+VyegrufmPHuBCPOGt
+	FJvl7Jm0BKP1pNAPC6hlRKgnKUSqb4qQ2XkGaoq/Woxb+C5rFdGfVE8xdRFRjREKHSGackImp9i
+	LQHu04eBCl95tlxkAcjkA0/XGPS3gJsgsCtMv9Xd58lAxl8CSPqFxIh9LhFnhUDrwkA+LdfTH0B
+	ww543Iph+7nK3rP8Qt9HbPnf9sueTuqS+4EhBZOH2Ul9yMEofp5fGomlqyQMhbjWnhu7nXTLOjD
+	bEwH1p6Esrq0XWmVfFWj7/w==
+X-Google-Smtp-Source: AGHT+IHvufe3CgpiIdDLoT9kc1+CaUchsJQ6hh+/zfRty/L4HVn0ED12FkFk55fe9K8lX9Y14D1zUQ==
+X-Received: by 2002:a05:600c:1c8e:b0:43a:b0ac:b10c with SMTP id 5b1f17b1804b1-43ba6744a10mr97126385e9.26.1741021419214;
+        Mon, 03 Mar 2025 09:03:39 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1c49:dea2:d749:5015? ([2a01:e0a:982:cbb0:1c49:dea2:d749:5015])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43bc743f649sm23415205e9.27.2025.03.03.09.03.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Mar 2025 09:03:38 -0800 (PST)
+Message-ID: <d94e52a9-b678-4750-a85a-39d06acfe13d@linaro.org>
+Date: Mon, 3 Mar 2025 18:03:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBAPR04MB7208:EE_
-X-MS-Office365-Filtering-Correlation-Id: b05955af-0949-4b4c-2a21-08dd5a752173
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|7416014|376014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?QJLwg3RZmxbzM3EzNpw7VrFIchIIWhCJxB7ZivKX+yhEypSVmwQs6PxuEavl?=
- =?us-ascii?Q?CC85TTsUMoKRtuA+xpFEijkszw4unbIDzH24qRdjsUIWIRpZ41Hw10XFxuIk?=
- =?us-ascii?Q?dBmoZ+W+ReB+s0VQ3pIaloE8gN+yX/D1dLAqSkLS0fuXN0UYXnK9z8xDB4Y1?=
- =?us-ascii?Q?lbql5xu42QI4yt7lhrI03RuSs3hV1Ovu2F2R1DGVefpb+bd55vwmHGP5cPJ4?=
- =?us-ascii?Q?uDK6XWmTkimRS8FlZWo0ZmQT8Sw3fBbi6ARXv+lbCNOwmOuPZEY3Tt8NmVNJ?=
- =?us-ascii?Q?7RoywjjMsOMVsy3L08RGSJj7uyl+C2zAy+2gXcSSOZfd57TJbNer2a1ztNKo?=
- =?us-ascii?Q?B5xCt7TjeRg/MxUxWu3KJT8RJWIbNx9Y60FLeY9wFXtH3NAc92YB+b3wE7MR?=
- =?us-ascii?Q?TrbVwsItBz+9WxoKT4qLu3SR41dhNCv9KpoGy2426JmDXeRZmP86z/j3GXPn?=
- =?us-ascii?Q?SJqpy01JqjDltWRoZjzWJU5w2eeDRjQmfXbbWbucXpPDJDBrgSoqEfAOS3x0?=
- =?us-ascii?Q?cAIH7gSjvMUGOUKLNXPK4mUjpeieHooeCvlkdahNZgpjyRxgmmzLqyrV745w?=
- =?us-ascii?Q?D/UJ4x9q0UJ/JhFLM7AH5nAqyC+A3QuQYRWxy9yKLl5ypjeR2I3m7kuTxSs0?=
- =?us-ascii?Q?vJb29dmshazMjDBoNGlRDEWBEllRm9Jy5icTMETQZ08pcn3Zb0MwWsz1wUdd?=
- =?us-ascii?Q?Y6QfZNvOJzCdqhH8xtDjNIcmOsHxlHoscE7PyVY7m4wzfYCizt8z9NX2Lzb1?=
- =?us-ascii?Q?JUXdOttX+zdGPjjtrJulY0OTEykyD1+RDb10OHW16cNq1aQxNlBOPrKlLNGZ?=
- =?us-ascii?Q?bMmRj0xn1iA+1BbLhT5aSIV2gQ2lfhdK42pd/ZL3dFHKwBQVdxb0SnpkErOB?=
- =?us-ascii?Q?0jVJrgvAOfY+F04IZlw5DylhXxFMDfKgq72cXwCzKYVp+m0XiLaG6FbWL+EZ?=
- =?us-ascii?Q?iMLz8F7KYEDDwyD5VwO0VYkEe4z7Mt9nyshS7oYtapOUvkDtE/fYya8Gr6mI?=
- =?us-ascii?Q?/hyhgQS092d25pWle6/+5A+BG3Jb1R4YwQ+Qk9gXirqknew5f3PwFwj03ncN?=
- =?us-ascii?Q?JchGhsfTSFgxBLpPLamQWhcmr/U60692RUtNioda48+n3wYeTvMPmXrl7KX4?=
- =?us-ascii?Q?23yzHHpkvlSujhMekv5PpPLLudX3QRip79ClYiYt6AKXg7U1bCoO6txpQ9ki?=
- =?us-ascii?Q?o6EWNsnUSTdfIFKRa5Ikq0ham3nDZPopRmAEYz0Zu6gWfENHH1rsMGa+kidS?=
- =?us-ascii?Q?7pPgBRB50lwOG3o01QIS99mA6msF9YyPw8y6pUxY2z9Y8eRo2VpSDdzY5DV9?=
- =?us-ascii?Q?Ql/jmyU7AtfBhKz/r7Ci6FLZeeLgpVdscgIfFNpBEFxU3qjoDNk2/08iyGEQ?=
- =?us-ascii?Q?PDODw2Demrlgph0P9y+IhJFNPou0y8EX27lxqgd8GNR+zbvQNW2lycCDAIrh?=
- =?us-ascii?Q?iOuqU0oKTn08YRfpBiuQ2eNY1+SVMsXA?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?2ZOoVcyCKrTC34UmNSo4KIh7wbOLsxrxA56cVVlm2mk1yau+XhY2gtIr+OqQ?=
- =?us-ascii?Q?KZu65M290ANhVYhjbEbF8nQ6aIg/X7dfsP5L7ol8MFbTdwBxiRJnYX313Js6?=
- =?us-ascii?Q?2svIY995RYDq65AYvIpol4m+TJFaE2I2ccWZ38fTIgOOrkbXAHBNByMUHBHB?=
- =?us-ascii?Q?Gv0muadALLPrMoK2iShn8FRPVoe8E13XUfD4avkQ2XqbucZQZ2vqS8YyqB9G?=
- =?us-ascii?Q?FoMbryepvm3WbITXV861N0hNDbxkKjeO/X6zdbi5Cv0JEIZMEUqGbcpxbNoF?=
- =?us-ascii?Q?vbZCplX12Z10B361DAB0yyfnKCf49G1WE96oDHewQaub/PtB7C3B6FICD4gY?=
- =?us-ascii?Q?GfEgKYRBjxJkUKdTlRWj+IbYOwM25iZkTmpJMv4SsmSC6uvq9pPTgXR1gLoi?=
- =?us-ascii?Q?ZmB/1iX7qL/YlpPuKIM1kM16r7awbg8tTsIvuvF2ryOZoEs/c7C6tJI3Csy0?=
- =?us-ascii?Q?znt3CtBkeAXaTohhcVv9MkaT5uLnmRS4ST83QOV11XYhWpgnvsB23PNABZkk?=
- =?us-ascii?Q?uQlVnhdiybKeEJGLnX8dfyceDHKkCuB85eKydL2b1XlmMb+Ua87wZ1e+kFCI?=
- =?us-ascii?Q?szALxmK9SzEN/TKAGmIpmrs9pXxxoV2ZzadnJhc+HcoyfM8UhyZha1L26b/a?=
- =?us-ascii?Q?HsX3g4pe7Ivia+JjCETetV7ytwSQUQOXQZJKx9R2lH7TBFPE6sTM6hf7cudz?=
- =?us-ascii?Q?G0djXKLyKa4JvKStuCRRt+c1MXSz0F+3mFs6jjbrhNBQ/NKu5aepZvWGblgX?=
- =?us-ascii?Q?OZACZIADRQLhbK8lIJ1HZLv5rLYY8Eibfy268dsExdio4r3mZwOIJv3zJIRr?=
- =?us-ascii?Q?4uEQoKjLiPyjFRCUuUm1rCeb6KNj56bjP06pvHgbhPeYBmYhQoYt8oYmnZDB?=
- =?us-ascii?Q?+Y0sL0IzuZXolLIeit4UfxDJzlA/da4O1drjprv/T8OkTQxISXUvViyWozd8?=
- =?us-ascii?Q?gPWHS/9gHWq1bUSzocKeMMGqeMSD3lZwyyDhS2Y6au68EqlfXaUoJys+s075?=
- =?us-ascii?Q?n1nNXwakRg9P4CxtOvrdMFSYJds8em7wb0Y7JlOrGjEZlStXE9LcYgbQAEV0?=
- =?us-ascii?Q?7LLlIGLvDm1Wb9Q0CsNwrepoxCTnTFYXtiU9YRKNyLR/tr6QpsuzQapW+9X9?=
- =?us-ascii?Q?K/DejBc1HQE1YHnvFhg4JLlHnstgdrsA0ASL0RAso3ed6Sno7f6VK8M3hh81?=
- =?us-ascii?Q?mMbNRtOqS+4jfAjLEm0UmBuKWHjByI85U2KS9YXQuEOB60lbMUNeT1iuDr4R?=
- =?us-ascii?Q?WVA07D4PcKThFWeuTW0kbo72OoSoGuJDqb1Z3PBQN7KPzbiJJrdcJ6FEGHTy?=
- =?us-ascii?Q?uEiYvsC6pyX2HV0tXB2Z7rfhV5DMLJOLgrcQWItZmgnQLgI2Zt0hsON4QW3d?=
- =?us-ascii?Q?P6PoMh+L7Y76PUv0OKzO2HeTzZemRwq4AzF35dnsQehSUN8Mm5NwoV7/52t6?=
- =?us-ascii?Q?507PqVfErl1X4DdBYdVsAH62EELdOZ2+Bz+I5Rl72DVPqiQFVNgLmjNyNFja?=
- =?us-ascii?Q?GBP0NlT3b/F9PGpZ+PbYvW3c6TWI/pjgvoPkfr7zmeje70PN5sDwRe03kiDk?=
- =?us-ascii?Q?+DwtMWCHRxGOqrQAr1dsUuB1jDTbOBPr4lcwq2AM?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b05955af-0949-4b4c-2a21-08dd5a752173
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2025 17:02:07.6549
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ccr2rX1yV7qX0kkXRXtwG0wgUyC2JkVXb5I7bkHQxhs05K+Mob2nWCh8+Dkn6f1Cmh85nENTjYMZiHWjg46SXA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7208
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/4] media: platform: qcom/iris: add support for vpu33
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250225-topic-sm8x50-iris-v10-v1-0-128ef05d9665@linaro.org>
+ <20250225-topic-sm8x50-iris-v10-v1-3-128ef05d9665@linaro.org>
+ <97a85e55-93b1-764c-9566-2cff7420918c@quicinc.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <97a85e55-93b1-764c-9566-2cff7420918c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sat, Mar 01, 2025 at 11:10:35AM +0000, Marc Zyngier wrote:
-> On Tue, 11 Feb 2025 19:21:55 +0000,
-> Frank Li <Frank.Li@nxp.com> wrote:
-> >
-> > Add the flag IRQ_DOMAIN_FLAG_MSI_IMMUTABLE and the API function
-> > irq_domain_is_msi_immutable() to check if the MSI controller retains an
-> > immutable address/data pair during irq_set_affinity().
-> >
-> > Ensure compatibility with MSI users like PCIe Endpoint Doorbell, which
-> > require the address/data pair to remain unchanged after setup. Use this
-> > function to verify if the MSI controller is immutable.
->
-> Why is that a requirement? Why should a driver even care?
+On 28/02/2025 12:39, Dikshita Agarwal wrote:
+> 
+> 
+> On 2/25/2025 2:35 PM, Neil Armstrong wrote:
+>> The IRIS acceleration found in the SM8650 platforms uses the vpu33
+>> hardware version, and requires a slighly different reset and power off
+>> sequences in order to properly get out of runtime suspend.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/media/platform/qcom/iris/Makefile          |   1 +
+>>   drivers/media/platform/qcom/iris/iris_vpu33.c      | 315 +++++++++++++++++++++
+>>   drivers/media/platform/qcom/iris/iris_vpu_common.h |   1 +
+>>   3 files changed, 317 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
+>> index 35390534534e93f4617c1036a05ca0921567ba1d..6b64c9988505afd9707c704449d60bb53209229f 100644
+>> --- a/drivers/media/platform/qcom/iris/Makefile
+>> +++ b/drivers/media/platform/qcom/iris/Makefile
+>> @@ -21,6 +21,7 @@ qcom-iris-objs += \
+>>                iris_vdec.o \
+>>                iris_vpu2.o \
+>>                iris_vpu3.o \
+>> +             iris_vpu33.o \
+>>                iris_vpu_buffer.o \
+>>                iris_vpu_common.o \
+>>   
+>> diff --git a/drivers/media/platform/qcom/iris/iris_vpu33.c b/drivers/media/platform/qcom/iris/iris_vpu33.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..128a050f206f99ec0d43b97ff995fa50d5684150
+>> --- /dev/null
+>> +++ b/drivers/media/platform/qcom/iris/iris_vpu33.c
+>> @@ -0,0 +1,315 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/iopoll.h>
+>> +#include <linux/reset.h>
+>> +
+>> +#include "iris_instance.h"
+>> +#include "iris_vpu_common.h"
+>> +#include "iris_vpu_register_defines.h"
+>> +
+>> +#define WRAPPER_TZ_BASE_OFFS			0x000C0000
+>> +#define AON_BASE_OFFS				0x000E0000
+>> +#define AON_MVP_NOC_RESET			0x0001F000
+>> +
+>> +#define WRAPPER_DEBUG_BRIDGE_LPI_CONTROL	(WRAPPER_BASE_OFFS + 0x54)
+>> +#define WRAPPER_DEBUG_BRIDGE_LPI_STATUS		(WRAPPER_BASE_OFFS + 0x58)
+>> +#define WRAPPER_IRIS_CPU_NOC_LPI_CONTROL	(WRAPPER_BASE_OFFS + 0x5C)
+>> +#define REQ_POWER_DOWN_PREP			BIT(0)
+>> +#define WRAPPER_IRIS_CPU_NOC_LPI_STATUS		(WRAPPER_BASE_OFFS + 0x60)
+>> +#define WRAPPER_CORE_CLOCK_CONFIG		(WRAPPER_BASE_OFFS + 0x88)
+>> +#define CORE_CLK_RUN				0x0
+>> +
+>> +#define WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG		(WRAPPER_TZ_BASE_OFFS + 0x14)
+>> +#define CTL_AXI_CLK_HALT			BIT(0)
+>> +#define CTL_CLK_HALT				BIT(1)
+>> +
+>> +#define WRAPPER_TZ_QNS4PDXFIFO_RESET		(WRAPPER_TZ_BASE_OFFS + 0x18)
+>> +#define RESET_HIGH				BIT(0)
+>> +
+>> +#define CPU_CS_AHB_BRIDGE_SYNC_RESET		(CPU_CS_BASE_OFFS + 0x160)
+>> +#define CORE_BRIDGE_SW_RESET			BIT(0)
+>> +#define CORE_BRIDGE_HW_RESET_DISABLE		BIT(1)
+>> +
+>> +#define CPU_CS_X2RPMH				(CPU_CS_BASE_OFFS + 0x168)
+>> +#define MSK_SIGNAL_FROM_TENSILICA		BIT(0)
+>> +#define MSK_CORE_POWER_ON			BIT(1)
+>> +
+>> +#define AON_WRAPPER_MVP_NOC_RESET_REQ		(AON_MVP_NOC_RESET + 0x000)
+>> +#define VIDEO_NOC_RESET_REQ			(BIT(0) | BIT(1))
+>> +
+>> +#define AON_WRAPPER_MVP_NOC_RESET_ACK		(AON_MVP_NOC_RESET + 0x004)
+>> +
+>> +#define VCODEC_SS_IDLE_STATUSN			(VCODEC_BASE_OFFS + 0x70)
+>> +
+>> +#define AON_WRAPPER_MVP_NOC_LPI_CONTROL		(AON_BASE_OFFS)
+>> +#define AON_WRAPPER_MVP_NOC_LPI_STATUS		(AON_BASE_OFFS + 0x4)
+>> +
+>> +#define AON_WRAPPER_MVP_NOC_CORE_SW_RESET	(AON_BASE_OFFS + 0x18)
+>> +#define SW_RESET				BIT(0)
+>> +#define AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL	(AON_BASE_OFFS + 0x20)
+>> +#define NOC_HALT				BIT(0)
+>> +#define AON_WRAPPER_SPARE			(AON_BASE_OFFS + 0x28)
+>> +
+>> +#define VCODEC_DMA_SPARE_3 0x87B8
+>> +
+>> +static int reset_control_bulk_assert_id(int num_rstcs,
+>> +					struct reset_control_bulk_data *rstcs,
+>> +					char *id)
+>> +{
+>> +	int i;
+>> +
+>> +	for (i = 0; i < num_rstcs; ++i) {
+>> +		if (!strcmp(rstcs[i].id, id))
+>> +			return reset_control_assert(rstcs[i].rstc);
+>> +	}
+>> +
+>> +	return -ENODEV;
+>> +}
+>> +
+>> +static int reset_control_bulk_deassert_id(int num_rstcs,
+>> +					  struct reset_control_bulk_data *rstcs,
+>> +					  char *id)
+>> +{
+>> +	int i;
+>> +
+>> +	for (i = 0; i < num_rstcs; ++i) {
+>> +		if (!strcmp(rstcs[i].id, id))
+>> +			return reset_control_deassert(rstcs[i].rstc);
+>> +	}
+>> +
+>> +	return -ENODEV;
+>> +}
+>> +
+>> +static bool iris_vpu33_hw_power_collapsed(struct iris_core *core)
+>> +{
+>> +	u32 value, pwr_status;
+>> +
+>> +	value = readl(core->reg_base + WRAPPER_CORE_POWER_STATUS);
+>> +	pwr_status = value & BIT(1);
+>> +
+>> +	return pwr_status ? false : true;
+>> +}
+>> +
+>> +static void iris_vpu33_power_off_hardware(struct iris_core *core)
+>> +{
+>> +	u32 reg_val = 0, value, i;
+>> +	int ret;
+>> +	int count = 0;
+>> +
+>> +	if (iris_vpu33_hw_power_collapsed(core))
+>> +		goto disable_power;
+>> +
+>> +	value = readl(core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
+>> +	if (value)
+>> +		writel(CORE_CLK_RUN, core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
+>> +
+>> +	value = readl(core->reg_base + VCODEC_DMA_SPARE_3);
+>> +	value |= BIT(0);
+>> +	writel(value, core->reg_base + VCODEC_DMA_SPARE_3)> +
+>> +	for (i = 0; i < core->iris_platform_data->num_vpp_pipe; i++) {
+>> +		ret = readl_poll_timeout(core->reg_base + VCODEC_SS_IDLE_STATUSN + 4 * i,
+>> +					 reg_val, reg_val & 0x400000, 2000, 20000);
+>> +		if (ret)
+>> +			goto disable_power;
+>> +	}
+>> +
+>> +	/* set MNoC to low power, set PD_NOC_QREQ (bit 0) */
+>> +	value = readl(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>> +	value |= BIT(0);
+>> +	writel(value, core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>> +
+>> +	value = readl(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_STATUS);
+>> +
+>> +	while ((!(value & BIT(0))) && (value & BIT(1) || value & BIT(2))) {
+>> +		value = readl(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>> +		value &= ~BIT(0);
+>> +		writel(value, core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>> +
+>> +		usleep_range(10, 20);
+>> +
+>> +		value = readl(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>> +		value |= BIT(0);
+>> +		writel(value, core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>> +
+>> +		usleep_range(10, 20);
+>> +
+>> +		value = readl(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_STATUS);
+>> +
+>> +		++count;
+>> +		if (count >= 1000)
+>> +			break;
+>> +	}
+>> +
+>> +	if (count < 1000) {
+>> +		value = readl(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>> +		value &= ~BIT(0);
+>> +		writel(value, core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>> +	}
+>> +
+>> +	writel(VIDEO_NOC_RESET_REQ, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
+>> +
+>> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
+>> +				 reg_val, reg_val & 0x3, 200, 2000);
+>> +	if (ret)
+>> +		goto disable_power;
+>> +> +	writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
+>> +
+>> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
+>> +				 reg_val, !(reg_val & 0x3), 200, 2000);
+>> +	if (ret)
+>> +		goto disable_power;
+>> +> +	writel(CORE_BRIDGE_SW_RESET | CORE_BRIDGE_HW_RESET_DISABLE,
+>> +	       core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
+>> +	writel(CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
+>> +	writel(0x0, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
+>> +
+>> +disable_power:
+>> +	iris_vpu_power_off_hw(core);
+>> +}
+>> +
+>> +static int iris_vpu33_power_off_controller(struct iris_core *core)
+>> +{
+>> +	u32 rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
+>> +	u32 val = 0;
+>> +	int ret;
+>> +
+>> +	writel(MSK_SIGNAL_FROM_TENSILICA | MSK_CORE_POWER_ON, core->reg_base + CPU_CS_X2RPMH);
+>> +
+>> +	writel(REQ_POWER_DOWN_PREP, core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_CONTROL);
+>> +
+>> +	ret = readl_poll_timeout(core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_STATUS,
+>> +				 val, val & BIT(0), 200, 2000);
+>> +	if (ret)
+>> +		goto disable_power;
+>> +
+>> +	writel(0x0, core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_CONTROL);
+>> +
+>> +	ret = readl_poll_timeout(core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_STATUS,
+>> +				 val, val == 0, 200, 2000);
+>> +	if (ret)
+>> +		goto disable_power;
+>> +
+>> +	writel(CTL_AXI_CLK_HALT | CTL_CLK_HALT,
+>> +	       core->reg_base + WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG);
+>> +	writel(RESET_HIGH, core->reg_base + WRAPPER_TZ_QNS4PDXFIFO_RESET);
+>> +	writel(0x0, core->reg_base + WRAPPER_TZ_QNS4PDXFIFO_RESET);
+>> +	writel(0x0, core->reg_base + WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG);
+>> +
+> The code till here in this API is common with
+> iris_vpu_power_off_controller(), please check the possibility of reusing it.
 
-At v9, there were detail discussion about this
-https://lore.kernel.org/all/87v7w0s9a8.ffs@tglx/
+Not exactly, the common code sets WRAPPER_IRIS_CPU_NOC_LPI_CONTROL, which
+is not in the vpu33 sequence, not sure how I'll be able to reuse it.
 
-let me summary:
+Neil
 
-Host driver workflow like:
+>> +	reset_control_bulk_assert_id(rst_tbl_size, core->resets, "bus");
+>> +	reset_control_bulk_assert_id(rst_tbl_size, core->resets, "core");
+>> +	usleep_range(1000, 1100);
+>> +	reset_control_bulk_deassert_id(rst_tbl_size, core->resets, "bus");
+>> +	reset_control_bulk_deassert_id(rst_tbl_size, core->resets, "core");
+>> +
+>> +	/* Disable MVP NoC clock */
+>> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
+>> +	val |= NOC_HALT;
+>> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
+>> +
+>> +	/* enable MVP NoC reset */
+>> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
+>> +	val |= SW_RESET;
+>> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
+>> +
+>> +	/* poll AON spare register bit0 to become zero with 50ms timeout */
+>> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_SPARE,
+>> +				 val, (val & BIT(0)) == 0, 1000, 50000);
+>> +	if (ret)
+>> +		goto disable_power;
+>> +
+>> +	/* enable bit(1) to avoid cvp noc xo reset */
+>> +	val = readl(core->reg_base + AON_WRAPPER_SPARE);
+>> +	val |= BIT(1);
+>> +	writel(val, core->reg_base + AON_WRAPPER_SPARE);
+>> +
+>> +	reset_control_bulk_assert_id(rst_tbl_size, core->resets, "xo");
+>> +
+>> +	/* De-assert MVP NoC reset */
+>> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
+>> +	val &= ~SW_RESET;
+>> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
+>> +
+>> +	usleep_range(80, 100);
+>> +	reset_control_bulk_deassert_id(rst_tbl_size, core->resets, "xo");
+>> +
+>> +	/* reset AON spare register */
+>> +	writel(0, core->reg_base + AON_WRAPPER_SPARE);
+>> +
+>> +	/* Enable MVP NoC clock */
+>> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
+>> +	val &= ~NOC_HALT;
+>> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
+>> +
+>> +	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
+>> +
+>> +disable_power:
+>> +	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
+>> +	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static u64 iris_vpu33_calculate_frequency(struct iris_inst *inst, size_t data_size)
+>> +{
+>> +	struct platform_inst_caps *caps = inst->core->iris_platform_data->inst_caps;
+>> +	struct v4l2_format *inp_f = inst->fmt_src;
+>> +	u32 height, width, mbs_per_second, mbpf;
+>> +	u64 fw_cycles, fw_vpp_cycles;
+>> +	u64 vsp_cycles, vpp_cycles;
+>> +	u32 fps = DEFAULT_FPS;
+>> +
+>> +	width = max(inp_f->fmt.pix_mp.width, inst->crop.width);
+>> +	height = max(inp_f->fmt.pix_mp.height, inst->crop.height);
+>> +
+>> +	mbpf = NUM_MBS_PER_FRAME(height, width);
+>> +	mbs_per_second = mbpf * fps;
+>> +
+>> +	fw_cycles = fps * caps->mb_cycles_fw;
+>> +	fw_vpp_cycles = fps * caps->mb_cycles_fw_vpp;
+>> +
+>> +	vpp_cycles = mult_frac(mbs_per_second, caps->mb_cycles_vpp, (u32)inst->fw_caps[PIPE].value);
+>> +	/* 21 / 20 is minimum overhead factor */
+>> +	vpp_cycles += max(div_u64(vpp_cycles, 20), fw_vpp_cycles);
+>> +
+>> +	/* 1.059 is multi-pipe overhead */
+>> +	if (inst->fw_caps[PIPE].value > 1)
+>> +		vpp_cycles += div_u64(vpp_cycles * 59, 1000);
+>> +
+>> +	vsp_cycles = fps * data_size * 8;
+>> +	vsp_cycles = div_u64(vsp_cycles, 2);
+>> +	/* VSP FW overhead 1.05 */
+>> +	vsp_cycles = div_u64(vsp_cycles * 21, 20);
+>> +
+>> +	if (inst->fw_caps[STAGE].value == STAGE_1)
+>> +		vsp_cycles = vsp_cycles * 3;
+>> +
+>> +	return max3(vpp_cycles, vsp_cycles, fw_cycles);
+>> +}
+>> +
+> This is exactly same as vpu3 calculation, pls reuse.
 
-1. read address/data from shared memory (PC bar<n>)
-2. write data to address to trigger doorbell.
+Ack
 
-1 and 2 is not atomic. So EP side may call set_affinity function during 1
-and 2, address/data may be changed in some MSI provider, so 2 write to
-previous address/data pair, which may not existed or map to other place and
-cause write to unexpected place.
+>> +static int iris_vpu33_reset_controller(struct iris_core *core)
+>> +{
+>> +	u32 rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
+>> +
+>> +	reset_control_bulk_assert_id(rst_tbl_size, core->resets, "bus");
+>> +	reset_control_bulk_assert_id(rst_tbl_size, core->resets, "core");
+>> +
+>> +	usleep_range(1000, 1100);
+>> +
+>> +	reset_control_bulk_deassert_id(rst_tbl_size, core->resets, "bus");
+>> +	reset_control_bulk_deassert_id(rst_tbl_size, core->resets, "core");
+>> +
+>> +	return 0;
+>> +}
+>> +
+> should be replacable with reset_control_bulk_reset. pls revisit.
 
-Frank
+>> +const struct vpu_ops iris_vpu33_ops = {
+>> +	.reset_controller = iris_vpu33_reset_controller,
+>> +	.power_off_hw = iris_vpu33_power_off_hardware,
+>> +	.power_off_controller = iris_vpu33_power_off_controller,
+>> +	.calc_freq = iris_vpu33_calculate_frequency,
+>> +};
+> you can rename vpu3.c to vpu3x.c and move these ops to same file, this way
+> common API can be reused and no need of redinfing the macros as well.
 
->
-> 	M.
->
-> --
-> Without deviation from the norm, progress is not possible.
+I'll see how it turns out.
+
+Thanks,
+Neil
+
+> 
+> Thanks,
+> Dikshita
+>> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.h b/drivers/media/platform/qcom/iris/iris_vpu_common.h
+>> index c948d8b5aee87ccf1fd53c5518a27294232d8fb8..c4d02a3b884881eb033dc0342f948848adae2819 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.h
+>> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.h
+>> @@ -10,6 +10,7 @@ struct iris_core;
+>>   
+>>   extern const struct vpu_ops iris_vpu2_ops;
+>>   extern const struct vpu_ops iris_vpu3_ops;
+>> +extern const struct vpu_ops iris_vpu33_ops;
+>>   
+>>   struct vpu_ops {
+>>   	int (*reset_controller)(struct iris_core *core);
+>>
+
 
