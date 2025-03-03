@@ -1,129 +1,101 @@
-Return-Path: <devicetree+bounces-153188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93045A4B80E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 07:58:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D108AA4B823
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:12:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68DCD1891A67
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 06:57:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF5F51889DFE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 07:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC401E7C05;
-	Mon,  3 Mar 2025 06:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EA6D1E8351;
+	Mon,  3 Mar 2025 07:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AgG13HQC"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="K2iHlyiA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5763B156237;
-	Mon,  3 Mar 2025 06:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D084C85;
+	Mon,  3 Mar 2025 07:11:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740985040; cv=none; b=fU0hnrsejOHlquAasBpnKVXyVWh7UIDavvcW9wtJL7zz5r3y7irLWGWqHmJpmWAAYztiqZVIyQRwF5FI2t7NcI0bGRiwe0zpT+mfFJyTXuqKRV0LnJzhm0sjYDG8uV8bY7noqTi0nGOpWXgh7S3DKlQU9s2GQJV/168r1MnsL/0=
+	t=1740985919; cv=none; b=CzHIm4T/fVhheqx9LmBMVG+jo3MdW1OdFdSq4KH6v+fw19vivlP/MzH0e6FiIh9YuKyj/19ej6+7KNXSV9LVrY2aa6l8NoU5RsLVSKptzGWP+QGcZJivn4BhaH4QTqFP9BSA6Ha4GE3X4c0v6RCon4p3GSJgRYw5PcY0ZlLnhTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740985040; c=relaxed/simple;
-	bh=28Vxb9MlXzLgsQOz839ouf1ZOb6pV/zDw7qLv1Gk4Z8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nhHPyUsmyq7fGalwwYzBxH1/wp/i4YT15DVRr1tmj7dKQGKOLRfstznmaYXcDKkrJfMP+Yw3MeNSDqeCdLvyFoUuHx4/dwJXnntZtryPgJQjrq6xFx0dHipw4IxqIg6RqZK6+wR3P1iuHabrp8qkbOyHl/Vb7n8wprhNOH/tdIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AgG13HQC; arc=none smtp.client-ip=209.85.222.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7c0a159ded2so323373185a.0;
-        Sun, 02 Mar 2025 22:57:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740985038; x=1741589838; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dXZfifyJPh8wTQJHpr1hJkVkOZWigbIijHigtJZZIQY=;
-        b=AgG13HQC0jrPT4PRhvB22LG94PhT0Uhe4doWnPx+ID1PsF3L37ck05bxDl7MBXhelN
-         +sx6hojZvnNCWn9LyRqcObQSbh+0o6fjI5eWshPUYhNwtRiloSNfcfvrG//NWbSI18G1
-         LPqUCoBnzySZpOcrUkdk3CbJlHk8MogOG27RpHRJPYGhfWy4rpPdoc+hAaCiSSQNencs
-         XQOoXKs8+RGvQ6HBnO/fhcwBoCXqKBXIQsuFO/2CcaCMG7/eUhDvBZR0gw4j/3RpqGWF
-         HLSX0P55RrKKeJLggCaLDTGE6b2bvf9Ns9kEfiIoVQTPRs3K/gRa1r6Cvnqm6Lqff8C6
-         iOUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740985038; x=1741589838;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dXZfifyJPh8wTQJHpr1hJkVkOZWigbIijHigtJZZIQY=;
-        b=KihaSo/1XvGM9ufFHUrrE2SqNdC8BVNuwOKfRDiUvOqygflImnpD4u0LMxUjAJtXph
-         XkMSt8VGml9ypxrZS3fgujtDZqB/vc+odGlU47wvtdlmhDtzuAkOgeEN5NRknS5gz3Nt
-         6iyaba17oNeF1v4vUK39n8IkNbyzPbkvuAEELhf1Mrf/QIan98Yktlm0wiRf0YnJVqYh
-         bOQTwf7WUSfRh4d/oD1bDLe0lEizmRvwVAoeXdCedzZ6X/t5Sx+xeq4yizwbgZr70tJK
-         fONbzBLVO2aNybrD5fh0T7OMvwyBWZ2j2FgznwD4jW7gEDbu6qcgkKhJbjaGyv4l5taZ
-         MTaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUkj7zQcq07qDLqopG3i/WUQAS18RCgWaVR6mjjkVLe7kOO32/BBBbIgKSsvz5VZSuHRA4F184PYTYi/Z7e@vger.kernel.org, AJvYcCVnmEsslT2yEpbBXzvcd7iTNemOLK0cshv/R1bk0b9vj9XWrcLBqdpgQKTOTwahLR6Ce3vK5n82VXJS@vger.kernel.org, AJvYcCXh30+ZnJcHY+LTP7t76c+QieiaFonhm4NHdm5rY6PFe5x6qMs/XCeeCm/t9/Pi6ZstSmzBWORF0MOQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMRuOfqk9TNagClQpe9uBbwjusDAbAvbPOJSo9uva9JSuizgrM
-	YQvQlY6FpsnO4FdOQTMgjBOtkJJG6LzuWx7vbd2O7h+3RNBQLcAa
-X-Gm-Gg: ASbGncvf5ZlnHDw5npBTJc00Ac9JJU6wMOBhoBQm2nHEgoYBm8U6bnMmkICXrLOq8fj
-	jWoT2TfsFb89ekvp8zgEhUQsNDvSRhHdW1I9gTtn3jdLT/3VE+o7qUS5dlG6iRoQmBeMNhE4EtN
-	tzhXXv+TEGU5zjcqS+Ga6+xoFjAynY35I4W1Ejwf++yHGkXRrGE1lvoEqqJe/wVNsL0IdQxSbgs
-	9HsJOZ6OVgUMMHlVpbNd/G5wGHxF6MPjsrF1Qx4S8ZESUbniupoh/rR+673y9EMQWkZnKrJu/0h
-	Zgrwg3N5scqp1vlUZxHl
-X-Google-Smtp-Source: AGHT+IErdmW0jjNNNMzApy6HTTPEzszrqwNuoD6aXiczUEO8+rrdFm3G8YBCKzFZYWry8xg0LYIFVA==
-X-Received: by 2002:a05:620a:4392:b0:7c3:c1b4:c8f5 with SMTP id af79cd13be357-7c3c1b4cd30mr159420085a.15.1740985038075;
-        Sun, 02 Mar 2025 22:57:18 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c3c57684dasm17000885a.77.2025.03.02.22.57.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Mar 2025 22:57:17 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1740985919; c=relaxed/simple;
+	bh=VMN8Xd0ghhP1cTP0V0cYW52AfHb3ymyFSS1C2YenNK0=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i5gzxjbGVuhBWBdhobbXQqM2TxCOOpc7z9LdWnWoN3tuqfwkFO6KeCAoh60ctPbUiLKLWbDm1dJ/X3RDb5LF64vIdnSwCgABzjBlYKpeaWKB89q+2mM/sawOcVFsmeVeDYKb8CzNa7nossCFr8aIi+ON9w2a0H1t/r04INL1POk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=K2iHlyiA; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 48DC52061F;
+	Mon,  3 Mar 2025 08:11:55 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id EeaFyw_v4m5d; Mon,  3 Mar 2025 08:11:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1740985910; bh=VMN8Xd0ghhP1cTP0V0cYW52AfHb3ymyFSS1C2YenNK0=;
+	h=Date:From:To:Subject:References:In-Reply-To;
+	b=K2iHlyiArGPniZayHlQw9dJk6E60ujtfNIS83hLkTvCrwgLwEgJssUeHKNL6DmF3m
+	 kvJJA29hr8NvT6k6ON/kkag1OGdx6tNiRR05FIpkdQy9GbOy1yycMqvJSRmTDTqwfV
+	 DqgPisvWCsMInxjNxWDNF+D4upxRbrkK3XaHS9+/LR8hri9+5kC2FVGB0tbRP7PaOz
+	 sHBt2mApSfNm+8FDfjLmKUDFxNZYj5KyWMH3qivTog5uhIck3wHzWxyAkQOYYqaPKM
+	 Xx8bNJPqs6XbhsyoWrHTZNbdx/FWLdjHydX7bc9knVQUnW9xmYslrK0zf1IgQQliLi
+	 ilRk3et4Drf4g==
+Date: Mon, 3 Mar 2025 07:11:27 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Troy Mitchell <troymitchell988@gmail.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH] dt-bindings: dma: snps,dw-axi-dmac: Allow devices to be marked as noncoherent
-Date: Mon,  3 Mar 2025 14:56:48 +0800
-Message-ID: <20250303065649.937233-1-inochiama@gmail.com>
-X-Mailer: git-send-email 2.48.1
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH RESEND v5 2/2] i2c: spacemit: add support for SpacemiT K1
+ SoC
+Message-ID: <Z8VWH-ZXv1FWQU3u@pie>
+References: <20250303-k1-i2c-master-v5-0-21dfc7adfe37@gmail.com>
+ <20250303-k1-i2c-master-v5-2-21dfc7adfe37@gmail.com>
+ <Z8VHaQsqAmhtQnbv@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z8VHaQsqAmhtQnbv@shikoro>
 
-A RISC-V platform can have both DMA coherent/noncoherent devices.
-Since the RISC-V architecture is marked coherent, devices should
-be marked as noncoherent when coherent devices exist.
+On Mon, Mar 03, 2025 at 07:08:41AM +0100, Wolfram Sang wrote:
+> 
+> > +/* spacemit i2c registers */
+> > +#define SPACEMIT_ICR		 0x0		/* Control Register */
+> > +#define SPACEMIT_ISR		 0x4		/* Status Register */
+> > +#define SPACEMIT_IDBR		 0xc		/* Data Buffer Register */
+> > +#define SPACEMIT_IBMR		 0x1c		/* Bus monitor register */
+> > +
+> > +/* register SPACEMIT_ICR fields */
+> > +#define SPACEMIT_CR_START        BIT(0)		/* start bit */
+> > +#define SPACEMIT_CR_STOP         BIT(1)		/* stop bit */
+> > +#define SPACEMIT_CR_ACKNAK       BIT(2)		/* send ACK(0) or NAK(1) */
+> > +#define SPACEMIT_CR_TB           BIT(3)		/* transfer byte bit */
+> 
+> This looks like a lot like a variant of the i2c-pxa register set. Has it
+> been considered to reuse that driver?
+> 
 
-Add dma-noncoherent property for snps,dw-axi-dmac device. It will
-be used on SG2044, and it has other coherent devices.
+Reusing existing driver has been discussed earlier[1] and the answer was
+no. It really has been a long time.
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
-Related discussion for this property.
+Thanks,
+Yao Zi
 
-https://lore.kernel.org/all/20250221013758.370936-1-inochiama@gmail.com/
----
- Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-index 525f5f3932f5..935735a59afd 100644
---- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-@@ -59,6 +59,8 @@ properties:
-     minimum: 1
-     maximum: 8
-
-+  dma-noncoherent: true
-+
-   resets:
-     minItems: 1
-     maxItems: 2
---
-2.48.1
-
+[1]: https://lore.kernel.org/all/6015d35d-6d91-4ac1-8ebf-4f79b304370f@gmail.com/
 
