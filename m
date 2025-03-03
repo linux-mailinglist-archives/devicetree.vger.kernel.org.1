@@ -1,97 +1,129 @@
-Return-Path: <devicetree+bounces-153287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C5EBA4BE26
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:22:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B45A4BED3
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:35:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DD44188C970
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:19:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01F523BDF64
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7551F4725;
-	Mon,  3 Mar 2025 11:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A03B1F8BDD;
+	Mon,  3 Mar 2025 11:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Zp/H58vJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bsD1mnsx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55FE01F1908;
-	Mon,  3 Mar 2025 11:15:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5261F8BBF;
+	Mon,  3 Mar 2025 11:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741000529; cv=none; b=lhDWnUCy44M8IFrJtIjOpddzZ8Qp1Mr2XWEWtYbgiedrn2Uc4sE62j+dGQdqB5Lo1PwX/6hk8prW19Tl0z9O7LOuREfdKxgu7Q/YWxrHEb/2GDPEWvejhQl3QrmmqnVKYUqhDCbXzJxOt+FIvhJ3P/1L1/sqSOEeEGEYEAHprOQ=
+	t=1741000642; cv=none; b=Xle7lLF47BKX3ZnMlVVCWEXH1u9Ms+7wosxCpSWD0aIhitg+NoQNhkxqCklqAXW1MOQ+SD26Eo22JVZlpOcyTHOYQj7zz0uK4OlMZwhyO01tpzk2MsFQ6Aefg6zr9SfI29shGgDWtn59jgLMPioF6Dy6fmWyj8VjhGSk4opFYwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741000529; c=relaxed/simple;
-	bh=zHGCADU56T7A224lF133oGjwzLj/Y9hZrXbv8NOAx1U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ld1jtjYLe40kn+MHF3WbqqH4babcSM6eJKeVz2oq4ARciauCIY25HYusrewEydcQiBeeMpsskmdAaMqD5WD+vBMYLHnUlPy2WkB7aIAUnOnsTJRwERxbLtRMBz9qwFQ/QK+PfJl1qO3NgVECNWlweQ9/oMD5IKl3sbsIQO4YZRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Zp/H58vJ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741000525;
-	bh=zHGCADU56T7A224lF133oGjwzLj/Y9hZrXbv8NOAx1U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zp/H58vJ9rjRaEthdrCDdcQWdjaAb1mvE/B2PKHjamT9xW01devW47qz6T+qEtx6b
-	 M3E0H2siHWMutWk60bE3BnHGzRW5Eim8AOm7eBhMdBAln/VMk4Dd1OHZ/2MlPGZ+Qc
-	 lSfZ4gtN4+f6C/GCTf69DojqEueBPedXBGKiourDxcDKScxW3TnCK7US7PZ/wfq8jA
-	 0rGL0bUZkC19Jr6yWljZK6j9C5NpLmhWh1quFmZ3vosaz6I4szPUqLbOl2kFgnYtId
-	 SH4Q2ocYXq72C6WtD8FKYVuKSV7P1TeZ8/O75g86GPmSEBk4QVOEsvHyRyWdOEjMov
-	 NFjeojr1ZOgBQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7517517E086B;
-	Mon,  3 Mar 2025 12:15:24 +0100 (CET)
-Message-ID: <ea3cfb5c-bcba-4530-8bd4-6738acfaad90@collabora.com>
-Date: Mon, 3 Mar 2025 12:15:24 +0100
+	s=arc-20240116; t=1741000642; c=relaxed/simple;
+	bh=Jqe8Y5KSRz+van0BhEQNwElHuoSXwhP7NXBrkvhu+5U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=QEGXKrUbOzacF2C7jbzKte6moKFCwJXRfD3iA0MroabsNn7RnyBQA6mh9uczfvy7mdMVbznHcbYo8RTxFiloBkdTtX/fteICEw0qqtR162uH1GgsN6Du001I2mkCCVRNUjddyqpv890wkaXTbRDQ+z5EF6/4VcY+koTdbhgecFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bsD1mnsx; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7c08b14baa9so383108985a.3;
+        Mon, 03 Mar 2025 03:17:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741000639; x=1741605439; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cac9SGeYgxlf0ZE2MBOLXGNfNfGSnO8PvB/fPnkfcsk=;
+        b=bsD1mnsxycAUgnk0Fd6rwReB+rphdgLX5W+c1chUTt0iHriTKa1zp0GZmpoLO4jknn
+         rXiw6omp1+7F1/CiWYzGhxrppIm+QsXebAuOaCVGvSU5ZTa+kCf/qvDN7ABdmn4Yj/H2
+         wgekc92iW2H32mYhenzmOuuuTAS9nS5OR2ZH6nLzhURtOGWPPCFv7PdbAlIduKYSkvqJ
+         BbqgqQfbR94+QBlKjh7B8T7ezUjsAr3K628XyAaRve9M/UiUlby+m+3tkhm4gOflkE9u
+         DYzcEW3CO3aGU98zNOz7louoGo111PyCSuX/oHVgFljPZyERVKq4YaDgbTlMG2btm8Ee
+         FPMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741000639; x=1741605439;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cac9SGeYgxlf0ZE2MBOLXGNfNfGSnO8PvB/fPnkfcsk=;
+        b=i18+gTSY3sIVAOfDNu+nC/wPVI2dj8bFUMQ9ANWHChZ29o4DIKdcCcC9ZA5FDQN24f
+         Icoi255W5ijBmht3KZcRDpbFVy0ObMz8xiuS2RcMcIexvHKXVUpMmg7VVFa//0mFxTZC
+         XsdDHP709+PdHtSbgyxviHCxab5Rm3VQh9Ue5TEFOaRBT6Dj6DQpn7ScCl6mDUvfoeLq
+         26MD5/l3VjJNwaB+Tit5TdThbEwsEhs7TXPKAuCPC1Zn/UdBoaSelxfHuIFRaQOc4Pq5
+         wgRWU84sInlvU9b+YvbVBAHP+0nqKfVX+kl+uRsNKrZ1jLkUwGKmhVpxOKG4MyPhMowb
+         Jfsg==
+X-Forwarded-Encrypted: i=1; AJvYcCW5OceFXg5WEu2Fv02AyBAiOvuFxOdLfU6MJW+dKD/Zb8JVMbpKDTV+svYnAMzEpDBwXgFrzf0AaQgw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwumXWT9uvWNGnu0rXdbzxIrWQFhB6TF68UbE+fvmm9oXoJ7W0y
+	opOye7x91UW5g9S7Q7dm3+BLIbJRRRYd9LYGSVoO3QgbX3X0oqCr
+X-Gm-Gg: ASbGnctKqgOgkC3J6/JgOeemMEi5ZxdqlDAH3n0V73hwNaKWQg/wrdSjOswJqhszBsS
+	WbRMzFsxhKMtmk4Gt3Fcu+0pMKwS+EumB3hSide7xqDd4IiNgHkS5kaCvAxueOKe51PJ4iRiQZS
+	QgHYc6cuoAoPEQHCC5XY9m3RPjVJR180DJYUcZfqCG3vzB81LOHEjGdS+6fvxhc4gZ2vcuvLll9
+	rL/pbJsdt6+BWkFtsf9pSiTb+Zy5Ff5tgU2x860calBcOnYwmglRftaLUIf3YLsJfgWZ2kWl1J6
+	5i1EMMPVGMdN4dP+WJ20
+X-Google-Smtp-Source: AGHT+IGeFdXvURQ7vI0EQuXxHZtwK5gbsycOL767I0CGGnL7OmQ9+5cFegMcJb3QiTypWujcAD+s4g==
+X-Received: by 2002:a05:620a:1aa8:b0:7c0:b0ce:a577 with SMTP id af79cd13be357-7c39c4cd3f4mr2211231885a.25.1741000639324;
+        Mon, 03 Mar 2025 03:17:19 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e897653722sm52123386d6.36.2025.03.03.03.17.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Mar 2025 03:17:19 -0800 (PST)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: interrupt-controller: Add Sophgo SG2044 MSI controller
+Date: Mon,  3 Mar 2025 19:16:46 +0800
+Message-ID: <20250303111648.1337543-2-inochiama@gmail.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250303111648.1337543-1-inochiama@gmail.com>
+References: <20250303111648.1337543-1-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/20] ASoC: mediatek: mt6359-accdet: Implement HP_EINT
- polarity configuration
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
- Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
- Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>
-Cc: kernel@collabora.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-pm@vger.kernel.org, Andrew Perepech <andrew.perepech@mediatek.com>
-References: <20250302-mt6359-accdet-dts-v2-0-5bd633ee0d47@collabora.com>
- <20250302-mt6359-accdet-dts-v2-6-5bd633ee0d47@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250302-mt6359-accdet-dts-v2-6-5bd633ee0d47@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Il 02/03/25 17:30, Nícolas F. R. A. Prado ha scritto:
-> From: Andrew Perepech <andrew.perepech@mediatek.com>
-> 
-> The driver currently reads the HP_EINT polarity from the Devicetree but
-> never actually configures the hardware accordingly.
-> 
-> Implement the polarity configuration in hardware.
-> 
-> Signed-off-by: Andrew Perepech <andrew.perepech@mediatek.com>
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Like SG2042, SG2044 uses a similar msi controller to provide MSI
+interrupt for PCIe controllers.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Add support for the SG2044 msi controller
 
+Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+---
+ .../bindings/interrupt-controller/sophgo,sg2042-msi.yaml      | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml b/Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml
+index e1ffd55fa7bf..f6b8b1d92f79 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/sophgo,sg2042-msi.yaml
+@@ -18,7 +18,9 @@ allOf:
+ 
+ properties:
+   compatible:
+-    const: sophgo,sg2042-msi
++    enum:
++      - sophgo,sg2042-msi
++      - sophgo,sg2044-msi
+ 
+   reg:
+     items:
+-- 
+2.48.1
 
 
