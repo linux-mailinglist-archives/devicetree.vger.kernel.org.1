@@ -1,48 +1,41 @@
-Return-Path: <devicetree+bounces-153225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC90A4BA0B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:57:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AF3A4BA2A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 10:00:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E7C77A8F1F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:54:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1A577A11ED
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:59:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B201F2BB8;
-	Mon,  3 Mar 2025 08:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05861F03C3;
+	Mon,  3 Mar 2025 09:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5bBw+sC"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ijZGrXL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m19731113.qiye.163.com (mail-m19731113.qiye.163.com [220.197.31.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD041F1508;
-	Mon,  3 Mar 2025 08:52:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 812E71EFFAF;
+	Mon,  3 Mar 2025 09:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.113
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740991961; cv=none; b=Yw9G10JwTRtN04kzdytFKfvhXiQA5/krc2cHwvtiksLmNmbY3Kp/VAB+rl4iTA7+2pxpsgYqU8cyuAgQ/e2fGqzWza/4xdBZASD1dI6pKHKlkGh9NxcS3thiD9bw3A1JpipvKY/pMzhevezeMgBV/WxAB9kibG331/7iTspvAc4=
+	t=1740992410; cv=none; b=JjjprnLfwcLgPDINJGdj/9SBCv1xx7BO9wXPmLxIckKix0VR9mueQWLlnR7FeC142Gsjp1XdDFjk15q7bTuGR8v96r/phO1YRUPRhXFb2uRlq8069N7FYKcGlRDvD9CuMW1eAn2zc+ZaEMZMuxy7H5ISbEBFFeBAUF5xJ6QKbLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740991961; c=relaxed/simple;
-	bh=ZHfPcRu3w6X4uOEal8YGwnhiBv+LQjiuBdcRJVG07co=;
+	s=arc-20240116; t=1740992410; c=relaxed/simple;
+	bh=wq4qPjLOP/xCwisKyEVhGFxzfmUqOyAQHZDDXjSFup8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r7JgO9nPgG9c00qr59Ncag54I4FV2UFr5d7gBLQtvIEAhFesOoqrj8/Wkkf6aJKrKR9aoILupTQkd1CcDSFkt2axDwBRd9OPDR4xCjLPPTa/S56NU/dy84featI/2jLUf2F0LKBoE6rNj5jLW1Vqlqifg8M2L8HLv6qHNXvgmF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5bBw+sC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED1F5C4CED6;
-	Mon,  3 Mar 2025 08:52:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740991961;
-	bh=ZHfPcRu3w6X4uOEal8YGwnhiBv+LQjiuBdcRJVG07co=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H5bBw+sC1xLk4F8+u9tHxnMv0U7KKbadL8pdYOC840vnMrjRGHY5ia2ninPQwXkIe
-	 PftPYTcdMvdSeuBpcuKqBFm+qRfEj1snXY4+b/PBGc2WjtucJnB+TYMjPyohF1XxLx
-	 wvfXg97cwuRo1SomO0LpLuCXJyPK/19JJvOje9qpywQFCL4zpXT3erARdfLg9bWckE
-	 Sis1jEPtpAVUPkTob/0+T/qzJBmq8AjtY6LkduxlwetxY3hffBdTt7jSS5nnTAz5IS
-	 jIE5vaqB7qEJy8vc83RSlAHc59OMrCVGC7KWQNAeJQ23tAYv6CH3H0TMK5UzGAAF4H
-	 lQxhU2ehVylyg==
-Message-ID: <df625379-b472-45d9-87a4-8bf52a87ea1e@kernel.org>
-Date: Mon, 3 Mar 2025 09:52:29 +0100
+	 In-Reply-To:Content-Type; b=rU6s3+tqGs/mIdD5TkDc/niCs5ve+izR7t+ckftRU6O+/eEEKHoiBbsL3ThgSqcjjBStsJ7wTvmuPlOZ+4Bgxae7Tw603xXQGEW0NESrxl/ErPr9eiqNLSfQGybfBZUcoU7ggIROagWVLNrAdLCTvzniBFoRlvreJrRsd+HZLpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ijZGrXL/; arc=none smtp.client-ip=220.197.31.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.12] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id cbdcb25f;
+	Mon, 3 Mar 2025 16:59:50 +0800 (GMT+08:00)
+Message-ID: <65706d63-18aa-41e0-81c4-4eab3d186250@rock-chips.com>
+Date: Mon, 3 Mar 2025 16:59:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,93 +43,269 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 09/21] dt-bindings: clock: thead: Add GPU clkgen reset
- property
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
- wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com,
- matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- ulf.hansson@linaro.org, jszhang@kernel.org, p.zabel@pengutronix.de,
- m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-pm@vger.kernel.org
-References: <20250219140239.1378758-1-m.wilczynski@samsung.com>
- <CGME20250219140301eucas1p249b17ca44832eb8caad2e9ad0e4f8639@eucas1p2.samsung.com>
- <20250219140239.1378758-10-m.wilczynski@samsung.com>
- <20250221-imaginary-ebony-macaque-aace8d@krzk-bin>
- <7296ddb3-2096-4414-bfa4-28fc5bb8ec86@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 2/6] drm/bridge: synopsys: Add DW DPTX Controller support
+ library
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Andy Yan <andyshrk@163.com>
+Cc: neil.armstrong@linaro.org, sebastian.reichel@collabora.com,
+ heiko@sntech.de, devicetree@vger.kernel.org, hjc@rock-chips.com,
+ mripard@kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ Andy Yan <andy.yan@rock-chips.com>, krzk+dt@kernel.org, robh@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250223113036.74252-1-andyshrk@163.com>
+ <20250223113036.74252-3-andyshrk@163.com>
+ <563i7xcbbsxfezkgs4txsa6lar5tb5folp7zk7dc7sbvf54n6y@vqbtuwvj3fcw>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <7296ddb3-2096-4414-bfa4-28fc5bb8ec86@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Yubing Zhang <yubing.zhang@rock-chips.com>
+In-Reply-To: <563i7xcbbsxfezkgs4txsa6lar5tb5folp7zk7dc7sbvf54n6y@vqbtuwvj3fcw>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRofTlZNS00YSUJLTx1MHhhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a955b3ba5bf03a8kunmcbdcb25f
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PlE6Cio6GjIWQk9IAwE4Ky8Y
+	HSMKCT5VSlVKTE9LQkJJSEJPT0JCVTMWGhIXVQIOGRIVHFUBExoVHDsJFBgQVhgTEgsIVRgUFkVZ
+	V1kSC1lBWU5DVUlJVUxVSkpPWVdZCAFZQUxITUo3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=ijZGrXL/GvtK7VjoWcpULII9nLZ6QYjVvCmSpKIkUJkKkO8KzrlppNmqdiGJa+pTNWIIcvzWHnEv2CM9W4xfzy/uQ4PCH7aL4BdeeauyHwuh0UKdZypiAec+BclL7A2Au52C9+01H1U6dN+o0lq9WqyGZ6Kue/kGZttFRObq5QE=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=2kGVvLoAJaOp26dQa+STctZZP/D+ei2d2VwEfnWjBwo=;
+	h=date:mime-version:subject:message-id:from;
 
-On 03/03/2025 09:42, Michal Wilczynski wrote:
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: thead,th1520-clk-vo
->>> +    then:
->>> +      required:
->>> +        - resets
+Hi Dmitry,
+
+On 2025/3/2 2:14, Dmitry Baryshkov wrote:
+> On Sun, Feb 23, 2025 at 07:30:25PM +0800, Andy Yan wrote:
+>> From: Andy Yan <andy.yan@rock-chips.com>
 >>
->> else:
->> ? What's there? Also reset or no?
+>> The DW DP TX Controller is compliant with the DisplayPort Specification
+>> Version 1.4 with the following features:
+>>
+>> * DisplayPort 1.4a
+>> * Main Link: 1/2/4 lanes
+>> * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
+>> * AUX channel 1Mbps
+>> * Single Stream Transport(SST)
+>> * Multistream Transport (MST)
+>> *Type-C support (alternate mode)
+>> * HDCP 2.2, HDCP 1.3
+>> * Supports up to 8/10 bits per color component
+>> * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
+>> * Pixel clock up to 594MHz
+>> * I2S, SPDIF audio interface
+>>
+>> Add library with common helpers to make it can be shared with
+>> other SoC.
+>>
+>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>>
+>> drm/bridge: cleanup
 > 
-> If the else: case the reset is not required, as it's only required in
-> the th1520clk-vo, so there is no need for else:.
-That's not the question. I know it is not required, I can read code.
-What is in the hardware?
+> Stray line?
+> 
+>>
+>> ---
+>>
+>>   drivers/gpu/drm/bridge/synopsys/Kconfig  |    7 +
+>>   drivers/gpu/drm/bridge/synopsys/Makefile |    1 +
+>>   drivers/gpu/drm/bridge/synopsys/dw-dp.c  | 2155 ++++++++++++++++++++++
+>>   include/drm/bridge/dw_dp.h               |   19 +
+>>   4 files changed, 2182 insertions(+)
+>>   create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-dp.c
 
-Best regards,
-Krzysztof
+......
+
+>> +
+>> +static u8 dw_dp_voltage_max(u8 preemph)
+>> +{
+>> +	switch (preemph & DP_TRAIN_PRE_EMPHASIS_MASK) {
+>> +	case DP_TRAIN_PRE_EMPH_LEVEL_0:
+>> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_3;
+>> +	case DP_TRAIN_PRE_EMPH_LEVEL_1:
+>> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_2;
+>> +	case DP_TRAIN_PRE_EMPH_LEVEL_2:
+>> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_1;
+>> +	case DP_TRAIN_PRE_EMPH_LEVEL_3:
+>> +	default:
+>> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_0;
+>> +	}
+>> +}
+>> +
+>> +static void dw_dp_link_get_adjustments(struct dw_dp_link *link,
+>> +				       u8 status[DP_LINK_STATUS_SIZE])
+>> +{
+>> +	struct dw_dp_link_train_set *adjust = &link->train.adjust;
+>> +	u8 v = 0;
+>> +	u8 p = 0;
+>> +	unsigned int i;
+>> +
+>> +	for (i = 0; i < link->lanes; i++) {
+>> +		v = drm_dp_get_adjust_request_voltage(status, i);
+>> +		p = drm_dp_get_adjust_request_pre_emphasis(status, i);
+>> +		if (p >=  DP_TRAIN_PRE_EMPH_LEVEL_3) {
+>> +			adjust->pre_emphasis[i] = DP_TRAIN_PRE_EMPH_LEVEL_3 >>
+>> +						  DP_TRAIN_PRE_EMPHASIS_SHIFT;
+>> +			adjust->pre_max_reached[i] = true;
+>> +		} else {
+>> +			adjust->pre_emphasis[i] = p >> DP_TRAIN_PRE_EMPHASIS_SHIFT;
+>> +			adjust->pre_max_reached[i] = false;
+>> +		}
+>> +		v = min(v, dw_dp_voltage_max(p));
+>> +		if (v >= DP_TRAIN_VOLTAGE_SWING_LEVEL_3) {
+>> +			adjust->voltage_swing[i] = DP_TRAIN_VOLTAGE_SWING_LEVEL_3 >>
+>> +						   DP_TRAIN_VOLTAGE_SWING_SHIFT;
+>> +			adjust->voltage_max_reached[i] = true;
+>> +		} else {
+>> +			adjust->voltage_swing[i] = v >> DP_TRAIN_VOLTAGE_SWING_SHIFT;
+>> +			adjust->voltage_max_reached[i] = false;
+>> +		}
+>> +	}
+>> +}
+>> +
+>> +static void dw_dp_link_train_adjust(struct dw_dp_link_train *train)
+>> +{
+>> +	struct dw_dp_link_train_set *request = &train->request;
+>> +	struct dw_dp_link_train_set *adjust = &train->adjust;
+>> +	unsigned int i;
+>> +
+>> +	for (i = 0; i < 4; i++) {
+> 
+> Shouldn't it be a loop up to link->lanes?
+> 
+>> +		if (request->voltage_swing[i] != adjust->voltage_swing[i])
+>> +			request->voltage_swing[i] = adjust->voltage_swing[i];
+>> +		if (request->voltage_max_reached[i] != adjust->voltage_max_reached[i])
+>> +			request->voltage_max_reached[i] = adjust->voltage_max_reached[i];
+>> +	}
+>> +
+>> +	for (i = 0; i < 4; i++) {
+>> +		if (request->pre_emphasis[i] != adjust->pre_emphasis[i])
+>> +			request->pre_emphasis[i] = adjust->pre_emphasis[i];
+>> +		if (request->pre_max_reached[i] != adjust->pre_max_reached[i])
+>> +			request->pre_max_reached[i] = adjust->pre_max_reached[i];
+> 
+> Why do you need separate request and adjustment structs?
+During link training cr sequence, if dprx keep the LANEx_CR_DONE bit(s) 
+cleared, the request and adjustment structs are used to check the
+old and new valud of ADJUST_REQUEST_LANEx_y register(s) is changed or not.
+
+> 
+>> +	}
+>> +}
+>> +
+>> +static int dw_dp_link_clock_recovery(struct dw_dp *dp)
+>> +{
+>> +	struct dw_dp_link *link = &dp->link;
+>> +	u8 status[DP_LINK_STATUS_SIZE];
+>> +	unsigned int tries = 0;
+>> +	int ret;
+>> +
+>> +	ret = dw_dp_link_train_set_pattern(dp, DP_TRAINING_PATTERN_1);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	for (;;) {
+>> +		ret = dw_dp_link_train_update_vs_emph(dp);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		drm_dp_link_train_clock_recovery_delay(&dp->aux, link->dpcd);
+>> +
+>> +		ret = drm_dp_dpcd_read_link_status(&dp->aux, status);
+>> +		if (ret < 0) {
+>> +			dev_err(dp->dev, "failed to read link status: %d\n", ret);
+>> +			return ret;
+>> +		}
+>> +
+>> +		if (drm_dp_clock_recovery_ok(status, link->lanes)) {
+>> +			link->train.clock_recovered = true;
+>> +			break;
+>> +		}
+>> +
+>> +		dw_dp_link_get_adjustments(link, status);
+>> +
+>> +		if (link->train.request.voltage_swing[0] ==
+>> +		    link->train.adjust.voltage_swing[0])
+> 
+> Should this take all lanes to account? I think it might be posssible to
+> drop the adjust / request split and adjust tries in
+> dw_dp_link_get_adjustments() instead.
+Yes, here shall compare both swing and pre-emphasis for all lanes. It's 
+a good idea to drop the adjust / request split. The swing and 
+pre-emphasis compare just need by cr sequence. But both cr and eq 
+sequences use  dw_dp_link_get_adjustments(). It will be better to delete 
+dw_dp_link_train_adjust() and add a new function to adjust tries for cr 
+sequence.
+> 
+>> +			tries++;
+>> +		else
+>> +			tries = 0;
+>> +
+>> +		if (tries == 5)
+>> +			break;
+>> +
+>> +		dw_dp_link_train_adjust(&link->train);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int dw_dp_link_channel_equalization(struct dw_dp *dp)
+>> +{
+>> +	struct dw_dp_link *link = &dp->link;
+>> +	u8 status[DP_LINK_STATUS_SIZE], pattern;
+>> +	unsigned int tries;
+>> +	int ret;
+>> +
+>> +	if (link->caps.tps4_supported)
+>> +		pattern = DP_TRAINING_PATTERN_4;
+>> +	else if (link->caps.tps3_supported)
+>> +		pattern = DP_TRAINING_PATTERN_3;
+>> +	else
+>> +		pattern = DP_TRAINING_PATTERN_2;
+>> +	ret = dw_dp_link_train_set_pattern(dp, pattern);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	for (tries = 1; tries < 5; tries++) {
+>> +		ret = dw_dp_link_train_update_vs_emph(dp);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		drm_dp_link_train_channel_eq_delay(&dp->aux, link->dpcd);
+>> +
+>> +		ret = drm_dp_dpcd_read_link_status(&dp->aux, status);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +
+>> +		if (!drm_dp_clock_recovery_ok(status, link->lanes)) {
+>> +			dev_err(dp->dev, "clock recovery lost while equalizing channel\n");
+>> +			link->train.clock_recovered = false;
+>> +			break;
+>> +		}
+>> +
+>> +		if (drm_dp_channel_eq_ok(status, link->lanes)) {
+>> +			link->train.channel_equalized = true;
+>> +			break;
+>> +		}
+>> +
+>> +		dw_dp_link_get_adjustments(link, status);
+>> +		dw_dp_link_train_adjust(&link->train);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+......
+>> +
+>> +struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
+>> +			 const struct dw_dp_plat_data *plat_data);
+>> +#endif /* __DW_DP__ */
+>> -- 
+>> 2.34.1
+>>
+> 
+
 
