@@ -1,217 +1,160 @@
-Return-Path: <devicetree+bounces-153240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF7EFA4BABC
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 10:26:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3F5DA4BADF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 10:35:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E0353A5D80
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:26:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C816516967F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:35:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34401F0E27;
-	Mon,  3 Mar 2025 09:26:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tHtGDha5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F841F0996;
+	Mon,  3 Mar 2025 09:35:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9BD113C8E8;
-	Mon,  3 Mar 2025 09:26:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3302C1EE7D3;
+	Mon,  3 Mar 2025 09:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740993980; cv=none; b=Y+n/rFqiCJmfSFtBfb4mjdkDd3TFNR0AB/kJOkPAK9iHVXRyngmPaJrlKuf0P+b8NSmHo71OY+mdWBN6m5Nz6Z74GYfR40gYgaX31NfRMXcQZjiito4PdrVXxn1/6vmWVeRg/1LIHb2mFt3pH/C+Uiq/rnmeugDayFOTw9XIDTw=
+	t=1740994520; cv=none; b=RozIdKeZEGnF5PqKuum/jwpZB2zZ0nRL+i5Wists13JEB8NunO6mFnxPQ1OmKFMqYFVtZmBZYf+YjjX0DHXQzq6mGg+C2riPtWDU6udCv9ToVP8Bv2MkM139A0D99qFykBRm3D7EpLpQU78tQR9ea5zVsnytTxNifRdzDbRrQS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740993980; c=relaxed/simple;
-	bh=m7pLdPXQWCNRenKWCOj9QGklukAUggqeQTZ/jePvJ+k=;
+	s=arc-20240116; t=1740994520; c=relaxed/simple;
+	bh=gCpNNSve1jlt1V5SnYQVpGjhoChNTjthXctFbRk7RpM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JjAB3lxBM7hdDwt/YBr6Uk8UdEuyIYFOI0Q9tg6QJF/S9uZYSTfHVQndo2SrloC5E8S1YOQ0rm/TVjcKwF1maUr7RNqp7MY/64yAhvRqS8P5qtozNaZBKl7SbNgHLy+KAamEiMz55O3TGx/HvYJK2B4OYJcVwgM2j4aLM3D/FMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tHtGDha5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44854C4CEE4;
-	Mon,  3 Mar 2025 09:26:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740993980;
-	bh=m7pLdPXQWCNRenKWCOj9QGklukAUggqeQTZ/jePvJ+k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tHtGDha5Zbwwl8eFABfT3/lOyOAPQyA941Oy3/pisGsByfKaNroKCJJdkeYMkYRYQ
-	 08Qx51MIsWAIJEg5b0dI0v/VNC6bwSHJgSpV8iAVRtz6NX0FC9lVxFsAwjPs6Rs12b
-	 CYVS/Gj4opkVuplXo+M1sERIWKz6zjFTEu1CVpLcPtG//Xe5YBinZT+cxoVoTQKVnR
-	 JS/EMs3BKH9rVbmhQXJbsJB0sEaem/VFFFx8l6aGpF/yIUpsNpERSW301+HeqOxBAf
-	 sWC3gL3o+kWCdqssPE3PvHzhy0x+SuEBE72LkIWKwx9nR0rWtZ35ZCENGkXOQOTq1w
-	 MExLrwKSJzUag==
-Date: Mon, 3 Mar 2025 10:26:16 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Hironori KIKUCHI <kikuchan98@gmail.com>
-Cc: linux-kernel@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jakub Kicinski <kuba@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] drm: panel: Add a driver for Generic
- MIPI-DSI/DPI(+SPI) panels
-Message-ID: <20250303-massive-beagle-of-authority-40bbb5@krzk-bin>
-References: <20250226112552.52494-1-kikuchan98@gmail.com>
- <20250226112552.52494-4-kikuchan98@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jG6W0za3fTapzwPCSeztAPnSGKK8+Qsf4cFdpCRHS9f/T75/kTEj0xk7OqueGsAkxhBLBr24e9F8GJ3iUxRJvG1NCJfJvjs+S6TCR7t490Pt6HwyO3yZITG4CvRe8F/FP9PwJnyBvyIacI09068+PySqbPNPoT0YV0H93UgNWBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.55.252])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 06910342FAE;
+	Mon, 03 Mar 2025 09:35:16 +0000 (UTC)
+Date: Mon, 3 Mar 2025 09:35:06 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Troy Mitchell <troymitchell988@gmail.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH RESEND v5 1/2] dt-bindings: i2c: spacemit: add support
+ for K1 SoC
+Message-ID: <20250303093506-GYA58937@gentoo>
+References: <20250303-k1-i2c-master-v5-0-21dfc7adfe37@gmail.com>
+ <20250303-k1-i2c-master-v5-1-21dfc7adfe37@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250226112552.52494-4-kikuchan98@gmail.com>
+In-Reply-To: <20250303-k1-i2c-master-v5-1-21dfc7adfe37@gmail.com>
 
-On Wed, Feb 26, 2025 at 08:25:50PM +0900, Hironori KIKUCHI wrote:
+On 13:30 Mon 03 Mar     , Troy Mitchell wrote:
+> The I2C of K1 supports fast-speed-mode and high-speed-mode,
+> and supports FIFO transmission.
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Troy Mitchell <troymitchell988@gmail.com>
+> ---
+>  .../devicetree/bindings/i2c/spacemit,k1-i2c.yaml   | 59 ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..db49f1f473e6f166f534b276c86b3951d86341c3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/spacemit,k1-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +struct panel_firmware_header {
-> +	u8 magic[15];
-> +	u8 file_format_version; /* must be 1 */
-> +} __packed;
+> +title: I2C controller embedded in SpacemiT's K1 SoC
 > +
-> +struct panel_firmware_config {
-> +	u16 width_mm, height_mm;
-> +	u16 rotation;
-> +	u8 _reserved_1[2];
-> +	u8 _reserved_2[8];
+> +maintainers:
+> +  - Troy Mitchell <troymitchell988@gmail.com>
 > +
-> +	u16 reset_delay; /* delay after the reset command, in ms */
-> +	u16 init_delay; /* delay for sending the initial command sequence, in ms */
-> +	u16 sleep_delay; /* delay after the sleep command, in ms */
-> +	u16 backlight_delay; /* delay for enabling the backlight, in ms */
+> +properties:
+> +  compatible:
+> +    const: spacemit,k1-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+..
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 2
+I'd suggest to give a brief description and explicit clock name here,
+you can consult marvell,mv64xxx-i2c.yaml for example
 
-These should be implied by compatible.
+> +
+> +  clock-frequency:
+> +    description: |
+> +      K1 support three different modes which running different frequencies
+> +      standard speed mode: up to 100000 (100Hz)
+> +      fast speed mode    : up to 400000 (400Hz)
+> +      high speed mode    : up to 3300000 (3.3Mhz)
+> +    default: 400000
+> +    maximum: 3300000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c@d4010800 {
+> +        compatible = "spacemit,k1-i2c";
+> +        reg = <0xd4010800 0x38>;
+> +        interrupt-parent = <&plic>;
+> +        interrupts = <36>;
+> +        clocks = <&ccu 176>, <&ccu 90>;
+> +        clock-names = "apb", "twsi";
+9.1.4.61 TWSI0 CLOCK RESET CONTROL REGISTER(APBC_TWSI0_CLK_RST)
+https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb#part594
+from above docs, there are two clocks 
+bit[1] - FNCLK, TWSI0 Functional Clock Enable/Disable
+bit[0] - APBCLK, TWSI0 APB Bus Clock Enable/Disable
 
-> +	u16 _reserved_3[4];
-> +
-> +	u16 dsi_lanes; /* unsigned int */
-> +	u16 dsi_format; /* enum mipi_dsi_pixel_format */
-> +	u32 dsi_mode_flags; /* unsigned long */
-> +	u32 bus_flags; /* struct drm_bus_flags */
-> +	u8 _reserved_4[2];
-> +	u8 preferred_timing;
-> +	u8 num_timings;
-> +} __packed;
-> +
+I'd suggest to name it according to the functionality, thus 'func', 'bus'
+clock, not its source.. which would make it more system wide consistent
 
-...
+> +        clock-frequency = <100000>;
+> +    };
+> +
+> +...
+> 
+> -- 
+> 2.34.1
+> 
 
-> +
-> +static int panel_mipi_probe(struct device *dev, int connector_type)
-> +{
-> +	struct panel_mipi *mipi;
-> +	int err;
-> +
-> +	mipi = devm_kzalloc(dev, sizeof(*mipi), GFP_KERNEL);
-> +	if (!mipi)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&mipi->lock);
-> +
-> +	mipi->display_id = -1;
-> +
-> +	/* Get `power-supply` and `io-supply` (if any) */
-> +	mipi->supplies[0].supply = "power";
-> +	mipi->supplies[1].supply = "io";
-> +	err = devm_regulator_bulk_get(dev, ARRAY_SIZE(mipi->supplies),
-> +				      mipi->supplies);
-> +	if (err < 0) {
-> +		return dev_err_probe(dev, err,
-> +				     "%pOF: Failed to get regulators\n",
-> +				     dev->of_node);
-
-Drop pOF. Device name already tells this.
-
-> +	}
-> +
-> +	/* GPIO for /RESET */
-> +	mipi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(mipi->reset))
-> +		return dev_err_probe(dev, PTR_ERR(mipi->reset),
-> +				     "%pOF: Failed to get GPIO for RESET\n",
-
-Drop pOF. Device name already tells this.
-
-> +				     dev->of_node);
-> +
-> +	/* Load the firmware */
-> +	mipi->firmware = panel_mipi_load_firmware(dev);
-> +	if (IS_ERR(mipi->firmware))
-> +		return dev_err_probe(dev, PTR_ERR(mipi->firmware),
-> +				     "Failed to load firmware\n");
-> +
-> +	err = panel_mipi_read_firmware(dev, mipi, mipi->firmware);
-> +	if (err)
-> +		return err;
-> +
-> +	err = panel_mipi_probe_modes(dev, mipi);
-> +	if (err)
-> +		return err;
-> +
-> +	/* DRM panel setup */
-> +	drm_panel_init(&mipi->panel, dev, &panel_mipi_funcs, connector_type);
-> +
-> +	err = panel_mipi_set_backlight(&mipi->panel, dev, mipi);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Failed to set backlight\n");
-> +
-> +	drm_panel_add(&mipi->panel);
-> +
-> +	dev_set_drvdata(dev, mipi);
-> +
-> +	panel_mipi_debugfs_init(dev, mipi);
-> +
-> +	return devm_add_action_or_reset(dev, panel_mipi_cleanup, mipi);
-> +}
-> +
-> +static int panel_mipi_dsi_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct panel_mipi *mipi;
-> +	int err;
-> +
-> +	err = panel_mipi_probe(&dsi->dev, DRM_MODE_CONNECTOR_DSI);
-> +	if (err)
-> +		return err;
-> +
-> +	mipi = dev_get_drvdata(&dsi->dev);
-> +	mipi->dsi = dsi;
-> +	mipi->write_command = panel_mipi_dsi_write;
-> +	mipi->read_command = panel_mipi_dsi_read;
-> +
-> +	/* Read from the firmware */
-> +	dsi->lanes = be16_to_cpu(mipi->firmware->config->dsi_lanes);
-
-lanes are from DT, because they are depending on how panel is wired. At
-least usually.
-
-> +	dsi->format = be16_to_cpu(mipi->firmware->config->dsi_format);
-> +	dsi->mode_flags = be32_to_cpu(mipi->firmware->config->dsi_mode_flags);
-> +
-> +	if (!dsi->lanes)
-> +		return dev_err_probe(&dsi->dev, -EINVAL,
-> +				     "dsi-lanes == 0 for DSI panel\n");
-> +
-> +	/* Adjust bus_format */
-> +	switch (dsi->format) {
-> +	case MIPI_DSI_FMT_RGB888:
-> +		mipi->bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-> +		break;
-> +	case MIPI_DSI_FMT_RGB666:
-> +		mipi->bus_format = MEDIA_BUS_FMT_RGB666_1X24_CPADHI;
-> +		break;
-> +	case MIPI_DSI_FMT_RGB666_PACKED:
-> +		mipi->bus_format = MEDIA_BUS_FMT_RGB666_1X18;
-> +		break;
-> +	case MIPI_DSI_FMT_RGB565:
-> +		mipi->bus_format = MEDIA_BUS_FMT_RGB565_1X16;
-> +		break;
-> +	}
-
-Best regards,
-Krzysztof
-
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
