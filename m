@@ -1,100 +1,165 @@
-Return-Path: <devicetree+bounces-153379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3294DA4C355
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:26:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB9EA4C375
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:36:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57384164706
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:26:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70C497A4E18
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A4A821171F;
-	Mon,  3 Mar 2025 14:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C92A2139CF;
+	Mon,  3 Mar 2025 14:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AXmZDD4Z"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="b0jxFdoy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D117E78F39;
-	Mon,  3 Mar 2025 14:26:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE382116ED
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 14:36:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741011969; cv=none; b=BLNX4FQCctH5GaTQgddfa3ShoFwIG36OBQbCKjhBGCi4jVuV8DboR/nit/xdHP+FCX8PIxfqwE/mdvRZFEiitYO4KXY5mv+O19BDVrhyBPvDhi3/iQKWWTHAWT7pvxhqySGCs1VktafROfomylisgoLTkoNsSQp+XJ/5FLwbb6g=
+	t=1741012599; cv=none; b=Ze6ZxDedaYdUmLjY9GbCs7PSwCrFIBUmt33TwIlHB6WCQ0p7dlmx0DjEWPnXHyU7yGr74SOT3RM97CKOMfX6jz+IRzMqL4hJmjeAmzcs2i9rhKfUYa1UPMy/YiapjkhP5j+c5ajQw/mpVhEbIAmk2+uXb0PNazqcl8JUSdofvZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741011969; c=relaxed/simple;
-	bh=0g9fQWh0Jv15zl9OPaLLQofjM1L8RSDKnVZdipTRZCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cBYCyeHsnq5bmLXZDnP8TG3gHco3HuHOoA+liuYL00lvn2ISjzQjiqzd+4ZIJW8TBS0B32SuXQ/Q2WNN3CAWT7pWcs1OpR6LCUiaUAprlAWGkPYvaIw4oNOi1C/MJxYS3pzwkQsIfKgyQk+J1CYvLzL8kcYQ6Q7/FAj239YBpYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AXmZDD4Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A38DC4CED6;
-	Mon,  3 Mar 2025 14:26:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741011969;
-	bh=0g9fQWh0Jv15zl9OPaLLQofjM1L8RSDKnVZdipTRZCE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AXmZDD4Z9JhXaUrSlitgAjv2ProElafpbv8DEBeM8BFxzkXJaqr7hxgnvWCNxKnXg
-	 FpnnEOFIsP87R/dqG0i/j4TOH95iuIhzu3WHBJk239wRqEbMNg2y9dxsV67+PaIbvo
-	 01L4IIQpyjRChsYJbNunusnwgpusho9cFVWb77cLG4HN015/DME/JiNlr8wNWxKMU6
-	 eVsiPkCMqat8MCAj9PO8x+sKvOtRCVFnfbtwLwHKCb4UDRnoVv5+OD1cj8r3zxSjnI
-	 HE87mpYyQ3HaC2xmnZt2ZgCuAe/BijhRSQL8W6R4I2MnmVGrcJBP01yg+yEiJUM2Ca
-	 iRG1yvmq7s1qw==
-Date: Mon, 3 Mar 2025 08:26:07 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v3 4/6] dt-bindings: thermal: rockchip: document otp
- thermal trim
-Message-ID: <174101196712.1786336.17880487519994518563.robh@kernel.org>
-References: <20250228-rk3576-tsadc-upstream-v3-0-4bfbb3b699b9@collabora.com>
- <20250228-rk3576-tsadc-upstream-v3-4-4bfbb3b699b9@collabora.com>
+	s=arc-20240116; t=1741012599; c=relaxed/simple;
+	bh=I/74DaK6OwRQxqLGBF1ylRLIPNLrG2psU7QD8Iv7Pnc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=GNkknuwGrl3qR6BaqDPlVs3se7zc/p+t0X/IDu2WTz4pe9XAvQOPec9Y06rW1y6/qd69TR9xKD7uxVpQTipbrSmT707P2qoFHqCeLQPWyOqcA4mYgGQoiJ2YD4IIHjzJEzeVk6F/MaX3DIVnpVbewk294etg+vA3kEO9V8HC2SI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=b0jxFdoy; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250303143635euoutp01a1a5fe534b62a0d7e19abdf5aa474c89~pUbsg9vfB1066710667euoutp01k
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 14:36:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250303143635euoutp01a1a5fe534b62a0d7e19abdf5aa474c89~pUbsg9vfB1066710667euoutp01k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1741012595;
+	bh=pTjIhab8FRPR9yXV/fmQexbnMHTD4v3PKosSwFKK0e4=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=b0jxFdoyc43MHMRFKwa1VHx4XZT/eOv7H6+dZpdH5/juf2W44WVVAPu+nDJxaTOWW
+	 INT3I//iX6ekTonAyQONmx/wN9xB1a86BpgPA8gPJUcHXgK6fk0ffmRAS1GsvZK6Qb
+	 MxiBhPLlsdy6TYVBnA8uv6x+wtFi09AZl4rHxIxA=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250303143634eucas1p203aef65baec1b28baa23e41bdcbfbdef~pUbsDPrX42682126821eucas1p2s;
+	Mon,  3 Mar 2025 14:36:34 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id A9.8D.20409.27EB5C76; Mon,  3
+	Mar 2025 14:36:34 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250303143634eucas1p269281f72bdc4d764edd54b9427f68787~pUbrokfQM2682126821eucas1p2r;
+	Mon,  3 Mar 2025 14:36:34 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250303143634eusmtrp194320dd4bcc931db79a659cb79d181c8~pUbrmn-s01014710147eusmtrp1l;
+	Mon,  3 Mar 2025 14:36:34 +0000 (GMT)
+X-AuditID: cbfec7f4-c0df970000004fb9-99-67c5be722ace
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id B4.89.19654.17EB5C76; Mon,  3
+	Mar 2025 14:36:34 +0000 (GMT)
+Received: from AMDC4942.home (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250303143633eusmtip28a4429ddccd06e468ba9ba46be450def~pUbqqIMVy2026320263eusmtip2j;
+	Mon,  3 Mar 2025 14:36:33 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+To: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
+	wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
+	p.zabel@pengutronix.de, m.szyprowski@samsung.com
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, Michal
+	Wilczynski <m.wilczynski@samsung.com>
+Subject: [PATCH v1 0/4] Add T-Head TH1520 VO clock support for LicheePi 4A
+ GPU enablement
+Date: Mon,  3 Mar 2025 15:36:25 +0100
+Message-Id: <20250303143629.400583-1-m.wilczynski@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250228-rk3576-tsadc-upstream-v3-4-4bfbb3b699b9@collabora.com>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrIKsWRmVeSWpSXmKPExsWy7djPc7pF+46mG3QeULB4ducrq8XW37PY
+	LdbsPcdkMf/IOVaLe5e2MFm82NvIYtF8bD2bxctZ99gsPvbcY7W4vGsOm8W2zy1sFmuP3GW3
+	WP91PpPFxVOuFnfvnWCxeHm5h9mibRa/xf89O9gt/l3byGLRsn8Ki4OIx/sbreweb16+ZPE4
+	3PGF3ePeiWmsHptWdbJ5bF5S79Gy9hiTR/9fA4/3+66yefRtWcXocan5OrvH501yATxRXDYp
+	qTmZZalF+nYJXBn7phcUXOSpaHi7iqmBcStXFyMnh4SAicS0b98Yuxi5OIQEVjBKrGtsZ4Vw
+	vjBKnJ/+kxnC+cwo8bH3OTNMS8O5RewQieVALVPfs4EkhATeMEpMvcAIYrMJGEk8WD4fbJSI
+	wB4mie/fIUYxC6xilHjy7SM7SJWwQLTEkgkNYDaLgKrExEOtLCA2r4CdxJX2xVDr5CX2HzzL
+	DBEXlDg58wlYDTNQvHnrbLChEgL7OSX2rn/MCtHgIrH9RAcjhC0s8er4FnYIW0bi9OQeFgg7
+	X+LB1k9QC2okdvYch7KtJe6c+wX0DgfQAk2J9bv0IcKOEj+vzwELSwjwSdx4KwhxAp/EpG3T
+	mSHCvBIdbUIQ1WoSU3t64ZaeW7GNCcL2kHj+YCsjJKxiJT4dnc44gVFhFpLHZiF5bBbCDQsY
+	mVcxiqeWFuempxYb5aWW6xUn5haX5qXrJefnbmIEpsrT/45/2cG4/NVHvUOMTByMhxglOJiV
+	RHhvtR9NF+JNSaysSi3Kjy8qzUktPsQozcGiJM67aH9rupBAemJJanZqakFqEUyWiYNTqoGp
+	Kvf30c9JD9e6JXSxOz5IOKKxJH6qhfbvVTml3gwPCmOfFy48+efTmml1sa6h/7lmb1uklPgq
+	sHamsJ5p4OIsp9rfji/4c879FtppE/pk14Uf9hU3nNO1lc/bFCnWS6+uF1wVaDFd9VbG4lPq
+	JgbsKVVMSin2S3rSXGyL9SfHRQl4zRF4fvLM+UWfVAX3W3Dl2F+0b2ivUru0ONHP/tIprlN5
+	t5/1cD+SrWb8cfvilmVV3bdXOlm2eR0yXv0vKPhj9r/ULx+3HL/Kc3Rii8SLksnrr4adDCgz
+	TZ2TtX9J35r2XZN62YUvGj0Umyb7OXv626y7FnnzDzmarVBnXcjx8lN2y5WFfxnLsm0WGnUo
+	sRRnJBpqMRcVJwIA2loBZQQEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrHIsWRmVeSWpSXmKPExsVy+t/xe7pF+46mG0w/xGzx7M5XVoutv2ex
+	W6zZe47JYv6Rc6wW9y5tYbJ4sbeRxaL52Ho2i5ez7rFZfOy5x2pxedccNottn1vYLNYeuctu
+	sf7rfCaLi6dcLe7eO8Fi8fJyD7NF2yx+i/97drBb/Lu2kcWiZf8UFgcRj/c3Wtk93rx8yeJx
+	uOMLu8e9E9NYPTat6mTz2Lyk3qNl7TEmj/6/Bh7v911l8+jbsorR41LzdXaPz5vkAnii9GyK
+	8ktLUhUy8otLbJWiDS2M9AwtLfSMTCz1DI3NY62MTJX07WxSUnMyy1KL9O0S9DL2TS8ouMhT
+	0fB2FVMD41auLkZODgkBE4mGc4vYuxi5OIQEljJKrDuzmRkiISNxrfslC4QtLPHnWhcbiC0k
+	8IpRoudkFYjNJmAk8WD5fFaQZhGBC0wSu9atZgJxmAXWMUpM2b6DCaRKWCBS4v33hWCTWARU
+	JSYeagWzeQXsJK60L4baJi+x/+BZZoi4oMTJmU+AajiABqlLrJ8nBBJmBipp3jqbeQIj/ywk
+	VbMQqmYhqVrAyLyKUSS1tDg3PbfYSK84Mbe4NC9dLzk/dxMjMKK3Hfu5ZQfjylcf9Q4xMnEw
+	HmKU4GBWEuG91X40XYg3JbGyKrUoP76oNCe1+BCjKdDVE5mlRJPzgSklryTe0MzA1NDEzNLA
+	1NLMWEmcl+3K+TQhgfTEktTs1NSC1CKYPiYOTqkGppCtrvvNv70z1Y45pLXhVvPF+pdawdMf
+	MLXv25g965HNx4tzHjEsT1kkldzh9TclP1ujZCnPl91Gj+wYdRQj7q8WfDp36qZKiclxP5xE
+	JS9frhPlEggSe5yZrLTbZ+ME9qP9bwT28qjmbZlSzLn7UE5o/H/HQuk1sha2687/WdbCqPBS
+	SlDq2iEWSYPwfPYZJb8+VTHe2+CePEMm4PySJTrLW26rH/rQLTqrP5zh6E7nl5MfJEtNrbhl
+	J3+oaKJVjr4A7wyB01efPv/GWmHXpMp3826oWOeUG+Er1+bItPHGdzre27uh377dxyXmUUnE
+	92jLk9GZD1bxt9p2+BbvWBcQ+JFXQ3em04t7vuEZSizFGYmGWsxFxYkACo1pLXEDAAA=
+X-CMS-MailID: 20250303143634eucas1p269281f72bdc4d764edd54b9427f68787
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250303143634eucas1p269281f72bdc4d764edd54b9427f68787
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250303143634eucas1p269281f72bdc4d764edd54b9427f68787
+References: <CGME20250303143634eucas1p269281f72bdc4d764edd54b9427f68787@eucas1p2.samsung.com>
 
+This is a subset of a larger patch series enabling the Imagination BXM-4-64 GPU
+on the LicheePi 4A board, which is powered by the T-HEAD TH1520 SoC. While the
+full series includes power-domain, reset, and firmware changes, this part
+focuses solely on the clock subsystem needed for the GPU and other VO (video
+output) blocks. By merging these clock patches independently, we prepare the
+groundwork for future GPU integration via the `drm/imagination` driver.
 
-On Fri, 28 Feb 2025 21:06:54 +0100, Nicolas Frattaroli wrote:
-> Several Rockchip SoCs, such as the RK3576, can store calibration trim
-> data for thermal sensors in OTP cells. This capability should be
-> documented.
-> 
-> Such a rockchip thermal sensor may reference cell handles that store
-> both a chip-wide trim for all the sensors, as well as cell handles
-> for each individual sensor channel pointing to that specific sensor's
-> trim value.
-> 
-> Additionally, the thermal sensor may optionally reference cells which
-> store the base in terms of degrees celsius and decicelsius that the trim
-> is relative to.
-> 
-> Each SoC that implements this appears to have a slightly different
-> combination of chip-wide trim, base, base fractional part and
-> per-channel trim, so which ones do which is documented in the bindings.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  .../bindings/thermal/rockchip-thermal.yaml         | 61 ++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
-> 
+The T-HEAD TH1520 SoC features multiple clock controllers. Initially, only the
+AP clock controller was supported upstream. The patches below add support for
+the VO (video output) clock controller, which manages GPU-related gates, HDMI,
+and other multimedia clocks. Additionally, they introduce a mechanism to
+provide no-op operations for the GPU's "mem" clock gate (documented as
+“Reserved” in the hardware manual) and coordinate the GPU CLKGEN reset in the
+clock driver.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Bigger series cover letter:
+
+https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
+
+Michal Wilczynski (4):
+  dt-bindings: clock: thead: Add TH1520 VO clock controller
+  clk: thead: Add clock support for VO subsystem in T-Head TH1520 SoC
+  clk: thead: Add support for custom ops in CCU_GATE_CLK_OPS macro
+  clk: thead: Add GPU clock gate control with CLKGEN reset support
+
+ .../bindings/clock/thead,th1520-clk-ap.yaml   |  33 +-
+ drivers/clk/thead/clk-th1520-ap.c             | 298 ++++++++++++++++--
+ .../dt-bindings/clock/thead,th1520-clk-ap.h   |  34 ++
+ 3 files changed, 334 insertions(+), 31 deletions(-)
+
+-- 
+2.34.1
 
 
