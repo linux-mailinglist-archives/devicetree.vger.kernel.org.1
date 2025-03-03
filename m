@@ -1,113 +1,83 @@
-Return-Path: <devicetree+bounces-153941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5641A4E4A8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:01:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82C86A4E474
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:57:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81A3E1892ACA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:53:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDE0E19C390A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:49:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2578F296D4C;
-	Tue,  4 Mar 2025 15:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E73A260378;
+	Tue,  4 Mar 2025 15:33:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
+Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9B8296D48
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:36:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF6225DD07
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:33:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.116
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741102603; cv=pass; b=mjw1XT5ye6CfMEDW7417p60wNfXOn8KOTg7uXHT5kynETe1Rpx1xwIKBIttXGfvM/ahKrEiycn1JIoF56pi5kiEAOezq4OnnHLlmNr0MvkJ6+iOJZdgr0UtFO3kaM11tO8I/0wGx/o5xkcc8L382hFm5eumuI7dBl0kcMt8Npps=
+	t=1741102424; cv=fail; b=C5TKkRNkjiE77rYpTh0FmMnCP4SM7KrFumJzFDWwRV5x7E/kmDdukCh6/hcpZgmfUWuSQFxUNIWkJEvbw3ObEoci1Y9S2XrdhVnMpLUto+yoh/ogR7vPq4/pgCMbMbvU6DbXlSNmBkYB7HxKIn25huZR3t3Y+P26lqhSXtcvJfU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741102603; c=relaxed/simple;
-	bh=GpiZMOoa9Dd0lVa5mQxYvhJCA3PozAweI+AolilGiy4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Bza1zi8/gqDzZRZKgjcWwE9pByW2BoDFNa9dnFfJnLIyE+dAGMUxX/9A4BpbBYqnrPwWWTOfd2xF+KNkGesl+KNwagraKgCPJPdx+kLuxYCPUnTW1ZR/+wXhynA6z+9em+ht+PoUQK+jwd1JEbufjuU1uLV1gsY5m6h16rvi2LI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=none smtp.mailfrom=cc.itu.edu.tr; arc=none smtp.client-ip=209.85.222.54; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=pass smtp.client-ip=160.75.25.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1741102424; c=relaxed/simple;
+	bh=w+4w4uW3jmwCDb9GE5NDmAdo4YER2QhtiGfUNFJ1RZQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sFrN9x3eZLqQMxREEFiu0+GM2tcu80AXhg6bXkHbcNl88/9m2jS6btSCh/U3yfy3sUrpiwXDL3j2mDUaNI51iq0KWbaSaNZlLEpc7uajkSzLDUPJjxpMV7CfSY/PwJep1SozNq8OV/58y2w0OatiuuG66MES3ozTOmRlUqtppj0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=cc.itu.edu.tr; arc=none smtp.client-ip=217.140.110.172; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=fail smtp.client-ip=160.75.25.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id BF81E40CEC8B
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:36:39 +0300 (+03)
+	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 5CBBA40F1CFA
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:33:40 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6frB1BnpzG0pM
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:34:50 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6fnH1tHmzG0DB
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:32:19 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 9EC0442731; Tue,  4 Mar 2025 18:34:39 +0300 (+03)
-X-Envelope-From: <linux-kernel+bounces-541401-bozkiru=itu.edu.tr@vger.kernel.org>
-Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
-	by le2 (Postfix) with ESMTP id 7EEE74339A
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:41:30 +0300 (+03)
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by fgw2.itu.edu.tr (Postfix) with SMTP id C38772DCDE
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:41:29 +0300 (+03)
+	id E238842737; Tue,  4 Mar 2025 18:32:10 +0300 (+03)
+X-Envelope-From: <linux-kernel+bounces-541440-bozkiru=itu.edu.tr@vger.kernel.org>
+Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
+	by le2 (Postfix) with ESMTP id 7AFD442331
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:55:05 +0300 (+03)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id 582253063EFC
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:55:05 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 672677A83A3
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:39:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D12981894B94
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7791EB5D7;
-	Mon,  3 Mar 2025 10:40:36 +0000 (UTC)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 200F31D7E4C;
-	Mon,  3 Mar 2025 10:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0911F4634;
+	Mon,  3 Mar 2025 10:53:31 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF63E1D86DC;
+	Mon,  3 Mar 2025 10:53:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740998434; cv=none; b=sxuAHBEdAodfmPL8uFAOBYuZHNeuMgZvhzQMMoHgQUwp6nZONZqhgemB7x37cyoNZkSLU4klQ9kyckGTzRtLiIBLUqIJOk+Flpm5htsN0HyuLuhcUS4jawSZ5tPFebahnSY4AYIHTXczhuG19c0FVodwTYcRxR2p7iZ/4M1MsuY=
+	t=1740999209; cv=none; b=Hfe5RD4LKxqvlI7fnjIh7gC7QS4GIjETAS3UDTJeuULZXMDxLYAt9e2TcE0QQH9pDhk516ZAC5ngGfLnEqSAiIscQg04WcUcDxKjNiUh9b3IVbPlKr5/3QFRAmuXSMvMr2ZdkenMnx9ezTdUHtQK569eHO6jp5mF5vjlerzNkp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740998434; c=relaxed/simple;
-	bh=GpiZMOoa9Dd0lVa5mQxYvhJCA3PozAweI+AolilGiy4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QfTeT2Iirj9ofdomy8nBDZ9vcnutFBKTUGCTEiT52jqReSK2sfYjP5FMZ/O2pm1lBVctNJdwcyMOIcUoY64SLPd11veGf12wnAEVTSVBvqLyDDqbX1CjhlolQMBbEFFgl/SxLpnba1ZNKgwG49th4nmX0utSgCBl6v1WBWhjDGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-86b3ed5fde5so3631980241.0;
-        Mon, 03 Mar 2025 02:40:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740998429; x=1741603229;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=j7nppDH0wEnn0k1LbQlYHcxjcCY12F5sq67FKUOJ3Wk=;
-        b=rEaU6PylpvNHHpdKiJEKrmy8MaMBSvzNnXk90qka5PgM0cb3/ERyMyZFdidj2PVG4P
-         98w1X+BXNeJvfSTodPEjYdWZFZeQzbM2dtyFRUZFOscPBCKKy/wpmfR43exzR+HiJigp
-         rh4/V12+jv6/88sACfbDEruPRyaZBCUP9EhpbU9jWB/j+4DNIeTgxmC///qPciuvHcI/
-         OpgPmCYvv8TqVc4fiQ+JWc63VaHShMPHCd6NDkNtqnSWKtDrdv5l9JiEOswU8ff9ChjG
-         MY14GrzblGyq/7GsjJCstLJBN1fdBlJ2Zf5zMv4BJdjbqQyGzrizbj9jFJSyRPQmULpt
-         8C+g==
-X-Forwarded-Encrypted: i=1; AJvYcCV8U6MfKFyLEBt8FnCKv3HiUJqI0J2XCdz7iz6ol9xm2AQld5uyny8sgnJTJcpz0yumJcY27KCo82YQ@vger.kernel.org, AJvYcCVfIxa+jDve/e7ktzSTHYBtvGBxDB16NzcpvMJxdCSsvsqicfVXEYzY614h3418Mkv98H1eLtAqBMkiPJORy2D9dh0=@vger.kernel.org, AJvYcCVlGEZfUqYvj2QJ6kEoctNR5xnWRpz3acJ0eUtRG+qOCHJwf1UHcNbkV8n9fXRxq7FMySsXPFzyq2EaOvLT@vger.kernel.org, AJvYcCWTlIj7ynjXLN8qsZuJNIq3eK+rmFnDNFHgYHZlmSGPF1f61qdzzxYuRedQHud2R7tEoQNlVaCV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4ysIml5Mk3B3PXTCGetjlhBHKhIbnGcwA58Z9XC1EhCC5pEIS
-	LwMPcymBCcQIHCb/vmuMT8xpE9aKE8mii1KasfGBb8VdCVnK0l+WOePPZBbR
-X-Gm-Gg: ASbGncsMWJblpi7D7uL4SqIM6BDi47OralO621+RTPijCN+pYLXtXXL1if1nFM2ISw1
-	5T2CwfbuQzKbLDKSEQ9qtcYrFzPnVZQZJHQIuMWBh9xwcbp7OOzANg/edBuMY7exQw8wgMCYZRD
-	FqeLa6YRha4L6b2oxOIavm2uGL/URavYLZbugH2Ea4Ka28iOtejk+u5BWQXjvLsBy9OPWs872of
-	pOlhXc6qIjaRbbiFrUnNnyblyuJ9AfpyXG9KCcQrrEADj/nwKRuuun9Jl8SysCa3mI7JqEsMXXM
-	iYNnDC+sLUIpugFspEsZn+6hr/vkmaG0oxtDR90sN0Q7tz082D7gXkO92Nz+XRNO8QG9Qzgndyc
-	LnK/lCMM=
-X-Google-Smtp-Source: AGHT+IFwwEwdoibEPNyIJoSsMOSEcyoA3IYhqXdgxg8vWiKueAMO9jJvFjxo2atT96bygP6CrBdCMg==
-X-Received: by 2002:a05:6102:3a65:b0:4c1:9ecd:b250 with SMTP id ada2fe7eead31-4c19ecdcb1cmr813504137.5.1740998428785;
-        Mon, 03 Mar 2025 02:40:28 -0800 (PST)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c17e90cf5csm1082975137.3.2025.03.03.02.40.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Mar 2025 02:40:27 -0800 (PST)
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-86718541914so4406771241.1;
-        Mon, 03 Mar 2025 02:40:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUZTYS7ipsmaPBuDels12ewpHS4+ZWfkP/lO4OSvDUm8dc0LNBg5iG7zVIlVpim6WJPLDgfEr9Hfap45BXE@vger.kernel.org, AJvYcCVIAinCCltIbPZimzTR0OSncfBvxdaVX5fYj9n2QkWWAhPSinc6UC4glZ+LtsklswP+n4k390S+@vger.kernel.org, AJvYcCWniliZqvo+Ihj2NEtAwuqSq3rR7cmXPT9LdKpCjhGxdPh5RGt4XRrbQGasP8RJiojXezgBETCTIjEWAgEfNpNXwdw=@vger.kernel.org, AJvYcCWyQth0XikRHX3bWhrX7DNiClaq9TroMFyRQbYTF/+XZSvwwd5tEhfbE6ycW3nuLbLHqytgwSivDt1O@vger.kernel.org
-X-Received: by 2002:a05:6102:2a42:b0:4c0:435b:5dd2 with SMTP id
- ada2fe7eead31-4c0435b5ebdmr6337617137.1.1740998427518; Mon, 03 Mar 2025
- 02:40:27 -0800 (PST)
+	s=arc-20240116; t=1740999209; c=relaxed/simple;
+	bh=D/JJYc7CC4L1PwjxPEAjthi7kwvPmgsbn4RERhgQtLc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t+UMx2DQ/RkcIvGNQ7TVK03HE5P1zx9zwVQrYVCWa/aDN05x1bZbVq0hEViBC6J3BkzXdJusI0EAA0Jpysb3vB1tt2IoxN0g0sVxhmxf0BW0jQsW5YWKom36z4qWkQ77AfCk54YokHeigCPT+0bg56COmLm5hxWTlpjd6fKmv2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 29C9E1FC7;
+	Mon,  3 Mar 2025 02:53:41 -0800 (PST)
+Received: from [10.57.66.216] (unknown [10.57.66.216])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 491443F778;
+	Mon,  3 Mar 2025 02:53:25 -0800 (PST)
+Message-ID: <93ddb2d9-ce3d-4e6d-bf5f-0b30b2d04d84@arm.com>
+Date: Mon, 3 Mar 2025 10:53:23 +0000
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -115,95 +85,146 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250302181808.728734-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250302181808.728734-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 3 Mar 2025 11:40:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV8GqnhsJg7J7keGvT=Dvj_w0hZOiuZqCa=tiUgLE8Vtg@mail.gmail.com>
-X-Gm-Features: AQ5f1Jpv15ql5krxTjLeAExxOGaKNBovwnzhgUjXQ5dDEMa9JTfxXPA61zZ_Iv0
-Message-ID: <CAMuHMdV8GqnhsJg7J7keGvT=Dvj_w0hZOiuZqCa=tiUgLE8Vtg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] net: stmmac: Add DWMAC glue layer for Renesas GBETH
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] thermal: thermal-generic-adc: add temperature
+ sensor channel
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Laxman Dewangan <ldewangan@nvidia.com>, linux-kernel@vger.kernel.org
+References: <20250219082817.56339-1-clamor95@gmail.com>
+ <20250219082817.56339-3-clamor95@gmail.com>
+ <99ee61dc-abd5-45d9-8d26-a8f0ae94c8eb@arm.com>
+ <CAPVz0n0uWEY+-evrfpci9-1c3icGyHfTHMbXi=P9Sv=Uh3AUaA@mail.gmail.com>
+Content-Language: en-US
+From: Lukasz Luba <lukasz.luba@arm.com>
+In-Reply-To: <CAPVz0n0uWEY+-evrfpci9-1c3icGyHfTHMbXi=P9Sv=Uh3AUaA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6frB1BnpzG0pM
+X-ITU-Libra-ESVA-ID: 4Z6fnH1tHmzG0DB
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741707295.83732@fqIz2jWDpLFj7txXdYVP7g
+X-ITU-Libra-ESVA-Watermark: 1741707139.47239@TfR4lKYoWOjEZ3ICnPHRdw
 X-ITU-MailScanner-SpamCheck: not spam
 
-Hi Prabhakar,
 
-On Sun, 2 Mar 2025 at 19:18, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Renesas RZ/V2H(P) SoC is equipped with Synopsys DesignWare Ethernet
-> Quality-of-Service IP block version 5.20. This commit adds DWMAC glue
-> layer for the Renesas GBETH found on the RZ/V2H(P) SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Thanks for your patch!
+On 2/28/25 13:22, Svyatoslav Ryhel wrote:
+> =D0=BF=D1=82, 28 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 15:11 =
+Lukasz Luba <lukasz.luba@arm.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>>
+>> Hi Svyatoslav,
+>>
+>> On 2/19/25 08:28, Svyatoslav Ryhel wrote:
+>>> Add IIO sensor channel along with existing thermal sensor cell. This
+>>> would benefit devices that use adc sensors to detect temperature and
+>>> need a custom conversion table.
+>>>
+>>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+>>> ---
+>>>    drivers/thermal/thermal-generic-adc.c | 54 +++++++++++++++++++++++=
++++-
+>>>    1 file changed, 53 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/=
+thermal-generic-adc.c
+>>> index ee3d0aa31406..a8f3b965b39b 100644
+>>> --- a/drivers/thermal/thermal-generic-adc.c
+>>> +++ b/drivers/thermal/thermal-generic-adc.c
+>>> @@ -7,6 +7,7 @@
+>>>     * Author: Laxman Dewangan <ldewangan@nvidia.com>
+>>>     */
+>>>    #include <linux/iio/consumer.h>
+>>> +#include <linux/iio/iio.h>
+>>>    #include <linux/kernel.h>
+>>>    #include <linux/module.h>
+>>>    #include <linux/platform_device.h>
+>>> @@ -73,6 +74,57 @@ static const struct thermal_zone_device_ops gadc_t=
+hermal_ops =3D {
+>>>        .get_temp =3D gadc_thermal_get_temp,
+>>>    };
+>>>
+>>> +static const struct iio_chan_spec gadc_thermal_iio_channel[] =3D {
+>>> +     {
+>>> +             .type =3D IIO_TEMP,
+>>> +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_PROCESSED),
+>>> +     }
+>>> +};
+>>> +
+>>> +static int gadc_thermal_read_raw(struct iio_dev *indio_dev,
+>>> +                              struct iio_chan_spec const *chan,
+>>> +                              int *temp, int *val2, long mask)
+>>> +{
+>>> +     struct gadc_thermal_info *gtinfo =3D iio_priv(indio_dev);
+>>> +     int ret;
+>>> +
+>>> +     if (mask !=3D IIO_CHAN_INFO_PROCESSED)
+>>> +             return -EINVAL;
+>>> +
+>>> +     ret =3D gadc_thermal_get_temp(gtinfo->tz_dev, temp);
+>>> +     if (ret < 0)
+>>> +             return ret;
+>>> +
+>>> +     *temp /=3D 1000;
+>>> +
+>>> +     return IIO_VAL_INT;
+>>> +}
+>>> +
+>>> +static const struct iio_info gadc_thermal_iio_info =3D {
+>>> +     .read_raw =3D gadc_thermal_read_raw,
+>>> +};
+>>> +
+>>> +static int gadc_iio_register(struct device *dev, struct gadc_thermal=
+_info *gti)
+>>> +{
+>>> +     struct gadc_thermal_info *gtinfo;
+>>> +     struct iio_dev *indio_dev;
+>>> +
+>>> +     indio_dev =3D devm_iio_device_alloc(dev, sizeof(struct gadc_the=
+rmal_info));
+>>> +     if (!indio_dev)
+>>> +             return -ENOMEM;
+>>> +
+>>> +     gtinfo =3D iio_priv(indio_dev);
+>>> +     memcpy(gtinfo, gti, sizeof(struct gadc_thermal_info));
+>>> +
+>>> +     indio_dev->name =3D dev_name(dev);
+>>> +     indio_dev->info =3D &gadc_thermal_iio_info;
+>>> +     indio_dev->modes =3D INDIO_DIRECT_MODE;
+>>> +     indio_dev->channels =3D gadc_thermal_iio_channel;
+>>> +     indio_dev->num_channels =3D ARRAY_SIZE(gadc_thermal_iio_channel=
+);
+>>> +
+>>> +     return devm_iio_device_register(dev, indio_dev);
+>>
+>> I don't get the idea why we need iio device, while we already have the
+>> hwmon.
+>>
+>=20
+> Idea behind this is to be able to convert adc iio channel into temp
+> iio channel without introducing a new sensor which will duplicate
+> behavior of existing one (by this I mean conversion table use). Not
+> all devices can or have to use hwmon and some may require iio channel
+> hooked up.
+>=20
+> Real life example. I own a device (LG P985) which has a fuel gauge
+> that does not support battery thermal readings. Vendor provided a
+> dedicated adc sensor and one of its channels is used as thermal sensor
+> with device specific conversion table. Fuel gauge on the other hand
+> supports linking in a dedicated temp iio channel to get thermal
+> readings.
 
-> --- /dev/null
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
+Thanks. IMO you can add these two sentences into the patch header.
+It's telling more about the need of this change.
 
-> +static int renesas_gbeth_probe(struct platform_device *pdev)
-> +{
-> +       struct plat_stmmacenet_data *plat_dat;
-> +       struct stmmac_resources stmmac_res;
-> +       struct device *dev =3D &pdev->dev;
-> +       struct renesas_gbeth *gbeth;
-> +       struct reset_control *rstc;
-> +       unsigned int i;
-> +       int err;
-> +
-> +       err =3D stmmac_get_platform_resources(pdev, &stmmac_res);
-> +       if (err)
-> +               return dev_err_probe(dev, err,
-> +                                    "failed to get resources\n");
-> +
-> +       plat_dat =3D devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> +       if (IS_ERR(plat_dat))
-> +               return dev_err_probe(dev, PTR_ERR(plat_dat),
-> +                                    "dt configuration failed\n");
-> +
-> +       gbeth =3D devm_kzalloc(dev, sizeof(*gbeth), GFP_KERNEL);
-> +       if (!gbeth)
-> +               return -ENOMEM;
-> +
-> +       plat_dat->clk_tx_i =3D devm_clk_get_enabled(dev, "tx");
+BTW, I would like to see later how you use it in your battery driver
+(please add me on CC, because I'm curious).
 
-drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c:52:17:
-error: =E2=80=98struct plat_stmmacenet_data=E2=80=99 has no member named =
-=E2=80=98clk_tx_i=E2=80=99
-
-Also not in next-20250228.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+The code looks good, so please resend with better patch header
+and I'll review the whole patch
 
 
