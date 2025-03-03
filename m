@@ -1,59 +1,64 @@
-Return-Path: <devicetree+bounces-153363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B97C4A4C220
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:37:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18C08A4C223
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:38:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92A1B3A964B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:35:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D79A188F896
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D3CB2116F3;
-	Mon,  3 Mar 2025 13:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28526212B07;
+	Mon,  3 Mar 2025 13:37:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o58TizPz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EKwcppA5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B631E86E;
-	Mon,  3 Mar 2025 13:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E969420E038;
+	Mon,  3 Mar 2025 13:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741008943; cv=none; b=qLl78/ffx83XakKpQN4WQQSgxRYp0+MHCaXuIbQgTFxm5INU+bu0D6H8fdLFlD2cfbnxZA5YQd9DfjFn58yukSOq6YBYZ+gUN4EWrISe5th8JlC08Kr1WPw2srJdN96N0esECcaW1vozrv9BxrqfxsQh/9xQQvJIIZQN5QT2wK0=
+	t=1741009069; cv=none; b=qdcJtH7WS6R/jedpCvGRdUUt8aeMougproYMYqGjNeApfnowzIJFtz2ncLRrNo9BzlEQqaLJm05HYBY4b4qhozjXTOytj7XwZW7TCKS8GEKXlGF4sFc3tJ7T2XWQYw3ktOJ4yPWD7+JGB2dHrbK9o+ea5oDSvB8r4S6b0UDqbqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741008943; c=relaxed/simple;
-	bh=PiRoSmACwYfEYA3h6HovgqIoBLv0oqC8cx0YgXVH0/Y=;
+	s=arc-20240116; t=1741009069; c=relaxed/simple;
+	bh=jo6vlqskkA4n/Zd9WatoKb05WTQUZKDUoVA6evKvyeY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P6OL0hrIUZlh5gm0RdGj/lFDDwTANUxwLaPT5MUQkw3dSRYYyZmrKO2vFqLrCXX/sbpHQdla375hoVRjRGvh2hkdswOHdnkxsEq1QS6FzWyc81Q/XuOoKItSxaDhy/YSdml2Q85nde+OCSVt/p/wLEG/g1RsVPolX84LEIhXMTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o58TizPz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64513C4CED6;
-	Mon,  3 Mar 2025 13:35:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EdUXtW2WmKFLZkZrKaTajVrT9z62XkeBvRKpPHO6U7i4zqZSZMm/94tqLn3qtMxDWR5d98P9gMDNXznvji330l4fwAHlOcTETp1QBSGAsmmOWxUabsJUgF7CSA8Rllrgk73BrdTi2mhQ3mw+p28xeqOdih7BxBjM/AFXyhQKz3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EKwcppA5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12B42C4CED6;
+	Mon,  3 Mar 2025 13:37:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741008942;
-	bh=PiRoSmACwYfEYA3h6HovgqIoBLv0oqC8cx0YgXVH0/Y=;
+	s=k20201202; t=1741009068;
+	bh=jo6vlqskkA4n/Zd9WatoKb05WTQUZKDUoVA6evKvyeY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o58TizPz8YP3NjSU/HW3uwAI1fbZfROCeXfvdYjtfvLKVbkvU6L7JzzfYKFs96BwI
-	 UUJ1eiM6U5+xYG7qRu3eY9fAGuTc9WjCoUb0/jau6ehqjqk3VBaLV4e/pbt5ovMHUh
-	 940d8tjKWh+LUv5Bw2zUEop4q5w/FjihlyaWPNC6lYV/8m58iKYWR+BiaT3sclGYDi
-	 jMiwR65OkLm6D1cPQtVX9UfawN38g41tM/SFx0aBZis73Mx7YsXWzYBZKGXFcsJmeZ
-	 DqD49kVtiFy3XBA4Qma0w3RqddrjR6QSzfoJVLpAfEFRdJTUOdg/YrUPFtIaIR02aU
-	 AjxXnYaB+8IKQ==
-Date: Mon, 3 Mar 2025 07:35:40 -0600
-From: Rob Herring <robh@kernel.org>
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org,
-	geert@linux-m68k.org, paul.barker.ct@bp.renesas.com,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 03/13] dt-bindings: serial: Add compatible for Renesas
- RZ/T2H SoC in sci
-Message-ID: <20250303133540.GA1681980-robh@kernel.org>
-References: <20250226130935.3029927-1-thierry.bultel.yh@bp.renesas.com>
- <20250226130935.3029927-4-thierry.bultel.yh@bp.renesas.com>
+	b=EKwcppA5UvVUNc7YR9EBxqgNjyHmb2Ow/1qo2E1ERLEoCdwnGt7EGfU2aLa6DUHM4
+	 ndfl8CC7yHZj6KD2v+ppE14tTUDLdkQT6ZoYIrosn9GnOn0WXQztmFnggsdf3M9T+6
+	 VY7cS6CzeFwiSiIAESCxUwXy05jlZymVbOLfrIi9K01yl8jd/OPMJr6wTjoHyEd13N
+	 qER37sEhE66radYKe1bw9P/BEgY3n+7+dklMkpzjFPvQ3Z4biqdebywxiplR9vFRPL
+	 2BlSu+qSRGfpFdUCbfRPSTxkuWM09kWR0HLjy3P8Nlkb3A2oxYvjkGxiiop4boR/dj
+	 6q9IeKsB4ug1Q==
+Date: Mon, 3 Mar 2025 07:37:46 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: linux-doc@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: ad7380: add adaq4381-4
+ compatible parts
+Message-ID: <174100906603.1708729.13990347133129513724.robh@kernel.org>
+References: <20250226-ad7380-add-adaq4381-4-support-v1-0-f350ab872d37@baylibre.com>
+ <20250226-ad7380-add-adaq4381-4-support-v1-2-f350ab872d37@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,121 +67,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250226130935.3029927-4-thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250226-ad7380-add-adaq4381-4-support-v1-2-f350ab872d37@baylibre.com>
 
-On Wed, Feb 26, 2025 at 02:09:22PM +0100, Thierry Bultel wrote:
-> Document RZ/T2H (a.k.a r9a09g077) in SCI binding.
+
+On Wed, 26 Feb 2025 15:50:04 +0100, Julien Stephan wrote:
+> adaq4381-4 is the 14 bits version of adaq4380-1 chip. Add support for
+> it.
 > 
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-> Reviewed-by: Paul Barker <paul.barker.ct@bp.renesas.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
 > ---
->  .../bindings/serial/renesas,sci.yaml          | 64 ++++++++++++-------
->  1 file changed, 40 insertions(+), 24 deletions(-)
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/serial/renesas,sci.yaml b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-> index 64d3db6e54e5..2c4080283963 100644
-> --- a/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-> @@ -9,9 +9,6 @@ title: Renesas Serial Communication Interface
->  maintainers:
->    - Geert Uytterhoeven <geert+renesas@glider.be>
->  
-> -allOf:
-> -  - $ref: serial.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -22,6 +19,8 @@ properties:
->                - renesas,r9a07g054-sci     # RZ/V2L
->            - const: renesas,sci            # generic SCI compatible UART
->  
-> +      - const: renesas,r9a09g077-sci      # RZ/T2H
-> +
 
-Perhaps explain in the commit msg why the 'renesas,sci' is not 
-applicable for this chip.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
->        - items:
->            - const: renesas,sci            # generic SCI compatible UART
->  
-> @@ -54,8 +53,6 @@ properties:
->          - fck # UART functional clock
->          - sck # optional external clock input
->  
-> -  uart-has-rtscts: false
-> -
->  required:
->    - compatible
->    - reg
-> @@ -63,25 +60,44 @@ required:
->    - clocks
->    - clock-names
->  
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        enum:
-> -          - renesas,r9a07g043-sci
-> -          - renesas,r9a07g044-sci
-> -          - renesas,r9a07g054-sci
-> -then:
-> -  properties:
-> -    resets:
-> -      maxItems: 1
-> -
-> -    power-domains:
-> -      maxItems: 1
-> -
-> -  required:
-> -    - resets
-> -    - power-domains
-> +allOf:
-> +  - $ref: serial.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g077-sci
-> +    then:
-> +      properties:
-> +        uart-has-rtscts: true
-
-Drop. It is already allowed.
-
-> +        power-domains:
-> +          maxItems: 1
-> +      required:
-> +        - power-domains
-> +
-> +    else:
-> +      properties:
-> +        uart-has-rtscts: false
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r9a07g043-sci
-> +              - renesas,r9a07g044-sci
-> +              - renesas,r9a07g054-sci
-> +    then:
-> +      properties:
-> +        resets:
-> +          maxItems: 1
-> +
-> +        power-domains:
-> +          maxItems: 1
-> +
-> +      required:
-> +        - resets
-> +        - power-domains
->  
->  unevaluatedProperties: false
->  
-> -- 
-> 2.43.0
-> 
 
