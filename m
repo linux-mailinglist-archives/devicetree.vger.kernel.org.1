@@ -1,91 +1,64 @@
-Return-Path: <devicetree+bounces-153352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD92AA4C13B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:05:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E27AA4C141
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:06:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 030EC3A703C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:04:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BBC0188C9BD
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE35E21127D;
-	Mon,  3 Mar 2025 13:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A872101A0;
+	Mon,  3 Mar 2025 13:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jczENyf6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dv5Qnutq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224D7211278
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 13:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B8C920D4EA;
+	Mon,  3 Mar 2025 13:06:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741007087; cv=none; b=TWX8arVD7Uk/hLiN+ydDdFPJXuv9x85LtXRFICL6dlvCoUB5TRra7nI41IC7QXQ4VjiTI7jTxiBdpgxJ6qWTzR+SUgOK4RRvyL6mHWGYBq6QvOJcp06H1yh5uCk7LjWI61XoBa/lgbL/+XM8yCA9hXmfBQKqGSk9awHQMQ2GuiE=
+	t=1741007170; cv=none; b=LukQdUa+IAZiIQOgPOZRKaSYVnkJiifVJRYZSxtJFvcLBcRWvxC5toki1DaMyu28ZDJCThu9B5iUoynxwOd/SZwfABbu+6DB2Je92MUwzNEaijWlwRCkh6m+oB4/vqrR3/QGuYlpwd4lOtV8AFP0tkEmGyIytSLyRNXBUjupIgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741007087; c=relaxed/simple;
-	bh=VTGS9z3V6Q/xCHN1camC46iCwwa/aosOC3MAy/OdECw=;
+	s=arc-20240116; t=1741007170; c=relaxed/simple;
+	bh=U7M2Y7GgfOD5FgmP0/yeWr/zLGKqkQ7WQ1NWRxr7fog=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VnJ3jSkIJlEjlcwjC48w8lICHSXTknzm1Syf8u2st4BE2nzqgwprip6CWnM5FqUWETAiMQTnehdynVEP2wg1+zvN3REFiAwqO28rFdDQj8WPACi4IE1hwlqqX3Z4dQ6pDnII4pEvsftBS2bfslClzq9IjlmYEZrcH3wfOTBn2fE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jczENyf6; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-30762598511so47005451fa.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 05:04:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741007084; x=1741611884; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hs6021W+ZEF1jgVJIvkS1BoBhBl+Zadb4lQ906tSWc8=;
-        b=jczENyf61LzcAxDTc2zSS0GQnfs5gRzkh75eQHdMWLkx8WGL9mfqNb9wMFVMYeblG/
-         Jfwg5rulSHH9/Pwc4VyEzCyQYBWhjNjWD1P6pj8+K/3HzIkZMByLXRBQFFgA/CUxVEcO
-         5awAlcPUOq7xo6hz2ELSIcM+oycV3+cd3xzFHfAD8Mg7e5kf6A3gF0bIn/erUD+sBldh
-         XndMFL47OyBpGEldNVqePFqMhX+2v3Znq/2ivn/XJNDBtTyRa+J8YZz2BzHkeTjes22A
-         0sYaOi6ACTkWCsOErxYPh+roMBWexFJkyDipQPRbJOzLmkWnbhPHMaugdgUezvRkRYIM
-         5jqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741007084; x=1741611884;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hs6021W+ZEF1jgVJIvkS1BoBhBl+Zadb4lQ906tSWc8=;
-        b=QTfqW+cM730qlSwSeCZJmfPHiK4U8LBUsJcMJs0vi6adrbRXMFCPHIu6RHfV69ugbn
-         hyAgO71TuHYu8R77Fe1DpCjZdqMMTW6ppEtzpREQAsKerdD+tQuRt84eknELSbN6vZIW
-         4rejmOM+IX7Go7FM3bRVETvvFj2k/KxuFk885oWHbSHAgyOOY8SYPqZahDyslw9d2VEZ
-         TRjHuVyKJ5cNBJWFzfnzO80ggTug6VNDCKSMvY6pzi/4MG93t0qW9ik2zoBWNuzUuUpx
-         HzpHuobeO0JMWuWy5Rzsy/v8tmjCdhAHyXn00S7Ededua0cPEom3sytPHpKD+VZwFniG
-         oSbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUP9b2JC9dZ/fKpT5xerSSjnnWxWZE7hKw8K2Q5LIgG2ROA/g6iLCHPj4vjrQDgmyrSBc3dQl6TRJxC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5HUu+7gV8KNyib59ophOVas+3VNn4vLTgr36UugoNEKTkk5Lx
-	hedL1bCgSisH9jOuMbuNDvN+jwlYBYB94zQguOrOaDp40hdtWNbGdFlsYDjW9Gk=
-X-Gm-Gg: ASbGncsDdNbMNVK7R4UOqWvZ+YmIzLBl5B9+fMksBC2aekzkVME/7fqRWgGqbwQfF9D
-	gpHP8lI4A/CK0Qi0Psj8oIa6TRknpaMrSMNRY9ENO7DvFFtV3ZpnESpZdiw/Z3CtXNcLms6g5iZ
-	MYAAnVKyDdtq7ssFpN2lwZVRnXZ0tY9epfkBpAAXESzjPHTMHywcb3ZQUkqPsUvcEVamjH5fO21
-	GfjBGrL5bUlcgURnJIBlPnDCrs/J6UnJ1UqoACEvLt0mgbaZMAh9/p/pQ/vLuv7DUayImaDTYBQ
-	EnA2KcXsHl31jmSuEKRyqz42oadhPhTHSuictMl2rdPkiyf8gfrEUN7LTn0ES0H+R7tRqm2PuH/
-	MxdGMOn7WHbBkuxH4aU+cLxt2
-X-Google-Smtp-Source: AGHT+IFbAQM4Vg7NnCwXJQnOl/QXFO0jLcxGWTd7UWWRYV7p4mjc/3nqCPtXbPNZGlRw3vJtvB3rdQ==
-X-Received: by 2002:a2e:a9a9:0:b0:309:2ed:7331 with SMTP id 38308e7fff4ca-30b9325a905mr62065031fa.18.1741007084138;
-        Mon, 03 Mar 2025 05:04:44 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30bb14d00b0sm4996411fa.56.2025.03.03.05.04.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 05:04:42 -0800 (PST)
-Date: Mon, 3 Mar 2025 15:04:41 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
-	manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH V3 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox
- driver
-Message-ID: <2xpu26pu4ovnchumwx7xzlp2gldpfgsurnhuqaioygb4a6xmsp@ygmpk6furqs6>
-References: <20250228045356.3527662-1-quic_srichara@quicinc.com>
- <20250228045356.3527662-3-quic_srichara@quicinc.com>
- <lakoxihaqlu3vq42eoqtlip23ggdieizotyzax5up5n6ndbwsi@ddqyzvsdtmkv>
- <1359984c-2ace-450b-a3ff-bac0b9fb5cc9@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rhWwuCUoVhfJ8Aarx4JnXTgWWhWD8zuA+wI/u58/dohgI759uyDmYH9uJAOU3H3VY7hoK5u2ickiT96alS9E1zmHfEakt4xX/VfnMr9M8oFbXFlnFVW5kLM2F/fwh+uiF2mwU1P5tEN+AV9mG9wDF60FkwrM+IxlhGxbyvbd3rI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dv5Qnutq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 966F3C4CED6;
+	Mon,  3 Mar 2025 13:06:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741007169;
+	bh=U7M2Y7GgfOD5FgmP0/yeWr/zLGKqkQ7WQ1NWRxr7fog=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dv5QnutqMhY/XAsekkSXJrY0588QyXsYiwaE4fbDhCSBEv8wYviT7sFDWqcwMkMvG
+	 5WYxCeIKo+vzFS0/MRNQ7D0vi4xByN+gsxwykOE5AwjiXKyC0ra2FSNTEJy4h0Exmu
+	 koOMNTwS60k2KkGXB3XuJkif9Ehyr7jog06uaxGZoWS9Q67Td6sVlkQYxllVDhPiWU
+	 4GsK0KohBvshnKe6WFRTqV4SEA75XO0T60eMzJvdiijxHp6M/Dm1kF5RUUJgJ0eMu3
+	 PTKXmwFIgGZMn5S93JhvdKJyK1sjOMqrp1lSNoh/cO3zHTFw1fZ7h0eFNI4VwYn+v+
+	 jULFpATjJI67A==
+Date: Mon, 3 Mar 2025 07:06:07 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Hironori KIKUCHI <kikuchan98@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	David Airlie <airlied@gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add hothmi vendor
+ prefix
+Message-ID: <174100716718.1436781.17169517427487760851.robh@kernel.org>
+References: <20250226112552.52494-1-kikuchan98@gmail.com>
+ <20250226112552.52494-2-kikuchan98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,26 +67,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1359984c-2ace-450b-a3ff-bac0b9fb5cc9@quicinc.com>
+In-Reply-To: <20250226112552.52494-2-kikuchan98@gmail.com>
 
-On Mon, Mar 03, 2025 at 03:58:42PM +0530, Sricharan Ramabadhran wrote:
+
+On Wed, 26 Feb 2025 20:25:48 +0900, Hironori KIKUCHI wrote:
+> Add prefix for Hotdisplay Technology Co.Ltd
 > 
-> 
-> On 2/28/2025 12:03 PM, Dmitry Baryshkov wrote:
-> > On Fri, Feb 28, 2025 at 10:23:56AM +0530, Sricharan R wrote:
-
-> > > +		dev_err(dev, "Failed with status: %d\n", msg.resp.status);
-> > > +		ret = msg.resp.status;
-> > 
-> > return msg.resp.status (is it really errno?)
-> > 
-> ok, yes error.
-
-The question was if it is an errno, not if it is an error.
-
+> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
--- 
-With best wishes
-Dmitry
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
