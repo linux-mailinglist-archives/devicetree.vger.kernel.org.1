@@ -1,184 +1,108 @@
-Return-Path: <devicetree+bounces-153520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CFC4A4CE03
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 23:16:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7A18A4CE64
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 23:36:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A8BF7A92DD
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 22:14:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A8B5173EF8
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 22:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EBF82356BD;
-	Mon,  3 Mar 2025 22:15:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483A6235C04;
+	Mon,  3 Mar 2025 22:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nNlpbk/b"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="JNfuVWDF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B50215782;
-	Mon,  3 Mar 2025 22:15:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CDAD22DFB6;
+	Mon,  3 Mar 2025 22:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741040104; cv=none; b=k5dHMC8zgTZilUmJMpMh61frK1Va1tlO5+6+O8Z8XEVSiXWvrrhj+StjWhXNDwurxT3aHdbySOiMovLFfNNfa1+CeErUredXMHdWAOUPQZ/CiqH723FaCOtLVikk6zD33J2WfbCHtkOl6PeiLyKQ5e5rrdQKVNPjGRY+5kprop8=
+	t=1741041386; cv=none; b=Vs+gJ23IreEps6hB/Wb18FxrVrfHNFGV7tS97WNP5+m6dBflSX/sPze48w/1qmaVH6+0v2KpdKwc8sqrcqR5rGPw6v6pgnZcYwfBtegu8IGC+xoOYRINeaGDa+tKazPJnpOrgEOhPiRZ6we563b6n+Aw+gqjBYoq+iPV6gCY+LE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741040104; c=relaxed/simple;
-	bh=zpPxLelE9Ybujo8zHlA6Bkn57MYTewjeu9jGuzQ7Jtw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZAIy/7gW7ig9wrkTPzcNI1AQoAlEIgKHfNVZ+s5eoEYJdpfqRlQBEvcspgdsFCv2w/lJbFtrx5b9VJM6fLFHCHsKvUrq3iKKk3IKTiIO7irs4OJt/27ZZPerbv+NURfRCuL3Z85jY9POj8n7PxlUQCBElVd67D+KKy3S4InM0Pk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nNlpbk/b; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741040103; x=1772576103;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zpPxLelE9Ybujo8zHlA6Bkn57MYTewjeu9jGuzQ7Jtw=;
-  b=nNlpbk/bIxQ/SHA5m21NCB9LMpjYCPNLt1v5nuV8bXsqI1+bmGsZ39JO
-   wePVIHpSBVJjsvl8GTWPQqocEjk+Fq8rCSbDMUEzHwxFxfSA8m1/MZT+T
-   BmbNIJSNEcP5+NxhfmayGTpDHJoPh7SaQhB5JB3DUa4PyxCaukVEgu4ea
-   S/vLUmNFC4qO7GRv6ASp05kG7Q7ed8ZFvaLFB9MnnO2ysj7kQaV2DN8Zc
-   0dAbV90+soXnMbkuznE33pvJ1tcmCW+lmNetjiqLPLqVRXncE5I73fSJf
-   QsbHDu5xy/dOSERGr5iya4O6bjCg54mzCJHd00ORwq3pqgfjtH/MCeIiw
-   A==;
-X-CSE-ConnectionGUID: QjHes+I2ToeNUFLu5kpitg==
-X-CSE-MsgGUID: 4QzwpZm8RUe4dB3xDWcFtw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="52914242"
-X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; 
-   d="scan'208";a="52914242"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 14:15:02 -0800
-X-CSE-ConnectionGUID: 7OFb8wluTW6tVcy0CNgGPA==
-X-CSE-MsgGUID: xb8BCAlYSYq5R7HwB9qaIQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; 
-   d="scan'208";a="117909222"
-Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 14:15:01 -0800
-Date: Mon, 3 Mar 2025 14:21:02 -0800
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Yunhong Jiang <yunhong.jiang@linux.intel.com>, tglx@linutronix.de,
-	mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
-	x86@kernel.org, hpa@zytor.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, kys@microsoft.com, haiyangz@microsoft.com,
-	wei.liu@kernel.org, decui@microsoft.com, rafael@kernel.org,
-	lenb@kernel.org, kirill.shutemov@linux.intel.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org,
-	ricardo.neri@intel.com, ravi.v.shankar@intel.com
-Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
- mailbox
-Message-ID: <20250303222102.GA16733@ranerica-svr.sc.intel.com>
-References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
- <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
- <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
- <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
- <20240910061227.GA76@yjiang5-mobl.amr.corp.intel.com>
- <1d0ba3fc-1504-4af3-a0bc-fba86abe41e8@kernel.org>
- <20240919191725.GA11928@yjiang5-mobl.amr.corp.intel.com>
- <874d5908-f1db-412f-96a2-83fcebe8dd98@kernel.org>
+	s=arc-20240116; t=1741041386; c=relaxed/simple;
+	bh=1bRhjZsL2z2GZrqZLcbmsx0EFYTgtSq9PfISuQOdCnM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qlGXgoqffi6MYSbVTf57S3L7gUWlzJ9nsPvMliSqCK6AJv1S7aFLtt4c7PYG8ONdrDGN/xngWbcbSihHYVRhXDDpcuHtBAh4gU10PNjiI2WGCQahKhPkRmfshWbZY3+QOJVtsgHVAb9u29iXvy3Bi050IywN2E5k0tOM+WTMAd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=JNfuVWDF; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=5EOXFMVC6+7oiTirA0ot5v+5pSqEybCdk9aXbZ9tQ+0=; b=JNfuVWDFIye54QW5L2Yg44pbby
+	+ehzxUfqV3vdBNYpO2rmcVeZ6SiaSvoJHG8/uemnPHagfcxEat8dO9RPml2Ku8RyM6w2oaY512unK
+	zCQBrHyPSzT7BakWFT5j67mA6afkF4APHp8VSw3L0UcNVLSuqi8nigmyjL0nW3bG3E9WTjRhU4Vhx
+	AhilD1kh9ztYP5FIRQqanbfm0XcunNe8LtskZ/el5U+DbvKADL2i4GDAFaY8cQWdaqI4FjAh512gt
+	FLZOd36yxWaosHknsnz/rY0FT4JknB6OkBXD4g/WuieP/m+xKu3LKkMNi7BThx7X9FmFgd6FW6+ne
+	8aYZT8Bg==;
+Received: from i53875a38.versanet.de ([83.135.90.56] helo=phil.fritz.box)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tpEOT-0005wL-Ig; Mon, 03 Mar 2025 23:36:13 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org,
+	Dragan Simic <dsimic@manjaro.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	didi.debian@cknow.org,
+	chris@z9.de
+Subject: Re: [PATCH v2 0/2] Slightly improve hardware description of Pine64 RockPro64
+Date: Mon,  3 Mar 2025 23:36:10 +0100
+Message-ID: <174104113599.8946.16805724674396090918.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <cover.1740941097.git.dsimic@manjaro.org>
+References: <cover.1740941097.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <874d5908-f1db-412f-96a2-83fcebe8dd98@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, Sep 20, 2024 at 01:15:41PM +0200, Krzysztof Kozlowski wrote:
 
-[...]
- 
-> enable-method is part of CPUs, so you probably should match the CPUs...
-> I am not sure, I don't have the big picture here.
+On Sun, 02 Mar 2025 19:48:02 +0100, Dragan Simic wrote:
+> This is a small series that introduces small improvements to the way
+> Pine64 RockPro64 [1] single-board-computer is described in the DT files.
+> This applies to both production-run revisions of the RockPro64.
 > 
-> Maybe if companies want to push more of bindings for purely virtual
-> systems, then they should first get involved more, instead of relying on
-> us. Provide reviews for your virtual stuff, provide guidance. There is
-> resistance in accepting bindings for such cases for a reason - I don't
-> even know what exactly is this and judging/reviewing based on my
-> practices will no be accurate.
+> The introduced improvements boil down to eliminating some warnings from
+> the kernel log, by adding a previously undefined regulator and by adding
+> some previously missing references to the regulators.
+> 
+> [...]
 
-Hi Krzysztof,
+Applied, thanks!
 
-I am taking over this work from Yunhong.
+[1/2] arm64: dts: rockchip: Add avdd HDMI supplies to RockPro64 board dtsi
+      commit: bd1c959f37f384b477f51572331b0dc828bd009a
+[2/2] arm64: dts: rockchip: Add missing PCIe supplies to RockPro64 board dtsi
+      commit: 64ef4a4320e7aa3f0f267e01f170f52b90bf0b1b
 
-First of all, I apologize for the late reply. I will make sure
-communications are timely in the future.
+I've moved the pcie12v supply up one line.
+While in a mathematical sense it's true 12 > 3.3, we're sorting
+alphabetical, so it's 1?? < 3?? .
 
-Our goal is to describe in the device tree a mechanism or artifact to boot
-secondary CPUs.
+And yes I sympathize with 3.3 < 12, but also have come to appreciate not
+having overly many special cases :-)
 
-In our setup, the firmware puts secondary CPUs to monitor a memory location
-(i.e., the wakeup mailbox) while spinning. From the boot CPU, the OS writes
-in the mailbox the wakeup vector and the ID of the secondary CPU it wants
-to boot. When a secondary CPU sees its own ID it will jump to the wakeup
-vector.
 
-This is similar to the spin-table described in the Device Tree
-specification. The key difference is that with the spin-table CPUs spin
-until a non-zero value is written in `cpu-release-addr`. The wakeup mailbox
-uses CPU IDs.
-
-You raised the issue of the lack of a `compatible` property, and the fact
-that we are not describing an actual device.
-
-I took your suggestion of matching by node and I came up with the binding
-below. I see these advantages in this approach:
-
-  * I define a new node with a `compatible` property.
-  * There is precedent: the psci node. In the `cpus` node, each cpu@n has
-    an `enable-method` property that specify `psci`.
-  * The mailbox is a device as it is located in a reserved memory region.
-    This true regardless of the device tree describing bare-metal or
-    virtualized machines.
-
-Thanks in advance for your feedback!
-
-Best,
-Ricardo
-
-(only the relevant sections of the binding are shown for brevity)
-
-properties:
-  $nodename:
-    const: wakeup-mailbox
-
-  compatible:
-    const: x86,wakeup-mailbox
-
-  mailbox-addr:
-    $ref: /schemas/types.yaml#/definitions/uint64
-
-required:
-  - compatible
-  - mailbox-addr
-
-additionalProperties: false
-
-examples:
-  - |
-    wakeup-mailbox {
-      compatible = "x86,wakeup-mailbox";
-      mailbox-addr = <0 0x1c000500>;
-    };
-
-    cpus {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        cpu@0 {
-            device_type = "cpu";
-            reg = <0x00>;
-            enable-method = "wakeup-mailbox";
-        };
-    };
-...
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
