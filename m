@@ -1,122 +1,144 @@
-Return-Path: <devicetree+bounces-153978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B026BA4E790
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:06:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57861A4EBED
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:38:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DFA78A1240
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:24:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED4AC7A1680
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1650027811B;
-	Tue,  4 Mar 2025 16:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4551F25D522;
+	Tue,  4 Mar 2025 18:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ndTOULP8"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TxstBH+y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
+Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6492F277013
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:06:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72CDB25524A
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:29:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741104402; cv=pass; b=tHgmBlXPWHm/Q/rwGucgFcpEW12SyIjwOtSLF5usPqoiUky4x8eA9EE8D/7QpCSktSCJoRQ9nQxVRozXM1mB8hgKh65uIKmlBF+zGg34CdOlLSgHIVf4q8X/c2HANybaWvUvR4vloxovvdvwEPs9Thj8IcrLTrEdocCL70RiMjQ=
+	t=1741113001; cv=fail; b=gY39NoeFv3Zf9tZxiSutUltPHbo2rSSNVvyAt2Ab7Vk7B7ByFLzj4zq/iYy1LMQo8+mAgGpjK5UhQaYQTyRBju7zqKQnfzHk8sgAOM08IWPQCACDYD9cooXY5oTH3c/v+Pm/Bi5mfsTOOtGCbWoLudcsRchQmw288KqeO7pkQf8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741104402; c=relaxed/simple;
-	bh=4HmOj/3Wlib3zncsg3O073eer/GxckvTC0ktgz3VV5A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nNGve5GdQPB/omuZXUock0HmY3Zne6n0uu6fvDGk2kL3c8xUZekrWq7Hg68SYUgW1quIUkbiQXHq+JxQegEYgU8VAq7axg2f3bQ1eeVgknRpIh3XvuqnsjmNmPNCWdxtPjMFyykEwAtGRNA3pDDkFWnSEdxVUTcIeJ/7q+cnOEc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ndTOULP8; arc=none smtp.client-ip=209.85.221.41; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; arc=pass smtp.client-ip=160.75.25.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1741113001; c=relaxed/simple;
+	bh=zzu3+NsAuV5qtNkK5ybD4CbOvMLBdmovgESCJWiVumY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=KiaFbvFvmO69j0SS1YFy362uNCxB8YwShS2oTCwWN04123pQ+zlM6ZL2ombIIeXy1VaBwh45XPDeaT7I+mwXsJieZ/hgCKL+fS+0zrCt4INgrC04HoE5T2aUBRiU2gPn28QFjbUo/9qbcM9kgyUSJDnD3pBoLzJhdXOSOLUUh4I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxstBH+y reason="signature verification failed"; arc=none smtp.client-ip=209.85.219.54; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; arc=fail smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
+Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id A0EBE40D9743
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:06:38 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id B2AB040CF9D2
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:29:57 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20230601 header.b=ndTOULP8
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20230601 header.b=TxstBH+y
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6gX20zdwzG1d9
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:05:54 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6gzY31x0zG3BN
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:26:17 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 5B9BE4273F; Tue,  4 Mar 2025 19:05:33 +0300 (+03)
+	id 6F0B542743; Tue,  4 Mar 2025 19:25:11 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ndTOULP8
-X-Envelope-From: <linux-kernel+bounces-541512-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxstBH+y
+X-Envelope-From: <linux-kernel+bounces-541557-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ndTOULP8
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxstBH+y
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id B0BE841ED0
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:17:15 +0300 (+03)
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 47E3F3063EFC
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:17:15 +0300 (+03)
+	by le2 (Postfix) with ESMTP id D0E3B42CD5
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:21:05 +0300 (+03)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id 217C93063EFC
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:21:04 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62F023B8812
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:11:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BBF67A64B0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1112B1F4CAD;
-	Mon,  3 Mar 2025 11:08:51 +0000 (UTC)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A3511F9A90;
+	Mon,  3 Mar 2025 11:17:29 +0000 (UTC)
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B02F71F3BA8;
-	Mon,  3 Mar 2025 11:08:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EF11F9406;
+	Mon,  3 Mar 2025 11:17:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741000127; cv=none; b=lh1V76t1xfuvfvqg/pIhOTFHzcpLnadotWJwlwhqalv1F3Qfm+yA7T/z880/mxuSn6QBcMv+JNvcdBeC3W9tlwJ1Y+U7AXDcC0CbixWWj8u9UFzlqyIPNwC0af+Q6nPvKRdFYo/0TxuORblbIJhVKylTrTGLJzAia7Fdmai0E1k=
+	t=1741000645; cv=none; b=jXwbGXSXn/qDe4eRvXHl7liLXpc1Qu3MULnnyTHdUT/DIi2UWQwVZV5gXI4DB7IqMGsS20xqJRakG58MeRc2qhW9Y92z0wIshwpe+/By4tMYY+YDCeT6bRNfbl3ec3hbYlw4jeQCYKHy5KrZvOgAxzbxVnvL3JjWOv17XvXSF7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741000127; c=relaxed/simple;
-	bh=4HmOj/3Wlib3zncsg3O073eer/GxckvTC0ktgz3VV5A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hMiknJ93857oEdPw1HWS2F+to64GAXl86eB7QT6VpNVMp+AC3EIBieEEVqy3fw6lWBoOohGGZi/qbHb6UEP6tALq2juZljULDLl8XA/hBimqUCxngtcUhn+dEMGEWPdIs1JbQuTyhDUaTvC4TX/t6l59trDaamKuRuoSHOiqCOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ndTOULP8; arc=none smtp.client-ip=209.85.221.41
+	s=arc-20240116; t=1741000645; c=relaxed/simple;
+	bh=vs77aUJcijnJ0GNIGtqT5sfhnBoIxjPqvhmlisw6XU8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=WMZcM78U2htDur513GS3J2NatvOIfKGFlo6AxliiuGBSf7J074VHT/GQVW3Zjv5HfqMBzR+Ka1ZuCwBfIYRG34OokKyZowmraD/4ckKFTrt0Ll1gcClp+G8VPi8uICty2+QumqHvUy6m1hk1oiCezE5d+/i0ZiDmBl9E3DoGY2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxstBH+y; arc=none smtp.client-ip=209.85.219.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-390eebcc331so1521883f8f.1;
-        Mon, 03 Mar 2025 03:08:44 -0800 (PST)
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6e88f3159e3so35899926d6.2;
+        Mon, 03 Mar 2025 03:17:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741000123; x=1741604923; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1741000642; x=1741605442; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ULoMgnoXr8L1C6JD7W1nPWWFd3ANujjbWRiciG0YDU8=;
-        b=ndTOULP8W22qD5RY4DAgnWarP07Q03XeU01X86+aF7XFnB2O1LDV/JgpugI3HSe5E1
-         g0jpot9nlbzfxRC9VVEIl4jt7eyemjq2iIO6ZnNDUF3OKACGgA1OeppWEz6mAdsqwyRV
-         Sa8ajUF1MCQHJS4aST/Y/LTzWHpKpTsyZZq54JNgjv+jvcZyNPrqw9mCpqaH7hKBJpuy
-         ckPCX5SlTn5ca+w92yV4ucWhcwfG0IVOQ5mLu/PzUfGm0v9bOTr/zpzozhQChEA9X4jY
-         G+XJF21P2L9h4RdHqqgscZcqjUfVjnpAI1YhO2vOjnVX6OtclY3BeVB9gzOfs0jSupKq
-         B0yQ==
+        bh=eYoAzmCu0vns5tkw7HmXXaJNkE1M+oV59kCo2vApjko=;
+        b=TxstBH+yHt3iuI4pDRJyUyQdFIqVwISRoq1/czzfpnQH7++V4/gZigNxi4r/0I26WQ
+         YVNOsNGoB11o4BBboMVUXOFFxeUHREPjDiO4VMZ4MZTdpsPRKRncmeQsM0XQs2oRcH1h
+         YL56tXwSIuKEX62HHkGpVE2f7kVebF+g8hbaJd1fr5k7Dw9wCk+zH4zdkVTS2SHtalnz
+         +kXqaB3kMNelqarHitdWyYTWxFaHi1mKgl+wHbH4LTePnOCZyxpbOVReCg4AkMrBHKob
+         KCE+qJyyHs4hvQR3A896pnsdWiyI70f7W1DKFfNiugJU6lREyT+MBYDXHXtBY9aSllpK
+         DG+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741000123; x=1741604923;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1741000642; x=1741605442;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ULoMgnoXr8L1C6JD7W1nPWWFd3ANujjbWRiciG0YDU8=;
-        b=Mfk2bJXFFFCUdZNSEnsjcm0VnOl+SZUmm+aGnkqQccWZhqyzDCSuceAjieWASg+Ov1
-         fyE6lKR/nNYbHpTgLBTb0hTsAqn/RWAdAxLhxySSZlWuRTsGWWTsMfsVTv0MrwtkABgs
-         nkJ6EBYqFI+erIkp2IqU40f4BNlFeaf29zCTSYDGCu10Rcq7zitEv7P5/HhN6BfA3htA
-         utAhKKmOabFx7OX2Ak0Gh1h9GorgXmzyy1zRjz/Upo08YXCrZwX7sJog0n0Y4zwr2yP1
-         iX+EGX9KMHoFjbJtHB776mrOWeCrGwAx6jX6L/A34amiwQt6hJYppl7J0wB0ayajNswE
-         FjWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWX36TWtPzwQ0jcc5QHZDXkmKXBf+RkGTlZHz3XAuDNsfg37BrRYjTHOECQijUNgQM2FYBiIKn2zbv7S2bn@vger.kernel.org, AJvYcCWxarpmwoTSBeL0+N0Me2VXykm/Fcx1lFqPrNU3qo0t79MIDzOUkgoovbO+h7Hj61bU/EO+6KV3FXhp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNDs1n4RXbVXZ+5sEGakqY6FvnqCB4WdxAFhfnFNnxaOKWFMdL
-	HkaLm3q+WQr2tiNFgGjN+iX6YJ7+bQwRg+BhSNa3MhGb9eidDphe5edrS8E9zIWrtaa376fdVF8
-	GvghKa9n33rXrO40MCVmC4tOy4Js=
-X-Gm-Gg: ASbGncuN3LHcduGcCDEaQJLBmtgBW+qgsNhmTqlHpJppmYreZEOm4h7qzIhp7P7hV54
-	8l1PLJfeyFB3vUGTv80m/B6v3dwYFmMIJ6lZ7Ul8FDGb6Rv2VPMxT6XGbdvRLvHNn+jZz4sdHwy
-	pj4WDNcodOqmmFL+1fwrEAkMsaRW8=
-X-Google-Smtp-Source: AGHT+IFhL1VGqvu6/L+/q7Zc25Yy9RI3MXyS9jJwyfSvB1TiiTDcgln3OoeI7ZBVrGV2krySaBS+BuYN1CjRA1ZLN0I=
-X-Received: by 2002:a05:6000:4594:b0:390:e535:8740 with SMTP id
- ffacd0b85a97d-390e535884fmr10020468f8f.14.1741000122764; Mon, 03 Mar 2025
- 03:08:42 -0800 (PST)
+        bh=eYoAzmCu0vns5tkw7HmXXaJNkE1M+oV59kCo2vApjko=;
+        b=Chjg7F8CpzrJ2Xs31Lz/4F8R0l5Q8CzT4aOdtUrsWoE+X84p3s+ybOp2LOp7BhGTWX
+         Di40x7CYbvU2cu863ff3GfqpSEErV7ayIYv25P0zvjddL8TNEUoWgQoizb+HtqGB3i4C
+         MJzzu725E0ojC5OMjkJAcZ/tExMbQWvlGUNaaVsG/F8Cx0Xb16c+6hYrkr9Z5CZknAZZ
+         c7yizHGSF3e5gb3mvDyH8f9LETVeqY26/QLnhbXW5hD4pOLS9dQKRaWTGpRhbzj0MhZj
+         QWSsbWExAb3+qR25RxZ4MNTSi+Eyt/qH9uQZxcR1UV2OODGS22HzZppmpBVAf67II7yc
+         IBpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVM/RfzNdHD75wfThFjdd0rC3fBKck8fHRxCS0/GXu4PLl404QnMqV9Kz/m0pQrwErxHkc/B83+6J0n@vger.kernel.org
+X-Gm-Message-State: AOJu0Yylqn2Koc+uTyxppSbK6tgNRBeis3oQK12mf6uueSgve24jGjuC
+	gbBRSu/d7J9XSZvXIn+uuv27sypoUTdgmbFouCL4YKZXvzgmhEWD
+X-Gm-Gg: ASbGncvxv99d/BSY5sLgQi90k1yN9VNs5RjUraI3xj64AuzuMY2SkZnD98ZLCUOFjy1
+	f+/0TzMroXRPnxwSAW29r/nrqoGRkK4ndr5G/yPfW3js5ktYA5bNkOKrFxiRI2l/s0TRIVEKMSO
+	DRqmTXADgToRtzDf0W5Neh+lI4iSugzw5UmOJr+bxl0HmUCiSttkYroIyqelrsxQ32iCjl9n0ky
+	SREZVv68Da4J/J7Z3UrbcrekllEgci//wXsKookTDQxxHNyP0ipGIZ3VIcDaGEviN0BCyG1D7YC
+	biSug/LOt46Rs7zks/eb
+X-Google-Smtp-Source: AGHT+IFnzI5yYMUwpgzC+CtqnF8PkSTTAOhLnziiXOW13TnV/5ZF1J9/Py1jNWLdgQBT5OjaRQ4YPg==
+X-Received: by 2002:a05:6214:5193:b0:6e6:6048:f42c with SMTP id 6a1803df08f44-6e8a0cd3f2emr192488796d6.8.1741000642572;
+        Mon, 03 Mar 2025 03:17:22 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e8a1aba663sm39485296d6.50.2025.03.03.03.17.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Mar 2025 03:17:22 -0800 (PST)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH 2/2] irqchip/sg2042-msi: Add the Sophgo SG2044 MSI interrupt controller
+Date: Mon,  3 Mar 2025 19:16:47 +0800
+Message-ID: <20250303111648.1337543-3-inochiama@gmail.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250303111648.1337543-1-inochiama@gmail.com>
+References: <20250303111648.1337543-1-inochiama@gmail.com>
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -124,156 +146,183 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250219082817.56339-1-clamor95@gmail.com> <20250219082817.56339-3-clamor95@gmail.com>
- <99ee61dc-abd5-45d9-8d26-a8f0ae94c8eb@arm.com> <CAPVz0n0uWEY+-evrfpci9-1c3icGyHfTHMbXi=P9Sv=Uh3AUaA@mail.gmail.com>
- <93ddb2d9-ce3d-4e6d-bf5f-0b30b2d04d84@arm.com>
-In-Reply-To: <93ddb2d9-ce3d-4e6d-bf5f-0b30b2d04d84@arm.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 3 Mar 2025 13:08:31 +0200
-X-Gm-Features: AQ5f1JpD5JFPA8iwOxoXnJ1YeK0i3dfIhf5qwB6Sws_ueobcubuvER9wMFqnBIk
-Message-ID: <CAPVz0n3gs_1wUncJ8w5kpSLiDpJEzPUQ_qaaR2TAhHJHtTR5EA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] thermal: thermal-generic-adc: add temperature
- sensor channel
-To: Lukasz Luba <lukasz.luba@arm.com>
-Cc: linux-pm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	Zhang Rui <rui.zhang@intel.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6gX20zdwzG1d9
+X-ITU-Libra-ESVA-ID: 4Z6gzY31x0zG3BN
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741709159.77484@uFGwZoADDSg6KrgrMRbm8g
+X-ITU-Libra-ESVA-Watermark: 1741717688.96813@1qi/QjDGFwRTESOxr1dIiA
 X-ITU-MailScanner-SpamCheck: not spam
 
-=D0=BF=D0=BD, 3 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 12:53 Lukas=
-z Luba <lukasz.luba@arm.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
->
->
-> On 2/28/25 13:22, Svyatoslav Ryhel wrote:
-> > =D0=BF=D1=82, 28 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 15:11 =
-Lukasz Luba <lukasz.luba@arm.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> >>
-> >> Hi Svyatoslav,
-> >>
-> >> On 2/19/25 08:28, Svyatoslav Ryhel wrote:
-> >>> Add IIO sensor channel along with existing thermal sensor cell. This
-> >>> would benefit devices that use adc sensors to detect temperature and
-> >>> need a custom conversion table.
-> >>>
-> >>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> >>> ---
-> >>>    drivers/thermal/thermal-generic-adc.c | 54 +++++++++++++++++++++++=
-+++-
-> >>>    1 file changed, 53 insertions(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/=
-thermal-generic-adc.c
-> >>> index ee3d0aa31406..a8f3b965b39b 100644
-> >>> --- a/drivers/thermal/thermal-generic-adc.c
-> >>> +++ b/drivers/thermal/thermal-generic-adc.c
-> >>> @@ -7,6 +7,7 @@
-> >>>     * Author: Laxman Dewangan <ldewangan@nvidia.com>
-> >>>     */
-> >>>    #include <linux/iio/consumer.h>
-> >>> +#include <linux/iio/iio.h>
-> >>>    #include <linux/kernel.h>
-> >>>    #include <linux/module.h>
-> >>>    #include <linux/platform_device.h>
-> >>> @@ -73,6 +74,57 @@ static const struct thermal_zone_device_ops gadc_t=
-hermal_ops =3D {
-> >>>        .get_temp =3D gadc_thermal_get_temp,
-> >>>    };
-> >>>
-> >>> +static const struct iio_chan_spec gadc_thermal_iio_channel[] =3D {
-> >>> +     {
-> >>> +             .type =3D IIO_TEMP,
-> >>> +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_PROCESSED),
-> >>> +     }
-> >>> +};
-> >>> +
-> >>> +static int gadc_thermal_read_raw(struct iio_dev *indio_dev,
-> >>> +                              struct iio_chan_spec const *chan,
-> >>> +                              int *temp, int *val2, long mask)
-> >>> +{
-> >>> +     struct gadc_thermal_info *gtinfo =3D iio_priv(indio_dev);
-> >>> +     int ret;
-> >>> +
-> >>> +     if (mask !=3D IIO_CHAN_INFO_PROCESSED)
-> >>> +             return -EINVAL;
-> >>> +
-> >>> +     ret =3D gadc_thermal_get_temp(gtinfo->tz_dev, temp);
-> >>> +     if (ret < 0)
-> >>> +             return ret;
-> >>> +
-> >>> +     *temp /=3D 1000;
-> >>> +
-> >>> +     return IIO_VAL_INT;
-> >>> +}
-> >>> +
-> >>> +static const struct iio_info gadc_thermal_iio_info =3D {
-> >>> +     .read_raw =3D gadc_thermal_read_raw,
-> >>> +};
-> >>> +
-> >>> +static int gadc_iio_register(struct device *dev, struct gadc_thermal=
-_info *gti)
-> >>> +{
-> >>> +     struct gadc_thermal_info *gtinfo;
-> >>> +     struct iio_dev *indio_dev;
-> >>> +
-> >>> +     indio_dev =3D devm_iio_device_alloc(dev, sizeof(struct gadc_the=
-rmal_info));
-> >>> +     if (!indio_dev)
-> >>> +             return -ENOMEM;
-> >>> +
-> >>> +     gtinfo =3D iio_priv(indio_dev);
-> >>> +     memcpy(gtinfo, gti, sizeof(struct gadc_thermal_info));
-> >>> +
-> >>> +     indio_dev->name =3D dev_name(dev);
-> >>> +     indio_dev->info =3D &gadc_thermal_iio_info;
-> >>> +     indio_dev->modes =3D INDIO_DIRECT_MODE;
-> >>> +     indio_dev->channels =3D gadc_thermal_iio_channel;
-> >>> +     indio_dev->num_channels =3D ARRAY_SIZE(gadc_thermal_iio_channel=
-);
-> >>> +
-> >>> +     return devm_iio_device_register(dev, indio_dev);
-> >>
-> >> I don't get the idea why we need iio device, while we already have the
-> >> hwmon.
-> >>
-> >
-> > Idea behind this is to be able to convert adc iio channel into temp
-> > iio channel without introducing a new sensor which will duplicate
-> > behavior of existing one (by this I mean conversion table use). Not
-> > all devices can or have to use hwmon and some may require iio channel
-> > hooked up.
-> >
-> > Real life example. I own a device (LG P985) which has a fuel gauge
-> > that does not support battery thermal readings. Vendor provided a
-> > dedicated adc sensor and one of its channels is used as thermal sensor
-> > with device specific conversion table. Fuel gauge on the other hand
-> > supports linking in a dedicated temp iio channel to get thermal
-> > readings.
->
-> Thanks. IMO you can add these two sentences into the patch header.
-> It's telling more about the need of this change.
->
+Add support for Sophgo SG2044 MSI interrupt controller.
 
-Sure, will do
+Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+---
+ drivers/irqchip/irq-sg2042-msi.c | 86 ++++++++++++++++++++++++++++++--
+ 1 file changed, 82 insertions(+), 4 deletions(-)
 
-> BTW, I would like to see later how you use it in your battery driver
-> (please add me on CC, because I'm curious).
->
+diff --git a/drivers/irqchip/irq-sg2042-msi.c b/drivers/irqchip/irq-sg204=
+2-msi.c
+index 9c0a5f2777a4..4b3992821797 100644
+--- a/drivers/irqchip/irq-sg2042-msi.c
++++ b/drivers/irqchip/irq-sg2042-msi.c
+@@ -21,6 +21,11 @@
+=20
+ #define SG2042_MAX_MSI_VECTOR	32
+=20
++struct sg2042_msi_of_data {
++	const struct irq_chip		*irqchip;
++	const struct msi_parent_ops	*parent_ops;
++};
++
+ struct sg2042_msi_chipdata {
+ 	void __iomem	*reg_clr;	// clear reg, see TRM, 10.1.33, GP_INTR0_CLR
+=20
+@@ -29,8 +34,10 @@ struct sg2042_msi_chipdata {
+ 	u32		irq_first;	// The vector number that MSIs starts
+ 	u32		num_irqs;	// The number of vectors for MSIs
+=20
+-	DECLARE_BITMAP(msi_map, SG2042_MAX_MSI_VECTOR);
++	unsigned long	*msi_map;
+ 	struct mutex	msi_map_lock;	// lock for msi_map
++
++	const struct sg2042_msi_of_data	*data;
+ };
+=20
+ static int sg2042_msi_allocate_hwirq(struct sg2042_msi_chipdata *data, i=
+nt num_req)
+@@ -81,6 +88,37 @@ static const struct irq_chip sg2042_msi_middle_irq_chi=
+p =3D {
+ 	.irq_compose_msi_msg	=3D sg2042_msi_irq_compose_msi_msg,
+ };
+=20
++static void sg2044_msi_irq_ack(struct irq_data *d)
++{
++	struct sg2042_msi_chipdata *data =3D irq_data_get_irq_chip_data(d);
++
++	writel(0, (unsigned int *)data->reg_clr + d->hwirq);
++
++	irq_chip_ack_parent(d);
++}
++
++static void sg2044_msi_irq_compose_msi_msg(struct irq_data *d,
++					   struct msi_msg *msg)
++{
++	struct sg2042_msi_chipdata *data =3D irq_data_get_irq_chip_data(d);
++	phys_addr_t doorbell =3D data->doorbell_addr +  4 * (d->hwirq / 32);
++
++	msg->address_lo =3D lower_32_bits(doorbell);
++	msg->address_hi =3D upper_32_bits(doorbell);
++	msg->data =3D d->hwirq % 32;
++}
++
++static struct irq_chip sg2044_msi_middle_irq_chip =3D {
++	.name			=3D "SG2044 MSI",
++	.irq_ack		=3D sg2044_msi_irq_ack,
++	.irq_mask		=3D irq_chip_mask_parent,
++	.irq_unmask		=3D irq_chip_unmask_parent,
++#ifdef CONFIG_SMP
++	.irq_set_affinity	=3D irq_chip_set_affinity_parent,
++#endif
++	.irq_compose_msi_msg	=3D sg2044_msi_irq_compose_msi_msg,
++};
++
+ static int sg2042_msi_parent_domain_alloc(struct irq_domain *domain,
+ 					  unsigned int virq, int hwirq)
+ {
+@@ -119,7 +157,7 @@ static int sg2042_msi_middle_domain_alloc(struct irq_=
+domain *domain,
+ 			goto err_hwirq;
+=20
+ 		irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
+-					      &sg2042_msi_middle_irq_chip, data);
++					      data->data->irqchip, data);
+ 	}
+=20
+ 	return 0;
+@@ -162,6 +200,21 @@ static const struct msi_parent_ops sg2042_msi_parent=
+_ops =3D {
+ 	.init_dev_msi_info	=3D msi_lib_init_dev_msi_info,
+ };
+=20
++#define SG2044_MSI_FLAGS_REQUIRED (MSI_FLAG_USE_DEF_DOM_OPS |	\
++				   MSI_FLAG_USE_DEF_CHIP_OPS)
++
++#define SG2044_MSI_FLAGS_SUPPORTED (MSI_GENERIC_FLAGS_MASK |	\
++				    MSI_FLAG_PCI_MSIX)
++
++static const struct msi_parent_ops sg2044_msi_parent_ops =3D {
++	.required_flags		=3D SG2044_MSI_FLAGS_REQUIRED,
++	.supported_flags	=3D SG2044_MSI_FLAGS_SUPPORTED,
++	.bus_select_mask	=3D MATCH_PCI_MSI,
++	.bus_select_token	=3D DOMAIN_BUS_NEXUS,
++	.prefix			=3D "SG2044-",
++	.init_dev_msi_info	=3D msi_lib_init_dev_msi_info,
++};
++
+ static int sg2042_msi_init_domains(struct sg2042_msi_chipdata *data,
+ 				   struct irq_domain *plic_domain,
+ 				   struct device *dev)
+@@ -181,7 +234,7 @@ static int sg2042_msi_init_domains(struct sg2042_msi_=
+chipdata *data,
+ 	irq_domain_update_bus_token(middle_domain, DOMAIN_BUS_NEXUS);
+=20
+ 	middle_domain->flags |=3D IRQ_DOMAIN_FLAG_MSI_PARENT;
+-	middle_domain->msi_parent_ops =3D &sg2042_msi_parent_ops;
++	middle_domain->msi_parent_ops =3D data->data->parent_ops;
+=20
+ 	return 0;
+ }
+@@ -199,6 +252,12 @@ static int sg2042_msi_probe(struct platform_device *=
+pdev)
+ 	if (!data)
+ 		return -ENOMEM;
+=20
++	data->data =3D device_get_match_data(&pdev->dev);
++	if (!data->data) {
++		dev_err(&pdev->dev, "Failed to get irqchip\n");
++		return -EINVAL;
++	}
++
+ 	data->reg_clr =3D devm_platform_ioremap_resource_byname(pdev, "clr");
+ 	if (IS_ERR(data->reg_clr)) {
+ 		dev_err(dev, "Failed to map clear register\n");
+@@ -240,11 +299,30 @@ static int sg2042_msi_probe(struct platform_device =
+*pdev)
+=20
+ 	mutex_init(&data->msi_map_lock);
+=20
++	data->msi_map =3D devm_bitmap_zalloc(&pdev->dev, data->num_irqs, GFP_KE=
+RNEL);
++	if (!data->msi_map) {
++		dev_err(&pdev->dev, "Unable to allocate msi mapping\n");
++		return -ENOMEM;
++	}
++
+ 	return sg2042_msi_init_domains(data, plic_domain, dev);
+ }
+=20
++static const struct sg2042_msi_of_data sg2042_of_data =3D {
++	.irqchip	=3D &sg2042_msi_middle_irq_chip,
++	.parent_ops	=3D &sg2042_msi_parent_ops,
++};
++
++static const struct sg2042_msi_of_data sg2044_of_data =3D {
++	.irqchip	=3D &sg2044_msi_middle_irq_chip,
++	.parent_ops	=3D &sg2044_msi_parent_ops,
++};
++
+ static const struct of_device_id sg2042_msi_of_match[] =3D {
+-	{ .compatible	=3D "sophgo,sg2042-msi" },
++	{ .compatible	=3D "sophgo,sg2042-msi",
++	  .data		=3D &sg2042_of_data },
++	{ .compatible	=3D "sophgo,sg2044-msi",
++	  .data		=3D &sg2044_of_data },
+ 	{}
+ };
+=20
+--=20
+2.48.1
 
-It is already present in the kernel. Here is the schema
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml?h=3Dv6.=
-14-rc5
-
-> The code looks good, so please resend with better patch header
-> and I'll review the whole patch
 
 
