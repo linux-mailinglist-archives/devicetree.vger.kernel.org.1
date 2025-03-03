@@ -1,115 +1,127 @@
-Return-Path: <devicetree+bounces-154081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDFDCA4EB8F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:29:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65199A4EA28
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:57:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D37716F52D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:24:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EFF817E7B0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:52:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4918B27CB34;
-	Tue,  4 Mar 2025 18:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25AA2923B8;
+	Tue,  4 Mar 2025 17:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="V2VWHjdH"
+	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="BC8YDrCe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
+Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E32E24EA98
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:13:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F292923B1
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:33:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741112000; cv=pass; b=KKz7E0KoRNoCl5u6Hv2m39BM1vTYAXbTw/4fFltbHRg8FKcbN9SocQzenCmZYXmYVwsU+4Ma3YlFjKItuV3Qr8mcWJlFZRRgG9GBTcpU9ZXRvS1w05/bXi+YpgIAndq3FP4/X2MtsMqxLK+1USVi4WUfnli04xb66zb4joAHjw4=
+	t=1741109602; cv=pass; b=OkSe/sJn5cXQUT1prrsT8SM4T/pVjovhQw6fb3OwM8CfZAzKvD8MHjW4uVsO99OpNCGu/keeBOlQaQ6WwiKtHnxp1S2t8sl5F3QXewOnJ8xhf7zDPOVhIuIap79Jz67Y2m05eCZblN+NlQ06s4Kvf/219M35qq6UBRrRk/gpOac=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741112000; c=relaxed/simple;
-	bh=AMDQ9eFx0aMl37aNjAdud2rQll+8S9hW7w2yT459u9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UMZ7oXx3Bng9zXAHnESdu0yz+M1eaXND6J8RhH5WwJwh3ytby0L+9GZJxFgUsCM78uQPv/ZkCY7a3kcnx0IrJeOXSgJPcMFYiw1it7EJmsE+I7kJQwdDTz3WPYe17vUQmzJsIjfkKlTgFaWqkl4JUZ7sXLo+2pR4FBnsukRjmxs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=V2VWHjdH; arc=none smtp.client-ip=94.124.121.26; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; arc=pass smtp.client-ip=160.75.25.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+	s=arc-20240116; t=1741109602; c=relaxed/simple;
+	bh=UnlZRIn1+XWnSfw2pYOSnNaYsdX5WURIf+Hn25tK/2k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DAUFTgSFjecMHNnQj5MpqhbiRXaoM79JheIL8+rGfwAfLwGTen0S3FHBYEVFLJ/sQ7ytSeCixwRPEqs4rHsOdQe3lNndjdUVG+udzF8zSIL2Hu/FRIVW/TvBZX7RRPXWNAwYw94SYCEP8Q7Q4BQ/a1CWz/cLZn2ywDJFxi6s9ig=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=BC8YDrCe; arc=none smtp.client-ip=198.54.127.93; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; arc=pass smtp.client-ip=160.75.25.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
+Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id EEB6F4089284
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:13:15 +0300 (+03)
+	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id D4B0240CCF24
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 20:33:18 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=protonic.nl header.i=@protonic.nl header.a=rsa-sha256 header.s=202111 header.b=V2VWHjdH
+	dkim=pass (2048-bit key, unprotected) header.d=framepointer.org header.i=@framepointer.org header.a=rsa-sha256 header.s=default header.b=BC8YDrCe
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dN10PpwzFwb5
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:28:49 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6h9N463DzG3k3
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:34:48 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id B2A4E400C6; Tue,  4 Mar 2025 17:28:34 +0300 (+03)
+	id 824234272E; Tue,  4 Mar 2025 19:34:43 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=V2VWHjdH
-X-Envelope-From: <linux-kernel+bounces-541784-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=BC8YDrCe
+X-Envelope-From: <linux-kernel+bounces-541822-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=V2VWHjdH
+	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=BC8YDrCe
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 15B8041AD7
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:20:07 +0300 (+03)
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id BE722305F789
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:20:06 +0300 (+03)
+	by le2 (Postfix) with ESMTP id DEDCC41E8B
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:36:53 +0300 (+03)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id 733973064C0E
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:36:53 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 151D116E48C
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:20:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 848DC3AF605
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:33:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A35213E92;
-	Mon,  3 Mar 2025 13:18:48 +0000 (UTC)
-Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86002116F3;
+	Mon,  3 Mar 2025 13:31:46 +0000 (UTC)
+Received: from out-16.pe-b.jellyfish.systems (out-16.pe-b.jellyfish.systems [198.54.127.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4F120F093
-	for <linux-kernel@vger.kernel.org>; Mon,  3 Mar 2025 13:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42881EFFB4;
+	Mon,  3 Mar 2025 13:31:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741007923; cv=none; b=fKuBsotT/r/oTKUFj/dRXPtxU+rpDz1sXecsgbthSSum4WnvtaweEnsiRiNBKsJ7MT4jTCi9LGYyxnKRLhoj3halOojX/8Qnk+hopDxobi+qd6rJeim4gsdbOxOP8Pkb/nQ1obZe0V200wcs+TTJB+6P5L1xEXI/imZXnNzY2GA=
+	t=1741008702; cv=none; b=o6hsK9YYy11DnD97wF4NFW8mrXTkvnqDoLkIjGms5BUK4y4qCO7DNJ31AAj6nGjlzmGT9AA9aAoxZKKuEVDMU5BQLQHekcY/vjt2CpNPfVBtyqE+hi1r2ctbJvFFAxYBWpq4OIrsGfR5oK2nkeOWO0bJ7qLt6PVNyw59eee6VW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741007923; c=relaxed/simple;
-	bh=AMDQ9eFx0aMl37aNjAdud2rQll+8S9hW7w2yT459u9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q7ywlUY++JYkYwDOiJ6lnVZaFRwVQK5h6Mr/TGzRn0DBWxwKy3EBYMmQiYtcQBfyEgANCtFB/ZfJ7SQOJZ0mG6+WkiQ1C1BOiS7uMsOLYAWKIW/t+sfjbkOULDLcVxXSjWkFd+l4D85juZwALB3+IfKbDBCyNQLXKVRqqWczII4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=V2VWHjdH; arc=none smtp.client-ip=94.124.121.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=protonic.nl; s=202111;
-	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-	 message-id:subject:cc:to:from:date:from;
-	bh=07jHBQ0Ocr20eMkBHU7wCv3Kb+u8M2gSl1jHl4Krjyw=;
-	b=V2VWHjdH50wFOAzqiqTCz4ucfQSAqCESzCrmKnlGDokUdrXyVCjY95wGlKxQEqab88IbyapJ8HitR
-	 HhPCkTVbdTVmITlaPVwF3DF45rsjZ8KKS9QR1QgL9Z9ZJ5PpeqMyb4Z4Br1b1QGHaU9XuSjwQA5XjL
-	 A9EK9KrVHqZcBBGpkCbhwHNy2zuIXnCvY+Yqh6IJUonUEaNniEQT+LOJaiv8qIBYHv/lxzT4aRN+2w
-	 0Ycn1oeGVIj2B/QPxKjK8H50uESCFnozuiYgwKdA25We/6ZDtA7Zez1CmVi/IbJCfJ/OrJ8aJ40Ipn
-	 ZWeXSYlWcX+QRqZW16a2zXBCEZZ+o4g==
-X-MSG-ID: 04a26b70-f832-11ef-a39b-00505681446f
-Date: Mon, 3 Mar 2025 14:18:37 +0100
-From: David Jander <david@protonic.nl>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
- <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
- <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>
-Subject: Re: [RFC PATCH 6/7] dt-bindings: motion: Add adi,tmc5240 bindings
-Message-ID: <20250303141837.782e57f7@erd003.prtnl>
-In-Reply-To: <CAMknhBFoRoaXWBL-vDnDrepqw_KJ-VrYeOoGJfjz8q=wDNM6xA@mail.gmail.com>
-References: <20250227162823.3585810-1-david@protonic.nl>
-	<20250227162823.3585810-7-david@protonic.nl>
-	<7b2a8d71-9d83-4d40-903b-ba7ef1c686f3@baylibre.com>
-	<20250303122253.26fec335@erd003.prtnl>
-	<CAMknhBFoRoaXWBL-vDnDrepqw_KJ-VrYeOoGJfjz8q=wDNM6xA@mail.gmail.com>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741008702; c=relaxed/simple;
+	bh=UnlZRIn1+XWnSfw2pYOSnNaYsdX5WURIf+Hn25tK/2k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q6RhhgY0UqBUoyD4OEUpT+/tap51H+AczqOQzJbamC62qJlJjg7Awa+K8dAk4dX5EhVNoUIovBNtXLDr2mvUqNFUZLjVBi6iCI6joDXTsbazOxlrhtL5lpXhWHAxpVgXX4zZUEar9e/I4Cq9V5lnjmhzwgdV/HeKw4aotruZ4oQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=BC8YDrCe; arc=none smtp.client-ip=198.54.127.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
+Received: from prod-lbout-phx.jellyfish.systems (new-01.privateemail.com [198.54.118.220])
+	by pe-b.jellyfish.systems (Postfix) with ESMTPA id 4Z608P5BGyzGpYK;
+	Mon, 03 Mar 2025 13:31:33 +0000 (UTC)
+Received: from MTA-07.privateemail.com (unknown [10.50.14.17])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by NEW-01.privateemail.com (Postfix) with ESMTPS id 4Z608P4NQBz3hhVZ;
+	Mon,  3 Mar 2025 08:31:33 -0500 (EST)
+Received: from mta-07.privateemail.com (localhost [127.0.0.1])
+	by mta-07.privateemail.com (Postfix) with ESMTP id 4Z608P32p7z3hhV0;
+	Mon,  3 Mar 2025 08:31:33 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
+	s=default; t=1741008693;
+	bh=UnlZRIn1+XWnSfw2pYOSnNaYsdX5WURIf+Hn25tK/2k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BC8YDrCeBCA/KChWY4EPrqKy7A8fAYwy+Odi1ANXa/vnIoSfJ86AKOezwBHBlU/46
+	 gffQinnck9bZMc20Me2sACxi5KJZSUKoeY5xRqVbofOYv+xPK1EQtg8fA+6ytJlrvG
+	 N+educh4GpHUNmLKFpEHqQBRAXm7Nd8/aleKHc18EJnrvz2pkXzMhhwC+gxU8yPHqF
+	 C5Z6EFIyQBntvKoEPbXztVuQgrdjkrqf6LHsb5UkUaD5BYvQ3jwEbhG5cbPc8ZJFw2
+	 ky9QsmK4nWX4VTQ5gkTzjytiLFL0VDnM0Rvk4gUby1LYO+JQE7U4YfTQ5znWPO6pE8
+	 PaHrEAKa20zZw==
+Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
+	by mta-07.privateemail.com (Postfix) with ESMTPA;
+	Mon,  3 Mar 2025 08:31:20 -0500 (EST)
+Date: Mon, 3 Mar 2025 08:31:20 -0500
+From: Sam Winchenbach <sam.winchenbach@framepointer.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, lars@metafoo.de,
+	Michael.Hennerich@analog.com, antoniu.miclaus@analog.com,
+	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: iio: filter: Add lpf/hpf freq margins
+Message-ID: <Z8WvKNcCnQI_UYZJ@65YTFL3.secure.tethers.com>
+References: <20250225134612.577022-1-sam.winchenbach@framepointer.org>
+ <20250225134612.577022-2-sam.winchenbach@framepointer.org>
+ <20250226-sparkling-caped-saluki-b1cbad@krzk-bin>
+ <Z79K8Ag4SJYtJTtM@65YTFL3.secure.tethers.com>
+ <05e56d15-059b-425b-9e55-66993d988f8d@kernel.org>
+ <Z7-SojPPx3kOVa4y@65YTFL3.secure.tethers.com>
+ <8fef9b19-a1de-4153-a186-1aeee87dea9d@kernel.org>
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -117,266 +129,156 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8fef9b19-a1de-4153-a186-1aeee87dea9d@kernel.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6dN10PpwzFwb5
+X-ITU-Libra-ESVA-ID: 4Z6h9N463DzG3k3
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741716680.47271@+5OHPbF82G2ehVraBQZm8w
+X-ITU-Libra-ESVA-Watermark: 1741714290.83354@oWpzKLfHts569R+bOpVwbA
 X-ITU-MailScanner-SpamCheck: not spam
 
+On Mon, Mar 03, 2025 at 09:13:00AM +0100, Krzysztof Kozlowski wrote:
+> On 26/02/2025 23:16, Sam Winchenbach wrote:
+> >>>>> +  adi,hpf-margin-hz:
+> >>>>> +    description:
+> >>>>> +      Sets maximum high-pass corner frequency to the frequency of rf_in minus
+> >>>>> +      this value when in auto mode.
+> >>>>
+> >>>> IIUC, these are two bounds - lower and upper - in relation to something
+> >>>> else (like rf_in frequency)? If so, make it an array (naming to be
+> >>>> discuss, I assume you know better what's that):
+> >>>
+> >>> It is true that these are both related to rf_in but both the low and high pass
+> >>> filters can operate independently. Logically, IMO, it makes more sense to have
+> >>
+> >>
+> >> You mean you can set only low or high pass and keep other as default?
+> >> But what is the default then - something from reset value or "0" means
+> >> disabled?
+> > 
+> > This value isn't setting the corner frequency of the filter, but the minimum
+> > distance the corner must be from the fundamental frequency. So, for example,
+> > if rf_in is 3.35 GHz and you set lpf-margin-hz to 0 then the corner frequency
+> > will be set to 3.35 GHz because that is an exact value supported by the device.
+> > 
+> > If lpf-margin-hz is set to 30 MHz (for example), then corner frequency would be
+> > at least 3.35 GHz + 30 MHz = 3.38 GHz.  3.49 GHz is the closest corner
+> > frequency without going below 3.38 GHz that is supported by the device, so that
+> > is what will be selected.
+> > 
+> > This prevents the situation where your fundamental frequency falls on, or close
+> > to, a corner frequency which could result in 3dB (half power) loss in your
+> > signal.
+> > 
+> > This is all completely indepent of the high-pass filter.
+> 
+> Description is confusing a bit, because it suggests the value sets the
+> corner frequency. It explicitly says this - "sets ... corner frequency"
+> and such meaning for properties we usually associate with the property
+> doing this. Here however corner frequency will be always set to rf_in
+> and you just adjust the value.
+>
 
-Dear David,
+How about: "Sets the minimum distance (in Hz) between the fundamental
+frequency of `rf_in` and the corner frequency of the high-pass, input filter
+when operatred in 'auto' mode. The selected high-pass corner frequency will
+be less than, or equal to, `rf_in` - `hpf-margin-hz`. If not setting is found
+that satisfies this relationship the filter will be put into 'bypass'."
 
-On Mon, 3 Mar 2025 13:28:35 +0100
-David Lechner <dlechner@baylibre.com> wrote:
+Perhaps that is a bit more clear on the intention of this parameter?
 
-> (Sorry if you get this twice. I don't have my regular computer today
-> and didn't realize I was sending HTML the first time. Resending in
-> plain text so the lists pick it up.)
->=20
-> On Mon, Mar 3, 2025 at 12:22=E2=80=AFPM David Jander <david@protonic.nl> =
-wrote:
-> >
-> >
-> > Dear David,
-> >
-> > On Fri, 28 Feb 2025 16:38:51 -0600
-> > David Lechner <dlechner@baylibre.com> wrote:
-> > =20
-> > > On 2/27/25 10:28 AM, David Jander wrote: =20
-> > > > Add device-tree bindings for Analog Devices TMC5240 stepper control=
-lers.
-> > > >
-> > > > Signed-off-by: David Jander <david@protonic.nl>
-> > > > ---
-> > > >  .../bindings/motion/adi,tmc5240.yaml          | 60 +++++++++++++++=
-++++
-> > > >  1 file changed, 60 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/motion/adi,tm=
-c5240.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/motion/adi,tmc5240.y=
-aml b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..3364f9dfccb1
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
-> > > > @@ -0,0 +1,60 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/motion/adi,tmc5240.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Analog Devices TMC5240 Stepper Motor controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - David Jander <david@protonic>
-> > > > +
-> > > > +description: |
-> > > > +   Stepper motor controller with motion engine and SPI interface. =
-=20
-> > >
-> > > Please include a link to the datasheet. =20
-> >
-> > Will do.
-> > =20
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - adi,tmc5240
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  interrupts:
-> > > > +    maxItems: 1 =20
-> > >
-> > > I assume that this is the overvoltage output (OV pin). Would be nice =
-to have
-> > > a description here saying that. There are also NAO and DIAG0/1 output=
- pins, so
-> > > it's a bit ambiguous otherwise. =20
-> >
-> > This is the DIAG0 output pin which on this chip has a dual function as =
-either
-> > a STEP output or an interrupt output. The pin name is a bit misleading,=
- but it
-> > is the "interrupt" function that is meant here. The datasheet documents=
- all
-> > the different events that can trigger this interrupt.
-> > I will add a description to clarify this.
-> > =20
->=20
-> If it makes sense that other pins could possibly ever be connected to
-> interrupts then we can add those and also add interrupt-names (but
-> only if there is more than one possible interrupt).
+> > 
+> >>
+> >>> them as separate controls but I am happy to put them into an array if that is
+> >>> the idiomatic approach to situations like this. That said, I am having a
+> >>> difficult time getting dt_binding_check to pass when I have an array of uint64.
+> >>>
+> >>> When listing two items, as in your example below, I get the following:
+> >>> adi,admv8818.example.dtb: admv8818@0: adi,filter-margins-hz: [[0, 30000000], [0, 30000000]] is too long
+> >>
+> >> Tricky to say without seeing your code. Magic crystal ball had
+> >> malfunction today.
+> > 
+> > This is the property:
+> > 
+> >   adi,filter-margins-hz:
+> >     items:
+> >       - description: |
+> >           The minimum distance, in Hz, between rf_in and the low-pass corner
+> >           frequency when the device is used in "auto" mode. If the sum of
+> >           rf_in and this value is greater than 18.85 GHz then the low-pass
+> >           filter will be put into bypass mode, otherwise the closest corner
+> >           frequency that is greater than or equal to the sum of rf_in plus this
+> >           value will be used.
+> >         minimum: 0
+> >         maximum: 0xFFFFFFFFFFFFFFFF
+> >         default: 0
+> >       - description: |
+> >           The minimum distance, in Hz, between rf_in and the high-pass corner
+> >           frequency when the device is used in "auto" mode. If the difference
+> >           between rf_in and this value is less than 1.75 GHz then the high-pass
+> >           filter will be put into bypass mode, otherwise the closest corner
+> >           frequency that is less than or equal to the difference of rf_in and
+> >           this value will be used.
+> >         minimum: 0
+> >         maximum: 0xFFFFFFFFFFFFFFFF
+> >         default: 0
+> > 
+> > And this is the example:
+> > 
+> > examples:
+> >   - |
+> >     spi {
+> >       #address-cells = <1>;
+> >       #size-cells = <0>;
+> >       admv8818@0 {
+> >         compatible = "adi,admv8818";
+> >         reg = <0>;
+> >         spi-max-frequency = <10000000>;
+> >         clocks = <&admv8818_rfin>;
+> >         clock-names = "rf_in";
+> >         adi,filter-margins-hz = /bits/ 64 <30000000 30000000>;
+> 
+> 
+> foo-hz is in 32-bit, so basically you have here 4 32-bit numbers which
+> indeed reported by dtschema - property is too long. Drop 64-bit here.
+> 
 
-AFAIK, only DIAG1 would potentially make sense to be connected to an
-interrupt. It can be programmed to go low when the motor position matches t=
-he
-contents of the X_COMPARE/X_COMPARE_REPEAT register setting.
+I was hoping to keep this 64 bits seeing this is a 18 GHz+ filter. I suppose
+I could change this to MHz and just lose a bit of resolution. Does that sound
+like a better approach?
 
-I will add that one if you agree. It will not be mandatory of course.
+> Device allows multiple LPF/HPF values to be stored in LUT tables and it
+> actually has four independent filters. Shouldn't these be included here?
+> Maybe not LUT tables, but the configuration for all filters?
+>
 
-In any case, if that pin was connected to an interrupt pin right now, it co=
-uld
-already be used as an IIO trigger for example. Just not (yet) via this driv=
-er.
+There are two filters, the input (high-pass) filter, and the output (low-pass)
+filter. Each filter has four banks, each with a different range of frequencies.
+Only one bank can be selected at a time. Each bank has 16 different possible
+cutoff/corner frequencies. That is a total of 64 distinct values for each of
+the two filters.
 
->[...]
-> > The resistor connected to the IREF pin (Rref) OTOH does have an implica=
-tion to
-> > the software, as it sets the full-range current of the output stage.
-> >
-> > How should we specify that? Is it adequate to add an optional DT proper=
-ty
-> > "rref" or "rref-ohm" with an int32 value in Ohm? The default value if
-> > unspecified is 12000 Ohm. =20
->=20
-> It looks like there are a few standardized properties, like
-> sense-resistor-ohms if that fits the use case. Otherwise, an
-> vendor-specific ti,rref-ohms would work. FYI, you can find the
-> preferred units at [1].
->=20
-> [1]: https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schem=
-as/property-units.yaml
+The issue with setting the corner frequency directly is that in certain
+applications (such as software defined radios) the fundamental frequency
+is adjustable, necessitating that the corner frequencies of the filter are
+adjusted accordingly. When the filter is in "auto" mode it is notified via
+the clock system of frequency changes, so using this information it should be
+possible to select new corner frequencies if you know the minimum distance
+between your fundamental frequency and the corner.
 
-Ah, thanks! This is helpful.
 
-Will use this for ti,rref-ohms. I guess in this case that would be easier to
-understand than "sense-resistor-ohms", which is also okay, but would require
-reading the description to know what exactly is meant in this context.
+It is possible there is either not enough call for this feature, or it goes
+against the designs of the maintainters. If that is the case we should decline
+this patch and we will maintain it in our fork of the kernel.
 
-> > > And if there are any pins would make sense to connect to a gpio, we c=
-an add
-> > > those even if the driver doesn't use it currently.
-> > > =20
-> > > > +  clocks:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - interrupts
-> > > > +  - clocks
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > > > +  - $ref: /schemas/motion/common.yaml# =20
-> > >
-> > > If we need to know about what is connected to the output of a motor c=
-ontroller
-> > > I would expect it to be done with child node for each output. That wa=
-y each
-> > > output can be unique, if needed. Basically, similar to iio/adc.yaml i=
-s used to
-> > > provide common properties for channel@ child nodes on iio devices. =20
-> >
-> > This controller chip only has one single output for one stepper motor (4
-> > wires). While technically you could connect something else to those 4 w=
-ires, I
-> > don't think it is the scope of LMC to support that. The chip itself isn=
-'t
-> > designed for that purpose and it would clearly go far beyond the intend=
-ed
-> > purpose of this device.
-> >
-> > That being said, your suggestion of supporting child nodes may actually=
- be a
-> > good idea. Right now, we specify the type of motor (basically nominal- =
-and hold
-> > current settings) in user-space and set the IRUN/IHOLD parameters from
-> > user-space via the sysfs attributes interface. It might make sense to h=
-ave a DT
-> > child node to specify this, although in our current application this is=
- not
-> > very practical, since there are many motor controllers on one board, an=
-d it is
-> > configurable in software (runtime) which motor is connected to which ou=
-tput.
-> >
-> > But I can imagine a situation where it may be fixed and thus can be des=
-cribed
-> > in the DT of a board.
-> >
-> > Then again I don't know if it would be over-complicating things with so=
-mething
-> > like this:
-> >
-> >         motor-controller@0 {
-> >                 ...
-> >                 motor@0 {
-> >                         compatible =3D "nanotec,st4118s1006";
-> >                         irun-ma =3D <1800>;
-> >                         ihold-ma =3D <270>;
-> >                 };
-> >         };
-> >
-> > where we'd possibly have a stepper-motors.c file with a lot of structs =
-and
-> > matching tables for the different motor types.... sounds like overkill =
-to me,
-> > but maybe not? =20
->=20
-> A compatible for motors seems too much. I was just thinking along the
-> lines that 1) if we need to so some scaling or something that depends
-> on a motor constant, then it would make sense to put those constants
-> in the DT and 2) if there is a motor controller with more than one
-> output that could be connected to two or more different sizes of
-> motors with different constants, then we either need child nodes or an
-> array to be able to enter the different constants. Either one would
-> work. So maybe simpler to just use an array instead of child nodes now
-> that I'm thinking about it more.
-
-Well, in the case of the TMC5240 there isn't much more than a single motor
-with possibly some fixed setting of irun/ihold in some cases, but like I sa=
-id,
-in our case it is run-time configurable, so not something fixed to the
-hardware-description. Apart from that, there are the speed- and acceleratio=
-n-
-conversion constants, which per default are the constants stated in the
-datasheet. In some rare cases one might want to overrule them, but that can
-already be done.
-
-LMC does als support multi-channel controllers, and in that case I intend to
-make use of child nodes for the different channels, to be able to specify
-those parameters per motor.
-
-So maybe just leave it as it currently is for the tmc5240?
-
-> > > > +
-> > > > +unevaluatedProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    spi {
-> > > > +        #address-cells =3D <1>;
-> > > > +        #size-cells =3D <0>;
-> > > > +
-> > > > +        motor@0 { =20
-> > >
-> > > motor-controller@ or actuator-controller@
-> > >
-> > > The chip is the controller/driver, it is not a motor. =20
-> >
-> > Make sense. Will change this.
-> > =20
-> > > > +            compatible =3D "adi,tmc5240";
-> > > > +            reg =3D <0>;
-> > > > +            interrupts-extended =3D <&gpiok 7 0>;
-> > > > +            clocks =3D <&clock_tmc5240>;
-> > > > +            enable-supply =3D <&stpsleepn>;
-> > > > +            spi-max-frequency =3D <1000000>;
-> > > > +        };
-> > > > +    }; =20
-
-Best regards,
-
---=20
-David Jander
+Thanks,
+-Sam
+ 
+> Best regards,
+> Krzysztof
 
 
