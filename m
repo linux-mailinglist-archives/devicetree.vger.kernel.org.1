@@ -1,112 +1,112 @@
-Return-Path: <devicetree+bounces-154084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF25FA4EBF6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:39:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74620A4E98C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:43:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58A978A7565
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:25:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0DBB8C395F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:05:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B595A255236;
-	Tue,  4 Mar 2025 18:15:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFCA627FE6C;
+	Tue,  4 Mar 2025 16:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MaQp67pD"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="FAgTM+AD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
+Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57E7F2780E8
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E41228F923
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:43:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741112106; cv=pass; b=Jzq9uGBKTzI/778V7VDDGsXjquycmA+AWBrUKg1hSeVoqJN+0IgIesnUUzVZw6wtz8bdVvVoAWvlmcXnyvlcoTvDPfHDTLrjv8fyMJqi0qErWe/Bh/hMzlKd13aATloJAasQFLDqHoDeCKZRQQj5hdvyrecV/04uxfMOWptfYXc=
+	t=1741106604; cv=pass; b=tvVfgNq1mJVM6kxewt0Fx5JYTuwJjwxeHd5o0UEyPpD9RKrYl1TcVJwXK1bO9DN0gmYtOUehKwIqHyWlscT2R8C1s8LuwsOaWTj2FxnxyijJAnSKzkUPF6jYjZ0SvcF9iE8u77aqLWfk2poGtRiXindjUdKvjlZ9RiwYbM/nO+A=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741112106; c=relaxed/simple;
-	bh=uvWfQIvVtz2el5U3hNCxd0ZnX1SP6FuC5a7SVo1OiSk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qb1xkkgeWWG+dkT0XxMROeNtW0Xl5wQ9ejhkIo5+UxtI3CTwndeqru+olLXbjeVaJpLAvoJiXT/BWVCo8ScfIHlZU4FxBPdmt1TkBBtpsumg/QD/INfuhuLvPK40FV+/VFBPV0S4/cM9iWa4554Do0ZScH4fG5JLO8aX8Dc16UM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MaQp67pD; arc=none smtp.client-ip=205.220.180.131; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; arc=pass smtp.client-ip=160.75.25.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+	s=arc-20240116; t=1741106604; c=relaxed/simple;
+	bh=pynGxo4XXmEs7yOlWDF8XBGKq+XhR05TaEZa28BkT+0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=g9xnJ2Pu2dGbI60iLD82HelQG+iFI35kh1RxswqdYeDK5fvUKw0Y/GrAL9j/fiMAOvkckQ+WNbtAblczNdYGep3seTbRWwkhDzNNab0/jRoWjZzXvTp4pDhmcbkas2QJM4Ya4AlABrb++zc13gql9kd8L6CAfSNa7Q5qrVB9K1g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=FAgTM+AD; arc=none smtp.client-ip=94.124.121.26; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; arc=pass smtp.client-ip=160.75.25.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
+Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id 8A8B6408B65D
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:15:01 +0300 (+03)
+	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 866AB40F1CD1
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:43:20 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
-Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=quicinc.com header.i=@quicinc.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=MaQp67pD
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dSz5kwYzFwnP
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:33:07 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6hG552g6zG3sh
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:38:53 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id E58374273B; Tue,  4 Mar 2025 17:33:05 +0300 (+03)
+	id EDD0B42723; Tue,  4 Mar 2025 19:38:47 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MaQp67pD
-X-Envelope-From: <linux-kernel+bounces-541377-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=FAgTM+AD
+X-Envelope-From: <linux-kernel+bounces-541428-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MaQp67pD
-Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 1C8C24305F
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:33:19 +0300 (+03)
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 51D62305F789
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:33:18 +0300 (+03)
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=FAgTM+AD
+Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
+	by le2 (Postfix) with ESMTP id E4BEC42BFE
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:48:21 +0300 (+03)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by fgw2.itu.edu.tr (Postfix) with SMTP id AB1C42DCE0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:48:21 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F34213AD75E
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:31:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D77A18939CB
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC5B1F4162;
-	Mon,  3 Mar 2025 10:29:09 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA4C9A94A;
+	Mon,  3 Mar 2025 10:45:29 +0000 (UTC)
+Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF4A1F153E;
-	Mon,  3 Mar 2025 10:28:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0578F1F418E
+	for <linux-kernel@vger.kernel.org>; Mon,  3 Mar 2025 10:45:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740997739; cv=none; b=SY7y/GJ+K/uyYPlxx035RgPTg1NCVYdkAfHoNUZOPoW89zXl7GIfTyMTdsn5ZZE2fq6C/TEDCioKJaKA5jzqC+zoYr+fHcETbBOXGw34YSKYWMKZTpbOQFgAChBlHoU2kVKEdJb2Q+6NMmZtlFVkwAyu2HyN9yghfXes5F+/rJA=
+	t=1740998723; cv=none; b=XZua+YmI4OUDq9kRDbTF0w31ilzpUwMyyCyDmkWnr+43xzcj2ArNGlXLZNclN189XUttd+HMkNCC6VyVDx20phOe6q3Z3Iy2/TlYYe2fXX6mpjqO9n7oW2UKenGFZv2bfYMWgofuvBkt6bMro8Ba3HbRCBnFbzrtc2aePOaZWdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740997739; c=relaxed/simple;
-	bh=uvWfQIvVtz2el5U3hNCxd0ZnX1SP6FuC5a7SVo1OiSk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JLfXyOSy8wXzr2mLI4z+2Rqcp+iXU3gZPQNrz/xfbUK7ci14M8yRnkTHOI14tmNB7kfN2MRKTVE0MOdz9/oJvqhmWetgYXuYy+lfig1mEzroKVUmD/J3Gw/VlQ2dUus215g07KlFEhvgyijVnWZtHZjPuCY1Hx0VdWotG/IFe50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MaQp67pD; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52300fn9001154;
-	Mon, 3 Mar 2025 10:28:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JonGiwRI3sWfvHGDBrz3BNHbSSqFbYIlo5o4+skfNmI=; b=MaQp67pDh+wBEgWe
-	tA7dSKKUvgz/7F9DDk50DMUjyGJKzsEh6q9nrbwBp1PXUWGTHGu1C5L6SapU4sFY
-	JiNKVSR2RxQPzqfwPnUPbMPicIEnArmDKNRmhNim5+v2GLJyRy6BZO9Qnm3xAKM+
-	fTbtKwRpo3LIaS8bBSh2Z/gFwE+HQP+6rA5wLYQdFCyrSi2ZRUrtDyZ8quYzLeth
-	QNsreI9z4U9/DitiHUK+P1G9wZVLNVHGvM9aeL+3++GGzA28n5qZ/PYUONF9XEUH
-	dMuzp0xE3AWw1RIkMx0lXYxgTrF2lTLuICM40Lui7Cd74rJe026Zox47Nx52VlVv
-	HZ3wRg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 453tascm6f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Mar 2025 10:28:50 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 523ASnxC026552
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Mar 2025 10:28:49 GMT
-Received: from [10.151.37.100] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Mar 2025
- 02:28:45 -0800
-Message-ID: <1359984c-2ace-450b-a3ff-bac0b9fb5cc9@quicinc.com>
-Date: Mon, 3 Mar 2025 15:58:42 +0530
+	s=arc-20240116; t=1740998723; c=relaxed/simple;
+	bh=pynGxo4XXmEs7yOlWDF8XBGKq+XhR05TaEZa28BkT+0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t3HiWeSvqGNa/kU+OvvarYlKD7c2AL9GUp9shhZppGa1oEtm0B2LAqKJrx2w+cq14sTJZ57YZPERu96tJH3DzpZahGzLiwvzGXk7jg4Hc6WjLGDrRvGpbf1pnV2eNEmxfRmCzQ97ljPJ+yInQ4xrGY3r/aCVmhlcjXxvTTjS7dY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=FAgTM+AD; arc=none smtp.client-ip=94.124.121.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=Qv3LQFoyzeVaS+B1CyxR62OcrtYUFb1G+ImO7n/MAEM=;
+	b=FAgTM+AD9/uZHGNzyeo7ropgMTrjWuN6tajamIaeZY+HqtdOIyS+14xZKDu1CbAjgTJ9A4vSlZRf+
+	 4dYG6I5yt9Lc9EyKXpxRVGyHnNFMtF3WUs64UxqLwu3pOIJeRl4Me1PqvwXycuDZbv0by7iLAxXH4T
+	 NEzGyOH4mSc2LNFO0bW+P/5WGzse69Rqrf7HVKug/tzKQmMG2Sr3QXaNAp6MM5o1so3Kfl/s14mCEd
+	 7PRM+vKtUU7iWa831fLLt4vpZiCCyY6pm8kNbwM1RwhF9RUI3eqMTNjhaDGsRDkxvM6b3DRPYqZEkP
+	 v40bH4XPP2GK8tC2PZc0K92PvO9TmfA==
+X-MSG-ID: 93bddd82-f81c-11ef-a39b-00505681446f
+Date: Mon, 3 Mar 2025 11:45:08 +0100
+From: David Jander <david@protonic.nl>
+To: Pavel Pisa <ppisa@pikron.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
+ <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
+ <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, Carsten Emde <c.emde@osadl.org>
+Subject: Re: [RFC PATCH 0/7] Add Linux Motion Control subsystem
+Message-ID: <20250303114508.311c28f6@erd003.prtnl>
+In-Reply-To: <202502281623.33695.ppisa@pikron.com>
+References: <20250227162823.3585810-1-david@protonic.nl>
+	<202502281035.57489.ppisa@pikron.com>
+	<20250228125727.7f892552@erd003.prtnl>
+	<202502281623.33695.ppisa@pikron.com>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -114,1257 +114,502 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox
- driver
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <manivannan.sadhasivam@linaro.org>
-References: <20250228045356.3527662-1-quic_srichara@quicinc.com>
- <20250228045356.3527662-3-quic_srichara@quicinc.com>
- <lakoxihaqlu3vq42eoqtlip23ggdieizotyzax5up5n6ndbwsi@ddqyzvsdtmkv>
-Content-Language: en-US
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <lakoxihaqlu3vq42eoqtlip23ggdieizotyzax5up5n6ndbwsi@ddqyzvsdtmkv>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: rmvVcN6gHfS89TRLFCyBnWR5Hm5GPbay
-X-Proofpoint-ORIG-GUID: rmvVcN6gHfS89TRLFCyBnWR5Hm5GPbay
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-03_04,2025-03-03_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 spamscore=0 phishscore=0 mlxscore=0 priorityscore=1501
- bulkscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0 adultscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2503030080
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6dSz5kwYzFwnP
+X-ITU-Libra-ESVA-ID: 4Z6hG552g6zG3sh
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741716775.69927@ArEX0IEHWxCWXLrTvfvPjg
+X-ITU-Libra-ESVA-Watermark: 1741711298.65838@DLdQJLXl8usMptt1nkWZLw
 X-ITU-MailScanner-SpamCheck: not spam
 
 
+Hi Pavel,
 
-On 2/28/2025 12:03 PM, Dmitry Baryshkov wrote:
-> On Fri, Feb 28, 2025 at 10:23:56AM +0530, Sricharan R wrote:
->> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>
->> This mailbox facilitates the communication between the TME-L server based
-> 
-> What is TME-L?
-> 
-ok, will expand.
+On Fri, 28 Feb 2025 16:23:33 +0100
+Pavel Pisa <ppisa@pikron.com> wrote:
 
->> subsystems (Q6) and the TME-L client (APPSS/BTSS/AUDIOSS), used for secure
->> services like secure image authentication, enable/disable efuses, crypto
->> services. Each client in the   SoC has its own block of message RAM and
->> IRQ for communication with the TME-L SS. The protocol used to communicate
->> in the message RAM is known as Qualcomm Messaging Protocol (QMP).
->>
->> Remote proc driver subscribes to this mailbox and uses the
->> mbox_send_message to use TME-L to securely authenticate/teardown the
->> images.
->>
->> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->> ---
->> #V3:
->> ---
->>          Fixed wrong code/comments wrappings.
->>          Fixed Kconfig and Makefile entries to right place.
->>          Removed unused headers inclusion.
->>          Fixed locking, removed the mutexes and having only tx spinlock.
->>          Removed the use of global ptr for tmel, made it as device specific.
->>          Replaced pr_err/pr_debug with dev_err/dev_dbg in all places.
->>          Fixed usage of dev_err_probe.
->>          Fixed xlate callback as per comments.
->>          Used devm equivalents and kcalloc version as per comments.
->>          Removed all un-nessecary wrapper macros for register access, inlined it
->>          as per comments.
->>          Re-organised the function layout as per comments and make it more readable.
->>          Removed the pictures in headers files as per comments.
->>          Used Field_prep/get as per comments.
->>          Fixed Kernel test reported issues.
->>          Fixed all other comments as well.
->>
->>      Following tests were done and no issues.
->>
->>         *)  Checkpatch
->>         *)  Codespell
->>         *)  Sparse
->>         *)  kerneldoc check
->>         *)  Kernel lock debugging
->>         *)  dt_binding_check and dtbs_check
->>
->>   drivers/mailbox/Kconfig             |  10 +
->>   drivers/mailbox/Makefile            |   2 +
->>   drivers/mailbox/qcom-tmel-qmp.c     | 836 ++++++++++++++++++++++++++++
->>   include/linux/mailbox/tmelcom-qmp.h | 122 ++++
->>   4 files changed, 970 insertions(+)
->>   create mode 100644 drivers/mailbox/qcom-tmel-qmp.c
->>   create mode 100644 include/linux/mailbox/tmelcom-qmp.h
->>
->> diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
->> index ed52db272f4d..eee5a2a4aeb8 100644
->> --- a/drivers/mailbox/Kconfig
->> +++ b/drivers/mailbox/Kconfig
->> @@ -320,6 +320,16 @@ config QCOM_IPCC
->>   	  acts as an interrupt controller for receiving interrupts from clients.
->>   	  Say Y here if you want to build this driver.
->>   
->> +config QCOM_TMEL_QMP_MAILBOX
->> +	tristate "QCOM Mailbox Protocol(QMP) for TMEL SS"
->> +	depends on ARCH_QCOM || COMPILE_TEST
->> +	help
->> +	  Say yes to add support for the QMP Mailbox Protocol driver for
->> +	  Trust Management Engine-Lite Sub System (TMEL SS).
->> +	  QMP is a lightweight communication protocol for sending messages to
->> +	  TME-L. This protocol fits into the Generic Mailbox Framework.
->> +	  QMP uses a mailbox registers.
->> +
->>   config THEAD_TH1520_MBOX
->>   	tristate "T-head TH1520 Mailbox"
->>   	depends on ARCH_THEAD || COMPILE_TEST
->> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
->> index 9a1542b55539..31d5a4f96690 100644
->> --- a/drivers/mailbox/Makefile
->> +++ b/drivers/mailbox/Makefile
->> @@ -69,4 +69,6 @@ obj-$(CONFIG_QCOM_CPUCP_MBOX)	+= qcom-cpucp-mbox.o
->>   
->>   obj-$(CONFIG_QCOM_IPCC)		+= qcom-ipcc.o
->>   
->> +obj-$(CONFIG_QCOM_TMEL_QMP_MAILBOX) += qcom-tmel-qmp.o
->> +
->>   obj-$(CONFIG_THEAD_TH1520_MBOX)	+= mailbox-th1520.o
->> diff --git a/drivers/mailbox/qcom-tmel-qmp.c b/drivers/mailbox/qcom-tmel-qmp.c
->> new file mode 100644
->> index 000000000000..f6479d7dba56
->> --- /dev/null
->> +++ b/drivers/mailbox/qcom-tmel-qmp.c
->> @@ -0,0 +1,836 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <linux/dma-mapping.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/mailbox_client.h>
->> +#include <linux/mailbox_controller.h>
->> +#include <linux/mailbox/tmelcom-qmp.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/uio.h>
->> +
->> +#define QMP_NUM_CHANS	0x1
->> +#define QMP_TOUT_MS	1000
->> +#define MBOX_ALIGN_BYTES	3
->> +#define QMP_CTRL_DATA_SIZE	4
->> +#define QMP_MAX_PKT_SIZE	0x18
->> +#define QMP_UCORE_DESC_OFFSET	0x1000
->> +#define QMP_SEND_TIMEOUT	30000
->> +
->> +/**
->> + * enum qmp_local_state - definition of the local state machine
->> + * @LINK_DISCONNECTED: Init state, waiting for ucore to start
->> + * @LINK_NEGOTIATION: Set local link state to up, wait for ucore ack
->> + * @LINK_CONNECTED: Link state up, channel not connected
->> + * @LOCAL_CONNECTING: Channel opening locally, wait for ucore ack
->> + * @CHANNEL_CONNECTED: Channel fully opened
->> + * @LOCAL_DISCONNECTING: Channel closing locally, wait for ucore ack
->> + */
->> +enum qmp_local_state {
->> +	LINK_DISCONNECTED,
->> +	LINK_NEGOTIATION,
->> +	LINK_CONNECTED,
->> +	LOCAL_CONNECTING,
->> +	CHANNEL_CONNECTED,
->> +	LOCAL_DISCONNECTING,
->> +};
->> +
->> +union qmp_channel_desc {
->> +	struct {
->> +		u32 link_state:1;
->> +		u32 link_state_ack:1;
->> +		u32 ch_state:1;
->> +		u32 ch_state_ack:1;
->> +		u32 tx:1;
->> +		u32 tx_ack:1;
->> +		u32 rx_done:1;
->> +		u32 rx_done_ack:1;
->> +		u32 read_int:1;
->> +		u32 read_int_ack:1;
->> +		u32 reserved:6;
->> +		u32 frag_size:8;
->> +		u32 rem_frag_count:8;
->> +	} bits;
->> +	unsigned int val;
->> +};
->> +
->> +/**
->> + * struct qmp_device - local information for managing a single mailbox
->> + * @dev: The device that corresponds to this mailbox
->> + * @mcore_desc: Local core (APSS) mailbox descriptor
->> + * @ucore_desc: Remote core (TME-L) mailbox descriptor
->> + * @mcore: Local core (APSS) channel descriptor
->> + * @ucore: Remote core (TME-L) channel descriptor
->> + * @rx_pkt: Buffer to pass to client, holds received data from mailbox
->> + * @tx_pkt: Buffer from client, holds data to send on mailbox
->> + * @mbox_client: Mailbox client for the IPC interrupt
->> + * @mbox_chan: Mailbox client chan for the IPC interrupt
->> + * @local_state: Current state of mailbox protocol
->> + * @tx_lock: Serialize access for writes to mailbox
->> + * @link_complete: Use to block until link negotiation with remote proc
->> + * @ch_complete: Use to block until the channel is fully opened
->> + * @tx_sent: True if tx is sent and remote proc has not sent ack
->> + */
->> +struct qmp_device {
->> +	struct device *dev;
->> +
->> +	void __iomem *mcore_desc;
->> +	void __iomem *ucore_desc;
->> +	union qmp_channel_desc mcore;
->> +	union qmp_channel_desc ucore;
->> +
->> +	struct kvec rx_pkt;
->> +	struct kvec tx_pkt;
->> +
->> +	struct mbox_client mbox_client;
->> +	struct mbox_chan *mbox_chan;
->> +
->> +	enum qmp_local_state local_state;
->> +
->> +	/*
->> +	 * Serialize access to mcore IPC descriptors.
->> +	 * mcore refers to the IPC request descriptors sent to TMEL,
->> +	 * protecting it from various SM transitions using this.
->> +	 */
->> +	spinlock_t tx_lock;
->> +
->> +	struct completion link_complete;
->> +	struct completion ch_complete;
->> +
->> +	atomic_t tx_sent;
->> +};
->> +
->> +struct tmel_work {
+> Hello David,
 > 
-> It is only used inside struct tmel. Fold it into the structure.
+> On Friday 28 of February 2025 12:57:27 David Jander wrote:
+> > Dear Pavel,
+> >
+> > Thanks a lot for starting the discussion...
+> >
+> > On Fri, 28 Feb 2025 10:35:57 +0100
+> >
+> > Pavel Pisa <ppisa@pikron.com> wrote:  
+> > > Hello David and others
+> > >
+> > > On Thursday 27 of February 2025 17:28:16 David Jander wrote:  
+> > > > Request for comments on: adding the Linux Motion Control subsystem to
+> > > > the kernel.  
+> > >
+> > > I have noticed on Phoronix, that the new system is emerging.  
+> >
+> > Being featured on Phoronix on day one wasn't on my bingo card for this
+> > year, to be honest... :-)
+> >  
+> > > This is area where I have lot (more than 30 years) of experience
+> > > at my company and I have done even lot with my studnets at university.
+> > > I have big interest that this interface fits our use neeeds
+> > > and offers for future integration of our already open-source
+> > > systems/components.  
+> >
+> > This is very impressive and I am honored to have gotten your attention. I
+> > am looking forward to discussing this, although I am not sure whether all
+> > of this should happen here on LKML?  
 > 
-ok.
+> We should move somewhere else and invite people from Linux
+> CNC etc...
 
->> +	struct work_struct work;
->> +	void *data;
->> +};
->> +
->> +struct tmel {
-> 
-> Hmm, I wonder how did you select, which bits and pieces to document and
-> which to skip.
-> 
-ok, will add the doc for this structure.
+I agree.
 
->> +	struct device *dev;
->> +	struct mbox_controller ctrl;
->> +	struct qmp_device *mdev;
->> +	struct tmel_work qwork;
->> +	struct kvec pkt;
->> +	struct tmel_ipc_pkt *ipc_pkt;
->> +	dma_addr_t sram_dma_addr;
->> +	wait_queue_head_t waitq;
->> +	bool rx_done;
->> +};
->> +
->> +struct tmel_msg_param_type_buf_in {
->> +	u32 buf;
->> +	u32 buf_len;
->> +};
->> +
->> +struct tmel_secboot_sec_auth_req {
->> +	u32 sw_id;
->> +	struct tmel_msg_param_type_buf_in elf_buf;
->> +	struct tmel_msg_param_type_buf_in region_list;
->> +	u32 relocate;
->> +} __packed;
-> 
-> There seem to be no extra holes in these structs. Why are they packed?
-> 
-yeah, should be fine without that, will remove.
+> GitHub project would work well if there is not some reluctance
+> to commercially controlled and closed environment.
 
->> +
->> +struct tmel_secboot_sec_auth_resp {
->> +	u32 first_seg_addr;
->> +	u32 first_seg_len;
->> +	u32 entry_addr;
->> +	u32 extended_error;
->> +	u32 status;
->> +} __packed;
->> +
->> +struct tmel_secboot_sec_auth {
->> +	struct tmel_secboot_sec_auth_req req;
->> +	struct tmel_secboot_sec_auth_resp resp;
->> +} __packed;
->> +
->> +struct tmel_secboot_teardown_req {
->> +	u32 sw_id;
->> +	u32 secondary_sw_id;
->> +} __packed;
->> +
->> +struct tmel_secboot_teardown_resp {
->> +	u32 status;
->> +} __packed;
->> +
->> +struct tmel_secboot_teardown {
->> +	struct tmel_secboot_teardown_req req;
->> +	struct tmel_secboot_teardown_resp resp;
->> +} __packed;
->> +
->> +/**
->> + * qmp_send_irq() - send an irq to a remote entity as an event signal.
->> + * @mdev: Which remote entity that should receive the irq.
->> + */
->> +static void qmp_send_irq(struct qmp_device *mdev)
-> 
-> This is a part of the tmel driver, not the qmp one. Please settle on the
-> common prefix for all functions.
-> 
-ok, i kept it as qmp_ and tmel_ because this driver/file is
-implementing both qmp and tmel functionality. Will change all to
-one unique tmel_  prefix'es instead.
+I am open to suggestions. I just happen to have a github account and also have
+my code there:
 
->> +{
->> +	iowrite32(mdev->mcore.val, mdev->mcore_desc);
-> 
-> writel is more common.
-> 
-ok.
+https://github.com/yope/linux/tree/mainline-lmc-preparation
 
->> +	/* Ensure desc update is visible before IPC */
->> +	wmb();
->> +
->> +	dev_dbg(mdev->dev, "%s: mcore 0x%x ucore 0x%x", __func__,
->> +		mdev->mcore.val, mdev->ucore.val);
->> +
->> +	mbox_send_message(mdev->mbox_chan, NULL);
->> +	mbox_client_txdone(mdev->mbox_chan, 0);
->> +}
->> +
->> +/**
->> + * qmp_send_data() - Copy the data to the channel's mailbox and notify
->> + *		     remote subsystem of new data. This function will
->> + *		     return an error if the previous message sent has
->> + *		     not been read. Cannot Sleep.
+> Gitlab even in Gitlab.com case has option to move to own
+> infrastructure in the future. We have Gitlab at university,
+> companies I work with has Gitlab instances. But I think that
+> we should stay on neutral ground.
 > 
-> This doesn't follow Documentation/doc-guide/kernel-doc.rst
+> The critical is some central hub where links to specific
+> mailinglist etc. can be placed. May it be we can ask
+> Linux foundation to provide wiki space for Linux Motion Control
+> Subsystem same as it is for RT
 > 
-Ho, will fix.
+>   https://wiki.linuxfoundation.org/realtime/start
+> 
+> We can ask OSADL.org as likely neutral space...
 
->> + * @mdev: qmp_device to send the data to.
->> + * @data: Data to be sent to remote processor, should be in the format of
->> + *	  a kvec.
->> + *
->> + * Return: 0 on success or standard Linux error code.
->> + */
->> +static int qmp_send_data(struct qmp_device *mdev, void *data)
->> +{
->> +	struct kvec *pkt = (struct kvec *)data;
->> +	void __iomem *addr;
->> +	unsigned long flags;
->> +
->> +	if (pkt->iov_len > QMP_MAX_PKT_SIZE) {
->> +		dev_err(mdev->dev, "Unsupported packet size %ld\n", pkt->iov_len);
->> +		return -EINVAL;
->> +	}
->> +
->> +	if (atomic_read(&mdev->tx_sent))
->> +		return -EAGAIN;
->> +
->> +	dev_dbg(mdev->dev, "%s: mcore 0x%x ucore 0x%x", __func__,
->> +		mdev->mcore.val, mdev->ucore.val);
->> +
->> +	addr = mdev->mcore_desc + QMP_CTRL_DATA_SIZE;
->> +	memcpy_toio(addr, pkt->iov_base, pkt->iov_len);
->> +
->> +	mdev->mcore.bits.frag_size = pkt->iov_len;
->> +	mdev->mcore.bits.rem_frag_count = 0;
->> +
->> +	dev_dbg(mdev->dev, "Copied buffer to mbox, sz: %d",
->> +		mdev->mcore.bits.frag_size);
->> +
->> +	atomic_set(&mdev->tx_sent, 1);
->> +
->> +	spin_lock_irqsave(&mdev->tx_lock, flags);
->> +	mdev->mcore.bits.tx = !(mdev->mcore.bits.tx);
->> +	qmp_send_irq(mdev);
->> +	spin_unlock_irqrestore(&mdev->tx_lock, flags);
->> +
->> +	return 0;
->> +}
->> +
->> +static void qmp_notify_client(struct tmel *tdev, void *message)
->> +{
->> +	struct kvec *pkt = NULL;
->> +
->> +	if (!message) {
->> +		dev_err(tdev->dev, "spurious message received\n");
->> +		goto notify_fail;
->> +	}
->> +
->> +	if (tdev->rx_done) {
->> +		dev_err(tdev->dev, "tmel response pending\n");
->> +		goto notify_fail;
->> +	}
->> +
->> +	pkt = (struct kvec *)message;
->> +	tdev->pkt.iov_len = pkt->iov_len;
->> +	tdev->pkt.iov_base = pkt->iov_base;
->> +	tdev->rx_done = true;
->> +
->> +notify_fail:
->> +	wake_up_interruptible(&tdev->waitq);
->> +}
->> +
->> +/**
->> + * qmp_recv_data() - received notification that data is available in the
->> + *		     mailbox. Copy data from mailbox and pass to client.
->> + * @tdev: tmel device that received the notification.
->> + * @mbox_of: offset of mailbox after QMP Control data.
->> + */
->> +static void qmp_recv_data(struct tmel *tdev, u32 mbox_of)
->> +{
->> +	struct qmp_device *mdev = tdev->mdev;
->> +	void __iomem *addr;
->> +	struct kvec *pkt;
->> +
->> +	addr = mdev->ucore_desc + mbox_of;
->> +	pkt = &mdev->rx_pkt;
->> +	pkt->iov_len = mdev->ucore.bits.frag_size;
->> +
->> +	memcpy_fromio(pkt->iov_base, addr, pkt->iov_len);
->> +	mdev->mcore.bits.tx_ack = mdev->ucore.bits.tx;
->> +	dev_dbg(mdev->dev, "%s: Send RX data to TMEL Client", __func__);
->> +	qmp_notify_client(tdev, pkt);
->> +
->> +	mdev->mcore.bits.rx_done = !(mdev->mcore.bits.rx_done);
->> +	qmp_send_irq(mdev);
->> +}
->> +
->> +/**
->> + * qmp_clr_mcore_ch_state() - Clear the mcore state of a mailbox.
->> + * @mdev: mailbox device to be initialized.
->> + */
->> +static void qmp_clr_mcore_ch_state(struct qmp_device *mdev)
->> +{
->> +	/* Clear all fields except link_state */
->> +	mdev->mcore.bits.ch_state = 0;
->> +	mdev->mcore.bits.ch_state_ack = 0;
->> +	mdev->mcore.bits.tx =  0;
->> +	mdev->mcore.bits.tx_ack =  0;
->> +	mdev->mcore.bits.rx_done = 0;
->> +	mdev->mcore.bits.rx_done_ack = 0;
->> +	mdev->mcore.bits.read_int = 0;
->> +	mdev->mcore.bits.read_int_ack = 0;
->> +	mdev->mcore.bits.frag_size = 0;
->> +	mdev->mcore.bits.rem_frag_count = 0;
-> 
-> Why can't you assign .val instead?
-> 
-Because, link_state and link_state_ack is not reset.
+That sounds really great. We were bronze members of OSADL, so maybe that's a
+good idea. I see you added Carsten Emde in CC ;-)
 
->> +}
->> +
->> +/**
->> + * qmp_rx() - Handle incoming messages from remote processor.
->> + * @tdev: tmel device to send the event to.
->> + */
->> +static void qmp_rx(struct tmel *tdev)
->> +{
->> +	struct qmp_device *mdev = tdev->mdev;
->> +	unsigned long flags;
->> +
->> +	/* read remote_desc from mailbox register */
->> +	mdev->ucore.val = ioread32(mdev->ucore_desc);
->> +
->> +	dev_dbg(mdev->dev, "%s: mcore 0x%x ucore 0x%x", __func__,
->> +		mdev->mcore.val, mdev->ucore.val);
->> +
->> +	spin_lock_irqsave(&mdev->tx_lock, flags);
->> +
->> +	/* Check if remote link down */
->> +	if (mdev->local_state >= LINK_CONNECTED &&
->> +	    !(mdev->ucore.bits.link_state)) {
->> +		mdev->local_state = LINK_NEGOTIATION;
->> +		mdev->mcore.bits.link_state_ack = mdev->ucore.bits.link_state;
->> +		qmp_send_irq(mdev);
->> +		spin_unlock_irqrestore(&mdev->tx_lock, flags);
->> +		return;
->> +	}
->> +
->> +	switch (mdev->local_state) {
->> +	case LINK_NEGOTIATION:
->> +		if (!(mdev->mcore.bits.link_state) ||
->> +		    !(mdev->ucore.bits.link_state)) {
->> +			dev_err(mdev->dev, "rx irq:link down state\n");
->> +			break;
->> +		}
->> +		qmp_clr_mcore_ch_state(mdev);
->> +		mdev->mcore.bits.link_state_ack = mdev->ucore.bits.link_state;
->> +		mdev->local_state = LINK_CONNECTED;
->> +		complete_all(&mdev->link_complete);
->> +		dev_dbg(mdev->dev, "Set to link connected");
->> +		break;
->> +	case LINK_CONNECTED:
->> +		/* No need to handle until local opens */
->> +		break;
->> +	case LOCAL_CONNECTING:
->> +		/* Ack to remote ch_state change */
->> +		mdev->mcore.bits.ch_state_ack = mdev->ucore.bits.ch_state;
->> +		mdev->local_state = CHANNEL_CONNECTED;
->> +		complete_all(&mdev->ch_complete);
->> +		dev_dbg(mdev->dev, "Set to channel connected");
->> +		qmp_send_irq(mdev);
->> +		break;
->> +	case CHANNEL_CONNECTED:
->> +		/* Check for remote channel down */
->> +		if (!(mdev->ucore.bits.ch_state)) {
->> +			mdev->local_state = LOCAL_CONNECTING;
->> +			mdev->mcore.bits.ch_state_ack = mdev->ucore.bits.ch_state;
->> +			dev_dbg(mdev->dev, "Remote Disconnect");
->> +			qmp_send_irq(mdev);
->> +		}
->> +
->> +		/* Check TX done */
->> +		if (atomic_read(&mdev->tx_sent) &&
->> +		    mdev->ucore.bits.rx_done != mdev->mcore.bits.rx_done_ack) {
->> +			/* Ack to remote */
->> +			mdev->mcore.bits.rx_done_ack = mdev->ucore.bits.rx_done;
->> +			atomic_set(&mdev->tx_sent, 0);
->> +			dev_dbg(mdev->dev, "TX flag cleared");
->> +		}
->> +
->> +		/* Check if remote is Transmitting */
->> +		if (!(mdev->ucore.bits.tx != mdev->mcore.bits.tx_ack))
->> +			break;
->> +		if (mdev->ucore.bits.frag_size == 0 ||
->> +		    mdev->ucore.bits.frag_size > QMP_MAX_PKT_SIZE) {
->> +			dev_err(mdev->dev, "Rx frag size error %d\n",
->> +				mdev->ucore.bits.frag_size);
->> +			break;
->> +		}
->> +		qmp_recv_data(tdev, QMP_CTRL_DATA_SIZE);
->> +		break;
->> +	case LOCAL_DISCONNECTING:
->> +		if (!(mdev->mcore.bits.ch_state)) {
->> +			qmp_clr_mcore_ch_state(mdev);
->> +			mdev->local_state = LINK_CONNECTED;
->> +			dev_dbg(mdev->dev, "Channel closed");
->> +			reinit_completion(&mdev->ch_complete);
->> +		}
->> +
->> +		break;
->> +	default:
->> +		dev_err(mdev->dev, "Local Channel State corrupted\n");
->> +	}
->> +	spin_unlock_irqrestore(&mdev->tx_lock, flags);
->> +}
->> +
->> +static irqreturn_t qmp_irq_handler(int irq, void *priv)
->> +{
->> +	struct tmel *tdev = (struct tmel *)priv;
->> +
->> +	qmp_rx(tdev);
+> Or wiki at kernel.org, may it the most neutral...
 > 
-> Inline it here.
-> 
-ok.
+>  https://www.wiki.kernel.org/
 
->> +
->> +	return IRQ_HANDLED;
->> +}
->> +
->> +static int tmel_prepare_msg(struct tmel *tdev, u32 msg_uid, void *msg_buf, size_t msg_size)
->> +{
->> +	struct tmel_ipc_pkt *ipc_pkt = tdev->ipc_pkt;
->> +	struct ipc_header *msg_hdr = &ipc_pkt->msg_hdr;
->> +	struct mbox_payload *mbox_payload = &ipc_pkt->payload.mbox_payload;
->> +	struct sram_payload *sram_payload = &ipc_pkt->payload.sram_payload;
->> +	int ret;
->> +
->> +	memset(ipc_pkt, 0, sizeof(struct tmel_ipc_pkt));
->> +
->> +	msg_hdr->msg_type = TMEL_MSG_UID_MSG_TYPE(msg_uid);
->> +	msg_hdr->action_id = TMEL_MSG_UID_ACTION_ID(msg_uid);
->> +
->> +	dev_dbg(tdev->dev, "uid: %d, msg_size: %zu msg_type:%d, action_id:%d\n",
->> +		msg_uid, msg_size, msg_hdr->msg_type, msg_hdr->action_id);
->> +
->> +	if (sizeof(struct ipc_header) + msg_size <= MBOX_IPC_PACKET_SIZE) {
->> +		/* Mbox only */
->> +		msg_hdr->ipc_type = IPC_MBOX_ONLY;
->> +		msg_hdr->msg_len = msg_size;
->> +		memcpy((void *)mbox_payload, msg_buf, msg_size);
->> +	} else if (msg_size <= SRAM_IPC_MAX_BUF_SIZE) {
->> +		/* SRAM */
->> +		msg_hdr->ipc_type = IPC_MBOX_SRAM;
->> +		msg_hdr->msg_len = 8;
->> +
->> +		tdev->sram_dma_addr = dma_map_single(tdev->dev, msg_buf,
->> +						     msg_size,
->> +						     DMA_BIDIRECTIONAL);
->> +		ret = dma_mapping_error(tdev->dev, tdev->sram_dma_addr);
->> +		if (ret) {
->> +			dev_err(tdev->dev, "SRAM DMA mapping error: %d\n", ret);
->> +			return ret;
->> +		}
->> +
->> +		sram_payload->payload_ptr = tdev->sram_dma_addr;
->> +		sram_payload->payload_len = msg_size;
->> +	} else {
->> +		dev_err(tdev->dev, "Invalid payload length: %zu\n", msg_size);
->> +		return -EINVAL;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void tmel_unprepare_message(struct tmel *tdev, void *msg_buf, size_t msg_size)
->> +{
->> +	struct tmel_ipc_pkt *ipc_pkt = (struct tmel_ipc_pkt *)tdev->pkt.iov_base;
->> +	struct mbox_payload *mbox_payload = &ipc_pkt->payload.mbox_payload;
->> +
->> +	if (ipc_pkt->msg_hdr.ipc_type == IPC_MBOX_ONLY) {
->> +		memcpy(msg_buf, (void *)mbox_payload, msg_size);
-> 
-> No need for type conversion.
-> 
-ok.
+Yes, that may be even a better place than OSADL.
 
->> +	} else if (ipc_pkt->msg_hdr.ipc_type == IPC_MBOX_SRAM) {
->> +		dma_unmap_single(tdev->dev, tdev->sram_dma_addr, msg_size, DMA_BIDIRECTIONAL);
->> +		tdev->sram_dma_addr = 0;
->> +	}
->> +}
->> +
->> +static bool tmel_rx_done(struct tmel *tdev)
->> +{
->> +	return tdev->rx_done;
->> +}
->> +
->> +static int tmel_process_request(struct tmel *tdev, u32 msg_uid,
->> +				void *msg_buf, size_t msg_size)
->> +{
->> +	struct qmp_device *mdev = tdev->mdev;
->> +	struct tmel_ipc_pkt *resp_ipc_pkt;
->> +	struct mbox_chan *chan;
->> +	unsigned long jiffies;
->> +	long time_left = 0;
->> +	int ret = 0;
->> +
->> +	chan = &tdev->ctrl.chans[0];
->> +
->> +	if (!msg_buf || !msg_size) {
->> +		dev_err(tdev->dev, "Invalid msg_buf or msg_size\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	tdev->rx_done = false;
->> +
->> +	ret = tmel_prepare_msg(tdev, msg_uid, msg_buf, msg_size);
->> +	if (ret)
->> +		return ret;
->> +
->> +	tdev->pkt.iov_len = sizeof(struct tmel_ipc_pkt);
->> +	tdev->pkt.iov_base = (void *)tdev->ipc_pkt;
->> +
->> +	qmp_send_data(mdev, &tdev->pkt);
->> +	jiffies = msecs_to_jiffies(QMP_SEND_TIMEOUT);
->> +
->> +	time_left = wait_event_interruptible_timeout(tdev->waitq,
->> +						     tmel_rx_done(tdev),
->> +						     jiffies);
->> +
->> +	if (!time_left) {
->> +		dev_err(tdev->dev, "Request timed out\n");
->> +		atomic_set(&mdev->tx_sent, 0);
->> +		ret = -ETIMEDOUT;
->> +		mbox_chan_txdone(chan, ret);
->> +		goto err_exit;
+> I am not in the core teams but may it be there on LKLM
+> somebody would suggest the direction. I can ask people
+> from OSADL, CIPS, RT projects etc. directly...
 > 
-> Just return ret
+> But I am not the authority and would be happy if somebody
+> steers us.
 > 
-ok.
+> To not load others, if there is no response then I suggest
+> to limit followup e-mails only to linux-iio and those
+> who already communicated in this thread.
 
->> +	}
->> +
->> +	if (tdev->pkt.iov_len != sizeof(struct tmel_ipc_pkt)) {
->> +		dev_err(tdev->dev, "Invalid pkt.size received size: %ld, expected: %zu\n",
->> +			tdev->pkt.iov_len, sizeof(struct tmel_ipc_pkt));
->> +		ret = -EPROTO;
->> +		goto err_exit;
-> 
-> return ret
-> 
-ok.
+Agree. This will probably be my last reply to this thread with LMKL in CC.
 
->> +	}
->> +
->> +	resp_ipc_pkt = (struct tmel_ipc_pkt *)tdev->pkt.iov_base;
->> +	tmel_unprepare_message(tdev, msg_buf, msg_size);
->> +	tdev->rx_done = false;
->> +	ret = resp_ipc_pkt->msg_hdr.response;
->> +
->> +err_exit:
->> +	return ret;
->> +}
->> +
->> +static int tmel_secboot_sec_auth(struct tmel *tdev, u32 sw_id, void *metadata, size_t size)
->> +{
->> +	struct tmel_secboot_sec_auth *msg;
->> +	struct device *dev = tdev->dev;
->> +	dma_addr_t elf_buf_phys;
->> +	void *elf_buf;
->> +	int ret;
->> +
->> +	if (!dev || !metadata)
->> +		return -EINVAL;
->> +
->> +	msg = kzalloc(sizeof(*msg), GFP_KERNEL);
->> +
->> +	elf_buf = dma_alloc_coherent(dev, size, &elf_buf_phys, GFP_KERNEL);
->> +	if (!elf_buf) {
->> +		kfree(msg);
->> +		return -ENOMEM;
->> +	}
->> +
->> +	memcpy(elf_buf, metadata, size);
->> +
->> +	msg->req.sw_id = sw_id;
->> +	msg->req.elf_buf.buf = (u32)elf_buf_phys;
->> +	msg->req.elf_buf.buf_len = (u32)size;
->> +
->> +	ret = tmel_process_request(tdev, TMEL_MSG_UID_SECBOOT_SEC_AUTH, msg,
->> +				   sizeof(struct tmel_secboot_sec_auth));
->> +	if (ret) {
->> +		dev_err(dev, "Failed to send IPC: %d\n", ret);
-> 
-> return ret;
-> 
-ok.
+Is there anybody here willing to help with contact information?
 
->> +	} else if (msg->resp.status) {
->> +		dev_err(dev, "Failed with status: %d", msg->resp.status);
->> +		ret = msg->resp.status;
+> > > This is preliminary reply, I want to find time for more discussion
+> > > and analysis (which is quite hard during summer term where I have
+> > > lot of teaching and even ongoing project now).
+> > >
+> > > I would like to discuse even future subsystem evolution
+> > > which would allow coordinates axes groups creation, smooth
+> > > segments based on N-th order splines incremental attachment,
+> > > the path planning and re-planning if the target changes
+> > > as reaction to camera or other sensor needs etc.  
+> >
+> > Right now LMC should be able to support hardware that has multiple channels
+> > (axes) per device. Its UAPI can describe position-based movements and
+> > time-based movements along any arbitrary combination of those channels
+> > using a pre-defined speed/acceleration profile.
+> >
+> > The profiles can be specified as an arbitrary number of speed and
+> > acceleration values. The idea is to describe a segmented profile with
+> > different acceleration values for segments between two different speed
+> > values. Simple examples are trapezoidal (accelerate from (near-)zero to
+> > Vmax with A1, and decelerate from Vmax back to zero with D1), dual-slope or
+> > S-curve, but the UAPI in theory permits an arbitrary number of segments if
+> > the underlying hardware supports it.  
 > 
-> return msg->resp.status
+> Yes, when I have read that it reminded me my API between non-RT
+> and RT control task in Linux and IRQs in sysless case of our system.
+>
+> > I have some ideas for future extensions to the API that make coordinated
+> > multi-channel movements a bit easier, but that will not be in the initial
+> > push of LMC: For example torque-limit profiles for controlled torque
+> > movements, usable for example in sliding door controllers with AC machines
+> > or BLDC motors; or an ioctl to send a distance vector to a selected number
+> > of channels at once and apply a motion profile to the whole coordinated
+> > movement. In the current version you have to set up the distances and
+> > profiles for the individual channels and then trigger the start of the
+> > motion, which is more cumbersome. You can already use the finish event of a
+> > preceding motion to trigger the next one though.  
 > 
-ok.
+> It would worth to have some commands queue for specified
+> (prefigured/setup) xis group.
 
->> +	} else if (msg->resp.extended_error) {
->> +		dev_err(dev, "Failed with error: %d", msg->resp.extended_error);
->> +		ret = msg->resp.extended_error;
-> 
-> return msg->resp.extended_error
-> 
-ok.
+I thought about this, and while queuing commands for a 3D printer seems like a
+great idea, since it is strictly feed-forward for the most part, queuing
+commands in the kernel is complicating things a lot when you also want to be
+able to react to real-time events in user-space, like end-stop switches and
+such. I think the current GPIO UAPI with support for epoll events is
+fantastic, and people should use it. :-)
 
->> +	}
->> +
->> +	kfree(msg);
->> +	dma_free_coherent(dev, size, elf_buf, elf_buf_phys);
-> 
-> dma_free_coherent can be called after tmel_process_request(). Or you can
-> use __free for both of them.
-> 
-Ho ok, will change.
+OTOH, I think that the speed and timing accuracy with which one would send
+individual movement commands (vectors or splines) to a motion controller is
+perfectly adequate for user-space, specially if you have the option of a
+1-deep queue like this mechanism of triggering the next movement when the
+current one finishes, which basically gives you the time the current movement
+takes as latency-slack for user-space. I think that is enough, but let me know
+if you disagree. Maybe it is possible to make the N-dimensional vector
+interface (optionally) queued?
 
->> +
->> +	return ret;
->> +}
->> +
->> +static int tmel_secboot_teardown(struct tmel *tdev, u32 sw_id, u32 secondary_sw_id)
->> +{
->> +	struct tmel_secboot_teardown msg = {0};
->> +	struct device *dev = tdev->dev;
->> +	int ret;
->> +
->> +	if (!dev)
->> +		return -EINVAL;
->> +
->> +	msg.req.sw_id = sw_id;
->> +	msg.req.secondary_sw_id = secondary_sw_id;
->> +	msg.resp.status = TMEL_ERROR_GENERIC;
->> +
->> +	ret = tmel_process_request(tdev, TMEL_MSG_UID_SECBOOT_SS_TEAR_DOWN,
->> +				   &msg, sizeof(msg));
->> +	if (ret) {
->> +		dev_err(dev, "Failed to send IPC: %d\n", ret);
+> Our system allows to add segments to the group queue but the
+> timing for segment only specifies shortest time in which it can
+> be executed.
 > 
-> return ret;
+> Then there is three passes optimization then.
 > 
-ok.
+> The first pass is performed at the insertion time. It checks and
+> finds normalized change of speeds  (divided by maximal accel/deccel
+> of given axis) at vertex and finds limiting exes, one which accelerates
+> the most and another which needs to decelerate the most. Then it
+> computes speed discontinuity at the given sample period and it limits
+> maximal final speed of the preceding segment such way, that the speed
+> change is kept under COORDDISCONT multiple of accel/decel step. This
+> way, if the straight segments are almost in line, the small change
+> of the direction is not limiting the speed. The discontinuity is
+> computed same way for the vertex between two N-order spline segments,
+> but optimally computed spline segments can be joint with such
+> discontinuity near to zero. This non RT computation as well as all
+> non-RT a RT one on the control unit side is done in the fixed
+> math (the most 32-bits, sometime 64-bits). Actual code of this
+> pass are the functions pxmc_coordmv_seg_add(), pxmc_coordmv_seg_add_line()
+> and pxmc_coordmv_seg_add_spline()
 
->> +	} else if (msg.resp.status) {
-> 
-> Drop else.
-> 
-ok.
+Yes, this maps very well with what I had in mind when designing LMC. I haven't
+thought about supporting engines capable of real-time spline interpolation
+because I hadn't seen one before. I thought that just dividing a spline into
+(many) linear segments would be good enough, but if there are motion engines
+that can handle spline parameters, I guess we should try to support that.
 
->> +		dev_err(dev, "Failed with status: %d\n", msg.resp.status);
->> +		ret = msg.resp.status;
-> 
-> return msg.resp.status (is it really errno?)
-> 
-ok, yes error.
+The motion profiles LMC supports have 2 extra parameters for limiting speed
+discontinuities which can be found in many common motion engines: tvmax and
+tvzero.
 
->> +	}
->> +
->> +	return ret;
-> 
-> return 0;
-> 
->> +}
->> +
->> +static void tmel_qmp_send_work(struct work_struct *work)
->> +{
->> +	struct tmel_work *qwork = container_of(work, struct tmel_work, work);
->> +	struct tmel *tdev = container_of(qwork, struct tmel, qwork);
->> +	struct tmel_qmp_msg *tmsg = qwork->data;
->> +	struct tmel_sec_auth *smsg = tmsg->msg;
->> +	struct mbox_chan *chan;
->> +
->> +	chan = &tdev->ctrl.chans[0];
->> +
->> +	switch (tmsg->msg_id) {
->> +	case TMEL_MSG_UID_SECBOOT_SEC_AUTH:
->> +		tmel_secboot_sec_auth(tdev, smsg->pas_id, smsg->data, smsg->size);
->> +		break;
->> +	case TMEL_MSG_UID_SECBOOT_SS_TEAR_DOWN:
->> +		tmel_secboot_teardown(tdev, smsg->pas_id, 0);
->> +		break;
->> +	}
->> +
->> +	mbox_chan_txdone(chan, 0);
->> +}
->> +
->> +/**
->> + * tmel_qmp_startup() - Start qmp mailbox channel for communication. Waits for
->> + *			remote subsystem to open channel if link is not
->> + *			initiated or until timeout.
->> + * @chan: mailbox channel that is being opened.
->> + *
->> + * Return: 0 on success or standard Linux error code.
-> 
-> Needs to be fixed
-> 
-ok.
+https://github.com/yope/linux/blob/mainline-lmc-preparation/include/uapi/linux/motion.h#L146
 
->> + */
->> +static int tmel_qmp_startup(struct mbox_chan *chan)
->> +{
->> +	struct tmel *tdev = chan->con_priv;
->> +	struct qmp_device *mdev = tdev->mdev;
->> +	unsigned long flags;
->> +	int ret;
->> +
->> +	/*
->> +	 * Kick start the SM from the negotiation phase
->> +	 * Rest of the link changes would follow when remote responds.
->> +	 */
->> +	mdev->mcore.bits.link_state = 1;
-> 
-> Are these state modifications protected by some lock?
-> 
-agree, good catch, will add the tx spinlock here.
+Tvmax is important for situations where the maximum speed of a given profile
+is not reached because the distance is too short. It will make sure there is
+at least some period of constant speed before decelerating again.
 
->> +	mdev->local_state = LINK_NEGOTIATION;
->> +	mdev->rx_pkt.iov_base = devm_kcalloc(mdev->dev, 1, QMP_MAX_PKT_SIZE, GFP_KERNEL);
->> +	if (!mdev->rx_pkt.iov_base)
->> +		return -ENOMEM;
->> +
->> +	qmp_send_irq(mdev);
->> +
->> +	ret = wait_for_completion_timeout(&mdev->link_complete, msecs_to_jiffies(QMP_TOUT_MS));
->> +	if (!ret)
->> +		return -EAGAIN;
->> +
->> +	spin_lock_irqsave(&mdev->tx_lock, flags);
->> +	if (mdev->local_state == LINK_CONNECTED) {
->> +		mdev->mcore.bits.ch_state = 1;
->> +		mdev->local_state = LOCAL_CONNECTING;
->> +		dev_dbg(mdev->dev, "link complete, local connecting");
->> +		qmp_send_irq(mdev);
->> +	}
->> +	spin_unlock_irqrestore(&mdev->tx_lock, flags);
->> +
->> +	ret = wait_for_completion_timeout(&mdev->ch_complete, msecs_to_jiffies(QMP_TOUT_MS));
->> +	if (!ret)
->> +		return -ETIME;
-> 
-> ETIMEDOUT?
-> 
-ok.
+Tvzero is important for motions that starts accelerating into an opposite
+direction of a preceding motion, to insert a minimum time at zero velocity.
 
->> +
->> +	return 0;
->> +}
->> +
->> +/*
->> + * tmel_qmp_shutdown() - Disconnect this mailbox channel so the client does not
->> + *			 receive anymore data and can reliquish control
->> + *			 of the channel.
->> + * @chan: mailbox channel to be shutdown.
-> 
-> Needs to be fixed. And a missing star.
-> 
-ok.
+But I guess you are more than familiar with these, since they are pretty
+common concepts. ;-)
 
->> + */
->> +static void tmel_qmp_shutdown(struct mbox_chan *chan)
->> +{
->> +	struct qmp_device *mdev = chan->con_priv;
->> +	unsigned long flags;
->> +
->> +	spin_lock_irqsave(&mdev->tx_lock, flags);
->> +	if (mdev->local_state != LINK_DISCONNECTED) {
->> +		mdev->local_state = LOCAL_DISCONNECTING;
->> +		mdev->mcore.bits.ch_state = 0;
->> +		qmp_send_irq(mdev);
->> +	}
->> +	spin_unlock_irqrestore(&mdev->tx_lock, flags);
->> +}
->> +
->> +static int tmel_qmp_send(struct mbox_chan *chan, void *data)
->> +{
->> +	struct tmel *tdev = chan->con_priv;
->> +
->> +	tdev->qwork.data = data;
->> +	queue_work(system_wq, &tdev->qwork.work);
->> +
->> +	return 0;
->> +}
->> +
->> +static struct mbox_chan_ops tmel_qmp_ops = {
->> +	.startup = tmel_qmp_startup,
->> +	.shutdown = tmel_qmp_shutdown,
->> +	.send_data = tmel_qmp_send,
->> +};
->> +
->> +/**
->> + * tmel_qmp_mbox_of_xlate() - Returns a mailbox channel to be used for this mailbox
->> + *			      device. Make sure the channel is not already in use.
->> + * @mbox: Mailbox device controls the requested channel.
->> + * @spec: Device tree arguments to specify which channel is requested.
->> + */
->> +static struct mbox_chan *tmel_qmp_mbox_of_xlate(struct mbox_controller *mbox,
->> +						const struct of_phandle_args *spec)
+>   https://gitlab.com/pikron/sw-base/pxmc/-/blob/master/libs4c/pxmc_coordmv/coordmv_base.c?ref_type=heads#L394
 > 
-> Can you use of_mbox_index_xlate instead?
+> The new segment final vertex limiting speed and planned speed are
+> set to zero.
 > 
-ok.
+> In the second pass, the queue of segments is examined from the last
+> added one and its initial planned vertex/edge speed is updated,
+> increased up to the minimum of limit give by discontinuity and
+> the limit to decelerate over segment to the planned final speed
+> of the segment. If the start vertex limit is increased then
+> the algorithm proceeds with previous segment
 
->> +{
->> +	struct qmp_device *mdev = dev_get_drvdata(mbox->dev);
->> +	unsigned int channel = spec->args[0];
->> +
->> +	if (!mdev)
->> +		return ERR_PTR(-EPROBE_DEFER);
->> +
->> +	if (channel >= mbox->num_chans)
->> +		return ERR_PTR(-EINVAL);
->> +
->> +	return &mbox->chans[0];
-> 
-> [0], not [channel] ?
-> 
-ok, will fix.
+AFAICS, these are all motion planning tasks that should be done in user-space,
+right?
 
->> +}
->> +
->> +static struct tmel *tmel_init(struct platform_device *pdev)
+>  https://gitlab.com/pikron/sw-base/pxmc/-/blob/master/libs4c/pxmc_coordmv/coordmv_base.c?ref_type=heads#L682
 > 
-> I'd say, inline
+> There are some rules and trick to do that long free in the respect
+> to the IRQ executor etc...
 > 
-ok.
+> Then the actual execution at the sampling frequency advances
+> the normalized parameter going through segment from 0 to 2^32
+> in 2^32 modulo arithmetic. The increase is limited by smallest
+> maximal speed of the axes recomputed over distance to parameter
+> change and maximal allowed accelerations recomputed to the parameter
+> change. Then the final speed is limited by to final deceleration
+> to the end of the segment the pxmc_coordmv_upda() in
+> 
+>   https://gitlab.com/pikron/sw-base/pxmc/-/blob/master/libs4c/pxmc_coordmv/coordmv_base.c?ref_type=heads#L351
 
->> +{
->> +	struct tmel *tdev;
->> +	struct mbox_chan *chans;
->> +
->> +	tdev = devm_kcalloc(&pdev->dev, 1, sizeof(*tdev), GFP_KERNEL);
->> +	if (!tdev)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	tdev->ipc_pkt = devm_kcalloc(&pdev->dev, 1, sizeof(struct tmel_ipc_pkt), GFP_KERNEL);
->> +	if (!tdev->ipc_pkt)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	init_waitqueue_head(&tdev->waitq);
->> +
->> +	tdev->rx_done = false;
->> +	tdev->dev = &pdev->dev;
->> +	platform_set_drvdata(pdev, tdev);
->> +
->> +	chans = devm_kcalloc(&pdev->dev, QMP_NUM_CHANS, sizeof(*chans), GFP_KERNEL);
->> +	if (!chans)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	tdev->ctrl.chans = chans;
->> +	INIT_WORK(&tdev->qwork.work, tmel_qmp_send_work);
->> +
->> +	return tdev;
->> +}
->> +
->> +static struct qmp_device *qmp_init(struct platform_device *pdev)
-> 
-> Inline
-> 
-ok.
+AFAICS, this is probably better done in the controller itself, right?
 
->> +{
->> +	struct qmp_device *mdev;
->> +
->> +	mdev = devm_kcalloc(&pdev->dev, 1, sizeof(*mdev), GFP_KERNEL);
->> +	if (!mdev)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	mdev->dev = &pdev->dev;
->> +	mdev->mcore_desc = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(mdev->mcore_desc))
->> +		return ERR_PTR(-EIO);
->> +
->> +	mdev->ucore_desc = mdev->mcore_desc + QMP_UCORE_DESC_OFFSET;
->> +
->> +	spin_lock_init(&mdev->tx_lock);
->> +	mdev->local_state = LINK_DISCONNECTED;
->> +	init_completion(&mdev->link_complete);
->> +	init_completion(&mdev->ch_complete);
->> +
->> +	return mdev;
->> +}
->> +
->> +static int qmp_mbox_client_init(struct qmp_device *mdev)
-> 
-> Inline
-> 
-ok.
+The most complex math I feel comfortable doing in kernel space is converting a
+distance-based motion given a trapezoidal acceleration profile (whith its
+limiting factors tvmin and tvmax, see above) into a time based motion:
 
->> +{
->> +	int ret = 0;
->> +
->> +	mdev->mbox_client.dev = mdev->dev;
->> +	mdev->mbox_client.knows_txdone = false;
->> +	mdev->mbox_chan = mbox_request_channel(&mdev->mbox_client, 0);
->> +	if (IS_ERR(mdev->mbox_chan))
->> +		ret = PTR_ERR(mdev->mbox_chan);
->> +
->> +	return ret;
->> +}
->> +
->> +static int tmel_mbox_ctrl_init(struct tmel *tdev)
-> 
-> Inline
-> 
-ok.
+https://github.com/yope/linux/blob/mainline-lmc-preparation/drivers/motion/motion-helpers.c#L515
 
->> +{
->> +	tdev->ctrl.dev = tdev->dev;
->> +	tdev->ctrl.ops = &tmel_qmp_ops;
->> +	tdev->ctrl.chans[0].con_priv = tdev;
->> +	tdev->ctrl.num_chans = QMP_NUM_CHANS;
->> +	tdev->ctrl.txdone_irq = true;
->> +	tdev->ctrl.of_xlate = tmel_qmp_mbox_of_xlate;
->> +
->> +	return devm_mbox_controller_register(tdev->dev, &tdev->ctrl);
->> +}
->> +
->> +static int tmel_qmp_probe(struct platform_device *pdev)
->> +{
->> +	struct device_node *node = pdev->dev.of_node;
->> +	struct qmp_device *mdev;
->> +	struct tmel *tdev;
->> +	int ret = 0;
->> +
->> +	tdev = tmel_init(pdev);
->> +	if (IS_ERR(tdev))
->> +		return dev_err_probe(tdev->dev, ret, "tmel device init failed\n");
->> +
->> +	mdev = qmp_init(pdev);
->> +	if (IS_ERR(mdev))
->> +		return dev_err_probe(tdev->dev, ret, "qmp device init failed\n");
->> +
->> +	tdev->mdev = mdev;
->> +	ret = platform_get_irq(pdev, 0);
->> +	ret = devm_request_threaded_irq(tdev->dev, ret, NULL, qmp_irq_handler,
->> +					IRQF_TRIGGER_RISING | IRQF_ONESHOT,
->> +					node->name, (void *)tdev);
-> 
-> are you ready to serve the IRQ before qmp_mbox_client_init()?
-> 
-Yeah, will have to move it down.
+This is a helper function for drivers that want to use the internal time-based
+ramp generator.
 
->> +	if (ret < 0)
->> +		return dev_err_probe(tdev->dev, ret, "request threaded irq failed\n");
->> +
->> +	ret = qmp_mbox_client_init(mdev);
->> +	if (ret)
->> +		return dev_err_probe(mdev->dev, ret, "IPC chan missing, client init failed");
->> +
->> +	ret = tmel_mbox_ctrl_init(tdev);
->> +	if (ret)
->> +		return dev_err_probe(tdev->dev, ret, "failed to register mbox controller");
->> +
->> +	return ret;
->> +}
->> +
->> +static const struct of_device_id tmel_qmp_dt_match[] = {
->> +	{ .compatible = "qcom,ipq5424-tmel" },
->> +	{},
->> +};
->> +
->> +static struct platform_driver tmel_qmp_driver = {
->> +	.driver = {
->> +		.name = "tmel_qmp_mbox",
->> +		.of_match_table = tmel_qmp_dt_match,
->> +	},
->> +	.probe = tmel_qmp_probe,
->> +};
->> +module_platform_driver(tmel_qmp_driver);
->> +
->> +MODULE_DESCRIPTION("QCOM TMEL QMP driver");
->> +MODULE_LICENSE("GPL");
->> diff --git a/include/linux/mailbox/tmelcom-qmp.h b/include/linux/mailbox/tmelcom-qmp.h
->> new file mode 100644
->> index 000000000000..b4c1d7021a64
->> --- /dev/null
->> +++ b/include/linux/mailbox/tmelcom-qmp.h
+>[...]
+> > Another idea that has been floating in my head is to make a "virtual"
+> > motion device driver that combines individual "real" single-channel
+> > hardware drivers into one multi-channel device, but I am unsure whether it
+> > is really needed. It all depends on the latency limit differences between
+> > kernel-space and user-space whether there is something to gain.  
 > 
-> Which parts of this header are useful for consumers of TMEL mbox
-> interface?
-> 
->> @@ -0,0 +1,122 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +#ifndef _TMELCOM_H_
->> +#define _TMELCOM_H_
->> +
->> +/*
->> + * Macro used to define unique TMEL Message Identifier based on
->> + * message type and action identifier.
->> + */
->> +#define TMEL_MSG_UID_CREATE(msg_type, action_id)	\
->> +	(FIELD_PREP_CONST((0xff << 8), msg_type) | FIELD_PREP_CONST(0xff, action_id))
-> 
-> #define FOO_MASK
-> #define BAR_MASK
-> 
-ok, will add.
+> In the fact this is the similar idea programmed and in use 25 years
+> already. All computation is in 32-bit units specific for the each axis
+> and only in fixed arithmetic. Some problem was fast 64-bit root square
+> at that time.  All has been computed on 21 MHz CPU with 16-bit bus with
+> no caches with instrauctions taking from 2 to many cycles. It was capable
+> to do that for all eight axes plus some other control tasks as flashing
+> lights at specific positions for example for gems inspections by camera
+> connected to PC and then cotrolling their sorting to the right pocket by air
+> streams by MARS 8 control unit when it advanced to given location etc.
+> So some parts of the code has been rewritten to assembly. But today,
+> even on not so fast LPC4088 it can do this and D-Q PMSM motors
+> control without need of assembly optimizations.
 
->> +
->> +/** Helper macro to extract the messageType from TMEL_MSG_UID. */
->> +#define TMEL_MSG_UID_MSG_TYPE(v)	FIELD_GET(GENMASK(15, 8), v)
->> +
->> +/** Helper macro to extract the actionID from TMEL_MSG_UID. */
-> 
-> This is not the kernel-doc
-> 
-Ho ok, will fix.
+I think that if we support different kinds of profiles on N-dimensions with
+support for spline parameters if the hardware supports it, we could solve for
+any use-case without much complexity in the kernel.
 
->> +#define TMEL_MSG_UID_ACTION_ID(v)	FIELD_GET(GENMASK(7, 0), v)
->> +
->> +/****************************************************************************
->> + *
->> + * All definitions of supported messageTypes.
->> + *
->> + * <Template> : TMEL_MSG_<MSGTYPE_NAME>
->> + * **************************************************************************/
+> > I think it is best to keep this initial version more limited in scope
+> > though, as long as the needed extensions are possible in the future without
+> > breaking existing UAPI.  
 > 
-> Don't. Use normal comments instead.
-> 
-ok.
+> Yes, but I would be happy if the API is designed such way, that
+> it is not obstacle when it would be extended and I have idea
+> what would be such further goal for these applications
+> I have already solved and running for decades at industry
+> level.
 
->> +#define TMEL_MSG_SECBOOT		 0x00
->> +
->> +/****************************************************************************
->> + *
->> + * All definitions of action IDs per messageType.
->> + *
->> + * <Template> : TMEL_ACTION_<MSGTYPE_NAME>_<ACTIONID_NAME>
->> + * **************************************************************************/
->> +
->> +/*
->> + * ----------------------------------------------------------------------------
->> +		Action ID's for TMEL_MSG_SECBOOT
->> + * ------------------------------------------------------------------------
->> + */
-> 
-> And this is another style of comments. And a missing star as a bonus.
-> 
-ok, will fix.
+That's great. I am confident that with your help, we can make this API as
+universally usable as possible, while still keeping it simple and generic.
 
->> +#define TMEL_ACTION_SECBOOT_SEC_AUTH		     0x04
->> +#define TMEL_ACTION_SECBOOT_SS_TEAR_DOWN	     0x0a
->> +
->> +/****************************************************************************
->> + *
->> + * All definitions of TMEL Message UIDs (messageType | actionID).
->> + *
->> + * <Template> : TMEL_MSG_UID_<MSGTYPE_NAME>_<ACTIONID_NAME>
->> + * *************************************************************************/
->> +
->> +/*----------------------------------------------------------------------------
->> + * UID's for TMEL_MSG_SECBOOT
->> + *-------------------------------------------------------------------------
->> + */
->> +#define TMEL_MSG_UID_SECBOOT_SEC_AUTH	    TMEL_MSG_UID_CREATE(TMEL_MSG_SECBOOT,\
->> +					    TMEL_ACTION_SECBOOT_SEC_AUTH)
->> +
->> +#define TMEL_MSG_UID_SECBOOT_SS_TEAR_DOWN	TMEL_MSG_UID_CREATE(TMEL_MSG_SECBOOT,\
->> +						TMEL_ACTION_SECBOOT_SS_TEAR_DOWN)
->> +
->> +#define HW_MBOX_SIZE			32
->> +#define MBOX_QMP_CTRL_DATA_SIZE		4
->> +#define MBOX_RSV_SIZE			4
->> +#define MBOX_IPC_PACKET_SIZE		(HW_MBOX_SIZE - MBOX_QMP_CTRL_DATA_SIZE - MBOX_RSV_SIZE)
->> +#define MBOX_IPC_MAX_PARAMS		5
+> > So I propose: Let's craft a draft UAPI (in a different place, not on LKML)
+> > that can do everything we can come up with and then reduce it to the basics
+> > for the first version. Otherwise it will get too complex to review, I'm
+> > afraid.  
 > 
-> Which MBOX are they about? Use the same prefix for all the defines.
+> Yes, I agree.
 > 
-ok.
+> To have some idea of the command set of our system, there is documentation
+> in English for our older system which was capable to control three
+> axes by 8-bit 80552
+> 
+>    http://cmp.felk.cvut.cz/~pisa/mars/mars_man_en.pdf
 
->> +
->> +#define MAX_PARAM_IN_PARAM_ID		14
->> +#define PARAM_CNT_FOR_PARAM_TYPE_OUTBUF	3
->> +#define SRAM_IPC_MAX_PARAMS		(MAX_PARAM_IN_PARAM_ID * PARAM_CNT_FOR_PARAM_TYPE_OUTBUF)
->> +#define SRAM_IPC_MAX_BUF_SIZE		(SRAM_IPC_MAX_PARAMS * sizeof(u32))
->> +
->> +#define TMEL_ERROR_GENERIC		(0x1u)
->> +#define TMEL_ERROR_NOT_SUPPORTED	(0x2u)
->> +#define TMEL_ERROR_BAD_PARAMETER	(0x3u)
->> +#define TMEL_ERROR_BAD_MESSAGE		(0x4u)
->> +#define TMEL_ERROR_BAD_ADDRESS		(0x5u)
->> +#define TMEL_ERROR_TMELCOM_FAILURE	(0x6u)
->> +#define TMEL_ERROR_TMEL_BUSY		(0x7u)
->> +
->> +enum ipc_type {
->> +	IPC_MBOX_ONLY,
->> +	IPC_MBOX_SRAM,
->> +};
-> 
-> And a lot of missing documentation...
-> 
-ok, will add.
+This API looks pretty straight-forward, and should be easy to implement with
+LMC. Controller specific settings in LMC are set using a sysfs attributes
+interface. An example of the settings for the TMC5240:
 
-Regards,
-  Sricharan
+https://github.com/yope/linux/blob/mainline-lmc-preparation/drivers/motion/tmc5240.c#L311
 
+> > > At this moment I have interrest if there is site which
+> > > would start to collect these ideas and where can be
+> > > some references added.  
+> >
+> > I may put this on github and create a wiki there if you think that's a good
+> > enough place to discuss?  
+> 
+> If there is no feedback with better place to my initial
+> list of options, I am OK with project group on GitHub
+> where the initial project will be located with Wiki
+> and issue tracker to start the communication
+> and I would be happy to participate (as my time, teaching,
+> projects allows).
+
+Sounds good. Let's see if we can get some attention from OSADL or Linux
+Foundation. If you have some contacts there, I'd be great if you could help
+get something set up. If not, we just use github or maybe even gitlab for now.
+
+> > > I think that I have quite some stuff to offer.  
+> >
+> > That would be great! Looking forward to it :-)
+> >  
+> > > To have idea about my direction of thinking and needs
+> > > of interface I would provide some references even
+> > > to our often commercially sold but mostly conceived
+> > > as hobby projects.  
+> >
+> > I'll have to take some time to look into those more closely. My own
+> > experience as far as FOSS or OSHW concerns includes the reprap Kamaq
+> > project:
+> >
+> > https://reprap.org/wiki/Kamaq  
+> 
+> OK, nice target but I would like to support 5 D CNCs with
+> precise machining, haptic human machine systems etc...
+
+Sure!
+
+> with DC, stepper and PMSM motors with vector control
+> high resolution positional feedback etc. We control for
+> example up to 30 kg spherical lenses positioning in
+> the interferometric system with precision of micro fractions.
+> The system allows inspection which thanks to multiple
+> angles reaches lens surface reconstruction at level of
+> nanometres 
+> 
+>   https://toptec.eu/export/sites/toptec/.content/projects/finished/measuring-instrument.pdf
+> 
+> We use optical linear sensors combined with 10k per revolution
+> incremental sensors on the cheap stepper motor actuators and
+> precise mechanics.. and more tricks... And I can see use
+> of some cheap linux board, i.e. Zynq, Beagle-V Fire,
+> which I have on my table, there in future...
+
+Yes, this sounds really awesome. It sounds like a great challenge for getting
+LMC into a good enough shape for that sort of applications. It is exactly what
+I had in mind.
+
+>[...]
+> As I referenced above, the spines are interpreted at sampling frequency
+> all parameters are represented as 32-bit signed numbers etc...
+> So no conversion to the straight segments. The precise postions
+> are recomputed with even high resolution over IKT, then some
+> intervals of these points are interpolated by spline segments
+> with controlled error and these segments are send to the unit
+> to keep command FIFO full but not overflow it. Unit reports
+> how much space is left...
+> 
+> > LMC will try to limit math operations in kernel space as much as possible,
+> > so hopefully all the calculations can be done in user-space (or on the
+> > controller if that is the case).  
+> 
+> All computation is fixed point only so no problem for the kernel
+> even for interrupt. But yes, on fully preemptive kernel where
+> user space task can be guaranteed to achieve 5 kHz sampling even
+> on cheaper ARM hardware, the interface to the kernel can be
+> only on D-Q PWM command and actual IRC and currents readback.
+> 
+> But if you have API for more intelligent controllers then there
+> s no problem to put there "SoftMAC" to represent dumb ones the
+> same way to userspace.
+
+That's exactly what I thought of. Thanks for the analogy, I am going to
+shamelessly steal it from you if you don't mind ;-)
+
+That's also why I included 2 different drivers as example for LMC: One that
+does all the fast computations in hardware, and one that uses a "SoftMAC", in
+motion-helpers.c to generate time-based speed ramps from acceleration profiles.
+
+But I think we should limit the "SoftMAC" device capabilities to basic
+trapezoidal motion profiles, since it is not the main purpose of LMC to
+convert the Linux kernel into a high-resolution, hard-RT motion-planning
+engine... even if it is a tempting technical challenge to do so ;-)
+
+> > Right now, my way of thinking was that of regular 3D printers which usually
+> > only implement G0/G1 G-codes (linear interpolation). G2/G3 (circular
+> > interpolation) doesn't sound practically very useful since it is special
+> > but not very flexible. Something like generalized spline interpolation
+> > sounds more valuable, but I hadn't seen any hardware that can do it.
+> >  
+> > > The related python application is there
+> > >
+> > >   https://github.com/cvut/pyrocon
+> > >
+> > > In the far future, I can imagine that it can connect
+> > > to proposed LMC API and achieve the same results.  
+> >
+> > Let's make it so!
+> >  
+> > >[...]
+> > > which uses our PXMC motion control library
+> > >
+> > >   https://gitlab.com/pikron/sw-base/pxmc
+> > >
+> > > There is basic documentation for it on its site
+> > >
+> > >   https://pxmc.org/
+> > >   https://pxmc.org/files/pxmc.pdf  
+> >
+> > At first glance, this looks like a piece of hardware that would fit as a
+> > LMC device. What needs to be determined is where the boundaries lie between
+> > controller firmware, kernel-space and user-space code.  
+> 
+> I propose to have that boundary fully configurable.
+> So all can be implemented by software emulation
+> in the kernel if the sampling is under 5 or 10 kHz.
+> The interface from GNU/Linux system to hardware
+> is set PWM A, B, C, read actual IRC and currents.
+
+5-10kHz in the kernel is quite demanding already, although I agree that it is
+possible with many modern SoC's. The question is whether we really want to
+go that far. It is starting to get to levels of stress where really a small
+microcontroller of FPGA would be more adequate, don't you agree?
+
+And also, for what purpose do you want to read currents in real-time in the
+kernel? Isn't that something for closed-loop control inside a uC or FPGA?
+Or do you mean just to report to user-space as a filtered average?
+IRC (encoder feedback) could be implemented with timers that support
+quadrature decoding, and I can certainly envision reading them out in the
+kernel in order to have a simple PID controller adjust duty-cycle setpoint to
+match a motion profile at a lower sample rate (1kHz or lower), but isn't that
+more something for the controller hardware to do? Especially if done at even
+higher sample-rates?
+ 
+> Or some part can be moved to external controller
+> or FPGA with coprocessor (the commutation fits
+> in 2 kB of RISC-V C programmed firmware). 
+> I.e. 20  kHz or even faster Park, Clarke
+> transformations. In this case 4 to 10 kHz
+> command port would be D-Q PWM or current set points
+> and back IRC position, D-Q currents.
+> 
+> Or your proposed LMC interface can be delivered
+> allmost directly to more complex controller
+> which would realize whole segments processing.
+
+I think the latter is more suitable for Linux.
+
+Although, given the fact that many embedded Linux SoC's nowadays incorporate
+small microcontroller cores that support the linux remoteproc interface, maybe
+some drivers could make use of that for the hard-RT part. On a STM32MP15x SoC
+for example there are advanced timers and ADC's that are very well suited for
+motor-control applications. They can be used directly from Linux for
+not-so-hard-and-fast RT applications, but potentially also for microsecond
+work in the M4 core.
+Let's first focus on the UAPI, and make the interface able to deal with these
+kind of engines.
+
+> > Generally speaking, as a rough guideline, microsecond work is better done
+> > in the controller firmware if possible. millisecond work can be done in the
+> > kernel and 10's or more millisecond work can be done in user-space,
+> > notwithstanding latency limit requirements of course.  
+> 
+> OK, I agree, the RT_PREEMPT is requiremet and no broken
+> SMI on x86 HW. 1 kHz is enough for DC motors controller
+> robots to go all on Linux. 5 kHz for PMSM D-Q can be
+> done in kernel or even userspace with platform
+> suitable for PREEMPT_RT if without some issues.
+> 
+> Above 10 kHz should go to FPGA or external HW.
+
+Yes, I agree. Although I'd lower the limits a bit to not make the drivers too
+dependent on very specific hardware platforms.
+
+> > >[...]
+> > > So in general, I think that we have large portfolio
+> > > of building blocks which would allow to build motion,
+> > > robotic controllers, communications etc. and I would be happy
+> > > if they are reused and even some project conceived
+> > > together with others to join the forces.  
+> >
+> > This sounds very interesting. Ideally one would end up with LMC capable of
+> > interfacing all of those devices.  
+> 
+> Yes.
+
+Good. Let's do it ;-)
+ 
+Best regards,
+
+-- 
+David Jander
 
 
