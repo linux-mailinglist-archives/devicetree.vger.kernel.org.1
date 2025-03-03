@@ -1,250 +1,262 @@
-Return-Path: <devicetree+bounces-153454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC6D9A4C91F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52780A4C924
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:21:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC3381882B0E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:15:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A29531893DE4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:16:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FAEA215191;
-	Mon,  3 Mar 2025 16:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6278B234994;
+	Mon,  3 Mar 2025 16:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k91CO6+P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="indBYQiQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A53212B14;
-	Mon,  3 Mar 2025 16:58:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48002219A9B
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 16:59:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741021112; cv=none; b=kYj9lrQtE6TAmzbfDSJm6pf4SVD9q/g+9VKY0ENS6Jeyr6Pii69lMrWb3gQlYZy+7Ypb4jF7W7i1pTfR64Iulk6q/GXKBGnJ7/2vhceiEYhMn3uPBhspnSreR2m9zDmZ417UM1pCnPArQGV3XOUnzsILhNKUfXvABMeB8mir/sc=
+	t=1741021184; cv=none; b=oGibrVWCVRmLv1A+8t9YttRLS2CfFREweRGmD+qDb/QPk/PvD4AgZ/PqKNTkS/gWdwq7PA3q4AR4/KDYYxU0ZtwWIK3ulzYdRh1tWQlGAEWtDN4EVvQ7+u19j1V8ztNYPhTvQEmO9OrxwzMBE+SdT0iVDSmavwj7C9ul/UJ441s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741021112; c=relaxed/simple;
-	bh=vtkoHJ3gFGrir8hCO0gq2+nOrDMda467qqK7Y/SOhuY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oBIuZ5V8SWoTKo3NkueSN8mGgTd4/rkclUD6VUmzTPpvoNORqlrhiUGA1az6CTkiwK4lN1juVBdAyx9Cjo6ge0f6FPKg+NFWEh3kuFTHiuvVBagc5NyyeQIf3WhrXMIEqKpqGPvwsCbUsqnL+kBNf3hCiz8o+1vglJAgezfycqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k91CO6+P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17EE3C4CED6;
-	Mon,  3 Mar 2025 16:58:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741021111;
-	bh=vtkoHJ3gFGrir8hCO0gq2+nOrDMda467qqK7Y/SOhuY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k91CO6+Pqty8oVF+U32HsX9iLmlu7s8wcKO1z8ACLrxTAYAPPC7c2asxfXVcIa0od
-	 1dJwiAa7iJW/kjG9WN88+F9nm2DbU3V3+kOqfcxkdKyALTWHpE/YURL2u6/Wgd6aVj
-	 ocOf9vo85msUco7AwjOEHhdBKVgZrAhqLmoBqe7vLlgZ8kFIWGKibLAdhoKNx3F8bS
-	 ciVvGy+fuHKltu3uuuawm7L6CAlInsAj3f5yOba0VPUINb3mm0n7X4RK2ZYGSRTVWV
-	 9A5KARmQMqVGXjfBmSd9EWzZOqEQoVXxeAXS5T7WmZzRxrXC6zzz/61rdIAoLD2ynW
-	 sYAlcjAxL+vLQ==
-Date: Mon, 3 Mar 2025 16:58:26 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Vankar, Chintan" <c-vankar@ti.com>
-Cc: Andrew Davis <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Peter Rosin <peda@axentia.se>,
-	tglx@linutronix.de, gregkh@linuxfoundation.org, vigneshr@ti.com,
-	nm@ti.com, s-vadapalli@ti.com, danishanwar@ti.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 1/2] devicetree: bindings: mux: reg-mux: Update
- bindings for reg-mux for new property
-Message-ID: <20250303-mummify-mutation-67595b7ceba5@spud>
-References: <20250227202206.2551305-1-c-vankar@ti.com>
- <20250227202206.2551305-2-c-vankar@ti.com>
- <f3e69904-92f0-4de8-bfef-a315a6554a1c@ti.com>
- <20250228-recipient-unlinked-271fe63d7335@spud>
- <acde31c5-fe23-4c7b-a823-61ea0958504b@ti.com>
+	s=arc-20240116; t=1741021184; c=relaxed/simple;
+	bh=oH978JFzs5QlFfeiXA41hwt/41QiwNuuxnrXBUVHP/E=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=RMPOgeAPxtV2E5yIKAaLqC62KCTPYvCG7bMQhSFl5PUx3hcgSqSfShYHgINHccZisxb6I8H2BCY6n7g+8Q7hPAGpr7FewoAhsTwbCr7kjSWI9QdJBRrA4R50g2nN6fjYrtWFGPnvxFoc3SaTBvejar2MfxVQPETYw70HKGVPp30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=indBYQiQ; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4398e3dfc66so42449055e9.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 08:59:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741021180; x=1741625980; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rqEytWC5Mz9hcceZZmQuQUkkVtwWYuhWvrPiRd/Fx4k=;
+        b=indBYQiQscVvGgwbf2QX7V2S7+pzkSj/JD3P2TGZSscZbFbS52f61gSmv1m9h4m1qo
+         spkd3w+ikeeFZx2TD1qYh3+8QM9e4NkUfYDqDWeXQTHUp3vyW+9rdiEE2ETCbdeHgegz
+         sFlS4Bjo7mQZa4zR2FoY6pAazFayZDsagyOSwZSsyqtzhWKLBRHM8ThdVLygytbDpb1L
+         sIZsGUXjH/hXsYOABN1oKcvooDY0R5WRnyzB6YNYye5HEbklH7ar99AVvJUKCKMN2Y93
+         UsvBCisqKC8g+Rqxm7lDNMdF5EAwI6xsLo9ebgQdk+iCO+5eD3JeOSapsztDuSMlhUCa
+         HedQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741021180; x=1741625980;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=rqEytWC5Mz9hcceZZmQuQUkkVtwWYuhWvrPiRd/Fx4k=;
+        b=gyOuZJ0c0Kz0+33uJDF0NlfC4iPEmT/odsyiEm4j9Ck+9BOxta4QAgKZW2MoFFLbfd
+         RzcNz2It+A1jv5UVK3cnjlQ2QRdA+j7pzlw8Rx8vIq+4hRoinfj8GRdc90xUgqZqhTJH
+         QnT0kZTiNR4ML7k3hDMATXCRgxQVHx/Wuj9U0f0fsRHv4fYdWvecllMXKEgbe4BNS2Xw
+         OShpl6SdbkosfoROn84ALrDjX5AK3ZUO908O8Kssdl+E+n8miCh0FqX3cSnHreXVeg1h
+         VdLh4WC3Sv551mnFTDWAOpFsPcCPEI/jYEaeErY4lwPSPxDbnmG6S3SaNkhs0ZHY3yIc
+         GzSA==
+X-Forwarded-Encrypted: i=1; AJvYcCUXZxeMfpTUEPceeeK/WRB2t0R6V/ttLA5jn31FgqX3cBHWlepVutJSSGKRyTJ6kHCv5SR5myyTTYrn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxq/deJDdTeIqd4/HR8oodphbu2GvDS269+TuGiWBYiXwlPlkKT
+	zeUJU+W//l525V9Q9bfSmyB22Fz+mWlYqruR1ynUE1S/eKUEr2nwQsorH4AWe0k=
+X-Gm-Gg: ASbGncsCZFU7/mcpaMS2QECGtXvwaoS0slsZcGwLyNOwLTATWLCn4VkP1WFSR7nMQHj
+	P/pEVq1ZBo2l023Xz+PED5MuP/Ahv6OLC/qmCWIddhsLwW2VQf+MFZOoER90MbV5a8e1cTYm52V
+	oglaSgzK8g+fYdZ8sBU7q4VyqK/SChwz/lxte5u5dHaqB11TLjOqSwG7J0nHFSHZ6qMkioeGVWw
+	R5XMuUNoqMxew44PmgjI2cgv0TgPDyNvoz8Nn5bJPK1xa+eZKU9ZQOokk22aNHFLKn4uVJ1Dp0p
+	HsL9oaGZ0/enGLzSO19XX2c+OrCUD8NAWnvaYTCF5qshP7dXk6YhpEj+YB9LQP+22LF+HPfZjz2
+	QM01bdaj4r4He2N3krLqw+Q==
+X-Google-Smtp-Source: AGHT+IHB5e8qHoNaz92JEh8SpwvriHPYxgjOv/OhwXAPTDqbY6gedugAXYtghujiNdzQrADoIS9mEg==
+X-Received: by 2002:a05:600c:3b24:b0:439:9496:17df with SMTP id 5b1f17b1804b1-43ba66fee15mr121905145e9.13.1741021180506;
+        Mon, 03 Mar 2025 08:59:40 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1c49:dea2:d749:5015? ([2a01:e0a:982:cbb0:1c49:dea2:d749:5015])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43b694524c6sm171865805e9.0.2025.03.03.08.59.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Mar 2025 08:59:40 -0800 (PST)
+Message-ID: <71c8e765-7eb8-4572-8461-30e4761be836@linaro.org>
+Date: Mon, 3 Mar 2025 17:59:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="F7cMXlJo73Y+j5qV"
-Content-Disposition: inline
-In-Reply-To: <acde31c5-fe23-4c7b-a823-61ea0958504b@ti.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/4] media: platform: qcom/iris: add support for vpu33
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250225-topic-sm8x50-iris-v10-v1-0-128ef05d9665@linaro.org>
+ <20250225-topic-sm8x50-iris-v10-v1-3-128ef05d9665@linaro.org>
+ <1fcf08fe37a8e14c4acae445d65bd1503b13b6d2.camel@pengutronix.de>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <1fcf08fe37a8e14c4acae445d65bd1503b13b6d2.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 28/02/2025 17:38, Philipp Zabel wrote:
+> On Di, 2025-02-25 at 10:05 +0100, Neil Armstrong wrote:
+>> The IRIS acceleration found in the SM8650 platforms uses the vpu33
+>> hardware version, and requires a slighly different reset and power off
+>> sequences in order to properly get out of runtime suspend.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/media/platform/qcom/iris/Makefile          |   1 +
+>>   drivers/media/platform/qcom/iris/iris_vpu33.c      | 315 +++++++++++++++++++++
+>>   drivers/media/platform/qcom/iris/iris_vpu_common.h |   1 +
+>>   3 files changed, 317 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
+>> index 35390534534e93f4617c1036a05ca0921567ba1d..6b64c9988505afd9707c704449d60bb53209229f 100644
+>> --- a/drivers/media/platform/qcom/iris/Makefile
+>> +++ b/drivers/media/platform/qcom/iris/Makefile
+>> @@ -21,6 +21,7 @@ qcom-iris-objs += \
+>>                iris_vdec.o \
+>>                iris_vpu2.o \
+>>                iris_vpu3.o \
+>> +             iris_vpu33.o \
+>>                iris_vpu_buffer.o \
+>>                iris_vpu_common.o \
+>>   
+>> diff --git a/drivers/media/platform/qcom/iris/iris_vpu33.c b/drivers/media/platform/qcom/iris/iris_vpu33.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..128a050f206f99ec0d43b97ff995fa50d5684150
+>> --- /dev/null
+>> +++ b/drivers/media/platform/qcom/iris/iris_vpu33.c
+>> @@ -0,0 +1,315 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/iopoll.h>
+>> +#include <linux/reset.h>
+>> +
+>> +#include "iris_instance.h"
+>> +#include "iris_vpu_common.h"
+>> +#include "iris_vpu_register_defines.h"
+>> +
+>> +#define WRAPPER_TZ_BASE_OFFS			0x000C0000
+>> +#define AON_BASE_OFFS				0x000E0000
+>> +#define AON_MVP_NOC_RESET			0x0001F000
+>> +
+>> +#define WRAPPER_DEBUG_BRIDGE_LPI_CONTROL	(WRAPPER_BASE_OFFS + 0x54)
+>> +#define WRAPPER_DEBUG_BRIDGE_LPI_STATUS		(WRAPPER_BASE_OFFS + 0x58)
+>> +#define WRAPPER_IRIS_CPU_NOC_LPI_CONTROL	(WRAPPER_BASE_OFFS + 0x5C)
+>> +#define REQ_POWER_DOWN_PREP			BIT(0)
+>> +#define WRAPPER_IRIS_CPU_NOC_LPI_STATUS		(WRAPPER_BASE_OFFS + 0x60)
+>> +#define WRAPPER_CORE_CLOCK_CONFIG		(WRAPPER_BASE_OFFS + 0x88)
+>> +#define CORE_CLK_RUN				0x0
+>> +
+>> +#define WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG		(WRAPPER_TZ_BASE_OFFS + 0x14)
+>> +#define CTL_AXI_CLK_HALT			BIT(0)
+>> +#define CTL_CLK_HALT				BIT(1)
+>> +
+>> +#define WRAPPER_TZ_QNS4PDXFIFO_RESET		(WRAPPER_TZ_BASE_OFFS + 0x18)
+>> +#define RESET_HIGH				BIT(0)
+>> +
+>> +#define CPU_CS_AHB_BRIDGE_SYNC_RESET		(CPU_CS_BASE_OFFS + 0x160)
+>> +#define CORE_BRIDGE_SW_RESET			BIT(0)
+>> +#define CORE_BRIDGE_HW_RESET_DISABLE		BIT(1)
+>> +
+>> +#define CPU_CS_X2RPMH				(CPU_CS_BASE_OFFS + 0x168)
+>> +#define MSK_SIGNAL_FROM_TENSILICA		BIT(0)
+>> +#define MSK_CORE_POWER_ON			BIT(1)
+>> +
+>> +#define AON_WRAPPER_MVP_NOC_RESET_REQ		(AON_MVP_NOC_RESET + 0x000)
+>> +#define VIDEO_NOC_RESET_REQ			(BIT(0) | BIT(1))
+>> +
+>> +#define AON_WRAPPER_MVP_NOC_RESET_ACK		(AON_MVP_NOC_RESET + 0x004)
+>> +
+>> +#define VCODEC_SS_IDLE_STATUSN			(VCODEC_BASE_OFFS + 0x70)
+>> +
+>> +#define AON_WRAPPER_MVP_NOC_LPI_CONTROL		(AON_BASE_OFFS)
+>> +#define AON_WRAPPER_MVP_NOC_LPI_STATUS		(AON_BASE_OFFS + 0x4)
+>> +
+>> +#define AON_WRAPPER_MVP_NOC_CORE_SW_RESET	(AON_BASE_OFFS + 0x18)
+>> +#define SW_RESET				BIT(0)
+>> +#define AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL	(AON_BASE_OFFS + 0x20)
+>> +#define NOC_HALT				BIT(0)
+>> +#define AON_WRAPPER_SPARE			(AON_BASE_OFFS + 0x28)
+>> +
+>> +#define VCODEC_DMA_SPARE_3 0x87B8
+>> +
+>> +static int reset_control_bulk_assert_id(int num_rstcs,
+>> +					struct reset_control_bulk_data *rstcs,
+>> +					char *id)
+>> +{
+>> +	int i;
+>> +
+>> +	for (i = 0; i < num_rstcs; ++i) {
+>> +		if (!strcmp(rstcs[i].id, id))
+>> +			return reset_control_assert(rstcs[i].rstc);
+>> +	}
+>> +
+>> +	return -ENODEV;
+>> +}
+>> +
+>> +static int reset_control_bulk_deassert_id(int num_rstcs,
+>> +					  struct reset_control_bulk_data *rstcs,
+>> +					  char *id)
+>> +{
+>> +	int i;
+>> +
+>> +	for (i = 0; i < num_rstcs; ++i) {
+>> +		if (!strcmp(rstcs[i].id, id))
+>> +			return reset_control_deassert(rstcs[i].rstc);
+>> +	}
+>> +
+>> +	return -ENODEV;
+>> +}
+> 
+> Please adapt the abstractions instead of working around them. If the
+> driver isn't suited for a single reset_control_bulk_data in iris_core,
+> split it into multiple groups, or store the resets individually.
+> 
+> At the very least, this could use constant indices instead of linear
+> search with string compares.
 
---F7cMXlJo73Y+j5qV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It was a first try, I'll think about something better for v2.
 
-On Sat, Mar 01, 2025 at 03:08:40AM +0530, Vankar, Chintan wrote:
-> Hello Conor, Andrew,
->=20
-> On 3/1/2025 12:22 AM, Conor Dooley wrote:
-> > On Thu, Feb 27, 2025 at 03:26:31PM -0600, Andrew Davis wrote:
-> > > On 2/27/25 2:22 PM, Chintan Vankar wrote:
-> > > > DT-binding of reg-mux is defined in such a way that one need to pro=
-vide
-> > > > register offset and mask in a "mux-reg-masks" property and correspo=
-nding
-> > > > register value in "idle-states" property. This constraint forces to=
- define
-> > > > these values in such a way that "mux-reg-masks" and "idle-states" m=
-ust be
-> > > > in sync with each other. This implementation would be more complex =
-if
-> > > > specific register or set of registers need to be configured which h=
-as
-> > > > large memory space. Introduce a new property "mux-reg-masks-state" =
-which
-> > > > allow to specify offset, mask and value as a tuple in a single prop=
-erty.
-> > > >=20
-> > > > Signed-off-by: Chintan Vankar <c-vankar@ti.com>
-> > > > ---
-> > > >    .../devicetree/bindings/mux/reg-mux.yaml      | 29 +++++++++++++=
-++++--
-> > > >    1 file changed, 27 insertions(+), 2 deletions(-)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/mux/reg-mux.yaml b/D=
-ocumentation/devicetree/bindings/mux/reg-mux.yaml
-> > > > index dc4be092fc2f..a73c5efcf860 100644
-> > > > --- a/Documentation/devicetree/bindings/mux/reg-mux.yaml
-> > > > +++ b/Documentation/devicetree/bindings/mux/reg-mux.yaml
-> > > > @@ -32,11 +32,36 @@ properties:
-> > > >            - description: pre-shifted bitfield mask
-> > > >        description: Each entry pair describes a single mux control.
-> > > > -  idle-states: true
-> > > > +  idle-states:
-> > > > +    description: Each entry describes mux register state.
-> > > > +
-> > > > +  mux-reg-masks-state:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > > > +    items:
-> > > > +      items:
-> > > > +        - description: register offset
-> > > > +        - description: pre-shifted bitfield mask
-> > > > +        - description: register value to be set
-> > > > +    description: This property is an extension of mux-reg-masks wh=
-ich
-> > > > +                 allows specifying register offset, mask and regis=
-ter
-> > > > +                 value to be set in a single property.
-> > > > +
-> > > > +allOf:
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            enum:
-> > > > +              - reg-mux
-> > > > +              - mmio-mux
-> > >=20
-> > > These are the only two possible compatibles, is this "if" check neede=
-d?
-> >=20
-> > Aye.
-> >=20
-> > > > +    then:
-> > > > +      properties:
-> > > > +        mux-reg-masks: true
-> > > > +        mux-reg-masks-state: true
-> > >=20
-> > > You need one, but cannot have both, right? There should be some
-> > > way to describe that.
-> > >=20
-> > > Also an example added below would be good.
-> >=20
-> >  From the example schema:
-> > # if/then schema can be used to handle conditions on a property affecti=
-ng
-> > # another property. A typical case is a specific 'compatible' value cha=
-nges the
-> > # constraints on other properties.
-> > #
-> > # For multiple 'if' schema, group them under an 'allOf'.
-> > #
-> > # If the conditionals become too unweldy, then it may be better to just=
- split
-> > # the binding into separate schema documents.
-> > allOf:
-> >    - if:
-> >        properties:
-> >          compatible:
-> >            contains:
-> >              const: vendor,soc2-ip
-> >      then:
-> >        required:
-> >          - foo-supply
-> >      else:
-> >        # If otherwise the property is not allowed:
-> >        properties:
-> >          foo-supply: false
-> >=20
-> > What's missing from here is making one of the properties required,
-> > so
-> > oneOf:
-> >    - required:
-> >        - masks
-> >    - required:
-> >        - masks-state
-> >=20
-> > >=20
-> > > Andrew
->=20
-> Thanks for reviewing this patch.
->=20
-> For the use-case we have following three rules to be followed:
-> 1. "mux-reg-masks" and "mux-reg-masks-state" should be mutually
->    exclusive.
-> 2. "mux-reg-masks-state" and "idle-states" should also be mutually
->    exclusive.
-> 3. If "mux-reg-masks" is present then "idle-states" might or might not
->    be there.
->=20
-> For the above conditions I have tried to write a binding as:
->=20
-> allOf:
->   - not:
->       required: [mux-reg-masks, mux-reg-masks-state]
->=20
->   - if:
->       required: [mux-reg-masks-state]
->     then:
->       not:
->         required: [idle-states]
+Neil
 
-Why'd you pick two different syntax here?
-The normal syntax for mutual exclusion is:
-if:
-  required:
-    - foo
-then:
-  properties:
-    foobar: false
+> 
+> regards
+> Philipp
 
-
->=20
-
->   - if:
->       required: [mux-reg-masks]
->     then:
->       properties:
->         idle-states:
->           description: It can be present with mux-reg-masks, but not
-> required
-
-This one here is the default, I don't think it needs an if/else.
-
-
---F7cMXlJo73Y+j5qV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8XfsgAKCRB4tDGHoIJi
-0o2LAQCMq4HpZu9jiaoJxc850JX+/MKfFHGz/sa7MSTRB+4e1gEA8Gz6xK4LVwXO
-zTxykzZs4br3042xroq9jAGVObGABQA=
-=bvpH
------END PGP SIGNATURE-----
-
---F7cMXlJo73Y+j5qV--
 
