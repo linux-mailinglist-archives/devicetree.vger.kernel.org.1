@@ -1,313 +1,261 @@
-Return-Path: <devicetree+bounces-153294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E924A4BE79
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:28:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40EAAA4BE93
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:31:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D58361893736
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:26:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 050171888E16
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:31:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E41B1F4178;
-	Mon,  3 Mar 2025 11:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 864051F8917;
+	Mon,  3 Mar 2025 11:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ENnShRuz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VgzDSHC6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2052.outbound.protection.outlook.com [40.107.21.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B15E1F3B85;
-	Mon,  3 Mar 2025 11:26:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741001174; cv=fail; b=BN2g6U5oYmV63e+iDi+QiqXG4oKV2r5a/j2lmty96TnbyQkrZWRohCk4gUEQk676KBd1KK0WW/XEneA+2WqWxjCYnBcxa2nFOJwwihsYdRpbvLpkrq8SjCiy1mowYqjKM4qTHiNagGPk9/pj5qMDMA3SyX2eM2XkNGSD6HpxHC8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741001174; c=relaxed/simple;
-	bh=QgG9cV6xkOAfeXqU6leuQL0aiOkSYY1h9qzxiRuETY8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=p0mi/3D5ysMoPmNd6XdIJdlOcNWlvI+1BwaChK1Uz3vrE27kmH/UxNZSh5OJNARU4CclvHm9dMV4IFlP5wtjHBL+vSMrt1PCIfNtbtVjToqnGOl1qLbAZ/LYN9sEdGQl9wbGQ5+YuHmkb9Rr1vTTbmTTYOu6lT5HNPnIMS+2UhM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ENnShRuz; arc=fail smtp.client-ip=40.107.21.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VN/RBL45SwKbRXjE6wcZ7+okBYmkdLFkMMaAqc9KtNsB8tIe82Q06ZVuJP957CfWIqHEQUzpFI/AJFxRf+y8qlLN8/gZg5GQX1iwhA6ThHjez6jFp/N88On4BhO0hXR+yqj6m97XwPfL7ZnbRPm2itXfxd3i8jsS+FKrKyN0e9Tr8x/W027fqjRWNS8y8qxYmrAaD3d7QXMQ3CSHXGoD5hIWqpmuLKVQyeWMRakGmwD5+O0ILSrcHoQGhfZS45xxIXmehVjyIMNuH0qHtu78iwLmD4GOx5np9AivLU+1dVK1MeWXxTibeyr7vVmzPZSvrRD13xzVXet8ZVLEGw2iog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1J/WObNg4WV5HLlizyW1hFR8Cf6feJqMU60KgErW2yU=;
- b=op5LjCy/lKNlE60tarKStD/PUUnxW9Lm1NRvB6jeJXna4ykZsTItcOybGJshdhRJgPz8+l+YjcI2OdTgIDNehPko88OoM3FnmBHm30bHiZhzXh/kvGZHDAdrKObY6oqCsAC8V3ncms+bSPj7rvqrBiepdtiI0X/tiKK7FLp97JCMxejRdTFNmtx2/+zIwg2UfTmz/+6nLV3b+dlupNzkSJNW7kXbLaMp9CVonbJTYvcJkypF5haY3C1ojGpXvz1t3F5WUItMxuLkD55OGm/g7I4Zp55X6xo0xjJwtcBTCDuc8ViP5jtbPVTy5KJMnNKQEYMWhFNZCdlLVDAFgMENZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1J/WObNg4WV5HLlizyW1hFR8Cf6feJqMU60KgErW2yU=;
- b=ENnShRuzGZPhcwvmYYu6Wa2MqZShsQb3l49vHd2xIawOvw/tE4gqECTfDUhA8UMcWR2eH4aT14Gewd2Aswrkbry//qc/3ytk7AGrGa8HoOofs97JgRv+hInFxRkozitYudylnEiacOKiJusHqsJ9AVpC3+LtsG4EpuzuD6X46IIe5DwOZMstV57ADgfufg198kDN6ECk73HOUMZ5WS0bJAvAJYwUJ40v7IbWNQD5DXKXI4vpuGngLNoTXHu7D2/HF9wbYO4GwVjurWbuHCoAa6ct8Ye8PtLWci1wpTKP0qFhdYJUHjJTS7/0uxfSAWdpnDhMGMYDG0WRlPRno09qng==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS4PR04MB9692.eurprd04.prod.outlook.com (2603:10a6:20b:4fe::20)
- by AM0PR04MB6994.eurprd04.prod.outlook.com (2603:10a6:208:188::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.28; Mon, 3 Mar
- 2025 11:26:07 +0000
-Received: from AS4PR04MB9692.eurprd04.prod.outlook.com
- ([fe80::a2bf:4199:6415:f299]) by AS4PR04MB9692.eurprd04.prod.outlook.com
- ([fe80::a2bf:4199:6415:f299%4]) with mapi id 15.20.8489.025; Mon, 3 Mar 2025
- 11:26:07 +0000
-From: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-To: marcel@holtmann.org,
-	luiz.dentz@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-bluetooth@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	amitkumar.karwar@nxp.com,
-	neeraj.sanjaykale@nxp.com,
-	sherry.sun@nxp.com,
-	ziniu.wang_1@nxp.com,
-	johan.korsnes@remarkable.no,
-	kristian.krohn@remarkable.no,
-	manjeet.gupta@nxp.com
-Subject: [PATCH v7 2/2] Bluetooth: btnxpuart: Add support to set BD address
-Date: Mon,  3 Mar 2025 16:57:52 +0530
-Message-Id: <20250303112752.7292-2-neeraj.sanjaykale@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250303112752.7292-1-neeraj.sanjaykale@nxp.com>
-References: <20250303112752.7292-1-neeraj.sanjaykale@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR01CA0018.apcprd01.prod.exchangelabs.com
- (2603:1096:4:191::7) To AS4PR04MB9692.eurprd04.prod.outlook.com
- (2603:10a6:20b:4fe::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407201EBA14;
+	Mon,  3 Mar 2025 11:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741001478; cv=none; b=G130xr74T8i879vQJBGhEYWuhB4EMXxCjybPdt+AXdGtznvWGR05bAE2ZybG6fxTlSiS/aUT+G1A4YbP0QSkHr8HBo1zX6E3a35Ngv5TaE4hrdkQXRM77UIE5y+RdYDYDNBRuXko1H8xG6pZcGvLb1Z7sMsgVriD/J5fl2Q3PrY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741001478; c=relaxed/simple;
+	bh=uE+73JXciPA+V7kPRV8XWL/c5IUQ7yVFJ3PFc8BY5Ng=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=kPSkUdd2vtABH+86fPN8AG2dbCZxbuYExGnj2QLwbLxa5uLav7EH42V3YZKoGfgN7pc/qiwy45zM/q6+h5vLLCjQv1mMaoMGo2d4S+0HxgszPFyTkWbjrhk9ldkmMlOD3Iy4misn4XS6isDI5WhIRI+bjrIFTMky11JskDgcm5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VgzDSHC6; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54964f8ce4bso1070054e87.2;
+        Mon, 03 Mar 2025 03:31:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741001473; x=1741606273; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rKXywdzc/Et4yJtFDduOL5DqpXRTEQpflOuvO6/QFtE=;
+        b=VgzDSHC6Sa9fz+6hYG3hfQpXF/2dBZOiDvFK+N9GDY8aEPkkZhkif5qvqC0VbXs224
+         UPP8K/RtRodLhr2+9Su360phU2g/7vqrus7OSKd9dZ0fFAhar5jY6IrVxWsBdFWwgWjV
+         IZUQIiHcNXfDDnlJR4zKljtxLlyQ7aiP/qw9vIc84USCGPpEAD0fcqvTSs+tyepKc3dr
+         P1lveO7+c99orZutbBINfxitWPAbLKrDrB5byswiXHwyC+3TB3+KbQZ1WrYA/fIZMZnS
+         RJj3QuwGdwOAI4im4vI2rLU+rbM89mhXwpk3YlgvND398prdd4yUhUYnTfFT+Oh5Q2mh
+         cIXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741001473; x=1741606273;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rKXywdzc/Et4yJtFDduOL5DqpXRTEQpflOuvO6/QFtE=;
+        b=PUwa4tPhULuRV/5VFWwhIK2SjrWdaB8kF0BlEboR17Z9okS2o9g3DsY1dM6lkK1wZG
+         lP5VZ7eF+D7a/SZYP8HyxKoutI+trBsw6aOGulzyKmiXX2R9jXXBtacmG/e/a/Z/qSP0
+         HuRAiKZO+2coL6EhFunrfDDT8nZLGe+CNmnH6pJoyeD26d6UGCQSYaSstBMbgS17/2v7
+         5BtcYuzFT3eGGqKP/uf3PemgCDKkA4Lr2UyfiRzIRqy007c1dDHMRF7yRogdMsiNvOIr
+         rMapd+QSUiahDuAg3xEA0zdjaNLDqSIPkbo3qwNg0OxdyPbuPyxwEi5bNdtMWl4zkKzB
+         wdaA==
+X-Forwarded-Encrypted: i=1; AJvYcCUK3HRNM2ci7pQ/5m+R9wDjpQV3e+mO080sQFA0Q1olQ4JVT9VThZpSwAIe0Lj9xXMecxXzzjYRyP5YTcssaGmjV7A=@vger.kernel.org, AJvYcCUh5wilUuU2Ddt9075lSAe6vCLQLkJIIwO21u7sw8OUAL7czs5SAMpX9nI0nVwLgYlXcoNdvkH4bYjf@vger.kernel.org, AJvYcCVtJAkgylMRJD7CbS6EfJTADgNMUl2/QhecUGLH5NoTeHYARR/uJkmATaN9RGRD9Zp3Ir1rtOnYAtdg@vger.kernel.org, AJvYcCWMZx08vv66tKf5QD3WpbtIhoulkZvbDD9zhRlEgfVpts3S7P3YS9YVkk8/a6oYzK3+tSEY5MilwPWfww==@vger.kernel.org, AJvYcCWPFtO7yUalBNXnhVG5zLlxz6X8psHt+h8bq6o58OOn3flkvzybsQFNxZQ/kGhx2ksvyypHje9s@vger.kernel.org, AJvYcCXC5aJTjgefVoLvuAZamwgRSpmquNtqNDctTP3KquMP9owbMXXTTCUSkbRDlWmmms9M5nVy8oXJbq1ltzT0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3SzPxh9Ki9Cbvh2GfKsmT8zNE26BzbbEf9UaiybrxtowjI5Ra
+	jtpRTAXe78qGbV+ommlDAOz7gIDP5TQ48cI1Zspj2PWZxwzOA5Sa
+X-Gm-Gg: ASbGnctVozXSzhFC4dGVDJOOL0B1cH4brC8PPAYd8/id6uvMcmTEHPraclVqSXX3bKi
+	qEVO4BmIXKs6HrkAfqt4xcaTSByqTmRWj0PuZryJtV/+AQpTSuwdb1FmMp9GcF2qjCztKSx8SuL
+	89AgNUNer8lkajLBhzaDaiIQO8H1cA//awOHCYwtJ1+7RKl2IF1eBb+qcSVTElqOt7P2hI25k0w
+	ThaaHY1/nIN3mB8o3E4Qd+8Ea8Dz97H9YSVEyVJwhrgbEfo/2UqoMMcTZtKt+czgROMZSSR9/Q5
+	8hwYbxHhprHtJVvL9YzZGsIfRi1MSUHloc6sBzykBUhxIb/0BWSkdt8jxJrsqTYpLkhP04+kRSP
+	5UH1YDCPqlyk=
+X-Google-Smtp-Source: AGHT+IHy7eVfyRfz75KlXzMg33WQpUvOMs2XoHaFWGcBRo3/jfRN7pYYEQKL0JaanfwqklYifmbf2g==
+X-Received: by 2002:a05:6512:3c92:b0:53e:39e6:a1c1 with SMTP id 2adb3069b0e04-5494c38bde7mr5379294e87.43.1741001472861;
+        Mon, 03 Mar 2025 03:31:12 -0800 (PST)
+Received: from mva-rohm (mobile-access-2e8451-125.dhcp.inet.fi. [46.132.81.125])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5495cb976e7sm595497e87.56.2025.03.03.03.31.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Mar 2025 03:31:11 -0800 (PST)
+Date: Mon, 3 Mar 2025 13:30:59 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Guillaume Stols <gstols@baylibre.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	netdev@vger.kernel.org
+Subject: [PATCH v5 00/10] Support ROHM BD79124 ADC
+Message-ID: <cover.1740993491.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9692:EE_|AM0PR04MB6994:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4a7afdd4-730d-484d-5efe-08dd5a463104
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?o1veTNpOhUDedew+OyNljlludOk+DcXarDKgG9D8m8Vi6YC0Xr0snVvWfefy?=
- =?us-ascii?Q?+dBzRuHjCzRtngbLOFWQDrF0M+/nYIV+Qq2CW9iMNU0Us2rZF3eHaioy6nmJ?=
- =?us-ascii?Q?ksjWT/Ma7CndO6q4Doe3jqBCgPdAvtNcgp/74627yLxmPW3yMQFffNmq3BR2?=
- =?us-ascii?Q?6hmn6XJe59XOw7agp3LuKh1TYp6mOuF5TIKDPY4dWMcDdVb8QKw30moN3Oc7?=
- =?us-ascii?Q?s6F59xgjqVtramHK/R8648uq/yc6eqAlw84YtWyq0tf7HACRUviRACHRaq7s?=
- =?us-ascii?Q?FqNiGoeKE0tG7KxCUdji8iiwafAmgQlOimOIg70Ge49vXSByOITQCT1walxN?=
- =?us-ascii?Q?LL+woow+8ebTnFPrg7js10+8As9MeopBrkRezDMMghXTxv8PyUqQVyZzPn4l?=
- =?us-ascii?Q?ORC5Uw4vdBjCq7bc71NhIg8Y86zE0BxCkXIR62NjAmeJ+4MZo0mw+IOirdQZ?=
- =?us-ascii?Q?vQEz2JHzSnzAkMgU1Z0CZf+tFdgoscMb4WJ96gbxc7Suj0+itZsrh5d2229i?=
- =?us-ascii?Q?2+3Jad3eZrYxhpfpK3Ygvh4Ki6tOD/7QIMFqCxlGSfuumLqUcIlXXp8a+OkL?=
- =?us-ascii?Q?HfdidiaCK61VSQYSpXWMOPsHFVmpwletbTs3NNc94DqCoNtun5hY+zWHDyeK?=
- =?us-ascii?Q?Iri+r8soAJCsh9NXEbESwM9lShnQCRze7K5N/tF2Gm4K7N8jKbmLuaMHSlyk?=
- =?us-ascii?Q?LoqZtVBlrxRJ46kWCFkhm+x0mN4ac1FQzFNxab6mQnF8/dW6QRnKB+yBprzA?=
- =?us-ascii?Q?/BlcLEyJ3FgtRASq8+zT31Dg/+w3Z8pevlT6zntDZVGhnwFgQ9Iq8fzqBO03?=
- =?us-ascii?Q?yLxAt1w+FVVaY3IW5YxI5ksGA4fqlvblPl7JtGseP1umO8T2NAIIDKvEFSvJ?=
- =?us-ascii?Q?M4KvnqrotZ7x1hp1jJLIIEVB5OVxCmFGBawgrdCYN1jxY72rN4/XfaAsoV4V?=
- =?us-ascii?Q?zr8ZAoyHi7PLi3DliIzJbevmpraNo0bjQopf2POjcZPHvz01W3VU8V/MId5Z?=
- =?us-ascii?Q?ILaLOnteMMLhbCmQHpkOCtNF2ByZgQfvjinDA5e0ycf89PxpZkrVowZhMPkN?=
- =?us-ascii?Q?97+qek9jkJaCZTxpyjyA2aRVmOP3Lco5oQDfXDyNVWA+bcio9SmKV1vfeZ5Y?=
- =?us-ascii?Q?cigmbMkZAUugLYgSRAytFjnfr+61mKrcJU27UgOh80QnrBMCgTvsmlkcgHhb?=
- =?us-ascii?Q?rHO39v2bh2Qwo+YTP/06hJQRpwRqfEDM3S60mCAsZH/oORceJE8fmIyI4dH0?=
- =?us-ascii?Q?qJkqE8SpNeIYExlgDwJr94f5o1WoI7FIfJIGtQIv4sUKEDSdLrUZLQZnYLiE?=
- =?us-ascii?Q?wNCre0wuBbJV79dQAsz3M8qAIzS+9d6u8tpdLBFGzuwM12BAYFodFJwt0CWs?=
- =?us-ascii?Q?+NJ2SgpfIMGYe72dQcC18Lh+6zwRwW9vM0NS1yr/vQ9SB1E9gORW5HwfiKqD?=
- =?us-ascii?Q?K3jfVPcTLOJh/pPD//SOTO6nex3+Jnnx?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9692.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?pQv2mHZKbY2oiQraWDxMukdV0UkIJQrqKvvXXC/3mjMgHX9ELr7NTk1y4j6a?=
- =?us-ascii?Q?7ybVD8gmkFlt1zhM3dCSOK8nYmyzSx7K2lsLAjHMraW353i1v5qisHDt9V29?=
- =?us-ascii?Q?52X4TtyjFah6SfPiBJxGwG7Rq4eh4VmGHjw6qGjCOC5C8SQGUvNeYy8XEhe7?=
- =?us-ascii?Q?QpmYc3qYnrJXjqTJEthfcWRO7QepALnuMILPeeCQnTtYmq7DnVUADQ98IUA4?=
- =?us-ascii?Q?heLcYooIP1aMPQydDS0DBzLDE9Iq8uwTZuwviEmq86QX5YVrtOhpwiCSJnK7?=
- =?us-ascii?Q?5lCgRNubWMj4zV+icO0aFL1ctbqBDaSuI7m7IcRFIStZS9cPzGzTUOvS4WHt?=
- =?us-ascii?Q?inUGejLGKJYTEDfmr1Ay6qvhVNFMNrwY+ROYyKrSlb9/s1N7eeBIafOtsFza?=
- =?us-ascii?Q?6Pp4fS4ptn/RDzzcbydmfVH8psJStsCeuLifY4+KNX9yP0673LZNiYbFKroV?=
- =?us-ascii?Q?akkbkUQcS8LkfGMZzYkCxhblK71DaOY3VwcvjQH2tNDUNYvFt3wrrAwdVMg0?=
- =?us-ascii?Q?gZvyEDOIgG1y6i5vegbSvLG2RhtJvzZ37GvEM4CMlPXQXXpoC43/vhNCyAFq?=
- =?us-ascii?Q?e6lC9Ixu96N6ANrZvQpm3hXdIGslj0aliXtQuvLwIkyvcGAATMVJOfSkxWI5?=
- =?us-ascii?Q?CKJoPbFTyxPwqL+VJNpmtzhyf70aiMKDmK5yrjPyCHhqs9S2hqRA7LTAIbYr?=
- =?us-ascii?Q?rAl8Jl4rOZfQW1a8R81ZewqXXgmmn0w0PIbeB7b4xyo6bokSJv1y+tQiF3Zc?=
- =?us-ascii?Q?N2R8ooktFWV9ENxghiL1n0ehp1U1Ba/Vl6r0Zzpc738eBFtMS/P84IQdcElA?=
- =?us-ascii?Q?izAq+DRSJV2DI+C1xpXOqaUDYUPj37WQTi70d1UkSnWhOGIjV/phWZRzC05+?=
- =?us-ascii?Q?WLjYryTx0oTa2hTnEO1roMl49rb6DReyPHLtp7i1NMIohNVzAvpZWn3oqprx?=
- =?us-ascii?Q?S5FyEvvEVXYmaTYBPiNMZbZRNcv+UyKxQ4h860Wjx6hOUcAG7Pq0uS3IcqWW?=
- =?us-ascii?Q?sa5c9wCD4Z7ODIwWBHNjyAQdsq+3ksghrfTU7wRElsHKl3ymaAu0018pIQJD?=
- =?us-ascii?Q?UtWuR2MCJveYIrIEOkB3miIWSkxSXzqHaexBMIgm3hPPPMzVqCjVhZrhihTT?=
- =?us-ascii?Q?4OiV+EEFZzOKE7YBBscNkCPM4+iI1Jow/0DFtQYDWcChuMaPmrS7fNy05MFj?=
- =?us-ascii?Q?It6fu7OsgVmim7uxSE4pSfb74e61x5EFtZUBOhaJpGexPSyQB1g2REWjnTng?=
- =?us-ascii?Q?QMm+Y3OgnJ+7JrulyccEJ+BK5ImJAR4f16rIwC1Jd82jD/c72hieRVCrhio0?=
- =?us-ascii?Q?RyKNSFLpOI7n8+NxebghMSJeL6RnxWESKl7j2yVz5Vs8jplCt54bouKumKue?=
- =?us-ascii?Q?2//0NWdf6Rx5XWtyJqFqUeYIIhznqmU1X4lT5p5YZ6mWzjmdiX9uT+nu8qRU?=
- =?us-ascii?Q?6ti+8E3FAjSJ2bh5GVRhDpx2mIpemO3TwNBjqhCHENi0e6s3Ldquy2ePKm95?=
- =?us-ascii?Q?jY2ctzFLis9oG4fd894ZEbjfPGYGwVPHva61Z0cxHtz6OvAOhu7N5ThiD7Io?=
- =?us-ascii?Q?lVlEdw6hOVeAXTwe0d5Jm6Nx03rUCiMlfjt7D43oZ6g/uxEktakt9P24rVp3?=
- =?us-ascii?Q?Hw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a7afdd4-730d-484d-5efe-08dd5a463104
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9692.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2025 11:26:07.5614
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /a/ilD5q84pj/bJbRi4QjuP6MmoHUIuTLksWW9jxJ9Y0nR6SFXmd8Yg8zs0kUaf2JjVwsj8FjEfG47h/kP99kXRjqHFLYwLFPqd+wQMaD/M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6994
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ok8G6d4pd5Kde/Tf"
+Content-Disposition: inline
 
-This adds support for setting BD address during hci registration. NXP
-FW does not allow vendor commands unless it receives a reset command
-after FW download and initialization done.
 
-As a workaround, the .set_bdaddr callback function will first send the
-HCI reset command, followed by the actual vendor command to set BD
-address.
+--ok8G6d4pd5Kde/Tf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The driver checks for the local-bd-address property in device tree, and
-if preset, it sets the HCI_QUIRK_USE_BDADDR_PROPERTY quirk.
+Support ROHM BD79124 ADC.
 
-With this quirk set, the driver's set_bdaddr callback function is called
-after FW download is complete and before HCI initialization, which sends
-the hci reset and 3f 22 commands. During initialization, kernel reads
-the newly set BD address from the controller.
+This series adds also couple of IIO ADC helper functions for parsing the
+channel information from the device tree. There are also two helpers
+included for counting number of firmware child nodes with a specific name.
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-Signed-off-by: Johan Korsnes <johan.korsnes@remarkable.no>
-Signed-off-by: Kristian Krohn <kristian.krohn@remarkable.no>
-Tested-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Series does also convert couple of drivers to use these helpers. The
+rzg2l_adc and the sun20i-gpadc are converted to use the new ADC helper.
+
+The gianfar driver under net is added as an RFC patch to use the newly
+added firmware child node counting function.
+
+There has been some discussion about how useful these ADC helpers are,
+and whether they should support also differential and single ended channel
+configurations. This version does not include support for those - with the
+benefit of reduced complexity and easier to use API.
+
+patch 6/10 is small simplification for the ti-ads7924, and it can be
+taken independently from the rest of the series.
+
+NOTE: Patches 4...6 and the patch 10 are untested as I lack of relevant HW.
+They have been compile tested only.
+
+The ROHM BD79124 ADC itself is quite usual stuff. 12-bit, 8-channel ADC
+with threshold monitoring.
+
+Except that:
+ - each ADC input pin can be configured as a general purpose output.
+ - manually starting an ADC conversion and reading the result would
+   require the I2C _master_ to do clock stretching(!) for the duration
+   of the conversion... Let's just say this is not well supported.
+ - IC supports 'autonomous measurement mode' and storing latest results
+   to the result registers. This mode is used by the driver due to the
+   "peculiar" I2C when doing manual reads.
+
+Furthermore, the ADC uses this continuous autonomous measuring,
+and the IC keeps producing new 'out of window' IRQs if measurements are
+out of window - the driver disables the event for 1 seconds when sending
+it to user. This prevents generating storm of events
+
+Revision history:
+v4 =3D> v5: Fixes as per various review comments. Most notably:
+ - Drop the patch making the TI's ADC driver to respect device tree.
+ - Add (RFC) patch converting gianfar driver to use new name child-node
+   counting API as suggested by Andy.
+ - Add fwnode_get_child_node_count_named() as suggested by Rob.
+ Changes which were not proposed by reviewers:
+ - rebase to v6.14-rc5
+ - Do not include all recipients to all of the patches.
+ More accurate changelog in individual patches.
+v3 =3D> v4:
+ - Drop the ADC helper support for differential channels
+ - Drop the ADC helper for getting only channel IDs by fwnode.
+ - "Promote" the function counting the number of child nodes with a
+   specific name to the property.h (As suggested by Jonathan).
+ - Add ADC helpers to a namespace.
+ - Rebase on v6.14-rc3
+ - More minor changes described in individual patches.
+v2 =3D> v3:
+ - Restrict BD79124 channel numbers as suggested by Conor and add
+   Conor's Reviewed-by tag.
+ - Support differential and single-ended inputs
+ - Convert couple of existing drivers to use the added ADC helpers
+ - Minor fixes based on reviews
+Link to v2:
+https://lore.kernel.org/all/cover.1738761899.git.mazziesaccount@gmail.com/
+
+RFC v1 =3D> v2:
+ - Drop MFD and pinmux.
+ - Automatically re-enable events after 1 second.
+ - Export fwnode parsing helpers for finding the ADC channels.
+
 ---
-v4: hci0 interface shows RAW mode if 'local-bd-address' not defined and
-    HCI_QUIRK_USE_BDADDR_PROPERTY is set. Add Quirk only if device tree
-    property 'local-bd-address' found. (Neeraj)
-v5: Initialize local variable ba, update Copywrite year. (Kristian)
-v6: Elaborate commit message, add User Manual reference. (Paul Menzel)
-v7: Use __hci_cmd_sync_status(). (Luiz)
----
- drivers/bluetooth/btnxpuart.c | 58 ++++++++++++++++++++++++++++++++---
- 1 file changed, 53 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/bluetooth/btnxpuart.c b/drivers/bluetooth/btnxpuart.c
-index 4f2f429c9800..21b07684dd68 100644
---- a/drivers/bluetooth/btnxpuart.c
-+++ b/drivers/bluetooth/btnxpuart.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-or-later
- /*
-  *  NXP Bluetooth driver
-- *  Copyright 2023 NXP
-+ *  Copyright 2023-2025 NXP
-  */
- 
- #include <linux/module.h>
-@@ -98,13 +98,16 @@
- #define PS_STATE_AWAKE          0
- #define PS_STATE_SLEEP          1
- 
--/* Bluetooth vendor command : Sleep mode */
-+/* NXP Vendor Commands. Refer user manual UM11628 on nxp.com */
-+/* Set custom BD Address */
-+#define HCI_NXP_SET_BD_ADDR	0xfc22
-+/* Set Auto-Sleep mode */
- #define HCI_NXP_AUTO_SLEEP_MODE	0xfc23
--/* Bluetooth vendor command : Wakeup method */
-+/* Set Wakeup method */
- #define HCI_NXP_WAKEUP_METHOD	0xfc53
--/* Bluetooth vendor command : Set operational baudrate */
-+/* Set operational baudrate */
- #define HCI_NXP_SET_OPER_SPEED	0xfc09
--/* Bluetooth vendor command: Independent Reset */
-+/* Independent Reset (Soft Reset) */
- #define HCI_NXP_IND_RESET	0xfcfc
- 
- /* Bluetooth Power State : Vendor cmd params */
-@@ -310,6 +313,15 @@ union nxp_v3_rx_timeout_nak_u {
- 	u8 buf[6];
- };
- 
-+union nxp_set_bd_addr_payload {
-+	struct {
-+		u8 param_id;
-+		u8 param_len;
-+		u8 param[6];
-+	} __packed data;
-+	u8 buf[8];
-+};
-+
- static u8 crc8_table[CRC8_TABLE_SIZE];
- 
- /* Default configurations */
-@@ -1209,6 +1221,33 @@ static int nxp_set_ind_reset(struct hci_dev *hdev, void *data)
- 	return hci_recv_frame(hdev, skb);
- }
- 
-+static int nxp_set_bdaddr(struct hci_dev *hdev, const bdaddr_t *bdaddr)
-+{
-+	union nxp_set_bd_addr_payload pcmd;
-+	int err;
-+
-+	pcmd.data.param_id = 0xfe;
-+	pcmd.data.param_len = 6;
-+	memcpy(pcmd.data.param, bdaddr, 6);
-+
-+	/* BD address can be assigned only after first reset command. */
-+	err = __hci_cmd_sync_status(hdev, HCI_OP_RESET, 0, NULL, HCI_INIT_TIMEOUT);
-+	if (err) {
-+		bt_dev_err(hdev, "Reset before setting local-bd-addr failed (%ld)",
-+			   PTR_ERR(skb));
-+		return err;
-+	}
-+
-+	err = __hci_cmd_sync_status(hdev, HCI_NXP_SET_BD_ADDR, sizeof(pcmd),
-+			     pcmd.buf, HCI_CMD_TIMEOUT);
-+	if (err) {
-+		bt_dev_err(hdev, "Changing device address failed (%d)", err);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
- /* NXP protocol */
- static int nxp_setup(struct hci_dev *hdev)
- {
-@@ -1522,6 +1561,7 @@ static int nxp_serdev_probe(struct serdev_device *serdev)
- {
- 	struct hci_dev *hdev;
- 	struct btnxpuart_dev *nxpdev;
-+	bdaddr_t ba = {0};
- 
- 	nxpdev = devm_kzalloc(&serdev->dev, sizeof(*nxpdev), GFP_KERNEL);
- 	if (!nxpdev)
-@@ -1570,8 +1610,16 @@ static int nxp_serdev_probe(struct serdev_device *serdev)
- 	hdev->hw_error = nxp_hw_err;
- 	hdev->shutdown = nxp_shutdown;
- 	hdev->wakeup = nxp_wakeup;
-+	hdev->set_bdaddr = nxp_set_bdaddr;
-+
- 	SET_HCIDEV_DEV(hdev, &serdev->dev);
- 
-+	device_property_read_u8_array(&nxpdev->serdev->dev,
-+				      "local-bd-address",
-+				      (u8 *)&ba, sizeof(ba));
-+	if (bacmp(&ba, BDADDR_ANY))
-+		set_bit(HCI_QUIRK_USE_BDADDR_PROPERTY, &hdev->quirks);
-+
- 	if (hci_register_dev(hdev) < 0) {
- 		dev_err(&serdev->dev, "Can't register HCI device\n");
- 		goto probe_fail;
--- 
-2.25.1
+Matti Vaittinen (10):
+  dt-bindings: ROHM BD79124 ADC/GPO
+  property: Add functions to count named child nodes
+  iio: adc: add helpers for parsing ADC nodes
+  iio: adc: rzg2l_adc: Use adc-helpers
+  iio: adc: sun20i-gpadc: Use adc-helpers
+  iio: adc: ti-ads7924 Drop unnecessary function parameters
+  iio: adc: Support ROHM BD79124 ADC
+  MAINTAINERS: Add IIO ADC helpers
+  MAINTAINERS: Add ROHM BD79124 ADC/GPO
+  net: gianfar: Use device_get_child_node_count_named()
 
+ .../bindings/iio/adc/rohm,bd79124.yaml        |  114 ++
+ MAINTAINERS                                   |   12 +
+ drivers/base/property.c                       |   57 +
+ drivers/iio/adc/Kconfig                       |   17 +
+ drivers/iio/adc/Makefile                      |    3 +
+ drivers/iio/adc/industrialio-adc.c            |   82 ++
+ drivers/iio/adc/rohm-bd79124.c                | 1108 +++++++++++++++++
+ drivers/iio/adc/rzg2l_adc.c                   |   38 +-
+ drivers/iio/adc/sun20i-gpadc-iio.c            |   38 +-
+ drivers/iio/adc/ti-ads7924.c                  |    7 +-
+ drivers/net/ethernet/freescale/gianfar.c      |   17 +-
+ include/linux/iio/adc-helpers.h               |   27 +
+ include/linux/property.h                      |    4 +
+ 13 files changed, 1462 insertions(+), 62 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/rohm,bd79124.=
+yaml
+ create mode 100644 drivers/iio/adc/industrialio-adc.c
+ create mode 100644 drivers/iio/adc/rohm-bd79124.c
+ create mode 100644 include/linux/iio/adc-helpers.h
+
+
+base-commit: 7eb172143d5508b4da468ed59ee857c6e5e01da6
+--=20
+2.48.1
+
+
+--ok8G6d4pd5Kde/Tf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfFkusACgkQeFA3/03a
+ocWURggAh0aahWuhR4X2pAbWcrvLlgY0D9RSlfBWXUHB68G1gPrJjp5CTgZLemkh
+d8hIvugJVz+G6zfkewr+abXoQbFlTjXSnKUUB6DAt0uoeJolaV6QxfNX9JwyLhMH
+v5nQ2dValRMeFZVoh1hUCXjtrTFJCjBeGKqDb2Rb17SxjzYk09ObnyIJRh4MABsl
+pyiO6m0xFOLr5vjd7f2sygWRigBYQPuDyTcre5WG0o3vNBTlEfr9BmR8aPNGFaJs
+7KvjqfOj8BGczBrxIHCUxMiNkEIGCKODg1dMdm3VBLI03/Uy3LR73AEqzX3wjEY4
+BBEZarVDoaTTVCmV9HvB+kvmJdW1GQ==
+=xpnm
+-----END PGP SIGNATURE-----
+
+--ok8G6d4pd5Kde/Tf--
 
