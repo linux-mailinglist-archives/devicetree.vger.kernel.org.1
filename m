@@ -1,109 +1,98 @@
-Return-Path: <devicetree+bounces-153946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F31CA4E4D9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:05:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16741A4E3BF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:39:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E763917E947
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:57:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABE6317E9BE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A82C82BF3D2;
-	Tue,  4 Mar 2025 15:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDOtaufM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BACA296161;
+	Tue,  4 Mar 2025 15:20:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
+Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32ED72BF3CF
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:39:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4268329616B
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:20:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741102770; cv=pass; b=ToCjqNpvG92xRjXKmhFyjZiwXju7W0oJdSFvc7k95Q5No573/DnMogff2uKIBYvnGeGnJu5vnbHCXz9CSBLAdUcuU6k7/RnEgrzxW8dnjv9stQ4PIir3YVBxPU5KDwhkAzPk27CczwQkuEzjw2Z65logHBwldwoteWGNNctxNG8=
+	t=1741101645; cv=pass; b=CtbCr1GiNezvp7F0SSDmGBic/5wk3hvcgK4JEmDM6kpiDvQCN1BOYEzO7434fv0pPAPRoppwMuX/oHHvtrILFXSTJSbeCCMaExCIWq7EnDKn0R3ljeZGMyOnTWuVhSVqwuxeZnuYwFCPMN308iuw0OiaF/1uRr6NCM3f+bN2nJA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741102770; c=relaxed/simple;
-	bh=cbX1IZV2u0T3mIg8u/7c8HZDjjLHtTM0zS/axg4Z6JY=;
+	s=arc-20240116; t=1741101645; c=relaxed/simple;
+	bh=gCpNNSve1jlt1V5SnYQVpGjhoChNTjthXctFbRk7RpM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ohQ4SLne2RYQVxa44RqDKyJ5KIPhamsbxe7/0Cm09t/7VvHQCI8Rb2SIDqW2wYhk3o3ickL/4hRbw3G4DnenuP+djkIjqJNx0KBKoTcO51B6UctqMpXwaLg7nKQeUa3tnudkzwh/Wqf0dvyNZfyBNM04Z3nhD0GG56GY6V0HOU8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDOtaufM; arc=none smtp.client-ip=10.30.226.201; arc=pass smtp.client-ip=160.75.25.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org
+	 Content-Type:Content-Disposition:In-Reply-To; b=epA4uxmw3KbEjexXNLpvNSZsUyJFboh8Qqyc3JrHImHDV26Mak160fIcg6U0dznnWmna0C3B9s/tmNvCOeefczZweN+3BXAPvsTzaKIhURqCRApJbLIAE3RqkMK7h71TMcSBMBlf3PxVQl+z/6y+292pvdgOfy6pjp4qMLGWjrk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gentoo.org; spf=none smtp.mailfrom=cc.itu.edu.tr; arc=none smtp.client-ip=140.211.166.183; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=pass smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gentoo.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 705B040CFED4
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:39:27 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 61FC940CEC89
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:20:41 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
-Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=aDOtaufM
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6fvh3YVfzG0X9
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:37:52 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6fVt1wdZzG07Y
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:19:50 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 758D142720; Tue,  4 Mar 2025 18:37:46 +0300 (+03)
-Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDOtaufM
-X-Envelope-From: <linux-kernel+bounces-541251-bozkiru=itu.edu.tr@vger.kernel.org>
-Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDOtaufM
+	id 9A8FA42735; Tue,  4 Mar 2025 18:19:47 +0300 (+03)
+X-Envelope-From: <linux-kernel+bounces-541280-bozkiru=itu.edu.tr@vger.kernel.org>
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 83D0042C50
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:14:21 +0300 (+03)
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 5B5CC3063EFC
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:14:21 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 6707843667
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:35:36 +0300 (+03)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id F3A813064C0E
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:35:35 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 463161886B22
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 09:14:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 522F63AE1FB
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 09:35:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1417C1F03FF;
-	Mon,  3 Mar 2025 09:13:53 +0000 (UTC)
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6418C1F131A;
+	Mon,  3 Mar 2025 09:35:22 +0000 (UTC)
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 527F61F03F4;
-	Mon,  3 Mar 2025 09:13:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3302C1EE7D3;
+	Mon,  3 Mar 2025 09:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740993230; cv=none; b=Eko/9k+hR9jbHz4SA4fboTq56x6p/VJOBTmwtom7NtQjMBjyqO2jKlv8IjW78jSh/3pzDsJiSQJWIHW0ZqURHYCTpzKEtHh9meD6NZajen381/wiNAj5ofTNkEFyW0GQcQ+h3d4SXP0MbvIbdAPV+h2pdv0ltRdy16f6w/vO4vQ=
+	t=1740994520; cv=none; b=RozIdKeZEGnF5PqKuum/jwpZB2zZ0nRL+i5Wists13JEB8NunO6mFnxPQ1OmKFMqYFVtZmBZYf+YjjX0DHXQzq6mGg+C2riPtWDU6udCv9ToVP8Bv2MkM139A0D99qFykBRm3D7EpLpQU78tQR9ea5zVsnytTxNifRdzDbRrQS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740993230; c=relaxed/simple;
-	bh=cbX1IZV2u0T3mIg8u/7c8HZDjjLHtTM0zS/axg4Z6JY=;
+	s=arc-20240116; t=1740994520; c=relaxed/simple;
+	bh=gCpNNSve1jlt1V5SnYQVpGjhoChNTjthXctFbRk7RpM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mAjCp0LdOVKT+fva5YQN8N76QOmGmjIxs0o46vu6f+ieYpXqmRut+Cot2Tk0FSmrj28XTfydIxaiCHzvO31Is5rWK8J2YCbOFxWtVm8foWeejNeE+L33cNjwA88GIuGMxGlCwtKxORThnnuNmnmBH8uWFlrQkRCTZsFxg4OVjrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDOtaufM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE1BAC4CED6;
-	Mon,  3 Mar 2025 09:13:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740993229;
-	bh=cbX1IZV2u0T3mIg8u/7c8HZDjjLHtTM0zS/axg4Z6JY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aDOtaufMxbaHYemQkA1sEn2VFhvpVjNbRGg4s3snDQeousQZufRD4/mp4Jjg8vzdK
-	 AiQWk1tciD3yQ+XDsAk5CZRbRLSB9SfMT8nuOm22s+onIra+P0D6fyIVHzQAjuUit/
-	 EiCkTOZ7pAvnPrPZm28NCEkm8XTgXKsoY3UVgLp4Q/D8aS6ulDbg5j5+ftR/71R214
-	 Vx6DtQ5zkH/dW27eJ6Win6mBwovAhcHx6S2FFzOXENf17AwrrF4F2D3aJAoq9jECIq
-	 YMVmx5QQTo91y1xV/T0dvwqdsEvcr5lm2/pw0AdIh0tjYIfhHLVVCbH5lO6Yp4I4W4
-	 MnDBV+CMruW4Q==
-Date: Mon, 3 Mar 2025 10:13:46 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Joel Selvaraj <foss@joelselvaraj.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: sdm845-xiaomi-beryllium-tianma:
- introduce touchscreen support
-Message-ID: <20250303-flashy-venomous-seal-44ad2d@krzk-bin>
-References: <20250301-pocof1-touchscreen-support-v3-0-af01c3b30b55@joelselvaraj.com>
- <20250301-pocof1-touchscreen-support-v3-3-af01c3b30b55@joelselvaraj.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jG6W0za3fTapzwPCSeztAPnSGKK8+Qsf4cFdpCRHS9f/T75/kTEj0xk7OqueGsAkxhBLBr24e9F8GJ3iUxRJvG1NCJfJvjs+S6TCR7t490Pt6HwyO3yZITG4CvRe8F/FP9PwJnyBvyIacI09068+PySqbPNPoT0YV0H93UgNWBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.55.252])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 06910342FAE;
+	Mon, 03 Mar 2025 09:35:16 +0000 (UTC)
+Date: Mon, 3 Mar 2025 09:35:06 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Troy Mitchell <troymitchell988@gmail.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH RESEND v5 1/2] dt-bindings: i2c: spacemit: add support
+ for K1 SoC
+Message-ID: <20250303093506-GYA58937@gentoo>
+References: <20250303-k1-i2c-master-v5-0-21dfc7adfe37@gmail.com>
+ <20250303-k1-i2c-master-v5-1-21dfc7adfe37@gmail.com>
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -111,39 +100,112 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250301-pocof1-touchscreen-support-v3-3-af01c3b30b55@joelselvaraj.com>
+In-Reply-To: <20250303-k1-i2c-master-v5-1-21dfc7adfe37@gmail.com>
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6fvh3YVfzG0X9
+X-ITU-Libra-ESVA-ID: 4Z6fVt1wdZzG07Y
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741707478.59708@XljK0IiJGvDzWIygIv/Kbg
+X-ITU-Libra-ESVA-Watermark: 1741706393.6222@c45Mm8cATGFFtbrSD+7BCQ
 X-ITU-MailScanner-SpamCheck: not spam
 
-On Sat, Mar 01, 2025 at 05:43:09PM -0600, Joel Selvaraj wrote:
-> Enable the Novatek NT36672A touchscreen controller used in the Poco F1
-> (Tianma) panel variant.
+On 13:30 Mon 03 Mar     , Troy Mitchell wrote:
+> The I2C of K1 supports fast-speed-mode and high-speed-mode,
+> and supports FIFO transmission.
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Troy Mitchell <troymitchell988@gmail.com>
 > ---
->  .../dts/qcom/sdm845-xiaomi-beryllium-tianma.dts    | 23 ++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
+>  .../devicetree/bindings/i2c/spacemit,k1-i2c.yaml   | 59 ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
-> index e9427851ebaa..b58964cde834 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
-> @@ -13,3 +13,26 @@ &display_panel {
->  	compatible = "tianma,fhd-video", "novatek,nt36672a";
->  	status = "okay";
->  };
+> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..db49f1f473e6f166f534b276c86b3951d86341c3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/spacemit,k1-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I2C controller embedded in SpacemiT's K1 SoC
+> +
+> +maintainers:
+> +  - Troy Mitchell <troymitchell988@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: spacemit,k1-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+..
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 2
+I'd suggest to give a brief description and explicit clock name here,
+you can consult marvell,mv64xxx-i2c.yaml for example
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +  clock-frequency:
+> +    description: |
+> +      K1 support three different modes which running different frequencies
+> +      standard speed mode: up to 100000 (100Hz)
+> +      fast speed mode    : up to 400000 (400Hz)
+> +      high speed mode    : up to 3300000 (3.3Mhz)
+> +    default: 400000
+> +    maximum: 3300000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c@d4010800 {
+> +        compatible = "spacemit,k1-i2c";
+> +        reg = <0xd4010800 0x38>;
+> +        interrupt-parent = <&plic>;
+> +        interrupts = <36>;
+> +        clocks = <&ccu 176>, <&ccu 90>;
+> +        clock-names = "apb", "twsi";
+9.1.4.61 TWSI0 CLOCK RESET CONTROL REGISTER(APBC_TWSI0_CLK_RST)
+https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb#part594
+from above docs, there are two clocks 
+bit[1] - FNCLK, TWSI0 Functional Clock Enable/Disable
+bit[0] - APBCLK, TWSI0 APB Bus Clock Enable/Disable
 
-Best regards,
-Krzysztof
+I'd suggest to name it according to the functionality, thus 'func', 'bus'
+clock, not its source.. which would make it more system wide consistent
 
+> +        clock-frequency = <100000>;
+> +    };
+> +
+> +...
+> 
+> -- 
+> 2.34.1
+> 
+
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
 
