@@ -1,113 +1,114 @@
-Return-Path: <devicetree+bounces-153513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D922BA4CDA2
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 22:44:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7A13A4CDA7
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 22:48:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03196188BCA0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 21:44:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 292CE3A9ABF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 21:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463ED23278D;
-	Mon,  3 Mar 2025 21:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42ACA1BCA07;
+	Mon,  3 Mar 2025 21:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Un46XJUC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="KMTGTLTs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18F7578F54;
-	Mon,  3 Mar 2025 21:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC0D1C54AA;
+	Mon,  3 Mar 2025 21:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741038237; cv=none; b=FeqGhDOO5tLmUYSjcFeCgbQETpUDihUCM6rlJEtKyQnEgdnp1/WqL1Y2hqufRu1ph7uVLtAYyKmSRHJDGKYZ90QJo4mBSZHbcRFOyW0eFMq0N+PfTsg7Yk6Mdt5RYua/3Ea/856EPzcoAid4zJnhizx9p5R3pvN4kEF2Y5cIY9g=
+	t=1741038497; cv=none; b=r0fJQRYkx2fbupwcJcc4tMcTCb2eS32Vuzjo79N+bBdr9OV23ROejQyaa2DlxHWbv6qyB4ePnRSH2ehhk7doYuYG4l9glMvEvd6GHs3D/HYuRGoHIiQCFhu2jpz/edD5cqM+30SHi2Yeo/ZeR9TbamD0zDttWqE/GgdCk/2cxFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741038237; c=relaxed/simple;
-	bh=MAZ3GzDJqwIxbmpGTBoa7Vxr/bQjnRpqhcxx+9kHi58=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=qbFhdyJcwbnUAtGAISItSpHNjsRfFBawhsOOp14cT5iZxc2ZaVVs5QGdkAxIwVD25HFmEFa4dWS3Bo6ZoEbIAxTGQDhYmK+jvESYzv7gkV4SbOkG/xZEXV9rud77QswBR7wz3VLfOp42PfulqlGV56XLGmm4Fy0Yh8ETHcpT5v4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Un46XJUC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FEE2C4CED6;
-	Mon,  3 Mar 2025 21:43:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741038236;
-	bh=MAZ3GzDJqwIxbmpGTBoa7Vxr/bQjnRpqhcxx+9kHi58=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Un46XJUCvFTptINfONNvksNFUZ/F10zNUxc8JhS1/zGtyiodoOnAfOcGeRhc6qHmX
-	 N3Guc2ZgzNXg55hNlG0q75Csc5LPOdEYGWDcB/udG/Rv6eEAwB8QvvWRTAlkc8cG2L
-	 el05QDEwWJUvZ/w6Kb6BHJqrRpFD+48xpBQDqtr2hM/XKUbQ0QPVvvKCagF1KHqj1m
-	 b91GGesEyDEQGNur665uNXCLzOPreG6ulkV+GboI9OiQ/BNZQwHUcHqOlCiHgB0pbX
-	 WEza652yAD008j+KBTGcE/Tqq3sp8OA5eDF+BXTCVt4QPf83cg+u1x6PquG+Irrfch
-	 BXvtF+6v97jSQ==
-Date: Mon, 03 Mar 2025 15:43:54 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1741038497; c=relaxed/simple;
+	bh=p+tn/31l6e3gJKu8df9MrkepDamPBNGOPVuQC0MkQ0A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=oSFdT1n118pejSYNHpuDq8eIAbcdHaiGSu7PDsmcuyfgnJDvFk6ogp++8Lg5dqGFT49sHN5vny/qS7RtC0jwAzow15NE+6UoaD4lxbqNibubEASdcGa4v152DWeg9nbUlvTX40L/6LnISCWKv8gW2YOLGKq6Xzy4MNgQJqufqoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=KMTGTLTs; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=oZS9W6LWueZRel5mHElMEY/qHM3otop7VBPbgcAUBlI=; b=KMTGTLTs3m3xBOfDSyeVo65kNA
+	MklFXt7AU/oF3hgMY6RFmAOYW2t1GIy9Ofz7UVoHICWq4Yeiq4FK/shpr8o7RN0rWk7SKrAyRAWco
+	hGzvO/A6wC4QkmCHbR4SIEaB4bn1f2VxirBb3Uf+g9yiTQfUJjR0c1oZa5pzVY3F3JabsN+v/fsHk
+	7B+pwn0gUgEZpjMUF9fWXUY5deuoJDOq/Wv/eaDs5bDNdeou33NQSYnL8IFQEW7NJtFnLkqzoenKt
+	syTwCcY4WwL+RfwU4fIL5bAuqGZ3Jw3euggXx9Uyfr8NGHg3GreoV+WW3Q6XhhQpOiFcgi83bhyO1
+	79V4oveg==;
+Received: from i53875a38.versanet.de ([83.135.90.56] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tpDdl-0005hg-LD; Mon, 03 Mar 2025 22:47:57 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	hjc@rock-chips.com,
+	krzk+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	derek.foreman@collabora.com,
+	detlev.casanova@collabora.com,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v16 0/7] VOP Support for rk3576
+Date: Mon,  3 Mar 2025 22:47:47 +0100
+Message-ID: <174103845739.1823374.12191535922821188431.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250303034436.192400-1-andyshrk@163.com>
+References: <20250303034436.192400-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Alex Elder <elder@kernel.org>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stanislav Jakubek <stano.jakubek@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-clk@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org, 
- Ray Jui <rjui@broadcom.com>, Stephen Boyd <sboyd@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Scott Branden <sbranden@broadcom.com>
-To: Artur Weber <aweber.kernel@gmail.com>
-In-Reply-To: <20250303-kona-bus-clock-v2-2-a363c6a6b798@gmail.com>
-References: <20250303-kona-bus-clock-v2-0-a363c6a6b798@gmail.com>
- <20250303-kona-bus-clock-v2-2-a363c6a6b798@gmail.com>
-Message-Id: <174103823477.2582909.2641429106641464271.robh@kernel.org>
-Subject: Re: [PATCH v2 2/7] dt-bindings: clock: brcm,kona-ccu: Add BCM281xx
- bus clocks
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
-On Mon, 03 Mar 2025 21:27:50 +0100, Artur Weber wrote:
-> Add bus clocks corresponding to peripheral clocks currently supported
-> by the BCM281xx clock driver and add the relevant clock IDs to the
-> clock/bcm281xx.h dt-bindings header.
+On Mon, 03 Mar 2025 11:44:14 +0800, Andy Yan wrote:
+> Here is the v16
+> Patches that have already been merged in drm-misc-next are dropped.
 > 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> Changes in v2:
-> - Add this commit (BCM281xx bus clocks)
-> ---
->  .../devicetree/bindings/clock/brcm,kona-ccu.yaml   | 21 +++++++++++++++++-
->  include/dt-bindings/clock/bcm281xx.h               | 25 +++++++++++++++++++---
->  2 files changed, 42 insertions(+), 4 deletions(-)
+> I test it with a 1080P/4K HDMI output with modetest and weston
+> output.
 > 
+> If there are some one want to have a try, I have a tree based on
+> Linux 6.14-rc1 here[0]
+> 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied, thanks!
 
-yamllint warnings/errors:
+[1/7] drm/rockchip: vop2: Register the primary plane and overlay plane separately
+      commit: 6fd4f8a26a21dd2075cfcc7eae3b9d440d886571
+[2/7] drm/rockchip: vop2: Set plane possible crtcs by possible vp mask
+      commit: b90fa71a11600276c993e620abea8ca9f2045401
+[3/7] drm/rockchip: vop2: Add uv swap for cluster window
+      commit: e7aae9f6d762139f8d2b86db03793ae0ab3dd802
+[4/7] dt-bindings: display: vop2: describe constraint SoC by SoC
+      commit: 1803bfb59656d41c4f9f7e5f23188248b649e1a4
+[5/7] dt-bindings: display: vop2: Add missing rockchip,grf property for rk3566/8
+      commit: 47d31e6598e4fda1433e747ef031cb972c57c5ae
+[6/7] dt-bindings: display: vop2: Add rk3576 support
+      commit: c3b7c5a4d7c17afb158ba5a41222e95a32886ada
+[7/7] drm/rockchip: vop2: Add support for rk3576
+      commit: 944757a4cba62b1b50fb51933d0608117599db71
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/brcm,kona-ccu.example.dtb: clock-controller@3e011000: clock-output-names: ['uartb', 'uartb2', 'uartb3', 'uartb4', 'ssp0', 'ssp2', 'bsc1', 'bsc2', 'bsc3', 'pwm'] is too short
-	from schema $id: http://devicetree.org/schemas/clock/brcm,kona-ccu.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250303-kona-bus-clock-v2-2-a363c6a6b798@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
