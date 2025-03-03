@@ -1,119 +1,152 @@
-Return-Path: <devicetree+bounces-154001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D13A4E79A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:07:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B53DA4EB44
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:22:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A55FF8C2DFD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:48:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CEFE16100D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83E58278163;
-	Tue,  4 Mar 2025 16:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B8227BF89;
+	Tue,  4 Mar 2025 18:03:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="qphRwrCN"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OBIrQNjA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
+Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309462780FF
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F2C28D041
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:03:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741105552; cv=pass; b=Y92DilsLWjbRS/Unq19y4FYHpIHoeOlmfCEkr5q9j7G/a8ZqhJV7GMbj+4Vt9y2uNUjdow6wIPi05gF3VR3ssrqj4aTCi7GYM9jmnM46ZRefEYbDUYV6OUkZ7nNiTl1tMDhqRsbmLknQMZu8jMAA8wSv6E0g0ITMfPE51igd4bA=
+	t=1741111391; cv=fail; b=QYinR6dFOfwKt7AZvPgb/hErgdpEENGi6VrGD9R5HUWmiClRcwllTad8uKy/LZk1MKfqG2CdLVRRhaUpqGlP8aa5ypNX6J9ykYP3439d00CT4Io/FdyJ4+CvI9uNWK10rNwy+u2n5rOPvrxy/guU3XJLaxEUQVS02Yj/nRx6Dmc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741105552; c=relaxed/simple;
-	bh=xjKhMtLA9tK9j8SX+seT9UK5BSImtLHPUuXRUCeDyBc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MMwG79b1vHFYqbKucPrNBiT1ns8iN1l9ZvKGHAy7iI9Tjz+l8M+ldmfgZQgNfui7rB7T0DoGg4U34wAdNZdVVEf546acz/vFG8Qrg8HBVpV3Z7t0oBdkM1PDoEMlcH5diCEp7rEzm7mRnEWRUwPisnIH4u8EcIWy7N65mUPAWGk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=qphRwrCN; arc=none smtp.client-ip=94.124.121.26; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; arc=pass smtp.client-ip=160.75.25.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+	s=arc-20240116; t=1741111391; c=relaxed/simple;
+	bh=4b0iC7S3I5Wxcnf0Of2/m9wu+jnIwKzjrRgmfirZtss=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=sVsyScIOyZIWC132eX5P86jubcMeX1IpNihzZgeEbf3WI2FPV2ypxWMXXuMB1LFFu/J0ye0Uy75R7Ph1Zpf1g/ful8UXZiQfINW3fSUOw9tLWf+jGcirKjPVOq9jhJJyjbRjjvZl5mcVi1y2TpDSjnuH8WElXlTdy/p7fv/QaR8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OBIrQNjA reason="signature verification failed"; arc=none smtp.client-ip=209.85.167.42; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; arc=fail smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
+Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id 4D42540D975F
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:25:48 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 240A040D1F50
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:03:08 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=protonic.nl header.i=@protonic.nl header.a=rsa-sha256 header.s=202111 header.b=qphRwrCN
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20230601 header.b=OBIrQNjA
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6gx33b8BzG3GM
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:24:07 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6hCn1h76zG3mW
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:36:53 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 1BEEF42750; Tue,  4 Mar 2025 19:23:51 +0300 (+03)
+	id F0CBD4273F; Tue,  4 Mar 2025 19:36:49 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=qphRwrCN
-X-Envelope-From: <linux-kernel+bounces-541610-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OBIrQNjA
+X-Envelope-From: <linux-kernel+bounces-541665-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=qphRwrCN
-Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id CEB5D42470
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:47:06 +0300 (+03)
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OBIrQNjA
+Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
+	by le2 (Postfix) with ESMTP id E2022420DE
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:09:35 +0300 (+03)
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 5DC053064C0B
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:47:06 +0300 (+03)
+	by fgw2.itu.edu.tr (Postfix) with SMTP id 6C9AA2DCE0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:09:35 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B7523A4C44
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:41:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74CF73AC5B5
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2EB202F88;
-	Mon,  3 Mar 2025 11:40:41 +0000 (UTC)
-Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5613920F09A;
+	Mon,  3 Mar 2025 12:05:17 +0000 (UTC)
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26EF9201025
-	for <linux-kernel@vger.kernel.org>; Mon,  3 Mar 2025 11:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C294D20E03E;
+	Mon,  3 Mar 2025 12:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741002039; cv=none; b=akcIzpIasZpnpd61PdZNTbo4iBwhXCrv0YD4xnaV91IJbExMW2Bd/kWSU0yO6tXJSdKxna/4YcC0/JzsHY9idt/+PhP6xECJ+NfIQc4ITmI3ArRntpMaPjr2i/Vo6IXMAT+JrJH6MMPICVwxc8ck00ctmPXyvByMjLBCP1CTJE8=
+	t=1741003514; cv=none; b=gdu3J80nI0InykgLKw2ajj6mdwY6Eyjjmcuc24SavTiU7yB6Jm+J/EJDIKSXkbV6aIjwCiy5nOq4+TRcRTIg3M8ZLPRi9071yK7z9I/S/0zg0jJ2XMXXekMg9+mtxtY65btCUfL88tlLcrKCwqQdejMfGo+bYY+zf1sjTmYgGLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741002039; c=relaxed/simple;
-	bh=xjKhMtLA9tK9j8SX+seT9UK5BSImtLHPUuXRUCeDyBc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AWULaN5Ll8LqoxdqPjmwU3t3VugyIlHTRkOCw4Gqw8CauUau8SqlRIMjRa0QNdEjhxKkERz9h01PluX9sRWybJ0HwE71gw3JrZLzN5m0q0qqeSCV1GM/ya2CB9BKWV7sQVkWlAtaN6r4FkkiXp9RkJK8rStO39FVDOj8Phn+Wr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=qphRwrCN; arc=none smtp.client-ip=94.124.121.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+	s=arc-20240116; t=1741003514; c=relaxed/simple;
+	bh=Yjs5VELuXzugavuZ2MYDFB7lDyQ6YMgi2xeSBBjSkdw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=txrY1ymv9qmgHPaRmBTwKhelJfU45VNQmUsNJuw1yXBpVuMvOgGhAQYd60fmDSfWjHgITA/ZK1j3LejMS00ovr5k98dEXyHCb0y5wUIrffAXeQbrUtsdTpCtKR1g6rYRuQ6S0HAPlAHBtSsQ4EcXWalil/AXuw9toF6FT1hjQL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OBIrQNjA; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-549662705ffso1178048e87.0;
+        Mon, 03 Mar 2025 04:05:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=protonic.nl; s=202111;
-	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-	 message-id:subject:cc:to:from:date:from;
-	bh=W7xQaIM8KUgQYXUjWEz/yyKUU3dOwVVtoiKveZse1LQ=;
-	b=qphRwrCNarcdXMc+8nT9gMvUDncjj28vFRItzfiNE/jdOd2yOkJll/C0YqOI+M2Lv7xxVV69I4kDC
-	 EabyatzTV4QIi2a/uhHtenSOQTvgnl5afF0HzFmvDBTlBx3REPp83KwvYQxLaqXi/7tk4a3czrMRSI
-	 xgOPVkiNuzqBXgPhGvTeLVEAHDwWVaCBb56qs9Zz5cVnGinA1MkMCkialX23Gp8qC6Mdum9rxl4KCu
-	 3VMeU0juaMaLuz2lcY4aa2AjD6nutiVQVBifdXvBV3CXO1CKO+e2ypMhFdH54HYn4n/U6bDSNx7C9U
-	 Zxl8AX8zA0VD+Ja7BOpB/LKmPsgqzqQ==
-X-MSG-ID: 51c43871-f824-11ef-a39b-00505681446f
-Date: Mon, 3 Mar 2025 12:40:34 +0100
-From: David Jander <david@protonic.nl>
-To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron
- <jic23@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>,
- linux-pwm@vger.kernel.org
-Subject: Re: [RFC PATCH 7/7] dt-bindings: motion: Add motion-simple-pwm
- bindings
-Message-ID: <20250303124034.726ba698@erd003.prtnl>
-In-Reply-To: <tm57fsmijq4t4y4dpmtss63ekzpm5oefir5tz4aioxq5dx4or6@lgoqjpxc3axh>
-References: <20250227162823.3585810-1-david@protonic.nl>
-	<20250227162823.3585810-8-david@protonic.nl>
-	<20250228-wonderful-python-of-resistance-d5b662@krzk-bin>
-	<20250228102201.590b4be6@erd003.prtnl>
-	<9a1d75a2-66c0-46b6-91a1-4922b892dfb1@kernel.org>
-	<20250228110931.7bdae7fd@erd003.prtnl>
-	<tm57fsmijq4t4y4dpmtss63ekzpm5oefir5tz4aioxq5dx4or6@lgoqjpxc3axh>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+        d=gmail.com; s=20230601; t=1741003511; x=1741608311; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KZbRg4EAl+//ILxj7dao5FHZeWZVMErRSC6VDwPgGXM=;
+        b=OBIrQNjAy0glP8uKNyLiccTmITUEKTMxD5LjaWzFYJN+CLZD+6hDTDG9JQy5P8MBaq
+         X7yWrY7Av7pWnihjOaQcRB/tPJQV/cORVGPMpHR60ABgtZbvWgANlL6cU4jbvHW77FhP
+         wN3Cdjfm5OePMaI6O8o2sA6UaeVKYBJepd1xBSohCoxH6qPSWgkcbI5jx7D9CXfNibSK
+         Igl9SLViz8j5eZQ+bll/jO5Pbib5KTH7tr10sPzi5/HF2XGpZqneionJ6AC36Id7NEKI
+         jaaGIgI2zGfPKmg7LUY0rln6SiZt76uCxNJrGGpvbVgpIbC2LmvOl0uAyxLo474U7ETP
+         0nQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741003511; x=1741608311;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KZbRg4EAl+//ILxj7dao5FHZeWZVMErRSC6VDwPgGXM=;
+        b=J26PZXQkE/FgJ7wqyl0CePiJPUAqI/7eAxKWVOgriYr3Y8jdJ8LCy3RsFOvHBjoZY3
+         owI1DHJNlgSTvyHWsjmdGFp8aYCNWlN2Ey8AGHfBStj9Z5CzVPDhNBboegMiXtRQHEj0
+         x4Q9vxVF1hkLjuzwUEtBcPDGDAqMqaw0HOhyhj/3U1193pyEWx7PE/a1HqWnq/5m+YPO
+         U4yLJYF6yYEIwitb6+xXGVTYlZLMF2KUCf15e6/7akg57+XmtCa86OsfEWkGeuj9owFP
+         S8OW7VyXseXSlxn0oG+y1jINmHgfxlbLs3NmM8HsobyMGtbTP1onk+Kps9sS9Of5ohex
+         xaoA==
+X-Forwarded-Encrypted: i=1; AJvYcCUwOMe1XjiI/9dGMmDUwY3mmE2a/7X4C3PwMidIdykzkRFnE2zykJL6AtpEdKLXSmdm5NP4aGXsOCCG@vger.kernel.org, AJvYcCWnNP5jSEHjZ9Wy6unLFQavnSWmNHtSSbIsnrZT2qEnXdXaWWxBDkG8Jx/rtIHRkbwT3cUUhhB//n4grx+R@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvPe1cNo+Oi7dxrSy4hPTX/jg6E7qxec+26GgpWgtCCHC3+Axp
+	SRU8VXaH1DzPbTGHm0yAQ+nse/ZuIdGOqwSCPOj33SCGi8htkecg
+X-Gm-Gg: ASbGncsb3hxlHYD8soWXgnxZ63SEZQ4s+bakqFcmkvfm3pV4tueckd/2kOUVf9I5gmf
+	NdwymN0y+46A6H940tGGoYMdvjv1TIU55zDi5A7Vg46l/zyZYY03mekW+G2PTEF3pnRUfc8W79g
+	gPzLDr4qs9qnh6+M64D/TP/ybPflnKgiq7C+rua8juzR2pAbpAJY0gnX2ffDpwE1l6I8+uN+mBD
+	3JKdMTMcWsT5uluiH1qPK9KaGmFl3Uw2bFI8487et4GVIvMJrbk3HhvAa5J1RzEMy0k7Mpv425t
+	h/mgoK0nEH9AKRSmB1ven8xNICvjvoncC6QW
+X-Google-Smtp-Source: AGHT+IF/Q0oGm1Q9MPyNXdByKkwXSQ32YjxUslcjcvqDeHAcJMc0URzg5RQfPoQyXKBi8STKc7rvQw==
+X-Received: by 2002:a05:6512:230c:b0:549:66c9:d0d9 with SMTP id 2adb3069b0e04-54966c9d394mr1256627e87.53.1741003510684;
+        Mon, 03 Mar 2025 04:05:10 -0800 (PST)
+Received: from xeon.. ([188.163.112.51])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549576b88d9sm869095e87.12.2025.03.03.04.05.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Mar 2025 04:05:10 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Maxim Schwalm <maxim.schwalm@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/3] dt-bindings: display: extend the LVDS codec with Triple 10-BIT LVDS Transmitter
+Date: Mon,  3 Mar 2025 14:04:53 +0200
+Message-ID: <20250303120455.90156-2-clamor95@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250303120455.90156-1-clamor95@gmail.com>
+References: <20250303120455.90156-1-clamor95@gmail.com>
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -121,120 +154,42 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6gx33b8BzG3GM
+X-ITU-Libra-ESVA-ID: 4Z6hCn1h76zG3mW
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741710289.92701@dGuy9sQZFRSQ1g/Q2muhLw
+X-ITU-Libra-ESVA-Watermark: 1741716100.78956@6qtaYfWccEZuqcEZANlHHw
 X-ITU-MailScanner-SpamCheck: not spam
 
+From: David Heidelberg <david@ixit.cz>
 
-Dear Uwe,
+LVDS transmitter used in the Microsoft Surface RT.
 
-Thanks for chiming in!
+Signed-off-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Reviewed-by: Robert Foss <rfoss@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Fri, 28 Feb 2025 16:18:05 +0100
-Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org> wrote:
-
-> Hey David,
->=20
-> On Fri, Feb 28, 2025 at 11:09:31AM +0100, David Jander wrote:
-> > On Fri, 28 Feb 2025 10:37:48 +0100
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >  =20
-> > > On 28/02/2025 10:22, David Jander wrote: =20
-> > > >    =20
-> > > >>> +
-> > > >>> +  motion,pwm-inverted:
-> > > >>> +    $ref: /schemas/types.yaml#/definitions/flag     =20
-> > > >>
-> > > >> And PWM flag does not work?   =20
-> > > >=20
-> > > > I have seen PWM controllers that don't seem to support the
-> > > > PWM_POLARITY_INVERTED flag and those where it just doesn't work. Sh=
-ould all   =20
-> > >=20
-> > >=20
-> > > Shouldn't the controllers be fixed? Or let's rephrase the question: w=
-hy
-> > > only this PWM consumer needs this property and none of others need it=
-? =20
-> >=20
-> > CCing Uwe Kleine-Koenig and linux-pwm mailing list.
-> >=20
-> > I know that at least in kernel 6.11 the pwm-stm32.c PWM driver doesn't
-> > properly invert the PWM signal when specifying PWM_POLARITY_INVERTED. I=
- agree
-> > this is a probably bug that needs fixing if still present in 6.14-rc. B=
-esides
-> > that, if linux-pwm agrees that every single PWM driver _must_ properly =
-support
-> > this flag, I will drop this consumer flag an start fixing broken PWM dr=
-ivers
-> > that I encounter. I agree that it makes more sense this way, but I want=
-ed to
-> > be sure. =20
->=20
-> Some hardwares cannot support PWM_POLARITY_INVERTED. Affected drivers
-> include:
->=20
-> 	pwm-adp5585
-> 	pwm-ntxec
-> 	pwm-raspberrypi-poe
-> 	pwm-rz-mtu3 (software limitation only)
-> 	pwm-sunplus
-> 	pwm-twl-led (not completely sure, that one is strange)
->=20
-> . ISTR that there is a driver that does only support inverted polarity,
-> but I don't find it. For an overview I recommend reading through the
-> output of:
->=20
-> 	for f in drivers/pwm/pwm-*; do
-> 		echo $f;
-> 		sed -rn '/Limitations:/,/\*\/?$/p' $f;
-> 		echo;
-> 	done | less
->=20
-> . (Note not all drivers have commentary in the right format to unveil
-> their limitations.)
->=20
-> For most use-cases you can just do
->=20
-> 	.duty_cycle =3D .period - .duty_cycle
-
-Yes, that is exactly what the relevant code in motion/simple-pwm.c does when
-the "pwm-inverted" flag is present in the DT node.
-
-> instead of inverting polarity, but there is no abstraction in the PWM
-> bindings for that and also no helpers in the PWM framework. The problem
-> is more or less ignored, so if you have a device with
->=20
-> 	pwms =3D <&pwm0 0 PWM_POLARITY_INVERTED>;
->=20
-> and the PWM chip in question doesn't support that, the pwm API functions
-> will fail. So the system designer better makes sure that the PWM
-> hardware can cope with the needed polarity.
-
-Thanks for clarifying this!
-
-@Krzysztof, do you think that given this situation it is acceptable to incl=
-ude
-the "pwm-inverted" flag in the dt-schema of the simple PWM motor driver?
-
-The need for an inverted PWM signal is something very common in the case of
-H-bridge motor drivers, where the PWM signal represents the actual logical
-output level of each of the two halves of the bridge. Often the high-side
-switches are used as the free-wheel position, so that 100% duty-cycle on bo=
-th
-channels is actually standstill, while 0% duty-cycle on one channel is full
-speed in either direction. This isn't always the case though, hence the
-importance for this to be able to be selected.
-
-Best regards,
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.=
+yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+index 6ceeed76e88e..24e89c1d0c76 100644
+--- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+@@ -33,6 +33,7 @@ properties:
+     oneOf:
+       - items:
+           - enum:
++              - idt,v103      # For the Triple 10-BIT LVDS Transmitter
+               - ti,ds90c185   # For the TI DS90C185 FPD-Link Serializer
+               - ti,ds90c187   # For the TI DS90C187 FPD-Link Serializer
+               - ti,sn75lvds83 # For the TI SN75LVDS83 FlatLink transmitt=
+er
 --=20
-David Jander
+2.43.0
+
 
 
