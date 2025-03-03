@@ -1,88 +1,128 @@
-Return-Path: <devicetree+bounces-153935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADAFEA4E463
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:54:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B7CDA4E36C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:32:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F0954235BF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:44:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 366AF3BB183
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:18:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC3E29B23B;
-	Tue,  4 Mar 2025 15:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C2024C07F;
+	Tue,  4 Mar 2025 15:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ijZGrXL/"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="1ORyGz++"
 X-Original-To: devicetree@vger.kernel.org
 Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 024FA29B231
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A76A124C08A
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741102199; cv=fail; b=ksOc3Chw5ynQxQY4Qyj6ek09XY+TNkssiU9tqljJyXk6QHzlDtc+1orQlCQzu1R9jLE9ioCm6vX1jbfpWvxLvQvpjnpHA8o+jF7x4AnGOdRmZjvwsdqLBxOSFnEPeKrLTkYBeUy2cRC1QgfNFIea3AvJa9Z5eYq8NFYskrTop+k=
+	t=1741101085; cv=pass; b=hUVSN1ZqyI2PpKV/FS9VVopogd1pYjhay8JTPPZrliHiT2bANbHGD2Az5lOZqmeLQyXsti7RrHMpSQtJ9RdaylVUoiW9dWh7KO0q0vk+XXQfjiiXByNReZg/Xrslc4QgoskjlxTRKquWzJiABY/Ipy7RrywIo9ol6oVLP6UvbFY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741102199; c=relaxed/simple;
-	bh=0y/CfcYi47gQKN+tpq2VD9WQ6AZYhW1MTCSmqxvxRIU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LkibLNQYi2bli6vi3bPj8wMHzR3hqZOF3b4Rfi2yioKKv51oSvFQ3yXn986m41i4mGDFtyRivYtHrXCdNAwIWXJPt9RY6w1wG7H0cFp7NPXU5UAbVfEltFzuh8G3Unu3vVnWvBfb5Uv1Yno6aGjTb6Rvx28KzgSJ0hxx76tW+Ng=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=rock-chips.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ijZGrXL/ reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.113; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; arc=fail smtp.client-ip=160.75.25.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=rock-chips.com
+	s=arc-20240116; t=1741101085; c=relaxed/simple;
+	bh=eLPVTYCLr/v+z3Rpfjq9386InLTsMCaOhJxCahwa3fE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jdbovdeUenzVGCDPQ99sU2Ok5fElBPvx35KQIexV2Hj/PFYIw0QhLHQnl+z4NbL2nlg2vVjq3z2Z2EN12XjEQWDOAqXBs2bfgIYlzrtW1+huXQYxHFRYpLnapFp/ylKEQYLmzn9FtBv/v5CCMd1gjjTuo2ek2iyrZhSrPmIVSU4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1ORyGz++; arc=none smtp.client-ip=68.232.154.123; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; arc=pass smtp.client-ip=160.75.25.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 4748C40F1CFE
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:29:56 +0300 (+03)
+	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id EACBD40F1CF3
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:11:21 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6ffG0rhYzG0F0
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:26:14 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6fHy6Rq3zFyMg
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:10:22 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 8EE8042733; Tue,  4 Mar 2025 18:26:01 +0300 (+03)
+	id B86914273C; Tue,  4 Mar 2025 18:10:19 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ijZGrXL/
-X-Envelope-From: <linux-kernel+bounces-541217-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1ORyGz++
+X-Envelope-From: <linux-kernel+bounces-541240-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ijZGrXL/
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1ORyGz++
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 7146642D2A
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:01:11 +0300 (+03)
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id BED653064C0B
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:01:10 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 5818341BD0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:10:06 +0300 (+03)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id 30D443063EFC
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:10:06 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D7587A4079
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 08:59:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA5A21891680
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 09:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857381F0996;
-	Mon,  3 Mar 2025 09:00:14 +0000 (UTC)
-Received: from mail-m19731113.qiye.163.com (mail-m19731113.qiye.163.com [220.197.31.113])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21EB1F0E54;
+	Mon,  3 Mar 2025 09:09:30 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 812E71EFFAF;
-	Mon,  3 Mar 2025 09:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.113
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C25C1F09A8;
+	Mon,  3 Mar 2025 09:09:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740992410; cv=none; b=JjjprnLfwcLgPDINJGdj/9SBCv1xx7BO9wXPmLxIckKix0VR9mueQWLlnR7FeC142Gsjp1XdDFjk15q7bTuGR8v96r/phO1YRUPRhXFb2uRlq8069N7FYKcGlRDvD9CuMW1eAn2zc+ZaEMZMuxy7H5ISbEBFFeBAUF5xJ6QKbLQ=
+	t=1740992968; cv=none; b=hSkDWBu/9WMHcUm+Uvc26wsH8ge1hisAD5vuPVCHlRYGUvJb4HlofMoYdEs0ORD2hOEfb5JfNDR2Dy7WxzCLK+rM2EoQrRecC1F2bATsPqGG7y3dN54Z1p2wGvIEjn7yRHkjAnu4hp2WKfcyv5eiJ6Ar92p5E60Vp9d/5YKAzGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740992410; c=relaxed/simple;
-	bh=wq4qPjLOP/xCwisKyEVhGFxzfmUqOyAQHZDDXjSFup8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rU6s3+tqGs/mIdD5TkDc/niCs5ve+izR7t+ckftRU6O+/eEEKHoiBbsL3ThgSqcjjBStsJ7wTvmuPlOZ+4Bgxae7Tw603xXQGEW0NESrxl/ErPr9eiqNLSfQGybfBZUcoU7ggIROagWVLNrAdLCTvzniBFoRlvreJrRsd+HZLpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ijZGrXL/; arc=none smtp.client-ip=220.197.31.113
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.12] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id cbdcb25f;
-	Mon, 3 Mar 2025 16:59:50 +0800 (GMT+08:00)
-Message-ID: <65706d63-18aa-41e0-81c4-4eab3d186250@rock-chips.com>
-Date: Mon, 3 Mar 2025 16:59:50 +0800
+	s=arc-20240116; t=1740992968; c=relaxed/simple;
+	bh=eLPVTYCLr/v+z3Rpfjq9386InLTsMCaOhJxCahwa3fE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vC3Hh2T1EcHM2OTXDwvG+uWpNSgT0Dq39nZaBir1H6qDCgTnA+WiUC/Y9d6FYcE182HgwN7S4RvTEPd+gJKPXjJ5OF5BpTgHLqJj1TrdTItYSpTRzmanZiswiNtsRFtqOYwUwFB+EcnJnlFBxJ1/E/oI+MGUuQKfAz6Ljl7qkjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1ORyGz++; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1740992966; x=1772528966;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eLPVTYCLr/v+z3Rpfjq9386InLTsMCaOhJxCahwa3fE=;
+  b=1ORyGz++BGcPpsBaNrjBX6oYxf1PMx5yWTVExleoTj5SdvKjSPAwkgp7
+   afOHMT/ieCCyc+GOJVhcydpyHgVy2v9zsKBOX9uvCNl90T8MqDcNdmhdl
+   kBly+DwmTmqbsfgyJRhMHTzCAzzkvvb2kOcE+ilcUNOMtiOEQtWUozTw4
+   SQxpuL+6x7wYNo8rToK47nZnknn840oqgY5rBxZSFIZl1xYl23rk1Xs5N
+   IeRrXAV77WLgdDHO44yKcl1BX7131mLj1kU99CEsulwYsOMLIVgRk9sQa
+   V4OnC1yjMkLMmMdJ2za1G1Sq0otS3NCQB06CnvOx1Ilo9zQZAt3wuBl+N
+   A==;
+X-CSE-ConnectionGUID: vdV2+gEUTw2O2FxCKkKLiw==
+X-CSE-MsgGUID: bSWdOAdmQv+RmLfY7KSCNA==
+X-IronPort-AV: E=Sophos;i="6.13,329,1732604400"; 
+   d="asc'?scan'208";a="38764365"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Mar 2025 02:09:20 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 3 Mar 2025 02:09:14 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 3 Mar 2025 02:09:11 -0700
+Date: Mon, 3 Mar 2025 09:08:16 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Chen Wang <unicorn_wang@outlook.com>
+CC: Conor Dooley <conor@kernel.org>, Zixian Zeng <sycamoremoon376@gmail.com>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Inochi Amaoto <inochiama@outlook.com>, Alexandre Ghiti <alex@ghiti.fr>,
+	<devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <sophgo@lists.linux.dev>,
+	<chao.wei@sophgo.com>, <xiaoguang.xing@sophgo.com>
+Subject: Re: [PATCH v2] riscv: sophgo: dts: Add spi controller for SG2042
+Message-ID: <20250303-recital-crunchy-6f7806987da0@wendy>
+References: <20250228-sfg-spi-v2-1-8bbf23b85d0e@gmail.com>
+ <20250228-factual-rage-0e1e1e48b009@spud>
+ <PN0PR01MB103937D1C23820E0FC43BEA33FECF2@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -90,163 +130,72 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] drm/bridge: synopsys: Add DW DPTX Controller support
- library
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Andy Yan <andyshrk@163.com>
-Cc: neil.armstrong@linaro.org, sebastian.reichel@collabora.com,
- heiko@sntech.de, devicetree@vger.kernel.org, hjc@rock-chips.com,
- mripard@kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Andy Yan <andy.yan@rock-chips.com>, krzk+dt@kernel.org, robh@kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250223113036.74252-1-andyshrk@163.com>
- <20250223113036.74252-3-andyshrk@163.com>
- <563i7xcbbsxfezkgs4txsa6lar5tb5folp7zk7dc7sbvf54n6y@vqbtuwvj3fcw>
-Content-Language: en-US
-From: Yubing Zhang <yubing.zhang@rock-chips.com>
-In-Reply-To: <563i7xcbbsxfezkgs4txsa6lar5tb5folp7zk7dc7sbvf54n6y@vqbtuwvj3fcw>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRofTlZNS00YSUJLTx1MHhhWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a955b3ba5bf03a8kunmcbdcb25f
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PlE6Cio6GjIWQk9IAwE4Ky8Y
-	HSMKCT5VSlVKTE9LQkJJSEJPT0JCVTMWGhIXVQIOGRIVHFUBExoVHDsJFBgQVhgTEgsIVRgUFkVZ
-	V1kSC1lBWU5DVUlJVUxVSkpPWVdZCAFZQUxITUo3Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=ijZGrXL/GvtK7VjoWcpULII9nLZ6QYjVvCmSpKIkUJkKkO8KzrlppNmqdiGJa+pTNWIIcvzWHnEv2CM9W4xfzy/uQ4PCH7aL4BdeeauyHwuh0UKdZypiAec+BclL7A2Au52C9+01H1U6dN+o0lq9WqyGZ6Kue/kGZttFRObq5QE=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=2kGVvLoAJaOp26dQa+STctZZP/D+ei2d2VwEfnWjBwo=;
-	h=date:mime-version:subject:message-id:from;
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Ow63fKL/6QkVXSRs"
+Content-Disposition: inline
+In-Reply-To: <PN0PR01MB103937D1C23820E0FC43BEA33FECF2@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6ffG0rhYzG0F0
+X-ITU-Libra-ESVA-ID: 4Z6fHy6Rq3zFyMg
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741706891.92386@CwL8HRMAt2O9g9xExQwXSg
+X-ITU-Libra-ESVA-Watermark: 1741705838.80303@CMJOESiD1OK/fLY0IgqV6Q
 X-ITU-MailScanner-SpamCheck: not spam
 
-Hi Dmitry,
+--Ow63fKL/6QkVXSRs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2025/3/2 2:14, Dmitry Baryshkov wrote:
-> On Sun, Feb 23, 2025 at 07:30:25PM +0800, Andy Yan wrote:
->> From: Andy Yan <andy.yan@rock-chips.com>
->>
->> The DW DP TX Controller is compliant with the DisplayPort Specificatio=
-n
->> Version 1.4 with the following features:
->>
->> * DisplayPort 1.4a
->> * Main Link: 1/2/4 lanes
->> * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
->> * AUX channel 1Mbps
->> * Single Stream Transport(SST)
->> * Multistream Transport (MST)
->> *=EF=81=AEType-C support (alternate mode)
->> * HDCP 2.2, HDCP 1.3
->> * Supports up to 8/10 bits per color component
->> * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
->> * Pixel clock up to 594MHz
->> * I2S, SPDIF audio interface
->>
->> Add library with common helpers to make it can be shared with
->> other SoC.
->>
->> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
->>
->> drm/bridge: cleanup
+On Sat, Mar 01, 2025 at 09:58:24AM +0800, Chen Wang wrote:
 >=20
-> Stray line?
->=20
->>
->> ---
->>
->>   drivers/gpu/drm/bridge/synopsys/Kconfig  |    7 +
->>   drivers/gpu/drm/bridge/synopsys/Makefile |    1 +
->>   drivers/gpu/drm/bridge/synopsys/dw-dp.c  | 2155 ++++++++++++++++++++=
-++
->>   include/drm/bridge/dw_dp.h               |   19 +
->>   4 files changed, 2182 insertions(+)
->>   create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-dp.c
+> On 2025/3/1 2:22, Conor Dooley wrote:
+> [......]
+> > > +
+> > > +		spi0: spi@7040004000 {
+> > > +			compatible =3D "snps,dw-apb-ssi";
+> > I thought were were dropping the use of "snps,dw-abp-ssi" in isolation,
+> > and starting to require soc-specific compatibles now.
+> >=20
+> > Rob, Krzysztof?
+> I'm also very interested to know why we can't just use "snps,dw-abp-ssi",
+> maybe I missed some discussion ...
 
-......
+Ordinarily you're not allowed to use generic compatibles at all, the
+dw stuff has kinda been an ?unofficial? exception for a while and not
+just for spi. I think that "exception" has been withdrawn though, and
+dw stuff is being brought in line with everything else, but cannot
+remember where that started.
 
->> +
->> +static u8 dw_dp_voltage_max(u8 preemph)
->> +{
->> +	switch (preemph & DP_TRAIN_PRE_EMPHASIS_MASK) {
->> +	case DP_TRAIN_PRE_EMPH_LEVEL_0:
->> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_3;
->> +	case DP_TRAIN_PRE_EMPH_LEVEL_1:
->> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_2;
->> +	case DP_TRAIN_PRE_EMPH_LEVEL_2:
->> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_1;
->> +	case DP_TRAIN_PRE_EMPH_LEVEL_3:
->> +	default:
->> +		return DP_TRAIN_VOLTAGE_SWING_LEVEL_0;
->> +	}
->> +}
->> +
->> +static void dw_dp_link_get_adjustments(struct dw_dp_link *link,
->> +				       u8 status[DP_LINK_STATUS_SIZE])
->> +{
->> +	struct dw_dp_link_train_set *adjust =3D &link->train.adjust;
->> +	u8 v =3D 0;
->> +	u8 p =3D 0;
->> +	unsigned int i;
->> +
->> +	for (i =3D 0; i < link->lanes; i++) {
->> +		v =3D drm_dp_get_adjust_request_voltage(status, i);
->> +		p =3D drm_dp_get_adjust_request_pre_emphasis(status, i);
->> +		if (p >=3D  DP_TRAIN_PRE_EMPH_LEVEL_3) {
->> +			adjust->pre_emphasis[i] =3D DP_TRAIN_PRE_EMPH_LEVEL_3 >>
->> +						  DP_TRAIN_PRE_EMPHASIS_SHIFT;
->> +			adjust->pre_max_reached[i] =3D true;
->> +		} else {
->> +			adjust->pre_emphasis[i] =3D p >> DP_TRAIN_PRE_EMPHASIS_SHIFT;
->> +			adjust->pre_max_reached[i] =3D false;
->> +		}
->> +		v =3D min(v, dw_dp_voltage_max(p));
->> +		if (v >=3D DP_TRAIN_VOLTAGE_SWING_LEVEL_3) {
->> +			adjust->voltage_swing[i] =3D DP_TRAIN_VOLTAGE_SWING_LEVEL_3 >>
->> +						   DP_TRAIN_VOLTAGE_SWING_SHIFT;
->> +			adjust->voltage_max_reached[i] =3D true;
->> +		} else {
->> +			adjust->voltage_swing[i] =3D v >> DP_TRAIN_VOLTAGE_SWING_SHIFT;
->> +			adjust->voltage_max_reached[i] =3D false;
->> +		}
->> +	}
->> +}
->> +
->> +static void dw_dp_link_train_adjust(struct dw_dp_link_train *train)
->> +{
->> +	struct dw_dp_link_train_set *request =3D &train->request;
->> +	struct dw_dp_link_train_set *adjust =3D &train->adjust;
->> +	unsigned int i;
->> +
->> +	for (i =3D 0; i < 4; i++) {
->=20
-> Shouldn't it be a loop up to link->lanes?
->=20
->> +		if (request->voltage_swing[i] !=3D adjust->voltage_swing[i])
->> +			request->voltage_swing[i] =3D adjust->voltage_swing[i];
->> +		if (request->voltage_max_reached[i] !=3D adjust->voltage_max_reache=
-d[i])
->> +			request->voltage_max_reached[i] =3D adjust->voltage_max_reached[i]=
-;
->> +	}
->> +
->> +	for (i =3D 0; i < 4; i++) {
->> +		if (request->pre_emphasis[i] !=3D adjust->pre_emphasis[i])
->> +			request->pre_emphasis[i] =3D adjust->pre_emphasis[i];
->> +		if (request->pre_max_reached[i] !=3D adjust->pre_max_reached[i])
->> +			request->pre_max_reached[i] =3D adjust->pre_max_reached[i];
->=20
-> Why do you need separate request and adjustment structs?
-During link training cr sequence, if dprx keep the LANEx_CR_DONE bit(s)=20
-cleared, the request and adjustment structs are used to check the
-old and new valud of ADJUST_REQUEST_LANEx_y register(s) is changed or not=
+> I googled examples of soc-specific defined in the code, and it doesn't se=
+em
+> to be much, only arch/mips/boot/dts/mscc/ocelot.dtsi and
+> arch/riscv/boot/dts/thead/th1520.dtsi.
+
+> Specially, I looked at the commits for th1520 and saw this https://lore.k=
+ernel.org/linux-riscv/20240703-garbage-explicit-bd95f8deb716@wendy/.
+> It tells if the fallback works identically, then the specific compatible =
+is
+> not needed.
+
+This link is talking about the driver, not the dts/binding. Adding the
+device-specific compatible to the driver is only needed if the specific
+one has some extra features above and beyond the compatible used as the
+fallback.
+
+Cheers,
+Conor.
+
+--Ow63fKL/6QkVXSRs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8VxcwAKCRB4tDGHoIJi
+0lX/AQDJBY3641IPRBtubqSLaUcbCrjzlLFp3F9Lw+Wi6rDPSAEA8dXwvoY2dJWS
+Vy+cEBykB0x0CsyGnioS7rl+yMdBqwk=
+=upyW
+-----END PGP SIGNATURE-----
+
+--Ow63fKL/6QkVXSRs--
+
 
