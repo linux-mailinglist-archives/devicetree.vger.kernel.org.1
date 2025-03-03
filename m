@@ -1,126 +1,81 @@
-Return-Path: <devicetree+bounces-153487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A408A4CC77
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 21:05:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56672A4CCA5
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 21:27:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33A9418970BF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 20:04:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CCAA189328C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 20:28:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F932356BD;
-	Mon,  3 Mar 2025 20:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E874522FF4F;
+	Mon,  3 Mar 2025 20:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="WXjVaEnB";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="PmI0BGAp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S53b1Hmf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from flow-b6-smtp.messagingengine.com (flow-b6-smtp.messagingengine.com [202.12.124.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A149215065;
-	Mon,  3 Mar 2025 20:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F4A51EDA3E;
+	Mon,  3 Mar 2025 20:27:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741032252; cv=none; b=ZDW/ghArfZu1N74ahr2Ado5krR3KCqE30TZD5WnmE2QJcl3BMp+1Fj3nSp1FBr2s6HSiWWWymPXMoMqMaLgMzNwt6MvPsEwPCXl5p9lqpv0WwvR+wbT57NrlwwSyNpzIgnj1aDmCyG12Z74xojPH9cxaFaEJi+5FUd6Pm5R17oE=
+	t=1741033675; cv=none; b=gGV7DmTijVBcCBJXgDTaqaDikVwCmcH2XuYHWOWzV/OE3zTxOMoziC0RA+pkwx60hlQ7SybNVUDbRKDkuYIe4z4HrBvQlwd3NUu6Zwf5byI5O660twBHJ8H5lUt+6ESy0+M3dSHJM3zJgiO+mb1CKuNnkoGGAYmgoxS61Ai9u6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741032252; c=relaxed/simple;
-	bh=WmwwteaKVSEELRkso5aFwtcgNpCVXuic6iStoQWMryE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Je9nNoJVFh8WuZ5yatPhx8geCn8WO9SN29h3fMCJXbv5OjIdt50Kk8qMvki2dedt5xjSEMDz2Vj5OlHnXdzZRb2/QS7XtJyxStdkUHLVjOjE4+LHG5+dxkChFQLlJJO/9zBvn1Jx8NzdqXr+KoGQJ8Vdau7NseQgeoZFOBAppmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=WXjVaEnB; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=PmI0BGAp; arc=none smtp.client-ip=202.12.124.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailflow.stl.internal (Postfix) with ESMTP id D2E521D411E3;
-	Mon,  3 Mar 2025 15:04:08 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-04.internal (MEProxy); Mon, 03 Mar 2025 15:04:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1741032248; x=1741039448; bh=pD70oFS3M4Bnr8rEfLIbi5W0ZWGc/ux+
-	HB8INioexGU=; b=WXjVaEnBX6IOGqXQHJ2m4dPzu0BGbHs8jAYcklH1EsVXpUXA
-	pqUGVJJnJcqmW2tTkd4SDwFl+vvxlTF/9Ex485SAzkL1LsuEbavHI51bhrSvn8Eb
-	RDcHwgX5RV+Kt9bkX3l/3hjBzOluvkVazeqmK+JI7ZSJD3DRSUDjlA+r0ksurTS0
-	3656EgNb/UC60rxKFY+ixNTfUc2J/5WFwFsJqRRJrNmzj3u1iAE74pZt9hRbNjh0
-	7nxYSB9jXXbu6lOrkqSr8ybvaNgCXvvEbIiLrE3IIgieadqaHJ0EHPHQlkvYtDg/
-	5HEfzNx4Ez0bZFuB4GbprEUpWLPiLgDs2tWYLw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1741032248; x=
-	1741039448; bh=pD70oFS3M4Bnr8rEfLIbi5W0ZWGc/ux+HB8INioexGU=; b=P
-	mI0BGApw4lGroXEvS3GMBBbu5wz/SwprNLdFIrFs0JrYT28a9rwrj93ED2MJ6rXZ
-	tlnb+yZ1spjol6GrqGnYmBBlUXo0O7kmxnnnNFAxX3aU31zCHckx9w+H2IGdOWPr
-	HA6r/VQjvIB0qFk8RtYr+tFgl4hUKkoppEd9lcGyE5PWGWZTLscqW1ZfP/4GdMAV
-	52QnrFhcfj6GpanBBMdXN3ZSGS+3CwifkzIJrDWo8DMji//3+0Zy0yCqvn6q+dgx
-	n2fGiHGWxbYkjOJYa0CwC9m5r5bQXgmINdLrl9Pqc093V9e53oeClFjOZyhvTLv1
-	a/7JSQ5SMgSbAui/6En/g==
-X-ME-Sender: <xms:NQvGZ_VMM3RtP1DKODTRwtlwJzNkwcbcmPn1s-O22DbPhk3WmR7GpA>
-    <xme:NQvGZ3n-zUADSrIYQbPCxcyd8SqQa4YWv9dAYP3FcuTmo2XJtGXQw5z1hJwUfI4V8
-    rigKHwTmTvjJQIJSuo>
-X-ME-Received: <xmr:NQvGZ7ZnQiedxDTR5CEajnguSPyYFsheJa4MtuRHvJ-RqCiqbUarzWHEAtzZxiH6XIqs3UmrI3X1k47UsDdmQcLdSbAzyKliGlVA24Hk3WCOkEfRux8vCJvExEkI8SU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddutddttdegucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhggtgfgsehtkeertder
-    tdejnecuhfhrohhmpefuvhgvnhcurfgvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrh
-    druggvvheqnecuggftrfgrthhtvghrnhepgeeihefftefhhffffefhheekveelveeiteef
-    geekhefhieffgfehheeijeehiefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
-    hmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghvpdhnsggprhgt
-    phhtthhopedvhedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepfhhnkhhlrdhkvg
-    hrnhgvlhesghhmrghilhdrtghomhdprhgtphhtthhopehsvhgvnhesshhvvghnphgvthgv
-    rhdruggvvhdprhgtphhtthhopehmrghrtggrnhesmhgrrhgtrghnrdhsthdprhgtphhtth
-    hopegrlhihshhsrgesrhhoshgvnhiifigvihhgrdhiohdprhgtphhtthhopehmrggrrhht
-    vghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtoh
-    epmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthiiihhmmhgvrhhm
-    rghnnhesshhushgvrdguvgdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtoh
-    hmpdhrtghpthhtohepshhimhhonhgrsehffhiflhhlrdgthh
-X-ME-Proxy: <xmx:NQvGZ6UYHxVWkZf7UtPX9TwDArprBk0BWSBdpveHMJd4CkkzrHt6kw>
-    <xmx:NQvGZ5mAwfjIDz1C18jwijwve-ADRksOJRo2PDpzeZQ6xiOeQaWbDA>
-    <xmx:NQvGZ3fT339mfLcSW5qQfav0c8o47LLgQ5fG1WVOxCQQ8dkF_dD1EA>
-    <xmx:NQvGZzGFmyC2hu3N7Vq5zjNkUx1dHg92NTiwpEThN4TPfcGOgk03-Q>
-    <xmx:OAvGZ7UFo6yl2jRQYv7xu9S__Twf17INMbiJr6VmJP1Hhx5oxAy2M1kN>
-Feedback-ID: i51094778:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 3 Mar 2025 15:04:02 -0500 (EST)
-From: Sven Peter <sven@svenpeter.dev>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Sven Peter <sven@svenpeter.dev>,
-	Hector Martin <marcan@marcan.st>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	asahi@lists.linux.dev,
-	Janne Grunau <j@jannau.net>,
-	linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Alyssa Ross <hi@alyssa.is>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Neal Gompa <neal@gompa.dev>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Nick Chan <towinchenmi@gmail.com>
-Subject: Re: (subset) [PATCH v7 0/5] Driver for pre-DCP apple display controller.
-Date: Mon,  3 Mar 2025 21:03:58 +0100
-Message-Id: <174103187680.75921.8965235926191911132.b4-ty@svenpeter.dev>
-X-Mailer: git-send-email 2.39.3 (Apple Git-146)
-In-Reply-To: <20250217-adpdrm-v7-0-ca2e44b3c7d8@gmail.com>
-References: <20250217-adpdrm-v7-0-ca2e44b3c7d8@gmail.com>
+	s=arc-20240116; t=1741033675; c=relaxed/simple;
+	bh=gMD9k1Qgdbybv2uBOP8stTocBsHxADMCNCVyb3oQlDk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=okrwKvnHlkoK6m5WDyFjFGT6o9vesj08PBn1pBM4Au3oMKpMuHreSrT/Yih8HSp7FbOpR2u0C55dsAdnOGYk5KYJxh9aVBf68iWSMcEY3kuFaDsirP7OWNrS0bzhHVjye90CC3ASatsRUA6W9mth6kjnRHEqn4C5tR/HzixkkGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S53b1Hmf; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-abf4b376f2fso424623366b.3;
+        Mon, 03 Mar 2025 12:27:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741033672; x=1741638472; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5b60CN6bgvsucEwRWCH6wo9YbTIOsAqIH7mkhNo9S0Q=;
+        b=S53b1HmfY7/LkXz4xqy/3IHCbp2NDaZ/TwmTi7F1Bf+pkCwkUgLNeGWxXTWJDZqks2
+         xNpOEApyTYh38h6pZC7GHNkNM8eizrZk9JR7dUaV49NucXMwauhBk4YR3XyqSGlRypCa
+         lTT9FxRzT8KJ38DH2CgoBjUDh0mgbBMp/JM27iKeoa+6IJ/S2I5DF/S27Lq2M3hgqqhM
+         g6OzoyRaFN7QS/0bjOfkyVenBNIxL6a09jWFS2COA3LnJv8AT+NTFnx2JNj+jB+LwrRd
+         siMW5wO11wBeqy8vo76lUwDL3aMFYrGd3HSuTBcje2sYpTcwhLj8drhrf0D0POyUKCom
+         BAng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741033672; x=1741638472;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5b60CN6bgvsucEwRWCH6wo9YbTIOsAqIH7mkhNo9S0Q=;
+        b=tk+8BmGcjzBCjDvRii1FhTkRy5nIJzZP6DZMr015WCC98CrN+lo76iRCqudIIcM1V8
+         hKi850FzyYRzCPjBDYQ5vnKGvUGjqo0AnSsE9rmUm+FOQKVeV0qvV2xrbv233kzn3/GW
+         RHMQh+Y/+nfyb/eHfFh3r8MhSI/eX54iRxBAmnrlXYLuLoITRep36OSE3bNHtbKIirLs
+         vL/xwBrDD3vUqlukn7UrdyYpmt/9ZvLxj/K8RRdh2exyJlc9G7y0gRfgeYhzSFKBS3Di
+         p7IAyvJzMH4iczLqYb5Mr35wvOTquJcaAzlMiWy4VwOA0zegR+tJR3un0DFYggJUOWsK
+         MqkA==
+X-Forwarded-Encrypted: i=1; AJvYcCVU9ihqk8BAtCR0uq6fvaH81ng8UYxuc0C+SR5OITjSfqcm0bMKwesYHfdZKPWNMe+VfiHk0yDjnUyxGyDW@vger.kernel.org, AJvYcCVUned7Fy3fHntXdXwf8LnPSGchVxfBSAOB6zTvccOwOKSW6kLZaXjJuoeCEgQWvEOhIQxYOLTTxw4J@vger.kernel.org, AJvYcCVpLEpVtULO3fOYft5OX3UU5K0hcUcmel8yISMTmQR+tQ8Mo08tkPR/DES659dFqSE688r1wgeoH0GO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcUbDMbJCpgiq9mtd+fNuJLblGXrBexvN2XVLvVQ9NlhsgEmGm
+	LVdeBENQyOdjaHQq9t9oIb5HUX4e6uWj7h2NUOASt9XV6AnBIfsbz86CNw==
+X-Gm-Gg: ASbGncvIaoRcXPftY3naV8h0mmA2mv0PBRf+5b3YwjSQW6qDBlhcQyfOieqDlom/Z50
+	R8JUAaw9rvHHetHhhjhqi4AnoXyizHdEJ/AtTAC0XHcGnwufLZZklfW5JA+biQTB964Wvk8LBBO
+	bBNPdARvEGpTVVICtqNDECd+rzLIa2cuM33gzrfOJKGJ2z2htjg15A4YDguFA1VtDzCdXq2jBky
+	oyqy8I4tvUni9CGTKl6xiMSNc/T9szqR4LrNgnANWZ/nodw3TALzygdbA2l1DCjE7sn53AE3X49
+	Zftd4SenYkNiciu6vitKl1GlUqg+udgCB36J7USa2sBsqo6f8Fky7Ys0VwQP0fEleJ30nuYnWzY
+	DtedNq9DMcaFLZII=
+X-Google-Smtp-Source: AGHT+IF77BedJBseCcnU1IQQMJBf/RtmIsVemRMwmoWoDaynloyfr0FemI6jF/O3BZRfQsaxHPJFsA==
+X-Received: by 2002:a17:906:478b:b0:abf:5759:7aa9 with SMTP id a640c23a62f3a-abf57597d07mr1137099866b.7.1741033672158;
+        Mon, 03 Mar 2025 12:27:52 -0800 (PST)
+Received: from hex.my.domain (83.8.122.142.ipv4.supernova.orange.pl. [83.8.122.142])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf64dd565dsm389222166b.101.2025.03.03.12.27.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Mar 2025 12:27:51 -0800 (PST)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v2 0/7] clk: bcm: kona: Add bus clock support, bus clocks
+ for BCM21664/BCM281xx
+Date: Mon, 03 Mar 2025 21:27:48 +0100
+Message-Id: <20250303-kona-bus-clock-v2-0-a363c6a6b798@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -128,23 +83,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMQQxmcC/13Myw6CMBCF4Vchs3ZMmSAVV76HYVHLABMuJa02G
+ sK7W0ncuPxPcr4VAnvhAJdsBc9Rgrg5BR0ysL2ZO0ZpUgMpOinKCQc3G7w/A9rR2QELqjRza7g
+ qFKTT4rmV1w7e6tS9hIfz792P+Xf9UeU/FXNUyGetq0ZrU7Z07SYj49G6Cept2z6gCxEnrAAAA
+ A==
+X-Change-ID: 20250212-kona-bus-clock-4297eefae940
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Alex Elder <elder@kernel.org>, 
+ Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>, Alex Elder <elder@riscstar.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741033670; l=2598;
+ i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
+ bh=gMD9k1Qgdbybv2uBOP8stTocBsHxADMCNCVyb3oQlDk=;
+ b=iddqj2tp02CUcqIe1ypdcz2ln1fnPo0OdRmkCTcLdVbLQVr65P2WusLP+sB093wH/9T4CLFdN
+ xdg0hUi+SkWASH8zxVD1Aqutu4j/CPhtOtOzhK9Vjr2pZqORCH7ge++
+X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
+ pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
 
+This patchset does the following:
 
-On Mon, 17 Feb 2025 12:39:30 +0100, Sasha Finkelstein wrote:
-> This patch series adds support for a secondary display controller
-> present on Apple M1/M2 chips and used to drive the display of the
-> "touchbar" touch panel present on those.
-> 
-> 
+- Introduce support for bus clocks. These are fairly similar to
+  peripheral clocks, but only implement policy, gate and hyst.
 
-Since the dt-bindings are now part of drm-misc-next I've also applied
-the dts change, thanks!
+- Add matching bus clocks for BCM21664 and BCM281xx peripheral clocks
+  and update device tree bindings to match.
 
-[4/5] arm64: dts: apple: Add touchbar screen nodes
-      commit: 7275e795e520c7064af52ba67c74d7bac27eea4f
+The previous (RFC) version of this patchset also introduced a
+prerequisite clock mechanism to enable bus clocks before their
+corresponding peripheral clocks. It seems that this is unnecessary - 
+the way these clocks are initialized leaves them enabled by default.
+Thus, the prerequisite mechanism has been dropped from this version.
+
+This is fine for now, and more accurate to hardware (bus clocks are
+a prerequisite for the bus, not the peripheral clock). I had an idea
+to connect bus clocks to buses using "simple-pm-bus" in DT, but
+this is a task for another patchset.
+
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Changes in v2:
+- Drop prerequisite clock patch
+- Move clock/bcm21664.h dt-bindings header change to dt-bindings patch
+- Add BCM281xx bus clocks
+- Link to v1: https://lore.kernel.org/r/20250216-kona-bus-clock-v1-0-e8779d77a6f2@gmail.com
+
+---
+Artur Weber (7):
+      dt-bindings: clock: brcm,kona-ccu: Add BCM21664 bus clocks
+      dt-bindings: clock: brcm,kona-ccu: Add BCM281xx bus clocks
+      clk: bcm: kona: Add support for bus clocks
+      clk: bcm21664: Add matching bus clocks for peripheral clocks
+      clk: bcm281xx: Add corresponding bus clocks for peripheral clocks
+      ARM: dts: bcm2166x-common: Add matching bus clocks for peripheral clocks
+      ARM: dts: bcm11351: Add corresponding bus clocks for peripheral clocks
+
+ .../devicetree/bindings/clock/brcm,kona-ccu.yaml   |  37 ++++++-
+ arch/arm/boot/dts/broadcom/bcm11351.dtsi           |  33 ++++--
+ arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi    |  28 +++--
+ drivers/clk/bcm/clk-bcm21664.c                     |  83 ++++++++++++++
+ drivers/clk/bcm/clk-bcm281xx.c                     | 121 +++++++++++++++++++++
+ drivers/clk/bcm/clk-kona-setup.c                   | 116 ++++++++++++++++++++
+ drivers/clk/bcm/clk-kona.c                         |  62 ++++++++++-
+ drivers/clk/bcm/clk-kona.h                         |  10 ++
+ include/dt-bindings/clock/bcm21664.h               |  19 +++-
+ include/dt-bindings/clock/bcm281xx.h               |  25 ++++-
+ 10 files changed, 505 insertions(+), 29 deletions(-)
+---
+base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+change-id: 20250212-kona-bus-clock-4297eefae940
 
 Best regards,
 -- 
-Sven Peter <sven@svenpeter.dev>
+Artur Weber <aweber.kernel@gmail.com>
+
 
