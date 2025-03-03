@@ -1,111 +1,102 @@
-Return-Path: <devicetree+bounces-154024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDB12A4E869
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:21:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF7B4A4EABC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:11:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABAC619C435F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:15:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 998ED1892B61
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83572BF3C7;
-	Tue,  4 Mar 2025 16:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF4629DB86;
+	Tue,  4 Mar 2025 17:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ocnUXlce"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KNt5cB6E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
+Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F672BE7DA
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:53:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71ADD28D049
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:45:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741107206; cv=pass; b=jrUa2S5opI0Gjc2uk5IIq8CKrVHxHnb/h/b43Q3X7kuZ8N5wpRR33mtuORoQhODB09ClUEe58iFSD1ZVIUzIEMADUHn8mEs7u3fyseX8AG16vbZfjn6mbAxWqTPYpEzKz2IG9H7/E47Kl3K764MYSNijkJfaCT9Ixtdwfp9B/ms=
+	t=1741110343; cv=fail; b=g9tXMoRHOxvpnNhJJsaanM+GFk9njDPcZVFwNgvSLrhHt6GPjBk6mmixCf9DjFz5NjivmPZA6y5hP8t4TTJ0lch+fD2y8x/Gp/PeZ36W79GS+DDgs5GSBp03WOJ4UgooBCKrNpdtQNTUUc90n12DOel3FtuzehoiI0WScnPiPlg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741107206; c=relaxed/simple;
-	bh=Ga6GFweHOtTnn56R1/QNU2fziTaVnQURE0NFf7Zw8tk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=DYE8i8+3p9Eivviom/b4oA0Y3OIkToPdg98gD1gBDslSdDMkLwIHZZ/CToDBTkDrBBQjw9RZ5R1ngjfTW/ff8kUl/23bbCtUmKObZrzgqshzGrxuWaMQb/wEszNpZi8dTChDfeBTUzLBm+Q6Z0oaV7Wtbnev+v1q7ZeaHfmXXEY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ocnUXlce; arc=none smtp.client-ip=205.220.168.131; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; arc=pass smtp.client-ip=160.75.25.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+	s=arc-20240116; t=1741110343; c=relaxed/simple;
+	bh=39QbOhKHfcJQty3g7AwKqxqCVPXoVMkJ9U4MBC16Vdw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=teF+ylmgMbEM/30/ZU3O0gnxs9vvl+sAxwV6xKveqw0f/ruKcoPR4W3cZNFbPGuBriPOGlt8dg8j557vKoz+j2V9SJ94J5GQfBtOhNlFijsF4drbEM+1P4eL7dNBphKo9CgDY+WtfcoC6fnJoJiiNb1WzdEgaS4JLXleK5EX2h0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=collabora.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KNt5cB6E reason="signature verification failed"; arc=none smtp.client-ip=148.251.105.195; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=fail smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 4B753408B64A
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:53:23 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id E3CC440CF9D2
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 20:45:39 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
-Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=quicinc.com header.i=@quicinc.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ocnUXlce
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dgR31cqzFxBG
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:42:11 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6f973mzJzFyHJ
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:04:27 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 7844A42721; Tue,  4 Mar 2025 17:42:09 +0300 (+03)
+	id 1592742755; Tue,  4 Mar 2025 18:04:10 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ocnUXlce
-X-Envelope-From: <linux-kernel+bounces-541484-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KNt5cB6E
+X-Envelope-From: <linux-kernel+bounces-541497-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ocnUXlce
-Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 2AED541FDF
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:09:23 +0300 (+03)
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id BBD74305F789
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:09:22 +0300 (+03)
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KNt5cB6E
+Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
+	by le2 (Postfix) with ESMTP id 4E2AD41C05
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:10:16 +0300 (+03)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by fgw2.itu.edu.tr (Postfix) with SMTP id 027AE2DCE0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:10:15 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 698203AC6C2
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:03:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23D06161219
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:08:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E54E1F4631;
-	Mon,  3 Mar 2025 11:01:52 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A406B1F4735;
+	Mon,  3 Mar 2025 11:07:07 +0000 (UTC)
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1601F1921;
-	Mon,  3 Mar 2025 11:01:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D7E1F4261;
+	Mon,  3 Mar 2025 11:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740999709; cv=none; b=YzedWdGCSmG28pOTfcbaszhjV0Oyf4X0u3CCcz5x9HGCDJrfRiFm6pJRAyI/1LY+29tavw4srr9ztDD167jFKHeEjIsCYDETVn/Qwwx0LL4fI2/2d9fzJzqZ3bPxSaNWYTeAqUIEVTZzoA0/3nYsb+JKkXg87F1gPJSuvEteNhU=
+	t=1741000024; cv=none; b=O7SRFjRA1cgK33piFoslljgbnkRzcpN9G2OGevN/KxPTk3PiJOe/UEnsY4csO8/D/veQXlCAaHFVvhZpY+t52iAdMNbw7oidBbONlHHUrnr/1ysbH0xWA8x4+lXX/sE6YZtZFp2LhiUb4C6h8lwvV8wGAqf7zpGBkWTNYMGr0Qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740999709; c=relaxed/simple;
-	bh=Ga6GFweHOtTnn56R1/QNU2fziTaVnQURE0NFf7Zw8tk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=mqV0pzMjzM5RodXuUe5f/J2hn+tGX6WUabOFG2N+LU1H2xUWU3LMoWftPgDWrczoPJp+GKuS9HdB5tyKIY+a3BOHyBD0ZKvGCcnCGoeU7IfEt1VSUfqV5A/s2FTY8CLwpT9u2WZ+e7YN9e/hg4JU3xzYz72qqkQdQyXjj1e3AaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ocnUXlce; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523AaRUc016148;
-	Mon, 3 Mar 2025 11:01:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=uAvC6pWrqVX+r4YoVIlWhm
-	DuCdaEkH0XJXwuhCpB/s8=; b=ocnUXlceq5RmpszQThhDm8nnRmBOa1N1D+zGd9
-	y5A/sKDjVdi4W2jCeDpFvItoyZA01JtbNVqrkJhzRLlonDUzFSThC8BNwetoDtxJ
-	uhyFDVB67Dq/DATW+7z1/RnhzmPTwQ7sDxzY4bffzcDIvaN9/tfzYBbWhhHU0TWU
-	MnzxDI0Xgxcuz5pg040axFgIkwmS1OoZtZzjTaYNoIBtmAVlBWUIp+HC7V0OQkup
-	TMLAZYNmZmfiSk5HmA9cg360d0PuR3TQIIz+iHAhbzAd1mLI9KysVELzjDfDU/Xx
-	Av0WP2AWwqsfjj2Lw4lu+czld9eoUsKl8MXx5Y7tiksjetQw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 453udgvck8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Mar 2025 11:01:44 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 523B1hxw004102
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Mar 2025 11:01:43 GMT
-Received: from hu-vgarodia-hyd.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 3 Mar 2025 03:01:40 -0800
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-Date: Mon, 3 Mar 2025 16:31:16 +0530
-Subject: [PATCH] arm64: dts: qcom: sc7280: drop video decoder and encoder
- nodes
+	s=arc-20240116; t=1741000024; c=relaxed/simple;
+	bh=CuLBO8WEfBYQo9g1568escIyXpzN1KWlf5T5E7ZWKe0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gJkKUzsMA8Lh2VdEuTtwHbIlOZP6AdVdbXlGibyB/Z9WA+Kf9RrYsiTAOGsDWRG6UAPiwx1xYxbxK9btQrfo78SpnXS7E15QmRUyKtPWMnmizLYieT9Sec3im0u0y0nAaIkn/47n3MCKwyNFYpGSOygJoXGicyGrl+dX6JNRfTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KNt5cB6E; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1741000021;
+	bh=CuLBO8WEfBYQo9g1568escIyXpzN1KWlf5T5E7ZWKe0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KNt5cB6E3tkRk+KKq5J3Wa/5X0IpYAsoezW4HlQh4DGPzZv5msphj0aJ25cZ+FC42
+	 YfXxZ8N/aZEyhL2QCYB8Q4seia6L1TOdC7Hx+jjukIAjt84SKAMOLXUWsTjEeJjVNe
+	 GV2exr4OBpRnWotJOqs7uTK9mULIc3wigF3uxPtpJyluKe5FlVz10Sb2olWnpyWY1z
+	 05DBQ83fmv2tQg1JBVhqDWfWGohD5PRTbASI31pfFcLZPFeh0cy/wgTTbZcsGV3rWc
+	 DrpNZnK7pPLCiv7uaKXpqzm8DwiTN8T7oHHJxE2+UcfJ63UaVjIGj5Fq/2ErIru1h+
+	 aVvnltR/+o4Ag==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D3BDC17E0F3D;
+	Mon,  3 Mar 2025 12:06:59 +0100 (CET)
+Message-ID: <8af68114-82cd-45b3-a0a9-baa46d64c936@collabora.com>
+Date: Mon, 3 Mar 2025 12:06:59 +0100
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -113,88 +104,55 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250303-b4-media-v1-1-ddc5c81cc2b3@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAPuLxWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDYwNj3SQT3dzUlMxEXXPLtDQDc2OLJMvkNCWg8oKi1LTMCrBR0bG1tQC
- 66C5nWgAAAA==
-X-Change-ID: 20250303-b4-media-79ff0738b9cf
-To: <cros-qcom-dts-watchers@chromium.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740999700; l=1011;
- i=quic_vgarodia@quicinc.com; s=20241104; h=from:subject:message-id;
- bh=Ga6GFweHOtTnn56R1/QNU2fziTaVnQURE0NFf7Zw8tk=;
- b=Qvf0eMgJygcYPtaCv3tONFp1gRMVG+jri29Z1lO6DY8H1UHOQFxljlNVbwqcYTDz4gs/cetY8
- bmySnjXJD5VDFRbT3/7HBo2Gdc9HLvQnQdS0kYE8TS7KjvG8zXM+vgW
-X-Developer-Key: i=quic_vgarodia@quicinc.com; a=ed25519;
- pk=LY9Eqp4KiHWxzGNKGHbwRFEJOfRCSzG/rxQNmvZvaKE=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: d3ToDk6ffYYqtrJICS0MM5zkiR_R06ZS
-X-Proofpoint-ORIG-GUID: d3ToDk6ffYYqtrJICS0MM5zkiR_R06ZS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-03_04,2025-03-03_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
- lowpriorityscore=0 malwarescore=0 mlxscore=0 suspectscore=0 bulkscore=0
- impostorscore=0 mlxlogscore=537 priorityscore=1501 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2503030084
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 12/20] ASoC: mediatek: mt6359-accdet: Always use
+ internal resistor
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+ Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>
+Cc: kernel@collabora.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org
+References: <20250302-mt6359-accdet-dts-v2-0-5bd633ee0d47@collabora.com>
+ <20250302-mt6359-accdet-dts-v2-12-5bd633ee0d47@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250302-mt6359-accdet-dts-v2-12-5bd633ee0d47@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6dgR31cqzFxBG
+X-ITU-Libra-ESVA-ID: 4Z6f973mzJzFyHJ
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741711885.04918@Iti5llHhl7i7TOdmYozLHQ
+X-ITU-Libra-ESVA-Watermark: 1741715049.56059@8lxmcb6eECk7TQlAikS5qg
 X-ITU-MailScanner-SpamCheck: not spam
 
-Decoder and encoder nodes are already deprecated from bindings. Update
-the venus node to align with bindings.
+Il 02/03/25 17:30, N=C3=ADcolas F. R. A. Prado ha scritto:
+> The code currently reads a property mediatek,eint-use-ext-res with
+> values ranging between 0 and 4. Not only should this be a boolean
+> property, but there's no need for it to even be a DT property, seeing a=
+s
+> all current boards will use the internal resistor anyway. Since there's
+> no current dt-binding or Devicetree user of this property, remove its
+> handling and make the driver always configure the internal resistor.
+>=20
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
 
-Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 --------
- 1 file changed, 8 deletions(-)
+Adding up to this - I even checked a few downstream smartphone devicetree=
+s, and
+not even those are ever using external resistor. This won't ever be neede=
+d.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 0f2caf36910b65c398c9e03800a8ce0a8a1f8fc7..31abb2b9555f37ecc9c7753509e95acd57acf015 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -4301,14 +4301,6 @@ venus: video-codec@aa00000 {
- 
- 			status = "disabled";
- 
--			video-decoder {
--				compatible = "venus-decoder";
--			};
--
--			video-encoder {
--				compatible = "venus-encoder";
--			};
--
- 			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
 
----
-base-commit: d98e9213a768a3cc3a99f5e1abe09ad3baff2104
-change-id: 20250303-b4-media-79ff0738b9cf
-
-Best regards,
--- 
-Vikash Garodia <quic_vgarodia@quicinc.com>
 
 
 
