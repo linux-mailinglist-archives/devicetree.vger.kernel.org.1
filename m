@@ -1,61 +1,86 @@
-Return-Path: <devicetree+bounces-153519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03FF6A4CDE8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 23:11:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CFC4A4CE03
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 23:16:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 730813AC152
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 22:11:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A8BF7A92DD
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 22:14:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD0722ACD2;
-	Mon,  3 Mar 2025 22:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EBF82356BD;
+	Mon,  3 Mar 2025 22:15:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NkFOrArw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nNlpbk/b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB2931EE00D;
-	Mon,  3 Mar 2025 22:11:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B50215782;
+	Mon,  3 Mar 2025 22:15:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741039876; cv=none; b=SVUfvMSqqurLLg95gU1WJQUeVpcpdYmvmxJm0J/wIi3sgsamABdvhHOGUIsyI0uUWSP3JdVr2EGKza8y6yVICpxD7woBGM4cVLfVtxVH9ykKCQvoFPbzlQIA/l3Vd8CoWEMO4nTjj267o0dw0KNzbhk3Gxh2EWU0Wdc/8vJXvTo=
+	t=1741040104; cv=none; b=k5dHMC8zgTZilUmJMpMh61frK1Va1tlO5+6+O8Z8XEVSiXWvrrhj+StjWhXNDwurxT3aHdbySOiMovLFfNNfa1+CeErUredXMHdWAOUPQZ/CiqH723FaCOtLVikk6zD33J2WfbCHtkOl6PeiLyKQ5e5rrdQKVNPjGRY+5kprop8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741039876; c=relaxed/simple;
-	bh=p25ZKJks8Fnkw7N2pzrCNOBpk6sdaPXtiCW09AWTfEE=;
+	s=arc-20240116; t=1741040104; c=relaxed/simple;
+	bh=zpPxLelE9Ybujo8zHlA6Bkn57MYTewjeu9jGuzQ7Jtw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=txrAlBoFpCWJifnE0tz3ZRtVwPxxaTt75ulDn6wzDzCa23BSSYTE5sQUyJX5wHU1RMTQVAST/g4noG9Y8UaqXWtMl1XGATIHpLKVlp1F9/cuuLWjwmjPv2vsUtxI1K9XOIABFPUZvSlO6xKnRLMzo/eaoARwf3ef7UJN42JAM+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NkFOrArw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF682C4CEE5;
-	Mon,  3 Mar 2025 22:11:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741039876;
-	bh=p25ZKJks8Fnkw7N2pzrCNOBpk6sdaPXtiCW09AWTfEE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NkFOrArw7CLvIvU40NYEdk/doZlOawrrHkXz7z88BsXW4I8j5s3CarZCOEVSzWkQb
-	 7C0snJEos7At7n2JG8DuXZQRBv1ZBt3rYMa14+F0Lsy6s6uVUTilVOF1cJ9MltF4f3
-	 N7Lm8OJckqUn8U61m1j92XRP0hWcith5mJ7YNyPzpIrFoX01wCuKQqvva34ud8h0FV
-	 JtF1KeERpdiDqcsU3Hmkcqb5R/AxDqXUI7EfM5tE8636aST04E/jGO2pfEaaZuXJB9
-	 ts5q78kerMummBM7HW/wltQu+Od5LwAPTR1gl8/0CyJDWb25bOXd4hB/fm3JHO4L1Q
-	 xUtdvfWwpSOog==
-Date: Mon, 3 Mar 2025 16:11:12 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>, 
-	Wesley Cheng <quic_wcheng@quicinc.com>, Saravana Kannan <saravanak@google.com>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>, linux-arm-msm@vger.kernel.org, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/7] dt-bindings: usb: Introduce qcom,snps-dwc3
-Message-ID: <zcii4au5qmpths5sg5vpqbgeaw6mxeao6ligdr6v4cgdypnzlx@oyrhcql2hh7x>
-References: <20250226-dwc3-refactor-v4-0-4415e7111e49@oss.qualcomm.com>
- <20250226-dwc3-refactor-v4-1-4415e7111e49@oss.qualcomm.com>
- <20250228223614.GA3792644-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZAIy/7gW7ig9wrkTPzcNI1AQoAlEIgKHfNVZ+s5eoEYJdpfqRlQBEvcspgdsFCv2w/lJbFtrx5b9VJM6fLFHCHsKvUrq3iKKk3IKTiIO7irs4OJt/27ZZPerbv+NURfRCuL3Z85jY9POj8n7PxlUQCBElVd67D+KKy3S4InM0Pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nNlpbk/b; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741040103; x=1772576103;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zpPxLelE9Ybujo8zHlA6Bkn57MYTewjeu9jGuzQ7Jtw=;
+  b=nNlpbk/bIxQ/SHA5m21NCB9LMpjYCPNLt1v5nuV8bXsqI1+bmGsZ39JO
+   wePVIHpSBVJjsvl8GTWPQqocEjk+Fq8rCSbDMUEzHwxFxfSA8m1/MZT+T
+   BmbNIJSNEcP5+NxhfmayGTpDHJoPh7SaQhB5JB3DUa4PyxCaukVEgu4ea
+   S/vLUmNFC4qO7GRv6ASp05kG7Q7ed8ZFvaLFB9MnnO2ysj7kQaV2DN8Zc
+   0dAbV90+soXnMbkuznE33pvJ1tcmCW+lmNetjiqLPLqVRXncE5I73fSJf
+   QsbHDu5xy/dOSERGr5iya4O6bjCg54mzCJHd00ORwq3pqgfjtH/MCeIiw
+   A==;
+X-CSE-ConnectionGUID: QjHes+I2ToeNUFLu5kpitg==
+X-CSE-MsgGUID: 4QzwpZm8RUe4dB3xDWcFtw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="52914242"
+X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; 
+   d="scan'208";a="52914242"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 14:15:02 -0800
+X-CSE-ConnectionGUID: 7OFb8wluTW6tVcy0CNgGPA==
+X-CSE-MsgGUID: xb8BCAlYSYq5R7HwB9qaIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,330,1732608000"; 
+   d="scan'208";a="117909222"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 14:15:01 -0800
+Date: Mon, 3 Mar 2025 14:21:02 -0800
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Yunhong Jiang <yunhong.jiang@linux.intel.com>, tglx@linutronix.de,
+	mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
+	x86@kernel.org, hpa@zytor.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, kys@microsoft.com, haiyangz@microsoft.com,
+	wei.liu@kernel.org, decui@microsoft.com, rafael@kernel.org,
+	lenb@kernel.org, kirill.shutemov@linux.intel.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org,
+	ricardo.neri@intel.com, ravi.v.shankar@intel.com
+Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
+ mailbox
+Message-ID: <20250303222102.GA16733@ranerica-svr.sc.intel.com>
+References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
+ <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
+ <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
+ <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
+ <20240910061227.GA76@yjiang5-mobl.amr.corp.intel.com>
+ <1d0ba3fc-1504-4af3-a0bc-fba86abe41e8@kernel.org>
+ <20240919191725.GA11928@yjiang5-mobl.amr.corp.intel.com>
+ <874d5908-f1db-412f-96a2-83fcebe8dd98@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,172 +89,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250228223614.GA3792644-robh@kernel.org>
+In-Reply-To: <874d5908-f1db-412f-96a2-83fcebe8dd98@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 
-On Fri, Feb 28, 2025 at 04:36:14PM -0600, Rob Herring wrote:
-> On Wed, Feb 26, 2025 at 04:17:48PM -0800, Bjorn Andersson wrote:
-> > The Qualcomm USB glue is not separate of the Synopsys DWC3 core and
-> > several of the snps,dwc3 properties (such as clocks and reset) conflicts
-> > in expectation with the Qualcomm integration.
-> > 
-> > Using the newly split out Synopsys DWC3 core properties, describe the
-> > Qualcomm USB block in a single block. The new binding is a copy of
-> > qcom,dwc3 with the needed modifications.
-> > 
-> > It would have been convenient to retain the two structures with the same
-> > compatibles, but as there exist no way to select a binding based on the
-> > absence of a subnode/patternProperty, a new generic compatible is
-> > introduced to describe this binding.
-> > 
-> > To avoid redefining all the platform-specific compatibles, "select" is
-> > used to tell the DeviceTree validator which binding to use solely on the
-> > generic compatible. (Otherwise if the specific compatible matches during
-> > validation, the generic one must match as well)
-> > 
-> > Mark qcom,dwc3 deprecated, to favor expressing future platforms using
-> > the new combined binding.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-> > ---
-> >  .../devicetree/bindings/usb/qcom,dwc3.yaml         |  13 +-
-> >  .../devicetree/bindings/usb/qcom,snps-dwc3.yaml    | 619 +++++++++++++++++++++
-> >  2 files changed, 631 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > index a2b3cf625e5b..6d818e6dddbc 100644
-> > --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > @@ -4,11 +4,22 @@
-> >  $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> > -title: Qualcomm SuperSpeed DWC3 USB SoC controller
-> > +title: Legacy Qualcomm SuperSpeed DWC3 USB SoC controller
-> >  
-> >  maintainers:
-> >    - Wesley Cheng <quic_wcheng@quicinc.com>
-> >  
-> > +# Use the combined qcom,snps-dwc3 instead
-> > +deprecated: true
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: qcom,dwc3
-> > +  required:
-> > +    - compatible
-> > +
-> >  properties:
-> >    compatible:
-> >      items:
-> > diff --git a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
-> > new file mode 100644
-> > index 000000000000..37af52e01803
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
-> > @@ -0,0 +1,619 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm SuperSpeed DWC3 USB SoC controller
-> > +
-> > +maintainers:
-> > +  - Wesley Cheng <quic_wcheng@quicinc.com>
-> > +
-> > +description:
-> > +  Describes the Qualcomm USB block, based on Synopsys DWC3.
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: qcom,snps-dwc3
-> > +  required:
-> > +    - compatible
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - qcom,ipq4019-dwc3
-> > +          - qcom,ipq5018-dwc3
-> > +          - qcom,ipq5332-dwc3
-> > +          - qcom,ipq5424-dwc3
-> > +          - qcom,ipq6018-dwc3
-> > +          - qcom,ipq8064-dwc3
-> > +          - qcom,ipq8074-dwc3
-> > +          - qcom,ipq9574-dwc3
-> > +          - qcom,msm8953-dwc3
-> > +          - qcom,msm8994-dwc3
-> > +          - qcom,msm8996-dwc3
-> > +          - qcom,msm8998-dwc3
-> > +          - qcom,qcm2290-dwc3
-> > +          - qcom,qcs404-dwc3
-> > +          - qcom,qcs615-dwc3
-> > +          - qcom,qcs8300-dwc3
-> > +          - qcom,qdu1000-dwc3
-> > +          - qcom,sa8775p-dwc3
-> > +          - qcom,sar2130p-dwc3
-> > +          - qcom,sc7180-dwc3
-> > +          - qcom,sc7280-dwc3
-> > +          - qcom,sc8180x-dwc3
-> > +          - qcom,sc8180x-dwc3-mp
-> > +          - qcom,sc8280xp-dwc3
-> > +          - qcom,sc8280xp-dwc3-mp
-> > +          - qcom,sdm660-dwc3
-> > +          - qcom,sdm670-dwc3
-> > +          - qcom,sdm845-dwc3
-> > +          - qcom,sdx55-dwc3
-> > +          - qcom,sdx65-dwc3
-> > +          - qcom,sdx75-dwc3
-> > +          - qcom,sm4250-dwc3
-> > +          - qcom,sm6115-dwc3
-> > +          - qcom,sm6125-dwc3
-> > +          - qcom,sm6350-dwc3
-> > +          - qcom,sm6375-dwc3
-> > +          - qcom,sm8150-dwc3
-> > +          - qcom,sm8250-dwc3
-> > +          - qcom,sm8350-dwc3
-> > +          - qcom,sm8450-dwc3
-> > +          - qcom,sm8550-dwc3
-> > +          - qcom,sm8650-dwc3
-> > +          - qcom,x1e80100-dwc3
-> > +      - const: qcom,snps-dwc3
-> > +
-> > +  reg:
-> > +    description: Offset and length of register set for QSCRATCH wrapper
+On Fri, Sep 20, 2024 at 01:15:41PM +0200, Krzysztof Kozlowski wrote:
+
+[...]
+ 
+> enable-method is part of CPUs, so you probably should match the CPUs...
+> I am not sure, I don't have the big picture here.
 > 
-> I think you want to drop this. Or do you need 2 regions? The wrapper 
-> regs and the DWC3 regs? Probably worth describing separately even if 
-> they are adjacent currently.
-> 
+> Maybe if companies want to push more of bindings for purely virtual
+> systems, then they should first get involved more, instead of relying on
+> us. Provide reviews for your virtual stuff, provide guidance. There is
+> resistance in accepting bindings for such cases for a reason - I don't
+> even know what exactly is this and judging/reviewing based on my
+> practices will no be accurate.
 
-There's now a single node, with a single "reg" indended to cover DWC3,
-XHCI, and Qualcomm glue (qscratch).
+Hi Krzysztof,
 
-I contemplated describing the separate parts in reg, but if so it would
-make sense to also split the dwc3-region into it's dwc3 and xhci parts.
-I think it makes sense to go the other direction and just describe all
-three in one.
+I am taking over this work from Yunhong.
 
-That said, I obviously failed to update the description to match my
-intentions here. It seems reasonable to me to just drop it.
+First of all, I apologize for the late reply. I will make sure
+communications are timely in the future.
 
-Regards,
-Bjorn
+Our goal is to describe in the device tree a mechanism or artifact to boot
+secondary CPUs.
 
-> > +    maxItems: 1
-> > +
-> > +  power-domains:
-> > +    description: specifies a phandle to PM domain provider node
-> 
-> Drop the description.
-> 
-> Otherwise, looks good.
-> 
-> Rob
+In our setup, the firmware puts secondary CPUs to monitor a memory location
+(i.e., the wakeup mailbox) while spinning. From the boot CPU, the OS writes
+in the mailbox the wakeup vector and the ID of the secondary CPU it wants
+to boot. When a secondary CPU sees its own ID it will jump to the wakeup
+vector.
+
+This is similar to the spin-table described in the Device Tree
+specification. The key difference is that with the spin-table CPUs spin
+until a non-zero value is written in `cpu-release-addr`. The wakeup mailbox
+uses CPU IDs.
+
+You raised the issue of the lack of a `compatible` property, and the fact
+that we are not describing an actual device.
+
+I took your suggestion of matching by node and I came up with the binding
+below. I see these advantages in this approach:
+
+  * I define a new node with a `compatible` property.
+  * There is precedent: the psci node. In the `cpus` node, each cpu@n has
+    an `enable-method` property that specify `psci`.
+  * The mailbox is a device as it is located in a reserved memory region.
+    This true regardless of the device tree describing bare-metal or
+    virtualized machines.
+
+Thanks in advance for your feedback!
+
+Best,
+Ricardo
+
+(only the relevant sections of the binding are shown for brevity)
+
+properties:
+  $nodename:
+    const: wakeup-mailbox
+
+  compatible:
+    const: x86,wakeup-mailbox
+
+  mailbox-addr:
+    $ref: /schemas/types.yaml#/definitions/uint64
+
+required:
+  - compatible
+  - mailbox-addr
+
+additionalProperties: false
+
+examples:
+  - |
+    wakeup-mailbox {
+      compatible = "x86,wakeup-mailbox";
+      mailbox-addr = <0 0x1c000500>;
+    };
+
+    cpus {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        cpu@0 {
+            device_type = "cpu";
+            reg = <0x00>;
+            enable-method = "wakeup-mailbox";
+        };
+    };
+...
 
