@@ -1,168 +1,141 @@
-Return-Path: <devicetree+bounces-153531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD67EA4CF6B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 00:49:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1DFEA4CF78
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 00:52:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A743C1891D62
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 23:49:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E4F63ACAF9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 23:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59CEE1F3BBC;
-	Mon,  3 Mar 2025 23:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF5D1F3D56;
+	Mon,  3 Mar 2025 23:52:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZpAeOByV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uwOkxCHK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BD31F0E38;
-	Mon,  3 Mar 2025 23:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FAE01F3BA4
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 23:52:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741045765; cv=none; b=TKUJnCXgWFEzupGWPuxIeOTIjhlpUB4DcDEAh+sOnTx1CUf5dsZikuVkxqpcB8vhgiNIrViDlcySXaeoFvAMUVlaTSawRXzh9x5L8Ezj5iotHA8Bhu0MJCJAZpU4nnw9XZ2I2c2xGj7pYG1EpXld/R1R8HQPIWCB6LT5AtrUEiA=
+	t=1741045926; cv=none; b=kJX6Zr7Se7q0FfcV0O04VJUR0csOCClRV9y5u5wECaAV4G9juy+8jYKnKYUcr3qZQWHxSGApyy0RdaFn90WdyoAq8F5r7rVoESd5k9rpb6qYflJxboZyWtfYEjEl4VmYwBROHlDDHKRYYR6TXQAdvPLqC0sy/N1CcosovkqeAlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741045765; c=relaxed/simple;
-	bh=oUi0jUhO0onTNNPUZafZGwsnGSvTxM55zWWRbgJAGRE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=YhwyJ/7pPO8g0dBK2034khqEeSIN/fzyBTNBplZMKqyHq560y2trKdCgif85AzF5/KHcE19i83rw38uH9f7yzV3PVGAAhcD3r4P/7j9bAlICmZeKwXmuSejZQs+uUGmh1js1wFxZF/Khvj08Cqh8EjLmwaLOZO5U3RpJnQtpeLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZpAeOByV; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2232b12cd36so67719915ad.0;
-        Mon, 03 Mar 2025 15:49:23 -0800 (PST)
+	s=arc-20240116; t=1741045926; c=relaxed/simple;
+	bh=oIoGneK3UeGIUTIlDf4KvKMqAMpwSNXiYhvuFQnjiiU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fkDFtRUPOQXjahjuAN3WvosUFmYAJ5rX7+Vf+rjw3W3TYujfdb/UckUOoALIKyQoCbh6PxK0n3Wy6ilAi0npsKa1PfMizHQTjwfQ5oofybQ5YBhvZ1lUG4y4cRkXe/ez80oNn9pPz/hy6Wf9FUt4Ubn2eC/R2WPgyH/lpyo0ARg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uwOkxCHK; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30ba5cccc19so26132161fa.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 15:52:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741045763; x=1741650563; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=uYJ1AOOF6Fuast7FuJwQwgJn1W/QJXvpVCQfOQs8dx4=;
-        b=ZpAeOByVEihWEdORJ4naq8Hj75jm5Od2h6bTClAwBAP3SGFxndv4SePRrm/hEyNPhV
-         G+HRJGsbdxq9TSMFJ7RHne4vDBL6bZsA62aW7DklbLfmbPXqwIfnEjeVie4sOJKIpilN
-         MODKY81RQ7s3CmVha1UnOyEI61aP7neYEaOAkCVZH/U4fp7NeP10zI7gjsp7vUIRQUTC
-         jfPFC1HAidnK4MP6OrOeK5TyE98n2Py/mx+oMK4pDjC0oZj/NfWp/DAd8lqybxUvHEBt
-         8SgFJS99ayHRcYywUSvImsZo1j1qyM0cSpiq4zghYG8+OMmao/Q2IllyCjNeiQJKzBlz
-         Xg0w==
+        d=linaro.org; s=google; t=1741045922; x=1741650722; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2n5w8pShYE8jYi0hvqZwRKlhrBdNHQSTgdC19YmKRiQ=;
+        b=uwOkxCHK04UPTqEcQ6DU1M39Ye2IkIm6I7G5M0mdQ66JtrxfEWYP/RZ3AW9J3GQ1f8
+         4Lj45jA/hEq6ySFSP1Pb+nrodlS3B4GN9Cq+vrB5mb8DQFiCJINlBVeHb7TrRqRqEkkd
+         3hxzXeSd/HMAt3vNxcpgHRg2uBXYAtmxSR7mHRM7lgnHMAdgCN6Pu0P+9iP5J3/Jk/lw
+         CZta1w6+gWKKn6Dw/z483XOJeFnqGN4o5LgrjsYjkj25x09iEsBXN1SSAklEYtzjj597
+         zXKstTTN1AJO88Bo5Em/eXxQIAMGx6Ktfcgi491mnppi++ZS7qltjNN9xbpf5tllgb83
+         X2iA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741045763; x=1741650563;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uYJ1AOOF6Fuast7FuJwQwgJn1W/QJXvpVCQfOQs8dx4=;
-        b=rWkzU6Lq+nKc+S/YAM7Ake5s2zAJRj3syhe/qOStslURIIkRH7txHAHuhNB2AStc1n
-         y+VwQzZnWy5xc/l8G+j3wdA0DqhEfowogX7Aw9+oZ+cDbwAGAmg5QZjZHhdTL/M94pNV
-         tLm33UDxwaDMIqA6cXRVWqEtp6wHSF5IfSyqJHfQbkL7Hm8DX2th18/UpwMWUXeXzy6J
-         3lTdB2lAj9FptXhtBCjjZpgV3gS7ht1QNd+z4hkUXVL8em+B03jaa8FGM8TUoo2q4Qnr
-         ZXA04vRuIf9FZws55V+yx6orlmpsNWBuGf2AmnrbVZCeyYksolPEdg8YSRsLxZ7uHzRk
-         A2dg==
-X-Forwarded-Encrypted: i=1; AJvYcCUxilFUtIiIx0MeaRxPHOi7NFMIotkevfbk7u2N49xlWP2OEY78SMQ0W1CHxz4F4VUDYw5RFW7L743G@vger.kernel.org, AJvYcCVa5kgTj31a4PqsCLFPWSXyouykjqwP3pLHwzNqwEXRB/vy8kWn09olahr1PUj0ghK3WOfKgBkCXknD@vger.kernel.org, AJvYcCVmbnUKc9tP+MtZqAeruJO4NG6ISgmCCgNG27PACQbXGpS8Vu+vXTjFm63xM8+R0Wk0zKsJBdv71v7SiVet@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLz4fZri65+ehL12EbzPxKft9UAksDvOQz/fYYSC7rE2RNBTay
-	7DwLLQoy+dykK29SedR070rm2gRrnFegz//QKAmXWUa5e9Nk343r
-X-Gm-Gg: ASbGncsBHCEMML0NL1ZnAiNF3QqQSfs8hge+OlE2cxOMmVUspfbN0PuBMDini263wNc
-	3eN0kZvzCTG67nJVirNk94cMRgSNPu4pFzuPz96Gz6vpIA9ypM3F4QOU4bYV1bBX8PuujEejIaR
-	InblB24naFmO9Lj9WmEFxKsJPSuhoylisYbYb5uGw7BzC//cDsCpz8jQHxXiCYEWtH8d2CF8Gpy
-	OFQfe8Hz7jyJzPDVxFXExp+wFpxClWY7QQU6l8+Eo9v0XQI3yR2F+SFNiwqeJNJjAUOtHm0nC2f
-	2b6ztTp0cSlIy3tOfflvnj0k4yg4NTAR6W55+myND4h0ZKZ5e1GciNLDNA5Z+4K3DZ2E
-X-Google-Smtp-Source: AGHT+IGud6PYFMMPUpGldM4VW41ELjduKt3ffPZ3XDhZP9ZtgQhTGW1FAO3MuExVyqDYgDsAPDZcwQ==
-X-Received: by 2002:a05:6a20:3946:b0:1ee:ace8:8181 with SMTP id adf61e73a8af0-1f2f4d1d213mr26375064637.21.1741045762741;
-        Mon, 03 Mar 2025 15:49:22 -0800 (PST)
-Received: from danascape.tail34aafc.ts.net ([2402:e280:218d:2e5:7b03:1e42:d492:fb71])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af180155f85sm5689283a12.62.2025.03.03.15.49.19
+        d=1e100.net; s=20230601; t=1741045922; x=1741650722;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2n5w8pShYE8jYi0hvqZwRKlhrBdNHQSTgdC19YmKRiQ=;
+        b=axxUNAAh3jMTuTd7cK6vrPJMEjM2uCZfw552XQpfyoYxF9TxOQKifc0rznuvZM1wV4
+         ZGjSVTkYIvTSJdIy+rSFlpNIi1NusAq+rTERnJJnRBJqTsrn360X4gOQNkVQjuPbkiKV
+         ungDhw0rhnWs7PChVHuW8YIaI5H4dvuJg5T8NgcZxR2khqMcZcLPsoXi+sJImODy+zZI
+         X532xQS4mxQf2CZW/qzzV3rt/i2mFLKdHIHfRPtB18VrnPi/TdlgwaGHV7ywfX992Na4
+         rRIMJoH7HtdO/LZhTAT8u+JscTPlI/oslaRUyVn32vudILtfy41zbNbQhYJlI86j6BL7
+         Cg5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUb+76imbc2DhwYB7XPri0os9vD8iU91WKeBe4Q1Vc5xJohNHhWH3EPrc4AhmypaCZjNzhqwwhNuo5d@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7uTU//vi3d41u2BlqCXPuGM007ilJ64SbCwkR5Zt6Ask0pvQy
+	d/duM4Z1NKgaRa6UtG56a0PdRMu/hC/J7DUkCm7bRHSHSGjkQ52GbosU3RHgnIc=
+X-Gm-Gg: ASbGncumVAHkeLq+yRKhrUgKzv6O8HkmVsOf5E3LL4U4RlJIky9F01tVnBrWMGV0Q7F
+	A7lm8tWp+utObMEcIIdu1+EZS/AbSgrQ38AqvgKzvaQqbCI7Gbg45pAntlIr9sUsQ7Re61nFWCQ
+	lLSzoyZdaCkM7bDZids5C3oLgHfaU/e24T5RWn4ldO90kMscPmyIGwjcuzTsi+74nkv7wphWiiX
+	adRV6+cUOv69FMT19febzhzWX0ZeUw4tiVFVo4NqcJDqgHXGNwwUap2EdKFWbPrfbb/8DzGQ5W4
+	PhEAAAur5QPX7OAK1XNvPIPyd0KhKhX9etvsa2x1h5YfB6Y1sh7DyQNG22Trel3V/OoDaPi58Kb
+	VWBPlgyIYb/1pR1fiML2hR2PC
+X-Google-Smtp-Source: AGHT+IG3xHqjP7zA+YAYgWJyZt0k8hzZjqRHbgURZmqSE3LkmE73kUYMjjbwKv1sJmuR3k/fg7H/Qg==
+X-Received: by 2002:a2e:be8e:0:b0:30b:bfca:bbe3 with SMTP id 38308e7fff4ca-30bbfcac3ffmr16343571fa.6.1741045922539;
+        Mon, 03 Mar 2025 15:52:02 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30bc7b379f6sm2108401fa.19.2025.03.03.15.52.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 15:49:22 -0800 (PST)
-From: Saalim Quadri <danascape@gmail.com>
-To: jic23@kernel.org
-Cc: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	gregkh@linuxfoundation.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-staging@lists.linux.dev,
-	21cnbao@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	Saalim Quadri <danascape@gmail.com>
-Subject: [PATCH] dt-bindings: iio: accel: add binding documentation for ADIS16203
-Date: Tue,  4 Mar 2025 05:19:13 +0530
-Message-Id: <20250303234913.66614-1-danascape@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Mon, 03 Mar 2025 15:52:01 -0800 (PST)
+Date: Tue, 4 Mar 2025 01:51:59 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom: sm8450-camcc: Allow to
+ specify two power domains
+Message-ID: <4uuvboq5yfvdbqxd2oreu4bxfqyqegzl5uahgchw7wzlkyduyh@spjzrsef5flg>
+References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
+ <20250303225521.1780611-2-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250303225521.1780611-2-vladimir.zapolskiy@linaro.org>
 
-This patch add device tree binding documentation for ADIS16203.
+On Tue, Mar 04, 2025 at 12:55:20AM +0200, Vladimir Zapolskiy wrote:
+> During the tests it was unveiled and later it was confirmed that SM8550
+> Camera Clock Controller shall enable both MXC and MMCX power domains.
+> 
+> Since power-domains property is not specific to MMCX anymore, its
+> description is removed.
+> 
+> Fixes: 9cbc64745fc6 ("dt-bindings: clock: qcom: Add SM8550 camera clock controller")
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>  .../devicetree/bindings/clock/qcom,sm8450-camcc.yaml          | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> index 9e79f8fec437..d7fc9e5a2d20 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> @@ -37,9 +37,7 @@ properties:
+>        - description: Sleep clock source
+>  
+>    power-domains:
+> -    maxItems: 1
+> -    description:
+> -      A phandle and PM domain specifier for the MMCX power domain.
+> +    maxItems: 2
 
-Signed-off-by: Saalim Quadri <danascape@gmail.com>
----
- .../bindings/iio/accel/adi,adis16203.yaml     | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
+items:
+ - description: foo
+ - description: bar
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
-new file mode 100644
-index 000000000000..e67e856266f5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/accel/adi,adis16203.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADIS16203 Programmable 360 Degrees Inclinometer
-+
-+maintainers:
-+  - Barry Song <21cnbao@gmail.com>
-+
-+description: |
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/adis16203.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adis16203
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        accelerometer@0 {
-+            compatible = "adi,adis16203";
-+            reg = <0>;
-+            spi-max-frequency = <2500000>;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-+...
+Also, don't we need power-domain-names now?
+
+>  
+>    required-opps:
+>      maxItems: 1
+> -- 
+> 2.43.0
+> 
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
