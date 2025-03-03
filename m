@@ -1,144 +1,138 @@
-Return-Path: <devicetree+bounces-154094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57861A4EBED
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:38:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D1BA4E81F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:15:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED4AC7A1680
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:35:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A162419C150C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:08:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4551F25D522;
-	Tue,  4 Mar 2025 18:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9601324C080;
+	Tue,  4 Mar 2025 16:47:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TxstBH+y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H4xnXHXM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72CDB25524A
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:29:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F135324C072
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:47:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741113001; cv=fail; b=gY39NoeFv3Zf9tZxiSutUltPHbo2rSSNVvyAt2Ab7Vk7B7ByFLzj4zq/iYy1LMQo8+mAgGpjK5UhQaYQTyRBju7zqKQnfzHk8sgAOM08IWPQCACDYD9cooXY5oTH3c/v+Pm/Bi5mfsTOOtGCbWoLudcsRchQmw288KqeO7pkQf8=
+	t=1741106877; cv=pass; b=MeCHhDj1VvNxDyauKPWMxpdd6u3oYphoaXDMHKITEd9/efXvBwAs9GMsoqN4Ht9efhHVF0Y+85ztKfxIM4loD6hLEvqbDKb/m+h5xYQREJzEy5C+NbZC6CCkrr7EUuR3i6UKc7j9FvB8S+tv4FdvT5whU0KU1IjTmmabMI0a6Xg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741113001; c=relaxed/simple;
-	bh=zzu3+NsAuV5qtNkK5ybD4CbOvMLBdmovgESCJWiVumY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KiaFbvFvmO69j0SS1YFy362uNCxB8YwShS2oTCwWN04123pQ+zlM6ZL2ombIIeXy1VaBwh45XPDeaT7I+mwXsJieZ/hgCKL+fS+0zrCt4INgrC04HoE5T2aUBRiU2gPn28QFjbUo/9qbcM9kgyUSJDnD3pBoLzJhdXOSOLUUh4I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxstBH+y reason="signature verification failed"; arc=none smtp.client-ip=209.85.219.54; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; arc=fail smtp.client-ip=160.75.25.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1741106877; c=relaxed/simple;
+	bh=NlwgN07FrFSu84o+5T1gUSI8JW7OjvVqVFxpziiSosE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kJr9Vee7wd3QaoTdbFZViuq02g92jJXKpVbQywvestEFWJMM6HwtajfFc1O0oj0ffrmWYMXQ+oqFaQPIpT4WWuviuT+MgWiZUG6XSBAqIYFkF+DwXyXoNTO0fPN6ej26tStdzBMfP66ExlBwMqx3CSd9yiZmghFRF4K3eXk9fsI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H4xnXHXM; arc=none smtp.client-ip=209.85.208.174; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; arc=pass smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id B2AB040CF9D2
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:29:57 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 17DBB40CECAA
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:47:54 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
-Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20230601 header.b=TxstBH+y
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6gzY31x0zG3BN
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:26:17 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6hQ0731hzG43K
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:45:44 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 6F0B542743; Tue,  4 Mar 2025 19:25:11 +0300 (+03)
+	id 9B3DB42755; Tue,  4 Mar 2025 19:45:39 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxstBH+y
-X-Envelope-From: <linux-kernel+bounces-541557-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H4xnXHXM
+X-Envelope-From: <linux-kernel+bounces-541584-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxstBH+y
-Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id D0E3B42CD5
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:21:05 +0300 (+03)
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 217C93063EFC
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:21:04 +0300 (+03)
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H4xnXHXM
+Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
+	by le2 (Postfix) with ESMTP id EFF754290D
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:38:07 +0300 (+03)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by fgw2.itu.edu.tr (Postfix) with SMTP id 860AC2DCDE
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:38:07 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BBF67A64B0
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:20:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D24F3B35E0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A3511F9A90;
-	Mon,  3 Mar 2025 11:17:29 +0000 (UTC)
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AC5E1F3FED;
+	Mon,  3 Mar 2025 11:31:43 +0000 (UTC)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EF11F9406;
-	Mon,  3 Mar 2025 11:17:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED5E1EEA4A;
+	Mon,  3 Mar 2025 11:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741000645; cv=none; b=jXwbGXSXn/qDe4eRvXHl7liLXpc1Qu3MULnnyTHdUT/DIi2UWQwVZV5gXI4DB7IqMGsS20xqJRakG58MeRc2qhW9Y92z0wIshwpe+/By4tMYY+YDCeT6bRNfbl3ec3hbYlw4jeQCYKHy5KrZvOgAxzbxVnvL3JjWOv17XvXSF7Y=
+	t=1741001500; cv=none; b=paDOWnH9pu5BB3h4lxCMldtQJcd52jCgzpW7gCth5JwYyVc/7h0U/3Kpl7p09EbRQSgfPBwbByeOzIYYoUjVvWO8VzHcfIRIY0zIic2JFPJt09RTQFrlRm+rwhfyQCRobcb0oh2ObNlPYp3Z6KGNl4GnEATVXTb9iE0x3oKF6xI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741000645; c=relaxed/simple;
-	bh=vs77aUJcijnJ0GNIGtqT5sfhnBoIxjPqvhmlisw6XU8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WMZcM78U2htDur513GS3J2NatvOIfKGFlo6AxliiuGBSf7J074VHT/GQVW3Zjv5HfqMBzR+Ka1ZuCwBfIYRG34OokKyZowmraD/4ckKFTrt0Ll1gcClp+G8VPi8uICty2+QumqHvUy6m1hk1oiCezE5d+/i0ZiDmBl9E3DoGY2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxstBH+y; arc=none smtp.client-ip=209.85.219.54
+	s=arc-20240116; t=1741001500; c=relaxed/simple;
+	bh=NlwgN07FrFSu84o+5T1gUSI8JW7OjvVqVFxpziiSosE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f1QiZ8NrnyPn0ispCWcu64ayAXoghtlFJMwW5yBB0YRr5w85PJ5D88J45+pEgJiY5wgLu8wCF0BwznjTVSR4aigmbRV2bUV4PSp+TjhHCzxCi/uhC063PUkbuVih3cZ6DWPeRAADPMMouzq9dh8x0P21mejBYF7xXmPLkjXZt80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H4xnXHXM; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6e88f3159e3so35899926d6.2;
-        Mon, 03 Mar 2025 03:17:23 -0800 (PST)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-307bc125e2eso47108081fa.3;
+        Mon, 03 Mar 2025 03:31:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741000642; x=1741605442; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eYoAzmCu0vns5tkw7HmXXaJNkE1M+oV59kCo2vApjko=;
-        b=TxstBH+yHt3iuI4pDRJyUyQdFIqVwISRoq1/czzfpnQH7++V4/gZigNxi4r/0I26WQ
-         YVNOsNGoB11o4BBboMVUXOFFxeUHREPjDiO4VMZ4MZTdpsPRKRncmeQsM0XQs2oRcH1h
-         YL56tXwSIuKEX62HHkGpVE2f7kVebF+g8hbaJd1fr5k7Dw9wCk+zH4zdkVTS2SHtalnz
-         +kXqaB3kMNelqarHitdWyYTWxFaHi1mKgl+wHbH4LTePnOCZyxpbOVReCg4AkMrBHKob
-         KCE+qJyyHs4hvQR3A896pnsdWiyI70f7W1DKFfNiugJU6lREyT+MBYDXHXtBY9aSllpK
-         DG+w==
+        d=gmail.com; s=20230601; t=1741001496; x=1741606296; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=QRbeVD92omOXPkqtwMRC9gBsAE4nzJULOdvDKGHzwoM=;
+        b=H4xnXHXMcaQ7Aehxj1dXfBt1RemeKGaG64p2ISkA/I0PoM63Ist2rxN7oiUB5gTp1Q
+         YdaUOB1xrUGlG2pB5cvc7QoWn/cMkuF5xLa9cMyDunQOsDUXn532GChEkmmuoTrWWbMl
+         KD4jMIzMH1mfU5b7TfOkAJByci+ltRSbMq2Ub6+joxa5/AX965HHastfVgBkY8j7EH07
+         7VQHcUeHFEA7//44bYgZIGyW0h+z2PSuDsEEVFLU5+a9gT0hr0VseCvOXg9gaBdKhtIV
+         sff+724+CEM29G47djJA8MThE1VnSbfXbDGqbz1H2xignpUV/bftVbTJRNaqYqkyaAl/
+         /UcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741000642; x=1741605442;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eYoAzmCu0vns5tkw7HmXXaJNkE1M+oV59kCo2vApjko=;
-        b=Chjg7F8CpzrJ2Xs31Lz/4F8R0l5Q8CzT4aOdtUrsWoE+X84p3s+ybOp2LOp7BhGTWX
-         Di40x7CYbvU2cu863ff3GfqpSEErV7ayIYv25P0zvjddL8TNEUoWgQoizb+HtqGB3i4C
-         MJzzu725E0ojC5OMjkJAcZ/tExMbQWvlGUNaaVsG/F8Cx0Xb16c+6hYrkr9Z5CZknAZZ
-         c7yizHGSF3e5gb3mvDyH8f9LETVeqY26/QLnhbXW5hD4pOLS9dQKRaWTGpRhbzj0MhZj
-         QWSsbWExAb3+qR25RxZ4MNTSi+Eyt/qH9uQZxcR1UV2OODGS22HzZppmpBVAf67II7yc
-         IBpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVM/RfzNdHD75wfThFjdd0rC3fBKck8fHRxCS0/GXu4PLl404QnMqV9Kz/m0pQrwErxHkc/B83+6J0n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yylqn2Koc+uTyxppSbK6tgNRBeis3oQK12mf6uueSgve24jGjuC
-	gbBRSu/d7J9XSZvXIn+uuv27sypoUTdgmbFouCL4YKZXvzgmhEWD
-X-Gm-Gg: ASbGncvxv99d/BSY5sLgQi90k1yN9VNs5RjUraI3xj64AuzuMY2SkZnD98ZLCUOFjy1
-	f+/0TzMroXRPnxwSAW29r/nrqoGRkK4ndr5G/yPfW3js5ktYA5bNkOKrFxiRI2l/s0TRIVEKMSO
-	DRqmTXADgToRtzDf0W5Neh+lI4iSugzw5UmOJr+bxl0HmUCiSttkYroIyqelrsxQ32iCjl9n0ky
-	SREZVv68Da4J/J7Z3UrbcrekllEgci//wXsKookTDQxxHNyP0ipGIZ3VIcDaGEviN0BCyG1D7YC
-	biSug/LOt46Rs7zks/eb
-X-Google-Smtp-Source: AGHT+IFnzI5yYMUwpgzC+CtqnF8PkSTTAOhLnziiXOW13TnV/5ZF1J9/Py1jNWLdgQBT5OjaRQ4YPg==
-X-Received: by 2002:a05:6214:5193:b0:6e6:6048:f42c with SMTP id 6a1803df08f44-6e8a0cd3f2emr192488796d6.8.1741000642572;
-        Mon, 03 Mar 2025 03:17:22 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e8a1aba663sm39485296d6.50.2025.03.03.03.17.21
+        d=1e100.net; s=20230601; t=1741001496; x=1741606296;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QRbeVD92omOXPkqtwMRC9gBsAE4nzJULOdvDKGHzwoM=;
+        b=mpvgioWBYCZxNCdc7nZPYaghX26Hbhv6SncdoJD7fncWzVjyrnxn5iew33bkGsBvQN
+         cmqRPMVkP7nt4B87zBxBe3ObgA1BfNm9QSJ1GrYLd5gNH52xxrDan0bh3XsoAoRGD2Ah
+         cjJi6BUN7ZTGhlHfsbxSOPXLUQgGWbs4V4KgaS03wL6Mxzihi3xkSXbUnPX/iF2Jw0Cg
+         mTkq8CVyYjSOPPzTMO1zXr/huxsiAlK9k37XYNGHbubZw841SCbMSl130rDJ5I2fkQQI
+         /9AnUrVUv8iy/hulntyo9JQKNKO7nn/u7aygbcyY7ilGyjt4EL7bh4/aqvi0X/OLEd6P
+         Dscw==
+X-Forwarded-Encrypted: i=1; AJvYcCWBLLVezD/afQ/afweFpw6CVenTVDPKcn40wa2C51XyD4ADke0FRrb9fD2yjKTf0XUoGofUN8Tv/HDDDYTJ@vger.kernel.org, AJvYcCWot5WOzPEWoFFz3RcQF/cWminMoT3KYxMjGZM98d3Bb/IYz7d6UMDG9+GAapSOgrMATj3NiBRjVzj7@vger.kernel.org, AJvYcCXscHTVpf+pJ66LMlnGtYJp3XJ4dqlNtWu9VWqH1KyQwVNS5ooXP2P8ib+8CshSYkrJKVwDjzSz2dhF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyG2xAvPAWHUrW2Ze4O9dTGnjVDbjJrj4/fKJ67HjDZoq8QtUM2
+	dW7AZAl4Jula/s9r++0ZRjzNe6riWW6sye4fWbOApG73Q3P4m1C7
+X-Gm-Gg: ASbGncsCwglWfKSPqg6oJmyqvUtpgIRKFWptftjh+a4HkOIrEEPaDZ2G2+A8y93g9mo
+	NL/nIEMtahP+/YgGCWFyVJZXQE41OU+7Ct5tnAm2zjcu1zcgAWLUeXwlnmOyYIYJU+kqxOU4rGr
+	pcqToJpXroRiFcKjCp0Y1fx0pmiOxI2iLl8iKHwdPsYVmFFCQUdyPefH5/qq15j2IJ/uFe33fm/
+	9Gy6CwiemNjKCTnWxOBJubSY0VOHfsWObpGT+uZvJkkI18sUuqQl1f00xNdBbVVGvsVhz7qbH+v
+	Nre50tlidjEWhSzwlNaUdWGsGEtnUapVxG+5pCDOQBmZVR0Cl4HwYVxFGi0X9TwPl6Asw77YNih
+	hDmEoIx5sEFA=
+X-Google-Smtp-Source: AGHT+IGZilv5CZXn8TdEAfhT2IfOr3b0lcki4DbrDq45M/Fra3PCQLRg2e7d4pV7RiK//821RneoVg==
+X-Received: by 2002:a2e:a543:0:b0:30b:b0e5:7174 with SMTP id 38308e7fff4ca-30bb0e57614mr23002541fa.2.1741001496041;
+        Mon, 03 Mar 2025 03:31:36 -0800 (PST)
+Received: from mva-rohm (mobile-access-2e8451-125.dhcp.inet.fi. [46.132.81.125])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30bc661888bsm736491fa.107.2025.03.03.03.31.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 03:17:22 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
+        Mon, 03 Mar 2025 03:31:33 -0800 (PST)
+Date: Mon, 3 Mar 2025 13:31:28 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH 2/2] irqchip/sg2042-msi: Add the Sophgo SG2044 MSI interrupt controller
-Date: Mon,  3 Mar 2025 19:16:47 +0800
-Message-ID: <20250303111648.1337543-3-inochiama@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250303111648.1337543-1-inochiama@gmail.com>
-References: <20250303111648.1337543-1-inochiama@gmail.com>
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 01/10] dt-bindings: ROHM BD79124 ADC/GPO
+Message-ID: <12f09edd6c036c78f803e530f3f8f0011527efdb.1740993491.git.mazziesaccount@gmail.com>
+References: <cover.1740993491.git.mazziesaccount@gmail.com>
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -146,183 +140,185 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="H0RgC7Hhku1h6P9v"
+Content-Disposition: inline
+In-Reply-To: <cover.1740993491.git.mazziesaccount@gmail.com>
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6gzY31x0zG3BN
+X-ITU-Libra-ESVA-ID: 4Z6hQ0731hzG43K
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741717688.96813@1qi/QjDGFwRTESOxr1dIiA
+X-ITU-Libra-ESVA-Watermark: 1741711565.56323@7YfSWkDJMOe8r7NBNDKZFQ
 X-ITU-MailScanner-SpamCheck: not spam
 
-Add support for Sophgo SG2044 MSI interrupt controller.
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+--H0RgC7Hhku1h6P9v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Add binding document for the ROHM BD79124 ADC / GPO.
+
+ROHM BD79124 is a 8-channel, 12-bit ADC. The input pins can also be used
+as general purpose outputs.
+
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- drivers/irqchip/irq-sg2042-msi.c | 86 ++++++++++++++++++++++++++++++--
- 1 file changed, 82 insertions(+), 4 deletions(-)
+Revision history:
+v3 =3D>
+ - No changes
+v2 =3D> v3:
+ - Restrict channel numbers to 0-7 as suggested by Conor
+RFC v1 =3D> v2:
+ - drop MFD and represent directly as ADC
+ - drop pinmux and treat all non ADC channel pins as GPOs
+---
+ .../bindings/iio/adc/rohm,bd79124.yaml        | 114 ++++++++++++++++++
+ 1 file changed, 114 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/rohm,bd79124.=
+yaml
 
-diff --git a/drivers/irqchip/irq-sg2042-msi.c b/drivers/irqchip/irq-sg204=
-2-msi.c
-index 9c0a5f2777a4..4b3992821797 100644
---- a/drivers/irqchip/irq-sg2042-msi.c
-+++ b/drivers/irqchip/irq-sg2042-msi.c
-@@ -21,6 +21,11 @@
-=20
- #define SG2042_MAX_MSI_VECTOR	32
-=20
-+struct sg2042_msi_of_data {
-+	const struct irq_chip		*irqchip;
-+	const struct msi_parent_ops	*parent_ops;
-+};
+diff --git a/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml b/=
+Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
+new file mode 100644
+index 000000000000..503285823376
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
+@@ -0,0 +1,114 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/rohm,bd79124.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- struct sg2042_msi_chipdata {
- 	void __iomem	*reg_clr;	// clear reg, see TRM, 10.1.33, GP_INTR0_CLR
-=20
-@@ -29,8 +34,10 @@ struct sg2042_msi_chipdata {
- 	u32		irq_first;	// The vector number that MSIs starts
- 	u32		num_irqs;	// The number of vectors for MSIs
-=20
--	DECLARE_BITMAP(msi_map, SG2042_MAX_MSI_VECTOR);
-+	unsigned long	*msi_map;
- 	struct mutex	msi_map_lock;	// lock for msi_map
++title: ROHM BD79124 ADC/GPO
 +
-+	const struct sg2042_msi_of_data	*data;
- };
-=20
- static int sg2042_msi_allocate_hwirq(struct sg2042_msi_chipdata *data, i=
-nt num_req)
-@@ -81,6 +88,37 @@ static const struct irq_chip sg2042_msi_middle_irq_chi=
-p =3D {
- 	.irq_compose_msi_msg	=3D sg2042_msi_irq_compose_msi_msg,
- };
-=20
-+static void sg2044_msi_irq_ack(struct irq_data *d)
-+{
-+	struct sg2042_msi_chipdata *data =3D irq_data_get_irq_chip_data(d);
++maintainers:
++  - Matti Vaittinen <mazziesaccount@gmail.com>
 +
-+	writel(0, (unsigned int *)data->reg_clr + d->hwirq);
++description: |
++  The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
++  an automatic measurement mode, with an alarm interrupt for out-of-window
++  measurements. ADC input pins can be also configured as general purpose
++  outputs.
 +
-+	irq_chip_ack_parent(d);
-+}
++properties:
++  compatible:
++    const: rohm,bd79124
 +
-+static void sg2044_msi_irq_compose_msi_msg(struct irq_data *d,
-+					   struct msi_msg *msg)
-+{
-+	struct sg2042_msi_chipdata *data =3D irq_data_get_irq_chip_data(d);
-+	phys_addr_t doorbell =3D data->doorbell_addr +  4 * (d->hwirq / 32);
++  reg:
++    description:
++      I2C slave address.
++    maxItems: 1
 +
-+	msg->address_lo =3D lower_32_bits(doorbell);
-+	msg->address_hi =3D upper_32_bits(doorbell);
-+	msg->data =3D d->hwirq % 32;
-+}
++  interrupts:
++    maxItems: 1
 +
-+static struct irq_chip sg2044_msi_middle_irq_chip =3D {
-+	.name			=3D "SG2044 MSI",
-+	.irq_ack		=3D sg2044_msi_irq_ack,
-+	.irq_mask		=3D irq_chip_mask_parent,
-+	.irq_unmask		=3D irq_chip_unmask_parent,
-+#ifdef CONFIG_SMP
-+	.irq_set_affinity	=3D irq_chip_set_affinity_parent,
-+#endif
-+	.irq_compose_msi_msg	=3D sg2044_msi_irq_compose_msi_msg,
-+};
++  gpio-controller: true
 +
- static int sg2042_msi_parent_domain_alloc(struct irq_domain *domain,
- 					  unsigned int virq, int hwirq)
- {
-@@ -119,7 +157,7 @@ static int sg2042_msi_middle_domain_alloc(struct irq_=
-domain *domain,
- 			goto err_hwirq;
-=20
- 		irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
--					      &sg2042_msi_middle_irq_chip, data);
-+					      data->data->irqchip, data);
- 	}
-=20
- 	return 0;
-@@ -162,6 +200,21 @@ static const struct msi_parent_ops sg2042_msi_parent=
-_ops =3D {
- 	.init_dev_msi_info	=3D msi_lib_init_dev_msi_info,
- };
-=20
-+#define SG2044_MSI_FLAGS_REQUIRED (MSI_FLAG_USE_DEF_DOM_OPS |	\
-+				   MSI_FLAG_USE_DEF_CHIP_OPS)
++  "#gpio-cells":
++    const: 1
++    description:
++      The pin number.
 +
-+#define SG2044_MSI_FLAGS_SUPPORTED (MSI_GENERIC_FLAGS_MASK |	\
-+				    MSI_FLAG_PCI_MSIX)
++  vdd-supply: true
 +
-+static const struct msi_parent_ops sg2044_msi_parent_ops =3D {
-+	.required_flags		=3D SG2044_MSI_FLAGS_REQUIRED,
-+	.supported_flags	=3D SG2044_MSI_FLAGS_SUPPORTED,
-+	.bus_select_mask	=3D MATCH_PCI_MSI,
-+	.bus_select_token	=3D DOMAIN_BUS_NEXUS,
-+	.prefix			=3D "SG2044-",
-+	.init_dev_msi_info	=3D msi_lib_init_dev_msi_info,
-+};
++  iovdd-supply: true
 +
- static int sg2042_msi_init_domains(struct sg2042_msi_chipdata *data,
- 				   struct irq_domain *plic_domain,
- 				   struct device *dev)
-@@ -181,7 +234,7 @@ static int sg2042_msi_init_domains(struct sg2042_msi_=
-chipdata *data,
- 	irq_domain_update_bus_token(middle_domain, DOMAIN_BUS_NEXUS);
-=20
- 	middle_domain->flags |=3D IRQ_DOMAIN_FLAG_MSI_PARENT;
--	middle_domain->msi_parent_ops =3D &sg2042_msi_parent_ops;
-+	middle_domain->msi_parent_ops =3D data->data->parent_ops;
-=20
- 	return 0;
- }
-@@ -199,6 +252,12 @@ static int sg2042_msi_probe(struct platform_device *=
-pdev)
- 	if (!data)
- 		return -ENOMEM;
-=20
-+	data->data =3D device_get_match_data(&pdev->dev);
-+	if (!data->data) {
-+		dev_err(&pdev->dev, "Failed to get irqchip\n");
-+		return -EINVAL;
-+	}
++  "#address-cells":
++    const: 1
 +
- 	data->reg_clr =3D devm_platform_ioremap_resource_byname(pdev, "clr");
- 	if (IS_ERR(data->reg_clr)) {
- 		dev_err(dev, "Failed to map clear register\n");
-@@ -240,11 +299,30 @@ static int sg2042_msi_probe(struct platform_device =
-*pdev)
-=20
- 	mutex_init(&data->msi_map_lock);
-=20
-+	data->msi_map =3D devm_bitmap_zalloc(&pdev->dev, data->num_irqs, GFP_KE=
-RNEL);
-+	if (!data->msi_map) {
-+		dev_err(&pdev->dev, "Unable to allocate msi mapping\n");
-+		return -ENOMEM;
-+	}
++  "#size-cells":
++    const: 0
 +
- 	return sg2042_msi_init_domains(data, plic_domain, dev);
- }
-=20
-+static const struct sg2042_msi_of_data sg2042_of_data =3D {
-+	.irqchip	=3D &sg2042_msi_middle_irq_chip,
-+	.parent_ops	=3D &sg2042_msi_parent_ops,
-+};
++patternProperties:
++  "^channel@[0-7]+$":
++    type: object
++    $ref: /schemas/iio/adc/adc.yaml#
++    description: Represents ADC channel.
 +
-+static const struct sg2042_msi_of_data sg2044_of_data =3D {
-+	.irqchip	=3D &sg2044_msi_middle_irq_chip,
-+	.parent_ops	=3D &sg2044_msi_parent_ops,
-+};
++    properties:
++      reg:
++        description: AIN pin number
++        minimum: 0
++        maximum: 7
 +
- static const struct of_device_id sg2042_msi_of_match[] =3D {
--	{ .compatible	=3D "sophgo,sg2042-msi" },
-+	{ .compatible	=3D "sophgo,sg2042-msi",
-+	  .data		=3D &sg2042_of_data },
-+	{ .compatible	=3D "sophgo,sg2044-msi",
-+	  .data		=3D &sg2044_of_data },
- 	{}
- };
-=20
++    required:
++      - reg
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - iovdd-supply
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/leds/common.h>
++    i2c {
++        #address-cells =3D <1>;
++        #size-cells =3D <0>;
++        adc: adc@10 {
++            compatible =3D "rohm,bd79124";
++            reg =3D <0x10>;
++
++            interrupt-parent =3D <&gpio1>;
++            interrupts =3D <29 8>;
++
++            vdd-supply =3D <&dummyreg>;
++            iovdd-supply =3D <&dummyreg>;
++
++            #address-cells =3D <1>;
++            #size-cells =3D <0>;
++
++            channel@0 {
++                reg =3D <0>;
++            };
++            channel@1 {
++                reg =3D <1>;
++            };
++            channel@2 {
++                reg =3D <2>;
++            };
++            channel@3 {
++                reg =3D <3>;
++            };
++            channel@4 {
++                reg =3D <4>;
++            };
++            channel@5 {
++                reg =3D <5>;
++            };
++            channel@6 {
++                reg =3D <6>;
++            };
++        };
++    };
 --=20
 2.48.1
 
+
+--H0RgC7Hhku1h6P9v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfFkxAACgkQeFA3/03a
+ocWVMwf+LSjeAan6vYRVHystYipz9Ec9BGJks+ld7jCTbboLHQveWSt4gYac4TEJ
+nbzsmGSbxqUDmd2Ja0bmSufXz7SkYS7Cu2L2hMvE1tLrLDWTZXVMaDlTEpjOcaBf
+38XLV8LdtLu9nz4VAMcdJ/zJyTRXDwsZhfwmDtulChV4/cio2yTYQaLyBgWSMrfJ
+zM/Mgvbcq1G2MjC5pZY16abvs6/8JStRm8vunTSfUk1jnl5RJvlXTt798ZhOjO3d
+CBziLLN9FtyZd1v/zCtZfcwZFVJFX5KcucN/EJ+/sLYgfpFCbHAJ9ddVZHGBdtvU
+4bOsS1cTWscHYHmt/hFCPnMVFuEQ3A==
+=JqV2
+-----END PGP SIGNATURE-----
+
+--H0RgC7Hhku1h6P9v--
 
 
