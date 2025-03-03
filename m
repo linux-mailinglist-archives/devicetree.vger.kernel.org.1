@@ -1,913 +1,481 @@
-Return-Path: <devicetree+bounces-153309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A33AA4BFB5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:02:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 138E7A4BFBC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:03:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6A9D3ABF6B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:56:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCAA73B3367
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:57:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD9520E00A;
-	Mon,  3 Mar 2025 11:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBB0C20CCD0;
+	Mon,  3 Mar 2025 11:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e21o/l+W"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="k/KVqWjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5D4720B7E6;
-	Mon,  3 Mar 2025 11:56:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741003001; cv=none; b=UWwWhr3qkEzh2BeoKWHzbTsB4OB7gKORV1VW3fKESCvs4/M8dCtWu31e1A4xuDFGyeYywz+SH3pmM9cf36aM11Nt5X1wXCosV4xoVX3z0d+SO6iJorkOG/F4lsHRZG0uRH6k7QIGwN7b5PgRZmVK3HsqNOE7fZbeAYGJxlfPT14=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741003001; c=relaxed/simple;
-	bh=yCeY4CFsTpCHlv0QwFoz/4o/S28p4NgUEQiptoMSF/c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=I7mRxEcm1lQ4h21zcgj/F9/zhYXQ8/fKB/wIasHUIB6TJ5l1p1nE1pQ4rtJK1vAbAyqLkAoBnUm4R+j8jVN2bThKonKGlbzc9LuxmX9O94OdOxmHPyCdvUFh+tgmoz3cdgzKyURTEK3rshAyCwQYk1Jd3Fvm90KxDP1iZp9C9X8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e21o/l+W; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54954fa61c9so3352173e87.1;
-        Mon, 03 Mar 2025 03:56:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741002997; x=1741607797; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=td20vm33662bJjhGCdOGcms2YDLjYHw3sG2HyR6OOgk=;
-        b=e21o/l+WOXuK9+hdTQ34UHPdMARP8vVSnsmeoKwLGa27UQwgCi7Rx6D9jn5V2SWU5N
-         fXLMqMQ8mIb2Nj8kmENRRB47srh1Rf7Nf/8x6c6G3NG58+MQlu5LgD1Pxbqm3w2etvuT
-         zxDWrNMLbJbMj2jaq0duOs/BAijnYHI67hJAIAXCzrzICMejxscuGbNEugf+pTfmJPC9
-         I1oFeu05dPrM2wK3azqLX5QlWEktXfGMzorVyqaNB+X6egogYP6k49eFDqmf4WgV2BNF
-         EPAI0WG6bdzlr+bxkhwvF4S9ec3unwdh2qYo4hwE4/ZrZKyLq6H4ArHcUzmjQio9JVrc
-         L/VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741002997; x=1741607797;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=td20vm33662bJjhGCdOGcms2YDLjYHw3sG2HyR6OOgk=;
-        b=tl8X8HWB4/F/G0/05aR+X7HJ7kislsKwHiNsLKVY9Yqua0WhD8wNTG5bH3XwJ++AHw
-         7JuI8VwG9CXEIP7raChhHpoZi2Z4nOEuhYNcSfUzMK+80y0ZRKqtegN/2R4r35jzesnz
-         fawVRyugbPrEbaYSfSjQU8sB4lHyNMxoZgKgn0tCCr4NHC5jQRnHPxXivGDcIsuQRNps
-         jBrlzvcdnU2OLjn55IPs9uP511pm/2e3Cw8bguZYferate4uQ/8ENfGH29kAy1Fuxu9s
-         WYmeawnxxTXKmu0P6mbZF8EpL6XIeX/KN4NuLyrjkbWNcFM8kOw5DjYeD+5CjxS+tIZS
-         0BYg==
-X-Forwarded-Encrypted: i=1; AJvYcCU+1fyyN0gAvNetXh9zl5tz7X+HFynJyuSHQbyqbxiXP21uwJpXQ/qDItvpPvrrOnZQKiLPDLYoYlcLFjGH@vger.kernel.org, AJvYcCXoxrNz5CceAqjiBMAELmK+gOJA8SHgAgkdVHtHvVf8NiD+S52e+kY01vFLIVqLB1rusxmAxGWf10B7@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywe7Tw3TT0h2xl2tjfj95JRhXNCO6aM+YJPM1XlVocGGaXJ0c3F
-	hwh0ZPXxiWAs6Kn6o8CudGQ45IW1bjZpCPrzcSiHIwIfKk34Ve3A
-X-Gm-Gg: ASbGnctc5p7NSa244nvWGW5bIqUH2dCc8p6B43KhbVgrLi79MVkKHVsZ9pXife3F6UC
-	eNDaz4ETeVZSGHzhQJzdetn8UiXxrLe/62X/Gwz29+7Pq33NXjUr6y3W4ee4Q10hed3mrJj8K90
-	L/fgxDE9N26SoFMdDJfn8NXqVOrzCY6oYtUPHp39Y2E8tK0jxgT8LnHRmFY6v2tZ6eAHoi3dGev
-	v33ZTerhbN6b2cPgcFjJelnrYz8AibD3o88P8kTCYaQLJkNsf/VXmAKOiM/TPICkMucdG70vXaW
-	dcux30zBC2yE4NJWxJ4va7fB2SvTDZOMQ5g=
-X-Google-Smtp-Source: AGHT+IE+7byxs9Ih5I3G6HdBYSRErQXaJuzACC5Vh94S6iJygz/a8D9s7w7QLFrRc1gjDynx7I70yg==
-X-Received: by 2002:a05:6512:3d19:b0:545:62c:4b29 with SMTP id 2adb3069b0e04-5494c122e58mr5328435e87.22.1741002996612;
-        Mon, 03 Mar 2025 03:56:36 -0800 (PST)
-Received: from xeon.. ([188.163.112.51])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5495f630cb5sm511817e87.212.2025.03.03.03.56.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 03:56:36 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Sebastian Reichel <sre@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] power: supply: Add support for Maxim MAX8971 charger
-Date: Mon,  3 Mar 2025 13:55:02 +0200
-Message-ID: <20250303115502.89457-3-clamor95@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250303115502.89457-1-clamor95@gmail.com>
-References: <20250303115502.89457-1-clamor95@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA431F891D;
+	Mon,  3 Mar 2025 11:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.86
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741003043; cv=fail; b=Z6i5E9Bbl5apQjoELagRyMLHA1acygbS7n+CT0+Lwn0V/Dds4MkwDzMllMFZ5jQnaEYc8LIRjNorTof+CV5J7mVpmlvcO1WvfhKEpXj7tHJcZcIEYv07lFi7mHk+neSzKDsXuyX/A4DOow2yV6NINzTDp2ogNbFzJ6SzyeoWJc8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741003043; c=relaxed/simple;
+	bh=D+X1Iet3i9n+IT/qbV/ClhjrOxxU9+DMbNxjb9OYO1Y=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=X5i+YMz2eK1vfcUf0n2NJVBwn7pQm96XTM34WmUVn3KNoDpakdDmzQ11zBHVJHc9xK+VjpivZGQ3Zvi2Om1eLTTA+v09WBSbgrYnoHYl4F3+hUmWu2V+LrKiLEDziitBDzAxOYOULYOyCd4jzcruyLOoDwsAzrW75bxf4PUIme4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=k/KVqWjO; arc=fail smtp.client-ip=40.107.220.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LduzGwJ+ywdzykiawJ7vz644s/xXIw7RFLkkBdgnxTeDzhsiYjjd7Hhs2QWnd1Y8pTTUJXnGIu5fYa9CDIDccY5NEALvP+4DZZPxZo988H+RQacVsqZPha1Iern3cTlUyr804SDD9d+pCIkEfIic0z/JEFdE32Uy1AH1zC9MWvNPL5HcyIXmLo2oejukoCpEhkZ4EiGfi+UDuIUY+Bsn28PmUhNclc1VvuL8hvXQwJ51RSujr56tmwKo2voIjCLb3TenJ23RMx626siA3mxgxwnGXxzCQVac3kaMnKAg52rPxIhWrs0xcsj6ifqWachkpiRAGgA4vgC9Lt7OIiDgBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h+3M+4C1feb+BUNEPlMBq8Wdtgx+cG+y+1e70IPrfBY=;
+ b=sUTabhNZN1tMdW1D2uviBC90R2usHQzHarJrL6OZ8K/uouEBubpU45wesDxq8vam2tFEwAnMMFNsdCfG+ABWBo+32oSviV47nfbfD2mKmRku98SX7RLhiozeMTBPRgaGpL4vY5YPhy0Tc399jnMpiC10m/D01GUE8dog9mzIm2rpfe4kdwiLlx6epfyfsoAHYbxVmJ5FJLbtZTm20UIlrYgoP1hC5xgFuk9BjihP503isbOc9JZI392Ju9NYr80DOPUc4qCXwpkm8KJtqMir7XVFi6bxbolIVh94x11xQtCS/vtNTBAMJWUWe535WyEE9iJIzOa4Uc7Oli4bQFKazw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h+3M+4C1feb+BUNEPlMBq8Wdtgx+cG+y+1e70IPrfBY=;
+ b=k/KVqWjOSsQka26XJdtcreiCk5MCBgDBw2N+ntPhs3TgCTUw+wHQKPzWc8uEajREcmTQvcCjLSOENdI7BccOvsopMdELhPRKbEVUGmrxTFue8eySpD8Djv5P8a8seFnSaitJEH+qB1j5RqSTIvDz8yirVfQ86T65zceAxSJCLJ0=
+Received: from DS7PR12MB6070.namprd12.prod.outlook.com (2603:10b6:8:9e::14) by
+ IA1PR12MB6602.namprd12.prod.outlook.com (2603:10b6:208:3a2::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8489.25; Mon, 3 Mar 2025 11:57:19 +0000
+Received: from DS7PR12MB6070.namprd12.prod.outlook.com
+ ([fe80::b847:e013:8f93:f6e4]) by DS7PR12MB6070.namprd12.prod.outlook.com
+ ([fe80::b847:e013:8f93:f6e4%7]) with mapi id 15.20.8489.025; Mon, 3 Mar 2025
+ 11:57:19 +0000
+From: "Manne, Nava kishore" <nava.kishore.manne@amd.com>
+To: "iansdannapel@gmail.com" <iansdannapel@gmail.com>,
+	"linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>
+CC: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>, Xu Yilun
+	<yilun.xu@intel.com>, Tom Rix <trix@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Jonathan
+ Cameron <Jonathan.Cameron@huawei.com>, =?iso-8859-2?Q?Rafa=B3_Mi=B3ecki?=
+	<rafal@milecki.pl>, Aradhya Bhatia <a-bhatia1@ti.com>, "open list:OPEN
+ FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: RE: [v4 3/3] fpga-mgr: Add Efinix SPI programming driver
+Thread-Topic: [v4 3/3] fpga-mgr: Add Efinix SPI programming driver
+Thread-Index: AQHbicYG9R/dKaVbOEakaw6xd74lqbNhS1iQ
+Date: Mon, 3 Mar 2025 11:57:18 +0000
+Message-ID:
+ <DS7PR12MB607055136A599EE9A1895414CDC92@DS7PR12MB6070.namprd12.prod.outlook.com>
+References: <20250228094732.54642-1-iansdannapel@gmail.com>
+ <20250228094732.54642-4-iansdannapel@gmail.com>
+In-Reply-To: <20250228094732.54642-4-iansdannapel@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=99e19a79-bad3-4318-97b3-0e78a3651e9e;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-03-03T11:28:54Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10,
+ 3, 0, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR12MB6070:EE_|IA1PR12MB6602:EE_
+x-ms-office365-filtering-correlation-id: 0dca5598-d80a-4f29-d9f9-08dd5a4a8c98
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018|7053199007;
+x-microsoft-antispam-message-info:
+ =?iso-8859-2?Q?2IHeTGjRrcARCV+pyMvw9rxNW13/ennkhrOU/GjpJkOHlPlVsGHUzJ4YD5?=
+ =?iso-8859-2?Q?TD8SBOB3dIhWprNHUuiEvfKl5uA7NHoKM1PlTPD4JIQzrPIDR0Zc3p10u3?=
+ =?iso-8859-2?Q?VtM6geT2QGlDpNkzPWdc8OAmFqcZLwy8KWqZ7SWtcqbzNm1JLgHZFwNn4n?=
+ =?iso-8859-2?Q?4fhN4gjcVkt+TCvB4O1xYh5pHxrfNoZ/mNtTDPuozdpVy/Qnczh/MWjkCa?=
+ =?iso-8859-2?Q?9hlWMX7v+92oYWI5XKwdVwC1dbN9yqfm8bPfdGPJvOu/YRn9MvsYqUWlu2?=
+ =?iso-8859-2?Q?Ky6/vqVtUr6siUyx3fLKVZn7Ab4bGbnz7+E0dIufxD+X38xdluKruJ2A62?=
+ =?iso-8859-2?Q?zX30yGt2QKorYpj7lUnv3ZXnnaAeOWMa5mIJJ6UPhKSvrJi8sNuLIRiSHe?=
+ =?iso-8859-2?Q?JKaL2szF6ZhRelflag3RYzR0pO1JxwCKQqKlliVTp33WAght7BYnSGT4LM?=
+ =?iso-8859-2?Q?P4V+fbsQoiZCKAhwwNIUbQU9XVMr2Gn9adkeXsa9PQ/PJHzjLsWkHWzzOe?=
+ =?iso-8859-2?Q?xM5AEGTnsvpmUcQb6BpZhd+MqrsDKTrDPntOco8cXcAGeNSiQilvbac1nk?=
+ =?iso-8859-2?Q?pWJGOt8V25R3b9ilkh7asTvU6nnKg6+xriQOAJ7ZLhAI62ejsPikG+/W7j?=
+ =?iso-8859-2?Q?GSAf+hyvuFN8vmcNQhFebIgfpOI/vwVkEM+dSN8cvYsxAwlILk1Q8xiDkN?=
+ =?iso-8859-2?Q?GzBz5SzfdU1UneGoUIC/KTI5OF79Nq7JPWrLWgR6KIOsX3UI8Scmso5pw/?=
+ =?iso-8859-2?Q?8aSFo4YNxgS47v5tLsX4ZD+dNh7ut2jx5L51MpQfJIW3IePMqBxLFjimth?=
+ =?iso-8859-2?Q?0q3va3JchVOuVHSBZ/HDseYW9w5d5kl9c0WvE0VqscC4SCZxFLmz3rIUV5?=
+ =?iso-8859-2?Q?4Vc49Rrn1sgpavJsSLahxjugLNLGo7ox+D9Nv+mXi1s6mIfXnvXi4sKjZ9?=
+ =?iso-8859-2?Q?R8cIH7dE8nKiQM0Qu0GldYjdKa5PNmz0xgKcg7X9dD5ouiS3OJRBrOld9n?=
+ =?iso-8859-2?Q?cXs7JY6BCyUVSu5x5MGBwGciJZDw+Omp0/EQHv+fCXKgKMvDI8SH4G6I4f?=
+ =?iso-8859-2?Q?yvyEpBPUKAKdhnAVuLZ3tMHHAg5cHmwvHLdew991RRb3SoY5dcYyOmbcYw?=
+ =?iso-8859-2?Q?KyXKyDHC6ga3xzVYkqNKpSkxoXekk2bi0T0Dh49aZBsUyheQkjN5DLY0bz?=
+ =?iso-8859-2?Q?+1DGxl081pecY2wM+TDT/lDce5m2GXxVUNu9tEhlNezcIcH2z+93yQaFJm?=
+ =?iso-8859-2?Q?r5oCyzazhEco6rVKVSn+CcPMXva1p6zA5Sj9d1cMFbtPyoC/dSLkeC2JLz?=
+ =?iso-8859-2?Q?ejH0LCaLtbuJ/HPw9w+yjQpJqg5T2fLW0w8KcFFDWIYqWvX4bEg37aiI+0?=
+ =?iso-8859-2?Q?j8VYmwBnP18kgz27C68sxBFR9+xvXjdUKSJIMxtEgPmszBgusBvetKzklf?=
+ =?iso-8859-2?Q?etSv5BehR0hxNjxSzh4f9rUtuFgRy38NL5YBb69uvNo0faUxWm5zohbr2U?=
+ =?iso-8859-2?Q?V2GrqccGZ4s1hCXHGhbwyy?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR12MB6070.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018)(7053199007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-2?Q?SGfp7i//rNEpTx8vI4QRFGPmWa/YZCrKB59+K6sSIoqUVyszqqiIfqN9DM?=
+ =?iso-8859-2?Q?mitl4cjtK8wyg30c8cjSP554DSiy6AAl5tDG+bwN3mKtjpsp99eaAVH0Zb?=
+ =?iso-8859-2?Q?btGoZV8YCX9tjk0rRm4AVSgoSBfwIQmtGjgF5f20UYlYV1kVWhVn3hxLh1?=
+ =?iso-8859-2?Q?Ll2KRA68SaWYsV5P0adCiXkpE1cg9Ybdek6gSOBm/3TyqMLj04656gx5Ut?=
+ =?iso-8859-2?Q?UhqaqD7AMTnruWqvhMHwkwUUqa7QdlL8CgzuMaaLtfxE9/PyWeKL2XrNi0?=
+ =?iso-8859-2?Q?N/vjERlwVu5BTxDNOCbrDSRu3hVN/eHuszFlm8XAA9WebsmrzNFOyahSRb?=
+ =?iso-8859-2?Q?Y8wQGeoFUNY3PhRXhRxEcB1Y2gg8i0Vlu+FMQ4EHh+h7bIsVNfZ5j/9rBD?=
+ =?iso-8859-2?Q?Wj0aRfpfyL9uafoZQrq3voIeMsdkEvGVP7yatTwRxOia96DHSLSAbuEoie?=
+ =?iso-8859-2?Q?xThIw3EsxSpiv72N4XBuu4dK5Fik2MaY/+dhSuovKdPnrTEHVJVyic2Fce?=
+ =?iso-8859-2?Q?vS9wvcJc1Oa6nSUHY3Sx2JEyPnlQC2xtfNaKZI+HAeGG095nQNNex/uEox?=
+ =?iso-8859-2?Q?GcgTyp1rBdHaaWyNEwkLOAC4igA1xPgv/m/eBhJgxNL0lZqKKSogWjNUt9?=
+ =?iso-8859-2?Q?qaRlOWXmiFbA1fvT3HbSAQnWZwkgJyicBYJB8mYbyW80zXHroXog4hQKCz?=
+ =?iso-8859-2?Q?nkf9stz1eycejtv4s3+u2/kTEBwrcwm1rnKm/1PYAbG16kT3Iofl/NPolO?=
+ =?iso-8859-2?Q?tEWm/WA4HmQyXAKvjPtZo5ef8Yj/NNEQ9LSoQ1oFEUW+V6QwEqghE9F0Nb?=
+ =?iso-8859-2?Q?BTG2tn69Dq1xkUrlUGA0LUkWKXxJaATww4xs3Ngj1dEqFaZaNx+suqYGfy?=
+ =?iso-8859-2?Q?5v0XyRSJwgoFAD2nWXUsOBD/fBG+vc67qfMAMJDj7JxrQZFks2CSgs6zME?=
+ =?iso-8859-2?Q?tGbIuEDFJRCPinEODq8OmvtdCfLK+fwKqCzn4mD2H+fS6ACwYXWXMGWS+u?=
+ =?iso-8859-2?Q?Wh+G6izMZj7Vfjaeul0jX78TDclCQOSkzO9wvHakmiolxHKq+8HFCshS+5?=
+ =?iso-8859-2?Q?bV+jIyy/vYbsTQYxqsl1KKJ0sKdzXpA3m/MeVyUHQPI+iZqn0hwU4ul7Dz?=
+ =?iso-8859-2?Q?/LwoGnGdYfj7o+aAZ4RGEXf553fwKuNkxZVEGeEhlfe4TSZl2n094TwZMo?=
+ =?iso-8859-2?Q?QJCp63WScpZVoinoIQIhG+IkvkqN/1EGkmFJ+q2up/AIXg3BZRbKYA69rY?=
+ =?iso-8859-2?Q?nwosJB9/1+ZxTo3FxKHGKVBHarZwdRQOoV93kyQTDWE5b4l0eve+prvC1R?=
+ =?iso-8859-2?Q?ItxyawaUFfE8FrutF5SC5FoMZJigIBHW25a/ktVBJRQxotQfaaYD4rIwTl?=
+ =?iso-8859-2?Q?NRED8j8AErat/0uxo04B7VsGCzFtzyunRocJcbXygOCCOzT4uWW7Dxj20z?=
+ =?iso-8859-2?Q?OoxkT/D1/uGIQ1jTXWdQAojPpzeTXaZiIQzzG8NRD+IKmMmx2PM6zEU4Lz?=
+ =?iso-8859-2?Q?smqnoFrPiJVVvsTzc0TNHmkh+Ees5G7YLOHqQeeaIgOhLMmVLys7VZabMm?=
+ =?iso-8859-2?Q?7eF3exgm7WBeodSxbRWOlDU10EXLPK1xa1NyzV5q+a1K79I6o96BRREYRM?=
+ =?iso-8859-2?Q?m21OasVvF73+0=3D?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB6070.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0dca5598-d80a-4f29-d9f9-08dd5a4a8c98
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2025 11:57:18.8937
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4MZNV8POe33IsOLmldIzJkE1U1Jk/JVyeYMNr1AOjDvsBNbQbIMICLnJeFUkTiAQ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6602
 
-The MAX8971 is a compact, high-frequency, high-efficiency
-switch-mode charger for a one-cell lithium-ion (Li+) battery.
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/power/supply/Kconfig           |  14 +
- drivers/power/supply/Makefile          |   1 +
- drivers/power/supply/max8971_charger.c | 758 +++++++++++++++++++++++++
- 3 files changed, 773 insertions(+)
- create mode 100644 drivers/power/supply/max8971_charger.c
+> -----Original Message-----
+> From: iansdannapel@gmail.com <iansdannapel@gmail.com>
+> Sent: Friday, February 28, 2025 3:18 PM
+> To: linux-fpga@vger.kernel.org
+> Cc: Moritz Fischer <mdf@kernel.org>; Wu Hao <hao.wu@intel.com>; Xu Yilun
+> <yilun.xu@intel.com>; Tom Rix <trix@redhat.com>; Rob Herring
+> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Neil Armstrong <neil.armstrong@linaro.org>; Jonath=
+an
+> Cameron <Jonathan.Cameron@huawei.com>; Rafa=B3 Mi=B3ecki <rafal@milecki.p=
+l>;
+> Aradhya Bhatia <a-bhatia1@ti.com>; Ian Dannapel <iansdannapel@gmail.com>;
+> open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+> <devicetree@vger.kernel.org>; open list <linux-kernel@vger.kernel.org>
+> Subject: [v4 3/3] fpga-mgr: Add Efinix SPI programming driver
+>
+> From: Ian Dannapel <iansdannapel@gmail.com>
+>
+> Add a new driver for loading binary firmware to configuration RAM using "=
+SPI
+> passive mode" on Efinix FPGAs.
+>
+> Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
+> ---
+>  drivers/fpga/Kconfig      |   7 ++
+>  drivers/fpga/Makefile     |   1 +
+>  drivers/fpga/efinix-spi.c | 212 ++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 220 insertions(+)
+>  create mode 100644 drivers/fpga/efinix-spi.c
+>
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig index
+> 37b35f58f0df..b5d60ba62900 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -83,6 +83,13 @@ config FPGA_MGR_XILINX_SPI
+>         FPGA manager driver support for Xilinx FPGA configuration
+>         over slave serial interface.
+>
+> +config FPGA_MGR_EFINIX_SPI
+> +     tristate "Efinix FPGA configuration over SPI"
+> +     depends on SPI
+> +     help
+> +       FPGA manager driver support for Efinix FPGAs configuration over S=
+PI
+> +       (passive mode only).
+> +
+>  config FPGA_MGR_ICE40_SPI
+>       tristate "Lattice iCE40 SPI"
+>       depends on OF && SPI
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile index
+> aeb89bb13517..adbd51d2cd1e 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)               +=3D
+> ts73xx-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_CORE)   +=3D xilinx-core.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)      +=3D xilinx-selectmap.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)    +=3D xilinx-spi.o
+> +obj-$(CONFIG_FPGA_MGR_EFINIX_SPI)    +=3D efinix-spi.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)     +=3D zynq-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)   +=3D zynqmp-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)   +=3D versal-fpga.o
+> diff --git a/drivers/fpga/efinix-spi.c b/drivers/fpga/efinix-spi.c new fi=
+le mode 100644
+> index 000000000000..07885110a8a8
+> --- /dev/null
+> +++ b/drivers/fpga/efinix-spi.c
+> @@ -0,0 +1,212 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * FPGA Manager Driver for Efinix
+> + *
+> + * Copyright (C) 2025 iris-GmbH infrared & intelligent sensors
+> + *
+> + * Ian Dannapel <iansdannapel@gmail.com>
+> + *
+> + * Load Efinix FPGA firmware over SPI using the serial configuration int=
+erface.
+> + *
+> + * Note 1: Only passive mode (host initiates transfer) is currently supp=
+orted.
+> + * Note 2: Topaz and Titanium support is based on documentation but
+> +remains
+> + * untested.
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/fpga/fpga-mgr.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/spi/spi.h>
+> +
+> +struct efinix_spi_conf {
+> +     struct spi_device *spi;
+> +     struct gpio_desc *cdone;
+> +     struct gpio_desc *reset;
+> +};
+> +
+> +static void efinix_spi_reset(struct efinix_spi_conf *conf) {
+> +     gpiod_set_value(conf->reset, 1);
+> +     /* tCRESET_N > 320 ns */
+> +     usleep_range(1, 2);
+> +     gpiod_set_value(conf->reset, 0);
+> +
+> +     /* tDMIN > 32 us */
+> +     usleep_range(35, 40);
 
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index 9f2eef6787f7..7c86116c2947 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -595,6 +595,20 @@ config CHARGER_MAX77976
- 	  This driver can also be built as a module. If so, the module will be
- 	  called max77976_charger.
- 
-+config CHARGER_MAX8971
-+	tristate "Maxim MAX8971 battery charger driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  The MAX8971 is a compact, high-frequency, high-efficiency switch-mode
-+	  charger for a one-cell lithium-ion (Li+) battery. It delivers up to
-+	  1.55A of current to the battery from inputs up to 7.5V and withstands
-+	  transient inputs up to 22V.
-+
-+	  Say Y to enable support for the Maxim MAX8971 battery charger.
-+	  This driver can also be built as a module. If so, the module will be
-+	  called max8971_charger.
-+
- config CHARGER_MAX8997
- 	tristate "Maxim MAX8997/MAX8966 PMIC battery charger driver"
- 	depends on MFD_MAX8997 && REGULATOR_MAX8997
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index 59c4a9f40d28..8fa051ff87ff 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -81,6 +81,7 @@ obj-$(CONFIG_CHARGER_DETECTOR_MAX14656)	+= max14656_charger_detector.o
- obj-$(CONFIG_CHARGER_MAX77650)	+= max77650-charger.o
- obj-$(CONFIG_CHARGER_MAX77693)	+= max77693_charger.o
- obj-$(CONFIG_CHARGER_MAX77976)	+= max77976_charger.o
-+obj-$(CONFIG_CHARGER_MAX8971)	+= max8971_charger.o
- obj-$(CONFIG_CHARGER_MAX8997)	+= max8997_charger.o
- obj-$(CONFIG_CHARGER_MAX8998)	+= max8998_charger.o
- obj-$(CONFIG_CHARGER_MP2629)	+= mp2629_charger.o
-diff --git a/drivers/power/supply/max8971_charger.c b/drivers/power/supply/max8971_charger.c
-new file mode 100644
-index 000000000000..651852de71f2
---- /dev/null
-+++ b/drivers/power/supply/max8971_charger.c
-@@ -0,0 +1,758 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+#include <linux/devm-helpers.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/extcon.h>
-+#include <linux/i2c.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/of_graph.h>
-+#include <linux/property.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/pm.h>
-+#include <linux/power_supply.h>
-+#include <linux/regmap.h>
-+#include <linux/sysfs.h>
-+#include <linux/types.h>
-+
-+#define MAX8971_REG_CHGINT		0x0f
-+#define   MAX8971_REG_CHG_RST		BIT(0)
-+#define MAX8971_REG_CHGINT_MASK		0x01
-+#define   MAX8971_AICL_MASK		BIT(7)
-+#define MAX8971_REG_CHG_STAT		0x02
-+#define   MAX8971_CHG_MASK		BIT(3)
-+#define MAX8971_REG_DETAILS1		0x03
-+#define MAX8971_REG_DETAILS2		0x04
-+#define MAX8971_REG_CHGCNTL1		0x05
-+#define MAX8971_REG_FCHGCRNT		0x06
-+#define MAX8971_REG_DCCRNT		0x07
-+#define   MAX8971_CHGRSTRT_MASK		BIT(6)
-+#define MAX8971_REG_TOPOFF		0x08
-+#define MAX8971_REG_TEMPREG		0x09
-+#define MAX8971_REG_PROTCMD		0x0a
-+#define   MAX8971_CHGPROT_LOCKED	0x00
-+#define   MAX8971_CHGPROT_UNLOCKED	0x03
-+
-+#define MAX8971_FCHGT_DEFAULT		2
-+#define MAX8971_TOPOFFT_DEFAULT		3
-+
-+static const char *max8971_manufacturer	= "Maxim Integrated";
-+static const char *max8971_model	= "MAX8971";
-+
-+enum max8971_charging_state {
-+	MAX8971_CHARGING_DEAD_BATTERY,
-+	MAX8971_CHARGING_PREQUALIFICATION,
-+	MAX8971_CHARGING_FAST_CONST_CURRENT,
-+	MAX8971_CHARGING_FAST_CONST_VOLTAGE,
-+	MAX8971_CHARGING_TOP_OFF,
-+	MAX8971_CHARGING_DONE,
-+	MAX8971_CHARGING_TIMER_FAULT,
-+	MAX8971_CHARGING_SUSPENDED_THERMAL,
-+	MAX8971_CHARGING_OFF,
-+	MAX8971_CHARGING_THERMAL_LOOP,
-+};
-+
-+enum max8971_health_state {
-+	MAX8971_HEALTH_UNKNOWN,
-+	MAX8971_HEALTH_COLD,
-+	MAX8971_HEALTH_COOL,
-+	MAX8971_HEALTH_WARM,
-+	MAX8971_HEALTH_HOT,
-+	MAX8971_HEALTH_OVERHEAT,
-+};
-+
-+/* Fast-Charge current limit, 250..1550 mA, 50 mA steps */
-+#define MAX8971_CHG_CC_STEP			  50000U
-+#define MAX8971_CHG_CC_MIN			 250000U
-+#define MAX8971_CHG_CC_MAX			1550000U
-+
-+/* Input current limit, 250..1500 mA, 25 mA steps */
-+#define MAX8971_DCILMT_STEP			  25000U
-+#define MAX8971_DCILMT_MIN			 250000U
-+#define MAX8971_DCILMT_MAX			1500000U
-+
-+enum max8971_field_idx {
-+	THM_DTLS,		/* DETAILS1 */
-+	BAT_DTLS, CHG_DTLS,	/* DETAILS2 */
-+	CHG_CC, FCHG_T,		/* FCHGCRNT */
-+	DCI_LMT,		/* DCCRNT */
-+	TOPOFF_T, TOPOFF_S,	/* TOPOFF */
-+	CPROT,			/* PROTCMD */
-+	MAX8971_N_REGMAP_FIELDS
-+};
-+
-+static const struct reg_field max8971_reg_field[MAX8971_N_REGMAP_FIELDS] = {
-+	[THM_DTLS] = REG_FIELD(MAX8971_REG_DETAILS1, 0, 2),
-+	[BAT_DTLS] = REG_FIELD(MAX8971_REG_DETAILS2, 4, 5),
-+	[CHG_DTLS] = REG_FIELD(MAX8971_REG_DETAILS2, 0, 3),
-+	[CHG_CC]   = REG_FIELD(MAX8971_REG_FCHGCRNT, 0, 4),
-+	[FCHG_T]   = REG_FIELD(MAX8971_REG_FCHGCRNT, 5, 7),
-+	[DCI_LMT]  = REG_FIELD(MAX8971_REG_DCCRNT,   0, 5),
-+	[TOPOFF_T] = REG_FIELD(MAX8971_REG_TOPOFF,   5, 7),
-+	[TOPOFF_S] = REG_FIELD(MAX8971_REG_TOPOFF,   2, 3),
-+	[CPROT]    = REG_FIELD(MAX8971_REG_PROTCMD,  2, 3),
-+};
-+
-+static const struct regmap_config max8971_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = MAX8971_REG_CHGINT,
-+};
-+
-+struct max8971_data {
-+	struct i2c_client *client;
-+	struct device *dev;
-+	struct power_supply *psy_mains;
-+
-+	struct extcon_dev *edev;
-+	struct notifier_block extcon_nb;
-+	struct delayed_work extcon_work;
-+
-+	struct regmap *regmap;
-+	struct regmap_field *rfield[MAX8971_N_REGMAP_FIELDS];
-+
-+	enum power_supply_usb_type usb_type;
-+
-+	u32 fchgt;
-+	u32 tofft;
-+	u32 toffs;
-+
-+	bool present;
-+};
-+
-+static int max8971_get_status(struct max8971_data *priv, int *val)
-+{
-+	u32 regval;
-+	int err;
-+
-+	err = regmap_field_read(priv->rfield[CHG_DTLS], &regval);
-+	if (err)
-+		return err;
-+
-+	switch (regval) {
-+	case MAX8971_CHARGING_DEAD_BATTERY:
-+	case MAX8971_CHARGING_PREQUALIFICATION:
-+	case MAX8971_CHARGING_FAST_CONST_CURRENT:
-+	case MAX8971_CHARGING_FAST_CONST_VOLTAGE:
-+	case MAX8971_CHARGING_TOP_OFF:
-+	case MAX8971_CHARGING_THERMAL_LOOP:
-+		*val = POWER_SUPPLY_STATUS_CHARGING;
-+		break;
-+	case MAX8971_CHARGING_DONE:
-+		*val = POWER_SUPPLY_STATUS_FULL;
-+		break;
-+	case MAX8971_CHARGING_TIMER_FAULT:
-+		*val = POWER_SUPPLY_STATUS_NOT_CHARGING;
-+		break;
-+	case MAX8971_CHARGING_OFF:
-+	case MAX8971_CHARGING_SUSPENDED_THERMAL:
-+		*val = POWER_SUPPLY_STATUS_DISCHARGING;
-+		break;
-+	default:
-+		*val = POWER_SUPPLY_STATUS_UNKNOWN;
-+	}
-+
-+	return 0;
-+}
-+
-+static int max8971_get_charge_type(struct max8971_data *priv, int *val)
-+{
-+	u32 regval;
-+	int err;
-+
-+	err = regmap_field_read(priv->rfield[CHG_DTLS], &regval);
-+	if (err)
-+		return err;
-+
-+	switch (regval) {
-+	case MAX8971_CHARGING_DEAD_BATTERY:
-+	case MAX8971_CHARGING_PREQUALIFICATION:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_TRICKLE;
-+		break;
-+	case MAX8971_CHARGING_FAST_CONST_CURRENT:
-+	case MAX8971_CHARGING_FAST_CONST_VOLTAGE:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_FAST;
-+		break;
-+	case MAX8971_CHARGING_TOP_OFF:
-+	case MAX8971_CHARGING_THERMAL_LOOP:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_STANDARD;
-+		break;
-+	case MAX8971_CHARGING_DONE:
-+	case MAX8971_CHARGING_TIMER_FAULT:
-+	case MAX8971_CHARGING_SUSPENDED_THERMAL:
-+	case MAX8971_CHARGING_OFF:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_NONE;
-+		break;
-+	default:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_UNKNOWN;
-+	}
-+
-+	return 0;
-+}
-+
-+static int max8971_get_health(struct max8971_data *priv, int *val)
-+{
-+	u32 regval;
-+	int err;
-+
-+	err = regmap_field_read(priv->rfield[THM_DTLS], &regval);
-+	if (err)
-+		return err;
-+
-+	switch (regval) {
-+	case MAX8971_HEALTH_COLD:
-+		*val = POWER_SUPPLY_HEALTH_COLD;
-+		break;
-+	case MAX8971_HEALTH_COOL:
-+		*val = POWER_SUPPLY_HEALTH_COOL;
-+		break;
-+	case MAX8971_HEALTH_WARM:
-+		*val = POWER_SUPPLY_HEALTH_GOOD;
-+		break;
-+	case MAX8971_HEALTH_HOT:
-+		*val = POWER_SUPPLY_HEALTH_HOT;
-+		break;
-+	case MAX8971_HEALTH_OVERHEAT:
-+		*val = POWER_SUPPLY_HEALTH_OVERHEAT;
-+		break;
-+	case MAX8971_HEALTH_UNKNOWN:
-+	default:
-+		*val = POWER_SUPPLY_HEALTH_UNKNOWN;
-+	}
-+
-+	return 0;
-+}
-+
-+static int max8971_get_online(struct max8971_data *priv, int *val)
-+{
-+	u32 regval;
-+	int err;
-+
-+	err = regmap_read(priv->regmap, MAX8971_REG_CHG_STAT, &regval);
-+	if (err)
-+		return err;
-+
-+	if (priv->present)
-+		/* CHG_OK bit is 0 when charger is online */
-+		*val = !(regval & MAX8971_CHG_MASK);
-+	else
-+		*val = priv->present;
-+
-+	return 0;
-+}
-+
-+static int max8971_get_integer(struct max8971_data *priv, enum max8971_field_idx fidx,
-+			       u32 clamp_min, u32 clamp_max, u32 mult, int *val)
-+{
-+	u32 regval;
-+	int err;
-+
-+	err = regmap_field_read(priv->rfield[fidx], &regval);
-+	if (err)
-+		return err;
-+
-+	*val = clamp_val(regval * mult, clamp_min, clamp_max);
-+
-+	return 0;
-+}
-+
-+static int max8971_set_integer(struct max8971_data *priv, enum max8971_field_idx fidx,
-+			       u32 clamp_min, u32 clamp_max, u32 div, int val)
-+{
-+	u32 regval;
-+
-+	regval = clamp_val(val, clamp_min, clamp_max) / div;
-+
-+	return regmap_field_write(priv->rfield[fidx], regval);
-+}
-+
-+static int max8971_get_property(struct power_supply *psy, enum power_supply_property psp,
-+				union power_supply_propval *val)
-+{
-+	struct max8971_data *priv = power_supply_get_drvdata(psy);
-+	int err = 0;
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_STATUS:
-+		err = max8971_get_status(priv, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_TYPE:
-+		err = max8971_get_charge_type(priv, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_USB_TYPE:
-+		val->intval = priv->usb_type;
-+		break;
-+	case POWER_SUPPLY_PROP_HEALTH:
-+		err = max8971_get_health(priv, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_ONLINE:
-+		err = max8971_get_online(priv, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_PRESENT:
-+		val->intval = priv->present;
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT_MAX:
-+		val->intval = MAX8971_CHG_CC_MAX;
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
-+		err = max8971_get_integer(priv, CHG_CC, MAX8971_CHG_CC_MIN, MAX8971_CHG_CC_MAX,
-+					  MAX8971_CHG_CC_STEP, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		err = max8971_get_integer(priv, DCI_LMT, MAX8971_DCILMT_MIN, MAX8971_DCILMT_MAX,
-+					  MAX8971_DCILMT_STEP, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_MODEL_NAME:
-+		val->strval = max8971_model;
-+		break;
-+	case POWER_SUPPLY_PROP_MANUFACTURER:
-+		val->strval = max8971_manufacturer;
-+		break;
-+	default:
-+		err = -EINVAL;
-+	}
-+
-+	return err;
-+}
-+
-+static int max8971_set_property(struct power_supply *psy, enum power_supply_property psp,
-+				const union power_supply_propval *val)
-+{
-+	struct max8971_data *priv = power_supply_get_drvdata(psy);
-+	int err = 0;
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
-+		err = max8971_set_integer(priv, CHG_CC, MAX8971_CHG_CC_MIN, MAX8971_CHG_CC_MAX,
-+					  MAX8971_CHG_CC_STEP, val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		err = max8971_set_integer(priv, DCI_LMT, MAX8971_DCILMT_MIN, MAX8971_DCILMT_MAX,
-+					  MAX8971_DCILMT_STEP, val->intval);
-+		break;
-+	default:
-+		err = -EINVAL;
-+	}
-+
-+	return err;
-+};
-+
-+static int max8971_property_is_writeable(struct power_supply *psy,
-+					 enum power_supply_property psp)
-+{
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static enum power_supply_property max8971_properties[] = {
-+	POWER_SUPPLY_PROP_STATUS,
-+	POWER_SUPPLY_PROP_CHARGE_TYPE,
-+	POWER_SUPPLY_PROP_USB_TYPE,
-+	POWER_SUPPLY_PROP_HEALTH,
-+	POWER_SUPPLY_PROP_ONLINE,
-+	POWER_SUPPLY_PROP_PRESENT,
-+	POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT,
-+	POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT_MAX,
-+	POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT,
-+	POWER_SUPPLY_PROP_MODEL_NAME,
-+	POWER_SUPPLY_PROP_MANUFACTURER,
-+};
-+
-+static const struct power_supply_desc max8971_charger_desc = {
-+	.name = "charger",
-+	.type = POWER_SUPPLY_TYPE_USB,
-+	.usb_types = BIT(POWER_SUPPLY_USB_TYPE_UNKNOWN) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_SDP) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_DCP) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_CDP) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_ACA),
-+	.properties = max8971_properties,
-+	.num_properties = ARRAY_SIZE(max8971_properties),
-+	.get_property = max8971_get_property,
-+	.set_property = max8971_set_property,
-+	.property_is_writeable = max8971_property_is_writeable,
-+};
-+
-+static void max8971_update_config(struct max8971_data *priv)
-+{
-+	regmap_field_write(priv->rfield[CPROT], MAX8971_CHGPROT_UNLOCKED);
-+
-+	if (priv->fchgt != MAX8971_FCHGT_DEFAULT)
-+		regmap_field_write(priv->rfield[FCHG_T], priv->fchgt);
-+
-+	regmap_write_bits(priv->regmap, MAX8971_REG_DCCRNT, MAX8971_CHGRSTRT_MASK,
-+			  MAX8971_CHGRSTRT_MASK);
-+
-+	if (priv->tofft != MAX8971_TOPOFFT_DEFAULT)
-+		regmap_field_write(priv->rfield[TOPOFF_T], priv->tofft);
-+
-+	if (priv->toffs)
-+		regmap_field_write(priv->rfield[TOPOFF_S], priv->toffs);
-+
-+	regmap_field_write(priv->rfield[CPROT], MAX8971_CHGPROT_LOCKED);
-+}
-+
-+static ssize_t fast_charge_timer_show(struct device *dev, struct device_attribute *attr,
-+				      char *buf)
-+{
-+	struct max8971_data *priv = dev_get_drvdata(dev);
-+	u32 regval;
-+	int err;
-+
-+	err = regmap_field_read(priv->rfield[FCHG_T], &regval);
-+	if (err)
-+		return err;
-+
-+	switch (regval) {
-+	case 0x1 ... 0x7:
-+		/* Time if off by 3 hours comparing to value */
-+		regval += 3;
-+		break;
-+	case 0x0:
-+	default:
-+		regval = 0;
-+		break;
-+	}
-+
-+	return sysfs_emit(buf, "%u\n", regval);
-+}
-+
-+static ssize_t fast_charge_timer_store(struct device *dev, struct device_attribute *attr,
-+				       const char *buf, size_t count)
-+{
-+	struct max8971_data *priv = dev_get_drvdata(dev);
-+	unsigned long hours;
-+	int val, err;
-+
-+	err = kstrtoul(buf, 10, &hours);
-+	if (err)
-+		return err;
-+
-+	val = hours - 3;
-+	if (val <= 0 || val > 7)
-+		priv->fchgt = 0;
-+	else
-+		priv->fchgt = val;
-+
-+	max8971_update_config(priv);
-+
-+	return count;
-+}
-+
-+static ssize_t top_off_threshold_current_show(struct device *dev,
-+					      struct device_attribute *attr,
-+					      char *buf)
-+{
-+	struct max8971_data *priv = dev_get_drvdata(dev);
-+	u32 regval, val;
-+	int err;
-+
-+	err = regmap_field_read(priv->rfield[TOPOFF_S], &regval);
-+	if (err)
-+		return err;
-+
-+	/* 50uA start with 50uA step */
-+	val = regval * 50 + 50;
-+	val *= 1000;
-+
-+	return sysfs_emit(buf, "%u\n", val);
-+}
-+
-+static ssize_t top_off_threshold_current_store(struct device *dev,
-+					       struct device_attribute *attr,
-+					       const char *buf, size_t count)
-+{
-+	struct max8971_data *priv = dev_get_drvdata(dev);
-+	unsigned long uamp;
-+	int err;
-+
-+	err = kstrtoul(buf, 10, &uamp);
-+	if (err)
-+		return err;
-+
-+	if (uamp < 50000 || uamp > 200000)
-+		return -EINVAL;
-+
-+	priv->toffs = uamp / 50000 - 1;
-+
-+	max8971_update_config(priv);
-+
-+	return count;
-+}
-+
-+static ssize_t top_off_timer_show(struct device *dev, struct device_attribute *attr,
-+				  char *buf)
-+{
-+	struct max8971_data *priv = dev_get_drvdata(dev);
-+	u32 regval;
-+	int err;
-+
-+	err = regmap_field_read(priv->rfield[TOPOFF_T], &regval);
-+	if (err)
-+		return err;
-+
-+	/* 10 min intervals */
-+	regval *= 10;
-+
-+	return sysfs_emit(buf, "%u\n", regval);
-+}
-+
-+static ssize_t top_off_timer_store(struct device *dev, struct device_attribute *attr,
-+				   const char *buf, size_t count)
-+{
-+	struct max8971_data *priv = dev_get_drvdata(dev);
-+	unsigned long minutes;
-+	int err;
-+
-+	err = kstrtoul(buf, 10, &minutes);
-+	if (err)
-+		return err;
-+
-+	if (minutes > 70)
-+		return -EINVAL;
-+
-+	priv->tofft = minutes / 10;
-+
-+	max8971_update_config(priv);
-+
-+	return count;
-+}
-+
-+static DEVICE_ATTR_RW(fast_charge_timer);
-+static DEVICE_ATTR_RW(top_off_threshold_current);
-+static DEVICE_ATTR_RW(top_off_timer);
-+
-+static struct attribute *max8971_attributes[] = {
-+	&dev_attr_fast_charge_timer.attr,
-+	&dev_attr_top_off_threshold_current.attr,
-+	&dev_attr_top_off_timer.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group max8971_attr_group = {
-+	.attrs = max8971_attributes,
-+};
-+
-+static void max8971_extcon_evt_worker(struct work_struct *work)
-+{
-+	struct max8971_data *priv =
-+		container_of(work, struct max8971_data, extcon_work.work);
-+	struct device *dev = priv->dev;
-+	struct extcon_dev *edev = priv->edev;
-+	u32 chgcc, dcilmt;
-+
-+	if (extcon_get_state(edev, EXTCON_CHG_USB_SDP) > 0) {
-+		dev_dbg(dev, "USB SDP charger is connected\n");
-+		priv->usb_type = POWER_SUPPLY_USB_TYPE_SDP;
-+		chgcc = 500000;
-+		dcilmt = 500000;
-+	} else if (extcon_get_state(edev, EXTCON_USB) > 0) {
-+		dev_dbg(dev, "USB charger is connected\n");
-+		priv->usb_type = POWER_SUPPLY_USB_TYPE_SDP;
-+		chgcc = 500000;
-+		dcilmt = 500000;
-+	} else if (extcon_get_state(edev, EXTCON_DISP_MHL) > 0) {
-+		dev_dbg(dev, "MHL plug is connected\n");
-+		priv->usb_type = POWER_SUPPLY_USB_TYPE_SDP;
-+		chgcc = 500000;
-+		dcilmt = 500000;
-+	} else if (extcon_get_state(edev, EXTCON_CHG_USB_DCP) > 0) {
-+		dev_dbg(dev, "USB DCP charger is connected\n");
-+		priv->usb_type = POWER_SUPPLY_USB_TYPE_DCP;
-+		chgcc = 900000;
-+		dcilmt = 1200000;
-+	} else if (extcon_get_state(edev, EXTCON_CHG_USB_FAST) > 0) {
-+		dev_dbg(dev, "USB FAST charger is connected\n");
-+		priv->usb_type = POWER_SUPPLY_USB_TYPE_ACA;
-+		chgcc = 900000;
-+		dcilmt = 1200000;
-+	} else if (extcon_get_state(edev, EXTCON_CHG_USB_SLOW) > 0) {
-+		dev_dbg(dev, "USB SLOW charger is connected\n");
-+		priv->usb_type = POWER_SUPPLY_USB_TYPE_ACA;
-+		chgcc = 900000;
-+		dcilmt = 1200000;
-+	} else if (extcon_get_state(edev, EXTCON_CHG_USB_CDP) > 0) {
-+		dev_dbg(dev, "USB CDP charger is connected\n");
-+		priv->usb_type = POWER_SUPPLY_USB_TYPE_CDP;
-+		chgcc = 900000;
-+		dcilmt = 1200000;
-+	} else {
-+		dev_dbg(dev, "USB state is unknown\n");
-+		priv->usb_type = POWER_SUPPLY_USB_TYPE_UNKNOWN;
-+		return;
-+	}
-+
-+	regmap_field_write(priv->rfield[CPROT], MAX8971_CHGPROT_UNLOCKED);
-+
-+	max8971_set_integer(priv, CHG_CC, MAX8971_CHG_CC_MIN, MAX8971_CHG_CC_MAX,
-+			    MAX8971_CHG_CC_STEP, chgcc);
-+	max8971_set_integer(priv, DCI_LMT, MAX8971_DCILMT_MIN, MAX8971_DCILMT_MAX,
-+			    MAX8971_DCILMT_STEP, dcilmt);
-+
-+	regmap_field_write(priv->rfield[CPROT], MAX8971_CHGPROT_LOCKED);
-+}
-+
-+static int extcon_get_charger_type(struct notifier_block *nb,
-+				   unsigned long state, void *data)
-+{
-+	struct max8971_data *priv =
-+		container_of(nb, struct max8971_data, extcon_nb);
-+	schedule_delayed_work(&priv->extcon_work, 0);
-+	return NOTIFY_OK;
-+}
-+
-+static irqreturn_t max8971_interrupt(int irq, void *dev_id)
-+{
-+	struct max8971_data *priv = dev_id;
-+	struct device *dev = priv->dev;
-+	int err, state;
-+
-+	err = regmap_read(priv->regmap, MAX8971_REG_CHGINT, &state);
-+	if (err)
-+		dev_err(dev, "interrupt reg read failed %d\n", err);
-+
-+	err = regmap_write_bits(priv->regmap, MAX8971_REG_CHGINT_MASK,
-+				MAX8971_AICL_MASK, MAX8971_AICL_MASK);
-+	if (err)
-+		dev_err(dev, "failed to mask IRQ\n");
-+
-+	/* set presence prop */
-+	priv->present = state & MAX8971_REG_CHG_RST;
-+
-+	/* on every plug chip resets to default */
-+	if (priv->present)
-+		max8971_update_config(priv);
-+
-+	/* update supply status */
-+	power_supply_changed(priv->psy_mains);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static char *max8971_supplied_to[] = {
-+	"battery",
-+};
-+
-+static int max8971_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct max8971_data *priv;
-+	struct device_node *extcon;
-+	struct power_supply_config cfg = { };
-+	int err, i;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->client = client;
-+	priv->dev = dev;
-+	priv->usb_type = POWER_SUPPLY_USB_TYPE_UNKNOWN;
-+
-+	i2c_set_clientdata(client, priv);
-+
-+	priv->regmap = devm_regmap_init_i2c(client, &max8971_regmap_config);
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap), "cannot allocate regmap\n");
-+
-+	for (i = 0; i < MAX8971_N_REGMAP_FIELDS; i++) {
-+		priv->rfield[i] = devm_regmap_field_alloc(dev, priv->regmap, max8971_reg_field[i]);
-+		if (IS_ERR(priv->rfield[i]))
-+			return dev_err_probe(dev, PTR_ERR(priv->rfield[i]),
-+					     "cannot allocate regmap field\n");
-+	}
-+
-+	cfg.of_node = dev->of_node;
-+	cfg.drv_data = priv;
-+	cfg.supplied_to = max8971_supplied_to;
-+	cfg.num_supplicants = ARRAY_SIZE(max8971_supplied_to);
-+
-+	priv->psy_mains = devm_power_supply_register(dev, &max8971_charger_desc, &cfg);
-+	if (IS_ERR(priv->psy_mains))
-+		return dev_err_probe(dev, PTR_ERR(priv->psy_mains),
-+				     "failed to register mains supply\n");
-+
-+	err = regmap_write_bits(priv->regmap, MAX8971_REG_CHGINT_MASK, MAX8971_AICL_MASK,
-+				MAX8971_AICL_MASK);
-+	if (err)
-+		return dev_err_probe(dev, err, "failed to mask IRQ\n");
-+
-+	err = devm_device_add_group(dev, &max8971_attr_group);
-+	if (err)
-+		return dev_err_probe(dev, err, "failed to create sysfs attributes\n");
-+
-+	err = devm_request_threaded_irq(dev, client->irq, NULL, &max8971_interrupt,
-+					IRQF_ONESHOT | IRQF_SHARED, client->name, priv);
-+	if (err)
-+		return dev_err_probe(dev, err, "failed to register IRQ %d\n", client->irq);
-+
-+	extcon = of_graph_get_remote_node(dev->of_node, -1, -1);
-+	if (extcon) {
-+		priv->edev = extcon_find_edev_by_node(extcon);
-+		of_node_put(extcon);
-+		if (IS_ERR(priv->edev))
-+			return dev_err_probe(dev, PTR_ERR(priv->edev),
-+					     "failed to register extcon\n");
-+
-+		err = devm_delayed_work_autocancel(dev, &priv->extcon_work,
-+						   max8971_extcon_evt_worker);
-+		if (err)
-+			return dev_err_probe(dev, err, "failed to add extcon evt stop action\n");
-+
-+		priv->extcon_nb.notifier_call = extcon_get_charger_type;
-+
-+		err = devm_extcon_register_notifier_all(dev, priv->edev, &priv->extcon_nb);
-+		if (err)
-+			return dev_err_probe(dev, err, "failed to register notifier\n");
-+
-+		/* Initial configuration work with 1 sec delay */
-+		schedule_delayed_work(&priv->extcon_work, msecs_to_jiffies(1000));
-+	}
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused max8971_resume(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct max8971_data *priv = i2c_get_clientdata(client);
-+
-+	irq_wake_thread(client->irq, priv);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(max8971_pm_ops, NULL, max8971_resume);
-+
-+static const struct of_device_id max8971_match_ids[] = {
-+	{ .compatible = "maxim,max8971" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, max8971_match_ids);
-+
-+static const struct i2c_device_id max8971_i2c_id[] = {
-+	{ "max8971" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, max8971_i2c_id);
-+
-+static struct i2c_driver max8971_driver = {
-+	.driver = {
-+		.name = "max8971-charger",
-+		.of_match_table = max8971_match_ids,
-+		.pm = &max8971_pm_ops,
-+	},
-+	.probe = max8971_probe,
-+	.id_table = max8971_i2c_id,
-+};
-+module_i2c_driver(max8971_driver);
-+
-+MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
-+MODULE_DESCRIPTION("MAX8971 Charger Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+Use macros instead of hardcoded values.
+
+> +}
+> +
+> +static enum fpga_mgr_states efinix_spi_state(struct fpga_manager *mgr)
+> +{
+> +     struct efinix_spi_conf *conf =3D mgr->priv;
+> +
+> +     if (conf->cdone && gpiod_get_value(conf->cdone) =3D=3D 1)
+> +             return FPGA_MGR_STATE_OPERATING;
+> +
+> +     return FPGA_MGR_STATE_UNKNOWN;
+> +}
+> +
+> +static int efinix_spi_write_init(struct fpga_manager *mgr,
+> +                              struct fpga_image_info *info,
+> +                              const char *buf, size_t count)
+> +{
+> +     if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
+> +             dev_err(&mgr->dev, "Partial reconfiguration not supported\n=
+");
+> +             return -EOPNOTSUPP;
+> +     }
+> +     return 0;
+> +}
+> +
+> +static int efinix_spi_write(struct fpga_manager *mgr, const char *buf,
+> +                         size_t count)
+> +{
+> +     struct efinix_spi_conf *conf =3D mgr->priv;
+> +     int ret;
+> +     struct spi_message message;
+> +     struct spi_transfer assert_cs =3D {
+> +             .cs_change =3D 1
+> +     };
+> +     struct spi_transfer write_xfer =3D {
+> +             .tx_buf =3D buf,
+> +             .len =3D count
+> +     };
+> +     struct spi_transfer clk_cycles =3D {
+> +             .len =3D 13,  // > 100 clock cycles
+
+The .len =3D 13 is based on documentation stating?
+Consider using macro.
+
+> +             .tx_buf =3D NULL
+> +     };
+> +     u8 *dummy_buf;
+> +
+> +     dummy_buf =3D kzalloc(13, GFP_KERNEL);
+
+Same - use macro
+
+> +     if (!dummy_buf) {
+> +             ret =3D -ENOMEM;
+> +             goto fail;
+> +     }
+> +
+> +     spi_bus_lock(conf->spi->controller);
+> +     spi_message_init(&message);
+> +     spi_message_add_tail(&assert_cs, &message);
+> +     ret =3D spi_sync_locked(conf->spi, &message);
+> +     if (ret)
+> +             goto fail_unlock;
+> +
+> +     /* reset with asserted cs */
+> +     efinix_spi_reset(conf);
+> +
+> +     spi_message_init(&message);
+> +     spi_message_add_tail(&write_xfer, &message);
+> +
+> +     clk_cycles.tx_buf =3D dummy_buf;
+> +     spi_message_add_tail(&clk_cycles, &message);
+> +
+> +     ret =3D spi_sync_locked(conf->spi, &message);
+> +     if (ret)
+> +             dev_err(&mgr->dev, "SPI error in firmware write: %d\n", ret=
+);
+> +
+> +fail_unlock:
+> +     spi_bus_unlock(conf->spi->controller);
+> +     kfree(dummy_buf);
+> +fail:
+> +     return ret;
+> +}
+> +
+> +static int efinix_spi_write_complete(struct fpga_manager *mgr,
+> +                                  struct fpga_image_info *info)
+> +{
+> +     struct efinix_spi_conf *conf =3D mgr->priv;
+> +     unsigned long timeout =3D
+> +             jiffies + usecs_to_jiffies(info->config_complete_timeout_us=
+);
+> +     bool expired =3D false;
+> +     int done;
+> +
+> +     if (conf->cdone) {
+> +             while (!expired) {
+> +                     expired =3D time_after(jiffies, timeout);
+> +
+> +                     done =3D gpiod_get_value(conf->cdone);
+> +                     if (done < 0)
+> +                             return done;
+> +
+> +                     if (done)
+> +                             break;
+> +             }
+> +     }
+> +
+> +     if (expired)
+> +             return -ETIMEDOUT;
+> +
+> +     /* tUSER > 25 us */
+> +     usleep_range(30, 35);
+
+Same - use macros.
+
+> +     return 0;
+> +}
+> +
+> +static const struct fpga_manager_ops efinix_spi_ops =3D {
+> +     .state =3D efinix_spi_state,
+> +     .write_init =3D efinix_spi_write_init,
+> +     .write =3D efinix_spi_write,
+> +     .write_complete =3D efinix_spi_write_complete, };
+> +
+> +static int efinix_spi_probe(struct spi_device *spi) {
+> +     struct efinix_spi_conf *conf;
+> +     struct fpga_manager *mgr;
+> +
+> +     conf =3D devm_kzalloc(&spi->dev, sizeof(*conf), GFP_KERNEL);
+> +     if (!conf)
+> +             return -ENOMEM;
+> +
+> +     conf->spi =3D spi;
+> +
+> +     conf->reset =3D devm_gpiod_get(&spi->dev, "reset", GPIOD_OUT_HIGH);
+> +     if (IS_ERR(conf->reset))
+> +             return dev_err_probe(&spi->dev, PTR_ERR(conf->reset),
+> +                                  "Failed to get RESET gpio\n");
+> +
+> +     if (!(spi->mode & SPI_CPHA) || !(spi->mode & SPI_CPOL))
+> +             return dev_err_probe(&spi->dev, -EINVAL,
+> +                                  "Unsupported SPI mode, set CPHA and CP=
+OL\n");
+> +
+> +     conf->cdone =3D devm_gpiod_get_optional(&spi->dev, "cdone", GPIOD_I=
+N);
+> +     if (IS_ERR(conf->cdone))
+> +             return dev_err_probe(&spi->dev, PTR_ERR(conf->cdone),
+> +                                  "Failed to get CDONE gpio\n");
+> +
+> +     mgr =3D devm_fpga_mgr_register(&spi->dev,
+> +                                  "Efinix FPGA Manager",
+> +                                  &efinix_spi_ops, conf);
+> +
+> +     return PTR_ERR_OR_ZERO(mgr);
+> +}
+> +
+> +static const struct of_device_id efinix_spi_of_match[] =3D {
+> +     { .compatible =3D "efinix,trion-spi", },
+> +     { .compatible =3D "efinix,titanium-spi", },
+> +     { .compatible =3D "efinix,topaz-spi", },
+> +     { .compatible =3D "efinix,fpga-spi", },
+> +     {}
+> +};
+> +MODULE_DEVICE_TABLE(of, efinix_spi_of_match);
+> +
+> +static const struct spi_device_id efinix_ids[] =3D {
+> +     { "trion-spi", 0 },
+> +     { "titanium-spi", 0 },
+> +     { "topaz-spi", 0 },
+> +     {},
+> +};
+> +MODULE_DEVICE_TABLE(spi, efinix_ids);
+> +
+> +static struct spi_driver efinix_spi_driver =3D {
+> +     .driver =3D {
+> +             .name =3D "efinix-spi",
+> +             .of_match_table =3D efinix_spi_of_match,
+> +     },
+> +     .probe =3D efinix_spi_probe,
+> +     .id_table =3D efinix_ids,
+> +};
+> +
+> +module_spi_driver(efinix_spi_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Ian Dannapel <iansdannapel@gmail.com>");
+> +MODULE_DESCRIPTION("Efinix FPGA SPI Programming Driver (Topaz/Titanium
+> +untested)");
+
+If untested, it might be useful to mark them as experimental in Kconfig.
+
+Regards,
+Navakishore.
 
 
