@@ -1,48 +1,113 @@
-Return-Path: <devicetree+bounces-153872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADBD0A4E20D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:59:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96810A4E49D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:01:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CDFF1751D3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:52:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABD607AB1FB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C5927934B;
-	Tue,  4 Mar 2025 14:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66ADA291F93;
+	Tue,  4 Mar 2025 15:41:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V03o+yDQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RqadlKcd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF3D27934A;
-	Tue,  4 Mar 2025 14:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 802A1298CDC
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:41:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741102900; cv=pass; b=U3TZDB84554f+VXa8bARFuwFzjyz3k3DkGuh/yZ502S1DvqGPuITzjDoQPb2/qDMGK5YjO+ZACYh4jD3CKDv0/nvqUnv/Ukj5aNUVKCF/32v7kRb7UHcSJVBBA0HWKJItWA/xAFZghtLq6RvwzqiZHKbHJNI6fMxmDmCNM8hZPA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741102900; c=relaxed/simple;
+	bh=GJqAxXSYWniWgFDuASRZCzcna6rw3abw6iW+pr2fSLs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LdrPa7aTMk8rvn1G88cTkDqKAEsxrKw5HyN8b1F4ECsrd+MAHpTcXFKT4a+/P97jGN9azq0kBElXzs6Y/drASmQU22E+2Dzpg0p69M5/mug44PTTfZUp9O4sEly6NAm2xU7tyZ8TYQNeILGqRn0Listl9dz5eUcnWQebD+D8Mzg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RqadlKcd; arc=none smtp.client-ip=205.220.168.131; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; arc=pass smtp.client-ip=160.75.25.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
+Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 145AE408B642
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:41:36 +0300 (+03)
+X-Envelope-From: <root@cc.itu.edu.tr>
+Authentication-Results: lesvatest1.cc.itu.edu.tr;
+	dkim=pass (2048-bit key, unprotected) header.d=quicinc.com header.i=@quicinc.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=RqadlKcd
+Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6fxW1WYXzG0tV
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:39:27 +0300 (+03)
+Received: by le1 (Postfix, from userid 0)
+	id D1E6D42728; Tue,  4 Mar 2025 18:39:24 +0300 (+03)
+Authentication-Results: lesva1.cc.itu.edu.tr;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RqadlKcd
+X-Envelope-From: <linux-kernel+bounces-541088-bozkiru=itu.edu.tr@vger.kernel.org>
+Authentication-Results: lesva2.cc.itu.edu.tr;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RqadlKcd
+Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
+	by le2 (Postfix) with ESMTP id 867B2420AA
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:22:21 +0300 (+03)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id 41FFD3064C0B
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:22:21 +0300 (+03)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F281116DB15
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 07:22:19 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07EDA1EA7C9;
+	Mon,  3 Mar 2025 07:22:09 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B971E5B76;
+	Mon,  3 Mar 2025 07:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741099824; cv=none; b=hX+90zhzTUgMnFmF9m2cEJpsWLOY1XH/mrswS+OQULSi7+meBmUanTWQBzls0zEQmclUbjFOz9KZnxH4C+pqKQYuKwZfAaepBa5ptho+mTw7Z8vvdH2k8J2MqtKD/Y872VNmx1Sgw/NMIsNWIy4hevUZQV4vQ31IjSsEk5KBDNQ=
+	t=1740986525; cv=none; b=rWoIGCZTj/S+bMEZRzhiFPDneUHs0u6ouJYwEzLcEGAWbCncCPou51Tlv0qtt0+I6OhZyPBtmiiRakydTV4znNldkf8zsVT9mkyh8aqj5rpPZMGv0qthdSfTFpaAwu17NntEQ7Zl2rlnduziUdO5TfLHL9RYpvNmFQj/lzoGRI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741099824; c=relaxed/simple;
-	bh=wxuGA9UzLIOrg4OTobYhGzJKLbbcpwSezUJJ1dDX/1U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EUxRu+aWDzhVEKC1U1Fi9pHpWk00GVUcPZXIz7oncGTkZERM7AnIT+lV8UPgJ/IqmtLyyN0j9dbMefCDWSK+4IFE2RGdFATVlq+dCtyJH1cI+U4Gm3oQZI096Eez1ra9L3aSy0lXYXSdyJjwXmsFw9AsWomPhMUD2Cvw+CZldOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V03o+yDQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C512C4CEEF;
-	Tue,  4 Mar 2025 14:50:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741099824;
-	bh=wxuGA9UzLIOrg4OTobYhGzJKLbbcpwSezUJJ1dDX/1U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V03o+yDQo3UKaGkzhYQLEv7z6AJOdfgSx6N7PVYr0Q81cx8qf73xKXX7KH7rUj9BL
-	 wR7GXTamSdW1DedzgFCHlPimRbqnBjai74uiE5pKtOgTa+ObphUHYlMRGctpYsAYlP
-	 /oNFz+Y+unMjhy5VUR2fNxAP9ADsX1jjYAA46AgmZbkDzd/jNR7t5MOp+S/R/HP0BC
-	 UvU0faxqwjneeIXBSx1EalwdF6V9IePYprn9dHk3L1XJhPJdlcch88AQ2UQwswU2ZL
-	 s887IfOCZSHCfrrGzQ/atdgrTCvCRUbzINK6ljSoB+8bXt0r/7JONcZGBJdHipK8aw
-	 /oGu2fri5CRwg==
-Message-ID: <cdcfdbfe-7186-4a29-a39b-7253070d889c@kernel.org>
-Date: Tue, 4 Mar 2025 15:50:16 +0100
+	s=arc-20240116; t=1740986525; c=relaxed/simple;
+	bh=GJqAxXSYWniWgFDuASRZCzcna6rw3abw6iW+pr2fSLs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XqgZjYXWoMAoOSYw0V/z7jEuhgPs30pVmauSzgmFX7BYWqZeQGvNAzQ7c21ViKCqwBqBAxhdPSwjQ8NhYh+KLBp5Qk5vUb7UUgObTH5AK7JV8IW6ocxFBSamm/oCDhnf+//7UZMsJFXKM3KPYg1pT9+wjLTOy/8Be51uckxIsE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RqadlKcd; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 522LWrhq027034;
+	Mon, 3 Mar 2025 07:21:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	bqa5QdZw5rjeIAaBH02FxPX964Zdnmjap87BgQFF0JU=; b=RqadlKcdvWqF3ST2
+	2zLcT30S+HEcq+ZvzW/ULmKlP6joBxWzsLb6KDL18LXopOKfESBNHJcrt7zPee5u
+	lWponGcT1UQxiG/cD5yNNnh9g4mjMgD5YrLrEI7Mnh8Zi7sal0qL3qFceim2oqy6
+	ETEizywESkizareELq64XkPBRTF/geg28473t38MYi0yinT/le3sjLb2/matp7Pz
+	QbzU+QIOWM+xBogVZjoJaFmM7QNvpNemHrVAUNQWs1tl5fwTeXgcQvj788E5fkZI
+	7mVqzIkkhiRtjSlBF5kJkwrIhrRmaY4gDuTG/kH6GsawB1aKL3DbKWhKTw0t/BQC
+	uCn5cw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 453u0d3ptu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Mar 2025 07:21:57 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5237LvYn005792
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 3 Mar 2025 07:21:57 GMT
+Received: from [10.151.37.100] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 2 Mar 2025
+ 23:21:53 -0800
+Message-ID: <1a22a637-c3f1-49b3-adf5-3e952c7d336a@quicinc.com>
+Date: Mon, 3 Mar 2025 12:51:44 +0530
+Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,132 +115,157 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: dma: fsl-edma: add
- interrupts-extended property
-To: Jacky Bai <ping.bai@nxp.com>, Rob Herring <robh@kernel.org>
-Cc: "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Aisheng Dong <aisheng.dong@nxp.com>,
- Peng Fan <peng.fan@nxp.com>, Frank Li <frank.li@nxp.com>
-References: <20250304093127.1954549-1-ping.bai@nxp.com>
- <20250304093127.1954549-2-ping.bai@nxp.com>
- <20250304131314.GA2441686-robh@kernel.org>
- <AS8PR04MB8642D20F0F5A7E8622A7685F87C82@AS8PR04MB8642.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH V3 1/2] dt-bindings: mailbox: Document qcom,tmel-qmp
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <manivannan.sadhasivam@linaro.org>
+References: <20250228045356.3527662-1-quic_srichara@quicinc.com>
+ <20250228045356.3527662-2-quic_srichara@quicinc.com>
+ <velvqajyhrdaipmqmsduv3l3dsv56sy4rfukwm2hrdvh47hgqx@7sbnrgkzsn67>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <AS8PR04MB8642D20F0F5A7E8622A7685F87C82@AS8PR04MB8642.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <velvqajyhrdaipmqmsduv3l3dsv56sy4rfukwm2hrdvh47hgqx@7sbnrgkzsn67>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: WNki5m9_TFCeX6WGTAU8cpccCA7JIqxW
+X-Proofpoint-GUID: WNki5m9_TFCeX6WGTAU8cpccCA7JIqxW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-03_02,2025-03-03_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ phishscore=0 malwarescore=0 spamscore=0 mlxscore=0 suspectscore=0
+ clxscore=1015 bulkscore=0 priorityscore=1501 mlxlogscore=999
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2503030055
+X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
+X-ITU-Libra-ESVA-ID: 4Z6fxW1WYXzG0tV
+X-ITU-Libra-ESVA: No virus found
+X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
+X-ITU-Libra-ESVA-Watermark: 1741707581.51849@GC3iCgq8icXrMY5iKHQPJQ
+X-ITU-MailScanner-SpamCheck: not spam
 
-On 04/03/2025 15:40, Jacky Bai wrote:
-> Hi Rob,
-> 
->> Subject: Re: [PATCH v2 1/4] dt-bindings: dma: fsl-edma: add
->> interrupts-extended property
+
+
+On 2/28/2025 11:36 AM, Dmitry Baryshkov wrote:
+> On Fri, Feb 28, 2025 at 10:23:55AM +0530, Sricharan R wrote:
+>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 >>
->> On Tue, Mar 04, 2025 at 05:31:24PM +0800, Jacky Bai wrote:
->>> Add interrupts-extended property for edma that has multiple interrupt
->>> controllers used.
->>
->> Did you try using interrupts-extended? No. Because either is supported by the
->> tools already.
->>
+>> TMEL SS provides different kinds of services like secureboot, remote image
 > 
-> We need to use interrupts-extended property for i.MX94 because for the edma's
-> interrupts, some are connected to irqsteer interrupt controller and some are connected
-> to the GIC. make dtbs_check report error, so I add this dt binding changes.
+> What is TMEL SS? What is Q6, etc? Please provide a definition on the
+> first usagem both in the commit message and in the bindings text. And in
+> the cover letter. Also, in some places you use TME-L instead of TMEL.
+> Please settle on one of those, unless there is a difference between
+> them,
 > 
-> Sorry, Which tools are you referring?
+ok, both are same, will expand and fix same in all places
 
-Linux, dtschema, everything.
-
-> 
->>>
->>> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
->>> ---
->>>  - v2 changes:
->>>   - newly added entry
->>> ---
->>>  Documentation/devicetree/bindings/dma/fsl,edma.yaml | 11
->> ++++++++++-
->>>  1 file changed, 10 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> index d54140f18d34..549afb8611a9 100644
->>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> @@ -38,6 +38,10 @@ properties:
->>>      minItems: 1
->>>      maxItems: 64
->>>
->>> +  interrupts-extended:
->>> +    minItems: 1
->>> +    maxItems: 65
+>> authentication, key management, crypto, OEM provisioning etc. This patch
+>> adds support for remote image authentication. Support for rest of the
+>> services can be added.
 >>
->> Doesn't match the size for interrupt-names:
+>> The QMP mailbox is the primary means of communication between TMEL SS and
+>> other subsystem on the SoC. A dedicated pair of inbound and outbound
+>> mailboxes is implemented for each subsystem/external execution environment
+>> which needs to communicate with TMEL for security services. The inbound
+>> mailboxes are used to send IPC requests to TMEL, which are then processed
+>> by TMEL firmware and accordingly the responses are sent back via outbound
+>> mailboxes.
 >>
+>> It is an IPC transport protocol which is light weight and supports a subset
+>> of API's. It handles link initialization, negotiation, establishment and
+>> communication across client(CPU/BTSS/AUDIOSS) and server(TMEL SS).
+>>
+>>     -----------------------------------------------       ---------------------------------------------------
+>>    |                                              |       |                                                 |
+>>    |                 SOC  CLIENT                  | SOC   |                TMEL  SS                         |
+>>    |                                              | AHB   |                                                 |
+>>    |     ----------    ---------   ---------      |       | ------    -------     --------    ------------  |
+>>    |     |        |    |       |   |       |      | WO    | |     | R |     |     |      |    |SERVICES   | |
+>>    |     | CPU    |<-->| TMEL  |<->|       |------------->| | IN  |-->|     |     | TMEL |    |--------   | |
+>>    |     |        |    | COM   |   | QMP   |      | RO    | |     | W | QMP |<--->| COM  |<-->| a) ATTEST | |
+>>    |     |        |    |       |   |       |<-------------| | OUT |<--|     |     |      |    | b) CRYPTO | |
+>>    |     |        |    |       |   |       |      |       | |     |   |     |     |      |    | .. more   | |
+>>    |     ---------     ---------   ---------      |       | ------    -------     -------     ------------  |
+>>    |                                              |       |                                                 |
+>>     -----------------------------------------------       --------------------------------------------------
+>>
+>> This binding describes the component responsible for communication between
+>> the TMEL server based subsystems (Q6) and the TMEL client
+>> (CPU/BTSS/AUDIOSS), used for security services like secure image
+>> authentication, enable/disable efuses, crypto services. Each client in the
+>> SoC has its own block of message RAM and IRQ for communication with the
+>> TMEL SS.
+>>
+>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> ---
+>> #V3:
 > 
-> The interrupt-names are only true for vf610, maxItems is
-> enough for such case. do we still need to update it? 
+> Creative. Where are the previous changelogs?
+> 
+ok, will add
 
-They always go in sync.
+>> ---
+>>          Fixed wrappings.
+>>          Made mailbox-cells as a required property and changed value to '1'.
+>>          Fixed to use compatible as filename.
+>>          Renamed compatible as per Krzystof's comments.
+>>          Dropped unused label.
+>>
+>>      Following tests were done and no issues.
+>>
+>>         *)  Checkpatch
+>>         *)  Codespell
+>>         *)  Sparse
+>>         *)  kerneldoc check
+>>         *)  Kernel lock debugging
+>>         *)  dt_binding_check and dtbs_check
+>>
+>>   .../bindings/mailbox/qcom,ipq5424-tmel.yaml   | 62 +++++++++++++++++++
+>>   1 file changed, 62 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml b/Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml
+>> new file mode 100644
+>> index 000000000000..2e3c79add405
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml
+>> @@ -0,0 +1,62 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mailbox/qcom,ipq5424-tmel.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm TMEL IPCC channel
+>> +
+>> +maintainers:
+>> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> +
+>> +description:
+>> +  TMEL SS provides different kinds of services like secureboot, remote image authentication,
+>> +  key management, crypto, OEM provisioning etc. This patch adds support for remote image
+>> +  authentication. Support for rest of the services can be added.
+>> +
+>> +  The QMP mailbox is the primary means of communication between TMEL SS and other subsystem on
+>> +  the SoC. A dedicated pair of inbound and outbound mailboxes is implemented for each
+>> +  subsystem/external execution environment which needs to communicate with TMEL for security
+>> +  services. The inbound mailboxes are used to send IPC requests to TMEL, which are then processed
+> 
+> This string is 100 chars long. What is the recommended wrapping
+> boundary?
+> 
+I kept it as 100 and checkpatch did not throw any warnings.
 
-Anyway, you did not get the point of Rob's comments: this patch is
-neither needed nor correct. Just drop it and test again your DTS.
+Regards,
+  Sricharan
 
 
-
-Best regards,
-Krzysztof
 
