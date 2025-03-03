@@ -1,97 +1,128 @@
-Return-Path: <devicetree+bounces-153931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8671DA4E418
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:48:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57BCBA4E4E9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:06:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4DE2189B03F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:41:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C94B1422EC7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F56291FAB;
-	Tue,  4 Mar 2025 15:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863922BF3D6;
+	Tue,  4 Mar 2025 15:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L5Fsc1d+"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="jWlMsxws"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
+Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE80291F9C
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:26:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B79A2BF3D2
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:39:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741102020; cv=pass; b=eF3gxR7YdBsGQ3mdhenJKhagSpGntq6u3NsLkoPUl2b7WZlLrZtkX2QDM6bQbpKktCGjg7JrwSnVi3zMupmynk9uji+b0m2JdCPgwXfXFZ+kjdQc96iTYpUJNaXhae1r1kGj7Fl/WvXlLyQ6RoE5RKwFUdG4EN24Aj4QScmqC4w=
+	t=1741102767; cv=pass; b=lgovEibipogrviZrPhfEwBG62dADDErEYLcrCXFR5L6mnfUM4zI0OdK/yFZL/PKYA/LLOTaVuUzS1vlHivGq1eYv8nhhtJjvapQBU4B5Da5hMI9FeBWqNRGJXjQW/5ua8L1/c8p/pGIJ7tbtzjzPXAwMgio+FyQ+IZsrcmdM+Io=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741102020; c=relaxed/simple;
-	bh=obB2ljcIPGtP0VJhm54WRUhHb1nNmOp3J/J2QdoPBuo=;
+	s=arc-20240116; t=1741102767; c=relaxed/simple;
+	bh=ZQkQ0v+LVOjnnddsmiqkVeGvaIQ78BApCBN3whw0Bh8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vy8UL6cNfrF3G3o4vjagSSLL6ygTisgqqn+OkKGOeI+N/9rtblEgi4WTbfulr5QymVtBhedi/XvQ9F9CqeQkSTW7uhHOR7NH4mIHGU8wIrQBYpjgiCTVxiXVAwQ/5mgIcKWXWifU3lMPJSo7siJwrY2ri/Jt8EeSGo3vqOcvN/Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L5Fsc1d+; arc=none smtp.client-ip=10.30.226.201; arc=pass smtp.client-ip=160.75.25.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org
+	 In-Reply-To:Content-Type; b=iAXr/mItgtku2l9dG5MCQncPq89QOyZS2qQGOTr3Zl8iGVH6kHaZ/Hst0x2zTLcTb4/NMww2SHNhDStkagIg5frff7UMDXg82wo/9HD9TmzhTDRqQm4qubegNzKJdnlP5LM7tof8UCgE3DYk+XKyYkT/dKt7QhvhzeSLJ63WAYI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=jWlMsxws; arc=none smtp.client-ip=209.85.218.44; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; arc=pass smtp.client-ip=160.75.25.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id AB65440CEC82
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:26:57 +0300 (+03)
+	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id 0E65840D5713
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:39:24 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=L5Fsc1d+
+	dkim=pass (2048-bit key, unprotected) header.d=tuxon.dev header.i=@tuxon.dev header.a=rsa-sha256 header.s=google header.b=jWlMsxws
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6fcy4gp2zFynl
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:25:06 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6fvM0TRMzG0wR
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:37:35 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 2BFF742720; Tue,  4 Mar 2025 18:25:06 +0300 (+03)
+	id 342AF4272C; Tue,  4 Mar 2025 18:37:27 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L5Fsc1d+
-X-Envelope-From: <linux-kernel+bounces-541159-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=jWlMsxws
+X-Envelope-From: <linux-kernel+bounces-541169-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L5Fsc1d+
-Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 6F764426D8
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:30:02 +0300 (+03)
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=jWlMsxws
+Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
+	by le2 (Postfix) with ESMTP id 83B6142B07
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:37:56 +0300 (+03)
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 493A83064C1E
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:30:02 +0300 (+03)
+	by fgw2.itu.edu.tr (Postfix) with SMTP id 4D5F62DCF6
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:37:56 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD73A188A4B7
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 08:29:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4152A188CF0D
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 08:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7F1A1EFFA0;
-	Mon,  3 Mar 2025 08:29:32 +0000 (UTC)
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB991EF0A9;
+	Mon,  3 Mar 2025 08:37:40 +0000 (UTC)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E981DE3A4;
-	Mon,  3 Mar 2025 08:29:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6CA1EB19D
+	for <linux-kernel@vger.kernel.org>; Mon,  3 Mar 2025 08:37:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740990570; cv=none; b=IsIL6Q+MdipDfdDUqUI3wHgWmtech38persq2c4IHa0qE7pK4PR50/3xphm0wdC1Q4GMRhEe7nA7LwQph4NLqm5I3LV/sWpV8oaNPEE8fYO5gN7lcrrRHosI9O7QSFTdpXlg+X+nNyDIfjsVXBJUfPo27aMa8bpPPSDtLvHX/Ms=
+	t=1740991057; cv=none; b=fTv6MtNAndX9eWP1LDxhkeEEmRJlu8l+1D728psM1oIaY1lhxALFth8A1c2zbBeSEKAcjniEJDJWvopEQaaks/nWQigD9VZ3F/y5jWUQZR5eofGBPchagUuCDENoUMB0/fbciPGGl+1E5rROXNVDv2tpNqddGHmuhboPxo8Qv2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740990570; c=relaxed/simple;
-	bh=obB2ljcIPGtP0VJhm54WRUhHb1nNmOp3J/J2QdoPBuo=;
+	s=arc-20240116; t=1740991057; c=relaxed/simple;
+	bh=ZQkQ0v+LVOjnnddsmiqkVeGvaIQ78BApCBN3whw0Bh8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jEe06paRKu/FfVdJsxB7pXJzdjfDKuHautoxv3Tptnto/jhFbevIu+UU0gHd+rnVCw506TnhWvICjO7/9YEtsFCF4jAdWUFLBfML/dw+qfTz81Dy6pcszprNrh8ugjKkirSQ78g9M6irHtnZMyxsn1Vx4y9mwAZlKSNc/oF3tFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L5Fsc1d+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D6C8C4CED6;
-	Mon,  3 Mar 2025 08:29:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740990569;
-	bh=obB2ljcIPGtP0VJhm54WRUhHb1nNmOp3J/J2QdoPBuo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L5Fsc1d+BT3zlKoAvBi301/7lNQasBdGMjxy/bahG5gw9C2PhtdMds2Iks/K0vAYe
-	 Iv51saEZ1KNYkpulm9MfT97RNhx7uBEcsBq8cO6fnYfbb18iAtRpkxUUUILC23eiEF
-	 d9LScttTam79NgrVIW0q45mfu2FygdvM8Y3cw9bmAopH1YSHHeuzxsAT0rEpffJRU5
-	 xCmxo+7bkBn8/2sN4t0RZ/i+76ZscytuML7vdooupcPLSgOHIsthFQ5dMje/vZo+PS
-	 iK0PIUtlo1r0LV3k94CYaUrv9HLaJ3VA1EtNIUt1E18nlNPVmhAKZw0epCkQ3UvgF/
-	 Y3A0gihRihCyA==
-Message-ID: <929ed565-f842-49e6-9c7a-6d1df5266a62@kernel.org>
-Date: Mon, 3 Mar 2025 09:29:23 +0100
+	 In-Reply-To:Content-Type; b=BIdxHfuTEM8wMCwK8Q3RleBiPEJ20wgBuYukV+hUYqKJ9obh+Z0x+MMDMLiy/DK2WGOrKN5/NzVBNhI3uU/jgG/gK5tWBZP15kmPHJFiFXDXdeXTRH4wed+jaObTXgMx1RGwrxjlTBY/sQV7asuWk4HENQQarKAkXVoc7wXE6pA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=jWlMsxws; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-abf5358984bso254592766b.3
+        for <linux-kernel@vger.kernel.org>; Mon, 03 Mar 2025 00:37:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1740991053; x=1741595853; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rHzoEXcX3rRgSypgjLl/rpTLfRP49fuHATm+VBKv9lY=;
+        b=jWlMsxwsUDdonJkhTqhHJvmcLaMy1EI8DH1KqPBmYNwOKGbMDZ0YzFUW211ZNRN/bt
+         VSR8XGrNGFpqhlB61NnOUGuH5wSamTWUCcYHbn+BA9TVfRRq4w/SZ4RFddi6W+q9vMBg
+         UyJhH7g1QmdARr7zNXFgwNjp3qI6DvwVxvQnFREZ3joNm2wGQlRq1vIXAwKetKcuVmrI
+         lsZxcOBW0kBCWxm9nbJM7LqpQZGZLDhco/wUt7so4WCsUMNO90+K9483EhLNDdCQ88FO
+         fZ4QIiMjYS9ntnC60o6Db2zG79kWCai7wKYxwG4Ilq7xfAlVwwtZLZMTvadCRpl4gEiC
+         aY3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740991053; x=1741595853;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rHzoEXcX3rRgSypgjLl/rpTLfRP49fuHATm+VBKv9lY=;
+        b=qsV/NcEQBkfpANlMRIRVv8Eqh4Of4qTtO0gB6yCc5Q8pNzW7e7Q7SG10HrnAIt0XwN
+         1/W5FHudmNx/wWWYSGIdwTItToWWnmcZWj8wdZcDt5NJKCm3thwtJuklIEvBVuWdZ5PD
+         +80oaL1FvJlHenXh4gKuHxxvYkn/h8tJNiQbjcLXFxjRyl2qYNr7J+4r4stVgapwFbIk
+         UFAfd8oI+/NZ9FeArIvTkexHhx/9p0fuqWE3DD9uBRfP8WyP46tpegmMwyCQ7X31zPyH
+         GWS19yTdk/B+gxlPpjSduvq84FBnrzQS8JMvAglC1SskMwgZbPTvJ8cFNCoyqqfNZQ0r
+         CFWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVTvZilf/CfUiR1gtIhJedNuDTofQ5tDFhaQGikTk7DoAFQnfKo1GV88JW6wZLaWdV8QtRdwBPiuMK3GD8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzOApEQNRZLKYjrpufDYqb38lTCV1EoS3xCvVxrRR5iUZsCdyz
+	Pfgp+cmKAwYOrFk3/vES3OhO/vWTE/D6D0EzqdIuUvURyxARRJBIhFw5xhQlhTA=
+X-Gm-Gg: ASbGncvWTY/MZf5MFAl4Xo2eXx2KYV/W7MFw/Zh2U2Y4CazX0hK8D+N/mdyHSEaaRBO
+	StGzKGy1U1rkbyGiKHZinoniLGvCavAMt6OR94xTPXtnTYpvNEbDjD6hyljOSK5ghH7T3+yh4dv
+	3RXzgk1mq5FYW2XT6KSsZuHg70/h2gd0zRhxKDzclptd/baCpo7ezrLvjpjVwPty7AoDLzA0+WF
+	5kQNnMzqopDNQhruC3X9baM10rqbO35xFqqg82CBbgOw/4rl2s7rRMGY3zaBoi7ZVkHK0ZDVM1a
+	6yRMiqI6CGdBzYfAFWUgTtbkzKZuemsZNAOe0vC8BczxVOkADfPfCrsg
+X-Google-Smtp-Source: AGHT+IEu4SCH3E4lm5pHLGphX1D/WhBV+YCMGBhWUNyZogIyLMScbPiRPIx0Mz9hoI+7dm2HVL+OtA==
+X-Received: by 2002:a17:907:97cf:b0:abf:38a:6498 with SMTP id a640c23a62f3a-abf26708c88mr1540344766b.55.1740991053091;
+        Mon, 03 Mar 2025 00:37:33 -0800 (PST)
+Received: from [192.168.50.159] ([82.78.167.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf0c0dc601sm780828466b.68.2025.03.03.00.37.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Mar 2025 00:37:32 -0800 (PST)
+Message-ID: <81354810-14e6-4840-9e50-52bdd0e63b95@tuxon.dev>
+Date: Mon, 3 Mar 2025 10:37:33 +0200
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -100,91 +131,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: usb: samsung,exynos-dwc3: add
- exynos7870 support
-To: Kaustabh Chakraborty <kauschluss@disroot.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250301-exynos7870-usb-v3-0-f01697165d19@disroot.org>
- <20250301-exynos7870-usb-v3-1-f01697165d19@disroot.org>
+Subject: Re: [PATCH v3 10/21] ARM: at91: pm: add DT compatible support for
+ sama7d65
+To: Ryan.Wanner@microchip.com, lee@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, sre@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ p.zabel@pengutronix.de
+Cc: linux@armlinux.org.uk, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+References: <cover.1740671156.git.Ryan.Wanner@microchip.com>
+ <06b64869f2de4b499835d153411ba30512409168.1740671156.git.Ryan.Wanner@microchip.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250301-exynos7870-usb-v3-1-f01697165d19@disroot.org>
-Content-Type: text/plain; charset=UTF-8
+From: "claudiu beznea (tuxon)" <claudiu.beznea@tuxon.dev>
+In-Reply-To: <06b64869f2de4b499835d153411ba30512409168.1740671156.git.Ryan.Wanner@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6fcy4gp2zFynl
+X-ITU-Libra-ESVA-ID: 4Z6fvM0TRMzG0wR
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741706722.62204@FUm4eEPF9a0+1YRi32g8ow
+X-ITU-Libra-ESVA-Watermark: 1741707463.95639@w6+wP3XSsKUiEnIufuz3rA
 X-ITU-MailScanner-SpamCheck: not spam
 
-On 28/02/2025 20:40, Kaustabh Chakraborty wrote:
-> Document compatible string for Exynos7870 DWC3-compatible USB 2.0
-> driver. The devicetree node requires three clocks, named "bus_early",
-> "ref", and "ctrl".
+
+
+On 2/27/25 17:51, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> Unlike other variants, Exynos7870's USB controller requires a single
-> 3.0V regulator. Assert that the other 1.0V regulator requirement is
-> enforced on variants individually other than Exynos7870's.
+> Add support for SAMA7D65 new compatible strings in pm.c file for wakeup source
+> IDs and PMC.
+> This is the first bits of PM for this new SoC. PM depends on other patches.
 > 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> [nicolas.ferre@microchip.com: split patch and address only the pm.c changes]
+> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 > ---
->  .../bindings/usb/samsung,exynos-dwc3.yaml          | 28 +++++++++++++++++++++-
->  1 file changed, 27 insertions(+), 1 deletion(-)
+>   arch/arm/mach-at91/pm.c | 8 ++++++--
+>   1 file changed, 6 insertions(+), 2 deletions(-)
 > 
+> diff --git a/arch/arm/mach-at91/pm.c b/arch/arm/mach-at91/pm.c
+> index 6c3e6aa22606..39644703244d 100644
+> --- a/arch/arm/mach-at91/pm.c
+> +++ b/arch/arm/mach-at91/pm.c
+> @@ -222,13 +222,16 @@ static const struct of_device_id sam9x60_ws_ids[] = {
+>   	{ /* sentinel */ }
+>   };
+>   
+> -static const struct of_device_id sama7g5_ws_ids[] = {
+> +static const struct of_device_id sama7_ws_ids[] = {
+> +	{ .compatible = "microchip,sama7d65-rtc",	.data = &ws_info[1] },
+>   	{ .compatible = "microchip,sama7g5-rtc",	.data = &ws_info[1] },
+>   	{ .compatible = "microchip,sama7g5-ohci",	.data = &ws_info[2] },
+>   	{ .compatible = "usb-ohci",			.data = &ws_info[2] },
+>   	{ .compatible = "atmel,at91sam9g45-ehci",	.data = &ws_info[2] },
+>   	{ .compatible = "usb-ehci",			.data = &ws_info[2] },
+> +	{ .compatible = "microchip,sama7d65-sdhci",	.data = &ws_info[3] },
+>   	{ .compatible = "microchip,sama7g5-sdhci",	.data = &ws_info[3] },
+> +	{ .compatible = "microchip,sama7d65-rtt",	.data = &ws_info[4] },
+>   	{ .compatible = "microchip,sama7g5-rtt",	.data = &ws_info[4] },
+>   	{ /* sentinel */ }
+>   };
+> @@ -1379,6 +1382,7 @@ static const struct of_device_id atmel_pmc_ids[] __initconst = {
+>   	{ .compatible = "atmel,sama5d2-pmc", .data = &pmc_infos[1] },
+>   	{ .compatible = "microchip,sam9x60-pmc", .data = &pmc_infos[4] },
+>   	{ .compatible = "microchip,sam9x7-pmc", .data = &pmc_infos[4] },
+> +	{ .compatible = "microchip,sama7d65-pmc", .data = &pmc_infos[4] },
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+According to the chapter 42.18.3. PMC System Clock Status Register at [1] there 
+is no AT91SAM926x_PMC_UDP for SAMA7D65 (which you are dropping in the next 
+patch). This patch would have to reflect what the documentation say instead of 
+fixing it in patch 12/21.
 
-Best regards,
-Krzysztof
+Thank you,
+Claudiu
+
+[1] 
+https://ww1.microchip.com/downloads/aemDocuments/documents/MPU32/ProductDocuments/DataSheets/SAMA7D6-Series-Data-Sheet-DS60001851.pdf
+
+>   	{ .compatible = "microchip,sama7g5-pmc", .data = &pmc_infos[5] },
+>   	{ /* sentinel */ },
+>   };
+> @@ -1672,7 +1676,7 @@ void __init sama7_pm_init(void)
+>   	at91_pm_modes_init(iomaps, ARRAY_SIZE(iomaps));
+>   	at91_pm_init(NULL);
+>   
+> -	soc_pm.ws_ids = sama7g5_ws_ids;
+> +	soc_pm.ws_ids = sama7_ws_ids;
+>   	soc_pm.config_pmc_ws = at91_sam9x60_config_pmc_ws;
+>   
+>   	soc_pm.sfrbu_regs.pswbu.key = (0x4BD20C << 8);
+
 
 
