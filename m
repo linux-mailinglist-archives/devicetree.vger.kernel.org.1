@@ -1,99 +1,123 @@
-Return-Path: <devicetree+bounces-153185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A12F4A4B7B4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 06:45:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF085A4B7CC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 07:08:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE70F167DE2
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 05:45:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E10416A001
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 06:08:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 587241E2847;
-	Mon,  3 Mar 2025 05:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C1C1E47BA;
+	Mon,  3 Mar 2025 06:08:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jDBn37kS"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="T4UCCK7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DFDC1D7E35;
-	Mon,  3 Mar 2025 05:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4531DACB1
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 06:08:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740980704; cv=none; b=LaZr4qO1Y8rLyhfzrUQXWRJSMiMN7/QpMy21NTbiOuxAzlguyDaRIzduhoNJ4RwNdKOvILkF7vQEqSaTARwL8+EYr0FXeCvyPASnWV861Fd/fCTJmN3CAayX4eRCANyNhWzqHRIfO1JOy4IQqdjdhoNI3ruD/RBiXCIeV7D9JK0=
+	t=1740982134; cv=none; b=ndGZ1IhvWvWRHyLYIjRwap5QGC6EqDz+lSOXQZ70sr3/U7zajcY8fMVuWTn7kEG94r6jh1qXfvR9AvuDfHby5jh4hbEbq9g1fMtg5RU9CVsV5ZuOrP9rB93yrowPwgDbGfe8tBELmJErZGI4e3v8dSAMbGX7Bv8zFjxluIbprQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740980704; c=relaxed/simple;
-	bh=eTgsFgduWfWOBkO7IIQM/M0uYYUvH2qwuq39B19cQlk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u0zB0+YB7By8BEWuyk9sQfGr5wLTU79VM/3E6BLy+jq3iK8nUwLS4K0nOC/MWuHmfxQLLg3jry5NEjNrDnuJCC3IiTI1JiNFvZwWDcFb9E5fkQ1OhiL7W3Tn5+Keb2ThtcXlTXo+M49Y715YmwL96SZaUfXUslLkKarH0Ny/Wps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jDBn37kS; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5235itIu2676475
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sun, 2 Mar 2025 23:44:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1740980695;
-	bh=TgjePP/VH8TK7QXaCuvYzFYO+A7MauVHPXUyzIuHO/Q=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=jDBn37kS9ZMZNXACk7vNjVjaLjhDHyxH+zKRa4LnrfmCOvpbZ2Tk63/Gq/kui2OAA
-	 m+xnVNZ2ZiQRFx1HJ3y8UUxrgZXVzkfeYqjqJhVaqTRLAUn8IshA9ZfdWI4DqLlSE2
-	 TKYsZJqOLMOQ3sNkAQrXCLLrK6Sn0cfdbYMixVXE=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5235isgH025289
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 2 Mar 2025 23:44:55 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 2
- Mar 2025 23:44:54 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 2 Mar 2025 23:44:54 -0600
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5235ir1M116614;
-	Sun, 2 Mar 2025 23:44:54 -0600
-Date: Mon, 3 Mar 2025 11:14:53 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Chintan Vankar <c-vankar@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
-	<nm@ti.com>,
-        <s-vadapalli@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am68-sk/k3-j721s2-mcu: Add
- bootph-all property to enable Ethernet boot
-Message-ID: <20250303054453.r6r7i25ewdoosyzk@uda0492258>
-References: <20250302153502.181832-1-c-vankar@ti.com>
- <20250302153502.181832-2-c-vankar@ti.com>
+	s=arc-20240116; t=1740982134; c=relaxed/simple;
+	bh=/QZRPEFjSoqayM+6FnVCvhjR5X4Ps20vTPOqjHejMUw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KWkxlVruW5+0KSZjvWIoBHzpBTqA6J+sJL77khNBx5LLrlI5PcxSH7qWxR08psGwJxdUP4mDfoTn0I7Hmi4i7NNz1fMwvLZM+Pwv4dwE86RM4rla3BscHLOoGO4ACVq9a8S2LEfZy1T6iEyHs7TGPiYwY6wIpDwjA4Lh9lV6hGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=T4UCCK7D; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=f5nJ
+	8GqBX+Y0PrnG8QSegNiuA3L+EfgTgBBMgy7TZVk=; b=T4UCCK7DQt9aqX9c+GfN
+	fUNHTol0fucwK8j0eQFSey4k03s5iQgBENYRYIO8K+nzjxBRlcbEEBQ4pvsQGMtU
+	4DIwHPYI/1eMixVAmXa1yJ9/4W9QhOv/Xz8xvGEkoMvsjdw/O+gkqd3bi9BSTR4K
+	pZeHX+y0wRtWFOGgGgXsuCPyXyL1Tvxa2drkBkg4Yz3C9bxO3TY4/ACXI4BA+Szm
+	171V6q4y6f7LfbBxizqzC6nxrAyNkvTJkXdfVndrXXhwmQ0ri8Lt8GGVvksRKkx5
+	ly7DyrXNb1Jj6mdAN4g+CtMTBpTr84VewA6Xemrduc1Z246LmuqGd+8F1ch6gq7B
+	yw==
+Received: (qmail 2094502 invoked from network); 3 Mar 2025 07:08:41 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 Mar 2025 07:08:41 +0100
+X-UD-Smtp-Session: l3s3148p1@DB3o/Gkvoq0gAQnoAF7DALd8qOkixhgf
+Date: Mon, 3 Mar 2025 07:08:41 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Troy Mitchell <troymitchell988@gmail.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH RESEND v5 2/2] i2c: spacemit: add support for SpacemiT K1
+ SoC
+Message-ID: <Z8VHaQsqAmhtQnbv@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Troy Mitchell <troymitchell988@gmail.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev
+References: <20250303-k1-i2c-master-v5-0-21dfc7adfe37@gmail.com>
+ <20250303-k1-i2c-master-v5-2-21dfc7adfe37@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="tWU+hAMp67fkq/U3"
 Content-Disposition: inline
-In-Reply-To: <20250302153502.181832-2-c-vankar@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <20250303-k1-i2c-master-v5-2-21dfc7adfe37@gmail.com>
 
-On Sun, Mar 02, 2025 at 09:05:01PM +0530, Chintan Vankar wrote:
-> Ethernet boot requires CPSW nodes to be present starting from R5 SPL
-> stage. Add bootph-all property to required nodes to enable Ethernet boot
-> on AM68-SK and J721S2-EVM.
-> 
-> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
 
-Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+--tWU+hAMp67fkq/U3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Regards,
-Siddharth.
+
+> +/* spacemit i2c registers */
+> +#define SPACEMIT_ICR		 0x0		/* Control Register */
+> +#define SPACEMIT_ISR		 0x4		/* Status Register */
+> +#define SPACEMIT_IDBR		 0xc		/* Data Buffer Register */
+> +#define SPACEMIT_IBMR		 0x1c		/* Bus monitor register */
+> +
+> +/* register SPACEMIT_ICR fields */
+> +#define SPACEMIT_CR_START        BIT(0)		/* start bit */
+> +#define SPACEMIT_CR_STOP         BIT(1)		/* stop bit */
+> +#define SPACEMIT_CR_ACKNAK       BIT(2)		/* send ACK(0) or NAK(1) */
+> +#define SPACEMIT_CR_TB           BIT(3)		/* transfer byte bit */
+
+This looks like a lot like a variant of the i2c-pxa register set. Has it
+been considered to reuse that driver?
+
+
+--tWU+hAMp67fkq/U3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmfFR2QACgkQFA3kzBSg
+KbadHQ//T3DW9roZhtPTeDwT9s9mkDm+L0NzczjCou49UCord1bP05lglXi4wjPM
+HILnG/VCQvIEvThXiNTA5qmWhMUQGbl+D5BZgbiRMFSD3y3S3E1ca/VbUMOhqR7F
+aj4kxIeopHvLJX4YBMRxLduRpz/HLpLpoOEhOLaF2sXo7e2MoMvxDrQ/6y4abvUj
+W/UqFaIIEz7Of7JG9D5YfPplLD0RVuiFJ6h0/gglu0MicaFvQ73GAVLec7TNche8
+9lpn9CbufaQJ2aUdFDPJiOzPfy8I0zBBGDVaI+yJYLvdm3v9GaNnqM/GC1M4SSHx
+BlaYzBN3XRKjU/6M9SziVPb4CO1Aoy4VScvTVLXlkoNUfB0j9Zb46iB6sS7ex+AW
+TH7XIT9WF8ef45NfSmb6jB7WHYnSlZ+iFc71uIK3zyJphVABhD60ykB3NU5QDCVT
+QRVBGSkpLJSnl3GG7HYIl35Phl5ns1ROnJNKd9Z0iccFQ/JJg+GFCiAQPqnrBoX/
+rGcrLfMgf4NVHOLfttL8E/kNk7YcDvbk/6soBJF5VYT+bgRNpsPBBWusWYx2Aefv
+nj/n+kngXPQ4PnyuY3kj1nKI6/J9pRdq3E8+OwT5vXSqFDaM3si33IximlTsfkmt
+23AI8N+S6KUFzcQXOg5CfYMmyHDIXdcfm410qTP+4odobQO2Oco=
+=1qER
+-----END PGP SIGNATURE-----
+
+--tWU+hAMp67fkq/U3--
 
