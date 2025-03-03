@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-153256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71222A4BC5B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:34:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D55A4BC79
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:37:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87229167AC7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 10:34:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 026C53B7033
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 10:34:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD841F2BB5;
-	Mon,  3 Mar 2025 10:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D83A1F0E2C;
+	Mon,  3 Mar 2025 10:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cq2JinM7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oq0kz0b+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E4591D5CD9;
-	Mon,  3 Mar 2025 10:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA7C1EB5D7;
+	Mon,  3 Mar 2025 10:34:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740998024; cv=none; b=hj23x33ubVxFK+WECrEAU3w8wqTO2F3C/rzFGxB9REvt+n4cGoFcyq4Wr8IGU1OBOdo0hRWxGmczEz3IFSwWW5XjHK437QkBxDvZkZwHoxnP36K8XgQCBf4/EM9hOh5gWAFgMNTplyN1tFy7bdCPr6+d1IrjA0oQoZnukZdv6mw=
+	t=1740998084; cv=none; b=ES3zxDJfR7T+NHltyd4wPyuG7T7O23y2Ta5K2BERC5BCvy42q5s3R9d2OSuP6t+J7rf3q+DRE/b+Rgjd046cPlRNC25I6RLOysQ/SNFGQMBBzOu/BRd0zmI/LjVDiwWlNeZeac9LnsbL/+10mNHEx3cQdHwOrqFn5CSa3Ju1D/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740998024; c=relaxed/simple;
-	bh=TdEh2ExwrehqF2ofNf1d+2P/hemPnTyT9acEs+o6bQU=;
+	s=arc-20240116; t=1740998084; c=relaxed/simple;
+	bh=tXdZtA8dPY2SJ03JLnHXPguoj5lZoDS1yGRwQr6eFGA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cG9FqvYev81Z1qmZwqNY8Izl/0nr9VdQwLvgOqwd9MNiocETk+tNzmM35VIwXcTHJsPCt444Kx9pVfbUcYmeTSs9gD4Dt/7BV9uFBSfaVy+sCqvLg/Mt13LieOoDng/trfkVh3F5tOU9CczTYQRR5K4r9FKJ2ezRhEvQQ7Cdgoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cq2JinM7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1E83C4CED6;
-	Mon,  3 Mar 2025 10:33:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iRZ1LKf1dDxWPKFn3YOAOjVOlyiL84fnVb8ewltJNI9SvmKuTCymuBeqbT03Qday3oIpggem6cpQ+rssWaXx6Dvw7D6MmB/Yf92E5y0g2R/Y9/+gK6ur4/Wf05m+K1CELxRASccvAakzEn4KU4wzSJAZltUmQHDB1YszTeAQtDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oq0kz0b+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE615C4CED6;
+	Mon,  3 Mar 2025 10:34:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740998023;
-	bh=TdEh2ExwrehqF2ofNf1d+2P/hemPnTyT9acEs+o6bQU=;
+	s=k20201202; t=1740998083;
+	bh=tXdZtA8dPY2SJ03JLnHXPguoj5lZoDS1yGRwQr6eFGA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cq2JinM7HwHdyBVeqwLjdUb797w5uEOd2tjk7nQ1HuiB1hftqgn+C7niGXKHsr8cm
-	 y5Dz7SSMD64i+XdIHvtUYlYOj7PMdEEhJpQUdZOsBfjjpNQQm9N+qMeHWPIn0jCLpy
-	 AqlnJeoNLPrCA6ORNup4x0Kj7kyGARZ8hONyrymiPUs6cKwzo7zfWa9HbeyN1fSiP0
-	 VUMdAKGDm/sYxvvXpNfrkvm1db1/Z+QNVIn0csdEXyDRb5c7w6Z8eH2nIqlw05AQrQ
-	 1ZK9HMylooUeibAsrae0T82ZJhUr+2UU5o44jvmknxxD1TT24X1QjfkpMgswz6A11w
-	 xDHnhpVjzymyg==
-Message-ID: <f6fac195-0e34-4653-88e9-ec2a6e364d0f@kernel.org>
-Date: Mon, 3 Mar 2025 11:33:35 +0100
+	b=oq0kz0b+8Z6X0wwQXJJJB72Z+MjVWF3RVvZeRGKdXS2ybvrpR3gW6bCFUYVr+oMKe
+	 W33h9t8eUPhaNrFSANGX73lfWETmb1dyGTTl/Tlllo0+ZBX+yKvUVM3nEKfMDoad50
+	 ZJWCMWEe5r+X56MTSykBZLWNmx3zKXrGXs9pWnSZ+zVNIqqgUQRXaEVs9DaNMMezue
+	 S8iFUcarIabiyK18eKCFS+Fc0bNnBmPRfdO6mO0DS9fBOxWG/Rp3tD4OkCadK/u/wU
+	 QBioxKpTyOWHVRuGG9fxWos66JNGKuWnA4uM5m6G8+JUrPskGs/vG1Zn+0L5mfFkmI
+	 /ihdW5vllKqIg==
+Message-ID: <766cc092-896f-4dc7-b1e4-9996b4b8f35d@kernel.org>
+Date: Mon, 3 Mar 2025 11:34:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,12 +51,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [v4 2/3] dt-bindings: fpga: Add Efinix SPI programming bindings
-To: Ian Dannapel <iansdannapel@gmail.com>, Conor Dooley <conor@kernel.org>
-Cc: linux-fpga@vger.kernel.org, Moritz Fischer <mdf@kernel.org>,
- Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
- Tom Rix <trix@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+To: Conor Dooley <conor.dooley@microchip.com>,
+ Ian Dannapel <iansdannapel@gmail.com>
+Cc: Conor Dooley <conor@kernel.org>, linux-fpga@vger.kernel.org,
+ Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+ Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  Jonathan Cameron <Jonathan.Cameron@huawei.com>,
  =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
  Aradhya Bhatia <a-bhatia1@ti.com>,
@@ -66,7 +68,7 @@ References: <20250228094732.54642-1-iansdannapel@gmail.com>
  <20250228094732.54642-3-iansdannapel@gmail.com>
  <20250228-copilot-trekker-72a20709e9f7@spud>
  <CAKrir7hdyP-bPKkZOpK3cFp=rvH_MJ98DLKnsRni_BWsQEg5yw@mail.gmail.com>
- <CAKrir7gODeEfaxVg9Yd-suSEWE3dYUb8k6CE51Ma495TF+2LHA@mail.gmail.com>
+ <20250303-imply-ferocity-bbb6d866b149@wendy>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,57 +114,65 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAKrir7gODeEfaxVg9Yd-suSEWE3dYUb8k6CE51Ma495TF+2LHA@mail.gmail.com>
+In-Reply-To: <20250303-imply-ferocity-bbb6d866b149@wendy>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 03/03/2025 11:29, Ian Dannapel wrote:
-> Hi Krzysztof, thanks for the quick response.
+On 03/03/2025 11:31, Conor Dooley wrote:
+> On Mon, Mar 03, 2025 at 11:10:53AM +0100, Ian Dannapel wrote:
+>> Hi Conor, thanks for the quick response.
+>>
+>> On Fri, Feb 28, 2025 at 7:28 PM Conor Dooley <conor@kernel.org> wrote:
+>>>> +description: |
+>>>> +  Efinix FPGAs (Trion, Topaz, and Titanium families) support loading bitstreams
+>>>> +  through "SPI Passive Mode".
+>>>> +  Note 1: Only bus width 1x is supported.
+>>>> +  Note 2: Additional pins hogs for bus width configuration must be set
+>>>> +  elsewhere, if necessary.
+>>>> +  Note 3: Topaz and Titanium support is based on documentation but remains
+>>>> +  untested.
+>>>
+>>> Points 1 and 3 here seem to be driver limitations, and shouldn't really
+>>> be present in a document describing the hardware?
+>>>
+>> Yes, they are driver limitations and probably do not belong here.
+>>
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - efinix,trion-spi
+>>>> +      - efinix,titanium-spi
+>>>> +      - efinix,topaz-spi
+>>>
+>>>> +      - efinix,fpga-spi
+>>>
+>>> What hardware does this device represent? Other ones are obvious matches
+>>> to the families you mention, but what is this one?
 > 
-> On Sat, Mar 1, 2025 at 2:13 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 28/02/2025 10:47, iansdannapel@gmail.com wrote:
->>> +
->>> +  References:
->>> +  - https://www.efinixinc.com/docs/an006-configuring-trion-fpgas-v6.3.pdf
->>> +  - https://www.efinixinc.com/docs/an033-configuring-titanium-fpgas-v2.8.pdf
->>> +  - https://www.efinixinc.com/docs/an061-configuring-topaz-fpgas-v1.1.pdf
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - efinix,trion-spi
->>> +      - efinix,titanium-spi
->>> +      - efinix,topaz-spi
->>
->>
->> Same comments as before about compatibility. Address or implement.
->>
-> The compatibles are implemented in the device match table, what
-> exactly should be addressed or implemented here?
-
-Comments from previous revision - they look compatible, so define this
-as list of compatibles where one is of above is used as fallback. See
-example schema or 90% of other bindings (oneOf:).
-
-
+>> The proposed compatible is a generic fallback for any Efinix FPGA Series.
 > 
->>> +      - efinix,fpga-spi
->>
->>
->> And this one is for which device? It is not even used.
-> The proposed compatible is a generic fallback for any Efinix FPGA
+> If it is a fallback, your binding should look like:
+> compatible:
+>   items:
+>     - enum:
+>         - efinix,trion-spi
+>         - efinix,titanium-spi
+>         - efinix,topaz-spi
+>     - const: efinix,fpga-spi
+> 
+> |+static const struct of_device_id efinix_spi_of_match[] = {
+> |+       { .compatible = "efinix,trion-spi", },
+> |+       { .compatible = "efinix,titanium-spi", },
+> |+       { .compatible = "efinix,topaz-spi", },
+> 
+> And these three compatibles can/should be removed from the driver, since
+> the fallback is required.
+> 
+> |+       { .compatible = "efinix,fpga-spi", },
+> |+       {}
 
-You do not use here fallback at all. Fallback means last compatible in
-the list, but you have here only one item.
-
-> Series. Isn't it used if the compatible is part of the drivers match
-> table?
-
-Drop, compatibles are supposed to be specific.
+Yes, except that one of the devices should be the fallback, not generic
+"fpga".
 
 
 Best regards,
