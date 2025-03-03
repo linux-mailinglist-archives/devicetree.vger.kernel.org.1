@@ -1,81 +1,63 @@
-Return-Path: <devicetree+bounces-153503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C244EA4CD0E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 21:56:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3232A4CD35
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 22:09:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C727F3AC38C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 20:55:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A304173C3B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 21:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A5023C390;
-	Mon,  3 Mar 2025 20:55:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D597123717D;
+	Mon,  3 Mar 2025 21:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hKItLc4q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D9NKe91/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7534A23959E;
-	Mon,  3 Mar 2025 20:54:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE2E22F3AB;
+	Mon,  3 Mar 2025 21:09:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741035301; cv=none; b=Prwt+VwRxH8u1YAEbSxHPF82gdMjcivm+r8pQA+/9vEnh6fE1Wpa78fAbl3/Oz3AFADD5a9Fv6S0L8lwgOdsC67BKBoauKA7Az0ejTpbiMr/CSW1bgnyHqhen0V4DHFndWWSzD8QfkfHNk51RjL0m69wI1L7rLLJ2OobDwPIxr4=
+	t=1741036178; cv=none; b=mqXHQ+Hpkpp0zNnkcMcMipfdIAlJKns9KFpYQ4jMxMs7RvrtggA8BAjuwSCbHiVxE6e8urHMef1NQz4HwrtMPWso5ZTVoJG0vNJW/EiSFJZ3mc2UHDmtHx5bUwgEylp/KtRnrrY8X50/HtSe+PonfX76BHYr6IlzksvHovZQzPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741035301; c=relaxed/simple;
-	bh=PoeeTQAJjZ5RdKFBcSwIbKAekpRiUcC0+f84D/Pj5vE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TBgg/r3ddu/9GPoKfebnr4BNJ/swwDJEJKp1/pR9fuvZd45ecZN2tTjn2Bvq3Z/3VQhphwtJQIqjFs/dwGPMfX5aIi0yE0mIhYjTPe9anOEHdUYZDolNt7B8fgQzvegTpH44CRZKOHNVvInJh1T28Y/kQShvDjwlwQr8YqTwWLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hKItLc4q; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-aaedd529ba1so562773866b.1;
-        Mon, 03 Mar 2025 12:54:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741035298; x=1741640098; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1pvaaqiA/SmRoJNAwsNTHeXGNX/6oeYrcqiqLNPnA9o=;
-        b=hKItLc4qhzDRvNIdWmi6+l/zj5GzZWpf+j+ViPXl5syOgtHW6zzqclB5kkgpvM+vJ/
-         9RGPs46moMF8Uf0fD4E2Ys+vs7lNc6XZa80pXcnZpnPqU5Gl6qwW0pQlpsxwcP3PHWi0
-         wTytKpKBGw9kVacjGgVHFMZlq++JPG3DqGbNzvJ6iF0QD54NtQsck2M9VrzmnMozwRWq
-         XzCJXH0tidTAGEtPaLwUM7iq+5TFbqBf7s6Nau54sEgr0Jdsj7CgpM4fF81pVPjVBX04
-         CiSANPYWru4GvS67hDt5WRwCgtroiYczkR/dGg85F3RhF3AzGr9dA0Uv88sHlS/+MMuA
-         rQew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741035298; x=1741640098;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1pvaaqiA/SmRoJNAwsNTHeXGNX/6oeYrcqiqLNPnA9o=;
-        b=b9M6z8F+fy3+CppHxD1vCzOD+voVyT0FFiGjTrydTUiShS6McHWALQEtL/TLNDYhNx
-         N2w1HigOeJxcwni4RX5KsvXW5FYXc4DmFEG6Q28GPEANZrvUJZOazWnCd/wuNr7uDlPz
-         D/jSD0nEd4xElwslkhQyrIaNLHG8fJhqu5XgsuMN523p9PK5jaNwxrFXyz8ZG2zJUwjf
-         et3RgK3LfSlggKnNUc9CWDObzFuqfnLlC7rsalH12rJgHLyvjdbiI2AmY1Fh9NbtZzwU
-         RMD353fSR1e7D4g/bnQe8ILLMWiSJhZ3NVK8INygyamJhmHRWZfABZhuyzQuI4TP8rzj
-         4XiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU8tSfweYJ1GHKZ4QVWHnuAdP4wIR6BepoKfQr8fk04pTRiBg1JfR1kyxfK0hjxBKgdPfD9GgdBFhAq@vger.kernel.org, AJvYcCXv4xvveJCQiDkrcupd9oZ5vwqJkfvKpoTq003QMwygP61dx24irRMh2Szdg79U++MSqjlpudh36Z8OCBjc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuoLb6HyjDGVsuoHx+93ocvF2gdD8yx7+Ph+4gumLSzlPkePoT
-	FosSifuKrkHyASy52VjUezcS4tfA+CJT7o7Yt1Q/AZh7/Hi6jfDe/gCGnQ==
-X-Gm-Gg: ASbGncsyAIRA6ZfC1S6U8J2ltU5ybCY/J1BYbyfpAH1F5oGAHO/vBKTrweX7yf00Ofl
-	v0AJiW6C8wqKG0PpXWFENp6GnTZVPY/4cFzf/0hE03MVg3+iNBozufxNy5XWcdPcrp1bWSb3PH0
-	f0+Q/F99WXGVPWXk9ZxJjc6nk0me+L4eCmBDz8ASjnmF8WhERkacPP7G+PjS+KXfTlc7130dAIP
-	H0CW6UdxQTiUy2cQnVMja/9l3uQqTWi7l1f2RPTQy/9DgVKoADymYe7YvDbH44OBBjXVrCS5IiT
-	WI5vg97P88iirBzpqEfnVkX8gbdGQ2/ebYPcWvYgFvzn5az5zOMS45y9qRqP83TSNy06V3B4WBa
-	oxAAHRXNy7JwTJ6Y=
-X-Google-Smtp-Source: AGHT+IGL2YA/WqHKHuyosoZ0FTICgI26SVWArz7fch8CvYRnNoLDjfA4RUT/Cs6K1TVfnuAovJQnFQ==
-X-Received: by 2002:a05:6402:274b:b0:5e4:d2c9:456c with SMTP id 4fb4d7f45d1cf-5e4d6b4c7c3mr40715184a12.22.1741035297448;
-        Mon, 03 Mar 2025 12:54:57 -0800 (PST)
-Received: from hex.my.domain (83.8.122.142.ipv4.supernova.orange.pl. [83.8.122.142])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf76063ab8sm266955566b.73.2025.03.03.12.54.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 12:54:57 -0800 (PST)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Mon, 03 Mar 2025 21:54:51 +0100
-Subject: [PATCH v3 6/6] ARM: dts: bcm2166x: Add bcm2166x-pinctrl DTSI
+	s=arc-20240116; t=1741036178; c=relaxed/simple;
+	bh=VVV+C1MhWMZtWrSSt+g1IrvMbUXiEztZY3qDVStiZKE=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=m5FyvH/VxZNCWOS8XQ7xtkmbQuw+7jx+pxosvLElwyQ85pTwYNZSBWrtFI+ssu2uNgUCEvpfhHwIGatdBqprqZO8dq13NRD42SR+xwc3RWN59HcI66Qa6VglAKcm7xtroDCvAt9hbdNr5HhYWYKbze8ZXwv7Xw6C4t1YOJzjxeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=D9NKe91/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523AbM8V003941;
+	Mon, 3 Mar 2025 21:09:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=bl9bPRcUABcsynBLoqWarU
+	eiwfgNhyam7E3ICj35E54=; b=D9NKe91/Nn/0oJY8SGosNGoOprTnwaPM0uTpVO
+	t5KL6iTYrgk2gFBawE2Uarv91DfIBmgmNLmk2WERSbLO88htMbb+4z7KYnkYlNDR
+	z8oRDaFJgG9lBMC1YNiUUyohrrGk63Z1b9CFWsjIyDU14ZE6KC6fPJY3oWv9ExWq
+	VzHZ2sycfua9kROZLuNOPIWaA9j5gaaRcGbBI16pwQsNcEl8s34V38N8ZTgabksb
+	xcKqo6t8n+pC1dsLKs4bhdJtpcAskDroB8gJK6vNIBexPh6ZKkF5q5KZpdpFN55G
+	5GE4L2MJkSzwBl091XB++1V7cRVc7G3pZGliGPGMeqagk7Cw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 453t7hx38u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Mar 2025 21:09:16 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 523L9Fwh025482
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 3 Mar 2025 21:09:15 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 3 Mar 2025 13:09:14 -0800
+From: Elliot Berman <quic_eberman@quicinc.com>
+Subject: [PATCH v9 0/5] Implement vendor resets for PSCI SYSTEM_RESET2
+Date: Mon, 3 Mar 2025 13:08:29 -0800
+Message-ID: <20250303-arm-psci-system_reset2-vendor-reboots-v9-0-b2cf4a20feda@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,358 +66,163 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250303-bcm21664-pinctrl-v3-6-5f8b80e4ab51@gmail.com>
-References: <20250303-bcm21664-pinctrl-v3-0-5f8b80e4ab51@gmail.com>
-In-Reply-To: <20250303-bcm21664-pinctrl-v3-0-5f8b80e4ab51@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Stanislav Jakubek <stano.jakubek@gmail.com>, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Artur Weber <aweber.kernel@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAE0axmcC/5XSy27CMBAF0F9BWdfVjN/pqv9RVZU9dooXEGqnU
+ RHi3+vQByCyCMvx4tyZKx+aEnOKpXlaHZocx1RSv61D+7BqaO2275GlUOeGAxcIqJnLG7YrlFj
+ ZlyFu3nIsceBsjNvQZ5aj7/uhMCLhglSawEBTrV2OXfo65by81nmdytDn/Sl2xOn1N4HLhQkjM
+ mCg0RtD0KKE54/PRGlLj9RvpsgfT8A9XqAQtBCKu4CzHqK5az9BUiNHJSK/8qYORv53twSJi+/
+ m056udaCU09J2t644uwrVUldUF3UIsmsJnJe3rjy7GnGpK6vb2q5u64x00d666tJd3K+a+rW6V
+ dBpBTTj6n+3/ly71NXVrZ6P1npwfKYHc+Hyxa6prpMkwUP0pGZce3YRFvdgqxutQdU5rcira/d
+ 4PH4DcpMRb+QDAAA=
+X-Change-ID: 20231016-arm-psci-system_reset2-vendor-reboots-cc3ad456c070
+To: Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel
+	<sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Andy Yan
+	<andy.yan@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        "Mark
+ Rutland" <mark.rutland@arm.com>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, "Olof
+ Johansson" <olof@lixom.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Will
+ Deacon" <will@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        "Satya Durga
+ Srinivasu Prabhala" <quic_satyap@quicinc.com>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>,
+        Shivendra Pratap <quic_spratap@quicinc.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Florian Fainelli
+	<florian.fainelli@broadcom.com>,
+        Stephen Boyd <swboyd@chromium.org>, <linux-pm@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, Elliot Berman
+	<elliotb317@gmail.com>,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        "Elliot
+ Berman" <elliot.berman@oss.qualcomm.com>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741035289; l=7006;
- i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
- bh=PoeeTQAJjZ5RdKFBcSwIbKAekpRiUcC0+f84D/Pj5vE=;
- b=lHUpV2T1pqdq8Pcb9K+DP254BYkt0/S/jSk0n0VTwrRBdmPVBfNHMbAxri/uC1tu3CHQI2caz
- c6viWOIlAi+BMpIX9XMVgs0a/SDMcc0/RT4lgaP9vMu3qC8toLDnBLR
-X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
- pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: DeTx5hTeANAUY6axUEYreTWdozumd778
+X-Proofpoint-ORIG-GUID: DeTx5hTeANAUY6axUEYreTWdozumd778
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-03_10,2025-03-03_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 impostorscore=0 phishscore=0 spamscore=0 malwarescore=0
+ adultscore=0 suspectscore=0 mlxlogscore=775 clxscore=1011 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2503030163
 
-Add common DTSI with common pin control configs for BCM21664/BCM23550
-and include it in bcm2166x-common.dtsi. The configs are kept in a
-separate DTSI to keep things cleaner (pin config definitions take up
-quite a lot of space).
+The PSCI SYSTEM_RESET2 call allows vendor firmware to define additional
+reset types which could be mapped to the reboot argument.
 
-Currently contains pins for BSC buses and SD/MMC; more pins can be
-added in the future.
+Setting up reboot on Qualcomm devices can be inconsistent from chipset
+to chipset. Generally, there is a PMIC register that gets written to
+decide the reboot type. There is also sometimes a cookie that can be
+written to indicate that the bootloader should behave differently than a
+regular boot. These knobs evolve over product generations and require
+more drivers. Qualcomm firmwares are beginning to expose vendor
+SYSTEM_RESET2 types to simplify driver requirements from Linux.
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+Add support in PSCI to statically wire reboot mode commands from
+userspace to a vendor reset and cookie value using the device tree. The
+DT bindings are similar to reboot mode framework except that 2
+integers are accepted (the type and cookie). Also, reboot mode framework
+is intended to program the cookies, but not actually reboot the host.
+PSCI SYSTEM_RESET2 does both. I've not added support for reading ACPI
+tables since I don't have any device which provides them + firmware that
+supports vendor SYSTEM_RESET2 types.
+
+Previous discussions around SYSTEM_RESET2:
+- https://lore.kernel.org/lkml/20230724223057.1208122-2-quic_eberman@quicinc.com/T/
+- https://lore.kernel.org/all/4a679542-b48d-7e11-f33a-63535a5c68cb@quicinc.com/
+
+Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+
+Changes in v9:
+- Don't fallback to architecturally defined resets from Lorenzo.
+- Link to v8: https://lore.kernel.org/r/20241107-arm-psci-system_reset2-vendor-reboots-v8-0-e8715fa65cb5@quicinc.com
+
+Changes in v8:
+- Code style nits from Stephen
+- Add rb3gen2
+- Link to v7: https://lore.kernel.org/r/20241028-arm-psci-system_reset2-vendor-reboots-v7-0-a4c40b0ebc54@quicinc.com
+
+Changes in v7:
+- Code style nits from Stephen
+- Dropped unnecessary hunk from the sa8775p-ride patch
+- Link to v6: https://lore.kernel.org/r/20241018-arm-psci-system_reset2-vendor-reboots-v6-0-50cbe88b0a24@quicinc.com
+
+Changes in v6:
+- Rebase to v6.11 and fix trivial conflicts in qcm6490-idp
+- Add sa8775p-ride support (same as qcm6490-idp)
+- Link to v5: https://lore.kernel.org/r/20240617-arm-psci-system_reset2-vendor-reboots-v5-0-086950f650c8@quicinc.com
+
+Changes in v5:
+- Drop the nested "items" in prep for future dtschema tools
+- Link to v4: https://lore.kernel.org/r/20240611-arm-psci-system_reset2-vendor-reboots-v4-0-98f55aa74ae8@quicinc.com
+
+Changes in v4:
+- Change mode- properties from uint32-matrix to uint32-array
+- Restructure the reset-types node so only the restriction is in the
+  if/then schemas and not the entire definition
+- Link to v3: https://lore.kernel.org/r/20240515-arm-psci-system_reset2-vendor-reboots-v3-0-16dd4f9c0ab4@quicinc.com
+
+Changes in v3:
+- Limit outer number of items to 1 for mode-* properties
+- Move the reboot-mode for psci under a subnode "reset-types"
+- Fix the DT node in qcm6490-idp so it doesn't overwrite the one from
+  sc7820.dtsi
+- Link to v2: https://lore.kernel.org/r/20240414-arm-psci-system_reset2-vendor-reboots-v2-0-da9a055a648f@quicinc.com
+
+Changes in v2:
+- Fixes to schema as suggested by Rob and Krzysztof
+- Add qcm6490 idp as first Qualcomm device to support
+- Link to v1: https://lore.kernel.org/r/20231117-arm-psci-system_reset2-vendor-reboots-v1-0-03c4612153e2@quicinc.com
+
+Changes in v1:
+- Reference reboot-mode bindings as suggeted by Rob.
+- Link to RFC: https://lore.kernel.org/r/20231030-arm-psci-system_reset2-vendor-reboots-v1-0-dcdd63352ad1@quicinc.com
+
 ---
- arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi  |   2 +
- arch/arm/boot/dts/broadcom/bcm2166x-pinctrl.dtsi | 297 +++++++++++++++++++++++
- 2 files changed, 299 insertions(+)
+Elliot Berman (5):
+      dt-bindings: arm: Document reboot mode magic
+      firmware: psci: Read and use vendor reset types
+      arm64: dts: qcom: qcm6490-idp: Add PSCI SYSTEM_RESET2 types
+      arm64: dts: qcom: qcs6490-rb3gen2: Add PSCI SYSTEM_RESET2 types
+      arm64: dts: qcom: sa8775p-ride: Add PSCI SYSTEM_RESET2 types
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi b/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
-index d4b412ac8b0343bd3773f50c59a20fa00a3923f8..f535212cb52fec0668abfc06e7268bead70d958a 100644
---- a/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
-@@ -337,3 +337,5 @@ master_ccu: master_ccu@3f001000 {
- 		};
- 	};
- };
-+
-+#include "bcm2166x-pinctrl.dtsi"
-diff --git a/arch/arm/boot/dts/broadcom/bcm2166x-pinctrl.dtsi b/arch/arm/boot/dts/broadcom/bcm2166x-pinctrl.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..51b8730c8feea501f2c5ca6a7bad8233ed708c82
---- /dev/null
-+++ b/arch/arm/boot/dts/broadcom/bcm2166x-pinctrl.dtsi
-@@ -0,0 +1,297 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Common pinmux configrations for BCM2166x (BCM21664/BCM23550).
-+ *
-+ * Copyright (C) 2025 Artur Weber <aweber.kernel@gmail.com>
-+ */
-+
-+&pinctrl {
-+	/* BSC1 */
-+	bsc1_pins: bsc1-pins {
-+		bsc1clk-grp0 {
-+			pins = "bsc1clk";
-+			function = "alt1"; /* BSC1CLK */
-+		};
-+
-+		bsc1dat-grp0 {
-+			pins = "bsc1dat";
-+			function = "alt1"; /* BSC1DAT */
-+		};
-+	};
-+
-+	/* BSC2 */
-+	bsc2_pins: bsc2-pins {
-+		bsc2clk-grp0 {
-+			pins = "gpio16";
-+			function = "alt2"; /* BSC2CLK */
-+		};
-+
-+		bsc2dat-grp0 {
-+			pins = "gpio17";
-+			function = "alt2"; /* BSC2DAT */
-+		};
-+	};
-+
-+	/* BSC3 */
-+	bsc3_pins: bsc3-pins {
-+		bsc3clk-grp0 {
-+			pins = "lcdscl";
-+			function = "alt1"; /* BSC3_CLK */
-+		};
-+
-+		bsc3dat-grp0 {
-+			pins = "lcdsda";
-+			function = "alt1"; /* BSC3_SDA */
-+		};
-+	};
-+
-+	/* BSC4 */
-+	bsc4_pins: bsc4-pins {
-+		bsc4clk-grp0 {
-+			pins = "lcdres";
-+			function = "alt1"; /* BSC4_CLK */
-+		};
-+
-+		bsc4dat-grp0 {
-+			pins = "lcdte";
-+			function = "alt1"; /* BSC4_SDA */
-+		};
-+	};
-+
-+	/* PMBSC */
-+	pmbsc_pins: pmbsc-pins {
-+		pmbscclk-grp0 {
-+			pins = "pmbscclk";
-+			function = "alt1"; /* PMBSCCLK */
-+		};
-+
-+		pmbscdat-grp0 {
-+			pins = "pmbscdat";
-+			function = "alt1"; /* PMBSCDAT */
-+		};
-+	};
-+
-+	/* SD */
-+	sd_width1_pins: sd-width1-pins {
-+		sdck-grp0 {
-+			pins = "sdck";
-+			function = "alt1"; /* SDCK */
-+			bias-disable;
-+		};
-+
-+		sdcmd-grp0 {
-+			pins = "sdcmd";
-+			function = "alt1"; /* SDCMD */
-+			bias-pull-up;
-+		};
-+
-+		sddat-grp0 {
-+			pins = "sddat0";
-+			function = "alt1"; /* SDDATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sd_width4_pins: sd-width4-pins {
-+		sdck-grp0 {
-+			pins = "sdck";
-+			function = "alt1"; /* SDCK */
-+			bias-disable;
-+		};
-+
-+		sdcmd-grp0 {
-+			pins = "sdcmd";
-+			function = "alt1"; /* SDCMD */
-+			bias-pull-up;
-+		};
-+
-+		sddat-grp0 {
-+			pins = "sddat0", "sddat1", "sddat2", "sddat3";
-+			function = "alt1"; /* SDDATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	/* SD1 */
-+	sd1_width1_pins: sd1-width1-pins {
-+		sd1ck-grp0 {
-+			pins = "mmc1dat7";
-+			function = "alt6"; /* SD1CK */
-+			bias-disable;
-+		};
-+
-+		sd1cmd-grp0 {
-+			pins = "spi0txd";
-+			function = "alt2"; /* SD1CMD */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat0-grp0 {
-+			pins = "mmc1dat5";
-+			function = "alt6"; /* SD1DAT0 */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sd1_width4_pins: sd1-width4-pins {
-+		sd1ck-grp0 {
-+			pins = "mmc1dat7";
-+			function = "alt6"; /* SD1CK */
-+			bias-disable;
-+		};
-+
-+		sd1cmd-grp0 {
-+			pins = "spi0txd";
-+			function = "alt2"; /* SD1CMD */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat0-grp0 {
-+			pins = "mmc1dat5";
-+			function = "alt6"; /* SD1DAT0 */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat1-grp0 {
-+			pins = "gpio93";
-+			function = "alt1"; /* SD1DAT1 */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat2-grp0 {
-+			pins = "gpio94";
-+			function = "alt1"; /* SD1DAT2 */
-+			bias-pull-up;
-+		};
-+
-+		sd1dat3-grp0 {
-+			pins = "mmc1dat3";
-+			function = "alt6"; /* SD1DAT3 */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	/* MMC0 */
-+	mmc0_width1_pins: mmc0-width1-pins {
-+		mmc0ck-grp0 {
-+			pins = "mmc0ck";
-+			function = "alt1"; /* MMC0CK */
-+			bias-disable;
-+		};
-+
-+		mmc0cmd-grp0 {
-+			pins = "mmc0cmd";
-+			function = "alt1"; /* MMC0CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc0dat-grp0 {
-+			pins = "mmc0dat0";
-+			function = "alt1"; /* MMC0DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc0_width4_pins: mmc0-width4-pins {
-+		mmc0ck-grp0 {
-+			pins = "mmc0ck";
-+			function = "alt1"; /* MMC0CK */
-+			bias-disable;
-+		};
-+
-+		mmc0cmd-grp0 {
-+			pins = "mmc0cmd";
-+			function = "alt1"; /* MMC0CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc0dat-grp0 {
-+			pins = "mmc0dat0", "mmc0dat1", "mmc0dat2", "mmc0dat3";
-+			function = "alt1"; /* MMC0DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc0_width8_pins: mmc0-width8-pins {
-+		mmc0ck-grp0 {
-+			pins = "mmc0ck";
-+			function = "alt1"; /* MMC0CK */
-+			bias-disable;
-+		};
-+
-+		mmc0cmd-grp0 {
-+			pins = "mmc0cmd";
-+			function = "alt1"; /* MMC0CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc0dat-grp0 {
-+			pins = "mmc0dat0", "mmc0dat1", "mmc0dat2", "mmc0dat3",
-+			       "mmc0dat4", "mmc0dat5", "mmc0dat6", "mmc0dat7";
-+			function = "alt1"; /* MMC0DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	/* MMC1 */
-+	mmc1_width1_pins: mmc1-width1-pins {
-+		mmc1ck-grp0 {
-+			pins = "mmc1ck";
-+			function = "alt1"; /* MMC1CK */
-+			bias-disable;
-+		};
-+
-+		mmc1cmd-grp0 {
-+			pins = "mmc1cmd";
-+			function = "alt1"; /* MMC1CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc1dat-grp0 {
-+			pins = "mmc1dat0";
-+			function = "alt1"; /* MMC1DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc1_width4_pins: mmc1-width4-pins {
-+		mmc1ck-grp0 {
-+			pins = "mmc1ck";
-+			function = "alt1"; /* MMC1CK */
-+			bias-disable;
-+		};
-+
-+		mmc1cmd-grp0 {
-+			pins = "mmc1cmd";
-+			function = "alt1"; /* MMC1CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc1dat-grp0 {
-+			pins = "mmc1dat0", "mmc1dat1", "mmc1dat2", "mmc1dat3";
-+			function = "alt1"; /* MMC1DATx */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	mmc1_width8_pins: mmc1-width8-pins {
-+		mmc1ck-grp0 {
-+			pins = "mmc1ck";
-+			function = "alt1"; /* MMC1CK */
-+			bias-disable;
-+		};
-+
-+		mmc1cmd-grp0 {
-+			pins = "mmc1cmd";
-+			function = "alt1"; /* MMC1CMD */
-+			bias-pull-up;
-+		};
-+
-+		mmc1dat-grp0 {
-+			pins = "mmc1dat0", "mmc1dat1", "mmc1dat2", "mmc1dat3",
-+			       "mmc1dat4", "mmc1dat5", "mmc1dat6", "mmc1dat7";
-+			function = "alt1"; /* MMC1DATx */
-+			bias-pull-up;
-+		};
-+	};
-+};
+ Documentation/devicetree/bindings/arm/psci.yaml |  43 ++++++++++
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts        |   7 ++
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts    |   7 ++
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi      |   7 ++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi           |   2 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi            |   2 +-
+ drivers/firmware/psci/psci.c                    | 105 ++++++++++++++++++++++++
+ 7 files changed, 171 insertions(+), 2 deletions(-)
+---
+base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+change-id: 20231016-arm-psci-system_reset2-vendor-reboots-cc3ad456c070
 
+Best regards,
 -- 
-2.48.1
+Elliot Berman <elliot.berman@oss.qualcomm.com>
 
 
