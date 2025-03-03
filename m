@@ -1,178 +1,177 @@
-Return-Path: <devicetree+bounces-153212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7D80A4B95A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:31:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5C32A4B951
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:29:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC05E3ACEC5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:28:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F30517025A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1271EF0BA;
-	Mon,  3 Mar 2025 08:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C084D1EF090;
+	Mon,  3 Mar 2025 08:28:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="SrRa8Xlq"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Ev0Dv9xg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp16.bhosted.nl (smtp16.bhosted.nl [94.124.121.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DAA1EF090
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 08:28:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9D921DE3A4
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 08:28:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740990515; cv=none; b=KjJFY+Ez670Lk9coa5qZrQA3LBJRiVssAfIU2Zpa4P8J92LWBISdbxiv9zD1UrdyDn0Pl/mVVbIFIRiQ2N25JgaDwVe4L13Xwl7KKe3h/EUklnq0P+OxjWjQUGESPwUuU58KPLR8RLri9HCHB2G3LSX4DEWO1KPqcw34rRf2OAg=
+	t=1740990524; cv=none; b=V8yrVElfcqlNl0Fk5/k/FMxYwN3+ThR3dM+Vo3LHuzHkNdkACJvIQfJ4Yaq9t80c/I6PXpL+/AKRHeJFPUSGhvrHOZQYlxG8wZY7tWyvIsVSqFSNAabe4emfHFXwMXJvph5dlcNI56+stLPsoQvPnN95np+Yiq5Q8OH7DQhzYyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740990515; c=relaxed/simple;
-	bh=vn4uUAOxHL4xNpWQx1w7T/QzgTeLHfcz3m2pqPNmXeU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KmSgDbu8Nkb06ZZCf98wg8bNrcIkF3iJ6KYv4j5OPiRlr/SlAVAehiIeniktw1sCe01osJWSjxi5ujx+APwZv8eLu+m07HPkbWl0874bTpQypNZA0H5YeVX2/XyH1gSKj/5TrlrHWmFdAUYiT2c5q7oPn1zdU8uUw6+OYFxPANk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=SrRa8Xlq; arc=none smtp.client-ip=94.124.121.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+	s=arc-20240116; t=1740990524; c=relaxed/simple;
+	bh=Str9/Z4T7boxdmYNKfUCQAYMERdj9MmqoKnoOftbpzQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jLxBmjcPPqf3z6rqz5TcFqd92PogWe/3hTve1RbnB7mxh8Pk3LnWep+I435MAH5bNkD5frFEc3U0Sy7pZbpmcQKp+KinK2EK6wIjqeu2fNShhhlKRf3+Qm1m3sNn2rD2qM9T8PDQSYeZONEx/feJ18mlGioWwP0EiAj5IhkDb30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Ev0Dv9xg; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5e5491eb37dso1282271a12.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 00:28:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=protonic.nl; s=202111;
-	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-	 message-id:subject:cc:to:from:date:from;
-	bh=faxAO4aiY4ll+/5SJ/txmaMEq1y/Nw8JWRch36mRZ8o=;
-	b=SrRa8XlqVyxRv2v4tXJ11LoTshnohU9InG0jZIukPC6UV3CwEyN9ZwN16gSCFVfX1Yaj9yX5n11Jm
-	 3Fp1Tm3+42d0ucHilm0Pw5V7WfnZiMpaAFhEKaa+MN9xQI/epKcDohmo+gm22TzHZjSbT8Cp+35pcC
-	 zwSYUfBKVKzFsMIhezky6B4nLIxiornmHL5Tgwzi+x1UPQT3V30EtG9As644o1F2n5F4QpJFQFWcm3
-	 IAqrhWgpUU3ImLMCYTlD2N9avjM2eE5qDPsaYi8xPwysNF8oUJxnUQW5GPUGdhrN16DQkvA77KHCVc
-	 U5qCQmDjUinlmmmYU59VAN7HOmqZRPA==
-X-MSG-ID: 77cb1355-f809-11ef-8b46-005056817704
-Date: Mon, 3 Mar 2025 09:28:21 +0100
-From: David Jander <david@protonic.nl>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
- <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
- <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>
-Subject: Re: [RFC PATCH 0/7] Add Linux Motion Control subsystem
-Message-ID: <20250303092821.51f7ed11@erd003.prtnl>
-In-Reply-To: <09afc3cc-a307-4662-bd70-0cf83f8f38e0@baylibre.com>
-References: <20250227162823.3585810-1-david@protonic.nl>
-	<09afc3cc-a307-4662-bd70-0cf83f8f38e0@baylibre.com>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+        d=tuxon.dev; s=google; t=1740990521; x=1741595321; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GH41p+03OT08ssRRmEqg+Cy0Qf0zi6uiF2rijzbkmOc=;
+        b=Ev0Dv9xgqBw7wW32FiSRZEU4FnONDvAlKj2KFKPd0crVicIZbCB6JN3ZMVexMZX9cJ
+         ULTqrQXBVSyv8FtYXsbFlL2B4Rqdbjdx+JE1/5D0/ZkEkMJdpBaTyRrp4zG/aHCazaVc
+         4J/2QPge4kYNQUbyql8ewpJwvHe//wvgdBPuABXFAuAgVSr5yspF+kvXLb3LosRi3Z7p
+         gpTjcrBCXHwQKQX3lrVeubWvfR8bXrc18GhaDOUcHKRFL8QYDCcKAhdYDZSMI1pjvXRS
+         ON8pFYCEuw+LuKH7zuGde2Uu248vEs5xEobLxXHX97l5qS+C1fpuwIUNt9mJyzMqPnd2
+         ECFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740990521; x=1741595321;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GH41p+03OT08ssRRmEqg+Cy0Qf0zi6uiF2rijzbkmOc=;
+        b=Nmk28UewbEYVgCWGXZNaVrkC5ygvPoyYqYwCq8dJbqgNTp5Ltg83EooHPfrkEH7s9+
+         7dtjU+NDOMDK+k1hyhUkHHPgBs3sliZOtq0lBZj76703Q2PXOfJ92fTH3md/IvexS9kG
+         tjnQP+wZU+LCPo7EDhsC0sY6WqJKwpHoV3MWoWjSU+/7L7UgGST3jJqNj+GkvouKooQq
+         yY5Yxn25K1vmxwKaOgVadwy2ZgBJt+5XsNHGvCRu1kUcRjwfmYHS2eROuWxqexSHpkwr
+         mCJyHs1SM5+mcwUsjHCARg+u67rCzzuJnbIkaT6o8xuERtMxoepUxQENSRKmRNUX/1Ni
+         jXxA==
+X-Forwarded-Encrypted: i=1; AJvYcCWkTxftGpS8fC81KQa/cP62yoEZSR2YSJ8FV5o21Qscy4+hosCPOPCcKXMC2gXCajO7lp+zjOMyyY/c@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8btedLJxrU6v2qPhNChTRbOkkTUi+OJ1Wjs9I7TuPmAinUtpi
+	YTM8kX+LmG2WdmUeD1GE4eZAwMTzJR0StQQSN2ZZVXgG2UrDcun602jKNfUr6ao=
+X-Gm-Gg: ASbGnctsyesbYotco0TLLb9c1EG4yh086znVK+Pm/e2xZUquKCUUwrngkNALIgnWyF1
+	N27gPIpZEu3YsMhIT41OnZXppu5BqvNWw68D6zfIiTGB5XLA2UrCm+QX0eM5JK82Xd86ee9kAsC
+	N/HKetCkxaAAZO20Jb3DdyKfWa0vfbAMT5bqNC2RbpmmjM1B6MuP28Yp+cyPjgDWCGkVlY/5ffI
+	wEMXqiEqKcBjnDQ9ZkJD2Wgqdd7Jxio77H4GODZzLcAosgaYVOqUSpK/JbtgdNv+40BC++zI3ts
+	XEcaz5HZc7aiDLS8tWmaM/0Q+lM5n1/Ji5+nyiHRcJzz9TXRRqWagQ==
+X-Google-Smtp-Source: AGHT+IFLKelVEVi00flzE2lHP3gHCMr7kj+GRjh+qndXBWCgYVC+cKiDJx3z7MTtqx+Mlq9hmZIcoQ==
+X-Received: by 2002:a05:6402:34c2:b0:5e0:8937:6ef2 with SMTP id 4fb4d7f45d1cf-5e4d6af1104mr11411025a12.8.1740990519662;
+        Mon, 03 Mar 2025 00:28:39 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.138])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e4c3bb632esm6491336a12.36.2025.03.03.00.28.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Mar 2025 00:28:39 -0800 (PST)
+Message-ID: <3bdac1bc-b84f-43b0-86be-b9d9b18be25f@tuxon.dev>
+Date: Mon, 3 Mar 2025 10:28:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 14/21] ARM: dts: microchip: sama7d65: Add SRAM and DRAM
+ components support
+To: Ryan.Wanner@microchip.com, lee@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, sre@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ p.zabel@pengutronix.de
+Cc: linux@armlinux.org.uk, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+References: <cover.1740671156.git.Ryan.Wanner@microchip.com>
+ <ab4002faa1b672023ffc97bf91755720508c275e.1740671156.git.Ryan.Wanner@microchip.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <ab4002faa1b672023ffc97bf91755720508c275e.1740671156.git.Ryan.Wanner@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+Hi, Ryan,
 
-Dear David,
-
-Thanks for reviewing!
-
-On Fri, 28 Feb 2025 16:36:31 -0600
-David Lechner <dlechner@baylibre.com> wrote:
-
-> On 2/27/25 10:28 AM, David Jander wrote:
-> > Request for comments on: adding the Linux Motion Control subsystem to the
-> > kernel.
-> > 
-> > The Linux Motion Control subsystem (LMC) is a new kernel subsystem and
-> > associated device drivers for hardware devices that control mechanical
-> > motion. Most often these are different types of motors, but can also be
-> > linear actuators for example.  
+On 27.02.2025 17:52, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> This is something that I played around with when I first got into Linux
-> kernel hacking as a hobbyist. It's something I've always wanted to see get
-> upstreamed, so feel free to cc me on any future revisions of this series.
-> I'm very interested. :-)
-
-Cool! Will keep you posted.
-
-> We made drivers for basic DC motors driven by an H-bridge both with and without
-> position feedback and also a driver for hobby-type servo motors. For those
-> interested, there is code [1] and docs [2]. One thing we would do different
-> if doing it over again is use a character device instead of sysfs attributes
-> as the interface for starting/stopping/adjusting actuation.
+> Add SRAM, secumod, UDDRC, and DDR3phy to enable support for low power modes.
 > 
-> [1]: https://github.com/ev3dev/lego-linux-drivers/tree/ev3dev-stretch/motors
-> [2]: http://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/motors.html
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> ---
+>  arch/arm/boot/dts/microchip/sama7d65.dtsi | 35 +++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
 > 
-> > 
-> > This subsystem defines a new UAPI for motion devices on the user-space
-> > side, as well as common functionality for hardware device drivers on the
-> > driver side.
-> > 
-> > The UAPI is based on a ioctl() interface on character devices representing
-> > a specific hardware device. The hardware device can control one or more
-> > actuators (motors), which are identified as channels in the UAPI. It is
-> > possible to execute motions on individual channels, or combined
-> > affecting several selected (or all) channels simutaneously. Examples of
-> > coordinated movements of several channels could be the individual axes
-> > of a 3D printer or CNC machine for example.
-> > 
-> > On the hardware side, this initial set of patches also includes two drivers
-> > for two different kinds of motors. One is a stepper motor controller
-> > device that containes a ramp generator capable of autonomously executing
-> > controlled motions following a multi-point acceleration profile
-> > (TMC5240), as well as a simple DC motor controller driver that can control
-> > DC motors via a half-bridge or full H-bridge driver such as the TI DRV8873
-> > for example.
-> > 
-> > Towards the IIO subsystem, LMC supports generating iio trigger events that
-> > fire at certain motion events, such as passing a pre-programmed position or
-> > when reaching the motion target position, depending on the capabilities of
-> > the hardware device. This enables for example triggering an ADC measurement
-> > at a certain position during a movement.  
-> 
-> I would expect to be using the counter subsystem for position, at least in
-> cases where there is something like a quadrature encoder involved.
+> diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
+> index 92a5347e35b5..c10cc3558efd 100644
+> --- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
+> +++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
+> @@ -47,12 +47,37 @@ slow_xtal: clock-slowxtal {
+>  		};
+>  	};
+>  
+> +	ns_sram: sram@100000 {
+> +		compatible = "mmio-sram";
+> +		reg = <0x100000 0x20000>;
+> +		ranges;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +	};
+> +
+>  	soc {
+>  		compatible = "simple-bus";
+>  		ranges;
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+>  
+> +		securam: sram@e0000800 {
+> +			compatible = "microchip,sama7d65-securam", "atmel,sama5d2-securam", "mmio-sram";
+> +			reg = <0xe0000800 0x4000>;
+> +			ranges = <0 0xe0000800 0x4000>;
+> +			clocks = <&pmc PMC_TYPE_PERIPHERAL 17>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			no-memory-wc;
+> +		};
+> +
+> +		secumod: secumod@e0004000 {
+> +			compatible = "microchip,sama7d65-secumod", "atmel,sama5d2-secumod", "syscon";
 
-I will have to think about it. Since there are some Linux capable SoC's that
-have counter inputs able to do quadrature decoding, it might make sense to
-support that. For now, the TMC5240 controller for example has support for
-encoders and while in this patch-set support for it is minimal, the idea was
-that a motion controller that supports an encoder would just offer the option
-to use the encoder as the authoritative source for position information. So
-let's say you have a DC motor for example. Without an encoder or any other
-means for of speed/position feedback, the best one can do is establish a 1:1
-relationship between duty-cycle and speed, obviating all inaccuracies of doing
-so. So a motion controller using a DC motor would just do that if it has no
-encoder. OTOH, if there is an encoder as a source of position and speed
-information, the driver could work with more accurate data. It all depends, but
-in the end the interface towards the user is the same: move with some speed
-towards some position or for some amount of time.
+microchip,sama7d65-secumod is undocumented. I'll postpone this until a
+documentation a patch will be posted.
 
-> > In the future, making use of PREEMPT_RT, even dumb STEP/DIR type stepper
-> > motor controller drivers may be implemented entirely in the kernel,
-> > depending on some characteristics of the hardware (latency jittter,
-> > interrupt latency and CPU speed mainly).
-> > 
-> > The existence of this subsystem may affect other projects, such as
-> > Linux-CNC and Klipper for example.
-> > 
-> > This code is already in use controlling machines with up to 16 stepper
-> > motors and up to 4 DC motors simutaneously. Up to this point the UAPI
-> > has shown to be adequate and sufficient. Careful thought has gone into
-> > the UAPI design to make sure it coveres as many use-cases as possible,
-> > while being versioned and extensible in the future, with backwards
-> > compatibility in mind.
-> > 
-> > David Jander (7):
-> >   drivers: Add motion control subsystem  
-> 
-> Would it be too broad to call this an actuation subsystem instead where motion
-> is just one kind of actuation?
+> +			reg = <0xe0004000 0x4000>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +		};
+> +
+>  		pioa: pinctrl@e0014000 {
+>  			compatible = "microchip,sama7d65-pinctrl", "microchip,sama7g5-pinctrl";
+>  			reg = <0xe0014000 0x800>;
+> @@ -190,6 +215,16 @@ i2c10: i2c@600 {
+>  			};
+>  		};
+>  
+> +		uddrc: uddrc@e3800000 {
+> +			compatible = "microchip,sama7d65-uddrc", "microchip,sama7g5-uddrc";
+> +			reg = <0xe3800000 0x4000>;
+> +		};
+> +
+> +		ddr3phy: ddr3phy@e3804000 {
+> +			compatible = "microchip,sama7d65-ddr3phy", "microchip,sama7g5-ddr3phy";
+> +			reg = <0xe3804000 0x1000>;
+> +		};
+> +
+>  		gic: interrupt-controller@e8c11000 {
+>  			compatible = "arm,cortex-a7-gic";
+>  			reg = <0xe8c11000 0x1000>,
 
-I think it is hard enough already to make a UAPI for motion that is general
-enough to encompass all types of different motors and motion actuators.
-Generalizing even further without a serious risk of shortcomings seems almost
-impossible, but I am open to suggestions.
-
-Best regards,
-
--- 
-David Jander
 
