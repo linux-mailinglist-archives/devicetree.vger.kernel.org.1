@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-153214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 771A8A4B954
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:29:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97E53A4B952
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:29:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0777B17064B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:29:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50BF31893484
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18E461EFF8E;
-	Mon,  3 Mar 2025 08:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE241EF097;
+	Mon,  3 Mar 2025 08:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="HTM8O5PX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L5Fsc1d+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9C81EFF8F
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 08:28:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E981DE3A4;
+	Mon,  3 Mar 2025 08:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740990534; cv=none; b=Q9VlFP7fZ4tYfrkdR82SYzElsZBHUpQzcIl7m3ZMu4Jvb+oEyfQpAo91npZbum3/ydQ07GHPshzV/73uZc+6kSiyP6rRGpNnHgA6+EcFDHaopIJ/K4MwjK91naLMeY822iq0oieYHl9AQZ4yTfmygdvcluxcTWow7poGCQkoz/E=
+	t=1740990570; cv=none; b=IsIL6Q+MdipDfdDUqUI3wHgWmtech38persq2c4IHa0qE7pK4PR50/3xphm0wdC1Q4GMRhEe7nA7LwQph4NLqm5I3LV/sWpV8oaNPEE8fYO5gN7lcrrRHosI9O7QSFTdpXlg+X+nNyDIfjsVXBJUfPo27aMa8bpPPSDtLvHX/Ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740990534; c=relaxed/simple;
-	bh=qoPtDOyTcjwvCpBRIB3CYa8gwUoF4qiW66mIwy/6yyU=;
+	s=arc-20240116; t=1740990570; c=relaxed/simple;
+	bh=obB2ljcIPGtP0VJhm54WRUhHb1nNmOp3J/J2QdoPBuo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nyk0xFql6LHwZiEF00P25V0byLS01ZGDP7CQ2gs2wRYNSa5Q0VZt/WYz2+76fMCXcAkYjhtqdSVOlzP/krVrWXcWYdVsuiDz2eA6CkHDL3W0MDz7jMl0rBygVIK+YTV4mj3N7gvGFEAR/CuPhv6TPU8tg+2wU5U/iGPUozGDGD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=HTM8O5PX; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aaf0f1adef8so815393266b.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 00:28:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1740990530; x=1741595330; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bZbWYCAiGLdzl+1azDhHiS3T7Iql29Bgd9JnV0VCloE=;
-        b=HTM8O5PXxEYHVqSz6Zexc4NOBWwT9uXMWeBleqmOWJlKDhofqiKwYum5WX+yFzWV6s
-         fI03y1H27wxQQRN/7++rdfgsF43Cg04yByb9+Rab7kKfFJ95C2WfAfdKPEk7fgPlicRG
-         gk/9+Nr6H3MhCl+JGjwUY7AfmoZF93p4HL/iUS1wsGYvEw/Npc7MFbsjT+FhVemxxhJd
-         wiiMRoa4go9M5vf953mMFJB1H4pJ689iSPoIttF2BjM9yx1nPURmW6vPM8v1Ac0tQb8l
-         w5OVs/aU/+W/55Qxe11fpqNvFqsgTi2i/S41LdYH+G9L965kmPVOXM3lWLQ3Uvm3rM5r
-         8yOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740990530; x=1741595330;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bZbWYCAiGLdzl+1azDhHiS3T7Iql29Bgd9JnV0VCloE=;
-        b=t6cKALyEsyvdxO16wEB9V1SLRI3352nGREMH6lcxDyWpA3y0SScgsZr8LhPdQvWYOb
-         2zzGkngkuwDhJZ3Cr/yjwxcBnhmZhB908vLcMvYxQ4PvzKudt1M/OkEz/vpORJbDVPa3
-         1l1wSXZPsOX+v0u+QwAydWSM12dz+WTL1blfpd+S9xu59NEvz/Uxt+2PmZon5g+5WN5a
-         yk69w/37k4j937JbVTwU5ooEv4C2LfxyasE6a7AdkEosjiKDyZJDieU2Ahfq4nB4g1BL
-         j8oLFYD+2cNSeAqvh2z+8CNEB5lN4BgqLvWBYzYzbkOM0xZ6AXJr9rRjOdZeXvLyk4x7
-         GKDg==
-X-Forwarded-Encrypted: i=1; AJvYcCVFdXfR8fgxBtpinVGrrZcxMbinOgEuCregZ2Zrwo0Vf/7R6dc/OJQne+CeAdUcsTAPDjwbDbidp5za@vger.kernel.org
-X-Gm-Message-State: AOJu0YygyxuZXGgFgAD801wWkUITM1fHZFhDdAjLsGJ20qbVHNE1Ckvb
-	Rzpi8cZuRd1nPPyXpxqErPCsje62K1X3egEgb5d8WtD37qQQSxapkrI5XhH1sIs=
-X-Gm-Gg: ASbGncvTHKmPkTUOE42nMhfmPvKWg8TJQ9VI8J0my/J4+ndqc17BDtR4d8mqwHKK9UX
-	t4GL24yNQoOPRWH0+ZD6SyI86zCesxg8wYKNauWXdMHt6fifV5NRUpEzXOIYwaPFX4Xh/Eb0q3k
-	xZgJb/Rp8wTwVLpATfBMVbOE9JMG8h9+fJUpfk5bZ/H3HJ63Gq1hYBv1UPK53u9GcSWlgYBOVhW
-	vvYThilE7Y+yJ4hm5+XlyeMvURUDdJAoZYy+REzqWPWTuzZG7ai31ZK4eRxNcfwa1mWqqdLL7M9
-	96eFNeGCRaBnDsV7uNm4Bk2G4yYbaSh01HtRv1P83mXxB2Rj6iVTSw==
-X-Google-Smtp-Source: AGHT+IFrYJnOfLSyyyjojYRmFnfLxPLsWEHLU4GBBp6Ea3g+RJ8CQj9vhxA16WLLX0u0LSDAoCw01Q==
-X-Received: by 2002:a17:907:7ea5:b0:ab8:c215:fd27 with SMTP id a640c23a62f3a-abf25fa8e4fmr1364497766b.14.1740990529665;
-        Mon, 03 Mar 2025 00:28:49 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf17fa4a4asm733337966b.92.2025.03.03.00.28.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Mar 2025 00:28:49 -0800 (PST)
-Message-ID: <430f1dae-0123-4d4a-81c9-b3c1d9df285d@tuxon.dev>
-Date: Mon, 3 Mar 2025 10:28:47 +0200
+	 In-Reply-To:Content-Type; b=jEe06paRKu/FfVdJsxB7pXJzdjfDKuHautoxv3Tptnto/jhFbevIu+UU0gHd+rnVCw506TnhWvICjO7/9YEtsFCF4jAdWUFLBfML/dw+qfTz81Dy6pcszprNrh8ugjKkirSQ78g9M6irHtnZMyxsn1Vx4y9mwAZlKSNc/oF3tFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L5Fsc1d+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D6C8C4CED6;
+	Mon,  3 Mar 2025 08:29:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740990569;
+	bh=obB2ljcIPGtP0VJhm54WRUhHb1nNmOp3J/J2QdoPBuo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=L5Fsc1d+BT3zlKoAvBi301/7lNQasBdGMjxy/bahG5gw9C2PhtdMds2Iks/K0vAYe
+	 Iv51saEZ1KNYkpulm9MfT97RNhx7uBEcsBq8cO6fnYfbb18iAtRpkxUUUILC23eiEF
+	 d9LScttTam79NgrVIW0q45mfu2FygdvM8Y3cw9bmAopH1YSHHeuzxsAT0rEpffJRU5
+	 xCmxo+7bkBn8/2sN4t0RZ/i+76ZscytuML7vdooupcPLSgOHIsthFQ5dMje/vZo+PS
+	 iK0PIUtlo1r0LV3k94CYaUrv9HLaJ3VA1EtNIUt1E18nlNPVmhAKZw0epCkQ3UvgF/
+	 Y3A0gihRihCyA==
+Message-ID: <929ed565-f842-49e6-9c7a-6d1df5266a62@kernel.org>
+Date: Mon, 3 Mar 2025 09:29:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,69 +50,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 17/21] ARM: dts: microchip: sama7d65: Add RTT and GPBR
- Support for sama7d65 SoC
-To: Ryan.Wanner@microchip.com, lee@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, sre@kernel.org,
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
- p.zabel@pengutronix.de
-Cc: linux@armlinux.org.uk, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-References: <cover.1740671156.git.Ryan.Wanner@microchip.com>
- <6a1c058edee3fe1459dcb3a93a0a789a9ffff5f3.1740671156.git.Ryan.Wanner@microchip.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: samsung,exynos-dwc3: add
+ exynos7870 support
+To: Kaustabh Chakraborty <kauschluss@disroot.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250301-exynos7870-usb-v3-0-f01697165d19@disroot.org>
+ <20250301-exynos7870-usb-v3-1-f01697165d19@disroot.org>
 Content-Language: en-US
-In-Reply-To: <6a1c058edee3fe1459dcb3a93a0a789a9ffff5f3.1740671156.git.Ryan.Wanner@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250301-exynos7870-usb-v3-1-f01697165d19@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi, Ryan,
-
-On 27.02.2025 17:52, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On 28/02/2025 20:40, Kaustabh Chakraborty wrote:
+> Document compatible string for Exynos7870 DWC3-compatible USB 2.0
+> driver. The devicetree node requires three clocks, named "bus_early",
+> "ref", and "ctrl".
 > 
-> Add RTT support for SAMA7D65 SoC. The GPBR is added so the SoC is able
-> to store the RTT time data.
+> Unlike other variants, Exynos7870's USB controller requires a single
+> 3.0V regulator. Assert that the other 1.0V regulator requirement is
+> enforced on variants individually other than Exynos7870's.
 > 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 > ---
->  arch/arm/boot/dts/microchip/sama7d65.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  .../bindings/usb/samsung,exynos-dwc3.yaml          | 28 +++++++++++++++++++++-
+>  1 file changed, 27 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-> index b0a676623100..aadeea132289 100644
-> --- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-> @@ -120,6 +120,13 @@ shdwc: poweroff@e001d200 {
->  			status = "disabled";
->  		};
->  
-> +		rtt: rtc@e001d300 {
-> +			compatible = "microchip,sama7d65-rtt", "atmel,at91sam9260-rtt";
-> +			reg = <0xe001d300 0x30>;
-> +			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk32k 0>;
-> +		};
-> +
->  		clk32k: clock-controller@e001d500 {
->  			compatible = "microchip,sama7d65-sckc", "microchip,sam9x60-sckc";
->  			reg = <0xe001d500 0x4>;
-> @@ -132,6 +139,11 @@ chipid@e0020000 {
->  			reg = <0xe0020000 0x8>;
->  		};
->  
-> +		gpbr: gpbr@e001d700 {
-> +			compatible = "microchip,sama7d65-gpbr", "syscon";
 
-This is not documented. I'll postpone this until a documentation patch will
-be posted.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> +			reg = <0xe001d700 0x48>;
-> +		};
-> +
->  		dma2: dma-controller@e1200000 {
->  			compatible = "microchip,sama7d65-dma", "microchip,sama7g5-dma";
->  			reg = <0xe1200000 0x1000>;
-
+Best regards,
+Krzysztof
 
