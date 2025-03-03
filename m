@@ -1,151 +1,116 @@
-Return-Path: <devicetree+bounces-153415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E369A4C5E4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:58:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2343FA4C5EE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:00:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61E0C7A3693
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:57:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D234A3A55E4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6916521480B;
-	Mon,  3 Mar 2025 15:58:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SGyu2w57"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2A21DB154;
+	Mon,  3 Mar 2025 16:00:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5B73C00;
-	Mon,  3 Mar 2025 15:58:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C4FF7080D;
+	Mon,  3 Mar 2025 16:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741017511; cv=none; b=G/Gt5vHsh5rqFd/gnQAQzYoaogbg4UhaGge9piqB/YNuDW10HefawvlhqrHwffVJyudqM6Y1pZnZEzBieqqOKLxqOmdisDjp4qKTt7u3jM4zhDoGwYPuS1OOiXwco8FbpUFpKkGzfBO2GR3cH2+QEm/9KgYxlI0HBNDtMic1rb4=
+	t=1741017643; cv=none; b=kWkv0EaBu2EQ+YnE5xmRBWTzjeaQcMqerC+xDjsJpkFysU9DpEOBVj+XoLjlcYFjGjW+9otNb9NOHCin3wtCCtvnAh/a2JoNYcw7I43qUNWqyIUznL8oGN1iEQLOKOn9SgbXSyHK92OqTQR5/0LG2q39DdwBPRGfoMbMDkAJU4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741017511; c=relaxed/simple;
-	bh=dcvZl8D+/ZSKXEMSWxVFM9RcCCcopUHDnFLS4WubIdc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CG0YJFBo5KnJQTYbt1m1OCN/LIk9MGQ/n5ccTVREj1LH5XcR9oTsT16ALOF6ZyI6RgSS/MFXzoLvbaKEtlo6KPThm7IUWqXcvrCYqV8c73wdYBZNo4uXOBogqB3HNO+74BpQ6D32dj46FLZ55vzELL1rGWQ58QNSQYIDgw2Mdsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SGyu2w57; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-520a7bdb901so1955859e0c.0;
-        Mon, 03 Mar 2025 07:58:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741017508; x=1741622308; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=20CSEVsOsoWbrKdQvrJ9t0ssYFchlpZ8awFkCe5Gwfc=;
-        b=SGyu2w57oy5FmWfpmWQBZ3Prm6W/T2bbEzpfvwLlyORTsaivRHwSTXNsoDpw5gnKOc
-         4LiIkg1uos1GlxmuF7qygSFcWdaGV7NiGRuEz4kkiYhOau7YfLIKtEYTd/fKblH8eD/t
-         SZPtDsfBuQ+26aVM/2d6G5CVlIrditNtOsyp38vLAoYG1/eOsGMiJBGOxzg5elfi1JZU
-         rSf5iUe79FmDSkE0+hj2d+rcUe1/AGMGVQCmKqEd5oNAjlUmD6nFWLMo+FrK7T5gwLu7
-         rIhCZskP79cXxmN8+n8UpfXc9aoBTO7Z11d5Ce57QeF6BqQL019m/BIOhBToIF6Q03UC
-         npeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741017508; x=1741622308;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=20CSEVsOsoWbrKdQvrJ9t0ssYFchlpZ8awFkCe5Gwfc=;
-        b=nPHEBpfMtmKCqFnRVr8g7k6oRXyarJnw1EvbXJHClpMHvoRBu+pmG6I46ub632jgyV
-         XxnCLCP+0Ttmi50S+tjluBUYK2+MaeTqn/v2lwl4di+f2QkUa/E7yEji6nPtfWiL2yWC
-         FXE77MSuBQjAO+zPG96uznwGm7QoI3KEIOhdWsO7+JW6Lll/7KpEAhVTZMi4ofCjUZpq
-         nLWZXCJES6270cA+dl5Vu+Eb/axLwU6XRQzWKcqtCkFy0Tp/RCIWy8CeH3hH51F3Gwmu
-         sVvR/NZy/sDxbAtjlhrmkTM/J8rIdcY+FO5Aj4J/bWStJzNZ7G53RRpwS/uY7xdXMQaM
-         OaFw==
-X-Forwarded-Encrypted: i=1; AJvYcCUDuL7Cp/VpB/YWJN8L81G1XUjjaxYQ5jvIEpqBKIPK00FdgdZ/iKCfGX7/q87ogZKH/Ln8ZieSe/fr@vger.kernel.org, AJvYcCUqeYUw+hcFkkipbWunmG6cBcL/xWAH6ohI4s+nmMoUtLbzfa8auQmwpziLxw0VgxIdwBIUqEgQ@vger.kernel.org, AJvYcCWJlacFWsZg8xXRkOcN5B19UnRCpUANoshOGjpcnFgAyLeNEKq8Ec1FwEd2UA5RfOANFU9S30TW98QxL339cQda/As=@vger.kernel.org, AJvYcCWULLnyD780VRvorib6nXsq2GgKQFCPVd1Lk6YeRqNsJx48MGueHPLPLC6CdXIYnptJX7tVwprEFgE+pYif@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0ZMa5CPISWacb4YS39WdNCZRCazEHEH8ro5Q5yrpJgHd8aykE
-	j7WT2fFjhEBU7cEiO2H/g8nnGtEL++zJ8wkb7aojBIRy/tSNMIRbedByuCGymyaqIx9INcqjfpy
-	CyCJ9G6ZJpkFljfP6J/Ns7KnoGORfzVcA/NE=
-X-Gm-Gg: ASbGncsk+1J2cl25hGaLLGFkCF3Aba2CziXlTO1IXmnFQ4heiLZiFTgXu4bGTh6BMl9
-	zgDvKgu3xZbr1Q5p5OzCCb1KTWJmWmUQimabgCtfmvobfUVIDDzENeTVhHU+yHR6bQ94jx7WcU9
-	9WAGNp2mWbaaruUFxSvIfUsK8kIBQVpDm4r8c6Z3vBKsWu59ybxG4O5qs6Cg==
-X-Google-Smtp-Source: AGHT+IGf8mOuyk+yJX8WQ3uBBifLVC0NC0DlQpg3TejRFtkWs//y7lwRv/N/QPDyUQQ9CUkzN9EVbnwVC9X4VC+ObF8=
-X-Received: by 2002:a05:6122:2788:b0:520:60c2:3f1 with SMTP id
- 71dfb90a1353d-5235a921377mr7533183e0c.0.1741017508458; Mon, 03 Mar 2025
- 07:58:28 -0800 (PST)
+	s=arc-20240116; t=1741017643; c=relaxed/simple;
+	bh=qHzQi4+c8kTN8tsNEe9XE1Dq3CCg4miQvbd30I6E+RM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lGmCbcXEHzUmlN0z1cj+RC4lFLb6fJJ5BZpPn8ZYBvHbtFZIlsNlKi/fDezXBSFsKAW260sNA8qAGd1VyaxeUiLe8j8OwYQmz+JWerr42TElSQECCsP2dOwZN1D5KcKDhbim9uGqml6krlLGSeFo+e3ojVWkIcNdNRxwuK+LoLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 35789106F;
+	Mon,  3 Mar 2025 08:00:54 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6CF9B3F673;
+	Mon,  3 Mar 2025 08:00:38 -0800 (PST)
+Date: Mon, 3 Mar 2025 16:00:35 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
+Cc: <liviu.dudau@arm.com>, <lpieralisi@kernel.org>, <robh@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: corstone1000: Add definitions for secondary
+ CPU cores
+Message-ID: <Z8XSIx75B4mtcV48@bogus>
+References: <20250303153744.376419-1-hugues.kambampiana@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250302181808.728734-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250303152628.GA1873145-robh@kernel.org>
-In-Reply-To: <20250303152628.GA1873145-robh@kernel.org>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 3 Mar 2025 15:58:02 +0000
-X-Gm-Features: AQ5f1JpmCBY848cgT_1ecbvsoHfbS3xC710nAzbWM7vESPxSnajffbfXbBeCIyI
-Message-ID: <CA+V-a8ukVgx7OqDTP6EharPJxUnVw5wAohveJw+VCABvz7FSRA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: net: dwmac: Increase 'maxItems' for
- 'interrupts' and 'interrupt-names'
-To: Rob Herring <robh@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250303153744.376419-1-hugues.kambampiana@arm.com>
 
-Hi Rob,
+On Mon, Mar 03, 2025 at 03:37:44PM +0000, Hugues KAMBA MPIANA wrote:
+> Add `cpu1`, `cpu2` and `cpu3` nodes to the Corstone1000 device tree to
+> enable support for secondary CPU cores.
+> 
+> This update facilitates symmetric multiprocessing (SMP) support on
+> the Corstone1000 Fixed Virtual Platform (FVP), allowing the
+> secondary cores to be properly initialised and utilised.
+> 
+> Signed-off-by: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
+> ---
+>  arch/arm64/boot/dts/arm/corstone1000-fvp.dts | 24 ++++++++++++++++++++
+>  arch/arm64/boot/dts/arm/corstone1000.dtsi    |  2 +-
+>  2 files changed, 25 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/arm/corstone1000-fvp.dts b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
+> index abd013562995..df9700302b8d 100644
+> --- a/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
+> +++ b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
+> @@ -49,3 +49,27 @@ sdmmc1: mmc@50000000 {
+>  		clock-names = "smclk", "apb_pclk";
+>  	};
+>  };
+> +
+> +&cpus {
+> +	cpu1: cpu@1 {
+> +		device_type = "cpu";
+> +		compatible = "arm,cortex-a35";
+> +		reg = <0x1>;
+> +		enable-method = "psci";
+> +		next-level-cache = <&L2_0>;
+> +	};
+> +	cpu2: cpu@2 {
+> +		device_type = "cpu";
+> +		compatible = "arm,cortex-a35";
+> +		reg = <0x2>;
+> +		enable-method = "psci";
+> +		next-level-cache = <&L2_0>;
+> +	};
+> +	cpu3: cpu@3 {
+> +		device_type = "cpu";
+> +		compatible = "arm,cortex-a35";
+> +		reg = <0x3>;
+> +		enable-method = "psci";
+> +		next-level-cache = <&L2_0>;
+> +	};
 
-Thank you for the review.
+Why are these not part of /cpus node in corstone1000.dtsi ?
+Also I see the original cpu@0 node doesn't have enable-method set to
+"psci" while these secondary cpus have. Please add the same and move all
+these changes in corstone1000.dtsi unless you have strong reasons not to.
 
-On Mon, Mar 3, 2025 at 3:26=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
->
-> On Sun, Mar 02, 2025 at 06:18:06PM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Increase the `maxItems` value for the `interrupts` and `interrupt-names=
-`
-> > properties to accommodate the Renesas RZ/V2H(P) SoC, which features the
-> > `snps,dwmac-5.20` IP with 11 interrupts.
-> >
-> > Also add `additionalItems: true` to allow specifying extra interrupts
-> > beyond the predefined ones. Update the `interrupt-names` property to
-> > allow specifying extra `interrupt-names`.
-> >
-> > Also refactor the optional `interrupt-names` property by consolidating
-> > repeated enums into a single enum list.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Do=
-cumentation/devicetree/bindings/net/snps,dwmac.yaml
-> > index 91e75eb3f329..85d499bd49b5 100644
-> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > @@ -110,6 +110,8 @@ properties:
-> >
-> >    interrupts:
-> >      minItems: 1
-> > +    maxItems: 11
-> > +    additionalItems: true
->
-> This just increased the number if interrupts for anyone that allowed 4
-> interrupts. Rockchip and Intel are 2 though it is not clear if they
-> support more than 1. So maybe not a new problem, but you are making it
-> worse. Any of the ones in the 'select' in this file are affected as
-> well.
->
-How do you want me to handle this case:
-1] Update vendors binding
-2] Duplicate snps,dwmac.yaml in vendors binding.
+In that case, please clearly state the reason in the commit message.
 
-Cheers,
-Prabhakar
+P.S: I was about to send PR soon for v6.15. If you want this change for
+v6.15, you need to be quicker.
+
+-- 
+Regards,
+Sudeep
 
