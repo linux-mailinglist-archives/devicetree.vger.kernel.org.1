@@ -1,103 +1,115 @@
-Return-Path: <devicetree+bounces-154048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CC03A4E9B0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:46:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDFDCA4EB8F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ADFA1882701
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:41:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D37716F52D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5048727CB04;
-	Tue,  4 Mar 2025 17:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4918B27CB34;
+	Tue,  4 Mar 2025 18:13:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UaLGcteD"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="V2VWHjdH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
+Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F3E27CB05
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:16:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E32E24EA98
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:13:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741108611; cv=pass; b=nrWMW7FcsiwDS2jLYx87aJFf+g69FmIGbVEJtIqp40tvRyVZ9Z+p2M2oG+s6YyOuS1yjArNATUP3lhRZL0YmpBmieGQEogCY9tarBMFMos+mATfGI6co72ocoWoxIgoLtKHbBRUTayH88Qf+MO+rS1BqrJcChOyn2TYPro7eU4E=
+	t=1741112000; cv=pass; b=KKz7E0KoRNoCl5u6Hv2m39BM1vTYAXbTw/4fFltbHRg8FKcbN9SocQzenCmZYXmYVwsU+4Ma3YlFjKItuV3Qr8mcWJlFZRRgG9GBTcpU9ZXRvS1w05/bXi+YpgIAndq3FP4/X2MtsMqxLK+1USVi4WUfnli04xb66zb4joAHjw4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741108611; c=relaxed/simple;
-	bh=nwrY5mTBKsH0VrIlw0M+a6qAcq9/UvmEmo3JfFgzxI8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K23HTAlx6+6P94tW5gqIJi7d1yafSkob+TBLGLktRHfEZW69+RbR/EpZbzwLGnQ49AocWevWqsyGKdGcw/4mqNO3J4Lz080AftaGnSVuCKBiA9loqa1tMNsHDLxGCvBWOl8sJOfSL88LVufi2+o6fBfPwgaUzkIK06b0nSxgiTI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UaLGcteD; arc=none smtp.client-ip=10.30.226.201; arc=pass smtp.client-ip=160.75.25.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org
+	s=arc-20240116; t=1741112000; c=relaxed/simple;
+	bh=AMDQ9eFx0aMl37aNjAdud2rQll+8S9hW7w2yT459u9w=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UMZ7oXx3Bng9zXAHnESdu0yz+M1eaXND6J8RhH5WwJwh3ytby0L+9GZJxFgUsCM78uQPv/ZkCY7a3kcnx0IrJeOXSgJPcMFYiw1it7EJmsE+I7kJQwdDTz3WPYe17vUQmzJsIjfkKlTgFaWqkl4JUZ7sXLo+2pR4FBnsukRjmxs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=V2VWHjdH; arc=none smtp.client-ip=94.124.121.26; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; arc=pass smtp.client-ip=160.75.25.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id C2E6340CF4FB
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 20:16:47 +0300 (+03)
+	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id EEB6F4089284
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:13:15 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
+Authentication-Results: lesvatest1.cc.itu.edu.tr;
+	dkim=pass (2048-bit key, unprotected) header.d=protonic.nl header.i=@protonic.nl header.a=rsa-sha256 header.s=202111 header.b=V2VWHjdH
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dZt6pgDzFxCM
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:38:14 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dN10PpwzFwb5
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:28:49 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 6BB4D42752; Tue,  4 Mar 2025 17:38:06 +0300 (+03)
+	id B2A4E400C6; Tue,  4 Mar 2025 17:28:34 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UaLGcteD
-X-Envelope-From: <linux-kernel+bounces-541780-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=V2VWHjdH
+X-Envelope-From: <linux-kernel+bounces-541784-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UaLGcteD
-Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
-	by le2 (Postfix) with ESMTP id 249BC41CF8
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:15:27 +0300 (+03)
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=V2VWHjdH
+Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
+	by le2 (Postfix) with ESMTP id 15B8041AD7
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:20:07 +0300 (+03)
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by fgw2.itu.edu.tr (Postfix) with SMTP id CCFA32DCDE
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:15:26 +0300 (+03)
+	by fgw1.itu.edu.tr (Postfix) with SMTP id BE722305F789
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:20:06 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 441F216A581
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:15:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 151D116E48C
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63DEA212B07;
-	Mon,  3 Mar 2025 13:15:06 +0000 (UTC)
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A35213E92;
+	Mon,  3 Mar 2025 13:18:48 +0000 (UTC)
+Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8985D21148C;
-	Mon,  3 Mar 2025 13:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4F120F093
+	for <linux-kernel@vger.kernel.org>; Mon,  3 Mar 2025 13:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741007703; cv=none; b=HxP30pU4TpD7nyOVql9oSlQESNu0wE7QHcN8MoI60WaA7eJGER+xX0lMXDmQefYxn8OWyXGbp9Shq9JJJYl/wXTGQlDanXDpoRBoNzS9rjkPSk15s4yA8G/55pUx7FloAl8PkbLTIETBczN3N7pl64Ny4KTWCb+W3wbmjtdchW0=
+	t=1741007923; cv=none; b=fKuBsotT/r/oTKUFj/dRXPtxU+rpDz1sXecsgbthSSum4WnvtaweEnsiRiNBKsJ7MT4jTCi9LGYyxnKRLhoj3halOojX/8Qnk+hopDxobi+qd6rJeim4gsdbOxOP8Pkb/nQ1obZe0V200wcs+TTJB+6P5L1xEXI/imZXnNzY2GA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741007703; c=relaxed/simple;
-	bh=nwrY5mTBKsH0VrIlw0M+a6qAcq9/UvmEmo3JfFgzxI8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eNIhWr7755sRv5OrpnmQQ+t3UvUF7DSTt0ZqbkC7K94I9yfPCt3dOWxRnp0+QvKGPgYPP082mVgkV8TyMnOtLg6TBzAnMs35Uu1D4WXQaQRIKJY5uYNzfRsWq8YgYIFKKGsKT1wN64PY/0N4G0hI+VRldNhTX3hf2p/BQSng0wM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UaLGcteD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2AF8C4CEF3;
-	Mon,  3 Mar 2025 13:15:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741007703;
-	bh=nwrY5mTBKsH0VrIlw0M+a6qAcq9/UvmEmo3JfFgzxI8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=UaLGcteDJsTlv1tvfPaaRzAuATBXcyf0Op8VczsXtYqjpZKx/ayCpioXL8zJt+eW9
-	 VLfdJdNXU0w5E4heF9VL5kB//4xXQIUvx2s8lXwVMrUUj8LEzd5hvrQz0qF9FVE3kb
-	 2DlLjxFh2Fjpb7MJTj+5Iq+uymFyLH9wx/9B1ZomWEHmzo/yomSrbQOTZUIK5VADxx
-	 iSwqNvqWK84eIrLN3LF7e7i1k6gJccX+iIoT9KrncGiglMumS7P7Cev18AmELHB/JC
-	 lWyRccVUKxzb/7H4Pt5qTIKT8UyieVTCJZOUFO354XFWNL9KcHxx7HKleSqnjH+dsn
-	 uloIVK/eG9H3g==
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2fce3b01efcso6216381a91.3;
-        Mon, 03 Mar 2025 05:15:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWF7rsvklxvbxzz7/XSnly5JDOXTRCMlFRAwfLuje82NyHa5GaQMtBVKmKBN0eilikZ+aQnFNaPPd1kPCNV@vger.kernel.org, AJvYcCXPoEGubTxLcpQpJYnfegkZwu0BOs3FSToDHxjRWJvF4gf3Hg2VBFRoeiiivHOhCK41NFWCcZ4cyZL3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsbCf6+5lr7rI25kpMobSwRAvtinnyA9e7VUsv0Yig5k9BFS0h
-	oLTzLIcvBEbAUfBG4efF2w3ODECCXc7p1pDScpTlHd7cHpUv3Hm9A12AmU0l0SnJ67j4WeTwNRx
-	Am+Ib+cA0Kb7D6mB0WJiYc4kIMg==
-X-Google-Smtp-Source: AGHT+IEdq6TIp16hKhBlDO4xfda53D7O9rz6s7IDZPVAapB9apF5VJ70jX9N1Qnsx75v9OLYhq9X6ox1YKUJZiNS6WQ=
-X-Received: by 2002:a17:90b:4ac6:b0:2fe:b9be:216 with SMTP id
- 98e67ed59e1d1-2febac10927mr18112467a91.31.1741007702343; Mon, 03 Mar 2025
- 05:15:02 -0800 (PST)
+	s=arc-20240116; t=1741007923; c=relaxed/simple;
+	bh=AMDQ9eFx0aMl37aNjAdud2rQll+8S9hW7w2yT459u9w=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q7ywlUY++JYkYwDOiJ6lnVZaFRwVQK5h6Mr/TGzRn0DBWxwKy3EBYMmQiYtcQBfyEgANCtFB/ZfJ7SQOJZ0mG6+WkiQ1C1BOiS7uMsOLYAWKIW/t+sfjbkOULDLcVxXSjWkFd+l4D85juZwALB3+IfKbDBCyNQLXKVRqqWczII4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=V2VWHjdH; arc=none smtp.client-ip=94.124.121.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=07jHBQ0Ocr20eMkBHU7wCv3Kb+u8M2gSl1jHl4Krjyw=;
+	b=V2VWHjdH50wFOAzqiqTCz4ucfQSAqCESzCrmKnlGDokUdrXyVCjY95wGlKxQEqab88IbyapJ8HitR
+	 HhPCkTVbdTVmITlaPVwF3DF45rsjZ8KKS9QR1QgL9Z9ZJ5PpeqMyb4Z4Br1b1QGHaU9XuSjwQA5XjL
+	 A9EK9KrVHqZcBBGpkCbhwHNy2zuIXnCvY+Yqh6IJUonUEaNniEQT+LOJaiv8qIBYHv/lxzT4aRN+2w
+	 0Ycn1oeGVIj2B/QPxKjK8H50uESCFnozuiYgwKdA25We/6ZDtA7Zez1CmVi/IbJCfJ/OrJ8aJ40Ipn
+	 ZWeXSYlWcX+QRqZW16a2zXBCEZZ+o4g==
+X-MSG-ID: 04a26b70-f832-11ef-a39b-00505681446f
+Date: Mon, 3 Mar 2025 14:18:37 +0100
+From: David Jander <david@protonic.nl>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
+ <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
+ <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>
+Subject: Re: [RFC PATCH 6/7] dt-bindings: motion: Add adi,tmc5240 bindings
+Message-ID: <20250303141837.782e57f7@erd003.prtnl>
+In-Reply-To: <CAMknhBFoRoaXWBL-vDnDrepqw_KJ-VrYeOoGJfjz8q=wDNM6xA@mail.gmail.com>
+References: <20250227162823.3585810-1-david@protonic.nl>
+	<20250227162823.3585810-7-david@protonic.nl>
+	<7b2a8d71-9d83-4d40-903b-ba7ef1c686f3@baylibre.com>
+	<20250303122253.26fec335@erd003.prtnl>
+	<CAMknhBFoRoaXWBL-vDnDrepqw_KJ-VrYeOoGJfjz8q=wDNM6xA@mail.gmail.com>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -105,102 +117,266 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023-display-support-v7-0-6703f3e26831@baylibre.com> <20231023-display-support-v7-3-6703f3e26831@baylibre.com>
-In-Reply-To: <20231023-display-support-v7-3-6703f3e26831@baylibre.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Mon, 3 Mar 2025 21:15:50 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__qg1R4JQDssy1bDDJMea8Ud7OsPXjek20cHV8S=jfNbA@mail.gmail.com>
-X-Gm-Features: AQ5f1JqYD6WJcU1BIk0mtXtCrxuXqvikkqhcdhVAAsXT4MVrnLil5ua2eCNjEcM
-Message-ID: <CAAOTY__qg1R4JQDssy1bDDJMea8Ud7OsPXjek20cHV8S=jfNbA@mail.gmail.com>
-Subject: Re: [PATCH v7 3/6] drm/mediatek: add MT8365 SoC support
-To: amergnat@baylibre.com
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Simona Vetter <simona@ffwll.ch>, Simona Vetter <simona.vetter@ffwll.ch>, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Fabien Parent <fparent@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6dZt6pgDzFxCM
+X-ITU-Libra-ESVA-ID: 4Z6dN10PpwzFwb5
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741713303.29924@BmyHyEHEwgxkYwKYYkjDtg
+X-ITU-Libra-ESVA-Watermark: 1741716680.47271@+5OHPbF82G2ehVraBQZm8w
 X-ITU-MailScanner-SpamCheck: not spam
 
-Hi, Amergnat:
 
-<amergnat@baylibre.com> =E6=96=BC 2025=E5=B9=B41=E6=9C=8810=E6=97=A5 =E9=80=
-=B1=E4=BA=94 =E4=B8=8B=E5=8D=889:31=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> From: Fabien Parent <fparent@baylibre.com>
->
-> Add DRM support for MT8365 SoC.
->
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
+Dear David,
 
-Applied to mediatek-drm-next [1], thanks.
+On Mon, 3 Mar 2025 13:28:35 +0100
+David Lechner <dlechner@baylibre.com> wrote:
 
-[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.=
-git/log/?h=3Dmediatek-drm-next
+> (Sorry if you get this twice. I don't have my regular computer today
+> and didn't realize I was sending HTML the first time. Resending in
+> plain text so the lists pick it up.)
+>=20
+> On Mon, Mar 3, 2025 at 12:22=E2=80=AFPM David Jander <david@protonic.nl> =
+wrote:
+> >
+> >
+> > Dear David,
+> >
+> > On Fri, 28 Feb 2025 16:38:51 -0600
+> > David Lechner <dlechner@baylibre.com> wrote:
+> > =20
+> > > On 2/27/25 10:28 AM, David Jander wrote: =20
+> > > > Add device-tree bindings for Analog Devices TMC5240 stepper control=
+lers.
+> > > >
+> > > > Signed-off-by: David Jander <david@protonic.nl>
+> > > > ---
+> > > >  .../bindings/motion/adi,tmc5240.yaml          | 60 +++++++++++++++=
+++++
+> > > >  1 file changed, 60 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/motion/adi,tm=
+c5240.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/motion/adi,tmc5240.y=
+aml b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..3364f9dfccb1
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
+> > > > @@ -0,0 +1,60 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/motion/adi,tmc5240.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Analog Devices TMC5240 Stepper Motor controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - David Jander <david@protonic>
+> > > > +
+> > > > +description: |
+> > > > +   Stepper motor controller with motion engine and SPI interface. =
+=20
+> > >
+> > > Please include a link to the datasheet. =20
+> >
+> > Will do.
+> > =20
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - adi,tmc5240
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  interrupts:
+> > > > +    maxItems: 1 =20
+> > >
+> > > I assume that this is the overvoltage output (OV pin). Would be nice =
+to have
+> > > a description here saying that. There are also NAO and DIAG0/1 output=
+ pins, so
+> > > it's a bit ambiguous otherwise. =20
+> >
+> > This is the DIAG0 output pin which on this chip has a dual function as =
+either
+> > a STEP output or an interrupt output. The pin name is a bit misleading,=
+ but it
+> > is the "interrupt" function that is meant here. The datasheet documents=
+ all
+> > the different events that can trigger this interrupt.
+> > I will add a description to clarify this.
+> > =20
+>=20
+> If it makes sense that other pins could possibly ever be connected to
+> interrupts then we can add those and also add interrupt-names (but
+> only if there is more than one possible interrupt).
 
-Regards,
-Chun-Kuang.
+AFAIK, only DIAG1 would potentially make sense to be connected to an
+interrupt. It can be programmed to go low when the motor position matches t=
+he
+contents of the X_COMPARE/X_COMPARE_REPEAT register setting.
 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
-iatek/mtk_drm_drv.c
-> index 0829ceb9967c..5471ef744cc1 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -328,6 +328,10 @@ static const struct mtk_mmsys_driver_data mt8195_vdo=
-sys1_driver_data =3D {
->         .min_height =3D 1,
->  };
->
-> +static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data =3D {
-> +       .mmsys_dev_num =3D 1,
-> +};
-> +
->  static const struct of_device_id mtk_drm_of_ids[] =3D {
->         { .compatible =3D "mediatek,mt2701-mmsys",
->           .data =3D &mt2701_mmsys_driver_data},
-> @@ -355,6 +359,8 @@ static const struct of_device_id mtk_drm_of_ids[] =3D=
- {
->           .data =3D &mt8195_vdosys0_driver_data},
->         { .compatible =3D "mediatek,mt8195-vdosys1",
->           .data =3D &mt8195_vdosys1_driver_data},
-> +       { .compatible =3D "mediatek,mt8365-mmsys",
-> +         .data =3D &mt8365_mmsys_driver_data},
->         { }
->  };
->  MODULE_DEVICE_TABLE(of, mtk_drm_of_ids);
-> @@ -751,6 +757,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[=
-] =3D {
->           .data =3D (void *)MTK_DISP_MUTEX },
->         { .compatible =3D "mediatek,mt8195-disp-mutex",
->           .data =3D (void *)MTK_DISP_MUTEX },
-> +       { .compatible =3D "mediatek,mt8365-disp-mutex",
-> +         .data =3D (void *)MTK_DISP_MUTEX },
->         { .compatible =3D "mediatek,mt8173-disp-od",
->           .data =3D (void *)MTK_DISP_OD },
->         { .compatible =3D "mediatek,mt2701-disp-ovl",
->
-> --
-> 2.25.1
->
+I will add that one if you agree. It will not be mandatory of course.
+
+In any case, if that pin was connected to an interrupt pin right now, it co=
+uld
+already be used as an IIO trigger for example. Just not (yet) via this driv=
+er.
+
+>[...]
+> > The resistor connected to the IREF pin (Rref) OTOH does have an implica=
+tion to
+> > the software, as it sets the full-range current of the output stage.
+> >
+> > How should we specify that? Is it adequate to add an optional DT proper=
+ty
+> > "rref" or "rref-ohm" with an int32 value in Ohm? The default value if
+> > unspecified is 12000 Ohm. =20
+>=20
+> It looks like there are a few standardized properties, like
+> sense-resistor-ohms if that fits the use case. Otherwise, an
+> vendor-specific ti,rref-ohms would work. FYI, you can find the
+> preferred units at [1].
+>=20
+> [1]: https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schem=
+as/property-units.yaml
+
+Ah, thanks! This is helpful.
+
+Will use this for ti,rref-ohms. I guess in this case that would be easier to
+understand than "sense-resistor-ohms", which is also okay, but would require
+reading the description to know what exactly is meant in this context.
+
+> > > And if there are any pins would make sense to connect to a gpio, we c=
+an add
+> > > those even if the driver doesn't use it currently.
+> > > =20
+> > > > +  clocks:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +  - interrupts
+> > > > +  - clocks
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > > > +  - $ref: /schemas/motion/common.yaml# =20
+> > >
+> > > If we need to know about what is connected to the output of a motor c=
+ontroller
+> > > I would expect it to be done with child node for each output. That wa=
+y each
+> > > output can be unique, if needed. Basically, similar to iio/adc.yaml i=
+s used to
+> > > provide common properties for channel@ child nodes on iio devices. =20
+> >
+> > This controller chip only has one single output for one stepper motor (4
+> > wires). While technically you could connect something else to those 4 w=
+ires, I
+> > don't think it is the scope of LMC to support that. The chip itself isn=
+'t
+> > designed for that purpose and it would clearly go far beyond the intend=
+ed
+> > purpose of this device.
+> >
+> > That being said, your suggestion of supporting child nodes may actually=
+ be a
+> > good idea. Right now, we specify the type of motor (basically nominal- =
+and hold
+> > current settings) in user-space and set the IRUN/IHOLD parameters from
+> > user-space via the sysfs attributes interface. It might make sense to h=
+ave a DT
+> > child node to specify this, although in our current application this is=
+ not
+> > very practical, since there are many motor controllers on one board, an=
+d it is
+> > configurable in software (runtime) which motor is connected to which ou=
+tput.
+> >
+> > But I can imagine a situation where it may be fixed and thus can be des=
+cribed
+> > in the DT of a board.
+> >
+> > Then again I don't know if it would be over-complicating things with so=
+mething
+> > like this:
+> >
+> >         motor-controller@0 {
+> >                 ...
+> >                 motor@0 {
+> >                         compatible =3D "nanotec,st4118s1006";
+> >                         irun-ma =3D <1800>;
+> >                         ihold-ma =3D <270>;
+> >                 };
+> >         };
+> >
+> > where we'd possibly have a stepper-motors.c file with a lot of structs =
+and
+> > matching tables for the different motor types.... sounds like overkill =
+to me,
+> > but maybe not? =20
+>=20
+> A compatible for motors seems too much. I was just thinking along the
+> lines that 1) if we need to so some scaling or something that depends
+> on a motor constant, then it would make sense to put those constants
+> in the DT and 2) if there is a motor controller with more than one
+> output that could be connected to two or more different sizes of
+> motors with different constants, then we either need child nodes or an
+> array to be able to enter the different constants. Either one would
+> work. So maybe simpler to just use an array instead of child nodes now
+> that I'm thinking about it more.
+
+Well, in the case of the TMC5240 there isn't much more than a single motor
+with possibly some fixed setting of irun/ihold in some cases, but like I sa=
+id,
+in our case it is run-time configurable, so not something fixed to the
+hardware-description. Apart from that, there are the speed- and acceleratio=
+n-
+conversion constants, which per default are the constants stated in the
+datasheet. In some rare cases one might want to overrule them, but that can
+already be done.
+
+LMC does als support multi-channel controllers, and in that case I intend to
+make use of child nodes for the different channels, to be able to specify
+those parameters per motor.
+
+So maybe just leave it as it currently is for the tmc5240?
+
+> > > > +
+> > > > +unevaluatedProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    spi {
+> > > > +        #address-cells =3D <1>;
+> > > > +        #size-cells =3D <0>;
+> > > > +
+> > > > +        motor@0 { =20
+> > >
+> > > motor-controller@ or actuator-controller@
+> > >
+> > > The chip is the controller/driver, it is not a motor. =20
+> >
+> > Make sense. Will change this.
+> > =20
+> > > > +            compatible =3D "adi,tmc5240";
+> > > > +            reg =3D <0>;
+> > > > +            interrupts-extended =3D <&gpiok 7 0>;
+> > > > +            clocks =3D <&clock_tmc5240>;
+> > > > +            enable-supply =3D <&stpsleepn>;
+> > > > +            spi-max-frequency =3D <1000000>;
+> > > > +        };
+> > > > +    }; =20
+
+Best regards,
+
+--=20
+David Jander
 
 
