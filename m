@@ -1,97 +1,97 @@
-Return-Path: <devicetree+bounces-153934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9DFA4E449
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:52:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9069AA4E6A6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:47:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E402D19C1B97
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:44:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A995717F198
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9B729B20A;
-	Tue,  4 Mar 2025 15:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BCC527C84C;
+	Tue,  4 Mar 2025 16:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HbA7VZDt"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HTzEGiFf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
+Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC94029B205
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:29:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 600CB27C868
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741102185; cv=fail; b=qp8LJ/0+v+lJRJ+WIJsEnXVUgxg9753MdLzipzCa/tXdMdSPdHyWyi3do9l+mCqBovZqXEMLkL7X6vfyPafD08bjhh46FsMJwGz/wlUed41nFamA2AiFUQ9V8ZnRp7RSjATRuiZEPVPG+XjnOouepTx805yyxNNBKK4sMoybM20=
+	t=1741104968; cv=fail; b=lI2utEIxXffA+FviWlRSgsMb4bR9Azin/OpOxBio9GQ/38FjayZe7vRXES1qdY2dbd4owUcpiBqEPOewstUwYZRE93zsGnsha3yLErJebRO2DJEQT8kchnjcmCrzmDr5Yzs0GKJB4Nfs6aJw5y8Kv3jM/LDgdYz/107gk3tPxxE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741102185; c=relaxed/simple;
-	bh=U1cpx2HHWKwAOOaL+2CmA6qqaiQQdSvmtVx7NrQM/Y4=;
+	s=arc-20240116; t=1741104968; c=relaxed/simple;
+	bh=iaBlcemRdKwSm+foatTJC45/O0WgscPMRwsAY1ldMss=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SkUwhmivSfhp3mcufUH5KJr7w9uRQpvCLgoVwP6D5E80uPTeFbeINWuwq6MXMj6OgXQekExocBlLHySvgPCvNb8jvEQzRBn9n64fo+XMz0l6+78mPjpndszJ7QMxGamiY+uqt8t69ET3WPt7kI/+VppnEtgf+bkBB0GL7NV1WJc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbA7VZDt reason="signature verification failed"; arc=none smtp.client-ip=10.30.226.201; arc=fail smtp.client-ip=160.75.25.115
+	 In-Reply-To:Content-Type; b=rWXuZdjVP0i4ltkcHwhGLvzASOhn8YzyssfmHQF+Xvz6PsJMZfyD2iOF4ScuOtXqU7+Bv0EOvkVBDVZIXOL2VAihOc85rIPMLzzkXjXRBkIfT5PDQtpJMI/PEtqPhGw/bbZ6akX3/a4Fy44ojgVRDNaA23c79FjSYSODbCGO22o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTzEGiFf reason="signature verification failed"; arc=none smtp.client-ip=10.30.226.201; arc=fail smtp.client-ip=160.75.25.117
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
+Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id 0298640D571C
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:29:42 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 7AD6E40CEC9A
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:16:05 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=HbA7VZDt
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=HTzEGiFf
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6ffl36BLzG0GH
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:26:39 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6gh01b6lzG1tb
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:12:48 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 35E2442731; Tue,  4 Mar 2025 18:26:25 +0300 (+03)
+	id 3D49C42755; Tue,  4 Mar 2025 19:12:34 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbA7VZDt
-X-Envelope-From: <linux-kernel+bounces-541089-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTzEGiFf
+X-Envelope-From: <linux-kernel+bounces-541094-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbA7VZDt
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTzEGiFf
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 71E6642305
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:24:39 +0300 (+03)
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 0F1BD3063EFE
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:24:38 +0300 (+03)
+	by le2 (Postfix) with ESMTP id BC6A6420F3
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:31:51 +0300 (+03)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id 985BD3064C0C
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:31:51 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 275423AFD82
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 07:24:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A7B318917C9
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 07:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA931EB18B;
-	Mon,  3 Mar 2025 07:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D571EB1B5;
+	Mon,  3 Mar 2025 07:31:35 +0000 (UTC)
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CE1212B93;
-	Mon,  3 Mar 2025 07:24:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBC714AD2D;
+	Mon,  3 Mar 2025 07:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740986661; cv=none; b=rFLgIQ3ah9Y7hYb3lLbMin1wESpjKObR/m/kH9WKOzEMfMivM7FHp2W45S4zlGhzpSYShJn6Px/pNdrtBvGyxnc2tu6xX7z9w0pCgSqhybtb9EaHJDvFjDBpMQrH8VwXTOK7L0lHIgQgRfeFrVUalwBrL/m7x16bC8wJRONaC9k=
+	t=1740987092; cv=none; b=ky5TbUiFvALlMlTaKigdQDLDUk1W1AH8b/MvXagBb0Xk5b5TIUiiItID+KCOXnGO/FZcObnLbedkgXfb+ftAmS7DSkS22QklUVqV4BV6nIGoQvPJgXEgBoZ2vgEJPVqmaIh7lFxE6VDHu+fAPHnBR0ZpQyLX3HUQtBJovb9FZlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740986661; c=relaxed/simple;
-	bh=VySOvvJYVOXMBNDZlPELZwP+g8cJ/Y6sF/YKn/PvvDk=;
+	s=arc-20240116; t=1740987092; c=relaxed/simple;
+	bh=Rp+ML2bibpqktoLUGR92Bz7M855WOGJIx85KWI6GPlY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=efDOi8jLCCqIst4DrtXOy3L7IUWSRDOo0StuYP0ZQDPXXYIKTfZM/eK81y/+wATf/QcglUGlo5og35yxW5o1OJE5V+882EBN/mZ7g0o4hFvvEyffyBhs727MKNMBdxYVtm1377dU1oWNSYw0JFBaEv6VbHzUFulYUxCsa5PP0lY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbA7VZDt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CB72C4CED6;
-	Mon,  3 Mar 2025 07:24:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Qs/rqmr1PCo3H0sUZ9KVUfarUOj+NsP1wfjmQLXG0WIKQaeK6qK+/w0+UQD3te/wCKDFiZbRc6rN+Yg4pTVy0sssnopchUbeRiJxphCiNlC7pclhI9TvEdcC++q8C0edegJVN+a8VOs4y6a2Ba5yl/IkOPBqx//O5BB/9CHblbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTzEGiFf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA799C4CED6;
+	Mon,  3 Mar 2025 07:31:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740986660;
-	bh=VySOvvJYVOXMBNDZlPELZwP+g8cJ/Y6sF/YKn/PvvDk=;
+	s=k20201202; t=1740987091;
+	bh=Rp+ML2bibpqktoLUGR92Bz7M855WOGJIx85KWI6GPlY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HbA7VZDtl/TNWqG62oFhLMl+naJrz6RHcKCe2eecOjSTmvNSgowWBBPxsqrF0Xutl
-	 Dh+A/xjoB+v7Ap3lvHzUuCe135CCplLe/N1S07bo2GYI6gkcl1AMINuRjrRBxE5//N
-	 j9I48zLi8ourbw6TRjONfcLqJdrhGI03lmYfyk0cy6xI9QGn6ituRFuS2RzH2yBl7b
-	 WWcnGOrM78y2AmOp5XWTzwjEhwuBAXYPo9EIBdC4yIS+8lfVThl/2HnWcYCR8N2m3t
-	 PyiITAnhBIZMCHJYkm99gtdy4ktesE9VcdxGvtqjWuJHQg7BI1X7JHUT+QqLIyL5K7
-	 OfjucJD27eRog==
-Message-ID: <354d6100-311f-44d7-b8a5-1fd671b651e3@kernel.org>
-Date: Mon, 3 Mar 2025 08:24:13 +0100
+	b=HTzEGiFfHLV4w3wmTYdgM1MCufXU4oIQ7PNRV0iGYfH7O1AlC9I9jG8mRefk8kGMk
+	 hHaX3prwYZyBKkE9OkYkGGbfe4+xwGnXulJ7Tn+Yqhbes5R4tmKYP75jte80SDKIrX
+	 ORktdyG6hGNsc+7RzDE68WQt/m9XnfY8ftWGpyWBeQ2r/NSrTW1qY8x8VokwBvGAtf
+	 KwjwSt0LjcHRMPqtg1L3JUujWt3sRkfsY3yO5yyHWKsDWKS3aIcwN+ecSJXmqz/oNX
+	 IH1cwiQLFaJoLuhdLdx/btKuJqw+tg0teun2eDbRAcaZAqjQ2JrgstmwN5S8kQPsss
+	 7blHovP1SNM+A==
+Message-ID: <3d729159-4d13-4a61-88c7-3be992b23728@kernel.org>
+Date: Mon, 3 Mar 2025 08:31:24 +0100
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -100,23 +100,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/8] dt-bindings: phy: add
- samsung,exynos2200-usbcon-phy schema file
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Abel Vesa <abel.vesa@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250223122227.725233-1-ivo.ivanov.ivanov1@gmail.com>
- <20250223122227.725233-4-ivo.ivanov.ivanov1@gmail.com>
- <20250224-curly-cyber-spaniel-efdc39@krzk-bin>
- <a4f63721-d094-4eda-b68a-6ef62ff54680@gmail.com>
- <c8184542-5dab-4403-bee4-867810397ae4@kernel.org>
- <4502b578-96e6-49e0-8f3b-54f6e5640c55@gmail.com>
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add dt bindings for
+ m2m-deinterlace device
+To: Matthew Majewski <mattwmajewski@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+ "Dr. David Alan Gilbert" <linux@treblig.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>,
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250214231759.119481-1-mattwmajewski@gmail.com>
+ <20250214231759.119481-2-mattwmajewski@gmail.com>
+ <20250218-eggplant-skylark-of-swiftness-dcf6ba@krzk-bin>
+ <69cb2e95c291f17cff42b45e7c871f30a85c060d.camel@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -162,94 +160,119 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <4502b578-96e6-49e0-8f3b-54f6e5640c55@gmail.com>
+In-Reply-To: <69cb2e95c291f17cff42b45e7c871f30a85c060d.camel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6ffl36BLzG0GH
+X-ITU-Libra-ESVA-ID: 4Z6gh01b6lzG1tb
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741706891.74482@X82hxZWN1n/ZebBTsEjBYw
+X-ITU-Libra-ESVA-Watermark: 1741709670.63369@bqNc2Fq/No6h95gtaCWFpA
 X-ITU-MailScanner-SpamCheck: not spam
 
-On 02/03/2025 10:16, Ivaylo Ivanov wrote:
-> On 2/25/25 10:11, Krzysztof Kozlowski wrote:
->> On 24/02/2025 11:48, Ivaylo Ivanov wrote:
->>> On 2/24/25 10:56, Krzysztof Kozlowski wrote:
->>>> On Sun, Feb 23, 2025 at 02:22:22PM +0200, Ivaylo Ivanov wrote:
->>>>> The Exynos2200 SoC has a USB controller PHY, which acts as an
->>>>> intermediary between a USB controller (typically DWC3) and other PH=
-Ys
->>>>> (UTMI, PIPE3). Add a dt-binding schema for it.
->>>>>
->>>>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->>>>> ---
->>>>>  .../phy/samsung,exynos2200-usbcon-phy.yaml    | 76 +++++++++++++++=
-++++
->>>>>  1 file changed, 76 insertions(+)
->>>>>  create mode 100644 Documentation/devicetree/bindings/phy/samsung,e=
-xynos2200-usbcon-phy.yaml
->>>> You have undocumented dependencies which prevent merging this file.
->>>> First, dependencies have to be clearly expressed.
->>> They are, in the cover letter.
->> Where? I read it twice. Dependencies is the most important thing and
->> should scream at beginning of the cover letter, so if you bury them
->> somewhere deep it also would not matter - just like they were missing.
->>
->>>> Second, you should
->>>> rather decouple the code from header dependencies, otherwise this ca=
-nnot
->>>> be merged for current release (just use clocks with long names, with=
-out IDs).
->>> Sure
->>
->>>>> diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos22=
-00-usbcon-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,exynos=
-2200-usbcon-phy.yaml
->>>>> new file mode 100644
->>>>> index 000000000..7d879ec8b
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/phy/samsung,exynos2200-usbc=
-on-phy.yaml
->>>>> @@ -0,0 +1,76 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/phy/samsung,exynos2200-usbcon-p=
-hy.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Exynos2200 USB controller PHY
->>>>> +
->>>>> +maintainers:
->>>>> +  - Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->>>>> +
->>>>> +description:
->>>>> +  Exynos2200 USB controller PHY is an intermediary between a USB c=
-ontroller
->>>>> +  (typically DWC3) and other PHYs (UTMI, PIPE3).
->>>> Isn't this the same as usbdrd phy? see: samsung,usb3-drd-phy.yaml
->>> It's not (I think). There's a few reasons I've decided to make this s=
-eparate
->>> from the usb3-drd-phy bindings and exynos5-usbdrd driver:
+On 26/02/2025 23:41, Matthew Majewski wrote:
+> Hi Krzysztof,
+>=20
+> On Tue, 2025-02-18 at 09:30 +0100, Krzysztof Kozlowski wrote:
+>> On Fri, Feb 14, 2025 at 06:17:58PM -0500, Matthew Majewski wrote:
+>>> Create a new yaml schema file to describe the device tree bindings
+>>> for
+>>> generic m2m-deinterlace device.
 >>>
->>> 1. This PHY does not provide UTMI and PIPE3 on its own. There's no tu=
-ning
->> USBDRD phy does not provide UTMI and PIPE on its own either if you loo=
-k
->> at diagram - they call it phy controller.
->=20
-> Ughm. What? So in most exynos cases, there's a combination of multiple =
-phys?
-
-
->=20
+>>> This device is supported on any hardware that provides a MEM_TO_MEM
 >>
->>> for them, and all that is needed from it is to disable HWACG, assert/
->>> deassert reset and force bvalid/vbusvalid. After that SNPS eUSB2
->>> initialization can be done and USB2 works. If the USBCON phy is not s=
-et
->>> up before the eUSB2 one, the device hangs, so there is definitely a
->>> dependancy between them. For PIPE3 we'd need to control the pipe3
->>> attaching/deattaching and then initialize the synopsys USBDP combophy=
+>> Which device? I don't see here any device name/model.
+>=20
+> By "device" I am referring to the m2m-deinterlace device, which I
+> explained is a quasi-virtual device. If this is confusing wording I can
+> change.=20
+>=20
+>> I asked to provide here some examples of devices.
+>=20
+> As I wrote, supported devices/hardware is anything that provides a
+> MEM_TO_MEM capable dma-controller with interleaved transfer support. I
+> did not list specific devices because the bindings are supposed to be
+> generic, as they are not describing actual silicon. But if you want me
+
+I already told you that no. Bindings are not supposed to be generic.
+
+From where did you get such information?
+
+> to list some devices which provide a compatible dma-controller, here
+> are devices I found in the current mainline kernel:
+>=20
+> - TI OMAP Soc Family
+> - TI Davinci Soc Family
+> - TI Keystone Processor Family
+> - IMX27 Processor and variants
+> - Several Microchip Processors (sama5, sam9x7, sam9x60)
+
+That's too generic - you just listed SoCs, which consist of dozen or
+hundred of devices. Which hardware piece is here?
+
+Maybe this is not for a real device, but then this should be marked clear=
+ly.
+
+>=20
+> As I mentioned in my original email, I have personally tested on a
+> BeagleBone Black with an AM335X OMAP processor. There are likely many
+> more devices with compatible dma-controllers that could be supported
+> with additional dmaengine driver support.=20
+>=20
+>=20
+>>> capable dma channel with interleaved trasfer support. Device tree
+>>> bindings are for providing appropriate dma channel to device.
+>>
+>> Don't describe what DT is, but the hardware.
+>>
+>=20
+> Ok, will remove reference to DT.
+>=20
+>>> +description: |-
+>>> +=C2=A0 A generic memory2memory device for deinterlacing video using
+>>> dmaengine. It can
+>>> +=C2=A0 convert between interlaced buffer formats and can convert
+>>> interlaced to
+>>> +=C2=A0 progressive using a simple line-doubling algorithm. This devi=
+ce
+>>> can be used on
+>>> +=C2=A0 any hardware that provides a MEM_TO_MEM capable dma controlle=
+r
+>>> that supports
+>>> +=C2=A0 interleaved transfers.
+>>
+>> And how do you program that device to deinterlace? How do you signal
+>> end
+>> of frame/data when writing to the memory?
+>>
+>> It still looks all this is for driver :/
+>>
+>=20
+> All of the deinterlacing is handled by the dma channel. To simplify a
+> bit, m2m-deinterlace basically just translates video format information
+> into appropriate interleaved dma transfers. Everything else (and
+> everything hardware specific) is handled by the dma engine, such as
+> initiation and signaling completion of transfers.=20
+
+
+So the device is the dma controller and maybe all this should be folded
+into that controller bindings.
+
+>=20
+> I think an appropriate analogy for m2m-deinterlace would be spi-gpio.
+> Since spi-gpio leverages gpio for bitbanging the spi protocol, the
+> bindings do not need to describe any clocks, spi-controller registers,
+
+Sure, SPI GPIO is Linux driver, not a device and I am asking about it
+all the time.
+
+> etc. All of the hardware specific components are abstracted away by the
+> gpio controller. But the spi-gpio bindings still exist to specify which
+> gpios are used.
+
+
+
+Best regards,
+Krzysztof
+
 
