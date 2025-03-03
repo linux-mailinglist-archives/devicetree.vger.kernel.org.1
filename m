@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-153479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9AE4A4CAF5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 19:26:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4591A4CB32
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 19:46:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CDD23A6D23
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:26:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6473D3AC28E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:46:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9754322D79E;
-	Mon,  3 Mar 2025 18:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863A4217F54;
+	Mon,  3 Mar 2025 18:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IP9//ev5"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ApqiYCDf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46448223714;
-	Mon,  3 Mar 2025 18:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462352153D0;
+	Mon,  3 Mar 2025 18:46:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741026413; cv=none; b=FxCJadQBBMFpsefdIdBi26cDnyBmk3xFi98clh+59/pRLAmCWU3j/wHNW7WJ+rSDpqu/MovJKrk01cu8g9Dl7RSIcgze/rDjb7aSHSCMymG/y9l+OMzFqeSrGnZymkqmh/h7PjX0YO5uVxC2Cl6sdFcE0QHNZgM225zwYXk7JNw=
+	t=1741027578; cv=none; b=GeTuaCISw0sgSVR4Y0GnGCLAlnGyHsj+Xi5PZnWRBCGVwdla8SMkOitONw6XSMXPMga61GyHLsL1TYjiyyPBrWjL4342Ni5GLlCzQHtz7Syo/i/3pUV+hF79wzYAdHzcbA02iuyPApm2lB9bRWQaZcf5fMmjqS/OG6d+s6d9hcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741026413; c=relaxed/simple;
-	bh=4RTGKwNcOSDFHQqdse/yG31XBpzBjwL24DNTVvcJeY8=;
+	s=arc-20240116; t=1741027578; c=relaxed/simple;
+	bh=6FF5AYD1g8CPd4Jwp66WLGpSWhPN/qncW22Sml3xcXA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XWUjHcb7ZMDUL/QWAd2KHmcWzPiK01E2/e2XsDvH6J2EDoLp77Ue1chvnQDm+hzHZtU+ukokfJxDWFYrDMFmITqozECxvQ2fUz0vdaF1G+VjMrPeifYDbWVhNE/yqmgIs2I4YWh8rOSvAS+ZUdPnnyrzVieWNhNm457xT8aXr4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IP9//ev5; arc=none smtp.client-ip=198.47.19.245
+	 In-Reply-To:Content-Type; b=Lrd5KahpJyCrcQKCwTxO7RXLD6ULeD1dmuZU7uEz3BeSmNDDBVL+tuGd6kogQxXM2iOYAZolsSFmhB0YKOpfm5FdWtq8oSUzlaQVEh/X4rawoG3DWx2LYkAH74MA9zIYjOBOTjk5ddGtSAESfex+VwozFLMc5zzpgjCHy5oNICA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ApqiYCDf; arc=none smtp.client-ip=198.47.19.245
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 523IQfH32746417
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 523IjtCQ2748824
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 3 Mar 2025 12:26:41 -0600
+	Mon, 3 Mar 2025 12:45:55 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1741026401;
-	bh=2OXcs9rd6LU272jx0hvJeNCeWilIYJbVsDhfgH7IVNQ=;
+	s=ti-com-17Q1; t=1741027555;
+	bh=GGxQAx/6WfzA+lZJ1OXRUAcxwNBBrPtP4XVOLwrjNU8=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=IP9//ev56TbGqMZ4D6UhiHjkB3UkqOwXIcxc/Lb7DUN08WlFG0BwY5JDQJ74taTO5
-	 PWMmHDzt2InU1W29kibhGNVQfSgkgj6JYZ6bxDb3RDYjmkbf4IBmGSGkAHxio2GU14
-	 BLc4drnHFmYwMbJiiapoI3/cLR7vT00hbjKI7tKY=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 523IQfbc003604
+	b=ApqiYCDfoHzLG9q8ryVf33gxNSF39bvsdCYIQGkXQecSIWyFmrZlEf3fo3lzyNSvv
+	 avehR6IFYIen9lT+odBqvI2RCRARlggG29YBzj7/oYahsA/StKYcWrNcjjG16bXgf8
+	 OEcDhewX5wol8bAp6X5vjq63vnJE7v1lTQqWStsQ=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 523IjsqO016421
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 3 Mar 2025 12:26:41 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 3 Mar 2025 12:45:54 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 3
- Mar 2025 12:26:41 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2025 12:45:54 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 3 Mar 2025 12:26:41 -0600
+ Frontend Transport; Mon, 3 Mar 2025 12:45:54 -0600
 Received: from [10.249.135.49] ([10.249.135.49])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 523IQbTg121603;
-	Mon, 3 Mar 2025 12:26:38 -0600
-Message-ID: <13bd564d-84bc-4b97-9591-126eb51772fb@ti.com>
-Date: Mon, 3 Mar 2025 23:56:37 +0530
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 523Ijnl2055567;
+	Mon, 3 Mar 2025 12:45:50 -0600
+Message-ID: <5ec4e67b-93fd-429e-b93a-838a291a6c7f@ti.com>
+Date: Tue, 4 Mar 2025 00:15:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,122 +66,183 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am68-sk/k3-j721s2-mcu: Add
- bootph-all property to enable Ethernet boot
-To: Vignesh Raghavendra <vigneshr@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-CC: <s-vadapalli@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20250302153502.181832-1-c-vankar@ti.com>
- <20250302153502.181832-2-c-vankar@ti.com>
- <6b5839b3-84cb-42ee-8336-81ebf9b2e40d@ti.com>
+Subject: Re: [RFC PATCH 1/2] devicetree: bindings: mux: reg-mux: Update
+ bindings for reg-mux for new property
+To: Conor Dooley <conor@kernel.org>
+CC: Andrew Davis <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Peter Rosin
+	<peda@axentia.se>,
+        <tglx@linutronix.de>, <gregkh@linuxfoundation.org>, <vigneshr@ti.com>,
+        <nm@ti.com>, <s-vadapalli@ti.com>, <danishanwar@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250227202206.2551305-1-c-vankar@ti.com>
+ <20250227202206.2551305-2-c-vankar@ti.com>
+ <f3e69904-92f0-4de8-bfef-a315a6554a1c@ti.com>
+ <20250228-recipient-unlinked-271fe63d7335@spud>
+ <acde31c5-fe23-4c7b-a823-61ea0958504b@ti.com>
+ <20250303-mummify-mutation-67595b7ceba5@spud>
 Content-Language: en-US
 From: "Vankar, Chintan" <c-vankar@ti.com>
-In-Reply-To: <6b5839b3-84cb-42ee-8336-81ebf9b2e40d@ti.com>
+In-Reply-To: <20250303-mummify-mutation-67595b7ceba5@spud>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello Vignesh,
+Hello Conor,
 
-On 3/3/2025 1:44 PM, Vignesh Raghavendra wrote:
+On 3/3/2025 10:28 PM, Conor Dooley wrote:
+> On Sat, Mar 01, 2025 at 03:08:40AM +0530, Vankar, Chintan wrote:
+>> Hello Conor, Andrew,
+>>
+>> On 3/1/2025 12:22 AM, Conor Dooley wrote:
+>>> On Thu, Feb 27, 2025 at 03:26:31PM -0600, Andrew Davis wrote:
+>>>> On 2/27/25 2:22 PM, Chintan Vankar wrote:
+>>>>> DT-binding of reg-mux is defined in such a way that one need to provide
+>>>>> register offset and mask in a "mux-reg-masks" property and corresponding
+>>>>> register value in "idle-states" property. This constraint forces to define
+>>>>> these values in such a way that "mux-reg-masks" and "idle-states" must be
+>>>>> in sync with each other. This implementation would be more complex if
+>>>>> specific register or set of registers need to be configured which has
+>>>>> large memory space. Introduce a new property "mux-reg-masks-state" which
+>>>>> allow to specify offset, mask and value as a tuple in a single property.
+>>>>>
+>>>>> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+>>>>> ---
+>>>>>     .../devicetree/bindings/mux/reg-mux.yaml      | 29 +++++++++++++++++--
+>>>>>     1 file changed, 27 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mux/reg-mux.yaml b/Documentation/devicetree/bindings/mux/reg-mux.yaml
+>>>>> index dc4be092fc2f..a73c5efcf860 100644
+>>>>> --- a/Documentation/devicetree/bindings/mux/reg-mux.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/mux/reg-mux.yaml
+>>>>> @@ -32,11 +32,36 @@ properties:
+>>>>>             - description: pre-shifted bitfield mask
+>>>>>         description: Each entry pair describes a single mux control.
+>>>>> -  idle-states: true
+>>>>> +  idle-states:
+>>>>> +    description: Each entry describes mux register state.
+>>>>> +
+>>>>> +  mux-reg-masks-state:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>>>>> +    items:
+>>>>> +      items:
+>>>>> +        - description: register offset
+>>>>> +        - description: pre-shifted bitfield mask
+>>>>> +        - description: register value to be set
+>>>>> +    description: This property is an extension of mux-reg-masks which
+>>>>> +                 allows specifying register offset, mask and register
+>>>>> +                 value to be set in a single property.
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - if:
+>>>>> +      properties:
+>>>>> +        compatible:
+>>>>> +          contains:
+>>>>> +            enum:
+>>>>> +              - reg-mux
+>>>>> +              - mmio-mux
+>>>>
+>>>> These are the only two possible compatibles, is this "if" check needed?
+>>>
+>>> Aye.
+>>>
+>>>>> +    then:
+>>>>> +      properties:
+>>>>> +        mux-reg-masks: true
+>>>>> +        mux-reg-masks-state: true
+>>>>
+>>>> You need one, but cannot have both, right? There should be some
+>>>> way to describe that.
+>>>>
+>>>> Also an example added below would be good.
+>>>
+>>>   From the example schema:
+>>> # if/then schema can be used to handle conditions on a property affecting
+>>> # another property. A typical case is a specific 'compatible' value changes the
+>>> # constraints on other properties.
+>>> #
+>>> # For multiple 'if' schema, group them under an 'allOf'.
+>>> #
+>>> # If the conditionals become too unweldy, then it may be better to just split
+>>> # the binding into separate schema documents.
+>>> allOf:
+>>>     - if:
+>>>         properties:
+>>>           compatible:
+>>>             contains:
+>>>               const: vendor,soc2-ip
+>>>       then:
+>>>         required:
+>>>           - foo-supply
+>>>       else:
+>>>         # If otherwise the property is not allowed:
+>>>         properties:
+>>>           foo-supply: false
+>>>
+>>> What's missing from here is making one of the properties required,
+>>> so
+>>> oneOf:
+>>>     - required:
+>>>         - masks
+>>>     - required:
+>>>         - masks-state
+>>>
+>>>>
+>>>> Andrew
+>>
+>> Thanks for reviewing this patch.
+>>
+>> For the use-case we have following three rules to be followed:
+>> 1. "mux-reg-masks" and "mux-reg-masks-state" should be mutually
+>>     exclusive.
+>> 2. "mux-reg-masks-state" and "idle-states" should also be mutually
+>>     exclusive.
+>> 3. If "mux-reg-masks" is present then "idle-states" might or might not
+>>     be there.
+>>
+>> For the above conditions I have tried to write a binding as:
+>>
+>> allOf:
+>>    - not:
+>>        required: [mux-reg-masks, mux-reg-masks-state]
+>>
+>>    - if:
+>>        required: [mux-reg-masks-state]
+>>      then:
+>>        not:
+>>          required: [idle-states]
+> 
+> Why'd you pick two different syntax here?
+> The normal syntax for mutual exclusion is:
+> if:
+>    required:
+>      - foo
+> then:
+>    properties:
+>      foobar: false
 > 
 > 
-> On 02/03/25 21:05, Chintan Vankar wrote:
->> Ethernet boot requires CPSW nodes to be present starting from R5 SPL
->> stage. Add bootph-all property to required nodes to enable Ethernet boot
->> on AM68-SK and J721S2-EVM.
 >>
->> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
->> ---
->>
->> Link to v1:
->> https://lore.kernel.org/r/20250106123122.3531845-2-c-vankar@ti.com/
->>
->> Changes from v1 to v2:
->> - No changes.
->>
->>   arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 3 +++
->>   arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 4 ++++
->>   2 files changed, 7 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
->> index 11522b36e0ce..8e9101dd2152 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
->> @@ -333,6 +333,7 @@ J721S2_WKUP_IOPAD(0x008, PIN_OUTPUT, 0) /* (E22) MCU_RGMII1_TD3 */
->>   			J721S2_WKUP_IOPAD(0x018, PIN_OUTPUT, 0) /* (F21) MCU_RGMII1_TXC */
->>   			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (F22) MCU_RGMII1_TX_CTL */
->>   		>;
->> +		bootph-all;
->>   	};
->>   
->>   	mcu_mdio_pins_default: mcu-mdio-default-pins {
->> @@ -340,6 +341,7 @@ mcu_mdio_pins_default: mcu-mdio-default-pins {
->>   			J721S2_WKUP_IOPAD(0x034, PIN_OUTPUT, 0) /* (A21) MCU_MDIO0_MDC */
->>   			J721S2_WKUP_IOPAD(0x030, PIN_INPUT, 0) /* (A22) MCU_MDIO0_MDIO */
->>   		>;
->> +		bootph-all;
->>   	};
->>   
->>   	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
->> @@ -615,6 +617,7 @@ &mcu_cpsw {
->>   &davinci_mdio {
->>   	phy0: ethernet-phy@0 {
->>   		reg = <0>;
->> +		bootph-all;
->>   		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
->>   		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->>   		ti,min-output-impedance;
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> index bc31266126d0..29cd4b1ffbbf 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> @@ -154,12 +154,14 @@ mcu_conf: bus@40f00000 {
->>   		cpsw_mac_syscon: ethernet-mac-syscon@200 {
->>   			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
->>   			reg = <0x200 0x8>;
->> +			bootph-all;
->>   		};
->>   
->>   		phy_gmii_sel: phy@4040 {
->>   			compatible = "ti,am654-phy-gmii-sel";
->>   			reg = <0x4040 0x4>;
->>   			#phy-cells = <1>;
->> +			bootph-all;
->>   		};
->>   
->>   	};
->> @@ -538,6 +540,7 @@ mcu_cpsw: ethernet@46000000 {
->>   		clocks = <&k3_clks 29 28>;
->>   		clock-names = "fck";
->>   		power-domains = <&k3_pds 29 TI_SCI_PD_EXCLUSIVE>;
->> +		bootph-all;
->>   
 > 
-> Since a child node has bootph-all, no need to put the same in the parent
-> hierarchy.
+>>    - if:
+>>        required: [mux-reg-masks]
+>>      then:
+>>        properties:
+>>          idle-states:
+>>            description: It can be present with mux-reg-masks, but not
+>> required
+> 
+> This one here is the default, I don't think it needs an if/else.
 > 
 
-Thank you for pointing this out, I will remove it from the parent node
-and post the next version.
+Thank you for reviewing the patch. I modified binding according to your
+suggestions and that worked for all conditions mentioned above. I will
+update it and post v2.
+
 
 Regards,
 Chintan.
 
->>   		dmas = <&mcu_udmap 0xf000>,
->>   		       <&mcu_udmap 0xf001>,
->> @@ -562,6 +565,7 @@ cpsw_port1: port@1 {
->>   				label = "port1";
->>   				ti,syscon-efuse = <&cpsw_mac_syscon 0x0>;
->>   				phys = <&phy_gmii_sel 1>;
->> +				bootph-all;
->>   			};
->>   		};
->>   
-> 
-> 
 
