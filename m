@@ -1,134 +1,206 @@
-Return-Path: <devicetree+bounces-153476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A090A4CA6F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:55:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD1BA4CA85
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:57:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C582175178
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:47:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFE6418950D1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5FAB2153C4;
-	Mon,  3 Mar 2025 17:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E1F218AA5;
+	Mon,  3 Mar 2025 17:55:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="he56EHiK"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="VuXhDQ6e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B67738635B;
-	Mon,  3 Mar 2025 17:47:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F22C228CB7;
+	Mon,  3 Mar 2025 17:55:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741024025; cv=none; b=TW/8+Fm4srRvbV0QYV+PLAoSY0ceK6zKCmJbuAjlLGyWG/YDSob0uLr+E3Y03Ag6GVqtSLXnfX+KPe85yUlmcGSTUqaCG2PfL/vHdLLlcETZ1ZdjpbhGHBdrypHemqYiHXdyc9Vyv4UpibR/PYVQzyLt7krAcrKwHafTPAWosxU=
+	t=1741024555; cv=none; b=hG90F4p0gldtB3Fh5wjVjXi7TlBsw/mDqObU7wJx3xqRHgJcLQHgSi/n1japiOjrgQq+rJw+/zCRwqN9fDT2bzgjJY+GwY1DijWJ7H9bhfXrKP7ZNs84QxS0rD39aicDHJRzZRXt7pDpYQIghCE5osnWmZYGWEh2yFAR5HF/9Ik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741024025; c=relaxed/simple;
-	bh=sPD+8Ym5muk8cbhRxjVBhD4kDwe8iPxEGnSgNzK3SxY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cN37ygpwkJ7CsOCNAZfegVkF1Ci35LVC6xsJBLOWjBVlyliizHIuruih8/vSIbJOHynERjwrzLbDujTYHHCkRlxCKp6rR/WmnhljCI6jQAeQpMUbQJNgg464W7hdjuy+5qNKztaa1NELswFm/gXo0DWIy0qaG3KtgXPocJCN5io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=he56EHiK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D8EEC4CEE6;
-	Mon,  3 Mar 2025 17:47:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741024025;
-	bh=sPD+8Ym5muk8cbhRxjVBhD4kDwe8iPxEGnSgNzK3SxY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=he56EHiK8V4WZW/PG4vyFVj0IOFtutJF49Sep03//Lf7qWf5ZdfoHA98V7wiAF7aS
-	 X8Vs0C2x7puxWXsQEYK7YX34GHL0ZcLrwbBJ/kRPJhvWw/ya7h2PMKLR8Jj7DG8GSj
-	 rV0YHeHouOxvtqqh4kSYLoEoS8eaREey8r85GWjeccgDS6ptzm9iWdOhRJP4Zh3qx2
-	 hIJ8V8W3fopAAPZz9S4Ir9yErOx5AMATnfISDiOrssV63IUckn4nx1e6AW8lTLu7l5
-	 axE5ty+/BM0CvuZEnBg6tyaDxY30yPgSfcyxh9SnVootC/qJOMDq79WYruwP0Izfdy
-	 Fupc62z3oET8g==
-Message-ID: <8dcdd2ec-e4b6-4fc0-be50-12fe187cd5e0@kernel.org>
-Date: Mon, 3 Mar 2025 18:46:59 +0100
+	s=arc-20240116; t=1741024555; c=relaxed/simple;
+	bh=FFa75hjKPxwn9nk90umMY5P1KnPLOGOOgrFEmMy74yA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GL+xwrUQTe7Yw/0EFiXiNMd0WniU2Cx8rHyswAa5OhJPjnbAwmC63fmYt4MvAIL+9GzqDl1BD4jfACQ2j8Zg6BSCyO5dT1G9M1R9NyLHpVlkCnuzA0uEGc86SuoAW64MTnieQ4u6F4QH2eoNMF8roOQTmMlxWSancruVrWdLHC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=VuXhDQ6e; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 3EAFE40E0217;
+	Mon,  3 Mar 2025 17:55:50 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id F6NmxbeL5VQP; Mon,  3 Mar 2025 17:55:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1741024545; bh=XR1jzLUSOCB344heFt8abZNteXZYan/jltUHuf6TFy4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VuXhDQ6e8gSDISmRMi7vKxncln2ZBZ2jdNiV4UEcJzJfxHyFLfw5OHFEiyX0EwlRJ
+	 x1D3+4pBB2SkTLo1BKumpmkWxgS97HW09/ATz1AD7L/ZLU8Lnah+NUfC3TYbr7v0/w
+	 VPCOK/aNvGVa6nZq09h3QzB9rocCGawhj6LnMakpjCisjOoTzG4JIfEL1cMHLaqVsa
+	 cHMliDmIrmdLMkijhQ1eIK8fZmBFHRqd8Ba9IlEE+d0OpVaa5Pm18qfjZ6rroiecxy
+	 MMtf7DEHjrG94HhdFve+h5zAUzyospP8xA2E28iW/vmnZxAPlNazvtmabbhakAdI+4
+	 x46B5mkK08UUOfhgmFZP8u9m2VVKuqO+SM6nURgfab/7NaGdYSSNrmXOieR3o+15hH
+	 zaCutAVMQbD4RmTmnzIuJcjp65GTxHmZtqHTT5G6+AiCd3WfdzMkrbL2HAFpB2ue+2
+	 vaUXnn37L6g+UDAxK4X9N/E7HiZDZ80zvgi21u8QCDeVJOIvAWtgT5wTySFLnRxPQb
+	 aDPQaNm8yXfy/VXrmqey46RbBMwhPqHRDbxccTIpZUGXOat2owZbfEaJ8CYx0fItvq
+	 lefXFm7amm0Chn9koRm7YNJUj9GFmvno/FfDDLY5GXq+skyQjyJT8zSO4tk1I8fiBP
+	 9yuCfDgSU3LjYsKniL9kW3bo=
+Received: from zn.tnic (pd95303ce.dip0.t-ipconnect.de [217.83.3.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 66C2C40E0215;
+	Mon,  3 Mar 2025 17:55:33 +0000 (UTC)
+Date: Mon, 3 Mar 2025 18:55:27 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Tony Luck <tony.luck@intel.com>,
+	James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+	"git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [PATCH v5 5/5] EDAC: Versal NET: Add support for error
+ notification
+Message-ID: <20250303175527.GDZ8XtD5pOTtLUe16B@fat_crate.local>
+References: <20250106053358.21664-1-shubhrajyoti.datta@amd.com>
+ <20250106053358.21664-6-shubhrajyoti.datta@amd.com>
+ <20250211094002.GAZ6sa8l_2BdJQfk0I@fat_crate.local>
+ <SA1PR12MB89472E1EF3BDE072EEEF17B181CD2@SA1PR12MB8947.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/5] dt-bindings: firmware: thead,th1520: Add support
- for firmware node
-To: Michal Wilczynski <m.wilczynski@samsung.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
- wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
- ulf.hansson@linaro.org, m.szyprowski@samsung.com
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250303145901.446791-1-m.wilczynski@samsung.com>
- <CGME20250303145918eucas1p10f64b2ce75e395ce208439307daa8a8f@eucas1p1.samsung.com>
- <20250303145901.446791-2-m.wilczynski@samsung.com>
- <edb3dd6e-8b56-42b3-8bb2-8ed7ad186b75@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <edb3dd6e-8b56-42b3-8bb2-8ed7ad186b75@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <SA1PR12MB89472E1EF3BDE072EEEF17B181CD2@SA1PR12MB8947.namprd12.prod.outlook.com>
 
-On 03/03/2025 18:42, Krzysztof Kozlowski wrote:
-> On 03/03/2025 15:58, Michal Wilczynski wrote:
->> The kernel communicates with the E902 core through the mailbox
->> transport using AON firmware protocol. Add dt-bindings to document it
->> the dt node.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> 
-> How is this possible? That's v1 and I never review outside of mailing list.
-> 
-OK, I found v5:
-https://lore.kernel.org/all/20250219140239.1378758-4-m.wilczynski@samsung.com/
+On Thu, Feb 27, 2025 at 11:32:10AM +0000, Datta, Shubhrajyoti wrote:
+> > > +union edac_info {
+> >
+> > What is an "edac_info"?
+> This is the row and column positions.
+> We are using it to extract the position from the address decoder registers.
 
-so is this the same?
+Needs a better name which is descriptive as to how it is used or what it
+represents.
 
-Best regards,
-Krzysztof
+> > > +static void get_ddr_ue_error_info(u32 error_data[REGS_PER_CONTROLLER],
+> > struct edac_priv *priv)
+> >                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> > What is that for?
+> >
+> The error_data contains the register values. Linux does not have access to the DDRMC register
+> Space. It queries it from the NMC and gets the the data from the rpmsg callback.
+
+I wasn't clear. Arrays in C are passed as pointers - the compiler does that
+anyway.  You don't have to do this weird parameter specification.
+
+> > > +     mci->edac_cap = EDAC_FLAG_SECDED;
+> > > +     mci->ctl_name = "amd_ddr_controller";
+> > > +     mci->dev_name = dev_name(&pdev->dev);
+> > > +     mci->mod_name = "amd_edac";
+> >
+> > Do:
+> >
+> > git grep mod_name drivers/edac/
+> >
+> > to get an idea how those names are chosen.
+> #define EDAC_MOD_STR    "r82600_edac"
+> mci->mod_name = EDAC_MOD_STR;
+> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/r82600_edac.c?h=v6.14-rc4#n316
+> 
+> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/i5000_edac.c?h=v6.14-rc4#n1424
+> mci->mod_name = "i5000_edac.c";
+> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/highbank_mc_edac.c?h=v6.14-rc4#n218
+> mci->mod_name = pdev->dev.driver->name;
+> 
+> let me know if mci->mod_name = pdev->dev.driver->name; is fine.
+
+I think you didn't get me again.
+
+amd64_edac.c - the x86 driver is called this:
+
+#define EDAC_MOD_STR "amd64_edac"
+
+Calling yours "amd_edac" doesn't work.
+
+"versalnet_edac"? That's probably better.
+
+> > You don't need "inline" - the compiler can decide that itself. And
+> > "process_bit" needs a better name.
+> 
+> Will rename it to populate_row_bit
+
+Or "assign_row_bit" or whatever.
+
+The function name should be describing what the function does as closely as
+possible.
+
+> > Why are those functions copying stuff around? Why aren't you using cols
+> > directly?
+> 
+> The column bit position is used in converting to the physical address.
+> We read it at init and use it every time an error occurs to get the address.
+> Did you mean to remove the regval. Or read the error_data every time.
+
+I mean simply use cols instead of assigning stuff to priv->col_bit* and then
+using that.
+
+> > Why is probing a work item?
+> >
+> > Explaining *that* is what a commit message is for - not for repeating useless
+> > info.
+> The RPMsg probe is invoked from a thread within the virtio driver responsible
+> for processing the response ring. If the probe initiates an mcdi API call, it blocks
+> until the mcdi response is received. However, since the mcdi response is also processed
+> by the same thread that triggered the rpmsg probe, the thread remains blocked,
+> preventing it from handling the response. This results in a deadlock.
+> 
+> To prevent it we have a work scheduled.
+
+This is just insane.
+
+I don't see anything in amd_setup_mcdi() that needs some response from some
+mcdi thing. If not, you don't need the work queue thing.
+
+> >
+> > > +     for (i = 0; i < NUM_CONTROLLERS; i++) {
+> > > +             config = priv->adec[CONF + i];
+> > > +             num_chans = FIELD_GET(DDRMC5_NUM_CHANS_MASK, config);
+> > > +             rank = FIELD_GET(DDRMC5_RANK_MASK, config);
+> > > +             rank = 1 << rank;
+> > > +             dwidth = FIELD_GET(DDRMC5_BUS_WIDTH_MASK, config);
+> > > +             dt = get_dwidth(dwidth);
+> > > +             if (dt != DEV_UNKNOWN)
+> > > +                     break;
+> > > +     }
+> >
+> > What is that loop supposed to do? Find the last controller before the one
+> > with DEV_UNKNOWN device width and register that one?
+> 
+> There are 8 controllers all we try to get the first one that is enabled and register that one.
+> We use the device unknown to know if that is enabled or not.
+
+The first one that is enabled has unknown device width? What?
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 
