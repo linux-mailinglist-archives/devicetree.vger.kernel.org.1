@@ -1,135 +1,149 @@
-Return-Path: <devicetree+bounces-153410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB17FA4C52D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:34:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33227A4C554
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:38:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5297D1897764
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:33:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 390DC1680A9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC1B214818;
-	Mon,  3 Mar 2025 15:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8ED21507B;
+	Mon,  3 Mar 2025 15:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TzhPViFF"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LtM/BmdP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D90E21480C;
-	Mon,  3 Mar 2025 15:26:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2BFD1F17E5;
+	Mon,  3 Mar 2025 15:33:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741015590; cv=none; b=GSOOxG8ayOGDz/oITM2Kre4u49n4Y1mMO7JX2KQ4bBhb+Qlu4AARI8ys0ookiYWDSLx9JQe9sL4f0KxUmwRQxYc3kJzLY9rZIvTbLKgIBNsdqmK+XTsp7tjtC+x461eeLhV6lByWaMtVXt9v6Oflh9HdMI7WCUNcqK/cZp4oZQw=
+	t=1741016034; cv=none; b=VWE7QKZLWCJhuLNf+jV5aN8L+TQQjxYaKsg5cuwxf9JdnIEryFDGdRJegtrackuMbxOe6bNsiKz3T9ho8R2Qrhd+f0k8QaLeIeCUrT5BmYiPFH/nEEuaKFcbcUAb37J8jPGYqgsPZIcLm3/81mj5jn4b/AOS+ZjSodrB8Da4fn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741015590; c=relaxed/simple;
-	bh=tSKHCFF8IaMoG9a6QMuIpwZEATYqX+7BXt13ljhiCz8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mzf8djEUbxuNUgYrwZvgvwETVK9x24pgAXdEucJwE+ykFYt3IwCC7Nf6PTQRPN1OxA8x5JEBkyRlSuG7U9/XM1wNQOfBkT0krA2XONsYM2Pzqw7byW2U1ThNn4BmZ76wydtxfPnf9yELQzrolYIWZEQsqAlJ6GNdbwX8TSanZFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TzhPViFF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5962C4CED6;
-	Mon,  3 Mar 2025 15:26:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741015589;
-	bh=tSKHCFF8IaMoG9a6QMuIpwZEATYqX+7BXt13ljhiCz8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TzhPViFFyxR6pxvOdP5DZfzpAQDBWdXQb558wC4wzC+2aUe+VDma5aPXmOwrGcaKc
-	 IwrYzzcFGuJGYrwhPN+1WB9prS6Uck+toxcJOgJbra8oa9YvInaWRAlY68O3KI331S
-	 xO5ztrNkGrJRPHRTjAKTYCwOm2kcm3qa7RXXSa38uNW3eVVQJ+Rps5Bak7189ZYNBV
-	 GPmpzeo8NxLD37l004N4plCgtPCtWgLUpjtSm6sq8IfHXWR8WoMEZpkF0IZqcPWgNG
-	 74k2g/ZNxcQ9w6xICPAvijg43vuO3348pAVgPmyCety74+mq8wnoT5nQ6l0p1Lhanu
-	 DK+i+X7D3Dg7Q==
-Date: Mon, 3 Mar 2025 09:26:28 -0600
-From: Rob Herring <robh@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/3] dt-bindings: net: dwmac: Increase 'maxItems' for
- 'interrupts' and 'interrupt-names'
-Message-ID: <20250303152628.GA1873145-robh@kernel.org>
-References: <20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250302181808.728734-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1741016034; c=relaxed/simple;
+	bh=jI58B/1xW047HSrQ6NfVLx7fR7HzmQWZHI4E46AshJA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dB1sgZqSJjAlBkfTr+QjqEjQV47vBZu7jGItX92CZyxnPTbsK634NRpGzHbB0luoVnUJizmzN7uxBce1DQgZQXAK+d6ImOsU80gkUhKxWgrWdAVquDj0xiR5ojYboBaTTX5WYkUbKzyFOmuRJVXYprfWy+T9hNpF3FH4behk8Ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LtM/BmdP; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1741016030;
+	bh=jI58B/1xW047HSrQ6NfVLx7fR7HzmQWZHI4E46AshJA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LtM/BmdP/EpF5iPUTB3zizv0GxX/OyA8rb1G/dB0OPmMYpvTnCr1l8kIEOOPvH6i5
+	 9kdIM2i3T1IZOSNTDEY4Hqgq3BTy2wQJZ5RUilr0N8wIkFuHomPYLRM5aMLA9pHJuO
+	 e18FZpjrukpQN0QaIorVdzzO4wMP22z8vQnsUhf1rNcO71r5NIvXj5q9JheDgGe3Vu
+	 S5eUrMd01cA07FX5hJXwpFgMkDRPaX7d12BLWFYDpKFbwI+PaLjkjPtcCl+Ybgkib/
+	 eaWcrV7iD3Cw/rHY06IMD9Hb6odEvJMryQVMcgP4jAc6K7gFPfXo/+xObfo1vpOVYZ
+	 pzCiV3L8+wI0Q==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 94A0517E05A6;
+	Mon,  3 Mar 2025 16:33:49 +0100 (CET)
+Message-ID: <24d3713c-026a-4ef7-bb7f-19150e06f395@collabora.com>
+Date: Mon, 3 Mar 2025 16:33:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250302181808.728734-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/20] ASoC: dt-bindings: Add document for
+ mt6359-accdet
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+ Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, kernel@collabora.com,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
+References: <20250302-mt6359-accdet-dts-v2-0-5bd633ee0d47@collabora.com>
+ <20250302-mt6359-accdet-dts-v2-1-5bd633ee0d47@collabora.com>
+ <628a81c5-b9f1-4be9-84ec-90022a3526da@collabora.com>
+ <0120fe30-43c4-4fec-8b5e-fdb6b382fc2a@notapiano>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <0120fe30-43c4-4fec-8b5e-fdb6b382fc2a@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sun, Mar 02, 2025 at 06:18:06PM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Il 03/03/25 15:45, Nícolas F. R. A. Prado ha scritto:
+> On Mon, Mar 03, 2025 at 12:14:51PM +0100, AngeloGioacchino Del Regno wrote:
+>> Il 02/03/25 17:30, Nícolas F. R. A. Prado ha scritto:
+>>> Add dt-binding for the MT6359 ACCDET hardware block.
+>>>
+>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>> ---
+>>>    .../bindings/sound/mediatek,mt6359-accdet.yaml     | 42 ++++++++++++++++++++++
+>>>    1 file changed, 42 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt6359-accdet.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt6359-accdet.yaml
+>>> new file mode 100644
+>>> index 0000000000000000000000000000000000000000..d08a79301409374714c76135b061e20e8e8acfaf
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt6359-accdet.yaml
+>>> @@ -0,0 +1,42 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/sound/mediatek,mt6359-accdet.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MT6359 Accessory Detection
+>>> +
+>>> +maintainers:
+>>> +  - Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>> +
+>>> +description: |
+>>> +  The MT6359 Accessory Detection block is part of the MT6359 PMIC and allows
+>>> +  detecting audio jack insertion and removal, as well as identifying the type of
+>>> +  events connected to the jack.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: mediatek,mt6359-accdet
+>>> +
+>>> +  mediatek,hp-eint-high:
+>>> +    type: boolean
+>>> +    description:
+>>> +      By default, the HP_EINT pin is assumed to be pulled high and connected to
+>>
+>> Just to be clearer about this pin being an internal one and not externally sourced,
+>> so, *not* a SoC GPIO, but somehing that is completely provided and handled by the
+>> accdet IP...
+>>
+>> "By default, the accdet IP's internal HP_EINT pin is assumed to be pulled ..."
 > 
-> Increase the `maxItems` value for the `interrupts` and `interrupt-names`
-> properties to accommodate the Renesas RZ/V2H(P) SoC, which features the
-> `snps,dwmac-5.20` IP with 11 interrupts.
+> The HP_EINT is an external, not internal, pin of the MT6359 PMIC. It is an input
+> pin of the MT6359 IC that gets wired to the tip (left channel) of a 3.5mm audio
+> jack to allow for detecting when a plug is connected.
 > 
-> Also add `additionalItems: true` to allow specifying extra interrupts
-> beyond the predefined ones. Update the `interrupt-names` property to
-> allow specifying extra `interrupt-names`.
+> Since this dt-binding is about an IP in the MT6359 PMIC, I think when saying
+> "HP_EINT pin" it is already clear that the pin is on the MT6359 IC, but if you
+> think it's necessary I could make it "MT6359's HP_EINT pin".
 > 
-> Also refactor the optional `interrupt-names` property by consolidating
-> repeated enums into a single enum list.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 91e75eb3f329..85d499bd49b5 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -110,6 +110,8 @@ properties:
->  
->    interrupts:
->      minItems: 1
-> +    maxItems: 11
-> +    additionalItems: true
 
-This just increased the number if interrupts for anyone that allowed 4 
-interrupts. Rockchip and Intel are 2 though it is not clear if they 
-support more than 1. So maybe not a new problem, but you are making it 
-worse. Any of the ones in the 'select' in this file are affected as 
-well.
+Eh I should've better clarified - I was meaning that the pin is managed internally,
+so we're not managing an external SoC pin.
 
->      items:
->        - description: Combined signal for various interrupt events
->        - description: The interrupt to manage the remote wake-up packet detection
-> @@ -118,11 +120,11 @@ properties:
->  
->    interrupt-names:
->      minItems: 1
-> +    maxItems: 11
-> +    additionalItems: true
->      items:
->        - const: macirq
->        - enum: [eth_wake_irq, eth_lpi, sfty]
-> -      - enum: [eth_wake_irq, eth_lpi, sfty]
-> -      - enum: [eth_wake_irq, eth_lpi, sfty]
->  
->    clocks:
->      minItems: 1
-> -- 
-> 2.43.0
-> 
+"MT6359's HP_EINT pin" looks good to me, btw.
+
+Cheers!
+Angelo
+
+
 
