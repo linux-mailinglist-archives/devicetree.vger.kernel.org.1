@@ -1,71 +1,52 @@
-Return-Path: <devicetree+bounces-153521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A18A4CE64
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 23:36:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD613A4CE73
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 23:37:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A8B5173EF8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 22:36:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFB5817407C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 22:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483A6235C04;
-	Mon,  3 Mar 2025 22:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95AB5238D27;
+	Mon,  3 Mar 2025 22:37:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="JNfuVWDF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PioO9/WV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CDAD22DFB6;
-	Mon,  3 Mar 2025 22:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5F02343AB;
+	Mon,  3 Mar 2025 22:37:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741041386; cv=none; b=Vs+gJ23IreEps6hB/Wb18FxrVrfHNFGV7tS97WNP5+m6dBflSX/sPze48w/1qmaVH6+0v2KpdKwc8sqrcqR5rGPw6v6pgnZcYwfBtegu8IGC+xoOYRINeaGDa+tKazPJnpOrgEOhPiRZ6we563b6n+Aw+gqjBYoq+iPV6gCY+LE=
+	t=1741041424; cv=none; b=TALTsYLrGqbtkYvwuqKj7M4j1zChMomZAdMeua/DZOaZE5xmeYqTk7QR4CbtaxPGSSXt13sgQpWVNBnN8joppWaIkHvcki83VW+0GpMDpzJptz7AlN34/R5s4CCOuA9w3qD4r9wmWmjNDmcaK/JLPHZg2Aw0ufgO70/3DwJubIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741041386; c=relaxed/simple;
-	bh=1bRhjZsL2z2GZrqZLcbmsx0EFYTgtSq9PfISuQOdCnM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qlGXgoqffi6MYSbVTf57S3L7gUWlzJ9nsPvMliSqCK6AJv1S7aFLtt4c7PYG8ONdrDGN/xngWbcbSihHYVRhXDDpcuHtBAh4gU10PNjiI2WGCQahKhPkRmfshWbZY3+QOJVtsgHVAb9u29iXvy3Bi050IywN2E5k0tOM+WTMAd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=JNfuVWDF; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=5EOXFMVC6+7oiTirA0ot5v+5pSqEybCdk9aXbZ9tQ+0=; b=JNfuVWDFIye54QW5L2Yg44pbby
-	+ehzxUfqV3vdBNYpO2rmcVeZ6SiaSvoJHG8/uemnPHagfcxEat8dO9RPml2Ku8RyM6w2oaY512unK
-	zCQBrHyPSzT7BakWFT5j67mA6afkF4APHp8VSw3L0UcNVLSuqi8nigmyjL0nW3bG3E9WTjRhU4Vhx
-	AhilD1kh9ztYP5FIRQqanbfm0XcunNe8LtskZ/el5U+DbvKADL2i4GDAFaY8cQWdaqI4FjAh512gt
-	FLZOd36yxWaosHknsnz/rY0FT4JknB6OkBXD4g/WuieP/m+xKu3LKkMNi7BThx7X9FmFgd6FW6+ne
-	8aYZT8Bg==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=phil.fritz.box)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tpEOT-0005wL-Ig; Mon, 03 Mar 2025 23:36:13 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
-	Dragan Simic <dsimic@manjaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	didi.debian@cknow.org,
-	chris@z9.de
-Subject: Re: [PATCH v2 0/2] Slightly improve hardware description of Pine64 RockPro64
-Date: Mon,  3 Mar 2025 23:36:10 +0100
-Message-ID: <174104113599.8946.16805724674396090918.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <cover.1740941097.git.dsimic@manjaro.org>
-References: <cover.1740941097.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1741041424; c=relaxed/simple;
+	bh=AAwL5uoOTe6wCwpJpDywIRpKXFmiHBgm7TpEJavHXSQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IiQamMuX8lp5UB+hX39rDl0zKPf6hB9hy7HvNHBmmP6Ctdg9bXIkn7Fd82EzPNyYjzTDnzOLSoSL4o+wYd+RKRKgd4MOSpjYydoFjMTePThDW8Gg8e9BJt9zB4oJ1BWIG9vFDpZKp5IFaxNhcF3ulTB5St9lO0l+loSB+zpixls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PioO9/WV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A8463C4CED6;
+	Mon,  3 Mar 2025 22:37:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741041423;
+	bh=AAwL5uoOTe6wCwpJpDywIRpKXFmiHBgm7TpEJavHXSQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=PioO9/WVs4P4H3kkPurA8Vv7zCUThGkYiQ7u1KbDRPHAq3xeJMhyvswGrYgAk1WYB
+	 44/xgXM28ekWTMpUPcecYzzK1rVuqEshuSyFA59LDF/mN57ovSOEhPlNmzZ7A+2m0E
+	 AVvXpcrlNOqcIVm9Sl15KwUTrDjHDGWGbcg33yjZGUmE+84qaHUnATzVvlOXGZjqHM
+	 Ic1UB3Et7C3yEzo2iDrqJjCD62rhmNksFaFfw9ZZHoyUA2y074tYFasHF6isj4PVtD
+	 z76W+qkysJV1JToKDNUKSACNwxeGfZB3ND9NKcLF8Nm22Jf4hHo+sFdaaBZQV2huQT
+	 eXiSeoXHJBXsQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8EC0CC282D0;
+	Mon,  3 Mar 2025 22:37:03 +0000 (UTC)
+From: Joel Selvaraj via B4 Relay <devnull+foss.joelselvaraj.com@kernel.org>
+Subject: [PATCH v4 0/4] Add Xiaomi Poco F1 touchscreen support
+Date: Mon, 03 Mar 2025 16:36:54 -0600
+Message-Id: <20250303-pocof1-touchscreen-support-v4-0-cdc3bebc3942@joelselvaraj.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,36 +54,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAYvxmcC/43QTU7DMBAF4KtEXmPk8U8cd8U9EAt7MqGu2ji1k
+ whU9e44rRAbqNjNm5G+kd6FFcqRCts1F5ZpjSWmsQb91DDc+/GdeOxrZlJIDUJYPiVMA/A5Lbg
+ vmIlGXpZpSnnmaI300ErsUbIKTJmG+HHDX99q3scyp/x5+7XCtv0XuwIXvA8KgoQOOjQvh0THQ
+ sfVZ394xnRim77KH1GK7qEoq2h8S9YqR4P+S1TfohFKwENRVdEPAlAFJYL5TbzeK8l0XmrN870
+ XFnwhXu+nOO8aFBRao50m43rXKe0Hi8FvYysdOQE2SOOhYtcvdPVsB7sBAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+ Joel Selvaraj <foss@joelselvaraj.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741041422; l=2842;
+ i=foss@joelselvaraj.com; s=20241007; h=from:subject:message-id;
+ bh=AAwL5uoOTe6wCwpJpDywIRpKXFmiHBgm7TpEJavHXSQ=;
+ b=ZETUobULmmXhyhIGzHqdwoGOGOnpjPs32JZM3DQR8vuUwgI8D/VvKYwj+oxKlCx5C2iXlL90Z
+ CL4KpMOKJXWAOcF5NglFXw9lc/krCFjR5hbvNpZZCOjiTA+o8ZhlNA2
+X-Developer-Key: i=foss@joelselvaraj.com; a=ed25519;
+ pk=pqYvzJftxCPloaoUbVsfQE7Gwv8bynZPy8mjYohwMCc=
+X-Endpoint-Received: by B4 Relay for foss@joelselvaraj.com/20241007 with
+ auth_id=238
+X-Original-From: Joel Selvaraj <foss@joelselvaraj.com>
+Reply-To: foss@joelselvaraj.com
 
+In the first patch, I have updated the edt-ft5x06 touchscreen binding 
+documentation. In Xiaomi Poco F1(qcom/sdm845-xiaomi-beryllium-ebbg.dts),
+the FocalTech FT8719 touchscreen is integrally connected to the display 
+panel (EBBG FT8719) and thus should be power sequenced together with 
+display panel for proper functioning using the panel property. Since the
+edt-ft5x06 touchscreen binding uses almost all the properties present in 
+touchscreen.yaml, let's remove additionalProperties: false and use 
+unevaluatedProperties to include all the properties, including the needed
+panel property.
 
-On Sun, 02 Mar 2025 19:48:02 +0100, Dragan Simic wrote:
-> This is a small series that introduces small improvements to the way
-> Pine64 RockPro64 [1] single-board-computer is described in the DT files.
-> This applies to both production-run revisions of the RockPro64.
-> 
-> The introduced improvements boil down to eliminating some warnings from
-> the kernel log, by adding a previously undefined regulator and by adding
-> some previously missing references to the regulators.
-> 
-> [...]
+In the second patch, I have enabled the qupv3_id_1 and gpi_dma1 as they
+are required for configuring touchscreen. Also added the pinctrl
+configurations. These are common for both the Poco F1 Tianma and EBBG
+panel variant.
 
-Applied, thanks!
+In the subsequent patches, I have enabled support for the Novatek NT36672a
+touchscreen and FocalTech FT8719 touchscreen that are used in the Poco F1
+Tianma and EBBG panel variant respectively.
 
-[1/2] arm64: dts: rockchip: Add avdd HDMI supplies to RockPro64 board dtsi
-      commit: bd1c959f37f384b477f51572331b0dc828bd009a
-[2/2] arm64: dts: rockchip: Add missing PCIe supplies to RockPro64 board dtsi
-      commit: 64ef4a4320e7aa3f0f267e01f170f52b90bf0b1b
+Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
+---
+Changes in v4:
+- Update the dt-binding patch's commit message to be more accurate
+- Link to v3: https://lore.kernel.org/r/20250301-pocof1-touchscreen-support-v3-0-af01c3b30b55@joelselvaraj.com
 
-I've moved the pcie12v supply up one line.
-While in a mathematical sense it's true 12 > 3.3, we're sorting
-alphabetical, so it's 1?? < 3?? .
+Changes in v3:
+- Fix SoB email id mismatch (suggested by Krzysztof Kozlowski)
+- Use unevaluatedProperties instead additionalProperties in dt-binding (suggested by Krzysztof Kozlowski)
+- Link to v2: https://lore.kernel.org/r/20241208-pocof1-touchscreen-support-v2-0-5a6e7739ef45@joelselvaraj.com
 
-And yes I sympathize with 3.3 < 12, but also have come to appreciate not
-having overly many special cases :-)
+Changes in v2:
+- Fixed the missing "panel" property dt-binding error reported by Rob Herring's bot.
+- Change the "input-enable" property to "output-disable" in qcom/sdm845-xiaomi-beryllium-common.dtsi
+  (Based on a patch suggested by Konrad Dybcio).
+- Link to v1: https://lore.kernel.org/r/20241007-pocof1-touchscreen-support-v1-0-db31b21818c5@joelselvaraj.com
 
+---
+Joel Selvaraj (4):
+      dt-bindings: input: touchscreen: edt-ft5x06: use unevaluatedProperties
+      arm64: dts: qcom: sdm845-xiaomi-beryllium-common: add touchscreen related nodes
+      arm64: dts: qcom: sdm845-xiaomi-beryllium-tianma: introduce touchscreen support
+      arm64: dts: qcom: sdm845-xiaomi-beryllium-ebbg: introduce touchscreen support
+
+ .../bindings/input/touchscreen/edt-ft5x06.yaml     |  9 +----
+ .../dts/qcom/sdm845-xiaomi-beryllium-common.dtsi   | 39 ++++++++++++++++++++++
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts | 23 +++++++++++++
+ .../dts/qcom/sdm845-xiaomi-beryllium-tianma.dts    | 23 +++++++++++++
+ 4 files changed, 86 insertions(+), 8 deletions(-)
+---
+base-commit: c0eb65494e59d9834af7cbad983629e9017b25a1
+change-id: 20241007-pocof1-touchscreen-support-c752a162cdc2
 
 Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+Joel Selvaraj <foss@joelselvaraj.com>
+
+
 
