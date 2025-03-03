@@ -1,96 +1,94 @@
-Return-Path: <devicetree+bounces-153468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAAE7A4CA3E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:50:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23B58A4CA17
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:45:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C71C17F97E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:40:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5ADDE188ECF4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E5B145348;
-	Mon,  3 Mar 2025 17:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE97225408;
+	Mon,  3 Mar 2025 17:33:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eXLTehq/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="so20Bmax"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9E86210F6A
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 17:32:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE2F2153E4
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 17:33:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741023167; cv=none; b=BW1eq6YZ76oIzNhuoKMNMN2QddNxGUpSkGDBZP8VpS67oyyLfXkCUr7001BJk2bopBjN8dlD4LO08ZEso7GK6HLnMT0gNlUsDuqfPiOmCp/0PK1ngCuZsUGVCjflELfJGRKIBPlY9vBDNZFGKMsos65lgeSF68KhV5IaHJhuc34=
+	t=1741023218; cv=none; b=PsbKFBAG5+WAYqtWnWk7qohEo5/zTisRnBfxeoMy4qa3wZCJN6mbbFmF3ikjsdFUn4q4keMmh7w/hgorCR+Q4NeiJUHQDHrSO6dQsmiX2Ewn+V6YMFi7wNsPTUpibVLjlCscEszEtVUBogXpXAwv6Y4ZYZmzK3gq8FSUmXIJaNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741023167; c=relaxed/simple;
-	bh=3M7BlSm/KhV3uvgWvgNvRYmy6Y1rGKPzZoOe+NOLyeM=;
+	s=arc-20240116; t=1741023218; c=relaxed/simple;
+	bh=tsWu4EeOlFGbDPeji246ZamPqZJ7HH9+BLmwhTUya04=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pef753MecQglc5LEPKWnEAEnadZKymaEoTGWf0i81dKnMJZ+vVsYzQl+B9AEHic6jVE4va5MzlwV97dJYzFOrtKmaXrqD5eCcV1InU2WweY7BxlkBgRtAIWOkPHrMIElXJWbqy3r1o+VBkfp8m0joMl4jZSXuuHYwUnzlhyP4yE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eXLTehq/; arc=none smtp.client-ip=209.85.208.41
+	 Content-Type:Content-Disposition:In-Reply-To; b=osp0UFP8dYWT1OZVp9ewyJj6xUz82uX4CREaa5zaQTerJkkAZq+YJkLPocDuvOlbiIHF8Ne+VvLx4ZV4bLZykvdx1EgxM+T4Vw0ANA3m9JsB5/nBOqHc8HSS32UuDHvkC/nMcfsyfnrtw1wAWUiTYcp6OWxd76mS2QNPoiNLgrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=so20Bmax; arc=none smtp.client-ip=209.85.208.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5e538388dd1so2048300a12.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 09:32:45 -0800 (PST)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e4f88ea298so5726047a12.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 09:33:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741023164; x=1741627964; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1741023215; x=1741628015; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UZ/4qxzis310JPKxwHfUD3sy7Z1En+4L5qdqwXsp4Gc=;
-        b=eXLTehq/+HKNCevIhAF0K2DlTEWdShuqZDqFaBNiiaBvkKtNrQx1XNnCXtGa81Ho5+
-         ZSAqR/m/YD6IECD3y/uSr7TSB94YbgJmElWLAqnIhRMtUAveFA1eSehrJFmkROMrz5Ys
-         Hh5PsK518U0IU2WTxromlL7+e6UrPqn5fCMZrzC5H1RKsb62HcY6ffELITb8IF7U2GuU
-         phx4Q2TP5kX9aKWrcnXpv6w4CM0tHlGLpAraX36v24IzKu+n/nM3bfW/t6hFF2rvJ2D9
-         10N4t+66NZvgz9ociKe69kdvvc6KTFcxqcllLIOQyFSHm9uVwCtEttnHDO2EjdYMbLy1
-         ldCQ==
+        bh=OUhmolDFCbsRrygEyjdB/SNREOTYrW2sTqcKH1rfaVc=;
+        b=so20BmaxS3R1WIVvSEV/e8XvADVcsNF6NJz4MyTVmbrdpefWCpMDotaMbQJFUwxfdj
+         /Ymds56sieslKu+hweaCQRPpKSK99YFfwt345cQz2XGj6w0H2Fe0jbQ9m/uZNXqOQy9X
+         dVJteso6CP8WbwabZxljwj8Ci4a0Eze5OG6iEfFgdJNJciKyFCnyRYRW2lF8QR2fj8lI
+         SVU9C8Sb957ca9srKOEiN7Pa15mUgb9yuw372lsYB78uq8q2lJd1eUk0V7ad1yKaPLcp
+         T2jpZn8IYDCkLUYn+Wp4YsnpQjRQrjkWEB89llgWy1NsXahGSK/h/Muht+TVsxJ4T187
+         AIvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741023164; x=1741627964;
+        d=1e100.net; s=20230601; t=1741023215; x=1741628015;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UZ/4qxzis310JPKxwHfUD3sy7Z1En+4L5qdqwXsp4Gc=;
-        b=mK+zcSAYyro6QYdCpA2piG8EdmyYibQkWgSCW/0yXlFSS2f6ldrhG2eImj4QA+PuKO
-         jJaLUEtPTSQCJeWxH7kMsZNSpkj8xZDZqieNnBxvb43HEKOMner4pBbVNsZbeI0FrKDR
-         iiDSnwgae3pt10F814dIqsg1KCgNPRtXj5DNTSW+a6J5myHvQ9ZH8T0N0ZoTeygdxxP8
-         SKtC2MTylfFgBnKys47uX+8aSXMYnqU09R8tXZcheBjk99VzOUEMma9v/Xd52j5YbWqa
-         IPrOjOeRdSbJUU286cC/j6yEoPKX89zz03rZTxz+I0lAUB6/fDFkDiWpBGDqjA8hNOSM
-         VCBA==
-X-Forwarded-Encrypted: i=1; AJvYcCUHe5Olvo6XRodwN4bDlMAHp16zHP+mRUkiT6sbVGb7lQqX6+wioMk3iAc1K7Ie2aQ5umfU541PwKOH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtepJstUW6uFDcKryg22HPKZwTRYJpRfs7+l66nuGHhYb2swSz
-	WTmQw6S/lCWYWMdbWQ5zF3YWCV6vv/eEWnZLBDve9xm45nkSJG1Q+YWBNvrrb78=
-X-Gm-Gg: ASbGncuZULyrhkCHQK1C8xUIautbRfBBcZkPm3LmCk/ogCnyuwg3WB9OnolRX6n6WtJ
-	jMwPAqhlnGXyHe6/wBXO631UzDiq1rBWbmG0As7aW/u/OZrIuaqE/3QI3B3cgP4055HLZSfqjwK
-	ZNM823nwoGpn40VUlJOt06a94dQ9v+YWAuiNf6yg8MLumgQ1CW1ZUDxKohWpnqbLIrgPETIaM/F
-	g70ZSU1530ln0i8XsAtlmpNB/qLo6/NqvXpc29WrlQcUNxOJmuX2a/1W5bK608MivD1ZHqCVIg3
-	whNRxRzNoN25XvpdP3Zr9PuFkRWcChAnjxjX0Exlvg==
-X-Google-Smtp-Source: AGHT+IFplOERSX9U+E9Rz8azUp8fETio6bPVPJ+92Yo7dBFoDZjtI8Gwjb0JWHGO53dujJ5eWDY9Fg==
-X-Received: by 2002:a05:6402:3506:b0:5e4:d401:590a with SMTP id 4fb4d7f45d1cf-5e4d6ad4209mr13888763a12.4.1741023164183;
-        Mon, 03 Mar 2025 09:32:44 -0800 (PST)
+        bh=OUhmolDFCbsRrygEyjdB/SNREOTYrW2sTqcKH1rfaVc=;
+        b=NmNUISRO1FP2JBBWfcdXJdyg5WiXOSfno1YCkTZo/E0St0WAPxMSSyPpMJP3SvzFEi
+         ZJ8iLXTWEb5LIgdBc3X0B1SpK3igp9USLJP/wyyUt5N2xv2OI4cL1FxPYZzVntPpy7WK
+         Ipq74DU7J1VpFda1RE74faWZkEcZn0F1TiWtmdmjmL92WNcQ5Kb/VRrD5hfJe3fyZEyU
+         urYoxi1faI2buIAmMcDTWEi4J7t6Y/PmH1SA4LocMfDi9uiv+d+PrkZHMlUADP49AYcI
+         q6A3HfoH7hOLYpHx7+3lvN2DTXL+qb9+fMleLKc0JMFjRWu99U9v5yYRLRIIndZOeVmo
+         Oz7g==
+X-Forwarded-Encrypted: i=1; AJvYcCW2KqwvK9jXewKfffrKQZXMU82C0+pantsmkUberoP3aIz72xGFpbh7HnAunjsJEntvrCWRHhcCV5Ic@vger.kernel.org
+X-Gm-Message-State: AOJu0YyX3MEHzacw67HyOXxQ91hL/IpPBFfAm0XwWC6kVe6XC4Hl7t5p
+	6C9zLN5eZLaBZ9thti8YkP6cKVI9Tq/77m+s8jhg6I6iZaBIrK8Bznoby78FssQ=
+X-Gm-Gg: ASbGncs/qI3eNJNis4BVU53I/eDKzYabkxFIKCKBjdaE8ma4jVVSApaUAqaP2uH970c
+	r+4Tp+R7OF4g2WZmyX3SqE159QlTwY5KF7eN1fKR68m0XtHSzNJ+LkPAzrKZCqcaWZUGoh2fdrj
+	vhSdsm4FCWRA9su2uSheuQl5SeQulRfakPF/z5fvaFjZA0tV4+0IV/5Ez9hEKZqsOinz1S9IHeE
+	1yj5r+8HEOxR2ONW3MqmujW5VMwf5m65FHg0ps9D91KEU+aASr9B86lx4CzemhE4cHuVRr7xjE/
+	Y5GZ9xKbpvBTIGndomIxqc+MDKs8xs8OQSkiq/Un6Q==
+X-Google-Smtp-Source: AGHT+IEfd6FqNltMqV3tCjIrZsZmfb/5XycRyRy8vJsW4t7vzj04maxfZbsm1bvOwLU1xzzl3b3NTQ==
+X-Received: by 2002:a05:6402:350e:b0:5de:db0e:311f with SMTP id 4fb4d7f45d1cf-5e4d6ac4393mr14943743a12.4.1741023215104;
+        Mon, 03 Mar 2025 09:33:35 -0800 (PST)
 Received: from linaro.org ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e4cc6b2daasm6666153a12.25.2025.03.03.09.32.40
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e50751c496sm5104649a12.67.2025.03.03.09.33.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 09:32:42 -0800 (PST)
-Date: Mon, 3 Mar 2025 19:32:40 +0200
+        Mon, 03 Mar 2025 09:33:34 -0800 (PST)
+Date: Mon, 3 Mar 2025 19:33:33 +0200
 From: Abel Vesa <abel.vesa@linaro.org>
 To: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, Frank Li <Frank.li@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev,
+	Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Adam Ford <aford173@gmail.com>,
+	Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-clk@vger.kernel.org, imx@lists.linux.dev,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 0/6] arm64: dts: freescale: imx8mp-skov: switch to
- nominal drive mode
-Message-ID: <Z8XnuIIfDFykrKH8@linaro.org>
-References: <20250218-imx8m-clk-v4-0-b7697dc2dcd0@pengutronix.de>
- <174102306220.2928950.8878245519332562153.b4-ty@linaro.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] clk: imx8mp: fix parents of AUDIOMIX DSP/OCRAM_A
+Message-ID: <Z8Xn7f6vXg0aM4zx@linaro.org>
+References: <20250226164513.33822-1-laurentiumihalcea111@gmail.com>
+ <174102305899.2928950.8837177294161174759.b4-ty@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,37 +97,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <174102306220.2928950.8878245519332562153.b4-ty@linaro.org>
+In-Reply-To: <174102305899.2928950.8837177294161174759.b4-ty@linaro.org>
 
-On 25-03-03 19:31:02, Abel Vesa wrote:
+On 25-03-03 19:30:58, Abel Vesa wrote:
 > 
-> On Tue, 18 Feb 2025 19:26:40 +0100, Ahmad Fatoum wrote:
-> > Unlike the i.MX8MM and i.MX8MN SoCs added earlier, the imx8mp.dtsi
-> > configures some clocks at frequencies that are only validated for
-> > overdrive mode, i.e., when VDD_SOC is 950 mV.
+> On Wed, 26 Feb 2025 11:45:09 -0500, Laurentiu Mihalcea wrote:
+> > Correct the parent of the AUDIOMIX DSP and OCRAM_A clock gates by setting
+> > it to AUDIO_AXI_CLK_ROOT, instead of AUDIO_AHB_CLK_ROOT. Additionally, set
+> > the frequency of AUDIO_AXI_CLK_ROOT to 800MHz instead of the current
+> > 400MHz.
 > > 
-> > For the Skov i.MX8MP board, we want to run the SoC at the lower voltage of
-> > 850 mV though to reduce heat generation and power usage. For this to work,
-> > clock rates need to adhere to the limits of the nominal drive mode.
-> > 
-> > [...]
 > 
 > Applied, thanks!
 > 
-> [1/6] dt-bindings: clock: imx8m: document nominal/overdrive properties
->       commit: d5992f1af1550a9e11e42cfa2ca1ad2a1b7fd7f3
-> [2/6] arm64: dts: imx8mp: Add optional nominal drive mode DTSI
+> [1/4] dt-bindings: clock: imx8mp: add axi clock
+>       commit: 2471a101938b0d1835b1983df08daeb98eef1205
+> [2/4] clk: clk-imx8mp-audiomix: fix dsp/ocram_a clock parents
+>       commit: 91be7d27099dedf813b80702e4ca117d1fb38ce6
+> [3/4] arm64: dts: imx8mp: add AUDIO_AXI_CLK_ROOT to AUDIOMIX block
 >       (no commit info)
-> [3/6] arm64: dts: imx8mp: add fsl,nominal-mode property into nominal.dtsi
+> [4/4] arm64: dts: imx8mp: change AUDIO_AXI_CLK_ROOT freq. to 800MHz
 >       (no commit info)
-> [4/6] arm64: dts: freescale: imx8mp-skov: configure LDB clock automatically
->       (no commit info)
-> [5/6] arm64: dts: freescale: imx8mp-skov: operate SoC in nominal mode
->       (no commit info)
-> [6/6] clk: imx8mp: inform CCF of maximum frequency of clocks
->       commit: 06a61b5cb6a8638fa8823cd09b17233b29696fa2
 
-Applied only patches 1 and 6.
+Applied only patches 1 and 2.
 
 My b4 setup messed up. Sorry.
 
