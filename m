@@ -1,128 +1,109 @@
-Return-Path: <devicetree+bounces-154067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24795A4EACD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:12:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5B30A4EBC9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FDCF16A341
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:07:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B391169D9C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:30:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A90B283C9F;
-	Tue,  4 Mar 2025 17:46:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC22627C84D;
+	Tue,  4 Mar 2025 18:22:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dmgxez1k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cRd2gM6u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
+Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4909202F8C
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24ED727815A
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:22:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741110398; cv=pass; b=dmbzQO75l5M27WYE2dG1s3YPjJ2XmIOdZuEqc48BXYqRsiz+VKfV+tnp/4KLqZ4Uo71Tx7otvjK326aIhtXhy4ZYeE8Y0kd6SdEkZR/kG2Zd8j+sVEoAfuodA2CbYxQSdxJNAn9U45Dl4zkMmKBOgnt9aT89muq4/PpleFjnKjk=
+	t=1741112549; cv=pass; b=oHQNpWWpfnX1C9blBpvo49lBGI+j3onugl+KGo+b9qlKmODLkOuZfU7jdJLTMxfk9YdnhFsdSZtLPnLodMbUUblwQvVFRwx58M0j204BptiNysmX8bJSpoZ0OcHllABbfDZKxdceyplDTPTQnVtg13q9ouysioaOVZuqpjWHihY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741110398; c=relaxed/simple;
-	bh=SK1S7HC+F0RX5MreBPa9cOuVM4xw7HiLj2Szt7QCPUU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=K469oB2tXoPKg26oZqOGnmRIA6iAo0qNWAQBpzvfjyB8dPrPBLHNfQiKFZs2ZsN0FYnuIWTg6fPVPo0VZRcEU1KlForLboZVOiKatxCYynImEdC8AetcHlGlqSI0017qNltf7zJt23271hmpIFjA30qZa8jiuA+bRRmfHi72Etw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dmgxez1k; arc=none smtp.client-ip=198.175.65.21; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; arc=pass smtp.client-ip=160.75.25.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+	s=arc-20240116; t=1741112549; c=relaxed/simple;
+	bh=XlhOfTaeIsEIomGos2i6OtNmala9ugw1jqgVUucZjyM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rwDJBtnm3zEQ3QpBf87d9Nk7n1Ubu4jtcyFY/FYjTXO5ydBfp4tuJuCJp0Tcj8H8NythYKYC6e3LYMguurrykPq63BkJwR3CCtRLLiwiy9zZ4NkVFtG2Z/oS4ol3OBwqHHC5KqVZ8PZNFKQ28V4eofhYLt1NZBqrJ65mfOSOMNk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cRd2gM6u; arc=none smtp.client-ip=10.30.226.201; arc=pass smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
+Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id C78BE40CFB4C
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 20:46:34 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id A22C540D1F5B
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:22:25 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=dmgxez1k
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=cRd2gM6u
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6d9g1tz0zFwBF
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:19:51 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6gg34bTKzG2dY
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:11:59 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 8E5E04274D; Tue,  4 Mar 2025 17:19:44 +0300 (+03)
+	id 702B24273C; Tue,  4 Mar 2025 19:11:45 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dmgxez1k
-X-Envelope-From: <linux-kernel+bounces-541239-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cRd2gM6u
+X-Envelope-From: <linux-kernel+bounces-541252-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dmgxez1k
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cRd2gM6u
 Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
-	by le2 (Postfix) with ESMTP id 0772E426DC
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:10:35 +0300 (+03)
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by fgw2.itu.edu.tr (Postfix) with SMTP id B2C1F2DCE0
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:10:35 +0300 (+03)
+	by le2 (Postfix) with ESMTP id BAC9741C3C
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:14:33 +0300 (+03)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by fgw2.itu.edu.tr (Postfix) with SMTP id 90C382DCE3
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:14:33 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DBC9168C03
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 09:09:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C598188601A
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 09:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D872E1F0E32;
-	Mon,  3 Mar 2025 09:09:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F3321F0E43;
+	Mon,  3 Mar 2025 09:14:09 +0000 (UTC)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1FE1DF721;
-	Mon,  3 Mar 2025 09:09:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A54B71DE3A4;
+	Mon,  3 Mar 2025 09:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740992965; cv=none; b=XpwmTRzSe7SYubWx9rE5s5ktJ5Vbi5xYhNqy5WUNpIu7BBZg/fjphMGBsjejy1kQvW1yJmJgVz7vJBJwk/qXfXiq8KFIBQIs5t5RPlwyHzg/MANZuY7MugM2U09RfZX0ev3ldD6JzC84S5/qIyFkS8A3AaQFiVjYrBQ0/1SptBg=
+	t=1740993246; cv=none; b=hzRc9cEgUPYtAE/mTLYdouiUEcCb18f1YJ6IHQvihz0X33C+xT9sYcCAaY8AK0NPpy9pysCQ3JtaLKr5K/Velqy3BcPqAruTb6oTLXuYaSAoJwogdtxCOfSTkYMTLItCNCXmDwkAM0ymXSntxwOyn4TkV07ftp/VRlzAL6juvu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740992965; c=relaxed/simple;
-	bh=SK1S7HC+F0RX5MreBPa9cOuVM4xw7HiLj2Szt7QCPUU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=n4PBAXPNtsfsQBO4B0QNkvWzVLv2GPFaK7CvqEhfal4rXtsgL9/LmzK8VWURTy2FcBuq8bQgP3nAezZP1MA5jsfaiNezvPfVxTjP2T4vU9xiGEaHo7hjuyjQH+jCBJD5HNlWjAomwiL5Wbg89Q9YZ2EvCRV61iCHNaAjHWV4s50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dmgxez1k; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740992964; x=1772528964;
-  h=from:to:cc:in-reply-to:references:subject:message-id:
-   date:mime-version:content-transfer-encoding;
-  bh=SK1S7HC+F0RX5MreBPa9cOuVM4xw7HiLj2Szt7QCPUU=;
-  b=dmgxez1k+bNXiZk3rJFilqg43r/gkMIwly0wDZIbnQf0pJ0RrojuifzF
-   n+Qy35HqLDDv79hcTJne5PYdrjjlgt57u2TAA/l1AmWb/+RvfFyWa2pgR
-   5xMQskhO/5/dDBzGPS4c+/9I0+FK+GGlH2ZLLQ/BRwzDrVZCR15EMHIis
-   7IZBpfvrie8Zka4aW5nevgb+pFXJToRyF2AAz2W7qdWci4pQLg0G3gUJl
-   AT4xCd1I5FMV9Sxyu8JgnQMpf7+jvbTh2pkAhnbXwF8CIC+tF+SSKNEp1
-   SOzVeE/MYEuGKmgltVf4KW2pej63q09cOv0f8xGKsPB3kJk8ScPjKKpX/
-   w==;
-X-CSE-ConnectionGUID: 1LuNZc6tTjO8CcGvGycE1Q==
-X-CSE-MsgGUID: bOuWak5ARBO0YDOvXuRASQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="41771196"
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; 
-   d="scan'208";a="41771196"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 01:09:23 -0800
-X-CSE-ConnectionGUID: KI32nAl3QpW+0soO/P2K+Q==
-X-CSE-MsgGUID: iR1NtjSnRn2CkFWbNEzgVg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; 
-   d="scan'208";a="117951324"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.14])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 01:09:18 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
- Pengyu Luo <mitltlatltl@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- linux-hwmon@vger.kernel.org
-In-Reply-To: <20250214180656.28599-1-mitltlatltl@gmail.com>
-References: <20250214180656.28599-1-mitltlatltl@gmail.com>
-Subject: Re: [PATCH v7 0/3] platform: arm64: Huawei Matebook E Go embedded
- controller
-Message-Id: <174099295441.1736.4659664887828946482.b4-ty@linux.intel.com>
-Date: Mon, 03 Mar 2025 11:09:14 +0200
+	s=arc-20240116; t=1740993246; c=relaxed/simple;
+	bh=XlhOfTaeIsEIomGos2i6OtNmala9ugw1jqgVUucZjyM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sxz1hnObltM8Nh1ABn99uG+2DlGSgVw948jpjrTkk1AJ7gbyKaLozr/bJ4+XvGt2HuZcZtPx4F4hKvBD0TJbh0yBsr0FrIrhNHaSetbW9dSudY79OvwZx1e1zetboOAjVGd300msZrcM1xQyUZOlyZAdDQkoeukiUqoZiUyOXnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cRd2gM6u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F816C4CED6;
+	Mon,  3 Mar 2025 09:14:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740993245;
+	bh=XlhOfTaeIsEIomGos2i6OtNmala9ugw1jqgVUucZjyM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cRd2gM6uQrRo8mSn7V8oWij/RsiuFSc265hBrma4U6e9HRcsIlTK/I4+GwLZXmbzc
+	 0+OA3dciKjkmcakCxx3tEYKSiweOHPOJvwiMBO+6a2SNSBuBQj5J93dVrW1E7+w7RH
+	 Dr9OfgmD8KDZw9f+wO6eAG162kKn+gGaC02fq+fZbnjodpdrYgf64gG+Iuj5Py7mLa
+	 Cv9/6PtEbgunwkNhED0iPjCqjYqGyPLPnn5eNp1VK/ZjIcd6LaSG1T/F0uKt9Y57JE
+	 E7N1AbWUyAkOPpX3tV8bNrqpvMO3z8bQ8jfqZZrXJpFChzUiEar/l7/NCh6vatds9d
+	 mmquX+I0pVgIw==
+Date: Mon, 3 Mar 2025 10:14:01 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Joel Selvaraj <foss@joelselvaraj.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: sdm845-xiaomi-beryllium-ebbg:
+ introduce touchscreen support
+Message-ID: <20250303-radical-private-pug-6bcc8a@krzk-bin>
+References: <20250301-pocof1-touchscreen-support-v3-0-af01c3b30b55@joelselvaraj.com>
+ <20250301-pocof1-touchscreen-support-v3-4-af01c3b30b55@joelselvaraj.com>
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -130,50 +111,30 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250301-pocof1-touchscreen-support-v3-4-af01c3b30b55@joelselvaraj.com>
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6d9g1tz0zFwBF
+X-ITU-Libra-ESVA-ID: 4Z6gg34bTKzG2dY
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741715101.42969@aBNdbUyAllBg9heOw3BLvQ
+X-ITU-Libra-ESVA-Watermark: 1741717227.15963@TUphwQwbYIbHPNvfMkLWyA
 X-ITU-MailScanner-SpamCheck: not spam
 
-On Sat, 15 Feb 2025 02:06:53 +0800, Pengyu Luo wrote:
-
-> This adds binding, drivers and the DT support for the Huawei Matebook E Go
-> (sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
-> E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform
-> tests, so this series enable support for sc8280xp variant only, this series
-> provides the following features:
+On Sat, Mar 01, 2025 at 05:43:10PM -0600, Joel Selvaraj wrote:
+> Enable the Focaltech FT8719 touchscreen controller used in the Poco F1
+> (EBBG) panel variant.
 > 
-> - battery and charger information report
-> - charging thresholds control
-> - FN lock (An alternative method)
-> - LID switch detection
-> - Temperature sensors
-> - USB Type-C altmode
-> - USB Type-C PD(high power)
-> 
-> [...]
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
+> ---
+>  .../boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts | 23 ++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thank you for your contribution, it has been applied to my local
-review-ilpo-next branch. Note it will show up in the public
-platform-drivers-x86/review-ilpo-next branch only once I've pushed my
-local branch there, which might take a while.
-
-The list of commits applied:
-[1/3] dt-bindings: platform: Add Huawei Matebook E Go EC
-      commit: defcf2fb30f7bf128c0be5e571f4db2b7fff66cc
-[2/3] platform: arm64: add Huawei Matebook E Go EC driver
-      commit: 7636f090d02e791918bb3c924e695880123d0c59
-[3/3] arm64: dts: qcom: gaokun3: Add Embedded Controller node
-      commit: 0b6d8f9d2df78116afb159df05bbccf13a51b758
-
---
- i.
+Best regards,
+Krzysztof
 
 
 
