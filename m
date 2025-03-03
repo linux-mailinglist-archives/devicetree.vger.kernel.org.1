@@ -1,262 +1,284 @@
-Return-Path: <devicetree+bounces-153289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F61BA4BE39
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA81DA4BE48
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:24:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 408E618932A5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:20:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03A181887A3E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E2BD1F9AA6;
-	Mon,  3 Mar 2025 11:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC921F37C3;
+	Mon,  3 Mar 2025 11:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TxstBH+y"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="jlXphypx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EF11F9406;
-	Mon,  3 Mar 2025 11:17:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1E01F17E5;
+	Mon,  3 Mar 2025 11:19:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741000645; cv=none; b=jXwbGXSXn/qDe4eRvXHl7liLXpc1Qu3MULnnyTHdUT/DIi2UWQwVZV5gXI4DB7IqMGsS20xqJRakG58MeRc2qhW9Y92z0wIshwpe+/By4tMYY+YDCeT6bRNfbl3ec3hbYlw4jeQCYKHy5KrZvOgAxzbxVnvL3JjWOv17XvXSF7Y=
+	t=1741000766; cv=none; b=RGWwP3Ij0rioSuylauBfWLN5R7bc03bHOHrHRYeF1NP2kF+gxDv+INEGmIAiCR3rGEfG8JEcQShA65oCXDPEyUoyBawkVcA/4nQaedJXMTOhXfjyHjqdNIKuxXO8K9ADbPE5gRhzvSNQp3fHE0CBkm02MmuhKxPLVZVvKHfzse4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741000645; c=relaxed/simple;
-	bh=vs77aUJcijnJ0GNIGtqT5sfhnBoIxjPqvhmlisw6XU8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WMZcM78U2htDur513GS3J2NatvOIfKGFlo6AxliiuGBSf7J074VHT/GQVW3Zjv5HfqMBzR+Ka1ZuCwBfIYRG34OokKyZowmraD/4ckKFTrt0Ll1gcClp+G8VPi8uICty2+QumqHvUy6m1hk1oiCezE5d+/i0ZiDmBl9E3DoGY2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TxstBH+y; arc=none smtp.client-ip=209.85.219.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6e88f3159e3so35899926d6.2;
-        Mon, 03 Mar 2025 03:17:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741000642; x=1741605442; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eYoAzmCu0vns5tkw7HmXXaJNkE1M+oV59kCo2vApjko=;
-        b=TxstBH+yHt3iuI4pDRJyUyQdFIqVwISRoq1/czzfpnQH7++V4/gZigNxi4r/0I26WQ
-         YVNOsNGoB11o4BBboMVUXOFFxeUHREPjDiO4VMZ4MZTdpsPRKRncmeQsM0XQs2oRcH1h
-         YL56tXwSIuKEX62HHkGpVE2f7kVebF+g8hbaJd1fr5k7Dw9wCk+zH4zdkVTS2SHtalnz
-         +kXqaB3kMNelqarHitdWyYTWxFaHi1mKgl+wHbH4LTePnOCZyxpbOVReCg4AkMrBHKob
-         KCE+qJyyHs4hvQR3A896pnsdWiyI70f7W1DKFfNiugJU6lREyT+MBYDXHXtBY9aSllpK
-         DG+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741000642; x=1741605442;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eYoAzmCu0vns5tkw7HmXXaJNkE1M+oV59kCo2vApjko=;
-        b=Chjg7F8CpzrJ2Xs31Lz/4F8R0l5Q8CzT4aOdtUrsWoE+X84p3s+ybOp2LOp7BhGTWX
-         Di40x7CYbvU2cu863ff3GfqpSEErV7ayIYv25P0zvjddL8TNEUoWgQoizb+HtqGB3i4C
-         MJzzu725E0ojC5OMjkJAcZ/tExMbQWvlGUNaaVsG/F8Cx0Xb16c+6hYrkr9Z5CZknAZZ
-         c7yizHGSF3e5gb3mvDyH8f9LETVeqY26/QLnhbXW5hD4pOLS9dQKRaWTGpRhbzj0MhZj
-         QWSsbWExAb3+qR25RxZ4MNTSi+Eyt/qH9uQZxcR1UV2OODGS22HzZppmpBVAf67II7yc
-         IBpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVM/RfzNdHD75wfThFjdd0rC3fBKck8fHRxCS0/GXu4PLl404QnMqV9Kz/m0pQrwErxHkc/B83+6J0n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yylqn2Koc+uTyxppSbK6tgNRBeis3oQK12mf6uueSgve24jGjuC
-	gbBRSu/d7J9XSZvXIn+uuv27sypoUTdgmbFouCL4YKZXvzgmhEWD
-X-Gm-Gg: ASbGncvxv99d/BSY5sLgQi90k1yN9VNs5RjUraI3xj64AuzuMY2SkZnD98ZLCUOFjy1
-	f+/0TzMroXRPnxwSAW29r/nrqoGRkK4ndr5G/yPfW3js5ktYA5bNkOKrFxiRI2l/s0TRIVEKMSO
-	DRqmTXADgToRtzDf0W5Neh+lI4iSugzw5UmOJr+bxl0HmUCiSttkYroIyqelrsxQ32iCjl9n0ky
-	SREZVv68Da4J/J7Z3UrbcrekllEgci//wXsKookTDQxxHNyP0ipGIZ3VIcDaGEviN0BCyG1D7YC
-	biSug/LOt46Rs7zks/eb
-X-Google-Smtp-Source: AGHT+IFnzI5yYMUwpgzC+CtqnF8PkSTTAOhLnziiXOW13TnV/5ZF1J9/Py1jNWLdgQBT5OjaRQ4YPg==
-X-Received: by 2002:a05:6214:5193:b0:6e6:6048:f42c with SMTP id 6a1803df08f44-6e8a0cd3f2emr192488796d6.8.1741000642572;
-        Mon, 03 Mar 2025 03:17:22 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e8a1aba663sm39485296d6.50.2025.03.03.03.17.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 03:17:22 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
+	s=arc-20240116; t=1741000766; c=relaxed/simple;
+	bh=wY1JDGsr4w7EVb29Z+PN4ZWHoWt/+wmUL/8nCGk4qnE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YI8wGG4oyTJyhQS4mnmU2/Dlcdle5q+tKZdAfpZmTeSzBDPzmvJCIl0sCp1Zk12Rp8wg4UCdlafIMN9TJDU/1SpFTkeW6s9NKbCVmbUjwpamISMdEBhciED6C4Wq4w9fBLKJ9KEq9YUZpHBMfyMNUhSQV7fy1RFjvzNNzm5TBfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=jlXphypx; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=pNmUy0/SbO1mJMTByohCme5W5UOaVrI5mCX9RycYTCY=; b=jlXphypx+tFIa7QN6nmZyOHchy
+	mAL4FzNXqAx7NBd4kdGVHZF7nbcDi/32cz13sz0Fj9y1/1JM/3A/Y76+s7kFKn3mGfijIUupTU74Q
+	7zeNEGxo0ivgglhHYr/u2LibpbTUcHkmikL6bkI8o7tdVXrpmDkjuz1Lax0XLLmeKI/E9XRS1ZUdj
+	/Ci1QrCRh5Qp2rL6TItEj0fLU0FtSgMv/HXPfEGd4/bdsg2+c0e9GA24LNjWfF4v0YxAyyfBNvjOM
+	Dht70pkuWXppULK3LhsHptnbWfEkJtUnlAkcrbjK9tZ0DEhiNEovwD25XXFPRxUWevS3WVcgAbYUN
+	EEBdOUqQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38926)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tp3pC-0000Ky-2H;
+	Mon, 03 Mar 2025 11:19:06 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tp3p7-0003kl-2o;
+	Mon, 03 Mar 2025 11:19:01 +0000
+Date: Mon, 3 Mar 2025 11:19:01 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH 2/2] irqchip/sg2042-msi: Add the Sophgo SG2044 MSI interrupt controller
-Date: Mon,  3 Mar 2025 19:16:47 +0800
-Message-ID: <20250303111648.1337543-3-inochiama@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250303111648.1337543-1-inochiama@gmail.com>
-References: <20250303111648.1337543-1-inochiama@gmail.com>
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 3/3] net: stmmac: Add DWMAC glue layer for Renesas GBETH
+Message-ID: <Z8WQJQo5kW9QV-wV@shell.armlinux.org.uk>
+References: <20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250302181808.728734-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Z8SydsdDsZfdrdbE@shell.armlinux.org.uk>
+ <CA+V-a8vCB7nP=tsv4UkOwODSs-9hiG-PxN6cpihfvwjq2itAHg@mail.gmail.com>
+ <Z8TRQX2eaNzXOzV0@shell.armlinux.org.uk>
+ <CA+V-a8vykhxqP30iTwN6yrqDgT8YRVE_MadjiTFp653rHVqMNg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+V-a8vykhxqP30iTwN6yrqDgT8YRVE_MadjiTFp653rHVqMNg@mail.gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Add support for Sophgo SG2044 MSI interrupt controller.
+On Sun, Mar 02, 2025 at 10:02:15PM +0000, Lad, Prabhakar wrote:
+> Hi Russell,
+> 
+> On Sun, Mar 2, 2025 at 9:44 PM Russell King (Oracle)
+> <linux@armlinux.org.uk> wrote:
+> >
+> > On Sun, Mar 02, 2025 at 09:20:49PM +0000, Lad, Prabhakar wrote:
+> > > Hi Russell,
+> > > > What is the reason for setting this flag? If it's because of suspend/
+> > > > resume failures, does my "net: stmmac: fix resume failures due to
+> > > > RX clock" series solve this for you without requiring this flag?
+> > > >
+> > > Ive set this flag based on the configuration supported by this IP.
+> > > Unfortunately the platform which I am working on doesn't support s2r
+> > > yet so I cannot test suspend/resume path yet. But I do see an issue
+> > > when I unload and load just the glue module the DMA reset fails.
+> >
+> > Thanks for that feedback - that's a scenario I hadn't considered.
+> >
+> > I was trying to avoid having to disable LPI RX clock-stop on suspend by
+> > ensuring that it was enabled at resume time. I think that's valid, but
+> > you've brought up another similar scenario:
+> >
+> > - device is brought up, configures RX clock stop
+> > - links with media, negotiates EEE
+> > - driver is unloaded, link doesn't go down, but due to no traffic goes
+> >   into idle, so RX clock is stopped
+> > - driver reloaded, RX clock still stopped, reset fails
+> >
+> > I would like to solve that so we can get the power savings from
+> > stopping the clock, but still have reset work when necessary.
+> >
+> I would be happy to test the patches ;)
+> 
+> > I'm guessing that the "DMA reset fails" refers to this path:
+> >
+> > stmmac_open() -> __stmmac_open() -> stmmac_hw_setup() ->
+> > stmmac_init_dma_engine() -> stmmac_reset() ?
+> >
+> Yes.
+> 
+> > In other words, when the device is being brought back up
+> > adminsitratively?
+> >
+> > What happens if you (replace $if):
+> >
+> > # ip li set dev $if down
+> > # ip li set dev $if up
+> >
+> > Does that also fail without STMMAC_FLAG_RX_CLK_RUNS_IN_LPI set?
+> >
+> Logs without STMMAC_FLAG_RX_CLK_RUNS_IN_LPI flag set:
+> --------------------------------------------------------------
+> root@rzv2h-evk-alpha:~# ip li set dev eth1 down
+> [   33.606549] renesas-gbeth 15c40000.ethernet eth1: Link is Down
+> root@rzv2h-evk-alpha:~#
+> root@rzv2h-evk-alpha:~# ip li set dev eth0 down
+> [   37.356992] renesas-gbeth 15c30000.ethernet eth0: Link is Down
+> root@rzv2h-evk-alpha:~#
+> root@rzv2h-evk-alpha:~# ip li set dev eth1 up
+> [   43.974803] renesas-gbeth 15c40000.ethernet eth1: Register
+> MEM_TYPE_PAGE_POOL RxQ-0
+> [   43.983189] renesas-gbeth 15c40000.ethernet eth1: Register
+> MEM_TYPE_PAGE_POOL RxQ-1
+> [   43.991155] renesas-gbeth 15c40000.ethernet eth1: Register
+> MEM_TYPE_PAGE_POOL RxQ-2
+> [   43.999128] renesas-gbeth 15c40000.ethernet eth1: Register
+> MEM_TYPE_PAGE_POOL RxQ-3
+> [   44.072079] renesas-gbeth 15c40000.ethernet eth1: PHY [stmmac-1:00]
+> driver [Microchip KSZ9131 Gigabit PHY] (irq=POLL)
+> [   44.094605] dwmac4: Master AXI performs fixed burst length
+> [   44.100138] renesas-gbeth 15c40000.ethernet eth1: No Safety
+> Features support found
+> [   44.107748] renesas-gbeth 15c40000.ethernet eth1: IEEE 1588-2008
+> Advanced Timestamp supported
+> [   44.116725] renesas-gbeth 15c40000.ethernet eth1: registered PTP clock
+> [   44.123352] renesas-gbeth 15c40000.ethernet eth1: configuring for
+> phy/rgmii-id link mode
+> root@rzv2h-evk-alpha:~#
+> root@rzv2h-evk-alpha:~# ip li set dev eth1[   47.207761] renesas-gbeth
+> 15c40000.ethernet eth1: Link is Up - 1Gbps/Full - flow control off
+> ^C
+> root@rzv2h-evk-alpha:~# ^C
+> root@rzv2h-evk-alpha:~# ip li set dev eth0 up
+> [   55.636722] renesas-gbeth 15c30000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-0
+> [   55.645139] renesas-gbeth 15c30000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-1
+> [   55.653111] renesas-gbeth 15c30000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-2
+> [   55.661073] renesas-gbeth 15c30000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-3
+> [   55.732087] renesas-gbeth 15c30000.ethernet eth0: PHY [stmmac-0:00]
+> driver [Microchip KSZ9131 Gigabit PHY] (irq=POLL)
+> [   55.754612] dwmac4: Master AXI performs fixed burst length
+> [   55.760143] renesas-gbeth 15c30000.ethernet eth0: No Safety
+> Features support found
+> [   55.767740] renesas-gbeth 15c30000.ethernet eth0: IEEE 1588-2008
+> Advanced Timestamp supported
+> [   55.776705] renesas-gbeth 15c30000.ethernet eth0: registered PTP clock
+> [   55.783333] renesas-gbeth 15c30000.ethernet eth0: configuring for
+> phy/rgmii-id link mode
+> root@rzv2h-evk-alpha:~#
+> root@rzv2h-evk-alpha:~# [   58.855844] renesas-gbeth 15c30000.ethernet
+> eth0: tx_clk_stop=1
+> [   58.861989] renesas-gbeth 15c30000.ethernet eth0: Link is Up -
+> 1Gbps/Full - flow control rx/tx
+> 
+> root@rzv2h-evk-alpha:~#
+> root@rzv2h-evk-alpha:~#
+> 
+> Logs with STMMAC_FLAG_RX_CLK_RUNS_IN_LPI flag set:
+> --------------------------------------------------------------
+> root@rzv2h-evk-alpha:~# ip li set dev eth1 down
+> [   30.053790] renesas-gbeth 15c40000.ethernet eth1: Link is Down
+> root@rzv2h-evk-alpha:~# ip li set dev eth0 down
+> [   35.366935] renesas-gbeth 15c30000.ethernet eth0: Link is Down
+> root@rzv2h-evk-alpha:~# ip li set dev eth1 up
+> [   40.448563] renesas-gbeth 15c40000.ethernet eth1: Register
+> MEM_TYPE_PAGE_POOL RxQ-0
+> [   40.456725] renesas-gbeth 15c40000.ethernet eth1: Register
+> MEM_TYPE_PAGE_POOL RxQ-1
+> [   40.464893] renesas-gbeth 15c40000.ethernet eth1: Register
+> MEM_TYPE_PAGE_POOL RxQ-2
+> [   40.472840] renesas-gbeth 15c40000.ethernet eth1: Register
+> MEM_TYPE_PAGE_POOL RxQ-3
+> [   40.543895] renesas-gbeth 15c40000.ethernet eth1: PHY [stmmac-1:00]
+> driver [Microchip KSZ9131 Gigabit PHY] (irq=POLL)
+> [   40.566419] dwmac4: Master AXI performs fixed burst length
+> [   40.571949] renesas-gbeth 15c40000.ethernet eth1: No Safety
+> Features support found
+> [   40.579550] renesas-gbeth 15c40000.ethernet eth1: IEEE 1588-2008
+> Advanced Timestamp supported
+> [   40.588505] renesas-gbeth 15c40000.ethernet eth1: registered PTP clock
+> [   40.595135] renesas-gbeth 15c40000.ethernet eth1: configuring for
+> phy/rgmii-id link mode
+> root@rzv2h-evk-alpha:~#
+> root@rzv2h-evk-alpha:~# [   43.687551] renesas-gbeth 15c40000.ethernet
+> eth1: Link is Up - 1Gbps/Full - flow control off
+> 
+> root@rzv2h-evk-alpha:~# ip li set dev eth0 up
+> [   49.644479] renesas-gbeth 15c30000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-0
+> [   49.652719] renesas-gbeth 15c30000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-1
+> [   49.660681] renesas-gbeth 15c30000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-2
+> [   49.669059] renesas-gbeth 15c30000.ethernet eth0: Register
+> MEM_TYPE_PAGE_POOL RxQ-3
+> [   49.740011] renesas-gbeth 15c30000.ethernet eth0: PHY [stmmac-0:00]
+> driver [Microchip KSZ9131 Gigabit PHY] (irq=POLL)
+> [   49.762518] dwmac4: Master AXI performs fixed burst length
+> [   49.768057] renesas-gbeth 15c30000.ethernet eth0: No Safety
+> Features support found
+> [   49.775655] renesas-gbeth 15c30000.ethernet eth0: IEEE 1588-2008
+> Advanced Timestamp supported
+> [   49.784609] renesas-gbeth 15c30000.ethernet eth0: registered PTP clock
+> [   49.791236] renesas-gbeth 15c30000.ethernet eth0: configuring for
+> phy/rgmii-id link mode
+> root@rzv2h-evk-alpha:~#
+> root@rzv2h-evk-alpha:~# [   52.871635] renesas-gbeth 15c30000.ethernet
+> eth0: tx_clk_stop=1
+> [   52.877777] renesas-gbeth 15c30000.ethernet eth0: Link is Up -
+> 1Gbps/Full - flow control rx/tx
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- drivers/irqchip/irq-sg2042-msi.c | 86 ++++++++++++++++++++++++++++++--
- 1 file changed, 82 insertions(+), 4 deletions(-)
+I would like to get to the bottom of why this fails for module removal/
+insertion, but not for admistratively down/upping the interface.
 
-diff --git a/drivers/irqchip/irq-sg2042-msi.c b/drivers/irqchip/irq-sg2042-msi.c
-index 9c0a5f2777a4..4b3992821797 100644
---- a/drivers/irqchip/irq-sg2042-msi.c
-+++ b/drivers/irqchip/irq-sg2042-msi.c
-@@ -21,6 +21,11 @@
- 
- #define SG2042_MAX_MSI_VECTOR	32
- 
-+struct sg2042_msi_of_data {
-+	const struct irq_chip		*irqchip;
-+	const struct msi_parent_ops	*parent_ops;
-+};
-+
- struct sg2042_msi_chipdata {
- 	void __iomem	*reg_clr;	// clear reg, see TRM, 10.1.33, GP_INTR0_CLR
- 
-@@ -29,8 +34,10 @@ struct sg2042_msi_chipdata {
- 	u32		irq_first;	// The vector number that MSIs starts
- 	u32		num_irqs;	// The number of vectors for MSIs
- 
--	DECLARE_BITMAP(msi_map, SG2042_MAX_MSI_VECTOR);
-+	unsigned long	*msi_map;
- 	struct mutex	msi_map_lock;	// lock for msi_map
-+
-+	const struct sg2042_msi_of_data	*data;
- };
- 
- static int sg2042_msi_allocate_hwirq(struct sg2042_msi_chipdata *data, int num_req)
-@@ -81,6 +88,37 @@ static const struct irq_chip sg2042_msi_middle_irq_chip = {
- 	.irq_compose_msi_msg	= sg2042_msi_irq_compose_msi_msg,
- };
- 
-+static void sg2044_msi_irq_ack(struct irq_data *d)
-+{
-+	struct sg2042_msi_chipdata *data = irq_data_get_irq_chip_data(d);
-+
-+	writel(0, (unsigned int *)data->reg_clr + d->hwirq);
-+
-+	irq_chip_ack_parent(d);
-+}
-+
-+static void sg2044_msi_irq_compose_msi_msg(struct irq_data *d,
-+					   struct msi_msg *msg)
-+{
-+	struct sg2042_msi_chipdata *data = irq_data_get_irq_chip_data(d);
-+	phys_addr_t doorbell = data->doorbell_addr +  4 * (d->hwirq / 32);
-+
-+	msg->address_lo = lower_32_bits(doorbell);
-+	msg->address_hi = upper_32_bits(doorbell);
-+	msg->data = d->hwirq % 32;
-+}
-+
-+static struct irq_chip sg2044_msi_middle_irq_chip = {
-+	.name			= "SG2044 MSI",
-+	.irq_ack		= sg2044_msi_irq_ack,
-+	.irq_mask		= irq_chip_mask_parent,
-+	.irq_unmask		= irq_chip_unmask_parent,
-+#ifdef CONFIG_SMP
-+	.irq_set_affinity	= irq_chip_set_affinity_parent,
-+#endif
-+	.irq_compose_msi_msg	= sg2044_msi_irq_compose_msi_msg,
-+};
-+
- static int sg2042_msi_parent_domain_alloc(struct irq_domain *domain,
- 					  unsigned int virq, int hwirq)
- {
-@@ -119,7 +157,7 @@ static int sg2042_msi_middle_domain_alloc(struct irq_domain *domain,
- 			goto err_hwirq;
- 
- 		irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
--					      &sg2042_msi_middle_irq_chip, data);
-+					      data->data->irqchip, data);
- 	}
- 
- 	return 0;
-@@ -162,6 +200,21 @@ static const struct msi_parent_ops sg2042_msi_parent_ops = {
- 	.init_dev_msi_info	= msi_lib_init_dev_msi_info,
- };
- 
-+#define SG2044_MSI_FLAGS_REQUIRED (MSI_FLAG_USE_DEF_DOM_OPS |	\
-+				   MSI_FLAG_USE_DEF_CHIP_OPS)
-+
-+#define SG2044_MSI_FLAGS_SUPPORTED (MSI_GENERIC_FLAGS_MASK |	\
-+				    MSI_FLAG_PCI_MSIX)
-+
-+static const struct msi_parent_ops sg2044_msi_parent_ops = {
-+	.required_flags		= SG2044_MSI_FLAGS_REQUIRED,
-+	.supported_flags	= SG2044_MSI_FLAGS_SUPPORTED,
-+	.bus_select_mask	= MATCH_PCI_MSI,
-+	.bus_select_token	= DOMAIN_BUS_NEXUS,
-+	.prefix			= "SG2044-",
-+	.init_dev_msi_info	= msi_lib_init_dev_msi_info,
-+};
-+
- static int sg2042_msi_init_domains(struct sg2042_msi_chipdata *data,
- 				   struct irq_domain *plic_domain,
- 				   struct device *dev)
-@@ -181,7 +234,7 @@ static int sg2042_msi_init_domains(struct sg2042_msi_chipdata *data,
- 	irq_domain_update_bus_token(middle_domain, DOMAIN_BUS_NEXUS);
- 
- 	middle_domain->flags |= IRQ_DOMAIN_FLAG_MSI_PARENT;
--	middle_domain->msi_parent_ops = &sg2042_msi_parent_ops;
-+	middle_domain->msi_parent_ops = data->data->parent_ops;
- 
- 	return 0;
- }
-@@ -199,6 +252,12 @@ static int sg2042_msi_probe(struct platform_device *pdev)
- 	if (!data)
- 		return -ENOMEM;
- 
-+	data->data = device_get_match_data(&pdev->dev);
-+	if (!data->data) {
-+		dev_err(&pdev->dev, "Failed to get irqchip\n");
-+		return -EINVAL;
-+	}
-+
- 	data->reg_clr = devm_platform_ioremap_resource_byname(pdev, "clr");
- 	if (IS_ERR(data->reg_clr)) {
- 		dev_err(dev, "Failed to map clear register\n");
-@@ -240,11 +299,30 @@ static int sg2042_msi_probe(struct platform_device *pdev)
- 
- 	mutex_init(&data->msi_map_lock);
- 
-+	data->msi_map = devm_bitmap_zalloc(&pdev->dev, data->num_irqs, GFP_KERNEL);
-+	if (!data->msi_map) {
-+		dev_err(&pdev->dev, "Unable to allocate msi mapping\n");
-+		return -ENOMEM;
-+	}
-+
- 	return sg2042_msi_init_domains(data, plic_domain, dev);
- }
- 
-+static const struct sg2042_msi_of_data sg2042_of_data = {
-+	.irqchip	= &sg2042_msi_middle_irq_chip,
-+	.parent_ops	= &sg2042_msi_parent_ops,
-+};
-+
-+static const struct sg2042_msi_of_data sg2044_of_data = {
-+	.irqchip	= &sg2044_msi_middle_irq_chip,
-+	.parent_ops	= &sg2044_msi_parent_ops,
-+};
-+
- static const struct of_device_id sg2042_msi_of_match[] = {
--	{ .compatible	= "sophgo,sg2042-msi" },
-+	{ .compatible	= "sophgo,sg2042-msi",
-+	  .data		= &sg2042_of_data },
-+	{ .compatible	= "sophgo,sg2044-msi",
-+	  .data		= &sg2044_of_data },
- 	{}
- };
- 
+Removal of your module will unregister the netdev, and part of that
+work will bring the netdev administratively down. When re-inserting
+the module, that will trigger various userspace events, and it will
+be userspace bringing the network interface(s) back up. This should
+be no different from administratively down/upping the interface but
+it seems you get different behaviour.
+
+I'd like to understand why that is, because at the moment I'm wondering
+whether my patches that address the suspend/resume need further work
+before I send them - but in order to assess that, I need to work out
+why your issue only seems to occur in the module removal/insertion
+and not down/up as well as I'd expect.
+
+Please could you investigate this?
+
+Thanks.
+
 -- 
-2.48.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
