@@ -1,140 +1,100 @@
-Return-Path: <devicetree+bounces-153970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00CA7A4E526
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:11:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9952EA4E569
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 374C07A69FE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:10:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8888988087B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D6B277803;
-	Tue,  4 Mar 2025 15:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB18127FE85;
+	Tue,  4 Mar 2025 15:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jczENyf6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nq0wc9mP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
+Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2737D2C2CDE
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59629292FBD
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:44:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741103421; cv=pass; b=DrHkUV6O5NDsF8xJ1Phn2LTUK1itxaKmZiZMVK8AbXQkmGzRzZXgJwPoBVG2QwYWFsj6gTcCKhFQIP6/UBUKcfRaflk3jSCWwILF35KScr6Jxdh6ytFz2U1PCd2mftZRITaWBL6FC7PuZz3vHzS6sFPG67m0PEgbC0oFCda42K0=
+	t=1741103062; cv=pass; b=eSbI1Iorv+V2ajNjFpfY9ThY/Sp58VXGTFHesiQqBbKHFaKCCpPCgGJlVQMU3TXmjVOBa88MbUfzxI/Y9fVi8onS7Ih6zW6ij3zb2wJh29GgwTevLcPmZxUb85X5G+91GWZcmO8+BOY6p4309rB3sX6H7gdAM/WlJIfuPEmDD5U=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741103421; c=relaxed/simple;
-	bh=VTGS9z3V6Q/xCHN1camC46iCwwa/aosOC3MAy/OdECw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oJCkud+5wbscmMTfAb9Lt/XAQ9tvS5VdG2MxEAwbwekWs8KsS+l/fx6+Q0Uo0eOsc+yyME3dxLlO0XJV5VR9tJTZug1eHgs1pVZIfOJN5Uw7Yak7gFALi00/ol911mg7MzSK2ghVsz9lTCnmv7jb0Ks1jBdIhttWA23K9i5SvE0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jczENyf6; arc=none smtp.client-ip=209.85.208.177; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; arc=pass smtp.client-ip=160.75.25.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+	s=arc-20240116; t=1741103062; c=relaxed/simple;
+	bh=KD/u2uj8WkbEL97tLItjWeuPMc7ZQab5ZdYmsWVBdF8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=uZIVdSCqxqP8SGBiRpE8o+YMQPzyvA+x8ruvqsibEjBeCr67kQpy+97EPe1ArB3EN+rz6lokDAW4brYUYc17lFbWVcWo/dY038Y4X+nkVfVs2ud/kmNvCdvcg2U4qW0vkgcXd69RpcwZiApgXsODqoB8fyYvrjw9NIugzwzef/w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq0wc9mP; arc=none smtp.client-ip=10.30.226.201; arc=pass smtp.client-ip=160.75.25.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 5936940CF4F1
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:50:17 +0300 (+03)
+	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id A6DD440D046E
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:44:19 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=jczENyf6
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=Nq0wc9mP
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6g8c2RjHzG1Vg
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:49:04 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6g1J08XlzG18n
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:42:44 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 3AED34271F; Tue,  4 Mar 2025 18:48:53 +0300 (+03)
+	id 6F5B142731; Tue,  4 Mar 2025 18:42:26 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jczENyf6
-X-Envelope-From: <linux-kernel+bounces-541757-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq0wc9mP
+X-Envelope-From: <linux-kernel+bounces-541761-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jczENyf6
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq0wc9mP
 Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
-	by le2 (Postfix) with ESMTP id 95A5D4210E
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:05:59 +0300 (+03)
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by fgw2.itu.edu.tr (Postfix) with SMTP id 6C5A92DCDE
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:05:59 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 8B7014261C
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:07:20 +0300 (+03)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by fgw2.itu.edu.tr (Postfix) with SMTP id D55122DCE0
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:07:19 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1682B1891093
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:05:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD6EE7A2581
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA601212B04;
-	Mon,  3 Mar 2025 13:04:50 +0000 (UTC)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095EB211707;
+	Mon,  3 Mar 2025 13:07:06 +0000 (UTC)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19693210F6A
-	for <linux-kernel@vger.kernel.org>; Mon,  3 Mar 2025 13:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E26713FEE;
+	Mon,  3 Mar 2025 13:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741007088; cv=none; b=Jvl60CQlZalK8x+K0ozY2Hs6U2zBFZ6tb9XAawgsTlRYJXhKVVd+bY/cLjfTfm/3p9lcybpXNPF8Q7xzfpUKXGuuP3hkAbauXFIQnH2lz9o4eavNC4r/mQyud8zjU38MZWsitTfFhuhnSICU/u64Az0QjbreuvswH9UR2IqhqhI=
+	t=1741007223; cv=none; b=h0HM2SGzxFYec7/QB7DNpJaJxFyNUeAP15Rx/yP1sVIF1pmj5zeI3AVrD03NFiJ3H/8m61Fn94ZJPpfR4//+EWnA4oKyqR6Jz60lRQWMleZ/YhzxO+1FqjL8R+bMsmI599mFkaR2BFw33NZasyO9Uw6/KKTHFf7jfKVWIjfOQJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741007088; c=relaxed/simple;
-	bh=VTGS9z3V6Q/xCHN1camC46iCwwa/aosOC3MAy/OdECw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nr/HarwW/wjwhGyTUm7Xq4yIblotzoEnJcfJLXoBUB2a66hxTJrZYL8GWHPhYdPMrgpS23ULIfN5EBu1PtW3GcoqpUDX+CUqG7Dr8nXHyY/uWS6CnBtWqfTIP187Wi4/Or10b9x1Kv+8U6QpSgGFPY/Xo+e/tCMd6RwIHEp7D6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jczENyf6; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30762598511so47005441fa.0
-        for <linux-kernel@vger.kernel.org>; Mon, 03 Mar 2025 05:04:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741007084; x=1741611884; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hs6021W+ZEF1jgVJIvkS1BoBhBl+Zadb4lQ906tSWc8=;
-        b=jczENyf61LzcAxDTc2zSS0GQnfs5gRzkh75eQHdMWLkx8WGL9mfqNb9wMFVMYeblG/
-         Jfwg5rulSHH9/Pwc4VyEzCyQYBWhjNjWD1P6pj8+K/3HzIkZMByLXRBQFFgA/CUxVEcO
-         5awAlcPUOq7xo6hz2ELSIcM+oycV3+cd3xzFHfAD8Mg7e5kf6A3gF0bIn/erUD+sBldh
-         XndMFL47OyBpGEldNVqePFqMhX+2v3Znq/2ivn/XJNDBtTyRa+J8YZz2BzHkeTjes22A
-         0sYaOi6ACTkWCsOErxYPh+roMBWexFJkyDipQPRbJOzLmkWnbhPHMaugdgUezvRkRYIM
-         5jqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741007084; x=1741611884;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hs6021W+ZEF1jgVJIvkS1BoBhBl+Zadb4lQ906tSWc8=;
-        b=jX8WgJSKyVg803wGvZolvBnFlLxK2Y+7tRR4GECvKUvmLTR+Ctaay/cfMcjC6UcZ77
-         jtQMpNukwWGYkADIV6Vlm3kb9evOgr9FtrSWqMzvRshU3kuJeMn9a7tDCA+mBSNA8r6j
-         i/4ZKR44h/yT7+8N/2rZ8OoF2B+AJZFPxjvNmH+AdwTxlPlTwp6UGMOs1S8i8S7GL39R
-         F29LAseSLhKQlAUMx+I2byzrMoqwfRxCU+sCd0ViE77aEEgEJwNxHWRNugfoMeeLq4Or
-         Y7Kx5TY3TbEmTHf2GYG0h5G5BpW1RtBYVgUoMksM0KovZ9C4+Hq+BSznlewQhiRsdVMg
-         +szA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBRFjlrizDQFsf5DqiJ3fTlfbtwCWew2f8tXK9q9rGjekzeut5BKgzegOtxPSxNTinZUZw9aI9PBC0r7k=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXfigYOPni1kakTI1IAgsa3t76hN1Z1jkTcFChfPUOagg9KhzG
-	vAUes6o30z3YrbPe0gI2vQa5XV35YiGgACBJk/uNW6mdHRbkw7v6Elc0wWTssgQ=
-X-Gm-Gg: ASbGncvvXLaPOMTKLhsbNCRe+zlfCzprqcpkoadY13SGu6Bpw/IumsPwPv98wTCp2EY
-	cEcrXkq5hioGw8kpKNrkRAvbGGM2c4/iUR3UlDBECyQ6PELmCWjQmTEEqV0R0KzigRYttfMc1/r
-	1ZJnsL1r8gMYSjXbtnMSQwS0HfN0iMZMhwcd8Tsc76AYbd6uSxj3oKF/5Qx4nx36sDrIJoSS/P2
-	dCZzVXahhjTG6gmPkFlHhMaKdsaY07n9i2jGu3l0DauVwb9fEN6DithUSmSV7bBnZz0wXmsF5e4
-	JZGxrQ5At5eytzUTLZ/GziltublbuDc3yWvIjpInqzaESX8Yvae3f+rsyqypx8d/JJB1JyHC/vQ
-	iIOb8aLcSIXbOtpxRPlADul1A
-X-Google-Smtp-Source: AGHT+IFbAQM4Vg7NnCwXJQnOl/QXFO0jLcxGWTd7UWWRYV7p4mjc/3nqCPtXbPNZGlRw3vJtvB3rdQ==
-X-Received: by 2002:a2e:a9a9:0:b0:309:2ed:7331 with SMTP id 38308e7fff4ca-30b9325a905mr62065031fa.18.1741007084138;
-        Mon, 03 Mar 2025 05:04:44 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30bb14d00b0sm4996411fa.56.2025.03.03.05.04.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 05:04:42 -0800 (PST)
-Date: Mon, 3 Mar 2025 15:04:41 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
-	manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH V3 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox
- driver
-Message-ID: <2xpu26pu4ovnchumwx7xzlp2gldpfgsurnhuqaioygb4a6xmsp@ygmpk6furqs6>
-References: <20250228045356.3527662-1-quic_srichara@quicinc.com>
- <20250228045356.3527662-3-quic_srichara@quicinc.com>
- <lakoxihaqlu3vq42eoqtlip23ggdieizotyzax5up5n6ndbwsi@ddqyzvsdtmkv>
- <1359984c-2ace-450b-a3ff-bac0b9fb5cc9@quicinc.com>
+	s=arc-20240116; t=1741007223; c=relaxed/simple;
+	bh=KD/u2uj8WkbEL97tLItjWeuPMc7ZQab5ZdYmsWVBdF8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Kp0slKdJrq2TfP+8ltHXw9/39JY1oo68cgPAeIpoAZLkKmTI1LDTMHuhvnTg6vDABid9XSsiz0QNgt/WuY/LlRrbcETK09t286B36V7btmIoO64k6pP7F67jx1yl9Z5h6JkQKpNo8SUSscYdy5ov/NDkTooJ8Gfn4E8grlL+OwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq0wc9mP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C4F7DC4CED6;
+	Mon,  3 Mar 2025 13:07:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741007222;
+	bh=KD/u2uj8WkbEL97tLItjWeuPMc7ZQab5ZdYmsWVBdF8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=Nq0wc9mPshq8VCggTjzNZISVHcZ4iX0WG/pkAbnAhdY0iu+OXmWJhHQmIz7I+8hQf
+	 jZFsbgo2kUQJiGuAzarrlvtP21ZPl1UgLisuRUA3JLeZtA73GWrpI2Zizr8cUgbiJZ
+	 53i9SLDsEkVRK7XR2i13xpGZQXaTULLKSPlhqQ1g302pZdKxrenULZBjGQlRmOqTbJ
+	 IC2RWx56coREVyBpnUKsYG0vAVKT9Qu1Rr9OAawClystfs6xKQGEDks4kcE8JSF2sa
+	 OcPPUFxLgIZEZ7Y9khJZAGklQ7cXevHLEZb8z21tuE2HX6W5rzV82aLjckGWK/MvTs
+	 eKyWYY0qBZzpA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B15BCC282D1;
+	Mon,  3 Mar 2025 13:07:02 +0000 (UTC)
+From: "Chester A. Unal via B4 Relay" <devnull+chester.a.unal.arinc9.com@kernel.org>
+Date: Mon, 03 Mar 2025 13:06:50 +0000
+Subject: [PATCH] ARM: dts: BCM5301X: Fix switch port labels of ASUS
+ RT-AC5300
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -142,35 +102,95 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1359984c-2ace-450b-a3ff-bac0b9fb5cc9@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250303-for-broadcom-fix-rt-ac5300-switch-ports-v1-1-e058856ef4d3@arinc9.com>
+X-B4-Tracking: v=1; b=H4sIAGmpxWcC/x2NQQqDMBAAvyJ77sI20Yb2K6WHmKx1DzWyG2xB/
+ HuDx4FhZgdjFTZ4dDsob2JSlgbXSwdpjsubUXJjcOQG8uRxKoqjlphT+eAkP9SKMQ2eCO0rNc2
+ 4Fq2GIdzGQD1nF+7Qaqtys8/T83Ucf/OpD9N5AAAA
+X-Change-ID: 20250303-for-broadcom-fix-rt-ac5300-switch-ports-776b704ed279
+To: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Hauke Mehrtens <hauke@hauke-m.de>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Tom Brautaset <tbrautaset@gmail.com>, 
+ =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, 
+ Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, "Chester A. Unal" <chester.a.unal@arinc9.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741007221; l=1355;
+ i=chester.a.unal@arinc9.com; s=arinc9; h=from:subject:message-id;
+ bh=pnEACfUXw4i/i7KomdhkZyj3vwZ11bi8No1VYOFnwDs=;
+ b=qLc0CTqWEMG6zp53x9qNafll5DaO+iOLlCT86V716Yc1ca2n5cHbE8Kbt6Cg9WBKQgh9SCUWJ
+ F5fOYwVex56C5CTxFBl9oDM/M4keZbY0lv0dqahvCYqSn3bKx9yQyqv
+X-Developer-Key: i=chester.a.unal@arinc9.com; a=ed25519;
+ pk=/g3vBAV0YSvcIpSQ052xJbid7nrPXz8ExGKhTEuc6IY=
+X-Endpoint-Received: by B4 Relay for chester.a.unal@arinc9.com/arinc9 with
+ auth_id=306
+X-Original-From: "Chester A. Unal" <chester.a.unal@arinc9.com>
+Reply-To: chester.a.unal@arinc9.com
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6g8c2RjHzG1Vg
+X-ITU-Libra-ESVA-ID: 4Z6g1J08XlzG18n
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741708150.6035@/4aH4Acb23XayXzk0h2lrw
+X-ITU-Libra-ESVA-Watermark: 1741707769.19252@HLa5ULSJrkvFArswCMSWMg
 X-ITU-MailScanner-SpamCheck: not spam
 
-On Mon, Mar 03, 2025 at 03:58:42PM +0530, Sricharan Ramabadhran wrote:
-> 
-> 
-> On 2/28/2025 12:03 PM, Dmitry Baryshkov wrote:
-> > On Fri, Feb 28, 2025 at 10:23:56AM +0530, Sricharan R wrote:
+From: "Chester A. Unal" <chester.a.unal@arinc9.com>
 
-> > > +		dev_err(dev, "Failed with status: %d\n", msg.resp.status);
-> > > +		ret = msg.resp.status;
-> > 
-> > return msg.resp.status (is it really errno?)
-> > 
-> ok, yes error.
+After using the device for a while, Tom reports that he initially described
+the switch port labels incorrectly. Correct them.
 
-The question was if it is an errno, not if it is an error.
+Reported-by: Tom Brautaset <tbrautaset@gmail.com>
+Fixes: 961dedc6b4e4 ("ARM: dts: BCM5301X: Add DT for ASUS RT-AC5300")
+Signed-off-by: Chester A. Unal <chester.a.unal@arinc9.com>
+---
+ arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-> 
+diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
+index 6c666dc7ad23ef7c31ac22904c39789838caea2e..01ec8c03686a66dd1efa439333f83737fe572191 100644
+--- a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
++++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
+@@ -126,11 +126,11 @@ &srab {
+ 
+ 	ports {
+ 		port@0 {
+-			label = "lan4";
++			label = "wan";
+ 		};
+ 
+ 		port@1 {
+-			label = "lan3";
++			label = "lan1";
+ 		};
+ 
+ 		port@2 {
+@@ -138,11 +138,11 @@ port@2 {
+ 		};
+ 
+ 		port@3 {
+-			label = "lan1";
++			label = "lan3";
+ 		};
+ 
+ 		port@4 {
+-			label = "wan";
++			label = "lan4";
+ 		};
+ 	};
+ };
 
+---
+base-commit: 768953614c1c13fdf771be5742f1be573eea8fa4
+change-id: 20250303-for-broadcom-fix-rt-ac5300-switch-ports-776b704ed279
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Chester A. Unal <chester.a.unal@arinc9.com>
+
+
 
 
