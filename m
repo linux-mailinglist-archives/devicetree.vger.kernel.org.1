@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-153319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA60AA4BFE5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:09:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D391A4BFF2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:12:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08A801888445
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:10:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEB711889642
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F4F20E313;
-	Mon,  3 Mar 2025 12:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04E220E313;
+	Mon,  3 Mar 2025 12:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SsctDWSi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gxu0A/+q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DADDB1E573B;
-	Mon,  3 Mar 2025 12:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2659204092;
+	Mon,  3 Mar 2025 12:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741003793; cv=none; b=Er2Yqwj/Rc2v2iTsaz+NGlqWk1Lw11dnJvzIyFgmt/iYxRKFEV9zv5sK4NDI/CF92M5+9ePuCQay2ZdpVbolnyd73fQ/YbJpKaFJXq8B+v065O4W27mnUzi3RXdehLBtOkBBZc0/C4bQ0KDVj7xCXqsA30hJVTk0BU5nam6cxPo=
+	t=1741003952; cv=none; b=AcXRI2GiOSX6VIUJh0wXAvf0h/USpfcdUFUWFOaNNQ8pfhLQaQtX4Eh1rwOuvxXHUiJI3DJLKwZNafpo8RjQfU4jezIDwR650IJglJiM/f0rD0a32oyYT+W90q5iup2Pcf7atYBIlWvrJrnzohWc2W6jQ+JCO/2u5Um1V31rPuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741003793; c=relaxed/simple;
-	bh=LUAoYTszaLxNeJx/yBRh3ZlnPdqTfEgiCJW9o7WNQwc=;
+	s=arc-20240116; t=1741003952; c=relaxed/simple;
+	bh=4NFD8mCLdjfFv7HK+TuasEXX4+ZXOu+KJooAIqhe+hQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dY5B/VuUw+K5o/NLbHwC4iLKGK9tdheI1otpF8NApXt9RmoY2QNrQrqk5rXot4NvBY1gRPtECDBjRiYZibOsaFsHxcRbE0FtDpHXcpF8NK3psltRZfJV9Qf6X9Gn+DkGgLPVHjdfr5NkGDIO4IrdZQIHn5sV++GpAMjkdlUtXZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SsctDWSi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10EDFC4CED6;
-	Mon,  3 Mar 2025 12:09:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dx7J6WfbYW/ANJwLbJNF7jZlIG+PIYMTxd9uAAGBok9ahA4+LVSuujRHBFMOxILe55DFWzh/Sw+tVWxPcUTWRw3EKjhFRmdpRmbLbwqQbbszkOL0Neup1Vu6E9DGDgLOtDZuYFHn0qy3RUu/mmfEFosr4LWT7tzdLp68TC60W9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxu0A/+q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6797AC4CED6;
+	Mon,  3 Mar 2025 12:12:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741003792;
-	bh=LUAoYTszaLxNeJx/yBRh3ZlnPdqTfEgiCJW9o7WNQwc=;
+	s=k20201202; t=1741003952;
+	bh=4NFD8mCLdjfFv7HK+TuasEXX4+ZXOu+KJooAIqhe+hQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SsctDWSi9pS9rcV/wwMdJY5J5XeV7cyEMURzj3suf+wMa20/GReH03dYzBtZ6ibol
-	 Hkog/+Ltxie8ggy8kAsG089Xr5Be0xQaQ+sEv4ibFkJT5dDNMz8FHNGvSP2P0FHtlw
-	 SKU9ljSatSvyMbnHy9ms5Ot+qkkwpxYDVDbgeBp/C/B97NQwvSXooyBhNrzvbf9o/6
-	 r/QKhy8FVcaP8QwDe0YuWjUgjnduBGPIAPRiZPfIE9DpX2yyTtSEuynF7DJRl6ScWM
-	 EivbgD6GuxQfpOVp3UC1XLSQgSzwdOA4dr4qZd+4NhhHr+G61e238vXkyd/UepUS/+
-	 RGZqy90UIvxKA==
-Message-ID: <567addb4-169b-4fd0-aabb-78ceded22702@kernel.org>
-Date: Mon, 3 Mar 2025 13:09:46 +0100
+	b=gxu0A/+qtayq7f9bVNUpb7d8CFiJLOMDjKotEE32PQzuGyMBf1iSVKY1Yp0qDNPny
+	 jFLZragyb/sCZog1Bip5ziVFU3ZZLgpK3WVa8hUQXWDKyT9E+TGL1QLr8/64eC/BgK
+	 1x/G1aptrFwA4m34hiRG1OZIGSURGNMIFyKew2BhBViKXGhQCTWFKJ2jHNLvEFfFcQ
+	 2TRyTe82HyGry37+094pLNk2sSk938euZY3enzSqcFoZypDq0LyLXJfEbguMakuiXy
+	 aivbSX8FSLjWkdews1IOwLnhNOT6Kq/CzlDcSSorB6MOmkYOEIYMFRGXzJYGDdg/AH
+	 As1sj2rnavWZg==
+Message-ID: <fa239ce1-add4-4199-a57b-3c91a2118e2a@kernel.org>
+Date: Mon, 3 Mar 2025 13:12:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: display: extend the simple bridge
- with MStar TSUMU88ADT3-LF-1
-To: Svyatoslav Ryhel <clamor95@gmail.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Maxim Schwalm <maxim.schwalm@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: drop video decoder and encoder
+ nodes
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20250303120455.90156-1-clamor95@gmail.com>
- <20250303120455.90156-3-clamor95@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20250303-b4-media-v1-1-ddc5c81cc2b3@quicinc.com>
+ <9cf0f5cf-1287-485c-a75d-1a4333c6e457@kernel.org>
+ <7b3b52a7-5a4b-b34f-3450-8e4a60ade22c@quicinc.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -111,18 +106,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250303120455.90156-3-clamor95@gmail.com>
+In-Reply-To: <7b3b52a7-5a4b-b34f-3450-8e4a60ade22c@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/03/2025 13:04, Svyatoslav Ryhel wrote:
-> A simple bridge used in ASUS Transformer AiO P1801-T.
+On 03/03/2025 12:59, Vikash Garodia wrote:
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> Reviewed-by: Robert Foss <rfoss@kernel.org>
-> ---
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> On 3/3/2025 5:06 PM, Krzysztof Kozlowski wrote:
+>> On 03/03/2025 12:01, Vikash Garodia wrote:
+>>> Decoder and encoder nodes are already deprecated from bindings. Update
+>>
+>> Deprecated since when? commit or release.
+> commit - 459997e8990d9cdf7fb126057c31ec0ca8ff66ca
+> 
+> https://lore.kernel.org/all/20241230-media-staging-24-11-25-rb3-hw-compat-string-v6-3-a4d5070d3aaa@linaro.org/
+> 
+>>> the venus node to align with bindings.
+>>
+>> Since which release kernel does not rely on these?
+> I can see in 6.14-rc1
+> 
+Then both or at least the second part should be in the commit msg.
 
 Best regards,
 Krzysztof
