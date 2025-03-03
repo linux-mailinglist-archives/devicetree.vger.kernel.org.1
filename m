@@ -1,122 +1,95 @@
-Return-Path: <devicetree+bounces-154080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45CE9A4EB5B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:24:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8973A4EA10
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:55:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FADC7AC6AB
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:22:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F22CD188AF91
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:49:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E6E27C864;
-	Tue,  4 Mar 2025 18:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95A2527E1A6;
+	Tue,  4 Mar 2025 17:28:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bdDhTQiw"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nVDm6mrH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
+Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB701239579
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:11:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF781F2360
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:28:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741111917; cv=pass; b=QgezKv3rBbDigPu6d5IOGdmY8RWlA7UDgYXIHaRvnblxpmgD1HhfKpf+vK211Lo11YTzcfZY6XX1dW3NSG3QMazxq3ZfzeaC7RErBYDgQ+AOShwznIfSrcNKT5IlRtTMDQ+2KRE4ZeObWVjyFNiVyvD2To2JaoR1wEA6Pb+Unuo=
+	t=1741109300; cv=fail; b=kCNWfJjJVyJVWIFaofExlukWYKtzchzoWlTW/1zRPb3Pa8L4spAp95Zs7EqkRLiR4wqyth6G7XHAVTumUHG+5wexW2lsDQZRR5TGzOpq2X0QKNUzz8vU/kCVdOc8drXvqVGL2nZXkCqP3yuw7/Jm7JC/mX+AnjLI3EYA4DQQRuA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741111917; c=relaxed/simple;
-	bh=zlZxtHRu5ehzldwLK+ya5zBWIS/wU4//85x3BEtkIbk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j2mhvo5FY555ZX76i1jrrwk16rVUCngBJVJ1MJCX96qntQzChYkyGm/IGaPlllEOoHfB2OYgSkkcKlyWg+WDbCPxOc11G/HLqk/pJMbWFNt1UpQfNk3Ye/6EqthHKP5fhske6KgKMT29j6y4vK5ZhJecEHkkUBqZjlBKnR29978=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bdDhTQiw; arc=none smtp.client-ip=209.85.221.45; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; arc=pass smtp.client-ip=160.75.25.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1741109300; c=relaxed/simple;
+	bh=fJSn3lSDTlK+8ZW+kH3QUnzoBFI39rQvsG9xd03tdGo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hkl0bJl1vH7OTdXZ6ouw5SwXrK+khRbCa4MCnZoAdjjl9i3fKwMOfRlmZGLd5R4thN8oe07ZshidRF74IvkHl/K9/4n1mxMP6aOVLY+E9U+vn/WMBSu5tkbLdBG/WWyqer00CZ2p+t9NeOIzaGmFLgC7TY+5wRa4O1x+p4pq344=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVDm6mrH reason="signature verification failed"; arc=none smtp.client-ip=10.30.226.201; arc=fail smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 0AC9640CECCE
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:11:54 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 1ECE240D1F55
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 20:28:17 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
-Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20230601 header.b=bdDhTQiw
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6f1K6ZVXzFy32
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:57:41 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6ghB4jlXzG2d5
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:12:58 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 7A38B4274B; Tue,  4 Mar 2025 17:57:34 +0300 (+03)
+	id C7A4142737; Tue,  4 Mar 2025 19:12:56 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bdDhTQiw
-X-Envelope-From: <linux-kernel+bounces-541122-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVDm6mrH
+X-Envelope-From: <linux-kernel+bounces-541147-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bdDhTQiw
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVDm6mrH
 Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
-	by le2 (Postfix) with ESMTP id 434CC425D1
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:11:55 +0300 (+03)
+	by le2 (Postfix) with ESMTP id BCEA942CD8
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:27:58 +0300 (+03)
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw2.itu.edu.tr (Postfix) with SMTP id D4A682DCEC
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:11:54 +0300 (+03)
+	by fgw2.itu.edu.tr (Postfix) with SMTP id 52AC12DCEF
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:27:58 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07FEA3B0426
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 08:11:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8BB53B381A
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 08:25:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063F91EEA49;
-	Mon,  3 Mar 2025 08:11:42 +0000 (UTC)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9024A1EFFA3;
+	Mon,  3 Mar 2025 08:23:47 +0000 (UTC)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8183D13A3F7;
-	Mon,  3 Mar 2025 08:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449631EF370;
+	Mon,  3 Mar 2025 08:23:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740989499; cv=none; b=OP6yFFZ+2Mf0mmCElmm/sg/zP/FpnNevyj2ii/xPUW5YZXKMzM1BlPXOrtTffWfLCM5eGZiBd6GXu2LcersdObrHjCYY/163l26d+MdUt6psxJjNlGjWD+kjHnsfrUWyrQ/R8pM/SWfqF7i8WadPYW4umIVzZO2ll5Q36No2Vx0=
+	t=1740990224; cv=none; b=YeNpwptjQ6U6jfGrrQ4F8XoyNBWy3PsMWutDR1se33zfZVIgbrkhMRjxQjE2s0yC8eBNKg4kI8lgGWvU1Svgm6PGXyLvo2EbQLqdk3Y/9oLtT2fWC42+zzkdkUvVGtsNmUMaB8oILDEk34m2hehRcrn+otTCC4vApBeTspbKlZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740989499; c=relaxed/simple;
-	bh=zlZxtHRu5ehzldwLK+ya5zBWIS/wU4//85x3BEtkIbk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IRykvujfcRBSe74FWQ4hGfB+vUnO4+M/pz93kZxTV/4DS1+ErLPfwCnHDev9VjVROBbQ+84zK0FJa1PQKWvW1lKB3HZ/2FDFWCq+SUt/3B7VjABFepb6gsIpu6b4fTEmrFGVkvDw2VNGqJmTkGMUbvTqWt8+U0Dv11uARfXSO0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bdDhTQiw; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-38a8b17d7a7so2390729f8f.2;
-        Mon, 03 Mar 2025 00:11:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1740989496; x=1741594296; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9z6L/MI7GjiBeau82X34Q0GZ550CnqYRZsnAOUnmcj4=;
-        b=bdDhTQiwiBg3q00cxaeK6asZRDv2VBYyx7m1hLaUqqsZDR/F1qMWirMGM6/OKFH+BI
-         ZznqBdCXbvwsUk6PNek4trjbuPl38j+vLlBjS9ZEnpVGH4ICgAu6HXNRz+IklxDep6V4
-         ePzh/Mmb0UOWtzujmtslrYp8M3dFJhF1XjDowMpjfJg7blWDkqebWV51VTFt0Q9bh5Jy
-         YTq+Ygfs1ZpFEafPuRWmldCZnDVMWTGbrsL93Vf6KTpXIf71GUt7Vh4x6wSIrbXEpWUo
-         dgbrNKffcmKKHyQhSEihgyBruw0m6x+kodSXFghdpjgUT6gJCj1ueVF3KY+LBePhckyt
-         2qUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740989496; x=1741594296;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9z6L/MI7GjiBeau82X34Q0GZ550CnqYRZsnAOUnmcj4=;
-        b=BkLVKVznKDGrxi4bC0I8VRUZaQuAyZrFqkcNt7aCZOH1c+fDWV9s3pNC5nPBxp6z1M
-         6feX6EAAjRDlPVAzef8W5FhPaZw8g3X8Q8+GCTVe/M4md6EsCJrTnSXh/DABI/xApHN+
-         xh1fpYP0Nh417No1HswE6AzZvXV/rlEsdO4lqhxgwOZRXrV9C4JtzOZ3RjJGJGqf2W5J
-         6xGfFKrpw8/ZLXYy8sYuGvZyb/YXIZ8cB53bYMQpIOqlZ+dD3dDq7hiBzERfbjsGcpv/
-         Z1clOlzzAZLJSYHksUpCwH+p3fZrT1oqTrC37Bh97X7M1QQqFXyV/za6nAdnyHWvQwSX
-         v+6w==
-X-Forwarded-Encrypted: i=1; AJvYcCUSsZ3cpPV8wRLKSJaahkwmXa2ryzHPGUt8MOdo/stJrmfjEx0qjuYIQxYr8KNJdZAvaJtzDCYnIFZnA4xS@vger.kernel.org, AJvYcCUXLeJOBryZSYY+I+Lpf+gwkrTUgigLuT7xqIbCNdAiX9lThUrgyA44+M+fq9msY9GTohU3rtR2ZYU=@vger.kernel.org, AJvYcCWTBalb7c9O9D60I/WJeA/XH4KxuUFIVJ56Ub8c5SASs1AxTLRRQaPBvO3Hi841fJAinKGG40MWAvP9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxW0a7L6RUcqeN7fIc9CbNREV4uDWM/c9//kLUJnI9w3TJysm3e
-	OWhqkB+BzFHg/jdS7OgOgel30TMLg4i7hZeYf+5UnlbrQf96cwuLCGoITRiu6krWSNDnu0QY7zi
-	/zjuYwTZlB6tO5wA1inAGx2xvdxuF8II8
-X-Gm-Gg: ASbGncuazgm6fRto6nQpyT9hw3k1c2Fi3bjAa1S7TITUmUjTmPG1yZ+GRlxILHQRwnK
-	6Is+CYMqSDVNBoeBTxfrlhUK0bzj9QaFF+UEpodPyzBc+8uETSGLhV9cC0SSJHp2AubvibJmfET
-	oGzifrryLHr9G3rqlKdc9gJ7tSmR8=
-X-Google-Smtp-Source: AGHT+IGRLxKuQltzk3e4B+3XcQJpDonfFrlVdMJszjPJ8OA7ttLmcIax9Y8G7xZMscwBZ1g5e59TEwWWWUyrUN4P1E4=
-X-Received: by 2002:a05:6000:1aca:b0:391:10f9:f3aa with SMTP id
- ffacd0b85a97d-39110f9f4ccmr650449f8f.9.1740989494135; Mon, 03 Mar 2025
- 00:11:34 -0800 (PST)
+	s=arc-20240116; t=1740990224; c=relaxed/simple;
+	bh=JBYtPPedySIRtCIdRicfOKbQHdjbOfdWis8gttwCsKI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=B6FvrZqC+W6V46yPb7Ff2eN6i0EMkbFPh34rTayNVUaJgabFpd/9qkyZsX5igcK8kk7b5IP01g/jrDjs/5peB0zUHk8qGYjbKeAAdZgbNKy79DCn6UcbgKQEMW8H4wXjlxSm3ptd4fV21BO1C2a1EY/2vKaJegxgi4BaEieV08Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVDm6mrH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCC04C4CED6;
+	Mon,  3 Mar 2025 08:23:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740990223;
+	bh=JBYtPPedySIRtCIdRicfOKbQHdjbOfdWis8gttwCsKI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nVDm6mrH12QLK3/qUGEVPT3+GKwhphezMCb3UYIFD2ammHyvoXLfegpFXS35yl7wP
+	 iXAtbjJ81a3G3cAnJPMh2gX7ThMNXotuiezB1R2iwBozQKUtI/az9KcGpGrKa0hbfX
+	 sxIFGSWyqRiLFmiKd/sTiAynk6ZlSoW0DEPRoCOz6hRNJiNqnkJO8N8YaYaj9VEbrL
+	 I+RMLenU3E2DKzLx13fWN3rbKamCKZf30X6qYN21gC7d4+1b1HheP+KW4go/pQ8uTh
+	 pzlUSNBjBBx3Y1gdu86czAZdr9zQiESi4E2sLVt5KZcR86KqZIs6zji4qpoCidL2Gn
+	 GrbFt881OjQNQ==
+Message-ID: <a091f085-a7f0-4aaa-997d-cd478764c18a@kernel.org>
+Date: Mon, 3 Mar 2025 09:23:38 +0100
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -124,88 +97,162 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250226093700.44726-1-clamor95@gmail.com> <20250226093700.44726-2-clamor95@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: Document Maxim MAX8971
+ charger
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250226093700.44726-1-clamor95@gmail.com>
+ <20250226093700.44726-2-clamor95@gmail.com>
  <20250227-cherubic-mantis-from-betelgeuse-86f5ff@krzk-bin>
- <CAPVz0n0ygR=ygsvG2+z-zST7kmJ_P3nxf29tqdgHpRs_Nw6D5Q@mail.gmail.com> <fbd307ae-1dfa-497b-a597-d15b6baa30f4@kernel.org>
-In-Reply-To: <fbd307ae-1dfa-497b-a597-d15b6baa30f4@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 3 Mar 2025 10:11:21 +0200
-X-Gm-Features: AQ5f1JpF_3CGGZHse1vw-xjEiqhgLaEu4i7B8BPiRRXnSBWrzMGYDYQBdUdMgQ8
-Message-ID: <CAPVz0n2no1EJnf4GKSJWfYA_8h8x6BRk_ducufie90YPZR-k3g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: Document Maxim MAX8971 charger
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+ <CAPVz0n2kfxTJUkqrtLia6xBJ8t+fwjujjsc9k=mOk-P06bJH7A@mail.gmail.com>
+ <f83b2a95-e8f6-4e16-bd7f-f7dc96264c04@kernel.org>
+ <CAPVz0n0KVE8baFyGSgM+0rNfY8+Y2LFZbAhHHzPWTV358gc+Bw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAPVz0n0KVE8baFyGSgM+0rNfY8+Y2LFZbAhHHzPWTV358gc+Bw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6f1K6ZVXzFy32
+X-ITU-Libra-ESVA-ID: 4Z6ghB4jlXzG2d5
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741716600.02852@RhnCOStVEBEbAqHjVfAhmw
+X-ITU-Libra-ESVA-Watermark: 1741713979.28195@YwoNs8/SfxRM5HQenG4+tw
 X-ITU-MailScanner-SpamCheck: not spam
 
-=D0=BF=D0=BD, 3 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 09:54 Krzys=
-ztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On 27/02/2025 11:55, Svyatoslav Ryhel wrote:
-> >>> +
->
-> Please kindly trim the replies from unnecessary context. It makes it
-> much easier to find new content.
->
-> >>> +  maxim,usb-in-current-limit-microamp:
-> >>> +    description:
-> >>> +      USB Input current limit
-> >>> +    minimum: 100000
-> >>> +    default: 500000
-> >>> +    maximum: 1500000
-> >>> +
-> >>> +  maxim,ac-in-current-limit-microamp:
-> >>> +    description:
-> >>> +      AC Input current limit
-> >>> +    minimum: 100000
-> >>> +    default: 500000
-> >>> +    maximum: 1500000
-> >>
-> >> Half of these properties as well are not suitable and duplicate existi=
-ng
-> >> sysfs interface.
-> >>
-> >
-> > All these properties allow configure the charger to suit the device on
-> > which it is used. None of them are required but are a nice addition.
-> > Why you are denying me an ability to fully utilize hardware I have and
-> > tune it to the device? All those values represent hardware registers
-> > which can be customized for the device, not for the end user to mess
-> > with.
->
-> Because you put user-space choice or OS policy into the DT and DT is not
-> for that.
->
+On 03/03/2025 09:13, Svyatoslav Ryhel wrote:
+> =D0=BF=D0=BD, 3 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 09:52 K=
+rzysztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>>
+>> On 27/02/2025 12:03, Svyatoslav Ryhel wrote:
+>>> =D1=87=D1=82, 27 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 12:4=
+5 Krzysztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>>>>
+>>>> On Wed, Feb 26, 2025 at 11:36:59AM +0200, Svyatoslav Ryhel wrote:
+>>>>> +  maxim,fcharge-current-limit-microamp:
+>>>>> +    description:
+>>>>> +      Fast-Charge current limit
+>>>>> +    minimum: 250000
+>>>>> +    default: 500000
+>>>>> +    maximum: 1550000
+>>>>> +
+>>>>> +  maxim,fcharge-timer-hours:
+>>>>> +    description:
+>>>>> +      Fast-Charge timer in hours. Setting this value 3 and lower o=
+r 11 and higher
+>>>>> +      will disable Fast-Charge timer.
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    default: 5
+>>>>
+>>>> You still did not answer why this is board specific. This was reject=
+ed
+>>>> in the past because of that reason and nothing here changed. Nothing
 
-Those are NOT user-space choice or OS policy those are vendor
-configuration for a specific device and are NOT and NEVER were exposed
-to user configurations EVER. User messing with those may lead to
-device breaking.
+Where are the arguments to existing/previous decisions?
 
-> >
-> >> And for remaining, still no battery.
-> >>
-> >
-> > reference to power-supply IS included, hence the battery option is
-> > there as well.
->
-> I don't see it being used at all and you explicitly duplicated
-> properties which means that reference is redundant and should be dropped
-> with such binding. So how did you solve my request to add reference
-> which then you make redundant? Add reference and use it.
->
+>>>> will change without detailed explanation, so use other interfaces if=
+ you
 
-Which properties I have duplicated?
+Again, where is detailed explanation why time is determined per board,
+unlike previously agreed that it is not?
 
-> Best regards,
-> Krzysztof
+>>>> need user-space to configure it (see other drivers, e.g. maxim)
+
+
+
+
+>>>>
+>>>
+>>> Btw, I have used this awesome example you have provided. Take a look
+>>
+>> Where did I provide this example?
+>>
+>=20
+> Its presence in the docs is an example on its no? You have explicitly
+> told to check other maxim devices, I did so, they all have similar set
+> of convifurations.
+
+Choose rather later or latest, not 12 YO, binding as an example.
+
+>=20
+>>>
+>>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.gi=
+t/tree/Documentation/devicetree/bindings/power/supply/maxim,max77693.yaml=
+?h=3Dv6.14-rc4
+>>
+>> I opened it and I do not see anything about time. Please point to
+>> specific line.
+>>
+>> But regardless, how did I propose to use 12 year old binding? Where di=
+d
+>> I suggest that one?
+>>
+>>>
+>>> Oh, I wonder why it uses so much values which duplicate battery? I
+>>> know, it lacks battery, I assume that is why?
+>>
+>> No. You added to DT something which is not a hardware property, but
+>> user-space choice or policy.
+>>
+>=20
+> It is NOT a user-space choice or policy!
+Previous discussions on the lists - since you mention 12 year old
+binding, so also discussions 12 years ago - determined that they are
+closer to them than board configuration.
+
+I already said - this was rejected in the past - so now I am repeating
+myself.
+
+You did not bring any arguments just keep repeating "no", so I suggest
+reading previous discussions and coming with arguments against them.
+
+Best regards,
+Krzysztof
 
 
