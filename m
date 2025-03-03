@@ -1,216 +1,105 @@
-Return-Path: <devicetree+bounces-153481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF9D5A4CB3F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 19:50:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25617A4CB71
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 19:56:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 083983AC016
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:49:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40B111884538
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 18:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14C3422CBED;
-	Mon,  3 Mar 2025 18:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FB722DFB6;
+	Mon,  3 Mar 2025 18:56:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZOyoKEdb"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="aGVYKuGy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC39215F7D;
-	Mon,  3 Mar 2025 18:50:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC9821638E
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 18:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741027801; cv=none; b=GRLX8Ir0fAIVpe6Wv6VHqQOG/G7B9uA+ook2F4xcD31gUqeAS0wqCKT72/iBkLJUjTJjaljpLEqbSkLrT6eFwJtHyipUNy1omz5Iw7DWOr/u+iCJWdGJ33KYltyb5apH16kJLECGe7KKp4grZcye+qVbdWQMfZ+S6Vjv+narw+A=
+	t=1741028213; cv=none; b=ceYT2jewlKyT5hgJj0hySUxlHZH3SgIGBgOMNvG+v7lTy3WLXf1wu22xRxpaKuPuHx+tHZDpv0O759oyO539+T6KY6imvOWGM9yQfx/CbXeUfncl/+Yzv3QuOIQFwZUecvUOugXGpT7Kv7OTf+r97KVI6NXqWeEvmhmS7SxvlwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741027801; c=relaxed/simple;
-	bh=ay2Mn2td7LnvXWZz0y/fV3J9yKVFlbL+Ii+8sPB9FlI=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EXKRTzv/EVUpbl6gSCJLb3npttbZqlh+mSgQgtw7WhwOjdEWjUhvMpOKWAX6J+2iGhc8LwrTQ60S/hDmRxcg9i+a7z6JIy0XIx7boWB84fXbHZ6JpRMfpdacJqjU+hg9G2FSP/Psiedgybd0oKlqfyYt9sJMMzzaVAhohSZWop4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZOyoKEdb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA80BC4CED6;
-	Mon,  3 Mar 2025 18:50:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741027800;
-	bh=ay2Mn2td7LnvXWZz0y/fV3J9yKVFlbL+Ii+8sPB9FlI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ZOyoKEdboUWUG+YMMkdL5RPjsQQjxkQgZljsCmkfUknphh5NWjVd5xuL2U5V5YcPd
-	 IycN7aSsNST2N/J6LErZhR1QBg+cSC2AxMlhHhMhlI5qge3YS08YlGALiMwSP4GGfx
-	 koSc1w6VFEM/kLaIoZAfFlHxtHrKzuxX0wstpuhDgBxe0fzvghFQVz+sZINJH7RgKz
-	 qqgvIF9/c79a16CFL7ks+slGk061OyzBAf2SapL7k3eydnwojqTphxYwrJKVV1hh75
-	 d04bon1Z4dwQWtqHZz6+s8JAIvbP1zuwf8LjklHvnl4IZoTdDALzF0KYPiPVsHkhYy
-	 noOLQ+bZpO1cg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1tpArW-009xKj-CA;
-	Mon, 03 Mar 2025 18:49:58 +0000
-Date: Mon, 03 Mar 2025 18:49:58 +0000
-Message-ID: <86ikoqoso9.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	arnd@arndb.de,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	marcin@juszkiewicz.com.pl,
-	Fugang Duan <fugang.duan@cixtech.com>
-Subject: Re: [PATCH v3 6/6] arm64: dts: cix: add initial CIX P1(SKY1) dts support
-In-Reply-To: <Z8WUxyJT1fdHKo67@nchen-desktop>
-References: <20250227120619.1741431-1-peter.chen@cixtech.com>
-	<20250227120619.1741431-7-peter.chen@cixtech.com>
-	<86r03ip0kf.wl-maz@kernel.org>
-	<Z8WUxyJT1fdHKo67@nchen-desktop>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1741028213; c=relaxed/simple;
+	bh=I+YMifaWTe/KtcKWykwnguS02DQwUt/9Nd7ZBZTaipM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=emVD+1IwQV5y4iyckTE2Pg3o0Evj33Nx/Nay3soXULmWyRfUhYKCLPsCoBaeZdzgxvAeHqFHIWtWmuPl26vGxRz05dI/NGoY/Kp85AVLY53NK48H+mrkrvQUF0nm483tKHQ4eL4meF0WnQFaiYgjWdZ4gLzJ3J75JKCIL5b39mg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=aGVYKuGy; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-439a4fc2d65so51800475e9.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 10:56:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1741028210; x=1741633010; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ByURWW4/51grEFFoJ5cNbGWq84mjT1dgOMDzzVdymTY=;
+        b=aGVYKuGyOfyU9UcQavzr01XQNPAZs5kAe6gKMjYHl4T7XQjPiPHek5YgM1iqH/1oDM
+         M0xI8p3Ty1nK0IPEGz9ZQi0Ti2fi764sF/BZDfJRzJncCTkfG/BV4xA7z4hwkmtdzjLI
+         BspErz0GpDg707j8UFSbl1drZaCkibpsQkcmK2/+F4wB8YW+ednOV946QvKqE1UxUMYL
+         uahffyCxut23erQrfWsI577jiTlvec0IJqDVFYy29BKWM5xvEgAdxqXmM1yboAzK/geS
+         YhgO5eOFtBbhSGu7L54G/fhZfS116c/uvGPtEOEtEQR/7yKFHqyulGPuVWupTgeZ9s2S
+         7XqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741028210; x=1741633010;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ByURWW4/51grEFFoJ5cNbGWq84mjT1dgOMDzzVdymTY=;
+        b=g39CJuVlq1saEocf2WA+vnLn5caoZc200g5Ny2pWUm3okajv2XeAPQLuPK8A6A2bpy
+         kwAdyOav/f47XAwDk3XFRAvIhrguD7Dxgd/CnXKfSqT5Av16YGuM2swpFTVWS6idJHdG
+         V54DwkV1QweoXgPvBHobTFasvj8+HCFnK86aaQexWy0/HBcOqH7vEPMUItaFxQpal/MW
+         l8c/FXeE9DEpZstjVQt4O0W9b0Ie82VYi7SN4LJcuM07Wy0k/Oj+VPCJuak/VCqB4if/
+         Qir+zt3SAHh+JZXpwpaId1ZOMVt3/7F4007cpFTWZGSkTA9cQISG0iEoO0evuq3INX1A
+         N9OA==
+X-Forwarded-Encrypted: i=1; AJvYcCWc+amgA2Gg861/g9G/Zxm8KcaY2OczhtbL3yR3SN/cv+B6ikEhui5mEf2Ce6blmmOcgiVI+Cowe7m5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPg6WeguPOWT8C9/lLBISNjL6TM4L6lWDzsw3XKwFucgk0M1de
+	Xerq/6nowJPTWDLtM+9Y+kq58TVK4C2KTktBn4xY/blTq1Mzl9XtsgHkmDsHGNw=
+X-Gm-Gg: ASbGncsydh1lkPjsKzkKNf+278WmpxnrWWWCSAZwc3+l/k1AiqBOVNxyBcyJgEYFyHy
+	0uUCKn/1BVmIgf4GsYpWFPlrH72rwQ9vnxBGTyTjtaFQ2ViT47nZcvVlb/+a0ExQUuipkZyYHmp
+	ALCZ2Q1FXlLPagcVe1fk+3E1l74alEAMQRYQukIM2rOSnKg1tZiuo4eJprh4WtNwnnJQkImDzRv
+	sP7A4U/Ov7jooxAKjjuYLymPnmi6zMeL5j3Ul+50d+1KG6JSo115isGIxYPTB0tYDTDeHtIxCTW
+	q7I7+yF+O/aBjbgzF3gDybEYrLDjDgDNs6G2Twxt4GUq1PrbNVmn2g==
+X-Google-Smtp-Source: AGHT+IGVUE0CQu4ReThqwR4ny9E8a1exZ2jLsRFt7w170BeB8vADyu6EQUUGy2xTMtQFYKiXpDs9Pg==
+X-Received: by 2002:a05:600c:4fd3:b0:439:a255:b2ed with SMTP id 5b1f17b1804b1-43ba66e5f09mr144551665e9.9.1741028209871;
+        Mon, 03 Mar 2025 10:56:49 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.138])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43bc9c0fb1esm12229025e9.20.2025.03.03.10.56.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Mar 2025 10:56:49 -0800 (PST)
+Message-ID: <39213e99-3041-4602-9dd2-536e9b09ad11@tuxon.dev>
+Date: Mon, 3 Mar 2025 20:56:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: peter.chen@cixtech.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com, marcin@juszkiewicz.com.pl, fugang.duan@cixtech.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-
-On Mon, 03 Mar 2025 11:38:47 +0000,
-Peter Chen <peter.chen@cixtech.com> wrote:
-> 
-> On 25-02-28 15:10:24, Marc Zyngier wrote:
-> 
-> Hi Marc,
-> 
-> Thanks for your detail review.
-> 
-> > > +
-> > > +             cpu10: cpu@a00 {
-> > > +                     compatible = "arm,cortex-a720";
-> > > +                     enable-method = "psci";
-> > > +                     reg = <0x0 0xa00>;
-> > > +                     device_type = "cpu";
-> > > +                     capacity-dmips-mhz = <1024>;
-> > > +             };
-> > > +
-> > > +             cpu11: cpu@b00 {
-> > > +                     compatible = "arm,cortex-a720";
-> > > +                     enable-method = "psci";
-> > > +                     reg = <0x0 0xb00>;
-> > > +                     device_type = "cpu";
-> > > +                     capacity-dmips-mhz = <1024>;
-> > > +             };
-> > 
-> > Given that half the A720s are advertised with lower clock speed, how
-> > comes they all have the same capacity?
-> 
-> According to Documentation/devicetree/bindings/cpu/cpu-capacity.txt
-> "capacity-dmips-mhz" is u32 value representing CPU capacity expressed
-> in normalized DMIPS/MHz, it means CPU capability per MHz. For sky1
-> SoC, both middle and big cores are A720, so their capability per MHz
-> are the same.
-
-Ah, fair enough. I missed that detail.
-
-> 
-> > > +
-> > > +     pmu-a520 {
-> > > +             compatible = "arm,cortex-a520-pmu";
-> > > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> > > +     };
-> > > +
-> > > +     pmu-a720 {
-> > > +             compatible = "arm,cortex-a720-pmu";
-> > > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> > > +     };
-> > 
-> > This is wrong. The default configuration for PPIs is to expose the
-> > *same* device on all CPUs. You must use PPI affinities for your PMUs.
-> > Please see the GICv3 binding for the details.
-> 
-> We have discussed internally, we have not seen the benefits routing
-> different PPI interrupt to dedicated CPUs. Any use cases?
-
-This isn't about changing the PPI. It is about matching CPUs with
-their PMU. Here, you are saying "both PMU types are connected to all
-the CPUs using PPI7".
-
-That's obviously not the case.
-
-> I prefer changing pmu nodes as one generic Armv8 PMU node. Is it accepted?
-
-No, that's not acceptable.
-
-> Or must I keep both pmu for A520 and A720, and add PPI affinities to
-> describe hardware well?
-
-This is an established practice on all big-little systems: each PMU
-node has an affinity that indicates which CPUs they are connected
-to. For GICv3+, this is carried by the interrupt specifier.
-
-Please look at existing SoCs supported, such as rk3399, for example.
-
-> 
-> > 
-> > > +
-> > > +     pmu-spe {
-> > > +             compatible = "arm,statistical-profiling-extension-v1";
-> > > +             interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_LOW>;
-> > > +     };
-> > > +
-> > > +     psci {
-> > > +             compatible = "arm,psci-1.0";
-> > > +             method = "smc";
-> > > +     };
-> > > +
-> > > +     soc@0 {
-> > > +             compatible = "simple-bus";
-> > > +             ranges = <0 0 0 0 0x20 0>;
-> > > +             dma-ranges;
-> > > +             #address-cells = <2>;
-> > > +             #size-cells = <2>;
-> > > +
-> > > +             gic: interrupt-controller@e010000 {
-> > > +                     compatible = "arm,gic-v3";
-> > > +                     reg = <0x0 0x0e010000 0 0x10000>,       /* GICD */
-> > > +                           <0x0 0x0e090000 0 0x300000>;       /* GICR * 12 */
-> > > +                     interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-> > > +                     #interrupt-cells = <3>;
-> > 
-> > This will need to be bumped up to 4, and all the interrupt specifiers adjusted.
-> 
-> Depends on if PPI affinities is must.
-
-Definitely a must, unless you want to completely remove all traces of
-the PMU, which is of course silly, but a valid alternative.
-
-[...]
-
-> > > +             arm,no-tick-in-suspend;
-> > 
-> > Why do you need this? Is the HW so broken that you have implemented
-> > the global counter in a power domain that isn't always on?
-> > 
-> 
-> Not hardware broken, just arch timer will be powered off at cpu idle
-> and system suspend due to power consumption reason.
-
-This is not about the timer. This is about the global counter. If your
-counter stops ticking when you're in idle or suspended, your system is
-broken and you need this property. If the timer (or more precisely the
-comparator) is turned off because the CPU is off, then that's the
-expected behaviour and you don't need this property.
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] Add System Components for Microchip SAMA7D65 SoC
+To: Ryan.Wanner@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, wim@linux-watchdog.org, linux@roeck-us.net
+Cc: vkoul@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <cover.1740675317.git.Ryan.Wanner@microchip.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <cover.1740675317.git.Ryan.Wanner@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
--- 
-Without deviation from the norm, progress is not possible.
+
+On 28.02.2025 17:24, Ryan.Wanner@microchip.com wrote:
+> Ryan Wanner (2):
+>   ARM: dts: microchip: sama7d65: Add watchdog for sama7d65
+
+Applied to at91-dt, thanks!
 
