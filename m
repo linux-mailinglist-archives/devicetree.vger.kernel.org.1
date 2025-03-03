@@ -1,119 +1,127 @@
-Return-Path: <devicetree+bounces-154074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0054EA4EB3E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:22:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20AF0A4EB6F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:26:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB91D188DC3F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:17:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 484561700B9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6116E293B41;
-	Tue,  4 Mar 2025 18:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C5927E1A1;
+	Tue,  4 Mar 2025 18:07:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rnDLM9T3"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bIi1zgf0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
+Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1056B281531
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19824283CB0
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:07:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.115
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741111270; cv=pass; b=uxNPt6FZoA9lObz4rFEkjdZ+l3ThTym5xLuYjmaMauJ0/KT48qwVUCRvP9/tL86I/ziNe2NZDeLhHd/2NZLrWCExFn3b1aUDxH6dyp2uJg5tRgj2UtnPiXa3T07ItSEVBydfO2q/ALzH0DxyLNp5vz27ACvzkub4y1iLJ464CBU=
+	t=1741111666; cv=fail; b=iqVvvpqxVI5EQm4f1xLfV5UJ7q6EV9plh/LfXaSjCKDRqTplsvIn/URJvieR0T/y0fcJlt3q1HnhL9W7HHkgCKgtjK6L4PMAhCCL+0V77TsxApuNN7A6mViV56iUx774FNkm5yKaRsMR+f7Vvblb58XdZ1Oq0BzFofl+UrhQOmc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741111270; c=relaxed/simple;
-	bh=OJuD4nh5qDduoT1qMA986Nis1xRS6yZJndL3RjVGrBE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LFDny0aEhba2tYk9kLDSzPXOVSHkPQx/FQcGX769HeW21GPRIArhMvQHYbl92DALeDqR+SlLghJqOzZKXLkMJzvbKE8bKILwGE2/Eyft0U+shpSLxyvayn5Tw3Ahk/FhnZuLUSzhSYODz+SRNgCHbDnwIgDHW8sfN9KoYgWAYUk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rnDLM9T3; arc=none smtp.client-ip=209.85.208.175; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; arc=pass smtp.client-ip=160.75.25.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	s=arc-20240116; t=1741111666; c=relaxed/simple;
+	bh=1wWLqFg+ZyNjFPCGyIlupF+qKBORmMv346TSXZEK9lM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XJtVGH0DV4gn7k0r2mm+EaBJllMNP/jcWfTDtwTIeXf/w2I6XIs6/JZ2Y9WmVC+6Pa0Qbb+y2dR0izNmdMx3dm1hyrFehiHr2lqbGYHIJKoXa16HvzYG0/m5wdpbYzDkJ41YsyRqTovENt25+lILxXB6uoik1L4oTFPuyWl+lRo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bIi1zgf0 reason="signature verification failed"; arc=none smtp.client-ip=205.220.180.131; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; arc=fail smtp.client-ip=160.75.25.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
+Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 4A91940D1F47
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:01:04 +0300 (+03)
+	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id 9DB3940CCF12
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:07:40 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6flm1tZLzG0P4
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:31:00 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dsC3mH0zFxch
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:50:39 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 9676B4271F; Tue,  4 Mar 2025 18:30:53 +0300 (+03)
+	id 9345442726; Tue,  4 Mar 2025 17:50:27 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rnDLM9T3
-X-Envelope-From: <linux-kernel+bounces-541701-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bIi1zgf0
+X-Envelope-From: <linux-kernel+bounces-541719-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rnDLM9T3
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bIi1zgf0
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 78D0541A84
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:29:09 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 3808341F6A
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:44:25 +0300 (+03)
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id D9B85305F789
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:29:08 +0300 (+03)
+	by fgw1.itu.edu.tr (Postfix) with SMTP id C3CA9305F789
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:44:24 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 257EE3A7436
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:28:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCC203AC499
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:44:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58372101A0;
-	Mon,  3 Mar 2025 12:28:54 +0000 (UTC)
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4A520F09F;
+	Mon,  3 Mar 2025 12:44:05 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D94C20E70F
-	for <linux-kernel@vger.kernel.org>; Mon,  3 Mar 2025 12:28:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE4520370D;
+	Mon,  3 Mar 2025 12:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741004930; cv=none; b=jwTJpY2S77OXYKsKRui+IC90PO+lQPeIFEqmAtu2yIT5x9Au2ey7UxgoH2bqdRWWLB1oRRYY/RVsyzKMKoARGrPw3TvQgE0FUPf0OPaoWNx9eseicutuA3PhF0uKp1lW+xoUavpsQyr0nmUyaq9dV0Nv8SyC1MKt0CX933RtqsM=
+	t=1741005842; cv=none; b=BfeV5lXJOkPebDbyCfbVwp58NAumw2u32k7Gdp49aXMPQvnjc8vk3YoA3RW4IM08+3hHRQABjNpuDSx2+UHx0Amxeq2Nkx9JD7SHHHa8fwxx6DXZueatMzdzu9ynrjj2IORBkFRyuYjHiZmkeF+k3058/3LZencVuxGENjAFFm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741004930; c=relaxed/simple;
-	bh=OJuD4nh5qDduoT1qMA986Nis1xRS6yZJndL3RjVGrBE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eTF70t6DGnkmtxeN+taAMm3BaG/4nozIOM3WhLoCD44oocMGbSXsK8vBbl4L3EynVSBjPE5vqG8sfuKWiaBtSDxiQ75Yea+MNLMzaARodNOqiML9fZXjH3WwSehDyeTm1htQn9+1DYEN5CPsP5WNvDIOW2Cyp0tOj80YyFfpjzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rnDLM9T3; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-30613802a04so44914401fa.2
-        for <linux-kernel@vger.kernel.org>; Mon, 03 Mar 2025 04:28:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1741004927; x=1741609727; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RuV4Heg6y327cT5t8SADpvVNAjdpje5FChTnyyX6MR8=;
-        b=rnDLM9T30dqi2nFxFqxEffcwEATPUkSk6ERFeJ6YyB95qzmFsNGQ5qGBgRruUkJ9pt
-         6+XjnkrHuyR0WNi3/RNmnWDTZSZlAq/ydeYJTi78CAwSV/VqbrEtA2j4UlKEOjdOexi5
-         KRIsBL5nFk81W8SMvF7dypWNikBt8dIeGa2BLMn9cH9PV1p87OdvE9fXBs4+UT5w/T1y
-         dN8nqeGG5DAZdXGk30ndui+FE1YYZCKcVY8E/BwbLIRitQrPSvTwLQVHfiqUBdBDGSb7
-         vQJnDTQemmoYelv4AI/N+SaM6YXlk/yzZdlIWZDMJlV9rvleF4qE47SVR6rlXmvBFhAa
-         sJWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741004927; x=1741609727;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RuV4Heg6y327cT5t8SADpvVNAjdpje5FChTnyyX6MR8=;
-        b=S7sYd0elgsKK8dacR3EdsG7GAi9sy6QaACY1NLuwP281Chrn+w5PIoQdPdEsMFNNiY
-         ByuNDFKGc/eXsp4h9BKFAjJuckB5o7r9AzTobLTV50p3rMp0piKSXLZ+1szTxhaQfrX6
-         kTW58tJusrmRzvXItPrANoB0Ue6PGgN4GXeV6pr6jKtjugqMdCDkCpz8gQxhTvlcMwmP
-         FH0izYF7a/pUbHk0uJ5WE50dByv5x1ww6xuh9ffyvV+BGG3ENLvpm4XRpKsLC+J412E5
-         aZk5jsnhn09laMlAwv8GQ03gNUjPUpn3i40+9mHrexDCe0hen5tqNjaWpbCGGqewbn5H
-         KmRA==
-X-Gm-Message-State: AOJu0YxKsNQhpFtfewrGoMTpt+Kzc1yiG/2KQMTQhLJlRazcpnF3i03l
-	t+SlOxHc1RCa1eM6o+j/nbgMMzg6b7LHA5TieXCXPKK8/IK1E/crFm/A0qCZyJO/HX+yFUzGyIg
-	/+t1aF4RJqMPuU6cn+9+/Mx3Gc3fzjXQO9OdLUw==
-X-Gm-Gg: ASbGncuKpeMa5NQHi1wtkqdgf0TKRkALYVsZeJysvc8xCt04bpT9J6l0eOuZWBiakAY
-	NWlmQv13PfaXpFz/QSOzr2RU8klxErXCmhx/0dNraQyv2z28aiopc0x8uireNVxDEuOo9uD1e7Q
-	G+V/lTu8+Th91AiVXRqqIdGb9ELA==
-X-Google-Smtp-Source: AGHT+IFQjWCVfYvVjqrhiYeoVVCii+BCnHEEwspsU3nYkgMsvxbUiPrrpwMddXZrBO2cTKjwXbjtGrEtQ/qF9ee0CR4=
-X-Received: by 2002:a05:651c:198d:b0:30b:b3a1:d390 with SMTP id
- 38308e7fff4ca-30bb3a1eec1mr15314461fa.16.1741004926495; Mon, 03 Mar 2025
- 04:28:46 -0800 (PST)
+	s=arc-20240116; t=1741005842; c=relaxed/simple;
+	bh=z0vKUUCdNa2rmQq2Z2iFgz2YDU2r+7vSZIUk6XA/E9s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rMsK9+BH4r1iLWsIZ4nAPLNE6Q1DZRpzcpAUupzc9OZsoIVjyC31KNCZDwuvIsttRyEaekwoV4Ki+wfSy7CGTDBW6m6yHVWWp55vWGeZyvIeLek6JFX6tuw6G/Mc857BgEtDzP3tDcHv167SR3PcSwmd+XxYLjkxIpZeAcv0yzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bIi1zgf0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523AWrUY032012;
+	Mon, 3 Mar 2025 12:43:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=MK0vw10NOYxKduj5K3PP71gYo/6Fn4XUgQa
+	fNDnU340=; b=bIi1zgf0IKHuDffXqJe+BTNnjIpMa/oXpmZ6UFYmpbpCdVTQO6N
+	0/7UuYEf48fTK5ILMVA6eYUgufadlKKzsSME2xSdNJVi57rPkxg8AQZQETI0cW/t
+	tBoXYru+qcdKZenh41FWmA+Dau0mdm+qttww5hXG6Gdm1uk2KtRp0Qn3eEV08a2C
+	NrgEqaV6e08w2+AIVPivVhgtcxRd2bMYwEdebTK3gsLU+46uVhHg/L9mvcttFjpI
+	SPzh+ad2p/MtmYRRz6PUMNNCs0gZ168VfEBs+PmHHeIDlybywP9iWNSTmIEr9GOo
+	Zr0gATLBJFAFrLNwQj2EYw/HZB238oQqA6w==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 453t95vxvt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Mar 2025 12:43:55 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 523Chqat015065;
+	Mon, 3 Mar 2025 12:43:52 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 453uakx542-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Mar 2025 12:43:52 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 523Chqgu015058;
+	Mon, 3 Mar 2025 12:43:52 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 523ChpGF015057
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Mar 2025 12:43:52 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
+	id 368F653B; Mon,  3 Mar 2025 18:13:51 +0530 (+0530)
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        broonie@kernel.or, andersson@kernel.org, konradybcio@kernel.org,
+        johan+linaro@kernel.org, dianders@chromium.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
+Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Subject: [PATCH v3 0/9] Add support to load QUP SE firmware from
+Date: Mon,  3 Mar 2025 18:13:40 +0530
+Message-Id: <20250303124349.3474185-1-quic_vdadhani@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -121,271 +129,118 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250227162823.3585810-1-david@protonic.nl> <20250227162823.3585810-7-david@protonic.nl>
- <7b2a8d71-9d83-4d40-903b-ba7ef1c686f3@baylibre.com> <20250303122253.26fec335@erd003.prtnl>
-In-Reply-To: <20250303122253.26fec335@erd003.prtnl>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 3 Mar 2025 13:28:35 +0100
-X-Gm-Features: AQ5f1Jp_SOcTl9D-8tg4bO9crBJVLRBfADMprZjGHDyBqnvNsQnEZS-pyxe1y-E
-Message-ID: <CAMknhBFoRoaXWBL-vDnDrepqw_KJ-VrYeOoGJfjz8q=wDNM6xA@mail.gmail.com>
-Subject: Re: [RFC PATCH 6/7] dt-bindings: motion: Add adi,tmc5240 bindings
-To: David Jander <david@protonic.nl>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: syYd2GGAT3Kb_houxUQJ1SvMwz4CEISA
+X-Proofpoint-GUID: syYd2GGAT3Kb_houxUQJ1SvMwz4CEISA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-03_07,2025-03-03_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ phishscore=0 mlxlogscore=999 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 spamscore=0 malwarescore=0 suspectscore=0 adultscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2503030098
 Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6flm1tZLzG0P4
+X-ITU-Libra-ESVA-ID: 4Z6dsC3mH0zFxch
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741715960.33601@4C9tsCLz0yAqAZqrhkRdjg
+X-ITU-Libra-ESVA-Watermark: 1741716341.74483@B+8x5dgIuYdnfcNlkQK+Ew
 X-ITU-MailScanner-SpamCheck: not spam
 
-(Sorry if you get this twice. I don't have my regular computer today
-and didn't realize I was sending HTML the first time. Resending in
-plain text so the lists pick it up.)
+In Qualcomm SoCs, firmware loading for Serial Engines (SE) in the QUP
+hardware has traditionally been managed by TrustZone (TZ). This setup
+handled Serial Engines(SE) assignments and access control permissions,
+ensuring a high level of security but limiting flexibility and
+accessibility.
+=20
+This limitation poses a significant challenge for developers who need mor=
+e
+flexibility to enable any protocol on any of the SEs within the QUP
+hardware.
+=20
+To address this, we are introducing a change that opens the firmware
+loading mechanism to the Linux environment. This enhancement increases
+flexibility and allows for more streamlined and efficient management. We
+can now handle SE assignments and access control permissions directly
+within Linux, eliminating the dependency on TZ.
+=20
+We propose an alternative method for firmware loading and SE
+ownership/transfer mode configuration based on device tree configuration.
+This method does not rely on other execution environments, making it
+accessible to all developers.
+=20
+For SEs used prior to the kernel, their firmware will be loaded by the
+respective image drivers (e.g., Debug UART, Secure or trusted SE).
+Additionally, the GSI firmware, which is common to all SEs per QUPV3 core=
+,
+will not be loaded by Linux driver but TZ only. At the kernel level, only
+the SE protocol driver should load the respective protocol firmware.
+---
+v2 -> v3:
 
-On Mon, Mar 3, 2025 at 12:22=E2=80=AFPM David Jander <david@protonic.nl> wr=
-ote:
->
->
-> Dear David,
->
-> On Fri, 28 Feb 2025 16:38:51 -0600
-> David Lechner <dlechner@baylibre.com> wrote:
->
-> > On 2/27/25 10:28 AM, David Jander wrote:
-> > > Add device-tree bindings for Analog Devices TMC5240 stepper controlle=
-rs.
-> > >
-> > > Signed-off-by: David Jander <david@protonic.nl>
-> > > ---
-> > >  .../bindings/motion/adi,tmc5240.yaml          | 60 +++++++++++++++++=
-++
-> > >  1 file changed, 60 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/motion/adi,tmc5=
-240.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/motion/adi,tmc5240.yam=
-l b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
-> > > new file mode 100644
-> > > index 000000000000..3364f9dfccb1
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
-> > > @@ -0,0 +1,60 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/motion/adi,tmc5240.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Analog Devices TMC5240 Stepper Motor controller
-> > > +
-> > > +maintainers:
-> > > +  - David Jander <david@protonic>
-> > > +
-> > > +description: |
-> > > +   Stepper motor controller with motion engine and SPI interface.
-> >
-> > Please include a link to the datasheet.
->
-> Will do.
->
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - adi,tmc5240
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> >
-> > I assume that this is the overvoltage output (OV pin). Would be nice to=
- have
-> > a description here saying that. There are also NAO and DIAG0/1 output p=
-ins, so
-> > it's a bit ambiguous otherwise.
->
-> This is the DIAG0 output pin which on this chip has a dual function as ei=
-ther
-> a STEP output or an interrupt output. The pin name is a bit misleading, b=
-ut it
-> is the "interrupt" function that is meant here. The datasheet documents a=
-ll
-> the different events that can trigger this interrupt.
-> I will add a description to clarify this.
->
+- Add a new YAML file for QUP peripheral-specific properties for I2C, SPI=
+, and SERIAL buses.
+- Drop the 'qcom,xfer-mode' property and add the 'qcom,gsi-dma-allowed' p=
+roperty in protocol-specific YAML.
+- Add a reference for the QUP peripheral shared YAML to protocol-specific=
+ YAML.
+- Enhance error handling and remove redundant if conditions in the qcom-g=
+eni-se.c driver.
+- Remove the ternary operator in the qup_fw_load function.
+- Update function descriptions and use imperative mood in qcom-geni-se.c
+- Load firmware during probe only if the protocol is invalid.
 
-If it makes sense that other pins could possibly ever be connected to
-interrupts then we can add those and also add interrupt-names (but
-only if there is more than one possible interrupt).
+v2 Link: https://lore.kernel.org/linux-kernel/20250124105309.295769-1-qui=
+c_vdadhani@quicinc.com/=20
+=20
+v1 -> v2:
 
-> > > +
-> > > +  enable-supply:
-> > > +    description: Optional external enable supply to control SLEEPn p=
-in. Can
-> > > +      be shared between several controllers.
-> > > +
-> >
-> > This doesn't look like a supply, but krzk already discussed that. But t=
-here
-> > should be actual power supplies: vs-supply, vdd1v8-supply, vcc-io-suppl=
-y. And
-> > a reference voltage supply: iref-supply
->
-> I have added vs-supply and vcc-io-supply to the binding. These are the on=
-ly
-> supply pins that can be connected to the outside world or otherwise be of
-> concern to the software.
->
-> vdd1v8-supply is an internal power rail that must not have a connection t=
-o the
-> outside of the chip (besides an external filtering capacitor) and also do=
-esn't
-> have any bearing to the software at all. It cannot be disabled, adjusted =
-or
-> anything, so I don't think it needs to be mentioned.
->
-> IREF isn't a supply pin. It is merely a pin for connecting an external
-> reference resistor that is used internally for current scaling and it too=
- has
-> no interaction with the software in any way.
->
+- Drop the qcom,load-firmware property.
+- Remove the fixed firmware path.
+- Add the 'firmware-name' property in the QUP common driver.
+- Add logic to read the firmware path from the device tree.
+- Resolve kernel test robot warnings.
+- Update the 'qcom,xfer-mode' property description.
 
-Ah, I read the datasheet too quickly.
+v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-1-qu=
+ic_vdadhani@quicinc.com/=20
+---
+Viken Dadhaniya (9):
+  dt-bindings: qcom: geni-se: Add 'firmware-name' property for firmware
+    loading
+  dt-bindings: qcom: se-common: Add QUP Peripheral-specific properties
+    for I2C, SPI, and SERIAL bus
+  dt-bindings: i2c: qcom,i2c-geni: document qcom,gsi-dma-allowed
+  spi: dt-bindings: document qcom,gsi-dma-allowed
+  dt-bindings: serial: document qcom,gsi-dma-allowed
+  soc: qcom: geni-se: Add support to load QUP SE Firmware via Linux
+    subsystem
+  i2c: qcom-geni: Load i2c qup Firmware from linux side
+  spi: geni-qcom: Load spi qup Firmware from linux side
+  serial: qcom-geni: Load UART qup Firmware from linux side
 
-> The resistor connected to the IREF pin (Rref) OTOH does have an implicati=
-on to
-> the software, as it sets the full-range current of the output stage.
->
-> How should we specify that? Is it adequate to add an optional DT property
-> "rref" or "rref-ohm" with an int32 value in Ohm? The default value if
-> unspecified is 12000 Ohm.
+ .../bindings/i2c/qcom,i2c-geni-qcom.yaml      |   3 +
+ .../serial/qcom,serial-geni-qcom.yaml         |   3 +
+ .../bindings/soc/qcom/qcom,geni-se.yaml       |   5 +
+ .../soc/qcom/qcom,se-common-props.yaml        |  26 ++
+ .../bindings/spi/qcom,spi-geni-qcom.yaml      |   3 +
+ drivers/i2c/busses/i2c-qcom-geni.c            |   8 +-
+ drivers/soc/qcom/qcom-geni-se.c               | 423 ++++++++++++++++++
+ drivers/spi/spi-geni-qcom.c                   |   6 +
+ drivers/tty/serial/qcom_geni_serial.c         |   8 +-
+ include/linux/soc/qcom/geni-se.h              |  18 +
+ include/linux/soc/qcom/qup-fw-load.h          | 179 ++++++++
+ 11 files changed, 680 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,se-co=
+mmon-props.yaml
+ create mode 100644 include/linux/soc/qcom/qup-fw-load.h
 
-It looks like there are a few standardized properties, like
-sense-resistor-ohms if that fits the use case. Otherwise, an
-vendor-specific ti,rref-ohms would work. FYI, you can find the
-preferred units at [1].
+--=20
+2.34.1
 
-[1]: https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas=
-/property-units.yaml
-
->
-> > And if there are any pins would make sense to connect to a gpio, we can=
- add
-> > those even if the driver doesn't use it currently.
-> >
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - clocks
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > > +  - $ref: /schemas/motion/common.yaml#
-> >
-> > If we need to know about what is connected to the output of a motor con=
-troller
-> > I would expect it to be done with child node for each output. That way =
-each
-> > output can be unique, if needed. Basically, similar to iio/adc.yaml is =
-used to
-> > provide common properties for channel@ child nodes on iio devices.
->
-> This controller chip only has one single output for one stepper motor (4
-> wires). While technically you could connect something else to those 4 wir=
-es, I
-> don't think it is the scope of LMC to support that. The chip itself isn't
-> designed for that purpose and it would clearly go far beyond the intended
-> purpose of this device.
->
-> That being said, your suggestion of supporting child nodes may actually b=
-e a
-> good idea. Right now, we specify the type of motor (basically nominal- an=
-d hold
-> current settings) in user-space and set the IRUN/IHOLD parameters from
-> user-space via the sysfs attributes interface. It might make sense to hav=
-e a DT
-> child node to specify this, although in our current application this is n=
-ot
-> very practical, since there are many motor controllers on one board, and =
-it is
-> configurable in software (runtime) which motor is connected to which outp=
-ut.
->
-> But I can imagine a situation where it may be fixed and thus can be descr=
-ibed
-> in the DT of a board.
->
-> Then again I don't know if it would be over-complicating things with some=
-thing
-> like this:
->
->         motor-controller@0 {
->                 ...
->                 motor@0 {
->                         compatible =3D "nanotec,st4118s1006";
->                         irun-ma =3D <1800>;
->                         ihold-ma =3D <270>;
->                 };
->         };
->
-> where we'd possibly have a stepper-motors.c file with a lot of structs an=
-d
-> matching tables for the different motor types.... sounds like overkill to=
- me,
-> but maybe not?
-
-A compatible for motors seems too much. I was just thinking along the
-lines that 1) if we need to so some scaling or something that depends
-on a motor constant, then it would make sense to put those constants
-in the DT and 2) if there is a motor controller with more than one
-output that could be connected to two or more different sizes of
-motors with different constants, then we either need child nodes or an
-array to be able to enter the different constants. Either one would
-work. So maybe simpler to just use an array instead of child nodes now
-that I'm thinking about it more.
-
->
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    spi {
-> > > +        #address-cells =3D <1>;
-> > > +        #size-cells =3D <0>;
-> > > +
-> > > +        motor@0 {
-> >
-> > motor-controller@ or actuator-controller@
-> >
-> > The chip is the controller/driver, it is not a motor.
->
-> Make sense. Will change this.
->
-> > > +            compatible =3D "adi,tmc5240";
-> > > +            reg =3D <0>;
-> > > +            interrupts-extended =3D <&gpiok 7 0>;
-> > > +            clocks =3D <&clock_tmc5240>;
-> > > +            enable-supply =3D <&stpsleepn>;
-> > > +            spi-max-frequency =3D <1000000>;
-> > > +        };
-> > > +    };
->
-> Best regards,
->
-> --
-> David Jander
 
 
