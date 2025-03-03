@@ -1,166 +1,168 @@
-Return-Path: <devicetree+bounces-153392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 647AEA4C40D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:00:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C24A4C429
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:05:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 464531896553
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:00:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E62793A3B98
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D4F2214811;
-	Mon,  3 Mar 2025 14:59:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="tq7M70wU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68788212B0A;
+	Mon,  3 Mar 2025 15:05:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F1D21422D
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 14:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C0184D13
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 15:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741013967; cv=none; b=HB3j4lpIuYGvG0QeuQOh9G+4Aai6l6zwGmhnyor2HdmiqxynW1TqzAbLHaLe+UTZq9lm0I1niHdEpv8Iuegn422l4L0qLfoVqUJgmz4IQ5ewr15ildhkq+ISUZ63V+JXx8zc3lbMXgvlA2t4Cv8WknqA0g0gDvglLA1fEzp1OmE=
+	t=1741014314; cv=none; b=dm3YcdETxshYqnNVeXiQxNiSuDUAOE+jpQDjRbz5Xti2+q2JGUMVabOxr56eM3+l+BAeFOCYO1I1Adz71w0kCShzjbKhT4seN9jGihK55CVh5QwKjc4FzRyhAQLbTZwq937qZJ3EYYinpaQwqAzn9gE8Rs9dQpkcysJWNUQKP4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741013967; c=relaxed/simple;
-	bh=LjNeeGPZTSfwAfwVgmY6/aONFof+BNi8pWf8VZUD+9U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=kmlzIqakffu8a2GBkWe8e6tBOsZqkCANKK3nWFEiAJftN1c8QOCnLShmnQjtKnxMxAnXnwyzc56NFxr1lSd/n7SXeMqgZvpXukOPx9mNDMadyo97vnvpGGyXj2LSkkIYDSYK0iq7B4iPhJqQKKc1ZXfKqI8QXq9G23iDTqSEaZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=tq7M70wU; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250303145922euoutp010514908f461ffbe11c3676f8aa416d71~pUvmV0aWW0490504905euoutp01L
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 14:59:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250303145922euoutp010514908f461ffbe11c3676f8aa416d71~pUvmV0aWW0490504905euoutp01L
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1741013962;
-	bh=GvH+KGxOLMWPvCT3kvkzzW6sq/iRIHCpZUQmHgtdxxI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tq7M70wUn6VUGmTO1XN8lvHUQ/n2lzmkRDVi0wnDhv8RqxLtwI8Sw9EEVE0H0zLhA
-	 Xn7UiTPJqUdmDGUgtNDt46LKLQig+dhXyV5W+8SXR2PtPQ2aIBB8KM9v8E2tPfVX/n
-	 Dd2vuEnqC+EMvHnwk6jlSckyctnVsrLY6LUO5HXQ=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20250303145922eucas1p2c9fb5c5a0c86d7c0e4e22530e031a541~pUvl__aG73212832128eucas1p2e;
-	Mon,  3 Mar 2025 14:59:22 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges2new.samsung.com (EUCPMTA) with SMTP id 11.D1.20409.AC3C5C76; Mon,  3
-	Mar 2025 14:59:22 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250303145922eucas1p1224cdbd627f5e3d7f854073ebbd93c42~pUvloWqzy3228832288eucas1p1O;
-	Mon,  3 Mar 2025 14:59:22 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250303145921eusmtrp15f79bbff6f92ac43526e025605572ab3~pUvldkeGy2312323123eusmtrp1h;
-	Mon,  3 Mar 2025 14:59:21 +0000 (GMT)
-X-AuditID: cbfec7f4-c39fa70000004fb9-bd-67c5c3caecf6
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id E6.2D.19654.9C3C5C76; Mon,  3
-	Mar 2025 14:59:21 +0000 (GMT)
-Received: from AMDC4942.home (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250303145921eusmtip28416f0c951b2f94563d2b03444b42495~pUvkrdOt70060900609eusmtip2g;
-	Mon,  3 Mar 2025 14:59:21 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com,
-	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	jszhang@kernel.org, ulf.hansson@linaro.org, m.szyprowski@samsung.com
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, Michal
-	Wilczynski <m.wilczynski@samsung.com>
-Subject: [PATCH v1 5/5] riscv: Enable PM_GENERIC_DOMAINS for T-Head SoCs
-Date: Mon,  3 Mar 2025 15:59:01 +0100
-Message-Id: <20250303145901.446791-6-m.wilczynski@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250303145901.446791-1-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1741014314; c=relaxed/simple;
+	bh=TOtDL6Z6/gt6EoXED0yq3X+XftpMSW7Yrnxasp/jUpg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EpAZ+RCEhL3kHMOjBHLDOORxrW7mf9aRqXeT5tJLMvpImhzSfXC0/VVtjTMkwct/8Mqa5aMdZhjjGWZ8JWh5jIOoQXUm5BnTVdzF3t0IKX/Jtt4XQyE+SKdkMBAM/i1oD5J2RqowKEMMWIeH712LAxBuvuhPsW4EWbHeeeudlOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 470A7113E
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 07:05:20 -0800 (PST)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 006FA3F5A1
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 07:05:05 -0800 (PST)
+Date: Mon, 3 Mar 2025 15:04:42 +0000
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Marek Vasut <marex@denx.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Steven Price <steven.price@arm.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH 9/9] arm64: dts: imx95: Describe Mali G310 GPU
+Message-ID: <Z8XFCv6ku6mG1_x5@e110455-lin.cambridge.arm.com>
+References: <20250227170012.124768-1-marex@denx.de>
+ <20250227170012.124768-10-marex@denx.de>
+ <2153305.bB369e8A3T@steina-w>
+ <4a27b6bf-aca8-4f29-9561-609a42eb81a0@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrPKsWRmVeSWpSXmKPExsWy7djPc7qnDh9NNzh8XtLi2Z2vrBZbf89i
-	t1iz9xyTxfwj51gt7l3awmTxYm8ji0XzsfVsFi9n3WOzuLxrDpvF594jjBbbPrewWaw9cpfd
-	Yv3X+UwWLy/3MFu0zeK3+L9nB7vF8bXhFi37p7A4CHm8efmSxeNwxxd2j3snprF6bFrVyeZx
-	59oeNo/NS+o9WtYeY/J4v+8qm0ffllWMHpear7N7fN4kF8AdxWWTkpqTWZZapG+XwJUxe+0Z
-	poIpnBU9uy+wNTCeZu9i5OCQEDCRuL46sYuRi0NIYAWjxMb9K1m7GDmBnC+MEgffVUMkPjNK
-	TDiylBkkAdLwcv52Joii5YwSbxoKIIreMEr0rT/KBpJgEzCSeLB8PitIQkSgn0mi78h/MIdZ
-	YCWjxP0LZ8FGCQt4SJw+vQBsH4uAqkT/qs9gNq+AnUTXkSdMEOvkJfYfBKnn4OAUsJf41KAJ
-	USIocXLmExYQmxmopHnrbKjrNnNKnLsL9ZqLxNEfMRBhYYlXx7ewQ9gyEqcn97BA2PkSD7Z+
-	gmqtkdjZcxzKtpa4c+4XG8gYZgFNifW79CHCjhKX5k9ghJjOJ3HjrSDEAXwSk7ZNZ4YI80p0
-	tAlBVKtJTO3phVt6bsU2qJc8JL48bWOewKg4C8krs5C8Mgth7wJG5lWM4qmlxbnpqcVGeanl
-	esWJucWleel6yfm5mxiBafD0v+NfdjAuf/VR7xAjEwfjIUYJDmYlEd5b7UfThXhTEiurUovy
-	44tKc1KLDzFKc7AoifMu2t+aLiSQnliSmp2aWpBaBJNl4uCUamASnVDr7se/Il26f/2e6svH
-	FTZHZZ98b2m0qdlp85dl/Pw3+5vC1Dg1WAvEXhuuWzC/etvku1+P/njmaLO4QeyE4NZXVRuC
-	1+iy9jS/3brjx4WX/9Ut1uuvW/OjXz+KM6b05uckmwlHli86mbuv48FOq7Prb2hN6J7KlGLJ
-	vfZs79xKkflaycdL/OftYHLnXu/tcI07JOPVp6P7G0/Ky1z11Issjm+0ZVzyo447o8jh8qY4
-	c83N7MEswqJhscX3D1a0OV7cfmjr9V6efbPOHkyW+aD2f89x5p5ZrXuMnT10GDi02bcqbX4t
-	kKehfJDPtzFQ40u386LtnN9PGxgtaqwrFDE7fWGpCoPkFNb4jDtKLMUZiYZazEXFiQCDYMew
-	8gMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrEIsWRmVeSWpSXmKPExsVy+t/xe7onDx9NN/i/2tTi2Z2vrBZbf89i
-	t1iz9xyTxfwj51gt7l3awmTxYm8ji0XzsfVsFi9n3WOzuLxrDpvF594jjBbbPrewWaw9cpfd
-	Yv3X+UwWLy/3MFu0zeK3+L9nB7vF8bXhFi37p7A4CHm8efmSxeNwxxd2j3snprF6bFrVyeZx
-	59oeNo/NS+o9WtYeY/J4v+8qm0ffllWMHpear7N7fN4kF8AdpWdTlF9akqqQkV9cYqsUbWhh
-	pGdoaaFnZGKpZ2hsHmtlZKqkb2eTkpqTWZZapG+XoJcxe+0ZpoIpnBU9uy+wNTCeZu9i5OSQ
-	EDCReDl/O1MXIxeHkMBSRomzE6+xQCRkJK51v4SyhSX+XOtigyh6xSjx93sXWIJNwEjiwfL5
-	rCAJEYGFTBJXp2xgBnGYBdYyShy+eglsh7CAh8Tp0wtYQWwWAVWJ/lWfwWxeATuJriNPmCBW
-	yEvsP3gWqJmDg1PAXuJTgyaIKQRU8uoTB0S1oMTJmU/A9jIDVTdvnc08gVFgFpLULCSpBYxM
-	qxhFUkuLc9Nzi430ihNzi0vz0vWS83M3MQIjd9uxn1t2MK589VHvECMTB+MhRgkOZiUR3lvt
-	R9OFeFMSK6tSi/Lji0pzUosPMZoCXT2RWUo0OR+YOvJK4g3NDEwNTcwsDUwtzYyVxHnZrpxP
-	ExJITyxJzU5NLUgtgulj4uCUamCyT6jfqrlQzzo+c3HSC9a2Zwmehze8faa0f8dZxZcHdu1m
-	mMPAPHkez1vHEP/nH049lzv2bQULn3Ne2dFbf1inzVArM/6hvTF8cZPZuoy7k1dlvo+Jf3lr
-	4+s/v2R5fMXMuu6zGW4sd8+xL1tVf3pFZkZ7y70r6u9+TAquWFgbsvTVuw2ZmhXarwTFVvSu
-	ruZn8GEr8P7aJP9ezOSoIutKu9db5UQen3T/rXXSm21f7ARZbpdQbUPvaKGph45tT5Pp2JV0
-	sJtpFpPAgl7Jp2WLon4o3pjTdffPjJ7Fe5/6pUkLbG/0PqDe1atyLlrDJDdG7721ed/Ox3kv
-	slO+f9mdMH3XS5tJZgvbDRIMNrMpsRRnJBpqMRcVJwIA8FM+TGUDAAA=
-X-CMS-MailID: 20250303145922eucas1p1224cdbd627f5e3d7f854073ebbd93c42
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250303145922eucas1p1224cdbd627f5e3d7f854073ebbd93c42
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250303145922eucas1p1224cdbd627f5e3d7f854073ebbd93c42
-References: <20250303145901.446791-1-m.wilczynski@samsung.com>
-	<CGME20250303145922eucas1p1224cdbd627f5e3d7f854073ebbd93c42@eucas1p1.samsung.com>
+In-Reply-To: <4a27b6bf-aca8-4f29-9561-609a42eb81a0@denx.de>
 
-T-Head SoCs feature separate power domains (power islands) for major
-components like the GPU, Audio, and NPU. To manage the power states of
-these components effectively, the kernel requires generic power domain
-support.
+On Fri, Feb 28, 2025 at 06:43:53PM +0100, Marek Vasut wrote:
+> On 2/28/25 11:36 AM, Alexander Stein wrote:
+> > Hi Marek,
+> 
+> Hi,
+> 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > index 3af13173de4bd..36bad211e5558 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > @@ -249,6 +249,37 @@ dummy: clock-dummy {
+> > >   		clock-output-names = "dummy";
+> > >   	};
+> > > +	gpu_fixed_reg: fixed-gpu-reg {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-min-microvolt = <920000>;
+> > > +		regulator-max-microvolt = <920000>;
+> > > +		regulator-name = "vdd_gpu";
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +	};
+> > 
+> > Is this an internal voltage?
+> 
+> I think so.
+> 
+> > > +
+> > > +	gpu_opp_table: opp_table {
+> > 
+> > Node-Names use dash instead of underscore.
+> 
+> Fixed, thanks.
+> 
+> [...]
+> 
+> > > @@ -1846,6 +1877,37 @@ netc_emdio: mdio@0,0 {
+> > >   			};
+> > >   		};
+> > > +		gpu_blk_ctrl: reset-controller@4d810000 {
+> > > +			compatible = "fsl,imx95-gpu-blk-ctrl";
+> > > +			reg = <0x0 0x4d810000 0x0 0xc>;
+> > 
+> > Mh, GPU_BLK_CTRL is /just a bit) more than the GPU reset. Does it make sense
+> > to make this an gpu-reset-only node, located at 0x4d810008?
+> 
+> The block controller itself is larger, it spans 3 or 4 registers, so this
+> should describe the entire block controller here.
+> 
+> > > +			#reset-cells = <1>;
+> > > +			clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
+> > > +			assigned-clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
+> > > +			assigned-clock-parents = <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
+> > > +			assigned-clock-rates = <133333333>;
+> > > +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
+> > > +			status = "disabled";
+> > > +		};
+> > > +
+> > > +		gpu: gpu@4d900000 {
+> > > +			compatible = "fsl,imx95-mali", "arm,mali-valhall-csf";
+> > > +			reg = <0 0x4d900000 0 0x480000>;
+> > > +			clocks = <&scmi_clk IMX95_CLK_GPU>;
+> > 
+> > There is also IMX95_CLK_GPUAPB. Is this only required for the rese control above?
+> 
+> I think I have to describe those clock here too, possibly as 'coregroup'
+> clock ?
 
-This commit enables `CONFIG_PM_GENERIC_DOMAINS` for T-Head SoCs,
-allowing the power domain driver for these components to be compiled and
-integrated. This ensures proper power management and energy efficiency
-on T-Head platforms.
+The 'coregroup' clock does indeed control the MMU and L2$ blocks as well as the AXI interface,
+so if that is indeed a separate external clock source it should be defined. Could it be why
+you're seeing issues with L2$ resume on the fast reset path?
 
-By selecting `PM_GENERIC_DOMAINS`, we provide the necessary framework
-for the power domain drivers to function correctly on RISC-V
-architecture with T-Head SoCs.
+Best regards,
+Liviu
 
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/Kconfig.socs | 1 +
- 1 file changed, 1 insertion(+)
+> 
+> > > +			clock-names = "core";
+> > > +			interrupts = <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>,
+> > > +				     <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
+> > > +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			interrupt-names = "gpu", "job", "mmu";
+> > 
+> > DT bindings say this order: job, mmu, gpu
+> Yes, currently it is sorted by IRQ number, fixed.
 
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index 1916cf7ba450..83833ded8908 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -53,6 +53,7 @@ config ARCH_THEAD
- 	bool "T-HEAD RISC-V SoCs"
- 	depends on MMU && !XIP_KERNEL
- 	select ERRATA_THEAD
-+	select PM_GENERIC_DOMAINS if PM
- 	help
- 	  This enables support for the RISC-V based T-HEAD SoCs.
- 
 -- 
-2.34.1
-
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
