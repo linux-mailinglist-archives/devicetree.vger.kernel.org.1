@@ -1,100 +1,169 @@
-Return-Path: <devicetree+bounces-153483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ADE9A4CBD1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 20:16:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06CDCA4CBFF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 20:31:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE3537AA4ED
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 19:15:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E85B173989
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 19:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D88230BF1;
-	Mon,  3 Mar 2025 19:13:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15482288EE;
+	Mon,  3 Mar 2025 19:31:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="o4mGX424";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="FiR+5zla"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA49230BD9;
-	Mon,  3 Mar 2025 19:13:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8801C8604;
+	Mon,  3 Mar 2025 19:31:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741029198; cv=none; b=Bvt1o6EbcauyjRnr5ftQ4JBbNljx5Y1fvARtCSBjAUT75AUcyludgLntuWsegLx2jvRw+kdo9nXAVS6X25eJR1HogoF3TVLDQbBuE+TEwfw/+WU9N4dTBlUurB+pNjue+bUYVFZ3RZ/8G1p13JdJW9FdPUcZYxWqw3KT9EQ3+Nw=
+	t=1741030296; cv=none; b=rKY0XOdbaoS5nLur0653T/dFppoMPZdQBrgrOBCrhCXrC8/6TvlzcJV8R4PXLahX+4tDU48j3SElSLoo33qwbARPyZEwEFzm4yf1OvQblERdqnCKtkw1UzHRItt39a9re/IaVNHhYV5vV76lGJWnLMqS0xJT6uJWqSqySzEj9MQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741029198; c=relaxed/simple;
-	bh=HLSBP1an8sf2KditkkL1r9FqF7V03KxDlrQ8RZsogPY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hwDtqUNy3fcFxfl+ysLZaInNUf7Gy7FHKz20B1YdNWEQk2EN11Fvr/MW3SwV8+9IAPL3Ko6VutoxG8QbRmdZibRTX09Yf2bj0qMSClJOXCX+HcfVqWvG+PSIcAQnBFaE7g/yPySnb2LUE65MN1DPX8KxxxezfNGAwaEbcQzld/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-223785beedfso53439605ad.1;
-        Mon, 03 Mar 2025 11:13:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741029196; x=1741633996;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kMdhomqR4u6eFz7EL0HdhdFWnLeoGWNJPxOHYDhbRLs=;
-        b=n8elDG0eRDc7t23tNoLGucodOJ/Thw7c+AAax7vJOMl8Xi9bdcu06nt+AxMJv1l9CJ
-         oXLGTaG3JsMg7KaYBIUVieTK9cE3BwCeg58KLK+Na1QSJaTyLVt/Nbh2mnffOeLNIYvQ
-         yXQlqdgUUot3F0BZQ3DiA4IU5CzHoTnWwhZ/Yca/rSSHKa16hFjqnUea7woo5TIvx7nG
-         jixH51tiOl+6v3v8VfMOUC8WfFWSncRQ5SJ2N7hqb542fKJNHDBdvqd4Gj4lVXIEfJpT
-         EcCPzPF354NAji5Kt8diJk58FKi6B0TL0FnXzI/hax3PLFOLktY/Ly+IrfrG/gntrhtj
-         Tvgg==
-X-Forwarded-Encrypted: i=1; AJvYcCVC+jIme0QD80nggSfPyF5dLWYW56OVruOG5RawF4jaDK0YKcx6XvwyQo7TZcOHywlAmPfw+S+a3tBC@vger.kernel.org, AJvYcCVHZP3KUl1Pl+UEPBv1lBPKZMkpHPER7hHPdIb5UowL6RBNMTAX/IDUfSzj4utBFcNoN3SKlPAM1GUh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+SUBYF3wVXjuXFvyPCcZ1l0U6cgBgtym5FCB8S+kVbFz90onf
-	5rTQrnAHtBsIL36/gy30lWJ2flGnHmdCslkVVGTlwVGCNcQlWKqI
-X-Gm-Gg: ASbGncsnjZIaY5JyYRvUcQsleBfkQ3ON5F6J3GdrXP00bpaUHYgkdG7RhRDrNKKIHS5
-	/HAqKqoU9Ep2fOim0QuMzbTj6KR0i0bvpl1+Lj3WyvzFHXCjgz7TmqaLeJcFWdvzOdmlbhaR0iL
-	mtg3lbz1w9Ntjw/LQ9AKTgMlWAwcSJp6iyGxrCH0UUcznG4INEarpg4wuWBmv1/rQnaaYhTp3r4
-	ZM9D28QFf7NCZpb93sCUAQlJ8qr5qjHDQBzikTm8hufm2d51hyPj839t3qB+erxG/raeEPkEhhD
-	QP1dhypQhCyS/HA0hQgv9eDZp/rU9XTCNorXCMbUVBp+iCMPQJoTSySXZL9tpEaXjrLMnZvpiTY
-	BAOU=
-X-Google-Smtp-Source: AGHT+IFWuOdDCIbzb+NPKXQr/vDDylShl9+ZLJtMDPzgxZSjAC8yWUsr6ofw3AFRZJpI4pkui7tCgw==
-X-Received: by 2002:a17:903:1c3:b0:223:33cb:335f with SMTP id d9443c01a7336-22368fa17fbmr210787435ad.3.1741029196546;
-        Mon, 03 Mar 2025 11:13:16 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-223504c7efcsm81587665ad.154.2025.03.03.11.13.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 11:13:16 -0800 (PST)
-Date: Tue, 4 Mar 2025 04:13:14 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 0/2] PCI: mediatek-gen3: Set PBUS_CSR regs for Airoha
- EN7581 SoC.
-Message-ID: <20250303191314.GA1552306@rocinante>
-References: <20250225-en7581-pcie-pbus-csr-v4-0-24324382424a@kernel.org>
+	s=arc-20240116; t=1741030296; c=relaxed/simple;
+	bh=hHDNM+PiIH5WSoRSEO24mxsJGorFqWQF7bOmOynJ0AQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=NQ2dSyr4tMT2wFjtovBxo6wr6IJAKP0mM7YVp0R2ApHPOeRjZmJowEjVWDModrgxYR2g2w0TcrH547VhXp9WalhLs3hPyaEumIwlfdXEm8eJtn8P0m4A8lDA3dgaugK6xH2rYGpGb624cfgGghyDH8603oWbh2Od1x5Intz/008=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=o4mGX424; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=FiR+5zla; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1741030293;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fx2InO2u3usf4WbNN/ZNNGuXaFAmHvYhKHK29R9jzIc=;
+	b=o4mGX424slXTyDFZ2aMdolAv1azDiqVG1sW43+n5L4OA8uVUWcggkUFPTADrtrsYTvRTdn
+	hT2ngNsZtEn3NodAYtBx44CDQCTo8ouZi1EgLfo2ZiLZ1dErK5fajA/UgrHSCCMGtNd0C5
+	k75DULtB6CFz55YvdOAJkwus5nVJ5m5aPYsySQiMAsF19tytCB9Lmc8YI9MEL92cPjS8KB
+	2xKc1juA1eyBPIir0kkDzO4JXje8VIqDK0PA4k/LeS3Eu0BwVKwvPA3keZQvEGPEV+Va1g
+	CepZyqrW/xV4Yj+OwBm08vgxE0aA4oYxyrT0n++ASwmaKHPZWP1KKTIaSHxAgA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1741030293;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fx2InO2u3usf4WbNN/ZNNGuXaFAmHvYhKHK29R9jzIc=;
+	b=FiR+5zla1f10WxtgsNrKkRNPyNQkF5h9wLTcMzIhMidF4c7jj10my5Wyv0JfDYCZuEspzC
+	D/ct61hFvL1ghWBQ==
+To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+ <inochiama@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ sophgo@lists.linux.dev, Yixun Lan <dlan@gentoo.org>, Longbin Li
+ <looong.bin@gmail.com>
+Subject: Re: [PATCH 2/2] irqchip/sg2042-msi: Add the Sophgo SG2044 MSI
+ interrupt controller
+In-Reply-To: <20250303111648.1337543-3-inochiama@gmail.com>
+References: <20250303111648.1337543-1-inochiama@gmail.com>
+ <20250303111648.1337543-3-inochiama@gmail.com>
+Date: Mon, 03 Mar 2025 20:31:32 +0100
+Message-ID: <87y0xlc3mz.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250225-en7581-pcie-pbus-csr-v4-0-24324382424a@kernel.org>
+Content-Type: text/plain
 
-Hello,
+On Mon, Mar 03 2025 at 19:16, Inochi Amaoto wrote:
+> Add support for Sophgo SG2044 MSI interrupt controller.
 
-> Configure PBus base address and base address mask to allow the hw
-> to detect if a given address is accessible on the PCIe controller.
-> Introduce mediatek,pbus-csr phandle array property.
+This patch fails to apply on top of:
 
-Applied to controller/mediatek, thank you!
+     git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git irq/drivers
 
-	Krzysztof
+Please always ensure that your patches apply against the tree/branch
+into which they are supposed to be merged. Grabbing random patches from
+the mailing list as base is not sufficient. It's clearly documented
+against what you should work.
+     
+> +struct sg2042_msi_of_data {
+
+There is nothing specific to OF in this data structure. This structure
+contains the chip and the MSI parent ops of each variant. So something
+like sg204x_chip_info is way more descriptive.
+
+> +	const struct irq_chip		*irqchip;
+> +	const struct msi_parent_ops	*parent_ops;
+> +};
+> +
+>  struct sg2042_msi_chipdata {
+
+and rename that one to sg204x_... as it is not longer sg2042 specific.
+
+>  	void __iomem	*reg_clr;	// clear reg, see TRM, 10.1.33, GP_INTR0_CLR
+>  
+> @@ -29,8 +34,10 @@ struct sg2042_msi_chipdata {
+>  	u32		irq_first;	// The vector number that MSIs starts
+>  	u32		num_irqs;	// The number of vectors for MSIs
+>  
+> -	DECLARE_BITMAP(msi_map, SG2042_MAX_MSI_VECTOR);
+> +	unsigned long	*msi_map;
+>  	struct mutex	msi_map_lock;	// lock for msi_map
+> +
+> +	const struct sg2042_msi_of_data	*data;
+
+Please keep the tabular formatting of this struct. See:
+
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#coding-style-notes
+
+>  };
+>  
+>  static int sg2042_msi_allocate_hwirq(struct sg2042_msi_chipdata *data, int num_req)
+> @@ -81,6 +88,37 @@ static const struct irq_chip sg2042_msi_middle_irq_chip = {
+>  	.irq_compose_msi_msg	= sg2042_msi_irq_compose_msi_msg,
+>  };
+>  
+> +static void sg2044_msi_irq_ack(struct irq_data *d)
+> +{
+> +	struct sg2042_msi_chipdata *data = irq_data_get_irq_chip_data(d);
+> +
+> +	writel(0, (unsigned int *)data->reg_clr + d->hwirq);
+> +
+
+Pointless newline
+
+> +	irq_chip_ack_parent(d);
+> +}
+> +
+> +static void sg2044_msi_irq_compose_msi_msg(struct irq_data *d,
+> +					   struct msi_msg *msg)
+
+No line break required. Please use up to 100 characters.
+
+>  static int sg2042_msi_parent_domain_alloc(struct irq_domain *domain,
+>  					  unsigned int virq, int hwirq)
+>  {
+> @@ -119,7 +157,7 @@ static int sg2042_msi_middle_domain_alloc(struct irq_domain *domain,
+>  			goto err_hwirq;
+>  
+>  		irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
+> -					      &sg2042_msi_middle_irq_chip, data);
+> +					      data->data->irqchip, data);
+
+The conversion of the existing code to this should be a preparatory patch
+for ease of review and the support for the new chip built on top.
+
+Also please come up with a sensible name for this new 'data' pointer.
+
+     data->data->
+
+is horribly unintuitive. It's not the same data type. 
+
+     data->chip_info
+
+or such makes it clear what this is about.
+
+Thanks,
+
+        tglx
 
