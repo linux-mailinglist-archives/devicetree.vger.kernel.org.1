@@ -1,284 +1,246 @@
-Return-Path: <devicetree+bounces-153290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA81DA4BE48
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:24:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4067A4BE96
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:31:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03A181887A3E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:21:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 922D38811C1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:23:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC921F37C3;
-	Mon,  3 Mar 2025 11:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A85D1F30A8;
+	Mon,  3 Mar 2025 11:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="jlXphypx"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="mdDLG9XM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [94.124.121.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1E01F17E5;
-	Mon,  3 Mar 2025 11:19:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CA991EEA5F
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 11:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741000766; cv=none; b=RGWwP3Ij0rioSuylauBfWLN5R7bc03bHOHrHRYeF1NP2kF+gxDv+INEGmIAiCR3rGEfG8JEcQShA65oCXDPEyUoyBawkVcA/4nQaedJXMTOhXfjyHjqdNIKuxXO8K9ADbPE5gRhzvSNQp3fHE0CBkm02MmuhKxPLVZVvKHfzse4=
+	t=1741000986; cv=none; b=HNZyUj+OJAte+NTF8mlgT/vL6/pIPmUriyUzT/23UjH03LHMgoisDZRkQQBI/6GPxFKJHdCX5rQY31zi7PSfktK7+gzoK1CLUAcg7VARGmQ9DvpbonZ9SlizZM8J+sHju2/eGBdZynNDUj0QMFEO1Ejzt7s4hEuv+SxMqcYY9NE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741000766; c=relaxed/simple;
-	bh=wY1JDGsr4w7EVb29Z+PN4ZWHoWt/+wmUL/8nCGk4qnE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YI8wGG4oyTJyhQS4mnmU2/Dlcdle5q+tKZdAfpZmTeSzBDPzmvJCIl0sCp1Zk12Rp8wg4UCdlafIMN9TJDU/1SpFTkeW6s9NKbCVmbUjwpamISMdEBhciED6C4Wq4w9fBLKJ9KEq9YUZpHBMfyMNUhSQV7fy1RFjvzNNzm5TBfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=jlXphypx; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=pNmUy0/SbO1mJMTByohCme5W5UOaVrI5mCX9RycYTCY=; b=jlXphypx+tFIa7QN6nmZyOHchy
-	mAL4FzNXqAx7NBd4kdGVHZF7nbcDi/32cz13sz0Fj9y1/1JM/3A/Y76+s7kFKn3mGfijIUupTU74Q
-	7zeNEGxo0ivgglhHYr/u2LibpbTUcHkmikL6bkI8o7tdVXrpmDkjuz1Lax0XLLmeKI/E9XRS1ZUdj
-	/Ci1QrCRh5Qp2rL6TItEj0fLU0FtSgMv/HXPfEGd4/bdsg2+c0e9GA24LNjWfF4v0YxAyyfBNvjOM
-	Dht70pkuWXppULK3LhsHptnbWfEkJtUnlAkcrbjK9tZ0DEhiNEovwD25XXFPRxUWevS3WVcgAbYUN
-	EEBdOUqQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38926)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tp3pC-0000Ky-2H;
-	Mon, 03 Mar 2025 11:19:06 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tp3p7-0003kl-2o;
-	Mon, 03 Mar 2025 11:19:01 +0000
-Date: Mon, 3 Mar 2025 11:19:01 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 3/3] net: stmmac: Add DWMAC glue layer for Renesas GBETH
-Message-ID: <Z8WQJQo5kW9QV-wV@shell.armlinux.org.uk>
-References: <20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250302181808.728734-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Z8SydsdDsZfdrdbE@shell.armlinux.org.uk>
- <CA+V-a8vCB7nP=tsv4UkOwODSs-9hiG-PxN6cpihfvwjq2itAHg@mail.gmail.com>
- <Z8TRQX2eaNzXOzV0@shell.armlinux.org.uk>
- <CA+V-a8vykhxqP30iTwN6yrqDgT8YRVE_MadjiTFp653rHVqMNg@mail.gmail.com>
+	s=arc-20240116; t=1741000986; c=relaxed/simple;
+	bh=T2/0vtnTHd+jEFQfmJdgjKR4ED0aLjzFr+5YOFGUjfc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mBWIPbmaoxhQt8l5X5HdusvfFlyHJgEP13LPhLnLUJW25xGICf/iHsOgILSI1F4nAjne/fhHbn/1dXrzHpZHBc3MxSvcpfEn0Rc5mLbGJe30JCFEYKKoFCdNPOfSLBoDj717hS9lLEnVPKsrM9cT0VJE9txzde0ToQ1bZI7M4z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=mdDLG9XM; arc=none smtp.client-ip=94.124.121.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=aYFQrbEXcXVk/RpIHRvcbpzo0ainO+2MV7BBazpXsNM=;
+	b=mdDLG9XM0xS9qj5ouZGMgE2pJs8KIO/BmCLOeQMwUL/EXNFTiOwgcmHWoIXfe3uRIpD1NwN9ln3OF
+	 suxAAa8B6RWYwQt0AuquyhZUvUNwseS5QGFqvCfCy3xbMtfrMEzRvKSfcM3kYguX+ehQljA2AIva79
+	 nSsb0ildy3B/CED0f3d8EltoRBaNIVoRm+JfVgmh61D8zOpmy9Na1hRV/UAloxOHguJD34xyZ2DCiU
+	 XB6CwcWvgb/yy5I89E0NjS5dohCWASUkfhBpPO6+cltyv4mRvL2HUrObBqA8dHu/778elJk48WCk8d
+	 78w71JpZw8fQ3Gtl7e1x30RqWWOy9Zg==
+X-MSG-ID: d9a8e41c-f821-11ef-b5ca-0050568164d1
+Date: Mon, 3 Mar 2025 12:22:53 +0100
+From: David Jander <david@protonic.nl>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
+ <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
+ <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>
+Subject: Re: [RFC PATCH 6/7] dt-bindings: motion: Add adi,tmc5240 bindings
+Message-ID: <20250303122253.26fec335@erd003.prtnl>
+In-Reply-To: <7b2a8d71-9d83-4d40-903b-ba7ef1c686f3@baylibre.com>
+References: <20250227162823.3585810-1-david@protonic.nl>
+	<20250227162823.3585810-7-david@protonic.nl>
+	<7b2a8d71-9d83-4d40-903b-ba7ef1c686f3@baylibre.com>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8vykhxqP30iTwN6yrqDgT8YRVE_MadjiTFp653rHVqMNg@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sun, Mar 02, 2025 at 10:02:15PM +0000, Lad, Prabhakar wrote:
-> Hi Russell,
-> 
-> On Sun, Mar 2, 2025 at 9:44 PM Russell King (Oracle)
-> <linux@armlinux.org.uk> wrote:
-> >
-> > On Sun, Mar 02, 2025 at 09:20:49PM +0000, Lad, Prabhakar wrote:
-> > > Hi Russell,
-> > > > What is the reason for setting this flag? If it's because of suspend/
-> > > > resume failures, does my "net: stmmac: fix resume failures due to
-> > > > RX clock" series solve this for you without requiring this flag?
-> > > >
-> > > Ive set this flag based on the configuration supported by this IP.
-> > > Unfortunately the platform which I am working on doesn't support s2r
-> > > yet so I cannot test suspend/resume path yet. But I do see an issue
-> > > when I unload and load just the glue module the DMA reset fails.
-> >
-> > Thanks for that feedback - that's a scenario I hadn't considered.
-> >
-> > I was trying to avoid having to disable LPI RX clock-stop on suspend by
-> > ensuring that it was enabled at resume time. I think that's valid, but
-> > you've brought up another similar scenario:
-> >
-> > - device is brought up, configures RX clock stop
-> > - links with media, negotiates EEE
-> > - driver is unloaded, link doesn't go down, but due to no traffic goes
-> >   into idle, so RX clock is stopped
-> > - driver reloaded, RX clock still stopped, reset fails
-> >
-> > I would like to solve that so we can get the power savings from
-> > stopping the clock, but still have reset work when necessary.
-> >
-> I would be happy to test the patches ;)
-> 
-> > I'm guessing that the "DMA reset fails" refers to this path:
-> >
-> > stmmac_open() -> __stmmac_open() -> stmmac_hw_setup() ->
-> > stmmac_init_dma_engine() -> stmmac_reset() ?
-> >
-> Yes.
-> 
-> > In other words, when the device is being brought back up
-> > adminsitratively?
-> >
-> > What happens if you (replace $if):
-> >
-> > # ip li set dev $if down
-> > # ip li set dev $if up
-> >
-> > Does that also fail without STMMAC_FLAG_RX_CLK_RUNS_IN_LPI set?
-> >
-> Logs without STMMAC_FLAG_RX_CLK_RUNS_IN_LPI flag set:
-> --------------------------------------------------------------
-> root@rzv2h-evk-alpha:~# ip li set dev eth1 down
-> [   33.606549] renesas-gbeth 15c40000.ethernet eth1: Link is Down
-> root@rzv2h-evk-alpha:~#
-> root@rzv2h-evk-alpha:~# ip li set dev eth0 down
-> [   37.356992] renesas-gbeth 15c30000.ethernet eth0: Link is Down
-> root@rzv2h-evk-alpha:~#
-> root@rzv2h-evk-alpha:~# ip li set dev eth1 up
-> [   43.974803] renesas-gbeth 15c40000.ethernet eth1: Register
-> MEM_TYPE_PAGE_POOL RxQ-0
-> [   43.983189] renesas-gbeth 15c40000.ethernet eth1: Register
-> MEM_TYPE_PAGE_POOL RxQ-1
-> [   43.991155] renesas-gbeth 15c40000.ethernet eth1: Register
-> MEM_TYPE_PAGE_POOL RxQ-2
-> [   43.999128] renesas-gbeth 15c40000.ethernet eth1: Register
-> MEM_TYPE_PAGE_POOL RxQ-3
-> [   44.072079] renesas-gbeth 15c40000.ethernet eth1: PHY [stmmac-1:00]
-> driver [Microchip KSZ9131 Gigabit PHY] (irq=POLL)
-> [   44.094605] dwmac4: Master AXI performs fixed burst length
-> [   44.100138] renesas-gbeth 15c40000.ethernet eth1: No Safety
-> Features support found
-> [   44.107748] renesas-gbeth 15c40000.ethernet eth1: IEEE 1588-2008
-> Advanced Timestamp supported
-> [   44.116725] renesas-gbeth 15c40000.ethernet eth1: registered PTP clock
-> [   44.123352] renesas-gbeth 15c40000.ethernet eth1: configuring for
-> phy/rgmii-id link mode
-> root@rzv2h-evk-alpha:~#
-> root@rzv2h-evk-alpha:~# ip li set dev eth1[   47.207761] renesas-gbeth
-> 15c40000.ethernet eth1: Link is Up - 1Gbps/Full - flow control off
-> ^C
-> root@rzv2h-evk-alpha:~# ^C
-> root@rzv2h-evk-alpha:~# ip li set dev eth0 up
-> [   55.636722] renesas-gbeth 15c30000.ethernet eth0: Register
-> MEM_TYPE_PAGE_POOL RxQ-0
-> [   55.645139] renesas-gbeth 15c30000.ethernet eth0: Register
-> MEM_TYPE_PAGE_POOL RxQ-1
-> [   55.653111] renesas-gbeth 15c30000.ethernet eth0: Register
-> MEM_TYPE_PAGE_POOL RxQ-2
-> [   55.661073] renesas-gbeth 15c30000.ethernet eth0: Register
-> MEM_TYPE_PAGE_POOL RxQ-3
-> [   55.732087] renesas-gbeth 15c30000.ethernet eth0: PHY [stmmac-0:00]
-> driver [Microchip KSZ9131 Gigabit PHY] (irq=POLL)
-> [   55.754612] dwmac4: Master AXI performs fixed burst length
-> [   55.760143] renesas-gbeth 15c30000.ethernet eth0: No Safety
-> Features support found
-> [   55.767740] renesas-gbeth 15c30000.ethernet eth0: IEEE 1588-2008
-> Advanced Timestamp supported
-> [   55.776705] renesas-gbeth 15c30000.ethernet eth0: registered PTP clock
-> [   55.783333] renesas-gbeth 15c30000.ethernet eth0: configuring for
-> phy/rgmii-id link mode
-> root@rzv2h-evk-alpha:~#
-> root@rzv2h-evk-alpha:~# [   58.855844] renesas-gbeth 15c30000.ethernet
-> eth0: tx_clk_stop=1
-> [   58.861989] renesas-gbeth 15c30000.ethernet eth0: Link is Up -
-> 1Gbps/Full - flow control rx/tx
-> 
-> root@rzv2h-evk-alpha:~#
-> root@rzv2h-evk-alpha:~#
-> 
-> Logs with STMMAC_FLAG_RX_CLK_RUNS_IN_LPI flag set:
-> --------------------------------------------------------------
-> root@rzv2h-evk-alpha:~# ip li set dev eth1 down
-> [   30.053790] renesas-gbeth 15c40000.ethernet eth1: Link is Down
-> root@rzv2h-evk-alpha:~# ip li set dev eth0 down
-> [   35.366935] renesas-gbeth 15c30000.ethernet eth0: Link is Down
-> root@rzv2h-evk-alpha:~# ip li set dev eth1 up
-> [   40.448563] renesas-gbeth 15c40000.ethernet eth1: Register
-> MEM_TYPE_PAGE_POOL RxQ-0
-> [   40.456725] renesas-gbeth 15c40000.ethernet eth1: Register
-> MEM_TYPE_PAGE_POOL RxQ-1
-> [   40.464893] renesas-gbeth 15c40000.ethernet eth1: Register
-> MEM_TYPE_PAGE_POOL RxQ-2
-> [   40.472840] renesas-gbeth 15c40000.ethernet eth1: Register
-> MEM_TYPE_PAGE_POOL RxQ-3
-> [   40.543895] renesas-gbeth 15c40000.ethernet eth1: PHY [stmmac-1:00]
-> driver [Microchip KSZ9131 Gigabit PHY] (irq=POLL)
-> [   40.566419] dwmac4: Master AXI performs fixed burst length
-> [   40.571949] renesas-gbeth 15c40000.ethernet eth1: No Safety
-> Features support found
-> [   40.579550] renesas-gbeth 15c40000.ethernet eth1: IEEE 1588-2008
-> Advanced Timestamp supported
-> [   40.588505] renesas-gbeth 15c40000.ethernet eth1: registered PTP clock
-> [   40.595135] renesas-gbeth 15c40000.ethernet eth1: configuring for
-> phy/rgmii-id link mode
-> root@rzv2h-evk-alpha:~#
-> root@rzv2h-evk-alpha:~# [   43.687551] renesas-gbeth 15c40000.ethernet
-> eth1: Link is Up - 1Gbps/Full - flow control off
-> 
-> root@rzv2h-evk-alpha:~# ip li set dev eth0 up
-> [   49.644479] renesas-gbeth 15c30000.ethernet eth0: Register
-> MEM_TYPE_PAGE_POOL RxQ-0
-> [   49.652719] renesas-gbeth 15c30000.ethernet eth0: Register
-> MEM_TYPE_PAGE_POOL RxQ-1
-> [   49.660681] renesas-gbeth 15c30000.ethernet eth0: Register
-> MEM_TYPE_PAGE_POOL RxQ-2
-> [   49.669059] renesas-gbeth 15c30000.ethernet eth0: Register
-> MEM_TYPE_PAGE_POOL RxQ-3
-> [   49.740011] renesas-gbeth 15c30000.ethernet eth0: PHY [stmmac-0:00]
-> driver [Microchip KSZ9131 Gigabit PHY] (irq=POLL)
-> [   49.762518] dwmac4: Master AXI performs fixed burst length
-> [   49.768057] renesas-gbeth 15c30000.ethernet eth0: No Safety
-> Features support found
-> [   49.775655] renesas-gbeth 15c30000.ethernet eth0: IEEE 1588-2008
-> Advanced Timestamp supported
-> [   49.784609] renesas-gbeth 15c30000.ethernet eth0: registered PTP clock
-> [   49.791236] renesas-gbeth 15c30000.ethernet eth0: configuring for
-> phy/rgmii-id link mode
-> root@rzv2h-evk-alpha:~#
-> root@rzv2h-evk-alpha:~# [   52.871635] renesas-gbeth 15c30000.ethernet
-> eth0: tx_clk_stop=1
-> [   52.877777] renesas-gbeth 15c30000.ethernet eth0: Link is Up -
-> 1Gbps/Full - flow control rx/tx
 
-I would like to get to the bottom of why this fails for module removal/
-insertion, but not for admistratively down/upping the interface.
+Dear David,
 
-Removal of your module will unregister the netdev, and part of that
-work will bring the netdev administratively down. When re-inserting
-the module, that will trigger various userspace events, and it will
-be userspace bringing the network interface(s) back up. This should
-be no different from administratively down/upping the interface but
-it seems you get different behaviour.
+On Fri, 28 Feb 2025 16:38:51 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-I'd like to understand why that is, because at the moment I'm wondering
-whether my patches that address the suspend/resume need further work
-before I send them - but in order to assess that, I need to work out
-why your issue only seems to occur in the module removal/insertion
-and not down/up as well as I'd expect.
+> On 2/27/25 10:28 AM, David Jander wrote:
+> > Add device-tree bindings for Analog Devices TMC5240 stepper controllers.
+> > 
+> > Signed-off-by: David Jander <david@protonic.nl>
+> > ---
+> >  .../bindings/motion/adi,tmc5240.yaml          | 60 +++++++++++++++++++
+> >  1 file changed, 60 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
+> > new file mode 100644
+> > index 000000000000..3364f9dfccb1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
+> > @@ -0,0 +1,60 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/motion/adi,tmc5240.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices TMC5240 Stepper Motor controller
+> > +
+> > +maintainers:
+> > +  - David Jander <david@protonic>
+> > +
+> > +description: |
+> > +   Stepper motor controller with motion engine and SPI interface.  
+> 
+> Please include a link to the datasheet.
 
-Please could you investigate this?
+Will do.
 
-Thanks.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - adi,tmc5240
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1  
+> 
+> I assume that this is the overvoltage output (OV pin). Would be nice to have
+> a description here saying that. There are also NAO and DIAG0/1 output pins, so
+> it's a bit ambiguous otherwise.
+
+This is the DIAG0 output pin which on this chip has a dual function as either
+a STEP output or an interrupt output. The pin name is a bit misleading, but it
+is the "interrupt" function that is meant here. The datasheet documents all
+the different events that can trigger this interrupt.
+I will add a description to clarify this.
+
+> > +
+> > +  enable-supply:
+> > +    description: Optional external enable supply to control SLEEPn pin. Can
+> > +      be shared between several controllers.
+> > +  
+> 
+> This doesn't look like a supply, but krzk already discussed that. But there
+> should be actual power supplies: vs-supply, vdd1v8-supply, vcc-io-supply. And
+> a reference voltage supply: iref-supply
+
+I have added vs-supply and vcc-io-supply to the binding. These are the only
+supply pins that can be connected to the outside world or otherwise be of
+concern to the software.
+
+vdd1v8-supply is an internal power rail that must not have a connection to the
+outside of the chip (besides an external filtering capacitor) and also doesn't
+have any bearing to the software at all. It cannot be disabled, adjusted or
+anything, so I don't think it needs to be mentioned.
+
+IREF isn't a supply pin. It is merely a pin for connecting an external
+reference resistor that is used internally for current scaling and it too has
+no interaction with the software in any way.
+
+The resistor connected to the IREF pin (Rref) OTOH does have an implication to
+the software, as it sets the full-range current of the output stage.
+
+How should we specify that? Is it adequate to add an optional DT property
+"rref" or "rref-ohm" with an int32 value in Ohm? The default value if
+unspecified is 12000 Ohm.
+
+> And if there are any pins would make sense to connect to a gpio, we can add
+> those even if the driver doesn't use it currently.
+> 
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +  - $ref: /schemas/motion/common.yaml#  
+> 
+> If we need to know about what is connected to the output of a motor controller
+> I would expect it to be done with child node for each output. That way each
+> output can be unique, if needed. Basically, similar to iio/adc.yaml is used to
+> provide common properties for channel@ child nodes on iio devices.
+
+This controller chip only has one single output for one stepper motor (4
+wires). While technically you could connect something else to those 4 wires, I
+don't think it is the scope of LMC to support that. The chip itself isn't
+designed for that purpose and it would clearly go far beyond the intended
+purpose of this device.
+
+That being said, your suggestion of supporting child nodes may actually be a
+good idea. Right now, we specify the type of motor (basically nominal- and hold
+current settings) in user-space and set the IRUN/IHOLD parameters from
+user-space via the sysfs attributes interface. It might make sense to have a DT
+child node to specify this, although in our current application this is not
+very practical, since there are many motor controllers on one board, and it is
+configurable in software (runtime) which motor is connected to which output.
+
+But I can imagine a situation where it may be fixed and thus can be described
+in the DT of a board.
+
+Then again I don't know if it would be over-complicating things with something
+like this:
+
+	motor-controller@0 {
+		...
+		motor@0 {
+			compatible = "nanotec,st4118s1006";
+			irun-ma = <1800>;
+			ihold-ma = <270>;
+		};
+	};
+
+where we'd possibly have a stepper-motors.c file with a lot of structs and
+matching tables for the different motor types.... sounds like overkill to me,
+but maybe not?
+
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        motor@0 {  
+> 
+> motor-controller@ or actuator-controller@
+> 
+> The chip is the controller/driver, it is not a motor.
+
+Make sense. Will change this.
+
+> > +            compatible = "adi,tmc5240";
+> > +            reg = <0>;
+> > +            interrupts-extended = <&gpiok 7 0>;
+> > +            clocks = <&clock_tmc5240>;
+> > +            enable-supply = <&stpsleepn>;
+> > +            spi-max-frequency = <1000000>;
+> > +        };
+> > +    };
+
+Best regards,
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+David Jander
 
