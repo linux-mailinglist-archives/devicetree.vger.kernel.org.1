@@ -1,140 +1,232 @@
-Return-Path: <devicetree+bounces-153354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C40A4C142
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:07:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE3D5A4C165
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:12:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4B6B3A7481
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:06:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 307D87A39F6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:11:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8642A210192;
-	Mon,  3 Mar 2025 13:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF18211A1E;
+	Mon,  3 Mar 2025 13:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nq0wc9mP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KtM8k1CG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E26713FEE;
-	Mon,  3 Mar 2025 13:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33BFB21128D;
+	Mon,  3 Mar 2025 13:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741007223; cv=none; b=h0HM2SGzxFYec7/QB7DNpJaJxFyNUeAP15Rx/yP1sVIF1pmj5zeI3AVrD03NFiJ3H/8m61Fn94ZJPpfR4//+EWnA4oKyqR6Jz60lRQWMleZ/YhzxO+1FqjL8R+bMsmI599mFkaR2BFw33NZasyO9Uw6/KKTHFf7jfKVWIjfOQJ4=
+	t=1741007542; cv=none; b=pTCIyKM6fHtlldmYdlNGuq1c6BAo7Aee6Rytr5ylrSLn2Rc1Xe7x/miJvB82nAhpl7a043FQE0GoWZDVxyKRhK02meSvh5kGKyr1fWBLtozB5zNPh521nIpv/XzXfsSQOUgIaSCEvzX52m8Otjms2hMg7RcySXw2iJcAyc0XElc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741007223; c=relaxed/simple;
-	bh=KD/u2uj8WkbEL97tLItjWeuPMc7ZQab5ZdYmsWVBdF8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Kp0slKdJrq2TfP+8ltHXw9/39JY1oo68cgPAeIpoAZLkKmTI1LDTMHuhvnTg6vDABid9XSsiz0QNgt/WuY/LlRrbcETK09t286B36V7btmIoO64k6pP7F67jx1yl9Z5h6JkQKpNo8SUSscYdy5ov/NDkTooJ8Gfn4E8grlL+OwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq0wc9mP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C4F7DC4CED6;
-	Mon,  3 Mar 2025 13:07:02 +0000 (UTC)
+	s=arc-20240116; t=1741007542; c=relaxed/simple;
+	bh=DTKGQ8eC/ctsrimOWqQCAQhsg20781WA34NJR5qYxVU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZlmVfK0pmDkLwSJOXjLQIDIb/7CTBydxBIToHC8Y+LPJM8ueAhRTVR5fCal14R6XYbWIl6TcQUf4xdxKwqrm7DwDSqf5AjjKNGgRrcyjSTy0SwK8AiawwtXSlCVHvxwWHIDJJ+z/jsv8OF1+X3/M7jjFueBdwof+pRsO7ayKCpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KtM8k1CG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0B42C4CEE6;
+	Mon,  3 Mar 2025 13:12:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741007222;
-	bh=KD/u2uj8WkbEL97tLItjWeuPMc7ZQab5ZdYmsWVBdF8=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=Nq0wc9mPshq8VCggTjzNZISVHcZ4iX0WG/pkAbnAhdY0iu+OXmWJhHQmIz7I+8hQf
-	 jZFsbgo2kUQJiGuAzarrlvtP21ZPl1UgLisuRUA3JLeZtA73GWrpI2Zizr8cUgbiJZ
-	 53i9SLDsEkVRK7XR2i13xpGZQXaTULLKSPlhqQ1g302pZdKxrenULZBjGQlRmOqTbJ
-	 IC2RWx56coREVyBpnUKsYG0vAVKT9Qu1Rr9OAawClystfs6xKQGEDks4kcE8JSF2sa
-	 OcPPUFxLgIZEZ7Y9khJZAGklQ7cXevHLEZb8z21tuE2HX6W5rzV82aLjckGWK/MvTs
-	 eKyWYY0qBZzpA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B15BCC282D1;
-	Mon,  3 Mar 2025 13:07:02 +0000 (UTC)
-From: "Chester A. Unal via B4 Relay" <devnull+chester.a.unal.arinc9.com@kernel.org>
-Date: Mon, 03 Mar 2025 13:06:50 +0000
-Subject: [PATCH] ARM: dts: BCM5301X: Fix switch port labels of ASUS
- RT-AC5300
+	s=k20201202; t=1741007542;
+	bh=DTKGQ8eC/ctsrimOWqQCAQhsg20781WA34NJR5qYxVU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KtM8k1CGr2p1Z9HinZQAFkbEWOIiTsYidqc/4je/JLQoDg6C1XhF+m4L8iL8DZHUE
+	 rnoFQUv+HVSUlckzv6ANO30P7b6AffVyFe01K9NLhl0FXUVBIc3k0Bo3lPT8VQzqQM
+	 bwkVDEgerFG8+TNgyfHJ0nJKZEbqo5qlu3nhTQGz+4m1hNtl9nOcgAwO5ucmQLWhDG
+	 X/NjcxwdJ6zLnCZMHA7MQdTvWvGAU+DaHiLm5AgsTGtFU95i2iV7ioDwATvAKIV8RC
+	 v5zq2lQryTqWK4v9jw+j8iV+P0YCRz2jH1wdS8CXCBXoi8wLNmjlddiLO+V/x6eaTg
+	 +NX8M4RquJ3ew==
+Date: Mon, 3 Mar 2025 07:12:20 -0600
+From: Rob Herring <robh@kernel.org>
+To: Hironori KIKUCHI <kikuchan98@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: display: panel: Add some generic
+ MIPI-DSI/DPI panels
+Message-ID: <20250303131220.GA1437304-robh@kernel.org>
+References: <20250226112552.52494-1-kikuchan98@gmail.com>
+ <20250226112552.52494-3-kikuchan98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250303-for-broadcom-fix-rt-ac5300-switch-ports-v1-1-e058856ef4d3@arinc9.com>
-X-B4-Tracking: v=1; b=H4sIAGmpxWcC/x2NQQqDMBAAvyJ77sI20Yb2K6WHmKx1DzWyG2xB/
- HuDx4FhZgdjFTZ4dDsob2JSlgbXSwdpjsubUXJjcOQG8uRxKoqjlphT+eAkP9SKMQ2eCO0rNc2
- 4Fq2GIdzGQD1nF+7Qaqtys8/T83Ucf/OpD9N5AAAA
-X-Change-ID: 20250303-for-broadcom-fix-rt-ac5300-switch-ports-776b704ed279
-To: Florian Fainelli <florian.fainelli@broadcom.com>, 
- Hauke Mehrtens <hauke@hauke-m.de>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Tom Brautaset <tbrautaset@gmail.com>, 
- =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, 
- Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, "Chester A. Unal" <chester.a.unal@arinc9.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741007221; l=1355;
- i=chester.a.unal@arinc9.com; s=arinc9; h=from:subject:message-id;
- bh=pnEACfUXw4i/i7KomdhkZyj3vwZ11bi8No1VYOFnwDs=;
- b=qLc0CTqWEMG6zp53x9qNafll5DaO+iOLlCT86V716Yc1ca2n5cHbE8Kbt6Cg9WBKQgh9SCUWJ
- F5fOYwVex56C5CTxFBl9oDM/M4keZbY0lv0dqahvCYqSn3bKx9yQyqv
-X-Developer-Key: i=chester.a.unal@arinc9.com; a=ed25519;
- pk=/g3vBAV0YSvcIpSQ052xJbid7nrPXz8ExGKhTEuc6IY=
-X-Endpoint-Received: by B4 Relay for chester.a.unal@arinc9.com/arinc9 with
- auth_id=306
-X-Original-From: "Chester A. Unal" <chester.a.unal@arinc9.com>
-Reply-To: chester.a.unal@arinc9.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250226112552.52494-3-kikuchan98@gmail.com>
 
-From: "Chester A. Unal" <chester.a.unal@arinc9.com>
+On Wed, Feb 26, 2025 at 08:25:49PM +0900, Hironori KIKUCHI wrote:
+> This is a binding for generic MIPI-DSI/DPI panels that require
+> initialization with a simple command sequence before use.
+> 
+> The initialization of the panel requires a firmware binary which can be
+> made with the Panel Firmware Generator[1] on the web.
+> 
+> Add 4 new panels, as they are available on the same page[1] as a preset
+> (excluding already included ones).
+> 
+> Note that the "xx" in the panel name is taken from a product's name,
+> not a wildcard.
+> 
+> [1]: https://kikuchan.github.io/panel-firmware-generator/
+> 
+> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
+> ---
+>  .../bindings/display/panel/panel-mipi.yaml    | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi.yaml
+> new file mode 100644
+> index 00000000000..d70cf0063fa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi.yaml
+> @@ -0,0 +1,121 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/panel-mipi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic MIPI-DSI/DPI Panels Requiring Initialization
+> +
+> +maintainers:
+> +  - Hironori KIKUCHI <kikuchan98@gmail.com>
+> +
+> +description: This is a binding for generic MIPI-DSI/DPI panels that require
+> +  initialization with a simple command sequence before use.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              # Unknown 3.35" 720x480 24-bit IPS LCD panel
+> +              # used in Anbernic RG 34XX
+> +              - anbernic,rg34xx-panel
+> +              # Unknown 4.00" 640x480 24-bit IPS LCD panel (YLM-LBV0400001X-V1)
+> +              # used in Anbernic RG40XX series
+> +              - anbernic,rg40xx-panel
+> +              # Unknown 3.95" 720x720 24-bit IPS LCD panel (YLM-LBN0395004H-V1)
+> +              # used in Anbernic RG CubeXX
+> +              - anbernic,rgcubexx-panel
+> +          - const: panel-mipi-dpi-spi
 
-After using the device for a while, Tom reports that he initially described
-the switch port labels incorrectly. Correct them.
+We already have a schema for this: panel-mipi-dpi-spi.yaml
 
-Reported-by: Tom Brautaset <tbrautaset@gmail.com>
-Fixes: 961dedc6b4e4 ("ARM: dts: BCM5301X: Add DT for ASUS RT-AC5300")
-Signed-off-by: Chester A. Unal <chester.a.unal@arinc9.com>
----
- arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+> +      - items:
+> +          - enum:
+> +              # HOTHMI TFT-H028B23VGIST7G40-V1 2.80" 480x640 TFT LCD panel
+> +              - hothmi,tft-h028b23vgist7g40-v1
+> +          - const: panel-mipi-dsi
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
-index 6c666dc7ad23ef7c31ac22904c39789838caea2e..01ec8c03686a66dd1efa439333f83737fe572191 100644
---- a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
-@@ -126,11 +126,11 @@ &srab {
- 
- 	ports {
- 		port@0 {
--			label = "lan4";
-+			label = "wan";
- 		};
- 
- 		port@1 {
--			label = "lan3";
-+			label = "lan1";
- 		};
- 
- 		port@2 {
-@@ -138,11 +138,11 @@ port@2 {
- 		};
- 
- 		port@3 {
--			label = "lan1";
-+			label = "lan3";
- 		};
- 
- 		port@4 {
--			label = "wan";
-+			label = "lan4";
- 		};
- 	};
- };
+We have lots of DSI panels already and they don't have a generic 
+fallback. What exactly would "panel-mipi-dsi" mean to the OS? It's got 
+to be useful on its own or it should be dropped.
 
----
-base-commit: 768953614c1c13fdf771be5742f1be573eea8fa4
-change-id: 20250303-for-broadcom-fix-rt-ac5300-switch-ports-776b704ed279
-
-Best regards,
--- 
-Chester A. Unal <chester.a.unal@arinc9.com>
-
-
+> +
+> +  reg:
+> +    description: DSI / SPI channel used by that screen
+> +    maxItems: 1
+> +
+> +  power-supply: true
+> +
+> +  io-supply:
+> +    description: I/O system regulator.
+> +      No need to set if this is the same as polwer-supply.
+> +
+> +  dc-gpios:
+> +    maxItems: 1
+> +    description: Controller data/command selection (D/CX) in 4-line SPI mode.
+> +      If not set, the controller is in 3-line SPI mode.
+> +      Disallowed for DSI.
+> +
+> +  port: true
+> +  reset-gpios: true
+> +
+> +  backlight: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - panel-mipi-dpi-spi
+> +    then:
+> +      # SPI mode
+> +      $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - panel-mipi-dsi
+> +    then:
+> +      # DSI mode
+> +      properties:
+> +        dc-gpios: false
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        panel@0 {
+> +            compatible = "hothmi,tft-h028b23vgist7g40-v1", "panel-mipi-dsi";
+> +            reg = <0>;
+> +
+> +            port {
+> +                mipi_in_panel: endpoint {
+> +                    remote-endpoint = <&mipi_out_panel>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        panel@0 {
+> +            compatible = "anbernic,rg40xx-panel", "panel-mipi-dpi-spi";
+> +            reg = <0>;
+> +
+> +            spi-max-frequency = <40000000>;
+> +
+> +            dc-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
+> +            reset-gpios = <&gpio 25 GPIO_ACTIVE_LOW>;
+> +
+> +            backlight = <&backlight>;
+> +        };
+> +    };
+> -- 
+> 2.48.1
+> 
 
