@@ -1,144 +1,227 @@
-Return-Path: <devicetree+bounces-153361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8F71A4C1CE
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:24:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C52BA4C20C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:35:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFF13165D16
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:23:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B24BA189914F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DF6212B0A;
-	Mon,  3 Mar 2025 13:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7018212B1B;
+	Mon,  3 Mar 2025 13:31:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/AhB5qE"
+	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="BC8YDrCe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from out-16.pe-b.jellyfish.systems (out-16.pe-b.jellyfish.systems [198.54.127.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED65120D4E9;
-	Mon,  3 Mar 2025 13:22:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42881EFFB4;
+	Mon,  3 Mar 2025 13:31:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741008131; cv=none; b=ol7rqZUFTCC46B78RIjRH0jvOaXgk857K5xDY4w5mdmcXtNtIRNfcAo33dgxCybqBosF7u/CbbaEowxF6wI3AUaHPW2LJpgCTRHs78syQdhU/U9bKAc0Dj49AGPpFf9wrzFncc3A3jMmx0+booMex/hEL8jg8u5t4n9wm52F7No=
+	t=1741008702; cv=none; b=o6hsK9YYy11DnD97wF4NFW8mrXTkvnqDoLkIjGms5BUK4y4qCO7DNJ31AAj6nGjlzmGT9AA9aAoxZKKuEVDMU5BQLQHekcY/vjt2CpNPfVBtyqE+hi1r2ctbJvFFAxYBWpq4OIrsGfR5oK2nkeOWO0bJ7qLt6PVNyw59eee6VW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741008131; c=relaxed/simple;
-	bh=cyAIDvH42HlK42zH1AZZ7W0u8yvqehARnSYevut+Mvw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qkHl/q+t3xNiM9e03RQ5mO5PSKAraOfaWxM3dS8vUiGvJvYTQbCnWqeeIoVtEwc3DpCkbXFaWQYTbstRWpu+RqTh2p1cu2DFHB6adVuUI/PR3JRwRvLZxUBHjE0X4zjVNLyNRQMrSJQ0zXVq787n6O4r8P23D7zDE2Qsgdv3uwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/AhB5qE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58DA6C4CEEC;
-	Mon,  3 Mar 2025 13:22:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741008130;
-	bh=cyAIDvH42HlK42zH1AZZ7W0u8yvqehARnSYevut+Mvw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=c/AhB5qEabaK+aGFMVK/mFIuucVYjGzZAk7HdUEOEz2mZCuWZRzB9TmVLCrERWDN5
-	 OC3uJ8TorONGnXWfIFQmcnQmo1J+tPz7jKCiWTOrHgzEzM6TjKgawRn5EjTjpfa+Vd
-	 hQbJAAo8DaI/V4nFvyoBVzOlg2VyPBFMczw0uHOJF4cvkb3FC2jgJWI9k3gCwACoBT
-	 QyXng99JRn6+4oOBzcoxgc+0yF81Wre66HialtHEmysgApJfX9TYc/pCrPFm0+nEWV
-	 YlKl7U1UpJaE6vvS5QoHCrEsqQCKCMysMl4JglksrOiXPPCibfyukuN5ukmr78zUnS
-	 SCd6ppVo7A+6g==
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2feb9076a1cso6824201a91.0;
-        Mon, 03 Mar 2025 05:22:10 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX1Igr/TanK2soVcvesdVKYXrB4JqCExqU5/Faky6KF9LAynw5xt43eq+kkVKFjUQwcfRaI+VMZXJdv@vger.kernel.org, AJvYcCXl9brJFjfH1J6lEweohgkUOW7gBLrW9dXEGdBuBZB8Zb1XGrMibFyJvxVhbwE/fg8qofmgm19obkXjVNCv@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpYcyE0gpnZXOGnBIMwkbcSj1haZn5bjQ7Q1NsE5QK/0yTY4qD
-	8VByGPY2MqftkYq51dD7+LGDbNvTUkq8XHm6VxlvnFURhnC44voO6KzQwoyzV58RBDt8ArjsM/Z
-	GtXErXVzSARgsru7qrR2Vx4opVA==
-X-Google-Smtp-Source: AGHT+IHQLK7la/7RxxVx5xQub2rrCyzIXTBwqCYNHPZA1L5Z+HvrKvHgKF1EVP50ng2pCoNbxnqwqT1ThMWF+DeLMfM=
-X-Received: by 2002:a17:90b:1cc6:b0:2fc:3264:3657 with SMTP id
- 98e67ed59e1d1-2febaa92594mr25361600a91.0.1741008129875; Mon, 03 Mar 2025
- 05:22:09 -0800 (PST)
+	s=arc-20240116; t=1741008702; c=relaxed/simple;
+	bh=UnlZRIn1+XWnSfw2pYOSnNaYsdX5WURIf+Hn25tK/2k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q6RhhgY0UqBUoyD4OEUpT+/tap51H+AczqOQzJbamC62qJlJjg7Awa+K8dAk4dX5EhVNoUIovBNtXLDr2mvUqNFUZLjVBi6iCI6joDXTsbazOxlrhtL5lpXhWHAxpVgXX4zZUEar9e/I4Cq9V5lnjmhzwgdV/HeKw4aotruZ4oQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=BC8YDrCe; arc=none smtp.client-ip=198.54.127.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
+Received: from prod-lbout-phx.jellyfish.systems (new-01.privateemail.com [198.54.118.220])
+	by pe-b.jellyfish.systems (Postfix) with ESMTPA id 4Z608P5BGyzGpYK;
+	Mon, 03 Mar 2025 13:31:33 +0000 (UTC)
+Received: from MTA-07.privateemail.com (unknown [10.50.14.17])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by NEW-01.privateemail.com (Postfix) with ESMTPS id 4Z608P4NQBz3hhVZ;
+	Mon,  3 Mar 2025 08:31:33 -0500 (EST)
+Received: from mta-07.privateemail.com (localhost [127.0.0.1])
+	by mta-07.privateemail.com (Postfix) with ESMTP id 4Z608P32p7z3hhV0;
+	Mon,  3 Mar 2025 08:31:33 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
+	s=default; t=1741008693;
+	bh=UnlZRIn1+XWnSfw2pYOSnNaYsdX5WURIf+Hn25tK/2k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BC8YDrCeBCA/KChWY4EPrqKy7A8fAYwy+Odi1ANXa/vnIoSfJ86AKOezwBHBlU/46
+	 gffQinnck9bZMc20Me2sACxi5KJZSUKoeY5xRqVbofOYv+xPK1EQtg8fA+6ytJlrvG
+	 N+educh4GpHUNmLKFpEHqQBRAXm7Nd8/aleKHc18EJnrvz2pkXzMhhwC+gxU8yPHqF
+	 C5Z6EFIyQBntvKoEPbXztVuQgrdjkrqf6LHsb5UkUaD5BYvQ3jwEbhG5cbPc8ZJFw2
+	 ky9QsmK4nWX4VTQ5gkTzjytiLFL0VDnM0Rvk4gUby1LYO+JQE7U4YfTQ5znWPO6pE8
+	 PaHrEAKa20zZw==
+Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
+	by mta-07.privateemail.com (Postfix) with ESMTPA;
+	Mon,  3 Mar 2025 08:31:20 -0500 (EST)
+Date: Mon, 3 Mar 2025 08:31:20 -0500
+From: Sam Winchenbach <sam.winchenbach@framepointer.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, lars@metafoo.de,
+	Michael.Hennerich@analog.com, antoniu.miclaus@analog.com,
+	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: iio: filter: Add lpf/hpf freq margins
+Message-ID: <Z8WvKNcCnQI_UYZJ@65YTFL3.secure.tethers.com>
+References: <20250225134612.577022-1-sam.winchenbach@framepointer.org>
+ <20250225134612.577022-2-sam.winchenbach@framepointer.org>
+ <20250226-sparkling-caped-saluki-b1cbad@krzk-bin>
+ <Z79K8Ag4SJYtJTtM@65YTFL3.secure.tethers.com>
+ <05e56d15-059b-425b-9e55-66993d988f8d@kernel.org>
+ <Z7-SojPPx3kOVa4y@65YTFL3.secure.tethers.com>
+ <8fef9b19-a1de-4153-a186-1aeee87dea9d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023-display-support-v7-0-6703f3e26831@baylibre.com> <20231023-display-support-v7-1-6703f3e26831@baylibre.com>
-In-Reply-To: <20231023-display-support-v7-1-6703f3e26831@baylibre.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Mon, 3 Mar 2025 21:22:55 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8c4xeE=c4MTGopenORaP-PL66exLG+erKSV1fpoGJU+g@mail.gmail.com>
-X-Gm-Features: AQ5f1JrckMOh9P4yJQbwlfuWcX_03D8O22eeIcknRD2YAlMiCLxngtVQQLy-TeY
-Message-ID: <CAAOTY_8c4xeE=c4MTGopenORaP-PL66exLG+erKSV1fpoGJU+g@mail.gmail.com>
-Subject: Re: [PATCH v7 1/6] dt-bindings: display: mediatek: dpi: add
- power-domains example
-To: amergnat@baylibre.com
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Simona Vetter <simona@ffwll.ch>, Simona Vetter <simona.vetter@ffwll.ch>, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Fabien Parent <fparent@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8fef9b19-a1de-4153-a186-1aeee87dea9d@kernel.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-Hi, Amergnat:
+On Mon, Mar 03, 2025 at 09:13:00AM +0100, Krzysztof Kozlowski wrote:
+> On 26/02/2025 23:16, Sam Winchenbach wrote:
+> >>>>> +  adi,hpf-margin-hz:
+> >>>>> +    description:
+> >>>>> +      Sets maximum high-pass corner frequency to the frequency of rf_in minus
+> >>>>> +      this value when in auto mode.
+> >>>>
+> >>>> IIUC, these are two bounds - lower and upper - in relation to something
+> >>>> else (like rf_in frequency)? If so, make it an array (naming to be
+> >>>> discuss, I assume you know better what's that):
+> >>>
+> >>> It is true that these are both related to rf_in but both the low and high pass
+> >>> filters can operate independently. Logically, IMO, it makes more sense to have
+> >>
+> >>
+> >> You mean you can set only low or high pass and keep other as default?
+> >> But what is the default then - something from reset value or "0" means
+> >> disabled?
+> > 
+> > This value isn't setting the corner frequency of the filter, but the minimum
+> > distance the corner must be from the fundamental frequency. So, for example,
+> > if rf_in is 3.35 GHz and you set lpf-margin-hz to 0 then the corner frequency
+> > will be set to 3.35 GHz because that is an exact value supported by the device.
+> > 
+> > If lpf-margin-hz is set to 30 MHz (for example), then corner frequency would be
+> > at least 3.35 GHz + 30 MHz = 3.38 GHz.  3.49 GHz is the closest corner
+> > frequency without going below 3.38 GHz that is supported by the device, so that
+> > is what will be selected.
+> > 
+> > This prevents the situation where your fundamental frequency falls on, or close
+> > to, a corner frequency which could result in 3dB (half power) loss in your
+> > signal.
+> > 
+> > This is all completely indepent of the high-pass filter.
+> 
+> Description is confusing a bit, because it suggests the value sets the
+> corner frequency. It explicitly says this - "sets ... corner frequency"
+> and such meaning for properties we usually associate with the property
+> doing this. Here however corner frequency will be always set to rf_in
+> and you just adjust the value.
+>
 
-<amergnat@baylibre.com> =E6=96=BC 2025=E5=B9=B41=E6=9C=8810=E6=97=A5 =E9=80=
-=B1=E4=BA=94 =E4=B8=8B=E5=8D=889:31=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> From: Fabien Parent <fparent@baylibre.com>
->
-> DPI is part of the display / multimedia block in MediaTek SoCs, and
-> always have a power-domain (at least in the upstream device-trees).
-> Add the power-domains property to the binding example.
+How about: "Sets the minimum distance (in Hz) between the fundamental
+frequency of `rf_in` and the corner frequency of the high-pass, input filter
+when operatred in 'auto' mode. The selected high-pass corner frequency will
+be less than, or equal to, `rf_in` - `hpf-margin-hz`. If not setting is found
+that satisfies this relationship the filter will be put into 'bypass'."
 
-Applied to mediatek-drm-next [1], thanks.
+Perhaps that is a bit more clear on the intention of this parameter?
 
-[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.=
-git/log/?h=3Dmediatek-drm-next
+> > 
+> >>
+> >>> them as separate controls but I am happy to put them into an array if that is
+> >>> the idiomatic approach to situations like this. That said, I am having a
+> >>> difficult time getting dt_binding_check to pass when I have an array of uint64.
+> >>>
+> >>> When listing two items, as in your example below, I get the following:
+> >>> adi,admv8818.example.dtb: admv8818@0: adi,filter-margins-hz: [[0, 30000000], [0, 30000000]] is too long
+> >>
+> >> Tricky to say without seeing your code. Magic crystal ball had
+> >> malfunction today.
+> > 
+> > This is the property:
+> > 
+> >   adi,filter-margins-hz:
+> >     items:
+> >       - description: |
+> >           The minimum distance, in Hz, between rf_in and the low-pass corner
+> >           frequency when the device is used in "auto" mode. If the sum of
+> >           rf_in and this value is greater than 18.85 GHz then the low-pass
+> >           filter will be put into bypass mode, otherwise the closest corner
+> >           frequency that is greater than or equal to the sum of rf_in plus this
+> >           value will be used.
+> >         minimum: 0
+> >         maximum: 0xFFFFFFFFFFFFFFFF
+> >         default: 0
+> >       - description: |
+> >           The minimum distance, in Hz, between rf_in and the high-pass corner
+> >           frequency when the device is used in "auto" mode. If the difference
+> >           between rf_in and this value is less than 1.75 GHz then the high-pass
+> >           filter will be put into bypass mode, otherwise the closest corner
+> >           frequency that is less than or equal to the difference of rf_in and
+> >           this value will be used.
+> >         minimum: 0
+> >         maximum: 0xFFFFFFFFFFFFFFFF
+> >         default: 0
+> > 
+> > And this is the example:
+> > 
+> > examples:
+> >   - |
+> >     spi {
+> >       #address-cells = <1>;
+> >       #size-cells = <0>;
+> >       admv8818@0 {
+> >         compatible = "adi,admv8818";
+> >         reg = <0>;
+> >         spi-max-frequency = <10000000>;
+> >         clocks = <&admv8818_rfin>;
+> >         clock-names = "rf_in";
+> >         adi,filter-margins-hz = /bits/ 64 <30000000 30000000>;
+> 
+> 
+> foo-hz is in 32-bit, so basically you have here 4 32-bit numbers which
+> indeed reported by dtschema - property is too long. Drop 64-bit here.
+> 
 
-Regards,
-Chun-Kuang.
+I was hoping to keep this 64 bits seeing this is a 18 GHz+ filter. I suppose
+I could change this to MHz and just lose a bit of resolution. Does that sound
+like a better approach?
 
+> Device allows multiple LPF/HPF values to be stored in LUT tables and it
+> actually has four independent filters. Shouldn't these be included here?
+> Maybe not LUT tables, but the configuration for all filters?
 >
-> Fixes: 9273cf7d3942 ("dt-bindings: display: mediatek: convert the dpi bin=
-dings to yaml")
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml | 2=
- ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.=
-yaml
-> index 0f1e556dc8ef..d5ee52ea479b 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
-l
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
-l
-> @@ -116,11 +116,13 @@ examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/clock/mt8173-clk.h>
-> +    #include <dt-bindings/power/mt8173-power.h>
->
->      dpi: dpi@1401d000 {
->          compatible =3D "mediatek,mt8173-dpi";
->          reg =3D <0x1401d000 0x1000>;
->          interrupts =3D <GIC_SPI 194 IRQ_TYPE_LEVEL_LOW>;
-> +        power-domains =3D <&spm MT8173_POWER_DOMAIN_MM>;
->          clocks =3D <&mmsys CLK_MM_DPI_PIXEL>,
->               <&mmsys CLK_MM_DPI_ENGINE>,
->               <&apmixedsys CLK_APMIXED_TVDPLL>;
->
-> --
-> 2.25.1
->
+
+There are two filters, the input (high-pass) filter, and the output (low-pass)
+filter. Each filter has four banks, each with a different range of frequencies.
+Only one bank can be selected at a time. Each bank has 16 different possible
+cutoff/corner frequencies. That is a total of 64 distinct values for each of
+the two filters.
+
+The issue with setting the corner frequency directly is that in certain
+applications (such as software defined radios) the fundamental frequency
+is adjustable, necessitating that the corner frequencies of the filter are
+adjusted accordingly. When the filter is in "auto" mode it is notified via
+the clock system of frequency changes, so using this information it should be
+possible to select new corner frequencies if you know the minimum distance
+between your fundamental frequency and the corner.
+
+
+It is possible there is either not enough call for this feature, or it goes
+against the designs of the maintainters. If that is the case we should decline
+this patch and we will maintain it in our fork of the kernel.
+
+Thanks,
+-Sam
+ 
+> Best regards,
+> Krzysztof
 
