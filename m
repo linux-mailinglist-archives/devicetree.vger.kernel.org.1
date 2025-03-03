@@ -1,116 +1,145 @@
-Return-Path: <devicetree+bounces-153416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2343FA4C5EE
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:00:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C479CA4C5FA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:03:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D234A3A55E4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:00:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8D887A1AB3
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2A21DB154;
-	Mon,  3 Mar 2025 16:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B8421507C;
+	Mon,  3 Mar 2025 16:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EuMMZM/x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C4FF7080D;
-	Mon,  3 Mar 2025 16:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A147080D;
+	Mon,  3 Mar 2025 16:02:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741017643; cv=none; b=kWkv0EaBu2EQ+YnE5xmRBWTzjeaQcMqerC+xDjsJpkFysU9DpEOBVj+XoLjlcYFjGjW+9otNb9NOHCin3wtCCtvnAh/a2JoNYcw7I43qUNWqyIUznL8oGN1iEQLOKOn9SgbXSyHK92OqTQR5/0LG2q39DdwBPRGfoMbMDkAJU4E=
+	t=1741017738; cv=none; b=rVo15JkM4wZZXjl5UQtAM5ZhOyTjWFvL5hQI2o0SiupIz4mqySWPhKa6vLIpKR/vWBsO+WKaS4GyQg9R7F6cfcMn/mFc7+rxndiM5OksUZMT69tAeyqdvHmDqMS2M1LQUhbARyYauBHG7Uoh6jgxRvUCiSi/ZhaKZyNbRdgnYyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741017643; c=relaxed/simple;
-	bh=qHzQi4+c8kTN8tsNEe9XE1Dq3CCg4miQvbd30I6E+RM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lGmCbcXEHzUmlN0z1cj+RC4lFLb6fJJ5BZpPn8ZYBvHbtFZIlsNlKi/fDezXBSFsKAW260sNA8qAGd1VyaxeUiLe8j8OwYQmz+JWerr42TElSQECCsP2dOwZN1D5KcKDhbim9uGqml6krlLGSeFo+e3ojVWkIcNdNRxwuK+LoLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 35789106F;
-	Mon,  3 Mar 2025 08:00:54 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6CF9B3F673;
-	Mon,  3 Mar 2025 08:00:38 -0800 (PST)
-Date: Mon, 3 Mar 2025 16:00:35 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
-Cc: <liviu.dudau@arm.com>, <lpieralisi@kernel.org>, <robh@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: corstone1000: Add definitions for secondary
- CPU cores
-Message-ID: <Z8XSIx75B4mtcV48@bogus>
-References: <20250303153744.376419-1-hugues.kambampiana@arm.com>
+	s=arc-20240116; t=1741017738; c=relaxed/simple;
+	bh=PG4GnlV8k/FN7kKkLP0CXN8xUJ6bTDOH+YyQOqYlWEs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WAqGLn8QqwfXrPklWZbgnJNAQNalNedW512l5R79j3JiSTisosJQe80qLkGzxMDHO9k6ht+pWDjX5PogphKru132p2VKUbphl33Hj9dlkKwvUehAcMNNfKUMp1cmGLc0+32E70xhJKOaW0drjgNORBK7NJzhO4K83axkjfLV6Rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=EuMMZM/x; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c69:8872:6fe4:6987:313:70cc])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B57DB1189;
+	Mon,  3 Mar 2025 17:00:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1741017643;
+	bh=PG4GnlV8k/FN7kKkLP0CXN8xUJ6bTDOH+YyQOqYlWEs=;
+	h=From:Subject:Date:To:Cc:From;
+	b=EuMMZM/xINI9Ms12ccxFyvICix6VUDcty3ZQQWVB+y9go8iAohKCEYMt/A3lp7xs9
+	 qCLayHfh5D9FeGF7HymizYE2atuNz8y48K7l64RJhTtu5ynDsmeqYixzFs673Leh+b
+	 3IQL7O2hWmitqH5Gdm3MxpCB4rpSVzxBaCnYIU/g=
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Subject: [PATCH v3 00/19] media: i2c: ds90ub9xx: Error handling, UB9702
+ improvements
+Date: Mon, 03 Mar 2025 21:32:03 +0530
+Message-Id: <20250303-b4-ub9xx-err-handling-v3-0-7d178796a2b9@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250303153744.376419-1-hugues.kambampiana@arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHvSxWcC/zWNwQ6CMBBEf4X07JpabKCe/A/DodAFNpGWbLHBE
+ P7divH4JjNvNhGRCaO4FZtgTBQp+AzlqRDdaP2AQC6zUFJpWcoS2iu8WrOugMyQG+5JfgBd2dp
+ oWaPVKPJ2ZuxpPbyPJvNIcQn8Pm6S+qY/40X9dTTNHBJO6JcISYGEvpKV7oxBq+SdHNoYfBssu
+ 3MXJtHs+/4BxouLob4AAAA=
+X-Change-ID: 20250303-b4-ub9xx-err-handling-57a89508ea5e
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Devarsh Thakkar <devarsht@ti.com>, linux-media@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+ Jai Luthra <jai.luthra@ideasonboard.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2585;
+ i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
+ bh=PG4GnlV8k/FN7kKkLP0CXN8xUJ6bTDOH+YyQOqYlWEs=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBnxdJ+6wY8b2WhgGU+RJKua8ijkB5l1rrzizZhD
+ e6b/+/scHOJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZ8XSfgAKCRBD3pH5JJpx
+ RRYgEACvPbYD9YPKWOvA6z8UVIQw6dvvYjq6hy6ZHxYoZjVE4eGXUzfLdWpQ9iI6uR030LoPQDJ
+ RSOIX9uTvnJJRmoEDY1cltcImONfdEIb7yXb9FoaJnmm1x5StwO4yxSgpKt+hsIXgqjifnuvDNe
+ HpB9AAqzhTh/CDmr19Fxsv2nco2YUsktfHwQZZvT6WmKCw5zX1hKYs/nCCinWhZiKqzdnFL57mJ
+ rbFg0Ac2rmnS5Ju263esaCNggZvXJrIKXfbLWw3K1JBKfpYP0cHgI7+K1MDzGHjQBtk+AO/QKcs
+ yQSTNgVnvj+C7qRA4MHcBvTWBHBIIzcmO9fW/jsJsN9tFGsf4zwEy7kXMZbKtv4WuxGrzy69uWm
+ 2WMdkK95Uo5LD1tmdOl06Do+Mqdq7xLIHUHs6fN6TP4NR0MJqOCF6Zx5iyF9Iv8bE2+XXUjYUMn
+ oUsu9yhieaPXcwvHhVoXN3Uxuaz7NuFHpU6qqybJNcaXWPqaAe50s9HvOPMKLLK1M/uchVc8Cog
+ J3xJYdz7ORp3UQkPwUDxZ46A+o5ePGO2MhlGy4fZKE8GySbrPFnDA02XZo8KNqIPI8BvgjHlQIN
+ qKJfB0eumV7yIM7tbAMPj9ZlVYf3nwTWEsqM03LxxlL2+xE7KyyPl30Kz3Xzpmdbd3ItUEwhacT
+ Ov/5xbQjzW1ABlA==
+X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 
-On Mon, Mar 03, 2025 at 03:37:44PM +0000, Hugues KAMBA MPIANA wrote:
-> Add `cpu1`, `cpu2` and `cpu3` nodes to the Corstone1000 device tree to
-> enable support for secondary CPU cores.
-> 
-> This update facilitates symmetric multiprocessing (SMP) support on
-> the Corstone1000 Fixed Virtual Platform (FVP), allowing the
-> secondary cores to be properly initialised and utilised.
-> 
-> Signed-off-by: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
-> ---
->  arch/arm64/boot/dts/arm/corstone1000-fvp.dts | 24 ++++++++++++++++++++
->  arch/arm64/boot/dts/arm/corstone1000.dtsi    |  2 +-
->  2 files changed, 25 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/arm/corstone1000-fvp.dts b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
-> index abd013562995..df9700302b8d 100644
-> --- a/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
-> +++ b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
-> @@ -49,3 +49,27 @@ sdmmc1: mmc@50000000 {
->  		clock-names = "smclk", "apb_pclk";
->  	};
->  };
-> +
-> +&cpus {
-> +	cpu1: cpu@1 {
-> +		device_type = "cpu";
-> +		compatible = "arm,cortex-a35";
-> +		reg = <0x1>;
-> +		enable-method = "psci";
-> +		next-level-cache = <&L2_0>;
-> +	};
-> +	cpu2: cpu@2 {
-> +		device_type = "cpu";
-> +		compatible = "arm,cortex-a35";
-> +		reg = <0x2>;
-> +		enable-method = "psci";
-> +		next-level-cache = <&L2_0>;
-> +	};
-> +	cpu3: cpu@3 {
-> +		device_type = "cpu";
-> +		compatible = "arm,cortex-a35";
-> +		reg = <0x3>;
-> +		enable-method = "psci";
-> +		next-level-cache = <&L2_0>;
-> +	};
+Hi,
 
-Why are these not part of /cpus node in corstone1000.dtsi ?
-Also I see the original cpu@0 node doesn't have enable-method set to
-"psci" while these secondary cpus have. Please add the same and move all
-these changes in corstone1000.dtsi unless you have strong reasons not to.
+This series has two main parts: 1) add error handling all around, and 2)
+update the drivers according to latest (mostly non-public) information
+from TI.
 
-In that case, please clearly state the reason in the commit message.
+Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+---
+Changes in v3:
+- Now that this series is closer to being merged, squash "Remove old
+  ub9702 RX port init code (SQUASH)" and "Update UB9702 init sequences"
+  as they were only split to ease review.
+- Drop SSCG bindings and driver changes.
+- Fix Sakari's minor review comments on "Speed-up I2C watchdog timer".
+- Link to v2: https://lore.kernel.org/r/20250124-ub9xx-improvements-v2-0-f7075c99ea20@ideasonboard.com
 
-P.S: I was about to send PR soon for v6.15. If you want this change for
-v6.15, you need to be quicker.
+---
+Jai Luthra (4):
+      media: i2c: ds90ub953: Speed-up I2C watchdog timer
+      media: dt-bindings: ti,ds90ub960: Allow setting serializer address
+      media: i2c: ds90ub960: Configure serializer using back-channel
+      media: i2c: ds90ub9xx: Set serializer temperature ramp
 
+Tomi Valkeinen (15):
+      media: i2c: ds90ub953: Fix error prints
+      media: i2c: ds90ub913: Fix returned fmt from .set_fmt()
+      media: i2c: ds90ub913: Align ub913_read() with other similar functions
+      media: i2c: ds90ub9xx: Add err parameter to read/write funcs
+      media: i2c: ds90ub960: Add error handling to multiple places
+      media: i2c: ds90ub953: Add error handling to ub953_log_status()
+      media: i2c: ds90ub913: Add error handling to ub913_log_status()
+      media: i2c: ds90ub960: Move UB9702 registers to a separate section
+      media: i2c: ds90ub960: Add UB9702 specific registers
+      media: i2c: ds90ub960: Split ub960_init_tx_ports()
+      media: i2c: ds90ub960: Refresh ub960_init_tx_ports_ub9702()
+      media: i2c: ds90ub960: Add RX port iteration support
+      media: i2c: ds90ub960: Move all RX port init code into ub960_init_rx_ports()
+      media: i2c: ds90ub960: Update UB9702 init sequences
+      media: i2c: ds90ub953: Move reg defines to a header file
+
+ .../bindings/media/i2c/ti,ds90ub953.yaml           |   77 +-
+ .../bindings/media/i2c/ti,ds90ub960.yaml           |   16 +-
+ drivers/media/i2c/ds90ub913.c                      |   82 +-
+ drivers/media/i2c/ds90ub953.c                      |  242 ++-
+ drivers/media/i2c/ds90ub953.h                      |  104 +
+ drivers/media/i2c/ds90ub960.c                      | 2166 +++++++++++++++-----
+ 6 files changed, 1966 insertions(+), 721 deletions(-)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250303-b4-ub9xx-err-handling-57a89508ea5e
+
+Best regards,
 -- 
-Regards,
-Sudeep
+Jai Luthra <jai.luthra@ideasonboard.com>
+
 
