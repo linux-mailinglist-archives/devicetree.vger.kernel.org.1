@@ -1,163 +1,170 @@
-Return-Path: <devicetree+bounces-153299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F187A4BEAA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:32:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E196A4BEDA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:36:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7EF4F7A39F4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:31:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB95D162D41
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:34:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8519C1FC11E;
-	Mon,  3 Mar 2025 11:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFAAF1FBE87;
+	Mon,  3 Mar 2025 11:34:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HQcsNYUp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YtHyLO03"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EBE11FBCB2;
-	Mon,  3 Mar 2025 11:32:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336A51FBCA6;
+	Mon,  3 Mar 2025 11:34:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741001554; cv=none; b=EMdcAQZSLkL0ifsjTTUPqTk50jc2cU9JNd6WqiGA56sNcDKvyNKFrA8KjAXHLmfIk/V1betUigKC7hBnuQCVIuRpFa+92flKwW18h9mkS8M/sT89q+iR/oKBNJ5wObvnV/YFp6KtJahVIUxlmoDm9rVP4f4eEWOKkMeTWvP/lgk=
+	t=1741001656; cv=none; b=SL3qrAt7irPBKhoXB3JhluKKLobKo+zZ9UAUDyUhW+Eozc+fQGUad8b5VNAk7FqmwF98qqV5WLvNaxSHzZ3MuEq5blkdh4N0DEwmUJiFJBXcMjUHD77BJZEhUYb9meXnOVsbw7wlvqiGCR7Tsg2TTtRU/5BikEQUsVnl5HUparM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741001554; c=relaxed/simple;
-	bh=A1dmoEW25l3ZJd4LiRioYAuKRWE98O7QHIl4r9uDJ1Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uZaea8H6ojDMeeIaqWOUS431JLNRpZgZZ/XT7seI3BF2hvxRoqOXhNURrW8qjj+JUXIaqGr1UyAggq1OpDxE1CGBVzckMXqvb79ESvN6Yzh+15bIEoVBHgaWB32lbmAeDYWonAFKUZZ/scIKWMdwWozGjXRHyFsBCsIqCw7AbQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HQcsNYUp; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741001550;
-	bh=A1dmoEW25l3ZJd4LiRioYAuKRWE98O7QHIl4r9uDJ1Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HQcsNYUppNKgXqrJbXZmI8caBOH/CvXKfBkBRkoeSGjs3hCmBwwrCvJKHmTjD8Ltz
-	 cOJOAdlO08oMAZxFvd5g1dgTWiHu6zIymywJ9i5Dmf9GReBYMoWgtNpcI+o/tBXrnM
-	 6hbmgr7i+hI56tix5dsElSTaS3ZOdB1J9OTcDq135T58BnMRDRdKlSovz0j6nDDTsG
-	 yeXh3roUTLRdlSR/eH5D77oUDhUTY4nIHfkm4wpYRL7fZtnAUMqC7vBDorRYyV3Q8L
-	 wOC7oLSKjVsltBEryM9ukfhnsjAQo+Nex8rnbp7u1xiKTw6pLBJvx3DkT5O45tJfKH
-	 wH4N+4ARMvJMA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D566D17E0607;
-	Mon,  3 Mar 2025 12:32:29 +0100 (CET)
-Message-ID: <fc0a9471-da47-4f4f-a471-1b20f344ad22@collabora.com>
-Date: Mon, 3 Mar 2025 12:32:29 +0100
+	s=arc-20240116; t=1741001656; c=relaxed/simple;
+	bh=h/6aNDKIJEJax3YQY4YtbeLa1xekm6VvSIFc00ga2qE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WjqdfL4xdG+Jy82vmxx0U5OZ2+wu+V6kvN2iYK4YtaPFdX1AM50RdEcrK/7SkP5eQHssfw2S/l/V4DF+DkHG7j/FdKm+XZuWFKlcz7JD1bqdb4gjFRp5/yAL9Mouhl06eqffo/AalbFRQA1AiholJuWbNz1nDLor7fVOBnJw8vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YtHyLO03; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30615661f98so45009581fa.2;
+        Mon, 03 Mar 2025 03:34:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741001653; x=1741606453; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jKyByvqg+jAL9PKNdpeqdSWpvScxjw4N93b4UfEb/Uo=;
+        b=YtHyLO0357ECTGFU22Up8x85UJV4NccqO2ot5RpmvHfIPZ3vvnrXJXeWuvH0Y83c0j
+         vDzYQjj3Vu7e9vE8pD86bwSQ52XKgbgblv8hN0lYcDNpx8AKWVt18gUW3PjKBCuyLtJc
+         xDmrQAktlv31L6f6rSG6CRyBAl26GxvCCWCfu0TDwnItIPIXy5Es01HjrGlFC5OB9nNU
+         1Z6W5BmobOIplVYoodfBNtNlBcxp+UrYNBxykmc56WEMcsfCE7JdWLIrpQ2qjJrhMw/4
+         ERCfqG4I2Un9Ene8LGq87OLauDH1L2F2yxgjrVI0PmpKJB+NhUMlspnU7tSVKowMU7CY
+         MBhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741001653; x=1741606453;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jKyByvqg+jAL9PKNdpeqdSWpvScxjw4N93b4UfEb/Uo=;
+        b=k6EQ7q0zetGUI/555PRqH2gjr191Kzn0t0GmkI/e7qOFKNX3DrFfC0I56xI62K972d
+         piyNAyGB2lnnHCAwdW+9Dmo4OJ4Ntkg1AvcIr6XrSZ2L8I4MawgRkNegkF0hUKYVh5Lz
+         7w+flSPp/H+en5bLzlf8bhUj4Pmiaixqr+RwVbgFqbfZ6vsy5in9nJQ56OCJdqWf9uUr
+         OMRs70Brgp8yQJ53Z+Z5OFjNOh2K6Xc9u1BlVmSvJUNerD0/S6+RrVXn3YY+xfA4sWHJ
+         h9vfSWNyqmZs+TM0CvUyxvnImBjXcl/GMFi+R10xLGQ9x+lc1WvtaJFJsXsaqOGIeJr9
+         72rg==
+X-Forwarded-Encrypted: i=1; AJvYcCV631R08IpNvPcBxg+9IMIJ5u/GB3wJZTDY3AkMkRJMS1G2KpcH5q1EOcAGItKcaSF4CMGgE7YQKbAwEu980WG0T0U=@vger.kernel.org, AJvYcCVbbkbKWHL3bqDhxp6wCOEJQ9qI0OhmeHlXqErvvDCPOGC+6C4s4woa8MuH6xckjrGTJMXi332XMhd4@vger.kernel.org, AJvYcCWJyIR02SyElbjgmEBH+WW5F2+fUyiLKu37jGmplrPOYY8/QWchAF2KQ1iZ++ZeCJbc+B8Uu41n8xm+Lg==@vger.kernel.org, AJvYcCWToZiGzVrgaBEL1eyPnyF6/ezpNF/mcrtJNaiXzMAELupn3xwq2e4TeOcHFwNmQPYE0f1arh2ax8P26cwH@vger.kernel.org, AJvYcCXA5vgkNQlQc7KLPxPnBN2lx8vZ/wn5C0H26nZ+1+kEGPXiBfJORVKhPUPiP+mQ3wQb5HnP5pjKmOrA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgzoiniqZGGCdPNS5L1npXo+wc6V/M+XtlOnAPhWDWCSjvTPI3
+	8PGaheL5A4J2jrfVIk+tu37p6ahV9fNSh9UUqzFn4JbNmGXppxqK
+X-Gm-Gg: ASbGncu7haFeXXOgJcaB2VdkAH8CjYLEVLRMyGOsnB6XymcSsz414jORsB+yk7Cn7Tt
+	xco+h2H+J8oN5eltI8MXjQ0LuAoD50irpO9zJGQ3bxbyZZFofV+IKuw8OAx+9OQsGEl9S5mTRrL
+	FSxWN3gVqTWWIqQeUTXwt8zlchbvhfvlWz98MmjNQZY5fTb5RcKzRqgPPYDYviZZnkRusT8T003
+	mpM5ynOlMUrhMjnk6xki08udKgkk1fBdFNkiOKCjR+x2Dcd91kYd/nL53B05KFVzis105jlmAqe
+	jilsYjxsQaBZTsf3IoKpGwve01Qn4yzQrAPtWeh2l3K1J44inYSHfUSGzetoUUmizFdFqHUpcy1
+	pMD7MqRODbhc=
+X-Google-Smtp-Source: AGHT+IH2q/EQ50OKDdOvQmK3DgcD8QV9qiZg9HjaiRlsRxpoAX3Icmu9TOCjXHgkc5dFCtxPesT+sQ==
+X-Received: by 2002:a2e:9515:0:b0:307:dc1f:e465 with SMTP id 38308e7fff4ca-30b9326b162mr42530121fa.22.1741001653116;
+        Mon, 03 Mar 2025 03:34:13 -0800 (PST)
+Received: from mva-rohm (mobile-access-2e8451-125.dhcp.inet.fi. [46.132.81.125])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30b86875b76sm14035841fa.91.2025.03.03.03.34.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Mar 2025 03:34:12 -0800 (PST)
+Date: Mon, 3 Mar 2025 13:34:06 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Guillaume Stols <gstols@baylibre.com>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: [PATCH v5 08/10] MAINTAINERS: Add IIO ADC helpers
+Message-ID: <78c18b224cd18b1bd83eea51c7e52dcea28e3d50.1740993491.git.mazziesaccount@gmail.com>
+References: <cover.1740993491.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: mt8395-nio-12l: Prepare MIPI
- DSI port
-To: Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250226-radxa-panel-overlay-v1-0-9e8938dfbead@collabora.com>
- <20250226-radxa-panel-overlay-v1-1-9e8938dfbead@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250226-radxa-panel-overlay-v1-1-9e8938dfbead@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5Rvc/P61F8vV1THI"
+Content-Disposition: inline
+In-Reply-To: <cover.1740993491.git.mazziesaccount@gmail.com>
 
-Il 26/02/25 15:35, Julien Massot ha scritto:
-> This board can use a MIPI-DSI panel on the DSI0 connector: in
-> preparation for adding an overlay for the Radxa Display 8HD,
-> add a pipeline connecting VDOSYS0 components to DSI0.
-> 
-> Also add the backlight, and some pin definitions available
-> through the DSI0 port.
-> 
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
-> ---
->   .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts     | 60 ++++++++++++++++++++++
->   1 file changed, 60 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-> index 7184dc99296c7f5d749c7e6d378722677970b3b7..65c77e43d1cd4913b6741e25130febd746ff753c 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-> @@ -48,6 +48,17 @@ memory@40000000 {
->   		reg = <0 0x40000000 0x1 0x0>;
->   	};
->   
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		brightness-levels = <0 1023>;
-> +		default-brightness-level = <576>;
-> +		enable-gpios = <&pio 107 GPIO_ACTIVE_HIGH>;
-> +		num-interpolated-steps = <1023>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&dsi0_backlight_pins>;
-> +		pwms = <&disp_pwm0 0 500000>;
 
-This should be disabled, unless there is a display connected to the DSI connector.
+--5Rvc/P61F8vV1THI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If there's no display, there's no point in enabling any backlight, as that pin
-may be reused somehow (with hardware hacks, maybe, yes, but still configuring
-the PWM IP and the pin as PWM while unused is at least a waste of energy).
+Add undersigned as a maintainer for the IIO ADC helpers.
 
-> +	};
-> +
->   	wifi_vreg: regulator-wifi-3v3-en {
->   		compatible = "regulator-fixed";
->   		regulator-name = "wifi_3v3_en";
-> @@ -499,9 +510,20 @@ &mt6359_vsram_others_ldo_reg {
->   	regulator-max-microvolt = <750000>;
->   };
->   
-> +&ovl0_in {
-> +	remote-endpoint = <&vdosys0_ep_main>;
-> +};
-> +
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+---
+Revision history:
+RFC v1 =3D> v2:
+ - New patch
+---
+ MAINTAINERS | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-This goes to the overlay that enables the DSI display.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8e0736dc2ee0..5b96fb864227 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11208,6 +11208,13 @@ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ F:	drivers/media/rc/iguanair.c
+=20
++IIO ADC HELPERS
++M:	Matti Vaittinen <mazziesaccount@gmail.com>
++L:	linux-iio@vger.kernel.org
++S:	Maintained
++F:	drivers/iio/adc/industrialio-adc.c
++F:	include/linux/iio/adc-helpers.h
++
+ IIO BACKEND FRAMEWORK
+ M:	Nuno Sa <nuno.sa@analog.com>
+ R:	Olivier Moysan <olivier.moysan@foss.st.com>
+--=20
+2.48.1
 
-> @@ -912,6 +960,18 @@ &ssusb2 {
->   	status = "okay";
->   };
->   
-> +&vdosys0 {
-> +	port {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		vdosys0_ep_main: endpoint@0 {
-> +			reg = <0>;
-> +			remote-endpoint = <&ovl0_in>;
-> +		};
-> +	};
-> +};
 
-If you enable this path, in the event that the DSI display overlay is not added,
-the mediatek-drm driver will fail probing: even if a second path is enabled and
-that will succeed regardless of the first one failing, I don't see a reason why
-whoever doesn't have a DSI display attached should see a miserable failure in the
-kernel log :-)
+--5Rvc/P61F8vV1THI
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Besides, mediatek-drm failing will also slow down boot for no reason.... etc etc.
+-----BEGIN PGP SIGNATURE-----
 
-Please move the display path setup to the DSI display overlay.
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfFk64ACgkQeFA3/03a
+ocUpgwf/SNY3Pn6d3XX6wgquUJWMeNypZTRBxzVX+t3Nm+6wYifiTOOpcNdIYHfV
+UEO/B8hbJ6BzXcUxHFFEUnq5pTr/a1gbQvg+rtBnZiXV95/wnLJjJgx9guw7IW48
+BjUoZhymuhP201Y3/EzSSXwe7MnrOTaUfcTwBxZQSsipdd8PK9co9V1EzEGGIeO+
+LqTyj2W1KqdWOE5qqnTZhzLj3fdEYfJoxyUdXWiHJEcmDyoc9qZ0HNnsLa59j5Co
+d+8xCLwqyB6CFOJWkl7gL/92nAyFvn1XzEvpuQGyz2Ouoo1cZexz/6s+UvexWkuo
+Hh1QZj0U9ni99bqIrOfrEk7zUk5lMQ==
+=gikD
+-----END PGP SIGNATURE-----
 
-Thanks,
-Angelo
-
-> +
->   &xhci0 {
->   	vbus-supply = <&otg_vbus_regulator>;
->   	status = "okay";
-> 
-
+--5Rvc/P61F8vV1THI--
 
