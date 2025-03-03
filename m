@@ -1,97 +1,97 @@
-Return-Path: <devicetree+bounces-154086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F17A4EBAD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:31:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44FA4A4EB14
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:18:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABBB8188B8E6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:27:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 548103BE0D5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E2A726036C;
-	Tue,  4 Mar 2025 18:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CF9327C179;
+	Tue,  4 Mar 2025 17:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ae/eu6wz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MdDML3sc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
+Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EFC280A5A
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901C2279346
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741112254; cv=fail; b=MHxmDk0DXxQPz9WORc7uaQevX1rgV+QxecDQEGybvm4zW5bEB16OxWN5Afi+d4Xi+qVund9BxX3movWcYt3jiB8kRE1kgSzayYyhruyN1kk9AiO0c8umm+AyLdftXUl9/3FjAA64dSQuI3ZEzLDQQmVIH9A/hnEp6gVloa8mvqE=
+	t=1741108608; cv=pass; b=Ze/lhrlQvs/djMt0QbO5NDvPU6A8OhYqb1eZQ9SXo8CtmL4brai4DXaWJqdz0ZQkPl7j15fXEW360ch7+esHTQN+QcTRgNXFZ59hJH0hzNf/ZKQE64KbzbHL+iqKr3Gr/jpUUwN6l2l/rrVOqPB+vXFBCYS89EZAYKi3cwRQtnE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741112254; c=relaxed/simple;
-	bh=MKM1MIU6/9VHoob8JgOkMDORxOQtqOHVKjs1ugz6gqk=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Zy2RcMVL2fLcvF7DMWhnHg+p/olGlOXjRj+OHvz3X+7lxkGWqKvmXZLulS//RjK7o9BvjxtaT5EF786lt5N05mLMALJtfiq0iNIVjAohIQdokFYCtxXtPjmn7HpnYbqRUt7sRnLHoUICEfOLQ2a5YwKg+LHntCOt3/O5CAnqHiA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ae/eu6wz reason="signature verification failed"; arc=none smtp.client-ip=10.30.226.201; arc=fail smtp.client-ip=160.75.25.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+	s=arc-20240116; t=1741108608; c=relaxed/simple;
+	bh=vOhkONJyWfbNZ+vuKycF4K3lBL5NoKgu121ldbo/HCA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tFGaNf7mAmM+KZ79PgtL3EivLpCzbsCh6Swk5prjOkGtAzetP9XC4DLXasruaLtRCqyZZnuYUmXHpFUjtynbqZDnh0zL4WDVw3VVy9BvLp/Kd63cuT5tWofRZ28RqX9K43YKhLAU75VgFD7C57b92KrLd3H5/AzQHyrc1O/a/fI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MdDML3sc; arc=none smtp.client-ip=10.30.226.201; arc=pass smtp.client-ip=160.75.25.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 2E93A40D0500
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:17:31 +0300 (+03)
+	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id D7C5340D286A
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 20:16:44 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=Ae/eu6wz
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=MdDML3sc
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6hRN6LBHzG47l
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:46:56 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dP41XCqzFwjD
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:29:44 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id D5DD942734; Tue,  4 Mar 2025 19:46:49 +0300 (+03)
+	id 254E242732; Tue,  4 Mar 2025 17:29:42 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ae/eu6wz
-X-Envelope-From: <linux-kernel+bounces-541097-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MdDML3sc
+X-Envelope-From: <linux-kernel+bounces-541111-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ae/eu6wz
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MdDML3sc
 Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
-	by le2 (Postfix) with ESMTP id F176C41CAB
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:35:16 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 1713A424E9
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:54:48 +0300 (+03)
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw2.itu.edu.tr (Postfix) with SMTP id 88DFA2DCE3
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:35:16 +0300 (+03)
+	by fgw2.itu.edu.tr (Postfix) with SMTP id A926F2DCE5
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:54:47 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 117403AFEBF
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 07:34:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83B643B09CC
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 07:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C9F1EB5E9;
-	Mon,  3 Mar 2025 07:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0B61EE7D6;
+	Mon,  3 Mar 2025 07:54:34 +0000 (UTC)
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F441E5B76;
-	Mon,  3 Mar 2025 07:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960284C85;
+	Mon,  3 Mar 2025 07:54:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740987292; cv=none; b=EWuLO11zSW+glRwqZVrPpX0V3O/sv3DxKWRnuiOf2JLtRvOSl2qiMZIDSo5apC9l3LjRNUdRWzQ8b2LA6qOblS2erSW3h6dR7ri3Bp3Ohts9ZV08+0g1baacSQto1PRm4OpSB2HbMVKbM9NQjXDfvMZmmRLO/HuvVQy+6TEksmA=
+	t=1740988471; cv=none; b=F6FHXBjHx10idc/bLm8G43f4xke1Y7ihy2u3vJDeSxWpNxT3JEKSPhzc0UcpdUHgNVoql2GL7g3eSwd04tMGH8u917BC355yICo6b05SewZ3+9b6gfAoGN8M8zSi03w9deRFnxqtNBcdq7SFjaQ/WAsulSesdznOURPNmE8IouY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740987292; c=relaxed/simple;
-	bh=OdVpAxmtfoalSXyqc+DLAkGnZF5iDT2lNU6C/joqxOA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=TfCjdrrRcMu6o6snqI3+kC3FzSUvML6g+CuXSfTC5S0P9c3EPRKlil1lE9n18GxJ3PWuSAU3BGsIKyZ7mp1NJEqsBsgcUyP07sIYt4pQDKSayjjd4hPkH9oClqworMmZ21qU7CppFMnmjFiihyIHD5y0lFFtRrvtTSI5CbtGRZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ae/eu6wz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94412C4CED6;
-	Mon,  3 Mar 2025 07:34:47 +0000 (UTC)
+	s=arc-20240116; t=1740988471; c=relaxed/simple;
+	bh=vOhkONJyWfbNZ+vuKycF4K3lBL5NoKgu121ldbo/HCA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nvk4KUNg+XwJ7iWFqDi12o3VPynF1EeY0JbLqa6krOv6/zUHqMXdiPdFi3z6SyASRDoEHIcLO1gt5ORdv393naU5JL5/pWV3EX5tqsAFFJYVfy4QpA6DabS2ySt66WWzIzlHcQtmuPvhPYK4KwI0uFZAYZSHFaRIu3fG9SiNztU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MdDML3sc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA7BDC4CED6;
+	Mon,  3 Mar 2025 07:54:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740987292;
-	bh=OdVpAxmtfoalSXyqc+DLAkGnZF5iDT2lNU6C/joqxOA=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=Ae/eu6wzFC+50YktcQuMsFoMEsSip8iy+UoejH9l6iTL+foo31bCfLjUFZFn5COBq
-	 9+SwxdDtT9v2e3n0Rz4tJR4QnZGh7pGvpaga+HBQ5P0t3nsh9z1e9r0WTjYitRScB3
-	 MckHDxDMuCXVtr3pYNcEzCnoRXGoyHuymYWYdqTcRisJbJfffQauC/cp3nWit3Iryl
-	 9nmzPDRdg5Ttnka1VH/LnFW1ar2oS12afA/YFdsnihR2R4J2J5vq19bmQ5Clixcut2
-	 g8NcYKA5YyZOAgXg9naN7yF0/vgJ/A8zIt19AcGTEvrpA5+7k/fe5VVjr7w92ytu5j
-	 HGzLXy+OyWquA==
-Message-ID: <7c720780-03ad-43a1-b89c-8cedd00dd129@kernel.org>
-Date: Mon, 3 Mar 2025 08:34:45 +0100
+	s=k20201202; t=1740988471;
+	bh=vOhkONJyWfbNZ+vuKycF4K3lBL5NoKgu121ldbo/HCA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MdDML3scjcus143jtZmjir2fIgJ3pETQNcZ++JjwMMZYXCeKiq+vglTeALB4tGYJs
+	 V1W9dlanwv4Iq1m4XXLJ8sSp2OoB715AeA56NrD2Wv34Ndt0kETDTkWdHwqAkHBkYo
+	 cYM5zXbrJuEayjLmaycb+1APvgEuB8oeuFAO1TeLoHCFvS+GS42dUGJU6ppEwJwfze
+	 QV0uau3EdL6d4zavkVXGXE5Ba84BxOG/UlJX7rtTHPyftP5ZDvI/Yn/yEuDUnnW9Cb
+	 wPj6Q0jv7jW7R39Eg//NpVI9UGr9X66ISVj6uu9M8G+9ULBoqATCo8bxxLHKit6EVu
+	 vLRkjOIqRKseg==
+Message-ID: <fbd307ae-1dfa-497b-a597-d15b6baa30f4@kernel.org>
+Date: Mon, 3 Mar 2025 08:54:25 +0100
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -100,23 +100,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add dt bindings for
- m2m-deinterlace device
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: Document Maxim MAX8971
+ charger
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250226093700.44726-1-clamor95@gmail.com>
+ <20250226093700.44726-2-clamor95@gmail.com>
+ <20250227-cherubic-mantis-from-betelgeuse-86f5ff@krzk-bin>
+ <CAPVz0n0ygR=ygsvG2+z-zST7kmJ_P3nxf29tqdgHpRs_Nw6D5Q@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Matthew Majewski <mattwmajewski@gmail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
- "Dr. David Alan Gilbert" <linux@treblig.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>,
- Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250214231759.119481-1-mattwmajewski@gmail.com>
- <20250214231759.119481-2-mattwmajewski@gmail.com>
- <20250218-eggplant-skylark-of-swiftness-dcf6ba@krzk-bin>
- <69cb2e95c291f17cff42b45e7c871f30a85c060d.camel@gmail.com>
- <3d729159-4d13-4a61-88c7-3be992b23728@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -161,112 +156,61 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <3d729159-4d13-4a61-88c7-3be992b23728@kernel.org>
+In-Reply-To: <CAPVz0n0ygR=ygsvG2+z-zST7kmJ_P3nxf29tqdgHpRs_Nw6D5Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6hRN6LBHzG47l
+X-ITU-Libra-ESVA-ID: 4Z6dP41XCqzFwjD
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741716928.03211@4qzKXxJZp4PPLwLrITwV3Q
+X-ITU-Libra-ESVA-Watermark: 1741713280.72171@k7XjyfR3Znyf965WJmMPMg
 X-ITU-MailScanner-SpamCheck: not spam
 
-On 03/03/2025 08:31, Krzysztof Kozlowski wrote:
-> On 26/02/2025 23:41, Matthew Majewski wrote:
->> Hi Krzysztof,
->>
->> On Tue, 2025-02-18 at 09:30 +0100, Krzysztof Kozlowski wrote:
->>> On Fri, Feb 14, 2025 at 06:17:58PM -0500, Matthew Majewski wrote:
->>>> Create a new yaml schema file to describe the device tree bindings
->>>> for
->>>> generic m2m-deinterlace device.
->>>>
->>>> This device is supported on any hardware that provides a MEM_TO_MEM
->>>
->>> Which device? I don't see here any device name/model.
->>
->> By "device" I am referring to the m2m-deinterlace device, which I
->> explained is a quasi-virtual device. If this is confusing wording I ca=
-n
->> change.=20
->>
->>> I asked to provide here some examples of devices.
->>
->> As I wrote, supported devices/hardware is anything that provides a
->> MEM_TO_MEM capable dma-controller with interleaved transfer support. I
->> did not list specific devices because the bindings are supposed to be
->> generic, as they are not describing actual silicon. But if you want me
->=20
-> I already told you that no. Bindings are not supposed to be generic.
->=20
-> From where did you get such information?
->=20
->> to list some devices which provide a compatible dma-controller, here
->> are devices I found in the current mainline kernel:
->>
->> - TI OMAP Soc Family
->> - TI Davinci Soc Family
->> - TI Keystone Processor Family
->> - IMX27 Processor and variants
->> - Several Microchip Processors (sama5, sam9x7, sam9x60)
->=20
-> That's too generic - you just listed SoCs, which consist of dozen or
-> hundred of devices. Which hardware piece is here?
->=20
-> Maybe this is not for a real device, but then this should be marked cle=
-arly.
->=20
->>
->> As I mentioned in my original email, I have personally tested on a
->> BeagleBone Black with an AM335X OMAP processor. There are likely many
->> more devices with compatible dma-controllers that could be supported
->> with additional dmaengine driver support.=20
->>
->>
->>>> capable dma channel with interleaved trasfer support. Device tree
->>>> bindings are for providing appropriate dma channel to device.
->>>
->>> Don't describe what DT is, but the hardware.
->>>
->>
->> Ok, will remove reference to DT.
->>
->>>> +description: |-
->>>> +=C2=A0 A generic memory2memory device for deinterlacing video using
->>>> dmaengine. It can
->>>> +=C2=A0 convert between interlaced buffer formats and can convert
->>>> interlaced to
->>>> +=C2=A0 progressive using a simple line-doubling algorithm. This dev=
-ice
->>>> can be used on
->>>> +=C2=A0 any hardware that provides a MEM_TO_MEM capable dma controll=
-er
->>>> that supports
->>>> +=C2=A0 interleaved transfers.
->>>
->>> And how do you program that device to deinterlace? How do you signal
->>> end
->>> of frame/data when writing to the memory?
->>>
->>> It still looks all this is for driver :/
->>>
->>
->> All of the deinterlacing is handled by the dma channel. To simplify a
->> bit, m2m-deinterlace basically just translates video format informatio=
-n
->> into appropriate interleaved dma transfers. Everything else (and
->> everything hardware specific) is handled by the dma engine, such as
->> initiation and signaling completion of transfers.=20
->=20
->=20
-> So the device is the dma controller and maybe all this should be folded
-> into that controller bindings.
+On 27/02/2025 11:55, Svyatoslav Ryhel wrote:
+>>> +
 
-Answering myself: obviously no, because interleaved DMA is not relevant
-to this device, so again: there is no device in SoC doing that. You just
-add bindings for specific Linux driver without saying that this is that
-driver and calling it "generic device". There is no device here.
+Please kindly trim the replies from unnecessary context. It makes it
+much easier to find new content.
 
+>>> +  maxim,usb-in-current-limit-microamp:
+>>> +    description:
+>>> +      USB Input current limit
+>>> +    minimum: 100000
+>>> +    default: 500000
+>>> +    maximum: 1500000
+>>> +
+>>> +  maxim,ac-in-current-limit-microamp:
+>>> +    description:
+>>> +      AC Input current limit
+>>> +    minimum: 100000
+>>> +    default: 500000
+>>> +    maximum: 1500000
+>>
+>> Half of these properties as well are not suitable and duplicate existing
+>> sysfs interface.
+>>
+> 
+> All these properties allow configure the charger to suit the device on
+> which it is used. None of them are required but are a nice addition.
+> Why you are denying me an ability to fully utilize hardware I have and
+> tune it to the device? All those values represent hardware registers
+> which can be customized for the device, not for the end user to mess
+> with.
+
+Because you put user-space choice or OS policy into the DT and DT is not
+for that.
+
+> 
+>> And for remaining, still no battery.
+>>
+> 
+> reference to power-supply IS included, hence the battery option is
+> there as well.
+
+I don't see it being used at all and you explicitly duplicated
+properties which means that reference is redundant and should be dropped
+with such binding. So how did you solve my request to add reference
+which then you make redundant? Add reference and use it.
 
 Best regards,
 Krzysztof
