@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-153375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DCDFA4C2E7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:10:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3BF9A4C31D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 15:17:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D61A83A4996
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:10:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AD7C7A603D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F262135A2;
-	Mon,  3 Mar 2025 14:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F10B2147E4;
+	Mon,  3 Mar 2025 14:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="mtBilBuP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SxyMUG4H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B602213255
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 14:10:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69B7B2144D4;
+	Mon,  3 Mar 2025 14:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741011043; cv=none; b=rB1GVF2W0RScHGGvsbRX4Gp2ys7NNwCjkazKcTLVuVKDx1cxyUNG8g4mH0xPqNzoNyMZkd23jtpiPAGWdOW4ThdPXR5T7DJE5VDJuFaQq5tE3UXfIN4kk5peD8FgkRHkPChQFhOO70GFosWFj/s+lIN3VzUzodupVrG8ZnogFPE=
+	t=1741011367; cv=none; b=qiCsmJ4fxUPnbIsYwx3ndU6ukVDGJOacVl1Spz3GIC9Gc9kkoJhInHDqxQEBxYt8FDY9ugoJ3ljx05O1tRePA4kFVtkmjnq06MjgxwV1aVlKzo4mTIW5/MrMiNSTanCZMvzgBo0Ik8OBqoK96dMf584wsGlUZi0jf7YVDHqM9kU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741011043; c=relaxed/simple;
-	bh=7SKQpx9L0mDryeMBd5/7MLfmRiaAKjLbl91XeEq0Yrw=;
+	s=arc-20240116; t=1741011367; c=relaxed/simple;
+	bh=fIWG9PNPnAaZZc8vm719SkiMppJ/JW5erMwVVYRtNn8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EAf2uZJcLf1Mt8AE8By0LhoazRuov0zIN40D15PHjEdBt1Siyb25q2TFUzvreoprHZNdkhrgmb6zZGUPBiOhdWBvpKtXhrt/uYuW3EO7ay1EDmnVh44YETmmhY4Bu0KdDqyrHx8Zhe+5DtOzSlJ1llzpjRJ60B2LGKxM3iyEzPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=mtBilBuP; arc=none smtp.client-ip=209.85.166.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-855b2a5ad32so150352839f.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 06:10:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1741011040; x=1741615840; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JrwhJR5XVjeuOKMty1HTRitd46iSfsnGbIHub1a6zjU=;
-        b=mtBilBuPCSjtlExPj7kVVK/+ooaiH7eMrY4OEfgSfrko3r9clRXPLCSwV7RHBNHtT6
-         R+fcm5fQYIaK+qJwbJ7N6vFrarxR2pJZKpRc/HHVT2reeXtalTFLe6axyLRUxS4Pmu6R
-         Yah3UENiY8jYeM8RIkRAffS7796SX+lwWNhi6t7dZ8xBG4BCht2SAWREHZZgwsruS3yy
-         0ZQHMslx6T1hG0CYLa9nt3i8DILIFxSDuJQm0Jdh8BFZzuQSvj5QlBReCh9bOoL7zCrS
-         jgtiJ6Jg1KrGXQ4CwN0OG8M6oQtYilxpDENCS3ZoyoKQLWhdY+iCvgkghkckCF4YSBeC
-         6RvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741011040; x=1741615840;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JrwhJR5XVjeuOKMty1HTRitd46iSfsnGbIHub1a6zjU=;
-        b=ryDjpUpnaX0wX+RYWmTzuOVWrE1cB0c3sihZmA+gF/rpCtofn1h0G3T9muJv5PBkYY
-         uXCgtn+SotIsTuHeQN74ofIeo26wLaFC4L3ZwFaoeRf5RT2egtsrP8DI1zKA9uyrsRiH
-         jXtqgoG31t+uZGem7uDhKOAxRkWx3ZpJB181722SmZRlrdCX8RbbsTcUrpl+/Peid0vf
-         nZqqOZFqsjLU3qOkpw0SfIho+ZD/9jvQQ/Ugu7/yn7iWIEsDz5LWSoVLm2CZJpnfq8be
-         99+CsYUSPG3IvWyW0J12kX02RWUfLu540gbqIJLA8+B9WHv15PNQtRSvQpouUZoKrKhi
-         zO9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVhHWqmIpFWyDQa7wZz64RleTF75lYaLJHiIFgZ9NgNWSOXiY1FeSCHeMHhLltrWoXHMci6cYuWcCY2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWdCEPAXQdAVfJHBzpj16aMKVRt96f8zBAKuGud4vfMh4dHGWk
-	cGo3atnuKXeOAkqZNH5aecj10DUb0mh605J6nwVzS7Ujqyh0+5/Z7hnN3MIO3/8=
-X-Gm-Gg: ASbGncup8Knv0FpPbFeFPjK+RofbU2gcq4FBq1XDgzyaCuJ/cE3s6cP/4CJO0akb5iq
-	ArzaoK7HhjtpqS441Oz/G2GSnlkNkD7j95QJaH/EdsHSrRHzFZHhLVqSLNUB9MHArlv4LFpgZH8
-	uhppuMwDEZi/20igFUdFTzhPjt5PZ7l4dAgm43Q47oC4Ql5Wn/gDh0+WSi6hiKSZTv6OqUoceB1
-	r705IATUQlnd860ByqrmMno/O8hUAFr2Ym9ra4rQXbJ0PN8xOlBnYYWtNhLCXQkV9AGDWtTtbBQ
-	Rmbn9pobcnGsBjGi9BMsgPwYSi4sqp18Al/7oPjD3uJYzW4B5/pmiCugifW179Pbv2Audnwsrwf
-	w5WD8pavP
-X-Google-Smtp-Source: AGHT+IGN/6Wuw5ntiwHBSo1Y/sRm+1DKl1diOGW2BTS+FWQlOXMwdhDgI7em04WI3UtWDvgvTpPB4g==
-X-Received: by 2002:a05:6602:1604:b0:855:690e:ed8f with SMTP id ca18e2360f4ac-85881ff0edfmr1228718139f.12.1741011039763;
-        Mon, 03 Mar 2025 06:10:39 -0800 (PST)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f09d8cb493sm382508173.75.2025.03.03.06.10.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Mar 2025 06:10:39 -0800 (PST)
-Message-ID: <d9db0821-1cb8-43bc-81d3-d511ee164e91@riscstar.com>
-Date: Mon, 3 Mar 2025 08:10:37 -0600
+	 In-Reply-To:Content-Type; b=soqJ/IwbJxWqMGlBJBt2yUJ8sN80kMUZHS+wQaJKrn8f2Tp6qgzfK9pel09fhKRf8R+5zxApSDotzj7cOMhV0+WKl8e0fjLIDELYxF1ue1s0rx2mZfqmNLnMh8U+Jy/QIuPoRlxJNHSv8r+RohZDxAO8eyUDx2kAXj2cN1J6jSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SxyMUG4H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8380C4CEED;
+	Mon,  3 Mar 2025 14:16:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741011366;
+	bh=fIWG9PNPnAaZZc8vm719SkiMppJ/JW5erMwVVYRtNn8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SxyMUG4HKz8fgzM7u4Tzz8+pJGeVh7B/sulgn54jxExXb+kCeQcqGTS5Lbg7M2z3k
+	 jhVJ2y2Yfx2oyLgRgBGEjRtyq6j3sXgRyVQoYVsMgK9Fhkptxc6nCmZ0EfyE4pClfQ
+	 Bwz2cfNJBTFGLfs64ACM+DMz7HTAGE9Ru49YMJpj3dMPYI0qzq3GP8qGy6qnjdsDr1
+	 sUXT5Nawtg7/oFbov/yCxpA21Xf1DBHtankPpofZGQtZPsd+2anGVK8gITm8dmo4vj
+	 EQnUv5+s7TRNc/EjcUv2RVGluzsKdrHqOAyYdnZzv5AngKJxfXFup0pDhh7eP4L8SQ
+	 2G3VldzEq3rDw==
+Message-ID: <b3f98745-39c3-4b1f-a0e6-51e5138d840c@kernel.org>
+Date: Mon, 3 Mar 2025 15:16:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,172 +50,195 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] clk: spacemit: Add clock support for Spacemit K1
- SoC
-To: Haylen Chu <heylenay@4d2.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
- Yixun Lan <dlan@gentoo.org>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicornxdotw@foxmail.com>,
- Guodong Xu <guodong@riscstar.com>
-References: <20250103215636.19967-2-heylenay@4d2.org>
- <20250103215636.19967-5-heylenay@4d2.org>
- <f8b30551-25e7-4626-8c03-6d8807041d8a@riscstar.com>
- <Z8V5OjQTxVeRLAOU@ketchup>
+Subject: Re: [PATCH v4 2/2] dt-bindings: iio: filter: Add lpf/hpf freq margins
+To: Sam Winchenbach <sam.winchenbach@framepointer.org>
+Cc: linux-kernel@vger.kernel.org, lars@metafoo.de,
+ Michael.Hennerich@analog.com, antoniu.miclaus@analog.com, jic23@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250225134612.577022-1-sam.winchenbach@framepointer.org>
+ <20250225134612.577022-2-sam.winchenbach@framepointer.org>
+ <20250226-sparkling-caped-saluki-b1cbad@krzk-bin>
+ <Z79K8Ag4SJYtJTtM@65YTFL3.secure.tethers.com>
+ <05e56d15-059b-425b-9e55-66993d988f8d@kernel.org>
+ <Z7-SojPPx3kOVa4y@65YTFL3.secure.tethers.com>
+ <8fef9b19-a1de-4153-a186-1aeee87dea9d@kernel.org>
+ <Z8WvKNcCnQI_UYZJ@65YTFL3.secure.tethers.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <Z8V5OjQTxVeRLAOU@ketchup>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Z8WvKNcCnQI_UYZJ@65YTFL3.secure.tethers.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 3/3/25 3:41 AM, Haylen Chu wrote:
-> On Thu, Feb 13, 2025 at 10:04:10PM -0600, Alex Elder wrote:
->> On 1/3/25 3:56 PM, Haylen Chu wrote:
->>> The clock tree of K1 SoC contains three main types of clock hardware
->>> (PLL/DDN/MIX) and is managed by several independent controllers in
->>> different SoC parts (APBC, APBS and etc.), thus different compatible
->>> strings are added to distinguish them.
+On 03/03/2025 14:31, Sam Winchenbach wrote:
+>>> This prevents the situation where your fundamental frequency falls on, or close
+>>> to, a corner frequency which could result in 3dB (half power) loss in your
+>>> signal.
 >>>
->>> Some controllers may share IO region with reset controller and other low
->>> speed peripherals like watchdog, so all register operations are done
->>> through regmap to avoid competition.
+>>> This is all completely indepent of the high-pass filter.
+>>
+>> Description is confusing a bit, because it suggests the value sets the
+>> corner frequency. It explicitly says this - "sets ... corner frequency"
+>> and such meaning for properties we usually associate with the property
+>> doing this. Here however corner frequency will be always set to rf_in
+>> and you just adjust the value.
+>>
+> 
+> How about: "Sets the minimum distance (in Hz) between the fundamental
+> frequency of `rf_in` and the corner frequency of the high-pass, input filter
+> when operatred in 'auto' mode. The selected high-pass corner frequency will
+> be less than, or equal to, `rf_in` - `hpf-margin-hz`. If not setting is found
+> that satisfies this relationship the filter will be put into 'bypass'."
+> 
+> Perhaps that is a bit more clear on the intention of this parameter?
+
+Yes
+
+> 
 >>>
->>> Signed-off-by: Haylen Chu <heylenay@4d2.org>
->>
->> This is a really big patch (over 3000 lines), and a fairly large
->> amount of code to review.  But I've given it a really thorough
->> read and I have a *lot* of review comments for you to consider.
->>
->> First, a few top-level comments.
->> - This driver is very comprehensive.  It represents essentially
->>    *all* of the clocks in the tree diagram shown here:
->> https://developer.spacemit.com/resource/file/images?fileName=DkWGb4ed7oAziVxE6PIcbjTLnpd.png
->>    (I can tell you what's missing but I don't think it matters.)
->> - In almost all cases, the names of the clocks match the names
->>    shown in that diagram, which is very helpful.
->> - All of the clocks are implemented using "custom" clock
->>    implementations.  I'm fairly certain that almost all of
->>    them can use standard clock framework types instead
->>    (fixed-rate, fixed-factor, fractional-divider, mux, and
->>    composite).  But for now I think there are other things
->>    more important to improve.
->> - A great deal of my commentary below is simply saying that the
->>    code is more complex than necessary.  Some simple (though
->>    widespread) refactoring would improve things a lot.  And
->>    some of the definitions can be done without having to
->>    specify nearly so many values.
->> - Much of what might be considered generality in the
->>    implementation actually isn't needed, because it isn't used.
->>    This is especially true given that there are essentially no
->>    clocks left unspecified for the K1 SoC.
->> - Once the refactoring I suggest has been done, I expect
->>    that more opportunities for simplification and cleanup will
->>    become obvious; we'll see.
->> - I suggest these changes because the resulting simplicity
->>    will make the code much more understandable and maintainable
->>    in the long term.  And if it's simpler to understand, it
->>    should be easier for a maintainer to accept.
->>
->> I'm not going to comment on the things related to Device Tree
->> that have already been mentioned, nor on the Makefile or Kconfig,
->> etc.  I'm focusing just on the code.
->>
->>> ---
->>>    drivers/clk/Kconfig               |    1 +
->>>    drivers/clk/Makefile              |    1 +
->>>    drivers/clk/spacemit/Kconfig      |   20 +
->>>    drivers/clk/spacemit/Makefile     |    5 +
->>>    drivers/clk/spacemit/ccu-k1.c     | 1747 +++++++++++++++++++++++++++++
->>>    drivers/clk/spacemit/ccu_common.h |   51 +
->>>    drivers/clk/spacemit/ccu_ddn.c    |  140 +++
->>>    drivers/clk/spacemit/ccu_ddn.h    |   84 ++
->>>    drivers/clk/spacemit/ccu_mix.c    |  304 +++++
->>>    drivers/clk/spacemit/ccu_mix.h    |  309 +++++
->>>    drivers/clk/spacemit/ccu_pll.c    |  189 ++++
->>>    drivers/clk/spacemit/ccu_pll.h    |   80 ++
->>>    12 files changed, 2931 insertions(+)
->>>    create mode 100644 drivers/clk/spacemit/Kconfig
->>>    create mode 100644 drivers/clk/spacemit/Makefile
->>>    create mode 100644 drivers/clk/spacemit/ccu-k1.c
->>>    create mode 100644 drivers/clk/spacemit/ccu_common.h
->>>    create mode 100644 drivers/clk/spacemit/ccu_ddn.c
->>>    create mode 100644 drivers/clk/spacemit/ccu_ddn.h
->>>    create mode 100644 drivers/clk/spacemit/ccu_mix.c
->>>    create mode 100644 drivers/clk/spacemit/ccu_mix.h
->>>    create mode 100644 drivers/clk/spacemit/ccu_pll.c
->>>    create mode 100644 drivers/clk/spacemit/ccu_pll.h
+>>>>
+>>>>> them as separate controls but I am happy to put them into an array if that is
+>>>>> the idiomatic approach to situations like this. That said, I am having a
+>>>>> difficult time getting dt_binding_check to pass when I have an array of uint64.
+>>>>>
+>>>>> When listing two items, as in your example below, I get the following:
+>>>>> adi,admv8818.example.dtb: admv8818@0: adi,filter-margins-hz: [[0, 30000000], [0, 30000000]] is too long
+>>>>
+>>>> Tricky to say without seeing your code. Magic crystal ball had
+>>>> malfunction today.
 >>>
-> 
-> ...
-> 
->>> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
->>> new file mode 100644
->>> index 000000000000..6fb0a12ec261
->>> --- /dev/null
->>> +++ b/drivers/clk/spacemit/ccu-k1.c
-> 
-> ...
-> 
->> The next set of clocks differ from essentially all others, in that
->> they don't encode their frequency in the name.  I.e., I would expect
->> the first one to be named pll1_d2_1228p8.
-> 
-> I found this change may not be possible: with the frequency appended,
-> their names conflict with another set of MPMU gates.
-
-OK, that's fine, and perhaps is why it was done this way.  Thanks
-for checking.   I look forward to the next version of the series.
-
-					-Alex
-
-> 
+>>> This is the property:
+>>>
+>>>   adi,filter-margins-hz:
+>>>     items:
+>>>       - description: |
+>>>           The minimum distance, in Hz, between rf_in and the low-pass corner
+>>>           frequency when the device is used in "auto" mode. If the sum of
+>>>           rf_in and this value is greater than 18.85 GHz then the low-pass
+>>>           filter will be put into bypass mode, otherwise the closest corner
+>>>           frequency that is greater than or equal to the sum of rf_in plus this
+>>>           value will be used.
+>>>         minimum: 0
+>>>         maximum: 0xFFFFFFFFFFFFFFFF
+>>>         default: 0
+>>>       - description: |
+>>>           The minimum distance, in Hz, between rf_in and the high-pass corner
+>>>           frequency when the device is used in "auto" mode. If the difference
+>>>           between rf_in and this value is less than 1.75 GHz then the high-pass
+>>>           filter will be put into bypass mode, otherwise the closest corner
+>>>           frequency that is less than or equal to the difference of rf_in and
+>>>           this value will be used.
+>>>         minimum: 0
+>>>         maximum: 0xFFFFFFFFFFFFFFFF
+>>>         default: 0
+>>>
+>>> And this is the example:
+>>>
+>>> examples:
+>>>   - |
+>>>     spi {
+>>>       #address-cells = <1>;
+>>>       #size-cells = <0>;
+>>>       admv8818@0 {
+>>>         compatible = "adi,admv8818";
+>>>         reg = <0>;
+>>>         spi-max-frequency = <10000000>;
+>>>         clocks = <&admv8818_rfin>;
+>>>         clock-names = "rf_in";
+>>>         adi,filter-margins-hz = /bits/ 64 <30000000 30000000>;
 >>
->>> +static CCU_GATE_FACTOR_DEFINE(pll1_d2, "pll1_d2", CCU_PARENT_HW(pll1),
->>> +			      APB_SPARE2_REG,
->>> +			      BIT(1), BIT(1), 0, 2, 1, 0);
->>> +static CCU_GATE_FACTOR_DEFINE(pll1_d3, "pll1_d3", CCU_PARENT_HW(pll1),
->>> +			      APB_SPARE2_REG,
->>> +			      BIT(2), BIT(2), 0, 3, 1, 0);
->>> +static CCU_GATE_FACTOR_DEFINE(pll1_d4, "pll1_d4", CCU_PARENT_HW(pll1),
->>> +			      APB_SPARE2_REG,
->>> +			      BIT(3), BIT(3), 0, 4, 1, 0);
->>> +static CCU_GATE_FACTOR_DEFINE(pll1_d5, "pll1_d5", CCU_PARENT_HW(pll1),
->>> +			      APB_SPARE2_REG,
->>> +			      BIT(4), BIT(4), 0, 5, 1, 0);
->>> +static CCU_GATE_FACTOR_DEFINE(pll1_d6, "pll1_d6", CCU_PARENT_HW(pll1),
->>> +			      APB_SPARE2_REG,
->>> +			      BIT(5), BIT(5), 0, 6, 1, 0);
->>> +static CCU_GATE_FACTOR_DEFINE(pll1_d7, "pll1_d7", CCU_PARENT_HW(pll1),
->>> +			      APB_SPARE2_REG,
->>> +			      BIT(6), BIT(6), 0, 7, 1, 0);
->>> +static CCU_GATE_FACTOR_DEFINE(pll1_d8, "pll1_d8", CCU_PARENT_HW(pll1),
->>> +			      APB_SPARE2_REG,
->>> +			      BIT(7), BIT(7), 0, 8, 1, 0);
->>> +
+>>
+>> foo-hz is in 32-bit, so basically you have here 4 32-bit numbers which
+>> indeed reported by dtschema - property is too long. Drop 64-bit here.
+>>
 > 
-> ...
-> 
->>> +/*	MPMU clocks start	*/
-> 
-> ...
-> 
->>> +static CCU_GATE_DEFINE(pll1_d3_819p2, "pll1_d3_819p2", CCU_PARENT_HW(pll1_d3),
->>> +		       MPMU_ACGR,
->>> +		       BIT(14), BIT(14), 0, 0);
->>> +
->>> +static CCU_GATE_DEFINE(pll1_d2_1228p8, "pll1_d2_1228p8", CCU_PARENT_HW(pll1_d2),
->>> +		       MPMU_ACGR,
->>> +		       BIT(16), BIT(16), 0, 0);
-> 
-> Here're the conflicts.
-> 
-> Although they don't happen on all the clocks, I prefer to keep the clock
-> names as is for now to keep the consistency.
-> 
-> Thanks,
-> Haylen Chu
+> I was hoping to keep this 64 bits seeing this is a 18 GHz+ filter. I suppose
+> I could change this to MHz and just lose a bit of resolution. Does that sound
+> like a better approach?
 
+Does the hardware accept Hz resolution? How many bits do you have in the
+registers per each value?
+
+Anyway, the value was 32-bit even in your original patch and your DTS
+example was not correct.
+
+
+> 
+>> Device allows multiple LPF/HPF values to be stored in LUT tables and it
+>> actually has four independent filters. Shouldn't these be included here?
+>> Maybe not LUT tables, but the configuration for all filters?
+>>
+> 
+> There are two filters, the input (high-pass) filter, and the output (low-pass)
+> filter. Each filter has four banks, each with a different range of frequencies.
+> Only one bank can be selected at a time. Each bank has 16 different possible
+> cutoff/corner frequencies. That is a total of 64 distinct values for each of
+> the two filters.
+
+Hm, datasheet says:
+"four independently controlled high-
+pass filters (HPFs) and four independently controlled low-pass
+filters (LPFs)"
+
+so four each, not one each, but I guess they wanted to say banks as only
+one filter/bank can be active in given time?
+
+> 
+> The issue with setting the corner frequency directly is that in certain
+> applications (such as software defined radios) the fundamental frequency
+> is adjustable, necessitating that the corner frequencies of the filter are
+> adjusted accordingly. When the filter is in "auto" mode it is notified via
+> the clock system of frequency changes, so using this information it should be
+> possible to select new corner frequencies if you know the minimum distance
+> between your fundamental frequency and the corner.
+
+I am not advocating to set the corner frequency directly, but just
+pointing that your current binding seems incomplete.
+
+
+Best regards,
+Krzysztof
 
