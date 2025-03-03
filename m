@@ -1,183 +1,171 @@
-Return-Path: <devicetree+bounces-153305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10A15A4BF2F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:46:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2A9AA4BF49
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:50:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 454E43BB25B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:41:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5BA6166837
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 11:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF3862010F5;
-	Mon,  3 Mar 2025 11:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03F4920B81F;
+	Mon,  3 Mar 2025 11:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="qphRwrCN"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GiLNK/ya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E5D20101B
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 11:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0251F4297;
+	Mon,  3 Mar 2025 11:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741002038; cv=none; b=bYOtZPo2u7nb3wAE5SQxL7Qk0H2JSmnoqT2RddgrilwoKrgN455v6grUXSj9d62Y+4VyEb8/OyKIDJ0VE2Zm5vxKnpUbtYY57Xr69A+RZ3/HXROYx/kcJxgQv9vigH0jBCgeEQ18N5zGBDpvlW9GfTvyKIhf7U8O02xipH2fqmc=
+	t=1741002622; cv=none; b=HM6GO9yyN6fgoU2gwSzEncAEU9edKnjtBESu4JpL0sLn7mlEVYGy2GPq6/D7D5b60XJUULzn6qch157RHdtGUSWNJrSQbCNocp+VdN0FiUz1jZWL2KHWAKGpM4AKng7Df/nXUle/PIdOTDkdtuJbnTg9t0EJwBk15AR3hr3yyhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741002038; c=relaxed/simple;
-	bh=xjKhMtLA9tK9j8SX+seT9UK5BSImtLHPUuXRUCeDyBc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MmitAUsLIkT0waeAO6DyCAJ5gGd+KxPGJqWpA0m5s4pda2AjCNML361aLM3PtuTLZkwA1WaoSAwalcgPvbonlNfjCs0D/qsUAKk1naW+EgDv9eA8OWAvT1m2GJjRsaR/gkwhH15Ca83j/aR7YuVpc4bJG4uTSG+BNvk+qyTbUak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=qphRwrCN; arc=none smtp.client-ip=94.124.121.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=protonic.nl; s=202111;
-	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-	 message-id:subject:cc:to:from:date:from;
-	bh=W7xQaIM8KUgQYXUjWEz/yyKUU3dOwVVtoiKveZse1LQ=;
-	b=qphRwrCNarcdXMc+8nT9gMvUDncjj28vFRItzfiNE/jdOd2yOkJll/C0YqOI+M2Lv7xxVV69I4kDC
-	 EabyatzTV4QIi2a/uhHtenSOQTvgnl5afF0HzFmvDBTlBx3REPp83KwvYQxLaqXi/7tk4a3czrMRSI
-	 xgOPVkiNuzqBXgPhGvTeLVEAHDwWVaCBb56qs9Zz5cVnGinA1MkMCkialX23Gp8qC6Mdum9rxl4KCu
-	 3VMeU0juaMaLuz2lcY4aa2AjD6nutiVQVBifdXvBV3CXO1CKO+e2ypMhFdH54HYn4n/U6bDSNx7C9U
-	 Zxl8AX8zA0VD+Ja7BOpB/LKmPsgqzqQ==
-X-MSG-ID: 51c43871-f824-11ef-a39b-00505681446f
-Date: Mon, 3 Mar 2025 12:40:34 +0100
-From: David Jander <david@protonic.nl>
-To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron
- <jic23@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>,
- linux-pwm@vger.kernel.org
-Subject: Re: [RFC PATCH 7/7] dt-bindings: motion: Add motion-simple-pwm
- bindings
-Message-ID: <20250303124034.726ba698@erd003.prtnl>
-In-Reply-To: <tm57fsmijq4t4y4dpmtss63ekzpm5oefir5tz4aioxq5dx4or6@lgoqjpxc3axh>
-References: <20250227162823.3585810-1-david@protonic.nl>
-	<20250227162823.3585810-8-david@protonic.nl>
-	<20250228-wonderful-python-of-resistance-d5b662@krzk-bin>
-	<20250228102201.590b4be6@erd003.prtnl>
-	<9a1d75a2-66c0-46b6-91a1-4922b892dfb1@kernel.org>
-	<20250228110931.7bdae7fd@erd003.prtnl>
-	<tm57fsmijq4t4y4dpmtss63ekzpm5oefir5tz4aioxq5dx4or6@lgoqjpxc3axh>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741002622; c=relaxed/simple;
+	bh=snj0IOsRFkl6P2f5roV9E+UId9WY9PXHz7NyOEcIJm8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=plURwxP/JBE3MsB2hgHondCJTP8UC9T71ShNAsl9ZKqz5DdpoKhaYpSrzQhtWHNhhHoeGvcv+C+vxoxHdQdM6nYpIv9gMCRu3zAl0B0hEcSJ6KTElMKl1Cqfy3GRQvfJSPI7Lowglm09E42UzrTmIwr+YuEQodQAbzxy1gFFoJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GiLNK/ya; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741002621; x=1772538621;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=snj0IOsRFkl6P2f5roV9E+UId9WY9PXHz7NyOEcIJm8=;
+  b=GiLNK/ya25sSmGsW7RkiiFy20I0QltE88PtRaWzfNmPh5vPEZaWpO0mQ
+   /Q5xqIi4tRvQlr0vz0abHoT2i2qm/sJiHh6h8t9wfqiGjwSwwDr6bMGPl
+   R+oPZ/TCCJqfC5PeAq+YdgV8PWI5M0XvQOst6pXaNKr4APJ+Ba9wtoA+S
+   LUgEp+ClJ15I18djtUaaqRKM9y63DCHjQjSytlKMhJXw2uyFBbiGzH9Jd
+   qXstFMLqb67CwU2ZJ4YpsnXvMGzgfL6XJ9J7zp0h395INi+VnjkSAknQP
+   FqmvR9aG6D0X7ZHXsjZNdx576imZCbwgaePJOXMKGltqwNh0parOHQPLp
+   A==;
+X-CSE-ConnectionGUID: C3QvsQ6+QsSGl6qWhaN5Jg==
+X-CSE-MsgGUID: p32QVHxSRwiD/nqrppi1Kw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="41995021"
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; 
+   d="scan'208";a="41995021"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 03:50:20 -0800
+X-CSE-ConnectionGUID: xZT7KB1/S8CgofptislTcQ==
+X-CSE-MsgGUID: TuVZKZz5SNSmQzv5bSvYOQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; 
+   d="scan'208";a="123126795"
+Received: from kuha.fi.intel.com ([10.237.72.152])
+  by fmviesa004.fm.intel.com with SMTP; 03 Mar 2025 03:50:14 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 03 Mar 2025 13:50:13 +0200
+Date: Mon, 3 Mar 2025 13:50:13 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH v5 02/10] property: Add functions to count named child
+ nodes
+Message-ID: <Z8WXdf8lnivYKiks@kuha.fi.intel.com>
+References: <cover.1740993491.git.mazziesaccount@gmail.com>
+ <5e35f44db2b4ed43f75c4c53fd0576df9ad24ab2.1740993491.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5e35f44db2b4ed43f75c4c53fd0576df9ad24ab2.1740993491.git.mazziesaccount@gmail.com>
 
+Hi,
 
-Dear Uwe,
+> +/**
+> + * fwnode_get_child_node_count_named - number of child nodes with given name
+> + * @fwnode: Node which child nodes are counted.
+> + * @name: String to match child node name against.
+> + *
+> + * Scan child nodes and count all the nodes with a specific name. Return the
+> + * number of found nodes. Potential '@number' -ending for scanned names is
+> + * ignored. Eg,
+> + * device_get_child_node_count(dev, "channel");
+> + * would match all the nodes:
+> + * channel { }, channel@0 {}, channel@0xabba {}...
+> + *
+> + * Return: the number of child nodes with a matching name for a given device.
+> + */
+> +unsigned int fwnode_get_child_node_count_named(const struct fwnode_handle *fwnode,
+> +					       const char *name)
+> +{
+> +	struct fwnode_handle *child;
+> +	unsigned int count = 0;
+> +
+> +	fwnode_for_each_child_node(fwnode, child)
+> +		if (fwnode_name_eq(child, name))
+> +			count++;
+> +
+> +	return count;
+> +}
+> +EXPORT_SYMBOL_GPL(fwnode_get_child_node_count_named);
+> +
+> +/**
+> + * device_get_child_node_count_named - number of child nodes with given name
+> + * @dev: Device to count the child nodes for.
+> + * @name: String to match child node name against.
+> + *
+> + * Scan device's child nodes and find all the nodes with a specific name and
+> + * return the number of found nodes. Potential '@number' -ending for scanned
+> + * names is ignored. Eg,
+> + * device_get_child_node_count(dev, "channel");
+> + * would match all the nodes:
+> + * channel { }, channel@0 {}, channel@0xabba {}...
+> + *
+> + * Return: the number of child nodes with a matching name for a given device.
+> + */
+> +unsigned int device_get_child_node_count_named(const struct device *dev,
+> +					       const char *name)
+> +{
+> +	const struct fwnode_handle *fwnode = dev_fwnode(dev);
+> +
+> +	if (!fwnode)
+> +		return -EINVAL;
+> +
+> +	if (IS_ERR(fwnode))
+> +		return PTR_ERR(fwnode);
+> +
+> +	return fwnode_get_child_node_count_named(fwnode, name);
+> +}
+> +EXPORT_SYMBOL_GPL(device_get_child_node_count_named);
 
-Thanks for chiming in!
+Sorry if I missed something in the v4 thread, but why not do all the
+checks in fwnode_get_child_node_count_named(), and make this an inline
+function?
 
-On Fri, 28 Feb 2025 16:18:05 +0100
-Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org> wrote:
+        static inline unsigned int
+        device_get_child_node_count_named(const struct device *dev, const char *name)
+        {
+                return fwnode_get_child_node_count_named(dev_fwnode(fwnode), name);
+        }
 
-> Hey David,
->=20
-> On Fri, Feb 28, 2025 at 11:09:31AM +0100, David Jander wrote:
-> > On Fri, 28 Feb 2025 10:37:48 +0100
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >  =20
-> > > On 28/02/2025 10:22, David Jander wrote: =20
-> > > >    =20
-> > > >>> +
-> > > >>> +  motion,pwm-inverted:
-> > > >>> +    $ref: /schemas/types.yaml#/definitions/flag     =20
-> > > >>
-> > > >> And PWM flag does not work?   =20
-> > > >=20
-> > > > I have seen PWM controllers that don't seem to support the
-> > > > PWM_POLARITY_INVERTED flag and those where it just doesn't work. Sh=
-ould all   =20
-> > >=20
-> > >=20
-> > > Shouldn't the controllers be fixed? Or let's rephrase the question: w=
-hy
-> > > only this PWM consumer needs this property and none of others need it=
-? =20
-> >=20
-> > CCing Uwe Kleine-Koenig and linux-pwm mailing list.
-> >=20
-> > I know that at least in kernel 6.11 the pwm-stm32.c PWM driver doesn't
-> > properly invert the PWM signal when specifying PWM_POLARITY_INVERTED. I=
- agree
-> > this is a probably bug that needs fixing if still present in 6.14-rc. B=
-esides
-> > that, if linux-pwm agrees that every single PWM driver _must_ properly =
-support
-> > this flag, I will drop this consumer flag an start fixing broken PWM dr=
-ivers
-> > that I encounter. I agree that it makes more sense this way, but I want=
-ed to
-> > be sure. =20
->=20
-> Some hardwares cannot support PWM_POLARITY_INVERTED. Affected drivers
-> include:
->=20
-> 	pwm-adp5585
-> 	pwm-ntxec
-> 	pwm-raspberrypi-poe
-> 	pwm-rz-mtu3 (software limitation only)
-> 	pwm-sunplus
-> 	pwm-twl-led (not completely sure, that one is strange)
->=20
-> . ISTR that there is a driver that does only support inverted polarity,
-> but I don't find it. For an overview I recommend reading through the
-> output of:
->=20
-> 	for f in drivers/pwm/pwm-*; do
-> 		echo $f;
-> 		sed -rn '/Limitations:/,/\*\/?$/p' $f;
-> 		echo;
-> 	done | less
->=20
-> . (Note not all drivers have commentary in the right format to unveil
-> their limitations.)
->=20
-> For most use-cases you can just do
->=20
-> 	.duty_cycle =3D .period - .duty_cycle
+thanks,
 
-Yes, that is exactly what the relevant code in motion/simple-pwm.c does when
-the "pwm-inverted" flag is present in the DT node.
-
-> instead of inverting polarity, but there is no abstraction in the PWM
-> bindings for that and also no helpers in the PWM framework. The problem
-> is more or less ignored, so if you have a device with
->=20
-> 	pwms =3D <&pwm0 0 PWM_POLARITY_INVERTED>;
->=20
-> and the PWM chip in question doesn't support that, the pwm API functions
-> will fail. So the system designer better makes sure that the PWM
-> hardware can cope with the needed polarity.
-
-Thanks for clarifying this!
-
-@Krzysztof, do you think that given this situation it is acceptable to incl=
-ude
-the "pwm-inverted" flag in the dt-schema of the simple PWM motor driver?
-
-The need for an inverted PWM signal is something very common in the case of
-H-bridge motor drivers, where the PWM signal represents the actual logical
-output level of each of the two halves of the bridge. Often the high-side
-switches are used as the free-wheel position, so that 100% duty-cycle on bo=
-th
-channels is actually standstill, while 0% duty-cycle on one channel is full
-speed in either direction. This isn't always the case though, hence the
-importance for this to be able to be selected.
-
-Best regards,
-
---=20
-David Jander
+-- 
+heikki
 
