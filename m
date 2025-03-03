@@ -1,325 +1,144 @@
-Return-Path: <devicetree+bounces-153360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 092E7A4C194
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:19:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F71A4C1CE
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 14:24:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C87FE188F70A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:19:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFF13165D16
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1A7F212D63;
-	Mon,  3 Mar 2025 13:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DF6212B0A;
+	Mon,  3 Mar 2025 13:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="V2VWHjdH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/AhB5qE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B73520DD47
-	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 13:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED65120D4E9;
+	Mon,  3 Mar 2025 13:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741007923; cv=none; b=fKuBsotT/r/oTKUFj/dRXPtxU+rpDz1sXecsgbthSSum4WnvtaweEnsiRiNBKsJ7MT4jTCi9LGYyxnKRLhoj3halOojX/8Qnk+hopDxobi+qd6rJeim4gsdbOxOP8Pkb/nQ1obZe0V200wcs+TTJB+6P5L1xEXI/imZXnNzY2GA=
+	t=1741008131; cv=none; b=ol7rqZUFTCC46B78RIjRH0jvOaXgk857K5xDY4w5mdmcXtNtIRNfcAo33dgxCybqBosF7u/CbbaEowxF6wI3AUaHPW2LJpgCTRHs78syQdhU/U9bKAc0Dj49AGPpFf9wrzFncc3A3jMmx0+booMex/hEL8jg8u5t4n9wm52F7No=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741007923; c=relaxed/simple;
-	bh=AMDQ9eFx0aMl37aNjAdud2rQll+8S9hW7w2yT459u9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q7ywlUY++JYkYwDOiJ6lnVZaFRwVQK5h6Mr/TGzRn0DBWxwKy3EBYMmQiYtcQBfyEgANCtFB/ZfJ7SQOJZ0mG6+WkiQ1C1BOiS7uMsOLYAWKIW/t+sfjbkOULDLcVxXSjWkFd+l4D85juZwALB3+IfKbDBCyNQLXKVRqqWczII4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=V2VWHjdH; arc=none smtp.client-ip=94.124.121.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=protonic.nl; s=202111;
-	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-	 message-id:subject:cc:to:from:date:from;
-	bh=07jHBQ0Ocr20eMkBHU7wCv3Kb+u8M2gSl1jHl4Krjyw=;
-	b=V2VWHjdH50wFOAzqiqTCz4ucfQSAqCESzCrmKnlGDokUdrXyVCjY95wGlKxQEqab88IbyapJ8HitR
-	 HhPCkTVbdTVmITlaPVwF3DF45rsjZ8KKS9QR1QgL9Z9ZJ5PpeqMyb4Z4Br1b1QGHaU9XuSjwQA5XjL
-	 A9EK9KrVHqZcBBGpkCbhwHNy2zuIXnCvY+Yqh6IJUonUEaNniEQT+LOJaiv8qIBYHv/lxzT4aRN+2w
-	 0Ycn1oeGVIj2B/QPxKjK8H50uESCFnozuiYgwKdA25We/6ZDtA7Zez1CmVi/IbJCfJ/OrJ8aJ40Ipn
-	 ZWeXSYlWcX+QRqZW16a2zXBCEZZ+o4g==
-X-MSG-ID: 04a26b70-f832-11ef-a39b-00505681446f
-Date: Mon, 3 Mar 2025 14:18:37 +0100
-From: David Jander <david@protonic.nl>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
- <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
- <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>
-Subject: Re: [RFC PATCH 6/7] dt-bindings: motion: Add adi,tmc5240 bindings
-Message-ID: <20250303141837.782e57f7@erd003.prtnl>
-In-Reply-To: <CAMknhBFoRoaXWBL-vDnDrepqw_KJ-VrYeOoGJfjz8q=wDNM6xA@mail.gmail.com>
-References: <20250227162823.3585810-1-david@protonic.nl>
-	<20250227162823.3585810-7-david@protonic.nl>
-	<7b2a8d71-9d83-4d40-903b-ba7ef1c686f3@baylibre.com>
-	<20250303122253.26fec335@erd003.prtnl>
-	<CAMknhBFoRoaXWBL-vDnDrepqw_KJ-VrYeOoGJfjz8q=wDNM6xA@mail.gmail.com>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741008131; c=relaxed/simple;
+	bh=cyAIDvH42HlK42zH1AZZ7W0u8yvqehARnSYevut+Mvw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qkHl/q+t3xNiM9e03RQ5mO5PSKAraOfaWxM3dS8vUiGvJvYTQbCnWqeeIoVtEwc3DpCkbXFaWQYTbstRWpu+RqTh2p1cu2DFHB6adVuUI/PR3JRwRvLZxUBHjE0X4zjVNLyNRQMrSJQ0zXVq787n6O4r8P23D7zDE2Qsgdv3uwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/AhB5qE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58DA6C4CEEC;
+	Mon,  3 Mar 2025 13:22:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741008130;
+	bh=cyAIDvH42HlK42zH1AZZ7W0u8yvqehARnSYevut+Mvw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=c/AhB5qEabaK+aGFMVK/mFIuucVYjGzZAk7HdUEOEz2mZCuWZRzB9TmVLCrERWDN5
+	 OC3uJ8TorONGnXWfIFQmcnQmo1J+tPz7jKCiWTOrHgzEzM6TjKgawRn5EjTjpfa+Vd
+	 hQbJAAo8DaI/V4nFvyoBVzOlg2VyPBFMczw0uHOJF4cvkb3FC2jgJWI9k3gCwACoBT
+	 QyXng99JRn6+4oOBzcoxgc+0yF81Wre66HialtHEmysgApJfX9TYc/pCrPFm0+nEWV
+	 YlKl7U1UpJaE6vvS5QoHCrEsqQCKCMysMl4JglksrOiXPPCibfyukuN5ukmr78zUnS
+	 SCd6ppVo7A+6g==
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2feb9076a1cso6824201a91.0;
+        Mon, 03 Mar 2025 05:22:10 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX1Igr/TanK2soVcvesdVKYXrB4JqCExqU5/Faky6KF9LAynw5xt43eq+kkVKFjUQwcfRaI+VMZXJdv@vger.kernel.org, AJvYcCXl9brJFjfH1J6lEweohgkUOW7gBLrW9dXEGdBuBZB8Zb1XGrMibFyJvxVhbwE/fg8qofmgm19obkXjVNCv@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpYcyE0gpnZXOGnBIMwkbcSj1haZn5bjQ7Q1NsE5QK/0yTY4qD
+	8VByGPY2MqftkYq51dD7+LGDbNvTUkq8XHm6VxlvnFURhnC44voO6KzQwoyzV58RBDt8ArjsM/Z
+	GtXErXVzSARgsru7qrR2Vx4opVA==
+X-Google-Smtp-Source: AGHT+IHQLK7la/7RxxVx5xQub2rrCyzIXTBwqCYNHPZA1L5Z+HvrKvHgKF1EVP50ng2pCoNbxnqwqT1ThMWF+DeLMfM=
+X-Received: by 2002:a17:90b:1cc6:b0:2fc:3264:3657 with SMTP id
+ 98e67ed59e1d1-2febaa92594mr25361600a91.0.1741008129875; Mon, 03 Mar 2025
+ 05:22:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20231023-display-support-v7-0-6703f3e26831@baylibre.com> <20231023-display-support-v7-1-6703f3e26831@baylibre.com>
+In-Reply-To: <20231023-display-support-v7-1-6703f3e26831@baylibre.com>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Mon, 3 Mar 2025 21:22:55 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8c4xeE=c4MTGopenORaP-PL66exLG+erKSV1fpoGJU+g@mail.gmail.com>
+X-Gm-Features: AQ5f1JrckMOh9P4yJQbwlfuWcX_03D8O22eeIcknRD2YAlMiCLxngtVQQLy-TeY
+Message-ID: <CAAOTY_8c4xeE=c4MTGopenORaP-PL66exLG+erKSV1fpoGJU+g@mail.gmail.com>
+Subject: Re: [PATCH v7 1/6] dt-bindings: display: mediatek: dpi: add
+ power-domains example
+To: amergnat@baylibre.com
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Simona Vetter <simona@ffwll.ch>, Simona Vetter <simona.vetter@ffwll.ch>, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Fabien Parent <fparent@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hi, Amergnat:
 
-Dear David,
+<amergnat@baylibre.com> =E6=96=BC 2025=E5=B9=B41=E6=9C=8810=E6=97=A5 =E9=80=
+=B1=E4=BA=94 =E4=B8=8B=E5=8D=889:31=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> From: Fabien Parent <fparent@baylibre.com>
+>
+> DPI is part of the display / multimedia block in MediaTek SoCs, and
+> always have a power-domain (at least in the upstream device-trees).
+> Add the power-domains property to the binding example.
 
-On Mon, 3 Mar 2025 13:28:35 +0100
-David Lechner <dlechner@baylibre.com> wrote:
+Applied to mediatek-drm-next [1], thanks.
 
-> (Sorry if you get this twice. I don't have my regular computer today
-> and didn't realize I was sending HTML the first time. Resending in
-> plain text so the lists pick it up.)
->=20
-> On Mon, Mar 3, 2025 at 12:22=E2=80=AFPM David Jander <david@protonic.nl> =
-wrote:
-> >
-> >
-> > Dear David,
-> >
-> > On Fri, 28 Feb 2025 16:38:51 -0600
-> > David Lechner <dlechner@baylibre.com> wrote:
-> > =20
-> > > On 2/27/25 10:28 AM, David Jander wrote: =20
-> > > > Add device-tree bindings for Analog Devices TMC5240 stepper control=
-lers.
-> > > >
-> > > > Signed-off-by: David Jander <david@protonic.nl>
-> > > > ---
-> > > >  .../bindings/motion/adi,tmc5240.yaml          | 60 +++++++++++++++=
-++++
-> > > >  1 file changed, 60 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/motion/adi,tm=
-c5240.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/motion/adi,tmc5240.y=
-aml b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..3364f9dfccb1
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/motion/adi,tmc5240.yaml
-> > > > @@ -0,0 +1,60 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/motion/adi,tmc5240.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Analog Devices TMC5240 Stepper Motor controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - David Jander <david@protonic>
-> > > > +
-> > > > +description: |
-> > > > +   Stepper motor controller with motion engine and SPI interface. =
-=20
-> > >
-> > > Please include a link to the datasheet. =20
-> >
-> > Will do.
-> > =20
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - adi,tmc5240
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  interrupts:
-> > > > +    maxItems: 1 =20
-> > >
-> > > I assume that this is the overvoltage output (OV pin). Would be nice =
-to have
-> > > a description here saying that. There are also NAO and DIAG0/1 output=
- pins, so
-> > > it's a bit ambiguous otherwise. =20
-> >
-> > This is the DIAG0 output pin which on this chip has a dual function as =
-either
-> > a STEP output or an interrupt output. The pin name is a bit misleading,=
- but it
-> > is the "interrupt" function that is meant here. The datasheet documents=
- all
-> > the different events that can trigger this interrupt.
-> > I will add a description to clarify this.
-> > =20
->=20
-> If it makes sense that other pins could possibly ever be connected to
-> interrupts then we can add those and also add interrupt-names (but
-> only if there is more than one possible interrupt).
+[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.=
+git/log/?h=3Dmediatek-drm-next
 
-AFAIK, only DIAG1 would potentially make sense to be connected to an
-interrupt. It can be programmed to go low when the motor position matches t=
-he
-contents of the X_COMPARE/X_COMPARE_REPEAT register setting.
+Regards,
+Chun-Kuang.
 
-I will add that one if you agree. It will not be mandatory of course.
-
-In any case, if that pin was connected to an interrupt pin right now, it co=
-uld
-already be used as an IIO trigger for example. Just not (yet) via this driv=
-er.
-
->[...]
-> > The resistor connected to the IREF pin (Rref) OTOH does have an implica=
-tion to
-> > the software, as it sets the full-range current of the output stage.
-> >
-> > How should we specify that? Is it adequate to add an optional DT proper=
-ty
-> > "rref" or "rref-ohm" with an int32 value in Ohm? The default value if
-> > unspecified is 12000 Ohm. =20
->=20
-> It looks like there are a few standardized properties, like
-> sense-resistor-ohms if that fits the use case. Otherwise, an
-> vendor-specific ti,rref-ohms would work. FYI, you can find the
-> preferred units at [1].
->=20
-> [1]: https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schem=
-as/property-units.yaml
-
-Ah, thanks! This is helpful.
-
-Will use this for ti,rref-ohms. I guess in this case that would be easier to
-understand than "sense-resistor-ohms", which is also okay, but would require
-reading the description to know what exactly is meant in this context.
-
-> > > And if there are any pins would make sense to connect to a gpio, we c=
-an add
-> > > those even if the driver doesn't use it currently.
-> > > =20
-> > > > +  clocks:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - interrupts
-> > > > +  - clocks
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > > > +  - $ref: /schemas/motion/common.yaml# =20
-> > >
-> > > If we need to know about what is connected to the output of a motor c=
-ontroller
-> > > I would expect it to be done with child node for each output. That wa=
-y each
-> > > output can be unique, if needed. Basically, similar to iio/adc.yaml i=
-s used to
-> > > provide common properties for channel@ child nodes on iio devices. =20
-> >
-> > This controller chip only has one single output for one stepper motor (4
-> > wires). While technically you could connect something else to those 4 w=
-ires, I
-> > don't think it is the scope of LMC to support that. The chip itself isn=
-'t
-> > designed for that purpose and it would clearly go far beyond the intend=
-ed
-> > purpose of this device.
-> >
-> > That being said, your suggestion of supporting child nodes may actually=
- be a
-> > good idea. Right now, we specify the type of motor (basically nominal- =
-and hold
-> > current settings) in user-space and set the IRUN/IHOLD parameters from
-> > user-space via the sysfs attributes interface. It might make sense to h=
-ave a DT
-> > child node to specify this, although in our current application this is=
- not
-> > very practical, since there are many motor controllers on one board, an=
-d it is
-> > configurable in software (runtime) which motor is connected to which ou=
-tput.
-> >
-> > But I can imagine a situation where it may be fixed and thus can be des=
-cribed
-> > in the DT of a board.
-> >
-> > Then again I don't know if it would be over-complicating things with so=
-mething
-> > like this:
-> >
-> >         motor-controller@0 {
-> >                 ...
-> >                 motor@0 {
-> >                         compatible =3D "nanotec,st4118s1006";
-> >                         irun-ma =3D <1800>;
-> >                         ihold-ma =3D <270>;
-> >                 };
-> >         };
-> >
-> > where we'd possibly have a stepper-motors.c file with a lot of structs =
-and
-> > matching tables for the different motor types.... sounds like overkill =
-to me,
-> > but maybe not? =20
->=20
-> A compatible for motors seems too much. I was just thinking along the
-> lines that 1) if we need to so some scaling or something that depends
-> on a motor constant, then it would make sense to put those constants
-> in the DT and 2) if there is a motor controller with more than one
-> output that could be connected to two or more different sizes of
-> motors with different constants, then we either need child nodes or an
-> array to be able to enter the different constants. Either one would
-> work. So maybe simpler to just use an array instead of child nodes now
-> that I'm thinking about it more.
-
-Well, in the case of the TMC5240 there isn't much more than a single motor
-with possibly some fixed setting of irun/ihold in some cases, but like I sa=
-id,
-in our case it is run-time configurable, so not something fixed to the
-hardware-description. Apart from that, there are the speed- and acceleratio=
-n-
-conversion constants, which per default are the constants stated in the
-datasheet. In some rare cases one might want to overrule them, but that can
-already be done.
-
-LMC does als support multi-channel controllers, and in that case I intend to
-make use of child nodes for the different channels, to be able to specify
-those parameters per motor.
-
-So maybe just leave it as it currently is for the tmc5240?
-
-> > > > +
-> > > > +unevaluatedProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    spi {
-> > > > +        #address-cells =3D <1>;
-> > > > +        #size-cells =3D <0>;
-> > > > +
-> > > > +        motor@0 { =20
-> > >
-> > > motor-controller@ or actuator-controller@
-> > >
-> > > The chip is the controller/driver, it is not a motor. =20
-> >
-> > Make sense. Will change this.
-> > =20
-> > > > +            compatible =3D "adi,tmc5240";
-> > > > +            reg =3D <0>;
-> > > > +            interrupts-extended =3D <&gpiok 7 0>;
-> > > > +            clocks =3D <&clock_tmc5240>;
-> > > > +            enable-supply =3D <&stpsleepn>;
-> > > > +            spi-max-frequency =3D <1000000>;
-> > > > +        };
-> > > > +    }; =20
-
-Best regards,
-
---=20
-David Jander
+>
+> Fixes: 9273cf7d3942 ("dt-bindings: display: mediatek: convert the dpi bin=
+dings to yaml")
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml | 2=
+ ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.=
+yaml
+> index 0f1e556dc8ef..d5ee52ea479b 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
+l
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
+l
+> @@ -116,11 +116,13 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      #include <dt-bindings/clock/mt8173-clk.h>
+> +    #include <dt-bindings/power/mt8173-power.h>
+>
+>      dpi: dpi@1401d000 {
+>          compatible =3D "mediatek,mt8173-dpi";
+>          reg =3D <0x1401d000 0x1000>;
+>          interrupts =3D <GIC_SPI 194 IRQ_TYPE_LEVEL_LOW>;
+> +        power-domains =3D <&spm MT8173_POWER_DOMAIN_MM>;
+>          clocks =3D <&mmsys CLK_MM_DPI_PIXEL>,
+>               <&mmsys CLK_MM_DPI_ENGINE>,
+>               <&apmixedsys CLK_APMIXED_TVDPLL>;
+>
+> --
+> 2.25.1
+>
 
