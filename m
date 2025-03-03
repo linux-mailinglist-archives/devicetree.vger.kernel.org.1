@@ -1,156 +1,114 @@
-Return-Path: <devicetree+bounces-153440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B41AA4C711
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:29:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C330AA4C719
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:30:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A953B7A5C5F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:22:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 580073AE040
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF252356AE;
-	Mon,  3 Mar 2025 16:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D1722D7A7;
+	Mon,  3 Mar 2025 16:24:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="w3Y+gMNg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lcN+cLwm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED96023537A;
-	Mon,  3 Mar 2025 16:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB76422D79E;
+	Mon,  3 Mar 2025 16:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741018573; cv=none; b=g55Luqd07yCP1aJvfsxK1hAbiVQfFp7qoxVBEgu43JT1MA5iqijjE9mElMhGAnabYEVk0tEr+RVihyGHZEbD0+zAS054VKPCGBRY2JvAuCf+XLlM45kMXFZcmegahXOoSxIHwiFzuppAH+/ocTB2zX5YDYdJqS6erTKeQmWwaHM=
+	t=1741019051; cv=none; b=FmG+0v7J2v8n5FZeM8WKken7e2FQnRsmVM950G4KFR7TJcrXXoFyACcKxOdm31ebPBiPX5vvCLApY2PVAvsE6TzN7pBQfnBkOb1jlHJyI8i1L63lQM4QhswvQOPWGyLvNCrBfC/QTS1yQnxwcRTwkJifGZPq0VBw+cz9PkY8rn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741018573; c=relaxed/simple;
-	bh=PXYD7enaEEC2B+4t1Mddyq/cp/vGAdtV6nK5/i0Potg=;
+	s=arc-20240116; t=1741019051; c=relaxed/simple;
+	bh=1yDqqVmCKFaOfepku4ibV9RAk9lyrZmb0xSVnZlX/L4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tWtxPRXDrCXtybkNRQ1N01BL1XX9Y0VcKxe4LzjKbYfSeSr70jUDE6mAhQTCNX/3TpauzR5YSqXLOaaZT65V5z9TdrzsGIcKheICWBFyJwqBFYDWzj25wH8Dk/eEyqKWrWCBd4Wo9L/hIe7UBHwf04oo1TnR9/E4LJ8lSOcXMGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=w3Y+gMNg; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=zednl9Xz9rjKPfU1f0ZWLrff0ZoIoDCzDmBtTmsQLeg=; b=w3Y+gMNgxLZ+HNORcoDYauNgZC
-	bfgL9wey9gp6zKeFmdwOWOpPH/mTpzp3tmNh7PAlEot1LPRccePV+JbmEgjBGV/gt8tjyshUQryTD
-	UFb6Yhrpsuy1C2yZ//1JbBTWorF+6hqk+FAubL57p74UDtp8gfrPWFTn8Mtp5FeID+us=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tp8SP-001rE4-NS; Mon, 03 Mar 2025 17:15:53 +0100
-Date: Mon, 3 Mar 2025 17:15:53 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ziyang Huang <hzyitc@outlook.com>
-Cc: olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, rmk+kernel@armlinux.org.uk,
-	javier.carrasco.cruz@gmail.com, john@phrozen.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: qca8k: add
- internal-PHY-to-PHY CPU link example
-Message-ID: <ae329902-c940-4fd3-a857-c6689fa35680@lunn.ch>
-References: <TYZPR01MB555632DC209AA69996309B58C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <TYZPR01MB5556D90A3778BDF7AB9A7030C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ex96cWwYG6x1Dp6k+qYI9JVCp6dWE1NfOuhu5itUde6s2hccu7D8GocUNOfI4Hk8Ze3TpTveU6stu7sbv+PwEEnZstisMgx/LxEfkP0ehT6mXMMxgN3baDG6Kv+xkothrXLYOqXIpbfnvDj+upMoXQ/8JjT67l540NsqhicbUgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lcN+cLwm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7870EC4CED6;
+	Mon,  3 Mar 2025 16:24:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741019050;
+	bh=1yDqqVmCKFaOfepku4ibV9RAk9lyrZmb0xSVnZlX/L4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lcN+cLwmkh4DIQ6sWSD/sU2ZBMbfcJAiWSiMZS3bojcipN2vLCUA4RmRuD+lb1gch
+	 CooqYUk7Ll+ZuffNOvZZyvKaMzmbcZch6zQj26ow+RLtNOMZV+a63v45lBPJFplSSK
+	 50C5rgEiMZStbW3mCVjFD0RxJcChTlErOzVxZ1DStMcP29Ig/OmI30jJ4VYZGDu1V+
+	 6FSCShMeKGyxtqmQELiP2Qg1WThyQaxhTGHBglEP7nsCe6eN6T1cnuZ9rQyDnUA12i
+	 bE7Pzvf7Oi3nsgSB12FgxCvDEpzBO4wlixmwbmsedLVdCySol8pL7lOd8vQYW5TnOW
+	 PP05De7W0SY5A==
+Date: Mon, 3 Mar 2025 16:24:04 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com,
+	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	jszhang@kernel.org, p.zabel@pengutronix.de,
+	m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1 1/4] dt-bindings: clock: thead: Add TH1520 VO clock
+ controller
+Message-ID: <20250303-navy-radish-dcd4e6a24c0e@spud>
+References: <20250303143629.400583-1-m.wilczynski@samsung.com>
+ <CGME20250303143635eucas1p1dbcd26d4906b962e07cbde7f5ef704bf@eucas1p1.samsung.com>
+ <20250303143629.400583-2-m.wilczynski@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="CALOE5J+d774HnuJ"
+Content-Disposition: inline
+In-Reply-To: <20250303143629.400583-2-m.wilczynski@samsung.com>
+
+
+--CALOE5J+d774HnuJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <TYZPR01MB5556D90A3778BDF7AB9A7030C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 03, 2025 at 11:24:35PM +0800, Ziyang Huang wrote:
-> Current example use external PHY. With the previous patch, internal PHY
-> is also supported.
-> 
-> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
-> ---
->  Documentation/devicetree/bindings/net/dsa/qca8k.yaml | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> index 167398ab253a..a71dc38d6bab 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> @@ -185,8 +185,10 @@ examples:
->                  };
->  
->                  port@4 {
-> +                    /* PHY-to-PHY CPU link */
->                      reg = <4>;
-> -                    label = "lan4";
-> +                    ethernet = <&gmac2>;
-> +                    phy-mode = "gmii";
->                      phy-handle = <&external_phy_port4>;
->                  };
->  
-> @@ -266,8 +268,9 @@ examples:
->                  };
->  
->                  port@4 {
-> +                    /* PHY-to-PHY CPU link */
->                      reg = <4>;
-> -                    label = "lan4";
-> +                    ethernet = <&gmac2>;
->                      phy-mode = "internal";
->                      phy-handle = <&internal_phy_port4>;
->                  };
+On Mon, Mar 03, 2025 at 03:36:26PM +0100, Michal Wilczynski wrote:
+> Add device tree bindings for the TH1520 Video Output (VO) subsystem
+> clock controller. The VO sub-system manages clock gates for multimedia
+> components including HDMI, MIPI, and GPU.
+>=20
+> Document the VIDEO_PLL requirements for the VO clock controller, which
+> receives its input from the AP clock controller. The VIDEO_PLL is a
+> Silicon Creations Sigma-Delta (integer) PLL typically running at 792 MHz
+> with maximum FOUTVCO of 2376 MHz.
+>=20
+> Add a mandatory reset property for the TH1520 VO clock controller that
+> handles the GPU clocks. This reset line controls the GPU CLKGEN reset,
+> which is required for proper GPU clock operation.
+>=20
+> The reset property is only required for the "thead,th1520-clk-vo"
+> compatible, as it specifically handles the GPU-related clocks.
+>=20
+> This binding complements the existing AP sub-system clock controller
+> which manages CPU, DPU, GMAC and TEE PLLs.
+>=20
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 
-Adding some more context:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-                port@4 {
-                    reg = <4>;
-                    label = "lan4";
-                    phy-mode = "internal";
-                    phy-handle = <&internal_phy_port4>;
-                };
+--CALOE5J+d774HnuJ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-                port@5 {
-                    reg = <5>;
-                    label = "wan";
-                    phy-mode = "internal";
-                    phy-handle = <&internal_phy_port5>;
-                };
+-----BEGIN PGP SIGNATURE-----
 
-                port@6 {
-                    reg = <0>;
-                    ethernet = <&gmac1>;
-                    phy-mode = "sgmii";
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8XXpAAKCRB4tDGHoIJi
+0gkWAP498RW2NwZO3txiozqaSy4rbLEB63zmzt4SqAiUaOeBVQEAt8JxtyMnMCfk
+vhJzjAMHGQhKi4qdTMFnXrJiVS5v1QQ=
+=iY3/
+-----END PGP SIGNATURE-----
 
-                    qca,sgmii-rxclk-falling-edge;
-
-                    fixed-link {
-                        speed = <1000>;
-                        full-duplex;
-                    };
-                };
-            };
-
-The previous patch still causes it to look at port 0 and then port 6
-first. Only if they are not CPU ports will it look at other ports. So
-this example does not work, port 6 will be the CPU port, even with the
-properties you added.
-
-When you fix this, i also think it would be good to extend:
-
-> +                    /* PHY-to-PHY CPU link */
-
-with the work internal.
-
-This also seems an odd architecture to me. If this is SoC internal,
-why not do a MAC to MAC link? What benefit do you get from having the
-PHYs?
-
-
-    Andrew
-
----
-pw-bot: cr
+--CALOE5J+d774HnuJ--
 
