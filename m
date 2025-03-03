@@ -1,127 +1,129 @@
-Return-Path: <devicetree+bounces-154054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65199A4EA28
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:57:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56626A4EB77
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:26:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EFF817E7B0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:52:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C127188879E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25AA2923B8;
-	Tue,  4 Mar 2025 17:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A5D27D79B;
+	Tue,  4 Mar 2025 18:09:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="BC8YDrCe"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hh9Xbh/R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
+Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F292923B1
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:33:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0E1426461C
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:09:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741109602; cv=pass; b=OkSe/sJn5cXQUT1prrsT8SM4T/pVjovhQw6fb3OwM8CfZAzKvD8MHjW4uVsO99OpNCGu/keeBOlQaQ6WwiKtHnxp1S2t8sl5F3QXewOnJ8xhf7zDPOVhIuIap79Jz67Y2m05eCZblN+NlQ06s4Kvf/219M35qq6UBRrRk/gpOac=
+	t=1741111776; cv=pass; b=EVZb12biQjPN8tDY9zlWkLHVnWTOKHSWU35W0M9yazyYneKBPw3ZLcC05kv6QzFp0dzmOfCXh5ymJ6F7uAdVLwdv8wU5gDZ8ldFlyY1lq6M2sCxt/z7GUVflt7Di54Ss14Z193AgEFH8HJPdnfOFpnu5LY/mz1ZKQmHXhOEX4Gk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741109602; c=relaxed/simple;
-	bh=UnlZRIn1+XWnSfw2pYOSnNaYsdX5WURIf+Hn25tK/2k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DAUFTgSFjecMHNnQj5MpqhbiRXaoM79JheIL8+rGfwAfLwGTen0S3FHBYEVFLJ/sQ7ytSeCixwRPEqs4rHsOdQe3lNndjdUVG+udzF8zSIL2Hu/FRIVW/TvBZX7RRPXWNAwYw94SYCEP8Q7Q4BQ/a1CWz/cLZn2ywDJFxi6s9ig=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=BC8YDrCe; arc=none smtp.client-ip=198.54.127.93; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; arc=pass smtp.client-ip=160.75.25.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
+	s=arc-20240116; t=1741111776; c=relaxed/simple;
+	bh=z4i8udCT/ZfEevZGKBvDxxzaszOTpIOByQJPMKtGeNs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QtFHrbvUBCexDHubewHUhIBYrQ3J1bF0ej870RnHVXk8SJWbisIGS3RvOC9eHUtqAm/1nvqerEnl3mSeo8K+yVHVpZbzmgEnFpLLMlSCk7TpZ58YEafvnI/Eq09iNYSGVnJkSnGmjVySPLZ32FgAxr7Ohrh2pT52iujiw5GVSqs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hh9Xbh/R; arc=none smtp.client-ip=217.70.183.198; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; arc=pass smtp.client-ip=160.75.25.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id D4B0240CCF24
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 20:33:18 +0300 (+03)
+	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 287164089197
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:09:33 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
-Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=framepointer.org header.i=@framepointer.org header.a=rsa-sha256 header.s=default header.b=BC8YDrCe
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6h9N463DzG3k3
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:34:48 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6f922F8GzFyLK
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:04:22 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 824234272E; Tue,  4 Mar 2025 19:34:43 +0300 (+03)
+	id AE1FA42724; Tue,  4 Mar 2025 18:04:09 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=BC8YDrCe
-X-Envelope-From: <linux-kernel+bounces-541822-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hh9Xbh/R
+X-Envelope-From: <linux-kernel+bounces-541838-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=BC8YDrCe
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hh9Xbh/R
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id DEDCC41E8B
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:36:53 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 4E2A7400FE
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:41:56 +0300 (+03)
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 733973064C0E
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:36:53 +0300 (+03)
+	by fgw1.itu.edu.tr (Postfix) with SMTP id D8F2C305F789
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:41:55 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 848DC3AF605
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:33:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03D13AA184
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:41:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86002116F3;
-	Mon,  3 Mar 2025 13:31:46 +0000 (UTC)
-Received: from out-16.pe-b.jellyfish.systems (out-16.pe-b.jellyfish.systems [198.54.127.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C11213240;
+	Mon,  3 Mar 2025 13:41:09 +0000 (UTC)
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42881EFFB4;
-	Mon,  3 Mar 2025 13:31:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8037D20DD62;
+	Mon,  3 Mar 2025 13:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741008702; cv=none; b=o6hsK9YYy11DnD97wF4NFW8mrXTkvnqDoLkIjGms5BUK4y4qCO7DNJ31AAj6nGjlzmGT9AA9aAoxZKKuEVDMU5BQLQHekcY/vjt2CpNPfVBtyqE+hi1r2ctbJvFFAxYBWpq4OIrsGfR5oK2nkeOWO0bJ7qLt6PVNyw59eee6VW4=
+	t=1741009266; cv=none; b=g5qLwuTSuE5GFIGLLXldrNg7zJQyb6hqmnuW699PJqts3afwQHlS0NA/ml++xgomsTP5vyJmDhmwDO3pwv2jz8iceNUTtWJLIhAdtIwsohZT4UNb61VOzx9FCdS1nXYCcA3lUiprlGpraj8ft4qphx/a4PVJzXjpUG/IGiXzptY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741008702; c=relaxed/simple;
-	bh=UnlZRIn1+XWnSfw2pYOSnNaYsdX5WURIf+Hn25tK/2k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q6RhhgY0UqBUoyD4OEUpT+/tap51H+AczqOQzJbamC62qJlJjg7Awa+K8dAk4dX5EhVNoUIovBNtXLDr2mvUqNFUZLjVBi6iCI6joDXTsbazOxlrhtL5lpXhWHAxpVgXX4zZUEar9e/I4Cq9V5lnjmhzwgdV/HeKw4aotruZ4oQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=BC8YDrCe; arc=none smtp.client-ip=198.54.127.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
-Received: from prod-lbout-phx.jellyfish.systems (new-01.privateemail.com [198.54.118.220])
-	by pe-b.jellyfish.systems (Postfix) with ESMTPA id 4Z608P5BGyzGpYK;
-	Mon, 03 Mar 2025 13:31:33 +0000 (UTC)
-Received: from MTA-07.privateemail.com (unknown [10.50.14.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by NEW-01.privateemail.com (Postfix) with ESMTPS id 4Z608P4NQBz3hhVZ;
-	Mon,  3 Mar 2025 08:31:33 -0500 (EST)
-Received: from mta-07.privateemail.com (localhost [127.0.0.1])
-	by mta-07.privateemail.com (Postfix) with ESMTP id 4Z608P32p7z3hhV0;
-	Mon,  3 Mar 2025 08:31:33 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
-	s=default; t=1741008693;
-	bh=UnlZRIn1+XWnSfw2pYOSnNaYsdX5WURIf+Hn25tK/2k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BC8YDrCeBCA/KChWY4EPrqKy7A8fAYwy+Odi1ANXa/vnIoSfJ86AKOezwBHBlU/46
-	 gffQinnck9bZMc20Me2sACxi5KJZSUKoeY5xRqVbofOYv+xPK1EQtg8fA+6ytJlrvG
-	 N+educh4GpHUNmLKFpEHqQBRAXm7Nd8/aleKHc18EJnrvz2pkXzMhhwC+gxU8yPHqF
-	 C5Z6EFIyQBntvKoEPbXztVuQgrdjkrqf6LHsb5UkUaD5BYvQ3jwEbhG5cbPc8ZJFw2
-	 ky9QsmK4nWX4VTQ5gkTzjytiLFL0VDnM0Rvk4gUby1LYO+JQE7U4YfTQ5znWPO6pE8
-	 PaHrEAKa20zZw==
-Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
-	by mta-07.privateemail.com (Postfix) with ESMTPA;
-	Mon,  3 Mar 2025 08:31:20 -0500 (EST)
-Date: Mon, 3 Mar 2025 08:31:20 -0500
-From: Sam Winchenbach <sam.winchenbach@framepointer.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, antoniu.miclaus@analog.com,
-	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: iio: filter: Add lpf/hpf freq margins
-Message-ID: <Z8WvKNcCnQI_UYZJ@65YTFL3.secure.tethers.com>
-References: <20250225134612.577022-1-sam.winchenbach@framepointer.org>
- <20250225134612.577022-2-sam.winchenbach@framepointer.org>
- <20250226-sparkling-caped-saluki-b1cbad@krzk-bin>
- <Z79K8Ag4SJYtJTtM@65YTFL3.secure.tethers.com>
- <05e56d15-059b-425b-9e55-66993d988f8d@kernel.org>
- <Z7-SojPPx3kOVa4y@65YTFL3.secure.tethers.com>
- <8fef9b19-a1de-4153-a186-1aeee87dea9d@kernel.org>
+	s=arc-20240116; t=1741009266; c=relaxed/simple;
+	bh=z4i8udCT/ZfEevZGKBvDxxzaszOTpIOByQJPMKtGeNs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uiCWC8lI+rEXmVvdDUSEk/wiNhmtU/bt96TX+afhdvkVCz3+eCH8VW4Od3rsWg+LuxRK81BpsENwHsfDXi3Ybay+U1YzKs9ovkz3/ehIXzMpJAmFg+7Nji5dszq8cHlecMx403zLbWRhVLoxJlllDcWCQhj0aBMXq0JJY3TuK3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hh9Xbh/R; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 909C344262;
+	Mon,  3 Mar 2025 13:40:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1741009254;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nl/1wzHduxVzKeGZ515j0lRor1Gx/DhlgaVPUGMQYoo=;
+	b=hh9Xbh/R7+cqL6kO3EUvJrLcd0D99wSBACUMwxd3PfoMb86Em+iQyXzmftNd5I5ZEj9MAF
+	gq0YraAvXdyywhq2rOVhiYSMRYUH+EuGCLS0qfRzA8WREZjjfw5G8gnRWaYlEtncKDH+ck
+	GaqrXuWkxYZZsdPNnNl1rDMtMVv/C21VtNp8CKn18BcGu2UtEjA2VIN4EXNLVnintGCZyq
+	ShgVkTDvEF5GmxULVcFdZ0C0SPulan8WTDOaplGT9KxHETHzUICistCK5/VdLs1jG+1zwK
+	0DJdkJfIx0Vi6OiBU9UtdCya3aVOwiO0EKeeQT0FQ1lEedI5+bML5+Mz0pyeHQ==
+Date: Mon, 3 Mar 2025 14:40:51 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>, "David
+ S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
+ Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
+ <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
+ Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 06/12] net: pse-pd: Add support for budget
+ evaluation strategies
+Message-ID: <20250303144051.2503fb43@kmaincent-XPS-13-7390>
+In-Reply-To: <Z8ME-90Xg46-pNhA@pengutronix.de>
+References: <20250224134522.1cc36aa3@kernel.org>
+	<20250225102558.2cf3d8a5@kmaincent-XPS-13-7390>
+	<20250225174752.5dbf65e2@kernel.org>
+	<Z76t0VotFL7ji41M@pengutronix.de>
+	<Z76vfyv5XoMKmyH_@pengutronix.de>
+	<20250226184257.7d2187aa@kernel.org>
+	<Z8AW6S2xmzGZ0y9B@pengutronix.de>
+	<20250227155727.7bdc069f@kmaincent-XPS-13-7390>
+	<Z8CVimyMj261wc7w@pengutronix.de>
+	<20250227192640.20df155d@kmaincent-XPS-13-7390>
+	<Z8ME-90Xg46-pNhA@pengutronix.de>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -129,156 +131,87 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8fef9b19-a1de-4153-a186-1aeee87dea9d@kernel.org>
-X-Virus-Scanned: ClamAV using ClamSMTP
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdelledvkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvhedprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiiv
+ ghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomh
+X-GND-Sasl: kory.maincent@bootlin.com
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6h9N463DzG3k3
+X-ITU-Libra-ESVA-ID: 4Z6f922F8GzFyLK
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741714290.83354@oWpzKLfHts569R+bOpVwbA
+X-ITU-Libra-ESVA-Watermark: 1741716447.32421@yCfL1BdQWqD5c+rvgM0XUw
 X-ITU-MailScanner-SpamCheck: not spam
 
-On Mon, Mar 03, 2025 at 09:13:00AM +0100, Krzysztof Kozlowski wrote:
-> On 26/02/2025 23:16, Sam Winchenbach wrote:
-> >>>>> +  adi,hpf-margin-hz:
-> >>>>> +    description:
-> >>>>> +      Sets maximum high-pass corner frequency to the frequency of rf_in minus
-> >>>>> +      this value when in auto mode.
-> >>>>
-> >>>> IIUC, these are two bounds - lower and upper - in relation to something
-> >>>> else (like rf_in frequency)? If so, make it an array (naming to be
-> >>>> discuss, I assume you know better what's that):
-> >>>
-> >>> It is true that these are both related to rf_in but both the low and high pass
-> >>> filters can operate independently. Logically, IMO, it makes more sense to have
-> >>
-> >>
-> >> You mean you can set only low or high pass and keep other as default?
-> >> But what is the default then - something from reset value or "0" means
-> >> disabled?
-> > 
-> > This value isn't setting the corner frequency of the filter, but the minimum
-> > distance the corner must be from the fundamental frequency. So, for example,
-> > if rf_in is 3.35 GHz and you set lpf-margin-hz to 0 then the corner frequency
-> > will be set to 3.35 GHz because that is an exact value supported by the device.
-> > 
-> > If lpf-margin-hz is set to 30 MHz (for example), then corner frequency would be
-> > at least 3.35 GHz + 30 MHz = 3.38 GHz.  3.49 GHz is the closest corner
-> > frequency without going below 3.38 GHz that is supported by the device, so that
-> > is what will be selected.
-> > 
-> > This prevents the situation where your fundamental frequency falls on, or close
-> > to, a corner frequency which could result in 3dB (half power) loss in your
-> > signal.
-> > 
-> > This is all completely indepent of the high-pass filter.
-> 
-> Description is confusing a bit, because it suggests the value sets the
-> corner frequency. It explicitly says this - "sets ... corner frequency"
-> and such meaning for properties we usually associate with the property
-> doing this. Here however corner frequency will be always set to rf_in
-> and you just adjust the value.
->
+On Sat, 1 Mar 2025 14:00:43 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-How about: "Sets the minimum distance (in Hz) between the fundamental
-frequency of `rf_in` and the corner frequency of the high-pass, input filter
-when operatred in 'auto' mode. The selected high-pass corner frequency will
-be less than, or equal to, `rf_in` - `hpf-margin-hz`. If not setting is found
-that satisfies this relationship the filter will be put into 'bypass'."
+> On Thu, Feb 27, 2025 at 07:26:40PM +0100, Kory Maincent wrote:
+> > On Thu, 27 Feb 2025 17:40:42 +0100
+> > Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-Perhaps that is a bit more clear on the intention of this parameter?
+> > > I would prefer to have it in the for of devlink or use regulator netl=
+ink
+> > > interface. But, we do not need to do this discussion right now. =20
+> >=20
+> > If we want to report the method we should discuss it now. We shouldn't =
+add
+> > BUDGET_EVAL_STRAT uAPI to ethtool if we use another way to get and set =
+the
+> > method later. =20
+>=20
+> Ok, I assume we are talking about different things. I mean - not port
+> specific configurations and diagnostic, will have different interface.
+>=20
+> BUDGET_EVAL_STRAT is port specific. HP and Cisco implement it as port
+> specific. PD692x0 Protocol manual describe it as port specific too:
+> 3.3.6 Set BT Port Parameters
+>  Bits [3..0]=E2=80=94BT port PM mode
+>   0x0: The port power that is used for power management purposes is
+>        dynamic (Iport x Vmain).
+>   0x1: The port power that is used for power management purposes is port
+>        TPPL_BT.
+>   0x2: The port power that is used for power management purposes is
+>        dynamic for non LLDP/CDP/Autoclass ports and TPPL_BT for
+> LLDP/CDP/Autoclass ports. 0xF: Do not change settings.
 
-> > 
-> >>
-> >>> them as separate controls but I am happy to put them into an array if that is
-> >>> the idiomatic approach to situations like this. That said, I am having a
-> >>> difficult time getting dt_binding_check to pass when I have an array of uint64.
-> >>>
-> >>> When listing two items, as in your example below, I get the following:
-> >>> adi,admv8818.example.dtb: admv8818@0: adi,filter-margins-hz: [[0, 30000000], [0, 30000000]] is too long
-> >>
-> >> Tricky to say without seeing your code. Magic crystal ball had
-> >> malfunction today.
-> > 
-> > This is the property:
-> > 
-> >   adi,filter-margins-hz:
-> >     items:
-> >       - description: |
-> >           The minimum distance, in Hz, between rf_in and the low-pass corner
-> >           frequency when the device is used in "auto" mode. If the sum of
-> >           rf_in and this value is greater than 18.85 GHz then the low-pass
-> >           filter will be put into bypass mode, otherwise the closest corner
-> >           frequency that is greater than or equal to the sum of rf_in plus this
-> >           value will be used.
-> >         minimum: 0
-> >         maximum: 0xFFFFFFFFFFFFFFFF
-> >         default: 0
-> >       - description: |
-> >           The minimum distance, in Hz, between rf_in and the high-pass corner
-> >           frequency when the device is used in "auto" mode. If the difference
-> >           between rf_in and this value is less than 1.75 GHz then the high-pass
-> >           filter will be put into bypass mode, otherwise the closest corner
-> >           frequency that is less than or equal to the difference of rf_in and
-> >           this value will be used.
-> >         minimum: 0
-> >         maximum: 0xFFFFFFFFFFFFFFFF
-> >         default: 0
-> > 
-> > And this is the example:
-> > 
-> > examples:
-> >   - |
-> >     spi {
-> >       #address-cells = <1>;
-> >       #size-cells = <0>;
-> >       admv8818@0 {
-> >         compatible = "adi,admv8818";
-> >         reg = <0>;
-> >         spi-max-frequency = <10000000>;
-> >         clocks = <&admv8818_rfin>;
-> >         clock-names = "rf_in";
-> >         adi,filter-margins-hz = /bits/ 64 <30000000 30000000>;
-> 
-> 
-> foo-hz is in 32-bit, so basically you have here 4 32-bit numbers which
-> indeed reported by dtschema - property is too long. Drop 64-bit here.
-> 
+I don't really understand how that can be port specific when the power budg=
+et is
+per PD69208 manager. Maybe I am missing information here.
 
-I was hoping to keep this 64 bits seeing this is a 18 GHz+ filter. I suppose
-I could change this to MHz and just lose a bit of resolution. Does that sound
-like a better approach?
+> > We could also not report the method for now and assume the user knows i=
+t for
+> > the two controllers currently supported. =20
+>=20
+> On one side: it is not just status, but also active configuration. By
+> implementing the interface we may break default configuration and user
+> expectations.
 
-> Device allows multiple LPF/HPF values to be stored in LUT tables and it
-> actually has four independent filters. Shouldn't these be included here?
-> Maybe not LUT tables, but the configuration for all filters?
->
+Yes we should not implement the budget method get/set interface in this ser=
+ies.
+=20
+> On other side: PD692x0 seems to need more then just setting prios to
+> manage them correctly. For example power bank limits should be set,
+> otherwise internal firmware won't be able to perform budget calculations.
 
-There are two filters, the input (high-pass) filter, and the output (low-pass)
-filter. Each filter has four banks, each with a different range of frequencies.
-Only one bank can be selected at a time. Each bank has 16 different possible
-cutoff/corner frequencies. That is a total of 64 distinct values for each of
-the two filters.
+Patch 8 is already configuring the power PD692x0 bank limit according to PSE
+power domain budget.
 
-The issue with setting the corner frequency directly is that in certain
-applications (such as software defined radios) the fundamental frequency
-is adjustable, necessitating that the corner frequencies of the filter are
-adjusted accordingly. When the filter is in "auto" mode it is notified via
-the clock system of frequency changes, so using this information it should be
-possible to select new corner frequencies if you know the minimum distance
-between your fundamental frequency and the corner.
+> So, I assume, critical components are missing anyway.
 
+As we are not supporting the budget method configured by the user in this
+series, I agreed we should not add any uAPI related to it that could be bro=
+ken
+or confusing later.
 
-It is possible there is either not enough call for this feature, or it goes
-against the designs of the maintainters. If that is the case we should decline
-this patch and we will maintain it in our fork of the kernel.
+I will remove it and send v6.
 
-Thanks,
--Sam
- 
-> Best regards,
-> Krzysztof
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
 
