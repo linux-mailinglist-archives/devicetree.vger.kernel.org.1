@@ -1,128 +1,240 @@
-Return-Path: <devicetree+bounces-153216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7EEA4B957
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2BFA4B975
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 09:36:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2A22166CD3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:29:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B22CD1690EB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 178951EF0B7;
-	Mon,  3 Mar 2025 08:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3701E98FF;
+	Mon,  3 Mar 2025 08:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A4lJv7Sn"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="WRach1XS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp16.bhosted.nl (smtp16.bhosted.nl [94.124.121.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC08E1DE3A4;
-	Mon,  3 Mar 2025 08:29:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47EC41EB191
+	for <devicetree@vger.kernel.org>; Mon,  3 Mar 2025 08:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740990592; cv=none; b=a10WMaCC/dGnQoQMLYFO+ZC8HJR6YMUYLB4lM/vhXKcVXHP/TcrfZ6VV5bvmnWIClBwLGd2w31MW3WcXWjSZJrMztGBNsL4VtAIGDq0H2lKeeLlx2W6nwegRcs6F+tjAUDACvDrdw760J1RdlkN5L12XRPhPnCtvYpApcAdq9y4=
+	t=1740990976; cv=none; b=sE9TWuUz0u+5KDcB2jA6aRxlXf5Mik7k9vl+F62P/Oq1f9puvsNUluZm3MDmfr4LRtnv71JRWCXC5Nz+7oPXk/dNzYphkOhXPM07GPeAtoV3C5FOFLcvk+BFrfGPBmxgMHdQYn4HAyBk0uoQYdzncNEW4EW2jg2B29mZp+rMzc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740990592; c=relaxed/simple;
-	bh=RqR9SRihLmzQt5O9ZRulN4EEyCvBsTXEDH7wWXh5EFA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I1NnWqkGHbqM5iuvIN9pq4Z2X9azdBo+MyGK2KcM1zyTuqPYSS/qITSL9J84LYebZgbbgDjZOj75g/+J49W4pq4uaIyB/50douEMBV5bSdg4NOmLdg5dZjk2fHOygrVaVvvcokusijMgAJ7kWjCwcLnmn4mfLs1aBfJXlpCm3hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A4lJv7Sn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEFC8C4CED6;
-	Mon,  3 Mar 2025 08:29:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740990591;
-	bh=RqR9SRihLmzQt5O9ZRulN4EEyCvBsTXEDH7wWXh5EFA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=A4lJv7SnaDrdF/findgqea45v5k2Vuiv6jVvJFp1wx+o7KQ4Y8jbnXXDUzzY3b6X1
-	 iLjN6N391Xd3laMGtIIeegVr9x6rodyv3/a/vS/DXBEGi7BPIjkCHrBxDuYzNDwx0y
-	 U6n99ryeLRn4ppAccSq7SIPhOVe0zFW/XoKflnV1ykNB21jue4+3XKAhEKboWeS677
-	 74DaBDEITyg7qXOitt3QiYoMKQp7Mda7QnZ74o0za3DIdTW2lacVaUoD9RI/fo8cJ/
-	 jg4QJz1kUSk86X4y7whWjbbgX+/6xQ0RCyXKcZOgg3Rt55U8kUMxtkOu5/QeP13eWe
-	 HmDvZsbBrScfg==
-Message-ID: <edbbd971-1bd8-42cb-89fe-c844d582a361@kernel.org>
-Date: Mon, 3 Mar 2025 09:29:44 +0100
+	s=arc-20240116; t=1740990976; c=relaxed/simple;
+	bh=d1NYIkne731OE+4CRC6V4DUzMRnaaze2xrbzMMdG9Ug=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SB9IcjlpyeIV7xwPWqhrX7PRjy0EDY7Md9cjkA7oMIKD2BjYIF9AVF70iNoJJSePWdXOhh+XyZYDC9jmxnDTtF8OmC/4H+2pBVEEdNs3S+ceco9LO7gng6U24B63q0qseRV9vhUUydRhXzaozSz2EhXds7yoMfQCcUmRo/yVry0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=WRach1XS; arc=none smtp.client-ip=94.124.121.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=2/+XCEqvmukm9RwANq8BW3npMw0J+xX5amPy/WbdtVI=;
+	b=WRach1XSFtAcDjazCArngNMW2cyrFOxXScIWFWWOdINqmaeWJan4lFn1LNjjIyXTpZq9065FqsLoP
+	 +3itXZg8TJNqKfcXBnyDpumogBIoLOWnUbLWnirBnZzp0TpMQAmee2VLOmbe/mLSg3gA4mkwCdi+Xc
+	 uY1xXfdpkFEll65qv87FM8/ltc8KARzlbgBXXcp4/G0fYNyDLrvL7Rtbyi9l2zrcltZf3GIS+qdDJX
+	 bDLMv2sioDSzuZuV+zCX63FqdXkfHiIl7Xtbzlzd8QjbyjW9KfLuNPQd5iBWjo1WN3aKdaG54sCSdm
+	 tBzPTtcvU5iGKGE4cMcCg0zAtYKbEdw==
+X-MSG-ID: 8fdfc9e4-f80a-11ef-8b46-005056817704
+Date: Mon, 3 Mar 2025 09:36:11 +0100
+From: David Jander <david@protonic.nl>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
+ <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
+ <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, Pavel Pisa <ppisa@pikron.com>
+Subject: Re: [RFC PATCH 1/7] drivers: Add motion control subsystem
+Message-ID: <20250303093611.325b4fb6@erd003.prtnl>
+In-Reply-To: <7fb93572-3ef4-47f2-b505-669af742dee5@baylibre.com>
+References: <20250227162823.3585810-1-david@protonic.nl>
+	<20250227162823.3585810-2-david@protonic.nl>
+	<7fb93572-3ef4-47f2-b505-669af742dee5@baylibre.com>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] usb: dwc3: exynos: add support for exynos7870
-To: Kaustabh Chakraborty <kauschluss@disroot.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250301-exynos7870-usb-v3-0-f01697165d19@disroot.org>
- <20250301-exynos7870-usb-v3-2-f01697165d19@disroot.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250301-exynos7870-usb-v3-2-f01697165d19@disroot.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 28/02/2025 20:40, Kaustabh Chakraborty wrote:
-> Exynos7870 devices have a DWC3 compatible USB 2.0 controller.
-> Add support in the driver by:
->  - Adding its own compatible string, "samsung,exynos7870-dwusb3".
->  - Adding three USBDRD clocks named "bus_early", "ref", and "ctrl", to
->    be controlled by the driver.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-> ---
+On Fri, 28 Feb 2025 16:36:41 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> On 2/27/25 10:28 AM, David Jander wrote:
+> > The Linux Motion Control subsystem (LMC) is a new driver subsystem for
+> > peripheral devices that control mechanical motion in some form or another.
+> > This could be different kinds of motors (stepper, DC, AC, SRM, BLDC...)
+> > or even linear actuators.
+> > The subsystem presents a unified UAPI for those devices, based on char
+> > devices with ioctl's.
+> > It can make use of regular gpio's to function as trigger inputs, like
+> > end-stops, fixed position- or motion start triggers and also generate
+> > events not only to user-space but also to the IIO subsystem in the form of
+> > IIO triggers.
+> > 
+> > Signed-off-by: David Jander <david@protonic.nl>
+> > ---
+> >  MAINTAINERS                     |   8 +
+> >  drivers/Kconfig                 |   2 +
+> >  drivers/Makefile                |   2 +
+> >  drivers/motion/Kconfig          |  19 +
+> >  drivers/motion/Makefile         |   3 +
+> >  drivers/motion/motion-core.c    | 823 ++++++++++++++++++++++++++++++++
+> >  drivers/motion/motion-core.h    | 172 +++++++
+> >  drivers/motion/motion-helpers.c | 590 +++++++++++++++++++++++
+> >  drivers/motion/motion-helpers.h |  23 +
+> >  include/uapi/linux/motion.h     | 229 +++++++++
+> >  10 files changed, 1871 insertions(+)  
+> 
+> Ooof, this is really a lot for one patch. Makes it hard to review. 500 lines in
+> a patch is much easier to digest.
+
+Sorry for that. I wouldn't know how to split up this patch to make it any
+easier. It's just a complete new subsystem, and I think it is the bare minimum
+to start and also to give a good idea of what it is supposed to be able to do.
+
+> But before commenting on the details of the code I have some more high-level
+> comments. As I mentioned in my reply to the cover letter, I've gone through the
+> exercise of writing some motor control divers in the Linux kernel that have been
+> used by 1000s of people that used them to build everything imaginable using LEGO
+> robotics over the last 10+ years.
+> 
+> From what I see here (I didn't have time to really get into the details of it
+> yet, so maybe missed some important details), it looks like you are trying to
+> do motor control stuff in the kernel so that the interface for a basic H-bridge
+> will be close to the same as a fancy stepper motor controller. We tried doing
+> something very similar because it sounds like a really nice thing to do. The
+> kernel does everything and makes it really easy for the users. But what we
+> actually found is that it is not possible to make a solution in the kernel that
+> can handle every possible use case. In the end, we wished that we had a much
+> more low-level interface to the motor controllers to give us more flexibility
+> for the many different types of applications this ended up getting used for.
+> Having to modify the kernel for your use case is too high of a bar for most
+> users and not practical even if you are a kernel hacker.
+
+The idea for LMC is to be able to support hardware that realistically can be
+used by an OS as complex as the Linux kernel. There are a lot of motor
+controllers out there that suit that category, like the TMC5240 chip for
+example. But also many bigger systems, like the ones Pavel Pisa works with.
+That said, I think the Linux kernel on modestly modern SoC's, like the
+STM32MP1xx is pretty capable of doing more than that, but we have to draw the
+line somewhere. Like I hinted in the cover letter, I think it might even be
+possible to do crazy stuff like bit-banging STEP/DIR type controllers in the
+kernel, possibly aided by PREEMPT_RT, but that is not the main purpose of LMC.
+The main purpose is to talk to controllers that can receive motion profiles
+and execute movements (semi-)autonomously. Going just one step lower is the
+simple PWM based driver in this patch set: It takes the execution of the
+profile into the kernel by using a HRTIMER to sample the profile curve using a
+sample period of 20ms, which is fast enough for most applications while not
+imposing a high CPU load on the kernel on slower CPU cores.
+motion-helper.c contains the trapezoidal ramp generator code that can be used
+by any LMC driver that can work with speed information but doesn't have its
+own ramp generator in hardware. It could be extended to support other type of
+profiles if needed in the future, which would automatically upgrade all
+drivers that use it.
+
+> When writing kernel drivers for this sort of thing, I think the rule of thumb
+> should be to keep the driver as "thin" as possible. If the hardware doesn't
+> provide a feature, the kernel should not be trying to emulate it.
+
+In general I would agree with this, but in this case some limited "emulation"
+seems adequate. As a rule of thumb, code is better placed in an FPGA/uC, the
+kernel or in user-space according to its latency requirements. Microsecond
+stuff shouldn't be done on the application SoC at all, millisecond stuff (or
+maybe 100s of microseconds if you like) can be done in the kernel, 10s of
+milliseconds or slower is good for user-space. A very general guideline.
+
+So if you have a device that can take a speed-setpoint but doesn't have a
+ramp generator, that is not a device that LMC is made for in the first place,
+but still pretty usable if we do the ramp generator in the kernel.
+To steal Pavel's analogy: Think of the TMC5240 driver as a FullMAC Wifi device
+and the simple PWM driver as a SoftMAC Wifi device.
+For an LMC device, same as for a wifi interface, we want to talk TCP/IP to it
+from user-space, not radio-packets. ;-)
+
+> So for an
+> H-bridge I would want something that just provides a way to tell it I want
+> fast-decay mode with some normalized duty cycle between -1 and 1 (obviously we
+> will have to multiply this by some factor since the kernel doesn't do floating
+> point). A duty cycle of 0 will "brake" the motor. And then we would need one
+> more control parameter to tell it to remove power completely to "coast" the
+> motor. I guess this is what the "basic_run" and "basic_stop" are other than
+> the run seems to have speed instead of duty cycle? The kernel shouldn't be
+> trying to convert this duty cycle to speed or have a background task that tries
+> to provide an acceleration profile or turn off the power after some time. Just
+> let the kernel provide direct, low-level access to the hardware and let
+> userspace handle all of the rest in a way that makes the most sense for the
+> specific application. Sometimes they might not even be connected to a motor!
+> With the LEGO MINDSTORMS and BeableBone Blue, the H-bridge outputs are
+> hot-pluggable, so they can even be connected to things like LEDs or used as a
+> general power supply. (A reason to call this subsystem "actuation" rather than
+> "motion".)
+
+LMC aims to offer a common interface to different sorts of motion devices
+(think different types of motors), so offering access to the lowest level of
+each device is kinda defeating of that purpose. Nevertheless, all of the
+things you mention are possible with LMC. The relationship between speed and
+the PWM duty-cycle of a simple DC motor H-bridge for example, is determined by
+the speed_conv* and accel_conv* parameters. If you want a 1:1 relation, just
+make them 1 in your device tree.
+OTOH, if you had only a duty-cycle setting from user-space, you would need to
+have code that generates an acceleration profile in user-space, which would be
+a much higher CPU load and have a much higher latency jitter, much more likely
+to cause mechanical and audible effects than if done in the kernel.
+It's still possible though.
+And talking about mis-using a motor driver for something else, that's exactly
+what one of our customers is doing with a DC motor H-bridge via LMC. They just
+set each output to 0% or 100% duty-cycle (max speed without profile) to control
+2 warning lights.
+
+> Another way of putting this is that it was very tempting to model the actual
+> motor in the kernel. But that didn't work well because there are so many
+> different kinds of motors and related mechanical systems that you can connect
+> to the same motor driver chip.
+
+Yes, but on the other side, you have many different driver chips that all
+control motors that do the same thing: move in different directions with
+different speeds and different acceleration profiles. As a user, I want to be
+able to tell that to the motor in the same sense as I want to send a data
+through an ethernet interface without having to know what kind of interface I
+have to an extend reasonably possible. Of course each motor/driver has
+different limitations (just as different network interfaces have), and more
+often than not I will have to know some of those in user-space, but the whole
+idea of a subsystem UAPI is to abstract as much as possible of that from
+user-space.
+
+With LMC I could easily swap a stepper motor for a BLDC or DC motor for
+example. If they have an encoder to provide accurate position feedback, it
+could even work as well as a stepper for many applications. No changes in
+user-space code required.
+
+> So the driver really should just be for the
+> H-bridge chip itself and not care about the motor. And the rest can be put in
+> a libmotion userspace library and have that be the convenient API for users
+> that want to get something up and running quickly.
+
+I get your point, and from the standpoint of Lego hardware and hobby tinkerers
+doing all sorts of stuff with it, I can understand the desire to have
+low-level access from user-space to the H-bridge. It is similar to how
+Raspberry-pi exposes direct access to their GPIO controllers to user-space. It
+is nice for tinkerers, but it is inadequate for anything else, not to mention
+potentially unsafe. I remember when I first installed Linux on my PC in 1994,
+we had the X server access the video card directly from user-space. That was a
+really bad idea. ;-)
 
 Best regards,
-Krzysztof
+
+-- 
+David Jander
 
