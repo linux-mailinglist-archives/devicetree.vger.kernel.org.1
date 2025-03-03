@@ -1,132 +1,132 @@
-Return-Path: <devicetree+bounces-153996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A73A4E6BA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:50:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B305DA4E299
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:14:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FE751649DC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:43:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3B06189B793
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:06:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCDE28D07E;
-	Tue,  4 Mar 2025 16:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED94127C147;
+	Tue,  4 Mar 2025 15:00:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="uRvNzI5k"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="fN4m84i5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17DD9291F91
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B09427C167
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:00:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741105309; cv=fail; b=PfykF4OU2bsyOjjL0Xq3XdQkHA5SgF4G3lLcs70DHqZqZdzLcpVm2RHpyy39ArSc68hn+fbobNqesk29PsPRiLaadk91nnHOBmY80MgolWxHoU9eQRqMfZ+pG9zOxW3L2b9upLdS4KtWlKeBHOSEwgfj80DI6vQ34xBsXn57kU4=
+	t=1741100436; cv=pass; b=pvMWKCVc2ixYjKOavjUmVvvwTBNcpFjfsBETXirmWoBmM4hWHA+gTNm/FtXeUYDVoB8akP+J/QwnqQBzn4lYjqA61yTN1JYJymgoVwjJSJLvEaBwXq/zkVUk0tWglTDMvXhENTC0dNID1vDExnMTUg7z6WoReQd6kAHUT5la21w=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741105309; c=relaxed/simple;
-	bh=BVk23onQOkNFwPUXBcCJlNZHxXTGNZSYQzuo2AtULDQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ubWC+0RCSEvEzY9LHjjo0gSYpIn4MH1UZjSnM+iWMSLDw8y2Bc1Z7Q07rXC8KL6aPLCmgWzxGTtwW+QKFAN83Xx+2dS/fbaswQOzsvF1NDHVvtx8x56hE8u7uncbFeQaUEVEO+nWuLMUiR09NagZ937kOEpo6d1ajUV6ryr6AnA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=uRvNzI5k reason="signature verification failed"; arc=none smtp.client-ip=78.32.30.218; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; arc=fail smtp.client-ip=160.75.25.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=armlinux.org.uk
+	s=arc-20240116; t=1741100436; c=relaxed/simple;
+	bh=fqF5ukVSFGV3EgFZXiEa4ck6u9+DJwi8aWwrJtLxWE8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WxJJRi6bX3PzsZcbQRhYfh7NLhouFguGvC64uNTplxBJz7TKntXiUONrWM4BqajLDZB4DqmtZH6lGda+mN3yOn9HTkIEPWr098mjPjzTez/Mtio2Sr8l+lSMitar7fB9u86Ihe3tejoe6zpEbRuikpKEvzQ5LXfZTAaiDXr19+M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=fN4m84i5; arc=none smtp.client-ip=68.232.153.233; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; arc=pass smtp.client-ip=160.75.25.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 51E0440D052B
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:21:45 +0300 (+03)
+	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 780A240F1CDA
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:00:33 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
+Authentication-Results: lesvatest1.cc.itu.edu.tr;
+	dkim=pass (2048-bit key, unprotected) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=fN4m84i5
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6grl6qnfzG33T
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:20:23 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6f2c6PWgzFy7q
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:58:48 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id B28FE42759; Tue,  4 Mar 2025 19:20:20 +0300 (+03)
+	id DC32A4272E; Tue,  4 Mar 2025 17:58:47 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=uRvNzI5k
-X-Envelope-From: <linux-kernel+bounces-541323-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=fN4m84i5
+X-Envelope-From: <linux-kernel+bounces-541388-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=uRvNzI5k
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=fN4m84i5
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id C921042DB1
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:59:16 +0300 (+03)
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 7F2C63064C0B
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 12:59:16 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 45103430CF
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:36:26 +0300 (+03)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id CD0C63063EFC
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:36:25 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D966F167BF2
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 09:59:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ED6E3B0426
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 10:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808221F2C3B;
-	Mon,  3 Mar 2025 09:58:47 +0000 (UTC)
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F8B1F4196;
+	Mon,  3 Mar 2025 10:32:54 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188E51F12F6;
-	Mon,  3 Mar 2025 09:58:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6C11F17E5;
+	Mon,  3 Mar 2025 10:32:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740995924; cv=none; b=lNgLuh/W2/gZ9SYfijBVkzdFReGes2LByVTlxkUlbewst44N0AEuc1VSXv6s/9CAYosJnNLQA2V3ZfB2vUb2kf9v9QHvZxuKEp5bQITcSs/sOw3pY3ACm6p7jChyfBOgeUvuQRHwP3MiktARssPiMZjNBrOBOUfF4Rf3CVu3kYI=
+	t=1740997971; cv=none; b=It0qnx/WM10QIiKtRT+FBrIrB9C6F5DzMryZlL1VR1qeaioD4JTeHXqS6fODllX8t6/wHo6smen1sl1C5p7hp9dtEMmqagfllFD8O2v7ZV8c9vuhLJlfyEIk0MSUoM/JcHdOde0jnxkFfjA1Oc+2SmCknU+dtpDYlxJ3e0Im41c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740995924; c=relaxed/simple;
-	bh=EVHnAT0Fj8UFfX1d1iKKikIPT6mE89O8IutiZ9wghW4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QUj/vg5+uC8w2Fn91lWY8nAANi9s5/p0vA6BasrRJYTVJh9cNJjpK4o3Q/uVUf+BS2SCJGk5I76o9mw8U3gNYILim2LVc4p/+zn5e5cxXfzs8orCTgVhwsiC7Wt0GTsPqNDwHB4FRXyb7TXrRr+6cq8Xz5e0WU9za6jyqXX54RI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=uRvNzI5k; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vocGWq00dHieN/+oIHdRzKoBXygqv9MdZeGwUkedRe8=; b=uRvNzI5kU7RbApRJOXrYX2IOFF
-	5QfX0iCOo6Ens2pw8lKCUfsT18QpgBG3nwlYDqFwdxXv4hqE6jaEXDZG8HfvQxOXLEKsquGbP8NEE
-	OIB2Cgx3P68QPb8V73KpPrf2dsXurdE2IL/EIDuGzeBZzGWdJByIMa8+g5Z1cODYI5TUBw6hFZwC9
-	kaFBMnRyIrk7CkD+V6IwFdYPWRnpx28jtnOWXM9WYHhf2hIdfBc026F7qrR1feEzQMfL/s8S5mK3A
-	ZE5FrGOXdfv3BtB/Gj/8r7ls4V7bUSbI6eF1hOoelJKXwUS6BNNypgWBR1M5J9GGGgJrsCG6TPlBJ
-	a/95o4Pg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45396)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tp2Z4-00008X-2c;
-	Mon, 03 Mar 2025 09:58:22 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tp2Yy-0003hC-1p;
-	Mon, 03 Mar 2025 09:58:16 +0000
-Date: Mon, 3 Mar 2025 09:58:16 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 3/3] net: stmmac: Add DWMAC glue layer for Renesas GBETH
-Message-ID: <Z8V9OC_1llF3leZd@shell.armlinux.org.uk>
-References: <20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250302181808.728734-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Z8SydsdDsZfdrdbE@shell.armlinux.org.uk>
- <CA+V-a8vCB7nP=tsv4UkOwODSs-9hiG-PxN6cpihfvwjq2itAHg@mail.gmail.com>
- <CA+V-a8un7Oy9NtfDUfs0DSwRVAFn52-vWj1Os=u_1dqijJhbMw@mail.gmail.com>
+	s=arc-20240116; t=1740997971; c=relaxed/simple;
+	bh=fqF5ukVSFGV3EgFZXiEa4ck6u9+DJwi8aWwrJtLxWE8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LU/Bh0RbNCrQgkaHXRPMnVKZE7O9xbCBFS4TMzVpc/FpWLjtSzGWMxzxjRvp6y6H0TPzSuxw0MJRhr5KTSdS0LW/TpBT+UT87rw7jOh/hE1eCAe6NLzBwGGMSOasASn/JWJd57qm9IvAZxw2l5gzI1JVnL7zeBdm8k8x/c8YcPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=fN4m84i5; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1740997969; x=1772533969;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fqF5ukVSFGV3EgFZXiEa4ck6u9+DJwi8aWwrJtLxWE8=;
+  b=fN4m84i5wuM2djRp1cyPu7EKug3xiDx+M3EJwEZdNsaGiZGpwpxEizut
+   50geFW1oPgkLDeivXSPrxvNJlKY2CGC4YOOmRcW2mtqgfDxsOz/z+Avtz
+   mWXpcLdjzmnUiG/zU0rRo2V92546KxR2eDmzRup85u3lSWy/tDcGJrlsA
+   SB7dacCPLDxmV3fyMY/+TN0QUCWu+/Ni2AuUnwtKVthFHtM7Hlpa3RuW3
+   izeHBkJh5n3LoOqPuhZb9nSGU/65cEY5ihzxLnrx4IyFrnYXO8Ec8Q2M4
+   DNK8adAtLTFq3iyFQvE3YdqNF9+io9njdXcrUo5XKB4lcafRLc56ViVVd
+   A==;
+X-CSE-ConnectionGUID: I/+YZuCUTEWlY9bn8j7eEA==
+X-CSE-MsgGUID: q+QHdo2+QKqpUxRb+G3ZWQ==
+X-IronPort-AV: E=Sophos;i="6.13,329,1732604400"; 
+   d="asc'?scan'208";a="38333761"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Mar 2025 03:32:42 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 3 Mar 2025 03:32:33 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 3 Mar 2025 03:32:31 -0700
+Date: Mon, 3 Mar 2025 10:31:44 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Ian Dannapel <iansdannapel@gmail.com>
+CC: Conor Dooley <conor@kernel.org>, <linux-fpga@vger.kernel.org>, Moritz
+ Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>, Xu Yilun
+	<yilun.xu@intel.com>, Tom Rix <trix@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Jonathan
+ Cameron <Jonathan.Cameron@huawei.com>, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?=
+	<rafal@milecki.pl>, Aradhya Bhatia <a-bhatia1@ti.com>, "open list:OPEN
+ FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [v4 2/3] dt-bindings: fpga: Add Efinix SPI programming bindings
+Message-ID: <20250303-imply-ferocity-bbb6d866b149@wendy>
+References: <20250228094732.54642-1-iansdannapel@gmail.com>
+ <20250228094732.54642-3-iansdannapel@gmail.com>
+ <20250228-copilot-trekker-72a20709e9f7@spud>
+ <CAKrir7hdyP-bPKkZOpK3cFp=rvH_MJ98DLKnsRni_BWsQEg5yw@mail.gmail.com>
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -134,143 +134,91 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6qSyW+QWd6cb4mh+"
 Content-Disposition: inline
-In-Reply-To: <CA+V-a8un7Oy9NtfDUfs0DSwRVAFn52-vWj1Os=u_1dqijJhbMw@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAKrir7hdyP-bPKkZOpK3cFp=rvH_MJ98DLKnsRni_BWsQEg5yw@mail.gmail.com>
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6grl6qnfzG33T
+X-ITU-Libra-ESVA-ID: 4Z6f2c6PWgzFy7q
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741710041.82284@wiykdopVsB83z9/Wy4aOxg
+X-ITU-Libra-ESVA-Watermark: 1741705134.96329@UhfOLLm+B5uBcUgh6bgoNQ
 X-ITU-MailScanner-SpamCheck: not spam
 
-On Mon, Mar 03, 2025 at 09:41:13AM +0000, Lad, Prabhakar wrote:
-> Hi Russell,
+--6qSyW+QWd6cb4mh+
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Mar 03, 2025 at 11:10:53AM +0100, Ian Dannapel wrote:
+> Hi Conor, thanks for the quick response.
 >=20
-> On Sun, Mar 2, 2025 at 9:20=E2=80=AFPM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
+> On Fri, Feb 28, 2025 at 7:28=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+> > > +description: |
+> > > +  Efinix FPGAs (Trion, Topaz, and Titanium families) support loading=
+ bitstreams
+> > > +  through "SPI Passive Mode".
+> > > +  Note 1: Only bus width 1x is supported.
+> > > +  Note 2: Additional pins hogs for bus width configuration must be s=
+et
+> > > +  elsewhere, if necessary.
+> > > +  Note 3: Topaz and Titanium support is based on documentation but r=
+emains
+> > > +  untested.
 > >
-> > Hi Russell,
+> > Points 1 and 3 here seem to be driver limitations, and shouldn't really
+> > be present in a document describing the hardware?
 > >
-> > On Sun, Mar 2, 2025 at 7:33=E2=80=AFPM Russell King (Oracle)
-> > <linux@armlinux.org.uk> wrote:
-> > >
-> > > On Sun, Mar 02, 2025 at 06:18:08PM +0000, Prabhakar wrote:
-> > > > +     gbeth->dev =3D dev;
-> > > > +     gbeth->regs =3D stmmac_res.addr;
-> > > > +     plat_dat->bsp_priv =3D gbeth;
-> > > > +     plat_dat->set_clk_tx_rate =3D stmmac_set_clk_tx_rate;
-> > >
-> > > Thanks for using that!
-> > >
-> > Yep, it shortens the glue driver further.
+> Yes, they are driver limitations and probably do not belong here.
+>=20
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - efinix,trion-spi
+> > > +      - efinix,titanium-spi
+> > > +      - efinix,topaz-spi
 > >
-> > > > +     plat_dat->flags |=3D STMMAC_FLAG_HWTSTAMP_CORRECT_LATENCY |
-> > > > +                        STMMAC_FLAG_EN_TX_LPI_CLOCKGATING |
-> > >
-> > > I would like to know what value tx_clk_stop is in
-> > > stmmac_mac_enable_tx_lpi() for your setup. Ideally, stmmac should
-> > > use the capability report from the PHY to decide whether the
-> > > transmit clock can be gated, but sadly we haven't had any support
-> > > in phylib/phylink for that until recently, and I haven't modified
-> > > stmmac to allow use of that. However, it would be good to gain
-> > > knowledge in this area.
-> > >
-> > tx_clk_stop =3D1,
+> > > +      - efinix,fpga-spi
 > >
-> > root@rzv2h-evk-alpha:~# ifconfig eth0 up
-> > [  587.830436] renesas-gbeth 15c30000.ethernet eth0: Register
-> > MEM_TYPE_PAGE_POOL RxQ-0
-> > [  587.838636] renesas-gbeth 15c30000.ethernet eth0: Register
-> > MEM_TYPE_PAGE_POOL RxQ-1
-> > [  587.846792] renesas-gbeth 15c30000.ethernet eth0: Register
-> > MEM_TYPE_PAGE_POOL RxQ-2
-> > [  587.854734] renesas-gbeth 15c30000.ethernet eth0: Register
-> > MEM_TYPE_PAGE_POOL RxQ-3
-> > [  587.926860] renesas-gbeth 15c30000.ethernet eth0: PHY [stmmac-0:00=
-]
-> > driver [Microchip KSZ9131 Gigabit PHY] (irq=3DPOLL)
-> > [  587.949380] dwmac4: Master AXI performs fixed burst length
-> > [  587.954910] renesas-gbeth 15c30000.ethernet eth0: No Safety
-> > Features support found
-> > [  587.962556] renesas-gbeth 15c30000.ethernet eth0: IEEE 1588-2008
-> > Advanced Timestamp supported
-> > [  587.971420] renesas-gbeth 15c30000.ethernet eth0: registered PTP c=
-lock
-> > [  587.978004] renesas-gbeth 15c30000.ethernet eth0: configuring for
-> > phy/rgmii-id link mode
-> > root@rzv2h-evk-alpha:~# [  591.070448] renesas-gbeth 15c30000.etherne=
-t
-> > eth0: tx_clk_stop=3D1
-> > [  591.076590] renesas-gbeth 15c30000.ethernet eth0: Link is Up -
-> > 1Gbps/Full - flow control rx/tx
-> >
-> > With the below diff:
-> >
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > index aec230353ac4..68f1954e6eea 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > @@ -1100,6 +1100,7 @@ static int stmmac_mac_enable_tx_lpi(struct
-> > phylink_config *config, u32 timer,
-> >         struct stmmac_priv *priv =3D netdev_priv(to_net_dev(config->d=
-ev));
-> >         int ret;
-> >
-> > +       netdev_err(priv->dev, "tx_clk_stop=3D%d\n", tx_clk_stop);
-> >         priv->tx_lpi_timer =3D timer;
-> >         priv->eee_active =3D true;
-> >
-> > > > +                        STMMAC_FLAG_RX_CLK_RUNS_IN_LPI |
-> > >
-> I got some feedback from the HW team, based on the feedback this flag
-> depends on the PHY device. I wonder if we should create a DT property
-> for this. Please share your thoughts.
+> > What hardware does this device represent? Other ones are obvious matches
+> > to the families you mention, but what is this one?
 
-Not sure exactly which flag you're referring to, because you first
-quote the code that you added to dump the _transmit_ clock stop,
-and then you named the _receive_ clock flag.
+> The proposed compatible is a generic fallback for any Efinix FPGA Series.
 
-I assume you're referring to STMMAC_FLAG_EN_TX_LPI_CLOCKGATING, which
-is currently used by the driver because it didn't know any better to
-check the capabilities of the PHY - and phylib didn't expose an
-interface to do that.
+If it is a fallback, your binding should look like:
+compatible:
+  items:
+    - enum:
+        - efinix,trion-spi
+        - efinix,titanium-spi
+        - efinix,topaz-spi
+    - const: efinix,fpga-spi
 
-tx_clk_stop is basically the flag from the PHY indicating whether the
-MAC may be permitted to stop its transmit clock. Unfortunately, we
-can't just switch over to using that in stmmac because of it's dumb
-history as that may cause regressions. As we haven't used this flag
-from the PHY before, we have no idea whether it's reliable or not,
-and if it isn't reliable, then using it will cause regressions.
+|+static const struct of_device_id efinix_spi_of_match[] =3D {
+|+       { .compatible =3D "efinix,trion-spi", },
+|+       { .compatible =3D "efinix,titanium-spi", },
+|+       { .compatible =3D "efinix,topaz-spi", },
 
-I think that the way forward would be to introduce yet another flag
-(maybe STMMAC_FLAG_LPI_TX_CLK_PHY_CAP) and:
+And these three compatibles can/should be removed from the driver, since
+the fallback is required.
 
-	if (priv->plat->flags & STMMAC_FLAG_LPI_TX_CLK_PHY_CAP)
-		priv->tx_lpi_clk_stop =3D tx_clk_stop;
-	else
-		priv->tx_lpi_clk_stop =3D priv->plat->flags &
-					STMMAC_FLAG_EN_TX_LPI_CLOCKGATING;
+|+       { .compatible =3D "efinix,fpga-spi", },
+|+       {}
+|+};
 
-and then where STMMAC_FLAG_EN_TX_LPI_CLOCKGATING is checked, that
-becomes:
 
-	ret =3D stmmac_set_lpi_mode(priv, priv->hw, STMMAC_LPI_TIMER,
-				  priv->tx_lpi_clk_stop,
-				  priv->tx_lpi_timer);
+--6qSyW+QWd6cb4mh+
+Content-Type: application/pgp-signature; name="signature.asc"
 
-It's rather annoying to have to include a flag to say "use the 802.3
-standard behaviour" but given that we want to avoid regressions I don't
-see any other choice. It would've been nice to have had the driver
-using the PHY capability, but that horse has already bolted. We can now
-only try to encourage platform glue authors to try setting
-STMMAC_FLAG_LPI_TX_CLK_PHY_CAP with the above in place.
+-----BEGIN PGP SIGNATURE-----
 
---=20
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8WFEAAKCRB4tDGHoIJi
+0mjaAP9sKCcpox/aH/Z7wfpAn1ngc3aHe9qRSNM9Pg58kBau0gD/Z0MX38lEpA6u
+9WckYxf5O3kqdLEngN8LcxlSx/Atggs=
+=3tRF
+-----END PGP SIGNATURE-----
+
+--6qSyW+QWd6cb4mh+--
 
 
