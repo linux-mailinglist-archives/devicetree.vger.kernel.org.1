@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-153417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C479CA4C5FA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:03:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB9EA4C636
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 17:08:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8D887A1AB3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:01:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECD4C188EB7E
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 16:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B8421507C;
-	Mon,  3 Mar 2025 16:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E9F231C87;
+	Mon,  3 Mar 2025 16:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EuMMZM/x"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EUqe7+di"
 X-Original-To: devicetree@vger.kernel.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A147080D;
-	Mon,  3 Mar 2025 16:02:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5E4230D11;
+	Mon,  3 Mar 2025 16:03:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741017738; cv=none; b=rVo15JkM4wZZXjl5UQtAM5ZhOyTjWFvL5hQI2o0SiupIz4mqySWPhKa6vLIpKR/vWBsO+WKaS4GyQg9R7F6cfcMn/mFc7+rxndiM5OksUZMT69tAeyqdvHmDqMS2M1LQUhbARyYauBHG7Uoh6jgxRvUCiSi/ZhaKZyNbRdgnYyk=
+	t=1741017825; cv=none; b=r92F8z0FFsUUBkj6hM0RRnbgF/Tid6cSSpkUiV9gsYvNgNpbLxtU4IsU4vQLTXBgLlNA2nvzk6e5ggffo0uWn3aJSyj4hTSbUdyGc6KiivxPsErVSkKTbQQ4oABCnN5tlhw+8o69kcarM74JBWONjWz6AXc6wJRv1H3K59/stEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741017738; c=relaxed/simple;
-	bh=PG4GnlV8k/FN7kKkLP0CXN8xUJ6bTDOH+YyQOqYlWEs=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WAqGLn8QqwfXrPklWZbgnJNAQNalNedW512l5R79j3JiSTisosJQe80qLkGzxMDHO9k6ht+pWDjX5PogphKru132p2VKUbphl33Hj9dlkKwvUehAcMNNfKUMp1cmGLc0+32E70xhJKOaW0drjgNORBK7NJzhO4K83axkjfLV6Rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=EuMMZM/x; arc=none smtp.client-ip=213.167.242.64
+	s=arc-20240116; t=1741017825; c=relaxed/simple;
+	bh=/QCeybUnJLTqM1Grb60cqE75saDatnWd3hl5o+zYPRs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Se9o4xTBCZe9106qjwj4ANNx4tG+O/XMxq6/t7jyoZ15kxkg2EPqZN9COb+UV7zf9pQW9h57LCCoLqQX6o2DfPJQC4PDcz6hkCfJ4BVYUfDskViWBYCOmNzuimEE+yKYAy+RKeGyYDO89EcT4NkakSgIrPuMfFO+jDlTSFx2BXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=EUqe7+di; arc=none smtp.client-ip=213.167.242.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
 Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c69:8872:6fe4:6987:313:70cc])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B57DB1189;
-	Mon,  3 Mar 2025 17:00:42 +0100 (CET)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8E20F22A;
+	Mon,  3 Mar 2025 17:02:10 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1741017643;
-	bh=PG4GnlV8k/FN7kKkLP0CXN8xUJ6bTDOH+YyQOqYlWEs=;
-	h=From:Subject:Date:To:Cc:From;
-	b=EuMMZM/xINI9Ms12ccxFyvICix6VUDcty3ZQQWVB+y9go8iAohKCEYMt/A3lp7xs9
-	 qCLayHfh5D9FeGF7HymizYE2atuNz8y48K7l64RJhTtu5ynDsmeqYixzFs673Leh+b
-	 3IQL7O2hWmitqH5Gdm3MxpCB4rpSVzxBaCnYIU/g=
+	s=mail; t=1741017730;
+	bh=/QCeybUnJLTqM1Grb60cqE75saDatnWd3hl5o+zYPRs=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=EUqe7+di/HCJxtuxUFokhfV4FgbIcrrRBqHi9GrT9t84A2rKDgqM2g0HnW+UoR4W5
+	 U4ZhLACnLm2bktNEerYuPqIKI6lzF0sLgEKzY20UtAKNPbs9Cx88oAdBg26yQg+CqF
+	 cX/Yx3blEowJW2+w2JDYqKp5IBb14FcCvu07KJ9Q=
 From: Jai Luthra <jai.luthra@ideasonboard.com>
-Subject: [PATCH v3 00/19] media: i2c: ds90ub9xx: Error handling, UB9702
- improvements
-Date: Mon, 03 Mar 2025 21:32:03 +0530
-Message-Id: <20250303-b4-ub9xx-err-handling-v3-0-7d178796a2b9@ideasonboard.com>
+Date: Mon, 03 Mar 2025 21:32:19 +0530
+Subject: [PATCH v3 16/19] media: dt-bindings: ti,ds90ub960: Allow setting
+ serializer address
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,11 +53,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHvSxWcC/zWNwQ6CMBBEf4X07JpabKCe/A/DodAFNpGWbLHBE
- P7divH4JjNvNhGRCaO4FZtgTBQp+AzlqRDdaP2AQC6zUFJpWcoS2iu8WrOugMyQG+5JfgBd2dp
- oWaPVKPJ2ZuxpPbyPJvNIcQn8Pm6S+qY/40X9dTTNHBJO6JcISYGEvpKV7oxBq+SdHNoYfBssu
- 3MXJtHs+/4BxouLob4AAAA=
-X-Change-ID: 20250303-b4-ub9xx-err-handling-57a89508ea5e
+Message-Id: <20250303-b4-ub9xx-err-handling-v3-16-7d178796a2b9@ideasonboard.com>
+References: <20250303-b4-ub9xx-err-handling-v3-0-7d178796a2b9@ideasonboard.com>
+In-Reply-To: <20250303-b4-ub9xx-err-handling-v3-0-7d178796a2b9@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
  Sakari Ailus <sakari.ailus@linux.intel.com>
 Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
@@ -69,77 +67,213 @@ Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2585;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5862;
  i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
- bh=PG4GnlV8k/FN7kKkLP0CXN8xUJ6bTDOH+YyQOqYlWEs=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBnxdJ+6wY8b2WhgGU+RJKua8ijkB5l1rrzizZhD
- e6b/+/scHOJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZ8XSfgAKCRBD3pH5JJpx
- RRYgEACvPbYD9YPKWOvA6z8UVIQw6dvvYjq6hy6ZHxYoZjVE4eGXUzfLdWpQ9iI6uR030LoPQDJ
- RSOIX9uTvnJJRmoEDY1cltcImONfdEIb7yXb9FoaJnmm1x5StwO4yxSgpKt+hsIXgqjifnuvDNe
- HpB9AAqzhTh/CDmr19Fxsv2nco2YUsktfHwQZZvT6WmKCw5zX1hKYs/nCCinWhZiKqzdnFL57mJ
- rbFg0Ac2rmnS5Ju263esaCNggZvXJrIKXfbLWw3K1JBKfpYP0cHgI7+K1MDzGHjQBtk+AO/QKcs
- yQSTNgVnvj+C7qRA4MHcBvTWBHBIIzcmO9fW/jsJsN9tFGsf4zwEy7kXMZbKtv4WuxGrzy69uWm
- 2WMdkK95Uo5LD1tmdOl06Do+Mqdq7xLIHUHs6fN6TP4NR0MJqOCF6Zx5iyF9Iv8bE2+XXUjYUMn
- oUsu9yhieaPXcwvHhVoXN3Uxuaz7NuFHpU6qqybJNcaXWPqaAe50s9HvOPMKLLK1M/uchVc8Cog
- J3xJYdz7ORp3UQkPwUDxZ46A+o5ePGO2MhlGy4fZKE8GySbrPFnDA02XZo8KNqIPI8BvgjHlQIN
- qKJfB0eumV7yIM7tbAMPj9ZlVYf3nwTWEsqM03LxxlL2+xE7KyyPl30Kz3Xzpmdbd3ItUEwhacT
- Ov/5xbQjzW1ABlA==
+ bh=/QCeybUnJLTqM1Grb60cqE75saDatnWd3hl5o+zYPRs=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBnxdKA5vja19IXFXCieRE42kf/KiFp5uSq1DsxN
+ VxDQECPA4+JAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZ8XSgAAKCRBD3pH5JJpx
+ RfxeD/0dOyyeiguoyDWeMZ4T9GnN51ulKbAeXRAsfyVuTqKEXplCKn9GcTfssHfL6CJloD2Hemv
+ 8vv1LFLNGspxszZbt9US+FYuHjC6iOQz/UhIEOulG6cdLOtXGU02+a7wb3xrd9ttB/Tnazcf5Kn
+ zJS2/8L+XSb7cr00w/v0Fmlpag68V7CdaG+lcn3ejZzQlsEm0NcvuqeGxyohrnIWPHI1osO/GNq
+ HMrAJYcJ4i5V6dduLTE0CSJsgrWEJ47BvY0ZBXEwx4jBX3OPAdBrOAHnThhxyd5Pw8tDzNEz9IJ
+ HO+UGMjBwGJhml1GrKbKuugdMxpDX+drea4j31rbci+Sj22GKN3PBXWtfa4WATPYKwL6tn8Ya/m
+ bWlyq2WNY0kqkBJzKOBaG7iwJBBQaUS34IB6zAusql8pLzSIB/nAHqZu2hw1kjxCwihGFOmfQkz
+ JVlZBEICpvb65ASuExee5ts99Nk7r/4Kw3sElWpFdiflQjYhveqvHDLmN05APvOAuDaNplgvjl+
+ qZmoox9zSHsVFLbN0G0PU9OAP2NgxFmcq2p5BuXFKHry1uzyoyhaF4nDcLM3eay2yZEczCl9Pay
+ KlK+MOb1PQdTNCAlWpURCuIe10XHgswOX8HPlxyUEXQrnN8xyo6D+nnqxmzYMQdBzscvVm5bRU9
+ i1I5n3zZ+7sArtw==
 X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
  fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 
-Hi,
+The serializer's I2C address on the FPD-Link bus is usually communicated
+to the deserializer once the forward-channel is established. But in some
+cases it might be necessary to program the serializer (over the
+back-channel) before the forward-channel is established.
 
-This series has two main parts: 1) add error handling all around, and 2)
-update the drivers according to latest (mostly non-public) information
-from TI.
+This can be used e.g. to correct serializer configuration which
+otherwise would prevent the FC to be enabled. To be able to communicate
+to the serializer before the forward-channel is up, the deserializer
+driver neds to know the default i2c address of the serializer.
 
+Allow setting the serializer i2c address using the 'reg' property. This
+is optional, and usually not needed.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
 ---
-Changes in v3:
-- Now that this series is closer to being merged, squash "Remove old
-  ub9702 RX port init code (SQUASH)" and "Update UB9702 init sequences"
-  as they were only split to ease review.
-- Drop SSCG bindings and driver changes.
-- Fix Sakari's minor review comments on "Speed-up I2C watchdog timer".
-- Link to v2: https://lore.kernel.org/r/20250124-ub9xx-improvements-v2-0-f7075c99ea20@ideasonboard.com
-
+Cc: devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
 ---
-Jai Luthra (4):
-      media: i2c: ds90ub953: Speed-up I2C watchdog timer
-      media: dt-bindings: ti,ds90ub960: Allow setting serializer address
-      media: i2c: ds90ub960: Configure serializer using back-channel
-      media: i2c: ds90ub9xx: Set serializer temperature ramp
+ .../bindings/media/i2c/ti,ds90ub953.yaml           | 77 +++++++++++++---------
+ .../bindings/media/i2c/ti,ds90ub960.yaml           | 16 ++++-
+ 2 files changed, 58 insertions(+), 35 deletions(-)
 
-Tomi Valkeinen (15):
-      media: i2c: ds90ub953: Fix error prints
-      media: i2c: ds90ub913: Fix returned fmt from .set_fmt()
-      media: i2c: ds90ub913: Align ub913_read() with other similar functions
-      media: i2c: ds90ub9xx: Add err parameter to read/write funcs
-      media: i2c: ds90ub960: Add error handling to multiple places
-      media: i2c: ds90ub953: Add error handling to ub953_log_status()
-      media: i2c: ds90ub913: Add error handling to ub913_log_status()
-      media: i2c: ds90ub960: Move UB9702 registers to a separate section
-      media: i2c: ds90ub960: Add UB9702 specific registers
-      media: i2c: ds90ub960: Split ub960_init_tx_ports()
-      media: i2c: ds90ub960: Refresh ub960_init_tx_ports_ub9702()
-      media: i2c: ds90ub960: Add RX port iteration support
-      media: i2c: ds90ub960: Move all RX port init code into ub960_init_rx_ports()
-      media: i2c: ds90ub960: Update UB9702 init sequences
-      media: i2c: ds90ub953: Move reg defines to a header file
+diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml
+index 2030366994d18b695328194da1a7d95607de4371..2e129bf573b79e0ca8f25b4ec5fc6ea76c50abd7 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml
+@@ -38,6 +38,13 @@ properties:
+   '#clock-cells':
+     const: 0
+ 
++  reg:
++    maxItems: 1
++    description:
++      The strap I2C address of the serializer. Can be used by the deserializer
++      to communicate over back-channel when the forward-channel is not yet
++      active.
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+@@ -81,51 +88,57 @@ examples:
+   - |
+     #include <dt-bindings/gpio/gpio.h>
+ 
+-    serializer {
+-      compatible = "ti,ds90ub953-q1";
++    link {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      serializer@18 {
++        compatible = "ti,ds90ub953-q1";
++        reg = <0x18>;
+ 
+-      gpio-controller;
+-      #gpio-cells = <2>;
++        gpio-controller;
++        #gpio-cells = <2>;
+ 
+-      #clock-cells = <0>;
++        #clock-cells = <0>;
+ 
+-      ports {
+-        #address-cells = <1>;
+-        #size-cells = <0>;
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
+ 
+-        port@0 {
+-          reg = <0>;
+-          ub953_in: endpoint {
+-            clock-lanes = <0>;
+-            data-lanes = <1 2 3 4>;
+-            remote-endpoint = <&sensor_out>;
++          port@0 {
++            reg = <0>;
++            ub953_in: endpoint {
++              clock-lanes = <0>;
++              data-lanes = <1 2 3 4>;
++              remote-endpoint = <&sensor_out>;
++            };
+           };
+-        };
+ 
+-        port@1 {
+-          reg = <1>;
+-          endpoint {
+-            remote-endpoint = <&deser_fpd_in>;
++          port@1 {
++            reg = <1>;
++            endpoint {
++              remote-endpoint = <&deser_fpd_in>;
++            };
+           };
+         };
+-      };
+ 
+-      i2c {
+-        #address-cells = <1>;
+-        #size-cells = <0>;
++        i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
+ 
+-        sensor@1a {
+-          compatible = "sony,imx274";
+-          reg = <0x1a>;
++          sensor@1a {
++            compatible = "sony,imx274";
++            reg = <0x1a>;
+ 
+-          reset-gpios = <&serializer 0 GPIO_ACTIVE_LOW>;
++            reset-gpios = <&serializer 0 GPIO_ACTIVE_LOW>;
+ 
+-          clocks = <&serializer>;
+-          clock-names = "inck";
++            clocks = <&serializer>;
++            clock-names = "inck";
+ 
+-          port {
+-            sensor_out: endpoint {
+-              remote-endpoint = <&ub953_in>;
++            port {
++              sensor_out: endpoint {
++                remote-endpoint = <&ub953_in>;
++              };
+             };
+           };
+         };
+diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+index 0b71e6f911a8835eb70ccf832888964288a6cac6..4dcbd2b039a58edfc57c5cc0bedceefdf158bf0c 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+@@ -68,6 +68,12 @@ properties:
+             description: The link number
+             maxItems: 1
+ 
++          '#address-cells':
++            const: 1
++
++          '#size-cells':
++            const: 0
++
+           i2c-alias:
+             $ref: /schemas/types.yaml#/definitions/uint32
+             description:
+@@ -107,7 +113,8 @@ properties:
+             maximum: 14
+             description: Manual EQ level
+ 
+-          serializer:
++        patternProperties:
++          '^serializer(@[0-9a-f]+)*$':
+             type: object
+             description: FPD-Link Serializer node
+ 
+@@ -115,7 +122,6 @@ properties:
+           - reg
+           - i2c-alias
+           - ti,rx-mode
+-          - serializer
+ 
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+@@ -309,13 +315,17 @@ examples:
+           /* Link 0 has DS90UB953 serializer and IMX274 sensor */
+ 
+           link@0 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
+             reg = <0>;
+             i2c-alias = <0x44>;
+ 
+             ti,rx-mode = <3>;
+ 
+-            serializer1: serializer {
++            serializer1: serializer@30 {
+               compatible = "ti,ds90ub953-q1";
++              reg = <0x30>;
+ 
+               gpio-controller;
+               #gpio-cells = <2>;
 
- .../bindings/media/i2c/ti,ds90ub953.yaml           |   77 +-
- .../bindings/media/i2c/ti,ds90ub960.yaml           |   16 +-
- drivers/media/i2c/ds90ub913.c                      |   82 +-
- drivers/media/i2c/ds90ub953.c                      |  242 ++-
- drivers/media/i2c/ds90ub953.h                      |  104 +
- drivers/media/i2c/ds90ub960.c                      | 2166 +++++++++++++++-----
- 6 files changed, 1966 insertions(+), 721 deletions(-)
----
-base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
-change-id: 20250303-b4-ub9xx-err-handling-57a89508ea5e
-
-Best regards,
 -- 
-Jai Luthra <jai.luthra@ideasonboard.com>
+2.48.1
 
 
