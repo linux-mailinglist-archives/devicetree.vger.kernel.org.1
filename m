@@ -1,125 +1,112 @@
-Return-Path: <devicetree+bounces-153955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4495DA4E4CD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:03:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ADD3A4E486
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:59:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9770B7A2B98
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:01:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08CD68A5FE1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:41:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9CEC292FAB;
-	Tue,  4 Mar 2025 15:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4291299B54;
+	Tue,  4 Mar 2025 15:26:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="B5pYH20n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from beeline3.cc.itu.edu.tr (beeline3.cc.itu.edu.tr [160.75.25.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97162356C9
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:43:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.117
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741103035; cv=fail; b=CksPGqokxJQdtiKWzATf6acYWAR7lqwcuJGppyR0NlJ4/trvg7oSJ6VuhWacylSgZ7FE5mtenhElGQIzkyA0kSjU5+/+cpkyfp97D5o/hdFsUBi3sFS/va+n3oh1qSC452x+v2SZr0EaFfayHewDEUnAz5HvehjeSzVjO0lZXzI=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741103035; c=relaxed/simple;
-	bh=c4uvAFUWqB5BF6k8Y8MkOwv2YpytcmWbxq7PRSclyzY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B3O7U/2lod86fm3YpGFMdZUPVpcdjXWlCCbjZq7YcfbNcHv9Fvj9v+UHi41QfkiRCZ4wRjtfKKYb0Eb//oNgmx04P5hS7idZAyoYRHwVZ5INZgvVOysoZQ3ATurTTAMfqyFaHpuRx5jIAEO9/J7vcrY0xWrqIAiFb78rESejyeU=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=none smtp.mailfrom=cc.itu.edu.tr; arc=fail smtp.client-ip=40.107.117.99; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=160.75.25.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C480299B3E
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.117
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741102003; cv=pass; b=ZUQlUpxxtkoYzPLdNomXFGkaJ6YEQoOHKqg430VAGAWdVf6PhTinSrVHwW2AoOnWQI91LS4Bu2Dh9ojXLpAqY1Y/6ym/JO/dxZPp3JXU/fUyz/KEyZx9arpUYxHjuXzjvCqY4JgoL7u2AV0bDDCEpbofHtgCmWqFgJhW1oW7Rbc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741102003; c=relaxed/simple;
+	bh=d+vzEwgjupu0/77CHBo1T27lBxQg4sfPtaX0+5uTUTE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CnIuNh8BLOv9AtPDPKyDmOtXKvLAdn/pQS+QAADXhCbMzclIcfIMqLNxPmazCVcPAw6y5wTtA7cfoT9WYy+AOtfECsIEZmHy6b1ioaoe+TpHE2+zs3clKLM98S9ZRnQROw3DpPM7z3kXN0RR2LAar4AStIHlEtocoN0XSvUKHnc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B5pYH20n; arc=none smtp.client-ip=205.220.168.131; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; arc=pass smtp.client-ip=160.75.25.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 0EE0340CEC93
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:43:51 +0300 (+03)
+	by beeline3.cc.itu.edu.tr (Postfix) with ESMTPS id 6752440CEC88
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:26:40 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
+Authentication-Results: lesvatest1.cc.itu.edu.tr;
+	dkim=pass (2048-bit key, unprotected) header.d=quicinc.com header.i=@quicinc.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=B5pYH20n
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6g0X0mCzzG0kP
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:42:04 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6fbX4J3lzFyy4
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:23:52 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 091A94275C; Tue,  4 Mar 2025 18:41:59 +0300 (+03)
-X-Envelope-From: <linux-kernel+bounces-541604-bozkiru=itu.edu.tr@vger.kernel.org>
+	id 67FA942728; Tue,  4 Mar 2025 18:23:50 +0300 (+03)
+Authentication-Results: lesva1.cc.itu.edu.tr;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B5pYH20n
+X-Envelope-From: <linux-kernel+bounces-541658-bozkiru=itu.edu.tr@vger.kernel.org>
+Authentication-Results: lesva2.cc.itu.edu.tr;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B5pYH20n
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 8A9904226C
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:39:28 +0300 (+03)
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id 7CFE4305F789
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:39:27 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 6D57E42921
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:00:24 +0300 (+03)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id 4A3223063EFF
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 15:00:24 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46BCD7A7D5A
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:38:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B29F9188E1A4
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB30200BBC;
-	Mon,  3 Mar 2025 11:39:05 +0000 (UTC)
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2099.outbound.protection.outlook.com [40.107.117.99])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA80F20DD6D;
+	Mon,  3 Mar 2025 11:59:33 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F421FFC75;
-	Mon,  3 Mar 2025 11:38:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.99
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741001942; cv=fail; b=ktJGYLVxVG4t2DGK+MJBpWJ1T//gcluBiVWTOFZqXM2oFx4v1USr0uUyoG06nsKuvtymJ1fGPKNxJZSs+QEM91CGmjyYVC7arPbq9babGtc2Z/iT6C8ZPnMIecrEYJdPaM5mnRqpDuiUxiOXHfV0k8owt8BD1FcANowuEXSQ6Ls=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741001942; c=relaxed/simple;
-	bh=c4uvAFUWqB5BF6k8Y8MkOwv2YpytcmWbxq7PRSclyzY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g5psTSNizBskqqmQDBZx9LIx7G1h8iU97OMXSenJxFktStzTOlYOJt+snzDlF2kJrGuNQr3jB5ZafK0u3qwQqfQ1N/GUFXnxVEJ6uGqjZcugkUQJXALfgBc4Q2SgxbKVIp4wEr/o91T8b+/gGA4Q2lCd0zToBMXfgrkwzeBmxd8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.117.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZRJfWIU+AK23XwSO2O3mImVzh4dBw+RXI/2EV9x4azPf/YM0SJQSBaoCRAKiXrEeJjrUHPZhbyHcVxAShsB9mGuyxrmjeJYHinzVQnjgbR5Gk5kNbrhDDwulpmtwkaLd2ArJywdZLPhhefho26EJdt/rtzVqK8F77DyHj2IFDD7l8/jkTnLkcdJ2eHoWkky1hcHFL0ztVf4oAZRWSDC9vTFLyTURVvybhH1zokIiDtM6fA3lnH60qS7u3w0Bu2lByoVBS6UAwqQAlmjz+FRyxGk3Zlw9WohfBpqNnmyIMGoJ+ZsVVXBw4evCqFLm5YBJl8gpi1Ui3knh6BFejkrZiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VAJ0Bhx/WxqnugD9Zk8bagbD0Hw1q3BfZGs5+RvZjNw=;
- b=ovJAIpuOM6MXsBOKrYxwHtBeY2uyXCG2iqsMDjOHdGlMwcc0zSVKc+0EO0uM7O3PUKMbFxZzZ4FEmSnXnnIF8/qhOP030kIQCa3+A3wHCF2uboB34YI1f1KqkzsJZVP6Ay1m0kjv7soCUp5ZJMObI2IjzkIUKjNuO8F5PrmlLN/mGoW/T8ogoadh9WGoKFX0VNc4BJ3n3BvnR/5qccykCN5Ylc2/8FG3kodKsSMpiXWMcYmNVZ1fZYm1OrErdcvUPVcvqStgaUMsxzwuXVNYuHpACkT2W1UhWeSbhilid1tfmEoWidKRuINerElOx21DhF6AolZS8Tue6M0/6MB+/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2PR04CA0190.apcprd04.prod.outlook.com (2603:1096:4:14::28) by
- TYSPR06MB6647.apcprd06.prod.outlook.com (2603:1096:400:483::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.25; Mon, 3 Mar
- 2025 11:38:54 +0000
-Received: from SG2PEPF000B66C9.apcprd03.prod.outlook.com
- (2603:1096:4:14:cafe::6a) by SG2PR04CA0190.outlook.office365.com
- (2603:1096:4:14::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.28 via Frontend Transport; Mon,
- 3 Mar 2025 11:38:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66C9.mail.protection.outlook.com (10.167.240.20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8511.15 via Frontend Transport; Mon, 3 Mar 2025 11:38:53 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 54C6240A5BFC;
-	Mon,  3 Mar 2025 19:38:52 +0800 (CST)
-Date: Mon, 3 Mar 2025 19:38:47 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	marcin@juszkiewicz.com.pl, Fugang Duan <fugang.duan@cixtech.com>
-Subject: Re: [PATCH v3 6/6] arm64: dts: cix: add initial CIX P1(SKY1) dts
- support
-Message-ID: <Z8WUxyJT1fdHKo67@nchen-desktop>
-References: <20250227120619.1741431-1-peter.chen@cixtech.com>
- <20250227120619.1741431-7-peter.chen@cixtech.com>
- <86r03ip0kf.wl-maz@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A376120CCDF;
+	Mon,  3 Mar 2025 11:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741003171; cv=none; b=dJ5zfhOIXwANz7RmtZHfCITQ7kduKMRRkgt1TlMcmzIsdAbOErWlCHwSI8oeapFAF/W4zreGwKi+GnIBYgD5RzR7n6zfc2RnicN4PxvST+3eyQOR0znRkpzzLWTc2kWA0bVbO4uevU8CA4zLT7n1OqbdQIbf++1IBlS3JD+qtMs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741003171; c=relaxed/simple;
+	bh=d+vzEwgjupu0/77CHBo1T27lBxQg4sfPtaX0+5uTUTE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tUpmSppJLyoqV2DCxVd/ADca1LEz/x/Ig/exStgR+XTK0nBYmqP05TlKXjgk+zcP3n2NXuX6CvsY8rkgUTpe1LK6T2Jn5RvxgyhPi7T7cK1XbecLFXVQjNcuIRKgP3hKnChO9KmfxSxLdmq8rVTHLzYtCPTXmOkqObspyhjICtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B5pYH20n; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523B6wYi006580;
+	Mon, 3 Mar 2025 11:59:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	QF0ASAHpAxj/q8GZgd0wP+R+aHXSmNyo9XU3EaLp8lY=; b=B5pYH20nLkszZuZw
+	IyBjpxMzdQfCm+3cubdRMgFt5Jd4aenXcNsCRNzcS7A7fXozNaYX1Uz8XCbxFA3m
+	6NLFarvWmKCDcfqF1acR20j4z8OFx23EBpqzlfUnY2OMbmEFmmzoJTxMB8vV04KE
+	ZJeuKWs08j6ETvyVBDnmFAomAOQlDhQ7zKcb9K/mM2VJeJZVbUtMc8rb/gblpZZq
+	LGefihTdG6rR4yXHuhrUDBFonXJd57aup1nzzAkIXi1zcyzPQVz0f1iEdABDL0hJ
+	ZdcUfkap6cOevCh6h+ppL0Y54/Ig1ejrq2buKPejvbfSMtXwWkGlCS2rizPGRh/g
+	8fSVSw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 453t994pq8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Mar 2025 11:59:13 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 523BxDET026439
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 3 Mar 2025 11:59:13 GMT
+Received: from [10.206.101.41] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Mar 2025
+ 03:59:10 -0800
+Message-ID: <7b3b52a7-5a4b-b34f-3450-8e4a60ade22c@quicinc.com>
+Date: Mon, 3 Mar 2025 17:29:07 +0530
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -127,210 +114,73 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86r03ip0kf.wl-maz@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66C9:EE_|TYSPR06MB6647:EE_
-X-MS-Office365-Filtering-Correlation-Id: 38389ff4-3c56-4d03-e7f7-08dd5a47f9b2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?SdA8uY2gjwXo/aZ1jwwMgu+Vk3jkEzwxtzluTze/XAyYBdCu7HBrt++Ky89N?=
- =?us-ascii?Q?BXmTipKnZFwgCwWhG5tE9Pt9t68YxS9S8u7dRrqtFVthUpJ9Q8zbyH8+Qgne?=
- =?us-ascii?Q?UgQrzAXfeCLR1A6/c1sIZksYEpCn43km5VGyRPpFSR2MGmX8oQlPLix2xFCK?=
- =?us-ascii?Q?gu6uFd3FS4vQSjqDlL5wmcGSGRKqr/X8TlomoVCZfuQZwrkLnPFYjN8Q8OYV?=
- =?us-ascii?Q?n0Rxq7BTNK/VthT5Tkzgbj82KIa7epLRlTwIp4gSQ8jv8fykelEGQRm59PzA?=
- =?us-ascii?Q?rQRZsCzLpIvozh/FCJodR89OKcCCs2A15CNkQjf4zJgb8oaZX4xqS6RWUkS9?=
- =?us-ascii?Q?8K4N+a1JwxPS/JeZ85AvJMNDTiJnxW3YJcT6SIFt608E1o4JsJelnr9ITJxX?=
- =?us-ascii?Q?lP/WBAAa+Nv/7OXvkNDt9b5g4S0kB5VrEfXXVEwbC8G9FZXShFb/xV5JIztS?=
- =?us-ascii?Q?9eD+yCVdfUBU3e+XMQBVRgFldrBm9FqzdnG5QFIBrp9BY3jLgFbOIv+vM13G?=
- =?us-ascii?Q?zf6ar4wPa1/h0iP4QvMVwDlg5t4/qOLZlwIats7LROviYfFTNc4LPNcCqE9/?=
- =?us-ascii?Q?8IFgJg3TNJK9Q/Os3uLgGi5uKBpvxWPVp03gSfAXqjgPM5ilc1m74lJtW+dY?=
- =?us-ascii?Q?FhxrX3CX7hrWytCGDj5hW+1FAc2ojB7PAY0nGXKa+18E4unueczgelNUIYrY?=
- =?us-ascii?Q?/I0BUzSCgH1J37WNN2qfsuZq/KM/9vXwc0PtsLJjELSUUAl5BJuLo2TYAV9z?=
- =?us-ascii?Q?ZSPajlPtPMhF+ntVn9Rm/vBE3ZqjUqEsozaIgUcl2EVA9ZaZwvGfKUv7Y84d?=
- =?us-ascii?Q?qEDaTKGi5VUjYiSUVV2nzeJML0aqMSMn7l8ySgqpJfBr+BFyT0E3Va2PlSGv?=
- =?us-ascii?Q?7eXmoEiXv7fru+zKij31G+vJ2vqQyN9HMFaIX4qGgYgJhFuAT3ueut+k8vK5?=
- =?us-ascii?Q?EyjqIbO0e67YCon1P6KjqgyjqxqRVTMXvi73q5S5BZuFFdJa/i0fPyeZ9guk?=
- =?us-ascii?Q?YqyWhPSq/pD/7QmScSN+J3oGlZTDy4rxXz0iyjmKjpAqe3TBukHgSfloEQHh?=
- =?us-ascii?Q?I5/T3KoxBhoSpClvfaYh+zlDi6O554jxKqRQ0Pn67coCCv8kLrUQiuhp5xtB?=
- =?us-ascii?Q?RkRufAN8UCRhKQgQ7UYnS1Ro2hB1lMtOAAW7J6ess82AEB13Lj82VkRF0B05?=
- =?us-ascii?Q?2eFLeIze2TL7ufVqaD2Zs1ODYtoHGqkyTbeaSuWhIcVGLSP7mduYLzH7mozf?=
- =?us-ascii?Q?Hk4qY9o8h6S6PFGYsvxYiVjXeHpCq0gWGeIUOBKZb1wdYm6mdGif6qqD+z60?=
- =?us-ascii?Q?qjUUjDt8+on+i6asxnj+kIbeZF5jc/O2eERNthoPmreSWDQ4MA/VMii+SE0H?=
- =?us-ascii?Q?JJaWggnSVYfA/s1q1Nh6M2KNNX0PCfIdoOLH8JFsIV6EnpYsmF/ar4G5QKTL?=
- =?us-ascii?Q?P3RsK371Q6AYBMXWQZ3oeBw3kNX7SYNke7Uf4HpcdR+Bh2TrtNf56bd+CmNN?=
- =?us-ascii?Q?7VuREbaBkrvemq0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2025 11:38:53.3032
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38389ff4-3c56-4d03-e7f7-08dd5a47f9b2
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66C9.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB6647
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: drop video decoder and encoder
+ nodes
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250303-b4-media-v1-1-ddc5c81cc2b3@quicinc.com>
+ <9cf0f5cf-1287-485c-a75d-1a4333c6e457@kernel.org>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <9cf0f5cf-1287-485c-a75d-1a4333c6e457@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 44Mq91G0J83_GNLhyIsZ60sukPo-NzgH
+X-Proofpoint-GUID: 44Mq91G0J83_GNLhyIsZ60sukPo-NzgH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-03_07,2025-03-03_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=770
+ mlxscore=0 lowpriorityscore=0 suspectscore=0 priorityscore=1501
+ clxscore=1015 spamscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2503030092
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6g0X0mCzzG0kP
+X-ITU-Libra-ESVA-ID: 4Z6fbX4J3lzFyy4
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741707728.03907@TGfPY9z2Pbg+Q0GFyKkRGw
+X-ITU-Libra-ESVA-Watermark: 1741706691.56266@yKCbVSwUL7sGGxZs56TWxQ
 X-ITU-MailScanner-SpamCheck: not spam
 
-On 25-02-28 15:10:24, Marc Zyngier wrote:
 
-Hi Marc,
-
-Thanks for your detail review.
-
-> > +
-> > +             cpu10: cpu@a00 {
-> > +                     compatible = "arm,cortex-a720";
-> > +                     enable-method = "psci";
-> > +                     reg = <0x0 0xa00>;
-> > +                     device_type = "cpu";
-> > +                     capacity-dmips-mhz = <1024>;
-> > +             };
-> > +
-> > +             cpu11: cpu@b00 {
-> > +                     compatible = "arm,cortex-a720";
-> > +                     enable-method = "psci";
-> > +                     reg = <0x0 0xb00>;
-> > +                     device_type = "cpu";
-> > +                     capacity-dmips-mhz = <1024>;
-> > +             };
+On 3/3/2025 5:06 PM, Krzysztof Kozlowski wrote:
+> On 03/03/2025 12:01, Vikash Garodia wrote:
+>> Decoder and encoder nodes are already deprecated from bindings. Update
 > 
-> Given that half the A720s are advertised with lower clock speed, how
-> comes they all have the same capacity?
+> Deprecated since when? commit or release.
+commit - 459997e8990d9cdf7fb126057c31ec0ca8ff66ca
 
-According to Documentation/devicetree/bindings/cpu/cpu-capacity.txt
-"capacity-dmips-mhz" is u32 value representing CPU capacity expressed
-in normalized DMIPS/MHz, it means CPU capability per MHz. For sky1
-SoC, both middle and big cores are A720, so their capability per MHz
-are the same.
+https://lore.kernel.org/all/20241230-media-staging-24-11-25-rb3-hw-compat-string-v6-3-a4d5070d3aaa@linaro.org/
 
-> > +
-> > +     pmu-a520 {
-> > +             compatible = "arm,cortex-a520-pmu";
-> > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> > +     };
-> > +
-> > +     pmu-a720 {
-> > +             compatible = "arm,cortex-a720-pmu";
-> > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> > +     };
+>> the venus node to align with bindings.
 > 
-> This is wrong. The default configuration for PPIs is to expose the
-> *same* device on all CPUs. You must use PPI affinities for your PMUs.
-> Please see the GICv3 binding for the details.
+> Since which release kernel does not rely on these?
+I can see in 6.14-rc1
 
-We have discussed internally, we have not seen the benefits routing
-different PPI interrupt to dedicated CPUs. Any use cases?
-
-I prefer changing pmu nodes as one generic Armv8 PMU node. Is it accepted?
-Or must I keep both pmu for A520 and A720, and add PPI affinities to
-describe hardware well?
-
+Regards,
+Vikash
+>>
+>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 --------
+>>  1 file changed, 8 deletions(-)
 > 
-> > +
-> > +     pmu-spe {
-> > +             compatible = "arm,statistical-profiling-extension-v1";
-> > +             interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_LOW>;
-> > +     };
-> > +
-> > +     psci {
-> > +             compatible = "arm,psci-1.0";
-> > +             method = "smc";
-> > +     };
-> > +
-> > +     soc@0 {
-> > +             compatible = "simple-bus";
-> > +             ranges = <0 0 0 0 0x20 0>;
-> > +             dma-ranges;
-> > +             #address-cells = <2>;
-> > +             #size-cells = <2>;
-> > +
-> > +             gic: interrupt-controller@e010000 {
-> > +                     compatible = "arm,gic-v3";
-> > +                     reg = <0x0 0x0e010000 0 0x10000>,       /* GICD */
-> > +                           <0x0 0x0e090000 0 0x300000>;       /* GICR * 12 */
-> > +                     interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-> > +                     #interrupt-cells = <3>;
-> 
-> This will need to be bumped up to 4, and all the interrupt specifiers adjusted.
-
-Depends on if PPI affinities is must.
-
-> 
-> > +                     interrupt-controller;
-> > +                     #redistributor-regions = <1>;
-> 
-> Drop this, this is useless. It is pretty obvious that there is a
-> single RD region, and 1 is the default.
-> 
-> > +                     redistributor-stride = <0 0x40000>;
-> 
-> Drop this. This is a standard GIC700 that doesn't need any help
-> computing the stride as it obeys the architecture.
-
-Will drop above two properties.
-
-> 
-> > +                     #address-cells = <2>;
-> > +                     #size-cells = <2>;
-> 
-> I don't understand why you repeat this on every sub-nodes.
-
-Because there is a child node for gic_its below
-
-> 
-> > +                     ranges;
-> > +
-> > +                     gic_its: msi-controller@e050000 {
-> > +                             compatible = "arm,gic-v3-its";
-> > +                             reg = <0x0 0x0e050000 0x0 0x30000>;
-> > +                             msi-controller;
-> > +                             #msi-cells = <1>;
-> > +                     };
-> > +             };
-> > +     };
-> > +
-> > +     timer {
-> > +             compatible = "arm,armv8-timer";
-> > +             interrupt-names = "sec-phys", "phys", "virt", "hyp-phys", "hyp-virt";
-> > +             interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> > +                          <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> > +                          <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> > +                          <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-> > +                          <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
-> > +             clock-frequency = <1000000000>;
-> 
-> Drop this. The firmware already sets CNTFRQ_EL0 to the correct value,
-> it seems. And if it doesn't, please fix the firmware.
-
-Yes, you are right, firmware configures it, I will delete it at next
-version.
-
-> 
-> > +             arm,no-tick-in-suspend;
-> 
-> Why do you need this? Is the HW so broken that you have implemented
-> the global counter in a power domain that isn't always on?
-> 
-
-Not hardware broken, just arch timer will be powered off at cpu idle
-and system suspend due to power consumption reason.
-
--- 
-
-Best regards,
-Peter
+> Best regards,
+> Krzysztof
 
 
