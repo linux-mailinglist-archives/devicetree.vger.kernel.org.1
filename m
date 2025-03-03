@@ -1,141 +1,109 @@
-Return-Path: <devicetree+bounces-153196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED57A4B873
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:40:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFB3A4B877
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 08:46:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40C653B008B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 07:40:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE4123AC270
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 07:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE0D1EB1B5;
-	Mon,  3 Mar 2025 07:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RBX5fAtO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E498F1E9B04;
+	Mon,  3 Mar 2025 07:46:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0BA1EB192;
-	Mon,  3 Mar 2025 07:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BC341D9663;
+	Mon,  3 Mar 2025 07:46:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1740987641; cv=none; b=ahiNVTFV0lgSaeLc6HPoWTd8YuQYjjHahfmULAXdmV6Uz/dVeXi5G+Lpc86cQT8AULYcFeXIhR5RgOnurPq1GEFIaHdyLL969PWiPe8zzqdR7jkXmrgRtv+OTIkhBKjRxmFPFXGmsCfRyIb7H+qfIUuIkh8Jw4BleG/czX6vcTU=
+	t=1740987978; cv=none; b=tZ8CEjTys1tM6ntJAoES9WgAQDNwBJRNy9q9pTJ+x4UKRDpGRFGSnu90rMC9zFcNLPTGhfT+4JBXmKUoaN6z+3Y/i3oOCd4OEceHPctpP+CMDPGcBId+riJS1S8R2masiJjB/bQpz8LcJ5DLLeTLm44QElUoijmpzyqRaWQI/Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1740987641; c=relaxed/simple;
-	bh=5+c/8dUp26rrw26JKWP2mXjUnDArpi3YPn5xzRkRfF4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QNIFSoiAq9D4wYdPSg7ZFAncTZhlxRn+o5injlLbalEsyeCMkkko9OFpCsiW1VhvwyO7Hg68BIUgUvZXOscmNgOGODJ8SWFahSrjEHbOmam1gqZmE5McT4F01fB7Jd6NJ2G75PP4jmzmqLvOIWWXyKjFUcztVL3BwwtOhglLtYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RBX5fAtO; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5237eP7M2626084
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 3 Mar 2025 01:40:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1740987625;
-	bh=GQ1xW2NPwpJqRZbwpFeIMuaFkeaa4B6mXxYKzB9+m6E=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=RBX5fAtOXtag7wzZX1/8h/+h6f5p88bKSHwRSH+/JDboHIdH52smlDBb44yPjGvQf
-	 1d8O++uq5j1eIMqsrVsrs2kgANSnAcU1hM3JNvZsyXCZVW6t+sGve7Alw1IBHuf6jF
-	 QezRUPyF0XU8eYWWRBscDC72kUm80xvHor/CPlS8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5237ePv9099697
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 3 Mar 2025 01:40:25 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 3
- Mar 2025 01:40:24 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 3 Mar 2025 01:40:24 -0600
-Received: from [10.24.69.250] (dhcp-10-24-69-250.dhcp.ti.com [10.24.69.250])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5237eLjR131041;
-	Mon, 3 Mar 2025 01:40:22 -0600
-Message-ID: <3d01a502-47a6-467e-8743-392fde26e66e@ti.com>
-Date: Mon, 3 Mar 2025 13:10:21 +0530
+	s=arc-20240116; t=1740987978; c=relaxed/simple;
+	bh=45/qDsmDCCyOu9HMAdSnCWnN/LJOZXdy7hLvXkjsEd8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uLY0GlXBUMmktDanWxJsFtnR5PLnkExqjKn/2nNDSxRUTEA+jPEfRSOGk02cWMZOFdGagzx9sK9mFA+gJLuaqhZVV+NgQGXrJ1dbZ/I7ceqFqFO5aCpkL+xJTygpCk1H0fR9NtpM+Wlj1ygmQnRawZq5Fk2Q6ptnXYblSFHiHTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.156])
+	by gateway (Coremail) with SMTP id _____8DxOGo_XsVnqPmIAA--.38086S3;
+	Mon, 03 Mar 2025 15:46:07 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.156])
+	by front1 (Coremail) with SMTP id qMiowMAxzMQ7XsVn1GEzAA--.57437S2;
+	Mon, 03 Mar 2025 15:46:04 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yinbo Zhu <zhuyinbo@loongson.cn>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH 1/2] dt-bindings: gpio: loongson: Add new loongson gpio chip compatible
+Date: Mon,  3 Mar 2025 15:45:51 +0800
+Message-ID: <20250303074552.3335186-1-zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] arm64: dts: ti: k3-am62a-phycore-som: Add boot phase
- tags
-To: Wadim Egorov <w.egorov@phytec.de>, <nm@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
-References: <20250228101817.865811-1-w.egorov@phytec.de>
- <20250228101817.865811-2-w.egorov@phytec.de>
-Content-Language: en-US
-From: Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20250228101817.865811-2-w.egorov@phytec.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowMAxzMQ7XsVn1GEzAA--.57437S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj9xXoWrtw43uryrtF1UZFy8WF18Xrc_yoWDKFg_Ja
+	4IkF4kCrs5AF9aq34jvr43Kry3X3yay3W3CFnxtF48Zw1jv3s8CFZ7Aw1YkryxXr45ur13
+	ZFZ7Grn5AF1IgosvyTuYvTs0mTUanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvT
+	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+	cSsGvfJTRUUUbfkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+	vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+	Cr1j6rxdM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
+	kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWU
+	AwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI4
+	8JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
+	6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
+	AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv2
+	0xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4
+	v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AK
+	xVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUc9a9UUUUU
 
-Hi Wadim
+Add the devicetree compatibles for Loongson-7A2000 and Loongson-3A6000
+gpio chip.
 
-[...]
+Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+---
+ Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-On 28/02/25 15:48, Wadim Egorov wrote:
-> @@ -168,6 +174,7 @@ &cpsw3g {
->  	status = "okay";
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&main_rgmii1_pins_default>;
-> +	bootph-all;
+diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+index cf3b1b270aa8..b68159600e2b 100644
+--- a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+@@ -20,7 +20,10 @@ properties:
+           - loongson,ls2k2000-gpio1
+           - loongson,ls2k2000-gpio2
+           - loongson,ls3a5000-gpio
++          - loongson,ls3a6000-gpio  # Loongson-3A6000 node GPIO
+           - loongson,ls7a-gpio
++          - loongson,ls7a2000-gpio1 # LS7A2000 chipset GPIO
++          - loongson,ls7a2000-gpio2 # LS7A2000 ACPI GPIO
+       - items:
+           - const: loongson,ls2k1000-gpio
+           - const: loongson,ls2k-gpio
 
-One of the child nodes have bootph-all, so drop this from the parent.
-
-BTW don't you need main_pktdma to have bootph-all to go along this for
-ETH boot support?
-
->  };
->  
->  &cpsw_port1 {
-> @@ -182,6 +189,7 @@ &cpsw3g_mdio {
->  	cpsw3g_phy1: ethernet-phy@1 {
->  		compatible = "ethernet-phy-id2000.a231", "ethernet-phy-ieee802.3-c22";
->  		reg = <1>;
-> +		bootph-all;
->  		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
->  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
->  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> @@ -196,6 +204,7 @@ &main_i2c0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&main_i2c0_pins_default>;
->  	clock-frequency = <400000>;
-> +	bootph-all;
->  	status = "okay";
->  
->  	pmic@30 {
-> @@ -318,6 +327,7 @@ serial_flash: flash@0 {
->  		cdns,tchsh-ns = <60>;
->  		cdns,tslch-ns = <60>;
->  		cdns,read-delay = <0>;
-> +		bootph-all;
->  	};
->  };
->  
-> @@ -326,5 +336,6 @@ &sdhci0 {
->  	pinctrl-0 = <&main_mmc0_pins_default>;
->  	disable-wp;
->  	non-removable;
-> +	bootph-all;
->  	status = "okay";
->  };
-> -- 2.34.1
-
+base-commit: 8a5680bffb2f681688b5788751c767fc380ff9b7
 -- 
-Regards
-Vignesh
-https://ti.com/opensource
+2.47.1
 
 
