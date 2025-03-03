@@ -1,155 +1,119 @@
-Return-Path: <devicetree+bounces-154045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C0EA4E993
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:43:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6D13A4E79A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9092A161A92
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:39:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A55FF8C2DFD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 293E423A9A0;
-	Tue,  4 Mar 2025 17:13:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83E58278163;
+	Tue,  4 Mar 2025 16:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YtHyLO03"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="qphRwrCN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1521F4193
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309462780FF
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741108431; cv=pass; b=Imujbs3uATNOcSprtk39b3Bx+k4tEvEOC8wOoHy1VffcIp0pGL4wJ+V1lKLDZxo47Q7B25pSNzE4bIyTe7yehkVXmMYMHHEJUCxxbWlibrHVp/M1S1D/ZOdemUl0+87M9sIWF4Xj42h8WaGzpwTupInH5yIEXxk02X3zXmX7Lz0=
+	t=1741105552; cv=pass; b=Y92DilsLWjbRS/Unq19y4FYHpIHoeOlmfCEkr5q9j7G/a8ZqhJV7GMbj+4Vt9y2uNUjdow6wIPi05gF3VR3ssrqj4aTCi7GYM9jmnM46ZRefEYbDUYV6OUkZ7nNiTl1tMDhqRsbmLknQMZu8jMAA8wSv6E0g0ITMfPE51igd4bA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741108431; c=relaxed/simple;
-	bh=h/6aNDKIJEJax3YQY4YtbeLa1xekm6VvSIFc00ga2qE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lg0gOMdvkSppOK39GZ/1nyGo7BIkwVj7rjwmGwVJSI4p8fvRnlP794KU3s2BmIrg6YZn7+Pr/UvLbdJ7RJC603v+YRSpTWWNkb1MMqxRfAj9jwmTfYDYKg7n17tbFi6eAKZlNAz7F1h0pYwuO6SC95uAJg7rCivzXpYXKYhtzEI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YtHyLO03; arc=none smtp.client-ip=209.85.208.181; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; arc=pass smtp.client-ip=160.75.25.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1741105552; c=relaxed/simple;
+	bh=xjKhMtLA9tK9j8SX+seT9UK5BSImtLHPUuXRUCeDyBc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MMwG79b1vHFYqbKucPrNBiT1ns8iN1l9ZvKGHAy7iI9Tjz+l8M+ldmfgZQgNfui7rB7T0DoGg4U34wAdNZdVVEf546acz/vFG8Qrg8HBVpV3Z7t0oBdkM1PDoEMlcH5diCEp7rEzm7mRnEWRUwPisnIH4u8EcIWy7N65mUPAWGk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=qphRwrCN; arc=none smtp.client-ip=94.124.121.26; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; arc=pass smtp.client-ip=160.75.25.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
 Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id E1E5540B267F
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 20:13:47 +0300 (+03)
+	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id 4D42540D975F
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:25:48 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
 Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20230601 header.b=YtHyLO03
+	dkim=pass (2048-bit key, unprotected) header.d=protonic.nl header.i=@protonic.nl header.a=rsa-sha256 header.s=202111 header.b=qphRwrCN
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dG01St2zFwbL
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:23:36 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6gx33b8BzG3GM
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:24:07 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id DBD3842725; Tue,  4 Mar 2025 17:23:32 +0300 (+03)
+	id 1BEEF42750; Tue,  4 Mar 2025 19:23:51 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YtHyLO03
-X-Envelope-From: <linux-kernel+bounces-541594-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=qphRwrCN
+X-Envelope-From: <linux-kernel+bounces-541610-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YtHyLO03
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=qphRwrCN
 Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 0DA2641C98
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:35:17 +0300 (+03)
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id D97783063EFC
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:35:16 +0300 (+03)
+	by le2 (Postfix) with ESMTP id CEB5D42470
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:47:06 +0300 (+03)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by fgw1.itu.edu.tr (Postfix) with SMTP id 5DC053064C0B
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:47:06 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9684B1884B58
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:34:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B7523A4C44
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 11:41:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADD11FC7D4;
-	Mon,  3 Mar 2025 11:34:19 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2EB202F88;
+	Mon,  3 Mar 2025 11:40:41 +0000 (UTC)
+Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336A51FBCA6;
-	Mon,  3 Mar 2025 11:34:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26EF9201025
+	for <linux-kernel@vger.kernel.org>; Mon,  3 Mar 2025 11:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741001656; cv=none; b=SL3qrAt7irPBKhoXB3JhluKKLobKo+zZ9UAUDyUhW+Eozc+fQGUad8b5VNAk7FqmwF98qqV5WLvNaxSHzZ3MuEq5blkdh4N0DEwmUJiFJBXcMjUHD77BJZEhUYb9meXnOVsbw7wlvqiGCR7Tsg2TTtRU/5BikEQUsVnl5HUparM=
+	t=1741002039; cv=none; b=akcIzpIasZpnpd61PdZNTbo4iBwhXCrv0YD4xnaV91IJbExMW2Bd/kWSU0yO6tXJSdKxna/4YcC0/JzsHY9idt/+PhP6xECJ+NfIQc4ITmI3ArRntpMaPjr2i/Vo6IXMAT+JrJH6MMPICVwxc8ck00ctmPXyvByMjLBCP1CTJE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741001656; c=relaxed/simple;
-	bh=h/6aNDKIJEJax3YQY4YtbeLa1xekm6VvSIFc00ga2qE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WjqdfL4xdG+Jy82vmxx0U5OZ2+wu+V6kvN2iYK4YtaPFdX1AM50RdEcrK/7SkP5eQHssfw2S/l/V4DF+DkHG7j/FdKm+XZuWFKlcz7JD1bqdb4gjFRp5/yAL9Mouhl06eqffo/AalbFRQA1AiholJuWbNz1nDLor7fVOBnJw8vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YtHyLO03; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30615661f98so45009581fa.2;
-        Mon, 03 Mar 2025 03:34:14 -0800 (PST)
+	s=arc-20240116; t=1741002039; c=relaxed/simple;
+	bh=xjKhMtLA9tK9j8SX+seT9UK5BSImtLHPUuXRUCeDyBc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AWULaN5Ll8LqoxdqPjmwU3t3VugyIlHTRkOCw4Gqw8CauUau8SqlRIMjRa0QNdEjhxKkERz9h01PluX9sRWybJ0HwE71gw3JrZLzN5m0q0qqeSCV1GM/ya2CB9BKWV7sQVkWlAtaN6r4FkkiXp9RkJK8rStO39FVDOj8Phn+Wr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=qphRwrCN; arc=none smtp.client-ip=94.124.121.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741001653; x=1741606453; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jKyByvqg+jAL9PKNdpeqdSWpvScxjw4N93b4UfEb/Uo=;
-        b=YtHyLO0357ECTGFU22Up8x85UJV4NccqO2ot5RpmvHfIPZ3vvnrXJXeWuvH0Y83c0j
-         vDzYQjj3Vu7e9vE8pD86bwSQ52XKgbgblv8hN0lYcDNpx8AKWVt18gUW3PjKBCuyLtJc
-         xDmrQAktlv31L6f6rSG6CRyBAl26GxvCCWCfu0TDwnItIPIXy5Es01HjrGlFC5OB9nNU
-         1Z6W5BmobOIplVYoodfBNtNlBcxp+UrYNBxykmc56WEMcsfCE7JdWLIrpQ2qjJrhMw/4
-         ERCfqG4I2Un9Ene8LGq87OLauDH1L2F2yxgjrVI0PmpKJB+NhUMlspnU7tSVKowMU7CY
-         MBhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741001653; x=1741606453;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jKyByvqg+jAL9PKNdpeqdSWpvScxjw4N93b4UfEb/Uo=;
-        b=k6EQ7q0zetGUI/555PRqH2gjr191Kzn0t0GmkI/e7qOFKNX3DrFfC0I56xI62K972d
-         piyNAyGB2lnnHCAwdW+9Dmo4OJ4Ntkg1AvcIr6XrSZ2L8I4MawgRkNegkF0hUKYVh5Lz
-         7w+flSPp/H+en5bLzlf8bhUj4Pmiaixqr+RwVbgFqbfZ6vsy5in9nJQ56OCJdqWf9uUr
-         OMRs70Brgp8yQJ53Z+Z5OFjNOh2K6Xc9u1BlVmSvJUNerD0/S6+RrVXn3YY+xfA4sWHJ
-         h9vfSWNyqmZs+TM0CvUyxvnImBjXcl/GMFi+R10xLGQ9x+lc1WvtaJFJsXsaqOGIeJr9
-         72rg==
-X-Forwarded-Encrypted: i=1; AJvYcCV631R08IpNvPcBxg+9IMIJ5u/GB3wJZTDY3AkMkRJMS1G2KpcH5q1EOcAGItKcaSF4CMGgE7YQKbAwEu980WG0T0U=@vger.kernel.org, AJvYcCVbbkbKWHL3bqDhxp6wCOEJQ9qI0OhmeHlXqErvvDCPOGC+6C4s4woa8MuH6xckjrGTJMXi332XMhd4@vger.kernel.org, AJvYcCWJyIR02SyElbjgmEBH+WW5F2+fUyiLKu37jGmplrPOYY8/QWchAF2KQ1iZ++ZeCJbc+B8Uu41n8xm+Lg==@vger.kernel.org, AJvYcCWToZiGzVrgaBEL1eyPnyF6/ezpNF/mcrtJNaiXzMAELupn3xwq2e4TeOcHFwNmQPYE0f1arh2ax8P26cwH@vger.kernel.org, AJvYcCXA5vgkNQlQc7KLPxPnBN2lx8vZ/wn5C0H26nZ+1+kEGPXiBfJORVKhPUPiP+mQ3wQb5HnP5pjKmOrA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgzoiniqZGGCdPNS5L1npXo+wc6V/M+XtlOnAPhWDWCSjvTPI3
-	8PGaheL5A4J2jrfVIk+tu37p6ahV9fNSh9UUqzFn4JbNmGXppxqK
-X-Gm-Gg: ASbGncu7haFeXXOgJcaB2VdkAH8CjYLEVLRMyGOsnB6XymcSsz414jORsB+yk7Cn7Tt
-	xco+h2H+J8oN5eltI8MXjQ0LuAoD50irpO9zJGQ3bxbyZZFofV+IKuw8OAx+9OQsGEl9S5mTRrL
-	FSxWN3gVqTWWIqQeUTXwt8zlchbvhfvlWz98MmjNQZY5fTb5RcKzRqgPPYDYviZZnkRusT8T003
-	mpM5ynOlMUrhMjnk6xki08udKgkk1fBdFNkiOKCjR+x2Dcd91kYd/nL53B05KFVzis105jlmAqe
-	jilsYjxsQaBZTsf3IoKpGwve01Qn4yzQrAPtWeh2l3K1J44inYSHfUSGzetoUUmizFdFqHUpcy1
-	pMD7MqRODbhc=
-X-Google-Smtp-Source: AGHT+IH2q/EQ50OKDdOvQmK3DgcD8QV9qiZg9HjaiRlsRxpoAX3Icmu9TOCjXHgkc5dFCtxPesT+sQ==
-X-Received: by 2002:a2e:9515:0:b0:307:dc1f:e465 with SMTP id 38308e7fff4ca-30b9326b162mr42530121fa.22.1741001653116;
-        Mon, 03 Mar 2025 03:34:13 -0800 (PST)
-Received: from mva-rohm (mobile-access-2e8451-125.dhcp.inet.fi. [46.132.81.125])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30b86875b76sm14035841fa.91.2025.03.03.03.34.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Mar 2025 03:34:12 -0800 (PST)
-Date: Mon, 3 Mar 2025 13:34:06 +0200
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Guillaume Stols <gstols@baylibre.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH v5 08/10] MAINTAINERS: Add IIO ADC helpers
-Message-ID: <78c18b224cd18b1bd83eea51c7e52dcea28e3d50.1740993491.git.mazziesaccount@gmail.com>
-References: <cover.1740993491.git.mazziesaccount@gmail.com>
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=W7xQaIM8KUgQYXUjWEz/yyKUU3dOwVVtoiKveZse1LQ=;
+	b=qphRwrCNarcdXMc+8nT9gMvUDncjj28vFRItzfiNE/jdOd2yOkJll/C0YqOI+M2Lv7xxVV69I4kDC
+	 EabyatzTV4QIi2a/uhHtenSOQTvgnl5afF0HzFmvDBTlBx3REPp83KwvYQxLaqXi/7tk4a3czrMRSI
+	 xgOPVkiNuzqBXgPhGvTeLVEAHDwWVaCBb56qs9Zz5cVnGinA1MkMCkialX23Gp8qC6Mdum9rxl4KCu
+	 3VMeU0juaMaLuz2lcY4aa2AjD6nutiVQVBifdXvBV3CXO1CKO+e2ypMhFdH54HYn4n/U6bDSNx7C9U
+	 Zxl8AX8zA0VD+Ja7BOpB/LKmPsgqzqQ==
+X-MSG-ID: 51c43871-f824-11ef-a39b-00505681446f
+Date: Mon, 3 Mar 2025 12:40:34 +0100
+From: David Jander <david@protonic.nl>
+To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron
+ <jic23@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>,
+ linux-pwm@vger.kernel.org
+Subject: Re: [RFC PATCH 7/7] dt-bindings: motion: Add motion-simple-pwm
+ bindings
+Message-ID: <20250303124034.726ba698@erd003.prtnl>
+In-Reply-To: <tm57fsmijq4t4y4dpmtss63ekzpm5oefir5tz4aioxq5dx4or6@lgoqjpxc3axh>
+References: <20250227162823.3585810-1-david@protonic.nl>
+	<20250227162823.3585810-8-david@protonic.nl>
+	<20250228-wonderful-python-of-resistance-d5b662@krzk-bin>
+	<20250228102201.590b4be6@erd003.prtnl>
+	<9a1d75a2-66c0-46b6-91a1-4922b892dfb1@kernel.org>
+	<20250228110931.7bdae7fd@erd003.prtnl>
+	<tm57fsmijq4t4y4dpmtss63ekzpm5oefir5tz4aioxq5dx4or6@lgoqjpxc3axh>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -157,71 +121,120 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5Rvc/P61F8vV1THI"
-Content-Disposition: inline
-In-Reply-To: <cover.1740993491.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6dG01St2zFwbL
+X-ITU-Libra-ESVA-ID: 4Z6gx33b8BzG3GM
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741713089.25766@iLDLqwNvifL85U7mJohH5w
+X-ITU-Libra-ESVA-Watermark: 1741710289.92701@dGuy9sQZFRSQ1g/Q2muhLw
 X-ITU-MailScanner-SpamCheck: not spam
 
 
---5Rvc/P61F8vV1THI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Dear Uwe,
 
-Add undersigned as a maintainer for the IIO ADC helpers.
+Thanks for chiming in!
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
-Revision history:
-RFC v1 =3D> v2:
- - New patch
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Fri, 28 Feb 2025 16:18:05 +0100
+Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org> wrote:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8e0736dc2ee0..5b96fb864227 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11208,6 +11208,13 @@ L:	linux-media@vger.kernel.org
- S:	Maintained
- F:	drivers/media/rc/iguanair.c
-=20
-+IIO ADC HELPERS
-+M:	Matti Vaittinen <mazziesaccount@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	drivers/iio/adc/industrialio-adc.c
-+F:	include/linux/iio/adc-helpers.h
-+
- IIO BACKEND FRAMEWORK
- M:	Nuno Sa <nuno.sa@analog.com>
- R:	Olivier Moysan <olivier.moysan@foss.st.com>
+> Hey David,
+>=20
+> On Fri, Feb 28, 2025 at 11:09:31AM +0100, David Jander wrote:
+> > On Fri, 28 Feb 2025 10:37:48 +0100
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >  =20
+> > > On 28/02/2025 10:22, David Jander wrote: =20
+> > > >    =20
+> > > >>> +
+> > > >>> +  motion,pwm-inverted:
+> > > >>> +    $ref: /schemas/types.yaml#/definitions/flag     =20
+> > > >>
+> > > >> And PWM flag does not work?   =20
+> > > >=20
+> > > > I have seen PWM controllers that don't seem to support the
+> > > > PWM_POLARITY_INVERTED flag and those where it just doesn't work. Sh=
+ould all   =20
+> > >=20
+> > >=20
+> > > Shouldn't the controllers be fixed? Or let's rephrase the question: w=
+hy
+> > > only this PWM consumer needs this property and none of others need it=
+? =20
+> >=20
+> > CCing Uwe Kleine-Koenig and linux-pwm mailing list.
+> >=20
+> > I know that at least in kernel 6.11 the pwm-stm32.c PWM driver doesn't
+> > properly invert the PWM signal when specifying PWM_POLARITY_INVERTED. I=
+ agree
+> > this is a probably bug that needs fixing if still present in 6.14-rc. B=
+esides
+> > that, if linux-pwm agrees that every single PWM driver _must_ properly =
+support
+> > this flag, I will drop this consumer flag an start fixing broken PWM dr=
+ivers
+> > that I encounter. I agree that it makes more sense this way, but I want=
+ed to
+> > be sure. =20
+>=20
+> Some hardwares cannot support PWM_POLARITY_INVERTED. Affected drivers
+> include:
+>=20
+> 	pwm-adp5585
+> 	pwm-ntxec
+> 	pwm-raspberrypi-poe
+> 	pwm-rz-mtu3 (software limitation only)
+> 	pwm-sunplus
+> 	pwm-twl-led (not completely sure, that one is strange)
+>=20
+> . ISTR that there is a driver that does only support inverted polarity,
+> but I don't find it. For an overview I recommend reading through the
+> output of:
+>=20
+> 	for f in drivers/pwm/pwm-*; do
+> 		echo $f;
+> 		sed -rn '/Limitations:/,/\*\/?$/p' $f;
+> 		echo;
+> 	done | less
+>=20
+> . (Note not all drivers have commentary in the right format to unveil
+> their limitations.)
+>=20
+> For most use-cases you can just do
+>=20
+> 	.duty_cycle =3D .period - .duty_cycle
+
+Yes, that is exactly what the relevant code in motion/simple-pwm.c does when
+the "pwm-inverted" flag is present in the DT node.
+
+> instead of inverting polarity, but there is no abstraction in the PWM
+> bindings for that and also no helpers in the PWM framework. The problem
+> is more or less ignored, so if you have a device with
+>=20
+> 	pwms =3D <&pwm0 0 PWM_POLARITY_INVERTED>;
+>=20
+> and the PWM chip in question doesn't support that, the pwm API functions
+> will fail. So the system designer better makes sure that the PWM
+> hardware can cope with the needed polarity.
+
+Thanks for clarifying this!
+
+@Krzysztof, do you think that given this situation it is acceptable to incl=
+ude
+the "pwm-inverted" flag in the dt-schema of the simple PWM motor driver?
+
+The need for an inverted PWM signal is something very common in the case of
+H-bridge motor drivers, where the PWM signal represents the actual logical
+output level of each of the two halves of the bridge. Often the high-side
+switches are used as the free-wheel position, so that 100% duty-cycle on bo=
+th
+channels is actually standstill, while 0% duty-cycle on one channel is full
+speed in either direction. This isn't always the case though, hence the
+importance for this to be able to be selected.
+
+Best regards,
+
 --=20
-2.48.1
-
-
---5Rvc/P61F8vV1THI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfFk64ACgkQeFA3/03a
-ocUpgwf/SNY3Pn6d3XX6wgquUJWMeNypZTRBxzVX+t3Nm+6wYifiTOOpcNdIYHfV
-UEO/B8hbJ6BzXcUxHFFEUnq5pTr/a1gbQvg+rtBnZiXV95/wnLJjJgx9guw7IW48
-BjUoZhymuhP201Y3/EzSSXwe7MnrOTaUfcTwBxZQSsipdd8PK9co9V1EzEGGIeO+
-LqTyj2W1KqdWOE5qqnTZhzLj3fdEYfJoxyUdXWiHJEcmDyoc9qZ0HNnsLa59j5Co
-d+8xCLwqyB6CFOJWkl7gL/92nAyFvn1XzEvpuQGyz2Ouoo1cZexz/6s+UvexWkuo
-Hh1QZj0U9ni99bqIrOfrEk7zUk5lMQ==
-=gikD
------END PGP SIGNATURE-----
-
---5Rvc/P61F8vV1THI--
+David Jander
 
 
