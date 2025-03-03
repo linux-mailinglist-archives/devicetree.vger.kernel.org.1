@@ -1,139 +1,137 @@
-Return-Path: <devicetree+bounces-153313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE46A4BFCF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:06:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F70A4BFDC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 13:08:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 218A23A2AD8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:00:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60CB43A65B1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Mar 2025 12:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7792120E038;
-	Mon,  3 Mar 2025 12:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B442E20D516;
+	Mon,  3 Mar 2025 12:05:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aGOeW4Tm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WaTvUjDQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8FB11CAA71;
-	Mon,  3 Mar 2025 12:00:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038261F3B92;
+	Mon,  3 Mar 2025 12:05:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741003233; cv=none; b=Jd8ZRE137h4mbN0sHnIaOxpHts+QwjrmuroMzxtNB+a30mDmeiFr9OThiPHL5d4E8HZmlSjdTLk1w71IsJ3M+gzuGm+9f0TpsEAzmyxV2989Nz/FLR1Ij88WQOcb4YkiInQ36XZGlYQMn3/H4Xshg6wmfgJvJBvNTpKKPPb5aAA=
+	t=1741003512; cv=none; b=LFLgEtpC9fs3AVG7Q/wvxFKtNPu1OR7Wl3Z1+eF1AgM+NonNykbDttG6SbmVUOr248ujIZ1gJMaz2M7PjrXhGTd1G2/bx8ieaPD1mI4NGmqAPJQj/jULS250gaiS6fuc4FDUYDUJ9WdU3GSMrkSvPnkQq+idWgLfIOhy19gPn98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741003233; c=relaxed/simple;
-	bh=VFeoSGzVzp2v1XgvCh7gFDPeObOphuG8s93CmdXo9RY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mJ5sUpzcUUm7mtP9WgzV2eKRTcC+st5pjxGn+Y+bufJc7QqQn6gU6sx9KHft+Ty3FbBON8caezwLtfIR2MwmvCIGHHs1SthlBQzNCC0fisikEL/hGYtyAIA6haeGwXLOdISA9aNmYDwnPBiORhR6vbmiAIUSIc61ioZQLWZ/Exo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aGOeW4Tm; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741003232; x=1772539232;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VFeoSGzVzp2v1XgvCh7gFDPeObOphuG8s93CmdXo9RY=;
-  b=aGOeW4TmMjSQ7vIHU+tMK5I8R9Sv/enGvAliS/EcJqJ+bcpJfDw5IOY/
-   MR4VHWMHUVNRicmaw/IbwBY6oFkPoE6xXZme1J+quTyxWchhQwPHFaTEe
-   q2lYRg8gxYIrwITwZoQSH6nPpREZClGECbqzwnInAlYVjYz6SP/nNtxl/
-   LJkLZKofcQLW08Xl9ftSVm40Zn9naMUGUSMDu/dpcuFwCRU9x2hbIa802
-   30PJZXwmeTWEIsj+PUHhf8Dj6uEDUav/JgGCwgKTgIiFi4bmI5ZDO2aK7
-   ry/I9hZMuuFxuYl4F9BpG5IOLAYD7vzBMR+1oVjT+pkziJNDdPgr0K9Uf
-   A==;
-X-CSE-ConnectionGUID: 7TPp13B7RGi4+4/24wUZwA==
-X-CSE-MsgGUID: QU23Y/8RRmivgc9kWkx2mA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="67244982"
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; 
-   d="scan'208";a="67244982"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 04:00:30 -0800
-X-CSE-ConnectionGUID: wKAJU+r/To2Xz12sBSBZQA==
-X-CSE-MsgGUID: iTim9FfQTmKv3dVha2I1OA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="117841138"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2025 04:00:25 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tp4T7-0000000GnzB-2gTb;
-	Mon, 03 Mar 2025 14:00:21 +0200
-Date: Mon, 3 Mar 2025 14:00:21 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741003512; c=relaxed/simple;
+	bh=KPrNJ2CjcJgUp4GR4bg6cHXy5cWcuRUCJUll2hZL/t8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oLVZ2E1RhgCeRkDrwVCEZc+TOf2cMIV8aJmamfqKfXK3LtHamgrLOjekaIqI5IjmeHs7UcH5/PiAZLlxRTAyD5qytxtTnxy9PNKVG6aUr+YBylJ7qEkzRc1hYz2KU/GH3Aibvxwe+Ttedt0RsuM8z+T9lsdzSlrELWt3yHklLDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WaTvUjDQ; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54957f0c657so2732891e87.0;
+        Mon, 03 Mar 2025 04:05:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741003509; x=1741608309; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZD/Y8XoH6xZnndtrVVRfg4SWXIuS1zcDn5ZHGdab0Cc=;
+        b=WaTvUjDQYBGNMCcbJlFB4tgXMQ1WqJXxA5dkRp+C0woXNfSGtI57GIH0u2nl4D48h3
+         atGGzTddo0L/tkBCH6vJ8KCbxvyrzZLamJ8Y6WNOKI5a2BseX2J3hdol9SHyoES5n/8j
+         BsJ7llJD1TkdGAvCm7rOxwEEgX70MKt9xeLpIpDH2rUcSt7zuOFYf8z9zp/+iOqKNxRY
+         S+569GXo7iqWAqT4AoeAWogl1N2i9aQuzGHgaz+pCoRC5ixK2mn0igCtpiR5TDXzaRFo
+         cW+KctsQCG7kJDRQ6uRUH6Uud4WQrXYeRD9e7+JkLoeD+EGtWvf9yRisn5wQYSrILKhA
+         OSog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741003509; x=1741608309;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZD/Y8XoH6xZnndtrVVRfg4SWXIuS1zcDn5ZHGdab0Cc=;
+        b=DHKhFP3y1k9Y9c4jC05Pl4e09XJbArX59rqAm5/o1Hs4oD6fcKrSoZOiKgY3mh5+cj
+         jcI28QtAeAahumuoJdZCraVauATvoIeaBsQlvEzEiSqjbmrK6ewuKllyGop0ARE7dUp2
+         TpBl6kwBSFEhCmJrC0JdnEPbOGFQG6bPUZn2LfnKimd9w//OCGOl0uUOnAjB1lNXiOZE
+         TIIzpmujk/LvXrJlzJ1LX6rCjqUGSBJ6V+G34atap0JywuV6NzQVZN6vomYt1le+tVc1
+         0GxGU7idUWT/BY+sQVNGgj3p3ihIMj/bTaQfzxLkvLaLrhSSdAWWVygFzncFcrO6EiSI
+         q/9A==
+X-Forwarded-Encrypted: i=1; AJvYcCVpPjbmt9KfM1N/5dmsSOQ5LFEp4W/wFQM90MLvmUrvVH9otURWN5oWeixpieCO/o1Sos2mb1l8T1VE6IhZ@vger.kernel.org, AJvYcCWBe0J4XDcxunKUsGE0NnwCjyrzSpgVTapw0rTVcLTZpj4neP1WgEP8VWSC17d+HV/xBSl8rZrS5biV@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZg1DkyUxmb6GEsK0KugHGn+zp3znHRoUvIwZqWaVgRdgTujQf
+	mngaGZGhcqKESTFmpi9fBKa272Cxnna0LrGZi44+h402yha/WCdp
+X-Gm-Gg: ASbGncsc/imUGeI56e0US2FIGsZFNa3rpVOgbfgGxxXKGMmEGF2LVb23D9dq66dlEjn
+	DFq2YgJQn8FTscfe4YoF3r1/zwHT1rSCuczoDJJvw9Ckh39Jj4OXiEHVmf8pIMiu06YSvapwzpN
+	ZmP6nBiGq2i58sPdZh2mBRCAotB6XK+VoIt/NM4w5Ry0rhRS5FguRBjXPZv/6rc+zrTknlOr8YJ
+	dYVzxOtBG6iKqts/7pSR0/9BrBUbJ9Lv7TtP1yPFbIDKpZUFVsDf8pYBwB21a/WhNzTwFSEYby3
+	hGHGvXqCONjeFfvGPEfTcQLrNxAJ9LmYyszA
+X-Google-Smtp-Source: AGHT+IFajLosPc/MMTY5likqjVO4/GgB93fvKU661xoydwj1RgBeY4c9Du1+nVVmh/F5sHfpMzHNmQ==
+X-Received: by 2002:a05:6512:ba8:b0:548:878b:ccb3 with SMTP id 2adb3069b0e04-5494c3756a6mr4633661e87.25.1741003508733;
+        Mon, 03 Mar 2025 04:05:08 -0800 (PST)
+Received: from xeon.. ([188.163.112.51])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549576b88d9sm869095e87.12.2025.03.03.04.05.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Mar 2025 04:05:08 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH v5 02/10] property: Add functions to count named child
- nodes
-Message-ID: <Z8WZ1dXN7GLBYKvb@smile.fi.intel.com>
-References: <cover.1740993491.git.mazziesaccount@gmail.com>
- <5e35f44db2b4ed43f75c4c53fd0576df9ad24ab2.1740993491.git.mazziesaccount@gmail.com>
- <Z8WXdf8lnivYKiks@kuha.fi.intel.com>
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Maxim Schwalm <maxim.schwalm@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] drm: bridge: add support for Triple 10-BIT
+Date: Mon,  3 Mar 2025 14:04:52 +0200
+Message-ID: <20250303120455.90156-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z8WXdf8lnivYKiks@kuha.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 
-On Mon, Mar 03, 2025 at 01:50:13PM +0200, Heikki Krogerus wrote:
+Triple 10-BIT LVDS Transmitter is used in Microsoft Surface RT and
+MStar TSUMU88ADT3-LF-1 HDMI bridge is used in ASUS Transformer AiO
+P1801-T.
 
-...
+---
+Changes on switching from v2 to v3:
+- place mstar,tsumu88adt3-lf-1 alphabetically
+- fix typos
 
-> > +unsigned int device_get_child_node_count_named(const struct device *dev,
-> > +					       const char *name)
-> > +{
-> > +	const struct fwnode_handle *fwnode = dev_fwnode(dev);
-> > +
-> > +	if (!fwnode)
-> > +		return -EINVAL;
-> > +
-> > +	if (IS_ERR(fwnode))
-> > +		return PTR_ERR(fwnode);
-> > +
-> > +	return fwnode_get_child_node_count_named(fwnode, name);
-> > +}
-> > +EXPORT_SYMBOL_GPL(device_get_child_node_count_named);
-> 
-> Sorry if I missed something in the v4 thread, but why not do all the
-> checks in fwnode_get_child_node_count_named(), and make this an inline
-> function?
+Changes on switching from v1 to v2:
+- sort compatible alphabetically in schema
+---
 
-+1, or drop the checks and make it return 0 depending on the follow up use cases.
+David Heidelberg (1):
+  dt-bindings: display: extend the LVDS codec with Triple 10-BIT LVDS
+    Transmitter
 
->         static inline unsigned int
->         device_get_child_node_count_named(const struct device *dev, const char *name)
->         {
->                 return fwnode_get_child_node_count_named(dev_fwnode(fwnode), name);
->         }
+Maxim Schwalm (1):
+  drm/bridge: simple-bridge: Add support for MStar TSUMU88ADT3-LF-1
+
+Svyatoslav Ryhel (1):
+  dt-bindings: display: extend the simple bridge with MStar
+    TSUMU88ADT3-LF-1
+
+ .../devicetree/bindings/display/bridge/lvds-codec.yaml       | 1 +
+ .../devicetree/bindings/display/bridge/simple-bridge.yaml    | 1 +
+ drivers/gpu/drm/bridge/simple-bridge.c                       | 5 +++++
+ 3 files changed, 7 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
