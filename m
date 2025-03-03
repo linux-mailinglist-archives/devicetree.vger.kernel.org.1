@@ -1,100 +1,95 @@
-Return-Path: <devicetree+bounces-153956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9952EA4E569
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:18:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39BA3A4E2C4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:18:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8888988087B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:02:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5040A7A8F0F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:15:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB18127FE85;
-	Tue,  4 Mar 2025 15:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589F4286291;
+	Tue,  4 Mar 2025 15:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nq0wc9mP"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TGmDv4Qy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from beeline1.cc.itu.edu.tr (beeline1.cc.itu.edu.tr [160.75.25.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59629292FBD
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:44:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9FC262D1F
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 15:09:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.115
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741103062; cv=pass; b=eSbI1Iorv+V2ajNjFpfY9ThY/Sp58VXGTFHesiQqBbKHFaKCCpPCgGJlVQMU3TXmjVOBa88MbUfzxI/Y9fVi8onS7Ih6zW6ij3zb2wJh29GgwTevLcPmZxUb85X5G+91GWZcmO8+BOY6p4309rB3sX6H7gdAM/WlJIfuPEmDD5U=
+	t=1741100957; cv=fail; b=m1Xc/BWxlLRK9obJfeiMqXhqOXqSV22nfmIRvqPZqJLxfRXMDfg954y14o+DHltoBsysxX/01etgDDMapwewH6N8jkdHiUawvLR2fcM2A5DYIs/3xf/VzyKukDN3vzN97MGZrVvY7wuCAoNrfndhaqfYNB05sqvsrfbOuPbExAg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741103062; c=relaxed/simple;
-	bh=KD/u2uj8WkbEL97tLItjWeuPMc7ZQab5ZdYmsWVBdF8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=uZIVdSCqxqP8SGBiRpE8o+YMQPzyvA+x8ruvqsibEjBeCr67kQpy+97EPe1ArB3EN+rz6lokDAW4brYUYc17lFbWVcWo/dY038Y4X+nkVfVs2ud/kmNvCdvcg2U4qW0vkgcXd69RpcwZiApgXsODqoB8fyYvrjw9NIugzwzef/w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq0wc9mP; arc=none smtp.client-ip=10.30.226.201; arc=pass smtp.client-ip=160.75.25.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kernel.org
+	s=arc-20240116; t=1741100957; c=relaxed/simple;
+	bh=4Rr8+O3wDPGZk2pARDgzHZT5OsxtADYeUZjSZlkVi/4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=r+kTSYWZDQrnuAzfATdTPZqqLcnfqPCR+BYMFX/K2wBWF9oaI4nuLj19QXWFeqZzigsCxNkwTutSMahi5IrZm3IiwLXTnoL9wr3udH5xtc58FVih9mV6PCqvJyoTIOF/Xoiqe8HGXZZYWo4ztyau0S+YlHELO3fVzcjZOStDN+I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TGmDv4Qy reason="signature verification failed"; arc=none smtp.client-ip=10.30.226.201; arc=fail smtp.client-ip=160.75.25.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (lesvatest1.cc.itu.edu.tr [10.146.128.1])
+Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id A6DD440D046E
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:44:19 +0300 (+03)
+	by beeline1.cc.itu.edu.tr (Postfix) with ESMTPS id D340840D5717
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:09:13 +0300 (+03)
 X-Envelope-From: <root@cc.itu.edu.tr>
-Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=Nq0wc9mP
 Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6g1J08XlzG18n
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:42:44 +0300 (+03)
+	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6fDc0NR8zFyYW
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:07:28 +0300 (+03)
 Received: by le1 (Postfix, from userid 0)
-	id 6F5B142731; Tue,  4 Mar 2025 18:42:26 +0300 (+03)
+	id 84CDC42720; Tue,  4 Mar 2025 18:07:21 +0300 (+03)
 Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq0wc9mP
-X-Envelope-From: <linux-kernel+bounces-541761-bozkiru=itu.edu.tr@vger.kernel.org>
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TGmDv4Qy
+X-Envelope-From: <linux-kernel+bounces-541779-bozkiru=itu.edu.tr@vger.kernel.org>
 Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq0wc9mP
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TGmDv4Qy
 Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
-	by le2 (Postfix) with ESMTP id 8B7014261C
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:07:20 +0300 (+03)
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by fgw2.itu.edu.tr (Postfix) with SMTP id D55122DCE0
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:07:19 +0300 (+03)
+	by le2 (Postfix) with ESMTP id 5332A41B74
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:15:12 +0300 (+03)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by fgw2.itu.edu.tr (Postfix) with SMTP id 2C5F92DCDE
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:15:12 +0300 (+03)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD6EE7A2581
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:06:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED0FB188E279
+	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095EB211707;
-	Mon,  3 Mar 2025 13:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA8FF212FBE;
+	Mon,  3 Mar 2025 13:14:28 +0000 (UTC)
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E26713FEE;
-	Mon,  3 Mar 2025 13:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395BB212B0A;
+	Mon,  3 Mar 2025 13:14:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741007223; cv=none; b=h0HM2SGzxFYec7/QB7DNpJaJxFyNUeAP15Rx/yP1sVIF1pmj5zeI3AVrD03NFiJ3H/8m61Fn94ZJPpfR4//+EWnA4oKyqR6Jz60lRQWMleZ/YhzxO+1FqjL8R+bMsmI599mFkaR2BFw33NZasyO9Uw6/KKTHFf7jfKVWIjfOQJ4=
+	t=1741007666; cv=none; b=UwHZNnuuZe6vt7V45C8137vf4uxCWM/Tcu4n3W5Vu8C3aKZ2yfjsUbGVFccoCWJYIf2HzNlkgNCrFMV6iMM6qsjA8XfvTBjPivr3IhWTgPzkSBnXkoNMLaklXYpKul13ro9xFEnLV60sUJL7u94fA7yHr7xIVNh268uMT909ku4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741007223; c=relaxed/simple;
-	bh=KD/u2uj8WkbEL97tLItjWeuPMc7ZQab5ZdYmsWVBdF8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Kp0slKdJrq2TfP+8ltHXw9/39JY1oo68cgPAeIpoAZLkKmTI1LDTMHuhvnTg6vDABid9XSsiz0QNgt/WuY/LlRrbcETK09t286B36V7btmIoO64k6pP7F67jx1yl9Z5h6JkQKpNo8SUSscYdy5ov/NDkTooJ8Gfn4E8grlL+OwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nq0wc9mP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C4F7DC4CED6;
-	Mon,  3 Mar 2025 13:07:02 +0000 (UTC)
+	s=arc-20240116; t=1741007666; c=relaxed/simple;
+	bh=FiWSvzkRIMYnufn/6j3BHnlJOVYfPeryI4S3GXt0vAc=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=KgK2w1FEydzIwL04wsvM0N4lmt2qa0Zua2a/wUiRTgcWWoRXFLwOv//BRE3GNLa/wBc54ooG+FDVT7rm0sDoExzJb6Ss7EMhZDQal4eV4Y/NYfvW7E+4H6FHcvjb6KUHWsOccbyk4CvNHudC7dBMDH7pGGscEOGRZbvpDJNSS48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TGmDv4Qy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D98BBC4CEE9;
+	Mon,  3 Mar 2025 13:14:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741007222;
-	bh=KD/u2uj8WkbEL97tLItjWeuPMc7ZQab5ZdYmsWVBdF8=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=Nq0wc9mPshq8VCggTjzNZISVHcZ4iX0WG/pkAbnAhdY0iu+OXmWJhHQmIz7I+8hQf
-	 jZFsbgo2kUQJiGuAzarrlvtP21ZPl1UgLisuRUA3JLeZtA73GWrpI2Zizr8cUgbiJZ
-	 53i9SLDsEkVRK7XR2i13xpGZQXaTULLKSPlhqQ1g302pZdKxrenULZBjGQlRmOqTbJ
-	 IC2RWx56coREVyBpnUKsYG0vAVKT9Qu1Rr9OAawClystfs6xKQGEDks4kcE8JSF2sa
-	 OcPPUFxLgIZEZ7Y9khJZAGklQ7cXevHLEZb8z21tuE2HX6W5rzV82aLjckGWK/MvTs
-	 eKyWYY0qBZzpA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B15BCC282D1;
-	Mon,  3 Mar 2025 13:07:02 +0000 (UTC)
-From: "Chester A. Unal via B4 Relay" <devnull+chester.a.unal.arinc9.com@kernel.org>
-Date: Mon, 03 Mar 2025 13:06:50 +0000
-Subject: [PATCH] ARM: dts: BCM5301X: Fix switch port labels of ASUS
- RT-AC5300
+	s=k20201202; t=1741007666;
+	bh=FiWSvzkRIMYnufn/6j3BHnlJOVYfPeryI4S3GXt0vAc=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=TGmDv4Qy0cdXTql42zoM9MZxyD+mzsNU84Gh2a9Bf7K6p/0qDRxKws68ZDFYHyWON
+	 334fbrKihCSvqDRJGspPw/djb7ne82q3xjesrA1HfHtPYKLh+uHq4AUBa+U1W21glj
+	 e5TM4yUFaV3LSXJYgJLVnlCHzktDkF5R2x2eLbVIgBHr6vJ8UMs4V2N3i/ZxSByZCr
+	 +LHt2BQ6LdRwXX+N7gEsTHfI4yVgFToA8SUQwczwR7qXqArTYC98YLw1nU+ks3qvP/
+	 KzNygSvESuVw7PKUv07+kfDwmhA+N5UwLVHM3xplqdt0imjVpHsVd3t2xOkMMa5xna
+	 hBrhbq/qTUfLA==
+Date: Mon, 03 Mar 2025 07:14:24 -0600
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -102,94 +97,89 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250303-for-broadcom-fix-rt-ac5300-switch-ports-v1-1-e058856ef4d3@arinc9.com>
-X-B4-Tracking: v=1; b=H4sIAGmpxWcC/x2NQQqDMBAAvyJ77sI20Yb2K6WHmKx1DzWyG2xB/
- HuDx4FhZgdjFTZ4dDsob2JSlgbXSwdpjsubUXJjcOQG8uRxKoqjlphT+eAkP9SKMQ2eCO0rNc2
- 4Fq2GIdzGQD1nF+7Qaqtys8/T83Ucf/OpD9N5AAAA
-X-Change-ID: 20250303-for-broadcom-fix-rt-ac5300-switch-ports-776b704ed279
-To: Florian Fainelli <florian.fainelli@broadcom.com>, 
- Hauke Mehrtens <hauke@hauke-m.de>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Tom Brautaset <tbrautaset@gmail.com>, 
- =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, 
- Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, "Chester A. Unal" <chester.a.unal@arinc9.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741007221; l=1355;
- i=chester.a.unal@arinc9.com; s=arinc9; h=from:subject:message-id;
- bh=pnEACfUXw4i/i7KomdhkZyj3vwZ11bi8No1VYOFnwDs=;
- b=qLc0CTqWEMG6zp53x9qNafll5DaO+iOLlCT86V716Yc1ca2n5cHbE8Kbt6Cg9WBKQgh9SCUWJ
- F5fOYwVex56C5CTxFBl9oDM/M4keZbY0lv0dqahvCYqSn3bKx9yQyqv
-X-Developer-Key: i=chester.a.unal@arinc9.com; a=ed25519;
- pk=/g3vBAV0YSvcIpSQ052xJbid7nrPXz8ExGKhTEuc6IY=
-X-Endpoint-Received: by B4 Relay for chester.a.unal@arinc9.com/arinc9 with
- auth_id=306
-X-Original-From: "Chester A. Unal" <chester.a.unal@arinc9.com>
-Reply-To: chester.a.unal@arinc9.com
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: wim@linux-watchdog.org, krzk+dt@kernel.org, linux@roeck-us.net, 
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, claudiu.beznea@tuxon.dev, vkoul@kernel.org, 
+ linux-watchdog@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ conor+dt@kernel.org
+To: Ryan.Wanner@microchip.com
+In-Reply-To: <cover.1740675317.git.Ryan.Wanner@microchip.com>
+References: <cover.1740675317.git.Ryan.Wanner@microchip.com>
+Message-Id: <174100756391.1496568.10334189756404294750.robh@kernel.org>
+Subject: Re: [PATCH v2 0/2] Add System Components for Microchip SAMA7D65
+ SoC
+Content-Transfer-Encoding: quoted-printable
 X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6g1J08XlzG18n
+X-ITU-Libra-ESVA-ID: 4Z6fDc0NR8zFyYW
 X-ITU-Libra-ESVA: No virus found
 X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741707769.19252@HLa5ULSJrkvFArswCMSWMg
+X-ITU-Libra-ESVA-Watermark: 1741705666.3612@tgTFJJgKa47Qe8XPjX0zTA
 X-ITU-MailScanner-SpamCheck: not spam
 
-From: "Chester A. Unal" <chester.a.unal@arinc9.com>
 
-After using the device for a while, Tom reports that he initially described
-the switch port labels incorrectly. Correct them.
+On Fri, 28 Feb 2025 08:24:09 -0700, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+>=20
+> This patch set adds support for the following systems in the SAMA7D65
+> SoC:
+> - DMAs
+> - Chip ID
+> - Dual watchdog timer.
+>=20
+> Changes v1 -> v2:
+> - Removed pathes that have been accepted and applied from v1 [1].
+> - Corrected missing newline in dt-binding.
+> - Corrected mismatch in watchdog dt node.
+>=20
+> 1) https://lore.kernel.org/linux-arm-kernel/09eafe54-c262-4db4-b11d-064=
+4a1f90a14@tuxon.dev/
+>=20
+> Ryan Wanner (2):
+>   dt-bindings: watchdog: sama5d4-wdt: Add sama7d65-wdt
+>   ARM: dts: microchip: sama7d65: Add watchdog for sama7d65
+>=20
+>  .../devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml    | 4 ++++
+>  arch/arm/boot/dts/microchip/sama7d65.dtsi                  | 7 +++++++
+>  2 files changed, 11 insertions(+)
+>=20
+> --
+> 2.43.0
+>=20
+>=20
+>=20
 
-Reported-by: Tom Brautaset <tbrautaset@gmail.com>
-Fixes: 961dedc6b4e4 ("ARM: dts: BCM5301X: Add DT for ASUS RT-AC5300")
-Signed-off-by: Chester A. Unal <chester.a.unal@arinc9.com>
----
- arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
-index 6c666dc7ad23ef7c31ac22904c39789838caea2e..01ec8c03686a66dd1efa439333f83737fe572191 100644
---- a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts
-@@ -126,11 +126,11 @@ &srab {
- 
- 	ports {
- 		port@0 {
--			label = "lan4";
-+			label = "wan";
- 		};
- 
- 		port@1 {
--			label = "lan3";
-+			label = "lan1";
- 		};
- 
- 		port@2 {
-@@ -138,11 +138,11 @@ port@2 {
- 		};
- 
- 		port@3 {
--			label = "lan1";
-+			label = "lan3";
- 		};
- 
- 		port@4 {
--			label = "wan";
-+			label = "lan4";
- 		};
- 	};
- };
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
----
-base-commit: 768953614c1c13fdf771be5742f1be573eea8fa4
-change-id: 20250303-for-broadcom-fix-rt-ac5300-switch-ports-776b704ed279
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Best regards,
--- 
-Chester A. Unal <chester.a.unal@arinc9.com>
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=3Dy for arch/arm/boot/dts/microchip=
+/' for cover.1740675317.git.Ryan.Wanner@microchip.com:
+
+arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: watchdog@e001d00=
+0: Unevaluated properties are not allowed ('clocks' was unexpected)
+	from schema $id: http://devicetree.org/schemas/watchdog/atmel,sama5d4-wd=
+t.yaml#
+arch/arm/boot/dts/microchip/at91-dvk_som60.dtb: /ahb/apb/adc@f8018000: fa=
+iled to match any schema with compatible: ['atmel,sama5d3-adc']
+arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dtb: nand-c=
+ontroller: #address-cells: 1 was expected
+	from schema $id: http://devicetree.org/schemas/mtd/nand-controller.yaml#
+
+
+
 
 
 
