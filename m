@@ -1,147 +1,173 @@
-Return-Path: <devicetree+bounces-154138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36632A4EF94
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:52:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 275BBA4EFAB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:58:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 716A118909B6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:52:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 355BE189197D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:58:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE30C2780F2;
-	Tue,  4 Mar 2025 21:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 418172780F7;
+	Tue,  4 Mar 2025 21:57:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Tkh7mn3A"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QuM4YPpw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4222780E4;
-	Tue,  4 Mar 2025 21:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3DA24EAA8;
+	Tue,  4 Mar 2025 21:57:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741125152; cv=none; b=u+FVbccdJvbS1vKp4SVYbu884Ao0HuqRsxfvzgr6j7gtT57G8DRGfHHt4e21uoUU6G97zXQqyjRQ18TJJID/d5JPGgvJqxmiIEcGtwpIfoyLtfwnoPvbZHnRRDURih5Ylir+sdyFumIV5Bs1pVpmKqB6LTPIcwAMKh5Aob0meqs=
+	t=1741125479; cv=none; b=LFJdXP01FfvlhcnW3bmdgfoqN1CXqh+lWhUhBKZVmuAJ4om1avLxpKjpxuTubPNrwfqGrSd6WCp/9BezufykSGl5FoqBS63VM11qHjAYceItW+KZD5h2yVv6PzjQWl3d6AWtK/pSnlU+H9IJvPufdJ0NziJTKHkzXi7hJkcnjO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741125152; c=relaxed/simple;
-	bh=jbUYXbpvU141BlebTQ7l6pAnXZWMdd92RibBqvtskwE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DVO8P7SB4FbAWhxduo+tFKkiNgHrYL/8qkv08pmaD//HSQjDrCoZS6d5e+Wsgg6t2isDz/jhfeBhQWtQH3NU51sLKISRfMO3e3K/I/XAvJIgADxy7dsxJ8oCa/o9X+X4hWn/vLT2vpRWKl5ldtbL1NNZgqu5rvR482NnyE+NmK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Tkh7mn3A; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=JofA2Qh9JGaxtMid0/5sEvR2yQLob0lQuZxap80vKqw=; b=Tkh7mn3A+PYTIgV27zWhch/208
-	ETUALWlqEqZb9jksjEgNDlpzfKLYqN2rarathziQV8Ntjv+PPBBfpKKage0LcF7B5AYw5QcG4mzHk
-	Nds+uv8i40buo1duskWACkkerB1c8+77MtGCmUqDCz/AWnTbCcf/VEohCydBFaftKyZDJ4/Buxmfy
-	mPtQZSVrBco/oLg3OHlqc4Wn15Q5yI3xcUjWkH5zHT1Lf0r43ib9TeG6ezMFV4R1zoTZ6I17a2l91
-	INcWrZvknMxlFFMkx2w45YdSG5m6sc+nEHFuQA6yVC26YXkNz7i4f39l6AJ1KWr3USk5v0Ew3iEAH
-	kPVZlMcw==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tpaBb-0006QR-08; Tue, 04 Mar 2025 22:52:23 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, didi.debian@cknow.org, chris@z9.de
-Subject:
- Re: [PATCH v2 0/2] Slightly improve hardware description of Pine64 RockPro64
-Date: Tue, 04 Mar 2025 22:52:22 +0100
-Message-ID: <2630232.Icojqenx9y@diego>
-In-Reply-To: <757afa87255212dfa5abf4c0e31deb08@manjaro.org>
-References:
- <cover.1740941097.git.dsimic@manjaro.org>
- <174104113599.8946.16805724674396090918.b4-ty@sntech.de>
- <757afa87255212dfa5abf4c0e31deb08@manjaro.org>
+	s=arc-20240116; t=1741125479; c=relaxed/simple;
+	bh=9rRYFsEsVrMx37ehmR6fho88IeXrskKIXHekpFyUXWI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=X3rhG6NvBCtlhA/DUkW+Y7isB3zhTl9gjPzaMMkSwDb6NFYuA0bx/cEoqgC0jAkj0TQcpCv+hygj0LI9PrFuI3LPK35hPzT3Rdq7rLwy2cgYYd9OZOHCWD1ENiAH/4peGBdWb2k6K0W/1SVWsgTyCxWy67RBgR2azmW+G1F+sYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QuM4YPpw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 524AZBvw010211;
+	Tue, 4 Mar 2025 21:57:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=cOIIZ8FZFU7mksi3tzXnVO
+	LfsOb/+Dn0c8S1ublaoZo=; b=QuM4YPpwNKad2gKeH3kn1SbIzyGb/BNNpA/SDH
+	LaCfbCvLjqCvrrZ9vEHnIzpJxXkeMN5bJlR9n8FEUBu2o5giU/4eFMpZAtAoamIy
+	O3oz4T0HCpoEBix2Q4GZWFPVPDPnZpjtG+h2tgleVu3J9RmabbrO8bssP+XpdDuo
+	MxCbgrZdUYHOZJG8xv0wSdxYGR9sphtyza4O+zLAvYkt0RchVwyBw5jbt6V1Srxk
+	ymc3ijmmaAgulVncuAn8HifsX0pn6wIO76Mv6u4bfsqPDlwEhol/zj+wgZ0YBrb+
+	aMYjEAldMVXzkCv97fGuhVTQjinAPWLVBtbE4GzW1pV1SHcw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6wk8y5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Mar 2025 21:57:37 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 524LvaZl014462
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 4 Mar 2025 21:57:36 GMT
+Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 4 Mar 2025 13:57:35 -0800
+From: Melody Olvera <quic_molvera@quicinc.com>
+Subject: [PATCH v2 0/9] phy: qcom: Introduce USB support for SM8750
+Date: Tue, 4 Mar 2025 13:56:33 -0800
+Message-ID: <20250304-sm8750_usb_master-v2-0-a698a2e68e06@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABF3x2cC/22NQQ6CMBBFr2JmbU07gqgr72EIqe1UZgFoB4iGc
+ HcLLty4fD/5700gFJkEzpsJIo0s3LUJcLsBV9v2Top9YkCNmUHcK2mORa6rQW5VY6WnqAIWlnw
+ RDj7TkH6PSIFfq/NafjnSc0jq/jfWLH0X32t3NMu6JHJtzL/EaJRW+mQDGe8wx+ySfI5bt3NdA
+ +U8zx9jxdHoyQAAAA==
+X-Change-ID: 20241223-sm8750_usb_master-f27aed7f6d40
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741125455; l=2726;
+ i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
+ bh=9rRYFsEsVrMx37ehmR6fho88IeXrskKIXHekpFyUXWI=;
+ b=fMWjktR0b5uW/W+F3cLpeOXO8pcUgj/FLwrrdfa0eQzDYpTW3IgRwaXv7Ia42XrK8muNO3r4p
+ 6srtgStylaBAQ0E9wTPuDWGfvlE0xN6w1Ege5Qh8+xV623Ju2HelmiQ
+X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
+ pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=EZcyQOmC c=1 sm=1 tr=0 ts=67c77751 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=3H110R4YSZwA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=wn7q5I4-uf_KSUSPJ7EA:9
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: P1C0mChZInZXEHFmkKKOr-y0o5WpRfNA
+X-Proofpoint-ORIG-GUID: P1C0mChZInZXEHFmkKKOr-y0o5WpRfNA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-04_09,2025-03-04_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ adultscore=0 lowpriorityscore=0 mlxlogscore=946 suspectscore=0 bulkscore=0
+ clxscore=1011 priorityscore=1501 spamscore=0 impostorscore=0
+ malwarescore=0 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2503040175
 
-Am Dienstag, 4. M=C3=A4rz 2025, 07:44:59 MEZ schrieb Dragan Simic:
-> Hello Heiko,
->=20
-> On 2025-03-03 23:36, Heiko Stuebner wrote:
-> > On Sun, 02 Mar 2025 19:48:02 +0100, Dragan Simic wrote:
-> >> This is a small series that introduces small improvements to the way
-> >> Pine64 RockPro64 [1] single-board-computer is described in the DT=20
-> >> files.
-> >> This applies to both production-run revisions of the RockPro64.
-> >>=20
-> >> The introduced improvements boil down to eliminating some warnings=20
-> >> from
-> >> the kernel log, by adding a previously undefined regulator and by=20
-> >> adding
-> >> some previously missing references to the regulators.
-> >>=20
-> >> [...]
-> >=20
-> > Applied, thanks!
-> >=20
-> > [1/2] arm64: dts: rockchip: Add avdd HDMI supplies to RockPro64 board=20
-> > dtsi
-> >       commit: bd1c959f37f384b477f51572331b0dc828bd009a
-> > [2/2] arm64: dts: rockchip: Add missing PCIe supplies to RockPro64=20
-> > board dtsi
-> >       commit: 64ef4a4320e7aa3f0f267e01f170f52b90bf0b1b
-> >=20
-> > I've moved the pcie12v supply up one line.
-> > While in a mathematical sense it's true 12 > 3.3, we're sorting
-> > alphabetical, so it's 1?? < 3?? .
-> >=20
-> > And yes I sympathize with 3.3 < 12, but also have come to appreciate=20
-> > not
-> > having overly many special cases :-)
->=20
-> Great, thanks! :)
->=20
-> I'm fine with the alphabetical ordering, albeit with some caveats
-> described below, but the following part of the patch description
-> should also be removed, if possible, so the patch description fully
-> matches the introduced changes:
->=20
->    Shuffle and reorder the "vpcie*-supply" properties a bit, so they're=20
-> sorted
->    alphanumerically, which is a bit more logical and more useful than=20
-> having
->    these properties listed in their strict alphabetical order.
+Add support for the PHYs and controllers used for USB on SM8750 SoCs.
 
-I've amended the commit, dropping this block
+---
+Changes in v2:
+- Added new QMP PHY register definitions for v8 based QMP phys.
+- Made changes to clean up some code in the M31 eUSB2 PHY driver based
+on feedback received.
+- Added bulk regulator operations in M31 eUSB2 PHY, to ensure that
+both the vdd and vdda12 regulators are properly voted for.
+- Removed external references to other dt bindings in M31 example for
+the DT bindings change.
+- Split DT patches between SoC and plaform changes, as well as the
+PHY subsystem Kconfig changes when introducing the M31 eUSB2 PHY.
+- Added orientation switch and port definitions in the DT changes.EDITME: describe what is new in this series revision.
+- Link to v1: https://lore.kernel.org/r/20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com
 
-> I'm hoping you'll agree that specifying alphanumerical ordering
-> for the properties in the DTS coding style is the way to go, just
-> like it's already specified for the ordering of the nodes.  I'll
-> go ahead and submit an appropriate patch for the DT guidelines.
+---
+Melody Olvera (1):
+      arm64: defconfig: Add M31 eUSB2 PHY config
 
-vpcie0v9-supply =3D <&vcca_0v9>;
-vpcie1v8-supply =3D <&vcca_1v8>;
-vpcie3v3-supply =3D <&vcc3v3_pcie>;
-vpcie12v-supply =3D <&vcc12v_dcin>;
+Wesley Cheng (8):
+      dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Add SM8750 to QMP PHY
+      dt-bindings: phy: Add the M31 based eUSB2 PHY bindings
+      dt-bindings: usb: qcom,dwc3: Add SM8750 compatible
+      phy: qcom: qmp-combo: Add new PHY sequences for SM8750
+      phy: qcom: Update description for QCOM based eUSB2 repeater
+      phy: qcom: Add M31 based eUSB2 PHY driver
+      arm64: dts: qcom: sm8750: Add USB support to SM8750 SoCs
+      arm64: dts: qcom: sm8750: Add USB support for SM8750 MTP and QRD platforms
 
-In the end I don't care _that_ much, but personally I find that
-alphanumerical ordering harder to read ;-) .
+ .../bindings/phy/qcom,m31-eusb2-phy.yaml           |  79 ++++++
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |   2 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |   3 +
+ arch/arm64/boot/dts/qcom/sm8750-mtp.dts            |  24 ++
+ arch/arm64/boot/dts/qcom/sm8750-qrd.dts            |  24 ++
+ arch/arm64/boot/dts/qcom/sm8750.dtsi               | 163 ++++++++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/phy/qualcomm/Kconfig                       |  16 +-
+ drivers/phy/qualcomm/Makefile                      |   1 +
+ drivers/phy/qualcomm/phy-qcom-m31-eusb2.c          | 296 +++++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 221 +++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-usb-v8.h     |  38 +++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v8.h         |  32 +++
+ drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v8.h |  64 +++++
+ .../phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v8.h    |  68 +++++
+ drivers/phy/qualcomm/phy-qcom-qmp.h                |   5 +
+ 16 files changed, 1034 insertions(+), 3 deletions(-)
+---
+base-commit: 20d5c66e1810e6e8805ec0d01373afb2dba9f51a
+change-id: 20241223-sm8750_usb_master-f27aed7f6d40
 
-Because in the example above, my mind now constantly shouts
-"why is vpcie1... after vpcie3... ..... ooooh right, it's alpha-numerical"
-
-But I can live with it I guess ;-) .
-As 3.3 is smaller than 12 afterall.
-
-
-Heiko
-
+Best regards,
+-- 
+Melody Olvera <quic_molvera@quicinc.com>
 
 
