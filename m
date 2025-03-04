@@ -1,114 +1,236 @@
-Return-Path: <devicetree+bounces-153588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0ECAA4D2AE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 05:51:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 725E1A4D2B5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 06:01:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D2F73ADBC3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 04:51:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C91CF3AC306
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 05:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9BF1EC00F;
-	Tue,  4 Mar 2025 04:51:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41E71EEA51;
+	Tue,  4 Mar 2025 05:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jUNmMY6d"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="CmJyw/OT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2088.outbound.protection.outlook.com [40.92.107.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA2A273FE;
-	Tue,  4 Mar 2025 04:51:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741063896; cv=none; b=hLFryyuGyeRzDrekm3YJE5JXqj5WqHQj6fwT02KcaiMdtWxsjKaEFQ+yr8yOsIw+MwDrO0edfudIVIGeyU4NxyqlGUFBYHNvFR56dXY63hh/vCEwJMAoolwc1q//Y84/W6VU3JO0bxzDE+kGxvdx4wXVkrsc1Vq6mqt2xD14sK4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741063896; c=relaxed/simple;
-	bh=7l7riUckfOpM6AM+fvQiXIpldlnQUaymDAQiM5F3XY0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U6tX9kg1p8OPc4Z6gTBoMzcoH9v0TySioZxi5qKYFSwf9LG8KOyEyz2evmEmWnhD3xH93a6PUsK2+RQWM4Ye0xVkBL+V0eG/HtHnCo/oFKpyrE1DD5JMTlLB2UYArvY31hofia8j+IQDpqdIs113uNFx4K5HsRmBJPLEqnp12Zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jUNmMY6d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C06FC4CEE5;
-	Tue,  4 Mar 2025 04:51:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741063896;
-	bh=7l7riUckfOpM6AM+fvQiXIpldlnQUaymDAQiM5F3XY0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jUNmMY6d+Opn6L/0cfBMvAkeUKiumGuKWabzT/IJzk0NQRjEQfdGDPdxj89N2Q4eY
-	 k/m0GUN/8kDr3Saf/UF8zQp6Mpcxy4LgJB0oaq6ZSvaheISRRjqY3HSxrPxVLPvBr/
-	 u3ZnlEuuKGZVb8snPJkHjhkvmIU2Yic8tY0A/bC7peHZy/eDcgIAXNE5WOIeVAZkEH
-	 RHLfdmhWbOtpYbw+7qnYSlxz/lVaQtS/XXFeEb8C/j9wFbdycXbU8JKqQSmfNDyqDV
-	 aWWiCILd4b4ttopzArH6wI5Dw7su2IJjKsOIGTj+Mniq3CVH0Nsm6zh9b01+ILTjzP
-	 sJO1jV2WQBKzw==
-Date: Mon, 3 Mar 2025 22:51:33 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-idp: Update protected clocks
- list
-Message-ID: <yt5sswa42uyrrnvaqwbhatndi2fsfp2ayjslyvzvwkfn7l4oto@jsvc2ukwclqz>
-References: <20250206-protected_clock_qcm6490-v1-1-5923e8c47ab5@quicinc.com>
- <j43f4wu6wgoho2tl4crckemnngyvek5mma6ghkdyqcivk65dcf@gfsimovfuqy5>
- <72cc2c52-1d0d-4a60-93da-14acd5947f1f@quicinc.com>
- <o53nnmt5ypuoms3b37lehtmpwloudusr7647alehvnwsiltsyo@grd6ua7mh4o2>
- <0ab2552a-3b8d-4b4f-8f9e-8b0c4f5bf6ea@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12AF0126C03;
+	Tue,  4 Mar 2025 05:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.88
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741064480; cv=fail; b=RMkM5wMbLuVhBxnwBIoWV1mTfLFNkFUsxY/5RtRKQMUknshjWXQuBo761Bre0KbJpJO7HfGiAr2Au1lOxtRzkViTpFMqGen8FWjhf6RxkCIjDhjKgQq7DeklT+iNOloe4YmUbO/VEHv/wlKT0hYRgQC7+jkXbGffc58a7XSkpUE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741064480; c=relaxed/simple;
+	bh=MWjvhMjQE3P3NmO78RH0zP3bc9RdIqrQWjwMHKN04o8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=o7U8Zc00lHArY/u69QJeZaVWtUc+LRfd+KTLrN0Yc9g6tIvw7zRjV9YnGrvPo/6wvv/cyO+HIGkkKbFYRaP9CELab0mlUhDLsUBrZZ1mx5BUR4BTUMTtjmrTIqjDbvmz0mqB+Nn5Z411u9xA0w+GuXz9MXr2C2pG2vw6Pd6HcC4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=CmJyw/OT; arc=fail smtp.client-ip=40.92.107.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=osJxHBqgtriIRqXhe7LuBYkpnZjFR2ElfUsLERpvXkVSIMLR+eU/XNPhG8i5RNn8ftraHN2xCmMDVFJWPWnrwE+ACnKbb19C1R7qnGCs8foHkVlRDVF9gFTI8DIk9/ZZQRZHiZhnhoJ0jjwfiEC+/H/ai/zCvRaa7jU+IguNeKuyf6ABSx7Y6CwGtvUwTCvmzli+gnOBFqBFg42DzTJvYxhr/q9JXz85x/6M1Av3KFVa84nsQ6V5PGVCZ208vY6bEjkdyAejW54c9WBzlXZ0B6Kg3B5imXNAGh+j7JXoWgMoLHHy7atBsyR4ZjGehQpZOxs6CI88V2Gdqa+tFVbKTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PbqAchl8sQ+ILPVN2Wk4dGR5XM4EttQlIoUWu6JnD+w=;
+ b=rgo5TYzaoAn1GnLFEu2Bc7dzicJ6v092d1jClg8UdGcQaaMR3N8Kdnynd6Of3gey82JHUgOzUSn51VKdhHiFtvVG6UXpr3pvKjNdysUYTNqYQlCccRKpc+15WjRgPt2eZo0qYc+bNr3cCcWjSgMgVZwuxNrXkjZRMgYQ/EW/c5YOfM7Tw4wgV1FWiUPxH2AkLRJ5cJz2xcVe5fD+PEmJegWvZkj75XGwV5Ga70adBgz90Qww0C4pH5t6pRd+tPHvdzF3is7xmYpvK01OT6+wwq+jjiVggb3vRPBhz5UPM+VUWVaIz58TZGEt+oB1/4kFyQsyocdXzmQZ4fJCi4FQBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PbqAchl8sQ+ILPVN2Wk4dGR5XM4EttQlIoUWu6JnD+w=;
+ b=CmJyw/OT8m3A1meCAkRu6OZdvk+HfouNXLPOrJU97/AgtdwhBeDbdbgPnyncuE58W0bq+RHYMH4SBFAbUm/uJfsiu2NDIxNa02eACeSxF//PrNUom+M/dXC2D3EvMkVJ58GIhfsWMHJ6jUs8RrCxQ7tj4X9Hn15yUUMkUmrA0HeKduxBQzsMu0MMPMtlXTJSGp+XyVTHWKfFh9waY38kKLoPbs0ONe3xK6prvuOF/VMkP8hlfzBOUsk2MFhAt4/wzCv5oh2HJirfzDlwPYokOZK6BZ07xQUcTrMkfI+FyZ8E605bCLTNrshWt5A0eh5SBOwn7YAXUgUbks+FSMifZQ==
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9) by SEZPR01MB5422.apcprd01.prod.exchangelabs.com
+ (2603:1096:101:a2::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.28; Tue, 4 Mar
+ 2025 05:01:14 +0000
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::3641:305b:41e2:6094]) by TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::3641:305b:41e2:6094%5]) with mapi id 15.20.8489.025; Tue, 4 Mar 2025
+ 05:01:13 +0000
+Message-ID:
+ <TYZPR01MB5556A170A7D60C75FC134ECEC9C82@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+Date: Tue, 4 Mar 2025 13:00:58 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: qca8k: add internal-PHY-to-PHY
+ CPU link example
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rmk+kernel@armlinux.org.uk,
+ javier.carrasco.cruz@gmail.com, john@phrozen.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <TYZPR01MB555632DC209AA69996309B58C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+ <TYZPR01MB5556D90A3778BDF7AB9A7030C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+ <ae329902-c940-4fd3-a857-c6689fa35680@lunn.ch>
+ <TYZPR01MB5556C13F2BE2042DDE466C95C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+ <55a2e7d3-f201-48d7-be4e-5d1307e52f56@lunn.ch>
+From: Ziyang Huang <hzyitc@outlook.com>
+In-Reply-To: <55a2e7d3-f201-48d7-be4e-5d1307e52f56@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR06CA0009.apcprd06.prod.outlook.com
+ (2603:1096:4:186::17) To TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9)
+X-Microsoft-Original-Message-ID:
+ <3fff1fba-2631-49b8-b419-f0e4f3aa8646@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0ab2552a-3b8d-4b4f-8f9e-8b0c4f5bf6ea@quicinc.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR01MB5556:EE_|SEZPR01MB5422:EE_
+X-MS-Office365-Filtering-Correlation-Id: 03863fb8-0641-45f1-cb6e-08dd5ad9965e
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8060799006|6090799003|461199028|5072599009|15080799006|19110799003|1602099012|3412199025|440099028|4302099013|10035399004;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cDF3cVRraENSd2pYMVlraTJYUWxUREl0YmQ4Yy9hbklqNU9Eb0RQdVh3MmR5?=
+ =?utf-8?B?WWNOQ1dDMGhWV0VFdmhnRnI4ckFuMFpVTlFSNWxTaTM3eDU3dmM0YlYvUDhj?=
+ =?utf-8?B?dHRxOUpCS3UvTU44RTdXZlRMVS8zem40WmUyNWFBOGUzY2lyMXhBc2trMDVU?=
+ =?utf-8?B?WTV0RFo1OGsxSTZhdVlxQWp4LzF4cVhWOHQrNHhlbDUvQ2g1QVl3ZDBxS203?=
+ =?utf-8?B?TENUcVVReDgvRHkyZDFxa3FBRWpLRm0zcTJxTWQyUldQNTlpYisvYzczeFlH?=
+ =?utf-8?B?bWNEc0NYODJZL1ZPb1YxR2lvWnBrV3JmQUdKNE1DR2xHWnhnYjlsdnJqSWZO?=
+ =?utf-8?B?N1pZb0d2M21tSEZnTms1dXdZSnZMK2Qxa2p1blV5dFdwak1nWG9MT3NMY2Nr?=
+ =?utf-8?B?TkdWMkVRWHg3NTdHdERtQVdrZFA5bjQzdWZ6L1grT1MyVHZ6cVdYb3Y5ekZx?=
+ =?utf-8?B?ZGo5MmplVkZsNmFLRDczMDNiVnRJMFkydmRZdDFncHlHcWg5Yjd6UmpIK2cw?=
+ =?utf-8?B?NG42blR4YTVMOFdOclZIMHlKSSs4UDZTNUJGR0o5TGxISW1pNytoMzNMemFH?=
+ =?utf-8?B?ME1lTXBaUnA3b2QwMkorbnc1czNzYkxveVJycWk5SWc5SEcxYkYwT0pSdHlC?=
+ =?utf-8?B?UHVJWVREN0tsMWFiR3kzRjk5WFhvWFhXa0hLVVh5K2IrNmVoMTlyVXhqL1do?=
+ =?utf-8?B?VWJNWG0wSGdzRExOZDJGSklsakloR1B2dStmamZsb1p4VC9iWnZyOXZ1c1Z3?=
+ =?utf-8?B?aUdpQXBLb2dSMFlMc0pjbGw5a21NeHR2bHpwY2RCZEZLZ2ZrdlF0ZlBabjVs?=
+ =?utf-8?B?V25ubk5haG0wdVhRa09NbmpheHhIRXNoRi9IbExkTUkwamFqbWJjU3ZGSTJQ?=
+ =?utf-8?B?TU92b3FtN2gxQ0hldDVJMnJSNGR5WkxMWkltUm03TVprT1NZdnltQlhNbG90?=
+ =?utf-8?B?L2hnNy9hVDhadEJHcHlBZGhxOHVWNU9yK2Zmc0I0amdFV29jSmlNTytaR2N4?=
+ =?utf-8?B?UFdQcFlRd1hTZFZVOXBhaEZqOS90UnJ3ZEd3Ykc3cFgxTXhhMW83R2dkYUdY?=
+ =?utf-8?B?V2JvN093RDVIa25OL1p2M3N3SVU1OE1FbzZCWHRNdEM4endqeWNQOWR1TVVE?=
+ =?utf-8?B?NnVTWVQzOXA3bmRsYlFOazUxa2NTVEZpeHVRRkt4ckV1MU5xSlEzTVNtVlBZ?=
+ =?utf-8?B?TTJHRnU5ZGQyVXRKWWF2ZTRybXVnVDZVN0lWbTY5dE0vNDFUQzcvWjRCRXJB?=
+ =?utf-8?B?U0d6bDQ0Q3dWM3E0MGlpVlgrZGwyR1lxbEtuWjZ0MEg5TkFOdGgxbkY0M0lM?=
+ =?utf-8?B?RkJQSzM1Z2NjcjQzcXhFQlNkTVZTK05rN3RPY2w0eUNFMVNsT0NDVGtoR0lk?=
+ =?utf-8?B?d3FMZCtwMEhBZGx1UXhUYmhBQkJGVE1Ha1daRVJZS05WYWtVWjZLRjdzRWtW?=
+ =?utf-8?B?Si9nVUg4OFErSGJTL0paVTgvT2ZLQlVweExpZjJ2UG5vcmpLazRuaDN6ZE9u?=
+ =?utf-8?B?RE81L2F0elZaRlFVZmJCWjE2Vk9MdXErc2hBanpFcmxYQzI3K28weW9rMmxM?=
+ =?utf-8?B?NFF3aEpuSmkzdmpqcWtYTTB5Rm50dTVWcCtWazIxQUJiRGpISUJwejFaM1Ey?=
+ =?utf-8?Q?5iAHKNyA3TXDxt2/OpJTEdjgm/rWsSTi5MYKc6+9oqhA=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?aDVQQVlQcEdIMEJhSEFnWEgrVEM5T1VJRDFrQStTcGhSdkpqaDBXVUVNNXZh?=
+ =?utf-8?B?MDk2cCtuRjlWVGlqMU1Yb3gvYXZ3b3FWWDhVenNCbXUrTFFRb2VTd0R0T0Fm?=
+ =?utf-8?B?c0l5S0lFYlo2OXYxbDhqK2RPa3RzREJ5UUV5QUhDYjQ2TytRMGVNNFZYZm1x?=
+ =?utf-8?B?SEpMQUlxMXh6Q0pxOTZ2TmpQTjZoZ28vMEZOdDdhM0hMTjV5Qm9sdFlsS1A5?=
+ =?utf-8?B?WVRGYURtQk1rWlNrZ1ZhNDc2N0FQQ29RaUlsRGZLVHdaRWxkME1aRGdMejNL?=
+ =?utf-8?B?MENMYUZrZWNtOTZDOWN1NUYvckJnVTRlSEo2amJmRmM0RjdRMitubEtZekdy?=
+ =?utf-8?B?cWE5N1cxMVhzTHplZ2hTMkxFaWlTT200d1hNTVlJM05hN1p4b1l3Qks4ZUZi?=
+ =?utf-8?B?S1p4VEkxN3JvMXBQMFR1TDAvMWV1N2JmMlJXWGJvMHlDS3BheG1vbzl4dG1o?=
+ =?utf-8?B?Q1I5ZzdaclZETkRhaG0zWFcrZTZ4MTRrL24rLzdyRDhiK0lyT0ZRNXkwSHJN?=
+ =?utf-8?B?U2c0TXJHbW9LMHJEamxmRDgwZkc2NUtVYk9NdW1BcU1PTVhiSGUreXE0eURG?=
+ =?utf-8?B?bTIxbXhJNU94eGhhSy8vVUt2NGphODJOczE4cVpqLzNHSlppeGJtVGlXbS9v?=
+ =?utf-8?B?U2tVSzdXbmxDd0k5ZVpjRTBwWjduUDhwNUJjbzJtTXF6Z3dXcnhDSGs1K0VK?=
+ =?utf-8?B?TjBwdWozYWhEZFlDLzFBYXl1eFA0aVhMa1JDZFRYR3RPZTdwZU1HcXovNWdo?=
+ =?utf-8?B?MlJLVURHbXhsQVFoVHlBZ3J6L2tRTStPWDExbnhLU1hJSmVSdGhwRzF2akYx?=
+ =?utf-8?B?QUNyS29jUXZKTWRrWDRBdEs1TWl3bG5RcW9DQVQ1c0pYWG5RZjI1dUM3dzl5?=
+ =?utf-8?B?VUdwZzREWVA5NXVGTDVDdTNYUi9tYzJpbnFEMDZVK0pPbklvSC9CYlVjMzM2?=
+ =?utf-8?B?VzhseFlWR0d1L1YyRjY3YzQxYUV5VVNROG54OHhwMDdNenBRNzZDUklad3Vs?=
+ =?utf-8?B?aks4bTlRdHVZUHR2cDFmTndlalJBeU9raUp3SlNya3ZKa2p1UmQ1ZTM3NTlP?=
+ =?utf-8?B?V3BFZ0hBRjVzSW1Sa3hXMkRJOXBXSnlLZWx5RDdYMmNyTDloNFlCZUJuTlR4?=
+ =?utf-8?B?OHJxMTZha0Y2My9KRmM4UnM1TlpuWUdGQ25MQ2Fla1kwS0Vsb1lHYlhkczVS?=
+ =?utf-8?B?QmZQWVNyV3p0R3lVTkhxWE52eXRtb3UzT3BqQ2xUMWhLRFJoZE42TVpjYllr?=
+ =?utf-8?B?ZnNCSmhpOFFjS3AxQXk0UjkwczZsR291ZHlyTUhJWVBrMHhxeVBiS0RlZmFl?=
+ =?utf-8?B?VkZOZGx4NFRHSENUTlZoZGhKbXlPWmx4RXQ3enlPTTFNS2tYRnNtUmJ1Tkpq?=
+ =?utf-8?B?bmt4UHY1ZVNDbzBBNG10andKMTVMODBPYnpoMTlyOWZRVGx0VDEzejJxbjFT?=
+ =?utf-8?B?M0c0SFM2MlVVUEovZlB6enRlN2k2TW9LdkpqaE9jQWJRczBHYUs5c1M0TFRz?=
+ =?utf-8?B?enAyNDVkUGZINXJRQTZmV0Z5NjJXWHhQRENLU1AyUWI1bjhMMjJ4K2kwWmlN?=
+ =?utf-8?B?RXdKRm52dDJCTGVoWWFqbGsxNUJldXBlR3RoSUF2emN5dklBWURGY0NqSkFv?=
+ =?utf-8?Q?z8+z0kvCrBQsYP6OLzch3FsZQkzNBfLTF0T2bnO0pFJM=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03863fb8-0641-45f1-cb6e-08dd5ad9965e
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 05:01:13.7195
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR01MB5422
 
-On Thu, Feb 27, 2025 at 09:56:27AM +0530, Taniya Das wrote:
+在 2025/3/4 1:15, Andrew Lunn 写道:
+> On Tue, Mar 04, 2025 at 12:37:36AM +0800, Ziyang Huang wrote:
+>> 在 2025/3/4 0:15, Andrew Lunn 写道:
+>>> ...
+>>>
+>>> The previous patch still causes it to look at port 0 and then port 6
+>>> first. Only if they are not CPU ports will it look at other ports. So
+>>> this example does not work, port 6 will be the CPU port, even with the
+>>> properties you added.
+>>
+>> Sorry, I forget that the following patch is still penging:
+>> https://lore.kernel.org/all/20230620063747.19175-1-ansuelsmth@gmail.com/
+>>
+>> With this path, we can have multi CPU link.
 > 
+> So you should get that merged first. Then this patch.
+
+After checking the code again, the demo 2 has already had 2 CPU link
+(Port0 and Port6). Could I just keep this or should I need to add a new
+case ?
+
+>>> When you fix this, i also think it would be good to extend:
+>>>
+>>>> +                    /* PHY-to-PHY CPU link */
+>>>
+>>> with the work internal.
+>>>
+>>> This also seems an odd architecture to me. If this is SoC internal,
+>>> why not do a MAC to MAC link? What benefit do you get from having the
+>>> PHYs?
+>>
+>> This patches are for IPQ50xx platform which has only one a SGMII/SGMII+ link
+>> and a MDI link.
+>>
+>> It has 2 common designs:
+>>   1. SGMII+ is used to connect a 2.5G PHY, which make qca8337 only be able to
+>> be connected through the MDI link.
 > 
-> On 2/27/2025 9:50 AM, Dmitry Baryshkov wrote:
-> > On Thu, Feb 27, 2025 at 09:42:39AM +0530, Taniya Das wrote:
-> >>
-> >>
-> >> On 2/26/2025 10:12 AM, Bjorn Andersson wrote:
-> >>> On Thu, Feb 06, 2025 at 03:43:21PM +0530, Taniya Das wrote:
-> >>>> Certain clocks are not accessible on QCM6490-IDP board,
-> >>>> thus mark them as protected.
-> >>>>
-> >>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> >>>> ---
-> >>>> Mark few clocks as protected on IDP of QCM6490.
-> >>>>
-> >>>> This patchset is separated out from the series[1] to remove dependency from
-> >>>> the LPASS reset.
-> >>>> [1]: https://lore.kernel.org/all/20240816-qcm6490-lpass-reset-v1-0-a11f33cad3c5@quicinc.com/
-> >>>> ---
-> >>>>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 21 +++++++++++++++++++++
-> >>>
-> >>> I merged the patch adding this board in November 2023, are you saying
-> >>> that for the last 15 months no one has actually booted it!?
-> >>>
-> >>
-> >> I am not sure, I had got request to help boot the board which was not
-> >> due to these clocks.
-> > 
-> > So, was the original submission in November 2023 broken or was it broken
-> > by a later firmware upgrade which started to protect those clocks?
-> > 
-> That's a fair question, probably the later broke it.
+> Please do not call it SGMII+. It is not SGMII if it is running at
+> 2.5G. It is more likely to be broken 2500BaseX, broken in that it does
+> not implement the inband signalling.
+> 
+>>   2. Both SGMII and MDI links are used to connect the qca8337, so we can get
+>> 2G link which is beneficial in NAT mode (total 2G bidirectional).
+> 
+> So is this actually internally? Or do you have a IPQ50xx SoC connected
+> to a qca8337 switch, with copper traces on a PCB? If so, it is not
+> internal.
 
-Given that the now introduced list of protected clocks exactly matches
-the initial (incorrect) set for rb3gen2 I would be very surprised if
-someone since then changed the IDP firmware to protect all those clocks.
+I think I known which point you are confused about. Sorry for my poor
+English.
 
-More likely IDP was either not tested in a clean upstream build or
-possibly only tested with no-ac firmware.
+The "internal" is used to describe the localcation of PHY not the link.
+In current code, qca8k has supported to use a external PHY to do a
+PHY-to-PHY link (Port0 and Port6). This patch make the internal PHYs
+support it too (Port1-5).
 
-Regards,
-Bjorn
+The followiing topology is existed in most IPQ50xx-based router:
+      _______________________         _______________________
+     |        IPQ5018        |       |        QCA8337        |
+     | +------+   +--------+ |       | +--------+   +------+ |
+     | | MAC0 |---| GE Phy |-+--MDI--+-|  Phy4  |---| MAC5 | |
+     | +------+   +--------+ |       | +--------+   +------+ |
+     | +------+   +--------+ |       | +--------+   +------+ |
+     | | MAC1 |---| Uniphy |-+-SGMII-+-| SerDes |---| MAC0 | |
+     | +------+   +--------+ |       | +--------+   +------+ |
+     |_______________________|       |_______________________|
+
+> 	Andrew
+
 
