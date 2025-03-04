@@ -1,147 +1,197 @@
-Return-Path: <devicetree+bounces-153686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC414A4D8A6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:37:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4E08A4D8A5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:37:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFAF91893CEF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:35:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7813418954F0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84DAE1FDE2B;
-	Tue,  4 Mar 2025 09:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A7511FDE2F;
+	Tue,  4 Mar 2025 09:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L56dBXf5"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GCUm9xiM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013000.outbound.protection.outlook.com [40.107.162.0])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47FD1FDE1B;
-	Tue,  4 Mar 2025 09:30:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741080658; cv=none; b=Y3vu+8sOy3jtWsQbvLwt3RrE9jIFsrzyFXRtg0MmqLZPvxE62H91FDu8JrK2T+2v3kVMt0Jd1apPT4axrMMMP4+w24G4MdhOsfGCsGmyJH0qeCpYx2scgy//wEV9gsDs1RI9c9wdjlvnLSglhF3Oki7VfTEVNdCaR1DOHOymOPk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741080658; c=relaxed/simple;
-	bh=azR/n+ME0OmekE2Xm4FRbD4LwYTYZKxi63PxlSTZAi8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JKpf8DS7/73n5HoGjueg9J01SsYR/lu4xRE6hPcuQ0NJgbP0eByHcxeZiMilJ78Kfjybkjysm/GtMk582zsbg8wLOca46djSUkKbcYvQ2vXzDNGnWD6OrugtAIxJLY6kEofCPfAOWOPVuRGG5njRGY8RsIx5u63OvDXH6K+MBXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L56dBXf5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523NX4HG027319;
-	Tue, 4 Mar 2025 09:30:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	E8a1MoI/DSxQaVM5wDw1IAkuYTIlsrqYIzpG40JKed8=; b=L56dBXf5yPBG4No1
-	rqXnA4Lx02tbLzkucYYJsXKN4PvM92u6jI6rf7Wx8vWQRma1nG70rhO080zMkvjU
-	XmLMXP+Mar4/RZ5vliroe1qgVZfLzMxqZGdkeuGRdto4Tmkm8acFAEolSRwXMblu
-	BIlT45UWJ9bRQkdQefpT/1gOGty/xlBhZA9955L2DOXzkL9aTBsbj3pUX9+XPr0P
-	jjLZy4XkM2eU+vKf6c8V/EDXOofctX0KDIqDZt+I1TN1NTfcN5LRtAHi07yAV/bN
-	FV6/EYlb7JfZsiw0PN4L3DFqO3xngk3l6ibfdVSAT0ps+wl4OSrud1PGjRerWtjt
-	iLkxNA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6uhbq6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Mar 2025 09:30:35 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5249UZhU011921
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 4 Mar 2025 09:30:35 GMT
-Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Mar 2025
- 01:30:28 -0800
-Message-ID: <91934960-c9fc-4442-88f3-ba1371470d05@quicinc.com>
-Date: Tue, 4 Mar 2025 15:00:25 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B221FC7F6
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 09:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.0
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741080628; cv=fail; b=S2LybLTQz7VeO6oN1s1HFR21x+X98DDdgu2XTHwy3i2wTElK8MxwDDynZ+rLETHPmp8tM3gWa6gucY1psFey2HEQGtTEcjk57V4Puwvc7iI3tleisq8gDp7R7zcSOab2Zqp2AotmoaWuJCX2ttuZg1Omewmk6oDv82PN4kVoebI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741080628; c=relaxed/simple;
+	bh=xT8CUhXxRY262yIuokCPQwwXesPnRCgpJmUr1Q9qX0I=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=TuL+7mQ441bzPIXXEMWuSUVFDOvFnFgBPaN8u3qc5p0iB46Omq+vMT1O7j7/zr/W9uqM3aVIrcK4X86Mpvi/i1L8j8rDewL4jpDkEL7pKTm/ckoUTDQgTPMZ/C2zH/iupLP7no3LQXXeyXA+K00XZq0qvajSeksNjBD7vZYSpco=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GCUm9xiM; arc=fail smtp.client-ip=40.107.162.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tJHRuYJ8AeJ3fE5bDOdgkUrVlxkfwr75UpPE5rfPm5B9P6MT3f64VN0kOfNfm1d2ndDru3hhXyGaWsvkJss33QovNzFbaVFaQXvALcFfPVYCu8nC+8B3S1YiLCXL9HY1vEYMh+e79DyyMiAX35Ih5Yl0W7o0DRpt6v+uf0j+jHu1PYFdAElIyf0u8L8rdyYFryLO8r77WOJeEV4Fmmx3BpSfl0w9lQ5XHMIKAEMgXRXL07oWaVABl+CKrvG8M58AuID62ek1zkZyU7Dw2A4kVqmtFbFdOKjnj9ETDdpWhOg/ExSK+juHIFFzYwt3RtNmFl7Xrf103hS7SckTCDQoIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gX7AczAfIzTX7yKhUf2VYzUG1/yScjw3yjQ03i1agqY=;
+ b=IKN722sOFk4gt+GaYU+s6lU4+rzOxbGNNVGV3r+2N40f62bFoaY330Bey41IG6DgtXqyFrdi2MrTLgHE2bEof54Ez6Ryz7Forlf4y/IW7SvOhIa9zQwQrC4KN8gBg3UfH9hHnSrCm9ff7d9pAOqxPNBSoLCCQJ71bkOdIgYQgDv1Qyl5xvpodipZ+CHH5o9eeaSKA3lDatZXP41V6paOwxBaaGSOlwHZJ0rZ5ZDld/i8Ez5SrGCrrEVKGwf4eRuBGzzBe2lfM2/yvdjddv++fZ/uPr6WpmQODL1/APTUAOZ5MuJGizXYO0qZ8K6TQr5M8NEsIfKKOMdehNRQd+Pa0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gX7AczAfIzTX7yKhUf2VYzUG1/yScjw3yjQ03i1agqY=;
+ b=GCUm9xiMFdQjCC3ldY9AdGCXTwuJ4aqIIMG+kIU/SagrgLWXQfOC2cyiDFCA7MjDEFPiZEfZW1kFsgW6LUFT0Js+iDERzoXFE0jqb60HxoEgsmKayl6BhgkIoz1rPqhmKCGhD0FnzLVa5R4vyineWhIjnFDgrmavuNpB436FoSNT+9Hs4rDTvqMDoduask5wPCNjeLHbinOrbaofoW/f6uLfL0AwwB9j5+Tbl00DJ5r2eLKQTd0sfis0NGOeXcZTZC9kL1LkHJsJFwAkVUK29X11lOMJzCVzaYnWZPGD6ICqDS5UKFOyQojgbcv5Z9UmsoXj7hvr4nRM9kv9HLEPRg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
+ by GVXPR04MB10381.eurprd04.prod.outlook.com (2603:10a6:150:1e1::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.27; Tue, 4 Mar
+ 2025 09:30:19 +0000
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::50d3:c32a:2a83:34bb]) by AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::50d3:c32a:2a83:34bb%7]) with mapi id 15.20.8489.025; Tue, 4 Mar 2025
+ 09:30:19 +0000
+From: Jacky Bai <ping.bai@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	aisheng.dong@nxp.com,
+	peng.fan@nxp.com,
+	frank.li@nxp.com
+Subject: [PATCH v2 0/4] Add i.MX943 basic dts support
+Date: Tue,  4 Mar 2025 17:31:23 +0800
+Message-Id: <20250304093127.1954549-1-ping.bai@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0031.apcprd02.prod.outlook.com
+ (2603:1096:3:18::19) To AS8PR04MB8642.eurprd04.prod.outlook.com
+ (2603:10a6:20b:429::24)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/11] drm/msm/dsi: add DSI support for SA8775P
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
-        <sean@poorly.run>, <marijn.suijten@somainline.org>,
-        <andersson@kernel.org>, <robh@kernel.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <konradybcio@kernel.org>, <conor+dt@kernel.org>,
-        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
-        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
-        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
-References: <20250225121824.3869719-1-quic_amakhija@quicinc.com>
- <20250225121824.3869719-6-quic_amakhija@quicinc.com>
- <hl352hhpv6imtilpw554njkpod4nycjlls4gg75barlugc2e42@okw2snj2bqm3>
-Content-Language: en-US
-From: Ayushi Makhija <quic_amakhija@quicinc.com>
-In-Reply-To: <hl352hhpv6imtilpw554njkpod4nycjlls4gg75barlugc2e42@okw2snj2bqm3>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YAGyFw0Vmnxo5OEXqgHet3JwugnAXHCB
-X-Authority-Analysis: v=2.4 cv=H40hw/Yi c=1 sm=1 tr=0 ts=67c6c83b cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=SqrKEsC-_tjMY2b0tDgA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: YAGyFw0Vmnxo5OEXqgHet3JwugnAXHCB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-04_04,2025-03-03_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- impostorscore=0 clxscore=1015 malwarescore=0 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 phishscore=0 suspectscore=0 spamscore=0 mlxlogscore=999
- classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2503040080
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8642:EE_|GVXPR04MB10381:EE_
+X-MS-Office365-Filtering-Correlation-Id: c8e876a9-7136-43b3-cc09-08dd5aff2deb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Or1tE3UD4IwlUZyWwrk3GARHox+OmzUpaNfbmq1mOJ7Dva+zQZltV4rE3xYM?=
+ =?us-ascii?Q?RP0LzFiVQRwnLM4x9KmOp3DDMZjWkEaunnhbTP+BiPurnCzKzlUaIpDMTJl0?=
+ =?us-ascii?Q?+UGcdPC1Sk0SlUXnA0Hl6eHQqM6Fvq84JhnrjcL6oNA1/gJopoeL9+ZJe+N0?=
+ =?us-ascii?Q?7XUcPWa8XhYXb+xSeece2PMB5VHUrAK9+ihdf+qVuGelJ0sYWzmL6UB9S2ZL?=
+ =?us-ascii?Q?yQtEaStmviAzD6QclUOC+TnKuLtoYk2AFzw/WNLqlmJYUs/GqRbJSZpT6lTN?=
+ =?us-ascii?Q?0P0ZnFuknAVLRf5jLewt6q1Xgu/V4FDkqtjiihE5HAHZUiANOYQyw/WW/Klx?=
+ =?us-ascii?Q?7bpA2z6MEbba7L3nfO8j9tNtkFRZN6dioXNT9MjmXBnfu5YKM8kPwn3gIA7O?=
+ =?us-ascii?Q?YDK7lA9qEvQxfLEhTqzN5/oBWvntZA/LklGyydiABK6gzrvGai7+fSicPrE6?=
+ =?us-ascii?Q?YFCLGquKZD+N0M7AhKaoEf9+8vH2N6JZR/OtQw7ho11lfA/Q2azZu6zeVKMq?=
+ =?us-ascii?Q?HExtfKeCb6rvhXtFLhacwBpRCNbEW3RF5mMelNwfIOu5DDC5f+M2lNfftupY?=
+ =?us-ascii?Q?/AETcptXozzmJ3gNaXrkt0R/QZnlMVmZk8fItqKK4lej/+0LrU8qUnBwNDNw?=
+ =?us-ascii?Q?7xWPZ8TyySYo6sxqGQCrZLJIzG1xq51/B/swHD3rX2wzb599fOxrkJzkCm0k?=
+ =?us-ascii?Q?GNwi2JhHTn5fDfAmXqoL0fXSiBY5qXZiyQUgSWF5v7vR8gskFcfOhBw9jdjS?=
+ =?us-ascii?Q?jska/1KBU90P1fghnkIAnFgneFUbtvhomWU1KkUG9THvNevtPVtjAkdkFq2r?=
+ =?us-ascii?Q?RQVRQdVH5SDzaf4qjK6iAGDqj+E3xghCwYEFpK6KdpEGQ3LLabSK3KMCaSy0?=
+ =?us-ascii?Q?yNHJE/VtGdF61JwUdfqwEQ+xiNCPEhcJDbxtRV7bHbjccigsbyPYDeA5fMHk?=
+ =?us-ascii?Q?KDo6dMYv35dSZWI3vZNwOH8jDoCk835/miP/GktsC6ma01Mhu5Y0fwRaSFFY?=
+ =?us-ascii?Q?gqZOUIbtZqLs50Ns1Y6BW7a1Q6zaROxNbQa4FxLmBOc2Z8Tb78EH5CFHm/0H?=
+ =?us-ascii?Q?QcxHGsIDL8o2Qh4rR4AjOYl3md9iDH/ndzMFIUDJ0N5QmdFj56j5ZTogu6CS?=
+ =?us-ascii?Q?dpZF8MpkuOWpMWWundc/Crd31uFAbs8gbaMJlnFEVF1tS3Tla9lXz7JMo2+G?=
+ =?us-ascii?Q?tSyQSl5Xxn8f+uf1fYJyb7MqtY5WXnhooCfkvGfeI/bIACGtZDg66k2ZNq2I?=
+ =?us-ascii?Q?bUwVaqSaMa7ikNu+W6t1QHNwFl4vAeMLBIFTw1s5CVUoo4qPt/jRwpnJBDXp?=
+ =?us-ascii?Q?HUGDVlHGWG8Zq2BlT6d1ECOmwX/Y5JRYGx0zhuJQJum5Zeskt0MR19aEdeQG?=
+ =?us-ascii?Q?8r9QVoMiEZhfw+RghGlpU5sxdroX0sUV4euskeP/yka6jHamey8QMOYzMBCY?=
+ =?us-ascii?Q?1ZSzI2n+h8Bapr1LPaoSsEUKVAafzxE7?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?zqSsQSyZsCNt7+gHqDrCp5pOBZtTBN+BwB1c51kS4HQXWEPzFawzB2oCzRKQ?=
+ =?us-ascii?Q?gt3W6YYmOW26TudHin+IR5h6nJyOa7JkJ3DQUzvx1Ddu5B7UULZMKBJrhr7g?=
+ =?us-ascii?Q?g796yRuu9d0MzUZCZqk4updGUT8taWUsR1dyt97h/ZJSIfkMGuhG/6lBMBr2?=
+ =?us-ascii?Q?qd6lkBLhb7Fy8q+R0aVYs1KcM79Gk5EgSApYkU3CY6qFM/aIiidZuwUkmU44?=
+ =?us-ascii?Q?KyUv1JP8FnNComUgZ20Cf5H8meqFcBCq26GVrzu62SGB7FFQ6CHajwBOY7q6?=
+ =?us-ascii?Q?EMeL0i43RxGz05+wXelBMBq4Z9eB9A71EHi4qnvFK7ta6z7C4ybwEd28Tm/q?=
+ =?us-ascii?Q?Py0FXXj+oMfun9XCA73u0Hy+4bYWrEKwKfws9bqTWACvhpgrQgcCLeJZ4PUe?=
+ =?us-ascii?Q?FiuHIZh/9u+kcMR/UJe4W612/0Kog32jG2Ruo/9TqU+tTFO3biVYKzolXlkC?=
+ =?us-ascii?Q?qxe7jmuZFHeeeGOyr9xMeXhbx5hNg/lqyV576RdK+zuS0s8upQIeuZ0SGCMg?=
+ =?us-ascii?Q?hH5+XP287qLbXHLQTACnjY3dod+KfixN2QtPbZNJ5lK1sH4HYABKURtxMd8I?=
+ =?us-ascii?Q?RtwtQlDbV0u9hVv0IcIjQ2bzo420LqyVfTYljUzcJfiFmeMnbeigjE4jPbe9?=
+ =?us-ascii?Q?htwbe0uoUQVtO5lc5D10isUuZYiey7TCljZM9Is3EbcCUtgIpNQGjF8NGMJD?=
+ =?us-ascii?Q?0DhjJH/4H2qtFZpSQqWJHSrImuREwa6uAXHVLqj+zHBaLm0VAQ2UE0G0s12l?=
+ =?us-ascii?Q?AcTywfguwq8meI0aP/pMLF2FUZdfwSeBL+EowG+PnrxAi+2kT5yZbslm9jUv?=
+ =?us-ascii?Q?0qD6hxdOQL3F355UpWpP0iL6FwPkKh2j2zNLzRjiqk4/L2VFUwTV0FT2Zbwl?=
+ =?us-ascii?Q?HmVtwJlTSKuW4qEY+SiCYE/onx1K7L7nI9qqvTinnw4B7ua++ZCueLXx6dR3?=
+ =?us-ascii?Q?hd3fxgMVdXUrzukF/fRBXwrvvWar1O+YzTWCiKqA4CM2LlV73Q43VJOjCv44?=
+ =?us-ascii?Q?1cIeJ83AZNHk2F9Sk8wnp7ma4FL2kYoNg8c8EcDgkamdVi84MQmuNIJ8qrqH?=
+ =?us-ascii?Q?7jYMKYdPhBpeaHYSRTVwwnuZGPJHck96iuqwV0+XlxtCdhcgwF1gUuw37x+A?=
+ =?us-ascii?Q?Co83IY10f5tGuSHid5wL0vm8fWTj1hrjK3v6zEQs7zWn3EHNN68uJs2UZTDy?=
+ =?us-ascii?Q?BE/kKKECf2hJVFx0izVidpvSgnR8xGS4t181SnyJzQYLejLRUSxeg9ZWAfSs?=
+ =?us-ascii?Q?WlOinsnG1lRHRaoT0x1ivuRdsvftl/EvwmrnnC0a/rqN98rMMHZEA8kd7tfv?=
+ =?us-ascii?Q?Y2ntEZZJiMSFvok09UU5lCYyc75iOL3sLXanP4tJNiW0QbwlgvdGUJraIhTA?=
+ =?us-ascii?Q?QaSZfbqRTPxScamqQ/Lb8IP+zQXexLyA0NFfTQg0RqNuYRkBRviRJEU9zchz?=
+ =?us-ascii?Q?y0zQIRefqdo651K5iVNAywdEJ6RnX0UoRfnIwJAviJEDZLAVPInLo/8SmTDF?=
+ =?us-ascii?Q?M/9CzK26yKMP//zxEydofe0wK9CGFUCnuAb/7loEEWU5krhvhiavxUHDCUsC?=
+ =?us-ascii?Q?tYZ6BvBZQut/2DKIkaXScMKnocAR6i2NSkxUjc8G?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8e876a9-7136-43b3-cc09-08dd5aff2deb
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 09:30:19.3299
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zmEmev3oWEt+TkYOhdYd/62ySAbJOPqqTpfCpG2+SXODBiIfIgd3FhnYPdqLGcs6Rpl9Cv5aZAFQngsnR2KFEA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10381
 
-On 2/25/2025 10:48 PM, Dmitry Baryshkov wrote:
-> On Tue, Feb 25, 2025 at 05:48:18PM +0530, Ayushi Makhija wrote:
->> Add DSI Controller v2.5.1 support for SA8775P SoC.
->>
->> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
->> ---
->>  drivers/gpu/drm/msm/dsi/dsi_cfg.c | 18 ++++++++++++++++++
->>  drivers/gpu/drm/msm/dsi/dsi_cfg.h |  1 +
->>  2 files changed, 19 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> index 7754dcec33d0..71881d9370af 100644
->> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> @@ -221,6 +221,22 @@ static const struct msm_dsi_config sc7280_dsi_cfg = {
->>  	},
->>  };
->>  
->> +static const struct regulator_bulk_data sa8775p_dsi_regulators[] = {
->> +	{ .supply = "vdda", .init_load_uA = 30100 },    /* 1.2 V */
->> +	{ .supply = "refgen" },
->> +};
-> 
-> sc7280 has 8350 uA here. I'd say, having those two next to each other is
-> suspicious. Could you please doublecheck it?
-> 
-> LGTM otherwise
-> 
+i.MX943 is the first SoC of the i.MX94 family, all the SoCs
+of this family are pin to pin compatible with only several
+peripherals differance.
 
-Hi Dmitry,
-Thanks, for the review.
+For i.MX943 device tree support, we split the dtsi into two
+part, one for the common dtsi that shared for the i.MX94 family,
+and an i.MX943 specific part.
 
-This chipset is being used in Auto, and I have taken the init load values from the downstream code.
-After you raised the doubt, I checked in the power grid for the DSI ctrl 1p2 supply (mdss0_dsi0 && mdss0_dsi1) and found the load is 8300 uA. 
-I also checked DSI PHY 0p9 supply (mdss0_dsi0_phy & mdss0_dsi1_phy) load and it seems the downstream SW values are incorrect for the PHY as well.
-Correct value for 0p9 supply as per the Power grid is 48000 uA. 
-I have tested using update load and it's working fine. I will update the both in my next patchset.
+Jacky Bai (4):
+  dt-bindings: dma: fsl-edma: add interrupts-extended property
+  dt-bindings: arm: fsl: add i.MX943 EVK board
+  arm64: dts: freescale: Add basic dtsi for imx943
+  arm64: dts: freescale: Add minimal dts support for imx943 evk
 
-Thanks,
-Ayushi
+ .../devicetree/bindings/arm/fsl.yaml          |    6 +
+ .../devicetree/bindings/dma/fsl,edma.yaml     |   11 +-
+ arch/arm64/boot/dts/freescale/Makefile        |    1 +
+ arch/arm64/boot/dts/freescale/imx94-clock.h   |  195 +++
+ arch/arm64/boot/dts/freescale/imx94-pinfunc.h | 1542 +++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx94-power.h   |   41 +
+ arch/arm64/boot/dts/freescale/imx94.dtsi      | 1141 ++++++++++++
+ arch/arm64/boot/dts/freescale/imx943-evk.dts  |  196 +++
+ arch/arm64/boot/dts/freescale/imx943.dtsi     |  148 ++
+ 9 files changed, 3280 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx94-clock.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx94-pinfunc.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx94-power.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx94.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx943-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx943.dtsi
+
+-- 
+2.34.1
 
 
