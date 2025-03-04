@@ -1,80 +1,109 @@
-Return-Path: <devicetree+bounces-153631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8998BA4D54D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:48:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61729A4D55C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:51:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40E9417564C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 07:46:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C88503A837C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 07:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6DE1F8EEC;
-	Tue,  4 Mar 2025 07:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E643E1F8916;
+	Tue,  4 Mar 2025 07:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cvs40gUE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X7jbZIFP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED2B1F8BC9;
-	Tue,  4 Mar 2025 07:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 123141F583F
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 07:51:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741074367; cv=none; b=b8vjl9aNzSV6oDxQpD9/ugYUun1i8pJ0nVL4MauG444iJ9ZZmsOdgZGiML4L9iGP3NpKrpfjGWX/9uS7RT9eV8hgXMjS7hm5RxgOk16HOqIC5YpSqy4GrLOVJCg9Ijhvz2xaEqs2USZzqXsi79QixEs6ADiDP4CmKn3x4iqjBNQ=
+	t=1741074707; cv=none; b=smkxTNMa5gGr7IT8O7PCL+UtwGYUX/z+B24BBR0M9DliBIpM/cbd4xwJsDcBygnDCn5yN19pRFO8IrdwJTJcWGoTUesT7UNj4Xa6xQg9EEQU2rM/K+ukIL4pLbx/EX6K7cv1LySmxcOad/pBpsTnoDAVY6bfKsjs1HGRESybY+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741074367; c=relaxed/simple;
-	bh=fUi7irrO/Msp0XYZH+52BjNdyYaZGzh2oyrpCmkcRR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MUntHVoQY3UeXf9EZuOu2IFf0BSG4tlYorIWcQMnRxJjEE7oeGxqZOuEvm27gelPFNR8S24qXAvuWNSD+zEbcQoxaSa3so2oMQmfKQCnNFBwMx87QDiajtapAqFYHmGtOT0S8XrRzTkVu3NsyL6ycb8tJHEyn/xYNmaKtpZrlsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cvs40gUE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 164E3C4CEEA;
-	Tue,  4 Mar 2025 07:46:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741074366;
-	bh=fUi7irrO/Msp0XYZH+52BjNdyYaZGzh2oyrpCmkcRR4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Cvs40gUEns0ZXfI/qnJCK3C4bGP8ybjlCE4p5nrZNhdZiRybkiA/Mc/r3ANdx0q+G
-	 UhpZ9Qp6hvoi/7Bik/ViG+5bAzHAvUL8Ebxu28Jp751IdhmBYV6Gu2V7Aqplp0cqP2
-	 P0LoCyBQML0ve09O0a/PyD1WZeRucAm/+RsEVUFu+JtARdhG4pB401rV5l65gOaESt
-	 x/Fy2FoKBHpMCF8QNrJvDnq9myoh6QOhJiyr3xeu/9er3PZVMLvYjAIATqoSiSohNa
-	 H+oBvBEqLFta0+FyMvw+cO/5r2zlI2Bri0rzKV547+bO9pPk8kHUrk6ixaY4yBdHox
-	 RJG1BoeMYuwuQ==
-Date: Tue, 4 Mar 2025 08:46:02 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Saalim Quadri <danascape@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, 
-	gregkh@linuxfoundation.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-staging@lists.linux.dev, 21cnbao@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: iio: accel: add binding documentation
- for ADIS16203
-Message-ID: <20250304-chubby-amusing-loon-ac7e3b@krzk-bin>
-References: <20250303235930.68731-1-danascape@gmail.com>
+	s=arc-20240116; t=1741074707; c=relaxed/simple;
+	bh=u9ZCYhaK23fUJUUt5s7FYrwFuoV7Wm409Bw5a49OPOk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LztfcEXDpUNajPYhwviVgKhDupeO7HEKWi4MDh0ZB02E2esWu6ETE4yfvYkzHqR34J4aULLAvQXF5KkM3oJXTfKGOCHkQEssGUxcFowGblLcwcMR1WbJSptHZGRb3PpnZNcLOsWJOfguQN/2swFBdsg1jwzK4wrOCADJU5FfRyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X7jbZIFP; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-54943bb8006so5869723e87.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 23:51:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741074704; x=1741679504; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pA6zLWQ+dYJkLtBz+wtBiNsIVYV44LsyhmBHfgcYN+Y=;
+        b=X7jbZIFPqI8JAVpRk1d6NEU3kZGfohQ8AM0VeK9OaPWz0+8GMUkLao79JE7gko/6eP
+         fsDak7rS4FvpICROy2ti/qV+TZcoFkgFkDpVAuzQv5jFXHzVRfUuVwJ1gmA5m4HVw/B3
+         q+gOrNsJCljeCco2lg4gRvgtZKBWWuIRWOeapL1i8sO16+m4kRjWozHN07k4uJ8pJHBz
+         VWtQks94MRZwp1tZ5oUYMKQz+bhqh0kJlRyiG2E8J63qxGrb/pjfiYPZHpIfkdkiyepu
+         WvoCICCvdZ7tHGUPGzj6bpPS4MRuHQOsUPIIsqLD2YiRflyVvddQ0qw9yxqsrcqs0Jsj
+         gliQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741074704; x=1741679504;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pA6zLWQ+dYJkLtBz+wtBiNsIVYV44LsyhmBHfgcYN+Y=;
+        b=xAkVOzMwGxamZhD+P8rOlDNUjDgyZNfWS9AdqLxbj2dNxBWsouZtWEE085f8bynJXB
+         IOBAQJvHYDs/xQEOFbYxqKPy2Pn6u4b0uFfjlVd383u/NyjfKjXq00e4ONufu9TX0u3q
+         hMjpxf6+OphxRrGgCUl58wSI/2aQUHvY1xmljp5kjTW5ChcVxBNG1wtlJQQXBltGhyI8
+         YSrWpThZjhZxgO9P0n4GZv7XNSvtpmmomuKmH95ceH9ZE7pl2zgrUt62z7No4sCrvDiT
+         QNDUQcLgwLH65BX39Uet262tx3DPCI0U9J1KeS+VpxycuSuwba0JiSsO98AFBGvynclM
+         XVkA==
+X-Forwarded-Encrypted: i=1; AJvYcCXdao232fddDx0aG1mJdBG7ak24vQoWzFoB3i6jVg+2/7wUgCUuoEqiGO4pKn1s6ik6IIOtufwk344R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxk1tGGDq+YVHavfinqRKmLy2od5qdYaHj2beQhuZntf9mO/bUx
+	DE2IS8Q8DJm0m/GUbfJEgyUEv7zpuQO+bhPJbwj/hKWNAZGSf2C55qKfj/Gs9CiuOn5mIJzy2XC
+	fC4FVgApnKZYOZlbT1yyY6L7foe50IEEoLvcg7w==
+X-Gm-Gg: ASbGncsG9ME8fS3Tyu/Yck1t6dcDRP5gZSFyMOQbOnGUOZWI23yeyAZGh3/xftfnOUG
+	tY/EO0diB+deFt3EGCeO8sI5bC/rNtJnhrHsgKV+2r1mrf4tOlqZ5Uu9XnsDWSIbISlE+utAno8
+	vUtx9C02aiczlREE0gvZbumMJ8Ug==
+X-Google-Smtp-Source: AGHT+IF2HnTvgALEagtidtwMTknG9FoykhqBphkMLjIu+urEhq+snaAKQPbxfAEiEdOYOfpEU/z8RIcNqZf0RTZQZA0=
+X-Received: by 2002:a05:6512:1292:b0:545:c9d:ef26 with SMTP id
+ 2adb3069b0e04-5494c34fcd9mr5744703e87.46.1741074704091; Mon, 03 Mar 2025
+ 23:51:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250303235930.68731-1-danascape@gmail.com>
+References: <20250228064024.3200000-1-jonas@kwiboo.se>
+In-Reply-To: <20250228064024.3200000-1-jonas@kwiboo.se>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 4 Mar 2025 08:51:32 +0100
+X-Gm-Features: AQ5f1Jqk33uHsY5UV1F0bE-LoNlIC6DrZiXxoZsYoJWU763-1spk-ecprSEFCuY
+Message-ID: <CACRpkdaELuU6XDKacOLsWAF8ncbudJ9Tp0jykAyf-NXRLjoSdw@mail.gmail.com>
+Subject: Re: [PATCH 0/7] rockchip: Add support for leds and user button on
+ Radxa E20C
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 04, 2025 at 05:29:30AM +0530, Saalim Quadri wrote:
-> This patch add device tree binding documentation for ADIS16203.
-> 
-> Signed-off-by: Saalim Quadri <danascape@gmail.com>
-> ---
-> Changes:
-> V1 - V2: change compatible property from enum to const
-> 
+Hi Jonas,
 
-Please kindly test your patch before posting, instead of using community
-as a testing service.
+On Fri, Feb 28, 2025 at 7:40=E2=80=AFAM Jonas Karlman <jonas@kwiboo.se> wro=
+te:
 
-Best regards,
-Krzysztof
+>   dt-bindings: pinctrl: Add pinctrl support for RK3528
+>   pinctrl: rockchip: Add support for RK3528
 
+These two patches applied to the pinctrl tree.
+
+Please funnel the rest through the SoC tree, it seems
+it should all be able to go in orthogonally.
+
+Yours,
+Linus Walleij
 
