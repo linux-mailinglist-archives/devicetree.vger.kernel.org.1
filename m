@@ -1,136 +1,93 @@
-Return-Path: <devicetree+bounces-153972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53F53A4E5AE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:24:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E01AA4E5EE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:31:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA10717A908
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:15:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11ECA4228EA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC2527C869;
-	Tue,  4 Mar 2025 15:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBFA1291F8B;
+	Tue,  4 Mar 2025 16:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q6KlEHUo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bzp5KeuY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5626927C844;
-	Tue,  4 Mar 2025 15:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49DB28F92D;
+	Tue,  4 Mar 2025 16:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741103745; cv=none; b=ch2P/Gty7t267wE9HDVmOtHH01oaG4EzwRxBw/m1RMVaAXv86B07OPMtKmvmwwN4JyvRXg4dRTQqNaP2MaqPa5vQbVv5wBDVLVrYpzm2Uy9WZQ5GIutlvKD8+SQKa7jIMPutOR+ZXbt2V1ECszaxX78nG7je2KTuXG1hQRZI2Lg=
+	t=1741104042; cv=none; b=UkgtUbmcRBzKfnhAk+7ME/pfcsgmQblnp2PyvDq9tkcc/iq1vn5cUlPLUTGZlT3KkQm6ecR5Xod+I9zQS4o7bFnrQ/bZ3vLEq3gKPuezvkzNwLFsyw+xc25mBWf3yxG34V7PB2Farwr8UnBMi06l942ha4W4gKrQPtgEJh5nZpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741103745; c=relaxed/simple;
-	bh=6JjWe01Fb74ikB8E5k4hcgywO/QJhek4Q9koYh3qr0c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kCsKG4KrNstZ4BvsNdobUWbHq9GxiimbwxCL/7iNzSycJ1lveThTHhvrLxUWSI30NCGxO/eef6IQ/iXvQZmARBTgFbSyBfT9Ewt5p1t1RB8nKk2MhQO5kafdQszhpz7zZu7FligUccXNflHkulQQD+vyVNBI/4B76T64SrUnfsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q6KlEHUo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C59DBC4CEE5;
-	Tue,  4 Mar 2025 15:55:44 +0000 (UTC)
+	s=arc-20240116; t=1741104042; c=relaxed/simple;
+	bh=0F2zNAg52IqVf8VARIvWlkAqo4vcQHul7cmg19AhclE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=XR/4SOZZpR+3iRHqo6amc/PBSjhhUQG/fTC9UBjUZAH72t/lVYyu5MCJc/s2fnk4YhpuHmPkHROyBdoQbEq9kPM8uKhSXINaHJf7wHI/IexQil2rl2HegN56V72sEI7XVPryg84Yxv/jSGkQPUKEak70B65kKCS8CanrSkp+U74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bzp5KeuY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE51FC4CEE5;
+	Tue,  4 Mar 2025 16:00:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741103744;
-	bh=6JjWe01Fb74ikB8E5k4hcgywO/QJhek4Q9koYh3qr0c=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=q6KlEHUoDyrUti0TfKHMzxq+d7SgBDZeYljnyM0jimqCHYr8M/tZOu/vlYpQDYLtd
-	 lECwbsJRJFwyBRBL3JiIr+9Jm9e+iVapkK+Fy9ITodWFSor6OemZT+pPoFtSy1q7ne
-	 sQDOV6guhLuqZlzWvof0eTCP5gYfAQ5errXfeucgoJ6Lh8uG85FH5xTWnbytWH6XwV
-	 DM/8ObgckJ6+P7Sm6cae7ukUaGL5cWTA0eReZAtcYXCY+sj31p5M9IwqrtdtdzE2YZ
-	 Kj0P9uUhwFE2QnbgIj8RFLxkglePvXRjK5vSQqTnZIZiCOPOjtbGi+b8+U8/T5RU0I
-	 7b6EK+8miPkoA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1E91C021B8;
-	Tue,  4 Mar 2025 15:55:44 +0000 (UTC)
-From: "Chester A. Unal via B4 Relay" <devnull+chester.a.unal.arinc9.com@kernel.org>
-Date: Tue, 04 Mar 2025 15:55:36 +0000
-Subject: [PATCH] ARM: dts: BCM5301X: Fix switch port labels of ASUS
- RT-AC3200
+	s=k20201202; t=1741104042;
+	bh=0F2zNAg52IqVf8VARIvWlkAqo4vcQHul7cmg19AhclE=;
+	h=Date:From:To:Cc:Subject:From;
+	b=bzp5KeuYV4jR5I1XA4UVbml33KpNQCjMNlbeJROJh2+od7JQSdh1zA9DR+Ffn5uKx
+	 OgX37DrIZF5+cODtLC14rjfYdE8QLvXDCdKeN09W2tSg/LBZ0unHgagjzuaLMBWwHn
+	 0rClbRzyriak/seU+F5knLcqqebRpP9KAVEPKiXtqyEy7mTAiEF+wB/xvNn4B7s/cy
+	 zXGo15p6jeojPZYPGVt2CKbeNCVFGYNucbzuDNv8MTA/97dAzydMCzqCr+2Mg3F56t
+	 liTzxqDotghDnlDcg9itKKMuXPd9nRZQ0yJaVEu2i3j+hdwlQ7kpn7UytaG9IXmxQY
+	 U7xSH6sXQ6NIQ==
+Date: Tue, 4 Mar 2025 10:00:40 -0600
+From: Rob Herring <robh@kernel.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fix for v6.14, part 2
+Message-ID: <20250304160040.GA2690690-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250304-for-broadcom-fix-rt-ac3200-switch-ports-v1-1-7e249a19a13e@arinc9.com>
-X-B4-Tracking: v=1; b=H4sIAHcix2cC/x2NywrCMBAAf6Xs2YVt0oL6K+Ihj43dg92yCVUo/
- XeDx4Fh5oDKJlzhPhxgvEsVXTuMlwHSEtYXo+TO4MjN5GnCoobRNOSkbyzyRWsYkndEWD/S0oK
- bWquYuYwUyMd4vUGvbcbd/p8ez/P8AQpCTjx5AAAA
-X-Change-ID: 20250304-for-broadcom-fix-rt-ac3200-switch-ports-def10a03bb89
-To: Florian Fainelli <florian.fainelli@broadcom.com>, 
- Hauke Mehrtens <hauke@hauke-m.de>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Tom Brautaset <tbrautaset@gmail.com>, 
- "Chester A. Unal" <chester.a.unal@arinc9.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741103743; l=1391;
- i=chester.a.unal@arinc9.com; s=arinc9; h=from:subject:message-id;
- bh=5BwPF9flLou8o24Bv8iNZhdALbMlAOZ+jVIvmAjgycU=;
- b=PeGf3b5jyl/AR9FiXgqhGgQx7n+rYzrkdnnzZfnJJjgmQXZMpnSVYUJsyWjdEeBXq8Hup0E0s
- siibCPmaodZANVCthjQnH02OQqMLTxYWmU0G2MU8BQrx0p5iwFE/CRz
-X-Developer-Key: i=chester.a.unal@arinc9.com; a=ed25519;
- pk=/g3vBAV0YSvcIpSQ052xJbid7nrPXz8ExGKhTEuc6IY=
-X-Endpoint-Received: by B4 Relay for chester.a.unal@arinc9.com/arinc9 with
- auth_id=306
-X-Original-From: "Chester A. Unal" <chester.a.unal@arinc9.com>
-Reply-To: chester.a.unal@arinc9.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-From: "Chester A. Unal" <chester.a.unal@arinc9.com>
+Hi Linus,
 
-After using the device for a while, Tom reports that he initially described
-the switch port labels incorrectly. Apparently, ASUS's own firmware also
-describes them incorrectly. Correct them to what is seen on the chassis.
+Please pull this one DT fix.
 
-Reported-by: Tom Brautaset <tbrautaset@gmail.com>
-Fixes: b116239094d8 ("ARM: dts: BCM5301X: Add DT for ASUS RT-AC3200")
-Signed-off-by: Chester A. Unal <chester.a.unal@arinc9.com>
----
- arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts b/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts
-index 53cb0c58f6d0574f4f13c6aeb1d1bc5961d80379..3da2daee0c849d536df94c868849af7610cc1ded 100644
---- a/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac3200.dts
-@@ -124,19 +124,19 @@ port@0 {
- 		};
- 
- 		port@1 {
--			label = "lan1";
-+			label = "lan4";
- 		};
- 
- 		port@2 {
--			label = "lan2";
-+			label = "lan3";
- 		};
- 
- 		port@3 {
--			label = "lan3";
-+			label = "lan2";
- 		};
- 
- 		port@4 {
--			label = "lan4";
-+			label = "lan1";
- 		};
- 	};
- };
-
----
-base-commit: 768953614c1c13fdf771be5742f1be573eea8fa4
-change-id: 20250304-for-broadcom-fix-rt-ac3200-switch-ports-def10a03bb89
-
-Best regards,
--- 
-Chester A. Unal <chester.a.unal@arinc9.com>
+Rob
 
 
+The following changes since commit 038e33fcd40e59b60cdca561c2a39998e6759e08:
+
+  dt-bindings: display: Add powertip,{st7272|hx8238a} as DT Schema description (2025-02-05 12:39:30 -0600)
+
+are available in the Git repository at:
+
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.14-2
+
+for you to fetch changes up to 75f1f311d883dfaffb98be3c1da208d6ed5d4df9:
+
+  Revert "of: reserved-memory: Fix using wrong number of cells to get property 'alignment'" (2025-02-26 13:39:28 -0600)
+
+----------------------------------------------------------------
+Devicetree fix for 6.14, part 2:
+
+- Revert reserved-memory 'alignment' property to use '#address-cells'
+  instead of '#size-cells'. What's in use trumps the spec.
+
+----------------------------------------------------------------
+Rob Herring (Arm) (1):
+      Revert "of: reserved-memory: Fix using wrong number of cells to get property 'alignment'"
+
+ drivers/of/of_reserved_mem.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
