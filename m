@@ -1,175 +1,112 @@
-Return-Path: <devicetree+bounces-153628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FED5A4D53B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:46:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D580A4D542
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:47:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D367C3AB396
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 07:45:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AED8170E95
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 07:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0451F8916;
-	Tue,  4 Mar 2025 07:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F4E1F8721;
+	Tue,  4 Mar 2025 07:44:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NRjugh86"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YbvYvjVL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 191181F5429;
-	Tue,  4 Mar 2025 07:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152CC1F8BCA
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 07:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741074288; cv=none; b=IHuqac3aB1NKWD8dYuyKlV631Q7Kj0er74zy825Y1e1zk7hdHQ59WYTKzp4c7/mn9GwZmqIZ6alfPyC7/cEZUkfBjcZZprjh4FlTmmDy2z3LfwH0kS705dcFgPGIM/3IKhfGguC2bNimcQ2c6F9gj8Y0Az4G26IMOfeIo7rU9gI=
+	t=1741074298; cv=none; b=uaZT5es+aj76zamXIZogh/SYX58ZNfeY0ynpo5Y8dBPHduuv2XpYuOvZ/53p4da2PWkg9dYXLWehFRmtTC1mmGyi+SneirsIg+CMqTsq9zJE0qFsxn4C/FtztqusclBqVJUFop4g0iMT78qCm7JYRsrF5dZryf9LJolTT41TfeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741074288; c=relaxed/simple;
-	bh=9bxpUZMc/I1HEv4SLq+lQIM/QZ/o1hTAwys66NHVlqM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RwcGTLi4ZrrKnnXCg/eBKwHHA38E52GnOui8oJs1kzAqsmZ59CJxQebjHNRXR/VMT0SDAtfzNqG4TVc2pQwkxbduSB1FUsiTZbdvbERdCZsL7RrKIoGZvokqQv/qy2b8ShtlUpb3tMpIJHmp7uaSWibUCRd2VSTo9/297Obt/jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NRjugh86; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFAF5C4CEE9;
-	Tue,  4 Mar 2025 07:44:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741074287;
-	bh=9bxpUZMc/I1HEv4SLq+lQIM/QZ/o1hTAwys66NHVlqM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NRjugh86mZu6/NUJQyJD/KAXr6dzb2sdrCV7inzMKonWGk+8VCLebAzk1ZwF5VEZW
-	 JOXLDwCNuoOWHmytXIuINoCPIzuAyld8OFIoSXGgPcWWxKbhHNwBcgk9W8ZLy+RZNA
-	 3MrWRXkyDJOrvYfZEowwE7cCuy9/xU3sEzSB1AnFX8beMNuL7sguG3TlVCBngt84R8
-	 Vno2FlV4FbHHgetK+/qVsT785mbh1Yr9pM561RHJ/pmWoqOErTNR8wTK6uUypTGHvQ
-	 O1s74qQo8vphe8V6Ex1tcbsFhEOZcOEwIt9BfHdCzooRlwqI458jQxAaFUWmo5cmxP
-	 h+zRCmlOl/ncQ==
-Message-ID: <3190de22-67eb-4f28-b7f1-27bcd8db1e9a@kernel.org>
-Date: Tue, 4 Mar 2025 08:44:35 +0100
+	s=arc-20240116; t=1741074298; c=relaxed/simple;
+	bh=cfHuVxnu7QH+sQrmblbsaaSZIKplU5CSQMSXyl7pbY0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GScbdSRTBt6faKt9X85CzwJVWsoLSxKn2M1zlr28xRNTylDfzrOK36E+1x0ffxLxmCMln2Q2MyIUA/BzDegDkx4u5gcJ+Ql7KuV1APBrdBS5uwoUygwTxgdB+xyB5qLcFHSuMpNTxh862RBBgvmY5mqI8q+Emahi/OTyLeqbrVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YbvYvjVL; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-543d8badc30so6126597e87.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 23:44:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741074294; x=1741679094; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cfHuVxnu7QH+sQrmblbsaaSZIKplU5CSQMSXyl7pbY0=;
+        b=YbvYvjVL8fgaOm5gE8mSyr55SVbW8+j+kcN5MuF/RAaw1yMw6w1oLDXRNJLhwixZM0
+         doFOT0sjJN+TLE8QyRTGnDUtwqVdq61ueO+YlGaIa7N7IcfEJwjqGbKts5+UFKzmq674
+         eq2HE+2ZzXXfFzB0RZoVi6XjXmEuuq761hWv2+e+vXewi8N2NQAT4/nw++uctGc3uqBx
+         S9Wz2eUL6WLUe82g6JXWz4uBS47xtlbOXGa3ijIhDIYr73DN3qXCJqpgqjlyz2ZXaMVC
+         tRWUkOm+AX2n3vXlWOhs4q4Dtqe92n41x9DaRVkNAdZTrr03jAAiIK8/LS3v2SwgLvhT
+         HXxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741074294; x=1741679094;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cfHuVxnu7QH+sQrmblbsaaSZIKplU5CSQMSXyl7pbY0=;
+        b=bKraIzME7/VjHryiOQOCkzXkhF5WZVumeDzDt+qPom9YJjWiU7J4lwuy0wi0o1AwON
+         TfuRWiqqjgpAI5roWomFj6F+qOvuTx4xawlO3Z4Oi4fTd2JvyP2hiFwXL5bNdBIR/DEP
+         a2RF4hkx/vomeAjL1eYVQnnBnqM7/42j9GSyYQ2WrGXxiB0lxBUNyvlOQZjG4cSc26yC
+         YcyMMb8Io3ZEXmYwjcjdnPBqrs2K20LuR0sYJ306Zj/07+qLMGQwKo3MxTTTaYtAJbOx
+         qZUX64W65hj2liuCmuk2bIU73RELTCFipUgnPRP3lmJmHL/ycrzCcN1n5cRl5/08cctV
+         aa3w==
+X-Gm-Message-State: AOJu0YxKpyvYVIB3CbLKHQqFjB+IZOFPNYXszkPRzSsBvjBEAXRVK3Kl
+	CLkHmVaTRs6KMJ4B7cjPmyZSq8C4/08WPmfxybhQS8MVS2QRlI7nKdaeBJszqlZr3D/h64Nz2nx
+	rHfTXSJ8jxmwPleK0nTAfzgWfsVamiL6nOA6iRw==
+X-Gm-Gg: ASbGncuN52epDp2Ab4Lo4v+K74zNnDJDIb+dwTQwRsS0cwtU5HOYCngmk4DdUmzrI57
+	nNnCwf2j226NTgGrzaPqWtvQ7kfEk26g/BC1s3uKx9Tf57JGE+/w6T7USaMzsAbZO4ecd71o51V
+	ONO5Dp13keL4eoDFRixOzEANh7aA==
+X-Google-Smtp-Source: AGHT+IG8iql/N6flFoDurYfXL+6Nhzwn0YiFbdLZRbNYnXPe8GqjUr4Ij5hnxPgJ0B/99Ttu8SfLLzv3fgXxEHBiMx0=
+X-Received: by 2002:a05:6512:3a90:b0:545:60b:f38d with SMTP id
+ 2adb3069b0e04-5494c107f3cmr6115785e87.8.1741074294122; Mon, 03 Mar 2025
+ 23:44:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 00/21] Enable drm/imagination BXM-4-64 Support for
- LicheePi 4A
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
- wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com,
- matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- ulf.hansson@linaro.org, jszhang@kernel.org, p.zabel@pengutronix.de,
- m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-pm@vger.kernel.org
-References: <CGME20250219140249eucas1p1291eb86c932373c847a3314ae54789d5@eucas1p1.samsung.com>
- <20250219140239.1378758-1-m.wilczynski@samsung.com>
- <20250221-eminent-squirrel-of-honor-dee80d@krzk-bin>
- <90d0d409-f374-4e06-bc69-b9bf0622959d@samsung.com>
- <7ba53937-7922-41da-a7ed-909ce620db1f@kernel.org>
- <09411368-cd76-479f-ade3-5a87d3f9be38@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <09411368-cd76-479f-ade3-5a87d3f9be38@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250225-gpio-ranges-fourcell-v3-0-860382ba4713@linaro.org>
+In-Reply-To: <20250225-gpio-ranges-fourcell-v3-0-860382ba4713@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 4 Mar 2025 08:44:43 +0100
+X-Gm-Features: AQ5f1Jq5MmYSadltqaB__GrUY0SomfKMu5UqgXKw2WRhvMLdgoacHXmXjEzeAJ0
+Message-ID: <CACRpkdYfcf0toAcU5OEKG8paOv+x4KXSNMEyVoyULpBONZq=EA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] gpiolib: of: Handle threecell gpios
+To: Yixun Lan <dlan@gentoo.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Alex Elder <elder@riscstar.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 04/03/2025 08:38, Michal Wilczynski wrote:
-> 
-> 
-> On 3/3/25 18:43, Krzysztof Kozlowski wrote:
->> On 03/03/2025 09:38, Michal Wilczynski wrote:
->>>
->>>
->>> On 2/21/25 10:12, Krzysztof Kozlowski wrote:
->>>> On Wed, Feb 19, 2025 at 03:02:18PM +0100, Michal Wilczynski wrote:
->>>>> The LicheePi 4A board, featuring the T-HEAD TH1520 SoC, includes an Imagination
->>>>> Technologies BXM-4-64 GPU. Initial support for this GPU was provided through a
->>>>> downstream driver [1]. Recently, efforts have been made to upstream support for
->>>>> the Rogue family GPUs, which the BXM-4-64 is part of [2].
->>>>>
->>>>> While the initial upstream driver focused on the AXE-1-16 GPU, newer patches
->>>>> have introduced support for the BXS-4-64 GPU [3]. The modern upstream
->>>>> drm/imagination driver is expected to support the BXM-4-64 as well [4][5]. As
->>>>> this support is being developed, it's crucial to upstream the necessary glue
->>>>> code including clock and power-domain drivers so they're ready for integration
->>>>> with the drm/imagination driver.
->>>>>
->>>>
->>>> This is v5 of big patchset which became huge. I understand you did like
->>>> that for v1 which was RFC. But it stopped being RFC.
->>>>
->>>> Split your patchset, keeping versioning and changelog, per subsystem.
->>>
->>> Sorry for the late reply—I didn't have access to email. I agree with
->>> your suggestion and will send the clock changes, firmware/power domain,
->>> reset, and drm/imagination updates as separate patchsets for merging.
->>
->>
->> How did you implement above comment? You did the split, right? Where is
->> versioning and where are changelogs?
-> 
-> So I thought the sub-series should be versioned independently from v1 ?
+Bartosz,
 
-Keep the versioning. Keep the changelog.
+On Tue, Feb 25, 2025 at 8:40=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
+.org> wrote:
+>
+> This adds some code in the gpiolib OF core to deal with
+> several gpio chip instances per OF node.
+>
+> The change was prompted by the need of the Spacemit GPIO
+> controller.
+>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
-You now versioned your new set independently, so I don't understand your
-question.
+Maybe we can merge this threecell handling code so that part
+is set while Yixun is working on the irqdomain translation, I
+think this could need some rotation in linux-next in the meantime.
 
-> Then linked the previous discussions in the cover letter, without
-> copying them.
+Then the threecell irqdomain translation and spacemit driver
+can slot in right on top.
 
-Nothing said this is the same patchset. You just mentioned some "bigger
-series" cover letter. How some other bigger series is anyhow related?
-And how can I find relevant pieces there?
-
-You are supposed to make it easy for reviewers, not difficult.
-
-Best regards,
-Krzysztof
+Yours,
+Linus Walleij
 
