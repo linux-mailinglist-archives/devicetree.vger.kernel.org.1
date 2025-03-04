@@ -1,160 +1,114 @@
-Return-Path: <devicetree+bounces-153592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B20DA4D324
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 06:53:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C284A4D399
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 07:16:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFA463AB480
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 05:53:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 860FD3AC484
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 06:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 389D51DC985;
-	Tue,  4 Mar 2025 05:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269761F4632;
+	Tue,  4 Mar 2025 06:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XWTy7dxe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jvR5k2Ej"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA7F3D561;
-	Tue,  4 Mar 2025 05:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDD2B17C7CA;
+	Tue,  4 Mar 2025 06:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741067612; cv=none; b=YEEtoSBuiUpuvs6PB6FwguMHhUMtTrNW7G1gpSp4TfP1E0G2Z4YHAEIa0y9Q7cvumBq2tU1aVhNZ4E/O6NbZfCGJz3yCuodqfU/EcvzTDQab9iHPnIRDZ6xETvplC4HEAmLcrBLQ82THNTQ1dfbABYBNdnM8hQwhB9+8oWcfo0E=
+	t=1741068967; cv=none; b=JNbi7z+uhgvlFqBEkzyAEmXZClykjywinzyrrAgT9uJlX/2xXTh2FxLGLdO9MHrfUSk8dvAQWW8XUKkdywR3sH9T/dAQWi6vADdoGSi5VBHfOlalpF8Fldx2mvACgHiKIeiIs6LJOo2mfneWKFHEqXmfDnpZn9Uq1YKGDwZqNIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741067612; c=relaxed/simple;
-	bh=bQR5ObqMTP1GwQDLeSy5/aqOwHMuH+cQMoCYo7xZ2jI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=G13n9yFvGlxxBHrgepn+YVdUcHcwe6UhDPvR9GBh3emD0fIkTESvfyUcXM/WFZzzQyWjaL8aspbVVIRHJ0BGjgqM4yhQyRUzSIkQplv52qqSEnEhZTppV2c81oWjqA3y9TFjLenmIwxnbOHVHSYlmL43iz1mKpc0OK7dtk0TX+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XWTy7dxe; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523NX9q8021675;
-	Tue, 4 Mar 2025 05:53:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	97sqRophQCOYVvNdbg1Cr94sp2Vpw2syWk+rVmsMi5o=; b=XWTy7dxeB/Iz/D/1
-	3K/ZHb0wVIhUos/cPxrYe0D0Yj3DF3oQFtluq7tH8lQpVt9woBKNmTC3+9r8vwgb
-	FVMXbpHvYsH1oO09EcR9P+4ludqIb5Yu/nYOLePfr7QAWpJxCLyxeXOVvcVq6Yhf
-	QaV19Pl0QhqEXt6cysapX+EzDwefMDZELadfpxF4unKeQCOmUExRJ/ySrX+9K+gq
-	qH6GUGo63fuWuIR85JycIJTgPv4MQfNAAInyP2RZ6rxBXj/j6QrzVOLXS3K2lSZM
-	th4he/9D6oF6cSGVuOVyZ8R//KPejQBYmQY9qldq0nib8EZtf4aRQZOi1FtIe8su
-	n/0k7Q==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6t0s5t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Mar 2025 05:53:14 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5245rDem012976
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 4 Mar 2025 05:53:13 GMT
-Received: from [10.218.15.248] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 3 Mar 2025
- 21:53:07 -0800
-Message-ID: <114b60a4-ab67-4424-afc2-4a400d31de90@quicinc.com>
-Date: Tue, 4 Mar 2025 11:23:04 +0530
+	s=arc-20240116; t=1741068967; c=relaxed/simple;
+	bh=2gdXNj/tlPSSHbBqSwyfbWrKXXsk+K7ZabA7kS1I4Hg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=BA1HM6DsZ7RfndjGwLSLpdbc6xgufQUT0QbgWzfjsYAYdNhqLO/C+oGdfrVTnu7uFXMf1q3Q2ruADOqLBsjo0Z24t9PCffUpHmsheL+yH7hU86jCplrzln7qhX3U3aFwGc0X3K7YO1NN9FeypG6g5nM+tILxbThH5YFGycHrhF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jvR5k2Ej; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 58A86C4CEE5;
+	Tue,  4 Mar 2025 06:16:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741068966;
+	bh=2gdXNj/tlPSSHbBqSwyfbWrKXXsk+K7ZabA7kS1I4Hg=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=jvR5k2Ej9EovxXEKAhyAqt6wzfek6yiFgrKTjBC3H0dDoJryDUY1jMGaWZ9pzp/p6
+	 FXOMUQEOmaCQyxIVLzaxgttKM/KSCqtauWJeY67mrhmyIvbHZycrWK60nri/yvcbCe
+	 luMGxaHnVPzp/TAkMqdD/pe3LXZFq053P4pttHwE1C6OAHJUGKtA223k8RYfEIToEw
+	 ARogIPObwntyvJphpVNcftNFkM1avQr7DflXHPw2GEaIDJgbCf/USf+d0t9CKBVDa9
+	 W1Zj8qlvriJKwFVFijgYHUJPqXpRNPhcMZgqXAQfpeqbi0S7plPIyTzgPQYyWUn5KB
+	 TorNk+UB0oTLQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37FA6C021B8;
+	Tue,  4 Mar 2025 06:16:06 +0000 (UTC)
+From: Nayab Sayed via B4 Relay <devnull+nayabbasha.sayed.microchip.com@kernel.org>
+Date: Tue, 04 Mar 2025 11:45:40 +0530
+Subject: [PATCH] ARM: dts: microchip: sama7g5: add ADC hw trigger edge type
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V9 2/7] interconnect: core: Add dynamic id allocation
- support
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Odelu Kukatla <quic_okukatla@quicinc.com>,
-        "Jeff
- Johnson" <jeff.johnson@oss.qualcomm.com>,
-        Mike Tipton <mdtipton@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Sibi Sankar
-	<quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250227155213.404-1-quic_rlaggysh@quicinc.com>
- <20250227155213.404-3-quic_rlaggysh@quicinc.com>
- <bv73i444oh4oakgqet7brkdpmusvpf4x5nbi7kgfvykts43roj@jnc5ps2sazeb>
-Content-Language: en-US
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-In-Reply-To: <bv73i444oh4oakgqet7brkdpmusvpf4x5nbi7kgfvykts43roj@jnc5ps2sazeb>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=I/ufRMgg c=1 sm=1 tr=0 ts=67c6954a cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=TBUwsZYf_s3QzbKEj0UA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: iVD32XXkljEB1SVlanefxgnLMSF0GHFe
-X-Proofpoint-ORIG-GUID: iVD32XXkljEB1SVlanefxgnLMSF0GHFe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-04_03,2025-03-03_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- spamscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
- suspectscore=0 phishscore=0 malwarescore=0 mlxlogscore=999 impostorscore=0
- clxscore=1015 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2503040048
+Message-Id: <20250304-sama7g5-hw-trigger-enable-v1-1-61b5618285f0@microchip.com>
+X-B4-Tracking: v=1; b=H4sIAIuaxmcC/x3MwQqDMAyA4VeRnA1kreLwVYaHVGMNzG6ksgniu
+ 1s8fof/PyCLqWToqwNMfpr1kwoedQXjwikK6lQMjlxLnjxmXrmLLS5/3ExjFENJHN6CTxco+Km
+ hxjGU/msy636/X8N5XiSpX5trAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Nayab Sayed <nayabbasha.sayed@microchip.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=922;
+ i=nayabbasha.sayed@microchip.com; h=from:subject:message-id;
+ bh=eJnQC/9attKgZIiaANkEiYWZpDq4uolpOBt4ZgepDmk=;
+ b=owGbwMvMwCEmfMj/xNz7ei8ZT6slMaQfm7Uk+2f+9iV2N1Y/lzcXr1/UvOdZyYt864Dq3CtHD
+ 7Zsfq6/sqOUhUGMg0FWTJGle/P82YZFfzozf3KugJnDygQyhIGLUwAm0n6f4X9R9DI532kSk8oV
+ Nsuqv5cwq2CamaXu0ay/qfTGKVGnWlZGhvnHVbi/xlzIq//9k28qi9XuJ+YfEvaLFTSdlV+z/rK
+ gBBsA
+X-Developer-Key: i=nayabbasha.sayed@microchip.com; a=openpgp;
+ fpr=E108A58C09FB2280B0AB41DAE24318EF3B3861A3
+X-Endpoint-Received: by B4 Relay for nayabbasha.sayed@microchip.com/default
+ with auth_id=304
+X-Original-From: Nayab Sayed <nayabbasha.sayed@microchip.com>
+Reply-To: nayabbasha.sayed@microchip.com
 
+From: Nayab Sayed <nayabbasha.sayed@microchip.com>
 
+Set ADC trigger edge type property as interrupt edge rising value.
 
-On 2/27/2025 9:38 PM, Dmitry Baryshkov wrote:
-> On Thu, Feb 27, 2025 at 03:52:08PM +0000, Raviteja Laggyshetty wrote:
->> The current interconnect framework relies on static IDs for node
->> creation and registration, which limits topologies with multiple
->> instances of the same interconnect provider. To address this, update
->> the interconnect framework APIs icc_node_create() and icc_link_create()
->> APIs to dynamically allocate IDs for interconnect nodes during creation.
->> This change removes the dependency on static IDs, allowing multiple
->> instances of the same hardware, such as EPSS L3.
->>
->> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
->> ---
->>  drivers/interconnect/core.c  | 13 ++++++++++++-
->>  include/linux/interconnect.h |  3 +++
->>  2 files changed, 15 insertions(+), 1 deletion(-)
->>
-> 
-> 
-> 
->> diff --git a/include/linux/interconnect.h b/include/linux/interconnect.h
->> index 97ac253df62c..8b0f892aaed2 100644
->> --- a/include/linux/interconnect.h
->> +++ b/include/linux/interconnect.h
->> @@ -20,6 +20,9 @@
->>  #define Mbps_to_icc(x)	((x) * 1000 / 8)
->>  #define Gbps_to_icc(x)	((x) * 1000 * 1000 / 8)
->>  
->> +/* macro to indicate dynamic id allocation */
->> +#define ALLOC_DYN_ID	-1
-> 
-> Nit: ICC_ALLOC_DYN_ID
-> 
-> With that fixed,
-> 
-Will fix it in next revision.
+Signed-off-by: Nayab Sayed <nayabbasha.sayed@microchip.com>
+---
+ arch/arm/boot/dts/microchip/at91-sama7g5ek.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
->> +
->>  struct icc_path;
->>  struct device;
->>  
->> -- 
->> 2.43.0
->>
-> 
+diff --git a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+index 0f5e6ad438dd..2543599013b1 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+@@ -137,6 +137,7 @@ &adc {
+ 	vref-supply = <&vddout25>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_mikrobus1_an_default &pinctrl_mikrobus2_an_default>;
++	atmel,trigger-edge-type = <IRQ_TYPE_EDGE_RISING>;
+ 	status = "okay";
+ };
+ 
+
+---
+base-commit: 99fa936e8e4f117d62f229003c9799686f74cebc
+change-id: 20250303-sama7g5-hw-trigger-enable-82b0b3d4042a
+
+Best regards,
+-- 
+Nayab Sayed <nayabbasha.sayed@microchip.com>
+
 
 
