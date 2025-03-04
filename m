@@ -1,919 +1,301 @@
-Return-Path: <devicetree+bounces-153536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81E15A4CF93
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 01:02:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33BB5A4CFA4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 01:06:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDE2D3A3C89
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 00:01:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FEFF3A2B3D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 00:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3802111;
-	Tue,  4 Mar 2025 00:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFACC23B0;
+	Tue,  4 Mar 2025 00:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b="STdPDCp5"
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="PmlPMqx9";
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="cG9qxk0Y";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="TljvPptx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00230701.pphosted.com (mx0b-00230701.pphosted.com [148.163.158.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 034744A28
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 00:01:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741046523; cv=none; b=Nu5sSWERtmt4acqe/xKkOUtgd6e/8yZmz8huI3/Kr6IXdVRs7kpZ5vfPFsdcI4RWfos7ZGVhr4Pprd6yOe2lMgDkbwy6qbkZCFE1qVGe1eMU5cNTez7ScqrZVPH2S2F8RcAGjoHBswsPjm+4m3kqmGscrZhLTo6sRmxfABrsk4s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741046523; c=relaxed/simple;
-	bh=haVevp2Tb3U9Y+ixqHSPtZr3WOH4Z/h7D80GW6svyLo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kRNzGI/w8Z34StUViLeO4LBYenkCAUTH6xh7lRqGGWvlsLwyLsNUsSZGGse+BLemz1PdRdZb+BbzP9Le4Z/zx/A2isBIotqu7BN0h5NjLJ+FZmtaZZSlcbFu73cmfCnttKNpK7UVXLGjWB0J6VMSUZOYksluKX2ePpzGbZWL5g8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org; spf=pass smtp.mailfrom=ieee.org; dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b=STdPDCp5; arc=none smtp.client-ip=209.85.166.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ieee.org
-Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-3d0465a8d34so47242505ab.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 16:01:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google; t=1741046519; x=1741651319; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=W/hCGClFx++zLppbhnYqi7BRBh2JdonrWEcU1VC5WJ0=;
-        b=STdPDCp5Vbu5opb9NsfkPsEvVPF5WgMFd45Y7Ryv4OwYETJu9j9JHslL+j4lE4EyVS
-         OT0hKT+/Ha+smbnZNVeQkShpRTinM+aB84QAuxI6aPKhRvhZz54WDrNhkPFZYDzCRGUR
-         +5eS2crQXN152rtoxoLyyDokaJo4/3LRRdnbs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741046519; x=1741651319;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W/hCGClFx++zLppbhnYqi7BRBh2JdonrWEcU1VC5WJ0=;
-        b=vwDbdlxkWmczXHRwOnOJcMeQsaiWfwTbDo7h123Gd9Z07XdLlwuHYFss9srnhdHHDS
-         KZopC3mbicOyArH0ihMRnKyky6wc8s9mMerY0/hfk/Q4HF/jbL3pYJW9uJhG5ycESuj0
-         czVkgzRB7vNfijORqwZ6bGLRxpsuCGf43/Up2k/9HbHGDiOnk+5m0eCNPtcrpWNgVJ6I
-         Hf/AeQj61pCjy5E455p0QfkZxYBbtVOnKLWnboFCAEsez+m1YQx8r0sZTGS1gtz4N16e
-         H04ntdET26ffonBOzvamYoD1Iqd6oL5tybomfhn8Q28SSLlHpfKKW4w5DJ31kb/Zu7C9
-         vxSg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPTUp2WhdKtKXoiXNdBW0BTgOI28C3Pm4JpCtc3GjgEAogAep5D7yp6GQdRSpi0LRTVAXcCVrGzMzm@vger.kernel.org
-X-Gm-Message-State: AOJu0YytcFJi00RcOvnNc6yOQ6QTs90Xbop1IZ4SdrQVcy65SCR+m7oO
-	ltMvqUjixXmwgXIgHbR/G9om+JEQHvHTBMwB8C2OU6hqb09eklRornGa1ylFQCZW5nCN1CryvWs
-	=
-X-Gm-Gg: ASbGnctFKl/ka4hRWprp504Bw7igOndQwGX7UTAnDklLVdF8oarhDLlC337aKA/r8MK
-	7xwLoonyy8f+NA/J3lmRPk9aHNYHzx+SwL04s4npNna8EzljPKGo/239ntqkbWQlJdKbDdateQ3
-	i2d4JeJ6Q5paS0l5bdCMa36PLxpNi0vIvvzR0SSoj3g/dkvvXM9RJkoHkYZXaYHriSGdbCgHEQw
-	38pwAl6W1JYFsV79cpCeoDuIx4wPOXLidvNOxLzU4iej2XIAfBDt6U1Ek4s4vmNXoxdkt6j4sQ+
-	0miWCssw2NUe6TXjaYP06Jfbsq7e1AtG0txu5vDG/ve/lBO+KTQaKE7SrJ0SmcZfz/wSo6XsJc8
-	lOAQ=
-X-Google-Smtp-Source: AGHT+IEbm/L2ixU4ChMVuJIYM11V/pPh1cOubOL7kFj0QCxBf4On5M8+EIscnpPOHGl0+jgNdrtI9w==
-X-Received: by 2002:a05:6e02:1888:b0:3d3:e09d:2a9f with SMTP id e9e14a558f8ab-3d3e6e73db2mr168424585ab.8.1741046518693;
-        Mon, 03 Mar 2025 16:01:58 -0800 (PST)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.googlemail.com with ESMTPSA id e9e14a558f8ab-3d3f79311ddsm16540435ab.18.2025.03.03.16.01.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Mar 2025 16:01:57 -0800 (PST)
-Message-ID: <ff0faba3-08fe-4ddd-803c-03df4e1e1e2d@ieee.org>
-Date: Mon, 3 Mar 2025 18:01:55 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB688EC4;
+	Tue,  4 Mar 2025 00:05:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.158.9
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741046756; cv=fail; b=hqhKSAmWFwZgfKQGH3Jun0bSYr6iEzHMefIXLnMRBM6Dt23fWmz04QvJo17HIyqPD7j7ymIuadpYhwmaZf3wV5PWtkVh9C5QqbfuJxGKzKjIR9nhFpALK6KLEiZEtsTCX5XYHEDRl/18eH9QC5on5rrQ1XHkpGR/oP66lVIn6ig=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741046756; c=relaxed/simple;
+	bh=U09DWeUQIB3BqJGlQEL3NXf26+QQa/CZk6+gkXspil4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ZdOmyZn1G60G/ODbFBQW+XbeLc+j1pJpx6yPSMWc85gPL6NPF0LQco12sY9CmuenlMGZa5M6Xsq3+pqE99QEBu3pegnRrVAkt070QBbfutXqFN05Br5XVQYBtkVXcKLqUgQLJ+sMVRTnDbN281Lv1AzVKt/5w5g3QSML9ooIMUQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com; spf=pass smtp.mailfrom=synopsys.com; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=PmlPMqx9; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=cG9qxk0Y; dkim=fail (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=TljvPptx reason="signature verification failed"; arc=fail smtp.client-ip=148.163.158.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=synopsys.com
+Received: from pps.filterd (m0098572.ppops.net [127.0.0.1])
+	by mx0b-00230701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523K6ogo011318;
+	Mon, 3 Mar 2025 16:05:34 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=
+	cc:content-id:content-transfer-encoding:content-type:date:from
+	:in-reply-to:message-id:mime-version:references:subject:to; s=
+	pfptdkimsnps; bh=U09DWeUQIB3BqJGlQEL3NXf26+QQa/CZk6+gkXspil4=; b=
+	PmlPMqx9dWxCMYb7C01IGAFpSWVMGjUVySt5P9467qXWF7UezdR9YhXgMdRsrezd
+	SgEkh3rUT0T7hRMnvfc0/NQliSxyEMIcKJsfu7OkIDnO+0ISuX8UhY+JN72lqvMD
+	dMpaTw3srVCKLVVqYw8D3TPb3sKedxag9aagyWmk2KyAZUVywpS4E34bnRSL3egI
+	TGi6v8pmvAo0EPSoAM6I3iaIwsyCnlbOS99fvl9vO+nTqz5CrVM1YkBFzdq9jjFM
+	g8GWuRDQ1LGySooZTr4UFUuZu6LOBsqGNNEQxVZTCjQv5111DDytOz8UzE5DIJzs
+	BD1W8QUEdWaAfQuHueVxwQ==
+Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.87.133])
+	by mx0b-00230701.pphosted.com (PPS) with ESMTPS id 4541rk3hvd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 03 Mar 2025 16:05:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+	t=1741046731; bh=U09DWeUQIB3BqJGlQEL3NXf26+QQa/CZk6+gkXspil4=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=cG9qxk0YCYkE/7JHWNOupR4rA+D05CjkTgYCcySTy9BJ/9K2oafDRvM7QngauMksA
+	 GGAkigYsY3o5kmDMezc0l6lqXmMyFW5NEx3EWznwK4YcpzurrBkRcnSPHKq1N5FA9S
+	 LJj/j3Zx9gU1v4Zaz78g86EDDLenwTURUeABg3FPSDLVs0UrDpjOFZ3VJ5xqnOgDDF
+	 MBBrLNxno6JYo/cnD+5da1U+ffv3aFJgGudcIlYOREZkD7+2oDSVGVgiL0rpLe8nmZ
+	 kZt9ML7B+VdMXNUocxjypSjc40c6LmYuNDMxDdE+/yUa0x+jJ1km89x7xqAzPqOM57
+	 jJE+xPmB6Vp3Q==
+Received: from mailhost.synopsys.com (badc-mailhost4.synopsys.com [10.192.0.82])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
+	 client-signature RSA-PSS (2048 bits))
+	(Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
+	by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 74BA44071A;
+	Tue,  4 Mar 2025 00:05:30 +0000 (UTC)
+Received: from o365relay-in.synopsys.com (us03-o365relay1.synopsys.com [10.4.161.137])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(Client CN "o365relay-in.synopsys.com", Issuer "Entrust Certification Authority - L1K" (not verified))
+	by mailhost.synopsys.com (Postfix) with ESMTPS id 98327A00B9;
+	Tue,  4 Mar 2025 00:05:29 +0000 (UTC)
+Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com;
+	dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=selector1 header.b=TljvPptx;
+	dkim-atps=neutral
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2171.outbound.protection.outlook.com [104.47.57.171])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256
+	 client-signature RSA-PSS (2048 bits) client-digest SHA256)
+	(Client CN "mail.protection.outlook.com", Issuer "DigiCert Cloud Services CA-1" (verified OK))
+	by o365relay-in.synopsys.com (Postfix) with ESMTPS id 983A840110;
+	Tue,  4 Mar 2025 00:05:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=q4JLDf7EhvrJObyeMVCd98UjeGBuHVDwKdgRV4VpZQQzusSO9qaG9M6qZp0x7CZnEWr1nWBo/I7YXMbPKKPrMnrcmzAq2LnSKPOse7Ui0P1ojwlbfv1/thnHB5tF/8M0SJnPse4/sD4hMo8k7/UPAlkWdzh6co5g4pSNcLa8JjeXv3q/9wFF360xfZZt83BvUU1iPXDI0cTCZ5OqOfYsybSwuSVTkZ7K5YtyBVrV/83RFx+jBb7BdebHvN2LYMMwj6wcjx1xnAQSHufPP0ss8Bx60uIKOCY0ZOm8SNIGIdGTy9o9kezD6+5+XcH1uKg422e0Zhi3bDnVstFq7A1AZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U09DWeUQIB3BqJGlQEL3NXf26+QQa/CZk6+gkXspil4=;
+ b=vtwgaNuTBYVYlNrLlYjQ30rzdeL8m4Zq2n/KS2FqVCvhLkjPrEu8z+Bnmeia9PnQk56uS9/XGoDz0zqATQb8YmVc1BlkHN9DRn3ONfDkw3zz6tLrUwFI5ocUftLZxnJFG6okSA1TsdpieKpywIaoeLqWxri2CRqlapdIFyP6/EMpZpybrkZAEAozhNWo8EA/VdrWotSvGkcYVpxE31EJVuHDYHITE3QF4a4KrMsAYwmfKPSQIdhU5LbZvGaHSPoi6oMBOFfAZDPdNhbIMHW36zTVztwUKswK3PqJdvFMKqW9navxZUgP2ZAXVZPjLtU1xvvqJjwR0YMp0bROSv1uPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
+ dkim=pass header.d=synopsys.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U09DWeUQIB3BqJGlQEL3NXf26+QQa/CZk6+gkXspil4=;
+ b=TljvPptxlMJwbyUmk6L0Nw8ynJH/HzS7/jM5iQ3c8bMCZlpOroODG8+eFbfxl1NrnkvHJt7Mq1s0+OskzDek1/nm1QRst+sXnjqt19eTxhy7Ydze9QTAxoxq9m5eWGDm86cdpfeFhjpxVSu0b1ammOEkc/rzPsoLUyH9PgQHN40=
+Received: from LV2PR12MB5990.namprd12.prod.outlook.com (2603:10b6:408:170::16)
+ by SA0PR12MB4367.namprd12.prod.outlook.com (2603:10b6:806:94::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.25; Tue, 4 Mar
+ 2025 00:05:25 +0000
+Received: from LV2PR12MB5990.namprd12.prod.outlook.com
+ ([fe80::3d09:f15f:d888:33a8]) by LV2PR12MB5990.namprd12.prod.outlook.com
+ ([fe80::3d09:f15f:d888:33a8%3]) with mapi id 15.20.8489.025; Tue, 4 Mar 2025
+ 00:05:24 +0000
+X-SNPS-Relay: synopsys.com
+From: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 5/7] usb: dwc3: qcom: Snapshot driver for backwards
+ compatibilty
+Thread-Topic: [PATCH v4 5/7] usb: dwc3: qcom: Snapshot driver for backwards
+ compatibilty
+Thread-Index: AQHbiKw5KJl/2rSglECIEFO5G8n187NiIOyA
+Date: Tue, 4 Mar 2025 00:05:24 +0000
+Message-ID: <20250304000527.ybxfdjx5xzypcals@synopsys.com>
+References: <20250226-dwc3-refactor-v4-0-4415e7111e49@oss.qualcomm.com>
+ <20250226-dwc3-refactor-v4-5-4415e7111e49@oss.qualcomm.com>
+In-Reply-To: <20250226-dwc3-refactor-v4-5-4415e7111e49@oss.qualcomm.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LV2PR12MB5990:EE_|SA0PR12MB4367:EE_
+x-ms-office365-filtering-correlation-id: 2eadd261-a0e0-42d0-1d60-08dd5ab0435f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?R215Z2FZTUU5R3paSTFOV09GYnNWYktONGZhQ2RxZWJGRXExOXlwcWd0ZWpz?=
+ =?utf-8?B?UXBQa2J6YWYrTWdMQlZqTFdZQ1NrZi9IYTlwaWJQRWZHSGtYZG5pdHZpSlo1?=
+ =?utf-8?B?OUROL0xuRmt5enh0elZZOElUdjBkcEtBamw5ZlMvcWtCS3hsWVV6cEw0ZnNn?=
+ =?utf-8?B?bHlwNkF2ajdFbUJOakdYRmNMc3dCT0R5T1RlVGRiUDJYSWdrOStZZ1FOYmJk?=
+ =?utf-8?B?SUtLb3U5S0Zld0liOE1nKzRjQ2xmTGNHVTZjeGtJeHlsdFQxbVMzazIrOWo5?=
+ =?utf-8?B?aVJNZTFPckxYTy9Ubk40ZnVMVmxnZlAwczgrdlc5d3NBRHZNdGlIU0kyVHRE?=
+ =?utf-8?B?Wk1UOERQcUVzZXBIVzBkMFhTL3oydkxxL2s4c0VvSDdZWk11TUNrZUNSSHFX?=
+ =?utf-8?B?SzNvWlFKMXNRTU95d0J0Qko1KzlsdHVuS0luNUl1SFFIKzVhK1d5elkrMWJ3?=
+ =?utf-8?B?clhkNHZ2dmc1TG5FcUZmRGpxUkVHOVcwa2ZHTVBCVzU4T0lKQUkyc3E2Y1Ar?=
+ =?utf-8?B?U1g4S1UvWWdwMGxPV0RvWVM4MGMvTVpFOVY4Q3R5UVV0ZWl6TThFZTAyV0k2?=
+ =?utf-8?B?RmNxejFDaDNPZWRZTmNqWS9CcnRJVlRpSTFSYm5SSGd0Q01wVzU4NXd5TXVK?=
+ =?utf-8?B?VkZSN1VvdURibXROOTJlbm51U1hianpKN1MxLzFaK3RqTEtBZnFOV3ZTTFIz?=
+ =?utf-8?B?VXhwNDB5RjBRUm5HUGNVM0VFcnVXQkpHZ1RHMFYyVENsU3BLOHowTWtMa0th?=
+ =?utf-8?B?YU5QcFFGeG9qcVYxY2VOVEJIaVF1eE5HVlZuY3ozakZsUTY3Z2xHZDJhNFpp?=
+ =?utf-8?B?NGVjRlFkMFlUMlk2R2gwbFF4eEsrWGlPM2tKVmVaK25iajk0UGFDdXNDM0Fl?=
+ =?utf-8?B?d2VweVozdlBMa0VSWGswdE94d0JKTTVDcXNhME8veUozTlRjRzFITjFMWUlQ?=
+ =?utf-8?B?LzI0aEREYU40eC82ZWRxTFlFMENTUjdwOTNyYnpVNE11MzRCMEVseEo4SWN0?=
+ =?utf-8?B?Znk4Y1M3cnJWNDJLSjdCMHdHR0dVVWtqYmNmMFZBNDRRSmRFT21jYXZLWHdE?=
+ =?utf-8?B?d3UxdGFhVzBmSGpKMzhLWDNHb1FGWHNXYkFzTDhyWGV3d0Z3VVo5REFEV0U3?=
+ =?utf-8?B?WlpTSzFXWk94dDk3NjlKZm9CV042QVBORFVNblI5TXJVbkNYV0xNSXg5dzRy?=
+ =?utf-8?B?dHdMS2tEU2ticVdDRUNyOHlRRmgzY3hzL1dlR1FzUVVnLzNFOTlZQUI2cDJJ?=
+ =?utf-8?B?aUFZS3ZJajRHRWRWL20zKzMxL1hRU3FhWWtrYnk5M0lqRkc4RjBPeDN2QkRS?=
+ =?utf-8?B?UThNTm5YU0huQWJsYXBoQktWNkZBMkV4L1lDSFFsdzZiS2U4bW1lM3dMWVhl?=
+ =?utf-8?B?czAyREh1R0ViL2srOHQ2akwxNjRPaUttWFdBVlg3NEFHRWN1UmhGZzBwVmV4?=
+ =?utf-8?B?eTF0Z3RRamVjZGZ3M2tuc2p6VEhPUEp1R3E4bEQ1anlQd2VjMm9icWRGRGl4?=
+ =?utf-8?B?bTBPNXBYRmxoRWtSbWNybkZaa3NicDV3bUk4WFQ2SFl0NzNvYzBnaTc5WkJ0?=
+ =?utf-8?B?cmFxOVl6aTR5czIrMS81SmsyQWtKM3RZZUhvVmxYMDB5WGFmWHB5dUI2cytH?=
+ =?utf-8?B?NTRTOXV0dmYzV3ljYXM3Vml0bFdmdGQ1THNxallDelltdlRUSlZKejVVMEJU?=
+ =?utf-8?B?VEpZVVJ2SlordUwxUWVxUUhLZnd5YzBXalBhajE1R0tYNnNMOUtXTVFqNTMr?=
+ =?utf-8?B?WFhSVWgxK3ByTjNzK09wdVp3MDJaZG5xN0xLS2hlM2FKRVlCY0ViS292dmp0?=
+ =?utf-8?B?Wng2dXR6RDlNejFZNGY5SSsxU1JETXdpM25IRmFGelVtY2U0c3ZwODJsVGU4?=
+ =?utf-8?B?ZHdFN0NqanpZcjFDSDlNd09ZVzVKenJLME5zWCt1RXJPZHlreEJxbFFuaEpB?=
+ =?utf-8?Q?AvAA+o7G5oCXDSRitZGVfdJ+7J3nbL6e?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?OENtOUd6ZUs4akpQdjVBUmFnZjZQR01ROGNkWHA4cGlyb0JjUWN3Wm5zaEw5?=
+ =?utf-8?B?MmxjY2RXNkpheXhoaHFINTV4ZGg3NlFUb3dKeEpob3dUaHkxOE4wVVR6WFk1?=
+ =?utf-8?B?a0UzMjhrNktZZTN2WnpYRWJzamFiaysxOVNmUm1mdmhMaCtsbDlkR01wNmNS?=
+ =?utf-8?B?bkVUWmVydHJUMThON1dOMHAzaFIrczBqUjV5VmVodzBBTS93ekRSK2kyYWlC?=
+ =?utf-8?B?cU41NTJheStzdDNHd2R4Q2FuQS9razIySkNudmptK1M0MjlBSGlmWStPajEx?=
+ =?utf-8?B?NFBnWkZTV0pFVG5pYXRXTFplVDQzZmpiOVVRdnFHNGdZTVo2cWo4L2F6aWs1?=
+ =?utf-8?B?cys1STNoTTN2VWRLM3NNZVNUWGFERm42bmpBMENDS2dGaFlqays0MHRTYWwx?=
+ =?utf-8?B?V1pHREtCcDBTNTQ4UUpyYzgySGxxMWJVMEZNQ0FKUnlpa0RVRGJTQ3Q1dzlL?=
+ =?utf-8?B?Uy9hN0hlSzVkR0k0bitJVUQyblhGcEk2ckhBL244ZEVmbmdtWXRUSzYxcGFy?=
+ =?utf-8?B?MXhqdW9icGtRUG5hTktRNm44NU5xMjR0RndCY0MvSTZzZ1VoOWJLczQ3eW4w?=
+ =?utf-8?B?ZkZ1bElTNldjaWZxVUxNOGs3dkYvSUZxeUFaZTUrYnBCQ21mUmJGdWJzeEVJ?=
+ =?utf-8?B?aXFUZjRXaXpNZ3ZrcmtlK2J0alY0ajVvRG1LekFmKzMrTi9BWE0xNFdqdDdY?=
+ =?utf-8?B?RkdtcS9WVTdCYkh5R2N6Wm9QdVlZZkZPTDZ4SlZzZmdwQXg4ck95VTQ4a3BW?=
+ =?utf-8?B?K1BxT0xkQ3lhMzVCTy9CZHNHNGdmRzFYMm1CelVIR05HRVNxZTFzb0YzL3B0?=
+ =?utf-8?B?TkNtdXlocHhMMmY1U29rQ09JY3ZVbHhDSlBMbzdVYzBKTnUwREM2TGhYZWp3?=
+ =?utf-8?B?WEpYaG5JcEkxN3MrSFFKWHNzKzh2bVdjSXpnNWRibGpNWEFBRkR4azRJRlQ1?=
+ =?utf-8?B?cGFUQmhrMGZ1QjBYb21Pb21jQ2orNEJoeHRZbFJKS2ZiY1F2S1ppRXZHTGMw?=
+ =?utf-8?B?dnp3dGlpSVhZLzlybFFMb0hxTkFhN2sxaHBuZkk0dmQvY1hBaEVVYjUrS05y?=
+ =?utf-8?B?bVdyWnFDSytzNk9NNkJIckdSRG1nb090TENXMWRXZkdMWlpRZkJzcHNJMnYr?=
+ =?utf-8?B?YmY5MFpPM2VhTDFqTzdLRUZONmx5NGRTaEJSZ2dhMlhNRDRGS25wNjN3VS9P?=
+ =?utf-8?B?V1FYbGhIczZ6WTdJY0dzek9GOWV1S210VmYwME5peVZpTU9lOW9uU1g1cUxC?=
+ =?utf-8?B?ZkVEbFRVaDlTNkNRYkVQRGJlRnBjZUdCRFp2b21URk84eVNCc21yQjZBSmJr?=
+ =?utf-8?B?VEtyQS9vRktudXBPMFh3Vi9aUnJMcTM2YVc2V0ZySng4ckdRUmc3UDZlM3FV?=
+ =?utf-8?B?UEw3aytFbjgrTm9yYjNwVUZPek5SbVF4NSt5elhPNkNFVXlIdk5wK1k4bC9s?=
+ =?utf-8?B?ek1VYUxGbDRZNHlWVnEwR3VXWjJzdTFjaW9hbW9DTmtpczRWWThqTTBJcGlz?=
+ =?utf-8?B?cmtpR0FZTUpzdGhCOE5xWmlKRWR5UGU4dStlMy9kMExXc0FzQ2ZFeTlqZGNB?=
+ =?utf-8?B?UEZVbHNscWUyYWNRMWdBZUI2Rllid3RMN0RqSUR1VVBJSXZINmVKNzkvMk5j?=
+ =?utf-8?B?emRBN1Y1QmNRWmw2MUd6SUhuZ0dCRVUwSUJlVWVSemZlOVY1M3JpaGxEU1hZ?=
+ =?utf-8?B?OVU0blpVVkhPeEM1eHF6eHhzNWIvcm02RzVPQ3BHSEdYdzhFcWVZekdnMmhN?=
+ =?utf-8?B?a01PWXZzRFlOZlVnMjAwSUVJV0g0ZENpVzY4WXUvNE5lclpHWnpyTU1xN1dJ?=
+ =?utf-8?B?N2JtSEZydFJTWVcrWjJ3VTdWbkp1MGR6L0hMZnBieWF0dGR2eDFFdUs1Unlo?=
+ =?utf-8?B?LzhGRE41S04xeUxvdEZ4N3VrT3k2aTZZUndlTVQxbHRoZEF6dGdNVE4xdm9m?=
+ =?utf-8?B?SVVNRXliOWg0UnovQWdzUGk1Qzd0SGtMYndXaTE3eXAwMkVaais2M1hEWUxp?=
+ =?utf-8?B?dzlNbUwwMEhCYU9hZ2ZoNXZzc2J2UHhPYVlYNzNHMUlGUjdubFRFUGc5RHJh?=
+ =?utf-8?B?eDZ5WFlxc0EvZGJid2lxZFA0U1QzV3NQdUtZM2xySW50T1ZFR1VBVXJ6Rm9r?=
+ =?utf-8?Q?0KERMVXXmORNd7fA+RE/KKUvl?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <56D1A51613CBCB4784F92325120676B6@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v5 2/2] i2c: spacemit: add support for SpacemiT K1
- SoC
-To: Troy Mitchell <troymitchell988@gmail.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>
-Cc: linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- spacemit@lists.linux.dev
-References: <20250303-k1-i2c-master-v5-0-21dfc7adfe37@gmail.com>
- <20250303-k1-i2c-master-v5-2-21dfc7adfe37@gmail.com>
-Content-Language: en-US
-From: Alex Elder <elder@ieee.org>
-In-Reply-To: <20250303-k1-i2c-master-v5-2-21dfc7adfe37@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	zzXa3ribHKShi63cy5aymRILpXmeExya4oYjSjfhgK7s+3x4LZFpyOmjXR9g26S0snSz+YHUYQnadkfGVzVixGa7K0tf6cmHSI0mXYFMgRqUfCe0zrz/7U0XnTNy62juB7pFpawHXLX8jHYpikOoNacm6iZRnF+uX3niiqP38GzYpjolrsXMXyuM07/2zR9EZMm1u1ZjQipj1hxCrdeFORpFCccfuVKPwGtOzfS58hHEtd0jqMIbEyj8bL2jZSzOK9d+Q/fa+IVTlCrX9KXw7c5wXyWalCt2fSpRF8PuXo6pCsIx4YsiatFm+3Q9Zdg6d/5gaOUvTDlPO4gwv1RzD1D9L1kp4xJ/OFqHwgwf8vwNg5sEjYLCULRJ8OH+lG+xwpL/HWnlmdyJAHu+4sqhmB61Hk4WHu7j7iEq6rpkVo2WHD9M7LLKAkmBKf0Xl04x+1Dn6elZIePB33yEVD46aEqb53egge0WVNAxHhWX/In9JW5Xb+U/IqSjYc5JmSSHmJmkUfm5V8tP7sQytsETdCElKQvMUAgpwhkUEYbyyPYNu2eH4BsfVqvgVJn1awUaBoCjlBlIsbfSTCilN2Uq9hLaWTVkF913KV+gE5sVhN0fMLzodE/Ln0GaEnbANnwPmWNRGT7Ozom4n+5AKWfWWA==
+X-OriginatorOrg: synopsys.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2eadd261-a0e0-42d0-1d60-08dd5ab0435f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2025 00:05:24.7475
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mtBxxM9tKlsQ/g6mwzR4yBS1n9YLXKW2fxRkxpGWnHojq6NsFdHxU/gBqjmg4CZwdgxtuqsvJaCe1Geu6XRsAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4367
+X-Proofpoint-ORIG-GUID: z4XkZkB5sB7YPHPukaoGW098kDojokOw
+X-Proofpoint-GUID: z4XkZkB5sB7YPHPukaoGW098kDojokOw
+X-Authority-Analysis: v=2.4 cv=FIrhx/os c=1 sm=1 tr=0 ts=67c643cd cx=c_pps a=t4gDRyhI9k+KZ5gXRQysFQ==:117 a=t4gDRyhI9k+KZ5gXRQysFQ==:17 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10
+ a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=qPHU084jO2kA:10 a=EUspDBNiAAAA:8 a=N17t731RMO_0zPnaBiwA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-03_11,2025-03-03_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam policy=outbound_active_cloned score=0
+ lowpriorityscore=0 clxscore=1015 mlxscore=0 suspectscore=0 bulkscore=0
+ phishscore=0 spamscore=0 adultscore=0 mlxlogscore=993 malwarescore=0
+ priorityscore=1501 impostorscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2503030187
 
-On 3/2/25 11:30 PM, Troy Mitchell wrote:
-> This patch introduces basic I2C support for the SpacemiT K1 SoC,
-> utilizing interrupts for transfers.
-> 
-> The driver has been tested using i2c-tools on a Bananapi-F3 board,
-> and basic I2C read/write operations have been confirmed to work.
-> 
-> Signed-off-by: Troy Mitchell <troymitchell988@gmail.com>
-
-I have some more comments, and some questions.  I appreciate
-seeing some of the changes you've made based on my feedback.
-
-> ---
->   drivers/i2c/busses/Kconfig  |  17 ++
->   drivers/i2c/busses/Makefile |   1 +
->   drivers/i2c/busses/i2c-k1.c | 617 ++++++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 635 insertions(+)
-> 
-> diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-> index fc438f4457713d5559d163840a7b11e8cdbb8f58..12d0e99566d8625aa374279956b71a4034ded4ac 100644
-> --- a/drivers/i2c/busses/Kconfig
-> +++ b/drivers/i2c/busses/Kconfig
-> @@ -783,6 +783,23 @@ config I2C_JZ4780
->   
->   	 If you don't know what to do here, say N.
->   
-> +config I2C_K1
-> +	tristate "Spacemit K1 I2C adapter"
-> +	depends on ARCH_SPACEMIT || COMPILE_TEST
-> +	depends on OF
-> +	help
-> +	  This option enables support for the I2C interface on the Spacemit K1
-> +	  platform.
-> +
-> +	  If you enable this configuration, the kernel will include support for
-> +	  the I2C adapter specific to the Spacemit K1 platform. This driver can
-> +	  be used to manage I2C bus transactions, which are necessary for
-> +	  interfacing with I2C peripherals such as sensors, EEPROMs, and other
-> +	  devices.
-> +
-> +	  This driver can also be built as a module.  If so, the
-> +	  module will be called `i2c-k1`.
-> +
->   config I2C_KEBA
->   	tristate "KEBA I2C controller support"
->   	depends on HAS_IOMEM
-> diff --git a/drivers/i2c/busses/Makefile b/drivers/i2c/busses/Makefile
-> index 1c2a4510abe44a689dfe67d2d64cf0cf3434f510..c1252e2b779e2e47492d66179b442f2202ec0416 100644
-> --- a/drivers/i2c/busses/Makefile
-> +++ b/drivers/i2c/busses/Makefile
-> @@ -74,6 +74,7 @@ obj-$(CONFIG_I2C_IMX)		+= i2c-imx.o
->   obj-$(CONFIG_I2C_IMX_LPI2C)	+= i2c-imx-lpi2c.o
->   obj-$(CONFIG_I2C_IOP3XX)	+= i2c-iop3xx.o
->   obj-$(CONFIG_I2C_JZ4780)	+= i2c-jz4780.o
-> +obj-$(CONFIG_I2C_K1)		+= i2c-k1.o
->   obj-$(CONFIG_I2C_KEBA)		+= i2c-keba.o
->   obj-$(CONFIG_I2C_KEMPLD)	+= i2c-kempld.o
->   obj-$(CONFIG_I2C_LPC2K)		+= i2c-lpc2k.o
-> diff --git a/drivers/i2c/busses/i2c-k1.c b/drivers/i2c/busses/i2c-k1.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..6abe05640782dfa93a15d130c58ac879a423e061
-> --- /dev/null
-> +++ b/drivers/i2c/busses/i2c-k1.c
-> @@ -0,0 +1,617 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2024 Troy Mitchell <troymitchell988@gmail.com>
-> + */
-> +
-> + #include <linux/clk.h>
-> + #include <linux/i2c.h>
-> + #include <linux/iopoll.h>
-> + #include <linux/module.h>
-> + #include <linux/of_address.h>
-> + #include <linux/platform_device.h>
-> +
-> +/* spacemit i2c registers */
-> +#define SPACEMIT_ICR		 0x0		/* Control Register */
-> +#define SPACEMIT_ISR		 0x4		/* Status Register */
-> +#define SPACEMIT_IDBR		 0xc		/* Data Buffer Register */
-> +#define SPACEMIT_IBMR		 0x1c		/* Bus monitor register */
-> +
-> +/* register SPACEMIT_ICR fields */
-
-This is minor, but to me "SPACEMIT_ICR register fields"
-sounds better.  If you decide to rearrange this, do so
-for all of them.
-
-> +#define SPACEMIT_CR_START        BIT(0)		/* start bit */
-> +#define SPACEMIT_CR_STOP         BIT(1)		/* stop bit */
-> +#define SPACEMIT_CR_ACKNAK       BIT(2)		/* send ACK(0) or NAK(1) */
-> +#define SPACEMIT_CR_TB           BIT(3)		/* transfer byte bit */
-> +/* Bit 4-7 are reserved */
-
-Bits?  (plural)
-
-> +#define SPACEMIT_CR_MODE_FAST    BIT(8)		/* bus mode (master operation) */
-> +/* Bit 9 is reserved */
-> +#define SPACEMIT_CR_UR           BIT(10)	/* unit reset */
-> +/* Bit 11-12 are reserved */
-> +#define SPACEMIT_CR_SCLE         BIT(13)	/* master clock enable */
-> +#define SPACEMIT_CR_IUE          BIT(14)	/* unit enable */
-> +/* Bit 15-17 are reserved */
-> +#define SPACEMIT_CR_ALDIE        BIT(18)	/* enable arbitration interrupt */
-> +#define SPACEMIT_CR_DTEIE        BIT(19)	/* enable tx interrupts */
-> +#define SPACEMIT_CR_DRFIE        BIT(20)	/* enable rx interrupts */
-> +#define SPACEMIT_CR_GCD          BIT(21)	/* general call disable */
-> +#define SPACEMIT_CR_BEIE         BIT(22)	/* enable bus error ints */
-> +/* Bit 23-24 are reserved */
-> +#define SPACEMIT_CR_MSDIE        BIT(25)	/* master STOP detected int enable */
-> +#define SPACEMIT_CR_MSDE         BIT(26)	/* master STOP detected enable */
-> +#define SPACEMIT_CR_TXDONEIE     BIT(27)	/* transaction done int enable */
-> +#define SPACEMIT_CR_TXEIE        BIT(28)	/* transmit FIFO empty int enable */
-> +#define SPACEMIT_CR_RXHFIE       BIT(29)	/* receive FIFO half-full int enable */
-> +#define SPACEMIT_CR_RXFIE        BIT(30)	/* receive FIFO full int enable */
-> +#define SPACEMIT_CR_RXOVIE       BIT(31)	/* receive FIFO overrun int enable */
-> +
-> +#define SPACEMIT_I2C_INT_CTRL_MASK	(SPACEMIT_CR_ALDIE | SPACEMIT_CR_DTEIE | \
-> +					SPACEMIT_CR_DRFIE | SPACEMIT_CR_BEIE | \
-> +					SPACEMIT_CR_TXDONEIE | SPACEMIT_CR_TXEIE | \
-> +					SPACEMIT_CR_RXHFIE | SPACEMIT_CR_RXFIE | \
-> +					SPACEMIT_CR_RXOVIE | SPACEMIT_CR_MSDIE)
-> +
-> +/* register SPACEMIT_ISR fields */
-
-/* Bits 0-13 are reserved */
-
-> +#define SPACEMIT_SR_ACKNAK       BIT(14)	/* ACK/NACK status */
-> +#define SPACEMIT_SR_UB           BIT(15)	/* unit busy */
-> +#define SPACEMIT_SR_IBB          BIT(16)	/* i2c bus busy */
-> +#define SPACEMIT_SR_EBB          BIT(17)	/* early bus busy */
-> +#define SPACEMIT_SR_ALD          BIT(18)	/* arbitration loss detected */
-> +#define SPACEMIT_SR_ITE          BIT(19)	/* tx buffer empty */
-> +#define SPACEMIT_SR_IRF          BIT(20)	/* rx buffer full */
-> +#define SPACEMIT_SR_GCAD         BIT(21)	/* general call address detected */
-> +#define SPACEMIT_SR_BED          BIT(22)	/* bus error no ACK/NAK */
-> +#define SPACEMIT_SR_SAD          BIT(23)	/* slave address detected */
-> +#define SPACEMIT_SR_SSD          BIT(24)	/* slave stop detected */
-> +/* Bit 25 is reserved */
-> +#define SPACEMIT_SR_MSD          BIT(26)	/* master stop detected */
-> +#define SPACEMIT_SR_TXDONE       BIT(27)	/* transaction done */
-> +#define SPACEMIT_SR_TXE          BIT(28)	/* tx FIFO empty */
-> +#define SPACEMIT_SR_RXHF         BIT(29)	/* rx FIFO half-full */
-> +#define SPACEMIT_SR_RXF          BIT(30)	/* rx FIFO full */
-> +#define SPACEMIT_SR_RXOV         BIT(31)	/* RX FIFO overrun */
-> +
-> +#define SPACEMIT_I2C_INT_STATUS_MASK	(SPACEMIT_SR_RXOV | SPACEMIT_SR_RXF | SPACEMIT_SR_RXHF | \
-> +					SPACEMIT_SR_TXE | SPACEMIT_SR_TXDONE | SPACEMIT_SR_MSD | \
-> +					SPACEMIT_SR_SSD | SPACEMIT_SR_SAD | SPACEMIT_SR_BED | \
-> +					SPACEMIT_SR_GCAD | SPACEMIT_SR_IRF | SPACEMIT_SR_ITE | \
-> +					SPACEMIT_SR_ALD)
-> +
-> +/* register SPACEMIT_IBMR fields */
-> +#define SPACEMIT_BMR_SDA         BIT(0)		/* SDA line level */
-> +#define SPACEMIT_BMR_SCL         BIT(1)		/* SCL line level */
-> +
-> +/* i2c bus recover timeout: us */
-> +#define SPACEMIT_I2C_BUS_BUSY_TIMEOUT	100000
-> +
-
-I think it's clearer to just define a mask, something like:
-
-#define SPACEMIT_SR_ERROR \
-	(SPACEMIT_SR_BED | SPACEMIT_SR_RXOV | SPACEMIT_SR_ALD)
-
-And then in the code where needed, do:
-
-	if (status->i2c & SPACEMIT_ERROR)
-		handle_error();
-
-I'll talk about this more where you use it, below.
-
-> +#define SPACEMIT_I2C_GET_ERR(status)	((status) & \
-> +					(SPACEMIT_SR_BED | SPACEMIT_SR_RXOV | SPACEMIT_SR_ALD))
-> +
-> +enum spacemit_i2c_state {
-> +	STATE_IDLE,
-> +	STATE_START,
-> +	STATE_READ,
-> +	STATE_WRITE,
-> +};
-> +
-> +/* i2c-spacemit driver's main struct */
-> +struct spacemit_i2c_dev {
-> +	struct device *dev;
-> +	struct i2c_adapter adapt;
-> +
-> +	/* hardware resources */
-> +	void __iomem *base;
-> +	int irq;
-> +	u32 clock_freq;
-> +
-> +	struct i2c_msg *msgs;
-> +	int msg_num;
-> +
-> +	/* index of the current message being processed */
-> +	int msg_idx;
-> +	u8 *msg_buf;
-> +	/* the number of unprocessed bytes remaining in each message  */
-> +	size_t unprocessed;
-> +
-> +	enum spacemit_i2c_state state;
-> +	bool read;
-> +	struct completion complete;
-> +	u32 status;
-> +};
-> +
-> +static void spacemit_i2c_enable(struct spacemit_i2c_dev *i2c)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(i2c->base + SPACEMIT_ICR);
-> +	val |= SPACEMIT_CR_IUE;
-> +	writel(val, i2c->base + SPACEMIT_ICR);
-> +}
-> +
-> +static void spacemit_i2c_disable(struct spacemit_i2c_dev *i2c)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(i2c->base + SPACEMIT_ICR);
-> +	val &= ~SPACEMIT_CR_IUE;
-> +	writel(val, i2c->base + SPACEMIT_ICR);
-> +}
-> +
-> +static void spacemit_i2c_reset(struct spacemit_i2c_dev *i2c)
-> +{
-> +	writel(SPACEMIT_CR_UR, i2c->base + SPACEMIT_ICR);
-> +	udelay(5);
-> +	writel(0, i2c->base + SPACEMIT_ICR);
-> +}
-> +
-> +static int spacemit_i2c_handle_err(struct spacemit_i2c_dev *i2c)
-> +{
-> +	u32 err = SPACEMIT_I2C_GET_ERR(i2c->status);
-
-The macro call above adds no value.
-
-> +
-> +	dev_dbg(i2c->dev, "i2c error status: 0x%08x\n", i2c->status);
-> +
-
-Instead, you can just do this check on i2c->status directly.
-
-	if (i2c->status & ( ... )) {
-
-If you wanted to cache the status value in a local variable,
-you could do that too, but that doesn't require the macro.
-
-> +	if (err & (SPACEMIT_SR_BED | SPACEMIT_SR_ALD)) {
-> +		spacemit_i2c_reset(i2c);
-> +		return -EAGAIN;
-> +	}
-> +
-> +	return i2c->status & SPACEMIT_SR_ACKNAK ? -ENXIO : -EIO;
-> +}
-> +
-> +static void spacemit_i2c_conditionally_reset_bus(struct spacemit_i2c_dev *i2c)
-> +{
-> +	u32 status;
-> +
-> +	/* if bus is locked, reset unit. 0: locked */
-> +	status = readl(i2c->base + SPACEMIT_IBMR);
-> +	if ((status & SPACEMIT_BMR_SDA) && (status & SPACEMIT_BMR_SCL))
-> +		return;
-> +
-> +	spacemit_i2c_reset(i2c);
-> +	usleep_range(10, 20);
-> +
-> +	/* check scl status again */
-> +	status = readl(i2c->base + SPACEMIT_IBMR);
-> +	if (!(status & SPACEMIT_BMR_SCL))
-> +		dev_warn_ratelimited(i2c->dev, "unit reset failed\n");
-> +}
-> +
-
-I think spacemit_i2c_wait_bus_busy() would be a better name
-for this function.  Actually, are you waiting for the bus
-to *not* be busy?  If so, name it that.
-
-> +static int spacemit_i2c_recover_bus_busy(struct spacemit_i2c_dev *i2c)
-> +{
-> +	int ret = 0;
-
-There is no need to initialize ret.
-
-> +	u32 val;
-> +
-> +	val = readl(i2c->base + SPACEMIT_ISR);
-> +	if (!(val & (SPACEMIT_SR_UB | SPACEMIT_SR_IBB)))
-> +		return 0;
-> +
-> +	ret = readl_poll_timeout(i2c->base + SPACEMIT_ISR, val,
-> +				 !(val & (SPACEMIT_SR_UB | SPACEMIT_SR_IBB)),
-> +				 1500, SPACEMIT_I2C_BUS_BUSY_TIMEOUT);
-> +	if (ret)
-> +		spacemit_i2c_reset(i2c);
-> +
-> +	return ret;
-> +}
-> +
-> +static void spacemit_i2c_check_bus_release(struct spacemit_i2c_dev *i2c)
-> +{
-> +	/* in case bus is not released after transfer completes */
-> +	if (readl(i2c->base + SPACEMIT_ISR) & SPACEMIT_SR_EBB) {
-> +		spacemit_i2c_conditionally_reset_bus(i2c);
-> +		usleep_range(90, 150);
-> +	}
-> +}
-> +
-> +static void spacemit_i2c_init(struct spacemit_i2c_dev *i2c)
-> +{
-> +	u32 val;
-> +
-> +	/*
-> +	 * Unmask interrupt bits for all xfer mode:
-> +	 * bus error, arbitration loss detected.
-> +	 * For transaction complete signal, we use master stop
-> +	 * interrupt, so we don't need to unmask SPACEMIT_CR_TXDONEIE.
-> +	 */
-> +	val = SPACEMIT_CR_BEIE | SPACEMIT_CR_ALDIE;
-> +
-> +	/*
-> +	 * Unmask interrupt bits for interrupt xfer mode:
-> +	 * DBR rx full.
-> +	 * For tx empty interrupt SPACEMIT_CR_DTEIE, we only
-> +	 * need to enable when trigger byte transfer to start
-> +	 * data sending.
-> +	 */
-> +	val |= SPACEMIT_CR_DRFIE;
-> +
-> +	/* set speed bits: default fast mode */
-
-It is not *default* fast mode, it *is* fast mode.  (There
-is no other mode used in this driver, right?)
-
-> +	val |= SPACEMIT_CR_MODE_FAST;
-> +
-> +	/* disable response to general call */
-> +	val |= SPACEMIT_CR_GCD;
-> +
-> +	/* enable SCL clock output */
-> +	val |= SPACEMIT_CR_SCLE;
-> +
-> +	/* enable master stop detected */
-> +	val |= SPACEMIT_CR_MSDE | SPACEMIT_CR_MSDIE;
-> +
-> +	writel(val, i2c->base + SPACEMIT_ICR);
-> +}
-> +
-> +static inline void
-> +spacemit_i2c_clear_int_status(struct spacemit_i2c_dev *i2c, u32 mask)
-> +{
-> +	writel(mask & SPACEMIT_I2C_INT_STATUS_MASK, i2c->base + SPACEMIT_ISR);
-> +}
-> +
-> +static void spacemit_i2c_start(struct spacemit_i2c_dev *i2c)
-> +{
-> +	u32 slave_addr_rw, val;
-> +	struct i2c_msg *cur_msg = i2c->msgs + i2c->msg_idx;
-> +
-> +	i2c->read = cur_msg->flags & I2C_M_RD;
-
-i2c->read is Boolean.  The assignment above will almost
-certainly do the right thing, but if you did it this
-way, it would make it clear you were making a Boolean
-assingment:
-
-	i2c->read = !!(cur_msg->flags & I2C_M_RD);
-
-> +
-> +	i2c->state = STATE_START;
-> +
-> +	if (cur_msg->flags & I2C_M_RD)
-> +		slave_addr_rw = ((cur_msg->addr & 0x7f) << 1) | 1;
-> +	else
-> +		slave_addr_rw = (cur_msg->addr & 0x7f) << 1;
-
-I think you said you were going to implement my suggestion here:
-
-	slave_addr_rw = (cur_msg->addr & 0x7f) << 1;
-	if (cur_msg->flags & I2C_M_RD)
-		slave_addr_rw |= 1;
-
-> +
-> +	writel(slave_addr_rw, i2c->base + SPACEMIT_IDBR);
-> +
-> +	/* send start pulse */
-> +	val = readl(i2c->base + SPACEMIT_ICR);
-> +	val &= ~SPACEMIT_CR_STOP;
-> +	val |= SPACEMIT_CR_START | SPACEMIT_CR_TB | SPACEMIT_CR_DTEIE;
-> +	writel(val, i2c->base + SPACEMIT_ICR);
-> +}
-> +
-> +static void spacemit_i2c_stop(struct spacemit_i2c_dev *i2c)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(i2c->base + SPACEMIT_ICR);
-> +	val |= SPACEMIT_CR_STOP | SPACEMIT_CR_ALDIE | SPACEMIT_CR_TB;
-> +
-> +	if (i2c->read)
-> +		val |= SPACEMIT_CR_ACKNAK;
-> +
-> +	writel(val, i2c->base + SPACEMIT_ICR);
-> +}
-> +
-> +static int spacemit_i2c_xfer_msg(struct spacemit_i2c_dev *i2c)
-> +{
-> +	unsigned long time_left;
-> +	u32 err;
-> +
-> +	for (i2c->msg_idx = 0; i2c->msg_idx < i2c->msg_num; i2c->msg_idx++) {
-> +		i2c->msg_buf = (i2c->msgs + i2c->msg_idx)->buf;
-> +		i2c->status = 0;
-> +		i2c->unprocessed = (i2c->msgs + i2c->msg_idx)->len;
-> +
-> +		reinit_completion(&i2c->complete);
-> +
-> +		spacemit_i2c_start(i2c);
-> +
-> +		time_left = wait_for_completion_timeout(&i2c->complete,
-> +							i2c->adapt.timeout);
-> +		if (time_left == 0) {
-> +			dev_err(i2c->dev, "msg completion timeout\n");
-> +			spacemit_i2c_conditionally_reset_bus(i2c);
-> +			spacemit_i2c_reset(i2c);
-> +			return -ETIMEDOUT;
-> +		}
-> +
-> +		err = SPACEMIT_I2C_GET_ERR(i2c->status);
-
-This would be better as:
-
-	if (i2c->status & SPACEMIT_SR_ERROR)
-		return spacemit_i2c_handle_err(i2c);
-
-> +		if (err)
-> +			return spacemit_i2c_handle_err(i2c);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static bool spacemit_i2c_is_last_msg(struct spacemit_i2c_dev *i2c)
-> +{
-> +	if (i2c->msg_idx != i2c->msg_num - 1)
-> +		return false;
-> +
-> +	if (i2c->read)
-> +		return i2c->unprocessed == 1;
-> +
-> +	return !i2c->unprocessed;
-> +}
-> +
-> +static void spacemit_i2c_handle_write(struct spacemit_i2c_dev *i2c)
-> +{
-> +	/* if transfer completes, SPACEMIT_ISR will handle it */
-> +	if (i2c->status & SPACEMIT_SR_MSD)
-> +		return;
-> +
-> +	if (i2c->unprocessed) {
-> +		writel(*i2c->msg_buf++, i2c->base + SPACEMIT_IDBR);
-> +		i2c->unprocessed--;
-> +		return;
-> +	}
-> +
-> +	/* STATE_IDLE avoids trigger next byte */
-> +	i2c->state = STATE_IDLE;
-> +	complete(&i2c->complete);
-> +}
-> +
-> +static void spacemit_i2c_handle_read(struct spacemit_i2c_dev *i2c)
-> +{
-> +	if (i2c->unprocessed) {
-> +		*i2c->msg_buf++ = readl(i2c->base + SPACEMIT_IDBR);
-> +		i2c->unprocessed--;
-> +	}
-> +
-> +	/* if transfer completes, SPACEMIT_ISR will handle it */
-> +	if (i2c->status & (SPACEMIT_SR_MSD | SPACEMIT_SR_ACKNAK))
-> +		return;
-> +
-> +	/* it has to append stop bit in icr that read last byte */
-> +	if (i2c->unprocessed)
-> +		return;
-> +
-> +	/* STATE_IDLE avoids trigger next byte */
-> +	i2c->state = STATE_IDLE;
-> +	complete(&i2c->complete);
-> +}
-> +
-> +static void spacemit_i2c_handle_start(struct spacemit_i2c_dev *i2c)
-> +{
-> +	i2c->state = i2c->read ? STATE_READ : STATE_WRITE;
-> +	if (i2c->state == STATE_WRITE)
-> +		spacemit_i2c_handle_write(i2c);
-> +}
-> +
-> +static void spacemit_i2c_err_check(struct spacemit_i2c_dev *i2c)
-> +{
-> +	u32 val;
-> +	u32 err = SPACEMIT_I2C_GET_ERR(i2c->status);
-> +
-> +	/*
-> +	 * send transaction complete signal:
-> +	 * error happens, detect master stop
-> +	 */
-
-The next line is the only place you use err in this function.
-I think you should instead do:
-
-	if (!(i2c->status & (SPACEMIT_SR_ERROR | SPACEMIT_SR_MSD)))
-		return;
-
-> +	if (!err && !(i2c->status & SPACEMIT_SR_MSD))
-> +		return;
-> +
-> +	/*
-> +	 * Here the transaction is already done, we don't need any
-> +	 * other interrupt signals from now, in case any interrupt
-> +	 * happens before spacemit_i2c_xfer to disable irq and i2c unit,
-> +	 * we mask all the interrupt signals and clear the interrupt
-> +	 * status.
-> +	 */
-> +	val = readl(i2c->base + SPACEMIT_ICR);
-> +	val &= ~SPACEMIT_I2C_INT_CTRL_MASK;
-> +	writel(val, i2c->base + SPACEMIT_ICR);
-> +
-> +	spacemit_i2c_clear_int_status(i2c, SPACEMIT_I2C_INT_STATUS_MASK);
-> +
-> +	i2c->state = STATE_IDLE;
-> +	complete(&i2c->complete);
-> +}
-> +
-> +static irqreturn_t spacemit_i2c_irq_handler(int irq, void *devid)
-> +{
-> +	struct spacemit_i2c_dev *i2c = devid;
-> +	u32 status, val;
-> +
-> +	status = readl(i2c->base + SPACEMIT_ISR);
-> +	if (!status)
-> +		return IRQ_HANDLED;
-> +
-> +	i2c->status = status;
-> +
-> +	spacemit_i2c_clear_int_status(i2c, status);
-> +
-> +	if (SPACEMIT_I2C_GET_ERR(i2c->status))
-> +		goto err_out;
-> +
-> +	val = readl(i2c->base + SPACEMIT_ICR);
-> +	val &= ~(SPACEMIT_CR_TB | SPACEMIT_CR_ACKNAK | SPACEMIT_CR_STOP | SPACEMIT_CR_START);
-> +	writel(val, i2c->base + SPACEMIT_ICR);
-> +
-> +	switch (i2c->state) {
-> +	case STATE_START:
-> +		spacemit_i2c_handle_start(i2c);
-> +		break;
-> +	case STATE_READ:
-> +		spacemit_i2c_handle_read(i2c);
-> +		break;
-> +	case STATE_WRITE:
-> +		spacemit_i2c_handle_write(i2c);
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	if (i2c->state != STATE_IDLE) {
-> +		if (spacemit_i2c_is_last_msg(i2c)) {
-> +			/* trigger next byte with stop */
-> +			spacemit_i2c_stop(i2c);
-> +		} else {
-> +			/* trigger next byte */
-> +			val |= SPACEMIT_CR_ALDIE | SPACEMIT_CR_TB;
-> +			writel(val, i2c->base + SPACEMIT_ICR);
-> +		}
-> +	}
-> +
-> +err_out:
-> +	spacemit_i2c_err_check(i2c);
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static void spacemit_i2c_calc_timeout(struct spacemit_i2c_dev *i2c)
-> +{
-> +	unsigned long timeout;
-> +	int idx = 0, cnt = 0;
-> +
-> +	while (idx < i2c->msg_num) {
-> +		cnt += (i2c->msgs + idx)->len + 1;
-> +		idx++;
-> +	}
-> +
-> +	/*
-> +	 * multiply by 9 because each byte in I2C transmission requires
-> +	 * 9 clock cycles: 8 bits of data plus 1 ACK/NACK bit.
-> +	 */
-> +	timeout = cnt * 9 * USEC_PER_SEC / i2c->clock_freq;
-> +
-> +	i2c->adapt.timeout = usecs_to_jiffies(timeout + USEC_PER_SEC / 2) / i2c->msg_num;
-> +}
-> +
-> +static int spacemit_i2c_xfer_core(struct spacemit_i2c_dev *i2c)
-> +{
-> +	int ret;
-> +
-> +	spacemit_i2c_reset(i2c);
-
-I don't have a lot of experience with I2C drivers, but is it normal
-to reset before every transfer?
-
-If it is, just tell me that.  But if it's not, can you explain why
-it's necessary here?
-
-> +
-> +	spacemit_i2c_calc_timeout(i2c);
-> +
-> +	spacemit_i2c_init(i2c);
-> +
-
-Here too, maybe I just don't know what most I2C drivers do, but
-is it necessary to only enable the I2C adapter and its interrupt
-handler when performing a transfer?
-
-> +	spacemit_i2c_enable(i2c);
-> +	enable_irq(i2c->irq);
-> +
-> +	/* i2c wait for bus busy */
-> +	ret = spacemit_i2c_recover_bus_busy(i2c);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = spacemit_i2c_xfer_msg(i2c);
-> +	if (ret < 0)
-> +		dev_dbg(i2c->dev, "i2c transfer error\n");
-
-If you're reporting the error you might as well say what
-it is.
-
-	dev_dbg(i2c->dev, "i2c transfer error: %d\n", ret);
-
-> +
-> +	return ret;
-> +}
-> +
-> +static int spacemit_i2c_xfer(struct i2c_adapter *adapt, struct i2c_msg *msgs, int num)
-> +{
-> +	struct spacemit_i2c_dev *i2c = i2c_get_adapdata(adapt);
-> +	int ret;
-> +	u32 err = SPACEMIT_I2C_GET_ERR(i2c->status);
-> +
-> +	i2c->msgs = msgs;
-> +	i2c->msg_num = num;
-> +
-> +	ret = spacemit_i2c_xfer_core(i2c);
-> +	if (!ret)
-> +		spacemit_i2c_check_bus_release(i2c);
-> +
-
-The enable_irq() call that matches the disable call below is
-found in spacemit_i2c_xfer_core().  That's where this call
-belongs.
-
-> +	disable_irq(i2c->irq);
-> +
-
-Same with the next call--it should be in the same function
-that its corresponding spacemit_i2c_enable() is called.
-
-With these suggestions in mind, I think you can safely
-just get rid of spacemit_i2c_xfer_core().  It is only
-called in this one spot (above), and you can just do
-everything within spacemit_i2c_xfer() instead.
-
-> +	spacemit_i2c_disable(i2c);
-> +
-> +	if (ret == -ETIMEDOUT || ret == -EAGAIN)
-> +		dev_alert(i2c->dev, "i2c transfer failed, ret %d err 0x%x\n", ret, err);
-> +
-> +	return ret < 0 ? ret : num;
-> +}
-> +
-> +static u32 spacemit_i2c_func(struct i2c_adapter *adap)
-> +{
-> +	return I2C_FUNC_I2C | (I2C_FUNC_SMBUS_EMUL & ~I2C_FUNC_SMBUS_QUICK);
-> +}
-> +
-> +static const struct i2c_algorithm spacemit_i2c_algo = {
-> +	.xfer = spacemit_i2c_xfer,
-> +	.functionality = spacemit_i2c_func,
-> +};
-> +
-> +static int spacemit_i2c_probe(struct platform_device *pdev)
-> +{
-> +	struct clk *clk;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *of_node = pdev->dev.of_node;
-> +	struct spacemit_i2c_dev *i2c;
-> +	int ret = 0;
-
-There is no need to initialize ret.
-
-> +
-> +	i2c = devm_kzalloc(dev, sizeof(*i2c), GFP_KERNEL);
-> +	if (!i2c)
-> +		return -ENOMEM;
-> +
-> +	ret = of_property_read_u32(of_node, "clock-frequency", &i2c->clock_freq);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to read clock-frequency property");
-> +
-> +	/* For now, this driver doesn't support high-speed. */
-> +	if (i2c->clock_freq < 1 || i2c->clock_freq > 400000) {
-
-In your device tree binding, you indicate that three different
-modes are supported, and that the maximum frequency is 3300000 Hz.
-This says that only ranges from 1-400000 Hz are allowed.
-
-In fact, although you look up this clock frequency in DT, I see
-nothing that actually is affected by this value.  I.e., no I2C
-bus frequency changes, regardless of what frequency you specify.
-The only place the clock_freq field is used is in calculating
-the timeout for a transfer.
-
-So two things:
-- My guess is that you are relying on whatever frequency the
-   hardware already is using, and maybe that's 400000 Hz.
-   That's fine, though at some point it should be more
-   directly controlled (set somehow).
-- Since you don't actually support any other frequency,
-   drop this "clock-frequency" feature for now, and add it
-   when you're ready to actually support it.
-
-And I might be wrong about this, but I don't think your
-(new) DTS binding should specify behavior that is not
-supported by the driver.
-
-					-Alex
-
-> +		dev_warn(dev, "unsupport clock frequency: %d, default: 400000", i2c->clock_freq);
-> +		i2c->clock_freq = 400000;
-> +	}
-> +
-> +	i2c->dev = &pdev->dev;
-> +
-> +	i2c->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(i2c->base))
-> +		return dev_err_probe(dev, PTR_ERR(i2c->base), "failed to do ioremap");
-> +
-> +	i2c->irq = platform_get_irq(pdev, 0);
-> +	if (i2c->irq < 0)
-> +		return dev_err_probe(dev, i2c->irq, "failed to get irq resource");
-> +
-> +	ret = devm_request_irq(i2c->dev, i2c->irq, spacemit_i2c_irq_handler,
-> +			       IRQF_NO_SUSPEND | IRQF_ONESHOT, dev_name(i2c->dev), i2c);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to request irq");
-> +
-> +	disable_irq(i2c->irq);
-> +
-> +	clk = devm_clk_get_enabled(dev, "apb");
-> +	if (IS_ERR(clk))
-> +		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable apb clock");
-> +
-> +	clk = devm_clk_get_enabled(dev, "twsi");
-> +	if (IS_ERR(clk))
-> +		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable twsi clock");
-> +
-> +	i2c_set_adapdata(&i2c->adapt, i2c);
-> +	i2c->adapt.owner = THIS_MODULE;
-> +	i2c->adapt.algo = &spacemit_i2c_algo;
-> +	i2c->adapt.dev.parent = i2c->dev;
-> +	i2c->adapt.nr = pdev->id;
-> +
-> +	i2c->adapt.dev.of_node = of_node;
-> +	i2c->adapt.algo_data = i2c;
-> +
-> +	strscpy(i2c->adapt.name, "spacemit-i2c-adapter", sizeof(i2c->adapt.name));
-> +
-> +	init_completion(&i2c->complete);
-> +
-> +	platform_set_drvdata(pdev, i2c);
-> +
-> +	ret = i2c_add_numbered_adapter(&i2c->adapt);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "failed to add i2c adapter");
-> +
-> +	return 0;
-> +}
-> +
-> +static void spacemit_i2c_remove(struct platform_device *pdev)
-> +{
-> +	struct spacemit_i2c_dev *i2c = platform_get_drvdata(pdev);
-> +
-> +	i2c_del_adapter(&i2c->adapt);
-> +}
-> +
-> +static const struct of_device_id spacemit_i2c_of_match[] = {
-> +	{ .compatible = "spacemit,k1-i2c", },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, spacemit_i2c_of_match);
-> +
-> +static struct platform_driver spacemit_i2c_driver = {
-> +	.probe = spacemit_i2c_probe,
-> +	.remove = spacemit_i2c_remove,
-> +	.driver = {
-> +		.name = "i2c-k1",
-> +		.of_match_table = spacemit_i2c_of_match,
-> +	},
-> +};
-> +module_platform_driver(spacemit_i2c_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("I2C bus driver for SpacemiT K1 SoC");
-> 
-
+T24gV2VkLCBGZWIgMjYsIDIwMjUsIEJqb3JuIEFuZGVyc3NvbiB3cm90ZToNCj4gSW4gb3JkZXIg
+dG8gbW9yZSB0aWdodGx5IGludGVncmF0ZSB0aGUgUXVhbGNvbW0gZ2x1ZSBkcml2ZXIgd2l0aCB0
+aGUNCj4gZHdjMyBjb3JlIHRoZSBkcml2ZXIgaXMgcmVkZXNpZ25lZCB0byBhdm9pZCBzcGxpdHRp
+bmcgdGhlIGltcGxlbWVudGF0aW9uDQo+IHVzaW5nIHRoZSBkcml2ZXIgbW9kZWwuIEJ1dCBkdWUg
+dG8gdGhlIHN0cm9uZyBjb3VwbGluZyB0byB0aGUgRGV2aWNldHJlZQ0KPiBiaW5kaW5nIG5lZWRz
+IHRvIGJlIHVwZGF0ZWQgYXMgd2VsbC4NCj4gDQo+IFZhcmlvdXMgd2F5cyB0byBwcm92aWRlIGJh
+Y2t3YXJkcyBjb21wYXRpYmlsaXR5IHdpdGggZXhpc3RpbmcgRGV2aWNldHJlZQ0KPiBibG9icyBo
+YXMgYmVlbiBleHBsb3JlZCwgYnV0IG1pZ3JhdGluZyB0aGUgRGV2aWNldHJlZSBpbmZvcm1hdGlv
+bg0KPiBiZXR3ZWVuIHRoZSBvbGQgYW5kIHRoZSBuZXcgYmluZGluZyBpcyBub24tdHJpdmlhbC4N
+Cj4gDQo+IEZvciB0aGUgdmFzdCBtYWpvcml0eSBvZiBib2FyZHMgb3V0IHRoZXJlLCB0aGUga2Vy
+bmVsIGFuZCBEZXZpY2V0cmVlIGFyZQ0KPiBnZW5lcmF0ZWQgYW5kIGhhbmRsZWQgdG9nZXRoZXIs
+IHdoaWNoIGluIHByYWN0aWNlIG1lYW5zIHRoYXQgYmFja3dhcmRzDQo+IGNvbXBhdGliaWxpdHkg
+bmVlZHMgdG8gYmUgbWFuYWdlZCBhY3Jvc3MgYWJvdXQgMSBrZXJuZWwgcmVsZWFzZS4NCj4gDQo+
+IEZvciBzb21lIHRob3VnaCwgc3VjaCBhcyB0aGUgdmFyaW91cyBTbmFwZHJhZ29uIGxhcHRvcHMs
+IHRoZSBEZXZpY2V0cmVlDQo+IGJsb2JzIGxpdmUgYSBsaWZlIHNlcGFyYXRlIG9mIHRoZSBrZXJu
+ZWwuIEluIGVhY2ggb25lIG9mIHRoZXNlLCB3aXRoIHRoZQ0KPiBjb250aW51ZWQgZXh0ZW5zaW9u
+IG9mIG5ldyBmZWF0dXJlcywgaXQncyByZWNvbW1lbmRlZCB0aGF0IHVzZXJzIHdvdWxkDQo+IHVw
+Z3JhZGUgdGhlaXIgRGV2aWNldHJlZSBzb21ld2hhdCBmcmVxdWVudGx5Lg0KPiANCj4gV2l0aCB0
+aGlzIGluIG1pbmQsIHNpbXBseSBjYXJyeWluZyBhIHNuYXBzaG90L2NvcHkgb2YgdGhlIGN1cnJl
+bnQgZHJpdmVyDQo+IGlzIHNpbXBsZXIgdGhhbiBjcmVhdGluZyBhbmQgbWFpbnRhaW5pbmcgdGhl
+IG1pZ3JhdGlvbiBjb2RlLg0KPiANCj4gVGhlIGRyaXZlciBpcyBrZXB0IHVuZGVyIHRoZSBzYW1l
+IEtjb25maWcgb3B0aW9uLCB0byBlbnN1cmUgdGhhdCBMaW51eA0KPiBkaXN0cmlidXRpb25zIGRv
+ZXNuJ3QgZHJvcCBVU0Igc3VwcG9ydCBvbiB0aGVzZSBwbGF0Zm9ybXMuDQo+IA0KPiBUaGUgZHJp
+dmVyLCB3aGljaCBpcyBnb2luZyB0byBiZSByZWZhY3RvcmVkIHRvIGhhbmRsZSB0aGUgbmV3bHkN
+Cj4gaW50cm9kdWNlZCBxY29tLHNucHMtZHdjMyBjb21wYXRpYmxlLCBpcyB1cGRhdGVkIHRvIHRl
+bXBvcmFyaWx5IG5vdA0KPiBtYXRjaCBhZ2FpbnN0IGFueSBjb21wYXRpYmxlLg0KPiANCj4gVGhp
+cyBkcml2ZXIgc2hvdWxkIGJlIHJlbW92ZWQgYWZ0ZXIgMiBMVFMgcmVsZWFzZXMuDQo+IA0KPiBT
+aWduZWQtb2ZmLWJ5OiBCam9ybiBBbmRlcnNzb24gPGJqb3JuLmFuZGVyc3NvbkBvc3MucXVhbGNv
+bW0uY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvdXNiL2R3YzMvTWFrZWZpbGUgICAgICAgICAgIHwg
+ICAxICsNCj4gIGRyaXZlcnMvdXNiL2R3YzMvZHdjMy1xY29tLWxlZ2FjeS5jIHwgOTM0ICsrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKw0KPiAgZHJpdmVycy91c2IvZHdjMy9kd2Mz
+LXFjb20uYyAgICAgICAgfCAgIDEgLQ0KPiAgMyBmaWxlcyBjaGFuZ2VkLCA5MzUgaW5zZXJ0aW9u
+cygrKSwgMSBkZWxldGlvbigtKQ0KPiANCg0KVGhpcyBpcyBhIGJpdCBjb25jZXJuaW5nIGlmIHRo
+ZXJlJ3Mgbm8gbWF0Y2hpbmcgY29tcGF0aWJsZSBzdHJpbmcuIGllLg0Kd2UgZG9uJ3QgaGF2ZSB1
+c2VyIGZvciB0aGUgbmV3IGRyaXZlciB3aXRob3V0IGRvd25zdHJlYW0gZGVwZW5kZW5jaWVzDQoo
+b3Igc29tZSB3b3JrYXJvdW5kIGluIHRoZSBkcml2ZXIgYmluZGluZykuDQoNCldoaWxlIEkgdW5k
+ZXJzdGFuZCB0aGUgaW50ZW50aW9uLCBJJ20gYWZyYWlkIHdlIG1heSBoYXZlIHRvIHN1cHBvcnQg
+YW5kDQptYWludGFpbiB0aGlzIG11Y2ggbG9uZ2VyIHRoYW4gdGhlIHByb3Bvc2VkIDIgTFRTIHJl
+bGVhc2VzIChhcyBzZWVuIHdpdGgNCmFueXRoaW5nIHRhZ2dlZCB3aXRoICJsZWdhY3kiIGluIHRo
+ZSB1cHN0cmVhbSBrZXJuZWwpLiBJZiBwb3NzaWJsZSwgSSdkDQpwcmVmZXIgdGhlIGNvbXBsaWNh
+dGlvbnMgb2YgbWFpbnRlbmFuY2Ugb2YgdGhlIG1pZ3JhdGlvbiBjb2RlIGJlIGhhbmRsZWQNCmRv
+d25zdHJlYW0uDQoNClRoYW5rcywNClRoaW5o
 
