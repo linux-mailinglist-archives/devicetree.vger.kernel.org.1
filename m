@@ -1,725 +1,1317 @@
-Return-Path: <devicetree+bounces-153681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62A78A4D7A9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:14:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D12ACA4D7C9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:19:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9DED7A2942
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:13:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8543316E437
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547A81FBEAD;
-	Tue,  4 Mar 2025 09:14:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6C31FC0F0;
+	Tue,  4 Mar 2025 09:18:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="YoQAjh6D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iFwdUxsk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05olkn2092.outbound.protection.outlook.com [40.92.90.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34A51F583F;
-	Tue,  4 Mar 2025 09:14:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.90.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741079661; cv=fail; b=SDPnlebjeEwo6WFD3VM5U4lZdZvnQMuCqes/WhtAQD5f6poVWLy1UZOvyvTP3xRUqm+J4WirMY1Ly7bHRqy/MfmBnqjaJSdGSNXHGUEo5YwuJexWK9aTJ2J6+cjiWR+j5qJUXBta/NdaAIex/s3aCz+1MalPOlpFeO/gbyevw4w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741079661; c=relaxed/simple;
-	bh=fHjblc3hA+V3eQRk9Q8pyLqaSEu4nsfZjRkhpzwJ2jw=;
-	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=QJM4TZ+3HTROJPiGhZ5ZN1CFQ+y+4FJpvtxak231vrIP21YbOTfU49ZQkz4kG83/YL3vtBH2fjOj4TLI7Yy1XoWipFzETjJ8ob8MtAdWIE6LWZY/McDFuFQ87wzC7DsCTqp7xZcjg3QFXYLUtyurpufOvsvEPAXxQJVTwaqfSMA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=YoQAjh6D; arc=fail smtp.client-ip=40.92.90.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gulnPnD8x3x1SYULjxj8ptD8uI6ynVoPoqCmKEq+98w2LBmeQf4HXCR2gq7B7vD2jPua5nddLs/vc4+ifFEwWOR9UFcd0rvVfMVw7t2ltKAr3DDm3OtX21SbmwPi6qIuDyJrXF45TK+ElYQC+PVTB0/inGc9ISHxrtX56Daax3J4dpWARCw5ts8WO4wXoBfTJZyh99Zpf+XnUbxB05RSRoRuc9ScBd4B75PFJw/WHjYHUWePaA6gEXLz0JjgG3XQeNjwvoNVwaFFtu/q9qKXJFuzxf9gSypzy0qpYWeXx/pL462+a+JknPSNT8mlHoPiThfTSlzyAFYk2KxK71gOXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8CON3xMIzZ1I73D8GqeQIcQeOC6esXQUwHkXve8c5Bg=;
- b=LPXXR3xhOUVXVkPZrg4XwYcXpio7f4gAvOTklfTo705E+/aqSiL0iIpHjzuohNqdCSNE7ydJbafltRHKLu/OG/kDWmcAVqPUNMzmiNAl4rdXC+2O4VcZyU7RWYPC+lkzPBHQlg7TTTZBu5v/W3/B5XniX+ll2UoALFbHggfLdc4FWp1d4IH9GLKethv90bqHN34ZKseTYoeWze4zRGrK6asw6nISbWKJLqsCbX5vNxC1zdMYzhf8sZyxMDOJM4B7KssYsMCl+rJAAREqsbYJzd77UCCDXEbsah55DArBhS+IqvGEklZEL3xZ4dOhvH0yImMQnUC/7IY9ALL9szI38A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8CON3xMIzZ1I73D8GqeQIcQeOC6esXQUwHkXve8c5Bg=;
- b=YoQAjh6DpNQVHMqPe0Rrg75MZLy+xs24159t97AtBqJJ2uOOLyD8SbSfebpqB8LSWv5AmrLaxCklhzVp4QWh7fcfDgrmYfzVEYz5FGUXKA6jL+WZd9mvVpkRB4CpVU1xL9a8BjuoGrhCwDYuQjcz3ZiNhbJPNuVUIsyP3I1pCz9n/Ojsamr/Nqjc+Nx7vFSEWtOqwJC/gd4r1ynO9+SWIBqGefqBd16S8/kSnjdWAOWJdu+PFM3zfNbU2rLMtVixF/PLHAT5+eIGCBvCf9hRaOTkgL+WQamc7yO7yiQ8D0hkcp7iW8+qIjEAFzlpsFPkX+7uXZNwEUcrEFNagoAsqw==
-Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:175::17)
- by AS8P189MB2095.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:527::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.28; Tue, 4 Mar
- 2025 09:14:16 +0000
-Received: from AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
- ([fe80::e9f1:a878:e797:ee1a]) by AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
- ([fe80::e9f1:a878:e797:ee1a%2]) with mapi id 15.20.8511.015; Tue, 4 Mar 2025
- 09:14:15 +0000
-Message-ID:
- <AM7P189MB100970D57C974DD7CC5DB156E3C82@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
-Date: Tue, 4 Mar 2025 10:14:14 +0100
-User-Agent: Mozilla Thunderbird
-From: Maud Spierings <maud_spierings@hotmail.com>
-Subject: Re: [PATCH v2 2/2] spi: sophgo: add SG2044 SPI NOR controller driver
-To: Longbin Li <looong.bin@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@gmail.com>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- sophgo@lists.linux.dev
-References: <20250304083548.10101-1-looong.bin@gmail.com>
- <20250304083548.10101-3-looong.bin@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20250304083548.10101-3-looong.bin@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0PR03CA0030.eurprd03.prod.outlook.com
- (2603:10a6:208:14::43) To AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:20b:175::17)
-X-Microsoft-Original-Message-ID:
- <952fad9d-e138-4a0b-8879-3a70239f9233@hotmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC1B1F8BAA
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 09:18:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741079937; cv=none; b=Rni/gPEEB/SPFYnmQr4wToWjyIcWPyr4zAx4JNEquFgS4GIWafp4g9MD01IsFe5fIGT2e616rtqcDqK2x+sIQEwuXH9EZIKuLYWBOOwsIEsP/6bgbvr1OrppfMzagFTIDf8009K76gjRrWC38G0FljCDA1dGvbdF4RMw5zrFNuY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741079937; c=relaxed/simple;
+	bh=ByaSfraEFsTXGZO4pzqzJKHqdxUCOzQKCtYLM+7ORPE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ekB54RVyD58CW28ThdKq74XPLgJ5B9k9N5lIUuVzoKZgNf/V2KetDiogvwsiPuuwrEy3NcGICzIYfBHF7uqvuDUih8OQa+JGXcKsqRDHxPz/nbqsDiBtmWAWUKY0Qotlh+W9atSljL7mRbRCjahZuy5qtVtK8uWJLZ0N8LHae5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iFwdUxsk; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-549662705ffso2440615e87.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 01:18:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741079931; x=1741684731; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eh3sm64xdsfIMmSWCik/mctk9FPMUJ3WlWE+DsnDAnQ=;
+        b=iFwdUxsknA9qmGwtmvBH7a4S3dLWZVXnD7C3WbPeD0Xf2R/crynKH/yeinc/1PPiWf
+         PtUw5nHV04suptQbYHLrr+tDAEiS/zicoyIDGu6LcunT5TrnVnVhzYj3z31bIHWvClLe
+         Kzwu6vGhiIComS1sdIs3s8u8gJHt0k/Ep/03guhmYxiWcb8f4bM6rYvqZ54Hc/Z8lt7d
+         GOfwFWGf9DMgKkFcSU4hTFl6rl4CjodmSGv7RDRGkD8GTvtdHNORYJnC76bE1wKnR8yC
+         WeMmn0+iHdDa6QS8ypx4pqIm7oCGqfy0WIumc8npY02nPGe+547VjtEQWJOV2ylyjpNp
+         qk6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741079931; x=1741684731;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eh3sm64xdsfIMmSWCik/mctk9FPMUJ3WlWE+DsnDAnQ=;
+        b=oHVYgNLhSVUIBdsSrlkDhKpdXRnKZbm8vbyjEoNmBCD4DhKufpbjxtGsw5BjkwYpDu
+         NR2x03BycWrW9ma6TY72GhOGJAoMpzc7jv4ND7sAYSm70hdykvVkjBFwoeZMy6bVsa/D
+         P4W9QVs7q1mH0ugv84FaqV5XBL2UanE86QbZRkhzZZzXs/Yx0HSc/U0TLPHs5+dCRtbP
+         yzZvjUSdnRIjRedaG8fzX8+ZtvKDxeAfnySzWtoKE+6GQQSEOeF3qslhqcRVi0UoKMOv
+         P5/534ME/9+B4cZeQfaxC+KEiKFP6WxHB5BseeapJRMPUxn2CPsPgDR6VZXBW0yQ2Gjy
+         8XIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWtm2h/U+UhHLaBhZi9I5b6jeMFOs6BQzSQWvAhpSirmZ9VAmkxzDBW/H2d6rQueI7JvaJCo6FSoNMT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoYOYRb01c8wVJrHTWlGRuSeSQXeYeMEeRfAHxIye6XrkN5VQ8
+	PTHKGpQbsfUqWKzTRNnQtJficOmA+erkudvmyielIC4rnFx12Y/t7Iwq/6eg6HM2D15Bu54YoMS
+	+VNcn7g==
+X-Gm-Gg: ASbGncudvmRJ2m7FupkiiR/J1vgoR6+GgHG/hWx3nE94nXuQaTK2gfZPt57hjuNxbGl
+	YoU2QtIPp5TYV+wqcQM+2ScI7WorxfuinKWXwb36zqfOn+FjkIbjTSocwoXg/LlKzf5+qERPbCe
+	9N5oCA3FMtqAEBY7gSEwzZ4jKwV2P5l30EKM6vYY9SwMCyBpMrFtIfu/ZP8XTJ8Eurg2pg6T3Aa
+	nMAtnVt4d6hxoIYnwMH7UFZCCeRZRaIErrT1BFXPYC9PqxO15cxCrQ85MMEaQf0kjom0E8JtsjU
+	azHdShJYsbdd2/Dm2U4XNp2gUjBCSDQqURE5WYUg9hGP9h2tdEXa7MUpxCVxe8UlyIi7DkMWCK9
+	dmVcsikVeHJJRUmzbzseQK5/X
+X-Google-Smtp-Source: AGHT+IFaI7kFDzRukB6bw5LvU29GAn7T8p4jSK3FlMNj5oR7hTTOydD0AGY8SgVeZXuqezGRsHJtqQ==
+X-Received: by 2002:a19:644c:0:b0:546:207c:1c59 with SMTP id 2adb3069b0e04-5494c37d840mr5893078e87.34.1741079931143;
+        Tue, 04 Mar 2025 01:18:51 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5494b8cd4b8sm1401866e87.110.2025.03.04.01.18.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Mar 2025 01:18:49 -0800 (PST)
+Date: Tue, 4 Mar 2025 11:18:47 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org, 
+	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org, yubing.zhang@rock-chips.com, 
+	krzk+dt@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	robh@kernel.org, sebastian.reichel@collabora.com, 
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 2/6] drm/bridge: synopsys: Add DW DPTX Controller support
+ library
+Message-ID: <g3d2wjkr2igmnreu7eujl32s4lofupxl7i2w4ub4djztlni3td@g35vrcyr5bis>
+References: <20250223113036.74252-1-andyshrk@163.com>
+ <20250223113036.74252-3-andyshrk@163.com>
+ <563i7xcbbsxfezkgs4txsa6lar5tb5folp7zk7dc7sbvf54n6y@vqbtuwvj3fcw>
+ <6046d805.2173.195566bd4cf.Coremail.andyshrk@163.com>
+ <5g6qv47ufjfy4yvzpw3rw7xopyuikzi7k4n2habxoexor4kyb2@f7pwawo75kqu>
+ <7c4a1e3e.6be8.1956003303a.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7P189MB1009:EE_|AS8P189MB2095:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a292060-70b4-42d9-b687-08dd5afcef3f
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|5072599009|6090799003|15080799006|19110799003|8060799006|461199028|3412199025|440099028|41001999003;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?bUxJTmhUQ0IrdmVCRXBtMG1rYmlObHZsSmgxUGtJcjdHOUVyZEpCNDJWQ2t1?=
- =?utf-8?B?NmFDQ0NLQUoxQkFXNEViQVEvYTkxemNvaGVKaXRqUzFEQTc0Z1hDbk9QZytL?=
- =?utf-8?B?bXFjdS8vN1NYNkhLVzkvdXVlci9qZUE4L0FjRlhCbnM0WU9abmJuVU9TSE9Y?=
- =?utf-8?B?TGtpVW5Lc05KRW9MVURFeEovNEQrUWt1Vm5BeFJGUzRIQm0xNWVGMStLcGVP?=
- =?utf-8?B?Q1ZpSXl6T0piR3FwZXlIVlRIMTZqd1Bmcy9wUm04Yk90RFNzNUY4OEU1aUhE?=
- =?utf-8?B?TlJhNlhGajR5WkZZTWxLL1Z4NzIxV1lsVS9NWHdNSThsR1lGSldIeE1vclJU?=
- =?utf-8?B?Tld6NkdhUHBCMzloYzVtS3BIWEFORy9wWVlscEdWUEd3SmtDdU5KbjJDNlJ2?=
- =?utf-8?B?RjFvc3RVQ0xIOEVoNDYwbER6ZERucVJtM25Hd1AzQ0lUdVFKM3hXeVZRTDB6?=
- =?utf-8?B?eDZyOE9qZ2lWWlpWSXRFVzhqRHZXU0dOclF0eGRNWWc5Q3ZCc2ZaSU5Gb00y?=
- =?utf-8?B?KzM5OCttYis2Q0JxWlBJTDNxMVNIT3VDamZIZHgvMkxYWlpaVi9rYVg0Uitt?=
- =?utf-8?B?M2RYY3pMT0NKVm5ySE9HQ3RyRThLVmFLWDFnVHNjejZPQUQxY2UrT3lBa3lD?=
- =?utf-8?B?WVB2NFpUY2pRd21DTXdCWjcrWVgvYVdEclBMUGhNeXk1R2podXpabmVNMDIy?=
- =?utf-8?B?UUVaanlPMjQzaDNISnhsd0poaHJsRXJqQlpGb2IyT1o3bC9zRnFRVE04WE85?=
- =?utf-8?B?ZnNsbWZwR1BQNHMvN2dWTW1ZazAwZXJjK2F0MXAyRFZTMnhTd1R1V0ttdzJz?=
- =?utf-8?B?VHpyVTQzb3V6WGttcVQyR0xXYjZ5WGNjYjRkbjFBcGdZb1BiKzNvOS94Wmhm?=
- =?utf-8?B?VkJWTmgxb0JZOGtSV3VGakZSR0hVZmpMK2YrbnJXNlVjZUVSeVZBQVNzN1lY?=
- =?utf-8?B?OXpJTDRGNkV3ZzdTNjFPS3FER1EwYzZUVFpaMXNlRzF1cUcyaGdzWmF5cDF5?=
- =?utf-8?B?SGpzZDhWdVRubXRndHI3OGJTUDd5VzAvYnByZEdRVnNrZnFkc0R6WDJXaFZu?=
- =?utf-8?B?MjFBdUtvWmgwS2FsNVN0VE9VNUlLL29ycXpMbFpwVG1sakFSNnhlcHJPUzlj?=
- =?utf-8?B?bGQxSFh3Zmc1SjNxZjM3TExyNDduZ21vNFZNYkpnek5YbC8zdEl3bllKSVdY?=
- =?utf-8?B?eGkzdWN5MHpuUFFlcHIxT3FUZ1BZajFBUm9pTmhRRVYzbGFLWE9SaU5kRGRI?=
- =?utf-8?B?dTZucHpZenFaeDlrUGQ5dm1hdmU5Tnc2d0lKMmJQaEd1L04rRkJuMG1Qcm1h?=
- =?utf-8?B?aXRxcVFQbmpmWjNkaDNwV29ZVmZGK1FtWFcxbnFLUVh3SUFYQlVlcFF4bW4y?=
- =?utf-8?B?VU00M0JOUlVyeHZ1eSt1OG44anltek9jcUVDZ0dKQnZlaERFRzd0djFCdExj?=
- =?utf-8?B?SjlieEl6Y0hiQnJXZVNmaVFyYWozaSthR1ZJZlpjSVlwUmt0TWRzVXR4MkRB?=
- =?utf-8?Q?2R7jv4=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UE5xVUs5dk4rM2F6TnQxYVZOR0FzRHZMNGRlVzRlWHB4RktTdU5wdHhhMTJR?=
- =?utf-8?B?Y05NYmhKUDUxSmNHbk8yWDQ1eTZjSnNzOTAwekpRc3drQU5xL284TDR0V0Z2?=
- =?utf-8?B?MU1lZk1HVmhxeDl3SzhReDB6azhvK002M2N5MXp2VmJweGV3SGJwMXZwTEU3?=
- =?utf-8?B?TFpMdmVZZVVvcmpmNkxTVGZjR2pFOGcyc0pmN2ZoK1FDdERyaHdpeklYY1Ji?=
- =?utf-8?B?WElqUlBBWERBL2hWRlB0N0dVUkdjbFFvNGdjTXB2OE1Rei9mMXc5REhvZ1NF?=
- =?utf-8?B?dEpPcm1zVXJPc29oQzJOVzhETnFTYWJtU011VGY2b0xwSXNVYmRYUC8wVTVD?=
- =?utf-8?B?ZzV6TVVKbmFNOTB1eEUzYzlRdHk1MkZFZUtEVm8yMGxKSXZUNzBzQ3d0STAv?=
- =?utf-8?B?VmlpYWhXOVQwU3RkSWxidzhYYW0vOTNRYXI0dWZ1V0ZyVXV1YXJVUFNLdy82?=
- =?utf-8?B?MWREeXpBN2gzVGxzTnFaNlVmdFgzZTNNeHpYdFk4SEF6RVlEMCtoYW5VK0hW?=
- =?utf-8?B?cElJWnQveWdVVy9LaFFSa0RDMWRkTVJyYWptSk1XWDBTTFN4Y29mS1o4TEpO?=
- =?utf-8?B?anN1VmdaT0I5Y25jQm5aTEFjbDRtVWlwVFRHdk5tQlJlMkZTM1p6UnhqcktE?=
- =?utf-8?B?aG9CQjkzQm5ZdHQ5M1IzYUdUZ01CaWJlTDY5RmF2bkRhTDMrcGRUUUtaM3NT?=
- =?utf-8?B?dXBGVFc3cnkvc3A0cmxUNG1OWVNrTjNpM1ZhTWtjQkw4QkFkMVhxV1Frd1Bo?=
- =?utf-8?B?Tzd1TXFPdnYwYnAyTC9XNEx1RUt2UzBWOWZTSFhocXJ0UmhIdkFDTnJLZVJ6?=
- =?utf-8?B?Sk5OejA3bGFPempQSkhCLzhJK3pETE9uZEE1WTNXZWZKNE5nRkhoQk5OSmF4?=
- =?utf-8?B?ZFVza0ZFbk9PVTRITnQ2UGRPTEVRRGtTYW9jbUtpa2dPRDZzclZrckRqYS9Z?=
- =?utf-8?B?SFhyd1RFOG1paXVhUnUzQkpYVkFId0ZYcUkvcHRXQXBVd2hHaFY5eVR3aEJL?=
- =?utf-8?B?OXVQd2MxeGRmNXI1NHdxSXF0dmwzdDVQQ01HTVJvRjFJN1orYjQzM0U1a1pm?=
- =?utf-8?B?Smx2alVQQUMvdU1UUFRkUzBVaUVpd1Y0WEx6VGF5SEZYbll5RFNhcHZRMWhL?=
- =?utf-8?B?ek5CeTZYb0JYT3VYaHRGNFB4VGhCRFJDU3VVYW01MU1SdU8xQzBwMUlyRVRh?=
- =?utf-8?B?T3FLMzVINXVVbExTNDRlclFVdktNUC9zb01vRlZGd0ZJb2FkdjMwN1pzWkZI?=
- =?utf-8?B?d0oyREUxN2cvWWtFdHNqek1MSGlIV0VZdk1qUEJub0c1ZXJWRnBJR2N6RG5W?=
- =?utf-8?B?UTA0RmJLR2NCcjZsV1dUMys2a3g4L21pSkpZMWJnYUZVbThqeTRqMmUyWVl6?=
- =?utf-8?B?YkxNT2xqS1VjV2Z2dkJjWS9KWkd0ckhwYmdxSmpMdVBIU3pXRHljdWdKVU1i?=
- =?utf-8?B?WUd3U2xXMFZtSXJiSTBQNUlNc3kvYUdJRHdsSTl4NnZGQ1QxNXNLQko3VXR1?=
- =?utf-8?B?cytRWXNGeHNzMURISURYcU9yYklldGY3OEp4aEpYcTArYm90OEhRTEd0L1Vi?=
- =?utf-8?B?cXoyRXllYnhJRVhYSmZsQXQ1NlNva1JVYmVGTmtMWndJTURKNXU1NTkrTDZX?=
- =?utf-8?B?MlBSUkhpZmFoR1RLejdjN2tUajh5SlgrRHJmaXZocE5qeDhwcVFPdmhERmVi?=
- =?utf-8?B?OVFycG5sV2pwMTJPcitCWkdrODk5RUZEZkcxWXQwNzNQbStjODRqVkU0aDcv?=
- =?utf-8?Q?pjdc02zqYhT7lqXYVS3cU64VyajZapAr6Tl8RiA?=
-X-OriginatorOrg: sct-15-20-7719-19-msonline-outlook-3b3e0.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a292060-70b4-42d9-b687-08dd5afcef3f
-X-MS-Exchange-CrossTenant-AuthSource: AM7P189MB1009.EURP189.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 09:14:15.8989
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P189MB2095
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7c4a1e3e.6be8.1956003303a.Coremail.andyshrk@163.com>
 
-On 3/4/25 9:35 AM, Longbin Li wrote:
-> Add support for SG2044 SPI NOR controller in Sophgo SoC.
->
-> Signed-off-by: Longbin Li<looong.bin@gmail.com>
-> ---
->   drivers/spi/Kconfig          |   9 +
->   drivers/spi/Makefile         |   1 +
->   drivers/spi/spi-sg2044-nor.c | 500 +++++++++++++++++++++++++++++++++++
->   3 files changed, 510 insertions(+)
->   create mode 100644 drivers/spi/spi-sg2044-nor.c
->
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-> index ea8a31032927..281310178734 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -1021,6 +1021,15 @@ config SPI_SN_F_OSPI
->   	  for connecting an SPI Flash memory over up to 8-bit wide bus.
->   	  It supports indirect access mode only.
->
-> +config SPI_SG2044_NOR
-> +	tristate "SG2044 SPI NOR Controller"
-> +	depends on ARCH_SOPHGO || COMPILE_TEST
-> +	help
-> +	  This enables support for the SG2044 SPI NOR controller,
-> +	  which supports Dual/Qual read and write operations while
+On Tue, Mar 04, 2025 at 03:16:16PM +0800, Andy Yan wrote:
+> 
+> Hi Dmitry,
+> 
+> 在 2025-03-03 00:21:06，"Dmitry Baryshkov" <dmitry.baryshkov@linaro.org> 写道：
+> >On Sun, Mar 02, 2025 at 06:34:22PM +0800, Andy Yan wrote:
+> >> 
+> >> 
+> >> Hi Dmitry，
+> >>    Thank you for your review。
+> >>    Please also review my inline reply.
+> >>       
+> >> 在 2025-03-02 02:14:19，"Dmitry Baryshkov" <dmitry.baryshkov@linaro.org> 写道：
+> >> >On Sun, Feb 23, 2025 at 07:30:25PM +0800, Andy Yan wrote:
+> >> >> From: Andy Yan <andy.yan@rock-chips.com>
+> >> >> 
+> >> >> The DW DP TX Controller is compliant with the DisplayPort Specification
+> >> >> Version 1.4 with the following features:
+> >> >> 
+> >> >> * DisplayPort 1.4a
+> >> >> * Main Link: 1/2/4 lanes
+> >> >> * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
+> >> >> * AUX channel 1Mbps
+> >> >> * Single Stream Transport(SST)
+> >> >> * Multistream Transport (MST)
+> >> >> *Type-C support (alternate mode)
+> >> >> * HDCP 2.2, HDCP 1.3
+> >> >> * Supports up to 8/10 bits per color component
+> >> >> * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
+> >> >> * Pixel clock up to 594MHz
+> >> >> * I2S, SPDIF audio interface
+> >> >> 
+> >> >> Add library with common helpers to make it can be shared with
+> >> >> other SoC.
+> >> >> 
+> >> >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> >> >> 
+> >> >> drm/bridge: cleanup
+> >> >
+> >> >Stray line?
+> >> 
+> >> Sorry, will be removed.
+> >> 
+> >> >
+> >> >> 
+> >> >> ---
+> 
+> ........
+> 
+> >> >> +static int dw_dp_link_power_up(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	struct dw_dp_link *link = &dp->link;
+> >> >> +	int ret;
+> >> >> +	u8 value;
+> >> >> +
+> >> >> +	if (link->revision < DP_DPCD_REV_11)
+> >> >> +		return 0;
+> >> >> +
+> >> >> +	ret = drm_dp_dpcd_readb(&dp->aux, DP_SET_POWER, &value);
+> >> >> +	if (ret < 0)
+> >> >> +		return ret;
+> >> >> +
+> >> >> +	value &= ~DP_SET_POWER_MASK;
+> >> >> +	value |= DP_SET_POWER_D0;
+> >> >> +
+> >> >> +	ret = drm_dp_dpcd_writeb(&dp->aux, DP_SET_POWER, value);
+> >> >> +	if (ret < 0)
+> >> >> +		return ret;
+> >> >> +
+> >> >> +	usleep_range(1000, 2000);
+> >> >> +
+> >> >> +	return 0;
+> >> >> +}
+> >> >> +
+> >> >> +static int dw_dp_link_power_down(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	struct dw_dp_link *link = &dp->link;
+> >> >> +	int ret;
+> >> >> +	u8 value;
+> >> >> +
+> >> >> +	if (link->revision < DP_DPCD_REV_11)
+> >> >> +		return 0;
+> >> >> +
+> >> >> +	ret = drm_dp_dpcd_readb(&dp->aux, DP_SET_POWER, &value);
+> >> >> +	if (ret < 0)
+> >> >> +		return ret;
+> >> >> +
+> >> >> +	value &= ~DP_SET_POWER_MASK;
+> >> >> +	value |= DP_SET_POWER_D3;
+> >> >> +
+> >> >> +	ret = drm_dp_dpcd_writeb(&dp->aux, DP_SET_POWER, value);
+> >> >> +	if (ret < 0)
+> >> >> +		return ret;
+> >> >> +
+> >> >
+> >> >Would you please mind pulling these two functions to DRM DP helpers?
+> >> >There are enough users to make this into a common code.
+> >> 
+> >> Yes, when developing this patch, I had the same realization. 
+> >> The processing logic for MSM/Cadence/ANX6345/tegra follows
+> >> a similar approach.
+> >> I had originally planned to defer this refactoring until the series of patches is accepted. 
+> >> Additionally, I have other pending tasks in my TODO list, such as fully decoupling the 
+> >> bridge driver and encoder/connector components across all Rockchip platforms。
+> >> But I prioritize completing these foundational features before go to next steps,
+> >> Is this acceptable ？
+> >
+> >You can add necessary helpers as one of the first patches in the
+> >series. Convert one or several platforms that use drm-misc (i.e. not
+> >MSM, AMD, i915, nouveau) and send conversion of the rest of the
+> >platforms as followups.
+> 
+> If  pull these two functions to DRM DP helpers, I think they should be
+> named as drm_dp_link_power_up/down ?.
 
-Nit: Dual/Quad not Dual/Qual
+I think so.
 
-> +	  also supporting 3Byte address devices and 4Byte address
-> +	  devices.
-> +
->   config SPI_SPRD
->   	tristate "Spreadtrum SPI controller"
->   	depends on ARCH_SPRD || COMPILE_TEST
-> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-> index 9db7554c1864..c7a46fd61903 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -134,6 +134,7 @@ obj-$(CONFIG_SPI_SH_SCI)		+= spi-sh-sci.o
->   obj-$(CONFIG_SPI_SIFIVE)		+= spi-sifive.o
->   obj-$(CONFIG_SPI_SLAVE_MT27XX)          += spi-slave-mt27xx.o
->   obj-$(CONFIG_SPI_SN_F_OSPI)		+= spi-sn-f-ospi.o
-> +obj-$(CONFIG_SPI_SG2044_NOR)	+= spi-sg2044-nor.o
->   obj-$(CONFIG_SPI_SPRD)			+= spi-sprd.o
->   obj-$(CONFIG_SPI_SPRD_ADI)		+= spi-sprd-adi.o
->   obj-$(CONFIG_SPI_STM32) 		+= spi-stm32.o
-> diff --git a/drivers/spi/spi-sg2044-nor.c b/drivers/spi/spi-sg2044-nor.c
-> new file mode 100644
-> index 000000000000..454153a63b42
-> --- /dev/null
-> +++ b/drivers/spi/spi-sg2044-nor.c
-> @@ -0,0 +1,500 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * SG2044 SPI NOR controller driver
-> + *
-> + * Copyright (c) 2025 Longbin Li<looong.bin@gmail.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/spi/spi-mem.h>
-> +
-> +/* Hardware register definitions */
-> +#define SPIFMC_CTRL				0x00
-> +#define SPIFMC_CTRL_CPHA			BIT(12)
-> +#define SPIFMC_CTRL_CPOL			BIT(13)
-> +#define SPIFMC_CTRL_HOLD_OL			BIT(14)
-> +#define SPIFMC_CTRL_WP_OL			BIT(15)
-> +#define SPIFMC_CTRL_LSBF			BIT(20)
-> +#define SPIFMC_CTRL_SRST			BIT(21)
-> +#define SPIFMC_CTRL_SCK_DIV_SHIFT		0
-> +#define SPIFMC_CTRL_FRAME_LEN_SHIFT		16
-> +#define SPIFMC_CTRL_SCK_DIV_MASK		0x7FF
-> +
-> +#define SPIFMC_CE_CTRL				0x04
-> +#define SPIFMC_CE_CTRL_CEMANUAL			BIT(0)
-> +#define SPIFMC_CE_CTRL_CEMANUAL_EN		BIT(1)
-> +
-> +#define SPIFMC_DLY_CTRL				0x08
-> +#define SPIFMC_CTRL_FM_INTVL_MASK		0x000f
-> +#define SPIFMC_CTRL_FM_INTVL			BIT(0)
-> +#define SPIFMC_CTRL_CET_MASK			0x0f00
-> +#define SPIFMC_CTRL_CET				BIT(8)
-> +
-> +#define SPIFMC_DMMR				0x0c
-> +
-> +#define SPIFMC_TRAN_CSR				0x10
-> +#define SPIFMC_TRAN_CSR_TRAN_MODE_MASK		GENMASK(1, 0)
-> +#define SPIFMC_TRAN_CSR_TRAN_MODE_RX		BIT(0)
-> +#define SPIFMC_TRAN_CSR_TRAN_MODE_TX		BIT(1)
-> +#define SPIFMC_TRAN_CSR_FAST_MODE		BIT(3)
-> +#define SPIFMC_TRAN_CSR_BUS_WIDTH_1_BIT		(0x00 << 4)
-> +#define SPIFMC_TRAN_CSR_BUS_WIDTH_2_BIT		(0x01 << 4)
-> +#define SPIFMC_TRAN_CSR_BUS_WIDTH_4_BIT		(0x02 << 4)
-> +#define SPIFMC_TRAN_CSR_DMA_EN			BIT(6)
-> +#define SPIFMC_TRAN_CSR_MISO_LEVEL		BIT(7)
-> +#define SPIFMC_TRAN_CSR_ADDR_BYTES_MASK		GENMASK(10, 8)
-> +#define SPIFMC_TRAN_CSR_ADDR_BYTES_SHIFT	8
-> +#define SPIFMC_TRAN_CSR_WITH_CMD		BIT(11)
-> +#define SPIFMC_TRAN_CSR_FIFO_TRG_LVL_MASK	GENMASK(13, 12)
-> +#define SPIFMC_TRAN_CSR_FIFO_TRG_LVL_1_BYTE	(0x00 << 12)
-> +#define SPIFMC_TRAN_CSR_FIFO_TRG_LVL_2_BYTE	(0x01 << 12)
-> +#define SPIFMC_TRAN_CSR_FIFO_TRG_LVL_4_BYTE	(0x02 << 12)
-> +#define SPIFMC_TRAN_CSR_FIFO_TRG_LVL_8_BYTE	(0x03 << 12)
-> +#define SPIFMC_TRAN_CSR_GO_BUSY			BIT(15)
-> +#define SPIFMC_TRAN_CSR_ADDR4B_SHIFT		20
-> +#define SPIFMC_TRAN_CSR_CMD4B_SHIFT		21
-> +
-> +#define SPIFMC_TRAN_NUM				0x14
-> +#define SPIFMC_FIFO_PORT			0x18
-> +#define SPIFMC_FIFO_PT				0x20
-> +
-> +#define SPIFMC_INT_STS				0x28
-> +#define SPIFMC_INT_TRAN_DONE			BIT(0)
-> +#define SPIFMC_INT_RD_FIFO			BIT(2)
-> +#define SPIFMC_INT_WR_FIFO			BIT(3)
-> +#define SPIFMC_INT_RX_FRAME			BIT(4)
-> +#define SPIFMC_INT_TX_FRAME			BIT(5)
-> +
-> +#define SPIFMC_INT_EN				0x2c
-> +#define SPIFMC_INT_TRAN_DONE_EN			BIT(0)
-> +#define SPIFMC_INT_RD_FIFO_EN			BIT(2)
-> +#define SPIFMC_INT_WR_FIFO_EN			BIT(3)
-> +#define SPIFMC_INT_RX_FRAME_EN			BIT(4)
-> +#define SPIFMC_INT_TX_FRAME_EN			BIT(5)
-> +
-> +#define SPIFMC_OPT				0x030
-> +#define SPIFMC_OPT_DISABLE_FIFO_FLUSH		BIT(1)
-> +
-> +#define SPIFMC_MAX_FIFO_DEPTH			8
-> +
-> +#define SPIFMC_MAX_READ_SIZE			0x10000
-> +
-> +struct sg2044_spifmc {
-> +	struct spi_controller *ctrl;
-> +	void __iomem *io_base;
-> +	struct device *dev;
-> +	struct mutex lock;
-> +	struct clk *clk;
-> +};
-> +
-> +static int sg2044_spifmc_wait_int(struct sg2044_spifmc *spifmc, u8 int_type)
-> +{
-> +	u32 stat;
-> +
-> +	return readl_poll_timeout(spifmc->io_base + SPIFMC_INT_STS, stat,
-> +				  (stat & int_type), 0, 1000000);
-> +}
-> +
-> +static int sg2044_spifmc_wait_xfer_size(struct sg2044_spifmc *spifmc,
-> +					int xfer_size)
-> +{
-> +	u8 stat;
-> +
-> +	return readl_poll_timeout(spifmc->io_base + SPIFMC_FIFO_PT, stat,
-> +				  ((stat & 0xf) == xfer_size), 1, 1000000);
-> +}
-> +
-> +static u32 sg2044_spifmc_init_reg(struct sg2044_spifmc *spifmc)
-> +{
-> +	u32 reg;
-> +
-> +	reg = readl(spifmc->io_base + SPIFMC_TRAN_CSR);
-> +	reg &= ~(SPIFMC_TRAN_CSR_TRAN_MODE_MASK |
-> +		 SPIFMC_TRAN_CSR_FAST_MODE |
-> +		 SPIFMC_TRAN_CSR_BUS_WIDTH_2_BIT |
-> +		 SPIFMC_TRAN_CSR_BUS_WIDTH_4_BIT |
-> +		 SPIFMC_TRAN_CSR_DMA_EN |
-> +		 SPIFMC_TRAN_CSR_ADDR_BYTES_MASK |
-> +		 SPIFMC_TRAN_CSR_WITH_CMD |
-> +		 SPIFMC_TRAN_CSR_FIFO_TRG_LVL_MASK);
-> +
-> +	writel(reg, spifmc->io_base + SPIFMC_TRAN_CSR);
-> +
-> +	return reg;
-> +}
-> +
-> +static ssize_t sg2044_spifmc_read_64k(struct sg2044_spifmc *spifmc,
-> +				      const struct spi_mem_op *op, loff_t from,
-> +				      size_t len, u_char *buf)
-> +{
-> +	int xfer_size, offset;
-> +	u32 reg;
-> +	int ret;
-> +	int i;
-> +
-> +	reg = sg2044_spifmc_init_reg(spifmc);
-> +	reg |= (op->addr.nbytes + op->dummy.nbytes) << SPIFMC_TRAN_CSR_ADDR_BYTES_SHIFT;
-> +	reg |= SPIFMC_TRAN_CSR_FIFO_TRG_LVL_8_BYTE;
-> +	reg |= SPIFMC_TRAN_CSR_WITH_CMD;
-> +	reg |= SPIFMC_TRAN_CSR_TRAN_MODE_RX;
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_FIFO_PT);
-> +	writeb(op->cmd.opcode, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	for (i = op->addr.nbytes - 1; i >= 0; i--)
-> +		writeb((from >> i * 8) & 0xff, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	for (i = 0; i < op->dummy.nbytes; i++)
-> +		writeb(0xff, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	writel(len, spifmc->io_base + SPIFMC_TRAN_NUM);
-> +	writel(0, spifmc->io_base + SPIFMC_INT_STS);
-> +	reg |= SPIFMC_TRAN_CSR_GO_BUSY;
-> +	writel(reg, spifmc->io_base + SPIFMC_TRAN_CSR);
-> +
-> +	ret = sg2044_spifmc_wait_int(spifmc, SPIFMC_INT_RD_FIFO);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	offset = 0;
-> +	while (offset < len) {
-> +		xfer_size = min_t(size_t, SPIFMC_MAX_FIFO_DEPTH, len - offset);
-> +
-> +		ret = sg2044_spifmc_wait_xfer_size(spifmc, xfer_size);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		for (i = 0; i < xfer_size; i++)
-> +			buf[i + offset] = readb(spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +		offset += xfer_size;
-> +	}
-> +
-> +	ret = sg2044_spifmc_wait_int(spifmc, SPIFMC_INT_TRAN_DONE);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_FIFO_PT);
-> +
-> +	return len;
-> +}
-> +
-> +static ssize_t sg2044_spifmc_read(struct sg2044_spifmc *spifmc,
-> +				  const struct spi_mem_op *op)
-> +{
-> +	size_t xfer_size;
-> +	size_t offset;
-> +	loff_t from = op->addr.val;
-> +	size_t len = op->data.nbytes;
-> +	int ret;
-> +	u8 *din = op->data.buf.in;
-> +
-> +	offset = 0;
-> +	while (offset < len) {
-> +		xfer_size = min_t(size_t, SPIFMC_MAX_READ_SIZE, len - offset);
-> +
-> +		ret = sg2044_spifmc_read_64k(spifmc, op, from, xfer_size, din);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		offset += xfer_size;
-> +		din += xfer_size;
-> +		from += xfer_size;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static ssize_t sg2044_spifmc_write(struct sg2044_spifmc *spifmc,
-> +				   const struct spi_mem_op *op)
-> +{
-> +	size_t xfer_size;
-> +	const u8 *dout = op->data.buf.out;
-> +	int i, offset;
-> +	size_t ret;
-> +	u32 reg;
-> +
-> +	reg = sg2044_spifmc_init_reg(spifmc);
-> +	reg |= (op->addr.nbytes + op->dummy.nbytes) << SPIFMC_TRAN_CSR_ADDR_BYTES_SHIFT;
-> +	reg |= SPIFMC_TRAN_CSR_FIFO_TRG_LVL_8_BYTE;
-> +	reg |= SPIFMC_TRAN_CSR_WITH_CMD;
-> +	reg |= SPIFMC_TRAN_CSR_TRAN_MODE_TX;
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_FIFO_PT);
-> +	writeb(op->cmd.opcode, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	for (i = op->addr.nbytes - 1; i >= 0; i--)
-> +		writeb((op->addr.val >> i * 8) & 0xff, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	for (i = 0; i < op->dummy.nbytes; i++)
-> +		writeb(0xff, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_INT_STS);
-> +	writel(op->data.nbytes, spifmc->io_base + SPIFMC_TRAN_NUM);
-> +	reg |= SPIFMC_TRAN_CSR_GO_BUSY;
-> +	writel(reg, spifmc->io_base + SPIFMC_TRAN_CSR);
-> +
-> +	ret = sg2044_spifmc_wait_xfer_size(spifmc, 0);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_FIFO_PT);
-> +
-> +	offset = 0;
-> +	while (offset < op->data.nbytes) {
-> +		xfer_size = min_t(size_t, SPIFMC_MAX_FIFO_DEPTH, op->data.nbytes - offset);
-> +
-> +		ret = sg2044_spifmc_wait_xfer_size(spifmc, 0);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		for (i = 0; i < xfer_size; i++)
-> +			writeb(dout[i + offset], spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +		offset += xfer_size;
-> +	}
-> +
-> +	ret = sg2044_spifmc_wait_int(spifmc, SPIFMC_INT_TRAN_DONE);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_FIFO_PT);
-> +
-> +	return 0;
-> +}
-> +
-> +static ssize_t sg2044_spifmc_tran_cmd(struct sg2044_spifmc *spifmc,
-> +				      const struct spi_mem_op *op)
-> +{
-> +	int i, ret;
-> +	u32 reg;
-> +
-> +	reg = sg2044_spifmc_init_reg(spifmc);
-> +	reg |= (op->addr.nbytes + op->dummy.nbytes) << SPIFMC_TRAN_CSR_ADDR_BYTES_SHIFT;
-> +	reg |= SPIFMC_TRAN_CSR_FIFO_TRG_LVL_1_BYTE;
-> +	reg |= SPIFMC_TRAN_CSR_WITH_CMD;
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_FIFO_PT);
-> +	writeb(op->cmd.opcode, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	for (i = op->addr.nbytes - 1; i >= 0; i--)
-> +		writeb((op->addr.val >> i * 8) & 0xff, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	for (i = 0; i < op->dummy.nbytes; i++)
-> +		writeb(0xff, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_INT_STS);
-> +	reg |= SPIFMC_TRAN_CSR_GO_BUSY;
-> +	writel(reg, spifmc->io_base + SPIFMC_TRAN_CSR);
-> +
-> +	ret = sg2044_spifmc_wait_int(spifmc, SPIFMC_INT_TRAN_DONE);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_FIFO_PT);
-> +
-> +	return 0;
-> +}
-> +
-> +static void sg2044_spifmc_trans(struct sg2044_spifmc *spifmc,
-> +				const struct spi_mem_op *op)
-> +{
-> +	if (op->data.dir == SPI_MEM_DATA_IN)
-> +		sg2044_spifmc_read(spifmc, op);
-> +	else if (op->data.dir == SPI_MEM_DATA_OUT)
-> +		sg2044_spifmc_write(spifmc, op);
-> +	else
-> +		sg2044_spifmc_tran_cmd(spifmc, op);
-> +}
-> +
-> +static ssize_t sg2044_spifmc_trans_reg(struct sg2044_spifmc *spifmc,
-> +				       const struct spi_mem_op *op)
-> +{
-> +	const u8 *dout = NULL;
-> +	u8 *din = NULL;
-> +	size_t len = op->data.nbytes;
-> +	int ret, i;
-> +	u32 reg;
-> +
-> +	if (op->data.dir == SPI_MEM_DATA_IN)
-> +		din = op->data.buf.in;
-> +	else
-> +		dout = op->data.buf.out;
-> +
-> +	reg = sg2044_spifmc_init_reg(spifmc);
-> +	reg |= SPIFMC_TRAN_CSR_FIFO_TRG_LVL_1_BYTE;
-> +	reg |= SPIFMC_TRAN_CSR_WITH_CMD;
-> +
-> +	if (din) {
-> +		reg |= SPIFMC_TRAN_CSR_BUS_WIDTH_1_BIT;
-> +		reg |= SPIFMC_TRAN_CSR_TRAN_MODE_RX;
-> +		reg |= SPIFMC_TRAN_CSR_TRAN_MODE_TX;
-> +
-> +		writel(SPIFMC_OPT_DISABLE_FIFO_FLUSH, spifmc->io_base + SPIFMC_OPT);
-> +	} else {
-> +		/*
-> +		 * If write values to the Status Register,
-> +		 * configure TRAN_CSR register as the same as
-> +		 * sg2044_spifmc_read_reg.
-> +		 */
-> +		if (op->cmd.opcode == 0x01) {
-> +			reg |= SPIFMC_TRAN_CSR_TRAN_MODE_RX;
-> +			reg |= SPIFMC_TRAN_CSR_TRAN_MODE_TX;
-> +			writel(len, spifmc->io_base + SPIFMC_TRAN_NUM);
-> +		}
-> +	}
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_FIFO_PT);
-> +	writeb(op->cmd.opcode, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +
-> +	for (i = 0; i < len; i++) {
-> +		if (din)
-> +			writeb(0xff, spifmc->io_base + SPIFMC_FIFO_PORT);
-> +		else
-> +			writeb(dout[i], spifmc->io_base + SPIFMC_FIFO_PORT);
-> +	}
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_INT_STS);
-> +	writel(len, spifmc->io_base + SPIFMC_TRAN_NUM);
-> +	reg |= SPIFMC_TRAN_CSR_GO_BUSY;
-> +	writel(reg, spifmc->io_base + SPIFMC_TRAN_CSR);
-> +
-> +	ret = sg2044_spifmc_wait_int(spifmc, SPIFMC_INT_TRAN_DONE);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (din) {
-> +		while (len--)
-> +			*din++ = readb(spifmc->io_base + SPIFMC_FIFO_PORT);
-> +	}
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_FIFO_PT);
-> +
-> +	return 0;
-> +}
-> +
-> +static int sg2044_spifmc_exec_op(struct spi_mem *mem,
-> +				 const struct spi_mem_op *op)
-> +{
-> +	struct sg2044_spifmc *spifmc;
-> +
-> +	spifmc = spi_controller_get_devdata(mem->spi->controller);
-> +
-> +	mutex_lock(&spifmc->lock);
-> +
-> +	if (op->addr.nbytes == 0)
-> +		sg2044_spifmc_trans_reg(spifmc, op);
-> +	else
-> +		sg2044_spifmc_trans(spifmc, op);
-> +
-> +	mutex_unlock(&spifmc->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct spi_controller_mem_ops sg2044_spifmc_mem_ops = {
-> +	.exec_op = sg2044_spifmc_exec_op,
-> +};
-> +
-> +static void sg2044_spifmc_init(struct sg2044_spifmc *spifmc)
-> +{
-> +	u32 tran_csr;
-> +	u32 reg;
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_DMMR);
-> +
-> +	reg = readl(spifmc->io_base + SPIFMC_CTRL);
-> +	reg |= SPIFMC_CTRL_SRST;
-> +	reg &= ~(SPIFMC_CTRL_SCK_DIV_MASK);
-> +	reg |= 1;
-> +	writel(reg, spifmc->io_base + SPIFMC_CTRL);
-> +
-> +	writel(0, spifmc->io_base + SPIFMC_CE_CTRL);
-> +
-> +	tran_csr = readl(spifmc->io_base + SPIFMC_TRAN_CSR);
-> +	tran_csr |= (0 << SPIFMC_TRAN_CSR_ADDR_BYTES_SHIFT);
-> +	tran_csr |= SPIFMC_TRAN_CSR_FIFO_TRG_LVL_4_BYTE;
-> +	tran_csr |= SPIFMC_TRAN_CSR_WITH_CMD;
-> +	writel(tran_csr, spifmc->io_base + SPIFMC_TRAN_CSR);
-> +}
-> +
-> +static int sg2044_spifmc_probe(struct platform_device *pdev)
-> +{
-> +	struct spi_controller *ctrl;
-> +	struct sg2044_spifmc *spifmc;
-> +	void __iomem *base;
-> +	int ret;
-> +
-> +	ctrl = devm_spi_alloc_host(&pdev->dev, sizeof(*spifmc));
-> +	if (!ctrl)
-> +		return -ENOMEM;
-> +
-> +	spifmc = spi_controller_get_devdata(ctrl);
-> +	dev_set_drvdata(&pdev->dev, ctrl);
-> +
-> +	spifmc->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-> +	if (IS_ERR(spifmc->clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(spifmc->clk),
-> +				     "%s: Cannot get and enable AHB clock\n",
-> +				     __func__);
-> +
-> +	spifmc->dev = &pdev->dev;
-> +	spifmc->ctrl = ctrl;
-> +
-> +	spifmc->io_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	ctrl->num_chipselect = 1;
-> +	ctrl->dev.of_node = pdev->dev.of_node;
-> +	ctrl->bits_per_word_mask = SPI_BPW_MASK(8);
-> +	ctrl->auto_runtime_pm = false;
-> +	ctrl->mem_ops = &sg2044_spifmc_mem_ops;
-> +	ctrl->mode_bits = SPI_RX_DUAL | SPI_TX_DUAL | SPI_RX_QUAD | SPI_TX_QUAD;
-> +
-> +	mutex_init(&spifmc->lock);
-> +
-> +	sg2044_spifmc_init(spifmc);
-> +	sg2044_spifmc_init_reg(spifmc);
-> +
-> +	ret = devm_spi_register_controller(&pdev->dev, ctrl);
-> +	if (ret) {
-> +		mutex_destroy(&spifmc->lock);
-> +		dev_err(&pdev->dev, "spi_register_controller failed\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void sg2044_spifmc_remove(struct platform_device *pdev)
-> +{
-> +	struct sg2044_spifmc *spifmc = platform_get_drvdata(pdev);
-> +
-> +	mutex_destroy(&spifmc->lock);
-> +}
-> +
-> +static const struct of_device_id sg2044_spifmc_match[] = {
-> +	{ .compatible = "sophgo,sg2044-spifmc-nor" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, sg2044_spifmc_match);
-> +
-> +static struct platform_driver sg2044_nor_driver = {
-> +	.driver = {
-> +		.name = "sg2044,spifmc-nor",
-> +		.of_match_table = sg2044_spifmc_match,
-> +	},
-> +	.probe = sg2044_spifmc_probe,
-> +	.remove = sg2044_spifmc_remove,
-> +};
-> +module_platform_driver(sg2044_nor_driver);
-> +
-> +MODULE_DESCRIPTION("SG2044 SPI NOR controller driver");
-> +MODULE_AUTHOR("Longbin Li<looong.bin@gmail.com>");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.48.1
+> I found that tegra/dp.c already use this name, so I need to do a symbols rename
+> for tegra first to avoid build error like[2].
+> 
+> Can the patch for Tegra be merged  through  drm-misc branch?
 
+Yes, when drm_dp_link code was moved to the Tegra driver, nobody renamed
+those symboles. Maybe in the hope of moving them back. Please rename
+those symbols.
 
-Kind regards,
-Maud
+> 
+> 
+> [2]https://lore.kernel.org/oe-kbuild-all/202410250305.UHKDhtxy-lkp@intel.com/
+> >
+> >> 
+> >> >
+> >> >> +	return 0;
+> >> >> +}
+> >> >> +
+> >> >> +static bool dw_dp_has_sink_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> >> >> +				 const struct drm_dp_desc *desc)
+> >> >> +{
+> >> >> +	return dpcd[DP_DPCD_REV] >= DP_DPCD_REV_11 &&
+> >> >> +	       dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT &&
+> >> >> +	       !drm_dp_has_quirk(desc, DP_DPCD_QUIRK_NO_SINK_COUNT);
+> >> >
+> >> >
+> >> >isn't it drm_dp_read_sink_count_cap() ?
+> >> 
+> >> I will have a try, since this drm_dp_read_sink_count_cap requires a connector parameter, 
+> >> I need to figure out how to get the connector here.
+> >
+> >Maybe Maxime's series will you here, see [1].
+> >
+> >[1] https://lore.kernel.org/dri-devel/20250225-bridge-connector-v4-4-7ecb07b09cad@kernel.org/
+> >
+> >> 
+> >> >
+> >> >> +}
+> >> >> +
+> >> >> +static int dw_dp_link_parse(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	struct dw_dp_link *link = &dp->link;
+> >> >> +	u8 dpcd;
+> >> >> +	int ret;
+> 
+> ......
+> 
+> >> >> +		break;
+> >> >> +	}
+> >> >> +
+> >> >> +	if (video->color_format == DRM_COLOR_FORMAT_RGB444) {
+> >> >> +		vsc.colorimetry = DP_COLORIMETRY_DEFAULT;
+> >> >> +		vsc.dynamic_range = DP_DYNAMIC_RANGE_VESA;
+> >> >> +	} else {
+> >> >> +		vsc.colorimetry = DP_COLORIMETRY_BT709_YCC;
+> >> >> +		vsc.dynamic_range = DP_DYNAMIC_RANGE_CTA;
+> >> >> +	}
+> >> >> +
+> >> >> +	vsc.bpc = video->bpc;
+> >> >> +	vsc.content_type = DP_CONTENT_TYPE_NOT_DEFINED;
+> >> >> +
+> >> >> +	dw_dp_vsc_sdp_pack(&vsc, &sdp);
+> >> >> +
+> >> >> +	return dw_dp_send_sdp(dp, &sdp);
+> >> >> +}
+> >> >> +
+> >> >> +static int dw_dp_video_set_pixel_mode(struct dw_dp *dp, u8 pixel_mode)
+> >> >> +{
+> >> >> +	switch (pixel_mode) {
+> >> >> +	case DW_DP_MP_SINGLE_PIXEL:
+> >> >> +	case DW_DP_MP_DUAL_PIXEL:
+> >> >> +	case DW_DP_MP_QUAD_PIXEL:
+> >> >> +		break;
+> >> >> +	default:
+> >> >> +		return -EINVAL;
+> >> >
+> >> >Is it possible?
+> >> 
+> >> This IP is configurable for single/dual/quad pixel modes。
+> >> It's  quad pixel mode on rk3588 and dual pixel mode on rk3576,
+> >> so we add this check here.
+> >
+> >My question was slightly different: is it possible to end up here in the
+> >'default' branch?
+> 
+> Sorry, I think I didn't get your key point here.
+> If someone give a invalid pixe mode(not any of SINGLE/DUAL/QUAD_PIXEL ), 
+> then we go to default branch return -ENVIAL,  then the dp_bridge enable stop.
+> This is what we want here.
+> 
+> 
+> 
+> 
+> >
+> >> 
+> >> 
+> >> >
+> >> >> +	}
+> >> >> +
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_VSAMPLE_CTRL, PIXEL_MODE_SELECT,
+> >> >> +			   FIELD_PREP(PIXEL_MODE_SELECT, pixel_mode));
+> >> >> +
+> >> >> +	return 0;
+> >> >> +}
+> >> >> +
+> >> >> +static bool dw_dp_video_need_vsc_sdp(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	struct dw_dp_link *link = &dp->link;
+> >> >> +	struct dw_dp_video *video = &dp->video;
+> >> >> +
+> >> >> +	if (!link->vsc_sdp_supported)
+> >> >> +		return false;
+> >> >> +
+> >> >> +	if (video->color_format == DRM_COLOR_FORMAT_YCBCR420)
+> >> >> +		return true;
+> >> >> +
+> >> >> +	return false;
+> >> >> +}
+> >> >> +
+> >> >> +static int dw_dp_video_set_msa(struct dw_dp *dp, u8 color_format, u8 bpc,
+> >> >> +			       u16 vstart, u16 hstart)
+> >> >> +{
+> >> >> +	u16 misc = 0;
+> >> >> +
+> >> >> +	if (dw_dp_video_need_vsc_sdp(dp))
+> >> >> +		misc |= DP_MSA_MISC_COLOR_VSC_SDP;
+> >> >> +
+> >> >> +	switch (color_format) {
+> >> >> +	case DRM_COLOR_FORMAT_RGB444:
+> >> >> +		misc |= DP_MSA_MISC_COLOR_RGB;
+> >> >> +		break;
+> >> >> +	case DRM_COLOR_FORMAT_YCBCR444:
+> >> >> +		misc |= DP_MSA_MISC_COLOR_YCBCR_444_BT709;
+> >> >> +		break;
+> >> >> +	case DRM_COLOR_FORMAT_YCBCR422:
+> >> >> +		misc |= DP_MSA_MISC_COLOR_YCBCR_422_BT709;
+> >> >> +		break;
+> >> >> +	case DRM_COLOR_FORMAT_YCBCR420:
+> >> >> +		break;
+> >> >> +	default:
+> >> >> +		return -EINVAL;
+> >> >> +	}
+> >> >> +
+> >> >> +	switch (bpc) {
+> >> >> +	case 6:
+> >> >> +		misc |= DP_MSA_MISC_6_BPC;
+> >> >> +		break;
+> >> >> +	case 8:
+> >> >> +		misc |= DP_MSA_MISC_8_BPC;
+> >> >> +		break;
+> >> >> +	case 10:
+> >> >> +		misc |= DP_MSA_MISC_10_BPC;
+> >> >> +		break;
+> >> >> +	case 12:
+> >> >> +		misc |= DP_MSA_MISC_12_BPC;
+> >> >> +		break;
+> >> >> +	case 16:
+> >> >> +		misc |= DP_MSA_MISC_16_BPC;
+> >> >> +		break;
+> >> >> +	default:
+> >> >> +		return -EINVAL;
+> >> >> +	}
+> >> >> +
+> >> >> +	regmap_write(dp->regmap, DW_DP_VIDEO_MSA1,
+> >> >> +		     FIELD_PREP(VSTART, vstart) | FIELD_PREP(HSTART, hstart));
+> >> >> +	regmap_write(dp->regmap, DW_DP_VIDEO_MSA2, FIELD_PREP(MISC0, misc));
+> >> >> +	regmap_write(dp->regmap, DW_DP_VIDEO_MSA3, FIELD_PREP(MISC1, misc >> 8));
+> >> >> +
+> >> >> +	return 0;
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_video_disable(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_VSAMPLE_CTRL, VIDEO_STREAM_ENABLE,
+> >> >> +			   FIELD_PREP(VIDEO_STREAM_ENABLE, 0));
+> >> >> +}
+> >> >> +
+> >> >> +static int dw_dp_video_enable(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	struct dw_dp_video *video = &dp->video;
+> >> >> +	struct dw_dp_link *link = &dp->link;
+> >> >> +	struct drm_display_mode *mode = &video->mode;
+> >> >> +	u8 color_format = video->color_format;
+> >> >> +	u8 bpc = video->bpc;
+> >> >> +	u8 pixel_mode = video->pixel_mode;
+> >> >> +	u8 bpp = video->bpp, init_threshold, vic;
+> >> >> +	u32 hactive, hblank, h_sync_width, h_front_porch;
+> >> >> +	u32 vactive, vblank, v_sync_width, v_front_porch;
+> >> >> +	u32 vstart = mode->vtotal - mode->vsync_start;
+> >> >> +	u32 hstart = mode->htotal - mode->hsync_start;
+> >> >> +	u32 peak_stream_bandwidth, link_bandwidth;
+> >> >> +	u32 average_bytes_per_tu, average_bytes_per_tu_frac;
+> >> >> +	u32 ts, hblank_interval;
+> >> >> +	u32 value;
+> >> >> +	int ret;
+> >> >> +
+> >> >> +	ret = dw_dp_video_set_pixel_mode(dp, pixel_mode);
+> >> >> +	if (ret)
+> >> >> +		return ret;
+> >> >> +
+> >> >> +	ret = dw_dp_video_set_msa(dp, color_format, bpc, vstart, hstart);
+> >> >> +	if (ret)
+> >> >> +		return ret;
+> >> >> +
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_VSAMPLE_CTRL, VIDEO_MAPPING,
+> >> >> +			   FIELD_PREP(VIDEO_MAPPING, video->video_mapping));
+> >> >> +
+> >> >> +	/* Configure DW_DP_VINPUT_POLARITY_CTRL register */
+> >> >> +	value = 0;
+> >> >> +	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
+> >> >> +		value |= FIELD_PREP(HSYNC_IN_POLARITY, 1);
+> >> >> +	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
+> >> >> +		value |= FIELD_PREP(VSYNC_IN_POLARITY, 1);
+> >> >> +	regmap_write(dp->regmap, DW_DP_VINPUT_POLARITY_CTRL, value);
+> >> >> +
+> >> >> +	/* Configure DW_DP_VIDEO_CONFIG1 register */
+> >> >> +	hactive = mode->hdisplay;
+> >> >> +	hblank = mode->htotal - mode->hdisplay;
+> >> >> +	value = FIELD_PREP(HACTIVE, hactive) | FIELD_PREP(HBLANK, hblank);
+> >> >> +	if (mode->flags & DRM_MODE_FLAG_INTERLACE)
+> >> >> +		value |= FIELD_PREP(I_P, 1);
+> >> >> +	vic = drm_match_cea_mode(mode);
+> >> >> +	if (vic == 5 || vic == 6 || vic == 7 ||
+> >> >> +	    vic == 10 || vic == 11 || vic == 20 ||
+> >> >> +	    vic == 21 || vic == 22 || vic == 39 ||
+> >> >> +	    vic == 25 || vic == 26 || vic == 40 ||
+> >> >> +	    vic == 44 || vic == 45 || vic == 46 ||
+> >> >> +	    vic == 50 || vic == 51 || vic == 54 ||
+> >> >> +	    vic == 55 || vic == 58 || vic  == 59)
+> >> >> +		value |= R_V_BLANK_IN_OSC;
+> >> >> +	regmap_write(dp->regmap, DW_DP_VIDEO_CONFIG1, value);
+> >> >> +
+> >> >> +	/* Configure DW_DP_VIDEO_CONFIG2 register */
+> >> >> +	vblank = mode->vtotal - mode->vdisplay;
+> >> >> +	vactive = mode->vdisplay;
+> >> >> +	regmap_write(dp->regmap, DW_DP_VIDEO_CONFIG2,
+> >> >> +		     FIELD_PREP(VBLANK, vblank) | FIELD_PREP(VACTIVE, vactive));
+> >> >> +
+> >> >> +	/* Configure DW_DP_VIDEO_CONFIG3 register */
+> >> >> +	h_sync_width = mode->hsync_end - mode->hsync_start;
+> >> >> +	h_front_porch = mode->hsync_start - mode->hdisplay;
+> >> >> +	regmap_write(dp->regmap, DW_DP_VIDEO_CONFIG3,
+> >> >> +		     FIELD_PREP(H_SYNC_WIDTH, h_sync_width) |
+> >> >> +		     FIELD_PREP(H_FRONT_PORCH, h_front_porch));
+> >> >> +
+> >> >> +	/* Configure DW_DP_VIDEO_CONFIG4 register */
+> >> >> +	v_sync_width = mode->vsync_end - mode->vsync_start;
+> >> >> +	v_front_porch = mode->vsync_start - mode->vdisplay;
+> >> >> +	regmap_write(dp->regmap, DW_DP_VIDEO_CONFIG4,
+> >> >> +		     FIELD_PREP(V_SYNC_WIDTH, v_sync_width) |
+> >> >> +		     FIELD_PREP(V_FRONT_PORCH, v_front_porch));
+> >> >> +
+> >> >> +	/* Configure DW_DP_VIDEO_CONFIG5 register */
+> >> >> +	peak_stream_bandwidth = mode->clock * bpp / 8;
+> >> >> +	link_bandwidth = (link->rate / 1000) * link->lanes;
+> >> >> +	ts = peak_stream_bandwidth * 64 / link_bandwidth;
+> >> >> +	average_bytes_per_tu = ts / 1000;
+> >> >> +	average_bytes_per_tu_frac = ts / 100 - average_bytes_per_tu * 10;
+> >> >> +	if (pixel_mode == DW_DP_MP_SINGLE_PIXEL) {
+> >> >> +		if (average_bytes_per_tu < 6)
+> >> >> +			init_threshold = 32;
+> >> >> +		else if (hblank <= 80 && color_format != DRM_COLOR_FORMAT_YCBCR420)
+> >> >> +			init_threshold = 12;
+> >> >> +		else if (hblank <= 40 && color_format == DRM_COLOR_FORMAT_YCBCR420)
+> >> >> +			init_threshold = 3;
+> >> >> +		else
+> >> >> +			init_threshold = 16;
+> >> >> +	} else {
+> >> >> +		u32 t1 = 0, t2 = 0, t3 = 0;
+> >> >> +
+> >> >> +		switch (bpc) {
+> >> >> +		case 6:
+> >> >> +			t1 = (4 * 1000 / 9) * link->lanes;
+> >> >> +			break;
+> >> >> +		case 8:
+> >> >> +			if (color_format == DRM_COLOR_FORMAT_YCBCR422) {
+> >> >> +				t1 = (1000 / 2) * link->lanes;
+> >> >> +			} else {
+> >> >> +				if (pixel_mode == DW_DP_MP_DUAL_PIXEL)
+> >> >> +					t1 = (1000 / 3) * link->lanes;
+> >> >> +				else
+> >> >> +					t1 = (3000 / 16) * link->lanes;
+> >> >> +			}
+> >> >> +			break;
+> >> >> +		case 10:
+> >> >> +			if (color_format == DRM_COLOR_FORMAT_YCBCR422)
+> >> >> +				t1 = (2000 / 5) * link->lanes;
+> >> >> +			else
+> >> >> +				t1 = (4000 / 15) * link->lanes;
+> >> >> +			break;
+> >> >> +		case 12:
+> >> >> +			if (color_format == DRM_COLOR_FORMAT_YCBCR422) {
+> >> >> +				if (pixel_mode == DW_DP_MP_DUAL_PIXEL)
+> >> >> +					t1 = (1000 / 6) * link->lanes;
+> >> >> +				else
+> >> >> +					t1 = (1000 / 3) * link->lanes;
+> >> >> +			} else {
+> >> >> +				t1 = (2000 / 9) * link->lanes;
+> >> >> +			}
+> >> >> +			break;
+> >> >> +		case 16:
+> >> >> +			if (color_format != DRM_COLOR_FORMAT_YCBCR422 &&
+> >> >> +			    pixel_mode == DW_DP_MP_DUAL_PIXEL)
+> >> >> +				t1 = (1000 / 6) * link->lanes;
+> >> >> +			else
+> >> >> +				t1 = (1000 / 4) * link->lanes;
+> >> >> +			break;
+> >> >> +		default:
+> >> >> +			return -EINVAL;
+> >> >> +		}
+> >> >> +
+> >> >> +		if (color_format == DRM_COLOR_FORMAT_YCBCR420)
+> >> >> +			t2 = (link->rate / 4) * 1000 / (mode->clock / 2);
+> >> >> +		else
+> >> >> +			t2 = (link->rate / 4) * 1000 / mode->clock;
+> >> >> +
+> >> >> +		if (average_bytes_per_tu_frac)
+> >> >> +			t3 = average_bytes_per_tu + 1;
+> >> >> +		else
+> >> >> +			t3 = average_bytes_per_tu;
+> >> >> +		init_threshold = t1 * t2 * t3 / (1000 * 1000);
+> >> >> +		if (init_threshold <= 16 || average_bytes_per_tu < 10)
+> >> >> +			init_threshold = 40;
+> >> >> +	}
+> >> >> +
+> >> >> +	regmap_write(dp->regmap, DW_DP_VIDEO_CONFIG5,
+> >> >> +		     FIELD_PREP(INIT_THRESHOLD_HI, init_threshold >> 6) |
+> >> >> +		     FIELD_PREP(AVERAGE_BYTES_PER_TU_FRAC, average_bytes_per_tu_frac) |
+> >> >> +		     FIELD_PREP(INIT_THRESHOLD, init_threshold) |
+> >> >> +		     FIELD_PREP(AVERAGE_BYTES_PER_TU, average_bytes_per_tu));
+> >> >> +
+> >> >> +	/* Configure DW_DP_VIDEO_HBLANK_INTERVAL register */
+> >> >> +	hblank_interval = hblank * (link->rate / 4) / mode->clock;
+> >> >> +	regmap_write(dp->regmap, DW_DP_VIDEO_HBLANK_INTERVAL,
+> >> >> +		     FIELD_PREP(HBLANK_INTERVAL_EN, 1) |
+> >> >> +		     FIELD_PREP(HBLANK_INTERVAL, hblank_interval));
+> >> >> +
+> >> >> +	/* Video stream enable */
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_VSAMPLE_CTRL, VIDEO_STREAM_ENABLE,
+> >> >> +			   FIELD_PREP(VIDEO_STREAM_ENABLE, 1));
+> >> >> +
+> >> >> +	if (dw_dp_video_need_vsc_sdp(dp))
+> >> >> +		dw_dp_send_vsc_sdp(dp);
+> >> >> +
+> >> >> +	return 0;
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_hpd_init(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	/* Enable all HPD interrupts */
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_HPD_INTERRUPT_ENABLE,
+> >> >> +			   HPD_UNPLUG_EN | HPD_PLUG_EN | HPD_IRQ_EN,
+> >> >> +			   FIELD_PREP(HPD_UNPLUG_EN, 1) |
+> >> >> +			   FIELD_PREP(HPD_PLUG_EN, 1) |
+> >> >> +			   FIELD_PREP(HPD_IRQ_EN, 1));
+> >> >> +
+> >> >> +	/* Enable all top-level interrupts */
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_GENERAL_INTERRUPT_ENABLE,
+> >> >> +			   HPD_EVENT_EN, FIELD_PREP(HPD_EVENT_EN, 1));
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_aux_init(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_GENERAL_INTERRUPT_ENABLE,
+> >> >> +			   AUX_REPLY_EVENT_EN, FIELD_PREP(AUX_REPLY_EVENT_EN, 1));
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_init_hw(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_CCTL, DEFAULT_FAST_LINK_TRAIN_EN,
+> >> >> +			   FIELD_PREP(DEFAULT_FAST_LINK_TRAIN_EN, 0));
+> >> >> +
+> >> >> +	dw_dp_hpd_init(dp);
+> >> >> +	dw_dp_aux_init(dp);
+> >> >> +}
+> >> >> +
+> >> >> +static int dw_dp_aux_write_data(struct dw_dp *dp, const u8 *buffer, size_t size)
+> >> >> +{
+> >> >> +	size_t i, j;
+> >> >> +
+> >> >> +	for (i = 0; i < DIV_ROUND_UP(size, 4); i++) {
+> >> >> +		size_t num = min_t(size_t, size - i * 4, 4);
+> >> >> +		u32 value = 0;
+> >> >> +
+> >> >> +		for (j = 0; j < num; j++)
+> >> >> +			value |= buffer[i * 4 + j] << (j * 8);
+> >> >> +
+> >> >> +		regmap_write(dp->regmap, DW_DP_AUX_DATA0 + i * 4, value);
+> >> >> +	}
+> >> >> +
+> >> >> +	return size;
+> >> >> +}
+> >> >> +
+> >> >> +static int dw_dp_aux_read_data(struct dw_dp *dp, u8 *buffer, size_t size)
+> >> >> +{
+> >> >> +	size_t i, j;
+> >> >> +
+> >> >> +	for (i = 0; i < DIV_ROUND_UP(size, 4); i++) {
+> >> >> +		size_t num = min_t(size_t, size - i * 4, 4);
+> >> >> +		u32 value;
+> >> >> +
+> >> >> +		regmap_read(dp->regmap, DW_DP_AUX_DATA0 + i * 4, &value);
+> >> >> +
+> >> >> +		for (j = 0; j < num; j++)
+> >> >> +			buffer[i * 4 + j] = value >> (j * 8);
+> >> >> +	}
+> >> >> +
+> >> >> +	return size;
+> >> >> +}
+> >> >> +
+> >> >> +static ssize_t dw_dp_aux_transfer(struct drm_dp_aux *aux,
+> >> >> +				  struct drm_dp_aux_msg *msg)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = container_of(aux, struct dw_dp, aux);
+> >> >> +	unsigned long timeout = msecs_to_jiffies(10);
+> >> >> +	u32 status, value;
+> >> >> +	ssize_t ret = 0;
+> >> >> +
+> >> >> +	if (WARN_ON(msg->size > 16))
+> >> >> +		return -E2BIG;
+> >> >> +
+> >> >> +	switch (msg->request & ~DP_AUX_I2C_MOT) {
+> >> >> +	case DP_AUX_NATIVE_WRITE:
+> >> >> +	case DP_AUX_I2C_WRITE:
+> >> >> +	case DP_AUX_I2C_WRITE_STATUS_UPDATE:
+> >> >> +		ret = dw_dp_aux_write_data(dp, msg->buffer, msg->size);
+> >> >> +		if (ret < 0)
+> >> >> +			return ret;
+> >> >> +		break;
+> >> >> +	case DP_AUX_NATIVE_READ:
+> >> >> +	case DP_AUX_I2C_READ:
+> >> >> +		break;
+> >> >> +	default:
+> >> >> +		return -EINVAL;
+> >> >> +	}
+> >> >> +
+> >> >> +	if (msg->size > 0)
+> >> >> +		value = FIELD_PREP(AUX_LEN_REQ, msg->size - 1);
+> >> >> +	else
+> >> >> +		value = FIELD_PREP(I2C_ADDR_ONLY, 1);
+> >> >> +	value |= FIELD_PREP(AUX_CMD_TYPE, msg->request);
+> >> >> +	value |= FIELD_PREP(AUX_ADDR, msg->address);
+> >> >> +	regmap_write(dp->regmap, DW_DP_AUX_CMD, value);
+> >> >> +
+> >> >> +	status = wait_for_completion_timeout(&dp->complete, timeout);
+> >> >> +	if (!status) {
+> >> >> +		dev_err(dp->dev, "timeout waiting for AUX reply\n");
+> >> >> +		return -ETIMEDOUT;
+> >> >> +	}
+> >> >> +
+> >> >> +	regmap_read(dp->regmap, DW_DP_AUX_STATUS, &value);
+> >> >> +	if (value & AUX_TIMEOUT)
+> >> >> +		return -ETIMEDOUT;
+> >> >> +
+> >> >> +	msg->reply = FIELD_GET(AUX_STATUS, value);
+> >> >> +
+> >> >> +	if (msg->size > 0 && msg->reply == DP_AUX_NATIVE_REPLY_ACK) {
+> >> >> +		if (msg->request & DP_AUX_I2C_READ) {
+> >> >> +			size_t count = FIELD_GET(AUX_BYTES_READ, value) - 1;
+> >> >> +
+> >> >> +			if (count != msg->size)
+> >> >> +				return -EBUSY;
+> >> >> +
+> >> >> +			ret = dw_dp_aux_read_data(dp, msg->buffer, count);
+> >> >> +			if (ret < 0)
+> >> >> +				return ret;
+> >> >> +		}
+> >> >> +	}
+> >> >> +
+> >> >> +	return ret;
+> >> >> +}
+> >> >> +
+> >> >> +/*
+> >> >> + * Limits for the video timing output by DP:
+> >> >> + * 1. the hfp should be 2 pixels aligned;
+> >> >> + * 2. the minimum hsync should be 9 pixel;
+> >> >> + * 3. the minimum hbp should be 16 pixel;
+> >> >> + */
+> >> >> +static bool dw_dp_bridge_mode_fixup(struct drm_bridge *bridge,
+> >> >> +				    const struct drm_display_mode *mode,
+> >> >> +				    struct drm_display_mode *adjusted_mode)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = bridge_to_dp(bridge);
+> >> >> +	int min_hbp = 16;
+> >> >> +	int min_hsync = 9;
+> >> >> +
+> >> >> +	if ((adjusted_mode->hsync_start - adjusted_mode->hdisplay) & 0x1) {
+> >> >> +		adjusted_mode->hsync_start += 1;
+> >> >> +		dev_warn(dp->dev, "hfp is not 2 pixeel aligned, fixup to aligned hfp\n");
+> >> >> +	}
+> >> >> +	if (adjusted_mode->hsync_end - adjusted_mode->hsync_start < min_hsync) {
+> >> >> +		adjusted_mode->hsync_end = adjusted_mode->hsync_start + min_hsync;
+> >> >> +		dev_warn(dp->dev, "hsync is too narrow, fixup to min hsync:%d\n", min_hsync);
+> >> >> +	}
+> >> >> +	if (adjusted_mode->htotal - adjusted_mode->hsync_end < min_hbp) {
+> >> >> +		adjusted_mode->htotal = adjusted_mode->hsync_end + min_hbp;
+> >> >> +		dev_warn(dp->dev, "hbp is too narrow, fixup to min hbp:%d\n", min_hbp);
+> >> >> +	}
+> >> >> +
+> >> >> +	return true;
+> >> >> +}
+> >> >> +
+> >> >> +static enum drm_mode_status dw_dp_bridge_mode_valid(struct drm_bridge *bridge,
+> >> >> +						    const struct drm_display_info *info,
+> >> >> +						    const struct drm_display_mode *mode)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = bridge_to_dp(bridge);
+> >> >> +	struct dw_dp_link *link = &dp->link;
+> >> >> +	u32 min_bpp;
+> >> >> +
+> >> >> +	if (info->color_formats & DRM_COLOR_FORMAT_YCBCR420 &&
+> >> >> +	    link->vsc_sdp_supported &&
+> >> >> +	    (drm_mode_is_420_only(info, mode) || drm_mode_is_420_also(info, mode)))
+> >> >> +		min_bpp = 12;
+> >> >> +	else if (info->color_formats & DRM_COLOR_FORMAT_YCBCR422)
+> >> >> +		min_bpp = 16;
+> >> >> +	else if (info->color_formats & DRM_COLOR_FORMAT_RGB444)
+> >> >> +		min_bpp = 18;
+> >> >> +	else
+> >> >> +		min_bpp = 24;
+> >> >> +
+> >> >> +	if (!link->vsc_sdp_supported &&
+> >> >> +	    drm_mode_is_420_only(info, mode))
+> >> >> +		return MODE_NO_420;
+> >> >> +
+> >> >> +	if (!dw_dp_bandwidth_ok(dp, mode, min_bpp, link->lanes, link->rate))
+> >> >> +		return MODE_CLOCK_HIGH;
+> >> >> +
+> >> >> +	return MODE_OK;
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_bridge_atomic_pre_enable(struct drm_bridge *bridge,
+> >> >> +					   struct drm_bridge_state *old_bridge_state)
+> >> >> +{
+> >> >> +	struct drm_atomic_state *state = old_bridge_state->base.state;
+> >> >> +	struct drm_crtc_state *crtc_state = bridge->encoder->crtc->state;
+> >> >> +	struct dw_dp *dp = bridge_to_dp(bridge);
+> >> >> +	struct dw_dp_video *video = &dp->video;
+> >> >> +	struct drm_display_mode *m = &video->mode;
+> >> >> +	struct drm_bridge_state *bridge_state;
+> >> >> +	const struct dw_dp_output_format *fmt;
+> >> >> +
+> >> >> +	drm_mode_copy(m, &crtc_state->adjusted_mode);
+> >> >> +
+> >> >> +	bridge_state = drm_atomic_get_new_bridge_state(state, bridge);
+> >> >> +	fmt = dw_dp_get_output_format(bridge_state->output_bus_cfg.format);
+> >> >
+> >> >Should it be a part of the atomic_check() instead?
+> >> 
+> >> Since we have modef_fixup in this driver, which is mutually exclusive with atomic_check.
+> >
+> >You can convet .mode_fixup into .atomic_check. The latter can change the
+> >crtc_state->adjusted_mode. It is better to reject the invalid
+> >combinations from the .atomic_check rather than having to handled them
+> >later.
+> >
+> >> 
+> >> 
+> >> 
+> >> >
+> >> >> +
+> >> >> +	video->video_mapping = fmt->video_mapping;
+> >> >> +	video->color_format = fmt->color_format;
+> >> >> +	video->bpc = fmt->bpc;
+> >> >> +	video->bpp = fmt->bpp;
+> >> >> +}
+> >> >> +
+> >> >> +static bool dw_dp_needs_link_retrain(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	struct dw_dp_link *link = &dp->link;
+> >> >> +	u8 link_status[DP_LINK_STATUS_SIZE];
+> >> >> +
+> >> >> +	if (!dw_dp_link_train_valid(&link->train))
+> >> >> +		return false;
+> >> >> +
+> >> >> +	if (drm_dp_dpcd_read_link_status(&dp->aux, link_status) < 0)
+> >> >> +		return false;
+> >> >> +
+> >> >> +	/* Retrain if Channel EQ or CR not ok */
+> >> >> +	return !drm_dp_channel_eq_ok(link_status, dp->link.lanes);
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_link_disable(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	struct dw_dp_link *link = &dp->link;
+> >> >> +
+> >> >> +	if (dw_dp_hpd_detect(dp))
+> >> >> +		dw_dp_link_power_down(dp);
+> >> >> +
+> >> >> +	dw_dp_phy_xmit_enable(dp, 0);
+> >> >> +
+> >> >> +	phy_power_off(dp->phy);
+> >> >> +
+> >> >> +	link->train.clock_recovered = false;
+> >> >> +	link->train.channel_equalized = false;
+> >> >> +}
+> >> >> +
+> >> >> +static int dw_dp_link_enable(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	int ret;
+> >> >> +
+> >> >> +	ret = phy_power_on(dp->phy);
+> >> >> +	if (ret)
+> >> >> +		return ret;
+> >> >> +
+> >> >> +	ret = dw_dp_link_power_up(dp);
+> >> >> +	if (ret < 0)
+> >> >> +		return ret;
+> >> >> +
+> >> >> +	ret = dw_dp_link_train(dp);
+> >> >> +
+> >> >> +	return ret;
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_bridge_atomic_enable(struct drm_bridge *bridge,
+> >> >> +				       struct drm_bridge_state *old_state)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = bridge_to_dp(bridge);
+> >> >> +	struct drm_atomic_state *state = old_state->base.state;
+> >> >> +	struct drm_connector *connector;
+> >> >> +	struct drm_connector_state *conn_state;
+> >> >> +	int ret;
+> >> >> +
+> >> >> +	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
+> >> >> +	if (!connector) {
+> >> >> +		dev_err(dp->dev, "failed to get connector\n");
+> >> >> +		return;
+> >> >> +	}
+> >> >> +
+> >> >> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
+> >> >> +	if (!conn_state) {
+> >> >> +		dev_err(dp->dev, "failed to get connector state\n");
+> >> >> +		return;
+> >> >> +	}
+> >> >> +
+> >> >> +	set_bit(0, dp->sdp_reg_bank);
+> >> >> +
+> >> >> +	ret = dw_dp_link_enable(dp);
+> >> >> +	if (ret < 0) {
+> >> >> +		dev_err(dp->dev, "failed to enable link: %d\n", ret);
+> >> >> +		return;
+> >> >> +	}
+> >> >> +
+> >> >> +	ret = dw_dp_video_enable(dp);
+> >> >> +	if (ret < 0) {
+> >> >> +		dev_err(dp->dev, "failed to enable video: %d\n", ret);
+> >> >> +		return;
+> >> >> +	}
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_reset(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	int val;
+> >> >> +
+> >> >> +	disable_irq(dp->irq);
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_SOFT_RESET_CTRL, CONTROLLER_RESET,
+> >> >> +			   FIELD_PREP(CONTROLLER_RESET, 1));
+> >> >> +	udelay(10);
+> >> >> +	regmap_update_bits(dp->regmap, DW_DP_SOFT_RESET_CTRL, CONTROLLER_RESET,
+> >> >> +			   FIELD_PREP(CONTROLLER_RESET, 0));
+> >> >> +
+> >> >> +	dw_dp_init_hw(dp);
+> >> >> +	regmap_read_poll_timeout(dp->regmap, DW_DP_HPD_STATUS, val,
+> >> >> +				 FIELD_GET(HPD_HOT_PLUG, val), 200, 200000);
+> >> >> +	regmap_write(dp->regmap, DW_DP_HPD_STATUS, HPD_HOT_PLUG);
+> >> >> +	enable_irq(dp->irq);
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_bridge_atomic_disable(struct drm_bridge *bridge,
+> >> >> +					struct drm_bridge_state *old_bridge_state)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = bridge_to_dp(bridge);
+> >> >> +
+> >> >> +	dw_dp_video_disable(dp);
+> >> >> +	dw_dp_link_disable(dp);
+> >> >> +	bitmap_zero(dp->sdp_reg_bank, SDP_REG_BANK_SIZE);
+> >> >> +	dw_dp_reset(dp);
+> >> >> +}
+> >> >> +
+> >> >> +static bool dw_dp_hpd_detect_link(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	int ret;
+> >> >> +
+> >> >> +	ret = phy_power_on(dp->phy);
+> >> >> +	if (ret < 0)
+> >> >> +		return false;
+> >> >> +	ret = dw_dp_link_parse(dp);
+> >> >> +	phy_power_off(dp->phy);
+> >> >> +
+> >> >> +	return !ret;
+> >> >> +}
+> >> >> +
+> >> >> +static enum drm_connector_status dw_dp_bridge_detect(struct drm_bridge *bridge)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = bridge_to_dp(bridge);
+> >> >> +
+> >> >> +	if (!dw_dp_hpd_detect(dp))
+> >> >> +		return connector_status_disconnected;
+> >> >> +
+> >> >> +	if (!dw_dp_hpd_detect_link(dp))
+> >> >> +		return connector_status_disconnected;
+> >> >> +
+> >> >> +	return connector_status_connected;
+> >> >> +}
+> >> >> +
+> >> >> +static const struct drm_edid *dw_dp_bridge_edid_read(struct drm_bridge *bridge,
+> >> >> +						     struct drm_connector *connector)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = bridge_to_dp(bridge);
+> >> >> +	const struct drm_edid *edid;
+> >> >> +	int ret;
+> >> >> +
+> >> >> +	ret = phy_power_on(dp->phy);
+> >> >> +	if (ret)
+> >> >> +		return NULL;
+> >> >> +
+> >> >> +	edid = drm_edid_read_ddc(connector, &dp->aux.ddc);
+> >> >> +
+> >> >> +	phy_power_off(dp->phy);
+> >> >> +
+> >> >> +	return edid;
+> >> >> +}
+> >> >> +
+> >> >> +static u32 *dw_dp_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
+> >> >> +						    struct drm_bridge_state *bridge_state,
+> >> >> +						    struct drm_crtc_state *crtc_state,
+> >> >> +						    struct drm_connector_state *conn_state,
+> >> >> +						    unsigned int *num_output_fmts)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = bridge_to_dp(bridge);
+> >> >> +	struct dw_dp_link *link = &dp->link;
+> >> >> +	struct drm_display_info *di = &conn_state->connector->display_info;
+> >> >> +	struct drm_display_mode mode = crtc_state->mode;
+> >> >> +	const struct dw_dp_output_format *fmt;
+> >> >> +	u32 i, j = 0;
+> >> >> +	u32 *output_fmts;
+> >> >> +
+> >> >> +	*num_output_fmts = 0;
+> >> >> +
+> >> >> +	output_fmts = kcalloc(ARRAY_SIZE(dw_dp_output_formats), sizeof(*output_fmts), GFP_KERNEL);
+> >> >> +	if (!output_fmts)
+> >> >> +		return NULL;
+> >> >> +
+> >> >> +	for (i = 0; i < ARRAY_SIZE(dw_dp_output_formats); i++) {
+> >> >> +		fmt = &dw_dp_output_formats[i];
+> >> >> +
+> >> >> +		if (fmt->bpc > conn_state->max_bpc)
+> >> >> +			continue;
+> >> >> +
+> >> >> +		if (!(fmt->color_format & di->color_formats))
+> >> >> +			continue;
+> >> >> +
+> >> >> +		if (fmt->color_format == DRM_COLOR_FORMAT_YCBCR420 &&
+> >> >> +		    !link->vsc_sdp_supported)
+> >> >> +			continue;
+> >> >> +
+> >> >> +		if (fmt->color_format != DRM_COLOR_FORMAT_YCBCR420 &&
+> >> >> +		    drm_mode_is_420_only(di, &mode))
+> >> >> +			continue;
+> >> >> +
+> >> >> +		if (!dw_dp_bandwidth_ok(dp, &mode, fmt->bpp, link->lanes, link->rate))
+> >> >> +			continue;
+> >> >> +
+> >> >> +		output_fmts[j++] = fmt->bus_format;
+> >> >> +	}
+> >> >> +
+> >> >> +	*num_output_fmts = j;
+> >> >> +
+> >> >> +	return output_fmts;
+> >> >> +}
+> >> >> +
+> >> >> +static const struct drm_bridge_funcs dw_dp_bridge_funcs = {
+> >> >> +	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
+> >> >> +	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
+> >> >> +	.atomic_reset = drm_atomic_helper_bridge_reset,
+> >> >> +	.atomic_get_input_bus_fmts = drm_atomic_helper_bridge_propagate_bus_fmt,
+> >> >> +	.atomic_get_output_bus_fmts = dw_dp_bridge_atomic_get_output_bus_fmts,
+> >> >> +	.mode_fixup = dw_dp_bridge_mode_fixup,
+> >> >> +	.mode_valid = dw_dp_bridge_mode_valid,
+> >> >> +	.atomic_pre_enable = dw_dp_bridge_atomic_pre_enable,
+> >> >> +	.atomic_enable = dw_dp_bridge_atomic_enable,
+> >> >> +	.atomic_disable = dw_dp_bridge_atomic_disable,
+> >> >> +	.detect = dw_dp_bridge_detect,
+> >> >> +	.edid_read = dw_dp_bridge_edid_read,
+> >> >> +};
+> >> >> +
+> >> >> +static int dw_dp_link_retrain(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	struct drm_device *dev = dp->bridge.dev;
+> >> >> +	struct drm_modeset_acquire_ctx ctx;
+> >> >> +	int ret;
+> >> >> +
+> >> >> +	if (!dw_dp_needs_link_retrain(dp))
+> >> >> +		return 0;
+> >> >> +
+> >> >> +	dev_dbg(dp->dev, "Retraining link\n");
+> >> >> +
+> >> >> +	drm_modeset_acquire_init(&ctx, 0);
+> >> >> +	for (;;) {
+> >> >> +		ret = drm_modeset_lock(&dev->mode_config.connection_mutex, &ctx);
+> >> >> +		if (ret != -EDEADLK)
+> >> >> +			break;
+> >> >
+> >> >I think it's an error to continue in such a case. There should be a
+> >> >return after the loop if ret is not 0.
+> >> 
+> >> Thank you for catching this， I will add a check fater the loop.
+> >> 
+> >> 
+> >> >
+> >> >> +
+> >> >> +		drm_modeset_backoff(&ctx);
+> >> >> +	}
+> >> >> +
+> >> >> +	ret = dw_dp_link_train(dp);
+> >> >> +	drm_modeset_drop_locks(&ctx);
+> >> >> +	drm_modeset_acquire_fini(&ctx);
+> >> >> +
+> >> >> +	return ret;
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_hpd_work(struct work_struct *work)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = container_of(work, struct dw_dp, hpd_work);
+> >> >> +	bool long_hpd;
+> >> >> +	int ret;
+> >> >> +
+> >> >> +	mutex_lock(&dp->irq_lock);
+> >> >> +	long_hpd = dp->hotplug.long_hpd;
+> >> >> +	mutex_unlock(&dp->irq_lock);
+> >> >> +
+> >> >> +	dev_dbg(dp->dev, "[drm] Get hpd irq - %s\n", long_hpd ? "long" : "short");
+> >> >> +
+> >> >> +	if (!long_hpd) {
+> >> >> +		if (dw_dp_needs_link_retrain(dp)) {
+> >> >> +			ret = dw_dp_link_retrain(dp);
+> >> >> +			if (ret)
+> >> >> +				dev_warn(dp->dev, "Retrain link failed\n");
+> >> >> +		}
+> >> >> +	} else {
+> >> >> +		drm_helper_hpd_irq_event(dp->bridge.dev);
+> >> >> +	}
+> >> >> +}
+> >> >> +
+> >> >> +static void dw_dp_handle_hpd_event(struct dw_dp *dp)
+> >> >> +{
+> >> >> +	u32 value;
+> >> >> +
+> >> >> +	mutex_lock(&dp->irq_lock);
+> >> >> +	regmap_read(dp->regmap, DW_DP_HPD_STATUS, &value);
+> >> >> +
+> >> >> +	if (value & HPD_IRQ) {
+> >> >> +		dev_dbg(dp->dev, "IRQ from the HPD\n");
+> >> >> +		dp->hotplug.long_hpd = false;
+> >> >> +		regmap_write(dp->regmap, DW_DP_HPD_STATUS, HPD_IRQ);
+> >> >> +	}
+> >> >> +
+> >> >> +	if (value & HPD_HOT_PLUG) {
+> >> >> +		dev_dbg(dp->dev, "Hot plug detected\n");
+> >> >> +		dp->hotplug.long_hpd = true;
+> >> >> +		regmap_write(dp->regmap, DW_DP_HPD_STATUS, HPD_HOT_PLUG);
+> >> >> +	}
+> >> >> +
+> >> >> +	if (value & HPD_HOT_UNPLUG) {
+> >> >> +		dev_dbg(dp->dev, "Unplug detected\n");
+> >> >> +		dp->hotplug.long_hpd = true;
+> >> >> +		regmap_write(dp->regmap, DW_DP_HPD_STATUS, HPD_HOT_UNPLUG);
+> >> >> +	}
+> >> >> +	mutex_unlock(&dp->irq_lock);
+> >> >> +
+> >> >> +	schedule_work(&dp->hpd_work);
+> >> >> +}
+> >> >> +
+> >> >> +static irqreturn_t dw_dp_irq(int irq, void *data)
+> >> >> +{
+> >> >> +	struct dw_dp *dp = data;
+> >> >> +	u32 value;
+> >> >> +
+> >> >> +	regmap_read(dp->regmap, DW_DP_GENERAL_INTERRUPT, &value);
+> >> >> +	if (!value)
+> >> >> +		return IRQ_NONE;
+> >> >> +
+> >> >> +	if (value & HPD_EVENT)
+> >> >> +		dw_dp_handle_hpd_event(dp);
+> >> >> +
+> >> >> +	if (value & AUX_REPLY_EVENT) {
+> >> >> +		regmap_write(dp->regmap, DW_DP_GENERAL_INTERRUPT, AUX_REPLY_EVENT);
+> >> >> +		complete(&dp->complete);
+> >> >> +	}
+> >> >> +
+> >> >> +	return IRQ_HANDLED;
+> >> >> +}
+> >> >> +
+> >> >> +static const struct regmap_range dw_dp_readable_ranges[] = {
+> >> >> +	regmap_reg_range(DW_DP_VERSION_NUMBER, DW_DP_ID),
+> >> >> +	regmap_reg_range(DW_DP_CONFIG_REG1, DW_DP_CONFIG_REG3),
+> >> >> +	regmap_reg_range(DW_DP_CCTL, DW_DP_SOFT_RESET_CTRL),
+> >> >> +	regmap_reg_range(DW_DP_VSAMPLE_CTRL, DW_DP_VIDEO_HBLANK_INTERVAL),
+> >> >> +	regmap_reg_range(DW_DP_AUD_CONFIG1, DW_DP_AUD_CONFIG1),
+> >> >> +	regmap_reg_range(DW_DP_SDP_VERTICAL_CTRL, DW_DP_SDP_STATUS_EN),
+> >> >> +	regmap_reg_range(DW_DP_PHYIF_CTRL, DW_DP_PHYIF_PWRDOWN_CTRL),
+> >> >> +	regmap_reg_range(DW_DP_AUX_CMD, DW_DP_AUX_DATA3),
+> >> >> +	regmap_reg_range(DW_DP_GENERAL_INTERRUPT, DW_DP_HPD_INTERRUPT_ENABLE),
+> >> >> +};
+> >> >> +
+> >> >> +static const struct regmap_access_table dw_dp_readable_table = {
+> >> >> +	.yes_ranges     = dw_dp_readable_ranges,
+> >> >> +	.n_yes_ranges   = ARRAY_SIZE(dw_dp_readable_ranges),
+> >> >> +};
+> >> >> +
+> >> >> +static const struct regmap_config dw_dp_regmap_config = {
+> >> >> +	.reg_bits = 32,
+> >> >> +	.reg_stride = 4,
+> >> >> +	.val_bits = 32,
+> >> >> +	.fast_io = true,
+> >> >> +	.max_register = DW_DP_MAX_REGISTER,
+> >> >> +	.rd_table = &dw_dp_readable_table,
+> >> >> +};
+> >> >> +
+> >> >> +struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
+> >> >> +			 const struct dw_dp_plat_data *plat_data)
+> >> >> +{
+> >> >> +	struct platform_device *pdev = to_platform_device(dev);
+> >> >> +	struct dw_dp *dp;
+> >> >> +	struct drm_bridge *bridge;
+> >> >> +	void __iomem *res;
+> >> >> +	int ret;
+> >> >> +
+> >> >> +	dp = devm_kzalloc(dev, sizeof(*dp), GFP_KERNEL);
+> >> >> +	if (!dp)
+> >> >> +		return ERR_PTR(-ENOMEM);
+> >> >> +
+> >> >> +	dp->dev = dev;
+> >> >> +	dp->video.pixel_mode = DW_DP_MP_QUAD_PIXEL;
+> >> >> +
+> >> >> +	dp->plat_data = plat_data;
+> >> >> +	bridge = &dp->bridge;
+> >> >> +	mutex_init(&dp->irq_lock);
+> >> >> +	INIT_WORK(&dp->hpd_work, dw_dp_hpd_work);
+> >> >> +	init_completion(&dp->complete);
+> >> >> +
+> >> >> +	res = devm_platform_ioremap_resource(pdev, 0);
+> >> >> +	if (IS_ERR(res))
+> >> >> +		return ERR_CAST(res);
+> >> >> +
+> >> >> +	dp->regmap = devm_regmap_init_mmio(dev, res, &dw_dp_regmap_config);
+> >> >> +	if (IS_ERR(dp->regmap)) {
+> >> >> +		dev_err_probe(dev, PTR_ERR(dp->regmap), "failed to create regmap\n");
+> >> >> +		return ERR_CAST(dp->regmap);
+> >> >> +	}
+> >> >> +
+> >> >> +	dp->phy = devm_of_phy_get(dev, dev->of_node, NULL);
+> >> >> +	if (IS_ERR(dp->phy)) {
+> >> >> +		dev_err_probe(dev, PTR_ERR(dp->phy), "failed to get phy\n");
+> >> >> +		return ERR_CAST(dp->phy);
+> >> >> +	}
+> >> >> +
+> >> >> +	dp->apb_clk = devm_clk_get_enabled(dev, "apb");
+> >> >> +	if (IS_ERR(dp->apb_clk)) {
+> >> >> +		dev_err_probe(dev, PTR_ERR(dp->apb_clk), "failed to get apb clock\n");
+> >> >> +		return ERR_CAST(dp->apb_clk);
+> >> >> +	}
+> >> >> +
+> >> >> +	dp->aux_clk = devm_clk_get_enabled(dev, "aux");
+> >> >> +	if (IS_ERR(dp->aux_clk)) {
+> >> >> +		dev_err_probe(dev, PTR_ERR(dp->aux_clk), "failed to get aux clock\n");
+> >> >> +		return ERR_CAST(dp->aux_clk);
+> >> >> +	}
+> >> >> +
+> >> >> +	dp->i2s_clk = devm_clk_get(dev, "i2s");
+> >> >> +	if (IS_ERR(dp->i2s_clk)) {
+> >> >> +		dev_err_probe(dev, PTR_ERR(dp->i2s_clk), "failed to get i2s clock\n");
+> >> >> +		return ERR_CAST(dp->i2s_clk);
+> >> >> +	}
+> >> >> +
+> >> >> +	dp->spdif_clk = devm_clk_get(dev, "spdif");
+> >> >> +	if (IS_ERR(dp->spdif_clk)) {
+> >> >> +		dev_err_probe(dev, PTR_ERR(dp->spdif_clk), "failed to get spdif clock\n");
+> >> >> +		return ERR_CAST(dp->spdif_clk);
+> >> >> +	}
+> >> >> +
+> >> >> +	dp->hdcp_clk = devm_clk_get(dev, "hdcp");
+> >> >> +	if (IS_ERR(dp->hdcp_clk)) {
+> >> >> +		dev_err_probe(dev, PTR_ERR(dp->hdcp_clk), "failed to get hdcp clock\n");
+> >> >> +		return ERR_CAST(dp->hdcp_clk);
+> >> >> +	}
+> >> >> +
+> >> >> +	dp->rstc = devm_reset_control_get(dev, NULL);
+> >> >> +	if (IS_ERR(dp->rstc)) {
+> >> >> +		dev_err_probe(dev, PTR_ERR(dp->rstc), "failed to get reset control\n");
+> >> >> +		return ERR_CAST(dp->rstc);
+> >> >> +	}
+> >> >> +
+> >> >> +	dp->irq = platform_get_irq(pdev, 0);
+> >> >> +	if (dp->irq < 0)
+> >> >> +		return ERR_PTR(ret);
+> >> >> +
+> >> >> +	ret = devm_request_threaded_irq(dev, dp->irq, NULL, dw_dp_irq,
+> >> >> +					IRQF_ONESHOT, dev_name(dev), dp);
+> >> >
+> >> >Are you ready to handle the IRQ here, before the bridge is filled?
+> >> 
+> >> I will move to  devm_request_threaded_irq after dw_dp_init_hw.
+> >> 
+> >> 
+> >> >
+> >> >> +	if (ret) {
+> >> >> +		dev_err_probe(dev, ret, "failed to request irq\n");
+> >> >> +		return ERR_PTR(ret);
+> >> >> +	}
+> >> >> +
+> >> >> +	bridge->of_node = dev->of_node;
+> >> >> +	bridge->funcs = &dw_dp_bridge_funcs;
+> >> >> +	bridge->ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_HPD;
+> >> >> +	bridge->type = DRM_MODE_CONNECTOR_DisplayPort;
+> >> >> +	bridge->ycbcr_420_allowed = true;
+> >> >> +	bridge->vendor = "Synopsys";
+> >> >> +	bridge->product = "DW DP TX";
+> >> >
+> >> >These two are unused
+> >> >
+> >> >> +
+> >> >> +	platform_set_drvdata(pdev, dp);
+> >> >
+> >> >Unused
+> >> 
+> >> I will remove them.
+> >> 
+> >> Thanks again.
+> >> 
+> >> 
+> >> >
+> >> >> +
+> >> >> +	dp->aux.dev = dev;
+> >> >> +	dp->aux.drm_dev = encoder->dev;
+> >> >> +	dp->aux.name = dev_name(dev);
+> >> >> +	dp->aux.transfer = dw_dp_aux_transfer;
+> >> >> +	ret = drm_dp_aux_register(&dp->aux);
+> >> >> +	if (ret) {
+> >> >> +		dev_err_probe(dev, ret, "Aux register failed\n");
+> >> >> +		return ERR_PTR(ret);
+> >> >> +	}
+> >> >> +
+> >> >> +	ret = drm_bridge_attach(encoder, bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+> >> >> +	if (ret)
+> >> >> +		dev_err_probe(dev, ret, "Failed to attach bridge\n");
+> >> >> +
+> >> >> +	dw_dp_init_hw(dp);
+> >> >> +
+> >> >> +	return dp;
+> >> >> +}
+> >> >> +MODULE_AUTHOR("Andy Yan <andyshrk@163.com>");
+> >> >> +MODULE_DESCRIPTION("DW DP Core Library");
+> >> >> +MODULE_LICENSE("GPL");
+> >> >> diff --git a/include/drm/bridge/dw_dp.h b/include/drm/bridge/dw_dp.h
+> >> >> new file mode 100644
+> >> >> index 000000000000..07845f609eca
+> >> >> --- /dev/null
+> >> >> +++ b/include/drm/bridge/dw_dp.h
+> >> >> @@ -0,0 +1,19 @@
+> >> >> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> >> >> +/*
+> >> >> + * Copyright (c) 2025 Rockchip Electronics Co., Ltd.
+> >> >> + */
+> >> >> +
+> >> >> +#ifndef __DW_DP__
+> >> >> +#define __DW_DP__
+> >> >> +
+> >> >> +struct device;
+> >> >> +struct drm_encoder;
+> >> >> +struct dw_dp;
+> >> >> +
+> >> >> +struct dw_dp_plat_data {
+> >> >> +	u32 max_link_rate;
+> >> >> +};
+> >> >> +
+> >> >> +struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
+> >> >> +			 const struct dw_dp_plat_data *plat_data);
+> >> >> +#endif /* __DW_DP__ */
+> >> >> -- 
+> >> >> 2.34.1
+> >> >> 
+> >> >
+> >> >-- 
+> >> >With best wishes
+> >> >Dmitry
+> >
+> >-- 
+> >With best wishes
+> >Dmitry
 
+-- 
+With best wishes
+Dmitry
 
