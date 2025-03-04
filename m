@@ -1,217 +1,297 @@
-Return-Path: <devicetree+bounces-154078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56626A4EB77
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:26:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4246A4E846
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:17:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C127188879E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:21:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48ACB8A4AB0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:32:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A5D27D79B;
-	Tue,  4 Mar 2025 18:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36ABB27C14F;
+	Tue,  4 Mar 2025 16:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hh9Xbh/R"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="nYXfU+Cu";
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="nYXfU+Cu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2070.outbound.protection.outlook.com [40.107.20.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0E1426461C
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:09:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=160.75.25.116
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741111776; cv=pass; b=EVZb12biQjPN8tDY9zlWkLHVnWTOKHSWU35W0M9yazyYneKBPw3ZLcC05kv6QzFp0dzmOfCXh5ymJ6F7uAdVLwdv8wU5gDZ8ldFlyY1lq6M2sCxt/z7GUVflt7Di54Ss14Z193AgEFH8HJPdnfOFpnu5LY/mz1ZKQmHXhOEX4Gk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741111776; c=relaxed/simple;
-	bh=z4i8udCT/ZfEevZGKBvDxxzaszOTpIOByQJPMKtGeNs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QtFHrbvUBCexDHubewHUhIBYrQ3J1bF0ej870RnHVXk8SJWbisIGS3RvOC9eHUtqAm/1nvqerEnl3mSeo8K+yVHVpZbzmgEnFpLLMlSCk7TpZ58YEafvnI/Eq09iNYSGVnJkSnGmjVySPLZ32FgAxr7Ohrh2pT52iujiw5GVSqs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hh9Xbh/R; arc=none smtp.client-ip=217.70.183.198; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; arc=pass smtp.client-ip=160.75.25.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id 287164089197
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 21:09:33 +0300 (+03)
-X-Envelope-From: <root@cc.itu.edu.tr>
-Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6f922F8GzFyLK
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:04:22 +0300 (+03)
-Received: by le1 (Postfix, from userid 0)
-	id AE1FA42724; Tue,  4 Mar 2025 18:04:09 +0300 (+03)
-Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hh9Xbh/R
-X-Envelope-From: <linux-kernel+bounces-541838-bozkiru=itu.edu.tr@vger.kernel.org>
-Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hh9Xbh/R
-Received: from fgw1.itu.edu.tr (fgw1.itu.edu.tr [160.75.25.103])
-	by le2 (Postfix) with ESMTP id 4E2A7400FE
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:41:56 +0300 (+03)
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw1.itu.edu.tr (Postfix) with SMTP id D8F2C305F789
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 16:41:55 +0300 (+03)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03D13AA184
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 13:41:14 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C11213240;
-	Mon,  3 Mar 2025 13:41:09 +0000 (UTC)
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8037D20DD62;
-	Mon,  3 Mar 2025 13:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741009266; cv=none; b=g5qLwuTSuE5GFIGLLXldrNg7zJQyb6hqmnuW699PJqts3afwQHlS0NA/ml++xgomsTP5vyJmDhmwDO3pwv2jz8iceNUTtWJLIhAdtIwsohZT4UNb61VOzx9FCdS1nXYCcA3lUiprlGpraj8ft4qphx/a4PVJzXjpUG/IGiXzptY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741009266; c=relaxed/simple;
-	bh=z4i8udCT/ZfEevZGKBvDxxzaszOTpIOByQJPMKtGeNs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uiCWC8lI+rEXmVvdDUSEk/wiNhmtU/bt96TX+afhdvkVCz3+eCH8VW4Od3rsWg+LuxRK81BpsENwHsfDXi3Ybay+U1YzKs9ovkz3/ehIXzMpJAmFg+7Nji5dszq8cHlecMx403zLbWRhVLoxJlllDcWCQhj0aBMXq0JJY3TuK3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hh9Xbh/R; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 909C344262;
-	Mon,  3 Mar 2025 13:40:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1741009254;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nl/1wzHduxVzKeGZ515j0lRor1Gx/DhlgaVPUGMQYoo=;
-	b=hh9Xbh/R7+cqL6kO3EUvJrLcd0D99wSBACUMwxd3PfoMb86Em+iQyXzmftNd5I5ZEj9MAF
-	gq0YraAvXdyywhq2rOVhiYSMRYUH+EuGCLS0qfRzA8WREZjjfw5G8gnRWaYlEtncKDH+ck
-	GaqrXuWkxYZZsdPNnNl1rDMtMVv/C21VtNp8CKn18BcGu2UtEjA2VIN4EXNLVnintGCZyq
-	ShgVkTDvEF5GmxULVcFdZ0C0SPulan8WTDOaplGT9KxHETHzUICistCK5/VdLs1jG+1zwK
-	0DJdkJfIx0Vi6OiBU9UtdCya3aVOwiO0EKeeQT0FQ1lEedI5+bML5+Mz0pyeHQ==
-Date: Mon, 3 Mar 2025 14:40:51 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>, "David
- S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
- Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
- <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 06/12] net: pse-pd: Add support for budget
- evaluation strategies
-Message-ID: <20250303144051.2503fb43@kmaincent-XPS-13-7390>
-In-Reply-To: <Z8ME-90Xg46-pNhA@pengutronix.de>
-References: <20250224134522.1cc36aa3@kernel.org>
-	<20250225102558.2cf3d8a5@kmaincent-XPS-13-7390>
-	<20250225174752.5dbf65e2@kernel.org>
-	<Z76t0VotFL7ji41M@pengutronix.de>
-	<Z76vfyv5XoMKmyH_@pengutronix.de>
-	<20250226184257.7d2187aa@kernel.org>
-	<Z8AW6S2xmzGZ0y9B@pengutronix.de>
-	<20250227155727.7bdc069f@kmaincent-XPS-13-7390>
-	<Z8CVimyMj261wc7w@pengutronix.de>
-	<20250227192640.20df155d@kmaincent-XPS-13-7390>
-	<Z8ME-90Xg46-pNhA@pengutronix.de>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
-Precedence: bulk
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5832512C3;
+	Tue,  4 Mar 2025 16:11:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.70
+ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741104682; cv=fail; b=CtY0gBKipTs3Pq+9UKqCdWgEGkbuC2+7ZjHz80HL2LJLe51nAAH7Kdgl7Z84ECqZdGNjHX/32hEYzkBE1oeoXVqnIxhcmh3E3QiMkuUr0aZ9lvWgQ2C4Pu/sKwxRtagqdj6pnDdBBe04hoZal8lDc/CzkbSD6RNcckcbAvygwiU=
+ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741104682; c=relaxed/simple;
+	bh=zlM8jh1lI6nPA/2/4WeCgA8q9W5f92pbj+kjXAtJQWY=;
+	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=eqxKWGjXRMxY+aRVR/CnC6OK3V0D5mXl9XIlfYsZ+HivarStboWx+gq+/JXHe7mfdZNv62uVrgyTjJf5sVwdTYyZjF2lQLHh1Q4BeRsWxOsGmASOzuzROihcPlvDV5bo0/WGKFff2NQMS4bATogjl/JnyqUJh9otn9sOoUTwwQk=
+ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=nYXfU+Cu; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=nYXfU+Cu; arc=fail smtp.client-ip=40.107.20.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=mqLIXkVyoOstTfphxex7U6SS8COZ8nSG+pOJWo5h4v9Q4evyNh074Cm0M1OJ6oh4wU+wnROiIbjOhFvkY0h+BaE+3HPB42DSWW2shAiLq/RhWUAyGeG7l/bdB5T2cCY3VaOcu7Up/IZkdxIqNov3rjwZQE4QQY78nFgfQZhC5hfDEC3b93lFxFo2rkMuD0JzxXmRChLydvzfhOFz3vgaCsu7WG28z2bJ+BIoMdxdfg0HXFEK2SrW8Ef0TGHl+bf1++Wc3+l+vFLchKGttox0xeOeVLdpAGpab9VXmgCRrhKeF6ERjCdnb5fHH1BndtCB3iOnrdmqjJX29KcLSSMKbw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lZHmSVz6uK2uMfG+roJHK1PyFmS0ZcFG/mtG50FhAWY=;
+ b=rpgBCOEf5FQpXA9vySZxgiNscEcMpnWc7PfdhZhwFvgPO+IQQrBa2gkYMAydWMJc5ges52Z8JBi0/q/hSJ9yPO+BquAyP7J9dycSUqe9rgHCyLjN7P+tfNtBRZba1lJGmNYcE0FZ2kesnn1+HOnatwLPeYDlepZmGXiIZ3vJCurp13Nu5OzRhKt2Ll0HX13Wbrz8uQJ4RuPhYCr7Tt0kQbPOhhiSIG9Lbjmz7dyQCUaoywTd1mfO8fIPicHh5C3ByAon21ci5hD8W4l3xPrMbfM1GeQ6GehQyvDecF2XNjWtPvsKIMvtWAqs2Fm/gkk8Yi37M9devD/x2K7S0otXpA==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 63.35.35.123) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=arm.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
+ dkim=pass (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lZHmSVz6uK2uMfG+roJHK1PyFmS0ZcFG/mtG50FhAWY=;
+ b=nYXfU+CuTLJEmoC5dby8zYmZ809Pfxj9aTrjbX6N9rndbErMMc0suPmvE3rtW6Gu2i3ya8Emg2gCoUWiKAJpsNKV3LfrgopbJLLfD+U7UqNGg1UBBfUcPbvOsp3QnaMkdvKUadux4e9QqGbIxgZgRgvjxvmyBPGLZursKIQnmb0=
+Received: from AM0PR01CA0175.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:aa::44) by GV2PR08MB8653.eurprd08.prod.outlook.com
+ (2603:10a6:150:b9::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.28; Tue, 4 Mar
+ 2025 16:11:10 +0000
+Received: from AM4PEPF00027A6C.eurprd04.prod.outlook.com
+ (2603:10a6:208:aa:cafe::67) by AM0PR01CA0175.outlook.office365.com
+ (2603:10a6:208:aa::44) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.21 via Frontend Transport; Tue,
+ 4 Mar 2025 16:11:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=arm.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+ pr=C
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ AM4PEPF00027A6C.mail.protection.outlook.com (10.167.16.90) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8511.15
+ via Frontend Transport; Tue, 4 Mar 2025 16:11:10 +0000
+Received: ("Tessian outbound 0a056dca8bdd:v585"); Tue, 04 Mar 2025 16:11:09 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: ab2c3f558ed2b790
+X-TessianGatewayMetadata: ZM1owvzes7hdsnGp3gAbWUwVEiC5DxCzzQcxxNNNG4R1ZUJSa+0udjexHLjlWbWlR0R1fhBgQyeS3STYMpV2iJ/EOJb7Rw9qaDqRRBdStut5bfY/OkzhbGJ7sPNr6UWHEmWdcKUHxQlYelUJH9Gffglrie16SXqUFQhlclKq5E0=
+X-CR-MTA-TID: 64aa7808
+Received: from Lcee1ae4d5ef6.1
+	by 64aa7808-outbound-1.mta.getcheckrecipient.com id E282C6D3-AF08-4B01-989A-80132F211615.1;
+	Tue, 04 Mar 2025 16:11:02 +0000
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com
+    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id Lcee1ae4d5ef6.1
+    (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+    Tue, 04 Mar 2025 16:11:02 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=shtb1ZGgkHCCVQUB8fl7k0R8uwjmJEMTDnym2AYaIEMgnkxOpZmkUMpNVO2tcZ8cmM74w8BH6VE6ASmeBpLiefT4E2VpV7lR6aQNtHm6gMgpoWvmREmAe3Lv440JmBmTf3ff5P8dHSj+qiYphregJ9aD/CGEidljo9XxC9NSDjW0YbHkcYj1ZVeKl29L/tycf5yAKvjs9mqvcuwiRGQvupGGos6tDXMcNdFUn5WJ2+cYuoCZk2PgWbj3tRy4YU1YKvjBPQ23uRSeb4/ackZ8/a4vUVL+NlYlNmjkZyPR3COJCKi84mnTU2rqujKy+0aI3sLEsUwSDATwqgxTPQmxLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lZHmSVz6uK2uMfG+roJHK1PyFmS0ZcFG/mtG50FhAWY=;
+ b=K0uA/rNaHp9WYSoJyDpMuIWvY4WRXtC1dN2PEQATFDd3aNFV1iTcXIHN/phgF3TH/8rKdPbZCNL7fZoQyslQgZezO0Xtu9FhMNIfjkQaxhnmPagKv/jCWigfLnkL9NlAT1cmgxg8I0vymGV6s7m/znJqZkm3d2CDV8aXIg2FMDj3oXHAI9QUEOsLsaQ2pRKMnGuDNYAvsMTKEfBZt9M1ICzYi71cOnfsChBwl+ZxvGZ3DpWpBZTG+tGoXO6D2JZ/jhMI7I1qgRBhDdOECSj9myPf+G09Rt66ys4aQw/cbu0UdvUn/f9VZGIAukr+8C1WNAZYY55iK71c/9Uo19oaDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lZHmSVz6uK2uMfG+roJHK1PyFmS0ZcFG/mtG50FhAWY=;
+ b=nYXfU+CuTLJEmoC5dby8zYmZ809Pfxj9aTrjbX6N9rndbErMMc0suPmvE3rtW6Gu2i3ya8Emg2gCoUWiKAJpsNKV3LfrgopbJLLfD+U7UqNGg1UBBfUcPbvOsp3QnaMkdvKUadux4e9QqGbIxgZgRgvjxvmyBPGLZursKIQnmb0=
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+Received: from GVXPR08MB7727.eurprd08.prod.outlook.com (2603:10a6:150:6b::6)
+ by VI0PR08MB11061.eurprd08.prod.outlook.com (2603:10a6:800:257::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.16; Tue, 4 Mar
+ 2025 16:11:00 +0000
+Received: from GVXPR08MB7727.eurprd08.prod.outlook.com
+ ([fe80::9672:63f7:61b8:5469]) by GVXPR08MB7727.eurprd08.prod.outlook.com
+ ([fe80::9672:63f7:61b8:5469%7]) with mapi id 15.20.8489.025; Tue, 4 Mar 2025
+ 16:11:00 +0000
+Message-ID: <4e0959e7-cb66-41f1-b686-a274b6cbfd2e@arm.com>
+Date: Tue, 4 Mar 2025 16:10:58 +0000
+User-Agent: Mozilla Thunderbird
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+Subject: Re: [PATCH v15 04/10] Coresight: Introduce a new struct
+ coresight_path
+To: Jie Gan <quic_jiegan@quicinc.com>, Mike Leach <mike.leach@linaro.org>,
+ James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20250303032931.2500935-1-quic_jiegan@quicinc.com>
+ <20250303032931.2500935-5-quic_jiegan@quicinc.com>
+Content-Language: en-GB
+In-Reply-To: <20250303032931.2500935-5-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P265CA0065.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:2af::19) To GVXPR08MB7727.eurprd08.prod.outlook.com
+ (2603:10a6:150:6b::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdelledvkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvhedprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiiv
- ghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomh
-X-GND-Sasl: kory.maincent@bootlin.com
-X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6f922F8GzFyLK
-X-ITU-Libra-ESVA: No virus found
-X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741716447.32421@yCfL1BdQWqD5c+rvgM0XUw
-X-ITU-MailScanner-SpamCheck: not spam
+X-MS-TrafficTypeDiagnostic:
+	GVXPR08MB7727:EE_|VI0PR08MB11061:EE_|AM4PEPF00027A6C:EE_|GV2PR08MB8653:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2957acef-7bb5-46da-9e8b-08dd5b372db1
+X-LD-Processed: f34e5979-57d9-4aaa-ad4d-b122a662184d,ExtAddr
+x-checkrecipientrouted: true
+NoDisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|366016|7416014|1800799024|376014|7053199007|921020;
+X-Microsoft-Antispam-Message-Info-Original:
+ =?utf-8?B?aVFGbURoV2RjODI4a0hra2NIRFFheUE2NFlOS082TUxrdzhPMFJUMFJXRTdn?=
+ =?utf-8?B?WVhpZTlPZVVKazdaUTRZc2d1dnZvOERPQ1A0YnZwWklYdjVZVjlqOTd3UGUv?=
+ =?utf-8?B?L24rakQyR2l4c2lvdVMrNEdmOFFuZE9TV2tKNm5SWmVVUG8vTlVLMFAwZGx6?=
+ =?utf-8?B?UDlVNzYrQk5WRVhEek4vdlRMS0hQcEV4ZUs2UDM0NGw4M013NUU3c3ExVTV5?=
+ =?utf-8?B?ZE90ZjFXcllUcU8wTE9vT0hpQ3lRMTBRWm8yUVFFQS9SZDJYUEhjYURFMjk4?=
+ =?utf-8?B?b3phWFZ5bEFSTXVUMkFZYVJuWkZnbmtrUkY0TEdoZTFZYjMrNXoxWlNNZ1lO?=
+ =?utf-8?B?YVJKT0ZuMWlIRWRBem93SFAxZGppc0VEVDdnbHo5SkFNZ2QwdVk4N2hwYTVP?=
+ =?utf-8?B?SEpJUTgxakZLVUFJY0thaU1RYlhiSVRQa1llRmRmTlFUMDMvVFNZV2lzaHdt?=
+ =?utf-8?B?c2E3QUtsb1lpMGZrU1ZLOVlqNlVjRHNWZlZDQ0pYTG51K1Z0R0xNT0ZobnFv?=
+ =?utf-8?B?cTNaVXRnUjRCVm5iT3E0WnlObDc4WEluem5rZ0IrdTc0bnJ0Y2twMU5HTXFB?=
+ =?utf-8?B?dFR1NVJqanB0b2htNFBka3NSeENQZ1FBWFY3SzJkUktMRk5DTVY3UXJXSlQv?=
+ =?utf-8?B?bnI2YmZxdWk1R2dKdFhCRWwxTUdsa3FWcW5pVGkveWtFWUZDclg0Q3MxV01y?=
+ =?utf-8?B?VnNhMWxRc1Y2cGJydzNmQmQ0RUFTMXVxZGlrcnhQZFQ4MG5US2FKV0tKV2FY?=
+ =?utf-8?B?b0RJWnhZWmtHK2h6SThncVVGNVhlbG9tbDRvL0FSWjJpVTFtR3ZlNCtDZFFk?=
+ =?utf-8?B?dzR6R1N0eGc3NHNVczdwMmtpN1VKaHlNVGMwcEVhK1U5aEZtTitELzNZY01G?=
+ =?utf-8?B?TnRFS3ZLZjAzTEVvaTdxVVRVWHRnR0lDc0pUM2NiZTgyRzJpTDhzTGZOaTEy?=
+ =?utf-8?B?RHhqZ3NoeG5YU3JETWVSaWxrdmNzVHFWNDBCMFNjdzJGb0tOdjkxam0rVWhR?=
+ =?utf-8?B?OWRZcEhpU2xhR3JzbWhTUXdKMHk1MndKbTV1TkJBYzBIZ3NaV0JFVU91SlpN?=
+ =?utf-8?B?dTQyNTczcTNGUnE3UVJ2cU5hMHVLMlpQdmZDWm5FV2ZqNFF5a3R5bVNWSGlD?=
+ =?utf-8?B?dDBUcGxmSUNBdUl3RWdKYXhFTnJIc1JlWHh3bGZoc0ZweS81UG5FTDZWdDVN?=
+ =?utf-8?B?SlBpZFcydEgzRm5iVzlkUWVKU0U5T1M2YStLWjZnQ3FMR3E3b3R4bGZrQnQ1?=
+ =?utf-8?B?d1JVTk14YTA3eGU1OWpvV2xkVWQ5WnR0Q3lHTWoxcTlodUNNdnljcjJaOUJK?=
+ =?utf-8?B?bU8xcm95NE8rMk1JS3ljT1dubmZScHFXall0Z25HZ2lJdUpsQXI2dGVTQlRO?=
+ =?utf-8?B?NEgzQzh1bEVOMHhoRVJkOHNkS3hKK1FxQVJVTUZETXpEWXAvdDB6VTFYeHJr?=
+ =?utf-8?B?Z0ZSek5ueTVWK0VBV3QwN0lwTVFmVmdDTUdONVRuTWtQQmFCR2RrYXcrRW5i?=
+ =?utf-8?B?dnRzV1JJZ0l2czdXUTV4eFdNWmtNeGlnTFFWanlqZTcrL3U4S2RXc0tsbWkx?=
+ =?utf-8?B?K0QvRWpTemVvdVQ0SWlUOEtRUFBlUmZoeUdoT05JZHBWQ1VqSk1tb2hwcTY1?=
+ =?utf-8?B?VUNRbXBlR0xkcnBORHlESkdLRG9pWTNZZC9UQS9RNlVBaTNUdkh6RTZ3VVQr?=
+ =?utf-8?B?amRsSkZIZ3UwZGg5bmY1MUJsNVRUcDhsQTg3dW5hWlNBRUk1YndseExscG55?=
+ =?utf-8?B?SllBYzd0cVBnZTh1WmUrNEVWZlFFN2F5Z3Z4YWI1NDRFTEEvcnJDVzB6NGZ0?=
+ =?utf-8?B?RU1LMXMwdVdReTdrMEVOVitzejFlTmFWV3V3UTZZQ0xzRVZTN1VUSE95TUZE?=
+ =?utf-8?B?ekpKaEdnZDdkYWx5bkdmNTl2bUtQamNRVFZuaFB6bDBRdE1pZGV4MEw3cE1R?=
+ =?utf-8?Q?8b/bhDw2LIo=3D?=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR08MB7727.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(376014)(7053199007)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR08MB11061
+Original-Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+X-EOPAttributedMessage: 0
+X-MS-Exchange-SkipListedInternetSender:
+ ip=[2603:10a6:150:6b::6];domain=GVXPR08MB7727.eurprd08.prod.outlook.com
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ AM4PEPF00027A6C.eurprd04.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	d796dd75-28b9-4788-a101-08dd5b37279a
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|35042699022|14060799003|36860700013|1800799024|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Y2JpMG5aeEcxNTZNNStNQ2hvWVhIVlNDeGkvWVkxZmZEZDFBWWhVQ0JRMGtD?=
+ =?utf-8?B?YXpUSlRNVU5SYm5pVi9FSURqZXhUUnhUa3NaZG1Ec2p1ajYyeVZUSFJla1Zy?=
+ =?utf-8?B?VVErV1RrRG9CUUZDNmVVKzBudThkK1BmNUt5eFFqclY2OUdiNGlPTk5KT2NH?=
+ =?utf-8?B?ZkxEekZrdEFLNUpHb0NhOGxzcTlad0NDbUpENExqR1lER1VhWEZyQnNZMTh4?=
+ =?utf-8?B?dGdtSFRJYmx6U281WFdXaEtmYVJJMzdablhEdk44aVQ4cDJBU20wY2o0Uklu?=
+ =?utf-8?B?bmJaVWhUUjJuZnJadWR1Q0ErRExSTW5maTFyK25sYnlUL3ZYcU9MbFJGSE9G?=
+ =?utf-8?B?c2wrcHVLK0IvdnBqMzlxeTJTaWptbEJPYlpoSHVOdGw2dm1LWDc3NDlwOWph?=
+ =?utf-8?B?cG51bmF0djRxaWIyUW9YLytoSFpUTWhpOHpvVXhabE0rSlhUREE2RzJCNnlH?=
+ =?utf-8?B?UHVmbGc4QVFXa0doRXlndm9zVEJnNlVYU1dmaVR5SWlnV09LVDFORkhlZlZK?=
+ =?utf-8?B?OHFhZW5ibE5DOUJRbDBIT2ViSUxWTUdDby9GU0JEUyttUTVTVEMwRVN5cW42?=
+ =?utf-8?B?RnpRZnAxU25ZRmRuRUZvQ1pBM0ZRd1ZqNGZkbFVTUkY0OExxZW1kYmpzU0Rr?=
+ =?utf-8?B?dEhET1BkQksyWFo2TkpZRG5FeTF5ZVBKTkJ6RFVrV3IwT1Q3RU9EZStyT29v?=
+ =?utf-8?B?WDEycUc3Rit5VjA2cXBRVndCNUlsTFRpY0ZpaVUwUTQ3VWR5WExaRVpDV3No?=
+ =?utf-8?B?eTlwMWMxenJYUWFJVzJFbXVlNXl4SU1NbDI5Tk4wVG9SQnpKRm9RK2wyOGxk?=
+ =?utf-8?B?aU9qT3dJSGRSVW8rM1VjMUpOOTcydFpLZE01WGJISG90UG1GS2d3M3RTWEVH?=
+ =?utf-8?B?aHNYelhaR1BRWjNVNDE1MU9xeGIrbXRiZ3NCYUIzMmhUQ3hEODkyb1R3Wk0r?=
+ =?utf-8?B?U3RtRC9HaEZuRlJZWWFYRUZFKzFQM1FsdnNNeUs3YXhhQ1NYNzYzclZCbmJG?=
+ =?utf-8?B?MFUwRFhmQS9xMFNRQXNnZWxxM3ZmNjd2OE45YkRwMXp1cHpWWStkYzFWaXlH?=
+ =?utf-8?B?YS9rZlAyS0dpa0xwc3g4RnJVOE1Va1JSNjBSZ3RETGdxWTRQZk9MREFNZEll?=
+ =?utf-8?B?bzliTzdNUy9BZTFEL0F1TkhOYmE5c0FwRndrR0tDT2dwS1ZENzdncUg4dnNr?=
+ =?utf-8?B?U041azRTdlNqWXkzNkJZVnpXTWpiYVp2bUF4VHptZnF0T25QWXdsMGFpdW4v?=
+ =?utf-8?B?L0NNakZlbmVzcjlXTllBSUVyUk1LU1JJTWdTTTF2MFY0R3YwL0RMSG9oMjlU?=
+ =?utf-8?B?cTdReGtGWldUQ0FZMndZdGFCUGpEMDE3aWpZMG5rNGJqUDUvNkRtT0VxdndW?=
+ =?utf-8?B?QmJnQUJlSmpTYVNPLzFTNHBRZVpBWFBrZ2NMR2xtdnF6ZkdiMFFtMGRpSlZR?=
+ =?utf-8?B?c0JvTWNLT3BzWEFEbFA4Q2ZYOWs4ZGpvTksrS2JzRWh0TGJQNmFFOHJLdmVw?=
+ =?utf-8?B?ejBIV3FRbS9RdVhQOUt4dDVqeDJMcittaUtwQy9GM3FsdFJvUzBsQVNhQjE3?=
+ =?utf-8?B?MjRZUTRhcVNMaFZOaXhHaFI0NHVLeDQ0aDc5ZnZiVUFLYmRjYlJNWGVrWUJh?=
+ =?utf-8?B?ckZLRXJEUFNRNWxIMUgyY2U0SjFMY0l4a05ldG5UR1BIeUN4N0VPMlVmZWR3?=
+ =?utf-8?B?Uk9xU2dqbC8rYytrcHlTeDNUc1ZZYWJaaGdleFRSYmFTc3dqd2Nvai9FQ0NS?=
+ =?utf-8?B?WFpqSlhiM1AzQzh1eWJkUDA0MHE2YURib3l0SGFNNUhudkZVTW5PVzFIOFlE?=
+ =?utf-8?B?WCtTRkgydlJYTE11VTJqVkt6TTl3S2VxL1J5aW1lMGpQeElvcHZhaEVqMWtM?=
+ =?utf-8?B?NHBrc3pDSTZUMVd6bmhKNjhTV3NmdFRMOHBwbVVYekRVNlUwUyt5RUd0aGpV?=
+ =?utf-8?B?ai9nSEdGZ1ZzSGlGZ0hCSjlvSkViRkJSSnJlV2txRlErY0xVS2dNWHRmL1ly?=
+ =?utf-8?B?N21xTTZIOEx2bGU5d2xtU0J5NXdwRXhkckJUenhXOWgxU05yaEJiU2llL1Uw?=
+ =?utf-8?Q?j0VcY6?=
+X-Forefront-Antispam-Report:
+	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:64aa7808-outbound-1.mta.getcheckrecipient.com;CAT:NONE;SFS:(13230040)(82310400026)(35042699022)(14060799003)(36860700013)(1800799024)(376014)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 16:11:10.3641
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2957acef-7bb5-46da-9e8b-08dd5b372db1
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM4PEPF00027A6C.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR08MB8653
 
-On Sat, 1 Mar 2025 14:00:43 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+On 03/03/2025 03:29, Jie Gan wrote:
+> Introduce a new strcuture, 'struct coresight_path', to store the data that
+> utilized by the devices in the path. The coresight_path will be built/released
+> by coresight_build_path/coresight_release_path functions.
+> 
+> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-core.c  | 16 +++++-----
+>   .../hwtracing/coresight/coresight-etm-perf.c  | 30 ++++++++++---------
+>   .../hwtracing/coresight/coresight-etm-perf.h  |  2 +-
+>   drivers/hwtracing/coresight/coresight-priv.h  |  6 ++--
+>   drivers/hwtracing/coresight/coresight-sysfs.c | 12 ++++----
+>   include/linux/coresight.h                     | 10 +++++++
+>   6 files changed, 44 insertions(+), 32 deletions(-)
+> 
 
-> On Thu, Feb 27, 2025 at 07:26:40PM +0100, Kory Maincent wrote:
-> > On Thu, 27 Feb 2025 17:40:42 +0100
-> > Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+...
 
-> > > I would prefer to have it in the for of devlink or use regulator netl=
-ink
-> > > interface. But, we do not need to do this discussion right now. =20
-> >=20
-> > If we want to report the method we should discuss it now. We shouldn't =
-add
-> > BUDGET_EVAL_STRAT uAPI to ethtool if we use another way to get and set =
-the
-> > method later. =20
->=20
-> Ok, I assume we are talking about different things. I mean - not port
-> specific configurations and diagnostic, will have different interface.
->=20
-> BUDGET_EVAL_STRAT is port specific. HP and Cisco implement it as port
-> specific. PD692x0 Protocol manual describe it as port specific too:
-> 3.3.6 Set BT Port Parameters
->  Bits [3..0]=E2=80=94BT port PM mode
->   0x0: The port power that is used for power management purposes is
->        dynamic (Iport x Vmain).
->   0x1: The port power that is used for power management purposes is port
->        TPPL_BT.
->   0x2: The port power that is used for power management purposes is
->        dynamic for non LLDP/CDP/Autoclass ports and TPPL_BT for
-> LLDP/CDP/Autoclass ports. 0xF: Do not change settings.
+> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+> index ce9a5e71b261..67cf8bdbe5c0 100644
+> --- a/include/linux/coresight.h
+> +++ b/include/linux/coresight.h
+> @@ -329,6 +329,16 @@ static struct coresight_dev_list (var) = {				\
+>   
+>   #define to_coresight_device(d) container_of(d, struct coresight_device, dev)
+>   
+> +/**
+> + * struct coresight_path - data needed by enable/disable path
+> + * @path:              path from source to sink.
 
-I don't really understand how that can be port specific when the power budg=
-et is
-per PD69208 manager. Maybe I am missing information here.
+This doesn't match the actual variable below.
 
-> > We could also not report the method for now and assume the user knows i=
-t for
-> > the two controllers currently supported. =20
->=20
-> On one side: it is not just status, but also active configuration. By
-> implementing the interface we may break default configuration and user
-> expectations.
+> + * @trace_id:          trace_id of the whole path.
+> + */
+> +struct coresight_path {
+> +	struct list_head	path_list;
+> +	u8			trace_id;
+> +};
+> +
+>   enum cs_mode {
+>   	CS_MODE_DISABLED,
+>   	CS_MODE_SYSFS,
 
-Yes we should not implement the budget method get/set interface in this ser=
-ies.
-=20
-> On other side: PD692x0 seems to need more then just setting prios to
-> manage them correctly. For example power bank limits should be set,
-> otherwise internal firmware won't be able to perform budget calculations.
-
-Patch 8 is already configuring the power PD692x0 bank limit according to PSE
-power domain budget.
-
-> So, I assume, critical components are missing anyway.
-
-As we are not supporting the budget method configured by the user in this
-series, I agreed we should not add any uAPI related to it that could be bro=
-ken
-or confusing later.
-
-I will remove it and send v6.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
+Suzuki
 
