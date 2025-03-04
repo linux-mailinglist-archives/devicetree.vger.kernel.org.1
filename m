@@ -1,70 +1,69 @@
-Return-Path: <devicetree+bounces-153828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCF46A4DFB5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:51:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93784A4DFC4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:52:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EFCD3B36BC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:51:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 509593B18E5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:52:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1A9F201267;
-	Tue,  4 Mar 2025 13:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB0862046BC;
+	Tue,  4 Mar 2025 13:52:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="g2rEfib3"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="aumIJXyw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5B82046B2;
-	Tue,  4 Mar 2025 13:51:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2812D2040BA;
+	Tue,  4 Mar 2025 13:52:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741096263; cv=none; b=Ebnblk5+vCUMPCk63m5fzLJsvp2IoAAPPgvxyb8JCl7G1UWC+9MX3Vl3QszJqDAPKgfLQ+dxhAz1IRzpVOhBC3of3swUh7CMCb4RtnzZvwxoMbqYhMdQaXaGYwxJvStHr01/ajPwMnhCol4lCdu2GC/qJZD8U7D4TrNVvwLZxgM=
+	t=1741096347; cv=none; b=mQswgFcpnMfrwMzuzUtmovse2ZJY5ezzrBSaKETaY1rM7xwioPLPcFVyIR7jwiuKs+09l6CrKMLWiylJYIRXFz6S5eIUWPd9yuAaIeOP0zxZXnwy4RMnpr9GiuwRgMkkqiS+/TVC2zY5p2YIdTVGTsMec2Z/wOcccbCbcdGiito=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741096263; c=relaxed/simple;
-	bh=PiPkPIDmgiV8cZug0sW6B7OJi/s66w6EJzYFFKfyUQc=;
+	s=arc-20240116; t=1741096347; c=relaxed/simple;
+	bh=KG+5ZDEmMAAlcs3FLvTikf2avS7in/3ZUEFbDpSO3pw=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ssdOmNzp1iAfEa2T/AESLFZP64NDOK8dFkBPapW/Ss+vFhNwAU0gMeqkQZQ6M6XYQXxoPqOJkX6izVqo5j5UTB3YXQpGYnPuXiHgwl/2TcgWTdnNpV9Cj/aeJpZFEkF05IBKpoHATDaTcwJz43/wEKvO5O/tkyehmCKGF3Yol/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=g2rEfib3; arc=none smtp.client-ip=217.70.183.194
+	 MIME-Version:Content-Type; b=Z3qQazrnibnx2MoScUUZWEHZ6CzOtWp2OGnoJ/cjdkQLUTuN8OCdXe4lAEv3HIYbEPxiS8FqJ5UhxT53C0KLPQod7//acCcJhNP8N1Wx8Q70qdFHRHT35/krbeZ2t9OFULECpZHqbmdk2MyP/tYmBHkdJwJ/6gJOsZCWBliW0Xc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=aumIJXyw; arc=none smtp.client-ip=217.70.183.193
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3DA1843D79;
-	Tue,  4 Mar 2025 13:50:57 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5957E442DF;
+	Tue,  4 Mar 2025 13:52:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1741096259;
+	t=1741096343;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=PiPkPIDmgiV8cZug0sW6B7OJi/s66w6EJzYFFKfyUQc=;
-	b=g2rEfib3hxTcwW2VhiJSiBNs3Iktec0IokowYxkZP9+jVP9JgSSPpj6Fx6t/bc3WnzWNyd
-	lquRO7WENZ/7zgWoie93TQSpNKL3VckXJrK4FFVKpJ8MyHb1JGgtN25l49q92Ix+Repijp
-	iIJmrDr6sKUBYN/SzTPFm81R4R1rq0RpUS2YsomEPTOI00P3+YkXz7dk60Xn5mXEW8EbNc
-	L2+mJVJPmTBYhzFSq0aN+kXl+YBqqzONgYgVnOSGN+EsIoPLzADWM1WqvIyLefuMpnDSQP
-	fMwOJHgrB6QRf2BDQVNvnHSPt5DTlVzCeljLo0GGjCJ+bZZMQZ630eUTijMF2g==
+	bh=YgvnIz652GdCe+1GOXltyjv7Y3wMFnRZ17oZzmJ1J3I=;
+	b=aumIJXyw7r4wXdnxFIp7qTFxnKKhDnYzaa1H0Z4eQxjKOTu/R4qWGqqHuOXaLyUBFEPdBR
+	UJ+H+aYc42fQWZQi/72HimeHW45R+AvJcSRTVhORNnJFiKN18i1U/p4EYPSKwtmA8ERprS
+	IwzuB19aLvyrN9t2OUGl+qnZIHn6NQbcXTsdVF6OjBRLPU6olQwlp5o6trMvuSye8q5PIY
+	UmdeL284CV3nQ7sDsIaEGbCbTPCADsep0sSLV5VXb5dkS3JdTVmYfzXz5EY2mj9PXgSAlp
+	le2UMWyql+a4uaTUdPGmcSZ9LwpBOeoqbzx+hOKEGq+KXIz6TRHTw5atQtnraQ==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,  linux-wpan@vger.kernel.org,
-  netdev@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-gpio@vger.kernel.org,  Andrew Lunn
- <andrew+netdev@lunn.ch>,  "David S. Miller" <davem@davemloft.net>,  Eric
- Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo
- Abeni <pabeni@redhat.com>,  Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Bartosz Golaszewski <brgl@bgdev.pl>,  Alexander Aring
- <alex.aring@gmail.com>,  Stefan Schmidt <stefan@datenfreihafen.org>
-Subject: Re: [PATCH net-next v3 3/3] ieee802154: ca8210: Switch to using
- gpiod API
-In-Reply-To: <20250304112418.1774869-4-andriy.shevchenko@linux.intel.com>
-	(Andy Shevchenko's message of "Tue, 4 Mar 2025 13:22:34 +0200")
-References: <20250304112418.1774869-1-andriy.shevchenko@linux.intel.com>
-	<20250304112418.1774869-4-andriy.shevchenko@linux.intel.com>
+To: Keguang Zhang <keguang.zhang@gmail.com>
+Cc: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
+  Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+  linux-mtd@lists.infradead.org,  linux-kernel@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-media@vger.kernel.org
+Subject: Re: [PATCH v12 2/2] mtd: rawnand: Add Loongson-1 NAND Controller
+ Driver
+In-Reply-To: <CAJhJPsUw7YGKfBuFtUirOGuCA9hV6e-wjrL4L9b-5kmuVUW=ow@mail.gmail.com>
+	(Keguang Zhang's message of "Tue, 4 Mar 2025 19:46:39 +0800")
+References: <20250121-loongson1-nand-v12-0-53507999de39@gmail.com>
+	<20250121-loongson1-nand-v12-2-53507999de39@gmail.com>
+	<87tt972dt0.fsf@bootlin.com>
+	<CAJhJPsUw7YGKfBuFtUirOGuCA9hV6e-wjrL4L9b-5kmuVUW=ow@mail.gmail.com>
 User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Tue, 04 Mar 2025 14:50:57 +0100
-Message-ID: <87ikoo29by.fsf@bootlin.com>
+Date: Tue, 04 Mar 2025 14:52:21 +0100
+Message-ID: <87a5a0299m.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,25 +74,36 @@ Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-GND-State: clean
 X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddutddvvddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedukedprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtoheplhhinhhugidqfihprghnsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhgvthguvghvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhit
- ggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqghhpihhosehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthh
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddutddvvddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduuddprhgtphhtthhopehkvghguhgrnhhgrdiihhgrnhhgsehgmhgrihhlrdgtohhmpdhrtghpthhtohepuggvvhhnuhhllhdokhgvghhurghnghdriihhrghnghdrghhmrghilhdrtghomheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhitghhrghrugesnhhougdrrghtpdhrtghpthhtohepvhhighhnvghshhhrsehtihdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgp
+ dhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhmthgusehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
 X-GND-Sasl: miquel.raynal@bootlin.com
 
-On 04/03/2025 at 13:22:34 +02, Andy Shevchenko <andriy.shevchenko@linux.int=
-el.com> wrote:
+Hello Keguang,
 
-> This updates the driver to gpiod API, and removes yet another use of
-> of_get_named_gpio().
+>> > +static int ls1x_nand_exec_op(struct nand_chip *chip,
+>> > +                          const struct nand_operation *op,
+>> > +                          bool check_only)
+>> > +{
+>> > +     int ret;
+>> > +
+>>
+>>         if (check_only) ?
 >
-> With this, invert the logic of the reset pin which is active low
-> and add a quirk for the legacy and incorrect device tree descriptions.
+> Sorry, I'm not sure if I understand correctly.
+> nand_op_parser_exec_op() only checks patterns and will skip
+> pattern->exec() when check_only =3D true. Therefore,
+> ls1x_nand_check_op() should handle all opcode checks in that case, and
+> leave check_only =3D false to nand_op_parser_exec_op().
+> Then the code will return to:
 >
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> if (check_only)
+>         return ls1x_nand_check_op(chip, op);
+>
+> return nand_op_parser_exec_op(chip, &ls1x_nand_op_parser, op, check_only);
+>
+> Am I right?
 
-Nice.
-
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Absolutely, yes.
 
 Thanks,
 Miqu=C3=A8l
