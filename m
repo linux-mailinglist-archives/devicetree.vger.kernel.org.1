@@ -1,133 +1,107 @@
-Return-Path: <devicetree+bounces-153781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17FD6A4DC96
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:30:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC0CA4DC8C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:27:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DFD2188896D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:30:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C801916DD67
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 218E920011B;
-	Tue,  4 Mar 2025 11:30:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E16711FF1A0;
+	Tue,  4 Mar 2025 11:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="szojJJVZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kuctRa9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE46D1FF7D5;
-	Tue,  4 Mar 2025 11:30:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8DF21FE45C;
+	Tue,  4 Mar 2025 11:27:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741087813; cv=none; b=npt2OV2j/jlYALVokrRccU+9E3iroNwfppu2qnu9BbUBtgV/DfvhlKH/qC3xRwaGNOu7i09NqxEXEpOty3kuQlGCHJWTyvqhSyjiejJIUoG5mkLGOo6/K6ww0J5rwV2kwpxb4p225ftHWbu1sPYa9ag0k4HU3dAqavYRs8QpcEc=
+	t=1741087656; cv=none; b=BXTnHl8n5B8vVa+IRKGq1XP4PL6Lh5z+PYEGvLNKU4UbQJj0ycIjVYlTQKteVDSQYy7Ei5wayBqf+OqjNOJIQ0OhpCdlGTynNfaqcbuLL4xKrhLhGKePxhDleIN2bkVqf+NhMznTP1qLV3WogZ1NbaLtAjMX3DSf+Li647WFHHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741087813; c=relaxed/simple;
-	bh=4NlApes1uMZR/fEzD45gw5HtUBzCox4wK22duVcC3eY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qr67NKr0lX+030JT0ILFyTzNfcBt1Ad8zyo2QlWh6CEirKzZWue4PeKg61N9sM54pf3qmPtfL7erDc/ThB1bQS5gxvkz8bTlR+b+XJ5ZG29GKN7xaXDEpjfjz8GKOT+PdPRrbHpKhwJ+mlvLLdLAPajITbc+urJikqOIRNYjKKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=szojJJVZ; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5B6411480850;
-	Tue,  4 Mar 2025 12:24:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1741087453;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5abHVWwaHFEi1aRUSGkWCShuUKq/Uu+o+daM4oBhLRc=;
-	b=szojJJVZWk6XvOFPNdubWFEz43mbBbNVI+FB/KEk1K4r9ta2Gl+uI5T8z8P/l250boNeID
-	NjMViqUfeEzM+JoLZadkW4Ts7XUuc+pwSwa3vXIIDL+e1HXLp57r16IKMbx4pPOeV9DPHm
-	hEZJ+1R0nZYepTOgcTuvBVR576HtQVrxQ3Dh7t35Z+bKEG6lah6Bnt/K0TbKAT22bUrzMj
-	acNOqP0r4bYc7B4dwo8iRwKG7uuumXPrZtNFJv66c0je01nsbvzLyUJaIUODKg4Sf7sAYG
-	V65jMLIJYe9IRdBCINX5K21zFfa8JsY2Kg/cfqB5cvCs7uPHaRQo2eiQhLXpBA==
-Date: Tue, 4 Mar 2025 12:24:02 +0100
-From: Alexander Dahl <ada@thorsis.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: iansdannapel@gmail.com, linux-fpga@vger.kernel.org,
-	Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Aradhya Bhatia <a-bhatia1@ti.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [v4 1/3] dt-bindings: vendor-prefix: Add prefix for Efinix, Inc.
-Message-ID: <20250304-despite-knee-8b528b8f7f4c@thorsis.com>
-Mail-Followup-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	iansdannapel@gmail.com, linux-fpga@vger.kernel.org,
-	Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Aradhya Bhatia <a-bhatia1@ti.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-References: <20250228094732.54642-1-iansdannapel@gmail.com>
- <20250228094732.54642-2-iansdannapel@gmail.com>
- <cf8b754e-f4b1-40f2-86df-e1f0cbf07189@kernel.org>
+	s=arc-20240116; t=1741087656; c=relaxed/simple;
+	bh=4KFBBF3Ao5HU3HgirJAXKEK8cCaqMTH0xugNMYsYIco=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=PZwCXvYAJrpTOsJKps+8C2LK9xNe9MDy9oLTDjehq7iAPWBWW7v6KoA8rbMu+0vDVAuZTQuto1MqrWShypXZwYgU0DjLM+tv/Uszua6RrJzqZsXv62WjFcEFhh3wFj/3rqrOQApLULECapbCgpyqzwn3EkfmL9ytirmciNs+/4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kuctRa9E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0741EC4CEE5;
+	Tue,  4 Mar 2025 11:27:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741087656;
+	bh=4KFBBF3Ao5HU3HgirJAXKEK8cCaqMTH0xugNMYsYIco=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=kuctRa9E5v64bZ+7Oc2Xsl/TmkYbNrxpoVbayvVM4YOnYgC52o2+kv/QDT//qQZTg
+	 LoBe7Cr+vfJYA9UVmMSzWHTqUePaOk8UDKry3rqjnLELMHi/PZJfNtgXJ2IhXQL3zU
+	 qAw76DR1GxOcP4Tq1iP/DK+sGa2rj2L/u0905iz1oXPdQ4K5kkamcdfhE6WvSvqDPA
+	 nuwHsra3WoGAKl/wsCvzH+vGoEukfisjBaUMJzsCp1CdXA6fcf+Gr2fogxBU5xAqHU
+	 MqITI7QxBtZ50PtdfomUQAJlzNDv18N3VcxUX1WwOgnPuZGMayxoTj1niuQ17ymeSt
+	 J9YO6SsmazMpQ==
+Date: Tue, 04 Mar 2025 05:27:34 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cf8b754e-f4b1-40f2-86df-e1f0cbf07189@kernel.org>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Last-TLS-Session-Version: TLSv1.3
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: airlied@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
+ Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com, 
+ tzimmermann@suse.de, simona@ffwll.ch, neil.armstrong@linaro.org, 
+ jernej.skrabec@gmail.com, linux-kernel@vger.kernel.org, mripard@kernel.org, 
+ devicetree@vger.kernel.org, jonas@kwiboo.se, rfoss@kernel.org, 
+ maarten.lankhorst@linux.intel.com, dri-devel@lists.freedesktop.org
+To: Liu Ying <victor.liu@nxp.com>
+In-Reply-To: <20250304101530.969920-4-victor.liu@nxp.com>
+References: <20250304101530.969920-1-victor.liu@nxp.com>
+ <20250304101530.969920-4-victor.liu@nxp.com>
+Message-Id: <174108765439.1932765.4056731627407364924.robh@kernel.org>
+Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
+ color encoder
 
-Hello Ian,
 
-Am Sat, Mar 01, 2025 at 02:10:38PM +0100 schrieb Krzysztof Kozlowski:
-> On 28/02/2025 10:47, iansdannapel@gmail.com wrote:
-> > From: Ian Dannapel <iansdannapel@gmail.com>
-> > 
-> > Add entry for Efinix, Inc. (https://www.efinixinc.com/)
-> > 
-> > Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
+On Tue, 04 Mar 2025 18:15:28 +0800, Liu Ying wrote:
+> A DPI color encoder, as a simple display bridge, converts input DPI color
+> coding to output DPI color coding, like Adafruit Kippah DPI hat[1] which
+> converts input 18-bit pixel data to 24-bit pixel data(with 2 low padding
+> bits in every color component though). Document the DPI color encoder.
 > 
-> <form letter>
-> This is a friendly reminder during the review process.
+> [1] https://learn.adafruit.com/adafruit-dpi-display-kippah-ttl-tft/downloads
 > 
-> It looks like you received a tag and forgot to add it.
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+>  .../display/bridge/simple-bridge.yaml         | 89 ++++++++++++++++++-
+>  1 file changed, 87 insertions(+), 2 deletions(-)
 > 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-> of patchset, under or above your Signed-off-by tag, unless patch changed
-> significantly (e.g. new properties added to the DT bindings). Tag is
-> "received", when provided in a message replied to you on the mailing
-> list. Tools like b4 can help here. However, there's no need to repost
-> patches *only* to add the tags. The upstream maintainer will do that for
-> tags received on the version they apply.
-> 
-> Please read:
-> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
 
-FWIW I guess this might refer to:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-https://lore.kernel.org/linux-fpga/20240930-tranquil-glitch-f48685f77942@thorsis.com/
+yamllint warnings/errors:
 
-Greets
-Alex
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/bridge/simple-bridge.example.dtb: /example-1/bridge: failed to match any schema with compatible: ['dpi-color-enoder']
 
-> 
-> Best regards,
-> Krzysztof
-> 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250304101530.969920-4-victor.liu@nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
