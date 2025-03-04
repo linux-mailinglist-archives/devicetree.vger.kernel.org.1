@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-153620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6390A4D4C2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:22:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B88A4D4C7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:27:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2E763A91AD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 07:21:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A75DC16B44F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 07:27:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05DC51F5616;
-	Tue,  4 Mar 2025 07:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2141F5608;
+	Tue,  4 Mar 2025 07:27:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yf+R5WqR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OUG3K4Bp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEFB91F3B8B;
-	Tue,  4 Mar 2025 07:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B291F3B8B;
+	Tue,  4 Mar 2025 07:27:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741072907; cv=none; b=fXZsK9VVfCQx+2hGHIxfBe2UprZg3nYJhEoOFDul+5wKUdehXOpn0GEIfdVEKhfrKegESQ+XaHAvCWGgb/GqNrWYmtk590mFEXnzgRA9wLXXgxXcCCZoOo4/c24wg8JsJGvq2f/w83OxnaHFnqpBPWLiL92sqOGrYQfqTjg2Yqo=
+	t=1741073222; cv=none; b=G1n95hwGL95bLgvo0G+7FbJp8ErRZUV7l9PPM2nHc+jAsUeZFOdUz4q0rlni9MTARR+/frpEb4c5KGojJ3481GtIa2yng/e6L/yqmNrQ4iUh4WtghhpVuDk/MnrF6mFyLCPJ7z2NNfvIjzjzko05Aft+mfVzYV90UBwbuG9sp4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741072907; c=relaxed/simple;
-	bh=T+fpq98v9Io2vg6grazANB67VEQzov3KO4PYt35Zncc=;
+	s=arc-20240116; t=1741073222; c=relaxed/simple;
+	bh=HEWd7nz/d+PKsQ3jXyyDNOvORZbt4ng0L2I9siK7DsM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KjFNBJjbu42AyNvZBBgptt0KBjQ/0pie3LR6NeJiNtZs+iVgqfa4oZmRdZtpt4o3mTEeFtXNRrg6jE4x6GyxKw2090/4a1bMC3wNbhpMkTD+4WqK3EFHduoVe87E/BO8gFRuNVMWS/YBH2XTj4FZbcqqCbeFVA38laudy1DBGKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yf+R5WqR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A282C4CEE5;
-	Tue,  4 Mar 2025 07:21:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uI1OW46t3D9axfChP6lW6HGgPy+w+yN0dH57AFB5dNz5DftYrNXbI2BhdP96ivz3QvHlkTaxLgs6hqrLax4IvFJi7B08Z/PkSMECf/wCLEGpjtSAH4D9jW3/ltkssHgBtGJQ5eXWxf3Lymmc0IjMlpCCXWLvauS1lF3L6aMcmZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OUG3K4Bp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17146C4CEE5;
+	Tue,  4 Mar 2025 07:26:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741072907;
-	bh=T+fpq98v9Io2vg6grazANB67VEQzov3KO4PYt35Zncc=;
+	s=k20201202; t=1741073222;
+	bh=HEWd7nz/d+PKsQ3jXyyDNOvORZbt4ng0L2I9siK7DsM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Yf+R5WqRepIcAvZ0HF6I5wGDmnXfpZN204rxo1N9Cqt/9SU8s3VbtY93qZD7FUGKt
-	 eI07SN7t/gHc7+jUs1R26VuP09pN/FGi+ADxk81G6G4BwfsMbcWSY6IyKvkq/O5ZuA
-	 qZOn/yvo3HZDyvUwVMExev+0fhu6fQqujTm9pKl8JQiw2Trjf4jKdCQEuSLkdWIvYT
-	 A2XRwRgsh25MyUpfL1Qw1CVW++u0ioWKJZ8018iyZjt2fmFRdAJJnaQN4oO+aRUna6
-	 ucfo7qh4KQrybYXT5sFFfPZ/WCN1w6b9Qk4/wdjgcvACUdHpHkyPHhltTM+hZFXgmc
-	 X2COYGMKRAghg==
-Message-ID: <027decb4-3fa9-40a5-9cf4-65f9a69b4566@kernel.org>
-Date: Tue, 4 Mar 2025 08:21:39 +0100
+	b=OUG3K4Bpf1vhgWiRM16+WBYZCS+jYVx9OC/AmhrNr+WmIPpsnNrLsxE2qV+cHBHlX
+	 +40WgmReWTOF4Tyq0tldq0hzJAgmFO4ZITZrnTmBgJukurE51IA8IldjRnNxCh9H8J
+	 /kQeeALLw0Sg4EDRvRqUQfybrzjmFmPCOVJLuswmyBgXot1Oo3wM2JDN0PHdRfN09X
+	 edYVYPamLz2cdaHeDd8w1cKp024K52dhf/+nd0BOabRuiiOkXGdjRx9ElTVLTOSrKf
+	 XNj+LpegaZnz+aGJks1tuItEZMZ0dPZpkv6RbVE+Dvw7xGPbNtTjXXxxaWCUUsNJci
+	 f+5Go/z8hbeHQ==
+Message-ID: <7856fdff-5dc5-44e2-afde-129233b930ab@kernel.org>
+Date: Tue, 4 Mar 2025 08:26:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/8] dt-bindings: phy: add
- samsung,exynos2200-usbcon-phy schema file
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Abel Vesa <abel.vesa@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250223122227.725233-1-ivo.ivanov.ivanov1@gmail.com>
- <20250223122227.725233-4-ivo.ivanov.ivanov1@gmail.com>
- <20250224-curly-cyber-spaniel-efdc39@krzk-bin>
- <a4f63721-d094-4eda-b68a-6ef62ff54680@gmail.com>
- <c8184542-5dab-4403-bee4-867810397ae4@kernel.org>
- <4502b578-96e6-49e0-8f3b-54f6e5640c55@gmail.com>
- <354d6100-311f-44d7-b8a5-1fd671b651e3@kernel.org>
- <9fb63a04-5b3d-40cc-b96f-eb4f297f307e@gmail.com>
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add dt bindings for
+ m2m-deinterlace device
+To: Matthew Majewski <mattwmajewski@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+ "Dr. David Alan Gilbert" <linux@treblig.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>,
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250214231759.119481-1-mattwmajewski@gmail.com>
+ <20250214231759.119481-2-mattwmajewski@gmail.com>
+ <20250218-eggplant-skylark-of-swiftness-dcf6ba@krzk-bin>
+ <69cb2e95c291f17cff42b45e7c871f30a85c060d.camel@gmail.com>
+ <3d729159-4d13-4a61-88c7-3be992b23728@kernel.org>
+ <c7141c6554b396d3ddaf7e0e540b80e5990b416b.camel@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,101 +112,97 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <9fb63a04-5b3d-40cc-b96f-eb4f297f307e@gmail.com>
+In-Reply-To: <c7141c6554b396d3ddaf7e0e540b80e5990b416b.camel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 03/03/2025 18:18, Ivaylo Ivanov wrote:
-> On 3/3/25 09:24, Krzysztof Kozlowski wrote:
->> On 02/03/2025 10:16, Ivaylo Ivanov wrote:
->>> On 2/25/25 10:11, Krzysztof Kozlowski wrote:
->>>> On 24/02/2025 11:48, Ivaylo Ivanov wrote:
->>>>> On 2/24/25 10:56, Krzysztof Kozlowski wrote:
->>>>>> On Sun, Feb 23, 2025 at 02:22:22PM +0200, Ivaylo Ivanov wrote:
->>>>>>> The Exynos2200 SoC has a USB controller PHY, which acts as an
->>>>>>> intermediary between a USB controller (typically DWC3) and other PHYs
->>>>>>> (UTMI, PIPE3). Add a dt-binding schema for it.
->>>>>>>
->>>>>>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->>>>>>> ---
->>>>>>>  .../phy/samsung,exynos2200-usbcon-phy.yaml    | 76 +++++++++++++++++++
->>>>>>>  1 file changed, 76 insertions(+)
->>>>>>>  create mode 100644 Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
->>>>>> You have undocumented dependencies which prevent merging this file.
->>>>>> First, dependencies have to be clearly expressed.
->>>>> They are, in the cover letter.
->>>> Where? I read it twice. Dependencies is the most important thing and
->>>> should scream at beginning of the cover letter, so if you bury them
->>>> somewhere deep it also would not matter - just like they were missing.
->>>>
->>>>>> Second, you should
->>>>>> rather decouple the code from header dependencies, otherwise this cannot
->>>>>> be merged for current release (just use clocks with long names, without IDs).
->>>>> Sure
->>>>>>> diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
->>>>>>> new file mode 100644
->>>>>>> index 000000000..7d879ec8b
->>>>>>> --- /dev/null
->>>>>>> +++ b/Documentation/devicetree/bindings/phy/samsung,exynos2200-usbcon-phy.yaml
->>>>>>> @@ -0,0 +1,76 @@
->>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>>> +%YAML 1.2
->>>>>>> +---
->>>>>>> +$id: http://devicetree.org/schemas/phy/samsung,exynos2200-usbcon-phy.yaml#
->>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>> +
->>>>>>> +title: Exynos2200 USB controller PHY
->>>>>>> +
->>>>>>> +maintainers:
->>>>>>> +  - Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->>>>>>> +
->>>>>>> +description:
->>>>>>> +  Exynos2200 USB controller PHY is an intermediary between a USB controller
->>>>>>> +  (typically DWC3) and other PHYs (UTMI, PIPE3).
->>>>>> Isn't this the same as usbdrd phy? see: samsung,usb3-drd-phy.yaml
->>>>> It's not (I think). There's a few reasons I've decided to make this separate
->>>>> from the usb3-drd-phy bindings and exynos5-usbdrd driver:
->>>>>
->>>>> 1. This PHY does not provide UTMI and PIPE3 on its own. There's no tuning
->>>> USBDRD phy does not provide UTMI and PIPE on its own either if you look
->>>> at diagram - they call it phy controller.
->>> Ughm. What? So in most exynos cases, there's a combination of multiple phys?
->>
->>>>> for them, and all that is needed from it is to disable HWACG, assert/
->>>>> deassert reset and force bvalid/vbusvalid. After that SNPS eUSB2
->>>>> initialization can be done and USB2 works. If the USBCON phy is not set
->>>>> up before the eUSB2 one, the device hangs, so there is definitely a
->>>>> dependancy between them. For PIPE3 we'd need to control the pipe3
->>>>> attaching/deattaching and then initialize the synopsys USBDP combophy.
->>>> Does it mean there is no USB DRD phy controller as before?
->>>>
->>>> Anyway the problem is you have DWC3 -> PHY -> PHY. Looks one phy too many.
->>> So...
+On 03/03/2025 16:21, Matthew Majewski wrote:
+> On Mon, 2025-03-03 at 08:31 +0100, Krzysztof Kozlowski wrote:
+>> On 26/02/2025 23:41, Matthew Majewski wrote:
 >>>
->>> DWC3 -> USBDRD (USBCON) -> PHYs?
->> No, drop last phy. You just wrote the same as me - two phys, because
->> usbdrd is the phy. In all existing designs there is no such controllable
->> object from the point of view of operating system.
+>>> As I wrote, supported devices/hardware is anything that provides a
+>>> MEM_TO_MEM capable dma-controller with interleaved transfer
+>>> support. I
+>>> did not list specific devices because the bindings are supposed to
+>>> be
+>>> generic, as they are not describing actual silicon. But if you want
+>>> me
+>>
+>> I already told you that no. Bindings are not supposed to be generic.
+>>
+>> From where did you get such information?
 > 
-> What? Per my understanding, the phy property should refer to whatever is
-> is connected to dwc3 UTMI. In this case it's the so-called USBDRD phy (called
-> usbcon in downstream). Considering that the eUSB2 IP definitely also has UTMI
-> that has to be connected to something, doesn't that mean we have clearly
+> There are generic bindings in the kernel and I based my bindings off of
+> them. spi-gpio.yaml, i2c-gpio.yaml, video-mux.yaml, etc are all generic
+> bindings, no?
 
-The entire point is that eUSB2 is connected to DWC3, no? That's exactly
-how it is done for example on Qualcomm SoC. Otherwise you claim that
-DWC3 controls one phy, which controls another phy which controls UTMI...
+They are generic, but you said "supposed to be generic" and I am asking
+about this.
 
-> separated hardware blocks? Now, I guess one could argue that this USBCON
-> hardware block could be classified as a syscon. But I don't see the problem
-> with the current binding description, nor the modelling, as it represents
-> how the hardware is (unless I've gotten it completely wrong).
+BTW, any "generic" or "simple" bindings often became non-generic and
+non-simple leading to mess.
 
-It is the first time you use argument that it represents how the
-hardware is and this is what we actually disagree. It is not like that.
-You do not have chain of phys. Just look at any USB 3.0 DRD DWC diagram
-from any Samsung SoC: where would you squeeze these two phys in relation
-to what is called there "USB 3.0 PHY" which would be the third phy (!!!).
+> 
+>>
+>>> to list some devices which provide a compatible dma-controller,
+>>> here
+>>> are devices I found in the current mainline kernel:
+>>>
+>>> - TI OMAP Soc Family
+>>> - TI Davinci Soc Family
+>>> - TI Keystone Processor Family
+>>> - IMX27 Processor and variants
+>>> - Several Microchip Processors (sama5, sam9x7, sam9x60)
+>>
+>> That's too generic - you just listed SoCs, which consist of dozen or
+>> hundred of devices. Which hardware piece is here?
+>>
+>> Maybe this is not for a real device, but then this should be marked
+>> clearly.
+>>
+> 
+> I listed devices that have a compatible dma-controller, so the list is
+> a bit big, sorry. I also specifically mentioned the BeagleBone black
+> board which I have been testing on. 
+> 
+> "m2m-deinterlace" used to be a part of the mach-imx27_visstrim_m10.c
+> board file, but was removed with commit 879c0e5e0ac711 (ARM: imx:
+> Remove i.MX27 board files). So at least the Vistrim M10 device was
+> explicitly using the m2m-deinterlace device. 
+> 
+> When the move away from board files was made towards device-tree, m2m-
+> deinterlace support was never ported over to device-tree. This is what
+> I am doing now. 
+> 
+> And yes, m2m-deinterlace is not a "real device" if by "real device" you
+> mean an actual piece of silicon on a specific piece of hardware. I
+> think there is just some semantic confusion here. I will no longer
+> refer to it as a "device" then, please let me know what the more
+> appropriate term is and I will modify the description accordingly.
+> 
+>>>
+>>> I think an appropriate analogy for m2m-deinterlace would be spi-
+>>> gpio.
+>>> Since spi-gpio leverages gpio for bitbanging the spi protocol, the
+>>> bindings do not need to describe any clocks, spi-controller
+>>> registers,
+>>
+>> Sure, SPI GPIO is Linux driver, not a device and I am asking about it
+>> all the time.
+>>
+> 
+> My point was that spi-gpio has dt-bindings even though these bindings
+> do not describe a specific hardware device, hence it is "generic". 
+
+
+SPI GPIO is physical GPIO lines bit-banged in software. I don't think it
+is possible to achieve such SPI controller as part of some other Linux
+structure.
+Now your case - describe what you have here - SW for interlacing? But
+that is just memory operation. I really do not see why this is supposed
+to be separate device node in DTS. This is part of media pipeline, so
+easily can be part of some other device.
+
 
 Best regards,
 Krzysztof
