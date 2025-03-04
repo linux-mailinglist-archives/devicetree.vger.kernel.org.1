@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-153803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BEFCA4DE3A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:47:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5CCEA4DE44
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:49:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B13616A7E0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:47:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C42AC3B14F7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:49:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F4D1FFC68;
-	Tue,  4 Mar 2025 12:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9BA720127D;
+	Tue,  4 Mar 2025 12:48:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UuhCZpCV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TW348z9j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CDD1FC7FD;
-	Tue,  4 Mar 2025 12:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5FE1FFC74;
+	Tue,  4 Mar 2025 12:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741092467; cv=none; b=QojOV808+1RuSyDOOx0FumvwBCc/43BhM2J6M1bKtPgbU7sLIPE+3e7JGpP2A7WKT8CLsuF2dJ9IEBX2KvDWKkpS0FDxNAQBL5PMyXj8Q9DSVZTbJqebAsTQEIp81SE37C7WlFvsr3Lf8Qy/oej0xsZisGmvgnxWh4kdPGy8Clk=
+	t=1741092525; cv=none; b=F0MxMM2cS9EL0DQmn3gp6mxtWrleHoteyNTMLuhWnZBR4PAGp+vlqaZZvpWd/MGe9GMXYQhEEbZlYzLhTeJ5nHkp+57EcVAfMbpqrLKjPJk0Q/qMp4t6o1RfsHjEPLi8PAu1Kb9qN3fB3WHUNjK0PKZPCQ1FzWFQS/i7WsyCv3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741092467; c=relaxed/simple;
-	bh=s41CNZeyxYqiFP0x3AH953mCpbPKMcXkWgAF8ScBLQk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OXoJvWCltoDOntVC4FkXcKWo5hjRaXPXnQ0U845L9GeKHcsWj+3ID3w+1YAaoGUedBkcbiaFocSQYjjCRM9Dge4rkKlUbiWgkf0vhVgb5xLQ+EKXZsWNUjqoRB9hi5Im3hUrg5jdikeihsjMSDr1BCPolQONCyGVEcq+chBTg6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UuhCZpCV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CC72C4CEE5;
-	Tue,  4 Mar 2025 12:47:46 +0000 (UTC)
+	s=arc-20240116; t=1741092525; c=relaxed/simple;
+	bh=qs1uaw+fmZ/8gb8hir4yFJES2X7FcZuc7NwFrXHu62M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RoDEhdhJfqeP1k9c3QqlYklrDOQqOELdZmx4lUfesc4z4DVaLu4CwU+WPijVnSfc5DVGJT0nh3m0ipwLhd5q45qk1WIzZ+I4fPWwBJihC9Tc2lDckC5gn7jqIpJKdfoTHXC9AjU6o1xGylljeHGP4i0M4pUtF+VVhPrUS9GfmfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TW348z9j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77EA3C4CEE5;
+	Tue,  4 Mar 2025 12:48:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741092467;
-	bh=s41CNZeyxYqiFP0x3AH953mCpbPKMcXkWgAF8ScBLQk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=UuhCZpCV+48Hwj2XBN9aDqgVdGjzmqaNboPLV2rN0vRryFgNZRj8LK8HSPT7guefr
-	 ExtRYcA/Z1eI1pRFkRtaNglWGsMD5L28t8nwHmDF0NCAhRL0pS0JN1KodKD9FMBAXx
-	 T94GxVYd93us+/ulMAwIpgAFt/+BeCcYkHf5h0+ykShuPFEsXfym+rTkM5tGDxeT8v
-	 22HUBkxKEUqYlp7Y2W3lPHrzAd9bHGXDxNaAhtZw5JiDRptcCWOmFiv+1HmQ0j9AfG
-	 7wPc9vO5w3uG7BdlnXfjdvKpQftTbcZBDzEVQmtnM653AkHbNTjUmM5Qk5++ts1HsI
-	 dhxMVbiKte0XQ==
-Message-ID: <f2c1a48e-74e3-4f8c-af3c-aafbfc40fd3f@kernel.org>
-Date: Tue, 4 Mar 2025 06:47:48 -0600
+	s=k20201202; t=1741092524;
+	bh=qs1uaw+fmZ/8gb8hir4yFJES2X7FcZuc7NwFrXHu62M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TW348z9jRX5ZSgJoPBlyk5//Ug5GqU9KnYD1BLdu2ADKTpJKJPZFTV44+ordyBa8b
+	 4dJ80PIpwujBtHUJt70dfbuL6b4kioAxjeKM1A5EvKQfPm1toQkvkNl3Z6mLYFGyRO
+	 ow9YIZD5TnWC2BfZSxbow5MULEoAYP2zC6lEfxii8GSxYjayYoAKx/nvE+L6tbmnvP
+	 iJLW/ElVnwlAwWb1DVwoRyAv2ncYLXRXQLAJ3SlxDwKIbWkDNnk7E/WW32FWVpPHJr
+	 OXLrpw9MGFfFMk+SjJsQyuiiYPml+qhnqarSVF+snpgOPbkXbQckBze1ZpQjfePTPH
+	 bQ0ZkN01iyo4Q==
+Message-ID: <47cb57f6-2270-43af-8786-2827a08ddf9c@kernel.org>
+Date: Tue, 4 Mar 2025 06:48:44 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,45 +50,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: intel: socfpga_agilex: add frequencies to
- internal oscillators
-To: Matthew Gerlach <matthew.gerlach@altera.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH RESEND v3 2/2] arm64: dts: socfpga: agilex5: add
+ clock-names property to nand node
+To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, nirav.rabara@altera.com, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20250226185451.11748-1-matthew.gerlach@altera.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250228045349.1429680-1-niravkumar.l.rabara@intel.com>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20250226185451.11748-1-matthew.gerlach@altera.com>
+In-Reply-To: <20250228045349.1429680-1-niravkumar.l.rabara@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2/26/25 12:54, Matthew Gerlach wrote:
-> Add clock-frequency property to the internal oscillators, cb_intosc_ls_clk
-> and cb_intosc_hs_div2_clk.
+On 2/27/25 22:53, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> Add required clock-names property to the nand node.
+> 
+> Fixes: 2d599bc43813 (arm64: dts: agilex5: add initial support for Intel Agilex5 SoCFPGA)
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > ---
->   arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 2 ++
->   1 file changed, 2 insertions(+)
+>   arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-> index 1235ba5a9865..bcd12f82636f 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-> @@ -114,11 +114,13 @@ clocks {
->   		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
->   			#clock-cells = <0>;
->   			compatible = "fixed-clock";
-> +			clock-frequency = <200000000>;
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> index 51c6e19e40b8..27f75e1bc8eb 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> @@ -271,6 +271,7 @@ nand: nand-controller@10b80000 {
+>   			#size-cells = <0>;
+>   			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+>   			clocks = <&clkmgr AGILEX5_NAND_NF_CLK>;
+> +			clock-names = "nf_clk";
+>   			cdns,board-delay-ps = <4830>;
+>   			status = "disabled";
 >   		};
->   
->   		cb_intosc_ls_clk: cb-intosc-ls-clk {
->   			#clock-cells = <0>;
->   			compatible = "fixed-clock";
-> +			clock-frequency = <400000000>;
->   		};
->   
->   		f2s_free_clk: f2s-free-clk {
 
 Applied!
 
