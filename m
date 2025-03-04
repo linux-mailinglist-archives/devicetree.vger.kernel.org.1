@@ -1,368 +1,126 @@
-Return-Path: <devicetree+bounces-153926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E35A4E3FF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:45:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90AADA4E3EA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:43:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2050E19C285F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:40:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0B7917C151
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:33:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C67F28D051;
-	Tue,  4 Mar 2025 15:26:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A07F277815;
+	Tue,  4 Mar 2025 15:22:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="djsF0J15"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Oh4zShkx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE62B280CF6;
-	Tue,  4 Mar 2025 15:26:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A380326738D;
+	Tue,  4 Mar 2025 15:22:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741101995; cv=none; b=Mfp4HlmoP9zpoY6D408HmnFqMjmpThSAD3cL7s1dOPEBvJL6DdW9ZZzrVWyZBm4QEGGgOutSK+M7it1TaXVt9waExrL6etCENGgnxSBdmyBLu+Boc1JHigzu7CcGCdle2Kij+z0YbB/DIGaMHFuMFpl48eMyvlOUsZKwqH/+XCw=
+	t=1741101723; cv=none; b=UyCJ7ygEz1nRdKkkHaB3C45dL0DGDa9NahN8qo7gzj6Xmiee53XJZk8NsAS3+q2Mnq9uQgNJ87r1OmYvdm9vEf4KI6Gtk97fI+6epKxFTSLqxi+odEIfXyXR9DGTxnYLKnKkMq5O07wkJFa5F8pWWRkx157v8w9qaXm/t0rZkbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741101995; c=relaxed/simple;
-	bh=EUJJFAhaLN4+ccsuF3KGc268dENYUHXD2lop0FfN0uM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iMk1Nvdod5IXt4i9QTcWRK55HvCA4a+Ck6Mz/l7EqADvz0UICmHa+3z1FDhs+x474W9RbwAs8dk4MwzuYLzeajnNTeMs7bQBlF2hLM+MObKhxfyVm5dK0U4d8hd2x9sMg5e7dc62SU+uKSMcSyfHVTzw4i8yHTnq8NzVR1rLeIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=djsF0J15; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from [192.168.1.78] (unknown [45.136.247.92])
-	by mail.mainlining.org (Postfix) with ESMTPSA id BBE7FBBEE5;
-	Tue,  4 Mar 2025 15:21:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1741101676;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Jitm5JkLCPyrZxusc13jC3w+GcAY4CZHFICFRg+E00o=;
-	b=djsF0J150J8LxIpmgghqUQ88HsiYOq5AKGF42y2Y6VRJK+O/xrw9QNMCcRYDK3M4DLVlAP
-	ZF+LHJt1BG315anmKWA+BAaVYSXKTSxf4xtUzYB5XF27AlxAvdmXu7Mj391g60hSw//c1r
-	eaCysIvpXkkTKCYKfk1y4N9+YLxBgm52IStQbkjCLdUSKgYB+gv/eZrHsK/bnO2p0+K2JZ
-	uG2FY9fHDRRt4tJoGtwmVY1XYZTD140SQJlhW8GoZ89xbbtpTzHZgWjC+L8r68DYOqfi14
-	ZKEFTzjKUGsx56A1R4PbTZoK3FcK1RQ9kOmyv0jxSurR65ooILRbOyRCLkoD6Q==
-From: Vasiliy Doylov <nekocwd@mainlining.org>
-Date: Tue, 04 Mar 2025 18:21:04 +0300
-Subject: [PATCH 3/3] media: i2c: Add driver for LC898217XC VCM
+	s=arc-20240116; t=1741101723; c=relaxed/simple;
+	bh=F81PowR6sTnmuitnJ10Ri0uZKVplt0OjHyJEHqWjwg4=;
+	h=Date:From:To:CC:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=nKZ9+o+t4Sal/tXUO6QpZincOLgq8tadkJ6mgbl9UmJKhrc3kLUD0D0SexPWp4Z7muEmMOxBfFFYU6jX5LYsWSecmHNuu8pUZrGzQLMO4gYcc7i5ueBtw8j4IhKfQLABUZ8Onz7D52n6Yd7JgRNDrMVd0ezpuvogCdJzA9+x4Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Oh4zShkx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 524AJHfY024801;
+	Tue, 4 Mar 2025 15:21:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=ZcXd1JyQgP9h0Ejk9LgMatug1HZzggFfE1sUzObyScg=; b=Oh
+	4zShkxrb5z89u1rwjJMpuIxkhWO27VQeQ9zO5aDRumBGjo5sIxLX8LUmD1dyCPqh
+	9jiLKGDbenOucidVCJAqhtapfKSL9HO+S6Bqr9SmMkpLLy4P0xU7PeVE7F65nvHi
+	Nh+K0f3GCpIehA1vJvQm6v8vyYhtbe+AYIk45u6gS3EoWLF+UQ02N5NS7DU2DfYv
+	hmSu5ICWfAuXNio2cVAcHj8MdIXdwaSE4RkfO94alXk7tiIaenadgKRbhhefAxCn
+	8rQhGeI/S1yKuagQduAu+jLKgD6KAFgj3UY3AokcxqLm6c/cwDfEB8OINirrnssb
+	mty8gkKXGMRSdt1SAomg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p9327qp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Mar 2025 15:21:46 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 524FLkpx004267
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 4 Mar 2025 15:21:46 GMT
+Received: from hu-kapandey-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 4 Mar 2025 07:21:42 -0800
+Date: Tue, 4 Mar 2025 20:51:33 +0530
+From: Kaustubh Pandey <quic_kapandey@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <quic_rpavan@quicinc.com>, <quic_sharathv@quicinc.com>,
+        <quic_sarata@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: qcom6490-idp: Add IPA nodes
+Message-ID: <20250304152133.GA2763820@hu-kapandey-hyd.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250304-media-i2c-lc898217xc-initial-driver-v1-3-e2ffd2b2fd5e@mainlining.org>
-References: <20250304-media-i2c-lc898217xc-initial-driver-v1-0-e2ffd2b2fd5e@mainlining.org>
-In-Reply-To: <20250304-media-i2c-lc898217xc-initial-driver-v1-0-e2ffd2b2fd5e@mainlining.org>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, Vitalii Skorkin <nikroks@mainlining.org>, 
- Antonio Rische <nt8r@protonmail.com>, 
- Vasiliy Doylov <nekocwd@mainlining.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8497;
- i=nekocwd@mainlining.org; h=from:subject:message-id;
- bh=EUJJFAhaLN4+ccsuF3KGc268dENYUHXD2lop0FfN0uM=;
- b=owGbwMvMwCW2fZ/SFZeSpU2Mp9WSGNKPS6W//FYdrGY4OeOU4qaX8/zPcnubF7dLL+H3yQ6Ys
- UqnZXN8RykLgxgXg6yYIovNRo/ZYvnhkpOmPVWAmcPKBDKEgYtTAC5iz8iw2qzudMPZj37/7Sp8
- H69KKplbyvxkuV5B1NuO15Km8eYeDP+UPcpfzYq4/JbBMaLR5NdHxSU2ihf5LYUXp3x01JTLjGQ
- AAA==
-X-Developer-Key: i=nekocwd@mainlining.org; a=openpgp;
- fpr=3CB1489B166F57199296E520B7BE22D44474A582
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=Me2Wu4/f c=1 sm=1 tr=0 ts=67c71a8a cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=6w_Dn63UQQp3T8FYcDMA:9 a=CjuIK1q_8ugA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: IIT9KV-VFE-Cr0T_OIb-zs_Vtn3Wuxlm
+X-Proofpoint-ORIG-GUID: IIT9KV-VFE-Cr0T_OIb-zs_Vtn3Wuxlm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-04_06,2025-03-03_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1011
+ suspectscore=0 mlxscore=0 malwarescore=0 phishscore=0 spamscore=0
+ adultscore=0 lowpriorityscore=0 mlxlogscore=710 priorityscore=1501
+ impostorscore=0 classifier=spam authscore=0 adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2502100000 definitions=main-2503040124
 
-LC898217XC is a 11 bit DAC, designed for linear control
-of voice coil motor. This driver creates a V4L2 subdevice
-and provides control to set the desired focus.
+Add IPA nodes for Qualcomm qcm6490 board.
 
-Tested on Oneplus 6 (oneplus-enchilada)
-
-Signed-off-by: Vasiliy Doylov <nekocwd@mainlining.org>
+Signed-off-by: Kaustubh Pandey <quic_kapandey@quicinc.com>
 ---
- drivers/media/i2c/Kconfig      |  11 ++
- drivers/media/i2c/Makefile     |   1 +
- drivers/media/i2c/lc898217xc.c | 230 +++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 242 insertions(+)
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-index 85ecb2aeefdbfff744c8de86866560518abeace1..aa16d4729ba914e774da2ada228b00cfd2462080 100644
---- a/drivers/media/i2c/Kconfig
-+++ b/drivers/media/i2c/Kconfig
-@@ -794,6 +794,17 @@ config VIDEO_DW9807_VCM
- 	  capability. This is designed for linear control of
- 	  voice coil motors, controlled via I2C serial interface.
- 
-+config VIDEO_LC898217XC
-+	tristate "LC898217XC lens voice coil support"
-+	depends on I2C && VIDEO_DEV
-+	select MEDIA_CONTROLLER
-+	select VIDEO_V4L2_SUBDEV_API
-+	select V4L2_ASYNC
-+	help
-+	  This is a driver for the LC898217XC camera lens voice coil.
-+	  LC898217XC is a 11 bit DAC with 110mA output current sink
-+	  capability. This is designed for linear control of
-+	  voice coil motors, controlled via I2C serial interface.
- endmenu
- 
- menu "Flash devices"
-diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-index fbb988bd067a1b8b577248811f18a15671eb8932..514b61a7e8769457c2e831df4cbe3c4aabc6ed1c 100644
---- a/drivers/media/i2c/Makefile
-+++ b/drivers/media/i2c/Makefile
-@@ -62,6 +62,7 @@ obj-$(CONFIG_VIDEO_IMX415) += imx415.o
- obj-$(CONFIG_VIDEO_IR_I2C) += ir-kbd-i2c.o
- obj-$(CONFIG_VIDEO_ISL7998X) += isl7998x.o
- obj-$(CONFIG_VIDEO_KS0127) += ks0127.o
-+obj-$(CONFIG_VIDEO_LC898217XC) += lc898217xc.o
- obj-$(CONFIG_VIDEO_LM3560) += lm3560.o
- obj-$(CONFIG_VIDEO_LM3646) += lm3646.o
- obj-$(CONFIG_VIDEO_M52790) += m52790.o
-diff --git a/drivers/media/i2c/lc898217xc.c b/drivers/media/i2c/lc898217xc.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..f71d3d24261bc1e2b1ebc27d6256b01e0fca857a
---- /dev/null
-+++ b/drivers/media/i2c/lc898217xc.c
-@@ -0,0 +1,230 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright (c) 2025 Vasiliy Doylov <nekocwd@mainlining.org>
-+
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
-+#include <media/v4l2-async.h>
-+#include <media/v4l2-ctrls.h>
-+#include <media/v4l2-device.h>
-+#include <media/v4l2-fwnode.h>
-+#include <media/v4l2-subdev.h>
-+
-+#define LC898217XC_NAME "lc898217xc"
-+/* Actuator has 11 bit resolution */
-+#define LC898217XC_MAX_FOCUS_POS (2048 - 1)
-+#define LC898217XC_MIN_FOCUS_POS 0
-+#define LC898217XC_FOCUS_STEPS 1
-+
-+#define LC898217XC_MSB_ADDR 132
-+
-+static const char *const lc898217xc_supply_names[] = {
-+	"vcc",
-+};
-+
-+struct lc898217xc {
-+	struct regulator_bulk_data supplies[ARRAY_SIZE(lc898217xc_supply_names)];
-+	struct v4l2_ctrl_handler ctrls;
-+	struct v4l2_ctrl *focus;
-+	struct v4l2_subdev sd;
-+};
-+
-+static inline struct lc898217xc *sd_to_lc898217xc(struct v4l2_subdev *subdev)
-+{
-+	return container_of(subdev, struct lc898217xc, sd);
-+}
-+
-+static int lc898217xc_set_dac(struct lc898217xc *lc898217xc, u16 val)
-+{
-+	struct i2c_client *client = v4l2_get_subdevdata(&lc898217xc->sd);
-+
-+	return i2c_smbus_write_word_swapped(client, LC898217XC_MSB_ADDR, val);
-+}
-+
-+static int lc898217xc_runtime_suspend(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct lc898217xc *lc898217xc = sd_to_lc898217xc(sd);
-+
-+	regulator_bulk_disable(ARRAY_SIZE(lc898217xc_supply_names),
-+			       lc898217xc->supplies);
-+
-+	return 0;
-+}
-+
-+static int lc898217xc_runtime_resume(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct lc898217xc *lc898217xc = sd_to_lc898217xc(sd);
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(lc898217xc_supply_names),
-+				    lc898217xc->supplies);
-+
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable regulators\n");
-+		return ret;
-+	}
-+
-+	usleep_range(8000, 10000);
-+
-+	return ret;
-+}
-+
-+static int lc898217xc_set_ctrl(struct v4l2_ctrl *ctrl)
-+{
-+	struct lc898217xc *lc898217xc =
-+		container_of(ctrl->handler, struct lc898217xc, ctrls);
-+
-+	if (ctrl->id == V4L2_CID_FOCUS_ABSOLUTE)
-+		return lc898217xc_set_dac(lc898217xc, ctrl->val);
-+
-+	return 0;
-+}
-+
-+static const struct v4l2_ctrl_ops lc898217xc_ctrl_ops = {
-+	.s_ctrl = lc898217xc_set_ctrl,
-+};
-+
-+static int lc898217xc_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
-+{
-+	return pm_runtime_resume_and_get(sd->dev);
-+}
-+
-+static int lc898217xc_close(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
-+{
-+	pm_runtime_mark_last_busy(sd->dev);
-+	pm_runtime_put_autosuspend(sd->dev);
-+
-+	return 0;
-+}
-+
-+static const struct v4l2_subdev_internal_ops lc898217xc_int_ops = {
-+	.open = lc898217xc_open,
-+	.close = lc898217xc_close,
-+};
-+
-+static const struct v4l2_subdev_ops lc898217xc_ops = {};
-+
-+static int lc898217xc_init_controls(struct lc898217xc *lc898217xc)
-+{
-+	struct v4l2_ctrl_handler *hdl = &lc898217xc->ctrls;
-+	const struct v4l2_ctrl_ops *ops = &lc898217xc_ctrl_ops;
-+
-+	v4l2_ctrl_handler_init(hdl, 1);
-+
-+	lc898217xc->focus = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_FOCUS_ABSOLUTE,
-+					      LC898217XC_MIN_FOCUS_POS,
-+					      LC898217XC_MAX_FOCUS_POS,
-+					      LC898217XC_FOCUS_STEPS, 0);
-+
-+	if (hdl->error)
-+		return hdl->error;
-+
-+	lc898217xc->sd.ctrl_handler = hdl;
-+
-+	return 0;
-+}
-+
-+static int lc898217xc_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct lc898217xc *lc898217xc;
-+	unsigned int i;
-+	int ret;
-+
-+	lc898217xc = devm_kzalloc(dev, sizeof(*lc898217xc), GFP_KERNEL);
-+	if (!lc898217xc)
-+		return -ENOMEM;
-+
-+	/* Initialize subdev */
-+	v4l2_i2c_subdev_init(&lc898217xc->sd, client, &lc898217xc_ops);
-+
-+	for (i = 0; i < ARRAY_SIZE(lc898217xc_supply_names); i++)
-+		lc898217xc->supplies[i].supply = lc898217xc_supply_names[i];
-+
-+	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(lc898217xc_supply_names),
-+				      lc898217xc->supplies);
-+
-+	if (ret) {
-+		dev_err(dev, "failed to get regulators\n");
-+		return ret;
-+	}
-+
-+	/* Initialize controls */
-+	ret = lc898217xc_init_controls(lc898217xc);
-+	if (ret)
-+		goto err_free_handler;
-+
-+	/* Initialize subdev */
-+	lc898217xc->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-+	lc898217xc->sd.internal_ops = &lc898217xc_int_ops;
-+
-+	ret = media_entity_pads_init(&lc898217xc->sd.entity, 0, NULL);
-+	if (ret < 0)
-+		goto err_free_handler;
-+
-+	lc898217xc->sd.entity.function = MEDIA_ENT_F_LENS;
-+
-+	pm_runtime_enable(dev);
-+	ret = v4l2_async_register_subdev(&lc898217xc->sd);
-+
-+	if (ret < 0) {
-+		dev_err(dev, "failed to register V4L2 subdev: %d", ret);
-+		goto err_power_off;
-+	}
-+
-+	pm_runtime_set_autosuspend_delay(dev, 1000);
-+	pm_runtime_use_autosuspend(dev);
-+	pm_runtime_idle(dev);
-+
-+	return 0;
-+
-+err_power_off:
-+	pm_runtime_disable(dev);
-+	media_entity_cleanup(&lc898217xc->sd.entity);
-+err_free_handler:
-+	v4l2_ctrl_handler_free(&lc898217xc->ctrls);
-+
-+	return ret;
-+}
-+
-+static void lc898217xc_remove(struct i2c_client *client)
-+{
-+	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-+	struct lc898217xc *lc898217xc = sd_to_lc898217xc(sd);
-+	struct device *dev = &client->dev;
-+
-+	v4l2_async_unregister_subdev(&lc898217xc->sd);
-+	v4l2_ctrl_handler_free(&lc898217xc->ctrls);
-+	media_entity_cleanup(&lc898217xc->sd.entity);
-+	pm_runtime_disable(dev);
-+}
-+
-+static const struct of_device_id lc898217xc_of_table[] = {
-+	{ .compatible = "onnn,lc898217xc" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, lc898217xc_of_table);
-+
-+static const struct dev_pm_ops lc898217xc_pm_ops = {
-+	SET_RUNTIME_PM_OPS(lc898217xc_runtime_suspend,
-+			   lc898217xc_runtime_resume, NULL)
-+};
-+
-+static struct i2c_driver lc898217xc_i2c_driver = {
-+	.driver = {
-+		.name = LC898217XC_NAME,
-+		.pm = &lc898217xc_pm_ops,
-+		.of_match_table = lc898217xc_of_table,
-+	},
-+	.probe = lc898217xc_probe,
-+	.remove = lc898217xc_remove,
-+};
-+module_i2c_driver(lc898217xc_i2c_driver);
-+
-+MODULE_AUTHOR("Vasiliy Doylov <nekocwd@mainlining.org>");
-+MODULE_DESCRIPTION("Onsemi LC898217XC VCM driver");
-+MODULE_LICENSE("GPL");
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+index 9209efcc49b5..ba47786d6474 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+@@ -19,7 +19,6 @@
+ #include "pm8350c.dtsi"
+ #include "pmk8350.dtsi"
 
--- 
-2.48.1
+-/delete-node/ &ipa_fw_mem;
+ /delete-node/ &rmtfs_mem;
+ /delete-node/ &adsp_mem;
+ /delete-node/ &cdsp_mem;
+@@ -515,6 +514,13 @@ &gpu_zap_shader {
+ 	firmware-name = "qcom/qcm6490/a660_zap.mbn";
+ };
 
++&ipa {
++	qcom,gsi-loader = "self";
++	memory-region = <&ipa_fw_mem>;
++	firmware-name = "qcom/qcm6490/ipa_fws.mdt";
++	status = "okay";
++};
++
+ &mdss {
+ 	status = "okay";
+ };
 
