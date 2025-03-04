@@ -1,121 +1,110 @@
-Return-Path: <devicetree+bounces-153755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0DB3A4DB1F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:44:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881DFA4DB29
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:45:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F32987A986D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:43:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3199189C3D2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10243202C40;
-	Tue,  4 Mar 2025 10:40:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFBE202C3A;
+	Tue,  4 Mar 2025 10:40:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="lXUofKZw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L5hRRGei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4035A202C2F
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 10:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537601FE478;
+	Tue,  4 Mar 2025 10:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741084801; cv=none; b=GA3I2RCiedLKxnTgCSMQnFnboKqLMfdPmyPBw7UAVyUSVs944hxja7Oc5ItQQmR6j5lJuMqj6T0BH7U2KpX7b0ZMwrby7Uk+uwXOyZolkxngShAJ6sTC2m9Zv/tvFCMCCOU0J2R8KksODS5Lgljzq89QFfjfSk5AHhvhvj03UGI=
+	t=1741084817; cv=none; b=iOozo9EalWzJCuYf0R2eFLMTslyK520rAcIx44FX4tRAFcwJcJzQyoq1/dilgKtfPblEwMnG1DURbMhXtFxkaeQ+WRx0mgrpgiWc5TXea+LEAttIOBn/p84Amn7NJn2rZvswEyPF7B10OpWPzaXyXCAAAnyUxaHIL/qsmeCXLLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741084801; c=relaxed/simple;
-	bh=nzgcasT8XlfuMCUiPfV4W/V1AJ9l8OcLLCDvCjZ+wh8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QxfqnxAs/l81bHfN6FeTP3qYb26qkcmSg73YwDWaEw++Yq8ul0ks7WLN12F16G7V0Z1ALFifAEuMAwdGZ3VRDoAYZbxINXVACkip5QT18AIkTnxAMuWX0JBr2HRBNQkDsasWbeiUZZXhc/1fEzIQPgubKRiIdkp2eQ7MAcVdvUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=lXUofKZw; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43bc0b8520cso12900735e9.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 02:39:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1741084798; x=1741689598; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I4NRBkDX3tmF4bL4mAlAFQOe0WTBDnxQ2hATnqOky0M=;
-        b=lXUofKZwkeg5fvE/WuQp2lxCVJSFmUWajPm+wtvu+oMFDi0Y15yee0mX3AZNSTBkRD
-         Djr8pva31HiMPD7CHIP4r2gRjj7t8UY+/Q6gHZab5NjFZm9WWkdlJLDRgQlWo+EwgoSh
-         NrKNVeB3ifTsGZ32kv3wWJPfWQO1seOwiD4+E7y5nYGRqZ/IkCccg0y7Bq36LTwj9x/K
-         3ayaxs8JJXRmqaceCRa3K8aS7EljOB2kVef+RHXsxB4wHzQtgHznZGCiQosVetVhHw3p
-         dpIbKcN7Efob2ZtLvwLmfx5G++/OozelcfHcLLSB3KsqhGVhRyTdzSngyJ9tH3tZLkpI
-         eQ5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741084798; x=1741689598;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I4NRBkDX3tmF4bL4mAlAFQOe0WTBDnxQ2hATnqOky0M=;
-        b=Op+nSvGMYA63toTb0okJsYQqXk3nMHIJkdeYG6IyJJgkOZsqeYq5EKIwB57ut5wwLt
-         B6AkK844vqYHCex8Hvvkchh0LiL69cy+fpBcotUr2s74LnCBfpDDtFXPcw5vEHTu9won
-         aQhMCDTcjxiRIxLV3+7UNRZHYwzjOcBl0Xszw03fuYm+yuTqx0DXk5GVn7euEV8vkLDz
-         PeV/vx+kqSTuZpu8b15F+8Dz+LRqQkOxHRE4PZrmkU/gp1/xYwYbVoTtoE/138NsjA2B
-         rOrCgklrxTf+Bz4hCZd/ZxyhCKd//MZhnOxm3yDv8BQBLFOyZHTgVMbKLo6aNe3fPjE6
-         BP/w==
-X-Forwarded-Encrypted: i=1; AJvYcCUGoqLNc0M6Z3srPVEnWL+sZqVYz+VyItk53CV7JVVC/OlBqTJID3nykTnEsJScLjXPQNCRivbjnwFj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZ/ibORfYGMfSga2kbvTTbCWjDYfi1CMeruPTGs2RlYLBxqVDJ
-	kXXtgi7+RDgRBwjOAzENWgKDQK8pL+7JiKBthrxcTdGxSeZJkvXi0lvyJSL2vgc=
-X-Gm-Gg: ASbGncuMv8xAwtBMv+5Zz/HCv9JGUTVq1AqAP9h75KK2B9Hc2CAYDGNXGVVKkm9AKzY
-	UOOcGU8bW5EU8CYHWYC/r176MIg9EvfrBRDqsfU/Ru+/vC2Ts1QO/O3jAUg2QaNaeuhMXDGO1xc
-	nZ3W4UwpnFSt4i1GMoKJzg/hZIYPnarvdUEkU8TsGTI7iapAnLYdtOQCVcUFaeDFFja29TxhNog
-	V08H3hQGGoSug8HDOljIabRnOJgynsGSiU2S8L7edtqr0ElzYirKVRX1OfKm5XL9cx2ZsLjNdtp
-	PMjn2ngskS3Ja5mbrJiBYXpJsnMxuiMmvznww1lRqUHp
-X-Google-Smtp-Source: AGHT+IGI5YinM0Fmil/KbrQRp+7dyNZtKk6Cw3iHPUYwQZ6EfkAXgPjAmvyLHMyqzvMus9tjQNoGAw==
-X-Received: by 2002:a05:6000:2805:b0:390:fb37:1ca with SMTP id ffacd0b85a97d-390fb3705aamr7047086f8f.53.1741084798504;
-        Tue, 04 Mar 2025 02:39:58 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:6018:7257:350d:e85e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e484451fsm17602859f8f.63.2025.03.04.02.39.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Mar 2025 02:39:58 -0800 (PST)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	"Rob Herring (Arm)" <robh@kernel.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	linux-pwm@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: gpio: mvebu: Add missing 'gpio-ranges' property and hog nodes
-Date: Tue,  4 Mar 2025 11:39:56 +0100
-Message-ID: <174108479375.31979.16946190179335788449.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250227175132.3734524-1-robh@kernel.org>
-References: <20250227175132.3734524-1-robh@kernel.org>
+	s=arc-20240116; t=1741084817; c=relaxed/simple;
+	bh=zeuR33V6Nig3YTRf30aeCyZJpnmVoH5asRZEzpfD4kI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qxDWzM+kWZdlYQbbXx5QSSvePT4k9odnDx0Kxsls0pSrTVjs3/xz0bDcrxGbyxDPYCs48aqhK5D/sb0pJfCaKQ+ngf4He4IGOimlX62gSEGJf/W9hR2gRwDKfQGhu2w2YTKS3SCYjUnG/S/DoH0sjZcSgWhnfrtlbASGeoZN0gA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L5hRRGei; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73554C4CEE5;
+	Tue,  4 Mar 2025 10:40:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741084813;
+	bh=zeuR33V6Nig3YTRf30aeCyZJpnmVoH5asRZEzpfD4kI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L5hRRGei3/msl+PS8pM7qByJEABWMzDWKEMhUqqHGRhAffKerYH4+XUI4212pyfgs
+	 FqJjeAf7G41blnAqyzAf6knJs6Yz9BWUcypZfqH/2U0Iqq6iE2prArWEP7lFmtk3wx
+	 34+t8NXHvJHH7Tc14Bfp3MTlZoBhsJMZD7ImF8bSPQGTSP2kIMjLY2/LEraiVZYmwB
+	 jzjiVHSmaDFn81j9RUEJjR8nQIO4rtur5bKTsZpJuts7o156sZfxxBTAPlunINowQw
+	 DPpc2B3WcCGVBUVHOLqxzPZ3l7P0a2mZjZLuGh5i/zh6iCPfgyg97kbKHRIQdDe8Dq
+	 cc9mQN/LOljpg==
+Date: Tue, 4 Mar 2025 11:40:11 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Subject: Re: [PATCH 4/5] drm/bridge: simple-bridge: Add DPI color encoder
+ support
+Message-ID: <20250304-diamond-toucanet-of-pizza-6faa2d@houat>
+References: <20250304101530.969920-1-victor.liu@nxp.com>
+ <20250304101530.969920-5-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="cvg5trahoe45bnma"
+Content-Disposition: inline
+In-Reply-To: <20250304101530.969920-5-victor.liu@nxp.com>
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
+--cvg5trahoe45bnma
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 4/5] drm/bridge: simple-bridge: Add DPI color encoder
+ support
+MIME-Version: 1.0
 
-On Thu, 27 Feb 2025 11:51:32 -0600, Rob Herring (Arm) wrote:
-> The Marvell mvebu binding users already use 'gpio-ranges' and have hog
-> nodes, so add them to the binding.
-> 
-> 
+On Tue, Mar 04, 2025 at 06:15:29PM +0800, Liu Ying wrote:
+> A DPI color encoder, as a simple display bridge, converts input DPI color
+> coding to output DPI color coding, like Adafruit Kippah DPI hat[1] which
+> converts input 18-bit pixel data to 24-bit pixel data(with 2 low padding
+> bits in every color component though). Add the DPI color encoder support
+> in the simple bridge driver.
+>=20
+> [1] https://learn.adafruit.com/adafruit-dpi-display-kippah-ttl-tft/downlo=
+ads
+>=20
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+>  drivers/gpu/drm/bridge/simple-bridge.c | 104 ++++++++++++++++++++++++-
+>  1 file changed, 102 insertions(+), 2 deletions(-)
 
-Applied, thanks!
+Same thing, I think it's easy enough to write a transparent bridge to
+just put it into another driver.
 
-[1/1] dt-bindings: gpio: mvebu: Add missing 'gpio-ranges' property and hog nodes
-      commit: f2f3d5d62f6fbdaef46d1991086265a497b3e24f
+Maxime
 
-Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+--cvg5trahoe45bnma
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ8bYigAKCRAnX84Zoj2+
+dkiDAYCgU0NDy1jNNt5ll1AoLdiTQdjBqC3CiomoIEQeInCOcNZGk32SYUau3oIa
+nH69OMEBgJDUtmPZ9EnGSsDmK6PCaWlzXdFmyC1Jgt2fTwkEEY3QPSHAty8LFgG4
+6EfonZdIGw==
+=02dW
+-----END PGP SIGNATURE-----
+
+--cvg5trahoe45bnma--
 
