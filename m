@@ -1,80 +1,134 @@
-Return-Path: <devicetree+bounces-153708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C43C6A4D9D1
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:09:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D6EA4D9D7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:13:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECE8116DFB9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:09:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F9D716DFF6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3973E1FC7DD;
-	Tue,  4 Mar 2025 10:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C121FC7F8;
+	Tue,  4 Mar 2025 10:13:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eCt5zUM1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3576225D6;
-	Tue,  4 Mar 2025 10:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777B6225D6;
+	Tue,  4 Mar 2025 10:13:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741082938; cv=none; b=DXHoD4EG5WT7fXlMeNF5DSoaQGxNe24N1jWSuiAzxid7PV+NJd+PRUZfCIBF/ZH0Py5qt9z20Uk0yy9BgkeyYHKp7k8IiFP9zYBoAiLQvRC/1MP4lMU7b9KvRSBz3h99dNsRADbAq6gbEHLg22WZNfF3Jb0gZEsBRMa7KJtA/rw=
+	t=1741083182; cv=none; b=T8N7WKG5ktBX4yal/tcp6WmCH/nMXCtFiqu4p7ismW7NRKjn28XyxqsIBsc2sQ8nbgj9njLf8oxDhXrFe3yfOfo00gawox/wYwteEF+DPyxLakfsJOPxDV12Bm6vloqHwBm0dVxUZ88Av+2FJiuiZY6htyuKYT2HbSVy333VAbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741082938; c=relaxed/simple;
-	bh=7pUDCtlrFILyQcyKs/tDPC50GkUzWmX1jAHf8k1hC/0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CCI9w1ZNgw8jUfmXWAq1TIqsqKTZfPXuF8scTMFYK14Z2kz4f1VTsnukz5xcywpva45qcFzs2uPfWKsMCTkfx3Khhcit3/DX5kY95P0CCAJYB5yioeXAeMnl1JMa7KIt7W8+m21MStHIPhMQfCAB23H1o5pmdR/v2gANCkDJajs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B1B2FFEC;
-	Tue,  4 Mar 2025 02:09:09 -0800 (PST)
-Received: from usa.arm.com (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 305BF3F5A1;
-	Tue,  4 Mar 2025 02:08:54 -0800 (PST)
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	liviu.dudau@arm.com,
-	lpieralisi@kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH v2] arm64: dts: corstone1000: Add definitions for secondary CPU cores
-Date: Tue,  4 Mar 2025 10:08:47 +0000
-Message-Id: <174108287362.420865.6246087705407586774.b4-ty@arm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250303170012.469576-1-hugues.kambampiana@arm.com>
-References: <Z8XSIx75B4mtcV48@bogus> <20250303170012.469576-1-hugues.kambampiana@arm.com>
+	s=arc-20240116; t=1741083182; c=relaxed/simple;
+	bh=Vg/RWn3guOlPu3NnhDEqa5mQyoV3f87Ql2/DgfZqpY8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I9Ik/G1o6o+g+fuO8e6G4lpG3lci69mBKGoDnVYFN+s1hYOBbix8UbpW5bLE9Zf2DJlV+DcDw/VOzeafmDLORieqL1DeEoTKXGBNVX101wSqccjeIK5LyiUbDKsGgHg8qSgTRqfzgyswOidztn6shyj6PI/w0F0ZaqFpcGFILlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eCt5zUM1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADB1C4CEE8;
+	Tue,  4 Mar 2025 10:12:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741083182;
+	bh=Vg/RWn3guOlPu3NnhDEqa5mQyoV3f87Ql2/DgfZqpY8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eCt5zUM1L+fL4wVKqlQDasmTPvBbpAHR5MaQcksQ0FHFTfoHjxYawj0LKdaCRFIwr
+	 a0Qz5eRCOB9l2tJDPHCar2NhuGwTftQJhpf2E7laUegwtJim9PEYpCHrymDQ4mg5DA
+	 8rmUN4KMn/udyON6eEiioxip8T99gjXOw/WYIp3irI9QanTBRjrCQQPTjWTtAs2oOZ
+	 eEj6JaSjdPFdiI8+e+nFQX8AvynPpB3n1lxzz1M8SKuNF2CBIe+tNeyRdjpKk9XwEi
+	 rjbopWZ27JLOpMRYAoYHGyK/wl+K7iKYvoZ37sSoDzzCq/8aVfB4zv+zIkMTcdOzTT
+	 Nnaaz+I6ztixQ==
+Message-ID: <f6c7feb3-e003-4bbc-8179-3a3df533d2d5@kernel.org>
+Date: Tue, 4 Mar 2025 11:12:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: corstone1000: Add definitions for
+ secondary CPU cores
+To: Sudeep Holla <sudeep.holla@arm.com>,
+ Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org
+References: <Z8XSIx75B4mtcV48@bogus>
+ <20250303170012.469576-1-hugues.kambampiana@arm.com>
+ <174108287362.420865.6246087705407586774.b4-ty@arm.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <174108287362.420865.6246087705407586774.b4-ty@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 03 Mar 2025 17:00:12 +0000, Hugues KAMBA MPIANA wrote:
-> Add `cpu1`, `cpu2` and `cpu3` nodes to the Corstone1000 device tree to
-> enable support for secondary CPU cores.
->
-> This update facilitates symmetric multiprocessing (SMP) support on
-> the Corstone1000 Fixed Virtual Platform (FVP), allowing the
-> secondary cores to be properly initialised and utilised.
->
-> [...]
+On 04/03/2025 11:08, Sudeep Holla wrote:
+> On Mon, 03 Mar 2025 17:00:12 +0000, Hugues KAMBA MPIANA wrote:
+>> Add `cpu1`, `cpu2` and `cpu3` nodes to the Corstone1000 device tree to
+>> enable support for secondary CPU cores.
+>>
+>> This update facilitates symmetric multiprocessing (SMP) support on
+>> the Corstone1000 Fixed Virtual Platform (FVP), allowing the
+>> secondary cores to be properly initialised and utilised.
+>>
+>> [...]
+> 
+> Applied to sudeep.holla/linux (for-next/juno/updates), thanks!
+> 
+> [1/1] arm64: dts: corstone1000: Add definitions for secondary CPU cores
+>       https://git.kernel.org/sudeep.holla/c/21b9f56cec8f
 
-Applied to sudeep.holla/linux (for-next/juno/updates), thanks!
+Why? Nothing improved here comparing to v1.
 
-[1/1] arm64: dts: corstone1000: Add definitions for secondary CPU cores
-      https://git.kernel.org/sudeep.holla/c/21b9f56cec8f
---
-Regards,
-Sudeep
+Your comment are still valid and the patch is still not correct.
 
+Best regards,
+Krzysztof
 
