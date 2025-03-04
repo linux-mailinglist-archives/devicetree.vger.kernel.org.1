@@ -1,120 +1,101 @@
-Return-Path: <devicetree+bounces-154042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF7E2A4E974
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:42:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 849E9A4E95B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:39:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B04E716126A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:37:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F368A7A2D14
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0652F280CD5;
-	Tue,  4 Mar 2025 17:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5042D296D6B;
+	Tue,  4 Mar 2025 17:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RGYo0f47"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eMzXGm/p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1BA25F979;
-	Tue,  4 Mar 2025 17:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2714A261374;
+	Tue,  4 Mar 2025 17:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741108261; cv=none; b=iGjUh/dG3guyzeYDLN26g0EQ+L0kRvYJQNwnkcNPORoIicswOZgrAbWuKiyfyJgWrCOaz9G8EzfQZheGl2urNGdVFbfB2Q6Ury48YwODN1gJEjZD6/zE4IztXc91ZvMFbP3pMYE+P7cVRd5zKBWuND81VsPN1n13dTuvIaDZMtc=
+	t=1741108270; cv=none; b=ao+tWYX/kbSBn8xMxjCXm4ZH4NUgAPfiupFDkJOVWD/6+9EgPWmcrgzbstnsGyZk/psvBM4br9/TmfIyMX+klzgLESoUrnXSqnhl6F1Ryx4jHEX0eC0fpgL1qPDmD4C7C6oBJMiCyaLUH3UqCAHi1YADW06Uoh+sYerviDueWA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741108261; c=relaxed/simple;
-	bh=QyJnJjJ/lXLnZyjDS28b5GSFwV9FD3aP+4XwcadNkRM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=GBvbkuYUNurxcqRUuFTeDWwKye3926VzeVNr/b73xALqNPzpLN5/lrwarfJhwK3wptDKH2mtLGyWS16OigyLyuOplx2x7qQSRCY8+WV1lOVSLefACltJTUR/5b1Zec07EN/3wtiRh+zdWNrDqibbKp101FsL7wEjH5FYb02Sq+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RGYo0f47; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 746AEC4CEE5;
-	Tue,  4 Mar 2025 17:10:57 +0000 (UTC)
+	s=arc-20240116; t=1741108270; c=relaxed/simple;
+	bh=xIG690djDhXKXH4IBWWZJH31VsCI0TyOl9Qn3zjmGxQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=d8xSflnx2WcFoeDUHqfez18Bwp+ZpcJ28TQ3o7wWP64SHNheKIYQlr2TfV7Xt/QyOUvG9YTMYNgUW8kHAk/1AYIGzt11udSreQmkMtAR3r0s0UgOcPVD4fwhcfjqKNqy2yaocsZSbAONe75nE9KAVM7GKm6UyjMydqm0jnA7j6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eMzXGm/p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F773C4CEE9;
+	Tue,  4 Mar 2025 17:11:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741108261;
-	bh=QyJnJjJ/lXLnZyjDS28b5GSFwV9FD3aP+4XwcadNkRM=;
-	h=From:Date:Subject:To:Cc:From;
-	b=RGYo0f47bdIphAXi3nG487Me7SQvi3vSP8HlcI1krepoc4UIgzfLABTZlLoOOYEd/
-	 vFjRPpa8mV2DKyp63Z0hnG4BYKK2A8gKBlyiQxCfuNsSrc6h+MFtRio80jn3RrdsdH
-	 1Ypn9wEvG2YXqlWYFZSUwmDZ5a6Ze7EyhR+ZIojN0M3O+JRsGeGrho7IjgrPDns68p
-	 O1bkgcSAUphQluzSh8pco38/wZn80RA4ZLOgqtXzGFU82K7aeVbbb95PiWxi+icVnu
-	 axyq/oDmmp5VqJMHb0i6cUoxhRs6fQnM7wvUxf4M9X56lbLLhUxIn0vhG8Bo53BiRJ
-	 f6xmAKe5Bf9Lw==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Tue, 04 Mar 2025 18:10:46 +0100
-Subject: [PATCH] arm64: dts: qcom: x1e80100-romulus: Keep L12B and L15B
- always on
+	s=k20201202; t=1741108269;
+	bh=xIG690djDhXKXH4IBWWZJH31VsCI0TyOl9Qn3zjmGxQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=eMzXGm/peXE2BD5aGPmJeqoiZxx0i2Kf49LPMJ67YalBWSMqKue6Mkmjv6m2wGgTl
+	 /3OiUnbAhOI/KyqhqLIldNaIMrugCdqsz4llVVTgyy39QV9IC9tlo0I8KYi2y8wQ+s
+	 A5xD8caVUFWUPxoV7O1oqb15otQWnP/VQuQVINVWKrPh+//S/0Ksypjna3qFE6oDnT
+	 P65ociX14cMYQSeHJImZUj4TmP+YuI1y7e8pFpB5Z9zB4ZGPsJO2H9oJCEftAHz+SR
+	 M4fwKG15JdsB+ser2yHaQd1NUZTHHKY6HgcsO6XrKVaAESIyY8DXdJnojjS1ifPr5j
+	 QVabhxHZErRFQ==
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-aaf0f1adef8so1101490066b.3;
+        Tue, 04 Mar 2025 09:11:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVfZSAweFBWekD+Y69crLVMVtCdDb6+QyL0ZjfcivCF6FgOgthbzkxk3k7Xe8sDUYN0pm2PlDxXQBvC@vger.kernel.org, AJvYcCWtmAYxwT4dSEJ7Aw89QKBTgum6ZrXq55FIWYUuVkeJHcQTBx7pdXOAfkXqHHi/PAVDXT2uZQ7rCDQkz4jY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXqG9FzFiHLz4FSNCRuXq8xEpbdiO8pmSQ4ES1T2DCw5F7BIq+
+	yLOv3EYq9Kl/kZ9Ig6fIaPWAco1mzDebxAXjP119mG/lpeEB0PVaBnJSCjDhcBkwI9zn9Dg9nzq
+	sPp7mBRx2r1yapE06ormQo1QSwg==
+X-Google-Smtp-Source: AGHT+IFgs8oMB90zZE6lwaT3tbdeTZ2vDb6K7bI3B7uxQqUz1+cPe+fBOtsCycQF9VShe8mD0kCNZUK3gMn27oWuAu8=
+X-Received: by 2002:a17:907:1c92:b0:ac1:ea29:4e74 with SMTP id
+ a640c23a62f3a-ac20d92560dmr8023966b.28.1741108267600; Tue, 04 Mar 2025
+ 09:11:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250304-topic-sl7_vregs_aon-v1-1-b2dc706e4157@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIABU0x2cC/x3M2wpAQBRG4VfRvjY1ByKvIknjxy7NaLak5N1NL
- r+LtR4SJIZQVzyUcLFwDBmmLMhvU1iheM4mq22tna7UGQ/2SvZmvBJWGacYlLHaALX1aB3l8kh
- Y+P6v/fC+H9PfDDJlAAAA
-X-Change-ID: 20250304-topic-sl7_vregs_aon-1201ee52ce83
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- Konrad Dybcio <quic_kdybcio@quicinc.com>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Johan Hovold <johan+linaro@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741108257; l=1496;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=Q1raCAdNlbWo+epSFVrbDIAnmmxs+X4h74jjAxQUfLU=;
- b=IgCjeXZpbP0EeY9TZrvIxpTFUsVbsEiCtkLNSlhtHr/5lSuxS8wjCBfFcFaacDGfZmKXuNfuJ
- pKaHFJs9pPWBF7BW4EaRURpD3WMB3vJTE+yTLQhnlc99aoiPrEESgUJ
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+References: <20250224193308.407606-1-Frank.Li@nxp.com>
+In-Reply-To: <20250224193308.407606-1-Frank.Li@nxp.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 4 Mar 2025 11:10:54 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLJciDgc2cPy7QApH4ia=Rx3MnoVMS3pha3u9PVy_EfPg@mail.gmail.com>
+X-Gm-Features: AQ5f1JoVIjx_EnjE9gxDA6sYaQfZU0bi3wrsrEMOzYkBv4xckzwxDP8YmX37Q1Q
+Message-ID: <CAL_JsqLJciDgc2cPy7QApH4ia=Rx3MnoVMS3pha3u9PVy_EfPg@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: im8mq: move dwc3 usb port under ports
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Mon, Feb 24, 2025 at 1:33=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+>
+> Move port@0 and port@1 under ports to fix below DTB_CHECK warnings.
+>
+> arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb: usb@38100000: po=
+rt@0:reg:0:0: 0 is less than the minimum of 1
+>         from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml=
+#
+> arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb: usb@38100000: Un=
+evaluated properties are not allowed ('#address-cells', '#size-cells', 'dr_=
+mode', 'phy-names', 'phys', 'port@0', 'port@1', 'snps,parkmode-disable-ss-q=
+uirk' were unexpected)
+>         from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml=
+#
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../dts/freescale/imx8mq-librem5-devkit.dts   | 25 +++++++++++--------
+>  .../boot/dts/freescale/imx8mq-librem5.dtsi    | 25 +++++++++++--------
+>  2 files changed, 28 insertions(+), 22 deletions(-)
 
-These regulators power some electronic components onboard. They're
-most likely kept online by other pieces of firmware, but you can never
-be sure enough.
-
-Fixes: 09d77be56093 ("arm64: dts: qcom: Add support for X1-based Surface Laptop 7 devices")
-Reported-by: Johan Hovold <johan+linaro@kernel.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-index 5867953c73564ca7ae1279b73f6834aa1d732792..6a883fafe3c77a45e045beba8357d67caa88dabf 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-@@ -510,6 +510,7 @@ vreg_l12b: ldo12 {
- 			regulator-min-microvolt = <1200000>;
- 			regulator-max-microvolt = <1200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-always-on;
- 		};
- 
- 		vreg_l13b: ldo13 {
-@@ -531,6 +532,7 @@ vreg_l15b: ldo15 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-always-on;
- 		};
- 
- 		vreg_l16b: ldo16 {
-
----
-base-commit: 20d5c66e1810e6e8805ec0d01373afb2dba9f51a
-change-id: 20250304-topic-sl7_vregs_aon-1201ee52ce83
-
-Best regards,
--- 
-Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
