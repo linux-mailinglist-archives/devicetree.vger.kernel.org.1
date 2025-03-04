@@ -1,133 +1,92 @@
-Return-Path: <devicetree+bounces-153782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62073A4DCAA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:35:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0431A4DCCE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:42:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88DED18856E6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:34:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AD417AC04D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C071FECB1;
-	Tue,  4 Mar 2025 11:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C12B1FFC66;
+	Tue,  4 Mar 2025 11:42:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hUCUwvVz"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="1EiI6HaY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311D31FF1A2;
-	Tue,  4 Mar 2025 11:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 124AD1FFC50;
+	Tue,  4 Mar 2025 11:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741088076; cv=none; b=f5xlQRbPh3Th2ICrAGJkuuzJWZcs+y34H3FOZIQjLlgigKka1LjF+lNrnALTtDUpvZLqjfm1n+KVAiDkPJpj7y0EZ3eLT4arLzIOJAIeTMUg/gJYwLn27MuFMY74pIvSmz7uwuDHYtEKJkYhwdrqlV9w1M7MN1YOm9RYRaHXfCY=
+	t=1741088527; cv=none; b=BMxmgSJwcmZSEfL+tzvhXXt06+pwO5r+gTvhUyGZCqQjatdNa+XoiB7ND99zslRDB8SH3JPDDLSZYH3narG3aqKkQ4p15vBY65U5JMZHZjovol72hxcSi56t/fJ+WABfnXt2ygKch7LuEZ21uhW4f1cU/3qK4vO2LoPF6GXabiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741088076; c=relaxed/simple;
-	bh=R64CIkbkrQHoFYgAir+ioRO3gvXvRZJhc66qUon5SCc=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SEIj26GGelS+lnUrx/eYk6E2oWNJcqOUNN9W+1HmbFgcYPew3lypcQ4d6GZvsDs9/1giCHP4D2BE0EzM/zw38tCEz1Strdak0oAVKSyGxeinGk5BUUFXp90pAPgUqxWhLfnZ8NS5Y7sGaWpyZ3dun8Ao91U4Mxqs0ygjejDjBMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hUCUwvVz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 524AErHk015625;
-	Tue, 4 Mar 2025 11:34:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=+UnQnZYjyK2lQCr84l8QYn
-	yvb0Yl6lj690T6CEqty98=; b=hUCUwvVzV09MdPOOmVrzOsP6cGba477jwROyJl
-	vH7CLeFkh/jDou/aSATxXC0SEI708hPFvldmOq1F45chgn4ee2/+uSZrkqUAMxiG
-	5ownD1dgIvB+1MGkUXBWyfJpFwQiFidEyDYrPVgNPNrhDvx3VczGFW+CQ8n+c/yz
-	L5K+9/jwWSHPv4y+7jkMsunj0W9DEr+dqYvUDFoXYHTO7FfmJYB7M6n99K0RD3iW
-	Ido4Gwhpsd2jcEq+9+GJjjxawVybQN8rj8RptnW+sFXAtiFiHJX6TVaKWdS32OhT
-	3Z57KBDct1hgfy1P2E5RDsU2x/7bs1QTfEryjw8JDe27aFPA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6v1pfn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 04 Mar 2025 11:34:30 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 524BYTBY015651
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 4 Mar 2025 11:34:29 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 4 Mar 2025 03:34:26 -0800
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Varadarajan Narayanan <quic_varada@quicinc.com>
-Subject: [PATCH v2] arm64: dts: qcom: ipq5424: Enable MMC
-Date: Tue, 4 Mar 2025 17:04:00 +0530
-Message-ID: <20250304113400.2806670-1-quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1741088527; c=relaxed/simple;
+	bh=uqenW6FxHzjv93IlGq3O4/NtcfxeAquNgX50B3dpRGI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FyjupuW5TdH9qJ5JPCLYu5OyZ3vAwVVoBArJAHKMUlPrcEGE9hxpAZEXF1LuYrD1Dux9aNkaAjUuZbxBJzbHRdDs/CaAGJfOvOWW9CT+m3YVAcW9gQfyRgtgx9awrYbR2LZ7DhunwLrM7VLHerVF3B3xkn9F3HPSLVu8oBLPBT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=1EiI6HaY; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=LlkC1H6GlfM4Hx4kB9R2XcBn/wEpCBfNZPYyj4bbtvs=; b=1EiI6HaYvFggifFfi7bvm1wBKs
+	6jLTW7PCJ7Oi2vW1Zf0AkcO74u/pGgwoED+2iUf225BS+ONodX0g1SV8YxrqrvwKSY8WMt6GozH1P
+	Za4o+/iMmwj1Qw0wEj3pBbdIVFk7WC75pXwxpBQKIeCxbOo7uNOEimr07UiHkNUuq8vtnDXZIHZDN
+	Pr+YjXaNZplYLFekBRhJMCkqBDIcsBz0Ou9tzeI5JAV3Zp0NwfswqRUul9gGRcVAKdO09RvtvpUQX
+	VU6vKqFSwGb4C/efsUkU3OGme/KjRaIgYizLWDGK2QbngJTBqg+e4qWORjjtanbcZYqPjG2+8qE1f
+	tsLW+eyQ==;
+Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tpQer-0002qO-Nc; Tue, 04 Mar 2025 12:41:57 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>
+Cc: Yao Zi <ziyao@disroot.org>, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Jonas Karlman <jonas@kwiboo.se>
+Subject:
+ Re: [PATCH 1/4] dt-bindings: iio: adc: Add rockchip,rk3528-saradc variant
+Date: Tue, 04 Mar 2025 12:41:56 +0100
+Message-ID: <3748393.44csPzL39Z@diego>
+In-Reply-To: <20250227184058.2964204-2-jonas@kwiboo.se>
+References:
+ <20250227184058.2964204-1-jonas@kwiboo.se>
+ <20250227184058.2964204-2-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QEMQtOws_iOHshqrV4HWq5HY8FJIE0Ot
-X-Proofpoint-ORIG-GUID: QEMQtOws_iOHshqrV4HWq5HY8FJIE0Ot
-X-Authority-Analysis: v=2.4 cv=fatXy1QF c=1 sm=1 tr=0 ts=67c6e546 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=IAiaYzwUq23lniLHEFAA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-04_05,2025-03-03_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- spamscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- lowpriorityscore=0 mlxlogscore=755 mlxscore=0 adultscore=0 suspectscore=0
- phishscore=0 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2503040097
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-Enable MMC and relevant pinctrl entries.
+Am Donnerstag, 27. Februar 2025, 19:40:50 MEZ schrieb Jonas Karlman:
+> The Successive Approximation ADC (SARADC) in RK3528 uses the v2
+> controller and support:
+> - 10-bit resolution
+> - Up to 1MS/s sampling rate
+> - 4 single-ended input channels
+> - Current consumption: 0.5mA @ 1MS/s
+> 
+> Add a rockchip,rk3562-saradc compatible string for the 4 channels of
+> 10-bit resolution supported by SARADC in RK3528.
+> 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 7 +++++++
- arch/arm64/boot/dts/qcom/ipq5424.dtsi       | 2 ++
- 2 files changed, 9 insertions(+)
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-index b6e4bb3328b3..b9752e8d579e 100644
---- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-@@ -69,6 +69,13 @@ &qusb_phy_1 {
- 	status = "okay";
- };
- 
-+&sdhc {
-+	pinctrl-0 = <&sdc_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
- &sleep_clk {
- 	clock-frequency = <32000>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-index 7034d378b1ef..e41f619121ff 100644
---- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-@@ -265,6 +265,8 @@ sdhc: mmc@7804000 {
- 				 <&xo_board>;
- 			clock-names = "iface", "core", "xo";
- 
-+			supports-cqe;
-+
- 			status = "disabled";
- 		};
- 
--- 
-2.34.1
 
 
