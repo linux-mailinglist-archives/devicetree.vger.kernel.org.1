@@ -1,400 +1,140 @@
-Return-Path: <devicetree+bounces-153704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F3EA4D96F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:58:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1660A4D986
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:59:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 940BD3A6A89
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:52:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7E85188DFAB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99EA31FCFE6;
-	Tue,  4 Mar 2025 09:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1780B1FCF62;
+	Tue,  4 Mar 2025 09:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="UYUFyNZZ";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="qCvDIahd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="I/ucUq7m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43431F37CE;
-	Tue,  4 Mar 2025 09:52:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9DE31F4E38;
+	Tue,  4 Mar 2025 09:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741081952; cv=none; b=XP+prj22F4VtGX4pF1bi+hjHUPsNCZtJv0rql3D8E3tz6+rE+yjkFCKgXT6MjNAZyc1EiwfhcKA55qeOG02BelamsCcbCIqEyjaVaKs6Y7JqPuP5QB/VEFFgZ6uwlSzx1RPlj9COM/hcTcwPya6KZ7j5zrNlzF+cJlufTgzsqb0=
+	t=1741082340; cv=none; b=gT7UAreoX+9qkTRNkFqc07Gf4F7UrhcMhAThD9sXPPnpzR3JYMixszojqPnoJ3tgul8lz3kP3zs/rWPQCgSNKWLeHcqU7mz6wgguYGvIa6U6mdDHEjOnxZs2x1W4d8NtrFJpQesEBRmudH/HZKYKaJyNV2q0sT2XT/0nVdC8hqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741081952; c=relaxed/simple;
-	bh=JSH5GeiPPH4wM0Pk/jLoSaU89Eu3Ojhxb+Tf+szsYPY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WgWQe6T2mP/hbOco6k4Vh3M2N5CN35h//SulBsQ3lVsS9PvLqXeS+fJtF3EFs/cZqAWLts4HUEQtGNCvEp7Vhq/OLfzxv7gDyWlzXNdQ1w+w0lrxPFjbB1I/FIds5e6O+ynyfIQzVQV6ksHapjuZDJ421ZRnyhfxps5K9r1+0W0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=UYUFyNZZ; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=qCvDIahd reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1741081950; x=1772617950;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=/VD/a98yyCDfU0SnOMU0rBxOeXhg52QvUZEBAyqv8Bw=;
-  b=UYUFyNZZndN9Ml9i3vC35MBHpWxLFT7Flz1KQC9YnTDlAQWi0tACOFJz
-   bfH/NL0mLo7SbSGqPnQM5hsTGKnDGwDR+G7oIYgMKpCnqBhe2CxlOsAy4
-   Ioia2Sj7cxRrtkl9x6/3lO4TlX1QcBYFlHDI94J4EHve5LaiSM1DjTmNa
-   7D6xbYc0Mn+lO+F7vzWjlrSCdGb+8VdiX1tBiuq0xgOZfWXVARM6Obq2F
-   9XkVKQH85hfQ0nGxwLIGA+q7Slpr3mESkuzzYyZknUiB0s0tXGnHLtA1r
-   DfUoHe7f6AWdAsmdpTim0k2nZrotuKykUH0y9CQwM77gHPbEtUaFdBVfZ
-   g==;
-X-CSE-ConnectionGUID: Ydj/0GUmRGm2UMVXtfd5xQ==
-X-CSE-MsgGUID: ppoVPoayTkquX4t30HAVZA==
-X-IronPort-AV: E=Sophos;i="6.13,331,1732575600"; 
-   d="scan'208";a="42262166"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 04 Mar 2025 10:52:27 +0100
-X-CheckPoint: {67C6CD5B-11-18B7E41A-CF5803A6}
-X-MAIL-CPID: 03A005A869DADFCCF1CB15E663175D25_1
-X-Control-Analysis: str=0001.0A00211E.67C6CD5B.0007,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6AFB016CC2F;
-	Tue,  4 Mar 2025 10:52:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1741081942;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/VD/a98yyCDfU0SnOMU0rBxOeXhg52QvUZEBAyqv8Bw=;
-	b=qCvDIahdzX+SI9KvpR3VjuFNf2v8ygK6rm5b4WI4uiagdFEMJ3BKXKJ7tAeCOfAaC2H2Bi
-	5J/yNARaER9ZBAahmx7Ocjvf9tFwGcXMRRqFvwSYKb5X6c8VJEJmuZLJVEWfOI7IKsnl9A
-	DBZ8buHQn/Ar03UfdoZ4tjpPLJhalyCtiJyr7i1tX0wCw3IAq27WMgY0VzmNfDanfl0voM
-	2D/T1xIJ7Ucito2jwMA7Sq4/IZXbSohWQCORBgNW7wOD68CivjL6oTj/YBXTQ3D9Fxk7N/
-	tkrSOhRYS4ubrlnF3wAYEzUgCXvygUNuuIrSVAncXcBYDov+QEoPlSiLDFx5MQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Liu Ying <victor.liu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, victor.liu@nxp.com, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, peng.fan@nxp.com
-Subject:
- Re: [PATCH v5 2/2] drm/bridge: imx: Add i.MX93 parallel display format
- configuration support
-Date: Tue, 04 Mar 2025 10:52:21 +0100
-Message-ID: <8499738.T7Z3S40VBb@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250304082434.834031-3-victor.liu@nxp.com>
-References:
- <20250304082434.834031-1-victor.liu@nxp.com>
- <20250304082434.834031-3-victor.liu@nxp.com>
+	s=arc-20240116; t=1741082340; c=relaxed/simple;
+	bh=PAtPy/wt2rCEh7ng3mCcrXdrycMnjRtf1qS6olDHhzs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fB2RKA41m1eFrHLrbHDxNl3lmUA2qrmU2+ZW3GeNtnCDiJgMEjTYJqQrc2OkkGAkIq/feeesRKt2CEFgNX7aVe7bPHm94F1YTXgKumHkPe4g854j0dtCBSZUDGejeZwc3iuNY1OW4an4SEShdSdj/xfYgUJ1BEGLkjt6cG0bqGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=I/ucUq7m; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5249t5o8017322;
+	Tue, 4 Mar 2025 09:58:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XaKME3qV1Kg76zd5EjKy7antbBVtuWC78krGEB2xPew=; b=I/ucUq7mZ944MWww
+	BpyPu8dTBxf5y+OtaELtGgPuWew02t76dUCd0z9A4YJtpuR/ucvCoLR81tJ6Y9pe
+	C1NNIN0Q9IJakVPyzXO0jFksXxZj0SgP+uswcTfL+znIZs2K6WkuhcoJcnJPBqJg
+	INIuOjkgd/AzEAHG5lI6k5WJ82sWGsrGqK7d7i+m1QsbVtIU5cbgI0/YILMOpwqY
+	Tl3ul9dnkOE+TJrLJ4cSIIpGfNxYnbPdIWy1CocKnNufRvJ0pnlP3N8kU8cEZHRQ
+	xAY+gkJ9v3BjyGT60LG+hpmqiakcIPNbEa5OkO9dHznuIX/0Gi7rtOKmX2viEO/9
+	FSyPJw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6thfkq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Mar 2025 09:58:43 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5249wgBG017419
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 4 Mar 2025 09:58:42 GMT
+Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Mar 2025
+ 01:58:35 -0800
+Message-ID: <963915a3-819f-46f7-88eb-f3420d9660d5@quicinc.com>
+Date: Tue, 4 Mar 2025 15:28:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/11] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI to
+ DP bridge nodes
+To: Krzysztof Kozlowski <krzk@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <robdclark@gmail.com>, <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
+        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
+References: <20250225121824.3869719-1-quic_amakhija@quicinc.com>
+ <20250225121824.3869719-8-quic_amakhija@quicinc.com>
+ <ecdc2230-1ce1-4d70-a352-180f6cd29e61@kernel.org>
+ <20250226-futuristic-messy-rook-e9f85c@krzk-bin>
+Content-Language: en-US
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <20250226-futuristic-messy-rook-e9f85c@krzk-bin>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=PMb1+eqC c=1 sm=1 tr=0 ts=67c6ced3 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=Oh48bqpFvL8qWIr0kS4A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: kLHL-FOeG01MCscaXHFCJbfQsm80sH-m
+X-Proofpoint-GUID: kLHL-FOeG01MCscaXHFCJbfQsm80sH-m
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-04_04,2025-03-03_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
+ phishscore=0 lowpriorityscore=0 malwarescore=0 priorityscore=1501
+ mlxscore=0 adultscore=0 spamscore=0 suspectscore=0 impostorscore=0
+ clxscore=1011 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2503040084
 
-Hi,
+On 2/26/2025 2:05 PM, Krzysztof Kozlowski wrote:
+> On Tue, Feb 25, 2025 at 02:31:05PM +0100, Krzysztof Kozlowski wrote:
+>> On 25/02/2025 13:18, Ayushi Makhija wrote:
+>>> +		pinctrl-0 = <&dsi0_int_pin>,
+>>> +				<&dsi0_cbl_det_pin>,
+>>> +				<&dsi1_int_pin>,
+>>> +				<&dsi1_cbl_det_pin>;
+>>> +		pinctrl-names = "default";
+>>> +
+>>> +		dsi0_int_pin: gpio2_cfg {
+>>
+>>
+>> No underscores, see DTS coding style.
+> 
+> And as Rob's bot pointed out: insufficient testing. :(
+> 
+> Please be 100% sure everything is tested before you post new version.
+> You shouldn't use reviewers for the job of tools, that's quite waste of
+> our time.
+> 
+> Best regards,
+> Krzysztof
 
-thanks for the update.
+Hi Krzysztof,
 
-Am Dienstag, 4. M=E4rz 2025, 09:24:34 CET schrieb Liu Ying:
-> NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
-> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
-> field. Add a DRM bridge driver to support the display format configuratio=
-n.
->=20
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v4->v5:
-> * Rebase upon next-20250303.  This causes the drop of .remove_new by using
->   devm_drm_bridge_add().  Also, this causes API change for
->   imx93_pdfc_bridge_atomic_enable().
-> * Update year of copyright.
->=20
-> v3->v4:
-> * Use dev_err_probe() in imx93_pdfc_bridge_probe(). (Krzysztof)
-> * Drop MODULE_ALIAS(). (Krzysztof)
-> * Update year of Copyright.
->=20
-> v2->v3:
-> * No change.
-> * Resend with the patch rebased upon v6.11-rc1.
->=20
-> v1->v2:
-> * Set *num_input_fmts to zero in case
->   imx93_pdfc_bridge_atomic_get_input_bus_fmts() returns NULL.
-> * Replace .remove callback with .remove_new callback in
->   imx93_pdfc_bridge_driver.
->=20
->  drivers/gpu/drm/bridge/imx/Kconfig      |   8 +
->  drivers/gpu/drm/bridge/imx/Makefile     |   1 +
->  drivers/gpu/drm/bridge/imx/imx93-pdfc.c | 186 ++++++++++++++++++++++++
->  3 files changed, 195 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx93-pdfc.c
->=20
-> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/=
-imx/Kconfig
-> index 9a480c6abb85..51138d74ddfb 100644
-> --- a/drivers/gpu/drm/bridge/imx/Kconfig
-> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> @@ -88,4 +88,12 @@ config DRM_IMX93_MIPI_DSI
->  	  Choose this to enable MIPI DSI controller found in Freescale i.MX93
->  	  processor.
-> =20
-> +config DRM_IMX93_PARALLEL_DISP_FMT_CONFIG
-> +	tristate "NXP i.MX93 parallel display format configuration"
-> +	depends on OF
-> +	select DRM_KMS_HELPER
-> +	help
-> +	  Choose this to enable parallel display format configuration
-> +	  found in NXP i.MX93 processor.
-> +
->  endif # ARCH_MXC || COMPILE_TEST
-> diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge=
-/imx/Makefile
-> index dd5d48584806..f4ccc5cbef72 100644
-> --- a/drivers/gpu/drm/bridge/imx/Makefile
-> +++ b/drivers/gpu/drm/bridge/imx/Makefile
-> @@ -8,3 +8,4 @@ obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) +=3D imx8qxp-pix=
-el-combiner.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) +=3D imx8qxp-pixel-link.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) +=3D imx8qxp-pxl2dpi.o
->  obj-$(CONFIG_DRM_IMX93_MIPI_DSI) +=3D imx93-mipi-dsi.o
-> +obj-$(CONFIG_DRM_IMX93_PARALLEL_DISP_FMT_CONFIG) +=3D imx93-pdfc.o
-> diff --git a/drivers/gpu/drm/bridge/imx/imx93-pdfc.c b/drivers/gpu/drm/br=
-idge/imx/imx93-pdfc.c
-> new file mode 100644
-> index 000000000000..7dfb87e64197
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/imx93-pdfc.c
-> @@ -0,0 +1,186 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +
-> +/*
-> + * Copyright 2022-2025 NXP
-> + */
-> +
-> +#include <linux/media-bus-format.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <drm/drm_atomic_state_helper.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_print.h>
-> +
-> +#define DISPLAY_MUX		0x60
-> +#define  PARALLEL_DISP_FORMAT	0x700
-> +
-> +enum imx93_pdfc_format {
-> +	RGB888_TO_RGB888 =3D 0x0,
-> +	RGB888_TO_RGB666 =3D 0x1 << 8,
-> +	RGB565_TO_RGB565 =3D 0x2 << 8,
-> +};
+Thanks, for the review.
 
-How about?
-#define  PARALLEL_DISP_FORMAT          GENMASK(10, 8)
-#define  FORMAT_RGB888_TO_RGB888       FIELD_PREP(PARALLEL_DISP_FORMAT, 0)
-#define  FORMAT_RGB888_TO_RGB666       FIELD_PREP(PARALLEL_DISP_FORMAT, 1)
-#define  FORMAT_RGB565_TO_RGB565       FIELD_PREP(PARALLEL_DISP_FORMAT, 2)
-#define  FORMAT_RGB555_TO_RGB555       FIELD_PREP(PARALLEL_DISP_FORMAT, 3)
-#define  FORMAT_YUV_TO_YCBCR24         FIELD_PREP(PARALLEL_DISP_FORMAT, 4)
-#define  FORMAT_YUV_TO_YUV444          FIELD_PREP(PARALLEL_DISP_FORMAT, 5)
+Sorry for the mistake. I will post the clean patch in my next patchset.
 
-> +
-> +struct imx93_pdfc {
-> +	struct drm_bridge bridge;
-> +	struct drm_bridge *next_bridge;
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +	u32 format;
-> +};
-> +
-> +static int imx93_pdfc_bridge_attach(struct drm_bridge *bridge,
-> +				    enum drm_bridge_attach_flags flags)
-> +{
-> +	struct imx93_pdfc *pdfc =3D bridge->driver_private;
-> +
-> +	return drm_bridge_attach(bridge->encoder, pdfc->next_bridge, bridge, fl=
-ags);
-> +}
-> +
-> +static void imx93_pdfc_bridge_atomic_enable(struct drm_bridge *bridge,
-> +					    struct drm_atomic_state *state)
-> +{
-> +	struct imx93_pdfc *pdfc =3D bridge->driver_private;
-> +
-> +	regmap_update_bits(pdfc->regmap, DISPLAY_MUX, PARALLEL_DISP_FORMAT,
-> +			   pdfc->format);
-> +}
-> +
-> +static const u32 imx93_pdfc_bus_output_fmts[] =3D {
-> +	MEDIA_BUS_FMT_RGB888_1X24,
-> +	MEDIA_BUS_FMT_RGB666_1X18,
-> +	MEDIA_BUS_FMT_RGB565_1X16,
-> +	MEDIA_BUS_FMT_FIXED
-> +};
-> +
-> +static bool imx93_pdfc_bus_output_fmt_supported(u32 fmt)
-> +{
-> +	int i;
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(imx93_pdfc_bus_output_fmts); i++) {
-> +		if (imx93_pdfc_bus_output_fmts[i] =3D=3D fmt)
-> +			return true;
-> +	}
-> +
-> +	return false;
-> +}
-> +
-> +static u32 *
-> +imx93_pdfc_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-> +					    struct drm_bridge_state *bridge_state,
-> +					    struct drm_crtc_state *crtc_state,
-> +					    struct drm_connector_state *conn_state,
-> +					    u32 output_fmt,
-> +					    unsigned int *num_input_fmts)
-> +{
-> +	u32 *input_fmts;
-> +
-> +	*num_input_fmts =3D 0;
-> +
-> +	if (!imx93_pdfc_bus_output_fmt_supported(output_fmt))
-> +		return NULL;
-> +
-> +	input_fmts =3D kmalloc(sizeof(*input_fmts), GFP_KERNEL);
-> +	if (!input_fmts)
-> +		return NULL;
-> +
-> +	switch (output_fmt) {
-> +	case MEDIA_BUS_FMT_RGB888_1X24:
-> +	case MEDIA_BUS_FMT_RGB565_1X16:
-> +		input_fmts[0] =3D output_fmt;
-> +		break;
-> +	case MEDIA_BUS_FMT_RGB666_1X18:
-> +	case MEDIA_BUS_FMT_FIXED:
-> +		input_fmts[0] =3D MEDIA_BUS_FMT_RGB888_1X24;
-> +		break;
-> +	}
-> +
-> +	*num_input_fmts =3D 1;
-> +
-> +	return input_fmts;
-> +}
-> +
-> +static int imx93_pdfc_bridge_atomic_check(struct drm_bridge *bridge,
-> +					  struct drm_bridge_state *bridge_state,
-> +					  struct drm_crtc_state *crtc_state,
-> +					  struct drm_connector_state *conn_state)
-> +{
-> +	struct imx93_pdfc *pdfc =3D bridge->driver_private;
-> +
-> +	switch (bridge_state->output_bus_cfg.format) {
-> +	case MEDIA_BUS_FMT_RGB888_1X24:
-> +		pdfc->format =3D RGB888_TO_RGB888;
-> +		break;
-> +	case MEDIA_BUS_FMT_RGB666_1X18:
-> +		pdfc->format =3D RGB888_TO_RGB666;
-> +		break;
-> +	case MEDIA_BUS_FMT_RGB565_1X16:
-> +		pdfc->format =3D RGB565_TO_RGB565;
-
-Do really need to store the bus format in device struct?
-It's possible to access the bridge state in atomic_enable using
-drm_atomic_get_bridge_state, no? TBH I don't know what are the best
-practices though.
-> +		break;
-> +	default:
-> +		DRM_DEV_DEBUG_DRIVER(pdfc->dev, "Unsupported output bus format: 0x%x\n=
-",
-> +				     bridge_state->output_bus_cfg.format);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_bridge_funcs imx93_pdfc_bridge_funcs =3D {
-> +	.attach			=3D imx93_pdfc_bridge_attach,
-> +	.atomic_enable		=3D imx93_pdfc_bridge_atomic_enable,
-> +	.atomic_duplicate_state	=3D drm_atomic_helper_bridge_duplicate_state,
-> +	.atomic_destroy_state	=3D drm_atomic_helper_bridge_destroy_state,
-> +	.atomic_get_input_bus_fmts	=3D imx93_pdfc_bridge_atomic_get_input_bus_f=
-mts,
-> +	.atomic_check		=3D imx93_pdfc_bridge_atomic_check,
-> +	.atomic_reset		=3D drm_atomic_helper_bridge_reset,
-> +};
-> +
-> +static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct imx93_pdfc *pdfc;
-> +
-> +	pdfc =3D devm_kzalloc(dev, sizeof(*pdfc), GFP_KERNEL);
-> +	if (!pdfc)
-> +		return -ENOMEM;
-> +
-> +	pdfc->regmap =3D syscon_node_to_regmap(dev->of_node->parent);
-> +	if (IS_ERR(pdfc->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(pdfc->regmap),
-> +				     "failed to get regmap\n");
-> +
-> +	pdfc->next_bridge =3D devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-> +	if (IS_ERR(pdfc->next_bridge))
-> +		return dev_err_probe(dev, PTR_ERR(pdfc->next_bridge),
-> +				     "failed to get next bridge\n");
-> +
-> +	pdfc->dev =3D dev;
-> +	pdfc->bridge.driver_private =3D pdfc;
-> +	pdfc->bridge.funcs =3D &imx93_pdfc_bridge_funcs;
-> +	pdfc->bridge.of_node =3D dev->of_node;
-
-pdfc->bridge.type =3D DRM_MODE_CONNECTOR_DPI;
-
-Despite that looks god to me.
-
-Best regards
-Alexander
-
-> +
-> +	return devm_drm_bridge_add(dev, &pdfc->bridge);
-> +}
-> +
-> +static const struct of_device_id imx93_pdfc_dt_ids[] =3D {
-> +	{ .compatible =3D "nxp,imx93-pdfc", },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx93_pdfc_dt_ids);
-> +
-> +static struct platform_driver imx93_pdfc_bridge_driver =3D {
-> +	.probe	=3D imx93_pdfc_bridge_probe,
-> +	.driver	=3D {
-> +		.of_match_table =3D imx93_pdfc_dt_ids,
-> +		.name =3D "imx93_pdfc",
-> +	},
-> +};
-> +module_platform_driver(imx93_pdfc_bridge_driver);
-> +
-> +MODULE_DESCRIPTION("NXP i.MX93 parallel display format configuration dri=
-ver");
-> +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
-> +MODULE_LICENSE("GPL v2");
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Thank,
+Ayushi
 
 
 
