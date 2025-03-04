@@ -1,117 +1,107 @@
-Return-Path: <devicetree+bounces-153545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5FD7A4D093
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 02:12:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F88EA4D0B5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 02:24:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0A3F16B545
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 01:12:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A6D616566C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 01:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F0C433BE;
-	Tue,  4 Mar 2025 01:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3271757F3;
+	Tue,  4 Mar 2025 01:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sRTUUvqA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u8LSoMnO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7262118D;
-	Tue,  4 Mar 2025 01:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D489273FD;
+	Tue,  4 Mar 2025 01:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741050748; cv=none; b=QR/U/dHPaNXMtekJHMWqIg/W2SLPQjVA/CrUSSNSFRI1zluJ6wHPKnZ2/aZ4M7HT7Hf/PCvpU/hKGvMytSpBXx+oxExvcXEa9SxWhMEPZ5mZTahoJBYjCTuw5OcILbZp7dCIlwOAVeirYyrH08V5rDoQMEMszpfEyuGKW2t0xWs=
+	t=1741051450; cv=none; b=kcQ7PKagwy24UELTZ/jhGmhMnuMad8ZHJncmhqJXKnMA/0tTO3CHCz1Dhiw2DlZSMiFW+5aY/svfNFkTZ4Y61qgqGFz/Vd8OwEjDANYXEb15XZ17IvEO+oCv/0aZlberJ00ZQaS9mGpdxSvKXnYxTPKsxyQ9nvn/1Gsfnd2oy6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741050748; c=relaxed/simple;
-	bh=fK13RTG60oM901lJvnBTBZkzA80AD4Iv7WCKf0MnMS0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sRzAp1j01HsRua8tcK6JxtAkb6EeUfmnkA26iauHaovqWpms31Z2v2KF5pT0KwiPD8+UQ3Wcc9POxqxCUS/sWWVEfkJGqNgK9fpG4fu/hnQbrjWszPXhViLtes5aheU7l10IsCHixqQSA+U3QsvVCJMTrq1wqta/A32bNfXq0mY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sRTUUvqA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 309D2C4CEE8;
-	Tue,  4 Mar 2025 01:12:27 +0000 (UTC)
+	s=arc-20240116; t=1741051450; c=relaxed/simple;
+	bh=E2F08/o2OSzuu8jrFvRof23F4wF1UTe9v7R9uNKJugM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=mcgixihuHdlnr/VQT0vk2+lSM/2qwZGE2nRRqk+fpBESGxY59gR+Lz4XxLTgADvoO+xykhqzbLY+KXVD0ijjtzIRkzlUM9PqFGx0pKukNLGicp1ORQtV3K+aRZP+8jwnxZ1cQpSKyIpbJgx/6ipoQu1A6AkydaDan9vyAzWmCLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u8LSoMnO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7ED6C4CEE4;
+	Tue,  4 Mar 2025 01:24:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741050747;
-	bh=fK13RTG60oM901lJvnBTBZkzA80AD4Iv7WCKf0MnMS0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=sRTUUvqA1l8IpLboZkNJjdTiZy0XVlD/1AXeO2mpKzKOBBvAiXJbwG2wexUJJ1GYW
-	 Ax0ipHfrkQTZVySvEzdWfsWYu/bsbmSUYaXc0IeT+0CLrJbyqsct+O6R353hngfHje
-	 GiYFWqDtzAgMtdByEMSs9MUBv+dS8Kv5WYuJJoVA1grqoI1Q/Kq/qXHDuEgAXL4bBu
-	 32sYjsxfKIQU90pGBRaa0dAOTrJqVpqm6ETwGmE8rkAS5pVNhY0MTsntQHOQGDQM93
-	 cPqmDkjAJE3bJNBbHr6d4tHPD2qVg7HUmnjAZEutt/UG+z1wwEjvcRBOdaza3FdyXc
-	 90rDlnH+7nK5w==
-Date: Mon, 3 Mar 2025 17:12:26 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Andrew Lunn <andrew@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
- <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, Rob Herring
- <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman
- <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 06/12] net: pse-pd: Add support for budget
- evaluation strategies
-Message-ID: <20250303171226.4fb78c99@kernel.org>
-In-Reply-To: <20250303144051.2503fb43@kmaincent-XPS-13-7390>
-References: <20250224134522.1cc36aa3@kernel.org>
-	<20250225102558.2cf3d8a5@kmaincent-XPS-13-7390>
-	<20250225174752.5dbf65e2@kernel.org>
-	<Z76t0VotFL7ji41M@pengutronix.de>
-	<Z76vfyv5XoMKmyH_@pengutronix.de>
-	<20250226184257.7d2187aa@kernel.org>
-	<Z8AW6S2xmzGZ0y9B@pengutronix.de>
-	<20250227155727.7bdc069f@kmaincent-XPS-13-7390>
-	<Z8CVimyMj261wc7w@pengutronix.de>
-	<20250227192640.20df155d@kmaincent-XPS-13-7390>
-	<Z8ME-90Xg46-pNhA@pengutronix.de>
-	<20250303144051.2503fb43@kmaincent-XPS-13-7390>
+	s=k20201202; t=1741051449;
+	bh=E2F08/o2OSzuu8jrFvRof23F4wF1UTe9v7R9uNKJugM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=u8LSoMnOcd05kRsUfZGCFaY1x+Gj/801isMvowIZCnI3uz1CUHEK+dU+svd5YHEVm
+	 10Ru54utTdmBkSyqfGcfMt9vPuWCtCXQx1ieHg7CuJ22bsTMAXg3thcrZWqtHIUp56
+	 5yNxN1JeRyiaWJpla12/uHsY/+sad2oLMDntjPUSTxR5edCA6MIE6YVvLLz/pFdcfU
+	 ERmMJdAUWBRpREHjTRQEif16hFvrGg/mP9jkzXEE506Ly/BS+SEPlgEE2cheRab4sL
+	 TuoKKFKwBrb33Rt5dzPUt6yPFEPOIRt/FLWj9bkB0wS2EFIXUpzKrFURp6XpAJ6siY
+	 6kkR8/vWSfUQw==
+Date: Mon, 03 Mar 2025 19:24:08 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Michael.Hennerich@analog.com, 
+ jic23@kernel.org, linux-iio@vger.kernel.org, linux-staging@lists.linux.dev, 
+ devicetree@vger.kernel.org, gregkh@linuxfoundation.org, conor+dt@kernel.org, 
+ krzk+dt@kernel.org, 21cnbao@gmail.com, lars@metafoo.de
+To: Saalim Quadri <danascape@gmail.com>
+In-Reply-To: <20250303235930.68731-1-danascape@gmail.com>
+References: <20250303235930.68731-1-danascape@gmail.com>
+Message-Id: <174105144819.171181.14482923503787621828.robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: iio: accel: add binding documentation
+ for ADIS16203
 
-On Mon, 3 Mar 2025 14:40:51 +0100 Kory Maincent wrote:
-> > Ok, I assume we are talking about different things. I mean - not port
-> > specific configurations and diagnostic, will have different interface.
-> >=20
-> > BUDGET_EVAL_STRAT is port specific. HP and Cisco implement it as port
-> > specific. PD692x0 Protocol manual describe it as port specific too:
-> > 3.3.6 Set BT Port Parameters
-> >  Bits [3..0]=E2=80=94BT port PM mode
-> >   0x0: The port power that is used for power management purposes is
-> >        dynamic (Iport x Vmain).
-> >   0x1: The port power that is used for power management purposes is port
-> >        TPPL_BT.
-> >   0x2: The port power that is used for power management purposes is
-> >        dynamic for non LLDP/CDP/Autoclass ports and TPPL_BT for
-> > LLDP/CDP/Autoclass ports. 0xF: Do not change settings. =20
->=20
-> I don't really understand how that can be port specific when the power bu=
-dget is
-> per PD69208 manager. Maybe I am missing information here.
 
-+1
+On Tue, 04 Mar 2025 05:29:30 +0530, Saalim Quadri wrote:
+> This patch add device tree binding documentation for ADIS16203.
+> 
+> Signed-off-by: Saalim Quadri <danascape@gmail.com>
+> ---
+> Changes:
+> V1 - V2: change compatible property from enum to const
+> 
+>  .../bindings/iio/accel/adi,adis16203.yaml     | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
+> 
 
-> > So, I assume, critical components are missing anyway. =20
->=20
-> As we are not supporting the budget method configured by the user in this
-> series, I agreed we should not add any uAPI related to it that could be b=
-roken
-> or confusing later.
->=20
-> I will remove it and send v6.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-v6 sounds like a good idea.
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml: properties:compatible:const: ['adi,adis16203'] is not of type 'integer', 'string'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml: properties:compatible:const: ['adi,adis16203'] is not of type 'string'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+Documentation/devicetree/bindings/iio/accel/adi,adis16203.example.dtb: /example-0/spi/accelerometer@0: failed to match any schema with compatible: ['adi,adis16203']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250303235930.68731-1-danascape@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
