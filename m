@@ -1,107 +1,133 @@
-Return-Path: <devicetree+bounces-153780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EC0CA4DC8C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:27:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62073A4DCAA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:35:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C801916DD67
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:27:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88DED18856E6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E16711FF1A0;
-	Tue,  4 Mar 2025 11:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C071FECB1;
+	Tue,  4 Mar 2025 11:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kuctRa9E"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hUCUwvVz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8DF21FE45C;
-	Tue,  4 Mar 2025 11:27:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311D31FF1A2;
+	Tue,  4 Mar 2025 11:34:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741087656; cv=none; b=BXTnHl8n5B8vVa+IRKGq1XP4PL6Lh5z+PYEGvLNKU4UbQJj0ycIjVYlTQKteVDSQYy7Ei5wayBqf+OqjNOJIQ0OhpCdlGTynNfaqcbuLL4xKrhLhGKePxhDleIN2bkVqf+NhMznTP1qLV3WogZ1NbaLtAjMX3DSf+Li647WFHHQ=
+	t=1741088076; cv=none; b=f5xlQRbPh3Th2ICrAGJkuuzJWZcs+y34H3FOZIQjLlgigKka1LjF+lNrnALTtDUpvZLqjfm1n+KVAiDkPJpj7y0EZ3eLT4arLzIOJAIeTMUg/gJYwLn27MuFMY74pIvSmz7uwuDHYtEKJkYhwdrqlV9w1M7MN1YOm9RYRaHXfCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741087656; c=relaxed/simple;
-	bh=4KFBBF3Ao5HU3HgirJAXKEK8cCaqMTH0xugNMYsYIco=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=PZwCXvYAJrpTOsJKps+8C2LK9xNe9MDy9oLTDjehq7iAPWBWW7v6KoA8rbMu+0vDVAuZTQuto1MqrWShypXZwYgU0DjLM+tv/Uszua6RrJzqZsXv62WjFcEFhh3wFj/3rqrOQApLULECapbCgpyqzwn3EkfmL9ytirmciNs+/4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kuctRa9E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0741EC4CEE5;
-	Tue,  4 Mar 2025 11:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741087656;
-	bh=4KFBBF3Ao5HU3HgirJAXKEK8cCaqMTH0xugNMYsYIco=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=kuctRa9E5v64bZ+7Oc2Xsl/TmkYbNrxpoVbayvVM4YOnYgC52o2+kv/QDT//qQZTg
-	 LoBe7Cr+vfJYA9UVmMSzWHTqUePaOk8UDKry3rqjnLELMHi/PZJfNtgXJ2IhXQL3zU
-	 qAw76DR1GxOcP4Tq1iP/DK+sGa2rj2L/u0905iz1oXPdQ4K5kkamcdfhE6WvSvqDPA
-	 nuwHsra3WoGAKl/wsCvzH+vGoEukfisjBaUMJzsCp1CdXA6fcf+Gr2fogxBU5xAqHU
-	 MqITI7QxBtZ50PtdfomUQAJlzNDv18N3VcxUX1WwOgnPuZGMayxoTj1niuQ17ymeSt
-	 J9YO6SsmazMpQ==
-Date: Tue, 04 Mar 2025 05:27:34 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1741088076; c=relaxed/simple;
+	bh=R64CIkbkrQHoFYgAir+ioRO3gvXvRZJhc66qUon5SCc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SEIj26GGelS+lnUrx/eYk6E2oWNJcqOUNN9W+1HmbFgcYPew3lypcQ4d6GZvsDs9/1giCHP4D2BE0EzM/zw38tCEz1Strdak0oAVKSyGxeinGk5BUUFXp90pAPgUqxWhLfnZ8NS5Y7sGaWpyZ3dun8Ao91U4Mxqs0ygjejDjBMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hUCUwvVz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 524AErHk015625;
+	Tue, 4 Mar 2025 11:34:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=+UnQnZYjyK2lQCr84l8QYn
+	yvb0Yl6lj690T6CEqty98=; b=hUCUwvVzV09MdPOOmVrzOsP6cGba477jwROyJl
+	vH7CLeFkh/jDou/aSATxXC0SEI708hPFvldmOq1F45chgn4ee2/+uSZrkqUAMxiG
+	5ownD1dgIvB+1MGkUXBWyfJpFwQiFidEyDYrPVgNPNrhDvx3VczGFW+CQ8n+c/yz
+	L5K+9/jwWSHPv4y+7jkMsunj0W9DEr+dqYvUDFoXYHTO7FfmJYB7M6n99K0RD3iW
+	Ido4Gwhpsd2jcEq+9+GJjjxawVybQN8rj8RptnW+sFXAtiFiHJX6TVaKWdS32OhT
+	3Z57KBDct1hgfy1P2E5RDsU2x/7bs1QTfEryjw8JDe27aFPA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6v1pfn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Mar 2025 11:34:30 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 524BYTBY015651
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 4 Mar 2025 11:34:29 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 4 Mar 2025 03:34:26 -0800
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v2] arm64: dts: qcom: ipq5424: Enable MMC
+Date: Tue, 4 Mar 2025 17:04:00 +0530
+Message-ID: <20250304113400.2806670-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: airlied@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
- Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com, 
- tzimmermann@suse.de, simona@ffwll.ch, neil.armstrong@linaro.org, 
- jernej.skrabec@gmail.com, linux-kernel@vger.kernel.org, mripard@kernel.org, 
- devicetree@vger.kernel.org, jonas@kwiboo.se, rfoss@kernel.org, 
- maarten.lankhorst@linux.intel.com, dri-devel@lists.freedesktop.org
-To: Liu Ying <victor.liu@nxp.com>
-In-Reply-To: <20250304101530.969920-4-victor.liu@nxp.com>
-References: <20250304101530.969920-1-victor.liu@nxp.com>
- <20250304101530.969920-4-victor.liu@nxp.com>
-Message-Id: <174108765439.1932765.4056731627407364924.robh@kernel.org>
-Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
- color encoder
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: QEMQtOws_iOHshqrV4HWq5HY8FJIE0Ot
+X-Proofpoint-ORIG-GUID: QEMQtOws_iOHshqrV4HWq5HY8FJIE0Ot
+X-Authority-Analysis: v=2.4 cv=fatXy1QF c=1 sm=1 tr=0 ts=67c6e546 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=IAiaYzwUq23lniLHEFAA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-04_05,2025-03-03_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ spamscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=755 mlxscore=0 adultscore=0 suspectscore=0
+ phishscore=0 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2503040097
 
+Enable MMC and relevant pinctrl entries.
 
-On Tue, 04 Mar 2025 18:15:28 +0800, Liu Ying wrote:
-> A DPI color encoder, as a simple display bridge, converts input DPI color
-> coding to output DPI color coding, like Adafruit Kippah DPI hat[1] which
-> converts input 18-bit pixel data to 24-bit pixel data(with 2 low padding
-> bits in every color component though). Document the DPI color encoder.
-> 
-> [1] https://learn.adafruit.com/adafruit-dpi-display-kippah-ttl-tft/downloads
-> 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
->  .../display/bridge/simple-bridge.yaml         | 89 ++++++++++++++++++-
->  1 file changed, 87 insertions(+), 2 deletions(-)
-> 
+Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 7 +++++++
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi       | 2 ++
+ 2 files changed, 9 insertions(+)
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/display/bridge/simple-bridge.example.dtb: /example-1/bridge: failed to match any schema with compatible: ['dpi-color-enoder']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250304101530.969920-4-victor.liu@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+index b6e4bb3328b3..b9752e8d579e 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
++++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+@@ -69,6 +69,13 @@ &qusb_phy_1 {
+ 	status = "okay";
+ };
+ 
++&sdhc {
++	pinctrl-0 = <&sdc_default_state>;
++	pinctrl-names = "default";
++
++	status = "okay";
++};
++
+ &sleep_clk {
+ 	clock-frequency = <32000>;
+ };
+diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+index 7034d378b1ef..e41f619121ff 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+@@ -265,6 +265,8 @@ sdhc: mmc@7804000 {
+ 				 <&xo_board>;
+ 			clock-names = "iface", "core", "xo";
+ 
++			supports-cqe;
++
+ 			status = "disabled";
+ 		};
+ 
+-- 
+2.34.1
 
 
