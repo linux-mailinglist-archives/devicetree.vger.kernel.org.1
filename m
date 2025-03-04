@@ -1,144 +1,112 @@
-Return-Path: <devicetree+bounces-153637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B89A3A4D590
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:00:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7045A4D59C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:01:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6C0B17343B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:00:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 547C71894A7A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:01:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D37791F8EEC;
-	Tue,  4 Mar 2025 08:00:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3128B1F8AE2;
+	Tue,  4 Mar 2025 08:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IVkzUbZ2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DPSb3OYt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2112AE8D;
-	Tue,  4 Mar 2025 08:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6051E285A
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 08:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741075227; cv=none; b=BXY5UsgrF980/BIEHwmkrMImbQ5G+EwMSpZNM5GCewlYc/l39Gui9Vv0TQ4zAee6kA9TOla8LFKTyzNyXQWNmxP+0MJKWucN5OfPBljJMJ/DYapbUHSi6SgDpNhPKi30YSx3sgxbR3lbyxInJ3iLvviOZbk1R1O/PylcofqZr24=
+	t=1741075286; cv=none; b=jnRZUEJ5ZTDc5HaEHYrnpzB5T8jVIGqGpfU52JgsRdkNzVMeYcqKv61bti8irLwKfWPqP8ifxlF/mApqTy/CKbyl1tYyCTnCjlc7eoP836UDJL9tpolrC8PKA8DCZFu59RfGdVXSHLqoBxSSBYlSvg1gdqxbd8dw6btxB2geigo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741075227; c=relaxed/simple;
-	bh=GM+XFwIWDrH57/HNKb2OKRSk1aCGLqQHfdjwtKYZf9o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fZBgX1ed2Ru8Pd9dTaOtRzBYJRQi3RlCJhKEZ214mVig+n7SI/7+XuVQR7IDwS6OmOSFMTlIIzvArKI3uMScUoiugZDFpCmVMAHYs35LIuSBYMKXMZHpq4RrqW+di4h3O2A/qtWVcYTDWBWARUNHPH9u3lReAPMIAV2kqhMHr04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IVkzUbZ2; arc=none smtp.client-ip=209.85.222.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7c0970e2e79so980549885a.3;
-        Tue, 04 Mar 2025 00:00:26 -0800 (PST)
+	s=arc-20240116; t=1741075286; c=relaxed/simple;
+	bh=yM6piAILnQk9xGq2GxzFHXReJiLNyLpTJqnfUjNN9hk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RCmV3Dn7DoSRAsv3wNOeVczVrSz3xVS94lr8a3WUWC80wI5bfgLIWI9Yv45ok/9zn+EH8zRpxqZEmLmPklgXEZOxHAYO/W7hHQoU8g/pyBqqu4zsKSMBeMX57xJILumZWlVlGuucO4bM6tMAu2tJ1kydlAukJgUX8oGpTWaEKNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DPSb3OYt; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6ef9b8b4f13so45381337b3.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 00:01:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741075225; x=1741680025; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=q1GaFj1uo9b1rPoRpPsJa9v8kqyTjyZ1mM2gRt9a58c=;
-        b=IVkzUbZ2dHjVwqgkFBMjYabby4sdA5IwCJnVDRtdcA3OvotRGbbn8IyTaqiMKtHpfk
-         n4S0Ijvp5KRLlvaTpE9JCyW/pvnK0uw60mUK2xr4K9QnbkfAUJ+qs3k01vBMS0lrfexQ
-         iT67rF/UnCX70AjZ9GWIsIglnen1Yo+qnXigJqD2hD1DLGacMz1MjfnuLICUR9Kf3/NW
-         1Cp0WNWD4/GZiNKJd5gjdQ2vel9FAD5MpqtBVHQGt2VNtw1tHyjy+Z5m2qc1ylkxpUFF
-         IjVIWszw+rwGzuZmjJvNJDZ1bjT7EMLWVy6TS56P8gD2l2rfEmlrB4+iI2O/FnXKlKCU
-         L9bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741075225; x=1741680025;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1741075283; x=1741680083; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=q1GaFj1uo9b1rPoRpPsJa9v8kqyTjyZ1mM2gRt9a58c=;
-        b=YGNHJIpweSdOBa8KAgoALPWV1Tl0qhiwT2xSG/T7RhDdalrn0UqVJVN6VSoZe8L7Jk
-         YpzdHr4jMZM13rkNahcxnyg2YEGI4Z4QQruxmVPekmP4sR+Vk2H/CjMdPePZJOY0TLsf
-         oaVbP6z9+4CHQ9hmN7LvRcQ0azmgVBU9V1XOJUUQMhzXrLf/1rzcRLt+xNcY48iyxArp
-         8iwhvdrnUcpXSkkmzWEUwrD4sRJ2lynMoCWbTGZxKQ9WoCb6MJiD1d+oG8ihCULc0D0H
-         OI109F9SxH1xBezsOu/d2pDzRm+NYaz3BKl8oJiNMh3fyM/Y923uxJXVH7FrtJynwdjL
-         bfzg==
-X-Forwarded-Encrypted: i=1; AJvYcCUYhGw24ELwzhsLkjS57Jc7Rjcgt5Go3EXGpsAlq+ymfXFES8gbdL0ZaqkXI5284Yj9yCDQVFj84tR1q0Pd@vger.kernel.org, AJvYcCXed0zy9urMpujnlBtRk1WtDvJ4I8G0N5d7HOCWauAsFtDt5N2XCzMDsCrmwY6LVsNYJwEmd71k6JrH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCuJUBKYuP5IUqPxNvEdIIj2rvO7LVt0pRXNoqLQpEk0pm/XDl
-	fC2yh6JDxvJg2tC87XM5CGp/m/FBkHoMpxfH5d0awpPHo5c6BfnI
-X-Gm-Gg: ASbGncuEj4MyeAhvTXvIQRr3pyn5BrtEoRkcDilrLF3pc4P+b5EAkBuzc1fM2b8vyZ3
-	YxScPhuunA6o5chLQPkTDvsrWBUzgzmi0YZ+UvLomvMso3c4PWjcWVSMei9NqiqqByzRpXb/aTT
-	TRXgjajCHANbc28PPaP1uPg4maViAUHRPxtcZ5m9acmYunX3TqYaRTiuVScDtZBI7bkeIRvJlGy
-	H5XtwsN8RgDwMwR29ZX6MlK8Taj8NVYE+BI/h4+4roq6H6mfGjNWaKPW2Lzfqo+5XcwI8SZEdZC
-	AyK6D4/UnBzr6KAC9x+9
-X-Google-Smtp-Source: AGHT+IFdkylbVxqjDte09eicMFW7LnS9CUylFe+DIP4qpzozVLfERjJXNp00RzgPd4cBPvEXx1CsRg==
-X-Received: by 2002:a05:620a:199a:b0:7c0:ac2a:ed0 with SMTP id af79cd13be357-7c39c4c6b8amr2201869485a.30.1741075225155;
-        Tue, 04 Mar 2025 00:00:25 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c3c57684dasm161673585a.77.2025.03.04.00.00.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Mar 2025 00:00:24 -0800 (PST)
-Date: Tue, 4 Mar 2025 15:59:57 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Johan Hovold <johan+linaro@kernel.org>, 
-	Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>, Niklas Cassel <cassel@kernel.org>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 0/2] riscv: sophgo Add PCIe support to Sophgo SG2044 SoC
-Message-ID: <7un3pk7ukjay6ntbnlvif7mdpdfngtvbwrkcsresxmmtaxah3z@mrfezotyabsr>
-References: <20250304071239.352486-1-inochiama@gmail.com>
- <PN0PR01MB103930AC8CABC36771EAE089CFEC82@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
+        bh=yM6piAILnQk9xGq2GxzFHXReJiLNyLpTJqnfUjNN9hk=;
+        b=DPSb3OYtRAl9eJzUnDMymVpwekzT1bupKpE5lmtkv5Tk0bYTR75QwDtv4m0WJ0cQp1
+         kXDLEnVrv8qle3rCgGK2GvD3+TgqX60D8iaYc6dgbMHKLvj3V5S6Zas8sm+0XbXFsHgp
+         elMMgp57dpEPFjFrl7ky4G7jTQDLEANihg6IxRNkqohBl9ZbdYKy2qnPcf0IXpE42uwS
+         4b9n58WjZJtkXp9RHE1QBPAorVei4m/VJp41rJ20EzXruBtPtMeX8suL4v5uJM1mz/3j
+         CkBX7EU8vmnCceQAZm9jn8361NEcb+qm1psezma4hShPmoZt7VfenWXJGr75zgU+meR7
+         q1gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741075283; x=1741680083;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yM6piAILnQk9xGq2GxzFHXReJiLNyLpTJqnfUjNN9hk=;
+        b=e/C1QoaDsh5Yq4x9CumfyaRQ32c6duLg1pr15mlNUGhp7OX8GJgphixyoBSXFDsqI0
+         mobpG5hhNg07pj1GQR7PYpdPFQSw9IF8chti1PXQ/b0ZT2GCLMRn4oB4sWVxcP52zo0k
+         WpVx+i37s1zTV0a9VG7vsXMLhhXtBnMErfeL4fH8UeJjRmaMN4Uno2iLJoimAhWYDp04
+         DxNWK32MScmzf284kHyEXrDqW2Q3ATd25dASknL1a45Wle8n4HcUvBtdH/Wfr2Hk1hdV
+         3LS8TbI4+IA7FTG+4sOzzWyKcnnbsofadk+VAu0OiAf7afDUdBbKTT4e+rVFT2mQg3E5
+         FEUg==
+X-Forwarded-Encrypted: i=1; AJvYcCWGlfYQVSo1kk3P9YhAFrIBiqEOSUAzHyYndOoZh1IQp2uUm4aRlapANq3L7wfo8KrfNJJ4uX1yGGmz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5xJn/UH/VP8jeN4yajhJq42IMvePSHCSekWN0eIcwpnHxewOC
+	vibAoOc8k4RtoAY21F5y+fPoGszI3mU5IQGmT0RlUQ7A4pTFm0Jg2W//b284koa0yJSjzCZzqvB
+	LU+ZeUD+2bO844BghSoi5CgOVN6r7tuDZqIUUYg==
+X-Gm-Gg: ASbGncuhSQGp+Oy3rYs0cSdAeqxW02ohjJ/J+M048h7ZCX71l2BcOoQ9pZZ+5PAqxDk
+	U7M0mQDJyZUysJyTmkIHYY1/cu17J+NtDGSSq+sy3NTjcCyvhG+mheJjcT43AEl61/rGH94APCI
+	6uYVaJr3ned/QhnQkFYScrrypzbA==
+X-Google-Smtp-Source: AGHT+IGAv1QI6NxLx4aSutmM2eABQddCgvk11+0H2Td2ZN4KP/uMxodKgMJh5YrQ4faawCMRD4vowNlT+PD+ek3jkU4=
+X-Received: by 2002:a05:690c:b8e:b0:6f9:41e3:ea4b with SMTP id
+ 00721157ae682-6fd4a059726mr195363417b3.9.1741075283608; Tue, 04 Mar 2025
+ 00:01:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PN0PR01MB103930AC8CABC36771EAE089CFEC82@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
+References: <20250228-max77759-mfd-v3-0-0c3627d42526@linaro.org> <20250228-max77759-mfd-v3-5-0c3627d42526@linaro.org>
+In-Reply-To: <20250228-max77759-mfd-v3-5-0c3627d42526@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 4 Mar 2025 09:01:06 +0100
+X-Gm-Features: AQ5f1Jr4hfcQtwg_ZcA-Ydn_kIMJZb-DCuZHup-eBLnhS1CYHvK_yjDzqNv-Zg8
+Message-ID: <CACRpkdYYpT1ut0EeP03p-UK4NZfYGb_ykc2CE4yo7jx+sF+Xig@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] gpio: max77759: add Maxim MAX77759 gpio driver
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 04, 2025 at 03:53:57PM +0800, Chen Wang wrote:
-> I think it should be v2, right? :)
-> 
+On Fri, Feb 28, 2025 at 3:25=E2=80=AFPM Andr=C3=A9 Draszik <andre.draszik@l=
+inaro.org> wrote:
 
-Yeah, I have made a mistake. This is v2, not v1.
+> The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
+> includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
+> Port Controller (TCPC), NVMEM, and a GPIO expander.
+>
+> This driver supports the GPIO functions using the platform device
+> registered by the core MFD driver.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
-> On 2025/3/4 15:12, Inochi Amaoto wrote:
-> > Sophgo's SG2044 SoC uses Synopsys Designware PCIe core
-> > to implement RC mode.
-> > 
-> > For legacy interrupt, the PCIe controller on SG2044 implement
-> > its own legacy interrupt controller. For MSI/MSI-X, it use an
-> > external interrupt controller to handle.
-> > 
-> > The external MSI interrupt controller patch can be found on [1].
-> > As SG2044 needs a mirror change to support the way to send MSI
-> > message and different irq number.
-> > 
-> > [1] https://lore.kernel.org/all/20250303111648.1337543-1-inochiama@gmail.com
-> > 
-> > Changed from v1:
-> > - https://lore.kernel.org/all/20250221013758.370936-1-inochiama@gmail.comq
-> > 1. patch 1: remove dma-coherent property
-> > 2. patch 2: remove unused reset
-> > 3. patch 2: fix Kconfig menu title and reorder the entry
-> > 4. patch 2: use FIELD_GET/FIELD_PREP to simplify the code.
-> > 5. patch 2: rename the irq handle function to match the irq_chip name
-> > 
-> > Inochi Amaoto (2):
-> >    dt-bindings: pci: Add Sophgo SG2044 PCIe host
-> >    PCI: sophgo-dwc: Add Sophgo SG2044 PCIe driver
-> > 
-> >   .../bindings/pci/sophgo,sg2044-pcie.yaml      | 122 ++++++++
-> >   drivers/pci/controller/dwc/Kconfig            |  10 +
-> >   drivers/pci/controller/dwc/Makefile           |   1 +
-> >   drivers/pci/controller/dwc/pcie-dw-sophgo.c   | 270 ++++++++++++++++++
-> >   4 files changed, 403 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml
-> >   create mode 100644 drivers/pci/controller/dwc/pcie-dw-sophgo.c
-> > 
-> > --
-> > 2.48.1
-> > 
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
 
