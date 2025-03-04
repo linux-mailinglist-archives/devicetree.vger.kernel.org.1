@@ -1,115 +1,110 @@
-Return-Path: <devicetree+bounces-153800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07CA4A4DDEE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:31:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65BD5A4DDBD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:21:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69D3D3A5B86
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:30:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79071177B12
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:21:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A27200BBE;
-	Tue,  4 Mar 2025 12:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417FB202C53;
+	Tue,  4 Mar 2025 12:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dBZa+w2L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 299FF8472;
-	Tue,  4 Mar 2025 12:30:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F32831FFC7E;
+	Tue,  4 Mar 2025 12:20:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741091462; cv=none; b=IhuHOvqBJa/GYuVicifJEY1yrslbjBRqZU8K68QHurTipGQj6LuPnJG13k2zw/aiz+GoqNA47d2AmjsisIiWX2ngMErR5E1yX6sFJ878hEp4HabzfJc8MrZGYPAbXPcAIfds9g/9dF2JtCW4GtoiI6fUESHZf7wgWb1flOKEE/k=
+	t=1741090860; cv=none; b=iLTPjKuOWoplvnMdS3saHfRMSRy+PUXHNwsf3LcZF+QGwZTE/yyLaaIwCdCBebnP7XXMnbE+KPI/AsB5g65hCBFVdtUqn3PRNyY9g8F9rEjGFkFvMG0OYlU9cPXL6/JKU10FLm7atdX9HQUXXzOf4bifq0N2heQ8dqFK1X9MJa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741091462; c=relaxed/simple;
-	bh=rYlHgkTpoEM6pxnQ8HCOUgXk8SpwcrCOoqmJPZDKZsU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NDdgPSJMyJsIt/6+Bxc3GKqhV2x8h/Pk9HQPjTvO4G3gzIiCwVfVTkrFXMasnFkBb2LW/68s5cAcC1BiXgzWn+kFm05lEDWEAPiM7KvblEwHIIsLclYifn8ZboagV7YZEp3vm8rbNt3F+Mqt0TJ7glnbSaroJRKLBLhtIU5uICM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c02:1dd0:e9f1:cb9a:640c:3ba3])
-	by smtp.qiye.163.com (Hmail) with ESMTP id ce62fafc;
-	Tue, 4 Mar 2025 20:15:38 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: ziyao@disroot.org
-Cc: conor+dt@kernel.org,
-	cristian.ciocaltea@collabora.com,
-	detlev.casanova@collabora.com,
-	devicetree@vger.kernel.org,
-	frank.wang@rock-chips.com,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH 8/8] arm64: dts: rockchip: Enable SD-card interface on Radxa E20C
-Date: Tue,  4 Mar 2025 20:10:36 +0800
-Message-Id: <20250304121036.1453284-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250301104835.36439-1-ziyao@disroot.org>
-References: <20250301104835.36439-1-ziyao@disroot.org>
+	s=arc-20240116; t=1741090860; c=relaxed/simple;
+	bh=taClQ70iXUCxoBxQy+spoV3xp0cK5c2B/aMQ1g+Bskc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B6Vue/xownHuV7xJAOzV7Mm8MeQcVPcnqGVjLCqfHaDrTJfIzhAYt373bIeogZJurdg9fo13WhMzc/IILU6VHNEYXsV1jcaVlSXGjDIu/ZJsA+pQ3qXREYu9XM2PQFP+eU76E8kOwAcRWh8t8Ir4WfVk98oBj3VChijDk0A/Xe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dBZa+w2L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDEAEC4CEE5;
+	Tue,  4 Mar 2025 12:20:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741090859;
+	bh=taClQ70iXUCxoBxQy+spoV3xp0cK5c2B/aMQ1g+Bskc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dBZa+w2LbNsESgBAPZX6UEPhovRhFX5Tc+R52ZiLfaEi5DmjRmhvH+GRRx9IB/rv6
+	 4YXeu3MiDZblvKq44oil0/bluQXnpATS37rslyPOfYiJHN+tdeOR1EScqyNH/A94G8
+	 H/qkSacFKTTpNKScquLNMilB6iDr0gbjVkSUOlP1unsyleeIebeR35+9tCK2JVMCNM
+	 Ld0FyKkcTIPSEXmDXYvMF+IY9GqsEVk07wg9QYS7jrGWNzuu+pmB833CgFA0irDmo0
+	 DzGSH0aySFcWtQ54uMjHf4iUAOzeTdcncPi8Bog/zcOSHwDdftIvJ3XlLeMhQRT7ef
+	 q54c0BN9Nxdhg==
+Date: Tue, 4 Mar 2025 12:20:54 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Maud Spierings <maud_spierings@hotmail.com>
+Cc: Longbin Li <looong.bin@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, sophgo@lists.linux.dev
+Subject: Re: [PATCH v2 2/2] spi: sophgo: add SG2044 SPI NOR controller driver
+Message-ID: <74a0cbdf-d303-459e-977a-2be1a6c9d274@sirena.org.uk>
+References: <20250304083548.10101-1-looong.bin@gmail.com>
+ <20250304083548.10101-3-looong.bin@gmail.com>
+ <AM7P189MB100970D57C974DD7CC5DB156E3C82@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGkpJVh5CThgfT0lMTR4aSVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtJQUofH0tBHkIdSkEYGUIaQU1PSxhBSBkaSFlXWRYaDx
-	IVHRRZQVlPS0hVSktISk5MTlVKS0tVSkJLS1kG
-X-HM-Tid: 0a95611544ad03a2kunmce62fafc
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OE06KDo6SDIOI0IQAzEUDwxK
-	HEoKFCpVSlVKTE9KS0JLTkhCT05MVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0lBSh8fS0EeQh1KQRgZQhpBTU9LGEFIGRpIWVdZCAFZQUxLSjcG
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="54Oj86wu4iRnfpKp"
+Content-Disposition: inline
+In-Reply-To: <AM7P189MB100970D57C974DD7CC5DB156E3C82@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+X-Cookie: Do not disturb.
 
-Hi,
 
-> +	aliases {
-> +		mmc0 = &sdmmc;
+--54Oj86wu4iRnfpKp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-s/mmc0/mmc1
+On Tue, Mar 04, 2025 at 10:14:14AM +0100, Maud Spierings wrote:
+> On 3/4/25 9:35 AM, Longbin Li wrote:
+> > Add support for SG2044 SPI NOR controller in Sophgo SoC.
+> >=20
+> > Signed-off-by: Longbin Li<looong.bin@gmail.com>
+> > ---
+> >   drivers/spi/Kconfig          |   9 +
+> >   drivers/spi/Makefile         |   1 +
 
-> +&sdmmc {
-> +	bus-width = <4>;
-> +	cap-mmc-highspeed;
-> +	cap-sd-highspeed;
+Please delete unneeded context from mails when replying.  Doing this
+makes it much easier to find your reply in the message, helping ensure
+it won't be missed by people scrolling through the irrelevant quoted
+material.
 
-I think for sdcard, only cap-sd-highspeed
-is needed, not cap-mmc-highspeed?
+--54Oj86wu4iRnfpKp
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +	disable-wp;
+-----BEGIN PGP SIGNATURE-----
 
-Missing pinctrl.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfG8CUACgkQJNaLcl1U
+h9DOQgf+OsNrZsX/GHTkpQKuxufWPNRty1/mIYWBycNxDjbSbZiY+WW5d6Fk02kn
+hnr0S0ij9L2cHr5tPo1PuDuGHZlzaYgIpW9cUcN8jzH9dmMpUFN9i+idwW1Fs5Rh
+OM1AwzX4tTG8AwxRxXf4VvkMnErnIuNSbfmXX0zJJHFodbOPH8E8z6JaI6uCwdpG
+miC89wz3PNXKOs5Z9X1lVFP9sTuqgsVyFFOXxVjciqJmXkrPhB6d4p9lqC+k49UV
+ak64KOr+wKGgj8qaVCifbcZJFYp5naHizOSCa8pYgNzoNB9oqYsOqX9kODPgesC2
+a0NLs2CyfcbMKLXco2+SWo2461KDnA==
+=/APl
+-----END PGP SIGNATURE-----
 
-> +	rockchip,default-sample-phase = <90>;
-
-It seems that all rk3528 devices need to set this
-default phase, so maybe this can be placed in dtsi?
-
-> +	sd-uhs-sdr104;
-
-The rk3528 devices uses gpio to switch IO voltage, maybe
-more modes should be added here like vendor kernel?
-And these devices use 3.3V IO voltage by default.
-
-	sd-uhs-sdr12;
-	sd-uhs-sdr25;
-	sd-uhs-sdr50;
-	sd-uhs-sdr104;
-
-Thanks,
-Chukun
-
--- 
-2.25.1
-
+--54Oj86wu4iRnfpKp--
 
