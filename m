@@ -1,151 +1,112 @@
-Return-Path: <devicetree+bounces-153732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4730FA4DA3E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9750AA4DA4E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:26:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC0F6176EC6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:24:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35FFB16660D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A856F20408C;
-	Tue,  4 Mar 2025 10:21:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EECB1FE455;
+	Tue,  4 Mar 2025 10:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QQEZSaYR"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="q6h6GErp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 416F6202C4F;
-	Tue,  4 Mar 2025 10:20:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4061FECA5;
+	Tue,  4 Mar 2025 10:23:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741083660; cv=none; b=tHQZqERsuehgg1xUs9p0sTKyuhI7IRyV7zjEtljmvQUFjCpko75NNXZsbTxmN86FL+RpbzvMyh/WIh9SYX2NvQTQO+Bc0rYXxhYt90T4lHNZz9TYHBcizCOKoyrr3ZI/JEshl5sp+vvGQq6t1r2qxddAXiNjH53HODiAiPrMxSw=
+	t=1741083800; cv=none; b=AU9FeCSBfnVLE02m00whrI+vxXLF5f4PqHdLmOD/A37o4NMmABwWwiCft4aDwynVB6gXA5kHAEGIXAXDvwmbNCcKTlJezLcwlJFXL7Nma8RaHOtM+zo0RIiZ3tyUDg71h3QX9OFYmhpRlbAryHwA6h8VkPEMzhE9Bc7QKQfkZd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741083660; c=relaxed/simple;
-	bh=3QSQiiEkpInCqAJZ0oopQLokNfbrFQltP45H1BxJNtk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YNxIMBl3Ileyal37qMXBWpUvebqklLz6GelCTW6AWqEzc3AzB1fB0YiE41aL6f8FkcmkxPtYqmTQ/aOdSxVPJPNnSqht9RkKA3paoz+DrToKSSBCzs+3rY3W6Yk0h2g9WWFPPkRZ/zG+PznGPX1ze6s231GDjxXPtFY/BpZ990g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QQEZSaYR; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4ED8D432BD;
-	Tue,  4 Mar 2025 10:20:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1741083656;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=v03atscDreRB9AJDvXothgKRiTD19mycZa+MJCNJB5I=;
-	b=QQEZSaYRWFZrr9y4nDiCY8rrQ02gKRcBZbDM+ga1qdvkH6owUtP9TqYDpB82wEVeLxaOiA
-	08kqfGGH0zsR+/TQi47tCA/Ys/4X7zaUb8K4fnDtyVs1wAJbuwmrrJPDm854+AUdcoA8nt
-	42T9tj6hXFTlQB5s6RgdtpbfZO0466De1xm5HZAdQGFofoeIjKShm22l5SKkjo4PQz/nNs
-	YhpoHh+5p7RsF+MjwIzjvBIFcVNLFN0Stih8mjBfTelYLQh2VWC4yly+X643sO8Nf2jMhq
-	TNfvdIj7Cx+CQBggaiw/B64GTwKWcIZCTmIuWH5maU/QdA9zan+88V0gx4mXMg==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Tue, 04 Mar 2025 11:19:01 +0100
-Subject: [PATCH net-next v6 12/12] dt-bindings: net: pse-pd: ti,tps23881:
- Add interrupt description
+	s=arc-20240116; t=1741083800; c=relaxed/simple;
+	bh=Lwj3dnQDXVkjv/QiIR1dDejiefFavpViYn5l82/vQk0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TI2R46uexYYZbGNuIF3kMXhHk5Jddq6ZjE87P5IZ91UW8toOLjMq6jo8ZGkngYeQsNiDaS2+SAT7SX07OpqhPph+LA9Oh352G3ByTblqRP0D+EMhZGF1o0R3Wi07paBn+FhuKowWVn+ck/wCAH2+TKnENyrhvP7CMJ+pEaj6Vfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=q6h6GErp; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 524ANApX3620563
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 4 Mar 2025 04:23:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1741083790;
+	bh=hetC0MzNXHD4UZFh6wahMxCRZ/46j2INBM97HWBrLzw=;
+	h=From:To:CC:Subject:Date;
+	b=q6h6GErplVzthPveVdZqqSb9ixi/4p0Zc15R8Y4Sqc2Bsts6mdnTs4YosMx964KDo
+	 mOQQm1EoPxlqyx6MFLmPznjMBv/yMtfz4kArHYb/Jajji7KH9IY9RS3c3d8Ur3prRF
+	 yAQBdoND0mpfqsl36uOW6Tm/or5HgGGJUsL6K0XM=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 524ANAE4008547
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 4 Mar 2025 04:23:10 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
+ Mar 2025 04:23:09 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 4 Mar 2025 04:23:09 -0600
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 524AN8kE061934;
+	Tue, 4 Mar 2025 04:23:09 -0600
+From: Chintan Vankar <c-vankar@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Peter Rosin
+	<peda@axentia.se>
+CC: <s-vadapalli@ti.com>, <danishanwar@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Chintan Vankar
+	<c-vankar@ti.com>
+Subject: [RFC PATCH v2 0/2] Extend mmio-mux driver to configure mux with new DT property
+Date: Tue, 4 Mar 2025 15:53:04 +0530
+Message-ID: <20250304102306.2977836-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250304-feature_poe_port_prio-v6-12-3dc0c5ebaf32@bootlin.com>
-References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
-In-Reply-To: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, 
- Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, 
- Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- "Kory Maincent (Dent Project)" <kory.maincent@bootlin.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.15-dev-8cb71
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddutddujeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevgfdvgfektefgfefggeekudfggffhtdfffedtueetheejtddvledvvdelhedtveenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpeelnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvkedprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopeguvghnthhprhhojhgvtghtsehlihhnuhigf
- hhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriiihshiithhofhdrkhhoiihlohifshhkiheslhhinhgrrhhordhorhhgpdhrtghpthhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvg
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+This series extends mmio-mux driver's capability to configure driver in
+with extended property.
 
-Add an interrupt property to the device tree bindings for the TI TPS23881
-PSE controller. The interrupt is primarily used to detect classification
-and disconnection events, which are essential for managing the PSE
-controller in compliance with the PoE standard.
+In current driver implementation, driver is parsing register's offset,
+mask and value from two different device tree property which makes it
+complex to specify a specific register or set of registers. Introducing
+mux-reg-masks-states will make it easier to specify the same values for
+particular register or set of registers.
 
-Interrupt support is essential for the proper functioning of the TPS23881
-controller. Without it, after a power-on (PWON), the controller will
-no longer perform detection and classification. This could lead to
-potential hazards, such as connecting a non-PoE device after a PoE device,
-which might result in magic smoke.
+This series is based on linux next tagged next-20250303.
 
-Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+Link to v1:
+https://lore.kernel.org/r/20250227202206.2551305-1-c-vankar@ti.com/
 
-Change in v5:
-- Use standard interrupt flag in the example.
+Changes from v1 to v2:
+- Updated dt-bindings for the required conditions as suggested by Conor
+  Dooley and Andrew Davis.
+- Modified driver changes as pointed out by Andrew Davis.
 
-Change in v3:
-- New patch
----
- Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Chintan Vankar (2):
+  devicetree: bindings: mux: reg-mux: Update bindings for reg-mux for
+    new property
+  mux: mmio: Extend mmio-mux driver to configure mux with new DT
+    property
 
-diff --git a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-index d08abcb012113..3a5f960d8489a 100644
---- a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-+++ b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-@@ -20,6 +20,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  interrupts:
-+    maxItems: 1
-+
-   '#pse-cells':
-     const: 1
- 
-@@ -62,9 +65,12 @@ unevaluatedProperties: false
- required:
-   - compatible
-   - reg
-+  - interrupts
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
-@@ -72,6 +78,8 @@ examples:
-       ethernet-pse@20 {
-         compatible = "ti,tps23881";
-         reg = <0x20>;
-+        interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-parent = <&gpiog>;
- 
-         channels {
-           #address-cells = <1>;
+ .../devicetree/bindings/mux/reg-mux.yaml      |  28 +++-
+ drivers/mux/mmio.c                            | 144 ++++++++++++++----
+ 2 files changed, 141 insertions(+), 31 deletions(-)
 
 -- 
 2.34.1
