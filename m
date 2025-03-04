@@ -1,221 +1,237 @@
-Return-Path: <devicetree+bounces-153789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F42A4DD17
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:55:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC59A4DD35
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:58:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B256176C76
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:55:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F9C4189B149
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:57:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD7B202977;
-	Tue,  4 Mar 2025 11:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C7E020103A;
+	Tue,  4 Mar 2025 11:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b="bLLCaBBD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="avZwp6DA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2082.outbound.protection.outlook.com [40.107.20.82])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D636D201024;
-	Tue,  4 Mar 2025 11:53:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.82
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741089201; cv=fail; b=USDyS6uDZyIS4ZTSJfs3N71h8rEGSEuXJrxtH1WPTxJZE7rGcXvhwwyJvRyK+wASo5dp+BADoCsKztJKHcsjMUY9dkZAofm13kmYth++SIWt785BQNSrMAcFN2bnIgLnr5B2MZgfbCv9ZazNmSm5tRc3ahCcDcIH94RuuvPZG/4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741089201; c=relaxed/simple;
-	bh=8J7qYI83f2DiN5PSPl7MsC7qA3HBTF/VLd94rLZjxog=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=K6Z7RaEPngGnMYTWE0dIxpesaDpJD1edlJuyj/0hIuZT+ke3kUMsaiX88ISECTjTalTEH8AB4Q11/HZvpuJrHjms6SYm0LxyCpWlS+8SMifMo+htckp+twJ10D3vVLFQu0OgSK3rwmxIxdWuOjg28XsUMuqN59iRXcbYH8RHB6s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com; spf=pass smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=bLLCaBBD; arc=fail smtp.client-ip=40.107.20.82
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mt.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S1JwDP1ubpiO8G9UnhntzNWg9sMIV0sjZjXPgfpFlmnL381sudmMcmK6BYrdXSE3Iol+N9kqWQUXKUdSHxF0kemJG4ynJ8B3+NJ3rryZgluKK6ozLhDCP52f3wab2tT63jUlFZqiDW6aojqtSF12Z9il0pcfVfPXUziUTN119XPYXPU6/cVO0dPMvWVJao8Qpd3G4goQouSnPoWKpCJ8oYwqtz+djKMGa6ONTgilZm2oEqKqBLuWJMjs0ihLxoxskFAHtdKgbBUvDv+JPpE0lesJ9fUeRZx+9+FKpBJSc+iTpW3KZLu5Z7rDZeMMVnEBVhf6qa3hmO/63i3SRh7XbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/Rx8jiJQQx5OAZ0ObisO8Ci46WTdYRZaj4kTZGKdDJU=;
- b=Y84OiIEEkxoiiuLAVsaNAXh1+2ilgdGUkfo5oE1by6bWMd/MCgYquGDjghIDKgN8zcj86ua4hLnJ+Ll0ebcM/Wr6IKzNIyeI9OoIos4rm66JFEo3u2LhsMwu3kvqNu9Gt23WvbztyXIaeF++ZzhOAK1G7jRB0wKLAyzXdJE4ib812rlikQzC14sIkej6NI2V9qAUj11MRwBMvIdKWILeKMvGIJA+34WtZjPp10awQN4+HGD8XtdrYW3q80yW40jFk1aVUm/7Oco3DYWr7BC4k21m3V9r/XbtXvWEN/+vnJSE+1m7nF0VBjSXMZP53Tgiwxj4Cfsm7emMohpFhQr9ng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
- header.d=mt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/Rx8jiJQQx5OAZ0ObisO8Ci46WTdYRZaj4kTZGKdDJU=;
- b=bLLCaBBDu7A0++ebpuv4So4uLLJ4TSZgnl0DbiBHdpTKiIzTaegF3yBuik4/vUxs5wPnAV6j5cgJ7ZptdVjAQMhEzE/cM2FiKg9LXEDDcxwnLwhbQrwBoHeCZ1isg7vLY/ikcKlf89Mg7VG2HFexCvzYMkMuJ20iYkRNlDlMMshl5GrZluXbBOMRKJ+0J5bFzWX7RVeuFxXRzWOYWwvLyvX6L0j19Lh84jM3ll///+jQHDlZ6lfQlaCBc81J9hcedFqILu9pyoGZu+pOMVGL1KGYuJqF0z9oAYzrcwz+dC3Fh4A8eliWy1cMPDRX92aMyGDs6H+MXAKPJ7TRNrtndA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mt.com;
-Received: from VI0PR03MB10400.eurprd03.prod.outlook.com
- (2603:10a6:800:203::15) by DB3PR03MB10131.eurprd03.prod.outlook.com
- (2603:10a6:10:43e::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.28; Tue, 4 Mar
- 2025 11:53:16 +0000
-Received: from VI0PR03MB10400.eurprd03.prod.outlook.com
- ([fe80::48f6:ae9a:fcdf:b5bd]) by VI0PR03MB10400.eurprd03.prod.outlook.com
- ([fe80::48f6:ae9a:fcdf:b5bd%6]) with mapi id 15.20.8489.025; Tue, 4 Mar 2025
- 11:53:16 +0000
-Date: Tue, 4 Mar 2025 12:53:05 +0100
-From: Mathis Foerst <mathis.foerst@mt.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-kernel@vger.kernel.org,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, manuel.traut@mt.com
-Subject: Re: [PATCH v1 1/8] MT9M114: Add bypass-pll DT-binding
-Message-ID: <Z8bpobFg3BnNHJ+/@mt.com>
-References: <20250226153929.274562-1-mathis.foerst@mt.com>
- <20250226153929.274562-2-mathis.foerst@mt.com>
- <Z788hw7pSpwmL2Ze@kekkonen.localdomain>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z788hw7pSpwmL2Ze@kekkonen.localdomain>
-X-ClientProxiedBy: ZR0P278CA0117.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:20::14) To VI0PR03MB10400.eurprd03.prod.outlook.com
- (2603:10a6:800:203::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A45BE1FC7F8;
+	Tue,  4 Mar 2025 11:55:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741089354; cv=none; b=afW7hHtpjvHneIbE5B3lFSQc8Y8THeUIk84ta3EPG7lwRJftn4tkLOxEzxlqog3x4Zfrm4lDDgkQjsTJbolWPQkcAKD5pVjOw75/LTQOrCprhIIOiUEYTyDL8jEGUpvIvE8g8QDJPKWpVfadxuo36HouOuORRuZBdZvS014ybc4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741089354; c=relaxed/simple;
+	bh=k8AeePF8aGjADlzhnEd1krK8gPuB2mc/X/5gvUtOCEI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sbdwiVIzwHNgDhbISXwBd1BZ1YIPpZCoafadgYR5h3VmH5unv5S5+f2U/mxYcTdm82esqYYo6Q+D1MlpKNH2BkylQcBK0ZXwZmigK1+sLornBpgmII/tE9PZhza5cM2xozA58Yu19iJdSOMY+W9DCQH1BMvg7jB4BrJdOCKhCFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=avZwp6DA; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ab7430e27b2so914080766b.3;
+        Tue, 04 Mar 2025 03:55:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741089351; x=1741694151; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z9k5/kUhkHRqlZnA0OW1zTWkTBSUQGJS0XZ/fsldyH8=;
+        b=avZwp6DAR1MHm9pGz9ThFiwNgs6ORfABYTAFD9Go7Fm9dqiKWveckjqbMszKgBxTFE
+         qgaaC2TeTp8KKE3d+JUJwUuaSRLzmrF2H7O/b12UqSJ5z2hha8B8f9a1DlRfAytAokz0
+         agkFkZP5dlz8alxDHoWF9hQ80S0n8Zpf/ZSuGOXFGzDsp6AQUTcT9Yf32qtZzjdCBPWz
+         7gkZja5kQ8vNlYt919J9Helo9EvqMnjItSvDrGLvtMQCakVJs6R1tORh5H9lB5U4bnMG
+         zcXtRRn+V9RdEDzQn5CKs3lit0pkGzc4QfawTa8/VomxFPNUh4ZfMYd6R1mPDMklESBi
+         O0iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741089351; x=1741694151;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=z9k5/kUhkHRqlZnA0OW1zTWkTBSUQGJS0XZ/fsldyH8=;
+        b=fPI7wKbpfJHAKDxLi4Vp9KTdmfTrJv9Jsqq8zPs2DWMKUbvgosVGMl4CfsOUNxnLol
+         +ptMA0Z9JwFn3G/VkmfUnFZt5PWr+IGRqVeyUPfkZMKTH627Fw3snAksIq2NRaT5LS51
+         gyiJygUzxDcUomrVd7wndZv3nvlHFfx6wwC8yf3o2IBp+/VDM0CM2mHlWI9XdHw6dfMz
+         nGKMYYD8MdysSqN7Z4gqB87GMG3ef4eUB9B9nlsU7wnlKXmGHp2co/DZXoAdBXF4zqHb
+         YjtIylDa0RTBuDG4Bs4gsg/yuuMFnxHifymhVy34zQ9ZOJN4HbQTy1mAyGzniTVwk1td
+         2W8A==
+X-Forwarded-Encrypted: i=1; AJvYcCUOV8F4pvDkv9Ho1RjmhKGH7E74n9Y5wcjorVBlKJMeTHPH7jWDy4YeskoZ9iwwN72lLuCh4YzBaUc+@vger.kernel.org, AJvYcCVpZyIfL5G0kAs5E9msfBjp+BOCdbWC5kANbFRYn145NC+7NvSUVPSQDwwuiMjSxiRIYeby7TVwAyuFIA==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8Pt9D95igRJCLU8kFNqYAuyFsxlaTD2DRrsUElepsig6j4ikX
+	IRM2KbKPTvYofYValnYwboZG0Yi16pZykYOBOyLOo8pL3HBwxlS0vDRD7GBDLNXeYFzQo+N4KRi
+	gkGK96iakvsJEjr1M5UTcs9lFUs6noBQTaDQ=
+X-Gm-Gg: ASbGncvIYG/qH3MseD7dWJ97WGatzstcWpTCK+Zt7yfs+PL7oT6ubkcvEUCKMZqmGvU
+	tcJbqjLkUrz0yVRgbQby/f/LTmOPnKn4uvjzvgHBckLefb6vV8WpufPec4zwCFqMs5sGNtdsiJA
+	ThAgQyFz1uuVqzH4EGCQNQnkDXMK4=
+X-Google-Smtp-Source: AGHT+IFgGAsUVgJIA5JzmB+7xP1D6l7zaAdTgHmXNkaGuJ8wiLfcOqhl4lZQy2tzG1vv5Li5WHNpRCx5CMeLsPc/Dzw=
+X-Received: by 2002:a17:907:7f89:b0:abf:7776:7e29 with SMTP id
+ a640c23a62f3a-abf77768955mr840626566b.53.1741089350626; Tue, 04 Mar 2025
+ 03:55:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0PR03MB10400:EE_|DB3PR03MB10131:EE_
-X-MS-Office365-Filtering-Correlation-Id: eba7f282-f51a-4a64-2a4f-08dd5b132679
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?YeLefpiXvZnashLervtFp5SXghRFGw9EVu1u1bdtCZPNdFo/tWI1cyzS/P0c?=
- =?us-ascii?Q?P4QAV2QE/3velW+Pzkfuq+DlerDgWeXIT48kwh1aBVb5Pvugn/2YrSj7tRHW?=
- =?us-ascii?Q?T3A/umm/OrJJaaATJLO3vsAThFejXwHBw9cOgfC5UgkOgY1nIGAtQ6l4X6mv?=
- =?us-ascii?Q?gpDJQW/LtW89PH2aguz2r4wUuWdGnWNzckkWCnLQ9Y953pjbYoPWy/YVf5WL?=
- =?us-ascii?Q?56r+22vjzxWz7l5zNhpCCJjxEUsCNtTyeMl0SybtlXgilbD9mJHM4TWYXX1O?=
- =?us-ascii?Q?7qrNQ78rtlDKs8W1t5jOxoOn/JCPLWRiKnMjuhKY3TqOvfceJy0253ws4QC2?=
- =?us-ascii?Q?XBhoQ/miMQ3jYDbRyGbEmP2LoL0wxAQ8tEW8YY6RtDTII+25L2UuJ5QjQIjv?=
- =?us-ascii?Q?CjBHquoP/jUeAU2WmRtLhVA4+XjMKAiMNsEC3Eo7vaSPQDHCikp1DuhsZ7LP?=
- =?us-ascii?Q?T1CqCsFNB2zqr1uhgixjHTJEIhaAi7hsjN+uUU4BDR2+AkEJ6n3vRtahEHY4?=
- =?us-ascii?Q?07p29CrffUmqt79gzS7WDuzfQL4eqLtzy1gbZvi6pgXfjOzw0Ax5O7JXsmic?=
- =?us-ascii?Q?hMMi5X84KZ+7EwL6RqK39dsFMS3uujGYshjGR0Wfrt/d3rFxVRLhupkcT8+5?=
- =?us-ascii?Q?ZevZAEYO9fiCyTSThaPGOsKlBUnih6z2aSONBa4GLgthE1yVj0dW45Y8n6Ro?=
- =?us-ascii?Q?qMqZ9vuucJl+5lg0CPHSzF1x/a1kuOf/D7QQL0jK8MnGSVYaWn9WrJkjSyWa?=
- =?us-ascii?Q?k2gcoRrPPFg56GpgJwhxFs/mer41OeQXg2PySJeaPU4PB7LQRTPOcXuT9x5Z?=
- =?us-ascii?Q?6dPe5+fZrnj5GTjnpypJkBuU2hT4CzQdPr0O0k7taQ5xg0NYqXbkSsJL1gPv?=
- =?us-ascii?Q?+10RnFzVaVR9tdalUeqykbogiRk/6i3AbT8LU1a06SsiOGDWRgvYm7v0IROX?=
- =?us-ascii?Q?d/phlo2oTR5/8Kry+9zshDQvzKjx2neKNeFTQPPJYxUl7yLnwnxpOpRkVN5R?=
- =?us-ascii?Q?0xq/uSoaP2c8YzPMLF/LMd4pdumTEaXiIzMJ9GqoZqFDWzJCNzc76nkTWmaR?=
- =?us-ascii?Q?TkB705o4OPhsqNbIvcWRxMDUEsDxCje6XZCm0+1fLyIpleDECekCzXCoZ2JV?=
- =?us-ascii?Q?2g+hH0MTB+WUPk2IQuRyyZZPulWiDn3YIGVFw4WjeU0v51fcZNCK0Xa/Ia5x?=
- =?us-ascii?Q?drQyV5whFm/WAKCZnoImZT5meA1ocmCMUi1WhwesI4q6/bwaJbTf1MbZSE7I?=
- =?us-ascii?Q?ie7lgKtZuNzus10fQbPaxJfKSngeYaSe8Anr/M38raPcaDkmguaLO4Aw/c0K?=
- =?us-ascii?Q?JFGaenF87JzZIzEVmWBcbGP96gPgX9fv9uNAE6Bd08znlchcx4L409IixuDS?=
- =?us-ascii?Q?1IIue27kwaJOsKZ8ygOZ7Ts2x9VZxE81iswYdVUS5d+5znTVv1Wd9PIVFzXc?=
- =?us-ascii?Q?2msxhAE6vBr/3MAXzewVmU+hr4LZZekH?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR03MB10400.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?DJv2LZxb9nbwh55n1EpqDoW0VSP3Ev5oDFQXVLJPMAwmspTYhEndn4ABLdy5?=
- =?us-ascii?Q?wFDGoJesmNt0vaR68wewdT/x+g2XdfsPkhHVP/2NCVOiUnrWu56Z+DSwiGIB?=
- =?us-ascii?Q?AMNHdFgoYPWtO7MsvW7kpprH7K5gHYUZPHomrQ+HsOlbhBeg4B3zN7buIRbN?=
- =?us-ascii?Q?+kCRLfiv3HArFxA8XdRjwpPnSl3i/Qw1K237r9Bww5myG+Z+U7cAsKByV3YZ?=
- =?us-ascii?Q?LJZ7aQjNC8FQEg9hW5iKEvRQZ2xVWOpgfLALQRRkqA2k4PZZqSKP43UWJTCy?=
- =?us-ascii?Q?j2YWT5BsIzYn+wgNeN4yE4seDR5rRnrTnh6r8zdx1LJK81xWI7eGlRhn8eZM?=
- =?us-ascii?Q?jP3oVFX26qdXyi2NgB/bodqcY7rBrm7o0YAr1xsLExVmb6nUcdHW30IhZfTY?=
- =?us-ascii?Q?1N2cBtQVfywVsKMbm0VaHv3VeDtqvc0OKgo+vBwUgemJfsSSQ/hsihoNwonM?=
- =?us-ascii?Q?OzlcM94brc3sS0iGJrTFJQPQ2/9mHwWchVGZaae8t0UwfB5MlI6pH12Un46h?=
- =?us-ascii?Q?eZt0xwgAZ0h9P2sUyzCzqziSpQdjr4USrvnlR5LLRtxcpUQ97ISk4Iv0BDGF?=
- =?us-ascii?Q?3FXFlpVVip7pHg00bhQhRQLYSgnuNIkYpOm4cuJd0e+bZMSdT9FClWAMjFbF?=
- =?us-ascii?Q?1UCKeW6VaenoHpbkARkmk9UiHo7U7aZqbZlMIj1wwfEtgm07Xi20+RHIqe+k?=
- =?us-ascii?Q?fJW4fPedyiOsZLJS/UH4lliDDxvGXbkNlOEoonke+3ypLH7bO3RtRplV+5Aj?=
- =?us-ascii?Q?m+hn6LVolDEnjJZudlzJo6u5vsct7lhTin0KkrzeDBiIQm86J4of1oKhcNiF?=
- =?us-ascii?Q?eglP2pHzbKLAsfGzFTeJA7riuUOKiLEiLRe74IcKv9G+UczMdSov0dB6MCb0?=
- =?us-ascii?Q?/CNI5U6tNfZHrnuTk7fs/mzincWPpZKDmChSOUVnSbopub0noSWPh85VSeuf?=
- =?us-ascii?Q?MptsfO5XX0//luxODzJb30Z8ESb0VvDteOpWC+YIOSqLiOYl5Tbi2Zxbztxq?=
- =?us-ascii?Q?NFDv0SENAo7FJjG8o/SDQSe4isgTJVaptUOGSWArQtFoWrPEQSyoscUXrAa4?=
- =?us-ascii?Q?4UTA7MJL5iKdhVjPMEh56bLBFzA7rRjPPQ1L66hGz2sMWaA+5bmQyqVLE3rA?=
- =?us-ascii?Q?iPrEdt/1z/xS2/TzCiZY9pfqUcaeQBa5OkAUAS9ojoeS7wf1ouCy4L1V2p/7?=
- =?us-ascii?Q?anFaIb+agLFn87GKYo1FYS9RavlD3h227J0KPE1zjdm+E7sB7y787H3g/lQR?=
- =?us-ascii?Q?cD90Kbf6EIjRIKwVWdqOOH4aOqbatQ6uwCVkxiiUpZyMAFTOExQ2JpUwLgwe?=
- =?us-ascii?Q?XDQpVglt3qcasPMjpuYG1QVg1eSa3B5GDpm8rwSkKm+eKQF/AHVanf2w5xxU?=
- =?us-ascii?Q?eZDHZF8joBq4ND8LYsF5AxiT5v/53O74D7kMEB6L3X5ZONXZPtWAahTNWmmI?=
- =?us-ascii?Q?gashFGUAJORVkOirIfv4pHCgbY24YGEzzOjUsqi0oryA1ojfjV0xUA9uNscG?=
- =?us-ascii?Q?isMZ4q7gxblBFb6WMaVUJciIhAEagG0FXd04tyDEjGL5ui1AFUsVpNMgyw5W?=
- =?us-ascii?Q?5QzH2sCUHsPhrGFkZ/Anos4+yUrmdj2WwXFrh7Vr?=
-X-OriginatorOrg: mt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eba7f282-f51a-4a64-2a4f-08dd5b132679
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR03MB10400.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 11:53:16.6261
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4HWI4X7ES0Zq/2IWRRmpcILPQQ87uSY+ONrw/GsL4nBNUp+ijOlwfl8J55e0vfku+2FtrUAgOckw+qkbY0I9LQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR03MB10131
+References: <20250303074552.3335186-1-zhoubinbin@loongson.cn>
+ <20250303074552.3335186-2-zhoubinbin@loongson.cn> <CAMRc=Mfr5PCuad28dL19iZrpA-qkL7x0W-4Lt3SZyVfXPP-ipw@mail.gmail.com>
+In-Reply-To: <CAMRc=Mfr5PCuad28dL19iZrpA-qkL7x0W-4Lt3SZyVfXPP-ipw@mail.gmail.com>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Tue, 4 Mar 2025 19:55:38 +0800
+X-Gm-Features: AQ5f1JrQwQmbnnM8V2KqYQZFYKvFMDIRmYh0FNy89y2SOvhJHCUGR-jvA0SPok4
+Message-ID: <CAMpQs4+5165E35oO_p-pE8zDNo2rPT-gBqueA_ynW8FYJHV18A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] gpio: loongson-64bit: Add more gpio chip support
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Yinbo Zhu <zhuyinbo@loongson.cn>, Linus Walleij <linus.walleij@linaro.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Sakari
+Hi Bartosz:
 
-On Wed, Feb 26, 2025 at 04:08:39PM +0000, Sakari Ailus wrote:
-> Hi Mathis,
-> 
-> Please see which subject prefix has been used in the past for these
-> bindings.
+Thanks for your reply.
 
-Yes, I'm sorry for that. I adapted the subjects of the patches.
-
-> 
-> On Wed, Feb 26, 2025 at 04:39:22PM +0100, Mathis Foerst wrote:
-> > The MT9M114 sensor has an internal PLL that generates the required SYSCLK
-> > from EXTCLK. It also has the option to bypass the PLL and use EXTCLK
-> > directly as SYSCLK.
-> > The current driver implementation uses a hardcoded PLL configuration that
-> > requires a specific EXTCLK frequency. Depending on the available clocks,
-> > it can be desirable to use a different PLL configuration or to bypass it.
-> > 
-> > Add the 'bypass-pll' property to the MT9M114 DT-bindings to allow selecting
-> > the PLL bypass mode.
-> > 
-> > Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
+On Tue, Mar 4, 2025 at 6:36=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl> =
+wrote:
+>
+> On Mon, Mar 3, 2025 at 8:46=E2=80=AFAM Binbin Zhou <zhoubinbin@loongson.c=
+n> wrote:
+> >
+> > The Loongson-7A2000 and Loongson-3A6000 share the same gpio chip model.
+> > Just add them through driver_data.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > > ---
-> >  Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > index f6b87892068a..72e258d57186 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > @@ -70,6 +70,10 @@ properties:
-> >            - bus-type
-> >            - link-frequencies
-> >  
-> > +  onnn,bypass-pll:
-> > +    description: Bypass the internal PLL of the sensor to use EXTCLK directly as SYSCLK.
-> > +    type: boolean
+> >  drivers/gpio/gpio-loongson-64bit.c | 51 ++++++++++++++++++++++++++++++
+> >  1 file changed, 51 insertions(+)
+> >
+> > diff --git a/drivers/gpio/gpio-loongson-64bit.c b/drivers/gpio/gpio-loo=
+ngson-64bit.c
+> > index f000cc0356c7..a9a93036f08f 100644
+> > --- a/drivers/gpio/gpio-loongson-64bit.c
+> > +++ b/drivers/gpio/gpio-loongson-64bit.c
+> > @@ -254,6 +254,33 @@ static const struct loongson_gpio_chip_data loongs=
+on_gpio_ls7a_data =3D {
+> >         .out_offset =3D 0x900,
+> >  };
+> >
+> > +/* LS7A2000 chipset GPIO */
+> > +static const struct loongson_gpio_chip_data loongson_gpio_ls7a2000_dat=
+a0 =3D {
+> > +       .label =3D "ls7a2000_gpio",
+> > +       .mode =3D BYTE_CTRL_MODE,
+> > +       .conf_offset =3D 0x800,
+> > +       .in_offset =3D 0xa00,
+> > +       .out_offset =3D 0x900,
+> > +};
 > > +
-> 
-> But on the content itself: do you need this? Could you instead compare the
-> external clock frequency to the link-frequencies property value(s)?
+> > +/* LS7A2000 ACPI GPIO */
+> > +static const struct loongson_gpio_chip_data loongson_gpio_ls7a2000_dat=
+a1 =3D {
+> > +       .label =3D "ls7a2000_gpio",
+> > +       .mode =3D BYTE_CTRL_MODE,
+> > +       .conf_offset =3D 0x4,
+> > +       .in_offset =3D 0x8,
+> > +       .out_offset =3D 0x0,
+> > +};
+>
+> The naming convention here is a bit confusing, can't we have the
+> naming of variables reflect the compatibles they refer to?
+>
+Emm...
 
-That should also work. I removed the DT binding and let the driver check if
-EXTCLK matches the required SYSCLK for the given link frequency to decide if
-the PLL should be bypassed.
+I named them that way to be consistent with the previous naming.
+Of course, we could name them something like
+=E2=80=9Cls7a2000_acpi_gpio_data=E2=80=9D, which might be better understood=
+.
+Also, do we need to rename all instances of =E2=80=9Cloongson_gpio_chip_dat=
+a=E2=80=9D?
 
-> 
-> >  required:
-> >    - compatible
-> >    - reg
-> 
-> -- 
-> Regards,
-> 
-> Sakari Ailus
+For example:
+ls2k1000_cpu_gpio_data
+ls2k0500_cpu_gpio0_data
+ls2k0500_cpu_gpio1_data
+ls2k2000_cpu_gpio_data
+ls2k2000_bridge_gpio_data
+ls2k2000_acpi_gpio_data
+ls3a5000_cpu_gpio_data
+ls3a6000_cpu_gpio_data
+ls7a1000_bridge_gpio_data
+ls7a2000_bridge_gpio_data
+ls7a2000_gpio_gpio_data
 
-Best regards,
-Mathis Foerst
+> Bart
+>
+> > +
+> > +/* Loongson-3A6000 node GPIO */
+> > +static const struct loongson_gpio_chip_data loongson_gpio_ls3a6000_dat=
+a =3D {
+> > +       .label =3D "ls3a6000_gpio",
+> > +       .mode =3D BIT_CTRL_MODE,
+> > +       .conf_offset =3D 0x0,
+> > +       .in_offset =3D 0xc,
+> > +       .out_offset =3D 0x8,
+> > +};
+> > +
+> >  static const struct of_device_id loongson_gpio_of_match[] =3D {
+> >         {
+> >                 .compatible =3D "loongson,ls2k-gpio",
+> > @@ -287,6 +314,18 @@ static const struct of_device_id loongson_gpio_of_=
+match[] =3D {
+> >                 .compatible =3D "loongson,ls7a-gpio",
+> >                 .data =3D &loongson_gpio_ls7a_data,
+> >         },
+> > +       {
+> > +               .compatible =3D "loongson,ls7a2000-gpio1",
+> > +               .data =3D &loongson_gpio_ls7a2000_data0,
+> > +       },
+> > +       {
+> > +               .compatible =3D "loongson,ls7a2000-gpio2",
+> > +               .data =3D &loongson_gpio_ls7a2000_data1,
+> > +       },
+> > +       {
+> > +               .compatible =3D "loongson,ls3a6000-gpio",
+> > +               .data =3D &loongson_gpio_ls3a6000_data,
+> > +       },
+> >         {}
+> >  };
+> >  MODULE_DEVICE_TABLE(of, loongson_gpio_of_match);
+> > @@ -312,6 +351,18 @@ static const struct acpi_device_id loongson_gpio_a=
+cpi_match[] =3D {
+> >                 .id =3D "LOON000C",
+> >                 .driver_data =3D (kernel_ulong_t)&loongson_gpio_ls2k200=
+0_data2,
+> >         },
+> > +       {
+> > +               .id =3D "LOON000D",
+> > +               .driver_data =3D (kernel_ulong_t)&loongson_gpio_ls7a200=
+0_data0,
+> > +       },
+> > +       {
+> > +               .id =3D "LOON000E",
+> > +               .driver_data =3D (kernel_ulong_t)&loongson_gpio_ls7a200=
+0_data1,
+> > +       },
+> > +       {
+> > +               .id =3D "LOON000F",
+> > +               .driver_data =3D (kernel_ulong_t)&loongson_gpio_ls3a600=
+0_data,
+> > +       },
+> >         {}
+> >  };
+> >  MODULE_DEVICE_TABLE(acpi, loongson_gpio_acpi_match);
+> > --
+> > 2.47.1
+> >
+
+
+
+--=20
+Thanks.
+Binbin
 
