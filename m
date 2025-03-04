@@ -1,97 +1,161 @@
-Return-Path: <devicetree+bounces-153861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5058A4E159
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:42:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A38FA4E1BA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:51:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2722019C04CC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:37:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E05B3A6707
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC212264600;
-	Tue,  4 Mar 2025 14:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 516A725DD0D;
+	Tue,  4 Mar 2025 14:39:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="KTdCEV/z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ff+UHP0a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E6020A5C1;
-	Tue,  4 Mar 2025 14:34:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EDEA25E836;
+	Tue,  4 Mar 2025 14:39:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741098889; cv=none; b=didiwaKlSP8O3eHJBszwkTEMBYVuo2UR9tEgQSy4QtUtU5dWygKb/WV717ISOWS2BnoyITC6uFBeNOzFqwQN/sv6ii7M+1AG1bm6QB/53aXoMGN0fAPErKB6pFthDc4rchwg5wi8q39+Ojd2uiiGWDjp37Z3l3rCY+yYiEbxh74=
+	t=1741099155; cv=none; b=icOabWna6DWdzI/g8ae8dKMCn/9aTgZav+6caHwMoX2VOGKps6GrtXIaihm0sp6hbqp0N2hZIQpAVegdla3gjVizyxQU+gGzEhwtHd/o5pTSMt16/OBmcgzNEFKBADo+6u/sAPZ2FhOEDdMP9GDaIU4edaqX9RYHlUltz4nVqOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741098889; c=relaxed/simple;
-	bh=lHCP7UG5o883B54j8Ri/yU9SpSbtzNptQnMdgCOoXo0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j6hEEAHoesl4MC/nt9+gQTJlrEY1MBzzv9ipratB/21mSeF9C2V1bcbEcphFfK8Kfv2cKyhO4EzAw6CYG0Eya9kijssELXJl280mWwmf0llro6i5pgGRifM1ix/mX8B9TbkVj1g90DHjGJUmpw4Av0HpZ5HBrzj/wIr37553/ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=KTdCEV/z; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=4Gqyom2Qw8VXFf3AYIpGbjCuS8c9RY7yiAyJBWvJUfc=; b=KTdCEV/zTusAeUlTIrBuBAb6SW
-	QOPuOTIm7BL/bYx2YPLJAYBFDF28jitg9fxcPZ6HfAEBuQ/bthkTDwK5mTWRX18uOq1FNvKIvh7J6
-	nTZB1nFXW3Y9YXExh4df+JzoAmiG3am5R5qRJ7iGejoN6o5z8ZsxZtlZXjVud8XaTZOA/wZPmNnTU
-	gyqZTRpr2ewIXAoPpKPAfT8rwGqDQ6/IUPt7HnGhQrwTp9dhdUv2IhbA+BD94/tn+iAIwwDt931X8
-	61QfDmBDGVaoGcaaRbJJCC8q/qOP13pFtoMMx9v14XgF/L+KL4Bq5OYk1nh6j816lZCTw6sCXW70X
-	Ucn1A1wQ==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tpTM2-0003uT-SQ; Tue, 04 Mar 2025 15:34:42 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Add ES8388 audio codec fallback on RK3399 ROC PC PLUS
-Date: Tue,  4 Mar 2025 15:34:40 +0100
-Message-ID: <174109881585.132749.2987468837584062976.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250304104200.76178-1-krzysztof.kozlowski@linaro.org>
-References: <20250304104200.76178-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1741099155; c=relaxed/simple;
+	bh=uzDyhg36aKQtXD63rS8FtBbFftRpnHV4ry+5FYiWjAs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YXlSzlMI9VDLL/9G+PgoNO7x8gRnxHSEONkTbIRAnUGzPXRqDvsiVarhmd72eo9VB+Ludn4qx4YjkSx46ed4OMbxVsZO5zq32gj70qMliQZsnpMyMTAcvKF7sq1fGt4DUundCEYnr+CqlmfDgugG6RfcpfAzPiiO6vDv17SgJTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ff+UHP0a; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-390e3b3d3f4so2949035f8f.2;
+        Tue, 04 Mar 2025 06:39:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741099152; x=1741703952; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Npvu48cu8TTRTz8ZFkqiXyWbVjLDOCxYiH4u8pc5l24=;
+        b=ff+UHP0aNPhZZWY4t6VUamPhLbSRqf9WEY/N4oKj59QRoHG+vuAEEk4mrUIhX0KESB
+         2O0QiN/t0D7AkMZkPkviEobz/42RoXpjcLCBm2eAYZ3U8gkOE9v83SzrCYoS+kYDYsdg
+         ytUegaVotYPEGRR1nEfXzfgkXOAD78EuAOw7DaBKirHOb4ItXrjmQ/d5vh3ClahMoCo2
+         o31AhFX2Xx2H1RzeLf4rLizjj5TsPHZzxZq6Ki26cxPHZUGs+i+P/WueLt/HjIY1ZrRE
+         mqh/73GfwaEhveo1fr9Pf4W+0oSbacqgY336Y7We6aZQGkacTf2tzGrlfxiMh38In4mg
+         b1/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741099152; x=1741703952;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Npvu48cu8TTRTz8ZFkqiXyWbVjLDOCxYiH4u8pc5l24=;
+        b=nvfpxBZfWFgyfoZ5aG729mYTB7G+LmswjfixEb6CFXvztuS1xVjIlocgsQnk/GyDL/
+         JYsKc8HCg3Tvx803lh0j/1F5LRACtXZdwKB53ZooOQAfvOpEzmn3wCM8PJZuxExfecdl
+         9MALbFBkp1h5QCHU45U9uVzFAEEUWAAZEoEPiZ3+wX0oO2O1fqF68eZBOPyiSa3q9iEP
+         vs8LU5RcKa33rgA2GvBZpfEQsUetNHdAiuOCGu8ESOcmgtC/EpRbwRY/4c8wxGXnGU/T
+         gC45UBDjZ9Dq+hRQv5VH9oVAUa4DliHpUGxE5FHNmOhQwb6BqLdQuwlCyY6rsdNCSbRV
+         ljfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVm4aW28j/2IjIQksnVFZUcSSW7ToOezlxSb1a/odhyFBWgQvJF268g2MkFRemEgxoCb2xDgxQQaQsr@vger.kernel.org, AJvYcCVrK3oE0q2Pc0NIjmQmh1TP8poBlFORIJSEGzfRMJteuCKb0QDzSVrymxk6GYZcN4hY/O86a0VDuHFMgVLa@vger.kernel.org, AJvYcCWDqXydxcnV/NaUS3bHQW/nhYylZsud6iiaen60oeD0fuaLHN75H8Zt9mojscFyphHsCq2LORvi1Lg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgEEc4zDfFk8Q8H7e609ZQ/Ve3v78s1AygcgSa44XRpw6bjYDX
+	vSzsqAKGQSeFbVLYG6wkJTo5sxK3cSoPPNGnRjmFDFvSNBybfvDPgcrhw0SUWtBppTa9Tm+3Zkw
+	yet/r3wJVos25+yMWLzWPlbpfdpvo2w==
+X-Gm-Gg: ASbGncvFlYw1sx2jRhe48DQ1jxX954Zz+jRUoGGx7hSSpx81INxdSVShWsPgd1xSPPb
+	+zGy38xkUvKOiMcTjvf6+0yimeUVNwxqnx7wPIXcfE4s2l26FJzJT6pa9jt4it0uy3RG5O4GFNu
+	5hXixocHp2UN2rpgwEZivPSuN01Go=
+X-Google-Smtp-Source: AGHT+IG0UxYU+N5iqHGOMOY8APYCMkNgkojpgu6RARUbeEpAB7tfoOd9OOtUsw2ENkYoGjdUzmZx1Iq+/lOy+wqxbcs=
+X-Received: by 2002:a05:6000:18a7:b0:391:136c:1346 with SMTP id
+ ffacd0b85a97d-391136c141amr4097678f8f.19.1741099151431; Tue, 04 Mar 2025
+ 06:39:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20250303115502.89457-1-clamor95@gmail.com> <20250303115502.89457-2-clamor95@gmail.com>
+ <20250304135806.GA2503334-robh@kernel.org>
+In-Reply-To: <20250304135806.GA2503334-robh@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Tue, 4 Mar 2025 16:38:58 +0200
+X-Gm-Features: AQ5f1JpqrYtkOrzf2CVWZdo1DH3FPGrm0F4fbufI2O5K2mZdFEO6-VEvpN_YR5Y
+Message-ID: <CAPVz0n3WZOUb41AzNPqMLx8wtPiBJ1jfww7h5xyJaZgu+=RdkA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: power: supply: Document Maxim MAX8971 charger
+To: Rob Herring <robh@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+=D0=B2=D1=82, 4 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 15:58 Rob H=
+erring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Mon, Mar 03, 2025 at 01:55:01PM +0200, Svyatoslav Ryhel wrote:
+> > Add bindings for Maxim MAX8971 charger.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../bindings/power/supply/maxim,max8971.yaml  | 68 +++++++++++++++++++
+> >  1 file changed, 68 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/power/supply/maxi=
+m,max8971.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max89=
+71.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max8971.yaml
+> > new file mode 100644
+> > index 000000000000..2244cc3d45a6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/power/supply/maxim,max8971.yaml
+> > @@ -0,0 +1,68 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/power/supply/maxim,max8971.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Maxim MAX8971 IC charger
+> > +
+> > +maintainers:
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +
+> > +description:
+> > +  The MAX8971 is a compact, high-frequency, high-efficiency switch-mod=
+e charger
+> > +  for a one-cell lithium-ion (Li+) battery.
+> > +
+> > +allOf:
+> > +  - $ref: power-supply.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: maxim,max8971
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  monitored-battery: true
+> > +
+> > +  port:
+> > +    description:
+> > +      An optional port node to link the extcon device to detect type o=
+f plug.
+> > +    $ref: /schemas/graph.yaml#/properties/port
+>
+> extcon as a binding is pretty much deprecated in favor of connector
+> bindings.
+>
+> The OF graph is an overkill here too. You should just need a phandle to
+> the connector node.
+>
 
-On Tue, 04 Mar 2025 11:41:59 +0100, Krzysztof Kozlowski wrote:
-> Devicetree bindings for ES8388 audio codec expect the device to be
-> marked as compatible with ES8328.
-> 
-> 
+Actually, I am fine with using connector phandle if this will lead to
+acceptance of schema.
+I will add this in v4 once time comes. Thanks.
 
-Applied, thanks!
-
-[1/2] arm64: dts: rockchip: Add ES8388 audio codec fallback on RK3399 ROC PC PLUS
-      commit: d83f6c32d70f96037cb187e63785e7a58f9e751b
-[2/2] arm64: dts: rockchip: Add ES8388 audio codec fallback on RK3588 boards
-      commit: ced36c336d241eafbc812fed27e6a52908d249bb
-
-Thanks for the heads up Krzysztof, about the asoc patches getting accepted
-for 6.15.
-
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> Rob
 
