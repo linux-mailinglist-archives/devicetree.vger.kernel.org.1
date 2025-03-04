@@ -1,112 +1,148 @@
-Return-Path: <devicetree+bounces-153629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D580A4D542
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D68EBA4D543
 	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:47:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AED8170E95
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 07:45:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11B893AFFD8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 07:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F4E1F8721;
-	Tue,  4 Mar 2025 07:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B02D1FAC38;
+	Tue,  4 Mar 2025 07:45:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YbvYvjVL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cdCKt5dq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152CC1F8BCA
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 07:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2131C1F9F61;
+	Tue,  4 Mar 2025 07:45:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741074298; cv=none; b=uaZT5es+aj76zamXIZogh/SYX58ZNfeY0ynpo5Y8dBPHduuv2XpYuOvZ/53p4da2PWkg9dYXLWehFRmtTC1mmGyi+SneirsIg+CMqTsq9zJE0qFsxn4C/FtztqusclBqVJUFop4g0iMT78qCm7JYRsrF5dZryf9LJolTT41TfeU=
+	t=1741074318; cv=none; b=D1F5mfnj9tC/cRU9khK3RPT1Oba1uldeolcldej6qL+7ljExXWoOI3fONiuLH+FUrOdqpVtDDUEs3jtuIXdbvV6jzn4XXkQypSrqedLJbqKmsMWE5lOT/hkIItYWbxnJeyKLfkJ7ugVfTL+VXeUcBBGskjiep8j3xOecqR/SH+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741074298; c=relaxed/simple;
-	bh=cfHuVxnu7QH+sQrmblbsaaSZIKplU5CSQMSXyl7pbY0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GScbdSRTBt6faKt9X85CzwJVWsoLSxKn2M1zlr28xRNTylDfzrOK36E+1x0ffxLxmCMln2Q2MyIUA/BzDegDkx4u5gcJ+Ql7KuV1APBrdBS5uwoUygwTxgdB+xyB5qLcFHSuMpNTxh862RBBgvmY5mqI8q+Emahi/OTyLeqbrVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YbvYvjVL; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-543d8badc30so6126597e87.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Mar 2025 23:44:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741074294; x=1741679094; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cfHuVxnu7QH+sQrmblbsaaSZIKplU5CSQMSXyl7pbY0=;
-        b=YbvYvjVL8fgaOm5gE8mSyr55SVbW8+j+kcN5MuF/RAaw1yMw6w1oLDXRNJLhwixZM0
-         doFOT0sjJN+TLE8QyRTGnDUtwqVdq61ueO+YlGaIa7N7IcfEJwjqGbKts5+UFKzmq674
-         eq2HE+2ZzXXfFzB0RZoVi6XjXmEuuq761hWv2+e+vXewi8N2NQAT4/nw++uctGc3uqBx
-         S9Wz2eUL6WLUe82g6JXWz4uBS47xtlbOXGa3ijIhDIYr73DN3qXCJqpgqjlyz2ZXaMVC
-         tRWUkOm+AX2n3vXlWOhs4q4Dtqe92n41x9DaRVkNAdZTrr03jAAiIK8/LS3v2SwgLvhT
-         HXxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741074294; x=1741679094;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cfHuVxnu7QH+sQrmblbsaaSZIKplU5CSQMSXyl7pbY0=;
-        b=bKraIzME7/VjHryiOQOCkzXkhF5WZVumeDzDt+qPom9YJjWiU7J4lwuy0wi0o1AwON
-         TfuRWiqqjgpAI5roWomFj6F+qOvuTx4xawlO3Z4Oi4fTd2JvyP2hiFwXL5bNdBIR/DEP
-         a2RF4hkx/vomeAjL1eYVQnnBnqM7/42j9GSyYQ2WrGXxiB0lxBUNyvlOQZjG4cSc26yC
-         YcyMMb8Io3ZEXmYwjcjdnPBqrs2K20LuR0sYJ306Zj/07+qLMGQwKo3MxTTTaYtAJbOx
-         qZUX64W65hj2liuCmuk2bIU73RELTCFipUgnPRP3lmJmHL/ycrzCcN1n5cRl5/08cctV
-         aa3w==
-X-Gm-Message-State: AOJu0YxKpyvYVIB3CbLKHQqFjB+IZOFPNYXszkPRzSsBvjBEAXRVK3Kl
-	CLkHmVaTRs6KMJ4B7cjPmyZSq8C4/08WPmfxybhQS8MVS2QRlI7nKdaeBJszqlZr3D/h64Nz2nx
-	rHfTXSJ8jxmwPleK0nTAfzgWfsVamiL6nOA6iRw==
-X-Gm-Gg: ASbGncuN52epDp2Ab4Lo4v+K74zNnDJDIb+dwTQwRsS0cwtU5HOYCngmk4DdUmzrI57
-	nNnCwf2j226NTgGrzaPqWtvQ7kfEk26g/BC1s3uKx9Tf57JGE+/w6T7USaMzsAbZO4ecd71o51V
-	ONO5Dp13keL4eoDFRixOzEANh7aA==
-X-Google-Smtp-Source: AGHT+IG8iql/N6flFoDurYfXL+6Nhzwn0YiFbdLZRbNYnXPe8GqjUr4Ij5hnxPgJ0B/99Ttu8SfLLzv3fgXxEHBiMx0=
-X-Received: by 2002:a05:6512:3a90:b0:545:60b:f38d with SMTP id
- 2adb3069b0e04-5494c107f3cmr6115785e87.8.1741074294122; Mon, 03 Mar 2025
- 23:44:54 -0800 (PST)
+	s=arc-20240116; t=1741074318; c=relaxed/simple;
+	bh=g1CwEryvdLe/wwnFIV+iFxNi+rI8ZMf000Ap6/2bRsc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FejNjd+3uXeVa5j6xq2q3haXvsq5kRIDWwxVsbxk905R/hAbsWbN7AUhSbUh2hrRKt7IbP9JCSV3X9GYhJvOJBv4ogPuxn5x0pLwpxv4lBTUwen7ERNg7kagtcp/sPN9vME+vW73iDhg5RYyVPaX6cSfo/MTuuUJ906eTZFVZ+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cdCKt5dq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91D9FC4CEE5;
+	Tue,  4 Mar 2025 07:45:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741074317;
+	bh=g1CwEryvdLe/wwnFIV+iFxNi+rI8ZMf000Ap6/2bRsc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cdCKt5dqc2V0hxGVfsdWIyoPeJzNgXBf30K/LKZNr/Nh++hELAIJzh26FQXfOzyXD
+	 t40liJ4Axy0B2KasBzBjkc4uHjdfRcoHVw9WEoL7Kp3z8OW3jc4ePEUCkrYuqlTDts
+	 HEMvRqwleLaAHduvsQxzLcA6DdI6Sqp8/ybjXprA2mIgTRAqp+LNx6JG/OQkrFI6n0
+	 3DtpOEU49ZSBker6zxUWUAU2WC0ShbNRiU2G6m/r85QFpKLO4Iwav/5y2e/njkSAYw
+	 q8bhVGrMXrqHa0VpvcIa6qODW8RQQRRqVcrt8Mv+pJDGca9EXAPuu/47F0vxd7E6S3
+	 MX5hWK6JiRzRQ==
+Message-ID: <377951ad-341f-4e19-a582-a534567dc466@kernel.org>
+Date: Tue, 4 Mar 2025 08:45:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250225-gpio-ranges-fourcell-v3-0-860382ba4713@linaro.org>
-In-Reply-To: <20250225-gpio-ranges-fourcell-v3-0-860382ba4713@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 4 Mar 2025 08:44:43 +0100
-X-Gm-Features: AQ5f1Jq5MmYSadltqaB__GrUY0SomfKMu5UqgXKw2WRhvMLdgoacHXmXjEzeAJ0
-Message-ID: <CACRpkdYfcf0toAcU5OEKG8paOv+x4KXSNMEyVoyULpBONZq=EA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] gpiolib: of: Handle threecell gpios
-To: Yixun Lan <dlan@gentoo.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Alex Elder <elder@riscstar.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/5] dt-bindings: firmware: thead,th1520: Add support
+ for firmware node
+To: Michal Wilczynski <m.wilczynski@samsung.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
+ wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
+ ulf.hansson@linaro.org, m.szyprowski@samsung.com
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250303145901.446791-1-m.wilczynski@samsung.com>
+ <CGME20250303145918eucas1p10f64b2ce75e395ce208439307daa8a8f@eucas1p1.samsung.com>
+ <20250303145901.446791-2-m.wilczynski@samsung.com>
+ <edb3dd6e-8b56-42b3-8bb2-8ed7ad186b75@kernel.org>
+ <8dcdd2ec-e4b6-4fc0-be50-12fe187cd5e0@kernel.org>
+ <99fcf36f-7fed-43e8-a94f-47563ab00fc6@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <99fcf36f-7fed-43e8-a94f-47563ab00fc6@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Bartosz,
+On 04/03/2025 08:43, Michal Wilczynski wrote:
+> 
+> 
+> On 3/3/25 18:46, Krzysztof Kozlowski wrote:
+>> On 03/03/2025 18:42, Krzysztof Kozlowski wrote:
+>>> On 03/03/2025 15:58, Michal Wilczynski wrote:
+>>>> The kernel communicates with the E902 core through the mailbox
+>>>> transport using AON firmware protocol. Add dt-bindings to document it
+>>>> the dt node.
+>>>>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>>
+>>> How is this possible? That's v1 and I never review outside of mailing list.
+>>>
+>> OK, I found v5:
+>> https://lore.kernel.org/all/20250219140239.1378758-4-m.wilczynski@samsung.com/
+>>
+>> so is this the same?
+> 
+> Yeah, I thought by splitting the patchset and creating new sub-series I
+> should start versioning from v1 again, and leave that bigger patchset as
 
-On Tue, Feb 25, 2025 at 8:40=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
->
-> This adds some code in the gpiolib OF core to deal with
-> several gpio chip instances per OF node.
->
-> The change was prompted by the need of the Spacemit GPIO
-> controller.
->
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+What was unclear in my "keep versioning and keep changelog"? How this
+can lead to "start new versioning"?
 
-Maybe we can merge this threecell handling code so that part
-is set while Yixun is working on the irqdomain translation, I
-think this could need some rotation in linux-next in the meantime.
+> a reference, I've linked it in each cover letter for each sub-series.
 
-Then the threecell irqdomain translation and spacemit driver
-can slot in right on top.
-
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
 
