@@ -1,119 +1,166 @@
-Return-Path: <devicetree+bounces-154082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DB1EA4EB90
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:29:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32BDDA4EC9F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:03:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 337FE173263
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:24:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E37B8E3F2C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F46A27FE90;
-	Tue,  4 Mar 2025 18:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF10259C9E;
+	Tue,  4 Mar 2025 18:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="KqEYbZrk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="arLobDPT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C0527BF81
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 18:13:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E8E239579;
+	Tue,  4 Mar 2025 18:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741112007; cv=none; b=YUzPV4xWEIPFC+tISDKVecZn7CMh4maW8kuyGHtpyMK66EY5y64gCOjJUjI8NyFIm+lNPYxmhBy5LkC8qRMTka4Ho9PFTzoC0Rp7p2FPMfkPzu+XInvHUbdoBYGI8MpAe00YB87h+hxM7cVFXaXS5V8HcGVrP1g8kcnK30q9Ob4=
+	t=1741112166; cv=none; b=Zql45AqJSaD5XnqTTBjog8/IiDOM7yFWYn47ppkzJHk2TNuJvhljep6yWvRu1iLwFdJpoj3lokisVKLDrt8wbabVb9eIq6qLI9GBk8yaLwd9xfuT9sJfJMB8kBZfs/upRx9kSiTm+2QGA6k74X/rcb+bxptlXsmNOyBEsvWOUuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741112007; c=relaxed/simple;
-	bh=ypPytUNQebnWYDRP7fpFEAJF942EcMHF5lireOs6gk8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BsKNBKkbnFurYB/oavhQ+UrwxQMhOd4h0SkPKlCKdV6DWmLNqE3Xm7kRYMfL0DoHuQtvbDJ6YDJe4pv7MxZqfzI+ApVb/on96oyheX2pZ8jvDywOAZRHjnjCAj8uu9vfvnr6YiHnDAjOY1qXI7zT7ktZB7iXkHpAyc8fxVhU7gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=KqEYbZrk; arc=none smtp.client-ip=121.127.44.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1741111998;
- bh=xjqXCgfra637s+rpk4UdFAWQVXX9B5blSLtqx3MNrXQ=;
- b=KqEYbZrkYoM2a8EOqYL75O4oNNU42Kt0WKaWvm7j2fCvgIPr74ds292+aIPClYWBAVZvSQxMv
- subtPZ3tfDvUPKez4iqIOcww3Poe7DOQLndRCjjwbYUcYFvCqZUUTLMJKJHqpdHfU0ExX0QcZut
- vKE0VZr4uXpH+gV1mI/7CD9/XcQrgjXYbCY0rK4fTIBKAo2IjjQa2P1RcxwDiJHJBHPMpXzN+aM
- ve9G/NOw2zrATDFkenq7mHgD4WRolVhoY8I+9sGZC+J9LkNi9yg2WI++0Bmpl8geUFcDoLN4Gok
- QLNfjNB7QcPIE+BmI1xfUqAmN1VOroxMoO5viz/pgzQA==
-X-Forward-Email-ID: 67c742bb2e5baeec949f6b1e
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.59
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <03c34bdf-d470-4c99-bb06-0eb7496465a3@kwiboo.se>
-Date: Tue, 4 Mar 2025 19:13:10 +0100
+	s=arc-20240116; t=1741112166; c=relaxed/simple;
+	bh=TjiK3dy6VtxMzpyEGZ59HRvoPz9f2mzhsPZT7T2eWnU=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=okj9PBu2zxvgD5prfL2rOc5UMwUZfhM5romrVp21PohPL7ArQTvD85ftyvh+vLrneYOpOGhMW5OvcuRjkrP49LB/vQQWZSobVHNN84x/8LPBhqEEY/Z6t++h094h8ggJivDTqwoB9dammXYP+PSEvEUmLsI3mXnFuxTB0D/bsQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=arLobDPT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 097A8C4CEE5;
+	Tue,  4 Mar 2025 18:16:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741112166;
+	bh=TjiK3dy6VtxMzpyEGZ59HRvoPz9f2mzhsPZT7T2eWnU=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=arLobDPTfb+VaUBCkCpX2TEeRqAqSHAELYPc8ObZkWzMQKhT+yCu1KFwupzYjGm0G
+	 vgDiwRkW4dC2pApZZ05eKIvfD91/SWFaQ9R0hID/hhbhAAL1zywLO0aKBRixIwgQuz
+	 kfBLhQRB47lGrthuWQjAq7/4pcqbtUygmCUAlabgm1Xi3ypDps51vvR3KiLB6N8aJt
+	 CP3/v1hen2/7T4KgAuO+EYJaIFprcJWJOwI5j/GXKl2Teg01wRKx4Jm/92TkcoCviT
+	 RmXeI3jgKyRl/y0hvoeWBvPAdZ5nNL0Tj7tj+msGJqFJA5bQfjL1CzthgEHt5WAUpq
+	 Ddgj0rzvqukqw==
+Message-ID: <b4fb36bc3970293ebdf1ac793bb3d752.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH 0/7] rockchip: Add support for leds and user
- button on Radxa E20C
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Yao Zi <ziyao@disroot.org>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250228064024.3200000-1-jonas@kwiboo.se>
- <174108970986.65436.4272591414898454986.b4-ty@sntech.de>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <174108970986.65436.4272591414898454986.b4-ty@sntech.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250301-exynos7870-pmu-clocks-v5-2-715b646d5206@disroot.org>
+References: <20250301-exynos7870-pmu-clocks-v5-0-715b646d5206@disroot.org> <20250301-exynos7870-pmu-clocks-v5-2-715b646d5206@disroot.org>
+Subject: Re: [PATCH v5 2/2] clk: samsung: add initial exynos7870 clock driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Alim Akhtar <alim.akhtar@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Conor Dooley <conor+dt@kernel.org>, Kaustabh Chakraborty <kauschluss@disroot.org>, Krzysztof Kozlowski <krzk@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>
+Date: Tue, 04 Mar 2025 10:16:03 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-Hi Heiko,
+Quoting Kaustabh Chakraborty (2025-02-28 19:57:13)
+> diff --git a/drivers/clk/samsung/clk-exynos7870.c b/drivers/clk/samsung/c=
+lk-exynos7870.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2ec4a4e489be30bd1cd2e6dea=
+c006bb8ac5bdc57
+> --- /dev/null
+> +++ b/drivers/clk/samsung/clk-exynos7870.c
+> @@ -0,0 +1,1830 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2015 Samsung Electronics Co., Ltd.
+> + * Author: Kaustabh Chakraborty <kauschluss@disroot.org>
+> + *
+> + * Common Clock Framework support for Exynos7870.
+> + */
+> +
+> +#include <linux/clk.h>
 
-On 2025-03-04 13:02, Heiko Stuebner wrote:
-> 
-> On Fri, 28 Feb 2025 06:40:06 +0000, Jonas Karlman wrote:
->> The Radxa E20C has three gpio leds and one gpio button.
->>
->> This series adds dt-binding, driver support, DT node in SoC .dtsi and
->> gpio-keys and gpio-leds nodes in board DT to support the leds and user
->> button.
->>
->> This series builds on top of the "rockchip: Add support for maskrom
->> button on Radxa E20C" series [1].
->>
->> [...]
-> 
-> Applied, thanks!
-> 
-> [1/7] dt-bindings: soc: rockchip: Add RK3528 ioc grf syscon
->       commit: ac32ad07a97648eb8330b2c4cb840b0ef46903ae
-> [4/7] arm64: dts: rockchip: Add pinctrl and gpio nodes for RK3528
->       commit: a31fad19ae39ea27b5068e3b02bcbf30a905339b
-> [5/7] arm64: dts: rockchip: Add uart0 pinctrl to Radxa E20C
->       commit: 0d2312f0d3e4ce74af0977c1519a07dfc71a82ac
-> 
-> Patches 6+7 depend on the parallel saradc support series and thus
-> do not apply - and need too much rework to safely apply.
+Please remove this include as this is a clk provider and not a clk
+consumer.
 
-Do you want me to rebase/reorder and send an updated version with
-remaining patches? Look like the iio saradc patches [2] is pending apply
-so maybe not needed?
+> +#include <linux/clk-provider.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include <dt-bindings/clock/samsung,exynos7870-cmu.h>
+> +
+> +#include "clk.h"
+> +#include "clk-exynos-arm64.h"
+> +
+> +/*
+> + * Register offsets for CMU_MIF (0x10460000)
+> + */
+[...]
+> +
+> +static const struct samsung_cmu_info peri_cmu_info __initconst =3D {
+> +       .gate_clks              =3D peri_gate_clks,
+> +       .nr_gate_clks           =3D ARRAY_SIZE(peri_gate_clks),
+> +       .clk_regs               =3D peri_clk_regs,
+> +       .nr_clk_regs            =3D ARRAY_SIZE(peri_clk_regs),
+> +       .nr_clk_ids             =3D PERI_NR_CLK,
+> +};
+> +
+> +static int __init exynos7870_cmu_probe(struct platform_device *pdev)
+> +{
+> +       const struct samsung_cmu_info *info;
+> +       struct device *dev =3D &pdev->dev;
+> +
+> +       info =3D of_device_get_match_data(dev);
 
-[2] https://lore.kernel.org/all/20250304144648.29f376f9@jic23-huawei/
+Use device APIs please: device_get_match_data()
 
-Regards,
-Jonas
+> +       exynos_arm64_register_cmu(dev, dev->of_node, info);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id exynos7870_cmu_of_match[] =3D {
+> +       {
+> +               .compatible =3D "samsung,exynos7870-cmu-mif",
+> +               .data =3D &mif_cmu_info,
+> +       }, {
+> +               .compatible =3D "samsung,exynos7870-cmu-dispaud",
+> +               .data =3D &dispaud_cmu_info,
+> +       }, {
+> +               .compatible =3D "samsung,exynos7870-cmu-fsys",
+> +               .data =3D &fsys_cmu_info,
+> +       }, {
+> +               .compatible =3D "samsung,exynos7870-cmu-g3d",
+> +               .data =3D &g3d_cmu_info,
+> +       }, {
+> +               .compatible =3D "samsung,exynos7870-cmu-isp",
+> +               .data =3D &isp_cmu_info,
+> +       }, {
+> +               .compatible =3D "samsung,exynos7870-cmu-mfcmscl",
+> +               .data =3D &mfcmscl_cmu_info,
+> +       }, {
+> +               .compatible =3D "samsung,exynos7870-cmu-peri",
+> +               .data =3D &peri_cmu_info,
+> +       }, {
+> +       },
+> +};
+> +
+> +static struct platform_driver exynos7870_cmu_driver __refdata =3D {
 
-> 
-> 
-> Best regards,
+Having __refdata here looks wrong.
 
+> +       .driver =3D {
+> +               .name =3D "exynos7870-cmu",
+> +               .of_match_table =3D exynos7870_cmu_of_match,
+> +               .suppress_bind_attrs =3D true,
+> +       },
+> +       .probe =3D exynos7870_cmu_probe,
+> +};
+> +
+> +static int __init exynos7870_cmu_init(void)
+> +{
+> +       return platform_driver_register(&exynos7870_cmu_driver);
+
+Is this supposed to be platform_driver_probe()? All the __init markings
+in the samsung clk driver look like potential problems if anything
+defers or is made into a module.
 
