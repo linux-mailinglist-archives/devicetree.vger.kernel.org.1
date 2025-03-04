@@ -1,125 +1,113 @@
-Return-Path: <devicetree+bounces-154101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD1DA4ECFA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:15:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A54CA4ED59
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:30:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76ACA16B9ED
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:15:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26C1C3BE94F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5563F255231;
-	Tue,  4 Mar 2025 19:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97608259C9A;
+	Tue,  4 Mar 2025 19:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wd+VYz5Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IViO4f30"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25CD424BCE8;
-	Tue,  4 Mar 2025 19:15:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69997255244;
+	Tue,  4 Mar 2025 19:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741115718; cv=none; b=LFGc2ewl1vLkSFdghMC4v2e3bkP9n8sMLSyFGez5CPdFuQVIfcTZb5ww8JaNvl3stjQyft74J7yLhqnUeERaMH0nI2haAuBOWMgC9hUxf9RPQ8jiKDvnlzYG73FkiMKlfw7bA1RFlZSLM8g4QC6+8UMw2glhRKPHt3F43qEK7Q0=
+	t=1741116064; cv=none; b=VkwGKjQZuDcLrQnYrm/EvwzNGiuOwlcnWTjyrdUgdTdGgJiEiGSkZVTaoVRn7UpCdanrLwkcWY7Msntv2Rhgu0e9dJ1KkpgGsa8JYQ2yYQBwc8wnqbifUcDZBCC1lPDFtTS2f1IdbzOV9WTORGBevw1QKW+NbVjLiXmDWJ39quM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741115718; c=relaxed/simple;
-	bh=m8gpsFcvErC+OBg1crSKmlYcazdRoOwZ0xMnwbncoLg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=NYpHjrOUrqNzU7LSwekpgEspFnLdH5wUv0RLgdySmZ6VCvjQtrzDZcJUdh548aVWv0pdxRcVRNBc+JkeWnJ52Hf+jw/JLu+6sLOzIZOx1ZgsBuBQ6wR9VpU6GSorusG7Snnefhb8+IKjE/bo4jZFPcZqTLkyI45MKl0q7KXa04g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wd+VYz5Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BA93C4CEE5;
-	Tue,  4 Mar 2025 19:15:17 +0000 (UTC)
+	s=arc-20240116; t=1741116064; c=relaxed/simple;
+	bh=6MnWChvdZA4s+8fxB0dv8vXGdMG4i5FgUOx+TUcX3rE=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=JNJxk8UOEbb69k9KfVUI6SVQTyWoBAEtxEpnBbyXPYGXINwBFFZ6aOohxB18chlpSBznggV1LaHs06gSqu4kIUr1fstcBtnIbP9HqOdoK0jQPYID4SYT+rZ52Okx+UBOTyv/pnoy6j4s8uowsm3xKqPvT0G5QUvia9uX2Ecn96A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IViO4f30; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13915C4CEE5;
+	Tue,  4 Mar 2025 19:21:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741115717;
-	bh=m8gpsFcvErC+OBg1crSKmlYcazdRoOwZ0xMnwbncoLg=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Wd+VYz5Z5pmq6PMWBMCh4meGD69gSJjcGdaQqppo0JES4AT8CP7BglSfJgGMVA3y7
-	 UTxQvO0wRGmTbAZ1rh01lKFGskbhM75iCjZ6guHgUT/y704xVrwXatSv5etp8opAL/
-	 hMX2QJSLGU+L4BspbNuRwWw7D+P0z4vZhF8JcjMhBRoudk+xaT0kjlBU8ik1AI4bbJ
-	 /804WbtwyRXPPLHq2RrTziJNifSXLCDEj8XSDDzcF/V/DkuC7iaKTrjOhKSmKp2bfF
-	 1M63SfvUoiIkLLZzovZrXd1NTBWJJQ7O8Xg5BWl8JiUITB6tWMIjQ2m2VpPjnnVLjG
-	 opGhzPH4Pok/A==
-Date: Tue, 04 Mar 2025 13:15:15 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1741116063;
+	bh=6MnWChvdZA4s+8fxB0dv8vXGdMG4i5FgUOx+TUcX3rE=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=IViO4f30mVkst2x3qHPFh8izeOtVaw7uz++VewyC1C4wRjjXNjkPpsvdbCKPh5a7p
+	 LqeXcwXMOBn+5V4SsCSDB4zkQJ/L06PEH92xc657CrC1OKTP0fjMViud/W7PWug3Xt
+	 yPOn3BPv2+hsD5y6O5mAh1cC1VOX6ZQIyvHn4ZXfS6Y8NQDAnYA5VViId/1CcZpwmk
+	 KMW67znwGXnZVSH7YKBEcvgHahVyteVyEVvjBoYk73cF2M5BlW/FWFAhYsheUY2uyD
+	 pM4hhX+5F+r32BkLurL55YngI2/BkcGNpQ0ySuBcL2f2C3OvYIZP5suiuVfTftmCRz
+	 6WUb34kNPuMlQ==
+From: Mark Brown <broonie@kernel.org>
+To: shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com, 
+ nicoleotsuka@gmail.com, lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, 
+ linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ Shengjiu Wang <shengjiu.wang@nxp.com>
+In-Reply-To: <20250226100508.2352568-1-shengjiu.wang@nxp.com>
+References: <20250226100508.2352568-1-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH 0/4] ASoC: fsl_audmix: support audio graph card for
+ audmix
+Message-Id: <174111606081.246439.10804205280595861731.b4-ty@kernel.org>
+Date: Tue, 04 Mar 2025 19:21:00 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: tglx@linutronix.de, jic23@kernel.org, linux-iio@vger.kernel.org, 
- olivier.moysan@foss.st.com, wbg@kernel.org, linux-kernel@vger.kernel.org, 
- linux-pwm@vger.kernel.org, alexandre.torgue@foss.st.com, 
- conor+dt@kernel.org, krzk+dt@kernel.org, daniel.lezcano@linaro.org, 
- devicetree@vger.kernel.org, will@kernel.org, lee@kernel.org, 
- catalin.marinas@arm.com, ukleinek@kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org
-To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <20250304173229.3215445-2-fabrice.gasnier@foss.st.com>
-References: <20250304173229.3215445-1-fabrice.gasnier@foss.st.com>
- <20250304173229.3215445-2-fabrice.gasnier@foss.st.com>
-Message-Id: <174111571576.3307031.12348647271786435979.robh@kernel.org>
-Subject: Re: [PATCH v2 1/8] dt-bindings: mfd: stm32-lptimer: add support
- for stm32mp25
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-1b0d6
 
-
-On Tue, 04 Mar 2025 18:32:22 +0100, Fabrice Gasnier wrote:
-> Add a new stm32mp25 compatible to stm32-lptimer dt-bindings, to support
-> STM32MP25 SoC. Some features has been updated or added to the low-power
-> timer:
-> - new capture compare channels
-> - up to two PWM channels
-> - PWM input capture
-> - peripheral interconnect in stm32mp25 has been updated (new triggers).
-> - registers/bits has been added or revisited (IER access).
-> So introduce a new compatible to handle this diversity.
+On Wed, 26 Feb 2025 18:05:04 +0800, Shengjiu Wang wrote:
+> Change 'dais' property to be optional, that fsl_audmix device can be
+> linked with SAI device by audio graph card.
 > 
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> ---
-> Changes in V2:
-> - Use fallback compatibles, along with stm32mp25 specific compatible
-> - trigger identifier can be up to 4 (e.g. from LPTIM1..5)
-> ---
->  .../bindings/mfd/st,stm32-lptimer.yaml        | 40 ++++++++++++++++---
->  1 file changed, 34 insertions(+), 6 deletions(-)
+> Shengjiu Wang (4):
+>   ASoC: dt-bindings: fsl,sai: Document audio graph port
+>   ASoC: dt-bindings: fsl,audmix: Document audio graph port
+>   ASoC: dt-bindings: fsl,audmix: make 'dais' property to be optional
+>   ASoC: fsl_audmix: register card device depends on 'dais' property
 > 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied to
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:26:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:29:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:67:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:70:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:87:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:90:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:103:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:106:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:120:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:123:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-dtschema/dtc warnings/errors:
+Thanks!
 
-doc reference errors (make refcheckdocs):
+[1/4] ASoC: dt-bindings: fsl,sai: Document audio graph port
+      commit: abcb9a1fd89144536f3ef604f700e94424867366
+[2/4] ASoC: dt-bindings: fsl,audmix: Document audio graph port
+      commit: 5fee78e517ce0765def9387659fc56a1d5532c60
+[3/4] ASoC: dt-bindings: fsl,audmix: make 'dais' property to be optional
+      commit: 597acf1a04bede55e3ad8a7922bba286c11112d3
+[4/4] ASoC: fsl_audmix: register card device depends on 'dais' property
+      commit: 294a60e5e9830045c161181286d44ce669f88833
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250304173229.3215445-2-fabrice.gasnier@foss.st.com
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-pip3 install dtschema --upgrade
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Thanks,
+Mark
 
 
