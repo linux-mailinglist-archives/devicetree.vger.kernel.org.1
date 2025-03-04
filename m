@@ -1,198 +1,191 @@
-Return-Path: <devicetree+bounces-153991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD60A4E6A7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:47:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E6F8A4E680
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:44:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACD3119C8208
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:39:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FABC424BCF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:35:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82E092857E1;
-	Tue,  4 Mar 2025 16:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BFE1281357;
+	Tue,  4 Mar 2025 16:14:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="kgbgKRxH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2042.outbound.protection.outlook.com [40.107.22.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62221205511;
-	Tue,  4 Mar 2025 16:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741105053; cv=none; b=sKVE8GX3w3O4/CQMute/o4y2Fk5ZvGs8hV+Fs54r0iAqyb+P4cXUsYqQp5CQRv9iD96yDMRIRoFhFXfPAUMi+W1zDhLiqmlQp8w7KdEpKrR+ZriH1494Xp48WSLCiW5VE9pbumMWcR6vimRuaCc/20AHeBx+5QMjb4SEepUj9nU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741105053; c=relaxed/simple;
-	bh=AFgR0mNR/8SlLvdj/O+UVxnsCaumYfIisXWz4wTDJ0Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H4m6voI2zFL7QGVUKbqpFNpu7kJFNwhrp7oDT/kY4rT538Is/PW7XAinxSV/FCcAalETRM/C6dM9zMs3ep7q8TztjwRGX/Y41gjF9njwO99WSBIKY5WRigTR6hXN2euOdOmv7wOZtc5owonRiYZIM7Ij6beLNb0j2imGtjCz9hU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D231C4CEE5;
-	Tue,  4 Mar 2025 16:17:29 +0000 (UTC)
-Message-ID: <cade5c73-e25f-4f56-be10-7d5a06f92917@xs4all.nl>
-Date: Tue, 4 Mar 2025 17:17:28 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC5B27D787;
+	Tue,  4 Mar 2025 16:14:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741104859; cv=fail; b=Hhd9+W+a7MpN0cujctD6Qetl94g2/lGtTGr4GrHRs8n4Kf9wr/lbP0nhAHnPo/oL2q6EsqX5iz6GjXfhLm9uLAz22SJG0Sp+kSh4eYljtzxPpznM628R7U+C3vz/NhHsQuPKX3X6iRMLKx10+XUIkuD1cjax8t8+LPxH9pjM3FE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741104859; c=relaxed/simple;
+	bh=JKlmRQZeHN8odiLq4j1kSU7IrZRuLDbHPr+VScktEyY=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=DbWYrV4aX6PL9A5/Sfxy9Z/o85OxeAmvJle8FAvtZKuu/A48/odkhq8g1frYqC2bg7xVF/2Y6iBoyKnjKmMG/rOBCva2rIEdXrrdHvgyOF/H4W71t86acauONIfTQ27sk5T/BnjIeVgzxdEEfCKOQiGHw9kh2gOCa27QyhVeOJ8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=kgbgKRxH; arc=fail smtp.client-ip=40.107.22.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ku5PoRk30aZl/ZVLmFVh9OZf/oPX9RqF5k9RXZtmHK7798pCxB60KcKHadmM4NZhcVZQJJrWysavA6sHcG+AFxRWGvcyvWAbeEzq1oDBCwQpHii64mTByq27jkNefyBby8FTKiUfxWnsNq8mCgZSdBYw492hEXeh9hZyLUYweWfC01cz4eYGYqQ7SqSxVEVo45h/ONE3oReD4tsy1yuopFFDaylEN2eXjVeKc+TIIza0KCNARCzusg5sZA20pVaakSfOJZPFx0YgMafo2yFMB7IwhuSVNqhtDXiYELYKOI9PvanF7FAMfu6UXr3FzPo27B5L/A4sadmqoYhFBaFEig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LHJkMEgvR5CFt7mMzjuFcVREWomQoP5aUxZyaZk9mII=;
+ b=bOwiRoX+olfEsf3dOwx5eWD9dy515srEK/L6Y7vbdwSwHvFMjx6IsuEovDtKhOqDQrXdl5Sh9I4lV325hZS6/HLOnr7i005SkZh1l13z8sCGRIBjTA95WY9LysF9R/Q1W4wgUPB/xOBIMzKpSZnt2jJQk1DcMzMVIg3If1cg99P+xo0tR8aww5diUuqnk0+IHY08WoZM9tm1wTkCcP9R5ZQBljdeqX99icaFw9D/VN9cUF3Ia6aHtXe/RnKWmAQ3A8eEwuPlmrkwxIj+5fYY7HeRuHUPYP4PWbXN67KsjzLlYzP6UyZzelBRT8obtPLVt81dL7iIoo/390skUTO0Pg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LHJkMEgvR5CFt7mMzjuFcVREWomQoP5aUxZyaZk9mII=;
+ b=kgbgKRxHHf6iQfidby2riRVZwJOJyaSkzbVKLm6W0Le5tjplK563+pYyprhBc7rnGkK/LqozT8SAr75yFkfUE4sPb96689faxsAhzRie7Q9o+PShn3XBQ9TN31exCvQoH4pgyoPJoxm84Uo3fXbnNOK+AuH90gTthi6mBpnW4c7TH8x/qaRcL+2iit4ht73JZK+oFAXMAtVjxVj+OkqFWMgFQZn/CedsncpTMak26kU1g7FPCpkMluafyhqo2Ame2+8GPtPSJF57USIJJ+Z2ewgiE061L1m3EK5gpJVHBjP0UwdelrhwyhV/PNGbj1uqO2PBIJM3LEqqzC7PDCyFIg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU7PR04MB11163.eurprd04.prod.outlook.com (2603:10a6:10:5b3::14)
+ by DU4PR04MB11080.eurprd04.prod.outlook.com (2603:10a6:10:587::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.25; Tue, 4 Mar
+ 2025 16:14:14 +0000
+Received: from DU7PR04MB11163.eurprd04.prod.outlook.com
+ ([fe80::3a74:80e4:4144:62db]) by DU7PR04MB11163.eurprd04.prod.outlook.com
+ ([fe80::3a74:80e4:4144:62db%4]) with mapi id 15.20.8489.028; Tue, 4 Mar 2025
+ 16:14:13 +0000
+From: florin.leotescu@oss.nxp.com
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Shych <michaelsh@nvidia.com>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: viorel.suman@nxp.com,
+	carlos.song@nxp.com,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
+	festevam@gmail.com,
+	Florin Leotescu <florin.leotescu@nxp.com>
+Subject: [PATCH v3 0/3] Add OF support for Microchip emc2305 fan controller
+Date: Tue,  4 Mar 2025 18:21:33 +0200
+Message-Id: <20250304162136.1963384-1-florin.leotescu@oss.nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AS4P195CA0025.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5d6::20) To DU7PR04MB11163.eurprd04.prod.outlook.com
+ (2603:10a6:10:5b3::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 6/6] arm64: defconfig: Enable Synopsys HDMI receiver
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
- <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, jose.abreu@synopsys.com,
- nelson.costa@synopsys.com, shawn.wen@rock-chips.com,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Tim Surber <me@timsurber.de>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-References: <20250225183058.607047-1-dmitry.osipenko@collabora.com>
- <20250225183058.607047-7-dmitry.osipenko@collabora.com>
- <a8a6c8c8-ee3b-422a-8573-a2cbb61fc3aa@xs4all.nl>
- <863f9c1beb7a912f94f8740b3e5095e09e49cee5.camel@collabora.com>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <863f9c1beb7a912f94f8740b3e5095e09e49cee5.camel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU7PR04MB11163:EE_|DU4PR04MB11080:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06e5f39c-01ae-449d-6146-08dd5b379ac1
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?iso-8859-1?Q?W8/8fvsvMwa9ZbTtj2AJmWDznJh5pN4YgAGef4sj3zpDl5WYaEc5laPbgR?=
+ =?iso-8859-1?Q?zER9yooz7Txb9Bj1vJEI8f1iea24a7R4E1EtGlZcDY8EbH6rKrw0k1Anae?=
+ =?iso-8859-1?Q?rY3MpNBBjpCt52Xtk9I3OU2KlXvkbGsSCXEG+9p+KFj7nMF5Xe98zm9aWg?=
+ =?iso-8859-1?Q?n7+SqFpjIlY8+vbiZ8euX7xgfMVRoGufuBWgC2XvNMAaaYOeYA1l2j7Xq3?=
+ =?iso-8859-1?Q?rQikqp5izh/os2H2qAFkGui9vystjncZnRGBKcfZoTj4w/RpSR8Tr+HohY?=
+ =?iso-8859-1?Q?191cHGk/+iYN/WJY3HsSyJhorYxBgZxkQFo+G/DxS4IYQmDOJ36SmohLiP?=
+ =?iso-8859-1?Q?Ex6c3ED+DnaZGkN6NTykXor8YD5CAko6/rumqkkhQMl1qqa9kwObhGL59r?=
+ =?iso-8859-1?Q?RigLsLoX18IrJWC1NubZulLYM0y8Y8oI6Rh1oRJlz66JOS7z/WDIt/9Ida?=
+ =?iso-8859-1?Q?MGnlHsybE39IXicuT2HHzWnbi8AiIhNIvwqZm3B6e0OcEtguKFgG2KMVOa?=
+ =?iso-8859-1?Q?99SBag46dW9uhRbEevoCbzzNSV+wUaw7wkPsVqvMAbcQtYz18NCVzOLIYU?=
+ =?iso-8859-1?Q?PyuA70kKatjbhQpfntlM0QTru1JGX15ouimMEo/e3DONqGaMgpYD3ArxhP?=
+ =?iso-8859-1?Q?qGqCW8XzvqUYEtDR0sNwM7gcFDio1cPTJ48rU4Q6xK2gMTORdZorVwrBWI?=
+ =?iso-8859-1?Q?w518DYX1zo14R1IH+b8Lhw9Vll2416sTeFcNx7k9AMVADCp7tipnnKrK4q?=
+ =?iso-8859-1?Q?8ZKhYVynN2oTpkcCRXeXSm7NpfP4pJZFDSSTMzsDufLRWJ71lbKMvU/1ek?=
+ =?iso-8859-1?Q?4DGUI7hasNbTsEYFIgpYXTsRLCnMqRLTAyfKCkQNYoC2KQuGmePsmJBbz/?=
+ =?iso-8859-1?Q?ZCK/OeoM6LiquosqKyWliznGHIpcuhNtg5GBd6+SWfJ/ohmweIdxgWmwZm?=
+ =?iso-8859-1?Q?vDsDfl412vbFinFTkcRc8ilUASy/83FuWS4EJ8Jigf8GlgGYQs/EA++u+Z?=
+ =?iso-8859-1?Q?A7QGZim4QA613Yan7p34IvKgsBZ3kNDuKIwbH0T+n3YgH5SJIHnpNiIBKv?=
+ =?iso-8859-1?Q?+fbSmaCgfM8o7Ozrr0Xa77UpY1eI2dp3QOW22SCWl2X6ZIOhdCBvTdC6wi?=
+ =?iso-8859-1?Q?MtEcysL+WlTiSDBhpo2+9n64+Nx+alZrh6Yck00Vh56FfnFe/8tVNax0I4?=
+ =?iso-8859-1?Q?4O17xgL/NOwAPEyRyH+ceNO3PhwfhNRTPzgU4vnw7pe9m+mLIzmYMTxPOp?=
+ =?iso-8859-1?Q?90we+4lL6BcsoKJLcXFDUNpyOY1fTdSyyYLSjxfYzgc3Z+ecQJZj25cLj9?=
+ =?iso-8859-1?Q?ONYSio/x0VNEjiDixp/PsrxbjZn6L46fE3sGIbYKlufSz4L2ezWUacg07J?=
+ =?iso-8859-1?Q?nl4K99ZWwc2M0xlk2Kg+0VGpBWk58jyQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU7PR04MB11163.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?fkmBM9xIgWTO6pw6JkPxq6hzzjEfXpQySq32DX7TJ6S58LHRRw3PwtCu2F?=
+ =?iso-8859-1?Q?2lNXaZRHNFlpSH/jiFAhAd++ykLKIPVxyTJGsY+6BWTrjQhV7dpVvHgA76?=
+ =?iso-8859-1?Q?V8HZ7LhlSW9DKDInsF/lVmwjZH3fwjdlEZWONqOANlmPWAlJSjqv4LtyXB?=
+ =?iso-8859-1?Q?wIsPBbua5Jfpl67iLAgrlOW+d6kZ8EdqsLmZm97TuTnaR+R1ShYyU/6Ond?=
+ =?iso-8859-1?Q?BJjXXlytB/KGw0i1qL/xpm61yFlHnmBjaHIthIWqlDbkfBT3+c4N1N1uOt?=
+ =?iso-8859-1?Q?/tIwdcXvmm927Y4lz7HsvxUS1XmYsWPuKI9mCyKPD6wGx9q3bFkxUlMg44?=
+ =?iso-8859-1?Q?SHF+ySt8oTC5uhZLG/Vi53ayrjurwPIiNjr24HgeLK3lr2ebpwwBu8wJb4?=
+ =?iso-8859-1?Q?9rc/VTi/gFtrSuz7MBNqlLJrz/u+vdW0LfzRdiH2HNa1qNdM7nyxs6n9MP?=
+ =?iso-8859-1?Q?w6B5P1MlQ2vhIi+FuMyzkpUupshzmgMEWrNbTfj4FevhyFqmoRP3GP0G73?=
+ =?iso-8859-1?Q?hlEew6TEbW0OAGSAUON4QD1FSAmLc5Ur8Y0kGCLV6u2Il+H9WuoTMgUXQu?=
+ =?iso-8859-1?Q?NSCRPlCKNL7vRS2ieBzmIXrGalCpkIYEseQG+0dyFsCa9kUnHQt6SNslKw?=
+ =?iso-8859-1?Q?d0DtjQ4jnff5x1CCQjO+witQk9NS4/TTYfpUXlNSMCHohTmP4ES+kgVI+L?=
+ =?iso-8859-1?Q?SYTcin1yNoz3gHVs9bcBRQYxfcG6buLEup1MokZB883SF5GNTNA6RSf60u?=
+ =?iso-8859-1?Q?mC3JCYqPyiFnp9576xlzcnsdTwJg/8OPVVa3e8XDMFzrSyBoPJZohjqO9A?=
+ =?iso-8859-1?Q?BBQ6927v50xyNoDq5+BLms3Chi4DP/tgWMUWPsFDu/N/57CBrFaPIb5Gg7?=
+ =?iso-8859-1?Q?AOD07gfXKaD7Aac17RvdKnz5+Aa4sVkIAqVXMpsjAG4v7Q82LB1629z/Uc?=
+ =?iso-8859-1?Q?bZvcS1Bkw5mFYIFnjCg11qEwIxLEWNKmtRn/MpaOoKW7sCCpzNN+MmEhI0?=
+ =?iso-8859-1?Q?IC4jeiTAPVeYSslGWXdiBlHEp613vv0u84FmjZ10M3TUQqLsxY+eBG8u6z?=
+ =?iso-8859-1?Q?XBm7uQjS6a/ol6iT/kwV4xRcht1R21renzemw+832EEyg4MC3CkfdvJKbQ?=
+ =?iso-8859-1?Q?XNuKq13ogHhAAsPJcaMEgjyBWEyG2am5A2OlcpOqXVYD9cDZ9L6ybP9dR4?=
+ =?iso-8859-1?Q?D6Z6gd6XliVkcRC9UKWniw55kfEOucDyQOg0ddT6sPxg28hWJK/eUw7bPs?=
+ =?iso-8859-1?Q?oAV1tbj3r+pHfMRkKEud1dKkpNmbd3AlMDtCReTANgWyBhth0ZVtaxy2po?=
+ =?iso-8859-1?Q?CMvKs5fxVA7wOEZogIVjFg+c3X/x2WQYoGOG303Xt/Bo+55DxTaCmUniZm?=
+ =?iso-8859-1?Q?kLg9IQQZYqgaprNFPDUF173YirI5tfaMx0PZVFWr7xLbw+ELI/Khb9oLJs?=
+ =?iso-8859-1?Q?ELWQQx/M1Fp8f0zEyFaPatWsrK9SMRnBYo3DS+N1tkTklDo13x5oMHVji+?=
+ =?iso-8859-1?Q?kUP0USLoblcd7z0YRUpD1Tzlk7ecRI8E9MSiqXJ06pKZb24SqIaZZgzSk2?=
+ =?iso-8859-1?Q?ThiyiCl0MyheVZJM4mbvEJM8oTaeJbtC5b9exGaRUoZ2qTYkdzgydHgH6W?=
+ =?iso-8859-1?Q?rbAeYBCv+nIpeVKpbaLq30BwiExlaJqlBxbepNsajXPUaT9Qbe8MSuJg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06e5f39c-01ae-449d-6146-08dd5b379ac1
+X-MS-Exchange-CrossTenant-AuthSource: DU7PR04MB11163.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 16:14:13.8065
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TMM8zkfL5gRKghekTKpiM/4khptEs0KKMpi/oLmqjZ9X90XAkFttIqBl9K+ETM1vLlfhNTV1+LMUKKWKDSq7UQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB11080
 
-On 28/02/2025 04:51, Nicolas Dufresne wrote:
-> Hi Hans,
-> 
-> Le mercredi 26 février 2025 à 09:31 +0100, Hans Verkuil a écrit :
->> On 25/02/2025 19:30, Dmitry Osipenko wrote:
->>> From: Sebastian Reichel <sebastian.reichel@collabora.com>
->>>
->>> The Rockchip RK3588 has a built-in HDMI receiver block from
->>> Synopsys. Let's enable the driver for it.
->>>
->>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->>> ---
->>>  arch/arm64/configs/defconfig | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/arch/arm64/configs/defconfig
->>> b/arch/arm64/configs/defconfig
->>> index cb7da4415599..3dccc9e1c4aa 100644
->>> --- a/arch/arm64/configs/defconfig
->>> +++ b/arch/arm64/configs/defconfig
->>> @@ -859,6 +859,8 @@ CONFIG_VIDEO_SAMSUNG_EXYNOS_GSC=m
->>>  CONFIG_VIDEO_SAMSUNG_S5P_JPEG=m
->>>  CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
->>>  CONFIG_VIDEO_SUN6I_CSI=m
->>> +CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
->>> +CONFIG_VIDEO_SYNOPSYS_HDMIRX_LOAD_DEFAULT_EDID=y
->>
->> I do not believe it is a good idea to default to y for this option.
->>
->> The EDID depends on the specific device you make, and you should
->> think carefully about whether the default EDID fits the needs of the
->> device.
->>
->> So if you want the default EDID, then you should manually select it
->> and not have it autoselected.
-> 
-> Following up here, from the device maker perspective sure, but I'm not
-> sure this is the best choice for generic Linux distribution. As of
-> today, pretty much no userspace capture software knows about this,
-> meaning the device will not work out of the box in OBS, GStreamer,
-> Ffmpeg, Web Browsers. In comparison, if you pick any UVC HDMI capture,
-> it just work, with a default EDID that covers the range of
-> capabilities, which in this case are defined by the SoC.
+From: Florin Leotescu <florin.leotescu@nxp.com>
 
-A UVC HDMI capture device is not a good comparison: that has it's own
-EDID that is configured for the specific hardware and USB bandwidth
-limitations. EDID handling is all internal to that device, nothing to
-do with the UVC driver.
+This patch series add initial OF support for Microchip emc2305 fan controller.
 
-That said, this device is a bit different compared to most other
-HDMI receivers in that it also has a DMA engine. Usually HDMI receivers
-are i2c devices that connect to an SoC. In this case the hardware is
-inside the SoC. So I am OK with making LOAD_DEFAULT_EDID=y in the defconfig.
+Changes since v2:
+- Removed the introduction of new properties for now and we only 
+  enable basic OF support.
+- Link to previous version: 
+  https://lore.kernel.org/linux-arm-kernel/20250219133221.2641041-3-florin.leotescu@oss.nxp.com/T/
 
-So:
+Florin Leotescu (3):
+  dt-bindings: hwmon: Add Microchip emc2305 yaml schema
+  hwmon: emc2305: Add OF support
+  hwmon: emc2305: Use devm_thermal_of_cooling_device_register
 
-Acked-by: Hans Verkuil <hverkuil@xs4all.nl>
+ .../bindings/hwmon/microchip,emc2305.yaml     | 43 +++++++++++++++++++
+ drivers/hwmon/emc2305.c                       | 36 ++++++----------
+ 2 files changed, 55 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
 
-Note that I will merge the v13 driver (patches 1-3), since it looks good.
-
-But v11-v13 of this defconfig patch dropped the "CONFIG_VIDEO_SYNOPSYS_HDMIRX_LOAD_DEFAULT_EDID=y"
-line, so you might want to post a v14 of just patches 4-6, restoring that
-line, once I merged patches 1-3.
-
-Regards,
-
-	Hans
-
-> 
-> Whatever we make as a choice, will always be the wrong choice for
-> someone, though I expect this to be a lot easier to change for
-> "specialized" implementation. Now, since there is no reason you can't
-> do a specilized implementation on generic Linux distro, and because you
-> might disagree with me, perhaps a compromise is to also add a module
-> parameter, so that there is a run-time override to this.
-> 
-> Nicolas
-> 
->>
->> Regards,
->>
->> 	Hans
->>
->>>  CONFIG_VIDEO_TI_J721E_CSI2RX=m
->>>  CONFIG_VIDEO_HANTRO=m
->>>  CONFIG_VIDEO_IMX219=m
->>
->>
-> 
+-- 
+2.34.1
 
 
