@@ -1,83 +1,66 @@
-Return-Path: <devicetree+bounces-154107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC072A4ED9C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:41:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F474A4EDD4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:50:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE48518932BF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:41:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD945171AEE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:50:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF881209F59;
-	Tue,  4 Mar 2025 19:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43B925F7A8;
+	Tue,  4 Mar 2025 19:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dpiixRCf"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="EWOlvoXB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D4F1F03C0;
-	Tue,  4 Mar 2025 19:41:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 457752E3399;
+	Tue,  4 Mar 2025 19:50:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741117291; cv=none; b=uoynuktMsqmNO5PGkUvQgvDSnM2q9MEICowkFgz4cLvkuesKrQARbQ8GdAaRxff5uIKpREHwsQxzHTXJEBG7zsQyTOQYlBWvfYAlcwrxSnZnLomYh3Rjp70SQplDIKP+/gPNmpbj/e0/T6YFx9lDNh4wI/x1cTleCpddI6RN43A=
+	t=1741117814; cv=none; b=EcKx31YywJ9XEvAJ9I8MnVl0CBUPB+M0K1tYlfbavZFhYpBpTjr78a+94l4eUzzTrdbZUmrBEORyxBsvq3ubccgiKCnNRZy9DNWjqEhJX7+2J+qeofkSQTH5qPXSkIkXUojL+czlh59tTy2TJbLBizOwkuBHjctw9lDW2jHOueM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741117291; c=relaxed/simple;
-	bh=mSXJN62c9c43TayjWMcrZoUoqbOEtw2eHIrrgusAkcQ=;
+	s=arc-20240116; t=1741117814; c=relaxed/simple;
+	bh=/vRWKQtZKb8AVks66fKFJNA8Q7HHHVpV5dIgIcKRJh8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qtem4aLa5klE8rxH/wNY/RbbGnkfYU6tRKe+yeXpSZfI0bKxeAlOgksKGyWRqyUopbpzoC2fg4zlEFEZK1LH0/WLpfaDcW8D6Ba4zu+3IgmTRzqVyScSeG3lnu+ZtDGcWXCq+35EaBg/mAZ4LI+GtjapSH4naeCNVY6O5Np1hDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dpiixRCf; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741117290; x=1772653290;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mSXJN62c9c43TayjWMcrZoUoqbOEtw2eHIrrgusAkcQ=;
-  b=dpiixRCfB9O7imZOT5OBKJ0V3VzZ1+d8cACU2/+E0+cmPJ98AFbJ7Kgm
-   yjo/w7Ozd5Z6ZcronZIPbiy/UMIzpK112ITMY5tJFWFAIktWJA1gvCDJl
-   ZEjeDoBOPyAWAubBI4BoI3o2T+Qij4NdAQtFccBnkped/3ToXRMSNo2My
-   Pl1vajgt089tNPjvWaS59dRat1G1ZANAqtBD/4Cx2Jqf2NYNN6ZJbre1n
-   2HSFojUv4pRDnyXi6nGC/NahINeYzTHN6qdx3bftaOdqEOh3bXTtUg2q8
-   njzqdv7/Bw9x3HMLoRm00d1hOHTmfqGa3FYCzcjYvSy9RYmruabYWqsuG
-   A==;
-X-CSE-ConnectionGUID: I8oVJaY4RHeLXxD3iMjx/Q==
-X-CSE-MsgGUID: JhEgJ8HvRPanRSwuLnO4BQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="41235958"
-X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; 
-   d="scan'208";a="41235958"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2025 11:41:27 -0800
-X-CSE-ConnectionGUID: U8VV1OeURqOA6GR9LDuIIQ==
-X-CSE-MsgGUID: EHHSAZjkRsupzERpxCndxw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="119369326"
-Received: from ksztyber-mobl2.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.245.231])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2025 11:41:22 -0800
-Date: Tue, 4 Mar 2025 20:41:14 +0100
-From: Mehdi Djait <mehdi.djait@linux.intel.com>
-To: Michael Riesch <michael.riesch@wolfvision.net>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, Gerald Loacker <gerald.loacker@wolfvision.net>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>, 
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, Paul Kocialkowski <paulk@sys-base.io>, 
-	Alexander Shiyan <eagle.alexander923@gmail.com>, Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 06/11] media: rockchip: rkcif: add driver for mipi
- csi-2 host
-Message-ID: <3fztpczfxlfzt3bdll4alzllrrqvvr3akhkiqtmtam2v2sbw2y@6hb3aok7h62x>
-References: <20250219-v6-8-topic-rk3568-vicap-v4-0-e906600ae3b0@wolfvision.net>
- <20250219-v6-8-topic-rk3568-vicap-v4-6-e906600ae3b0@wolfvision.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=B1hnNqRWs9nRa/GCBrZwc+9fEblU+wo1lkpRSIwI3jBDlKmwa+wcVU8Ch1dXsU8ALBlLZVA54xC+yHE1PF3EP6fKEzAeZeK4SIDldI1SHVJ5jg1lTlr2FvVkCX+ehCtB8ccF+XhTf7whnwVFLOl3mGACXK/j1hDs7CYx6Hr6hgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=EWOlvoXB; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 0095C252B4;
+	Tue,  4 Mar 2025 20:50:09 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id YOe44yWLNYEa; Tue,  4 Mar 2025 20:50:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1741117804; bh=/vRWKQtZKb8AVks66fKFJNA8Q7HHHVpV5dIgIcKRJh8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=EWOlvoXB2lKejxwrdke4Er6of5ABdK3jBS9BAXlXEL0XFcLS/7C0FI/oEB1pz5JpR
+	 yStJAX5kufOc7R5KTMYtpQvzZZClaZe1L05PLt1BJlCvyAp0TMiVt3jZyiEQhZKrrh
+	 DC1g3n0EnlgV3+tBx61eFGMHLWBzWJuq3kRkNOP16r7p/9ZOBZKIVKjByeqdnt8ry/
+	 pkLkd8wXvLy+ItQptFHSWKUtx0nVA9JiMlh7MObc7kiMZrzVqHDyUo+bduvDD9iybP
+	 ZvfPyhbDp0qziwtu+YrJ/xUroOCsLzWzkjRo3HlIu3EkzYRmFG0gxi1zzBElz5i8f4
+	 /EsfnkVnFBvTg==
+Date: Tue, 4 Mar 2025 19:49:45 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: conor+dt@kernel.org, cristian.ciocaltea@collabora.com,
+	detlev.casanova@collabora.com, devicetree@vger.kernel.org,
+	frank.wang@rock-chips.com, heiko@sntech.de, jonas@kwiboo.se,
+	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 8/8] arm64: dts: rockchip: Enable SD-card interface on
+ Radxa E20C
+Message-ID: <Z8dZWYpABghRHHge@pie.lan>
+References: <20250301104835.36439-1-ziyao@disroot.org>
+ <20250304121036.1453284-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,96 +69,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250219-v6-8-topic-rk3568-vicap-v4-6-e906600ae3b0@wolfvision.net>
+In-Reply-To: <20250304121036.1453284-1-amadeus@jmu.edu.cn>
 
-Hi Michael,
-
-thank you for the patches.
-
-Sorry for the big delay!
-
-On Wed, Feb 19, 2025 at 11:16:37AM +0100, Michael Riesch wrote:
-> The Rockchip RK3568 MIPI CSI-2 Host is a CSI-2 bridge with one input port
-> and one output port. It receives the data with the help of an external
-> MIPI PHY (C-PHY or D-PHY) and passes it to the Rockchip RK3568 Video
-> Capture (VICAP) block. Add a V4L2 subdevice driver for this unit.
+On Tue, Mar 04, 2025 at 08:10:36PM +0800, Chukun Pan wrote:
+> Hi,
 > 
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> ---
->  drivers/media/platform/rockchip/rkcif/Makefile     |   1 +
->  .../platform/rockchip/rkcif/rkcif-mipi-csi-host.c  | 731 +++++++++++++++++++++
->  2 files changed, 732 insertions(+)
+> > +	aliases {
+> > +		mmc0 = &sdmmc;
 > 
-> diff --git a/drivers/media/platform/rockchip/rkcif/Makefile b/drivers/media/platform/rockchip/rkcif/Makefile
-> index 818424972c7b..0c18efd1f1b4 100644
-> --- a/drivers/media/platform/rockchip/rkcif/Makefile
-> +++ b/drivers/media/platform/rockchip/rkcif/Makefile
-> @@ -4,4 +4,5 @@ rockchip-cif-objs += rkcif-dev.o \
->  	rkcif-capture-dvp.o \
->  	rkcif-capture-mipi.o \
->  	rkcif-interface.o \
-> +	rkcif-mipi-csi-host.o \
+> s/mmc0/mmc1
 
-[..]
+Will take it and add the missing pinctrl, as Jonas already pointed out.
 
->  	rkcif-stream.o
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-mipi-csi-host.c b/drivers/media/platform/rockchip/rkcif/rkcif-mipi-csi-host.c
-> new file mode 100644
-> index 000000000000..fa3f42b2dc55
+> > +&sdmmc {
+> > +	bus-width = <4>;
+> > +	cap-mmc-highspeed;
+> > +	cap-sd-highspeed;
+> 
+> I think for sdcard, only cap-sd-highspeed
+> is needed, not cap-mmc-highspeed?
 
-SNIP
+This makes sense, will remove it in the next version.
 
-> --- /dev/null
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-mipi-csi-host.c
-> +
-> +static struct platform_driver rkcif_csi_drv = {
-> +	.driver = {
-> +		   .name = "rockchip-mipi-csi",
-> +		   .of_match_table = rkcif_csi_of_match,
-> +		   .pm = &rkcif_csi_pm_ops,
-> +	},
-> +	.probe = rkcif_csi_probe,
-> +	.remove = rkcif_csi_remove,
-> +};
-> +module_platform_driver(rkcif_csi_drv);
+> > +	disable-wp;
+> 
+> Missing pinctrl.
+>
+> > +	rockchip,default-sample-phase = <90>;
+> 
+> It seems that all rk3528 devices need to set this
+> default phase, so maybe this can be placed in dtsi?
 
-[..]
+Yes, since the tuned phase offset is a SoC-specific value, as pointed
+out by comment in the driver,
 
-When adding the driver for this CSI-2 Host bridge, you added another
-call to  module_platform_driver()
+	this is _not_ a value that is dynamically tuned and is also
+	_not_ a value that will vary from board to board.  It is a value
+	that could vary between different SoC models.
 
-but in the definition of this macro:
+Will take it in the next version, thanks for finding it!
 
-"Each module may only use this macro once, and
-calling it replaces module_init() and module_exit()"
+> > +	sd-uhs-sdr104;
+> 
+> The rk3528 devices uses gpio to switch IO voltage, maybe
+> more modes should be added here like vendor kernel?
 
-and as you can see in the diff of the Makefile,
-rkcif-mipi-csi-host.0 is part of the same module as rkcif-dev.o, where
-you already call module_platform_driver()
+I cannot get the relationship between things you mentioned. For the
+regulator, yes, here vqmmc-supply is missing, as already pointed out by
+Jonas.
 
-I think the solution here is to call
-platform_register_drivers(drivers, ARRAY_SIZE(drivers)) in rkcif-dev.c
+> And these devices use 3.3V IO voltage by default.
+> 
+> 	sd-uhs-sdr12;
+> 	sd-uhs-sdr25;
+> 	sd-uhs-sdr50;
+> 	sd-uhs-sdr104;
 
-with
+But I don't think it's necessary to lay out these slower modes
+explicitly, since SDR104 seems to imply them, see
+sd_update_bus_speed_mode() in drivers/mmc/core/sd.c[1],
 
-static struct platform_driver * const drivers[] = {
-	&rkcif_csi_drv,
-	&rkcif_plat_drv,
-};
+        if ((card->host->caps & MMC_CAP_UHS_SDR104) &&
+            (card->sw_caps.sd3_bus_mode & SD_MODE_UHS_SDR104)) {
+                        card->sd_bus_speed = UHS_SDR104_BUS_SPEED;
+        } else if ((card->host->caps & MMC_CAP_UHS_DDR50) &&
+                   (card->sw_caps.sd3_bus_mode & SD_MODE_UHS_DDR50)) {
+                        card->sd_bus_speed = UHS_DDR50_BUS_SPEED;
+        } else if ((card->host->caps & (MMC_CAP_UHS_SDR104 |
+                    MMC_CAP_UHS_SDR50)) && (card->sw_caps.sd3_bus_mode &
+                    SD_MODE_UHS_SDR50)) {
+                        card->sd_bus_speed = UHS_SDR50_BUS_SPEED;
+        } else if ((card->host->caps & (MMC_CAP_UHS_SDR104 |
+                    MMC_CAP_UHS_SDR50 | MMC_CAP_UHS_SDR25)) &&
+                   (card->sw_caps.sd3_bus_mode & SD_MODE_UHS_SDR25)) {
+                        card->sd_bus_speed = UHS_SDR25_BUS_SPEED;
+        } else if ((card->host->caps & (MMC_CAP_UHS_SDR104 |
+                    MMC_CAP_UHS_SDR50 | MMC_CAP_UHS_SDR25 |
+                    MMC_CAP_UHS_SDR12)) && (card->sw_caps.sd3_bus_mode &
+                    SD_MODE_UHS_SDR12)) {
+                        card->sd_bus_speed = UHS_SDR12_BUS_SPEED;
+        }
 
-then define module_init() and module_exit()
-
-Btw. MODULE_DEVICE_TABLE() is missing both here and in rkcif-dev.c
-
-> +
-> +MODULE_DESCRIPTION("Rockchip MIPI CSI-2 Host platform driver");
-> +MODULE_LICENSE("GPL");
+> Thanks,
+> Chukun
 > 
 > -- 
-> 2.34.1
+> 2.25.1
 > 
 
---
-Kind Regards
-Mehdi Djait
+Regards,
+Yao Zi
+
+[1]: https://elixir.bootlin.com/linux/v6.13.5/source/drivers/mmc/core/sd.c#L448-L479
 
