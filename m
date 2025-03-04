@@ -1,263 +1,137 @@
-Return-Path: <devicetree+bounces-153798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC1AA4DDE6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:28:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB9CA4DDEB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:30:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72C8E7A40A1
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:27:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E16FC3A5B84
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:29:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2541E202C20;
-	Tue,  4 Mar 2025 12:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A874202C20;
+	Tue,  4 Mar 2025 12:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TMo2Q3Ep"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5BD12010E3;
-	Tue,  4 Mar 2025 12:28:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 624B8202976;
+	Tue,  4 Mar 2025 12:30:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741091322; cv=none; b=AI7kaeoOZgCDAXSK1TO8kBMdJtfA/swJcsr4RilxMoM/HgijIVSFS3mwVnX4i9VVayirfDTAvCXShatT7Y+3fsVSk/gnFvGApmkYSAzLzxP1fgp5Bl73xcOVo2Oyyr63XejqImHdmjdlkKQYWifFJvkv17w2oZUNYj3+cmt6YO0=
+	t=1741091402; cv=none; b=sVRIdalGHjNMkcG/alsyn3eeamGZh4Jq76Zkb2RYylft/fxmyiVbkVx440yXtA6mgT42F4+As+LaphwGvyjLXP0vt9ecUxsId42StPkX1kpiFV8LeaBi6G4SGItIIePmbriXbxyaB6cr9DqPtDbFUvmuBIa974/rjVxIQ8Bu5jU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741091322; c=relaxed/simple;
-	bh=7CVK5RriPNiuTywe/Ytj/4JBL8PgijKTyYnsve+78ps=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yp1sozUlYMwbOx2jg1EdVbGJP2PL9lWI7UidI9kK8d1QZvd/wLkoBvy6lOWZKntebMNAKKoiSq8k6yormRrrgIpP7wTgdxX06tryJc03lc2ErIhIMd4TOgTboFiZsY84xTbQRFisqmsNHJkw/iMCf4euQoxERyjFF2u6ahyxcC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4573BFEC;
-	Tue,  4 Mar 2025 04:28:52 -0800 (PST)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 54D7C3F5A1;
-	Tue,  4 Mar 2025 04:28:36 -0800 (PST)
-Message-ID: <0be31ecd-4386-4eb6-ad6f-a4409a3fc6ad@arm.com>
-Date: Tue, 4 Mar 2025 12:28:23 +0000
+	s=arc-20240116; t=1741091402; c=relaxed/simple;
+	bh=rJKGNfM/s8QAQjXFzZnxlWs2DFKcY9YmiOImWJPI/GQ=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=UJ2wSjl8qFpqVUcl+Wl/l2fsO+/9Bw5Nq+fiknjvz8FJcp8QkQ9/0Ur1b9HKiG2xGpOGFsNkQGyMmAq1g7ULVTHxIYN9S20ncXzLZSw7vQzEpie3nTV+wA+lwmyKPj2UL/CQwGNVFBkm+KC7ZwsNYBhtsEbvPC3MZQWHguZOZ1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TMo2Q3Ep; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3EC3C4CEE5;
+	Tue,  4 Mar 2025 12:30:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741091401;
+	bh=rJKGNfM/s8QAQjXFzZnxlWs2DFKcY9YmiOImWJPI/GQ=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=TMo2Q3EpOctKaoJW9GG7S6AMYjIDFGNjCQj4bJsSZCI9aqh/qYV4ejHAlDb9RLKnP
+	 M1csSwvOvpyYuoLzNbdiOSskin8i1N64VgsfpIBdZmAAbz5+TRZLfil0G9953jUhUh
+	 IFBtS/SB89C0+avIAkVA0DnGt0g5t9Bsk0D0NsgrRUIV2lK5TuG7+WKG7B7fyHSfcl
+	 9n8w8hSOw7iZiEvXgMHZmcmUgNFVj73T4Zci4/koyKbeOkbKt4nDC/VRHbkEgdelGK
+	 10XmL2sNZ9QGlY4ENh2ChRmU+IHBOqKWhqvmeYlTGseMDIoQQAwGaAdyzoqN/AOD5c
+	 ewoyaowLH8P+w==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADE2D380AA7F;
+	Tue,  4 Mar 2025 12:30:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 10/10] arm64: dts: qcom: sa8775p: Add CTCU and ETR
- nodes
-To: Jie Gan <quic_jiegan@quicinc.com>, Mike Leach <mike.leach@linaro.org>,
- James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250303032931.2500935-1-quic_jiegan@quicinc.com>
- <20250303032931.2500935-11-quic_jiegan@quicinc.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20250303032931.2500935-11-quic_jiegan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v8 00/15] Introduce flowtable hw offloading in
+ airoha_eth driver
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <174109143450.124302.2708662777154071510.git-patchwork-notify@kernel.org>
+Date: Tue, 04 Mar 2025 12:30:34 +0000
+References: <20250228-airoha-en7581-flowtable-offload-v8-0-01dc1653f46e@kernel.org>
+In-Reply-To: <20250228-airoha-en7581-flowtable-offload-v8-0-01dc1653f46e@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, nbd@nbd.name, sean.wang@mediatek.com,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ p.zabel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, chester.a.unal@arinc9.com, daniel@makrotopia.org,
+ dqfext@gmail.com, andrew@lunn.ch, olteanv@gmail.com, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, upstream@airoha.com, sayantan.nandy@airoha.com,
+ ansuelsmth@gmail.com, krzysztof.kozlowski@linaro.org
 
-On 03/03/2025 03:29, Jie Gan wrote:
-> Add CTCU and ETR nodes in DT to enable related functionalities.
+Hello:
+
+This series was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
+
+On Fri, 28 Feb 2025 11:54:08 +0100 you wrote:
+> Introduce netfilter flowtable integration in airoha_eth driver to
+> offload 5-tuple flower rules learned by the PPE module if the user
+> accelerates them using a nft configuration similar to the one reported
+> below:
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
-
-Assuming this goes via the soc tree,
-
-Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-
-
-> ---
->   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 153 ++++++++++++++++++++++++++
->   1 file changed, 153 insertions(+)
+> table inet filter {
+> 	flowtable ft {
+> 		hook ingress priority filter
+> 		devices = { lan1, lan2, lan3, lan4, eth1 }
+> 		flags offload;
+> 	}
+> 	chain forward {
+> 		type filter hook forward priority filter; policy accept;
+> 		meta l4proto { tcp, udp } flow add @ft
+> 	}
+> }
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 3394ae2d1300..31aa94d2a043 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -2429,6 +2429,35 @@ crypto: crypto@1dfa000 {
->   			interconnect-names = "memory";
->   		};
->   
-> +		ctcu@4001000 {
-> +			compatible = "qcom,sa8775p-ctcu";
-> +			reg = <0x0 0x04001000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb";
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					ctcu_in0: endpoint {
-> +						remote-endpoint = <&etr0_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					ctcu_in1: endpoint {
-> +						remote-endpoint = <&etr1_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->   		stm: stm@4002000 {
->   			compatible = "arm,coresight-stm", "arm,primecell";
->   			reg = <0x0 0x4002000 0x0 0x1000>,
-> @@ -2633,6 +2662,122 @@ qdss_funnel_in1: endpoint {
->   			};
->   		};
->   
-> +		replicator@4046000 {
-> +			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-> +			reg = <0x0 0x04046000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				port {
-> +					qdss_rep_in: endpoint {
-> +						remote-endpoint = <&swao_rep_out0>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					qdss_rep_out0: endpoint {
-> +						remote-endpoint = <&etr_rep_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		tmc_etr: tmc@4048000 {
-> +			compatible = "arm,coresight-tmc", "arm,primecell";
-> +			reg = <0x0 0x04048000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +			iommus = <&apps_smmu 0x04c0 0x00>;
-> +
-> +			arm,scatter-gather;
-> +
-> +			in-ports {
-> +				port {
-> +					etr0_in: endpoint {
-> +						remote-endpoint = <&etr_rep_out0>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					etr0_out: endpoint {
-> +						remote-endpoint = <&ctcu_in0>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		replicator@404e000 {
-> +			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-> +			reg = <0x0 0x0404e000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				port {
-> +					etr_rep_in: endpoint {
-> +						remote-endpoint = <&qdss_rep_out0>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					etr_rep_out0: endpoint {
-> +						remote-endpoint = <&etr0_in>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					etr_rep_out1: endpoint {
-> +						remote-endpoint = <&etr1_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		tmc_etr1: tmc@404f000 {
-> +			compatible = "arm,coresight-tmc", "arm,primecell";
-> +			reg = <0x0 0x0404f000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +			iommus = <&apps_smmu 0x04a0 0x40>;
-> +
-> +			arm,scatter-gather;
-> +			arm,buffer-size = <0x400000>;
-> +
-> +			in-ports {
-> +				port {
-> +					etr1_in: endpoint {
-> +						remote-endpoint = <&etr_rep_out1>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					etr1_out: endpoint {
-> +						remote-endpoint = <&ctcu_in1>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->   		funnel@4b04000 {
->   			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
->   			reg = <0x0 0x4b04000 0x0 0x1000>;
-> @@ -2708,6 +2853,14 @@ out-ports {
->   				#address-cells = <1>;
->   				#size-cells = <0>;
->   
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					swao_rep_out0: endpoint {
-> +						remote-endpoint = <&qdss_rep_in>;
-> +					};
-> +				};
-> +
->   				port@1 {
->   					reg = <1>;
->   					swao_rep_out1: endpoint {
+> [...]
+
+Here is the summary with links:
+  - [net-next,v8,01/15] net: airoha: Move airoha_eth driver in a dedicated folder
+    https://git.kernel.org/netdev/net-next/c/fb3dda82fd38
+  - [net-next,v8,02/15] net: airoha: Move definitions in airoha_eth.h
+    https://git.kernel.org/netdev/net-next/c/b38f4ff0ceac
+  - [net-next,v8,03/15] net: airoha: Move reg/write utility routines in airoha_eth.h
+    https://git.kernel.org/netdev/net-next/c/e0758a8694fb
+  - [net-next,v8,04/15] net: airoha: Move register definitions in airoha_regs.h
+    https://git.kernel.org/netdev/net-next/c/ec663d9a82bf
+  - [net-next,v8,05/15] net: airoha: Move DSA tag in DMA descriptor
+    https://git.kernel.org/netdev/net-next/c/af3cf757d5c9
+  - [net-next,v8,06/15] net: dsa: mt7530: Enable Rx sptag for EN7581 SoC
+    https://git.kernel.org/netdev/net-next/c/ab667db1e601
+  - [net-next,v8,07/15] net: airoha: Enable support for multiple net_devices
+    https://git.kernel.org/netdev/net-next/c/80369686737f
+  - [net-next,v8,08/15] net: airoha: Move REG_GDM_FWD_CFG() initialization in airoha_dev_init()
+    https://git.kernel.org/netdev/net-next/c/67fde5d58cd4
+  - [net-next,v8,09/15] net: airoha: Rename airoha_set_gdm_port_fwd_cfg() in airoha_set_vip_for_gdm_port()
+    https://git.kernel.org/netdev/net-next/c/c28b8375f6d0
+  - [net-next,v8,10/15] dt-bindings: net: airoha: Add the NPU node for EN7581 SoC
+    https://git.kernel.org/netdev/net-next/c/266f7a0f81c0
+  - [net-next,v8,11/15] dt-bindings: net: airoha: Add airoha,npu phandle property
+    https://git.kernel.org/netdev/net-next/c/9b1a0b72264c
+  - [net-next,v8,12/15] net: airoha: Introduce Airoha NPU support
+    https://git.kernel.org/netdev/net-next/c/23290c7bc190
+  - [net-next,v8,13/15] net: airoha: Introduce flowtable offload support
+    https://git.kernel.org/netdev/net-next/c/00a7678310fe
+  - [net-next,v8,14/15] net: airoha: Add loopback support for GDM2
+    https://git.kernel.org/netdev/net-next/c/9cd451d414f6
+  - [net-next,v8,15/15] net: airoha: Introduce PPE debugfs support
+    https://git.kernel.org/netdev/net-next/c/3fe15c640f38
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
