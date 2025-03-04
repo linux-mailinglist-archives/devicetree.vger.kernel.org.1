@@ -1,157 +1,186 @@
-Return-Path: <devicetree+bounces-153566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D20A4D137
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 02:49:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC276A4D18D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 03:16:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3392A7A7438
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 01:46:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5C61189100F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 02:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACB6142E83;
-	Tue,  4 Mar 2025 01:45:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C010616B3A1;
+	Tue,  4 Mar 2025 02:16:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="svSStuOB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail78-60.sinamail.sina.com.cn (mail78-60.sinamail.sina.com.cn [219.142.78.60])
+Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19010003.outbound.protection.outlook.com [52.103.68.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 398D2136347
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 01:45:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.60
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741052738; cv=none; b=jfqYMfjA3NvW1gTb/1Y47Jkyg2/lD9B+KL5MGSQOX3RYqzJRjHO1o8pxsYLRw2d2wyG0cPFvCzN+sIYq4ulXMwMANAUpPw422OvaBETOz3N3Fi/rv+CFT3lGWCVyezhN0540YQ+BSHuHQ48pxy0ZgbWxfF70O6jpYjIiDgcEn2o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741052738; c=relaxed/simple;
-	bh=/BdeqteE2ILibLaDWZMQGWa3nDTJyw9I4kwq0AmALUM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=e9pSdKxe5fulZ2vEXs4Re/ha5y1IngLR9NLUu5B9JAPlzEuZM/FTpzs6Kdm9wRsQISIntR7X24XClOwbBbyiWoC/f0/HqW/j1YmL3sxEy7/BSkhhtUEmiY1xYOvy6c+843oLl08RMyCkSxo1k9PwznOIdNzhGaOdctg8M+5S7TM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
-	by sina.net (10.185.250.30) with ESMTP
-	id 67C65B3200001EC2; Tue, 4 Mar 2025 09:45:25 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 73BFC20EC01C4C2E858E4681B809A653
-X-SMAIL-UIID: 73BFC20EC01C4C2E858E4681B809A653-20250304-094525
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Cc: tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com,
-	robh@kernel.org,
-	Zhang Yi <zhangyi@everest-semi.com>
-Subject: [PATCH v2 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-Date: Tue,  4 Mar 2025 09:45:20 +0800
-Message-Id: <20250304014520.83292-3-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250304014520.83292-1-zhangyi@everest-semi.com>
-References: <20250304014520.83292-1-zhangyi@everest-semi.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFDB73176;
+	Tue,  4 Mar 2025 02:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.3
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741054614; cv=fail; b=eHKLbXkZVTbwot4HdkH5yIbWz/ZMutYnGyGdqPpU0mBgMOnTA5H6Rx9CrZ813WFSK6P1FQ6LD2IHYogu/9VCzhbtcKQh/UriUUJzrZoN2PhD8efRAiEgTo+gPLH9H1GJLSGH8t+HbuNBQ60ZdKDVat0g01ObDOQe7nUP+NSCDk4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741054614; c=relaxed/simple;
+	bh=XUQTEvmKWoHbFZuG4CDFBTAEEq5zMxWOU2F7GZzhEH4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=OhZxyVQCWNTDi/FjDJFCje/oPi4svEqA4AYr1Uj+JxN1Dfg7ifjwtGEFh+2JzJdKgaUB7u6YhVTJLz5roKzchR0YEmN1eUCbTRYUbAQruKLxpeI8v4Om2ae6sa9bYe1v5W0Ri9DGkxcntn0Q2UOqizyEsTZIcfOBm9wOcIZr5qo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=svSStuOB; arc=fail smtp.client-ip=52.103.68.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=l7kIX6jMvcsFVux57mWvIIf7SgC/cACVqvqqmyyC5WwoMC4GJ6xqUu0DIM9lQwKVSqTw9j7y8Y71m558XzPSsTFV3Kmi7lj/oCEf9MJ4dvo1G28MnByfq3Xxbr2sPXRKJc2ynhFqBlB1knWZtvwkmZTCGKUU7lWyIyuxUC6oa4x6jDYr5EJ86Mx5zzChXL/4tlFp6KQGRnGdMkctXL9ixkh71kV5rGY1lj3TAFogZx7fZJQl8mhUumMkICOiwNIwA8BtNj/auTIVHpQ7tiZnhUEjQ84YIC35nt/9J4w3iatPtKrYQvZLzfTBSb6RI8qQ/yc9LcRVL4Q595twGNxiGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CFbR1KW5BwCNEUqibjjZCichG/zm9zw8HEkGtdf8dSc=;
+ b=X/0vRLGbu3+2WtcTeKK/S6E5zWrVjmXAKpUVjEea3fPnZ3Jj7N0pyBrVj7RzLVDq1SWKpgtUMbhqyVpuCNgD2yIv1ZwksU6e3WvY9NlNve84nQdHPtBj2/fue6D2UI+QbMDL8FUeXxOF/x5agNVW1kGHqhDqzNEVz+f71CSvaCyFH55YigVFYgXlXDDfV+CXdTYuAjEghvRqOiyJNlE4Nt3GFgxgsIURHF1LWItsvg7f/2ekuxCDgG81vhHm5YoboRpI2VBMtAq7FvSo00K+QNNf0HhUuz6r+tl6ledUVsTk2oafrmbghDZTgt/keYqahCSGPSXw2zq98JJ/LYGklg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CFbR1KW5BwCNEUqibjjZCichG/zm9zw8HEkGtdf8dSc=;
+ b=svSStuOBxcT1ozWJWE/COfVM5k+n8FkH6KcQ9WG24+WCTbZMHx7PI+ZJ8INNMKgSfz6a26B+TnIZf3l+S2ndZDKcs4KXFcUxV4AZYD3los1Py0ki7zybZ5u4AYXxvQSgP3SnSgJ1CB7ElF1I7zBsZJdhHAKT3ODunXTkx1oZhWS4QczzikkTMIO8O/96J/6McaP8OJx45OPYrWp6d1TANcv3bmAjCJwS5bda0c5tE7nR+uLnP8NdsNV5oDtxHkZEPn4WlwFDm+SFawN1UdRnxcwVhzHsPoNipCP2HtSeRKXVHqL/S1o4dgmpBYaXef/IcxyTISLIqQIyzqB0L6bfRA==
+Received: from PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:1eb::14) by MAZPR01MB8920.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:cd::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.29; Tue, 4 Mar
+ 2025 02:16:46 +0000
+Received: from PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::1b4f:5587:7637:c5a5]) by PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::1b4f:5587:7637:c5a5%6]) with mapi id 15.20.8489.028; Tue, 4 Mar 2025
+ 02:16:46 +0000
+Message-ID:
+ <PN0PR01MB1039343DAAEFC794E30056ED5FEC82@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
+Date: Tue, 4 Mar 2025 10:16:36 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] irqchip/sg2042-msi: Add the Sophgo SG2044 MSI
+ interrupt controller
+To: Inochi Amaoto <inochiama@gmail.com>, Thomas Gleixner
+ <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ sophgo@lists.linux.dev, Yixun Lan <dlan@gentoo.org>,
+ Longbin Li <looong.bin@gmail.com>
+References: <20250303111648.1337543-1-inochiama@gmail.com>
+ <20250303111648.1337543-3-inochiama@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20250303111648.1337543-3-inochiama@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR06CA0013.apcprd06.prod.outlook.com
+ (2603:1096:4:186::18) To PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:1eb::14)
+X-Microsoft-Original-Message-ID:
+ <c14be9dc-3134-45ed-9790-9b5f493d88cd@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN0PR01MB10393:EE_|MAZPR01MB8920:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed69441b-89b0-4925-ae26-08dd5ac29be2
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|6090799003|15080799006|8022599003|8060799006|7092599003|461199028|5072599009|19110799003|440099028|3412199025;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UFhmR0dDZ3VGN0g3aFMvSW42UjR2V3lZTWhCM0dGK0dwM3NyQlVNMGhKRTI3?=
+ =?utf-8?B?U21WWHRzS3RxN04yYndSY05sQmJHMDFVL2dMZXdEdGpuaDcwa0RMVzhHQVAx?=
+ =?utf-8?B?UHhmdWRjekRwcHBvcktYL3RJYWZiQjZNUWhEMGEzS1JQZG93Z3JBQmZpVDVT?=
+ =?utf-8?B?eVRQdFNDbkZpQ2xhWE9tMitRcEMxRHpxdUJiRVlUN0FEaXppUXJUT1Y2MTQ4?=
+ =?utf-8?B?YjljaTNDektEQ3NIY0ladmhncFZLRkFHbFlRQnJWc3dZcVVFTktKck92YmR3?=
+ =?utf-8?B?SlZub0NKeVV3VTRqdjhtZDdNZFZFSUtLZ3lLb1Y5S3pYdU5nbUpuYWc3aWxF?=
+ =?utf-8?B?Q2JjYWJTdUp1dTRONW9UcGx4VXNBKzFyVStFbmIzaUh6a2FTdkVWd1RUSU1S?=
+ =?utf-8?B?dENST0s3UFV6elRHNXM1NGw1UWJhM1h2RlcxSDh5UG1pSjAyc2p4UVV0RmZI?=
+ =?utf-8?B?WDF4d2hDN3BDVG5jMlRRWWxBQ2wrTWk1S2g1aEl2Rmt6bjljcU9YS3ZCSTNp?=
+ =?utf-8?B?cFdEUG1wQXNmVU0wSmR0c1NVQ3l6ejBIdU14a203VVQ3am5CQ2pnYUZDSkxY?=
+ =?utf-8?B?S1NtL0pjTkxqV0oyZE9YWERRclovd1M0aHlwZ3JwNVZuSzFTNkZzSVkzdURT?=
+ =?utf-8?B?bUxuRTlVMmk4TlBrRXNmeEtVWjBaOUY3TjdYV256SWV2LzM4ekl0ZTI2Rm1h?=
+ =?utf-8?B?RUFnZTUzWWhyclNwL0ZIUEU0SXNhRVJZdmhFdmdFbzg5T1JWMitYd2I3aFpT?=
+ =?utf-8?B?UEt1MkNUa0hQdGZSczFWWlJ2N2RGc1BITTNnc0pjVVpHemN1WC82UWxTWXRC?=
+ =?utf-8?B?cHE0K3Z4SEFlOXlCYjBWaVZicU95by9nQmI0MkVvM2F5aE0vUjNWSlNXQ0pw?=
+ =?utf-8?B?dkR6SWJVQ3FTMStPZjhrNUZ6M3dzUDBHZU5aU2FDcDNmZll2c2xlS2Juc0VB?=
+ =?utf-8?B?RFNWdXZiSW5uc1EvTkM0WE14TENaV3V4MEUyb1pwZTVjSUdJWUFGVGZQK1Zv?=
+ =?utf-8?B?KzRTd1VOWXlZNDc5dU93V2J3UitoUkJlSHphRHY4RW8xbExUM1IrU0VOQTc4?=
+ =?utf-8?B?dDF1Vm03S0JBVWNNSjh1VWN0MTA5NkFyZHpqUjh6aW56MmZmZ0ZqVThrZ3BX?=
+ =?utf-8?B?S2hySVd5b052Z0RGS0xvTUJPQmdCL1NnRWU0Wnl5UmJ0SHRicEw3cWNXSFJK?=
+ =?utf-8?B?d1B6K2lDbm1NREZ6QU5lMnIrcmk1YjcvRjVuaXpmMmxEeHRiUUNHQ0grbjB4?=
+ =?utf-8?B?L1hPZkVCSVc5MnJlcllxaDI5aDB6Wjc0NEI4OHpPNVpZdGYvREd6WXlOa0VU?=
+ =?utf-8?B?bnYrWGpadkErRExxWDBLZTNYdjBGMTF1Z0J6TlNzUGFUdXRON0pjWnBRb0VZ?=
+ =?utf-8?B?T1gzZVh5WHRhNi9ONFBPeFhwZ3crMXF6OWE0ajdXWXdnYW1kVUhZeElzMkFi?=
+ =?utf-8?B?eWpaRWcvMVlQOUt2NUVSUWxYbU5YR1lGT2NUbVN0c203UzI0MmJWVVBqU2VZ?=
+ =?utf-8?Q?weM4QBnjZA7gSkyda7NIfe5sTrG?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OUhueXJaV3pyS2RnRFVnK3JMcmhacWZMeUE3dnUvZzFtSzZtczJvdVNLMms2?=
+ =?utf-8?B?WnIxR0pTZXJXRmZvVGZIVmZkSVNzN2Ewc2ZXUm83ZDFIU3ZrSFdBOVdGTkFW?=
+ =?utf-8?B?YVRsb3hVTjFpSEZMZTVDaVE4cTR4bzNCOHlQcTBwRWVqNzZIY0pJK21uTUov?=
+ =?utf-8?B?K0tDTk05dTJ3SkU1YTRxM1l1NTVGbVpiY1pmUmVTNEtuakprblN3azVDK2Zi?=
+ =?utf-8?B?dkVISFNNa2VkYk9xQzNZd1c5K05lVGx2em1RTkdhd1F0bzJpMW1HcVRRZHFN?=
+ =?utf-8?B?dnJ0b2xkc2VhdFNLRnp4K1p3V2plYzdSVU1qY0paN056Rzk5eWJxTUx2OTVo?=
+ =?utf-8?B?ZnhrQ0pwRmJVcVNCM2w5VlhZMExrSUxYZmJoNmdTLzJSeWp4M01vZjlRNTdL?=
+ =?utf-8?B?ZytRQjJGTUNiMWNuUUgzR0crdFMyWHU1VUN3c25BKzc1R1FsbEhUaGcveTIz?=
+ =?utf-8?B?MjdBSkxUTmY4WE03amlXNjMzZ1lYM1lwM2k1TC9ZSDVuOGljSGMzNWpLMURo?=
+ =?utf-8?B?NkRvY0ptVWc3aEJBU01uaVl2MFdKN0c2WE5LMWNpNmdZcE80cnlybmdaQ1Bw?=
+ =?utf-8?B?SlM4YzZEUWN2Szd5V055bC9kVlFTMFRLT1FEYldkRVp3QlVMbnNaMFJlZFpv?=
+ =?utf-8?B?L1ZFOE1RSDVrNUVmL2tIRHVaeTlGU1BjbURIUHJzNE9KeXE5bWI1cGJGbCs5?=
+ =?utf-8?B?YVlrVlFBZGJyVmpFK2tiV05iQlU0cVg2OGZQc2RNcGRqUmg2THdhT2hWWTJZ?=
+ =?utf-8?B?NlFldHRIZE8zWmI4SGNYL0dkbWZ6UmU1SjVuc1BXbWg0Z2NkSHlGOWxaUVRl?=
+ =?utf-8?B?L2Z1TFBXdmlvSk1ma28yeXBWL3Fja3hLQnVnZ0d6cjBDcEdhaVUzd1kyejRn?=
+ =?utf-8?B?OWk5QUlDSDBlcHlJb2x4RnhmQ3FmRGpqNFVuU2pkZEV6SzByWmF0RVBYOTAr?=
+ =?utf-8?B?UTgralJYQ1dpeGllRlNlVlNYVVpEUExQUnVacjNuSnowTFZGc2NYbzNDblhP?=
+ =?utf-8?B?cmdCd2UxZ205OXFqZzBidVh5a2JJSHY2MklSMityY2JCeEpqcDJON092Snhz?=
+ =?utf-8?B?NnVkdUNOc2pCOXNxL2NDaW9LZmV1SHo5ZktKbVl0TUhFaGNBWndQL3BXNDky?=
+ =?utf-8?B?V1ZBZjVDcks0WVZpVDlSM0c1dkw2V0ZUTEVIazlwQTBEdll2V2xhOUloQUtp?=
+ =?utf-8?B?Wm5vVmZUNVJHZE1Mb1ZhZlI2SkVqSzVteEJndC9jeHFlcE5PMDhkdE5zOW4r?=
+ =?utf-8?B?QzZVcjFRMHVEY0V4ZlJqZzFCbWR3ZmFKRzRVSzJSN0dhWXJwN2VKQUpYWE9W?=
+ =?utf-8?B?QUlPZVQxbVJTRkpuaURVSUoraXA2UXBRV0ZTUWNFUkNWcFdUZjFQMzVLWXhV?=
+ =?utf-8?B?aHNTeGthOFdTNVcwa0RyYmFpUHkvYXd4M2JTcytGTU5MelVTRDlPRmNCNU9y?=
+ =?utf-8?B?cjJVUi9NTHBtVUpERUFId2lsVmFDUUxTSGxZdXBDbjFuN2pFTkZrOGJkcnB1?=
+ =?utf-8?B?b29MdVRINGpJSmp5MTI3ZVAyQmxuRGhFa0E5NkZ1S1NYYWxvY2k0dmZyVGxo?=
+ =?utf-8?B?ZHlGQlRkcFREUkYzME5IbElmNnhQcktiQ1l1Y0lheHRQeVllSlVrUUxPbHdt?=
+ =?utf-8?B?LzlVNUg2Y2lxRWdyZHFKRjZGS1A4cUl0aW5COWR6T0YycksxcmV5UUdOS0p6?=
+ =?utf-8?B?NS9wMzlacXQ4cThLUkxjM3djZXErcEQycThBVjYyRWxHaE1aVGdqbEVJMmlG?=
+ =?utf-8?Q?9YYR4Qz7hEqqm4ll/nj+1Uc985XMTKDHf2GYL0n?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed69441b-89b0-4925-ae26-08dd5ac29be2
+X-MS-Exchange-CrossTenant-AuthSource: PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 02:16:46.2278
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAZPR01MB8920
 
-Add device tree binding documentation for Everest ES8389
 
-Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
----
- .../bindings/sound/everest,es8389.yaml        | 78 +++++++++++++++++++
- 1 file changed, 78 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/everest,es8389.yaml
+On 2025/3/3 19:16, Inochi Amaoto wrote:
+> Add support for Sophgo SG2044 MSI interrupt controller.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> ---
+>   drivers/irqchip/irq-sg2042-msi.c | 86 ++++++++++++++++++++++++++++++--
+>   1 file changed, 82 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/irqchip/irq-sg2042-msi.c b/drivers/irqchip/irq-sg2042-msi.c
+> index 9c0a5f2777a4..4b3992821797 100644
+> --- a/drivers/irqchip/irq-sg2042-msi.c
+> +++ b/drivers/irqchip/irq-sg2042-msi.c
+> @@ -21,6 +21,11 @@
+>   
+>   #define SG2042_MAX_MSI_VECTOR	32
 
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8389.yaml b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-new file mode 100644
-index 000000000000..b0f3a243b42c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/everest,es8389.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Everest ES8389 audio CODEC
-+
-+maintainers:
-+  - Michael Zhang <zhangyi@everest-semi.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: everest,es8389
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: clock for master clock (MCLK)
-+
-+  clock-names:
-+    items:
-+      - const: mclk
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  everest,adc-slot:
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    description: |
-+      This property is used to set the slots of recording data when multiple
-+      codecs are connected in PTDM mode.
-+      please set this property to default if you are setting STDM mode.
-+    minimum: 0x00
-+    maximum: 0x07
-+    default: 0x00
-+
-+  everest,dac-slot:
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    description: |
-+      This property is used to set the slots of playing data when multiple
-+      codecs are connected in TDM mode.
-+      please do not set this property if you use single codec.
-+    minimum: 0x00
-+    maximum: 0x07
-+    default: 0x00
-+
-+  prefix_name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: device name prefix
-+
-+  everest,dmic-enabled:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      The property is a choice between PDM and AMIC
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#sound-dai-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    es8389: es8389@10 {
-+      compatible = "everest,es8389";
-+      reg = <0x10>;
-+      everest,adc-slot = [00];
-+      everest,dac-slot = [00];
-+      prefix_name = "es8389_0";
-+      #sound-dai-cells = <0>;
-+    };
--- 
-2.17.1
+Drop this since it is useless now.
+
+[......]
+
+Chen
 
 
