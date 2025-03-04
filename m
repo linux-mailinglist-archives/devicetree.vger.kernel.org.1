@@ -1,115 +1,273 @@
-Return-Path: <devicetree+bounces-153639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C70BA4D5A2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:03:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F389A4D5B2
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:05:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9938F7A6A58
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:02:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81A743AD613
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03CE11F8BB5;
-	Tue,  4 Mar 2025 08:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9021F8EF5;
+	Tue,  4 Mar 2025 08:05:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XgBS43XP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJFy/ant"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0A71F891D
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 08:03:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E49D41F8918;
+	Tue,  4 Mar 2025 08:05:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741075412; cv=none; b=Mv6p4KPKnagF49GJKFC03ODgIEDcfnEAR6Y3nqxN/fqQtakPyM8h0nM5uC/QFUVE5knKBpyi6zRxfJNy0nGwhvOlkYRH3QEfdXktP68piOJPLsgIxQz+CAEota8Prm1DtfO1lJTSXvxaqDQZyDSfEDEZI6iLwzR9WwFfd22OGck=
+	t=1741075508; cv=none; b=auLaOW6ap3L4gMbTO1HSWDsxVCAa/dD1ajR0JTBo28xSV6o6jt3T25Io/uoOZ4XtgrIOtDxRQoEHyw6zxiktPf0b47NTA0pV4Cj+tPal8mlMfp0znF5LoEa5NcIve8B4Wchz+7ytj9oiygBXJcfgLVn0H6QezFYT/Is0hIyz8vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741075412; c=relaxed/simple;
-	bh=EWe8gI4R4FHNMWsnAQjhbpx1Z/7MLSX/ubJdkM9ZdEo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AeFAi5N4l50EpK49TaHlmm6Y1baJtBKCV6MrxYRdJLyoEStgmjgZTtXiw1K0FZaNZW1rGW5Wn9M/B6XavnWhpL63zhm9ogR04WlxiWMnWH2EOqFGz/gJBjr8u/aZ1yPNLayB/aZBaZWzLU4iwK6eKODjjCYszbhC/sRSFrbstFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XgBS43XP; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6fd3b6a6a24so36393137b3.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 00:03:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741075410; x=1741680210; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EWe8gI4R4FHNMWsnAQjhbpx1Z/7MLSX/ubJdkM9ZdEo=;
-        b=XgBS43XPcG2wwxRE9KV5jdzfqRfVF8+N+tpI7MQ2IFFxNq+nXrlhJ2i3/FTXxTSVEM
-         v8RM3LKSEYuvXOvfVNH8Mr+xkcPsRsaGbJF+LRYJnagE/KcgiN1A1PCP05kPhs1SbnQf
-         ScqXjYJDKFtUd/WLxDSQZQZeEUTKNUFaMQdfidaxn5hOYKAcYkpBUzWGjDmBHP9eBJvK
-         qYdhmnGAipqPh6ERSydEsQEaa+FXg9sHlfuSoOC9hsuuzdO/BKuhKVL7rR85Go2yDS8a
-         5/3pBW5F4ickxOBFfjtegB/meorebGuv/T9PKLdYyyqMYRexSJisblCR8DjQ0tC8ruuY
-         nnLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741075410; x=1741680210;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EWe8gI4R4FHNMWsnAQjhbpx1Z/7MLSX/ubJdkM9ZdEo=;
-        b=FNE4kACg2ToKA78fUrE00Ny9QyLW96xx4dyMrP6s9EwylYnc/RlRdlfFrtQ3sITeOL
-         MMKnoeakc3NW//nJXYObWkU1Lf+9vXpEjHVPeTtEX5lwxExsLS0SGiMynPI8yp1H6uqp
-         Kx/SRRX3DdUgJyp25e0VSwVcL+D2DV0mUTLR0GRnmbRqwRoJzZ39e5VYtbMHzeQdAXQb
-         FBllAYdIH86KwTAeVgrPlSDUWS1H+jNiYgYST0cIz2cM1U3X4lqb+jvgaspkkbu5guP1
-         /IKhIJnhn2PfGp1lOO0UcpzUtV5l5LSAVekGg5BFqArpXJjIwHD4CgjZDdTz1tA2DXsM
-         LCSg==
-X-Forwarded-Encrypted: i=1; AJvYcCXdftb0C32nvSdBCSpTD5EMwekp0SS7zJXql//vrHgsjzkj+oRrcU6X+iiss+vf07cWzA1k2jyjlyKj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6hmg7AFuQf9xal27OLdUcs6ssXdeN0EC+0fzDJFL06QBfsmGQ
-	BHSRW3jrpGhiicK5GJa1RTpkjhwIrwzKOpI+Y2B/76NwbRUMgeWYbyG9pV8pL4AOJ9ZlhNzFOSJ
-	IYDATqtWcX71YCdHiZkxKENX5Q53ZwDqSirm9xg==
-X-Gm-Gg: ASbGncvElSkyPtqbpcpmTf0qorT4psMsHVHgeOjMOOvHOxSMAcqu7qFTSODNBwBDtN8
-	D480kALiIvhfJ9qJ0mBIy34/ivcLYAWs2NX0t22Hn/oWFL0bmxYNvDQuT6IAvmxleJiAKkIp/D6
-	YFvYHLz7YlAXm//Mpn2FhCut8XOA==
-X-Google-Smtp-Source: AGHT+IEEoxQEPmMeNx+XEx9rkwZRXQB9YKGVY6m/vP0iLmUHK18l917gZWQsMmtFgQl4b3vadQ/cMN9FK0Rq3Ekx2lk=
-X-Received: by 2002:a05:690c:6303:b0:6fd:3f88:e0a9 with SMTP id
- 00721157ae682-6fd49e2a409mr226555917b3.0.1741075410313; Tue, 04 Mar 2025
- 00:03:30 -0800 (PST)
+	s=arc-20240116; t=1741075508; c=relaxed/simple;
+	bh=/S/hdDRbQrJo2up60ogcSpBJLmTR8FQezMvSl2ll4/U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l8qGtHxopIEwvim0hUoF51+h91wwvZ0G3XIPdnAxqpS04uhuV113yEv+m3VIhMkT8mlcslUBTWXVKzG3hx5JJRqGnqvxLk2VnPFYD+FuH49utRbY+GEcn9qcDy34cQ6tQvkZh3e1+vAJdEeQ1U9rnnpMrv2qvYrjPotv/1+7zlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJFy/ant; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 881E5C4CEE5;
+	Tue,  4 Mar 2025 08:05:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741075507;
+	bh=/S/hdDRbQrJo2up60ogcSpBJLmTR8FQezMvSl2ll4/U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gJFy/antoVkyiFQMJKZ/5j5aeF/sT4nJRyzTOcz+G02QivQvaFciX+FxRIgHQ5KYl
+	 GaxUt/4HStgZL9OEoJFr//CkyWGSzJu4jvM0A+YagjkrWayNZZlpz6z6cRlY3yQWkz
+	 0Xh2nHqNWCamu9ZspFDyBmAlTWLi/lzAdqbTymoMeljyH6E7a6NYk6eQduqbS/Dpz9
+	 27ja2gJ7zqRSB3TchxY1r8Dn8f7idlbUuNzsSnjFIz2HDAAxYimdVnsWekJHIAg3Zh
+	 EI+DZXnv1TaWhClR/83hwG9iaVdqSRib79ScOaKt9QExqSFwWWUjhlOI3czDVo2dfX
+	 irFogFnd9kHSQ==
+Date: Tue, 4 Mar 2025 09:05:03 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: songchai <quic_songchai@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@arm.com>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/7] dt-bindings: arm: Add support for Coresight TGU
+ trace
+Message-ID: <20250304-certain-aboriginal-magpie-cade86@krzk-bin>
+References: <20250227092640.2666894-1-quic_songchai@quicinc.com>
+ <20250227092640.2666894-2-quic_songchai@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1739368121.git.Jonathan.Santos@analog.com> <62cb9786b02adde118db9349617cb796585ceb02.1739368121.git.Jonathan.Santos@analog.com>
-In-Reply-To: <62cb9786b02adde118db9349617cb796585ceb02.1739368121.git.Jonathan.Santos@analog.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 4 Mar 2025 09:03:17 +0100
-X-Gm-Features: AQ5f1Jpa3u1-3cwOQyz0J2BUK0baxhGY_dz89fz0VCdOr7PNxW2y9ZPrMs2iGPo
-Message-ID: <CACRpkdbMdpQhFq1K4AbLVa-fh=Hv5W8GnJwF_hh=h3x29h203A@mail.gmail.com>
-Subject: Re: [PATCH RESEND v3 12/17] iio: adc: ad7768-1: Add GPIO controller support
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de, 
-	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	jonath4nns@gmail.com, marcelo.schmitt1@gmail.com, dlechner@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250227092640.2666894-2-quic_songchai@quicinc.com>
 
-On Wed, Feb 12, 2025 at 7:20=E2=80=AFPM Jonathan Santos
-<Jonathan.Santos@analog.com> wrote:
+On Thu, Feb 27, 2025 at 05:26:34PM +0800, songchai wrote:
+> From: Songwei Chai <quic_songchai@quicinc.com>
+> 
+> The Trigger Generation Unit (TGU) is designed to detect patterns or
+> sequences within a specific region of the System on Chip (SoC). Once
+> configured and activated, it monitors sense inputs and can detect a
+> pre-programmed state or sequence across clock cycles, subsequently
+> producing a trigger.
+> 
+>    TGU configuration space
+>         offset table
+>  x-------------------------x
+>  |                         |
+>  |                         |
+>  |                         |                           Step configuration
+>  |                         |                             space layout
+>  |   coresight management  |                           x-------------x
+>  |        registers        |                     |---> |             |
+>  |                         |                     |     |  reserve    |
+>  |                         |                     |     |             |
+>  |-------------------------|                     |     |-------------|
+>  |                         |                     |     | priority[3] |
+>  |         step[7]         |<--                  |     |-------------|
+>  |-------------------------|   |                 |     | priority[2] |
+>  |                         |   |                 |     |-------------|
+>  |           ...           |   |Steps region     |     | priority[1] |
+>  |                         |   |                 |     |-------------|
+>  |-------------------------|   |                 |     | priority[0] |
+>  |                         |<--                  |     |-------------|
+>  |         step[0]         |-------------------->      |             |
+>  |-------------------------|                           |  condition  |
+>  |                         |                           |             |
+>  |     control and status  |                           x-------------x
+>  |           space         |                           |             |
+>  x-------------------------x                           |Timer/Counter|
+>                                                        |             |
+> 						       x-------------x
+> TGU Configuration in Hardware
+> 
+> The TGU provides a step region for user configuration, similar
+> to a flow chart. Each step region consists of three register clusters:
+> 
+> 1.Priority Region: Sets the required signals with priority.
+> 2.Condition Region: Defines specific requirements (e.g., signal A
+> reaches three times) and the subsequent action once the requirement is
+> met.
+> 3.Timer/Counter (Optional): Provides timing or counting functionality.
+> 
+> Add a new coresight-tgu.yaml file to describe the bindings required to
+> define the TGU in the device trees.
+> 
+> Signed-off-by: Songwei Chai <quic_songchai@quicinc.com>
+> Signed-off-by: songchai <quic_songchai@quicinc.com>
 
-> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
->
-> The AD7768-1 has the ability to control other local hardware (such as gai=
-n
-> stages),to power down other blocks in the signal chain, or read local
-> status signals over the SPI interface.
->
-> This change exports the AD7768-1's four gpios and makes them accessible
-> at an upper layer.
->
-> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
-> Co-developed-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+Don't duplicate yourself.
 
-I'm convinced!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Anyway, this is marked as v3, I cannot find previous versions, no
+changelog, no references.
 
-Yours,
-Linus Walleij
+What happened here in this binding?
+
+> ---
+>  .../bindings/arm/qcom,coresight-tgu.yaml      | 135 ++++++++++++++++++
+>  1 file changed, 135 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
+> new file mode 100644
+> index 000000000000..a41ac68a4fe7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +# Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+
+2023 and 2024? Where was it published in these years?
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/qcom,coresight-tgu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Trigger Generation Unit - TGU
+> +
+> +description: |
+> +  The Trigger Generation Unit (TGU) is a Data Engine which can be utilized
+> +  to sense a plurality of signals and create a trigger into the CTI or
+> +  generate interrupts to processors. The TGU is like the trigger circuit
+> +  of a Logic Analyzer. The corresponding trigger logic can be realized by
+> +  configuring the conditions for each step after sensing the signal.
+> +  Once setup and enabled, it will observe sense inputs and based upon
+> +  the activity of those inputs, even over clock cycles, may detect a
+> +  preprogrammed state/sequence and then produce a trigger or interrupt.
+> +
+> +  The primary use case of the TGU is to detect patterns or sequences on a
+> +  given set of signals within some region of the SoC.
+> +
+> +maintainers:
+> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+> +  - Sam Chai <quic_songchai@quicinc.com>
+> +
+> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - qcom,coresight-tgu
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: qcom,coresight-tgu
+> +      - const: arm,primecell
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: apb_pclk
+> +
+> +  qcom,tgu-steps:
+> +    description:
+> +      The trigger logic is realized by configuring each step after sensing
+> +      the signal. The parameter here is used to describe the maximum of steps
+> +      that could be configured in the current TGU.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 8
+> +
+> +  qcom,tgu-regs:
+> +    description:
+> +      There are some "groups" register clusters in each step, which are used to
+> +      configure the signal that we want to detect. Meanwhile, each group has its
+> +      own priority, and the priority increases with number of groups. For example,
+> +      group3 has a higher priority than group2, the signal configured in group3
+> +      will be sensed more preferentially than the signal which is configured in group2.
+> +      The parameter here is used to describe the signal number that each group
+> +      could be configured.
+
+And all groups are indexed by number? Or do they have names?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 18
+> +
+> +  qcom,tgu-conditions:
+> +    description:
+> +      A condition sets a specific requirement for a step and defines the subsequent
+> +      action once the requirement is met. For example, in step two, if signal A is
+> +      detected three times, the process jumps back to step one. The parameter describes
+> +      the register number for each functionality, whether it is setting a specific
+> +      requirement or defining a subsequent action.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 4
+> +
+> +  qcom,tgu-timer-counters:
+> +    description:
+> +      TGU has timer and counter which are used to set some requirement on each step.
+
+Wrap according to Linux coding style, so at 80.
+
+> +      For example, we could use counter to create a trigger into CTI once TGU senses
+> +      the target signal three times.This parameter is used to describe the number of
+> +      Timers/Counters in TGU.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+
+Drop
+
+> +    maximum: 2
+> +
+> +  in-ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      port:
+> +        description: AXI Slave connected to another Coresight component
+
+So this TGU can be connected to anything in coresight graph, no
+restrictions?
+
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+
+Most likely you miss also: in-ports
+
+
+Best regards,
+Krzysztof
+
 
