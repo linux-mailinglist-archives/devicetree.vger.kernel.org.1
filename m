@@ -1,197 +1,212 @@
-Return-Path: <devicetree+bounces-153873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8D7A4E226
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:02:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5ABCA4DEA7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:06:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3F9D42144F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:55:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F19247A6FD8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:05:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5FA25D53E;
-	Tue,  4 Mar 2025 14:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LDE7Vziq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1303202C5D;
+	Tue,  4 Mar 2025 13:05:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from beeline2.cc.itu.edu.tr (beeline2.cc.itu.edu.tr [160.75.25.116])
+Received: from HK2PR02CU002.outbound.protection.outlook.com (mail-eastasiaazon11020086.outbound.protection.outlook.com [52.101.128.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B413C254AFA
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 14:53:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=160.75.25.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB5620127D;
+	Tue,  4 Mar 2025 13:05:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.128.86
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741100001; cv=fail; b=SXxUOoVXB3c0uCFq0EEUFQkfa2ECbYeBiexKyHBrp3faT7CWX5JHHRjiJiVqyCX5m1KIOK/3K7YGUFnnLQuYphENl0huMqVyOgrpHrNjcMyrXIRn2B6Y6Me5ix4PjptwCPZMkG1MFvWwatoLyioXl3sOKeWzp/DsjHV+Co9EP9M=
+	t=1741093549; cv=fail; b=jXQD6jywVQSA5SpEIv/x0BE/wJJ2XcgKr6FoHTuq3QrARxQPsm/9ZuaQrHVbWz3aa4nmlvGg57Xrs5Saual3ETS+IfREbsSwGBXAhiSkmUMVJYIs7PiAJZJLRubzoj2ZY2QLgBqkOt5ZP+s9l3FnRRJ04IETz1z1BK55lI7Nr6U=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741100001; c=relaxed/simple;
-	bh=ZV0hyenL1Gr6zkBxI10zjtT9BOF6hJs4mewvNXd8do4=;
+	s=arc-20240116; t=1741093549; c=relaxed/simple;
+	bh=7VkxBNpmYaWiYvnN4U6B+6ih6sPudLi0vwRj5pQCLGI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tgqc3O7Ljk7IFOqqvj3SkUU9VLdC6RDPDk8Wp3WLyLPkvGxc8yGKLC/68siXbVF56gTOK0UojeVpP1Ii91Egx1dXR5JjVsmrh6q/I6qMn+U8W6ukmLFyTy47R5Fa0fWqnNVVIXznUphRDWEnH/3u+uMLuzhHnMdcYmhpohif6D8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr; dkim=fail (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDE7Vziq reason="signature verification failed"; arc=none smtp.client-ip=10.30.226.201; arc=fail smtp.client-ip=160.75.25.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cc.itu.edu.tr
-Received: from lesvatest1.cc.itu.edu.tr (unknown [10.146.128.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by beeline2.cc.itu.edu.tr (Postfix) with ESMTPS id EBC4C40D0532
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:53:17 +0300 (+03)
-X-Envelope-From: <root@cc.itu.edu.tr>
-Authentication-Results: lesvatest1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=LDE7Vziq
-Received: from lesva1.cc.itu.edu.tr (unknown [160.75.70.79])
-	by lesvatest1.cc.itu.edu.tr (Postfix) with ESMTP id 4Z6dt92hKpzFxkF
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 17:51:29 +0300 (+03)
-Received: by le1 (Postfix, from userid 0)
-	id A5A894273A; Tue,  4 Mar 2025 17:51:25 +0300 (+03)
-Authentication-Results: lesva1.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDE7Vziq
-X-Envelope-From: <linux-kernel+bounces-541866-bozkiru=itu.edu.tr@vger.kernel.org>
-Authentication-Results: lesva2.cc.itu.edu.tr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDE7Vziq
-Received: from fgw2.itu.edu.tr (fgw2.itu.edu.tr [160.75.25.104])
-	by le2 (Postfix) with ESMTP id 3A16641CC5
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 17:00:40 +0300 (+03)
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by fgw2.itu.edu.tr (Postfix) with SMTP id CA0B62DCE4
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 17:00:39 +0300 (+03)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 654EF3A89E9
-	for <bozkiru@itu.edu.tr>; Mon,  3 Mar 2025 14:00:27 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E163F2135B9;
-	Mon,  3 Mar 2025 14:00:25 +0000 (UTC)
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443818489;
-	Mon,  3 Mar 2025 14:00:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741010423; cv=none; b=TLl5Nx3N/EGjJzLzX8AgfxnYh/Z9hNoRhHBdZK2TMf1cBBVwV33jsSeLlJyiP8SYEqQYc03i3Z4MhCk+NyD+d7QnrKUorfu84+aeOK68IPdsPgFawkMHItUmg90fTSi40gmPw00GZcsxTAZN+2pm+dMU8SbKACaGJrE6J+lKSM8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741010423; c=relaxed/simple;
-	bh=Kp+dH75fRkj4Yg2B/u14qSdnyXfV1851mjVlG/eyDkU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N4dOf+svt5Ia4GXZkAt6JeWK79X8QOvHg8GDDFjuXwyrES1W64+mvRpS/BM3+78wbuuZtZG1o2vrb4nAs/tm3mHy2KZa4CpZMhZTa/X2iLoWZFlTPC1GWPg3NOVUOQYssiTDrws1+bWKtzOl+88EuVLi7c92jzCGlbB6Qa26cgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDE7Vziq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78C4AC4CED6;
-	Mon,  3 Mar 2025 14:00:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741010422;
-	bh=Kp+dH75fRkj4Yg2B/u14qSdnyXfV1851mjVlG/eyDkU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LDE7VziqE8Z5eAcLy1ADJtkYPvmnQ1FWgShTdhPsi0Jp00/5H4ih7eFkudyTpV6Ey
-	 vzUekJexEEcxmdtofMzZn68/GabGTmMLoyDmPxm2kdElEPPLV3qZha5Aib/AxkKR7v
-	 m/mOgM3NliygKNSm4cdkNZYbDU4CUHy7o2nUsiBNydIculfOZE9XJX6vA2Cx8O7TEs
-	 nqGWAiDj2LY2VHmrB5jeTqSMkAWpR8/oVe9f3U39KoH0vSV+sGksApEvY4YbqOUYgD
-	 MEbgvDOyAHF9gVrkOu+yiC5BM/+QxMgNexT3mwUVWIsR0RWjNldR9e1Z2gFqBmOcaC
-	 wYe+elLtbMKhQ==
-Date: Mon, 3 Mar 2025 08:00:21 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
-Cc: Richard Weinberger <richard@nod.at>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Crystal Wood <oss@buserror.net>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	linux-mtd@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Naveen N Rao <naveen@kernel.org>, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: nand: Add fsl,elbc-fcm-nand
-Message-ID: <20250303140021.GA1732495-robh@kernel.org>
-References: <20250226-ppcyaml-elbc-v3-0-a90ed71da838@posteo.net>
- <20250226-ppcyaml-elbc-v3-2-a90ed71da838@posteo.net>
- <174059551678.3319332.12055848852503108874.robh@kernel.org>
-Precedence: bulk
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q4vI11uu4AtP6u73RN0F2oy0iiRDUa6q7h95igFhg7VSryDZ32n1ymlGLVLK+QkPa9pvWlgYKKwhKxYJ0EYngJLj+EiE5v8i5bM3ZarkG1FlWnNHHyCunW5H9RvCsFyB3XXosJVjS4CDFPglAXm7H4/g6MPhZqCQUtvvpBLPvjM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.128.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=m9SW0xBNc2rq+whwQp/sZixadxMQU7RgksWYQGWi6SPXHbIywpucZukUCBzyqkPvGhhpgW/EIp1j5vTMWYbRh7btDVgNS7iavIXnFiN9wm+6niiEsm5WdOYJmId7uILEJ7WyCjP2MqPT1anR8FWPo97NMkCVCIDM/0/qISXqHvNcwxgKFEbp/kGr+s3Zyj1yOoxr2QN7aG6j83/NRUkSJcCeU5ZRuiNC2ssxvHNVdje35E9Glr9MbW25Z0tvcReZeKZ+mvX6t+Y++RRNV2FBcV1URJvaeoaTzscJQZMdj/aRD1Ur8ZUf38tC6j1GDoz1RRh4SDy9SFYbijSV7ik6LQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YWSEjYsGNXaC2zNfY2BhjfpLCPDyWnHT1ESKnmnAKW0=;
+ b=GfKgrC8RifT/59Qmd6GdGK72NIhXqz4bn0j+a7gzcca6GXOj+/J9G8BOijRMEI/2Pq9AITbHeXXvxc3VGMjs5kri6OvEms1/fWKvfZZAk4Lm1EIcFzRpxbYrWHU9fddXW4I3p3+IzJoS+LJb+Psz/oD2oiDqNEq1Sghjx+sbmk/cK31EFYylbnifr7FJPzLTJqTfPp08PmnI3ZgqoaEMcQUr64NTE67cUk/xt/XF07fjDAaIWJnsJzYcAOXjpuJBjxXn+sU7LUNmKuUK0KbzLnsM9Sh+Sdmp9lQceIJhUTqcq11UaUQR4Foj4HtuuoZvU177+kAoLXvPSjIVQVZegA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2P153CA0028.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::9) by
+ KL1PR06MB6371.apcprd06.prod.outlook.com (2603:1096:820:cc::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8489.29; Tue, 4 Mar 2025 13:05:41 +0000
+Received: from SG2PEPF000B66D0.apcprd03.prod.outlook.com
+ (2603:1096:4:190:cafe::4a) by SI2P153CA0028.outlook.office365.com
+ (2603:1096:4:190::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.11 via Frontend Transport; Tue,
+ 4 Mar 2025 13:05:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66D0.mail.protection.outlook.com (10.167.240.26) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8511.15 via Frontend Transport; Tue, 4 Mar 2025 13:05:40 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6BC4840A5BFB;
+	Tue,  4 Mar 2025 21:05:39 +0800 (CST)
+Date: Tue, 4 Mar 2025 21:05:33 +0800
+From: Peter Chen <peter.chen@cixtech.com>
+To: Marc Zyngier <maz@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+	marcin@juszkiewicz.com.pl, Fugang Duan <fugang.duan@cixtech.com>
+Subject: Re: [PATCH v3 6/6] arm64: dts: cix: add initial CIX P1(SKY1) dts
+ support
+Message-ID: <Z8b6na8RjtF5FXi7@nchen-desktop>
+References: <20250227120619.1741431-1-peter.chen@cixtech.com>
+ <20250227120619.1741431-7-peter.chen@cixtech.com>
+ <86r03ip0kf.wl-maz@kernel.org>
+ <Z8WUxyJT1fdHKo67@nchen-desktop>
+ <86ikoqoso9.wl-maz@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <174059551678.3319332.12055848852503108874.robh@kernel.org>
-Content-Transfer-Encoding: quoted-printable
-X-ITU-Libra-ESVA-Information: Please contact Istanbul Teknik Universitesi for more information
-X-ITU-Libra-ESVA-ID: 4Z6dt92hKpzFxkF
-X-ITU-Libra-ESVA: No virus found
-X-ITU-Libra-ESVA-From: root@cc.itu.edu.tr
-X-ITU-Libra-ESVA-Watermark: 1741704711.80189@kK6fIFuW7Ksmso8FkwZWJg
-X-ITU-MailScanner-SpamCheck: not spam
+In-Reply-To: <86ikoqoso9.wl-maz@kernel.org>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66D0:EE_|KL1PR06MB6371:EE_
+X-MS-Office365-Filtering-Correlation-Id: 69b3775f-4380-4da7-4d43-08dd5b1d43de
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|1800799024|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?dD/cO1+cNyilB2SWuBlSyG+PJBqr+XhnocRkIbjp5Wlz6ftMdk7khGvZZ8Ta?=
+ =?us-ascii?Q?zDTLWZcjrIwVAS+VL2qteTj6m442dcBk0vCtBgjecFpiylAoS7BU9+EivTRo?=
+ =?us-ascii?Q?VF8/IPWFm9ii0ytQJfc49KqggzjQMTkVtbY8P3QNaF1gWQQU4EtX5HN6r1Mk?=
+ =?us-ascii?Q?TazNlDn7NJF2KXuO+FmtaOhh2b3xbU/blXqOKy5KB+/LduPXu48q3EJ4yJVe?=
+ =?us-ascii?Q?Bi2D2P7GQLm2KbKye7vIZGmbwKzGqaupRjo4qrLLJm2WrT3TvCm5fE7W/3+V?=
+ =?us-ascii?Q?UaS/A+bIR1N+rkZaJN0H7jk+0gjgym4L066/eT/R97MV9igHh8FLnzhvqwb5?=
+ =?us-ascii?Q?sejn68A4zpdvHRqjjPAH8EDs+K46mHbahKjWBy6JwkGm85O07WjYJJnHPIUC?=
+ =?us-ascii?Q?gZZxq+hfcVMD0xnFNf2lFsbolziWPSLf8AJ9dP4CYZo8niUuEfhj4zrD8UvM?=
+ =?us-ascii?Q?IACXiPJReok3mfYq+Z9SxQ6BavQz7TmD6ciAhWKDkOc8moTcnbyzulaSu8TK?=
+ =?us-ascii?Q?rremQ9cb/UWr3ZtskqWiaF5ViDg95ZcF+nIc2LCuQ9qI4jEOdwCYrbGb0Vbz?=
+ =?us-ascii?Q?gP2kYzcO0sQDF6u6Zo8IE0Tbsp5kTdsCPNOZekAwcOZNa8RQB95lUPTNIYOs?=
+ =?us-ascii?Q?sHSAxw6n5VVATE2XwEihB7sj8onhfwQzo2l+zFwzjiHQ3WEcmlzJOd3AdRZH?=
+ =?us-ascii?Q?ddkZrRzgBmhZ3lzktKfzW2j2NcRkQfhLclvIrDXgzX5NKRUZQHlC9TlfuVqM?=
+ =?us-ascii?Q?/1eYrIuivPPc8+Sb8cbjzTzIrLs0n/+hr0WkxNStstcf/G13FcKuGh4TkDu4?=
+ =?us-ascii?Q?AXkwVQi3aMn0AVrqyzZlB7hqPP9+xGlBUdUNZkQEOay7iFApMjTFvJOzNies?=
+ =?us-ascii?Q?0vXgNM3Hf4KrnGTWKWELoSEDr2G+HlRcSszJIRhjtae4eWJM7ACv9MGOL+ZR?=
+ =?us-ascii?Q?0RsIB+tdqDRCYL6oEE1SB7XXi5FBfnnYpZUcILDo5FjuKMdvomzVD1WK/RPv?=
+ =?us-ascii?Q?6tCP5P6K4acqLijI0MRIsbq8Hyk/IG8WUYGl5j9zrM13Lo+BEiMZri3QMzUq?=
+ =?us-ascii?Q?IrV7zkWKJASMOu+Yt2Ipe1V3IuSSC7cZtEsprsAcnxzer/XJRsVQtUrVhBFK?=
+ =?us-ascii?Q?qlqx5O+N0dost6Rd7cpGrQ/9cjv8iLThWIi+otZPa+lDI3COtLo0j7faFcg1?=
+ =?us-ascii?Q?DL+yNTOoJ3QH+we+Ec3D+NRMhQ4L20MlWd9j8zePi+C6xtqijgtBQBRwm9fP?=
+ =?us-ascii?Q?S3Wx+5vn4A4lLmScwOcPPSRTYAguaNK2vkfAPbl/Dp1YvJIt3HehKJaUoQJT?=
+ =?us-ascii?Q?iVppyp1BSKRwSTgRNfU1zsCiurXdzTnCYXM1fUgUZ33/RvoOyH/jKUlYjGS+?=
+ =?us-ascii?Q?/4G2NjygzqL892cJrYKWqAgKX9YFPCztbb/6BB2nyNVu/ilsVMRwdBmBdAoI?=
+ =?us-ascii?Q?dKhFYpszjsZKRYN4wl3ibNJC4OAgS8bx6riIRmB/mQA2I4usanuTNTCWCOnG?=
+ =?us-ascii?Q?ndkfsJTVZS1mgqc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 13:05:40.5268
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69b3775f-4380-4da7-4d43-08dd5b1d43de
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66D0.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6371
 
-On Wed, Feb 26, 2025 at 12:45:17PM -0600, Rob Herring (Arm) wrote:
->=20
-> On Wed, 26 Feb 2025 18:01:41 +0100, J. Neusch=E4fer wrote:
-> > Formalize the binding already supported by the fsl_elbc_nand.c driver
-> > and used in several device trees in arch/powerpc/boot/dts/.
-> >=20
-> > raw-nand-chip.yaml is referenced in order to accommodate situations i=
-n
-> > which the ECC parameters settings are set in the device tree. One suc=
-h
-> > example is in arch/powerpc/boot/dts/turris1x.dts:
-> >=20
-> > 	/* MT29F2G08ABAEAWP:E NAND */
-> > 	nand@1,0 {
-> > 		compatible =3D "fsl,p2020-fcm-nand", "fsl,elbc-fcm-nand";
-> > 		reg =3D <0x1 0x0 0x00040000>;
-> > 		nand-ecc-mode =3D "soft";
-> > 		nand-ecc-algo =3D "bch";
-> >=20
-> > 		partitions { ... };
-> > 	};
-> >=20
-> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > Signed-off-by: J. Neusch=E4fer <j.ne@posteo.net>
-> > ---
-> >=20
-> > V3:
-> > - remove unnecessary #address/size-cells from nand node in example
-> > - add Frank Li's review tag
-> > - add missing end of document marker (...)
-> > - explain choice to reference raw-nand-chip.yaml
-> >=20
-> > V2:
-> > - split out from fsl,elbc binding patch
-> > - constrain #address-cells and #size-cells
-> > - add a general description
-> > - use unevaluatedProperties=3Dfalse instead of additionalProperties=3D=
-false
-> > - fix property order to comply with dts coding style
-> > - include raw-nand-chip.yaml instead of nand-chip.yaml
-> > ---
-> >  .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml | 68 ++++++++++++=
-++++++++++
-> >  1 file changed, 68 insertions(+)
-> >=20
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
-/mtd/fsl,elbc-fcm-nand.example.dtb: nand@1,0: $nodename:0: 'nand@1,0' doe=
-s not match '^nand@[a-f0-9]$'
-> 	from schema $id: http://devicetree.org/schemas/mtd/fsl,elbc-fcm-nand.y=
-aml#
+On 25-03-03 18:49:58, Marc Zyngier wrote:
+> > > > +
+> > > > +     pmu-a520 {
+> > > > +             compatible = "arm,cortex-a520-pmu";
+> > > > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> > > > +     };
+> > > > +
+> > > > +     pmu-a720 {
+> > > > +             compatible = "arm,cortex-a720-pmu";
+> > > > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> > > > +     };
+> > >
+> > > This is wrong. The default configuration for PPIs is to expose the
+> > > *same* device on all CPUs. You must use PPI affinities for your PMUs.
+> > > Please see the GICv3 binding for the details.
+> >
+> > We have discussed internally, we have not seen the benefits routing
+> > different PPI interrupt to dedicated CPUs. Any use cases?
+> 
+> This isn't about changing the PPI. It is about matching CPUs with
+> their PMU. Here, you are saying "both PMU types are connected to all
+> the CPUs using PPI7".
+> 
+> That's obviously not the case.
+> 
+> > I prefer changing pmu nodes as one generic Armv8 PMU node. Is it accepted?
+> 
+> No, that's not acceptable.
+> 
+> > Or must I keep both pmu for A520 and A720, and add PPI affinities to
+> > describe hardware well?
+> 
+> This is an established practice on all big-little systems: each PMU
+> node has an affinity that indicates which CPUs they are connected
+> to. For GICv3+, this is carried by the interrupt specifier.
+> 
+> Please look at existing SoCs supported, such as rk3399, for example.
 
-Drop the unit address in raw-nand-chip.yaml. So:=20
+I see. I will add ppi-partitions for gic-v3 node.
 
-properties:
-  $nodename:
-    pattern: "^nand@"
+> > >
+> > > This will need to be bumped up to 4, and all the interrupt specifiers adjusted.
+> >
+> > Depends on if PPI affinities is must.
+> 
+> Definitely a must, unless you want to completely remove all traces of
+> the PMU, which is of course silly, but a valid alternative.
 
+I will change #interrupt-cells to 4, and applies to all interrupt
+specifiers.
 
+> 
+> > > > +             arm,no-tick-in-suspend;
+> > >
+> > > Why do you need this? Is the HW so broken that you have implemented
+> > > the global counter in a power domain that isn't always on?
+> > >
+> >
+> > Not hardware broken, just arch timer will be powered off at cpu idle
+> > and system suspend due to power consumption reason.
+> 
+> This is not about the timer. This is about the global counter. If your
+> counter stops ticking when you're in idle or suspended, your system is
+> broken and you need this property. If the timer (or more precisely the
+> comparator) is turned off because the CPU is off, then that's the
+> expected behaviour and you don't need this property.
+> 
+
+I will delete this property.
+
+-- 
+
+Best regards,
+Peter
 
