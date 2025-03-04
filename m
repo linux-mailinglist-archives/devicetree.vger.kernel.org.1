@@ -1,105 +1,127 @@
-Return-Path: <devicetree+bounces-154120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70CDCA4EE6A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:32:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E7AA4EE8F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:40:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5B947A80F5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:31:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AB4B16671C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:40:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8204C2641D1;
-	Tue,  4 Mar 2025 20:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 516451C84D7;
+	Tue,  4 Mar 2025 20:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aulpz27l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ayf9ZlxL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BB8246335;
-	Tue,  4 Mar 2025 20:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28C8825290A;
+	Tue,  4 Mar 2025 20:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741120308; cv=none; b=ip88h2LLDmvMHqpcFcbL3bazmCLnfFclxPwhzBmXauxTFv3yeBevF/hIIka4z9yBYgmjFZJoRFeF0LAjgbYwAonJXFm4iU6kFMNhu2axcB5NDOT1RvHm35tsGaoOJR53buTm8CtCt2Ab7d3/zbw6dU0wsl8eobHHmT0MqkSBDGI=
+	t=1741120831; cv=none; b=ROF5vqBLxxsASfym6iT/0zSWl11LhToLpKIF5vWdMW0WyooJPOf0qgr/4yd3bIADwh2aLcIU3MbLYV2hWXttjoRUcHHVDQoFNx9pi2sh+dwFs8kaME3bQSlWfHuOFbc1zFdl6dkz/eHxmkHZx7pfPsdFGLa9OkztDWhxh2Ly1M8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741120308; c=relaxed/simple;
-	bh=2cRsyEaRlJFchgyZwhW0xRb74ZHZVckWgHMV1JwiSGk=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ml+GG5/x3qt2k29CZ4sgbDcEJlE3ykHEqilF6BtoSNIOjW6LgVqFDwQ6sCEXB3Wvbu6dYKg5gnBOySo0aFIhcTUgjS/R9FT0D8NpM8XYGuGPfY5Toc3563EykfcRPnmILK/Br6ddGmkDfM+NB4X4qdlH3boXaP1wI0xB4qFQBJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aulpz27l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F4E9C4CEE5;
-	Tue,  4 Mar 2025 20:31:47 +0000 (UTC)
+	s=arc-20240116; t=1741120831; c=relaxed/simple;
+	bh=uYP7mj7qSPBcCxpr8OPM5qt366XPadgekuwnWrQgxb0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qzhfumuaw6kDH135ncI47/D6GYr/bRR7OOIsAXiZI/n4O7AunQ7NMySN5ysy4STyBlVURLKORmHkzRsnKWMnWcOKVu0H30NShAAiOna+9rzK3BgErZD5F1+mMOk3RflYtcD9RQ2aYpRsRaTHcksgYXjTHcER9mW984zSGtY9qLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ayf9ZlxL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9B6C4CEEB;
+	Tue,  4 Mar 2025 20:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741120307;
-	bh=2cRsyEaRlJFchgyZwhW0xRb74ZHZVckWgHMV1JwiSGk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=aulpz27lXrSJrUS196mpqWya5NAdpRoSyJUpatYVbVeS54gioUXDioLTZnHZa7/l8
-	 zgyvqRt6hXmgqo+P0wEOrrWxLXkqwUzKfDlibklzMXYLSafYRWecUJ8/c4RTH8XWQl
-	 a8LW8bUTdoxRYEPB58Xk+njj/9R+IlxfJNzj2TNPT9Dnb9zdAzQCHxolXT6qv1ayxR
-	 qXAaGY3q2trNb7M8ewp7wsrRXsd+P0E9yvw8FA4lx8UOHyu4prwNrApWn/BFLkK0Qr
-	 89oafOlDZgkEMD92LsswXs1N84gcrYg7FX6h5S4QkiKcsIhSc0nv7VDDjMLxVdzq5k
-	 yVJClIRHBZzCA==
-Date: Tue, 4 Mar 2025 14:31:46 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Jesper Nilsson <jesper.nilsson@axis.com>,
-	Lars Persson <lars.persson@axis.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-kernel@axis.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH RFC NOT TESTED 2/2] PCI: artpec6: Use
- use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()
-Message-ID: <20250304203146.GA256660@bhelgaas>
+	s=k20201202; t=1741120830;
+	bh=uYP7mj7qSPBcCxpr8OPM5qt366XPadgekuwnWrQgxb0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ayf9ZlxLzvWJz3iEb+2grPf84eQiqHgTsMu1UW3jZcKUOIqyA4TLh3xShr6eOdLcJ
+	 0GK2ILttOshvvXKYfqwLUK4fViKZMEFj8XDjkA/WSmzd/80AwW6Y1kC+7XN4L4xJgo
+	 zzQ2ha5slVdDhHHo8Op5LpV2PgMtOIu2THelBHfnO5NWqDDi16IkAG7Shku9FmeNzg
+	 cbqQsL9kZo4IZ0CEAIPSANVy8KLDmP3u09B74inPtB1F/ISJyhnZVwIayGk98C31nL
+	 6tDQJaNVZ/YKHq/rUzmsFGkbfdhb536Epz0ejLK9LcoNDDqToXxYgyUTCkKaXz/mZq
+	 W0vjFcj8wOFpQ==
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aaf0f1adef8so1128673766b.3;
+        Tue, 04 Mar 2025 12:40:30 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVTLyUKdq9lhkZMSYiGorWa53DRC6dCH9e8vY/IL0fDStyh/d8nsUyVLtAm/cryDS15k/B17HuomYsx@vger.kernel.org, AJvYcCXOM7Iu0k/omg5PCOMog6VsuDxJwkP456c1+SBq2wvF9p7HsWdENSxQdSJoJQJP6YWOcZstRT1eZOrWRal7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVAvjrjkIVUOxEgxy2IBAGdwzaTvWweZiB4sn2fix+31O+SAzo
+	77Pmx9depFJKZPc5L5E7ObSA1g9w2RJgN4vxTcdo78N0gSPLEQWXFI8XATyRQtU9Db9UPxjF3j8
+	v0+isMgOBLpbx4h5Yj/3dvOi0pg==
+X-Google-Smtp-Source: AGHT+IHpC7vQAEBl+RVwSZdBZTP875fHqIHXh+UlFq6qH4uze+X3a7pNBnsJ0k1OnI/x7vczZytg/dt8Oe5JxOfF88I=
+X-Received: by 2002:a17:907:9687:b0:abf:75b8:cb38 with SMTP id
+ a640c23a62f3a-ac20da87899mr69490566b.36.1741120828958; Tue, 04 Mar 2025
+ 12:40:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z8dem5gBf3xLxSIT@lizhi-Precision-Tower-5810>
+References: <20250304102306.2977836-1-c-vankar@ti.com> <20250304102306.2977836-2-c-vankar@ti.com>
+ <20250304153959.GA2654372-robh@kernel.org> <66283781-69d6-4d0a-ada4-3a6bf4744a37@ti.com>
+In-Reply-To: <66283781-69d6-4d0a-ada4-3a6bf4744a37@ti.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 4 Mar 2025 14:40:17 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq++DUv5_LHg7sPNXDJZ84JtS94Rwr-WAb9hDWp6rJqZLQ@mail.gmail.com>
+X-Gm-Features: AQ5f1JpkJYj0hTvhVDOsV4QKBZ_hEtjJaTF846fPcP96SKLQbxBGQ3BrCLs5a_o
+Message-ID: <CAL_Jsq++DUv5_LHg7sPNXDJZ84JtS94Rwr-WAb9hDWp6rJqZLQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 1/2] devicetree: bindings: mux: reg-mux: Update
+ bindings for reg-mux for new property
+To: "Vankar, Chintan" <c-vankar@ti.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Peter Rosin <peda@axentia.se>, s-vadapalli@ti.com, danishanwar@ti.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 04, 2025 at 03:12:11PM -0500, Frank Li wrote:
-> On Tue, Mar 04, 2025 at 01:08:16PM -0600, Bjorn Helgaas wrote:
-> > On Tue, Mar 04, 2025 at 12:49:36PM -0500, Frank Li wrote:
-> > > Remove artpec6_pcie_cpu_addr_fixup() as the DT bus fabric should provide correct
-> > > address translation. Set use_parent_dt_ranges to allow the DWC core driver to
-> > > fetch address translation from the device tree.
+On Tue, Mar 4, 2025 at 1:03=E2=80=AFPM Vankar, Chintan <c-vankar@ti.com> wr=
+ote:
+>
+> Hello Rob,
+>
+> On 3/4/2025 9:09 PM, Rob Herring wrote:
+> > On Tue, Mar 04, 2025 at 03:53:05PM +0530, Chintan Vankar wrote:
+> >> DT-binding of reg-mux is defined in such a way that one need to provid=
+e
+> >> register offset and mask in a "mux-reg-masks" property and correspondi=
+ng
+> >> register value in "idle-states" property. This constraint forces to de=
+fine
+> >> these values in such a way that "mux-reg-masks" and "idle-states" must=
+ be
+> >> in sync with each other. This implementation would be more complex if
+> >> specific register or set of registers need to be configured which has
+> >> large memory space. Introduce a new property "mux-reg-masks-state" whi=
+ch
+> >> allow to specify offset, mask and value as a tuple in a single propert=
+y.
 > >
-> > Shouldn't we be able to detect platforms where DT doesn't describe the
-> > translation correctly?  E.g., by running .cpu_addr_fixup() on a
-> > res.start value and comparing the result to the parent_bus_addr()?
-> > Then we could complain about it if they don't match.
-> 
-> Can't detect because:
-> 
-> There are case, driver have not provide .cpu_addr_fixup, but dts still be
-> wrong. such as
-> 
-> bus@10000000
-> {
-> 	ranges = <0xdeaddead 0x1000000 size>;
-> 	pci@90000000 {
-> 
-> 		reg = <...>, <0xdeaddead>;
-> 		reg-names = <...>, <config>;
-> 	}
-> 
-> };
-> 
-> above dts can work with current driver, but parent bus address 0xdeaddead
-> is totally fake address. We can't detect this case because no
-> .cpu_addr_fixup() at all.
+> > Maybe in hindsight that would have been better, but having 2 ways to
+> > specify the same thing that we have to maintain forever is not an
+> > improvement.
+> >
+> > No one is making you use this binding. If you have a large number of
+> > muxes, then maybe you should use a specific binding.
+> >
+>
+> Thank you for reviewing the patch. The reason behind choosing mux
+> subsystem is working and implementation of mmio driver. As we can see
+> that implementing this new property in mux-controller is almost
+> identical to mmio driver, and it would make it easier to define and
+> extend mux-controller's functionality. If we introduce the new driver
+> than that would be most likely a clone of mmio driver.
 
-If there's no .cpu_addr_fixup(), primary-side ATU addresses must be
-identical to CPU addresses.  If the DT parent bus address is
-different, can't we assume the DT is broken?
+I'm talking about the binding, not the driver. They are independent.
+Generic drivers are great. I love them. Generic bindings, not so much.
+
+> Let me know if implementation would be accepted by adding a new
+> compatible for it.
+
+Adding a new compatible to the mmio driver? Certainly. That happens
+all the time.
+
+I also didn't say don't use this binding as-is. That's fine too.
+
+Rob
 
