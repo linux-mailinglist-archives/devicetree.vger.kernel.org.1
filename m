@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-153804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5CCEA4DE44
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:49:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E37CA4DE68
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:54:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C42AC3B14F7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:49:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DAC63A7DAF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9BA720127D;
-	Tue,  4 Mar 2025 12:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A92200105;
+	Tue,  4 Mar 2025 12:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TW348z9j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MRYtRR3b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5FE1FFC74;
-	Tue,  4 Mar 2025 12:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F26721EA7CE;
+	Tue,  4 Mar 2025 12:54:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741092525; cv=none; b=F0MxMM2cS9EL0DQmn3gp6mxtWrleHoteyNTMLuhWnZBR4PAGp+vlqaZZvpWd/MGe9GMXYQhEEbZlYzLhTeJ5nHkp+57EcVAfMbpqrLKjPJk0Q/qMp4t6o1RfsHjEPLi8PAu1Kb9qN3fB3WHUNjK0PKZPCQ1FzWFQS/i7WsyCv3E=
+	t=1741092869; cv=none; b=sngfxGDsU8PjJkYWa4vuXnKpy2OnnTNaHruNWQLeXhO0SmM0rEfuelCqMrKUQCEpSzjcxE1YvNsZuHKa6H2yVPXjFrdkqAR+ttbC1ffDmmMUKb4bJzNUZK1Q82rDxMjsdar1iI1GHznKwJxTdbpSUZ+QsYh6G07eMCPdhp8LmfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741092525; c=relaxed/simple;
-	bh=qs1uaw+fmZ/8gb8hir4yFJES2X7FcZuc7NwFrXHu62M=;
+	s=arc-20240116; t=1741092869; c=relaxed/simple;
+	bh=/A1A2qZsYsqWgcNSomPW+1mfRwPf8XYoLazhrNYnIU8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RoDEhdhJfqeP1k9c3QqlYklrDOQqOELdZmx4lUfesc4z4DVaLu4CwU+WPijVnSfc5DVGJT0nh3m0ipwLhd5q45qk1WIzZ+I4fPWwBJihC9Tc2lDckC5gn7jqIpJKdfoTHXC9AjU6o1xGylljeHGP4i0M4pUtF+VVhPrUS9GfmfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TW348z9j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77EA3C4CEE5;
-	Tue,  4 Mar 2025 12:48:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PafBDmfumIH8ejBaeaARoQ0b3BxAMVaLB/asFLgzQbF7ckAUm3fNeddo9QTg7j0g/H5XNwXp4AF7QGYBbUVdudUj9wohCxl0XvDVcsUzUYkHpaJjaSxZKJBsHan40/ot+EHvfMhYPC+pDBK+kKiaQPyb2dIPZVhv8Vnl17PVnRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MRYtRR3b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC710C4CEE5;
+	Tue,  4 Mar 2025 12:54:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741092524;
-	bh=qs1uaw+fmZ/8gb8hir4yFJES2X7FcZuc7NwFrXHu62M=;
+	s=k20201202; t=1741092868;
+	bh=/A1A2qZsYsqWgcNSomPW+1mfRwPf8XYoLazhrNYnIU8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TW348z9jRX5ZSgJoPBlyk5//Ug5GqU9KnYD1BLdu2ADKTpJKJPZFTV44+ordyBa8b
-	 4dJ80PIpwujBtHUJt70dfbuL6b4kioAxjeKM1A5EvKQfPm1toQkvkNl3Z6mLYFGyRO
-	 ow9YIZD5TnWC2BfZSxbow5MULEoAYP2zC6lEfxii8GSxYjayYoAKx/nvE+L6tbmnvP
-	 iJLW/ElVnwlAwWb1DVwoRyAv2ncYLXRXQLAJ3SlxDwKIbWkDNnk7E/WW32FWVpPHJr
-	 OXLrpw9MGFfFMk+SjJsQyuiiYPml+qhnqarSVF+snpgOPbkXbQckBze1ZpQjfePTPH
-	 bQ0ZkN01iyo4Q==
-Message-ID: <47cb57f6-2270-43af-8786-2827a08ddf9c@kernel.org>
-Date: Tue, 4 Mar 2025 06:48:44 -0600
+	b=MRYtRR3bSOxt7sDY714pvRJ+cGuKXP1KXOzq7Es4hIChNxf5yfdbuZR5bbw1DInq+
+	 XTyxl4Uqj3539js3jqHejm1CRVV7YfTAUWlpCEwBZy0AYwnmRSvviIJm8lbcw7aazu
+	 4OC2+CshNXdu7/wMzgqSKbWzDwVJgHouoMilfhdnXGAIYOIZLSP4f7RL+hRnWBTYGR
+	 eGkWv1extNmvHcBzHUjTxVQR7Ib1ZVjkI74nip4Lg17FLRRotOHJu/dF194mwzJ6JF
+	 /zqLdIbNwnC3GXPYwYewdPtt6YVfoZKKEtzuRJkuxxWfgQvde2FiRCrUK4sw74wDrf
+	 M2DSvNvOxsr9Q==
+Message-ID: <847c7cd3-3b23-4180-b2b3-affa47413cf4@kernel.org>
+Date: Tue, 4 Mar 2025 06:54:26 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,47 +50,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v3 2/2] arm64: dts: socfpga: agilex5: add
- clock-names property to nand node
+Subject: Re: [PATCH RESEND v2] arm64: dts: socfpga: agilex: Add dma channel id
+ for spi
 To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, nirav.rabara@altera.com, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250228045349.1429680-1-niravkumar.l.rabara@intel.com>
+Cc: stable@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250225133919.4128252-1-niravkumar.l.rabara@intel.com>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20250228045349.1429680-1-niravkumar.l.rabara@intel.com>
+In-Reply-To: <20250225133919.4128252-1-niravkumar.l.rabara@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2/27/25 22:53, niravkumar.l.rabara@intel.com wrote:
+On 2/25/25 07:39, niravkumar.l.rabara@intel.com wrote:
 > From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > 
-> Add required clock-names property to the nand node.
+> Add DMA channel ids for spi0 and spi1 nodes in device tree.
 > 
-> Fixes: 2d599bc43813 (arm64: dts: agilex5: add initial support for Intel Agilex5 SoCFPGA)
 > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > ---
->   arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 1 +
->   1 file changed, 1 insertion(+)
+>   arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> index 51c6e19e40b8..27f75e1bc8eb 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> @@ -271,6 +271,7 @@ nand: nand-controller@10b80000 {
->   			#size-cells = <0>;
->   			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
->   			clocks = <&clkmgr AGILEX5_NAND_NF_CLK>;
-> +			clock-names = "nf_clk";
->   			cdns,board-delay-ps = <4830>;
->   			status = "disabled";
->   		};
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+> index 1235ba5a9865..616259447c6f 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+> @@ -457,6 +457,8 @@ spi0: spi@ffda4000 {
 
 Applied!
 
 Thanks,
 Dinh
+
 
