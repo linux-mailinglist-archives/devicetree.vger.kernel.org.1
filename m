@@ -1,99 +1,137 @@
-Return-Path: <devicetree+bounces-153737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3234CA4DAA0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:33:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2509DA4DABF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:35:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E89A189B99E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:32:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94AAD16707F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:34:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819A61FE45C;
-	Tue,  4 Mar 2025 10:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 708BF1FECA4;
+	Tue,  4 Mar 2025 10:33:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g197VdAA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E4D1E5B64;
-	Tue,  4 Mar 2025 10:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487FD1FDE35;
+	Tue,  4 Mar 2025 10:33:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741084231; cv=none; b=j4DoEr55Eoe7PTDl28NhhIOf7VkGC2EFQXoInElnAjfjqrxk7/7oJCDNl+p1zPUi0x5iy+fKYf7nuXieCD7fOUvFgVo7klXvbRW9e2V0w6irwKitiYmnsQaOJlpdxadyjPS0P6s1dugLy0UZVF/i7CX0TAE2bq8lYYADmYMqBDo=
+	t=1741084427; cv=none; b=I36rbJLzOBPNew81pt5sKuktwaj/RVKwDjoaGRLBu429aI8lHPYW/7IJRj7Anfnt7MfjDRiV1m382sdi6UEaOnA+67orgdyGkmgjwb8BDOh+w2umo++Usxtcg4WkyXuUqwMUT2d0uLdf920tra9J5ULbN22wxketdaRVyZn/P30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741084231; c=relaxed/simple;
-	bh=sq87APQYN9gwp9sgEfBYcpg58sQEn2OeRob2+GyOL6I=;
+	s=arc-20240116; t=1741084427; c=relaxed/simple;
+	bh=oxfH1b29Jy5NXagTLRaZznTNYVx5Cxlh0iPVEkxx5ts=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qN6F30JkOnXewBhRUPBdJU+dfOfm7+z4R+CdIFTsa9VdhL3F+N8NCHIA7eijaD7CK343PsnCuABSjhgH9/mnCp8fdmnhuLubEwYBkE9XfBSdnZtFvM7ESAt1/yUd4Ehytj1l3V1zLVPtzQHZtGIYSHyMXwkAcaNZEDad/SDAcxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B88D7FEC;
-	Tue,  4 Mar 2025 02:30:42 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1F18E3F5A1;
-	Tue,  4 Mar 2025 02:30:26 -0800 (PST)
-Date: Tue, 4 Mar 2025 10:30:24 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>, conor+dt@kernel.org,
-	Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
-	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, liviu.dudau@arm.com,
-	lpieralisi@kernel.org, robh@kernel.org
-Subject: Re: [PATCH v2] arm64: dts: corstone1000: Add definitions for
- secondary CPU cores
-Message-ID: <Z8bWQDVebIehuftS@bogus>
-References: <Z8XSIx75B4mtcV48@bogus>
- <20250303170012.469576-1-hugues.kambampiana@arm.com>
- <174108287362.420865.6246087705407586774.b4-ty@arm.com>
- <f6c7feb3-e003-4bbc-8179-3a3df533d2d5@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TWjLuQImEMa3MCAB7q54e/8QI+GlUW2fZgtB/hW2hxB49Ugaj0mw3k6P9QNTG9iOw4K7/fYfnXiYnCN0o/2BLSy0Im4dDoSjraoUNjIPaSdcNT0D4eSCAXNbajfA1WtTWcoQRYU4lAKkPJbDMljLIZi9jOQOxEzo+cg6G8gPk78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g197VdAA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4778CC4CEE5;
+	Tue,  4 Mar 2025 10:33:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741084426;
+	bh=oxfH1b29Jy5NXagTLRaZznTNYVx5Cxlh0iPVEkxx5ts=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=g197VdAAYYTjRZKbfgFXGAvD7HV6HNzMZEtn3V+Uq4SVwSAu9q4joTn3fDjaC/4gZ
+	 QAa69KyTC+qhSiCefQwEw77zkBzKMYQZ2XrDeqoyckA5Yj6EBSlwYSy0QPSGJ25pl2
+	 Xad8txPvgBLyyShLVUlmx32yUvyahXcY+qT+fLX4p6dqpJgPLVLaUBI4WG+1DKWIaT
+	 NNq3ao2mEHd5kXSwhDKQdVJ9AhBRwiMysYB6umTjCWmB6btNVBdvsgvKFdCGQ3iH6A
+	 NDoDcGk++yJPE8OgUK1Lhdc85EUR6zIN7c9rRUS6bCZVz48MHivhnM+Nj7xGvLLUUQ
+	 UharaEHU2clxw==
+Date: Tue, 4 Mar 2025 11:33:44 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Subject: Re: [PATCH 1/5] dt-bindings: display: Document DPI color codings
+Message-ID: <20250304-deer-of-striking-pride-ff6e86@houat>
+References: <20250304101530.969920-1-victor.liu@nxp.com>
+ <20250304101530.969920-2-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="cj2zylo7nvilgql5"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f6c7feb3-e003-4bbc-8179-3a3df533d2d5@kernel.org>
+In-Reply-To: <20250304101530.969920-2-victor.liu@nxp.com>
 
-On Tue, Mar 04, 2025 at 11:12:57AM +0100, Krzysztof Kozlowski wrote:
-> On 04/03/2025 11:08, Sudeep Holla wrote:
-> > On Mon, 03 Mar 2025 17:00:12 +0000, Hugues KAMBA MPIANA wrote:
-> >> Add `cpu1`, `cpu2` and `cpu3` nodes to the Corstone1000 device tree to
-> >> enable support for secondary CPU cores.
-> >>
-> >> This update facilitates symmetric multiprocessing (SMP) support on
-> >> the Corstone1000 Fixed Virtual Platform (FVP), allowing the
-> >> secondary cores to be properly initialised and utilised.
-> >>
-> >> [...]
-> > 
-> > Applied to sudeep.holla/linux (for-next/juno/updates), thanks!
-> > 
-> > [1/1] arm64: dts: corstone1000: Add definitions for secondary CPU cores
-> >       https://git.kernel.org/sudeep.holla/c/21b9f56cec8f
-> 
-> Why? Nothing improved here comparing to v1.
-> 
-> Your comment are still valid and the patch is still not correct.
-> 
 
-It was not marked clearly or noted as change. I agree that is confusing.
+--cj2zylo7nvilgql5
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/5] dt-bindings: display: Document DPI color codings
+MIME-Version: 1.0
 
-However the following was added:
+On Tue, Mar 04, 2025 at 06:15:26PM +0800, Liu Ying wrote:
+> Document DPI color codings according to MIPI Alliance Standard for
+> Display Pixel Interface(DPI-2) Version 2.00(15 September 2005).
+>=20
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+>  .../bindings/display/dpi-color-coding.yaml    | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/dpi-color-c=
+oding.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/dpi-color-coding.y=
+aml b/Documentation/devicetree/bindings/display/dpi-color-coding.yaml
+> new file mode 100644
+> index 000000000000..6430d6f1ddd1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/dpi-color-coding.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/dpi-color-coding.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MIPI DPI Interface Color Coding
+> +
+> +maintainers:
+> +  - Liu Ying <victor.liu@nxp.com>
+> +
+> +description:
+> +  MIPI Alliance Standard for Display Pixel Interface(DPI-2) Version 2.00=
+(15
+> +  September 2005) specifies color codings at the DPI interface.
+> +
+> +properties:
+> +  dpi-color-coding:
+> +    enum:
+> +      - 16bit-configuration1
+> +      - 16bit-configuration2
+> +      - 16bit-configuration3
+> +      - 18bit-configuration1
+> +      - 18bit-configuration2
+> +      - 24bit
 
-"Only FVP platform will have SMP support and hence the secondary cpu
-definitions are not added to corstone1000.dtsi"
+Do we really needs strings there? It would be much better to use an int
+plus a header
 
-Hugues pinged me in private to explain why it is done in that way and I
-asked him to add the reasoning in the commit message which he did but
-failed to capture in the v1->v2 changelog. I mentioned it in private
-again as he is new contributor to the kernel, I was less strict on him 😉.
+Maxime
 
---
-Regards,
-Sudeep
+--cj2zylo7nvilgql5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ8bXBwAKCRAnX84Zoj2+
+dt1IAX9V1mlAI1Gl75oEmrf11qBXqppa8x3GWIJnJLuNlT9ukdKeaLCrQX1wn479
+eHm4Ol4BegL0L7cndLVYuxBHxQPptolpuxW4+J/3gbKcG28DPUVdqmmu2icZfev0
+HafXHYBLEg==
+=Pg8P
+-----END PGP SIGNATURE-----
+
+--cj2zylo7nvilgql5--
 
