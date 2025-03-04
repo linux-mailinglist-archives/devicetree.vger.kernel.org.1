@@ -1,152 +1,121 @@
-Return-Path: <devicetree+bounces-154131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3A3A4EF5E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:30:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA923A4EF6A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:36:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A02A5188EC8C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:30:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 276BC3A99C3
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F321FC0E8;
-	Tue,  4 Mar 2025 21:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 724D51FCCE7;
+	Tue,  4 Mar 2025 21:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="F/htZXuH"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iWVWc1gj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-77.smtpout.orange.fr [80.12.242.77])
-	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62D97DA93;
-	Tue,  4 Mar 2025 21:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25BC61E3DF4;
+	Tue,  4 Mar 2025 21:35:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741123836; cv=none; b=GJyWIMEymD2W1liLkf01MEFYRhlbs1YOUlzrJz9rT/foJjAYtgPbYKz3sa+OBqp3UKVhlJNRMBpKJEk+2ZmYZRMvkQTpWM2DSn2kfzsiCV2Pq5s09HVCjl3i4UJvacdoZRilAs2aNaNimUY9G+8JwtfHmi4hngPgwSYjSxvc5/I=
+	t=1741124160; cv=none; b=Ddq+kc7pO3kQ7v4QXKk6f0e3a6Xa4wN0V7EYh9SN5gIaCeW57azDwz1qSiZGvbczq0A3olW/pjWs0OFJBzgTM9+qGTq6vuaqnEuL9sj78zFNDab3tIiYp/wv/+Q0OLExjaqHJc6BYzglYWrWIKPPhZV7kdDU2RGN68LWOu9BbyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741123836; c=relaxed/simple;
-	bh=uU2YbbMZxvg5eLRNvxP4W3qaFK4o/G15pdl3NZqtIgI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LGwsKty5viPem81dlb3S5/pvYhFoSji9HlzJneU0MwBTGq2b2233wKuzJo6I/5iDf4jCmnpa7IyqiIZCKGMLumQP7g5dJ9/Wfedj9nta7QbT97ppMErSGNMsSqr4zAq6lvCeInsf/Uofo/7XyAvMb982uz4diWo1Kzmp8Sq1F/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=F/htZXuH; arc=none smtp.client-ip=80.12.242.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id pZhEtjoYlf1j1pZhItMWBa; Tue, 04 Mar 2025 22:21:13 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1741123273;
-	bh=K+h7jsWHv3eIxLPH5dNajezN+xQFTDwe/w8/eZdR268=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=F/htZXuHwOLqrOg37Ie4xDkEu5dSoXycvKds+QJgKpHM4TF1OfVT4PgIZuJDeGsrB
-	 7qx9+ZmsUoXQ9CxklHemGcceTvS3H7LKNkR9LpBbJPyxeMj4+OhOJVX/dIbM51l0ea
-	 mSFuiORCumZyYWbbq5vwhFzOK/bETgw1Bhn9ORtyVf6YLnqItZ94mJAK5qh0IDCT51
-	 /Tw545tJjZPj9yLKoj7O2JntYzLwJiLtZvYykbYpMVGXLVw8Lt4yzIapdyNsw6aXKJ
-	 6BHl6lQXZd3Ia8praMr/qD7YfmQ0mg6MIWWvafegftXVEwL42f7yq+x1VOGvchNrqC
-	 ggVLi8D6df4mQ==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Tue, 04 Mar 2025 22:21:13 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <7ef88ec2-24a5-4aa7-a601-d605a12768ba@wanadoo.fr>
-Date: Tue, 4 Mar 2025 22:20:59 +0100
+	s=arc-20240116; t=1741124160; c=relaxed/simple;
+	bh=6Bc7g4mKArhcl6kXe95ybV+LNzHSc7Zsr7451OcuWLY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=q96wume7lqs/UHgdlXJp/gbRqJSQUH2mbKuBauc7H6SDvCkkPjoctMlehgw9+XF7IomDCiXHImk8gW7vS4eA+xUlVAyhebnHcSCw+klLJybojXJy1YFgWA4lXwlEfPEHsIkNwH7SeWcA1RQXT2w2cJC7pdqY+auDeC0iw2StOJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iWVWc1gj; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1741124156;
+	bh=6Bc7g4mKArhcl6kXe95ybV+LNzHSc7Zsr7451OcuWLY=;
+	h=From:Subject:Date:To:Cc:From;
+	b=iWVWc1gj0oidP3d8c6SPfKkJ2A5uSWUUU9U095jDfR+GjEzusAcOqGNJhjLGXbeg3
+	 /NKOt7hJ9awU/+/Rt3budT5uf8iNdUF8sob0ppjb/4/WwcR4iYsB0MUlAYGsNLp1W0
+	 P7/vG+suixChc5YWbKaYMI4cp44iFUiZ3q0iiU3e22O7iJNnfr7e9DV6wKSkNUQibq
+	 daXaAZPYLOJGlUIluYVXRq8f5l5N2vV4/OSv65j0a8W8QIqr1rdjgmuVMCKG0tE7Uc
+	 y31yE9tI1KDYOd69NBp/j0CAWVBFEWgzRX9fZgzwepaJA2z/KbLNhWj1Xh5lM3VnFh
+	 iCacrWb4vDlsA==
+Received: from [192.168.0.47] (unknown [IPv6:2804:14c:1a9:53ee::1001])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 46EFE17E088C;
+	Tue,  4 Mar 2025 22:35:52 +0100 (CET)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Subject: [PATCH v2 0/3] Allow retrieving accessory detection reference on
+ MT8188
+Date: Tue, 04 Mar 2025 18:35:35 -0300
+Message-Id: <20250304-mt8188-accdet-v2-0-27f496c4aede@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] soc: aspeed: lpc-pcc: Add PCC controller support
-To: Kevin Chen <kevin_chen@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, derek.kiernan@amd.com, dragan.cvetic@amd.com,
- arnd@arndb.de, gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20250304104434.481429-1-kevin_chen@aspeedtech.com>
- <20250304104434.481429-4-kevin_chen@aspeedtech.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20250304104434.481429-4-kevin_chen@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACdyx2cC/3XMSw7CIBSF4a00dywGKBjiyH2YDnhc7U3aYoAQT
+ cPexc4d/ic53w4ZE2GG67BDwkqZ4tZDngbws92eyCj0Bsml5lIothYjjGHW+4CFqYDWOaP1qAL
+ 0zyvhg96Hd596z5RLTJ+Dr+K3/pOqYJxdnAtambGD7ubjslgXkz37uMLUWvsCB8HLMa4AAAA=
+X-Change-ID: 20250214-mt8188-accdet-4deabb85534d
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Trevor Wu <trevor.wu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: kernel@collabora.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
+ Zoran Zhan <zoran.zhan@mediatek.com>
+X-Mailer: b4 0.14.2
 
-Le 04/03/2025 à 11:44, Kevin Chen a écrit :
-> Add LPC PCC controller driver to support POST code capture.
-> 
-> Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
+This series enables the MT8188-MT6359 sound driver to retrieve the
+MT6359 ACCDET sound component from a mediatek,accdet DT property, which
+allows detecting jack insertion/removal.
 
-Hi,
+Patch 1 describes the new property in the binding. Patch 2 implements
+the sound component retrieval in the common MTK soundcard driver. Patch
+3 updates the MT8188-MT6359 sound driver to register the audio jack and
+initialize the ACCDET driver for detection, if the property is present.
 
-> +	init_waitqueue_head(&pcc->wq);
-> +
-> +	pcc->mdev_id = ida_alloc(&aspeed_pcc_ida, GFP_KERNEL);
+Tested on the Genio 700 EVK board.
 
-Missing ida_free() in therror handling path and in the rmove function?
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+Changes in v2:
+- Added CONFIG_SND_SOC_MT6359_ACCDET select in
+  CONFIG_SND_SOC_MT8188_MT6359 to avoid build failure
+- Clarified in mediatek,accdet dt-binding and commit description that
+  the property should only be present if the accdet is actually used
+- Link to v1: https://lore.kernel.org/r/20250214-mt8188-accdet-v1-0-6bbd5483855b@collabora.com
 
-> +	if (pcc->mdev_id < 0) {
-> +		dev_err(dev, "Couldn't allocate ID\n");
-> +		return pcc->mdev_id;
-> +	}
-> +
-> +	pcc->mdev.parent = dev;
-> +	pcc->mdev.minor = MISC_DYNAMIC_MINOR;
-> +	pcc->mdev.name = devm_kasprintf(dev, GFP_KERNEL, "%s%d", DEVICE_NAME,
-> +					pcc->mdev_id);
-> +	pcc->mdev.fops = &pcc_fops;
-> +	rc = misc_register(&pcc->mdev);
-> +	if (rc) {
-> +		dev_err(dev, "Couldn't register misc device\n");
-> +		goto err_free_kfifo;
-> +	}
-> +
-> +	rc = aspeed_pcc_enable(pcc, dev);
-> +	if (rc) {
-> +		dev_err(dev, "Couldn't enable PCC\n");
-> +		goto err_dereg_mdev;
-> +	}
-> +
-> +	dev_set_drvdata(&pdev->dev, pcc);
-> +
-> +	return 0;
-> +
-> +err_dereg_mdev:
-> +	misc_deregister(&pcc->mdev);
-> +
-> +err_free_kfifo:
-> +	kfifo_free(&pcc->fifo);
-> +
-> +	return rc;
-> +}
-> +
-> +static void aspeed_pcc_remove(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct aspeed_pcc_ctrl *pcc = dev_get_drvdata(dev);
-> +
-> +	kfifo_free(&pcc->fifo);
-> +	misc_deregister(&pcc->mdev);
-> +}
-> +
-> +static const struct of_device_id aspeed_pcc_table[] = {
-> +	{ .compatible = "aspeed,ast2600-lpc-pcc" },
-> +	{ },
+---
+Nícolas F. R. A. Prado (3):
+      ASoC: dt-bindings: mediatek,mt8188-mt6359: Add mediatek,accdet
+      ASoC: mediatek: common: Handle mediatek,accdet property
+      ASoC: mediatek: mt8188-mt6359: Add accdet headset jack detect support
 
-Unneeded trailing comma after a terminator.
+ .../bindings/sound/mediatek,mt8188-mt6359.yaml     |  8 ++++
+ sound/soc/mediatek/Kconfig                         |  1 +
+ sound/soc/mediatek/common/mtk-soc-card.h           |  1 +
+ sound/soc/mediatek/common/mtk-soundcard-driver.c   | 15 +++++++-
+ sound/soc/mediatek/mt8188/mt8188-mt6359.c          | 43 ++++++++++++++++++++++
+ 5 files changed, 67 insertions(+), 1 deletion(-)
+---
+base-commit: 20d5c66e1810e6e8805ec0d01373afb2dba9f51a
+change-id: 20250214-mt8188-accdet-4deabb85534d
 
-> +};
-> +
-> +static struct platform_driver aspeed_pcc_driver = {
-> +	.driver = {
-> +		.name = "aspeed-pcc",
-> +		.of_match_table = aspeed_pcc_table,
-> +	},
-> +	.probe = aspeed_pcc_probe,
-> +	.remove = aspeed_pcc_remove,
-> +};
+Best regards,
+-- 
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-...
-
-CJ
 
