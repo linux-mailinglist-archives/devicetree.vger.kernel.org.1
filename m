@@ -1,194 +1,230 @@
-Return-Path: <devicetree+bounces-153649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABB46A4D621
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:23:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66745A4D62A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B87B41892F37
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:23:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CACE73A88BB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88A0C1F891D;
-	Tue,  4 Mar 2025 08:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2426E1F891D;
+	Tue,  4 Mar 2025 08:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tKLIHTuS"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aeT0v531"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2068.outbound.protection.outlook.com [40.107.241.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730FD1FAC33
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 08:23:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741076583; cv=none; b=slzz57UgcShoy9fnMTJnF9U7rrro7M52Gpfm2J9lHUvsi5+/FZlzqz9LYUKGFa7wUBF9FPCLLAEXW+dlCvjeetjHLjb2nC0943/7+NfCwDGZEQzNur3cfm5JjscoiJGfLqPdD7PSeDmMYfvLNNr7ndl7iJWVf5QpPZQrq2Q4RIc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741076583; c=relaxed/simple;
-	bh=oJRocjVxvG8aocBlf5vT9fLjx9PJTOnjpaP9NfdgLoU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VTE4Pev7Z/FPVTMTnGJrKgyo/ByEssW1BvvZtQ8le6rFPG4eLs1VB8tlo/NCcoqrYHr/Z94ArpDT4mM3M7Af2JlBTBsiJN9XaaKQvuMMHzqQXq5kdhnpfOnTRIHhipDRDkaTTNBPYp2qmBoVj9LATdZGovr8bfTCfBaVMDbzd5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tKLIHTuS; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e4ebc78da5so7556920a12.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 00:23:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741076580; x=1741681380; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=T6vsEs0w+2fpN2o1KS8VIE9clQoUeLM/QArYwjwqcY0=;
-        b=tKLIHTuSb8EsCI1KkpfUsVKCJmmjnPjmWq6aBgxmRlJtqHk8ikuDpQ8pHQReaI2mzY
-         hSRuBoHrplNxKm+Y4AUGV9s/rpZi3ab7HTGhJPL3UL+H4U4sUbErG02SGoa5LSgQ49lJ
-         EK907gmP/2Nd2Rx9WKHHzLvL/Hayd2zCx/SsnRoV6+qLW0QbLmyVmqKpmmFIgpZi/d+P
-         oOyVrYPQC8+ZdXGCZHDzxOYUHCOpJgGTP8f8IZC2o38X08eQfmkCkksKnHW0A9U/jHsu
-         UF0pqcYRChbbFpJq4Bo5lX4ZWHo5VqiJXAXUKvRfft6HvLeJM3L4MsQVeRM6sf+t+cpL
-         Mbew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741076580; x=1741681380;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T6vsEs0w+2fpN2o1KS8VIE9clQoUeLM/QArYwjwqcY0=;
-        b=o76znukWQfjCHTBQ8jsvKufOg6NZ0wBHEUMCzzkSvZh7KvGwJNAWpTBiPllRTq+VpJ
-         49QoWx51d0RXyx3Yf8XQcFdAV09oAd/0o8Ab6/J0mlVBTPPXTWIl4hpVkKrxbOqA0Vhz
-         yksm48XVKVPv7tVvfUmsj+cPDk0Gx4xXM3xJ3NTWB+yAZ9nyuzLx2WkTWi6PeOHUT2Z0
-         b985XC1f7ebCaZEu2Sm3K6yiFX1skOnu5Yzb8FOTHlDHrrbogrIfd0oUg0ttGGk9WSsA
-         936pqKXKN5EJfni5WNsX55gSf44EVzJnTEvra8mAGmYgHArZsmOXCRmUbE49NasS02qw
-         +JbA==
-X-Forwarded-Encrypted: i=1; AJvYcCW1N/HzZEYpc2wI3VChoGl0a0Sqjq2WPLyI7gQm90iXtF0XT5zXIKi8ql/zxHGae0doVnR59tboj7yX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzciuTp2zprGMeUZir7PyfcCDj5Mm6hFnQeBRzlevC2PGSwEg1b
-	FIJX+S5SNRxRDb7yyJQxPmftqlz9HqT5cpkgeUJ4ln6No80hIlnPQ2XQFzegEfg=
-X-Gm-Gg: ASbGncsnnGt3/sGMkyTOZeFU9VhDCYxcRbsfT+O8W9gO+g4vhT4TFon/JZR+fu9BZXF
-	JtWq2vwe1aOX3YAv+Eaup2nsj7rlf5+djGDHQ5mlyo9JY8g1GfA2oXHnIy1c2IdTXlOZpENBWOD
-	fK+qu+3XupwBvvRk3zlHcWnPe41ypNrm/qrxjgL5ni2R3tkcJrey480Ka6vbb2jidtUd5hrVL2V
-	UTZJPiDnYFjRGrVx8ASl83nTzY2AW0dF6Hvt6nyfpFdZn+BkA4mjEZiw2xgNnJUHnaiDOP+rlpK
-	VRx0BOvq1SYdCS894VraG/j/6WUsNn24wdFw3W9mYwgO1QhhaQFoPVML
-X-Google-Smtp-Source: AGHT+IH0Xb393ctWLRXZSas7YgLXGqNPTHNCJsQolq/B1J5pMVs0L4gi+m3eIifTOO2YP/AzGBdjxw==
-X-Received: by 2002:a05:6402:3891:b0:5e0:8c55:531 with SMTP id 4fb4d7f45d1cf-5e4d6af98d1mr18864132a12.14.1741076579579;
-        Tue, 04 Mar 2025 00:22:59 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef30:ea7e:cb1f:99c6:de2d])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5925ff875sm332907a12.20.2025.03.04.00.22.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Mar 2025 00:22:58 -0800 (PST)
-Date: Tue, 4 Mar 2025 09:22:49 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Greg KH <gregkh@linuxfoundation.org>, srinivas.kandagatla@linaro.org,
-	mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
-	dmitry.torokhov@gmail.com, corbet@lwn.net, broonie@kernel.org,
-	lgirdwood@gmail.com, tiwai@suse.com, krzk+dt@kernel.org,
-	pierre-louis.bossart@linux.intel.com, Thinh.Nguyen@synopsys.com,
-	robh@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v35 00/31] Introduce QC USB SND audio offloading support
-Message-ID: <Z8a4WYq4GqWBVNyX@linaro.org>
-References: <20250219004754.497985-1-quic_wcheng@quicinc.com>
- <Z7W_Vz_kVDjIcp5N@linaro.org>
- <82ce69a3-d248-494f-6ddb-098f392c78a0@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A671F8EFF;
+	Tue,  4 Mar 2025 08:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741076633; cv=fail; b=pxRb834xp1ni6FjDU8E25VAR8sWHtWRtCnyBkK8Hv2Mzqcx1pYIu0DDgPFzvkoQ4RAqCKeNG2xnyvP1bRBMrk9wA5M6w6LmW5/ZzpV4eZwU9YgxoUl07S6HSC3spwbqBzC0TXKMgB8ANEzX8WDagma8lMhLgJMIdWlLiaKOK4CA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741076633; c=relaxed/simple;
+	bh=+RKXLeQwAbMm5aXNOIjYlof6vkg2RGNX1ljoxCAGDqA=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Ag4bXMx1hsPERr+eO5sz2MNltl+ZW4ZA2foVUReizYQo1ns9MCa4kgrBWL5qfteCRexOrLaASOfl1Wqod8Muv0k+v4NR/Z4Bipc/G95rh2XwuRMF8QrBs7Xz6SLFdxoNMyWDzZ2d2OuCUv3NapECb2aJx2UpcXvauoUxZkg9gP4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aeT0v531; arc=fail smtp.client-ip=40.107.241.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HlvppSbLGB91k2+wXzUMBnkQzyUBw9L2MSldjrmBmwJz2rwS3NjRJO6xenuU7t1UetvWoU4fD9jAEZ+uFwP/AQcccWvkLf/cEH8nkJHoVzcqdwILblyfdRtJDouWM9oTErQvtfg8lQdG8OT7bZHxeDNg3n82V0ato1+Y47UUkBbH5PB6v2hnirlIP9KKXxAu24tHU3Qf7+M7HP6oequdxlDpzt+0MdfA7fmklJ4tyBff6GMaNdwKN7e0vhIjimFzoSnsgnOStPZ34tZ6dPw4etkGtCOk3WvZWhM6jSh7LGocU9UK92k/aKoI9La/qUdZDQo2d0i/z8B3lIoHgTVogA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w4Jm7+1/bMXeSHR72Kk85JSPA7j7pmFZWvbFtx+nkgk=;
+ b=n7OV2OCHiHuQYIcLX12IXGuYjvQKgF/aZicfOULiDNBMVwFjxa1rLchy9BzkOuYm/wz7oXInlp4ISz6/WONZLOytzam0ywC+8iPPCkZwh2Uk1sh54cjbZlXPwGBqrd0AXYD5z8QFGZg7V26/qmE/kL+Xb1bqOjeWHBFYffoWQVwCaZW31Af224HGJDyNPe2m8DDTHTTeYqLl7R1o/lURetLJDUl5Aow8MMeYCEI3COqByre495sMriXH724VEYwa+E79j4RFwtwa3jTlt1QkV7+dM5gn5s7b2v9RvfNm2VRi9tezDk6u0sc3v6q/Yc0ZFlctlimJroyDEwtDPPlYLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w4Jm7+1/bMXeSHR72Kk85JSPA7j7pmFZWvbFtx+nkgk=;
+ b=aeT0v531BJf0ddjsFmNnD0CVifVmRCAgl0TNu1ogEU0zRzoJgWivXUNSb903VlR2ey6inh7V0XWT/QeMKtsYwUqESG8vvjFFW52dGE+SHlPywoZWrEVtYLeKZA0aFxsN2j0QMHv+CrSV7Y2lp8yvhCmArTOe3W77Zs2ZtfVqog5jKMl2j6i0rd9FC2wzs12avueOJ3dedbpoz1XNGlSUuKe18mK+AWtnhLBL4XhD56dkx0Ag8QWeUJj8dcXyllymG6YmyBXWCK7yEUr0JP3dnuYkikksg8PTe5MuvnFanLR71CUiL948Ia1NAPR8dye7QT03QxH2uZNIJ2gkacbvpw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by PA2PR04MB10311.eurprd04.prod.outlook.com (2603:10a6:102:413::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.25; Tue, 4 Mar
+ 2025 08:23:48 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90%3]) with mapi id 15.20.8489.025; Tue, 4 Mar 2025
+ 08:23:47 +0000
+From: Liu Ying <victor.liu@nxp.com>
+To: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	victor.liu@nxp.com,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	peng.fan@nxp.com,
+	alexander.stein@ew.tq-group.com
+Subject: [PATCH v5 0/2] drm/bridge: imx: Add i.MX93 parallel display format configuration support
+Date: Tue,  4 Mar 2025 16:24:32 +0800
+Message-Id: <20250304082434.834031-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SGAP274CA0006.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::18)
+ To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <82ce69a3-d248-494f-6ddb-098f392c78a0@quicinc.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PA2PR04MB10311:EE_
+X-MS-Office365-Filtering-Correlation-Id: 73fe2333-5186-4428-cc73-08dd5af5e2cc
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?4w9NOPyTM7SyGKgjY3hw7J4URfBSpOvmMyiQojfjwq59otZ4xLLyin0R/zrF?=
+ =?us-ascii?Q?yMuhtnA9A6+CVMOG8pzvL/mOyYN7QFBpdmyPLEeSeoUPV2VTQ1veSRn5ldOh?=
+ =?us-ascii?Q?6V+iCLb4ZIG4Vs8nMKgsvDXJI2G8VZQVybRbzT9/dwVPCFsQ+o4876biZk9a?=
+ =?us-ascii?Q?96wPyk9jGisoWoJzp3oXqvfzLPFGtPXzdJz7Xr4VMYuQtb/iCg3Hl4gHLB9+?=
+ =?us-ascii?Q?zUiPPGeKq9xgaCQFQdQcvWiBxvAp5BMQhprorw9tg+ccd1Oz5BsYxamm9dhw?=
+ =?us-ascii?Q?JZAMNsTRm6Pld8gBmcf2FcG9vn3FueEaB8ySqwEy5NsldlLz+mqJ8zoxe21/?=
+ =?us-ascii?Q?p5DRbmvDgiJjwJd8xrs3PEPygVqraSSGhHYZkFAR5hl7Vu81in+kNmXBdFic?=
+ =?us-ascii?Q?t/blcakaEbrjyNkNPQl/NvFQBIZk1AvNX03Qt/WgejBtYebdYTq+rKECBAjX?=
+ =?us-ascii?Q?frWCEDVx5/igLLCA2direvyGDDvQ1qZ6J+Eufhszu/bgiFEVwMzcuIdYrn8z?=
+ =?us-ascii?Q?i5TlOlWXoMIlRCHo/KmQMANdrwOIVmYAUUm4l8rnW3wJqQXKR7oLVZJ7xZpC?=
+ =?us-ascii?Q?9oHu55BSzDNCMpRpbdnODRX7LNfL/l3wxJ+Tp2617NY1FmezenaJ4oEeFmqC?=
+ =?us-ascii?Q?uVv+EKeJUcz2xvCZsWB/Fwt0B/n/i9BZ8z2PEU3y0pURSYDtXkV0emY0jD85?=
+ =?us-ascii?Q?pqRa6IUDUvWrDe8ToQ7/RsGf8wJqjnoz4yH3AbxG8b1Ek6bsIWPaPW/BEw4s?=
+ =?us-ascii?Q?piaeXexBXx3Gzg01bnyxXCV8CcObeqwRzymz5/EfzuXoJoJ+QnZicmW2gpLp?=
+ =?us-ascii?Q?JddjI5IgtelAl6snR1mVelzJjfGgzDGe0sTq4CQZQ3INt7GZJE0FpduTozC0?=
+ =?us-ascii?Q?CJQUOSa2LId/wLn248fjSB4Is1ozxAes6mLqDljN+gztjKIR3QS90dTfaRZo?=
+ =?us-ascii?Q?nY/BJMC0lPee58QDq/t6ZBTcsoZNdYsKSvL8sbfhdsJsd8ot3y8CxYzlPLZJ?=
+ =?us-ascii?Q?shwa6AAfNxTA8SpsSrFdOsPjGF5Kh44LFtSD1pvox8OraqOugwMq4E3B+qog?=
+ =?us-ascii?Q?r5c0Zgi3sj+02WZyN4mSXE9vGMS3Nipz7YVyJLZ+swrRMV8czwZKvQwDCxHE?=
+ =?us-ascii?Q?D5mbRB1tEOYZNd5nkg/Q966KG/UAnTutzJ7UHgkWxzE6z2hSHJ8dSkZpcNGh?=
+ =?us-ascii?Q?aI+LHo6NrGTvOpQf4OtbHKKLLawd/nRH4p/KMkg2iMpmdOqkIBNu6WRJdO4h?=
+ =?us-ascii?Q?5gYdjWjvuH+zT5RhWUdPKunu5GwKIj+JKEOEVyzuzZensbpV593rvM+6PheD?=
+ =?us-ascii?Q?utJVu/ISwWayI8zgSCUdcJse/DE79+TnrbUojpXWqqSO6FL3lLmsl8sdeBRF?=
+ =?us-ascii?Q?aLdJplb3woxUaKJuUgPbFrHg+LY61GDIIOqlO3EqL7fJ6UkzSHRATSRiRcPw?=
+ =?us-ascii?Q?l5nvgJosJu1ZUQVDhJlUTdOCCPQlAMTW?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?RczLTn1TUd7J/93smoQghDOLJ7JQWMbmAhncvyYblErTGpkd59ikWKwuEq33?=
+ =?us-ascii?Q?ygtDrHmAHNFnpYtquZt4fCMq/NMaZuT+HR9UVl13swY6WlW2m3CH6Kwlh28Z?=
+ =?us-ascii?Q?OkFYprUDhqoFR6hjmIPtucP84/Ni21bMwY/gOMwxZsTI18gDXLo1xOUvZJpk?=
+ =?us-ascii?Q?73I72qejRC1/clx1jQwHDY44ML6bxeZ2+E7PinDbBwd33CEQVVB5wDdQ/2b9?=
+ =?us-ascii?Q?qzbNeH1T6wMrzaZbLBUBeKcH0Imzg6r3AeL2N/8F4wR42P6PQO6AQdSdjy9/?=
+ =?us-ascii?Q?Erbtf50hpzZE2RIywNXMRY9f5C4X8sJnOsLq061hFnyKqcldU+BALnWGI6pZ?=
+ =?us-ascii?Q?5G4pBxfGHFp0Cs/LUTsTmnMHmia/0ZbcRB3vpwEfdjn+CoATnhKBOSxqMkHz?=
+ =?us-ascii?Q?Sy3z02YjjY7zvaTjtKwnzNTsl4KljFgREXlZwXdVAopRCDfM2zs0hZuii1ya?=
+ =?us-ascii?Q?OIkHMxFFxKvZPDlwkyTvjXOdtxqlpBEqufC5o2q6/ZsiVKYI6RlDuawUpU0u?=
+ =?us-ascii?Q?+B9INdWMEcFtl3e2lz4tP7L7s7twKKdr8TqR2ZkHnN9MjQ/4ccY3EJK1wqhY?=
+ =?us-ascii?Q?ykAuprALQU31xGJ1m1s0JDnsP75KkqqH3e0OpiyvXsKXRo91Gqz+gBl/5Y/D?=
+ =?us-ascii?Q?2jlC3GTN4FqqzH/RbOkqH5We8WuAkiFzlvYwThSAoKSmE/EFqDsRA1SKVm33?=
+ =?us-ascii?Q?vGX7cQkPQt3KymKpI9+WfY9TXF+TfbKd6ppET0CUJVM113AgMo+VeX6N9m1H?=
+ =?us-ascii?Q?4+lnNCfYN4BrctNqi/c7rcL1oyRyeVj0lEmjH7GyoMtge2ceAde3FVthdtk3?=
+ =?us-ascii?Q?Q3S7+69TbuQeAURXvFp3ZJe1O12GcKduK9eWxg/Atv8Kp5iAd/8cXBWyisYS?=
+ =?us-ascii?Q?WlX4hN4U4wzCjljeD2sUjWWjkLyCfTc9oHrXzYu1GJ/N+mkFVnlI/ThdkdQU?=
+ =?us-ascii?Q?feyvmjaZ5s4XRQR6t8iHhFOhD5/0oYNaeD2jzAVEV66LK7p3CPrbyp3RxEnO?=
+ =?us-ascii?Q?kCvf+5MJ4QZ/q7min4QtpWUKKxlGL3Moo2F4wnUZEQC7Ns+7MrxdWpo62eQk?=
+ =?us-ascii?Q?KQrtvGofKnKjF0+VgntrCHqSIMHQaWaOojGBwo8kNAL9oqqPddn3kpviqO8k?=
+ =?us-ascii?Q?Y/qMil47hBtLE9axY/eTJB21uEcg5iZDImDQ51B+i2zvDpCfcBUgxGboK8wh?=
+ =?us-ascii?Q?SWtCu07j0DN7uv/h6SJqSjO+lE+ZZhUHmwuLvJ1oc1JH/yCDen5MCdpQqmew?=
+ =?us-ascii?Q?kYwcYo6jcnwCHisWlgLhsdDT4yJceDXA5gI44d/WTlpms3XZmJSErjFJdW6Y?=
+ =?us-ascii?Q?9IPzHZDBdUXAiQtAlK77uULszT9CPvsnG8BcG5ORI+Xb4vNZStw39DiigSUm?=
+ =?us-ascii?Q?UEyjY895+zEV4iLoERtRw8ZSLbigf3+gdYkpqDpvJ0GNN0ALybqbbrwKkLHN?=
+ =?us-ascii?Q?9HSqVZ1e+t0TsU3Co27MNXuhtdadmk8Uv/yss/0CUfmd78lacHB2KJl4WE0W?=
+ =?us-ascii?Q?0skDnIrZjn8tdLlc/ZmswRP9tjb3xImoidcJmGPZk8CqHCRqnnNoEbPxRDE0?=
+ =?us-ascii?Q?Agu9mLbJCnPBZJ67oP84gW7spTKuv8o//SRb1y5p?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73fe2333-5186-4428-cc73-08dd5af5e2cc
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 08:23:47.7457
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: k1M3Ylc9ECq3vF2RgeSukjxuSIUoq4AP8+NE5c4RF8rpsTx4WM5fAmdMOU8OybxWBoawio6Wqbzij52Cfjv08w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10311
 
-On Mon, Mar 03, 2025 at 06:39:52PM -0800, Wesley Cheng wrote:
-> 
-> 
-> On 2/19/2025 3:24 AM, Stephan Gerhold wrote:
-> > On Tue, Feb 18, 2025 at 04:47:23PM -0800, Wesley Cheng wrote:
-> > > Requesting to see if we can get some Acked-By tags, and merge on usb-next.
-> > > 
-> > > Several Qualcomm based chipsets can support USB audio offloading to a
-> > > dedicated audio DSP, which can take over issuing transfers to the USB
-> > > host controller.  The intention is to reduce the load on the main
-> > > processors in the SoC, and allow them to be placed into lower power modes.
-> > > There are several parts to this design:
-> > >   1. Adding ASoC binding layer
-> > >   2. Create a USB backend for Q6DSP
-> > >   3. Introduce XHCI interrupter support
-> > >   4. Create vendor ops for the USB SND driver
-> > > 
-> > >       USB                          |            ASoC
-> > > --------------------------------------------------------------------
-> > >                                    |  _________________________
-> > >                                    | |sm8250 platform card     |
-> > >                                    | |_________________________|
-> > >                                    |         |           |
-> > >                                    |      ___V____   ____V____
-> > >                                    |     |Q6USB   | |Q6AFE    |
-> > > |     |"codec" | |"cpu"    |
-> > >                                    |     |________| |_________|
-> > >                                    |         ^  ^        ^
-> > >                                    |         |  |________|
-> > >                                    |      ___V____    |
-> > >                                    |     |SOC-USB |   |
-> > >    ________       ________               |        |   |
-> > >   |USB SND |<--->|QC offld|<------------>|________|   |
-> > >   |(card.c)|     |        |<----------                |
-> > >   |________|     |________|___     | |                |
-> > >       ^               ^       |    | |    ____________V_________
-> > >       |               |       |    | |   |APR/GLINK             |
-> > >    __ V_______________V_____  |    | |   |______________________|
-> > >   |USB SND (endpoint.c)     | |    | |              ^
-> > >   |_________________________| |    | |              |
-> > >               ^               |    | |   ___________V___________
-> > >               |               |    | |->|audio DSP              |
-> > >    ___________V_____________  |    |    |_______________________|
-> > >   |XHCI HCD                 |<-    |
-> > >   |_________________________|      |
-> > > 
-> > 
-> > As I noted on v34 [1], this version is still missing instructions and
-> > changes needed for testing this series. The device tree changes don't
-> > need to be part of the same series, but there should be at least a link
-> > provided to give other people the chance to provide Tested-by tags.
-> > 
-> > IMO we shouldn't merge this series without those instructions, otherwise
-> > we risk that this just ends up being dead code that no one can use.
-> > 
-> > Can you please share the device tree changes for a board upstream and
-> > any other changes needed to be able to test this series? E.g. for
-> > sm8250-mtp.dts, based on the examples in your cover letter.
-> > 
-> 
-> To clarify I'm testing this on sm8350 in recent times, but utilizing sm8250
-> definitions for the ASoC platform card, as the platform sound card is more
-> or less the same between the two SoCs.  Back
-> when I started this series, sm8350 was missing a bunch of dependent
-> components, such as aDSP not being loaded, and missing platform sound card
-> definition, so I had to define and enable those on my own, which required a
-> slew of new DT nodes, hence why it wasn't as straight forward to include
-> the DT definitions yet for sm8350.  Not thinking that this series would
-> take as long as it did, I was planning on separating out the DT changes in
-> a different series to enable offloading for the devices I have tested with.
-> (sm8150, sm8250 and sm8350)
-> 
-> There's still a pretty big chunk of dependencies missing from sm8350, so
-> those would also be handled in the follow up DT submission.  For now, its a
-> much bigger hurdle to get the main/functional changes in, and that was
-> taking a significant amount of time from my end to manage.
-> 
-> If you want, I can give you the changes I have offline to enable this for
-> sm8350, since I haven't spent time formatting/prepping the changes for
-> submission yet.
-> 
+Hi,
 
-Can you push it to a public branch somewhere (e.g. on CodeLinaro)? I was
-talking to some people from the community about testing this on some of
-the smartphones we have in upstream, so it wouldn't help if I just have
-the changes privately.
+This patch set aims to add NXP i.MX93 parallel display format configuration
+DRM bridge driver support. i.MX93 mediamix blk-ctrl contains one
+DISPLAY_MUX register which configures parallel display format by using
+the "PARALLEL_DISP_FORMAT" field. i.MX93 LCDIF display controller's
+parallel output connects with this piece of small logic to configure
+parallel display format.
 
-It doesn't have to be perfectly clean as far as I'm concerned, as long
-as it allows to see the whole picture of the additional changes we need
-to make use of this series.
+Patch 1/2 adds NXP i.MX93 parallel display format configuration subnode
+in i.MX93 mediamix blk-ctrl dt-binding.
 
-Thanks,
-Stephan
+Patch 2/2 adds NXP i.MX93 parallel display format configuration DRM bridge
+driver support.
+
+v4->v5:
+* Rebase the patch set upon next-20250303.  This causes the drop of .remove_new
+  from patch 2/2 by using devm_drm_bridge_add().  Also, this causes API change
+  for imx93_pdfc_bridge_atomic_enable() in patch 2/2.
+* Update year of copyright in patch 2/2.
+
+v3->v4:
+* Use dev_err_probe() in imx93_pdfc_bridge_probe() in patch 2/2. (Krzysztof)
+* Drop MODULE_ALIAS() in patch 2/2. (Krzysztof)
+* Update year of Copyright in patch 2/2.
+
+v2->v3:
+* Define i.MX93 parallel display format configuration subnode in
+  i.MX93 mediamix blk-ctrl dt-binding. (Rob)
+* Resend with Conor's R-b tag on patch 1/2 and with the patch set rebased
+  upon v6.11-rc1.
+
+v1->v2:
+* Set *num_input_fmts to zero in case
+  imx93_pdfc_bridge_atomic_get_input_bus_fmts() returns NULL in patch 2/2.
+* Replace .remove callback with .remove_new callback in
+  imx93_pdfc_bridge_driver in patch 2/2.
+
+Liu Ying (2):
+  dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC subnode to schema and
+    example
+  drm/bridge: imx: Add i.MX93 parallel display format configuration
+    support
+
+ .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     |  68 +++++++
+ drivers/gpu/drm/bridge/imx/Kconfig            |   8 +
+ drivers/gpu/drm/bridge/imx/Makefile           |   1 +
+ drivers/gpu/drm/bridge/imx/imx93-pdfc.c       | 186 ++++++++++++++++++
+ 4 files changed, 263 insertions(+)
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx93-pdfc.c
+
+-- 
+2.34.1
+
 
