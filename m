@@ -1,109 +1,118 @@
-Return-Path: <devicetree+bounces-154129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 672E5A4EF40
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:14:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71EF7A4EF4B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:17:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92CA716927A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:14:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5C1B1889C5A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A98C2673BA;
-	Tue,  4 Mar 2025 21:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98353202C4D;
+	Tue,  4 Mar 2025 21:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="p++C3az+"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2lT3k8ic"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1DC3264F8C;
-	Tue,  4 Mar 2025 21:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4BA42AAF;
+	Tue,  4 Mar 2025 21:16:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741122892; cv=none; b=ixRT0vHUnugbZ604JyhNeqFz0Vy4BD39ANIxr2dRsJXdQo7mVRvzP0Hl/1hLsXB67RVXXAtQkhcNa6wEOeWe2Ih1wlvmAKadzoQtofysV+jXxdBUfbCwph+erINy2wW/Ld/mIyS6G4ZDaHJJJcMgrq7JU6D8TWPI0iwigzNc3PI=
+	t=1741123016; cv=none; b=M4Rvt6h+ItlXYzWv+jeEP5DER27fj/VdCpbKkQMqrkimMqqZVE+hOB//uxeGF2PSyOFvsgNrK8Ws8T+9eyYnU4byAKHGWDYmYNIODVk4g0rQHnO2mNoTpfNJAebHO8pea7inpYj9262VaBDXTmbCC7L/WvRjZmDqNM+v0psJZr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741122892; c=relaxed/simple;
-	bh=efnq8Mr7Ibo3+ZpAROc7hzy9XWIKXwDMX3NADJ+xG2w=;
+	s=arc-20240116; t=1741123016; c=relaxed/simple;
+	bh=k7Yxk6Ga0c64Kynk4TxaNnZZ+myD2DkhpD8zAdsm6FQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oFZMUpBG+bSuvniqHVGJEbLFjdzPQq432NPlHSwXFHifiLwLjYPCC4i4FOMV4mDd8gxOrz3CMXnAEAQ9rn67iO9GXGVkaiDOHyrgays13iwTXdb2DoEOf1RAk/nxU2DfF/s/dJLKZ5KlIrJbiKlOPkQqK3P9GqQWJivoToR+ezY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=p++C3az+; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=RMnjwjebxQ0tj+bXeTYBct281Hz8iR7LGEtzoBf+LIvlbgy1y9f9oxeUUPMmdICbfGAhtez5+Djg0jU3O+Y/U0qUjofKqctjci/mzKH4Dcfy97DtIRFC0NjaVXFY+vbjB5T/WxDZqY0banCpNawVUnEIf29edTjkoWBL452OTHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2lT3k8ic; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=0rIfnbOrf1l0fsM5aMUO2r8IAn6taUUuSG0I0y1QBiA=; b=p++C3az+ikBnh5BzwTYj/7f8ki
-	hW7fPGnn2rUPRj4xsGpDFTXIJRR86v3jPX583cyWDlGrRFd8Hs4COTw1tGbYAdWn+sNOGqNBEh3fs
-	J+ri/KYCqBaJgOkirKuc5lw00mv57MASyI7IiNYA3vqCiBWA75nr9j91/hvbOLgVlJWvoUFj7IBMf
-	frDNmARAVI+LLbWWOgtSVPVXA/oh1fMrQDdS9uP0ealKj7+HXbLdeFbhE3P9I7mPoUDmiJMSsFXny
-	llOdGrwkTDNAL1Pi/0PVkp07ZKf6DBgSuvnkYGylWwa0L/bio2EvRyzJduX3N4AlgiptwvVJ4k/g7
-	JMwYvPOg==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=localhost.localdomain)
+	bh=uxNa2xeS196LOQdsSVTCf0UBNg0lInB0Ngjf92IZMMQ=; b=2lT3k8ic7danUGuqxwuLtt6Iw8
+	t6+7hypSeCHM7GIXT3rORlcEucP11RGm/xAEkiaodt3/JNB7pEc5SmliOv90QkC3ZHs8nX6kTVeEw
+	9rJqE3p85oGvqhdq6UEWGDTQjHhkITxRNlax1rnIXngZdrnc2kLSFLbkDU3xKh6wuWIYczPohm9Bc
+	tNUWr7Be/mKuirvsFU3fWTdrDgjXSUooU1/Nk7rgOAwcvz0v+VOulyfGBY5OS4nmkSRm1xPH8Zc+T
+	ByGnUVS7Dx9+o46rtAEppq8QgUTiQji1M+TIgsTMWl5ZWYuv4klJdsBUge5z1hbtHMZFcGMr/5dEN
+	QImZ8Dwg==;
+Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tpZb9-0006Ex-UJ; Tue, 04 Mar 2025 22:14:44 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	detlev.casanova@collabora.com,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andy.yan@rock-chips.com>
+	id 1tpZdB-0006GI-Qt; Tue, 04 Mar 2025 22:16:49 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ detlev.casanova@collabora.com, linux-rockchip@lists.infradead.org,
+ Andy Yan <andy.yan@rock-chips.com>, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v3 0/3] Add display subsystem dt node on rk3576
-Date: Tue,  4 Mar 2025 22:14:34 +0100
-Message-ID: <174112278794.341367.445088781126200714.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20241231095728.253943-1-andyshrk@163.com>
-References: <20241231095728.253943-1-andyshrk@163.com>
+Date: Tue, 04 Mar 2025 22:16:49 +0100
+Message-ID: <2627393.Mh6RI2rZIc@diego>
+In-Reply-To: <lfmhqurnpjmfy6pfjxd5aczxujislv2p5bsurcbl7capyt7zv3@hy2twvjj53uz>
+References:
+ <20241231095728.253943-1-andyshrk@163.com>
+ <173564980410.21979.2947276365464229762.robh@kernel.org>
+ <lfmhqurnpjmfy6pfjxd5aczxujislv2p5bsurcbl7capyt7zv3@hy2twvjj53uz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+
+Am Dienstag, 4. M=C3=A4rz 2025, 15:47:28 MEZ schrieb Sebastian Reichel:
+> Hello,
+>=20
+> On Tue, Dec 31, 2024 at 06:57:21AM -0600, Rob Herring (Arm) wrote:
+> > On Tue, 31 Dec 2024 17:57:17 +0800, Andy Yan wrote:
+> > > As the VOP[0] and HDMI[1] driver have already been submitted for revi=
+ew.
+> > > This series enable hdmi display on sige5 board.
+> > >=20
+> > > [0] https://lore.kernel.org/linux-rockchip/20241231090802.251787-1-an=
+dyshrk@163.com/T/#t
+> > > [1] https://lore.kernel.org/linux-rockchip/20241231094425.253398-1-an=
+dyshrk@163.com/T/#t
+> > >=20
+> > > Changes in v3:
+> > > - Split from https://lore.kernel.org/linux-rockchip/3330586.aeNJFYEL5=
+8@diego/T/#t
+> > >=20
+> > > Andy Yan (3):
+> > >   arm64: dts: rockchip: Add vop for rk3576
+> > >   arm64: dts: rockchip: Add hdmi for rk3576
+> > >   arm64: dts: rockchip: Enable hdmi display on sige5
+> > >=20
+> > >  .../boot/dts/rockchip/rk3576-armsom-sige5.dts |  47 +++++++
+> > >  arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 126 ++++++++++++++++=
+++
+> > >  2 files changed, 173 insertions(+)
+> >
+> > [...] (a bunch of warnings due to dependency patch series not yet
+> > being in linux-next)
+>=20
+> I think all dependencies have landed now. But it might be sensible
+> to do a quick resend considering how old this is.
+>=20
+> Would be nice to have initial RK3576 HDMI support in 6.15 :)
+
+now we can :-)
+
+The update was not that difficult, so did it myself when applying.
 
 
-On Tue, 31 Dec 2024 17:57:17 +0800, Andy Yan wrote:
-> As the VOP[0] and HDMI[1] driver have already been submitted for review.
-> This series enable hdmi display on sige5 board.
-> 
-> [0] https://lore.kernel.org/linux-rockchip/20241231090802.251787-1-andyshrk@163.com/T/#t
-> [1] https://lore.kernel.org/linux-rockchip/20241231094425.253398-1-andyshrk@163.com/T/#t
-> 
-> Changes in v3:
-> - Split from https://lore.kernel.org/linux-rockchip/3330586.aeNJFYEL58@diego/T/#t
-> 
-> [...]
-
-Applied, thanks!
-
-[1/3] arm64: dts: rockchip: Add vop for rk3576
-      commit: d74b842cab0860e41a45df0dac41e4e56202c766
-[2/3] arm64: dts: rockchip: Add hdmi for rk3576
-      commit: ad0ea230ab2a3535b186f7fb863b4bca7050e06f
-[3/3] arm64: dts: rockchip: Enable hdmi display on sige5
-      commit: 2062b91b9f3c6afe9c2a7d1ddf0f3e6af5f3fa31
-
-I've adapted the patches where needed.
-- Moved the grf to it's address-related position
-- updated the irq names
-
-With all the driver patches in place, dtbscheck for the sige5 is happy.
+Heiko
 
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
 
