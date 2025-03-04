@@ -1,117 +1,147 @@
-Return-Path: <devicetree+bounces-154137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29AF5A4EF80
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:44:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36632A4EF94
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:52:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A91E3A9DAF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:43:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 716A118909B6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:52:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7236825FA09;
-	Tue,  4 Mar 2025 21:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE30C2780F2;
+	Tue,  4 Mar 2025 21:52:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LbGXHHBl"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Tkh7mn3A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE1A259CB0;
-	Tue,  4 Mar 2025 21:43:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4222780E4;
+	Tue,  4 Mar 2025 21:52:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741124640; cv=none; b=MXoTXkLdtyN7fj6INF9yUSPOOFRWLSpXF5k+PN+spAFiMYdxeb+tEhMaLYzMMrktRvfhn3v7xeU1yz2m4AeWAIg3b1pOm4JRmlB5xmXRDhDeGMAIZuAFmFWTZwBEn6rLUb54RvBtR6uDTSV8wxSkt7XjLYEuu7N+xHaoXVEsHHg=
+	t=1741125152; cv=none; b=u+FVbccdJvbS1vKp4SVYbu884Ao0HuqRsxfvzgr6j7gtT57G8DRGfHHt4e21uoUU6G97zXQqyjRQ18TJJID/d5JPGgvJqxmiIEcGtwpIfoyLtfwnoPvbZHnRRDURih5Ylir+sdyFumIV5Bs1pVpmKqB6LTPIcwAMKh5Aob0meqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741124640; c=relaxed/simple;
-	bh=uJqRyRDrhR+bFdnuWX2kCJ50vTE2fJm3kzGtsIJnJxA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=PEgip5fbDRaRY35ze/dXk2CaO7bet/Em+/u+hs2m1jndCbu8uV5iGMGwmnQWzL+goMw69Na7/X+AYkKQLDi9aduytULU/cSOZcvqiVQJDK2J75D9sVn9SsH47zm4i9Pnxv5bF3UOyWkU0d2Ckyl99WZsSMnUhxSJAxtvhr8knkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LbGXHHBl; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741124636;
-	bh=uJqRyRDrhR+bFdnuWX2kCJ50vTE2fJm3kzGtsIJnJxA=;
-	h=From:Date:Subject:To:Cc:From;
-	b=LbGXHHBl6KhPy/rpTrUoczuClXv2maOy4LlaICgDAB0XkxKniLAlukTFjfjubpynP
-	 /YHL9hz9jarB6GSaY96TCvaTf1wUfIfEV0HZwyYnD8X5t0nAarZfqh5ztcJ2/bbBi3
-	 tBc6LXK4gsnMjbFgHBXXgdJYtkp9T0ozQ0r/kQAsJI7329SbgnUwbV5jlWNLpx04YI
-	 wyOo2oAUEcHs+8UTT87+rvVbNAAxKG3NweMNkLqIDcgcVMXLh8MZugLJ1nqwSa2hpC
-	 lDW1+UdyN9D9l+l2pKTYJpbibsbARcOeLL9yLXcnhJPP8X9uKgoScCdS0m7Sh8ecj5
-	 6IbI5zRDLFtQg==
-Received: from [192.168.0.47] (unknown [IPv6:2804:14c:1a9:53ee::1001])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2D20C17E087E;
-	Tue,  4 Mar 2025 22:43:53 +0100 (CET)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Tue, 04 Mar 2025 18:43:49 -0300
-Subject: [PATCH] arm64: dts: mediatek: mt8390-genio-common: Add jack
- detection with accdet
+	s=arc-20240116; t=1741125152; c=relaxed/simple;
+	bh=jbUYXbpvU141BlebTQ7l6pAnXZWMdd92RibBqvtskwE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DVO8P7SB4FbAWhxduo+tFKkiNgHrYL/8qkv08pmaD//HSQjDrCoZS6d5e+Wsgg6t2isDz/jhfeBhQWtQH3NU51sLKISRfMO3e3K/I/XAvJIgADxy7dsxJ8oCa/o9X+X4hWn/vLT2vpRWKl5ldtbL1NNZgqu5rvR482NnyE+NmK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Tkh7mn3A; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=JofA2Qh9JGaxtMid0/5sEvR2yQLob0lQuZxap80vKqw=; b=Tkh7mn3A+PYTIgV27zWhch/208
+	ETUALWlqEqZb9jksjEgNDlpzfKLYqN2rarathziQV8Ntjv+PPBBfpKKage0LcF7B5AYw5QcG4mzHk
+	Nds+uv8i40buo1duskWACkkerB1c8+77MtGCmUqDCz/AWnTbCcf/VEohCydBFaftKyZDJ4/Buxmfy
+	mPtQZSVrBco/oLg3OHlqc4Wn15Q5yI3xcUjWkH5zHT1Lf0r43ib9TeG6ezMFV4R1zoTZ6I17a2l91
+	INcWrZvknMxlFFMkx2w45YdSG5m6sc+nEHFuQA6yVC26YXkNz7i4f39l6AJ1KWr3USk5v0Ew3iEAH
+	kPVZlMcw==;
+Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tpaBb-0006QR-08; Tue, 04 Mar 2025 22:52:23 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, didi.debian@cknow.org, chris@z9.de
+Subject:
+ Re: [PATCH v2 0/2] Slightly improve hardware description of Pine64 RockPro64
+Date: Tue, 04 Mar 2025 22:52:22 +0100
+Message-ID: <2630232.Icojqenx9y@diego>
+In-Reply-To: <757afa87255212dfa5abf4c0e31deb08@manjaro.org>
+References:
+ <cover.1740941097.git.dsimic@manjaro.org>
+ <174104113599.8946.16805724674396090918.b4-ty@sntech.de>
+ <757afa87255212dfa5abf4c0e31deb08@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250304-genio700-accdet-dts-v1-1-86d77c5cc745@collabora.com>
-X-B4-Tracking: v=1; b=H4sIABR0x2cC/x3MQQqAIBBA0avErBuYzBK6SrQQHWs2GhoRSHdPW
- r7F/xUKZ+ECS1ch8y1FUmwY+g7cYePOKL4ZFKmJRtK4c5RkiNA65/lCfxXUVpvZBA7KeGjlmTn
- I81/X7X0/CZbG82UAAAA=
-X-Change-ID: 20250304-genio700-accdet-dts-4a4767fef27d
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.14.2
 
-Enable audio jack detection for the Genio 700 and 510 EVK boards. This
-is handled by the MT6359 ACCDET block, which on these boards has the
-HP_EINT pin pulled high and connected to a normally open 3.5mm jack.
+Am Dienstag, 4. M=C3=A4rz 2025, 07:44:59 MEZ schrieb Dragan Simic:
+> Hello Heiko,
+>=20
+> On 2025-03-03 23:36, Heiko Stuebner wrote:
+> > On Sun, 02 Mar 2025 19:48:02 +0100, Dragan Simic wrote:
+> >> This is a small series that introduces small improvements to the way
+> >> Pine64 RockPro64 [1] single-board-computer is described in the DT=20
+> >> files.
+> >> This applies to both production-run revisions of the RockPro64.
+> >>=20
+> >> The introduced improvements boil down to eliminating some warnings=20
+> >> from
+> >> the kernel log, by adding a previously undefined regulator and by=20
+> >> adding
+> >> some previously missing references to the regulators.
+> >>=20
+> >> [...]
+> >=20
+> > Applied, thanks!
+> >=20
+> > [1/2] arm64: dts: rockchip: Add avdd HDMI supplies to RockPro64 board=20
+> > dtsi
+> >       commit: bd1c959f37f384b477f51572331b0dc828bd009a
+> > [2/2] arm64: dts: rockchip: Add missing PCIe supplies to RockPro64=20
+> > board dtsi
+> >       commit: 64ef4a4320e7aa3f0f267e01f170f52b90bf0b1b
+> >=20
+> > I've moved the pcie12v supply up one line.
+> > While in a mathematical sense it's true 12 > 3.3, we're sorting
+> > alphabetical, so it's 1?? < 3?? .
+> >=20
+> > And yes I sympathize with 3.3 < 12, but also have come to appreciate=20
+> > not
+> > having overly many special cases :-)
+>=20
+> Great, thanks! :)
+>=20
+> I'm fine with the alphabetical ordering, albeit with some caveats
+> described below, but the following part of the patch description
+> should also be removed, if possible, so the patch description fully
+> matches the introduced changes:
+>=20
+>    Shuffle and reorder the "vpcie*-supply" properties a bit, so they're=20
+> sorted
+>    alphanumerically, which is a bit more logical and more useful than=20
+> having
+>    these properties listed in their strict alphabetical order.
 
-Add a phandle to the accdet in the sound card node so the machine sound
-driver can initialize the accdet.
+I've amended the commit, dropping this block
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
-This patch depends on both "Allow retrieving accessory detection
-reference on MT8188" [1] and "Get mt6359-accdet ready for usage in
-Devicetree" [2].
+> I'm hoping you'll agree that specifying alphanumerical ordering
+> for the properties in the DTS coding style is the way to go, just
+> like it's already specified for the ordering of the nodes.  I'll
+> go ahead and submit an appropriate patch for the DT guidelines.
 
-[1] https://lore.kernel.org/all/20250304-mt8188-accdet-v2-0-27f496c4aede@collabora.com
-[2] https://lore.kernel.org/all/20250304-mt6359-accdet-dts-v3-0-5b0eafc29f5b@collabora.com
----
- arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+vpcie0v9-supply =3D <&vcca_0v9>;
+vpcie1v8-supply =3D <&vcca_1v8>;
+vpcie3v3-supply =3D <&vcc3v3_pcie>;
+vpcie12v-supply =3D <&vcc12v_dcin>;
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-index 992bf60c097ae3b1fd6d4e62ef1a327b146496ef..e53c6b0b5a53a616a1684e6efc3758f449294bb9 100644
---- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-@@ -1189,6 +1189,7 @@ &sound {
- 		"AP DMIC", "AUDGLB",
- 		"AP DMIC", "MIC_BIAS_0",
- 		"AP DMIC", "MIC_BIAS_2";
-+	mediatek,accdet = <&accdet>;
- 	mediatek,adsp = <&adsp>;
- 	status = "okay";
- 
+In the end I don't care _that_ much, but personally I find that
+alphanumerical ordering harder to read ;-) .
 
----
-base-commit: 20d5c66e1810e6e8805ec0d01373afb2dba9f51a
-change-id: 20250304-genio700-accdet-dts-4a4767fef27d
+Because in the example above, my mind now constantly shouts
+"why is vpcie1... after vpcie3... ..... ooooh right, it's alpha-numerical"
 
-Best regards,
--- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
+But I can live with it I guess ;-) .
+As 3.3 is smaller than 12 afterall.
+
+
+Heiko
+
 
 
