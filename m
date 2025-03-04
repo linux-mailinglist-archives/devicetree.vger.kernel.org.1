@@ -1,79 +1,109 @@
-Return-Path: <devicetree+bounces-154128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 534F9A4EF05
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:05:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 672E5A4EF40
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:14:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4824516FFDC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:05:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92CA716927A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:14:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 544A1265639;
-	Tue,  4 Mar 2025 21:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A98C2673BA;
+	Tue,  4 Mar 2025 21:14:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NIjvlQq3"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="p++C3az+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B7B92E337D;
-	Tue,  4 Mar 2025 21:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1DC3264F8C;
+	Tue,  4 Mar 2025 21:14:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741122348; cv=none; b=j7kmn7AXn/R3hVGZW7xYNrtTCCodC/v3oJdrcY/2CbnyE0734rNaNC/kQLsoHwYR3F4Ylv64Y7cuxJfm6HHNVR8I4F3bZ4ESo0qv8kCoW8iRT3Ozfb/gas45GC9aZiKuoXalPQ/3Gw2BVOc1jIU+wLBgxzjllKn1UxBAlNRZofA=
+	t=1741122892; cv=none; b=ixRT0vHUnugbZ604JyhNeqFz0Vy4BD39ANIxr2dRsJXdQo7mVRvzP0Hl/1hLsXB67RVXXAtQkhcNa6wEOeWe2Ih1wlvmAKadzoQtofysV+jXxdBUfbCwph+erINy2wW/Ld/mIyS6G4ZDaHJJJcMgrq7JU6D8TWPI0iwigzNc3PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741122348; c=relaxed/simple;
-	bh=ZkNevJ/X2pCvACDP3KNUBM9uavxoPIn3VdNvcezbMK8=;
-	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=elOC8+Fb3ggWHcsb8vh+7n+hpsSWrNhVad3a486ykNk6fzs/nuLopTPMDtgpqqonCZ0RRapkz4yQwZDF/tlUY63bNhf3EWX9u+/NxOxGQWDoSqoEbu49cXDMz4889UHYtEgmcNpMrV19sbIt00ddPFCF/50LQ3/GjASdu/HAgZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NIjvlQq3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EA63C4CEE5;
-	Tue,  4 Mar 2025 21:05:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741122347;
-	bh=ZkNevJ/X2pCvACDP3KNUBM9uavxoPIn3VdNvcezbMK8=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-	b=NIjvlQq3lH0GzQfiqovzexPplZb9AIpuRGmZ2z5N1C5eI2M0UTk2PrRvmC/LaA6hp
-	 u5aZTa/BCe1irpUV4Cxa6pOYk9Y17B/+zzFnf74yN06+iwl6d++UJPjWIP95CznzBL
-	 lYgWWNU2Tr/zXMC9AwgcjQMWjAGUoNyXpaYyLaZHbrvAr6iaiMjWVv2wFmUVp7Qr8H
-	 29O/pRXKj661eMUCoKMl/AIgrx1r4cGudyMNHMAMUVIOvDO+F8p4+kQhkuz6EjUu0u
-	 8+6DvcNL2UP/y4bfo0jiZtULFH1tlP3PxqJVQKokVDGpe+POSjIDXZrsygTzWcWl1d
-	 EPVB4Pei6bVDQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AF390380CEF6;
-	Tue,  4 Mar 2025 21:06:21 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fix for v6.14, part 2
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20250304160040.GA2690690-robh@kernel.org>
-References: <20250304160040.GA2690690-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20250304160040.GA2690690-robh@kernel.org>
-X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.14-2
-X-PR-Tracked-Commit-Id: 75f1f311d883dfaffb98be3c1da208d6ed5d4df9
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 48a5eed9ad584315c30ed35204510536235ce402
-Message-Id: <174112238013.293286.10628075210224411896.pr-tracker-bot@kernel.org>
-Date: Tue, 04 Mar 2025 21:06:20 +0000
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+	s=arc-20240116; t=1741122892; c=relaxed/simple;
+	bh=efnq8Mr7Ibo3+ZpAROc7hzy9XWIKXwDMX3NADJ+xG2w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=oFZMUpBG+bSuvniqHVGJEbLFjdzPQq432NPlHSwXFHifiLwLjYPCC4i4FOMV4mDd8gxOrz3CMXnAEAQ9rn67iO9GXGVkaiDOHyrgays13iwTXdb2DoEOf1RAk/nxU2DfF/s/dJLKZ5KlIrJbiKlOPkQqK3P9GqQWJivoToR+ezY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=p++C3az+; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=0rIfnbOrf1l0fsM5aMUO2r8IAn6taUUuSG0I0y1QBiA=; b=p++C3az+ikBnh5BzwTYj/7f8ki
+	hW7fPGnn2rUPRj4xsGpDFTXIJRR86v3jPX583cyWDlGrRFd8Hs4COTw1tGbYAdWn+sNOGqNBEh3fs
+	J+ri/KYCqBaJgOkirKuc5lw00mv57MASyI7IiNYA3vqCiBWA75nr9j91/hvbOLgVlJWvoUFj7IBMf
+	frDNmARAVI+LLbWWOgtSVPVXA/oh1fMrQDdS9uP0ealKj7+HXbLdeFbhE3P9I7mPoUDmiJMSsFXny
+	llOdGrwkTDNAL1Pi/0PVkp07ZKf6DBgSuvnkYGylWwa0L/bio2EvRyzJduX3N4AlgiptwvVJ4k/g7
+	JMwYvPOg==;
+Received: from i53875a38.versanet.de ([83.135.90.56] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tpZb9-0006Ex-UJ; Tue, 04 Mar 2025 22:14:44 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	detlev.casanova@collabora.com,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v3 0/3] Add display subsystem dt node on rk3576
+Date: Tue,  4 Mar 2025 22:14:34 +0100
+Message-ID: <174112278794.341367.445088781126200714.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20241231095728.253943-1-andyshrk@163.com>
+References: <20241231095728.253943-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-The pull request you sent on Tue, 4 Mar 2025 10:00:40 -0600:
 
-> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.14-2
+On Tue, 31 Dec 2024 17:57:17 +0800, Andy Yan wrote:
+> As the VOP[0] and HDMI[1] driver have already been submitted for review.
+> This series enable hdmi display on sige5 board.
+> 
+> [0] https://lore.kernel.org/linux-rockchip/20241231090802.251787-1-andyshrk@163.com/T/#t
+> [1] https://lore.kernel.org/linux-rockchip/20241231094425.253398-1-andyshrk@163.com/T/#t
+> 
+> Changes in v3:
+> - Split from https://lore.kernel.org/linux-rockchip/3330586.aeNJFYEL58@diego/T/#t
+> 
+> [...]
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/48a5eed9ad584315c30ed35204510536235ce402
+Applied, thanks!
 
-Thank you!
+[1/3] arm64: dts: rockchip: Add vop for rk3576
+      commit: d74b842cab0860e41a45df0dac41e4e56202c766
+[2/3] arm64: dts: rockchip: Add hdmi for rk3576
+      commit: ad0ea230ab2a3535b186f7fb863b4bca7050e06f
+[3/3] arm64: dts: rockchip: Enable hdmi display on sige5
+      commit: 2062b91b9f3c6afe9c2a7d1ddf0f3e6af5f3fa31
 
+I've adapted the patches where needed.
+- Moved the grf to it's address-related position
+- updated the irq names
+
+With all the driver patches in place, dtbscheck for the sige5 is happy.
+
+
+Best regards,
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Heiko Stuebner <heiko@sntech.de>
 
