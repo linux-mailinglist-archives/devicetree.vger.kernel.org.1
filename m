@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-153802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18BF0A4DE37
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:46:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BEFCA4DE3A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:47:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 459E71887FB8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:46:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B13616A7E0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23E426ACD;
-	Tue,  4 Mar 2025 12:46:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F4D1FFC68;
+	Tue,  4 Mar 2025 12:47:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZfaSJwYQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UuhCZpCV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6FA2111
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 12:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CDD1FC7FD;
+	Tue,  4 Mar 2025 12:47:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741092378; cv=none; b=Jxy5CEeXHTliLNWPWwJ++8etBfIRM1EkRclKTvdSVdMMY8KBjY8hhZS8a9+8yL6YBRfP4dKKHYH409X+IlQUKZZgI253jbMe/j4Np3dZ3jUQgREnRNaVmSPe1YBjNiMvyCMaNb2yuOOdFVUJ4hntNBVOfZy9XRAWuWy/eQr+0SU=
+	t=1741092467; cv=none; b=QojOV808+1RuSyDOOx0FumvwBCc/43BhM2J6M1bKtPgbU7sLIPE+3e7JGpP2A7WKT8CLsuF2dJ9IEBX2KvDWKkpS0FDxNAQBL5PMyXj8Q9DSVZTbJqebAsTQEIp81SE37C7WlFvsr3Lf8Qy/oej0xsZisGmvgnxWh4kdPGy8Clk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741092378; c=relaxed/simple;
-	bh=hZV0kE8HoZAQPzIo6cy2S7FlcfwAWIMzw3HFqDgdCyc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=plRxpDftlo2NinouIxlDBSe7/DUA3BT7ZvO4sirc/rBQNrna1aaugEDpvB1pVMwERc7ehk871Z5CtvFXNZtFpomNcUKWQTPdHRW9dNYWJeJXUERrW2NJcbSWh71HMyhVD+KOySyitaMj7eux2j9qOKPsD3ZisyYOp7GvQcTeOHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZfaSJwYQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1C53C4CEE7;
-	Tue,  4 Mar 2025 12:46:16 +0000 (UTC)
+	s=arc-20240116; t=1741092467; c=relaxed/simple;
+	bh=s41CNZeyxYqiFP0x3AH953mCpbPKMcXkWgAF8ScBLQk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=OXoJvWCltoDOntVC4FkXcKWo5hjRaXPXnQ0U845L9GeKHcsWj+3ID3w+1YAaoGUedBkcbiaFocSQYjjCRM9Dge4rkKlUbiWgkf0vhVgb5xLQ+EKXZsWNUjqoRB9hi5Im3hUrg5jdikeihsjMSDr1BCPolQONCyGVEcq+chBTg6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UuhCZpCV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CC72C4CEE5;
+	Tue,  4 Mar 2025 12:47:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741092377;
-	bh=hZV0kE8HoZAQPzIo6cy2S7FlcfwAWIMzw3HFqDgdCyc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZfaSJwYQ8q2OyZKnda1/E9qpJ5XBbeIOvZiXHa1AFQ1wxkEP8lkN9xWDeLgUTzPRL
-	 QA1g41frBWJdwPC+s733y8YwcNlXjUxJBLdOSYtVO08EOFfG/v8JrrjW6T4166F9SN
-	 6hIdXtWpvN96OiGbyULwFZd8/oqh8XSPUoCXJKQLaYwRxCDw7IV7uaUcB6famTXJwY
-	 PjGWmY5nR+NFeAYBSeeqZ0FjAVnLpfR4XnzfDI762rKYNtcgbuhFC6O5Q3w0Vd+Txs
-	 dAFGuRek13BM46tJosWAe+gEgD3TLEeUZ3v7UC7sObOQlGYjmMjAfXE61xPZujWfo6
-	 pFHwyyukJMk9g==
-Message-ID: <6ae42224-74cf-4d2e-88fb-f766279d3525@kernel.org>
-Date: Tue, 4 Mar 2025 06:46:18 -0600
+	s=k20201202; t=1741092467;
+	bh=s41CNZeyxYqiFP0x3AH953mCpbPKMcXkWgAF8ScBLQk=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=UuhCZpCV+48Hwj2XBN9aDqgVdGjzmqaNboPLV2rN0vRryFgNZRj8LK8HSPT7guefr
+	 ExtRYcA/Z1eI1pRFkRtaNglWGsMD5L28t8nwHmDF0NCAhRL0pS0JN1KodKD9FMBAXx
+	 T94GxVYd93us+/ulMAwIpgAFt/+BeCcYkHf5h0+ykShuPFEsXfym+rTkM5tGDxeT8v
+	 22HUBkxKEUqYlp7Y2W3lPHrzAd9bHGXDxNaAhtZw5JiDRptcCWOmFiv+1HmQ0j9AfG
+	 7wPc9vO5w3uG7BdlnXfjdvKpQftTbcZBDzEVQmtnM653AkHbNTjUmM5Qk5++ts1HsI
+	 dhxMVbiKte0XQ==
+Message-ID: <f2c1a48e-74e3-4f8c-af3c-aafbfc40fd3f@kernel.org>
+Date: Tue, 4 Mar 2025 06:47:48 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,42 +50,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] ARM: dts: socfpga: Add basic support for
- Terrasic's de10-nano
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <cover.1738600838.git.u.kleine-koenig@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: intel: socfpga_agilex: add frequencies to
+ internal oscillators
+To: Matthew Gerlach <matthew.gerlach@altera.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250226185451.11748-1-matthew.gerlach@altera.com>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <cover.1738600838.git.u.kleine-koenig@baylibre.com>
+In-Reply-To: <20250226185451.11748-1-matthew.gerlach@altera.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 2/3/25 10:46, Uwe Kleine-König wrote:
-> Hello,
+On 2/26/25 12:54, Matthew Gerlach wrote:
+> Add clock-frequency property to the internal oscillators, cb_intosc_ls_clk
+> and cb_intosc_hs_div2_clk.
 > 
-> The only change since v2
-> (https://lore.kernel.org/linux-arm-kernel/20250130074553.92023-2-u.kleine-koenig@baylibre.com):
-> is that I added patch 1/2 that is supposed to fix the warning that I
-> failed to notice with the testing I did. Thanks to Krzysztof and Rob for
-> their patience with me. I hope I got it right now.
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> ---
+>   arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> Best regards
-> Uwe
-> 
-> Uwe Kleine-König (2):
->    dt-bindings: altera: Add compatible for Terasic's DE10-nano
->    ARM: dts: socfpga: Add basic support for Terrasic's de10-nano
-> 
->   .../devicetree/bindings/arm/altera.yaml       |  1 +
->   arch/arm/boot/dts/intel/socfpga/Makefile      |  1 +
->   .../socfpga/socfpga_cyclone5_de10nano.dts     | 95 +++++++++++++++++++
->   3 files changed, 97 insertions(+)
->   create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
-> 
-> base-commit: 00f3246adeeacbda0bd0b303604e46eb59c32e6e
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+> index 1235ba5a9865..bcd12f82636f 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+> @@ -114,11 +114,13 @@ clocks {
+>   		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
+>   			#clock-cells = <0>;
+>   			compatible = "fixed-clock";
+> +			clock-frequency = <200000000>;
+>   		};
+>   
+>   		cb_intosc_ls_clk: cb-intosc-ls-clk {
+>   			#clock-cells = <0>;
+>   			compatible = "fixed-clock";
+> +			clock-frequency = <400000000>;
+>   		};
+>   
+>   		f2s_free_clk: f2s-free-clk {
 
 Applied!
 
