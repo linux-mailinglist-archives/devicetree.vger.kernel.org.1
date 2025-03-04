@@ -1,172 +1,198 @@
-Return-Path: <devicetree+bounces-153771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2048A4DBA7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:00:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E0E5A4DBAF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:01:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CA86188E899
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:00:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D34F17A15E5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254E6202F8F;
-	Tue,  4 Mar 2025 10:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7DE1FE472;
+	Tue,  4 Mar 2025 10:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O82sfg1I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ltk75wvx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50803202C40
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 10:58:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B951FCF60;
+	Tue,  4 Mar 2025 10:59:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741085896; cv=none; b=NprT4nI0UFMDc4rO2oj43+Q+kLEa5Riphdv80D3Lpu+LY1CU2apmf2TxTN6lZC+LJus41F1n9jbzaizB9RqUUVVAFwszO14WEzWGd+hih4urS/Uhi31fYU82MH4PJ/M/CUat40UCX0Y4K652pDTWJxtUPOtGg2oC/oEQiXhVKFM=
+	t=1741085957; cv=none; b=hpY+KvpcCjbXhHDQ+AIVAKOHrMYw0DfI6SkbH4P3MfBBUI9wdj6bYcuIl3GO0geNw9uylBlJPw7FVZ3dWbAvlqBQ3KcDTS4a/S8ZMjgmvbRg2aqJ0zVHEU3RHkGCFiQJD+QXADABOx44LJ4if8gvCvzCeRzcAoXKikpvI7ydD2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741085896; c=relaxed/simple;
-	bh=Zqqp9kj2qs1kIed4yvhKxtqoam51WaimrpCDyizSfpo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UR3KMeseFZyzyI7XFpShLzPU7DCvCgx3z+CT/lYQQa5m+IxYdbW1NEw05EPNdW4W7+gt+ucuqZVWiZuSOhxI7JggmHd6OEakyx9BM1bpheiLig7nyaeL62vor5nT6Bpb1y0fMYaSngPV/z+mAYY3laAroNJ9BfT0N4pCs+MOEsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O82sfg1I; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-abf538f7be0so477980766b.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 02:58:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741085892; x=1741690692; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2Vb9KDOz19ijUANRYpkQgMyAo2OY8uOhKMXDPTYrFM8=;
-        b=O82sfg1IEbsqJH8kjhhGL+fIzdCd9gH7J/kdptTkuLljLawGJVJy/t8CsD9Lt5ukh6
-         1UF8sTqmmO/Q7ifZ0TWciGfOAyFVC41tiuLBVaIBZiGHRwJLVLYc1X8iRC6Psxbw1EtL
-         bvbRLgN4KcGsAWGtn9o8+cYc5p9V73x3gZsisR24Xp23LzVGVXUf6/PIq9TeYdvCn7g7
-         ZEYzkPFHfdDbx/g67jeQPxU0wdZMs7a2+dcWea2PWNk+Sq9pG+sNUlHSmnt68B+JBP7j
-         AYrwFf5CuMBGsaX0QHfiFGEUEs7lu1iYDjbHkMpr8BOmgYAhU+mCmgXF9lsmeTeqYP0i
-         VMwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741085892; x=1741690692;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2Vb9KDOz19ijUANRYpkQgMyAo2OY8uOhKMXDPTYrFM8=;
-        b=Lu6Ao9kPu14vQG1fj+Oyyj/R6K9bgf1V2BDSl2KvrcF4PuYy6lqdej/DTkVWsjvdGk
-         fon9WOF6sRgXWDMaucbMx06DVIsDqlHucJXBmqkP6vhfa1V8rVJZmmpOJInTs5TMbFc+
-         oP/OpIihU+JucFxM2RaQV5etepnCoICaxs2f67+TBk123FQTdtmnYMiXXqeePNKU8FMF
-         n+mVRqQ18b3vpNm86aDuh2TRdYsmhydCzuyVqlCzxQJOAfyI++XEGEMi5GMKSv36d/MH
-         D/xAnYV2x0j8wUZbXuZH9qWtq1Xu2xnKIVICHpEOCy4SLYB7KXnHhKJlr49KHJG64ewU
-         n42Q==
-X-Forwarded-Encrypted: i=1; AJvYcCViSQoW0F0+uqlegxMphqoUPNdRTYNuitmjTDFNvKPQon5YGserF62Eo7crWkGRbpqJf8cR+BpKO94m@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxjzh4fpCWEdNACP5obwHgPn44+YsoEcvh16qqhRVnrDksyKKHF
-	ayr8PkNwwDOqmgYj5hLuP+aZrKVTUiNLqGVjlTJHival3dcYnj0SW1YlmrwxN5aRcfFKKU1A+6G
-	w
-X-Gm-Gg: ASbGncvfE7bVnfAA9EB2RvX2ari96zeMuD2V5CTfbcZDfmhgl5GSQIjC5mff0ETzL/e
-	0dT3R1gL6anndDJYs3OHdlfF11bM8GPv3NQFesrxIS/Wsd9G/oiguu7cSfLHX7oPhBdfzKoEHf4
-	S25WtWaLf5Psat1a4ZzypeyrI7QvkXHhxPWthcpK3XTmSW7dPzzZuAb2AqDCa0RMMhe3vTOyAOT
-	iB32ZmwwkKOSw07Phcc84xTuOTDllrSnE6IB8aS1k7FOtFnFRZ6rU8na1qmHybqfEKQtzVY2v/o
-	4idTWIITDY8XyXrC5qbAd6qIPVZS1fB7qfLHabPlJ4w=
-X-Google-Smtp-Source: AGHT+IEb6EuiS7+dqi0bOsXT4Ym7YeiUZxDY4eCglHY6UpaosBItLqyrdP3V6eA6K1sjLH5BfCCguA==
-X-Received: by 2002:a17:907:9815:b0:abf:641a:5727 with SMTP id a640c23a62f3a-abf641a5b44mr960726166b.7.1741085892630;
-        Tue, 04 Mar 2025 02:58:12 -0800 (PST)
-Received: from [127.0.1.1] ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac1fde3f585sm38973266b.53.2025.03.04.02.58.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Mar 2025 02:58:12 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 04 Mar 2025 12:57:49 +0200
-Subject: [PATCH v6 4/4] arm64: dts: qcom: x1e80100-t14s: Enable external
- DisplayPort support
+	s=arc-20240116; t=1741085957; c=relaxed/simple;
+	bh=hLcfv8cs2z2Jzw4ezqrU3L60vIn/qFCZlb93ktP+vOo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=IYJY1Z//i3ay9Kbeu5njDKLg4BXGiWUA0vp9MTF7cHDLhw520AOHFaV7V01xhBqI6GUSCPxTklZPEGInwpMZCpQmj+OysPc06QYRm3NLvoGlNkzlaJozh1BIema13Mwu1TwcmvATyFlw8bLCDFhxKzipIwNlFJHzcBK+BVZXxsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ltk75wvx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC5F0C4CEE5;
+	Tue,  4 Mar 2025 10:59:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741085955;
+	bh=hLcfv8cs2z2Jzw4ezqrU3L60vIn/qFCZlb93ktP+vOo=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ltk75wvxFHW+T4iiJgW7O6TBUcKFhqD1F4X0JzxqGWZU3uJtEylOTZ7mxwi+cQ4Lu
+	 YS9ZdFekDA/xzlVDafe2AJ0odtoomBSmIM4JNtwwWUDyfITWFIPXDYjjQ8tOHYR0KT
+	 Zr/wfr5oAjg43m7Bp1HZoLM00VRobrcILffveSYw6+bPrO0+0VgKteLRqvH7Rk3NNx
+	 nxfRZ06+cGxWwuyVfLfOlUGm85rss/J6npdiY4JXEV/ASWIH9floHLHvWBbT4DqRXt
+	 lFQJSvkYEVbDYV+pMFEF3MBy7/n42GigzI7x0ynSZRnCpKjf/3P0AwAM0X5lMO4jkC
+	 KYZIffSX7psPw==
+Message-ID: <2fd83d68-7104-4755-a0f0-8ce4a2601e09@kernel.org>
+Date: Tue, 4 Mar 2025 11:59:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] soc: aspeed: lpc-pcc: Add PCC controller support
+To: Kevin Chen <kevin_chen@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au, derek.kiernan@amd.com, dragan.cvetic@amd.com,
+ arnd@arndb.de, gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20250304104434.481429-1-kevin_chen@aspeedtech.com>
+ <20250304104434.481429-4-kevin_chen@aspeedtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250304104434.481429-4-kevin_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250304-x1e80100-dts-crd-t14s-enable-typec-retimers-v6-4-e5a49fae4e94@linaro.org>
-References: <20250304-x1e80100-dts-crd-t14s-enable-typec-retimers-v6-0-e5a49fae4e94@linaro.org>
-In-Reply-To: <20250304-x1e80100-dts-crd-t14s-enable-typec-retimers-v6-0-e5a49fae4e94@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>, 
- Sibi Sankar <quic_sibis@quicinc.com>, 
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
- Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Johan Hovold <johan+linaro@kernel.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1426; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=Zqqp9kj2qs1kIed4yvhKxtqoam51WaimrpCDyizSfpo=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnxty8xDqJ7tIs1vHQGl75zJ9YMfmFdEX5aZ9tH
- Xr32KIn8ouJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZ8bcvAAKCRAbX0TJAJUV
- VpBJEACX3dW3/8corJf9Px6nz2ARucorC6oYdZW0igUQU4rTBy7bepm/UpbBA7qwulCmelx3WLB
- 7cF5N5zt56lFGhrip8y+b2Wz4YcdiqDXFLh4qOQGQY/P3JreSZ/EAIEuZCJ1N5NpviqfQLERLNl
- 2IWb+/+Ja5d3GEGux26msLHl3Ee/AYzL/8ERE1XxGtCFeLy11LrdupIT6hFMR2/H7o/fpmdG0ab
- ZZx5uTtPIcB0S7N+jmLoQdKwtE+nM+kJVkPhCjNhFipTQvV/8Ft/drZylti9jmmtwg6qSbN4smw
- qgtA7XK0u20qklXeJPEtrrr6WnJWBA3Qg0cDjPCGkVpX62ds5OoGpCWLXKeQ9v2SLYNXMwM+CFq
- yUiakuqCJIUs/84W/hXvSKpGuxrxGeGX3l+LAfsm4FjxeXXQekOso4CHAylnMYFyViPxFR29zop
- xp55c696KwdJ7K8NOPEutNIoat6cGfOSxHB6EfL3KYmVm/nIrGJYHD3G8R0plcsJPnxTOvoCnqS
- 6DXWMSaQRkIxRM9fvuATNIrEs94joa6WR0aWiwPZmnPzoJ0NcL9HLD1EIWCRl8vaiv00ulqCxId
- KPczgueY0Evy/d0kkSVZQNTpO4NVa1Ff3KIqcopheIoDWoRUL4eC9sHT7aocFVr95n0PAM0iWeg
- qKqny9o2BXHFTaQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-The Lenovo ThinkPad T14s Gen6 provides external DisplayPort on all
-2 USB Type-C ports. Each one of this ports is connected to a dedicated
-DisplayPort controller.
+On 04/03/2025 11:44, Kevin Chen wrote:
+> +
+> +static int aspeed_pcc_probe(struct platform_device *pdev)
+> +{
+> +	int rc;
+> +	struct aspeed_pcc_ctrl *pcc;
+> +	struct device *dev;
+> +	uint32_t fifo_size = PAGE_SIZE;
+> +
+> +	dev = &pdev->dev;
 
-Due to support missing in the USB/DisplayPort combo PHY driver,
-the external DisplayPort is limited to 2 lanes.
+This goes to declaration.
 
-So enable the first and second DisplayPort controllers and limit their
-data lanes number to 2.
+> +
+> +	pcc = devm_kzalloc(&pdev->dev, sizeof(*pcc), GFP_KERNEL);
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Tested-by: Johan Hovold <johan+linaro@kernel.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- .../boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts      | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Maybe my previous comment was not clear, but you agreed with it. Anyway
+nothing improved here.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-index 9c0903b8436396b2fe6e17ee3bc4d454cb5a0f8b..05b2f3bf1fc81c1b10e375b5335377c9ce39be95 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-@@ -923,6 +923,22 @@ &mdss {
- 	status = "okay";
- };
- 
-+&mdss_dp0 {
-+	status = "okay";
-+};
-+
-+&mdss_dp0_out {
-+	data-lanes = <0 1>;
-+};
-+
-+&mdss_dp1 {
-+	status = "okay";
-+};
-+
-+&mdss_dp1_out {
-+	data-lanes = <0 1>;
-+};
-+
- &mdss_dp3 {
- 	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
+If you have 'dev' variable, use it.
 
--- 
-2.34.1
+> +	if (!pcc)
+> +		return -ENOMEM;
+> +
+> +	pcc->regmap = syscon_node_to_regmap(pdev->dev.parent->of_node);
 
+same here and everywhere else.
+
+> +	if (IS_ERR(pcc->regmap)) {
+> +		dev_err(dev, "Couldn't get regmap\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	rc = of_property_read_u32(dev->of_node, "pcc-ports", &pcc->port);
+> +	if (rc) {
+> +		dev_err(dev, "no pcc ports configured\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	rc = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
+> +	if (rc) {
+> +		dev_err(dev, "cannot set 64-bits DMA mask\n");
+> +		return rc;
+> +	}
+> +
+> +	pcc->dma.size = PCC_DMA_BUFSZ;
+> +	pcc->dma.virt = dmam_alloc_coherent(dev,
+> +					    pcc->dma.size,
+> +					    &pcc->dma.addr,
+> +					    GFP_KERNEL);
+> +	if (!pcc->dma.virt) {
+> +		dev_err(dev, "cannot allocate DMA buffer\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	fifo_size = roundup(pcc->dma.size, PAGE_SIZE);
+> +	rc = kfifo_alloc(&pcc->fifo, fifo_size, GFP_KERNEL);
+> +	if (rc) {
+> +		dev_err(dev, "cannot allocate kFIFO\n");
+
+Drop
+
+> +		return -ENOMEM;
+> +	}
+> +
+> +	/* Disable PCC to clean up DMA buffer before request IRQ. */
+> +	rc = aspeed_pcc_disable(pcc);
+> +	if (rc) {
+> +		dev_err(dev, "Couldn't disable PCC\n");
+> +		goto err_free_kfifo;
+> +	}
+> +
+> +	pcc->irq = platform_get_irq(pdev, 0);
+> +	if (pcc->irq < 0) {
+> +		dev_err(dev, "Couldn't get IRQ\n");
+
+Drop, core already prints this. Do not duplicate messages.
+
+> +		rc = -ENODEV;
+
+Why not using pcc->irq as rc?
+
+> +		goto err_free_kfifo;
+> +	}
+> +
+Best regards,
+Krzysztof
 
