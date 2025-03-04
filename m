@@ -1,55 +1,62 @@
-Return-Path: <devicetree+bounces-154119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22756A4EE68
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:32:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70CDCA4EE6A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:32:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 406017A8D2B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:31:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5B947A80F5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8191D1F8BCC;
-	Tue,  4 Mar 2025 20:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8204C2641D1;
+	Tue,  4 Mar 2025 20:31:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yandex.ru header.i=@yandex.ru header.b="IMEdjYYG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aulpz27l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward502d.mail.yandex.net (forward502d.mail.yandex.net [178.154.239.210])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE1E12641E2
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 20:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BB8246335;
+	Tue,  4 Mar 2025 20:31:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741120307; cv=none; b=YG1o4sJk9HKPWQ3i7V9i6ZV9fNt7paT8ocYUBev/gqwCc2tBhpXRwPlHwJFOh2r8lzLFhf9fQ87oW6RHFc6H6gxRAA6cjG8LvD9+UwaBIV4dIRT313tnuO66QFJSIyMQYsSIcraKgLtDxiM3azm6L/kxS2vVAO4UAykbo7PJivo=
+	t=1741120308; cv=none; b=ip88h2LLDmvMHqpcFcbL3bazmCLnfFclxPwhzBmXauxTFv3yeBevF/hIIka4z9yBYgmjFZJoRFeF0LAjgbYwAonJXFm4iU6kFMNhu2axcB5NDOT1RvHm35tsGaoOJR53buTm8CtCt2Ab7d3/zbw6dU0wsl8eobHHmT0MqkSBDGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741120307; c=relaxed/simple;
-	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d0tcbg+5fDnyd2niOwF5WlpQJlv6cn0XabWuYMUU6IQsnKr4RfZ9+6HNAWgIhFbsIiLXsYgvq88fk+h6I+eB7hhHjTIN7piGL7Hz+UNf4Gz7p3M7Tz3kcoQtlEWwE5eBlSqBF3TrMsIN25+OCiVjwZgBTjX8JB0t4J6o52sUBxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.ru; spf=pass smtp.mailfrom=yandex.ru; dkim=pass (1024-bit key) header.d=yandex.ru header.i=@yandex.ru header.b=IMEdjYYG; arc=none smtp.client-ip=178.154.239.210
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.ru
-Received: from mail-nwsmtp-smtp-production-main-59.klg.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-59.klg.yp-c.yandex.net [IPv6:2a02:6b8:c43:c14:0:640:86a6:0])
-	by forward502d.mail.yandex.net (Yandex) with ESMTPS id 2105061534
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 23:26:10 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-59.klg.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 8QqpLMmLm4Y0-gQ1UDwrP;
-	Tue, 04 Mar 2025 23:26:09 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
-	t=1741119969; bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	h=In-Reply-To:Message-ID:Subject:References:To:From:Date;
-	b=IMEdjYYGDB8OfJpDpUgD7WmTMYXBc9n84RNpz7045lQx+YUeNHL7wBe869kGJ5vRp
-	 DI1AExh5MrOHQ+UE/EH6FPY481FqC7aeDJ2ez0PWVr2SvMjSY1a85lWo2PsIYBP8cH
-	 ncGs072H38ORBRgywQYA5gPxlbEZCPkAxZ5CRbTE=
-Authentication-Results: mail-nwsmtp-smtp-production-main-59.klg.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
-Date: Tue, 4 Mar 2025 23:26:08 +0300
-From: Maksim Tarelov <tarelovma@yandex.ru>
-To: devicetree@vger.kernel.org
-Subject: unsubscribe
-Message-ID: <Z8dh4FJoRLd27gjb@ladoga>
-References: <20250304190114.4C796682F1@forward206d.mail.yandex.net>
+	s=arc-20240116; t=1741120308; c=relaxed/simple;
+	bh=2cRsyEaRlJFchgyZwhW0xRb74ZHZVckWgHMV1JwiSGk=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=ml+GG5/x3qt2k29CZ4sgbDcEJlE3ykHEqilF6BtoSNIOjW6LgVqFDwQ6sCEXB3Wvbu6dYKg5gnBOySo0aFIhcTUgjS/R9FT0D8NpM8XYGuGPfY5Toc3563EykfcRPnmILK/Br6ddGmkDfM+NB4X4qdlH3boXaP1wI0xB4qFQBJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aulpz27l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F4E9C4CEE5;
+	Tue,  4 Mar 2025 20:31:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741120307;
+	bh=2cRsyEaRlJFchgyZwhW0xRb74ZHZVckWgHMV1JwiSGk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=aulpz27lXrSJrUS196mpqWya5NAdpRoSyJUpatYVbVeS54gioUXDioLTZnHZa7/l8
+	 zgyvqRt6hXmgqo+P0wEOrrWxLXkqwUzKfDlibklzMXYLSafYRWecUJ8/c4RTH8XWQl
+	 a8LW8bUTdoxRYEPB58Xk+njj/9R+IlxfJNzj2TNPT9Dnb9zdAzQCHxolXT6qv1ayxR
+	 qXAaGY3q2trNb7M8ewp7wsrRXsd+P0E9yvw8FA4lx8UOHyu4prwNrApWn/BFLkK0Qr
+	 89oafOlDZgkEMD92LsswXs1N84gcrYg7FX6h5S4QkiKcsIhSc0nv7VDDjMLxVdzq5k
+	 yVJClIRHBZzCA==
+Date: Tue, 4 Mar 2025 14:31:46 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Jesper Nilsson <jesper.nilsson@axis.com>,
+	Lars Persson <lars.persson@axis.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-kernel@axis.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH RFC NOT TESTED 2/2] PCI: artpec6: Use
+ use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()
+Message-ID: <20250304203146.GA256660@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +65,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250304190114.4C796682F1@forward206d.mail.yandex.net>
+In-Reply-To: <Z8dem5gBf3xLxSIT@lizhi-Precision-Tower-5810>
 
+On Tue, Mar 04, 2025 at 03:12:11PM -0500, Frank Li wrote:
+> On Tue, Mar 04, 2025 at 01:08:16PM -0600, Bjorn Helgaas wrote:
+> > On Tue, Mar 04, 2025 at 12:49:36PM -0500, Frank Li wrote:
+> > > Remove artpec6_pcie_cpu_addr_fixup() as the DT bus fabric should provide correct
+> > > address translation. Set use_parent_dt_ranges to allow the DWC core driver to
+> > > fetch address translation from the device tree.
+> >
+> > Shouldn't we be able to detect platforms where DT doesn't describe the
+> > translation correctly?  E.g., by running .cpu_addr_fixup() on a
+> > res.start value and comparing the result to the parent_bus_addr()?
+> > Then we could complain about it if they don't match.
+> 
+> Can't detect because:
+> 
+> There are case, driver have not provide .cpu_addr_fixup, but dts still be
+> wrong. such as
+> 
+> bus@10000000
+> {
+> 	ranges = <0xdeaddead 0x1000000 size>;
+> 	pci@90000000 {
+> 
+> 		reg = <...>, <0xdeaddead>;
+> 		reg-names = <...>, <config>;
+> 	}
+> 
+> };
+> 
+> above dts can work with current driver, but parent bus address 0xdeaddead
+> is totally fake address. We can't detect this case because no
+> .cpu_addr_fixup() at all.
 
+If there's no .cpu_addr_fixup(), primary-side ATU addresses must be
+identical to CPU addresses.  If the DT parent bus address is
+different, can't we assume the DT is broken?
 
