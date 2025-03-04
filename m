@@ -1,441 +1,157 @@
-Return-Path: <devicetree+bounces-154015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F90A4E99C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:44:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2926A4E81C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:15:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83E583BB566
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:05:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13256188F1B5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8ED291FBB;
-	Tue,  4 Mar 2025 16:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC36429AB0A;
+	Tue,  4 Mar 2025 16:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b="q8NbtrPz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ex0v6HYO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF60A290BB0;
-	Tue,  4 Mar 2025 16:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472EA29AAF2
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741106655; cv=none; b=p18PpQ174Sj75A0BCebZ0a6h5gNPPksg8SKGG0v8mlPbYdMbvakc+A6pgQT/Vqpx+9Ksc4rSRmGpHIj6GevoftkqH6nb5+aaIdSEhaOmCrf3EiuoNvLgjmYN33Sz9KP4wpXq6T/mWB77GGSLTjGyx7qNbSwJudrns4eyHWOXdeM=
+	t=1741106785; cv=none; b=bYLuO/+ILa7PNUrvu1Jr9AMrk4AFMqiEl9oUfcS/jsE+nFLGw07DeutfrJV2JELk7s2Wa1zpmxwRpkwXBvGH0J5cY5FU7U/N1kVMt7OjMWG9Tl/pynYoqS7qxTL991CDDjJ47D46b/4KwEu+YRjqGJJAAAl9zqrMdnigVI0gM60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741106655; c=relaxed/simple;
-	bh=Kfb+W0WDiVkZVyulV9gbdwERifPyoO7MqIesvfXP2pM=;
+	s=arc-20240116; t=1741106785; c=relaxed/simple;
+	bh=Z3R5Pcaqs1+G0Vmv6xCvvwsCj1j/WFqkmCVrvqCYFug=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JR4WkGYAEUhnzme7xwCdyEx1gnhktg/c3ffw4ASuxr6VQRIbEhCWobqqoWQM46s9bPpPGxUpT/WOHqcrEb51lnRNN7XVpf0RWZfxfkBlnAy5gby9Yt1lkXWRP8rncoXfuI6bjR+iiNqIsaLGatIK2IFIwa6RwEYQE2VsV3HclqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de; spf=pass smtp.mailfrom=timsurber.de; dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b=q8NbtrPz; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timsurber.de
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4Z6hN10cJvz9srJ;
-	Tue,  4 Mar 2025 17:44:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
-	s=MBO0001; t=1741106641;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MIOeVDLWE/rEhFAHwAstOitrUGow7kLH1PpjIy7M/mc=;
-	b=q8NbtrPz8scVpykDVYSvP4c+5g5eWyCVZyGEm2WRJ8u6xqgtjkE5uW+vKWIi4nc7Bti7J3
-	OsSOCi03egF/KXQOCb9MKCTtQpp0poKR88t9cCMHkgiEnLSDE94slJl9EYL0IJ2Y3Y6OyD
-	mi4O7KJ+mObWrdZurFAk3UWdvriuahxTCEJDxeGM02U5nTRsDFrIPLwyUvH7ABcuiKXujU
-	5tHGIxHVfaWXfw5xAxDQr5pFZ9qm2FFDoRWp4ZwZt1+YA20QqCasFna+7zdfsJXX601Uxt
-	fwDtkL9VQ4+AV8u0OUVFGckEnp+h4sNR8bhX+ERmdarTdiAJmcA15cmIvXT/+Q==
-Message-ID: <78ff36f6-01a7-4df4-b653-c4509fb93af4@timsurber.de>
-Date: Tue, 4 Mar 2025 17:43:54 +0100
+	 In-Reply-To:Content-Type; b=nIFiwBM216MgD3ZHKwvv3YQk8pwHwKTfjLtCD+D65fO5/3sFvxp5ZF5lCXDA8FrzDM56kPL4Q1POzg95K2UJ9cOdBu9HbuMQLeAJQb3ndKNXZOvkRcIgOqr+9OZCsdq1E2tgQTccVGHik5Tv1fEcJXfhRdNPk1vF6dJLYs2U69o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ex0v6HYO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 524ABeU4010333
+	for <devicetree@vger.kernel.org>; Tue, 4 Mar 2025 16:46:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	y7brEcXtfbjcqoYB3XEQrIfgtnniuwEzqWd+mi+OW4A=; b=ex0v6HYODe9nYu+h
+	fABau/0Xk1AapsRzLSzGrEjXmgpJVW+3+Bo++AAklQOGGVWGk2FfwYZtkM/D3Dp6
+	CK6oe0LIFznNuAPFpkR/kTFkf471dAsC66byl2YASvmiJ3VaZfSifhmSU9BsJ2EU
+	NDHRFtAdprgeD/3bmEzV65uFRnFPBmcz5OFXBqQNrlLjWsgdHz0EF3umNo8M8KeM
+	3B3o30dhCIYfbYri6raIqiSW8x/iMMpnQnJrmQ8ub8VzgJmqmRt40AKzpxPxDx3y
+	WiKQcgpT6vV9m/I8u/rFMdrI1RwNe1spPx9/9ceaCnUFgeOqm/4NUL2bzExKev5W
+	NpCHwg==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6wjfmq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 16:46:22 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c3cdff1f3bso15324485a.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 08:46:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741106782; x=1741711582;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y7brEcXtfbjcqoYB3XEQrIfgtnniuwEzqWd+mi+OW4A=;
+        b=ULIZxWzs9sjQU3hkRwYWNOCo/gonsFdAhwjP56JnNaESfqpYchYA4HX2mx5sTRhQU8
+         rQ+lrdVV80SrFHBA4FJkftVE7z5XkBl4Ylnwp+On+Q3JwwWUuH6763diT83xTIPqSPOG
+         fYhXbtA+lVTEcFb66XPqA4PAteCVk3kYDUrV/TqJFQkD139LpMr2phr2h/DtkDHVoBia
+         wuNUzZvMoq4iCLna2xPfBB7/3abEH8prcQOvJvVYYQxLE4hzsLfOeOLAOjGgszwtH5BL
+         LK4W6Rud8to4eDIVA3KOisJR/ID2Eq71HZpVeSi5rKRyQnzcMP+zEVECQUGAtzzkOvzG
+         HGfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUExg/9Pt1ZlryW7BkBAYcyAAhjpxkXJQtwBBVDOqyZvLTJ+Hpjd1Uq+Cr6xXim3wjNup8/w/syWaeu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOXVWUVpsgcq7SKxdddNwHe0p/dPkUHR4pCg6Mb/FzTNxO5Wxs
+	3TL4aytmd24h5FXSWwDhJGBNpwW1+GKbsz02XNZiSKzNXK1/hG3Q8jJiyrFNEk+8S7v7f+IgtZa
+	siE3sjiQIovxD6rLQJ3IbCSe8OZ8ppnuuuA/AkptrXKPhb+UfmdV3A+gJmTqB
+X-Gm-Gg: ASbGncvuvA+nRq5EpGLTYJsS3XHeViEh6P7/nyB8b/5Yso93iyNd+qw2X7NBfdnoBGh
+	W8OFt5m69O3t3lsMQwrY+IzdRSKGYbAiQz66qHhYCXCgccbzn8X9YwnEjqznRKTltj9VWJn2rkJ
+	8mXvjnjo629nKlwrunQd4SmHsdHQlwtfWul/zEz4ALgfBzNP1SiYE2/j/uRdy3bQEHAWe64PmG/
+	MD6gVBxFH9uOfun+JoqGyxC/b7+QGsPd648618cyPzEAL3kN8t7ktiV0HTmPTyPRlexroW4Kbas
+	5oc5P+fu88eICePWqFYf5HbwkoZxy9nnIFFm+5+ltG9KhB7p/fD/bd2mgcba7+1g5KD0lA==
+X-Received: by 2002:a05:620a:1721:b0:7c3:d3a0:578d with SMTP id af79cd13be357-7c3d3a05813mr100264685a.14.1741106782075;
+        Tue, 04 Mar 2025 08:46:22 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF7EoTqVks4QCeBflC74F5I6vZviIdM8z0vuE9z7wp5fUI+aWIRcwJklBDc/2TUsnKYZjW+4A==
+X-Received: by 2002:a05:620a:1721:b0:7c3:d3a0:578d with SMTP id af79cd13be357-7c3d3a05813mr100262585a.14.1741106781753;
+        Tue, 04 Mar 2025 08:46:21 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac1fb09be0dsm97722866b.5.2025.03.04.08.46.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Mar 2025 08:46:21 -0800 (PST)
+Message-ID: <f8efc961-2fbe-496b-93d2-55f9072bd08c@oss.qualcomm.com>
+Date: Tue, 4 Mar 2025 17:46:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v13 0/6] Add Synopsys DesignWare HDMI RX Controller
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
- <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil@xs4all.nl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
- shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Diederik de Haas <didi.debian@cknow.org>
-References: <20250304085819.108067-1-dmitry.osipenko@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox
+ driver
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org,
+        manivannan.sadhasivam@linaro.org
+References: <20250228045356.3527662-1-quic_srichara@quicinc.com>
+ <20250228045356.3527662-3-quic_srichara@quicinc.com>
+ <lakoxihaqlu3vq42eoqtlip23ggdieizotyzax5up5n6ndbwsi@ddqyzvsdtmkv>
+ <1359984c-2ace-450b-a3ff-bac0b9fb5cc9@quicinc.com>
+ <2xpu26pu4ovnchumwx7xzlp2gldpfgsurnhuqaioygb4a6xmsp@ygmpk6furqs6>
+ <3e326578-ab46-4d7e-ad1e-3d572613498b@quicinc.com>
+ <CAA8EJppXHXafwx+GPh0UhFLRLW5DNj8RwXdO4+fDdXp=SE13Uw@mail.gmail.com>
 Content-Language: en-US
-From: Tim Surber <me@timsurber.de>
-In-Reply-To: <20250304085819.108067-1-dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <CAA8EJppXHXafwx+GPh0UhFLRLW5DNj8RwXdO4+fDdXp=SE13Uw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 4Z6hN10cJvz9srJ
+X-Authority-Analysis: v=2.4 cv=EZcyQOmC c=1 sm=1 tr=0 ts=67c72e5e cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=AQ-p2TLc_isDrXhQJ_kA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 43gQhJG3OWkFwS_b6OI5m2pd2YkfqpuG
+X-Proofpoint-ORIG-GUID: 43gQhJG3OWkFwS_b6OI5m2pd2YkfqpuG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-04_07,2025-03-03_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ adultscore=0 lowpriorityscore=0 mlxlogscore=734 suspectscore=0 bulkscore=0
+ clxscore=1015 priorityscore=1501 spamscore=0 impostorscore=0
+ malwarescore=0 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502100000 definitions=main-2503040134
 
-Hi Dmitry,
+On 4.03.2025 10:46 AM, Dmitry Baryshkov wrote:
+> On Tue, 4 Mar 2025 at 10:33, Sricharan Ramabadhran
+> <quic_srichara@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 3/3/2025 6:34 PM, Dmitry Baryshkov wrote:
+>>> On Mon, Mar 03, 2025 at 03:58:42PM +0530, Sricharan Ramabadhran wrote:
+>>>>
+>>>>
+>>>> On 2/28/2025 12:03 PM, Dmitry Baryshkov wrote:
+>>>>> On Fri, Feb 28, 2025 at 10:23:56AM +0530, Sricharan R wrote:
+>>>
+>>>>>> +          dev_err(dev, "Failed with status: %d\n", msg.resp.status);
+>>>>>> +          ret = msg.resp.status;
+>>>>>
+>>>>> return msg.resp.status (is it really errno?)
+>>>>>
+>>>> ok, yes error.
+>>>
+>>> The question was if it is an errno, not if it is an error.
+>> status != 0 is an error always.
+> 
+> Is it an _errno_ ?
 
-it took a while to get my test setup going again. Sadly it does still 
-not sync with AppleTV Device (which should be a standard-compliant 
-HDMI-Device). In a few hours I will post a timing comparision with the 
-vendor kernel. I don't know if this should block the merge or this 
-should be fixed later.
+Dmitry's asking whether the status conforms to the Linux's errno.h
+ABI. If not, add something like:
 
-Best regards
-Tim
+ret = msg.resp.status ? -EINVAL : 0
 
-On 3/4/25 09:58, Dmitry Osipenko wrote:
-> Note RE the MAINTAINERS patch:
->    Shreeya is currently busy and will be maintaining driver later on.
->    I'm helping to upstream the driver meantime.
-> 
-> This series implements support for the Synopsys DesignWare
-> HDMI RX Controller, being compliant with standard HDMI 1.4b
-> and HDMI 2.0.
-> 
-> Features that are currently supported by the HDMI RX driver
-> have been tested on rock5b board using a HDMI to micro-HDMI cable.
-> It is recommended to use a good quality cable as there were
-> multiple issues seen during testing the driver.
-> 
-> Please note the below information :-
-> * HDMIRX driver now only works with the opensource TF-A.
-> * We have tested the working of OBS studio with HDMIRX driver and
-> there were no issues seen.
-> * We tested and verified the support for interlaced video.
-> * We tested capturing of YUV formats.
-> 
-> To test the HDMI RX Controller driver, following example commands can be used :-
-> 
-> root@debian-rockchip-rock5b-rk3588:~#  v4l2-ctl --stream-mmap \
-> --stream-count=100 --stream-to=/home/hdmiin4k.raw
-> 
-> root@debian-rockchip-rock5b-rk3588:~# ffmpeg -f rawvideo -vcodec rawvideo \
-> -s 1920x1080 -r 60 -pix_fmt bgr24 -i /home/hdmiin4k.raw output.mkv
-> 
-> CEC compliance test results :-
-> 
-> * https://gitlab.collabora.com/-/snippets/380
-> * https://gitlab.collabora.com/-/snippets/381
-> 
-> Following is the v4l2-compliance test result :-
-> 
-> root@debian-rockchip-rock5b-rk3588:~# v4l2-compliance -d /dev/video1
-> v4l2-compliance 1.29.0-5326, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: 77f5df419204 2025-02-07 08:59:59
-> 
-> Compliance test for snps_hdmirx device /dev/video1:
-> 
-> Driver Info:
->          Driver name      : snps_hdmirx
->          Card type        : snps_hdmirx
->          Bus info         : platform:fdee0000.hdmi_receiver
->          Driver version   : 6.14.0
->          Capabilities     : 0x84201000
->                  Video Capture Multiplanar
->                  Streaming
->                  Extended Pix Format
->                  Device Capabilities
->          Device Caps      : 0x04201000
->                  Video Capture Multiplanar
->                  Streaming
->                  Extended Pix Format
-> 
-> Required ioctls:
->          test VIDIOC_QUERYCAP: OK
->          test invalid ioctls: OK
-> 
-> Allow for multiple opens:
->          test second /dev/video1 open: OK
->          test VIDIOC_QUERYCAP: OK
->          test VIDIOC_G/S_PRIORITY: OK
->          test for unlimited opens: OK
-> 
-> Debug ioctls:
->          test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
->          test VIDIOC_LOG_STATUS: OK
-> 
-> Input ioctls:
->          test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
->          test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->          test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
->          test VIDIOC_ENUMAUDIO: OK (Not Supported)
->          test VIDIOC_G/S/ENUMINPUT: OK
->          test VIDIOC_G/S_AUDIO: OK (Not Supported)
->          Inputs: 1 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
->          test VIDIOC_G/S_MODULATOR: OK (Not Supported)
->          test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->          test VIDIOC_ENUMAUDOUT: OK (Not Supported)
->          test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
->          test VIDIOC_G/S_AUDOUT: OK (Not Supported)
->          Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
->          test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
->          test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK
->          test VIDIOC_DV_TIMINGS_CAP: OK
->          test VIDIOC_G/S_EDID: OK
-> 
-> Control ioctls (Input 0):
->          test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
->          test VIDIOC_QUERYCTRL: OK
->          test VIDIOC_G/S_CTRL: OK
->          test VIDIOC_G/S/TRY_EXT_CTRLS: OK
->          test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
->          test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
->          Standard Controls: 4 Private Controls: 0
-> 
-> Format ioctls (Input 0):
->          test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
->          test VIDIOC_G/S_PARM: OK
->          test VIDIOC_G_FBUF: OK (Not Supported)
->          test VIDIOC_G_FMT: OK
->          test VIDIOC_TRY_FMT: OK
->          test VIDIOC_S_FMT: OK
->          test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
->          test Cropping: OK (Not Supported)
->          test Composing: OK (Not Supported)
->          test Scaling: OK (Not Supported)
-> 
-> Codec ioctls (Input 0):
->          test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
->          test VIDIOC_G_ENC_INDEX: OK (Not Supported)
->          test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> 
-> Buffer ioctls (Input 0):
->          test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
->          test CREATE_BUFS maximum buffers: OK
->          test VIDIOC_REMOVE_BUFS: OK
->          test VIDIOC_EXPBUF: OK
->          test Requests: OK (Not Supported)
->          test blocking wait: OK
-> 
-> Test input 0:
-> 
-> Streaming ioctls:
->          test read/write: OK (Not Supported)
->          test MMAP (no poll, REQBUFS): OK
->          test MMAP (select, REQBUFS): OK
->          test MMAP (epoll, REQBUFS): OK
->          test MMAP (no poll, CREATE_BUFS): OK
->          test MMAP (select, CREATE_BUFS): OK
->          test MMAP (epoll, CREATE_BUFS): OK
->          test USERPTR (no poll): OK (Not Supported)
->          test USERPTR (select): OK (Not Supported)
->          test DMABUF: Cannot test, specify --expbuf-device
-> 
-> Total for snps_hdmirx device /dev/video1: 57, Succeeded: 57, Failed: 0, Warnings: 0
-> 
-> ---
-> 
-> InfoFrame debugfs example output:-
-> 
-> # edid-decode -c -I /sys/kernel/debug/v4l2/fdee0000.hdmi_receiver/infoframes/avi
-> edid-decode InfoFrame (hex):
-> 
-> 82 02 0d b1 12 28 84 00 00 00 00 00 00 00 00 00
-> 00
-> 
-> ----------------
-> 
-> HDMI InfoFrame Checksum: 0xb1
-> 
-> AVI InfoFrame
->    Version: 2
->    Length: 13
->    Y: Color Component Sample Format: RGB
->    A: Active Format Information Present: Yes
->    B: Bar Data Present: Bar Data not present
->    S: Scan Information: Composed for an underscanned display
->    C: Colorimetry: No Data
->    M: Picture Aspect Ratio: 16:9
->    R: Active Portion Aspect Ratio: 8
->    ITC: IT Content: IT Content (CN is valid)
->    EC: Extended Colorimetry: xvYCC601
->    Q: RGB Quantization Range: Limited Range
->    SC: Non-Uniform Picture Scaling: No Known non-uniform scaling
->    YQ: YCC Quantization Range: Limited Range
->    CN: IT Content Type: Graphics
->    PR: Pixel Data Repetition Count: 0
->    Line Number of End of Top Bar: 0
->    Line Number of Start of Bottom Bar: 0
->    Pixel Number of End of Left Bar: 0
->    Pixel Number of Start of Right Bar: 0
-> 
-> ----------------
-> 
-> edid-decode 1.29.0-5326
-> edid-decode SHA: 77f5df419204 2025-02-07 08:59:59
-> 
-> AVI InfoFrame conformity: PASS
-> 
-> ---
-> 
-> Changes in v13 :-
-> - Removed CEC adapter notifier as it's not used by this driver
-> 
-> Changes in v12 :-
-> - Removed legacy wait_finish/prepare() callbacks from vb2_ops,
->    tested that driver works without them.
-> - Updated and extended driver Kconfig description RE the
->    LOAD_DEFAULT_EDID option.
-> - Made minor cosmetical improvements to the code
-> 
-> Changes in v11 :-
-> - Reverted back defconfig patch by removing LOAD_DEFAULT_EDID=y option
-> - Removed CEC notifier since it's not needed for this driver
-> - Replaced video_unregister_device() with vb2_video_unregister_device()
-> - Added more clarifying comments to the code and updated the timing
->    sanity-check, borrowing it from a newer downstream driver version.
-> 
-> Changes in v10 :-
-> - Replaced cec_unregister_adapter() with cec_notifier_cec_adap_unregister()
->    in the error unwinding code path of the driver probe, tested that it works
->    properly.
-> - Changed CEC registration code to propagate original error code to the
->    driver's probe-failure code path on the CEC registration failure.
-> - Enabled LOAD_DEFAULT_EDID=y in the defconfig patch
-> 
-> Changes in v9 :-
-> - Added devm_add_action_or_reset() to free reserved memory properly
->    on driver probe error
-> - Extra minor code cleanups
-> 
-> Changes in v8 :-
-> - Changed HPD logic as was requested by Hans Verkuil. HPD handling
->    is now decoupled from HDMI plugin/out events and works independently
->    from 5v status.
-> - Bumped number of EDID blocks from 2 to 4 as was requested by
->    Hans Verkuil and verified that reading 3/4 EDID blocks from transmitter
->    works properly.
-> - Made few extra minor cleanup/improvements to the driver code
-> 
-> Changes in v7 :-
-> - Changed InfoFrame debugfs to return truncated payload data
-> - Updated cover-letter example stream capture cmdline with a minimized
->    and cleaned version of the cmdline
-> - Added AVI InfoFrame example output to the cover-letter
-> 
-> Changes in v6 :-
-> - Driver now keeps HPD low instead of zeroing EDID when EDID-clearing is
->    invoked and when default EDID usage is disabled in the kernel config
-> - Added InfoFrame debugfs support
-> - Added another code comment clarifying validation of timing values
-> - Rebased on top of recent media-next tree
-> 
-> Changes in v5 :-
-> - Fix the interrupt IRQ number in the dt-bindings and device tree
-> - Add alignment property to ensure hdmi-receiver-cma
->    starts at a 64KB-aligned address
-> - Change the MODULE_DESCRIPTION
-> - Add VIDEO_SYNOPSYS_HDMIRX as prefix to the default edid config
-> - Drop the enabling of default edid in the Kconfig
-> - Replace the default EDID with hdmi-4k-300mhz EDID produced
->    by v4l2-ctl tool for better compatibility with various HDMI
->    cables and adapters
-> - Rework the write_edid and set_edid functions
-> - During format change, retrieve the current pixel format,
->    color depth, and AVI infoframe details instead of only
->    detecting the format
-> - Improve the logging mechanism and delays in the
->    hdmirx_wait_signal_lock function
-> - Fix the 4K@60 capturing for RGB format
-> - Document what hdmirx_check_timing_valid function does
-> - Rework the hdmirx_get_detected_timings function
-> - Fix the NV16/24 size image value
-> - Add the implementation from Benjamin Hoff to expose the
->    ITC type to v4l2
-> - Remove all the firmware related code
-> 
-> Changes in v4 :-
-> - Remove DTS changes included in the device tree patch
-> - Remove the hdmi rx pin info as it's already present
-> in the rk3588-base-pinctrl.dtsi
-> - Create a separate config option for selecting the EDID
-> and enable it by default
-> - Improve the comment related to DV timings and move it
-> to the side of hdmirx_get_detected_timings
-> - Add 100ms delay before pulling the HPD high
-> - Do not return the detected timings from VIDIOC_G_DV_TIMINGS
-> - Drop the bus info from hdmirx_querycap
-> - If *num_planes != 0 then return 0 in hdmirx_queue_setup
-> - Set queue->min_queued_buffers to 1
-> - Drop q->allow_cache_hints = 0; as it's always 0 by default
-> - Add a comment for q->dma_attrs = DMA_ATTR_FORCE_CONTIGUOUS;
-> - Drop .read = vb2_fop_read as it's not supported by driver
-> - Remove redundant edid_init_data_600M
-> - Make HPD low when driver is loaded
-> - Add support for reading AVI Infoframe
-> - Remove msg_len checks from hdmirx_cec_transmit
-> - Add info about the CEC compliance test in the cover letter
-> - Add arbitration lost status
-> - Validate the physical address inside the EDID
-> 
-> Changes in v3 :-
-> - Use v4l2-common helpers in the HDMIRX driver
-> - Rename cma node and phandle names
-> - Elaborate the comment to explain 160MiB calculation
-> - Move &hdmi_receiver_cma to the rock5b dts file
-> - Add information about interlaced video testing in the
-> cover-letter
-> 
-> Changes in v2 :-
-> - Fix checkpatch --strict warnings
-> - Move the dt-binding include file changes in a separate patch
-> - Add a description for the hardware in the dt-bindings file
-> - Rename resets, vo1 grf and HPD properties
-> - Add a proper description for grf and vo1-grf phandles in the
-> bindings
-> - Rename the HDMI RX node name to hdmi-receiver
-> - Include gpio header file in binding example to fix the
-> dt_binding_check failure
-> - Move hdmirx_cma node to the rk3588.dtsi file
-> - Add an entry to MAINTAINERS file for the HDMIRX driver
-> 
-> Sebastian Reichel (2):
->    arm64: dts: rockchip: Enable HDMI receiver on rock-5b
->    arm64: defconfig: Enable Synopsys HDMI receiver
-> 
-> Shreeya Patel (4):
->    MAINTAINERS: Add entry for Synopsys DesignWare HDMI RX Driver
->    dt-bindings: media: Document bindings for HDMI RX Controller
->    media: platform: synopsys: Add support for HDMI input driver
->    arm64: dts: rockchip: Add device tree support for HDMI RX Controller
-> 
->   .../bindings/media/snps,dw-hdmi-rx.yaml       |  132 +
->   MAINTAINERS                                   |    8 +
->   .../dts/rockchip/rk3588-base-pinctrl.dtsi     |   14 +
->   .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |   57 +
->   .../boot/dts/rockchip/rk3588-rock-5b.dts      |   18 +
->   arch/arm64/configs/defconfig                  |    1 +
->   drivers/media/platform/Kconfig                |    1 +
->   drivers/media/platform/Makefile               |    1 +
->   drivers/media/platform/synopsys/Kconfig       |    3 +
->   drivers/media/platform/synopsys/Makefile      |    2 +
->   .../media/platform/synopsys/hdmirx/Kconfig    |   35 +
->   .../media/platform/synopsys/hdmirx/Makefile   |    4 +
->   .../platform/synopsys/hdmirx/snps_hdmirx.c    | 2750 +++++++++++++++++
->   .../platform/synopsys/hdmirx/snps_hdmirx.h    |  394 +++
->   .../synopsys/hdmirx/snps_hdmirx_cec.c         |  275 ++
->   .../synopsys/hdmirx/snps_hdmirx_cec.h         |   43 +
->   16 files changed, 3738 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
->   create mode 100644 drivers/media/platform/synopsys/Kconfig
->   create mode 100644 drivers/media/platform/synopsys/Makefile
->   create mode 100644 drivers/media/platform/synopsys/hdmirx/Kconfig
->   create mode 100644 drivers/media/platform/synopsys/hdmirx/Makefile
->   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
->   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx.h
->   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx_cec.c
->   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmirx_cec.h
-> 
-
+Konrad
 
