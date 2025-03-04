@@ -1,569 +1,509 @@
-Return-Path: <devicetree+bounces-154176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B75EA4F1D5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 00:55:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3688A4F1D9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 00:57:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B1371886393
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 23:55:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F279F16E1C1
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 23:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6292A25D552;
-	Tue,  4 Mar 2025 23:55:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E864260384;
+	Tue,  4 Mar 2025 23:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IR4Nmc0D"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="rNxM9CJv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MA0PR01CU009.outbound.protection.outlook.com (mail-southindiaazolkn19010000.outbound.protection.outlook.com [52.103.67.0])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35719BA2D;
-	Tue,  4 Mar 2025 23:55:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741132519; cv=none; b=ZNvaTKrJ6JOx1ZiaN7n21rcYUgg/cy4FBMoWJL8+2YRhjBbxQGKTHubH3PcfU2kI3MSnk4JulAQuIewsTkawMmrdJnoCiEkBoMoDigCxFwQCtxE1YcI7NxfYo3aW1OOQEYUbXFLTxqIvmYBtDsHy6FSFBAgUuSdTQFE0fnzQndM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741132519; c=relaxed/simple;
-	bh=46V9klU54XZ5WRkkopILacYhkbZpVRsV0UaqcAindf4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NYbibMBWIRDk22MQc49dJxEhjE1BLix2Ep+KJXLQhZLzQb0qha4Pj0DBXmN5gNbFSnt1FcBiQu+GInhyroZK2QRggxhG56/lWBPz9RPIaRps96YJpQxbixcT5m91IFLMiAAW60wL5iY/x3E7uNeBMKmHfiKpKz41cGBzgYImZx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IR4Nmc0D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00FE1C4CEE5;
-	Tue,  4 Mar 2025 23:55:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741132516;
-	bh=46V9klU54XZ5WRkkopILacYhkbZpVRsV0UaqcAindf4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=IR4Nmc0DBuDMgDdWuMoBmTg+V4tYoM2VwMjWHEuryykrEEMIcTv5+ZUr4JsKxNMoN
-	 a8JXQdjxOKsAf7PSHsTGuSjklzycVWgSiUlOQfJbWwFwQXn57+7RJc7RtlCho5aVAQ
-	 dluW8PAUYWMap85HnFZa6PobVwKY8xkwIh74pLp0G2r3BdWS6Z17RrYFNkA4B/ffG4
-	 MovlyNtllok+sXBgrVyrk6+i5QVCy4WjtNlZeteJ4I1jFSIyvQxpV1wEUrOXWPFcOi
-	 xsX/61IC/J/dX5+8rhqhIUAdS9XRBtHiJLyT0f6JWOZ+eXe6ESQQLCBdmVgNn7cfkU
-	 c/m5sT25M1nIA==
-Date: Tue, 4 Mar 2025 23:55:02 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Sam Winchenbach <sam.winchenbach@framepointer.org>
-Cc: linux-kernel@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, antoniu.miclaus@analog.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] iio: filter: admv8818: fix range calculation
-Message-ID: <20250304235502.4d0342a1@jic23-huawei>
-In-Reply-To: <20250225134612.577022-1-sam.winchenbach@framepointer.org>
-References: <20250225134612.577022-1-sam.winchenbach@framepointer.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365EABA2D;
+	Tue,  4 Mar 2025 23:57:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.0
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741132652; cv=fail; b=Ie/iiZFqthG8HpVUR/8U/5NMgKSL86pGLN8P3Y/n2YQxDHgHMqJElf8MD9iY6weJXIz0q/F3NhSo6LbRcQeh1SAgC9Ahy32Fu3LtNB9faTdbdtHA59GVgvzLN8iM+gHk7JMuIKEIHorj4XqOZclzF3mplBhefoMP4QgEI9SvhR4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741132652; c=relaxed/simple;
+	bh=eumwEzCyd1JFhemT+jfRO/IybLYYPZroJuWj2+B1xc8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Qe/6QuvMGilN2lSby5vagwue8v3Bj3bWR70vayPswdG42uye1/Gi9RRR7IZVUygheOcoHR4AoBnnRrvhjaj3DM3aYlzR/YAy5rimSi0NxlNamF9CNsLws0cnyFkITVoCQ1IRy7hH/xFNGSc3HCD2xaoSzzKxh6yfq7Gv8Ozt+gY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=rNxM9CJv; arc=fail smtp.client-ip=52.103.67.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QCId0I6bIbMlZmoVUIy7e99wbQ8jBBvyiz1cvEbmcPKEFAEtilAcGixFb0LaPZIArJNYOrj4I8wcA9vIHBf1SyqtJbSmG0MDAj5ReiOcBpUV0O/GxzlSmvXE8OqU87KHVxaXx8wcATcJK/xY8uicE5kYOEv6fbSdOcmq9MMS/9ME74m8OJ+q5YqpWZgtdgYgDz+1ocdZkw5MRC9UxMNFuNntkQGv5bjGZLpFKj+wabYdpDtuwsD2jwVeSE1DRcIo0pzqK6OthyNYhghnCBUDc3XWGTCftmWqUwAOyeZzRKRuG/5MsLEhvhWIRAOqzdctYySnMIlP7TiMc5H9W1iUqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cwg8qpLfcvyKyBeWSeOkf5dzZnC2G0K4QoN04PagT3w=;
+ b=HLCVbK1cEKrRZrHWwAZb1vNS84zDJa9fwg52lirRT3hmTZJ8ZalzefvMY3sIOvmOFsB1XbbNvLu1NzLhQCtOhkkXRha5Z8a5lQzRK2c/eHzCVeJs6etjewmibyR31hBLyZuvvDJfvk2QipzB3WgjLlcvbd9rl29o+LOI4b4Fi6RFqAJ8iVV2gSLF34YlN9Z5R9CEKGZGErGncLcxCnq/VUWFnOQr04E1C62f80mNuOGjz1McYzXHD2F0QFLxGGms7o/Mfy+SkG0W96fJl3PXykYhTHwnGEIFcFMA3dcKIVLYxlrr/ulECwk1qsjFur775fsC6UbRUzy60+YTAl9RaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cwg8qpLfcvyKyBeWSeOkf5dzZnC2G0K4QoN04PagT3w=;
+ b=rNxM9CJvTgp4Uo0BSKHT4vQ4sLHmLBQ01XrbPlTE4hPhHRGiHTljDxfHQX2GcICh9YAOZoGsbQEaKH2Ovo50roC0E8MjennLbSFILNs2YYxeWX5VqPxzBd/fgD1R7+7RdiotfXGAhOMx0h+B5Qz+hsnyvbNVmcoUR/x+R/LxtJw+LisRwlUbIPK/LwETG0m0+jINL44SoAjDdkODZv9Dh/vloQYmZJWaY+N9qBlzJaeTSVcDz1qyUQi5RfEfQQGRIHelceIFfIAFxbdBb7VoE9bYmu+ns9DA8bWBbqzH5cj18Zvd1YdmgVfhl21Ci/Xs0mWsQy1AdhDGHR5PGER+gg==
+Received: from PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:1eb::14) by PN1PPF0EE0B81A4.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c04:1::306) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.17; Tue, 4 Mar
+ 2025 23:57:20 +0000
+Received: from PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::1b4f:5587:7637:c5a5]) by PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::1b4f:5587:7637:c5a5%6]) with mapi id 15.20.8489.028; Tue, 4 Mar 2025
+ 23:57:20 +0000
+Message-ID:
+ <PN0PR01MB10393134B6BD714C1F070F0BEFEC82@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
+Date: Wed, 5 Mar 2025 07:57:14 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] PCI: sophgo-dwc: Add Sophgo SG2044 PCIe driver
+To: Inochi Amaoto <inochiama@gmail.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Johan Hovold <johan+linaro@kernel.org>,
+ Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>,
+ Niklas Cassel <cassel@kernel.org>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+ Longbin Li <looong.bin@gmail.com>
+References: <20250304071239.352486-1-inochiama@gmail.com>
+ <20250304071239.352486-3-inochiama@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20250304071239.352486-3-inochiama@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI1PR02CA0031.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::11) To PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:1eb::14)
+X-Microsoft-Original-Message-ID:
+ <48fd9396-e6fc-4f1a-aaed-c626e7bbb8fb@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN0PR01MB10393:EE_|PN1PPF0EE0B81A4:EE_
+X-MS-Office365-Filtering-Correlation-Id: f93279ca-c3f0-4135-0f92-08dd5b784c4b
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199028|6090799003|15080799006|5072599009|7092599003|8060799006|19110799003|3412199025|440099028|41001999003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bk0vbElxVUNTSjdjb3FQWnBDVndYcmdYTTRFa3JRNUw3NzYrTitIMTlXc3c5?=
+ =?utf-8?B?bXE1RFczTWNhM1RDd2pBNWlQdTgvSW55SW1yekYzOE9ocmRzYzZWbXhoRHk4?=
+ =?utf-8?B?c0k1YVFHRU8vZTBSYkRETlVEbWxzUVJJWk1qRGJOWEhOUXRZMWxIdHRYVFl0?=
+ =?utf-8?B?RkJ6Vk80REFXUzVYeXBqL1gwWlVwWHBmQVdtRmhuZVlpZzdESGd1RVBiMVlr?=
+ =?utf-8?B?YzRmbTBTZHRaUTZiYTJEZnpUSUtVUGFTUzl5TkZlbzIvMGhRc2dnWGh6YW5p?=
+ =?utf-8?B?dlgrZjM3MHM2Q2wvQ3N3NW1jWXkxMEF0SVFOcCtJWVlWdUU1dndOejA3aW1z?=
+ =?utf-8?B?T3R0L3FHNGpuam8xdzJYUTkzWmJDbzZTZUdUd3Z1M2dUbUg2bkdKdml3VjhQ?=
+ =?utf-8?B?NHVpZ3lqSHZoYng3c2Q3czgrOFM1Y1p6dHUyVmZ1eDZsMzU4WXhjamNzemhk?=
+ =?utf-8?B?ekRjaG9Md0FySUM3RzZQbnRzTVYrczVUMnZSQjRDcTZzZThlOGQwdFJ0SFdS?=
+ =?utf-8?B?dE5GM2d4NktwZSs4SHdNTmszeXZDbURJbTlOR0VLTU9jLzc2bjlURjFHN1lO?=
+ =?utf-8?B?NCs3bU02eE9NT09QV2J2NUhrVGt5LzBXclBiRzBSd09JWDZkNHRoRm9jdnY3?=
+ =?utf-8?B?eG0zTmF3MnROMk9mbkNxYmN2a21xb2NDendlbWk0YTdtdk5vdFYzRFVSQlJG?=
+ =?utf-8?B?V29wRGx6VmlHVy91SkdNZWdQb09VQ1BKMG05VlF2dWhVWXZpT1BLWkIyUG82?=
+ =?utf-8?B?UmlYOFIybG5Lb1JScnNVS2ViMEtaYmZZV2FmSDBSeTlkL1Z1cityTjg2ZEVE?=
+ =?utf-8?B?YnJHMWdQYkQ5b1F0dmFDMi8ybXhaZ3MvWTIwbE13bGc1ZVhuN0JKNTJFTVI4?=
+ =?utf-8?B?TjBSdm9mZzdYMzhPdHIxQXZPNEFZdmJtSk1lQU9PUXFwWWl0dmNtUHVVUi9O?=
+ =?utf-8?B?VEdnZ2RISDFuRDJTbmN0cWQ2U3g3dlA1U0wrV2JhdEFmM2YxRjZmUFc4T0Jz?=
+ =?utf-8?B?Vi8vNWM4ODZKbytaZHJMd1ZGeU1MUnJWWDN1ZXBLUThIQUJ6em5VYTVsV2la?=
+ =?utf-8?B?N0s3ZEFWWkFrUzhscjBkYXFpbXdlVGlPNHY4cFlXd3RMZUdaSFdqU0FGYUcy?=
+ =?utf-8?B?K0NBd2U5M0hoQVhDRmloTmtpL09hcEU5bFhQZVFvMWdNMGJMUGp3enpyU0cr?=
+ =?utf-8?B?QnFTejZiVkRwZ1BLN0pyN0R6c3N5Zzl4aExYbmgrZFYyeGU4d0hiQ2NHTXBl?=
+ =?utf-8?B?blVoZUJQNWl1Qk5JeWtHeUc2N1JyZHA4eWk4aVpkT0VXbnFVVk14RGttWUVL?=
+ =?utf-8?B?ejFtbFNxd3dhWlFtU2FlL0NPSitYazFTMkR5VHNDU28zSytTNkpwS3V3L2Y3?=
+ =?utf-8?B?WmFkRW44UW1aV3VZdTZwUFA5dXNwc3VmV2lKSjlPLzk5ZHZQY1p6UTFMeWxt?=
+ =?utf-8?B?TEJPYi9YVUE4c05Jb2xaYUJHbTkxNDYwMGdQM2ViMmxtZjFqZDhZNEtkTG5t?=
+ =?utf-8?B?SjN3RmxPbVhzZFo5UzBRT09nUG5NRkhaWFNYeXRPZnZ3WmU4OE1HcklFbFAr?=
+ =?utf-8?B?c01YQT09?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?M1VVdnlVT2J5bVo4STNmQU52a0ZITVZ4QUxCS3dRdTkwdEp3cE5OR2ExeVNE?=
+ =?utf-8?B?R0FCUlFyWHB1V0pvSlNHYUFCV01sSC9NUFVzWWNiYTU4cXk2ZVdQTVc5SmYw?=
+ =?utf-8?B?VkRrS0VGTUtzbVZWMXlERmtsQ2gxVSs1WGZFcWFJR3FLYWp4U3g5SE5VcWVt?=
+ =?utf-8?B?MUkvUWR5WGNWQmZoeitOc1BBK1Y5R1Frbm9laWd3bEp4ZnAyb2N0ZFIyR1Na?=
+ =?utf-8?B?dmVScmcvYURyK050d2EwWDdEek8zWkQvRTJ5b0N0M2ltQXc4T2RhdFNDbWZG?=
+ =?utf-8?B?YmpKbUxHVzlHblZudHkzZDZlTlRBQjNPZWZlc2lBVTRjMnZHYXE5MDNtaWlh?=
+ =?utf-8?B?cVI4QjhyMUcyeDQ3NHRsaW9oNjVUVG84cGpnNXNPQWVZd1huZllZSGp6azFI?=
+ =?utf-8?B?QVVxb2xIcjFCR0YvL1FXdWUrMlBEMUtkbkVoQzM0d2J6VEFydTh1SWNrSzdZ?=
+ =?utf-8?B?b0dhNndXZk1jeGxTQXhqN0JxditFbVByTjNjZ0dmYmJFbTJCTU0vRDV5QkV1?=
+ =?utf-8?B?L1BSbDhadEtBWHVBZGUyWVZLLzRZQmFQS3dzWGI1UGlwb0tCamFsQ2ZENDRz?=
+ =?utf-8?B?aXdWVERmTnE5d1dBeDgvalczM0NFMXRud1MzbHJXSkxoeE00REtXT25OZzVK?=
+ =?utf-8?B?QVRxSW9FSXA3RDQ0THZEcHZpVFhOS0NLZThSM1RUZDRXQnFqNUYzUUdETmxn?=
+ =?utf-8?B?MTJDejJVRC83cWMvSW5yVGdiWXdOSkR2U0Jvc29lTWozWDF0d295Uk1Iem40?=
+ =?utf-8?B?MFdEYUdiUXlkYjArVXN5N21JeStwQllSQlQ4NXB6Y3ptSkJ3d1hqUGlIV1Vh?=
+ =?utf-8?B?UFdHa013cUV4UGQ4WjQyeE40azlYQlhhMVVFTmlGLzlFMkh5TUoxNjA5N29F?=
+ =?utf-8?B?cExtYlZYVmZtK1VXNDdUNU9tQ0UrUGU1MEhsZGlGanNITjFLSWRSWnZNSzN4?=
+ =?utf-8?B?YXUrSXZ2d3p3RnphK2JoUGFXSmhwLzcxUmR5NFVnUk5UQkFReXJrSkZkYWY2?=
+ =?utf-8?B?em00NnRmT0JDSU82cHpzaFNCZlJnanVXejYvVGN2MXQvazZwSFlzTTFCSHZE?=
+ =?utf-8?B?MmY1c0hCdW9VbUJ0R1gxRGVMcHNvMmNneG02aVFYUU1nM1lVYWtZMXZVTVZK?=
+ =?utf-8?B?ak5FR3UzRXk0QUd4SnB6MW56OUptZVFkcnZ3bGV1NUFqYjVRaThJTERId2xj?=
+ =?utf-8?B?RVdhMW9hT1AxWkszSW41QXYzK0NaTkFndHQ5YXlNL0Z2V2M0S1NNNzUrQ2Er?=
+ =?utf-8?B?d21XMnFtTzg1YTdBbWhuK3RQYVlkZzVXUFl4MUZMcTJpN2hGWjZpOVQrMk54?=
+ =?utf-8?B?WVFHRlR2Qll5M2FIaU1nOEM0eEFNVGRMMGkybGkzUzQvVXdVSzMxNzBLSy9i?=
+ =?utf-8?B?V3Z1cWMwQk95elIxdksxRTh0TVhFR3BwQTJGWEdqVUYxNVduTTNDR0JsRGEw?=
+ =?utf-8?B?VTl6dVNCbHZHS0pDbzdEQ1BrS2JneWdXS0s1YURWYlVPL0tkT2hUQWN1elA1?=
+ =?utf-8?B?S2F3WVNqUHpMUSswTXYxVyt5SHVwbEZPblJsNEZjeWZqUllIL1R6SDVuVG0r?=
+ =?utf-8?B?ZmVST3lLNjdPNkFJcC9MYVBLdCswcWxJcDFPQWhRLzV0V1M3ZitqdVJGMGZU?=
+ =?utf-8?B?MnZ0VDh1VnF1eHVIazBEc1dDTUN5WFZrWkhBSEsvQTA5NkRoUWZNRTZzZ3hy?=
+ =?utf-8?B?ZklrQnNkWEpyWkRWcno2RUpuRXpkTWJsdC9pRGEwaVU1b21ad2d3TDZMUXd6?=
+ =?utf-8?Q?PiP1PQFI+SYqfP4YBh42bPxE8tXVbNTu3E+cvVC?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f93279ca-c3f0-4135-0f92-08dd5b784c4b
+X-MS-Exchange-CrossTenant-AuthSource: PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 23:57:19.3196
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN1PPF0EE0B81A4
 
-On Tue, 25 Feb 2025 08:46:11 -0500
-Sam Winchenbach <sam.winchenbach@framepointer.org> wrote:
 
-Hi Sam,
-
-Various comments inline.
-
-Jonathan
-
-
-> Corrects the upper range of LPF Band 4 from 18.5 GHz to 18.85 GHz per
-> the ADMV8818 datasheet
-This feels like a first fix...
-> 
-> Search for the minimum error while ensuring that the LPF corner
-> frequency is greater than the target, and the HPF corner frequency
-> is lower than the target
-> 
-> This fixes issues where the range calculations were suboptimal.
-This feels like a 2nd one.  Maybe two patches appropriate.
-
-> 
-> Add two new DTS properties to set the margin between the input frequency
-> and the calculated corner frequency
-And this feels like a feature.  So 3rd patch that we don't necessarily
-backport.  For earlier stages we just use the default values that
-you have in the binding.
-
-> 
-> Below is a generated table of the differences between the old algorithm
-> and the new. This is a sweep from 0 to 20 GHz in 10 MHz steps.
-
-So, these are just the entries where the 3db point changes?
-All the others are same?
-
-> === HPF ===
-> freq = 1750 MHz, 3db: bypass => 1750 MHz
-> freq = 3400 MHz, 3db: 3310 => 3400 MHz
-> freq = 3410 MHz, 3db: 3310 => 3400 MHz
-> freq = 3420 MHz, 3db: 3310 => 3400 MHz
-> freq = 3660 MHz, 3db: 3550 => 3656 MHz
-> freq = 6600 MHz, 3db: 6479 => 6600 MHz
-> freq = 6610 MHz, 3db: 6479 => 6600 MHz
-> freq = 6620 MHz, 3db: 6479 => 6600 MHz
-> freq = 6630 MHz, 3db: 6479 => 6600 MHz
-> freq = 6640 MHz, 3db: 6479 => 6600 MHz
-> freq = 6650 MHz, 3db: 6479 => 6600 MHz
-> freq = 6660 MHz, 3db: 6479 => 6600 MHz
-> freq = 6670 MHz, 3db: 6479 => 6600 MHz
-> freq = 6680 MHz, 3db: 6479 => 6600 MHz
-> freq = 6690 MHz, 3db: 6479 => 6600 MHz
-> freq = 6700 MHz, 3db: 6479 => 6600 MHz
-> freq = 6710 MHz, 3db: 6479 => 6600 MHz
-> freq = 6720 MHz, 3db: 6479 => 6600 MHz
-> freq = 6730 MHz, 3db: 6479 => 6600 MHz
-> freq = 6960 MHz, 3db: 6736 => 6960 MHz
-> freq = 6970 MHz, 3db: 6736 => 6960 MHz
-> freq = 6980 MHz, 3db: 6736 => 6960 MHz
-> freq = 6990 MHz, 3db: 6736 => 6960 MHz
-> freq = 7320 MHz, 3db: 7249 => 7320 MHz
-> freq = 7330 MHz, 3db: 7249 => 7320 MHz
-> freq = 7340 MHz, 3db: 7249 => 7320 MHz
-> freq = 7350 MHz, 3db: 7249 => 7320 MHz
-> freq = 7360 MHz, 3db: 7249 => 7320 MHz
-> freq = 7370 MHz, 3db: 7249 => 7320 MHz
-> freq = 7380 MHz, 3db: 7249 => 7320 MHz
-> freq = 7390 MHz, 3db: 7249 => 7320 MHz
-> freq = 7400 MHz, 3db: 7249 => 7320 MHz
-> freq = 7410 MHz, 3db: 7249 => 7320 MHz
-> freq = 7420 MHz, 3db: 7249 => 7320 MHz
-> freq = 7430 MHz, 3db: 7249 => 7320 MHz
-> freq = 7440 MHz, 3db: 7249 => 7320 MHz
-> freq = 7450 MHz, 3db: 7249 => 7320 MHz
-> freq = 7460 MHz, 3db: 7249 => 7320 MHz
-> freq = 7470 MHz, 3db: 7249 => 7320 MHz
-> freq = 7480 MHz, 3db: 7249 => 7320 MHz
-> freq = 7490 MHz, 3db: 7249 => 7320 MHz
-> freq = 7500 MHz, 3db: 7249 => 7320 MHz
-> freq = 12500 MHz, 3db: 12000 => 12500 MHz
-> 
-> === LPF ===
-> freq = 2050 MHz, 3db: bypass => 2050 MHz
-> freq = 2170 MHz, 3db: 2290 => 2170 MHz
-> freq = 2290 MHz, 3db: 2410 => 2290 MHz
-> freq = 2410 MHz, 3db: 2530 => 2410 MHz
-> freq = 2530 MHz, 3db: 2650 => 2530 MHz
-> freq = 2650 MHz, 3db: 2770 => 2650 MHz
-> freq = 2770 MHz, 3db: 2890 => 2770 MHz
-> freq = 2890 MHz, 3db: 3010 => 2890 MHz
-> freq = 3010 MHz, 3db: 3130 => 3010 MHz
-> freq = 3130 MHz, 3db: 3250 => 3130 MHz
-> freq = 3250 MHz, 3db: 3370 => 3250 MHz
-> freq = 3260 MHz, 3db: 3370 => 3350 MHz
-> freq = 3270 MHz, 3db: 3370 => 3350 MHz
-> freq = 3280 MHz, 3db: 3370 => 3350 MHz
-> freq = 3290 MHz, 3db: 3370 => 3350 MHz
-> freq = 3300 MHz, 3db: 3370 => 3350 MHz
-> freq = 3310 MHz, 3db: 3370 => 3350 MHz
-> freq = 3320 MHz, 3db: 3370 => 3350 MHz
-> freq = 3330 MHz, 3db: 3370 => 3350 MHz
-> freq = 3340 MHz, 3db: 3370 => 3350 MHz
-> freq = 3350 MHz, 3db: 3370 => 3350 MHz
-> freq = 3370 MHz, 3db: 3490 => 3370 MHz
-> freq = 3490 MHz, 3db: 3610 => 3490 MHz
-> freq = 3610 MHz, 3db: 3730 => 3610 MHz
-> freq = 3730 MHz, 3db: 3850 => 3730 MHz
-> freq = 3850 MHz, 3db: 3870 => 3850 MHz
-> freq = 3870 MHz, 3db: 4130 => 3870 MHz
-> freq = 4130 MHz, 3db: 4390 => 4130 MHz
-> freq = 4390 MHz, 3db: 4650 => 4390 MHz
-> freq = 4650 MHz, 3db: 4910 => 4650 MHz
-> freq = 4910 MHz, 3db: 5170 => 4910 MHz
-> freq = 5170 MHz, 3db: 5430 => 5170 MHz
-> freq = 5430 MHz, 3db: 5690 => 5430 MHz
-> freq = 5690 MHz, 3db: 5950 => 5690 MHz
-> freq = 5950 MHz, 3db: 6210 => 5950 MHz
-> freq = 6210 MHz, 3db: 6470 => 6210 MHz
-> freq = 6470 MHz, 3db: 6730 => 6470 MHz
-> freq = 6730 MHz, 3db: 6990 => 6730 MHz
-> freq = 6990 MHz, 3db: 7250 => 6990 MHz
-> freq = 7000 MHz, 3db: 7250 => 7000 MHz
-> freq = 7250 MHz, 3db: 7400 => 7250 MHz
-> freq = 7400 MHz, 3db: 7800 => 7400 MHz
-> freq = 7800 MHz, 3db: 8200 => 7800 MHz
-> freq = 8200 MHz, 3db: 8600 => 8200 MHz
-> freq = 8600 MHz, 3db: 9000 => 8600 MHz
-> freq = 9000 MHz, 3db: 9400 => 9000 MHz
-> freq = 9400 MHz, 3db: 9800 => 9400 MHz
-> freq = 9800 MHz, 3db: 10200 => 9800 MHz
-> freq = 10200 MHz, 3db: 10600 => 10200 MHz
-> freq = 10600 MHz, 3db: 11000 => 10600 MHz
-> freq = 11000 MHz, 3db: 11400 => 11000 MHz
-> freq = 11400 MHz, 3db: 11800 => 11400 MHz
-> freq = 11800 MHz, 3db: 12200 => 11800 MHz
-> freq = 12200 MHz, 3db: 12600 => 12200 MHz
-> freq = 12210 MHz, 3db: 12600 => 12550 MHz
-> freq = 12220 MHz, 3db: 12600 => 12550 MHz
-> freq = 12230 MHz, 3db: 12600 => 12550 MHz
-> freq = 12240 MHz, 3db: 12600 => 12550 MHz
-> freq = 12250 MHz, 3db: 12600 => 12550 MHz
-> freq = 12260 MHz, 3db: 12600 => 12550 MHz
-> freq = 12270 MHz, 3db: 12600 => 12550 MHz
-> freq = 12280 MHz, 3db: 12600 => 12550 MHz
-> freq = 12290 MHz, 3db: 12600 => 12550 MHz
-> freq = 12300 MHz, 3db: 12600 => 12550 MHz
-> freq = 12310 MHz, 3db: 12600 => 12550 MHz
-> freq = 12320 MHz, 3db: 12600 => 12550 MHz
-> freq = 12330 MHz, 3db: 12600 => 12550 MHz
-> freq = 12340 MHz, 3db: 12600 => 12550 MHz
-> freq = 12350 MHz, 3db: 12600 => 12550 MHz
-> freq = 12360 MHz, 3db: 12600 => 12550 MHz
-> freq = 12370 MHz, 3db: 12600 => 12550 MHz
-> freq = 12380 MHz, 3db: 12600 => 12550 MHz
-> freq = 12390 MHz, 3db: 12600 => 12550 MHz
-> freq = 12400 MHz, 3db: 12600 => 12550 MHz
-> freq = 12410 MHz, 3db: 12600 => 12550 MHz
-> freq = 12420 MHz, 3db: 12600 => 12550 MHz
-> freq = 12430 MHz, 3db: 12600 => 12550 MHz
-> freq = 12440 MHz, 3db: 12600 => 12550 MHz
-> freq = 12450 MHz, 3db: 12600 => 12550 MHz
-> freq = 12460 MHz, 3db: 12600 => 12550 MHz
-> freq = 12470 MHz, 3db: 12600 => 12550 MHz
-> freq = 12480 MHz, 3db: 12600 => 12550 MHz
-> freq = 12490 MHz, 3db: 12600 => 12550 MHz
-> freq = 12500 MHz, 3db: 12600 => 12550 MHz
-> freq = 12510 MHz, 3db: 12600 => 12550 MHz
-> freq = 12520 MHz, 3db: 12600 => 12550 MHz
-> freq = 12530 MHz, 3db: 12600 => 12550 MHz
-> freq = 12540 MHz, 3db: 12600 => 12550 MHz
-> freq = 12550 MHz, 3db: 12600 => 12550 MHz
-> freq = 12600 MHz, 3db: 13000 => 12600 MHz
-> freq = 12610 MHz, 3db: 13000 => 12970 MHz
-> freq = 12620 MHz, 3db: 13000 => 12970 MHz
-> freq = 12630 MHz, 3db: 13000 => 12970 MHz
-> freq = 12640 MHz, 3db: 13000 => 12970 MHz
-> freq = 12650 MHz, 3db: 13000 => 12970 MHz
-> freq = 12660 MHz, 3db: 13000 => 12970 MHz
-> freq = 12670 MHz, 3db: 13000 => 12970 MHz
-> freq = 12680 MHz, 3db: 13000 => 12970 MHz
-> freq = 12690 MHz, 3db: 13000 => 12970 MHz
-> freq = 12700 MHz, 3db: 13000 => 12970 MHz
-> freq = 12710 MHz, 3db: 13000 => 12970 MHz
-> freq = 12720 MHz, 3db: 13000 => 12970 MHz
-> freq = 12730 MHz, 3db: 13000 => 12970 MHz
-> freq = 12740 MHz, 3db: 13000 => 12970 MHz
-> freq = 12750 MHz, 3db: 13000 => 12970 MHz
-> freq = 12760 MHz, 3db: 13000 => 12970 MHz
-> freq = 12770 MHz, 3db: 13000 => 12970 MHz
-> freq = 12780 MHz, 3db: 13000 => 12970 MHz
-> freq = 12790 MHz, 3db: 13000 => 12970 MHz
-> freq = 12800 MHz, 3db: 13000 => 12970 MHz
-> freq = 12810 MHz, 3db: 13000 => 12970 MHz
-> freq = 12820 MHz, 3db: 13000 => 12970 MHz
-> freq = 12830 MHz, 3db: 13000 => 12970 MHz
-> freq = 12840 MHz, 3db: 13000 => 12970 MHz
-> freq = 12850 MHz, 3db: 13000 => 12970 MHz
-> freq = 12860 MHz, 3db: 13000 => 12970 MHz
-> freq = 12870 MHz, 3db: 13000 => 12970 MHz
-> freq = 12880 MHz, 3db: 13000 => 12970 MHz
-> freq = 12890 MHz, 3db: 13000 => 12970 MHz
-> freq = 12900 MHz, 3db: 13000 => 12970 MHz
-> freq = 12910 MHz, 3db: 13000 => 12970 MHz
-> freq = 12920 MHz, 3db: 13000 => 12970 MHz
-> freq = 12930 MHz, 3db: 13000 => 12970 MHz
-> freq = 12940 MHz, 3db: 13000 => 12970 MHz
-> freq = 12950 MHz, 3db: 13000 => 12970 MHz
-> freq = 12960 MHz, 3db: 13000 => 12970 MHz
-> freq = 12970 MHz, 3db: 13000 => 12970 MHz
-> freq = 13000 MHz, 3db: 13390 => 13000 MHz
-> freq = 13390 MHz, 3db: 13810 => 13390 MHz
-> freq = 13810 MHz, 3db: 14230 => 13810 MHz
-> freq = 14230 MHz, 3db: 14650 => 14230 MHz
-> freq = 14650 MHz, 3db: 15070 => 14650 MHz
-> freq = 15070 MHz, 3db: 15490 => 15070 MHz
-> freq = 15490 MHz, 3db: 15910 => 15490 MHz
-> freq = 15910 MHz, 3db: 16330 => 15910 MHz
-> freq = 16330 MHz, 3db: 16750 => 16330 MHz
-> freq = 16750 MHz, 3db: 17170 => 16750 MHz
-> freq = 17170 MHz, 3db: 17590 => 17170 MHz
-> freq = 17590 MHz, 3db: 18010 => 17590 MHz
-> freq = 18010 MHz, 3db: 18430 => 18010 MHz
-> freq = 18430 MHz, 3db: 18850 => 18430 MHz
-> freq = 18850 MHz, 3db: bypass => 18850 MHz
-> 
-> Fixes: f34fe888ad05 ("iio:filter:admv8818: add support for ADMV8818")
-> Signed-off-by: Sam Winchenbach <sam.winchenbach@framepointer.org>
+On 2025/3/4 15:12, Inochi Amaoto wrote:
+> Add support for DesignWare-based PCIe controller in SG2044 SoC.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 > ---
-> V1 -> V2: Cleaned up the wording of the commit message
-> V2 -> V3: Add DTS properties to control corner frequency margins
-> ---
->  drivers/iio/filter/admv8818.c | 136 ++++++++++++++++++++++++++--------
->  1 file changed, 105 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/iio/filter/admv8818.c b/drivers/iio/filter/admv8818.c
-> index 848baa6e3bbf..a446d8d421ae 100644
-> --- a/drivers/iio/filter/admv8818.c
-> +++ b/drivers/iio/filter/admv8818.c
-> @@ -90,6 +90,8 @@ struct admv8818_state {
->  	struct mutex		lock;
->  	unsigned int		filter_mode;
->  	u64			cf_hz;
-> +	u64			lpf_margin_hz;
-> +	u64			hpf_margin_hz;
->  };
->  
->  static const unsigned long long freq_range_hpf[4][2] = {
-> @@ -103,7 +105,7 @@ static const unsigned long long freq_range_lpf[4][2] = {
->  	{2050000000ULL, 3850000000ULL},
->  	{3350000000ULL, 7250000000ULL},
->  	{7000000000, 13000000000},
-> -	{12550000000, 18500000000}
-> +	{12550000000, 18850000000}
-
-As above. This seems to be the first fix and should stand on it's own.
-
->  };
->  
->  static const struct regmap_config admv8818_regmap_config = {
-> @@ -122,43 +124,59 @@ static const char * const admv8818_modes[] = {
->  static int __admv8818_hpf_select(struct admv8818_state *st, u64 freq)
->  {
->  	unsigned int hpf_step = 0, hpf_band = 0, i, j;
-> +	u64 freq_error;
-> +	u64 min_freq_error;
-> +	u64 freq_corner;
->  	u64 freq_step;
->  	int ret;
->  
->  	if (freq < freq_range_hpf[0][0])
->  		goto hpf_write;
->  
-> -	if (freq > freq_range_hpf[3][1]) {
-> +	if (freq >= freq_range_hpf[3][1]) {
->  		hpf_step = 15;
->  		hpf_band = 4;
->  
->  		goto hpf_write;
->  	}
->  
-> +	/* Close HPF frequency gap between 12 and 12.5 GHz */
-> +	if (freq >= 12000 * HZ_PER_MHZ && freq < 12500 * HZ_PER_MHZ) {
-> +		hpf_step = 15;
-> +		hpf_band = 3;
+>   drivers/pci/controller/dwc/Kconfig          |  10 +
+>   drivers/pci/controller/dwc/Makefile         |   1 +
+>   drivers/pci/controller/dwc/pcie-dw-sophgo.c | 270 ++++++++++++++++++++
+Will this driver work for all sophgo chips using dw's IP? If not, it is 
+recommended to rename it to "pcie-dw-sg2044.c".
+>   3 files changed, 281 insertions(+)
+>   create mode 100644 drivers/pci/controller/dwc/pcie-dw-sophgo.c
+>
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index b6d6778b0698..004c384e25ad 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -381,6 +381,16 @@ config PCIE_UNIPHIER_EP
+>   	  Say Y here if you want PCIe endpoint controller support on
+>   	  UniPhier SoCs. This driver supports Pro5 SoC.
+>   
+> +config PCIE_SOPHGO_DW
+Similar to the above question, would it be better to change it to 
+"PCIE_SG2044_DW"?
+> +	bool "Sophgo DesignWare PCIe controller"
+> +	depends on ARCH_SOPHGO || COMPILE_TEST
+> +	depends on PCI_MSI
+> +	depends on OF
+> +	select PCIE_DW_HOST
+> +	help
+> +	  Enables support for the DesignWare PCIe controller in the
+> +	  Sophgo SoC.
 > +
-> +		goto hpf_write;
-> +	}
+>   config PCIE_SPEAR13XX
+>   	bool "STMicroelectronics SPEAr PCIe controller"
+>   	depends on ARCH_SPEAR13XX || COMPILE_TEST
+> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
+> index a8308d9ea986..193150056dd3 100644
+> --- a/drivers/pci/controller/dwc/Makefile
+> +++ b/drivers/pci/controller/dwc/Makefile
+> @@ -18,6 +18,7 @@ obj-$(CONFIG_PCIE_QCOM_EP) += pcie-qcom-ep.o
+>   obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
+>   obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
+>   obj-$(CONFIG_PCIE_ROCKCHIP_DW) += pcie-dw-rockchip.o
+> +obj-$(CONFIG_PCIE_SOPHGO_DW) += pcie-dw-sophgo.o
+>   obj-$(CONFIG_PCIE_INTEL_GW) += pcie-intel-gw.o
+>   obj-$(CONFIG_PCIE_KEEMBAY) += pcie-keembay.o
+>   obj-$(CONFIG_PCIE_KIRIN) += pcie-kirin.o
+> diff --git a/drivers/pci/controller/dwc/pcie-dw-sophgo.c b/drivers/pci/controller/dwc/pcie-dw-sophgo.c
+> new file mode 100644
+> index 000000000000..3ed7cfe0b361
+> --- /dev/null
+> +++ b/drivers/pci/controller/dwc/pcie-dw-sophgo.c
+> @@ -0,0 +1,270 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Sophgo DesignWare based PCIe host controller driver
+> + */
 > +
-> +	min_freq_error = U64_MAX;
->  	for (i = 0; i < 4; i++) {
-
-Can we get that 4 from an array size rather than hard coding here?
-
-> +		/* This (and therefore all other ranges) have a corner
-
-Multiline comment in IIO (and most of kernel for that matter) is
-/*
- * This...
-
-> +		 * frequency higher than the target frequency.
-> +		 */
-> +		if (freq_range_hpf[i][0] > freq)
-> +			break;
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/module.h>
+> +#include <linux/property.h>
+> +#include <linux/platform_device.h>
 > +
->  		freq_step = div_u64((freq_range_hpf[i][1] -
->  			freq_range_hpf[i][0]), 15);
->  
-> -		if (freq > freq_range_hpf[i][0] &&
-> -		    (freq < freq_range_hpf[i][1] + freq_step)) {
-> -			hpf_band = i + 1;
-> +		for (j = 0; j <= 15; j++) {
-
-Similarly, where does the 15 come from?  It's kind of in the old
-code but given you are changing this good to make that clearer in
-some fashion.
-
-> +			freq_corner = freq_range_hpf[i][0] + (freq_step * j);
-No need for brackets around the two multiplied term.
-
-For all these comments check for other instances. I'm just pointing out one.
+> +#include "pcie-designware.h"
 > +
-> +			/* This (and therefore all other steps) have a corner
-> +			 * frequency higher than the target frequency.
-> +			 */
-> +			if (freq_corner > freq)
-> +				break;
->  
-> -			for (j = 1; j <= 16; j++) {
-> -				if (freq < (freq_range_hpf[i][0] + (freq_step * j))) {
-> -					hpf_step = j - 1;
-> -					break;
-> -				}
-> +			freq_error = freq - freq_corner;
-> +			if (freq_error < min_freq_error) {
-> +				min_freq_error = freq_error;
-> +				hpf_step = j;
-> +				hpf_band = i + 1;
->  			}
-> -			break;
->  		}
->  	}
->  
-> -	/* Close HPF frequency gap between 12 and 12.5 GHz */
-> -	if (freq >= 12000 * HZ_PER_MHZ && freq <= 12500 * HZ_PER_MHZ) {
-> -		hpf_band = 3;
-> -		hpf_step = 15;
-> -	}
-> -
->  hpf_write:
->  	ret = regmap_update_bits(st->regmap, ADMV8818_REG_WR0_SW,
->  				 ADMV8818_SW_IN_SET_WR0_MSK |
-> @@ -186,7 +204,11 @@ static int admv8818_hpf_select(struct admv8818_state *st, u64 freq)
->  
->  static int __admv8818_lpf_select(struct admv8818_state *st, u64 freq)
->  {
-> -	unsigned int lpf_step = 0, lpf_band = 0, i, j;
-> +	int i, j;
-
-Might as well combine with declaration of ret below.
-
-> +	unsigned int lpf_step = 0, lpf_band = 0;
-> +	u64 freq_error;
-> +	u64 min_freq_error;
-> +	u64 freq_corner;
-Good to combine a few of these related u64 as single line declaration..
-
->  	u64 freq_step;
->  	int ret;
->  
-> @@ -199,18 +221,34 @@ static int __admv8818_lpf_select(struct admv8818_state *st, u64 freq)
->  		goto lpf_write;
->  	}
->  
-> -	for (i = 0; i < 4; i++) {
-> -		if (freq > freq_range_lpf[i][0] && freq < freq_range_lpf[i][1]) {
-> -			lpf_band = i + 1;
-> -			freq_step = div_u64((freq_range_lpf[i][1] - freq_range_lpf[i][0]), 15);
-> -
-> -			for (j = 0; j <= 15; j++) {
-> -				if (freq < (freq_range_lpf[i][0] + (freq_step * j))) {
-> -					lpf_step = j;
-> -					break;
-> -				}
-> -			}
-> +	min_freq_error = U64_MAX;
-> +	for (i = 3; i >= 0; --i) {
-
-As above. If that 3 comes from an array size, please make that clear.
-
-> +		/* At this point the highest corner frequency of
-> +		 * all remaining ranges is below the target.
-> +		 * LPF corner should be >= the target.
-> +		 */
-> +		if (freq > freq_range_lpf[i][1])
->  			break;
+> +#define to_sophgo_pcie(x)		dev_get_drvdata((x)->dev)
 > +
-> +		freq_step = div_u64((freq_range_lpf[i][1] - freq_range_lpf[i][0]), 15);
+> +#define PCIE_INT_SIGNAL			0xc48
+> +#define PCIE_INT_EN			0xca0
 > +
-> +		for (j = 15; j >= 0; --j) {
+> +#define PCIE_INT_SIGNAL_INTX		GENMASK(8, 5)
 > +
-> +			freq_corner = freq_range_lpf[i][0] + j*freq_step;
+> +#define PCIE_INT_EN_INTX		GENMASK(4, 1)
+> +#define PCIE_INT_EN_INT_MSI		BIT(5)
 > +
-> +			/* At this point all other steps in range will
-> +			 * place the corner frequency below the target
-> +			 * LPF corner should >= the target.
-> +			 */
-> +			if (freq > freq_corner)
-> +				break;
+> +struct sophgo_pcie {
+> +	struct dw_pcie		pci;
+> +	void __iomem		*app_base;
+> +	struct clk_bulk_data	*clks;
+> +	unsigned int		clk_cnt;
+> +	struct irq_domain	*irq_domain;
+> +};
 > +
-> +			freq_error = freq_corner - freq;
-> +			if (freq_error < min_freq_error) {
-> +				min_freq_error = freq_error;
-> +				lpf_step = j;
-> +				lpf_band = i + 1;
-> +			}
->  		}
->  	}
->  
-> @@ -242,16 +280,28 @@ static int admv8818_lpf_select(struct admv8818_state *st, u64 freq)
->  static int admv8818_rfin_band_select(struct admv8818_state *st)
->  {
->  	int ret;
-> +	u64 hpf_corner_target, lpf_corner_target;
->  
->  	st->cf_hz = clk_get_rate(st->clkin);
->  
-> +	// Check for underflow
-
-No C++ style comments in IIO code.  This is just a consistency thing rather than
-really matter. We have lots of code that predates those being at all acceptable
-in the kernel and a mixture of the two styles is messy!
-
-> +	if (st->cf_hz > st->hpf_margin_hz)
-> +		hpf_corner_target = st->cf_hz - st->hpf_margin_hz;
-> +	else
-> +		hpf_corner_target = 0;
-> +
-> +	// Check for overflow
-> +	lpf_corner_target = st->cf_hz + st->lpf_margin_hz;
-> +	if (lpf_corner_target < st->cf_hz)
-> +		lpf_corner_target = U64_MAX;
-> +
->  	mutex_lock(&st->lock);
->  
-> -	ret = __admv8818_hpf_select(st, st->cf_hz);
-> +	ret = __admv8818_hpf_select(st, hpf_corner_target);
->  	if (ret)
->  		goto exit;
->  
-> -	ret = __admv8818_lpf_select(st, st->cf_hz);
-> +	ret = __admv8818_lpf_select(st, lfp_corner_target);
->  exit:
->  	mutex_unlock(&st->lock);
->  	return ret;
-> @@ -647,6 +697,26 @@ static int admv8818_clk_setup(struct admv8818_state *st)
->  	return devm_add_action_or_reset(&spi->dev, admv8818_clk_notifier_unreg, st);
->  }
->  
-> +static int admv8818_read_properties(struct admv8818_state *st)
+A similar question is, can structure names and function names use 
+prefixes like "sg2044_"? This also makes it easier for other sophgo 
+products to reuse this driver file in the future.
+> +static int sophgo_pcie_readl_app(struct sophgo_pcie *sophgo, u32 reg)
 > +{
-> +	struct spi_device *spi = st->spi;
-> +	int ret;
+> +	return readl_relaxed(sophgo->app_base + reg);
+> +}
 > +
-> +	ret = device_property_read_u64(&spi->dev, "adi,lpf-margin-hz", &st->lpf_margin_hz);
-> +	if (ret == -EINVAL)
-> +		st->lpf_margin_hz = 0;
-> +	else if (ret < 0)
-> +		return ret;
-Often for properties with defaults we don't worry too much about checking for errors other
-than 'not there'. So I'd be fine with this being the simpler.
-
-	st->lpf_margin_hz = 0;
-	device_property_read_u64(...)
-
-and no explicit error checking.
-
-If you really want to retain the protection against wrong formats etc, then fair enough.
+> +static void sophgo_pcie_writel_app(struct sophgo_pcie *sophgo, u32 val, u32 reg)
+> +{
+> +	writel_relaxed(val, sophgo->app_base + reg);
+> +}
 > +
-> +	ret = device_property_read_u64(&spi->dev, "adi,hpf-margin-hz", &st->hpf_margin_hz);
-> +	if (ret == -EINVAL)
-> +		st->hpf_margin_hz = 0;
-> +	else if (ret < 0)
-> +		return ret;
+> +static void sophgo_pcie_intx_handler(struct irq_desc *desc)
+> +{
+> +	struct dw_pcie_rp *pp = irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
+> +	unsigned long hwirq, reg;
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	reg = sophgo_pcie_readl_app(sophgo, PCIE_INT_SIGNAL);
+> +	reg = FIELD_GET(PCIE_INT_SIGNAL_INTX, reg);
+> +
+> +	for_each_set_bit(hwirq, &reg, PCI_NUM_INTX)
+> +		generic_handle_domain_irq(sophgo->irq_domain, hwirq);
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static void sophgo_intx_irq_mask(struct irq_data *d)
+> +{
+> +	struct dw_pcie_rp *pp = irq_data_get_irq_chip_data(d);
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	raw_spin_lock_irqsave(&pp->lock, flags);
+> +
+> +	val = sophgo_pcie_readl_app(sophgo, PCIE_INT_EN);
+> +	val &= ~FIELD_PREP(PCIE_INT_EN_INTX, BIT(d->hwirq));
+> +	sophgo_pcie_writel_app(sophgo, val, PCIE_INT_EN);
+> +
+> +	raw_spin_unlock_irqrestore(&pp->lock, flags);
+> +};
+> +
+> +static void sophgo_intx_irq_unmask(struct irq_data *d)
+> +{
+> +	struct dw_pcie_rp *pp = irq_data_get_irq_chip_data(d);
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	raw_spin_lock_irqsave(&pp->lock, flags);
+> +
+> +	val = sophgo_pcie_readl_app(sophgo, PCIE_INT_EN);
+> +	val |= FIELD_PREP(PCIE_INT_EN_INTX, BIT(d->hwirq));
+> +	sophgo_pcie_writel_app(sophgo, val, PCIE_INT_EN);
+> +
+> +	raw_spin_unlock_irqrestore(&pp->lock, flags);
+> +};
+> +
+> +static void sophgo_intx_irq_eoi(struct irq_data *d)
+> +{
+> +}
+Why define this empty callback function? Please add a comment if it is 
+really needed.
+> +
+> +static struct irq_chip sophgo_intx_irq_chip = {
+> +	.name			= "INTx",
+"INTx" --> "SG2044 INTx"
+> +	.irq_mask		= sophgo_intx_irq_mask,
+> +	.irq_unmask		= sophgo_intx_irq_unmask,
+> +	.irq_eoi		= sophgo_intx_irq_eoi,
+> +};
+> +
+> +static int sophgo_pcie_intx_map(struct irq_domain *domain, unsigned int irq,
+> +				irq_hw_number_t hwirq)
+> +{
+> +	irq_set_chip_and_handler(irq, &sophgo_intx_irq_chip, handle_fasteoi_irq);
+> +	irq_set_chip_data(irq, domain->host_data);
 > +
 > +	return 0;
 > +}
 > +
->  static int admv8818_probe(struct spi_device *spi)
->  {
->  	struct iio_dev *indio_dev;
-> @@ -678,6 +748,10 @@ static int admv8818_probe(struct spi_device *spi)
->  
->  	mutex_init(&st->lock);
->  
-> +	ret = admv8818_read_properties(st);
-I haven't checked but if this is first place that you use property.h then
-need that included.
+> +static const struct irq_domain_ops intx_domain_ops = {
+> +	.map = sophgo_pcie_intx_map,
+> +};
+> +
+> +static int sophgo_pcie_init_irq_domain(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
 
+"sophgo"? This variable name looks a bit strange, why not call it "pcie" 
+directly?
+
+I have seen similar naming in other functions, please change it as well.
+
+> +	struct device *dev = sophgo->pci.dev;
+> +	struct fwnode_handle *intc;
+> +	int irq;
+> +
+> +	intc = device_get_named_child_node(dev, "interrupt-controller");
+> +	if (!intc) {
+> +		dev_err(dev, "missing child interrupt-controller node\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	irq = fwnode_irq_get(intc, 0);
+> +	if (irq < 0) {
+> +		dev_err(dev, "failed to get INTx irq number\n");
+> +		fwnode_handle_put(intc);
+> +		return irq;
+> +	}
+> +
+> +	sophgo->irq_domain = irq_domain_create_linear(intc, PCI_NUM_INTX,
+> +						      &intx_domain_ops, sophgo);
+> +	fwnode_handle_put(intc);
+> +	if (!sophgo->irq_domain) {
+> +		dev_err(dev, "failed to get a INTx irq domain\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return irq;
+> +}
+> +
+> +static void sophgo_pcie_msi_enable(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct sophgo_pcie *sophgo = to_sophgo_pcie(pci);
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	raw_spin_lock_irqsave(&pp->lock, flags);
+> +
+> +	val = sophgo_pcie_readl_app(sophgo, PCIE_INT_EN);
+> +	val |= PCIE_INT_EN_INT_MSI;
+> +	sophgo_pcie_writel_app(sophgo, val, PCIE_INT_EN);
+> +
+> +	raw_spin_unlock_irqrestore(&pp->lock, flags);
+> +}
+> +
+> +static int sophgo_pcie_host_init(struct dw_pcie_rp *pp)
+> +{
+> +	int irq;
+> +
+> +	irq = sophgo_pcie_init_irq_domain(pp);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	irq_set_chained_handler_and_data(irq, sophgo_pcie_intx_handler,
+> +					 pp);
+> +
+> +	sophgo_pcie_msi_enable(pp);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dw_pcie_host_ops sophgo_pcie_host_ops = {
+> +	.init = sophgo_pcie_host_init,
+> +};
+> +
+> +static int sophgo_pcie_clk_init(struct sophgo_pcie *sophgo)
+> +{
+> +	struct device *dev = sophgo->pci.dev;
+> +	int ret;
+> +
+> +	ret = devm_clk_bulk_get_all_enabled(dev, &sophgo->clks);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to get clocks\n");
+> +
+> +	sophgo->clk_cnt = ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int sophgo_pcie_resource_get(struct platform_device *pdev,
+> +				    struct sophgo_pcie *sophgo)
+> +{
+> +	sophgo->app_base = devm_platform_ioremap_resource_byname(pdev, "app");
+> +	if (IS_ERR(sophgo->app_base))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(sophgo->app_base),
+> +				     "failed to map app registers\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int sophgo_pcie_configure_rc(struct sophgo_pcie *sophgo)
+> +{
+> +	struct dw_pcie_rp *pp;
+> +
+> +	pp = &sophgo->pci.pp;
+> +	pp->ops = &sophgo_pcie_host_ops;
+> +
+> +	return dw_pcie_host_init(pp);
+> +}
+> +
+> +static int sophgo_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct sophgo_pcie *sophgo;
+> +	int ret;
+> +
+> +	sophgo = devm_kzalloc(dev, sizeof(*sophgo), GFP_KERNEL);
+> +	if (!sophgo)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, sophgo);
+> +
+> +	sophgo->pci.dev = dev;
+> +
+> +	ret = sophgo_pcie_resource_get(pdev, sophgo);
 > +	if (ret)
 > +		return ret;
 > +
->  	ret = admv8818_init(st);
->  	if (ret)
->  		return ret;
-
+> +	ret = sophgo_pcie_clk_init(sophgo);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return sophgo_pcie_configure_rc(sophgo);
+> +}
+> +
+> +static const struct of_device_id sophgo_pcie_of_match[] = {
+> +	{ .compatible = "sophgo,sg2044-pcie" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, sophgo_pcie_acpi_match);
+> +
+> +static const struct acpi_device_id sophgo_pcie_acpi_match[] = {
+> +	{ "SOPHO000", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(acpi, sophgo_pcie_acpi_match);
+> +
+> +static struct platform_driver sophgo_pcie_driver = {
+> +	.driver = {
+> +		.name = "sophgo-dw-pcie",
+> +		.of_match_table = sophgo_pcie_of_match,
+> +		.acpi_match_table = sophgo_pcie_acpi_match,
+> +		.suppress_bind_attrs = true,
+> +	},
+> +	.probe = sophgo_pcie_probe,
+> +};
+> +builtin_platform_driver(sophgo_pcie_driver);
 
