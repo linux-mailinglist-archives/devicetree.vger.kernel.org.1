@@ -1,73 +1,57 @@
-Return-Path: <devicetree+bounces-153847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F095EA4E083
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:18:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E4B6A4E095
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:20:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DB573B9612
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:11:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D18D03A78E3
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0454204C1E;
-	Tue,  4 Mar 2025 14:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7755F204F6A;
+	Tue,  4 Mar 2025 14:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="y2bhocnC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VMIW/0bK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0686202F90;
-	Tue,  4 Mar 2025 14:11:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49100204C0C;
+	Tue,  4 Mar 2025 14:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741097505; cv=none; b=pVgu4NZ58JaPPsj7ONS4Oylrp1SSi2N6ChILH+d9GVdJGcXVWXm1l+JnSnxawZ+QynAu+z5r9dTBm8e44hITm9+t5EkCmraZoDrEhRPhkAl7OIIUdvMfcKeXuthdjmY6msSM/K2e92g2uXtwhJ/paKI51TW0Nge6AEAP+asmfvA=
+	t=1741097643; cv=none; b=E9dsWt/O+/CBQ2iGS+1OM9UczK76GMyg8lFcEy7TNNTlkNlJVhTLK2xfd6cVEp/Z1tsrm6dKEe2DMKO//OYevmcegbhAvbqkI/Ju1RqtcDKcrYbOWETkIoQoET7En2rxOUfEB4fbSisDe+Q6629PHgdGAfW+bDvm1ZfKvv0oHLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741097505; c=relaxed/simple;
-	bh=SqVSO0zZhtSIAZubXOzoTuy9PzOq5wHwfBsiiZZKMQI=;
+	s=arc-20240116; t=1741097643; c=relaxed/simple;
+	bh=OV2CJNpd5RbwY36OXuv9fH3F4quuWs+tUzGPKWB+dfk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jzgv7AX5GX58HKMO5SCqFrhuw593A7QdiSurevcc5CgEHmNGWOHB/B983faW3ON+3jc2aVdNV95Tj3dGqJsyM3YPOdfFvFKqYDiWnbDVTUz/kliEHWKVjh4Z3yxYh18YICzhlo48HubSksuP7BKeNuvU+kYuhkayro6QEQPMBAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=y2bhocnC; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=+xWBTJhN0XYH43psf/8dEkzJCCMPK7fvqc3iPcn+1ek=; b=y2bhocnCO79LqjeoT7udogNEeI
-	JBArkzcradPOBewej2dEF8GnWGXY3RSY2Wk8R2gmHmqQ7B9tiYK/NGzcWvU9g9Q3rJDv6qCcfZYN2
-	0pZY38gr6o5D1BHSdvye8S3YEN1ONom5SkBtPY8Is782RmUcNYQWcLLQ2yHAmpveh2Jg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tpSzc-0029lG-3z; Tue, 04 Mar 2025 15:11:32 +0100
-Date: Tue, 4 Mar 2025 15:11:32 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: H ZY <hzyitc@outlook.com>
-Cc: "olteanv@gmail.com" <olteanv@gmail.com>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"rmk+kernel@armlinux.org.uk" <rmk+kernel@armlinux.org.uk>,
-	"javier.carrasco.cruz@gmail.com" <javier.carrasco.cruz@gmail.com>,
-	"john@phrozen.org" <john@phrozen.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: qca8k: add
- internal-PHY-to-PHY CPU link example
-Message-ID: <f7ac97f4-7677-402d-99f1-ae82709a3549@lunn.ch>
-References: <TYZPR01MB555632DC209AA69996309B58C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <TYZPR01MB5556D90A3778BDF7AB9A7030C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <ae329902-c940-4fd3-a857-c6689fa35680@lunn.ch>
- <TYZPR01MB5556C13F2BE2042DDE466C95C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <55a2e7d3-f201-48d7-be4e-5d1307e52f56@lunn.ch>
- <dbd0e376-d7c3-4ba9-886b-ba9529a2ec4e@outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DHZIxszB74F99lUfbJc4p8xj/E37B6t9ySiwI9X4uo0v63DsCUhsNOA8dPmV2HhWq/1y0UsQx0FgRSPUdH7CIOBLLKoeFhtZKcVRdA4HSqN4TYitykzNaZe3TcPTkJZtNSasz9isg9AY4gAijeq7BOl2lRkBcCTjHQH7/vhUck8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VMIW/0bK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AE3DC4CEE5;
+	Tue,  4 Mar 2025 14:14:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741097642;
+	bh=OV2CJNpd5RbwY36OXuv9fH3F4quuWs+tUzGPKWB+dfk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VMIW/0bKjE1tZRI1Rs4ZbR6vix5C+Lkx3ktgfcBNXMYTo7IpY2nynzK3XXIcmMoJA
+	 guRel6Y8URIZeXm6QdNsdATb3Pc+sUCVkPiGk+2xSM7UiPu6PXVFbJADiEUNDnB4N9
+	 Wg45jZb1/yRt0R9ubWsPvXxDrhpYL3gdBZnuN02PbQBIiZyfcSrLr7mmqhjqslUSPb
+	 KihOCuDjdjvIdQT0ZLL8r0IC7DlY5UsPstzds7CXOK5dw1P8s2jyDcfayAtYyGt4wA
+	 OaiWrUTG1igICyRY17FzDyFKTgnzf3Uj+uzenZjOMLiwg2kxo7xLwgY5mf1DCdzBg4
+	 0WPPq+tBH0M/g==
+Date: Tue, 4 Mar 2025 08:14:01 -0600
+From: Rob Herring <robh@kernel.org>
+To: Gabriel Gonzales <semfault@disroot.org>
+Cc: linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: qcom: Add Xiaomi Redmi Note 8
+Message-ID: <20250304141401.GA2537006-robh@kernel.org>
+References: <20250304043742.9252-1-semfault@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,42 +60,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dbd0e376-d7c3-4ba9-886b-ba9529a2ec4e@outlook.com>
+In-Reply-To: <20250304043742.9252-1-semfault@disroot.org>
 
-> (Port0 and Port6). Could I just keep this or should I need to add a new
-> case ?
+On Tue, Mar 04, 2025 at 12:37:39PM +0800, Gabriel Gonzales wrote:
+> Document the Xiaomi Redmi Note 8, which is based off the SM6125 SoC
 
-The existing examples are probably sufficient. Just check the text to
-make sure it does not limit it to ports 0 and 6.
+Period.
 
-> > So is this actually internally? Or do you have a IPQ50xx SoC connected
-> > to a qca8337 switch, with copper traces on a PCB? If so, it is not
-> > internal.
+Perhaps mention where ginkgo comes from. It's not clear if one looks at 
+just the commit msg or just the schema.
+
 > 
-> The "internal" is used to describe the localcation of PHY not the link.
-> In current code, qca8k has supported to use a external PHY to do a
-> PHY-to-PHY link (Port0 and Port6). This patch make the internal PHYs
-> support it too (Port1-5).
+> Signed-off-by: Gabriel Gonzales <semfault@disroot.org>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> The followiing topology is existed in most IPQ50xx-based router:
->     _______________________         _______________________
->    |        IPQ5018        |       |        QCA8337        |
->    | +------+   +--------+ |       | +--------+   +------+ |
->    | | MAC0 |---| GE Phy |-+--MDI--+-|  Phy4  |---| MAC5 | |
->    | +------+   +--------+ |       | +--------+   +------+ |
->    | +------+   +--------+ |       | +--------+   +------+ |
->    | | MAC1 |---| Uniphy |-+-SGMII-+-| SerDes |---| MAC0 | |
->    | +------+   +--------+ |       | +--------+   +------+ |
->    |_______________________|       |_______________________|
-
-So logically, it does not matter if the PHY is internal or
-external. The patch would be the same. I've even see setups where the
-SGMII link would have a PHY, then a connection to a daughter board,
-and then a PHY back to SGMII before connecting to the switch. Running
-Ethernet over the connector is easier than SERDES lines.
-
-So i would probably drop the word internal from this discussion,
-unless it is really relevant.
-
-	Andrew
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 618a87693..52f7b217b 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -1020,6 +1020,7 @@ properties:
+>        - items:
+>            - enum:
+>                - sony,pdx201
+> +              - xiaomi,ginkgo
+>                - xiaomi,laurel-sprout
+>            - const: qcom,sm6125
+>  
+> -- 
+> 2.47.0
+> 
 
