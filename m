@@ -1,140 +1,336 @@
-Return-Path: <devicetree+bounces-153683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08BB4A4D7E9
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:24:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D5FA4D81B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:26:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EA7F3A3AE2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:23:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF74E16E2A6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81355190052;
-	Tue,  4 Mar 2025 09:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00571FE45C;
+	Tue,  4 Mar 2025 09:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="AR4OKWdv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="H8jehxoa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 879D63A8C1;
-	Tue,  4 Mar 2025 09:24:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB001FDE02
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 09:25:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741080244; cv=none; b=lG/Hi28Wx9q5cnGWpGxNfM4ZNLWT/pL04dNYkVoD7GtEoWoC7vCU6fWOCsc89TxZUSElzuMwFeiOyZyeC3tNCtNJ1onB/BDcU8iy4CxPjcLJSf6tTr72bIdCCqOxcrGaSOKS/fHCXVOWHVHd1cFSSAISGX1MTAVXFl5AXpt5/0M=
+	t=1741080321; cv=none; b=N3ij+kLKlR54PxOosj1O+EvPbKWqUpeE9F62TPJTYFLRGJFnpcig7sBB0poUhUznvVysHfzdNNF1AfgMvACdRcgd0nK3smkFqRjU7ohaZKyaS7tSxDT7qnR2kYP2cz5RLWtVVsYXBnseZR7SV/gusM5ZTJQqxbrNhqiui1HH7aI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741080244; c=relaxed/simple;
-	bh=qAOUbI/BEbZDvaPix7eWz3Zl3lsDI9E9B/i/XFncmrE=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
-	 In-Reply-To:References:Date; b=RY6zgQqe+ckkmrlkTPrUP13sat1f0Diax9DQS4oK1S5jOtKfj0zodV+dEcjrngZbw6Fu24jJQ7lG++uBX4IBbptwP4bekzi1SklEv/E7fzmUCAXUd6I3YFJaAe9p2vqU6a5ZfChC2RTdFYubLl5G+Ynexf62NhmJ222Tpr48wfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=AR4OKWdv; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1741080239; x=1741685039; i=frank-w@public-files.de;
-	bh=qAOUbI/BEbZDvaPix7eWz3Zl3lsDI9E9B/i/XFncmrE=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:In-Reply-To:References:Date:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=AR4OKWdvdxDkf5DnYJm79Y0Sc4ijHsQWiPWZt9Jxh7CXEcy3rWXJVsRT3FEsY5V1
-	 arkL5I0mVS06IXKJzsJ6EL5n7OKgaBfXEQm07zyx8teMKZPBkyv58BVwCX77qkXCQ
-	 NDyyNdNY/TzgHHzji5S/hJZJy4mqeoR2iv215vEIaPL1z0imelNWTr4s3+YySLAKZ
-	 kMuP8puk2OI5D8aFIvk0WW7eZ7SGGJyQBSygnqxp4jm38b1dnVeejUK4uk2AcXg5v
-	 cteS8a02dNP5iJ5E2PNoKFJmYCsDacJJrVdAHcjiOica9LInOsX2vgvIdAP0tAdkb
-	 nnngzLRRmEEKWDArhA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [194.15.84.185] ([194.15.84.185]) by
- trinity-msg-rest-gmx-gmx-live-5779db864f-7hl68 (via HTTP); Tue, 4 Mar 2025
- 09:23:59 +0000
+	s=arc-20240116; t=1741080321; c=relaxed/simple;
+	bh=xRC63YN3+rHHCv+C8M4xBY81AdOzVX+WwK/6KZrNcDs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=W7bH/ZuVifZJoFhNPiEUaJ/1//llD3Wu5spPJ7OVdlydtdVgk2FqBxYJBfffcqSdx8VTUY+CR+IMmYQ6Fa+l33EXHMId3GDinpgqUKdhOCMB/Qg39q+kw+W6qQKVUcDShQDi42pq/jCRj2ga01ET6axRBDLfqbB7waHwXksk14U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=H8jehxoa; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-3078fb1fa28so47265551fa.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 01:25:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1741080315; x=1741685115; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WNHGZZAfC/OeouxLYsdw1LTwRghW2GqRfwvXDc9ArBc=;
+        b=H8jehxoaGE94GBwzsL2Jg+wwXvOwmQ79qqLwyyCfZkfIgEAPLg0xuq0Tr/DfO+azFS
+         6Uz1OFtDbhSK/+3iNWPeFr8fusAE0uP5BRTBi3E1pG7eQ1OzoWZ0+7oAuT+tLZe1bBC0
+         i3ijAKjGQikQGwZaxW1LsnB9n4A1nDwP1VkFXg6vDrOE9qPPm6MCoIzLsTok3N7oTIar
+         OZCtRy5rAyKjc4PD6OSarw1qKtR88tQNlq++7CidnoYzev7/2uIu2bB87veuAYDgxvna
+         oOw4h+DOYbA2HrdRVI3xW4+XqPVaABCiaDd1o/6QLxbEvS06M3l3K8BtQKWfCFm+Pxpk
+         LyyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741080315; x=1741685115;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WNHGZZAfC/OeouxLYsdw1LTwRghW2GqRfwvXDc9ArBc=;
+        b=JumziVncVsqdPvSMPWcbdhmj6cynt4TWp3qZOcD0aQk1ev+5zWEtY4nGylMEvmSz26
+         NYAhKwlkp/FdaqFMKjX+gGnFMRCTmaJVDDdOqT9YwRcxIZvIzlyDbyNVjI6wpCCP33Tc
+         6ziJYS/h+RRvo2o2n5iwt/xFXDci8m3lqzRAa6mSym4rNnJe4rd/0RKL/mYyrfGOXPp/
+         1MTcCyaKajv/1bnHwXzra5Y3uw06KqTZO8B+5o4mf1mTfbO+hF3oG+3Pya5jKughkErv
+         2WfLMcc1Djcavpo0R8AZ+G03xva1E5aU8Xeb+VbwEAZUM9PqE2zmrsBIa9Y1hQvIOGfs
+         /7Yg==
+X-Forwarded-Encrypted: i=1; AJvYcCXyy21zPgUd77d0YVmpXzqaJfou7iVjLOivFrXucO+is6cqRKe8cCj1SVVU+EOMWi/tW4HMr6cUNzjj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnWRtlHyWFKG5pS4acKFYH01qSQtTY8D3EelYTrx7JVunwNFJS
+	OzF3cpKET5B51YgOB8Ngjg6FBWDKX3lQapK/8IDTqhJRFxUyNuTww2Ptnw9gRLeZnFPTluGmuSb
+	4mNCcuYMhiN6KrTz60845fHfGBajSCVZMCDV39w==
+X-Gm-Gg: ASbGncss6qimP+EYlQ+QDBc6gRDmJtc1VW6SRAn0a9Z/UGjBsupLieEDjuVAiu41Tu/
+	tg+pMW/hDKmaHDTZoAPrnxWKbgWxjm4ZURzpEs11y2C2FqpuHc4pbbCBLU+vk4EMW6DP7ez8pi6
+	xsGLbetPRvPpHL6KQ645dN8A13Zw==
+X-Google-Smtp-Source: AGHT+IGBR2saDF3QQilBjubdBkLz9GIwt81EvLWpbxtqjDwEqBVukkswrlVo60Wa8sQgAwNowo9qt17F/oOZ+WCjClQ=
+X-Received: by 2002:a2e:9c92:0:b0:308:e803:1180 with SMTP id
+ 38308e7fff4ca-30b9344cee6mr42882981fa.31.1741080315257; Tue, 04 Mar 2025
+ 01:25:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-a81b2adf-df25-4888-9490-cc33257061b2-1741080239272@trinity-msg-rest-gmx-gmx-live-5779db864f-7hl68>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: angelogioacchino.delregno@collabora.com, mikhail.kshevetskiy@iopsys.eu,
- matthias.bgg@gmail.com, daniel@makrotopia.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Aw: Re: [RESEND][PATCH] arm64: dts: mediatek: mt7986: fix pwn fan
- settings for sinovoip bpi-r3 board
-Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <618b3cdb-0fef-4194-aeb0-4111c011904d@collabora.com>
-Importance: normal
-References: <20250226050132.547353-1-mikhail.kshevetskiy@iopsys.eu>
- <618b3cdb-0fef-4194-aeb0-4111c011904d@collabora.com>
-Date: Tue, 4 Mar 2025 09:23:59 +0000
-Sensitivity: Normal
-X-Priority: 3
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:KFILJolE/lIPpZ7AIJtQRhRvi++wI/bcQ2lgkUKddOMA3Q7Xb/PEi20XCxNzINqPUzkHm
- r7bRg3aTVEVsMlCFezAHQpCfZIo0rmfInJ2+KshK3/HnsDZVQyToDOfIq7Yg8TUITj56FlSD79uJ
- au2duhPJe/A8BywlmkG/zages3nOVMXUZpRudMTyhvgo9ASG9EMq7pUL7v5YnA7dBXvdqCXeAygt
- hZbvoECRr1DoZaOcqaJQxu8MG07dfNHknBdI7vF/3G+J8lWUMPq46r5DYZ+ogOorGIrIxlfNjHDD
- NE2eaCL+j9qRs6ulzEcIxr0a1XQpGMGixNQ8jBP66Lvlx+cYXMiL3KDNoM8gKzEbI0=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:AxtGf+C3hYI=;FsXk14KBPKOyZP9J+CXltFfvtq2
- dkwYcHX+hPt9iTQqnJndWDKtrP2/oQun9cOggieklZuBgtwYaKW49tHL+CuHemzdlUDGJVpDu
- vwbfyYwXvWuk653PnMYvro0nqq4iuyzAJrauVKriQoApj6IJzvfEYSe7rJn20docf0vk6vRSa
- Ox6uLXiFB6rd4dW0u32lqFrnSJZMSxrU3a2pZQKniOBP23BhtFUBzHi1+Lx067uHyDSlD1ZsI
- xIJHauw41xHXmRE6e6xJ6Ddowzdm12er5T4+wx45slQjZPXBYwChWpOqwtC9wZSLa/Xj/q03a
- 3Ttf8GMDTWZBOz0GIZPMhBhm/yTooJJBnyo/R7DXoj1Gxf0waCuQU6gp8/28gmEanPQl5EkwR
- wGtUPwl2fkJ+Hkr6QewmizRuh7ssrIEfGRZHcFxRYJVPLYzwyK6HwTiW6yaJPyj9vm2544pFv
- zyxbFRqMnW0lj8SjmtOqhyZinC5HQnnrTUcLs8S/piCBg9FyxSVNQwbto+Adg03sQM+5mjf3r
- zKMU2Yi5JdFdH9M+L6JJptDGHZz26P+7Wh5ckfF+EQZ23bfBFtlEqGlDZf73dA5IYSQfhk+Gw
- F0xKm2lMp9U9u2oc5hwtiIeMtbVX2FKM0UbaW87jreVzAljQlCNFCRHJpwNn8c8O+jdkgvp5v
- N80nE+vcDiIMwkXew8goRl999b0yfe3HCy4qZvpG3unhfkINIAv9+X1x6LAn9BgQghSEdbe5P
- EqKVsc35uCYrI/ksr6s1LXj/aTJk8ndZe1g2m78eTc/5k7ORl+SoavD3IWn3GGi984p78vxNT
- +yLpCYBNeab8R+jelpy4Ptnq0iW/v6WptYRSfilS+ucN6+6I+adWjtuE8K/MLt/wH1iG3c9Jo
- T6sIfnmXl4JkTa2kF8ZNVufhUMY1phc2syJBy7xbjvEaslVIPc8HV31jr7M1P/J+27Xh/FDce
- y/6pn/wrrPSdqmputgAQzGAoBajxhAhVW2pjWobo/6jVhRz/ui/3Po6fHi2lTYex3DTq7T9p4
- Y4QW2jnluSWJEJ3pJgjwNGSBn0znCFLWkO3vXtM+ti38NhYuDf5apyjM1d1GtbnVwLUIe8fe3
- x/HoX9uQtV9Yho7DH9h+InsuuEoS8z6SlOAZ5k7q7C8lIiYJXYTIao25kc16kCneD4FLqeGS8
- u16NW7a097nFzsjtWWs8Pyh4XdB+H7iLafDpXOUCimWo213NtkMTsKvl3FRVPVDkLWV9oXfaA
- vdfFMJv3KA12sFRTPLWFeRSD1uElb0l7Bj1wv+kf9f6hnGFBMauN8gk=
+References: <cover.1740993491.git.mazziesaccount@gmail.com> <e71c63c2f61135f9a8c7884525aab2c48f1e84c2.1740993491.git.mazziesaccount@gmail.com>
+In-Reply-To: <e71c63c2f61135f9a8c7884525aab2c48f1e84c2.1740993491.git.mazziesaccount@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Tue, 4 Mar 2025 10:25:03 +0100
+X-Gm-Features: AQ5f1JpLki6dbkM9Ig67nt3sfSzm1pr_ewW2yyuU-GO1iNjarygbWgXgDim39ws
+Message-ID: <CAMknhBGQaqFZJsPAoauZL4S5MYtN05EOQ-BO2vw5gH+Z2RLOhw@mail.gmail.com>
+Subject: Re: [PATCH v5 03/10] iio: adc: add helpers for parsing ADC nodes
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa <nuno.sa@analog.com>, 
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>, Guillaume Stols <gstols@baylibre.com>, 
+	Dumitru Ceclan <mitrutzceclan@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>, 
+	Matteo Martelli <matteomartelli3@gmail.com>, Alisa-Dariana Roman <alisadariana@gmail.com>, 
+	Ramona Alexandra Nechita <ramona.nechita@analog.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-> Gesendet: Mittwoch, 26. Februar 2025 um 10:46
-> Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.c=
-om>
-> Betreff: Re: [RESEND][PATCH] arm64: dts: mediatek: mt7986: fix pwn fan s=
-ettings for sinovoip bpi-r3 board
-
-> I get that the cheapest fans you can get are not working correctly with =
-the current
-> mid pwm setting, but you can't break things.
+On Mon, Mar 3, 2025 at 12:32=E2=80=AFPM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
 >
-> This devicetree should, at this point, hold default values that would ge=
-nerally
-> make the vast majority of fans to actually spin, because it's impossible=
- to have
-> something perfectly (or vaguely, sometimes) optimized for each fan on th=
-e market.
+> There are ADC ICs which may have some of the AIN pins usable for other
+> functions. These ICs may have some of the AIN pins wired so that they
+> should not be used for ADC.
 >
-> Of course this means that you need to properly configure your fans in us=
-erspace
-> if you want to reach the sweet spot.
+> (Preferred?) way for marking pins which can be used as ADC inputs is to
+> add corresponding channels@N nodes in the device tree as described in
+> the ADC binding yaml.
 >
-> I added Frank and Daniel to this thread, as they are the ones who origin=
-ally did
-> upstream this device.
+> Add couple of helper functions which can be used to retrieve the channel
+> information from the device node.
 >
-> Frank, Daniel, any suggestion regarding the PWM values here?
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>
+> ---
+> Revision history:
+> v4 =3D> v5:
+> - Inline iio_adc_device_num_channels()
+> - Fix Indenting function parameters
+> - Combine the max channel ID checks.
+> v3 =3D> v4:
+>  - Drop diff-channel support
+>  - Drop iio_adc_device_channels_by_property()
+>  - Add IIO_DEVICE namespace
+>  - Move industrialio-adc.o to top of the Makefile
+>  - Some styling as suggested by Andy
+>  - Re-consider included headers
+> v2 =3D> v3: Mostly based on review comments by Jonathan
+>  - Support differential and single-ended channels
+>  - Rename iio_adc_device_get_channels() as
+>    iio_adc_device_channels_by_property()
+>  - Improve spelling
+>  - Drop support for cases where DT comes from parent device's node
+>  - Decrease loop indent by reverting node name check conditions
+>  - Don't set 'chan->indexed' by number of channels to keep the
+>    interface consistent no matter how many channels are connected.
+>  - Fix ID range check and related comment
+> RFC v1 =3D> v2:
+>  - New patch
+> ---
+>  drivers/iio/adc/Kconfig            |  3 ++
+>  drivers/iio/adc/Makefile           |  2 +
+>  drivers/iio/adc/industrialio-adc.c | 82 ++++++++++++++++++++++++++++++
+>  include/linux/iio/adc-helpers.h    | 27 ++++++++++
+>  4 files changed, 114 insertions(+)
+>  create mode 100644 drivers/iio/adc/industrialio-adc.c
+>  create mode 100644 include/linux/iio/adc-helpers.h
+>
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 849c90203071..37b70a65da6f 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -6,6 +6,9 @@
+>
+>  menu "Analog to digital converters"
+>
+> +config IIO_ADC_HELPER
+> +       tristate
+> +
+>  config AB8500_GPADC
+>         bool "ST-Ericsson AB8500 GPADC driver"
+>         depends on AB8500_CORE && REGULATOR_AB8500
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index ee19afba62b7..1c410f483029 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -3,6 +3,8 @@
+>  # Makefile for IIO ADC drivers
+>  #
+>
+> +obj-$(CONFIG_IIO_ADC_HELPER) +=3D industrialio-adc.o
+> +
+>  # When adding new entries keep the list in alphabetical order
+>  obj-$(CONFIG_AB8500_GPADC) +=3D ab8500-gpadc.o
+>  obj-$(CONFIG_AD_SIGMA_DELTA) +=3D ad_sigma_delta.o
+> diff --git a/drivers/iio/adc/industrialio-adc.c b/drivers/iio/adc/industr=
+ialio-adc.c
+> new file mode 100644
+> index 000000000000..7bdae5330224
+> --- /dev/null
+> +++ b/drivers/iio/adc/industrialio-adc.c
+> @@ -0,0 +1,82 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Helpers for parsing common ADC information from a firmware node.
+> + *
+> + * Copyright (c) 2025 Matti Vaittinen <mazziesaccount@gmail.com>
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/errno.h>
+> +#include <linux/export.h>
+> +#include <linux/module.h>
+> +#include <linux/property.h>
+> +#include <linux/types.h>
+> +
+> +#include <linux/iio/adc-helpers.h>
+> +#include <linux/iio/iio.h>
+> +
+> +/**
+> + * devm_iio_adc_device_alloc_chaninfo_se - allocate and fill iio_chan_sp=
+ec for ADC
+> + *
+> + * Scan the device node for single-ended ADC channel information. Channe=
+l ID is
+> + * expected to be found from the "reg" property. Allocate and populate t=
+he
+> + * iio_chan_spec structure corresponding to channels that are found. The=
+ memory
+> + * for iio_chan_spec structure will be freed upon device detach.
+> + *
+> + * @dev:               Pointer to the ADC device.
+> + * @template:          Template iio_chan_spec from which the fields of a=
+ll
+> + *                     found and allocated channels are initialized.
+> + * @max_chan_id:       Maximum value of a channel ID. Use -1 if no check=
+ing
+> + *                     is required.
+> + * @cs:                        Location where pointer to allocated iio_c=
+han_spec
+> + *                     should be stored.
+> + *
+> + * Return:     Number of found channels on succes. Negative value to ind=
+icate
 
-Hi,
+s/succes/success/
 
-sorry for delay
+> + *             failure.
+> + */
+> +int devm_iio_adc_device_alloc_chaninfo_se(struct device *dev,
+> +                                         const struct iio_chan_spec *tem=
+plate,
+> +                                         int max_chan_id,
+> +                                         struct iio_chan_spec **cs)
+> +{
+> +       struct iio_chan_spec *chan_array, *chan;
+> +       int num_chan =3D 0, ret;
+> +
+> +       num_chan =3D iio_adc_device_num_channels(dev);
+> +       if (num_chan < 1)
+> +               return num_chan;
+> +
+> +       chan_array =3D devm_kcalloc(dev, num_chan, sizeof(*chan_array),
+> +                                 GFP_KERNEL);
+> +       if (!chan_array)
+> +               return -ENOMEM;
+> +
+> +       chan =3D &chan_array[0];
+> +
+> +       device_for_each_child_node_scoped(dev, child) {
+> +               u32 ch;
+> +
+> +               if (!fwnode_name_eq(child, "channel"))
+> +                       continue;
+> +
+> +               ret =3D fwnode_property_read_u32(child, "reg", &ch);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               if (max_chan_id !=3D -1 && ch > max_chan_id)
+> +                       return -ERANGE;
+> +
 
-i have the fan from sinovoip and that was working for me, but if your fan =
-only works with new values, i have no point against this change.
+Should we use return dev_err_probe() on these to help with debugging a bad =
+dtb?
 
-btw. angelo, how is state for my r4-dtsi change?
+> +               *chan =3D *template;
+> +               chan->channel =3D ch;
+> +               chan++;
+> +       }
+> +
+> +       *cs =3D chan_array;
+> +
+> +       return num_chan;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(devm_iio_adc_device_alloc_chaninfo_se, "IIO_DRIVER"=
+);
 
-regards Frank
+We can make this less verbose by setting #define
+DEFAULT_SYMBOL_NAMESPACE at the start of the file. Then we can just do
+EXPORT_SYMBOL_GPL() throughout the rest of the file.
+
+Also, I would prefer if the namespace matched config name (IIO_ADC_HELPER).
+
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Matti Vaittinen <mazziesaccount@gmail.com>");
+> +MODULE_DESCRIPTION("IIO ADC fwnode parsing helpers");
+> diff --git a/include/linux/iio/adc-helpers.h b/include/linux/iio/adc-help=
+ers.h
+> new file mode 100644
+> index 000000000000..403a70b109ec
+> --- /dev/null
+> +++ b/include/linux/iio/adc-helpers.h
+> @@ -0,0 +1,27 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +
+> +/*
+> + * The industrial I/O ADC firmware property parsing helpers
+> + *
+> + * Copyright (c) 2025 Matti Vaittinen <mazziesaccount@gmail.com>
+> + */
+> +
+> +#ifndef _INDUSTRIAL_IO_ADC_HELPERS_H_
+> +#define _INDUSTRIAL_IO_ADC_HELPERS_H_
+> +
+> +#include <linux/property.h>
+> +
+> +struct device;
+> +struct iio_chan_spec;
+> +
+> +static inline int iio_adc_device_num_channels(struct device *dev)
+> +{
+> +       return device_get_child_node_count_named(dev, "channel");
+> +}
+> +
+> +int devm_iio_adc_device_alloc_chaninfo_se(struct device *dev,
+> +                                         const struct iio_chan_spec *tem=
+plate,
+> +                                         int max_chan_id,
+> +                                         struct iio_chan_spec **cs);
+> +
+
+There are some different opinions on this, but on the last patch I did
+introducing a new namespace, the consensus seems to be that putting
+the MODULE_IMPORT_NS() in the header file was convenient so that users
+of the API don't have to remember to both include the header and add
+the import macro.
+
+> +#endif /* _INDUSTRIAL_IO_ADC_HELPERS_H_ */
+> --
+> 2.48.1
+>
 
