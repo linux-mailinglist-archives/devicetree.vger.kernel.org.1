@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-153772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0E5A4DBAF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:01:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AD43A4DBBB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:03:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D34F17A15E5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:00:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B850178F9B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 11:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7DE1FE472;
-	Tue,  4 Mar 2025 10:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6A1200BBE;
+	Tue,  4 Mar 2025 11:00:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ltk75wvx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BFydNjxP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B951FCF60;
-	Tue,  4 Mar 2025 10:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C42200BB8;
+	Tue,  4 Mar 2025 11:00:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741085957; cv=none; b=hpY+KvpcCjbXhHDQ+AIVAKOHrMYw0DfI6SkbH4P3MfBBUI9wdj6bYcuIl3GO0geNw9uylBlJPw7FVZ3dWbAvlqBQ3KcDTS4a/S8ZMjgmvbRg2aqJ0zVHEU3RHkGCFiQJD+QXADABOx44LJ4if8gvCvzCeRzcAoXKikpvI7ydD2Y=
+	t=1741086000; cv=none; b=atCkCUYRw7k1fyNz4Hz05pAOuYNfDO0fWp+Q5N04DFNioW5mYacFetY4glKoufj6L9yviXrtd+2/wrRhIjtGz9UA9H2BLwPdPmfwuLg0/zVh1zD3FCFKqd6qn2BZA0Jk4Wh8WNbRNsKj6pjC+kaje0SLaIqeghrUh07r372eYBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741085957; c=relaxed/simple;
-	bh=hLcfv8cs2z2Jzw4ezqrU3L60vIn/qFCZlb93ktP+vOo=;
+	s=arc-20240116; t=1741086000; c=relaxed/simple;
+	bh=Rvoji/ul4LckOnAp09Lt55SBKXtQJ2Ab4yIHaebWm34=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=IYJY1Z//i3ay9Kbeu5njDKLg4BXGiWUA0vp9MTF7cHDLhw520AOHFaV7V01xhBqI6GUSCPxTklZPEGInwpMZCpQmj+OysPc06QYRm3NLvoGlNkzlaJozh1BIema13Mwu1TwcmvATyFlw8bLCDFhxKzipIwNlFJHzcBK+BVZXxsw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ltk75wvx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC5F0C4CEE5;
-	Tue,  4 Mar 2025 10:59:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=m7Fq73V3D+Mag4NeRcZI7wpQrbmqmS4S7IXJvNx/Rnns8NeNb8Yxg825tE2M2JAooLYu3b+olfiFsA5274T06iDw9jvzOK4ekclg3issaja0itQCkHj5ey0ZbQl1VrFR8fmlS/Qg/q2GExG+qJZWhpdc/o2utru3raf7HASxKOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BFydNjxP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F168C4CEE5;
+	Tue,  4 Mar 2025 10:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741085955;
-	bh=hLcfv8cs2z2Jzw4ezqrU3L60vIn/qFCZlb93ktP+vOo=;
+	s=k20201202; t=1741086000;
+	bh=Rvoji/ul4LckOnAp09Lt55SBKXtQJ2Ab4yIHaebWm34=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=ltk75wvxFHW+T4iiJgW7O6TBUcKFhqD1F4X0JzxqGWZU3uJtEylOTZ7mxwi+cQ4Lu
-	 YS9ZdFekDA/xzlVDafe2AJ0odtoomBSmIM4JNtwwWUDyfITWFIPXDYjjQ8tOHYR0KT
-	 Zr/wfr5oAjg43m7Bp1HZoLM00VRobrcILffveSYw6+bPrO0+0VgKteLRqvH7Rk3NNx
-	 nxfRZ06+cGxWwuyVfLfOlUGm85rss/J6npdiY4JXEV/ASWIH9floHLHvWBbT4DqRXt
-	 lFQJSvkYEVbDYV+pMFEF3MBy7/n42GigzI7x0ynSZRnCpKjf/3P0AwAM0X5lMO4jkC
-	 KYZIffSX7psPw==
-Message-ID: <2fd83d68-7104-4755-a0f0-8ce4a2601e09@kernel.org>
-Date: Tue, 4 Mar 2025 11:59:08 +0100
+	b=BFydNjxPHbOzP95YMBOPGJ5XQ2gM24xod5SulzFyWnDdBoDrdnGbI3CSJXYBwpI6y
+	 bi5kmNey5NKHSlGLoIMpXDpKX4+EYudvMfJX6wOxbwB+kBJhfqjNdHOI4GMnVukIkN
+	 TO6t7mVkwEz4ci4kiBRGYp8BQ+IizKUwEBNb6Hs/2w/1yemH32upCGwhftt4sNmSMy
+	 +EXkQABDOFzatHcDGi86mziJcuvNQN4FV8nWaAH+AC4OZzGHuxv0UncAEoWQujFUqo
+	 6ljiQXBhUDkbVo2TjuvHwBrk5lDvaGsauwY+sBTw+YgTMzu/dfVRPan/5OSvQEwAX1
+	 yEYIMmAv/gzHg==
+Message-ID: <142a2edc-a668-4a6a-a4e8-eff3e8bf9e91@kernel.org>
+Date: Tue, 4 Mar 2025 11:59:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] soc: aspeed: lpc-pcc: Add PCC controller support
+Subject: Re: [PATCH v2 2/3] ARM: dts: aspeed-g6: Add AST2600 LPC PCC support
 To: Kevin Chen <kevin_chen@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
  andrew@codeconstruct.com.au, derek.kiernan@amd.com, dragan.cvetic@amd.com,
@@ -58,7 +58,7 @@ To: Kevin Chen <kevin_chen@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
  linux-kernel@vger.kernel.org
 References: <20250304104434.481429-1-kevin_chen@aspeedtech.com>
- <20250304104434.481429-4-kevin_chen@aspeedtech.com>
+ <20250304104434.481429-3-kevin_chen@aspeedtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,95 +104,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250304104434.481429-4-kevin_chen@aspeedtech.com>
+In-Reply-To: <20250304104434.481429-3-kevin_chen@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 04/03/2025 11:44, Kevin Chen wrote:
-> +
-> +static int aspeed_pcc_probe(struct platform_device *pdev)
-> +{
-> +	int rc;
-> +	struct aspeed_pcc_ctrl *pcc;
-> +	struct device *dev;
-> +	uint32_t fifo_size = PAGE_SIZE;
-> +
-> +	dev = &pdev->dev;
+> The AST2600 has PCC controller in LPC, placed in LPC node.
+> 
+> Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
+> ---
+>  arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> index 8ed715bd53aa..87dcacb78692 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> @@ -626,6 +626,13 @@ lpc_snoop: lpc-snoop@80 {
+>  					status = "disabled";
+>  				};
+>  
+> +				lpc_pcc: lpc-pcc@0 {
+> +					compatible = "aspeed,ast2600-lpc-pcc";
+> +					reg = <0x0 0x140>;
+> +					interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+> +					status = "disabled";
 
-This goes to declaration.
+Incomplete. Your driver clearly bails on missing ports...
 
-> +
-> +	pcc = devm_kzalloc(&pdev->dev, sizeof(*pcc), GFP_KERNEL);
-
-Maybe my previous comment was not clear, but you agreed with it. Anyway
-nothing improved here.
-
-If you have 'dev' variable, use it.
-
-> +	if (!pcc)
-> +		return -ENOMEM;
-> +
-> +	pcc->regmap = syscon_node_to_regmap(pdev->dev.parent->of_node);
-
-same here and everywhere else.
-
-> +	if (IS_ERR(pcc->regmap)) {
-> +		dev_err(dev, "Couldn't get regmap\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	rc = of_property_read_u32(dev->of_node, "pcc-ports", &pcc->port);
-> +	if (rc) {
-> +		dev_err(dev, "no pcc ports configured\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	rc = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-> +	if (rc) {
-> +		dev_err(dev, "cannot set 64-bits DMA mask\n");
-> +		return rc;
-> +	}
-> +
-> +	pcc->dma.size = PCC_DMA_BUFSZ;
-> +	pcc->dma.virt = dmam_alloc_coherent(dev,
-> +					    pcc->dma.size,
-> +					    &pcc->dma.addr,
-> +					    GFP_KERNEL);
-> +	if (!pcc->dma.virt) {
-> +		dev_err(dev, "cannot allocate DMA buffer\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	fifo_size = roundup(pcc->dma.size, PAGE_SIZE);
-> +	rc = kfifo_alloc(&pcc->fifo, fifo_size, GFP_KERNEL);
-> +	if (rc) {
-> +		dev_err(dev, "cannot allocate kFIFO\n");
-
-Drop
-
-> +		return -ENOMEM;
-> +	}
-> +
-> +	/* Disable PCC to clean up DMA buffer before request IRQ. */
-> +	rc = aspeed_pcc_disable(pcc);
-> +	if (rc) {
-> +		dev_err(dev, "Couldn't disable PCC\n");
-> +		goto err_free_kfifo;
-> +	}
-> +
-> +	pcc->irq = platform_get_irq(pdev, 0);
-> +	if (pcc->irq < 0) {
-> +		dev_err(dev, "Couldn't get IRQ\n");
-
-Drop, core already prints this. Do not duplicate messages.
-
-> +		rc = -ENODEV;
-
-Why not using pcc->irq as rc?
-
-> +		goto err_free_kfifo;
-> +	}
-> +
 Best regards,
 Krzysztof
 
