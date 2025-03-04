@@ -1,238 +1,212 @@
-Return-Path: <devicetree+bounces-153547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA283A4D0C6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 02:27:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 658C5A4D0CC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 02:30:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 314773AB8EF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 01:27:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58D6118939F4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 01:30:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8DB682866;
-	Tue,  4 Mar 2025 01:27:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FerzzF4H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCA954769;
+	Tue,  4 Mar 2025 01:30:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5555477102;
-	Tue,  4 Mar 2025 01:27:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449C213AC1;
+	Tue,  4 Mar 2025 01:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741051644; cv=none; b=gZY9RsfkMoTwW8S3S9e4qDgYbQ8xMloub+woVtK+S47h5lkFHGE4x4d/iNg2RqJENCL3O2kmWwh7zNcGnMV3iX7Xw0g+boOBwEZoZ4/AYlAtfJtjrvlTSAXnwvUQHdJ/ymBzrKR7S8JqfyYvKAr+L9VIpxDRN9TeTeTKFkZhr4I=
+	t=1741051836; cv=none; b=r7bM8Mp4dmXSTMRmSYJloV6LElBLxkS+3DE2cn8QQwYNbZKS++4rJGZ1FXL5aF8Yhve154Du+iMlm2SS+XsRWtZwD/4/mYiN/0rmTxMI1Rljv5elv6gb4M7HV8JTzZ+nc+ZcoqxQbC/iIoJXw9ukos7ucrfxLZOL10fEjiyTh/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741051644; c=relaxed/simple;
-	bh=YQeiOsS8sA5NXZ3BRFyUMePzRT1TRZE82gnAlYurqyA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UeeEimknKBTsZ1EI0eAGqeSNtrsWOP+f9D6lsqZKnBiwHjUfAnUIqmh6c//maUMIL9Di7uTHle58rMrnMwCeuZRPnYioDrALy+pX8QE1RjHBKUfqn+p0i2zr+h8YAEJ5ne1Q5NKZLdVdcCh3hhYTeR4my8o+LgM3D3dMK92mwbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FerzzF4H; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-22385253e2bso58801385ad.1;
-        Mon, 03 Mar 2025 17:27:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741051642; x=1741656442; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sBEXUn0LmSyIKU3EkgV+cVlF4cvjhGTO881KNfj3fOo=;
-        b=FerzzF4HGLCGSu7KoFfmVsYUwo+MVsOvGtqIPwtTltovdH5OVQZ4t33YhWRDq0jgb/
-         wYCex2tzxWvVcfR9ETRck8mxo8WCDYYHeYB4Lhq2O4yFMYYCX5oVOe4vHCRPusrWHSZw
-         yhNol7YQoWvBhM42+8TpoV9XQSIVOKi8xO1uLDE+3jmx5nPKBZrpYhF9YaayIXlw94bc
-         0BhP0EYka/NA6tl0mWvqK6ohivJYr+J7tUDY10nCKTMvt/a/IhLC6pLLcygvu7OIe2bu
-         FLSP5gJQXp7KYUk0dOnWUPNujWyv9RiGzYQyt5qb6+jfsBJir1Hu5+0Hlu7+WEQzdzMG
-         rQ4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741051642; x=1741656442;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sBEXUn0LmSyIKU3EkgV+cVlF4cvjhGTO881KNfj3fOo=;
-        b=NT92r4fXAW+Wf/G1BZ1onFRLlsFtogZ6QKUKPw7d7RupCFKtnHcFujN7AQyWlZCv4O
-         a0jXCrNVY4DifpyMKWZDqUHdr4dM5hWED061I/pt1XMAOnAC2XldB4Gxp8LMUPvBRyl6
-         oCE2toDjSAzqK5hrn8iUWln4ARNyw1pqzkxyZ3F9kS9rziP7tQoY/aTCPGfC5+R54WPw
-         6oXmzW+XGa4HJ53Xbdh5zo8vuzZJbQrDdLHw1WeQiwZXzjL7LgmKEKNhubQRlCV0QGUo
-         PMI372itorP3bDPXNl0v0ES6PRaoRHzw2BcY2fPu5uLCSHPz1Ey4cAKlz67xo9cckhQj
-         655Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUBK8ci74TGuD8ALORJOGSSr+TAW6YNuIJ+eBaSpRJDbc2Z7/c39ZQ0zlWWVjcIN/tZakWmmOYDT7Q9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzv5oaDKtxuVANIxWkrzsd2aeM/HUalPSN3lgM2M6jKfZyRBVcT
-	XpLV3dPKLplJpGpmd1FDLwaSQN96F8P4TiCacMJCF13NujL/WE+R
-X-Gm-Gg: ASbGncuOGHxTh4S7cNWSxgMBfhFpT+CutmQpfCI/l4nz3yccQU/Vw44+4deZVm0fQcR
-	/3hNEpsCeds6xwU+g06oGQ34A/OY7gW2ockDEdhZwaccgqHGxUYBMKE3xbbPDXqUrmCyzzmF7o5
-	qwcrfqyPmO7ZEzmOtQ5uVMasnY8V4xSi+BV7c8ciJFuaMBhgr2KJtQn3OTxtsdPLRjCj2pJMMwV
-	0REklZ1cZVwppRhJVbv9kZkbQNsP3xT2Ku/sZIXs+ACl3XbvbLAV8R5lYpnwsBQDuj8++r1xCy+
-	y5PtSuNv7e/XsQ0rOov7ts7BqNcfY2oDqcfO7vMFoZKBo3p7k1X1RbxpVH8kis+jPCk/a2dHfHR
-	1pr1LoQgR+QHm6Tg1hQ==
-X-Google-Smtp-Source: AGHT+IEr30nFCYMOZeqRuWFTTayl8S2lFSGhI6eVrpSdWMcqpU3UpkD71EK2TZWiBnLaRqXGpuCfIw==
-X-Received: by 2002:a05:6a21:4c85:b0:1f3:2c55:8d8a with SMTP id adf61e73a8af0-1f32c559139mr7168245637.12.1741051642433;
-        Mon, 03 Mar 2025 17:27:22 -0800 (PST)
-Received: from ?IPV6:2804:14d:887:95a9:849b:933a:ba2a:b462? ([2804:14d:887:95a9:849b:933a:ba2a:b462])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-aee7ddf20b8sm8989367a12.7.2025.03.03.17.27.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Mar 2025 17:27:22 -0800 (PST)
-Message-ID: <7ea9fb0f-f7bc-49bf-965f-631514abf9fe@gmail.com>
-Date: Mon, 3 Mar 2025 22:27:17 -0300
+	s=arc-20240116; t=1741051836; c=relaxed/simple;
+	bh=8JoIYV2GtWQTDz4HyJ7E6QNN2hNMjfy+UxcKFO1GxDQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CBneZFGZ56eHm8sbq1omgpqO82a+87o+WEoYzS/znKqwB856F5z6coLzJYAd8YJxnwCDfw6xUuKcxqaO1U3jue0l0KpWaG6PP34fmyLKSxtih+NsT60wnKXzDVPouRMABhdCp13p1TIVg5n44ulKrr01PKmi2eHMut3x4o1XO0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4AAA9FEC;
+	Mon,  3 Mar 2025 17:30:47 -0800 (PST)
+Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 877753F673;
+	Mon,  3 Mar 2025 17:30:31 -0800 (PST)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 00/15] clk: sunxi-ng: add A523 clock support
+Date: Tue,  4 Mar 2025 01:27:50 +0000
+Message-ID: <20250304012805.28594-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.46.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: interrupt-controller: Convert
- nxp,lpc3220-mic.txt to yaml format
-To: Vladimir Zapolskiy <vz@mleia.com>, tglx@linutronix.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- skhan@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
-References: <20250228034021.607135-1-leo.fthirata@gmail.com>
- <09acba97-70e1-448e-8453-c4e1f67a035c@mleia.com>
-Content-Language: en-US
-From: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>
-In-Reply-To: <09acba97-70e1-448e-8453-c4e1f67a035c@mleia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hi Vladimir.
+Hi,
 
-On 03/03/2025 1:27 AM, Vladimir Zapolskiy wrote:
-> Hello Leonardo.
-> 
-> On 2/28/25 05:39, Leonardo Felipe Takao Hirata wrote:
->> Convert NXP LPC3220-MIC to DT schema.
->>
->> Signed-off-by: Leonardo Felipe Takao Hirata <leo.fthirata@gmail.com>
->> ---
->> Changes in v3:
->>   - Add interrupts property description
->>   - Fix interrupts items descriptions
->>   - Remove else condition
->> ---
-> 
-> <snip>
-> 
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/ 
->> nxp,lpc3220-mic.yaml b/Documentation/devicetree/bindings/interrupt-controller/ 
->> nxp,lpc3220-mic.yaml
->> new file mode 100644
->> index 000000000000..59e8814a15b7
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.yaml
->> @@ -0,0 +1,69 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/interrupt-controller/nxp,lpc3220-mic.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NXP LPC32xx MIC, SIC1 and SIC2 Interrupt Controllers
->> +
->> +maintainers:
->> +  - Vladimir Zapolskiy <vz@mleia.com>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - nxp,lpc3220-mic
->> +      - nxp,lpc3220-sic
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupt-controller: true
->> +
->> +  '#interrupt-cells':
->> +    const: 2
->> +
->> +  interrupts:
-> 
-> Please put here
-> 
->    minItems: 2
->    maxItems: 2
-> 
+this is the third drop of the series introducing basic clock support for
+the Allwinner A523 family of SoCs, comprising A523, A527, T527, H728. [1]
+This fixes the issues Jernej found in his extensive and gratefully
+received review, many thanks for that, also to the other reviewers! 
+Those changes affect only details, but the rework caused more changes:
+the clock definition helper macros got reworked, and the binding turned
+out to be wrong, as it ignored the change in the source clock names
+(instead just accommodated their changed number). Shoehorning the
+differing names into the existing binding document turned out to be
+quite hard to follow, so I moved that into a separate yaml file.
+For a more detailed changelog, see below.
 
-I didn't add them in this patch because example-schema.yaml states that minItems 
-and maxItems are already implied. The following code is taken from the 
-example-schema.yaml.
+*************
+Please note that the clock numbers changed compared to v1 and v2, so DTs
+from that era cannot be used anymore with this driver: you have to update
+the DTB. Just copying the binding header and recompiling the DTB should do
+the trick, since the symbols stayed mostly the same, at least as far they
+are used in the basic DTs we use today.
+*************
 
-items:
-   - description: core registers
-   - description: aux registers
-   # minItems/maxItems equal to 2 is implied
+The SoCs contain *four* CCU components, aside from the usual main clock
+device and the PRCM clock (in the always-on-domain), there is an MCU
+clock and a CPU clock. This series just adds support for the first two,
+the other two don't seem to be required for the basic functionality.
 
-Besides, adding minItems and maxItems triggers the respective warnings:
+The clock tree of each SoC has always been individual, even though the
+main clock *types* mostly remain the same. This time we see three slight
+variations: There is an MP clock without the P (shift) part, there is one
+with two dividers instead of one divider and one shift field, and certain
+clocks require an "update" bit to be set to apply any changes.
+The first three patches add support for these new clock types.
 
-- "minItems" is only needed if less than the "items" list length
-- "maxItems" is not needed with an "items" list
+Patch 04 and 05 add the DT binding description for the two CCUs, along
+with all the clock numbers already defined in the binding headers.
+Since the main CCU is massive, and contains a lot of detail, I decided
+to split this driver up into 9 patches, simply to help review. I tried
+to group them somewhat logically, although this is rather arbitrary, and
+just to make each individual patch smaller. I am happy to squash them
+all back into one patch once they have been reviewed, for the final
+merge. The PRCM CCU is comparably small, so I kept this in one patch.
 
->> +    items:
->> +      - description: Regular interrupt request
->> +      - description: Fast interrupt request
->> +    description: IRQ and FIQ outputs of SIC1/SIC2 to the MIC.
-> 
-> Having both two descriptions under 'items:' and another description is
-> excessive, please leave only one of two.
-> 
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupt-controller
->> +  - '#interrupt-cells'
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: nxp,lpc3220-sic
->> +    then:
->> +      required:
->> +        - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    mic: interrupt-controller@40008000 {
->> +        compatible = "nxp,lpc3220-mic";
->> +        reg = <0x40008000 0x4000>;
->> +        interrupt-controller;
->> +        #interrupt-cells = <2>;
->> +    };
->> +
->> +    sic1: interrupt-controller@4000c000 {
-> 
-> Here sic1 label is not used, please remove.
-> 
->> +        compatible = "nxp,lpc3220-sic";
->> +        reg = <0x4000c000 0x4000>;
->> +        interrupt-controller;
->> +        #interrupt-cells = <2>;
->> +        interrupt-parent = <&mic>;
->> +        interrupts = <0 IRQ_TYPE_LEVEL_LOW>,
->> +                    <30 IRQ_TYPE_LEVEL_LOW>;
->> +    };
-> 
-> After the fixes please feel free to add the tag:
-> 
-> Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
-> 
-> -- 
-> Best wishes,
-> Vladimir
+Interestingly the Allwinner BSP has switched to using the existing sunxi
+CCU framework for modelling the clocks (they had their own way before), so
+we could theoretically use their code. However when I started working on
+this more than a year ago, their files had a GPL-3.0-only license header,
+which, according to my research, makes them incompatible for mainline
+inclusion. I thus started from "scratch" (adjusting the D1 driver, really).
+Meanwhile they seem to have changed the license, and a quick comparison
+turned up some differences, some of which seem to be bugs on their, some
+on my side, probably. I hope having such a "reference" helps the mainline
+code quality, as people can help the review by comparing code.
 
-Rob,
+Given the level of detail required in CCU drivers, I am certain there are
+still some bugs in there, also many things that can be improved. But after
+starring and editing this for weeks, I feel like it's time for the
+community to have a look, so please help with the review, and also test.
 
-Do you want these changes on top of what was applied or a complete patch?
+Based on v6.14-rc1.
 
-Best regards,
+Cheers,
+Andre
 
-Leonardo Hirata
+[1] https://linux-sunxi.org/A523#Family_of_sun55iw3
+
+Changelog v2 .. v3:
+- rename PLL_DDR0 to PLL_DDR
+- move bogus macro definition from PLL patch to an earlier patch
+- adding CLK_SET_RATE_PARENT flags where needed (GPU, eDP, ...)
+- remove CLK_SET_RATE_PARENT from clocks with only fixed parents
+- add support for clocks with the "update" bit (BIT(27))
+- flags IOMMU, MBUS and DRAM clocks as needing "update" bit
+- remove leftover comment about missing mux
+- fix TCON_TV parent list
+- add TCON_LCD2 clock
+- export PLL_GPU
+- describe MBUS clock properly (was copy&pasted wrongly from D1)
+- change MMC clocks to use better macro
+- mark SPI and CSI clocks as being dual-divider clocks
+- fix wrong DSP parent clock (480 instead of 400 MHz)
+- properly implement fanout clocks (describe both dividers)
+- fix MBUS gate clocks and add two new ones
+- rename dpss clock to display0 and add display1 clocks
+- drop non-existing bus_dsp_cfg_clk
+- mark r_timer clocks as having no divider
+- fix r_pwm mux width
+- move DT bindings into separate yaml file
+- describe different source clock sets correctly
+- add review tags
+- remove Chen-Yu's and Conor's tags from changed patches
+
+Changelog v1 .. v2:
+- rebase onto v6.14-rc1
+- split main CCU definition patch into 9 smaller patches
+- rename RST_BUS_VO1_TCONLCD0 to RST_BUS_TCON_LCD2
+- insert CLK_PLL_VIDEO3_xx clocks
+- add clock for 2nd EMAC
+- fix ISP clock definition
+- remove BSP comments from clocks now documented in the T527 manual
+- add Conor's binding ACKs (with thanks!)
+
+Andre Przywara (15):
+  clk: sunxi-ng: mp: introduce dual-divider clock
+  clk: sunxi-ng: mp: provide wrappers for setting feature flags
+  clk: sunxi-ng: Add support for update bit
+  dt-bindings: clk: sunxi-ng: document Allwinner A523 CCU
+  dt-bindings: clk: sunxi-ng: add compatible for the A523 PRCM-CCU
+  clk: sunxi-ng: Add support for the A523/T527 CCU PLLs
+  clk: sunxi-ng: a523: Add support for bus clocks
+  clk: sunxi-ng: a523: add video mod clocks
+  clk: sunxi-ng: a523: add system mod clocks
+  clk: sunxi-ng: a523: add interface mod clocks
+  clk: sunxi-ng: a523: add USB mod clocks
+  clk: sunxi-ng: a523: remaining mod clocks
+  clk: sunxi-ng: a523: add bus clock gates
+  clk: sunxi-ng: a523: add reset lines
+  clk: sunxi-ng: add support for the A523/T527 PRCM CCU
+
+ .../clock/allwinner,sun55i-a523-ccu.yaml      |   96 +
+ drivers/clk/sunxi-ng/Kconfig                  |   10 +
+ drivers/clk/sunxi-ng/Makefile                 |    4 +
+ drivers/clk/sunxi-ng/ccu-sun55i-a523-r.c      |  248 +++
+ drivers/clk/sunxi-ng/ccu-sun55i-a523-r.h      |   14 +
+ drivers/clk/sunxi-ng/ccu-sun55i-a523.c        | 1685 +++++++++++++++++
+ drivers/clk/sunxi-ng/ccu-sun55i-a523.h        |   14 +
+ drivers/clk/sunxi-ng/ccu_common.h             |    5 +
+ drivers/clk/sunxi-ng/ccu_div.c                |    2 +
+ drivers/clk/sunxi-ng/ccu_gate.c               |    4 +
+ drivers/clk/sunxi-ng/ccu_mp.c                 |   51 +-
+ drivers/clk/sunxi-ng/ccu_mp.h                 |   58 +-
+ drivers/clk/sunxi-ng/ccu_mux.c                |    2 +
+ include/dt-bindings/clock/sun55i-a523-ccu.h   |  189 ++
+ include/dt-bindings/clock/sun55i-a523-r-ccu.h |   37 +
+ include/dt-bindings/reset/sun55i-a523-ccu.h   |   88 +
+ include/dt-bindings/reset/sun55i-a523-r-ccu.h |   25 +
+ 17 files changed, 2517 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523-r.c
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523-r.h
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.h
+ create mode 100644 include/dt-bindings/clock/sun55i-a523-ccu.h
+ create mode 100644 include/dt-bindings/clock/sun55i-a523-r-ccu.h
+ create mode 100644 include/dt-bindings/reset/sun55i-a523-ccu.h
+ create mode 100644 include/dt-bindings/reset/sun55i-a523-r-ccu.h
+
+-- 
+2.46.3
+
 
