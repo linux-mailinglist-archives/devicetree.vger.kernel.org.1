@@ -1,172 +1,142 @@
-Return-Path: <devicetree+bounces-153668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56551A4D6F4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:51:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92D51A4D76A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:08:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 501EE18944A2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 08:51:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12F0B1887FCB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433F61FC111;
-	Tue,  4 Mar 2025 08:51:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2293E1FC7F2;
+	Tue,  4 Mar 2025 08:58:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nBtLru4u"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jMoCZOEY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00101F9A86
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 08:51:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649021FAC59;
+	Tue,  4 Mar 2025 08:58:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741078293; cv=none; b=GezkNmcYAgS54Gvh7G+GyjBiX5GXFFy5bj/jJOX02t6TQNCtC5wttrVRebcbydPObCrxY3lZg21xuewdKw7R4b/Kfe3S/pclGdxsmXAGeE99dF0N+fARe87pmMFjKY7IceZXxUAVF7W/9qD+P5XG0vsCh85KoVXC59Z45sz1urQ=
+	t=1741078688; cv=none; b=PapT8YgLzTIwMZQ72ieiDReyTIjrYJeAuPNZ9wcZIJWJ9Pc0+YKyHAKXKqOpvV9X5SoFP9Q1NuaoSBKmF7Pkfg3PIZZ1zsa6H3FsvY0/gFLrQfWsZr7msuU0Xs/THeZPtXRNjhEI9/j7RIqRDyZv6BIfQUmE7dsZyGqqdyR28mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741078293; c=relaxed/simple;
-	bh=DzcwyW1s2Qh52TtFRwqotEDcRzSij+QevL5cGblPvRs=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G5MbtRdMT+N2pNN2/GRfXcLNsoqX5Ps/DZlvYxeF6ZLPOVeObRJ3pXnUnwUba357HtfVVA4HJLnGh3hK1DunRkCk9tll0jWy00qiJuqc7i1lAY9LtrgW8a7vm46KyVK790poQkzUQCA7cEw2kS/yMJAZkpbu0a9GEwP0lQdh4NU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nBtLru4u; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523NX4wn027320
-	for <devicetree@vger.kernel.org>; Tue, 4 Mar 2025 08:51:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=OLRCuCe47x5UYRcZUJUbMd2a
-	1rwUyvqY0uLF/SHitw4=; b=nBtLru4uRPcGx2Mn7PiW90o4PRddVASupV+VlQHZ
-	2q/uivYxEZorUj/9Af5dMUC84W9Oa8vKUAxmSK81jCJv6aAlTIYA5mS07gwXo/72
-	zvCyaflpNRd/uFplcFDvg7czBmg/pjStpzXUJtiAQINUKqPGIRtb9cm4X8EnbO79
-	v/HMVjPvkKz84WjZUnejDYjXKnlCufz2ehnLAkYVxOHncNgR2d7bfBmycOekpuoG
-	5GIbK0q9vuZyOynSdfnWT+dXg2JyNEy2RLwy+9jcxnOmVQYcZU7/E17/d1t5hvrk
-	2QLGr5azciPC3CY0u21MiAHikq+siipA/8UsA8Vx5iXFMw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6uh83e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 08:51:30 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e89808749eso129504266d6.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 00:51:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741078289; x=1741683089;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OLRCuCe47x5UYRcZUJUbMd2a1rwUyvqY0uLF/SHitw4=;
-        b=ahjaAuTxZTm0DeD+3zTVpSFP3UEXH0K8hwqBjNJ5VDB628JOSesOBzztToqEJik2+H
-         N2UM5Xm/T/qqhKqpoPdlvh9rCcDrFdzb/m2PImNopPxV4ia8IlimE8OqPinC+aqlzzka
-         xV3m6uYMKI40tLK0XePGR+E0KNgK7oJZR19vJ9LB5tE1LLfXQxVDVgd3wmV278jZK9+I
-         NN9L6JkRkaQ3PAESgh3d2BQFA0WmSRnbk1xyKzo8w5VC3aonzFOhuk5QAmMOlypKDsm6
-         VFt1Bf7zUZGTlt287kI4BxVkRyb1Ia2wAcuZmb1MHUM2epbblE2T00xGiwux8A3gyBFj
-         rQgA==
-X-Forwarded-Encrypted: i=1; AJvYcCVo4qc9rMFI2X++Q2koNvXC7V3njtdY3BkQI7ZSM3knZcevipjKFOMNN3tmU8QdYiZj/3cKakuyyNhM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPngiV+z3KotS/CTasCEVyi1hB+fX7pW18hr7HwM0ScGWKa5IY
-	A0CNKdj2Hv/SiSFhVs/5DOe6RKTNyf0gUyF7mU3i69AORi6OGsWdeGi2r89OnqvHEk4EXNTkPu4
-	5X7VU/aHKPUZqAWnYJaRDGVnsnTn9dhIefUZRhBWBuiHSuXc3LkzJ1cBlNlRT
-X-Gm-Gg: ASbGncsUH49EOoqtb8m8qixYQVqmL0Pd1HGKXetF4LHw6yViwH0Uz3Xc3Bk6n6/gMk1
-	1fBPOFrD9ChMmTX6SAt7KJq2RCQwtolrbFnWRmo6QUXVzQLCmErTxw8bLdtxwF2wuQadhufvd7+
-	AEe+j5yQmdg7WnpFy+EsveJX/AMvXCJTN8XWqnB8CeeKuSXn2JFnsfzX79U2Vk9dJXL9vw7A90E
-	UWABItX4iyAESrAOs51pfZ5uYKptHKgis8OjLucK16Tpb0bO2Bo/DCX9IxiSojnqOUXVrpuPzdN
-	3E9wblU7BrCs8h7XSloTW68GGQ8E1Ur2INAOkJuP37xatLxl
-X-Received: by 2002:a05:6214:500f:b0:6e8:9c3b:af08 with SMTP id 6a1803df08f44-6e8a0d6d748mr233513806d6.30.1741078289585;
-        Tue, 04 Mar 2025 00:51:29 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEXXONIdl74iWtM0enyp5EVNCNlqClOTgbZD6KGhlRFyfxAGkoiqep7Ikq28VZER+zvu5VL7Q==
-X-Received: by 2002:a05:6214:500f:b0:6e8:9c3b:af08 with SMTP id 6a1803df08f44-6e8a0d6d748mr233513566d6.30.1741078289278;
-        Tue, 04 Mar 2025 00:51:29 -0800 (PST)
-Received: from trex (54.red-79-144-194.dynamicip.rima-tde.net. [79.144.194.54])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43aba5393e5sm216342135e9.20.2025.03.04.00.51.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Mar 2025 00:51:28 -0800 (PST)
-From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
-Date: Tue, 4 Mar 2025 09:51:26 +0100
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
-        Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
-        todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
-        cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com,
-        will@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH v14 2/2] arm64: dts: qcom:
- qcs6490-rb3gen2-vision-mezzanine: Add vision mezzanine
-Message-ID: <Z8a/Dk7zjZ7RQT2/@trex>
-References: <20250208225143.2868279-1-quic_vikramsa@quicinc.com>
- <20250208225143.2868279-3-quic_vikramsa@quicinc.com>
- <ca8e6569-b466-4f83-83af-38c51891d395@kernel.org>
- <Z8a7cMmxJuHIhgjo@trex>
- <baae2a56-5299-486f-acf1-14fe13fd2f81@kernel.org>
+	s=arc-20240116; t=1741078688; c=relaxed/simple;
+	bh=ddy7BgWCBWeuZUy2eIZh8ooD1wt0aH8qK5EF6t6ee0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cJv7sg3Bj+nc+3IpIXvHpV3lPVUThHfFiWQBy9+TCkUmgHcSAHpXjFQGqMFsPsnM80pKeB2+NVkfYlEqkH2nMgesOLbRC6ekBobStAq05fEzEiHl9aODReMJ5k+5vmIHLPp2N2GPdOEO4CcIlCgb57NVznaIO6+9UtbgXEs3nc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jMoCZOEY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 523NX3lX006113;
+	Tue, 4 Mar 2025 08:58:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	JtNqsTlqI2gMEyukBobe1UA3U9C+2jFIY+BhbFzyXSo=; b=jMoCZOEYPph2YD+t
+	aOz9KMKpHPQjhX0bUi8bTqbn3U4nTtcabwt+w3hvYABpWx7lm1ch8dV0tWcpV4JA
+	hT1EsIDDQzxR/9Lj8Yz+VwIbwQIFX8/SEE4jmb231tFutvGsnmvZUSBirZGhx8Jr
+	aPy8UZ6eCYVdMUmW66VO5KUXeOIxwFGS3UN+C4fFm+ZUy4yx1sJqLbHM4YKWUvpM
+	1B3j4qitZsFHjsq1QH1OsFi2taLXnwoneUQHMlfmqrNWm+s8X/JToVOcDFS9r3/b
+	NOqauJf8UJtrFmOl8FFJ9UGKD3BHVity6tAoD7yGccZteZIRyf22V+FpXS8ejaIF
+	AfzzmA==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6th8yg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Mar 2025 08:58:01 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5248w0Y4015630
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 4 Mar 2025 08:58:00 GMT
+Received: from [10.216.44.43] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Mar 2025
+ 00:57:56 -0800
+Message-ID: <9db40fd1-a9bc-421e-b322-c309edb095d0@quicinc.com>
+Date: Tue, 4 Mar 2025 14:27:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <baae2a56-5299-486f-acf1-14fe13fd2f81@kernel.org>
-X-Proofpoint-GUID: nIXdrrHxy88LoDqYDg5g-iSuYCjih4Jq
-X-Authority-Analysis: v=2.4 cv=H40hw/Yi c=1 sm=1 tr=0 ts=67c6bf12 cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=cl0az7d0LwC7qAhl51RXhA==:17 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=EIL0MzI05wtt13IUXDMA:9 a=CjuIK1q_8ugA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-ORIG-GUID: nIXdrrHxy88LoDqYDg5g-iSuYCjih4Jq
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 1/2] dt-bindings: mailbox: Document qcom,tmel-qmp
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <manivannan.sadhasivam@linaro.org>
+References: <20250228045356.3527662-1-quic_srichara@quicinc.com>
+ <20250228045356.3527662-2-quic_srichara@quicinc.com>
+ <velvqajyhrdaipmqmsduv3l3dsv56sy4rfukwm2hrdvh47hgqx@7sbnrgkzsn67>
+ <1a22a637-c3f1-49b3-adf5-3e952c7d336a@quicinc.com>
+ <5xjtb4cifjjagkeifpkgx4y5cb7mwrocv7sxq3lh4lhadtw2bn@umtwhw7eqkhe>
+Content-Language: en-US
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <5xjtb4cifjjagkeifpkgx4y5cb7mwrocv7sxq3lh4lhadtw2bn@umtwhw7eqkhe>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=HZbuTjE8 c=1 sm=1 tr=0 ts=67c6c099 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=gEfo2CItAAAA:8 a=COk6AnOGAAAA:8 a=yp3r7umGiTXjgQfZ3P4A:9
+ a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: LUzPKvJdMvzL8nO84qMGWjlsnHR5YBFO
+X-Proofpoint-ORIG-GUID: LUzPKvJdMvzL8nO84qMGWjlsnHR5YBFO
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-03-04_04,2025-03-03_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- impostorscore=0 clxscore=1015 malwarescore=0 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 phishscore=0 suspectscore=0 spamscore=0 mlxlogscore=999
- classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2503040074
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 mlxscore=0 spamscore=0 clxscore=1015 phishscore=0 bulkscore=0
+ priorityscore=1501 impostorscore=0 suspectscore=0 malwarescore=0
+ mlxlogscore=770 classifier=spam authscore=0 adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2502100000 definitions=main-2503040075
 
-On 04/03/25 09:40:21, Krzysztof Kozlowski wrote:
-> On 04/03/2025 09:36, Jorge Ramirez wrote:
-> > On 03/03/25 18:13:20, Krzysztof Kozlowski wrote:
-> >> On 08/02/2025 23:51, Vikram Sharma wrote:
-> >>> The Vision Mezzanine for the Qualcomm RB3 Gen 2 ships with an imx577
-> >>> camera sensor. Enable IMX577 on the vision mezzanine.
-> >>>
-> >>> An example media-ctl pipeline for the imx577 is:
-> >>>
-> >>> media-ctl --reset
-> >>> media-ctl -V '"imx577 '17-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
-> >>
-> >> AFAIU, camss does not support SRGGB10, but only SRGGB10P.
-> >>
-> >> Based on tests reported on IRC I think this might not have been tested
-> >> correctly.
-> > 
-> > I acquired SRGGB10P (10 bit packed) frames from the camera despite the
-> > pipeline being set to SRGGB10 (16 bit) samples.
-> > 
-> > so something does not add up.
+<..>
+>>>> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml b/Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..2e3c79add405
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/mailbox/qcom,ipq5424-tmel.yaml
+>>>> @@ -0,0 +1,62 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/mailbox/qcom,ipq5424-tmel.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Qualcomm TMEL IPCC channel
+>>>> +
+>>>> +maintainers:
+>>>> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>>> +
+>>>> +description:
+>>>> +  TMEL SS provides different kinds of services like secureboot, remote image authentication,
+>>>> +  key management, crypto, OEM provisioning etc. This patch adds support for remote image
+>>>> +  authentication. Support for rest of the services can be added.
+>>>> +
+>>>> +  The QMP mailbox is the primary means of communication between TMEL SS and other subsystem on
+>>>> +  the SoC. A dedicated pair of inbound and outbound mailboxes is implemented for each
+>>>> +  subsystem/external execution environment which needs to communicate with TMEL for security
+>>>> +  services. The inbound mailboxes are used to send IPC requests to TMEL, which are then processed
+>>>
+>>> This string is 100 chars long. What is the recommended wrapping
+>>> boundary?
+>>>
+>> I kept it as 100 and checkpatch did not throw any warnings.
 > 
-> Then the commands are actually correct, just the camss or media behave
-> here a bit unexpected?
->
+> "The preferred limit on the length of a single line is 80 columns."
+> 
+> Documentation/process/coding-style.rst
+ok, will fix.
 
-setting the pipeline (CSI) as SRGGB10 (16 bit samples) as per below
-
-media-ctl --reset
-media-ctl -v -V '"imx577 '19-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
-media-ctl -V '"msm_csiphy3":0[fmt:SRGGB10/4056x3040]'
-media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
-media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
-media-ctl -l '"msm_csiphy3":1->"msm_csid0":0[1]'
-media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
-
-allows to capture SRGGB10P samples (frames-xxxx.bin files contain 10 bit samples for the size)
-
- ==> yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
-
-
-shouldnt the CSI need to be set to SRGGB10P instead?
-
-
-> Best regards,
-> Krzysztof
-
+Regards,
+  Sricharan
 
