@@ -1,165 +1,135 @@
-Return-Path: <devicetree+bounces-153575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A4FCA4D1F4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 04:13:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90D57A4D205
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 04:20:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 588371722CC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 03:13:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0959F3ABBE0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 03:20:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFFB01C9EB1;
-	Tue,  4 Mar 2025 03:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0351DA63D;
+	Tue,  4 Mar 2025 03:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyfgLJYb"
+	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="iUCFwkmy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CE53194080;
-	Tue,  4 Mar 2025 03:13:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ECA2189BB1;
+	Tue,  4 Mar 2025 03:20:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741058000; cv=none; b=sFyNAsgc01rx2vhYQSJn41KC9bDJ1ONhs57c0J/BsYzsyvcPQFuKV0M3qRy3BqqMNndn157cm5QA5uG3rXWMRYUaBnvtLwtW366gnO7UTZZK3bmOro83afQdo+0gJFAbMFQjL+obJdlbwus+KBNbKhvebOx05rpy/+xMvEdPZNk=
+	t=1741058424; cv=none; b=TyvwtXUpnUE8DtVI+uQNnByFSwssO9108HdxYBxDxyXKimW7zFC0m4/wIFeuSPj/U579Q+vt6em1VfPpeIQO4CF4nceRgFXOdTGeVgOpo0Wl2WTUKPWvimpyI5I3Hz6oxJl6JL2v/SHhO0kYGIv7flzQcjC3fQh7hZwr/Ce2/ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741058000; c=relaxed/simple;
-	bh=JIj+/tr9TcRP5XhO/iLdeKqe04P1XWqfEvK8p1Y3Nm4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QbX9JEbR1VAYeGl+4fqkizAuJ5GE4FN6qREr5PDKCQsDHTwLS7DbJsacaPDTLJndS+WxlwgDyHhieb21/dCaQnwMg/DdRYlSAQ6CVA+nBeJ86LtVX4jUtP2J3SqBMvyX7ZOEMWEY8qpv+RgXoM42ZIl1dtv6Wbw+x7UDBqsGVYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyfgLJYb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7D16C4CEE8;
-	Tue,  4 Mar 2025 03:13:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741058000;
-	bh=JIj+/tr9TcRP5XhO/iLdeKqe04P1XWqfEvK8p1Y3Nm4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lyfgLJYbuEuCn3kETuOm0igYrIuR8EE55vkdXqL0wHQSrw5doOIzySdMPam3sIzwr
-	 pmVXGFQHDe9dLnAlOE8fnr/SarDaMIwzu4zv6Uwz1CNYsIYnuowUhZKkVzto2yq6A3
-	 oTHeo4sXq4zDIibz53K1gEXj9HsAlvrI7sxUM4goe3g/Ch1U/0tUi3RbKbObbabRCu
-	 XeDajTZ9dyXjGHxz/TT7TiSB29JmmZ8pBQPGBRNdQYx/zSwSalUBCWy26s3l7RXe9Y
-	 dB1roGm1Fh7Hz/VAUO1ZOxhqncLkQfYFcTt65Qq4QvuJKSBGhtWHSnxmAVd0Fnwm4u
-	 TSuI4vrvx2Xsg==
-Date: Mon, 3 Mar 2025 21:13:16 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Felipe Balbi <balbi@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Saravana Kannan <saravanak@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>, 
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 5/7] usb: dwc3: qcom: Snapshot driver for backwards
- compatibilty
-Message-ID: <zr6qdi3gtjaj3gyalpspzej33q356bs5ynchcmtr73765gjel5@c5ijv7czkhqt>
-References: <20250226-dwc3-refactor-v4-0-4415e7111e49@oss.qualcomm.com>
- <20250226-dwc3-refactor-v4-5-4415e7111e49@oss.qualcomm.com>
- <20250304000527.ybxfdjx5xzypcals@synopsys.com>
- <20250304003913.bsn5sucnofq6d6jo@synopsys.com>
+	s=arc-20240116; t=1741058424; c=relaxed/simple;
+	bh=NosbJcn4/Ws+MpSEvLnF6akvk2THj94x8/JVaixVLBQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qeBHga0qm7aNaiNQM1Jxyx952f9LoIHOoaLM5WYqf6r7AMn/SlHg8HwELa9HTLwoYl6JNmQT/0JZl6UpnvfGlxw8HtzX2SkmP3u49//uo2Wxkeyxn32Jfb5wlscoGCDYID+ZTrfUfJ5gVHafXgDpDQ4UIy2pRlztyegHPmwFvAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=iUCFwkmy; arc=none smtp.client-ip=205.220.177.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
+Received: from pps.filterd (m0333520.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5241NEDX008950;
+	Tue, 4 Mar 2025 03:19:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	corp-2023-11-20; bh=TxB1xa4wdylg1sPVhopm7CNcqBs13nJKorqkaF3QfsI=; b=
+	iUCFwkmy8HGQcyr+qijHtt+Z9p8MdghPPX5LGrtupntI+UlHbmL3xOpzxT6rbYVK
+	fdqGez12MtGXq17nsAtkiaW01ooK4zNBXvzen1igPA2gfR7taVZ7Dhg31C5sA6US
+	MSJ6Qa5Mc03FejUEY4pMUm4CKio4ai1/Lf2L1+zdElqESOnFraj5LT9fZZyFBYTN
+	v8c9hM77ePlQySfvwlOeI0vWb+mp4/ipR7LFa3ZGj7sJgPzMXQDFKWyh0JR7aIPW
+	lbG+mpnW4V6Y/BqFaOhRnyynD3/BFYQzLtwDfT9vriWipAvmhqwCKikIt03MbC5F
+	E1bqxKvB13R0JM4g7+VH+Q==
+Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta01.appoci.oracle.com [138.1.114.2])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4541r43vkx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 04 Mar 2025 03:19:53 +0000 (GMT)
+Received: from pps.filterd (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 52420Tf2039093;
+	Tue, 4 Mar 2025 03:19:53 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 453rp92sh6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 04 Mar 2025 03:19:52 +0000
+Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5243Jl4i029873;
+	Tue, 4 Mar 2025 03:19:52 GMT
+Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
+	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id 453rp92set-4;
+	Tue, 04 Mar 2025 03:19:52 +0000
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Heiko Stuebner <heiko@sntech.de>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Shawn Lin <shawn.lin@rock-chips.com>
+Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>,
+        Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 0/7] Initial support for RK3576 UFS controller
+Date: Mon,  3 Mar 2025 22:19:18 -0500
+Message-ID: <174105384015.3860046.6697292356592676911.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <1738736156-119203-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1738736156-119203-1-git-send-email-shawn.lin@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250304003913.bsn5sucnofq6d6jo@synopsys.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-04_02,2025-03-03_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 suspectscore=0 spamscore=0
+ mlxscore=0 mlxlogscore=999 adultscore=0 malwarescore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2502100000
+ definitions=main-2503040026
+X-Proofpoint-ORIG-GUID: 6Y4eSYXQkMMJQvQlHsmfaECW638UuGXV
+X-Proofpoint-GUID: 6Y4eSYXQkMMJQvQlHsmfaECW638UuGXV
 
-On Tue, Mar 04, 2025 at 12:39:12AM +0000, Thinh Nguyen wrote:
-> On Tue, Mar 04, 2025, Thinh Nguyen wrote:
-> > On Wed, Feb 26, 2025, Bjorn Andersson wrote:
-> > > In order to more tightly integrate the Qualcomm glue driver with the
-> > > dwc3 core the driver is redesigned to avoid splitting the implementation
-> > > using the driver model. But due to the strong coupling to the Devicetree
-> > > binding needs to be updated as well.
-> > > 
-> > > Various ways to provide backwards compatibility with existing Devicetree
-> > > blobs has been explored, but migrating the Devicetree information
-> > > between the old and the new binding is non-trivial.
-> > > 
-> > > For the vast majority of boards out there, the kernel and Devicetree are
-> > > generated and handled together, which in practice means that backwards
-> > > compatibility needs to be managed across about 1 kernel release.
-> > > 
-> > > For some though, such as the various Snapdragon laptops, the Devicetree
-> > > blobs live a life separate of the kernel. In each one of these, with the
-> > > continued extension of new features, it's recommended that users would
-> > > upgrade their Devicetree somewhat frequently.
-> > > 
-> > > With this in mind, simply carrying a snapshot/copy of the current driver
-> > > is simpler than creating and maintaining the migration code.
-> > > 
-> > > The driver is kept under the same Kconfig option, to ensure that Linux
-> > > distributions doesn't drop USB support on these platforms.
-> > > 
-> > > The driver, which is going to be refactored to handle the newly
-> > > introduced qcom,snps-dwc3 compatible, is updated to temporarily not
-> > > match against any compatible.
-> > > 
-> > > This driver should be removed after 2 LTS releases.
-> > > 
-> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-> > > ---
-> > >  drivers/usb/dwc3/Makefile           |   1 +
-> > >  drivers/usb/dwc3/dwc3-qcom-legacy.c | 934 ++++++++++++++++++++++++++++++++++++
-> > >  drivers/usb/dwc3/dwc3-qcom.c        |   1 -
-> > >  3 files changed, 935 insertions(+), 1 deletion(-)
-> > > 
-> > 
-> > This is a bit concerning if there's no matching compatible string. ie.
-> > we don't have user for the new driver without downstream dependencies
-> > (or some workaround in the driver binding).
+On Wed, 05 Feb 2025 14:15:49 +0800, Shawn Lin wrote:
+
+> This patchset adds initial UFS controller supprt for RK3576 SoC.
+> Patch 1 is the dt-bindings. Patch 2-4 deal with rpm and spm support
+> in advanced suggested by Ulf. Patch 5 exports two new APIs for host
+> driver. Patch 6 and 7 are the host driver and dtsi support.
 > 
-> Ignore the comment above, I missed the "temporarily" in your log
-> above. However, the comment below still stands.
 > 
-> > 
-> > While I understand the intention, I'm afraid we may have to support and
-> > maintain this much longer than the proposed 2 LTS releases (as seen with
-> > anything tagged with "legacy" in the upstream kernel).
+> Changes in v7:
+> - add definitions for all kinds of hex values if possible
+> - Misc log and comment improvement
+> - use udelay for less than 10us cases
+> - other improvements suggested by Mani
+> - Use 0x0 for consistency
+> - Collect Mani's acked-by tag
+> 
+> [...]
 
-There are no products shipping today using dwc3-qcom where Devicetree is
-considered firmware. The primary audience for a longer transition is
-users of the various laptops with Qualcomm-chip in them. But given the
-rapid development in a variety of functional areas, these users will be
-highly compelled to update their DTBs within 2 years.
+Applied to 6.15/scsi-queue, thanks!
 
-The other obvious user group is to make sure us upstream developers
-don't loose USB when things get out of sync.
+[1/7] dt-bindings: ufs: Document Rockchip UFS host controller
+      https://git.kernel.org/mkp/scsi/c/d90e92023771
+[5/7] scsi: ufs: core: Export ufshcd_dme_reset() and ufshcd_dme_enable()
+      https://git.kernel.org/mkp/scsi/c/6b070711b702
+[6/7] scsi: ufs: rockchip: initial support for UFS
+      https://git.kernel.org/mkp/scsi/c/d3cbe455d6eb
+[7/7] arm64: dts: rockchip: Add UFS support for RK3576 SoC
+      https://git.kernel.org/mkp/scsi/c/c75e5e010fef
 
-
-That said, if the model defined here is to be followed in other cases
-(or my other vendors) where Devicetree is treated as firmware, your
-concerns are valid - and it might be worth taking the cost of managing
-the live-migration code.
-
-> > If possible, I'd
-> > prefer the complications of maintenance of the migration code be handled
-> > downstream.
-> > 
-
-I'm sorry, but here it sounds like you're saying that you don't want any
-migration code upstream at all? This is not possible, as this will break
-USB for developers and users short term. We can of course discuss the 2
-LTS though, if you want a shorter life span for this migration.
-
-
-In my view, setting a flag date when the dwc3-qcom-legacy.c will be
-removed will provide upstream users a transition period, at a very low
-additional cost (934 lines of already tested code). If someone
-downstream after that flag date wants to retain support for qcom,dwc3
-they can just revert the removal of dwc3-qcom-legacy.c.
-
-The alternative is that I try to get the migration code suggested in v3
-to a state where it can be merged (right now it's 6x larger) and then
-keep investing indefinitely in making sure it's not bit-rotting
-(although Rob Herring did request a flag date of the migration code in
-v3 as well...).
-
-Regards,
-Bjorn
+-- 
+Martin K. Petersen	Oracle Linux Engineering
 
