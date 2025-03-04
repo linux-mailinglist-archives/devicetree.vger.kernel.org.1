@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-153811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3964EA4DEC1
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:08:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34655A4DED0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:10:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1B3C7AC32C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:06:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE6DF7ACC34
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 451C62046A8;
-	Tue,  4 Mar 2025 13:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91858204F94;
+	Tue,  4 Mar 2025 13:07:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P2U96kjI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n0EkaPTY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68A1D2045BD
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 13:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E552046B5
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 13:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741093637; cv=none; b=m7cRtjN3WH9GLJGRa8TZofkCFUxFUTdMUhL8r/wWBvPddXn3xNwNPg+SZXXU2tWtmbFm9nWKYLl/LkUoIT0U3Ke2YmGghAOp3Tycy9WWWNJUQgTUvAQqnEAP59jH7ZW7q4g9cLhkyAKj3ErbHxrWRRBQSTRGF+KzuvvYTwnxOTo=
+	t=1741093640; cv=none; b=FhiwHrGtfS8pw8shoqjcjIGE9pT98U5nMSdNsZR1wuyVpf8rQmwi+XKzM7/18pbAHB1aaBR6HcfS+8xw4VBiHlhQlzE26jy61lIQ/5RLSKknnvlN89eXHZQfW13OutaDJ3NM4EqRUxaBLe88hCFvn00Wz7Ef0dq1KfFrKPjsuJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741093637; c=relaxed/simple;
-	bh=FaXxWBTtA0V9vWn2OFkttUFzPuAdqQgSnU2vFsSbkqI=;
+	s=arc-20240116; t=1741093640; c=relaxed/simple;
+	bh=/NrrKu4n1tF2HpwX/3ZU9A1mDCbhjYaDgP2YCETu4tE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Fow23jAfTCNExCB58x19UOU6UcMMZPaPUqk7FqUExfKi2qwoUvvSa7bZZ79hemTJRzl9iogJkT42dVDKiuujqOuMTnCzc4nImW8N9cviJ2ZGCntiDkNAcb43tW76i+VzLH/l8V2XB/erm9lRu3+we38xIQaKKIwAgmFSheocUhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P2U96kjI; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:To:Cc; b=XN7m6ZxxyoYFqqXRxeuL1OwPXntd9tOoQMsOvywevQ2fDrhTmGn7TfgsEmI0UZs4u/mtBro2nhA3oh9caL1T7znDmiAms51wCcx4wdNuwGth6pMtqiBW7Pz25nEkZx3HOoXEjK3ZdWpDZ/XxXkZYxEdb5AD2vhqlCscPecg9S6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n0EkaPTY; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-390edaee0cfso3111283f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 05:07:15 -0800 (PST)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-38f406e9f80so4247338f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 05:07:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741093634; x=1741698434; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1741093635; x=1741698435; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=U6HSOnQBr0FDVpREIMoFhmB69JXqeBMODdqv9u5g3C4=;
-        b=P2U96kjImqkUyovt+nf7z/PdDXHS4hm/QKlqa2kM691zNt/05WLjSvlTI/h3uZIfHi
-         UQErMq7C3EhO7fEJwHfNV1h42wTwUL9/nsSH6OKVTTdJu/lZIBtSXgmpnXQJaUtNSWF4
-         47FBRKvGCqdrqL8kD3iAYlfsggwYvw26tcwdogR/RDCMkK2wMvlDw/B8ADyuLvm3QfGc
-         zq6aTEG13xKwfcF1Pcq1gPGlvn8FPLNyWHNnVEkvGp47Z30dcoVLLzitj4D+DKUE/ceJ
-         2PumeYTkppHEZWcF+xwieOXkKAuGgoX1gobfjQ9APrphRlSv9iV7Znwj0omtxKYa+ZZr
-         kH1A==
+        bh=nReu5+cl9WzV6+48QR0ZYCEfLXug0GahkekE8tX+Eds=;
+        b=n0EkaPTY/NmMTg4W9rJqtaQjn7nNvzM8XLDUsc1A9s0jv0cJw17FBiprcv7e+NWmVe
+         RSQbrsjt/K857XHe/c1Rqabbp5pSo/OzRvR1X75plUxl6tvJXG+2C9JDoGtGxXChrsTQ
+         SYy0zvpbls5WBkycMwkA8pMFcvWEXSpxsf1Hx8cT5fNSfB3BfPcuih19qTTQP/jdHXda
+         u02aKlTE9sBMQ3wzf9un12P2/D/zQrzePpEXl5Uslzw10cbfm6mJMm9qRhhhE8CO6ANo
+         MLnup02BarWRUJb4+VNpnZKdrLdlIwF1149HPgGSpwe3JFjoG7VeB4wARot7JhYNil3J
+         tbjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741093634; x=1741698434;
+        d=1e100.net; s=20230601; t=1741093635; x=1741698435;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=U6HSOnQBr0FDVpREIMoFhmB69JXqeBMODdqv9u5g3C4=;
-        b=mklKgFV3D0ofkABojWjc5BA3fblgWQl+P3PsFVav9/SACiqojl+LOFjGIcNz7BPvwC
-         AW4Yk/6orVjFnDoasa9z0R8M7VIU77kfMmnzfFJOhc61JIj6UamxV+5acWeBXSL0gN0h
-         jFwhCHt5Bpfnxwe45U8ufC2LUoFE+nJWKNg9cGz8LizL+Dsekqn6rExgLkGIDcp1J7nX
-         9ExDG+Z18HMCeclMvUvowNHPZnEcIaapMK1PRyD6xOfwlP9CsM/kakz8kn6X7JnRfKfc
-         rDSdh63ftUrqrxS+SW6Gu8OwsXexdsyTwt3gNEXMyr52UfhXi9aUdMbc3FmjWUi/OMnp
-         vyKA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjnNsKDXg8R55MjsPPNffDGhAXAUaYmWOYz4IGqswtdg4R11A7IyMx528QnlmYh94WENNDBDFr18nf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKgRf+HksCkkecJUKiz3fl3M8ippV5IcQfHynrGBaOGm5i2TPX
-	krmjvz8pUtMS70QSRNm6w7YsSPlmgauJXrczTsGqu5jwBIbe7cT5FH42eLfGsuo=
-X-Gm-Gg: ASbGncu6DR9Pc7UnaqZB/FSulkqBeNEAvgvIy1CQ2PEmVzzY5htnyOeYOKRY8cMJQ+1
-	LwSYnycTVGClU7oDcqDiYttMFRu3u2vYIqwuN6MC/cVpXaHEu+5cHLRXtQJcyJ3trirTFW34wdh
-	vJTrFb37UdB1NHhn5SyBcOOl7ZwmlPhHVBjVu/PjhWzQequGm7d679qjf018hDPhOuQQ+E5uasZ
-	P77DhxCRogein4yqAGH9jhfy8eiyu8XN0fLL0BnF/M6aJkFTXsMh1sTH0/Gt2rBM+XAlXzyA+Hm
-	TtwnGTFZQtNtQgRksWtd/5LofCbkIacbN3GSEHJdJr3RHSSwr0Bb00UDkP35ktIyaqLNj40LBpM
-	LGZI7Jg==
-X-Google-Smtp-Source: AGHT+IFd1jiwpx5EeofZBxtQSONJsTOBslCT9aMW9/Tof0U0ChG1L8NGbIX2J18ydo0KXKMo/1Upcg==
-X-Received: by 2002:a05:6000:2a02:b0:390:f412:dd41 with SMTP id ffacd0b85a97d-390f412e13bmr9259864f8f.53.1741093633694;
-        Tue, 04 Mar 2025 05:07:13 -0800 (PST)
+        bh=nReu5+cl9WzV6+48QR0ZYCEfLXug0GahkekE8tX+Eds=;
+        b=nYd6i5KOIqTPUYGLzg1CyMFtExlxjfdf/Ib3uhkYlRjbtrNi9HLTrt7iZfxlqGm4LN
+         K1dPmQfVHeRrV5JYvVYUc0DGn/Cb8CPO9nqswfzlYG7f1Vbwiw0omY2WOrsMRgOi2YLC
+         LTxlbOr4M6Eb661f6RVY5Zpwy7b+qeHtYG5k41nwk/2k7eyO8NWqSVl+dtVs8l7yPNUt
+         4AQDt0pBDg6iUc4KM5k6BOFOddilzObrDbQlqcVXpSNw0U7f1qiBjNvrxMV4IfbhK3e6
+         RF2TIKfPqpDlmnu+Ppbp34DHMaLDjdQhWQCEha1XlKkvhm00+DKtcwfF91GLWiwSuwMk
+         hyyw==
+X-Forwarded-Encrypted: i=1; AJvYcCWNJRSO2tck1UG7igFBpuf08viu3Lm0Wry/vli8roDhVHXkRLlUczxKS/2B8n6IMeUf4vLWDcAOzrDU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8sdRucLnukEz83YI5FMmEXrWLoKiG+px0ZRQg9TvWaxvRKtyB
+	erHxAErwDNqDmBivjlvaFJf/0VR5tonkmlyzT0sdnHvxeFBDbRAWV+VKv2cY+MtqZ3QHGRj97tr
+	V
+X-Gm-Gg: ASbGnctEMOwAmsx5rCGEZYDkaTzRtf6TpAKaslHd8RnuRFZxK4SksAjZif4JvPKAVfS
+	OT7zjpExjJNbyNPXgvboYJ5S1WguS2rh4HvSHp9mp1I8LaaLuJQX9r1SNF3+xCmN+FB5cb1z+x/
+	r+AKjQKuLdvbqmYQGEdgiCbmxgv3gtolDsYmKPMrYJnp4GGVHZHr+p/DMdRbRBLic5OypxCHgkb
+	wAx+9jW2m8KAsdEmWNo/UfItOhxfhUlOTkY67nQblGn5LIiU+8M1HJIKOzOI1Z6LbiNco9czkws
+	hn/MyAAv9wZ7XCTRwYf4ULa5TRvN9OLREakDaL+3E+UdRBzAyXj78d25xUfTlYl/uH3i6qlyMns
+	Q7LRTgg==
+X-Google-Smtp-Source: AGHT+IFFQwNalVDcJ6wvBNHtHEZZ1GuZCNcAdrK9S2+uRO3n9xEvwwqdDOGiOLjqar6ic5Tu3r7jAA==
+X-Received: by 2002:a5d:64e2:0:b0:38d:d371:e04d with SMTP id ffacd0b85a97d-390eca5b1abmr13994541f8f.34.1741093634919;
+        Tue, 04 Mar 2025 05:07:14 -0800 (PST)
 Received: from [127.0.1.1] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e47b6cd8sm17401715f8f.44.2025.03.04.05.07.12
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e47b6cd8sm17401715f8f.44.2025.03.04.05.07.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Mar 2025 05:07:13 -0800 (PST)
+        Tue, 04 Mar 2025 05:07:14 -0800 (PST)
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Tue, 04 Mar 2025 13:07:09 +0000
-Subject: [PATCH 3/8] media: venus: hfi_venus: Support only updating certain
- bits with presets
+Date: Tue, 04 Mar 2025 13:07:10 +0000
+Subject: [PATCH 4/8] media: platform: venus: Add optional LLCC path
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-3-279c7ea55493@linaro.org>
+Message-Id: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-4-279c7ea55493@linaro.org>
 References: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-0-279c7ea55493@linaro.org>
 In-Reply-To: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-0-279c7ea55493@linaro.org>
 To: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
@@ -103,58 +103,111 @@ X-Mailer: b4 0.15-dev-33ea6
 
 From: Konrad Dybcio <konradybcio@kernel.org>
 
-On some platforms (like SM8350) we're expected to only touch certain bits
-(such as 0 and 4 corresponding to mask 0x11). Add support for doing so.
+Some newer SoCs (such as SM8350) have a third interconnect path. Add
+it and make it optional.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Link: https://lore.kernel.org/r/20230731-topic-8280_venus-v1-3-8c8bbe1983a5@linaro.org
+Link: https://lore.kernel.org/r/20230731-topic-8280_venus-v1-4-8c8bbe1983a5@linaro.org
 Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- drivers/media/platform/qcom/venus/core.h      |  1 +
- drivers/media/platform/qcom/venus/hfi_venus.c | 15 ++++++++++++---
- 2 files changed, 13 insertions(+), 3 deletions(-)
+ drivers/media/platform/qcom/venus/core.c       | 19 +++++++++++++++++++
+ drivers/media/platform/qcom/venus/core.h       |  3 +++
+ drivers/media/platform/qcom/venus/pm_helpers.c |  3 +++
+ 3 files changed, 25 insertions(+)
 
+diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+index 61fb59788a810..93e5b9e1f70cc 100644
+--- a/drivers/media/platform/qcom/venus/core.c
++++ b/drivers/media/platform/qcom/venus/core.c
+@@ -393,6 +393,15 @@ static int venus_probe(struct platform_device *pdev)
+ 	if (IS_ERR(core->cpucfg_path))
+ 		return PTR_ERR(core->cpucfg_path);
+ 
++	core->llcc_path = devm_of_icc_get(dev, "video-llcc");
++	if (IS_ERR(core->llcc_path)) {
++		/* LLCC path is optional */
++		if (PTR_ERR(core->llcc_path) == -ENODATA)
++			core->llcc_path = NULL;
++		else
++			return PTR_ERR(core->llcc_path);
++	}
++
+ 	core->irq = platform_get_irq(pdev, 0);
+ 	if (core->irq < 0)
+ 		return core->irq;
+@@ -581,12 +590,18 @@ static __maybe_unused int venus_runtime_suspend(struct device *dev)
+ 	if (ret)
+ 		goto err_cpucfg_path;
+ 
++	ret = icc_set_bw(core->llcc_path, 0, 0);
++	if (ret)
++		goto err_llcc_path;
++
+ 	ret = icc_set_bw(core->video_path, 0, 0);
+ 	if (ret)
+ 		goto err_video_path;
+ 
+ 	return ret;
+ 
++err_llcc_path:
++	icc_set_bw(core->video_path, kbps_to_icc(20000), 0);
+ err_video_path:
+ 	icc_set_bw(core->cpucfg_path, kbps_to_icc(1000), 0);
+ err_cpucfg_path:
+@@ -626,6 +641,10 @@ static __maybe_unused int venus_runtime_resume(struct device *dev)
+ 	if (ret)
+ 		return ret;
+ 
++	ret = icc_set_bw(core->llcc_path, kbps_to_icc(20000), 0);
++	if (ret)
++		return ret;
++
+ 	ret = icc_set_bw(core->cpucfg_path, kbps_to_icc(1000), 0);
+ 	if (ret)
+ 		return ret;
 diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
-index abeeafa866971..b595f72b3afc4 100644
+index b595f72b3afc4..0cb17b7db0963 100644
 --- a/drivers/media/platform/qcom/venus/core.h
 +++ b/drivers/media/platform/qcom/venus/core.h
-@@ -38,6 +38,7 @@ struct freq_tbl {
- struct reg_val {
- 	u32 reg;
- 	u32 value;
-+	u32 mask;
- };
+@@ -65,6 +65,7 @@ struct venus_resources {
+ 	unsigned int bw_tbl_enc_size;
+ 	const struct bw_tbl *bw_tbl_dec;
+ 	unsigned int bw_tbl_dec_size;
++	bool has_llcc_path;
+ 	const struct reg_val *reg_tbl;
+ 	unsigned int reg_tbl_size;
+ 	const struct hfi_ubwc_config *ubwc_conf;
+@@ -136,6 +137,7 @@ struct venus_format {
+  * @vcodec1_clks: an array of vcodec1 struct clk pointers
+  * @video_path: an interconnect handle to video to/from memory path
+  * @cpucfg_path: an interconnect handle to cpu configuration path
++ * @llcc_path: an interconnect handle to video to/from llcc path
+  * @pmdomains:	a pointer to a list of pmdomains
+  * @opp_pmdomain: an OPP power-domain
+  * @resets: an array of reset signals
+@@ -189,6 +191,7 @@ struct venus_core {
+ 	struct clk *vcodec1_clks[VIDC_VCODEC_CLKS_NUM_MAX];
+ 	struct icc_path *video_path;
+ 	struct icc_path *cpucfg_path;
++	struct icc_path *llcc_path;
+ 	struct dev_pm_domain_list *pmdomains;
+ 	struct dev_pm_domain_list *opp_pmdomain;
+ 	struct reset_control *resets[VIDC_RESETS_NUM_MAX];
+diff --git a/drivers/media/platform/qcom/venus/pm_helpers.c b/drivers/media/platform/qcom/venus/pm_helpers.c
+index 33a5a659c0ada..3afda28cdfed2 100644
+--- a/drivers/media/platform/qcom/venus/pm_helpers.c
++++ b/drivers/media/platform/qcom/venus/pm_helpers.c
+@@ -237,6 +237,9 @@ static int load_scale_bw(struct venus_core *core)
+ 	dev_dbg(core->dev, VDBGL "total: avg_bw: %u, peak_bw: %u\n",
+ 		total_avg, total_peak);
  
- struct bw_tbl {
-diff --git a/drivers/media/platform/qcom/venus/hfi_venus.c b/drivers/media/platform/qcom/venus/hfi_venus.c
-index a9167867063c4..ef2ea4727758f 100644
---- a/drivers/media/platform/qcom/venus/hfi_venus.c
-+++ b/drivers/media/platform/qcom/venus/hfi_venus.c
-@@ -359,10 +359,19 @@ static void venus_set_registers(struct venus_hfi_device *hdev)
- 	const struct venus_resources *res = hdev->core->res;
- 	const struct reg_val *tbl = res->reg_tbl;
- 	unsigned int count = res->reg_tbl_size;
--	unsigned int i;
-+	unsigned int i, val;
++	if (core->res->has_llcc_path)
++		icc_set_bw(core->llcc_path, total_avg, total_peak);
 +
-+	for (i = 0; i < count; i++) {
-+		val = tbl[i].value;
- 
--	for (i = 0; i < count; i++)
--		writel(tbl[i].value, hdev->core->base + tbl[i].reg);
-+		/* In some cases, we only want to update certain bits */
-+		if (tbl[i].mask) {
-+			val = readl(hdev->core->base + tbl[i].reg);
-+			val = (val & ~tbl[i].mask) | (tbl[i].value & tbl[i].mask);
-+		}
-+
-+		writel(val, hdev->core->base + tbl[i].reg);
-+	}
+ 	return icc_set_bw(core->video_path, total_avg, total_peak);
  }
  
- static void venus_soft_int(struct venus_hfi_device *hdev)
 
 -- 
 2.47.2
