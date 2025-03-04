@@ -1,155 +1,125 @@
-Return-Path: <devicetree+bounces-154100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A485BA4ECD4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:09:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AD1DA4ECFA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 20:15:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C61A7A5679
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:08:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76ACA16B9ED
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 19:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE36F255231;
-	Tue,  4 Mar 2025 19:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5563F255231;
+	Tue,  4 Mar 2025 19:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ik+QyPl3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wd+VYz5Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 899E7255223
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 19:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25CD424BCE8;
+	Tue,  4 Mar 2025 19:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741115334; cv=none; b=Z8KxqQrlRp1m40beI1R/NSnzPdvLiR6xW/c9gabGvhGeCWFoGvyoE424MmJgkLrA3dp6INE11Oj8m4AmgRhuKwL06eROTK2S3N9R0+QmTCAgQ1Ilw+cMEAwsgn1EODKvXaO4zeyBQ5gh5W27IGdCNooVgb89ZVY0ZCDWGOE2WXE=
+	t=1741115718; cv=none; b=LFGc2ewl1vLkSFdghMC4v2e3bkP9n8sMLSyFGez5CPdFuQVIfcTZb5ww8JaNvl3stjQyft74J7yLhqnUeERaMH0nI2haAuBOWMgC9hUxf9RPQ8jiKDvnlzYG73FkiMKlfw7bA1RFlZSLM8g4QC6+8UMw2glhRKPHt3F43qEK7Q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741115334; c=relaxed/simple;
-	bh=iTsLrzXmNE6ewCyusYOdWQ/qVtARPaI4u/GWKkxxFvw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jUBlDq5OtiSB3y+CPMyn46FIjsDvv6MOn3qZvDo3sq1qr/MkUGj5KRSsa56d/IfVYoO60Zbu4NRl46F8glpI67n80b4i/GvqZZZCWNEYarbixlMevOeZIBotC0+dT9diayMUiBiGRdf83jANTwplROGv6usvGfptwRSCIIZ53+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ik+QyPl3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40CD6C4CEE5;
-	Tue,  4 Mar 2025 19:08:52 +0000 (UTC)
+	s=arc-20240116; t=1741115718; c=relaxed/simple;
+	bh=m8gpsFcvErC+OBg1crSKmlYcazdRoOwZ0xMnwbncoLg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=NYpHjrOUrqNzU7LSwekpgEspFnLdH5wUv0RLgdySmZ6VCvjQtrzDZcJUdh548aVWv0pdxRcVRNBc+JkeWnJ52Hf+jw/JLu+6sLOzIZOx1ZgsBuBQ6wR9VpU6GSorusG7Snnefhb8+IKjE/bo4jZFPcZqTLkyI45MKl0q7KXa04g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wd+VYz5Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BA93C4CEE5;
+	Tue,  4 Mar 2025 19:15:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741115334;
-	bh=iTsLrzXmNE6ewCyusYOdWQ/qVtARPaI4u/GWKkxxFvw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ik+QyPl3mFK3GTSkTqm+wIY6RI5U1X2lWxHps+fFzh2yOJ14+d1Pz0veM/Bn27PYx
-	 0yorqpHrl0TQtMOui1s16eIyPEWGSaNqQua8athSUA0s7PXn/yr1eXvSFmYbjFs8Ib
-	 EOv1cwDi2Pkk96UsMeZOjH0S9m8SG61cUpLgtfLVf70SgfmAPVtMLNgmYnLdFnI5mY
-	 vVzcsQ13LEetUgv0l/Tw77OBP7MFKMBfJwf8MJlaSmPpNvoddMrb/r/EXpZ1xasb+l
-	 Ur5TbUA6QjFmLT4IKyTzve1mypAt9NE0tx3qrBH69tVm3rip6XwonvIuF1TqFkVaEK
-	 Udfjf2+5s7KyA==
-Date: Tue, 4 Mar 2025 19:08:49 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Subject: Re: [PATCH v4 1/2] ASoC: codecs: add support for ES8389
-Message-ID: <683f5b2b-3583-442a-8d98-28bbbcf90d1e@sirena.org.uk>
-References: <20250304114751.54635-1-zhangyi@everest-semi.com>
- <20250304114751.54635-2-zhangyi@everest-semi.com>
+	s=k20201202; t=1741115717;
+	bh=m8gpsFcvErC+OBg1crSKmlYcazdRoOwZ0xMnwbncoLg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Wd+VYz5Z5pmq6PMWBMCh4meGD69gSJjcGdaQqppo0JES4AT8CP7BglSfJgGMVA3y7
+	 UTxQvO0wRGmTbAZ1rh01lKFGskbhM75iCjZ6guHgUT/y704xVrwXatSv5etp8opAL/
+	 hMX2QJSLGU+L4BspbNuRwWw7D+P0z4vZhF8JcjMhBRoudk+xaT0kjlBU8ik1AI4bbJ
+	 /804WbtwyRXPPLHq2RrTziJNifSXLCDEj8XSDDzcF/V/DkuC7iaKTrjOhKSmKp2bfF
+	 1M63SfvUoiIkLLZzovZrXd1NTBWJJQ7O8Xg5BWl8JiUITB6tWMIjQ2m2VpPjnnVLjG
+	 opGhzPH4Pok/A==
+Date: Tue, 04 Mar 2025 13:15:15 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PYMSt5sabbE7jsCR"
-Content-Disposition: inline
-In-Reply-To: <20250304114751.54635-2-zhangyi@everest-semi.com>
-X-Cookie: Do not disturb.
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: tglx@linutronix.de, jic23@kernel.org, linux-iio@vger.kernel.org, 
+ olivier.moysan@foss.st.com, wbg@kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pwm@vger.kernel.org, alexandre.torgue@foss.st.com, 
+ conor+dt@kernel.org, krzk+dt@kernel.org, daniel.lezcano@linaro.org, 
+ devicetree@vger.kernel.org, will@kernel.org, lee@kernel.org, 
+ catalin.marinas@arm.com, ukleinek@kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+In-Reply-To: <20250304173229.3215445-2-fabrice.gasnier@foss.st.com>
+References: <20250304173229.3215445-1-fabrice.gasnier@foss.st.com>
+ <20250304173229.3215445-2-fabrice.gasnier@foss.st.com>
+Message-Id: <174111571576.3307031.12348647271786435979.robh@kernel.org>
+Subject: Re: [PATCH v2 1/8] dt-bindings: mfd: stm32-lptimer: add support
+ for stm32mp25
 
 
---PYMSt5sabbE7jsCR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Tue, 04 Mar 2025 18:32:22 +0100, Fabrice Gasnier wrote:
+> Add a new stm32mp25 compatible to stm32-lptimer dt-bindings, to support
+> STM32MP25 SoC. Some features has been updated or added to the low-power
+> timer:
+> - new capture compare channels
+> - up to two PWM channels
+> - PWM input capture
+> - peripheral interconnect in stm32mp25 has been updated (new triggers).
+> - registers/bits has been added or revisited (IER access).
+> So introduce a new compatible to handle this diversity.
+> 
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> ---
+> Changes in V2:
+> - Use fallback compatibles, along with stm32mp25 specific compatible
+> - trigger identifier can be up to 4 (e.g. from LPTIM1..5)
+> ---
+>  .../bindings/mfd/st,stm32-lptimer.yaml        | 40 ++++++++++++++++---
+>  1 file changed, 34 insertions(+), 6 deletions(-)
+> 
 
-On Tue, Mar 04, 2025 at 07:47:50PM +0800, Zhang Yi wrote:
-> The driver is for codec es8389 of everest which is different from ES8388
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> @@ -0,0 +1,961 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * es8389.c  --  ES8389/ES8390 ALSA SoC Audio Codec
-> + *
-> + * Copyright (C) 2025 Everest Semiconductor Co., Ltd
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:26:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:29:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:67:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:70:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:87:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:90:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:103:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:106:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:120:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml:123:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
 
-Please make the entire comment block a C++ one so things look more
-consistent.
+dtschema/dtc warnings/errors:
 
-> +	if (es8389->dmic == true) {
-> +		regmap_update_bits(es8389->regmap, ES8389_DMIC_EN, 0xC0, 0xC0);
-> +		regmap_update_bits(es8389->regmap, ES8389_ADC_MODE, 0x03, 0x03);
-> +	} else {
-> +		regmap_update_bits(es8389->regmap, ES8389_DMIC_EN, 0xC0, 0x00);
-> +		regmap_update_bits(es8389->regmap, ES8389_ADC_MODE, 0x03, 0x00);
-> +	}
+doc reference errors (make refcheckdocs):
 
-We also had the DMIC mux, is that useful as a runtime control when we
-have firmware data telling us if there's a DMIC?  Can both a DMIC and
-analog input be present in the same system?
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250304173229.3215445-2-fabrice.gasnier@foss.st.com
 
-It does still look like a lot of these settings might be things that
-should be user controllable...
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> +	ret = device_property_read_u8(codec->dev, "everest,adc-slot", &es8389->adc_slot);
-> +	if (ret != 0) {
-> +		dev_dbg(codec->dev, "adc-slot return %d", ret);
-> +		es8389->adc_slot = 0x00;
-> +	}
-> +
-> +	ret = device_property_read_u8(codec->dev, "everest,dac-slot", &es8389->dac_slot);
-> +	if (ret != 0) {
-> +		dev_dbg(codec->dev, "dac-slot return %d", ret);
-> +		es8389->dac_slot = 0x00;
-> +	}
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-set_tdm_slot()
+pip3 install dtschema --upgrade
 
-Please don't ignore review comments, people are generally making them
-for a reason and are likely to have the same concerns if issues remain
-unaddressed.  Having to repeat the same comments can get repetitive and
-make people question the value of time spent reviewing.  If you disagree
-with the review comments that's fine but you need to reply and discuss
-your concerns so that the reviewer can understand your decisions.
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-> +	if (!es8389->adc_slot) {
-> +		es8389->mclk = devm_clk_get(codec->dev, "mclk");
-> +		if (IS_ERR(es8389->mclk))
-> +			return dev_err_probe(codec->dev, PTR_ERR(es8389->mclk),
-> +				"ES8389 is unable to get mclk\n");
-> +
-> +		if (!es8389->mclk)
-> +			dev_err(codec->dev, "%s, assuming static mclk\n", __func__);
-> +
-> +		ret = clk_prepare_enable(es8389->mclk);
-> +		if (ret) {
-> +			dev_err(codec->dev, "%s, unable to enable mclk\n", __func__);
-> +			return ret;
-> +		}
-> +	}
-
-Making the use of a MCLK depend on the configuration of a TDM slot for
-the ADC seems *very* unusual, what's going on there?
-
---PYMSt5sabbE7jsCR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfHT8AACgkQJNaLcl1U
-h9D7VggAgCUCy3r0SZpAyeJcxz5cqr7stWTZdLnQVpbtH0Nu+u9cGAVBSmIFLHoP
-WVgSA64gPWQOJpfOT343p5YfTmz66IomnBHbQhrgGdcaZskxyHmxksA2zWsD5iJn
-N7oi9D415Yfl12cvCymuWcI7pEJl99sm3xaMvq2YRrAMOpNkEKrLYETpY/uoIpu9
-0JcFsU7ulq2/4myCITQ1lP9NIXMmozS3bFFbu4tU8D//BMiVtXQTDeT4hnIJADAN
-dOGos/2O4qEJ27HV67eAtQgaf0EboOlpeTbmMSc7d608SygmgLRnpkKT5X64eckj
-IobExlZr+Q561sBbHvTtfImWjaEWGQ==
-=ngUN
------END PGP SIGNATURE-----
-
---PYMSt5sabbE7jsCR--
 
