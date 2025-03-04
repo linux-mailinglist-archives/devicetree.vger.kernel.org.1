@@ -1,80 +1,55 @@
-Return-Path: <devicetree+bounces-153688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFE85A4D8AD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:38:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209BBA4D8B3
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 10:38:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E127E178316
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:36:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51371188E3E9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 09:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9AD31FE456;
-	Tue,  4 Mar 2025 09:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535AF1FDE02;
+	Tue,  4 Mar 2025 09:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iq5OVPHh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qjoOe41T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA1C201022
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 09:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C29B01FC7C2;
+	Tue,  4 Mar 2025 09:33:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741080694; cv=none; b=B4PFItuHiuL1T2ibUd5beuT1vSGwuwLPrby1KSnJp9bN2vSwm6tthvqVzP4+RKyz6K0eGi6AJVzwxlX7KiND2s3IAL5wx6Byvcdgpz5VycKAjhGqZADbiUxSaCkzSmJ7Hg6NhcPlMIe6wo8SAq2gu0nKk9kzajpjzkIbS/hKflA=
+	t=1741080785; cv=none; b=tZQpr/ANWgeFDUtlKHjqL1etVuP978i1hbKXRPR5cYJjbw26DPTnpYzVh11NtdyO8cIc2QMFrfTXKVTLlhcCv+y5fxNSneT5Kr4pAE3coPO4tKat7oQ1Oj91riiy71OWOuDPMsC4wcSMB7EkLiWgxkb/PXuMKHdRWND1SPV5Dhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741080694; c=relaxed/simple;
-	bh=f0m1CDKNfTuQsPCxO4ffsoS1wvQEZPAKQ0P61rR00WI=;
+	s=arc-20240116; t=1741080785; c=relaxed/simple;
+	bh=JF9sxbEEccR/pwV4UWR6bRzWcVi7LBjHmtUPbTE7LOg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nYJXOIkx+PBV1SBJ8B/FTfhJwPXrbbLmk9lNFSeZi9eOAsAEMDT6ZojDN4Iat4BcYQ9A+MwYZBTaNuiLaH12XANAbhqOKtg+6cyMsweGPtXryL+bxTVDE1soEYDXjS2faUaT5kp1Fldg1HKMGKe1h+T81r1p9hH1lijMZpX1H4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iq5OVPHh; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43bc38bb6baso11241895e9.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 01:31:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741080690; x=1741685490; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FjiqFuGa9IcB3oeyaig5ZQnZ00t+YOxd30bANitLrmQ=;
-        b=iq5OVPHheceJRwXMmBBkWDDIXePY4+nTw1w9RIzOx0lk0PlDX+s4ip4ggj//wjfVSq
-         YxCToq93c18sH85js9pNLENi1Iq5eHYsdJTgm2EA6y2sote/PwTqx3r6oBgtl9V9Emro
-         KmNMeZRf/L6qby8ICBoYQ8IONQy3fgwc1g06elkAPlbi2QSPv8Yijy1rPtarygNbZ2yy
-         adGNCVVTFpRLPlIm2xWrqHZHnFv106L4ji4dlH8Ssc0XJbW/bQZpnmDfgHkE4gVLNR24
-         Xt+JG2q48PpEddvFvGmTh4RLaJtbcmTeN3yW3QUP9MrlXlIFb9aSUgFIh2/sepMt2jm2
-         8qiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741080690; x=1741685490;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FjiqFuGa9IcB3oeyaig5ZQnZ00t+YOxd30bANitLrmQ=;
-        b=sBGSkEd4WAsrsbVd4YzdBHnR815Xlk5nMJURKtU8G1xyDDFs1HJMpCrkHSORzetRl+
-         XPdPGIElESs5vp2YLUbPR9KE5kws1zzgBU3c6LlanfXbNZPrgCeFyS7enaYNpa70JIlc
-         RXDl7PqY/ob6XYwmXvCJkp/x8P7dXTHf8597FICIeNLG3KwsCvprfrVs2qT8mTQZw8Y2
-         vmFmhZSLFZ2dIE3PURsMLByhUxmxmZpbCBBNfFxrAdctk9HQbzGBKdeOQAr8+HfYMv1i
-         54sNeGjpOekrvjyqtDSta3FgJyR3UuIZznGAXrqaUSR/3SwK0ZyEU1wiZb9e3WQ+dJE8
-         H8uA==
-X-Forwarded-Encrypted: i=1; AJvYcCVV1ZMZFKKet3OgNVCcR6ZNXeuhg0TmONlB/JXv6nErc9llpyEHqiMozdlrFOXk96ViXZU7ypyaffS8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaDVm+CH8NBti4qE4Kqo5l1fOOYjsBAHmo8I9+NDYrRXM4ahWS
-	+qCmIx3SxXFNQ6+D03Y7Ls2X3PrKixC8kMyxKCrNlP87F03T1B8F38/MrdUEi2Y=
-X-Gm-Gg: ASbGncslJqBmaLb31+l90ZiQVk+L1ZwqtpUqBT+Kbqqbigq5HpEjVKyaSHCCZzvfm86
-	7IA9prRF3R8SzBEhQLO5XnufMPUxoJmdf01x5p6g7uTtxE5NHnqIvCcKFo9u+DK0lQMCJlkUKa9
-	xirQ9Tgp4oDBoREJGuzTFaZH7JcQCikCzfc9/wwgs19iZQlrNF4qQ0Ajv8dTXE85/sPGvwmRDmU
-	WyqXjN9eZZxdSew5gazJ0fRNieMh0r9iKW1a6kyxC7guCHJ/+6S7nKurYCYy83bWQe3KHNsxBYf
-	IgHCVDmjFoK3T5m6gBi0auJV5a0VSG33r6hItNo/eJyS5gemlk7cyNqZ2r1walET4JL7za7H+4q
-	J52BkUVxZHA==
-X-Google-Smtp-Source: AGHT+IG2b8tLFvBTyW6XgxUEsNgYn+1nm37EUJ3QIriKIIZDPawo7iAw5RKC6G9gHRH1sm2cXjjVyg==
-X-Received: by 2002:a05:600c:3c9c:b0:439:89e9:4eff with SMTP id 5b1f17b1804b1-43ba66e6b5dmr142345715e9.10.1741080689654;
-        Tue, 04 Mar 2025 01:31:29 -0800 (PST)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43bc447a0b3sm57631335e9.3.2025.03.04.01.31.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Mar 2025 01:31:29 -0800 (PST)
-Message-ID: <e66acb3a-7805-47f5-9179-1fab95754727@linaro.org>
-Date: Tue, 4 Mar 2025 09:31:27 +0000
+	 In-Reply-To:Content-Type; b=rnPDOz7zIPpLpam60WrNnHug5MW/Kk9meuT7lXucpXyxcFz5yUN9GNLq9jJ9rWFIpaB0d3HHzlv1GWksCGxZwrUNyvmYiNF1MaFyfpLrka8G1RxIkO8+HrfkqxAezw/ARYHzfOpalP59PN56A3O5mvZvVQyujl4cySg5npkIdhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qjoOe41T; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1741080780;
+	bh=JF9sxbEEccR/pwV4UWR6bRzWcVi7LBjHmtUPbTE7LOg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qjoOe41TanW4TxwLEeCxJSMLuyej+aEG/K2EWazvTSV+2UZgG50JfJiJNtqJCwsY4
+	 l3TLqRS1ZSpZtnZPtNYQGpbhJFD0XXoAQE3jeC84LdiMxZZ1WsGcEieBCKdChIglWf
+	 aH9lS8ka0ynZjepKUvLtKeuHB2zUh2AdC33uV4Fq47LC3SZs9dFv97Z1+rk/TUngMh
+	 JX1sNGvPV099kGdv4HiBCMNPAqjRDjtbtIT+DVJ+yqy6mxevk78rNkMbXTYd/kmTwv
+	 vDbz0hIprjf2A5y7Si0+YUiqcC+MrcZVEubjxJAyPOC8QAN3DV2ll879Lz5YIhEe9J
+	 K1y4rNxCd5lbA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8808917E065A;
+	Tue,  4 Mar 2025 10:32:59 +0100 (CET)
+Message-ID: <652e435c-563b-496a-a4c3-c2e2b665abcf@collabora.com>
+Date: Tue, 4 Mar 2025 10:32:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,43 +57,315 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: qcom: sm8450-camcc: Remove
- qcom,x1e80100-camcc leftover
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20250303223936.1780441-1-vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH v4 3/8] mailbox: mtk-cmdq: Add driver data to support for
+ MT8196
+To: Jason-JH Lin <jason-jh.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ Nancy Lin <nancy.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>,
+ Moudy Ho <moudy.ho@mediatek.com>, Xavier Chang <xavier.chang@mediatek.com>,
+ Xiandong Wang <xiandong.wang@mediatek.com>,
+ Sirius Wang <sirius.wang@mediatek.com>, Fei Shao <fshao@chromium.org>,
+ Pin-yen Lin <treapking@chromium.org>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+References: <20250218054405.2017918-1-jason-jh.lin@mediatek.com>
+ <20250218054405.2017918-4-jason-jh.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250303223936.1780441-1-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250218054405.2017918-4-jason-jh.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 03/03/2025 22:39, Vladimir Zapolskiy wrote:
-> Qualcomm x1e80100-camcc was moved to its own dt bindings description
-> file, however a small leftover was left, remove it.
+Il 18/02/25 06:41, Jason-JH Lin ha scritto:
+> MT8196 has 3 new hardware configuration compared with the previous SoC,
+> which correspond to the 3 new driver data:
 > 
-> Fixes: 7ec95ff9abf4 ("dt-bindings: clock: move qcom,x1e80100-camcc to its own file")
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> 1. mminfra_offset: For GCE data plane control
+>     Since GCE has been moved into mminfra, GCE needs to append the
+>     mminfra offset to the DRAM address when accessing the DRAM.
+> 
+> 2. gce_vm: For GCE hardware virtualization
+>     Currently, the first version of the mt8196 mailbox controller only
+>     requires setting the VM-related registers to enable the permissions
+>     of a host VM.
+
+I think that the GCE VM changes should go to a different commit, as that
+looks like being something not critical for basic functionality of the
+MMINFRA GCE.
+
+I really like seeing support for that, but please split the basic stuff
+from the extra functionality :-)
+
+> 
+> 3. dma_mask_bit: For dma address bit control
+>     In order to avoid the hardware limitations of MT8196 accessing DRAM,
+>     GCE needs to configure the DMA address to be less than 35 bits.
+> 
+> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
 > ---
->   Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml | 1 -
->   1 file changed, 1 deletion(-)
+>   drivers/mailbox/mtk-cmdq-mailbox.c       | 90 +++++++++++++++++++++---
+>   include/linux/mailbox/mtk-cmdq-mailbox.h |  2 +
+>   2 files changed, 84 insertions(+), 8 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-> index b88b6c9b399a..9e79f8fec437 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-> @@ -64,7 +64,6 @@ allOf:
->                 - qcom,sc8280xp-camcc
->                 - qcom,sm8450-camcc
->                 - qcom,sm8550-camcc
-> -              - qcom,x1e80100-camcc
->       then:
->         required:
->           - required-opps
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
+> index d186865b8dce..0abe10a7fef9 100644
+> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
+> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+> @@ -43,6 +43,17 @@
+>   #define GCE_CTRL_BY_SW				GENMASK(2, 0)
+>   #define GCE_DDR_EN				GENMASK(18, 16)
+>   
+> +#define GCE_VM_ID_MAP0			0x5018
+> +#define GCE_VM_MAP0_ALL_HOST			GENMASK(29, 0)
+> +#define GCE_VM_ID_MAP1			0x501c
+> +#define GCE_VM_MAP1_ALL_HOST			GENMASK(29, 0)
+> +#define GCE_VM_ID_MAP2			0x5020
+> +#define GCE_VM_MAP2_ALL_HOST			GENMASK(29, 0)
+> +#define GCE_VM_ID_MAP3			0x5024
+> +#define GCE_VM_MAP3_ALL_HOST			GENMASK(5, 0)
+> +#define GCE_VM_CPR_GSIZE		0x50c4
+> +#define GCE_VM_CPR_GSIZE_HSOT			GENMASK(3, 0)
+
+typo: GSIZE_HOST....
+
+...but also, if you could add some brief description of what the VMIDs are used for
+and what the GSIZE is... that'd be very much appreciated from whoever is reading
+this.
+
+The GCE stuff isn't even properly described in datasheets - I do (probably!)
+understand what those are for, but asking people to get years of experience on
+MediaTek to understand what's going on would be a bit rude, wouldn't it? :-D
+
+> +
+>   #define CMDQ_THR_ACTIVE_SLOT_CYCLES	0x3200
+>   #define CMDQ_THR_ENABLED		0x1
+>   #define CMDQ_THR_DISABLED		0x0
+> @@ -87,11 +98,24 @@ struct cmdq {
+>   struct gce_plat {
+>   	u32 thread_nr;
+>   	u8 shift;
+> +	dma_addr_t mminfra_offset;
+
+It looks like this is exactly the DRAM's iostart... at least, I can see that in the
+downstream devicetree that's where it starts.
+
+	memory: memory@80000000 {
+		device_type = "memory";
+		reg = <0 0x80000000 0 0x40000000>;
+	};
+
+It doesn't really look like being a coincidence, but, for the sake of asking:
+is this just a coincidence? :-)
+
+>   	bool control_by_sw;
+>   	bool sw_ddr_en;
+> +	bool gce_vm;
+> +	u32 dma_mask_bit;
+>   	u32 gce_num;
+>   };
+>   
+> +static inline u32 cmdq_reg_shift_addr(dma_addr_t addr, const struct gce_plat *pdata)
+> +{
+> +	return ((addr + pdata->mminfra_offset) >> pdata->shift);
+> +}
+> +
+> +static inline u32 cmdq_reg_revert_addr(dma_addr_t addr, const struct gce_plat *pdata)
+> +{
+> +	return ((addr << pdata->shift) - pdata->mminfra_offset);
+> +}
+
+I'm not sure that you really need those two functions... probably it's simply
+cleaner and easier to just write that single line every time... and I'm
+saying that especially for how you're using those functions, with some readl()
+passed directly as param, decreasing human readability by "a whole lot" :-)
+
+> +
+>   static void cmdq_sw_ddr_enable(struct cmdq *cmdq, bool enable)
+>   {
+>   	WARN_ON(clk_bulk_enable(cmdq->pdata->gce_num, cmdq->clocks));
+> @@ -112,6 +136,30 @@ u8 cmdq_get_shift_pa(struct mbox_chan *chan)
+>   }
+>   EXPORT_SYMBOL(cmdq_get_shift_pa);
+>   
+> +dma_addr_t cmdq_get_offset_pa(struct mbox_chan *chan)
+> +{
+> +	struct cmdq *cmdq = container_of(chan->mbox, struct cmdq, mbox);
+> +
+> +	return cmdq->pdata->mminfra_offset;
+> +}
+> +EXPORT_SYMBOL(cmdq_get_offset_pa);
+
+I think I remember this get_offset_pa from the old times, then CK removed it (and I
+was really happy about that disappearing), or am I confusing this with something
+else?
+
+(of course, this wasn't used for mminfra, but for something else!)
+
+> +
+> +bool cmdq_addr_need_offset(struct mbox_chan *chan, dma_addr_t addr)
+> +{
+> +	struct cmdq *cmdq = container_of(chan->mbox, struct cmdq, mbox);
+> +
+> +	if (cmdq->pdata->mminfra_offset == 0)
+> +		return false;
+> +
+> +	/*
+> +	 * mminfra will recognize the addr that greater than the mminfra_offset
+> +	 * as a transaction to DRAM.
+> +	 * So the caller needs to append mminfra_offset for the true case.
+> +	 */
+> +	return (addr >= cmdq->pdata->mminfra_offset);
+
+
+/**
+  * cmdq_is_mminfra_gce() - Brief description
+  * @args.....
+  *
+  * The MMINFRA GCE will recognize an address greater than DRAM iostart as a
+  * DRAM transaction instead of ....xyz
+  *
+  * In order for callers to perform (xyz) transactions through the CMDQ, those
+  * need to know if they are using a GCE located in MMINFRA.
+  */
+bool cmdq_is_mminfra_gce(...)
+{
+	return cmdq->pdata->mminfra_offset &&
+	       (addr >= cmdq->pdata->mminfra_offset)
+
+> +}
+> +EXPORT_SYMBOL(cmdq_addr_need_offset);
+> +
+
+...but then, is there really no way of just handling the GCE being in MMINFRA
+transparently from the callers? Do the callers really *need* to know that they're
+using a new GCE?!
+
+Another way of saying: can't we just handle the address translation in here instead
+of instructing each and every driver about how to communicate with the new GCE?!
+
+
+Cheers,
+Angelo
+
+>   static int cmdq_thread_suspend(struct cmdq *cmdq, struct cmdq_thread *thread)
+>   {
+>   	u32 status;
+> @@ -143,6 +191,17 @@ static void cmdq_init(struct cmdq *cmdq)
+>   	u32 gctl_regval = 0;
+>   
+>   	WARN_ON(clk_bulk_enable(cmdq->pdata->gce_num, cmdq->clocks));
+> +
+> +	if (cmdq->pdata->gce_vm) {
+> +		/* config cpr size for host vm */
+> +		writel(GCE_VM_CPR_GSIZE_HSOT, cmdq->base + GCE_VM_CPR_GSIZE);
+> +		/* config CPR_GSIZE before setting VM_ID_MAP to avoid data leakage */
+> +		writel(GCE_VM_MAP0_ALL_HOST, cmdq->base + GCE_VM_ID_MAP0);
+> +		writel(GCE_VM_MAP1_ALL_HOST, cmdq->base + GCE_VM_ID_MAP1);
+> +		writel(GCE_VM_MAP2_ALL_HOST, cmdq->base + GCE_VM_ID_MAP2);
+> +		writel(GCE_VM_MAP3_ALL_HOST, cmdq->base + GCE_VM_ID_MAP3);
+> +	}
+> +
+>   	if (cmdq->pdata->control_by_sw)
+>   		gctl_regval = GCE_CTRL_BY_SW;
+>   	if (cmdq->pdata->sw_ddr_en)
+> @@ -199,7 +258,7 @@ static void cmdq_task_insert_into_thread(struct cmdq_task *task)
+>   				prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
+>   	prev_task_base[CMDQ_NUM_CMD(prev_task->pkt) - 1] =
+>   		(u64)CMDQ_JUMP_BY_PA << 32 |
+> -		(task->pa_base >> task->cmdq->pdata->shift);
+> +		cmdq_reg_shift_addr(task->pa_base, task->cmdq->pdata);
+>   	dma_sync_single_for_device(dev, prev_task->pa_base,
+>   				   prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
+>   
+> @@ -264,7 +323,7 @@ static void cmdq_thread_irq_handler(struct cmdq *cmdq,
+>   	else
+>   		return;
+>   
+> -	curr_pa = readl(thread->base + CMDQ_THR_CURR_ADDR) << cmdq->pdata->shift;
+> +	curr_pa = cmdq_reg_shift_addr(readl(thread->base + CMDQ_THR_CURR_ADDR), cmdq->pdata);
+>   
+>   	list_for_each_entry_safe(task, tmp, &thread->task_busy_list,
+>   				 list_entry) {
+> @@ -416,9 +475,9 @@ static int cmdq_mbox_send_data(struct mbox_chan *chan, void *data)
+>   		 */
+>   		WARN_ON(cmdq_thread_reset(cmdq, thread) < 0);
+>   
+> -		writel(task->pa_base >> cmdq->pdata->shift,
+> +		writel(cmdq_reg_shift_addr(task->pa_base, cmdq->pdata),
+>   		       thread->base + CMDQ_THR_CURR_ADDR);
+> -		writel((task->pa_base + pkt->cmd_buf_size) >> cmdq->pdata->shift,
+> +		writel(cmdq_reg_shift_addr(task->pa_base + pkt->cmd_buf_size, cmdq->pdata),
+>   		       thread->base + CMDQ_THR_END_ADDR);
+>   
+>   		writel(thread->priority, thread->base + CMDQ_THR_PRIORITY);
+> @@ -426,10 +485,10 @@ static int cmdq_mbox_send_data(struct mbox_chan *chan, void *data)
+>   		writel(CMDQ_THR_ENABLED, thread->base + CMDQ_THR_ENABLE_TASK);
+>   	} else {
+>   		WARN_ON(cmdq_thread_suspend(cmdq, thread) < 0);
+> -		curr_pa = readl(thread->base + CMDQ_THR_CURR_ADDR) <<
+> -			cmdq->pdata->shift;
+> -		end_pa = readl(thread->base + CMDQ_THR_END_ADDR) <<
+> -			cmdq->pdata->shift;
+> +		curr_pa = cmdq_reg_revert_addr(readl(thread->base + CMDQ_THR_CURR_ADDR),
+> +					       cmdq->pdata);
+> +		end_pa = cmdq_reg_revert_addr(readl(thread->base + CMDQ_THR_END_ADDR),
+> +					      cmdq->pdata);
+>   		/* check boundary */
+>   		if (curr_pa == end_pa - CMDQ_INST_SIZE ||
+>   		    curr_pa == end_pa) {
+> @@ -663,6 +722,9 @@ static int cmdq_probe(struct platform_device *pdev)
+>   	if (err)
+>   		return err;
+>   
+> +	if (cmdq->pdata->dma_mask_bit)
+> +		dma_set_coherent_mask(dev, DMA_BIT_MASK(cmdq->pdata->dma_mask_bit));
+> +
+>   	cmdq->mbox.dev = dev;
+>   	cmdq->mbox.chans = devm_kcalloc(dev, cmdq->pdata->thread_nr,
+>   					sizeof(*cmdq->mbox.chans), GFP_KERNEL);
+> @@ -782,6 +844,17 @@ static const struct gce_plat gce_plat_mt8195 = {
+>   	.gce_num = 2
+>   };
+>   
+> +static const struct gce_plat gce_plat_mt8196 = {
+> +	.thread_nr = 32,
+> +	.shift = 3,
+> +	.mminfra_offset = 0x80000000, /* 2GB */
+> +	.control_by_sw = true,
+> +	.sw_ddr_en = true,
+> +	.gce_vm = true,
+> +	.dma_mask_bit = 35,
+> +	.gce_num = 2
+> +};
+> +
+>   static const struct of_device_id cmdq_of_ids[] = {
+>   	{.compatible = "mediatek,mt6779-gce", .data = (void *)&gce_plat_mt6779},
+>   	{.compatible = "mediatek,mt8173-gce", .data = (void *)&gce_plat_mt8173},
+> @@ -790,6 +863,7 @@ static const struct of_device_id cmdq_of_ids[] = {
+>   	{.compatible = "mediatek,mt8188-gce", .data = (void *)&gce_plat_mt8188},
+>   	{.compatible = "mediatek,mt8192-gce", .data = (void *)&gce_plat_mt8192},
+>   	{.compatible = "mediatek,mt8195-gce", .data = (void *)&gce_plat_mt8195},
+> +	{.compatible = "mediatek,mt8196-gce", .data = (void *)&gce_plat_mt8196},
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, cmdq_of_ids);
+> diff --git a/include/linux/mailbox/mtk-cmdq-mailbox.h b/include/linux/mailbox/mtk-cmdq-mailbox.h
+> index a8f0070c7aa9..79398bf95f8d 100644
+> --- a/include/linux/mailbox/mtk-cmdq-mailbox.h
+> +++ b/include/linux/mailbox/mtk-cmdq-mailbox.h
+> @@ -79,5 +79,7 @@ struct cmdq_pkt {
+>   };
+>   
+>   u8 cmdq_get_shift_pa(struct mbox_chan *chan);
+> +dma_addr_t cmdq_get_offset_pa(struct mbox_chan *chan);
+> +bool cmdq_addr_need_offset(struct mbox_chan *chan, dma_addr_t addr);
+>   
+>   #endif /* __MTK_CMDQ_MAILBOX_H__ */
+
 
