@@ -1,212 +1,153 @@
-Return-Path: <devicetree+bounces-153807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5ABCA4DEA7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:06:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8F8A4DEAE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:07:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F19247A6FD8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:05:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B075D189A674
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1303202C5D;
-	Tue,  4 Mar 2025 13:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D40820371A;
+	Tue,  4 Mar 2025 13:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p1t912bg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from HK2PR02CU002.outbound.protection.outlook.com (mail-eastasiaazon11020086.outbound.protection.outlook.com [52.101.128.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB5620127D;
-	Tue,  4 Mar 2025 13:05:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.128.86
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741093549; cv=fail; b=jXQD6jywVQSA5SpEIv/x0BE/wJJ2XcgKr6FoHTuq3QrARxQPsm/9ZuaQrHVbWz3aa4nmlvGg57Xrs5Saual3ETS+IfREbsSwGBXAhiSkmUMVJYIs7PiAJZJLRubzoj2ZY2QLgBqkOt5ZP+s9l3FnRRJ04IETz1z1BK55lI7Nr6U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741093549; c=relaxed/simple;
-	bh=7VkxBNpmYaWiYvnN4U6B+6ih6sPudLi0vwRj5pQCLGI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q4vI11uu4AtP6u73RN0F2oy0iiRDUa6q7h95igFhg7VSryDZ32n1ymlGLVLK+QkPa9pvWlgYKKwhKxYJ0EYngJLj+EiE5v8i5bM3ZarkG1FlWnNHHyCunW5H9RvCsFyB3XXosJVjS4CDFPglAXm7H4/g6MPhZqCQUtvvpBLPvjM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.128.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=m9SW0xBNc2rq+whwQp/sZixadxMQU7RgksWYQGWi6SPXHbIywpucZukUCBzyqkPvGhhpgW/EIp1j5vTMWYbRh7btDVgNS7iavIXnFiN9wm+6niiEsm5WdOYJmId7uILEJ7WyCjP2MqPT1anR8FWPo97NMkCVCIDM/0/qISXqHvNcwxgKFEbp/kGr+s3Zyj1yOoxr2QN7aG6j83/NRUkSJcCeU5ZRuiNC2ssxvHNVdje35E9Glr9MbW25Z0tvcReZeKZ+mvX6t+Y++RRNV2FBcV1URJvaeoaTzscJQZMdj/aRD1Ur8ZUf38tC6j1GDoz1RRh4SDy9SFYbijSV7ik6LQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YWSEjYsGNXaC2zNfY2BhjfpLCPDyWnHT1ESKnmnAKW0=;
- b=GfKgrC8RifT/59Qmd6GdGK72NIhXqz4bn0j+a7gzcca6GXOj+/J9G8BOijRMEI/2Pq9AITbHeXXvxc3VGMjs5kri6OvEms1/fWKvfZZAk4Lm1EIcFzRpxbYrWHU9fddXW4I3p3+IzJoS+LJb+Psz/oD2oiDqNEq1Sghjx+sbmk/cK31EFYylbnifr7FJPzLTJqTfPp08PmnI3ZgqoaEMcQUr64NTE67cUk/xt/XF07fjDAaIWJnsJzYcAOXjpuJBjxXn+sU7LUNmKuUK0KbzLnsM9Sh+Sdmp9lQceIJhUTqcq11UaUQR4Foj4HtuuoZvU177+kAoLXvPSjIVQVZegA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SI2P153CA0028.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::9) by
- KL1PR06MB6371.apcprd06.prod.outlook.com (2603:1096:820:cc::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8489.29; Tue, 4 Mar 2025 13:05:41 +0000
-Received: from SG2PEPF000B66D0.apcprd03.prod.outlook.com
- (2603:1096:4:190:cafe::4a) by SI2P153CA0028.outlook.office365.com
- (2603:1096:4:190::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8489.11 via Frontend Transport; Tue,
- 4 Mar 2025 13:05:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66D0.mail.protection.outlook.com (10.167.240.26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8511.15 via Frontend Transport; Tue, 4 Mar 2025 13:05:40 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6BC4840A5BFB;
-	Tue,  4 Mar 2025 21:05:39 +0800 (CST)
-Date: Tue, 4 Mar 2025 21:05:33 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	marcin@juszkiewicz.com.pl, Fugang Duan <fugang.duan@cixtech.com>
-Subject: Re: [PATCH v3 6/6] arm64: dts: cix: add initial CIX P1(SKY1) dts
- support
-Message-ID: <Z8b6na8RjtF5FXi7@nchen-desktop>
-References: <20250227120619.1741431-1-peter.chen@cixtech.com>
- <20250227120619.1741431-7-peter.chen@cixtech.com>
- <86r03ip0kf.wl-maz@kernel.org>
- <Z8WUxyJT1fdHKo67@nchen-desktop>
- <86ikoqoso9.wl-maz@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC2E1E9B28
+	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 13:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741093633; cv=none; b=IGo8eRy8tqMrqxNrJlXcQHMc5PwTXNw9qr9HqIqBUyjKCLpKD+h5UQv6pDgDY77fCdMNVME+pY7YokJYZH0HO/qklSmz0CW1uOU/D6dkSzn140v6qIWOzsMUYbJ1bUYhj71BFY5akviqsTfeKhfABb08jOZsjLJPB5OZ12FFXv8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741093633; c=relaxed/simple;
+	bh=Ky+fvdyDoG3IissBsaiMMbiz45nPeSzwNjFD36o7tK0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pKY5F0Cc0/Drc5mtzTb9ZJH8NkJC2pXCRyN7EACAedsHJNLoO5GtW8noXpmzHbb8m599A4MOfQ1i0CwU5rx5dHrnyyl15FkPXJGIuarHAHmtxU1aqsqGiz4+QU9rXYW9H9Zs8eUu5UOA87foTdjY9fBYTUAwP5fBprrnkRFSsb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p1t912bg; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43bc0b8520cso13996195e9.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 05:07:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741093630; x=1741698430; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wZFlPwqznQHgnLAxscIdZsj0o5PqYme1kBm8s2m+DWI=;
+        b=p1t912bgiEA7pVQg6xF8m1DSuE39EYevTwd//iwOHkfXAn45PIX+1Z7RtQP0DKzRJ7
+         gz2+3/82sOEdxS4dCzhWJV0CEnRkbwWPXDwAvzrCMoH3fDEjrosC2cMGmAHcfpMdehd+
+         y1sIJWSIhKFGnJkTirWAgyZtwm4/WVFj1VQ8RAIxK3GA2v3xv8eR1319V1hM3HLnd8M5
+         OVzWtQHK86GG42TG03grZPyga84uqi+5z6i4IUKfD2AvUa4a3DW1nWTd4DPsKcFls6V1
+         ZGShdabnxDtBQozz4eccKwURIhLaVe1w3Pa+fAfW01g7hLDniJn1zqSAfZgrmNgq4yXd
+         1xDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741093630; x=1741698430;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wZFlPwqznQHgnLAxscIdZsj0o5PqYme1kBm8s2m+DWI=;
+        b=isDW53sFF6AV6HynOcAqcodVJgl+c1XCZmhX6GXWJqMQLPnBRYIhUkcLK2ihg+o2fR
+         xdybGISm6NQcCBwn5jDmIEjA+5TzvXaDpq1U4wOATxMa4pc2AEhgEgyKEYT2MFgQG1XJ
+         kZN9OronaiTPeSDsnCGLZzIeZpUnvdHkq51nnz+ro8qdoLrOaPQM7W67srNbAvIj+uWO
+         1pzqykM6xHS2MiAyANZPm47rat3/KnjoKBf3xhSXrt/47ps0l70Xpcx9oEQwQqqn9Apf
+         +JFkmxXRhczUorWly2bmXd1iqmpNAaWt0UQKKqZm45JhLCs+74WBw2Pq2l+UBIZKJHv+
+         v7Xg==
+X-Forwarded-Encrypted: i=1; AJvYcCVTpEvxK5gXIjMovMM26ZzZYQGchhNqZ+gULzY65TYKaCZzxNCXgWOPvkomqW7CKW6Anc2dHnCS3aEb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDiXcWeyT1jyTK7RGwLSKicGKVvAKPtV+B8E0dsWZW5F2n+5Tr
+	9RX5wzvh1V7pH15PgNkuk9/fW5bIxnrODynDemZJ+eL87Uutfm3pVsq8plm5RRs=
+X-Gm-Gg: ASbGncuOjQbsPrSBAkSy5Une12Zxmcg31iID3Cd1ir1Q6x7kpud+7YpiUXJXm+bde56
+	dXnrkRQbu2tEPLm8KQLfz+cd7ozyvGVFCdd6UfizsR3zd7NN/Jf+Pe8AY1ySKKpXufQdxF6IwCb
+	S4l4T7tIerLM0C863bIVwGHPF1w4Q9UXRj329mf6HzYUdhWHFEJ2gqHg+aCgauZe8TdI9jISv/d
+	6GxB94SZB7Gfaz3erdQPQrJHla6vCGbqoS+O9NOgCJFZyp7lqF4XLISsC+0of15wYjygda9zM10
+	VX9NCHwrYVCYWlr4/QCbqP5gA5uWh8p1CXsFkDYxy9NcY6W1ZF15CfETaj80D7FTcokRdURouFQ
+	NosKKZw==
+X-Google-Smtp-Source: AGHT+IEHFxGtqrv8BoxoMocArVZG35gEJU/5Ocm93/iIVY0b3mdodulWU6Lr+CIjH7ZiEcVq6DZcLA==
+X-Received: by 2002:a05:600c:3114:b0:439:9946:af60 with SMTP id 5b1f17b1804b1-43ba676e393mr123014035e9.25.1741093629721;
+        Tue, 04 Mar 2025 05:07:09 -0800 (PST)
+Received: from [127.0.1.1] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e47b6cd8sm17401715f8f.44.2025.03.04.05.07.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Mar 2025 05:07:09 -0800 (PST)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH 0/8] Reup: SM8350 and SC8280XP venus support
+Date: Tue, 04 Mar 2025 13:07:06 +0000
+Message-Id: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-0-279c7ea55493@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86ikoqoso9.wl-maz@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66D0:EE_|KL1PR06MB6371:EE_
-X-MS-Office365-Filtering-Correlation-Id: 69b3775f-4380-4da7-4d43-08dd5b1d43de
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700013|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?dD/cO1+cNyilB2SWuBlSyG+PJBqr+XhnocRkIbjp5Wlz6ftMdk7khGvZZ8Ta?=
- =?us-ascii?Q?zDTLWZcjrIwVAS+VL2qteTj6m442dcBk0vCtBgjecFpiylAoS7BU9+EivTRo?=
- =?us-ascii?Q?VF8/IPWFm9ii0ytQJfc49KqggzjQMTkVtbY8P3QNaF1gWQQU4EtX5HN6r1Mk?=
- =?us-ascii?Q?TazNlDn7NJF2KXuO+FmtaOhh2b3xbU/blXqOKy5KB+/LduPXu48q3EJ4yJVe?=
- =?us-ascii?Q?Bi2D2P7GQLm2KbKye7vIZGmbwKzGqaupRjo4qrLLJm2WrT3TvCm5fE7W/3+V?=
- =?us-ascii?Q?UaS/A+bIR1N+rkZaJN0H7jk+0gjgym4L066/eT/R97MV9igHh8FLnzhvqwb5?=
- =?us-ascii?Q?sejn68A4zpdvHRqjjPAH8EDs+K46mHbahKjWBy6JwkGm85O07WjYJJnHPIUC?=
- =?us-ascii?Q?gZZxq+hfcVMD0xnFNf2lFsbolziWPSLf8AJ9dP4CYZo8niUuEfhj4zrD8UvM?=
- =?us-ascii?Q?IACXiPJReok3mfYq+Z9SxQ6BavQz7TmD6ciAhWKDkOc8moTcnbyzulaSu8TK?=
- =?us-ascii?Q?rremQ9cb/UWr3ZtskqWiaF5ViDg95ZcF+nIc2LCuQ9qI4jEOdwCYrbGb0Vbz?=
- =?us-ascii?Q?gP2kYzcO0sQDF6u6Zo8IE0Tbsp5kTdsCPNOZekAwcOZNa8RQB95lUPTNIYOs?=
- =?us-ascii?Q?sHSAxw6n5VVATE2XwEihB7sj8onhfwQzo2l+zFwzjiHQ3WEcmlzJOd3AdRZH?=
- =?us-ascii?Q?ddkZrRzgBmhZ3lzktKfzW2j2NcRkQfhLclvIrDXgzX5NKRUZQHlC9TlfuVqM?=
- =?us-ascii?Q?/1eYrIuivPPc8+Sb8cbjzTzIrLs0n/+hr0WkxNStstcf/G13FcKuGh4TkDu4?=
- =?us-ascii?Q?AXkwVQi3aMn0AVrqyzZlB7hqPP9+xGlBUdUNZkQEOay7iFApMjTFvJOzNies?=
- =?us-ascii?Q?0vXgNM3Hf4KrnGTWKWELoSEDr2G+HlRcSszJIRhjtae4eWJM7ACv9MGOL+ZR?=
- =?us-ascii?Q?0RsIB+tdqDRCYL6oEE1SB7XXi5FBfnnYpZUcILDo5FjuKMdvomzVD1WK/RPv?=
- =?us-ascii?Q?6tCP5P6K4acqLijI0MRIsbq8Hyk/IG8WUYGl5j9zrM13Lo+BEiMZri3QMzUq?=
- =?us-ascii?Q?IrV7zkWKJASMOu+Yt2Ipe1V3IuSSC7cZtEsprsAcnxzer/XJRsVQtUrVhBFK?=
- =?us-ascii?Q?qlqx5O+N0dost6Rd7cpGrQ/9cjv8iLThWIi+otZPa+lDI3COtLo0j7faFcg1?=
- =?us-ascii?Q?DL+yNTOoJ3QH+we+Ec3D+NRMhQ4L20MlWd9j8zePi+C6xtqijgtBQBRwm9fP?=
- =?us-ascii?Q?S3Wx+5vn4A4lLmScwOcPPSRTYAguaNK2vkfAPbl/Dp1YvJIt3HehKJaUoQJT?=
- =?us-ascii?Q?iVppyp1BSKRwSTgRNfU1zsCiurXdzTnCYXM1fUgUZ33/RvoOyH/jKUlYjGS+?=
- =?us-ascii?Q?/4G2NjygzqL892cJrYKWqAgKX9YFPCztbb/6BB2nyNVu/ilsVMRwdBmBdAoI?=
- =?us-ascii?Q?dKhFYpszjsZKRYN4wl3ibNJC4OAgS8bx6riIRmB/mQA2I4usanuTNTCWCOnG?=
- =?us-ascii?Q?ndkfsJTVZS1mgqc=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2025 13:05:40.5268
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 69b3775f-4380-4da7-4d43-08dd5b1d43de
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66D0.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6371
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPr6xmcC/x3NQQqDMBBA0avIrDswRqW2VykuYjK2AzVKJkpAv
+ LvB5dv8f4ByFFZ4VwdE3kVlCQX1owL3s+HLKL4YDJmOGqpxbPEvYcs4sxeLbpklJY6K6nrTU15
+ x57ApsnHWd8/X2E4EpbZGniTfp89wnhcILkOjeQAAAA==
+X-Change-ID: 20250301-b4-linux-media-comitters-sc8280xp-venus-e2cad579b4f0
+To: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
+ Vikash Garodia <quic_vgarodia@quicinc.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Johan Hovold <johan+linaro@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+X-Mailer: b4 0.15-dev-33ea6
 
-On 25-03-03 18:49:58, Marc Zyngier wrote:
-> > > > +
-> > > > +     pmu-a520 {
-> > > > +             compatible = "arm,cortex-a520-pmu";
-> > > > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> > > > +     };
-> > > > +
-> > > > +     pmu-a720 {
-> > > > +             compatible = "arm,cortex-a720-pmu";
-> > > > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> > > > +     };
-> > >
-> > > This is wrong. The default configuration for PPIs is to expose the
-> > > *same* device on all CPUs. You must use PPI affinities for your PMUs.
-> > > Please see the GICv3 binding for the details.
-> >
-> > We have discussed internally, we have not seen the benefits routing
-> > different PPI interrupt to dedicated CPUs. Any use cases?
-> 
-> This isn't about changing the PPI. It is about matching CPUs with
-> their PMU. Here, you are saying "both PMU types are connected to all
-> the CPUs using PPI7".
-> 
-> That's obviously not the case.
-> 
-> > I prefer changing pmu nodes as one generic Armv8 PMU node. Is it accepted?
-> 
-> No, that's not acceptable.
-> 
-> > Or must I keep both pmu for A520 and A720, and add PPI affinities to
-> > describe hardware well?
-> 
-> This is an established practice on all big-little systems: each PMU
-> node has an affinity that indicates which CPUs they are connected
-> to. For GICv3+, this is carried by the interrupt specifier.
-> 
-> Please look at existing SoCs supported, such as rk3399, for example.
+This series is a re-up of Konrad's original venus series for sc8280xp and
+sm8350.
 
-I see. I will add ppi-partitions for gic-v3 node.
+Link: https://lore.kernel.org/all/20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org/
 
-> > >
-> > > This will need to be bumped up to 4, and all the interrupt specifiers adjusted.
-> >
-> > Depends on if PPI affinities is must.
-> 
-> Definitely a must, unless you want to completely remove all traces of
-> the PMU, which is of course silly, but a valid alternative.
+The main obstacle to merging that series at the time was the longstanding
+but invalid usage of "video-encoder" and "video-decoder" which is a
+driver level configuration option not a description of hardware.
 
-I will change #interrupt-cells to 4, and applies to all interrupt
-specifiers.
+Following on from that discussion a backwards compatible means of
+statically selecting transcoder mode was upstreamed
 
-> 
-> > > > +             arm,no-tick-in-suspend;
-> > >
-> > > Why do you need this? Is the HW so broken that you have implemented
-> > > the global counter in a power domain that isn't always on?
-> > >
-> >
-> > Not hardware broken, just arch timer will be powered off at cpu idle
-> > and system suspend due to power consumption reason.
-> 
-> This is not about the timer. This is about the global counter. If your
-> counter stops ticking when you're in idle or suspended, your system is
-> broken and you need this property. If the timer (or more precisely the
-> comparator) is turned off because the CPU is off, then that's the
-> expected behaviour and you don't need this property.
-> 
+commit: 687bfbba5a1c ("media: venus: Add support for static video encoder/decoder declarations")
 
-I will delete this property.
+Reworking this series from Konrad to incorporate this simple change
 
--- 
+- Removing dts dependencies/declarations on the offending compat strings
+- Inclusion of necessary static configuration in the 8350/8280xp driver
+  config
+- A small update to interconnect tags which Konrad pointed out on IRC to me
+- Fixed author and SOB on first patch to match
+
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+Konrad Dybcio (8):
+      media: dt-bindings: Document SC8280XP/SM8350 Venus
+      media: venus: core: Remove trailing commas from of match entries
+      media: venus: hfi_venus: Support only updating certain bits with presets
+      media: platform: venus: Add optional LLCC path
+      media: venus: core: Add SM8350 resource struct
+      media: venus: core: Add SC8280XP resource struct
+      arm64: dts: qcom: sc8280xp: Add Venus
+      arm64: dts: qcom: sc8280xp-x13s: Enable Venus
+
+ .../bindings/media/qcom,sm8350-venus.yaml          | 119 ++++++++++++++++++++
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |   5 +
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             |  82 ++++++++++++++
+ drivers/media/platform/qcom/venus/core.c           | 125 +++++++++++++++++++--
+ drivers/media/platform/qcom/venus/core.h           |   4 +
+ drivers/media/platform/qcom/venus/hfi_venus.c      |  15 ++-
+ drivers/media/platform/qcom/venus/pm_helpers.c     |   3 +
+ 7 files changed, 341 insertions(+), 12 deletions(-)
+---
+base-commit: d98e9213a768a3cc3a99f5e1abe09ad3baff2104
+change-id: 20250301-b4-linux-media-comitters-sc8280xp-venus-e2cad579b4f0
 
 Best regards,
-Peter
+-- 
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
