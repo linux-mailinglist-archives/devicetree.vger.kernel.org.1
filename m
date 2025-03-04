@@ -1,113 +1,161 @@
-Return-Path: <devicetree+bounces-153881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD9BA4E262
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:08:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C166A4E32F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:28:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC2107A837D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:04:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87F09881BA6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E896280A50;
-	Tue,  4 Mar 2025 15:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF7027C179;
+	Tue,  4 Mar 2025 15:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="MzcQ5mKa";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HFuLYNrg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DDAE280A31;
-	Tue,  4 Mar 2025 15:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0D727C146;
+	Tue,  4 Mar 2025 15:00:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741100402; cv=none; b=bBQJKL0A7D7jAJ6ygR4JrsRKVsfiBDaOmlw2uS+27YxE4uDB77CdyOixI8FDdRcbkHvsXp6XxZyd1Xq6kf5tDxtxC5SJGdCRyr/D8dIf9gwqerJCEOPNWIzxp90rzGtIbUIIokOKe9YBfu076npxkDu7yp6kIArA95xzAIa99rY=
+	t=1741100437; cv=none; b=pWQTho3qh6fhfgL7RLPbJe/rhAs/pa7n7/5RtI1+nlWts3h48FqZVHI3xEUbtxEGut5WhLYqtQIfSG8Oy/oBZ3A9q3lt8DFODOfzCUF6u1Wpk2cH87u8ofgyXOaPugjOSuCLxMOT8cxEeL3ovWMZohsj6lqtDmFYtMwRUZH7X7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741100402; c=relaxed/simple;
-	bh=LT3tlcioVSuYUwHNFA4Ry4nDQZttNNR1F/aD4cfqVsA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R6q2Xg0gz46qyMna8jJebZQR0GUT6ojmjCAUsXntwxmNRo26bL/7SQyPATzlBoPYU/IwKP0tLb0wAl6pyuJISq/wtHl/b/vBbHp0eRfuUirOoKdJ8gknoCLlwtI/2yiP2ifm0rZ7Qoj3q/Iw8rKRkto3HHLH6vEu0GXzICMOYr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3CC13FEC;
-	Tue,  4 Mar 2025 07:00:14 -0800 (PST)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0FA383F66E;
-	Tue,  4 Mar 2025 06:59:57 -0800 (PST)
-Message-ID: <1b05e832-6d41-463a-a52a-6ff340d0d6f8@arm.com>
-Date: Tue, 4 Mar 2025 14:59:56 +0000
+	s=arc-20240116; t=1741100437; c=relaxed/simple;
+	bh=FCdoMzdIxtjx6atflHN6tGfAB//3d8FOd2Je98QRTkk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WfMu6b+tmkGVum8qaVEqTx0jrI3wAE1L3K7pgLZkvwt+jT/z02QL220Wn5LJ7YcBxHVWLrtnW88Clg/PeSvuQzSoqv00U21kf5CyK5JOfR9MaFFnvJKeJ6dcGmpZxB1ixv8DrkHiiQ7kfZrJaF58T9iTV9vag2QcJMgx7ZKBwsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=MzcQ5mKa; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HFuLYNrg reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1741100434; x=1772636434;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Lykf3xaLUig9uEA0bAfwrVFURjMxGoC8WA1DRVWsg3U=;
+  b=MzcQ5mKacxJb2BmRkRDI52x2nrGwu2cGi3Oy8jetvJFiKNY4vMpt7N95
+   p995XuZBNUw5ygLGXu07rjXupgkEVwafdr2rrEdLMvvLp722Ne+KiHqfl
+   B1RWN6o9GI4h3SDi52KHIujZg1FTDM8upx3vX3N1b2lLuqpdtxuG8Jtr/
+   rEkJSpbMYBDsel5Zc1y6zHKYMbHV/eyOYQb0HYpkecdmQpfSTkLRK/lJx
+   kQk90uWEbT8iTTrz0JMEdBeWYXf07w94tewjtAuDfahThUFQWtXt6HnT7
+   QbXv7c1oRdT5uSYL7r+Hye/GfQhXEYdude9Oi6JP9yfsF8F6BoUPmDbxy
+   g==;
+X-CSE-ConnectionGUID: IRExU1k4THu6QG+Ybe9BqA==
+X-CSE-MsgGUID: XSWG8FDkRNmak4xANBU0ww==
+X-IronPort-AV: E=Sophos;i="6.14,220,1736809200"; 
+   d="scan'208";a="42271641"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 04 Mar 2025 16:00:30 +0100
+X-CheckPoint: {67C7158E-1E-903EAEAC-E04C76C8}
+X-MAIL-CPID: C2F7047D101734CC6A65597C5FF5C1BA_5
+X-Control-Analysis: str=0001.0A006369.67C71591.004C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0CA0B16C670;
+	Tue,  4 Mar 2025 16:00:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1741100425;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Lykf3xaLUig9uEA0bAfwrVFURjMxGoC8WA1DRVWsg3U=;
+	b=HFuLYNrgATor3X44V0mhFXFM9yZTVQYOs9nf9eofeFEt8zh0aiX6SnpTHWS3ZjKzmQT3wk
+	NPSksgs1prE95SLty+lkXiYQ6CCVGQf5Um7WehPNb+T5bjgHVCzCETclsaMeveuErfTBUJ
+	Qqg/sqoxcYfwue0/+SaQqjkibmA4TIMY66ysDHmCAawZanMhtbljZY5rliBEccHwV20nEa
+	L+WkFqpeuklmPkuWL1JQ5UfEm/7+bDk2tdwaLw4Kc96sOM41pSeRhBOs2RLAOCKc757ahi
+	BHfILKL/SCJp0JiRygtITE/CgoJke523+rJeXxMFj+fvxtiF0EpkKvimBEBHMQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, Liu Ying <victor.liu@nxp.com>
+Subject:
+ Re: [PATCH 0/5] drm/bridge: simple-bridge: Add DPI color encoder support
+Date: Tue, 04 Mar 2025 16:00:21 +0100
+Message-ID: <22618349.EfDdHjke4D@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250304101530.969920-1-victor.liu@nxp.com>
+References: <20250304101530.969920-1-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 09/10] Coresight: Add Coresight TMC Control Unit
- driver
-To: Jie Gan <quic_jiegan@quicinc.com>, Mike Leach <mike.leach@linaro.org>,
- James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20250303032931.2500935-1-quic_jiegan@quicinc.com>
- <20250303032931.2500935-10-quic_jiegan@quicinc.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20250303032931.2500935-10-quic_jiegan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 03/03/2025 03:29, Jie Gan wrote:
-> The Coresight TMC Control Unit hosts miscellaneous configuration registers
-> which control various features related to TMC ETR sink.
-> 
-> Based on the trace ID, which is programmed in the related CTCU ATID
-> register of a specific ETR, trace data with that trace ID gets into
-> the ETR buffer, while other trace data gets dropped.
-> 
-> Enabling source device sets one bit of the ATID register based on
-> source device's trace ID.
-> Disabling source device resets the bit according to the source
-> device's trace ID.
-> 
-> Reviewed-by: James Clark <james.clark@linaro.org>
-> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+Hi,
 
-...
+Am Dienstag, 4. M=E4rz 2025, 11:15:25 CET schrieb Liu Ying:
+> Hi,
+>=20
+> This patch series aims to add DPI color encoder support as a simple DRM
+> bridge.  A DPI color encoder simply converts input DPI color coding to
+> output DPI color coding, like Adafruit Kippah DPI hat[1] which converts
+> input 18-bit pixel data to 24-bit pixel data(with 2 low padding bits in
+> every color component though).  A real use case is that NXP i.MX93 11x11
+> EVK[2] and i.MX93 9x9 QSB[3] boards may connect a 24-bit DPI panel through
+> the Adafruit Kippah DPI hat.  The display pipeline is
+>=20
+> i.MX93 LCDIF display controller(RGB888) ->
+> i.MX93 parallel display format configuration(RGB666) ->
+> on-board Raspiberry Pi compatible interface(RPi)(RGB666) ->
+> Adafruit Kippah DPI hat(RGB888 with 2 low padding bits in color component=
+s) ->
+> 24-bit "ontat,kd50g21-40nt-a1" DPI panel
+>=20
+> [1] https://learn.adafruit.com/adafruit-dpi-display-kippah-ttl-tft/downlo=
+ads
+> [2] https://www.nxp.com/design/design-center/development-boards-and-desig=
+ns/i.MX93EVK
+> [3] https://www.nxp.com/design/design-center/development-boards-and-desig=
+ns/IMX93QSB
 
-> --- /dev/null
-> +++ b/drivers/hwtracing/coresight/coresight-ctcu.h
-> @@ -0,0 +1,39 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef _CORESIGHT_CTCU_H
-> +#define _CORESIGHT_CTCU_H
-> +#include "coresight-trace-id.h"
-> +
-> +/* Maximum number of supported ETR devices for a single CTCU. */
-> +#define ETR_MAX_NUM 	2
-> +
+Thanks for this series.
+Actually I was about to create a similar (dumb) bridge. My use case is wrong
+wiring on hardware for DPI displays. The current workaround was to use a
+"new" display compatible with bus_format changes from
+MEDIA_BUS_FMT_RGB666_1X18 -> MEDIA_BUS_FMT_RGB888_1X24.
 
-WARNING: please, no space before tabs
-#413: FILE: drivers/hwtracing/coresight/coresight-ctcu.h:11:
-+#define ETR_MAX_NUM ^I2$
+I added this new bridge and changed my DT and it works flawlessly.
 
-total: 0 errors, 2 warnings, 397 lines checked
+Best regards
+Alexander
 
-Another checkpatch warning. Please take care in the future.
+> Liu Ying (5):
+>   dt-bindings: display: Document DPI color codings
+>   drm/of: Add drm_of_dpi_get_color_coding()
+>   dt-bindings: display: simple-bridge: Document DPI color encoder
+>   drm/bridge: simple-bridge: Add DPI color encoder support
+>   drm/bridge: simple-bridge: Add next panel support
+>=20
+>  .../display/bridge/simple-bridge.yaml         |  89 +++++++++++-
+>  .../bindings/display/dpi-color-coding.yaml    |  90 ++++++++++++
+>  drivers/gpu/drm/bridge/Kconfig                |   1 +
+>  drivers/gpu/drm/bridge/simple-bridge.c        | 132 ++++++++++++++++--
+>  drivers/gpu/drm/drm_of.c                      |  43 ++++++
+>  include/drm/drm_of.h                          |   7 +
+>  6 files changed, 348 insertions(+), 14 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/dpi-color-c=
+oding.yaml
+>=20
+>=20
 
-Suzuki
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
 
