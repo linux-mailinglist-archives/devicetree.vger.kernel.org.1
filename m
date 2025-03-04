@@ -1,101 +1,192 @@
-Return-Path: <devicetree+bounces-154043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 849E9A4E95B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:39:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01218A4E977
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:42:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F368A7A2D14
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:36:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39D107ABF68
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5042D296D6B;
-	Tue,  4 Mar 2025 17:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135822063F1;
+	Tue,  4 Mar 2025 17:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eMzXGm/p"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="iZ92R1bm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2714A261374;
-	Tue,  4 Mar 2025 17:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741108270; cv=none; b=ao+tWYX/kbSBn8xMxjCXm4ZH4NUgAPfiupFDkJOVWD/6+9EgPWmcrgzbstnsGyZk/psvBM4br9/TmfIyMX+klzgLESoUrnXSqnhl6F1Ryx4jHEX0eC0fpgL1qPDmD4C7C6oBJMiCyaLUH3UqCAHi1YADW06Uoh+sYerviDueWA4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741108270; c=relaxed/simple;
-	bh=xIG690djDhXKXH4IBWWZJH31VsCI0TyOl9Qn3zjmGxQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d8xSflnx2WcFoeDUHqfez18Bwp+ZpcJ28TQ3o7wWP64SHNheKIYQlr2TfV7Xt/QyOUvG9YTMYNgUW8kHAk/1AYIGzt11udSreQmkMtAR3r0s0UgOcPVD4fwhcfjqKNqy2yaocsZSbAONe75nE9KAVM7GKm6UyjMydqm0jnA7j6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eMzXGm/p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F773C4CEE9;
-	Tue,  4 Mar 2025 17:11:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741108269;
-	bh=xIG690djDhXKXH4IBWWZJH31VsCI0TyOl9Qn3zjmGxQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=eMzXGm/peXE2BD5aGPmJeqoiZxx0i2Kf49LPMJ67YalBWSMqKue6Mkmjv6m2wGgTl
-	 /3OiUnbAhOI/KyqhqLIldNaIMrugCdqsz4llVVTgyy39QV9IC9tlo0I8KYi2y8wQ+s
-	 A5xD8caVUFWUPxoV7O1oqb15otQWnP/VQuQVINVWKrPh+//S/0Ksypjna3qFE6oDnT
-	 P65ociX14cMYQSeHJImZUj4TmP+YuI1y7e8pFpB5Z9zB4ZGPsJO2H9oJCEftAHz+SR
-	 M4fwKG15JdsB+ser2yHaQd1NUZTHHKY6HgcsO6XrKVaAESIyY8DXdJnojjS1ifPr5j
-	 QVabhxHZErRFQ==
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-aaf0f1adef8so1101490066b.3;
-        Tue, 04 Mar 2025 09:11:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVfZSAweFBWekD+Y69crLVMVtCdDb6+QyL0ZjfcivCF6FgOgthbzkxk3k7Xe8sDUYN0pm2PlDxXQBvC@vger.kernel.org, AJvYcCWtmAYxwT4dSEJ7Aw89QKBTgum6ZrXq55FIWYUuVkeJHcQTBx7pdXOAfkXqHHi/PAVDXT2uZQ7rCDQkz4jY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXqG9FzFiHLz4FSNCRuXq8xEpbdiO8pmSQ4ES1T2DCw5F7BIq+
-	yLOv3EYq9Kl/kZ9Ig6fIaPWAco1mzDebxAXjP119mG/lpeEB0PVaBnJSCjDhcBkwI9zn9Dg9nzq
-	sPp7mBRx2r1yapE06ormQo1QSwg==
-X-Google-Smtp-Source: AGHT+IFgs8oMB90zZE6lwaT3tbdeTZ2vDb6K7bI3B7uxQqUz1+cPe+fBOtsCycQF9VShe8mD0kCNZUK3gMn27oWuAu8=
-X-Received: by 2002:a17:907:1c92:b0:ac1:ea29:4e74 with SMTP id
- a640c23a62f3a-ac20d92560dmr8023966b.28.1741108267600; Tue, 04 Mar 2025
- 09:11:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E492641D2;
+	Tue,  4 Mar 2025 17:16:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741108567; cv=pass; b=qRGurCJXD/uO42N2n0MWYmcvpXH7DwtwZf9jeSw0DxVI6oie812jsAgzcg3siAxMBVOLkzBmVHmq26WOWoTUmAtRrJQJDfIYA3ohm1BgMdRBcfzPlHE4z02isJBsH4CldMa28laMgyYFKI2BNit8eoapCeW6RqwNqCmCwzkp6oo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741108567; c=relaxed/simple;
+	bh=o4ANY14hWRIwtKVWCXcGO/oB6Wh2/DmDCFxxX43F+rc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z6CO558yYvBmp4ValBt/qPhgYICmpZX92r90bmpZmz+8md/DsM1UxR158aaPFWidEHKExsR0M1MJCJIIHQnYSlBS2omJWCKb7GzXrLyt6878gGJJhp5OwRFdIjfX/WUGz4Nq8Ovdz7lGx6TRlXbdI/6JPsBFQKAXqHN2LPAb/ZM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=iZ92R1bm; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1741108545; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=lctTwBqJFIARNjlmaiBoqnWTDuFL6WUoet0a2YxlKbWgWdDYPMn95/BTjQToLDf/abIelZwvV1uj3d89LIS1i1ltiEI+UKlRp3/8SyMyJ7SdOWzBsiLfXzXCHVJOtE+umfRg9KEpTKlsWiy4hamAxV09fugUxsO884hC4/nSmDE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1741108545; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=OdTMORqBJYLjJhRhGFzMiRnquj3qLzmSjVu6QO5a5kk=; 
+	b=FylPp3MBGmDQMN/pBeGvf/nlfitPWrxtJuNFW1hElVBSKa9gwj9hvgXnC7n3hkYVsrXdJ9tOOOS6e7I9tH0jmq3LJnioHnPOOTHy5Eap+FaXnP6evnYXp7koRxcfjCdwhNnv0LmmqvOeFxqr1Z+xElwHIEHfdTiOXsx8jw5q2os=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741108545;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=OdTMORqBJYLjJhRhGFzMiRnquj3qLzmSjVu6QO5a5kk=;
+	b=iZ92R1bmhXCY3JwYVZzfbnH2LfLmo7z7gtnUl330xU5kEcvEPqsbfFbIZJBzSwL/
+	TBPwwQK7BbTzEaNVpMyAgSYew4KU6JsfnNOHeBgs9Z8xZuymFdPapP8aic0NcqaVz2e
+	gySBtZSmtRTQa/8DJX0urb3IO4lphjRepIKzcVl8=
+Received: by mx.zohomail.com with SMTPS id 174110854289189.58519837207825;
+	Tue, 4 Mar 2025 09:15:42 -0800 (PST)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: heiko@sntech.de, Andy Yan <andyshrk@163.com>
+Cc: krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v3 1/3] arm64: dts: rockchip: Add vop for rk3576
+Date: Tue, 04 Mar 2025 12:15:41 -0500
+Message-ID: <12619358.O9o76ZdvQC@earth>
+In-Reply-To: <20241231095728.253943-2-andyshrk@163.com>
+References:
+ <20241231095728.253943-1-andyshrk@163.com>
+ <20241231095728.253943-2-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250224193308.407606-1-Frank.Li@nxp.com>
-In-Reply-To: <20250224193308.407606-1-Frank.Li@nxp.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 4 Mar 2025 11:10:54 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLJciDgc2cPy7QApH4ia=Rx3MnoVMS3pha3u9PVy_EfPg@mail.gmail.com>
-X-Gm-Features: AQ5f1JoVIjx_EnjE9gxDA6sYaQfZU0bi3wrsrEMOzYkBv4xckzwxDP8YmX37Q1Q
-Message-ID: <CAL_JsqLJciDgc2cPy7QApH4ia=Rx3MnoVMS3pha3u9PVy_EfPg@mail.gmail.com>
-Subject: Re: [PATCH 1/1] arm64: dts: im8mq: move dwc3 usb port under ports
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On Mon, Feb 24, 2025 at 1:33=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
->
-> Move port@0 and port@1 under ports to fix below DTB_CHECK warnings.
->
-> arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb: usb@38100000: po=
-rt@0:reg:0:0: 0 is less than the minimum of 1
->         from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml=
-#
-> arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb: usb@38100000: Un=
-evaluated properties are not allowed ('#address-cells', '#size-cells', 'dr_=
-mode', 'phy-names', 'phys', 'port@0', 'port@1', 'snps,parkmode-disable-ss-q=
-uirk' were unexpected)
->         from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml=
-#
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Hi andy,
+
+On Tuesday, 31 December 2024 04:57:18 EST Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> Add VOP and VOP_MMU found on rk3576.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
 > ---
->  .../dts/freescale/imx8mq-librem5-devkit.dts   | 25 +++++++++++--------
->  .../boot/dts/freescale/imx8mq-librem5.dtsi    | 25 +++++++++++--------
->  2 files changed, 28 insertions(+), 22 deletions(-)
+> 
+> Changes in v3:
+> - Split from
+> https://lore.kernel.org/linux-rockchip/3330586.aeNJFYEL58@diego/T/#t
+> 
+>  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 68 ++++++++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> b/arch/arm64/boot/dts/rockchip/rk3576.dtsi index 436232ffe4d1..130d11a2cc89
+> 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> @@ -393,6 +393,11 @@ opp-950000000 {
+>  		};
+>  	};
+> 
+> +	display_subsystem: display-subsystem {
+> +		compatible = "rockchip,display-subsystem";
+> +		ports = <&vop_out>;
+> +	};
+> +
+>  	firmware {
+>  		scmi: scmi {
+>  			compatible = "arm,scmi-smc";
+> @@ -826,6 +831,69 @@ gpu: gpu@27800000 {
+>  			status = "disabled";
+>  		};
+> 
+> +		vop: vop@27d00000 {
+> +			compatible = "rockchip,rk3576-vop";
+> +			reg = <0x0 0x27d00000 0x0 0x3000>, <0x0 0x27d05000 
+0x0 0x1000>;
+> +			reg-names = "vop", "gamma-lut";
+> +			interrupts = <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "vop-sys",
+> +					  "vop-vp0",
+> +					  "vop-vp1",
+> +					  "vop-vp2";
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+These need to be renamed without the 'vop-' prefix.
+
+> +			clocks = <&cru ACLK_VOP>,
+> +				 <&cru HCLK_VOP>,
+> +				 <&cru DCLK_VP0>,
+> +				 <&cru DCLK_VP1>,
+> +				 <&cru DCLK_VP2>;
+> +			clock-names = "aclk",
+> +				      "hclk",
+> +				      "dclk_vp0",
+> +				      "dclk_vp1",
+> +				      "dclk_vp2";
+> +			iommus = <&vop_mmu>;
+> +			power-domains = <&power RK3576_PD_VOP>;
+> +			rockchip,grf = <&sys_grf>;
+> +			rockchip,pmu = <&pmu>;
+> +			status = "disabled";
+> +
+> +			vop_out: ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				vp0: port@0 {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					reg = <0>;
+> +				};
+> +
+> +				vp1: port@1 {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					reg = <1>;
+> +				};
+> +
+> +				vp2: port@2 {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					reg = <2>;
+> +				};
+> +			};
+> +		};
+> +
+> +		vop_mmu: iommu@27d07e00 {
+> +			compatible = "rockchip,rk3576-iommu", 
+"rockchip,rk3568-iommu";
+> +			reg = <0x0 0x27d07e00 0x0 0x100>, <0x0 0x27d07f00 
+0x0 0x100>;
+> +			interrupts = <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
+> +			clock-names = "aclk", "iface";
+> +			#iommu-cells = <0>;
+> +			power-domains = <&power RK3576_PD_VOP>;
+> +			status = "disabled";
+> +		};
+> +
+>  		qos_hdcp1: qos@27f02000 {
+>  			compatible = "rockchip,rk3576-qos", "syscon";
+>  			reg = <0x0 0x27f02000 0x0 0x20>;
+
+Regards,
+Detlev
+
+
 
