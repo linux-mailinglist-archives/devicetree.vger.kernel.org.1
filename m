@@ -1,108 +1,137 @@
-Return-Path: <devicetree+bounces-153793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4311A4DD6C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:04:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 286FBA4DD80
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:08:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60932188489E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:03:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68ECE188FB7E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C177E201025;
-	Tue,  4 Mar 2025 12:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB619201025;
+	Tue,  4 Mar 2025 12:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="hVXnd9mj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OjFDoHtE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A31B1F1905;
-	Tue,  4 Mar 2025 12:02:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB02A1FF61E;
+	Tue,  4 Mar 2025 12:07:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741089776; cv=none; b=S2RUGEYBgMQ7JHmsCGdLXwjzzytB6vEB+KIVG+4dUvSyLmxYBUB9NuANE7R54WSqhVM/MxL4KvPz0fO83lGuCbHJwVVqpOjMi6pJGJ5Qyj7hqB3zOdrEbC2tSUv+jpcFivfMFkqHhFbrmUSpZpd8IUafQUQgqVZil2yKgde64Zs=
+	t=1741090074; cv=none; b=Sm1AjrbIpSDowmvV3eQ9LyYuJWTMKMa+3iMjgttr9icUWC2BnApd6O1XRBoPzKjMM+zQi84gNyrNySXgiaIVTs14vfyN+GWf1gAdcflMuluHL3KxXOHKJWHfSFDlaPxuspy8gz0kKRq4PVytArX5kTixl/eqH8+MUy3uGAbgX/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741089776; c=relaxed/simple;
-	bh=TXGv1pIwVEBbCeNerLtu13FRxeGcoc0TtN93YIc+TDU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eex6EAZ42dQXxuW3086UMsr8NAi+MbsCh81/q1fJpQwcHq1zMJuCt7dA9fvczE0VpZTcpFUQTH2Rdty5ldXIYCP4kwToyS0H9wkfZSoWBUEHfF1Te2rTW7oRgUQ39frrVK5EKNXSPZmVmX+7CLuLABQ2CdMSf9mcv+5men2/Xs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=hVXnd9mj; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=jboAJ0TDh+OlkHuwftLCsZ+FXL3CIibc36b0PSVLhec=; b=hVXnd9mjU1mx39Frs3fVXG4nsk
-	PypU+idzTuaxwZRaKhxK8UKH/Y5nNI+DFbbX39bSMPWWetpees56ae1Bd+zkuGCBai6pxlIQG17pA
-	DBD20/NGKrGHP4Jw2Zv3SDF4BO3wGju/8FmqXjxriq3UHfCkSTNFubTsYZXO/nZSBAFzxCsQ7TyQK
-	6lg2mZQgGOFsaGXUZX17nHiLcs/MhK12WArWUsOygCfjkqRou1HL214UOaZH6q064XUfByPmo9jUQ
-	bpzjtku3eyNLrlToGGxik1MPckohT9tTznEUH/tPzIX+wcrnEmDrOm8whuV06maozrQWVQvZo5fIQ
-	V96IJMpw==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tpQz1-0002ws-FJ; Tue, 04 Mar 2025 13:02:47 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Yao Zi <ziyao@disroot.org>,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/7] rockchip: Add support for leds and user button on Radxa E20C
-Date: Tue,  4 Mar 2025 13:02:45 +0100
-Message-ID: <174108970986.65436.4272591414898454986.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250228064024.3200000-1-jonas@kwiboo.se>
-References: <20250228064024.3200000-1-jonas@kwiboo.se>
+	s=arc-20240116; t=1741090074; c=relaxed/simple;
+	bh=MZy0VWiaiUcAOLUZr1EitCj53YlBljkRvHR7tDzANe4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SZ91nflJ6+O0DuCx4XStF74lpKu/eS2FuFeJUPQR6BEa8yj7Ro3R/eWKGZ+U/f2qpOzQpk9t1PWBNNs760LgJEc8kEPaaP/U9xOpjAQK+QQbr+dPbK82bFISvMOdqpKw6gwo53lndi7ERUyirKxdJOsLV2tN56W3vfJpo24OIak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OjFDoHtE; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741090073; x=1772626073;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=MZy0VWiaiUcAOLUZr1EitCj53YlBljkRvHR7tDzANe4=;
+  b=OjFDoHtEB8j+hYmH5eI5uYxefcf3gD3to6tJdRfi+6LB3IB4C+JNQMUf
+   zVD9O8qDmuFFhnZn3wvFyoQnkwe0Zv6rMd6de2tQ/fCYHyOnEjXNTedCd
+   7PzzLdhA+3MrdJzRZurKr0HwGnANjDAYFffSMXMXT5ea4K+QEuEQ7fpgt
+   aLIwemjZAXYL4sAgrce77s8fqaFHwLk3cTptT+iHKNhVu+pTw83xsnGDN
+   zTrzZNLXtkhlhi1uS/Wxl8pNE+NewiST3Df05uYQu3aw6wO6xaUvSmtzl
+   UHF0kbE4hlf7X9zkG9S0GaUDsQpmfgL1TA9XeVyFdRIYooICvqKKQ10X6
+   A==;
+X-CSE-ConnectionGUID: v0K3UTOQRPymv5kbKNuyoQ==
+X-CSE-MsgGUID: yv8O43eeTDydbsGhE5ahpA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="45930048"
+X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; 
+   d="scan'208";a="45930048"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2025 04:07:52 -0800
+X-CSE-ConnectionGUID: LzJzP827Tnuswzqwqylwxg==
+X-CSE-MsgGUID: 40ygOT6kTlyfDKAMKfgDBw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; 
+   d="scan'208";a="118352213"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2025 04:07:46 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tpR3n-0000000H7I7-1M7c;
+	Tue, 04 Mar 2025 14:07:43 +0200
+Date: Tue, 4 Mar 2025 14:07:43 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Guillaume Stols <gstols@baylibre.com>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v5 03/10] iio: adc: add helpers for parsing ADC nodes
+Message-ID: <Z8btDzggD29xtaAo@smile.fi.intel.com>
+References: <cover.1740993491.git.mazziesaccount@gmail.com>
+ <e71c63c2f61135f9a8c7884525aab2c48f1e84c2.1740993491.git.mazziesaccount@gmail.com>
+ <CAMknhBGQaqFZJsPAoauZL4S5MYtN05EOQ-BO2vw5gH+Z2RLOhw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMknhBGQaqFZJsPAoauZL4S5MYtN05EOQ-BO2vw5gH+Z2RLOhw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+On Tue, Mar 04, 2025 at 10:25:03AM +0100, David Lechner wrote:
+> On Mon, Mar 3, 2025 at 12:32 PM Matti Vaittinen
+> <mazziesaccount@gmail.com> wrote:
 
-On Fri, 28 Feb 2025 06:40:06 +0000, Jonas Karlman wrote:
-> The Radxa E20C has three gpio leds and one gpio button.
-> 
-> This series adds dt-binding, driver support, DT node in SoC .dtsi and
-> gpio-keys and gpio-leds nodes in board DT to support the leds and user
-> button.
-> 
-> This series builds on top of the "rockchip: Add support for maskrom
-> button on Radxa E20C" series [1].
-> 
-> [...]
+...
 
-Applied, thanks!
+> There are some different opinions on this, but on the last patch I did
+> introducing a new namespace,
 
-[1/7] dt-bindings: soc: rockchip: Add RK3528 ioc grf syscon
-      commit: ac32ad07a97648eb8330b2c4cb840b0ef46903ae
-[4/7] arm64: dts: rockchip: Add pinctrl and gpio nodes for RK3528
-      commit: a31fad19ae39ea27b5068e3b02bcbf30a905339b
-[5/7] arm64: dts: rockchip: Add uart0 pinctrl to Radxa E20C
-      commit: 0d2312f0d3e4ce74af0977c1519a07dfc71a82ac
+> the consensus
 
-Patches 6+7 depend on the parallel saradc support series and thus
-do not apply - and need too much rework to safely apply.
+Hmm... I may not call that "the consensus"...
 
+> seems to be that putting
+> the MODULE_IMPORT_NS() in the header file was convenient so that users
+> of the API don't have to remember to both include the header and add
+> the import macro.
 
-Best regards,
+Which I am against because it will diminish the point of prevention of
+the APIs abuse along with a potential to have the stale headers in
+the file when the code is moved somewhere else..
+
+So, please do not do that. We have only two abusers currently:
+the PWM and SPI OFFLOAD.
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+With Best Regards,
+Andy Shevchenko
+
+
 
