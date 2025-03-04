@@ -1,196 +1,95 @@
-Return-Path: <devicetree+bounces-154026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C921EA4E889
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:25:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC743A4E8BC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 18:29:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B6E317A758
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:19:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 104928A10A9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 17:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A522927E1D3;
-	Tue,  4 Mar 2025 16:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739BB1F4161;
+	Tue,  4 Mar 2025 17:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EWOkJjNt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXsh4wuF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C743209F3B
-	for <devicetree@vger.kernel.org>; Tue,  4 Mar 2025 16:56:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1B61F2380;
+	Tue,  4 Mar 2025 17:00:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741107409; cv=none; b=ekZtSGpanvSVdXx5Na8+uM4GYHwq+NlJNrOhnzzvMKrEoBtU90/8Z32G2bZ2VMk5cyYBstuoU2T4iwX3ruCmjnBGpq6zvk23WI0uEp8ABjqAhSrn5DslwpIMaXm1ivIgN9Oo5BMB2PaW/XLSRTk6ny+OCXPieCFrffW0KQOqBvE=
+	t=1741107621; cv=none; b=HTBD6PE7EIQjbbaxLfQhl4Sd8PfLCxZgHOedG3KyDVt5ifOuJFUQgDWXbvlvCjySU+xgEzKV9NDBdJjwKhB+83LWtVgIJD9c9A0yb/geNc2IWabzBQbA+V5rlQ5ym9Wq7+SCtT2wRD49PErzLnc7eMxAfvu2YsmDnk6cOy0dAM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741107409; c=relaxed/simple;
-	bh=faMsthIU2rKzizBdyenPntp3DnH3cLvnQOLcOERjhWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m8lKXU35Plxccijo7rLgHGA1Zkf0mzb8ZfVi2wjJd/7MabwZiEb8Ejbw4s7m+vtJ6L9ruA7mk9iOOA3/nc+B9xgeo/hP/U7O6dMhAtIoXW7Og+9U85a1tFEKpMbrJKOpwtDR07h3xVa+wxw91zuH6UeEc6uW4FLy28ABnIwlvLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EWOkJjNt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 524AVi8T016469
-	for <devicetree@vger.kernel.org>; Tue, 4 Mar 2025 16:56:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jeCtW4lbMa2wB+pGkNjK1YgYQBzXYFl+3yQ06H7E5zI=; b=EWOkJjNtxIFjQ2eg
-	2r+6rmRZk9ersAfadkfjYaLhNPKslDpcv+l0wAkSriCyflsNJUbq3UlYnzINh9wA
-	E6l2EDcNgAolWD9fohEzRFfSMo8ow17+x3Lz2T73zrs26kezraiGmdNImQlMowom
-	v250Tj4ijwBdMfGcyOo60Pb5vbi6v3DdgQkBUIsF5PvjuAS1HLqh+1AVo3/bBRnj
-	CnRe88k1bMaUtzJ70xRyDZvwh8cMIt3PjcGc3GHH/5WG3i+lYb2rvE21Z3DjQoM8
-	SWGaLL4d21YqKFkyNglRNjhODj6H6s12LyO+gf3XcGXFeuo/EKRvoEdpCRcw9mfu
-	w1HYkw==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6v2guk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 16:56:45 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e89b5746d0so11080306d6.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 08:56:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741107405; x=1741712205;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jeCtW4lbMa2wB+pGkNjK1YgYQBzXYFl+3yQ06H7E5zI=;
-        b=wqBcZRwJwWr7584IQh6J98EuacCFC8CKZbrMj9k2894+BBOEhYE6cOSW8vE6QyPHtG
-         +vIbMvrFz6asqsFc0/UkDWL+KF3L4FsDO/qud14GCtg2YETmsPeotz6wgDOqlLqimurU
-         SGVORjT4leyHrxXhuq2cKkaBNH8Y8bIWLFUzA4wn2TlZnp8TgmnB7R/JskXPuXYK6QeP
-         Kl61eDRCtKUO+it+PIGx12F3LMSzNJ1erP8TreK1Y+F5p9J6Q/Fhco/mwdiq3ZZXGRL/
-         Zp93cCZHqxNVXkeSnmPj2KHO+aLNShQD74pX5yXBttuTq6f9447eqN6i+eB10PBjuhtN
-         tuHg==
-X-Forwarded-Encrypted: i=1; AJvYcCWV2/pzTQ9CqtRqkPUefrQaefIYFoYKGKr4FnPAmStL+7mDxrKOKWem+PcB2ZrIUhRisoTBsOJPvAaE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlWofybY9vKCoEgbzrExWxtb22CO8GuxQUDr8IRJm3aIhn/nh3
-	R9QVtMLuB9jzLyZmSei18C+hq6pXZVHfvjngMQQTVtCtYeLs1YM23qLDzrHc6Hc6kudyeNZBJXs
-	K5DL7ajtvCyUhHtJIInDVJpjvjO9MegHIOBiVvg81gJZBf71tSoLBtZHjPiS2
-X-Gm-Gg: ASbGnct/wKeItDAEoH+LpX0qd68yE4KqE+h86zerWd2XAI4h86327XBvfBFI/3ZloqD
-	W6WiEW8upzS3Lvk2fkQL60k26P8sVIeb67aCzfMXad59bgO6+ylC7ePybUAAuIuVCxaWUDSnz8N
-	EFhn8atCoq/1j/VzTHJSdSVOxAFs7s9KHcezTp9e9/rGeYVf4Wf0/fmEot6vCmpo7yvW//PnCQQ
-	2Etriz3JmCYRNeBHnAEUhCe/8W6AZ7IC6yetm9fgXALDL7S3RzUg2+4qd4Z5NJi49sal5U28yOi
-	mmOkqHCxDX1adpfjRUGZl3sTdAoD9GKXek7KkaHyZaGZI83/I2IGIvZ6dcjYU0b+6mqfrA==
-X-Received: by 2002:a05:6214:518c:b0:6d8:f750:b2f1 with SMTP id 6a1803df08f44-6e8dc2904ffmr15699306d6.11.1741107405190;
-        Tue, 04 Mar 2025 08:56:45 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGDvPwCooBjtFZFTrypVsEc1Pzi5aDYHsuSLfjAg+hqO1PNWsuhlUJTPfRjPAcb4z7sb1bj8A==
-X-Received: by 2002:a05:6214:518c:b0:6d8:f750:b2f1 with SMTP id 6a1803df08f44-6e8dc2904ffmr15699166d6.11.1741107404824;
-        Tue, 04 Mar 2025 08:56:44 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e4c3fb6067sm8319687a12.50.2025.03.04.08.56.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Mar 2025 08:56:44 -0800 (PST)
-Message-ID: <58d32bd4-d854-4233-89c9-22c37bddfaa1@oss.qualcomm.com>
-Date: Tue, 4 Mar 2025 17:56:41 +0100
+	s=arc-20240116; t=1741107621; c=relaxed/simple;
+	bh=va+5FfUBxcXQFDJSH5+Jnt0bb4db2qwTMBJCzvc84/U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JR5r2ZKsgTDY1pOLuR4rZKrjx06CfabX6WvsUvsJAkaOBv3l6Q/WX0rLI36VIoMhYmBhoRFfdghJ/e3hi3JH9f9TcgcQKRh3bjaIAd1RfwGf6t/HuIBC+uwa57Oyy1/08oo3U89VOGXZ8KboV19n3fz/qwRLVI7EqXuSjinvvC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXsh4wuF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDB45C4CEE7;
+	Tue,  4 Mar 2025 17:00:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741107620;
+	bh=va+5FfUBxcXQFDJSH5+Jnt0bb4db2qwTMBJCzvc84/U=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=RXsh4wuFYAufBhQhwC0iFFxaiLaq3fZuytzx6XCrPmhhbiVU6uV+qYLFT+dOzS/gw
+	 9bRO+YC1UmKzgUN/1rY6BxjddnfcJOMF/mTutmiKEfQLTfbLrSxrCIHPaz+0T2nWgY
+	 JOgLrCAny9y/aPvDaNE/xfQo4BjZXm27Tqw75JRsqxvumjARVSwk/YvklfQ3kJbdYo
+	 nmaZpiK06PaeriocFHlcospXvBQe87IYH+kLasUK4lE6H10whJG/vSE6CfGXpjvaQH
+	 OHmsxapk5pJrFCasQLL0YJj45kSXB4ACLGzZwHZrC1G3iJ74H4sks1+2WMRo3AS9KU
+	 AnomtTLqoPOUA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	laurentiu.tudor1@dell.com,
+	abel.vesa@linaro.org
+Subject: Re: [PATCH v1 0/4] X1E Dell XPS 9345 External DisplayPort, HBR3 fixes
+Date: Tue,  4 Mar 2025 11:00:07 -0600
+Message-ID: <174110761299.741733.10103309701082281896.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250226231436.16138-1-alex.vinarskis@gmail.com>
+References: <20250226231436.16138-1-alex.vinarskis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: qrb2210-rb1: add HDMI/I2S audio
- playback support
-To: Alexey Klimov <alexey.klimov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20250302-rb1_hdmi_sound_first-v1-0-81a87ae1503c@linaro.org>
- <20250302-rb1_hdmi_sound_first-v1-5-81a87ae1503c@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250302-rb1_hdmi_sound_first-v1-5-81a87ae1503c@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 75R8AzVsCCZ5pgJzn6yWIBwEaQjWvRgT
-X-Proofpoint-ORIG-GUID: 75R8AzVsCCZ5pgJzn6yWIBwEaQjWvRgT
-X-Authority-Analysis: v=2.4 cv=fatXy1QF c=1 sm=1 tr=0 ts=67c730cd cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=1NR_YFCaA4PxXnam7p8A:9 a=QEXdDO2ut3YA:10
- a=iYH6xdkBrDN1Jqds4HTS:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-04_07,2025-03-03_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- spamscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 suspectscore=0
- phishscore=0 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502100000 definitions=main-2503040135
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 2.03.2025 3:49 AM, Alexey Klimov wrote:
-> Add sound node and dsp-related pieces to enable HDMI+I2S audio playback
-> support on Qualcomm QR2210 RB1 board. That is the only sound output
-> supported for now.
+
+On Thu, 27 Feb 2025 00:12:08 +0100, Aleksandrs Vinarskis wrote:
+> As initial LTTPR support for msm driver [1] has landed, enable external
+> DisplayPort on Dell XPS 9345. It appears that supported frequencies
+> need to be listed to allow HBR3 speeds.
 > 
-> The audio playback is verified using the following commands:
-> amixer -c0 cset iface=MIXER,name='SEC_MI2S_RX Audio Mixer MultiMedia1' 1
-> aplay -D hw:0,0 /usr/share/sounds/alsa/Front_Center.wav
+> While at it, enable HBR3 speeds on other X1E laptops that have external
+> DisplayPort enabled already.
 > 
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 49 ++++++++++++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-> index 7a789b41c2f1887f0c41ae24da2e2fe8915ab13c..e547537cffdbc13cfd21b8b8b7210b62996ff431 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-> @@ -186,6 +186,47 @@ vph_pwr: regulator-vph-pwr {
->  		regulator-always-on;
->  		regulator-boot-on;
->  	};
-> +
-> +	sound {
-> +		compatible = "qcom,qrb2210-rb1-sndcard", "qcom,qrb4210-rb2-sndcard";
-> +		pinctrl-0 = <&lpi_i2s2_active>;
-> +		pinctrl-names = "default";
-> +		model = "Qualcomm-RB1-WSA8815-Speakers-DMIC0";
-> +		audio-routing = "MM_DL1", "MultiMedia1 Playback",
-> +				"MM_DL2", "MultiMedia2 Playback";
-> +
-> +		mm1-dai-link {
-> +			link-name = "MultiMedia1";
-> +
-> +			cpu {
-> +				sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
-> +			};
-> +		};
-> +
-> +		mm2-dai-link {
-> +			link-name = "MultiMedia2";
-> +
-> +			cpu {
-> +				sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA2>;
-> +			};
-> +		};
-> +
-> +		hdmi-i2s-dai-link {
-> +			link-name = "HDMI/I2S Playback";
-> +
-> +			cpu {
-> +				sound-dai = <&q6afedai SECONDARY_MI2S_RX>;
-> +			};
-> +
-> +			platform {
-> +				sound-dai = <&q6routing>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&lt9611_codec 0>;
-> +			};
+> [...]
 
-"codec" < "cpu" < "platform"
+Applied, thanks!
 
-with that:
+[1/4] arm64: dts: qcom: x1e80100-dell-xps13-9345: Enable external DP support
+      commit: 01a3d5e3cdc833292bdc80a4320235551083982f
+[2/4] arm64: dts: qcom: x1e001de-devkit: Enable HBR3 on external DPs
+      commit: 027dcb3de88dfd1b82f5f712361d216f209110b0
+[3/4] arm64: dts: qcom: x1e80100-hp-x14: Enable HBR3 on external DPs
+      commit: 9a49698252b78471a61873b4fe27dfd2e2fe2bad
+[4/4] arm64: dts: qcom: x1e80100-qcp: Enable HBR3 on external DPs
+      commit: c72c7105c82de59fb711f8379843f80b4abef7e3
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
