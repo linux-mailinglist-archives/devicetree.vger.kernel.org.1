@@ -1,118 +1,152 @@
-Return-Path: <devicetree+bounces-154130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71EF7A4EF4B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B3A3A4EF5E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 22:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5C1B1889C5A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:17:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A02A5188EC8C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 21:30:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98353202C4D;
-	Tue,  4 Mar 2025 21:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F321FC0E8;
+	Tue,  4 Mar 2025 21:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2lT3k8ic"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="F/htZXuH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-77.smtpout.orange.fr [80.12.242.77])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4BA42AAF;
-	Tue,  4 Mar 2025 21:16:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62D97DA93;
+	Tue,  4 Mar 2025 21:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741123016; cv=none; b=M4Rvt6h+ItlXYzWv+jeEP5DER27fj/VdCpbKkQMqrkimMqqZVE+hOB//uxeGF2PSyOFvsgNrK8Ws8T+9eyYnU4byAKHGWDYmYNIODVk4g0rQHnO2mNoTpfNJAebHO8pea7inpYj9262VaBDXTmbCC7L/WvRjZmDqNM+v0psJZr4=
+	t=1741123836; cv=none; b=GJyWIMEymD2W1liLkf01MEFYRhlbs1YOUlzrJz9rT/foJjAYtgPbYKz3sa+OBqp3UKVhlJNRMBpKJEk+2ZmYZRMvkQTpWM2DSn2kfzsiCV2Pq5s09HVCjl3i4UJvacdoZRilAs2aNaNimUY9G+8JwtfHmi4hngPgwSYjSxvc5/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741123016; c=relaxed/simple;
-	bh=k7Yxk6Ga0c64Kynk4TxaNnZZ+myD2DkhpD8zAdsm6FQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RMnjwjebxQ0tj+bXeTYBct281Hz8iR7LGEtzoBf+LIvlbgy1y9f9oxeUUPMmdICbfGAhtez5+Djg0jU3O+Y/U0qUjofKqctjci/mzKH4Dcfy97DtIRFC0NjaVXFY+vbjB5T/WxDZqY0banCpNawVUnEIf29edTjkoWBL452OTHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2lT3k8ic; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=uxNa2xeS196LOQdsSVTCf0UBNg0lInB0Ngjf92IZMMQ=; b=2lT3k8ic7danUGuqxwuLtt6Iw8
-	t6+7hypSeCHM7GIXT3rORlcEucP11RGm/xAEkiaodt3/JNB7pEc5SmliOv90QkC3ZHs8nX6kTVeEw
-	9rJqE3p85oGvqhdq6UEWGDTQjHhkITxRNlax1rnIXngZdrnc2kLSFLbkDU3xKh6wuWIYczPohm9Bc
-	tNUWr7Be/mKuirvsFU3fWTdrDgjXSUooU1/Nk7rgOAwcvz0v+VOulyfGBY5OS4nmkSRm1xPH8Zc+T
-	ByGnUVS7Dx9+o46rtAEppq8QgUTiQji1M+TIgsTMWl5ZWYuv4klJdsBUge5z1hbtHMZFcGMr/5dEN
-	QImZ8Dwg==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tpZdB-0006GI-Qt; Tue, 04 Mar 2025 22:16:49 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- detlev.casanova@collabora.com, linux-rockchip@lists.infradead.org,
- Andy Yan <andy.yan@rock-chips.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Add display subsystem dt node on rk3576
-Date: Tue, 04 Mar 2025 22:16:49 +0100
-Message-ID: <2627393.Mh6RI2rZIc@diego>
-In-Reply-To: <lfmhqurnpjmfy6pfjxd5aczxujislv2p5bsurcbl7capyt7zv3@hy2twvjj53uz>
-References:
- <20241231095728.253943-1-andyshrk@163.com>
- <173564980410.21979.2947276365464229762.robh@kernel.org>
- <lfmhqurnpjmfy6pfjxd5aczxujislv2p5bsurcbl7capyt7zv3@hy2twvjj53uz>
+	s=arc-20240116; t=1741123836; c=relaxed/simple;
+	bh=uU2YbbMZxvg5eLRNvxP4W3qaFK4o/G15pdl3NZqtIgI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=LGwsKty5viPem81dlb3S5/pvYhFoSji9HlzJneU0MwBTGq2b2233wKuzJo6I/5iDf4jCmnpa7IyqiIZCKGMLumQP7g5dJ9/Wfedj9nta7QbT97ppMErSGNMsSqr4zAq6lvCeInsf/Uofo/7XyAvMb982uz4diWo1Kzmp8Sq1F/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=F/htZXuH; arc=none smtp.client-ip=80.12.242.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id pZhEtjoYlf1j1pZhItMWBa; Tue, 04 Mar 2025 22:21:13 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1741123273;
+	bh=K+h7jsWHv3eIxLPH5dNajezN+xQFTDwe/w8/eZdR268=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=F/htZXuHwOLqrOg37Ie4xDkEu5dSoXycvKds+QJgKpHM4TF1OfVT4PgIZuJDeGsrB
+	 7qx9+ZmsUoXQ9CxklHemGcceTvS3H7LKNkR9LpBbJPyxeMj4+OhOJVX/dIbM51l0ea
+	 mSFuiORCumZyYWbbq5vwhFzOK/bETgw1Bhn9ORtyVf6YLnqItZ94mJAK5qh0IDCT51
+	 /Tw545tJjZPj9yLKoj7O2JntYzLwJiLtZvYykbYpMVGXLVw8Lt4yzIapdyNsw6aXKJ
+	 6BHl6lQXZd3Ia8praMr/qD7YfmQ0mg6MIWWvafegftXVEwL42f7yq+x1VOGvchNrqC
+	 ggVLi8D6df4mQ==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Tue, 04 Mar 2025 22:21:13 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <7ef88ec2-24a5-4aa7-a601-d605a12768ba@wanadoo.fr>
+Date: Tue, 4 Mar 2025 22:20:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] soc: aspeed: lpc-pcc: Add PCC controller support
+To: Kevin Chen <kevin_chen@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au, derek.kiernan@amd.com, dragan.cvetic@amd.com,
+ arnd@arndb.de, gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20250304104434.481429-1-kevin_chen@aspeedtech.com>
+ <20250304104434.481429-4-kevin_chen@aspeedtech.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20250304104434.481429-4-kevin_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Am Dienstag, 4. M=C3=A4rz 2025, 15:47:28 MEZ schrieb Sebastian Reichel:
-> Hello,
->=20
-> On Tue, Dec 31, 2024 at 06:57:21AM -0600, Rob Herring (Arm) wrote:
-> > On Tue, 31 Dec 2024 17:57:17 +0800, Andy Yan wrote:
-> > > As the VOP[0] and HDMI[1] driver have already been submitted for revi=
-ew.
-> > > This series enable hdmi display on sige5 board.
-> > >=20
-> > > [0] https://lore.kernel.org/linux-rockchip/20241231090802.251787-1-an=
-dyshrk@163.com/T/#t
-> > > [1] https://lore.kernel.org/linux-rockchip/20241231094425.253398-1-an=
-dyshrk@163.com/T/#t
-> > >=20
-> > > Changes in v3:
-> > > - Split from https://lore.kernel.org/linux-rockchip/3330586.aeNJFYEL5=
-8@diego/T/#t
-> > >=20
-> > > Andy Yan (3):
-> > >   arm64: dts: rockchip: Add vop for rk3576
-> > >   arm64: dts: rockchip: Add hdmi for rk3576
-> > >   arm64: dts: rockchip: Enable hdmi display on sige5
-> > >=20
-> > >  .../boot/dts/rockchip/rk3576-armsom-sige5.dts |  47 +++++++
-> > >  arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 126 ++++++++++++++++=
-++
-> > >  2 files changed, 173 insertions(+)
-> >
-> > [...] (a bunch of warnings due to dependency patch series not yet
-> > being in linux-next)
->=20
-> I think all dependencies have landed now. But it might be sensible
-> to do a quick resend considering how old this is.
->=20
-> Would be nice to have initial RK3576 HDMI support in 6.15 :)
+Le 04/03/2025 à 11:44, Kevin Chen a écrit :
+> Add LPC PCC controller driver to support POST code capture.
+> 
+> Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
 
-now we can :-)
+Hi,
 
-The update was not that difficult, so did it myself when applying.
+> +	init_waitqueue_head(&pcc->wq);
+> +
+> +	pcc->mdev_id = ida_alloc(&aspeed_pcc_ida, GFP_KERNEL);
 
+Missing ida_free() in therror handling path and in the rmove function?
 
-Heiko
+> +	if (pcc->mdev_id < 0) {
+> +		dev_err(dev, "Couldn't allocate ID\n");
+> +		return pcc->mdev_id;
+> +	}
+> +
+> +	pcc->mdev.parent = dev;
+> +	pcc->mdev.minor = MISC_DYNAMIC_MINOR;
+> +	pcc->mdev.name = devm_kasprintf(dev, GFP_KERNEL, "%s%d", DEVICE_NAME,
+> +					pcc->mdev_id);
+> +	pcc->mdev.fops = &pcc_fops;
+> +	rc = misc_register(&pcc->mdev);
+> +	if (rc) {
+> +		dev_err(dev, "Couldn't register misc device\n");
+> +		goto err_free_kfifo;
+> +	}
+> +
+> +	rc = aspeed_pcc_enable(pcc, dev);
+> +	if (rc) {
+> +		dev_err(dev, "Couldn't enable PCC\n");
+> +		goto err_dereg_mdev;
+> +	}
+> +
+> +	dev_set_drvdata(&pdev->dev, pcc);
+> +
+> +	return 0;
+> +
+> +err_dereg_mdev:
+> +	misc_deregister(&pcc->mdev);
+> +
+> +err_free_kfifo:
+> +	kfifo_free(&pcc->fifo);
+> +
+> +	return rc;
+> +}
+> +
+> +static void aspeed_pcc_remove(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct aspeed_pcc_ctrl *pcc = dev_get_drvdata(dev);
+> +
+> +	kfifo_free(&pcc->fifo);
+> +	misc_deregister(&pcc->mdev);
+> +}
+> +
+> +static const struct of_device_id aspeed_pcc_table[] = {
+> +	{ .compatible = "aspeed,ast2600-lpc-pcc" },
+> +	{ },
 
+Unneeded trailing comma after a terminator.
 
+> +};
+> +
+> +static struct platform_driver aspeed_pcc_driver = {
+> +	.driver = {
+> +		.name = "aspeed-pcc",
+> +		.of_match_table = aspeed_pcc_table,
+> +	},
+> +	.probe = aspeed_pcc_probe,
+> +	.remove = aspeed_pcc_remove,
+> +};
+
+...
+
+CJ
 
