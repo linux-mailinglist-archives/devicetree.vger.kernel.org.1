@@ -1,48 +1,40 @@
-Return-Path: <devicetree+bounces-153877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B7FA4E2CA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:19:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF31A4E26B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 16:09:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F32863BDF7E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:58:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34BEE19C2E46
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 15:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54223254B05;
-	Tue,  4 Mar 2025 14:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FTmPTW/y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1116427933D;
+	Tue,  4 Mar 2025 14:58:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA0E25F976;
-	Tue,  4 Mar 2025 14:55:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D58238D25;
+	Tue,  4 Mar 2025 14:58:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741100130; cv=none; b=fq5IYpOd3+EhAskEkfWFdEmjTWOb4SZh9FtlbRmHvzsY55gNZKxyzY2UFDvbjUNlH7H47TN+aDBmzbNSYkGc6PUPsTYGlEDn3MMdiTSRr4Sco574WyyODr5MB5aKeZgk8Fw/5HKXgLsadcc5e62o5YAxCi2ewBugs1tVtHlTtM8=
+	t=1741100290; cv=none; b=HY0diqg1UsIh5vvfAdRMpKGEd+Mx5as4YQBYzie67JVfR34pAnH3rucXl2VCGTwMkBw0UcykM9sZqDWZ1zRJnExVYTV01ihIaln385e3xYi2qj6fCTxiyow/+6GEjMfbq0fO7/bapa6gXjjk19b3BlwezcWWFm36gAe0OHdjcwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741100130; c=relaxed/simple;
-	bh=s4OMHqaghf7VgovvMYDR8EsxKRWV8TX+3/RXkg5kUjs=;
+	s=arc-20240116; t=1741100290; c=relaxed/simple;
+	bh=Y3y5h144NLzUZfdA9H0nPD4iEVA9WsnNbmlS50uj06A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tiliSwPNfYhUaIIbVsHi4uaqt7UpmJ+LVKbEL95ClOWZrWGn/5KeUu5eyisCrCG3auokOuExt0SA9BGQY7XXBHZkycrWYExQzN6kXekvzs8ft51zfIFFEvqfg+00dV4nvAKohsj53VkkBFO/lxiaPUQXfiBR4OEdOnViDcOvtDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FTmPTW/y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8258C4CEE7;
-	Tue,  4 Mar 2025 14:55:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741100129;
-	bh=s4OMHqaghf7VgovvMYDR8EsxKRWV8TX+3/RXkg5kUjs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FTmPTW/yX160iNTopS59op4X1QbZLeAi3d9qa7GA8ub2Ntb2aj4++bmDg6tXO7PEj
-	 b5e1Eio06N/OH4/D0agPbcrY7m/Vlpv8vc9KC+SiWILPF261057Lr7wt6P01URXBFd
-	 19G+eQwxqAcjH1mSbyK+kiqUh7NWZQZqse0g8Q0Az/8lIcFDSNyMd3s/2GomnxcWvM
-	 r8TvIOP7lbjcGfxIh7MIo5padzDP5BfP/fpMr+aHDdq2mZsPmr0qCwYsikfQlOoNMD
-	 KNBICReiMbFktQNXc0Ug+IsKJapHd1NCkRJk82kImyUkPz3FFsBGZchSxhsUXa0ZDO
-	 1RHxKo0YeVFOQ==
-Message-ID: <487093b6-d9fc-4c85-95b8-174fe76e04c5@kernel.org>
-Date: Tue, 4 Mar 2025 15:55:22 +0100
+	 In-Reply-To:Content-Type; b=Q/asVRFbj0ACIweIA23npCJZB2emmzSGoVH7qBspb1hsSF+HhYJEbBp/4MgVSsDSOs2fZ5evgYA9cuVt/AznPcqckjohmHJI3A1BU902TTby43nHXihUQUj0b9/bonV1q6KfgdhDEj0ENjKuZcswm1syvXgDjMAAAxEHkferYWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 57825FEC;
+	Tue,  4 Mar 2025 06:58:20 -0800 (PST)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 60E813F66E;
+	Tue,  4 Mar 2025 06:58:03 -0800 (PST)
+Message-ID: <8efe6176-44a2-4b3d-b9b5-855b26f00187@arm.com>
+Date: Tue, 4 Mar 2025 14:58:01 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,92 +42,167 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: arm: fsl: add i.MX943 EVK board
-To: Jacky Bai <ping.bai@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc: kernel@pengutronix.de, festevam@gmail.com, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- aisheng.dong@nxp.com, peng.fan@nxp.com, frank.li@nxp.com
-References: <20250304093127.1954549-1-ping.bai@nxp.com>
- <20250304093127.1954549-3-ping.bai@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v15 05/10] Coresight: Allocate trace ID after building the
+ path
+To: Jie Gan <quic_jiegan@quicinc.com>, Mike Leach <mike.leach@linaro.org>,
+ James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20250303032931.2500935-1-quic_jiegan@quicinc.com>
+ <20250303032931.2500935-6-quic_jiegan@quicinc.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250304093127.1954549-3-ping.bai@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20250303032931.2500935-6-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 04/03/2025 10:31, Jacky Bai wrote:
-> Add DT compatible string for NXP i.MX943 EVK board.
+On 03/03/2025 03:29, Jie Gan wrote:
+> The trace_id will be stored in coresight_path instead of being declared
+> everywhere and allocated after building the path.
 > 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> Co-developed-by: James Clark <james.clark@linaro.org>
+> Signed-off-by: James Clark <james.clark@linaro.org>
+> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
 > ---
+>   drivers/hwtracing/coresight/coresight-core.c  | 44 +++++++++++++++++++
+>   .../hwtracing/coresight/coresight-etm-perf.c  |  5 +--
+>   drivers/hwtracing/coresight/coresight-priv.h  |  2 +
+>   drivers/hwtracing/coresight/coresight-sysfs.c |  4 ++
+>   4 files changed, 52 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
+> index ed0e9368324d..6adc06995d76 100644
+> --- a/drivers/hwtracing/coresight/coresight-core.c
+> +++ b/drivers/hwtracing/coresight/coresight-core.c
+> @@ -655,6 +655,50 @@ static void coresight_drop_device(struct coresight_device *csdev)
+>   	}
+>   }
+>   
+> +/*
+> + * coresight device will read their existing or alloc a trace ID, if their trace_id
+> + * callback is set.
+> + *
+> + * Return 0 if the trace_id callback is not set.
+> + * Return the result of the trace_id callback if it is set. The return value
+> + * will be the trace_id if successful, and an error number if it fails.
+> + */
+> +static int coresight_get_trace_id(struct coresight_device *csdev,
+> +				  enum cs_mode mode,
+> +				  struct coresight_device *sink)
+> +{
+> +	if (coresight_ops(csdev)->trace_id)
+> +		return coresight_ops(csdev)->trace_id(csdev, mode, sink);
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Call this after creating the path and before enabling it. This leaves
+> + * the trace ID set on the path, or it remains 0 if it couldn't be assigned.
+> + */
+> +void coresight_path_assign_trace_id(struct coresight_path *path,
+> +				    enum cs_mode mode)
+> +{
+> +	struct coresight_device *sink = coresight_get_sink(&path->path_list);
+> +	struct coresight_node *nd;
+> +	int trace_id;
+> +
+> +	list_for_each_entry(nd, &path->path_list, link) {
+> +		/* Assign a trace ID to the path for the first device that wants to do it */
+> +		trace_id = coresight_get_trace_id(nd->csdev, mode, sink);
+> +
+> +		/*
+> +		 * 0 in this context is that it didn't want to assign so keep searching.
+> +		 * Non 0 is either success or fail.
+> +		*/
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+checkpatch complains:
+
+WARNING: Block comments should align the * on each line 
+
+#65: FILE: drivers/hwtracing/coresight/coresight-core.c:694: 
+
++                * Non 0 is either success or fail.
++               */
 
 
----
+Please make sure to run the checkpatch on individual patches before 
+submitting in the future. I will fix this up locally for now.
 
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+Kind regards
+Suzuki
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
 
-Full context and explanation:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
 
-Best regards,
-Krzysztof
+> +		if (trace_id != 0) {
+> +			path->trace_id = trace_id;
+> +			return;
+> +		}
+> +	}
+> +}
+> +
+>   /**
+>    * _coresight_build_path - recursively build a path from a @csdev to a sink.
+>    * @csdev:	The device to start from.
+> diff --git a/drivers/hwtracing/coresight/coresight-etm-perf.c b/drivers/hwtracing/coresight/coresight-etm-perf.c
+> index b0426792f08a..134290ab622e 100644
+> --- a/drivers/hwtracing/coresight/coresight-etm-perf.c
+> +++ b/drivers/hwtracing/coresight/coresight-etm-perf.c
+> @@ -319,7 +319,6 @@ static void *etm_setup_aux(struct perf_event *event, void **pages,
+>   {
+>   	u32 id, cfg_hash;
+>   	int cpu = event->cpu;
+> -	int trace_id;
+>   	cpumask_t *mask;
+>   	struct coresight_device *sink = NULL;
+>   	struct coresight_device *user_sink = NULL, *last_sink = NULL;
+> @@ -409,8 +408,8 @@ static void *etm_setup_aux(struct perf_event *event, void **pages,
+>   		}
+>   
+>   		/* ensure we can allocate a trace ID for this CPU */
+> -		trace_id = coresight_trace_id_get_cpu_id_map(cpu, &sink->perf_sink_id_map);
+> -		if (!IS_VALID_CS_TRACE_ID(trace_id)) {
+> +		coresight_path_assign_trace_id(path, CS_MODE_PERF);
+> +		if (!IS_VALID_CS_TRACE_ID(path->trace_id)) {
+>   			cpumask_clear_cpu(cpu, mask);
+>   			coresight_release_path(path);
+>   			continue;
+> diff --git a/drivers/hwtracing/coresight/coresight-priv.h b/drivers/hwtracing/coresight/coresight-priv.h
+> index 27b7dc348d4a..2bea35bae0d4 100644
+> --- a/drivers/hwtracing/coresight/coresight-priv.h
+> +++ b/drivers/hwtracing/coresight/coresight-priv.h
+> @@ -152,6 +152,8 @@ int coresight_make_links(struct coresight_device *orig,
+>   void coresight_remove_links(struct coresight_device *orig,
+>   			    struct coresight_connection *conn);
+>   u32 coresight_get_sink_id(struct coresight_device *csdev);
+> +void coresight_path_assign_trace_id(struct coresight_path *path,
+> +				   enum cs_mode mode);
+>   
+>   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM3X)
+>   extern int etm_readl_cp14(u32 off, unsigned int *val);
+> diff --git a/drivers/hwtracing/coresight/coresight-sysfs.c b/drivers/hwtracing/coresight/coresight-sysfs.c
+> index cb4c39732d26..d03751bf3d8a 100644
+> --- a/drivers/hwtracing/coresight/coresight-sysfs.c
+> +++ b/drivers/hwtracing/coresight/coresight-sysfs.c
+> @@ -209,6 +209,10 @@ int coresight_enable_sysfs(struct coresight_device *csdev)
+>   		goto out;
+>   	}
+>   
+> +	coresight_path_assign_trace_id(path, CS_MODE_SYSFS);
+> +	if (!IS_VALID_CS_TRACE_ID(path->trace_id))
+> +		goto err_path;
+> +
+>   	ret = coresight_enable_path(&path->path_list, CS_MODE_SYSFS, NULL);
+>   	if (ret)
+>   		goto err_path;
+
 
