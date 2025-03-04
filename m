@@ -1,90 +1,104 @@
-Return-Path: <devicetree+bounces-153805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-153806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E37CA4DE68
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:54:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 037FFA4DE96
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 14:02:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DAC63A7DAF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 12:54:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29BCD176726
+	for <lists+devicetree@lfdr.de>; Tue,  4 Mar 2025 13:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A92200105;
-	Tue,  4 Mar 2025 12:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F746200BBC;
+	Tue,  4 Mar 2025 13:02:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MRYtRR3b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B1hz5R9Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F26721EA7CE;
-	Tue,  4 Mar 2025 12:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43DBA442C;
+	Tue,  4 Mar 2025 13:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741092869; cv=none; b=sngfxGDsU8PjJkYWa4vuXnKpy2OnnTNaHruNWQLeXhO0SmM0rEfuelCqMrKUQCEpSzjcxE1YvNsZuHKa6H2yVPXjFrdkqAR+ttbC1ffDmmMUKb4bJzNUZK1Q82rDxMjsdar1iI1GHznKwJxTdbpSUZ+QsYh6G07eMCPdhp8LmfE=
+	t=1741093359; cv=none; b=ZpJ4r8pH2KrIHBvpgP+uvYw50Sh5jiEUaog8Wt1Vt4PyDybhE6fFGFJeup/tpYvcM3wxe6GrX6l40x+Q+jNxtVoht1wHVs5mfHrdtcP3hHbJ2kCvPGiLt6nlHAZYCv8UZfnRCDUyTQHUcG1QFA3O2xuZxUFfgM/Qw6vzfUVC3HQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741092869; c=relaxed/simple;
-	bh=/A1A2qZsYsqWgcNSomPW+1mfRwPf8XYoLazhrNYnIU8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PafBDmfumIH8ejBaeaARoQ0b3BxAMVaLB/asFLgzQbF7ckAUm3fNeddo9QTg7j0g/H5XNwXp4AF7QGYBbUVdudUj9wohCxl0XvDVcsUzUYkHpaJjaSxZKJBsHan40/ot+EHvfMhYPC+pDBK+kKiaQPyb2dIPZVhv8Vnl17PVnRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MRYtRR3b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC710C4CEE5;
-	Tue,  4 Mar 2025 12:54:27 +0000 (UTC)
+	s=arc-20240116; t=1741093359; c=relaxed/simple;
+	bh=eE95+Tp6lrhCL7Wgvg8bxpKKxUsq4uLUnMAe+fyZ1Vg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=sbF0/NI+/rnzi5dUs3DGCglO3nWMA8iwr2iBtsWzrCDwYX8f1Mj2tYTS5YEdE2NvKjTPUDev1E/Bwnii5HXFuhl8xhtgYDQM42GD7bFfZxIEC5Ul7pkhP3fOODBjza9BiMmZAjaYQf/InLe/EB/v0IUSytk/GDN02BatKEgjToU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B1hz5R9Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89144C4CEE5;
+	Tue,  4 Mar 2025 13:02:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741092868;
-	bh=/A1A2qZsYsqWgcNSomPW+1mfRwPf8XYoLazhrNYnIU8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MRYtRR3bSOxt7sDY714pvRJ+cGuKXP1KXOzq7Es4hIChNxf5yfdbuZR5bbw1DInq+
-	 XTyxl4Uqj3539js3jqHejm1CRVV7YfTAUWlpCEwBZy0AYwnmRSvviIJm8lbcw7aazu
-	 4OC2+CshNXdu7/wMzgqSKbWzDwVJgHouoMilfhdnXGAIYOIZLSP4f7RL+hRnWBTYGR
-	 eGkWv1extNmvHcBzHUjTxVQR7Ib1ZVjkI74nip4Lg17FLRRotOHJu/dF194mwzJ6JF
-	 /zqLdIbNwnC3GXPYwYewdPtt6YVfoZKKEtzuRJkuxxWfgQvde2FiRCrUK4sw74wDrf
-	 M2DSvNvOxsr9Q==
-Message-ID: <847c7cd3-3b23-4180-b2b3-affa47413cf4@kernel.org>
-Date: Tue, 4 Mar 2025 06:54:26 -0600
+	s=k20201202; t=1741093358;
+	bh=eE95+Tp6lrhCL7Wgvg8bxpKKxUsq4uLUnMAe+fyZ1Vg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=B1hz5R9Z1lIRlwCXeC9DVfP6YESVcTw57KCH3dGZ0AlzlF1uAzyCFV42EM0duNMEF
+	 hSQulJW8ST//yjNX6KVjLXZOkHcZtOkrmGiljpmhsfuVyJ2YivKYp7sUibZh21SeQg
+	 4e9V1bIV4vRBWOp8jUAGzDeS4kRWOxidug9odiCA5mQ1N/WRuLzs9Qe4lygK+IMzTL
+	 FD8ddnhjJpC1l/Mu8AKWvVloihm9DRitZ7++RtxY+TZu1fBFxhX1zUh4/q5srGKAVu
+	 vSrv2+thQrsr4/V6ON4NVAiyGDvs06qHErejc+TaN075nhJ+sY4SpKfWDK50r/B/Du
+	 reQF1KP97OGHw==
+Date: Tue, 04 Mar 2025 07:02:36 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2] arm64: dts: socfpga: agilex: Add dma channel id
- for spi
-To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, nirav.rabara@altera.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250225133919.4128252-1-niravkumar.l.rabara@intel.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20250225133919.4128252-1-niravkumar.l.rabara@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Gabriel Gonzales <semfault@disroot.org>
+In-Reply-To: <20250304043742.9252-1-semfault@disroot.org>
+References: <20250304043742.9252-1-semfault@disroot.org>
+Message-Id: <174109297242.2409472.3701477490914835311.robh@kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: qcom: Add Xiaomi Redmi Note 8
 
-On 2/25/25 07:39, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+
+On Tue, 04 Mar 2025 12:37:39 +0800, Gabriel Gonzales wrote:
+> Document the Xiaomi Redmi Note 8, which is based off the SM6125 SoC
 > 
-> Add DMA channel ids for spi0 and spi1 nodes in device tree.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> Signed-off-by: Gabriel Gonzales <semfault@disroot.org>
 > ---
->   arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++++
->   1 file changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-> index 1235ba5a9865..616259447c6f 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-> @@ -457,6 +457,8 @@ spi0: spi@ffda4000 {
 
-Applied!
 
-Thanks,
-Dinh
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250304043742.9252-1-semfault@disroot.org:
+
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dtb: geniqup@4ac0000: #address-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dtb: geniqup@4ac0000: #size-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dtb: geniqup@4cc0000: #address-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dtb: geniqup@4cc0000: #size-cells: 2 was expected
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
+
+
+
+
 
 
