@@ -1,129 +1,104 @@
-Return-Path: <devicetree+bounces-154192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E78BDA4F35E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 02:19:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E1EA4F367
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 02:20:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1909016F4A4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 01:19:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3555B3A7746
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 01:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F981386B4;
-	Wed,  5 Mar 2025 01:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7902D13A244;
+	Wed,  5 Mar 2025 01:20:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vm0DwhJJ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hw8mn4yT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5595FDA7;
-	Wed,  5 Mar 2025 01:19:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5072E11187;
+	Wed,  5 Mar 2025 01:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741137568; cv=none; b=PfAbZh7xInBo8yD8uFQEOOrP/eEVeA2QzbYlMIR0bCZa1O3VPXxYQPWVA/ltGg1ebn004wdvtEFZ+2jjxPqqogrgbOMYc3QRUQdjWHbl+NLqJQBxrDSKC36sbree1AuhpPDMeaVFlneTcqC9UjRsl7mXYvX1nDHCkqgUppNf9W8=
+	t=1741137605; cv=none; b=MTLg+0erQdkkd0rTXlpn7YB3WI7LTiw3bYgagPL8PuNnTDjtC5CXa/H4mXYeFW66HP6eu0r99YgRP/zYoxPMGIVpKl3+bxIzZ/vap0FugrXZjveBBhCVfRvLrc11M/XrufEkp6ffT1v6wtak2O0zxKNpDIiGvheu0MZJ0nVv/eM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741137568; c=relaxed/simple;
-	bh=aj7oEpRtbuTIufQ2FwedlFlVEGKMaqVdWjGFOoq8rgo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uaHVk1hK3aiLKRjLw7CcMAZWSoNeHhLRFCWE16cVrWR/kXshRNV9Tkepbaw5S0tc/LQnIvjC5Yn14FaT7+EUI2+f7AeaBw73kLRGdW9P3dU6Qyj4LCgrWneRksHOudm8lbl2+ePJQp+3O4NKwQEQsOfkEA+w4NrRQy6hejoJdNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vm0DwhJJ; arc=none smtp.client-ip=209.85.160.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-474e0bd966dso27152651cf.0;
-        Tue, 04 Mar 2025 17:19:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741137566; x=1741742366; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aj7oEpRtbuTIufQ2FwedlFlVEGKMaqVdWjGFOoq8rgo=;
-        b=Vm0DwhJJBhnfy06HdxFNgXYFO9PdkmAvX3uxVTjGjqBA0710xqf3NjG+jiAO60ZWqB
-         0HDkbjj/daocmJh9LpmmSS3BfVdNhYZ4cruDgUQuC3Zy9MqtvpSOi47hhyxIizlR3IBC
-         Suq5tw3vbX5wbpsjPHYw8JbGmP0IkRz0h4S+hOJitfYo10McyoETIDYcVfqc5upCuHaa
-         Yg4R62+j6iC2fUXHA81OkzFnuHV67QE0BU1JxlFW4w/8B8H1cdLRLhpyWFCWBseO3jtg
-         CBv5yqVHeOw59/WVkDpfdbCPQ1UQ/X3swnAcbfvVmfJ8jfAugbKzQqzFDsURmhwB3H6W
-         RePA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741137566; x=1741742366;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aj7oEpRtbuTIufQ2FwedlFlVEGKMaqVdWjGFOoq8rgo=;
-        b=LDXobvd+RF+ZwQxnO058nNCOnG5jCyS4sUhUvTtGa2GZsLcNRWLcftNyeHZ7N66jvr
-         RebR4nWaa0ZexWTEF4AivGEfAg/8yyQo9XYVRyfO+lWbXaJOaLb9pSgbtRRNrwV2HHeD
-         mrihnJqUYoEQUotH/QXO48F6QVHmE8jFl0Fjw1bPkgEpVi0GXjKfonTL3d14l3zyA1NB
-         UXO8fTaPx+TAfJpFO4rFLsjKx3PjSRshnSdMgRY7XON2h7+LZ3DYWB6CgaBIqa7+HqhO
-         UCBuotBwfaRNJCulPQzZ164ZlcA+oVKbQ7jdKwkUNsB6fnQce9yDOckvPs9FHwJHQS7M
-         imZw==
-X-Forwarded-Encrypted: i=1; AJvYcCUMeqxZ7XplCDbDv8x0cssAQHT7jSgeLEYH9IJzaeudssJimMg6oT804wte5Ot9MyFhYIT//di2aZPB@vger.kernel.org, AJvYcCW8PevYiAf/AB67ZHQVqgBxgquF5H7cmMdcZTjz2E/d5psgQGpxWCY85WztgN3M99ieIXkpWTkPZiPZJhNf@vger.kernel.org, AJvYcCWIQdsfx7Hy8u2k5Bn+9OkdbszHEyGvxrP9Z+cMJ0U5MD/U4iRVtnVIVCAz0M9c7QIZzd7jNi7OGBEU8vg=@vger.kernel.org, AJvYcCXL3hEJpsJ5vBwDJ4aIXmuc5XEulo9ULBLfwRCmtFcTw0nh+f5Pt6kNtUzQlP3hDvHUN5DLFnckvo+TXZw=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyp++0VfUn2T0SAGW/TzVt2IbwnV+sXxF/Uhb7EzlzjZt0yYP+0
-	/ARDbcDrxgk2L8M7lPKIEnQkzLDJ+XAgmx6awwpv/Sj3VYLOGPvNH3cZ2GI9VjtxViVQG8q5nY1
-	QSr+3W1v88WjcJMTGXXlSglY4I2k=
-X-Gm-Gg: ASbGncu+lgITgzGvvSVuRt8ntNInYlS/wzwtgEPCJfDwuyCLzS/O6d58SzufgQJR19J
-	1j1S5qvH8Y05UrWXzL6Z7+pKoojD7loJdpdCMqmylqj0k37p9SvFfDEt9fnmHwFfP2YsStSPrNS
-	hLs13C4aGWKhVvGMj70/pj3+pqPjMv3YA2+pIbWmJRoqx/LSLuzDPL2oIE
-X-Google-Smtp-Source: AGHT+IH/gZVl6njT5r5xmoZsHMsCaVy4AHjZ3IvtwdL5qtNx7CdcXOgj41fRuij/xZmHZN7CAquryIOYCVl/RGfL4qE=
-X-Received: by 2002:ac8:5750:0:b0:471:cfa9:2612 with SMTP id
- d75a77b69052e-4750b4c62abmr19008121cf.32.1741137566103; Tue, 04 Mar 2025
- 17:19:26 -0800 (PST)
+	s=arc-20240116; t=1741137605; c=relaxed/simple;
+	bh=mDKHo0Pitg/ucTdMd+1cxtHXnsCmHgjQ5ITdIbe3Zgs=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=gw+8HcOow/o/iKMOLBVVOjTKwk6qEtOW+NHhnWk8da5/F49kG0Gxv/QcIHwp0ukCW/fjG6lZw+ou714WPGEEwX2tfpX/jqymPKWeVgR7s2PQbdelTlhiPY8gNaRuPXovOeAWtSdnwg4/aDNsKHtClBwYfAPJ+hpsUMHWVMT7FGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hw8mn4yT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B717DC4CEE5;
+	Wed,  5 Mar 2025 01:20:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741137604;
+	bh=mDKHo0Pitg/ucTdMd+1cxtHXnsCmHgjQ5ITdIbe3Zgs=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=Hw8mn4yTkUrGdGKZWmULRrc0s0uBZSgODD26zFl1iSWOSr7HxxdsF28pwBzvmPMNI
+	 RuJJXdx7JaOkR/2sVdYkflySxM/qkZ4vZfiDKK/Jc0QCD0JEJzJ8wJjJG1ZetAiuek
+	 qOm4E0D8UlxnwJ/z2P9l/xA+lrb4xM1wzoXIvm09K1Bz+2DSDNe/fLQhw7YdNXtl47
+	 EcVSB1fsHYSlCP+Gvip7W6zjC11ikrxNkBOU0V1iUX+Ig0masrCv/OcQhKJiHR2CzU
+	 DQ5LFOqFt7thh5KckBJ+TVVUXbgS/JamihC+TrGkjBvSjFxCclqB8NlwScbeT/oZiA
+	 zpbO2lwmKR1Lw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB6A2380CFEB;
+	Wed,  5 Mar 2025 01:20:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250227-apple-codec-changes-v3-0-cbb130030acf@gmail.com>
- <20250227-apple-codec-changes-v3-17-cbb130030acf@gmail.com> <20250304135050.GA2485358-robh@kernel.org>
-In-Reply-To: <20250304135050.GA2485358-robh@kernel.org>
-From: James Calligeros <jcalligeros99@gmail.com>
-Date: Wed, 5 Mar 2025 01:19:15 +0000
-X-Gm-Features: AQ5f1JqKhAwj6qTqSfRCe3oGAAXCdiK5LgUlvxIRex-ch881UGzuk3RJ4ynlZPQ
-Message-ID: <CAHgNfTyVKFuT0fZ3Qj=MdcXs67KscwkSepAH95xkAAKWM1g8Xg@mail.gmail.com>
-Subject: Re: [PATCH v3 17/20] ASoC: dt-bindings: tas2770: add flags for SDOUT
- pulldown and zero-fill
-To: Rob Herring <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>, 
-	Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>, Dan Murphy <dmurphy@ti.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shi Fu <shifu0704@thundersoft.com>, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	=?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
-	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	asahi@lists.linux.dev, linux-hwmon@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 0/3] net: Convert Gianfar (Triple Speed Ethernet
+ Controller) bindings to YAML
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <174113763773.356990.16443776503702976199.git-patchwork-notify@kernel.org>
+Date: Wed, 05 Mar 2025 01:20:37 +0000
+References: <20250228-gianfar-yaml-v2-0-6beeefbd4818@posteo.net>
+In-Reply-To: <20250228-gianfar-yaml-v2-0-6beeefbd4818@posteo.net>
+To: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay_=3Cdevnull+j=2Ene=2Eposteo=2Enet?=@codeaurora.org,
+	=?utf-8?q?=40kernel=2Eorg=3E?=@codeaurora.org
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, claudiu.manoil@nxp.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, j.ne@posteo.net
 
-On Tue, Mar 4, 2025 at 1:50=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
-> Can't you align this with the other property you added? Or extend the
-> existing TDM properties we have.
+Hello:
 
-I don't think either option makes sense given the functionality. This chip
-behaves differently to TAS2764, and instead of using a bitmask to determine
-which slots to ignore, we only get a single bit to tell the chip whether we=
- want
-it to fill or pull down *all* inactive slots. The property being a u32 mask
-therefore does not make sense here.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Building the logic off the existing generic TDM slot properties would alter
-behaviour of existing implementations where zero-fill and pulldown may not =
-be
-required or even wanted. This may continue to be the case going forward so =
-I'd
-rather make it an explicit opt-in rather than some unconditional thing we t=
-ry to
-turn on heuristically.
+On Fri, 28 Feb 2025 18:32:49 +0100 you wrote:
+> The aim of this series is to modernize the device tree bindings for the
+> Freescale "Gianfar" ethernet controller (a.k.a. TSEC, Triple Speed
+> Ethernet Controller) by converting them to YAML.
+> 
+> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> ---
+> Changes in v2:
+> - various cleanups suggested by reviewers
+> - use a 'select:' schema to disambiguate compatible = "gianfar" between
+>   network controller and MDIO nodes
+> - Link to v1: https://lore.kernel.org/r/20250220-gianfar-yaml-v1-0-0ba97fd1ef92@posteo.net
+> 
+> [...]
 
-I gave some thought to flipping these bits if a TDM slot mask is passed to =
-the
-driver, however it can still be the case that we don't want both zero-fill =
-*and*
-pulldown active at the same time, or as above some implementations may want
-neither, so we still need to be able to specify them individually.
+Here is the summary with links:
+  - [v2,1/3] dt-bindings: net: Convert fsl,gianfar-{mdio,tbi} to YAML
+    https://git.kernel.org/netdev/net-next/c/e4c4522390c9
+  - [v2,2/3] dt-bindings: net: fsl,gianfar-mdio: Update information about TBI
+    https://git.kernel.org/netdev/net-next/c/0386e29e60bd
+  - [v2,3/3] dt-bindings: net: Convert fsl,gianfar to YAML
+    https://git.kernel.org/netdev/net-next/c/a70fdd936818
 
-Regards,
-James
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
