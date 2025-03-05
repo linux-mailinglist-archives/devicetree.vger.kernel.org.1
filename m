@@ -1,202 +1,126 @@
-Return-Path: <devicetree+bounces-154610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45124A50DAE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3A59A50DDC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:42:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85109174FFA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:37:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46AB21672C5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5C9201001;
-	Wed,  5 Mar 2025 21:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C8B25C70A;
+	Wed,  5 Mar 2025 21:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UAv9NrNK"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="C/3NoK1C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6E320011E;
-	Wed,  5 Mar 2025 21:35:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C9E25BAD9
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 21:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741210544; cv=none; b=WMTbXJOfPkvflFlwVfRzUGN8xNl322B8b9b4GNsV/IoKo2e/Os1i9+kO/bt9m1vwatW8zueWfS2TAoS0iTSEhR0EDefXCgwrbQEFg6eVFZoqPpePUuliHPJA1A5MYVDlrJ3LecEOinYNf4Ao+dY9wh9hq5upizamaCUUXJWx5o4=
+	t=1741210890; cv=none; b=qE0D/3RBjaGTFoX3TS5KoiPCcm+8i6nL8LMBvTjcARx1px7QKKjFUGXNB+m3HENoAkUkjunKzqsfhv1dYJxPTkg4bIHcghEmvV4uNomkTMvtbMc3hRhE+vHDObwCviN1Ut0PJ7xmJ7hbQGER838kgGhJQvXyaiWTsMRA6tvT70o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741210544; c=relaxed/simple;
-	bh=LbyAsoOCuX9MkXJF7LarN8OmRMg41TTh2ni2G9R+2XI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=l9nPEowWwOS7FAUrfBoQ+ebTtocXlx5Y45J2HVc6EH58ZKPtDWCiu/msMY0cZ4BLNEHPY3IETXEBucs59NQyQXm9Bs5SXJ3LGuQimgY/VQvB2zhW+hnHq+gDcFbnOEHMev0xZC87aVTScaGqtO0FCX26A2ye/4kAvoIgJlIee0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UAv9NrNK; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-523b7d9749eso1264334e0c.2;
-        Wed, 05 Mar 2025 13:35:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741210540; x=1741815340; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1+VM6UwBdgJ3iABgZCtb00fc1fZZvevDlMU86jLfwI0=;
-        b=UAv9NrNKxpCLxL/KewH3lLmcRC8DM7QNVhzgYOTEOOTNIg2GnGS4/6zR+cay2uDITi
-         +xgjkex3fUP+FIscJFojS6RrtbVniAbqUKw1PcSzrv5un0zJYYD6ErJRea3LQH4fDaP+
-         D3cUCD3u/mwX8027TQcWNUlR1K8Q0zWe74rojoOt/yD0bkAos1vF26mxrWerJzBY5qC5
-         AZYGCohtV9zjJc3aadgdpoY5TUKygmqJPxtuaUCNfmOjgZhLv1+gOAj4B5wNB9biKhMe
-         kkgfBq2/AHEXcCR7C2t5yRZlrHlf8XbbFk3ekKji+H5NDKT0r1Qd8q/Lpy3His5Vz6rG
-         1y7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741210540; x=1741815340;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1+VM6UwBdgJ3iABgZCtb00fc1fZZvevDlMU86jLfwI0=;
-        b=V7JnoLL95knnprCqOpc8onoZVnVPeK8hptGKIQlcM/It9fqu42Da+hasu5n0fg6JVh
-         RZWwhZuUgKqPfA/QK7Kkt6m8XFqEfdYivEcTaiTQDb92TqieAr1ROJF5wsxrun/WbqOC
-         CfTY6evNZ3Vd6kp7zUtx1qOqY05JM6Co8dlYziYYZ2n90vBjViDTbKXDAMVLJ89sxJhe
-         Fj6OsJZTNI34gun2Cb4mmZLiH4TTO5FKhGU/SYJj5YzLESaB+cL8UBLgYtx5c1ZoIXNK
-         RmRA7LdxFPB3WdfJZuh5kJM6JSSr1qn9tk6eX2zq19XgwFAUO+1aOoll2lK/8tK4lCBv
-         rbbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLYZ5tjomigY+MyIgFulpwtTuj7w/wKMD5NHvUqsZyOiaEEGZpe60G26qyYZDAfqs7d+XoM6opRxvh@vger.kernel.org, AJvYcCVmf9PGdd7hXnAu81tokQimsfzsZS7tAdmDdBLz4U6cwWx6wCxzshJIq20yCTkL29b+L5zbrDIyQ+XBPkCl@vger.kernel.org, AJvYcCWvl3EfwRCZWW5xWv+jjfaMb/m9Dk7vUUk2mp/1PQ2XTbjZbgJXX7d5yegjsRpGnY8GArUg9PN8lg9OtZIVI2zhQWI=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz872TiZjIzZPlCF84QELIuxibkraCRWHOgyy6J9E8pYS1jjOlg
-	jEfpKG/T1Am4mikNwgiUhKT19uQdog+dCgUoOFTtb+lpKrsR6qNwum0DI4L1FrSbMVqL5SodNrv
-	suq9ioOnq8cxur8S5OlNh64c8avQ=
-X-Gm-Gg: ASbGncuZ8tla6NNa1u9oCrNImikeKbioMfHD3Kra1rVvOT1uOa2v5PKA3UAOgD2vvO6
-	xRvHmsiHZCrAqzPNTwjMjzaRWXWflmBzSMabbC+77gFPYKzcKhVn7mLGX/FMa1eGnhyqLtoNJch
-	mRuomAelsUgDahGcsZCFe96qQ335plOJSfBkfyxFIkCXYBWOiD3s1IjCB5
-X-Google-Smtp-Source: AGHT+IHiGLhWN1mDXvC2JfCSqiQWp9pAGM2/KKGL7ptJ7CuBUz7iJSpQGrDSP6wJIP7Hjldsh6PjvWRCL8BaEoYLm7w=
-X-Received: by 2002:a05:6102:b0c:b0:4c1:99bf:5c00 with SMTP id
- ada2fe7eead31-4c2e29c51dfmr3316009137.25.1741210540183; Wed, 05 Mar 2025
- 13:35:40 -0800 (PST)
+	s=arc-20240116; t=1741210890; c=relaxed/simple;
+	bh=WWTRVJuyzpdI59DPD8jMGqY0GuaQoshgyrwbY2RUU1Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BMHfT3DFms6qON1r+C8YCt9NaLx5PGX7H2tMkvJzLtXWRvUk8j9SY4nL8VefORvwEiWyQgJQsnDiEapDn91ksyN6zfU+T52z3iMaOwRvJwBcKMirytlovm6rvFpOHEIodJWnWHYuMwpKYrC2CLNRJmuQLn+RUlCx+YQfvZrbCyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=C/3NoK1C; arc=none smtp.client-ip=121.127.44.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1741210881;
+ bh=innxyVjkg+mq6x4IGX11r7TVyyqnex8mH7N+cCGoDio=;
+ b=C/3NoK1CkHNOiiCGT1hqMCnoNv6iZVK/+bJN/tbN8kVpSm2o+kNWiRsFJlU6whXO1Rl8hr7/u
+ MmMpNt742FKHF3OCvLmm7Vi1rQJH9n7+dFx4XPKsah09R1pDBkSr9/+TCvAALYZ3fD41e5Zt6fD
+ P/x6349yaDWHtCTgmd94JBo2PG4Jpzg6ofltbvuUDuYCZDtEnEcWUD19+X6WT5PUSoycJdPvDtC
+ XPYoBawzWGhjRQzjKX3itsKYF8gFFOZbWmvxjI6UtUqBBKDIBfmGOoK8eNtTFoX2XY0rYh28T64
+ U03sra4HNxb8nmqu7fU0OHFSRpsQf5Ng3gfaAnRUrAKw==
+X-Forward-Email-ID: 67c8c4f988fb7bbab4530f30
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.59
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Yao Zi <ziyao@disroot.org>,
+	linux-rockchip@lists.infradead.org,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH 0/3] rockchip: Add support for onboard eMMC on Radxa E20C
+Date: Wed,  5 Mar 2025 21:41:01 +0000
+Message-ID: <20250305214108.1327208-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250305123915.341589-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250305123915.341589-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250305-cesspool-headlock-4d28a2a1333e@spud>
-In-Reply-To: <20250305-cesspool-headlock-4d28a2a1333e@spud>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 5 Mar 2025 21:35:13 +0000
-X-Gm-Features: AQ5f1JpKzWredmmHodR_d4f9QSHGKO8I_i_AKgfKK5QUbeUWw6L30hHLZZNUVrQ
-Message-ID: <CA+V-a8uQTL+SHYqVU_J0th4PT6YPF7q6ypzDu33nS_6onWLoOQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: Document RZ/V2H(P) USB2PHY Control
-To: Conor Dooley <conor@kernel.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Conor,
+The Radxa E20C may come with an onboard eMMC (8GB / 16GB / 32GB / 64GB).
 
-Thank you for the review.
+This series add dt-binding and SoC DT node for the SDHCI controller
+and enable use of the SDCHI controller on the Radxa E20C.
 
-On Wed, Mar 5, 2025 at 4:26=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
->
-> On Wed, Mar 05, 2025 at 12:39:13PM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add device tree binding document for the Renesas RZ/V2H(P) USB2PHY Cont=
-rol
-> > Device. It mainly controls reset and power down of the USB2.0 PHY (for
-> > both host and function).
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  .../reset/renesas,rzv2h-usb2phy-ctrl.yaml     | 56 +++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/reset/renesas,rzv=
-2h-usb2phy-ctrl.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2=
-phy-ctrl.yaml b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2p=
-hy-ctrl.yaml
-> > new file mode 100644
-> > index 000000000000..ed156a1d3eb3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-ctr=
-l.yaml
-> > @@ -0,0 +1,56 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/reset/renesas,rzv2h-usb2phy-ctrl.ya=
-ml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Renesas RZ/V2H(P) USB2PHY Control
-> > +
-> > +maintainers:
-> > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > +
-> > +description:
-> > +  The RZ/V2H(P) USB2PHY Control mainly controls reset and power down o=
-f the
-> > +  USB2.0 PHY.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: renesas,r9a09g057-usb2phy-ctrl  # RZ/V2H(P)
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  '#reset-cells':
-> > +    const: 0
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - resets
-> > +  - power-domains
-> > +  - '#reset-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/renesas,r9a09g057-cpg.h>
-> > +
-> > +    usbphy-ctrl@15830000 {
->
-> How come your nodename isn't "reset-controller"?
-This is to keep consistency with the other similar IP blocks found on
-Renesas SoCs [0].
+This series add support for the onboard eMMC on Radxa E20C.
 
-[0] https://elixir.bootlin.com/linux/v6.14-rc5/source/Documentation/devicet=
-ree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml#L66
+Driver changes to use different delay and tap num is needed to be able
+to support HS400 modes, something for a future series. With this HS200
+mode should work:
 
-> Otherwise,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->
-> > +        compatible =3D "renesas,r9a09g057-usb2phy-ctrl";
-> > +        reg =3D <0x15830000 0x10000>;
-> > +        clocks =3D <&cpg CPG_MOD 0xb6>;
-> > +        resets =3D <&cpg 0xaf>;
-> > +        power-domains =3D <&cpg>;
-> > +        #reset-cells =3D <0>;
-> > +    };
-> > --
-> > 2.43.0
-> >
+  mmc0: SDHCI controller on ffbf0000.mmc [ffbf0000.mmc] using ADMA
+  mmc0: new HS200 MMC card at address 0001
+  mmcblk0: mmc0:0001 TLi16G 14.7 GiB
+   mmcblk0: p1 p2 p3
+  mmcblk0boot0: mmc0:0001 TLi16G 4.00 MiB
+  mmcblk0boot1: mmc0:0001 TLi16G 4.00 MiB
+  mmcblk0rpmb: mmc0:0001 TLi16G 4.00 MiB, chardev (499:0)
 
-Cheers,
-Prabhakar
+  ~ # cat /sys/kernel/debug/mmc0/ios
+  clock:          200000000 Hz
+  actual clock:   198000000 Hz
+  vdd:            21 (3.3 ~ 3.4V)
+  bus mode:       2 (push-pull)
+  chip select:    0 (don't care)
+  power mode:     2 (on)
+  bus width:      3 (8bits)
+  timing spec:    9 (mmc HS200)
+  signal voltage: 1 (1.80 V)
+  driver type:    0 (driver type B)
+
+  ~ # hdparm -t /dev/mmcblk0p1
+  /dev/mmcblk0p1:
+  Timing buffered disk reads:   64 MB in 0.37 seconds = 173154 kB/s
+
+This series depends on v2 of the "Support SD/SDIO controllers on RK3528"
+series for a clean apply.
+
+Jonas Karlman (3):
+  dt-bindings: mmc: sdhci-of-dwcmhsc: Add compatible string for RK3528
+  arm64: dts: rockchip: Add SDHCI controller for RK3528
+  arm64: dts: rockchip: Enable onboard eMMC on Radxa E20C
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  4 +++-
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 12 ++++++++++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 24 +++++++++++++++++++
+ 3 files changed, 39 insertions(+), 1 deletion(-)
+
+-- 
+2.48.1
+
 
