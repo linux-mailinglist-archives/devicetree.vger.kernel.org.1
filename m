@@ -1,346 +1,147 @@
-Return-Path: <devicetree+bounces-154411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76B53A50084
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:28:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 293F0A500AB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:34:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F180518954FE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:28:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E97EB188370F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B42924887F;
-	Wed,  5 Mar 2025 13:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J9uoP7EC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86906248890;
+	Wed,  5 Mar 2025 13:34:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gauss.telenet-ops.be (gauss.telenet-ops.be [195.130.132.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F672E3396;
-	Wed,  5 Mar 2025 13:28:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 408B124A04D
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 13:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741181291; cv=none; b=ZcHMSdhCAukBoHUNzePC2h7whMK7/yPsIMEzpRTOoBhHG7Fj43ld9Mf0qNaC7BklFpD9HACg7MsR3i9/j3wtT0xtDTfBZABwOpBXRa2uJ+D2AJTauKw62hkjcMAVYhQgPHtHecIj/5zvEOrrxO8oGdcsvqDfQB7fXniK3AEqnMY=
+	t=1741181675; cv=none; b=Ht8DWAkWc6Kokbref5sxnuBRDClUc3htjo86z9jTlFHUDXU+O8Wd5f6AS/omTmpRWbFdsX3KKg3r3/K9U2q6m1lu0eu7c71UAf9k6V1/hnPpjfWgGcvGvn0ZT2fUpwS6tAP1v4JQO3tvIZ4UY2OAazd6NFJVQNva0WXkOitnBQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741181291; c=relaxed/simple;
-	bh=mx+N4niLWr5+q33WJOrkgXpRGwTX4Uy8hfi8tTGr3gs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VVsPq3OJ4vm0c7DaIemfbqoahWJX3chIs3M0YXwEse3TEyHVRuUUfl3zRSuqgNiCvFmy0U3ySE+YRnDeCdPPDqvAyhvT3W8oXDIWGaMNbkZkMr53+HKNQAjVowFeAY0kpO3fMoTlWot2leVDcopFB15OIgyA3ULnMZSFNXd4SF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J9uoP7EC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 525B19UP028088;
-	Wed, 5 Mar 2025 13:27:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XfWLYP57gVsIyTQR+W3aALSmFfgRt/y1vRXHXiE9DW4=; b=J9uoP7ECC637HiZl
-	QtnRPAUvy4H7tYkShruj8LM9vQoCd4Y5XT+0VIRWJH/LkqCcjbrryFEeKAaf3l3P
-	YYcW2iv+5gbBwRaPNbjJ//ejBXxhq+Tu/srjibCuZhchzewrw0ohwKaVhGdbJqXz
-	oMBfMcWi8kSs+YRXfBLmHEH17RQ5mLUfyHYC2H2RanCRY7+GukKJLck+iGGSCb3C
-	RAF4Duf2SgF/x8KVMQ8IbngmncL9xINwscSXcVy+oxNrVSv2/nWVlFKGzKJhk4GM
-	o1Q8P72XCo9aLzWj1EhwgSarJ0SzP0TUWK8jDJdhasFAU4mqQHF6x1PGIqKuz6+s
-	2crPqg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6vdc7w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Mar 2025 13:27:47 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 525DRQG7002596
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Mar 2025 13:27:26 GMT
-Received: from [10.133.33.61] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Mar 2025
- 05:27:20 -0800
-Message-ID: <7fe6c345-85cf-4114-b419-f50d1a6cbef1@quicinc.com>
-Date: Wed, 5 Mar 2025 21:27:17 +0800
+	s=arc-20240116; t=1741181675; c=relaxed/simple;
+	bh=hLoRlqyS+e+uGVZDKx7s0osOIjH8n6sXEfL9c8+Q+ck=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qQfpcUjYMyDUviMlIpOLP8AX/yrblmyMnNJtGfzrOJ3v+Mg295h6p6S8B6R0TkxzWaijearRfJSJRfIF63o55v/Ni1sMwSBUfjvmsZ0pxbRtLxPssSfly26PHZ7Bjsmn/wsZ9Hl221Q5iW2a9SOR5Tioi3Ik99CtPg7tMXLaQz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+	by gauss.telenet-ops.be (Postfix) with ESMTPS id 4Z7D6v2j7gz4wx6H
+	for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 14:34:31 +0100 (CET)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:fba:8cad:3d23:9db3])
+	by albert.telenet-ops.be with cmsmtp
+	id M1aL2E00D0exi8p061aLDL; Wed, 05 Mar 2025 14:34:23 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1tposn-0000000Cv3p-0vwh;
+	Wed, 05 Mar 2025 14:34:18 +0100
+Received: from geert by rox.of.borg with local (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1tpot8-00000008woK-16wH;
+	Wed, 05 Mar 2025 14:34:18 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v3 0/7] scsi: ufs: renesas: Add support for R-Car S4-8 ES1.2
+Date: Wed,  5 Mar 2025 14:34:08 +0100
+Message-ID: <cover.1741179611.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 02/10] Coresight: Add trace_id function to retrieving
- the trace ID
-To: Mike Leach <mike.leach@linaro.org>
-CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        James Clark
-	<james.clark@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20250303032931.2500935-1-quic_jiegan@quicinc.com>
- <20250303032931.2500935-3-quic_jiegan@quicinc.com>
- <CAJ9a7VgGp4YqzN-yx0x+NiZG8now6SCmnimaou2Z=exYcoiegw@mail.gmail.com>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <CAJ9a7VgGp4YqzN-yx0x+NiZG8now6SCmnimaou2Z=exYcoiegw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ZX3-QF7poviCcbiF4XHdi-8RCpyBDC1H
-X-Authority-Analysis: v=2.4 cv=bPnsIO+Z c=1 sm=1 tr=0 ts=67c85153 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=LpQP-O61AAAA:8
- a=_YhmHaDjSWNydp913SEA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22 a=pioyyrs4ZptJ924tMmac:22
-X-Proofpoint-GUID: ZX3-QF7poviCcbiF4XHdi-8RCpyBDC1H
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-05_05,2025-03-05_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
- spamscore=0 mlxscore=0 clxscore=1015 bulkscore=0 mlxlogscore=999
- phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503050107
+Content-Transfer-Encoding: 8bit
 
+	Hi all,
 
+Initialization of the UFS controller on R-Car S4-8 ES1.0 requires only
+static values.  However, other UFS controller variants (R-Car S4-8 ES 1.2)
+require dynamic values, like those obtained from E-FUSE, and downloading
+firmware.
 
-On 3/5/2025 7:07 PM, Mike Leach wrote:
-> Hi,
-> 
-> On Mon, 3 Mar 2025 at 03:30, Jie Gan <quic_jiegan@quicinc.com> wrote:
->>
->> Add 'trace_id' function pointer in coresight_ops. It's responsible for retrieving
->> the device's trace ID.
->>
->> Co-developed-by: James Clark <james.clark@linaro.org>
->> Signed-off-by: James Clark <james.clark@linaro.org>
->> Reviewed-by: James Clark <james.clark@linaro.org>
->> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-core.c  | 30 +++++++++++++++++++
->>   drivers/hwtracing/coresight/coresight-dummy.c | 13 +++++++-
->>   .../coresight/coresight-etm3x-core.c          |  1 +
->>   .../coresight/coresight-etm4x-core.c          |  1 +
->>   drivers/hwtracing/coresight/coresight-stm.c   | 11 +++++++
->>   drivers/hwtracing/coresight/coresight-tpda.c  | 11 +++++++
->>   include/linux/coresight.h                     |  5 ++++
->>   7 files changed, 71 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
->> index ab55e10d4b79..32aa07f4f8c1 100644
->> --- a/drivers/hwtracing/coresight/coresight-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-core.c
->> @@ -24,6 +24,7 @@
->>   #include "coresight-etm-perf.h"
->>   #include "coresight-priv.h"
->>   #include "coresight-syscfg.h"
->> +#include "coresight-trace-id.h"
->>
->>   /*
->>    * Mutex used to lock all sysfs enable and disable actions and loading and
->> @@ -1557,6 +1558,35 @@ void coresight_remove_driver(struct amba_driver *amba_drv,
->>   }
->>   EXPORT_SYMBOL_GPL(coresight_remove_driver);
->>
->> +int coresight_etm_get_trace_id(struct coresight_device *csdev, enum cs_mode mode,
->> +                              struct coresight_device *sink)
->> +{
->> +       int trace_id;
->> +       int cpu = source_ops(csdev)->cpu_id(csdev);
->> +
-> 
-> This is a global funciton so need to check that this csdev is a
-> source,. and does provide a cpu  function before calling it.
-> 
+Hence this patch series refactors the initialization code to prepare for
+this, and adds support for the UFS controller on R-Car S4-8 ES1.2.
+The accompanying DTS change is available at [1].
 
-Hi Mike,
+Changes compared to v2[2]:
+  - Take over from Shimoda-san,
+  - New patches 1/7 (DT bindings update) and 7/7 (actual R-Car S4-8
+    ES1.2 support),
+  - Keep MAX_INDEX check, as it is still useful,
+  - Prefix data parameters of ufs_renesas_write_d0_d4() by "data_", for
+    consistency,
+  - Document kernel size impact of switching to init code,
+  - Rename ufs_renesas_init_ufshc() to ufs_renesas_init_step1_to_3(),
+  - Extract ufs_renesas_init_step4_to_6(),
+  - Move ufs_renesas_write_phy_10ad_10af() just before its sole user,
 
-I put this function here because it's required by etm3x and etm4x. It's 
-intended to be called only by ETM devices, which are definitely source 
-devices and have a cpu function.
+Changes compared to v1[3]:
+  - Postpone removing the *_INDEX* enums until all users are gone,
+  - Combine declaration and initialization of ufs_renesas_init_param,
+  - Drop "_param" from ufs_renesas_*() helper function names.
+  - Move MODE_READ handling after MODE_POLL handling,
+  - Move ufs_renesas_read() after ufs_renesas_poll(),
+  - Remove not just MODE_WAIT, but all of the struct-based control.
 
-Jie
+This has been tested on:
+  - Renesas Spider with R-Car S4-8 ES1.0 (broken before/after),
+  - Renesas S4 Starter Kit with R-Car S4-8 ES1.2 (works after).
 
->> +       switch (mode) {
->> +       case CS_MODE_SYSFS:
->> +               trace_id = coresight_trace_id_get_cpu_id(cpu);
->> +               break;
->> +       case CS_MODE_PERF:
->> +               if (WARN_ON(!sink))
->> +                       return -EINVAL;
->> +
->> +               trace_id = coresight_trace_id_get_cpu_id_map(cpu, &sink->perf_sink_id_map);
->> +               break;
->> +       default:
->> +               trace_id = -EINVAL;
->> +               break;
->> +       }
->> +
->> +       if (!IS_VALID_CS_TRACE_ID(trace_id))
->> +               dev_err(&csdev->dev,
->> +                       "Failed to allocate trace ID on CPU%d\n", cpu);
->> +
->> +       return trace_id;
->> +}
->> +EXPORT_SYMBOL_GPL(coresight_etm_get_trace_id);
->> +
->>   MODULE_LICENSE("GPL v2");
->>   MODULE_AUTHOR("Pratik Patel <pratikp@codeaurora.org>");
->>   MODULE_AUTHOR("Mathieu Poirier <mathieu.poirier@linaro.org>");
->> diff --git a/drivers/hwtracing/coresight/coresight-dummy.c b/drivers/hwtracing/coresight/coresight-dummy.c
->> index 9be53be8964b..b5692ba358c1 100644
->> --- a/drivers/hwtracing/coresight/coresight-dummy.c
->> +++ b/drivers/hwtracing/coresight/coresight-dummy.c
->> @@ -41,6 +41,16 @@ static void dummy_source_disable(struct coresight_device *csdev,
->>          dev_dbg(csdev->dev.parent, "Dummy source disabled\n");
->>   }
->>
->> +static int dummy_source_trace_id(struct coresight_device *csdev, __maybe_unused enum cs_mode mode,
->> +                                __maybe_unused struct coresight_device *sink)
->> +{
->> +       struct dummy_drvdata *drvdata;
->> +
->> +       drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +       return drvdata->traceid;
->> +}
->> +
->>   static int dummy_sink_enable(struct coresight_device *csdev, enum cs_mode mode,
->>                                  void *data)
->>   {
->> @@ -62,7 +72,8 @@ static const struct coresight_ops_source dummy_source_ops = {
->>   };
->>
->>   static const struct coresight_ops dummy_source_cs_ops = {
->> -       .source_ops = &dummy_source_ops,
->> +       .trace_id       = dummy_source_trace_id,
->> +       .source_ops     = &dummy_source_ops,
->>   };
->>
->>   static const struct coresight_ops_sink dummy_sink_ops = {
->> diff --git a/drivers/hwtracing/coresight/coresight-etm3x-core.c b/drivers/hwtracing/coresight/coresight-etm3x-core.c
->> index c103f4c70f5d..c1dda4bc4a2f 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm3x-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-etm3x-core.c
->> @@ -704,6 +704,7 @@ static const struct coresight_ops_source etm_source_ops = {
->>   };
->>
->>   static const struct coresight_ops etm_cs_ops = {
->> +       .trace_id       = coresight_etm_get_trace_id,
->>          .source_ops     = &etm_source_ops,
->>   };
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> index 2c1a60577728..cfd116b87460 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> @@ -1067,6 +1067,7 @@ static const struct coresight_ops_source etm4_source_ops = {
->>   };
->>
->>   static const struct coresight_ops etm4_cs_ops = {
->> +       .trace_id       = coresight_etm_get_trace_id,
->>          .source_ops     = &etm4_source_ops,
->>   };
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-stm.c b/drivers/hwtracing/coresight/coresight-stm.c
->> index b581a30a1cd9..aca25b5e3be2 100644
->> --- a/drivers/hwtracing/coresight/coresight-stm.c
->> +++ b/drivers/hwtracing/coresight/coresight-stm.c
->> @@ -281,12 +281,23 @@ static void stm_disable(struct coresight_device *csdev,
->>          }
->>   }
->>
->> +static int stm_trace_id(struct coresight_device *csdev, __maybe_unused enum cs_mode mode,
->> +                       __maybe_unused struct coresight_device *sink)
->> +{
->> +       struct stm_drvdata *drvdata;
->> +
->> +       drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +       return drvdata->traceid;
->> +}
->> +
->>   static const struct coresight_ops_source stm_source_ops = {
->>          .enable         = stm_enable,
->>          .disable        = stm_disable,
->>   };
->>
->>   static const struct coresight_ops stm_cs_ops = {
->> +       .trace_id       = stm_trace_id,
->>          .source_ops     = &stm_source_ops,
->>   };
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
->> index 573da8427428..94c2201fc8d3 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->> @@ -241,12 +241,23 @@ static void tpda_disable(struct coresight_device *csdev,
->>          dev_dbg(drvdata->dev, "TPDA inport %d disabled\n", in->dest_port);
->>   }
->>
->> +static int tpda_trace_id(struct coresight_device *csdev, __maybe_unused enum cs_mode mode,
->> +                        __maybe_unused struct coresight_device *sink)
->> +{
->> +       struct tpda_drvdata *drvdata;
->> +
->> +       drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +       return drvdata->atid;
->> +}
->> +
->>   static const struct coresight_ops_link tpda_link_ops = {
->>          .enable         = tpda_enable,
->>          .disable        = tpda_disable,
->>   };
->>
->>   static const struct coresight_ops tpda_cs_ops = {
->> +       .trace_id       = tpda_trace_id,
->>          .link_ops       = &tpda_link_ops,
->>   };
->>
->> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
->> index c7cd5886c908..ce9a5e71b261 100644
->> --- a/include/linux/coresight.h
->> +++ b/include/linux/coresight.h
->> @@ -335,6 +335,7 @@ enum cs_mode {
->>          CS_MODE_PERF,
->>   };
->>
->> +#define coresight_ops(csdev)   csdev->ops
->>   #define source_ops(csdev)      csdev->ops->source_ops
->>   #define sink_ops(csdev)                csdev->ops->sink_ops
->>   #define link_ops(csdev)                csdev->ops->link_ops
->> @@ -421,6 +422,8 @@ struct coresight_ops_panic {
->>   };
->>
->>   struct coresight_ops {
->> +       int (*trace_id)(struct coresight_device *csdev, enum cs_mode mode,
->> +                       struct coresight_device *sink);
->>          const struct coresight_ops_sink *sink_ops;
->>          const struct coresight_ops_link *link_ops;
->>          const struct coresight_ops_source *source_ops;
->> @@ -709,4 +712,6 @@ int coresight_init_driver(const char *drv, struct amba_driver *amba_drv,
->>
->>   void coresight_remove_driver(struct amba_driver *amba_drv,
->>                               struct platform_driver *pdev_drv);
->> +int coresight_etm_get_trace_id(struct coresight_device *csdev, enum cs_mode mode,
->> +                              struct coresight_device *sink);
->>   #endif         /* _LINUX_COREISGHT_H */
->> --
->> 2.34.1
->>
-> 
-> 
+Thanks for your comments!
 
+[1] "[PATCH] arm64: dts: renesas: r8a779f4: Add UFS tuning parameters in
+     E-FUSE"
+    https://lore.kernel.org/3e4fca228eb049d54a1ae520104558505dbdf803.1741179629.git.geert+renesas@glider.be
+[2] "[PATCH v2 0/5] scsi: ufs: renesas: Refactor code for other UFS
+     controller"
+    https://lore.kernel.org/20240709023550.1750333-1-yoshihiro.shimoda.uh@renesas.com
+[3] "[PATCH 0/5] scsi: ufs: renesas: Refactor code for other UFS
+     controller"
+    https://lore.kernel.org/20240708120931.1703956-1-yoshihiro.shimoda.uh@renesas.com
+
+Geert Uytterhoeven (1):
+  dt-bindings: ufs: renesas,ufs: Add calibration data
+
+Yoshihiro Shimoda (6):
+  scsi: ufs: renesas: Replace init data by init code
+  scsi: ufs: renesas: Add register read to remove save/set/restore
+  scsi: ufs: renesas: Remove register control helper function
+  scsi: ufs: renesas: Refactor 0x10ad/0x10af PHY settings
+  scsi: ufs: renesas: Add reusable functions
+  scsi: ufs: renesas: Add initialization code for R-Car S4-8 ES1.2
+
+ .../devicetree/bindings/ufs/renesas,ufs.yaml  |  12 +
+ drivers/ufs/host/ufs-renesas.c                | 723 +++++++++++-------
+ 2 files changed, 445 insertions(+), 290 deletions(-)
+
+-- 
+2.43.0
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
