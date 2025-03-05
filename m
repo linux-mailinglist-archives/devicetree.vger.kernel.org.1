@@ -1,126 +1,158 @@
-Return-Path: <devicetree+bounces-154318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8130EA4FAD4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:56:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846B7A4FAA5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:52:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 725881883838
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:56:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36E5C7A617A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F95B2080D0;
-	Wed,  5 Mar 2025 09:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB95B20550C;
+	Wed,  5 Mar 2025 09:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dwBf4Mio"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="cZFNLMc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F14205510;
-	Wed,  5 Mar 2025 09:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 056992054E6;
+	Wed,  5 Mar 2025 09:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741168468; cv=none; b=V+TmFHuOtonLyIb55mvLSwxoLY7vZfTDtSRyenlqdMZonQE+uBj32bQOOaTnhqRhRtbVizCig2gFZS8RCzhlirJIE924wrtq/mi+6TBaSyLA4e35gNADhmlJlxpK7FOtBsGHiFd/8qEAR5YeJLKZC9CT233MwiFaDEYGfeE+6Nw=
+	t=1741168368; cv=none; b=eqQSQK5DjB0OhUMMgqMPkR2TYYyDHbJvWgSDIt6opPml92A2zakvrxEu+4jY0x0vdZVGFojXPAqn6IIlZufe9ux9C1jB4r3Zqg/QASB1AwyF7P/3pB9uBioppCzPUmyltVqBe83k+GObncUb9Dacd3I5ACOSt7XSFuZ6auVlrdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741168468; c=relaxed/simple;
-	bh=0UnlsJ/QMPp3en93prvQfDrfGSRGtCvMeCyLsWlTT+o=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KREzyw/Sa0JXc3tMNcG98S5Ii8xPzj17V+TWXWWz0QY4/LD5f/54EFxn2/lLqXp1YN4eEijrQjAy7SZSkXGU7AuzhwYZKSzXPDkQcXl5bD3zhTnICHRrCd1qhsGZ58kmP9YjV8DQJVN6jM51BBnHNyTfgD2rDt30rP4aCXNno2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dwBf4Mio; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5258qMgM027811;
-	Wed, 5 Mar 2025 10:53:58 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	2wY6Dic8hzBm+S2wld/DgwBFhKKy9RZVyTbW8u8LUKQ=; b=dwBf4Mioiwv2Zu4l
-	INts2S2Ok7dimOSV+L0M6etY0G775n4SH5tmarEcC5Ibw+A1q1v2wRE9aep8P0U8
-	Z6TrdLUAkozG1VaCDf2i2oJZEXISCSwoy00CEYbXknCbM8PmuQhxy7Zm24+PNSnU
-	B0NoKf3CcmMycPbWKNVzZLW3zm1vaxF6wDRCfyaMKBABB9a81qRTC2lk6FevvvvA
-	oKCbfQikaOr6KtDV9LsnhmERFCU8Mtl35jnH2Zbv2fDm7AjgDU00BNRdRvNrNxAP
-	5foz5C4FFAsXG2YmA1pbnqmuUXjes6S0kKQOJ3IVmPCok6FFziHby5QCpMRtqFib
-	Kw8YOg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 454cp8ncfg-1
+	s=arc-20240116; t=1741168368; c=relaxed/simple;
+	bh=f1mtud/yW9wQbOh1V2OywbZmiXFNmrbADFJ8CE9Hmn4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NX5jamp57RffKIZ1krIxFS1gohy44ot8WuaK7a2ZYdSFpN4r0UniD2LutqhrdX4JrecNz+KwwoiDDjglnIeTTkuHepb7or+ruDp9AUfdibGh8CdM4HFrVGuVs/EOUf8O4o/tUKl9HjgpJnILMGshPRedhu6CUMrd/f7GUXYSHBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=cZFNLMc8; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5253vccD015864;
+	Wed, 5 Mar 2025 03:52:13 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=PODMain02222019; bh=l4O2tAc3nHmi1ElovV
+	b0CMq8ms8e2pPhJCOKTF4kppU=; b=cZFNLMc82MkmtpUQ3zZB+OajgUx/YdPxmb
+	W85CcuVF694+JOpfdLvW86m2xGGK6abacjO8HKAum1zLwmAoyNLdeuULervLnPAp
+	O1H9uD3qwfdekGR/LojP0ZCZPnTSUmK/Je0vPcQ/+AXwP1AIVIqE5wcD2TZiUDoL
+	B1aGwu/jML9hMbFd/ZFvr3k4RECdMcPnTOt/INjF7sRyMzwjfIuHMcc475fry/j/
+	T2ZI1uxOIlyOqn61dACKNWcOz5u3oWM/5G2g0HaaVrrjadsy3soOFArkw3c43vK7
+	PcUxmJkCL/aVkVIsG85H3vxC231dGd0TuUe8nxApk851F32tNVsg==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 455fyym3uf-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Mar 2025 10:53:58 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2109840092;
-	Wed,  5 Mar 2025 10:52:50 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node6.st.com [10.75.129.135])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DDBCC5AB282;
-	Wed,  5 Mar 2025 10:49:57 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE6.st.com
- (10.75.129.135) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 5 Mar
- 2025 10:49:57 +0100
-Received: from localhost (10.48.86.222) by SAFDAG1NODE1.st.com (10.75.90.17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 5 Mar
- 2025 10:49:57 +0100
-From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-To: <lee@kernel.org>, <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <jic23@kernel.org>, <daniel.lezcano@linaro.org>, <tglx@linutronix.de>
-CC: <catalin.marinas@arm.com>, <will@kernel.org>, <devicetree@vger.kernel.org>,
-        <wbg@kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <olivier.moysan@foss.st.com>, <fabrice.gasnier@foss.st.com>
-Subject: [PATCH v3 8/8] arm64: dts: st: use lptimer3 as tick broadcast source on stm32mp257f-ev1
-Date: Wed, 5 Mar 2025 10:49:35 +0100
-Message-ID: <20250305094935.595667-9-fabrice.gasnier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250305094935.595667-1-fabrice.gasnier@foss.st.com>
-References: <20250305094935.595667-1-fabrice.gasnier@foss.st.com>
+	Wed, 05 Mar 2025 03:52:13 -0600 (CST)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Wed, 5 Mar
+ 2025 09:52:11 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1544.14 via Frontend Transport; Wed, 5 Mar 2025 09:52:11 +0000
+Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id EE9E0820248;
+	Wed,  5 Mar 2025 09:52:10 +0000 (UTC)
+Date: Wed, 5 Mar 2025 09:52:09 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Ernest Van Hoecke <ernestvanhoecke@gmail.com>,
+        Francesco Dolcini
+	<francesco@dolcini.it>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Saravana Kannan
+	<saravanak@google.com>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>,
+        <patches@opensource.cirrus.com>,
+        Ernest Van Hoecke
+	<ernest.vanhoecke@toradex.com>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Francesco
+ Dolcini" <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v2 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC
+ and EQ support
+Message-ID: <Z8geyb9ilUPmDUXk@opensource.cirrus.com>
+References: <20250224155500.52462-1-francesco@dolcini.it>
+ <20250224155500.52462-4-francesco@dolcini.it>
+ <20250225-delicate-tortoise-of-management-e43fa2@krzk-bin>
+ <er4bcixggriqp6idl6xmr7bjetf5kkhadyeplkbyxvrffuiknc@ews752x4ugh7>
+ <f690d858-a427-4db4-81ee-d5eb6223368c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-05_03,2025-03-05_01,2024-11-22_01
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <f690d858-a427-4db4-81ee-d5eb6223368c@kernel.org>
+X-Proofpoint-GUID: Y0SbGx_LqAM5I0nHUEImwHbaW5SidVM0
+X-Proofpoint-ORIG-GUID: Y0SbGx_LqAM5I0nHUEImwHbaW5SidVM0
+X-Authority-Analysis: v=2.4 cv=DaftqutW c=1 sm=1 tr=0 ts=67c81ecd cx=c_pps a=uGhh+3tQvKmCLpEUO+DX4w==:117 a=uGhh+3tQvKmCLpEUO+DX4w==:17 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=fwLFyu2rHDo0oW4pvNQA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-Spam-Reason: safe
 
-During the low power modes the generic ARM timer is deactivated, so the
-the tick broadcast is used, based on LPTIMER3 which is clocked by LSE on
-STMicroelectronics boards.
+On Wed, Mar 05, 2025 at 07:45:50AM +0100, Krzysztof Kozlowski wrote:
+> On 27/02/2025 16:34, Ernest Van Hoecke wrote:
+> > On Tue, Feb 25, 2025 at 09:41:17AM +0100, Krzysztof Kozlowski wrote:
+> >> On Mon, Feb 24, 2025 at 04:54:58PM +0100, Francesco Dolcini wrote:
+> >>> +  wlf,drc-cfg-regs:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+> >>> +    description:
+> >>> +      Default register values for R40/41/42/43 (DRC).
+> >>> +      The list must be 4 times the length of wlf,drc-cfg-names.
+> >>> +      If absent, DRC is disabled.
+> >>> +
+> >>> +  wlf,retune-mobile-cfg-names:
+> >>> +    $ref: /schemas/types.yaml#/definitions/string-array
+> >>> +    description:
+> >>> +      List of strings for the available retune modes.
+> >>> +      If absent, retune is disabled.
+> >>
+> >> How is this retune supposed to be used? If by user-space I can easily
+> >> imagine that static DTS configuration won't be enough, because you need
+> >> to factor for example temperature or some other minor differences
+> >> between same boards.
+> > 
+> > This is intended for integrators to be able to specify some EQ options,
+> > mirroring the previous behaviour that was possible via platform data.
+> > 
+> > I expect most users to use the first five Retune Mobile registers and
+> > not care about the rest, which require a proprietary tool and are not
+> > well documented. The example in the binding shows how some simple
+> > static EQ can be configured. Anyone interested in the extended config
+> > can also use it (statically).
+> > 
+> > If someone requires dynamic behaviour at runtime that could be a
+> > separate patch that should not be hindered by this static config.
+> 
+> 
+> No, if this is suitable for dynamic configuration then it's a proof it
+> is not suitable for DT.
+> 
 
-Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Whilst I can see the argument that this could be exposed as an
+ALSA control. I would also suggest that this is not adding some new
+feature, these values have been filled in from pdata for 16 years
+now. Changing the way such a vintage part works at this point feels
+more problematic to me than a slightly iffy DT property.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 1b88485a62a1..242115863ab4 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -190,6 +190,14 @@ &i2c8 {
- 	status = "disabled";
- };
- 
-+/* use LPTIMER with tick broadcast for suspend mode */
-+&lptimer3 {
-+	status = "okay";
-+	timer {
-+		status = "okay";
-+	};
-+};
-+
- &rtc {
- 	status = "okay";
- };
--- 
-2.25.1
+On the flip side of the argument, the parameters that are filled
+into this are almost certainly specific tuning for the hardware,
+so in many ways this is hardware description and there is a
+certain appeal to shipping the tuning with the hardware (ie. in
+DT).
 
+Thanks,
+Charles
 
