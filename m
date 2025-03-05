@@ -1,132 +1,117 @@
-Return-Path: <devicetree+bounces-154497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A2CA5077F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:58:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31DB3A50860
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 19:06:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F3197A91F6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:55:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F6D93AFF95
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6CC92512D6;
-	Wed,  5 Mar 2025 17:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD18C250C14;
+	Wed,  5 Mar 2025 18:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="momoyEWA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nqfls+NU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5395A250BE9
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 17:56:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0265B19C542;
+	Wed,  5 Mar 2025 18:06:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741197362; cv=none; b=TZVZqVib+PG+zpYSTOtVbElCjXkhPRncHOvXkgJyaP4KoVnK8/w15LOR1uWm3GyuO4dYPnAOX06JRDtu55zWe1ow8QQKyXNd3SaWGthXWeIPpThIgcSpUi3sxyhgOqxuoc+TUHvOwABK6ft70/nl89TOWAWFDqu3OiHJA1g9kCY=
+	t=1741198001; cv=none; b=TBYamhxwzOH/xq/CRd9rUfdSpWVn1yQa/hMEOlEJpIXHYEWhQ5kN4y8mX3XI1xV26nhRiNx/a3/rvBvWkDf9k7z4iEozF/gRMfdf8rhHZkzUfnEYgdorBca2LyXQaQQvmcrZfQCpJaCJaSXdUz9V97nUGQIOsA+AoglRZ5A/j3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741197362; c=relaxed/simple;
-	bh=TUPQEmrW/zlDUggHE/0eBZQD2cfbqcK2BAfpEugKfy8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jncqpNYrL/yIlGLGO7Vnt3+2GvmBidDdfKhcF88pj9A8g7CPqgcs9eGBUM314AgXLWDRaTfuDaCKASbHf+mdMJgYORDwMJrWdHhZh8R068mvA/i8EDe+wuJJj1jZbaxDWUl0xRxL2m6tmO+EwSpGN7Xe8MHusNiw9mVv+P6tESc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=momoyEWA; arc=none smtp.client-ip=209.85.222.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7c3d591e50aso201783385a.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 09:56:00 -0800 (PST)
+	s=arc-20240116; t=1741198001; c=relaxed/simple;
+	bh=vQ3ImQocoFucBClygvcS1RhmiWw1E+iHsFgmdHPU/ew=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iVMoTS46A6IGnNBI1mqFT35B8YI3yTLARcX3+Mm/beaRDCFcJ5bCf5mey8xb74ZD/H32fD4ZGL4ofjzr74U+aqNZpMefBOHa2JGIP+cvDwfXBRnG4LQQOnL7AyKMXfzPj/Oq+hJGbTc3Uw0W9I3l4O76C80EFS7GQO1LsvMlkBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nqfls+NU; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-38a8b17d7a7so4282422f8f.2;
+        Wed, 05 Mar 2025 10:06:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1741197359; x=1741802159; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+ep2jN4skgI+D4W4EsgQGzXEpA82GjT/riHpbC+3iOM=;
-        b=momoyEWA1uwQT59ACHn6cPhBRRVwjCvd/D00IEUvD8ULjOMXySHCDWYSd9z/yVOTMP
-         oG72CN7BnrQDpgYVlsHG0Jk0KQ0ebSPSiZB+FvOfdsC8qp6VTSdRbLDJCLhzWYuEJWoY
-         2v35NyfYxdrK6EhI2eMjixmCg9uDh2DK9oxX0DBSIRxRtrFjHa9wswQhnptQmQT5vFEn
-         wkFkKfiMZC2jn4QuMDnwRR5W8l4QvBbu+QJy+zS1//D3zixL63YMPiiBu52Ouv9b7e2P
-         YtGXgKlQkiD3mJSNouR4nXhhezVNvS1oFPZxtDA5kc7MPbYTSVD9fAQgdoH7z2hklJEe
-         689g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741197359; x=1741802159;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1741197998; x=1741802798; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+ep2jN4skgI+D4W4EsgQGzXEpA82GjT/riHpbC+3iOM=;
-        b=e4if+ZsrHa2esjOrI3P6x5SlK+D4+ULHdR1KPteof3Xr7Q1Tvo6km/3IDy7XavJJFk
-         MqpQW4XrwWl3ziTaFdDuky4Di6ggIBjKwNS3goZNZ0IRkcVqbrFI6m+1PhyTN6d6CYII
-         r5dguV/4zWZKM5VU51XrOkhIDhMTnBkkmfvB8jHXSgKcE3/m0LlH/I87UqEZlRsVSWWu
-         Ahy+jaChhWXGhaRsDbEgNynUW9PIdx4gFmFP4cgWdyiFBTc3R7H9D53mamE0J3WyLCg+
-         IQSjCUE6rqCbI7KykTfBtuUEb1QuOyWJwKQhH/03hTcgoyxSAPMQaH3V2FxnJ1U91KJ7
-         rVZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWQn1h2AtE2bB5Ry2MXtfLGRc9PIxxyr5T9xVAhpFbWaDzLdgaqnFxOAyIDsdsyswZChg1bHHffgfNO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKtW1BtjRUxaIQYJO4Owzqo4d84luXjZ1nYYXFSL04mEQgFa2h
-	k+LiM3CRLopLjYb3AqlSLass61+CwMdNneSVEMoIetp8f81Jy4jdhO5iLzrXefg=
-X-Gm-Gg: ASbGncsXU0k03I00T9wxTyvIYiJ2E9Cvqlg8nyjA0bhUsJO8Y7Xjh3CxTCLIOJg0Fca
-	psSYNLWVeW5euOLkvt9JEfOYtXyEqsYTzv86rZ3dkjWqAsKw2s6YJfRozLgLRnW+g54EO8m+IhT
-	kri6zSyXSX5ADf7XKCZoqg8q4Wr06Ta57dulV8dyYw3CBK125g8jEbUGft9P7wAsEtvyPlCPUfH
-	Mw/J2//rvqvxlwwICTvxR8sRT4za4YhxYd26prlo4lJ0vaOPZBij0ZdIyc2Uc7Oggt1uLKzSAc6
-	NfTrCACJi1nlDYLGtYE=
-X-Google-Smtp-Source: AGHT+IE075gQ9paRBr5FJqePHxLiGeTWllaX8jx4kAg32gkUcqpKhkxzc9FKZ5jSjzoHlrJkCTJ+cQ==
-X-Received: by 2002:a05:620a:8908:b0:7c3:cbad:5729 with SMTP id af79cd13be357-7c3d8e7ae8cmr768466685a.25.1741197359262;
-        Wed, 05 Mar 2025 09:55:59 -0800 (PST)
-Received: from ziepe.ca ([130.41.10.206])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c3b4c9e120sm486128485a.11.2025.03.05.09.55.58
+        bh=vQ3ImQocoFucBClygvcS1RhmiWw1E+iHsFgmdHPU/ew=;
+        b=nqfls+NUN7KxxqRMkZlJ74vcPrLhMZr5E13csuCLewHxTX7Ys0q72r1N65xYaQaJW3
+         r+c6QkX1HHxurdgmi6SAp5GryFStJe1uBeuz1RvXuKOarfVGM+heMHjXV3ClLGRnzcwx
+         J+bLroX0xV2MvpiZNM+xcHy4hxpLDhnW/m1J/rWd2Kql9Ie+cJCe5MxOT4Mm5BSSsWGE
+         cbhVd0Zu3a6EbmmU75Yo/5Zz2exFiOS9VSOso56VhJ5i5f1q7QHNK4myhYZb4OWd6IkS
+         kQqnDxyQWh7MQUgKN1uiDvnhDOM2hmUusTQ9mUHd75BMHWROgDZ1WWzjiQH6wlPyHSgM
+         EK0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741197998; x=1741802798;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vQ3ImQocoFucBClygvcS1RhmiWw1E+iHsFgmdHPU/ew=;
+        b=pRP02Rc1k+2xFgzAtH3+srTHvwCPZwL1UmlI2u9z2rMMWrcNb2tMK+SAWObKGh8CBA
+         gx1yhukr1KqPcRod2gkaSSK+8N+FXFeXHMLJA3zWv/8RKdn+kiz6ko9sqngLi3ZntwQ+
+         FSwg0Vmj1olyVL7tN2togj0SzlRe1oli2O43gOM2lWyhN2FBNMdUb55+hEtTHK9Iw7PH
+         UvX6ZjnkoYxTVp9sFrgnoU17mmkVoV1A1csC8l8uUdQLd60kWcNCww5TpiDtk4m3lZFQ
+         mYD1XTbtXymSi5IOCzgLp0/ordliAPdtcMJxfoT7o3WKk+9yKNosSmowu8cUdBXLB0yR
+         Ip/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU5mtzSU+ZmizoBjTI6EpkzTffT6ba+fVhi8R2gNlUpkyz1+L4Jpi3WwSgtV+B8kUCkLBXCG3IWa0+n@vger.kernel.org, AJvYcCUFWiQzuO0iQrzqMJ7/vl1pLDrP2/M826hmQPOjaOhHhxeYkhRaX2k+1UvrKMHp7Wxw22tl3y+0d1f4JOfN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaC8JD1Ua9f6u4GQNeEstUl5dhw/1yZLYORzkU56gqPhqPLYwc
+	D3bopoR6Rw9fyIVpch3+pWkJdoGvmiJ8ZSA5CQO1WiE4JNV7TB33238soSzl
+X-Gm-Gg: ASbGncu6O5QzsNva7bMOnD5NYalRDXUqHwIOtBAPrUUC2iHI+3hrUGVXLMrIzYrzfX/
+	wlePH5XUmpeDaHqEQI6ahBN1cITBj89cUVhzgX/0qbFqFtIU8x02Ee8FxOPuZLvD87o5zxHqXrg
+	T8qEo7iVPBN3PnoQHA5XAhzZXk1CnSRgS1lNIfHJTQdq64Uh7ZcemHgn7XTY+27sUVJt07ISVL8
+	qAEQbvyhaWj6qO6zMui7oLgxSv2Y4O4y735SMOhtNVwv4zABvQwcArmDOsU6UAe25agnUbTSTPH
+	Y+G/UOwq+cKRKvEbQOHLyz35Iqz/gtlyJTE9tfri04P2BghiNbh247FaGwUZHLAujKOyIWhsy+W
+	DbE4YcwFvL8t4it02u4JX
+X-Google-Smtp-Source: AGHT+IG1tFvNWMKO6G6LFqagnscLlmftFC9LNAnPFI5pXvS1dut8feyFYZwx6Hi7jOMoJqthxyeJeQ==
+X-Received: by 2002:a5d:64a4:0:b0:390:f641:d8bb with SMTP id ffacd0b85a97d-3911f7a9573mr3273237f8f.36.1741197997875;
+        Wed, 05 Mar 2025 10:06:37 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43bd4292f0bsm24542165e9.15.2025.03.05.10.06.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Mar 2025 09:55:58 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1tpsyL-00000001TVM-2YSq;
-	Wed, 05 Mar 2025 13:55:57 -0400
-Date: Wed, 5 Mar 2025 13:55:57 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Charan Teja Kalla <quic_charante@quicinc.com>
-Subject: Re: [PATCH v2 2/4] iommu: Resolve ops in iommu_init_device()
-Message-ID: <20250305175557.GI5011@ziepe.ca>
-References: <cover.1740753261.git.robin.murphy@arm.com>
- <fa4b6cfc67a352488b7f4e0b736008307ce9ac2e.1740753261.git.robin.murphy@arm.com>
+        Wed, 05 Mar 2025 10:06:37 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ Andre Przywara <andre.przywara@arm.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 7/8] pinctrl: sunxi: Add support for the Allwinner A523
+Date: Wed, 05 Mar 2025 19:06:36 +0100
+Message-ID: <1819482.VLH7GnMWUR@jernej-laptop>
+In-Reply-To: <20250227231447.20161-8-andre.przywara@arm.com>
+References:
+ <20250227231447.20161-1-andre.przywara@arm.com>
+ <20250227231447.20161-8-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fa4b6cfc67a352488b7f4e0b736008307ce9ac2e.1740753261.git.robin.murphy@arm.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Fri, Feb 28, 2025 at 03:46:31PM +0000, Robin Murphy wrote:
-> Since iommu_init_device() was factored out, it is in fact the only
-> consumer of the ops which __iommu_probe_device() is resolving, so let it
-> do that itself rather than passing them in. This also puts the ops
-> lookup at a more logical point relative to the rest of the flow through
-> __iommu_probe_device().
-> 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
-> 
-> v2: New
-> 
->  drivers/iommu/iommu.c | 30 ++++++++++++++++--------------
->  1 file changed, 16 insertions(+), 14 deletions(-)
+Dne petek, 28. februar 2025 ob 00:14:46 Srednjeevropski standardni =C4=8Das=
+ je Andre Przywara napisal(a):
+> The Allwinner A523 contains pins in 10 out of the 11 possible pin banks;
+> it just skips port A.
+> Use the newly introduced DT based pinctrl driver to describe just the
+> generic pinctrl properties, so advertise the number of pins per bank
+> and the interrupt capabilities. The actual function/mux assignment is
+> taken from the devicetree.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Jason
+Best regards,
+Jernej
+
+
 
