@@ -1,105 +1,134 @@
-Return-Path: <devicetree+bounces-154619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF355A50E70
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:20:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F38FA50E78
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:21:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 246F43A5A42
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:19:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F865188C340
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6BF256C63;
-	Wed,  5 Mar 2025 22:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57D6F266561;
+	Wed,  5 Mar 2025 22:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bKzBhBHP"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0jTs1xQc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 046541FF61B;
-	Wed,  5 Mar 2025 22:20:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00ACE202C4F;
+	Wed,  5 Mar 2025 22:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741213200; cv=none; b=KShGVrJGhrIPCyFyp6Nq/VS+PrESMMz3yZm4wIBLZeXk9b4+YcyfEQW4UY0BgtwD9Z37dVh5ISOd1oQW/PvdGzp8vG5hscPrHnhD0Rg/s40JyZMLPUq3YLK9LqrES6T8FmUYuwq4f/UqEp9P8VopsNdh6W49scr/xk9op0w9Xkk=
+	t=1741213301; cv=none; b=nlDKbIYCJeC7GUKfcx/pwNFVQ9UygDbMRCkfj3fm/mEC4fKNkHEnrZ4zXuCJxH+nGA28o+53cVa+wZPFe9RWF6XMcxwNG8yKb2nqqKF2raRALq6kDZdavpSK4SmD6geGHki3MB9sK7BGspVe63vdHiWBGH0TKbeV9CZx0JRPhX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741213200; c=relaxed/simple;
-	bh=odGwjXPuLoI3+Jrcw4b7Ov4gl4KEsYLb21Fg97K0Pb0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Hgjk/vawnh6zdkRoRN/wS098uJVQTDzR1AVy+VF6Ahwmnh8wFdJ40ucYwAk8qutMnxjG+u68qA3KM5HYH6P0rJFpvgFrQjsnAEWBQIATCNw1KmMr5QGlbizDwv09ctgs8fPECM7wcCLUlxPgdZ8ELI3PlhLhtbUNn8dnA2ntNL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKzBhBHP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D09FEC4CEE7;
-	Wed,  5 Mar 2025 22:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741213199;
-	bh=odGwjXPuLoI3+Jrcw4b7Ov4gl4KEsYLb21Fg97K0Pb0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=bKzBhBHPDCKuhVEaReaQ76MMsX2G1SX6D/bEE6l0Z2qcbL9g+m8ImZLln3Z02uP7H
-	 iQqyRHRtaCWtcg0HBo95FpeZ+F3G6yr35SrcUT2ZLRHt8PTRrzIGBdY0WT/wbt/mEd
-	 jvhBbaBx5xc1kZLmU+PCHnsngL1rKm5KkpSGkTrBPbmxqlJVSL024qhcSeG/q+iAIA
-	 2w7669UcigcbOGvIbi2rsSnBItY2MDB8B9uujNF4gZU0YxuylU/2HcJbiURsRxusd6
-	 +fSV2SaFb3BmOwp+qsn3CKmtxNgaC/RrUW61PdmmFVFb5snhFHSafDfFAaE9UMjKo8
-	 8HGukhVwTdq1g==
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e4b410e48bso10998539a12.0;
-        Wed, 05 Mar 2025 14:19:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUrbplXnsu5/x5ZbTq3Y1uRsxXA5knNUjBgFsnzsIKhORWRAKviHVWmtgvwUbCuQcBLDxONqfL0CdLBCdBu@vger.kernel.org, AJvYcCWDFnS9QyYd5t6Lyl4jTpWrvtThXmSB+t/7yC48Xle2Gm+WKl1GMbuH0HPbSwIjETUQ7zBvLkKVASpO@vger.kernel.org
-X-Gm-Message-State: AOJu0YybsvL+SH0PCsD3SafoRuD79eZpa7rReBz6wBad5kSjhOK3sgm8
-	kkHoi0odJuYa9U+Ye/5Ese+5MzX8l2aiuJbizR13U/NiaLazgyDyDTrep+XCu/Wov0jt24EJERl
-	L1H9B77lNTPDsA1Bw8kkKJvg53Q==
-X-Google-Smtp-Source: AGHT+IGmcbRnsKh4qmTIrjjZnvbSUllEyKfAIMmiWB3ZMYddCqtDRqGxn1VMbXWC0I5eXo67K8lElFHwxeHn8Rragx0=
-X-Received: by 2002:a05:6402:1ece:b0:5e4:d75a:573e with SMTP id
- 4fb4d7f45d1cf-5e59f4f8e28mr4935569a12.32.1741213198291; Wed, 05 Mar 2025
- 14:19:58 -0800 (PST)
+	s=arc-20240116; t=1741213301; c=relaxed/simple;
+	bh=Kt0JHoQRDxazbM9HAqvNWHaRPFS/Pp4uw1z28ZVUUwY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eZIH/oJ8yyglK4tsSlLnKfg8b8bAqDJmphYowf/rp29T1RUpgoqOcBJqjNBBmP7sNHL/J8okeq6VaMXYvg4uVQUOuurYSRiRDt2L14lGUgHR6t96Y7VP4A9b0PyQ58kEy1T4DWJEd/Z/KSBrbMbLGvl1evai8CSnbewRhPnXekE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0jTs1xQc; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=06kA3D7q5+feETjZztMj3/pQCz9ZvioWeY+GXfhxs+g=; b=0jTs1xQcFwh5ox+whGadW7md9L
+	WS1OfCwNfoT/R60g3n715mKlYtI9WjDijcapfP4h/inDZR9976tcNGiyoNj0+yyneWUUZ2ggYSdAe
+	yTo082HyUXdH7MF4UTjHFsIIOaEanyKuNhhTjVOJGqQtmCMT0qjnUX24pLy8QLutraI3hv/b0hqYT
+	NjRL5QdypTnZidKKbC9xcOtUQ/4uTdV1VVo/ryphnbf6BiucQwY7rFp0uoRRwUprlDco3Mtw4ZcWk
+	t1fJObmKUI8LjICwz9D/wFRCAQHEJ0kTZTE91wGbNagju9vdMn3f0SDQJxg7PBglm6o8jBr62LP8Y
+	IiygmWWQ==;
+Received: from i53875a38.versanet.de ([83.135.90.56] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tpx74-00060i-4M; Wed, 05 Mar 2025 23:21:14 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Sugar Zhang <sugar.zhang@rock-chips.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: Re: [PATCH 2/7] clk: rockchip: add support for GRF gated clocks
+Date: Wed, 05 Mar 2025 23:21:12 +0100
+Message-ID: <4964374.GXAFRqVoOG@phil>
+In-Reply-To: <20250305-rk3576-sai-v1-2-64e6cf863e9a@collabora.com>
+References:
+ <20250305-rk3576-sai-v1-0-64e6cf863e9a@collabora.com>
+ <20250305-rk3576-sai-v1-2-64e6cf863e9a@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250305140009.2485859-1-amadeus@jmu.edu.cn>
-In-Reply-To: <20250305140009.2485859-1-amadeus@jmu.edu.cn>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 5 Mar 2025 16:19:46 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJgjD69wtJJfLuvBQ4g+JprxQ9mKGPWGgY1dmziehe-Kw@mail.gmail.com>
-X-Gm-Features: AQ5f1JoAojNhKXJ10NzfyCQO9G1rFeCcWSk_-mw-M74iUoDe9bMGrTl0QURdgE0
-Message-ID: <CAL_JsqJgjD69wtJJfLuvBQ4g+JprxQ9mKGPWGgY1dmziehe-Kw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add rk3528 QoS register compatible
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Yao Zi <ziyao@disroot.org>, Lee Jones <lee@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Wed, Mar 5, 2025 at 8:00=E2=80=AFAM Chukun Pan <amadeus@jmu.edu.cn> wrot=
-e:
->
-> Document rk3528 compatible for QoS registers.
->
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Document=
-ation/devicetree/bindings/mfd/syscon.yaml
-> index 4d67ff26d445..fcfd293b9bf1 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -103,6 +103,7 @@ select:
->            - rockchip,rk3288-qos
->            - rockchip,rk3368-qos
->            - rockchip,rk3399-qos
-> +          - rockchip,rk3528-qos
+Hey,
 
-There's 2 spots you have to add this.
+Am Mittwoch, 5. M=C3=A4rz 2025, 22:24:22 MEZ schrieb Nicolas Frattaroli:
+> Certain Rockchip SoCs, the RK3576 in particular, have some clocks that
+> are essentially gated behind an additional GRF write. Downstream uses an
+> additional entirely separate clock driver that maps over the same
+> address range as ioc_grf in the DT.
+>=20
+> Instead, this implementation introduces a new gate type, GRF gates.
+> These gates function quite like regular gates. In effect, this means
+> they'll only be enabled if the clock is used, which I feel is a more
+> appropriate way to describe this compared to doing it in, say, pinctrl,
+> or even in the drivers of the respective clock consumers such as SAI.
+>=20
+> It should be noted that RK3588 has similar GRF-gated clocks, but has
+> gotten away with not having to deal with any of this because the clocks
+> are ungated by the hardware's register reset value by default. The
+> RK3576 is not so lucky, and the hardware's reset value gates them
+> instead, which means we'll have to ungate them somewhere.
+>=20
+> In order to facilitate the GRF gating on RK3576, we introduce the
+> concept of auxiliary GRFs. The RK3576 has several defined GRF nodes, and
+> so far it could get away with just using one for MUXGRF by reassigning
+> the clock provider's grf member.
+>=20
+> However, with the IOC GRF gated clocks, we now also need access to the
+> IOC GRF, so we can't get away with this anymore. Instead, we add a
+> hashtable to the clock provider struct, keyed by a grf type enum. The
+> clock branches can then specify through the use of a new member of that
+> enum's type (with corresponding changes to relevant macros) which GRF
+> range they would like to use.
+>=20
+> The SoC-specific clk_init can then populate the hashtable with the GRFs
+> that it needs. This way, GRF-dependent clock branches don't have to be
+> registered in a different step than everything else, as they would need
+> to be had I extended the branch struct to instead take a pointer to a
+> GRF, which isn't available at the time most of our branches are defined.
+>=20
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
->            - rockchip,rk3562-qos
->            - rockchip,rk3568-qos
->            - rockchip,rk3576-qos
-> --
-> 2.25.1
->
+I only did a short look through the patch and didn't see anything
+glaringly wrong, but this wants to be at least 3 patches:
+=2D add the handling (hash-table etc) for multiple grfs
+  (including adapting the grf-mux)
+=2D adding the grf-gate clock-type
+=2D adding the rk3576 grf-gates
+
+
+Heiko
+
+
 
