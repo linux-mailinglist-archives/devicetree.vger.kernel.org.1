@@ -1,376 +1,206 @@
-Return-Path: <devicetree+bounces-154450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE600A50362
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:26:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98425A5038B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:33:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BCCE1669CD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:26:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF71C3A9E15
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8E124E4B4;
-	Wed,  5 Mar 2025 15:26:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1735B248895;
+	Wed,  5 Mar 2025 15:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GJVcKOMy"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="mtc6ewIP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2040.outbound.protection.outlook.com [40.107.20.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B4DD1465AD;
-	Wed,  5 Mar 2025 15:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741188378; cv=none; b=mK2aIHmmO8YjDx4k6Hacy47VKlLMvBJJH4oUqd1iKxiOZkLsXGTGZkfl+VTgXlr4DJYexEX81oy/VFamJQGJKOBGi1ZxcINU6IJ8oN5HSZkIw1eXzMVDfAQO8QMoaf0waddLIUX+dhkwGtQsMhJEJwCuvmezkYT5S3r9yZzP+vQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741188378; c=relaxed/simple;
-	bh=n4hZoaZrrTXXu2vkhQ0Y13l7eE6qx2qHmpdJFxJEQDw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bOvfB9vHFUR50uc+mfKHfa+v0NapVG97i4Z5FJcVdGdb8rGmBAQfBbPxt/NXuMlApRALP1Nd+fIoDDUA2HNBuByFZqMH6Uiwd9n+0LEll1gpBpikeriwQKh67LMD0xXybGlt4XQBTNus9pcfdJqoo1A3t2Kzf5JhHkXcNoP5ip0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GJVcKOMy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 525B9eVc023734;
-	Wed, 5 Mar 2025 15:25:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dKvxObN86d4Vbg+X52/nftAyUjn6LRPj22SlDXkazqE=; b=GJVcKOMyIUk/HEQo
-	iG4q8/AOapjM2jqcHqdyP7zT6qhD014PwUkN0MbNR3XEc/jY5Wkqb34fr3/6YBdG
-	YStWK12SiDyPX0ww3T1ZGHmb8srctEMg0Dm8vyVR5K2N2MDuOrV0ib3KphoOMiUg
-	LbKa1KDxjU0vR3mYQxPO7d96Q8LEG6OY83DZgnNetFVIx1psJsXEtYklH5ucXHcH
-	ETpqcXTzj+WBkcTaulI4eIa2xlZcwW+/cix9+GrbQW+ciq1cXEUVwTdaNm969tBD
-	L3e4nh5zOtYBwFS/JSY82iFC0fjSfV53Qw354srHYRoA0Ri2F1Z4m+zDZlqXvXvY
-	4L72Cw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6t5tqk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Mar 2025 15:25:53 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 525FPqUX018053
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Mar 2025 15:25:52 GMT
-Received: from [10.133.33.61] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Mar 2025
- 07:25:47 -0800
-Message-ID: <d4ae3dc1-e722-43cd-8e3e-aa13b21de8ba@quicinc.com>
-Date: Wed, 5 Mar 2025 23:25:34 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B45C17BEC5;
+	Wed,  5 Mar 2025 15:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.40
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741188805; cv=fail; b=GxGxZxQSeJqcDdVWJLe4O+HCafS0Dk9FRYwT79OS+LDohE33kR1fdLmSu0lLu41HBKiGVHMQxjPwQeQShNVKgftg/kbtixnpfHV1MLqmIHiOI3sMC7Ibw3fGXcaTpt1169VVOVmTnXJLpmLiK0Q0YmLkurhmqwH0v3XfwyOaV9g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741188805; c=relaxed/simple;
+	bh=732vRvUfz8WBsM/MIaLusTbjPp2EV65ZqiwVT3WfUIc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CaHERS4cfsTBuB0yZTysTA2mpChidSjAjX677yjVbWh3VLsdqIA80Sot/7oWCV902T3IQNkXOMIgols/kXjHygsMt+4CGu2DIfckweYmj0bNwaYsbWYLiefHqOzDcpwYqs05q1gBL9beK8/uESxHu4tFsv5S1QcK4WnTAegUjUk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=mtc6ewIP; arc=fail smtp.client-ip=40.107.20.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=L4ke8TRk2kqQWtmdNk+KZyyveHv+uQOeV/OIN+H6kWCg1YnGaOlBLd36YxRe5j1NakRU/NHByyulHeS8QfpUjNsoQNkm0e7XGwemeCxEaVQP5Mtd9y5hIwdFh7QGQrzGti0plAd3wMdjMZ58qjZDsxuicYktl5wjDRRS+QBiYa6I1fAFngcdUy4hoLuKlabcMdwfULcdoZltuKR5PIBt1NkvVm5NvzYj5NxJ3WUvUwUasUjagMQieMCJ6zOnATUOTr5v3DoWwN+e3PkCRl8v6rpmtYDVzYip2Pk26u0TnPJx7SGAUqK7bDSvS9KGIS/EiwSvJraG3Qr+1kvaedSSMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AqMEPikRzroReWWrXA/nq4Khfij98Joguqp8vXS6nOc=;
+ b=P0MybKkTXebSYGRDqWgb1Jp0caeiFvpslGHqk9VjjdWXxVg2gkuABhhfnm5LCIfxLnPJQ3PbgU+GtUZhuqucqbmXcuAip9CgSYjJbd5Zk8xIDN1cG5U5BSZ6Ln/qacYy4GFJQ13ST7uXHm806RJ8nqf8A23RC0f67NyvnLc0CpX5byiDutMTj+iu5GSwUrQUYAYShiEUIOgAQ9Oil2XHuBg99xZqvBOJieMdQ1hpAEcwg/FG8+8H+BnMPsBEyPN4/Na9ZnaoM735AiMY9yyNnSEv3BBhAq3ep3Jpq58NNatUrPgA9Ro1MN+dd090n/ux/vxLEvECIo9BkGTfnffvEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=google.com smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AqMEPikRzroReWWrXA/nq4Khfij98Joguqp8vXS6nOc=;
+ b=mtc6ewIP0DiN5JZo+wLlo/ZdHB2sVMa3WVESfLQVY3W4P8XtdgwCkibM5XFMYZi3WC5d0xDlEZXUiF3URBcw6RC+y0K0UYLcNi7ekVUV9vp1S0LzpGgVtmVI0vWreg9t5kGwohHYZFG01oyKwPmB8TwVDrxJ89tJI1RkFOm96j0=
+Received: from AM0PR06CA0105.eurprd06.prod.outlook.com (2603:10a6:208:fa::46)
+ by AM7PR02MB6324.eurprd02.prod.outlook.com (2603:10a6:20b:1bd::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.28; Wed, 5 Mar
+ 2025 15:33:20 +0000
+Received: from AMS1EPF00000045.eurprd04.prod.outlook.com
+ (2603:10a6:208:fa:cafe::ae) by AM0PR06CA0105.outlook.office365.com
+ (2603:10a6:208:fa::46) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8511.18 via Frontend Transport; Wed,
+ 5 Mar 2025 15:33:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ AMS1EPF00000045.mail.protection.outlook.com (10.167.16.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8466.11 via Frontend Transport; Wed, 5 Mar 2025 15:33:19 +0000
+Received: from SE-MAIL21W.axis.com (10.20.40.16) by se-mail02w.axis.com
+ (10.20.40.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Wed, 5 Mar
+ 2025 16:33:19 +0100
+Received: from se-mail01w.axis.com (10.20.40.7) by SE-MAIL21W.axis.com
+ (10.20.40.16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Wed, 5 Mar
+ 2025 16:33:19 +0100
+Received: from se-intmail01x.se.axis.com (10.4.0.28) by se-mail01w.axis.com
+ (10.20.40.7) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Wed, 5 Mar 2025 16:33:19 +0100
+Received: from pc36611-1939.se.axis.com (pc36611-1939.se.axis.com [10.88.125.175])
+	by se-intmail01x.se.axis.com (Postfix) with ESMTP id 0016B263;
+	Wed,  5 Mar 2025 16:33:19 +0100 (CET)
+Received: by pc36611-1939.se.axis.com (Postfix, from userid 363)
+	id F0509627BF; Wed,  5 Mar 2025 16:33:18 +0100 (CET)
+Date: Wed, 5 Mar 2025 16:33:18 +0100
+From: Jesper Nilsson <jesper.nilsson@axis.com>
+To: Frank Li <Frank.Li@nxp.com>
+CC: Jesper Nilsson <jesper.nilsson@axis.com>, Lars Persson
+	<lars.persson@axis.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi
+	<lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?=
+	<kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, <linux-arm-kernel@axis.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-pci@vger.kernel.org>
+Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: artpec6: Try to clean up
+ artpec6_pcie_cpu_addr_fixup()
+Message-ID: <Z8huvkENIBxyPKJv@axis.com>
+References: <20250304-axis-v1-0-ed475ab3a3ed@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 02/10] Coresight: Add trace_id function to retrieving
- the trace ID
-To: Mike Leach <mike.leach@linaro.org>
-CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        James Clark
-	<james.clark@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20250303032931.2500935-1-quic_jiegan@quicinc.com>
- <20250303032931.2500935-3-quic_jiegan@quicinc.com>
- <CAJ9a7VgGp4YqzN-yx0x+NiZG8now6SCmnimaou2Z=exYcoiegw@mail.gmail.com>
- <7fe6c345-85cf-4114-b419-f50d1a6cbef1@quicinc.com>
- <CAJ9a7Vhx293H6r6HGwVOQ46PDu+sQ8LPONvAbwAtxGFt0ad+Ww@mail.gmail.com>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <CAJ9a7Vhx293H6r6HGwVOQ46PDu+sQ8LPONvAbwAtxGFt0ad+Ww@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=I/ufRMgg c=1 sm=1 tr=0 ts=67c86d01 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=LpQP-O61AAAA:8
- a=IxFrTbeWSl6y_tmf9k8A:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22 a=pioyyrs4ZptJ924tMmac:22
-X-Proofpoint-GUID: lUObeaWTcVJyVCpjgXepAivPMFWNp7Ps
-X-Proofpoint-ORIG-GUID: lUObeaWTcVJyVCpjgXepAivPMFWNp7Ps
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-05_06,2025-03-05_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- spamscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
- suspectscore=0 phishscore=0 malwarescore=0 mlxlogscore=999 impostorscore=0
- clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503050119
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250304-axis-v1-0-ed475ab3a3ed@nxp.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS1EPF00000045:EE_|AM7PR02MB6324:EE_
+X-MS-Office365-Filtering-Correlation-Id: 53a7fdd3-e070-424e-6135-08dd5bfb0ed0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|7416014|376014|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?c1LE3LGYUx6dQ+wH3v3PbsO/09Cp7jSWO1VxXpSPZ/uLIQ0ok7LgxhM+Se4u?=
+ =?us-ascii?Q?QR9JKCVv10Oy3+ECr5K+NWJiDszQawZCwSTtTdcYraTBywcm1OYpclj9tXna?=
+ =?us-ascii?Q?Z7aYq0ygl0lvd/TCb62cYnj/3jI6MHeANA8Hwz5rmaTOUjXtWOiAS0d2p2Y/?=
+ =?us-ascii?Q?WP767pppbl4VA7X/dIlGQqQM2IrIpoqnnvHoaMGsM/PRDrHTQfsYg9jWeALF?=
+ =?us-ascii?Q?VAuWt3ozGpQPGzhvmiCdRmR/y8fsPbm6apkR4UqBoQgHmKH3t8IFRtXLoF/0?=
+ =?us-ascii?Q?jXSnpiHiJUjBGKFobgXqUsKn2mltGl2jGtEMRSFLEU4Js4p+SV+KAuyUoNg4?=
+ =?us-ascii?Q?UQu3M7HW1xXLs1N05LFqmYUojFYC3+d3cAi3IhElLtrFopr8m2ZxV3qgAaMh?=
+ =?us-ascii?Q?CgGd7XVE7Y6qWD4qHwgNZMpvN83/LFQX0bGdzAk0IT8S90mYq4Rl1bHQuloh?=
+ =?us-ascii?Q?phIYi3ZyqILdTMasNbMymkWdLTWXBvbvAtxZn0XIssI67EpKT8oELAnBRQqv?=
+ =?us-ascii?Q?PsiTJ3KA2NUqgpBL65ubSKnwphIAwxF9nGTVHOEEhAlRSp4CIVte+1ioLdFV?=
+ =?us-ascii?Q?AMC0DlvIsenVVGpFnwOG7ygcp3+Cff1SXGxQld1UwhqaG2IJYURP5QEnHRFm?=
+ =?us-ascii?Q?UfWfgqU+nFTijNwBJW/1pztvigRZ3iU9aFfpELfsOe5f0J8L/fdGQui9Bg5R?=
+ =?us-ascii?Q?Te/vSbf6uRqqomUUc/XPhibU5TH9ygHhkI8LRxKLHtbaqhsgtrGAA2Mu5E4m?=
+ =?us-ascii?Q?k3QEtfvSNB9QEMJishidjW5QPRIc7Nh6Phhovuskv7wWGcR4pOd18AmCohQn?=
+ =?us-ascii?Q?/3AR5VyfJKRtxj47K9lyXjRlIX3xaZ+GqP8fDhnsE8w6WiiI8hRwqlhJMPeG?=
+ =?us-ascii?Q?5VI1zTA88ftgUb+2Yk5num2v8Cr7H6HB/eVYM9OcLg/KTKWPT+KsAE5Rwfj7?=
+ =?us-ascii?Q?vhJ3ug57mENw/WCLh0qSmleShhEnKpbUHFgAteoeUseAUqcLceobrUlxrE3I?=
+ =?us-ascii?Q?RiOBQ49AfxNEbaf7iZ+K/o6s73gJqT3GaVKiIDoEhZR9SlJ4ZLQjgvbRJ3fy?=
+ =?us-ascii?Q?OOb5WRyiSw9Qw3oIxeFFHjTRxGC0DBVzENd3VCgMbh+WZlKUFzOLy2rlp6vy?=
+ =?us-ascii?Q?1ExJH8dslYBMLI7eCQILvb3J4isK+bStxyUqKKx+SFmU9oDObJYK87NXFr9i?=
+ =?us-ascii?Q?LsLSBajkPS0mhWffbjZ9+4j1yl5YcYvakvEtfqSUqd53cuUcmwu4jxQh0vzS?=
+ =?us-ascii?Q?StuUWmUtecJpsnPbQH5kTPjfjjTiBlVvkSJt8MQiHu5ImdCq/041kgt6Kin1?=
+ =?us-ascii?Q?qNyfQiMdSmdPh6OftZZEzDh+ujx7aTLkkhwm5csqW4TQ7RmcNh6khshVfW2d?=
+ =?us-ascii?Q?WxQOCS2zKZBh9pZW+5qEKJBUZmosTUxCPq17SsDa280iYdWNCo9AbO0Ys00n?=
+ =?us-ascii?Q?Ht9weJeCTYb3syVLNn1q4ifM9hTYAbtXOcOYgxJtUotEuT+eRr45D7C3c3XW?=
+ =?us-ascii?Q?8NO7Unf+aP9sf48=3D?=
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(7416014)(376014)(13003099007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2025 15:33:19.9622
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53a7fdd3-e070-424e-6135-08dd5bfb0ed0
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS1EPF00000045.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR02MB6324
+
+Hi Frank,
+
+I'm the current maintainer of this driver. As Niklas Cassel wrote in
+another email, artpec-7 was supposed to be upstreamed, as it is in most
+parts identical to the artpec-6, but reality got in the way. I don't
+think there is very much left to support it at the same level as artpec-6,
+but give me some time to see if the best thing is to drop the artpec-7
+support as Niklas suggested.
+
+Unfortunately, I'm travelling right now and don't have access to any
+of my boards. I'll perform some testing next week when I'm back and
+help to clean this up.
+
+Best regards,
+
+/Jesper
 
 
-
-On 3/5/2025 10:58 PM, Mike Leach wrote:
-> Hi Jie
+On Tue, Mar 04, 2025 at 12:49:34PM -0500, Frank Li wrote:
+> This patches basic on
+> https://lore.kernel.org/imx/20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com/
 > 
-> On Wed, 5 Mar 2025 at 13:27, Jie Gan <quic_jiegan@quicinc.com> wrote:
->>
->>
->>
->> On 3/5/2025 7:07 PM, Mike Leach wrote:
->>> Hi,
->>>
->>> On Mon, 3 Mar 2025 at 03:30, Jie Gan <quic_jiegan@quicinc.com> wrote:
->>>>
->>>> Add 'trace_id' function pointer in coresight_ops. It's responsible for retrieving
->>>> the device's trace ID.
->>>>
->>>> Co-developed-by: James Clark <james.clark@linaro.org>
->>>> Signed-off-by: James Clark <james.clark@linaro.org>
->>>> Reviewed-by: James Clark <james.clark@linaro.org>
->>>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
->>>> ---
->>>>    drivers/hwtracing/coresight/coresight-core.c  | 30 +++++++++++++++++++
->>>>    drivers/hwtracing/coresight/coresight-dummy.c | 13 +++++++-
->>>>    .../coresight/coresight-etm3x-core.c          |  1 +
->>>>    .../coresight/coresight-etm4x-core.c          |  1 +
->>>>    drivers/hwtracing/coresight/coresight-stm.c   | 11 +++++++
->>>>    drivers/hwtracing/coresight/coresight-tpda.c  | 11 +++++++
->>>>    include/linux/coresight.h                     |  5 ++++
->>>>    7 files changed, 71 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
->>>> index ab55e10d4b79..32aa07f4f8c1 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-core.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-core.c
->>>> @@ -24,6 +24,7 @@
->>>>    #include "coresight-etm-perf.h"
->>>>    #include "coresight-priv.h"
->>>>    #include "coresight-syscfg.h"
->>>> +#include "coresight-trace-id.h"
->>>>
->>>>    /*
->>>>     * Mutex used to lock all sysfs enable and disable actions and loading and
->>>> @@ -1557,6 +1558,35 @@ void coresight_remove_driver(struct amba_driver *amba_drv,
->>>>    }
->>>>    EXPORT_SYMBOL_GPL(coresight_remove_driver);
->>>>
->>>> +int coresight_etm_get_trace_id(struct coresight_device *csdev, enum cs_mode mode,
->>>> +                              struct coresight_device *sink)
->>>> +{
->>>> +       int trace_id;
->>>> +       int cpu = source_ops(csdev)->cpu_id(csdev);
->>>> +
->>>
->>> This is a global funciton so need to check that this csdev is a
->>> source,. and does provide a cpu  function before calling it.
->>>
->>
->> Hi Mike,
->>
->> I put this function here because it's required by etm3x and etm4x. It's
->> intended to be called only by ETM devices, which are definitely source
->> devices and have a cpu function.
->>
+> I have not hardware to test and there are not axis,artpec7-pcie in kernel
+> tree.
 > 
-> I fully understand the intent, but for a function that can be accessed
-> from anywhere, it is safer to validate input rather than assume any
-> caller will always respect the input conditions.
-> Lots of other places in the coresight drivers check that these
-> functions exist before calling them.
+> Look for driver owner, who help test this and start move forward to remove
+> cpu_addr_fixup() work.
 > 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Frank Li (2):
+>       ARM: dts: artpec6: Move PCIe nodes under bus@c0000000
+>       PCI: artpec6: Use use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()
+> 
+>  arch/arm/boot/dts/axis/artpec6.dtsi       | 92 +++++++++++++++++--------------
+>  drivers/pci/controller/dwc/pcie-artpec6.c | 20 +------
+>  2 files changed, 52 insertions(+), 60 deletions(-)
+> ---
+> base-commit: 1552be4855dacca5ea39b15b1ef0b96c91dbea0d
+> change-id: 20250304-axis-6d12970976b4
+> 
+> Best regards,
+> ---
+> Frank Li <Frank.Li@nxp.com>
 
-Hi Mike,
-
-I agree with you. I will send another patch to fix it. Thanks for comment.
-
-Jie
-
-> Regards
-> 
-> Mike
-> 
->> Jie
->>
->>>> +       switch (mode) {
->>>> +       case CS_MODE_SYSFS:
->>>> +               trace_id = coresight_trace_id_get_cpu_id(cpu);
->>>> +               break;
->>>> +       case CS_MODE_PERF:
->>>> +               if (WARN_ON(!sink))
->>>> +                       return -EINVAL;
->>>> +
->>>> +               trace_id = coresight_trace_id_get_cpu_id_map(cpu, &sink->perf_sink_id_map);
->>>> +               break;
->>>> +       default:
->>>> +               trace_id = -EINVAL;
->>>> +               break;
->>>> +       }
->>>> +
->>>> +       if (!IS_VALID_CS_TRACE_ID(trace_id))
->>>> +               dev_err(&csdev->dev,
->>>> +                       "Failed to allocate trace ID on CPU%d\n", cpu);
->>>> +
->>>> +       return trace_id;
->>>> +}
->>>> +EXPORT_SYMBOL_GPL(coresight_etm_get_trace_id);
->>>> +
->>>>    MODULE_LICENSE("GPL v2");
->>>>    MODULE_AUTHOR("Pratik Patel <pratikp@codeaurora.org>");
->>>>    MODULE_AUTHOR("Mathieu Poirier <mathieu.poirier@linaro.org>");
->>>> diff --git a/drivers/hwtracing/coresight/coresight-dummy.c b/drivers/hwtracing/coresight/coresight-dummy.c
->>>> index 9be53be8964b..b5692ba358c1 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-dummy.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-dummy.c
->>>> @@ -41,6 +41,16 @@ static void dummy_source_disable(struct coresight_device *csdev,
->>>>           dev_dbg(csdev->dev.parent, "Dummy source disabled\n");
->>>>    }
->>>>
->>>> +static int dummy_source_trace_id(struct coresight_device *csdev, __maybe_unused enum cs_mode mode,
->>>> +                                __maybe_unused struct coresight_device *sink)
->>>> +{
->>>> +       struct dummy_drvdata *drvdata;
->>>> +
->>>> +       drvdata = dev_get_drvdata(csdev->dev.parent);
->>>> +
->>>> +       return drvdata->traceid;
->>>> +}
->>>> +
->>>>    static int dummy_sink_enable(struct coresight_device *csdev, enum cs_mode mode,
->>>>                                   void *data)
->>>>    {
->>>> @@ -62,7 +72,8 @@ static const struct coresight_ops_source dummy_source_ops = {
->>>>    };
->>>>
->>>>    static const struct coresight_ops dummy_source_cs_ops = {
->>>> -       .source_ops = &dummy_source_ops,
->>>> +       .trace_id       = dummy_source_trace_id,
->>>> +       .source_ops     = &dummy_source_ops,
->>>>    };
->>>>
->>>>    static const struct coresight_ops_sink dummy_sink_ops = {
->>>> diff --git a/drivers/hwtracing/coresight/coresight-etm3x-core.c b/drivers/hwtracing/coresight/coresight-etm3x-core.c
->>>> index c103f4c70f5d..c1dda4bc4a2f 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-etm3x-core.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-etm3x-core.c
->>>> @@ -704,6 +704,7 @@ static const struct coresight_ops_source etm_source_ops = {
->>>>    };
->>>>
->>>>    static const struct coresight_ops etm_cs_ops = {
->>>> +       .trace_id       = coresight_etm_get_trace_id,
->>>>           .source_ops     = &etm_source_ops,
->>>>    };
->>>>
->>>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>> index 2c1a60577728..cfd116b87460 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>> @@ -1067,6 +1067,7 @@ static const struct coresight_ops_source etm4_source_ops = {
->>>>    };
->>>>
->>>>    static const struct coresight_ops etm4_cs_ops = {
->>>> +       .trace_id       = coresight_etm_get_trace_id,
->>>>           .source_ops     = &etm4_source_ops,
->>>>    };
->>>>
->>>> diff --git a/drivers/hwtracing/coresight/coresight-stm.c b/drivers/hwtracing/coresight/coresight-stm.c
->>>> index b581a30a1cd9..aca25b5e3be2 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-stm.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-stm.c
->>>> @@ -281,12 +281,23 @@ static void stm_disable(struct coresight_device *csdev,
->>>>           }
->>>>    }
->>>>
->>>> +static int stm_trace_id(struct coresight_device *csdev, __maybe_unused enum cs_mode mode,
->>>> +                       __maybe_unused struct coresight_device *sink)
->>>> +{
->>>> +       struct stm_drvdata *drvdata;
->>>> +
->>>> +       drvdata = dev_get_drvdata(csdev->dev.parent);
->>>> +
->>>> +       return drvdata->traceid;
->>>> +}
->>>> +
->>>>    static const struct coresight_ops_source stm_source_ops = {
->>>>           .enable         = stm_enable,
->>>>           .disable        = stm_disable,
->>>>    };
->>>>
->>>>    static const struct coresight_ops stm_cs_ops = {
->>>> +       .trace_id       = stm_trace_id,
->>>>           .source_ops     = &stm_source_ops,
->>>>    };
->>>>
->>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
->>>> index 573da8427428..94c2201fc8d3 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->>>> @@ -241,12 +241,23 @@ static void tpda_disable(struct coresight_device *csdev,
->>>>           dev_dbg(drvdata->dev, "TPDA inport %d disabled\n", in->dest_port);
->>>>    }
->>>>
->>>> +static int tpda_trace_id(struct coresight_device *csdev, __maybe_unused enum cs_mode mode,
->>>> +                        __maybe_unused struct coresight_device *sink)
->>>> +{
->>>> +       struct tpda_drvdata *drvdata;
->>>> +
->>>> +       drvdata = dev_get_drvdata(csdev->dev.parent);
->>>> +
->>>> +       return drvdata->atid;
->>>> +}
->>>> +
->>>>    static const struct coresight_ops_link tpda_link_ops = {
->>>>           .enable         = tpda_enable,
->>>>           .disable        = tpda_disable,
->>>>    };
->>>>
->>>>    static const struct coresight_ops tpda_cs_ops = {
->>>> +       .trace_id       = tpda_trace_id,
->>>>           .link_ops       = &tpda_link_ops,
->>>>    };
->>>>
->>>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
->>>> index c7cd5886c908..ce9a5e71b261 100644
->>>> --- a/include/linux/coresight.h
->>>> +++ b/include/linux/coresight.h
->>>> @@ -335,6 +335,7 @@ enum cs_mode {
->>>>           CS_MODE_PERF,
->>>>    };
->>>>
->>>> +#define coresight_ops(csdev)   csdev->ops
->>>>    #define source_ops(csdev)      csdev->ops->source_ops
->>>>    #define sink_ops(csdev)                csdev->ops->sink_ops
->>>>    #define link_ops(csdev)                csdev->ops->link_ops
->>>> @@ -421,6 +422,8 @@ struct coresight_ops_panic {
->>>>    };
->>>>
->>>>    struct coresight_ops {
->>>> +       int (*trace_id)(struct coresight_device *csdev, enum cs_mode mode,
->>>> +                       struct coresight_device *sink);
->>>>           const struct coresight_ops_sink *sink_ops;
->>>>           const struct coresight_ops_link *link_ops;
->>>>           const struct coresight_ops_source *source_ops;
->>>> @@ -709,4 +712,6 @@ int coresight_init_driver(const char *drv, struct amba_driver *amba_drv,
->>>>
->>>>    void coresight_remove_driver(struct amba_driver *amba_drv,
->>>>                                struct platform_driver *pdev_drv);
->>>> +int coresight_etm_get_trace_id(struct coresight_device *csdev, enum cs_mode mode,
->>>> +                              struct coresight_device *sink);
->>>>    #endif         /* _LINUX_COREISGHT_H */
->>>> --
->>>> 2.34.1
->>>>
->>>
->>>
->>
-> 
-> 
-
+/^JN - Jesper Nilsson
+-- 
+               Jesper Nilsson -- jesper.nilsson@axis.com
 
