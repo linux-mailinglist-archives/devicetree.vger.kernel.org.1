@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-154511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13C63A50A46
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 19:51:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07665A50A56
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 19:53:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BA8D7A709F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:49:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56A51188A63F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:53:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C9D250C0E;
-	Wed,  5 Mar 2025 18:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E007C253F2C;
+	Wed,  5 Mar 2025 18:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C8ZS6KpX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fsb+J33h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7FB1A5BB7;
-	Wed,  5 Mar 2025 18:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05179253B6C;
+	Wed,  5 Mar 2025 18:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741200633; cv=none; b=W347/qwx/OSKwtyku332G6ysP3C7hMqYrkLCi9099bTRunx+CQP95dtzceQZQehz4arcq9ygglffq8CAprshzNWfkPcM0xyfYyj/yvQpiXqTdAxwanNw6qP7VrV41B2VOi1iu7VZ8bVA6Kei6x3zkD2JeJbIupNCKpC1vzzSOsg=
+	t=1741200774; cv=none; b=o8T6h29wlZHL6Rb0QuhCb75A4EziyZAQklmOR1Kk0uhcMjQa6jlibM1vFpI5PZPpdqKpIZqKd7BESIHCLj/mRjUZAdN/pgRfdp8+2ECDvTFMh3JJ1Zn13z5v+YbZNb1cw6g/zMdQDtgu39yvc3wkfRj0uuVZebGxVxYQ/dESP+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741200633; c=relaxed/simple;
-	bh=gQTj8Q5JHzsGXzIfa7+8g2ZZ2VR4JimKv96wf/5CAZw=;
+	s=arc-20240116; t=1741200774; c=relaxed/simple;
+	bh=axHI+Ss0adljEBF8slC3n/3koLG2QkpC1C+hFdPLV/E=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ggyIFOCkl0oQ6vIcBK6BDkq9wZdQ3urP6oSbNceLrADBC0g4yZKHLO5f+mYlw17V8Ah05LB00M1d75Vp0rEQlqH2VcYGfH7rte0/ggfTnTFvKxDCOfKJV89dGrUpqLT4+v0IsQiujlRBAFST2MDQFo8ne6HlsuJgjjIH/XyIau4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C8ZS6KpX; arc=none smtp.client-ip=209.85.128.47
+	 MIME-Version:Content-Type; b=A80AS7P9ddRiyrofpuAjZeGm0Fh+gOG3wOp0SEmQPy2zw0s5DNXsF9NOvB9sqABKAjal+04UsxcpSPTZj2elNmmNzTofYMBOtS0H5KUQan1GMo88gndJiaFc6XOVjxnii9yRwIfIBJX47mdYTKbi9DccMmlKzposd7jiyrEDEwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fsb+J33h; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43995b907cfso46648535e9.3;
-        Wed, 05 Mar 2025 10:50:31 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43bc0b8520cso24670395e9.1;
+        Wed, 05 Mar 2025 10:52:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741200630; x=1741805430; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1741200771; x=1741805571; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=H5H2Dkfo/vt5zHKiZMetuzkN/iESwQof/o51gqGwt4o=;
-        b=C8ZS6KpXR830pkcEt18lvgyrU170W8jRLI1BgxYehBcvQ+u1DTYcs71MSVHGL94n5d
-         Z2ooxhBjdiDJNtZ357L2hM6+4xNVT14ZeVQi13si7W9FXXXgfLL+hvqPf0Evupa9KUXP
-         uuKUV/1psdOgXy+S1ZdUk7iO2Zl4xdy7M9owQ6dv4getJ878shmUjFLUiJbLjgHcUBju
-         ExIdNRXTJXhLZyyjoSatn1z/TGQa3QAgWNKoeW0l6B96TfXaJrHqUovMtRR8t8sZDLyD
-         6YBjDqIhvhOLkaWiro1rb+srQMRVu0+GEbW457UXHCHOYnC1l1d/nY3kY08bThSNY3i7
-         QjPA==
+        bh=hCk8RqcIdhP8uF9ql+DEh+iIumM5FUYrLBf68Hu79HM=;
+        b=fsb+J33hcYUni6D9uma3BE8r/dChRZ1Kx5SHNYLL2idUE+VqjJLp38jetTmNhGDHkq
+         rFPqrbA0IrUmv6f7wSoIZtghlWZr8Tfgytl765gOzFtxyuWvwjK7NzLoFR1IT3066cnN
+         jd+6v5NuUelmAoD/716O8ZyT7xK+OhgR97McLy1EOKUoYtwo6gkkq9fKo1AmctHFKiV8
+         egWCvm/lmLTlmevmx+kWiv4H23rfgbV4dQre1FidHTjusjmDrBQ0CIzaGjp504D3tczX
+         EcdgVSbBrRnXUa3XEbzKBExkQcARo0fHIcc/ljXPmOC/gRIGviT0sdGZfU/TRUVsI7hD
+         4myg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741200630; x=1741805430;
+        d=1e100.net; s=20230601; t=1741200771; x=1741805571;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=H5H2Dkfo/vt5zHKiZMetuzkN/iESwQof/o51gqGwt4o=;
-        b=g6MJbOK+tih0ZlLbiBMXFnZZYsZK0VvvYah+jZDaeUG57PcISHmEQrdcJM5xMqbUWB
-         9lZPy6Xk1HTiOEpAZMNYu7vZWXxInQmxi7/kDe6l18zPNGWK30CpWSJw8mIzC9nFFEDn
-         v/HV+6WKyOP+oyvspbKajRRPatQW9yRWy1OmrzH2H5raTSrnizCacwEKNe48UN+vbrCa
-         H3cPlAwYFT5t9+m2iEa3ieHIGRJQosQ0Tj6ab/58QC9+L8jhSIAs37xRVfCwwqIA4Jz0
-         gcEJzjQMQDY8MNNKN9PtWepw1vC6uXdPF/rMFaQmbd/LRzZ/JMr7+SIG26pq4yiRMpLI
-         YifQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXoeOv1x7NwS6nBYMkzCuEEC4+pU5xzfDIj3zmCT76vOFkue47kDkg9mv+6MD5iHTe7G7fqAmlNuLjcoCk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDKkvEskgWTzHAcaKKaJPt9m1uSQuISF2wQhZgDC9HhPRkWK5u
-	vZgH3Ic605qjAJoP84g3WzR5LjjX1rqU9OIe1jd9Tha2k7Yl/hP7
-X-Gm-Gg: ASbGncuvAslFCRYrLGR00P1AxsudtOSVkEX9WAdc+HVCxOEoBwd7UtyLVSSDgIYBlG5
-	pnDLr2nUogQmQh5L6qHx48bZfpJd7l6oxRGJr1kYZAmYf+moWVYVCe2RROLwoxf03MUNiVMwW3Y
-	KsEerndekjIJujv8dHbQTXRGMvYeWXhl6KO77SOcs0YOKRzLbIxtaLpb/wgoeN918ipwT/WNlnz
-	742PCzlftJUvnRMscTUqHIRka+tlbq+GlE9ZI+M+DxYYgr3R5P/idMWUQqkhW78sPoD8NKhYbtU
-	JTRK0XyymBrMcP2BVVCDllS9AFbe9oGQABMcyp/q3AoC35BGhS5mh/1nLKXTQUEKus/Lnk3mMSR
-	y5Sv93E+qi++MNJkg6V6l
-X-Google-Smtp-Source: AGHT+IHnaRGavcvn0zG6fKQ1AhWlIi2RHdXvleFHrMhG9CHQJjG0/o2DM0tO1YMGeqqMtj5xnwthcA==
-X-Received: by 2002:a05:600c:458a:b0:439:99d1:d4a4 with SMTP id 5b1f17b1804b1-43bd29c3ecdmr34059305e9.18.1741200629617;
-        Wed, 05 Mar 2025 10:50:29 -0800 (PST)
+        bh=hCk8RqcIdhP8uF9ql+DEh+iIumM5FUYrLBf68Hu79HM=;
+        b=TWkSwLm00xoS3c1VqpvjoemEam8UouUxYRL9v7XUadlmybQc3aRNzNTMJvEPX+LCkn
+         wxNHK4U2npXwe8mbNKEAugcSdapdw1AXVZcy7WEDWvOuxvaDxj3NawhzTaGXsQXrPStp
+         Fvvrv5XeNg2+kFlyMQMuD72sIG3AI+w3MX7qyqFdDaJvGWOkbgzu5REk7CnmZOAseS4v
+         N8JrWboxr31xzwBXqGXVOyKQCsZT9N/Hnh0AJNHPRx/oX1KH3eT/Wu1MXkHDysVrpvJm
+         Q57x58BYcPjnSVixQ6HVmU0Y4sS/KTD0/SEkHY9oyvyjyJO0pH0r9YvSihoHuvUTXGyg
+         uNMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU1qYnY12+OWwnbWr0ZsDky9gt32wIQPqYUrt4m8144JOauStG6qK4kkVLMK/nMToc3ET4k8hctZiDQW2g=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXVPFwkPZFW93G98Se0aVinHiIygpufI2xLIvGbX9kBf62uDx6
+	t1fdtpBXlm4ji6nYOleUx0h8YT/ia4qUyy364EGlxWvFL8rUXh1K
+X-Gm-Gg: ASbGnctm4ZoIs24C4RGh7gFRAB28zbb8stvzBPGnFML0OVNrUaaHRo2B5TBchkanKY8
+	vQKZE3uGZW7Pn1zgQx27HUAuhIA/H5uWMSxZh5qDx/gswpl0vFMcpEOqZvQAod/Pm8Um3Eu5AbB
+	dWd0Oxbyavxsmy6OCSla1hGesFzmK9z3X/+shypCS22aVkI1iMJBHQ5P91XQ3CnxOwxt1VL/FYk
+	b3ZKNzjAO3WbJHzjkpr2alPyhfj0TP6jSmRQ+PvE3RS54PSgd68wFJrWHENCVtq3IMMtBzeeAZm
+	72YFJyUzX073FKHqooFqjjWrk7K2i1yuV/Yf9YbJJNw7aaixDaLhno+36vZILR0h+l7ik3BSea7
+	eUXuKvz/ohE0Kum1i5I8o
+X-Google-Smtp-Source: AGHT+IGuBKbnktunZBzzNzT71sHvzIIvBdO54em+1pB/n3NbwE4YkF3yitXy4CaCKxQdjWZt3gt1lg==
+X-Received: by 2002:a05:6000:144c:b0:38f:4d40:358 with SMTP id ffacd0b85a97d-3911f726343mr3775397f8f.9.1741200771124;
+        Wed, 05 Mar 2025 10:52:51 -0800 (PST)
 Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43bd6530f26sm20378815e9.4.2025.03.05.10.50.28
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e4796084sm22209780f8f.19.2025.03.05.10.52.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Mar 2025 10:50:29 -0800 (PST)
+        Wed, 05 Mar 2025 10:52:50 -0800 (PST)
 From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
@@ -80,13 +80,13 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
 Subject:
- Re: [PATCH v2 12/15] arm64: dts: allwinner: a523: add X96Q-Pro+ support
-Date: Wed, 05 Mar 2025 19:50:28 +0100
-Message-ID: <3805591.MHq7AAxBmi@jernej-laptop>
-In-Reply-To: <20250304222309.29385-13-andre.przywara@arm.com>
+ Re: [PATCH v2 13/15] arm64: dts: allwinner: a523: add Radxa A5E support
+Date: Wed, 05 Mar 2025 19:52:49 +0100
+Message-ID: <1888259.atdPhlSkOF@jernej-laptop>
+In-Reply-To: <20250304222309.29385-14-andre.przywara@arm.com>
 References:
  <20250304222309.29385-1-andre.przywara@arm.com>
- <20250304222309.29385-13-andre.przywara@arm.com>
+ <20250304222309.29385-14-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,39 +96,32 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
 
-Dne torek, 4. marec 2025 ob 23:23:06 Srednjeevropski standardni =C4=8Das je=
+Dne torek, 4. marec 2025 ob 23:23:07 Srednjeevropski standardni =C4=8Das je=
  Andre Przywara napisal(a):
-> The X96QPro+ is a TV box using the Allwinner H728 SoC. That SoC seems to
-> be a package variant of the A523 family, at least it uses the same SoC
-> ID and is compatible as far as we can assess.
+> The Radxa A5E is a development board using the Allwinner A527 SoC, which
+> is using the same die as the A523 SoC, just exposing the pins of more
+> peripherals (like HDMI or the 2nd MAC). The board features:
 >=20
-> It comes with the following specs:
->   - Allwinner H728 SoC: 8 Arm Cortex-A55 cores, Mali-G57 MC1 GPU
->   - 2 or 4GiB DDR3L DRAM
->   - 32, 64, or 128 GiB eMMC flash
+>   - Allwinner A527/T527 SoC: 8 ARM Cortex-A55 cores, Mali-G57 MC1 GPU
+>   - 1GiB/2GiB/4GiB LPDDR4 DRAM
 >   - AXP717 + AXP323 PMICs
->   - Gigabit Ethernet (using MAXIO PHY)
+>   - Raspberry-Pi-2 compatible 40pin GPIO header
+>   - 1 USB 2.0 type C port (OTG), also power supply
+>   - 1 USB 3.0 type A host port (multiplexed with M.2 slot)
+>   - 1 M.2 M-key 2230 slot, with 1 PCIe2.1 lane connected (multiplexed
+>     with USB 3.0 port)
+>   - MicroSD slot
+>   - optional eMMC, 8, 16 or 32GB available
+>   - optional on-board 16MiB bootable SPI NOR flash
+>   - two 1Gbps Ethernet ports (via MAXIO MAE0621A PHYs)
+>   - PoE header for optional supply circuit on one Ethernet port
+>   - WiFi 802.11 a/b/g/n/ac/ax (LB-Link BL-M8800DS2 module using AIC8800)
 >   - HDMI port
->   - 2 * USB 2.0 ports
->   - 1 * USB 3.0 port
->   - microSD card slot
->   - TOSLINK digital audio output
->   - 3.5mm A/V port
->   - infrared sensor
->   - 7-segment display
->   - 5V barrel plug power supply
->   - power button
+>   - camera and LCD connectors
+>   - power supply via USB-C connector (but no PD) or GPIO header pins
 >=20
-> The PCB provides holes for soldering a UART header or cable, this is
-> connected to the debug UART0. There is another set of UART pins
-> available. The board also features a FEL button (accessible through the
-> 3.5mm socket) and a reset button (only accessible when case is open).
->=20
-> This .dts just describes the basic peripherals as far as we support them
-> at the moment. The PMIC rail assignments are reverse engineered as far
-> as possible, by dumping them from a running Android system, and correlati=
-ng
-> them to other boards using the same SoC.
+> This .dts describes the devices as far as we support them at the moment.
+> The PMIC rails have been assigned as per the schematics.
 >=20
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
