@@ -1,151 +1,102 @@
-Return-Path: <devicetree+bounces-154399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0552A4FF3E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:00:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4202EA5014F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:05:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69ABC168BAB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:00:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 469403A4519
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02864243361;
-	Wed,  5 Mar 2025 13:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B42A24A05D;
+	Wed,  5 Mar 2025 14:05:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EP2n4+y2"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Z8vTH8nB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m155110.qiye.163.com (mail-m155110.qiye.163.com [101.71.155.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96D01E531;
-	Wed,  5 Mar 2025 13:00:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6424224397B
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 14:04:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741179632; cv=none; b=WZNamCM/I6/ooV6DfKX30JDIkqiuBqvFqNl40EqfzAXIgbzfsbQ6ViV7PugLYS+1EO7VQYGOsHFHWCvNZXSq+GcojhJKDOqfwYH7c9MQxOHAcv9+vJuLotJ9Jx3+/X+MR+xVbLSnw/VIHV74ORwGYNb1csD5CU5JU58cG9ItHhY=
+	t=1741183503; cv=none; b=PRC8nE8MFvYCoQriY7dYCx82x1IJkxYbz2PDVrzfbQlj7UrR8STGUSPem72v8wp/TMxMUa1cYwqjmewAEbHmIRROfipLXlK9UFrkRmBLneW4ODoP0ASJO+AKya0lvYuNm58HsIoWrJLrpGbBgknFVDjrajnQsQQn27LvuUFWo68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741179632; c=relaxed/simple;
-	bh=CGxNrwrJ/7w+lrFYd7rIJRRXjnZsn89/CuKNM7OkM3s=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q9voSnIwx4PXabroFR9PdfkgWNlfThx71VGtX7NuZaqYZet9dinf84xibfNt+jUFxtdZvBNPeHTULq2UqDqksZWVXYhoXMj7SoKXrMsckwcGCSffEv6fRf2wMldUU4+beZmGkfcVGiyibVfXl3ObdkaCg07ME5YURr0en2QA170=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EP2n4+y2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E836DC4CEE7;
-	Wed,  5 Mar 2025 13:00:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741179632;
-	bh=CGxNrwrJ/7w+lrFYd7rIJRRXjnZsn89/CuKNM7OkM3s=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=EP2n4+y2C1tZto3KAGAQwvOqYFJhi6RgUpMXAJhopRbxwTF5nGiPdPZf3a3zLBpC4
-	 4kaVTVMBeIxli7zErFRQDkulWI5bazRHpjcSo91gcmXvZGR2F+hpArnhJ8EQPIvuKe
-	 CLqP1n/F+97HRGlZKuN53tMUEPWvUUSKdD5VxJF9ks7WtebcBtxf2Yv5+JIk/VaZMW
-	 N/OC36dU++um0aF68U5ynCiJBZmP/1/zW8saNKB/wyssDzS7nDd2kph7QOWQPXuJyh
-	 4lX/SvCDj679HKbmd1MOv3fDZ9JFibxx57yZNoyKcmHgknmM1XuCTtUn2Ga1QNlgfR
-	 QNiNgekVD2Ebg==
-Date: Wed, 5 Mar 2025 13:00:20 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>, Antoniu Miclaus
- <antoniu.miclaus@analog.com>, robh@kernel.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 14/14] Documentation: ABI: testing: ad4080 docs
-Message-ID: <20250305130020.7e78f3a6@jic23-huawei>
-In-Reply-To: <d1af7490-5d91-4b30-a86f-8df3a8d17af7@baylibre.com>
-References: <20250220135429.8615-1-antoniu.miclaus@analog.com>
-	<20250220135429.8615-15-antoniu.miclaus@analog.com>
-	<8f588f4b88d122815df694660d19672e8ccd3d70.camel@gmail.com>
-	<fd3ba169-c5e0-4405-961f-d7c11c68dffb@baylibre.com>
-	<3f4bb345c1d76e7521d8bdbf4b4552e727c7dc1c.camel@gmail.com>
-	<d1af7490-5d91-4b30-a86f-8df3a8d17af7@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741183503; c=relaxed/simple;
+	bh=WrRMrrA7NWFSOAfn0s+ja57FyW+oyByUaE/gIM6BAJ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XG0I/OLiX+ss1xbpFV9GhrZ1xkuKqRMagdgPTZpHCFpJGK+I6Xg2v8DJV2JWkzc6ls8QL85CBoaNDoTjhHtilbZ/bLVrSd7BnN7WkjVjKsRnZbk8TOERUSd6Sitgy0Hoe3wtiIW0J+AkXdBP9x4qWsPIrd60ZRUnJ/Cnajntdr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Z8vTH8nB; arc=none smtp.client-ip=101.71.155.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [192.168.60.65] (unknown [103.29.142.67])
+	by smtp.qiye.163.com (Hmail) with ESMTP id d09bf36e;
+	Wed, 5 Mar 2025 20:49:18 +0800 (GMT+08:00)
+Message-ID: <f96f7559-0b07-4c7f-a8e7-64dbfa58bee8@rock-chips.com>
+Date: Wed, 5 Mar 2025 20:49:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, 25 Feb 2025 09:26:56 -0600
-David Lechner <dlechner@baylibre.com> wrote:
-
-> On 2/25/25 3:16 AM, Nuno S=C3=A1 wrote:
-> > On Thu, 2025-02-20 at 12:27 -0600, David Lechner wrote: =20
-> >> On 2/20/25 8:53 AM, Nuno S=C3=A1 wrote: =20
-> >>> On Thu, 2025-02-20 at 15:54 +0200, Antoniu Miclaus wrote: =20
->=20
-> ...
->=20
-> >>>> +
-> >>>> +What:		/sys/bus/iio/devices/iio:deviceX/sinc_dec_rate
-> >>>> +Date:		February 2025
-> >>>> +KernelVersion:
-> >>>> +Contact:	linux-iio@vger.kernel.org
-> >>>> +Description:
-> >>>> +		Set the filter=E2=80=99s decimation rate.
-> >>>> +
-> >>>> +What:		/sys/bus/iio/devices/iio:deviceX/sinc_dec_rate_available
-> >>>> +Date:		February 2025
-> >>>> +KernelVersion:
-> >>>> +Contact:	linux-iio@vger.kernel.org
-> >>>> +Description:
-> >>>> +		Return the available filter's decimation rates.
-> >>>> +
-> >>>> + =20
-> >>>
-> >>> I'm not yet convinced we need the dec_rate custom attr. I'll add more
-> >>> comments
-> >>> in the driver. =20
-> >>
-> >> If we do need it, in another driver recently we concluded that
-> >> decimation rate is the same as oversampling ratio and there is
-> >> already a standard attribute for oversampling ratio, so we used
-> >> that.
-> >> =20
-> >=20
-> > Yeah, in theory decimation is about averaging samples. Makes sense to m=
-e even
-> > though I never thought about using the oversampling ratio attr. I was b=
-iased by
-> > the IMUs drivers where we configure the dec_rate as part of the sampling
-> > frequency attr since these filters directly affect the chip ODR.=C2=A0
-> >=20
-> > Out of curiosity, how did you handled this in the other driver? I would=
- be
-> > tempted to only allow reading the sampling frequency attribute which me=
-ans that
-> > the oversampling ratio attr is the one we can write (which then directl=
-y affects
-> > sampling frequency).
-> >=20
-> > - Nuno S=C3=A1 =20
->=20
-> The other driver is still under review:
->=20
-> https://lore.kernel.org/linux-iio/2c3ce1701545e435238605342397e45657a0fb2=
-a.1739368121.git.Jonathan.Santos@analog.com/
->=20
-> It is modifying an existing driver, so in that case, we still have to pre=
-serve
-> writing to sampling_frequency even if that isn't the ideal way to set it =
-up.
-
-It's pretty rare from what I recall to see a device sophisticated enough to=
- do
-over sampling that doesn't also support a sequencer that will allow configu=
-ring
-the sampling frequency at a given oversampling ratio (by adding space, or m=
-ore
-settling time if a mux is involved which looks the same as space to softwar=
-e).
-
-I guess there is always a first and to me in that case oversampling is the =
-natural
-control rather than sampling frequency.
-
-Jonathan
-Jonathan
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable ufshc on RK3576 evb1 board
+To: Shawn Lin <shawn.lin@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <1741148307-137177-1-git-send-email-shawn.lin@rock-chips.com>
+Content-Language: en-US
+From: Kever Yang <kever.yang@rock-chips.com>
+In-Reply-To: <1741148307-137177-1-git-send-email-shawn.lin@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHUhPVh1DTE5JTU9PHUMeQ1YVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0NMVUpLS1
+	VLWQY+
+X-HM-Tid: 0a95665a734003afkunmd09bf36e
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mj46MTo*HTJNDD8ZMylLOCoy
+	ETEKCVZVSlVKTE9KSkxDQk5CQ0hIVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQUxPSzcG
+DKIM-Signature:a=rsa-sha256;
+	b=Z8vTH8nB1udbnV/pIWQuDaWLsFnPO3Pqj8rZADQ0MiDIh7uw6YyXOsKVhTjRuSL7rCjDwTDvN0KffHT3/zyLSU1ud3pRlXQQgvC8L/yoni/Ei0xAI/hgLNT7SotofpS/Y2XOW+yYXb71Ot0pmlJ4bNgdh4QGhqNyuMmalAEtbkM=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=7sazXo0j8u8UYXyOl1oOD05+MKK9ViROFc169W0yHfQ=;
+	h=date:mime-version:subject:message-id:from;
 
 
+On 2025/3/5 12:18, Shawn Lin wrote:
+> RK3576 evb1 board supports UFS, so enable it.
+>
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> ---
+>
+>   arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 4 ++++
+>   1 file changed, 4 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+> index 782ca00..5412c60 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+> @@ -711,6 +711,10 @@
+>   	status = "okay";
+>   };
+>   
+> +&ufshc {
+> +	status = "okay";
+> +};
+
+This node suppose to after the uart0.
+
+
+Thanks,
+- Kever
+> +
+>   &uart0 {
+>   	status = "okay";
+>   };
 
