@@ -1,220 +1,142 @@
-Return-Path: <devicetree+bounces-154500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F6AA5088E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 19:09:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7738CA5092A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 19:15:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CE4B1888371
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:08:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 187BE16A33B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEB02528FD;
-	Wed,  5 Mar 2025 18:08:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D5F22517AE;
+	Wed,  5 Mar 2025 18:14:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BgTVMv1f"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="Y+QJv0BN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85BED2512D6;
-	Wed,  5 Mar 2025 18:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD16C19ABA3
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 18:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741198093; cv=none; b=qg+NKB645tzdqjUImun+iya0f6MN076+Xz9iUst4/R8vq6k6pjAy6+3koVl+SthBDzOLvt/Fjsb7wfwrFMqnQ+7lftidz59pVZbvLJ7inhbnno3FlaT/rPwrLE09SwV43gHzMwQf/okq4IrQNAJh0heGk7Ho6gPmWP7n1ar13gk=
+	t=1741198479; cv=none; b=kW7YoiDRv/PffSX1qjb6ICBHvm67VkOI/fCNsmyr8F8tBiJxARMuEWYJXxYVjdRNch4GqC2MNZzyiceK659drz3mWNsWrO2YMdctqILOhcbDekj/chWRRpXsVeAt7bYYjBczHPn93ALs77z4nBHeGLo5bpI4exKPsfJdnfsmDV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741198093; c=relaxed/simple;
-	bh=RSrGA34yP7qtDktQg873/4X5XR2J1ZoUMnU85sv0+14=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UEWLH1/y8j1yL06GTr5SxU1nLvjd4fJImlVHnQX3I4n6JVkEtbwMEClJmJIYg2xoeBtOWNO4ZCSlshq7vSObRpeX1YZ2VElQ9RuY5c2425lhKtCFRIi5efPVT6McE4m9rLPs/D1rjUSU7oo/g90PQIpccQVdlkGTKNaWk8It+9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BgTVMv1f; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741198089;
-	bh=RSrGA34yP7qtDktQg873/4X5XR2J1ZoUMnU85sv0+14=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BgTVMv1fqV1j9qJ2GNvgOfdOeYCxa7JsX7HymNujv2pzgOhAjxjWwXSRmfJh1ZtSd
-	 q8XiB5unEJBko8+PkZ1NJR0TND/dAh8rLegGtjSE481p+QUbIqoc6ZI6FMSc6AwCpz
-	 9d81cYy/gblpx+soZ4ar8a+HBXjnVJSNiGujXU1DAaU6Orddlt/Q+JhZpnMflYQ5mO
-	 A2bk7clUtWz38Z0QhdU5v1uG2qKkLVspiGm/8LyNyB6KBpt1TfV3+tDgKKxmhHEmpR
-	 vqkF6UnYlgkl06AXSAew8RVcYM0kFfhowcGXAb537SkzF8CtqBD9eMC3q4LWWGsESf
-	 GnDhTNmP1RxMw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2B21117E0599;
-	Wed,  5 Mar 2025 19:08:08 +0100 (CET)
-Message-ID: <d02b6bbe-0d32-4e3f-985e-a0b610f72d98@collabora.com>
-Date: Wed, 5 Mar 2025 19:08:07 +0100
+	s=arc-20240116; t=1741198479; c=relaxed/simple;
+	bh=lDGktsrrvusw3EwyIKgqSW+1nB/A4uH5GaWgGqTDi+g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kPnxtFqFhVIXUq07gExGBZyDLhaLNB1vPkkMWbTJ/Ll4HOWefdBeLzZ3e+YQ99aa3AiqN19YE+48IQjXzYXIX/00KN/FXCCWu/KdbWX4ekS32/3lUA3B1z4F37/tNuSOP/pYCqiyrR5/5HP1XSqg7lc3pRBoOt8Ux6Oi0rn0WWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=Y+QJv0BN; arc=none smtp.client-ip=209.85.222.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7c0e135e953so604686785a.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 10:14:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1741198476; x=1741803276; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BM3nl1PDUv3g4PwFQ23XNaGdtMsSR0uMk4FDd4zSWU0=;
+        b=Y+QJv0BNv1h50k0q6lHIhHKtGAX+jzCkhA1/+Fi0IVupW6xrJv3OUj+z42+l3i7QIu
+         oaDWLn3lWMRe8hwvUtTfNmmO9msLSIN8fG4TVsbL9DhGNHfX+9MLs6+BxHXsMvOwBQ32
+         88FUxHbsgqGoHXBYtg8CzakkX0IPm1PiUty6cEBOHpdshKu5FDgCcdByE5gAvvv6YJHv
+         1K7LjoyXYa5Hu2uugJuoSoefYNQCZYTtkFLeHueHKm+yk64X4R43xkqy98SKUTaFCWcH
+         BUGqUV1XafFjeDkinPilRsDPn5w/4zJkfMrfqv2nH5S57cg2WnTU/25CvNdEcEukPtY/
+         KfOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741198476; x=1741803276;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BM3nl1PDUv3g4PwFQ23XNaGdtMsSR0uMk4FDd4zSWU0=;
+        b=cbEfs/6moAhfsCKs7Mqg3hEztjXbOWV7fFQgKbvwUkkXZmLrM/lEc7OvURFnf+EhxS
+         cBTO7X8dpOzWLaLdpl8cUDI2OnmxuDYZQ+L6NCyDnOnGXR77ZcOXpanTijORSvKhDKYF
+         OXOHc/RKvbv1FfLxueA9OjN83KCKuLrdrNaWFB7RSN/CKZ1NXlLi+rytZ7lK9fC8bJZD
+         t+Ds0VPN45LpHvPIkbXSPeDVsHwiccg6auIGeAwfgnui837S2Cz2Hrv/NtjarJrUEzP7
+         N1lDZPokNbHCG9WIRFYqof47IG/qUww+oTn7ZJgHMTVUpXU407+IXPOhljdyV9JiM56u
+         fTvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVrDIx/i+nOPlV8Ag97nPqBch36XDiV43WDwKDb6dOuHKdk9oL+945K9EBHncGrCfL7vNWzlrnfsW6C@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywveu/uUHgxTVNGoMtA7uLQdzkG4BxGl580sdKM8OrJ1LvgwRB5
+	P1Pt/A+SwC55z+h6navy69a690mY5L2EkqyFq1hOTH3ADtn2KuFitvTX3Qy8P6s=
+X-Gm-Gg: ASbGncvfdP7mbu5sccwwqM4v/IogrsgugXFScJDpsdyjezhHAt15pe4GfHv66zwFGl7
+	9QNGJmUjZl4mBXWMQxOIuuyItDMVFXYW5IJ0uIdwQtumLshBMz84NKbLyl95biLKgwH3Z7HfLHY
+	GpMDd84pEwyV82kQa25sHbK4CnCzmRGT/IZZauigbUtM+AFdetPIVEuoeE/3VqWxEIZGViOPBgS
+	YreHq2PhdXQCwTlSCaHQIm5ukTlA55E1XKdANgDoaBgldAi2sYMkefns7mk5VwBRvDXLEkiqYUP
+	eXCU0SQjupQkw5Mtg4M=
+X-Google-Smtp-Source: AGHT+IGBXOlCQEjAXivcZONN7HD211rRxB+Amwcgf4SScDXv9d/J0SEM3NN6sEdvhUlnOiPXZLnHzQ==
+X-Received: by 2002:a05:620a:2b44:b0:7c3:c077:fbf2 with SMTP id af79cd13be357-7c3d8ee8505mr677678685a.45.1741198476550;
+        Wed, 05 Mar 2025 10:14:36 -0800 (PST)
+Received: from ziepe.ca ([130.41.10.206])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e8976da283sm81577696d6.111.2025.03.05.10.14.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Mar 2025 10:14:35 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1tptGN-00000001U2f-0a3P;
+	Wed, 05 Mar 2025 14:14:35 -0400
+Date: Wed, 5 Mar 2025 14:14:35 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Stuart Yoder <stuyoder@gmail.com>,
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+	Nipun Gupta <nipun.gupta@amd.com>,
+	Nikhil Agarwal <nikhil.agarwal@amd.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Charan Teja Kalla <quic_charante@quicinc.com>
+Subject: Re: [PATCH v2 3/4] iommu: Keep dev->iommu state consistent
+Message-ID: <20250305181435.GJ5011@ziepe.ca>
+References: <cover.1740753261.git.robin.murphy@arm.com>
+ <d219663a3f23001f23d520a883ac622d70b4e642.1740753261.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/8] soc: mediatek: Add programming flow for
- unsupported subsys ID hardware
-To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>
-Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- =?UTF-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
- =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
- =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
- =?UTF-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
- <Xiandong.Wang@mediatek.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "fshao@chromium.org" <fshao@chromium.org>,
- =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "treapking@chromium.org" <treapking@chromium.org>
-References: <20250218054405.2017918-1-jason-jh.lin@mediatek.com>
- <20250218054405.2017918-7-jason-jh.lin@mediatek.com>
- <c52b132b-fc08-4d1c-8276-1771f7457014@collabora.com>
- <ddcf01c82f92ee461875e1122b009b7fca691127.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <ddcf01c82f92ee461875e1122b009b7fca691127.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d219663a3f23001f23d520a883ac622d70b4e642.1740753261.git.robin.murphy@arm.com>
 
-Il 05/03/25 17:12, Jason-JH Lin (林睿祥) ha scritto:
-> On Tue, 2025-03-04 at 10:41 +0100, AngeloGioacchino Del Regno wrote:
->>
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> Il 18/02/25 06:41, Jason-JH Lin ha scritto:
->>> To support hardware without subsys IDs on new SoCs, add a
->>> programming
->>> flow that checks whether the subsys ID is valid. If the subsys ID
->>> is
->>> invalid, the flow will call 2 alternative CMDQ APIs:
->>> cmdq_pkt_assign() and cmdq_pkt_write_s_value() to achieve the same
->>> functionality.
->>>
->>> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
->>> ---
->>>    drivers/soc/mediatek/mtk-mmsys.c | 14 +++++++++++---
->>>    drivers/soc/mediatek/mtk-mutex.c | 11 +++++++++--
->>>    2 files changed, 20 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/soc/mediatek/mtk-mmsys.c
->>> b/drivers/soc/mediatek/mtk-mmsys.c
->>> index bb4639ca0b8c..ce949b863b05 100644
->>> --- a/drivers/soc/mediatek/mtk-mmsys.c
->>> +++ b/drivers/soc/mediatek/mtk-mmsys.c
->>> @@ -167,9 +167,17 @@ static void mtk_mmsys_update_bits(struct
->>> mtk_mmsys *mmsys, u32 offset, u32 mask,
->>>        u32 tmp;
->>>
->>>        if (mmsys->cmdq_base.size && cmdq_pkt) {
->>> -             ret = cmdq_pkt_write_mask(cmdq_pkt, mmsys-
->>>> cmdq_base.subsys,
->>> -                                       mmsys->cmdq_base.offset +
->>> offset, val,
->>> -                                       mask);
->>> +             offset += mmsys->cmdq_base.offset;
->>> +             if (mmsys->cmdq_base.subsys != CMDQ_SUBSYS_INVALID) {
->>
->> You're still anyway passing the subsys to cmdq_pkt_write_mask(),
->> right?!
->> Why don't you just handle this in cmdq_pkt_write_mask() then? ;-)
->>
->> I can see this pattern being repeated over and over in both
->> drm/mediatek and MDP3
->> drivers, and it's not necessary to duplicate this many times when you
->> can write it
->> just once.
->>
->> Would've also been faster for you to implement... :-D
->>
-> 
-> I think did it in the series V1:
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20241121042602.32730-5-jason-jh.lin@mediatek.com/
-> 
-> Because it'll need to passing the base_pa and that will need to change
-> the interface for original APIs.
-> 
-> And CK think that's not a necessary to change the APIs. It can be done
-> by cmdq_pkt_assign() + cmdq_pkt_write_s_mask_value() in the client
-> drivers. Then you can see this pattern in everywhere. :-)
-> 
+On Fri, Feb 28, 2025 at 03:46:32PM +0000, Robin Murphy wrote:
+> @@ -127,6 +128,7 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
+>  		mutex_unlock(&iommu_probe_device_lock);
+>  		return 0;
+>  	}
+> +	dev_iommu_present = dev->iommu;
 
-Using likely(x) and unlikely(x) should be avoided, really, unless it's something
-that is really really really really ... really ... rea.... likely or unlikely :-)
+I feel like this deserves a comment..
 
-Btw. Changing the APIs is a bit difficult, but I disagree with CK about not
-"inventing" a new API for the unsupported-subsys flow.
+Maybe it is:
 
-It's true, it is not *strictly* needed to add a function, but it's good for any
-kind of future maintainability - as I explained, it's easier then to fix a problem
-if there's one.... and well, I can see that you agree with me, because effectively
-you did it the first time :-)
+/*
+ * If of_iommu_configure is called outside the iommu probe path
+ * dev->iommu should be NULL and it needs to remain as NULL
+ * If it is called within the probe path then the dev->iommu
+ * was setup by iommu_init_device() and must not be changed.
+ */
 
-CK mentioned using cmdq_pkt_write() *or* cmdq_pkt_assignwrite/cmdq_pkt_write_pa()
-(however you wanna call it, it's fine for me), in drivers that know that there
-always is or there always isn't a subsys ID: that's a good suggestion, as this can
-be eventually done with assigning a function pointer, so, no conditionals at each
-operation.
+And I think the commit message should explain what consistent
+means.. AFAICT you are going for !dev->iommu means no probe has
+succeed / dev->iommu means a probe is ongoing in this call chain or
+it has succeeded?
 
-My point of view, finally, is:
-  - This is just another way of doing cmdq_pkt_write()
-    - This, at the end of the day, does exactly what cmdq_pkt_write() is doing,
-      except it's doing it with two instructions instead of one;
-  - The same thing can be done in two different ways (depending on SoC)
-    - This same thing should have a function that does it.
+Otherwise:
 
-A function that does it can be
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
-int cmdq_pkt_write_pa(struct cmdq_pkt *pkt, u8 subsys /*unused*/, u32 pa_base, u16 
-offset, u32 value)
-{
-	err = cmdq_pkt_assign(pkt, 0, CMDQ_ADDR_HIGH(pa_base));
-	if (err < 0)
-		return err;
-
-	return cmdq_pkt_write_s_value( .... etc)
-}
-
-int cmdq_pkt_write() <--- unchanged, scheduled for removal after all drivers migrated
-
-int cmdq_pkt_write_subsys(struct cmdq_pkt *pkt, u8 subsys, u32 pa_base /*unused*/, 
-u16 offset, u32 value)
-{
-	/* This function will get the contents of cmdq_pkt_write once removed,
-            but, in the meanwhile, to avoid duplication we just call that: */
-
-	return cmdq_pkt_write(pkt, subsys, offset, value);
-}
-
-- Are we adding one more function parameter? Yes
-- Is this impacting performance overall? Not really
-
-After all, we're living in an ARMv8 (actually, ARMv9 for new ones) world, so
-one more function param won't hurt anyone.
-
-I think that's the best of both worlds, and makes everyone happy.
-Are you happy with that? :-)
-
-Cheers,
-Angelo
-
+Jason
 
