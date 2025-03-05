@@ -1,64 +1,78 @@
-Return-Path: <devicetree+bounces-154471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC4EA504E3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:32:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B00BA504F1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:33:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EEE93A2A6C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:31:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2F1B7A62AD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92596539A;
-	Wed,  5 Mar 2025 16:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B8B18CBE8;
+	Wed,  5 Mar 2025 16:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PdkYWWY5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jwz4vhS0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AE08481C4;
-	Wed,  5 Mar 2025 16:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04D31862BD;
+	Wed,  5 Mar 2025 16:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741192288; cv=none; b=CgbKTM1hsbNZrewFqz5Mqoihs8ZsqW2+w9KMRV0Iyx7Tyr2Gws28zNx8oLuW18GqnVnrXzrArIfYJkO6x+lmggczPJ5hFWTz0fNxQmUpQKPCsEnzN4fWA8zSFc14R0NVmqZuO/guEC6gVIxR701ByAYlpD9MGVQ+8TJCrBBpC1c=
+	t=1741192370; cv=none; b=iVrM70wQNUG4xBWJDW2JCHpQlpH5rGfW6kL83OlvtAwTWyMHT5wCW45J+9iZYJu7bavzzlhspBvcGDPPIC+dkYiWJ4+jdvt+MEk6AhlUxceAMrg2qRRoxSpp+szKZsFmiTEhld6jY+tx2qbvTFugw8HhBQczoSNvBnoTSGo+BO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741192288; c=relaxed/simple;
-	bh=mjfercYvHY6XW4hH6LajRSUm1yvoytFiSmictk11u7I=;
+	s=arc-20240116; t=1741192370; c=relaxed/simple;
+	bh=C407SjEtF5EwtDuKzqsoF8QnQAa+zhjlXin0WeMt4nM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XMG9dr453VANWN5opIuo/dACLQWFkbJYvwQJiwnd3zxNP5XKlPNN+kxUvfJ48K2ioq6ZLDHjb9ja2qIyRJMaMoE31gQg4FoeUTEZZR5gct2dmy+1kOKVLzRQ/cACwauX0gqmO6IdoX8X9JF6Uf7Upzjozt8m9v5dv5zKkOhJJPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PdkYWWY5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCFF4C4CED1;
-	Wed,  5 Mar 2025 16:31:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bgCrgrTzERXYS1zICOn6Bwew8oIi0CFZL4nc3U8gB8+UYAQ2YIoZPt0YXGzffmow6RYcuU6ryeV6m6c7x4/oB3Vg/CfR+Wtu2BfoSJ9AB0+KZn6gwg8WLeEpTuSVsEsarXGNyh9r3eXfgj2pHMJwJvK7vToJg4PYRNyEO2vcOOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jwz4vhS0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF0A6C4CED1;
+	Wed,  5 Mar 2025 16:32:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741192288;
-	bh=mjfercYvHY6XW4hH6LajRSUm1yvoytFiSmictk11u7I=;
+	s=k20201202; t=1741192369;
+	bh=C407SjEtF5EwtDuKzqsoF8QnQAa+zhjlXin0WeMt4nM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PdkYWWY56USlcELtkXOwMTB0B7NndvMTFbHWm5Ez1ffZ0OqyMcPXJw/cZOJ7PvwWQ
-	 M7dU8sf4Zuc6QsozhigHmnHDk23XVG4RDTxL+4VJFuNWDjqDgEFxlsC+GDS5cALLVD
-	 VRXXDM6ZHQpf+Nl0iLbwdqs4K9ud2YMqVG8V484AYlfl2Zcs38b4WZtkGI8kx4n8Ex
-	 zttMpJTanbvdpSEmZoTTnnrPD5LcMiTek6zeT18QEJWDSj+XwLSeXK5fgoc97bcv1U
-	 KA9HSh9MhayMoQSl907mwR6zeVrPoSEvAxf0Ove4v0BFWrdq3inptn1Gw+Jjzgbz87
-	 KbLsJf+5Ko0Rg==
-Date: Wed, 5 Mar 2025 16:31:23 +0000
+	b=Jwz4vhS0imWRcGJiRLA4qIUoweASXnEpf6CBKZwpsqd/taeSgnKkWrdDj/Tb5qw0W
+	 qFZgFg84IhtayaqgH3zYeGszGoi7SzajMMhDZTzYpbNV32aXWzHXlE3KcQ9VfV68iO
+	 qOUOaCM+29l6VZsxLBgucuDeOJwEV65IAg4zSy+iQyiZXni546MM5YKlJnppFAqAop
+	 dVTjrUrioCb8HpcSg9Pp+rfXPAT4/CthE1xqGvx2T9TZEJsdVh3H9bRacmfoheTJ8F
+	 jLzfLOzRSAaRazBOrYvEeDySJWYKxflomn7HO5XOdtFoTAvo4H+6dkCMMqm6iUAfTv
+	 n5hIiPoeAGGbg==
+Date: Wed, 5 Mar 2025 16:32:43 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Jjian Zhou <jjian.zhou@mediatek.com>
-Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	Jason-ch Chen <jason-ch.chen@mediatek.com>
-Subject: Re: [PATCH RFC 3/3] dt-bindings: mailbox: mtk,vcp-mbox: add mtk
- vcp-mbox document
-Message-ID: <20250305-chewing-henchman-aea98c18b412@spud>
-References: <20250305082047.15746-1-jjian.zhou@mediatek.com>
- <20250305082047.15746-4-jjian.zhou@mediatek.com>
+	Chen Wang <unicorn_wang@outlook.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Niklas Cassel <cassel@kernel.org>,
+	Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pci: Add Sophgo SG2044 PCIe host
+Message-ID: <20250305-sank-hypnosis-5a41d4e59d38@spud>
+References: <20250221-cavalier-cramp-6235d4348013@spud>
+ <2egxw3r63cbsygpwqaltp4jjlkuwoh4rkwpgv4haj4sgz5sked@vkotadyk4g6y>
+ <20250224-enable-progress-e3a47fdb625c@spud>
+ <7ht3djv7zgrbkcvmdg6tp62nmxytlxzhaprsuvyeshyojhochn@ignvymxb3vfa>
+ <20250225-lapel-unhappy-9e7978e270e4@spud>
+ <ynefy5x672dlhctjzyhkitxoihuucxxki3xqvpimwpcedpfl2u@lmklah5egof4>
+ <pbj22qvat76t74nppabekvyncc4ptt6wede4q6wfygbrzcj3ag@ruvt26eqiybu>
+ <je4falvfemkemlvdfzdmgc7jx2gz6grpbmo6hwtpedjm7xi2gk@jr4frv3tn3l5>
+ <20250303-aground-snitch-40d6dfe95238@spud>
+ <ktnqf4s4hw2o6x6ir4n5hsrvbxri5cxgjyofrl76by6fwazda3@4ejw2k7k2ush>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,107 +80,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wpgFucSmUGsB0HoE"
+	protocol="application/pgp-signature"; boundary="m+dlkPVoXaUWfOU9"
 Content-Disposition: inline
-In-Reply-To: <20250305082047.15746-4-jjian.zhou@mediatek.com>
+In-Reply-To: <ktnqf4s4hw2o6x6ir4n5hsrvbxri5cxgjyofrl76by6fwazda3@4ejw2k7k2ush>
 
 
---wpgFucSmUGsB0HoE
+--m+dlkPVoXaUWfOU9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 05, 2025 at 04:20:40PM +0800, Jjian Zhou wrote:
-> This patch adds document for mediatek vcp mbox.
->=20
-> Signed-off-by: Jjian Zhou <jjian.zhou@mediatek.com>
-> ---
->  .../bindings/mailbox/mtk,vcp-mbox.yaml        | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,vcp-mbo=
-x.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mailbox/mtk,vcp-mbox.yaml =
-b/Documentation/devicetree/bindings/mailbox/mtk,vcp-mbox.yaml
-> new file mode 100644
-> index 000000000000..d5afe295af14
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/mtk,vcp-mbox.yaml
+On Wed, Mar 05, 2025 at 12:43:54PM +0800, Inochi Amaoto wrote:
 
-When you go !RFC, filename matching compatible please.
+> It is complete a mess. I think it is more clear to just make the
+> dmac and eth device as noncoherent, and use one soc bus for all.
+> Do you have any suggestions on it?
 
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/mtk,vcp-mbox.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Video Companion Processor (VCP) mailbox
-> +
-> +maintainers:
-> +  - Jjian Zhou <Jjian.Zhou@mediatek.com>
-> +
-> +description: |
-> +  The MTK VCP mailbox enables the SoC to communicate with the VCP by pas=
-sing
-> +  messages through 64 32-bit wide registers. It has 32 interrupt vectors=
- in
-> +  either direction for signalling purposes.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8196-vcp-mbox
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#mbox-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#mbox-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    vcp_mailbox0: mailbox@31b80000 {
 
-label here is unused, please drop it.
+If splitting is worse for read/usability, then yes, keep it as one bus.
 
-Cheers,
-Conor.
-
-> +        compatible =3D "mediatek,mt8196-vcp-mbox";
-> +        reg =3D <0x31b80000 0x1000>;
-> +        interrupts =3D <GIC_SPI 789 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        #mbox-cells =3D <0>;
-> +    };
-> --=20
-> 2.45.2
->=20
-
---wpgFucSmUGsB0HoE
+--m+dlkPVoXaUWfOU9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8h8WwAKCRB4tDGHoIJi
-0rmzAQDC6tROpS/C3bfqeRalnd+CJF3nrU5drTadY8j4LSJBswD/SAnH+kW5P5Zz
-1XAoP++vVC0+C1lqWccMOwxtkJk6nwo=
-=N2nw
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8h8qwAKCRB4tDGHoIJi
+0lgsAP9/rO13dyY/5sap1YMKjbfizrx1aPd+M21mdzhKleFSAAEA/3Y6yihO5r3K
+7gUW5/g2qHLCepdOrlLdq8AiMiYjmwI=
+=hMTi
 -----END PGP SIGNATURE-----
 
---wpgFucSmUGsB0HoE--
+--m+dlkPVoXaUWfOU9--
 
