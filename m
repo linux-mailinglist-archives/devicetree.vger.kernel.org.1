@@ -1,142 +1,188 @@
-Return-Path: <devicetree+bounces-154250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81F7DA4F7B1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:11:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 896F6A4F7B2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 678633AB851
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 07:11:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D047F3AA5CB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 07:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32DB1DFD9A;
-	Wed,  5 Mar 2025 07:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D345B1E5B96;
+	Wed,  5 Mar 2025 07:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U+/l0hOb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail78-63.sinamail.sina.com.cn (mail78-63.sinamail.sina.com.cn [219.142.78.63])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C3B778F39
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 07:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.63
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A02EB33993;
+	Wed,  5 Mar 2025 07:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741158701; cv=none; b=dLdKMVNCQsvtWM9rXVwBZ65kDGNb1no+dgAdqYZbLCfNK949AFA9GuPKnk/UsyH1zHFffKOjI2VrpYTH70ohP+F/ZPU8UvuBdygzR9ehZtk0dHBdzO7dbYH3Vr8NowYE9SdwEEezSelHYU0G1lAQLOE9WfzDtWe4fqw9kBfbv0o=
+	t=1741158788; cv=none; b=D84KA3/NLGRcEcQXBBaZQuhoYeEZdTrHE5zbSFbhkJ+00q0Xg8zH23H8IzSe4BQRR0jpoFKtRW1McbU+8uNpLVCx1nExp64XaArTMnbv9AbDWHfBMG+U5Jv/3M3aDv7BL/CS39NtTd7DEmbfsLAY0X1nFztTx3zHiDR8R94XlJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741158701; c=relaxed/simple;
-	bh=RUHAQ0IAj4zC/gRQ1ipF4hh2/5ZA+MCebufmX5tubNQ=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=c2jUvDxEucgtML4/z0q5/FOqRw8P627zKEkaDFftaZv0rtTY8pIQDW3kCC7f7s61tZ3pqD6GpnYYnoiDN7s+h2I5sw5eb/u9MWHcisqrC+zoEvYRMSEO9+whvBsHAtoHZXehQ1JwYTR0uazp4HxlFOSUYNZM7MBD4aGfNRVv7UM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
-	by sina.net (10.185.250.32) with ESMTP
-	id 67C7F8FA000079B4; Wed, 5 Mar 2025 15:10:51 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 6B0B3AE3CA3B4F78998DCD2B2CD2AC50
-X-SMAIL-UIID: 6B0B3AE3CA3B4F78998DCD2B2CD2AC50-20250305-151051
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: krzysztof.kozlowski+dt@linaro.org
-Cc: tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Subject: RE: [PATCH v3 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-Date: Wed,  5 Mar 2025 15:10:50 +0800
-Message-Id: <20250305071050.113541-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1741158788; c=relaxed/simple;
+	bh=XALvqM3rTWffhLsWC4ScvJKu3JsXVYqY3UUNekYl9No=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rJl+XPitl8GA96RdUtagqjyH9STmNkPoOewlrTvGkZnvCx5wo17NHm+4FnJXe3gYKJLfVdFybDXOXFDT0WQQ1jGlE+IyWi4Qn56FbqTAoQ1/jGmcgkjtMJaAESI5eyjiKCm6vRmkcdfgkg0BQkO8dpl9k06VNiLaeDli5GTXpdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U+/l0hOb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71F00C4CEEA;
+	Wed,  5 Mar 2025 07:13:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741158788;
+	bh=XALvqM3rTWffhLsWC4ScvJKu3JsXVYqY3UUNekYl9No=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U+/l0hObN4qKsYWxBrpFijsi02TehWWysBo4MjWPA8ItPzuoALg9Uaez6f5FmwXY+
+	 EOMyRWxseN3yrkKFDCbKFYldEFyWxReQhqsaJQcNeAXHtyAGu7bPgpgmAh3u468eiF
+	 2ddsAG64Ft1sBD8NwU6gOfhdP6qO4r42pBdbe7ys41rmbi4NmTSTP3Z5r9WFKJjkAC
+	 +cTk7qkt+mDJmmEcuHaOC+jASwD1KrY8LtfnY7PWy6Q8Nh6zITlyAmAvKWMAKIwAFZ
+	 GAv8p+Mqg3Czhe5X3OLm2S59GThK88/bPQrG06wjar9NNJHdE9lDyVOS+4cYPqcuGV
+	 l1HqCvQPSZdDg==
+Date: Wed, 5 Mar 2025 08:13:04 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux@ew.tq-group.com, 
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 2/6] dt-bindings: soc: imx93-media-blk-ctrl: Add LDB
+ subnode into schema and example
+Message-ID: <20250305-dandelion-axolotl-of-excitement-05fa70@krzk-bin>
+References: <20250304154929.1785200-1-alexander.stein@ew.tq-group.com>
+ <20250304154929.1785200-3-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250304154929.1785200-3-alexander.stein@ew.tq-group.com>
 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: everest,es8389
-> 
-> Device is really different than es8388?
+On Tue, Mar 04, 2025 at 04:49:21PM +0100, Alexander Stein wrote:
+> Document the LDB bridge subnode and add the subnode into the example.
+> For the subnode to work, the block control must scan its subnodes and
 
-yes, it's different from es8388
+Don't describe drivers, but describe the hardware.
 
-> > +  "#sound-dai-cells":
-> > +    const: 0
-> > +
-> > +  everest,adc-slot:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > +    description: |
-> > +      This property is used to set the slots of recording data when multiple
-> > +      codecs are connected in PTDM mode.
-> > +      please set this property to default if you are setting STDM mode.
-> > +    minimum: 0x00
-> 
-> Drop, unsigned does not allow -1.
-> 
-> > +    maximum: 0x07
-> > +    default: 0x00
-> 
-> All of these should be rather decimal.
 
-I will try to fix the error
+> bind drivers to them, do not misuse either simple-bus or simple-mfd
+> here.
 
-> > +
-> > +  prefix_name:
-> 
-> No underscores in node names, missing vendor prefix... but more
-> important:  I don't understand the need for this property. Description copies property name so it is not useful.
-> 
-> Drop. You maybe wanted dai prefix, but this is already in dai-common.
+I don't understand that simple-bus or simple-mfd statement. There are no
+such compatibles here.
 
-I will update description at v4 PATCH
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> index b3554e7f9e76d..cd785111928bf 100644
+> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> @@ -24,6 +24,14 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  ranges: true
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+>    '#power-domain-cells':
+>      const: 1
+>  
+> @@ -46,9 +54,20 @@ properties:
+>        - const: csi
+>        - const: dsi
+>  
+> +  bridge@20:
 
-> > +  everest,dmic-enabled:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      The property is a choice between PDM and AMIC
-> > +
-> 
-> No supplies?
+@20 looks wrong. Use 'ranges;' and try again your DTS...
 
-I will drop the property
+Binding is supposed to be complete. We have several examples when people
+added children one-by-one, everytime with different reasoning about
+child addressing.
 
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#sound-dai-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c{
-> 
-> Missing space.
-> 
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +      es8389: es8389@10 {
-> 
-> Node names should be generic. See also an explanation and list of examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> > +        compatible = "everest,es8389";
-> > +        reg = <0x10>;
-> > +        everest,adc-slot = [00];
-> 
-> Please open other bindings or DTS and take a look how single number is encoded. In general, please rather base your work on latest bindings and DTS accepted by reviewers and use them as learning/template to avoid common mistakes. At least two comments in this review could be avoided if you did this.
-> 
-> > +        everest,dac-slot = [00];
-> > +        prefix_name = "es8389_0";
-> 
-> Drop
+So please confirm: this is complete and no other children will ever be
+added here... or you are 100% sure that all future children will be
+unit-addressable (will have unit address and appropriate properties).
 
-I will try to fix it
+BTW, I don't quite get why this is both syscon and has translation for
+child addresses. Does it mean your child does not use the same MMIO as
+parent, thus leading to unsynchronized reg access?
+
+> +    type: object
+> +    additionalProperties: true
+> +    properties:
+> +      compatible:
+> +        contains:
+> +          const: fsl,imx93-ldb
+> +
+>  required:
+>    - compatible
+>    - reg
+> +  - ranges
+> +  - '#address-cells'
+> +  - '#size-cells'
+>    - power-domains
+>    - clocks
+>    - clock-names
+> @@ -77,4 +96,36 @@ examples:
+>                 clock-names = "apb", "axi", "nic", "disp", "cam",
+>                               "pxp", "lcdif", "isi", "csi", "dsi";
+>        #power-domain-cells = <1>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      ranges = <0x0 0x4ac10000 0x10000>;
+> +
+> +      bridge@20 {
+> +          compatible = "fsl,imx93-ldb";
+> +          reg = <0x20 0x4>, <0x24 0x4>;
+> +          reg-names = "ldb", "lvds";
+> +          clocks = <&clk IMX93_CLK_LVDS_GATE>;
+> +          clock-names = "ldb";
+> +
+> +          ports {
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +
+> +              port@0 {
+> +                  reg = <0>;
+> +
+> +                  ldb_from_lcdif2: endpoint {
+> +                      remote-endpoint = <&lcdif2_to_ldb>;
+> +                  };
+> +              };
+> +
+> +              port@1 {
+> +                  reg = <1>;
+> +
+> +                  ldb_lvds: endpoint {
+> +                      remote-endpoint = <&ldb_to_panel>;
+> +                  };
+> +              };
+> +          };
+
+Messed indentation.
+
+> +        };
+
+Best regards,
+Krzysztof
+
 
