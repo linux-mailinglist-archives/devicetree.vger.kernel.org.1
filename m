@@ -1,88 +1,67 @@
-Return-Path: <devicetree+bounces-154356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3D4FA4FBE7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:28:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C63A4FC3D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:36:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F235D18899EF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:28:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B15ED7A1ECF
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:35:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3DB2063FB;
-	Wed,  5 Mar 2025 10:28:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ED6gCxt9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BBAE207DE9;
+	Wed,  5 Mar 2025 10:31:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE75205E2B;
-	Wed,  5 Mar 2025 10:28:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B5DC2E337F;
+	Wed,  5 Mar 2025 10:31:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741170493; cv=none; b=aXXrn+edqwYuds3mA5qWxG+kd7sunGSrkOrzKlHBDHlmvOMwyfrljCJvvScopjErLILrtJyDUU7KgkVlK3gcgNr7+7NHT9m0hgV5zwCSQnijzO5BhBsdTTA6T2tq2OBDPSp9JfcFTG6TcBEOQLrg1XR9hGh+/Xo7SiIRwsYCwys=
+	t=1741170665; cv=none; b=rNgLawWXTCmBrvH6tPNL0dzscUHQsdoN1UMsgzytvn1UQ9adgkRqfHm/zGjhLtb21xfm4wU10v0/YsMBntbPru8byBOueS9pkK1rGB0x9gRtPpDMq1hZ6tO6M0/VQuXWAVg69mcft19fs+hF7N/1lFscwJxLg6eW3pO69KpGqzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741170493; c=relaxed/simple;
-	bh=t/i/ZYSpCCcaalSAZPE6RIBpR+1kehNr94nOWqgWFQo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=sDsO82jhxN0nh8spKEBq66UD7XpSaKZ0khES83Y/CmCIJu6A+FMiP0cHMtTond8UrqbK5gevGqpYn/VYXGSmD8lKo78tETeZo82bOFukGMEF+s13gtI+ZpSzj9R9iLy2rKyAzhJIxXW19isqgMlYg47BPYhVFmFBSM0iq25gRiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ED6gCxt9; arc=none smtp.client-ip=217.70.178.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-	by mslow3.mail.gandi.net (Postfix) with ESMTP id CCD2E5826C1;
-	Wed,  5 Mar 2025 10:22:18 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 25A8A204D0;
-	Wed,  5 Mar 2025 10:22:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1741170131;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=t/i/ZYSpCCcaalSAZPE6RIBpR+1kehNr94nOWqgWFQo=;
-	b=ED6gCxt9+D+E+Xnlpd76DBNkUVjEG/t0SiS3K1jmWMHm21BlSSePusLZ5xQ4KYtIwjO3ri
-	DraOId/ugKydAwHutaD3tO1JHenfvXHELPfZf5SKRF2hlcsBQw7FyKXPx23ScoIiwWEUx7
-	0VpJ7uy4rnxiZ5yzdqkK0EPiFdG9q1B4SIKPJFmmSiMenCuTx3npfnjW42+R2loxzYYFsa
-	lPmRZfJwBnP93F1ciH/UKXT9p1i/kBV8+sqHj9F8BAQJt64Y1CAiuLEh31UIOnr4K4kPOc
-	xj/plfY/t8/RqTB/zA5G1f9ruQjYBksXuu/3/1nz/JhuS+8J1OQI9tW5whqkhQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Manikandan Muralidharan <manikandan.m@microchip.com>
-Cc: <robh@kernel.org>,  <krzk+dt@kernel.org>,  <conor+dt@kernel.org>,
-  <nicolas.ferre@microchip.com>,  <alexandre.belloni@bootlin.com>,
-  <claudiu.beznea@tuxon.dev>,  <tudor.ambarus@linaro.org>,
-  <pratyush@kernel.org>,  <mwalle@kernel.org>,  <richard@nod.at>,
-  <vigneshr@ti.com>,  <devicetree@vger.kernel.org>,
-  <linux-arm-kernel@lists.infradead.org>,  <linux-kernel@vger.kernel.org>,
-  <linux-mtd@lists.infradead.org>,  Varshini Rajendran
- <varshini.rajendran@microchip.com>
-Subject: Re: [PATCH 1/2] mtd: spi-nor: sst: register SFDP region into NVMEM
- framework to read MAC Address
-In-Reply-To: <20250305100134.1171124-1-manikandan.m@microchip.com> (Manikandan
-	Muralidharan's message of "Wed, 5 Mar 2025 15:31:33 +0530")
-References: <20250305100134.1171124-1-manikandan.m@microchip.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Wed, 05 Mar 2025 11:22:09 +0100
-Message-ID: <87ikonydym.fsf@bootlin.com>
+	s=arc-20240116; t=1741170665; c=relaxed/simple;
+	bh=RcZtDEPIr7npynhNkRSf7ZIYwzevdo5E5GPwmnke3Kg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=ljKQPB7IhzJ5wOK9/fUVmNyuOwSt7XY84RaCqrscMRA1eaPiKC2VGLUxGF9ah5XgFFZL4fqEuy/fDH+VbmXMemc0c8NSluM0YRprGcuKFSbGdjw1FFj8ECh7CW2tNx9lvbTZabd60Q0FH4nUMW/G/BdDGz9KCadEDG3AOrsaOwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
+Received: from localhost (unknown [IPv6:2a02:810b:4320:1000:4685:ff:fe12:5967])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.3ffe.de (Postfix) with ESMTPSA id CB5C648D;
+	Wed,  5 Mar 2025 11:24:47 +0100 (CET)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddutdegheeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledvrddukeegrddutdekrdelieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeelvddrudekgedruddtkedrleeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedujedprhgtphhtthhopehmrghnihhkrghnuggrnhdrmhesmhhitghrohgthhhiphdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehnihgtohhlrghsrdhfvghrrhgvsehmihgtrhhotghhihhprdgtohhmpdhrtghpt
- hhtoheprghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopegtlhgruhguihhurdgsvgiinhgvrgesthhugihonhdruggvvhdprhgtphhtthhopehtuhguohhrrdgrmhgsrghruhhssehlihhnrghrohdrohhrgh
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 05 Mar 2025 11:24:47 +0100
+Message-Id: <D889CRJC6W19.2LDQCDVG7BLNG@kernel.org>
+Subject: Re: [PATCH 1/2] mtd: spi-nor: sst: register SFDP region into NVMEM
+ framework to read MAC Address
+Cc: "Varshini Rajendran" <varshini.rajendran@microchip.com>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Manikandan Muralidharan" <manikandan.m@microchip.com>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+ <claudiu.beznea@tuxon.dev>, <tudor.ambarus@linaro.org>,
+ <pratyush@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
+ <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mtd@lists.infradead.org>
+X-Mailer: aerc 0.16.0
+References: <20250305100134.1171124-1-manikandan.m@microchip.com>
+In-Reply-To: <20250305100134.1171124-1-manikandan.m@microchip.com>
 
-On 05/03/2025 at 15:31:33 +0530, Manikandan Muralidharan <manikandan.m@micr=
-ochip.com> wrote:
-
+On Wed Mar 5, 2025 at 11:01 AM CET, Manikandan Muralidharan wrote:
 > From: Varshini Rajendran <varshini.rajendran@microchip.com>
 >
 > EUI identifier and the MAC Address of the Ethernet Interface is stored
@@ -98,14 +77,119 @@ ochip.com> wrote:
 > This change ensures consistent and reliable MAC address retrieval from QS=
 PI,
 > benefiting boards like the sama5d29 curiosity and sam9x75 curiosity.
+>
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> [manikandan.m@microchip.com: Integrate the nvmem->read callback framework=
+]
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> ---
+>  drivers/mtd/spi-nor/sst.c | 62 +++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>
+> diff --git a/drivers/mtd/spi-nor/sst.c b/drivers/mtd/spi-nor/sst.c
+> index 175211fe6a5e..a0abf201ad41 100644
+> --- a/drivers/mtd/spi-nor/sst.c
+> +++ b/drivers/mtd/spi-nor/sst.c
+> @@ -5,6 +5,7 @@
+>   */
+> =20
+>  #include <linux/mtd/spi-nor.h>
+> +#include <linux/nvmem-provider.h>
+> =20
+>  #include "core.h"
+> =20
+> @@ -13,6 +14,8 @@
+> =20
+>  #define SST26VF_CR_BPNV		BIT(3)
+> =20
+> +#define SST26VF_SFDP_EUI48	0x30
+> +
+>  static int sst26vf_nor_lock(struct spi_nor *nor, loff_t ofs, u64 len)
+>  {
+>  	return -EOPNOTSUPP;
+> @@ -56,8 +59,67 @@ static int sst26vf_nor_late_init(struct spi_nor *nor)
+>  	return 0;
+>  }
+> =20
+> +/**
+> + * sst26vf_sfdp_mac_addr_read() - check if the EUI-48 MAC Address is pro=
+grammed
+> + * and read the data from the prestored SFDP data
+> + *
+> + * @priv: User context passed to read callbacks.
+> + * @offset: Offset within the NVMEM device.
+> + * @val: pointer where to fill the ethernet address
+> + * @bytes: Length of the NVMEM cell
+> + *
+> + * Return: 0 on success, -EINVAL  otherwise.
+> + */
+> +static int sst26vf_sfdp_mac_addr_read(void *priv, unsigned int off,
+> +				      void *val, size_t bytes)
+> +{
+> +	struct spi_nor *nor =3D priv;
+> +	struct sfdp *sfdp =3D nor->sfdp;
+> +	loff_t offset =3D off;
+> +	size_t sfdp_size;
+> +
+> +	/*
+> +	 * Check if the EUI-48 MAC address is programmed in the next six addres=
+s
+> +	 * locations.
+> +	 * @off is programmed in the DT and stores the start of MAC Address
+> +	 * byte, (off - 1) stores the bit length of the Extended Unique
+> +	 * Identifier
+> +	 */
+> +	if (SST26VF_SFDP_EUI48 !=3D *((u8 *)sfdp->dwords + (offset - 1)))
+> +		return -EINVAL;
 
-Do you mean spi-nor have a programmable area in their SFDP table? Isn't
-this supposed to be a read-only area written once in factory?
+What happens if you read at a different offset? You're exposing
+the entire SFDP region. What happens if there is a 0x30 at a
+different location?
 
-I am not a big fan of exposing the whole SFDP area. I would suggest to
-expose just the MAC address. You can make use of nvmem layout drivers if
-that is needed.
+> +
+> +	sfdp_size =3D sfdp->num_dwords * sizeof(*sfdp->dwords);
+> +	memory_read_from_buffer(val, bytes, &offset, sfdp->dwords,
+> +				sfdp_size);
+> +	return 0;
+> +}
+> +
+> +static struct nvmem_config sst26vf_sfdp_nvmem_config =3D {
+> +	.word_size =3D 1,
+> +	.stride =3D 1,
+> +};
+> +
+> +static int sst26vf_nor_post_sfdp(struct spi_nor *nor)
+> +{
+> +	struct nvmem_device *nvmem;
+> +
+> +	sst26vf_sfdp_nvmem_config.dev =3D nor->dev;
+> +	sst26vf_sfdp_nvmem_config.size =3D nor->sfdp->num_dwords * sizeof(*nor-=
+>sfdp->dwords);
+> +	sst26vf_sfdp_nvmem_config.priv =3D nor;
+> +	sst26vf_sfdp_nvmem_config.reg_read =3D sst26vf_sfdp_mac_addr_read;
+> +
+> +	nvmem =3D devm_nvmem_register(nor->dev, &sst26vf_sfdp_nvmem_config);
+> +	if (IS_ERR(nvmem)) {
+> +		dev_err(nor->dev, "failed to register NVMEM device: %ld\n", PTR_ERR(nv=
+mem));
+> +		return PTR_ERR(nvmem);
 
-Thanks,
-Miqu=C3=A8l
+I don't think it makes sense to have this one-off in a particular
+driver. If at all, this should be handled in the core. Sorry, but
+this really looks like an ugly hack.
+
+-michael
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct spi_nor_fixups sst26vf_nor_fixups =3D {
+>  	.late_init =3D sst26vf_nor_late_init,
+> +	.post_sfdp =3D sst26vf_nor_post_sfdp,
+>  };
+> =20
+>  static const struct flash_info sst_nor_parts[] =3D {
+
 
