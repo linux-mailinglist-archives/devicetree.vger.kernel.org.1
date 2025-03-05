@@ -1,160 +1,139 @@
-Return-Path: <devicetree+bounces-154583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32A6EA50C75
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:26:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF367A50C99
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:34:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7761F189067F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 20:27:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DDDF188821D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 20:34:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539202566CC;
-	Wed,  5 Mar 2025 20:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DA7253344;
+	Wed,  5 Mar 2025 20:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A6SjSP42"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="igia4iXS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26318255E58;
-	Wed,  5 Mar 2025 20:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABE01DD543;
+	Wed,  5 Mar 2025 20:34:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741206406; cv=none; b=JfVo23zXuOl3VpJEmjFqU6axw00jGMhsJ3zfTFpPn4/R7mbqzbL9HIknob0+l7TxBbS7CKuwzcuiST/oP2QpLy5OsR1J5/zba4jHh3PV16h+O2ZTotLCVTSvE2ZUnEl2dw784AU1NCFrkrZX8NRokGeswURvCAxsa6mRQun+Kng=
+	t=1741206846; cv=none; b=cvWqgWnU4V2B4qJNEWw0/g2LoJsy+ajORO8e2W1YtTwE5/MPTt3SbvPFypNRjpl7ck2zhhRv8zsB33ebELbRl+ysHSe7eZup+wrRbyqfYaC452MHK94a2TnzZqobfAFwjCaZ5grKZcTuD5EthLOEoc66eT1Nu4FsD0jlFoEytGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741206406; c=relaxed/simple;
-	bh=kuKRm6ObXyU/LdsbRhf//+NRMZ7w2rKpz+i8gcq330U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tgxt5BI6kWMuu052O0B0STUGkiE18M5VC6tYejy5M0f69otMBDm3YElLwcdMF9j4XwjBsLFBcmTC90wLCxv7WY40xRPJdZfUtN/BoUNz0AnjaxVkCyE6F1B8TG1aGk0g1x3J/PBoebdb9AN/wx0fWkuwsJPXYhQldLRqyhEwmag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A6SjSP42; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 96FA4C4CEEA;
-	Wed,  5 Mar 2025 20:26:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741206405;
-	bh=kuKRm6ObXyU/LdsbRhf//+NRMZ7w2rKpz+i8gcq330U=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=A6SjSP42yisLd39mKYxLB5H3Hc/VDZ/YZ6iDObr1sbWkbdBb2Dle/wWbvnZegMcJf
-	 VSqqkVRFgdXw6p9CEMOO1qaKxgRV6m6s8s7HgXQtShfUYhvniudiWGpjDTb4ojA2Jq
-	 CPIhgV7mKVxE9wMbFpoSbSuaa3jX6O5ynK8uQL+DjChVUyK/y0pAPU83Uc5UD3CIp+
-	 mQAT30QoGvQweyArwIcDyS0MCo0wySbbfDRbPmXBQBCQRY1424DooD9gZxOCtA8P1B
-	 9cQKAJsb9mKtiU01FwcVWWfOSnTq00r/KUYbGIUPt83Fsmy0E//mjuoskIgfIr7vy+
-	 3rW4HNIwgRyqw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8CB8FC19F32;
-	Wed,  5 Mar 2025 20:26:45 +0000 (UTC)
-From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
-Date: Wed, 05 Mar 2025 21:26:41 +0100
-Subject: [PATCH 3/3] arm64: dts: apple: Add SPMI controller nodes
+	s=arc-20240116; t=1741206846; c=relaxed/simple;
+	bh=pnPnl0Y7Hh2+wMBdn/c6Xp+d9j2XPjWTAzEbuMwtIyQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gtu5Ou6zkfEYYmUbca9eyCli2+fi8gdQos4qwGND62JBAQHxMGS2k8jPVSTJ+mO+xsjflrQV0fhkzigfWsILoEkD/RnA2/mO0pQ6v+h4Obp4+yKxnycK8XusdM8NIoHLIT4edZp90maNh+gU7JBfGFCn6JRrJHwDx+40aUaiCII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=igia4iXS; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741206845; x=1772742845;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pnPnl0Y7Hh2+wMBdn/c6Xp+d9j2XPjWTAzEbuMwtIyQ=;
+  b=igia4iXSqZGIbtTSOY0NkIClzEnwgQj7JFwUAFNJLheINK3BoJpsOk3e
+   xeUsF1d/UH8I+1fW5GuTZnywDkSkKQj/09Q9Jd57GYSg1CRGzgDkTAiC3
+   l7JovSu5jzFTp7O1Vf9Kt9x35Gn7VFB3i1GUxLEiDeJ6rQ+YxdrWhGllU
+   IWzK6ROOWCJImTuDwLjOVQd0kF1nVq67ClI+Q7SUNfDMFeBb1ncrP1C/g
+   vOdXdOHcpEVkaY4QWWFjdf9Jch6aw7YVOJ73zrdMHaQwceuwrgY7u+Lf0
+   1WJpGurzC4j8ZeAuRDOutfjQxhKwQFtAiaqLCxVQvt/zIhzR17444pgdj
+   w==;
+X-CSE-ConnectionGUID: Dzb+0mNSQHSgipPxEnKt2A==
+X-CSE-MsgGUID: PQ/vQzIkQ9i4zpxYDrpRDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42390886"
+X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; 
+   d="scan'208";a="42390886"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 12:34:04 -0800
+X-CSE-ConnectionGUID: UwSLidiaRdeam5BscguJxg==
+X-CSE-MsgGUID: 6jagxbcLR+29I2UWtemHFw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="118723547"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 05 Mar 2025 12:33:59 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tpvRE-000MB4-2T;
+	Wed, 05 Mar 2025 20:33:56 +0000
+Date: Thu, 6 Mar 2025 04:33:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-rtc@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Inochi Amaoto <inochiama@gmail.com>, dlan@gentoo.org,
+	linux-kernel@vger.kernel.org,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	sophgo@lists.linux.dev
+Subject: Re: [PATCH v12 2/3] mfd: sophgo: cv1800: rtcsys: New driver
+ (handling RTC only)
+Message-ID: <202503060435.1c1akI1Q-lkp@intel.com>
+References: <20250302195205.3183174-3-alexander.sverdlin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250305-spmi-v1-3-c98f561fa99f@gmail.com>
-References: <20250305-spmi-v1-0-c98f561fa99f@gmail.com>
-In-Reply-To: <20250305-spmi-v1-0-c98f561fa99f@gmail.com>
-To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Stephen Boyd <sboyd@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Sasha Finkelstein <fnkl.kernel@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741206403; l=2612;
- i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
- bh=Q7f2vFfLkm+JIytIUuMQHuqnolBvgEBZ+1SuUnKYc0w=;
- b=JZGv20ciLYhjLTFooeMI07jT+4fp5RYKV26v46dtFR8aRmrM57U4pr1G/H44VodOpmk1x8BPk
- iwQzu0fKtk/C4HQoPI08ZwGVnguEA/bD3jvRMe4d2dM01yu365divdD
-X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
-X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
- auth_id=283
-X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Reply-To: fnkl.kernel@gmail.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250302195205.3183174-3-alexander.sverdlin@gmail.com>
 
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Hi Alexander,
 
-Add device tree entries for the SPMI controller
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
----
- arch/arm64/boot/dts/apple/t600x-die0.dtsi | 7 +++++++
- arch/arm64/boot/dts/apple/t8103.dtsi      | 8 ++++++++
- arch/arm64/boot/dts/apple/t8112.dtsi      | 8 ++++++++
- 3 files changed, 23 insertions(+)
+[auto build test WARNING on lee-mfd/for-mfd-next]
+[also build test WARNING on abelloni/rtc-next linus/master lee-mfd/for-mfd-fixes v6.14-rc5 next-20250305]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm64/boot/dts/apple/t600x-die0.dtsi b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-index b1c875e692c8fb9c0af46a23568a7b0cd720141b..d544a35c8af414c583d38b040e1aa753902f1c93 100644
---- a/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-@@ -53,6 +53,13 @@ wdt: watchdog@2922b0000 {
- 		interrupts = <AIC_IRQ 0 631 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
-+	nub_spmi0: spmi@2920a1300 {
-+		compatible = "apple,t6000-spmi", "apple,spmi";
-+		reg = <0x2 0x920a1300 0x0 0x100>;
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+	};
-+
- 	sio_dart_0: iommu@39b004000 {
- 		compatible = "apple,t6000-dart";
- 		reg = <0x3 0x9b004000 0x0 0x4000>;
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 9b0dad6b618444ac6b1c9735c50cccfc3965f947..0f03dc808cf7c6b7d71afc79dd29d368f957f979 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interrupt-controller/apple-aic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pinctrl/apple.h>
-+#include <dt-bindings/spmi/spmi.h>
- 
- / {
- 	compatible = "apple,t8103", "apple,arm-platform";
-@@ -604,6 +605,13 @@ pcie_pins: pcie-pins {
- 			};
- 		};
- 
-+		nub_spmi: spmi@23d0d9300 {
-+			compatible = "apple,t8103-spmi", "apple,spmi";
-+			reg = <0x2 0x3d0d9300 0x0 0x100>;
-+			#address-cells = <2>;
-+			#size-cells = <0>;
-+		};
-+
- 		pinctrl_nub: pinctrl@23d1f0000 {
- 			compatible = "apple,t8103-pinctrl", "apple,pinctrl";
- 			reg = <0x2 0x3d1f0000 0x0 0x4000>;
-diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
-index 1666e6ab250bc0be9b8318e3c8fc903ccd3f3760..4b3730c46c4d14a582627f69094b458ec7481da9 100644
---- a/arch/arm64/boot/dts/apple/t8112.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8112.dtsi
-@@ -641,6 +641,14 @@ pcie_pins: pcie-pins {
- 			};
- 		};
- 
-+
-+		nub_spmi: spmi@23d714000 {
-+			compatible = "apple,t8112-spmi", "apple,spmi";
-+			reg = <0x2 0x3d714000 0x0 0x100>;
-+			#address-cells = <2>;
-+			#size-cells = <0>;
-+		};
-+
- 		pinctrl_nub: pinctrl@23d1f0000 {
- 			compatible = "apple,t8112-pinctrl", "apple,pinctrl";
- 			reg = <0x2 0x3d1f0000 0x0 0x4000>;
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexander-Sverdlin/dt-bindings-mfd-sophgo-add-RTC-support-for-Sophgo-CV1800-series-SoC/20250303-035433
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+patch link:    https://lore.kernel.org/r/20250302195205.3183174-3-alexander.sverdlin%40gmail.com
+patch subject: [PATCH v12 2/3] mfd: sophgo: cv1800: rtcsys: New driver (handling RTC only)
+config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20250306/202503060435.1c1akI1Q-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250306/202503060435.1c1akI1Q-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503060435.1c1akI1Q-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/mfd/cv1800-rtcsys.c:30:30: warning: unused variable 'cv1800_rtcsys_rtc_subdev' [-Wunused-const-variable]
+      30 | static const struct mfd_cell cv1800_rtcsys_rtc_subdev =
+         |                              ^~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +/cv1800_rtcsys_rtc_subdev +30 drivers/mfd/cv1800-rtcsys.c
+
+    29	
+  > 30	static const struct mfd_cell cv1800_rtcsys_rtc_subdev =
+    31		MFD_CELL_NAME("cv1800-rtc");
+    32	
 
 -- 
-2.48.1
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
