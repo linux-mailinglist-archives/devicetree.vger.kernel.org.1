@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-154625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD055A50F08
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:48:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 702D8A50F13
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:51:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBD933A1648
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:47:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8FE316A444
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D2D204C1C;
-	Wed,  5 Mar 2025 22:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A56C206F0D;
+	Wed,  5 Mar 2025 22:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="h4ZCL+WE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uln1OaN8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6F31EEA5D;
-	Wed,  5 Mar 2025 22:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29841FF1A2;
+	Wed,  5 Mar 2025 22:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741214880; cv=none; b=qboWZw4vaWIX+lpwWZ8UFdNw8iqCNM02LDAq/NuzVgJHuEcmlKPikYMm/u5cWIaar4loWYhZ++xWuJMNCwF2oFngjXwvYFpn1GECQJGLi2oTKRnSov/RgI7NwfM7DpeVAJOMFgfou6QtBjr3WRezKK00wBXP/ZZr7lDg7TIrzrA=
+	t=1741215068; cv=none; b=le7mAKMslTCNVThWo6PhIaNmhs6vKLxKHsTStgdyb3v3xamsYUXD9bZjwO/oeZ5XyYWQ3VW0u/k2wlxvtwP7zqA+fY6cUSU2+9u3eZM8aZHqWzmeeV53nFjLpZCZjdJbX6cVwuYU7OnwNRTptCXPpeJHZyKzsfHDlv4c22xqUOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741214880; c=relaxed/simple;
-	bh=j690KMyiLxuuR24G6j9sZerB6/YuInfz3g49qZUsgvQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DvBSqmxuCq4BFdpy3nFIfx8BraHMt9blhmFRAkgHyOILrw/Smctd7/y5l1LYpRwdiml3s8c5jw2qJzyUmzcSvw5qSOcyJTIpFAkCFSpvsW7XaEPtySP3Ibg7vO5Ssw6S/Bhg9/02+GxeRfrGymmvEMWJpnfkD1W5MO6wVCgmZCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=h4ZCL+WE; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References;
-	bh=7fAKyPcFLbipyj8e2+HaYX8ZN0IQD4FgvUWGz9wiNuY=; b=h4ZCL+WExFSPRI+oi7iGgFW+yy
-	gjmzS3Ki/r2yubN8dEfbBxkmDm69I0j96wpiL0X5wnLPU3+GwHBGdXQXci1MaRq8r8y42C+BSh8pM
-	Yh+dVJNI5dPat7hrnubUkrPOWJFtz5O3qs0+vSQwI8HgqFrw/l9uRubI4ZOu4Wqebnm3yFCGg6pld
-	dZ1UDrNkA8+5wUTuCsHLhyNbKL3DDORA8PQ1Hj96+xgvpLSGfYOf0cGObfdqpQUXRiV7t7TgL2eCE
-	oZnpAK84atGBwcgVaroU9Sumv60buX6pyc4yjlarRxvvwCLsiIXjGFX4QGoYpa3WXrdiTo7r9eoRH
-	ccfANGDA==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tony@atomide.com,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH] dt-bindings: clock: ti: Convert ti-clkctrl.txt to json-schema
-Date: Wed,  5 Mar 2025 23:47:22 +0100
-Message-Id: <20250305224722.66360-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1741215068; c=relaxed/simple;
+	bh=4kn0alaAsGGXPN7YZT7+IeoQ/dtwpPBvCEYm9hxAS+Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i2qui6cMjBmqqFONR1yx8B93eotNBpo81QifFkpq9NT3FqrvC2I5AnHeZuspqcfAB1j5pc10o6dQ1xW2w2F4weGFWp2COuTEnshqLSh8kY/8/1mKgnljFAopsZUaT13ep4M+Q8BpFx7SHgNPFl7o9WcQ4GWlAYU7LsIyvFrcC2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uln1OaN8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44FCEC4CED1;
+	Wed,  5 Mar 2025 22:51:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741215067;
+	bh=4kn0alaAsGGXPN7YZT7+IeoQ/dtwpPBvCEYm9hxAS+Y=;
+	h=From:To:Cc:Subject:Date:From;
+	b=uln1OaN8EPJRkG/4lBXIoKjv30iTN6/M4db/1cmIwCxcXDBwJ8SOm6Y9H0es7OpNH
+	 UsmxUM8G1algdX+Es2HLaRn7rjjQ8JmtVoiEJlTx+HL1cMnBPgHiFA2GeJOj+l5s05
+	 k1++sYg74Ytv9B3HM0cy/WUF1U6a7/ij0dKVMC40G64JBZ01ICmYVoo6EmVfNkNgn6
+	 Kp0wbcgYm1fNCt40sKBzDf3vxxAzzP0xlK0FOqj7d9DXFvm532KCdRHMfxUW3SVLMX
+	 TEgcfOEzqYc+rgwP3DLOXMbroHI+DMuBQ/yU04hxT3IitZ7BHkBj1IjkpnLMzF51d/
+	 H5rVjIvfPmIog==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: soc@kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH] arm64: dts: nvidia: Remove unused and undocumented "regulator-ramp-delay-scale" property
+Date: Wed,  5 Mar 2025 16:49:52 -0600
+Message-ID: <20250305224952.2995841-2-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,95 +61,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the TI clkctrl clock device tree binding to json-schema.
-Specify the creator of the original binding as a maintainer.
+Remove "regulator-ramp-delay-scale" property which is both unused in the
+kernel and undocumented. Most likely they are leftovers from downstream.
 
-reg property is used mostly with one item, in am3xxx also with
-an arbitrary number of items, so divert from the original binding
-specifying two (probably meaning one address and one size).
-The consumer part of the example is left out because the full consumer
-node would be needed.
-
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
-@Tony: you seem to be the only contributor to the txt binding,
-so we could go with dual-licensing if you agree.
+Arnd, please take this directly as the NVIDIA maintainers seem to be 
+AWOL.
 
- .../devicetree/bindings/clock/ti,clkctrl.yaml | 64 +++++++++++++++++++
- 1 file changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/ti,clkctrl.yaml
+ arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/ti,clkctrl.yaml b/Documentation/devicetree/bindings/clock/ti,clkctrl.yaml
-new file mode 100644
-index 0000000000000..bf4119c9c61fe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/ti,clkctrl.yaml
-@@ -0,0 +1,64 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/ti,clkctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments clkctrl clock
-+
-+maintainers:
-+  - Tony Lindgren <tony@atomide.com>
-+
-+description: |
-+  Texas Instruments SoCs can have a clkctrl clock controller for each
-+  interconnect target module. The clkctrl clock controller manages functional
-+  and interface clocks for each module. Each clkctrl controller can also
-+  gate one or more optional functional clocks for a module, and can have one
-+  or more clock muxes. There is a clkctrl clock controller typically for each
-+  interconnect target module on omap4 and later variants.
-+
-+  The clock consumers can specify the index of the clkctrl clock using
-+  the hardware offset from the clkctrl instance register space. The optional
-+  clocks can be specified by clkctrl hardware offset and the index of the
-+  optional clock.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,clkctrl
-+      - ti,clkctrl-l4-cfg
-+      - ti,clkctrl-l4-per
-+      - ti,clkctrl-l4-secure
-+      - ti,clkctrl-l4-wkup
-+
-+  "#clock-cells":
-+    const: 2
-+
-+  clock-output-names:
-+    maxItems: 1
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 8 # arbitrary, should be enough
-+
-+required:
-+  - compatible
-+  - "#clock-cells"
-+  - clock-output-names
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+
-+      clock@20 {
-+        compatible = "ti,clkctrl";
-+        clock-output-names = "l4_per";
-+        reg = <0x20 0x1b0>;
-+        #clock-cells = <2>;
-+      };
-+    };
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+index c56824d7f4d8..0ecdd7243b2e 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+@@ -266,7 +266,6 @@ vdd_soc: sd0 {
+ 					regulator-max-microvolt = <1170000>;
+ 					regulator-enable-ramp-delay = <146>;
+ 					regulator-ramp-delay = <27500>;
+-					regulator-ramp-delay-scale = <300>;
+ 					regulator-always-on;
+ 					regulator-boot-on;
+ 
+@@ -281,7 +280,6 @@ vdd_ddr: sd1 {
+ 					regulator-max-microvolt = <1150000>;
+ 					regulator-enable-ramp-delay = <176>;
+ 					regulator-ramp-delay = <27500>;
+-					regulator-ramp-delay-scale = <300>;
+ 					regulator-always-on;
+ 					regulator-boot-on;
+ 
+@@ -296,7 +294,6 @@ vdd_pre: sd2 {
+ 					regulator-max-microvolt = <1350000>;
+ 					regulator-enable-ramp-delay = <176>;
+ 					regulator-ramp-delay = <27500>;
+-					regulator-ramp-delay-scale = <350>;
+ 					regulator-always-on;
+ 					regulator-boot-on;
+ 
+@@ -311,7 +308,6 @@ vdd_1v8: sd3 {
+ 					regulator-max-microvolt = <1800000>;
+ 					regulator-enable-ramp-delay = <242>;
+ 					regulator-ramp-delay = <27500>;
+-					regulator-ramp-delay-scale = <360>;
+ 					regulator-always-on;
+ 					regulator-boot-on;
+ 
+@@ -326,7 +322,6 @@ vdd_sys_1v2: ldo0 {
+ 					regulator-max-microvolt = <1200000>;
+ 					regulator-enable-ramp-delay = <26>;
+ 					regulator-ramp-delay = <100000>;
+-					regulator-ramp-delay-scale = <200>;
+ 					regulator-always-on;
+ 					regulator-boot-on;
+ 
+@@ -341,7 +336,6 @@ vdd_pex_1v05: ldo1 {
+ 					regulator-max-microvolt = <1050000>;
+ 					regulator-enable-ramp-delay = <22>;
+ 					regulator-ramp-delay = <100000>;
+-					regulator-ramp-delay-scale = <200>;
+ 
+ 					maxim,active-fps-source = <MAX77620_FPS_SRC_NONE>;
+ 					maxim,active-fps-power-up-slot = <0>;
+@@ -354,7 +348,6 @@ vddio_sdmmc: ldo2 {
+ 					regulator-max-microvolt = <3300000>;
+ 					regulator-enable-ramp-delay = <62>;
+ 					regulator-ramp-delay = <100000>;
+-					regulator-ramp-delay-scale = <200>;
+ 
+ 					maxim,active-fps-source = <MAX77620_FPS_SRC_NONE>;
+ 					maxim,active-fps-power-up-slot = <0>;
+@@ -371,7 +364,6 @@ vdd_rtc: ldo4 {
+ 					regulator-max-microvolt = <1100000>;
+ 					regulator-enable-ramp-delay = <22>;
+ 					regulator-ramp-delay = <100000>;
+-					regulator-ramp-delay-scale = <200>;
+ 					regulator-disable-active-discharge;
+ 					regulator-always-on;
+ 					regulator-boot-on;
+@@ -395,7 +387,6 @@ avdd_1v05_pll: ldo7 {
+ 					regulator-max-microvolt = <1050000>;
+ 					regulator-enable-ramp-delay = <24>;
+ 					regulator-ramp-delay = <100000>;
+-					regulator-ramp-delay-scale = <200>;
+ 
+ 					maxim,active-fps-source = <MAX77620_FPS_SRC_1>;
+ 					maxim,active-fps-power-up-slot = <3>;
+@@ -408,7 +399,6 @@ avdd_1v05: ldo8 {
+ 					regulator-max-microvolt = <1050000>;
+ 					regulator-enable-ramp-delay = <22>;
+ 					regulator-ramp-delay = <100000>;
+-					regulator-ramp-delay-scale = <200>;
+ 
+ 					maxim,active-fps-source = <MAX77620_FPS_SRC_1>;
+ 					maxim,active-fps-power-up-slot = <6>;
 -- 
-2.39.5
+2.47.2
 
 
