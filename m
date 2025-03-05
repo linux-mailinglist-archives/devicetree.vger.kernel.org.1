@@ -1,124 +1,109 @@
-Return-Path: <devicetree+bounces-154400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FBBA4FFFE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:15:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F15BA4FFE5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:14:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18A753B6447
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:08:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A74C189612E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255B924E00D;
-	Wed,  5 Mar 2025 13:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083C924394C;
+	Wed,  5 Mar 2025 13:08:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FTexpU7l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gsz4fZvj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0030524EA96
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 13:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06BE1E531;
+	Wed,  5 Mar 2025 13:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741180022; cv=none; b=MBa1paVn+qwYEX4JHzs3yIQNgf0UBdUB+1Qx3AJySaP9+YaTbbkDYafiSfWzx4rJhDERhh79NYAvA8glIfpW+0RkA0jMGz+vkiF9e5JRHHCzpGI6GfjXMmuZ7podNyhoOzQ6VQev3K0G94Z+rI76SZZfy+HUJq+hpJN0MREgqU4=
+	t=1741180103; cv=none; b=gDKRqi84mAIYqgsyTs+z85rSCJe1P1/Lep0ExSYa/cf7u6eh35LuBZtZ8V7OQ6r+wNn5LdQ9exerh+uUZFVS0zDK1Zrn3yWG6bpS0nGNMlWQVjDMcUM/gu9tTIsk57pGY3ucizFYEs2E8DMp+OeMoD9hRkIk7kPJhfQCwZ/VlCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741180022; c=relaxed/simple;
-	bh=rRLh86cLFLqmNG+T9Rd6VrXKmn/xHimWelzpVRHuNdI=;
+	s=arc-20240116; t=1741180103; c=relaxed/simple;
+	bh=siWdAxhLrN0DI+R0aKzyG6rDmCVTF6VPwiS27Qnj7bo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UrBRDU0qzls9WKBQ862c5HSc+toL1pALfn2QyjeYqPPId9hHlq6akepyNg/j0FFZOAxoguMoSt0Z7ufvF96wF4BMQ1DIJTVBXzsbaTNu0++djkoDGpYY6Gx8jf327Va4WxCRE9LmkDoRqsqQqs4oIkB7YF2dUn2BWoEBwYnEjko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FTexpU7l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3A7CC4CEE7;
-	Wed,  5 Mar 2025 13:06:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=I2TEn8Kb77i/0VYn4+/2fb6/8uA/mQ0LnOdOx7QHwP9GIRmAgzKFbhZO8m/f9ldBVt4pBme0iGi6Y6bJdKVQL3d7KKNg+E+0uuV6L4B0vw4tLHU7fShb4bHX/3AA2PNqGDNC8O63wFOpIBEERS09gKm8UiBdzGvP2OJhjGMfqj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gsz4fZvj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AC7EC4CEE2;
+	Wed,  5 Mar 2025 13:08:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741180021;
-	bh=rRLh86cLFLqmNG+T9Rd6VrXKmn/xHimWelzpVRHuNdI=;
+	s=k20201202; t=1741180103;
+	bh=siWdAxhLrN0DI+R0aKzyG6rDmCVTF6VPwiS27Qnj7bo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FTexpU7l/PbhsIurlyD8VSoGVgjPlyNTy6nPpW1AnFmov0caF41Jf7gbOJ05x7bGz
-	 By4ZYuW9sShoEDy0o+h/bGouElGEmLrq7KbP1Wx+sM2QNqZ5U3vnNxN4vxclMISyEU
-	 PH2eGnimZFToswmg70C9j+2SoFsXGjY8t9XPvi8e2btt9y842Mho9dN6+EF8e3s6Z8
-	 0hEjToguGOWXwWdb2K0jRZXKmaAhx/GzZ+ZcjiZb84ZdhUPBDEAKZntWczcY4LJRiM
-	 IkVax+Orcq+PHlmzVwWSrS1yhAmtkMzjaRUzqdvNcsrBCTjeS4MAgUhePjQTuoh5eA
-	 uHPdE+3VFlFUQ==
-Date: Wed, 5 Mar 2025 13:06:56 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Subject: Re: [PATCH v4 1/2] ASoC: codecs: add support for ES8389
-Message-ID: <77f040bb-a1ff-4eca-831b-ab10bf79e6bc@sirena.org.uk>
-References: <20250305025610.58476-1-zhangyi@everest-semi.com>
+	b=Gsz4fZvjlpY05cQ6j3PtNhZ5OtCU4JHKj2P06Ci7UDvG3iU42zZgDbO0drBCG4b7r
+	 wa+Z617+Si9135ApNkjEt7S1lA6MADR1toiWSuqjkLf0GcsiFiI1WR/0sycbDNmPj5
+	 4B9TYzkBqMbkAIfBGVt3/3dLE2eHCGLIx/j55lwi8tzPOrJO6Vm+j8jD/MVVIUs/hO
+	 SsEutbZ/MIskom8wFqLwcCuXG2pV5r+pt106i7dUHNHgLLxT3DBgCFRUutsFuliP1/
+	 VnuIuDdX0PFkMaR15w1jyEnznoWkKDZXZI56dYWqu9aHuICFUuw6re2FhL0VHoq6IC
+	 23ohHZ9ktRVow==
+Date: Wed, 5 Mar 2025 07:08:21 -0600
+From: Rob Herring <robh@kernel.org>
+To: Mathis Foerst <mathis.foerst@mt.com>
+Cc: linux-kernel@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	manuel.traut@mt.com, mathis.foerst@zuehlke.com
+Subject: Re: [PATCH v3 1/6] media: dt-bindings: mt9m114: Add onnn,slew-rate
+ DT-binding
+Message-ID: <20250305130821.GA1374586-robh@kernel.org>
+References: <20250305101453.708270-1-mathis.foerst@mt.com>
+ <20250305101453.708270-2-mathis.foerst@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="odRdCbb20AVtN+qv"
-Content-Disposition: inline
-In-Reply-To: <20250305025610.58476-1-zhangyi@everest-semi.com>
-X-Cookie: Everybody gets free BORSCHT!
-
-
---odRdCbb20AVtN+qv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250305101453.708270-2-mathis.foerst@mt.com>
 
-On Wed, Mar 05, 2025 at 10:56:10AM +0800, Zhang Yi wrote:
+On Wed, Mar 05, 2025 at 11:14:48AM +0100, Mathis Foerst wrote:
+> The MT9M114 supports the different slew rates (0 to 7) on the output pads.
+> At the moment, this is hardcoded to 7 (the fastest rate).
+> The user might want to change this values due to EMC requirements.
+> 
+> Add the 'onnn,slew-rate' property to the MT9M114 DT-bindings for selecting
+> the desired slew rate.
+> 
+> Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
+> ---
+>  .../devicetree/bindings/media/i2c/onnn,mt9m114.yaml      | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> index f6b87892068a..c184bc04b743 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> @@ -70,6 +70,15 @@ properties:
+>            - bus-type
+>            - link-frequencies
+>  
+> +  onnn,slew-rate:
 
-> > set_tdm_slot()
+Just 'slew-rate' which is already defined in the pinctrl binding.
 
-> We will register multiple codecs inside a single dai_link and differentia=
-te these
-> codecs by of_node. And the adc_slot and the dac_slot may be different, th=
-ey can=20
-> be decided by the user.If we use set_tdm_slot,the adc_slot and the dac_sl=
-ot will
-> be same.
-
-No, the machine driver should be configuring different TDM slots for
-each device - that's the whole point of the API.
-
-> > > +		ret =3D clk_prepare_enable(es8389->mclk);
-> > > +		if (ret) {
-> > > +			dev_err(codec->dev, "%s, unable to enable mclk\n", __func__);
-> > > +			return ret;
-> > > +		}
-> > > +	}
-
-> > Making the use of a MCLK depend on the configuration of a TDM slot for
-> > the ADC seems *very* unusual, what's going on there?
-
-> Because we are associating multiple codecs under a single dai_link, we wi=
-ll be
-> executing probe and init many times during initialization.But MCLK only n=
-eeds
-> to be used once.So we decided making the use of a MCLK depend on the conf=
-iguration
-> of a TDM slot for the ADC=20
-
-No, each device should just get and enable the MCLK itself - the clock
-API does reference counting so there's no problem with this, it's normal
-for a clok to have multiple consumers.
-
---odRdCbb20AVtN+qv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfITHAACgkQJNaLcl1U
-h9DKdgf/dA3DFm9sVUPZw2kDFYD0y+gP8Zdn23GsRYrB8PFUCETklJpv8/5dVyqO
-IMfmmCdh7iNUgqPOnYSD3Xc9td9gAaiNN6Bn23fe2bMaLqfRw9Nu5evZsag/LM1I
-K+b4s2MvX7N0hR3AGPvyiqerfOMT1BQaC7PILBIPIVfVx6KlIqNYgc1F/c8qNhg4
-6TYrGVhzrGfQ8UCDKv06o7Kf4UI12yoT14700f5bii1mz7fSqnExlQbXo6sExsib
-aCkrak88ekZCVHdtP9wWZ3ZFtr8A9lE/cimo3C5KfYbLFssfUMvv7zLUBwbQF62x
-C9jHK18q3PotRcMDmoJJrr593qrHKQ==
-=U/iY
------END PGP SIGNATURE-----
-
---odRdCbb20AVtN+qv--
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Slew rate ot the output pads DOUT[7:0], LINE_VALID, FRAME_VALID and
+> +      PIXCLK. Higher values imply steeper voltage-flanks on the pads.
+> +    minimum: 0
+> +    maximum: 7
+> +    default: 7
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.34.1
+> 
 
