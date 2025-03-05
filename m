@@ -1,139 +1,241 @@
-Return-Path: <devicetree+bounces-154584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF367A50C99
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:34:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9258BA50C9E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:37:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DDDF188821D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 20:34:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 430943A9708
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 20:37:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DA7253344;
-	Wed,  5 Mar 2025 20:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67731253B5F;
+	Wed,  5 Mar 2025 20:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="igia4iXS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S9e/BATt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABE01DD543;
-	Wed,  5 Mar 2025 20:34:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343BB134CF;
+	Wed,  5 Mar 2025 20:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741206846; cv=none; b=cvWqgWnU4V2B4qJNEWw0/g2LoJsy+ajORO8e2W1YtTwE5/MPTt3SbvPFypNRjpl7ck2zhhRv8zsB33ebELbRl+ysHSe7eZup+wrRbyqfYaC452MHK94a2TnzZqobfAFwjCaZ5grKZcTuD5EthLOEoc66eT1Nu4FsD0jlFoEytGE=
+	t=1741207039; cv=none; b=udTVjwBWpTwuSNzCabqlRC0/xESMgYDNoaFUcoH+rLbI4F2AlKNbweleeIP4JMfogyc9OVpPJm7RMjthnG1gaXCv+Nn2SKDicw/7vBuJFJhUF5KYOIRV+xJdkGOEudvkF+wF15jxCQcwJEB27T3DcVFZhwoubvZFdOevWN2GYuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741206846; c=relaxed/simple;
-	bh=pnPnl0Y7Hh2+wMBdn/c6Xp+d9j2XPjWTAzEbuMwtIyQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gtu5Ou6zkfEYYmUbca9eyCli2+fi8gdQos4qwGND62JBAQHxMGS2k8jPVSTJ+mO+xsjflrQV0fhkzigfWsILoEkD/RnA2/mO0pQ6v+h4Obp4+yKxnycK8XusdM8NIoHLIT4edZp90maNh+gU7JBfGFCn6JRrJHwDx+40aUaiCII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=igia4iXS; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741206845; x=1772742845;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pnPnl0Y7Hh2+wMBdn/c6Xp+d9j2XPjWTAzEbuMwtIyQ=;
-  b=igia4iXSqZGIbtTSOY0NkIClzEnwgQj7JFwUAFNJLheINK3BoJpsOk3e
-   xeUsF1d/UH8I+1fW5GuTZnywDkSkKQj/09Q9Jd57GYSg1CRGzgDkTAiC3
-   l7JovSu5jzFTp7O1Vf9Kt9x35Gn7VFB3i1GUxLEiDeJ6rQ+YxdrWhGllU
-   IWzK6ROOWCJImTuDwLjOVQd0kF1nVq67ClI+Q7SUNfDMFeBb1ncrP1C/g
-   vOdXdOHcpEVkaY4QWWFjdf9Jch6aw7YVOJ73zrdMHaQwceuwrgY7u+Lf0
-   1WJpGurzC4j8ZeAuRDOutfjQxhKwQFtAiaqLCxVQvt/zIhzR17444pgdj
-   w==;
-X-CSE-ConnectionGUID: Dzb+0mNSQHSgipPxEnKt2A==
-X-CSE-MsgGUID: PQ/vQzIkQ9i4zpxYDrpRDg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42390886"
-X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; 
-   d="scan'208";a="42390886"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 12:34:04 -0800
-X-CSE-ConnectionGUID: UwSLidiaRdeam5BscguJxg==
-X-CSE-MsgGUID: 6jagxbcLR+29I2UWtemHFw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="118723547"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by orviesa010.jf.intel.com with ESMTP; 05 Mar 2025 12:33:59 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tpvRE-000MB4-2T;
-	Wed, 05 Mar 2025 20:33:56 +0000
-Date: Thu, 6 Mar 2025 04:33:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-rtc@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Inochi Amaoto <inochiama@gmail.com>, dlan@gentoo.org,
-	linux-kernel@vger.kernel.org,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	sophgo@lists.linux.dev
-Subject: Re: [PATCH v12 2/3] mfd: sophgo: cv1800: rtcsys: New driver
- (handling RTC only)
-Message-ID: <202503060435.1c1akI1Q-lkp@intel.com>
-References: <20250302195205.3183174-3-alexander.sverdlin@gmail.com>
+	s=arc-20240116; t=1741207039; c=relaxed/simple;
+	bh=kc8GnKy2/k0p40SmNBMlY8YXsE2cIHImyde1WkmdQgk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=XlcSY/QXWLn1bHef3Urz1o5Ogwh/MyVc4I5zVr2VECFOJoGn+H9WW9DNgZJCdI3Y7MLIAdXqHvc7TjQe9PYNA1FFmmthyU6a/OGFLANqqLAM4tHhC1/N3T8xSP+t7aPkG/SGG28ZQeBKnlfaCP5jLi43HuNclgkwuFp+oj/KfTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S9e/BATt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AFFBC4CED1;
+	Wed,  5 Mar 2025 20:37:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741207037;
+	bh=kc8GnKy2/k0p40SmNBMlY8YXsE2cIHImyde1WkmdQgk=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=S9e/BATt0zrHcP3OeKno3G5WCfyLYnsSZ9kd4u0NuysbnHADrvKJHWTt1fYBwH89g
+	 opw0tBV7p3BurcsIYO2FkQTFc1FJ5T0r+b5OQx1fi2PRxH5zbr98B2pEXoWqdNw2tE
+	 KMxERN6wJMzhPT+mQoUKpY7tQl0zq6bkepCOdR9ZYL7DTrPIjbct7Yjl6IaM8hi9wo
+	 RaAuULk794YvF/aS3NSv0vvnlBLnaQzcq6ui6DL36oFxaIAeYoB62OWQN8gStp/nc1
+	 /IElfEfhDDDl8tFlTIhUWZLV5jCU6bOUAJUiOzeoInmg9siTjibZQiqLO5NwyqBgJG
+	 MuD6lyhf4j/8g==
+Message-ID: <aacbf2c0-1fda-4ce6-a04b-69663a34f0a0@kernel.org>
+Date: Wed, 5 Mar 2025 21:37:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250302195205.3183174-3-alexander.sverdlin@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] clk: samsung: add initial exynos7870 clock driver
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Conor Dooley <conor+dt@kernel.org>,
+ Kaustabh Chakraborty <kauschluss@disroot.org>,
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250301-exynos7870-pmu-clocks-v5-0-715b646d5206@disroot.org>
+ <20250301-exynos7870-pmu-clocks-v5-2-715b646d5206@disroot.org>
+ <b4fb36bc3970293ebdf1ac793bb3d752.sboyd@kernel.org>
+ <0a7c72cb-4b59-4146-8438-52d13b457a18@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <0a7c72cb-4b59-4146-8438-52d13b457a18@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Alexander,
+On 05/03/2025 21:14, Krzysztof Kozlowski wrote:
+> On 04/03/2025 19:16, Stephen Boyd wrote:
+>> Quoting Kaustabh Chakraborty (2025-02-28 19:57:13)
+>>> diff --git a/drivers/clk/samsung/clk-exynos7870.c b/drivers/clk/samsung/clk-exynos7870.c
+>>> new file mode 100644
+>>> index 0000000000000000000000000000000000000000..2ec4a4e489be30bd1cd2e6deac006bb8ac5bdc57
+>>> --- /dev/null
+>>> +++ b/drivers/clk/samsung/clk-exynos7870.c
+>>> @@ -0,0 +1,1830 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/*
+>>> + * Copyright (C) 2015 Samsung Electronics Co., Ltd.
+>>> + * Author: Kaustabh Chakraborty <kauschluss@disroot.org>
+>>> + *
+>>> + * Common Clock Framework support for Exynos7870.
+>>> + */
+>>> +
+>>> +#include <linux/clk.h>
+>>
+>> Please remove this include as this is a clk provider and not a clk
+>> consumer.
+> 
+> 
+> I fixed it up for all drivers.
+> 
+>>
+>>> +#include <linux/clk-provider.h>
+>>> +#include <linux/of.h>
+>>> +#include <linux/of_device.h>
+>>> +#include <linux/platform_device.h>
+>>> +
+>>> +#include <dt-bindings/clock/samsung,exynos7870-cmu.h>
+>>> +
+>>> +#include "clk.h"
+>>> +#include "clk-exynos-arm64.h"
+>>> +
+>>> +/*
+>>> + * Register offsets for CMU_MIF (0x10460000)
+>>> + */
+>> [...]
+>>> +
+>>> +static const struct samsung_cmu_info peri_cmu_info __initconst = {
+>>> +       .gate_clks              = peri_gate_clks,
+>>> +       .nr_gate_clks           = ARRAY_SIZE(peri_gate_clks),
+>>> +       .clk_regs               = peri_clk_regs,
+>>> +       .nr_clk_regs            = ARRAY_SIZE(peri_clk_regs),
+>>> +       .nr_clk_ids             = PERI_NR_CLK,
+>>> +};
+>>> +
+>>> +static int __init exynos7870_cmu_probe(struct platform_device *pdev)
+>>> +{
+>>> +       const struct samsung_cmu_info *info;
+>>> +       struct device *dev = &pdev->dev;
+>>> +
+>>> +       info = of_device_get_match_data(dev);
+>>
+>> Use device APIs please: device_get_match_data()
+> 
+> 
+> I expect here a follow up patch.
+> 
+>>
+>>> +       exynos_arm64_register_cmu(dev, dev->of_node, info);
+>>> +
+>>> +       return 0;
+>>> +}
+>>> +
+>>> +static const struct of_device_id exynos7870_cmu_of_match[] = {
+>>> +       {
+>>> +               .compatible = "samsung,exynos7870-cmu-mif",
+>>> +               .data = &mif_cmu_info,
+>>> +       }, {
+>>> +               .compatible = "samsung,exynos7870-cmu-dispaud",
+>>> +               .data = &dispaud_cmu_info,
+>>> +       }, {
+>>> +               .compatible = "samsung,exynos7870-cmu-fsys",
+>>> +               .data = &fsys_cmu_info,
+>>> +       }, {
+>>> +               .compatible = "samsung,exynos7870-cmu-g3d",
+>>> +               .data = &g3d_cmu_info,
+>>> +       }, {
+>>> +               .compatible = "samsung,exynos7870-cmu-isp",
+>>> +               .data = &isp_cmu_info,
+>>> +       }, {
+>>> +               .compatible = "samsung,exynos7870-cmu-mfcmscl",
+>>> +               .data = &mfcmscl_cmu_info,
+>>> +       }, {
+>>> +               .compatible = "samsung,exynos7870-cmu-peri",
+>>> +               .data = &peri_cmu_info,
+>>> +       }, {
+>>> +       },
+>>> +};
+>>> +
+>>> +static struct platform_driver exynos7870_cmu_driver __refdata = {
+>>
+>> Having __refdata here looks wrong.
+>>
+>>> +       .driver = {
+>>> +               .name = "exynos7870-cmu",
+>>> +               .of_match_table = exynos7870_cmu_of_match,
+>>> +               .suppress_bind_attrs = true,
+>>> +       },
+>>> +       .probe = exynos7870_cmu_probe,
+>>> +};
+>>> +
+>>> +static int __init exynos7870_cmu_init(void)
+>>> +{
+>>> +       return platform_driver_register(&exynos7870_cmu_driver);
+>>
+>> Is this supposed to be platform_driver_probe()? All the __init markings
+>> in the samsung clk driver look like potential problems if anything
+>> defers or is made into a module.
+> 
+> Indeed code is confusing but still correct. This is called from
+> core_initcall and nothing referencing __init/refdata can defer nor be a
+> module. There are modules but, AFAIR, they don't use __init/__refdata.
+> 
+> The __refdata here was probably so this can reference __initconst in
+> other places.
+> 
+> As you pointed out, probably the correct solution is to use
+> platform_driver_probe().
+I'll fix this and existing drivers.
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on abelloni/rtc-next linus/master lee-mfd/for-mfd-fixes v6.14-rc5 next-20250305]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexander-Sverdlin/dt-bindings-mfd-sophgo-add-RTC-support-for-Sophgo-CV1800-series-SoC/20250303-035433
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20250302195205.3183174-3-alexander.sverdlin%40gmail.com
-patch subject: [PATCH v12 2/3] mfd: sophgo: cv1800: rtcsys: New driver (handling RTC only)
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20250306/202503060435.1c1akI1Q-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250306/202503060435.1c1akI1Q-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503060435.1c1akI1Q-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/mfd/cv1800-rtcsys.c:30:30: warning: unused variable 'cv1800_rtcsys_rtc_subdev' [-Wunused-const-variable]
-      30 | static const struct mfd_cell cv1800_rtcsys_rtc_subdev =
-         |                              ^~~~~~~~~~~~~~~~~~~~~~~~
-   1 warning generated.
-
-
-vim +/cv1800_rtcsys_rtc_subdev +30 drivers/mfd/cv1800-rtcsys.c
-
-    29	
-  > 30	static const struct mfd_cell cv1800_rtcsys_rtc_subdev =
-    31		MFD_CELL_NAME("cv1800-rtc");
-    32	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Krzysztof
 
