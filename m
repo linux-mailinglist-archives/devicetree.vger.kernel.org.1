@@ -1,128 +1,172 @@
-Return-Path: <devicetree+bounces-154360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD43A4FCB6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:50:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25614A4FCBD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:51:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC11A3B10BD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:48:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9AF11703AE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D0E214215;
-	Wed,  5 Mar 2025 10:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A002144D5;
+	Wed,  5 Mar 2025 10:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WGIN5YK+"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="hV3BorJw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5881FBEA6;
-	Wed,  5 Mar 2025 10:47:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F391220B7E7;
+	Wed,  5 Mar 2025 10:49:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741171645; cv=none; b=A0wjVK01/XVgfwOi3YWurpzKhD19pe1rZXXE618eWTHzj1tT/ca5q0G0jaWK+daPPiGQYYHgsh2chRChdXadZksbz2z+iJWDXwLaKx3KB6NV7WDQOmF9cNacEka1UVYMVHrf0lVpzlJyqdDszBUPOSV/TEc1FqrtxJLqpthw978=
+	t=1741171796; cv=none; b=bKieDIhYLKTOf9yIugP0gDwMPNw/2mYwm5zRBojESnDJytrPgcXZphO7OCk4bbnBRTDWD5KjgbUIOvEkyPxCLWizqx+YrzcpHuq1Bsz6VD/7CP7NeXMxzDBPUM08uHhJR+xoCYLd8rkoVt9xIjxcWqzfmjEup6x1xxe+7gxrfZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741171645; c=relaxed/simple;
-	bh=UWZD1uJYcxYoUdXpa+LU3Lmk9/jwAXhWGiSry/q8qSw=;
+	s=arc-20240116; t=1741171796; c=relaxed/simple;
+	bh=UT5t5cKf18CdLlG0v7nt8XdrJciuVrvT8/nabp56tK4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nWf91hR5e9Nt1nYclXphDvz2S/TKRqNC8MOl6zDTUlju7Z+c3j2REhoeaM5HPAdsswtY+Ao2pdGdRLMcO3vA3xsW2NoDVuIISTYOixRFc9SXPm0hrwZwP+zgYhAU+QvWdc6BJrrCFgglR5yHEDX36hAEnyE2Tzep6oc4zUAmqp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WGIN5YK+; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741171643; x=1772707643;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UWZD1uJYcxYoUdXpa+LU3Lmk9/jwAXhWGiSry/q8qSw=;
-  b=WGIN5YK+71oXoHVe02TEsrtuvjYaO4VP/KkZs7RcApmeBZWgDcqBrOmq
-   I5odh6aLGLrDyVWzZ1utocTQtlZ8H9QCLgjN6Z+APjUP2+i1GqVlhPSpE
-   JFBk20bYemxOXdOUn5xxoLsxhGFU6c2+yq2qXDOHLsMbtkA3CE79nGfFd
-   pW4XEsIOEK7030jey1LEoSfIN4GrJjh5S1NLVmt4voCd5nuOlrCilcKP7
-   sic3KZWVX/HW4Cus7HwQLFT6lRb/4D46e9fw3YH70aypac1kuPm8Efwyw
-   jxnAOCJFepBapti57nnvYvjM1fmr54ZJh21JIATXrcZaok25hZrtaqvMI
-   w==;
-X-CSE-ConnectionGUID: dL/C8xPjTaOsttHdd8NCKQ==
-X-CSE-MsgGUID: a0HxiHTvR8GZFfV0z0G/5Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="67496838"
-X-IronPort-AV: E=Sophos;i="6.14,222,1736841600"; 
-   d="scan'208";a="67496838"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 02:47:22 -0800
-X-CSE-ConnectionGUID: f+GAgpAJQRKlq/MjDfgmwQ==
-X-CSE-MsgGUID: le6KLnbFQ9OL5Wk3bkAIRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,222,1736841600"; 
-   d="scan'208";a="118482708"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 02:47:18 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tpmHT-0000000HO5v-1wQx;
-	Wed, 05 Mar 2025 12:47:15 +0200
-Date: Wed, 5 Mar 2025 12:47:15 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, linux-wpan@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=hvsQAYz6iVo7lHPbccmqVMMz85KR+n4XOFAdG4sXmAktnHHAVAH9C5XFykPW97YPcHmu6uE4LmKq8gVVVoyvzVHi8N/GrRMZX2ZLba7L6o3/qZwFfGgFWVHKj8TgyPqoqaSeyhkFs/A50PWo7VZyTnOpG59ZyGugbC2iD9s4e50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=hV3BorJw; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 09A8B2026E;
+	Wed,  5 Mar 2025 11:49:45 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id AvyoDwTIs3tR; Wed,  5 Mar 2025 11:49:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1741171784; bh=UT5t5cKf18CdLlG0v7nt8XdrJciuVrvT8/nabp56tK4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=hV3BorJwYoE13cl35C7YCol2tfRnljeZvqKhzt+XpD0CAmG+tdRxaNJ9nniIDL62w
+	 Q+qx6Z/AuWBqSKQuz8YW7ya4O+anACfd1937x6bQDqGOFNBzcSHpqdEQICG8tInvyH
+	 bIpHKcCIFIubZS2n1U5bGC9FKaUupPgoc++iIhMTCkG83hWrC0N/hRxd5LjNAbT9hM
+	 DZ9ee0boow8/b/1Ng5rWTYa3aG3mW6yqlIMLdyU4ckOU/h85w6heOv+9nEJdRGSndP
+	 zxmwNxvibzGEGcBcK33uJZbMqO9foC9JhSFgCQHXdim6ldgoRuCQswkFOtolLggMHX
+	 M/L8+zNE9m14A==
+Date: Wed, 5 Mar 2025 10:49:21 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Alexander Aring <alex.aring@gmail.com>,
-	Stefan Schmidt <stefan@datenfreihafen.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH net-next v3 3/3] ieee802154: ca8210: Switch to using
- gpiod API
-Message-ID: <Z8grs3uva8j2qrKP@smile.fi.intel.com>
-References: <20250304112418.1774869-1-andriy.shevchenko@linux.intel.com>
- <20250304112418.1774869-4-andriy.shevchenko@linux.intel.com>
- <20250305-rebel-mysterious-falcon-de1f7d@krzk-bin>
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH 6/8] clk: rockchip: rk3528: Add SD/SDIO tuning clocks in
+ GRF region
+Message-ID: <Z8gsGlZ7GgNF-zoc@pie.lan>
+References: <20250301104250.36295-1-ziyao@disroot.org>
+ <20250301104724.36399-1-ziyao@disroot.org>
+ <2583035.OBFZWjSADL@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250305-rebel-mysterious-falcon-de1f7d@krzk-bin>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2583035.OBFZWjSADL@diego>
 
-On Wed, Mar 05, 2025 at 08:04:17AM +0100, Krzysztof Kozlowski wrote:
-> On Tue, Mar 04, 2025 at 01:22:34PM +0200, Andy Shevchenko wrote:
-> > This updates the driver to gpiod API, and removes yet another use of
-> > of_get_named_gpio().
-> > 
-> > With this, invert the logic of the reset pin which is active low
-> > and add a quirk for the legacy and incorrect device tree descriptions.
-> > 
-> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > ---
-> >  .../bindings/net/ieee802154/ca8210.txt        |  2 +-
+On Wed, Mar 05, 2025 at 11:21:48AM +0100, Heiko Stübner wrote:
+> Hi,
 > 
-> Bindings are always separate patches.
+> Am Samstag, 1. März 2025, 11:47:24 MEZ schrieb Yao Zi:
+> > These clocks locate in VO and VPU GRF, serving for SD/SDIO controller
+> > tuning purpose. Add their definitions and register them in driver if
+> > corresponding GRF is available.
+> 
+> (no critique, just an observation :-) )
+> 
+> this puts a completely new meaning on the "general register files"
+> as dumping ground ;-) .
+> 
+> Whoever got the idea of making sdmm/sdio tuning controls part
+> of GRFs that are supposed display and/or video encoder parts :-D
 
-Okay.
+Yes, the register layout is quite weird. Additionally some USB2 phy
+registers locate in VO GRF as well...
 
-> Please run scripts/checkpatch.pl and fix reported warnings.
-> After that,
-> run also 'scripts/checkpatch.pl --strict' and (probably) fix more
-> warnings. Some warnings can be ignored, especially from --strict run,
-> but the code here looks like it needs a fix. Feel free to get in touch
-> if the warning is not clear.
+> 
+> > GRFs are looked up by compatible to simplify devicetree binding.
+> > 
+> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > ---
+> 
+> >  static int __init clk_rk3528_probe(struct platform_device *pdev)
+> >  {
+> > +	unsigned long nr_vpu_branches = ARRAY_SIZE(rk3528_vpu_clk_branches);
+> > +	unsigned long nr_vo_branches = ARRAY_SIZE(rk3528_vo_clk_branches);
+> > +	unsigned long nr_branches = ARRAY_SIZE(rk3528_clk_branches);
+> >  	struct rockchip_clk_provider *ctx;
+> >  	struct device *dev = &pdev->dev;
+> >  	struct device_node *np = dev->of_node;
+> > -	unsigned long nr_branches = ARRAY_SIZE(rk3528_clk_branches);
+> > -	unsigned long nr_clks;
+> > +	struct regmap *vo_grf, *vpu_grf;
+> >  	void __iomem *reg_base;
+> > -
+> > -	nr_clks = rockchip_clk_find_max_clk_id(rk3528_clk_branches,
+> > -					       nr_branches) + 1;
+> > +	unsigned long nr_clks;
+> >  
+> >  	reg_base = devm_platform_ioremap_resource(pdev, 0);
+> >  	if (IS_ERR(reg_base))
+> >  		return dev_err_probe(dev, PTR_ERR(reg_base),
+> >  				     "could not map cru region");
+> >  
+> > +	nr_clks = rockchip_clk_find_max_clk_id(rk3528_clk_branches,
+> > +					       nr_branches) + 1;
+> > +
+> > +	vo_grf = syscon_regmap_lookup_by_compatible("rockchip,rk3528-vo-grf");
+> > +	if (!IS_ERR(vo_grf))
+> 
+> for readability, please make this into something like
+> 	if (!IS_ERR(vo_grf)) {
+> 		nr_vo_clks = rockchip_clk_find_max_clk_id(rk3528_vo_clk_branches,
+> 							   nr_vo_branches) + 1;
+> 		nr_clks = max(nr_vo_clks, nr_clks);
+> 	}
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks for the suggestion, will take it.
 
+> > +	else if (PTR_ERR(vo_grf) != ENODEV)
+> > +		return dev_err_probe(dev, PTR_ERR(vo_grf),
+> > +				     "failed to look up VO GRF\n");
+> > +
+> > +	vpu_grf = syscon_regmap_lookup_by_compatible("rockchip,rk3528-vpu-grf");
+> > +	if (!IS_ERR(vpu_grf))
+> > +		nr_clks = MAX(rockchip_clk_find_max_clk_id(rk3528_vpu_clk_branches,
+> > +							   nr_vpu_branches) + 1,
+> > +			      nr_clks);
+> 
+> same here please
+> 
+> > +	else if (PTR_ERR(vpu_grf) != ENODEV)
+> > +		return dev_err_probe(dev, PTR_ERR(vpu_grf),
+> > +				     "failed to look up VPU GRF\n");
+> > +
+> >  	ctx = rockchip_clk_init(np, reg_base, nr_clks);
+> >  	if (IS_ERR(ctx))
+> >  		return dev_err_probe(dev, PTR_ERR(ctx),
+> 
+> Thanks
+> Heiko
+> 
 
+Cheers,
+Yao Zi
 
