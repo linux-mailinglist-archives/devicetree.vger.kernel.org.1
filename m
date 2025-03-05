@@ -1,118 +1,122 @@
-Return-Path: <devicetree+bounces-154332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF70A4FB11
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:03:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B803A4FB1C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:04:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E655D188B09A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:03:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89D83171454
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69EB220551D;
-	Wed,  5 Mar 2025 10:02:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3165206F13;
+	Wed,  5 Mar 2025 10:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="mJwfWkV2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LaDPFs9w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7AC205E09;
-	Wed,  5 Mar 2025 10:02:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB43C205AD4;
+	Wed,  5 Mar 2025 10:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741168942; cv=none; b=UYLK0aMg2nQceQEO4+6/fA455bkRrySfqQZPM43+8sXODHrzvTL4xlvFp2A8qm2fUxLY1h3akRfWv8GdZUFhZjb1u0QzMyctrOim3AfYhtJOH3Mvue9fn7IRrnVIwOLW24xCwR/IU0wJeIhpXUq2K+j1xn1VEMykQI0Xq5CxhBY=
+	t=1741168979; cv=none; b=fxRNV+qz8sqdjanGg3hNHYD+p+NpfC5YUW/jh0Y6xxM36EQMdXG7Rz3ilH6dDhgNlsRuaPldRU5CG4lyxjilKDvwmgG6xiZds4rSRc5iIfRWgrHTqIXz9V0b8RRUnBq+iqNjEwipesWn5JiCgZYCIjK/816GYrswqqiTh7RlJV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741168942; c=relaxed/simple;
-	bh=4JCFsrT2zb8UXbPhImj5AFIqomJ1rAKZQeo0+RoriJU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mcCEIoJ5to284x0PoUZNyNcQIsjae94XcZLi0GJUYgfIVoBZ22j51uyoCQMwq66NFQbhArTePs7niV+LfedFMXFGL0DoIy2uLTnx01kUoo/DW4nLQFTua0/YnMJuL40j60oZXoKSgBlO3nRx+Htq2yk7eMyqbwBsIQoYOrHE+U8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=mJwfWkV2; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1741168941; x=1772704941;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=4JCFsrT2zb8UXbPhImj5AFIqomJ1rAKZQeo0+RoriJU=;
-  b=mJwfWkV2O5yozJu/5thc/d4QVXOy7TEq58j2MUQBBb0r3mkDhUfqI5iV
-   9gPUquBuVSZ5fINhD7Jf1POocwAwC35MDnFkoLzwsMzKVJe62EWSPaxBG
-   DyCKmFFWjGyNCufILYh+OjYx/3QlGGoMwj/3+uoVdTflODLX6H9cdT6QO
-   Cp5Fw+u5whUcJRYvk+JLRFVeO0x540rie/EBjmVV8FZC9p2W+tivQiNCr
-   FAQ6QW+ccyAY8fo88LejYGZzrgrdASlydKWG+OarUw0SyfbeBbBNYnRhD
-   /aP5OkwAA/2SLZfBIcrH0Tlny9bExLYYRd7wV4dbqBTggGIo+f6zL+ZUs
-   g==;
-X-CSE-ConnectionGUID: RIEadWJlSxmIHHqHflXrKA==
-X-CSE-MsgGUID: W7gZ41UASgOJJTu0KDXMpA==
-X-IronPort-AV: E=Sophos;i="6.14,222,1736838000"; 
-   d="scan'208";a="38444126"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Mar 2025 03:02:20 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 5 Mar 2025 03:02:12 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Wed, 5 Mar 2025 03:02:05 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <tudor.ambarus@linaro.org>,
-	<pratyush@kernel.org>, <mwalle@kernel.org>, <miquel.raynal@bootlin.com>,
-	<richard@nod.at>, <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-mtd@lists.infradead.org>
-CC: <manikandan.m@microchip.com>
-Subject: [PATCH 2/2] ARM: dts: microchip: sama5d29_curiosity: Add nvmem-layout in QSPI to describe EUI48 MAC address region
-Date: Wed, 5 Mar 2025 15:31:34 +0530
-Message-ID: <20250305100134.1171124-2-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250305100134.1171124-1-manikandan.m@microchip.com>
-References: <20250305100134.1171124-1-manikandan.m@microchip.com>
+	s=arc-20240116; t=1741168979; c=relaxed/simple;
+	bh=1g440IuVdvferMaa49XKcEufmSsf3xpIra5Mss3ih/M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e42PyuDvMhbwRE+oXXUcBP7JoqcoIo0W+Qo9QilmJES8P/bhW6FzaWgpL/y2cXEK1gmQJ5St3KMkDdcD6MQiw8PB6Gr290seXBpOnvMClv+2uBZ9FmT0spkb6Ed+PYxJIglb4P0ugma7L27XdQgm3YYvgt5e9BP7mFY1fR9dCUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LaDPFs9w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1EAC5C4CEE8;
+	Wed,  5 Mar 2025 10:02:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741168979;
+	bh=1g440IuVdvferMaa49XKcEufmSsf3xpIra5Mss3ih/M=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=LaDPFs9wiyXd+cQgs4520fdnBGhhAjV20d6LnUj+PqKEniG1pw4GarBt2FldqrVQJ
+	 +lYJPOEccq9GFKKadnvVMW87DwwQUPRnyko2hzfautgdcM6tLp3ZdJbEVAMKb/D1/f
+	 aa6Yem9sqmNQGSZZ1DCQB5Qj5XUYjare8q+lfKv/QqktC1fxnw3/X3iPuSXk3EP/Lz
+	 hAGJ1C2jsqJCkx40nqjzgfBnqfUkqnl8cJfuiX+qbXHXFzAweh/19tMd76k+89DGgE
+	 0DiWy3DKpLMJSVdSFqVLSO22IDRPoayv0WWi6Y0xFimC4JmSa35fYx2UePIB4dNp2n
+	 iAj8ZMXneFh+g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05484C282DC;
+	Wed,  5 Mar 2025 10:02:59 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/4] Add GPIO interrupt support for Amlogic A4 and A5
+ SoCs
+Date: Wed, 05 Mar 2025 18:02:55 +0800
+Message-Id: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFAhyGcC/23NQQ6CMBCF4auQrh3Tlg5BV97DuChDgUnEYmsaD
+ eHuFlaasPxfMt/MIrrALopzMYvgEkf2jxzloRA02EfvgNvcQkttlFYlcHjSwBP0E3uwBixCLQm
+ lVQYrMiIfTsF1/N7Q6y33wPHlw2f7kdS6rhxKrU57XFIgoaTaGWOd0W13sePd90xH8qNYwaR/E
+ F3tIjojhNgoiZIaxH9kWZYvB3S4ZfsAAAA=
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Heiner Kallweit <hkallweit1@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741168977; l=1486;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=1g440IuVdvferMaa49XKcEufmSsf3xpIra5Mss3ih/M=;
+ b=v148/pWMVfxrubeqy83sCyRkyelbM2gzK8tehnIW/gbWJObeuEoCq0Zbc/PIJGm6f6FC/EJx/
+ AAG597zMpDNCrYpX6lGmZxdULCQv8lP/YooM/tKmazoT/14nKoPXuVZ
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Add nvmem-layout in QSPI to describe EUI48 MAC address region.
-This is useful for cases where U-Boot is skipped and the Ethernet
-MAC address is needed to be configured in Linux.
+This patch adds GPIO interrupt support for Amlogic A4 and A5 SoCs
 
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- .../arm/boot/dts/microchip/at91-sama5d29_curiosity.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Changes in v3:
+- Fix warning when run 'make ARCH=arm64 dtbs_check'.
+- Fix warning when run 'make ARCH=arm64 Image W=1'.
+- Rebase file amlogic-a4.dtsi.
+- Link to v2: https://lore.kernel.org/r/20250226-irqchip-gpio-a4-a5-v2-0-c55b1050cb55@amlogic.com
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-index 7be215781549..81aca8502195 100644
---- a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-@@ -480,6 +480,16 @@ flash@0 {
- 		label = "atmel_qspi1";
- 		status = "okay";
- 
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			mac_address_eui48: mac-address@261 {
-+				reg = <0x261 0x6>;
-+			};
-+		};
-+
- 		at91bootstrap@0 {
- 			label = "at91bootstrap";
- 			reg = <0x0 0x40000>;
+Changes in v2:
+- Use if/then instead of direct modification minimum value for property 'amlogic,channel-interrupts'.
+- Add register offsets to the parameter structure to reduce definition of a function.
+- Link to v1: https://lore.kernel.org/r/20250219-irqchip-gpio-a4-a5-v1-0-3c8e44ae42df@amlogic.com
+
+---
+Xianwei Zhao (4):
+      dt-bindings: interrupt-controller: Add support for Amlogic A4 and A5 SoCs
+      irqchip: Add support for Amlogic A4 and A5 SoCs
+      arm64: dts: Add gpio_intc node for Amlogic A4 SoCs
+      arm64: dts: Add gpio_intc node for Amlogic A5 SoCs
+
+ .../amlogic,meson-gpio-intc.yaml                   | 21 ++++++++++--
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 19 ++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 12 +++++++
+ drivers/irqchip/irq-meson-gpio.c                   | 40 +++++++++++++++++++---
+ 4 files changed, 85 insertions(+), 7 deletions(-)
+---
+base-commit: 73e4ffb27bb8a093d557bb2dac1a271474cca99c
+change-id: 20241213-irqchip-gpio-a4-a5-80c50a1456c4
+
+Best regards,
 -- 
-2.25.1
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
