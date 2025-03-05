@@ -1,393 +1,211 @@
-Return-Path: <devicetree+bounces-154428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE3DA500FC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:47:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE3FA500CE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B4F31896173
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:46:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B8127A66D2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:42:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9AA24CEC2;
-	Wed,  5 Mar 2025 13:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A2F248890;
+	Wed,  5 Mar 2025 13:43:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="nRJ2lW8q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from riemann.telenet-ops.be (riemann.telenet-ops.be [195.130.137.80])
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10olkn2014.outbound.protection.outlook.com [40.92.40.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F864241CA0
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 13:44:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.80
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741182247; cv=none; b=KhnYE1FPSgyNVfcTpNVV42A+LuUtzZy5OX0f8IC4ipixhmuOK3C+cV+UFAXEkwDJ5HE681LnwET8MYoPweYWmoXEXXtv762W8aR5dokX/Fh5E1QBgRgEp7rH3M2WoPmNh4A7Lpv3C3wukZnF+Cbk8+a4p6RIbfHeEvlStTBFmcg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741182247; c=relaxed/simple;
-	bh=qgagCWP0AByktZ7QKcVCUOvAmGy3T+619wWJGYwW6v8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=q05c78M5Y515SSjnE0v/qpUArEI4qYtS7JzBEOcM/WunB7zv6EEV0My9IXb79a20Vb8duUp6CSU2Xfdj11u0CPs+0o1Faha80OT0t3EXf/lNY0nwwHjNybKxlcYwNLA2FJzJ/2LFe4FoPNTqtYzQ3PGzboHOafceNnovEylyBwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-	by riemann.telenet-ops.be (Postfix) with ESMTPS id 4Z7D6l174tz4wxPc
-	for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 14:34:23 +0100 (CET)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:fba:8cad:3d23:9db3])
-	by xavier.telenet-ops.be with cmsmtp
-	id M1aJ2E00L0exi8p011aJlp; Wed, 05 Mar 2025 14:34:22 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1tposn-0000000Cv4F-1kOZ;
-	Wed, 05 Mar 2025 14:34:18 +0100
-Received: from geert by rox.of.borg with local (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1tpot8-00000008woo-2Ewn;
-	Wed, 05 Mar 2025 14:34:18 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-scsi@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BC1C2ED;
+	Wed,  5 Mar 2025 13:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.40.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741182181; cv=fail; b=V/+MeRsfQuaVs6TZUjIdtC3/6FDdNqWlwtGK7obadefx9bRnv86oFjtxFS1GNU+PmqkJ07+XddYkhNNquzGsMOAQ3sdnDWwWoXboU56rIKi6cT3ZbVRLN04G7Fe2yb93647dAGasAxgLvDnqKwFe7QKRZ8gIGdpYx6C/X0XOxig=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741182181; c=relaxed/simple;
+	bh=1tTBZun0tEJn+W/regELtZV84Bs7DVFwAJXUXNhBMLI=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=bfS6JlGJF6VT9Os5nHirtADP4yFMLmQXXNrqZs4ljlKnDgPWjXmSkcifbw/Z490UedSNGSIdrpi6F17Oa2P29//3ON1q3ELIVDJ5wH1OlE4DPh3YtpmG2Sv/IhN7ogdoQ+RM0pSt4EE54F05J2qJXjtTHdP+YwDPca8eZmWHKaE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=nRJ2lW8q; arc=fail smtp.client-ip=40.92.40.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ud3+XplZdtV9q54xWnbRAr/xr128Tzb/vG1y1BRFe/WSL4C6P19u6zP4gDZKTzqbdSo0J3exRFEfnLlKHdIrO30mAslsdfAUGV4uU+pae73tN9L3K7Y2LaP1HwGUbBeVycfhWChnhRSZH1RS2qxHIsmd7416+88ZEjfxXeWV6d3iGlcEHKHLQW0u7XkfZDaOoWHY4cteecaEV8YoILC2EgXkjFMo2RKNLDGvUQSGuYfm/qG6r6iyAfBh2k04kkTU0LiqjtPJ25n5fptCd+ZAZvt+VtRMMvlPHlJNs4c8FochrMjGs09hBkayzOXC6AgID1WCdvfl5/nAA3GbwX1Dyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lW/QQynphTA6Fcq6XZvrBXh4x/2H4gbrIdKMAzUOo3w=;
+ b=xo/fgGKjxgUrA98F6orvhIcK/k/5NHcl8FkKAK71KzI8tZvpGEHRDg/9SYtEdL754RZjkfQAA4OCVw1/48/sKRey3GzMrNYCMeizbDiBS6x6hVLvxRdn8d4k0dhbdgwr7A+PcP5Y/px6392Y8hv4Z9inQBEOeTopdD8Gx+8m8mtF2AOqDlHPXy05bHs+v4uLli2DA/JQkc8XRSf2Cl7x98ui66+l2EGzcWHN34nVZrcAypFrimScm1sJCc8kxI+Py8GQ7piNLNseGEPXW8KwlhGlQY12uhpiLpwGljciARzKtBCirC+V3Gm3Us63IIhzB1LfFLKgUFOW8Gigiv7q2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lW/QQynphTA6Fcq6XZvrBXh4x/2H4gbrIdKMAzUOo3w=;
+ b=nRJ2lW8qN5NNtTOJrObcoxLx/NA70BcX4tPQa3mky0tNsErYsAnpspUzm9TRWGG13pxpWBL3fZ+PnVVe2b9VKMBY5iLD7bVeL6OajxF8TqgrZdldWWhbTnl1C/SrIXlpx3fuoIZVf8yr9seb8CjszwvOwZwVN1SoVVGr2hrJ2Drn96khluhgs4+v6FSmd+Q2NMkqowqI+BCREmfzQZps5bfqXEt90efjXhggjLdPo6cR3nCLrGNo5kNo/SB5hIU4tEcxRRYC6KY5TT3hXvwV+g8ujdTM1TPLhfmIu9fkNv0I6D3uXgDeiBmLIlUVUnUw7jYBNuD+92vByl+R39Ml3g==
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
+ by CH2PR19MB8895.namprd19.prod.outlook.com (2603:10b6:610:283::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.27; Wed, 5 Mar
+ 2025 13:42:57 +0000
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305%6]) with mapi id 15.20.8489.025; Wed, 5 Mar 2025
+ 13:42:57 +0000
+From: George Moussalem <george.moussalem@outlook.com>
+To: linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	andersson@kernel.org,
+	bhelgaas@google.com,
+	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v3 7/7] scsi: ufs: renesas: Add initialization code for R-Car S4-8 ES1.2
-Date: Wed,  5 Mar 2025 14:34:15 +0100
-Message-ID: <97d83709495c764b2456d4d25846f5f48197cad0.1741179611.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1741179611.git.geert+renesas@glider.be>
-References: <cover.1741179611.git.geert+renesas@glider.be>
+	dmitry.baryshkov@linaro.org,
+	kishon@kernel.org,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	kw@linux.com,
+	lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org,
+	p.zabel@pengutronix.de,
+	quic_nsekar@quicinc.com,
+	robh@kernel.org,
+	robimarko@gmail.com,
+	vkoul@kernel.org
+Cc: quic_srichara@quicinc.com
+Subject: [PATCH v3 0/6] Enable IPQ5018 PCI support
+Date: Wed,  5 Mar 2025 17:41:24 +0400
+Message-ID:
+ <DS7PR19MB8883BC190797BECAA78EC50F9DCB2@DS7PR19MB8883.namprd19.prod.outlook.com>
+X-Mailer: git-send-email 2.48.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: DX0P273CA0025.AREP273.PROD.OUTLOOK.COM
+ (2603:1086:300:5b::19) To DS7PR19MB8883.namprd19.prod.outlook.com
+ (2603:10b6:8:253::16)
+X-Microsoft-Original-Message-ID:
+ <20250305134239.2236590-1-george.moussalem@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|CH2PR19MB8895:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f4440b0-473c-4c52-1cfe-08dd5beba339
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|5062599005|7092599003|8060799006|19110799003|5072599009|461199028|15080799006|440099028|4302099013|10035399004|3412199025|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?PQUUIu7iQpxbM/lqQZGO/GhsIof87ylS4o+434tV5ipap3rc7xADYAA4f/Jm?=
+ =?us-ascii?Q?gNtcfdjFQc+Y1G72Q5F6eoX7d0Jq91mBpkGLGu8zXiIBge6GLPl6b9jMNXvl?=
+ =?us-ascii?Q?+s03FtYOpgkU0iZlNT5/mZvjI0ytC2lj62IGPjMsicHacf79c11kcWUs+IIF?=
+ =?us-ascii?Q?rH/zX7QQsKd76QRrZ29M0TbNwTvjXhvJ6atk4yEcQG+JAHzRptBo2oxLZNB+?=
+ =?us-ascii?Q?5AUqZAqZOcAANjWcQfaZpQAC8FaQKvdTcz509IgLRccq8XJ+snlazfAqGjvr?=
+ =?us-ascii?Q?xLXD7Fzb4SJm04MwJz/GpjmLj1b0fIK+kQ3XeuLD4LIlQMJkmQ10yGmSKFS2?=
+ =?us-ascii?Q?rvBk/iv4BkuSKPS8eL+wWxfoJBAuaalFmdPwpBCH0WibWq0GHDCf5QhrQ1t2?=
+ =?us-ascii?Q?SXHEe3AwXKxxDxbSCtyjQshlAqtXoR2U3/1Yu62PceeAssexhY3BeIDusE52?=
+ =?us-ascii?Q?YvT7B/glarTlJ1crkVjRfK4H0r95+a10pJ/qab3ewL1J34MihyD8E99PtLjb?=
+ =?us-ascii?Q?jyehSNtufLYTnY7KUNYOTC9pZGA/ErbR3bbDQwMd6Xojcjp9HC1cjRrgKT+r?=
+ =?us-ascii?Q?6WM/Kz+pdCDL22bAt6Pguq6kq0algfU2VM1sIH8dxAbfIIUvASDdFOyJ3aG0?=
+ =?us-ascii?Q?DIxLjGlbwN04DACIDjYvCYt4gRD/t3D1jAMR3AVG4WfvxUU3rll/R0kXoqyR?=
+ =?us-ascii?Q?IzxQZjcMdWHA1qI51lJOQe8Fw1599svNAm/FPJSNCRgofkQH37PYMrM3JlFQ?=
+ =?us-ascii?Q?PueQaqVbWEZyjNMelyH3mzW5msPxBeYlPUiFvRp9+YgmtsXC0iLN8FSjhx9h?=
+ =?us-ascii?Q?mLWJTIDnIHjTWBHlwsbUJagS6JysxJkkCUWZAjuKuPDK133sprbGsrMpC5vc?=
+ =?us-ascii?Q?jPgedOAUPoVYJPuV6xrXxOXU+V80ZZwq9qhg1em8mGToEOFIHjAIrQk+vU+t?=
+ =?us-ascii?Q?cFAdpl3QX+tOhrLTVcowJ84HBskVR2YMSpLBM7Xk485E05z24yP+Q6bzpm1m?=
+ =?us-ascii?Q?ACT3dTiOH/DuPUqKr8ZhPBLKH1iuh7h9geLVgH6wHJjTdj9PULNt2ejnQfab?=
+ =?us-ascii?Q?lD3i4JuykTqA8PjwXsKhE/E2yp48yUfpv91VOFJk5I38VYzQGBjMyL8G0+pt?=
+ =?us-ascii?Q?VFfjkG8vAa0muP6rs2OY3HfozRTh0V95gSea9cTEwlMEtAtC1FkNMSVfCj6u?=
+ =?us-ascii?Q?Ox5t8+foFGQZAOMbyyRbdMy62lMUeX+A3WiIbFOOBUeePluBvCk3d/SAK8A?=
+ =?us-ascii?Q?=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?fr4VGScwV5K9WNaTcxbN4kl8zBeNreM08bPENp2CfPSxgk6zMXmCyamkR5nH?=
+ =?us-ascii?Q?Mj+kf3zRTJhJXtOwjQ9JDI/qdY6QNe/cicPmBT4FeG43rdphqUdqilSmK8o6?=
+ =?us-ascii?Q?xUBTK/aUthD2/fT9DQoBg4+UEh7THT7NVixvGOg23wnHM5C2+Uwv0WUO5acW?=
+ =?us-ascii?Q?vuyCHZEXdJ9+mdXOSR1o9QxYXi1LhHysXUB5tWZVIglzEW6qUMKPOyWGChkG?=
+ =?us-ascii?Q?f0rv7PrdDp5Nkc623gWMXmey1ioFmaR6JgilXxR1XQjBoystk0XtBt6iAMmp?=
+ =?us-ascii?Q?ARSGDah4/bnE0MxfgRYWM57YYhKXzUVQCTYNH3XgCHNg8tbpyqE+Rgnria31?=
+ =?us-ascii?Q?OAoPcfowVzwPQZHY+iJv1Q2ALU49dfVVbyMWudlR14/Cf6CLFeVhmz8v/A6G?=
+ =?us-ascii?Q?QYEacDq6JMUHBYXlNcxcsqO1gHYUeGroAFP7PsyjJ7be7p4jOmvdtBG2Y/xz?=
+ =?us-ascii?Q?Y5WUn58MUcw9O2UL5eimN1WqsEMVAcFHoi/5OQEVpDdBdMvXB8nOoFaQyRhW?=
+ =?us-ascii?Q?gdLw4r3xtAgtRvvEzuC8TqJD89lAv5oe4csNwQzjeEETHDpyNdww8A3jYlud?=
+ =?us-ascii?Q?KPDQdd0BgBkSl0peUV2pkP7M6EtRnwL9NNLlBW/Ex01PA2DOHEx4zBpnHQPa?=
+ =?us-ascii?Q?8LgjPT/hwrPTJd9XXdEGNVGOgFqoARxA6MTZcSswK+i1VfraV8m0crqzGFsE?=
+ =?us-ascii?Q?5sg+fW0ueKuYA7UMDfHBXsOdYRBULen5jCq7Jc9SxpY6W7TYodmp+8kRp9k6?=
+ =?us-ascii?Q?Odm1HF8kRECQxEHmrLoYefB8GX/E6abwBlvtTdw0ZDDhRdtjrvH1sm+99lgA?=
+ =?us-ascii?Q?3WF1tvZ71eaY4qVvxUXbILrO0lx9mWGfs0l/sPttFj2a+Qby4TI7lVQ2nSfZ?=
+ =?us-ascii?Q?xw2GBbGejX55gjNcGwLpnhwIZZytR59K1MHvZGuAcFJ4e9bBLIxQW2OkkQdL?=
+ =?us-ascii?Q?zRov1CuET0HYb0sw6ToLKpqv12O/N1aAfFbqpZkJ7f1kjNljALJDgjjFkK5D?=
+ =?us-ascii?Q?3Or2RXN0YDYIrxrIaonO04GqUXdp7m69Lsl+WpIf5X23MLbdlMvG6okXsKr+?=
+ =?us-ascii?Q?6+bxlgAXD9qb3/++bwCE+Pd85Jk7xTzPxnxuufpw8PROROPe2BnMn1HeE34W?=
+ =?us-ascii?Q?YFPDnI3AVqYvuAvOpKeQBJMcXAXSGrk5AdSLrWT9CPzt2GOiW+DpKq/UEbOh?=
+ =?us-ascii?Q?zXqjbG07jwNaVndz9Wku8h+Xl/dimsyIVzgXsazfQ10cKC3VW+j0m0tmCbPA?=
+ =?us-ascii?Q?r0xnbED4zw2cLlVS+Yz0?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f4440b0-473c-4c52-1cfe-08dd5beba339
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2025 13:42:57.6038
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR19MB8895
 
-From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 
-Add initialization code for R-Car S4-8 ES1.2 to improve transfer
-stability.  Using the new code requires downloading firmware and reading
-calibration data from E-FUSE.  If either fails, the driver falls back to
-the old initialization code.
+This patch series adds the relevant phy and controller
+DT configurations for enabling PCI gen2 support
+on IPQ5018. IPQ5018 has two phys and two controllers, 
+one dual-lane and one single-lane.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Co-developed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
+Last patch series (v2) submitted dates back to August 27, 2024.
+As I've worked to add IPQ5018 platform support in OpenWrt, I'm
+continuing the efforts to add Linux kernel support.
+
 v3:
-  - New.
----
- drivers/ufs/host/ufs-renesas.c | 199 ++++++++++++++++++++++++++++++++-
- 1 file changed, 194 insertions(+), 5 deletions(-)
+  *) Depends on: https://patchwork.kernel.org/project/linux-arm-msm/cover/20250220094251.230936-1-quic_varada@quicinc.com/
+  *) Added 8 MSI SPI and 1 global interrupts (Thanks Mani for confirming)
+  *) Added hw revision (internal/synopsys) and nr of lanes in patch 4
+     commit msg
+  *) Sorted reg addresses and moved PCIe nodes accordingly
+  *) Moved to GIC based interrupts
+  *) Added rootport node in controller nodes
+  *) Tested on Linksys devices (MX5500/SPNMX56)
+  *) Link to v2: https://lore.kernel.org/all/20240827045757.1101194-1-quic_srichara@quicinc.com/
 
-diff --git a/drivers/ufs/host/ufs-renesas.c b/drivers/ufs/host/ufs-renesas.c
-index d9ba766dcd2f4de7..5bf7d0e77ad857c6 100644
---- a/drivers/ufs/host/ufs-renesas.c
-+++ b/drivers/ufs/host/ufs-renesas.c
-@@ -9,20 +9,31 @@
- #include <linux/delay.h>
- #include <linux/dma-mapping.h>
- #include <linux/err.h>
-+#include <linux/firmware.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/nvmem-consumer.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/sys_soc.h>
- #include <ufs/ufshcd.h>
- 
- #include "ufshcd-pltfrm.h"
- 
-+#define EFUSE_CALIB_SIZE	8
-+
- struct ufs_renesas_priv {
-+	const struct firmware *fw;
-+	void (*pre_init)(struct ufs_hba *hba);
- 	bool initialized;	/* The hardware needs initialization once */
-+	u8 calib[EFUSE_CALIB_SIZE];
- };
- 
-+#define UFS_RENESAS_FIRMWARE_NAME "r8a779f0_ufs.bin"
-+MODULE_FIRMWARE(UFS_RENESAS_FIRMWARE_NAME);
-+
- static void ufs_renesas_dbg_register_dump(struct ufs_hba *hba)
- {
- 	ufshcd_dump_regs(hba, 0xc0, 0x40, "regs: 0xc0 + ");
-@@ -116,6 +127,22 @@ static void ufs_renesas_set_phy(struct ufs_hba *hba, u32 addr16, u32 data16)
- 	ufs_renesas_write_phy(hba, addr16, data16);
- }
- 
-+static void ufs_renesas_reset_indirect_write(struct ufs_hba *hba, int gpio,
-+					     u32 addr, u32 data)
-+{
-+	ufs_renesas_write(hba, 0xf0, gpio);
-+	ufs_renesas_write_800_80c_poll(hba, addr, data);
-+}
-+
-+static void ufs_renesas_reset_indirect_update(struct ufs_hba *hba)
-+{
-+	ufs_renesas_write_d0_d4(hba, 0x0000082c, 0x0f000000);
-+	ufs_renesas_write_d0_d4(hba, 0x00000828, 0x0f000000);
-+	ufs_renesas_write(hba, 0xd0, 0x0000082c);
-+	ufs_renesas_poll(hba, 0xd4, BIT(27) | BIT(26) | BIT(24), BIT(27) | BIT(26) | BIT(24));
-+	ufs_renesas_write(hba, 0xf0, 0);
-+}
-+
- static void ufs_renesas_indirect_write(struct ufs_hba *hba, u32 gpio, u32 addr,
- 				       u32 data_800)
- {
-@@ -135,15 +162,19 @@ static void ufs_renesas_indirect_poll(struct ufs_hba *hba, u32 gpio, u32 addr,
- 	ufs_renesas_write(hba, 0xf0, 0);
- }
- 
--static void ufs_renesas_init_step1_to_3(struct ufs_hba *hba)
-+static void ufs_renesas_init_step1_to_3(struct ufs_hba *hba, bool init108)
- {
- 	ufs_renesas_write(hba, 0xc0, 0x49425308);
- 	ufs_renesas_write_d0_d4(hba, 0x00000104, 0x00000002);
-+	if (init108)
-+		ufs_renesas_write_d0_d4(hba, 0x00000108, 0x00000002);
- 	udelay(1);
- 	ufs_renesas_write_d0_d4(hba, 0x00000828, 0x00000200);
- 	udelay(1);
- 	ufs_renesas_write_d0_d4(hba, 0x00000828, 0x00000000);
- 	ufs_renesas_write_d0_d4(hba, 0x00000104, 0x00000001);
-+	if (init108)
-+		ufs_renesas_write_d0_d4(hba, 0x00000108, 0x00000001);
- 	ufs_renesas_write_d0_d4(hba, 0x00000940, 0x00000001);
- 	udelay(1);
- 	ufs_renesas_write_d0_d4(hba, 0x00000940, 0x00000000);
-@@ -207,12 +238,12 @@ static void ufs_renesas_init_compensation_and_slicers(struct ufs_hba *hba)
- 	ufs_renesas_write_phy_10ad_10af(hba, 0x0080, 0x001a);
- }
- 
--static void ufs_renesas_pre_init(struct ufs_hba *hba)
-+static void ufs_renesas_r8a779f0_es10_pre_init(struct ufs_hba *hba)
- {
- 	u32 timer_val;
- 
- 	/* This setting is for SERIES B */
--	ufs_renesas_init_step1_to_3(hba);
-+	ufs_renesas_init_step1_to_3(hba, false);
- 
- 	ufs_renesas_init_step4_to_6(hba);
- 
-@@ -283,6 +314,105 @@ static void ufs_renesas_pre_init(struct ufs_hba *hba)
- 	ufs_renesas_init_enable_timer(hba, timer_val);
- }
- 
-+static void ufs_renesas_r8a779f0_init_step3_add(struct ufs_hba *hba, bool assert)
-+{
-+	u32 val_2x = 0, val_3x = 0, val_4x = 0;
-+
-+	if (assert) {
-+		val_2x = 0x0001;
-+		val_3x = 0x0003;
-+		val_4x = 0x0001;
-+	}
-+
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x20, val_2x);
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x4a, val_4x);
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x35, val_3x);
-+	ufs_renesas_reset_indirect_update(hba);
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x21, val_2x);
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x4b, val_4x);
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x36, val_3x);
-+	ufs_renesas_reset_indirect_update(hba);
-+}
-+
-+static void ufs_renesas_r8a779f0_pre_init(struct ufs_hba *hba)
-+{
-+	struct ufs_renesas_priv *priv = ufshcd_get_variant(hba);
-+	u32 timer_val;
-+	u32 data;
-+	int i;
-+
-+	/* This setting is for SERIES B */
-+	ufs_renesas_init_step1_to_3(hba, true);
-+
-+	ufs_renesas_r8a779f0_init_step3_add(hba, true);
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x5f, 0x0063);
-+	ufs_renesas_reset_indirect_update(hba);
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x60, 0x0003);
-+	ufs_renesas_reset_indirect_update(hba);
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x5b, 0x00a6);
-+	ufs_renesas_reset_indirect_update(hba);
-+	ufs_renesas_reset_indirect_write(hba, 7, 0x5c, 0x0003);
-+	ufs_renesas_reset_indirect_update(hba);
-+	ufs_renesas_r8a779f0_init_step3_add(hba, false);
-+
-+	ufs_renesas_init_step4_to_6(hba);
-+
-+	timer_val = ufs_renesas_init_disable_timer(hba);
-+
-+	ufs_renesas_indirect_write(hba, 1, 0x01, 0x001f);
-+	ufs_renesas_indirect_write(hba, 7, 0x5d, 0x0014);
-+	ufs_renesas_indirect_write(hba, 7, 0x5e, 0x0014);
-+	ufs_renesas_indirect_write(hba, 7, 0x0d, 0x0007);
-+	ufs_renesas_indirect_write(hba, 7, 0x0e, 0x0007);
-+
-+	ufs_renesas_indirect_poll(hba, 7, 0x3c, 0, BIT(7));
-+	ufs_renesas_indirect_poll(hba, 7, 0x4c, 0, BIT(4));
-+
-+	ufs_renesas_indirect_write(hba, 1, 0x32, 0x0080);
-+	ufs_renesas_indirect_write(hba, 1, 0x1f, 0x0001);
-+	ufs_renesas_indirect_write(hba, 1, 0x2c, 0x0001);
-+	ufs_renesas_indirect_write(hba, 1, 0x32, 0x0087);
-+
-+	ufs_renesas_indirect_write(hba, 1, 0x4d, priv->calib[2]);
-+	ufs_renesas_indirect_write(hba, 1, 0x4e, priv->calib[3]);
-+	ufs_renesas_indirect_write(hba, 1, 0x0d, 0x0006);
-+	ufs_renesas_indirect_write(hba, 1, 0x0e, 0x0007);
-+	ufs_renesas_write_phy(hba, 0x0028, priv->calib[3]);
-+	ufs_renesas_write_phy(hba, 0x4014, priv->calib[3]);
-+
-+	ufs_renesas_set_phy(hba, 0x401c, BIT(2));
-+
-+	ufs_renesas_write_phy(hba, 0x4000, priv->calib[6]);
-+	ufs_renesas_write_phy(hba, 0x4001, priv->calib[7]);
-+
-+	ufs_renesas_indirect_write(hba, 1, 0x14, 0x0001);
-+
-+	ufs_renesas_init_compensation_and_slicers(hba);
-+
-+	ufs_renesas_indirect_write(hba, 7, 0x79, 0x0000);
-+	ufs_renesas_indirect_write(hba, 7, 0x24, 0x000c);
-+	ufs_renesas_indirect_write(hba, 7, 0x25, 0x000c);
-+	ufs_renesas_indirect_write(hba, 7, 0x62, 0x00c0);
-+	ufs_renesas_indirect_write(hba, 7, 0x63, 0x0001);
-+
-+	for (i = 0; i < priv->fw->size / 2; i++) {
-+		data = (priv->fw->data[i * 2 + 1] << 8) | priv->fw->data[i * 2];
-+		ufs_renesas_write_phy(hba, 0xc000 + i, data);
-+	}
-+
-+	ufs_renesas_indirect_write(hba, 7, 0x0d, 0x0002);
-+	ufs_renesas_indirect_write(hba, 7, 0x0e, 0x0007);
-+
-+	ufs_renesas_indirect_write(hba, 7, 0x5d, 0x0014);
-+	ufs_renesas_indirect_write(hba, 7, 0x5e, 0x0017);
-+	ufs_renesas_indirect_write(hba, 7, 0x5d, 0x0004);
-+	ufs_renesas_indirect_write(hba, 7, 0x5e, 0x0017);
-+	ufs_renesas_indirect_poll(hba, 7, 0x55, 0, BIT(6));
-+	ufs_renesas_indirect_poll(hba, 7, 0x41, 0, BIT(7));
-+
-+	ufs_renesas_init_enable_timer(hba, timer_val);
-+}
-+
- static int ufs_renesas_hce_enable_notify(struct ufs_hba *hba,
- 					 enum ufs_notify_change_status status)
- {
-@@ -292,7 +422,7 @@ static int ufs_renesas_hce_enable_notify(struct ufs_hba *hba,
- 		return 0;
- 
- 	if (status == PRE_CHANGE)
--		ufs_renesas_pre_init(hba);
-+		priv->pre_init(hba);
- 
- 	priv->initialized = true;
- 
-@@ -310,20 +440,78 @@ static int ufs_renesas_setup_clocks(struct ufs_hba *hba, bool on,
- 	return 0;
- }
- 
-+static const struct soc_device_attribute ufs_fallback[] = {
-+	{ .soc_id = "r8a779f0", .revision = "ES1.[01]" },
-+	{ /* Sentinel */ }
-+};
-+
- static int ufs_renesas_init(struct ufs_hba *hba)
- {
-+	const struct soc_device_attribute *attr;
-+	struct nvmem_cell *cell = NULL;
-+	struct device *dev = hba->dev;
- 	struct ufs_renesas_priv *priv;
-+	u8 *data = NULL;
-+	size_t len;
-+	int ret;
- 
--	priv = devm_kzalloc(hba->dev, sizeof(*priv), GFP_KERNEL);
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
- 	ufshcd_set_variant(hba, priv);
- 
- 	hba->quirks |= UFSHCD_QUIRK_HIBERN_FASTAUTO;
- 
-+	attr = soc_device_match(ufs_fallback);
-+	if (attr)
-+		goto fallback;
-+
-+	ret = request_firmware(&priv->fw, UFS_RENESAS_FIRMWARE_NAME, dev);
-+	if (ret) {
-+		dev_warn(dev, "Failed to load firmware\n");
-+		goto fallback;
-+	}
-+
-+	cell = nvmem_cell_get(dev, "calibration");
-+	if (IS_ERR(cell)) {
-+		dev_warn(dev, "No calibration data specified\n");
-+		goto fallback;
-+	}
-+
-+	data = nvmem_cell_read(cell, &len);
-+	if (IS_ERR(data)) {
-+		dev_warn(dev, "Failed to read calibration data: %pe\n", data);
-+		goto fallback;
-+	}
-+
-+	if (len != EFUSE_CALIB_SIZE) {
-+		dev_warn(dev, "Invalid calibration data size %zu\n", len);
-+		goto fallback;
-+	}
-+
-+	memcpy(priv->calib, data, EFUSE_CALIB_SIZE);
-+	priv->pre_init = ufs_renesas_r8a779f0_pre_init;
-+	goto out;
-+
-+fallback:
-+	dev_info(dev, "Using ES1.0 init code\n");
-+	priv->pre_init = ufs_renesas_r8a779f0_es10_pre_init;
-+
-+out:
-+	kfree(data);
-+	if (!IS_ERR_OR_NULL(cell))
-+		nvmem_cell_put(cell);
-+
- 	return 0;
- }
- 
-+static void ufs_renesas_exit(struct ufs_hba *hba)
-+{
-+	struct ufs_renesas_priv *priv = ufshcd_get_variant(hba);
-+
-+	release_firmware(priv->fw);
-+}
-+
- static int ufs_renesas_set_dma_mask(struct ufs_hba *hba)
- {
- 	return dma_set_mask_and_coherent(hba->dev, DMA_BIT_MASK(32));
-@@ -332,6 +520,7 @@ static int ufs_renesas_set_dma_mask(struct ufs_hba *hba)
- static const struct ufs_hba_variant_ops ufs_renesas_vops = {
- 	.name		= "renesas",
- 	.init		= ufs_renesas_init,
-+	.exit		= ufs_renesas_exit,
- 	.set_dma_mask	= ufs_renesas_set_dma_mask,
- 	.setup_clocks	= ufs_renesas_setup_clocks,
- 	.hce_enable_notify = ufs_renesas_hce_enable_notify,
+v2:
+  Fixed all review comments from Krzysztof, Robert Marko,
+  Dmitry Baryshkov, Manivannan Sadhasivam, Konrad Dybcio.
+  Updated the respective patches for their changes.
+
+v1:
+ https://lore.kernel.org/lkml/32389b66-48f3-8ee8-e2f1-1613feed3cc7@gmail.com/T/
+
+Sricharan Ramabadhran (6):
+  dt-bindings: phy: qcom: uniphy-pcie: Add ipq5018 compatible
+  phy: qualcomm: qcom-uniphy-pcie 28LP add support for IPQ5018
+  dt-bindings: PCI: qcom: Add IPQ5018 SoC
+  PCI: qcom: Add support for IPQ5018
+  arm64: dts: qcom: ipq5018: Add PCIe related nodes
+  arm64: dts: qcom: ipq5018: Enable PCIe
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  49 ++++
+ .../phy/qcom,ipq5332-uniphy-pcie-phy.yaml     |   3 +-
+ .../arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts |  38 +++
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 232 +++++++++++++++++-
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 +
+ .../phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c  |  45 ++++
+ 6 files changed, 365 insertions(+), 3 deletions(-)
+
 -- 
-2.43.0
+2.48.1
+
 
 
