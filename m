@@ -1,287 +1,206 @@
-Return-Path: <devicetree+bounces-154493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422A8A50696
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:41:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 856A0A506D2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:50:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94AD31892AC9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:41:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FAEA3A6773
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3DE24EAAE;
-	Wed,  5 Mar 2025 17:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F77F250BFB;
+	Wed,  5 Mar 2025 17:50:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RLXmrKGX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hPnYj+cM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50ABC19F436;
-	Wed,  5 Mar 2025 17:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C94924FBE8;
+	Wed,  5 Mar 2025 17:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741196437; cv=none; b=cd15y0TfKid7iIFIzI/gkl0M9HRqCbdINaa+OcVCNIo/3kIVEEE/temjP+iOOUtnaOR1GrKitsTHUGzDVRV45RWrvLmMgFS4ozuU7RxPaZ1e7m2Rw5Yq4cuuMdCrOyWgq9GHivvDYnLUF4rYCXx+cYrIGFIRPDor3CHbMGEg938=
+	t=1741197041; cv=none; b=tP5Dupmr0wPg0VpKbKG2s9k9Xz456Ge9dhM+cZuiu0TGM9MUjEP4dAfxIqLQqJJegLsBtGQ0/H/RdqJmtRHBd7UivcD6DAXJsD23peQZcA3nyGaAlDpa4UZg+OAjPJDUDYAmkxypx2cw0k64fHdYW99+1qdwySC7228u9JMOM4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741196437; c=relaxed/simple;
-	bh=xeU6W8dr+Xx44tYwHCvYEUZQm+N4fX/QzQxV0VbFOsk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t2Yjz/e6ua1l444uCNI0buXtHdch05sRViA3BboBtiKcGJqfJvov7FJUyJc8aCSusXKk4fjDtSVdZr3yghEDKAZoim8GSO981+f2zOPu9EzHbcbxw4BJPOAzNBnwYpbP6LvudJq6ggtRdXl5Rw8JCd4iuoFwvXcrF6L6MFb1rQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RLXmrKGX; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741196433;
-	bh=xeU6W8dr+Xx44tYwHCvYEUZQm+N4fX/QzQxV0VbFOsk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RLXmrKGXAheI/WPSgzRwEz2WzIRFcgBxYpDBX74aJUqV1KexEyqvFt/sZmqmk1zXm
-	 l9rrps+gwi0tDOkPcX23wGNh91SuAoNVFUATwSBCT31Wy5ftA4ioHN0punSnOyQ0Yq
-	 NGnn1cemoH48NiNr2OZA1DdiKD+uz7kY7AJoGTGA+YFWISYFPmZS1WCYjroDOjkTWj
-	 IJDFG3Dac5hktsfbV51IFrBrn9gqmJOHJHeInrHif7XXzVK0C3QWfWOuW5ELyYyrgf
-	 AjjPN69aKvN7JXQKKbjx4DOgqqlvq7hgZOtsRm6bCPoP+c5H2jSJBNKXQB4iqSR0kw
-	 NeE/Ee80U3o8w==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3831917E0880;
-	Wed,  5 Mar 2025 18:40:32 +0100 (CET)
-Message-ID: <0d929810-1189-41ce-8f8a-3b7230c3b2a9@collabora.com>
-Date: Wed, 5 Mar 2025 18:40:31 +0100
+	s=arc-20240116; t=1741197041; c=relaxed/simple;
+	bh=SrBVncElceWvlFqYJC7mWyh2fFh8LuZ2Hw7tSkvo2vU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=I6dMM/7E5bu7g5oCV1GuSTCo/4rD9TtU3YcnkV8ZXvwtBlHLmjru/VvIXSgMzVC80AlLchWPgGNo38eRJs/3Nj6JidCpzCYcdT+WcpT7TWDINhXra5C1XK+t5NdWumtnSIm9XlNBiPD8gUzcwoDh01PQrc5d2w7RvVqC/1YK6kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hPnYj+cM; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-390ec7c2cd8so3924710f8f.1;
+        Wed, 05 Mar 2025 09:50:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741197038; x=1741801838; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ShSjChoUXi6cdOr1qzYBZJXXI7K6JwDBuHhj6HnUiUg=;
+        b=hPnYj+cMZe3YcRPXdgr6MVNvG/+6WTdnPj8pPu0Nx4a5GL5Pi2pdtGDuexsPr4xtm9
+         x/evzN+UZeWiSglNmCH4J5ngHfkj7Sy+f6kWHDAqZOiXHfmOgimWcroQq0PMpzIEoLur
+         gd/J5duLytsHeaS8GqNEioA4GB6yaSR3t7BPEtU4CL+1W3oO2OP99pCSe/KBa2Mo/mjv
+         G32h333mzG1wpr/EnIeAbWN7yBFHy1JjOW9w/cZaP8na5VTtBL+PkktUBKRJvDNpFWKo
+         kyuqZ34vWm1cAtUi9MsnhSd2C/1aiYCiuA9yxxYWWGQESqzLqectNuLz1miRywSIVqyr
+         95nA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741197038; x=1741801838;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ShSjChoUXi6cdOr1qzYBZJXXI7K6JwDBuHhj6HnUiUg=;
+        b=QNNO8BS8Y4Dlglk6+sjyCLW1WhRb3X7d6ZbnhHB5ec1rjskPVAUKBsaIvW9uWQOZ+A
+         HzJVGsPhDryoIyGgNHUG9/N3R5c0fsMkmA4XpGqnhNcYM2/Oz6rD8mENAfr7ujcK14+I
+         tMPPVqk4pbmmykEJ5SbZqJNNk9WBEZW7kA4pzk3ypW1bC3MyY+i66CBdTQY38WgK4L0l
+         vJTqk5Ovb93eSlWseIYWSolZ1LO87I6Umjy6uAFhGqMLwn6OZ6UL2N0WWs25seiILbGF
+         sfSTYNW2gxT/QZiLv9/iwVuZQ4U/jlPKT2WPGgpsqEqAdOhBRD+88nvQfntYSAPniM9t
+         VIuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUKQdJIqH2cKC0eBmhb8/JAbs3dq//kStd0dUxOt9DfYqBiWzjqA04WVWL+RiaHGrEdrCBs5a9QDjJs@vger.kernel.org, AJvYcCVfRf/2oIdcTHwED4OisXbXkKE1FlIrK3Hpu+czHS7AOTHamVhSSynxGsDff0/CrcrhqEiVLFFxBrQvviny@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqO30IOKVv1oyEQH5HyzxrkU1wjEmiV0HxMOevdaWQbKCNkB7o
+	pph9+ArNcJ0WfMd9mlcRtz/e7nBD0Q3gsdKgdgePwI9/OjXxkuVsDwm2/eF/
+X-Gm-Gg: ASbGncsBX+M9fgQOyjZp15E32koXLyh6/EIuejZ4r9v8N+CAOSQMkNtalv4LM0HCepA
+	nJ0dtWs3w5KSwRv7JPJvroMaDQRqYzh6b41dT31MQxQ8eohRaM47csyYqGHjZ/D3+loxttKE/07
+	021iaPxkims/2nDBxaricp6r+EZH3qzJqYSXehgUDJ8y5tTEIML/AKLx0exnEWa7SDdEECCRuAk
+	F21HS1uvb1YoCvg1Tn5bK7T3Uz7h+pN8BKeZUFdpnFMudROlIXOlGas/UlAQksvJfd13nG3d2Ih
+	g5WmltLkgd8MC3Rha5u+ktN+qJ/SCJRP2XYSH1cSXNefKBocfBUqDz4Lc1dQ/0VGb5ANoT0/frm
+	Obqdh1fkclrNmQ1hLPznM
+X-Google-Smtp-Source: AGHT+IEWCqUxzSuiWh8DdXYIcHOPlTXKj59lMZgwA5RjbQMnCjHanj5mZRn4/ZQa/hWBmdDMtYjALw==
+X-Received: by 2002:a05:6000:402c:b0:38f:48ee:ddc2 with SMTP id ffacd0b85a97d-3911f7a8ffamr3802810f8f.37.1741197036980;
+        Wed, 05 Mar 2025 09:50:36 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-391253b3e23sm1792217f8f.76.2025.03.05.09.50.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Mar 2025 09:50:36 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ Andre Przywara <andre.przywara@arm.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v3 4/8] pinctrl: sunxi: support moved power configuration
+ registers
+Date: Wed, 05 Mar 2025 18:50:34 +0100
+Message-ID: <6028746.MhkbZ0Pkbq@jernej-laptop>
+In-Reply-To: <20250227231447.20161-5-andre.przywara@arm.com>
+References:
+ <20250227231447.20161-1-andre.przywara@arm.com>
+ <20250227231447.20161-5-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/8] soc: mediatek: mtk-cmdq: Add pa_base parsing for
- unsupported subsys ID hardware
-To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>
-Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- =?UTF-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
- =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
- =?UTF-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
- <Xiandong.Wang@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "fshao@chromium.org" <fshao@chromium.org>,
- =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "treapking@chromium.org" <treapking@chromium.org>
-References: <20250218054405.2017918-1-jason-jh.lin@mediatek.com>
- <20250218054405.2017918-5-jason-jh.lin@mediatek.com>
- <581fc075-25d8-4104-a4ee-8c97e1a017e6@collabora.com>
- <03c523e66fd56442f49c38456476cf18be59e8fb.camel@mediatek.com>
- <8203317e-7f99-4ea5-bda0-fcd791602a9f@collabora.com>
- <c27653233ed2ee2ee6eb0d40ad2167721a2b1476.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <c27653233ed2ee2ee6eb0d40ad2167721a2b1476.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Il 05/03/25 16:58, Jason-JH Lin (林睿祥) ha scritto:
-> On Wed, 2025-03-05 at 12:03 +0100, AngeloGioacchino Del Regno wrote:
->>
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> Il 05/03/25 10:46, Jason-JH Lin (林睿祥) ha scritto:
->>> On Tue, 2025-03-04 at 10:35 +0100, AngeloGioacchino Del Regno
->>> wrote:
->>>>
->>>> External email : Please do not click links or open attachments
->>>> until
->>>> you have verified the sender or the content.
->>>>
->>>>
->>>> Il 18/02/25 06:41, Jason-JH Lin ha scritto:
->>>>> When GCE executes instructions, the corresponding hardware
->>>>> register
->>>>> can be found through the subsys ID. For hardware that does not
->>>>> support
->>>>> subsys ID, its subsys ID will be set to invalid value and its
->>>>> physical
->>>>> address needs to be used to generate GCE instructions.
->>>>>
->>>>> This commit adds a pa_base parsing flow to the cmdq_client_reg
->>>>> structure
->>>>> for these unsupported subsys ID hardware.
->>>>>
->>>>
->>>> Does this work only for the MMINFRA located GCEs, or does this
->>>> work
->>>> also for
->>>> the legacy ones in MT8173/83/88/92/95 // MT6795/6893/etc?
->>>>
->>>> In order to actually review and decide, I do need to know :-)
->>>>
->>>
->>> Yes, it's for the SoCs without subsys ID, it's not related to the
->>> MMINFRA.
->>>
->>> This can also work on MT8173/83/92/95 // MT6795/6893/etc.
->>> You can remove the `mediatek,gce-client-reg` properties in their
->>> dtsi
->>> and cherry-pick this series to verify it. :-)
->>>
->>
->> This is curious - and that brings more questions to the table (for
->> curiosity
->> more than anything else at this point).
->>
->> Since this is a way to make use of the CMDQ for address ranges that
->> are not tied
->> to any subsys id (hence no gce-client-reg and just physical address
->> parsing for
->> generating instructions), do you know what are the performance
->> implications of
->> using this, instead of subsys IDs on SoCs that do support them?
->>
-> 
-> The main advantage of using subsys ID is to reduce the number of
-> instruction.
-> Without subsy ID, you will need one more `ASSIGN` instruction to assign
-> the high bytes of the physical address.
-> 
-> E,g. In mt8195-gce.h: #define SUBSYS_1c00XXXX 3
-> 
-> If you want GCE to write the value 0x0000000f to 0x1c00_002c.
-> 
-> With subsys ID, you can use only one instruction to achieve it:
-> 1. WRITE value: 0x000000f to subsys: 0x3 + offset: 0x0002c
-> - OP code: WRTIE = 0x90
-> - subsys ID: 0x1c00XXXX = 0x03
-> - offset: 0x002c
-> - value: 0x0000000f
-> 
-> Without subsys ID, you will need 2 instructions to achieve it:
-> 1. ASSIGN address high bytes: 0x1c00 to GCE temp register: SPR0
-> - OP code: LOGIC = 0xa0
-> - arg_type: register, value, value = (0x8)
-> - sub OP: ASSIGN = 0x0
-> - register index to store the assign value: SPR0 = 0x0
-> - value to assign: 0x1c00
-> 2. WRITE value: 0x0000000f to temp register: SPR0 + offset:0x002c
-> - OP code: WRITE = 0x90
-> - sub OP(temp register index): SPR0 = 0x0
-> - offset for temp register: 0x002c
-> - value: 0x0000000f
-> 
->> Being clear: if we were to migrate a SoC like MT8195 to using this
->> globally
->> instead of using subsys ids, would the performance be degraded?
->> And if yes, do you know by how much?
->>
-> 
-> E,g. If the inst number with subsys ID is N.
-> 1. If CMDQ is implement like this, then inst number will be (N * 2):
-> assign SPR0 = 0x1c00
-> write A to SPR0 + offset: 0x2c
-> assign SPR0 = 0x1c00
-> write B to SPR0 + offset: 0x3c
-> assign SPR0 = 0x1c00
-> write C to SPR0 + offset: 0x4c
-> ...
-> 
-> 2. If CMDQ is implement like this, the inst number will be (N + 1 * n):
-> assign SPR0 = 0x1c00
-> write A to SPR0 + offset: 0x2c
-> write B to SPR0 + offset: 0x3c
-> write C to SPR0 + offset: 0x4c
-> ...
-> 
-> When the same cmd buffer changes the base address for n times:
-> assign SPR0 = 0x1c00
-> write A to SPR0 + offset: 0x2c
-> assign SPR0 = 0x1c01
-> write B to SPR0 + offset: 0x2c
-> assign SPR0 = 0x1c02
-> write C to SPR0 + offset: 0x2c
-> assign SPR0 = 0x1c00
-> write D to SPR0 + offset: 0x3c
-> ...
-> 
-> So you can imagine the performance will increase, but maybe not too
-> much if we use it in the right way...
-> Except the old SoC that didn't support SPR and CPR. The reason will be
-> addressed in the next paragraph.
-> 
->> What you're proposing almost looks like being too good to be true -
->> and makes
->> me wonder, at this point, why the subsys id was used in the first
->> place :-)
->>
-> 
-> That's because of the old GCE version in the old SoC only support GPR,
-> it didn't support SPR and CPR.
-> 
-> GPR:
-> All 32 GCE threads share the same GPR0~GPR15, GPR will be affected by
-> other GCE threads if they use it at the same time.
-> 
-> SPR:
-> Each GCE thread has 4 SPR, SPR won't be affected by another GCE thread.
-> 
-> CPR:
-> All 32 GCE threads share the same CPR, there are over 1000 CPR can be
-> used. It need to be managed properly to avoid the resource conflicting.
-> 
-> Due to the GPR resource restriction in the old GCE version, the usage
-> of subsys ID can avoid GPR conflicting issues when multiple GCE threads
-> are using GPR to physical assign high bytes all the time.
-> 
-> 
-> I have simplified some complicate instruction rules, so the description
-> above may not be 100% matched to the CMDQ helper driver code.
-> But I think the main concept is correct.
-> Hope these explanation can help well :-)
-> 
+Dne petek, 28. februar 2025 ob 00:14:43 Srednjeevropski standardni =C4=8Das=
+ je Andre Przywara napisal(a):
+> The Allwinner pincontroller IP features some registers to control the
+> withstand voltage of each pin group. So far those registers were always
+> located at the same offset, but the A523 SoC has moved them (probably to
+> accommodate all eleven pin banks).
+>=20
+> Add a flag to note this feature, and use that to program the registers
+> either at offset 0x340 or 0x380. So far no pincontroller driver uses
+> this flag, but we need it for the upcoming A523 support.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  drivers/pinctrl/sunxi/pinctrl-sunxi.c | 15 +++++++++++----
+>  drivers/pinctrl/sunxi/pinctrl-sunxi.h |  7 +++++--
+>  2 files changed, 16 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunx=
+i/pinctrl-sunxi.c
+> index 83a031ceb29f2..fc12e6f807e4d 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> @@ -736,9 +736,9 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct sunxi=
+_pinctrl *pctl,
+>  		val =3D uV > 1800000 && uV <=3D 2500000 ? BIT(bank) : 0;
+> =20
+>  		raw_spin_lock_irqsave(&pctl->lock, flags);
+> -		reg =3D readl(pctl->membase + PIO_POW_MOD_CTL_REG);
+> +		reg =3D readl(pctl->membase + pctl->pow_mod_sel_offset);
+>  		reg &=3D ~BIT(bank);
+> -		writel(reg | val, pctl->membase + PIO_POW_MOD_CTL_REG);
+> +		writel(reg | val, pctl->membase + pctl->pow_mod_sel_offset);
 
-Jason, that's simply wonderful. Thanks a lot for this precious description.
+These two are missing "+ PIO_POW_MOD_CTL_OFS" right?
 
-Yes, this has clarified even more than I was asking for, and besides,
-yeah I know that there are some rules to follow, some of which I know,
-some of which I imagine - and describing all of that would need lots
-and lots of text - again, I know, and no worries about that! :-D
+>  		raw_spin_unlock_irqrestore(&pctl->lock, flags);
+> =20
+>  		fallthrough;
+> @@ -746,9 +746,12 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct sunx=
+i_pinctrl *pctl,
+>  		val =3D uV <=3D 1800000 ? 1 : 0;
+> =20
+>  		raw_spin_lock_irqsave(&pctl->lock, flags);
+> -		reg =3D readl(pctl->membase + PIO_POW_MOD_SEL_REG);
+> +		reg =3D readl(pctl->membase + pctl->pow_mod_sel_offset +
+> +			    PIO_POW_MOD_CTL_OFS);
+>  		reg &=3D ~(1 << bank);
+> -		writel(reg | val << bank, pctl->membase + PIO_POW_MOD_SEL_REG);
+> +		writel(reg | val << bank,
+> +		       pctl->membase + pctl->pow_mod_sel_offset +
+> +		       PIO_POW_MOD_CTL_OFS);
 
-Thanks again!
-Angelo
+And these two have "+ PIO_POW_MOD_CTL_OFS" too much, right?
 
-> Regards,
-> Jason-JH Lin
-> 
->> Cheers!
->> Angelo
->>
->>> Regards,
->>> Jason-JH Lin
->>>
->>>> Thanks,
->>>> Angelo
->>>>
->>>>
->>>
->>
->>
->>
-> 
+Best regards,
+Jernej
+
+>  		raw_spin_unlock_irqrestore(&pctl->lock, flags);
+>  		return 0;
+>  	default:
+> @@ -1520,6 +1523,10 @@ int sunxi_pinctrl_init_with_flags(struct platform_=
+device *pdev,
+>  		pctl->pull_regs_offset =3D PULL_REGS_OFFSET;
+>  		pctl->dlevel_field_width =3D DLEVEL_FIELD_WIDTH;
+>  	}
+> +	if (flags & SUNXI_PINCTRL_ELEVEN_BANKS)
+> +		pctl->pow_mod_sel_offset =3D PIO_11B_POW_MOD_SEL_REG;
+> +	else
+> +		pctl->pow_mod_sel_offset =3D PIO_POW_MOD_SEL_REG;
+> =20
+>  	pctl->irq_array =3D devm_kcalloc(&pdev->dev,
+>  				       IRQ_PER_BANK * pctl->desc->irq_banks,
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunx=
+i/pinctrl-sunxi.h
+> index 6cf721876d89d..742fc795c7664 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> @@ -87,9 +87,11 @@
+>  #define SUNXI_PINCTRL_VARIANT_MASK	GENMASK(7, 0)
+>  #define SUNXI_PINCTRL_NEW_REG_LAYOUT	BIT(8)
+>  #define SUNXI_PINCTRL_PORTF_SWITCH	BIT(9)
+> +#define SUNXI_PINCTRL_ELEVEN_BANKS	BIT(10)
+> =20
+> -#define PIO_POW_MOD_SEL_REG	0x340
+> -#define PIO_POW_MOD_CTL_REG	0x344
+> +#define PIO_POW_MOD_SEL_REG		0x340
+> +#define PIO_11B_POW_MOD_SEL_REG		0x380
+> +#define PIO_POW_MOD_CTL_OFS		0x004
+> =20
+>  #define PIO_BANK_K_OFFSET		0x500
+> =20
+> @@ -173,6 +175,7 @@ struct sunxi_pinctrl {
+>  	u32				bank_mem_size;
+>  	u32				pull_regs_offset;
+>  	u32				dlevel_field_width;
+> +	u32				pow_mod_sel_offset;
+>  };
+> =20
+>  #define SUNXI_PIN(_pin, ...)					\
+>=20
+
+
+
 
 
