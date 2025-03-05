@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-154453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C734DA503A5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:41:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DA30A503B0
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:42:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1626F3A94C2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:41:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21C2B188D85E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA0E2505DD;
-	Wed,  5 Mar 2025 15:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889722505C3;
+	Wed,  5 Mar 2025 15:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NJs3UpBN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LVz40yei"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18082505D9;
-	Wed,  5 Mar 2025 15:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5D62505A0;
+	Wed,  5 Mar 2025 15:42:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741189291; cv=none; b=Nsg8H4/7766u88Pea2JDtccrgOcNnqvYrSeHKhTmOYUy83l8B38qqstmjz/YktJjDEuLOVGwpeAXCqalk/IAIWbJY1FTfWeEi3jlGfwmHFxDB+j8/+6416UbvkUNntsXiqbPP7wwLGoIZ3xHiQrXtLRnF9n2rhEfCds/+hYm/5U=
+	t=1741189348; cv=none; b=B1juNPBL9uF66YiwFbWVAWf3BfQTCEYpzr13lzrtum+Ed2xUyK/L4T5XCOWIKioiejxIgBN7yEDiNY7BGNA7VGmVDESeYh9632np2wDKF0t3vtkVlqNH2ssuMYiT1Mra8nuVVJ8J5emE1RnAvWdkNVelSrR06SwA+8WSOKafbJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741189291; c=relaxed/simple;
-	bh=SnieAOwMqDNTOnx5G1qmbJnw7CsjyegepoQq+LMVw2g=;
+	s=arc-20240116; t=1741189348; c=relaxed/simple;
+	bh=yagdOSnXnjo1SpjZgTWz3AJT2AK15uo4DTy3HxHN1EQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uUronhxZkIVQmAjwgomPv5VKVF7xtc4Y83RUf78kG8erMeGtYz48o8bjswhVIqdw9/GxuAvuQCTSqNicQ2yDOwuSLVErB5GxFTceUqf/kHB3AbDeyIL9pK49IAWxhfAIt5BWxODw+x6uiRz7eDI4GUIizdgrsaj+WcZfc1X/Xn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NJs3UpBN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29DB7C4CED1;
-	Wed,  5 Mar 2025 15:41:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=exsmnnaVjJyhdMv3Ds0WQ0sW/DQ18CrDctl/uGL4fNy75k9m+/c+9V6Go2vuclYcaow+mZbrUt6+sEGEuLYgvyoHwlPXILDCPs6l/++TQO2WycfLh6ZsIFsup5Wo6+PgV8oqspY7LKt2TC77bJFKOlLY8k6BfEuLcHUiw9jol2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LVz40yei; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F1E9C4CED1;
+	Wed,  5 Mar 2025 15:42:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741189291;
-	bh=SnieAOwMqDNTOnx5G1qmbJnw7CsjyegepoQq+LMVw2g=;
+	s=k20201202; t=1741189347;
+	bh=yagdOSnXnjo1SpjZgTWz3AJT2AK15uo4DTy3HxHN1EQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NJs3UpBNlJ/NqMw0qVJM8qYhntxeYLpGBxesbLWY2EqerQ6K24oMAjfxRTJUV59BF
-	 yuQmI8w/AkkdNp+bd7iQ4uBMBfewSc1e5S8gzS2RJp5JVYndDq378m6vSswuiHSR6I
-	 2FxCf5zY5Dzkf7rl6JuEmQgqIXAMcPVI4SwUOVDI1HN1SFZv8Jdv1MMjBJg6Z9EfLN
-	 fQaSin3a/37MCOPRgP0mFxNV7p+LbVE3R2gqOUUPJs48Q5zj4dgb8x/nnmO5IsCExg
-	 l3v0AFe74+EAuiHoZJSZOcOj4MEVOyZki26TzMwYPuF88O0HIwcJynTVRVMXO1eX/h
-	 2jMbVmgDU/6bw==
-Message-ID: <52155b03-20f3-4e64-b636-70042db03ffa@kernel.org>
-Date: Wed, 5 Mar 2025 16:41:23 +0100
+	b=LVz40yeiR0bZrtsWnB8XQANTdCgNnRIOEMt0Iyapb18wdGI00WqUvgIGZ9DAxQlZ9
+	 jPAP5ZZWLuAaXRjS0z7iiOP9BCT4Un1O6lybi/a/sQY2c8DYzx6VWK4NFYnXkP3lHG
+	 agNmAei/lHIs5GJvq88BxPFOny2slLx8P9+rpT6oGeSM3qxeQ2EJ/S17w6LtSy+Ne4
+	 453pBEIyyWbMhBtqUe0u6K7V29rVdgOZBQ5aHWygqA2LLXY0hMpboLr9mXW7hMrUXX
+	 MnxCxOhjw13/zM5hYiYGC83l7Ajv6d/HWx5H1pis518cw1AuaIatMxZPf0cVdPL9GX
+	 7UKD4vWks8Lkg==
+Message-ID: <89dcfb2a-d093-48f9-b6d7-af99b383a1bc@kernel.org>
+Date: Wed, 5 Mar 2025 16:42:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add rk3528 QoS register node
-To: Chukun Pan <amadeus@jmu.edu.cn>, Yao Zi <ziyao@disroot.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250305140009.2485859-1-amadeus@jmu.edu.cn>
- <20250305140009.2485859-2-amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v8 1/2] dt-bindings: net: Add FSD EQoS device tree
+ bindings
+To: Swathi K S <swathi.ks@samsung.com>, krzk+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, conor+dt@kernel.org,
+ richardcochran@gmail.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com
+Cc: rmk+kernel@armlinux.org.uk, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ pankaj.dubey@samsung.com, ravi.patel@samsung.com, gost.dev@samsung.com
+References: <20250305091246.106626-1-swathi.ks@samsung.com>
+ <CGME20250305091852epcas5p18a0853e85a5ed3d36d5d42ef89735ca6@epcas5p1.samsung.com>
+ <20250305091246.106626-2-swathi.ks@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,43 +109,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250305140009.2485859-2-amadeus@jmu.edu.cn>
+In-Reply-To: <20250305091246.106626-2-swathi.ks@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/03/2025 15:00, Chukun Pan wrote:
-> Copy QoS nodes and add rk3528 compatible from bsp kernel,
-
-No, don't copy stuff from BSP kernel. It results in terrible DTS.
-
-> these can be used for power-domain.
+On 05/03/2025 10:12, Swathi K S wrote:
+> Add FSD Ethernet compatible in Synopsys dt-bindings document. Add FSD
+> Ethernet YAML schema to enable the DT validation.
 > 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 160 +++++++++++++++++++++++
->  1 file changed, 160 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> index 5b334690356a..794f35654975 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> @@ -122,6 +122,166 @@ gic: interrupt-controller@fed01000 {
->  			#interrupt-cells = <3>;
->  		};
->  
-> +		qos_crypto_a: qos@ff200000 {
-> +			compatible = "rockchip,rk3528-qos", "syscon";
-> +			reg = <0x0 0xff200000 0x0 0x20>;
-> +		};
-> +
-> +		qos_crypto_p: qos@ff200080 {
-> +			compatible = "rockchip,rk3528-qos", "syscon";
-> +			reg = <0x0 0xff200080 0x0 0x20>;
-> +		};
+> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
+> Signed-off-by: Swathi K S <swathi.ks@samsung.com>
 
+<form letter>
+This is a friendly reminder during the review process.
 
-Did you just define syscon per few registers? Third case last weeks...
-so no, define what is your device here. 8 registers is not a device usually.
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
