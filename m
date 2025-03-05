@@ -1,252 +1,114 @@
-Return-Path: <devicetree+bounces-154435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74ACDA50153
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:05:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A62CA5013B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:01:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D4B216E135
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:05:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A88F3ACF31
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FCF824BC11;
-	Wed,  5 Mar 2025 14:05:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE0013594C;
+	Wed,  5 Mar 2025 14:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="Q5wNHCqC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F181E24BC19;
-	Wed,  5 Mar 2025 14:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1537DF60
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 14:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741183533; cv=none; b=kSXj2zV0LBCo/Aq98BZRzgbg0xwTKoALnawS7xNQF2S3iM/Sdpntxo59Kex/OMxyTFk7ZfiksLDtD2U3q8NMqMhXe7t9tvo4W0osJptay62hgXynuEF7UoLHUWzNbFdbRiViIy+YHGEFSYZcosi+t0Pe8vlS5SPyH3iMq+CsIZQ=
+	t=1741183283; cv=none; b=Ap8E19dvo56ED0gQBEuB1roupvN8uTOJ2A3Zlg2Kjbx7iRsN4stooHMJo60v7MSPbWedyjCk7WmyyEtBJyLGXGxKqNwl5oZJObpB+EdAm5MqKf+9YsdIX+9HdaHo1wJwnBNevGCWWiCppAJ463qO7tBdZrGsabq6f+2+KtdFLyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741183533; c=relaxed/simple;
-	bh=qLgQ7hqXvB84rjpiCvPUIb5zzLPY1fnebfK09uf2liI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=T3+vVHqLmUOZ2XirKtlU/ZxI+k0LG5oAWNRmKgGMZw/rgtwR4eK7gXYZjEG4VWpSi7xN2hXrEaka26kT+rpNxfNRyG47eBNltBPn3qVKCHdFVY2VGGhzUGC0xBAHfjPtOMG8cCWoM8vC0npxeE82VF2ARlE/2TyUEsKqKYsfqpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c02:1dd0:e727:1623:c5c6:9622])
-	by smtp.qiye.163.com (Hmail) with ESMTP id d0a1b692;
-	Wed, 5 Mar 2025 22:00:17 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Lee Jones <lee@kernel.org>,
+	s=arc-20240116; t=1741183283; c=relaxed/simple;
+	bh=+16XLBLXQOQTl4r4xUi5JkqUsmF86tVo/VWtoHczKcM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iCqy1Jy8Tukd52RutBOYfVGjOWKapauM5ycCFMr6EFzUjrGxsZkChBJb2ARgyFgriVAnbw9Dy5FjZMTZrSbj8BQrhSmY+q4x/AvvHH7w57nkrZXiQI7R9XQZhfGaSv72cc/K7R5NcuGteQewkzOeXagQsyw1/dCJmxbXVGZ/ewo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=Q5wNHCqC; arc=none smtp.client-ip=95.215.58.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rosenzweig.io
+Date: Wed, 5 Mar 2025 09:01:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosenzweig.io;
+	s=key1; t=1741183279;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8aO4nUAYYsK7CbYcngMFkNu2vCLer0vDQ0Tj5RInDJY=;
+	b=Q5wNHCqCR4Ez8bHn5tp61cOjO45ii7ooQ70GuXfN2lAV0c48bwr1Qsc3x9jEOkiOnChGU0
+	amhTJW4fa6MOAjgg5bSWoybFgzRC/ihNpp2y8XcrGvRdNlXUWNTRwX0V7hg6lr2N+TXcq9
+	WXVlEHQs6qrYMubYwrelO7ZFwcfuaq/e6mqQQTw73asaOad09YXmOsMimMjvWeft3BmQPo
+	ezUG/ZiE34dWpyUU7uep7BaxZAk9yMpjzisK+LbXXunqEPe8vkjP1VPoYsf/6N34qJ27st
+	Fpl3VymGb7t8lSsmvOqzOyivlEeF7i2KqxL/waOmVH/l3icaTDy818PmiY6BsQ==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Add rk3528 QoS register node
-Date: Wed,  5 Mar 2025 22:00:09 +0800
-Message-Id: <20250305140009.2485859-2-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250305140009.2485859-1-amadeus@jmu.edu.cn>
-References: <20250305140009.2485859-1-amadeus@jmu.edu.cn>
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev,
+	Janne Grunau <j@jannau.net>,
+	Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Alyssa Ross <hi@alyssa.is>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Neal Gompa <neal@gompa.dev>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Nick Chan <towinchenmi@gmail.com>
+Subject: Re: [PATCH v8 0/5] Driver for pre-DCP apple display controller.
+Message-ID: <Z8hZKW_F-HtzYm-w@blossom>
+References: <20250224-adpdrm-v8-0-cccf96710f0f@gmail.com>
+ <174118223158.156873.6982508045942987984.b4-ty@rosenzweig.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTksZVk1DGktKGRpIHUhPS1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtJQUofH0tBHkxJTEFKTUlIQRhOGE1BQk1JSVlXWRYaDx
-	IVHRRZQVlPS0hVSktJQkNDTVVKS0tVS1kG
-X-HM-Tid: 0a95669b70b503a2kunmd0a1b692
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PCo6SCo4CDJRTT8CFCsJFiEi
-	STEwC09VSlVKTE9KSkNISUpDTkNPVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0lBSh8fS0EeTElMQUpNSUhBGE4YTUFCTUlJWVdZCAFZQU9DTEM3Bg++
+In-Reply-To: <174118223158.156873.6982508045942987984.b4-ty@rosenzweig.io>
+X-Migadu-Flow: FLOW_OUT
 
-Copy QoS nodes and add rk3528 compatible from bsp kernel,
-these can be used for power-domain.
+Er... I only applied 1, 2, and 5. Patch 3 was already merged, and patch
+4 is going in via arm soc. I am, new to b4, sorry!
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/arm64/boot/dts/rockchip/rk3528.dtsi | 160 +++++++++++++++++++++++
- 1 file changed, 160 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-index 5b334690356a..794f35654975 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-@@ -122,6 +122,166 @@ gic: interrupt-controller@fed01000 {
- 			#interrupt-cells = <3>;
- 		};
- 
-+		qos_crypto_a: qos@ff200000 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff200000 0x0 0x20>;
-+		};
-+
-+		qos_crypto_p: qos@ff200080 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff200080 0x0 0x20>;
-+		};
-+
-+		qos_dcf: qos@ff200100 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff200100 0x0 0x20>;
-+		};
-+
-+		qos_dft2apb: qos@ff200200 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff200200 0x0 0x20>;
-+		};
-+
-+		qos_dma2ddr: qos@ff200280 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff200280 0x0 0x20>;
-+		};
-+
-+		qos_dmac: qos@ff200300 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff200300 0x0 0x20>;
-+		};
-+
-+		qos_keyreader: qos@ff200380 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff200380 0x0 0x20>;
-+		};
-+
-+		qos_cpu: qos@ff210000 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff210000 0x0 0x20>;
-+		};
-+
-+		qos_debug: qos@ff210080 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff210080 0x0 0x20>;
-+		};
-+
-+		qos_gpu_m0: qos@ff220000 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff220000 0x0 0x20>;
-+		};
-+
-+		qos_gpu_m1: qos@ff220080 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff220080 0x0 0x20>;
-+		};
-+
-+		qos_pmu_mcu: qos@ff240000 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff240000 0x0 0x20>;
-+		};
-+
-+		qos_rkvdec: qos@ff250000 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff250000 0x0 0x20>;
-+		};
-+
-+		qos_rkvenc: qos@ff260000 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff260000 0x0 0x20>;
-+		};
-+
-+		qos_gmac0: qos@ff270000 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff270000 0x0 0x20>;
-+		};
-+
-+		qos_hdcp: qos@ff270080 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff270080 0x0 0x20>;
-+		};
-+
-+		qos_jpegdec: qos@ff270100 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff270100 0x0 0x20>;
-+		};
-+
-+		qos_rga2_m0ro: qos@ff270200 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff270200 0x0 0x20>;
-+		};
-+
-+		qos_rga2_m0wo: qos@ff270280 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff270280 0x0 0x20>;
-+		};
-+
-+		qos_sdmmc0: qos@ff270300 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff270300 0x0 0x20>;
-+		};
-+
-+		qos_usb2host: qos@ff270380 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff270380 0x0 0x20>;
-+		};
-+
-+		qos_vdpp: qos@ff270480 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff270480 0x0 0x20>;
-+		};
-+
-+		qos_vop: qos@ff270500 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff270500 0x0 0x20>;
-+		};
-+
-+		qos_emmc: qos@ff280000 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff280000 0x0 0x20>;
-+		};
-+
-+		qos_fspi: qos@ff280080 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff280080 0x0 0x20>;
-+		};
-+
-+		qos_gmac1: qos@ff280100 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff280100 0x0 0x20>;
-+		};
-+
-+		qos_pcie: qos@ff280180 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff280180 0x0 0x20>;
-+		};
-+
-+		qos_sdio0: qos@ff280200 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff280200 0x0 0x20>;
-+		};
-+
-+		qos_sdio1: qos@ff280280 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff280280 0x0 0x20>;
-+		};
-+
-+		qos_tsp: qos@ff280300 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff280300 0x0 0x20>;
-+		};
-+
-+		qos_usb3otg: qos@ff280380 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff280380 0x0 0x20>;
-+		};
-+
-+		qos_vpu: qos@ff280400 {
-+			compatible = "rockchip,rk3528-qos", "syscon";
-+			reg = <0x0 0xff280400 0x0 0x20>;
-+		};
-+
- 		cru: clock-controller@ff4a0000 {
- 			compatible = "rockchip,rk3528-cru";
- 			reg = <0x0 0xff4a0000 0x0 0x30000>;
--- 
-2.25.1
-
+Le Wed, Mar 05, 2025 at 08:43:51AM -0500, Alyssa Rosenzweig a écrit :
+> 
+> On Mon, 24 Feb 2025 12:02:15 +0100, Sasha Finkelstein wrote:
+> > This patch series adds support for a secondary display controller
+> > present on Apple M1/M2 chips and used to drive the display of the
+> > "touchbar" touch panel present on those.
+> > 
+> > 
+> 
+> Applied, thanks!
+> 
+> [1/5] dt-bindings: display: Add Apple pre-DCP display controller
+>       commit: 7a108b930a84e71be71c3370eef6dd96fbb8f618
+> [2/5] drm: adp: Add Apple Display Pipe driver
+>       commit: 332122eba628d537a1b7b96b976079753fd03039
+> [3/5] drm: panel: Add a panel driver for the Summit display
+>       (no commit info)
+> [4/5] arm64: dts: apple: Add touchbar screen nodes
+>       (no commit info)
+> [5/5] MAINTAINERS: Add entries for touchbar display driver
+>       commit: 4d2a877cc0efefa815648f1ed5f5b2b796f55bab
+> 
+> Best regards,
+> -- 
+> Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> 
+> 
 
