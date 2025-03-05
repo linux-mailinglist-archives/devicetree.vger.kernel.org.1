@@ -1,160 +1,105 @@
-Return-Path: <devicetree+bounces-154618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B39DEA50E63
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:14:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF355A50E70
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:20:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECBD816C6E9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:14:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 246F43A5A42
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:19:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D642C266561;
-	Wed,  5 Mar 2025 22:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6BF256C63;
+	Wed,  5 Mar 2025 22:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ST8tafEE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bKzBhBHP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B172620FE;
-	Wed,  5 Mar 2025 22:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 046541FF61B;
+	Wed,  5 Mar 2025 22:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741212863; cv=none; b=qA+hncjgM7ENF9zXDrY8TVYyPd8cmKPJQoIK4FTbWjSNXlPtri6252SaT5+qPs7AeCmgRor/KitLS4NjIWhW/eJ4QisWWbsHTRMu5if99lKlcxPTSfcgtdGKwXoudANtrkIgo54Fy6gasf3+A6hBugu0oj+n2JF7cuEZvHm1J1w=
+	t=1741213200; cv=none; b=KShGVrJGhrIPCyFyp6Nq/VS+PrESMMz3yZm4wIBLZeXk9b4+YcyfEQW4UY0BgtwD9Z37dVh5ISOd1oQW/PvdGzp8vG5hscPrHnhD0Rg/s40JyZMLPUq3YLK9LqrES6T8FmUYuwq4f/UqEp9P8VopsNdh6W49scr/xk9op0w9Xkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741212863; c=relaxed/simple;
-	bh=Zx5GE+9URX3cZR5gaEQ2H19HnShyope1WOKnvdJpFQg=;
+	s=arc-20240116; t=1741213200; c=relaxed/simple;
+	bh=odGwjXPuLoI3+Jrcw4b7Ov4gl4KEsYLb21Fg97K0Pb0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c6b6Gi5HERrFfDCfjEwgLoc5gdftywQ7F7K6noJu55Qjwg1J84VVZp2EnZfLGhJD+15z81jFn4DZbbsxx77uo85WOtrN7OVOlIDJz1Kt9tU+teXWubWAd/G+mVJOJLpEtDbUbWzyI0ADesRzpVB8qyA4moCcyrg8biIQRwrcVfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ST8tafEE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08ACDC4CEE8;
-	Wed,  5 Mar 2025 22:14:23 +0000 (UTC)
+	 To:Cc:Content-Type; b=Hgjk/vawnh6zdkRoRN/wS098uJVQTDzR1AVy+VF6Ahwmnh8wFdJ40ucYwAk8qutMnxjG+u68qA3KM5HYH6P0rJFpvgFrQjsnAEWBQIATCNw1KmMr5QGlbizDwv09ctgs8fPECM7wcCLUlxPgdZ8ELI3PlhLhtbUNn8dnA2ntNL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKzBhBHP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D09FEC4CEE7;
+	Wed,  5 Mar 2025 22:19:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741212863;
-	bh=Zx5GE+9URX3cZR5gaEQ2H19HnShyope1WOKnvdJpFQg=;
+	s=k20201202; t=1741213199;
+	bh=odGwjXPuLoI3+Jrcw4b7Ov4gl4KEsYLb21Fg97K0Pb0=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ST8tafEEsyDf7uOWGSEVaYRQNBETT99JiRalWB9kIGEfq+wUCVwx7xzVB4zKrAAMp
-	 cTHu+AdEv6uq4dZ71wXKrPmibAZnA0R1zXifHZU3RjvObojY/rzWvrgfqY5RFQdl+D
-	 ZUgwlU06jU050v2w8P0Tr2mnmJuiuoRhtdz4CePwKiX61ndMMnV+YdejoaT6XJCSzV
-	 zZwRzWktYc6Ea45b24WVy0/KXOm5/MN1wAm4tUVKRW1ptCSqeUrDQVSypgoOToCvay
-	 KMKA2UjOVHq1qiPNn9xmVyCqE3v/sIzUrYBtRG35PBAz0+q/PL/TS/30Zm/64Jkzd9
-	 PS2YFgPqrXjYg==
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e5b6f3025dso1257188a12.1;
-        Wed, 05 Mar 2025 14:14:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWArkSDidjZPZ6vcTAzLvRw61ZANr93/HmYov8TLsoFM38XEHZI0Vd+Yh970mYoXpmjoYs9LmRMAFSjC7SF@vger.kernel.org, AJvYcCXTUwgqsthkEujJ1slhhr03FGYPlfi6sjRl1Z4cdzp4KWz7QgV1idDeYkJvTr+Xcp6E1L9NBkIQ53KU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqRWOvq2z9GAKjjQSrgJUpYfr4NH/dSpTio0TdryBNWeAO/NaJ
-	MCe49y4WUUtVv8cX1LL74E8XmvgNVNGyN32Wb3xGMLq2hbqZi/J+RBGm8jPLUvcqG3G6IPZ+B4p
-	hCWcCLdUpec6CWpNTza5EZtZ4Ow==
-X-Google-Smtp-Source: AGHT+IGYDfNLXYfg6BSzNVuGARy79Tn1tTyoaWjPku6CKaUdhh2vjVg+1b7zISM2D5ggr+aAEfJU6dBDoLxoEAchZz0=
-X-Received: by 2002:a17:907:7211:b0:ac1:ff43:82ad with SMTP id
- a640c23a62f3a-ac20d844185mr498713566b.12.1741212861452; Wed, 05 Mar 2025
- 14:14:21 -0800 (PST)
+	b=bKzBhBHPDCKuhVEaReaQ76MMsX2G1SX6D/bEE6l0Z2qcbL9g+m8ImZLln3Z02uP7H
+	 iQqyRHRtaCWtcg0HBo95FpeZ+F3G6yr35SrcUT2ZLRHt8PTRrzIGBdY0WT/wbt/mEd
+	 jvhBbaBx5xc1kZLmU+PCHnsngL1rKm5KkpSGkTrBPbmxqlJVSL024qhcSeG/q+iAIA
+	 2w7669UcigcbOGvIbi2rsSnBItY2MDB8B9uujNF4gZU0YxuylU/2HcJbiURsRxusd6
+	 +fSV2SaFb3BmOwp+qsn3CKmtxNgaC/RrUW61PdmmFVFb5snhFHSafDfFAaE9UMjKo8
+	 8HGukhVwTdq1g==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e4b410e48bso10998539a12.0;
+        Wed, 05 Mar 2025 14:19:59 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUrbplXnsu5/x5ZbTq3Y1uRsxXA5knNUjBgFsnzsIKhORWRAKviHVWmtgvwUbCuQcBLDxONqfL0CdLBCdBu@vger.kernel.org, AJvYcCWDFnS9QyYd5t6Lyl4jTpWrvtThXmSB+t/7yC48Xle2Gm+WKl1GMbuH0HPbSwIjETUQ7zBvLkKVASpO@vger.kernel.org
+X-Gm-Message-State: AOJu0YybsvL+SH0PCsD3SafoRuD79eZpa7rReBz6wBad5kSjhOK3sgm8
+	kkHoi0odJuYa9U+Ye/5Ese+5MzX8l2aiuJbizR13U/NiaLazgyDyDTrep+XCu/Wov0jt24EJERl
+	L1H9B77lNTPDsA1Bw8kkKJvg53Q==
+X-Google-Smtp-Source: AGHT+IGmcbRnsKh4qmTIrjjZnvbSUllEyKfAIMmiWB3ZMYddCqtDRqGxn1VMbXWC0I5eXo67K8lElFHwxeHn8Rragx0=
+X-Received: by 2002:a05:6402:1ece:b0:5e4:d75a:573e with SMTP id
+ 4fb4d7f45d1cf-5e59f4f8e28mr4935569a12.32.1741213198291; Wed, 05 Mar 2025
+ 14:19:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250304102306.2977836-1-c-vankar@ti.com> <20250304102306.2977836-2-c-vankar@ti.com>
- <20250304153959.GA2654372-robh@kernel.org> <66283781-69d6-4d0a-ada4-3a6bf4744a37@ti.com>
- <CAL_Jsq++DUv5_LHg7sPNXDJZ84JtS94Rwr-WAb9hDWp6rJqZLQ@mail.gmail.com> <11982b12-a359-467a-a6fc-e39adccca413@ti.com>
-In-Reply-To: <11982b12-a359-467a-a6fc-e39adccca413@ti.com>
+References: <20250305140009.2485859-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20250305140009.2485859-1-amadeus@jmu.edu.cn>
 From: Rob Herring <robh@kernel.org>
-Date: Wed, 5 Mar 2025 16:14:09 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLb5hrYD_-dqW5ELtbXohd8a1UL7nOuP2a9ZhE+3+f=eA@mail.gmail.com>
-X-Gm-Features: AQ5f1Jo1GiNn3eAvnrenLvre-nBgvQ7BPHTsGmYES4JgbDO702r5HrT_Ttt03_I
-Message-ID: <CAL_JsqLb5hrYD_-dqW5ELtbXohd8a1UL7nOuP2a9ZhE+3+f=eA@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 1/2] devicetree: bindings: mux: reg-mux: Update
- bindings for reg-mux for new property
-To: "Vankar, Chintan" <c-vankar@ti.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Peter Rosin <peda@axentia.se>, s-vadapalli@ti.com, danishanwar@ti.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+Date: Wed, 5 Mar 2025 16:19:46 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJgjD69wtJJfLuvBQ4g+JprxQ9mKGPWGgY1dmziehe-Kw@mail.gmail.com>
+X-Gm-Features: AQ5f1JoAojNhKXJ10NzfyCQO9G1rFeCcWSk_-mw-M74iUoDe9bMGrTl0QURdgE0
+Message-ID: <CAL_JsqJgjD69wtJJfLuvBQ4g+JprxQ9mKGPWGgY1dmziehe-Kw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add rk3528 QoS register compatible
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Yao Zi <ziyao@disroot.org>, Lee Jones <lee@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 5, 2025 at 3:43=E2=80=AFPM Vankar, Chintan <c-vankar@ti.com> wr=
-ote:
+On Wed, Mar 5, 2025 at 8:00=E2=80=AFAM Chukun Pan <amadeus@jmu.edu.cn> wrot=
+e:
 >
-> Hello Rob,
+> Document rk3528 compatible for QoS registers.
 >
-> On 3/5/2025 2:10 AM, Rob Herring wrote:
-> > On Tue, Mar 4, 2025 at 1:03=E2=80=AFPM Vankar, Chintan <c-vankar@ti.com=
-> wrote:
-> >>
-> >> Hello Rob,
-> >>
-> >> On 3/4/2025 9:09 PM, Rob Herring wrote:
-> >>> On Tue, Mar 04, 2025 at 03:53:05PM +0530, Chintan Vankar wrote:
-> >>>> DT-binding of reg-mux is defined in such a way that one need to prov=
-ide
-> >>>> register offset and mask in a "mux-reg-masks" property and correspon=
-ding
-> >>>> register value in "idle-states" property. This constraint forces to =
-define
-> >>>> these values in such a way that "mux-reg-masks" and "idle-states" mu=
-st be
-> >>>> in sync with each other. This implementation would be more complex i=
-f
-> >>>> specific register or set of registers need to be configured which ha=
-s
-> >>>> large memory space. Introduce a new property "mux-reg-masks-state" w=
-hich
-> >>>> allow to specify offset, mask and value as a tuple in a single prope=
-rty.
-> >>>
-> >>> Maybe in hindsight that would have been better, but having 2 ways to
-> >>> specify the same thing that we have to maintain forever is not an
-> >>> improvement.
-> >>>
-> >>> No one is making you use this binding. If you have a large number of
-> >>> muxes, then maybe you should use a specific binding.
-> >>>
-> >>
-> >> Thank you for reviewing the patch. The reason behind choosing mux
-> >> subsystem is working and implementation of mmio driver. As we can see
-> >> that implementing this new property in mux-controller is almost
-> >> identical to mmio driver, and it would make it easier to define and
-> >> extend mux-controller's functionality. If we introduce the new driver
-> >> than that would be most likely a clone of mmio driver.
-> >
-> > I'm talking about the binding, not the driver. They are independent.
-> > Generic drivers are great. I love them. Generic bindings, not so much.
-> >
-> >> Let me know if implementation would be accepted by adding a new
-> >> compatible for it.
-> >
-> > Adding a new compatible to the mmio driver? Certainly. That happens
-> > all the time.
-> >
-> > I also didn't say don't use this binding as-is. That's fine too.
-> >
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> Can you please review the following binding:
->
-> oneOf:
->    - required: [ mux-reg-masks ]
->    - required: [ mux-reg-masks-state ]
->
-> allOf:
->    - if:
->        required:
->          - mux-reg-masks-state
->      then:
->        properties:
->          idle-states: false
->
-> required:
->    - compatible
->    - '#mux-control-cells'
->
-> I think it won't disturb the current bindings and keep backward
-> compatibility with existing implementation.
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Document=
+ation/devicetree/bindings/mfd/syscon.yaml
+> index 4d67ff26d445..fcfd293b9bf1 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -103,6 +103,7 @@ select:
+>            - rockchip,rk3288-qos
+>            - rockchip,rk3368-qos
+>            - rockchip,rk3399-qos
+> +          - rockchip,rk3528-qos
 
-Wasn't that the case before? There's nothing really different here.
+There's 2 spots you have to add this.
 
-Rob
+>            - rockchip,rk3562-qos
+>            - rockchip,rk3568-qos
+>            - rockchip,rk3576-qos
+> --
+> 2.25.1
+>
 
