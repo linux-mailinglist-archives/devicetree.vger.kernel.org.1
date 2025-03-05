@@ -1,205 +1,143 @@
-Return-Path: <devicetree+bounces-154270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B010A4F890
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:18:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4110EA4F89C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:21:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEBDE3A3E3D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:18:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1A453A0650
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70D9A1F76B5;
-	Wed,  5 Mar 2025 08:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893101F584A;
+	Wed,  5 Mar 2025 08:21:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="U4AZgIbJ"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="kVU0y0iJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EFD51F584E
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D49FA14658D;
+	Wed,  5 Mar 2025 08:20:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741162705; cv=none; b=T1TSu5Jux4XnoF5rWQ1m66B+7lEzVTCTrWtT/9+sCjrzvEGhMouIJoryFdYHyB9QEl8eHhY63Q9+Nn25jJp/wyZvo0HmHq8Tp/rM0APL1RbWuaGP7SMevoe9AJBqwUCjtVTI/HiitR8p3Nn5qCZm5DTFgkDWjNHkGTaOwkQvdcM=
+	t=1741162860; cv=none; b=af/x/YRDO8yLz44kQGT+gO+xWuM49c7kOzple+L+NFexZtOoKp4e35x9Hd/fCo5TSe5VJ2E+qX5mDz9Cf4cqnPDK+C+kdXdIDrOQYgvQV3HSr9SJ3B0V2+UxUhubtOIggUOIW90P8BVJqReDGeBdsvsu7UuBs/cKUJ77HwjVccU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741162705; c=relaxed/simple;
-	bh=IfMSOKZTMOR/zUAsd33nCSnuKAx0Gro/YjVBG4QSDJc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=HrJkcBoswSRg7sKyMuTj+wbIeITg3kdvjA+iHNj+LcwQZM48gEMTLlWBy920oQULuEHUY0aHmNOLCRMBRLX1XLUXbnmgysz1NauqcOdtn2J0DxGTZ3qxRBRoOS1OKWZDVT2JkHjynh7/D4sUIPzWtgEhl+u97NCaJK1dpZLqhF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=U4AZgIbJ; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250305081820euoutp021d9fce893c5d3a21143137fa93141b8b~p2kBM0vFT0507805078euoutp02g
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:18:20 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250305081820euoutp021d9fce893c5d3a21143137fa93141b8b~p2kBM0vFT0507805078euoutp02g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1741162700;
-	bh=z4bDXZf0zsJpmZ4gA2EzfPRJzWcAnMN3iUbKKNxEAqw=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=U4AZgIbJrV0ftB2eAPxu4/Q1MpiU7XHy4CJk37GMm6A3SKoWflD3QOk6rP9NBpXrD
-	 MpOUWrNkmGXu8en1XNJuSblch/tleiU80mgmuBIjMvzQQ0jqBpOpEuRGH+Q9PweUPN
-	 8eSZvmr2zf9XYgaxq9FKfhrPJ2ifKJ/5XZkMggU8=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20250305081820eucas1p18a6b69372f0a694f81bb00b333eef309~p2kA06VGb2579125791eucas1p1Z;
-	Wed,  5 Mar 2025 08:18:20 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id 6C.C7.20397.CC808C76; Wed,  5
-	Mar 2025 08:18:20 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250305081819eucas1p1ad27dd6b7ef53e4ea95adfad46d9dca3~p2kAXXGKD2578725787eucas1p1b;
-	Wed,  5 Mar 2025 08:18:19 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250305081819eusmtrp14276678062258e5a01766bbc121cbd9f~p2kAWl2PV0646206462eusmtrp1R;
-	Wed,  5 Mar 2025 08:18:19 +0000 (GMT)
-X-AuditID: cbfec7f5-ed1d670000004fad-c5-67c808cc7540
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 2D.4B.19654.BC808C76; Wed,  5
-	Mar 2025 08:18:19 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250305081818eusmtip26ea063d1e2190b225e572c1a657e70ab~p2j-XBYUu0942709427eusmtip2F;
-	Wed,  5 Mar 2025 08:18:18 +0000 (GMT)
-Message-ID: <8ffa6276-299c-4a95-8c7d-cbe39c1a1457@samsung.com>
-Date: Wed, 5 Mar 2025 09:18:18 +0100
+	s=arc-20240116; t=1741162860; c=relaxed/simple;
+	bh=s3Uk1BHVwIcZ5VUVVc13SVRBkZzEcEhWNPCLgY3F+N4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OdFB3otcEJNXhdyHfbcImSqMbi1S58yPKzbGKjYeHYn4qPBtIO4krhJUezSPDhscbjot8KXjj3HIT5FZMp7rs0i6JGRrafhhh0+Gm4efv/GOW3CXR2VVwSFSlgaK622k3j23y8b/PGK/HwMf8zR7T+n7HdwQ2lD5Y6x50Ns0QRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=kVU0y0iJ; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: bfcbacbaf99a11ef8eb9c36241bbb6fb-20250305
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GFxWueo3Q7D0lqnHm7zaaDzy31RkGxj9+qLmZ+0IIcM=;
+	b=kVU0y0iJ1+0wStsj/S44pJwmWI3j954AP+9dA5t7YJ3MuOraAF4DCjIHdw7TpE5cljyMlOdhaDJczDbN6tuM6Zqp5274MOyw5genNDNVmfAPPQmDirTiVnV6PI4E4WjpEUN69OskZaksE/Ci79frisJ68wxa2tmnA6d1wC0aUjg=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:869f8c68-3c77-4ff1-b476-1edf62165389,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:6461fa8b-f5b8-47d5-8cf3-b68fe7530c9a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: bfcbacbaf99a11ef8eb9c36241bbb6fb-20250305
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <jjian.zhou@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1280654986; Wed, 05 Mar 2025 16:20:50 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Wed, 5 Mar 2025 16:20:49 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Wed, 5 Mar 2025 16:20:49 +0800
+From: Jjian Zhou <jjian.zhou@mediatek.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jason-ch Chen
+	<jason-ch.chen@mediatek.com>, Jjian Zhou <jjian.zhou@mediatek.com>
+Subject: [PATCH RFC 0/3] add VCP mailbox and IPC driver
+Date: Wed, 5 Mar 2025 16:20:37 +0800
+Message-ID: <20250305082047.15746-1-jjian.zhou@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/4] Add T-Head TH1520 VO clock support for LicheePi
- 4A GPU enablement
-To: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
-	wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
-	p.zabel@pengutronix.de, m.szyprowski@samsung.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20250303143629.400583-1-m.wilczynski@samsung.com>
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOKsWRmVeSWpSXmKPExsWy7djPc7pnOE6kG1x8ymXx7M5XVoutv2ex
-	W6zZe47JYv6Rc6wW9y5tYbJ4sbeRxaL52Ho2i5ez7rFZfOy5x2pxedccNottn1vYLNYeuctu
-	cfGUq8XdeydYLF5e7mG2aJvFb/F/zw52i3/XNrJYtOyfwuIg7PH+Riu7x5uXL1k8Dnd8Yfe4
-	d2Iaq8emVZ1sHpuX1Hu0rD3G5NH/18Dj/b6rbB59W1Yxelxqvs7u8XmTXABPFJdNSmpOZllq
-	kb5dAlfG875WloJzUhWH795jb2A8KtrFyMkhIWAi8f/YLMYuRi4OIYEVjBKv959jgnC+MErc
-	atjJDOF8ZpT41P+eEabl9e7TYLaQwHJGicVHayCK3jJKbGh6zwKS4BWwk2jf/IoNxGYRUJGY
-	tKeHCSIuKHFy5hOwGlEBeYn7t2awg9jCAvESq+6tZgcZJCKwh0ni+/efzCAJZoEqiR33b7BD
-	2OISt57MBxvEJmAk8WD5fFYQm1PAXuLQ9QYWiBp5ieats8HOlhB4ximxbM5qoAYOIMdF4uZe
-	dogPhCVeHd8CZctInJ7cwwJh50s82PqJGcKukdjZcxzKtpa4c+4XG8gYZgFNifW79CHCjhI/
-	r89hg5jOJ3HjrSDEBXwSk7ZNZ4YI80p0tAlBVKtJTO3phVt6bsU2pgmMSrOQAmUWkh9nIfll
-	FsLeBYwsqxjFU0uLc9NTi43zUsv1ihNzi0vz0vWS83M3MQLT5ul/x7/uYFzx6qPeIUYmDsZD
-	jBIczEoivK9PHU8X4k1JrKxKLcqPLyrNSS0+xCjNwaIkzrtof2u6kEB6YklqdmpqQWoRTJaJ
-	g1OqgSnpG2foPjvGUyUTO033uRqu8zfoi5uusfvR7TsPTM+vtmsN5RKbIvf4tmD3j4sOITrH
-	Lk0SiSksNfkhx35pqQjHm9jwx999lzzKE1PrP7O+2uqc1mEetd+Se0K1PjIeubgioWPT3e0X
-	npuUJLryvn8086Wx3IMZvleePJOdMWnx3okdN068XKioslbIrJjjdtu2jQfVOrOnuxxRsar5
-	tnpvLKPewl8xs+dmilztFf/Tn+H44XJNy/k3r5feP7A4dVnMsydn2oLePxDY9OAV8wnPP5pP
-	J5Qe4xc8/OiJ89IUt79PTWZUvvqms+XPs/Z71e8XndUIP65yepXguuCsO00cLF+W8LQrfbb0
-	/H1Vp7KmXomlOCPRUIu5qDgRACgaknMKBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupileLIzCtJLcpLzFFi42I5/e/4Pd3THCfSDS63q1g8u/OV1WLr71ns
-	Fmv2nmOymH/kHKvFvUtbmCxe7G1ksWg+tp7N4uWse2wWH3vusVpc3jWHzWLb5xY2i7VH7rJb
-	XDzlanH33gkWi5eXe5gt2mbxW/zfs4Pd4t+1jSwWLfunsDgIe7y/0cru8eblSxaPwx1f2D3u
-	nZjG6rFpVSebx+Yl9R4ta48xefT/NfB4v+8qm0ffllWMHpear7N7fN4kF8ATpWdTlF9akqqQ
-	kV9cYqsUbWhhpGdoaaFnZGKpZ2hsHmtlZKqkb2eTkpqTWZZapG+XoJfxvK+VpeCcVMXhu/fY
-	GxiPinYxcnJICJhIvN59mrGLkYtDSGApo8SOs5fZIRIyEte6X7JA2MISf651sUEUvWaUuP74
-	GhtIglfATqJ98yswm0VARWLSnh4miLigxMmZT8CaRQXkJe7fmgE0lINDWCBeonGqNcgcEYE9
-	TBJ/p8wD62UWqJI4v/cKK8SCSYwSLVeWMUMkxCVuPZkPNpRNwEjiwfL5rCA2p4C9xKHrDSwg
-	Q5kF1CXWzxOCKJeXaN46m3kCo9AsJGfMQjJpFkLHLCQdCxhZVjGKpJYW56bnFhvpFSfmFpfm
-	pesl5+duYgQmim3Hfm7Zwbjy1Ue9Q4xMHIyHGCU4mJVEeF+fOp4uxJuSWFmVWpQfX1Sak1p8
-	iNEUGBQTmaVEk/OBqSqvJN7QzMDU0MTM0sDU0sxYSZyX7cr5NCGB9MSS1OzU1ILUIpg+Jg5O
-	qQYm/8TgDc/Y+kVnKxw0/Ve37wN//vmDD9o/V+5+M637mbvJswmMy1eWlQi8Lbj0f3VR0imj
-	61E5oV9mfJSN+FS0pOb37brWQ8mHGiveOomc/reu4WlZ69HKyGqTQ+t/7QxSi7804Wa3ypki
-	qbash2ZnZ3qUPpHcE2txIuiEut+a5aVfPa6wNocuZOzmCI+KPFoV3vvBxZDleK1o878NCUmP
-	D9lX9L57fvTPkiCp/3dfpMm8uzM3ReG08kurYyliTh4HJCZXljUu36914n//DHm/jf82BO1X
-	4Hybd68muWdniCN7s+im/4p/gsJDKza2d5+bc+eUy7zJdw/xFRiHh55cfIs3QLFULKD2Wlu9
-	sa6ZEktxRqKhFnNRcSIAeuKmp50DAAA=
-X-CMS-MailID: 20250305081819eucas1p1ad27dd6b7ef53e4ea95adfad46d9dca3
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250303143634eucas1p269281f72bdc4d764edd54b9427f68787
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250303143634eucas1p269281f72bdc4d764edd54b9427f68787
-References: <CGME20250303143634eucas1p269281f72bdc4d764edd54b9427f68787@eucas1p2.samsung.com>
-	<20250303143629.400583-1-m.wilczynski@samsung.com>
+Content-Type: text/plain
+X-MTK: N
 
+The VCP mailbox has 5 groups. Each group has corresponding interrupts,
+registers, and 64 slots (each slot is 4 bytes). Since different features
+share one of the mailbox groups, the VCP mailbox needs to establish a
+send table and a receive table. The send table is used to record the
+feature ID, mailbox ID, and the number of slots occupied. The receive table
+is used to record the feature ID, mailbox ID, the number of slots occupied,
+and the receive options. The API setup_mbox_table in mtk-vcp-ipc.c calculates
+the slot offset and pin index for each feature ID based on the mailbox ID and
+slot number in the send and receive tables (several slots form a pin, and
+each pin can trigger an interrupt). These descriptions are written in the
+mtk-vcp-ipc.c file -- we call it the IPC layer.
 
+We have two questions:
+How should we describe the mailbox and IPI?
+Can the intermediate IPC layer be rewritten as a virtual mailbox layer?
 
-On 3/3/25 15:36, Michal Wilczynski wrote:
-> This is a subset of a larger patch series enabling the Imagination BXM-4-64 GPU
-> on the LicheePi 4A board, which is powered by the T-HEAD TH1520 SoC. While the
-> full series includes power-domain, reset, and firmware changes, this part
-> focuses solely on the clock subsystem needed for the GPU and other VO (video
-> output) blocks. By merging these clock patches independently, we prepare the
-> groundwork for future GPU integration via the `drm/imagination` driver.
-> 
-> The T-HEAD TH1520 SoC features multiple clock controllers. Initially, only the
-> AP clock controller was supported upstream. The patches below add support for
-> the VO (video output) clock controller, which manages GPU-related gates, HDMI,
-> and other multimedia clocks. Additionally, they introduce a mechanism to
-> provide no-op operations for the GPU's "mem" clock gate (documented as
-> “Reserved” in the hardware manual) and coordinate the GPU CLKGEN reset in the
-> clock driver.
-> 
-> Bigger series cover letter:
-> 
-> https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
+Example of send and recve table:
+Operation | mbox_id | ipi_id | msg_size | align_size | slot_ofs | pin_index |  notes
+send          0          0       18          18           0          0
+recv          0          1       18          18          18          9
+send          1         15        8           8           0          0
+send          1         16       18          18           8          4
+send          1          9        2           2          26         13
+recv          1         15        8           8          28         14       ack of send ipi_id=15
+recv          1         17       18          18          36         18
+recv          1         10        2           2          54         27       ack of send ipi_id=2
+send          2         11       18          18           0          0
+send          2          2        2           2          18          9
+send          2          3        3           4          20         10
+send          2         32        2           2          24         12
+recv          2         12       18          18          26         13
+recv          2          5        1           2          44         22
+recv          2          2        1           2          46         23
 
-This series should be versioned as v6, to maintain continuity with the
-bigger patchset it is a subseries of. Please find below a changelog for
-the clock sub-series:
+Recv ipi_id=2 is the ack of send ipi_id=2(The ipi_id=15 is the same.)
 
-v6:
-- squashed the "dt-bindings: clock: thead: Add GPU clkgen reset property"
-  with the "dt-bindings: clock: thead: Add TH1520 VO clock controller". As
-  a result, also removed the Reviewed-by from Krzysztof, since the new
-  resets property has been introduced, which is mandatory in the VO
-  case
+Jjian Zhou (3):
+  mailbox: mediatek: Add mtk-vcp-mailbox driver
+  firmware: mediatek: Add vcp ipc protocol interface
+  dt-bindings: mailbox: mtk,vcp-mbox: add mtk vcp-mbox document
 
-v5:
-- introduced a new macro CCU_GATE_CLK_OPS, which allows providing custom clk_ops.
-  In the case of the 'MEM' clock, it provides empty clk_nops. Later, this clock
-  is provided to the GPU node, thereby avoiding any ABI breakage
-- used the CCU_GATE_CLK_OPS macro to implement a workaround for de-asserting
-  the clkgen reset only after both core and sys clocks are enabled. This
-  sequence is required to properly initialize the GPU
+ .../bindings/mailbox/mtk,vcp-mbox.yaml        |  49 ++
+ drivers/firmware/Kconfig                      |   9 +
+ drivers/firmware/Makefile                     |   1 +
+ drivers/firmware/mtk-vcp-ipc.c                | 481 ++++++++++++++++++
+ drivers/mailbox/Kconfig                       |   9 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mtk-vcp-mailbox.c             | 179 +++++++
+ include/linux/firmware/mediatek/mtk-vcp-ipc.h | 151 ++++++
+ include/linux/mailbox/mtk-vcp-mailbox.h       |  34 ++
+ 9 files changed, 915 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,vcp-mbox.yaml
+ create mode 100644 drivers/firmware/mtk-vcp-ipc.c
+ create mode 100644 drivers/mailbox/mtk-vcp-mailbox.c
+ create mode 100644 include/linux/firmware/mediatek/mtk-vcp-ipc.h
+ create mode 100644 include/linux/mailbox/mtk-vcp-mailbox.h
 
-v4:
- - enhanced documentation for new Video Output (VO) clock inputs in device tree
-   bindings
+--
+2.45.2
 
-v3:
- - reworked driver to support multiple clock controllers through .compatible
-   and .data instead of using multiple address spaces in dt-binding. This change
-   allows to re-use the driver code for multiple clock controllers
-
-v2:
- - removed AP_SUBSYS clock refactoring commits (1-6):
- - instead of refactoring, I opted to extend the current driver and its
-   associated device tree node to include support for a second address space.
- - resolved all checkpatch issues using --strict, except for the call to
-   devm_clk_hw_register_gate_parent_data().  The current implementation remains
-   preferable in this context, and clang-format aligns with this choice
-
-> 
-> Michal Wilczynski (4):
->   dt-bindings: clock: thead: Add TH1520 VO clock controller
->   clk: thead: Add clock support for VO subsystem in T-Head TH1520 SoC
->   clk: thead: Add support for custom ops in CCU_GATE_CLK_OPS macro
->   clk: thead: Add GPU clock gate control with CLKGEN reset support
-> 
->  .../bindings/clock/thead,th1520-clk-ap.yaml   |  33 +-
->  drivers/clk/thead/clk-th1520-ap.c             | 298 ++++++++++++++++--
->  .../dt-bindings/clock/thead,th1520-clk-ap.h   |  34 ++
->  3 files changed, 334 insertions(+), 31 deletions(-)
-> 
 
