@@ -1,192 +1,149 @@
-Return-Path: <devicetree+bounces-154218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E449A4F58A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:45:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B53CA4F5D9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 05:01:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D0D3189093C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 03:45:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 662DB1891063
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F80019C55E;
-	Wed,  5 Mar 2025 03:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89F4199249;
+	Wed,  5 Mar 2025 04:01:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ng6AnIrA"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="JE/tQQ8g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FBFE18A6D5;
-	Wed,  5 Mar 2025 03:44:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB53319C55E
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 04:01:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741146293; cv=none; b=LYlOo5Yj/0cYBif3kWrA2xJ1TBzlVvcSBlxcqqNiHYVqNkKfEZIdHhrH7HvYYrBz3BqPQJOJYoWsqoAyhzi39yO6aA1MtcwAFibkaowkNN5qnv+mQY1wku9gKSNqsoAtqJejPIlggdNLFE5XPDR1ue4QNpddEMiT/zPn9Mchw94=
+	t=1741147274; cv=none; b=fcafn8Kjj4Gleul3O79PFSVXX5V09tawvvW0mzBizCyF8AmpaKgZnCfaVQ0HgkXEngye3Y8+g/46T/37dWzl94Q5x4iodUz9kKXql418DhJjYQGLb7BsWiczwYTSMLzEIz+OWm57ExJmeFB9xR4SsmNCTw0cjN2mGTGS0XissHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741146293; c=relaxed/simple;
-	bh=G6B56ZsAoR/bIh1JopEk7s/pj+lVV13//00JyF8B6Qo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=uVOfMXPJJigAlHpTT45Fl4BsC/PguCb8kkHVXmjs5B2LOWXo7kRTSZGR+zQ40GVYLzHB/D8BDRT/73equKREwDbYx1KYXAmf3hw3UO0ZcIe2XMS0GfQ693P+AHKd0oBHoJ0GxjFggazJBp6akxrWIxGbnyV3zGA4xTJPekAuTeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ng6AnIrA; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-22339936bbfso94647325ad.1;
-        Tue, 04 Mar 2025 19:44:51 -0800 (PST)
+	s=arc-20240116; t=1741147274; c=relaxed/simple;
+	bh=c7n8loHullD7JXhQoqt6oq4ipwinlvGcRtIih2cRmuc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ou0xlGEEMW4d07Pq8K4mUg+gF/XoKWnBoRJGTnQ/uK9cuOMDZ0a1a26GWC6HWLdhi+2xpKJ8UIqVGyUxuFal3VhBb108cEkeXXYoY74Xl6W+fXPVDc7Y+zQz5c8W71YzW4Sm6E+8y9rp//dSQju2InilpntW2ssvGGpIPdyflrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=JE/tQQ8g; arc=none smtp.client-ip=209.85.166.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3d3e25323cfso50432415ab.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 20:01:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741146291; x=1741751091; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FSYH5+SwcmtCe+p0n+lRYfrltYt+gVN39RZaCf2MCi8=;
-        b=Ng6AnIrAIhRf4cqhhF10DZnupgtIbc66jh/XZx8DHsFA36VePuYxT9NpP6nArZeD2n
-         yOa+S7SWx6OT0m+RAHsKaLqfmwqmNwxoIQgyYXp9UDhXKKN33Xopu1GSofHyImDblHMg
-         CpXrDMuPxLpNYCKX0frGW0lWjr3hslJWXw4hmIfuR495m0us27Du4d/Z3D+bXNx1Sroh
-         /GQ2MkaWndc4f0GCeZ+sXDII6PpSH37QwjxyrsjC8Nm2weGkQi3+4PMEmT1j53ZBGJ/0
-         YfjgCIa7I3bHXP93js+Eqz4ZGbwo4dpkfUQeNrl6AqQ+kWEESnclZi/dZxSLAAQs9JXJ
-         CpMA==
+        d=sifive.com; s=google; t=1741147272; x=1741752072; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IAzReoWSx6Ky4BsTRXhDGhpk0Fac7rFxEYq0+DJkXWk=;
+        b=JE/tQQ8gc3jCIThWwVi4CmL4JWvBnCjnZqAvM8koaa4HM2bjJFN2ZTzG2E51M9axRb
+         ey99aAz++qTWCIoRAtNexdqyEbUPemRj91rx1/i5LJ/x+e4E4kx+bH6fU4PDYy6QWlWX
+         LikSn04wes2ly5JJCvUqE9Yb9JFrrkfCxJOTzl7uN9eFFkFWGVOebFYo0ytimGtsvpnQ
+         xEi6OSYg/afhFtLNu21qZsN0ReBhbFmhQ+gRKT2VA4AWc1ZKuwTPraJaxXc72lwBp7DH
+         mJ+NT0tOOhyk8Y2yeiRRlnGfftP5mpPdt5hisVupL/EOO+1aNcoDiPH63tjTAZopissd
+         5F9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741146291; x=1741751091;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FSYH5+SwcmtCe+p0n+lRYfrltYt+gVN39RZaCf2MCi8=;
-        b=uY9ENssMDJ5kSg6JIUwQwq8iBmjyrmcJL4N0LtDuMKyKjBDSXaRUPuZqYVP3ZNLdHU
-         vbNUXV9ihSX4SPsosDM0dfv0DchqDbWRaN19UWO7jGXKYyQlSAbMCUC/41YQG4Ju5kIj
-         uf3ad+ihx1HmyON0CO+etQ+W/8nwvzIHPbmHGJNxYfniL/rHqzA6k6ovd2me6JT6GOMI
-         uP5v3K6E95ITHjlSE3Ihc5yr3NN7HHIzxK5SE3oZBUOao+RajpH+Yft0CcGzsSLn3vC+
-         CGIZSezJSknPisZZT9EzBsSUEyCYAn1tZEx0mvb22eY+QfcKi8zAZo7vtfbbUi23rNmb
-         WfDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVOHtXa9jXE8N8nX5GRgiFPTi/29UIv6xVpmUgULlkFfOTLsOjNLE36s4EAkqM4SjkIEcxu6IDyf1h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxc1L/upqkSeY/k8h0/It2ywMZShaHVWmeekzVcRQ4PefMF8PSn
-	SJrpWo4+RM4n7mtfDTB+j63+F9STYptgUSywpHSLrStCP/WFouJ7
-X-Gm-Gg: ASbGncsYH6jY5dQGcR9TxUSPn8cvAx9wOczdjHGYVCUP8xSq8dudPB05ywnQAiPYEov
-	9SsasH1cKklcl5oHOLaSeDwQszb0bhJpi0/3+yWeRzZxXeqM/WiL9/q4VPz5coWMCUadC/SIKFN
-	LJfiLgelD4InRXd6urjnHcSnaxoJcAijTpRuJmlMedNIKMa+4zUVa3OZu+b5aJcMmHIllmcn3IL
-	E0IJZLEqKVz91EZJgreq8eo16EZsVZs7YNM9Yv3YW07IU0oS9PVriVzoeftTksfALy6ro8J/Igz
-	2TDb2Q6zM+nxxYIDPjJuBfyzVmrlB15oIKNxXrXR0ztEzUc8WQ4DJhA=
-X-Google-Smtp-Source: AGHT+IEY/W5EzK2xQM9ApeNVjlE0dvEXpH3lZiSewWlXGQlloKZ5FWhsNbQOOWfviYkdHfIw/kEpyg==
-X-Received: by 2002:a17:903:11c3:b0:215:4a4e:9262 with SMTP id d9443c01a7336-223f1c6af8fmr20720365ad.8.1741146291089;
-        Tue, 04 Mar 2025 19:44:51 -0800 (PST)
-Received: from cs20-buildserver.lan ([2403:c300:d305:9d26:2e0:4cff:fe68:863])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-223504c5c37sm102734335ad.133.2025.03.04.19.44.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Mar 2025 19:44:50 -0800 (PST)
-From: Stanley Chu <stanley.chuys@gmail.com>
-X-Google-Original-From: Stanley Chu <yschu@nuvoton.com>
-To: frank.li@nxp.com,
-	miquel.raynal@bootlin.com,
-	alexandre.belloni@bootlin.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-i3c@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	tomer.maimon@nuvoton.com,
-	kwliu@nuvoton.com,
-	yschu@nuvoton.com
-Subject: [PATCH v6 5/5] i3c: master: svc: Fix npcm845 DAA process corruption
-Date: Wed,  5 Mar 2025 11:44:14 +0800
-Message-Id: <20250305034414.2246870-6-yschu@nuvoton.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250305034414.2246870-1-yschu@nuvoton.com>
-References: <20250305034414.2246870-1-yschu@nuvoton.com>
+        d=1e100.net; s=20230601; t=1741147272; x=1741752072;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IAzReoWSx6Ky4BsTRXhDGhpk0Fac7rFxEYq0+DJkXWk=;
+        b=GArAUfzB/2dan3wFB6oOd6eKCnvBBhb0bT+GJ+cEuH5lFZMvq6l6ivDLcXiCP6kbN4
+         eBQ9TSE84ttNABvQlpcPYb5O4SUZO9FIwkvRdnicDAWRbTdwjmfMaRlosHlq7vPg7Yvj
+         YPFHxUU3jWywggnI/hcGSU/ggDMyPCU3S55LNZrMog1+S+mFDwCfv/Ea+UKmasJ562YN
+         6/7znLbXkAIyUJ2PLWXSV8rwRnSU9uMg2kRovATJegouDEW1oHkab5CDC1PIAlOT8d1I
+         DR/001Kfld5zqQaE5/QoqmJkU/nGw/jQ1p3NP68Wf34th2ohtCavqUKiT3vUZKJW5z5v
+         aQDg==
+X-Forwarded-Encrypted: i=1; AJvYcCUimD9x5VtZV5xs15nXpY5yEOf2OuRsiksq+EfEbbEUpRRyF0q3RpIckIOrmcGDtVIKmbTvkjRI5G0U@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcoHiW25jJOMbGSEnxRQ7uvDWZZCA6Pi4E6UoEVahv1n0rdtf3
+	xFJWraco0XeNsrjrtisZqStdnX/tT1o/BoKn+O4weIsInZ4NB7HP/w7kdXtD7HQ=
+X-Gm-Gg: ASbGncvDMrV+Zdftbpue9vtRIHwLbGnF04CiW/14slfBto+f5Hq4Pgy/Hv4fvBvpYXq
+	xPOmkYLCmKy8CdRkfs3o8uy5akJEE9Dx2htpU+FwEDTdkXyVmrihYwTLzUzcbm3iRdhSANePN3T
+	UNZfYCAWhSbLVBdClKXEihau/B7M1EQio3KbRPsifDe4qOw73GHaLWo6Dgji8YIn1FPbl1AIpqg
+	F1F5MJXWZQrYpsxkaVU0rus5rmQniWaxkDTHkGeyozgyHj6ydQWV5ZurcmendIGzXudNR2U4yVe
+	AnINnHCJwFq4NjFykOzI54O0wGo4+T4jGKBLg8Q=
+X-Google-Smtp-Source: AGHT+IHu3MJTjF5+qGVR/U5nf98lXZ/G6BYq/rEMfIvyKQ41zfGyelWGxeEJNcGMavArNtzdZ37kIw==
+X-Received: by 2002:a05:6e02:1d03:b0:3d3:e2d9:5a58 with SMTP id e9e14a558f8ab-3d42b97c976mr17539195ab.17.1741147271939;
+        Tue, 04 Mar 2025 20:01:11 -0800 (PST)
+Received: from [100.64.0.1] ([170.85.6.166])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3d3deee5121sm34666245ab.65.2025.03.04.20.01.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Mar 2025 20:01:11 -0800 (PST)
+Message-ID: <eda41d6d-fa08-413b-8f3c-ce044e171615@sifive.com>
+Date: Tue, 4 Mar 2025 22:01:09 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v5 1/2] dt-bindings: i2c: spacemit: add support for
+ K1 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Troy Mitchell <troymitchell988@gmail.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20250303-k1-i2c-master-v5-0-21dfc7adfe37@gmail.com>
+ <20250303-k1-i2c-master-v5-1-21dfc7adfe37@gmail.com>
+ <20250303093506-GYA58937@gentoo>
+ <ab10e069-d9e1-4df7-9454-8b0fc910443d@sifive.com>
+ <20250305030540-GYA62563@gentoo>
+From: Samuel Holland <samuel.holland@sifive.com>
+Content-Language: en-US
+In-Reply-To: <20250305030540-GYA62563@gentoo>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Stanley Chu <yschu@nuvoton.com>
+On 2025-03-04 9:05 PM, Yixun Lan wrote:
+>>>> +        clocks = <&ccu 176>, <&ccu 90>;
+>>>> +        clock-names = "apb", "twsi";
+>>> 9.1.4.61 TWSI0 CLOCK RESET CONTROL REGISTER(APBC_TWSI0_CLK_RST)
+>>> https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb#part594
+>>> from above docs, there are two clocks 
+>>> bit[1] - FNCLK, TWSI0 Functional Clock Enable/Disable
+>>> bit[0] - APBCLK, TWSI0 APB Bus Clock Enable/Disable
+>>>
+>>> I'd suggest to name it according to the functionality, thus 'func', 'bus'
+>>> clock, not its source.. which would make it more system wide consistent
+>>
+>> Also in that same register is:
+>>
+>> 2	RST	RW	0x1	TWSI0 Reset Generation
+>> This field resets both the APB and functional domain.
+>> - 0: No Reset
+>> - 1: Reset
+>>
+>> Which means you need a 'resets' property in the binding as well.
+>>
+> right, there is reset needed
+> 
+> I'd suggest to add it as an incremental patch later, when we
+> implement real reset driver, and also complete the calling reset
+> consumer API in i2c driver
+> 
+> but, let me know if this is not the right way to go
 
-When MCONFIG.SKEW=0 and MCONFIG.ODHPP=0, the ENTDAA transaction gets
-corrupted and results in a no repeated-start condition at the end of
-address assignment.
+If you add the resets property later, that's a breaking change to the DT,
+because existing devicetrees will not have that property. So you would have to
+make the reset consumer in the driver optional, even if it's not really
+optional, to work with older DTs. So it is _possible_ to add incrementally, but
+not recommended because it adds "legacy" code that never really goes away.
 
-Workaround: Set MCONFIG.SKEW to 1 before initiating the DAA process.
-After the DAA process is completed, return MCONFIG.SKEW to its previous
-value.
+It's okay to define the binding as requiring the resets property now, even
+before the reset controller driver is merged. You just won't be able to add the
+I2C controller to the DTS until the reset controller binding is merged. But
+since the reset controller is the same IP block as the clock controller, its
+binding should be available soon anyway.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Signed-off-by: Stanley Chu <yschu@nuvoton.com>
----
- drivers/i3c/master/svc-i3c-master.c | 30 ++++++++++++++++++++++++++++-
- 1 file changed, 29 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/i3c/master/svc-i3c-master.c b/drivers/i3c/master/svc-i3c-master.c
-index 5c29912e0a69..df7eb038c6c9 100644
---- a/drivers/i3c/master/svc-i3c-master.c
-+++ b/drivers/i3c/master/svc-i3c-master.c
-@@ -32,6 +32,7 @@
- #define   SVC_I3C_MCONFIG_ODBAUD(x) FIELD_PREP(GENMASK(23, 16), (x))
- #define   SVC_I3C_MCONFIG_ODHPP(x) FIELD_PREP(BIT(24), (x))
- #define   SVC_I3C_MCONFIG_SKEW(x) FIELD_PREP(GENMASK(27, 25), (x))
-+#define   SVC_I3C_MCONFIG_SKEW_MASK GENMASK(27, 25)
- #define   SVC_I3C_MCONFIG_I2CBAUD(x) FIELD_PREP(GENMASK(31, 28), (x))
- 
- #define SVC_I3C_MCTRL        0x084
-@@ -150,6 +151,16 @@
-  * If it is a true SlvStart, the MSTATUS state is SLVREQ.
-  */
- #define SVC_I3C_QUIRK_FALSE_SLVSTART	BIT(1)
-+/*
-+ * SVC_I3C_QUIRK_DAA_CORRUPT:
-+ * When MCONFIG.SKEW=0 and MCONFIG.ODHPP=0, the ENTDAA transaction gets
-+ * corrupted and results in a no repeated-start condition at the end of
-+ * address assignment.
-+ * Workaround:
-+ * Set MCONFIG.SKEW to 1 before initiating the DAA process. After the DAA
-+ * process is completed, return MCONFIG.SKEW to its previous value.
-+ */
-+#define SVC_I3C_QUIRK_DAA_CORRUPT	BIT(2)
- 
- struct svc_i3c_cmd {
- 	u8 addr;
-@@ -259,6 +270,13 @@ static inline bool svc_has_quirk(struct svc_i3c_master *master, u32 quirk)
- 	return (master->drvdata->quirks & quirk);
- }
- 
-+static inline bool svc_has_daa_corrupt(struct svc_i3c_master *master)
-+{
-+	return ((master->drvdata->quirks & SVC_I3C_QUIRK_DAA_CORRUPT) &&
-+		!(master->mctrl_config &
-+		(SVC_I3C_MCONFIG_SKEW_MASK | SVC_I3C_MCONFIG_ODHPP(1))));
-+}
-+
- static inline bool is_events_enabled(struct svc_i3c_master *master, u32 mask)
- {
- 	return !!(master->enabled_events & mask);
-@@ -1144,7 +1162,16 @@ static int svc_i3c_master_do_daa(struct i3c_master_controller *m)
- 	}
- 
- 	spin_lock_irqsave(&master->xferqueue.lock, flags);
-+
-+	if (svc_has_daa_corrupt(master))
-+		writel(master->mctrl_config | SVC_I3C_MCONFIG_SKEW(1),
-+		       master->regs + SVC_I3C_MCONFIG);
-+
- 	ret = svc_i3c_master_do_daa_locked(master, addrs, &dev_nb);
-+
-+	if (svc_has_daa_corrupt(master))
-+		writel(master->mctrl_config, master->regs + SVC_I3C_MCONFIG);
-+
- 	spin_unlock_irqrestore(&master->xferqueue.lock, flags);
- 
- 	svc_i3c_master_clear_merrwarn(master);
-@@ -2031,7 +2058,8 @@ static const struct dev_pm_ops svc_i3c_pm_ops = {
- 
- const struct svc_i3c_drvdata npcm845_drvdata = {
- 	.quirks = SVC_I3C_QUIRK_FIFO_EMPTY |
--		SVC_I3C_QUIRK_FALSE_SLVSTART,
-+		SVC_I3C_QUIRK_FALSE_SLVSTART |
-+		SVC_I3C_QUIRK_DAA_CORRUPT,
- };
- 
- const struct svc_i3c_drvdata svc_default_drvdata = {};
--- 
-2.34.1
+Regards,
+Samuel
 
 
