@@ -1,126 +1,234 @@
-Return-Path: <devicetree+bounces-154473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 498CFA5052A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:39:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6A7CA50586
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:47:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 422421886399
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:39:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC6A23B1654
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFD8924C07D;
-	Wed,  5 Mar 2025 16:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7783F1A7AFD;
+	Wed,  5 Mar 2025 16:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N4Ut2cNz"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ervejHsf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2039.outbound.protection.outlook.com [40.92.19.39])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E6B19ABA3;
-	Wed,  5 Mar 2025 16:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741192687; cv=none; b=jrjMpNHQpXuQXr3+xaG+bt4Wb9m8NKWfMBL7sWmiyE3h6PKk+4MOwxrzPPpx4749fSy31tgJoho/L9JSlRTR7zpbX6nB67mV0hQ+lFkDc5u2q4uXXF4FNSjag9fYOIr4NZR+TjI6z9zlNREm2z9LfQX9AdGy7eLmWeAmADuCXas=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741192687; c=relaxed/simple;
-	bh=sL6HKnFMuXDXenCBceEoHD1TmQX+6oJO6AlNMpLGC5I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Slpxc8G5dNQD/rAfOueNKxhqYmfWVAmG4bXOI3So4rKmVBkbmsvNt1Uv/BC8oAHeT6zKrVtaNGgGf2m3xulbdnt+eUK9xintA1CpeCWTFfF0q9KBd5OMwHWiT8hfBQiLY5ew9IT79ME/EXvQKEUH9J9l1IxkFGxNSHXHyKve5dU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N4Ut2cNz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DD7DC4CED1;
-	Wed,  5 Mar 2025 16:38:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741192687;
-	bh=sL6HKnFMuXDXenCBceEoHD1TmQX+6oJO6AlNMpLGC5I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N4Ut2cNzPxw/19HWcA9q6UtjX96+MvXtTOt/spQ3Kaa+W2/+8jLSKzmKdQfqq784h
-	 iXyfpjwvj2pTl+oH/pXFQUSIATsV9GDQUrPpY1XGGg5K2Ec3lSimClooKk4ynyGvUT
-	 r1PicB+2aVmGYeq5t8RYER35rZsdl0FcxkOhZOQIMiqVhIJjGkFPyBk/REwuohhG/d
-	 euKrDtjZjx1dIMBrkGYX5ZMNE1iPMHZ8ZJuJ6YZr+yGG2ppJvpgHbjVU81Ljc4A8Cq
-	 w+kRXk2NJVka0QLj05JGXMw/DRAN7bWAq46yGtSnJIxDDewUcFooFOLbAD+mTsOL1F
-	 droruHgs3mybQ==
-Date: Wed, 5 Mar 2025 10:38:05 -0600
-From: Rob Herring <robh@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch
-Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
- color encoder
-Message-ID: <20250305163805.GA2071011-robh@kernel.org>
-References: <20250304101530.969920-1-victor.liu@nxp.com>
- <20250304101530.969920-4-victor.liu@nxp.com>
- <20250304152320.GA2630063-robh@kernel.org>
- <1891036.atdPhlSkOF@steina-w>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A246619E965;
+	Wed,  5 Mar 2025 16:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.19.39
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741192902; cv=fail; b=UB75HXmrbA5MK/SMbTXnNQieaXpopwWQxZgi4aYUzHtFDkBcg9jiHQLQqlfXTpVlGvLS17ShxqrWfbgPhvy5pcN6eqPKNO5CF9gbt2wGWZsPZIQ3zzWxSrHWDSS5VoEyX0+ABIOMKUslzntPH7TN31ZOBuhUHFX5SSeVgI6Dme4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741192902; c=relaxed/simple;
+	bh=VSqmdyVM892Rn7NMoGsEXfBj/vABq7pFBJRKiKzvVKk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=hjKVnE2kOkdQLi0s9WF3Wwc93mkaRoB1ZWN7OZJPGn4L9Im5OzSDLK4WpR3fQkDx5LzGRX+mN8pwyBA5ryTZujbjaFGBkoAfgsc3qr3m6JKDXsRmDDZRrPBkG9gvC4LZcgwbM2RBnOIibrb5NDxFCks0oMgU5jvHvMA0fEOMFbM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ervejHsf; arc=fail smtp.client-ip=40.92.19.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aNS3LA6UJM1BpahwlG6afLarknGnnVeFlHlhzZ4dhwVsenbCfShYe/QESzWAY640GB7J+zFlCRSyRJjhDeR0uaPYfv6VxJU2Ixwc3GaIuCTs7IFH81IaBeGZDX6X/oFYfAh5ykYr4D7utiq3k6hdlFi5QNsLDwmLztCqCcq1TL+v5JwVogTWRd6t+Vp2Tm8rSMgUrzAr7nMBCEjAAOgOK0nD9DAQwjMOe1N3sC+VxmydEWM9VtjCFMx3XEh+nJlheRZfBYJbHO/Q1BAaNUrxB/FG+MjoxX2pnFqwblIToaNmqkLqUWRH5kV5vsOxAPFl1FWfvVQJK07Om4Piy7LeNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5Uel5AP0Hf0xYH3Vqj+kswkDCLqdXYKjXFqnuffM19s=;
+ b=PVlXLJC/KRsZaq4i6aCW5zpjpMohwgdckl81lGjHnjNrGVlb7mxj/gY0x8FJV9Nalua1yfW1UEwBoJCmUuSjG9BjFHpsd93iZCJj5regbC3Abmb7xoXAMs3JbodtkPTqbFllkz5jdnWIYrvFopMoAgYKfOxhM0sRjx1t/Z95MNDn40yFpZkOpfmCvZLBWplPL6M6/nEpClhRIl0sLcK37DxbPmgBQsdiBHuS+zw2QvQty1QOsfI0l0zj9Ndjk1iyMdZwUk1t+43XU4fFvtIXtvzJzn36tKPXDkkdQ1d5TZ6w5bTBgz+AIG998E/RX93bgkwgz+7FuAaaGPgDq05yTQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5Uel5AP0Hf0xYH3Vqj+kswkDCLqdXYKjXFqnuffM19s=;
+ b=ervejHsfRkZ0gbAAvbgY6tWbQz+M7A3zkQPg6JQR8BviZDyZyreHD1H3TbW+pruET8zxzzbBKB/D70I0xK0JNDRaxAFWjkWlrQ8JkbJHB9dyKP+2/yqZNk9UbI18ThUpa3WuvhnICu3WLurLEmuk1dpQCfFXxQkVgfnvx+EE8F3BtUh+spLUqj2tXMuoShWt60vIHD2SD6WUeJICWHPGEhXdQR1U2xATaDg4gv5DOUmXIf+BMUgYgwxvVfOGEHlZMMm5G5c93doiamPGGfjVrc5iKW7Dq+MNTQXOglEbzvO+o6k0yrMCLURPtUG8EIdsh8iqDIWJcHDUp6FahIVN5A==
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
+ by LV1PR19MB8898.namprd19.prod.outlook.com (2603:10b6:408:2b3::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.16; Wed, 5 Mar
+ 2025 16:41:36 +0000
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305%6]) with mapi id 15.20.8489.025; Wed, 5 Mar 2025
+ 16:41:35 +0000
+Message-ID:
+ <DS7PR19MB888309B506D25ABA03F218EB9DCB2@DS7PR19MB8883.namprd19.prod.outlook.com>
+Date: Wed, 5 Mar 2025 20:41:24 +0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/6] dt-bindings: PCI: qcom: Add IPQ5018 SoC
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+ andersson@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org, kishon@kernel.org,
+ konradybcio@kernel.org, krzk+dt@kernel.org, kw@linux.com,
+ lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org,
+ p.zabel@pengutronix.de, quic_nsekar@quicinc.com, robh@kernel.org,
+ robimarko@gmail.com, vkoul@kernel.org
+Cc: quic_srichara@quicinc.com
+References: <20250305134239.2236590-1-george.moussalem@outlook.com>
+ <DS7PR19MB8883E7167E44F92DBC29FF3C9DCB2@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <a95b4c01-9d8c-49eb-8242-93ae411caec0@linaro.org>
+Content-Language: en-US
+From: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <a95b4c01-9d8c-49eb-8242-93ae411caec0@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DX0P273CA0044.AREP273.PROD.OUTLOOK.COM
+ (2603:1086:300:58::17) To DS7PR19MB8883.namprd19.prod.outlook.com
+ (2603:10b6:8:253::16)
+X-Microsoft-Original-Message-ID:
+ <5fb93121-c8e9-48fc-bb06-ccd95996aa59@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1891036.atdPhlSkOF@steina-w>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|LV1PR19MB8898:EE_
+X-MS-Office365-Filtering-Correlation-Id: dbe5427e-fd93-44ec-6af1-08dd5c0497b8
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|5072599009|6090799003|19110799003|8060799006|15080799006|7092599003|461199028|10035399004|3412199025|4302099013|440099028|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?aG9kUHlnOUs3ZllvNDRoMmxmMk54dDBSZlZYajhkTHEvTzVrRXl5L3pZRjN3?=
+ =?utf-8?B?eDNIbXFXa1diTERzbDIxMzNpZkdhZUZoc1dUNUhNNlVHSldWeW5OcDFvSmI4?=
+ =?utf-8?B?UVJubzVQeWlHZFBGU0FtdjR1V3N5bGZmUEFKOTlOSU1CRFNML1NXakhLdEYy?=
+ =?utf-8?B?NFhScWtWb0JGSkxhbmNraDNFWGd3SFVvaElna1JNTjdZWkpwQXRtQklGdi9x?=
+ =?utf-8?B?aFdacEo1ZlZhR25ndk51ZFFKelRuS0JvMjJPa3NWWERrOEZiYkhxcjJzWlBT?=
+ =?utf-8?B?bDlXWXQ0dnJPRS9NRDV0ZVFMZ2hKSkZwa1UrNnNWMmM4S1NMTFh6RDZUWjN5?=
+ =?utf-8?B?TmoxaFlhaWhrOWh4SXZrSllZVGhnNkJ6eE5KRFRmTm1kVmFrak9YOStNcDNk?=
+ =?utf-8?B?UGpUY1lqZUVmc0FTNVhQUmxDQm9Kc2NjVTZPZHJGd3poODdDVHFneEdqclRz?=
+ =?utf-8?B?SEZZamZFMGRSL0lCeUx2dURXam1rYVd4REFLR083RkVTSnpCTGJkOE9xUzZE?=
+ =?utf-8?B?SHRqSlFHUXkzK0tyZ1VvNlJEc05BUnJETGRWOW5EUFRWYmFUaFBwakdSTXRl?=
+ =?utf-8?B?a2gxNHI2YXJ4c0Q4Q1hyOUhBWHZ6ZWxpdG5ScGt0S0g3K25ZaGVRL25scVlz?=
+ =?utf-8?B?SUkxaUtEb3R0c1ZKRDdWc3ZWS3AzMjgvUU1kQ1dDM0V6YmRmZkFsa2pnWVRZ?=
+ =?utf-8?B?MVJZSXNwZXlkY2xMK0xGbGduR0tTMGJnZHJVYWJxV1l0K1g5ekVKYzlaS3ll?=
+ =?utf-8?B?SkEzTWhmTVZDZHFsdnR2YytFUk1KbTVHU1dhZ2kwVStGK1IvVnNHZGgrOEdG?=
+ =?utf-8?B?eHR0WmZoMWN0aEM1cFowV1ByWE1ZNVNJSG5LTk9lZ0pZTGQwNkFaRHhLdjVr?=
+ =?utf-8?B?Tk1sS0k2UEVkYVJwT1p5Q2xvUklUQjVYSEVQZW9ZTjRrK1Mrb3FBdkVQMnN1?=
+ =?utf-8?B?aTBVY1ExYjM0OXg2NWV0V2ovTDNhaVZDV1lyMFpDWVppRUtqclJ1Tm9nNkww?=
+ =?utf-8?B?T2M2SkJWWU1KMmhFdXFqcDluNHNFKzRGcVAxZFVSeUswcWNhSDZZQ1ZhalBF?=
+ =?utf-8?B?WmJ0ZGdFNkpQa2JDN1ZQVVdrOHVKaXF6YUNnOGpSeVZNbWc4ejRJUFkyNUpw?=
+ =?utf-8?B?VXVnSFg2Y2Jtc01xL1h5VFFDdjRjR0tHOUFhQjlJbzdGeThLNkMvS0daaHNX?=
+ =?utf-8?B?ekNyUmJJUDd3Q3ZUOUNrOVZ2ZTdwSExEdFpONzJWd3orc1QrV0h1Z0o1aHF6?=
+ =?utf-8?B?bTgwL2o2UjFYMzg5eXczYU42OXY4T1B1Wko4UVBONnZBQUtOL2xDNk5HMmU2?=
+ =?utf-8?B?alpnQjdBN3IwVTRxU1JvR3huN0V3LzBvUGtyWUlEZnYzRWFzQURxUVRDSFQ5?=
+ =?utf-8?B?T08rd0RCTExCbVJJdDh6SXJOUUV4cldnSjBtSjB4RFlac2d0cGk5c01uV1A1?=
+ =?utf-8?B?WllieEFjdUZ0eXJMUG8zQncrL2hXekhMTlVIR25pMjM3bGZISzlaUmk0UTVN?=
+ =?utf-8?B?T2kvUUxKSkN5OEhRTGd1UDRkUm1sOUp4SWpRNzBnWDlXb2pDcThoNEpCT1JJ?=
+ =?utf-8?B?V3E3TjJSNlIrNmgyY1hZdWkvSVowNGFJUHovOFlLeEpyUTRYaVBodmh5NjBE?=
+ =?utf-8?B?MlMyZ0g0R0JrWUhkVzZhdmdndEx5a3dqb0gxaGwrNGIzWXZzZWN3MkZRd1JC?=
+ =?utf-8?B?aUd0SG8wUU9GVStSV2UvMExzQ0N6d0h1d1ZrVmtSTVhLcGJDOUZLaGVRPT0=?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?QThrOEREODdpOTJDZ3dONVlVazh0RHZpN01mWExTdGdsblhadVYyb3VGcC8w?=
+ =?utf-8?B?cTEzN1RUQ3BpNi9paGdDaTJFc1B3NHVNbSszNlN1TUJCZFFHZEtDRkwwMTd5?=
+ =?utf-8?B?NllIdFVueFpjeThDS0JnY1YwOW1abHIwWGprZFRRL0k0ZFo1ZUhrMTVlNXhJ?=
+ =?utf-8?B?QzZudlk0QXZ2akdDampYTm5mdXU4MHAxbDZjRDNmVmsxUWN6V1ZYOTRIZS92?=
+ =?utf-8?B?ZUJFeVpUR0RFaDd4akZZMDJURFZ6V3U5OWlqcXhpbnBiMUxuR3ZFOW1BZy93?=
+ =?utf-8?B?MFp0MzI2ek0yT0dGVGo2WGxZUlB1TG5obXVlb3A1aWxZTWVveG0xTk4xc0E1?=
+ =?utf-8?B?Z1B3R3ROeThONkIwY1RCRkJxK2t5bnNnMGtxWGJVUWxVY1VxakNTbkNpc2NM?=
+ =?utf-8?B?VXN4QVBKOWpxYW80dHQyMkViL3h6SXV5RGRoMC9YTFlPaENWdGpWYjVYTWdm?=
+ =?utf-8?B?N2FPYklMOTRsL240MHNwOHVyWENjMU02dmt3TDFjVlR1WFMxcGhLVE16c3Jp?=
+ =?utf-8?B?YWxCM21DZzgvSDR0K3FzdXg5MzRqNUxENHFaTkRvQ0pja3Ewd2lENzNCRnBi?=
+ =?utf-8?B?c045NkNSVS9lUTNTc204aTh2eUd2NTJsMkNIY3ljZGVGUFJLS3R0WkoxNElV?=
+ =?utf-8?B?L2swaTNnWnNEc09FN0RTbEVMcFBkazYxVDVWajc1SDJYdVh6UGMxWmZwZzE5?=
+ =?utf-8?B?dE1Kc0M2WU1aZHV5d2ZweGF4NEFOWnRlM2lDVEFUTWVIcFZsazUrakJvN2RO?=
+ =?utf-8?B?TU5jbmhJWjE1Uk03bEQ0VHU4WXVsQmNEdC9iN3NrYkd4U1RVQUxhU2ZSdkdM?=
+ =?utf-8?B?endZTmtOVmtWalVvNWttY3pnTjN2OXpXOU5vbmtzUzFuMm5QRllIMzh1YXpJ?=
+ =?utf-8?B?SE9rbmdEdHJwdVhhd2JVWUw4QlJab2VWWUUzRFRRc0QrSHNrc2ErcStOY0pV?=
+ =?utf-8?B?RkRvOURrUytRWHhoMmF6YVh4bTd0Q3hJZGJUUGNMNjF0SlJqelUyRjhmc3N0?=
+ =?utf-8?B?L3orbGgwSnNMWU9vdWZtTy9kZU1IZVE2V21oMVhwRDVjRTBpcTFHb3puZ2NW?=
+ =?utf-8?B?SzIwOHZkWS9zMXZ3b2Y3TjJtQ1NWVU9Ta21HTjVJZTNoZzA2TElZUGlDSUZv?=
+ =?utf-8?B?Qks2TFdaalZkZlRCVXBQZ2hPYWNHc3hnRExYTytTQnBYblE5Y0Y5ck9jeFdh?=
+ =?utf-8?B?S2gyWWRoOW5CM0xYYXBKNFJWVU0yN1dOemNhV3hVVzllR3Z2djAvYWlMaDdY?=
+ =?utf-8?B?L2w5ZHhmNnpsWlBzb1RoY0d3d3RLNEkydU8wTU9ycW0wNnp1S2NwdEhzY2RU?=
+ =?utf-8?B?WkdKUmF3OTBiWlEvOTgzOVFBR2tmMmlkWFRGOWcyNVNKUk8vZWQ0S2FCVVg0?=
+ =?utf-8?B?cjZZUUhxai8zK01BUmU1UXFuVzlCa1NXUE94a25wOWpoTHQvZ0F0dmc3TXlm?=
+ =?utf-8?B?aXgrU015amloYnpGWVlEeUZpbnRSNk1JMzdlRFpPcXVlc3d6S0lKd0UrcSsz?=
+ =?utf-8?B?UlpsVDZsOXp3dFNaV1MxUHRmd2MyQW9kVk1tWGZqRkJNcHJlRExMS256V0dj?=
+ =?utf-8?B?MzJmamxqYk56MU93NXZCbTZZa3ZUNy9GOTJ1RzRCNjhyTFY4bXpwcVAvU0hV?=
+ =?utf-8?B?TFI3T1dvejhobmlqWmc0M1RVemlxcytEU0o1N1k5OXhyTDlGSHVtMmR0MnZ4?=
+ =?utf-8?Q?11f2JKhJnAgsCFV5SSho?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbe5427e-fd93-44ec-6af1-08dd5c0497b8
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2025 16:41:35.8055
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV1PR19MB8898
 
-On Wed, Mar 05, 2025 at 10:35:26AM +0100, Alexander Stein wrote:
-> Hi,
-> 
-> Am Dienstag, 4. März 2025, 16:23:20 CET schrieb Rob Herring:
-> > On Tue, Mar 04, 2025 at 06:15:28PM +0800, Liu Ying wrote:
-> > > A DPI color encoder, as a simple display bridge, converts input DPI color
-> > > coding to output DPI color coding, like Adafruit Kippah DPI hat[1] which
-> > > converts input 18-bit pixel data to 24-bit pixel data(with 2 low padding
-> > > bits in every color component though). Document the DPI color encoder.
-> > 
-> > Why do we need a node for this? Isn't this just wired how it is wired 
-> > and there's nothing for s/w to see or do? I suppose if you are trying to 
-> > resolve the mode with 24-bit on one end and 18-bit on the other end, you 
-> > need to allow that and not require an exact match. You still might need 
-> > to figure out which pins the 18-bit data comes out on, but you have that 
-> > problem with an 18-bit panel too. IOW, how is this any different if you 
-> > have an 18-bit panel versus 24-bit panel?
-> 
-> Especially panel-simple.c has a fixed configuration for each display, such as:
-> > .bus_format = MEDIA_BUS_FMT_RGB666_1X18
-> 
-> How would you allow or even know it should be addressed as
-> MEDIA_BUS_FMT_RGB888_1X24 instead? I see different ways:
-> 1. Create a new display setting/compatible
-> 2. Add an overwrite property to the displays
-> 3. Use a (transparent) bridge (this series)
-> 
-> Number 1 is IMHO out of question. 
 
-Agreed.
 
-> I personally don't like number 2 as this
-> feels like adding quirks to displays, which they don't have.
+On 3/5/25 19:51, Krzysztof Kozlowski wrote:
+> On 05/03/2025 14:41, George Moussalem wrote:
+>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>
+>> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Nope, that's not a correct chain. Apply it yourself and check results.
+this series is dependent on the series to add support for IPQ5332:
+https://lore.kernel.org/all/20250220094251.230936-1-quic_varada@quicinc.com/
+which was applied to dt-bindings
+>
+>> Add support for the PCIe controller on the Qualcomm
+>> IPQ5108 SoC to the bindings.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Also not really correct. I did not provide tag to Nitheesh patch. How
+> the tag was added there? b4?
+the RB tag was passed on from here:
+https://lore.kernel.org/all/20240830081132.4016860-3-quic_srichara@quicinc.com/
+but I'll drop it as it changed quite a bit since.
+>
+>> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>> ---
+>>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 49 +++++++++++++++++++
+>>  1 file changed, 49 insertions(+)
+>>
+> ...
+>
+>> +        reset-names:
+>> +          items:
+>> +            - const: pipe # PIPE reset
+>> +            - const: sleep # Sleep reset
+>> +            - const: sticky # Core sticky reset
+>> +            - const: axi_m # AXI master reset
+>> +            - const: axi_s # AXI slave reset
+>> +            - const: ahb # AHB reset
+>> +            - const: axi_m_sticky # AXI master sticky reset
+>> +            - const: axi_s_sticky # AXI slave sticky reset
+>> +        interrupts:
+>> +          minItems: 8
+>> +        interrupt-names:
+>> +          minItems: 8
+> Why is this flexible?
+I'll restrict it with maxItems in next version, thanks
+>
+>> +          items:
+>> +            - const: msi0
+>> +            - const: msi1
+>> +            - const: msi2
+>> +            - const: msi3
+>> +            - const: msi4
+>> +            - const: msi5
+>> +            - const: msi6
+>> +            - const: msi7
+>> +            - const: global
+>> +
+> Best regards,
+> Krzysztof
 
-This is what I would do except apply it to the controller side. We know 
-the panel side already. This is a board variation, so a property makes 
-sense. I don't think you need any more than knowing what's on each end. 
-
-> Number 3 actually describe the hardware connection. The only impact for
-> software is to know which bus format it should use.
-
-I'm not opposed to this, but only if it provides *something* that option 
-2 does not. I'm not seeing what that is.
-
-Node or not, either case needs a format property. We already have a 
-variety of bus/pixel format related properties. I've rejected new ones 
-because we need something common here that's flexible enough to handle 
-any situation. That's either something that can describe any bit layout 
-or something enumerating the formats (as MEDIA_BUS_FMT_* does). The 
-former is hard to get right and there's always something else you can't 
-handle. I'm not opposed to just reusing MEDIA_BUS_FMT_ if that works.
-
-Rob
+Best regards,
+George
 
