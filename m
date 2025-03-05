@@ -1,132 +1,193 @@
-Return-Path: <devicetree+bounces-154378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A10A4FD94
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 12:26:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 537A1A4FDC2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 12:37:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0CD757A96B7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:25:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5FA13AF0CB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:36:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F457233700;
-	Wed,  5 Mar 2025 11:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pGoccU1V"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CFE5248176;
+	Wed,  5 Mar 2025 11:34:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D91DE21421B;
-	Wed,  5 Mar 2025 11:26:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 673432459E0;
+	Wed,  5 Mar 2025 11:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741173995; cv=none; b=bWFNv37LHnk2ASSBJvJmXtjLir/bzBSSJAZyMSejQZKq3dz0j7TcDng2snx2h4tMP9nFGgAeYDCQKxtTzLyDyWL1QRo9IPdzL/zSvnrR42veNIiwgxaabmKgCJxA1Z5fr+tHEhJNCYXSsvJCO2wOj6zbSpeF9yQ52zS1z0FgMDE=
+	t=1741174477; cv=none; b=WeURlJfbfu9xUMSi7/Xg8RztHJJQ45hhzV0GEIuuODjhlLde2xOBRJsmIWEICUMps53uXGoRLRQN10MA0JsV2eidNPE3FUbj/6+tX4zeBBEHnhzioSYqQD4EHUWHNgYK2Tefzh9scxHak/rAJSoySVFWkUAZIDNemrvctPTamOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741173995; c=relaxed/simple;
-	bh=N2D7fb7XnQKLDnYzb9yCDaUeFSMSXdmS3deL4PhIENI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TN5IlecRtH/2EbhCD5HfuQABPXVNUGwQZfyjYdexnQTHg+RkZwwwUwpDCToyU7Ap/t9GvHztv7RXdZ4b/8oe0A+fryrt2vUFhbfde8fwOiizKAVxzj9ENAYVqkXSGdje/L5bgUIgiZZehzP9fpLme5Ok74xlrCUet9eAjLxGcaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pGoccU1V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E288C4CEE2;
-	Wed,  5 Mar 2025 11:26:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741173994;
-	bh=N2D7fb7XnQKLDnYzb9yCDaUeFSMSXdmS3deL4PhIENI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pGoccU1VQiZFN3hoWaH7wqy6OBANcCJ9AVT5ejpgyfRG45UYx0sLM7aQQuaLKgNFD
-	 g2T6TRUequOiCfz1Jf7M4yPuRBhMOQ1xFCoKk6XvsxSp86Cc7Y1eavfSU9IUiVJrrf
-	 r9/QsvISEwwSyFsPBPOT/hKLIsVFiyEC8kp21o32WI2VPZddh2TNmq31chQGdmxmJj
-	 /J5hal4bhZWYm2s+k7PY15togb4AfnJCDXil0yqfuP5EKU8RaA/FfgGvpSZxZZPr0z
-	 ZdGgAawHnDWxgzrpcQSTUuiOhLd73/djk0/M+Mivfq3/5cZG+TkcSMehTKxM5gMsq6
-	 lXsC9rCoAFSiA==
-Date: Wed, 5 Mar 2025 12:26:28 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Jesper Nilsson <jesper.nilsson@axis.com>,
-	Lars Persson <lars.persson@axis.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-kernel@axis.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: artpec6: Try to clean up
- artpec6_pcie_cpu_addr_fixup()
-Message-ID: <Z8g05CdN4BmlfxHR@ryzen>
-References: <20250304-axis-v1-0-ed475ab3a3ed@nxp.com>
- <Z8gxdWaU1N71pyj-@ryzen>
+	s=arc-20240116; t=1741174477; c=relaxed/simple;
+	bh=PX8YtGNzZCKFmT6MLhflwzHPvwo1LGdQ1btFvdv/xnc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TI+WTvKSHtprhv7cuvXM2JGoTj4G6nImWAD/KgfofzAGO/xfRxOQleytx2ZpWZbAlN8jE6FLrS5NfRb0T9coOXHdDEVdWA7cdJqB+Y275ASfzNnRVhOPZTFN71XpswNQ6VHV1dIyRw4TMlBxBi20B/VKJ4t4DAzsvcd8CnrVN5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5691D1007;
+	Wed,  5 Mar 2025 03:34:48 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 31DF23F673;
+	Wed,  5 Mar 2025 03:34:33 -0800 (PST)
+Date: Wed, 5 Mar 2025 11:34:30 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Philipp
+ Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 04/15] dt-bindings: clk: sunxi-ng: document Allwinner
+ A523 CCU
+Message-ID: <20250305113430.47166de3@donnerap.manchester.arm.com>
+In-Reply-To: <20250304141125.GA2518548-robh@kernel.org>
+References: <20250304012805.28594-1-andre.przywara@arm.com>
+	<20250304012805.28594-5-andre.przywara@arm.com>
+	<20250304141125.GA2518548-robh@kernel.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z8gxdWaU1N71pyj-@ryzen>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 05, 2025 at 12:18:56PM +0100, Niklas Cassel wrote:
-> Hello Frank, all,
-> 
-> On Tue, Mar 04, 2025 at 12:49:34PM -0500, Frank Li wrote:
-> > This patches basic on
-> > https://lore.kernel.org/imx/20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com/
+On Tue, 4 Mar 2025 08:11:25 -0600
+Rob Herring <robh@kernel.org> wrote:
+
+Hi,
+
+> On Tue, Mar 04, 2025 at 01:27:54AM +0000, Andre Przywara wrote:
+> > The Allwinner A523/T527 SoCs have four CCUs, this adds the binding for
+> > the main CCU.
 > > 
-> > I have not hardware to test and there are not axis,artpec7-pcie in kernel
-> > tree.
-> 
-> If you do a simple:
-> $ git grep artpec7
-> 
-> You will see that there are just two drivers that support this SoC:
-> drivers/pci/controller/dwc/pcie-artpec6.c
-> drivers/crypto/axis/artpec6_crypto.c
-> and their matching DT bindings:
-> Documentation/devicetree/bindings/pci/axis,artpec6-pcie.txt
-> Documentation/devicetree/bindings/crypto/artpec6-crypto.txt
-> 
-> I think that at some point in the there was an intent to upstream support
-> for the ARTPEC-7 SoC, but now many years later, that hasn't happened,
-> as there is not even a artpec7 dtsi.
-> 
-> I think the nicest thing to the community is to drop artpec7 support from
-> these two drivers, and deprecate the artpec7 compatibles in the DT bindings,
-> as it is obviously making your life harder when trying to do improvements.
-> 
-> 
+> > The source clock list differs in some annoying details, and folding this
+> > into the existing Allwinner CCU clock binding document gets quite
+> > unwieldy, so create a new document for these CCUs.
+> > Add the new compatible string, along with the required input clock
+> > lists. This conditionally describes the input clock list, to make for
+> > an easier patch adding the other CCUs.
 > > 
-> > Look for driver owner, who help test this and start move forward to remove
-> > cpu_addr_fixup() work.
+> > Also add the DT binding headers, listing all the clocks with their ID
+> > numbers.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  .../clock/allwinner,sun55i-a523-ccu.yaml      |  77 +++++++
+> >  include/dt-bindings/clock/sun55i-a523-ccu.h   | 189 ++++++++++++++++++
+> >  include/dt-bindings/reset/sun55i-a523-ccu.h   |  88 ++++++++
+> >  3 files changed, 354 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
+> >  create mode 100644 include/dt-bindings/clock/sun55i-a523-ccu.h
+> >  create mode 100644 include/dt-bindings/reset/sun55i-a523-ccu.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
+> > new file mode 100644
+> > index 0000000000000..2eacaeaeabac7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
+> > @@ -0,0 +1,77 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/allwinner,sun55i-a523-ccu.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Allwinner A523 Clock Control Unit
+> > +
+> > +maintainers:
+> > +  - Andre Przywara <andre.przywara@arm.com>
+> > +
+> > +properties:
+> > +  "#clock-cells":
+> > +    const: 1
+> > +
+> > +  "#reset-cells":
+> > +    const: 1
+> > +
+> > +  compatible:
+> > +    enum:
+> > +      - allwinner,sun55i-a523-ccu
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    minItems: 4
+> > +    maxItems: 4
+> > +
+> > +  clock-names:
+> > +    minItems: 4
+> > +    maxItems: 4
+> > +
+> > +required:
+> > +  - "#clock-cells"
+> > +  - "#reset-cells"
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +
+> > +if:  
 > 
-> While I'm the original author of this PCIe driver, I do no longer have
-> access to the hardware and documentation, so I cannot test.
-> 
-> For anyone interested in the cleanup Frank is doing, see:
-> https://lore.kernel.org/linux-pci/Z8d96Qbggv117LlO@lizhi-Precision-Tower-5810/T/#m0ff14edaf871293ba16acd85e7942adacb603c6c
-> 
-> Looking at your cover-letter for the series above,
-> creating a simple-bus with:
-> ranges = <0x0 0xc0000000 0x20000000>
-> 
-> and handling that in PCIe DWC common code does look nicer compared to
-> having a .cpu_addr_fixup() callback in each PCIe DWC glue driver.
-> 
-> Hopefully someone with access to the hardware can test your series +
-> this RFC.
+> Put this under an allOf and use another 'if' instead of the 'else' 
+> clause in the 2nd patch.
 
-Oh, and you should probably send a similar RFC for:
-drivers/pci/controller/dwc/pci-dra7xx.c
-drivers/pci/controller/dwc/pcie-intel-gw.c
-drivers/pci/controller/dwc/pcie-visconti.c
+Ah, that's a neat idea! What do I do with the clocks and clock-names
+above, then? Just have them as "true"?
 
-which all make use of the .cpu_addr_fixup() callback.
-(IIRC dra7xx was the first driver that introduced this callback.)
+Krzysztof, would you agree with this approach, and shall I still combine
+both in just one patch?
 
+Cheers,
+Andre
 
-Kind regards,
-Niklas
+> > +  properties:
+> > +    compatible:
+> > +      enum:
+> > +        - allwinner,sun55i-a523-ccu
+> > +
+> > +then:
+> > +  properties:
+> > +    clocks:
+> > +      items:
+> > +        - description: High Frequency Oscillator (usually at 24MHz)
+> > +        - description: Low Frequency Oscillator (usually at 32kHz)
+> > +        - description: Internal Oscillator
+> > +        - description: Low Frequency Oscillator fanout
+> > +
+> > +    clock-names:
+> > +      items:
+> > +        - const: hosc
+> > +        - const: losc
+> > +        - const: iosc
+> > +        - const: losc-fanout
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    ccu: clock@2001000 {  
+> 
+> Drop ccu and it's 'clock-controller' not 'clock'.
+> 
+> > +        compatible = "allwinner,sun55i-a523-ccu";
+> > +        reg = <0x2001000 0x1000>;
+> > +        clocks = <&osc24M>, <&osc32k>, <&iosc>, <&r_ccu 2>;
+> > +        clock-names = "hosc", "losc", "iosc", "losc-fanout";
+> > +        #clock-cells = <1>;
+> > +        #reset-cells = <1>;
+> > +    };
+> > +
+> > +...  
+
 
