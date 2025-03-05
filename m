@@ -1,163 +1,183 @@
-Return-Path: <devicetree+bounces-154615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6847A50E02
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:45:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C42A50E4E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:03:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97E3E3A7ABD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:43:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F0D21886AB7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711FC25CC6B;
-	Wed,  5 Mar 2025 21:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711FF2661A1;
+	Wed,  5 Mar 2025 22:03:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="axxSTK6e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E3uZLot+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7105525C71D;
-	Wed,  5 Mar 2025 21:43:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA1C26562D;
+	Wed,  5 Mar 2025 22:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741211028; cv=none; b=Bs4/YUo2SHxGP4Tct4yThFIK0+s1+eQd4Ev7y5TURlki600rBW0BoZ6MhWj38/EvMA5Kd3GMVN+lqeJy+io3k79NsehAW1PlONcepNr5P9LlthbrRrJihG9BrAZUOzUml+bga31L9R1Ma/VYja3GswdC/5agjAfSIibBnM6TwbQ=
+	t=1741212214; cv=none; b=svPhvqocTJeYRhxIyaTTQqRKugv0s+WT/TThFpqBr5OiF/TqSRNwBzPvkfZMddKwtevgK0eU98rsuV7IWs0fRdAYDGkm10k7jtpe+xkK/FJNtD9optDgo55WItYG6zwcBDirlfJBEqzLr23MbmfOMm4+5MXrjubKjbVCAOEuWHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741211028; c=relaxed/simple;
-	bh=Kiw7vrhGC9Tr20MBqv3aGeVldfht4lH/YDUtMVAiVnQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HhELV8ojoBlh7c1FisvEPfWG9cDnjGIbCjtFbh9WF15p0Kp8YQEg1g4om2s89cZeAEJ0HvBpaEBzwSCGDoCeBpvn1LH9dFQfVBQdGSw6+tJq8gcsuWMUfwoGbFTN6l043S5ssXrDHwx+8Lwylg0+Jvgx1tJ8PZ7W9UZ+r19aeoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=axxSTK6e; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 525Lhcoo3520081
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Wed, 5 Mar 2025 15:43:38 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1741211019;
-	bh=5gKsqhkj3z4aOY8JR1GfRGtUkvMlV0bDAct/H2T8opg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=axxSTK6ey9ptT04JWhEn+Rz2RMp8JtYQZeIgOxT1wgDIilACd55C9ZNn8VyrVENq5
-	 9IIBnJHB1lQrJfh3dKGFrK0tdWkrjwiiQmnD8XaFBlZye5FFhKZjb4PCkYLdxPOIv1
-	 NdeLkqdaTwJPbYsJTjnOZ2PiQVxhXTXmj+EETXSA=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 525Lhcnr004323;
-	Wed, 5 Mar 2025 15:43:38 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
- Mar 2025 15:43:38 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 5 Mar 2025 15:43:38 -0600
-Received: from [10.249.135.49] ([10.249.135.49])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 525LhXF5093926;
-	Wed, 5 Mar 2025 15:43:34 -0600
-Message-ID: <11982b12-a359-467a-a6fc-e39adccca413@ti.com>
-Date: Thu, 6 Mar 2025 03:13:33 +0530
+	s=arc-20240116; t=1741212214; c=relaxed/simple;
+	bh=AuZX0k4J+y7Fl597Q3qYcQ62dP5uV+mEmKMcR183I8A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ebeDREuV8Cvk7S/tQ2MEYoGP3mFMcEt/i3uocHDeXr89orRF5uFJX9OAIZPaROeSpkegUKokXbAfUW16dlx2plZpj18pD9vBk88erylzPE3xs0lT1lEBlQXWcikCdPlOxIBOCytPpyVXDyHH8/ZOMnqVeHYTfTud1oOqrRRgvUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E3uZLot+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9695C4CEEC;
+	Wed,  5 Mar 2025 22:03:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741212213;
+	bh=AuZX0k4J+y7Fl597Q3qYcQ62dP5uV+mEmKMcR183I8A=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=E3uZLot++NoX1QuGeuB1ywM0iMCW9BY/dUHozSIe6YeMEaBBo+FNkou2slG2sTT16
+	 XtrSbn+LHOsUMWCEzOHVMk/oCWHRZO24VGEOekKZ/IO4Qj3b5fcToUZlUNQuZ63kRf
+	 MyUm91vjFKVTt7r+PVskaiE3V1lw/mj3eKe8/E24pUVs6adZU1yFry+LBff+QEL//E
+	 mtszwk2/AhusFbB8SaPR0qD1gCmH4Ihz6V7odZyhSCI4M3fboFZzGezcE8bdAkFXN2
+	 Bkp8vKGFq+015ojJivNycoBbiys1th1vAPplXsmmpiCYTDy94q1ggXBpHyaq9lNKGD
+	 bYdv1twsOaJnw==
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e4bed34bccso10437405a12.3;
+        Wed, 05 Mar 2025 14:03:33 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVbcWszQupkoHppjjCeTcOcVw+TgmFT0U2CEBe8gVKzOdMfjOOhLdg8mkmBUEnBoOW1YGb70MjeLZAw@vger.kernel.org, AJvYcCXCJvCJYnVt4yfqOBlF+oxM2qiGCNq5VtZTb/KkRdVa2PBYb4gfYCTPw+7b15hN3whWT5C6c8Hy0MLYgPTv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnbXJRSbxzGMvacnk8ulPJuq27OGmtT3NaZeDxtUqpizJE29Kr
+	rNUSr07G9MECM5+At+Ot1Pz2MtsfaibEuICsoqL3Tf18TVYk2a56lkCElsMbYofptvv9xravjXH
+	9aR30BHKzZqS/1H4HrjuwIA0HTw==
+X-Google-Smtp-Source: AGHT+IEgVRtlsezpX5b++OEHsLeJ5YfSiDLhg2WTfyj9apRylNyWIq49BTWXdchR23XeZP/6kY22w/WIpF8duYPGXC8=
+X-Received: by 2002:a05:6402:278c:b0:5e4:cbee:234c with SMTP id
+ 4fb4d7f45d1cf-5e59f37da3amr3722807a12.10.1741212212066; Wed, 05 Mar 2025
+ 14:03:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 1/2] devicetree: bindings: mux: reg-mux: Update
- bindings for reg-mux for new property
-To: Rob Herring <robh@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Peter Rosin <peda@axentia.se>, <s-vadapalli@ti.com>,
-        <danishanwar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth
- Menon <nm@ti.com>
-References: <20250304102306.2977836-1-c-vankar@ti.com>
- <20250304102306.2977836-2-c-vankar@ti.com>
- <20250304153959.GA2654372-robh@kernel.org>
- <66283781-69d6-4d0a-ada4-3a6bf4744a37@ti.com>
- <CAL_Jsq++DUv5_LHg7sPNXDJZ84JtS94Rwr-WAb9hDWp6rJqZLQ@mail.gmail.com>
-Content-Language: en-US
-From: "Vankar, Chintan" <c-vankar@ti.com>
-In-Reply-To: <CAL_Jsq++DUv5_LHg7sPNXDJZ84JtS94Rwr-WAb9hDWp6rJqZLQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250305-spmi-v1-0-c98f561fa99f@gmail.com> <20250305-spmi-v1-1-c98f561fa99f@gmail.com>
+In-Reply-To: <20250305-spmi-v1-1-c98f561fa99f@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 5 Mar 2025 16:03:20 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJU0AqQcVNTJqrHTAu7wDP4bbLC8vPHP-XvdojuS8nDiQ@mail.gmail.com>
+X-Gm-Features: AQ5f1JrZJb27R_ZaDMQImLR-ewtli_PZor_H4oY5_eu3nzcS9Zd_Cj-X6G4QAXw
+Message-ID: <CAL_JsqJU0AqQcVNTJqrHTAu7wDP4bbLC8vPHP-XvdojuS8nDiQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: spmi: Add Apple SPMI controller
+To: fnkl.kernel@gmail.com
+Cc: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Stephen Boyd <sboyd@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Rob,
+On Wed, Mar 5, 2025 at 2:26=E2=80=AFPM Sasha Finkelstein via B4 Relay
+<devnull+fnkl.kernel.gmail.com@kernel.org> wrote:
+>
+> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+>
+> Add bindings for the SPMI controller present on most Apple SoCs
+>
+> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> ---
+>  .../devicetree/bindings/spmi/apple,spmi.yaml       | 56 ++++++++++++++++=
+++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 57 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/spmi/apple,spmi.yaml b/Doc=
+umentation/devicetree/bindings/spmi/apple,spmi.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..6404af8adec52f4631200c489=
+56f4c1695e88a39
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spmi/apple,spmi.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spmi/apple,spmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple SPMI controller
+> +
+> +maintainers:
+> +  - Sasha Finkelstein <fnkl.kernel@gmail.com>
+> +
+> +description: A SPMI controller present on most Apple SoCs
+> +
+> +allOf:
+> +  - $ref: spmi.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,t8103-spmi
+> +          - apple,t6000-spmi
+> +          - apple,t8112-spmi
+> +      - const: apple,spmi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +patternProperties:
+> +  "pmu@[0-9a-f]$":
 
-On 3/5/2025 2:10 AM, Rob Herring wrote:
-> On Tue, Mar 4, 2025 at 1:03 PM Vankar, Chintan <c-vankar@ti.com> wrote:
->>
->> Hello Rob,
->>
->> On 3/4/2025 9:09 PM, Rob Herring wrote:
->>> On Tue, Mar 04, 2025 at 03:53:05PM +0530, Chintan Vankar wrote:
->>>> DT-binding of reg-mux is defined in such a way that one need to provide
->>>> register offset and mask in a "mux-reg-masks" property and corresponding
->>>> register value in "idle-states" property. This constraint forces to define
->>>> these values in such a way that "mux-reg-masks" and "idle-states" must be
->>>> in sync with each other. This implementation would be more complex if
->>>> specific register or set of registers need to be configured which has
->>>> large memory space. Introduce a new property "mux-reg-masks-state" which
->>>> allow to specify offset, mask and value as a tuple in a single property.
->>>
->>> Maybe in hindsight that would have been better, but having 2 ways to
->>> specify the same thing that we have to maintain forever is not an
->>> improvement.
->>>
->>> No one is making you use this binding. If you have a large number of
->>> muxes, then maybe you should use a specific binding.
->>>
->>
->> Thank you for reviewing the patch. The reason behind choosing mux
->> subsystem is working and implementation of mmio driver. As we can see
->> that implementing this new property in mux-controller is almost
->> identical to mmio driver, and it would make it easier to define and
->> extend mux-controller's functionality. If we introduce the new driver
->> than that would be most likely a clone of mmio driver.
-> 
-> I'm talking about the binding, not the driver. They are independent.
-> Generic drivers are great. I love them. Generic bindings, not so much.
-> 
->> Let me know if implementation would be accepted by adding a new
->> compatible for it.
-> 
-> Adding a new compatible to the mmio driver? Certainly. That happens
-> all the time.
-> 
-> I also didn't say don't use this binding as-is. That's fine too.
-> 
+Typically 'pmic' is the name used here. However, you should just drop
+this because spmi.yaml already defines child node structure.
 
-Can you please review the following binding:
+With that,
 
-oneOf:
-   - required: [ mux-reg-masks ]
-   - required: [ mux-reg-masks-state ]
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-allOf:
-   - if:
-       required:
-         - mux-reg-masks-state
-     then:
-       properties:
-         idle-states: false
-
-required:
-   - compatible
-   - '#mux-control-cells'
-
-I think it won't disturb the current bindings and keep backward
-compatibility with existing implementation.
-
-
-Regards,
-Chintan.
-
-
-> Rob
+> +    type: object
+> +
+> +    description:
+> +      PMIC properties, which are specific to the used SPMI PMIC device(s=
+).
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/spmi/spmi.h>
+> +
+> +    spmi@920a1300 {
+> +        compatible =3D "apple,t6000-spmi", "apple,spmi";
+> +        reg =3D <0x920a1300 0x100>;
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <0>;
+> +
+> +        pmu@f {
+> +            reg =3D <0xf SPMI_USID>;
+> +            /* PMIC-specific properties */
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 8e0736dc2ee0e33544fa373a4978b7dae18c040c..271ff8110df83c2d4fe7fbbff=
+fc0a72259460bc5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2236,6 +2236,7 @@ F:        Documentation/devicetree/bindings/pci/app=
+le,pcie.yaml
+>  F:     Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+>  F:     Documentation/devicetree/bindings/power/apple*
+>  F:     Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
+> +F:     Documentation/devicetree/bindings/spmi/apple,spmi.yaml
+>  F:     Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+>  F:     arch/arm64/boot/dts/apple/
+>  F:     drivers/bluetooth/hci_bcm4377.c
+>
+> --
+> 2.48.1
+>
+>
 
