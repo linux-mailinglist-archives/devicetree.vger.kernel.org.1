@@ -1,162 +1,122 @@
-Return-Path: <devicetree+bounces-154626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702D8A50F13
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:51:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CADF9A53E4D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 00:19:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8FE316A444
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:51:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C54B1888C25
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A56C206F0D;
-	Wed,  5 Mar 2025 22:51:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F601FCFF5;
+	Wed,  5 Mar 2025 23:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uln1OaN8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bpFIt49j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29841FF1A2;
-	Wed,  5 Mar 2025 22:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3FCA1EE03B;
+	Wed,  5 Mar 2025 23:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741215068; cv=none; b=le7mAKMslTCNVThWo6PhIaNmhs6vKLxKHsTStgdyb3v3xamsYUXD9bZjwO/oeZ5XyYWQ3VW0u/k2wlxvtwP7zqA+fY6cUSU2+9u3eZM8aZHqWzmeeV53nFjLpZCZjdJbX6cVwuYU7OnwNRTptCXPpeJHZyKzsfHDlv4c22xqUOo=
+	t=1741216794; cv=none; b=MCB84EZ0l3uiNudlxHnT1/IOTu5mZItZc2nXq8GKwZBkWYaq7HQpmlAudhgS77eh4pwFCWL8V8+4sZsf1wFLc7Mzzb+UtxfgC9aAzbdPUfKVDIjH9QYUwO1KiYInuR1nIJ43F5tdqXid+vmJqFaGPceeX0/vZXkK1hNWHh4OBJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741215068; c=relaxed/simple;
-	bh=4kn0alaAsGGXPN7YZT7+IeoQ/dtwpPBvCEYm9hxAS+Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i2qui6cMjBmqqFONR1yx8B93eotNBpo81QifFkpq9NT3FqrvC2I5AnHeZuspqcfAB1j5pc10o6dQ1xW2w2F4weGFWp2COuTEnshqLSh8kY/8/1mKgnljFAopsZUaT13ep4M+Q8BpFx7SHgNPFl7o9WcQ4GWlAYU7LsIyvFrcC2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uln1OaN8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44FCEC4CED1;
-	Wed,  5 Mar 2025 22:51:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741215067;
-	bh=4kn0alaAsGGXPN7YZT7+IeoQ/dtwpPBvCEYm9hxAS+Y=;
-	h=From:To:Cc:Subject:Date:From;
-	b=uln1OaN8EPJRkG/4lBXIoKjv30iTN6/M4db/1cmIwCxcXDBwJ8SOm6Y9H0es7OpNH
-	 UsmxUM8G1algdX+Es2HLaRn7rjjQ8JmtVoiEJlTx+HL1cMnBPgHiFA2GeJOj+l5s05
-	 k1++sYg74Ytv9B3HM0cy/WUF1U6a7/ij0dKVMC40G64JBZ01ICmYVoo6EmVfNkNgn6
-	 Kp0wbcgYm1fNCt40sKBzDf3vxxAzzP0xlK0FOqj7d9DXFvm532KCdRHMfxUW3SVLMX
-	 TEgcfOEzqYc+rgwP3DLOXMbroHI+DMuBQ/yU04hxT3IitZ7BHkBj1IjkpnLMzF51d/
-	 H5rVjIvfPmIog==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: soc@kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH] arm64: dts: nvidia: Remove unused and undocumented "regulator-ramp-delay-scale" property
-Date: Wed,  5 Mar 2025 16:49:52 -0600
-Message-ID: <20250305224952.2995841-2-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1741216794; c=relaxed/simple;
+	bh=jNjm1cYUFMQZ9mfrDQzo9hhp7ND5yA4DLzm1+XAQYrg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W/jd07hC7CAQ5QK0UgAuylwsqR9jxnNhnm3/cMwDgNeePS9dMaGqBkI+mI9e0ZuHacwRrU2C6kQ8ueY1OlAtpTXBfgl2fEVAjiQjiH6iDNRvXIcEMEs2GEJ8Xe0ztBEN/f1OU5ehWAswr8VKmlvdmCxWrhdiD73WLkS3iLUvHq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bpFIt49j; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741216793; x=1772752793;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jNjm1cYUFMQZ9mfrDQzo9hhp7ND5yA4DLzm1+XAQYrg=;
+  b=bpFIt49jOUIkTodpIJ+8xyvw3zA2pvo/dkTboppjK77Jj82bI2cpW6sL
+   YenU9g+BNo+z5Tz+CGndqJb8ti2Tl7oVi8mf74OkujKmyXQWSR6ltRRuR
+   yWBBcHeN6FPxHXjJntkeolx7haqa0ah1KNNxvxsEcUMs7FonIzr5GZN+i
+   irRZPxEVOrhLUvHfJoKQ1mU1gqqvYpwcTJeaLrkMqZR3fnyBcumqW+QRi
+   URP/xqMTrIW+R/G9r0gq1vzIgeGOVrzDgh/aeKUQaVISlGIEMb299w74A
+   Y1+BODNUdHrCKUz6blJlh+igOYsS4lIspF8SUyQnn1kNJe5/jC90T4LFf
+   A==;
+X-CSE-ConnectionGUID: kewkCgn4QpaUKNBvo4i/xA==
+X-CSE-MsgGUID: Rs9Gv2PbSXWNFwUh4Wt+Cw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="59613105"
+X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; 
+   d="scan'208";a="59613105"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 15:19:52 -0800
+X-CSE-ConnectionGUID: HlxSlCs0TSCIaan0QpIjmA==
+X-CSE-MsgGUID: jCEax0NNT1Cswvrw3DHVZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; 
+   d="scan'208";a="149607166"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+  by orviesa002.jf.intel.com with ESMTP; 05 Mar 2025 15:19:48 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tpy1h-000MJ6-2W;
+	Wed, 05 Mar 2025 23:19:45 +0000
+Date: Thu, 6 Mar 2025 07:19:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Kevin Chen <kevin_chen@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+	andrew@codeconstruct.com.au, derek.kiernan@amd.com,
+	dragan.cvetic@amd.com, arnd@arndb.de, gregkh@linuxfoundation.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev,
+	Kevin Chen <kevin_chen@aspeedtech.com>
+Subject: Re: [PATCH v2 3/3] soc: aspeed: lpc-pcc: Add PCC controller support
+Message-ID: <202503060750.pkwFWR24-lkp@intel.com>
+References: <20250304104434.481429-4-kevin_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250304104434.481429-4-kevin_chen@aspeedtech.com>
 
-Remove "regulator-ramp-delay-scale" property which is both unused in the
-kernel and undocumented. Most likely they are leftovers from downstream.
+Hi Kevin,
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
-Arnd, please take this directly as the NVIDIA maintainers seem to be 
-AWOL.
+kernel test robot noticed the following build warnings:
 
- arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 10 ----------
- 1 file changed, 10 deletions(-)
+[auto build test WARNING on char-misc/char-misc-testing]
+[also build test WARNING on char-misc/char-misc-next char-misc/char-misc-linus lee-leds/for-leds-next lee-mfd/for-mfd-next robh/for-next lee-mfd/for-mfd-fixes linus/master v6.14-rc5 next-20250305]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-index c56824d7f4d8..0ecdd7243b2e 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-@@ -266,7 +266,6 @@ vdd_soc: sd0 {
- 					regulator-max-microvolt = <1170000>;
- 					regulator-enable-ramp-delay = <146>;
- 					regulator-ramp-delay = <27500>;
--					regulator-ramp-delay-scale = <300>;
- 					regulator-always-on;
- 					regulator-boot-on;
- 
-@@ -281,7 +280,6 @@ vdd_ddr: sd1 {
- 					regulator-max-microvolt = <1150000>;
- 					regulator-enable-ramp-delay = <176>;
- 					regulator-ramp-delay = <27500>;
--					regulator-ramp-delay-scale = <300>;
- 					regulator-always-on;
- 					regulator-boot-on;
- 
-@@ -296,7 +294,6 @@ vdd_pre: sd2 {
- 					regulator-max-microvolt = <1350000>;
- 					regulator-enable-ramp-delay = <176>;
- 					regulator-ramp-delay = <27500>;
--					regulator-ramp-delay-scale = <350>;
- 					regulator-always-on;
- 					regulator-boot-on;
- 
-@@ -311,7 +308,6 @@ vdd_1v8: sd3 {
- 					regulator-max-microvolt = <1800000>;
- 					regulator-enable-ramp-delay = <242>;
- 					regulator-ramp-delay = <27500>;
--					regulator-ramp-delay-scale = <360>;
- 					regulator-always-on;
- 					regulator-boot-on;
- 
-@@ -326,7 +322,6 @@ vdd_sys_1v2: ldo0 {
- 					regulator-max-microvolt = <1200000>;
- 					regulator-enable-ramp-delay = <26>;
- 					regulator-ramp-delay = <100000>;
--					regulator-ramp-delay-scale = <200>;
- 					regulator-always-on;
- 					regulator-boot-on;
- 
-@@ -341,7 +336,6 @@ vdd_pex_1v05: ldo1 {
- 					regulator-max-microvolt = <1050000>;
- 					regulator-enable-ramp-delay = <22>;
- 					regulator-ramp-delay = <100000>;
--					regulator-ramp-delay-scale = <200>;
- 
- 					maxim,active-fps-source = <MAX77620_FPS_SRC_NONE>;
- 					maxim,active-fps-power-up-slot = <0>;
-@@ -354,7 +348,6 @@ vddio_sdmmc: ldo2 {
- 					regulator-max-microvolt = <3300000>;
- 					regulator-enable-ramp-delay = <62>;
- 					regulator-ramp-delay = <100000>;
--					regulator-ramp-delay-scale = <200>;
- 
- 					maxim,active-fps-source = <MAX77620_FPS_SRC_NONE>;
- 					maxim,active-fps-power-up-slot = <0>;
-@@ -371,7 +364,6 @@ vdd_rtc: ldo4 {
- 					regulator-max-microvolt = <1100000>;
- 					regulator-enable-ramp-delay = <22>;
- 					regulator-ramp-delay = <100000>;
--					regulator-ramp-delay-scale = <200>;
- 					regulator-disable-active-discharge;
- 					regulator-always-on;
- 					regulator-boot-on;
-@@ -395,7 +387,6 @@ avdd_1v05_pll: ldo7 {
- 					regulator-max-microvolt = <1050000>;
- 					regulator-enable-ramp-delay = <24>;
- 					regulator-ramp-delay = <100000>;
--					regulator-ramp-delay-scale = <200>;
- 
- 					maxim,active-fps-source = <MAX77620_FPS_SRC_1>;
- 					maxim,active-fps-power-up-slot = <3>;
-@@ -408,7 +399,6 @@ avdd_1v05: ldo8 {
- 					regulator-max-microvolt = <1050000>;
- 					regulator-enable-ramp-delay = <22>;
- 					regulator-ramp-delay = <100000>;
--					regulator-ramp-delay-scale = <200>;
- 
- 					maxim,active-fps-source = <MAX77620_FPS_SRC_1>;
- 					maxim,active-fps-power-up-slot = <6>;
+url:    https://github.com/intel-lab-lkp/linux/commits/Kevin-Chen/ARM-dts-aspeed-g6-Add-AST2600-LPC-PCC-support/20250304-194530
+base:   char-misc/char-misc-testing
+patch link:    https://lore.kernel.org/r/20250304104434.481429-4-kevin_chen%40aspeedtech.com
+patch subject: [PATCH v2 3/3] soc: aspeed: lpc-pcc: Add PCC controller support
+config: s390-kismet-CONFIG_MFD_SYSCON-CONFIG_ASPEED_LPC_PCC-0-0 (https://download.01.org/0day-ci/archive/20250306/202503060750.pkwFWR24-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20250306/202503060750.pkwFWR24-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503060750.pkwFWR24-lkp@intel.com/
+
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for MFD_SYSCON when selected by ASPEED_LPC_PCC
+   WARNING: unmet direct dependencies detected for MFD_SYSCON
+     Depends on [n]: HAS_IOMEM [=n]
+     Selected by [y]:
+     - ASPEED_LPC_PCC [=y]
+
 -- 
-2.47.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
