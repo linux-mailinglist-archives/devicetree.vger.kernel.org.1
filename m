@@ -1,124 +1,137 @@
-Return-Path: <devicetree+bounces-154289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14C8A4F94D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:57:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3CFA4F950
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:57:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7D80188EAC4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:57:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA56016BFE1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3415B1FECAD;
-	Wed,  5 Mar 2025 08:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB7C91FDE1A;
+	Wed,  5 Mar 2025 08:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="E91BkuPI"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="YhY5E9MR";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="kD1rLRYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48FE91FDE0A
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:56:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D48CB191F75;
+	Wed,  5 Mar 2025 08:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741165005; cv=none; b=VRB1qMbUdxMGXCZ6/vDvyYCRqp85q0XgEgUbo3zSvfHKKzdAbXM3XHD+v35TxYvgUOn/wU9Kr9Hrjvms80I6nhU5PH4EaaQ/THixpZu1Vr5Usbvtm1nGZiNLYWRu97077DeNzgWbnwglIJl4c4IGQJHfOo2MFDXArPIYd5Yioc8=
+	t=1741165030; cv=none; b=Orv1AjMFjDeKQfkMZKSNSbhEdAi0Sh6KgPf43y75oU+yYOpSrJM0t2BIyIsQwgfoREoMya7tPP+Df71FGgqYlYQLBiNbrDQimSu+C+uWAHD7iFVPpMEFf07Am4qOZj1ka4QKDTKv4e/NXMFSRieKHYAWeE6Gt/WYkRk95gOBuMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741165005; c=relaxed/simple;
-	bh=MdB85ZcPm8v/V2YtsHgVtSYH4zfMxt4J5oHF0yYVGyU=;
+	s=arc-20240116; t=1741165030; c=relaxed/simple;
+	bh=qsGsvCAfdcfeE51ac9RONSysVMtYIjNdL+vMqgURXUM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mvh0grBz0bkuLnCewoI5axkR8wFlFq7xT4SudD46QzzU9/wIanJCyM9MqgGA5/T4LhK7OezYpwuwgZgBGF0zGWbVRlFC+NHvTUfHhFYkv9OmbdllSIFn2Zp8GDmTzUvNa4lEMEmI2o7Ero84BCqHklW3C+10yr+uyDekjbgO1d8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=E91BkuPI; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43bc4b16135so18261705e9.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 00:56:42 -0800 (PST)
+	 MIME-Version:Content-Type; b=jLQ327KnYTMWvy1UFsd+zKJUFRhKcleJF9hao6k9ZdWx72ArRymkjZlpTg3zJn0h9JhhgAGLals2R4UzeCuxqWLf8hHsqIepLfDr6O5RCaCRCwV+AxqpHLCmd2zKZk1ZN/s56J9moNYCyt6ZrTocGMUuWAMC+BTzIda+Pmy9MXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=YhY5E9MR; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=kD1rLRYV reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1741165001; x=1741769801; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1Fuv0TDvt2J50qLsgdzrl3qC7n/blSVSUBhsKPFPU+Y=;
-        b=E91BkuPIeUYfMcnTyNokmzWbTMua3YEMe0zirdFW5yT9xxIkxFVODfiqOs73p73Dj8
-         Xc5eAofl+WhV3hj8G64KEo4YTrfGvyh368lc9h3B2/zabFThFNDc/ztf95TrQGJF7rDX
-         C2TtfZJJj6okUP/OokIksJmle2ImDzdzE3VKWTUlYviHFbAYAj9FCux2NqM2bnBCxOnL
-         czXfN5iixzFp2uxGiXBtVOgalHtNHZqZJhFi1/ucoW4dbyz3qgq2jtalE+cspd3VVdXO
-         WBHlT0W3iVwgwpl8B6iidh2c2XVnaAPalKiZLwfriYsENBUZb2oenWJVGRBGR8i7iKYD
-         NuXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741165001; x=1741769801;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1Fuv0TDvt2J50qLsgdzrl3qC7n/blSVSUBhsKPFPU+Y=;
-        b=D76Wet+H78pqZ3R/LVMhItoWjPChcMOwLdd/bamKXp4ZgETzS8FqRFuXqQQQPhnfDs
-         DgaNY4QmlIixQ1n7dgdotbDUyKiXCYOOhQL5AO6IhGeeVMrDUdwsZr93vR6pQLUoDgT8
-         tVEI8uzQazSrSER2kkU2vnJENDjHRpdts8Ek+61dEWHrLhIC3neZLDCyGg9EQk7plcJf
-         JJNRMbzPV8zPsO6ZtbwEvAJdKCyTSGS80ANtAqytercfArV3jzfZ8gkl3StqNGosVf/b
-         nwGAXXmK6v+g80boXDY9yGU0/snkr1g8jpCyjISgMnTsK0dLTga2xq04xQ1x6s1DiGBA
-         WeDA==
-X-Forwarded-Encrypted: i=1; AJvYcCXQ/6YuFiTEXHmm8i8gk5053Sn90QIqbwWc7kU4gMLay1JMXOsYAt6TjHx4u26k+x75gX7oDrX1zv/A@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfjygZpwHRi/P61lCJQd9qfEhjMOKOL+NiqOcUSHpStAipk3Ty
-	3AMsGQY6kKCnBh+z09j+6ACatAVC3WOZMSosmuUque9gq722KX+MvF9cSpouXkc=
-X-Gm-Gg: ASbGncs1eTSVNFaPFRDx9uq/9uaG8jiS2QD3CNRQIB4djkRQIyoCKmTBXlHbpW40+TJ
-	8nBLx1cpQAbi6HUtr8SALl9xWhu71T/MKHZhJmz9vSj7qW/J29O1Ss1F5sVWSs4TRsPQMWAvbFC
-	TSWrDoRjPQEFhD/U0J/wjrKweMfcYB/10mw9rcgJZanO/AvPi45vaVb0ATBOgVEHZrpYhGw3GZy
-	pEguJtYtRQeTpRi/jSlJO3DTrE0CazA7FRd/HFIbMxMZf2CzgAIgREz0HrgrfsZY8cXwJrTCoaI
-	UubDud6bO6Le8xs24rprIeEAYY6hSsQiLfbgk/ROH92B
-X-Google-Smtp-Source: AGHT+IEjTeOshg/et4xsAiyT8rCEdbinKDlmt5E8tVs9hXKleiSIZhgrtg7jQiHngwX96hNKwI634A==
-X-Received: by 2002:a05:600c:1988:b0:439:9377:fa21 with SMTP id 5b1f17b1804b1-43bd2aed6c2mr12768215e9.19.1741165001227;
-        Wed, 05 Mar 2025 00:56:41 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:e514:53b3:5af8:e408])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e4796084sm20652588f8f.19.2025.03.05.00.56.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Mar 2025 00:56:40 -0800 (PST)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yinbo Zhu <zhuyinbo@loongson.cn>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: loongson: Add new loongson gpio chip compatible
-Date: Wed,  5 Mar 2025 09:56:39 +0100
-Message-ID: <174116499292.21788.16321684566048827154.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250303074552.3335186-1-zhoubinbin@loongson.cn>
-References: <20250303074552.3335186-1-zhoubinbin@loongson.cn>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1741165026; x=1772701026;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=e+jhkYS0TRz2o1la5b8D/3y4xT0VqD2+ekryj9z0zm8=;
+  b=YhY5E9MRkL1bzexUheXHxzsAnUxw7MYdVwuJ9o5YNTk7GsZePzUJOUdU
+   Rey1WV+tByzJRQl4p69S0TxfpZYx38yAB3zbjbH5uQwDqXAfBwKpGOBq3
+   c1FnVaj460O5eY4Ly/SKe3GPG1uhKGsVfhamg8krsZQVouAG282Xa3f3s
+   ja3ajHNjIITTMHILoDX4I4P9sf8MeoScwDC3fLefW7Jr4LSBTa+BeoX5p
+   FYaRBHL8840gNXIpkPXzVjeVWbsN9sg6vYuACnEweWI/jnQhgr4JLB65h
+   yq4dbFGGAzzmtz0tqehRqALpGVc878NR2BYfhUCArpOoUUQlyGttt2k10
+   w==;
+X-CSE-ConnectionGUID: tRwjRDSeTueS95ISt5PufQ==
+X-CSE-MsgGUID: Mp++ScJxRMCuLKwD8CNM4Q==
+X-IronPort-AV: E=Sophos;i="6.14,222,1736809200"; 
+   d="scan'208";a="42301545"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 05 Mar 2025 09:57:03 +0100
+X-CheckPoint: {67C811DE-42-F35B2447-E1635CDE}
+X-MAIL-CPID: AD65E4B5510E62E90C988CDA2D9A3F96_1
+X-Control-Analysis: str=0001.0A006369.67C811E2.0079,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 57F63170E8E;
+	Wed,  5 Mar 2025 09:56:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1741165018;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=e+jhkYS0TRz2o1la5b8D/3y4xT0VqD2+ekryj9z0zm8=;
+	b=kD1rLRYVbR3w7K+GjtmEYISp04lQVjebsKh0ladQK1ogzl0H2UjpGi0i4ws1KRAWE9Ben5
+	J/KK43vOQAQglcqLXMdTLik/Proj5m3Zrr6y8DiM1oZIWRBB+AU9hV4GTpuMlH4tRoYhMX
+	f5qdmvq+GeBBXE8uYaflFBt9jBdLbEo3UfXoj39skcRBERlo3pvaNiVjxGtcRhWbfTSR5K
+	ldNQG+ygagGit6y17MuQcwn+Nt3MgoKh7WsT/yCaOZmtosTKn0MDN1YFghS/w5IXgF6OcT
+	xEJlW0G3MR6dajelV0nnEPPFgqVPU2SxMW1Evo+vvmhX1cvan1wM/aT4IxJX+w==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
+ Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux@ew.tq-group.com, linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Subject:
+ Re: [PATCH v3 3/6] pmdomain: imx93-blk-ctrl: Scan subnodes and bind drivers
+ to them
+Date: Wed, 05 Mar 2025 09:56:55 +0100
+Message-ID: <23858231.6Emhk5qWAg@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250305-keen-shaggy-bullfinch-fc77fd@krzk-bin>
+References:
+ <20250304154929.1785200-1-alexander.stein@ew.tq-group.com>
+ <20250304154929.1785200-4-alexander.stein@ew.tq-group.com>
+ <20250305-keen-shaggy-bullfinch-fc77fd@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi Krzysztof,
+
+Am Mittwoch, 5. M=E4rz 2025, 08:17:23 CET schrieb Krzysztof Kozlowski:
+> On Tue, Mar 04, 2025 at 04:49:22PM +0100, Alexander Stein wrote:
+> > +#include <linux/of_platform.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/pm_domain.h>
+> >  #include <linux/pm_runtime.h>
+> > @@ -297,8 +298,14 @@ static int imx93_blk_ctrl_probe(struct platform_de=
+vice *pdev)
+> > =20
+> >  	dev_set_drvdata(dev, bc);
+> > =20
+> > +	ret =3D devm_of_platform_populate(dev);
+>=20
+> This means in remove() you will depopulate in different order than error
+> path (e.g. after genpd removal). This is rather unexpected - remove()
+> should be cleaning up in exactly reversed order of probe. Not sure if it
+> can lead to any issues, but usual recommendation is that you either use
+> devm() or not.
+
+Thanks for pointing out. I will add a devm_of_platform_depopulate() to
+remove().
+
+Best regards
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
-On Mon, 03 Mar 2025 15:45:51 +0800, Binbin Zhou wrote:
-> Add the devicetree compatibles for Loongson-7A2000 and Loongson-3A6000
-> gpio chip.
-> 
-> 
-
-Applied, thanks!
-
-[1/2] dt-bindings: gpio: loongson: Add new loongson gpio chip compatible
-      commit: e4a345c55e1b9b5ab5212a93b081f666f71b303b
-[2/2] gpio: loongson-64bit: Add more gpio chip support
-      commit: 44fe79020b91a1a8620e44d4f361b389e8fc552f
-
-Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
