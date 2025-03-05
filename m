@@ -1,172 +1,159 @@
-Return-Path: <devicetree+bounces-154503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A23FAA50972
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 19:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E98CA50998
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 19:22:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2C003A3A05
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:19:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 403623A8BDE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7D72586C7;
-	Wed,  5 Mar 2025 18:16:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED592561AB;
+	Wed,  5 Mar 2025 18:18:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TLi/uosf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yM7PyJ8X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53D6253329;
-	Wed,  5 Mar 2025 18:16:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C874A255E54
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 18:18:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741198602; cv=none; b=Tc6/C4U5R6elFbdYCJvLKFo8uKrHj5bMy2CLi7OV3IsTbcbMAWPnku/iVMsAeAdn7iBlMbAmd2kJFhkjHzM6PMPjUynRdoNnqWb0IFFMIA2TaclGZqSxx1yPHIXnnBXz9ALe1Y6o3zp4RofxE+33xdrFSf/TNC2tk5hnzFad7Mo=
+	t=1741198712; cv=none; b=MNeal2Ixd3N8QiiJwWm5qlpap/ZvIZIhs2yMLL6/8FnbIHUsnfcNMeZtvFDyzSSQxbqbie9I7A2D6YhY5Dmb+preTaGlF8tHqoKFhkeiJ/GjS2/Pz7YbYZf80l9992T5Mf34nxjY5tCh15F4VHc4yteptlA0aWo7lTFOKEOneRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741198602; c=relaxed/simple;
-	bh=5LRuZg0UTzGUj7t5oXfbPHk4QtNXMrZZ51pxOPxYi4k=;
+	s=arc-20240116; t=1741198712; c=relaxed/simple;
+	bh=CHVPeNV4aZlMVIMSYfYeSO8Ba+Yk0fM8VLR/eAjSu4I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ASZtGQv4mJTfNAzi76ZeHBcFg/cwBVpSVj+ActgkJc5JWu8hQuJRNwawug8HYXX4B9Ch2cM2ethF2IV+pCY6Rhx4DDtQINpu3kEWptpX2dT6s09832txnWCAZWoyBQmDEmMYue/6ff2/XguQljiLSuP1aNCOcOVArtwlIehxwXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TLi/uosf; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741198599; x=1772734599;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5LRuZg0UTzGUj7t5oXfbPHk4QtNXMrZZ51pxOPxYi4k=;
-  b=TLi/uosfxY9uPIOmiSnOxEDWKXzzR3/h7+7lNUCLY8Moz2teVo1G0Nqo
-   n9cZ3TrEK7o00ZrMt353siFD8qrSuNuhCdZ6fnbr0UFJyMQnNgo4D95h3
-   7UQSpbAd9f8JFAWBOQ5Ile3KA32JDd7kR9Ql3PP5qwEQKrSw4thhJ7mkv
-   UrGyUj+RScewuHhyELc8bmz6ra5VvJALMNo0EJzhsuBVFOGxQwm1E/xsE
-   gbzEc/nubPEVIP0hrqClhWdURLiIwqCLkOFbsmBb8J+A6khuTX/LSrN1G
-   oH8M6B10fbLE3oGBsQL2etw7rzM0KVjopNJ1II26oAr0/dBWuwfLC7ctY
-   A==;
-X-CSE-ConnectionGUID: vZTIuVQ/R/ijC0nIBsVmTg==
-X-CSE-MsgGUID: vNso0hr8RaCv1LgzaxhPig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42309689"
-X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; 
-   d="scan'208";a="42309689"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 10:16:39 -0800
-X-CSE-ConnectionGUID: Ddn4YyTUSb6xo8euSJAHZA==
-X-CSE-MsgGUID: LWrbSZbtS8iH5IoWIPdprw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; 
-   d="scan'208";a="123870141"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 05 Mar 2025 10:16:35 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tptIG-000Lro-24;
-	Wed, 05 Mar 2025 18:16:32 +0000
-Date: Thu, 6 Mar 2025 02:16:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=oIz0O4M8O19D8+7i+8O8cAPmJHfJz6YJu4+FZCZ4E+8e7Zt3FxMNxASYMeeB2AHLvxXFR4tCBB9w4rHDq7LRHtlepJU9+iRcRaBCbQmZ9gGS5OWRqGYwowpcbNitXsi40UWYSZHt0cGg4GDgzWCY4Pw2NrD0rhgDk/ocBFyV1qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yM7PyJ8X; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22337bc9ac3so137429955ad.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 10:18:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741198710; x=1741803510; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=oqKBFVD7BmtZnDhxGEB2Az6asxUlkas0B0Pi0JaurnM=;
+        b=yM7PyJ8X4kk63j4ccy9lJ0gMgtJ5teBQflWki6SSlA+gugv6ZOhbi+XXFQnSP3f1TJ
+         Z6U+mpkx5qRk3MRLL/T0XZggZBuCa6Pobkf+NSrBNmiIkDbs6HH10CDpdor79mZdafrf
+         SHw8QZHVtJt7ODMkHICpOHoBneG+dhYOCD9o/o2koj8poTkM9QegttakW7r7Q5uS8X+8
+         vPULZJ+wCAD1j+yTbCg+0tEIlNNdtPsmDRFpR1uphrFUzVLgVgI02CU1fj62ltwrRYuF
+         whdZeqfJOAmdV6DOr92JhLy6vz20mO099Zm+USL434UxpcOjTRiyIgxFwPhq+vcbHIwu
+         fqNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741198710; x=1741803510;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oqKBFVD7BmtZnDhxGEB2Az6asxUlkas0B0Pi0JaurnM=;
+        b=OYkZlWb6qEQ3bLrOB1FHqcwMue5Q1ERCyqVQPBj8WBPDIamh7liDwuyJIJpSNUaqH0
+         gdHJsB7wq3x9+FvrbvEt4AXG99K/5VC9pEETiLvpjdskdHQn6d/LMUn6TCWw8uLnE9W/
+         MmQdV9szWiKnAACn4lmtdub8F8VmA9AaTiXzkncpjxYdpibPZKv07HgdszEFnXVTva9V
+         u+5SEqwrKSPXOsD17IGJpkHhsJU1zLu3fwGehxHuZR9IBTAh+7LulK4jP1+4Y/yTUK75
+         Nh39CIdbNfI7jbB6sNddLfravmdiIKUxDGm8GQf5f0lcETzNK8DAuEW6gm8KzHjVXRx3
+         T0mw==
+X-Forwarded-Encrypted: i=1; AJvYcCVQp/YqsMhQaL+d/P1PuA02Y7fk6qtuFj5I5TAfU5FcMd/FlgHcL/QHb9Ci+9yYLH3F2U8voBZmeBJP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPghNn4KqPFWAb87gkUqN5Li10s4r4f9FunBmfjJTC2XQAat0Z
+	Hg8pZvZRVmAyCQGzNUeEhE/LxEvI94frjyi/hIa+Xk7NcaD0rzKuIY39889mZw==
+X-Gm-Gg: ASbGncvroIkN92nnBdB34m4pRJ4LAgDDl/FUAMS2j+B4/6PC/NP2PfQQXSnZk9+oM6V
+	JTU7dwh2fyFGuzKLONBiG1c/pmrhJhMpXVkhncMOqnZMjDY8wqve6kyRQmAJm9qZe4+85rT31Ak
+	z2/Q4sLKiLjHOI1KBK4D79/FqGSZtpaHk/frBqFt/i8Y2PCdwvm6d7KQdAtDfRdeoFP2J1C9HLR
+	+Zq5lnEfkR9KaWJ5OJEAmDGL4ulM6mipyxRXAVFcnbdsCejPA9CSvPrNKRvNguJxrZINgbapS4a
+	23Jjlyvmd8UN5dDUwrBblU5tIKR9jV9kGFt9oLoWavu85IQX+UsN97GQ
+X-Google-Smtp-Source: AGHT+IHTeeIhNi/0pb7+gb1R76gjf4Wb38QT5wJFtMtan4n6WS8u6zPjBJy02e3tGW2OydQi15Tvtw==
+X-Received: by 2002:a17:903:240a:b0:224:6a7:a5b0 with SMTP id d9443c01a7336-22406a7a82amr15559775ad.2.1741198710127;
+        Wed, 05 Mar 2025 10:18:30 -0800 (PST)
+Received: from thinkpad ([120.60.140.239])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22350514239sm116134605ad.219.2025.03.05.10.18.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Mar 2025 10:18:29 -0800 (PST)
+Date: Wed, 5 Mar 2025 23:48:23 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, NXP S32 Linux <s32@nxp.com>,
-	imx@lists.linux.dev, Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>,
-	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-Subject: Re: [PATCH v8 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
-Message-ID: <202503060247.j7Mbl9vb-lkp@intel.com>
-References: <20250228081812.3115478-3-ciprianmarian.costea@oss.nxp.com>
+	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com, quic_vpernami@quicinc.com,
+	mmareddy@quicinc.com
+Subject: Re: [PATCH v4 3/4] PCI: dwc: Reduce DT reads by allocating host
+ bridge via DWC glue driver
+Message-ID: <20250305181823.ltm54e4yxaj5etw5@thinkpad>
+References: <20250207-ecam_v4-v4-0-94b5d5ec5017@oss.qualcomm.com>
+ <20250207-ecam_v4-v4-3-94b5d5ec5017@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250228081812.3115478-3-ciprianmarian.costea@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250207-ecam_v4-v4-3-94b5d5ec5017@oss.qualcomm.com>
 
-Hi Ciprian,
+On Fri, Feb 07, 2025 at 04:58:58AM +0530, Krishna Chaitanya Chundru wrote:
+> dw_pcie_ecam_supported() needs to read bus-range to find the maximum
+> bus range value. The devm_pci_alloc_host_bridge() is already reading
+> bus range and storing it in host bridge.If devm_pci_alloc_host_bridge()
+> moved to start of the controller probe, the dt reading can be avoided
+> and use values stored in the host bridge.
+> 
+> Allow DWC glue drivers to allocate the host bridge, avoiding redundant
+> device tree reads primarily in dw_pcie_ecam_supported().
+> 
+> Suggested-by: Bjorn Helgaas <bhelgaas@google.com>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 826ff9338646..a18cb1e411e4 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -484,8 +484,8 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  	struct device *dev = pci->dev;
+>  	struct device_node *np = dev->of_node;
+>  	struct platform_device *pdev = to_platform_device(dev);
+> +	struct pci_host_bridge *bridge = pp->bridge;
+>  	struct resource_entry *win;
+> -	struct pci_host_bridge *bridge;
+>  	struct resource *res;
+>  	int ret;
+>  
+> @@ -527,7 +527,12 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  	if (!bridge)
+>  		return -ENOMEM;
+>  
+> -	pp->bridge = bridge;
+> +	if (!pp->bridge) {
 
-kernel test robot noticed the following build errors:
+'pp->bridge' is getting dereferenced above as I indicated in patch 1.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on arm64/for-next/core krzk-dt/for-next linus/master v6.14-rc5 next-20250305]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +		bridge = devm_pci_alloc_host_bridge(dev, 0);
+> +		if (!bridge)
+> +			return -ENOMEM;
+> +		pp->bridge = bridge;
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ciprian-Costea/dt-bindings-rtc-add-schema-for-NXP-S32G2-S32G3-SoCs/20250228-162229
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250228081812.3115478-3-ciprianmarian.costea%40oss.nxp.com
-patch subject: [PATCH v8 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
-config: sparc-allmodconfig (https://download.01.org/0day-ci/archive/20250306/202503060247.j7Mbl9vb-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250306/202503060247.j7Mbl9vb-lkp@intel.com/reproduce)
+There is already a previous devm_pci_alloc_host_bridge() call before this and
+you are just duplicating the code here.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503060247.j7Mbl9vb-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/rtc/rtc-s32g.c: In function 'rtc_clk_src_setup':
->> drivers/rtc/rtc-s32g.c:204:16: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-     204 |         rtcc = FIELD_PREP(RTCC_CLKSEL_MASK, priv->clk_src_idx);
-         |                ^~~~~~~~~~
-
-
-vim +/FIELD_PREP +204 drivers/rtc/rtc-s32g.c
-
-   196	
-   197	static int rtc_clk_src_setup(struct rtc_priv *priv)
-   198	{
-   199		u32 rtcc;
-   200	
-   201		if (priv->rtc_data->reserved_clk_mask & (1 << priv->clk_src_idx))
-   202			return -EOPNOTSUPP;
-   203	
- > 204		rtcc = FIELD_PREP(RTCC_CLKSEL_MASK, priv->clk_src_idx);
-   205	
-   206		switch (priv->rtc_data->clk_div) {
-   207		case DIV512_32:
-   208			rtcc |= RTCC_DIV512EN;
-   209			rtcc |= RTCC_DIV32EN;
-   210			break;
-   211		case DIV512:
-   212			rtcc |= RTCC_DIV512EN;
-   213			break;
-   214		case DIV32:
-   215			rtcc |= RTCC_DIV32EN;
-   216			break;
-   217		case DIV1:
-   218			break;
-   219		default:
-   220			return -EINVAL;
-   221		}
-   222	
-   223		rtcc |= RTCC_APIEN | RTCC_APIIE;
-   224		/*
-   225		 * Make sure the CNTEN is 0 before we configure
-   226		 * the clock source and dividers.
-   227		 */
-   228		s32g_rtc_disable(priv);
-   229		writel(rtcc, priv->rtc_base + RTCC_OFFSET);
-   230		s32g_rtc_enable(priv);
-   231	
-   232		return 0;
-   233	}
-   234	
+- Mani
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+மணிவண்ணன் சதாசிவம்
 
