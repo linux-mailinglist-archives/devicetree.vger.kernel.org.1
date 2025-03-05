@@ -1,227 +1,285 @@
-Return-Path: <devicetree+bounces-154393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E41A4FEF3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:46:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23791A4FF12
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CD1F188F7EA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 12:46:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE9803AE3AA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 12:55:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DDF201270;
-	Wed,  5 Mar 2025 12:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CA6245036;
+	Wed,  5 Mar 2025 12:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BLQpFvYe"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ONzOs8t/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EBE72E3396;
-	Wed,  5 Mar 2025 12:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A67502441A3;
+	Wed,  5 Mar 2025 12:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741178768; cv=none; b=OBi4eEfqGzhpiuPvmdL8BCx89kGMfn4CgRNUbdY5KKsBhnr2QqGkn6XXnMwdXgcjo0NH6S9TKMElOvmukTH1MhMcb/EG8SmPKXu4GApk3vAWt4+n2p8V707vdGRz+yhwUnGFdYQCEnXfC+0kZozz8MW+2W1rUU2mqtAyGi/nPh8=
+	t=1741179338; cv=none; b=tZt9UUeBvhbTACQ92v+9aNnRqndjSpSZrObkvw4/yxkjx7gna48nL1EcB3nzY1OBgMBSb3c/H+pFh6SzLnPF1tzIcsOzw4okZhU57g+wIodcBp5fuT3lEz02SCXwbjTVGXBi+3vFG59PR9hxdTK0kt9Ez3UZYzFvPf2TY+K5Ckk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741178768; c=relaxed/simple;
-	bh=xx8JpjJPC8xYDKoDVOJwNq5GyjLhOLnf6u0v8a2NSeQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IVyLfY9T8p5ADf+tTevA5xMs39RR9snFdoLdNYjo7lkTFwS6u/N2HT9aCQGWe2yVx4pIbfVd8t46Zhq3RhSJ6nRTJZbPyxvSB+RGnqF2A9ZTyrZeIkXPjOimW33U4RlFP8c7Xa352AwJEdtfzfLs92KaWv85d95ZpLWCsajXlYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BLQpFvYe; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2234e4b079cso123431685ad.1;
-        Wed, 05 Mar 2025 04:46:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741178766; x=1741783566; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OZhOmEpDhm76SJPq5OYpOzDDF0g2lT4rBhjCoTGHE34=;
-        b=BLQpFvYee5o9JLTUmNAR4oG8A+aopqFUfD77x5yxXRfK871LUZS7hJib92fBxwjfAr
-         Skh6QLDnvGTVJjYkDyVbsuK8nFInafuXfl4/G4QONEpTSgiudCzmC6VCCWgGMTXW2cBL
-         EBTOLjaIkpPfHInQK6YWiLAMoqjwD2Nxkk5MYZTUFyFuWglPvMooiQLjoXciUBXiFUOO
-         YNlyolofzP7APtrQ3/sb8A1Fvtiz66angP/HnChDX1fY9FtsAJsCy3DkygEdomMVezgu
-         Ln2Wn81oFXEffKVHZ7c7cL+pIRwVafjMp7zokB88UKzXMVTQCO1V8p1wuc/25f9YXyTa
-         ZTkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741178766; x=1741783566;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OZhOmEpDhm76SJPq5OYpOzDDF0g2lT4rBhjCoTGHE34=;
-        b=WsLxyChz4rLGXYFzyH7AwPFr0u0MisNFgt4KDYu+D30Qg3Uyjq3BJ0f7vqiDYb8X1F
-         Evwm0JTlA9JxlGYgzw8ivL61rhOLL9BxyJ66h62RePsO5ZDyAbaU3NuMYtgpC+3m+HXP
-         2cPbG6KkwCBDgEhWYJfIqIKMS3e4/y7LmIg9/VlGfuAZNdSr1bXYyUgVgU4zQ6rUD/CI
-         eF3HFBnuSS6sJMJqSbuWFKt7ySIZoZvCYDxwuVyjy+E36MLUwyp1XPhw8D5qNgv9ux1M
-         j5CplclM4k/KWDwMd11MuqGKac5PQsRK+zRP1lF/yrDW5iTqI+bUtM15cgeLbQpy+1Oa
-         O15Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUfoc5kbHjyjbYaHJrRhFe33QKcBCtTvPV8Zr8vtqZkMYNJPAyyvTydD4MMxfUsBcTvdDqSy2QkcfFR@vger.kernel.org, AJvYcCVJqXjJJit4GYdNdjiWI7xsbEgMWT1eECjC9MArtsNGQgndddzNFOuDG4sYl9qr7KMORYZuMHe4rrts+0DM@vger.kernel.org, AJvYcCVatLH5MTz7C956s+722jzazRwP57fB0Y77DmoE0sbS1cRJcsNIr8c2ptBVXZmSMgikbYtUPcSDRlET62M=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzl86Sy8NzArbDdj6XTr2hiz8joLOLvRQqrdmpka+Hk15YYL5Xl
-	SM+NARud8dt80KEUzkjHeqccM7jH6J1a9+Kd6njR5pJHDQNfspWTfiZReWG0U5hY/OZARR3LonB
-	9zHl+G7P4/pIO1VdIlKYi/Nee648mAN4s
-X-Gm-Gg: ASbGncuJcRFRCcjByhxwS38zYZEvawt+F1HAHFLOgKAX64qsV3laoHQYXW0DE9jZIu1
-	7RE4i+bFmge7RvNFzNaXCm/B9nf68XKoKkdisy7lu/bqy3GU27q7kFBWNiEd/4MzcK+SwLRXGQR
-	XxBaToQU+1xoUiFjQwep0BxVk=
-X-Google-Smtp-Source: AGHT+IHdwW4hQa2cLPlWYrU5ue4mWciZc0p5rQqeJ2JBGI1XN4w7WGoKToi7KE7C9eD7Ld4Askkac6qqdMHiE8X06ik=
-X-Received: by 2002:a17:902:ebc1:b0:223:f9a4:3fa8 with SMTP id
- d9443c01a7336-223f9a457bemr25544855ad.19.1741178766361; Wed, 05 Mar 2025
- 04:46:06 -0800 (PST)
+	s=arc-20240116; t=1741179338; c=relaxed/simple;
+	bh=sFMNibeR1PP9vzyBkPzNiXrH8oC4TieWSRzMOJhATcM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=joQu6n2js6NlWcCiX2Z8Fg2+j8nM1zgKk1MMQaKDcWG13b4VDBVZ0c7/3ovWHndjEz4RNtloKnVtrnlBUKt4yhRZlAslEgGzVctlnvU0Jjs9IZ6PQDplqXxW7R23+FFVovDtwOlV1vG6xRm+dnhINPxaFVUOtevtKliJ9fzINa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ONzOs8t/; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1741179333;
+	bh=sFMNibeR1PP9vzyBkPzNiXrH8oC4TieWSRzMOJhATcM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ONzOs8t/OJz8nHAr6s+iMVmybBzfZ2UwQVeNxlTabpi5vIGRwX7JB10CUHIpQah29
+	 acyZbxtRKNmbLo/S15+wxDbrVAB3Co0q6PwFZ1LNBkSrp60bHOhaUAH/pJiOAWU0FS
+	 itEm0NNTSxUnmOBCMokwW+SfXuJl3yMu38FCRGv+Igihk4Fy8O8HPlHO6gaIL2OcJl
+	 k+zuGgn4avuWTxdvuy41xICUdDjWME91sgb+tCRxO9YzZpK8WLRBy4o49wfyv6wzqU
+	 RldpUnpHTiohJGYlwuc7zYm9ERyljwh5mhtKHxOXK0T2oOxZg3upJHi3KYaCExR7dj
+	 kZUG8bpA9rkug==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C039D17E0DFD;
+	Wed,  5 Mar 2025 13:55:32 +0100 (CET)
+Message-ID: <d64b11be-b516-46ab-8618-f563075064dd@collabora.com>
+Date: Wed, 5 Mar 2025 13:55:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250304162136.1963384-1-florin.leotescu@oss.nxp.com>
- <20250304162136.1963384-2-florin.leotescu@oss.nxp.com> <Z8cp1xoIXT8lgD8T@lizhi-Precision-Tower-5810>
-In-Reply-To: <Z8cp1xoIXT8lgD8T@lizhi-Precision-Tower-5810>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Wed, 5 Mar 2025 14:47:45 +0200
-X-Gm-Features: AQ5f1Jq_yZI7Qka024KvL_NkiadJQvrOZEyL3YURWLhpyxIxGw7rSu6jJaSDwjY
-Message-ID: <CAEnQRZCT4vfFBApv+C3Wp17Fk0-Rwx36h4eCTTygaXFYFipEGg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add Microchip emc2305 yaml schema
-To: Frank Li <Frank.li@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: florin.leotescu@oss.nxp.com, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Shych <michaelsh@nvidia.com>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	viorel.suman@nxp.com, carlos.song@nxp.com, 
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, festevam@gmail.com, 
-	Florin Leotescu <florin.leotescu@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] ASoC: mediatek: mt8188-mt6359: Add headset jack
+ detect support
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Trevor Wu <trevor.wu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ kernel@collabora.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Zoran Zhan <zoran.zhan@mediatek.com>
+References: <20250214-mt8188-accdet-v1-0-6bbd5483855b@collabora.com>
+ <20250214-mt8188-accdet-v1-3-6bbd5483855b@collabora.com>
+ <d976b28d-f44f-4d51-8b61-4c046c571412@collabora.com>
+ <fc9863ef-8781-46a0-ba8c-6dabd9fb6cdf@notapiano>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <fc9863ef-8781-46a0-ba8c-6dabd9fb6cdf@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hello Frank, Conor, Krzysztof,
+Il 04/03/25 21:16, Nícolas F. R. A. Prado ha scritto:
+> On Tue, Mar 04, 2025 at 04:39:33PM +0100, AngeloGioacchino Del Regno wrote:
+>> Il 14/02/25 16:14, Nícolas F. R. A. Prado ha scritto:
+>>> Enable headset jack detection for MT8188 platforms using the MT6359
+>>> ACCDET block for it.
+>>>
+>>> Co-developed-by: Zoran Zhan <zoran.zhan@mediatek.com>
+>>> Signed-off-by: Zoran Zhan <zoran.zhan@mediatek.com>
+>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>> ---
+>>>    sound/soc/mediatek/mt8188/mt8188-mt6359.c | 43 +++++++++++++++++++++++++++++++
+>>>    1 file changed, 43 insertions(+)
+>>>
+>>> diff --git a/sound/soc/mediatek/mt8188/mt8188-mt6359.c b/sound/soc/mediatek/mt8188/mt8188-mt6359.c
+>>> index 2d0d04e0232da07ba43a030b14853322427d55e7..4e19e6cfad1e1f42863b2e2f27131f880c5883bf 100644
+>>> --- a/sound/soc/mediatek/mt8188/mt8188-mt6359.c
+>>> +++ b/sound/soc/mediatek/mt8188/mt8188-mt6359.c
+>>> @@ -17,6 +17,7 @@
+>>>    #include "mt8188-afe-common.h"
+>>>    #include "../../codecs/nau8825.h"
+>>>    #include "../../codecs/mt6359.h"
+>>> +#include "../../codecs/mt6359-accdet.h"
+>>>    #include "../../codecs/rt5682.h"
+>>>    #include "../common/mtk-afe-platform-driver.h"
+>>>    #include "../common/mtk-soundcard-driver.h"
+>>> @@ -266,6 +267,17 @@ static struct snd_soc_jack_pin nau8825_jack_pins[] = {
+>>>    	},
+>>>    };
+>>> +static struct snd_soc_jack_pin mt8188_headset_jack_pins[] = {
+>>
+>> This is the same as nau8825_jack_pins... perhaps we could reuse that?
+> 
+> The difference is the pin name: "Headphone Jack", which results in a difference
+> in the widget's name. I remember you wanted to not have the "Jack" in the
+> widget's name to standardize it among other MTK platforms, and we could do that
+> here by dropping it from the nau8825_jack_pins. But since that name is also used
+> on the audio routes in a few DTs, those would need updating as well:
+> 
 
-Thanks a lot for your comments and help.
+No it's that "Jack" should be automatically appended if not present in the
+jack name :-)
 
-In this initial patchseries we only add minimal OF support and
-introduce a minimal binding.
+> arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dts
+> arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dts
+> arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dts
+> arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dts
+> arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dts
+> arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dts
+> arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dts
+> arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dts
+> 
+> The name is not used in upstream alsa-ucm-conf though, so it should be safe to
+> update.
+> 
+> In any case, I didn't want to expand the scope of this series to that unrelated
+> change, so that's why I introduced this separate struct, thinking we could
+> commonize as a later step.
+> 
 
-> How did you pickup the maintainer entry?
+That's fine for me, but are we adding unnecessary duplication?
 
-We got the author of the first commit for
-See 0d8400c5a2ce ("hwmon: (emc2305) add support for EMC2301/2/3/5 RPM-based=
-")
+>>
+>>> +	{
+>>> +		.pin    = "Headphone",
+>>> +		.mask   = SND_JACK_HEADPHONE,
+>>> +	},
+>>> +	{
+>>> +		.pin    = "Headset Mic",
+>>> +		.mask   = SND_JACK_MICROPHONE,
+>>> +	},
+>>> +};
+>>> +
+>>>    static const struct snd_kcontrol_new mt8188_dumb_spk_controls[] = {
+>>>    	SOC_DAPM_PIN_SWITCH("Ext Spk"),
+>>>    };
+>>> @@ -500,6 +512,35 @@ static int mt8188_mt6359_mtkaif_calibration(struct snd_soc_pcm_runtime *rtd)
+>>>    	return 0;
+>>>    }
+>>> +static int mt8188_mt6359_accdet_init(struct snd_soc_pcm_runtime *rtd)
+>>> +{
+>>> +	struct mtk_soc_card_data *soc_card_data = snd_soc_card_get_drvdata(rtd->card);
+>>> +	struct snd_soc_jack *jack = &soc_card_data->card_data->jacks[MT8188_JACK_HEADSET];
+>>> +	int ret;
+>>> +
+>>> +	if (!soc_card_data->accdet)
+>>> +		return 0;
+>>
+>> I'm not sure... if we have mediatek,accdet (so accdet is present here), but we also
+>> have a NAU8825, or RT5682S, or ES8326 codec, this function will create a headset
+>> jack for MT6359, but then mt8188_headset_codec_init() will do the same again!
+>>
+>> I think we should find a way to avoid that situation, as I'm mostly sure that this
+>> will give issues in the long run.
+>>
+>> Even if it wouldn't, having two headset jacks exposed, of which one doesn't work
+>> because it doesn't exist on the physical board... would be confusing for the user.
+> 
+> IMO that situation happening would mean the DT is wrong. If the board has the
+> headset jack pins wired to a headset codec, and that's responsible for jack
+> detection, then those pins won't be wired to the ACCDET block, and therefore the
+> board DT shouldn't have the mediatek,accdet property.
+> 
 
-> If only one reg You can go through trivial-devices.yaml
+That might make sense.
 
-This is not a trivial device as we will add some specific properties
-with our next patches
-(e.g polarity etc)
+> I think you're imagining having the mediatek,accdet property always present, and
+> the logic you propose would allow specifying a headset codec to essentially
+> override it (making the mediatek,accdet property useless in this case). But
+> there can also be boards with no jacks at all, and in those cases we don't want
+> jack widgets exposed to userspace, so the mediatek,accdet property should be
+> omitted for those boards, and only present on boards where the ACCDET is
+> actually wired to.
+> 
 
-> Missing descriptions of the fans, no?
-> missing $ref to fan-controller schema.
+I am imagining that because ACCDET is something that is always present on the
+MT6359 PMIC, as it is always integrated, physically, into the silicon.
 
-Do we need to add this now? As this is only the minimal binding
-support. We want to add that
-in a follow up patch when we go into specifics.
+Having that always present in the PMIC DT doesn't mean that the actual sound card
+node would have it, so... okay, I get the point, looks good, but it does only if
 
-> The emc2301 label here can be dropped, it is not used.
+.... (scroll down)
 
-Will fix.
+>>
+>> I guess that the best option here would be:
+>>   - Let the `for_each_card_prelinks()` loop finish
+>>   - Check if any of the external codecs are providing 3.5mm jack
+>>     - External codec providing jack means that the detection should be performed
+>>       by the external codec, as the jack should not be physically routed to the
+>>       MediaTek ACCDET related PMIC pins (right?)
+>>     - No external codec means that the accessory detection can only be performed
+>>       by the MediaTek ACCDET IP
+>>   - If external codec manages 3.5mm jack: do nothing
+>>   - If no external codec managing 3.5mm jack: check if accdet provided in DT and
+>>     initialize it
+>>
+>> ....unless I'm wrong - and if I am, please explain why (and also add explanation
+>> to the commit description).
+> 
+> I can add to the commit message:
+> 
+> Only boards that have jack detection managed by the MT6359 ACCDET block will
+> have the mediatek,accdet property present.
 
-> The nodename should be "fan-controller", not pwm here I guess.
+....only if you add that, because this really makes things clear - and had you
+added that to the commit description in this version, I wouldn't have had this
+question ;-)
 
-Sure, will fix.
+So yes, please add it.
 
-On Tue, Mar 4, 2025 at 6:56=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Tue, Mar 04, 2025 at 06:21:34PM +0200, florin.leotescu@oss.nxp.com wro=
-te:
-> > From: Florin Leotescu <florin.leotescu@nxp.com>
-> >
-> > Introduce yaml schema for Microchip emc2305 pwm fan controller.
-> >
-> > Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
-> > ---
-> >  .../bindings/hwmon/microchip,emc2305.yaml     | 43 +++++++++++++++++++
-> >  1 file changed, 43 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,e=
-mc2305.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.=
-yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> > new file mode 100644
-> > index 000000000000..cac0075a65bb
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> > @@ -0,0 +1,43 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/hwmon/microchip,emc2305.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Microchip EMC2305 SMBus compliant PWM fan controller
-> > +
-> > +maintainers:
-> > +  - Michael Shych <michaelsh@nvidia.com>
->
-> who is it? look like not Microchip and hwmon maintainer.
->
-> > +
-> > +description: |
->
-> Needn't |
->
-> > +  Microchip EMC2301/2/3/5 pwm controller which supports up
-> > +  to five programmable fan control circuits
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - microchip,emc2301
-> > +      - microchip,emc2302
-> > +      - microchip,emc2303
-> > +      - microchip,emc2305
->
-> According to your driver code look like all compatible with microchip,emc=
-2301
->
-> oneOf:
->   - enum:
->       - microchip,emc2301
->   - items:
->       - enum:
->           - microchip,emc2302
->           - microchip,emc2303
->           - microchip,emc2305
->       - const: microchip,emc2301
->
-> So your driver just need one "microchip,emc2301" compatible string.
->
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        emc2301: pwm@2f {
-> > +            compatible =3D "microchip,emc2301";
-> > +            reg =3D <0x2f>;
->
-> If only one reg:
-> You can go through trivial-devices.yaml
->
-> Frank
->
-> > +        };
-> > +    };
-> > --
-> > 2.34.1
-> >
->
+On another note, I don't understand what's the problem with using nau8825_jack_pins
+instead of adding a mt8188_headset_jack_pins before you cleanup.
+
+Really, it's just about doing:
+
+/*
+  * nau8825_jack_pins lists the exact same pin names and types as the
+  * MT6359 PMIC: reuse to avoid useless duplication
+  */
+ret = snd_soc_card_jack_new_pins(rtd->card, .... etc etc
+
+Cheers!
+
+> 
+> Thanks,
+> Nícolas
+> 
+>>
+>> Cheers,
+>> Angelo
+>>
+>>> +
+>>> +	ret = snd_soc_card_jack_new_pins(rtd->card, "Headset Jack",
+>>> +				   SND_JACK_HEADSET | SND_JACK_BTN_0 |
+>>> +				   SND_JACK_BTN_1 | SND_JACK_BTN_2 |
+>>> +				   SND_JACK_BTN_3,
+>>> +				   jack, mt8188_headset_jack_pins,
+>>> +				   ARRAY_SIZE(mt8188_headset_jack_pins));
+>>> +	if (ret) {
+>>> +		dev_err(rtd->dev, "Headset Jack create failed: %d\n", ret);
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	ret = mt6359_accdet_enable_jack_detect(soc_card_data->accdet, jack);
+>>> +	if (ret) {
+>>> +		dev_err(rtd->dev, "Headset Jack enable failed: %d\n", ret);
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>>    static int mt8188_mt6359_init(struct snd_soc_pcm_runtime *rtd)
+>>>    {
+>>>    	struct snd_soc_component *cmpnt_codec =
+>>> @@ -512,6 +553,8 @@ static int mt8188_mt6359_init(struct snd_soc_pcm_runtime *rtd)
+>>>    	/* mtkaif calibration */
+>>>    	mt8188_mt6359_mtkaif_calibration(rtd);
+>>> +	mt8188_mt6359_accdet_init(rtd);
+>>> +
+>>>    	return 0;
+>>>    }
+>>>
+
 
