@@ -1,113 +1,126 @@
-Return-Path: <devicetree+bounces-154472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B00BA504F1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:33:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 498CFA5052A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:39:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2F1B7A62AD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:31:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 422421886399
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:39:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B8B18CBE8;
-	Wed,  5 Mar 2025 16:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFD8924C07D;
+	Wed,  5 Mar 2025 16:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jwz4vhS0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N4Ut2cNz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04D31862BD;
-	Wed,  5 Mar 2025 16:32:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E6B19ABA3;
+	Wed,  5 Mar 2025 16:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741192370; cv=none; b=iVrM70wQNUG4xBWJDW2JCHpQlpH5rGfW6kL83OlvtAwTWyMHT5wCW45J+9iZYJu7bavzzlhspBvcGDPPIC+dkYiWJ4+jdvt+MEk6AhlUxceAMrg2qRRoxSpp+szKZsFmiTEhld6jY+tx2qbvTFugw8HhBQczoSNvBnoTSGo+BO0=
+	t=1741192687; cv=none; b=jrjMpNHQpXuQXr3+xaG+bt4Wb9m8NKWfMBL7sWmiyE3h6PKk+4MOwxrzPPpx4749fSy31tgJoho/L9JSlRTR7zpbX6nB67mV0hQ+lFkDc5u2q4uXXF4FNSjag9fYOIr4NZR+TjI6z9zlNREm2z9LfQX9AdGy7eLmWeAmADuCXas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741192370; c=relaxed/simple;
-	bh=C407SjEtF5EwtDuKzqsoF8QnQAa+zhjlXin0WeMt4nM=;
+	s=arc-20240116; t=1741192687; c=relaxed/simple;
+	bh=sL6HKnFMuXDXenCBceEoHD1TmQX+6oJO6AlNMpLGC5I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bgCrgrTzERXYS1zICOn6Bwew8oIi0CFZL4nc3U8gB8+UYAQ2YIoZPt0YXGzffmow6RYcuU6ryeV6m6c7x4/oB3Vg/CfR+Wtu2BfoSJ9AB0+KZn6gwg8WLeEpTuSVsEsarXGNyh9r3eXfgj2pHMJwJvK7vToJg4PYRNyEO2vcOOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jwz4vhS0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF0A6C4CED1;
-	Wed,  5 Mar 2025 16:32:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Slpxc8G5dNQD/rAfOueNKxhqYmfWVAmG4bXOI3So4rKmVBkbmsvNt1Uv/BC8oAHeT6zKrVtaNGgGf2m3xulbdnt+eUK9xintA1CpeCWTFfF0q9KBd5OMwHWiT8hfBQiLY5ew9IT79ME/EXvQKEUH9J9l1IxkFGxNSHXHyKve5dU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N4Ut2cNz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DD7DC4CED1;
+	Wed,  5 Mar 2025 16:38:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741192369;
-	bh=C407SjEtF5EwtDuKzqsoF8QnQAa+zhjlXin0WeMt4nM=;
+	s=k20201202; t=1741192687;
+	bh=sL6HKnFMuXDXenCBceEoHD1TmQX+6oJO6AlNMpLGC5I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Jwz4vhS0imWRcGJiRLA4qIUoweASXnEpf6CBKZwpsqd/taeSgnKkWrdDj/Tb5qw0W
-	 qFZgFg84IhtayaqgH3zYeGszGoi7SzajMMhDZTzYpbNV32aXWzHXlE3KcQ9VfV68iO
-	 qOUOaCM+29l6VZsxLBgucuDeOJwEV65IAg4zSy+iQyiZXni546MM5YKlJnppFAqAop
-	 dVTjrUrioCb8HpcSg9Pp+rfXPAT4/CthE1xqGvx2T9TZEJsdVh3H9bRacmfoheTJ8F
-	 jLzfLOzRSAaRazBOrYvEeDySJWYKxflomn7HO5XOdtFoTAvo4H+6dkCMMqm6iUAfTv
-	 n5hIiPoeAGGbg==
-Date: Wed, 5 Mar 2025 16:32:43 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Niklas Cassel <cassel@kernel.org>,
-	Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pci: Add Sophgo SG2044 PCIe host
-Message-ID: <20250305-sank-hypnosis-5a41d4e59d38@spud>
-References: <20250221-cavalier-cramp-6235d4348013@spud>
- <2egxw3r63cbsygpwqaltp4jjlkuwoh4rkwpgv4haj4sgz5sked@vkotadyk4g6y>
- <20250224-enable-progress-e3a47fdb625c@spud>
- <7ht3djv7zgrbkcvmdg6tp62nmxytlxzhaprsuvyeshyojhochn@ignvymxb3vfa>
- <20250225-lapel-unhappy-9e7978e270e4@spud>
- <ynefy5x672dlhctjzyhkitxoihuucxxki3xqvpimwpcedpfl2u@lmklah5egof4>
- <pbj22qvat76t74nppabekvyncc4ptt6wede4q6wfygbrzcj3ag@ruvt26eqiybu>
- <je4falvfemkemlvdfzdmgc7jx2gz6grpbmo6hwtpedjm7xi2gk@jr4frv3tn3l5>
- <20250303-aground-snitch-40d6dfe95238@spud>
- <ktnqf4s4hw2o6x6ir4n5hsrvbxri5cxgjyofrl76by6fwazda3@4ejw2k7k2ush>
+	b=N4Ut2cNzPxw/19HWcA9q6UtjX96+MvXtTOt/spQ3Kaa+W2/+8jLSKzmKdQfqq784h
+	 iXyfpjwvj2pTl+oH/pXFQUSIATsV9GDQUrPpY1XGGg5K2Ec3lSimClooKk4ynyGvUT
+	 r1PicB+2aVmGYeq5t8RYER35rZsdl0FcxkOhZOQIMiqVhIJjGkFPyBk/REwuohhG/d
+	 euKrDtjZjx1dIMBrkGYX5ZMNE1iPMHZ8ZJuJ6YZr+yGG2ppJvpgHbjVU81Ljc4A8Cq
+	 w+kRXk2NJVka0QLj05JGXMw/DRAN7bWAq46yGtSnJIxDDewUcFooFOLbAD+mTsOL1F
+	 droruHgs3mybQ==
+Date: Wed, 5 Mar 2025 10:38:05 -0600
+From: Rob Herring <robh@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	simona@ffwll.ch
+Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
+ color encoder
+Message-ID: <20250305163805.GA2071011-robh@kernel.org>
+References: <20250304101530.969920-1-victor.liu@nxp.com>
+ <20250304101530.969920-4-victor.liu@nxp.com>
+ <20250304152320.GA2630063-robh@kernel.org>
+ <1891036.atdPhlSkOF@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="m+dlkPVoXaUWfOU9"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <ktnqf4s4hw2o6x6ir4n5hsrvbxri5cxgjyofrl76by6fwazda3@4ejw2k7k2ush>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1891036.atdPhlSkOF@steina-w>
 
+On Wed, Mar 05, 2025 at 10:35:26AM +0100, Alexander Stein wrote:
+> Hi,
+> 
+> Am Dienstag, 4. März 2025, 16:23:20 CET schrieb Rob Herring:
+> > On Tue, Mar 04, 2025 at 06:15:28PM +0800, Liu Ying wrote:
+> > > A DPI color encoder, as a simple display bridge, converts input DPI color
+> > > coding to output DPI color coding, like Adafruit Kippah DPI hat[1] which
+> > > converts input 18-bit pixel data to 24-bit pixel data(with 2 low padding
+> > > bits in every color component though). Document the DPI color encoder.
+> > 
+> > Why do we need a node for this? Isn't this just wired how it is wired 
+> > and there's nothing for s/w to see or do? I suppose if you are trying to 
+> > resolve the mode with 24-bit on one end and 18-bit on the other end, you 
+> > need to allow that and not require an exact match. You still might need 
+> > to figure out which pins the 18-bit data comes out on, but you have that 
+> > problem with an 18-bit panel too. IOW, how is this any different if you 
+> > have an 18-bit panel versus 24-bit panel?
+> 
+> Especially panel-simple.c has a fixed configuration for each display, such as:
+> > .bus_format = MEDIA_BUS_FMT_RGB666_1X18
+> 
+> How would you allow or even know it should be addressed as
+> MEDIA_BUS_FMT_RGB888_1X24 instead? I see different ways:
+> 1. Create a new display setting/compatible
+> 2. Add an overwrite property to the displays
+> 3. Use a (transparent) bridge (this series)
+> 
+> Number 1 is IMHO out of question. 
 
---m+dlkPVoXaUWfOU9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Agreed.
 
-On Wed, Mar 05, 2025 at 12:43:54PM +0800, Inochi Amaoto wrote:
+> I personally don't like number 2 as this
+> feels like adding quirks to displays, which they don't have.
 
-> It is complete a mess. I think it is more clear to just make the
-> dmac and eth device as noncoherent, and use one soc bus for all.
-> Do you have any suggestions on it?
+This is what I would do except apply it to the controller side. We know 
+the panel side already. This is a board variation, so a property makes 
+sense. I don't think you need any more than knowing what's on each end. 
 
+> Number 3 actually describe the hardware connection. The only impact for
+> software is to know which bus format it should use.
 
-If splitting is worse for read/usability, then yes, keep it as one bus.
+I'm not opposed to this, but only if it provides *something* that option 
+2 does not. I'm not seeing what that is.
 
---m+dlkPVoXaUWfOU9
-Content-Type: application/pgp-signature; name="signature.asc"
+Node or not, either case needs a format property. We already have a 
+variety of bus/pixel format related properties. I've rejected new ones 
+because we need something common here that's flexible enough to handle 
+any situation. That's either something that can describe any bit layout 
+or something enumerating the formats (as MEDIA_BUS_FMT_* does). The 
+former is hard to get right and there's always something else you can't 
+handle. I'm not opposed to just reusing MEDIA_BUS_FMT_ if that works.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8h8qwAKCRB4tDGHoIJi
-0lgsAP9/rO13dyY/5sap1YMKjbfizrx1aPd+M21mdzhKleFSAAEA/3Y6yihO5r3K
-7gUW5/g2qHLCepdOrlLdq8AiMiYjmwI=
-=hMTi
------END PGP SIGNATURE-----
-
---m+dlkPVoXaUWfOU9--
+Rob
 
