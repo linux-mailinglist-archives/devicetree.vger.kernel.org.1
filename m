@@ -1,212 +1,192 @@
-Return-Path: <devicetree+bounces-154441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E48AA50272
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:43:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A96BAA5028B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:47:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C25A174E18
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:41:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DACD618845FA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A64D24CEEC;
-	Wed,  5 Mar 2025 14:41:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D0FC24DFFA;
+	Wed,  5 Mar 2025 14:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="se24ZEZr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ATZ2mKXs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2046.outbound.protection.outlook.com [40.92.107.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C389124113C;
-	Wed,  5 Mar 2025 14:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741185676; cv=fail; b=IN9TaEzkAc+9QGGz39OP0BNwpQ3lJmHQzhCNteN1uwp00RSiELV0fEQWya4UZDbP8fcdEBLUa2O3irFRieCmgc1kF9AifhyDMmmLQ6/Z4k/MwSSMZGi8te52jBkDI3hUOUTycEICx1g2bniGlpU8WLBXPziidfPQnAOSajPn2GQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741185676; c=relaxed/simple;
-	bh=0mmiaeepogOCssgfcF4/Iblqgr3xmjLIA1iRjbC4MrE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=QPqMxNXk5XGzpJ7G9/CPEzZYO/FQj6tQFN0781hapkA6lXZd4+nAm353vhWqQS+/IOTUNgfIFwfkRn257jMfFHI55UEBrSLFVt5xm9aRRjzoZv8l+H0NxClGjoH61m8JMKYPnaVikubeyZ09J2BqLpMEhKcOLHWYiAStDQYKlwc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=se24ZEZr; arc=fail smtp.client-ip=40.92.107.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Cn6F6XglrgDmN1DkAsH2o1SnM4an5rikiYQgq0KP3XyiOA5EPMexxilsBMBkzlQjNky8o10AUJRsllExI8OGLHWB8HebL3SoIC0QCo7MllF5ieAfaqj9AHgMbKFIbmCu+X3uKvMFxSqHW8hcz2r1KHIJ5Q4o2jErgVsHVo5VG/PrkNNOoHGoBZTBaCCYJc+0wcbq3moIAGd0yXiyD/sl3zIhJQaU4UaMGpsiF8vNLVAOlD+SZmhyAG7nE4aK6LCtQ6lU6y8eQXcDxEL3A2df2a+JQfw5iNLa+OR1hMCLdcH+q7CQbcDnGK77boCuXS2wrzNZcfIWzxisqkv+V8skYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3MtEgRtV+K+fvxLInrRkANPOBFJhE3mizTO3erIZG74=;
- b=eE856ppfU/79xJJlUJsJ3XM3c/ss+0Mu5ogPAcwJ2ux5HPIASyvQyRsxAf3eLY8o/kf1C/wGDCTVYZDsAvYkEyS1zCjG09nP4zv8+CfCBDh6YqBGbFUBWzdgW+daGaNM1410TsOd9qwhA6Rog0GeUQVh0Ub5VTJ/jS5N8I74m5q3mYqR/2gEaGkK0+urRehC7k0lw/9O2pbp6g/XX6mAHHkMwzk9ZIrYKg93r2CjYBIkSwA7dTTm9jECWtG3QUt1wjC1V8gQZJLDjNTV19I0OUWS5O3LDSukM/nv+Nus0ILTFYhxUytaXCituy2ACdwsw1FC/g0b4nTrjpdmW7BD7Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3MtEgRtV+K+fvxLInrRkANPOBFJhE3mizTO3erIZG74=;
- b=se24ZEZrp9wADtcvKQiV2x+uepXSe4VhriPiu0H0iN+UKOZIKutB53Rs1xbDEDloUG46m9vQ5TB3UraVLOUhvh7mzrZWnAF1LS8nymsO0t1A85y1HFyQ3s2sP6zsY5f1FS+XZ4AOA5ufDpwijT61fQ0k+W1MzcpayeqdQtvQPW2+Ek+qgtlkQjdiJ4+d6oWHd0awbFZ+xESYL6PRZ2WlbFFbQNRr6ypsxN9Pf2XFLlAw+VgeV7Nx9/JTsVu17h1jeh9tyQdkxvlkJRjtPt2G2jXgKZ2CDb2Lz1p3eXNpOzZqAAafUANA1d5pf938l452RlMLSNmEMdyovx4bhPGTBw==
-Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- (2603:1096:400:363::9) by SEZPR01MB6077.apcprd01.prod.exchangelabs.com
- (2603:1096:101:21e::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.25; Wed, 5 Mar
- 2025 14:41:07 +0000
-Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- ([fe80::3641:305b:41e2:6094]) by TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- ([fe80::3641:305b:41e2:6094%5]) with mapi id 15.20.8489.025; Wed, 5 Mar 2025
- 14:41:07 +0000
-Message-ID:
- <TYZPR01MB5556CB47BC21C5015F698CA4C9CB2@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-Date: Wed, 5 Mar 2025 22:41:00 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: net: dsa: qca8k: add internal-PHY-to-PHY
- CPU link example
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "olteanv@gmail.com" <olteanv@gmail.com>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "edumazet@google.com" <edumazet@google.com>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
- <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "rmk+kernel@armlinux.org.uk" <rmk+kernel@armlinux.org.uk>,
- "javier.carrasco.cruz@gmail.com" <javier.carrasco.cruz@gmail.com>,
- "john@phrozen.org" <john@phrozen.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <TYZPR01MB555632DC209AA69996309B58C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <TYZPR01MB5556D90A3778BDF7AB9A7030C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <ae329902-c940-4fd3-a857-c6689fa35680@lunn.ch>
- <TYZPR01MB5556C13F2BE2042DDE466C95C9C92@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <55a2e7d3-f201-48d7-be4e-5d1307e52f56@lunn.ch>
- <dbd0e376-d7c3-4ba9-886b-ba9529a2ec4e@outlook.com>
- <f7ac97f4-7677-402d-99f1-ae82709a3549@lunn.ch>
-From: Ziyang Huang <hzyitc@outlook.com>
-In-Reply-To: <f7ac97f4-7677-402d-99f1-ae82709a3549@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI1PR02CA0060.apcprd02.prod.outlook.com
- (2603:1096:4:1f5::17) To TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- (2603:1096:400:363::9)
-X-Microsoft-Original-Message-ID:
- <2235ab04-79fd-4e27-a4f1-5d70e9ae2361@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B918E2356A8;
+	Wed,  5 Mar 2025 14:43:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741185830; cv=none; b=cAHEn3zetcGFVSsKwxezf7M7j0M3E11KvudGtJVKTse6c1+bpUQg/wr/KZfwkJmI+oEg1K9e5mSxSMgaEXnkZaWvEs3Fanw0N7trI3gxGBzHDfp5wpEW6sKCRvrxreMetzvphe2RhLefDdyQ04oXCCNbxdxCUPZDbHBpHpTO470=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741185830; c=relaxed/simple;
+	bh=+AqUlKzCTWCV8gJp+rDWglTxdmVYfG/0hrgQCsIkfp8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n6R/j2Fl5MlO4AumtkSTuMWPL72tgvBj9DE+l85ETSe9ZVcANCT14yaaqXONFVjFv2BhSEz2LWnmhvJzVxCFYqtnlK1dQnVRbhwJlTo/8bzNvjcCGQ3VOskxvMRXpLkMYwyvmjiPdUc1CuyMtNzUXr55Kk6yO0onVXNOeQnrYMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ATZ2mKXs; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3911748893aso1521345f8f.3;
+        Wed, 05 Mar 2025 06:43:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741185827; x=1741790627; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W+czHJw0+drcfBudBMvI20HD9M6Zg630DEJar/Aqg1E=;
+        b=ATZ2mKXstbBjV2J2Vv2VTF3crdNJREkUeyXxYqkNmmqOwDd1wQV7Ejs/lzQKMWzVQL
+         AdgPSNvyIryryHFfwp0C0II04VfyBCwPhFVg1BVPL9ogmfdXRm0zksqbKzOmSFGOuwGn
+         OP6FLBfi3HKNFNSDxzLvJnTL+O+6jsiJMPlk1ENZxVdpjGiUVIapJ5HOFGzpIcuScCdu
+         +a3Croxy7YnrViM6gxez4RLIufR6/VC8iNPo8UCrutk+hfzOzio7EEE01JXE3ieYJbO4
+         7SL86ead/BuKckxwjaMCBjBH6VLr8LaFI/fRB1Nl2oJSLw4dbuaItCyRSXFkt5RLXNhv
+         VfTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741185827; x=1741790627;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=W+czHJw0+drcfBudBMvI20HD9M6Zg630DEJar/Aqg1E=;
+        b=LPM/kI/DphDJ2/L4xvMbfGmc5rTOniTwhvuqExfJrdbjlllfL2c3iV2DfwbS8ZzWIe
+         7bHSFu+u+I/mijgL1v+a6M34jTKXIHGAlKj6p6/8JEJC2LT0UG3c83wx1pGDS+8rCfJv
+         XKjMDqC8M5gs9w1zyHcPp1i1Sn3+TLWZ2z6QJdD2gXw51SVIpCV89l+BdHPLfv80PgkV
+         RfEKd3zT4ZNL2Sa8ldHEDchB/aBqoNMw9nVVsQyU4SmywufUIzyeFr0sh7a9jYqXXLv4
+         C6wRt/5SOKtq+n86xMxf+5sUiqGajo8JU/zkkE3OdeP4koIkLwDFbfcn4qvbblU/kQ+H
+         EIcg==
+X-Forwarded-Encrypted: i=1; AJvYcCUN5gflP5hVEAoklxiY7SYxESiXY9+jRY8NumzIUe3D1zGJp3NqU71sH2rZnMnDzlUfSnRkKEI18KPb@vger.kernel.org, AJvYcCUphpSLa990SwyrzTOd53YhWcJvbuURGH+I7JbQc+7W/0MeV9OaROMU0MuRDGQb8AWMZq2vh8t1H4rAC9sM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxslkVIiM8Zhbw8PPZIHfdJUXmMHIRV+WMP/53qOroqvEQwGjxE
+	v61puetGAWjgKzlsUK2V5EDdM06p+qMXHspYeQoh+9QBCQtKNtRT0swl+ivKSMvMcLUmfrNt4/4
+	oi6D7d5FH3lqdTrYG5dT7GH/K4eo=
+X-Gm-Gg: ASbGncvwbwlMw3+dWX6PydCbu45JFC3SrfbopCTCKJpFy9EFw8fPjIlWkScA7RzePcp
+	8ez69TisZgpmasR4KQiZdOzAgEjMrWPBgRDtpNRfmfbBr10AleliffTN7tCOVhN0coRsVDC2WfU
+	tTGxxej3qhwiyB8QKLI7gbap7n3g0=
+X-Google-Smtp-Source: AGHT+IE0Wg93XW7daRT3+XvEJc5G1E0Ewc2aulgOkHuquQ7ry8l0r3PqMhb4dWbor0wlFwrkNcLUG1zinJ4UztxNR90=
+X-Received: by 2002:a05:6000:18a6:b0:391:13f7:92ad with SMTP id
+ ffacd0b85a97d-3911f764115mr2516233f8f.27.1741185826776; Wed, 05 Mar 2025
+ 06:43:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR01MB5556:EE_|SEZPR01MB6077:EE_
-X-MS-Office365-Filtering-Correlation-Id: b9c4d4ae-caf7-441b-6913-08dd5bf3c366
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|15080799006|8060799006|6090799003|19110799003|5072599009|3412199025|440099028;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?dy9McFZBN0crTDFTTEVvdy9yamJrWDJxK3RNUm1RaTZCRjVFeUVwZlhzODBl?=
- =?utf-8?B?QmtmK3lPNWd3bVBvOHBuQURrb0dBaGhYcS9wVEgybXgrOVRpRHhLMS9la3pC?=
- =?utf-8?B?cFhJSWM4blBnQzBCclRvcUJ4bHMyazBqbTRBWkl5ZHBFbVhOS2h2R3R2UWJr?=
- =?utf-8?B?N0pldE1vQ1BHZlorMWxvNGc0ZTVyOXFBK0VLUEMwRHpjYk1RZEdyZFZMUlhZ?=
- =?utf-8?B?RjdtSXpLTWFmL0ViOVptUHhzVkt6dFQrNlpOZVdVeTlQTU9udFpiTiszSjYw?=
- =?utf-8?B?d3lKLytzajdhdjhWWldsOUhudnE5djdsSDNXWjA3eTRIVVNIZ0xZZHJNZWUy?=
- =?utf-8?B?Unh0OE9HMmFKUzZjNXF6ajBEUkltYmpuSlY3eC9SNE1QMEpXQ1lLQVlNZkF2?=
- =?utf-8?B?Wk8rN1YvZDh2Y0lPNklpdm83Rkt3SkRYMEhXVndWajBNc2NZdGkyVGY0TkVh?=
- =?utf-8?B?aUJ5VnFVSStkaW1QeXZSUEtmbklHQkcrTHZXV0ZybGI0VzZ0NmJhSzFKTGdl?=
- =?utf-8?B?RFpkWTc2S0JJbEpQR0ZDK0hPM3htTFdPcE5YODY2RDc3SmkvZVZZazRqT1U1?=
- =?utf-8?B?cWVVaXNaaGJzWkhCd2FDdHpwUnBqV1cwd1RucUVYL1ZGSHhpeWkzQUo2UGQ5?=
- =?utf-8?B?aDY0ME15VVN1NmVwMGlwL045aW9FL21Xb0NsYThQaGNoY2k0bWgxMFpKYlBK?=
- =?utf-8?B?ekFmMEFXSWJBTjJpSlArUVcxUTluTytLczZFUlBmbTJKbS9odzQrSGtPOFpM?=
- =?utf-8?B?emg2K1g3VEZWQzRRQkw0N1ZrY2Y3c3cyclc2QlBNNjdQZ2UybVVOTjRNeGNq?=
- =?utf-8?B?VE5QRzN3Y2U3RkVtaTVtSytNUUZDcDRhZ2tuTWltV0JsbC9laVVacmliSkdr?=
- =?utf-8?B?dGVma0JqVWt2UStUcDJqY3lOd3ZRd0FsREVvNmkybFJQa3hZajZYQW12RThO?=
- =?utf-8?B?Qmlicmo1eEhpeFpxWVoxaUNPMEx6SUFvS0F0MWFMTm9FN05Ob3B3RGtjSnE1?=
- =?utf-8?B?MGlSWlRWaVNPRWRJZC9OdGJENUJhVHBzSkdLVnlUd2l4YjJyWGVsRTNUN2wr?=
- =?utf-8?B?My9TZVE4N0lqeTZrbWZVUzZxZ3V0UDhlVDhmRHFhOGpTNGJYMUJ5blV2Ympm?=
- =?utf-8?B?eWhiZnZqR2xya3BoUGtTSEl2MWhONUFzL3hOd25oUVUxR3h3Y3VrK0cyRUxi?=
- =?utf-8?B?aklTK1RKYUJpZGNVZkQweUZiMGxuZEtEckhnaFRCTGZlenZiWGY3Q01qRWpr?=
- =?utf-8?B?M3dId2Q2Y1FRWG82QTVVeEhScWlCNHpFYjYrYlZJcVNoYWVZTS8zbFlKQ1Rt?=
- =?utf-8?B?VVg5M1M1QTlBeGNpeSthZ3h5V2hFTmQzaEtNYWFnc1FLbE9PL0ZRWjVyZGFI?=
- =?utf-8?B?UHplNDlmWWNWajc5M0FGNjJ6NDFOMCt0dHZDNGxqVVN4bjFYNmh0NnNCVkE5?=
- =?utf-8?B?SWFpTEZVaHlFaGllTzhMa0p4TVVYWjM4V3NKSHRRPT0=?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?c04wTEU4ZTljNENYdlBKaXJWOWU3VkJibE0wK1RnT3Bwa1hKNkZJUHkvWURH?=
- =?utf-8?B?eUtVQ1NpN3BUUW5mTzFqOURFV0dQeUg5U200UlhJMDcwcVI1L1MrWHZKOUVa?=
- =?utf-8?B?Mnk1WEpKc1F5SE1pQ0V2MXN2ci91by9BL0JZM3RwaEdvV1ZZOHZXM1BFNW9k?=
- =?utf-8?B?VGYrNThpZEpMQURVb2I5bE5lWHlsT0p0UjBBMks4QXU3eU1RVTVCeVVoZVA5?=
- =?utf-8?B?ZmhNZGVLZDZTWlkyOWpQYThZUzJtd213OGRZT1o4Z1NiQXllU0p0Y3lVa2dm?=
- =?utf-8?B?MWdFclNyQ0tRak5lNnprQ1kxSm9id1dqRmd2N1JmVGt2OCtpOE56RTQ2WmJV?=
- =?utf-8?B?ajJOeUhQZWp1YnlGbytHSGpsVEFBcXFNOUFXTVV6L2pZUjhWZFJrWDdJcXA5?=
- =?utf-8?B?Vy9CekFBV05GeFpsb2V2OXpWbHVVZXY5RVYzOHoyWm8zVkp6cU01NlVMNWtQ?=
- =?utf-8?B?TDNrY29SWEMyTS9mL0ZiSzA0TlFpOC8rNjhxQnNRbXhQNlQ0cnNaY3VUNnFq?=
- =?utf-8?B?R2h6cnhnRWZzRnZWSnp6R3RXM3BId1Zzb01oTUozRDlJM2hZTjFUQnhGZFhN?=
- =?utf-8?B?NUVEWm9QUno1NXdneSt4WkNZOFZReXViV3FqSVZCUXRTU3AyNmNFblZKZ1kz?=
- =?utf-8?B?eFd3cHhDYTFtL2hYVS8va1hxb1orRGpnMzg5OWxRMnAwSjYwNWRqM0gzRy9h?=
- =?utf-8?B?OVMrWXpwc1l0T1UraTJrZ0lHN3ltajFGNFZQLzEwQUxnU1NGVmRMUndJeSt0?=
- =?utf-8?B?YzZnaVRqRTUzcDduOUxicC95V2FFdThyUDFjeUdSQW9ucSt0MDF6OUhlSllS?=
- =?utf-8?B?T3pGQm8wL1VMdWtyMUhySzhCTk1TV296Ym9UT3BmNjBKY0pCMzJnTEdGbk00?=
- =?utf-8?B?T2NOcytPTnZBM3N3KzRTV2lHekZHMjBiYTRKNG5odlQ0TzhFRDN6YXh2MHdD?=
- =?utf-8?B?QTgrL1JwL2NucXRsR0p3amFZb2dWVzJyL2xoRHREVldZS1dydGJVSGltK3hZ?=
- =?utf-8?B?ZWJrc0o0QnFTNjhoMlUzSHpycVNOY0d5MVVIYnpvdHRTUkM2Y01MMEluMmJI?=
- =?utf-8?B?b0dpOTZoMVhYL1d2aEJtdjZxUDZ5OTlaOXVQRHAzVXlBUHNlYVRCQjRDUTlI?=
- =?utf-8?B?NUFveWw3Q2dmSnVsUUEvQmxoSTF6bm56VE5MeGNKSzVDY1VpL1NNbFBXRElt?=
- =?utf-8?B?VUt6RkEyTC9FbWoxYkxHY2dnbHA4YllFWFRQUFhzTGU3eGdsSVdiNHlOc3lO?=
- =?utf-8?B?djFicVRDOTF6MzVMSFphbnRZaTFQT3UvMGNnaG5lS0RqK1dLRTNwM25pWFBy?=
- =?utf-8?B?bm5TWmVvUFIvblQ0RW9aYlhERFN0SS9nQUcvY3R2VWJybWorTUIzbER6M3hH?=
- =?utf-8?B?TWhJNERwTUNuY2RtM1pYbXJuaXF5Y3pqMDc2bkRhdjdkU1RsWXNScXRYbytS?=
- =?utf-8?B?R0oyQ2x2QllJQUJ1OU9TR01wSG5kamI4NTRBU1BJVEtCOXRyYUdYV3Q1dkZ0?=
- =?utf-8?B?eEttTStqVnZGMVJFeEZwRTZ5dVkwdXVrUGNVNnVaWGxiN2lHZDFiT05vNC9D?=
- =?utf-8?B?aEE0aU9jdHk1YTIvaloySTQzQ2xJTUhadytkc21wWVhvRzRSRjNQcUZuV0Vr?=
- =?utf-8?Q?BgjMOH5+Oz+OLLyn1ErJn4lLhtvGI+KJ6DKoD+RyzwPg=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9c4d4ae-caf7-441b-6913-08dd5bf3c366
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR01MB5556.apcprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2025 14:41:07.3082
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR01MB6077
+References: <20250303122151.91557-1-clamor95@gmail.com> <20250303122151.91557-3-clamor95@gmail.com>
+ <3bc7c5a5-8fe7-4c4b-a80e-23522922debb@arm.com> <CAPVz0n0yvw4kyYKSve9sSZEvcZrCYZ6RqCjFSO5OCqtvRZSfJg@mail.gmail.com>
+ <f56596fe-92e8-481b-b15b-29b531eaec32@arm.com>
+In-Reply-To: <f56596fe-92e8-481b-b15b-29b531eaec32@arm.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Wed, 5 Mar 2025 16:43:34 +0200
+X-Gm-Features: AQ5f1JpUpSPyJFPDEyOWhAfjUiTXaiQV-NWZBlTtwhwrqamQpYjovRQ1ribZIWA
+Message-ID: <CAPVz0n164wQw1HZ4XVPXyg1w=cwC4-xtqBpgmmE5uKXJtATKmg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] thermal: thermal-generic-adc: add temperature
+ sensor channel
+To: Lukasz Luba <lukasz.luba@arm.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-在 2025/3/4 22:11, Andrew Lunn 写道:
->> (Port0 and Port6). Could I just keep this or should I need to add a new
->> case ?
-> 
-> The existing examples are probably sufficient. Just check the text to
-> make sure it does not limit it to ports 0 and 6.
-> 
->>> So is this actually internally? Or do you have a IPQ50xx SoC connected
->>> to a qca8337 switch, with copper traces on a PCB? If so, it is not
->>> internal.
->>
->> The "internal" is used to describe the localcation of PHY not the link.
->> In current code, qca8k has supported to use a external PHY to do a
->> PHY-to-PHY link (Port0 and Port6). This patch make the internal PHYs
->> support it too (Port1-5).
->>
->> The followiing topology is existed in most IPQ50xx-based router:
->>      _______________________         _______________________
->>     |        IPQ5018        |       |        QCA8337        |
->>     | +------+   +--------+ |       | +--------+   +------+ |
->>     | | MAC0 |---| GE Phy |-+--MDI--+-|  Phy4  |---| MAC5 | |
->>     | +------+   +--------+ |       | +--------+   +------+ |
->>     | +------+   +--------+ |       | +--------+   +------+ |
->>     | | MAC1 |---| Uniphy |-+-SGMII-+-| SerDes |---| MAC0 | |
->>     | +------+   +--------+ |       | +--------+   +------+ |
->>     |_______________________|       |_______________________|
-> 
-> So logically, it does not matter if the PHY is internal or
-> external. The patch would be the same. I've even see setups where the
-> SGMII link would have a PHY, then a connection to a daughter board,
-> and then a PHY back to SGMII before connecting to the switch. Running
-> Ethernet over the connector is easier than SERDES lines.
-> 
-> So i would probably drop the word internal from this discussion,
-> unless it is really relevant.
-> 
-> 	Andrew
+=D1=81=D1=80, 5 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 16:37 Lukas=
+z Luba <lukasz.luba@arm.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+>
+>
+> On 3/5/25 10:06, Svyatoslav Ryhel wrote:
+> > =D1=81=D1=80, 5 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 11:52 L=
+ukasz Luba <lukasz.luba@arm.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> >>
+> >>
+> >>
+> >> On 3/3/25 12:21, Svyatoslav Ryhel wrote:
+> >>> To avoid duplicating sensor functionality and conversion tables, this=
+ design
+> >>> allows converting an ADC IIO channel's output directly into a tempera=
+ture IIO
+> >>> channel. This is particularly useful for devices where hwmon isn't su=
+itable
+> >>> or where temperature data must be accessible through IIO.
+> >>>
+> >>> One such device is, for example, the MAX17040 fuel gauge.
+> >>>
+> >>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> >>> ---
+> >>>    drivers/thermal/thermal-generic-adc.c | 54 +++++++++++++++++++++++=
++++-
+> >>>    1 file changed, 53 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/=
+thermal-generic-adc.c
+> > ...
+> >>>
+> >>> +static const struct iio_chan_spec gadc_thermal_iio_channel[] =3D {
+> >>> +     {
+> >>> +             .type =3D IIO_TEMP,
+> >>> +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_PROCESSED),
+> >>
+> >> I would add the IIO_CHAN_INFO_SCALE and say it's in milli-degrees.
+> >>
+> >
+> > I have hit this issue already with als sensor. This should definitely
+> > be a IIO_CHAN_INFO_PROCESSED since there is no raw temp data we have,
+> > it gets processed into temp data via conversion table. I will add
+> > Jonathan Cameron to list if you don't mind, he might give some good
+> > advice.
+>
+> I'm not talking about 'PROCESSED' vs 'RAW'...
+> I'm asking if you can add the 'SCALE' case to handle and report
+> that this device will report 'processed' temp value in milli-degrees
+> of Celsius.
+>
 
-Ok, will remove the word in next patch
+Sure, I take this into account.
+
+> >
+> >>> +     }
+> >>> +};
+> >>> +
+> >>> +static int gadc_thermal_read_raw(struct iio_dev *indio_dev,
+> >>> +                              struct iio_chan_spec const *chan,
+> >>> +                              int *temp, int *val2, long mask)
+> >>> +{
+> >>> +     struct gadc_thermal_info *gtinfo =3D iio_priv(indio_dev);
+> >>> +     int ret;
+> >>> +
+> >>> +     if (mask !=3D IIO_CHAN_INFO_PROCESSED)
+> >>> +             return -EINVAL;
+> >>
+> >> Therefore, here it would need to handle such case as well, when
+> >> a client is asking about scale.
+> >>
+> >>> +
+> >>> +     ret =3D gadc_thermal_get_temp(gtinfo->tz_dev, temp);
+> >>> +     if (ret < 0)
+> >>> +             return ret;
+> >>> +
+> >>> +     *temp /=3D 1000;
+> >>
+> >> IMO we shouldn't cut the precision if it's provided.
+> >> The user of this would know what to do with the value (when
+> >> the proper information about scale is also available).
+> >>
+> >
+> > The it will not fit existing IIO framework and thermal readings will
+> > be 1000 off. I have had to adjust this since my battery suddenly got
+> > temperature reading of 23200C which obviously was not true. With
+> > adjustment temperature will be in 10th of C (yes, odd, I know but it
+> > is what it is).
+>
+> Your battery driver should get and check the 'SCALE' info first, then
+> it will know that the value is in higher resolution than it needs.
+> Therefore, it can divide the value inside its code.
+> Your proposed division here is creating a limitation.
+>
+> You shouldn't force all other drivers to ignore and drop the
+> available information about milli-degC (which is done in this patch).
 
