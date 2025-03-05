@@ -1,206 +1,332 @@
-Return-Path: <devicetree+bounces-154451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98425A5038B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:33:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8839A5039A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF71C3A9E15
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:33:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F14083A6EB3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1735B248895;
-	Wed,  5 Mar 2025 15:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29832505D9;
+	Wed,  5 Mar 2025 15:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="mtc6ewIP"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="Qk+UO+6v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2040.outbound.protection.outlook.com [40.107.20.40])
+Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B45C17BEC5;
-	Wed,  5 Mar 2025 15:33:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741188805; cv=fail; b=GxGxZxQSeJqcDdVWJLe4O+HCafS0Dk9FRYwT79OS+LDohE33kR1fdLmSu0lLu41HBKiGVHMQxjPwQeQShNVKgftg/kbtixnpfHV1MLqmIHiOI3sMC7Ibw3fGXcaTpt1169VVOVmTnXJLpmLiK0Q0YmLkurhmqwH0v3XfwyOaV9g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741188805; c=relaxed/simple;
-	bh=732vRvUfz8WBsM/MIaLusTbjPp2EV65ZqiwVT3WfUIc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CaHERS4cfsTBuB0yZTysTA2mpChidSjAjX677yjVbWh3VLsdqIA80Sot/7oWCV902T3IQNkXOMIgols/kXjHygsMt+4CGu2DIfckweYmj0bNwaYsbWYLiefHqOzDcpwYqs05q1gBL9beK8/uESxHu4tFsv5S1QcK4WnTAegUjUk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=mtc6ewIP; arc=fail smtp.client-ip=40.107.20.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L4ke8TRk2kqQWtmdNk+KZyyveHv+uQOeV/OIN+H6kWCg1YnGaOlBLd36YxRe5j1NakRU/NHByyulHeS8QfpUjNsoQNkm0e7XGwemeCxEaVQP5Mtd9y5hIwdFh7QGQrzGti0plAd3wMdjMZ58qjZDsxuicYktl5wjDRRS+QBiYa6I1fAFngcdUy4hoLuKlabcMdwfULcdoZltuKR5PIBt1NkvVm5NvzYj5NxJ3WUvUwUasUjagMQieMCJ6zOnATUOTr5v3DoWwN+e3PkCRl8v6rpmtYDVzYip2Pk26u0TnPJx7SGAUqK7bDSvS9KGIS/EiwSvJraG3Qr+1kvaedSSMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AqMEPikRzroReWWrXA/nq4Khfij98Joguqp8vXS6nOc=;
- b=P0MybKkTXebSYGRDqWgb1Jp0caeiFvpslGHqk9VjjdWXxVg2gkuABhhfnm5LCIfxLnPJQ3PbgU+GtUZhuqucqbmXcuAip9CgSYjJbd5Zk8xIDN1cG5U5BSZ6Ln/qacYy4GFJQ13ST7uXHm806RJ8nqf8A23RC0f67NyvnLc0CpX5byiDutMTj+iu5GSwUrQUYAYShiEUIOgAQ9Oil2XHuBg99xZqvBOJieMdQ1hpAEcwg/FG8+8H+BnMPsBEyPN4/Na9ZnaoM735AiMY9yyNnSEv3BBhAq3ep3Jpq58NNatUrPgA9Ro1MN+dd090n/ux/vxLEvECIo9BkGTfnffvEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=google.com smtp.mailfrom=axis.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AqMEPikRzroReWWrXA/nq4Khfij98Joguqp8vXS6nOc=;
- b=mtc6ewIP0DiN5JZo+wLlo/ZdHB2sVMa3WVESfLQVY3W4P8XtdgwCkibM5XFMYZi3WC5d0xDlEZXUiF3URBcw6RC+y0K0UYLcNi7ekVUV9vp1S0LzpGgVtmVI0vWreg9t5kGwohHYZFG01oyKwPmB8TwVDrxJ89tJI1RkFOm96j0=
-Received: from AM0PR06CA0105.eurprd06.prod.outlook.com (2603:10a6:208:fa::46)
- by AM7PR02MB6324.eurprd02.prod.outlook.com (2603:10a6:20b:1bd::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.28; Wed, 5 Mar
- 2025 15:33:20 +0000
-Received: from AMS1EPF00000045.eurprd04.prod.outlook.com
- (2603:10a6:208:fa:cafe::ae) by AM0PR06CA0105.outlook.office365.com
- (2603:10a6:208:fa::46) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8511.18 via Frontend Transport; Wed,
- 5 Mar 2025 15:33:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- AMS1EPF00000045.mail.protection.outlook.com (10.167.16.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8466.11 via Frontend Transport; Wed, 5 Mar 2025 15:33:19 +0000
-Received: from SE-MAIL21W.axis.com (10.20.40.16) by se-mail02w.axis.com
- (10.20.40.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Wed, 5 Mar
- 2025 16:33:19 +0100
-Received: from se-mail01w.axis.com (10.20.40.7) by SE-MAIL21W.axis.com
- (10.20.40.16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Wed, 5 Mar
- 2025 16:33:19 +0100
-Received: from se-intmail01x.se.axis.com (10.4.0.28) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
- Transport; Wed, 5 Mar 2025 16:33:19 +0100
-Received: from pc36611-1939.se.axis.com (pc36611-1939.se.axis.com [10.88.125.175])
-	by se-intmail01x.se.axis.com (Postfix) with ESMTP id 0016B263;
-	Wed,  5 Mar 2025 16:33:19 +0100 (CET)
-Received: by pc36611-1939.se.axis.com (Postfix, from userid 363)
-	id F0509627BF; Wed,  5 Mar 2025 16:33:18 +0100 (CET)
-Date: Wed, 5 Mar 2025 16:33:18 +0100
-From: Jesper Nilsson <jesper.nilsson@axis.com>
-To: Frank Li <Frank.Li@nxp.com>
-CC: Jesper Nilsson <jesper.nilsson@axis.com>, Lars Persson
-	<lars.persson@axis.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi
-	<lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?=
-	<kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, <linux-arm-kernel@axis.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-pci@vger.kernel.org>
-Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: artpec6: Try to clean up
- artpec6_pcie_cpu_addr_fixup()
-Message-ID: <Z8huvkENIBxyPKJv@axis.com>
-References: <20250304-axis-v1-0-ed475ab3a3ed@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DD32500B1
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 15:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741189258; cv=none; b=ir162gIbmbDZofTIyDw5XB64uakLXPD9PXjZ0RbrC+JOJDY2YBHasvxsmf/Mc/3oTAdDik9k3LNiEp6vIPzVYPqQ3xnBGhlpcxLsh1xJPtBiC7plaC9guMdNCq+sC/jLxqB/Ex0R44A/QrQyTH3EmtIKWEfPZrc5Uj8D+F1P7lk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741189258; c=relaxed/simple;
+	bh=S5V4K4G9/5vJWNMjiayM1hFuWoqlo2JQsadqMzM6j4s=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qALWIs+bRdYjpGvDhmWmZssux1o6ZyOJ8P4BsvrMrvr+hlje3ppZqE3MJZRFpne28LZDlng6ZZXhNdzq/4Q+JGG0ZagmcFSaniRTQdDhaJR9C61a//qIfbivcqXetQ3mDNFCdv9ghgFBxuu/nTdQ13FJiAOTUxonP6wPI+q6ItM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=Qk+UO+6v; arc=none smtp.client-ip=94.124.121.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=E+kuQhjj9xzNE6BQn+tsChkhWmfrDEIZBYOWMsZmgiI=;
+	b=Qk+UO+6vvgBlPcvycrq9X9afftKz9msDJkOE4JHf9WXUXPHPlDemBTl6Ow4XjhWWOX8wlJfzCpxib
+	 aOlPD38wDrVUqO9xCaJ2kdtI/nY7hFlIS5xz4peuoSM/nPQFVd0a21QBOXFZC2HDtJH4Ac3i/KzSfX
+	 Oe5rqDbpHNRkglhrSfp9ki803Bxw/F2P3m5Dsob6QFhhTIajO1VhK7z/LdPNGeAsgebx5uYAKlSeJe
+	 uhEqeA3Te23Ec9/ctbFt3XU2h2F2WDzXYWI7GI6IS2qBkpAapzGHuvnNZyjUgadFJG50U8Jpw7xvY7
+	 EN6XLHNM+2dvv0oJCmnKzo6Xg4glinA==
+X-MSG-ID: 34bb63cf-f9d8-11ef-a39e-00505681446f
+Date: Wed, 5 Mar 2025 16:40:45 +0100
+From: David Jander <david@protonic.nl>
+To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
+ <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
+ <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>
+Subject: Re: [RFC PATCH 1/7] drivers: Add motion control subsystem
+Message-ID: <20250305164046.4de5b6ef@erd003.prtnl>
+In-Reply-To: <6c6cqaxmsy7miesel4ghdeiea6nrpe4gti4xf5enfyg4uqro5u@vpmtd2t7gydi>
+References: <20250227162823.3585810-1-david@protonic.nl>
+	<20250227162823.3585810-2-david@protonic.nl>
+	<6c6cqaxmsy7miesel4ghdeiea6nrpe4gti4xf5enfyg4uqro5u@vpmtd2t7gydi>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250304-axis-v1-0-ed475ab3a3ed@nxp.com>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AMS1EPF00000045:EE_|AM7PR02MB6324:EE_
-X-MS-Office365-Filtering-Correlation-Id: 53a7fdd3-e070-424e-6135-08dd5bfb0ed0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|7416014|376014|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?c1LE3LGYUx6dQ+wH3v3PbsO/09Cp7jSWO1VxXpSPZ/uLIQ0ok7LgxhM+Se4u?=
- =?us-ascii?Q?QR9JKCVv10Oy3+ECr5K+NWJiDszQawZCwSTtTdcYraTBywcm1OYpclj9tXna?=
- =?us-ascii?Q?Z7aYq0ygl0lvd/TCb62cYnj/3jI6MHeANA8Hwz5rmaTOUjXtWOiAS0d2p2Y/?=
- =?us-ascii?Q?WP767pppbl4VA7X/dIlGQqQM2IrIpoqnnvHoaMGsM/PRDrHTQfsYg9jWeALF?=
- =?us-ascii?Q?VAuWt3ozGpQPGzhvmiCdRmR/y8fsPbm6apkR4UqBoQgHmKH3t8IFRtXLoF/0?=
- =?us-ascii?Q?jXSnpiHiJUjBGKFobgXqUsKn2mltGl2jGtEMRSFLEU4Js4p+SV+KAuyUoNg4?=
- =?us-ascii?Q?UQu3M7HW1xXLs1N05LFqmYUojFYC3+d3cAi3IhElLtrFopr8m2ZxV3qgAaMh?=
- =?us-ascii?Q?CgGd7XVE7Y6qWD4qHwgNZMpvN83/LFQX0bGdzAk0IT8S90mYq4Rl1bHQuloh?=
- =?us-ascii?Q?phIYi3ZyqILdTMasNbMymkWdLTWXBvbvAtxZn0XIssI67EpKT8oELAnBRQqv?=
- =?us-ascii?Q?PsiTJ3KA2NUqgpBL65ubSKnwphIAwxF9nGTVHOEEhAlRSp4CIVte+1ioLdFV?=
- =?us-ascii?Q?AMC0DlvIsenVVGpFnwOG7ygcp3+Cff1SXGxQld1UwhqaG2IJYURP5QEnHRFm?=
- =?us-ascii?Q?UfWfgqU+nFTijNwBJW/1pztvigRZ3iU9aFfpELfsOe5f0J8L/fdGQui9Bg5R?=
- =?us-ascii?Q?Te/vSbf6uRqqomUUc/XPhibU5TH9ygHhkI8LRxKLHtbaqhsgtrGAA2Mu5E4m?=
- =?us-ascii?Q?k3QEtfvSNB9QEMJishidjW5QPRIc7Nh6Phhovuskv7wWGcR4pOd18AmCohQn?=
- =?us-ascii?Q?/3AR5VyfJKRtxj47K9lyXjRlIX3xaZ+GqP8fDhnsE8w6WiiI8hRwqlhJMPeG?=
- =?us-ascii?Q?5VI1zTA88ftgUb+2Yk5num2v8Cr7H6HB/eVYM9OcLg/KTKWPT+KsAE5Rwfj7?=
- =?us-ascii?Q?vhJ3ug57mENw/WCLh0qSmleShhEnKpbUHFgAteoeUseAUqcLceobrUlxrE3I?=
- =?us-ascii?Q?RiOBQ49AfxNEbaf7iZ+K/o6s73gJqT3GaVKiIDoEhZR9SlJ4ZLQjgvbRJ3fy?=
- =?us-ascii?Q?OOb5WRyiSw9Qw3oIxeFFHjTRxGC0DBVzENd3VCgMbh+WZlKUFzOLy2rlp6vy?=
- =?us-ascii?Q?1ExJH8dslYBMLI7eCQILvb3J4isK+bStxyUqKKx+SFmU9oDObJYK87NXFr9i?=
- =?us-ascii?Q?LsLSBajkPS0mhWffbjZ9+4j1yl5YcYvakvEtfqSUqd53cuUcmwu4jxQh0vzS?=
- =?us-ascii?Q?StuUWmUtecJpsnPbQH5kTPjfjjTiBlVvkSJt8MQiHu5ImdCq/041kgt6Kin1?=
- =?us-ascii?Q?qNyfQiMdSmdPh6OftZZEzDh+ujx7aTLkkhwm5csqW4TQ7RmcNh6khshVfW2d?=
- =?us-ascii?Q?WxQOCS2zKZBh9pZW+5qEKJBUZmosTUxCPq17SsDa280iYdWNCo9AbO0Ys00n?=
- =?us-ascii?Q?Ht9weJeCTYb3syVLNn1q4ifM9hTYAbtXOcOYgxJtUotEuT+eRr45D7C3c3XW?=
- =?us-ascii?Q?8NO7Unf+aP9sf48=3D?=
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(7416014)(376014)(13003099007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2025 15:33:19.9622
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53a7fdd3-e070-424e-6135-08dd5bfb0ed0
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AMS1EPF00000045.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR02MB6324
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Frank,
 
-I'm the current maintainer of this driver. As Niklas Cassel wrote in
-another email, artpec-7 was supposed to be upstreamed, as it is in most
-parts identical to the artpec-6, but reality got in the way. I don't
-think there is very much left to support it at the same level as artpec-6,
-but give me some time to see if the best thing is to drop the artpec-7
-support as Niklas suggested.
+Hi Uwe,
 
-Unfortunately, I'm travelling right now and don't have access to any
-of my boards. I'll perform some testing next week when I'm back and
-help to clean this up.
+On Fri, 28 Feb 2025 17:44:27 +0100
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> wrote:
 
+> Hello David,
+>=20
+> just a few highlevel review comments inline.
+
+Thanks...
+
+> On Thu, Feb 27, 2025 at 05:28:17PM +0100, David Jander wrote:
+> [...]
+> > +static int motion_open(struct inode *inode, struct file *file)
+> > +{
+> > +	int minor =3D iminor(inode);
+> > +	struct motion_device *mdev =3D NULL, *iter;
+> > +	int err;
+> > +
+> > +	mutex_lock(&motion_mtx); =20
+>=20
+> If you use guard(), error handling gets a bit easier.
+
+This looks interesting. I didn't know about guard(). Thanks. I see the
+benefits, but in some cases it also makes the locked region less clearly
+visible. While I agree that guard() in this particular place is nice,
+I'm hesitant to try and replace all mutex_lock()/_unlock() calls with guard=
+().
+Let me know if my assessment of the intended use of guard() is incorrect.
+
+> > +	list_for_each_entry(iter, &motion_list, list) {
+> > +		if (iter->minor !=3D minor)
+> > +			continue;
+> > +		mdev =3D iter;
+> > +		break;
+> > +	} =20
+>=20
+> This should be easier. If you use a cdev you can just do
+> container_of(inode->i_cdev, ...);
+
+Hmm... I don't yet really understand what you mean. I will have to study the
+involved code a bit more.
+
+> [...]
+> > +static int motion_release(struct inode *inode, struct file *file)
+> > +{
+> > +	struct motion_device *mdev =3D file->private_data;
+> > +	int i;
+> > +
+> > +	if (mdev->ops.device_release)
+> > +		mdev->ops.device_release(mdev);
+> > +
+> > +	for (i =3D 0; i < mdev->num_gpios; i++) {
+> > +		int irq;
+> > +		struct motion_gpio_input *gpio =3D &mdev->gpios[i];
+> > +
+> > +		if (gpio->function =3D=3D MOT_INP_FUNC_NONE)
+> > +			continue;
+> > +		irq =3D gpiod_to_irq(gpio->gpio);
+> > +		devm_free_irq(mdev->dev, irq, gpio); =20
+>=20
+> It seems devm is just overhead here if you release by hand anyhow.
+
+Ack. This looks indeed unnecessary... I'll try to use non-devres calls here.
+
+> > [...]
+> > +
+> > +static const struct class motion_class =3D {
+> > +	.name		=3D "motion",
+> > +	.devnode	=3D motion_devnode, =20
+>=20
+> IIRC it's recommended to not create new classes, but a bus.
+
+Interesting. I did some searching, and all I could find was that the chapter
+in driver-api/driver-model about classes magically vanished between versions
+5.12 and 5.13. Does anyone know where I can find some information about thi=
+s?
+Sorry if I'm being blind...
+
+> [...]
+> > +int motion_register_device(struct motion_device *mdev)
+> > +{
+> > +	dev_t devt;
+> > +	int err =3D 0;
+> > +	struct iio_motion_trigger_info *trig_info;
+> > +
+> > +	if (!mdev->capabilities.num_channels)
+> > +		mdev->capabilities.num_channels =3D 1;
+> > +	if (mdev->capabilities.features | MOT_FEATURE_PROFILE)
+> > +		mdev->capabilities.max_profiles =3D MOT_MAX_PROFILES;
+> > +	if (!mdev->capabilities.speed_conv_mul)
+> > +		mdev->capabilities.speed_conv_mul =3D 1;
+> > +	if (!mdev->capabilities.speed_conv_div)
+> > +		mdev->capabilities.speed_conv_div =3D 1;
+> > +	if (!mdev->capabilities.accel_conv_mul)
+> > +		mdev->capabilities.accel_conv_mul =3D 1;
+> > +	if (!mdev->capabilities.accel_conv_div)
+> > +		mdev->capabilities.accel_conv_div =3D 1;
+> > +
+> > +	mutex_init(&mdev->mutex);
+> > +	mutex_init(&mdev->read_mutex);
+> > +	INIT_KFIFO(mdev->events);
+> > +	init_waitqueue_head(&mdev->wait);
+> > +
+> > +	err =3D motion_of_parse_gpios(mdev);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	mdev->minor =3D motion_minor_alloc();
+> > +
+> > +	mdev->iiotrig =3D iio_trigger_alloc(NULL, "mottrig%d", mdev->minor);
+> > +	if (!mdev->iiotrig) {
+> > +		err =3D -ENOMEM;
+> > +		goto error_free_minor;
+> > +	}
+> > +
+> > +	trig_info =3D kzalloc(sizeof(*trig_info), GFP_KERNEL);
+> > +	if (!trig_info) {
+> > +		err =3D -ENOMEM;
+> > +		goto error_free_trigger;
+> > +	}
+> > +
+> > +	iio_trigger_set_drvdata(mdev->iiotrig, trig_info);
+> > +
+> > +	trig_info->minor =3D mdev->minor;
+> > +	err =3D iio_trigger_register(mdev->iiotrig);
+> > +	if (err)
+> > +		goto error_free_trig_info;
+> > +
+> > +	mdev->iiowork =3D IRQ_WORK_INIT_HARD(motion_trigger_work);
+> > +
+> > +	INIT_LIST_HEAD(&mdev->list);
+> > +
+> > +	mutex_lock(&motion_mtx);
+> > +
+> > +	devt =3D MKDEV(motion_major, mdev->minor);
+> > +	mdev->dev =3D device_create_with_groups(&motion_class, mdev->parent,
+> > +				devt, mdev, mdev->groups, "motion%d", mdev->minor); =20
+>=20
+> What makes sure that mdev doesn't go away while one of the attributes is
+> accessed?
+
+Good question. I suppose you mean that since mdev is devres-managed and
+device_create_with_groups() apparently isn't aware of that, so there is no
+internal lock somewhere that prevents read() or ioctl() being called while =
+the
+devres code is freeing the memory of mdev?
+
+I will try to search for some example code to see how something like this is
+handled in other places. I assume I'd need to add a per-mdev lock or use the
+big motion_mtx everywhere... which sounds like a performance penalty that
+should be avoidable. If you know of a good example to learn from, I'd be
+grateful to know.
+
+> > +	if (IS_ERR(mdev->dev)) {
+> > +		dev_err(mdev->parent, "Error creating motion device %d\n",
+> > +				mdev->minor);
+> > +		mutex_unlock(&motion_mtx);
+> > +		goto error_free_trig_info;
+> > +	}
+> > +	list_add_tail(&mdev->list, &motion_list);
+> > +	mutex_unlock(&motion_mtx);
+> > +
+> > +	return 0;
+> > +
+> > +error_free_trig_info:
+> > +	kfree(trig_info);
+> > +error_free_trigger:
+> > +	iio_trigger_free(mdev->iiotrig);
+> > +error_free_minor:
+> > +	motion_minor_free(mdev->minor);
+> > +	dev_info(mdev->parent, "Registering motion device err=3D%d\n", err);
+> > +	return err;
+> > +}
+> > +EXPORT_SYMBOL(motion_register_device);
+> > [...]
+> > +struct mot_capabilities {
+> > +	__u32 features;
+> > +	__u8 type;
+> > +	__u8 num_channels;
+> > +	__u8 num_int_triggers;
+> > +	__u8 num_ext_triggers;
+> > +	__u8 max_profiles;
+> > +	__u8 max_vpoints;
+> > +	__u8 max_apoints;
+> > +	__u8 reserved1;
+> > +	__u32 subdiv; /* Position unit sub-divisions, microsteps, etc... */
+> > +	/*
+> > +	 * Coefficients for converting to/from controller time <--> seconds.
+> > +	 * Speed[1/s] =3D Speed[controller_units] * conv_mul / conv_div
+> > +	 * Accel[1/s^2] =3D Accel[controller_units] * conv_mul / conv_div
+> > +	 */
+> > +	__u32 speed_conv_mul;
+> > +	__u32 speed_conv_div;
+> > +	__u32 accel_conv_mul;
+> > +	__u32 accel_conv_div;
+> > +	__u32 reserved2;
+> > +}; =20
+>=20
+> https://docs.kernel.org/gpu/imagination/uapi.html (which has some
+> generic bits that apply here, too) has: "The overall struct must be
+> padded to 64-bit alignment." If you drop reserved2 the struct is
+> properly sized (or I counted wrongly).
+
+Oh, thanks for pointing that out... I wouldn't have searched for that
+information in that particular place tbh. ;-)
+
+I am tempted to add another __u32 reserved3 though instead. Better to have
+some leeway if something needs to be added in a backwards-compatible way la=
+ter.
+
+> > +struct mot_speed_duration {
+> > +	__u32 channel;
+> > +	speed_raw_t speed; =20
+>=20
+> What is the unit here?
+
+Speed doesn't have a fixed unit in this case. Or rather, the unit is
+device-dependent. For a motor it could be rotations per second, micro-steps=
+ per
+second, etc... while for a linear actuator, it could be micrometers per sec=
+ond.
+
+Why no fixed unit? That's because in practice many devices (controllers) ha=
+ve
+their inherent base-unit, and it would get overly complicated if one needed=
+ to
+convert back and forth between that and some universal unit just for the sa=
+ke
+of uniformity, and user-space most certainly expects the same unit as the
+hardware device it was initially designed for. So in this case it is a desi=
+gn
+decision to make user-space deal with unit-conversion if it is necessary to=
+ do
+so.
+
+> > +	mot_time_t duration; =20
+>=20
+> duration_ns? That makes usage much more ideomatic and there should be no
+> doubts what the unit is.
+
+Yes, mot_time_t is defined as nanoseconds, so I'll add the _ns suffix here.
+
+> > +	pos_raw_t distance; =20
+>=20
+> What is the unit here?
+
+Again this unit can have different meanings: micrometers, micro-steps,
+angle-degrees, etc... so what suffix to use?
+
+> > +	__u32 reserved[3]; =20
+>=20
+> Again the padding is wrong here.
+
+Will fix. thanks.
+=20
 Best regards,
 
-/Jesper
-
-
-On Tue, Mar 04, 2025 at 12:49:34PM -0500, Frank Li wrote:
-> This patches basic on
-> https://lore.kernel.org/imx/20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com/
-> 
-> I have not hardware to test and there are not axis,artpec7-pcie in kernel
-> tree.
-> 
-> Look for driver owner, who help test this and start move forward to remove
-> cpu_addr_fixup() work.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Frank Li (2):
->       ARM: dts: artpec6: Move PCIe nodes under bus@c0000000
->       PCI: artpec6: Use use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()
-> 
->  arch/arm/boot/dts/axis/artpec6.dtsi       | 92 +++++++++++++++++--------------
->  drivers/pci/controller/dwc/pcie-artpec6.c | 20 +------
->  2 files changed, 52 insertions(+), 60 deletions(-)
-> ---
-> base-commit: 1552be4855dacca5ea39b15b1ef0b96c91dbea0d
-> change-id: 20250304-axis-6d12970976b4
-> 
-> Best regards,
-> ---
-> Frank Li <Frank.Li@nxp.com>
-
-/^JN - Jesper Nilsson
--- 
-               Jesper Nilsson -- jesper.nilsson@axis.com
+--=20
+David Jander
 
