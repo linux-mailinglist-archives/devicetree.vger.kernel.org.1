@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-154384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B51B2A4FE5C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:15:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37F8FA4FE70
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7B471657AD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 12:15:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19480188FF45
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 12:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9903124500F;
-	Wed,  5 Mar 2025 12:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2C5824060E;
+	Wed,  5 Mar 2025 12:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rJJWfsRo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mIHsbNWr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6992423371A;
-	Wed,  5 Mar 2025 12:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FAB21D59C;
+	Wed,  5 Mar 2025 12:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741176891; cv=none; b=d47GijUSPyo31dcz9q+nqaI4YNXGAaFYPRpizCqgQ33Fs6HWQ8udClHLFuGwVgbzG21eaeZXbqwfdG4HQQHPPo6y05lZo6n3PE2Qs1XtV2Ae4V3QEHGxkWr/rNB62GaslquwRjUPywtEBntinX+eDl84198PqT7CaEGLYS1QAZU=
+	t=1741177011; cv=none; b=m4LRP1ReGFuJMKI+anTJLAXnSuF+HIZs+Zh9w+efPFJszsILV6nm35z+OCtDOon7ilO8NXacY4bfuUMfddQivXljoLJdMgkxJR8J6lkiOVllB3Ojw018ikty+EQYy7Znkv7yhe3dsDHgsOstSV7JUaoW6+HUyipJwjPfzuAzNMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741176891; c=relaxed/simple;
-	bh=vY4dstXqSmUJ+4zwa5V0jLxw6mEscNht9pfIkXCraVQ=;
+	s=arc-20240116; t=1741177011; c=relaxed/simple;
+	bh=T2pQRTux3aYb+/CsCX8gA7mq5gtnfR9xR/UlnPTP87k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FWyAuI4ZDlzYa1UvL0EZFh7YcO8WmfuO7e3taxry688JVmC8APddotCKeggKNjOFvTx1OGyFZFFl1n90n+Lgjg8w5f2wCwGw0t2BjnSnwXnA3H2lmfHy8cmzZeNEO0OjtiStHbDbMfspYinubiLmM1WsL5UQPiw0xf1Wt0tBRI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rJJWfsRo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF702C4CEE2;
-	Wed,  5 Mar 2025 12:14:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=lOervjE9D2eaMk+FGHt4++bsuLTTMDdoIGSNBE81J1sVe068TmMY9q022ZT0cWuZzAUfxQMezvJEExcdgq14WPocghSmnGEMJF4+H/zxyCF9b/YtZklldMOrtNlF1KggH2xM+byepwqIfcFpjDW4wfU5vB00FonY60r2i3E8r2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mIHsbNWr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 195FEC4CEE7;
+	Wed,  5 Mar 2025 12:16:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741176890;
-	bh=vY4dstXqSmUJ+4zwa5V0jLxw6mEscNht9pfIkXCraVQ=;
+	s=k20201202; t=1741177011;
+	bh=T2pQRTux3aYb+/CsCX8gA7mq5gtnfR9xR/UlnPTP87k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rJJWfsRoMyk214dl+aQoaQgbah0PS191/OyDS1F8XlSilwMjs7Ftp6xxcBZEmQrmp
-	 8Eu1iHlvnRLR75KX+b7uujXmFFLswbSG3eNpWC6QmSMzZ15ixDkM1M6EGSYKO3wAOt
-	 xndcz9IMxHo2RVjcQW6/f82DkT/6xPBvuXdXs1ugGuJ7g8IuCK/nz1LeEPXWu4CDSl
-	 rIb6uB7OGLtga1mZORCkcW+tLNj/6k5CiZHCerpQQ+Punh2BKbuchCqg7ebnucVN9l
-	 ku9Hk+llL6zmEXzo9OaVz6QPC2G+f5Ky9jBzplpjWdvOQhy81NNO1ilGB6qjXo4SYg
-	 cqFrPYsM2VW1Q==
-Message-ID: <652d8d87-2338-4842-829a-cb79532471bc@kernel.org>
-Date: Wed, 5 Mar 2025 13:14:44 +0100
+	b=mIHsbNWrRVTGYVkCJ92Cdx5uA/uc0y8VXHzPS3Fh/qygSll/CTER9VrVIuuiCEDdd
+	 Sfjnb93R4rcMBV5Q5pMswQJVnw0HKpcKjWJq7qwV1yFQE4MVUvxShW5WwJNkK5Qn2g
+	 5HCzEZV5VmM2TEBFI2Vn27z+F760oO6JjXnrv1WINsP5JGY+ZzfN3yPzqR2NZhWioX
+	 QoEaDphzUj+BBjxaPUInUnahhyFjNBqxRGpsg8kW4tVmM5ruh88vzCeqoSya5oCboW
+	 YbB02XEl97+El+vn2IcPxiogWIwXcS/I4M4YYSC9dDpT23wwinbF1A78+1mfSOpKE1
+	 OlSAEpjFszaxA==
+Message-ID: <0606709e-2a08-4168-89f0-826a0fb23cab@kernel.org>
+Date: Wed, 5 Mar 2025 13:16:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/10] dt-bindings: PCI: qcom,pcie-sc7280: Add 'global'
- interrupt
-To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- chaitanya chundru <quic_krichai@quicinc.com>,
- Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
- quic_vbadigan@quicnic.com, amitk@kernel.org, dmitry.baryshkov@linaro.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
- <20250225-qps615_v4_1-v4-9-e08633a7bdf8@oss.qualcomm.com>
- <20250226-enlightened-chachalaca-of-artistry-2de5ea@krzk-bin>
- <t34rurxh5cb7hwzvt6ps3fgw4kh4ddwcieukskxxz5mo3pegst@jkapxm6izq7p>
- <Z8f++i4MFku8ODKf@trex>
+Subject: Re: [PATCH 1/5] dt-bindings: display: Document DPI color codings
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+References: <20250304101530.969920-1-victor.liu@nxp.com>
+ <20250304101530.969920-2-victor.liu@nxp.com>
+ <20250304-deer-of-striking-pride-ff6e86@houat>
+ <20250305-important-quizzical-chamois-ff48af@krzk-bin>
+ <20250305-mustard-parrot-of-karma-1caf5d@houat>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,32 +109,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z8f++i4MFku8ODKf@trex>
+In-Reply-To: <20250305-mustard-parrot-of-karma-1caf5d@houat>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/03/2025 08:36, Jorge Ramirez wrote:
->> I think the patch context ("properties") is confusing here, but it looks
->> to me that these are in sync: interrupts is defined to have 8 items, and
->> interrupt-names is a list of msi0 through msi7.
+On 05/03/2025 09:26, Maxime Ripard wrote:
+> On Wed, Mar 05, 2025 at 08:51:35AM +0100, Krzysztof Kozlowski wrote:
+>> On Tue, Mar 04, 2025 at 11:33:44AM +0100, Maxime Ripard wrote:
+>>>> +properties:
+>>>> +  dpi-color-coding:
+>>>> +    enum:
+>>>> +      - 16bit-configuration1
+>>>> +      - 16bit-configuration2
+>>>> +      - 16bit-configuration3
+>>>> +      - 18bit-configuration1
+>>>> +      - 18bit-configuration2
+>>>> +      - 24bit
+>>>
+>>> Do we really needs strings there? It would be much better to use an int
+>>> plus a header
 >>
->> @Krishna, these two last patches (adding the global interrupt) doesn't
->> seem strongly connected to the switch patches. So, if Krzysztof agrees
->> with above assessment, please submit them separately (i.e. a new series,
->> 2 patches, v5).
+>> So DTS would sill have a name, just being a define? Then what is the
+>> benefit comparing to strings above in DTS readability?
 > 
-> um, but without these two patches, the functionality is broken requiring
-> users to manually rescan the pci bus (ie, via sysfs) to see what is
-> behind the bridge.
+> There's no benefits and no downside when it comes to readability.
 > 
-> shouldnt the set include all the necessary patches? 
+> However, it's not the only criteria, and not having to manipulate
+> strings but instead just doing int comparison is a huge plus.
 
-Broken? Then the patchset should be NAKed because nothing can depend on
-the DTS and the DTS should not depend on the drivers without some sort
-of explanation, either.
-
-Also nothing in the commit msg explains this dependency, so I don't get
-the problem here.
+Sure, defines work as well. BTW, it has a minor drawback on bindings as
+it means you might need to update both binding and the header when
+adding new entry, but I understand that it makes implementation life
+easier or faster.
 
 Best regards,
 Krzysztof
