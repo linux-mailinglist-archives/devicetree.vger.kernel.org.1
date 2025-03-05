@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-154255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12357A4F7DA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:27:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 125E6A4F7EB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:32:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B711188FB05
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 07:27:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41D6316E023
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 07:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 163D61EDA0E;
-	Wed,  5 Mar 2025 07:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38D191E5B77;
+	Wed,  5 Mar 2025 07:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nD/e2oF5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WzXE2Tck"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D80B01EA7F5;
-	Wed,  5 Mar 2025 07:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01AF619D06A;
+	Wed,  5 Mar 2025 07:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741159625; cv=none; b=hvubKzjH4Gxd1cqdWwql8y5sfPMWSljhbyaohEAsZNEvW3hFzmD7q8+T0OJsYtJPEgz3Rcd+kt4FHr4qChYUupK8VQuenO0npJnZhJrZURJvJ8mf4awdunlLj0dXCxT4hLXGy3U0zYmRoMHIXOFoZkOi8u9/epPF6wYf0t2qzgI=
+	t=1741159931; cv=none; b=aI6iLPdBBgvrQgo+cOtLIrYoeSkXdSHbyh3qtQDDwiged+vwdK92erw/gtEubqWhdLIWqeLLY/aSCeOUIheS6JN/P5PUu0J+m4/uet45vq3HJfIlretLnGS+TiUIsh9Ssaw+mdifhfv2sXHKGfdzwuLfjJrjzRdQYymksctvYHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741159625; c=relaxed/simple;
-	bh=wRaq4uFDdTXwzW2CzVR/8V0Bnta0TTyoo+FbDAQvNt0=;
+	s=arc-20240116; t=1741159931; c=relaxed/simple;
+	bh=m62ntYl+OHjI4BbSj3eSfbV1M2IVOsVTJYXyzyiQ8cE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pqM7D9b7/ozJkQAInR+QpG+OB+nA1+TU7sOC3uiP1zIzgS3JfaaDpPylbNMiL1gHKXOpn+IQY/78yICSRwo3Odnu13eVXoMY0a6Y0jtaCUAMq4c7ewIZq/cZ7HRf3Ad2WTa5XXxhBaNpyWJ2hEvihR9/p+k3MC+tW87OC/P0qww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nD/e2oF5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A80FC4CEE2;
-	Wed,  5 Mar 2025 07:27:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wnvru/COUnND6K9yFMrDi5Ussqift8ihSKWwt+Ul/j2PpxB44fAFDaznBTN5gkG1FOagQAmsZZPa8C0aLIXbL+x1gJhL1fZCn7QbOOEKFP0Ds7TZm+L2TKMFHS4+w66fkQStbFmv0NjZYzF1tJyWAS+oX3uv0n5fZoA7+JoLAVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WzXE2Tck; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83236C4CEE2;
+	Wed,  5 Mar 2025 07:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741159624;
-	bh=wRaq4uFDdTXwzW2CzVR/8V0Bnta0TTyoo+FbDAQvNt0=;
+	s=k20201202; t=1741159930;
+	bh=m62ntYl+OHjI4BbSj3eSfbV1M2IVOsVTJYXyzyiQ8cE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nD/e2oF5oGakQJofxgIE1SqfssbJLLX4TIicWW37Q5W/bvq1vlD5zUNrynDGJl8wO
-	 R9OUhQ0HbdOLl3czEjIFH1NdaUqNMRpjKTB+YhuAk6/EsW/5RFLvJoh2bbk07L2BmS
-	 lW3yYUQd1n2BJr+1CVtH4hF2ir0rVbiFD/YDP3/uZVTYxYkVHxtrNEbwelGK96M+VF
-	 gReEoZoKVNwUQxrHE0jRmoggtcRoXxLOmPqbF/4TfxKED+6vuJu74/PJinGLTzY4kp
-	 2izTB8hwFve0XrtWfIy1BAP1/p3Yj4i+AOI4XgCDj/MTcd34deJPBerxFyW2PYeJ+w
-	 E0vDOBcVXKlgw==
-Date: Wed, 5 Mar 2025 08:27:00 +0100
+	b=WzXE2Tck/lDhxGd7+olXHUH9tYc7zFNpzzbFM4ShYSxjDqPsUD1z4Vjq5v/0+/Xe9
+	 VHbU8E5BDJ2sqSrjARXmS6zWQdCRz1gE8SfwD/dbNDC5V+ks6RXYI7RYn905tGiwb7
+	 wWBA4+wkkYTW8Y3dxJAagG9DGnY/QQvFVhVbHeOMVsTPBIqn4v4aUZW7mBv8pkfn6F
+	 dx7qGEByHTDHznB/rhUumWoB4hDNWNK8ayR/5TwRNLxjF7uMAu3fE5NTeIn2M+TVGl
+	 jzTzpoMEA8pLjq3wQF493TFciUCEpc3Mq5VJoDNedxso9It7grlylT4n8jxN8i5G2L
+	 LNJ3/7YiXXepg==
+Date: Wed, 5 Mar 2025 08:32:06 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vasiliy Doylov <nekocwd@mainlining.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux@mainlining.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, phone-devel@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht, Vitalii Skorkin <nikroks@mainlining.org>, 
-	Antonio Rische <nt8r@protonmail.com>
-Subject: Re: [PATCH v2 2/3] media: dt-bindings: Add LC898217XC documentation
-Message-ID: <20250305-onyx-vicugna-of-action-cdcf0b@krzk-bin>
-References: <20250304-media-i2c-lc898217xc-initial-driver-v2-0-6a463cef3ea8@mainlining.org>
- <20250304-media-i2c-lc898217xc-initial-driver-v2-2-6a463cef3ea8@mainlining.org>
+To: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wesley Cheng <quic_wcheng@quicinc.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/9] dt-bindings: phy: Add the M31 based eUSB2 PHY
+ bindings
+Message-ID: <20250305-furry-finch-of-camouflage-e7ee5e@krzk-bin>
+References: <20250304-sm8750_usb_master-v2-0-a698a2e68e06@quicinc.com>
+ <20250304-sm8750_usb_master-v2-2-a698a2e68e06@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,43 +66,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250304-media-i2c-lc898217xc-initial-driver-v2-2-6a463cef3ea8@mainlining.org>
+In-Reply-To: <20250304-sm8750_usb_master-v2-2-a698a2e68e06@quicinc.com>
 
-On Tue, Mar 04, 2025 at 10:32:19PM +0300, Vasiliy Doylov wrote:
+On Tue, Mar 04, 2025 at 01:56:35PM -0800, Melody Olvera wrote:
+> +  vdd-supply:
+> +    description:
+> +      Phandle to 0.88V regulator supply to PHY digital circuit.
+> +
+> +  vdda12-supply:
+> +    description:
+> +      Phandle to 1.2V regulator supply to PHY refclk pll block.
+> +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - vcc-supply
+> +  - "#phy-cells"
+> +  - clocks
+> +  - clock-names
+> +  - vdd-supply
+> +  - vdda12-supply
+> +  - resets
+
+Keep the same order as in "properties" list.
+
 > +
 > +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-
-If there is going to be resend/new version: drop above blank line.
-
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here. However, there's no
-need to repost patches *only* to add the tags. The upstream maintainer
-will do that for tags received on the version they apply.
-
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
 
 Best regards,
 Krzysztof
