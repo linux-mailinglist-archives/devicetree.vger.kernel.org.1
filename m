@@ -1,120 +1,163 @@
-Return-Path: <devicetree+bounces-154613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60C04A50DEA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6847A50E02
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:45:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEE643A87C5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:41:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97E3E3A7ABD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE9525D1FD;
-	Wed,  5 Mar 2025 21:41:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711FC25CC6B;
+	Wed,  5 Mar 2025 21:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="wtzHAwpH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="axxSTK6e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FBB25C700
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 21:41:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7105525C71D;
+	Wed,  5 Mar 2025 21:43:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741210892; cv=none; b=YGxlrgJZuq1l1fjBgGjk4pfM/ZicOakCvD1eVAeVT69jHHVOYfsMdpJB9ovQFLqTvhy3wMUKOpTsZJRSVp1jdL0ecgTmRGpZtgFgtxC/qLZt3qqHH4ZuL5GYFyRuoKzi/qCewSJP9uHMKKW/7IC7B8zyYVr+unZQZb28dxjP9Hc=
+	t=1741211028; cv=none; b=Bs4/YUo2SHxGP4Tct4yThFIK0+s1+eQd4Ev7y5TURlki600rBW0BoZ6MhWj38/EvMA5Kd3GMVN+lqeJy+io3k79NsehAW1PlONcepNr5P9LlthbrRrJihG9BrAZUOzUml+bga31L9R1Ma/VYja3GswdC/5agjAfSIibBnM6TwbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741210892; c=relaxed/simple;
-	bh=gpaeu0tUxQ2w4OgfcPYCDp9NVi+VNcPLQfeSN8MIcPQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bv+EQbN57uNZF9gFD/GKF7TQclgDC7a09tNPqNLIqBsHGjLYcm5myfjCChy/q/NgYOih/ZZ1FHYoGmF6Ep1hOtVEjyjw3icvS4laD8wWzydcWMPGTcamOiP3Qp446LnZEalTKppkSSB45HDH1vsDf3djcDX5r+ELvmVTptvRji0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=wtzHAwpH; arc=none smtp.client-ip=121.127.44.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1741210889; bh=WqE1n99NX7sDOMxvh/YQ7fTw02JcT3CgFfPo9BuRBnY=;
- b=wtzHAwpHgwuX4JMrh+kU8cgAHomqBz93uu5HUzeExNyFs6wyxFzcZP/8+D/utDbZuqURaF5kT
- e/oRwLIx0k8xbEd+pbbGrQ1j9oN+mg5s+I1F8TjfuZyIWfQJJir3QkYeOMDsOVjiiPFC5vsfq8z
- 1hcBh7+P4jtUasrg0vvHOoA8Bx9zjsMWZz5RFHCSordJrzFajx/VRdfAPOpLcQnjC2cMz4pwJu5
- 4Z03EXwFeqIFnOibbObQZ6j+CzxryxcjFMJphBuSY5JxH8pZZo987yxUBacoYPQcjXtzaaX5U6y
- IyDwcdDe8zWJZLznxJaQ9mNdOqp6f30Vhb002GOsdO+w==
-X-Forward-Email-ID: 67c8c50588fb7bbab4530f6f
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.59
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Yao Zi <ziyao@disroot.org>,
-	linux-rockchip@lists.infradead.org,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH 3/3] arm64: dts: rockchip: Enable onboard eMMC on Radxa E20C
-Date: Wed,  5 Mar 2025 21:41:04 +0000
-Message-ID: <20250305214108.1327208-4-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250305214108.1327208-1-jonas@kwiboo.se>
-References: <20250305214108.1327208-1-jonas@kwiboo.se>
+	s=arc-20240116; t=1741211028; c=relaxed/simple;
+	bh=Kiw7vrhGC9Tr20MBqv3aGeVldfht4lH/YDUtMVAiVnQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HhELV8ojoBlh7c1FisvEPfWG9cDnjGIbCjtFbh9WF15p0Kp8YQEg1g4om2s89cZeAEJ0HvBpaEBzwSCGDoCeBpvn1LH9dFQfVBQdGSw6+tJq8gcsuWMUfwoGbFTN6l043S5ssXrDHwx+8Lwylg0+Jvgx1tJ8PZ7W9UZ+r19aeoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=axxSTK6e; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 525Lhcoo3520081
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Wed, 5 Mar 2025 15:43:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1741211019;
+	bh=5gKsqhkj3z4aOY8JR1GfRGtUkvMlV0bDAct/H2T8opg=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=axxSTK6ey9ptT04JWhEn+Rz2RMp8JtYQZeIgOxT1wgDIilACd55C9ZNn8VyrVENq5
+	 9IIBnJHB1lQrJfh3dKGFrK0tdWkrjwiiQmnD8XaFBlZye5FFhKZjb4PCkYLdxPOIv1
+	 NdeLkqdaTwJPbYsJTjnOZ2PiQVxhXTXmj+EETXSA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 525Lhcnr004323;
+	Wed, 5 Mar 2025 15:43:38 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
+ Mar 2025 15:43:38 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 5 Mar 2025 15:43:38 -0600
+Received: from [10.249.135.49] ([10.249.135.49])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 525LhXF5093926;
+	Wed, 5 Mar 2025 15:43:34 -0600
+Message-ID: <11982b12-a359-467a-a6fc-e39adccca413@ti.com>
+Date: Thu, 6 Mar 2025 03:13:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 1/2] devicetree: bindings: mux: reg-mux: Update
+ bindings for reg-mux for new property
+To: Rob Herring <robh@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Peter Rosin <peda@axentia.se>, <s-vadapalli@ti.com>,
+        <danishanwar@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth
+ Menon <nm@ti.com>
+References: <20250304102306.2977836-1-c-vankar@ti.com>
+ <20250304102306.2977836-2-c-vankar@ti.com>
+ <20250304153959.GA2654372-robh@kernel.org>
+ <66283781-69d6-4d0a-ada4-3a6bf4744a37@ti.com>
+ <CAL_Jsq++DUv5_LHg7sPNXDJZ84JtS94Rwr-WAb9hDWp6rJqZLQ@mail.gmail.com>
+Content-Language: en-US
+From: "Vankar, Chintan" <c-vankar@ti.com>
+In-Reply-To: <CAL_Jsq++DUv5_LHg7sPNXDJZ84JtS94Rwr-WAb9hDWp6rJqZLQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The Radxa E20C may come with an onboard eMMC (8GB / 16GB / 32GB / 64GB).
+Hello Rob,
 
-Enable support for the onboard eMMC on Radxa E20C.
+On 3/5/2025 2:10 AM, Rob Herring wrote:
+> On Tue, Mar 4, 2025 at 1:03 PM Vankar, Chintan <c-vankar@ti.com> wrote:
+>>
+>> Hello Rob,
+>>
+>> On 3/4/2025 9:09 PM, Rob Herring wrote:
+>>> On Tue, Mar 04, 2025 at 03:53:05PM +0530, Chintan Vankar wrote:
+>>>> DT-binding of reg-mux is defined in such a way that one need to provide
+>>>> register offset and mask in a "mux-reg-masks" property and corresponding
+>>>> register value in "idle-states" property. This constraint forces to define
+>>>> these values in such a way that "mux-reg-masks" and "idle-states" must be
+>>>> in sync with each other. This implementation would be more complex if
+>>>> specific register or set of registers need to be configured which has
+>>>> large memory space. Introduce a new property "mux-reg-masks-state" which
+>>>> allow to specify offset, mask and value as a tuple in a single property.
+>>>
+>>> Maybe in hindsight that would have been better, but having 2 ways to
+>>> specify the same thing that we have to maintain forever is not an
+>>> improvement.
+>>>
+>>> No one is making you use this binding. If you have a large number of
+>>> muxes, then maybe you should use a specific binding.
+>>>
+>>
+>> Thank you for reviewing the patch. The reason behind choosing mux
+>> subsystem is working and implementation of mmio driver. As we can see
+>> that implementing this new property in mux-controller is almost
+>> identical to mmio driver, and it would make it easier to define and
+>> extend mux-controller's functionality. If we introduce the new driver
+>> than that would be most likely a clone of mmio driver.
+> 
+> I'm talking about the binding, not the driver. They are independent.
+> Generic drivers are great. I love them. Generic bindings, not so much.
+> 
+>> Let me know if implementation would be accepted by adding a new
+>> compatible for it.
+> 
+> Adding a new compatible to the mmio driver? Certainly. That happens
+> all the time.
+> 
+> I also didn't say don't use this binding as-is. That's fine too.
+> 
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Can you please review the following binding:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-index a52a7924bb75..a511e2a2d4a5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-@@ -16,6 +16,7 @@ / {
- 	compatible = "radxa,e20c", "rockchip,rk3528";
- 
- 	aliases {
-+		mmc0 = &sdhci;
- 		mmc1 = &sdmmc;
- 	};
- 
-@@ -155,6 +156,17 @@ &saradc {
- 	status = "okay";
- };
- 
-+&sdhci {
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	no-sd;
-+	no-sdio;
-+	non-removable;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
- &sdmmc {
- 	bus-width = <4>;
- 	cap-mmc-highspeed;
--- 
-2.48.1
+oneOf:
+   - required: [ mux-reg-masks ]
+   - required: [ mux-reg-masks-state ]
 
+allOf:
+   - if:
+       required:
+         - mux-reg-masks-state
+     then:
+       properties:
+         idle-states: false
+
+required:
+   - compatible
+   - '#mux-control-cells'
+
+I think it won't disturb the current bindings and keep backward
+compatibility with existing implementation.
+
+
+Regards,
+Chintan.
+
+
+> Rob
 
