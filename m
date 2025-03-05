@@ -1,184 +1,116 @@
-Return-Path: <devicetree+bounces-154275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 949AAA4F8B2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:24:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E37A4F8C3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:26:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6DB416F9CB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:24:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 230BE3A7CD3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0851F584A;
-	Wed,  5 Mar 2025 08:24:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539EB1FC7C5;
+	Wed,  5 Mar 2025 08:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Nyhwhmn5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="td0ucEqV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57AC21F582D
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:23:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C531C8FBA;
+	Wed,  5 Mar 2025 08:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741163042; cv=none; b=JkYWrWhwOP0pmbiSXrsHKXtHHDXnQLDGVitAUsDrMnh/BM95ar4muse2DLnl/JvPdGSSBOvYig0mvmp1IzSQ8k5PEAmGIIj8f8pEqVm+5KuUfF4wA/b++yTv9I2IJmeNQgUBVAXulS0pqajrOE3bpYnhbxjN0EQmTmsOlDeLgvQ=
+	t=1741163184; cv=none; b=G0Kf1l6gzAJcDeX/CBFV4pZ3PrNgHz++g++Q1nkA7zVyXw7HEunEgF2diqlYvHk1uV42Y3Qq0RtPjwR1khn/A8OqEUZ1WXR9xd92CaNHCit1OrT9hHFdl9Ja+2rkMli+wKc/FYCyggMb1hvJ72iabUXVWCY5Q22blXORGty1nGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741163042; c=relaxed/simple;
-	bh=5oioArqckWK7P85itc8aO9C5fWyeb++QRtIHYUaaxAA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=hwIIakT77ZnilP04OmOZvOm4YizuNvWWG09fmR/EHVONN5U0Imzjvi9pt/fn3kSbXSvjKwf1MIRbb8QN5yFGTuRKnxWrO9HQ6yUUkcooS5wwdZKhWkppd0ayRAnUXMPi0/pAKrPF5ch+doRlxKld/5jQBZhPqlaKt8BXjn6/3r8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Nyhwhmn5; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250305082357euoutp010624577fdbcd0cfe24fd9750e3bfa61c~p2o61p5xR2219722197euoutp01I
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:23:57 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250305082357euoutp010624577fdbcd0cfe24fd9750e3bfa61c~p2o61p5xR2219722197euoutp01I
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1741163037;
-	bh=PGt1CSGjFMabgTf1srY6MXwWrrLW0AjKIgfy5jsvIPg=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=Nyhwhmn5VD91sXGi5UMQjRA4Ske6yzrWzPKD12OL275S7L62PmNaWKyR0quNGvRxl
-	 yBJ36KO7X9sSOwbFzfEOrdflPFWdpJotgv1swt/ZiOot3biyE0NVa5qEuDVjhj16Ll
-	 t3leF0vpOmUaXFcswMPAhiF8AZ+llEW9cJXV8YBY=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20250305082357eucas1p174954be8e28b7c00ffd1668d010ff52e~p2o6hZ4E21049710497eucas1p18;
-	Wed,  5 Mar 2025 08:23:57 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges1new.samsung.com (EUCPMTA) with SMTP id 65.64.20821.C1A08C76; Wed,  5
-	Mar 2025 08:23:57 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250305082356eucas1p2d936fbea7bdd26ab959db4b218062adb~p2o6KxHWu1585915859eucas1p2w;
-	Wed,  5 Mar 2025 08:23:56 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250305082356eusmtrp153d1eba5e52d6132a1e3c51fa69fd828~p2o6J-EcS0898508985eusmtrp1z;
-	Wed,  5 Mar 2025 08:23:56 +0000 (GMT)
-X-AuditID: cbfec7f2-b09c370000005155-40-67c80a1c7667
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id 91.64.19920.C1A08C76; Wed,  5
-	Mar 2025 08:23:56 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250305082356eusmtip12d7cf33847491aed6d0a0fb5155f381a~p2o5mcXqn3232132321eusmtip1I;
-	Wed,  5 Mar 2025 08:23:56 +0000 (GMT)
-Message-ID: <4205b786-fb65-468c-a3d8-bce807dd829a@samsung.com>
-Date: Wed, 5 Mar 2025 09:23:55 +0100
+	s=arc-20240116; t=1741163184; c=relaxed/simple;
+	bh=CKep9lIEux6rqMukCPsUfeFS8wPwAtgSYA5QVRjKI8M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kjNFnY7LcjK/ejrRq+SpVHqa76RIyOGgibirOf3wb7F4bjT747B9gMycaDJbR30GBV7gETaEv/MjNabCtzgrz+YHx5qM0WWYkw/7qklaaHwHxZiifc2X8+5+nLJMxtZ5MxoBpu7v+bbZWMngW0QyGeaHD3MgaKkfbM5XTBBHYAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=td0ucEqV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C68FC4CEE2;
+	Wed,  5 Mar 2025 08:26:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741163183;
+	bh=CKep9lIEux6rqMukCPsUfeFS8wPwAtgSYA5QVRjKI8M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=td0ucEqVHK8atYbmGCD+2yVZyseFmvPelf27qLYlwjCJX1PRm2Jl1gp94QHf0E/15
+	 bDfvcNs0uHO3Mm+SmYEodhe8qT7Qoo/8GPjG65DXb6KDUfVmj/kLZhMahF2rBFCKkU
+	 Y+H13LWFngwpJoHEahxJNEG62cQuXUj8f01140SikPCPxGwUwqJkgXxaAa8TFAcyMg
+	 rIfAlhFHFkNSjRchZlOSebYTnWekg6uhO91EABD3w1Rg3T82qZ7eG9iDqrDByfwHJG
+	 s0IwQyXlNld9cQ7K93Yu7Jx6P8hPA/RfcpHokcZRVZlgpnaYyeWWMTHKdHITMhfTmt
+	 ZEQgk6BrRbRAA==
+Date: Wed, 5 Mar 2025 09:26:21 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, 
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Subject: Re: [PATCH 1/5] dt-bindings: display: Document DPI color codings
+Message-ID: <20250305-mustard-parrot-of-karma-1caf5d@houat>
+References: <20250304101530.969920-1-victor.liu@nxp.com>
+ <20250304101530.969920-2-victor.liu@nxp.com>
+ <20250304-deer-of-striking-pride-ff6e86@houat>
+ <20250305-important-quizzical-chamois-ff48af@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/2] TH1520 SoC: Add Reset Controller Support
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com,
-	guoren@kernel.org, wefu@redhat.com, p.zabel@pengutronix.de,
-	m.szyprowski@samsung.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20250303152511.494405-1-m.wilczynski@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPKsWRmVeSWpSXmKPExsWy7djPc7qyXCfSDd7OY7RYs/cck8X8I+dY
-	Le5d2sJk8WJvI4vFy1n32Cwu75rDZrH2yF12i7v3TrBY/N+zg92iZf8UFgcuj02rOtk8WtYe
-	Y/Lo/2vg8X7fVTaPvi2rGD0+b5ILYIvisklJzcksSy3St0vgyjj9+QZrwUTBimOXlrE1MM7m
-	7WLk5JAQMJHY93IFYxcjF4eQwApGifuH1kI5Xxglzjy6yALhfGaUeHByDVMXIwdYy6R7iRDx
-	5YwSG6dfYIZw3jJKdM1ZxwYyl1fATuLh1/1MIDaLgIrE5L0tjBBxQYmTM5+wgNiiAvIS92/N
-	YAexhQVcJKZMPQC2WkRgKdAdnb+YQRLMAjYSN9ZeZoSwxSVuPZkPNpRNwEjiwfL5rCA2p4C9
-	xNZn/9kgauQltr+dA3aRhMAPDomrP7axQJztIrH2VjDE08ISr45vYYewZSROT+5hgbDzJR5s
-	/cQMYddI7Ow5DmVbS9w594sNZAyzgKbE+l36EGFHiXP3fjNCTOeTuPFWEOICPolJ26YzQ4R5
-	JTrahCCq1SSm9vTCLT23YhvTBEalWUiBMgvJj7OQ/DILYe8CRpZVjOKppcW56anFhnmp5XrF
-	ibnFpXnpesn5uZsYgWnq9L/jn3Ywzn31Ue8QIxMH4yFGCQ5mJRHe16eOpwvxpiRWVqUW5ccX
-	leakFh9ilOZgURLnXbS/NV1IID2xJDU7NbUgtQgmy8TBKdXA5HTS789N999CN6MaZovLG76I
-	5cp52jVfW+nhsexnJyRuFz+9L2/PZzV7j1yVTpqtgsW2Wwxpu1km1Dn8m3i1eVdCq3Ts1aLO
-	g8LHKr3zMt/pf5jBq5R1snWucLhqZLjqpea4rvwfP7YwfnKrORzZr+7cru0hFdi38rfhaa5z
-	NZErjM4FBoQGN+4qiH4sffbe5wkF6VMlFJd/YjMRdTsQWMT8y7vNKt7+WuP/C+k9fQeWtVQL
-	pW4+6K26smyX2M45D5PCa7Zm+EZdX71s6pGnU2zfnTH1d05tnB53RkZls/hZYQ0+8+q02I6Q
-	L7/frtm+THq5sfHD2uVxUpHS+qI2YV+jLx+teiCh9FV+VrQSS3FGoqEWc1FxIgDQ40YtwgMA
-	AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrEIsWRmVeSWpSXmKPExsVy+t/xu7oyXCfSDbbPVbNYs/cck8X8I+dY
-	Le5d2sJk8WJvI4vFy1n32Cwu75rDZrH2yF12i7v3TrBY/N+zg92iZf8UFgcuj02rOtk8WtYe
-	Y/Lo/2vg8X7fVTaPvi2rGD0+b5ILYIvSsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaP
-	tTIyVdK3s0lJzcksSy3St0vQyzj9+QZrwUTBimOXlrE1MM7m7WLk4JAQMJGYdC+xi5GLQ0hg
-	KaPE0ZVrmLsYOYHiMhLXul+yQNjCEn+udbFBFL1mlGj9c5wRJMErYCfx8Ot+JhCbRUBFYvLe
-	Fqi4oMTJmU/AmkUF5CXu35rBDmILC7hITJl6gBFkkAjItnsfprGCJJgFbCRurL3MCLFhEqNE
-	c+dSRoiEuMStJ/PBNrAJGEk8WD4frIFTwF5i67P/bCAvMAuoS6yfJwRRLi+x/e0c5gmMQrOQ
-	3DELyaRZCB2zkHQsYGRZxSiSWlqcm55bbKhXnJhbXJqXrpecn7uJERiZ24793LyDcd6rj3qH
-	GJk4GA8xSnAwK4nwvj51PF2INyWxsiq1KD++qDQntfgQoykwLCYyS4km5wNTQ15JvKGZgamh
-	iZmlgamlmbGSOK/b5fNpQgLpiSWp2ampBalFMH1MHJxSDUytIvMS5aQrH92J/sLKd6XwdnDV
-	ro+nt0Tk27uml3y/4Dz7sAVT42pePYePq257m9t6zDiz8YdlhTrXyxkWXp9e5BXFHRKx+ME1
-	9e5ShbAJ/kwd0Xfv8mqYnklan+5+WuaIz5+uK9qXAq06L09Lzd982OLlz27PjJf/y9u3eyXz
-	Ncx4ZM/F581azhZnK/n28vlnn6849D15y8zMs/rrlcg7C8zbJp0L/v3wEE+abXd9/AFPYzXR
-	yix+Sfln+2+LNAjOXO+n1tjjck2kfMbSq1y7Vybllf5d6Lq0Y1rJJk62/ANiDTNOXHb+xlf0
-	zsdI29BCUfntwZ2Bytbq+zd766ZvrljWdua4vSBPAMveEiWW4oxEQy3mouJEAH1Gj61VAwAA
-X-CMS-MailID: 20250305082356eucas1p2d936fbea7bdd26ab959db4b218062adb
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250303152520eucas1p250f2e6d8eaf1172d8813b04ceb88679c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250303152520eucas1p250f2e6d8eaf1172d8813b04ceb88679c
-References: <CGME20250303152520eucas1p250f2e6d8eaf1172d8813b04ceb88679c@eucas1p2.samsung.com>
-	<20250303152511.494405-1-m.wilczynski@samsung.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="5qv5lchsz5iuy4wj"
+Content-Disposition: inline
+In-Reply-To: <20250305-important-quizzical-chamois-ff48af@krzk-bin>
 
 
+--5qv5lchsz5iuy4wj
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/5] dt-bindings: display: Document DPI color codings
+MIME-Version: 1.0
 
-On 3/3/25 16:25, Michal Wilczynski wrote:
-> This patch series adds reset controller support for the T-Head TH1520 SoC,
-> which is used in boards like the LicheePi 4A. While part of a broader effort to
-> enable the Imagination BXM-4-64 GPU upstream, these patches focus on providing
-> a dedicated reset controller driver and the corresponding Device Tree
-> nodes/bindings.
-> 
-> Bigger series cover letter:
-> https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
+On Wed, Mar 05, 2025 at 08:51:35AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Mar 04, 2025 at 11:33:44AM +0100, Maxime Ripard wrote:
+> > > +properties:
+> > > +  dpi-color-coding:
+> > > +    enum:
+> > > +      - 16bit-configuration1
+> > > +      - 16bit-configuration2
+> > > +      - 16bit-configuration3
+> > > +      - 18bit-configuration1
+> > > +      - 18bit-configuration2
+> > > +      - 24bit
+> >=20
+> > Do we really needs strings there? It would be much better to use an int
+> > plus a header
+>=20
+> So DTS would sill have a name, just being a define? Then what is the
+> benefit comparing to strings above in DTS readability?
 
+There's no benefits and no downside when it comes to readability.
 
-This series should be versioned as v6, to maintain continuity with the
-bigger patchset it is a subseries of. Please find below a changelog for
-the reset sub-series:
+However, it's not the only criteria, and not having to manipulate
+strings but instead just doing int comparison is a huge plus.
 
-v6:
- - split the reset part into sub-series, add the Reviewed-by from
-   Philipp
+Maxime
 
-v5:
- - Moved the reset de-assertion from the reset driver to the clock driver. The
-   reset is now only de-asserted once the sys and core clocks have been enabled
- - Added and exported the GPU_CLKGEN reset, allowing the clock driver to reset
-   the GPU clock circuit
+--5qv5lchsz5iuy4wj
+Content-Type: application/pgp-signature; name="signature.asc"
 
-v4:
- - reverted reset-cells configuration to single cell as in v2
- - maintained reset definitions in device tree bindings while deferring
-   implementation of watchdog timer (WDT) reset functionality
+-----BEGIN PGP SIGNATURE-----
 
-v3:
- - refactored reset driver to use zero cells
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ8gKqAAKCRAnX84Zoj2+
+dmR6AX9CqkD6CQeYuRvWlWgsp7zA1WNfpdOgY78fwFZQvBxUy7DgUkaNJkl7kDij
+znChBsYBgOdchqndi69u/xUJVL4Z4hKuZewp7WoAxHunfX0JNjLh2SEustfv649+
+zXvzjFWpBQ==
+=vkHY
+-----END PGP SIGNATURE-----
 
-v2:
- - developed a reset controller driver for the TH1520 to manage reset
-   sequences
- - added new dt-bindings for reset
-
-> 
-> Michal Wilczynski (2):
->   dt-bindings: reset: Add T-HEAD TH1520 SoC Reset Controller
->   reset: thead: Add TH1520 reset controller driver
-> 
->  .../bindings/reset/thead,th1520-reset.yaml    |  44 ++++++
->  MAINTAINERS                                   |   3 +
->  drivers/reset/Kconfig                         |  10 ++
->  drivers/reset/Makefile                        |   1 +
->  drivers/reset/reset-th1520.c                  | 135 ++++++++++++++++++
->  .../dt-bindings/reset/thead,th1520-reset.h    |  16 +++
->  6 files changed, 209 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
->  create mode 100644 drivers/reset/reset-th1520.c
->  create mode 100644 include/dt-bindings/reset/thead,th1520-reset.h
-> 
+--5qv5lchsz5iuy4wj--
 
