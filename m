@@ -1,318 +1,160 @@
-Return-Path: <devicetree+bounces-154617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E7AA50E5D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:11:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B39DEA50E63
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 23:14:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 159781888DF4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:11:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECBD816C6E9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D002661B8;
-	Wed,  5 Mar 2025 22:11:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D642C266561;
+	Wed,  5 Mar 2025 22:14:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uLIGTT6i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ST8tafEE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B90B2E3373;
-	Wed,  5 Mar 2025 22:11:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B172620FE;
+	Wed,  5 Mar 2025 22:14:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741212668; cv=none; b=VJaaftsgoAzuF+ctJ38/ptu6Joq/HFvQtO2g3i3caA1c4ejznqD1Zo/QeyOE23nbZJKsrvKW6TOEY5hvD/2lEO8DX8kLR1e/ta7GCAOHUSyDaby3xcb2qLmOrN6GaW/+JZBL367+45CNfRJPqltH89ub7QwukQ+ndgmZaaQ45V8=
+	t=1741212863; cv=none; b=qA+hncjgM7ENF9zXDrY8TVYyPd8cmKPJQoIK4FTbWjSNXlPtri6252SaT5+qPs7AeCmgRor/KitLS4NjIWhW/eJ4QisWWbsHTRMu5if99lKlcxPTSfcgtdGKwXoudANtrkIgo54Fy6gasf3+A6hBugu0oj+n2JF7cuEZvHm1J1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741212668; c=relaxed/simple;
-	bh=y6Ws4y70AqcP1/f67iogQtv83NKMfTTp5b+XJn86ADU=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=RgdTwT2bbxhAVjuNGz+XMJf186lepfZ9Zs52OA6sON9U0maN9QYXuW+cS1H4eVNIdVtSgFAsI5IkmGttI9p8x1ttQRPpV1BLJj/elhVzcrLCtpdkkSZbMUQVFc5MI2RsykPytVVWGCOuGiZShfsU+TcWumYxSAyjkmq7tRvL5Jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uLIGTT6i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F10BDC4CED1;
-	Wed,  5 Mar 2025 22:11:07 +0000 (UTC)
+	s=arc-20240116; t=1741212863; c=relaxed/simple;
+	bh=Zx5GE+9URX3cZR5gaEQ2H19HnShyope1WOKnvdJpFQg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=c6b6Gi5HERrFfDCfjEwgLoc5gdftywQ7F7K6noJu55Qjwg1J84VVZp2EnZfLGhJD+15z81jFn4DZbbsxx77uo85WOtrN7OVOlIDJz1Kt9tU+teXWubWAd/G+mVJOJLpEtDbUbWzyI0ADesRzpVB8qyA4moCcyrg8biIQRwrcVfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ST8tafEE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08ACDC4CEE8;
+	Wed,  5 Mar 2025 22:14:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741212668;
-	bh=y6Ws4y70AqcP1/f67iogQtv83NKMfTTp5b+XJn86ADU=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=uLIGTT6ix0ytcNmFy0dOGwGhLC1am2boVh5F9hgPpTDAAK9HuP3BXUAVe7vPTVPYy
-	 aegKx0eanzBcLdr07sOfMAD61JvuBTvlDSm0cedec7kQn9JOA8BvC9CpZsYU8eeJNP
-	 9gVjPHoDjkIfAs08a+8jw9T54iUbEqV1h519k+Xur07Qc0YENUop7qT1Zi0JREWGau
-	 LPrFDelNuAutQPb7A/Ah8ig73GVnpjxAdAX1SQOQWJUdRUea9ZV51Npoet1jzBf1gT
-	 DOFJCFvVKMMv+Zd6lnh3c1/DjSpkXRo2fjJJynV8LTuUjTa0LN8nHAMYWfcoyUZxe8
-	 VT1c99Zb4ouPQ==
-Message-ID: <f17372963b92074144b07d34f3e91ba7.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1741212863;
+	bh=Zx5GE+9URX3cZR5gaEQ2H19HnShyope1WOKnvdJpFQg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ST8tafEEsyDf7uOWGSEVaYRQNBETT99JiRalWB9kIGEfq+wUCVwx7xzVB4zKrAAMp
+	 cTHu+AdEv6uq4dZ71wXKrPmibAZnA0R1zXifHZU3RjvObojY/rzWvrgfqY5RFQdl+D
+	 ZUgwlU06jU050v2w8P0Tr2mnmJuiuoRhtdz4CePwKiX61ndMMnV+YdejoaT6XJCSzV
+	 zZwRzWktYc6Ea45b24WVy0/KXOm5/MN1wAm4tUVKRW1ptCSqeUrDQVSypgoOToCvay
+	 KMKA2UjOVHq1qiPNn9xmVyCqE3v/sIzUrYBtRG35PBAz0+q/PL/TS/30Zm/64Jkzd9
+	 PS2YFgPqrXjYg==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e5b6f3025dso1257188a12.1;
+        Wed, 05 Mar 2025 14:14:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWArkSDidjZPZ6vcTAzLvRw61ZANr93/HmYov8TLsoFM38XEHZI0Vd+Yh970mYoXpmjoYs9LmRMAFSjC7SF@vger.kernel.org, AJvYcCXTUwgqsthkEujJ1slhhr03FGYPlfi6sjRl1Z4cdzp4KWz7QgV1idDeYkJvTr+Xcp6E1L9NBkIQ53KU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqRWOvq2z9GAKjjQSrgJUpYfr4NH/dSpTio0TdryBNWeAO/NaJ
+	MCe49y4WUUtVv8cX1LL74E8XmvgNVNGyN32Wb3xGMLq2hbqZi/J+RBGm8jPLUvcqG3G6IPZ+B4p
+	hCWcCLdUpec6CWpNTza5EZtZ4Ow==
+X-Google-Smtp-Source: AGHT+IGYDfNLXYfg6BSzNVuGARy79Tn1tTyoaWjPku6CKaUdhh2vjVg+1b7zISM2D5ggr+aAEfJU6dBDoLxoEAchZz0=
+X-Received: by 2002:a17:907:7211:b0:ac1:ff43:82ad with SMTP id
+ a640c23a62f3a-ac20d844185mr498713566b.12.1741212861452; Wed, 05 Mar 2025
+ 14:14:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250304102306.2977836-1-c-vankar@ti.com> <20250304102306.2977836-2-c-vankar@ti.com>
+ <20250304153959.GA2654372-robh@kernel.org> <66283781-69d6-4d0a-ada4-3a6bf4744a37@ti.com>
+ <CAL_Jsq++DUv5_LHg7sPNXDJZ84JtS94Rwr-WAb9hDWp6rJqZLQ@mail.gmail.com> <11982b12-a359-467a-a6fc-e39adccca413@ti.com>
+In-Reply-To: <11982b12-a359-467a-a6fc-e39adccca413@ti.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 5 Mar 2025 16:14:09 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLb5hrYD_-dqW5ELtbXohd8a1UL7nOuP2a9ZhE+3+f=eA@mail.gmail.com>
+X-Gm-Features: AQ5f1Jo1GiNn3eAvnrenLvre-nBgvQ7BPHTsGmYES4JgbDO702r5HrT_Ttt03_I
+Message-ID: <CAL_JsqLb5hrYD_-dqW5ELtbXohd8a1UL7nOuP2a9ZhE+3+f=eA@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 1/2] devicetree: bindings: mux: reg-mux: Update
+ bindings for reg-mux for new property
+To: "Vankar, Chintan" <c-vankar@ti.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Peter Rosin <peda@axentia.se>, s-vadapalli@ti.com, danishanwar@ti.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250305-spmi-v1-2-c98f561fa99f@gmail.com>
-References: <20250305-spmi-v1-0-c98f561fa99f@gmail.com> <20250305-spmi-v1-2-c98f561fa99f@gmail.com>
-Subject: Re: [PATCH 2/3] spmi: add a spmi driver for Apple SoC
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Sasha Finkelstein <fnkl.kernel@gmail.com>, Jean-Francois Bortolotti <jeff@borto.fr>
-To: Alyssa Rosenzweig <alyssa@rosenzweig.io>, Conor Dooley <conor+dt@kernel.org>, Janne Grunau <j@jannau.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>, Sven Peter <sven@svenpeter.dev>, fnkl.kernel@gmail.com
-Date: Wed, 05 Mar 2025 14:11:05 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-Quoting Sasha Finkelstein via B4 Relay (2025-03-05 12:26:40)
-> From: Jean-Francois Bortolotti <jeff@borto.fr>
->=20
+On Wed, Mar 5, 2025 at 3:43=E2=80=AFPM Vankar, Chintan <c-vankar@ti.com> wr=
+ote:
+>
+> Hello Rob,
+>
+> On 3/5/2025 2:10 AM, Rob Herring wrote:
+> > On Tue, Mar 4, 2025 at 1:03=E2=80=AFPM Vankar, Chintan <c-vankar@ti.com=
+> wrote:
+> >>
+> >> Hello Rob,
+> >>
+> >> On 3/4/2025 9:09 PM, Rob Herring wrote:
+> >>> On Tue, Mar 04, 2025 at 03:53:05PM +0530, Chintan Vankar wrote:
+> >>>> DT-binding of reg-mux is defined in such a way that one need to prov=
+ide
+> >>>> register offset and mask in a "mux-reg-masks" property and correspon=
+ding
+> >>>> register value in "idle-states" property. This constraint forces to =
+define
+> >>>> these values in such a way that "mux-reg-masks" and "idle-states" mu=
+st be
+> >>>> in sync with each other. This implementation would be more complex i=
+f
+> >>>> specific register or set of registers need to be configured which ha=
+s
+> >>>> large memory space. Introduce a new property "mux-reg-masks-state" w=
+hich
+> >>>> allow to specify offset, mask and value as a tuple in a single prope=
+rty.
+> >>>
+> >>> Maybe in hindsight that would have been better, but having 2 ways to
+> >>> specify the same thing that we have to maintain forever is not an
+> >>> improvement.
+> >>>
+> >>> No one is making you use this binding. If you have a large number of
+> >>> muxes, then maybe you should use a specific binding.
+> >>>
+> >>
+> >> Thank you for reviewing the patch. The reason behind choosing mux
+> >> subsystem is working and implementation of mmio driver. As we can see
+> >> that implementing this new property in mux-controller is almost
+> >> identical to mmio driver, and it would make it easier to define and
+> >> extend mux-controller's functionality. If we introduce the new driver
+> >> than that would be most likely a clone of mmio driver.
+> >
+> > I'm talking about the binding, not the driver. They are independent.
+> > Generic drivers are great. I love them. Generic bindings, not so much.
+> >
+> >> Let me know if implementation would be accepted by adding a new
+> >> compatible for it.
+> >
+> > Adding a new compatible to the mmio driver? Certainly. That happens
+> > all the time.
+> >
+> > I also didn't say don't use this binding as-is. That's fine too.
+> >
+>
+> Can you please review the following binding:
+>
+> oneOf:
+>    - required: [ mux-reg-masks ]
+>    - required: [ mux-reg-masks-state ]
+>
+> allOf:
+>    - if:
+>        required:
+>          - mux-reg-masks-state
+>      then:
+>        properties:
+>          idle-states: false
+>
+> required:
+>    - compatible
+>    - '#mux-control-cells'
+>
+> I think it won't disturb the current bindings and keep backward
+> compatibility with existing implementation.
 
-Please write some commit text explaining why this driver is important to
-review. Maybe it's necessary for something to work?
+Wasn't that the case before? There's nothing really different here.
 
-> diff --git a/drivers/spmi/spmi-apple-controller.c b/drivers/spmi/spmi-app=
-le-controller.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..194fa5dd7c2c6fc4ecfbee0db=
-7930b0c73b02550
-> --- /dev/null
-> +++ b/drivers/spmi/spmi-apple-controller.c
-> @@ -0,0 +1,176 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Apple SoC SPMI device driver
-> + *
-> + * Copyright The Asahi Linux Contributors
-> + *
-> + * Inspired by:
-> + *             OpenBSD support Copyright (c) 2021 Mark Kettenis <ketteni=
-s@openbsd.org>
-> + *             Correllium support Copyright (C) 2021 Corellium LLC
-> + *             hisi-spmi-controller.c
-> + *             spmi-pmic-ard.c Copyright (c) 2021, The Linux Foundation.
-
-spmi-pmic-arb?
-
-> + */
-> +
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-
-Are these includes used? I think you need mod_devicetable.h
-
-> +#include <linux/platform_device.h>
-> +#include <linux/spmi.h>
-> +
-> +/* SPMI Controller Registers */
-> +#define SPMI_STATUS_REG 0
-> +#define SPMI_CMD_REG 0x4
-> +#define SPMI_RSP_REG 0x8
-> +
-> +#define SPMI_RX_FIFO_EMPTY BIT(24)
-> +
-> +#define REG_POLL_INTERVAL 10000
-> +#define REG_POLL_TIMEOUT (REG_POLL_INTERVAL * 5)
-> +
-> +struct apple_spmi {
-> +       void __iomem *regs;
-> +};
-> +
-> +#define poll_reg(spmi, reg, val, cond) \
-> +       readl_relaxed_poll_timeout((spmi)->regs + (reg), (val), (cond), \
-> +                                  REG_POLL_INTERVAL, REG_POLL_TIMEOUT)
-> +
-> +static inline u32 read_reg(struct apple_spmi *spmi, int offset)
-> +{
-> +       return readl_relaxed(spmi->regs + offset);
-> +}
-> +
-> +static inline void write_reg(u32 value, struct apple_spmi *spmi, int off=
-set)
-> +{
-> +       writel_relaxed(value, spmi->regs + offset);
-> +}
-
-I'm not a huge fan of these wrappers but OK. Why relaxed accessors?
-
-> +
-> +static int spmi_read_cmd(struct spmi_controller *ctrl, u8 opc, u8 sid,
-> +                        u16 saddr, u8 *__buf, size_t bc)
-
-Drop the underscore because the variable 'buf' is never used.
-
-> +{
-> +       struct apple_spmi *spmi =3D spmi_controller_get_drvdata(ctrl);
-> +       u32 spmi_cmd =3D opc | sid << 8 | saddr << 16 | (bc - 1) | (1 << =
-15);
-
-Can this be some function like apple_spmi_pack_cmd()? I suspect 'bc' is
-byte_count? Usually we just call that 'len'.
-
-> +       u32 rsp;
-> +       u32 status;
-> +       size_t len_to_read =3D 0;
-
-len_to_read would imply that it is non-zero to start. Maybe 'len_read'
-past tense, or decrement 'bc'.
-
-> +       u8 i;
-> +       int ret;
-> +
-> +       write_reg(spmi_cmd, spmi, SPMI_CMD_REG);
-> +
-> +       /* Wait for Rx FIFO to have something */
-> +       ret =3D poll_reg(spmi, SPMI_STATUS_REG, status, !(status & SPMI_R=
-X_FIFO_EMPTY));
-> +       if (ret) {
-> +               dev_err(&ctrl->dev,
-> +                       "%s:Failed to wait for RX FIFO not empty\n", __fu=
-nc__);
-> +               return ret;
-> +       }
-
-This chunk is the same. Maybe have apple_spmi_wait_for_rx_fifo() that
-does everything including the error message?
-
-> +
-> +       /* Discard SPMI reply status */
-> +       read_reg(spmi, SPMI_RSP_REG);
-> +
-> +       /* Read SPMI data reply */
-> +       while (len_to_read < bc) {
-> +               rsp =3D read_reg(spmi, SPMI_RSP_REG);
-> +               i =3D 0;
-> +               while ((len_to_read < bc) && (i < 4)) {
-> +                       __buf[len_to_read++] =3D ((0xff << (8 * i)) & rsp=
-) >>
-> +                                              (8 * i);
-> +                       i +=3D 1;
-> +               }
-
-Is this ioread32_rep()?
-
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int spmi_write_cmd(struct spmi_controller *ctrl, u8 opc, u8 sid,
-> +                         u16 saddr, const u8 *__buf, size_t bc)
-> +{
-> +       struct apple_spmi *spmi =3D spmi_controller_get_drvdata(ctrl);
-> +       u32 spmi_cmd =3D opc | sid << 8 | saddr << 16 | (bc - 1) | (1 << =
-15);
-> +       u32 status;
-> +       size_t i =3D 0, j;
-> +       int ret;
-> +
-> +       write_reg(spmi_cmd, spmi, SPMI_CMD_REG);
-> +
-> +       while (i < bc) {
-> +               j =3D 0;
-> +               spmi_cmd =3D 0;
-> +               while ((j < 4) & (i < bc))
-> +                       spmi_cmd |=3D __buf[i++] << (j++ * 8);
-
-Is this iowrite32_rep()? Perhaps unaligned sizes have to be dealt with,
-but otherwise I suspect it would be more efficient to use
-iowrite32_rep() until the number of bytes is less than 4 and then do the
-one extra pack.
-
-> +
-> +               write_reg(spmi_cmd, spmi, SPMI_CMD_REG);
-> +       }
-> +
-> +       /* Wait for Rx FIFO to have something */
-> +       ret =3D poll_reg(spmi, SPMI_STATUS_REG, status, !(status & SPMI_R=
-X_FIFO_EMPTY));
-> +       if (ret) {
-> +               dev_err(&ctrl->dev,
-> +                       "%s:Failed to wait for RX FIFO not empty\n", __fu=
-nc__);
-                             ^
-Please put a space after  ---|
-
-> +               return ret;
-> +       }
-> +
-> +       /* Discard */
-> +       read_reg(spmi, SPMI_RSP_REG);
-> +
-> +       return 0;
-> +}
-> +
-> +static int spmi_controller_probe(struct platform_device *pdev)
-> +{
-> +       struct apple_spmi *spmi;
-> +       struct spmi_controller *ctrl;
-> +       int ret;
-> +
-> +       ctrl =3D devm_spmi_controller_alloc(&pdev->dev, sizeof(*spmi));
-> +       if (IS_ERR(ctrl)) {
-> +               dev_err_probe(&pdev->dev, PTR_ERR(ctrl),
-> +                             "Can't allocate spmi_controller data\n");
-
-This is likely redundant given that the spmi core API prints errors. I
-could see a patch that moves to dev_err_probe() there.
-
-> +               return -ENOMEM;
-> +       }
-> +
-> +       spmi =3D spmi_controller_get_drvdata(ctrl);
-> +
-> +       spmi->regs =3D devm_platform_ioremap_resource(pdev, 0);
-
-This already prints an error message so the dev_err_probe() later is
-redundant. Please remove.
-
-> +       if (IS_ERR(spmi->regs)) {
-> +               dev_err_probe(&pdev->dev, PTR_ERR(spmi->regs),
-> +                             "Can't get ioremap regs\n");
-> +               return PTR_ERR(spmi->regs);
-> +       }
-> +
-> +       ctrl->dev.of_node =3D of_node_get(pdev->dev.of_node);
-
-Drop the of_node_get(), especially because it never gets put.
-
-> +
-> +       ctrl->read_cmd =3D spmi_read_cmd;
-> +       ctrl->write_cmd =3D spmi_write_cmd;
-> +
-> +       ret =3D devm_spmi_controller_add(&pdev->dev, ctrl);
-> +       if (ret) {
-> +               dev_err(&pdev->dev,
-> +                       "spmi_controller_add failed with error %d!\n", re=
-t);
-
-Use 'return dev_err_probe()'?
-
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id spmi_controller_match_table[] =3D {
-> +       { .compatible =3D "apple,spmi", },
-> +       {}
-> +};
-> +MODULE_DEVICE_TABLE(of, spmi_controller_match_table);
-> +
-> +static struct platform_driver spmi_controller_driver =3D {
-
-How about apple_spmi_driver?
-
-> +       .probe          =3D spmi_controller_probe,
-
-And apple_spmi_probe?
-
-> +       .driver         =3D {
-> +               .name   =3D "apple-spmi",
-> +               .of_match_table =3D spmi_controller_match_table,
-
-And apple_spmi_match_table?
-
-> +       },
-> +};
-> +module_platform_driver(spmi_controller_driver);
+Rob
 
