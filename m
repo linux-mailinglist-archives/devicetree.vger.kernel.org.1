@@ -1,89 +1,205 @@
-Return-Path: <devicetree+bounces-154269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604B3A4F87D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:13:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B010A4F890
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:18:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BE633AA1A9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:13:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEBDE3A3E3D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A231EEA4E;
-	Wed,  5 Mar 2025 08:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70D9A1F76B5;
+	Wed,  5 Mar 2025 08:18:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="U4AZgIbJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp134-84.sina.com.cn (smtp134-84.sina.com.cn [180.149.134.84])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCC9C1EDA1F
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:13:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EFD51F584E
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:18:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741162406; cv=none; b=bnyNZ22c8MkrndNbq1bjfgacaEOmQRaai8Xpq5UqosHqLZmL7BqV8RbyFyRktB1/8zTkx+zzIF2vO++RMHLODyCCy1zg14qnWae1acPZmUffhh0y1kZsLAqnZn/838/S71eHyd2lm6q8ezj0VChchd+d9I/Tw5zXxA7K/ZJjhMY=
+	t=1741162705; cv=none; b=T1TSu5Jux4XnoF5rWQ1m66B+7lEzVTCTrWtT/9+sCjrzvEGhMouIJoryFdYHyB9QEl8eHhY63Q9+Nn25jJp/wyZvo0HmHq8Tp/rM0APL1RbWuaGP7SMevoe9AJBqwUCjtVTI/HiitR8p3Nn5qCZm5DTFgkDWjNHkGTaOwkQvdcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741162406; c=relaxed/simple;
-	bh=WKL8FMSMGvnNlMcxUFJmjaZmbXHta4bdVva6X43xUHE=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=pcB9IGBJHJJQUoJJF31891nGmc3LxksQlC69GJ7u34GRUscsDSYahCyVFJs6hCaixxQyMuPIUatSKDsZmthoPHKZdSPVRA4jwbKv5FEnlROUs/BQX422jf2r2qSGo8JYfl/BLbYoj+Q9/rH1+J3VUT8mRRPBFJjrhoh7y4HVjR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
-	by sina.net (10.185.250.29) with ESMTP
-	id 67C8079800007499; Wed, 5 Mar 2025 16:13:13 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 931F00EF7C0A4302A6C8BAFB9EC541E1
-X-SMAIL-UIID: 931F00EF7C0A4302A6C8BAFB9EC541E1-20250305-161313
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: krzysztof.kozlowski+dt@linaro.org
-Cc: tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Subject: RE: [PATCH v3 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-Date: Wed,  5 Mar 2025 16:13:11 +0800
-Message-Id: <20250305081311.86552-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1741162705; c=relaxed/simple;
+	bh=IfMSOKZTMOR/zUAsd33nCSnuKAx0Gro/YjVBG4QSDJc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=HrJkcBoswSRg7sKyMuTj+wbIeITg3kdvjA+iHNj+LcwQZM48gEMTLlWBy920oQULuEHUY0aHmNOLCRMBRLX1XLUXbnmgysz1NauqcOdtn2J0DxGTZ3qxRBRoOS1OKWZDVT2JkHjynh7/D4sUIPzWtgEhl+u97NCaJK1dpZLqhF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=U4AZgIbJ; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250305081820euoutp021d9fce893c5d3a21143137fa93141b8b~p2kBM0vFT0507805078euoutp02g
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:18:20 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250305081820euoutp021d9fce893c5d3a21143137fa93141b8b~p2kBM0vFT0507805078euoutp02g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1741162700;
+	bh=z4bDXZf0zsJpmZ4gA2EzfPRJzWcAnMN3iUbKKNxEAqw=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=U4AZgIbJrV0ftB2eAPxu4/Q1MpiU7XHy4CJk37GMm6A3SKoWflD3QOk6rP9NBpXrD
+	 MpOUWrNkmGXu8en1XNJuSblch/tleiU80mgmuBIjMvzQQ0jqBpOpEuRGH+Q9PweUPN
+	 8eSZvmr2zf9XYgaxq9FKfhrPJ2ifKJ/5XZkMggU8=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20250305081820eucas1p18a6b69372f0a694f81bb00b333eef309~p2kA06VGb2579125791eucas1p1Z;
+	Wed,  5 Mar 2025 08:18:20 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id 6C.C7.20397.CC808C76; Wed,  5
+	Mar 2025 08:18:20 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250305081819eucas1p1ad27dd6b7ef53e4ea95adfad46d9dca3~p2kAXXGKD2578725787eucas1p1b;
+	Wed,  5 Mar 2025 08:18:19 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250305081819eusmtrp14276678062258e5a01766bbc121cbd9f~p2kAWl2PV0646206462eusmtrp1R;
+	Wed,  5 Mar 2025 08:18:19 +0000 (GMT)
+X-AuditID: cbfec7f5-ed1d670000004fad-c5-67c808cc7540
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 2D.4B.19654.BC808C76; Wed,  5
+	Mar 2025 08:18:19 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250305081818eusmtip26ea063d1e2190b225e572c1a657e70ab~p2j-XBYUu0942709427eusmtip2F;
+	Wed,  5 Mar 2025 08:18:18 +0000 (GMT)
+Message-ID: <8ffa6276-299c-4a95-8c7d-cbe39c1a1457@samsung.com>
+Date: Wed, 5 Mar 2025 09:18:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/4] Add T-Head TH1520 VO clock support for LicheePi
+ 4A GPU enablement
+To: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
+	wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
+	p.zabel@pengutronix.de, m.szyprowski@samsung.com
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <20250303143629.400583-1-m.wilczynski@samsung.com>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOKsWRmVeSWpSXmKPExsWy7djPc7pnOE6kG1x8ymXx7M5XVoutv2ex
+	W6zZe47JYv6Rc6wW9y5tYbJ4sbeRxaL52Ho2i5ez7rFZfOy5x2pxedccNottn1vYLNYeuctu
+	cfGUq8XdeydYLF5e7mG2aJvFb/F/zw52i3/XNrJYtOyfwuIg7PH+Riu7x5uXL1k8Dnd8Yfe4
+	d2Iaq8emVZ1sHpuX1Hu0rD3G5NH/18Dj/b6rbB59W1Yxelxqvs7u8XmTXABPFJdNSmpOZllq
+	kb5dAlfG875WloJzUhWH795jb2A8KtrFyMkhIWAi8f/YLMYuRi4OIYEVjBKv959jgnC+MErc
+	atjJDOF8ZpT41P+eEabl9e7TYLaQwHJGicVHayCK3jJKbGh6zwKS4BWwk2jf/IoNxGYRUJGY
+	tKeHCSIuKHFy5hOwGlEBeYn7t2awg9jCAvESq+6tZgcZJCKwh0ni+/efzCAJZoEqiR33b7BD
+	2OISt57MBxvEJmAk8WD5fFYQm1PAXuLQ9QYWiBp5ieats8HOlhB4ximxbM5qoAYOIMdF4uZe
+	dogPhCVeHd8CZctInJ7cwwJh50s82PqJGcKukdjZcxzKtpa4c+4XG8gYZgFNifW79CHCjhI/
+	r89hg5jOJ3HjrSDEBXwSk7ZNZ4YI80p0tAlBVKtJTO3phVt6bsU2pgmMSrOQAmUWkh9nIfll
+	FsLeBYwsqxjFU0uLc9NTi43zUsv1ihNzi0vz0vWS83M3MQLT5ul/x7/uYFzx6qPeIUYmDsZD
+	jBIczEoivK9PHU8X4k1JrKxKLcqPLyrNSS0+xCjNwaIkzrtof2u6kEB6YklqdmpqQWoRTJaJ
+	g1OqgSnpG2foPjvGUyUTO033uRqu8zfoi5uusfvR7TsPTM+vtmsN5RKbIvf4tmD3j4sOITrH
+	Lk0SiSksNfkhx35pqQjHm9jwx999lzzKE1PrP7O+2uqc1mEetd+Se0K1PjIeubgioWPT3e0X
+	npuUJLryvn8086Wx3IMZvleePJOdMWnx3okdN068XKioslbIrJjjdtu2jQfVOrOnuxxRsar5
+	tnpvLKPewl8xs+dmilztFf/Tn+H44XJNy/k3r5feP7A4dVnMsydn2oLePxDY9OAV8wnPP5pP
+	J5Qe4xc8/OiJ89IUt79PTWZUvvqms+XPs/Z71e8XndUIP65yepXguuCsO00cLF+W8LQrfbb0
+	/H1Vp7KmXomlOCPRUIu5qDgRACgaknMKBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupileLIzCtJLcpLzFFi42I5/e/4Pd3THCfSDS63q1g8u/OV1WLr71ns
+	Fmv2nmOymH/kHKvFvUtbmCxe7G1ksWg+tp7N4uWse2wWH3vusVpc3jWHzWLb5xY2i7VH7rJb
+	XDzlanH33gkWi5eXe5gt2mbxW/zfs4Pd4t+1jSwWLfunsDgIe7y/0cru8eblSxaPwx1f2D3u
+	nZjG6rFpVSebx+Yl9R4ta48xefT/NfB4v+8qm0ffllWMHpear7N7fN4kF8ATpWdTlF9akqqQ
+	kV9cYqsUbWhhpGdoaaFnZGKpZ2hsHmtlZKqkb2eTkpqTWZZapG+XoJfxvK+VpeCcVMXhu/fY
+	GxiPinYxcnJICJhIvN59mrGLkYtDSGApo8SOs5fZIRIyEte6X7JA2MISf651sUEUvWaUuP74
+	GhtIglfATqJ98yswm0VARWLSnh4miLigxMmZT8CaRQXkJe7fmgE0lINDWCBeonGqNcgcEYE9
+	TBJ/p8wD62UWqJI4v/cKK8SCSYwSLVeWMUMkxCVuPZkPNpRNwEjiwfL5rCA2p4C9xKHrDSwg
+	Q5kF1CXWzxOCKJeXaN46m3kCo9AsJGfMQjJpFkLHLCQdCxhZVjGKpJYW56bnFhvpFSfmFpfm
+	pesl5+duYgQmim3Hfm7Zwbjy1Ue9Q4xMHIyHGCU4mJVEeF+fOp4uxJuSWFmVWpQfX1Sak1p8
+	iNEUGBQTmaVEk/OBqSqvJN7QzMDU0MTM0sDU0sxYSZyX7cr5NCGB9MSS1OzU1ILUIpg+Jg5O
+	qQYm/8TgDc/Y+kVnKxw0/Ve37wN//vmDD9o/V+5+M637mbvJswmMy1eWlQi8Lbj0f3VR0imj
+	61E5oV9mfJSN+FS0pOb37brWQ8mHGiveOomc/reu4WlZ69HKyGqTQ+t/7QxSi7804Wa3ypki
+	qbash2ZnZ3qUPpHcE2txIuiEut+a5aVfPa6wNocuZOzmCI+KPFoV3vvBxZDleK1o878NCUmP
+	D9lX9L57fvTPkiCp/3dfpMm8uzM3ReG08kurYyliTh4HJCZXljUu36914n//DHm/jf82BO1X
+	4Hybd68muWdniCN7s+im/4p/gsJDKza2d5+bc+eUy7zJdw/xFRiHh55cfIs3QLFULKD2Wlu9
+	sa6ZEktxRqKhFnNRcSIAeuKmp50DAAA=
+X-CMS-MailID: 20250305081819eucas1p1ad27dd6b7ef53e4ea95adfad46d9dca3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250303143634eucas1p269281f72bdc4d764edd54b9427f68787
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250303143634eucas1p269281f72bdc4d764edd54b9427f68787
+References: <CGME20250303143634eucas1p269281f72bdc4d764edd54b9427f68787@eucas1p2.samsung.com>
+	<20250303143629.400583-1-m.wilczynski@samsung.com>
 
-> > 
-> >>> +
-> >>> +  prefix_name:
-> >>
-> >> No underscores in node names, missing vendor prefix... but more
-> >> important:  I don't understand the need for this property. Description copies property name so it is not useful.
+
+
+On 3/3/25 15:36, Michal Wilczynski wrote:
+> This is a subset of a larger patch series enabling the Imagination BXM-4-64 GPU
+> on the LicheePi 4A board, which is powered by the T-HEAD TH1520 SoC. While the
+> full series includes power-domain, reset, and firmware changes, this part
+> focuses solely on the clock subsystem needed for the GPU and other VO (video
+> output) blocks. By merging these clock patches independently, we prepare the
+> groundwork for future GPU integration via the `drm/imagination` driver.
 > 
-> And these comments as well.
-
-The prefix_name is used to distinguish the dapm and kcontrol of each individual codec.
-And I will update name of the property 
-
-> > 
-> >>> +  everest,dmic-enabled:
-> >>> +    $ref: /schemas/types.yaml#/definitions/flag
-> >>> +    description:
-> >>> +      The property is a choice between PDM and AMIC
-> >>> +
-> >>
-> >> No supplies?
-> > 
-> > I will drop the property
+> The T-HEAD TH1520 SoC features multiple clock controllers. Initially, only the
+> AP clock controller was supported upstream. The patches below add support for
+> the VO (video output) clock controller, which manages GPU-related gates, HDMI,
+> and other multimedia clocks. Additionally, they introduce a mechanism to
+> provide no-op operations for the GPU's "mem" clock gate (documented as
+> “Reserved” in the hardware manual) and coordinate the GPU CLKGEN reset in the
+> clock driver.
 > 
-> I did not comment about dmic, but meant missing power supplies, which
-> usually are placed here.
+> Bigger series cover letter:
+> 
+> https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
 
-I apologize for misunderstanding your comment.
-But we don't have properties about the power supplies
+This series should be versioned as v6, to maintain continuity with the
+bigger patchset it is a subseries of. Please find below a changelog for
+the clock sub-series:
+
+v6:
+- squashed the "dt-bindings: clock: thead: Add GPU clkgen reset property"
+  with the "dt-bindings: clock: thead: Add TH1520 VO clock controller". As
+  a result, also removed the Reviewed-by from Krzysztof, since the new
+  resets property has been introduced, which is mandatory in the VO
+  case
+
+v5:
+- introduced a new macro CCU_GATE_CLK_OPS, which allows providing custom clk_ops.
+  In the case of the 'MEM' clock, it provides empty clk_nops. Later, this clock
+  is provided to the GPU node, thereby avoiding any ABI breakage
+- used the CCU_GATE_CLK_OPS macro to implement a workaround for de-asserting
+  the clkgen reset only after both core and sys clocks are enabled. This
+  sequence is required to properly initialize the GPU
+
+v4:
+ - enhanced documentation for new Video Output (VO) clock inputs in device tree
+   bindings
+
+v3:
+ - reworked driver to support multiple clock controllers through .compatible
+   and .data instead of using multiple address spaces in dt-binding. This change
+   allows to re-use the driver code for multiple clock controllers
+
+v2:
+ - removed AP_SUBSYS clock refactoring commits (1-6):
+ - instead of refactoring, I opted to extend the current driver and its
+   associated device tree node to include support for a second address space.
+ - resolved all checkpatch issues using --strict, except for the call to
+   devm_clk_hw_register_gate_parent_data().  The current implementation remains
+   preferable in this context, and clang-format aligns with this choice
+
+> 
+> Michal Wilczynski (4):
+>   dt-bindings: clock: thead: Add TH1520 VO clock controller
+>   clk: thead: Add clock support for VO subsystem in T-Head TH1520 SoC
+>   clk: thead: Add support for custom ops in CCU_GATE_CLK_OPS macro
+>   clk: thead: Add GPU clock gate control with CLKGEN reset support
+> 
+>  .../bindings/clock/thead,th1520-clk-ap.yaml   |  33 +-
+>  drivers/clk/thead/clk-th1520-ap.c             | 298 ++++++++++++++++--
+>  .../dt-bindings/clock/thead,th1520-clk-ap.h   |  34 ++
+>  3 files changed, 334 insertions(+), 31 deletions(-)
+> 
 
