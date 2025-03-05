@@ -1,255 +1,123 @@
-Return-Path: <devicetree+bounces-154241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89332A4F754
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 07:41:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5A86A4F763
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 07:45:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAFB01890A83
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 06:41:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E9B618902DE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 06:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAF81F8697;
-	Wed,  5 Mar 2025 06:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B3F21DA628;
+	Wed,  5 Mar 2025 06:45:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j/LlYFOt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dzs0A9Ba"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D6A1F8AC0;
-	Wed,  5 Mar 2025 06:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A141156F44;
+	Wed,  5 Mar 2025 06:45:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741156810; cv=none; b=q9aRE2VE/773INMlgsMU3S4QZuQRrU7jnw1alphfQmqWfsh7g96QazZ7vjwYBQEVbMcQktWzGnUHS61XMYWOP0PjRnQiAI7clSRuT/jKIdn8PCuMqGVyDIkHTdhqiammcGxzZ/jp21HR+QZALFdwzWmuRk2+iT0hMFl7CuEvOiE=
+	t=1741157141; cv=none; b=ZxWHX+tWTocpAoYA0WT/sVtiwNJIjq9f8bqCKz8bDF+whFq3jWr85+JP4GfFh2DAMmO0WGppLHTV5Ak367qW/7hIgg7JsKOZMtxfvIHyzw/oBUsvjXnxh6P8kf0rJ8teo5oNiRNfJKKmmncgzGfxzZyziSmD3X452qmttQE4U/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741156810; c=relaxed/simple;
-	bh=AGPOsmkN5Fae072sh/GeM7rngO+K7bS+aZizA0BpZdU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=umPvNwlNkWCHcPY7k0ozJTbfGZglOaZQeipaXh7AA3lYwY1yKe5SXABmCs6iqR49TKmuz7ZgSztVwWIwsPF6ZCeOJhH96YPCUDtemZmaJ3DBqfIQgC1QVP1zwSr1o2latK2CDcXj08SujEpS5Z01mQ8VBbiKfzt27xkdvL0JRBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j/LlYFOt; arc=none smtp.client-ip=209.85.222.182
+	s=arc-20240116; t=1741157141; c=relaxed/simple;
+	bh=auSqLtZpa8wrO19Iq/uk2LvKfjGhoCGt5+ZC/eDQM2I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X349bkzZvzB/D7d8Jj9r7yN6ZyqLZu0t6SUQzKntCwQZifmhmo/MV2JvMlt0MA94d6+exWFoTYBvwMBIqp0FPitKQnCNEjOcQwS+YL5KKWYPCh6IQHzJls29Boe782caEsMFwY7wUxT/QEX9zWoIKMOicgASkMtlqxsen0mxF+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dzs0A9Ba; arc=none smtp.client-ip=209.85.216.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7c3d0e90c4eso49499585a.1;
-        Tue, 04 Mar 2025 22:40:08 -0800 (PST)
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2febaaf175fso8289423a91.3;
+        Tue, 04 Mar 2025 22:45:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741156807; x=1741761607; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cY6Pi0eVXjTj4iYGf3V3W021FfEKM0ai79ohmKI0mfc=;
-        b=j/LlYFOt17K1wD0V3sGeDcP0hN5KIu361bG9rY6CCmK3blmB+mJtZHE51ofEli/VOH
-         OEFgqwGLcjDAqhIikyxvcNPUJOLtVN9j+CkVtxQYZ42GBuy4rBSSMGydEcbRSZtUXh82
-         Z6ih5VRjdVpGqxkr7AlMJU+WnDWNYTvcrNCMMpObfU3oAjmd5JZUvh05iOibV732up/J
-         6QVkBnHffgMMWyvxtlIYmQ016WTO0vxT5Y8AVrCwas9ZHReXs6WDPitQjk3mSPTlcV3A
-         blvb6q3YsCMe4emkP09n4JgB1t7su/2FgD6RjonVTnaS57I1gVQ4prsayfHUy3oRq/Fa
-         B5/w==
+        d=gmail.com; s=20230601; t=1741157139; x=1741761939; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=G8mCPsB48bmF8aTewO/RfZWrdCX2gTYrS/X2ZpOkCts=;
+        b=Dzs0A9BaM/H/Dlx0NvS1W1KfmzP1y4Nb5Konm1JNHkrwIOESGOwk0XTlBQT5MUhRO/
+         mXmAyyV0BYbnnlYNg9irP2Zt075nqo3n8tAP6/RdhBNRPKDd6Z7N+Hhygo5vISn8EhIl
+         uLo4egJN4RgWhGcmsXAzE7PMsHf+RDumR4UstzaSTTHzAlZHtq4dAz0+tycM2DT1J/U0
+         yH32d6cr3MFUxfSCFFVQ1fhmkFGkbr3X5uL8SoSKK8cqXYlK4WNR4gPfJ0bdoQkfGtoR
+         shaiMwgIBRJXU5f4GtK5BroW9haNBpVTUvNfYqGEDEz+Q8Tw1D18gpYrbG46OXZLZd3p
+         9lAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741156807; x=1741761607;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cY6Pi0eVXjTj4iYGf3V3W021FfEKM0ai79ohmKI0mfc=;
-        b=TULUDDMFElLKFa2KnQ1pnUsP5SmpZTk46fTIVmM7qD/YbG0B32BvfnuK5jPTdyITgG
-         uZ5/715vUc0+ncEo2uVAwgqgokbUCnGJK0khqrKFy2eQQodtbfFt3yOt/el3/6NDzW+U
-         wL2e6esYwLvJZA3XmnvcTmRlzowjsfleZPeIWRBKq1b3tYBP4o7Zps7yM6+Y3dQiaEGg
-         5MKwLGFGA3SMz4p9v5TVt2lfFzzvVOo1wnOtK7PsE1JoRmNT1Uj/hhSpy5krKe4KbX/u
-         yrwPMJ7jr+BWglf8udvX14aLLQGD0znEykTzepuE5IRKPaiDjAW0ue5fUw3kBReAd0ho
-         HPkA==
-X-Forwarded-Encrypted: i=1; AJvYcCW0zaLZzdOp1dUjjzTqgMOt6q2Xp01YNqcjH6gAfFjr/jvDxj0ZYZzD98PmLMdQ/YWmXyOIFX/SNdwRYWli@vger.kernel.org, AJvYcCXZ9wCKosTi8G3G4r0EeeAHI/Af95qKMCmTuW/qOCCCO7va1UHzjEUXHDgH5kGSoSvuUoOrioZftNeo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUXhImTPtixjp5qaVM2oMKbQWgGIMF6vwFo1VZBHdxh7h8A0Ke
-	Q8wPm028VzIXaWm4ZlKC8+DPK2VCcdd7w+RZOIwvTr2u3W+QDwSJ
-X-Gm-Gg: ASbGncsQrCI0YJpROcu2UXF9P25sV7pR3R11tAvhJhi3qp8PkvyUlvWo0cHRqjDcRFx
-	IzcUiB/8awtcEQszLLLt67X+km6x3LnzJFyD43qdyFlUerkmq3Nj99PsvrO5ne9PO24p7BH7XV8
-	kYxTWEJ6gyRGBCpd51uFP0mfuDtAl4d0IKRElSDFIgELBH9F8F+T+R6uFrBVgX9wPc7tF+Iq+v8
-	na779g/1V3+p9g+ppEtgYB3Lts8vu+X4GCwBrDceLH/BStlAz6lJqii4cahM4rTPJQIVrJeZTUo
-	3F4aKCqiPir6BWdJbSf5
-X-Google-Smtp-Source: AGHT+IGwtGEt3KqPtzEArH9EO6uoLdPaUjiF2hOKrwwHaDa+GSJgxxkM/g83OEgs0VgyrS2u3iChTw==
-X-Received: by 2002:a05:620a:2626:b0:7c3:c500:ca96 with SMTP id af79cd13be357-7c3d9172203mr291491985a.9.1741156807126;
-        Tue, 04 Mar 2025 22:40:07 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c3d9bcdcc3sm65443785a.60.2025.03.04.22.40.05
+        d=1e100.net; s=20230601; t=1741157139; x=1741761939;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G8mCPsB48bmF8aTewO/RfZWrdCX2gTYrS/X2ZpOkCts=;
+        b=gsA9+SeW+NAVGjXVy6GHRHYeo4GB4+gEPNSKRehn/beJZ1Ak9NRsqYQuOfXtsgeVzC
+         nLd1x9+3Uezr9DPW0PHdWFNFcJ0p+/h9Tagejyl/B9LKMIarKPPMfMzZMb47fJ8LNJ6Q
+         lHumXGJtjYWihRt8bHeWdorBFn7Ek9Jvuf7fbNCsplx4xEH2OLpo9w4PeVZPwo428d3j
+         kvfDGvyad08ToQc7HD3uhHpH60wCE4Ob9u6VQun7eUqECHeNDK2ddKYJXn/g8P3+YQ5b
+         k7FFo3G1KldonP4eIfJrgOlDy51GbWr/YC88BUEguMsmK0r3hvNK1bddT0gRD1Ws4Qt5
+         NtJw==
+X-Forwarded-Encrypted: i=1; AJvYcCVAxS1gWT5XPDnAF+ikxFsYnrAVVUEVoqykgBkzbOMF7wQH/cPVY4huAQRJgU/I391XShDzQTh1BE+T@vger.kernel.org, AJvYcCW12+5KB9FBN756hDyzRF73ShrdEL0MBRUqTFomVSBEePp6s6xisfnJ/uSWaettEkgmwn2V9txVBrRk31k=@vger.kernel.org, AJvYcCW2SOU9KGTBEqm00jatC2/3bINK2VJA1w8c8gAsfutkBbAJO12DMnBdKmOey4z/RB9riC4pP2lmTjXBRUo+3w==@vger.kernel.org, AJvYcCWYLhZBhjaRhQoqTt3wUpYu3/1sjyvq3EwWHNAkLF/JfZqL1CUr86rwVJtLZfVijpLLt9RJPKGh4Of1KM0Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxp6GU0nWCT8pDVa23tGAJCC2FxXHL4g7HfZ1XokVEirlYXYqpT
+	scJ577m4Kg2l0n/X+cCw9yAYcHiTGL52xSSTrx/dZ2JjgJ/5XKxNbVRkVw==
+X-Gm-Gg: ASbGncslMjX2Uq91r2KHPOzoYXzSAvQ07GqautoyKxWdF18jgh3r1X3iA3G8VBNJDUp
+	6qzNZs8e3C28KsQTkcwPSdUuJpUa4bMNGgb3dU4tZexrNPFFJE/JgozUzkryvZSv9VDBqoqJ0Sk
+	+GuTFCPsc2kElcwYBS/KfUmIRZdM5rb07ouhLYbTOfr84lDCpyhoA+zpGnukRwA0TGZPFrAlq11
+	rPwCCObB/CaCy0HzejSJdJqjm3uVqpVFZyfye9gVqUeNTy/SX8E1zaIUi626V/dLzbVSVBLvvWs
+	UYqBig6fb4dWZEoEFvzdYdmhbOFjDpt2vytx/5WdlA3wsg==
+X-Google-Smtp-Source: AGHT+IGVH2wtIlAGIOQtGVzGD0CuvkOPmb/y/Y1xOui07mAMEjGJ65jR706zmjbyQkUklwU66ojQhA==
+X-Received: by 2002:a17:90b:2d8f:b0:2ee:c2df:5d30 with SMTP id 98e67ed59e1d1-2ff49841e81mr3287562a91.26.1741157139110;
+        Tue, 04 Mar 2025 22:45:39 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:438c:d5a2:41a6:66d1])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ff4e7bda78sm626452a91.48.2025.03.04.22.45.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Mar 2025 22:40:06 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
+        Tue, 04 Mar 2025 22:45:38 -0800 (PST)
+Date: Tue, 4 Mar 2025 22:45:35 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: foss@joelselvaraj.com
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Hariprasad Kelam <hkelam@marvell.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
-	"Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>,
-	Simon Horman <horms@kernel.org>,
-	Furong Xu <0x1207@gmail.com>,
-	Lothar Rubusch <l.rubusch@gmail.com>,
-	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH net-next v6 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
-Date: Wed,  5 Mar 2025 14:39:16 +0800
-Message-ID: <20250305063920.803601-5-inochiama@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250305063920.803601-1-inochiama@gmail.com>
-References: <20250305063920.803601-1-inochiama@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: input: touchscreen: edt-ft5x06: use
+ unevaluatedProperties
+Message-ID: <Z8fzD-aF-hN0PeyD@google.com>
+References: <20250303-pocof1-touchscreen-support-v4-0-cdc3bebc3942@joelselvaraj.com>
+ <20250303-pocof1-touchscreen-support-v4-1-cdc3bebc3942@joelselvaraj.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250303-pocof1-touchscreen-support-v4-1-cdc3bebc3942@joelselvaraj.com>
 
-Adds Sophgo dwmac driver support on the Sophgo SG2044 SoC.
+On Mon, Mar 03, 2025 at 04:36:55PM -0600, Joel Selvaraj via B4 Relay wrote:
+> From: Joel Selvaraj <foss@joelselvaraj.com>
+> 
+> In Xiaomi Poco F1 (qcom/sdm845-xiaomi-beryllium-ebbg.dts), the FocalTech
+> FT8719 touchscreen is integrally connected to the display panel
+> (EBBG FT8719) and thus should be power sequenced together with display
+> panel using the panel property. Since the edt-ft5x06 touchscreen binding
+> uses almost all the properties present in touchscreen.yaml, let's remove
+> additionalProperties: false and use unevaluatedProperties to include all
+> the properties, including the needed panel property.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   | 11 +++
- drivers/net/ethernet/stmicro/stmmac/Makefile  |  1 +
- .../ethernet/stmicro/stmmac/dwmac-sophgo.c    | 75 +++++++++++++++++++
- 3 files changed, 87 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
+I believe this is better be merged through the arch tree together with
+the dts changes.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 4cc85a36a1ab..b6ff51e1ebce 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -181,6 +181,17 @@ config DWMAC_SOCFPGA
- 	  for the stmmac device driver. This driver is used for
- 	  arria5 and cyclone5 FPGA SoCs.
- 
-+config DWMAC_SOPHGO
-+	tristate "Sophgo dwmac support"
-+	depends on OF && (ARCH_SOPHGO || COMPILE_TEST)
-+	default m if ARCH_SOPHGO
-+	help
-+	  Support for ethernet controllers on Sophgo RISC-V SoCs
-+
-+	  This selects the Sophgo SoC specific glue layer support
-+	  for the stmmac device driver. This driver is used for the
-+	  ethernet controllers on various Sophgo SoCs.
-+
- config DWMAC_STARFIVE
- 	tristate "StarFive dwmac support"
- 	depends on OF && (ARCH_STARFIVE || COMPILE_TEST)
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index b26f0e79c2b3..594883fb4164 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -24,6 +24,7 @@ obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
- obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
- obj-$(CONFIG_DWMAC_S32)		+= dwmac-s32.o
- obj-$(CONFIG_DWMAC_SOCFPGA)	+= dwmac-altr-socfpga.o
-+obj-$(CONFIG_DWMAC_SOPHGO)	+= dwmac-sophgo.o
- obj-$(CONFIG_DWMAC_STARFIVE)	+= dwmac-starfive.o
- obj-$(CONFIG_DWMAC_STI)		+= dwmac-sti.o
- obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-new file mode 100644
-index 000000000000..3303784cbbf8
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-@@ -0,0 +1,75 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Sophgo DWMAC platform driver
-+ *
-+ * Copyright (C) 2024 Inochi Amaoto <inochiama@gmail.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+
-+#include "stmmac_platform.h"
-+
-+static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
-+				    struct plat_stmmacenet_data *plat_dat,
-+				    struct stmmac_resources *stmmac_res)
-+{
-+	plat_dat->clk_tx_i = devm_clk_get_enabled(&pdev->dev, "tx");
-+	if (IS_ERR(plat_dat->clk_tx_i))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat->clk_tx_i),
-+				     "failed to get tx clock\n");
-+
-+	plat_dat->flags |= STMMAC_FLAG_SPH_DISABLE;
-+	plat_dat->set_clk_tx_rate = stmmac_set_clk_tx_rate;
-+	plat_dat->multicast_filter_bins = 0;
-+	plat_dat->unicast_filter_entries = 1;
-+
-+	return 0;
-+}
-+
-+static int sophgo_dwmac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "failed to get platform resources\n");
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return dev_err_probe(dev, PTR_ERR(plat_dat),
-+				     "failed to parse DT parameters\n");
-+
-+	ret = sophgo_sg2044_dwmac_init(pdev, plat_dat, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	return stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
-+}
-+
-+static const struct of_device_id sophgo_dwmac_match[] = {
-+	{ .compatible = "sophgo,sg2044-dwmac" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, sophgo_dwmac_match);
-+
-+static struct platform_driver sophgo_dwmac_driver = {
-+	.probe  = sophgo_dwmac_probe,
-+	.remove = stmmac_pltfr_remove,
-+	.driver = {
-+		.name = "sophgo-dwmac",
-+		.pm = &stmmac_pltfr_pm_ops,
-+		.of_match_table = sophgo_dwmac_match,
-+	},
-+};
-+module_platform_driver(sophgo_dwmac_driver);
-+
-+MODULE_AUTHOR("Inochi Amaoto <inochiama@gmail.com>");
-+MODULE_DESCRIPTION("Sophgo DWMAC platform driver");
-+MODULE_LICENSE("GPL");
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+
+Thanks.
+
 -- 
-2.48.1
-
+Dmitry
 
