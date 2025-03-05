@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-154222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D636EA4F624
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 05:32:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36250A4F625
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 05:32:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 116C416CA05
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:32:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71EA4188C302
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AB11A23A4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9BBB1A304A;
 	Wed,  5 Mar 2025 04:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="aQhQLWxt"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="DhJRCQos"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6F0155A2F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6A82E3364
 	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 04:32:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741149156; cv=none; b=JJg6Y0yOjBMj4oaNwOs/Mzs++zo0k31BeSF4sJy0adkx8MYHaTy6lgZxQQxLnRuS2iW0BiyROyk//w0v+5h3mo6Djd/gWcBuqTA3p8EAjs0V1azL91G3Guh/c73hzmRTK97uVU+8ZGBaNJJa3etBgAh8qHhdLWIjqfD790qmL60=
+	t=1741149156; cv=none; b=vEYoQvBJ0/b19ghqkCzR58YzVlciauSnTlf7zjDFWuYH+vKx9oYJvjg1N+bjuRNIg5IzhX9zl0/Wh7PI7o3vwJPf55drZKZ8cwClAlKxvuXcC4yWm7AtRVZ+L84iV1ob9n+WAiaep4lOHtQIRLMxcG9QsL4Eift/Rnw4E3CNxsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1741149156; c=relaxed/simple;
-	bh=+/FT0FwkoqaX0ch5jOpi38MznhOBLxiaSxlAwdZOBX4=;
+	bh=ZV3usmNjZ66clgMEV8yceU5aYFqd6cFOc36j/puuvdA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jrgLmacP2fi+eM0AfjK+y6Ad86NfZhg/Yj0TPk4Cem9FZ6gCW2IdP+OdBvlQij77iUm5kzPY85wbvl7KR6/B+iQUQW93a3lupWbbfY3Kf1loeqPbo8qjHntcvk3Zb90/q0E0Klnv4tC66m3ng526Nt+wcc3H02sbi2cVeK7+e3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=aQhQLWxt; arc=none smtp.client-ip=150.107.74.76
+	 Content-Type:Content-Disposition:In-Reply-To; b=fWgXsuv1LFZrHLXxz8pgYLurzXV20YFcAkx0LSSjts25pMA8W6Kr04qdqDMLvfkmlPUKiH0YkG0EHhTojrTbDedbJiPzgFrnqCq07vMhV3FtWvGQM9tmU17HBtM0Y8QCEXpm/b8XCFnWoIutlXDz59HJxx9Zu/udx58QcnaYJPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=DhJRCQos; arc=none smtp.client-ip=150.107.74.76
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gibson.dropbear.id.au; s=202502; t=1741149152;
-	bh=3+l/3UIrx6DjDBYDuzovTRuglpTda7LCnA0QeVDaKzM=;
+	bh=n1LAXOVmR+tUZwEfEs3XI3eSt/A/thmxN0v1bzxB4/o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aQhQLWxtjeiRg5R45hN81cNmvEFrH9yJ8X14vXVSy4rjXxaOsBkr79OrhdODr3uip
-	 Z9kCNBoXrQDGyUken+6sz10t87BZ6FXEZqrpi79OeKua5Fx1cMYFfIfvY2++PWw4kX
-	 bd5QUucT7yfBhKzXxTk0uzyDS9oUr5/MsUXapUsRjbWJ2eRSumN4n9FfKsIoMJ2oMK
-	 GM9CUAiAC4d4NOiF/AxUMYwqjXYRu4aZt8hk1567CUBQWMIYBJ4XCvtOL4AYAVhypC
-	 ruae9HodVhwG4lxuBn8Nxb02gZkVHX/m0dHRQkxfavyuABPiXWg+2+Od+oMVObFBPG
-	 jYIF2yNyeH8aA==
+	b=DhJRCQosrQHAsJtBxX2ZHM1WrcMob76W/mcct+8RLBzUmIDmLLvv6V1aZEr3ile88
+	 R+FzqW8icz6dhfnQE3YKEWefN4csctvbiVcYdkx8N9Jo2WZlO0eCFripbz2zmFq+7q
+	 +xChWT4Z6yCZfuxFMBf1GOpiHoDx75RHeKU7JsNKEpl/sJXn5WQHOqeglxXEszNPVv
+	 0Y6xzZDFZAjU9LIIw2/bmS4AIttJdXLU9NWvT250Bw379FlFXYor1Tz/BX6iOK2R5w
+	 j85xtz3vYppVd9NCW61cQfk5b6I832hxEdaIT2R2upzkjwahmtiyFg8YmQIPMKbu4L
+	 AgT3ceKFcdOgw==
 Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4Z705X6rkJz4wyh; Wed,  5 Mar 2025 15:32:32 +1100 (AEDT)
-Date: Wed, 5 Mar 2025 15:27:43 +1100
+	id 4Z705X6zJlz4wcr; Wed,  5 Mar 2025 15:32:32 +1100 (AEDT)
+Date: Wed, 5 Mar 2025 15:31:13 +1100
 From: David Gibson <david@gibson.dropbear.id.au>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Ayush Singh <ayush@beagleboard.org>, xypron.glpk@gmx.de,
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, xypron.glpk@gmx.de,
 	Jason Kridner <jkridner@beagleboard.org>,
 	Deepak Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com,
 	Robert Nelson <robertcnelson@beagleboard.org>,
@@ -56,9 +56,10 @@ Cc: Ayush Singh <ayush@beagleboard.org>, xypron.glpk@gmx.de,
 	Pantelis Antoniou <pantelis.antoniou@gmail.com>,
 	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
 Subject: Re: [Question] Status of user-space dynamic overlays API
-Message-ID: <Z8fSv2rwhMA06Uik@zatzit>
+Message-ID: <Z8fTkTW-oTAT-NY4@zatzit>
 References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
  <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
+ <fed58d7b-d9af-402d-a215-a7e620239728@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,54 +67,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jQ1UWfr8D6ITUDin"
+	protocol="application/pgp-signature"; boundary="kS8QxXYfqfRLvfLY"
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
+In-Reply-To: <fed58d7b-d9af-402d-a215-a7e620239728@beagleboard.org>
 
 
---jQ1UWfr8D6ITUDin
+--kS8QxXYfqfRLvfLY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 24, 2025 at 09:37:56AM +0100, Geert Uytterhoeven wrote:
-> Hi Ayush,
+On Mon, Feb 24, 2025 at 03:39:41PM +0530, Ayush Singh wrote:
+> On 2/24/25 14:07, Geert Uytterhoeven wrote:
 >=20
-> On Sat, 22 Feb 2025 at 21:14, Ayush Singh <ayush@beagleboard.org> wrote:
-> > # Challenges
-> >
-> > ## Security
-> >
-> > The concerns regarding security seemed to show up in the other
-> > proposals. There was a proposal to have a devicetree property to
-> > allow/deny the application of overlays in some nodes, with default being
-> > deny. Was it insufficient?
+> > Hi Ayush,
+> >=20
+> > On Sat, 22 Feb 2025 at 21:14, Ayush Singh <ayush@beagleboard.org> wrote:
+> > > # Challenges
+> > >=20
+> > > ## Security
+> > >=20
+> > > The concerns regarding security seemed to show up in the other
+> > > proposals. There was a proposal to have a devicetree property to
+> > > allow/deny the application of overlays in some nodes, with default be=
+ing
+> > > deny. Was it insufficient?
+> > This is the most important issue: using DT overlays, you can change
+> > about anything.  There is no protection yet to limit this to e.g. the
+> > expansion connectors on your board.
+> > This is what the various WIP "connector" abstractions are trying
+> > to solve.
 >=20
-> This is the most important issue: using DT overlays, you can change
-> about anything.  There is no protection yet to limit this to e.g. the
-> expansion connectors on your board.
+> Thanks for clarifying. However, as I mentioned above, there are usecases =
+for
+> dynamic overlays outside of connectors. Specifically, for the usecase of
+> connecting random sensors to board pins. I do agree that any fairly well
+> specified connector should probably have it's own drivers rather than usi=
+ng
+> a generic userspace API.
 
-Right.
+I'm not sure that's just due to an insuffuciently broad conception of
+what a "connector" might be.  Note that to justify a dynamic overlay
+interface specifically you need to have *both*
+  1) a need to update *anywhere* in the device tree and
+  2) to do so at runtime, under userspace control
 
-> This is what the various WIP "connector" abstractions are trying
-> to solve.
+It's kind of hard to see why you'd need (2) in cases that don't at
+some physical level involve a "connector".. in which case (1) is hard
+to justify.
 
-Exactly.
-
-> > ## Memory Leaks
-> >
-> > Currently, updating/removing properties leaks memory. Was it one of the
-> > reasons for the rejection of previous proposals?
->=20
-> IMO this is a minor issue. I am sure this can be improved upon.  We just
-> need some way to keep track of which properties are part of the initial
-> FDT (and thus can't be freed), and which were allocated dynamically.
-
-Somewhat related to this, "unapplying" a DT overlay is not a natural
-operation, but we need it for a sane update interface.  The normal way
-of applying overlays is a lossy process.  Obviously, it's possible to
-make it reversible by keeping around enough undo information, but it's
-kind of a hack.
+How are these sensors being connected to random board pins?  If it's
+because those pins are exposed on some header, then it seems like it
+ought to fall within the definition of a connector.  If someone is
+just soldering onto them, it seems like an semi-permanent change that
+would be better handled at boot time.
 
 --=20
 David Gibson (he or they)	| I'll have my music baroque, and my code
@@ -121,25 +128,25 @@ david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
 				| around.
 http://www.ozlabs.org/~dgibson
 
---jQ1UWfr8D6ITUDin
+--kS8QxXYfqfRLvfLY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmfH0r4ACgkQzQJF27ox
-2Gfnww/+MsUumzeVRsxw9kHrpGKf37Io7N+tfjLUQGaTssaJo07DDwAlM3svO56c
-/j8+DbrFZzrbDiFpWVXE415q+YesOBArP/0fgUMJDd8CdJZIBNYOekKEoMDz1ZIS
-gQuJrJqDf0F1lJ53CVPW/XBAbajXMgOx3TvSpmKq/jzmlU7FXC+B8zXw2r2pf6kT
-1vxFxI8Y50P+2Ek4ZdJIlM4XRImPk0B9Xaz8tfLvjnL6iZZFV8nQAe1htiEHnAQZ
-vd/8We5B4tyal2GkEdj1b4I91+DybrvOUcEKUMX/inKWD3u2tzecQ6OgFgoE+5mp
-+9fcSKkq6U0PQ/4FLgfU6JA+QYdPMh93HoLlQBF44h7fRKUOMzhJQj5mlefnYtEt
-dm6ia47yQONVj16L55kWloE907zwuPXTrIsGLLPd6JZwykAlnpmdfooo+dS7UShl
-LphKkSr4xcMeKXalXF7zW961x9ym3nw/XCrBz325pqCju1pS+p70Ibnup5sAiRn/
-GoALH1mvoNMr8lgshQSL3SyMe77nXsNOvVxcWiPAzbjqvpR6dc88T1lPVN6xpsRh
-Inw730dSyFiR9Qxmm88ikwEBJN8+A4HoVrKWrtmd2AGK81MrAnwhDfKfqTEZw6vB
-qPjwPufcMe7Yoqh7SkhIGjS9S6BEhP+gEjygBS+h9nIdhDNzQKs=
-=Fj1H
+iQIzBAEBCAAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmfH05AACgkQzQJF27ox
+2GeGQw//XRMIKGx+2YtRpyww90t3bsNhWHOKzCOrEk+ZiFyB3EdfPZh5HFSk4Oo/
+QN1kravzZJJwXEcagxZC6nxsi67TZu++zhtQNwi39REppCYBBN9LNYUcPFq6r/6d
+A/Jy3bjzkWKNFcV7TFVQlNlrQyXb2DE+IeqXz1uT2yNvnnUSixTQAfs7svY/3CAO
+o1adU4V9VKE4Cr89kEHAMGQNgE6BXfwRUP/LlhabQg11MjLiGL+LJpFYdmFnV2Qn
+LtL6wqZtr2lBnVyZcnRD1948Ty+nBJQwDB+U6pbJ8EHlF1FnbvzcKXIWK6YOtliG
+JEOpRpHaE33mEjTfRimQLhHUPqNlTd+xAKSmwxn0VJ5n4Afv9AHvhSA3KQVlpFnY
+IypTN6rFZyMjX0Un1Nf9mw5Qbs1OKoI8g/gtSnh4edG90d8VR+sXp5BCKrJSjCJp
+1UicGJIFLS7HTtxda6gpRv+BjOuZIecbJyydXJHmg9KS1YQdSeabRY3ok6xWrFLx
+6Pqy2Tz7uN0vyYS/wG/EOlRZMYdXHLW7hQb8kocCgdafxTWdGEa9Tr9Pz+3tA4HI
+rL1DOSjrVK63nfVs4dG/TEV4F9VStWtcA5qytDU6CP40H0n7bSdrANw0H7ViGNEZ
+pikzM+xnkh66BDTGQpthC8DGaRt3Megv0GnESic/BVb+XtoUPvA=
+=UXsV
 -----END PGP SIGNATURE-----
 
---jQ1UWfr8D6ITUDin--
+--kS8QxXYfqfRLvfLY--
 
