@@ -1,148 +1,230 @@
-Return-Path: <devicetree+bounces-154439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5777FA5025F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:41:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E59A50267
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:42:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F23FE189C2E6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:38:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE12E3B4576
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FE6524E4DB;
-	Wed,  5 Mar 2025 14:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0D224EABC;
+	Wed,  5 Mar 2025 14:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o8paCwND"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B52A4248863;
-	Wed,  5 Mar 2025 14:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C0A224BC17;
+	Wed,  5 Mar 2025 14:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741185451; cv=none; b=BWRp0GhaMbrmnszorY9Ttom/wAPwB8yjXRtENO0n1A6WV7RFE8pKKhdOZhU5MgTbJIqKShGhnXa4fvSRSPvUnIoq0GpAk1abIIw30vAC0S32kRq9MVweIV8Tbai7GT5mm6KXenRQgKLHB97+FHr466Z1mJxecaqUEgK8W7XElkg=
+	t=1741185521; cv=none; b=AWsTIwxlaIkITn0iX09s7kc99SS5LR8Do1xVxRCYVD5vGBRg2f8rLfWjBt1PC42U9MytMRRFrAyWYCBtjktbUt4GcfYsRSRqZgMYOI7nCCajJ1KUeVP4//vHUR9XwRjsrQg1ijVRZAAuzkwk6JtAv82NhG/8xPr+QhfVfULDePI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741185451; c=relaxed/simple;
-	bh=FCa9GNr5wiSR3agXv7JxEUWV07u9VhwbOu9Cr08Q50Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PuGLrTUyJYvsHPpda6ssH/XInF22L8IsN8eybwaQS5KES+CHJN79Mm6Vdw82BapbSm2DgsszBForVh6EaG/4aSfaOAJn7LVGRFPx/fQx+hqeuM3N0QCvMSpBYXaNwpmxkhG3jfv8Z5gHkJIGAHuJxxyEj7B7NSKnlC1+WnbIffY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9A2F4FEC;
-	Wed,  5 Mar 2025 06:37:41 -0800 (PST)
-Received: from [10.57.64.200] (unknown [10.57.64.200])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0698C3F673;
-	Wed,  5 Mar 2025 06:37:25 -0800 (PST)
-Message-ID: <f56596fe-92e8-481b-b15b-29b531eaec32@arm.com>
-Date: Wed, 5 Mar 2025 14:37:23 +0000
+	s=arc-20240116; t=1741185521; c=relaxed/simple;
+	bh=4TB5DOPQd21hKHuqCzgn5hFKWa7l8WTPFGMMoIXKVUE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dZ4Y7qc+6lD2Kbcu8nxqfVys5aBcM9MWQpkInJe65bLxz7PJoC1plcyjhs4ggcfZJJnClsQXDW9lmmljph22+pmjkxRwmlTIp7FG4p5Y0VKCPUNXG7QlfqQA7aXRIz6byhWubxFe16sf9rYMwzn4zmgl57+nVjFkOCJ5kB3RlKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o8paCwND; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3645EC4CED1;
+	Wed,  5 Mar 2025 14:38:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741185520;
+	bh=4TB5DOPQd21hKHuqCzgn5hFKWa7l8WTPFGMMoIXKVUE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=o8paCwND1OXZaThX0PBLZWfCWlsxJ85F5H8VUjHQrn9/EBMgPgPJQEDjZ21qk5qTw
+	 OPPlKAEpsUSpBj5gMZ0xgHJ8IGSct0+CTaTYtJRUoUQ1vAjsnpx0QmkszxcTkCQK1f
+	 EnOzHP8+FM9qrjEJ8znAPwUg1mgVaUQo6oWRXHpuHlnLTIAKZqqK6UtHfPM7NqzI8/
+	 /y0k9aiJH+0XHNmZpCESikQdr7fQ4Bej3LtO47+8RIDIbQM02S90xuv6n3G9wD6jWR
+	 mrpLy/4PvwNuBgtTlUV/gSleToWNNn/w2gFGrXeNrd5hh+eYJ5HZJO3K9NL9XwtX0e
+	 JmFDe47NMYz1Q==
+Date: Wed, 5 Mar 2025 14:38:24 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: <lee@kernel.org>, <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <wbg@kernel.org>, <daniel.lezcano@linaro.org>, <tglx@linutronix.de>,
+ <catalin.marinas@arm.com>, <will@kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+ <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH 3/8] iio: trigger: stm32-lptimer: add support for
+ stm32mp25
+Message-ID: <20250305143824.138a2605@jic23-huawei>
+In-Reply-To: <20250224180150.3689638-4-fabrice.gasnier@foss.st.com>
+References: <20250224180150.3689638-1-fabrice.gasnier@foss.st.com>
+	<20250224180150.3689638-4-fabrice.gasnier@foss.st.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] thermal: thermal-generic-adc: add temperature
- sensor channel
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- Jonathan Cameron <jic23@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>
-References: <20250303122151.91557-1-clamor95@gmail.com>
- <20250303122151.91557-3-clamor95@gmail.com>
- <3bc7c5a5-8fe7-4c4b-a80e-23522922debb@arm.com>
- <CAPVz0n0yvw4kyYKSve9sSZEvcZrCYZ6RqCjFSO5OCqtvRZSfJg@mail.gmail.com>
-Content-Language: en-US
-From: Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <CAPVz0n0yvw4kyYKSve9sSZEvcZrCYZ6RqCjFSO5OCqtvRZSfJg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Mon, 24 Feb 2025 19:01:45 +0100
+Fabrice Gasnier <fabrice.gasnier@foss.st.com> wrote:
 
-
-On 3/5/25 10:06, Svyatoslav Ryhel wrote:
-> ср, 5 бер. 2025 р. о 11:52 Lukasz Luba <lukasz.luba@arm.com> пише:
->>
->>
->>
->> On 3/3/25 12:21, Svyatoslav Ryhel wrote:
->>> To avoid duplicating sensor functionality and conversion tables, this design
->>> allows converting an ADC IIO channel's output directly into a temperature IIO
->>> channel. This is particularly useful for devices where hwmon isn't suitable
->>> or where temperature data must be accessible through IIO.
->>>
->>> One such device is, for example, the MAX17040 fuel gauge.
->>>
->>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
->>> ---
->>>    drivers/thermal/thermal-generic-adc.c | 54 ++++++++++++++++++++++++++-
->>>    1 file changed, 53 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/thermal-generic-adc.c
-> ...
->>>
->>> +static const struct iio_chan_spec gadc_thermal_iio_channel[] = {
->>> +     {
->>> +             .type = IIO_TEMP,
->>> +             .info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
->>
->> I would add the IIO_CHAN_INFO_SCALE and say it's in milli-degrees.
->>
+> From: Olivier Moysan <olivier.moysan@foss.st.com>
 > 
-> I have hit this issue already with als sensor. This should definitely
-> be a IIO_CHAN_INFO_PROCESSED since there is no raw temp data we have,
-> it gets processed into temp data via conversion table. I will add
-> Jonathan Cameron to list if you don't mind, he might give some good
-> advice.
-
-I'm not talking about 'PROCESSED' vs 'RAW'...
-I'm asking if you can add the 'SCALE' case to handle and report
-that this device will report 'processed' temp value in milli-degrees
-of Celsius.
-
+> Add support for STM32MP25 SoC. Use newly introduced compatible to handle
+> this new HW variant. Add new trigger definitions that can be used by the
+> stm32 analog-to-digital converter. Use compatible data to identify them.
 > 
->>> +     }
->>> +};
->>> +
->>> +static int gadc_thermal_read_raw(struct iio_dev *indio_dev,
->>> +                              struct iio_chan_spec const *chan,
->>> +                              int *temp, int *val2, long mask)
->>> +{
->>> +     struct gadc_thermal_info *gtinfo = iio_priv(indio_dev);
->>> +     int ret;
->>> +
->>> +     if (mask != IIO_CHAN_INFO_PROCESSED)
->>> +             return -EINVAL;
->>
->> Therefore, here it would need to handle such case as well, when
->> a client is asking about scale.
->>
->>> +
->>> +     ret = gadc_thermal_get_temp(gtinfo->tz_dev, temp);
->>> +     if (ret < 0)
->>> +             return ret;
->>> +
->>> +     *temp /= 1000;
->>
->> IMO we shouldn't cut the precision if it's provided.
->> The user of this would know what to do with the value (when
->> the proper information about scale is also available).
->>
-> 
-> The it will not fit existing IIO framework and thermal readings will
-> be 1000 off. I have had to adjust this since my battery suddenly got
-> temperature reading of 23200C which obviously was not true. With
-> adjustment temperature will be in 10th of C (yes, odd, I know but it
-> is what it is).
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 
-Your battery driver should get and check the 'SCALE' info first, then
-it will know that the value is in higher resolution than it needs.
-Therefore, it can divide the value inside its code.
-Your proposed division here is creating a limitation.
+Hi. I'm not really following why you can't use devm calls for the
+trigger probe path and hence why you need the explicit remove.
+Feels like a lot of infrastructure and I can't see why we need it.
 
-You shouldn't force all other drivers to ignore and drop the
-available information about milli-degC (which is done in this patch).
+Jonathan
+
+
+> @@ -54,25 +82,49 @@ bool is_stm32_lptim_trigger(struct iio_trigger *trig)
+>  }
+>  EXPORT_SYMBOL(is_stm32_lptim_trigger);
+>  
+> -static int stm32_lptim_setup_trig(struct stm32_lptim_trigger *priv)
+> +static void stm32_lptim_unregister_triggers(struct stm32_lptim_trigger *priv)
+>  {
+> -	struct iio_trigger *trig;
+> +	struct iio_trigger *tr;
+>  
+> -	trig = devm_iio_trigger_alloc(priv->dev, "%s", priv->trg);
+> -	if  (!trig)
+> -		return -ENOMEM;
+> +	list_for_each_entry(tr, &priv->tr_list, alloc_list)
+> +		iio_trigger_unregister(tr);
+> +}
+> +
+> +static int stm32_lptim_register_triggers(struct stm32_lptim_trigger *priv)
+> +{
+> +	const char * const *cur = priv->triggers;
+> +	int ret;
+>  
+> -	trig->dev.parent = priv->dev->parent;
+> -	trig->ops = &stm32_lptim_trigger_ops;
+> -	iio_trigger_set_drvdata(trig, priv);
+> +	INIT_LIST_HEAD(&priv->tr_list);
+>  
+> -	return devm_iio_trigger_register(priv->dev, trig);
+> +	while (cur && *cur) {
+> +		struct iio_trigger *trig;
+> +
+> +		trig = devm_iio_trigger_alloc(priv->dev, "%s", *cur);
+> +		if  (!trig)
+> +			return -ENOMEM;
+> +
+> +		trig->dev.parent = priv->dev->parent;
+> +		trig->ops = &stm32_lptim_trigger_ops;
+> +		iio_trigger_set_drvdata(trig, priv);
+> +
+> +		ret = iio_trigger_register(trig);
+
+I'm not really following why you can't use devm_iio_trigger_register() here
+and avoid your own tracking with the list below.
+
+
+> +		if (ret)
+> +			return ret;
+> +
+> +		list_add_tail(&trig->alloc_list, &priv->tr_list);
+> +		cur++;
+> +	}
+> +
+> +	return 0;
+>  }
+>  
+>  static int stm32_lptim_trigger_probe(struct platform_device *pdev)
+>  {
+>  	struct stm32_lptim_trigger *priv;
+> +	struct stm32_lptim_cfg const *lptim_cfg;
+>  	u32 index;
+> +	int ret;
+>  
+>  	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+>  	if (!priv)
+> @@ -81,23 +133,42 @@ static int stm32_lptim_trigger_probe(struct platform_device *pdev)
+>  	if (device_property_read_u32(&pdev->dev, "reg", &index))
+>  		return -EINVAL;
+>  
+> -	if (index >= ARRAY_SIZE(stm32_lptim_triggers))
+> +	lptim_cfg = device_get_match_data(&pdev->dev);
+> +
+> +	if (index >= lptim_cfg->nb_triggers)
+>  		return -EINVAL;
+>  
+>  	priv->dev = &pdev->dev;
+> -	priv->trg = stm32_lptim_triggers[index];
+> +	priv->triggers = lptim_cfg->triggers[index];
+> +
+> +	ret = stm32_lptim_register_triggers(priv);
+> +	if (ret) {
+> +		stm32_lptim_unregister_triggers(priv);
+> +		return ret;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	return 0;
+> +}
+> +
+> +static void stm32_lptim_trigger_remove(struct platform_device *pdev)
+> +{
+> +	struct stm32_lptim_trigger *priv = platform_get_drvdata(pdev);
+>  
+> -	return stm32_lptim_setup_trig(priv);
+> +	stm32_lptim_unregister_triggers(priv);
+
+Why not a devm_add_action_or_reset?
+or for that matter a devm_iio_trigger_register() in the first place.
+
+>  }
+>  
+>  static const struct of_device_id stm32_lptim_trig_of_match[] = {
+> -	{ .compatible = "st,stm32-lptimer-trigger", },
+> +	{ .compatible = "st,stm32-lptimer-trigger", .data = (void *)&stm32mp15_lptim_cfg },
+> +	{ .compatible = "st,stm32mp25-lptimer-trigger", .data = (void *)&stm32mp25_lptim_cfg},
+Why cast away a const then pass it to a const void *?
+
+That is I don't think the casts are needed.
+
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, stm32_lptim_trig_of_match);
+>  
+>  static struct platform_driver stm32_lptim_trigger_driver = {
+>  	.probe = stm32_lptim_trigger_probe,
+> +	.remove = stm32_lptim_trigger_remove,
+>  	.driver = {
+>  		.name = "stm32-lptimer-trigger",
+>  		.of_match_table = stm32_lptim_trig_of_match,
+> diff --git a/include/linux/iio/timer/stm32-lptim-trigger.h b/include/linux/iio/timer/stm32-lptim-trigger.h
+> index a34dcf6a6001..ce3cf0addb2e 100644
+> --- a/include/linux/iio/timer/stm32-lptim-trigger.h
+> +++ b/include/linux/iio/timer/stm32-lptim-trigger.h
+> @@ -14,6 +14,15 @@
+>  #define LPTIM1_OUT	"lptim1_out"
+>  #define LPTIM2_OUT	"lptim2_out"
+>  #define LPTIM3_OUT	"lptim3_out"
+> +#define LPTIM4_OUT	"lptim4_out"
+> +#define LPTIM5_OUT	"lptim5_out"
+> +
+> +#define LPTIM1_CH1	"lptim1_ch1"
+> +#define LPTIM1_CH2	"lptim1_ch2"
+> +#define LPTIM2_CH1	"lptim2_ch1"
+> +#define LPTIM2_CH2	"lptim2_ch2"
+> +#define LPTIM3_CH1	"lptim3_ch1"
+> +#define LPTIM4_CH1	"lptim4_ch1"
+>  
+>  #if IS_REACHABLE(CONFIG_IIO_STM32_LPTIMER_TRIGGER)
+>  bool is_stm32_lptim_trigger(struct iio_trigger *trig);
+
 
