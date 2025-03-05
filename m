@@ -1,193 +1,138 @@
-Return-Path: <devicetree+bounces-154281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC946A4F8FD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:41:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3660EA4F917
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:46:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83DA37A34F1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:40:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 660D216320A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444711FC117;
-	Wed,  5 Mar 2025 08:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64F71FDA62;
+	Wed,  5 Mar 2025 08:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="b9o0mnC4"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="h8rhsKs0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2088.outbound.protection.outlook.com [40.107.93.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33F9142AAF;
-	Wed,  5 Mar 2025 08:41:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.88
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741164073; cv=fail; b=YW/tC4SrMsUdEEu9jhcfz8+V2/sNvnVGp67J2BUAmKzihskDAs46RLf7kInTxAF4EWs9rXMIypmeFEdvgpqLIOtA0adGkR8J1vRS+lxH3qXK7bsXCk3Kr4mSLQhrZ/Vpynx1cN4srTHD/Rhlmd7qaqhzqZ31r6+qmRTpo7t9/dY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741164073; c=relaxed/simple;
-	bh=Oh0ugGWFtllahK7ljAvy/HBScQO2/yYQrN8UyZFaQVg=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=gsAer59VlhPXFUXK52N5JDgm7HD7LBCH24k3FSeNSF5ep11eUTUpx3cjxSxwShWZ3bMPlrqj9ScE0NaItiWCUGzlQQ5OXh6ylhdHZnQTbiJVcUyCyq3qwZ3/gKUsknvB/szvfm148LX3AEgtbn6Mp0pXt6mb/awzLKGy7VOYGsQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=b9o0mnC4; arc=fail smtp.client-ip=40.107.93.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yBNWPpV7daGzOLg7DT1/nlXbUUznogByLwrsBmiq03oqNYMJiFwegUw3jDxFN4UKf5nZrTgzTrgLPZVYPTXzERIjP27HK4KbN2A8E6GRj1JE7ZDwFCjg+999fXnN1UgZYqJF/iXbq5RuFBRsFpyf5swdkaC6N8Jh7xVUfU8EYN3JlDSPRpoxn+WUWfOgL5QvyUfVlq1JzgNdJxVT9Uy2ehJF/hyFvWz6B4uB6ZOv6Ta0axsfLyxnPgeczkSRg4p54fNKAYv+FrQ2UuooJ9Z+6QNbjvCFEb6lvsOI1crDtvNzabgmdIRIZzIrPnspykO4x2Q2iFFpshFLnr4462BXbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Oh0ugGWFtllahK7ljAvy/HBScQO2/yYQrN8UyZFaQVg=;
- b=Vsru4mmzAEWhqe3vUztMRLPiEN2WshDASzN64ICWTABrY/6fz1f52X3ltNjNKFFjaqZlnMkYMyd7+V00N66hcp9rT75WVUWmAISL3Jf66Bsulmy3pruY8hDLoLMWlJg/1h412UEY7j/K2MQIajPw7OP0NJBLmlAlMShfffUR1q3N/jR6JLcttTJnN3XZEpO2FlGJ2HXK3s/B2TvX4ZZQbRccUuQOb90I4copHVem2IpIEqmOxeozrRq2//hTQAzJsA/0E8xOkIB8C0eVb9AwlMyJ18ST5MgXs25D38XRBrVqC/UIqIzRD6oCtWDtmv52Jm6vTG/6sSKrtZeGAtNSgQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Oh0ugGWFtllahK7ljAvy/HBScQO2/yYQrN8UyZFaQVg=;
- b=b9o0mnC4UMx2Zqwgy9VIBe0mz8GQ8NbZQ0gMozDppVmi850+DDGyHItE4P8zYOww1DyWCG2M4yfYtg49xd+9/h+TNhKpXk5V5qlBqwq/+MC3igtA7pL24HjqBgoVaxGuMQdiOnCBbNG/DVoLmOLpjiGHeheAABhu5FdE7dnmvzvmgdIW3uSXxwCQlawq8/Hx8Ord2WwejfP3mzszT3kFJZEaUcaq1SF8KrtElvTta8hIgxOQuF0f0ZiDP+jIUxRI9bSfvLFIA/J0A94h+cNKH73mNkXXAskW7uosn31tBjVSWvVTuIL6kfvac/O97PUgMDVE+vAmxY2dRl8RnoP4Gw==
-Received: from SA0PR11MB4719.namprd11.prod.outlook.com (2603:10b6:806:95::17)
- by CY8PR11MB6820.namprd11.prod.outlook.com (2603:10b6:930:60::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.28; Wed, 5 Mar
- 2025 08:41:08 +0000
-Received: from SA0PR11MB4719.namprd11.prod.outlook.com
- ([fe80::5303:b2dc:d84b:f3b2]) by SA0PR11MB4719.namprd11.prod.outlook.com
- ([fe80::5303:b2dc:d84b:f3b2%7]) with mapi id 15.20.8511.017; Wed, 5 Mar 2025
- 08:41:08 +0000
-From: <Varshini.Rajendran@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <sre@kernel.org>, <p.zabel@pengutronix.de>,
-	<Mihai.Sain@microchip.com>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v8 0/9] Add support for sam9x7 SoC family
-Thread-Topic: [PATCH v8 0/9] Add support for sam9x7 SoC family
-Thread-Index: AQHbGww0eNfdnuYAy0uOwjFkVwXjc7NlHpGA
-Date: Wed, 5 Mar 2025 08:41:08 +0000
-Message-ID: <e984d79a-f687-4c2a-ae70-32645ba6d14e@microchip.com>
-References: <20241010120142.92057-1-varshini.rajendran@microchip.com>
-In-Reply-To: <20241010120142.92057-1-varshini.rajendran@microchip.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA0PR11MB4719:EE_|CY8PR11MB6820:EE_
-x-ms-office365-filtering-correlation-id: a32ccba0-3c32-48fc-4343-08dd5bc179c6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?utf-8?B?M1ZZMncwRi80UzdoendyUWxRdHc5OWtRVU1zV1hEZ3I3SlZNTm9MMzArNTdV?=
- =?utf-8?B?N2hxbVI0R0ZRQkdLUW9lZlB2NnoxTWlySHVDdDVkdExXNW9HcFZWYWR2MnA0?=
- =?utf-8?B?elRKRkN0cVJZRk9nRzhxSG5oWDhYeWNtUUpQTC9PY2p4UzdJejlpZWpGWmxq?=
- =?utf-8?B?cXRQdEVOZnNacXJOUnhSeXNGKzY5YVdGVXdPUDl5S1ZMUTZuUVhBb1Jjc0ZD?=
- =?utf-8?B?TWNCR2lpczRRUnRhbTZaV1k3dk9iSDhWZTRITlVJYWh2cXNJVjdodHkrdDFE?=
- =?utf-8?B?by9zaThBa2VLUENPVUhHUndYWWdLVnVxZitsczBKWjVRbzMySzJucTFwWUsy?=
- =?utf-8?B?Z2FhWkZWTnFUbTJha1NNVFhnQ1ZMT3p6b0lSeDNwc3Ywd1hZUUtCMFBEa1Fm?=
- =?utf-8?B?WWJtSEhySGhHUHI4bjVFTmJrakFqTmk3Zy9wK2dpQTh6TnpjcWdWZTZVMEg3?=
- =?utf-8?B?NWdKcU1kc0tqMldscVJyeDBHczdLU3pyZ244VkM0N3F3cU5GU3E5bm9FRGdn?=
- =?utf-8?B?cHFqZ0FyWGxWM0RHVlhhcXo3VWZXczBmRVRoK3FkTlpWOUVtd3Y0UVVacFJv?=
- =?utf-8?B?Q01HaExhbGduU0t1T2RHOFFOaERNUkVZU3FkdDhRaTQrRE5SeE5Pb0k3WjBT?=
- =?utf-8?B?OSs4dVVLMS9ieGpMUE5PSTN5SDl5NitZOFFDcFFrY1BOUWJDRE1Fdy9WQ2px?=
- =?utf-8?B?YzdxZ2tsaHFYMkdHVEN1N2FPbjF3TTNCSFdVRUNONEUrZTgvR0QxMWpXMjhU?=
- =?utf-8?B?UmJZcXJBL3R1cjBXRm96OVROZjBHeFExUlFDMmJreTdvejR6VU9pT3JXcWNM?=
- =?utf-8?B?VHZRaGJ5dTBSbnVpWWRkSXZPTE1FQmwwUll1ZHE3emVjbkN2bEM0M0RYT2xU?=
- =?utf-8?B?TXlYZWhXbGJKc29WU1F3VmtEdGNmRmJ6Sko4UmwvbmZGMGNVSjZ3WGZ5MmpY?=
- =?utf-8?B?Mk8xMU9GL1BWall5Q0lMd0VsZ2VKb1RTWHc1eTRhRkVwZUxUVDIrakNVanBh?=
- =?utf-8?B?UC9wbUlzUnpjYlYzN2hpT3FaYmZmUEY5L01VUk5pTXVlWVg1cjRHR2dQTGUv?=
- =?utf-8?B?NXB1Vy9Odm5TNmwvS0t1aDNYS1lCem5FY1U4SHl0ckkwaW9vaWNlVnlpMHNZ?=
- =?utf-8?B?R05vNzk1VHRlaU5HZGpFZE13clQ0bGEySUdDSVgvOW81U2pIVFZRMm5DWmRa?=
- =?utf-8?B?VFpPREdxWExmWHA5TElCREU1MWVzS1p3NzVYbkQ5dzJ5RjhtZE9WNE9odlBn?=
- =?utf-8?B?YU0vNHdVK2xxSGRlK29BbUNvZU9hMGt0cmpzdy9FbDZyUVR0SnhkZUxGblBo?=
- =?utf-8?B?ZDFWVTAzRktweVRUVU9KeWRKekIrSlZKZjlZRlBGaDBqKzF6TDBqcXJYSUxv?=
- =?utf-8?B?R1dGd0VpeG02bEFXSnIzbitWV1BxbmN6REFrdXpRSXZnUlh5cG4vZnRsWE5s?=
- =?utf-8?B?YlhxdlFhVHh3dXZOa1NJemEwVkYyVW1IbkpoVzlyczdIU3Z0RnhFZWxmNkE2?=
- =?utf-8?B?MjllUUxlbEdTZCsvcDFwV3U0STlvSTduK0x4VDNTNUZESDUrU040YnB6WVVL?=
- =?utf-8?B?NXVyaVNCanJ6WWd2dFMzYUJnM3UrY2drZmNTbUxZM3p4VllYSGQ5NjVyamlx?=
- =?utf-8?B?SjFTUkFYQjVvWnhLeUFhMFNNZ2lrN0FsejFCSjhpZ0N6SVRCTUZoOWZ3dm9E?=
- =?utf-8?B?UmErMHlYWkJUaHFacUtJWlM1SWJvak9sZTd0Y0xLc21xbmc5ZVlYdmFwaEow?=
- =?utf-8?B?dkVKRWcxQWNITlFPQkFNM05vM0wwUFgwL0xQQ3NkSElCVUJ5SDNRK2ZTR2tz?=
- =?utf-8?B?ellLREpPY3dzQXhiQ2tmeFdzb1IzMkJqNm8xamxvandZNWV6Yk5PSFJJVkF2?=
- =?utf-8?B?YU5iVlF5cnJ5RGU4Zkc4TFNqZlQ2MEpQcm9OT1ZMUDY2RFA5K2p0eUpPbTRS?=
- =?utf-8?B?V1p5bFJLMHFLTVdWa2RDLzFkUHk5M1lmR0lCY2dWcXV4THVIb2o1aWxsVUhm?=
- =?utf-8?B?WWZ3a0FxT1BRPT0=?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA0PR11MB4719.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?ZFFCejEzdWR1dlFmdlg0M2hUTVUrcUpYN3BlZllIL0ZnUjhTTWJxN1drTVJo?=
- =?utf-8?B?dlhBTm5pdTRieTc5SWx4YkNXVnpLTkNrS1JOenVyOGk2RVQrSnVVQmxYT3Vx?=
- =?utf-8?B?Nkt5U1l3QSthMU1tanpLL1lxNVQyZzAyRWJVOG5KTTFTdnl3bTdGNUFaRVFk?=
- =?utf-8?B?RTZrNkFvTjJVZjMxNjJWNFJ3d2dHOUxETUpGcjFNbTdWWUl6K3Vhbm1FVlhG?=
- =?utf-8?B?ODVVZlovTnMvYlFTcVRNWCtSTVczRDJFZDN3K2c2VUtLUEpJbnk1S3Z2TW10?=
- =?utf-8?B?MkoxMUUzcSs2YlhoVVFhL083aVFseVFrOFR4WmlscEhxNXU3SWJhNXdZS094?=
- =?utf-8?B?a2hINlNmU2cxak9rRnRwYnBoOEN5OWlwMXR6NmtuQzdWTFFIWENWZXphUjlh?=
- =?utf-8?B?a1pMOFF1MW5SdEs3dWQyclRLQTVhZ2p1WWtTb1UwUFZLYWdxTjI5bHF5cmJD?=
- =?utf-8?B?VjlmNWlzaTYrVjdTNEJSSlArRklhTjliVk5nOHU3N3JDb3Qyc3lIbXVxMEVL?=
- =?utf-8?B?OHdBOWx1ZnZML3FOQTFVM1ZKNitOVHdiRnJISTcyVjVZQXB6QzFwWjBkVjVs?=
- =?utf-8?B?NnJEY2xFeWdRQ3RRNnR4c1FUNEg0M0J2V1hMRnRKcDJraEhEK3lLQ244aTdx?=
- =?utf-8?B?djNkUmN1NUJZR2V2NnB2VFU2K3JBTUsrWnlFSFBnbDlPcENVWStySEJpb01M?=
- =?utf-8?B?YmQ2a05zVkpMVWhUVy83cXpsRUZuTXFVWExTTGxuc2tOb2p0SG5Wc0xjL1Nv?=
- =?utf-8?B?UjBNUzZ4Ri9KRHNTdU9rSThmNk94NXc0bUozYnB6dVlQME9GMzRnaFgvTXNP?=
- =?utf-8?B?a1E2NXJQbVV4cHZ2VWpRZnhJUDBYcUNjaUMwT3d5c0x6dlJyT2Z6SFFvRU1k?=
- =?utf-8?B?TmxCaVV3UURBdHZYUFp3c3Nad2hzQTJONUtVcXhIekxvRk5RajVDdkRsMVBZ?=
- =?utf-8?B?N0prYmJFT0V4SXdaa3ZUL3AwM2c2QUUwWUx0V3k2OUhWdk5hZ3FGRFRZT0pQ?=
- =?utf-8?B?RFV2Q2Vjd0tGcTA1UitpUGNveE1BbDdUbVFwei93YS9kQ1QxNEdRMmV1c2tI?=
- =?utf-8?B?VmhYSHVKd2pWNVM1L25QeWJPaWNxL1B4ZXBJNFFERzFGUGdCSUR4V0l1OTNq?=
- =?utf-8?B?RVZabEFDOW8wUnB3VEJOVWhoNUI5a2NKNzJZNUFFdnJrYWxLdXJUbTZsK1Bs?=
- =?utf-8?B?cFZPZ0t3NU4yaDc5R0d2M29PSDNxd09xTTV6MTdBYTVMZ2FhRFhORmtKczQ2?=
- =?utf-8?B?T2pHSXdoQytNaUk3ZkdtTENDSjJvRFRNWDk1REhLUTJuVGRUSFQ1dnR1dlFu?=
- =?utf-8?B?VjZwb2FjVFZSVzZ1a2E5N0g3c3crRnV0bmFlUkd6TURiQ25iN1NLOUp0NE15?=
- =?utf-8?B?NUF3ZHZIOVV2SzVEVnJXb0FHdkZIYmNIQTZ5cDBPTk1vNURPWWdCdExsdUVh?=
- =?utf-8?B?L1ZTNjgvZTRkMjZxcjdyaHMxM2c4dnYrS2YrMTRZYWxpS1FkMjNpVy91aTIz?=
- =?utf-8?B?RWt5S2JYalVPZXcvU0krbFVrTk5oM283ZXQraCtmRzRkNHdxZHEyOExPeU1O?=
- =?utf-8?B?L1VOMTJpai93emwwMnkvblJoRXRLQmo5dElJSFYwK0hXU2xWUnExalVLRGZV?=
- =?utf-8?B?OE1wS3o0OTVFM0djYmZIZG96ZXNIZFN0aE44SUxRY2ZYRjVtdGs1QXhPQk9n?=
- =?utf-8?B?UzZsMGNwTzI1dm8reVh6aDVYQ29PR3RjZFJIMk81VU1HNGxXdi83OXN5Q3Fs?=
- =?utf-8?B?cVdWcTdRbEhsUGFXZ2x5Sk0wRitkRG9ISmpyMC9FSjNQY1R3ejl5Q1cya3ZF?=
- =?utf-8?B?M1ZOc3ViWmN1T3NzQS8yd1N5NmRkQk5CS25YelJqM2p6enFZNjBvRzFqQVJN?=
- =?utf-8?B?eXY5RWlWRU01bXFzQWRHYzZGZFBlNVlDRm9KajBTaDZZT2RPQjM2eGV3ZVRB?=
- =?utf-8?B?Q25XN2h5K0MrTlJGMGpHVC81WFRaN0d6VFZMdGtuMHpPMHBnNTYzaHNEbjEz?=
- =?utf-8?B?VkV2TTFvWGNFd3lVdTRFcHh6a3BXYWo2VXJBWll4ZTBxSy9oSFk2bUZDS3NF?=
- =?utf-8?B?R3BEMTdZbklTWTVCeTJsZWpjVTFKVnEwOFZ5bGZIMG8rbW1ycFhMMkpPOEYv?=
- =?utf-8?B?MHAwL2VyVVNDVzF0V0taNnAvR2VmYTNnNDNIU0RFdlpLanY3VHZlYUhnMFI5?=
- =?utf-8?B?cGc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <92DF9E1C8DC7C84AAC074D9AABD9B9CC@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD1431F4620;
+	Wed,  5 Mar 2025 08:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741164346; cv=none; b=LK038X7EgVbAP0PPTHXC0Ppzs0AwFID1qWj/nUeW0ng5yl2tOvHa7QGKrG0jvuX7S8XnsJbRgkYcHrhrI0hMnMUDXhbhurEHBlz5B+EkPCtonr5gL6rDxjNXPhYm9TcjT+dGo7LBhJin7gAQBfYB4PY3tkAQ/VvNscomy1/vb9I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741164346; c=relaxed/simple;
+	bh=ByBwppToxDAngWQy+QkPd/KBlKvZGnAQgBdJDm2SZ1I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VlDH3mDHOTTHP5vQiX38a84jMLwiekT4jLTB8gNq6e8GS4qBj2tKxu+0gtrLDrRobSaIoQ3Xrh5mViuNlrwsQtwJhKoihdNQykeG8sQqf5viBUTxyQut5dkynNqmOfKMOpEhO/HPDM4B/Jvgd/W8GGuZcj0XILjga8bz+pxjynE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=h8rhsKs0; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1741164337;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=kiXyDCsvGdbUPFdP4dFELihQJtcmgCkV9HCP0y+H2rc=;
+	b=h8rhsKs01KJUWnYlfPoDH0qi5atxR0Nmc2JmOZ/ptzDiuksWaclkOjRgPS2iFK0dAoGWp9
+	bSsdmXS6kdxzSJc1DLw5x2X12WVlXpOun2GnBm3CXdYhWjzBcpu1RV4dt7y/y2XxXS/UD6
+	xhGrZpbWik1fWhKfmI+9X4CgKY8AmuAoTHaGYa/HzCgwglaekxJ5sBhIo/LU2q1aX5TDXP
+	A6du2JDlKnX72B6MFA9LXWv8JupfXcb5zRKLR4AfUfPZSJnKbCwXcghDrSzrmYs9a9QQZ3
+	yQ1lJRizDPHWTwaAPuvudqnwKHSk/O5X64ZVHzOgevGmUQNAU4/A6o28XgOVyA==
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: heiko@sntech.de,
+	dsimic@manjaro.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] docs: dt-bindings: Specify ordering for properties within groups
+Date: Wed,  5 Mar 2025 09:45:33 +0100
+Message-Id: <47c51c10098f089e52fb14c5c5527611dc8daf32.1741164239.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: microchip.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR11MB4719.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a32ccba0-3c32-48fc-4343-08dd5bc179c6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Mar 2025 08:41:08.5984
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tMfWEou6f0BX1rLsRZ4DWc/AbjTmHdT06mSmVULmIRoPPSrE7OU+J5BiUS6v69+R3XnQ3NLmrj0vNlUrTj0rw8MzJm0Gwzteh8kcsQPRqL9SPkHrdslSR2kRFUwSBIxR
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6820
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-SGkgYWxsLA0KDQpUaGUgcGF0Y2hlcyBiZWxvdyBoYXZlIGJlZW4gbWlzc2VkIHRvIGJlIG1lcmdl
-ZCBmcm9tIHNlcmllcy4gSSBoYXZlIHNlbnQgDQphIHJlbWluZGVyIGEgd2hpbGUgYmFjayBbMV0g
-YW5kIFsyXS4gU2hvdWxkIEkgcmVzZW5kIHRoZSBwYXRjaGVzIHRvIGhhdmUgDQppdCBtZXJnZWQg
-PyBQbGVhc2UgbGV0IG1lIGtub3cuDQoNClsxXSANCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xr
-bWwvMjAyNDEwMTAxMjAzNDUuOTI4NDQtMS12YXJzaGluaS5yYWplbmRyYW5AbWljcm9jaGlwLmNv
-bS8NCg0KWzJdIA0KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC9jYWI0YWQ2OC1jZjNlLTQz
-ODUtODcyMS04MzczNzJkZjJlMTJAbWljcm9jaGlwLmNvbS8NCg0KDQpPbiAxMC8xMC8yNCA1OjMx
-IHBtLCBWYXJzaGluaSBSYWplbmRyYW4gd3JvdGU6DQo+IFZhcnNoaW5pIFJhamVuZHJhbiAoOSk6
-DQo+ICAgIGR0LWJpbmRpbmdzOiBhdG1lbC1zc2M6IGFkZCBtaWNyb2NoaXAsc2FtOXg3LXNzYyA+
-ICAgIGR0LWJpbmRpbmdzOiByZXNldDogYXRtZWwsYXQ5MXNhbTkyNjAtcmVzZXQ6IGFkZCBzYW05
-eDcNCg0KDQotLSANClRoYW5rcyBhbmQgUmVnYXJkcywNClZhcnNoaW5pIFJhamVuZHJhbi4NCg0K
+When it comes to ordering of the individual properties inside each property
+group, applying natural sort order to multi-digit numbers [1] found inside
+the property names can result in more logical and more usable property lists,
+similarly to what's already the case with the alpha-numerical ordering of
+the nodes without unit addresses.
+
+Let's have this clearly specified in the DTS coding style.  Also expand the
+provided example a bit, to actually show the natural sort order.
+
+Applying strict alpha-numerical ordering can result in property lists that
+are suboptimal from the usability standpoint.  For the provided example,
+which stems from a real-world DT, [2][3][4] applying strict alpha-numerical
+ordering produces the following undesirable result:
+
+  vdd-0v9-supply = <&board_vreg1>;
+  vdd-12v-supply = <&board_vreg3>;
+  vdd-1v8-supply = <&board_vreg4>;
+  vdd-3v3-supply = <&board_vreg2>;
+
+Having the properties sorted in natural order by their associated voltages
+is more logical, more usable, and a bit more consistent.
+
+[1] https://en.wikipedia.org/wiki/Natural_sort_order
+[2] https://lore.kernel.org/linux-rockchip/b39cfd7490d8194f053bf3971f13a43472d1769e.1740941097.git.dsimic@manjaro.org/
+[3] https://lore.kernel.org/linux-rockchip/174104113599.8946.16805724674396090918.b4-ty@sntech.de/
+[4] https://lore.kernel.org/linux-rockchip/757afa87255212dfa5abf4c0e31deb08@manjaro.org/
+
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+
+Notes:
+    Changes in v2:
+      - Changed the additions to the coding style to specify natural sort
+        order, which avoids amibguity, as suggested by Krzysztof [5]
+      - Adjusted and expanded the patch description appropriately, together
+        with including one more reference for the natural sort order
+    
+    Link to v1: https://lore.kernel.org/linux-kernel/09d6f2fc111b3d6e58987336944f93ec36b65118.1741071107.git.dsimic@manjaro.org/T/#u
+    
+    [5] https://lore.kernel.org/linux-kernel/20250305-defiant-serious-newt-b7c5ea@krzk-bin/
+
+ .../devicetree/bindings/dts-coding-style.rst          | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+index 8a68331075a0..15de3ede2d9c 100644
+--- a/Documentation/devicetree/bindings/dts-coding-style.rst
++++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+@@ -133,6 +133,12 @@ The above-described ordering follows this approach:
+ 3. Status is the last information to annotate that device node is or is not
+    finished (board resources are needed).
+ 
++The above-described ordering specifies the preferred ordering of property
++groups, while the individual properties inside each group shall use natural
++sort order by the property name.  More specifically, natural sort order shall
++apply to multi-digit numbers found inside the property names, while alpha-
++numerical ordering shall apply otherwise.
++
+ Example::
+ 
+ 	/* SoC DTSI */
+@@ -158,7 +164,10 @@ Example::
+ 	/* Board DTS */
+ 
+ 	&device_node {
+-		vdd-supply = <&board_vreg1>;
++		vdd-0v9-supply = <&board_vreg1>;
++		vdd-1v8-supply = <&board_vreg4>;
++		vdd-3v3-supply = <&board_vreg2>;
++		vdd-12v-supply = <&board_vreg3>;
+ 		status = "okay";
+ 	}
+ 
 
