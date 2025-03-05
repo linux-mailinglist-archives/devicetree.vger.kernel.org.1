@@ -1,324 +1,175 @@
-Return-Path: <devicetree+bounces-154599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7B95A50D32
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:14:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8F0A50D46
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 22:25:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E4A51893217
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:14:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00E231889A3E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 21:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55DD025742B;
-	Wed,  5 Mar 2025 21:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BC201FCF68;
+	Wed,  5 Mar 2025 21:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="guq1SyaF"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="SEVI2LBS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290F3255223
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 21:14:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741209250; cv=none; b=bd1r+P/7sJpvHjCaMAhUrd2tMi+van4KV+vbyAKQNH/es/nAvn99hELw+KvDhUDsKxO7TufFjmnrVao+xfClUPIpD0iNmiob+6ECsLQd0kQgqV0I4+4xvlzqi1RCQsjAIVcYGoY9OhuvYGDuiCuoVJNnhxxFOfGBtofRmL1iGsw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741209250; c=relaxed/simple;
-	bh=3MaNDi24LETBXCeUYm9yqEAxHq21DHXzZARkz6n+HDY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QGyQYMM+S+pmcPf4rGC8yA/CSa194dUKUek0v3WHvZ7dq6aEZSU9cTaMedOlh4vUrqg+ynCRbU9HGYR7o+i164gdIEp0CUoLCjk/fcjooejvfMla3l2VbN67gxlFouknHVWfnylRrnx/5BY+LwMRS4q/Z7oxrFjpuuya/prSJSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=guq1SyaF; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-549681574e0so4219121e87.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 13:14:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741209245; x=1741814045; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4jAKYbTUJpewVNmKScs/KV5h9MR6DBwgVHxpvatN8NY=;
-        b=guq1SyaFZawwXcYbHaxYdfpBYVjbsTGbB5+BvnzFqZklT+0MXrBT0cC2ywFsZR+pUJ
-         megzBGA1kr9lxC9U09F8S86ghsjSh4qVHLd9ZcMyLoe3QiFdwdgczL5jq9qRTTsamhRb
-         8BoRUQvvXQK8dXum5raqYXJba7IZ/nHUrH1uSs3D2gNYJlKl9IMKOPJDMfgjSek/smLd
-         6Bk0tiN27sIXLmf/iD2rr47yQeLQVOZbQMHUY3nCTlDNwLU4qbIuWDbRc/X6hC/qLBxU
-         toinImx8W5LvN3xR7oCQ//Lj1Gy6OA3ooczWdG+HeHNQEXuCwU1exARBkb1dxprxVDq6
-         PJOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741209245; x=1741814045;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4jAKYbTUJpewVNmKScs/KV5h9MR6DBwgVHxpvatN8NY=;
-        b=dwlNXnHXBSPK5HwgFR+XVp0JfQe0r0+jb0tHu3Q7PvFt56vhF+p0oZC14obp3ktlBO
-         tcjU3c+FTijay2466nWezeTnj+tOa1gb0A+Dxc23ZCbMIhnXzUlG254jb5u5lkMjRpW+
-         TjUBcl1asZ3JFAKEYYJ3zmsVtEMCf6vd9mbQlFKjfy60132zLRt5uaSEowGUtBQrPbBN
-         UWBqEMp4cF5rjqVwPvWgrAhlFJWyYVcchVWfFq3Y+q4JbhOeMCHr2C1a0TPcBp1wiV4z
-         BMFyJp1ryRU6VoQSnortu31TVk9sl+6MCArlfEMQq8MHrigYdTo8LDECxl0gKdmJ70aQ
-         5KnA==
-X-Forwarded-Encrypted: i=1; AJvYcCVoZv2fGkiLH4QqAZWkYGXiBa55JT9Q5rKZqBPf1frrILGfDtzvUPwjCrEPcnCctOhP+7aYO/C6CXm7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwccrUanww/vl/NZO+ROZsf6FwqPkllkhJuGKi0P0iTSppsXFyL
-	SpPsHm8BAyUBAsyEyzcckykHIQWB8Ew8+HO1KmkDm+D+pjR0j6vjqcFS6cHDGBA=
-X-Gm-Gg: ASbGncvRtXqDvY5avbNceU81LCEcHUHXaw/TYLIXiCBAuOxbX4EX+C6LeKMNW6BBTZS
-	xQugSS3m8fLdugywoS1KLDugMjVGuoa2eHhiE6eAfurE+yavVI+EXLABY0aVBybJeu0R7voe4Gg
-	4hF1908Cu73cKwB+zBCHozT6DokdCXOrjY4L/0ACqqV3dqWbi/yyh6nNYX2qSCfuOuVfQZf3WCd
-	dwNSj1+dIU3ysbNkHCmiY35GQy8k/rADHfx3r41LdtexGY8eoRXyIyWNzHHe1IY2p902LO1/mMK
-	jIdkV8+YDqlBokc24MJ6HueYXFxxOgq/Vc2H2LUihiT/TVFanacxVmVKqdDZ9vec1+kWpv2mS8W
-	N9k0dvay2KnXN3fumVHqLdFfN
-X-Google-Smtp-Source: AGHT+IHASTT0I2RZzxvHW6GJOilteC+6lJrj4HK7/2n8Ey2P5/4CP44E+Gzu2m+8VSksWNVCFKgRdQ==
-X-Received: by 2002:a05:6512:b8f:b0:545:62c:4b13 with SMTP id 2adb3069b0e04-5497d37704fmr1656131e87.40.1741209244983;
-        Wed, 05 Mar 2025 13:14:04 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54986c730e2sm24619e87.18.2025.03.05.13.14.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Mar 2025 13:14:03 -0800 (PST)
-Date: Wed, 5 Mar 2025 23:14:01 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Xiangxu Yin <quic_xiangxuy@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, quic_lliu6@quicinc.com, quic_fangez@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 5/8] drm/msm/dp: Add support for lane mapping
- configuration
-Message-ID: <td4dkb6qoxfa7lfmfszlowov6qxdukqq5qnwnhmajnskr5mu2u@todczb6inttv>
-References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-5-09a4338d93ef@quicinc.com>
- <CAA8EJpoY8hySQd00yODGeHjSpVZpEBLjF3aBiKGJPUhpr-2mgw@mail.gmail.com>
- <d2a3cd6f-1077-4edb-9f0c-0c940a639050@quicinc.com>
- <zvapsvfftai4fp6vwrn33edqsyuuprq2pxz6spij6j7t4y6xmn@zzgp7gbsivbk>
- <93ddb63c-42da-43c8-9a77-c517ca5d6432@quicinc.com>
- <CAA8EJprAFYD6ykN10-r=JwHM4A4XeDDcZVcVWYp_5A5FP-=RyA@mail.gmail.com>
- <e647d143-dc6e-483d-ac81-2733fb526fc3@quicinc.com>
- <h6tmbuv26tdv633udphttsydpbvnwownulvglcxktdaxqdhtvw@ereftfs5hiso>
- <9fb34496-d823-414a-b7dc-54b4677829e5@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 283351C6FE1;
+	Wed,  5 Mar 2025 21:25:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741209931; cv=pass; b=MVWaVs1lJ282TBm89ogkMARy5WqNJRkMvS3Zr54rZKUfq/LG3xoXLP8QIZ+W2L9cxf9Sxu/9dF+aFlppRWmY8DP7zdfbhJkZD4vOEt4HrOq9ueB93dncx/gspvyfKfkarSX+hACkK0CDDFuZBpnhy4hhlyO8gZUqtKEE7EJ+hEs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741209931; c=relaxed/simple;
+	bh=jLOOjWApcp9OJszvlkNggAmMoe8M/uG5DU7YDTZVOTo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rQThjDCUxspemtTDxlwWALCBesFgfCQKq+3clFyDbqITeQkOWB1WWe06eJRic06dRc8iFYRObRAuWPdNpbI4V4Aw6JVEqC84jm+Pl5n2+YogzQAqbuIQpZYUCCvaPnNPlCNTxLpVN0PXG/jBgYnKlEbkNHmuuKl+2oN+t1WLFvI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=SEVI2LBS; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1741209895; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=bzzh4J066rrlw/ihx9SLlY9zNNloZQebThe9AanCEKNf/e+8VOgCHxIXTTW7xevUvZ4QGun97hwXW7C5PEdExoYn2zIhoAN8n4AyzNGJtJy03F4AEYXvoT3kJsXeP0qtSIq5y36Vmr+WKxNlR1OrNXsfA9y+LFIJ6EAaMKk84Cw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1741209895; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=oDZwMEiKq4FsOgak5vQT4YukQizxtAjLgSODP2Tnuxo=; 
+	b=IgTCk5EeMB/shkwzD58Rro5ckfJPfaiucDqxl1CYcYnrHhVxAekcCrM77OFeHftE+YBc1g2tuf9jM/4lBwIrZeXLKfDt70lz17t4OkE7tn+tEL5AVNTbx3PNFDSDsCDnEMccwE4LQAD/aeWZq4OQE0CiaiKPhBbUn0Xc+ISx20s=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741209895;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=oDZwMEiKq4FsOgak5vQT4YukQizxtAjLgSODP2Tnuxo=;
+	b=SEVI2LBS4pji0ctEHwmFV91C8epT7xQIAur9xxQztsqBzYcddjC6bVpVdeg6yv/s
+	mrlLIbYNjQTVNz/UpVwltUTLT3RFZ9kmX8XAEbherSW3ipeM/RdjspwQMgqA5OvbMXO
+	pQH1jZSGVLRc8IqwJd2BzMTy74ikczMpYg0tDQ0w=
+Received: by mx.zohomail.com with SMTPS id 1741209893493878.8606211832787;
+	Wed, 5 Mar 2025 13:24:53 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH 0/7] Add RK3576 SAI Audio Controller Support
+Date: Wed, 05 Mar 2025 22:24:20 +0100
+Message-Id: <20250305-rk3576-sai-v1-0-64e6cf863e9a@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9fb34496-d823-414a-b7dc-54b4677829e5@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAATByGcC/zXMQQrCMBCF4auEWTswNsbGXkW6iHHUQZraSZRC6
+ d0NFpf/g/ctkFmFM3RmAeWPZBlTjf3OQHyEdGeUa21oqHFkyaE+rWuPmINgbD3TwZI/eYZ6eCn
+ fZP5h535r5eldzbKNcAmZMY7DIKUzieeCfxf6df0CpSjUSY0AAAA=
+X-Change-ID: 20250305-rk3576-sai-c78e0430898e
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.2
 
-On Wed, Mar 05, 2025 at 06:16:45PM +0800, Xiangxu Yin wrote:
-> 
-> 
-> On 12/20/2024 5:45 AM, Dmitry Baryshkov wrote:
-> > On Thu, Dec 19, 2024 at 06:36:38PM +0800, Xiangxu Yin wrote:
-> >>
-> >>
-> >> On 12/5/2024 7:40 PM, Dmitry Baryshkov wrote:
-> >>> On Thu, 5 Dec 2024 at 13:28, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
-> >>>>
-> >>>>
-> >>>>
-> >>>> On 12/2/2024 6:46 PM, Dmitry Baryshkov wrote:
-> >>>>> On Mon, Dec 02, 2024 at 04:40:05PM +0800, Xiangxu Yin wrote:
-> >>>>>>
-> >>>>>>
-> >>>>>> On 11/29/2024 9:50 PM, Dmitry Baryshkov wrote:
-> >>>>>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
-> >>>>>>>>
-> >>>>>>>> Add the ability to configure lane mapping for the DP controller. This is
-> >>>>>>>> required when the platform's lane mapping does not follow the default
-> >>>>>>>> order (0, 1, 2, 3). The mapping rules are now configurable via the
-> >>>>>>>> `data-lane` property in the devicetree. This property defines the
-> >>>>>>>> logical-to-physical lane mapping sequence, ensuring correct lane
-> >>>>>>>> assignment for non-default configurations.
-> >>>>>>>>
-> >>>>>>>> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
-> >>>>>>>> ---
-> >>>>>>>>  drivers/gpu/drm/msm/dp/dp_catalog.c | 11 +++++------
-> >>>>>>>>  drivers/gpu/drm/msm/dp/dp_catalog.h |  2 +-
-> >>>>>>>>  drivers/gpu/drm/msm/dp/dp_ctrl.c    |  2 +-
-> >>>>>>>>  drivers/gpu/drm/msm/dp/dp_panel.c   | 13 ++++++++++---
-> >>>>>>>>  drivers/gpu/drm/msm/dp/dp_panel.h   |  3 +++
-> >>>>>>>>  5 files changed, 20 insertions(+), 11 deletions(-)
-> >>>>>>>>
-> >>>>>
-> >>>>>>>> @@ -461,6 +460,7 @@ static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
-> >>>>>>>>         struct msm_dp_panel_private *panel;
-> >>>>>>>>         struct device_node *of_node;
-> >>>>>>>>         int cnt;
-> >>>>>>>> +       u32 lane_map[DP_MAX_NUM_DP_LANES] = {0, 1, 2, 3};
-> >>>>>>>>
-> >>>>>>>>         panel = container_of(msm_dp_panel, struct msm_dp_panel_private, msm_dp_panel);
-> >>>>>>>>         of_node = panel->dev->of_node;
-> >>>>>>>> @@ -474,10 +474,17 @@ static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
-> >>>>>>>>                 cnt = drm_of_get_data_lanes_count(of_node, 1, DP_MAX_NUM_DP_LANES);
-> >>>>>>>>         }
-> >>>>>>>>
-> >>>>>>>> -       if (cnt > 0)
-> >>>>>>>> +       if (cnt > 0) {
-> >>>>>>>> +               struct device_node *endpoint;
-> >>>>>>>> +
-> >>>>>>>>                 msm_dp_panel->max_dp_lanes = cnt;
-> >>>>>>>> -       else
-> >>>>>>>> +               endpoint = of_graph_get_endpoint_by_regs(of_node, 1, -1);
-> >>>>>>>> +               of_property_read_u32_array(endpoint, "data-lanes", lane_map, cnt);
-> >>>>>>>> +       } else {
-> >>>>>>>>                 msm_dp_panel->max_dp_lanes = DP_MAX_NUM_DP_LANES; /* 4 lanes */
-> >>>>>>>> +       }
-> >>>>>>>
-> >>>>>>> Why? This sounds more like dp_catalog or (after the refactoring at
-> >>>>>>> [1]) dp_ctrl. But not the dp_panel.
-> >>>>>>>
-> >>>>>>> [1] https://patchwork.freedesktop.org/project/freedreno/series/?ordering=-last_updated
-> >>>>>>>
-> >>>>>> We are used the same prop 'data-lanes = <3 2 0 1>' in mdss_dp_out to keep similar behaviour with dsi_host_parse_lane_data.
-> >>>>>> From the modules used, catalog seems more appropriate, but since the max_dp_lanes is parsed at dp_panel, it has been placed here.
-> >>>>>> Should lane_map parsing in msm_dp_catalog_get, and keep max_dp_lanes parsing at the dp_panel?
-> >>>>>
-> >>>>> msm_dp_catalog_get() is going to be removed. Since the functions that
-> >>>>> are going to use it are in dp_ctrl module, I thought that dp_ctrl.c is
-> >>>>> the best place. A better option might be to move max_dp_lanes and
-> >>>>> max_dp_link_rate to dp_link.c as those are link params. Then
-> >>>>> lane_mapping also logically becomes a part of dp_link module.
-> >>>>>
-> >>>>> But now I have a more important question (triggered by Krishna's email
-> >>>>> about SAR2130P's USB): if the lanes are swapped, does USB 3 work on that
-> >>>>> platform? Or is it being demoted to USB 2 with nobody noticing that?
-> >>>>>
-> >>>>> If lanes 0/1 and 2/3 are swapped, shouldn't it be handled in the QMP
-> >>>>> PHY, where we handle lanes and orientation switching?
-> >>>>>
-> >>>> I have checked the DP hardware programming guide and also discussed it with Krishna.
-> >>>>
-> >>>> According to the HPG section '3.4.2 PN and Lane Swap: PHY supports PN swap for mainlink and AUX, but it doesn't support lane swap feature.'
-> >>>>
-> >>>> The lane swap mainly refers to the logical to physical mapping between the DP controller and the DP PHY. The PHY handles polarity inversion, and the lane map does not affect USB behavior.
-> >>>>
-> >>>> On the QCS615 platform, we have also tested when DP works with lane swap, other USB 3.0 ports can works normally at super speed.
-> >>>
-> >>> "Other USB 3.0 ports"? What does that mean? Please correct me if I'm
-> >>> wrong, you should have a USB+DP combo port that is being managed with
-> >>> combo PHY. Does USB 3 work on that port?
-> >>>
-> >>> In other words, where the order of lanes is actually inverted? Between
-> >>> DP and combo PHY? Within combo PHY? Between the PHY and the pinout?
-> >>> Granted that SM6150 was supported in msm-4.14 could you possibly point
-> >>> out a corresponding commit or a set of commits from that kernel?
-> >>>
-> >> For "Other USB 3.0 ports", as replied in USBC driver, USB3 primary phy works for other four USB type-A port.
-> > 
-> > So if that's the USB3 primary, then why do you mention here at all? We
-> > are taling about the secondary USB3 + DP.
-> > 
-> OK, sorry for confusing you.
-> >> The REG_DP_LOGICAL2PHYSICAL_LANE_MAPPING mapping determines how logical lanes (0, 1, 2, 3) map to physical lanes sent to the PHY.
-> >> This ensures alignment with hardware requirements.
-> >> The PHY’s polarity inversion only adjusts signal polarity and doesn’t affect lane mapping.
-> >> Both DP ctrl and PHY lane related config will not affect USB phy.
-> > 
-> > Probably we misundersand each other. The DP PHY should have orientation
-> > switch register, which controls whether 2-lane DP uses lanes 0/1 or 2/3.
-> > Can you use that register?
-> > 
-> Yes, DP PHY have orientation register as below.
-> DP_PHY_DP_PHY_CFG_1(0x88e9014) bit(7) SW_PORTSELECT
-> > Also, could you _please_ answer the question that I have asked? Is the
-> > order of lanes inverted between the DP controller and DP PHY? Or between
-> > DP PHY and the DP connector? If one uses USB3 signals coming from this
-> > port (yes, on the other board, not on the Ride), would they also need to
-> > switch the order of USB3 lanes? If one uses a DP-over-USB-C, are DP
-> > lanes are swapped?
-> > 
-> It's inverted between the DP controller and DP PHY.
-> If other use USB3 on the other board, will not need switch order of USB3 lanes,
-> If one use DP-over-USB-C, then need DP lanes swap.
+This series adds support for Rockchip's Serial Audio Interface (SAI)
+controller, found on SoCs such as the RK3576. The SAI is a flexible
+controller IP that allows both transmitting and receiving digital audio
+in the I2S, TDM and PCM formats. Instances of this controller are used
+both for externally exposed audio interfaces, as well as for audio on
+video interfaces such as HDMI.
 
-Thanks!
+Patch 1 and 2 do some preparatory work in the clock bindings and clock
+controller. The RK3576 has the SAI0 through SAI4 output mclks as well as
+the FSPI0 and FSPI1 clocks gated behind some GRF register writes. The
+RK3588 had this for its I2S audio clocks as well, but got away with not
+caring about it in mainline because the clocks were ungated by default.
+This is no longer the case with RK3576: the SAI mclk need to be ungated
+before they can be used.
 
-> >> Without extra Type-C mapping, the DP controller’s mapping indirectly decides how signals are transmitted through Type-C.
-> >> Mapping ensures proper data transmission and compatibility across interfaces.
-> >>
-> >> We only found sm6150 need this lane mapping config, 
-> >> For msm 4.14, please refer these links,
-> >> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/arch/arm64/boot/dts/qcom/sm6150-sde.dtsi (qcom,logical2physical-lane-map)
-> >> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/drivers/gpu/drm/msm/dp/dp_parser.c (dp_parser_misc)
-> >> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/drivers/gpu/drm/msm/dp/dp_catalog_v200.c (dp_catalog_ctrl_lane_mapping_v200)
-> >>
-> >> If need process orientation info like dp_catalog_ctrl_lane_mapping_v200, 
-> >> then 
-> >> if implement in DP phy, then we need config dp_link register in PHY,
-> >> if implement in DP link, then we need pass orientation info to DP driver, perhaps we could add a new attribute to the phy_configure_opts_dp structure to pass this.
-> >> Do you have any suggestions?
-> > 
-> > Does SW_PORTSEL_VAL affect the DP lanes on this platform?
-> > 
-> SW_PORTSEL_VAL for USB3PHY_PCS_MISC_TYPEC_CTRL will not affect DP lanes in this DP or USB3 chip series.
-> USB3 will use USB3PHY_PCS_MISC_TYPEC_CTRL(SW_PORTSEL_VAL BIT_0) and DP will use DP_PHY_DP_PHY_CFG_1(SW_PORTSELECT BIT_7)
+The gritty details are in patch 2, but to sum it up: we need to
+introduce a new clock branch type, and also rework the rockchip clock
+code to deal with multiple separate GRF regmaps.
 
-Is it possible to set this bit from the PHY driver rather than remapping
-the lanes in the DP driver?
+NB: checkpatch.pl seems to trip over patch 2 in some way that seems like
+a combination of the diff being too clever and at the same time too
+stupid.
 
-> >>
-> >>>>
-> >>>> Additionally, if it were placed on the PHY side, the PHY would need access to dp_link’s domain which can access REG_DP_LOGICAL2PHYSICAL_LANE_MAPPING.
-> >>>
-> >>> I was thinking about inverting the SW_PORTSEL_VAL bit.
-> >>>
-> >>>> Therefore, we believe that the  max_dp_link_rate,max_dp_lanes and lane_map move to dp_link side is better.
-> >>>>
-> >>>>>>>> +
-> >>>>>>>> +       memcpy(msm_dp_panel->lane_map, lane_map, msm_dp_panel->max_dp_lanes * sizeof(u32));
-> >>>>>>>>
-> >>>>>>>>         msm_dp_panel->max_dp_link_rate = msm_dp_panel_link_frequencies(of_node);
-> >>>>>>>>         if (!msm_dp_panel->max_dp_link_rate)
-> >>>>>>>> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.h b/drivers/gpu/drm/msm/dp/dp_panel.h
-> >>>>>>>> index 0e944db3adf2f187f313664fe80cf540ec7a19f2..7603b92c32902bd3d4485539bd6308537ff75a2c 100644
-> >>>>>>>> --- a/drivers/gpu/drm/msm/dp/dp_panel.h
-> >>>>>>>> +++ b/drivers/gpu/drm/msm/dp/dp_panel.h
-> >>>>>>>> @@ -11,6 +11,8 @@
-> >>>>>>>>  #include "dp_aux.h"
-> >>>>>>>>  #include "dp_link.h"
-> >>>>>>>>
-> >>>>>>>> +#define DP_MAX_NUM_DP_LANES    4
-> >>>>>>>> +
-> >>>>>>>>  struct edid;
-> >>>>>>>>
-> >>>>>>>>  struct msm_dp_display_mode {
-> >>>>>>>> @@ -46,6 +48,7 @@ struct msm_dp_panel {
-> >>>>>>>>         bool video_test;
-> >>>>>>>>         bool vsc_sdp_supported;
-> >>>>>>>>
-> >>>>>>>> +       u32 lane_map[DP_MAX_NUM_DP_LANES];
-> >>>>>>>>         u32 max_dp_lanes;
-> >>>>>>>>         u32 max_dp_link_rate;
-> >>>>>>>>
-> >>>>>>>>
-> >>>>>>>> --
-> >>>>>>>> 2.25.1
-> >>>>>>>>
-> >>>>>>>
-> >>>>>>>
-> >>>>>>
-> >>>>>>
-> >>>>>> --
-> >>>>>> linux-phy mailing list
-> >>>>>> linux-phy@lists.infradead.org
-> >>>>>> https://lists.infradead.org/mailman/listinfo/linux-phy
-> >>>>>
-> >>>>
-> >>>
-> >>>
-> >>
-> > 
-> 
+Patch 3 adds the devicetree schema for the SAI. Right now, we only have
+a RK3576 compatible, but as I understand it, the RK3528 uses this audio
+controller as well.
 
+Patch 4 is the main course and adds the driver. It's based on the
+downstream vendor driver, but substantial changes have been made in the
+hopes to make it suitable for upstream inclusion.
+
+Patch 5 and 6 are boring devicetree changes to add the nodes and use
+them in the ArmSoM Sige5 board. Patch 6 goes into some schematic-derived
+knowledge about where the audio signal can actually be tapped into in
+order to test this.
+
+Patch 7 enables the driver in the arm64 defconfig, as the RK3576 is
+supported in mainline, so its drivers should be enabled in the
+defconfig.
+
+To test this on the Sige5, I both soldered to the output 2 testpads, as
+well as fashioned a cable to plug into the headphone header. I should
+have some stuff arriving by mid-March to make more such cables, so if
+you have a Sige5 and want to test this but don't happen to sit on a pile
+of 03SUR-32S cables, then you may contact me off-list to request I send
+you such a cable from Switzerland, and I'll see what I can do.
+
+HDMI audio isn't enabled in this series yet, but I'll look into it
+either for a v2 or in a follow-up series. I really wanted to get this
+out to be reviewed now, as there's a substantial amount of code to look
+at that is ready for both review and testing.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Nicolas Frattaroli (7):
+      dt-bindings: clock: rk3576: add IOC gated clocks
+      clk: rockchip: add support for GRF gated clocks
+      ASoC: dt-bindings: add schema for rockchip SAI controllers
+      ASoC: rockchip: add Serial Audio Interface (SAI) driver
+      arm64: dts: rockchip: Add RK3576 SAI nodes
+      arm64: dts: rockchip: Add analog audio on RK3576 Sige5
+      arm64: defconfig: Enable Rockchip SAI
+
+ .../devicetree/bindings/sound/rockchip,sai.yaml    |  151 ++
+ MAINTAINERS                                        |    7 +
+ .../boot/dts/rockchip/rk3576-armsom-sige5.dts      |   56 +
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi           |  194 +++
+ arch/arm64/configs/defconfig                       |    1 +
+ drivers/clk/rockchip/Makefile                      |    1 +
+ drivers/clk/rockchip/clk-rk3328.c                  |    6 +-
+ drivers/clk/rockchip/clk-rk3568.c                  |    2 +-
+ drivers/clk/rockchip/clk-rk3576.c                  |   59 +-
+ drivers/clk/rockchip/clk.c                         |   24 +-
+ drivers/clk/rockchip/clk.h                         |   49 +-
+ drivers/clk/rockchip/gate-grf.c                    |  105 ++
+ include/dt-bindings/clock/rockchip,rk3576-cru.h    |   10 +
+ sound/soc/rockchip/Kconfig                         |    8 +
+ sound/soc/rockchip/Makefile                        |    2 +
+ sound/soc/rockchip/rockchip_sai.c                  | 1623 ++++++++++++++++++++
+ sound/soc/rockchip/rockchip_sai.h                  |  251 +++
+ 17 files changed, 2533 insertions(+), 16 deletions(-)
+---
+base-commit: a03be51d680391ba113e2e22b38743c276b6e2fa
+change-id: 20250305-rk3576-sai-c78e0430898e
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
 
