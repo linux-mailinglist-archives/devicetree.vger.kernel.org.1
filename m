@@ -1,98 +1,136 @@
-Return-Path: <devicetree+bounces-154430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5F2A50115
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:50:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6CBA50122
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:56:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFC4F1886B3A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:49:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13091188B55B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F392063FC;
-	Wed,  5 Mar 2025 13:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E32224633D;
+	Wed,  5 Mar 2025 13:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="MQmaoyaK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OOvluREM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F31E1591E3
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 13:49:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC67D241115;
+	Wed,  5 Mar 2025 13:56:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741182542; cv=none; b=MC/lVoKZf+QOgAPI14VvUWn60lxWxEXBNZSJdv07rbNs8UuKO2glWlrds4P/TF6ga2EdpN9GdC1alIQIsLhGgBOJYedxkKppy13C7SuCd7AaSDAUp+sKsEf2jJTOK6xVxkvpEva4BhRZDsdNSAXwPx8somqChs6ECrPyhs1ii9I=
+	t=1741182989; cv=none; b=TnN8tHrR1QUn4Sa8/Y05+ODpMvfSB7kVxHKsS7RSB6YWViHukZks7qEHZjEg/96jTKnpQvZaZzbQT0F1oi3dZXXWkXcLUNUJ+FMsrW82HTdn2RQCs2ifMbRNVw16RWTTvmmH/gnN5+7nzjS29WnFElA42bnox1cEyDaMasHryr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741182542; c=relaxed/simple;
-	bh=uR5T1D3QxAJlJ1Grdi1qVI/wsoVx9nCe/kXwEE6UJyA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dx8l0c6uMwbtYZeGJSFRAckOmhvTYA+9QgrCFQg0ZIz8YpT3FuNaDfPTjlTs8TpAUmPpsn7qAtMfNAv5rhNUVMpJy9miT5iY9FTnVpz2rNkzSgPSxs0PKPUQBouEC9pNbwUSUJOqCTwYzKVHTqXZzvfVgeKChIXNTCThEm87qXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=MQmaoyaK; arc=none smtp.client-ip=91.218.175.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rosenzweig.io
-Date: Wed, 5 Mar 2025 08:48:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosenzweig.io;
-	s=key1; t=1741182528;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wb6rcGnysdOjkFCR0OaNCjFIgpAYP0AzENVy2fFqyCo=;
-	b=MQmaoyaKEFYFydhvZcXatALOg9G6+iaxRo27Zubxen26s7vvqy9imItga79vuEh+y5w00V
-	tWEGEMppaREoQugpDnYbR5rrnCLUkDGmLLXekj3bTCnlWwTKfATTL2VFzCOFk1cLKVJjl3
-	p2kUCg7Ss/0BrMFApcKJ8HkyKZP2dO+qOJRJEzR8ulRPNUYrkZLwVTtdiLl0Noe+JTodZZ
-	HGfHLMvlMb8Rt7OjveDAPN+L1D2ryDxl6T2V446BWwiJG5HV0n3U6QjnH0+BW1VCDk4hzb
-	oVWXF1wOH8083b0o/tpp1i4RASMkr5/vjDO8iMglqx5P3dgHv/QerJ8pJkwLfA==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Maxime Ripard <mripard@kernel.org>, fnkl.kernel@gmail.com,
-	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev,
-	Janne Grunau <j@jannau.net>, linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Neal Gompa <neal@gompa.dev>, Nick Chan <towinchenmi@gmail.com>
-Subject: Re: [PATCH v7 0/5] Driver for pre-DCP apple display controller.
-Message-ID: <Z8hWN4DpNyTHQf7I@blossom>
-References: <20250217-adpdrm-v7-0-ca2e44b3c7d8@gmail.com>
- <c3927b51-55ef-4a38-8931-18ff00caa8d8@linaro.org>
- <Z8XcH7xoDC7TA7ZC@blossom>
- <dn7zskhxgdgr25nvbnsjyn5brc3yoc446dxz3vqgbiwoccvlcr@5l6f4byj53fo>
+	s=arc-20240116; t=1741182989; c=relaxed/simple;
+	bh=7tKVO1/yFtKo8AxMa+9eBPIXNrWvUam3daAFVJ/GPxo=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=AgMv1YR46MEg9uboXYLvxWIB1HZx4YvsqaLpVkvjNeH2INTPX4KZVW3qazaQDeyuPWWABcKS1/pTOjxqf4FK05s/zBMt3sTLQsLmAyQOayBTdKvg3VSb1Jga2rarVVpGKI1TdCquf3EwMfzaBIbU86DLvu8xHLlxJuo3Q57gdV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OOvluREM; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-abf4cebb04dso173813066b.0;
+        Wed, 05 Mar 2025 05:56:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741182986; x=1741787786; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7tKVO1/yFtKo8AxMa+9eBPIXNrWvUam3daAFVJ/GPxo=;
+        b=OOvluREM3cpYCuCH4n0CMdx2pew5SdU1oLPkTJsJVokuHeBAQoqK+jN8YJv3RttHHO
+         mEu/w6mTsrSsHhXiijPUnU/vthNt6eX/0xUKmKH1EhomF44mn3/OwyplssqtPcugJ5xB
+         szFZpZcJbMyHGUyNnoj7n21O/PphwrA1T7DzPgXFJSeFWkWIEC+m2zyORjoJSfA2AXsK
+         bhXGvBTmISFHE596PELNwCMoKwura6RrlZejDEHFP16YTVh78majSee6EfkRYv+0fpcv
+         Uog91gou1OTIxkb7sXZjeVuGikFPEspeu+L1djE++CSoDCEoh3L1+ftUMus6BVbjFQc9
+         KTyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741182986; x=1741787786;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7tKVO1/yFtKo8AxMa+9eBPIXNrWvUam3daAFVJ/GPxo=;
+        b=tHSbz63TFc+Y+/9XLcNwb7PEGTikudp2IhStRZNx2E4G8XG+2ODjNsPsxIfyKkDPBF
+         4I+UPVL9NR6p8q77Qf6aCxbvjKizAPAlQ83nCfUlL/KC9/z/JgXmUg8n1eyXuEWjBCqO
+         7vXXedheozC5jQfd22x7XAVgNkkkDLWZTOAuAdEqava6Frh0cty49RXFDTI87v86q8+y
+         O5BW2CgNZmM2dzHm35dCZSa0AcFsPs7HMTKcZyuUtsIlG40203uJjKYqzbAFPMVvMKkx
+         opD0IRSW49zAt36eurEqp2EtJum2+jzkS3s7ri7+WHpnNGfCtQ0n3d7z5RGJhxK+5pyh
+         2K0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUS61B3EW7Fb1oIH/h9pkU7i/sEjfEY4OG9dnMfsHkPHmQg6cPXegD8kNx/XPxpFdIZVkTOQS5jSzDC@vger.kernel.org, AJvYcCWNlcbrg21GTe5fQPA1MAldTzWDtm+sNWfPAtHJbGxxcF8jwfJBerX3f3Mk6jHem3rEUwrkpGYTsW/XKGoF@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrFSPb2s9Gv8GG+OQXpfm3kwrWyeIl+dJmAwSpIaMBfQ3keCNc
+	W9Nr6PktaHPYxaN95oS9qhlAHd3Y0NY9Avi89/9kdmvldMwt42ap
+X-Gm-Gg: ASbGncvd5KzymqEVSQUR73kK7mkGxW54igfmXug0saUF296RQaE2y6KDoLo8ctxkhKt
+	Qct0PtgzDkEwpOsAwzbXFpoUMFxcYXa6AW4oS/RaLZZ9WwkrdWowA8iPabBMLP2TN2CJNjoI5jT
+	lxgxqWZslkiTP3C0bBLDW1e+R+99cZQEogkTG4QbQMHskrCE1cp1MxdT36pW1gQamuR61D5A/9o
+	AvBU7eZxNbJsWSCqk8eVsArZxngifXExi3lnmSKTlaqhNzn3ZTxQOWTTXobjEvg1+uJdozDUW4x
+	iGJIHLy8+FV3u3hO4wOmY5WwJvxvtHWhS2rJJqy+CaDQ4GFQj6RSYmMhmPGGJ9kJU6tWUayzc5i
+	OeOdOyHTfqRKAAT5Ir6LFcsdVhg==
+X-Google-Smtp-Source: AGHT+IFPKwZUivV9o2egwM9HtqA1X+Wqp5ZNIRNxx/29F/9iRwcSuupsGjgksk9DPk6Csl6LQmklyQ==
+X-Received: by 2002:a17:907:7216:b0:abf:6951:4bc2 with SMTP id a640c23a62f3a-ac1f0edc6b9mr612346766b.7.1741182985565;
+        Wed, 05 Mar 2025 05:56:25 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-abf7663b935sm550196266b.150.2025.03.05.05.56.23
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 05 Mar 2025 05:56:25 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dn7zskhxgdgr25nvbnsjyn5brc3yoc446dxz3vqgbiwoccvlcr@5l6f4byj53fo>
-X-Migadu-Flow: FLOW_OUT
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
+Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+X-Priority: 3
+In-Reply-To: <25401bfa.291d.19564244e54.Coremail.andyshrk@163.com>
+Date: Wed, 5 Mar 2025 14:56:12 +0100
+Cc: heiko@sntech.de,
+ neil.armstrong@linaro.org,
+ sebastian.reichel@collabora.com,
+ devicetree@vger.kernel.org,
+ hjc@rock-chips.com,
+ mripard@kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ yubing.zhang@rock-chips.com,
+ dri-devel@lists.freedesktop.org,
+ Andy Yan <andy.yan@rock-chips.com>,
+ krzk+dt@kernel.org,
+ robh@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <75189787-28E1-4FC2-8E10-4960B3877A6F@gmail.com>
+References: <25401bfa.291d.19564244e54.Coremail.andyshrk@163.com>
+To: Andy Yan <andyshrk@163.com>
+X-Mailer: Apple Mail (2.3826.400.131.1.6)
 
-> > > All patches are reviewed, can we funnel patches 1, 2 & 5 via drm-misc-next now ?
-> > 
-> > I'm planning to do so today, just need to get dim setup first :)
-> 
-> Nice! As a heads up, it would be really-really nice if you can send any
-> kind of 'applied' message. If you are using 'dim b4-shazam', then
-> 'b4 ty -a' might do that for you. Otherwise just a simple 'hey, applied'
-> email is useful enough.
 
-Oh cool, it didn't occur to me that `b4 ty` would compose with `dim
-b4-shazam`. Sent a very belated message and will try to make a habit of
-it going forward.
 
-Thanks for the tip!
+> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
+5 mar 2025, o godz. 03:30:
+>=20
+>>=20
+>=20
+> I only see the HDMI connector from your dri/state ; so it appears the =
+DP driver hasn't been successfully
+> initialized=EF=BC=88I think kernel dmesg can tell that=EF=BC=89.=20
+> Have you enabled CONFIG_ROCKCHIP_DW_DP ? This is needed.
+>=20
 
-Cheers,
-Alyssa
+
+Andy,
+
+Do you mean CONFIG_ROCKCHIP_DW_DP or CONFIG_DRM_DW_DP ?
+
+If CONFIG_DRM_DW_DP - then yes - i have it: =
+https://github.com/warpme/minimyth2/blob/2e267842b1033bbc4c2c5d80c1756a142=
+e347cc5/script/kernel/linux-6.14/files/linux-6.14-arm64-armv8.config#L5024=
+
+
+Kernel dmesg: https://termbin.com/uiup
+
+
+
 
