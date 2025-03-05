@@ -1,332 +1,147 @@
-Return-Path: <devicetree+bounces-154452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8839A5039A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:41:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C734DA503A5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:41:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F14083A6EB3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:41:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1626F3A94C2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 15:41:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29832505D9;
-	Wed,  5 Mar 2025 15:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA0E2505DD;
+	Wed,  5 Mar 2025 15:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="Qk+UO+6v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NJs3UpBN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DD32500B1
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 15:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18082505D9;
+	Wed,  5 Mar 2025 15:41:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741189258; cv=none; b=ir162gIbmbDZofTIyDw5XB64uakLXPD9PXjZ0RbrC+JOJDY2YBHasvxsmf/Mc/3oTAdDik9k3LNiEp6vIPzVYPqQ3xnBGhlpcxLsh1xJPtBiC7plaC9guMdNCq+sC/jLxqB/Ex0R44A/QrQyTH3EmtIKWEfPZrc5Uj8D+F1P7lk=
+	t=1741189291; cv=none; b=Nsg8H4/7766u88Pea2JDtccrgOcNnqvYrSeHKhTmOYUy83l8B38qqstmjz/YktJjDEuLOVGwpeAXCqalk/IAIWbJY1FTfWeEi3jlGfwmHFxDB+j8/+6416UbvkUNntsXiqbPP7wwLGoIZ3xHiQrXtLRnF9n2rhEfCds/+hYm/5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741189258; c=relaxed/simple;
-	bh=S5V4K4G9/5vJWNMjiayM1hFuWoqlo2JQsadqMzM6j4s=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qALWIs+bRdYjpGvDhmWmZssux1o6ZyOJ8P4BsvrMrvr+hlje3ppZqE3MJZRFpne28LZDlng6ZZXhNdzq/4Q+JGG0ZagmcFSaniRTQdDhaJR9C61a//qIfbivcqXetQ3mDNFCdv9ghgFBxuu/nTdQ13FJiAOTUxonP6wPI+q6ItM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=Qk+UO+6v; arc=none smtp.client-ip=94.124.121.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=protonic.nl; s=202111;
-	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-	 message-id:subject:cc:to:from:date:from;
-	bh=E+kuQhjj9xzNE6BQn+tsChkhWmfrDEIZBYOWMsZmgiI=;
-	b=Qk+UO+6vvgBlPcvycrq9X9afftKz9msDJkOE4JHf9WXUXPHPlDemBTl6Ow4XjhWWOX8wlJfzCpxib
-	 aOlPD38wDrVUqO9xCaJ2kdtI/nY7hFlIS5xz4peuoSM/nPQFVd0a21QBOXFZC2HDtJH4Ac3i/KzSfX
-	 Oe5rqDbpHNRkglhrSfp9ki803Bxw/F2P3m5Dsob6QFhhTIajO1VhK7z/LdPNGeAsgebx5uYAKlSeJe
-	 uhEqeA3Te23Ec9/ctbFt3XU2h2F2WDzXYWI7GI6IS2qBkpAapzGHuvnNZyjUgadFJG50U8Jpw7xvY7
-	 EN6XLHNM+2dvv0oJCmnKzo6Xg4glinA==
-X-MSG-ID: 34bb63cf-f9d8-11ef-a39e-00505681446f
-Date: Wed, 5 Mar 2025 16:40:45 +0100
-From: David Jander <david@protonic.nl>
-To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
- <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
- <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>
-Subject: Re: [RFC PATCH 1/7] drivers: Add motion control subsystem
-Message-ID: <20250305164046.4de5b6ef@erd003.prtnl>
-In-Reply-To: <6c6cqaxmsy7miesel4ghdeiea6nrpe4gti4xf5enfyg4uqro5u@vpmtd2t7gydi>
-References: <20250227162823.3585810-1-david@protonic.nl>
-	<20250227162823.3585810-2-david@protonic.nl>
-	<6c6cqaxmsy7miesel4ghdeiea6nrpe4gti4xf5enfyg4uqro5u@vpmtd2t7gydi>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741189291; c=relaxed/simple;
+	bh=SnieAOwMqDNTOnx5G1qmbJnw7CsjyegepoQq+LMVw2g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uUronhxZkIVQmAjwgomPv5VKVF7xtc4Y83RUf78kG8erMeGtYz48o8bjswhVIqdw9/GxuAvuQCTSqNicQ2yDOwuSLVErB5GxFTceUqf/kHB3AbDeyIL9pK49IAWxhfAIt5BWxODw+x6uiRz7eDI4GUIizdgrsaj+WcZfc1X/Xn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NJs3UpBN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29DB7C4CED1;
+	Wed,  5 Mar 2025 15:41:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741189291;
+	bh=SnieAOwMqDNTOnx5G1qmbJnw7CsjyegepoQq+LMVw2g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NJs3UpBNlJ/NqMw0qVJM8qYhntxeYLpGBxesbLWY2EqerQ6K24oMAjfxRTJUV59BF
+	 yuQmI8w/AkkdNp+bd7iQ4uBMBfewSc1e5S8gzS2RJp5JVYndDq378m6vSswuiHSR6I
+	 2FxCf5zY5Dzkf7rl6JuEmQgqIXAMcPVI4SwUOVDI1HN1SFZv8Jdv1MMjBJg6Z9EfLN
+	 fQaSin3a/37MCOPRgP0mFxNV7p+LbVE3R2gqOUUPJs48Q5zj4dgb8x/nnmO5IsCExg
+	 l3v0AFe74+EAuiHoZJSZOcOj4MEVOyZki26TzMwYPuF88O0HIwcJynTVRVMXO1eX/h
+	 2jMbVmgDU/6bw==
+Message-ID: <52155b03-20f3-4e64-b636-70042db03ffa@kernel.org>
+Date: Wed, 5 Mar 2025 16:41:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add rk3528 QoS register node
+To: Chukun Pan <amadeus@jmu.edu.cn>, Yao Zi <ziyao@disroot.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250305140009.2485859-1-amadeus@jmu.edu.cn>
+ <20250305140009.2485859-2-amadeus@jmu.edu.cn>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250305140009.2485859-2-amadeus@jmu.edu.cn>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+
+On 05/03/2025 15:00, Chukun Pan wrote:
+> Copy QoS nodes and add rk3528 compatible from bsp kernel,
+
+No, don't copy stuff from BSP kernel. It results in terrible DTS.
+
+> these can be used for power-domain.
+> 
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 160 +++++++++++++++++++++++
+>  1 file changed, 160 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> index 5b334690356a..794f35654975 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> @@ -122,6 +122,166 @@ gic: interrupt-controller@fed01000 {
+>  			#interrupt-cells = <3>;
+>  		};
+>  
+> +		qos_crypto_a: qos@ff200000 {
+> +			compatible = "rockchip,rk3528-qos", "syscon";
+> +			reg = <0x0 0xff200000 0x0 0x20>;
+> +		};
+> +
+> +		qos_crypto_p: qos@ff200080 {
+> +			compatible = "rockchip,rk3528-qos", "syscon";
+> +			reg = <0x0 0xff200080 0x0 0x20>;
+> +		};
 
 
-Hi Uwe,
+Did you just define syscon per few registers? Third case last weeks...
+so no, define what is your device here. 8 registers is not a device usually.
 
-On Fri, 28 Feb 2025 17:44:27 +0100
-Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> wrote:
-
-> Hello David,
->=20
-> just a few highlevel review comments inline.
-
-Thanks...
-
-> On Thu, Feb 27, 2025 at 05:28:17PM +0100, David Jander wrote:
-> [...]
-> > +static int motion_open(struct inode *inode, struct file *file)
-> > +{
-> > +	int minor =3D iminor(inode);
-> > +	struct motion_device *mdev =3D NULL, *iter;
-> > +	int err;
-> > +
-> > +	mutex_lock(&motion_mtx); =20
->=20
-> If you use guard(), error handling gets a bit easier.
-
-This looks interesting. I didn't know about guard(). Thanks. I see the
-benefits, but in some cases it also makes the locked region less clearly
-visible. While I agree that guard() in this particular place is nice,
-I'm hesitant to try and replace all mutex_lock()/_unlock() calls with guard=
-().
-Let me know if my assessment of the intended use of guard() is incorrect.
-
-> > +	list_for_each_entry(iter, &motion_list, list) {
-> > +		if (iter->minor !=3D minor)
-> > +			continue;
-> > +		mdev =3D iter;
-> > +		break;
-> > +	} =20
->=20
-> This should be easier. If you use a cdev you can just do
-> container_of(inode->i_cdev, ...);
-
-Hmm... I don't yet really understand what you mean. I will have to study the
-involved code a bit more.
-
-> [...]
-> > +static int motion_release(struct inode *inode, struct file *file)
-> > +{
-> > +	struct motion_device *mdev =3D file->private_data;
-> > +	int i;
-> > +
-> > +	if (mdev->ops.device_release)
-> > +		mdev->ops.device_release(mdev);
-> > +
-> > +	for (i =3D 0; i < mdev->num_gpios; i++) {
-> > +		int irq;
-> > +		struct motion_gpio_input *gpio =3D &mdev->gpios[i];
-> > +
-> > +		if (gpio->function =3D=3D MOT_INP_FUNC_NONE)
-> > +			continue;
-> > +		irq =3D gpiod_to_irq(gpio->gpio);
-> > +		devm_free_irq(mdev->dev, irq, gpio); =20
->=20
-> It seems devm is just overhead here if you release by hand anyhow.
-
-Ack. This looks indeed unnecessary... I'll try to use non-devres calls here.
-
-> > [...]
-> > +
-> > +static const struct class motion_class =3D {
-> > +	.name		=3D "motion",
-> > +	.devnode	=3D motion_devnode, =20
->=20
-> IIRC it's recommended to not create new classes, but a bus.
-
-Interesting. I did some searching, and all I could find was that the chapter
-in driver-api/driver-model about classes magically vanished between versions
-5.12 and 5.13. Does anyone know where I can find some information about thi=
-s?
-Sorry if I'm being blind...
-
-> [...]
-> > +int motion_register_device(struct motion_device *mdev)
-> > +{
-> > +	dev_t devt;
-> > +	int err =3D 0;
-> > +	struct iio_motion_trigger_info *trig_info;
-> > +
-> > +	if (!mdev->capabilities.num_channels)
-> > +		mdev->capabilities.num_channels =3D 1;
-> > +	if (mdev->capabilities.features | MOT_FEATURE_PROFILE)
-> > +		mdev->capabilities.max_profiles =3D MOT_MAX_PROFILES;
-> > +	if (!mdev->capabilities.speed_conv_mul)
-> > +		mdev->capabilities.speed_conv_mul =3D 1;
-> > +	if (!mdev->capabilities.speed_conv_div)
-> > +		mdev->capabilities.speed_conv_div =3D 1;
-> > +	if (!mdev->capabilities.accel_conv_mul)
-> > +		mdev->capabilities.accel_conv_mul =3D 1;
-> > +	if (!mdev->capabilities.accel_conv_div)
-> > +		mdev->capabilities.accel_conv_div =3D 1;
-> > +
-> > +	mutex_init(&mdev->mutex);
-> > +	mutex_init(&mdev->read_mutex);
-> > +	INIT_KFIFO(mdev->events);
-> > +	init_waitqueue_head(&mdev->wait);
-> > +
-> > +	err =3D motion_of_parse_gpios(mdev);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	mdev->minor =3D motion_minor_alloc();
-> > +
-> > +	mdev->iiotrig =3D iio_trigger_alloc(NULL, "mottrig%d", mdev->minor);
-> > +	if (!mdev->iiotrig) {
-> > +		err =3D -ENOMEM;
-> > +		goto error_free_minor;
-> > +	}
-> > +
-> > +	trig_info =3D kzalloc(sizeof(*trig_info), GFP_KERNEL);
-> > +	if (!trig_info) {
-> > +		err =3D -ENOMEM;
-> > +		goto error_free_trigger;
-> > +	}
-> > +
-> > +	iio_trigger_set_drvdata(mdev->iiotrig, trig_info);
-> > +
-> > +	trig_info->minor =3D mdev->minor;
-> > +	err =3D iio_trigger_register(mdev->iiotrig);
-> > +	if (err)
-> > +		goto error_free_trig_info;
-> > +
-> > +	mdev->iiowork =3D IRQ_WORK_INIT_HARD(motion_trigger_work);
-> > +
-> > +	INIT_LIST_HEAD(&mdev->list);
-> > +
-> > +	mutex_lock(&motion_mtx);
-> > +
-> > +	devt =3D MKDEV(motion_major, mdev->minor);
-> > +	mdev->dev =3D device_create_with_groups(&motion_class, mdev->parent,
-> > +				devt, mdev, mdev->groups, "motion%d", mdev->minor); =20
->=20
-> What makes sure that mdev doesn't go away while one of the attributes is
-> accessed?
-
-Good question. I suppose you mean that since mdev is devres-managed and
-device_create_with_groups() apparently isn't aware of that, so there is no
-internal lock somewhere that prevents read() or ioctl() being called while =
-the
-devres code is freeing the memory of mdev?
-
-I will try to search for some example code to see how something like this is
-handled in other places. I assume I'd need to add a per-mdev lock or use the
-big motion_mtx everywhere... which sounds like a performance penalty that
-should be avoidable. If you know of a good example to learn from, I'd be
-grateful to know.
-
-> > +	if (IS_ERR(mdev->dev)) {
-> > +		dev_err(mdev->parent, "Error creating motion device %d\n",
-> > +				mdev->minor);
-> > +		mutex_unlock(&motion_mtx);
-> > +		goto error_free_trig_info;
-> > +	}
-> > +	list_add_tail(&mdev->list, &motion_list);
-> > +	mutex_unlock(&motion_mtx);
-> > +
-> > +	return 0;
-> > +
-> > +error_free_trig_info:
-> > +	kfree(trig_info);
-> > +error_free_trigger:
-> > +	iio_trigger_free(mdev->iiotrig);
-> > +error_free_minor:
-> > +	motion_minor_free(mdev->minor);
-> > +	dev_info(mdev->parent, "Registering motion device err=3D%d\n", err);
-> > +	return err;
-> > +}
-> > +EXPORT_SYMBOL(motion_register_device);
-> > [...]
-> > +struct mot_capabilities {
-> > +	__u32 features;
-> > +	__u8 type;
-> > +	__u8 num_channels;
-> > +	__u8 num_int_triggers;
-> > +	__u8 num_ext_triggers;
-> > +	__u8 max_profiles;
-> > +	__u8 max_vpoints;
-> > +	__u8 max_apoints;
-> > +	__u8 reserved1;
-> > +	__u32 subdiv; /* Position unit sub-divisions, microsteps, etc... */
-> > +	/*
-> > +	 * Coefficients for converting to/from controller time <--> seconds.
-> > +	 * Speed[1/s] =3D Speed[controller_units] * conv_mul / conv_div
-> > +	 * Accel[1/s^2] =3D Accel[controller_units] * conv_mul / conv_div
-> > +	 */
-> > +	__u32 speed_conv_mul;
-> > +	__u32 speed_conv_div;
-> > +	__u32 accel_conv_mul;
-> > +	__u32 accel_conv_div;
-> > +	__u32 reserved2;
-> > +}; =20
->=20
-> https://docs.kernel.org/gpu/imagination/uapi.html (which has some
-> generic bits that apply here, too) has: "The overall struct must be
-> padded to 64-bit alignment." If you drop reserved2 the struct is
-> properly sized (or I counted wrongly).
-
-Oh, thanks for pointing that out... I wouldn't have searched for that
-information in that particular place tbh. ;-)
-
-I am tempted to add another __u32 reserved3 though instead. Better to have
-some leeway if something needs to be added in a backwards-compatible way la=
-ter.
-
-> > +struct mot_speed_duration {
-> > +	__u32 channel;
-> > +	speed_raw_t speed; =20
->=20
-> What is the unit here?
-
-Speed doesn't have a fixed unit in this case. Or rather, the unit is
-device-dependent. For a motor it could be rotations per second, micro-steps=
- per
-second, etc... while for a linear actuator, it could be micrometers per sec=
-ond.
-
-Why no fixed unit? That's because in practice many devices (controllers) ha=
-ve
-their inherent base-unit, and it would get overly complicated if one needed=
- to
-convert back and forth between that and some universal unit just for the sa=
-ke
-of uniformity, and user-space most certainly expects the same unit as the
-hardware device it was initially designed for. So in this case it is a desi=
-gn
-decision to make user-space deal with unit-conversion if it is necessary to=
- do
-so.
-
-> > +	mot_time_t duration; =20
->=20
-> duration_ns? That makes usage much more ideomatic and there should be no
-> doubts what the unit is.
-
-Yes, mot_time_t is defined as nanoseconds, so I'll add the _ns suffix here.
-
-> > +	pos_raw_t distance; =20
->=20
-> What is the unit here?
-
-Again this unit can have different meanings: micrometers, micro-steps,
-angle-degrees, etc... so what suffix to use?
-
-> > +	__u32 reserved[3]; =20
->=20
-> Again the padding is wrong here.
-
-Will fix. thanks.
-=20
 Best regards,
-
---=20
-David Jander
+Krzysztof
 
