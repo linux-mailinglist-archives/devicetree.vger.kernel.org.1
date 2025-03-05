@@ -1,256 +1,146 @@
-Return-Path: <devicetree+bounces-154212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B78A3A4F578
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:36:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59BB4A4F57F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:44:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBA5E188C8A2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 03:36:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F8AE16E927
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 03:44:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D111C15ADB4;
-	Wed,  5 Mar 2025 03:36:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850BB166F06;
+	Wed,  5 Mar 2025 03:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HwUTOWsR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CbGc6VDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 035DE2E336F;
-	Wed,  5 Mar 2025 03:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9E62E3394;
+	Wed,  5 Mar 2025 03:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741145785; cv=none; b=U+wbCUpzYIjhLABVvQNTV5TLBsJHm6oEagQAkE8PBj46WU1uI9j38AXWuyZw+bwFUcfTxHvSx12OrMQwmOPZvHhg+/dv7EyrRUlA3eUbj4J82rbi8tZw2q4YVAjcnHisKnzEt2m5JDCyQ20VP1xjK9FM19NdUp17V4WURkbZYXU=
+	t=1741146279; cv=none; b=C3UsU7VTP6rlSSSKsxNPAla6JJLn7X86Lgwxgx9qFMIHk+mPEnr8+NqHZ67Is/npQ4DL7eXY25OL2Nb0ThOjHTFMsZQVigWzkv4ztH5EICRUS+E/S7bXJXx0nlP13nSnyCTLq1gByqO/nW34LQEDBGreXZa2WHQrN2yVptD3J1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741145785; c=relaxed/simple;
-	bh=FAdIKs12OIOAXa8pI/oADgOqCxGO3VcDJM8ZKpW4Qpw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Z+NQM5YICdOPDwfu6aJxIpOaIIYwvoUGQDXTdjbDEm8r+LaH2uGAfpnRek8ybcGd1gNf4zwoRyDqbNcyrCvv3RYIp1iVLv+HCSEbttyXUysw9wexv3SK7guWFGsaWAOMq9GSj1zpJWCbSmpA3MewGo7kjgCbCMfDVCYlaIRtDkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HwUTOWsR; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 524NAsXQ008881;
-	Wed, 5 Mar 2025 03:36:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qGlyt/X/wwAgJXkcM5Q6jmBwjUTmlJa6H1clN4lhgY4=; b=HwUTOWsR4ZGcdOWL
-	wU2iYcXearOTPKyCvSJ15tMW2+b368FJ/s6c98kQTE8jZI8gXiVKOjUpVhbItAtL
-	bKOGidyrg62Ce7k53yhvK0BASsG15dDbFrlUxq/Bh0EfBp8T6Fh5QbY4r/m1GXX/
-	J3gA+2NtTQiUL7Zasj7sW9L2v2rZe0fGdam51gVfoVtq/SmdlWatHEVQXaPxR1gh
-	IYAf2NvTbnPWvcBHbP81WcnbFrookDhAjAYci4gBC+0csR3H/JqDnZW0N8pFGZcK
-	lbABHG77p1AWJxuFXFxbrMepG1+LurQLlDYpsICcPeaHZFp4q7BvCTtckajf0ap0
-	D2h0/w==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6v3ygt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Mar 2025 03:36:18 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5253aHF1012134
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Mar 2025 03:36:17 GMT
-Received: from [10.216.10.45] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Mar 2025
- 19:36:13 -0800
-Message-ID: <3dae6b0c-1f03-80c5-f2e6-b66aa2b522f6@quicinc.com>
-Date: Wed, 5 Mar 2025 09:06:09 +0530
+	s=arc-20240116; t=1741146279; c=relaxed/simple;
+	bh=yEfzXlgj/fjBGD7g86podDUNwYc6SHpNLxtVt5MsQUg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=AEee8z6TzgVUPHWBeezymLG2AM/z39VzL/kQAX8xtlBYXzUNGbJp55Dsdycvhz8rCXZEfM3W36CpP7sB9VKDqPiW+vqSxz9eQRInYr1uk4vK9Ul4X+Yh3UMhlMstw5G4z5YjZEfk12jtjqbiAsvDArgViTqwld+ANeaOqb4AwBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CbGc6VDY; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2233622fdffso119430265ad.2;
+        Tue, 04 Mar 2025 19:44:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741146277; x=1741751077; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C+mPOlRZ4KjStxcBL3Z6AAydz8YkO5iSHIPj72E4lQE=;
+        b=CbGc6VDYdi93CIqW0M+Xvr88WC7WG8o/Q8zYjLg1AFMFI2nHRaLGOnE+Me49um1evY
+         xTfe0WBKBCnv1YP1v91t1olRLX82RpvNlX3uFGGO4qeSz1srHA96I60IN2MlyHs4SfuI
+         LNW29smyw+vDACOGjxSx7SKeZsGklh94oOAclAuBSnCX+9sGVaU2ecQZsAr1S6kEcB2K
+         FTTp0PC+3cowl0oQW+EPynX66GSBli6QKM2EgzX7IyLXX9JgOcaViJGmE1PonC2SRjxM
+         FjHosDUHUIxTcM5WGOPRljobeGUgKsy3Uik/6bl2iiPZ3n9oyJI9YeFMfah7boirZdVP
+         8mNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741146277; x=1741751077;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C+mPOlRZ4KjStxcBL3Z6AAydz8YkO5iSHIPj72E4lQE=;
+        b=TWfwfWwE49SkbzRtQpym/fAlw61aqRItLWm46yUlm0MObV9HGEidvqYG7rvkvPXjVX
+         Bdo/EHyCLzQTYppoeqmUa2wi7P8pRy6coKHRZ8JO4cEJM7YKxJC/OCSGtm5X3QklhXq9
+         xj8Ff1Wk/pb8qhDzT6BVFyP2th9umOfHqAHWey/IHK+IFHZHum1vwTs/oCn8+GqCUjNL
+         /50Xa+x0KjKLAppCaeVsaAFjoxpXW3TLlIVfIndqnFsrOKyrkUl5PgBjv8cnk3HNVQBs
+         u9wpT5aVQglOJ3wWLZTC+2U9Z2oCcx6xmKRuHYJZva6r7lurUXWYD0hXfMa9sY3/e+a6
+         p7wg==
+X-Forwarded-Encrypted: i=1; AJvYcCUZksgIJUtR5L+l/C9XMqJBj97oGbTzxAavwrTBoNDqo7byoAlWY3BxBCUpTG2Hv52H1dGQbYeGb1vF@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNPbBkRgyEXZw5CnVMv7Xjp2+8eaIJ2C8GTMEASHGbCXd+30qm
+	mR13+lflG8Crgttf14xK5fVDZe8gB90ZlRovJ0NnYBh/w5vk9f70
+X-Gm-Gg: ASbGncv+j/UacdGrgi2kqW1Cq7jn8rzCIWs5vxp3dia5P4ZbhHcQvIhiZ5SlrWSDVAX
+	KTkfD6GcOBiMqVDXZz4K534+hvA/2u+Cl0QLmkmR3JNTBNBbqY4o5Pt7mh0TmOSSPeGnzW5T0DH
+	bW83G7J4mvrbEnA5/ba3zF5V+EDx4SMFqNFEVBPAKAviDASmvmja8lRxjNYv7p79BzVppwVfcx1
+	JSRe6S0tU1VX26CoURW3NxS817BwnPLBx2ooKEQaKSMzC7iglsRKfccOpaTGArvFR/THtwvdb62
+	A2hoPyeYtld8RfKnOCtieEsOWclHLoEjjnt+g0aeB3dTqbqU4oR9F2c=
+X-Google-Smtp-Source: AGHT+IEl3ybxCxPWvhfjzdCxrRkFkwGL9AXhPPB0O84T8rMHBFkItUCVeOf84SGTH/VV798lvDQFkA==
+X-Received: by 2002:a17:902:c949:b0:223:517a:d2e2 with SMTP id d9443c01a7336-223f1d548b2mr26251405ad.53.1741146277279;
+        Tue, 04 Mar 2025 19:44:37 -0800 (PST)
+Received: from cs20-buildserver.lan ([2403:c300:d305:9d26:2e0:4cff:fe68:863])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-223504c5c37sm102734335ad.133.2025.03.04.19.44.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Mar 2025 19:44:36 -0800 (PST)
+From: Stanley Chu <stanley.chuys@gmail.com>
+X-Google-Original-From: Stanley Chu <yschu@nuvoton.com>
+To: frank.li@nxp.com,
+	miquel.raynal@bootlin.com,
+	alexandre.belloni@bootlin.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-i3c@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	tomer.maimon@nuvoton.com,
+	kwliu@nuvoton.com,
+	yschu@nuvoton.com
+Subject: [PATCH v6 0/5] Add support for Nuvoton npcm845 i3c controller
+Date: Wed,  5 Mar 2025 11:44:09 +0800
+Message-Id: <20250305034414.2246870-1-yschu@nuvoton.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 1/8] media: dt-bindings: Document SC8280XP/SM8350 Venus
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Stanimir Varbanov
-	<stanimir.k.varbanov@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Johan Hovold
-	<johan+linaro@kernel.org>
-References: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-0-279c7ea55493@linaro.org>
- <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-1-279c7ea55493@linaro.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-1-279c7ea55493@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: o1zKbYKGtmarEgjafm6a5fYA-e8hVLs0
-X-Proofpoint-ORIG-GUID: o1zKbYKGtmarEgjafm6a5fYA-e8hVLs0
-X-Authority-Analysis: v=2.4 cv=fatXy1QF c=1 sm=1 tr=0 ts=67c7c6b2 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=gEfo2CItAAAA:8
- a=GN-lJdo5b5kOjZEooHoA:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-05_02,2025-03-04_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- spamscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 suspectscore=0
- phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503050025
+Content-Transfer-Encoding: 8bit
 
+This patchset adds support for the Nuvoton npcm845
+Board Management controller (BMC) SoC family.
 
-On 3/4/2025 6:37 PM, Bryan O'Donoghue wrote:
-> From: Konrad Dybcio <konradybcio@kernel.org>
-> 
-> Both of these SoCs implement an IRIS2 block, with SC8280XP being able
-> to clock it a bit higher.
-> 
-> Document it.
-> 
-> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
-> Link: https://lore.kernel.org/r/20230731-topic-8280_venus-v1-1-8c8bbe1983a5@linaro.org
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> [ bod: dropped dts video-encoder/video-decoder ]
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/media/qcom,sm8350-venus.yaml          | 119 +++++++++++++++++++++
->  1 file changed, 119 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8350-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sm8350-venus.yaml
-> new file mode 100644
-> index 0000000000000..352ad85ae50cd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8350-venus.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/qcom,sm8350-venus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SM8350 Venus video encode and decode accelerators
-Again, what is the need to introduce a new bindings for sm8350 and how different
-is this with sm8250 ?
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konradybcio@kernel.org>
-> +
-> +description: |
-> +  The Venus Iris2 IP is a video encode and decode accelerator present
-> +  on Qualcomm platforms
-> +
-> +allOf:
-> +  - $ref: qcom,venus-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sc8280xp-venus
-> +      - qcom,sm8350-venus
-> +
-> +  clocks:
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: iface
-> +      - const: core
-> +      - const: vcodec0_core
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: core
-> +
-> +  power-domains:
-> +    maxItems: 3
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: venus
-> +      - const: vcodec0
-> +      - const: mx
-> +
-> +  interconnects:
-> +    maxItems: 3
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: cpu-cfg
-> +      - const: video-mem
-> +      - const: video-llcc
-> +
-> +  operating-points-v2: true
-> +  opp-table:
-> +    type: object
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - power-domain-names
-> +  - iommus
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/qcom,gcc-sm8350.h>
-> +    #include <dt-bindings/clock/qcom,sm8350-videocc.h>
-> +    #include <dt-bindings/interconnect/qcom,icc.h>
-> +    #include <dt-bindings/interconnect/qcom,sm8350.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +
-> +    venus: video-codec@aa00000 {
-> +        compatible = "qcom,sm8350-venus";
-> +        reg = <0x0aa00000 0x100000>;
-> +        interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +        clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
-> +                 <&videocc VIDEO_CC_MVS0C_CLK>,
-> +                 <&videocc VIDEO_CC_MVS0_CLK>;
-> +        clock-names = "iface",
-> +                      "core",
-> +                      "vcodec0_core";
-> +
-> +        resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
-> +        reset-names = "core";
-> +
-> +        power-domains = <&videocc MVS0C_GDSC>,
-> +                        <&videocc MVS0_GDSC>,
-> +                        <&rpmhpd SM8350_MX>;
-> +        power-domain-names = "venus",
-> +                             "vcodec0",
-> +                             "mx";
-> +
-> +        interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-> +                         &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-> +                        <&mmss_noc MASTER_VIDEO_P0 QCOM_ICC_TAG_ALWAYS
-> +                         &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> +                        <&mmss_noc MASTER_VIDEO_P0 QCOM_ICC_TAG_ALWAYS
-> +                         &gem_noc SLAVE_LLCC QCOM_ICC_TAG_ALWAYS>;
-> +        interconnect-names = "cpu-cfg",
-> +                             "video-mem",
-> +                             "video-llcc";
-> +
-> +        operating-points-v2 = <&venus_opp_table>;
-> +        iommus = <&apps_smmu 0x2100 0x400>;
-> +        memory-region = <&pil_video_mem>;
-> +
-> +        status = "disabled";
-> +    };
-> 
-Regards,
-Vikash
+The Nuvoton npcm845 uses the same Silvico IP but an older version.
+This patchset adds fixes for the npcm845 specific hardware issues.
+
+--
+v6:
+ - Define QUIRK when it is really used in the separate patches.
+
+v5:
+ - Add default driver data
+ - Add helper function svc_has_daa_corrupt()
+ - Revise SVC_I3C_QUIRK_FIFO_EMPTY fix and add comments
+
+v4:
+ - Fix kernel test robot build warning.
+ - Add SVC_I3C_QUIRK_DAA_CORRUPT fix
+
+v3:
+ - Add more description in dt-binging commit message
+ - Add the svc_i3c_drvdata structure in struct svc_i3c_master
+ - Improve the do_daa
+
+v2:
+ - Add a new compatible string in dt-binding doc.
+ - Add driver data for npcm845 to address the quirks.
+ - Modify svc_i3c_master_write to be reused by SVC_I3C_QUIRK_FIFO_EMPTY fix
+ - Fix typo of SVC_I3C_QUIRK_FALSE_SLVSTART fix.
+ - Remove the code changes in svc_i3c_master_do_daa_locked, will add it in
+   another patch series for common improvement.
+---
+
+Stanley Chu (5):
+  dt-bindings: i3c: silvaco: Add npcm845 compatible string
+  i3c: master: svc: Add support for Nuvoton npcm845 i3c
+  i3c: master: svc: Fix npcm845 FIFO empty issue
+  i3c: master: svc: Fix npcm845 invalid slvstart event
+  i3c: master: svc: Fix npcm845 DAA process corruption
+
+ .../bindings/i3c/silvaco,i3c-master.yaml      |   4 +-
+ drivers/i3c/master/svc-i3c-master.c           | 127 ++++++++++++++++--
+ 2 files changed, 120 insertions(+), 11 deletions(-)
+
+-- 
+2.34.1
+
 
