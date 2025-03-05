@@ -1,172 +1,109 @@
-Return-Path: <devicetree+bounces-154361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25614A4FCBD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:51:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DC57A4FCE8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:56:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9AF11703AE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:50:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B91963AB06B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A002144D5;
-	Wed,  5 Mar 2025 10:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1AE21D5B4;
+	Wed,  5 Mar 2025 10:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="hV3BorJw"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="NER7FOob"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F391220B7E7;
-	Wed,  5 Mar 2025 10:49:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741171796; cv=none; b=bKieDIhYLKTOf9yIugP0gDwMPNw/2mYwm5zRBojESnDJytrPgcXZphO7OCk4bbnBRTDWD5KjgbUIOvEkyPxCLWizqx+YrzcpHuq1Bsz6VD/7CP7NeXMxzDBPUM08uHhJR+xoCYLd8rkoVt9xIjxcWqzfmjEup6x1xxe+7gxrfZY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741171796; c=relaxed/simple;
-	bh=UT5t5cKf18CdLlG0v7nt8XdrJciuVrvT8/nabp56tK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hvsQAYz6iVo7lHPbccmqVMMz85KR+n4XOFAdG4sXmAktnHHAVAH9C5XFykPW97YPcHmu6uE4LmKq8gVVVoyvzVHi8N/GrRMZX2ZLba7L6o3/qZwFfGgFWVHKj8TgyPqoqaSeyhkFs/A50PWo7VZyTnOpG59ZyGugbC2iD9s4e50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=hV3BorJw; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 09A8B2026E;
-	Wed,  5 Mar 2025 11:49:45 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id AvyoDwTIs3tR; Wed,  5 Mar 2025 11:49:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1741171784; bh=UT5t5cKf18CdLlG0v7nt8XdrJciuVrvT8/nabp56tK4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=hV3BorJwYoE13cl35C7YCol2tfRnljeZvqKhzt+XpD0CAmG+tdRxaNJ9nniIDL62w
-	 Q+qx6Z/AuWBqSKQuz8YW7ya4O+anACfd1937x6bQDqGOFNBzcSHpqdEQICG8tInvyH
-	 bIpHKcCIFIubZS2n1U5bGC9FKaUupPgoc++iIhMTCkG83hWrC0N/hRxd5LjNAbT9hM
-	 DZ9ee0boow8/b/1Ng5rWTYa3aG3mW6yqlIMLdyU4ckOU/h85w6heOv+9nEJdRGSndP
-	 zxmwNxvibzGEGcBcK33uJZbMqO9foC9JhSFgCQHXdim6ldgoRuCQswkFOtolLggMHX
-	 M/L8+zNE9m14A==
-Date: Wed, 5 Mar 2025 10:49:21 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Jonas Karlman <jonas@kwiboo.se>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH 6/8] clk: rockchip: rk3528: Add SD/SDIO tuning clocks in
- GRF region
-Message-ID: <Z8gsGlZ7GgNF-zoc@pie.lan>
-References: <20250301104250.36295-1-ziyao@disroot.org>
- <20250301104724.36399-1-ziyao@disroot.org>
- <2583035.OBFZWjSADL@diego>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371A8219310;
+	Wed,  5 Mar 2025 10:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741172120; cv=pass; b=BYR8T2tkjoDi6/Q4yCEYe1oLN7lqS/vOENT6y6/WP/BPakBfebKhp2lkHk8oOg6UsgD4/9RSDQt9U6pAX0aF0lTiRiSbW+B//+43P8tZ/XkIjjKc12oSoHo2WrW8unEtXbv5F3B/YTdDDADTypoFkX/omt1z/zE8toZQkXFAB9s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741172120; c=relaxed/simple;
+	bh=GYN5w2MzWMmFwGQEgpnu8NbUznqwQSMrIGSbADvQp/0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aYrLhPGNBGLRuv7zkJMkeog2uynFqnnla+bLswhQN74veGtC5SW2q0g+nk+nub/3gZvUbcOnrTXbdurEuWVZIG6MR5CgyMyD5jde/T8oL4uVYBy9cCKOY8zLydTe3QTj8jA9Jf2a8VWkQWg2r6PPNb7rWplh0LvtJy/MsEmDit0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=NER7FOob; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1741172021; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=BiJghRD32/9FYVLs2P+J6fdCaN/zWK2c6LsW9GDhkmnrTrn1F8t+JSlVmTEu5YcwX+0dg5OkcD8GstwF2BLIHiCLWE90e6j2x8ntlKYRPLd6iHeY+EIvfdTBwlkRkM2LbFa1oHEBhZQNlVrvEuknvYR27ChTUxB+c2iJRA6s1qM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1741172021; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=dRMz26do/txZBi10Mcoz5fXmESW0PSVQ9DKG49HFVjY=; 
+	b=dC4JJlkhKTXyRwbwtv3Gvyx0h1v3ETJftoZo6tjE2HwirDOxjj2U6uInf1BfNELhHaTpgYaw4ME+GSG3mg3GYASzUFJuk2SNH3WN/hWlfXhhq+joPk2QFVP9+Qr7Evcf9xh3JD5TFWlr6tzuHk1YaxJAEX52zqcCUEkz5fNpQY0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741172021;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=dRMz26do/txZBi10Mcoz5fXmESW0PSVQ9DKG49HFVjY=;
+	b=NER7FOobCE625v+5FstETaN/ynlDtm8YWSnCb1UekBY6fC6tzgxYHiZE4muEc6xC
+	KAar5OSGfLCjt1BOtWqzI9ENXU2A1Y5/n54JIsxY4RjWhkWwagN0jDzC7z0ecxgvEmm
+	nzuYnJZMkz4j2YRWFcFab0lOoGOg6eXYz9MLZzL8=
+Received: by mx.zohomail.com with SMTPS id 1741172020269320.1572108278864;
+	Wed, 5 Mar 2025 02:53:40 -0800 (PST)
+Message-ID: <077b7bbb-8ef9-4dcd-9b91-90af4653851b@collabora.com>
+Date: Wed, 5 Mar 2025 13:53:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2583035.OBFZWjSADL@diego>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 0/6] Add Synopsys DesignWare HDMI RX Controller
+To: Tim Surber <me@timsurber.de>, Hans Verkuil <hverkuil@xs4all.nl>,
+ Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
+ <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, jose.abreu@synopsys.com,
+ nelson.costa@synopsys.com, shawn.wen@rock-chips.com,
+ nicolas.dufresne@collabora.com,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Diederik de Haas <didi.debian@cknow.org>
+References: <20250304085819.108067-1-dmitry.osipenko@collabora.com>
+ <78ff36f6-01a7-4df4-b653-c4509fb93af4@timsurber.de>
+ <1039aca7-89b9-44ef-9775-e7852e956362@timsurber.de>
+ <9b4b1e65-127d-422b-a359-a1d8e25652f9@xs4all.nl>
+ <88054acf-3051-414c-aef7-4c0f085d5182@collabora.com>
+ <47e022f4-1c1b-43c4-8f6c-bc1ff23ad39f@collabora.com>
+ <e0e144be-5cf9-4a79-a602-2ab2b7cd9aa1@timsurber.de>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <e0e144be-5cf9-4a79-a602-2ab2b7cd9aa1@timsurber.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Wed, Mar 05, 2025 at 11:21:48AM +0100, Heiko Stübner wrote:
+On 3/5/25 13:41, Tim Surber wrote:
 > Hi,
 > 
-> Am Samstag, 1. März 2025, 11:47:24 MEZ schrieb Yao Zi:
-> > These clocks locate in VO and VPU GRF, serving for SD/SDIO controller
-> > tuning purpose. Add their definitions and register them in driver if
-> > corresponding GRF is available.
+> so the 4:4:4 issue was just a gstreamer bug and it worked when I applied
+> an experimental fix [1].
 > 
-> (no critique, just an observation :-) )
+> So everything works for me using the default EDID now.
 > 
-> this puts a completely new meaning on the "general register files"
-> as dumping ground ;-) .
+> Tested-by: Tim Surber <me@timsurber.de>
 > 
-> Whoever got the idea of making sdmm/sdio tuning controls part
-> of GRFs that are supposed display and/or video encoder parts :-D
+> [1]: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/
+> merge_requests/8534
 
-Yes, the register layout is quite weird. Additionally some USB2 phy
-registers locate in VO GRF as well...
+Awesome! Glad this has been resolved, thanks for the testing.
 
-> 
-> > GRFs are looked up by compatible to simplify devicetree binding.
-> > 
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> 
-> >  static int __init clk_rk3528_probe(struct platform_device *pdev)
-> >  {
-> > +	unsigned long nr_vpu_branches = ARRAY_SIZE(rk3528_vpu_clk_branches);
-> > +	unsigned long nr_vo_branches = ARRAY_SIZE(rk3528_vo_clk_branches);
-> > +	unsigned long nr_branches = ARRAY_SIZE(rk3528_clk_branches);
-> >  	struct rockchip_clk_provider *ctx;
-> >  	struct device *dev = &pdev->dev;
-> >  	struct device_node *np = dev->of_node;
-> > -	unsigned long nr_branches = ARRAY_SIZE(rk3528_clk_branches);
-> > -	unsigned long nr_clks;
-> > +	struct regmap *vo_grf, *vpu_grf;
-> >  	void __iomem *reg_base;
-> > -
-> > -	nr_clks = rockchip_clk_find_max_clk_id(rk3528_clk_branches,
-> > -					       nr_branches) + 1;
-> > +	unsigned long nr_clks;
-> >  
-> >  	reg_base = devm_platform_ioremap_resource(pdev, 0);
-> >  	if (IS_ERR(reg_base))
-> >  		return dev_err_probe(dev, PTR_ERR(reg_base),
-> >  				     "could not map cru region");
-> >  
-> > +	nr_clks = rockchip_clk_find_max_clk_id(rk3528_clk_branches,
-> > +					       nr_branches) + 1;
-> > +
-> > +	vo_grf = syscon_regmap_lookup_by_compatible("rockchip,rk3528-vo-grf");
-> > +	if (!IS_ERR(vo_grf))
-> 
-> for readability, please make this into something like
-> 	if (!IS_ERR(vo_grf)) {
-> 		nr_vo_clks = rockchip_clk_find_max_clk_id(rk3528_vo_clk_branches,
-> 							   nr_vo_branches) + 1;
-> 		nr_clks = max(nr_vo_clks, nr_clks);
-> 	}
-
-Thanks for the suggestion, will take it.
-
-> > +	else if (PTR_ERR(vo_grf) != ENODEV)
-> > +		return dev_err_probe(dev, PTR_ERR(vo_grf),
-> > +				     "failed to look up VO GRF\n");
-> > +
-> > +	vpu_grf = syscon_regmap_lookup_by_compatible("rockchip,rk3528-vpu-grf");
-> > +	if (!IS_ERR(vpu_grf))
-> > +		nr_clks = MAX(rockchip_clk_find_max_clk_id(rk3528_vpu_clk_branches,
-> > +							   nr_vpu_branches) + 1,
-> > +			      nr_clks);
-> 
-> same here please
-> 
-> > +	else if (PTR_ERR(vpu_grf) != ENODEV)
-> > +		return dev_err_probe(dev, PTR_ERR(vpu_grf),
-> > +				     "failed to look up VPU GRF\n");
-> > +
-> >  	ctx = rockchip_clk_init(np, reg_base, nr_clks);
-> >  	if (IS_ERR(ctx))
-> >  		return dev_err_probe(dev, PTR_ERR(ctx),
-> 
-> Thanks
-> Heiko
-> 
-
-Cheers,
-Yao Zi
+-- 
+Best regards,
+Dmitry
 
