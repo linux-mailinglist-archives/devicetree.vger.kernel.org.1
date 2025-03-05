@@ -1,68 +1,65 @@
-Return-Path: <devicetree+bounces-154467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 222B6A504E0
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:31:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB7DA504DD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:31:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DDEC1643CD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:29:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B08B83A7E1C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 16:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF34E252905;
-	Wed,  5 Mar 2025 16:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4297190472;
+	Wed,  5 Mar 2025 16:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q5D2z9Lw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxrtDGNC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC8818A95E;
-	Wed,  5 Mar 2025 16:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA8E567D;
+	Wed,  5 Mar 2025 16:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741192050; cv=none; b=a/oJmGZ1Evf3/8LQAacGtj+tK9nhK1Wi/UpcndunW7KlyjJ5mavflWK79JzeKnz3KGs9Nf6Psk+xBMorTdNxn3W7ma3wVUYkM9+969GQtuW9Pm6jnEtPYIOEN08hsD84lYaR4BKgHKhNzUsZ4ZOJGb5Aw18hHjy/9FAszaxLbAc=
+	t=1741192101; cv=none; b=f84QtdsKI9ctux2uPFh+rJTW2TqJRHngClXH9+oPrOtiJmJ7iWRKQX9RxqLGtsf7lRmUdmPYPg5gG9yr1K4wE+0FAq5ArgnyrYdOwi1NnQznAS2i1E4G5Wt8n2JVIbHBfTVYKvFH99Q/C2iRYtS4KDqT8jgwim3W2693Extbzr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741192050; c=relaxed/simple;
-	bh=bGRDGRFMQzRHd1CL7i1uKLog2VzAOFSif0V7FQ+SqpI=;
+	s=arc-20240116; t=1741192101; c=relaxed/simple;
+	bh=k6csO67vDrMnXIexjx2So/2QNSl6gZamVG0l1qJBY1o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kWSX4NQX+Y/G7lzIxg9JQz2Rl97NRSGMhltaAA9bbSMDFitbFxUtQWncN900b0V0do/Af8ZLXNoyCOiFU2iCqVy8tgBwOAsPwcu+pUFbkCCG325MFP423ICmqjFHBSU77WJL+CvqV+IZdVvpWVV6iB3HUuw9PyhRHRcfNdOElVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q5D2z9Lw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BECF7C4CED1;
-	Wed,  5 Mar 2025 16:27:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lHPbG/BibU40/PlxCMnNmEMuSWP8yArkTI6gE82KA4Hm89iMoywN5SEEwuTuZtsSsjQdD/6ohWQQqCFwrbRsyAWrPplA22vkOYsD+u/IKHJBx/hc1hyPboJMmuBdgxYOkj0xVuBHAmjKWVQI73WtR2wepxWfTf4plxZkM7j2JOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GxrtDGNC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81834C4CED1;
+	Wed,  5 Mar 2025 16:28:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741192050;
-	bh=bGRDGRFMQzRHd1CL7i1uKLog2VzAOFSif0V7FQ+SqpI=;
+	s=k20201202; t=1741192101;
+	bh=k6csO67vDrMnXIexjx2So/2QNSl6gZamVG0l1qJBY1o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q5D2z9Lw1hCeQXQtrrhz6FjEEq6Du60xFweZGdwpcxgsgX7GOUaqC73T4weKLwFpF
-	 kITN2be0XodG7T5hW2dbx7Pd/BtNjX7X0a03FRnXA1eadbYHG0DUP27uMS2cq9szt6
-	 uIm9IA4mVmR1PYI2mx5FAdgxxNnCGc1QMBlOSCAp8bF9ptzIELWL4NTqxDY/FTbKCy
-	 CQPLRLjDGNTebnDXWjzEwHoy9fHY0dOltAXljzLnAqWO0+eEPYLXePmNUdO6ZLEO3z
-	 HUSMIAXctjaE9gpCjwSSuYaC7m39C5hQxZbCV40kIw6QLGWU2tJF/d7qOKKAu1S651
-	 t6kBDrm1kYEcw==
-Date: Wed, 5 Mar 2025 16:27:24 +0000
+	b=GxrtDGNC3NypBKUNs8Dbgy7duGDWhk7EV2KWkLlu67Su+A4Zd7xCnBB6t/DAFWyKJ
+	 s9p10W6UQbieQuyLUUT3RKnOeLzZ0jVKT0NADLxLzQXyx66A0ytCkG8X2bG/Hfbi1u
+	 vVcYpD+x28L+JM0GX6YsHw+40QaB52VuYl0ptky9bMR03CEI1bJLbNLbTcZVL42HFS
+	 T2wCppU9rkXCEcQnG5MIrmNHG0Rg8NW318+iH7kx42+dWDHIvJijmQEltgLQRMfCMG
+	 9Pmewl+OqduWV67YNEjWASglYwJOtXWFr0Ks8r4wPmr29LusnVmTlPsVoxxIUPZ6sk
+	 RBgjGrumuAK6g==
+Date: Wed, 5 Mar 2025 16:28:16 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+To: xianwei.zhao@amlogic.com
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Alexander Aring <alex.aring@gmail.com>,
-	Stefan Schmidt <stefan@datenfreihafen.org>
-Subject: Re: [PATCH net-next v4 4/4] dt-bindings: ieee802154: ca8210: Update
- polarity of the reset pin
-Message-ID: <20250305-primp-snowdrop-9af58ace1727@spud>
-References: <20250305105656.2133487-1-andriy.shevchenko@linux.intel.com>
- <20250305105656.2133487-5-andriy.shevchenko@linux.intel.com>
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: interrupt-controller: Add support
+ for Amlogic A4 and A5 SoCsy
+Message-ID: <20250305-corral-unfair-a7f25abbfd64@spud>
+References: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
+ <20250305-irqchip-gpio-a4-a5-v3-1-1eec70352fea@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,57 +67,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HMd4nwnQLMa+4aQ7"
+	protocol="application/pgp-signature"; boundary="MMuZ/eZR8DrqmyMW"
 Content-Disposition: inline
-In-Reply-To: <20250305105656.2133487-5-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20250305-irqchip-gpio-a4-a5-v3-1-1eec70352fea@amlogic.com>
 
 
---HMd4nwnQLMa+4aQ7
+--MMuZ/eZR8DrqmyMW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 05, 2025 at 12:55:37PM +0200, Andy Shevchenko wrote:
-> The code has been updated to follow what datasheet says about
-> the polarity of the reset pin, which is active-low. Update
-> the device tree bindings accordingly.
+On Wed, Mar 05, 2025 at 06:02:56PM +0800, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 >=20
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Update dt-binding document for GPIO interrupt controller
+> of Amlogic A4 and A5 SoCs
+>=20
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  Documentation/devicetree/bindings/net/ieee802154/ca8210.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../amlogic,meson-gpio-intc.yaml                    | 21 +++++++++++++++=
+++++--
+>  1 file changed, 19 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/net/ieee802154/ca8210.txt =
-b/Documentation/devicetree/bindings/net/ieee802154/ca8210.txt
-> index a1046e636fa1..f1bd07a0097d 100644
-> --- a/Documentation/devicetree/bindings/net/ieee802154/ca8210.txt
-> +++ b/Documentation/devicetree/bindings/net/ieee802154/ca8210.txt
-> @@ -20,7 +20,7 @@ Example:
->  		reg =3D <0>;
->  		spi-max-frequency =3D <3000000>;
->  		spi-cpol;
-> -		reset-gpio =3D <&gpio1 1 GPIO_ACTIVE_HIGH>;
-> +		reset-gpio =3D <&gpio1 1 GPIO_ACTIVE_LOW>;
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlog=
+ic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-contr=
+oller/amlogic,meson-gpio-intc.yaml
+> index a93744763787..3c5853c71efa 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meso=
+n-gpio-intc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meso=
+n-gpio-intc.yaml
+> @@ -35,6 +35,9 @@ properties:
+>                - amlogic,meson-sm1-gpio-intc
+>                - amlogic,meson-a1-gpio-intc
+>                - amlogic,meson-s4-gpio-intc
+> +              - amlogic,a4-gpio-intc
+> +              - amlogic,a4-gpio-ao-intc
+> +              - amlogic,a5-gpio-intc
+>                - amlogic,c3-gpio-intc
+>                - amlogic,t7-gpio-intc
+>            - const: amlogic,meson-gpio-intc
+> @@ -49,8 +52,6 @@ properties:
+> =20
+>    amlogic,channel-interrupts:
+>      description: Array with the upstream hwirq numbers
+> -    minItems: 8
+> -    maxItems: 12
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Please leave the widest constraints here, and let the more restricted
+ones in your if/else below.
 
->  		irq-gpio =3D <&gpio1 2 GPIO_ACTIVE_HIGH>;
->  		extclock-enable;
->  		extclock-freq =3D 16000000;
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+> =20
+>  required:
+> @@ -60,6 +61,22 @@ required:
+>    - "#interrupt-cells"
+>    - amlogic,channel-interrupts
+> =20
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: amlogic,a4-gpio-ao-intc
+> +then:
+> +  properties:
+> +    amlogic,channel-interrupts:
+> +      minItems: 2
+> +      maxItems: 12
+> +else:
+> +  properties:
+> +    amlogic,channel-interrupts:
+> +      minItems: 8
+> +      maxItems: 12
+> +
+>  additionalProperties: false
+> =20
+>  examples:
+>=20
 > --=20
-> 2.47.2
+> 2.37.1
+>=20
 >=20
 
---HMd4nwnQLMa+4aQ7
+--MMuZ/eZR8DrqmyMW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8h7bAAKCRB4tDGHoIJi
-0uP0AQDb+MXWjkA7voiyssiVTT6Ix0clY4wz8p9AJT5dGwZfNwEAk+Rrk9mYIqxG
-2PQ7K9oWTBd9bBhuyeWnmwp/dUp1HgM=
-=r10L
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8h7oAAKCRB4tDGHoIJi
+0h1GAP9khO8ylB5zlNKs4uW4bc5TRHhnmWk5xx6QOLvsYcAUWgEAiN0yW0agWWR/
+qQUvLSvAvFW7/l6X9Sym1jqe28wIRwM=
+=RNx5
 -----END PGP SIGNATURE-----
 
---HMd4nwnQLMa+4aQ7--
+--MMuZ/eZR8DrqmyMW--
 
