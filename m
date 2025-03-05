@@ -1,152 +1,184 @@
-Return-Path: <devicetree+bounces-154274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13FEDA4F8A1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:21:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 949AAA4F8B2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:24:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8429616FD4B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:21:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6DB416F9CB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C221FCD02;
-	Wed,  5 Mar 2025 08:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0851F584A;
+	Wed,  5 Mar 2025 08:24:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="j6rN1eS+"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Nyhwhmn5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8A671F5850;
-	Wed,  5 Mar 2025 08:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57AC21F582D
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:23:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741162871; cv=none; b=mx9rZyXzbsjQMYRCsB3bmE654LIWKMrp9+Lgf3cbaQiSzBCkuzu+J7GWMqWszHuad6LiJPY5WQHQCdghlqGkYlQOYuMStbfR5qNe/vLSMML2wEVQSD0OO1ZJIQDvIrUkh1ordVwcfSVykBeQp5YFLGofKkljkpw0AMhjoV0gpiI=
+	t=1741163042; cv=none; b=JkYWrWhwOP0pmbiSXrsHKXtHHDXnQLDGVitAUsDrMnh/BM95ar4muse2DLnl/JvPdGSSBOvYig0mvmp1IzSQ8k5PEAmGIIj8f8pEqVm+5KuUfF4wA/b++yTv9I2IJmeNQgUBVAXulS0pqajrOE3bpYnhbxjN0EQmTmsOlDeLgvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741162871; c=relaxed/simple;
-	bh=3ZhW+AhUyMOTb+n2Hb8xv6MnVZgS2qx20lZ82CUUZh4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UvLjcUIc0NdeKXG2bf4ZgGqHWwJhJT3f3rkr04HBbLUj1pHe+7NQ3OH42+PIW4BNRciPHk9xl83lwx3ZFIWqc+NmcfK+FUNS90xSJOkGN75df183dSlrUk56Cwmav/B6HYcD/LxMG/5bcmDbvt81G6oYSaAbQbAkGklmOkLIYYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=j6rN1eS+; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: c384a10ef99a11efaae1fd9735fae912-20250305
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=KfxPaWGsAZSYsN3AQgx//cOpK/kMmXrN13zjrXyUlh4=;
-	b=j6rN1eS+LLPIzBggOPVr9kpH1GMFR6hiDKzaoFWF85jwq6DaJuPikJCMTaZgDxkVwyTUshqB0Hx/bIiCkpDIXlnJLpSv4pMi3e52EA1G+FrVMJST8kSPV82XTO/buIPrURrUhxKqi85XsVw+U+OAp68i0M8GbywiXq5aYKD459g=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:0e9812fc-5235-47f8-8d8f-87f4c724789d,IP:0,UR
-	L:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:25
-X-CID-META: VersionHash:0ef645f,CLOUDID:62caf1c5-16da-468a-87f7-8ca8d6b3b9f7,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-	,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: c384a10ef99a11efaae1fd9735fae912-20250305
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <jjian.zhou@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 625336768; Wed, 05 Mar 2025 16:20:57 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Wed, 5 Mar 2025 16:20:55 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Wed, 5 Mar 2025 16:20:55 +0800
-From: Jjian Zhou <jjian.zhou@mediatek.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jason-ch Chen
-	<jason-ch.chen@mediatek.com>, Jjian Zhou <jjian.zhou@mediatek.com>
-Subject: [PATCH RFC 3/3] dt-bindings: mailbox: mtk,vcp-mbox: add mtk vcp-mbox document
-Date: Wed, 5 Mar 2025 16:20:40 +0800
-Message-ID: <20250305082047.15746-4-jjian.zhou@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250305082047.15746-1-jjian.zhou@mediatek.com>
-References: <20250305082047.15746-1-jjian.zhou@mediatek.com>
+	s=arc-20240116; t=1741163042; c=relaxed/simple;
+	bh=5oioArqckWK7P85itc8aO9C5fWyeb++QRtIHYUaaxAA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=hwIIakT77ZnilP04OmOZvOm4YizuNvWWG09fmR/EHVONN5U0Imzjvi9pt/fn3kSbXSvjKwf1MIRbb8QN5yFGTuRKnxWrO9HQ6yUUkcooS5wwdZKhWkppd0ayRAnUXMPi0/pAKrPF5ch+doRlxKld/5jQBZhPqlaKt8BXjn6/3r8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Nyhwhmn5; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250305082357euoutp010624577fdbcd0cfe24fd9750e3bfa61c~p2o61p5xR2219722197euoutp01I
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:23:57 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250305082357euoutp010624577fdbcd0cfe24fd9750e3bfa61c~p2o61p5xR2219722197euoutp01I
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1741163037;
+	bh=PGt1CSGjFMabgTf1srY6MXwWrrLW0AjKIgfy5jsvIPg=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=Nyhwhmn5VD91sXGi5UMQjRA4Ske6yzrWzPKD12OL275S7L62PmNaWKyR0quNGvRxl
+	 yBJ36KO7X9sSOwbFzfEOrdflPFWdpJotgv1swt/ZiOot3biyE0NVa5qEuDVjhj16Ll
+	 t3leF0vpOmUaXFcswMPAhiF8AZ+llEW9cJXV8YBY=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20250305082357eucas1p174954be8e28b7c00ffd1668d010ff52e~p2o6hZ4E21049710497eucas1p18;
+	Wed,  5 Mar 2025 08:23:57 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id 65.64.20821.C1A08C76; Wed,  5
+	Mar 2025 08:23:57 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250305082356eucas1p2d936fbea7bdd26ab959db4b218062adb~p2o6KxHWu1585915859eucas1p2w;
+	Wed,  5 Mar 2025 08:23:56 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250305082356eusmtrp153d1eba5e52d6132a1e3c51fa69fd828~p2o6J-EcS0898508985eusmtrp1z;
+	Wed,  5 Mar 2025 08:23:56 +0000 (GMT)
+X-AuditID: cbfec7f2-b09c370000005155-40-67c80a1c7667
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id 91.64.19920.C1A08C76; Wed,  5
+	Mar 2025 08:23:56 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250305082356eusmtip12d7cf33847491aed6d0a0fb5155f381a~p2o5mcXqn3232132321eusmtip1I;
+	Wed,  5 Mar 2025 08:23:56 +0000 (GMT)
+Message-ID: <4205b786-fb65-468c-a3d8-bce807dd829a@samsung.com>
+Date: Wed, 5 Mar 2025 09:23:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/2] TH1520 SoC: Add Reset Controller Support
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com,
+	guoren@kernel.org, wefu@redhat.com, p.zabel@pengutronix.de,
+	m.szyprowski@samsung.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <20250303152511.494405-1-m.wilczynski@samsung.com>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPKsWRmVeSWpSXmKPExsWy7djPc7qyXCfSDd7OY7RYs/cck8X8I+dY
+	Le5d2sJk8WJvI4vFy1n32Cwu75rDZrH2yF12i7v3TrBY/N+zg92iZf8UFgcuj02rOtk8WtYe
+	Y/Lo/2vg8X7fVTaPvi2rGD0+b5ILYIvisklJzcksSy3St0vgyjj9+QZrwUTBimOXlrE1MM7m
+	7WLk5JAQMJHY93IFYxcjF4eQwApGifuH1kI5Xxglzjy6yALhfGaUeHByDVMXIwdYy6R7iRDx
+	5YwSG6dfYIZw3jJKdM1ZxwYyl1fATuLh1/1MIDaLgIrE5L0tjBBxQYmTM5+wgNiiAvIS92/N
+	YAexhQVcJKZMPQC2WkRgKdAdnb+YQRLMAjYSN9ZeZoSwxSVuPZkPNpRNwEjiwfL5rCA2p4C9
+	xNZn/9kgauQltr+dA3aRhMAPDomrP7axQJztIrH2VjDE08ISr45vYYewZSROT+5hgbDzJR5s
+	/cQMYddI7Ow5DmVbS9w594sNZAyzgKbE+l36EGFHiXP3fjNCTOeTuPFWEOICPolJ26YzQ4R5
+	JTrahCCq1SSm9vTCLT23YhvTBEalWUiBMgvJj7OQ/DILYe8CRpZVjOKppcW56anFhnmp5XrF
+	ibnFpXnpesn5uZsYgWnq9L/jn3Ywzn31Ue8QIxMH4yFGCQ5mJRHe16eOpwvxpiRWVqUW5ccX
+	leakFh9ilOZgURLnXbS/NV1IID2xJDU7NbUgtQgmy8TBKdXA5HTS789N999CN6MaZovLG76I
+	5cp52jVfW+nhsexnJyRuFz+9L2/PZzV7j1yVTpqtgsW2Wwxpu1km1Dn8m3i1eVdCq3Ts1aLO
+	g8LHKr3zMt/pf5jBq5R1snWucLhqZLjqpea4rvwfP7YwfnKrORzZr+7cru0hFdi38rfhaa5z
+	NZErjM4FBoQGN+4qiH4sffbe5wkF6VMlFJd/YjMRdTsQWMT8y7vNKt7+WuP/C+k9fQeWtVQL
+	pW4+6K26smyX2M45D5PCa7Zm+EZdX71s6pGnU2zfnTH1d05tnB53RkZls/hZYQ0+8+q02I6Q
+	L7/frtm+THq5sfHD2uVxUpHS+qI2YV+jLx+teiCh9FV+VrQSS3FGoqEWc1FxIgDQ40YtwgMA
+	AA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrEIsWRmVeSWpSXmKPExsVy+t/xu7oyXCfSDbbPVbNYs/cck8X8I+dY
+	Le5d2sJk8WJvI4vFy1n32Cwu75rDZrH2yF12i7v3TrBY/N+zg92iZf8UFgcuj02rOtk8WtYe
+	Y/Lo/2vg8X7fVTaPvi2rGD0+b5ILYIvSsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaP
+	tTIyVdK3s0lJzcksSy3St0vQyzj9+QZrwUTBimOXlrE1MM7m7WLk4JAQMJGYdC+xi5GLQ0hg
+	KaPE0ZVrmLsYOYHiMhLXul+yQNjCEn+udbFBFL1mlGj9c5wRJMErYCfx8Ot+JhCbRUBFYvLe
+	Fqi4oMTJmU/AmkUF5CXu35rBDmILC7hITJl6gBFkkAjItnsfprGCJJgFbCRurL3MCLFhEqNE
+	c+dSRoiEuMStJ/PBNrAJGEk8WD4frIFTwF5i67P/bCAvMAuoS6yfJwRRLi+x/e0c5gmMQrOQ
+	3DELyaRZCB2zkHQsYGRZxSiSWlqcm55bbKhXnJhbXJqXrpecn7uJERiZ24793LyDcd6rj3qH
+	GJk4GA8xSnAwK4nwvj51PF2INyWxsiq1KD++qDQntfgQoykwLCYyS4km5wNTQ15JvKGZgamh
+	iZmlgamlmbGSOK/b5fNpQgLpiSWp2ampBalFMH1MHJxSDUytIvMS5aQrH92J/sLKd6XwdnDV
+	ro+nt0Tk27uml3y/4Dz7sAVT42pePYePq257m9t6zDiz8YdlhTrXyxkWXp9e5BXFHRKx+ME1
+	9e5ShbAJ/kwd0Xfv8mqYnklan+5+WuaIz5+uK9qXAq06L09Lzd982OLlz27PjJf/y9u3eyXz
+	Ncx4ZM/F581azhZnK/n28vlnn6849D15y8zMs/rrlcg7C8zbJp0L/v3wEE+abXd9/AFPYzXR
+	yix+Sfln+2+LNAjOXO+n1tjjck2kfMbSq1y7Vybllf5d6Lq0Y1rJJk62/ANiDTNOXHb+xlf0
+	zsdI29BCUfntwZ2Bytbq+zd766ZvrljWdua4vSBPAMveEiWW4oxEQy3mouJEAH1Gj61VAwAA
+X-CMS-MailID: 20250305082356eucas1p2d936fbea7bdd26ab959db4b218062adb
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250303152520eucas1p250f2e6d8eaf1172d8813b04ceb88679c
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250303152520eucas1p250f2e6d8eaf1172d8813b04ceb88679c
+References: <CGME20250303152520eucas1p250f2e6d8eaf1172d8813b04ceb88679c@eucas1p2.samsung.com>
+	<20250303152511.494405-1-m.wilczynski@samsung.com>
 
-This patch adds document for mediatek vcp mbox.
 
-Signed-off-by: Jjian Zhou <jjian.zhou@mediatek.com>
----
- .../bindings/mailbox/mtk,vcp-mbox.yaml        | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,vcp-mbox.yaml
 
-diff --git a/Documentation/devicetree/bindings/mailbox/mtk,vcp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/mtk,vcp-mbox.yaml
-new file mode 100644
-index 000000000000..d5afe295af14
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/mtk,vcp-mbox.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/mtk,vcp-mbox.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek Video Companion Processor (VCP) mailbox
-+
-+maintainers:
-+  - Jjian Zhou <Jjian.Zhou@mediatek.com>
-+
-+description: |
-+  The MTK VCP mailbox enables the SoC to communicate with the VCP by passing
-+  messages through 64 32-bit wide registers. It has 32 interrupt vectors in
-+  either direction for signalling purposes.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8196-vcp-mbox
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#mbox-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - "#mbox-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    vcp_mailbox0: mailbox@31b80000 {
-+        compatible = "mediatek,mt8196-vcp-mbox";
-+        reg = <0x31b80000 0x1000>;
-+        interrupts = <GIC_SPI 789 IRQ_TYPE_LEVEL_HIGH 0>;
-+        #mbox-cells = <0>;
-+    };
--- 
-2.45.2
+On 3/3/25 16:25, Michal Wilczynski wrote:
+> This patch series adds reset controller support for the T-Head TH1520 SoC,
+> which is used in boards like the LicheePi 4A. While part of a broader effort to
+> enable the Imagination BXM-4-64 GPU upstream, these patches focus on providing
+> a dedicated reset controller driver and the corresponding Device Tree
+> nodes/bindings.
+> 
+> Bigger series cover letter:
+> https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
 
+
+This series should be versioned as v6, to maintain continuity with the
+bigger patchset it is a subseries of. Please find below a changelog for
+the reset sub-series:
+
+v6:
+ - split the reset part into sub-series, add the Reviewed-by from
+   Philipp
+
+v5:
+ - Moved the reset de-assertion from the reset driver to the clock driver. The
+   reset is now only de-asserted once the sys and core clocks have been enabled
+ - Added and exported the GPU_CLKGEN reset, allowing the clock driver to reset
+   the GPU clock circuit
+
+v4:
+ - reverted reset-cells configuration to single cell as in v2
+ - maintained reset definitions in device tree bindings while deferring
+   implementation of watchdog timer (WDT) reset functionality
+
+v3:
+ - refactored reset driver to use zero cells
+
+v2:
+ - developed a reset controller driver for the TH1520 to manage reset
+   sequences
+ - added new dt-bindings for reset
+
+> 
+> Michal Wilczynski (2):
+>   dt-bindings: reset: Add T-HEAD TH1520 SoC Reset Controller
+>   reset: thead: Add TH1520 reset controller driver
+> 
+>  .../bindings/reset/thead,th1520-reset.yaml    |  44 ++++++
+>  MAINTAINERS                                   |   3 +
+>  drivers/reset/Kconfig                         |  10 ++
+>  drivers/reset/Makefile                        |   1 +
+>  drivers/reset/reset-th1520.c                  | 135 ++++++++++++++++++
+>  .../dt-bindings/reset/thead,th1520-reset.h    |  16 +++
+>  6 files changed, 209 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+>  create mode 100644 drivers/reset/reset-th1520.c
+>  create mode 100644 include/dt-bindings/reset/thead,th1520-reset.h
+> 
 
