@@ -1,89 +1,131 @@
-Return-Path: <devicetree+bounces-154295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40E40A4F9C1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:18:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD1E5A4FA0C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:30:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2464E16B793
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:18:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07A68188AD0A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:30:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B69204C26;
-	Wed,  5 Mar 2025 09:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9BE8204C1C;
+	Wed,  5 Mar 2025 09:30:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail78-60.sinamail.sina.com.cn (mail78-60.sinamail.sina.com.cn [219.142.78.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57DD420468D
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 09:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.60
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC9F2E338B;
+	Wed,  5 Mar 2025 09:30:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741166312; cv=none; b=GPaCZBsxHxM+7ud5tSzqayDc+5oZnNdj7iY4tRxU4YE/GdhIstj3cus6uyrB5JIMVJsTCrbY+vNjnvNPHY6Sts04TBGWY79kofv8dynintcxWOmBjVLoVDErl3tJ4zNk8qt6u6jAb5h5uRfvbMwunbqGKz4550QmaJO8GpMrvmI=
+	t=1741167009; cv=none; b=QT4kuUzHAQvxQ1jzg59vCLPLroBtHNeARz29XYDnO9KBwc6+Uvn40nzfuiJnHNY+BEc2WkbLGacZr7Oq6NIa37H8stzlFBoJt4/eTmTtHaPUOBoy3Xntqta/NozZe3U0JQbUgBu3MDEdIMsNj/vL4mFFl0AJ1c1pyFKp2qPqA0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741166312; c=relaxed/simple;
-	bh=Jn41vaoxuKDMTnwNiVoq+YRmti9bdY6rpCo90h3envs=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=i7PD5JLSdftQkd9awuM83r4LQKS2tgvW50UKW2kx7ZQr5mKDQ9uFngbM28O+Ty+ZHulEZScSWhPkeENBb2fGPO09FcBHDEiytAoCb8pOaRIbCq1x18PdLcoN/GiEyERZRyF3jEri/75AboDHeMsHLYVG92fRSRS1RteN8qSN2YI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
-	by sina.net (10.185.250.30) with ESMTP
-	id 67C816D500001C4D; Wed, 5 Mar 2025 17:18:15 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 240DE838EFAC402A9673847D6D4DD209
-X-SMAIL-UIID: 240DE838EFAC402A9673847D6D4DD209-20250305-171815
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Cc: tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Subject: RE: [PATCH v4 1/2] ASoC: codecs: add support for ES8389
-Date: Wed,  5 Mar 2025 17:18:13 +0800
-Message-Id: <20250305091813.49568-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1741167009; c=relaxed/simple;
+	bh=MrGkpKrquMTPeSOb8uEVtL40WPXsEm/bCJQkaaJsrI0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BQx1OfJ09Pb7CNfD+Y2TmyU1aFwCdUYvXPsMl+ZWqvJzJYJaxOhh3P6nu1s8QbktZ3IvibedRwQG6Gp/MpDPFurCVY+9197CSIEQ8FMKQwYEMa/OFp/HPIuenPFVBjWQFiYjb6aQOXo64WUpI6KOyxY2ksxj0eSltvM1DMEp5Hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: jPoFaVfGTK2QZNVBqyCd3Q==
+X-CSE-MsgGUID: krVBVJARRjyzhQw/9YfZtg==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 05 Mar 2025 18:30:04 +0900
+Received: from localhost.localdomain (unknown [10.226.92.226])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id D4864401E50A;
+	Wed,  5 Mar 2025 18:30:00 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v6 0/2] Add RZ/G3E SDHI support
+Date: Wed,  5 Mar 2025 09:29:50 +0000
+Message-ID: <20250305092958.21865-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-> > @@ -0,0 +1,961 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * es8389.c  --  ES8389/ES8390 ALSA SoC Audio Codec
-> > + *
-> > + * Copyright (C) 2025 Everest Semiconductor Co., Ltd
-> 
-> Please make the entire comment block a C++ one so things look more
-> consistent.
+The SD/MMC block on the RZ/G3E ("R9A09G047") SoC is similar to that
+of the RZ/V2H, but the SD0 channel has only dedicated pins, so we must
+use SD_STATUS register to control voltage and power enable (internal
+regulator).
 
-I will fix it
+For SD1 and SD2 channel we can either use gpio regulator or internal
+regulator (using SD_STATUS register) for voltage switching.
 
-> > +	if (es8389->dmic == true) {
-> > +		regmap_update_bits(es8389->regmap, ES8389_DMIC_EN, 0xC0, 0xC0);
-> > +		regmap_update_bits(es8389->regmap, ES8389_ADC_MODE, 0x03, 0x03);
-> > +	} else {
-> > +		regmap_update_bits(es8389->regmap, ES8389_DMIC_EN, 0xC0, 0x00);
-> > +		regmap_update_bits(es8389->regmap, ES8389_ADC_MODE, 0x03, 0x00);
-> > +	}
-> 
-> We also had the DMIC mux, is that useful as a runtime control when we
-> have firmware data telling us if there's a DMIC?  Can both a DMIC and
-> analog input be present in the same system?
-> 
-> It does still look like a lot of these settings might be things that
-> should be user controllable...
+For SD0, fixed voltage(eMMC) uses fixed regulator and non-fixed voltage
+(SD) uses internal regulator.
 
-I'm going to remove es8389->dmic and everest,dmic-enabled and use only DMIC_MUX
+v5->v6:
+ * Added const for renesas_sdhi_vqmmc_regulator.
+ * Added Rb tag from Wolfram for driver changes.
+v4->v5:
+ * Collected tag from Wolfram Sang.
+ * Dropped redundant struct renesas_sdhi_vqmmc_regulator initialization.
+ * Added one space before '=' in the struct initializer.
+v3->v4:
+ * Dropped dts patches as it is deferred for queuing.
+ * Arranged variables of same types close to each other in probe() and
+   dropped patch#2.
+ * Added sd_ctrl_read32().
+ * Replaced sd_ctrl_read32_rep()->sd_ctrl_read32().
+v2->v3:
+ * Collected tags
+ * Renamed internal regulator labels vqmmc_sdhi{0..2}->sdhi{0..2}_vqmmc.
+ * Updated regulator phandles on SoM/Board dts.
+ * Dropped renaming the gpio regulator label vqmmc_sdhi1->vqmmc_sdhi1_gpio.
+ * Renamed node sd0emmc->sd0-emmc
+ * Renamed sd0-emmc-{ctrl,data,rst}->sd0-{ctrl,data,rst}
+ * Moved header file gpio.h from patch#6 to patch#8.
+ * Dropped overriding internal regulator name.
+ * Dropped #if guard in pinctrl node for SDHI0
+ * Renamed the label/node sdhi0_pins: sd0->sdhi0_usd_pins: sd0-usd.
+v1->v2:
+ * Collected tags.
+ * Documented internal regulator as optional property for both RZ/G3E and
+   RZ/V2H SoCs.
+ * Updated commit description for regulator used in SD0 fixed and
+   non-fixed voltage case in patch#3.
+ * As the node enabling of internal regulator is controlled through status,
+   added a check for device availability.
+ * Status of internal regulator is disabled in the SoC .dtsi. Override
+   the status in the board DTS when needed.
+ * Added support for enabling SDHI internal regulator in RZ/V2H
+ * Added missing header file gpio.h
+ * Used fixed regulator for eMMC on SD0 and dropped sd0-iovs pins for
+   eMMC.
+ * Sorted pinctrl nodes for sd2
+ * Enabled internal regulator for SD2.
+ * Added support for enabling SD on SDHI0
+ * Replaced the regulator usd_vdd_3p3v->reg_3p3v.
+ * Renamed the gpio-hog node sd1-pwr-en->sd1-pwr-en-hog.
+ * Sorted sd1 pin ctrl nodes.
+
+Biju Das (2):
+  dt-bindings: mmc: renesas,sdhi: Document RZ/G3E support
+  mmc: renesas_sdhi: Add support for RZ/G3E SoC
+
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml |  16 +++
+ drivers/mmc/host/renesas_sdhi.h               |   1 +
+ drivers/mmc/host/renesas_sdhi_core.c          | 130 ++++++++++++++++++
+ drivers/mmc/host/tmio_mmc.h                   |  10 ++
+ 4 files changed, 157 insertions(+)
+
+-- 
+2.43.0
+
 
