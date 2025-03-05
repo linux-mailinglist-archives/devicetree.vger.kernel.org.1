@@ -1,149 +1,100 @@
-Return-Path: <devicetree+bounces-154486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40666A505F4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:07:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15329A50608
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:10:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76C6616598D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:07:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B81D83AC80E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 17:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A97B19E806;
-	Wed,  5 Mar 2025 17:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C37E250C1B;
+	Wed,  5 Mar 2025 17:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eRcZL88m"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JIUlbDIH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62891957FC;
-	Wed,  5 Mar 2025 17:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F32919C542;
+	Wed,  5 Mar 2025 17:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741194446; cv=none; b=DrTSImQnWIgjaxazvX6RQ3ZM5s+UUzRD3x2j3PIa8hWYMMV0ybs7wo/bsTmtncZkCg1GSHcbS/LjphjQoF3PrLxpk28J5WCtLEtn33OQ7OdG6viDcedm0RuLxMDtKh7RtSJo1YQx5BaRSs5S/6wejanToRREaqantLBollPFDDE=
+	t=1741194553; cv=none; b=Kdqc531wtKza86/a9Vc4OZe4PoewjDhpi1oXK9D6d3gT0iGQ47Hw1mti2UNy1fpdhmumU4ja7qE3NFuTSAz/ddoI+x4ThwV3+EK2ttQzfBkCeRWHkJCSTy33B4HO+qwj182leSZhSzHCClVfQ7EjkhpJEzkkF+6DqqsQcOe0zt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741194446; c=relaxed/simple;
-	bh=bLNqQdLWuR0xn/KW0CPq8vI0e4EX5wAgnKJpoztWMHg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EwL9l5pJzEYENKAIv453bVKrwanDPdBFGQqRCtFxLnqV/Mnf58UjOZ3ESULBKze2Egmnb0qJik7iO2A8FhGKWCBgORXcig4gv+v5rNS87Cx8+LjNisTEu+4IE4e+6ZN6dIjtFKax93HlSEWJju3J07hNr+5BxQIAwArlvM8kL1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eRcZL88m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23704C4CED1;
-	Wed,  5 Mar 2025 17:07:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741194445;
-	bh=bLNqQdLWuR0xn/KW0CPq8vI0e4EX5wAgnKJpoztWMHg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eRcZL88mboMBgd/Z6RV1twdyEVm5uiwvcj4bZ5HeqWq3rGDvMJj272ouZcy8jt696
-	 Gt6I0vBWZSsLLK9oLqRWGhS8PmCY9yy3lTLffYrpI1tGcVn++96k/4Zg61hguEDlpn
-	 TNiFw5QnMMsVfifjFKcedAr2rZJyOoTzWKcwMLoUTDNywAMJf1JNfO3Ao9lYy7TPVu
-	 BmrhSupwkTUtu51i7rYMxSqU2WGejx1ENCuAH8+40TAv2W1lBBjF+G/R06Q+Bn2lv9
-	 0LqmyGGqNMOz0WmjEsZwBaNxN3SMt+t7HJcWwxYxV2dfJY+PjLFOX3ML5q8jS196f7
-	 9WkRotH9uWkgQ==
-Date: Wed, 5 Mar 2025 11:07:23 -0600
-From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: xianwei.zhao@amlogic.com, Thomas Gleixner <tglx@linutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: interrupt-controller: Add support
- for Amlogic A4 and A5 SoCsy
-Message-ID: <20250305170723.GA2143418-robh@kernel.org>
-References: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
- <20250305-irqchip-gpio-a4-a5-v3-1-1eec70352fea@amlogic.com>
- <20250305-corral-unfair-a7f25abbfd64@spud>
+	s=arc-20240116; t=1741194553; c=relaxed/simple;
+	bh=WEjrtOD5SRlKTyy/y4mcSiqWzrehr6/dzujDScRVSXo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mV5zA9UAO1XKUsfbEjfQ0bA6Gcb6Et4f8H/4bxkw/vIOXew1pkOyNcxCn4wKvbOXzJZg9bA99O42AJ7sLaim5oCX5zAPtkRJTLqDVPfSuzql6nMDUefiFgIynNMu420LApCfB5uvAdIjEiMXmoCrAwBcitFJfSie93sLELyZfBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JIUlbDIH; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1741194549;
+	bh=WEjrtOD5SRlKTyy/y4mcSiqWzrehr6/dzujDScRVSXo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JIUlbDIHNioNd7WrpDtDuKtKn8bWX7d+oG8SQ2P2MeP9y5iWDknHOvrKE/09WnNbA
+	 8HE+45oVuLOBSgwZanuL02KBAV1DJ47m1oHlQN6M+nWZoOi2jdUNTVrrFRMgYTmt8g
+	 gWxQGel+PA5OQB/a0xCtVo6HemRRlBgwr2ruk6ZwiGgRsefROFVhmlNSDLH2YYwF87
+	 hkoHuXC4rW0GsXoLOYfSNxbMPg0uAsMNk9pZMas6lS9yy/7DIOOqjcXoDm/nDh5XqI
+	 WU6sj5qJ7VnEqU8r7daNnnI/GTSslVRAMwmGiWQuLW9m2myoALHlsnXSK8oSmaLvQe
+	 64VBNtKkvYiBw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C659917E0599;
+	Wed,  5 Mar 2025 18:09:08 +0100 (CET)
+Message-ID: <dc68cb1c-0304-4ebf-ae38-444817a02f78@collabora.com>
+Date: Wed, 5 Mar 2025 18:09:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250305-corral-unfair-a7f25abbfd64@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8390-genio-common: Add jack
+ detection with accdet
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250304-genio700-accdet-dts-v1-1-86d77c5cc745@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250304-genio700-accdet-dts-v1-1-86d77c5cc745@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Mar 05, 2025 at 04:28:16PM +0000, Conor Dooley wrote:
-> On Wed, Mar 05, 2025 at 06:02:56PM +0800, Xianwei Zhao via B4 Relay wrote:
-> > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> > 
-> > Update dt-binding document for GPIO interrupt controller
-> > of Amlogic A4 and A5 SoCs
-> > 
-> > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> > ---
-> >  .../amlogic,meson-gpio-intc.yaml                    | 21 +++++++++++++++++++--
-> >  1 file changed, 19 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-> > index a93744763787..3c5853c71efa 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-> > @@ -35,6 +35,9 @@ properties:
-> >                - amlogic,meson-sm1-gpio-intc
-> >                - amlogic,meson-a1-gpio-intc
-> >                - amlogic,meson-s4-gpio-intc
-> > +              - amlogic,a4-gpio-intc
-> > +              - amlogic,a4-gpio-ao-intc
-> > +              - amlogic,a5-gpio-intc
-> >                - amlogic,c3-gpio-intc
-> >                - amlogic,t7-gpio-intc
-> >            - const: amlogic,meson-gpio-intc
-> > @@ -49,8 +52,6 @@ properties:
-> >  
-> >    amlogic,channel-interrupts:
-> >      description: Array with the upstream hwirq numbers
-> > -    minItems: 8
-> > -    maxItems: 12
+Il 04/03/25 22:43, Nícolas F. R. A. Prado ha scritto:
+> Enable audio jack detection for the Genio 700 and 510 EVK boards. This
+> is handled by the MT6359 ACCDET block, which on these boards has the
+> HP_EINT pin pulled high and connected to a normally open 3.5mm jack.
 > 
-> Please leave the widest constraints here, and let the more restricted
-> ones in your if/else below.
+> Add a phandle to the accdet in the sound card node so the machine sound
+> driver can initialize the accdet.
 > 
-> >      $ref: /schemas/types.yaml#/definitions/uint32-array
-> >  
-> >  required:
-> > @@ -60,6 +61,22 @@ required:
-> >    - "#interrupt-cells"
-> >    - amlogic,channel-interrupts
-> >  
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: amlogic,a4-gpio-ao-intc
-> > +then:
-> > +  properties:
-> > +    amlogic,channel-interrupts:
-> > +      minItems: 2
-> > +      maxItems: 12
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-And then you don't need this clause as 2-12 is the full range.
+For the next merge cycle;
 
-> > +else:
-> > +  properties:
-> > +    amlogic,channel-interrupts:
-> > +      minItems: 8
-> > +      maxItems: 12
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-And 12 is already the max, so you only need 'minItems: 8'.
-
-> > +
-> >  additionalProperties: false
-> >  
-> >  examples:
-> > 
-> > -- 
-> > 2.37.1
-> > 
-> > 
-
-
+> ---
+> This patch depends on both "Allow retrieving accessory detection
+> reference on MT8188" [1] and "Get mt6359-accdet ready for usage in
+> Devicetree" [2].
+> 
+> [1] https://lore.kernel.org/all/20250304-mt8188-accdet-v2-0-27f496c4aede@collabora.com
+> [2] https://lore.kernel.org/all/20250304-mt6359-accdet-dts-v3-0-5b0eafc29f5b@collabora.com
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
 
