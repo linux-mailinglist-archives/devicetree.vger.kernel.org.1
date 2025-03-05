@@ -1,192 +1,162 @@
-Return-Path: <devicetree+bounces-154210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35131A4F528
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:07:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A45A4F546
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:19:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72614188FD15
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 03:07:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22BCB3A8FB3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 03:19:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9A11A23AA;
-	Wed,  5 Mar 2025 03:05:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24693139CF2;
+	Wed,  5 Mar 2025 03:19:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NIAIbIJh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE67D19E997;
-	Wed,  5 Mar 2025 03:05:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509922E3383;
+	Wed,  5 Mar 2025 03:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741143953; cv=none; b=frz9TXNWxzMSfzlUlkDlwuW4X1hp5zBLjKBW5acmMkTb81QGyfMIdcJM8t3LTZMmwLJrxLdSxfh1vLTGNDUNRXj2pkIsgdrguaG5kmNLeZHA8rvJDUDXrJQByzn44apU7N8KMC8klWrxkmzd/M6NH7P5MS/sLjN1Hc47/cJvVlo=
+	t=1741144793; cv=none; b=mw/fedKPqQbSeXd1SgzpLk77wWc0TStjkofvpD+izkDjzfpLN5qmDOqX03ehhNtNPfpU+HXuwr6PFxZ3Q+0HY1Yd3c+s/HOzV7XsM3KUo2HlI7dAv5MDejB9SOFrALfBNcuTubrHsiH3x66w69tBhCccAOUOuRGt8xoNNyQWFAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741143953; c=relaxed/simple;
-	bh=1ueDenyw8US27XjXIKTEVWL1cb6lLOGKUUZ+JroTBnw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qNOw8jviiZSNJO9qZRvkp3A7QxCIa+9LiRYAShth8IuvKyw2B0UDx04eetTdnzc0bXeajywPfh+NrGtDoL/G0qR44ik7xpd0sothz0nC81yO7S8NadpUIQ+T0cDuNXYoY/u4Gun6QTmXHWtPau+qbOTS6eKY4tZ0Odkzsig+RXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.55.252])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id B94D7342FDB;
-	Wed, 05 Mar 2025 03:05:50 +0000 (UTC)
-Date: Wed, 5 Mar 2025 03:05:40 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Troy Mitchell <troymitchell988@gmail.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH RESEND v5 1/2] dt-bindings: i2c: spacemit: add support
- for K1 SoC
-Message-ID: <20250305030540-GYA62563@gentoo>
-References: <20250303-k1-i2c-master-v5-0-21dfc7adfe37@gmail.com>
- <20250303-k1-i2c-master-v5-1-21dfc7adfe37@gmail.com>
- <20250303093506-GYA58937@gentoo>
- <ab10e069-d9e1-4df7-9454-8b0fc910443d@sifive.com>
+	s=arc-20240116; t=1741144793; c=relaxed/simple;
+	bh=nVeHc2/A5qGA/Y7jzpYokSR1LYZVRR33cBvplT9dWjc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lxjZkax33LFXUa25Cd7chYU4Fz6LXBOp/cY8QRCnQUMFx41G59lI4Q4Rbzzx4uZpp9IhQa9TaGhH7BTiI9b+JFWwq4WlUVomVoLpNNGaN3kAR+VqXdpMeJfEgbcFMbdnSLKV5OG7jb9+06qZnHvBv0SGt9BXZXXOa2CCRtMNO+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NIAIbIJh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 524NAI6I005857;
+	Wed, 5 Mar 2025 03:19:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xDdTr17tBfFoMDpHH224JOSAXjLisgG537rekDvCAGg=; b=NIAIbIJhBrb7GRTh
+	WP0qoSVyRjUx8wiv2/bdQsHWzXyMPU/l0FFz9bqZKwQ6o/wOks2TpxAIhUeWx/IS
+	X+V46W0ynen/kZjkH7epwu69prUuL6l196Q6LWFmAZqIujrFyOB3ohhJeiZZJus9
+	tpssLBct0W73a4c7YkqRBpMrrhBEkdj7oUsu3zrnchf8SXfRFmc4o5SqiRIhEv+N
+	Iex2uQ3ZQcy6ZLjuTz4nVgX4Ounc0lt++7EPWyLc1xFQCxKO8kcjOJZX9weMZYn9
+	mnjA6CBs7xWpQiBibJhKxFg80e8Y6sGZP9ULf+nJd5kotxRmUgEb5DHUt2RHbGNk
+	57lcow==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6v3x6a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Mar 2025 03:19:45 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5253JiTT024152
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 5 Mar 2025 03:19:45 GMT
+Received: from [10.216.10.45] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 4 Mar 2025
+ 19:19:40 -0800
+Message-ID: <8cfaeb25-2657-9df4-5cea-018aad62f579@quicinc.com>
+Date: Wed, 5 Mar 2025 08:49:37 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ab10e069-d9e1-4df7-9454-8b0fc910443d@sifive.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 0/8] Reup: SM8350 and SC8280XP venus support
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Stanimir Varbanov
+	<stanimir.k.varbanov@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Johan Hovold
+	<johan+linaro@kernel.org>
+References: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-0-279c7ea55493@linaro.org>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-0-279c7ea55493@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: J0KdFPlAOMHx1R0B1uVwEZNMzUBYrmkk
+X-Proofpoint-ORIG-GUID: J0KdFPlAOMHx1R0B1uVwEZNMzUBYrmkk
+X-Authority-Analysis: v=2.4 cv=fatXy1QF c=1 sm=1 tr=0 ts=67c7c2d2 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EyvuXH2y2WLcsoGZDs4A:9
+ a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-05_02,2025-03-04_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 bulkscore=0
+ spamscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 suspectscore=0
+ phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503050024
 
-Hi Samuel Holland:
 
-On 20:11 Tue 04 Mar     , Samuel Holland wrote:
-> Hi Troy,
-> 
-> On 2025-03-03 3:35 AM, Yixun Lan wrote:
-> > On 13:30 Mon 03 Mar     , Troy Mitchell wrote:
-> >> The I2C of K1 supports fast-speed-mode and high-speed-mode,
-> >> and supports FIFO transmission.
-> >>
-> >> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> >> Signed-off-by: Troy Mitchell <troymitchell988@gmail.com>
-> >> ---
-> >>  .../devicetree/bindings/i2c/spacemit,k1-i2c.yaml   | 59 ++++++++++++++++++++++
-> >>  1 file changed, 59 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> >> new file mode 100644
-> >> index 0000000000000000000000000000000000000000..db49f1f473e6f166f534b276c86b3951d86341c3
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> >> @@ -0,0 +1,59 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/i2c/spacemit,k1-i2c.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: I2C controller embedded in SpacemiT's K1 SoC
-> >> +
-> >> +maintainers:
-> >> +  - Troy Mitchell <troymitchell988@gmail.com>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: spacemit,k1-i2c
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  interrupts:
-> >> +    maxItems: 1
-> >> +
-> > ..
-> >> +  clocks:
-> >> +    minItems: 2
-> >> +    maxItems: 2
-> >> +
-> >> +  clock-names:
-> >> +    minItems: 2
-> >> +    maxItems: 2
-> > I'd suggest to give a brief description and explicit clock name here,
-> > you can consult marvell,mv64xxx-i2c.yaml for example
-> > 
-> >> +
-> >> +  clock-frequency:
-> >> +    description: |
-> >> +      K1 support three different modes which running different frequencies
-> >> +      standard speed mode: up to 100000 (100Hz)
-> >> +      fast speed mode    : up to 400000 (400Hz)
-> >> +      high speed mode    : up to 3300000 (3.3Mhz)
-> >> +    default: 400000
-> >> +    maximum: 3300000
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +  - interrupts
-> >> +  - clocks
-> >> +
-> >> +unevaluatedProperties: false
-> >> +
-> >> +examples:
-> >> +  - |
-> >> +    i2c@d4010800 {
-> >> +        compatible = "spacemit,k1-i2c";
-> >> +        reg = <0xd4010800 0x38>;
-> >> +        interrupt-parent = <&plic>;
-> >> +        interrupts = <36>;
-> >> +        clocks = <&ccu 176>, <&ccu 90>;
-> >> +        clock-names = "apb", "twsi";
-> > 9.1.4.61 TWSI0 CLOCK RESET CONTROL REGISTER(APBC_TWSI0_CLK_RST)
-> > https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb#part594
-> > from above docs, there are two clocks 
-> > bit[1] - FNCLK, TWSI0 Functional Clock Enable/Disable
-> > bit[0] - APBCLK, TWSI0 APB Bus Clock Enable/Disable
-> > 
-> > I'd suggest to name it according to the functionality, thus 'func', 'bus'
-> > clock, not its source.. which would make it more system wide consistent
-> 
-> Also in that same register is:
-> 
-> 2	RST	RW	0x1	TWSI0 Reset Generation
-> This field resets both the APB and functional domain.
-> - 0: No Reset
-> - 1: Reset
-> 
-> Which means you need a 'resets' property in the binding as well.
-> 
-right, there is reset needed
+On 3/4/2025 6:37 PM, Bryan O'Donoghue wrote:
+> This series is a re-up of Konrad's original venus series for sc8280xp and
+> sm8350.Why this is enabled on venus driver ? Why not iris driver ? This needs an
+explanation on was this even tried to bring up on iris driver.
 
-I'd suggest to add it as an incremental patch later, when we
-implement real reset driver, and also complete the calling reset
-consumer API in i2c driver
+How different is this from sm8250 which is already enabled on iris driver ?
 
-but, let me know if this is not the right way to go
+> Link: https://lore.kernel.org/all/20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org/
+> 
+> The main obstacle to merging that series at the time was the longstanding
+> but invalid usage of "video-encoder" and "video-decoder" which is a
+> driver level configuration option not a description of hardware.
+> 
+> Following on from that discussion a backwards compatible means of
+> statically selecting transcoder mode was upstreamed
+> 
+> commit: 687bfbba5a1c ("media: venus: Add support for static video encoder/decoder declarations")
+> 
+> Reworking this series from Konrad to incorporate this simple change
+> 
+> - Removing dts dependencies/declarations on the offending compat strings
+> - Inclusion of necessary static configuration in the 8350/8280xp driver
+>   config
+> - A small update to interconnect tags which Konrad pointed out on IRC to me
+> - Fixed author and SOB on first patch to match
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+> Konrad Dybcio (8):
+>       media: dt-bindings: Document SC8280XP/SM8350 Venus
+>       media: venus: core: Remove trailing commas from of match entries
+>       media: venus: hfi_venus: Support only updating certain bits with presets
+>       media: platform: venus: Add optional LLCC path
+>       media: venus: core: Add SM8350 resource struct
+>       media: venus: core: Add SC8280XP resource struct
+>       arm64: dts: qcom: sc8280xp: Add Venus
+>       arm64: dts: qcom: sc8280xp-x13s: Enable Venus
+> 
+>  .../bindings/media/qcom,sm8350-venus.yaml          | 119 ++++++++++++++++++++
+>  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |   5 +
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi             |  82 ++++++++++++++
+>  drivers/media/platform/qcom/venus/core.c           | 125 +++++++++++++++++++--
+>  drivers/media/platform/qcom/venus/core.h           |   4 +
+>  drivers/media/platform/qcom/venus/hfi_venus.c      |  15 ++-
+>  drivers/media/platform/qcom/venus/pm_helpers.c     |   3 +
+>  7 files changed, 341 insertions(+), 12 deletions(-)
+> ---
+> base-commit: d98e9213a768a3cc3a99f5e1abe09ad3baff2104
+> change-id: 20250301-b4-linux-media-comitters-sc8280xp-venus-e2cad579b4f0
+> 
+> Best regards,
 
-> Regards,
-> Samuel
-> 
-> >> +        clock-frequency = <100000>;
-> >> +    };
-> >> +
-> >> +...
-> >>
-> >> -- 
-> >> 2.34.1
-> >>
-> > 
-> 
-> 
-
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+Regards,
+Vikash
 
