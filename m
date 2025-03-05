@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-154383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C1DA4FE33
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:05:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B51B2A4FE5C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:15:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79B393A5577
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 12:05:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7B471657AD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 12:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96C82242903;
-	Wed,  5 Mar 2025 12:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9903124500F;
+	Wed,  5 Mar 2025 12:14:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eGm0NuZp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rJJWfsRo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8E6241103;
-	Wed,  5 Mar 2025 12:05:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6992423371A;
+	Wed,  5 Mar 2025 12:14:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741176348; cv=none; b=kGIA3d9CP2NDaEfhbBa1swO7WDVhq+KrkMSuHpDk1EEwQUcHbs9duYDLs5StsT7BvsrLhiOX1kr4uCC6GIgy6RKKzt1ky9IHdNA3X6Fb7kBpamXEZu5h0Cb7iZZlV7owPIJ4psmEkk25d3KTkyWOH0syEurlkXwE6iex5ATZHg4=
+	t=1741176891; cv=none; b=d47GijUSPyo31dcz9q+nqaI4YNXGAaFYPRpizCqgQ33Fs6HWQ8udClHLFuGwVgbzG21eaeZXbqwfdG4HQQHPPo6y05lZo6n3PE2Qs1XtV2Ae4V3QEHGxkWr/rNB62GaslquwRjUPywtEBntinX+eDl84198PqT7CaEGLYS1QAZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741176348; c=relaxed/simple;
-	bh=cv01yWXXEehfnSZMHFpdXl+PqwR5Uk2g28SbDbVbfLA=;
+	s=arc-20240116; t=1741176891; c=relaxed/simple;
+	bh=vY4dstXqSmUJ+4zwa5V0jLxw6mEscNht9pfIkXCraVQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YGthDBnNHNAoDJ8aiocguzQhV8baG0eK5KKptre5fgGlXjxpzWtKZG0zW2Am193Au91pegPkM73JdakFo52mm1WUxcLbkZk+80lbm/EZioNztGRGHqNT64xqHs+WeZXZNx824quL5MFBEuwjICwjQukRlkXCbjgElptTojcrCMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eGm0NuZp; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741176343;
-	bh=cv01yWXXEehfnSZMHFpdXl+PqwR5Uk2g28SbDbVbfLA=;
+	 In-Reply-To:Content-Type; b=FWyAuI4ZDlzYa1UvL0EZFh7YcO8WmfuO7e3taxry688JVmC8APddotCKeggKNjOFvTx1OGyFZFFl1n90n+Lgjg8w5f2wCwGw0t2BjnSnwXnA3H2lmfHy8cmzZeNEO0OjtiStHbDbMfspYinubiLmM1WsL5UQPiw0xf1Wt0tBRI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rJJWfsRo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF702C4CEE2;
+	Wed,  5 Mar 2025 12:14:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741176890;
+	bh=vY4dstXqSmUJ+4zwa5V0jLxw6mEscNht9pfIkXCraVQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eGm0NuZpMU0xchw2NZFx8AQArBzYrTRyAKk/tGXp1vW22wICZT5d2zir9X+JoXtnk
-	 u4OIF62gaTJwPG22KEuy8r/fbdqWMKBmS/lBvo6H4K0dPzvzCsDD4KvNzhuWitP2E4
-	 k2y8snNwLWUTlRLsoC/4w3DDK085UxvwyHrBAQmBuUpuZOABGsrebctvCUrjJnIyYw
-	 sho1rA5CSxZLFwElco10AekgBsDUa5Dv+flCQGOYwwu0z8dLIqQ8hx/qAaAzBsN9++
-	 QYE2n7YSw2gGnAG9bXRsz/KYBiB2K/jn7HezVoGztl8Z5PqAI8CH1Gl2YQkLT3o5To
-	 FjStWjMhEYOHQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6E3E017E0343;
-	Wed,  5 Mar 2025 13:05:42 +0100 (CET)
-Message-ID: <9d383fc5-8c64-478c-8aab-6c56bf5b45be@collabora.com>
-Date: Wed, 5 Mar 2025 13:05:41 +0100
+	b=rJJWfsRoMyk214dl+aQoaQgbah0PS191/OyDS1F8XlSilwMjs7Ftp6xxcBZEmQrmp
+	 8Eu1iHlvnRLR75KX+b7uujXmFFLswbSG3eNpWC6QmSMzZ15ixDkM1M6EGSYKO3wAOt
+	 xndcz9IMxHo2RVjcQW6/f82DkT/6xPBvuXdXs1ugGuJ7g8IuCK/nz1LeEPXWu4CDSl
+	 rIb6uB7OGLtga1mZORCkcW+tLNj/6k5CiZHCerpQQ+Punh2BKbuchCqg7ebnucVN9l
+	 ku9Hk+llL6zmEXzo9OaVz6QPC2G+f5Ky9jBzplpjWdvOQhy81NNO1ilGB6qjXo4SYg
+	 cqFrPYsM2VW1Q==
+Message-ID: <652d8d87-2338-4842-829a-cb79532471bc@kernel.org>
+Date: Wed, 5 Mar 2025 13:14:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,432 +50,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/8] mailbox: mtk-cmdq: Add driver data to support for
- MT8196
-To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>
-Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- =?UTF-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
- =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
- =?UTF-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
- <Xiandong.Wang@mediatek.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "fshao@chromium.org" <fshao@chromium.org>,
- =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "treapking@chromium.org" <treapking@chromium.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>
-References: <20250218054405.2017918-1-jason-jh.lin@mediatek.com>
- <20250218054405.2017918-4-jason-jh.lin@mediatek.com>
- <652e435c-563b-496a-a4c3-c2e2b665abcf@collabora.com>
- <5aa04ff5fa567468f32921d4014bbae696c6470f.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v4 09/10] dt-bindings: PCI: qcom,pcie-sc7280: Add 'global'
+ interrupt
+To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ chaitanya chundru <quic_krichai@quicinc.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ quic_vbadigan@quicnic.com, amitk@kernel.org, dmitry.baryshkov@linaro.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
+ <20250225-qps615_v4_1-v4-9-e08633a7bdf8@oss.qualcomm.com>
+ <20250226-enlightened-chachalaca-of-artistry-2de5ea@krzk-bin>
+ <t34rurxh5cb7hwzvt6ps3fgw4kh4ddwcieukskxxz5mo3pegst@jkapxm6izq7p>
+ <Z8f++i4MFku8ODKf@trex>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <5aa04ff5fa567468f32921d4014bbae696c6470f.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <Z8f++i4MFku8ODKf@trex>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Il 05/03/25 09:36, Jason-JH Lin (林睿祥) ha scritto:
-> Hi Angelo,
-> 
-> Thanks for the reviews.
-> 
-> On Tue, 2025-03-04 at 10:32 +0100, AngeloGioacchino Del Regno wrote:
+On 05/03/2025 08:36, Jorge Ramirez wrote:
+>> I think the patch context ("properties") is confusing here, but it looks
+>> to me that these are in sync: interrupts is defined to have 8 items, and
+>> interrupt-names is a list of msi0 through msi7.
 >>
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> Il 18/02/25 06:41, Jason-JH Lin ha scritto:
->>> MT8196 has 3 new hardware configuration compared with the previous
->>> SoC,
->>> which correspond to the 3 new driver data:
->>>
->>> 1. mminfra_offset: For GCE data plane control
->>>      Since GCE has been moved into mminfra, GCE needs to append the
->>>      mminfra offset to the DRAM address when accessing the DRAM.
->>>
->>> 2. gce_vm: For GCE hardware virtualization
->>>      Currently, the first version of the mt8196 mailbox controller
->>> only
->>>      requires setting the VM-related registers to enable the
->>> permissions
->>>      of a host VM.
->>
->> I think that the GCE VM changes should go to a different commit, as
->> that
->> looks like being something not critical for basic functionality of
->> the
->> MMINFRA GCE.
->>
->> I really like seeing support for that, but please split the basic
->> stuff
->> from the extra functionality :-)
->>
+>> @Krishna, these two last patches (adding the global interrupt) doesn't
+>> seem strongly connected to the switch patches. So, if Krzysztof agrees
+>> with above assessment, please submit them separately (i.e. a new series,
+>> 2 patches, v5).
 > 
-> The VM configuration is the basic configuration for MT8196, so I put it
-> together with other configurations in one patch.
-> But I can understand you want the new function as a independent patch.
-> So I will split the VM related part, mminfra_offset part and dma_mask
-> part to 3 single pathes. Then add them as a driver data for MT8196 in
-> this patch.
+> um, but without these two patches, the functionality is broken requiring
+> users to manually rescan the pci bus (ie, via sysfs) to see what is
+> behind the bridge.
 > 
+> shouldnt the set include all the necessary patches? 
 
-Yeah, thanks, the log simply gets more readable like that.
+Broken? Then the patchset should be NAKed because nothing can depend on
+the DTS and the DTS should not depend on the drivers without some sort
+of explanation, either.
 
->>>
->>> 3. dma_mask_bit: For dma address bit control
->>>      In order to avoid the hardware limitations of MT8196 accessing
->>> DRAM,
->>>      GCE needs to configure the DMA address to be less than 35 bits.
->>>
->>> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
->>> ---
->>>    drivers/mailbox/mtk-cmdq-mailbox.c       | 90
->>> +++++++++++++++++++++---
->>>    include/linux/mailbox/mtk-cmdq-mailbox.h |  2 +
->>>    2 files changed, 84 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c
->>> b/drivers/mailbox/mtk-cmdq-mailbox.c
->>> index d186865b8dce..0abe10a7fef9 100644
->>> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
->>> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
->>> @@ -43,6 +43,17 @@
->>>    #define GCE_CTRL_BY_SW                              GENMASK(2, 0)
->>>    #define GCE_DDR_EN                          GENMASK(18, 16)
->>>
->>> +#define GCE_VM_ID_MAP0                       0x5018
->>> +#define GCE_VM_MAP0_ALL_HOST                 GENMASK(29, 0)
->>> +#define GCE_VM_ID_MAP1                       0x501c
->>> +#define GCE_VM_MAP1_ALL_HOST                 GENMASK(29, 0)
->>> +#define GCE_VM_ID_MAP2                       0x5020
->>> +#define GCE_VM_MAP2_ALL_HOST                 GENMASK(29, 0)
->>> +#define GCE_VM_ID_MAP3                       0x5024
->>> +#define GCE_VM_MAP3_ALL_HOST                 GENMASK(5, 0)
->>> +#define GCE_VM_CPR_GSIZE             0x50c4
->>> +#define GCE_VM_CPR_GSIZE_HSOT                        GENMASK(3, 0)
->>
->> typo: GSIZE_HOST....
->>
-> 
-> Thanks, I'll fix it.
-> 
->> ...but also, if you could add some brief description of what the
->> VMIDs are used for
->> and what the GSIZE is... that'd be very much appreciated from whoever
->> is reading
->> this.
->>
-> VMID_MAP configuration is in the previous reply mail for CK.
+Also nothing in the commit msg explains this dependency, so I don't get
+the problem here.
 
-Oh, sorry, too many emails - sometimes I lose some :-)
-
-> CPR_GSIZE is the setting for allocating the CPR SRAM size to each VM.
-
-Would be awesome if you could then clarify the comment that you have later in
-the code here, from...
-
-/* config cpr size for host vm */
-
-to
-
-/* Set the amount of CPR SRAM to allocate to each VM */
-
-...that could be a way of more properly describing what the writel there is doing.
-
-> 
->> The GCE stuff isn't even properly described in datasheets - I do
->> (probably!)
->> understand what those are for, but asking people to get years of
->> experience on
->> MediaTek to understand what's going on would be a bit rude, wouldn't
->> it? :-D
->>
-> 
-> I agree with you :-)
-> I'll put them in the VM patch and add some brief description for them.
-> 
-
-Thanks, much appreciated!
-
->>> +
->>>    #define CMDQ_THR_ACTIVE_SLOT_CYCLES 0x3200
->>>    #define CMDQ_THR_ENABLED            0x1
->>>    #define CMDQ_THR_DISABLED           0x0
->>> @@ -87,11 +98,24 @@ struct cmdq {
->>>    struct gce_plat {
->>>        u32 thread_nr;
->>>        u8 shift;
->>> +     dma_addr_t mminfra_offset;
->>
->> It looks like this is exactly the DRAM's iostart... at least, I can
->> see that in the
->> downstream devicetree that's where it starts.
->>
->>          memory: memory@80000000 {
->>                  device_type = "memory";
->>                  reg = <0 0x80000000 0 0x40000000>;
->>          };
->>
->> It doesn't really look like being a coincidence, but, for the sake of
->> asking:
->> is this just a coincidence? :-)
->>
-> 
-> As the confirmation with the hardware designer in previous reply mail
-> for CK:
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20250218054405.2017918-4-jason-jh.lin@mediatek.com/#26258463
-> 
-
-That explanation was simply wonderful.
-
-> Since the MMINFRA remap subtracting 2G is done in the hardware circuit
-> and cannot be configured by software, the address +2G adjustment is
-> necessary to implement in the CMDQ driver.
-> 
-> So that might not be a coincidence.
-> But even if DRAM start address changes, this mminfra_offset is still
-> subtracting 2G, so I think it is a better choice to define it as the
-> driver data for MT8196.
-> 
-
-....so, this makes me think the following:
-
-1. The DRAM start address cannot *ever* be less than 2G, because otherwise the
-    MMINFRA HW would have a hole in the usable address range;
-    1a. If the start address changes to less than 2G, then also the IOMMU would
-        get limitations, not only the mminfra..!
-    2b. This makes it very very very unlikely for the start address to be changed
-        to less than 0x80000000
-
-2. If the DRAM start address changes to be ABOVE 2G (so more than 0x80000000),
-    there would be no point for MMINFRA to start a "config path" write (or read)
-    in the SMMU DRAM block, would it? ;-)
-
-I get it - if the DRAM moves up, MMINFRA is still at 2G because that's hard baked
-into the hardware, but I foresee that it'll be unlikely to see a platform changing
-the DRAM start address arbitrarily, getting out-of-sync with MMINFRA.
-
-I propose to just get the address from the memory node for now, and to add a nice
-comment in the code that explains that "In at least MT8196, the MMINFRA hardware
-subtracts xyz etc etc" (and that explanation from the previous email is again
-wonderful and shall not be lost: either use that in the comment, or add it to
-the commit description, because it's really that good).
-
-Should a new SoC appear in the future requiring an offset from the DRAM start
-address, we will think about how to make that work in the best possible way: in
-that case we could either reference something else to get the right address or
-we can just change this driver to just use the 2G offset statically for all.
-
-What I'm trying to do here is to reduce the amount of changes that we'd need for
-adding new SoCs: since that 2G MMINFRA offset -> 2G DRAM start is not a coincidence
-I think that, should the DRAM start vary on new SoCs, the MMINFRA offset will
-follow the trend and vary with it.
-
-So what I think is:
-1. If I'm right, adding a new SoC (with different MMINFRA + DRAM offset) will be
-    as easy as adding a compatible string in the bindings, no effort in changing
-    this driver with new pdata offsets;
-2. If I'm wrong, adding a new SoC means adding compat string and adding pdata and
-    one variable in the cmdq struct.
-
-Where N.2 is what we would do anyway if we don't go with my proposed solution...
-
-All this is just to give you my considerations about this topic - you're left
-completely free to disagree with me.
-If you disagree, I will trust your judgement, no problem here.
-
->>>        bool control_by_sw;
->>>        bool sw_ddr_en;
->>> +     bool gce_vm;
->>> +     u32 dma_mask_bit;
->>>        u32 gce_num;
->>>    };
->>>
->>> +static inline u32 cmdq_reg_shift_addr(dma_addr_t addr, const
->>> struct gce_plat *pdata)
->>> +{
->>> +     return ((addr + pdata->mminfra_offset) >> pdata->shift);
->>> +}
->>> +
->>> +static inline u32 cmdq_reg_revert_addr(dma_addr_t addr, const
->>> struct gce_plat *pdata)
->>> +{
->>> +     return ((addr << pdata->shift) - pdata->mminfra_offset);
->>> +}
->>
->> I'm not sure that you really need those two functions... probably
->> it's simply
->> cleaner and easier to just write that single line every time... and
->> I'm
->> saying that especially for how you're using those functions, with
->> some readl()
->> passed directly as param, decreasing human readability by "a whole
->> lot" :-)
->>
-> 
-> The reason why I use API wrapper instead of writing it directly in
-> readl() is to avoid missing the shift or mminfra_offset conversion in
-> some places.
-> This problem is not easy to debug, and I have encountered it at least
-> twice...
-> 
-> I think the advantage of using function is that it can be uniformly
-> modified to all places that need to handle DRAM address conversion.
-> What do you think? :-)
-> 
-
-Eh, if you put it like that... it makes sense, so.. yeah, okay :-)
-
-Still, please cleanup those instances of
-
-`cmdq_reg_revert_addr(readl(something), pdata)`
-
-those might be hard to read, so please just do something like:
-
-regval = readl(something);
-curr_pa = cmdq_revert_addr(regval, pdata);
-
-...reword to your own liking, of course.
-
->>> +
->>>    static void cmdq_sw_ddr_enable(struct cmdq *cmdq, bool enable)
->>>    {
->>>        WARN_ON(clk_bulk_enable(cmdq->pdata->gce_num, cmdq->clocks));
->>> @@ -112,6 +136,30 @@ u8 cmdq_get_shift_pa(struct mbox_chan *chan)
->>>    }
->>>    EXPORT_SYMBOL(cmdq_get_shift_pa);
->>>
->>> +dma_addr_t cmdq_get_offset_pa(struct mbox_chan *chan)
->>> +{
->>> +     struct cmdq *cmdq = container_of(chan->mbox, struct cmdq,
->>> mbox);
->>> +
->>> +     return cmdq->pdata->mminfra_offset;
->>> +}
->>> +EXPORT_SYMBOL(cmdq_get_offset_pa);
->>
->> I think I remember this get_offset_pa from the old times, then CK
->> removed it (and I
->> was really happy about that disappearing), or am I confusing this
->> with something
->> else?
->>
->> (of course, this wasn't used for mminfra, but for something else!)
->>
-> 
-> I can't find any remove history in mtk-cmdq-mailbox.c.
-> 
-> Maybe you mean the patch in this series?
-> https://lore.kernel.org/all/171213938049.123698.15573779837703602591.b4-ty@collabora.com/
-> 
-
-Uhm, I think I may have confused something here, but yes I was remembering the
-patch series that you pointed out, definitely.
-
-At the end, that series is doing something else, so nevermind, was just confusion.
-
->>> +
->>> +bool cmdq_addr_need_offset(struct mbox_chan *chan, dma_addr_t
->>> addr)
->>> +{
->>> +     struct cmdq *cmdq = container_of(chan->mbox, struct cmdq,
->>> mbox);
->>> +
->>> +     if (cmdq->pdata->mminfra_offset == 0)
->>> +             return false;
->>> +
->>> +     /*
->>> +      * mminfra will recognize the addr that greater than the
->>> mminfra_offset
->>> +      * as a transaction to DRAM.
->>> +      * So the caller needs to append mminfra_offset for the true
->>> case.
->>> +      */
->>> +     return (addr >= cmdq->pdata->mminfra_offset);
->>
->>
->> /**
->>    * cmdq_is_mminfra_gce() - Brief description
->>    * @args.....
->>    *
->>    * The MMINFRA GCE will recognize an address greater than DRAM
->> iostart as a
->>    * DRAM transaction instead of ....xyz
->>    *
->>    * In order for callers to perform (xyz) transactions through the
->> CMDQ, those
->>    * need to know if they are using a GCE located in MMINFRA.
->>    */
->> bool cmdq_is_mminfra_gce(...)
->> {
->>          return cmdq->pdata->mminfra_offset &&
->>                 (addr >= cmdq->pdata->mminfra_offset)
->>
->>> +}
->>> +EXPORT_SYMBOL(cmdq_addr_need_offset);
->>> +
->>
-> 
-> OK, I'll modify the API like this.
-> 
->> ...but then, is there really no way of just handling the GCE being in
->> MMINFRA
->> transparently from the callers? Do the callers really *need* to know
->> that they're
->> using a new GCE?!
->>
-> 
-> Since the address subtracting is done in MMINFRA hardware, I think GCE
-> users really need to handle it in driver.
-> 
-
-Since the users of this infrastructure are multimedia related (disp/MDP3),
-I'd also like to get an opinion from MediaTek engineers familiar with that.
-
-CK, Moudy, any opinion on that, please?
-
->> Another way of saying: can't we just handle the address translation
->> in here instead
->> of instructing each and every driver about how to communicate with
->> the new GCE?!
->>
-> 
-> The DRAM address may not only be the command buffer to GCE, but also
-> the working buffer provided by CMDQ users and being a part of GCE
-> instruction, so we need to handle the address translation in CMDQ
-> helper driver for the instruction generation.
-> E.g. ISP drivers may use GCE to write a hardware settings to a DRAM as
-> backup buffer. The GCE write instruction will be:
-> WRITE the value of ISP register to DRAM address + mminfra_offset.
-> 
-> But most of the CMDQ users only need to use GCE to write hardware
-> register, so I only keep the translation in cmdq_pkt_mem_move(),
-> cmdq_pkt_poll_addr() and cmdq_pkt_jump_abs() at the latest series.
-
-Yeah you're choosing the best of both worlds in that case, I do agree, but
-still - if there's a way to avoid drivers to have different handling for
-mminfra vs no-mminfra, that'd still be preferred.
-
-Having the handling for something *centralized* somewhere, instead of it
-being sparse here and there, would make maintenance way easier...
-
-...and that's why I'm asking for CK and Moudy's opinion, nothing else :-)
-
-Cheers!
-Angelo
-
+Best regards,
+Krzysztof
 
