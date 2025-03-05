@@ -1,109 +1,115 @@
-Return-Path: <devicetree+bounces-154401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F15BA4FFE5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:14:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05558A50062
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:23:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A74C189612E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:10:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4CBD178D95
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083C924394C;
-	Wed,  5 Mar 2025 13:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gsz4fZvj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F1E124EF65;
+	Wed,  5 Mar 2025 13:14:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06BE1E531;
-	Wed,  5 Mar 2025 13:08:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB2F24CEEF
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 13:14:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741180103; cv=none; b=gDKRqi84mAIYqgsyTs+z85rSCJe1P1/Lep0ExSYa/cf7u6eh35LuBZtZ8V7OQ6r+wNn5LdQ9exerh+uUZFVS0zDK1Zrn3yWG6bpS0nGNMlWQVjDMcUM/gu9tTIsk57pGY3ucizFYEs2E8DMp+OeMoD9hRkIk7kPJhfQCwZ/VlCU=
+	t=1741180491; cv=none; b=O6WF+kYbAWwbGuMGbzw5VV64QtisrpAcefTGiRhLnNk9VP947ZAJh643Imb+p2/c3v1FM6C+KJN1I2IQRIwWhUcBznPp9TsAbzMKdt2U4ZLYrGvVwJ8YQ/oldhVq0CZGiOKAvqUq0lePvS6oHAhxfoEpFOJ1dpwcyrY+lxHczts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741180103; c=relaxed/simple;
-	bh=siWdAxhLrN0DI+R0aKzyG6rDmCVTF6VPwiS27Qnj7bo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I2TEn8Kb77i/0VYn4+/2fb6/8uA/mQ0LnOdOx7QHwP9GIRmAgzKFbhZO8m/f9ldBVt4pBme0iGi6Y6bJdKVQL3d7KKNg+E+0uuV6L4B0vw4tLHU7fShb4bHX/3AA2PNqGDNC8O63wFOpIBEERS09gKm8UiBdzGvP2OJhjGMfqj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gsz4fZvj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AC7EC4CEE2;
-	Wed,  5 Mar 2025 13:08:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741180103;
-	bh=siWdAxhLrN0DI+R0aKzyG6rDmCVTF6VPwiS27Qnj7bo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gsz4fZvjlpY05cQ6j3PtNhZ5OtCU4JHKj2P06Ci7UDvG3iU42zZgDbO0drBCG4b7r
-	 wa+Z617+Si9135ApNkjEt7S1lA6MADR1toiWSuqjkLf0GcsiFiI1WR/0sycbDNmPj5
-	 4B9TYzkBqMbkAIfBGVt3/3dLE2eHCGLIx/j55lwi8tzPOrJO6Vm+j8jD/MVVIUs/hO
-	 SsEutbZ/MIskom8wFqLwcCuXG2pV5r+pt106i7dUHNHgLLxT3DBgCFRUutsFuliP1/
-	 VnuIuDdX0PFkMaR15w1jyEnznoWkKDZXZI56dYWqu9aHuICFUuw6re2FhL0VHoq6IC
-	 23ohHZ9ktRVow==
-Date: Wed, 5 Mar 2025 07:08:21 -0600
-From: Rob Herring <robh@kernel.org>
-To: Mathis Foerst <mathis.foerst@mt.com>
-Cc: linux-kernel@vger.kernel.org,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	s=arc-20240116; t=1741180491; c=relaxed/simple;
+	bh=o8rb0cRL5d/DJLK3zumcC2E3PtRerI3iEuNDOsyCwjM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oVr2ufIafkTIpfaXrZuP7VbfK4KzHOd/C1scwZxt7TXV7x9WWKh8Qur6Kd5dWayci289wnpsbsWNMxSPTRMrAGZ96NBhwMaICB4WzhWZ4ryBmK3GYT7JR6YN8DiXSepqHd8hzrv513A74f6R0sDPDDlIjn3CYrf4EbmheiZnbqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tpoZw-0000xZ-A1; Wed, 05 Mar 2025 14:14:28 +0100
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tpoZu-0049P5-1i;
+	Wed, 05 Mar 2025 14:14:26 +0100
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tpoZu-006G5O-1R;
+	Wed, 05 Mar 2025 14:14:26 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	manuel.traut@mt.com, mathis.foerst@zuehlke.com
-Subject: Re: [PATCH v3 1/6] media: dt-bindings: mt9m114: Add onnn,slew-rate
- DT-binding
-Message-ID: <20250305130821.GA1374586-robh@kernel.org>
-References: <20250305101453.708270-1-mathis.foerst@mt.com>
- <20250305101453.708270-2-mathis.foerst@mt.com>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v5 0/4] Add support for Plymovent AQM board
+Date: Wed,  5 Mar 2025 14:14:21 +0100
+Message-Id: <20250305131425.1491769-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250305101453.708270-2-mathis.foerst@mt.com>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, Mar 05, 2025 at 11:14:48AM +0100, Mathis Foerst wrote:
-> The MT9M114 supports the different slew rates (0 to 7) on the output pads.
-> At the moment, this is hardcoded to 7 (the fastest rate).
-> The user might want to change this values due to EMC requirements.
-> 
-> Add the 'onnn,slew-rate' property to the MT9M114 DT-bindings for selecting
-> the desired slew rate.
-> 
-> Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
-> ---
->  .../devicetree/bindings/media/i2c/onnn,mt9m114.yaml      | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> index f6b87892068a..c184bc04b743 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> @@ -70,6 +70,15 @@ properties:
->            - bus-type
->            - link-frequencies
->  
-> +  onnn,slew-rate:
+This patch series adds support for the Plymovent AQM board based on the
+STM32MP151C SoC. Additionally, the ICS-43432 device tree binding is
+converted to YAML to address a validation warning.
 
-Just 'slew-rate' which is already defined in the pinctrl binding.
+The ICS-43432 patch resolves one of the devicetree validation warnings.
+However, the false-positive warning:
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Slew rate ot the output pads DOUT[7:0], LINE_VALID, FRAME_VALID and
-> +      PIXCLK. Higher values imply steeper voltage-flanks on the pads.
-> +    minimum: 0
-> +    maximum: 7
-> +    default: 7
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.34.1
-> 
+  "audio-controller@44004000: port:endpoint: Unevaluated properties are
+   not allowed ('format' was unexpected)"
+
+remains unresolved. The "format" property is required for proper
+functionality of this device.
+
+Best regards,
+
+Oleksij Rempel (4):
+  dt-bindings: sound: convert ICS-43432 binding to YAML
+  dt-bindings: arm: stm32: Add Plymovent AQM board
+  ARM: dts: stm32: Add pinmux groups for Plymovent AQM board
+  arm: dts: stm32: Add Plymovent AQM devicetree
+
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |   1 +
+ .../devicetree/bindings/sound/ics43432.txt    |  19 -
+ .../bindings/sound/invensense,ics43432.yaml   |  51 +++
+ arch/arm/boot/dts/st/Makefile                 |   1 +
+ arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi   | 292 ++++++++++++++
+ arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts   | 376 ++++++++++++++++++
+ 6 files changed, 721 insertions(+), 19 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ics43432.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/invensense,ics43432.yaml
+ create mode 100644 arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts
+
+--
+2.39.5
+
 
