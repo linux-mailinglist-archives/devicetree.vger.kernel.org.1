@@ -1,248 +1,326 @@
-Return-Path: <devicetree+bounces-154347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA46A4FB98
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:18:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43011A4FB9F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 11:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 892251892B06
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:18:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F25F7188D6F0
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5DE20767A;
-	Wed,  5 Mar 2025 10:16:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E3F72066FA;
+	Wed,  5 Mar 2025 10:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b="XS3doUbP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="evv4pIbc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2076.outbound.protection.outlook.com [40.107.20.76])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B055A2063F3;
-	Wed,  5 Mar 2025 10:16:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.76
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741169777; cv=fail; b=smhZ7m6SMBlMtANas67w6z+6DXKv5aGcjk9p0LW/1pJVr3f7Ss76aIC0QzQgWQmnH7yMWD6BiWhLfBQdl4lKH62PNRDt64x2OkrGNfy/DP0Os5FIULH/MdppRlB5scdZAjPFg9OErdPOA1cUm2y5YFf318ASlVtueJ30mRIgU0A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741169777; c=relaxed/simple;
-	bh=jOBcKAk3x263mpJ//xEMBWXdHLZrTW6yK7mi9/oDXCs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QOMzj+dCv6HPIp3z3Yow9s2gmf/vM8SfldN7OeW6QS4T05nW1wOs7cLoduA+P66dbgHrrw7U/fc+EFyEezajVZXZ4/VWlJE9LB9Mi/kMPQIC+0h+TYA5tdO3cvTdql04gM61P4HO1EKY0G9SpR2Rql8wjrLUigX9glV0u7+QE/M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com; spf=pass smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=XS3doUbP; arc=fail smtp.client-ip=40.107.20.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mt.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LKTTF71gEEfU+wqtFkxd0UUKtaMhBpfMrRjJSmJvh2ENt4Iu9+XVfvirvtL8FMcu7khtJGxiuAJJB1NfIjGwisRH2Rsep4dhkC9bdC4S++Afig9/gHCRD3SVfpGf93/Wo2AMFJ0DouCRQ9cxzjd/IUJeFWnJhZeTcxYa2xxoZr+i7s80Cg5EHRQDFMW5MXW6X1UCXfYAJjtrTkgK44K0lGAHEDMgnSpjNcnkQfw/sBzEu/gy7gMd8fWiJgfCqS8MF0BxktBC4/ROXvlC6YW7afLcLel7aUcZQmXl3SW6vLZNspAvBHwdj0P2jXUcTIWDtM381ffnVC3SOsYa3h6ltw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jzzqFhs2PfkzeYDbuAYqNH9sSrH3SAUaB4azNc61v7o=;
- b=XjX/x9kmYHgWZ6oWPhq6/dt+6K2RJd0YOOBEEXaGvL0N4tEVdYmyIwLSbOHZ11q0tnsD3BcXDMQMmo/CfCJJrUe8m2CwBkLfbHiEl2waMu2SEf1zv2lnhNip5v8IarMjClBBuUjPx6mVQDBGoj1zg95Pt1EeCspYLaT6KijDvUugkZxpnaXgHNBsMR64JwCroDhulqGsH5rZTHDHlyPi3JcRNC9fFWp4w1HEc4bTi3YDxzg0mTS4KXp30baS6y5NQoai5R5aevBYpA+JgSQMRCXYzOFBdKP64v5Lg2Dle0vbUIoaVHKgPoGJHVmgUQZ4+r5/QAdRqsJtzV82DzLqJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
- header.d=mt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jzzqFhs2PfkzeYDbuAYqNH9sSrH3SAUaB4azNc61v7o=;
- b=XS3doUbP5dvBRiE9gr78Cy+qIuUCEyBAb21p88pb45L7MSnNoi0Aic3koWKIAHNa0x106K/H0j7B01vI4FV4fGGxKZOe9nAbPzoJuWMW/PZhRJMaKbeV1OxmpChXCO42rpy1rRtDoL9nfAImdBx0tVbi4TLBVEH8w4/hD8gLC3zx4MkHtnfSbhVl/V28LdBl4iD0d9Q9Lvs2CVpLtoTzOkzQ+5t1fR4rxf+LgYWCclhGDwVPPA7Zi+ARh3Uj0lgeoPBWbNRaf08Mtj+On5kln4BaQs18SDtNrAYBRp/yHeDCkJpfKqm25mHhcciRCDIDpVrOgyf/aSMfUnpM22gs2w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mt.com;
-Received: from DBBPR03MB10396.eurprd03.prod.outlook.com (2603:10a6:10:53a::11)
- by AS8PR03MB8715.eurprd03.prod.outlook.com (2603:10a6:20b:560::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.28; Wed, 5 Mar
- 2025 10:16:12 +0000
-Received: from DBBPR03MB10396.eurprd03.prod.outlook.com
- ([fe80::ee3c:c9be:681:c0bf]) by DBBPR03MB10396.eurprd03.prod.outlook.com
- ([fe80::ee3c:c9be:681:c0bf%7]) with mapi id 15.20.8511.015; Wed, 5 Mar 2025
- 10:16:12 +0000
-From: Mathis Foerst <mathis.foerst@mt.com>
-To: linux-kernel@vger.kernel.org
-Cc: Mathis Foerst <mathis.foerst@mt.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	manuel.traut@mt.com,
-	mathis.foerst@zuehlke.com
-Subject: [PATCH v3 6/6] media: mt9m114: Set pad-slew-rate
-Date: Wed,  5 Mar 2025 11:14:53 +0100
-Message-Id: <20250305101453.708270-7-mathis.foerst@mt.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250305101453.708270-1-mathis.foerst@mt.com>
-References: <20250305101453.708270-1-mathis.foerst@mt.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZR0P278CA0066.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:21::17) To DBBPR03MB10396.eurprd03.prod.outlook.com
- (2603:10a6:10:53a::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806291EEA5D;
+	Wed,  5 Mar 2025 10:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741169847; cv=none; b=TO4QKoscuuSgnoidZ5RHI5IHOlvDeOORtoJ0xjW1u7T4Y4mx+Rhzf6eC3NYZyTY6fABuzRf08cmBuIksvzUdSXOukcL4tYqcBqJV0fBzyoDp1sbjL3y+vrIk7IqjUqMxLQmA3TTu4ginHkNtu/6QuGqeIjOflgqwXCwMv3DYvr4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741169847; c=relaxed/simple;
+	bh=Vsew3rmlnvPEW39spq8AldmtDKIKNlHmiuSQiIwHSQA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GqgFCCpECUYNOD0n2drFPAZuMdCtMuGrY+VI0cje2YAteLWg6ggVgkezOtXJUlTF1LakpI/yzCKowQqOaRDRtahMqEwoo3JiWwFuC3Y6jHlhNsAjSRy/03ivhvRTxdCZK9E6RlSH9ySenkdrsisI9zUuEhQg7hohikp8+sYzBuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=evv4pIbc; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 524NA1Bw031245;
+	Wed, 5 Mar 2025 10:16:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lQZjIkh0Rb6Q4LITU2aPSTBOhbpnSxFczFX8aIYNweY=; b=evv4pIbcH+S5KRO9
+	ef/dWzmnbSRlq8GY/Up/2910Ew1KAmhh1InVoa4W+hLg3U4SFBfQC8D++FhjU0LC
+	CNMvrZlvJlVA09u/16dD0A4c4xa22KbqF3l1LkVOUHmOgl2/nXMalr56DEXaWBLK
+	0mgR9Bsh8Q2U9rV88fXrfms1fjeFQz0fl7OkiVr70IRAgP7xE/u5VNjQOf/J7Ku2
+	hiDA/c40B5gCcqQy7OPJU8BS1UeF8cVCDN0mTqnP1gdHtgK9cUGN7WrtzhM5LfCD
+	9PikQi7FC3mWnQWITL8yhWyY97bm9k5Odso2nYnPdWeeHhemRSM/PrQfZ1ufdIt9
+	kibRsA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6t4yrd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Mar 2025 10:16:55 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 525AGt2G005786
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 5 Mar 2025 10:16:55 GMT
+Received: from [10.64.16.135] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 5 Mar 2025
+ 02:16:47 -0800
+Message-ID: <9fb34496-d823-414a-b7dc-54b4677829e5@quicinc.com>
+Date: Wed, 5 Mar 2025 18:16:45 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DBBPR03MB10396:EE_|AS8PR03MB8715:EE_
-X-MS-Office365-Filtering-Correlation-Id: 82d83a03-88d2-420a-3277-08dd5bcec13e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|52116014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?6JpAm6vhWexSlCMnP6wCUJ1+XZuICz+uxIVIUXOyKTEpMoVOrcgRLnrxExyq?=
- =?us-ascii?Q?37Ecb9PkrB5Rdc8rdFO1sgvmUBYzMBIn6PZdj61vjtrSq2VPw1ISmM62FTVK?=
- =?us-ascii?Q?SNhs3IhI13cvmgstXn3Twp6ugbMru/EKKTGc0saX9xmMMccXkQF+P7hF2JML?=
- =?us-ascii?Q?QFKRB3peDSB572eFlA+LZkvGfXJ+fexq88BNgoU1o/+HQmTcqlJx773Pjp3u?=
- =?us-ascii?Q?5PfB7FQvAiJid3iC+2N1Jr2No4jt0AwVc+kZtDC4x2UfiaiKtfIPFDG2QEgf?=
- =?us-ascii?Q?EXZZ9EC14DSBrP1Hn13B5dmSVbFFY5dt8FkEUF9oOAYh5UjSidDsN2MlUmlg?=
- =?us-ascii?Q?9n1ytafI1PvrfEYT2HCaQ9aTX8GmVBOWzANJQHC5MBh1ydCd9OMmupOSLBnO?=
- =?us-ascii?Q?cWPGJ5Yas93yVQpFoVVYMG4Iap8kTJopXRPLXWGTOmGgQn2EWMji9U6vWH5X?=
- =?us-ascii?Q?cyOIj3JwmhGKbnLjy0rpmwMnbHr/SMOJu8Y5XoX4bU0Wss/WA/7hB00KrVzF?=
- =?us-ascii?Q?Igg0JjmF0exowAJQBN/QUJkA8a+OsdnlMY0CDlbdKVIqnSWA/bLecjchp9Fw?=
- =?us-ascii?Q?BTDxHWHAawutN8SkFMkX5pszEONJvYfSdaHF8adXCN+AtKgthWZ9IbSPLYZn?=
- =?us-ascii?Q?EWm8UolKXTLSPcFeEH/So+l95UDHa2+iN9JAnOqcD3tSsfLkRVA9MAvJr89G?=
- =?us-ascii?Q?xRYHQUvN1Vip8cNSU0oz6aP4+xUHEXszrHUkhYOcNR5KymLfjHbamL+ipJ+O?=
- =?us-ascii?Q?7D7YrLoq5mcC6rU6wyuUEDJWYcrlAfWtXZDKH9dbpPgPUKIEuRxTxq7rZUGp?=
- =?us-ascii?Q?K1GPFEKFBptrV74s4wUmEu/LlA/DAan5OQjN8Kk6cTpT9MX1Q83hhT2XL9H0?=
- =?us-ascii?Q?kJGiHJMqPWpDjmzN5XBicuC8rvQriV/B7XJUyasN96EDc+uNX7ThqJMhw+k3?=
- =?us-ascii?Q?/URGXJejScZPuazmkiO824UDv6wjuVNMpi7wqulhiZDPySKHsTbe9KK4Gb23?=
- =?us-ascii?Q?8j2IvD5qkE0V7wusLdd8NLZe1V7N+yYJ9LOoXx6hM2mni7F6iW5woSfRx6Sf?=
- =?us-ascii?Q?51baTf+NqETGHtoK7j1IVtlauQD6H/h7sjk1Iq0/LGRuYgkQRk3SA+tT+3aV?=
- =?us-ascii?Q?hfI22pfk0TRRTvWf4ODsjPl5svLmgpvr2MZ1T79EdfRBWZFbhCcdufDxWiwJ?=
- =?us-ascii?Q?VsM6DWkdYnWrdc4SoAgpO95WCoMuKGI/kHuHtPqQm6B8w97Sow1skosLqnhr?=
- =?us-ascii?Q?Y+g10mfHJ9uOmFZELVEIiXvlERjEe0r3AuX7KCr3a36jGQWmCCtpL14unahx?=
- =?us-ascii?Q?NDJd30o5kmgOtI8t66SwBhGJNX5lkAFeCe+ZmxmbiWQMNxa/5QdSb/I3SEvK?=
- =?us-ascii?Q?8tfFtVxOe5y0Mns9ZBrbNx6zCKuEyXzPbkcStEO2mk4Kmi0zo920oqsq510Y?=
- =?us-ascii?Q?3PazBeUQtFgUcr6pCo+81eZgB1rqwVJq?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR03MB10396.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?rDEK76z0e3akHBjMnH83XkCs8u33hjja1BsqvLyxbws7j1zfKYfl3F5QQ1p7?=
- =?us-ascii?Q?A6mF5TWCiYGSvcVGkHj2Z6ZUbsPknZsKsiEMS5V9Fi0VuiGLx1nhiF3s5r9B?=
- =?us-ascii?Q?1xu1khVMpiNJj21z6XZY6sVI0Rw3bCL+ejPOu5RWX3yz/U+DtwMwliGNzUh2?=
- =?us-ascii?Q?LL89OoWUYnB6MVDDPAUifgaf02dQgSsSoXugfV4f4OV+MNnxPkT4PdjMQmMS?=
- =?us-ascii?Q?f/fi4ynJ91PSJ1kkFnJvhYBqLHp20tivF9wradxeKXtw8sGM93VxakLCh48k?=
- =?us-ascii?Q?/y5Jsk4u+oLzHgnbcuuIpIVZo/5kiqT6g/nyeMLjvr9S+8KNq6NDVpkLb5L3?=
- =?us-ascii?Q?z5MFW0ojJe7bQCwWQ+h0pobdBYz2xzJIKcHSqkbTL6rUVs9aKlU3OhLDvgsH?=
- =?us-ascii?Q?AGSEy4QqFf2BdtCb0CSrWdZh9VawYjuGxANLJ8tnUVXMBavaioQ2wS5cuMpD?=
- =?us-ascii?Q?vyc+sVtwk0zi5ApoiEMNRV6MmxEZdScBHbM2xVCOsEhHH1wqfUp6n/hOCXv0?=
- =?us-ascii?Q?svJdMGY5Wnj3cp1HsTvAkJG1cZedktzRPA2dZIpsHXUPSF6qNPsPideeU5bT?=
- =?us-ascii?Q?iQ2+czlGYnz13IEXEb8E1Xztgskj0c2fTPj69wm664ADXFY93+Nb8GVpt6e/?=
- =?us-ascii?Q?a8rrBy5RgGIJkUkMeRDJQHf1cK/pWSN98QPA3QuBnhOAbw7ZBLvoc0hGc71m?=
- =?us-ascii?Q?dSir5O55SI/IiRuXeGe8l1deQCkHB3njeMgAu2h8rpBpH655rlbDopzMXwRF?=
- =?us-ascii?Q?pf2WS4J3/l0pb8QFKYh2TLS2tmDIm8DQodnrF/MpBTlYYbBS+y2LvfEPgNJv?=
- =?us-ascii?Q?aTUogp7yZAnHaiuisd0BICP3kyYcHODpLqhRznUfI1vz7W34pKFUKxCTJ4l+?=
- =?us-ascii?Q?vxZQkKejIeFbBFIZIxbD2nfFdwh5omUBWQUAmNneFBD6/ltYtoCYBck3d/w2?=
- =?us-ascii?Q?fRIOGmjZV18kNaGZSzgJlxfLfEodXc+ecuRaEbcAmp5VAGFb4p3z6xQDO9OQ?=
- =?us-ascii?Q?CNN3ASvJ26hGhEzdNBWxE9inHYgnHmcct8ruMa11wRgfhTUg1ocF0ClJ6PxH?=
- =?us-ascii?Q?SwsyBISt7NrTu5ORlP3+YPOUOFs+teRhQPdhltTXfmLpHcOR6QfPd493D81m?=
- =?us-ascii?Q?xl4q17s7qRHDf3rl+tpf7LAwtvvljG46p3+uaRiPJpZlTmWLMYVPmvgxs99x?=
- =?us-ascii?Q?7JqpAcHXdMNX1x5r4PKB2JSPQcv4LYG7xe9H9q3jsjAs+WcxXVrkE4nVfgNL?=
- =?us-ascii?Q?T0uR48HN5WitLgIEWMrDq1Lbo/PLiCcEXIrbFP0Y3Loouywd85F0GKnuVPHn?=
- =?us-ascii?Q?3RcgwWgk/DpCohPbt4l2uanaVPrVe8uhO/XLR0ANHlhdocDZwwZcgl+auupg?=
- =?us-ascii?Q?xH1Vu1COIL9X7h26YB3V13FG75nDOY+9/JAHw2lEnIXVX+JolVMMBATvdVGU?=
- =?us-ascii?Q?7UfeLT8ncM4A7I0/O6O9R/Q5v4qg97upRhppD0eIOWtFdFTc1+BJK7OiYlah?=
- =?us-ascii?Q?z0dBp0djEfQ2MPSNnoFHUqE1NSZNJUGnvLRpsCnLFMkWfTSpHuyupQFbyFw2?=
- =?us-ascii?Q?gofvzv8BeQ1J1VmUWgq7u3csQbd7uLZZjtMa/kc0?=
-X-OriginatorOrg: mt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82d83a03-88d2-420a-3277-08dd5bcec13e
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR03MB10396.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2025 10:16:12.1429
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O7OCpstyKSfCm958o9GKE4NbnewU8X9DonkeNLY1jHuKRSzTVZILY96G+uNGsQObzCicX55S4RB6gfNHsgaFuQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB8715
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/8] drm/msm/dp: Add support for lane mapping
+ configuration
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Kuogee
+ Hsieh" <quic_khsieh@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Kishon
+ Vijay Abraham I" <kishon@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_lliu6@quicinc.com>,
+        <quic_fangez@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
+ <20241129-add-displayport-support-for-qcs615-platform-v1-5-09a4338d93ef@quicinc.com>
+ <CAA8EJpoY8hySQd00yODGeHjSpVZpEBLjF3aBiKGJPUhpr-2mgw@mail.gmail.com>
+ <d2a3cd6f-1077-4edb-9f0c-0c940a639050@quicinc.com>
+ <zvapsvfftai4fp6vwrn33edqsyuuprq2pxz6spij6j7t4y6xmn@zzgp7gbsivbk>
+ <93ddb63c-42da-43c8-9a77-c517ca5d6432@quicinc.com>
+ <CAA8EJprAFYD6ykN10-r=JwHM4A4XeDDcZVcVWYp_5A5FP-=RyA@mail.gmail.com>
+ <e647d143-dc6e-483d-ac81-2733fb526fc3@quicinc.com>
+ <h6tmbuv26tdv633udphttsydpbvnwownulvglcxktdaxqdhtvw@ereftfs5hiso>
+From: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+In-Reply-To: <h6tmbuv26tdv633udphttsydpbvnwownulvglcxktdaxqdhtvw@ereftfs5hiso>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: aKatwj6BJQyRYbP4xVAYI6QwH_7jJYG2
+X-Authority-Analysis: v=2.4 cv=KfMosRYD c=1 sm=1 tr=0 ts=67c82497 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=e5mUnYsNAAAA:8 a=Oh2cFVv5AAAA:8 a=JfrnYn6hAAAA:8
+ a=COk6AnOGAAAA:8 a=BOJ6RS-tu9LrgQTqqMAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=Vxmtnl_E_bksehYqCbjh:22 a=7KeoIwV6GZqOttXkcoxL:22 a=1CNFftbPRP8L7MoqJWF3:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: aKatwj6BJQyRYbP4xVAYI6QwH_7jJYG2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-05_04,2025-03-05_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ spamscore=0 suspectscore=0 phishscore=0 malwarescore=0 clxscore=1011
+ priorityscore=1501 impostorscore=0 mlxlogscore=999 adultscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503050082
 
-The MT9M114 supports the different slew rates (0 to 7) on the output pads.
-At the moment, this is hardcoded to 7 (the fastest rate).
-The user might want to change this values due to EMC requirements.
 
-Read the 'onnn,slew-rate' from the DT and configure the pad slew rates of
-the output pads accordingly in mt9m114_initialize().
-Remove the hardcoded slew rate setting from the mt9m114_init table.
 
-Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
----
- drivers/media/i2c/mt9m114.c | 21 ++++++++++++++++++---
- 1 file changed, 18 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/media/i2c/mt9m114.c b/drivers/media/i2c/mt9m114.c
-index 79c97ab19be9..df694a3e14d5 100644
---- a/drivers/media/i2c/mt9m114.c
-+++ b/drivers/media/i2c/mt9m114.c
-@@ -42,6 +42,9 @@
- #define MT9M114_RESET_AND_MISC_CONTROL			CCI_REG16(0x001a)
- #define MT9M114_RESET_SOC					BIT(0)
- #define MT9M114_PAD_SLEW				CCI_REG16(0x001e)
-+#define MT9M114_PAD_SLEW_MIN					0x00
-+#define MT9M114_PAD_SLEW_MAX					0x07
-+#define MT9M114_PAD_SLEW_DEFAULT				0x07
- #define MT9M114_PAD_CONTROL				CCI_REG16(0x0032)
- 
- /* XDMA registers */
-@@ -388,6 +391,7 @@ struct mt9m114 {
- 
- 	unsigned int pixrate;
- 	bool streaming;
-+	u32 pad_slew_rate;
- 
- 	/* Pixel Array */
- 	struct {
-@@ -645,9 +649,6 @@ static const struct cci_reg_sequence mt9m114_init[] = {
- 	{ MT9M114_CAM_SENSOR_CFG_FINE_INTEG_TIME_MAX,	1459 },
- 	{ MT9M114_CAM_SENSOR_CFG_FINE_CORRECTION,	96 },
- 	{ MT9M114_CAM_SENSOR_CFG_REG_0_DATA,		32 },
--
--	/* Miscellaneous settings */
--	{ MT9M114_PAD_SLEW,				0x0777 },
- };
- 
- /* -----------------------------------------------------------------------------
-@@ -778,6 +779,13 @@ static int mt9m114_initialize(struct mt9m114 *sensor)
- 	if (ret < 0)
- 		return ret;
- 
-+	value = (sensor->pad_slew_rate & 0xF)
-+	      | (sensor->pad_slew_rate & 0xF) << 4
-+	      |	(sensor->pad_slew_rate & 0xF) << 8;
-+	cci_write(sensor->regmap, MT9M114_PAD_SLEW, value, &ret);
-+	if (ret < 0)
-+		return ret;
-+
- 	ret = mt9m114_set_state(sensor, MT9M114_SYS_STATE_ENTER_CONFIG_CHANGE);
- 	if (ret < 0)
- 		return ret;
-@@ -2357,6 +2365,8 @@ static int mt9m114_parse_dt(struct mt9m114 *sensor)
- {
- 	struct fwnode_handle *fwnode = dev_fwnode(&sensor->client->dev);
- 	struct fwnode_handle *ep;
-+	struct device_node *dev_node = sensor->client->dev.of_node;
-+	u32 slew_rate;
- 	int ret;
- 
- 	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
-@@ -2385,6 +2395,11 @@ static int mt9m114_parse_dt(struct mt9m114 *sensor)
- 		goto error;
- 	}
- 
-+	ret = of_property_read_u32(dev_node, "onnn,slew-rate", &slew_rate);
-+	if (ret || slew_rate < MT9M114_PAD_SLEW_MIN || slew_rate > MT9M114_PAD_SLEW_MAX)
-+		slew_rate = MT9M114_PAD_SLEW_DEFAULT;
-+	sensor->pad_slew_rate = slew_rate;
-+
- 	return 0;
- 
- error:
--- 
-2.34.1
+On 12/20/2024 5:45 AM, Dmitry Baryshkov wrote:
+> On Thu, Dec 19, 2024 at 06:36:38PM +0800, Xiangxu Yin wrote:
+>>
+>>
+>> On 12/5/2024 7:40 PM, Dmitry Baryshkov wrote:
+>>> On Thu, 5 Dec 2024 at 13:28, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
+>>>>
+>>>>
+>>>>
+>>>> On 12/2/2024 6:46 PM, Dmitry Baryshkov wrote:
+>>>>> On Mon, Dec 02, 2024 at 04:40:05PM +0800, Xiangxu Yin wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 11/29/2024 9:50 PM, Dmitry Baryshkov wrote:
+>>>>>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
+>>>>>>>>
+>>>>>>>> Add the ability to configure lane mapping for the DP controller. This is
+>>>>>>>> required when the platform's lane mapping does not follow the default
+>>>>>>>> order (0, 1, 2, 3). The mapping rules are now configurable via the
+>>>>>>>> `data-lane` property in the devicetree. This property defines the
+>>>>>>>> logical-to-physical lane mapping sequence, ensuring correct lane
+>>>>>>>> assignment for non-default configurations.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+>>>>>>>> ---
+>>>>>>>>  drivers/gpu/drm/msm/dp/dp_catalog.c | 11 +++++------
+>>>>>>>>  drivers/gpu/drm/msm/dp/dp_catalog.h |  2 +-
+>>>>>>>>  drivers/gpu/drm/msm/dp/dp_ctrl.c    |  2 +-
+>>>>>>>>  drivers/gpu/drm/msm/dp/dp_panel.c   | 13 ++++++++++---
+>>>>>>>>  drivers/gpu/drm/msm/dp/dp_panel.h   |  3 +++
+>>>>>>>>  5 files changed, 20 insertions(+), 11 deletions(-)
+>>>>>>>>
+>>>>>
+>>>>>>>> @@ -461,6 +460,7 @@ static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
+>>>>>>>>         struct msm_dp_panel_private *panel;
+>>>>>>>>         struct device_node *of_node;
+>>>>>>>>         int cnt;
+>>>>>>>> +       u32 lane_map[DP_MAX_NUM_DP_LANES] = {0, 1, 2, 3};
+>>>>>>>>
+>>>>>>>>         panel = container_of(msm_dp_panel, struct msm_dp_panel_private, msm_dp_panel);
+>>>>>>>>         of_node = panel->dev->of_node;
+>>>>>>>> @@ -474,10 +474,17 @@ static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
+>>>>>>>>                 cnt = drm_of_get_data_lanes_count(of_node, 1, DP_MAX_NUM_DP_LANES);
+>>>>>>>>         }
+>>>>>>>>
+>>>>>>>> -       if (cnt > 0)
+>>>>>>>> +       if (cnt > 0) {
+>>>>>>>> +               struct device_node *endpoint;
+>>>>>>>> +
+>>>>>>>>                 msm_dp_panel->max_dp_lanes = cnt;
+>>>>>>>> -       else
+>>>>>>>> +               endpoint = of_graph_get_endpoint_by_regs(of_node, 1, -1);
+>>>>>>>> +               of_property_read_u32_array(endpoint, "data-lanes", lane_map, cnt);
+>>>>>>>> +       } else {
+>>>>>>>>                 msm_dp_panel->max_dp_lanes = DP_MAX_NUM_DP_LANES; /* 4 lanes */
+>>>>>>>> +       }
+>>>>>>>
+>>>>>>> Why? This sounds more like dp_catalog or (after the refactoring at
+>>>>>>> [1]) dp_ctrl. But not the dp_panel.
+>>>>>>>
+>>>>>>> [1] https://patchwork.freedesktop.org/project/freedreno/series/?ordering=-last_updated
+>>>>>>>
+>>>>>> We are used the same prop 'data-lanes = <3 2 0 1>' in mdss_dp_out to keep similar behaviour with dsi_host_parse_lane_data.
+>>>>>> From the modules used, catalog seems more appropriate, but since the max_dp_lanes is parsed at dp_panel, it has been placed here.
+>>>>>> Should lane_map parsing in msm_dp_catalog_get, and keep max_dp_lanes parsing at the dp_panel?
+>>>>>
+>>>>> msm_dp_catalog_get() is going to be removed. Since the functions that
+>>>>> are going to use it are in dp_ctrl module, I thought that dp_ctrl.c is
+>>>>> the best place. A better option might be to move max_dp_lanes and
+>>>>> max_dp_link_rate to dp_link.c as those are link params. Then
+>>>>> lane_mapping also logically becomes a part of dp_link module.
+>>>>>
+>>>>> But now I have a more important question (triggered by Krishna's email
+>>>>> about SAR2130P's USB): if the lanes are swapped, does USB 3 work on that
+>>>>> platform? Or is it being demoted to USB 2 with nobody noticing that?
+>>>>>
+>>>>> If lanes 0/1 and 2/3 are swapped, shouldn't it be handled in the QMP
+>>>>> PHY, where we handle lanes and orientation switching?
+>>>>>
+>>>> I have checked the DP hardware programming guide and also discussed it with Krishna.
+>>>>
+>>>> According to the HPG section '3.4.2 PN and Lane Swap: PHY supports PN swap for mainlink and AUX, but it doesn't support lane swap feature.'
+>>>>
+>>>> The lane swap mainly refers to the logical to physical mapping between the DP controller and the DP PHY. The PHY handles polarity inversion, and the lane map does not affect USB behavior.
+>>>>
+>>>> On the QCS615 platform, we have also tested when DP works with lane swap, other USB 3.0 ports can works normally at super speed.
+>>>
+>>> "Other USB 3.0 ports"? What does that mean? Please correct me if I'm
+>>> wrong, you should have a USB+DP combo port that is being managed with
+>>> combo PHY. Does USB 3 work on that port?
+>>>
+>>> In other words, where the order of lanes is actually inverted? Between
+>>> DP and combo PHY? Within combo PHY? Between the PHY and the pinout?
+>>> Granted that SM6150 was supported in msm-4.14 could you possibly point
+>>> out a corresponding commit or a set of commits from that kernel?
+>>>
+>> For "Other USB 3.0 ports", as replied in USBC driver, USB3 primary phy works for other four USB type-A port.
+> 
+> So if that's the USB3 primary, then why do you mention here at all? We
+> are taling about the secondary USB3 + DP.
+> 
+OK, sorry for confusing you.
+>> The REG_DP_LOGICAL2PHYSICAL_LANE_MAPPING mapping determines how logical lanes (0, 1, 2, 3) map to physical lanes sent to the PHY.
+>> This ensures alignment with hardware requirements.
+>> The PHY’s polarity inversion only adjusts signal polarity and doesn’t affect lane mapping.
+>> Both DP ctrl and PHY lane related config will not affect USB phy.
+> 
+> Probably we misundersand each other. The DP PHY should have orientation
+> switch register, which controls whether 2-lane DP uses lanes 0/1 or 2/3.
+> Can you use that register?
+> 
+Yes, DP PHY have orientation register as below.
+DP_PHY_DP_PHY_CFG_1(0x88e9014) bit(7) SW_PORTSELECT
+> Also, could you _please_ answer the question that I have asked? Is the
+> order of lanes inverted between the DP controller and DP PHY? Or between
+> DP PHY and the DP connector? If one uses USB3 signals coming from this
+> port (yes, on the other board, not on the Ride), would they also need to
+> switch the order of USB3 lanes? If one uses a DP-over-USB-C, are DP
+> lanes are swapped?
+> 
+It's inverted between the DP controller and DP PHY.
+If other use USB3 on the other board, will not need switch order of USB3 lanes,
+If one use DP-over-USB-C, then need DP lanes swap.
+>> Without extra Type-C mapping, the DP controller’s mapping indirectly decides how signals are transmitted through Type-C.
+>> Mapping ensures proper data transmission and compatibility across interfaces.
+>>
+>> We only found sm6150 need this lane mapping config, 
+>> For msm 4.14, please refer these links,
+>> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/arch/arm64/boot/dts/qcom/sm6150-sde.dtsi (qcom,logical2physical-lane-map)
+>> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/drivers/gpu/drm/msm/dp/dp_parser.c (dp_parser_misc)
+>> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/drivers/gpu/drm/msm/dp/dp_catalog_v200.c (dp_catalog_ctrl_lane_mapping_v200)
+>>
+>> If need process orientation info like dp_catalog_ctrl_lane_mapping_v200, 
+>> then 
+>> if implement in DP phy, then we need config dp_link register in PHY,
+>> if implement in DP link, then we need pass orientation info to DP driver, perhaps we could add a new attribute to the phy_configure_opts_dp structure to pass this.
+>> Do you have any suggestions?
+> 
+> Does SW_PORTSEL_VAL affect the DP lanes on this platform?
+> 
+SW_PORTSEL_VAL for USB3PHY_PCS_MISC_TYPEC_CTRL will not affect DP lanes in this DP or USB3 chip series.
+USB3 will use USB3PHY_PCS_MISC_TYPEC_CTRL(SW_PORTSEL_VAL BIT_0) and DP will use DP_PHY_DP_PHY_CFG_1(SW_PORTSELECT BIT_7)
+>>
+>>>>
+>>>> Additionally, if it were placed on the PHY side, the PHY would need access to dp_link’s domain which can access REG_DP_LOGICAL2PHYSICAL_LANE_MAPPING.
+>>>
+>>> I was thinking about inverting the SW_PORTSEL_VAL bit.
+>>>
+>>>> Therefore, we believe that the  max_dp_link_rate,max_dp_lanes and lane_map move to dp_link side is better.
+>>>>
+>>>>>>>> +
+>>>>>>>> +       memcpy(msm_dp_panel->lane_map, lane_map, msm_dp_panel->max_dp_lanes * sizeof(u32));
+>>>>>>>>
+>>>>>>>>         msm_dp_panel->max_dp_link_rate = msm_dp_panel_link_frequencies(of_node);
+>>>>>>>>         if (!msm_dp_panel->max_dp_link_rate)
+>>>>>>>> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.h b/drivers/gpu/drm/msm/dp/dp_panel.h
+>>>>>>>> index 0e944db3adf2f187f313664fe80cf540ec7a19f2..7603b92c32902bd3d4485539bd6308537ff75a2c 100644
+>>>>>>>> --- a/drivers/gpu/drm/msm/dp/dp_panel.h
+>>>>>>>> +++ b/drivers/gpu/drm/msm/dp/dp_panel.h
+>>>>>>>> @@ -11,6 +11,8 @@
+>>>>>>>>  #include "dp_aux.h"
+>>>>>>>>  #include "dp_link.h"
+>>>>>>>>
+>>>>>>>> +#define DP_MAX_NUM_DP_LANES    4
+>>>>>>>> +
+>>>>>>>>  struct edid;
+>>>>>>>>
+>>>>>>>>  struct msm_dp_display_mode {
+>>>>>>>> @@ -46,6 +48,7 @@ struct msm_dp_panel {
+>>>>>>>>         bool video_test;
+>>>>>>>>         bool vsc_sdp_supported;
+>>>>>>>>
+>>>>>>>> +       u32 lane_map[DP_MAX_NUM_DP_LANES];
+>>>>>>>>         u32 max_dp_lanes;
+>>>>>>>>         u32 max_dp_link_rate;
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> --
+>>>>>>>> 2.25.1
+>>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> --
+>>>>>> linux-phy mailing list
+>>>>>> linux-phy@lists.infradead.org
+>>>>>> https://lists.infradead.org/mailman/listinfo/linux-phy
+>>>>>
+>>>>
+>>>
+>>>
+>>
+> 
 
 
