@@ -1,270 +1,138 @@
-Return-Path: <devicetree+bounces-154292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A782A4F96E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:02:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68A8AA4F97C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 10:05:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23CD51887263
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:02:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A83EB3AE046
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:04:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9770200138;
-	Wed,  5 Mar 2025 09:02:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB75200BB2;
+	Wed,  5 Mar 2025 09:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="FGEdSHsJ";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="qzcWgjDG"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="bLjhNTZX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F801FC7D1;
-	Wed,  5 Mar 2025 09:02:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741165348; cv=none; b=t5ULx4n6ZcTSlo0zH5myketOKdmO64TMObgGSonG+LepUGXRNJBxDD6SJcytoJrhvO7D02ayCasNYvZBb5p1BTI5hVdA17kbHTE/UOgstzX/TnSzyynPlro7ngoD6da95P/Mwbp54gpjfP3KyRRNNiGYWVKD25c3CL6pLszjmz8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741165348; c=relaxed/simple;
-	bh=7BZUuY0NVXBKg5hilWvkKI6gUrRsdS6N+7BHvgE6STY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LOQhZYf9zer4jky7LpeJtklNWuuK7NBDBp/F3Zs7YqpPZsZs2Kc8HyaCg2NOd3DPJT0j4AaVLq6p4/QYS1QLaHY7RxsTEVVk3xCQMdHrlTR2IXQkStlZ4PgAHYImnyHoC7AUEOPcGVXhc4MKwUHHyYOEruPUPhpw/r6UL5akVuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=FGEdSHsJ; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=qzcWgjDG reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1741165346; x=1772701346;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=vqA7WR0bg0u4G+HAomrK/aLC9+18x4n+S7IKkNThfiM=;
-  b=FGEdSHsJUzdScXTdYhZDaxdAawHc2qDZosoNyGgeUVrIIunht89aqQqJ
-   HbUFHh48AM65l+XSXqsGhMG9kuBuNclOfyJOb6cJVCMoEll6EDKETj/OH
-   jbdIelhBCxMNFMdTse2GCSiSzcYRvC/ukcGFFmT1KzbJ6SScr756bTxD2
-   4X2TT9k8TUoH3/Vf7vAgXx/kMNl3nO1ma7HamU/roKjhhF4f1fOGyc5nE
-   th+OlHdXuqXo5zwZGT4noy59M1frVRKYYf5yCSt4SJuqEP+v66pLAvPVr
-   +39vEol0TS7h4+Txq3T3sL3fkuax/hlRo99rFeytb+WN0uJz7CaxMlNDK
-   g==;
-X-CSE-ConnectionGUID: IH657TY3Tl23yR3Vv1dR/A==
-X-CSE-MsgGUID: cgkFUMvxRU6w9KHMn9F1ow==
-X-IronPort-AV: E=Sophos;i="6.14,222,1736809200"; 
-   d="scan'208";a="42301885"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 05 Mar 2025 10:02:22 +0100
-X-CheckPoint: {67C8131E-23-7141A0B0-E6EDEC14}
-X-MAIL-CPID: 0BDC1C9894ABA85FF037DCAB1A11A9B5_3
-X-Control-Analysis: str=0001.0A00636C.67C8131F.010A,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A72F3170EA5;
-	Wed,  5 Mar 2025 10:02:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1741165338;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vqA7WR0bg0u4G+HAomrK/aLC9+18x4n+S7IKkNThfiM=;
-	b=qzcWgjDGS6jWPY+RITIk8yBviKpMKL0y16KSXMlshqTDttq6zKFd8uRh0rjbusm21alLLO
-	0zncE1o54zqa2PkjSbvWyACMubP8NqizUU7F39NtdEyf8B7h5zWhZ3ivT6X25sqtCFjSSc
-	Bq3JpoZAEKG0N2u2vqMbhZJRAtcHkfgPLIvm7R5McponzskDZSRi22nXnOhJg1CUW3KHx/
-	aVeSFRyy4/ATHnHp/9XUjp3UP5VCYqp6++6rG5zw1KmH82cgRaFpKEHzJKR3F3q1GHoDJc
-	hgimR61srqwk7i5wU9S6wvO15O4FIatNLRGINZRrOvbwgrcOGQlB24ojz6hXxA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
- Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux@ew.tq-group.com, linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Subject:
- Re: [PATCH v3 2/6] dt-bindings: soc: imx93-media-blk-ctrl: Add LDB subnode
- into schema and example
-Date: Wed, 05 Mar 2025 10:02:16 +0100
-Message-ID: <4414669.ejJDZkT8p0@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250305-dandelion-axolotl-of-excitement-05fa70@krzk-bin>
-References:
- <20250304154929.1785200-1-alexander.stein@ew.tq-group.com>
- <20250304154929.1785200-3-alexander.stein@ew.tq-group.com>
- <20250305-dandelion-axolotl-of-excitement-05fa70@krzk-bin>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15D77200100;
+	Wed,  5 Mar 2025 09:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741165485; cv=pass; b=lo3wkWET7nN2aiUFmcbLzB14JwnsIXKeT1Unb30fkXugk9ZRtnuQd50WkCPPX0DD1VMjt8vGFZ62e+8qLvLdxuec8IqZAr74lAEQR2hiTvcmpnWDnMMnAMJVFhy/yhE64xfE3Ycr3T2eNZYKjhSvu9zdgd9M9hWGvpXdsN27ztc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741165485; c=relaxed/simple;
+	bh=S991R8nHQ4KUci924RH3qwTCx89uQStWo80Kg/17WnU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JLLTT8w+286Q0MV6EBE12mum1Suyo3bOFpYwdUuiWLxEEFwg8sTUUt27ZMk9F/ofxz8tH+3h/T+zmbt7NgnhJ7zWAblE7cvpkutb2xayCe6Op+d1dZx0ypzmWDuoc9L0Tx2cdXViWD528aqXY3NKHkNEqX56mWSJrID+iEeBCqU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=bLjhNTZX; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1741165421; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=aML6y84URqQeEpfaGBbocAOoCx9shK7lRLeSoL7zs5SX1eAi6LRKAG6UI4Di7Arvi4hBDCRvQNQY2QzEonJ9e8ueAyxRozm/BByW/Mwp7JxLk7NWxqlqzlZG6Hgs4UyJd8bKOeErF7BkfGaex0X2Cwg2a4hG/P8wZWpMAKQgYmE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1741165421; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=fyOnL4r76M4sHB9HhMIqMpDlTkHpMyvnwL+qPFwOmHY=; 
+	b=oDbow1UE+BO/cf067TxihaoptsAymW8fmn0K/GWMOsQcewdMgSnRY8WL/r6MzQK2jEORnLKABs/+d2dpVsB6sKOrGVcbb5GoMfvadhoVxOjP0rkp9WEmQrfSAX3BkhCQzklrHMQPJU29lgzhUSNRt+RgiQBUFIcawqpO/s56AuM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741165421;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=fyOnL4r76M4sHB9HhMIqMpDlTkHpMyvnwL+qPFwOmHY=;
+	b=bLjhNTZXN88/2j7YByNhNOVK6VW1ivb+lAa2CKiF/l1zS2F9ScBlygN+utrENZI5
+	GepaEGfOUzYlfgTyLOgoyKqD6unUF8OQcNEs2XeSQHrv7W7b60GFHPcvLYVPwmyPI6l
+	j11vOC6LEwLoY3gl5lo7lnSQrYsVA+P44FEhQPgI=
+Received: by mx.zohomail.com with SMTPS id 1741165419515412.81218800288195;
+	Wed, 5 Mar 2025 01:03:39 -0800 (PST)
+Message-ID: <88054acf-3051-414c-aef7-4c0f085d5182@collabora.com>
+Date: Wed, 5 Mar 2025 12:03:33 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 0/6] Add Synopsys DesignWare HDMI RX Controller
+To: Hans Verkuil <hverkuil@xs4all.nl>, Tim Surber <me@timsurber.de>,
+ Shreeya Patel <shreeya.patel@collabora.com>, Heiko Stuebner
+ <heiko@sntech.de>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, jose.abreu@synopsys.com,
+ nelson.costa@synopsys.com, shawn.wen@rock-chips.com,
+ nicolas.dufresne@collabora.com,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Diederik de Haas <didi.debian@cknow.org>
+References: <20250304085819.108067-1-dmitry.osipenko@collabora.com>
+ <78ff36f6-01a7-4df4-b653-c4509fb93af4@timsurber.de>
+ <1039aca7-89b9-44ef-9775-e7852e956362@timsurber.de>
+ <9b4b1e65-127d-422b-a359-a1d8e25652f9@xs4all.nl>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <9b4b1e65-127d-422b-a359-a1d8e25652f9@xs4all.nl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-Hi,
+On 3/5/25 11:10, Hans Verkuil wrote:
+> On 05/03/2025 01:59, Tim Surber wrote:
+>> Hi Dmitry,
+>>
+>> I did some more testing. That the Apple TV did not work was a bit 
+>> misleading.
+>>
+>> It was just, that the Apple TV defaulted to 4:4:4 Chroma which does not 
+>> work at all for me. (The same happens using the vendor driver).
+>>
+>> When I changed the EDID to match the vendor driver the HDMI handshake 
+>> happened with 4:2:0 chroma, where I could verify even 4k60fps using your 
+>> driver, nice!
+>>
+>> So the remaining problems I see are:
+>> - 4:4:4 chroma not working in any resolution
+>> - 4:2:2 and RGB not working in 4k60fps (is this a hardware limitation?)
+>>
+>> A possible workaround could be to disable these non supported formats in 
+>> the default EDID.
+> I would like to merge this driver this week, since otherwise it will likely
+> slip to v6.16. So if there is a working EDID, perhaps it can be used for now,
+> and later on it can be patched if there is a better EDID.
+> 
+> Would this EDID work? Tim, can you try this?
+> 
+> v4l2-ctl --set-edid type=hdmi-4k-600mhz,ycbcr444,ycbcr422
+> 
+> Alternatively, if there is indeed a HW limitation that prevents 4kp60 to work,
+> try this:
+> 
+> v4l2-ctl --set-edid type=hdmi-4k-300mhz,ycbcr444,ycbcr422
+> 
+> Whichever of the two works is what we can use as default EDID.
 
-Am Mittwoch, 5. M=E4rz 2025, 08:13:04 CET schrieb Krzysztof Kozlowski:
-> On Tue, Mar 04, 2025 at 04:49:21PM +0100, Alexander Stein wrote:
-> > Document the LDB bridge subnode and add the subnode into the example.
-> > For the subnode to work, the block control must scan its subnodes and
->=20
-> Don't describe drivers, but describe the hardware.
+Disabling 444 and 422 is an option. Though, they work on my setup at
+4k@60p.
 
-Thanks, I'll rephrase to describe the hardware better regarding LVDS.
+In general, it often a challenge to get 4k@60p properly with any of
+these small board devices. 4k@60p works only using a short HDMI cable
+for me. Also, not everyone aware that the micro HDMI adapter needs to be
+compliant with HDMI 2.0 for 4k@60, that's why 300MHz is the default.
 
->=20
-> > bind drivers to them, do not misuse either simple-bus or simple-mfd
-> > here.
->=20
-> I don't understand that simple-bus or simple-mfd statement. There are no
-> such compatibles here.
+Will be nice to have the good EDID enabled by default in the defconfig.
+Dealing with problems like that will be a headache for majority of
+people, IMO.
 
-Same as above, the wording stems from 1cb0c87d27dcc ("dt-bindings: soc:
-imx8mp-media-blk-ctrl: Add LDB subnode into schema and example").
-I'll drop it to avoid confusion.
-
->=20
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >  .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 51 +++++++++++++++++++
-> >  1 file changed, 51 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-=
-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-b=
-lk-ctrl.yaml
-> > index b3554e7f9e76d..cd785111928bf 100644
-> > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctr=
-l.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctr=
-l.yaml
-> > @@ -24,6 +24,14 @@ properties:
-> >    reg:
-> >      maxItems: 1
-> > =20
-> > +  ranges: true
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 1
-> > +
-> >    '#power-domain-cells':
-> >      const: 1
-> > =20
-> > @@ -46,9 +54,20 @@ properties:
-> >        - const: csi
-> >        - const: dsi
-> > =20
-> > +  bridge@20:
->=20
-> @20 looks wrong. Use 'ranges;' and try again your DTS...
->=20
-> Binding is supposed to be complete. We have several examples when people
-> added children one-by-one, everytime with different reasoning about
-> child addressing.
->=20
-> So please confirm: this is complete and no other children will ever be
-> added here... or you are 100% sure that all future children will be
-> unit-addressable (will have unit address and appropriate properties).
-
-This block control is a collection of registers for different purposes:
-* MIPI-DSI
-* MIPI-CSI
-* Parallel camera
-* LVDS
-* CAMERA_MUX
-
-At lease for parallel camera, another subnode is expected ([1]).
-
-[1] https://lore.kernel.org/all/20240819024001.850065-1-victor.liu@nxp.com/
-
-> BTW, I don't quite get why this is both syscon and has translation for
-> child addresses. Does it mean your child does not use the same MMIO as
-> parent, thus leading to unsynchronized reg access?
-
-I'm not sure what the best practices are. This LDB has two registers
-inside this block. So it seems reasonable to me to indicate this using
-a reg property. On the other hand, access is solely done by accessing
-via syscon, so unsynchronized reg access is not an issue.
-
-What I am getting from your comments this node should not have 'reg'
-property, as it uses syscon anyway.
-
-> > +    type: object
-> > +    additionalProperties: true
-> > +    properties:
-> > +      compatible:
-> > +        contains:
-> > +          const: fsl,imx93-ldb
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - ranges
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> >    - power-domains
-> >    - clocks
-> >    - clock-names
-> > @@ -77,4 +96,36 @@ examples:
-> >                 clock-names =3D "apb", "axi", "nic", "disp", "cam",
-> >                               "pxp", "lcdif", "isi", "csi", "dsi";
-> >        #power-domain-cells =3D <1>;
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <1>;
-> > +      ranges =3D <0x0 0x4ac10000 0x10000>;
-> > +
-> > +      bridge@20 {
-> > +          compatible =3D "fsl,imx93-ldb";
-> > +          reg =3D <0x20 0x4>, <0x24 0x4>;
-> > +          reg-names =3D "ldb", "lvds";
-> > +          clocks =3D <&clk IMX93_CLK_LVDS_GATE>;
-> > +          clock-names =3D "ldb";
-> > +
-> > +          ports {
-> > +              #address-cells =3D <1>;
-> > +              #size-cells =3D <0>;
-> > +
-> > +              port@0 {
-> > +                  reg =3D <0>;
-> > +
-> > +                  ldb_from_lcdif2: endpoint {
-> > +                      remote-endpoint =3D <&lcdif2_to_ldb>;
-> > +                  };
-> > +              };
-> > +
-> > +              port@1 {
-> > +                  reg =3D <1>;
-> > +
-> > +                  ldb_lvds: endpoint {
-> > +                      remote-endpoint =3D <&ldb_to_panel>;
-> > +                  };
-> > +              };
-> > +          };
->=20
-> Messed indentation.
-
-This is already from the original binding. I'll fix in a separate commit.
-
+-- 
 Best regards,
-Alexander
-
->=20
-> > +        };
->=20
-> Best regards,
-> Krzysztof
->=20
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+Dmitry
 
