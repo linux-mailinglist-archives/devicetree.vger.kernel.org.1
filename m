@@ -1,93 +1,145 @@
-Return-Path: <devicetree+bounces-154221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA56A4F605
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 05:18:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D636EA4F624
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 05:32:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A02816D895
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:18:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 116C416CA05
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:32:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F50E1A2387;
-	Wed,  5 Mar 2025 04:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AB11A23A4;
+	Wed,  5 Mar 2025 04:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="LzIENE/Q"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="aQhQLWxt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3282.qiye.163.com (mail-m3282.qiye.163.com [220.197.32.82])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F33719258E
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 04:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.82
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6F0155A2F
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 04:32:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741148321; cv=none; b=Iuj2vz+mnBubPwlCLXaUdChWwJtb1gHbZ4RgX9kh02mPZYLt50LB4b377HJzTe+Lrtfjg3P7yjhyr7PdS8mGvmXBdmHbBYwxLaJ3UY7iVUdCYBsJptJbEz2KnfXilUP55KUixWzyYAuy8TiYYEUJNcVE5txDBSd1N6u3TlyZEYQ=
+	t=1741149156; cv=none; b=JJg6Y0yOjBMj4oaNwOs/Mzs++zo0k31BeSF4sJy0adkx8MYHaTy6lgZxQQxLnRuS2iW0BiyROyk//w0v+5h3mo6Djd/gWcBuqTA3p8EAjs0V1azL91G3Guh/c73hzmRTK97uVU+8ZGBaNJJa3etBgAh8qHhdLWIjqfD790qmL60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741148321; c=relaxed/simple;
-	bh=WWnBrRbS7bsTo+HMCHFUhz+9IPOStN6DTmFLti/8bkI=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=tKSyVUL00TvrO7NkN+g6WqpDmHcnZnUDVhBOPHNzALKjUeJx5ttbSqgtXkzKNXJCxFKeYPI7P9UwjJeNZ/Syv0hOnoojOSvJ2URpWI5/hY945QvYVNB/kWx/elQoDyrxGTqTcqJxUMvSI85iI9i4qLssARjbbXlU7/n6Vu0j5pI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=LzIENE/Q; arc=none smtp.client-ip=220.197.32.82
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id cf9f91e6;
-	Wed, 5 Mar 2025 12:18:28 +0800 (GMT+08:00)
-From: Shawn Lin <shawn.lin@rock-chips.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH] arm64: dts: rockchip: Enable ufshc on RK3576 evb1 board
-Date: Wed,  5 Mar 2025 12:18:27 +0800
-Message-Id: <1741148307-137177-1-git-send-email-shawn.lin@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkJIQlZLTk5KGBofHUpLHk9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a956486c26109cckunmcf9f91e6
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NEk6Gjo*DTJPGDkvLyMrP0oJ
-	AjQKCjpVSlVKTE9KSk9DSEtCS0JOVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU1LSjcG
-DKIM-Signature:a=rsa-sha256;
-	b=LzIENE/QokLt9mbq+/Ok8eFJkrwdTrISyoqr9kLYbXH9FrVkHDd8ujG2Yo7VTkkcUOg+M//wX2skp12jYA8myTXtESrmOWkZ9SVIiiGokKgCS1pQO9r+vKmoOC2N5gyu4sbh6OY/7DG75E9aYhVPV/5ev39PhvJ+hgAxPKp2LR0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=lIUrGtpzBFo7v5pimATTNx8DhQm7U7zwooFby1eu0wU=;
-	h=date:mime-version:subject:message-id:from;
+	s=arc-20240116; t=1741149156; c=relaxed/simple;
+	bh=+/FT0FwkoqaX0ch5jOpi38MznhOBLxiaSxlAwdZOBX4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jrgLmacP2fi+eM0AfjK+y6Ad86NfZhg/Yj0TPk4Cem9FZ6gCW2IdP+OdBvlQij77iUm5kzPY85wbvl7KR6/B+iQUQW93a3lupWbbfY3Kf1loeqPbo8qjHntcvk3Zb90/q0E0Klnv4tC66m3ng526Nt+wcc3H02sbi2cVeK7+e3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=aQhQLWxt; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202502; t=1741149152;
+	bh=3+l/3UIrx6DjDBYDuzovTRuglpTda7LCnA0QeVDaKzM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aQhQLWxtjeiRg5R45hN81cNmvEFrH9yJ8X14vXVSy4rjXxaOsBkr79OrhdODr3uip
+	 Z9kCNBoXrQDGyUken+6sz10t87BZ6FXEZqrpi79OeKua5Fx1cMYFfIfvY2++PWw4kX
+	 bd5QUucT7yfBhKzXxTk0uzyDS9oUr5/MsUXapUsRjbWJ2eRSumN4n9FfKsIoMJ2oMK
+	 GM9CUAiAC4d4NOiF/AxUMYwqjXYRu4aZt8hk1567CUBQWMIYBJ4XCvtOL4AYAVhypC
+	 ruae9HodVhwG4lxuBn8Nxb02gZkVHX/m0dHRQkxfavyuABPiXWg+2+Od+oMVObFBPG
+	 jYIF2yNyeH8aA==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4Z705X6rkJz4wyh; Wed,  5 Mar 2025 15:32:32 +1100 (AEDT)
+Date: Wed, 5 Mar 2025 15:27:43 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Ayush Singh <ayush@beagleboard.org>, xypron.glpk@gmx.de,
+	Jason Kridner <jkridner@beagleboard.org>,
+	Deepak Khatri <lorforlinux@beagleboard.org>, d-gole@ti.com,
+	Robert Nelson <robertcnelson@beagleboard.org>,
+	Andrew Davis <afd@ti.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Subject: Re: [Question] Status of user-space dynamic overlays API
+Message-ID: <Z8fSv2rwhMA06Uik@zatzit>
+References: <9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org>
+ <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="jQ1UWfr8D6ITUDin"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUhw6q1DAOBJwG5FJUs_QHj3hZMD3damOo2uLZQgS9e7A@mail.gmail.com>
 
-RK3576 evb1 board supports UFS, so enable it.
 
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
----
+--jQ1UWfr8D6ITUDin
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+On Mon, Feb 24, 2025 at 09:37:56AM +0100, Geert Uytterhoeven wrote:
+> Hi Ayush,
+>=20
+> On Sat, 22 Feb 2025 at 21:14, Ayush Singh <ayush@beagleboard.org> wrote:
+> > # Challenges
+> >
+> > ## Security
+> >
+> > The concerns regarding security seemed to show up in the other
+> > proposals. There was a proposal to have a devicetree property to
+> > allow/deny the application of overlays in some nodes, with default being
+> > deny. Was it insufficient?
+>=20
+> This is the most important issue: using DT overlays, you can change
+> about anything.  There is no protection yet to limit this to e.g. the
+> expansion connectors on your board.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-index 782ca00..5412c60 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-@@ -711,6 +711,10 @@
- 	status = "okay";
- };
- 
-+&ufshc {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	status = "okay";
- };
--- 
-2.7.4
+Right.
 
+> This is what the various WIP "connector" abstractions are trying
+> to solve.
+
+Exactly.
+
+> > ## Memory Leaks
+> >
+> > Currently, updating/removing properties leaks memory. Was it one of the
+> > reasons for the rejection of previous proposals?
+>=20
+> IMO this is a minor issue. I am sure this can be improved upon.  We just
+> need some way to keep track of which properties are part of the initial
+> FDT (and thus can't be freed), and which were allocated dynamically.
+
+Somewhat related to this, "unapplying" a DT overlay is not a natural
+operation, but we need it for a sane update interface.  The normal way
+of applying overlays is a lossy process.  Obviously, it's possible to
+make it reversible by keeping around enough undo information, but it's
+kind of a hack.
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--jQ1UWfr8D6ITUDin
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmfH0r4ACgkQzQJF27ox
+2Gfnww/+MsUumzeVRsxw9kHrpGKf37Io7N+tfjLUQGaTssaJo07DDwAlM3svO56c
+/j8+DbrFZzrbDiFpWVXE415q+YesOBArP/0fgUMJDd8CdJZIBNYOekKEoMDz1ZIS
+gQuJrJqDf0F1lJ53CVPW/XBAbajXMgOx3TvSpmKq/jzmlU7FXC+B8zXw2r2pf6kT
+1vxFxI8Y50P+2Ek4ZdJIlM4XRImPk0B9Xaz8tfLvjnL6iZZFV8nQAe1htiEHnAQZ
+vd/8We5B4tyal2GkEdj1b4I91+DybrvOUcEKUMX/inKWD3u2tzecQ6OgFgoE+5mp
++9fcSKkq6U0PQ/4FLgfU6JA+QYdPMh93HoLlQBF44h7fRKUOMzhJQj5mlefnYtEt
+dm6ia47yQONVj16L55kWloE907zwuPXTrIsGLLPd6JZwykAlnpmdfooo+dS7UShl
+LphKkSr4xcMeKXalXF7zW961x9ym3nw/XCrBz325pqCju1pS+p70Ibnup5sAiRn/
+GoALH1mvoNMr8lgshQSL3SyMe77nXsNOvVxcWiPAzbjqvpR6dc88T1lPVN6xpsRh
+Inw730dSyFiR9Qxmm88ikwEBJN8+A4HoVrKWrtmd2AGK81MrAnwhDfKfqTEZw6vB
+qPjwPufcMe7Yoqh7SkhIGjS9S6BEhP+gEjygBS+h9nIdhDNzQKs=
+=Fj1H
+-----END PGP SIGNATURE-----
+
+--jQ1UWfr8D6ITUDin--
 
