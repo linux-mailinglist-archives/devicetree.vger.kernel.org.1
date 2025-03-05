@@ -1,142 +1,365 @@
-Return-Path: <devicetree+bounces-154501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7738CA5092A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 19:15:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B073A5093A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 19:16:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 187BE16A33B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:14:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A63111660C4
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 18:15:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D5F22517AE;
-	Wed,  5 Mar 2025 18:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97A8253345;
+	Wed,  5 Mar 2025 18:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="Y+QJv0BN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZKKp6wS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD16C19ABA3
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 18:14:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D7272512C9
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 18:14:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741198479; cv=none; b=kW7YoiDRv/PffSX1qjb6ICBHvm67VkOI/fCNsmyr8F8tBiJxARMuEWYJXxYVjdRNch4GqC2MNZzyiceK659drz3mWNsWrO2YMdctqILOhcbDekj/chWRRpXsVeAt7bYYjBczHPn93ALs77z4nBHeGLo5bpI4exKPsfJdnfsmDV0=
+	t=1741198495; cv=none; b=GaNaQPB7RSoGbT3pjvyIpm1FiHiFTZf0fYaBylK5mLMDwD5HZawIiGRHgg8ZR6NX27lj31jlkLsCE4V/MnEp29h7karaqdM3jfrtUO9msjx3OGFn9Y3dwJQTXRWpEAy/TCQgcrRZfw1nj1jhlCZad2atqZ5PhZ/WbZrk5Oifyz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741198479; c=relaxed/simple;
-	bh=lDGktsrrvusw3EwyIKgqSW+1nB/A4uH5GaWgGqTDi+g=;
+	s=arc-20240116; t=1741198495; c=relaxed/simple;
+	bh=ul8sDPmVIBMYaIuM/ep9OTRkTM4OCXHhN3IN3R3wVwM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kPnxtFqFhVIXUq07gExGBZyDLhaLNB1vPkkMWbTJ/Ll4HOWefdBeLzZ3e+YQ99aa3AiqN19YE+48IQjXzYXIX/00KN/FXCCWu/KdbWX4ekS32/3lUA3B1z4F37/tNuSOP/pYCqiyrR5/5HP1XSqg7lc3pRBoOt8Ux6Oi0rn0WWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=Y+QJv0BN; arc=none smtp.client-ip=209.85.222.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7c0e135e953so604686785a.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 10:14:37 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JC+6xMSxmqsuW20IaU/7j4AwFMXEc3WOr0ZBkNcTMnzgJ66g6bMYCwDIcV3CTHF5AvKqajJ9qP1Yn24Pyb4qRFQucU9fccQeqnKAMz0nuxmJD+bP8AQgCrJGyRiU1oHgM9kNuGynmFxH4zAxdspBo3EcWVloWJeuBAU/mdEwACk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZKKp6wS1; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22398e09e39so75972525ad.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 10:14:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1741198476; x=1741803276; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=BM3nl1PDUv3g4PwFQ23XNaGdtMsSR0uMk4FDd4zSWU0=;
-        b=Y+QJv0BNv1h50k0q6lHIhHKtGAX+jzCkhA1/+Fi0IVupW6xrJv3OUj+z42+l3i7QIu
-         oaDWLn3lWMRe8hwvUtTfNmmO9msLSIN8fG4TVsbL9DhGNHfX+9MLs6+BxHXsMvOwBQ32
-         88FUxHbsgqGoHXBYtg8CzakkX0IPm1PiUty6cEBOHpdshKu5FDgCcdByE5gAvvv6YJHv
-         1K7LjoyXYa5Hu2uugJuoSoefYNQCZYTtkFLeHueHKm+yk64X4R43xkqy98SKUTaFCWcH
-         BUGqUV1XafFjeDkinPilRsDPn5w/4zJkfMrfqv2nH5S57cg2WnTU/25CvNdEcEukPtY/
-         KfOw==
+        d=linaro.org; s=google; t=1741198492; x=1741803292; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=i6MBTqEjrPhqT7NQz2LhiFoqvbZCZMQa9JAre3ZYDSc=;
+        b=ZKKp6wS1SmA4eo2U9SRsvICEpxKlOKANEYSKAJ/uJ+Rw0wIMlClLE5qZndxcDAeXtx
+         Cm1qLzQAWmEAzikKsuCj+/ThlKbp74aPO2tQI9rw1hDGbaWRNqAoJa/NARr/4E8GGn6l
+         gjebwrTT7VhwH7XVUDvN7YrG1aVAKRXg2mmciswPvt8jDyQnvsXfLHXQ0JvSfgglv7JY
+         JMMatPazbtWAQa/QEA3yarZeRA56DCnEO5eMjg58/6/SjEaOXtPg0q7mKmJigNtLvshf
+         rWOICPJIgdAIgEu8sxpGTkEgxBHe+bNmof7zVs0hTpvooopKeAAHXUmX5XAIfZ7Fsg/Y
+         Kl1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741198476; x=1741803276;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BM3nl1PDUv3g4PwFQ23XNaGdtMsSR0uMk4FDd4zSWU0=;
-        b=cbEfs/6moAhfsCKs7Mqg3hEztjXbOWV7fFQgKbvwUkkXZmLrM/lEc7OvURFnf+EhxS
-         cBTO7X8dpOzWLaLdpl8cUDI2OnmxuDYZQ+L6NCyDnOnGXR77ZcOXpanTijORSvKhDKYF
-         OXOHc/RKvbv1FfLxueA9OjN83KCKuLrdrNaWFB7RSN/CKZ1NXlLi+rytZ7lK9fC8bJZD
-         t+Ds0VPN45LpHvPIkbXSPeDVsHwiccg6auIGeAwfgnui837S2Cz2Hrv/NtjarJrUEzP7
-         N1lDZPokNbHCG9WIRFYqof47IG/qUww+oTn7ZJgHMTVUpXU407+IXPOhljdyV9JiM56u
-         fTvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrDIx/i+nOPlV8Ag97nPqBch36XDiV43WDwKDb6dOuHKdk9oL+945K9EBHncGrCfL7vNWzlrnfsW6C@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywveu/uUHgxTVNGoMtA7uLQdzkG4BxGl580sdKM8OrJ1LvgwRB5
-	P1Pt/A+SwC55z+h6navy69a690mY5L2EkqyFq1hOTH3ADtn2KuFitvTX3Qy8P6s=
-X-Gm-Gg: ASbGncvfdP7mbu5sccwwqM4v/IogrsgugXFScJDpsdyjezhHAt15pe4GfHv66zwFGl7
-	9QNGJmUjZl4mBXWMQxOIuuyItDMVFXYW5IJ0uIdwQtumLshBMz84NKbLyl95biLKgwH3Z7HfLHY
-	GpMDd84pEwyV82kQa25sHbK4CnCzmRGT/IZZauigbUtM+AFdetPIVEuoeE/3VqWxEIZGViOPBgS
-	YreHq2PhdXQCwTlSCaHQIm5ukTlA55E1XKdANgDoaBgldAi2sYMkefns7mk5VwBRvDXLEkiqYUP
-	eXCU0SQjupQkw5Mtg4M=
-X-Google-Smtp-Source: AGHT+IGBXOlCQEjAXivcZONN7HD211rRxB+Amwcgf4SScDXv9d/J0SEM3NN6sEdvhUlnOiPXZLnHzQ==
-X-Received: by 2002:a05:620a:2b44:b0:7c3:c077:fbf2 with SMTP id af79cd13be357-7c3d8ee8505mr677678685a.45.1741198476550;
-        Wed, 05 Mar 2025 10:14:36 -0800 (PST)
-Received: from ziepe.ca ([130.41.10.206])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e8976da283sm81577696d6.111.2025.03.05.10.14.35
+        d=1e100.net; s=20230601; t=1741198492; x=1741803292;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i6MBTqEjrPhqT7NQz2LhiFoqvbZCZMQa9JAre3ZYDSc=;
+        b=CvZr1DNAcHH6vKwqFxG3Vaq6x4YizZNxpKvfKXA/Y/Gyj/H3+M+eqUw9YqDR0uu+ZJ
+         y09uo+46pL16J19HjvQZsuEjHCfNDwJgJJCga6EW0HWBHZtk3M1lo93Z7rSZXlg9gEVR
+         3taziYvCVv+eBLHN4mR4yz/lKzRbYDWxpShTIIGtUkaaPVv2QvmjccHnqF5/nnnJ3D9E
+         Q/V/ODJqgb5abuAAvioG1fZWNbMLjP5Pc1gCfUrsvKUH5CpiXHOvBFyYt72Y3AleIgS+
+         DqEVty7M0vKgbEWmEl3j6hAPRliGrEtSIsBg7GiDWeWMPs8drwAGrn6WggJ/PGVGzAmC
+         TwbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9uVf9ZLFmz2gymmcbHJB2P9YH1EIr5ot6Os8dVKIN6FgYFUW0UIuArzk68abc4i1cpI0Uh9YUMSIo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzy7MvbX26TlXix54gBK1XnBjiNcden/kwWLfFgVmnZ4ILfaU51
+	v4Z7ljgVl+PROK5xnQy+FE3gtu0slS5pjtKc8jCgVnYUrui5w2u/eBMoMSUXlQ==
+X-Gm-Gg: ASbGncu8YlH6rN9BmblYFEm3icX+4RRnXcG/K6ytHJw3nqjwjB7Wa4GTOOQdJkI0OWT
+	pXtW63R2VY4VKrrmgq81kMWwexPwsKtg/vcdhmeaoLFIM4swEk05wsYEQWxtq4XYJkN3avneRZc
+	IEcCdS5/SHp7/WclA0yEIjOJcUELD1LxLhMcDuJA22UgOCHqB8VZLTJ6Z2X3gpSoML3H8FElYSv
+	j5acPVH6/PJQPAKqWCfw2qyw6DyImhtw+x3jcFRklwEL4o0lgHz+HEVuuDg5b7vD8C6hQoCkBXM
+	44YZeGmSyjsr25wCbQOfSs1DSzUU6XryFaoSZGlj9wzzso2QfSz741lH
+X-Google-Smtp-Source: AGHT+IEzcJn1LsfQ6+F4shfozJf1rlCdLMZmUl3EDE20/7Zu4E6fNsmxwyidQhHgvhoE32oNOSexAA==
+X-Received: by 2002:a17:902:ce82:b0:220:c34c:5760 with SMTP id d9443c01a7336-223f1d35ba2mr54246475ad.51.1741198491709;
+        Wed, 05 Mar 2025 10:14:51 -0800 (PST)
+Received: from thinkpad ([120.60.140.239])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-223501fb004sm116523775ad.64.2025.03.05.10.14.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Mar 2025 10:14:35 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1tptGN-00000001U2f-0a3P;
-	Wed, 05 Mar 2025 14:14:35 -0400
-Date: Wed, 5 Mar 2025 14:14:35 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Wed, 05 Mar 2025 10:14:51 -0800 (PST)
+Date: Wed, 5 Mar 2025 23:44:44 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Charan Teja Kalla <quic_charante@quicinc.com>
-Subject: Re: [PATCH v2 3/4] iommu: Keep dev->iommu state consistent
-Message-ID: <20250305181435.GJ5011@ziepe.ca>
-References: <cover.1740753261.git.robin.murphy@arm.com>
- <d219663a3f23001f23d520a883ac622d70b4e642.1740753261.git.robin.murphy@arm.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com, quic_vpernami@quicinc.com,
+	mmareddy@quicinc.com
+Subject: Re: [PATCH v4 2/4] PCI: dwc: Add ECAM support with iATU configuration
+Message-ID: <20250305181444.3zteaxr6r4pq3lz4@thinkpad>
+References: <20250207-ecam_v4-v4-0-94b5d5ec5017@oss.qualcomm.com>
+ <20250207-ecam_v4-v4-2-94b5d5ec5017@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <d219663a3f23001f23d520a883ac622d70b4e642.1740753261.git.robin.murphy@arm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250207-ecam_v4-v4-2-94b5d5ec5017@oss.qualcomm.com>
 
-On Fri, Feb 28, 2025 at 03:46:32PM +0000, Robin Murphy wrote:
-> @@ -127,6 +128,7 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
->  		mutex_unlock(&iommu_probe_device_lock);
->  		return 0;
+On Fri, Feb 07, 2025 at 04:58:57AM +0530, Krishna Chaitanya Chundru wrote:
+> The current implementation requires iATU for every configuration
+> space access which increases latency & cpu utilization.
+> 
+> Designware databook 5.20a, section 3.10.10.3 says about CFG Shift Feature,
+> which shifts/maps the BDF (bits [31:16] of the third header DWORD, which
+> would be matched against the Base and Limit addresses) of the incoming
+> CfgRd0/CfgWr0 down to bits[27:12]of the translated address.
+> 
+> Configuring iATU in config shift feature enables ECAM feature to access the
+> config space, which avoids iATU configuration for every config access.
+> 
+> Add "ctrl2" into struct dw_pcie_ob_atu_cfg  to enable config shift feature.
+> 
+> As DBI comes under config space, this avoids remapping of DBI space
+> separately. Instead, it uses the mapped config space address returned from
+> ECAM initialization. Change the order of dw_pcie_get_resources() execution
+> to achieve this.
+> 
+> Enable the ECAM feature if the config space size is equal to size required
+> to represent number of buses in the bus range property, add a function
+> which checks this. The DWC glue drivers uses this function and decide to
+> enable ECAM mode or not.
+> 
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  drivers/pci/controller/dwc/Kconfig                |   1 +
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 133 +++++++++++++++++++---
+>  drivers/pci/controller/dwc/pcie-designware.c      |   2 +-
+>  drivers/pci/controller/dwc/pcie-designware.h      |  11 ++
+>  4 files changed, 132 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index b6d6778b0698..73c3aed6b60a 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -9,6 +9,7 @@ config PCIE_DW
+>  config PCIE_DW_HOST
+>  	bool
+>  	select PCIE_DW
+> +	select PCI_HOST_COMMON
+>  
+>  config PCIE_DW_EP
+>  	bool
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index ffaded8f2df7..826ff9338646 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -418,6 +418,66 @@ static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
 >  	}
-> +	dev_iommu_present = dev->iommu;
+>  }
+>  
+> +static int dw_pcie_config_ecam_iatu(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct dw_pcie_ob_atu_cfg atu = {0};
+> +	resource_size_t bus_range_max;
+> +	struct resource_entry *bus;
+> +	int ret;
+> +
+> +	bus = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS);
+> +
+> +	/*
+> +	 * Root bus under the host bridge doesn't require any iATU configuration
+> +	 * as DBI space will represent Root bus configuration space.
 
-I feel like this deserves a comment..
+'as DBI region will be used to access root bus config space'
 
-Maybe it is:
+> +	 * Immediate bus under Root Bus, needs type 0 iATU configuration and
+> +	 * remaining buses need type 1 iATU configuration.
+> +	 */
+> +	atu.index = 0;
+> +	atu.type = PCIE_ATU_TYPE_CFG0;
+> +	atu.cpu_addr = pp->cfg0_base + SZ_1M;
+> +	atu.size = SZ_1M;
+> +	atu.ctrl2 = PCIE_ATU_CFG_SHIFT_MODE_ENABLE;
+> +	ret = dw_pcie_prog_outbound_atu(pci, &atu);
+> +	if (ret)
+> +		return ret;
+> +
+> +	bus_range_max = resource_size(bus->res);
+> +
+> +	if (bus_range_max < 2)
+> +		return 0;
+> +
+> +	/* Configure remaining buses in type 1 iATU configuration */
+> +	atu.index = 1;
+> +	atu.type = PCIE_ATU_TYPE_CFG1;
+> +	atu.cpu_addr = pp->cfg0_base + SZ_2M;
+> +	atu.size = (SZ_1M * (bus_range_max - 2));
+> +	atu.ctrl2 = PCIE_ATU_CFG_SHIFT_MODE_ENABLE;
+> +
+> +	return dw_pcie_prog_outbound_atu(pci, &atu);
+> +}
+> +
+> +static int dw_pcie_create_ecam_window(struct dw_pcie_rp *pp, struct resource *res)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct device *dev = pci->dev;
+> +	struct resource_entry *bus;
+> +
+> +	bus = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS);
+> +	if (!bus)
+> +		return -ENODEV;
+> +
+> +	pp->cfg = pci_ecam_create(dev, res, bus->res, &pci_generic_ecam_ops);
+> +	if (IS_ERR(pp->cfg))
+> +		return PTR_ERR(pp->cfg);
+> +
+> +	pci->dbi_base = pp->cfg->win;
+> +	pci->dbi_phys_addr = res->start;
+> +
+> +	return 0;
+> +}
+> +
+>  int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> @@ -431,10 +491,6 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  
+>  	raw_spin_lock_init(&pp->lock);
+>  
+> -	ret = dw_pcie_get_resources(pci);
+> -	if (ret)
+> -		return ret;
+> -
+>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "config");
+>  	if (!res) {
+>  		dev_err(dev, "Missing \"config\" reg space\n");
+> @@ -444,9 +500,28 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  	pp->cfg0_size = resource_size(res);
+>  	pp->cfg0_base = res->start;
+>  
+> -	pp->va_cfg0_base = devm_pci_remap_cfg_resource(dev, res);
+> -	if (IS_ERR(pp->va_cfg0_base))
+> -		return PTR_ERR(pp->va_cfg0_base);
+> +	if (pp->ecam_mode) {
+> +		ret = dw_pcie_create_ecam_window(pp, res);
+> +		if (ret)
+> +			return ret;
+> +
+> +		bridge->ops = (struct pci_ops *)&pci_generic_ecam_ops.pci_ops;
+> +		pp->bridge->sysdata = pp->cfg;
+> +		pp->cfg->priv = pp;
+> +	} else {
+> +		pp->va_cfg0_base = devm_pci_remap_cfg_resource(dev, res);
+> +		if (IS_ERR(pp->va_cfg0_base))
+> +			return PTR_ERR(pp->va_cfg0_base);
+> +
+> +		/* Set default bus ops */
+> +		bridge->ops = &dw_pcie_ops;
+> +		bridge->child_ops = &dw_child_pcie_ops;
+> +		bridge->sysdata = pp;
+> +	}
 
-/*
- * If of_iommu_configure is called outside the iommu probe path
- * dev->iommu should be NULL and it needs to remain as NULL
- * If it is called within the probe path then the dev->iommu
- * was setup by iommu_init_device() and must not be changed.
- */
+So you dereference 'bridge' that is allocated only below? It doesn't matter
+whether the upcoming commits allocate it earlier or not. This commit alone is
+going to cause NULL ptr dereference.
 
-And I think the commit message should explain what consistent
-means.. AFAICT you are going for !dev->iommu means no probe has
-succeed / dev->iommu means a probe is ongoing in this call chain or
-it has succeeded?
+> +
+> +	ret = dw_pcie_get_resources(pci);
+> +	if (ret)
+> +		return ret;
+>  
+>  	bridge = devm_pci_alloc_host_bridge(dev, 0);
+>  	if (!bridge)
+> @@ -462,14 +537,10 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  		pp->io_base = pci_pio_to_address(win->res->start);
+>  	}
+>  
+> -	/* Set default bus ops */
+> -	bridge->ops = &dw_pcie_ops;
+> -	bridge->child_ops = &dw_child_pcie_ops;
+> -
+>  	if (pp->ops->init) {
+>  		ret = pp->ops->init(pp);
+>  		if (ret)
+> -			return ret;
+> +			goto err_free_ecam;
+>  	}
+>  
+>  	if (pci_msi_enabled()) {
+> @@ -504,6 +575,14 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  
+>  	dw_pcie_iatu_detect(pci);
+>  
+> +	if (pp->ecam_mode) {
+> +		ret = dw_pcie_config_ecam_iatu(pp);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to confuure iATU\n");
 
-Otherwise:
+'configure'
 
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> +			goto err_free_msi;
+> +		}
+> +	}
+> +
+>  	/*
+>  	 * Allocate the resource for MSG TLP before programming the iATU
+>  	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
+> @@ -539,8 +618,6 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  		/* Ignore errors, the link may come up later */
+>  		dw_pcie_wait_for_link(pci);
+>  
+> -	bridge->sysdata = pp;
+> -
+>  	ret = pci_host_probe(bridge);
+>  	if (ret)
+>  		goto err_stop_link;
+> @@ -564,6 +641,10 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  	if (pp->ops->deinit)
+>  		pp->ops->deinit(pp);
+>  
+> +err_free_ecam:
+> +	if (pp->cfg)
+> +		pci_ecam_free(pp->cfg);
+> +
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_host_init);
+> @@ -584,6 +665,9 @@ void dw_pcie_host_deinit(struct dw_pcie_rp *pp)
+>  
+>  	if (pp->ops->deinit)
+>  		pp->ops->deinit(pp);
+> +
+> +	if (pp->cfg)
+> +		pci_ecam_free(pp->cfg);
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_host_deinit);
+>  
+> @@ -999,3 +1083,24 @@ int dw_pcie_resume_noirq(struct dw_pcie *pci)
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_resume_noirq);
+> +
+> +bool dw_pcie_ecam_supported(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct platform_device *pdev = to_platform_device(pci->dev);
+> +	struct resource *config_res, *bus_range;
+> +	u64 bus_config_space_count;
+> +
+> +	bus_range = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS)->res;
+> +	if (!bus_range)
+> +		return false;
+> +
+> +	config_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "config");
+> +	if (!config_res)
+> +		return false;
+> +
+> +	bus_config_space_count = resource_size(config_res) >> PCIE_ECAM_BUS_SHIFT;
 
-Jason
+s/bus_config_space_count/nr_buses
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
