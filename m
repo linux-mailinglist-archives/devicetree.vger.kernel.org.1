@@ -1,93 +1,58 @@
-Return-Path: <devicetree+bounces-154209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 184FAA4F506
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:00:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35131A4F528
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 04:07:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC54A7A1CD9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 02:58:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72614188FD15
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 03:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C510A15ADB4;
-	Wed,  5 Mar 2025 02:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hhfcpH3D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9A11A23AA;
+	Wed,  5 Mar 2025 03:05:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57B015CD74
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 02:59:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE67D19E997;
+	Wed,  5 Mar 2025 03:05:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741143596; cv=none; b=tkRXT6BPIwAGl9rd91PXwKTg/iaY5azMxRY/G0w8ionZUw3OVNZjREi7xfKGMZfWwdjSXXYHLcBmgzQl309P6Ky+1iGCaMAcYcCUQfRzfeMxImLMlWAdJRkKFwDkh1Djl9K7yEBi3DEULbFJpehj45XmUjOaQWAsmsIEbTjSaSA=
+	t=1741143953; cv=none; b=frz9TXNWxzMSfzlUlkDlwuW4X1hp5zBLjKBW5acmMkTb81QGyfMIdcJM8t3LTZMmwLJrxLdSxfh1vLTGNDUNRXj2pkIsgdrguaG5kmNLeZHA8rvJDUDXrJQByzn44apU7N8KMC8klWrxkmzd/M6NH7P5MS/sLjN1Hc47/cJvVlo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741143596; c=relaxed/simple;
-	bh=mPfqHmUHSKSQaPUHjpb/9HaN5cORCw2qlntCpea6OSQ=;
+	s=arc-20240116; t=1741143953; c=relaxed/simple;
+	bh=1ueDenyw8US27XjXIKTEVWL1cb6lLOGKUUZ+JroTBnw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I/3mH0Dh/x/i6taqO/mD8GqnXV15nvHH7qXZ6+mqQFSfx9rMe+05u4XIasVPkb5TQq/rGcpFz8epvhR3yEuXw5+BhblKh1W4FbYdcSnjGn3taamL00qyKwDlYvFqxOc9zzlLVEayN1R15duud9uWxYjI0bwU2b9fRhJg1fkPKmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hhfcpH3D; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-54954fa61c8so5116400e87.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Mar 2025 18:59:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741143593; x=1741748393; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WJvKJ68rlC+sLGTBZdabg/gqDqFQctmrcG+n8a+ztWA=;
-        b=hhfcpH3DgQDHlNmLDjqVdm7pv7/hbZyVaAikr+HqQjlP2ZoLaXUf18cpGQerOi0QN9
-         rore8oT+1oDsxSwkjZAaKEMyrjAUQrQYvYphBj8GR56FIo/i9hR847DWKW4K31QWh679
-         n7bcbLXWNakusR1jNmx4tMDsQuJn4UIraeraHt2wJ/JGvstLOPs7ra6F9L4HwWL4Ve1c
-         ncoI+AWZSxl0xYw6emH1iqCPWax4Q6iDaCYLyuMi82i+8a8Z/cgvKuj9eniLF2YygUmU
-         ee21AaQnfD9H88fkOA413xZg0K66ZuADh/4YjfLt6hRHOaa9ULx1qlh0LCSSPhRKquI2
-         jNOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741143593; x=1741748393;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WJvKJ68rlC+sLGTBZdabg/gqDqFQctmrcG+n8a+ztWA=;
-        b=ANKLzVYFDBP6y0OrIoxTWEpa6zv5AK/7miJgvfD3me7Wv4L6/NTFFY+a9N1HTFVfxo
-         5m/E+Af33PBu7jdx9bl3F9t1czlD7OB2Jfe/cDCI1Q95QB2tsA4j5DXUp12TC3mYgnZx
-         dUyplxSTtsLLu4exm7Ojqj4KVnPT0+iHZ2mrG4KVkkhc0zxqXYu5WCBjmikI2TLTs2nc
-         HLxG9EV1PLVVkD/l9VrxPXRRlJVD/1jLIQp+Rzz/Oh6sQ+CHkFNJz7iiFJuF2ve/rWKl
-         9RYxJeQXyj/oS6A1H2fz/xzJ0U80XL752+OEAqApRmMIff1Qacd18xOzjFyLYbwmKMqu
-         BaVA==
-X-Forwarded-Encrypted: i=1; AJvYcCXFEKuyJt4uSHC5306sHJOgpB2jVFeRYG284KNFnEYFWChkKraN8GO5yPXKN7WbkZkHJS4wJH1unEu9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiuU92k9smaWadky13tbx7BW2rpF2WGvQcHggvaRk/W/QxBVWo
-	xgEWpVglwDebTtKdfnAdSQuX8oXVrdfv4kxEIDlZcGfxQnkkgcVH/Rxgr3zPjOo=
-X-Gm-Gg: ASbGncv/y+ZSiQEm6ytCDGfaVnVkafS7TM/yeI1LrBmfENKToyk2J8QLUuNTJLiSZ/k
-	bigiCxDccP+H5VENtWJEgAZ836QW8AEkKoq3tDBxEU67wF796uVLg8f04X4Om1A6QHcfr4h8C8i
-	ScBFMSKceVLTKxVjUyJSHHvb9YEBxHpV/tiyxbc4GZ2YAbnkdG+EdxRDCrhgbWktDgSeifnp9Dy
-	aXcJnuWacheN3ioyusbL94FwNZsaP/fR5KYaUFzQ5eqFSYGA9Nl3UygEWg2n4IoUMfu3vDs6gau
-	FdZj1RJvbkNCqSDfYL6EbcgVq+bL8f13qckI5yMu13gPEko1VNDgzt3LIltHdHGkXB/OqGRTDtr
-	PXqFHHQL9o6aj2yOF8QXdsX0k
-X-Google-Smtp-Source: AGHT+IGkLyEj88NKFgMk5Dc/qcrMMu5c5mz/edvqKr7cxRFirThc+Fkx33VXvY/6F71lJ9O4B98xLQ==
-X-Received: by 2002:a05:6512:ac7:b0:549:39ca:13fc with SMTP id 2adb3069b0e04-5497d382f6bmr469921e87.49.1741143592852;
-        Tue, 04 Mar 2025 18:59:52 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54962415d13sm925305e87.257.2025.03.04.18.59.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Mar 2025 18:59:51 -0800 (PST)
-Date: Wed, 5 Mar 2025 04:59:49 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Melody Olvera <quic_molvera@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wesley Cheng <quic_wcheng@quicinc.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 9/9] arm64: defconfig: Add M31 eUSB2 PHY config
-Message-ID: <xgryihmtcbvhimm4fr2pcrhjcwdp6djfrgtwj4a5kl4tukeavb@de5irgx54w5p>
-References: <20250304-sm8750_usb_master-v2-0-a698a2e68e06@quicinc.com>
- <20250304-sm8750_usb_master-v2-9-a698a2e68e06@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qNOw8jviiZSNJO9qZRvkp3A7QxCIa+9LiRYAShth8IuvKyw2B0UDx04eetTdnzc0bXeajywPfh+NrGtDoL/G0qR44ik7xpd0sothz0nC81yO7S8NadpUIQ+T0cDuNXYoY/u4Gun6QTmXHWtPau+qbOTS6eKY4tZ0Odkzsig+RXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.55.252])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id B94D7342FDB;
+	Wed, 05 Mar 2025 03:05:50 +0000 (UTC)
+Date: Wed, 5 Mar 2025 03:05:40 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Troy Mitchell <troymitchell988@gmail.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH RESEND v5 1/2] dt-bindings: i2c: spacemit: add support
+ for K1 SoC
+Message-ID: <20250305030540-GYA62563@gentoo>
+References: <20250303-k1-i2c-master-v5-0-21dfc7adfe37@gmail.com>
+ <20250303-k1-i2c-master-v5-1-21dfc7adfe37@gmail.com>
+ <20250303093506-GYA58937@gentoo>
+ <ab10e069-d9e1-4df7-9454-8b0fc910443d@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,39 +61,132 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250304-sm8750_usb_master-v2-9-a698a2e68e06@quicinc.com>
+In-Reply-To: <ab10e069-d9e1-4df7-9454-8b0fc910443d@sifive.com>
 
-On Tue, Mar 04, 2025 at 01:56:42PM -0800, Melody Olvera wrote:
-> Add configs for the M31 eUSB2 PHY for SM8750 USB.
+Hi Samuel Holland:
 
-Please use git log on the defconfig to check what is usually required
-from the commit messages. The defconfig is not Qcom-specific so you can
-not expect somebody to know what is SM8750 or why does it require a PHY.
+On 20:11 Tue 04 Mar     , Samuel Holland wrote:
+> Hi Troy,
+> 
+> On 2025-03-03 3:35 AM, Yixun Lan wrote:
+> > On 13:30 Mon 03 Mar     , Troy Mitchell wrote:
+> >> The I2C of K1 supports fast-speed-mode and high-speed-mode,
+> >> and supports FIFO transmission.
+> >>
+> >> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> >> Signed-off-by: Troy Mitchell <troymitchell988@gmail.com>
+> >> ---
+> >>  .../devicetree/bindings/i2c/spacemit,k1-i2c.yaml   | 59 ++++++++++++++++++++++
+> >>  1 file changed, 59 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> >> new file mode 100644
+> >> index 0000000000000000000000000000000000000000..db49f1f473e6f166f534b276c86b3951d86341c3
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> >> @@ -0,0 +1,59 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/i2c/spacemit,k1-i2c.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: I2C controller embedded in SpacemiT's K1 SoC
+> >> +
+> >> +maintainers:
+> >> +  - Troy Mitchell <troymitchell988@gmail.com>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: spacemit,k1-i2c
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  interrupts:
+> >> +    maxItems: 1
+> >> +
+> > ..
+> >> +  clocks:
+> >> +    minItems: 2
+> >> +    maxItems: 2
+> >> +
+> >> +  clock-names:
+> >> +    minItems: 2
+> >> +    maxItems: 2
+> > I'd suggest to give a brief description and explicit clock name here,
+> > you can consult marvell,mv64xxx-i2c.yaml for example
+> > 
+> >> +
+> >> +  clock-frequency:
+> >> +    description: |
+> >> +      K1 support three different modes which running different frequencies
+> >> +      standard speed mode: up to 100000 (100Hz)
+> >> +      fast speed mode    : up to 400000 (400Hz)
+> >> +      high speed mode    : up to 3300000 (3.3Mhz)
+> >> +    default: 400000
+> >> +    maximum: 3300000
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +  - interrupts
+> >> +  - clocks
+> >> +
+> >> +unevaluatedProperties: false
+> >> +
+> >> +examples:
+> >> +  - |
+> >> +    i2c@d4010800 {
+> >> +        compatible = "spacemit,k1-i2c";
+> >> +        reg = <0xd4010800 0x38>;
+> >> +        interrupt-parent = <&plic>;
+> >> +        interrupts = <36>;
+> >> +        clocks = <&ccu 176>, <&ccu 90>;
+> >> +        clock-names = "apb", "twsi";
+> > 9.1.4.61 TWSI0 CLOCK RESET CONTROL REGISTER(APBC_TWSI0_CLK_RST)
+> > https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb#part594
+> > from above docs, there are two clocks 
+> > bit[1] - FNCLK, TWSI0 Functional Clock Enable/Disable
+> > bit[0] - APBCLK, TWSI0 APB Bus Clock Enable/Disable
+> > 
+> > I'd suggest to name it according to the functionality, thus 'func', 'bus'
+> > clock, not its source.. which would make it more system wide consistent
+> 
+> Also in that same register is:
+> 
+> 2	RST	RW	0x1	TWSI0 Reset Generation
+> This field resets both the APB and functional domain.
+> - 0: No Reset
+> - 1: Reset
+> 
+> Which means you need a 'resets' property in the binding as well.
+> 
+right, there is reset needed
 
+I'd suggest to add it as an incremental patch later, when we
+implement real reset driver, and also complete the calling reset
+consumer API in i2c driver
+
+but, let me know if this is not the right way to go
+
+> Regards,
+> Samuel
 > 
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
+> >> +        clock-frequency = <100000>;
+> >> +    };
+> >> +
+> >> +...
+> >>
+> >> -- 
+> >> 2.34.1
+> >>
+> > 
 > 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 3a3706db29822036d25a7228f8936e2ad613b208..7a7187475a11206e708a5a2c6dd51736e16932e9 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1587,6 +1587,7 @@ CONFIG_PHY_QCOM_QUSB2=m
->  CONFIG_PHY_QCOM_SNPS_EUSB2=m
->  CONFIG_PHY_QCOM_EUSB2_REPEATER=m
->  CONFIG_PHY_QCOM_M31_USB=m
-> +CONFIG_PHY_QCOM_M31_EUSB=m
->  CONFIG_PHY_QCOM_USB_HS=m
->  CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2=m
->  CONFIG_PHY_QCOM_USB_HS_28NM=m
-> 
-> -- 
-> 2.46.1
 > 
 
 -- 
-With best wishes
-Dmitry
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
