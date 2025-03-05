@@ -1,80 +1,72 @@
-Return-Path: <devicetree+bounces-154265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3332FA4F85D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:00:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9552BA4F865
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 09:04:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BC9B1890345
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:00:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21E4C7A47E9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 08:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C8B71F4E3B;
-	Wed,  5 Mar 2025 08:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0461F4CAD;
+	Wed,  5 Mar 2025 08:04:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dUy1k6Pf"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="AVpjaFAG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFBDC1E5B73
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7601EDA1F
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:04:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741161602; cv=none; b=ZcPpujGPdYG/c+yk+FPVw4qIloURNcmY3+U4a6Jcoa6JlPPgq2+Y+1yfss2Yp+4li3i49ux+D9dDYSXX8/4Au/UK+fhUMUhFByZ5Nw+nFuF4sXPjZpfk3ZysdffBQjX20ZJa6R3UK6P7JZt3Mv1Yrpcq1Sl82oBb4uNbT420B8s=
+	t=1741161855; cv=none; b=dmP6wOOVC17Y/ROeNnSHEvPqpmsL06fsZz8HZogZf+sxZaES9j45lz99fIbBxYtBr3EwUPcGQISn8mcwt3gJrk9QoFXQ+1sxXXPQBKduuiqlfHbMOi++syJ/FGYQWAP+y5FaKrxOK9Ft571ka22YNyNWAZmeQiWE3YN1yEff/mM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741161602; c=relaxed/simple;
-	bh=y25J/hIP5cQuDdNvQ+VTPz5TWiB+VYXGxfCZmMMxxi8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gAH1MRfMdAqMth58MotJUpTKAdL8jieLODteTt5KvxYiiXWcd4ODExiRQluh6LLL+BXbw30FKIaMMcYSowuOVkU2Rku+Cf5o8vgcf5sf8fLiUYJKJidN3e1xxzRS90gl1p9W4OjZz+dhzAdUES+7ufw9EGmVvm0V2YnlY4JO5Q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dUy1k6Pf; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43bc526c7c8so3429355e9.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 00:00:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741161599; x=1741766399; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=88zJPeEM6Ees5O8b20N8jdD2aVPaYoBTwcvx+zuqOE4=;
-        b=dUy1k6PfbNYktUu1iKdFsDuPjNsnfL4zfn/L855/KXBtnFmeRRclV6pijwvcYbxfN8
-         tg92sQZBXdHyeQGQ5E3JSCDkUdyAY/TWWRBIiTQMTJSRYdqtjkQtmt+8myQmIlQbikTx
-         cKVEMD7wfPSSnlFOFREAjKj8jTstEotYlgNghFMj9wt9VfdpdjhYB6HQXM3oRp/Emj5G
-         HFo30T9ebCZIBsu2hFHKn5YShofmkHN4qHFAlDDsv4CuF0uM3XdhEvPEKhDKx0PVMd02
-         +I4qYT1rWQoARRAfXp4e7Egi3eLAZL6itufZqQQNtB8KZh2KiJ8+h873Xm9UZuodtP2X
-         8z/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741161599; x=1741766399;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=88zJPeEM6Ees5O8b20N8jdD2aVPaYoBTwcvx+zuqOE4=;
-        b=brcgco8uvd/aDR19ymP2HqwvvY/CYXLK/ASZAeWzTZ47phUFV2LCzbK5wVPNnDSR06
-         97ECNIVsD7IkWfnO+s3IzysF6hcVjYXjkyfZhGOn6BRSXl0GuUnSDlsARH8JycKgkf/Z
-         MaP+MTtqBlLrV68JJQ7/Mx7+zkcI/spDIlIAKUlpZwtsReAEweOdUxU3vOcfDILvSIaK
-         DJSpw053pnqbKnT5jx1ZyLYVG+42siGTF7dy7PHh9/2oIUsGC2f/jMAQimdGvzTlPIAQ
-         HuXqgLZ/SFN5yy7GAkKTUU44yLB8AO1utVQ5GZ2ZmYsTSiZZIJfINeJP0bRIxcDHVqiG
-         2w5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUae8iN+8TKeQxsmS5n3V8/3eTkpOaPtuLG9lJ4kEI7Sxva4rphwFDExMqnSpXW4FOJhm8xsh+Hl8Lg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkuCD/FJ3HnGKM6LKFB0ExtGV9zn4SwPOGf7VOon81iREaaqej
-	jivDhnoAJiuKbCIco7oITwZH0kro6D1LcYT54cR2rYihF/bji8m6zUAm9cTUnTM=
-X-Gm-Gg: ASbGncv2K2oS4rO3nlLvMUaZO9O8ajbSvmJGejkZMi69Bq4x1wHdnjrQPynw3QVgWge
-	+h+eSjwUvd8IzLLqN9UqXEyeVc6NNH4k9FETZlB22oJnwflfHbiypiqaj70O1Fpbsk5xPrzjSwY
-	BXrW0S5W0xiyoaFdgPHJM9BzvR2CZE4mBjj/DfVZ/Vexkan6TZ0luTQQGq6Cy4/8K0TZO+ZHKZK
-	s2/LAjyamMuc9xVUMo+2zY0pqERAE/7MlCyTMs7k6ztAY0LZar8sYfAIDh5Y+m9QRWhciAcxykh
-	PQJYuOSHumoo+qmZkkDcKO8amb74dBCKld1R1N1khkttfrEtjIugc9ZVGh+cffA6
-X-Google-Smtp-Source: AGHT+IGR+fRTadOEWXBUD9X5CMFMEpgOuQoFFOazelTvrWLHVz4Mpbanh32Q0mDZ2cFWEr1glhNXNA==
-X-Received: by 2002:a05:6000:1561:b0:38a:8784:9137 with SMTP id ffacd0b85a97d-3911f7b2b32mr598515f8f.9.1741161598873;
-        Tue, 04 Mar 2025 23:59:58 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.206.225])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-390e47b7b6asm20606967f8f.51.2025.03.04.23.59.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Mar 2025 23:59:58 -0800 (PST)
-Message-ID: <7b1bb8ae-14aa-476b-b34c-9cb7aeaf0105@linaro.org>
-Date: Wed, 5 Mar 2025 08:59:56 +0100
+	s=arc-20240116; t=1741161855; c=relaxed/simple;
+	bh=XxShrfII1iW48sEm+1idv7RpgL37yrsUd3ZA5lWJqmg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=EfZjLTs0knhzpYsuiTgNy7dUtd9JRGhl3JuLii+L6qI/zEytqKA1fuTjQwY5rwgsxEuzPO8g/4EDXCWbzMwLPNgYE1XZQuI+AC6V8u8t8OFQ7AZmm5T1/EGzBJCfnSFyG2kLt/AVzm03A5M4xcGB5ub/c3MYISPxX5tdlTBSswU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=AVpjaFAG; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250305080405euoutp02269acf30379b6d4364058c94cbb2b94f~p2XlGh9gM2098320983euoutp02W
+	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 08:04:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250305080405euoutp02269acf30379b6d4364058c94cbb2b94f~p2XlGh9gM2098320983euoutp02W
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1741161845;
+	bh=GnXY0ytHs9JstH2dWkqOUDOxCaeFg6+8UfoPoS8CNm0=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=AVpjaFAGCy7hNPB+HGj8BG9cN9i7qCURzC3pzitan2DFXB5OU087zs7nF7hCKde7p
+	 RfAodIFCh5akwzQ/6w0ON7SkKwNRjNQSEAzNxVW2oL/4lAloG8toqrHLVKIZI2g8ib
+	 2MHRe6Sk8fjGvJKdEcHg86Nr3pcdKomQqgBhuUig=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250305080405eucas1p269322ff4dff3a7efa7c0217d2d760140~p2Xkksspc1362113621eucas1p2W;
+	Wed,  5 Mar 2025 08:04:05 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id F3.C1.20409.57508C76; Wed,  5
+	Mar 2025 08:04:05 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250305080404eucas1p2cff5ea6161b7c6a71cd0ff81aedad061~p2Xj_wj4L1362113621eucas1p2U;
+	Wed,  5 Mar 2025 08:04:04 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250305080404eusmtrp188a9d70d20b5fa05c891eba7157342f5~p2Xj99l6u3067730677eusmtrp1q;
+	Wed,  5 Mar 2025 08:04:04 +0000 (GMT)
+X-AuditID: cbfec7f4-c0df970000004fb9-04-67c80575adf4
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 7A.09.19654.47508C76; Wed,  5
+	Mar 2025 08:04:04 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250305080403eusmtip2e81659e53d59c3b079c327a133bb3e6d~p2XjImQTE2244322443eusmtip2H;
+	Wed,  5 Mar 2025 08:04:03 +0000 (GMT)
+Message-ID: <8f04da41-c868-4ab2-83bc-c06a8f182e81@samsung.com>
+Date: Wed, 5 Mar 2025 09:04:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,99 +74,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-To: Zhang Yi <zhangyi@everest-semi.com>, krzysztof.kozlowski+dt@linaro.org
-Cc: tiwai@suse.com, amadeuszx.slawinski@linux.intel.com, robh+dt@kernel.org,
- conor+dt@kernel.org, alsa-devel@alsa-project.org, broonie@kernel.org,
- devicetree@vger.kernel.org
-References: <20250305071050.113541-1-zhangyi@everest-semi.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v1 0/5] TH1520 SoC: Add AON firmware & power-domain
+ support
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com,
+	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	jszhang@kernel.org, ulf.hansson@linaro.org, m.szyprowski@samsung.com
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20250305071050.113541-1-zhangyi@everest-semi.com>
-Content-Type: text/plain; charset=UTF-8
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <20250303145901.446791-1-m.wilczynski@samsung.com>
 Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBKsWRmVeSWpSXmKPExsWy7djPc7qlrCfSDf4/4LF4ducrq8XW37PY
+	LdbsPcdkMf/IOVaLe5e2MFm82NvIYtF8bD2bxctZ99gsLu+aw2bxufcIo8W2zy1sFmuP3GW3
+	eHm5h9mibRa/xf89O9gtjq8Nt2jZP4XFQdDjzcuXLB6HO76we9w7MY3VY9OqTjaPO9f2sHls
+	XlLv0bL2GJPH+31X2Tz6tqxi9LjUfJ3d4/MmuQDuKC6blNSczLLUIn27BK6MzfeXsBSclar4
+	+G01UwPjXZEuRk4OCQETiTm3DzB2MXJxCAmsYJRY8/8tlPOFUeLQyh/MEM5nRon9O9cAORxg
+	LRsuOYN0CwksZ5RYMFkWouYto8Sim9MZQRK8AnYSP279BLNZBFQkNpz7xQ4RF5Q4OfMJC4gt
+	KiAvcf/WDLC4sECgxINnEMtEBPqZJPqO/GcFSTALVEqsuHCUDcIWl7j1ZD4TiM0mYCTxYPl8
+	VpCDOAXsJT41aEKUyEtsfzsHbI6EwDVOiZ77Z1kh/nSROHhuApQtLPHq+BZ2CFtG4vTkHhYI
+	O1/iwdZPzBB2jcTOnuNQtrXEnXO/2EB2MQtoSqzfpQ8RdpRYdO0FKyRM+CRuvBWEOIFPYtK2
+	6dCg4pXoaBOCqFaTmNrTC7f03IptTBMYlWYhBcosJD/OQvLMLIS9CxhZVjGKp5YW56anFhvl
+	pZbrFSfmFpfmpesl5+duYgQmxtP/jn/Zwbj81Ue9Q4xMHIyHGCU4mJVEeF+fOp4uxJuSWFmV
+	WpQfX1Sak1p8iFGag0VJnHfR/tZ0IYH0xJLU7NTUgtQimCwTB6dUA5PDAo9v4m59Ci0sE2P0
+	J4Ro6/yfvsZpeYzRlacn1E+Lh3jfOt5h0SJRLb/2D8MtS8mjm79xVPMITdrwvZRBgfHfotOr
+	E5ayO13X7P0dvHT7RVGv720z1h2UWK5QV2nsU7vX+r+aVbfQ3STHKuGeNa9Mry4x5Lc/qni0
+	+AL3wZjJiaczLEsfKzKL3lPbrvRrRs5sl32Ojls3bDK4lHz8n7s974KAq8Hl7Y+N3DR8z4bn
+	cRt7ce1te/zJzz6/J9DK5fk33XuTX5U0PHytsCzIvuu4e+ptE6bXnzcU3Gu9pVerMb/kSjXT
+	So0DM3crh543tdV4wTfn4K4NyrLatmcCdMsKJvoqCXBwz3a8fc1OXImlOCPRUIu5qDgRAO0/
+	wbr7AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrFIsWRmVeSWpSXmKPExsVy+t/xe7olrCfSDU58VLJ4ducrq8XW37PY
+	LdbsPcdkMf/IOVaLe5e2MFm82NvIYtF8bD2bxctZ99gsLu+aw2bxufcIo8W2zy1sFmuP3GW3
+	eHm5h9mibRa/xf89O9gtjq8Nt2jZP4XFQdDjzcuXLB6HO76we9w7MY3VY9OqTjaPO9f2sHls
+	XlLv0bL2GJPH+31X2Tz6tqxi9LjUfJ3d4/MmuQDuKD2bovzSklSFjPziElulaEMLIz1DSws9
+	IxNLPUNj81grI1MlfTublNSczLLUIn27BL2MzfeXsBSclar4+G01UwPjXZEuRg4OCQETiQ2X
+	nLsYuTiEBJYySvzc+Zyxi5ETKC4jca37JQuELSzx51oXG4gtJPCaUaJjuziIzStgJ/Hj1k+w
+	ehYBFYkN536xQ8QFJU7OfALWKyogL3H/1gywuLBAoMSDZz+YQZaJCPQzSTw/sh6smVmgUuLx
+	k9usEFdMYpT4vfoGM0RCXOLWk/lMIDabgJHEg+XzWUGu5hSwl/jUoAliMguoS6yfJwRRLS+x
+	/e0c5gmMQrOQnDELyaBZCB2zkHQsYGRZxSiSWlqcm55bbKRXnJhbXJqXrpecn7uJEZgIth37
+	uWUH48pXH/UOMTJxMB5ilOBgVhLhfX3qeLoQb0piZVVqUX58UWlOavEhRlNgUExklhJNzgem
+	orySeEMzA1NDEzNLA1NLM2MlcV62K+fThATSE0tSs1NTC1KLYPqYODilGpimi506cU2gJcFp
+	Em/dhG7G2ojeGsHnWSppJ3fuXLVPZnXsfgXVnWmP9h73/XcwiXP9vaYrGmEiVWZyDttvOitt
+	45/YPPO0tGn+mYjXz26qbXoyuzLq8077FzfOPwmuWnpGn6203eVhYNeLiS8d13hF/a88b7zw
+	u07A99tPzj2R5Z+Ur2jgz1m1N/HvIt6tHl4T11lNsVXiWRex+77My0uzDnc6vzUInSTPseDH
+	zYcmgvxmyY83vW/7xBetJ73P91ZCweFld3XvTft33fS8vVGRzqp4jXXzVJLrthu9D/kU80aa
+	J6tjwSEu/QN7wm9l/7/oHni5csIst9k8e3arVl2cEHHK+ruExrPIOe5Z0/U9lFiKMxINtZiL
+	ihMBc1pqnI0DAAA=
+X-CMS-MailID: 20250305080404eucas1p2cff5ea6161b7c6a71cd0ff81aedad061
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250303145917eucas1p171f8fcccadddc035f5773f7026a281e3
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250303145917eucas1p171f8fcccadddc035f5773f7026a281e3
+References: <CGME20250303145917eucas1p171f8fcccadddc035f5773f7026a281e3@eucas1p1.samsung.com>
+	<20250303145901.446791-1-m.wilczynski@samsung.com>
 
-On 05/03/2025 08:10, Zhang Yi wrote:
+
+
+On 3/3/25 15:58, Michal Wilczynski wrote:
+> This patch series introduces and documents power management (PM) support and
+> the AON firmware driver for the T-Head TH1520 SoC, as used on the LicheePi 4A
+> board. While part of a larger effort to enable the Imagination BXM-4-64 GPU
+> upstream, these patches can merge independently.
 > 
->>> +
->>> +  prefix_name:
->>
->> No underscores in node names, missing vendor prefix... but more
->> important:  I don't understand the need for this property. Description copies property name so it is not useful.
+> Bigger series cover letter:
+> https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
 
-And these comments as well.
+This series should be versioned as v6, to maintain continuity with the
+bigger patchset it is a subseries of. Please find below a changelog for
+the AON & power-domain:
 
->>
->> Drop. You maybe wanted dai prefix, but this is already in dai-common.
+v6:
+- split the firmware & power-domain patches into a separate series
+
+v5:
+- changed the AON driver to be a set of library functions rather than a
+  standalone driver
+
+v4:
+- added workaround to disable AUDIO power domain to prevent firmware crashes
+
+v3:
+ - consolidated device tree representation by merging aon and power-domain nodes
+   while maintaining separate drivers internally
+ - power-domain driver is now instantiated from within the aon driver
+ - fixed optional module dependencies in Kconfig
+ - added kernel-doc comments for all exported functions
+ - implemented th1520_aon_remove() to properly clean up mailbox channel
+   resources
+
+v2:
+ - introduced a new firmware driver to manage power-related operations.
+ - rewrote the power-domain driver to function alongside the firmware driver.
+   These nodes in the device tree lack direct address spaces, despite
+   representing HW blocks. Control is achieved via firmware protocol messages
+   transmitted through a mailbox to the E902 core.
+ - added new dt-bindings for power and firmware nodes.
+ - ran dtbs_check and dt_binding_check to ensure compliance.
+
 > 
-> I will update description at v4 PATCH
-
-
+> Michal Wilczynski (5):
+>   dt-bindings: firmware: thead,th1520: Add support for firmware node
+>   firmware: thead: Add AON firmware protocol driver
+>   dt-bindings: power: Add TH1520 SoC power domains
+>   pmdomain: thead: Add power-domain driver for TH1520
+>   riscv: Enable PM_GENERIC_DOMAINS for T-Head SoCs
 > 
->>> +  everest,dmic-enabled:
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +    description:
->>> +      The property is a choice between PDM and AMIC
->>> +
->>
->> No supplies?
+>  .../bindings/firmware/thead,th1520-aon.yaml   |  53 ++++
+>  MAINTAINERS                                   |   5 +
+>  arch/riscv/Kconfig.socs                       |   1 +
+>  drivers/firmware/Kconfig                      |   9 +
+>  drivers/firmware/Makefile                     |   1 +
+>  drivers/firmware/thead,th1520-aon.c           | 247 ++++++++++++++++++
+>  drivers/pmdomain/Kconfig                      |   1 +
+>  drivers/pmdomain/Makefile                     |   1 +
+>  drivers/pmdomain/thead/Kconfig                |  12 +
+>  drivers/pmdomain/thead/Makefile               |   2 +
+>  drivers/pmdomain/thead/th1520-pm-domains.c    | 209 +++++++++++++++
+>  .../dt-bindings/power/thead,th1520-power.h    |  19 ++
+>  .../linux/firmware/thead/thead,th1520-aon.h   | 200 ++++++++++++++
+>  13 files changed, 760 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+>  create mode 100644 drivers/firmware/thead,th1520-aon.c
+>  create mode 100644 drivers/pmdomain/thead/Kconfig
+>  create mode 100644 drivers/pmdomain/thead/Makefile
+>  create mode 100644 drivers/pmdomain/thead/th1520-pm-domains.c
+>  create mode 100644 include/dt-bindings/power/thead,th1520-power.h
+>  create mode 100644 include/linux/firmware/thead/thead,th1520-aon.h
 > 
-> I will drop the property
-
-I did not comment about dmic, but meant missing power supplies, which
-usually are placed here.
-
-> 
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - "#sound-dai-cells"
-
-
-Best regards,
-Krzysztof
 
