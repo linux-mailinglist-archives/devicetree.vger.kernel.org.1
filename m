@@ -1,93 +1,142 @@
-Return-Path: <devicetree+bounces-154408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A52DA5007E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:27:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C73AA50074
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 14:26:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93AF33A2119
-	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:21:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DC1F3B12FD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Mar 2025 13:18:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17D1230BC6;
-	Wed,  5 Mar 2025 13:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD232459F9;
+	Wed,  5 Mar 2025 13:18:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ZIvKhAvf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S1SpsoBa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49205.qiye.163.com (mail-m49205.qiye.163.com [45.254.49.205])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5053543166
-	for <devicetree@vger.kernel.org>; Wed,  5 Mar 2025 13:21:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D54CC1EDA0E;
+	Wed,  5 Mar 2025 13:18:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741180917; cv=none; b=F/ghjaV2z4m8dLqkrF6jerLph9kwUK4vr8XYfX3l1l6b2j7sFM30mU5zkKt0DjL3AhoZLoA/YRYl5ev7jpD9Pi+usOdbWkBquPwfpomcYw+tsjETdfnpaP9Kj1Mz0SG7i2FpoAinp2t5IY+bY4xCLYjKQpzC2c7yCmUTvafF8Eg=
+	t=1741180693; cv=none; b=Qke9J7zS47xERXRH/ewrvIAK6ecU6syUAH9wJkTcxnUstK9d0r/pFCRVUPOAqQJZCndubq8FvkKPZ9untSRPVA3Ey1Ta/L/FBuI2wWTK0LVuQh5AWrpE5fFNhKKXVVA13ndnSaUltsbuU5tsiE4dwMX7Wt8Ph2DNrUbmPu6Fv7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741180917; c=relaxed/simple;
-	bh=33IukMKPdCD2RrlEpHRN/iwpryAyzFUWDwUD7bh7AZA=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=lDqrFUH0DbsME5qsghbfE1yIziNO1Yg7KHRmQgWrybCrvI9NbBZxRlCUwjV6Azd7AAkaBnEbEGZTRbMPfcpjqUqeDQb3dLbNoxAXHNHo0h/+mLa18GNsG2b8M7c5x+cs8HWBWW+4TyzJdGuycL54n9GdtJx9XV2AIY27waRy0Mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ZIvKhAvf; arc=none smtp.client-ip=45.254.49.205
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id d0a29efa;
-	Wed, 5 Mar 2025 21:16:39 +0800 (GMT+08:00)
-From: Shawn Lin <shawn.lin@rock-chips.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741180693; c=relaxed/simple;
+	bh=mkvPJ4QumDqS6HAf3LUJzR0K1EUYms/KQSx5cZsbzRk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LU4IA2D24up3x7s3P6p7XNvARbzhH6cxNQ/evm3v/tot4BgZ5DUCddzXzz+lE1SKWTuhHQDxPw9pmlJdzjrhDWNOrFhn038tlL4zLxVANFH6VN4s0GobOfkgn760jlXXTokZKKBw2xaJxIKa1lCzODyJY9YS1G2HQlPeksR09RU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S1SpsoBa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FA67C4CEE2;
+	Wed,  5 Mar 2025 13:18:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741180693;
+	bh=mkvPJ4QumDqS6HAf3LUJzR0K1EUYms/KQSx5cZsbzRk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S1SpsoBaX76DjvOnqlwAYpuPI11km6TAPDAp98v0+WMjohMzhFxzPSsOo5IFua2zj
+	 UPlidR4UrL9KeINpe8nhRzE/LYSoDOdOXaFeZblF6KyJ1QS9dEGns5XJWyvolVDwTT
+	 gd8emGKyrJKeC/ZQpH5DuekMOl1xP0H52/278jei4+COPFG3r2Tv7X6WObTDdrW1Dt
+	 u31C3GTt9Ftme6cGJx/h58KYNUMz5Ed+7DIRCsz7awDfZomHMnl+NoBX+699mkv3z6
+	 7HdvwzrnjJO+kYQKU0IEzvl3daEB+nnHzPgJ0eMrlIAOgCg8+WljsvEWgEexJZSUws
+	 wQoVBqrclmDcg==
+Date: Wed, 5 Mar 2025 13:18:05 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Ernest Van Hoecke <ernestvanhoecke@gmail.com>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH v2] arm64: dts: rockchip: Enable ufshc on rk3576 evb1 board
-Date: Wed,  5 Mar 2025 21:16:26 +0800
-Message-Id: <1741180586-140422-1-git-send-email-shawn.lin@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUMaSFYfH01CTxkdGBgaTRlWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9566737be809cckunmd0a29efa
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PhQ6Mww6HjJRKj9OMj06SREP
-	DxYaCQ1VSlVKTE9KSkNLTUtLSE9NVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU1ISDcG
-DKIM-Signature:a=rsa-sha256;
-	b=ZIvKhAvf4wvtML+qOBbA69trrbqNhpcw0+1tGNJzQ+tNmA8/LU6lvBhd+mCltXKANZ0F2HE/hWEBZjL/Od7gTOkFTQAD/Rk7rX2ZY6aU/lwiPrjFt0r2gRztBQzcwpVDdpx43DVgtIk7vBN1roY/e37rPUOiF171WWBCfEXSnqA=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=3iUidy9GVanTb1yQMnj+P4EXWDv4+JPkslTkTvcE6Q4=;
-	h=date:mime-version:subject:message-id:from;
+	Conor Dooley <conor+dt@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	patches@opensource.cirrus.com,
+	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v2 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC
+ and EQ support
+Message-ID: <f0be0cc3-4349-4300-9fd2-9aecdcd9d099@sirena.org.uk>
+References: <20250224155500.52462-1-francesco@dolcini.it>
+ <20250224155500.52462-4-francesco@dolcini.it>
+ <20250225-delicate-tortoise-of-management-e43fa2@krzk-bin>
+ <er4bcixggriqp6idl6xmr7bjetf5kkhadyeplkbyxvrffuiknc@ews752x4ugh7>
+ <f690d858-a427-4db4-81ee-d5eb6223368c@kernel.org>
+ <Z8geyb9ilUPmDUXk@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2SZ6TScEb313MOV6"
+Content-Disposition: inline
+In-Reply-To: <Z8geyb9ilUPmDUXk@opensource.cirrus.com>
+X-Cookie: Everybody gets free BORSCHT!
 
-RK3576 evb1 board supports UFS, so enable it.
 
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
----
+--2SZ6TScEb313MOV6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
- arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+On Wed, Mar 05, 2025 at 09:52:09AM +0000, Charles Keepax wrote:
+> On Wed, Mar 05, 2025 at 07:45:50AM +0100, Krzysztof Kozlowski wrote:
+> > On 27/02/2025 16:34, Ernest Van Hoecke wrote:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-index 782ca00..78efa91 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-@@ -715,6 +715,10 @@
- 	status = "okay";
- };
- 
-+&ufshc {
-+	status = "okay";
-+};
-+
- &usbdp_phy {
- 	rockchip,dp-lane-mux = <2 3>;
- 	status = "okay";
--- 
-2.7.4
+> > > I expect most users to use the first five Retune Mobile registers and
+> > > not care about the rest, which require a proprietary tool and are not
+> > > well documented. The example in the binding shows how some simple
+> > > static EQ can be configured. Anyone interested in the extended config
+> > > can also use it (statically).
 
+> > No, if this is suitable for dynamic configuration then it's a proof it
+> > is not suitable for DT.
+
+> Whilst I can see the argument that this could be exposed as an
+> ALSA control. I would also suggest that this is not adding some new
+> feature, these values have been filled in from pdata for 16 years
+> now. Changing the way such a vintage part works at this point feels
+> more problematic to me than a slightly iffy DT property.
+
+> On the flip side of the argument, the parameters that are filled
+> into this are almost certainly specific tuning for the hardware,
+> so in many ways this is hardware description and there is a
+> certain appeal to shipping the tuning with the hardware (ie. in
+> DT).
+
+Right, the intended use case for the dynamic configuration is lab tuning
+rather than with end users - most things that are configured like this
+*can* be tuned interactively (or interactively from the point of view of
+the driver) but that doesn't translate to end users doing it.  It's more
+like coefficient data that could also be loaded from a firmware blob
+(but again, there's a proprietary tool here and it's not expecting to
+produce anything except a list of register values), we do have some EFI
+examples of pulling tuning data from the firmware for things like
+speaker correction (which is one of the use cases here) IIRC.
+
+Like Charles says this scheme has been deployed for a decade or
+something, it seems unhelpful to upend everything right now.  We could
+also implement an alternative scheme but providing something that makes
+DT transition easy seems productive.
+
+--2SZ6TScEb313MOV6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfITw0ACgkQJNaLcl1U
+h9C39wf9EwzxjxnqwmMPXRA6fF+xUJYybxJvfyV1u5DNHECxtYqJWZsEuQpRp2CD
+v0OmfZHyVfUcFSWA4+1Tdv5u+F7lxmqCZ6dzeqRz3AAginWJeXiwXR2bwlDJ61oq
+3yHkNm3j0uElMkjJEAP5bw/MHgBE+4Be/PvdnYHipApgEOgQ4TIgHH8yRFCPY3Wo
+kTxPYkufiLRPTmH7t1oonaLddybuyXOlxL9lq+xuhsSDnAbQoOcq4DBg/AcBhMG0
+D+DJr+5C/WCXPRfAqNznBX7wCJNQvfXtwYW0GA13OOWqoTwsjjoeNgK++W73+5/v
+N9IoR2lXdMQWqAexh3v8q3dm33IhbQ==
+=c6jI
+-----END PGP SIGNATURE-----
+
+--2SZ6TScEb313MOV6--
 
