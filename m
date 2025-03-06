@@ -1,76 +1,77 @@
-Return-Path: <devicetree+bounces-155046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D957A554C9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:22:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CCADA5552D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:40:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7CEC1885357
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:22:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 837D3188D345
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CDB826B080;
-	Thu,  6 Mar 2025 18:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D38626B2C4;
+	Thu,  6 Mar 2025 18:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="UnDMrJ75"
+	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="GoavmFVy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from out-11.pe-b.jellyfish.systems (out-11.pe-b.jellyfish.systems [198.54.127.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6854230273;
-	Thu,  6 Mar 2025 18:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6198A1DE4EC;
+	Thu,  6 Mar 2025 18:40:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741285310; cv=none; b=dFhrlT+k8P9AT64IB6UBeB31MSkubJ3WvqquJB0hDg2gcwagKmthpEAIAYihSuXBuGAZ8KmJtPHWdg3NQMW+mD1yvgfErLDOhhZ48D+2GPBXLnNb6XoJeb6+aJ3LlBSX5NTVb0JUclFTElO3xDNfDZjPx2uTIhB2R7XxnYPnISg=
+	t=1741286402; cv=none; b=AZE368dskt7t6nqEVsvQ52fbNCshHWlUpYz70uenA+f7CqiaO3l8K2moMOdKjv1dhTNLDze2Cx7YrcOG4FKNxBSNOW58KPMPLqhVUk0mGv4tf17fVHhnlrdcYmmkoFSgXdXOmEEj3Rmh6ERipUpcIXUZqTgKm58pRQ7jiM9Iw2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741285310; c=relaxed/simple;
-	bh=zT//KZZFEKytLDpgaT8Obwl7x/iYNsngN/KykrGbh3U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JXGNH7pj46CADJhe6V7jgWXcpP3bJ8XGAC6ZGMbT8h2nNX+HT5DkRCSnMbuMzMA50O+YF8dwwnNODBlQMizDdCOFho21HErFhTRWXSAdvg/uub0Fuqk3tAHr60MM3dV2zifZ2cU+iDl0Mz1kjEP3gV+cYiU6pstCjvKy79ENejk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=UnDMrJ75; arc=none smtp.client-ip=192.19.144.205
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id AF501C003E08;
-	Thu,  6 Mar 2025 10:21:47 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com AF501C003E08
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1741285307;
-	bh=zT//KZZFEKytLDpgaT8Obwl7x/iYNsngN/KykrGbh3U=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UnDMrJ75OX3hcsHuFZ+n0/AfWoS5zAilNrJihvoWQKa8tA/VS2RNaCrIReq3AkN8Z
-	 LZiPMi6YzuF4/OG+P2+zjT+pQqL/WuydAgCwMfQuigDfZOjl4ynJNWn/72Yg71mPf8
-	 djq0lnPC6KUDfj+aFFmZ5AgNQTye338MYwspbnkM=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	s=arc-20240116; t=1741286402; c=relaxed/simple;
+	bh=B3hEEmDyirOujbQd6HZ+qxeIuXyQLTcoA8FLF1pGAfE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YEAP6NxR2jTdU0aBKRnILYPdSXqjpwAB1/FxdBxQ7RFUuLydzuDqY0W+CpvKlVqZQ6HiNInJ5kQhZe8eoZHt7jK9us25fMH5lMWQKd5Y1eZM3PxGEPeMkh0qp2AwUvjv0WQES7VtLIHosRN/HB1VvGy+yJfbWCvK1CV9Hw7L3AQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=GoavmFVy; arc=none smtp.client-ip=198.54.127.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
+Received: from prod-lbout-phx.jellyfish.systems (new-01.privateemail.com [198.54.118.220])
+	by pe-b.jellyfish.systems (Postfix) with ESMTPA id 4Z7yjj3gFwzFprf;
+	Thu, 06 Mar 2025 18:33:45 +0000 (UTC)
+Received: from MTA-05.privateemail.com (unknown [10.50.14.15])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 394BB1800051E;
-	Thu,  6 Mar 2025 10:21:47 -0800 (PST)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	Artur Weber <aweber.kernel@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	linux-gpio@vger.kernel.org,
+	by NEW-01.privateemail.com (Postfix) with ESMTPS id 4Z7yjj2m1Jz3hhVZ;
+	Thu,  6 Mar 2025 13:33:45 -0500 (EST)
+Received: from mta-05.privateemail.com (localhost [127.0.0.1])
+	by mta-05.privateemail.com (Postfix) with ESMTP id 4Z7yjj15b8z3hhTv;
+	Thu,  6 Mar 2025 13:33:45 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
+	s=default; t=1741286025;
+	bh=B3hEEmDyirOujbQd6HZ+qxeIuXyQLTcoA8FLF1pGAfE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=GoavmFVyZmdJgmE2vVwHJzx8Q3FJDDbhdQCt7nwpJiB+v7zXfXlOc++SLECovwRnE
+	 NHaHeGpbLg40JSiyhaaKFKwX7T7kupW70uZnJdaVeAmOFwLSME4ceQGFyCDGffzbjc
+	 +zsMEq/R+bFAUvQmS1yA/PFk0DvUTG/D7SrAuY1wpE7MMgEhfo35tnrCbkioo6l9Pz
+	 1t/fjgsO4rQ2jM8qluMKuB4NO/R0oUp2uAs1K6vb2T9Fu2/xaL6VFC6uUPOYuIHDgA
+	 4AZ6paxgZ9kUJFuqp6lUni8wR6C0N4HkbzEvgep+ojK3LZSWtTytxGr2qAtIK8EyHr
+	 Uo9Xp99Q0DFbQ==
+Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
+	by mta-05.privateemail.com (Postfix) with ESMTPA;
+	Thu,  6 Mar 2025 13:33:31 -0500 (EST)
+From: Sam Winchenbach <sam.winchenbach@framepointer.org>
+To: linux-kernel@vger.kernel.org
+Cc: lars@metafoo.de,
+	Michael.Hennerich@analog.com,
+	antoniu.miclaus@analog.com,
+	jic23@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v3 6/6] ARM: dts: bcm2166x: Add bcm2166x-pinctrl DTSI
-Date: Thu,  6 Mar 2025 10:21:46 -0800
-Message-ID: <20250306182146.1762360-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250303-bcm21664-pinctrl-v3-6-5f8b80e4ab51@gmail.com>
-References: <20250303-bcm21664-pinctrl-v3-0-5f8b80e4ab51@gmail.com> <20250303-bcm21664-pinctrl-v3-6-5f8b80e4ab51@gmail.com>
+	sam.winchenbach@framepointer.org,
+	bpellegrino@arka.org
+Subject: [PATCH v5 1/6] dt-bindings: iio: filter: Add lpf/hpf freq margins
+Date: Thu,  6 Mar 2025 13:33:09 -0500
+Message-ID: <20250306183314.150253-1-sam.winchenbach@framepointer.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,22 +79,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+Adds two properties to add a margin when automatically finding the
+corner frequencies.
 
-On Mon, 03 Mar 2025 21:54:51 +0100, Artur Weber <aweber.kernel@gmail.com> wrote:
-> Add common DTSI with common pin control configs for BCM21664/BCM23550
-> and include it in bcm2166x-common.dtsi. The configs are kept in a
-> separate DTSI to keep things cleaner (pin config definitions take up
-> quite a lot of space).
-> 
-> Currently contains pins for BSC buses and SD/MMC; more pins can be
-> added in the future.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
+Signed-off-by: Sam Winchenbach <sam.winchenbach@framepointer.org>
+---
+ .../bindings/iio/filter/adi,admv8818.yaml     | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+diff --git a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+index b77e855bd594..3f9c61547a78 100644
+--- a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
++++ b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+@@ -44,6 +44,27 @@ properties:
+   '#clock-cells':
+     const: 0
+ 
++
++  adi,lpf-margin-hz:
++    description:
++      Sets the minimum distance (in Hz) between the fundamental
++      frequency of `rf_in` and the corner frequency of the low-pass, output
++      filter when operatred in 'auto' mode. The selected low-pass corner
++      frequency will be greater than, or equal to, `rf_in` + `lpf-margin-hz`. If
++      not setting is found that satisfies this relationship the filter will be
++      put into 'bypass'.
++    default: 0
++
++  adi,hpf-margin-hz:
++    description:
++      Sets the minimum distance (in Hz) between the fundamental
++      frequency of `rf_in` and the corner frequency of the high-pass, input
++      filter when operatred in 'auto' mode. The selected high-pass corner
++      frequency will be less than, or equal to, `rf_in` - `hpf-margin-hz`. If
++      not setting is found that satisfies this relationship the filter will be
++      put into 'bypass'.
++    default: 0
++
+ required:
+   - compatible
+   - reg
+@@ -61,6 +82,8 @@ examples:
+         spi-max-frequency = <10000000>;
+         clocks = <&admv8818_rfin>;
+         clock-names = "rf_in";
++        adi,lpf-margin-hz = /bits/ 64 <30000000>;
++        adi,hpf-margin-hz = /bits/ 64 <30000000>;
+       };
+     };
+ ...
+-- 
+2.48.1
+
 
