@@ -1,141 +1,113 @@
-Return-Path: <devicetree+bounces-154902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBA02A54D09
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:09:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 482B7A54D0C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:10:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B593B3B2025
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:08:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F83316757B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:10:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B71A413C9B8;
-	Thu,  6 Mar 2025 14:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kfNXRKyV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B71148FED;
+	Thu,  6 Mar 2025 14:10:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15517CA64;
-	Thu,  6 Mar 2025 14:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E2C9CA6B;
+	Thu,  6 Mar 2025 14:10:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741270113; cv=none; b=cgbjNKHMp0U3d8Lc6THsRNdZHpmB4I0vn2SfhKfG0sdByPH/IcBdq65FD83o106WpKWwS4LqBxzXNoxGTguQVEM5hYokQzqw7xEtWH3Dzx/UkpfUCNANDhnmaNO08jnQinMVblKabL3GD7ktxkQ5LqwXoQ2b/j+8LaJkts0m+F0=
+	t=1741270244; cv=none; b=kIVN2yQ39wHWmODomoTlnMCmtRf1Pg5GTTktQx+e11qnESjhR1J8tygGftauRjeLCWTgScKwVDcYPCYjF6bH6NvWUAbG+2dklO3Vf7ZwoKe3xDLeLt64DTc6x1RCqVaRtqHPjRi+5BXB6PFGlEoT8t+9XxP8ekL3CYe6lI6/K3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741270113; c=relaxed/simple;
-	bh=kWV8ljageqb0izUaC+/nzAbBvrv81I+4eNjdwXRR/Fs=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=G3QSuSxvSTAAxblb80J+vgGAW1ULUzKBq31UTbOR4IZV2Vhon8MtPeh0gEz6cHR0g1hmqdnhPVxhA9LP0SREhi2sIIVmrkX9ZnPacNrT9BdrBYX7VAf/yEIkjCpzVPmpy1rJlbJNwYDKVeAn4pjr4mUzzUbY7luRSQ22RARbjMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kfNXRKyV; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1741270244; c=relaxed/simple;
+	bh=tMUiNL1JfsiWCo2yrLVRKdF3GdPL3Pthlyw30VuXphQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ufclro5U4VvKGlcwFg4Kd89Fbo3d0rfGchzAj7pYx+kAtMKYZzP0CUbHhSayngAKVa6t+mYDscNDTwdAXqgYqdWs3OSLvw5QklOZw/XqoOa2QjaDRGLMlpM0tjwVkyK0RwitqyT3F0lkRCe8VTozy7xAwBfmYZmIJIcWRv21Wzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e539ea490dso988864a12.0;
-        Thu, 06 Mar 2025 06:08:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741270110; x=1741874910; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kWV8ljageqb0izUaC+/nzAbBvrv81I+4eNjdwXRR/Fs=;
-        b=kfNXRKyVBzqghavRJ2mKMvpHonCN/nHXFLlVs60BJwRQl/LQDRoL559vzBoSVROKZQ
-         kXmXc1ctFZ8of2RjqBdezeZu7JLOFfw6cyBGlrMWfWI0nHognKmwjCS+hOjoOa92crkp
-         eV3QF98To5aNkyyK5XQNHCp/mywDqU3ocGJ+S0sI+RhacDW3gI1fCZGqe3nWRRKajdmw
-         16HMxRyftcQM0+tgGm+eJrB2OW3sEt8A/luA6+sN0xtHOw+pe84XV4z9qB4DA5JkSQvx
-         Jr96EWv3FTJZ+P3LNQh8qFTIQdv5vIV82E3m5TigdGjfyz8bB6wpWjU1f5vRybAi/WXw
-         S53A==
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7c3b4c4b409so108804185a.3;
+        Thu, 06 Mar 2025 06:10:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741270110; x=1741874910;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kWV8ljageqb0izUaC+/nzAbBvrv81I+4eNjdwXRR/Fs=;
-        b=j9WwgOHsWzKcfYA5B1pF/ef5r94itNldKEsY77VN2u0nFCKDVMC4ccFY+nhCh5VZ8D
-         V4rh+JBciqIq1WrA9g+gEEB0rB2PJ5KmTsU9t9iJPKnEgzcIOcxbLpWt6YCJg+rMH3y8
-         0J7Ag1duDso2W4MT3sJxc7rLh67rOMZhzZtArwS16slmSeEcQatwj6zj915zzJTzTJ2E
-         raT+YCri6x5Ar+Th2n69eK+W9p64pqSPHrMutDU5gn56vpcTmxAfcAaVEbap8Y3Sij6S
-         NlmNYw5r2cAhZSe6hnEB7qV+8SC26g3mzgFapt+xELYxtgMc8HakK7kdEYuh8JmVW1Dq
-         XPwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU2R7wRjGSiqTWK2OY3s0wDVckCHdXEKdVkl1+sK3ft/L6sDiHItaMO1fpmO7A+onJeekgsB0bCi00Q@vger.kernel.org, AJvYcCXSEheWDo9I9UiIbjKC+Sfjgu8SN4lgPvZyzUrSHZCWUMLXxfFN82+wxDNjDJV0YLOr6v5E1vOxEik5dMBN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyO+1FxSXIJq3UKIhz0R4iT85jADrk15qx1pMBRL49EuSEcapVW
-	cVGl9lc/0RvHqCwm3ZIPTLsrkCpFwFXXgw4+ArRZB5GRWzzarRFF
-X-Gm-Gg: ASbGncuUTJpSzijwt/+Lr/gV+hNLD7OLMmGA3d0qdQ/jOw1tj30Kuy4qkA/y2zTSgp5
-	4IYmen2j6ckncJQ0FBm2ruGIDRN+5ZK+OaEhEgWwIdmXrdbpv0bBJ1LyiRiVlUN9R4yZsorz36t
-	ghKfgiYsO2ZSX7fHqQPXyHiKGpBXOvWHHKPGE5OB1TSGkwcLRkiTSLyr0fd2Hvz9DyeTe+ZqeEg
-	JlVh21xDzFc9ZjcRjjbLrUa7u5bM8C+VBmqWdhKZwWcYwHxw+W4kIx+pE6eA45mq7NF2iONGS85
-	kQL0ss3czDA2ySgLTMLMwl8rLdjaA7ZuGzMeIlP3tRE1XxVpyNOLkamuI91HuQR6EDCHvF31YQH
-	rCzo0vJ/O1Tlw7CuVqRT/y9vUxg==
-X-Google-Smtp-Source: AGHT+IEjOK8tItru0CnDJMfpuW+YocWEOgCRwuy6WiSEato+NxCIl7mKq10KFt+G6Q2r3z6rTWjduA==
-X-Received: by 2002:a05:6402:2186:b0:5e5:be7f:a1f6 with SMTP id 4fb4d7f45d1cf-5e5be7fa870mr8495205a12.1.1741270109496;
-        Thu, 06 Mar 2025 06:08:29 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c7475e9dsm989794a12.30.2025.03.06.06.08.26
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Mar 2025 06:08:28 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+        d=1e100.net; s=20230601; t=1741270237; x=1741875037;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p5tWRsmAkNRl3CcCpEBYNoShz/dMC+I168fgqmDeCw4=;
+        b=cIPWrsBFfvHafnKQkNwQEHdg4Gh5xNL+tx31VmUgFODEtIbIIIF5iR/OtQnAf86CUr
+         xuZzb6WdvYQrTBBLbuEK3Cb/1NklkMkVrRZFMT7tHl6Gff08/h/S71D7T+wrxlo7eWrO
+         tKPCWJUVdrcsaoZHsksnAcxHolndOr0WuJ3udk7c74stcknPgD73rM5WlWJ22xKwX3Js
+         Od4fYco9GcuHqFvd/+DnO4yjjTAkmyOyok33R2Uo0iz1NnzNNeGugOAqvK5U9KqsOHnl
+         x8jPGPjJo3GcHy+3JbzOAyC+wy2bkC7YViIdYspKNOwla/s1XQXy+/e0Fp8tSM9wNbhl
+         kf+A==
+X-Forwarded-Encrypted: i=1; AJvYcCUKE3TmgbEE/nmFjaoyLrMnUZF2c1AWTjf8aPxVLbR2KsamET1/ZLpG0kD2bFJmSrbHoH7brGFRItN1PPkn@vger.kernel.org, AJvYcCWSTmBQCxnbL7t2UV7JLWeJEWUGP43k1dSx5ctta9higNlnSyJYrNNanTe+Vj8CSH4G0mPB/1wVIBlI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8qujreEFIzLEjtKxVoevxRamAwlY948Pe1AtR5Fa9qMeGE+FQ
+	8QdJ0hafPyi7os5Bw3fk0mQvIc5Dbl3igR03bPdQztYSevhbWByi9o8vQvGF
+X-Gm-Gg: ASbGncs7DginB+gYFrexC+HuEpYVY7Zr9I13zTXHg0yLRUnZq9JhTSfvYTNFNzKZNYy
+	1CfOURLPq5PTFTAxYCfolCVFVliRKr1TGfVqVksnfRmaQ1NaplB83MBvKrm2asJSWSDLlCI+tQu
+	bxHUzb2zEE9oLTtMqRUpG/kbCtytIBm8qqAS9CJyKbJjtv/dMDOqHIh01ZoEhzjSz91ADPSVXkR
+	amG7M1YNLuNaTbErfksPpARkpR6ce77YAMnBi2qykknMzMGXBJXQcxofrIlLB+f8PD3JCQfBU4B
+	7F79lDr6O8R7h6CFaSoBaSQiCnL5ynUceqvutnWwWPhDpsjzG4bSU6FyJHfH/crdcmwNmNioF66
+	Nn9lTZZfJVpw=
+X-Google-Smtp-Source: AGHT+IESvc1LeM+RqGdLyiHv4lHBcfQIUlSePncT7eUrsnthkSf1LC5tbg4joa1XrGBU0JwYYjBTdw==
+X-Received: by 2002:a05:620a:6285:b0:7c3:9645:354c with SMTP id af79cd13be357-7c3d8e41794mr1307745485a.21.1741270237079;
+        Thu, 06 Mar 2025 06:10:37 -0800 (PST)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com. [209.85.222.179])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c3e533a474sm95696785a.20.2025.03.06.06.10.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Mar 2025 06:10:36 -0800 (PST)
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c0155af484so100156385a.0;
+        Thu, 06 Mar 2025 06:10:36 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUF9m2KQuhtV2cBOV1vUlEDafMUn0EPyfuRFxxDRS11T9YqKIEhUD+XWrG/5YJFw+K72uY06hp7NbAZDxM0@vger.kernel.org, AJvYcCW0wWVSBY0uokRN5p90S/Q0m4vnlr3y1bGqei6CMv4sv0J7zRZWK/8n1+y6UdyPI85AuISfohtjzcOy@vger.kernel.org
+X-Received: by 2002:a05:6214:f26:b0:6e4:4393:de7 with SMTP id
+ 6a1803df08f44-6e8e6cc7519mr101951716d6.2.1741270233688; Thu, 06 Mar 2025
+ 06:10:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
-Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-X-Priority: 3
-In-Reply-To: <46c0d239.a4f5.1956b619b97.Coremail.andyshrk@163.com>
-Date: Thu, 6 Mar 2025 15:08:14 +0100
-Cc: heiko@sntech.de,
- neil.armstrong@linaro.org,
- sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org,
- hjc@rock-chips.com,
- mripard@kernel.org,
- linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- yubing.zhang@rock-chips.com,
- dri-devel@lists.freedesktop.org,
- Andy Yan <andy.yan@rock-chips.com>,
- krzk+dt@kernel.org,
- robh@kernel.org,
- linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <252BB2E2-4BC5-4402-953D-F7B30EA5DE14@gmail.com>
-References: <25401bfa.291d.19564244e54.Coremail.andyshrk@163.com>
- <75189787-28E1-4FC2-8E10-4960B3877A6F@gmail.com>
- <28b0d3fc.bb3.19568f6b5f8.Coremail.andyshrk@163.com>
- <44213B17-FE14-4FB8-8319-1E31BBF6EAA0@gmail.com>
- <74c154b6.8c50.1956aa8c8d2.Coremail.andyshrk@163.com>
- <1573D5D6-AFED-4D92-8112-B0C6BB52D5FF@gmail.com>
- <46c0d239.a4f5.1956b619b97.Coremail.andyshrk@163.com>
-To: Andy Yan <andyshrk@163.com>
-X-Mailer: Apple Mail (2.3826.400.131.1.6)
+MIME-Version: 1.0
+References: <20250225210316.3043357-1-robh@kernel.org>
+In-Reply-To: <20250225210316.3043357-1-robh@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 6 Mar 2025 15:10:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUc1Gx8bQu0ePZFxNgy0=MZv909V74A-2y6wPTy8=MEDg@mail.gmail.com>
+X-Gm-Features: AQ5f1JosAcu1iTpm2frNZuQquQZI0u4F7EQoGM3oNMP34Y7utGYqLFLTZUH1d1A
+Message-ID: <CAMuHMdUc1Gx8bQu0ePZFxNgy0=MZv909V74A-2y6wPTy8=MEDg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: mitsubishi,aa104xd12: Allow
+ jeida-18 for data-mapping
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Tue, 25 Feb 2025 at 22:03, Rob Herring (Arm) <robh@kernel.org> wrote:
+> There's both a user and the datasheet[1] indicate that 6-bpp is supported
+> as well.
+>
+> [1] https://agdisplays.com/pub/media/catalog/datasheet/Mitsubishi/AA104XD12.pdf
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
-6 mar 2025, o godz. 13:15:
->=20
-> Hi Piotr,
->=20
->=20
->=20
-> Then when you DP cable plugin, you can run command as bellow to see if =
-the driver detects the HPD:
->=20
-> # cat /sys/class/drm/card0-DP-1/status=20
-> connected
-> #=20
->=20
+Gr{oetje,eeting}s,
 
+                        Geert
 
-Andy,
-Thx!
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-With above changes i=E2=80=99m getting =E2=80=9Econnected=E2=80=9D.
-Also it looks crtc gets reasonable mode: =
-https://gist.github.com/warpme/d6220e3cc502086a4c95f05bd9f9cf0c
-
-Still black screen however... =20=
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
