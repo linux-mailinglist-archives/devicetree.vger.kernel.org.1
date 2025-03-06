@@ -1,247 +1,245 @@
-Return-Path: <devicetree+bounces-154865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234A9A54BB2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:14:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1FDA54BB9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:14:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D75316AEB3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:14:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67DF31897B19
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA45920CCE4;
-	Thu,  6 Mar 2025 13:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8C2620CCF5;
+	Thu,  6 Mar 2025 13:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="jLTo6eWu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="puVSIks3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B96481CD;
-	Thu,  6 Mar 2025 13:14:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741266850; cv=pass; b=aM+4PQ8c+MdsmQVTcuW+dm5KRwTgX1madNCFteCk8ot6pF5rrK8xVFBModz6mVfMG7IzBTTLPim6fhE2HoK9wI0uTap7FaTO1SNKbQK9/EYmhvFSM8zoKS5G3Ae6SAFrzvWO/PzLcLhUtry3VbQoSrSCYBsqBCkQ9IRkGzppisI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741266850; c=relaxed/simple;
-	bh=qC1sceAvf4HSV+PgAQjk9PSnSGXQBhmv0v7HGXQXzXs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rhd3qa5I9gfJucLoSbjX0QC69dNN1/TGeRICr8QgdbqvHCJ+6YpnH3hvNQXAmAPdu5+8jtiRa8FeDdhrEFyysR9gLjTA90dVtlQnw5djaRGypZBA75njjbLI5F+pquNOnsIs0BRdRnF/Op20hbL797AgbxCuHCwPlYM3oN0y3Wo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=jLTo6eWu; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1741266806; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Ln67D7B8R/emwNovVLhkaz7xbVh04EGL2fSTkLDhliu0yFF5HPOStn0Fyk7RGUSm6kz3daWv2CrhBsEXy5NJydyy2CaaXI30XHo8uo38Ng0OYX1igVJcmSzIsV3OL1w4E/4RfOr0qKK6iJs+ZrcRuTffIcpmK0FAp0SAVAEM4YQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1741266806; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=R/l3297Aly6n/qBAueWz12hEPxnEHvfm6GKPejWJ/Vw=; 
-	b=MMm0eR+LmbNeSFSuObeLJGIE34hmTdHHG+dO6tTDWE1hVzlgVjE9tnZIEqsZbRWhIdFXkx/nPiRl+PTGYUaqS22megAsU4oUjwdDdVt9zrkcXLANi2CANfUR3Gl8dxw14v2w/5zlrF3Qc5vLy8dmkkS2IHvEtTwDHQGaMpvi4Vg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741266806;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=R/l3297Aly6n/qBAueWz12hEPxnEHvfm6GKPejWJ/Vw=;
-	b=jLTo6eWuwglmC71EtgyEJQ8kL0bFRLESM9jvJbnBxLKoc4vQBGYlIU3eCrW82lcq
-	VVceuFNVewMSvTKT54YH8U8WN8NraGIPvbNxZ0XrB47XCseCv3JRCN2U7fAQVMb90wI
-	M0/ZAU/gqUDRQ3YvHFtJeQdvnxMJgFKwn+UZxeV0=
-Received: by mx.zohomail.com with SMTPS id 1741266806086596.4769996246168;
-	Thu, 6 Mar 2025 05:13:26 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Sugar Zhang <sugar.zhang@rock-chips.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
-Subject:
- Re: [PATCH 3/7] ASoC: dt-bindings: add schema for rockchip SAI controllers
-Date: Thu, 06 Mar 2025 14:13:18 +0100
-Message-ID: <2376575.ElGaqSPkdT@workhorse>
-In-Reply-To: <ffd6287c-cbfd-4ba8-9332-45bad4e60583@kernel.org>
-References:
- <20250305-rk3576-sai-v1-0-64e6cf863e9a@collabora.com>
- <20250305-rk3576-sai-v1-3-64e6cf863e9a@collabora.com>
- <ffd6287c-cbfd-4ba8-9332-45bad4e60583@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F9720C01A;
+	Thu,  6 Mar 2025 13:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741266882; cv=none; b=GriwzfLPy0MWqJ/RBuDLEE82nat8UGDRQMd5q6ro/wz496kDMGT/7i73UNPVnHxpXgtVYB5LE+/tzkoDiK4AbIXI+rjDPEI/7iBlX+w0VunX0WHINQ8uF/GS4CSvk5ipYwBHYWLsYmeoMbCGAL3ZgSi+y6XfqbCLge1WJx5Sfcs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741266882; c=relaxed/simple;
+	bh=YJ+bvZBokdfzYQS9+kGNR3IC5XOYw/xa4TduPS/FToM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=iISiaN2ZMcSUADoSJnRtekOayu/yuSTembJt9ivqtKIgqVlG5lRmTqqOnfqJa7zIdqvdrWAEFL7eJYdP6V6lVTOmQpsh0Xnj8ZEI6rwLn1SbWxLMQFJstR5/c5J9sdWeG+bRYWHV0j0INxwvqG62SvsMmvRr2W0fe6gffzB9mcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=puVSIks3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5268UHDC013495;
+	Thu, 6 Mar 2025 13:14:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Jn3hpwRNuzBAGlW9QEPeCRrJCF7TsftTOkAD43VwqK4=; b=puVSIks3WKsRU/Le
+	be8gF5U2xQnS2k7enxKEPwIWFwg+DBxLXsmmXyu1EYLhbiRUb9i5dkEksLn5AOWV
+	BWXdDn38cHXZ/H9gsGzwdc4V5bk2qG9i5NR/uBPzZifqiDnwwWLcJ0IUXI+s2qvn
+	4f+wKo7cmnC1YXLtNRkQbvOhBWJmknUmKWxIIFsMNL2vRz45I3ODm742bflv4UPr
+	WlkhRAflHCu4KyWhMQPZhPPUYt7kzDXUOxGNUK0wI2QQGJqjc8vniCjmUf9vLakH
+	Y4pAd12WP4D8OhG6uqnHHyZGn4/akMF1WDSac/QwJbW1zgWuN1pi8Rr2cMmoNpUN
+	I7e34g==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6ts5h3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Mar 2025 13:14:33 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 526DEWoh018633
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 6 Mar 2025 13:14:32 GMT
+Received: from [10.50.63.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 6 Mar 2025
+ 05:14:28 -0800
+Message-ID: <48fc882d-c26b-005f-cb4c-df60f350aba6@quicinc.com>
+Date: Thu, 6 Mar 2025 18:44:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/7] media: platform: qcom/iris: split
+ iris_vpu_power_off_controller in multiple steps
+Content-Language: en-US
+To: <neil.armstrong@linaro.org>, Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250305-topic-sm8x50-iris-v10-v2-0-bd65a3fc099e@linaro.org>
+ <20250305-topic-sm8x50-iris-v10-v2-2-bd65a3fc099e@linaro.org>
+ <24fd8e60-e782-0625-7d90-513cd2a3ea19@quicinc.com>
+ <f1baa968-68ff-4118-a353-c6e71e4df629@linaro.org>
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+In-Reply-To: <f1baa968-68ff-4118-a353-c6e71e4df629@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=HZbuTjE8 c=1 sm=1 tr=0 ts=67c99fb9 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=-knSVK5re8e1Rr_1nywA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=IE0ySPxsrPOjWqNABM6I:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: ThexkSXpRsE3xiiq_x2htgeFtMe3QBHA
+X-Proofpoint-ORIG-GUID: ThexkSXpRsE3xiiq_x2htgeFtMe3QBHA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-06_05,2025-03-06_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 mlxscore=0 spamscore=0 clxscore=1015 phishscore=0 bulkscore=0
+ priorityscore=1501 impostorscore=0 suspectscore=0 malwarescore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503060100
 
-On Thursday, 6 March 2025 08:42:54 Central European Standard Time Krzysztof 
-Kozlowski wrote:
-> On 05/03/2025 22:24, Nicolas Frattaroli wrote:
-> > Rockchip introduced a new audio controller called the "Serial Audio
-> > Interface", or "SAI" for short, on some of their newer SoCs. In
-> > particular, this controller is used several times on the RK3576 SoC.
-> > 
-> > Add a schema for it, with only an RK3576 compatible for now. Other SoCs
-> > may follow as mainline support for them lands.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> > 
-> >  .../devicetree/bindings/sound/rockchip,sai.yaml    | 151
-> >  +++++++++++++++++++++
-> Filename based on compatible.
 
-Sure, but more compatibles will follow. Are you certain you want a file named 
-rockchip,rk3576-sai.yaml to then contain rockchip,rk3528-sai? If so then I do 
-not understand the reason behind this policy.
 
+On 3/6/2025 6:39 PM, Neil Armstrong wrote:
+> On 06/03/2025 14:06, Dikshita Agarwal wrote:
+>>
+>>
+>> On 3/6/2025 12:35 AM, Neil Armstrong wrote:
+>>> In order to support vpu33, the iris_vpu_power_off_controller needs to be
+>>> reused and extended, but the AON_WRAPPER_MVP_NOC_LPI_CONTROL cannot be
+>>> set from the power_off_controller sequence like vpu2 and vpu3 so
+>>> split the power_off_controller into 3 steps:
+>>> - iris_vpu_power_off_controller_begin
+>>> - iris_vpu_power_off_controller_end
+>>> - iris_vpu_power_off_controller_disable
+>>>
+>> NAK.
+>> I don't think splitting the API into these small functions is beneficial in
+>> this case, The extracted parts are too trivial to justify separate
+>> functions, and this actually makes the flow harder to follow rather than
+>> improving re-usability or clarity.
+>> If there is no clear or significant re-use case, I'd prefer keeping the
+>> logic consolidated in single API to maintain readability.
 > 
-> >  MAINTAINERS                                        |   6 +
-> >  2 files changed, 157 insertions(+)
+> Right I agree, I tried to do my best and reuse code, and this is the result.
 > 
-> ...
+> So what would be the next step ? I can:
+> - move iris_vpu_power_off_controller into vpu2, and add it into the vpu3 ops
+you can keep it in common, as it will still be used for both vpu2 and vpu3
+> - re-implement it for vpu33 as v1
+right, would prefer going back to v1 for vpu33, if there is no significant
+re-use.
+
+Thanks,
+Dikshita
+> > Neil
 > 
-> > +
-> > +  dma-names:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    oneOf:
-> > +      - const: tx
-> > +      - const: rx
-> > +      - items:
-> > +          - const: tx
-> > +          - const: rx
+>>
+>> Thanks,
+>> Dikshita
+>>> And use them in a common iris_vpu_power_off_controller() for
+>>> vpu2 and vpu3 based platforms.
+>>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>>>   drivers/media/platform/qcom/iris/iris_vpu_common.c | 46
+>>> ++++++++++++++++------
+>>>   1 file changed, 33 insertions(+), 13 deletions(-)
+>>>
+>>> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.c
+>>> b/drivers/media/platform/qcom/iris/iris_vpu_common.c
+>>> index
+>>> fe9896d66848cdcd8c67bd45bbf3b6ce4a01ab10..d6ce92f3c7544e44dccca26bf6a4c95a720f9229 100644
+>>> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.c
+>>> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.c
+>>> @@ -211,33 +211,29 @@ int iris_vpu_prepare_pc(struct iris_core *core)
+>>>       return -EAGAIN;
+>>>   }
+>>>   -static int iris_vpu_power_off_controller(struct iris_core *core)
+>>> +static void iris_vpu_power_off_controller_begin(struct iris_core *core)
+>>>   {
+>>> -    u32 val = 0;
+>>> -    int ret;
+>>> -
+>>>       writel(MSK_SIGNAL_FROM_TENSILICA | MSK_CORE_POWER_ON,
+>>> core->reg_base + CPU_CS_X2RPMH);
+>>> +}
+>>>   -    writel(REQ_POWER_DOWN_PREP, core->reg_base +
+>>> AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>>> -
+>>> -    ret = readl_poll_timeout(core->reg_base +
+>>> AON_WRAPPER_MVP_NOC_LPI_STATUS,
+>>> -                 val, val & BIT(0), 200, 2000);
+>>> -    if (ret)
+>>> -        goto disable_power;
+>>> +static int iris_vpu_power_off_controller_end(struct iris_core *core)
+>>> +{
+>>> +    u32 val = 0;
+>>> +    int ret;
+>>>         writel(REQ_POWER_DOWN_PREP, core->reg_base +
+>>> WRAPPER_IRIS_CPU_NOC_LPI_CONTROL);
+>>>         ret = readl_poll_timeout(core->reg_base +
+>>> WRAPPER_IRIS_CPU_NOC_LPI_STATUS,
+>>>                    val, val & BIT(0), 200, 2000);
+>>>       if (ret)
+>>> -        goto disable_power;
+>>> +        return ret;
+>>>         writel(0x0, core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_CONTROL);
+>>>         ret = readl_poll_timeout(core->reg_base +
+>>> WRAPPER_DEBUG_BRIDGE_LPI_STATUS,
+>>>                    val, val == 0, 200, 2000);
+>>>       if (ret)
+>>> -        goto disable_power;
+>>> +        return ret;
+>>>         writel(CTL_AXI_CLK_HALT | CTL_CLK_HALT,
+>>>              core->reg_base + WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG);
+>>> @@ -245,10 +241,34 @@ static int iris_vpu_power_off_controller(struct
+>>> iris_core *core)
+>>>       writel(0x0, core->reg_base + WRAPPER_TZ_QNS4PDXFIFO_RESET);
+>>>       writel(0x0, core->reg_base + WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG);
+>>>   -disable_power:
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static void iris_vpu_power_off_controller_disable(struct iris_core *core)
+>>> +{
+>>>       iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
+>>>       iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
+>>>       iris_disable_power_domains(core,
+>>> core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
+>>> +}
+>>> +
+>>> +static int iris_vpu_power_off_controller(struct iris_core *core)
+>>> +{
+>>> +    u32 val = 0;
+>>> +    int ret;
+>>> +
+>>> +    iris_vpu_power_off_controller_begin(core);
+>>> +
+>>> +    writel(REQ_POWER_DOWN_PREP, core->reg_base +
+>>> AON_WRAPPER_MVP_NOC_LPI_CONTROL);
+>>> +
+>>> +    ret = readl_poll_timeout(core->reg_base +
+>>> AON_WRAPPER_MVP_NOC_LPI_STATUS,
+>>> +                 val, val & BIT(0), 200, 2000);
+>>> +    if (ret)
+>>> +        goto disable_power;
+>>> +
+>>> +    iris_vpu_power_off_controller_end(core);
+>>> +
+>>> +disable_power:
+>>> +    iris_vpu_power_off_controller_disable(core);
+>>>         return 0;
+>>>   }
+>>>
 > 
-> Why all combinations are possible?
-
-Because they are. sai5 in rk3576 is rx only. sai7 is tx only. Others are both 
-tx and rx. Do you want me to enforce that those with both are always tx 
-followed by rx?
-
-> 
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: master audio clock
-> > +      - description: AHB clock driving the interface
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: mclk
-> > +      - const: hclk
-> > +
-> > +  resets:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    description: resets for the mclk domain and ahb domain
-> 
-> List the items instead with description and minItems: 1.
-
-Will do
-
-> 
-> > +
-> > +  reset-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - const: m
-> > +      - const: h
-> > +
-> > +  port:
-> > +    $ref: audio-graph-port.yaml#
-> > +    unevaluatedProperties: false
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  "#sound-dai-cells":
-> > +    const: 0
-> > +
-> > +  rockchip,sai-rx-route:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    description:
-> > +      Defines the mapping of the controller's SDI ports to actual input
-> > lanes, +      as well as the number of input lanes.
-> > +      rockchip,sai-rx-route = <3> would mean sdi3 is receiving from
-> > data0, and +      that there is only one receiving lane.
-> > +      This property's absence is to be understood as only one receiving
-> > lane +      being used if the controller has capture capabilities.
-> > +    maxItems: 4
-> > +    items:
-> > +      enum: [0, 1, 2, 3]
-> > +
-> > +  rockchip,sai-tx-route:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    description:
-> > +      Defines the mapping of the controller's SDO ports to actual output
-> > lanes, +      as well as the number of output lanes.
-> > +      rockchip,sai-tx-route = <3> would mean sdo3 is sending to data0,
-> > and
-> 
-> I understand this is only example because = <3> would not be allowed
-> (test it).
-
-I'll have to look into that, I was fairly certain I tested it, but maybe I 
-forgot to run a CHECK_DTBS with it in.
-
-> 
-> > +      that there is only one transmitting lane.
-> > +      This property's absence is to be understood as only one
-> > transmitting lane +      being used if the controller has playback
-> > capabilities.
-> > +    maxItems: 4
-> > +    items:
-> > +      enum: [0, 1, 2, 3]
-> > +
-> > +  rockchip,always-on:
-> > +    type: boolean
-> > +    description:
-> > +      The hardware requires this controller to remain turned on.
-> 
-> How hardware requires this? You rather miss proper PM domain handling or
-> some other resources.
-
-This isn't about power domains. It's about the FS/SCLK generator inside the 
-IP. I'll remove it in the next revision since downstream only uses it for a 
-different IP on the RK3588, and I'd rather not get bogged down by discussions 
-as to whether SAI should be modelled as a clock provider.
-
-> 
-> > +
-> > +
-> 
-> Just one blank line.
-
-Will do
-
-> 
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - dmas
-> > +  - dma-names
-> > +  - clocks
-> > +  - clock-names
-> > +  - "#sound-dai-cells"
-> > +
-> > +unevaluatedProperties: false
-> 
-> Best regards,
-> Krzysztof
-
-Cheers,
-Nicolas Frattaroli
-
-
-
 
