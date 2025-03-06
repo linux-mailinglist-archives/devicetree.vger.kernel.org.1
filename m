@@ -1,195 +1,168 @@
-Return-Path: <devicetree+bounces-154909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E9FA54DC1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:28:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5E5A54DF8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:39:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D0C2173A05
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:28:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 879A6167975
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:39:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD7316DEA9;
-	Thu,  6 Mar 2025 14:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426F016A95B;
+	Thu,  6 Mar 2025 14:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XGrnyQbX"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="DlU/j4Al"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 588DA1624DC;
-	Thu,  6 Mar 2025 14:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741271306; cv=none; b=oHilNyLB73fQbsYkeR49AYlleLtcxVwXNripsdAV7sYtpAm/UyMz45p4fjft4yU9KPiYaxolHA7xM5bSH2WjPjxnep60/bSWXFTB5pYw43X5HMrK6/1QF2iFJrFRUjCc52v16kIjlOL8cmPZ75g+yWZnVnBzq60xP8tPoDe3s9Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741271306; c=relaxed/simple;
-	bh=AbwweIdVlQuGTpxqBxt0AtzrQBaGwIPj9kBjzOEZl2k=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=ufgDrgRxni59wd16Tgxa0WlZ7VoUCoVgSQM/98NLEZ9GKb5zz8NdoIEzt/bZEATCVckVc/ad84sbMlny510qxvGdr06dcV15TDi3p9tiZvtN+C2q/amMcagfIWfGWmVMvaNgiiMzRH8KjeUoRMOCAl97UjC/05pwacVEuG/yvk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XGrnyQbX; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-abbb12bea54so150317066b.0;
-        Thu, 06 Mar 2025 06:28:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741271302; x=1741876102; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e0vWWMcXjFfg9c9qiH6NSV7bmKttHRNGNsOhNehrSvM=;
-        b=XGrnyQbX2toPV8G9GlRc1SC+IHbLR6cc2yEYSR/w7PxwENlnZoTz2/MtW/I9INpBSS
-         bsGVdRnSREAq+1fVKM3d15ER0I5MnxiQ0PnFQ3+Bp1DtqG16Dpe+tHee1wPytyMeuq7p
-         BTot7cnFGVjpDaEuXnLeUDw4aHO6hCsfKXIh3Pvs5tGViTXa97/Xdy6YiwtKYfR1Od2o
-         fbicEoTQWTwfPu4yWtwkZTWoLYUT2LeMfgKmlmY5Z46YL5gmsqrN6E9l7tqXT+d75MOU
-         VQNvSHH+7MzJRUHIJ+avIHr8Wz4omI9fm6Iu7mmX5cp+PDJSTqSy3KeWAtSlN+LBdydH
-         cjqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741271302; x=1741876102;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e0vWWMcXjFfg9c9qiH6NSV7bmKttHRNGNsOhNehrSvM=;
-        b=hguHVZws8OsciStjwAVCQW5wvwSiv3Z612rDlTqj91gCljWEoFag3rFVFS59xlnIJv
-         DS/iZbR8TL4dgXf+e55JE3izx59Kg9AChRSbQSjownwICR+UvsY0v08LFL2ccqHJ+aiX
-         /FzsgZZLpHCid+uB/ENeYtYDRRDU5EKUsxga6AM3hVZAupcHpVv/SOwQKBRQ2+TQSYVP
-         01EuKI65HszbDJeXQ6dDt4i9mdT7+7RpjTKfNp3TiZo59I+6dwix4RoNGoQ4C9Aadwk1
-         QF145FdlQwBFOpyUgGmSjpv5p9Uh9rrOl3S8uWjszy8+d69ouRp+XBbg0aA7W/kpyjQP
-         7MPw==
-X-Forwarded-Encrypted: i=1; AJvYcCUTMC4C0YdjgAJFEPlVKbdavK1vHyTk/szcKo4HXo3YWMcVBzbC7A/9WBoincWckvDepfFPxt1bmZCt@vger.kernel.org, AJvYcCW7bhn8fB1pUa3usKXjftpdlNJXLyDplpB/BcDR/Z46M3GtxKHvn3FSp4f2LlwhLTVuWnHPgziIv1TpXTxC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8WCBRx3HSAwBhwO9RMs31H/pzoqUJ4Y8VtCRSMVHFjqMsFHq7
-	55kNEOVAiVI/DDZkocIQBPKeYBhyapossaf9qb2rqJtgWjrJzJ3I
-X-Gm-Gg: ASbGnct5FVMePMaBvKi1g5JvZ03FtB7eOerM80HLXgEFM6au2BNH3+mxNHKAeEBZ06z
-	P9cCeby8vxkaSCOaMh08H9hHFDD5KfYebCBPPmXPptHZYzypopQJwuRADO7U9HrkjgjEBbzOhN6
-	iBn4HhOx4zVOzlEj9QhYhgA7TEYLZwU3uvizhR7KnqSMsRuf8kGUjN96Pql0XyurBjcN7/Cantg
-	N5FRSxe61bTgWcGHSztQ8SK6Pbm4PFke/LdYnKWVQLxGzr7qKJ+AWc1UmuWvMy+iUPwUcwPLP3h
-	UqeD0i3wqBN12E9/6qZKvTKMeoj3F90cbKNvXV0TfgzlWQr/VUf0PRhP4Yx+iKj/jd141cPv7SB
-	cd6UCTpI9AfYhR0G8GUgHPcQXBQ==
-X-Google-Smtp-Source: AGHT+IFozHswlf0bg9ThZSp1FbgljtVYCPPvnTD1k5tckBB+eJRBJhF1NQdof80kjppsiFvLEvgOsA==
-X-Received: by 2002:a17:907:3da2:b0:ac1:e2e0:f8d6 with SMTP id a640c23a62f3a-ac20d8bcb19mr672425066b.17.1741271302225;
-        Thu, 06 Mar 2025 06:28:22 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2399d4ed4sm104210166b.178.2025.03.06.06.28.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Mar 2025 06:28:21 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 475F4DF71;
+	Thu,  6 Mar 2025 14:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741271989; cv=pass; b=tkSGiZt/t2jmr8gmCn0nTtVt6sVJLEWTVQs8O9K7lJJNE9FjMAfurrU9VFq4O8RPe11ZlBTM3wZAgjr4UFm+/Af4bpXQvgDghm616YIHqodGC5Aem18kfXq/vbKribrJ8KJpLharBE3XyoIZUlkolNhbiImXKg7+HcwH/8SgQPg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741271989; c=relaxed/simple;
+	bh=WwQuaLVdpGWctaHJJ2OorTeu2KK/SiSnnjYicksgVYM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XbysQ4X2eDFyEgK5v4YY0OR1TLNcsDqyVVyXD/JxKd0vINpurKv+NL58+fpEjaj9wWnnvHV12tTXdq8Il93LrPyTbiEoNKSiikTIH83QIla5WMFJ43Ojb0WjkL3IgRihV2UNEs6ftkvcjk7E7SHKVt2mSZw/nnpl4Rw5X8IIDsM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=DlU/j4Al; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1741271947; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=f189TiqKaVtBiJW/aJ8g/VLuBqrAnVJqp8Mg2EopEtKZc26oVpxnjy3yehtmCDoo7D4qpSuK2NmEzpCweb7fR1vqnggfZN0noKIBt+yfDGOcC1uhUZIAGA8yZYx74hhwrwaZEpjp2bGyadbSpMw4YHKVmfZ+Gi9AdEMXyu/pQIY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1741271947; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=+//d8YaKM1HPYqDbAwn6xqi0NfBlNp/hPbdkEog/gtk=; 
+	b=e8b6+txvoTW3oZGE3zpaG4sgldvr/Ox9KnpAFU2TXac4jwwo/mjAZbNI+bNsUgjOd3YcBTHybdb6vyfZmkaJ1/kuSSRfTTPwO5nMKIh+iLpycP8XGJudZZ2S17xn37AE4HiodVgkij8pYRIYdnAmsIkaNN9RdO9HA63T1icpEqA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741271947;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=+//d8YaKM1HPYqDbAwn6xqi0NfBlNp/hPbdkEog/gtk=;
+	b=DlU/j4AlaxuLJoq2T4Afnf+/npcH5yCOio/5SydONGIIzFiTihflwKdetE1L4f5i
+	oU8XkhJfbAcv9FsopV7l8iiEoRqCD7Peurlo8e+86FEExWdz10aAS5tim1rjOfWdJul
+	Sln4vqPfohijJjafwzjQkBltx8lP5D19+krFhHA0=
+Received: by mx.zohomail.com with SMTPS id 174127194550959.191258083911634;
+	Thu, 6 Mar 2025 06:39:05 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Sugar Zhang <sugar.zhang@rock-chips.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
+Subject:
+ Re: [PATCH 3/7] ASoC: dt-bindings: add schema for rockchip SAI controllers
+Date: Thu, 06 Mar 2025 15:38:58 +0100
+Message-ID: <8514337.T7Z3S40VBb@workhorse>
+In-Reply-To: <81d60550-4929-48c1-b4d3-1473b902bf12@kernel.org>
+References:
+ <20250305-rk3576-sai-v1-0-64e6cf863e9a@collabora.com>
+ <2376575.ElGaqSPkdT@workhorse>
+ <81d60550-4929-48c1-b4d3-1473b902bf12@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
-Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-X-Priority: 3
-In-Reply-To: <252BB2E2-4BC5-4402-953D-F7B30EA5DE14@gmail.com>
-Date: Thu, 6 Mar 2025 15:28:08 +0100
-Cc: heiko@sntech.de,
- neil.armstrong@linaro.org,
- sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org,
- hjc@rock-chips.com,
- mripard@kernel.org,
- linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- yubing.zhang@rock-chips.com,
- dri-devel@lists.freedesktop.org,
- Andy Yan <andy.yan@rock-chips.com>,
- krzk+dt@kernel.org,
- robh@kernel.org,
- linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <326B91E9-FB91-43C3-B98B-3EF079F313C6@gmail.com>
-References: <25401bfa.291d.19564244e54.Coremail.andyshrk@163.com>
- <75189787-28E1-4FC2-8E10-4960B3877A6F@gmail.com>
- <28b0d3fc.bb3.19568f6b5f8.Coremail.andyshrk@163.com>
- <44213B17-FE14-4FB8-8319-1E31BBF6EAA0@gmail.com>
- <74c154b6.8c50.1956aa8c8d2.Coremail.andyshrk@163.com>
- <1573D5D6-AFED-4D92-8112-B0C6BB52D5FF@gmail.com>
- <46c0d239.a4f5.1956b619b97.Coremail.andyshrk@163.com>
- <252BB2E2-4BC5-4402-953D-F7B30EA5DE14@gmail.com>
-To: Andy Yan <andyshrk@163.com>
-X-Mailer: Apple Mail (2.3826.400.131.1.6)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+
+On Thursday, 6 March 2025 14:43:21 Central European Standard Time Krzysztof 
+Kozlowski wrote:
+> On 06/03/2025 14:13, Nicolas Frattaroli wrote:
+> > On Thursday, 6 March 2025 08:42:54 Central European Standard Time
+> > Krzysztof
+> > 
+> > Kozlowski wrote:
+> >> On 05/03/2025 22:24, Nicolas Frattaroli wrote:
+> >>> Rockchip introduced a new audio controller called the "Serial Audio
+> >>> Interface", or "SAI" for short, on some of their newer SoCs. In
+> >>> particular, this controller is used several times on the RK3576 SoC.
+> >>> 
+> >>> Add a schema for it, with only an RK3576 compatible for now. Other SoCs
+> >>> may follow as mainline support for them lands.
+> >>> 
+> >>> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> >>> ---
+> >>> 
+> >>>  .../devicetree/bindings/sound/rockchip,sai.yaml    | 151
+> >>>  +++++++++++++++++++++
+> >> 
+> >> Filename based on compatible.
+> > 
+> > Sure, but more compatibles will follow. Are you certain you want a file
+> > named rockchip,rk3576-sai.yaml to then contain rockchip,rk3528-sai? If so
+> > then I do
+> Yes (or the other way around if 3528 is older)
+
+They were released at about the same time from what I know. I'll pick the 
+RK3576 though since it was the first to get upstream support.
+
+> 
+> > not understand the reason behind this policy.
+> 
+> So the name will match hardware, instead of sai.yaml, sai2.yaml,
+> sai3.yaml and sai-green-frog.yaml.
+
+Downstream called the compatible "sai-v1" so you're onto something here I'm 
+afraid. :)
+
+> 
+> >>>  MAINTAINERS                                        |   6 +
+> >>>  2 files changed, 157 insertions(+)
+> >> 
+> >> ...
+> >> 
+> >>> +
+> >>> +  dma-names:
+> >>> +    minItems: 1
+> >>> +    maxItems: 2
+> >>> +    oneOf:
+> >>> +      - const: tx
+> >>> +      - const: rx
+> >>> +      - items:
+> >>> +          - const: tx
+> >>> +          - const: rx
+> >> 
+> >> Why all combinations are possible?
+> > 
+> > Because they are. sai5 in rk3576 is rx only. sai7 is tx only. Others are
+> > both
+> What is sai5 and sai7? Instances on the same chip? Does it mean some of
+> instances can only receive and some only transmit?
+
+sai5 and sai7 are instances on the same chip, yes, see rk3576.dtsi changes in 
+this series. Some instances can only receive, some can only transmit. Some can 
+do both. I think the way I wrote the binding already allows for just "tx", 
+just "rx", and "tx, rx" but not "rx, tx", which is I think what we want here.
+
+> 
+> > tx and rx. Do you want me to enforce that those with both are always tx
+> > followed by rx?
+> 
+> Best regards,
+> Krzysztof
+
+Cheers,
+Nicolas Frattaroli
 
 
-
-> Wiadomo=C5=9B=C4=87 napisana przez Piotr Oniszczuk =
-<piotr.oniszczuk@gmail.com> w dniu 6 mar 2025, o godz. 15:08:
->=20
->=20
->=20
->> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
-6 mar 2025, o godz. 13:15:
->>=20
->> Hi Piotr,
->>=20
->>=20
->>=20
->> Then when you DP cable plugin, you can run command as bellow to see =
-if the driver detects the HPD:
->>=20
->> # cat /sys/class/drm/card0-DP-1/status=20
->> connected
->> #=20
->>=20
->=20
->=20
-> Andy,
-> Thx!
->=20
-> With above changes i=E2=80=99m getting =E2=80=9Econnected=E2=80=9D.
-> Also it looks crtc gets reasonable mode: =
-https://gist.github.com/warpme/d6220e3cc502086a4c95f05bd9f9cf0c
->=20
-> Still black screen however=E2=80=A6
->  =20
-
-some additional data point: /sys/kernel/debug/dri/1/vop2/summary=20
-
-
-working hdmi:
-
-Video Port1: ACTIVE
-    Connector: HDMI-A-1
-        bus_format[0]: Unknown
-        output_mode[f] color_space[0]
-    Display mode: 1920x1080p60
-        clk[148500] real_clk[148500] type[48] flag[5]
-        H: 1920 2008 2052 2200
-        V: 1080 1084 1089 1125
-    Cluster0-win0: ACTIVE
-        win_id: 0
-        format: XR24 little-endian (0x34325258) glb_alpha[0xff]
-        rotate: xmirror: 0 ymirror: 0 rotate_90: 0 rotate_270: 0
-        zpos: 0
-        src: pos[0, 0] rect[1920 x 1080]
-        dst: pos[0, 0] rect[1920 x 1080]
-        buf[0]: addr: 0x00000000017e1000 pitch: 7680 offset: 0
-Video Port2: DISABLED
-
-
-
-
-non-working DP:
-
-Video Port1: DISABLED
-Video Port2: ACTIVE
-    Connector: DP-1
-        bus_format[100a]: RGB888_1X24
-        output_mode[f] color_space[0]
-    Display mode: 1920x1080p60
-        clk[148500] real_clk[148500] type[48] flag[5]
-        H: 1920 2008 2052 2200
-        V: 1080 1084 1089 1125
-    Cluster1-win0: ACTIVE
-        win_id: 1
-        format: XR24 little-endian (0x34325258) glb_alpha[0xff]
-        rotate: xmirror: 0 ymirror: 0 rotate_90: 0 rotate_270: 0
-        zpos: 0
-        src: pos[0, 0] rect[1920 x 1080]
-        dst: pos[0, 0] rect[1920 x 1080]
-        buf[0]: addr: 0x00000000007ed000 pitch: 7680 offset: 0
 
 
