@@ -1,96 +1,107 @@
-Return-Path: <devicetree+bounces-154874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F05A54C39
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:30:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE4BA54C51
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:36:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 769523AA9B0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:30:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37C4C3AF5D7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:36:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C3920F071;
-	Thu,  6 Mar 2025 13:29:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 436E420D516;
+	Thu,  6 Mar 2025 13:36:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Afl9wm+B"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="A+w0f7Rv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F27A20E33B;
-	Thu,  6 Mar 2025 13:29:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98DA20B7F8;
+	Thu,  6 Mar 2025 13:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741267798; cv=none; b=be37AEN2ZsoD7A0sGY+TepPUKjs7vloN3Q2FHQO/+ta5U6AwP7g+hXN8duJHg0KmHJI1iJK+GRPC7nejOh0x0762AnTJ4OgGHRN3KbcpUOZQexGIB+vxlmMQ+ze/64i07Huo9yYWz7Ahb8D2OApT2xdTunRsiNDZ9OcpqZcrK38=
+	t=1741268200; cv=none; b=ggulcX1mKvK1etfyEi7g0C6YC9g5RfhzT3m679QkhUpT+h2W8um1c99seJA8Zg3qeZkD5ThrJzbLxRyss1PTAJyVQFQGdr0u84NfHWQurrjDNxyoP6TPo6AhKSkD6L7PxKwU/T0zQXKLiY5qgiBf0xq7BX2wRDH7hNVioYsV+W0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741267798; c=relaxed/simple;
-	bh=ZqlvbwmjCHHW0riLi6URTpOFQ0T1GqXhnWE3enEVXVE=;
+	s=arc-20240116; t=1741268200; c=relaxed/simple;
+	bh=89na8aEyy6PeC9priobZs3cNkeHT5uhFC166aKaR6Us=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ViV9IyI9pSvfeeraeezB7ZSWY4+zYwvqH0B6yiM9faGSwahrcB1P1daQq0qJ23al/GbsEqmarqT6wMT75MDfto95JYpDkuHkvy8prU+By9YhcRmSpXN6yPCRd0FiA6CtI6y5pS0XcAYe7Dr/i19IhrFhPIYVr4P5gY9yI83i5Uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Afl9wm+B; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=JecGv0Wvpv3LR0XnFIz+reQDdQoCoO9No6CiNulORXELopK8UT/Mu9HY6hV3bm5N0FKAgfp0kMdkzV2Gbh7AwQaO3zv4ymSL5WzOYKTIO8BF1XDdZJgFFAql9cb5m74H9WkEnNFCeZ1nuVSNAhTT3syjyZPDQBHpaDZysiJV1ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=A+w0f7Rv; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=y1r0XL1092fmLSaUg6P9eZbIAeeU2xay/HqiLlb+zMY=; b=Afl9wm+B0ta8/YCf8e7GaHaAlb
-	w3e+75j86lq+KQZK6gvVoTYKa9zUilVpMQx83DWou9X3zPv1zbGTRICX4BYKVzKwDR6PTLcuX9bXM
-	ec7/6WJhxRqCGCVZNjqTNbGOYiZUkCAVQd/gyRR+c9ZtXbKQbcp1uIfK/KtpI2Wm8xtltEdPFSblC
-	MrghlQaA2pKnYO6u5kV9U5iz8BXaYTQ8B3183E+yHppVu7odwKQZPUPfOg3upIrUZKbtviFnsDKSL
-	tZk4uboZ/98MB0VuFk+UmW2/J8K0DT+S5MVF4yEiTfhg4/oXod9vf2YgIjbxmFEvN97Wond06OK9W
-	QhFdvwQA==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
+	bh=p2MHZq557DZLmu8HoDAX+Ak6NqSl7I/7w5qQt+/fGYg=; b=A+w0f7RvRtsuAyx5NFTDD8uU2l
+	mNPisZuKkW+KoACpYl1xCpSqeUiK71ycK4fKV14rQOEtNw7Drgj9TN8xCfek9MZ+B2wguVybUZ6fR
+	E7H1siM4ZsCfyA+gfYw8g9mTzLYAu7AXPyCXO7n+hqm4LI4YRQLJtEY5V0AYo7yG+tHtDcbqv3daw
+	LDT64gyOShAlzBZriEXPoJGanytmsW7GDPtByasV2gwXgcBVkqElh1Z1EFNCdj82SFyWPCpJ4lbiN
+	RaWgzVN5DRps4RsJ4+9guH48ioSpXJVpdyknlc5eq+tfyB4jmBQNOdKb4+xZqZgXYAf/W9DuIwmYq
+	9sqCXMeQ==;
+Received: from i53875a38.versanet.de ([83.135.90.56] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tqBIK-0003LI-U0; Thu, 06 Mar 2025 14:29:48 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: enable SCMI clk for RK3528 SoC
-Date: Thu, 06 Mar 2025 14:29:48 +0100
-Message-ID: <4856313.kQq0lBPeGt@diego>
-In-Reply-To: <20250306131016.281290-2-amadeus@jmu.edu.cn>
-References:
- <20250306131016.281290-1-amadeus@jmu.edu.cn>
- <20250306131016.281290-2-amadeus@jmu.edu.cn>
+	id 1tqBOm-0003OH-Hz; Thu, 06 Mar 2025 14:36:28 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Yao Zi <ziyao@disroot.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/8] Support SD/SDIO controllers on RK3528
+Date: Thu,  6 Mar 2025 14:36:26 +0100
+Message-ID: <174126816885.664640.17521271236710485903.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250305194217.47052-1-ziyao@disroot.org>
+References: <20250305194217.47052-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-
-Hi,
-
-Am Donnerstag, 6. M=C3=A4rz 2025, 14:10:16 MEZ schrieb Chukun Pan:
-> Same as RK3568, RK3528 uses SCMI clk instead of ARMCLK.
-> Add SCMI clk for CPU, GPU and RNG will also use it.
->=20
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
-
-> @@ -110,6 +129,19 @@ gmac0_clk: clock-gmac50m {
->  		#clock-cells =3D <0>;
->  	};
-> =20
-> +	sram@10f000 {
-
-That sram is part of the soc (and has an mmio-address), so I'd think
-it should live inside the soc node?
+Content-Transfer-Encoding: 8bit
 
 
-Heiko
+On Wed, 05 Mar 2025 19:42:09 +0000, Yao Zi wrote:
+> RK3528 features two SDIO controllers and one SD/MMC controller. This
+> series adds essential support for their tuning clocks, document the
+> controller in dt-bindings and bring the SD/MMC one up on Radxa E20C
+> board. Both HS and SDR104 mode are verified.
+> 
+> This is based on v2 of the SARADC series[1]
+> 
+> [...]
 
+Applied, thanks!
 
+[1/8] dt-bindings: soc: rockchip: Add RK3528 VO GRF syscon
+      commit: efc1bc1f36568a4297d20a691758b68c121cf982
+[2/8] dt-bindings: soc: rockchip: Add RK3528 VPU GRF syscon
+      commit: 8f814d7c9f6cdffc1f5cc97637e12cd699ff9085
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
