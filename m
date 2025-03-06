@@ -1,138 +1,151 @@
-Return-Path: <devicetree+bounces-154650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69204A54213
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 06:30:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A9D7A54221
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 06:32:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BEFA3ADA26
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 05:30:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D5E5171702
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 05:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF6019AD48;
-	Thu,  6 Mar 2025 05:30:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C017F19D086;
+	Thu,  6 Mar 2025 05:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QfMQ39WD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UUvxcT62"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2E98172A;
-	Thu,  6 Mar 2025 05:30:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BB0B63D;
+	Thu,  6 Mar 2025 05:31:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741239043; cv=none; b=XAn9mZvH9QJS2WRUAcfRbEVeXxpol39jNQj3OsnR04XUGfDFkLV29+1MfKIjU7BfFd/Ohu+l/tVR5n8Axue+WEwUorpiCCprheU9oPD7J8n5CtqJhk0KtjKmoUuMNGzU9Z1EIGO+0dnjaaFozxsJfNRS9RISCURU9bbiV7bdKx4=
+	t=1741239110; cv=none; b=jPQvvmV9nxD6wV2hvAR2ZTTOAA19/ggRpTC73K1K1PBfxDDNwQeykg/kLc7F+sKIaFmB11oo7LWOYFOfPiM9viQ7uqvK3UfkWWOU8qkDUGySqF6TQKCbzN8xXZ06nITKjFPm2Id0jaTuYJf1Klk+8ATPYMlprszd9OYR4u79pQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741239043; c=relaxed/simple;
-	bh=21iO/G2bQw9K65JrUOqRRdhPgZGB06xxok6XVDEcObw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nc+df1CshBbfQuVwLWlbkvo1/K7jcaQGW+GxpylX77+ihQZKHM2VespxfHl4w+M9Lj3pFnppWL54RQG4AaF1brwm6CR94Vfimh7em2Ear1b6DDVRdbhIi6Mpxv3NX20W3u41ua9yl+FNOtLIjZperlIA6jd8Tj5RZnrgbx4t3GQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QfMQ39WD; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741239041; x=1772775041;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=21iO/G2bQw9K65JrUOqRRdhPgZGB06xxok6XVDEcObw=;
-  b=QfMQ39WD5a8McPhxNMScQqh2EjquCC4+mOvHz477tLbSuxJnF9ip8jyu
-   wo+PzYmnZuPCC0xY3w9nQhbfl3DdCqTRxyMOJQ5FYDNeWk1rHhQOiEeC7
-   Wvk5aZrCEVTlFOEDkRC6juXKxGoG7HXBniALuoQMnTZQZ6plCBMFDh3Vr
-   MpbA7cWE1GJxVgZUdoXc40iQYdCvfW1Ew8I5b6S/V+qp07g1iv/NygYNv
-   UmPyDXBcN7fy4nvkF539u61+8D5XH7cxFzs9yyy+FvgzX7ENtlRE8z0/q
-   vjnV5Qm+gmxxlcg6CqNgrr97rm3nMuxMnkmERGn6o9HDvGSeCUTejftvq
-   A==;
-X-CSE-ConnectionGUID: Bwx920g8Q76UIYJvJY+8fw==
-X-CSE-MsgGUID: OPpfwte5TGGtEVoYW5Dtrg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42258846"
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; 
-   d="scan'208";a="42258846"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 21:30:40 -0800
-X-CSE-ConnectionGUID: FOt1b/HPS/Kk/o/pTnuQsA==
-X-CSE-MsgGUID: F1Uayh3pT8GmKmLuuh1/nw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; 
-   d="scan'208";a="119602412"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa009.fm.intel.com with ESMTP; 05 Mar 2025 21:30:37 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tq3oX-000MaE-2x;
-	Thu, 06 Mar 2025 05:30:33 +0000
-Date: Thu, 6 Mar 2025 13:29:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-rtc@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Inochi Amaoto <inochiama@gmail.com>, dlan@gentoo.org,
-	linux-kernel@vger.kernel.org,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Lee Jones <lee@kernel.org>,
+	s=arc-20240116; t=1741239110; c=relaxed/simple;
+	bh=21+dOg3I9fKF3EHjdpUkxu22MliBZ1fbqSNwmAHh6lY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sBL3SzYzSV9P1NVyd7aZlEZeXko5nQuWk8eJVEAg1LQPm8i9I0qUp21Aa3PeysaSLT6xLBMSG/fbcJjJ+6WKbPpAh4BblNdtVDIUURXxwVhggSW3tTjjMhKUzDsPmi1L9lMoEWHKVytRHILvqNSTUA6vA/Zfc1wytEG5Vh6eMUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UUvxcT62; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-223fb0f619dso3899955ad.1;
+        Wed, 05 Mar 2025 21:31:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741239108; x=1741843908; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XPV0znL7nz58O+lW/24l76muS4jiliyuI22DsAMYv10=;
+        b=UUvxcT62EYVhzpBOFz9WrxaqFc02utnlKQxlsKizFqjZDLs2eYJ1K0sTpTpZ1aLT3L
+         cdMsNK+ForZWdxcXs2fblai6sbknwCBFLlpNfaarlsJ4Syp3L9iwSIsMb0NVEaLHalRh
+         Q4QGFfzq1LWp1+TfOB/mNusBlrsntDZL7ye7QTwE8aQTK0bRJHxsZ+FqeXioioR0l6cE
+         9DvRid15RYoG2w1LCG0pkE7COxwiFFQkfaOazBw6EY0UGy81xUD3u7DSKRIAFRApy9FM
+         +3YZjTEn/F659I3FnzHfXJQF3hx+Ec/GO5qV4koH3kTDGjDYzSGSLkl3XcWIJgeQR4qB
+         ElxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741239108; x=1741843908;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XPV0znL7nz58O+lW/24l76muS4jiliyuI22DsAMYv10=;
+        b=wLCOsL5r004n8Cus5xrdrSjoSeRzkcvpsUOEZCpYZTsEJlIfmUmqFG3PwGG748RgCI
+         ZC+Yzq/yrVoO03RuaPxPQY3yf1T0e/cnggFHNqloc/vqiNLBEnkdagUk10KjwVhbeVJn
+         +DlgT5338hf57WTKITKZHehO2/eAi5r87i/j9VY3zKbFxyvlPNVbbfL50tN+K9o1y1o3
+         ZRAhD6iLC0kvI90TWeR1/U/i1o8GL4k0RAjoYb3JppHKCzNfw3czRlpFdcczcml8McG1
+         1IyOF+ca0ZPztXqk1kQrofWBsUgTS8LMC75h3d511y/siJM0+ta3GCmx0Mlv9J4BFOTQ
+         lsAw==
+X-Forwarded-Encrypted: i=1; AJvYcCUShSJ4YysfKUNHv2WsBpWiZ1y/hYfFWdv/NYz7G5sV0pE6eHyFMrBHMOUfCOtQoUZKG6HFYg9q0C5pU4Ip@vger.kernel.org, AJvYcCWbuGZE6UPAJkPEt3zmBlGWC0bMm1jgccrNzx/B0/YLsQV3Yi2d6T38VIkvxntfHAHNINYnj5ON@vger.kernel.org, AJvYcCWiJvbKSADIdsZDYZ6hX/OAuoJqbV5Ljmik5hXD1cllRFYiLgk/rEwMEALk+VqofG8IRX5IrI+JTUXE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdAu1+tUd/MH8akz2lACHnj+eSOOfN39TMBYh/1hcduyCOFr7z
+	trcgmf2kxPQFkpW1SO7mGx/eKH9VN3/Wz1ck2y5XTQdO4xLEJ3XSzsWy2Q==
+X-Gm-Gg: ASbGnctc0+NNt/DYLP6tmNS5iKXa5JYjAMGUExFExDlobojmzBtfBYAV9m5scphvbtU
+	0c6uTUqsgCStcms6kVKOZApjmTX4vv8+6b/5qySrJF5PusJrhc3B31GaQ2EcjaHSJuf2gmqwilW
+	4HpmcZFMZtWIgqFRyTmseGJDYl3SJ9igZYZ7VqiJ4VE3goczx7XY4qXBEn1eULgm8Qz0EZO8nqG
+	g/4LhDneGs2RBMXXiMbIEgdhR6Z/353QZsiOsSdnKDRRcNAVpMZLp1NELZxQ9+T6AxegfLaY3NU
+	xPosFmT12Ro3uCdyko/1W1xa7bsVtWtVGhHDls6vwXoQyWIUBRnQv/+z9TPgSQoz
+X-Google-Smtp-Source: AGHT+IHhjTnrYo8BFZpFqMB3SZ/0bD9Efdlw+aOVV9ml7zTFUgtLO0KPb2PzcYfEpCkJ+sbXFwnJOw==
+X-Received: by 2002:a17:902:f683:b0:223:5c77:7ef1 with SMTP id d9443c01a7336-223f1c982c4mr94308325ad.21.1741239108322;
+        Wed, 05 Mar 2025 21:31:48 -0800 (PST)
+Received: from localhost.localdomain ([205.250.198.200])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22410aa8ae4sm3470045ad.243.2025.03.05.21.31.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Mar 2025 21:31:48 -0800 (PST)
+From: Kyle Hendry <kylehendrydev@gmail.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	sophgo@lists.linux.dev
-Subject: Re: [PATCH v12 2/3] mfd: sophgo: cv1800: rtcsys: New driver
- (handling RTC only)
-Message-ID: <202503061309.yjpOnrMo-lkp@intel.com>
-References: <20250302195205.3183174-3-alexander.sverdlin@gmail.com>
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: noltari@gmail.com,
+	jonas.gorski@gmail.com,
+	Kyle Hendry <kylehendrydev@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v4 0/3] net: phy: bcm63xx: add support for BCM63268 GPHY
+Date: Wed,  5 Mar 2025 21:30:57 -0800
+Message-ID: <20250306053105.41677-1-kylehendrydev@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250302195205.3183174-3-alexander.sverdlin@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Alexander,
+Some BCM63268 bootloaders do not enable the internal PHYs by default.
+This patch series adds a phy driver to set the registers required 
+for the gigabit PHY to work. 
 
-kernel test robot noticed the following build warnings:
+Who should I list as maintainer in the schema?
 
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on abelloni/rtc-next linus/master lee-mfd/for-mfd-fixes v6.14-rc5 next-20250305]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+v4 changes:
+- Remove unecessary checks
+- Make commit message more concise
+- Tag for net-next
+- Add include to schema to fix dt_binding_check
+- Schema formatting
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexander-Sverdlin/dt-bindings-mfd-sophgo-add-RTC-support-for-Sophgo-CV1800-series-SoC/20250303-035433
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20250302195205.3183174-3-alexander.sverdlin%40gmail.com
-patch subject: [PATCH v12 2/3] mfd: sophgo: cv1800: rtcsys: New driver (handling RTC only)
-config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20250306/202503061309.yjpOnrMo-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250306/202503061309.yjpOnrMo-lkp@intel.com/reproduce)
+v3: https://lore.kernel.org/netdev/20250228002722.5619-1-kylehendrydev@gmail.com/
+- Remove syscon for the GPHY control register
+- Change driver to access the GPIO controller syscon
+- Move syscon phandle from mdio bus to phy node
+- Remove unecessary devm_phy_package_join()
+- Made functions static to fix build warning
+- Fix formatting and whitespace issues
+- Add schema for PHY driver
+- Deassert PHY reset signal 
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503061309.yjpOnrMo-lkp@intel.com/
+v2: https://lore.kernel.org/netdev/d819144d-ce2f-4ea5-8bfb-83e341672da6@gmail.com/
+- Remove changes to b53 dsa code and rework fix as a PHY driver
+- Use a regmap for accessing GPHY control register
+- Add documentaion for device tree changes
 
-All warnings (new ones prefixed by >>):
+v1: https://lore.kernel.org/netdev/20250206043055.177004-1-kylehendrydev@gmail.com/
 
->> drivers/mfd/cv1800-rtcsys.c:30:30: warning: 'cv1800_rtcsys_rtc_subdev' defined but not used [-Wunused-const-variable=]
-      30 | static const struct mfd_cell cv1800_rtcsys_rtc_subdev =
-         |                              ^~~~~~~~~~~~~~~~~~~~~~~~
+Signed-off-by: Kyle Hendry <kylehendrydev@gmail.com>
 
+Kyle Hendry (3):
+  net: phy: bcm63xx: add support for BCM63268 GPHY
+  net: phy: enable bcm63xx on bmips
+  dt-bindings: net: phy: add BCM63268 GPHY
 
-vim +/cv1800_rtcsys_rtc_subdev +30 drivers/mfd/cv1800-rtcsys.c
-
-    29	
-  > 30	static const struct mfd_cell cv1800_rtcsys_rtc_subdev =
-    31		MFD_CELL_NAME("cv1800-rtc");
-    32	
+ .../bindings/net/brcm,bcm63268-gphy.yaml      | 52 +++++++++++
+ drivers/net/phy/Kconfig                       |  4 +-
+ drivers/net/phy/bcm63xx.c                     | 88 +++++++++++++++++++
+ 3 files changed, 142 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/brcm,bcm63268-gphy.yaml
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
