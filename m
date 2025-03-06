@@ -1,130 +1,90 @@
-Return-Path: <devicetree+bounces-154721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A125A54530
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:42:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6434BA5452B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:42:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9821618957A9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:42:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C62F3AB9AE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:42:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57FCB207DF8;
-	Thu,  6 Mar 2025 08:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15269207A0F;
+	Thu,  6 Mar 2025 08:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jfWAor/D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="srujC6gz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91601207A23;
-	Thu,  6 Mar 2025 08:42:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1CCB207A04;
+	Thu,  6 Mar 2025 08:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741250537; cv=none; b=IvqMmnSLh3DzZtby2PUbsMx+RE0440FcCRz8eb1PzHQ1Y9MScmn2CqoHvj5JpdviAiPakqNe+YaQeOgPQInbLU5plkNyzTCDEwkeVNiBxT+0lYXo5gQRoMvAYpK3VPK5hAfy0JOQ56zcB+gtgHFucLanNVzFRslwdOnVS+VkmQM=
+	t=1741250528; cv=none; b=HUustnFpgRExg8t7eEsKIhLvOsdoo2pjyl+AKdknfE+hzLW+kcBapoU4BH2IJf8BTrZzp2OmdB63LPXt6OMU7ynbZlZIpSi//tgBtoTbmf8D5qAT9/3Ud3tDH18Dkc92WiUPJXPbKCmgdNCiwA+gkQubqmh/SYhqolKdyHkfPXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741250537; c=relaxed/simple;
-	bh=WE8HEXPDHlP3/Ze6vBhaSEBaCZ2xj3Huz/M2ft6sExY=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=Gkp5wvvdymjnRZdTsN5fEbIROJzup/nP5EW6uBw5QN4MzZMii0eix6ORUPUan24pzjfZuW2ZgTJnuos4HN6WRL8UgT2YtsQWcc7bkEifaB2bjY0NZDATmI2sN1OGRFqeA79u1Y6Lx4uCbxic+2P5/59QUFyOv1rWOcoMaf4eC6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jfWAor/D; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5e4f5cc3172so554024a12.0;
-        Thu, 06 Mar 2025 00:42:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741250534; x=1741855334; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WE8HEXPDHlP3/Ze6vBhaSEBaCZ2xj3Huz/M2ft6sExY=;
-        b=jfWAor/DYnp++Rvcef+MpDhPFKXsxoaHt+rbME3LNGyFtQyzxPFX+0/4lewisMF8Oj
-         7LZBj32Hayhyr+P95FOcvdO8Lpaku6+MU3IPh5r3TqxuSoYl1DdkHaHrS4OsuqEq5fTG
-         /cYUUA7bHvkRAUTDLovRoOLMPJSrgBoJLhA2A3HT+Q2deeSMF6RW28gM6vDCv6Bud5Zf
-         vAP6e+tCtUA47iiFPWsnmCMSYNWGWjSAscKPoxdDdFjPAsdCSnC5I0GHMdUdT0ZGj/8b
-         AHu6dnwNGiA9TjwPc+cQHNZc4dYDuHb18ULlR12GgDaAzuUg/d3lt8RsQFRg5512aHs8
-         yF8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741250534; x=1741855334;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WE8HEXPDHlP3/Ze6vBhaSEBaCZ2xj3Huz/M2ft6sExY=;
-        b=X9X/gu8SW46oZREmcOkbGXL8iWMxYt3MICA4ur8O2bEUP01yBQx2ytTAqML7ig7CQ1
-         r/xUdNggTWRAqXAs3MozTJ6JPYZsF3/SrHkQPcoAeOH+vLodCO8VggU2o6qUN0AXRkCq
-         AymRlnyqvekmCYVCWLvbbA1FYYf69MUo2jG/MIeRab/CSxcbHgf7CxYF89Ux+NCtEX7X
-         XsVIpVDRvoD4HZ1/mbk2xltAb9BEmPuiWsMu5mcZp97KUAbvIRb9z6Ftxi9oKpQIYBVY
-         bgQ/CqDA5HCen6ktKmno+/BPMQAzouELF39Orw3gleYXD3LDjQdtG0XYsZT3Ik/03aC6
-         UgOA==
-X-Forwarded-Encrypted: i=1; AJvYcCXdqkaUGxu4cj6E1zUiGEcuhZDW4QprkjCInRaxDB7CMUstz9r8slbIfbK86ro+YwHMmuTNbm+WQEYF@vger.kernel.org, AJvYcCXkmlFbYBDzoc7jJ9zO8JBdv5bO8E5HN6kxH23B9uVHJbh2qInmlz3KP3pE76+I4E15wLIpl9Jly7QcrPjD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyia0WynAYplZn3E3j0Z2h5GBZAlGmr4LEYycmR7OeCFd+Z1Y31
-	ItazQrxAZQUvmRUf7RoAsxtd74MivVal5Ie/PtceDg/WBnq0uexIFV3glw==
-X-Gm-Gg: ASbGnctcs9icsWZEz4c+wRkP9YWivVk/BA1VFyF9pqQGf11p5KsHIA8UxsF/QRc7RhY
-	evvD814ygJHIGoouG7cyLpw7A5CYcEhqTYrUQoLCIz6Y2/5ypPb3jciauAqxwIRZR+GtZsYISuq
-	8dVyk70K1EdpcqtvGmjpB7QGyE7M4hzJ81al3xsxo9LGgFps3HVmEITCm3I/MwXt8gOAKYqxpm/
-	l9sil71b6kui507OmCeogeOgbHgsOMngVwb/k1sZ+mxHPxOx+Cgp2T9ZQRWJu6kbZhUcVKEvMZh
-	JwJyv6l/dvwkwLt7F//AMNlXxg3GLmldqX1kYCooUayHA+3HeFPx8MWHLVTky5C6SgokHYDJcfs
-	AqiPfjMGF6IInTmxiqADf+cWNfg==
-X-Google-Smtp-Source: AGHT+IH7rJ0bI5uRIzIqrHdOqVbIP+Y1Jj/C4uRWsNFMJDfrRYE/cGnXxp+rRBuh8BWvmklTgurn9A==
-X-Received: by 2002:a05:6402:2157:b0:5e5:b9b1:8117 with SMTP id 4fb4d7f45d1cf-5e5b9b18547mr3313222a12.18.1741250533408;
-        Thu, 06 Mar 2025 00:42:13 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c766a5f7sm587786a12.58.2025.03.06.00.42.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Mar 2025 00:42:13 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1741250528; c=relaxed/simple;
+	bh=ygirwWVr53tOwDuoXkCCVrhpZWtPE5YuXggrt2tnhjk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pxae4e2Mj6+uXNe8U1nf3Q1RXVqWGJFJAZvOA42bYESwsDaHKPVW3S1ctrK12HNek+qaqJCxWdwViKLu9e4mDv4TlL5lYn5S3TnCZCUiZrn6rYCbmaU7v7WZLjwyaCKzN4B/wTajWvA35yoRNWeLFZFRn9C4szk5XZ2YEjUm740=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=srujC6gz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D144C4CEE0;
+	Thu,  6 Mar 2025 08:42:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741250527;
+	bh=ygirwWVr53tOwDuoXkCCVrhpZWtPE5YuXggrt2tnhjk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=srujC6gzEXakg6j4HqWTFm5p1Tx2WSksOBJVzFMnjaEnL9qV0k+zycQoyNqebvLZw
+	 92mfngdK9wL/jiKHoh6S2nIiIaPayE2zidQsjl3x7XmbyfhK+2vpEwC0ZzuGK8ZqG1
+	 tpVfUvGBNmpFfR21d6nydl0wnWNus/2FV8oAFmKgRXLkZgwUTQgpX0v+MJptulygzE
+	 zDun1ck1KH1t3fSsPWwt/VRjUmMQUspjj8IpqkjFbVKf9HcZpJzNJT6sL+2zF5fPy9
+	 pivLrFo1zjA5ipWSzVjnX2mL952gTuzA5sMS4gWqinXWLBtsZufVFU142S2/KwbRQd
+	 zCRJgrfy+C8HA==
+Date: Thu, 6 Mar 2025 09:42:03 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Vaishnav Achath <vaishnav.a@ti.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 1/3] spi: dt-bindings: cdns,qspi-nor: Be more descriptive
+ regarding what this controller is
+Message-ID: <20250306-puzzling-placid-guillemot-3ba7bb@krzk-bin>
+References: <20250305200133.2511308-1-miquel.raynal@bootlin.com>
+ <20250305200133.2511308-2-miquel.raynal@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
-Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-X-Priority: 3
-In-Reply-To: <28b0d3fc.bb3.19568f6b5f8.Coremail.andyshrk@163.com>
-Date: Thu, 6 Mar 2025 09:42:00 +0100
-Cc: heiko@sntech.de,
- neil.armstrong@linaro.org,
- sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org,
- hjc@rock-chips.com,
- mripard@kernel.org,
- linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- yubing.zhang@rock-chips.com,
- dri-devel@lists.freedesktop.org,
- Andy Yan <andy.yan@rock-chips.com>,
- krzk+dt@kernel.org,
- robh@kernel.org,
- linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <44213B17-FE14-4FB8-8319-1E31BBF6EAA0@gmail.com>
-References: <25401bfa.291d.19564244e54.Coremail.andyshrk@163.com>
- <75189787-28E1-4FC2-8E10-4960B3877A6F@gmail.com>
- <28b0d3fc.bb3.19568f6b5f8.Coremail.andyshrk@163.com>
-To: Andy Yan <andyshrk@163.com>
-X-Mailer: Apple Mail (2.3826.400.131.1.6)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250305200133.2511308-2-miquel.raynal@bootlin.com>
 
+On Wed, Mar 05, 2025 at 09:01:31PM +0100, Miquel Raynal wrote:
+> Despite being very common in commit logs, SPI NOR controllers simply do
+> not exist. At least, they are not as specific as the name implies. There
+> are SPI memory controllers which are indeed "specialized" and optimized
+> for handling "memories", but most of them are just generic and accept
+> almost any kind of opcode, address, dummy and data cycles, making them
+> as suitable for NANDs than NORs.
+> 
+> Furthermore, this controller supports any kind of bus, from single to
+> octal NAND, so make it clear.
+> 
+> Also add a comment to mention that the initial compatible naming is too
+> specific (but obviously kept for backward compatibility reasons).
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
-6 mar 2025, o godz. 01:59:
->=20
->=20
->=20
->=20
-> Both of the two config options should be enabled.
-> andy@Pro480:~/WorkSpace/linux-next$ rg DW_DP .config
-> 4044:CONFIG_ROCKCHIP_DW_DP=3Dy
-
-here i=E2=80=99m a bit lost=E2=80=A6.
-greping on full kernel sources (with applied =
-https://patchwork.kernel.org/project/linux-rockchip/list/?series=3D936784)=
- gives me no single appearance of ROCKCHIP_DW_DP=E2=80=A6
-Do i miss something?
-
+Best regards,
+Krzysztof
 
 
