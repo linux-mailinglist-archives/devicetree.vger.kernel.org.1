@@ -1,284 +1,280 @@
-Return-Path: <devicetree+bounces-154783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F37E4A548D1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:11:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0C5A548DF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:16:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11A367A5F35
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:10:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3A7E1894B92
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:16:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3E82045BC;
-	Thu,  6 Mar 2025 11:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CA3204F7E;
+	Thu,  6 Mar 2025 11:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="E9lo1zv3";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="sjnkADwJ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2ALoJCRw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B106199E88;
-	Thu,  6 Mar 2025 11:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741259438; cv=fail; b=NxJZd9C9Q9AI0mfCrwvsbyxaFM2sN1D2VkM3TsfDfCOicB5FhSSWbuVlEmd19dX2pF1tRkYvXucewTpyxpvEQU9T8NtsXQJZtxGsAoRhOe7BY79R4CuUhlNdfpBfcKGkBnoVfv2w8epPwdM+hABrRwO40D9ceUJ0FVMcIrLmtBg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741259438; c=relaxed/simple;
-	bh=Ra4nKsih27IUnZC/n2YOLCp8y2+C3irwAmeoQjBCdOs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=jyKOaH4IQbGp7yY8iB5suuXazF2KV+Gu06cSHQ8MyP6M/aFNKy9uI6UyQLw3n4f4+DWT5ghgAyIMQZTm1EhoiE9V2MRykSRG0xQVoIOryQEsYCEgPN+uiqjjZSvRyHD4PAIedWBudgrDpG7VL8OynC/pmR7MIsLTEND4mvhAzMA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=E9lo1zv3; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=sjnkADwJ; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 9db85a6afa7b11efaae1fd9735fae912-20250306
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=Ra4nKsih27IUnZC/n2YOLCp8y2+C3irwAmeoQjBCdOs=;
-	b=E9lo1zv3BN8OrUNXt+L30gi8icXNsfg5aaly7Yigul8f6fplWHR4n2d8V4zHSJySQl28RKNDUOgGZXuXstMrV/blmWPVsW0rbud+2YPJ4nH6/CTRyzLIsqmjR9ml4xsFhUux3bu/s6Klb5jS2C21+H6UOfWpzslzE7wKfgS0gYk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:683f2ee3-36ab-407a-93c0-f712618a993b,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:0ef645f,CLOUDID:2e40c449-a527-43d8-8af6-bc8b32d9f5e9,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
-	EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 9db85a6afa7b11efaae1fd9735fae912-20250306
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1344203730; Thu, 06 Mar 2025 19:10:30 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Thu, 6 Mar 2025 19:10:29 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Thu, 6 Mar 2025 19:10:29 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=emk750g+ZQZWLDewhjGv1oaQpEWUOBQTd8B+JETxXQTvt2nEdTp69/MI7DvxWbe1fP5MCb+kxMBSe/JK4tiqEKShZ8G/iZmw6YsiVSxoCNeWRFPyIypdrbxjw4upUQRhQz/sa7t9hjm1Eg+KeHgQ+sv8h9masWIXP6iSSxhCNEKkB76IS0c29Ye1rZ89snT4UopqVg8PMOSy07cpgWbTtUTM/FhYZ6Ea1cTbh+nsWsidcIyjEEk0TgtAddJXvaBHYTaVwXKRArNhgfjaXVzepKPTAD3TJ2MYMlgC4EvcR39xQpc+RYHKcfJUou6nu7U2yrWIkraILSRPhdW3eX7VjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ra4nKsih27IUnZC/n2YOLCp8y2+C3irwAmeoQjBCdOs=;
- b=iZarg5OJcHKEidA+pL/RiKCzWcKJIgobWgg5WUyqHKLLBNdj+sIVfyPiMohe71yklP9CA36U5rMiWCHzjtXUKmVD1HKPJlolzZ8hUSVzT6P1pJ67pT+rl5gYepgsF+TAhkDgmZRYpd27dOyiiwmdYz3RH/5vd6qwP0W8KT4ykFAVkno3mGdMZm3g1q4WU5uvvfWb0kTT81/jHqHCiqU8ntakXFmUb3KtOYKUVHx9xGmsTtN1Ttv0G+cnxBpBtvLNCAXHvXWsHTCGa+rfBf+acktwdZ/WFhEWHBBGF8e8jLroOEq4E7qRQt5SG2Uw7aWS22Rg5oilLbALfAEHZtvJ6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A0B41FCFE4
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 11:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741259760; cv=none; b=W+02zUeJOu+NrQnXVb+ySJtGIMt55FGh4KnxCNUcPBtfpNsJGqYadDaWMFMk3aKXhqwim3+qQSLyoG4ILSqLR9augGw+vxsgw9nhhqkF+lBouy/qqpEvz8/O0R3NL8UEqQrZOGe4IACbLhScLDBOM+DYVSCmF4b1xnLWJ58FfTw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741259760; c=relaxed/simple;
+	bh=YevAipZm/+lyAcJ9AjGTXmRxKhKQj/5yvsZrO88ZVtA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PliTtvP1ciqvTmZXtPCpNetcXcl28tYliG0S464ZzJXXNPtj4/bXR5n6Cw1f3OuCEAS9ZbykQKI7KSI49wyfSxyGMH91BMZ8Em4aZLphwvE8o2ffyx4cq982S9e9vlCXJNST6FEpim2K+hZvyFSKj1ImxjbGgVfjFnxlfRGTEbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2ALoJCRw; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5e5c7d6b96fso792496a12.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Mar 2025 03:15:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ra4nKsih27IUnZC/n2YOLCp8y2+C3irwAmeoQjBCdOs=;
- b=sjnkADwJfGF0YulFtEcl8ZOtv97cNr9N7VZ+DyzJN3i63kJCQudsKYGT0w6hBzOkr5G8IFi5NEr4puR08BuFFp4xwTy68I6Xv+K/LWJDfaRPqDA9W9NT/e6fyZYrpSwZv9S/tw1QOr+opfqVEfwx8JVDR40bxNXUV6fAzsT4jtM=
-Received: from SEYPR03MB7682.apcprd03.prod.outlook.com (2603:1096:101:149::11)
- by JH0PR03MB7927.apcprd03.prod.outlook.com (2603:1096:990:34::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.17; Thu, 6 Mar
- 2025 11:10:26 +0000
-Received: from SEYPR03MB7682.apcprd03.prod.outlook.com
- ([fe80::c6cc:cbf7:59cf:62b6]) by SEYPR03MB7682.apcprd03.prod.outlook.com
- ([fe80::c6cc:cbf7:59cf:62b6%3]) with mapi id 15.20.8511.017; Thu, 6 Mar 2025
- 11:10:26 +0000
-From: =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-To: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "mchehab@kernel.org" <mchehab@kernel.org>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-	"jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>
-CC: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	=?utf-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
-	=?utf-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
-	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-	=?utf-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
-	<Xiandong.Wang@mediatek.com>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"fshao@chromium.org" <fshao@chromium.org>,
-	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-	=?utf-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "treapking@chromium.org"
-	<treapking@chromium.org>
-Subject: Re: [PATCH v4 7/8] drm/mediatek: Add programming flow for unsupported
- subsys ID hardware
-Thread-Topic: [PATCH v4 7/8] drm/mediatek: Add programming flow for
- unsupported subsys ID hardware
-Thread-Index: AQHbgchC1LDQOm8+tk6+Bz9oOtAgy7Nl9hGAgAAXFIA=
-Date: Thu, 6 Mar 2025 11:10:26 +0000
-Message-ID: <5132cd9dd130917d0d08fc8c2e5057e7e5cef040.camel@mediatek.com>
-References: <20250218054405.2017918-1-jason-jh.lin@mediatek.com>
-	 <20250218054405.2017918-8-jason-jh.lin@mediatek.com>
-	 <d1c2dfa8-c7e0-40b2-8b39-c04854e3ee24@collabora.com>
-In-Reply-To: <d1c2dfa8-c7e0-40b2-8b39-c04854e3ee24@collabora.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR03MB7682:EE_|JH0PR03MB7927:EE_
-x-ms-office365-filtering-correlation-id: 135bedd8-10fc-45de-68c6-08dd5c9f7f80
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|7416014|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?d0wxRXJFOGVDZjdTdllBSG4zbTNtWmxRTmVKVVFtREpTclJlZlpCVHBHS2dw?=
- =?utf-8?B?bjB5RDAzTEFQUE1UYXV2RlNPZmoxU0F3NXUycktRTmZnQXFNQ0NHWXVGNjBn?=
- =?utf-8?B?dHVjWGZ5UEpqOXNvc1dTdk1mYTRrQ0pSRGpUUUtWVHlDb1J0NDZrTEc4TWly?=
- =?utf-8?B?VFRSSkRpUkgxUTlvN2tUbWQ3Qk10cUhLRHlMTkJMWHFnUWlXTFVxalRlNkxH?=
- =?utf-8?B?MWVKeWNQZ2x3eVNNSlcxMFJNdHVLM0VwQWh6Z1lMNjRmT2FDalRJQ0ZTWDdL?=
- =?utf-8?B?VndaWVR2elhXQ21WTjZSVExyNGpEb1RVVUZpNk9BU2NyRkcwd0hPZXB4QjNS?=
- =?utf-8?B?dWh1b0FncjRNbTV3ZVJieXo0ZVFKUGI4N1NzelVydmhKNkVINys2Nyt0bDVj?=
- =?utf-8?B?SXFQVW1mOUY0TFJHaHFIdkZCckxVS3VMUmNoSEhUWTBIdTlTaU1IWVh0bVJ3?=
- =?utf-8?B?Q0pXcmI5amw2a1F4NGpGNkJVeklCYWtvZUgwV2ZWUWJDZzBiVUdTY0Rsdy8w?=
- =?utf-8?B?dTJuSGNIU0RCeXhKZHBPTmxocTFZZmw3QzVKZHp0Q1hVNXhaOFo0UFVYZDNF?=
- =?utf-8?B?Q2lnd01HTC8vWVdFZW5BRVhQL2lBaVdOZkJGelpFS2RyOXlWV1hzTzdJUFlp?=
- =?utf-8?B?dGxRTTFuNjFMV2xpU1ZiOGltd0JnelZLMk8xUjhVN2R0VDNIMC8xVy9oZnUx?=
- =?utf-8?B?NFhFeUFXUENtd0dTcFV4ZkEzUE9FRnNNNFg0MVBRRkJidnplWStJeVZ4aGYz?=
- =?utf-8?B?SzVLUUlZaVczYTcyQ3pCT0VpTmwvcWRId2hHUG5IaHNUclNkeVgxcnUwQkti?=
- =?utf-8?B?WUZidkh1QlhyK0hTRWs2NmVxcDVHM1pUNitHMjRoTjZxbzU2Y0Y3REpYQUlG?=
- =?utf-8?B?UmdPbk0zMi85SGVjVWx6MXBQZzhxY25iK1A1TlhyUG16b3pjalpPdERiS2lS?=
- =?utf-8?B?OVZOK255VXk3OXdhR1ZOcmw4ZENpM1p5SkVPN3pqVjFZNXlaTUtrdWhaOU1X?=
- =?utf-8?B?eUN2QTliMkozZVRyZzE2NUN6am5DdHpIUzRMNnBPOUhsNUdBUm9lVWVpSmNT?=
- =?utf-8?B?QTE1cTdNY0c5SVJOR0lTckhpTVdaYUJDS3NNSFBSZ0t6aFlpR3FoM0xBV3VD?=
- =?utf-8?B?c0pmc3U0ZVVVK2h4a3NFRVZ5N3hxbWc5NCsyVjlsTlRTdkEzSUVObEp3Yzc4?=
- =?utf-8?B?djlFWjZiSGRoaWpqaDZEd1B2MS80MG5BK2JTTEFzejNQRlJIbEpURXlmRkVY?=
- =?utf-8?B?VW1lcDNXZmF4djZpUDdsWFNtV1hscmhXb3BDemhrV1M3RklmZ1pudEl0ZmRV?=
- =?utf-8?B?d0Fxd2NlbDdPZm52OVRnUXdTeFNJMkVlNDJ2ZlhOL0RGdmpjbzdIcGZHVFBT?=
- =?utf-8?B?TllMZnJRaStoeHZUOGNETTgxMnVPMHduRFZHcHo1ZlVGTVZzcUo2eHBROW4r?=
- =?utf-8?B?T1NvT2hHWVpNUmkxdmI1SzdFcHNFd294WTR1WjZ1NkJVcDQySkpEWDFTbVFr?=
- =?utf-8?B?SGd6c3owWjgyMVJnMkIrRHVMV2hMRjQreXl3U0VtZVVTTmFrbWMrNmNqUzVY?=
- =?utf-8?B?eWtpSFlINEovdzB5MTVqYnI3Zmg3eEQxM1QrNzZmeVpEdCs2SEFGVkQ3VC9j?=
- =?utf-8?B?UUpUaklQTWxDVzR4VUpNMTlWMnBYNlZ5NVdZdGk1SnV6a1RDclFPdCtpa1Jl?=
- =?utf-8?B?c1JHZGo3S0Nzcnp3YVVnVlI5UndTWCtiNG1YNWNTY2twTUpPaGNwUHdNanNy?=
- =?utf-8?B?cE15TDFXZHN5T25nNEEvdGlRSTVNZDZTbEw5aDJUOFU5dXRpVGJoT3lXcURL?=
- =?utf-8?B?SHBlalQyWDFpcDhkUjNIbmZoMjlncVV0RThRS2hIRWlGN1dJVEU0VXUzRUI4?=
- =?utf-8?B?a2lIamxLdlRpd29NSWxmWGtFRCt4NmxiYnA1SjMxQ0JmN0tWNkdWTlFESU1E?=
- =?utf-8?Q?m5PeEYcqdSnVWJsCIilUrkjYpXF1UdnF?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR03MB7682.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(7416014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WldxUTZDNjRpbFlKZ2pDYk9oRC9rMUMveVZDd3RWSXpWY3o2eU5JVHFpQW5u?=
- =?utf-8?B?U2MrL25Tb0tvTXY5eTV5cS9jalpNMis4QWh1YTdZNG03Vm95SXBZLzlnMVJD?=
- =?utf-8?B?RVlJQ1dCK00wTnZWMDRrMWVvVU1yU01Lc2JEY1VnRHFJa2xCUEh4cmpuZFhG?=
- =?utf-8?B?QnNmR1RNdzkrNTVob2dxeEZqd3QwQzAyM01FQjFqckxodWhSNGhQR1o4eDVu?=
- =?utf-8?B?OHAzSVJIMDdKOWpMWTF4MkFSK0NUazVDYnByZDlNZGRLazh6aE0yNExaZWZw?=
- =?utf-8?B?OHJjVUs5YUJaeEZjZm42aVhWT2x4NkVJNDk0Yy9DSVZTQjdvTy9xWThqUkQ2?=
- =?utf-8?B?Z3U5TWZRUmRRL0JhQ3NZNzJFa25zbWZod05NUndmWVBxb2dqUFhGblZzekZu?=
- =?utf-8?B?Y3hlcmVSRGJWelpZTThxVWllRFdDRFUwMllmNjdPelc3WHEwcDFmRjdUWXpE?=
- =?utf-8?B?dDJLVllqWjEwVS9sK2xtNzBIRkwzTlg2YTNSdnpETUdHYU5hNnVzMFBzVm51?=
- =?utf-8?B?cis3U01IbzMyc09WWDhMV0VITGtkK01jNll5Y3hXNUo3Rm01TXlML2ZYbzNQ?=
- =?utf-8?B?RGdHejJBYTdrcUdMN1BkelRiSThPdnB5TkM3MkhUdXJLaFkyK29IN1U4QjJx?=
- =?utf-8?B?Rk5Vak4xSUJYNDNTNmNtblJxZHVWbFN6QUpTZSsrK1dhVy9aeEVpNzM1STFt?=
- =?utf-8?B?QjFGMUdIUnA4T1JYbkRDMjZNRHcvMEhhRVNvNk5LbUJ1WnNscllQakJ4YWUv?=
- =?utf-8?B?MWdtTmtUaWRrdE43RHpGd05oRmlHcE5KVW51RjVYZC9HZTFTMFhDM0w2Z1pS?=
- =?utf-8?B?NGlvVjN5Y1FuZ2R3VlJCY1liL0lFcENRclQ0WmVOSGhHUUZDL2UwMGhwNWZ6?=
- =?utf-8?B?MWdRb2ZlSHVxZnZ4bmIxWHFOd3hJRmN1a21INkY5NlY2Skg5cHdYc0FxN2dQ?=
- =?utf-8?B?MWtMV05BRVZyQ2ZiMUxpbkFqeUgzcXJRU2ZKeTZKQlBXMGNZUmphdUxUV3dB?=
- =?utf-8?B?L2JIOEhqdCsrdFRQS2hwamtiaUwwV2lORnd5WnFYRGluWHFaT3lOQTF2QWhk?=
- =?utf-8?B?dkM2akloNUdzSENtOHEvd3ZZZUo2eXViNmVCZTVlV3JsazluZ2tOTCtycHFp?=
- =?utf-8?B?WmllSVRXenpkRDVnNTJSRFd2STRGMGtqTFl4b3cvYXEvbUlzdEZ5SnNtUXVa?=
- =?utf-8?B?Y2pFMzYwQkFaS0RzZjBTbGRWZlQxWnY4dDdYYUprYlIzT2lCcHFWKzNueUlJ?=
- =?utf-8?B?TnpvNmF5d0JoaUl3ZDdPV2tYekMyV0t5aFA1dEErelZwa2pzUFp0R2FrSk9D?=
- =?utf-8?B?M0UxQ3VBWitSRk9kWW9rN21Bd1pGY2VlQ3ZxYkxyWTl5M3lhNFZTK3hFZkN3?=
- =?utf-8?B?eTRCQUJpWVFQd2Q3QUJ2d2FaeHB0ZnN6ait4ZTlFbXdmNlk4MTcwbkZVdThJ?=
- =?utf-8?B?cTJBNDJTSERrNUxSVjVvRmpBNjRJSDNFelVlMDh2dUhCVm5lbDVOemhHUlBo?=
- =?utf-8?B?NUZwZURzWnpRanpxaFJ6bFRKcDRJQWtJNUJhMUlvTVlvSGFyd05JNmp0ZkNj?=
- =?utf-8?B?Zy9RS0tkalhnMTZ1Tm1FR0JKQjhWZks0VXBWRUFJQ3VtNGppQWtaNHhEeXlD?=
- =?utf-8?B?VnZSeTNxcVdEZFhiOUxWSUIyWnNHWFJ0RlV1UjhST1hnK2tDTVY0ZHVrZ2RN?=
- =?utf-8?B?YlMwd2pyTjZsK2Fnb05uT1UxOXZaRVZMcFErZ0d1MlBQUjVlSTJoVXdnZkE4?=
- =?utf-8?B?OU4vVHRJYWVYZ2tBUVVQYUJFdTlsR3hHZmpiQytua2NPTldKYlcveGtFMUxu?=
- =?utf-8?B?VWxjSHBvdlZPVy94QWtpR2xodmFYWU1LdGVQU2pVYnc3TDY3eGt4VGdMeXNi?=
- =?utf-8?B?OXlMd3VtNkVrR3dHTkI5Y1lHbzlHRzBhVU04TFZ1SEw3SDZYTmM5L0hDMWVM?=
- =?utf-8?B?SWc5OE1od0ticUl4ZlB4UkdpUGFodGFLSXFnQ0xtZHExQlBVUU9SMkRZWG55?=
- =?utf-8?B?Z1NySWozQzlHWE1mVzM5bWowUWZRbUV0Ly83N0lhOWt4b1JlNnY4d3A0Z1Rm?=
- =?utf-8?B?aFVOTmJYcFpIQXN4N3JUdGxTdXZyajNZWEVsL1ZrdEhodXpJdTVvU0VRbXd1?=
- =?utf-8?B?R2xpMjRBdk84OENKMHJYY2o4VFpoR3pQTjJ4VWZuTURQRUowWmkwOWg0alBE?=
- =?utf-8?B?ekE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DF52C0C540273A4AB855362691C7F5AC@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1741259755; x=1741864555; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dWLJq7ftyKy37p7zHFjkyk8VxM1La8FbGatFxYaxm+o=;
+        b=2ALoJCRw60pO6EnooOS0RR8MD6KUgp+vfENCNjHrrEWFAiBKPCO3k/lK0tjVmIUqpq
+         YTlSyaFjsddYMMKbZqhfU0ZRQ6VDcmhOuJYc2vxWP3cCGArla/NhBkSVo7Mh383Zr4SN
+         tZ+f3pukr36g2jkIl+ojPPc+zCxpYCWH2mW5w5Zh2HFAKFUXnv24ftQaE60139rDnUNf
+         gZsJSyUfaETm5o+t5+9Ujr8QpJcYQ1EfOBdVrscweFi9b7zR1uTmrs8BxhA0Rmh7ODy2
+         gUB0PpSL/X7Fvg/fK0BvHvax8c/tgkki4qJnrERF2cU/Ce8x28m57y8uBMv7E76Iexe6
+         WuUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741259755; x=1741864555;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dWLJq7ftyKy37p7zHFjkyk8VxM1La8FbGatFxYaxm+o=;
+        b=u35yFCbSZUtpA+hFmn+3Y7uJAH+g9wYorB6MycY1Ycbt/Uxe9ew4bydObaZ2XbQ5u1
+         cqdtAEj8O22k+HA8n80ezbsFB4SSjiftbzZNNQgrLhnh9zbDNJlUe2SPvLpyTV1pltB1
+         Qh6a5BVNpUsjvI01g8H1jX/r595fHYbNllRTGZjecj9NNDAHNpRR5NJSRgeZg8ddxZpx
+         d85TYKS473kJAH2PlNttGCktWI/7ZXEiNYwNjX/4PKLi4P1C5WMDIsMwCUmrKhCx0b/7
+         nu6B7CyMBZHUDO3cLMiEjIfc0Mw1GV8/iUZh6B6mmpx7U0KYORaAVKyWrbh0SwIIG4zy
+         oZIw==
+X-Forwarded-Encrypted: i=1; AJvYcCXpNL3r/tX1+EvwJZR1lyjmRIbMW5k1cbDXjeXlUbMJlXKz8IAyOaukCVJZPiMP/oQAu0lmZivqEPPF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yye1Tknbz60zCJo+iqFFoq6s6r7dVVlzuPcvaIVjYNEmuWB23i+
+	4+NhvdYEPPTwOKb/U4B1sEnTXf+fz32wP9a6803oxWt1sLWgGddyOfbAaroG5kI=
+X-Gm-Gg: ASbGnctPfZniod7NONsTPSxOO30FIe9IGxgaeFtfLj50tIcCjnBu+VYaPlmt39s0mvf
+	KT1NK/c9v7Ebh70L/yLv13rKlirWMidRa25YfvT/wC60z1Gd3FKDCNxjj1WQ6r8ytTcEnav6Uqc
+	9chnxiFBRzFJhqzW2N92vkMsRvXKaCR8pImTY26ExhFK1jjje4hKJhFy45liBoCd2denYEoe4W4
+	p3H2dxuFKzeZpL+L0lWcY1LkgBIMQQ82z87tGu0rQoVp50r+3Q8b+OHjGX0SAfJ268T7I91YT8Q
+	MMlXz6EDm5TIm0oxzuZ/f2lw2n8RGyW91a4SNH/4Xw==
+X-Google-Smtp-Source: AGHT+IHSKv/iLY4xG1FTSXhFmi2aztkk4M5rcVMuXstlVjF4Qr5KDJ4BrcjybmmrVGWo69K5HXyYQQ==
+X-Received: by 2002:a05:6402:5110:b0:5e5:c1fd:bf56 with SMTP id 4fb4d7f45d1cf-5e5c1fdc40amr2678822a12.26.1741259755275;
+        Thu, 06 Mar 2025 03:15:55 -0800 (PST)
+Received: from localhost ([2001:4091:a245:8327:80ad:8144:3b07:4679])
+        by smtp.gmail.com with UTF8SMTPSA id 4fb4d7f45d1cf-5e5c7472100sm793530a12.27.2025.03.06.03.15.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Mar 2025 03:15:54 -0800 (PST)
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH v5 00/13] firmware: ti_sci: Partial-IO support
+Date: Thu, 06 Mar 2025 12:14:38 +0100
+Message-Id: <20250306-topic-am62-partialio-v6-12-b4-v5-0-f9323d3744a2@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR03MB7682.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 135bedd8-10fc-45de-68c6-08dd5c9f7f80
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2025 11:10:26.4443
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /AZ8YDYTrNL+EwcbRngfohP0hOHTKkT3bSNNnpA+3T+AYcMZCx/urp8y1T5B5hHrKKZTCp37zY3UWuWkOHIhsunGVpREk3sCMdqtwF2exnA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7927
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ6DyWcC/4XOQQ6CMBCF4auYrh3TllrQlfcwLto6yCRAsWAjI
+ dzdoiYmLnT5ZvH9M7EeA2HP9quJBYzUk2/T2K5XzFWmvSDQOW0muVSC8wIG35ED02gJnQkDmZo
+ 8RA1CglXgZJ6V1jilVM6S0QUs6f70j6fXDni9pczwOVbUDz6Mzx9itlzfuWT+zsUMOJS500t3p
+ wtxsGasyQbcON+wBY/qA0qx+weqBApnCzT2rHiOX+A8zw/mfljsMwEAAA==
+X-Change-ID: 20241008-topic-am62-partialio-v6-12-b4-c273fbac4447
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Santosh Shilimkar <ssantosh@kernel.org>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Anand Gadiyar <gadiyar@ti.com>, 
+ Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
+ Marc Kleine-Budde <mkl@pengutronix.de>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Vishal Mahaveer <vishalm@ti.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
+ Akashdeep Kaur <a-kaur@ti.com>, Kendall Willis <k-willis@ti.com>, 
+ linux-can@vger.kernel.org, Markus Schneider-Pargmann <msp@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7677; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=YevAipZm/+lyAcJ9AjGTXmRxKhKQj/5yvsZrO88ZVtA=;
+ b=owGbwMvMwCGm0rPl0RXRdfaMp9WSGNJPNq88dqfCad2hSYcKoqKzxa1//vJjVhd9eKYs8C3b0
+ bTmqZoSHaUsDGIcDLJiiix3Pyx8Vyd3fUHEukeOMHNYmUCGMHBxCsBE9FMY/gemnDrY/llP1nOu
+ yfIJDAuPxlZ0qOstiHQy1EwIjOzWVGL4H8xiaPcycWb85CeLwt5W7DR/67J+1ekm640PHvcFxK3
+ aygwA
+X-Developer-Key: i=msp@baylibre.com; a=openpgp;
+ fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 
-T24gVGh1LCAyMDI1LTAzLTA2IGF0IDEwOjQ3ICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToKPiAKPiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlu
-a3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bnRpbAo+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5k
-ZXIgb3IgdGhlIGNvbnRlbnQuCj4gCj4gCj4gSWwgMTgvMDIvMjUgMDY6NDEsIEphc29uLUpIIExp
-biBoYSBzY3JpdHRvOgo+ID4gVG8gc3VwcG9ydCBoYXJkd2FyZSB3aXRob3V0IHN1YnN5cyBJRHMg
-b24gbmV3IFNvQ3MsIGFkZCBhCj4gPiBwcm9ncmFtbWluZwo+ID4gZmxvdyB0aGF0IGNoZWNrcyB3
-aGV0aGVyIHRoZSBzdWJzeXMgSUQgaXMgdmFsaWQuIElmIHRoZSBzdWJzeXMgSUQKPiA+IGlzCj4g
-PiBpbnZhbGlkLCB0aGUgZmxvdyB3aWxsIGNhbGwgMiBhbHRlcm5hdGl2ZSBDTURRIEFQSXM6Cj4g
-PiBjbWRxX3BrdF9hc3NpZ24oKSBhbmQgY21kcV9wa3Rfd3JpdGVfc192YWx1ZSgpIHRvIGFjaGll
-dmUgdGhlIHNhbWUKPiA+IGZ1bmN0aW9uYWxpdHkuCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6IEph
-c29uLUpIIExpbiA8amFzb24tamgubGluQG1lZGlhdGVrLmNvbT4KPiA+IFJldmlld2VkLWJ5OiBD
-SyBIdSA8Y2suaHVAbWVkaWF0ZWsuY29tPgo+ID4gLS0tCj4gPiDCoCBkcml2ZXJzL2dwdS9kcm0v
-bWVkaWF0ZWsvbXRrX2RkcF9jb21wLmMgfCAzMwo+ID4gKysrKysrKysrKysrKysrKysrKystLS0t
-LQo+ID4gwqAgMSBmaWxlIGNoYW5nZWQsIDI3IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0p
-Cj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RkcF9j
-b21wLmMKPiA+IGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kZHBfY29tcC5jCj4gPiBp
-bmRleCBlZGM2NDE3NjM5ZTYuLjIxOWQ2NzczNWE1NCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9tZWRpYXRlay9tdGtfZGRwX2NvbXAuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L21lZGlhdGVrL210a19kZHBfY29tcC5jCj4gPiBAQCAtNjYsMTQgKzY2LDM3IEBAIHN0cnVjdCBt
-dGtfZGRwX2NvbXBfZGV2IHsKPiA+IMKgwqDCoMKgwqAgc3RydWN0IGNtZHFfY2xpZW50X3JlZyBj
-bWRxX3JlZzsKPiA+IMKgIH07Cj4gPiAKPiA+ICsjaWYgSVNfUkVBQ0hBQkxFKENPTkZJR19NVEtf
-Q01EUSkKPiA+ICtzdGF0aWMgdm9pZCBtdGtfZGRwX3dyaXRlX2NtZHFfcGt0KHN0cnVjdCBjbWRx
-X3BrdCAqY21kcV9wa3QsCj4gPiBzdHJ1Y3QgY21kcV9jbGllbnRfcmVnICpjbWRxX3JlZywKPiA+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCB1bnNpZ25lZCBpbnQgb2Zmc2V0LCB1bnNpZ25lZCBpbnQKPiA+IHZhbHVlLCB1bnNp
-Z25lZCBpbnQgbWFzaykKPiA+ICt7Cj4gPiArwqDCoMKgwqAgb2Zmc2V0ICs9IGNtZHFfcmVnLT5v
-ZmZzZXQ7Cj4gPiArCj4gPiArwqDCoMKgwqAgaWYgKGNtZHFfcmVnLT5zdWJzeXMgIT0gQ01EUV9T
-VUJTWVNfSU5WQUxJRCkgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAobWFzayA9
-PSBHRU5NQVNLKDMxLCAwKSkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIGNtZHFfcGt0X3dyaXRlKGNtZHFfcGt0LCBjbWRxX3JlZy0+c3Vic3lzLAo+ID4gb2Zm
-c2V0LCB2YWx1ZSk7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVsc2UKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNtZHFfcGt0X3dyaXRlX21hc2so
-Y21kcV9wa3QsIGNtZHFfcmVnLQo+ID4gPnN1YnN5cywgb2Zmc2V0LCB2YWx1ZSwgbWFzayk7Cj4g
-Cj4gU29ycnkgYnV0IHRoaXMgaXMgcG9pbnRsZXNzLCByZWFsbHkuLi4KPiAKPiBGdW5jdGlvbiBj
-bWRxX3BrdF93cml0ZV9tYXNrKCkgaW4gbXRrLWNtZHEtaGVscGVyIGlzIGRvaW5nOgo+IAo+IMKg
-wqDCoMKgwqDCoMKgIGlmIChtYXNrICE9IEdFTk1BU0soMzEsIDApKSB7Cj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIGVyciA9IGNtZHFfcGt0X21hc2socGt0LCBtYXNrKTsKPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKGVyciA8IDApCj4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gZXJyOwo+IAo+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBvZmZzZXRfbWFzayB8PSBDTURRX1dSSVRFX0VOQUJMRV9N
-QVNLOwo+IMKgwqDCoMKgwqDCoMKgIH0KPiDCoMKgwqDCoMKgwqDCoCByZXR1cm4gY21kcV9wa3Rf
-d3JpdGUocGt0LCBzdWJzeXMsIG9mZnNldF9tYXNrLCB2YWx1ZSk7Cj4gCj4gaGVyZSB5b3UncmUg
-ZG9pbmcgdGhlIGV4YWN0IGludmVyc2UgY2hlY2suCj4gCgpPaCwgSSBkaWRuJ3Qgbm90aWNlIHRo
-YXQgaXQgd2FzIHJlZHVuZGFudC4gVGhhbmtzLgoKPiBBdCB0aGlzIHBvaW50IHlvdSBjYW4ganVz
-dCBkbzoKPiAKPiBzdGF0aWMgaW50IG10a19kZHBfd3JpdGVfY21kcV9wa3Qoc3RydWN0IGNtZHFf
-cGt0ICpjbWRxX3BrdCwgc3RydWN0Cj4gY21kcV9jbGllbnRfcmVnCj4gKmNtZHFfcmVnLAo+IMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCB1MTYgb2Zmc2V0LCB1MzIgdmFsdWUsIHUzMiBtYXNrKQo+IHsKPiDCoMKgwqDCoMKg
-wqDCoCB1MTYgZ2NlX29mZnNldCA9IGNtZHFfcmVnLT5vZmZzZXQgKyBvZmZzZXQ7Cj4gCj4gwqDC
-oMKgwqDCoMKgwqAgaWYgKGNtZHFfcmVnLT5zdWJzeXMgIT0gQ01EUV9TVUJTWVNfSU5WQUxJRCkK
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIGNtZHFfcGt0X3dyaXRlX21h
-c2socGt0LCBjbWRxX3JlZy0+c3Vic3lzLAo+IGdjZV9vZmZzZXQsIHZhbHVlLCBtYXNrKTsKPiAK
-PiDCoMKgwqDCoMKgwqDCoCByZXR1cm4gY21kcV9wa3Rfd3JpdGVfbWFza19wYShjbWRxX3BrdCwg
-Y21kcV9yZWctPnBhX2Jhc2UsCj4gZ2NlX29mZnNldCwgdmFsdWUsIG1hc2spOwo+IH0KPiAKCkkn
-bGwgY2hhbmdlIGxpa2UgdGhpcywgVGhhbmtzIQoKUmVnYXJkcywKSmFzb24tSkggTGluCgo+IENo
-ZWVycywKPiBBbmdlbG8K
+Hi,
+
+up to last series, the Partial-IO support consisted of two independent
+series. As this last rework introduced file-based conflicts, I merged
+the mcan series introducing wakeup support into this series:
+
+  can: m_can: Add am62 wakeup support
+  https://lore.kernel.org/lkml/20241219-topic-mcan-wakeup-source-v6-12-v6-0-1356c7f7cfda@baylibre.com/
+
+Series
+------
+The series contains three parts:
+ - m_can support for Partial-IO, in particular 'wakeup' pinctrl support.
+ - ti_sci support for Partial-IO, which checks wakeup-sources if they
+   are enabled for Partial-IO
+ - DT description of system states on am62, am62a, am62p and the
+   enabling of wakeup support on the starter kits that support it.
+
+The series is based on v6.14-rc1.
+
+Partial-IO
+----------
+Partial-IO is a low power system state in which nearly everything is
+turned off except the pins of the CANUART group. CANUART contains the
+mcu_mcan0, mcu_mcan1, wkup_uart0 and mcu_uart0 devices. These can
+trigger a wakeup of the system on pin activity. Note that this does not
+resume the system as the DDR is off as well. So this state can be
+considered a power-off state with wakeup capabilities.
+
+The wakeup capability of a device is described in the devicetree with
+the wakeup-source property. This can hold phandles to system states in
+which the device is capable of wakeup. Additionally a WKUP_EN flag is
+set in the pinctrl of devices that are wakeup enabled.
+
+On poweroff ti_sci checks if potential wakeup-sources for Partial-IO are
+wakeup-enabled by the user. If that is the case, the poweroff is done
+by TI_SCI by sending a PREPARE_SLEEP message with a specific mode. Once
+sent the system will poweroff apart from the CANUART pins.
+
+Dependencies
+------------
+This series requires an updated DT binding for the wakeup-source
+property that allows the use of system-states which are also being added
+in this pullrequest:
+ - dt-schema wakeup-source binding update
+   https://github.com/devicetree-org/dt-schema/pull/150
+
+Testing
+-------
+After enabling Wake-on-LAN the system can be powered off and will enter
+the Partial-IO state in which it can be woken up by activity on the
+specific pins:
+    ethtool -s can0 wol p
+    ethtool -s can1 wol p
+    poweroff
+
+These patches are tested on am62-lp-sk on linux-next.
+
+Best,
+Markus
+
+Previous versions "firmware: ti_sci: Partial-IO support":
+ v1: https://lore.kernel.org/lkml/20240523080225.1288617-1-msp@baylibre.com/
+ v2: https://lore.kernel.org/lkml/20240729080101.3859701-1-msp@baylibre.com/
+ v3: https://lore.kernel.org/r/20241012-topic-am62-partialio-v6-13-b4-v3-0-f7c6c2739681@baylibre.com
+ v4: https://lore.kernel.org/r/20241219-topic-am62-partialio-v6-12-b4-v4-0-1cb8eabd407e@baylibre.com
+
+Previous versions "can: m_can: Add am62 wakeup support":
+ v1: https://lore.kernel.org/lkml/20240523075347.1282395-1-msp@baylibre.com/
+ v2: https://lore.kernel.org/lkml/20240729074135.3850634-1-msp@baylibre.com/
+ v3: https://lore.kernel.org/lkml/20241011-topic-mcan-wakeup-source-v6-12-v3-0-9752c714ad12@baylibre.com
+ v4: https://lore.kernel.org/r/20241015-topic-mcan-wakeup-source-v6-12-v4-0-fdac1d1e7aa6@baylibre.com
+ v5: https://lore.kernel.org/r/20241028-topic-mcan-wakeup-source-v6-12-v5-0-33edc0aba629@baylibre.com
+ v6: https://lore.kernel.org/r/20241219-topic-mcan-wakeup-source-v6-12-v6-0-1356c7f7cfda@baylibre.com
+
+Changes in v5:
+ - Rebased to v6.14-rc1
+ - Merged m_can and ti_sci series to avoid conflicts and show
+   dependencies more easily
+ - Added definitions of system-states for am62/am62a/am62p
+ - Moved wakeup-source definitions into board dts files as they require
+   a bit of support on the board.
+ - Updated ti_sci support to walk through the wakeup-source phandle
+   lists
+ - Added pinctrl settings for mcu_mcan0/1 on all boards
+ - Minor style updates for ti_sci support for transfers without response
+ - Update and move the dt-binding for wakeup-source from the m_can
+   binding to the dt-schema repository
+
+Changes in v4:
+ - Rebased to v6.13-rc1
+ - Removed all regulator related structures from patches and implemented
+   the wakeup-source property use instead.
+
+Changes in v3:
+ - Remove other modes declared for PREPARE_SLEEP as they probably won't
+   ever be used in upstream.
+ - Replace the wait loop after sending PREPARE_SLEEP with msleep and do
+   an emergency_restart if it exits
+ - Remove uarts from DT wakeup sources
+ - Split no response handling in ti_sci_do_xfer() into a separate patch
+   and use goto instead of if ()
+ - Remove DT binding parital-io-wakeup-sources. Instead I am modeling
+   the devices that are in the relevant group that are powered during
+   Partial-IO with the power supplies that are externally provided to
+   the SoC. In this case they are provided through 'vddshv_canuart'. All
+   devices using this regulator can be considered a potential wakeup
+   source if they are wakeup capable and wakeup enabled.
+ - Added devicetree patches adding vcc_3v3_sys regulator and
+   vddshv_canuart for am62-lp-sk
+ - Add pinctrl entries for am62-lp-sk to add WKUP_EN for mcu_mcan0 and
+   mcu_mcan1
+
+Changes in v2:
+ - Rebase to v6.11-rc1
+ - dt-binding:
+    - Update commit message
+    - Add more verbose description of the new binding for a better
+      explanation.
+ - ti_sci driver:
+    - Combine ti_sci_do_send() into ti_sci_do_xfer and only wait on a
+      response if a flag is set.
+    - On failure to enter Partial-IO, do emergency_restart()
+    - Add comments
+    - Fix small things
+
+Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+---
+Markus Schneider-Pargmann (13):
+      firmware: ti_sci: Support transfers without response
+      firmware: ti_sci: Partial-IO support
+      dt-bindings: can: m_can: Add wakeup properties
+      can: m_can: Map WoL to device_set_wakeup_enable
+      can: m_can: Return ERR_PTR on error in allocation
+      can: m_can: Support pinctrl wakeup state
+      arm64: dts: ti: k3-pinctrl: Add WKUP_EN flag
+      arm64: dts: ti: k3-am62: Define possible system states
+      arm64: dts: ti: k3-am62a: Define possible system states
+      arm64: dts: ti: k3-am62p: Define possible system states
+      arm64: dts: ti: k3-am62-lp-sk: Set wakeup-source system-states
+      arm64: dts: ti: k3-am62a7-sk: Set wakeup-source system-states
+      arm64: dts: ti: k3-am62p5-sk: Set wakeup-source system-states
+
+ .../devicetree/bindings/net/can/bosch,m_can.yaml   |  18 +++
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts           |  60 +++++++++
+ arch/arm64/boot/dts/ti/k3-am62.dtsi                |  22 ++++
+ arch/arm64/boot/dts/ti/k3-am62a.dtsi               |  27 +++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts            |  76 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p.dtsi               |  27 +++++
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts            |  76 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-pinctrl.h                |   2 +
+ drivers/firmware/ti_sci.c                          | 134 ++++++++++++++++++++-
+ drivers/firmware/ti_sci.h                          |   5 +
+ drivers/net/can/m_can/m_can.c                      | 111 ++++++++++++++++-
+ drivers/net/can/m_can/m_can.h                      |   4 +
+ drivers/net/can/m_can/m_can_pci.c                  |   4 +-
+ drivers/net/can/m_can/m_can_platform.c             |   4 +-
+ drivers/net/can/m_can/tcan4x5x-core.c              |   4 +-
+ 15 files changed, 562 insertions(+), 12 deletions(-)
+---
+base-commit: 7ec162622e66a4ff886f8f28712ea1b13069e1aa
+change-id: 20241008-topic-am62-partialio-v6-12-b4-c273fbac4447
+
+Best regards,
+-- 
+Markus Schneider-Pargmann <msp@baylibre.com>
+
 
