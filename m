@@ -1,142 +1,121 @@
-Return-Path: <devicetree+bounces-155030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91EDCA55457
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:12:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F41FEA5548B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98154188DCCB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:11:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9A283B66A7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78119269AE9;
-	Thu,  6 Mar 2025 18:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B73A2698BD;
+	Thu,  6 Mar 2025 18:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b16oqkN3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WTRZtH/s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC45198E63;
-	Thu,  6 Mar 2025 18:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F021F25A33B;
+	Thu,  6 Mar 2025 18:10:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741284633; cv=none; b=E5fGkuSyBwVw1J6cFnp4Usdn5oETjYLv8K+QCQy/FZ3ZW3Vxjh9LCzhCnwuOG4AlNCz//deIC9G+ZFOb/eSOBp+jkKYwfmmDWt62yd4BxrIn6UNB14Q5CUsiZlV7mBlmiN2M2fOGAqf2kUjatbn1TEckbWEptZzdVbZ7x85ArOE=
+	t=1741284645; cv=none; b=A1jCIw5WKeN1H5gEdtvu9GujXyZESUqNB/q6RrC2xETYHd+IcNlLFdlHMEdkzIiT3a6Td4LfZmdp61BupCNFcvPkh60Kh3d/vXg7kjx3w5V7viCWNmVbPVySPCLMgQcDINJkS2HhfIK6izNc/YYJZvkQ2syXuxAba+G2EYuQJJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741284633; c=relaxed/simple;
-	bh=NcAq6i4qXxy+DxuxjOPRBDxp4hm1V8cJt2FY/P8BQu0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eh8/ZKdQdMcALRs+BpkKIe0npIDLfRHbCvJP/Cq9tICTtTYN1UnONKWOSNU4F5y1Lt7egDXlql7cIIomQnYTxiApX0LLo7cQ4RLaTczDZ31nEmtn/5sypOB3gi+ACGGt29XL28EEDUNWJ2qz5Xm6uQm/syw42ryxHzHIIwqBb1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b16oqkN3; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43bb6b0b898so8557915e9.1;
-        Thu, 06 Mar 2025 10:10:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741284630; x=1741889430; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rpJd5VEUHNYbPEkhKiiZjG6y1O0y85lYcNNjmNxE8CA=;
-        b=b16oqkN3HyvUGYmSYYjemgsoqxc1JmuqFYKH4bw1G7bN7Hv4f2eRGvR5Y1sq4a6gLA
-         3GheLpmjpbvEeb0awu0nj/boZkZsGlAj4AdHW0su0IOMovT7V8khWfMbDauIzjN5Tpd3
-         tpDx5hDLcQye6tJV8awsAxoUPdaU4X9aSfkz7MEOXS6451H6uNzkJiHTWxLKCpcZqkQV
-         obkIy8jSSHRlyLkicJ42TS4thQhOwfnBcW/BXk17FqpMwruE6T8+38OhvdXhv79IPms3
-         aeWCu9ei3+geC/xH0I4UAcb0I9cosHvDFNX/mUKI3GcBOgh18sEPb5IvoJ/K+dp+IvC7
-         T1iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741284630; x=1741889430;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rpJd5VEUHNYbPEkhKiiZjG6y1O0y85lYcNNjmNxE8CA=;
-        b=MP7wi1/27Ykh/HiLtftmm/z6ZpbFiuCPhVPei4asvEK8bWa9G0xf6Agx8agxF0TqHO
-         Vl+soLp33J0ZKgll6qo2b61J51LeaZDhtAzeMxt+ZCbtdDAnDktSh76AauA30qQuUFeP
-         LMNQO+JaKGkIuGyexRRMLAHmFOZgSlbm3dHtJsyRPHZDMyPe2ZTXzbHfcAjEPaq8SJZD
-         A8av3oACVIyY4zY36gBFjBZIFmo8Nvo1IImuBhZZAxUA4qbo/7JBw5mFlrCYsi5gGilN
-         dnaoW2cVG3KtWUp4X9dYPcOS34AQtXShJewwVrg/Ml49lFdyIIN+ccV3Mc30vnypNqQr
-         LOPw==
-X-Forwarded-Encrypted: i=1; AJvYcCV0djDDqZwlQJITTbdSilDlMA+O5MrMPUQ1pESADl3+HPiMl7t6IF8zbPVjwN86IA0TxjDd99JQ+7L5bv8=@vger.kernel.org, AJvYcCX0cCNQtjXd+vnX7EL6+vwzN6C0hdyWfTvDsiQEoyMfFf8oCFn0iSlTsMJS6YmpJhXMtnWa6DLOzf8b@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8qtgdonX2qddrKRWSchj9swC8xFKbxwYVtyE/Vz5KC3tjxFtQ
-	VCwLUeL/7CIns0lq9F7LTZHPsj2M9QsbDUh6mbSEmG/U1n1YDYem
-X-Gm-Gg: ASbGncuEZl8QQxy5Qtae23IZ2LpXOQFH9Pml47OoyrsDJPyB3/U1KX/fxIgslXilr2r
-	AiAmD5DC1DooXdEmRFokh1crnhnZ6fpI+rU/UBhcMuPpQK0g2Xyw9hy6LDnWTxQ4n0+bwhS4WGg
-	1M3T9IY12yRmdrnwNN8nPPQUHukV0ZeIgLnlHCxk7QgGTmXrx7apofxOhhKyUoURWY7yt9Ug1Bm
-	Oq97UHIIE2ZjiqSDx/tjk+d36IQQJAopJ+l2EiQqH6HnVFy0MlXX179CffkKPPKSi2EbZnkVVmy
-	IILZzrwbOtc9V1SQzusjnvIyDIvRZD3ovrOM3/hxxuVEStx4kckyw0hUJMsU4JEtc7Fzs3JIRi6
-	f6iJWg47TU0GaGDmoeU4/q4hPUOJ4/L4=
-X-Google-Smtp-Source: AGHT+IH+S5zj59HDoFuKbYrb2dXgsy9QeCurvzVrsLX6E8KGuh0NoTgRbe5E3X6IbYPUF7sH8P3l2A==
-X-Received: by 2002:a05:600c:5117:b0:43b:d12a:40e4 with SMTP id 5b1f17b1804b1-43c601cfd31mr3871825e9.17.1741284629775;
-        Thu, 06 Mar 2025 10:10:29 -0800 (PST)
-Received: from orome (p200300e41f3a9f00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3a:9f00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43bdd93c9b6sm26628735e9.29.2025.03.06.10.10.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Mar 2025 10:10:28 -0800 (PST)
-Date: Thu, 6 Mar 2025 19:10:26 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Resize aperture for the IGX PCIe C5 slot
-Message-ID: <nhswn2yxhjcc3e243uc5psowjnamvvj6defhvolx537go6tfvk@4y7w4bf6gkbz>
-References: <20250116151903.476047-1-jonathanh@nvidia.com>
+	s=arc-20240116; t=1741284645; c=relaxed/simple;
+	bh=MmeueEhfG35aYPhedmw0XV3vfAg+i6SnMzy/C13nxeY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=VO84hLquyTfpeBrgNp71kU+Varb6PxTHK+dw1RCK4jOqb+x0Maxj7+IdvyTkVXUd/dYlFm1FOFlPcQBlLxAt+oq5mmxgILRkEZ5LUBZ96zlMOEtUOfuDK2/hxjaYp9cSvj6pkttZtIfso1aeD7Cei+YkyeO9epKuBB6DQB9sIEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WTRZtH/s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1FF8C4CEE0;
+	Thu,  6 Mar 2025 18:10:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741284642;
+	bh=MmeueEhfG35aYPhedmw0XV3vfAg+i6SnMzy/C13nxeY=;
+	h=From:Date:Subject:To:Cc:From;
+	b=WTRZtH/sunMSvaH3dBZeXX9MR75vZei25pgxCfl80+2SJEy/vYzWOtDqbFcrjoL5O
+	 6f+EwhJJOOzFtVl4vc0wDKH1kPJNRT1ZSbR6wlwfFS+7fHn7Q2aLOtX//p8vtTiWHE
+	 M2WSzYPc+opjGpNIvdsJ7jAAWnLSAmaOqVgTYXyXw3u7ig6dWzKcApWASBnojsPefe
+	 l7oXvu5vU0gBts28l1Z18ZjVydxsSH7nGMWcf79EfwwnpcpFhsgcaMG2olbvX0daZI
+	 nkM9KHYrbzcDYpHvssJ4/4E8ggJzHyErxgVVw7wYAXzZCn38cutTDFQRIN5H6bJGbK
+	 89m3gywmQNEYQ==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Date: Thu, 06 Mar 2025 19:10:28 +0100
+Subject: [PATCH] dt-bindings: usb: qcom,dwc3: Synchronize minItems for
+ interrupts and -names
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2hzkjfkfueg5tx25"
-Content-Disposition: inline
-In-Reply-To: <20250116151903.476047-1-jonathanh@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250306-topic-dt_bindings_fixes_usb-v1-1-e1e6a5bde871@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIABPlyWcC/x3M0QqDMAxA0V+RPC+QKeq2Xxmj2CZzeWlL40QQ/
+ 93i4+HC3cGkqBi8mh2KrGqaYsX91kD4TXEWVK6GltqeOhpwSVkD8uK8RtY4m/vqJub+5jEQsRc
+ eH2N4Qj3kIlesg/fnOE6Cc47TbQAAAA==
+X-Change-ID: 20250306-topic-dt_bindings_fixes_usb-c00dbed787c9
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741284638; l=1440;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=XxDVcrBfp4ugTwbs0E1e9mI0LVJPlhX53QIFidEHR5w=;
+ b=W2am1+pvqkfC++LVWF5xtCF7DDe1tu8/9Xex66QZQKYazed58yFJp646GViP/l7ZRqpj15Ue8
+ buxlH3/cNeSDHywlMFRcHb887L1dXv/uIwPitsb9T8VBRgSuLwtkZvq
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
---2hzkjfkfueg5tx25
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] arm64: tegra: Resize aperture for the IGX PCIe C5 slot
-MIME-Version: 1.0
+It makes sense that ARRAY_SIZE(prop) should == ARRAY_SIZE(prop-names),
+so allow that to happen with interrupts.
 
-On Thu, Jan 16, 2025 at 03:19:03PM +0000, Jon Hunter wrote:
-> Some discrete graphics cards such as the NVIDIA RTX A6000 support
-> resizable BARs. When connecting an A6000 card to the NVIDIA IGX Orin
-> platform, resizing the BAR1 aperture to 8GB fails because the current
-> device-tree configuration for the PCIe C5 slot cannot support this.
-> Fix this by updating the device-tree 'reg' and 'ranges' properties for
-> the PCIe C5 slot to support this.
->=20
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  .../boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+Fixes bogus warnings such as:
+usb@c2f8800: interrupt-names: ['pwr_event', 'qusb2_phy', 'hs_phy_irq'] is too short
 
-Looks like I never applied this. Picked it up now.
+Fixes: 7db25e95589e ("dt-bindings: usb: qcom,dwc3: Fix SDM660 clock description")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+ Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thanks,
-Thierry
+diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+index a2b3cf625e5b3962f3acfe93de02f3cae2b6123d..64137c1619a635a5a4f96fc49bd75c5fb757febb 100644
+--- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+@@ -404,6 +404,7 @@ allOf:
+           minItems: 2
+           maxItems: 3
+         interrupt-names:
++          minItems: 2
+           items:
+             - const: pwr_event
+             - const: qusb2_phy
+@@ -425,6 +426,7 @@ allOf:
+           minItems: 3
+           maxItems: 4
+         interrupt-names:
++          minItems: 3
+           items:
+             - const: pwr_event
+             - const: qusb2_phy
 
---2hzkjfkfueg5tx25
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+base-commit: 565351ae7e0cee80e9b5ed84452a5b13644ffc4d
+change-id: 20250306-topic-dt_bindings_fixes_usb-c00dbed787c9
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmfJ5RIACgkQ3SOs138+
-s6G47BAApoksEhD78wSA6KByoc4j8ZKVamZPy97/H1UlmLiD6ZwlbhFDEsLz0O3q
-VEBjkaQPng2xtniln9EWq3x5EAAd0L3HS5u+sVxtkM5qFpMSwg/tV8Lm/8Qw5y80
-cCEdU74qeNWCPhJr+jDYynO1E3VXjnwElfjzXI39nyU7vGOlZS5zCgXHTtjoLhan
-gQYNWwgk2f5FVA+tislUoqLxPlQPi3ELMd9skIizP8p+XUyMBNk1ToZVFAGpHIVe
-rsuvC3SEXsMFdDTqwyMlyI5TRUw4D4VPV9o0A8P03wMQBLMg55EjzkSvJSRsBZY1
-D9jRK4xm5LEzVMHjNIDU0teK6XtMf52d+uU8n2C5DEyGiHEcsmJKq4xQkQ+acicM
-bMqqAHeePZV/n+XG4EXR1Bfdty9KBkEIlDUbTvB/tL2ILQ6w1av4W7VDzS7qARpi
-jj56LEsqtyLb57635DQezsFu8Mo3YltoruU3qEbrNk9zGXCZL6HFsUQLJirA6kxZ
-lG8Tso2y9gQxyiGAD8o2scnnHLtn0j55uBnzHvaWhLM69O+J1MZo2JCR94SOt7Um
-XKkXBuYGuFycQf1P0G4XUpTgKDxJO2IdHg6NOwRpX33gBPPzIci0gZZvh1rKGDIe
-RoGURjwUtfgS8iJDdUu2w3P7s/T4IIfGBji23X0f3PVlkS8xh44=
-=3UW8
------END PGP SIGNATURE-----
-
---2hzkjfkfueg5tx25--
 
