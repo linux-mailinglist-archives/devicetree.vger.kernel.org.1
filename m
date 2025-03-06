@@ -1,179 +1,98 @@
-Return-Path: <devicetree+bounces-154891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16F0DA54CAE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:56:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A2EBA54CB6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:57:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AE541897A7E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:56:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EBE91898230
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:57:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 810E27DA7F;
-	Thu,  6 Mar 2025 13:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB6C13C682;
+	Thu,  6 Mar 2025 13:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="KlzG7U7s"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="ZYLN+D7X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com [157.90.84.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F2523A9;
-	Thu,  6 Mar 2025 13:56:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=157.90.84.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3183874059;
+	Thu,  6 Mar 2025 13:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741269376; cv=none; b=Y3pZZYTy3Mdq2ifqxu2vp1tKWH8LaLhIRcUoQdUHz698wKtQK0+2euMa4nae5Wlnll/yrGZlk43DI255SMVeELo89UAnrT8th66ddhBe5FwJxHVqsRqhSVkzciv0D1lNbh+f5dABLV0p4e/HENyAIPzDG0eJy3spSS3g95z4veM=
+	t=1741269425; cv=none; b=uDg2dg31FIoqNurQ8E1WQ7zTFGRM1cpow6F0TsX4d6mlX8q3kfPpnor40QHK4d7SZMKTxNAIp1MYa3wt5ye9rrKMGsUdvWpFyVQqlpa7BurHecUmLTGmuhxRBalKpAwVdPHr4MDs8JvYI/1ULAuFP0SW4v5xMZFVJ63ryppGojE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741269376; c=relaxed/simple;
-	bh=+Pimst16aPdCxGYqUpJuW6UMGnHrJPBhkR8LtjurZn0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dkDgZj4vhpV2dFI3t4mzs/MKbWA5aIpR4W88TK2cudSuw7OEt65XkRmD6j0vNb3u4A5pDJq4+s4rZh7ONE/49nPs4+pG1GmIuRXLuKaQzkFf7v5haF77qyFbwgXwequFZjP89RlhrDmzoHvGbWOIISNITtGgjDCgua5s6dlrHgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com; spf=pass smtp.mailfrom=tuxedocomputers.com; dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b=KlzG7U7s; arc=none smtp.client-ip=157.90.84.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxedocomputers.com
-Received: from [192.168.178.76] (business-24-134-207-61.pool2.vodafone-ip.de [24.134.207.61])
-	(Authenticated sender: g.gottleuber@tuxedocomputers.com)
-	by mail.tuxedocomputers.com (Postfix) with ESMTPSA id A61292FC0048;
-	Thu,  6 Mar 2025 14:56:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
-	s=default; t=1741269370;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7bQXDLdPVD7kCqCo4PQ87J+ynI5NxAEe/Nqs7CoZ62A=;
-	b=KlzG7U7snk/0gtQgGXFwiDkx1Z0tlRKxaigeNF7+c/LY/I4qeOOFP/t3Xha6GGVzGF9uYi
-	TzBCa15UxdWoQi5Jj8KUljJYif0ytUJho1MDGaNs4pEkrZIuCz0xP6TL9J5v9DeCQ7jmd0
-	V4b2bpGJiGd82ZJ+yayxWdvP9TX+p7Q=
-Authentication-Results: mail.tuxedocomputers.com;
-	auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com smtp.mailfrom=g.gottleuber@tuxedocomputers.com
-Message-ID: <d98ad83e-6479-4453-bd1d-4f3703b0dad2@tuxedocomputers.com>
-Date: Thu, 6 Mar 2025 14:56:09 +0100
+	s=arc-20240116; t=1741269425; c=relaxed/simple;
+	bh=oV9F+a884N+xaC28QLacb3BrnPMfcnJSbpQ7M1sZLFk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Dd1ct6kUmRcGLTZnhv1kqCCy9cRNOVMcaicsHDvwzNlDA1XUTjz1w0+udQHQ74wnZHW/0rlNzNfB6NuxqWEOoOf4GyAMygH8GRxkC44lZoBz0mQ5Saar2YUTdU4xqeSIRddaGowJvS/n+gztC4DIXOTaYF59/Jpv+72mT3Ha/P8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=ZYLN+D7X; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=oV9F+a884N+xaC28QLacb3BrnPMfcnJSbpQ7M1sZLFk=; b=ZYLN+D7X+5Wzty1yFojtJK6qrx
+	Bpy2s2k1EvqZmxUugYeeiz1+KeKSjdq2spIR7VzN0kvnc7o4m4F6lhdYk020KR6N8nuzVw9t10a/l
+	iA3wB57zrogFJi/aoAUvJRF/i6SajC68s2V9lVYZtb02vZfeRtg2A7xsaVmgK/SJjIclkjlOU1J1o
+	wKnQBo5gSC6RGpi01zGa6E7xc0jMUBPNFpnxVjCefeE3cnXbE88PtYaM4VsGCwp8to08QUqVEx0ls
+	/0m68679LrajjGB9XYKtxYqCA/d6Rkin9n2ZI0JHaJDtiKqzgg3eMLnbBZwAXQxy+bGQISnwfWmcv
+	gxe+Nzpw==;
+Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tqBif-0003YT-8p; Thu, 06 Mar 2025 14:57:01 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, robh@kernel.org, ziyao@disroot.org
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: enable SCMI clk for RK3528 SoC
+Date: Thu, 06 Mar 2025 14:57:00 +0100
+Message-ID: <3008437.usQuhbGJ8B@diego>
+In-Reply-To: <b57e0930-c9a3-4c44-a740-a5623d6904ba@kernel.org>
+References:
+ <4856313.kQq0lBPeGt@diego> <7020561.MhkbZ0Pkbq@diego>
+ <b57e0930-c9a3-4c44-a740-a5623d6904ba@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Add device tree for TUXEDO Elite 14
- Gen1
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Georg Gottleuber <ggo@tuxedocomputers.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Konrad Dybcio
- <konrad.dybcio@oss.qualcomm.com>, wse@tuxedocomputers.com,
- cs@tuxedocomputers.com
-References: <57589859-fec1-4875-9127-d1f99e40a827@tuxedocomputers.com>
- <75c17309-3072-4321-ab15-69d60190f2f7@kernel.org>
-Content-Language: en-US
-From: Georg Gottleuber <g.gottleuber@tuxedocomputers.com>
-In-Reply-To: <75c17309-3072-4321-ab15-69d60190f2f7@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+Am Donnerstag, 6. M=C3=A4rz 2025, 14:54:04 MEZ schrieb Krzysztof Kozlowski:
+> On 06/03/2025 14:51, Heiko St=C3=BCbner wrote:
+> > Am Donnerstag, 6. M=C3=A4rz 2025, 14:40:02 MEZ schrieb Chukun Pan:
+> >> Hi,
+> >>
+> >>> That sram is part of the soc (and has an mmio-address), so I'd think
+> >>> it should live inside the soc node?
+> >>
+> >> But soc ranges starts from 0xfe000000, I don't know whether to change =
+it.
+> >> And all other nodes are 0xf..., except this sram.
+> >> Any suggestions would be greatly appreciated.
+> >=20
+> > darn ... I didn't realize that this is not sram, but main memory :-)
+>=20
+>=20
+> Heh, I think carving out reserved blocks from the main RAM and calling
+> it a SRAM is a stretch.
+
+yep, hence going with the reserved memory instead
+and not trying to call it sram :-)
+
+And I just saw rk3576 has the same issue, only that there
+the mmio area is sitting before the main memory address space
 
 
-
-Am 06.03.25 um 13:41 schrieb Krzysztof Kozlowski:
-...
-> 
-> Please run scripts/checkpatch.pl and fix reported warnings. After that,
-> run also `scripts/checkpatch.pl --strict` and (probably) fix more
-> warnings. Some warnings can be ignored, especially from --strict run,
-> but the code here looks like it needs a fix. Feel free to get in touch
-> if the warning is not clear.
-> 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
-> Maybe you need to update your dtschema and yamllint. Don't rely on
-> distro packages for dtschema and be sure you are using the latest
-> released dtschema.
-
-Thank you for the advice and the offer to answer further questions.
-Didn't know that dtb_check exists.
-
-> ...
-> 
->> +
->> +       eusb3_repeater: redriver@47 {
->> +               compatible = "nxp,ptn3222";
->> +               reg = <0x47>;
->> +               #phy-cells = <0>;
->> +
->> +               vdd1v8-supply = <&vreg_l4b_1p8>;
->> +               vdd3v3-supply = <&vreg_l13b_3p0>;
->> +
->> +               reset-gpios = <&tlmm 124 GPIO_ACTIVE_LOW>;
->> +
->> +               pinctrl-0 = <&eusb3_reset_n>;
->> +               pinctrl-names = "default";
-> 
-> No graph? Isn't it needed?
-
-What do you mean by ‘no graph’?
-
->> +       };
->> +
->> +       eusb5_repeater: redriver@43 {
->> +               compatible = "nxp,ptn3222";
->> +               reg = <0x43>;
->> +               #phy-cells = <0>;
->> +
->> +               vdd1v8-supply = <&vreg_l4b_1p8>;
->> +               vdd3v3-supply = <&vreg_l13b_3p0>;
->> +
->> +               reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
->> +
->> +               pinctrl-0 = <&eusb6_reset_n>;
->> +               pinctrl-names = "default";
->> +       };
->> +
->> +       eusb6_repeater: redriver@4f {
->> +               compatible = "nxp,ptn3222";
->> +               reg = <0x4f>;
->> +               #phy-cells = <0>;
->> +
->> +               vdd1v8-supply = <&vreg_l4b_1p8>;
->> +               vdd3v3-supply = <&vreg_l13b_3p0>;
->> +
->> +               reset-gpios = <&tlmm 111 GPIO_ACTIVE_LOW>;
->> +
->> +               pinctrl-0 = <&eusb6_reset_n>;
->> +               pinctrl-names = "default";
->> +       };
->> +
-> 
-> Stray blank line
-
-Sorry. Will fix this.
-
->> +};
->> +
->> +&mdss {
->> +       status = "okay";
->> +};
->> +
-> 
-> 
->> +
->> +&usb_1_ss0_dwc3_hs {
->> +       remote-endpoint = <&pmic_glink_ss0_hs_in>;
->> +};
->> +
->> +&usb_1_ss0_qmpphy_out {
->> +       remote-endpoint = <&pmic_glink_ss0_ss_in>;
->> +};
->> +
-> 
-> Here as well
-
-Same here.
-
-Regards,
-Georg
 
