@@ -1,131 +1,132 @@
-Return-Path: <devicetree+bounces-155053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B775A55634
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 20:10:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F52A55659
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 20:14:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB1923ABA3B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:10:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61A5A1753F5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6914D26BDB5;
-	Thu,  6 Mar 2025 19:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703A326E969;
+	Thu,  6 Mar 2025 19:14:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TZBT4JZk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jot2Jb5Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0BEA25A652;
-	Thu,  6 Mar 2025 19:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5F0825A652
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 19:14:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741288235; cv=none; b=H87pa1MurhL5xL18TMd6bOZ6/RMtzMGaUcC0thBNeYOrOcBsAef4aqJjfy0h7szv7f7SV5oUf4mrR9wY9Kl4Usb20qs7Sd/nIsdTHnYy03ytdhm32b37RSvuCLw9XDHLZ1+pGQgpM1hoyVGmqKdSPhP0noaxIaTUMPxVeFJFnaU=
+	t=1741288488; cv=none; b=mO0H1p9wM/r+iCXCbxleSQbdEZe7CYs8ek41gTbBvSQaNMsQGskaxw0mhknz6Q7pwtIrDNKO4Yp9wXbtJXuGgmHNC1OPv4Co2iRk4cEk6SLgsJtu+TG9Q7z5drtH5/6Qm57eIHQJmzDNFZbriV2roRZmn5nUBXlGoQ7XoJRIyBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741288235; c=relaxed/simple;
-	bh=oV8hyuLlA5PGqTkENu/a9ltQ1UmevbTI1lsTJsvT4nU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=W5Y3H7+WIjF/Jz+VR1w1ejZjDG8jx1zFXetjwPK+Uvd1JRMJhQMKvjMP/6fgWGsn/EqDkpSeZY5LfAROvfby9aBtNan6RqVJOh3d9pl6jF5rzBG/QXCkOdgrTE3h11MY4otVnzW1SExs8D/0CdIjpMpCmKVKFHPYK2CxHLrYLqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TZBT4JZk; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43bc48ff815so7176065e9.0;
-        Thu, 06 Mar 2025 11:10:33 -0800 (PST)
+	s=arc-20240116; t=1741288488; c=relaxed/simple;
+	bh=B8EL7mhyV0p6lPu7ySWm8kOK+6RoXFTWH0QdieSVTYA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M43RjQcuIUZvlA7u2OBCn8PUhqHDujrsmMhAvxlWCLamGkXqkszyNcf6QeL2z9SjFMaun1+84REksc6SsCauo7XYtlF6WRDdixg7Iu84+BDPpMJUF6aHP91r8umbGQMRwBgvs9QOeqnEXsHH1iBY7HofRJAV+qB5qCZeMTUbgwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jot2Jb5Y; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e60b75f8723so748050276.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Mar 2025 11:14:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741288232; x=1741893032; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xjrt17JBvJuhNsbcwVa1ka0lA6TlmXZsKVnB1ivDePA=;
-        b=TZBT4JZkPwsMiGEfPxibjb1glvhWe8dFXIAoQK04uDHaGH5Bxt8lIfCMGeO0TSb1oJ
-         hBuQjjbcKi2UjROIvQqKzc4q783KFmtFgGJxD8n7CANlhQ7YgLv6nWgS4Qpv1l++vtbk
-         CfFhUVy6Dda3vtF1QpMppY1VJkKwgRFehE/XRNjQfvDj4Pjsg3Mp0dh4Kfwj+mZdoq1V
-         MGvYTA7kkTW7cSygmGHftpJN4IMFvMmdqm5IzQ2kfipOqOc5nRtuzNHyf9VZCGChg/i0
-         Hzlfa2eKdQvgHZ0eZHg7hsYVHpve6z5xPZ1RcAtLhOfCLe6u85xm7zxnRQGwpU2a1k62
-         cJkA==
+        d=linaro.org; s=google; t=1741288485; x=1741893285; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y4AdaatWdHTASZtJQVeI4ZLNiFLZxbXI/geRLgGTDtM=;
+        b=Jot2Jb5YjEvmkE4lXcnA/+LouCAQ8fhbDouKpX/pcSyiHkpVQ9RWSNSNKoCR4rbDzJ
+         cd7Lh9UzH1EPqIGOCT8WxO/2bd0tOJuu3wxOaGeQU8JucR3to1dFGphC2RrGsC26XcGu
+         bI9hpeH/DJbIolhkQYc+u6BEkz3NdieVCa6AYVz+vCKArIPRRrhyqyZx5fH0wK3SRR/t
+         ssCrcL0TFJn9iqcui2kVhrFWmr16vBD7BYS3rdwjgAB3tpERrHYNwcNjRfmgjrNDVuok
+         OkzNGFSZH0AHvYhP/KhOsuXtE7C3LfKTo2NdlA178WbpBpsvEXykCcFywCI6Q3qYowyz
+         t5ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741288232; x=1741893032;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xjrt17JBvJuhNsbcwVa1ka0lA6TlmXZsKVnB1ivDePA=;
-        b=f/XqgNY+qfH0s2lSXjGaI+tyb/Kjcn1VwOawgusNjrsNChdW7ZUEbCM8BZfYrbyKVD
-         4sQ4mZdC2+1t92/1vSCF+dv9xilYZyFvvBtPTD60mChm9Mp5E00J5uO3I4gOdU4TMpU5
-         ct4Uj7Np8QzG1/y2TXj9/Jh+N7yQ+hyJMMsr62IL27HusMu2X3kDQ+9XC1qk/kuX2+Ro
-         IqMih0iZCcabtMxODKxjWO/l12q7kHe01Wwn9d3f/U7D9upEcBzvwRDyGAPlG0nclh8t
-         f9NERgxwa8yTS0CONxRQpHE9i3ozm5khlj5u/M2HQQ4UD1o34QgiPWdKRSs9uC05OMMf
-         Z1NA==
-X-Forwarded-Encrypted: i=1; AJvYcCV1Pcd/Z4jCqNB8JAOXvN2hLdRg23H951ndJxk+UdOJvoHqXG/oDl9dHq2WxIimVrteXAsLHT03dGqVN4k=@vger.kernel.org, AJvYcCXnlq/Gy7o1BssYYCdUZQ1dlfDbMdGV/GMq6+zoK5MakSSYty/nABfy3kNkGErR+xehtqNxMm1tigACkKM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzL0dCM8YFLGgzYwu2+azUelRdxIojSoj5v8dpedByqACIgirxg
-	C3chtGAEcVMB8F/lwBVP9IphWX/5vEnJUESsHG09gBqkh3eNnp27
-X-Gm-Gg: ASbGncscZSInzy0RKTadZbjdRftJH2E20u7SxaeijX2kJtm455YVLNsqQJEzBkBCcLP
-	jJ1CF1jez5AD+LvgzjCFFv4hmhYQBeh8hHK7k7MHbRGcctYMqzIhJS4aMtxMJ+EItBv1FLpvZX/
-	iOo70M+7ab3as3KY2FazbUWCbRorcypnLweRZ95pCPSjmqi8+PD5lhMC/TV0UdJ5bGdnhD9vDFk
-	ydgzrgCxo8sroOwykcfXH2IAiJedj++p3H+zbooARZqusUJdZ8+AmPBpaLfj6MdX2bq1D2egIo6
-	4buoMO5JCm4TYaXIEtDIKRHq4uMrPtrdsjZLoyxs+O/jQtH2QjZGK4EYJB/pC2lbgGzdxYSocVp
-	roaVFT04hg1iSIRrSHMcZ7hUEGMHeZwxsKbvO
-X-Google-Smtp-Source: AGHT+IHl5my+4Jw09Cr0qE6JdlC8og7QhNPFlC4yTy6FzLxXNp880EZuro7EiKsKog1QP0e7H+TucA==
-X-Received: by 2002:a05:600c:6cf:b0:43b:dcc8:557c with SMTP id 5b1f17b1804b1-43bdcc85609mr31000225e9.13.1741288231597;
-        Thu, 06 Mar 2025 11:10:31 -0800 (PST)
-Received: from localhost (p200300e41f3a9f00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3a:9f00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-43bd42c5b33sm60765615e9.22.2025.03.06.11.10.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Mar 2025 11:10:30 -0800 (PST)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Cc: devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] arm64: tegra: Small hardware enablement for Jetson TX1
-Date: Thu,  6 Mar 2025 20:10:27 +0100
-Message-ID: <174128819704.2033996.10633125430100883471.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250224-diogo-gpio_exp-v1-0-80fb84ac48c6@tecnico.ulisboa.pt>
-References: <20250224-diogo-gpio_exp-v1-0-80fb84ac48c6@tecnico.ulisboa.pt>
+        d=1e100.net; s=20230601; t=1741288485; x=1741893285;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y4AdaatWdHTASZtJQVeI4ZLNiFLZxbXI/geRLgGTDtM=;
+        b=PZ2+G8PxJYrxkQ9ziJGaC7LM1i6gmBNM04JtaCNzbqXSXRQjQgtaqXKxT6BPiDSVIY
+         9sAxIJeYYKyXbJ1GXVdv4bBm1VDhvygEdmbUZglNAJQNk9SQXaivD/fuKwUyLyfNAZzg
+         7wG7lyLcnkI3OX8Z3WzCMCiRaTz3arDIZIR+HKzGn5YaKptAp+C0UBm5ABfOMgIa07mu
+         JwNnccOUG8mLbO80E27SccR9byi6IkDEw+PFUyLyJCe31WFd4Uf+hUJ35sG7KcWkOXVB
+         V2Lelbp//LTIbqFVFKGOry491gfsNCtDhNladglhHC9hIdDsxy+slp9ky4gA9gZ5FBuj
+         NSUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVSIqtg7Z0g2e6IiS7YZLQdNLUtc3PwXanfJceRpYluyzg9j8onwZrrB4AQDqfEq41xaiEJDfBE7dhr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaZ/13O7axOGlYqDh2voxGUMmOxKU4LGjBxlNQkyL1fjdbZzPj
+	mZgu7KuEAIZbQlMFVwYfsKTUANeDPc03dWPelIrKHMpV5sFCvj4IXe0wHdSH25GPRHpP89SCX6K
+	syuOAfUkLrmyJYM/5nr+w5ai0a5DGVWUn9q6caA==
+X-Gm-Gg: ASbGnctXGU37uXtBe38Ba25TSElKPPmIjNGBVEZLQlm0ExCLhtUDv7EKfi7ZWb2r3ac
+	RiOlkn+PhQKDcI7ZR3U7BD2VYz825zC25lTK/7FIn9bvv5pBIBA+spPfbf11ofDL4onsSqKIu23
+	vDUCiv7uRJWGUY0+m1AFkiZ0QO435yGsf3q8zmNZAAjjAx/vA5VIvv1NRm
+X-Google-Smtp-Source: AGHT+IHGIS+ExaQuPe3WrwKhT9iTZlQPHWrqXU+FEi6CZPLDhFRxvRWPAQAyK3eYKCOza74Q/R0L9wmKBH+vKLWHucs=
+X-Received: by 2002:a05:6902:2702:b0:e5a:e897:2846 with SMTP id
+ 3f1490d57ef6-e635c13dc87mr674862276.16.1741288485545; Thu, 06 Mar 2025
+ 11:14:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20250225-dts-qcom-wifi-calibration-v1-0-347e9c72dcfc@linaro.org>
+ <174110761299.741733.15423494263862521182.b4-ty@kernel.org>
+ <d5l3bsozn2sauenlyjolb45hqgiiachixxycziuyfsxch3ypvd@mjb6whdyjztw>
+ <64cb6810-4a75-4313-8d66-d773798f5a1b@linaro.org> <fb462c07-8d3e-4220-8394-1f8d9ae587ff@oss.qualcomm.com>
+In-Reply-To: <fb462c07-8d3e-4220-8394-1f8d9ae587ff@oss.qualcomm.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 6 Mar 2025 20:14:34 +0100
+X-Gm-Features: AQ5f1Jqn7g_ZEo4_V4hGSgwIQOP4Ud2cDL4bG4InNCHG7vk3jBCfoZ9M1cuhB9w
+Message-ID: <CAA8EJprNWHgTcWj-_mvg0OzbxeXfLS-S4wM6tsraB+beCSpUvA@mail.gmail.com>
+Subject: Re: [PATCH RFC 00/13] arm: dts: qcom: Switch to undeprecated qcom,calibration-variant
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Thierry Reding <treding@nvidia.com>
+On Thu, 6 Mar 2025 at 19:16, Jeff Johnson <jeff.johnson@oss.qualcomm.com> wrote:
+>
+> On 3/4/2025 10:48 PM, Krzysztof Kozlowski wrote:
+> > On 04/03/2025 21:50, Dmitry Baryshkov wrote:
+> >> On Tue, Mar 04, 2025 at 11:00:10AM -0600, Bjorn Andersson wrote:
+> >>>
+> >>> On Tue, 25 Feb 2025 10:58:57 +0100, Krzysztof Kozlowski wrote:
+> >>>> Dependency
+> >>>> ==========
+> >>>> RFC, because this should be merged release after driver support is
+> >>>> merged:
+> >>>> https://lore.kernel.org/linux-devicetree/20250225-b-wifi-qcom-calibration-variant-v1-0-3b2aa3f89c53@linaro.org/T/#t
+> >>>>
+> >>>> Change will affect out of tree users, like other projects, of this DTS.
+> >>>>
+> >>>> [...]
+> >>>
+> >>> Applied, thanks!
+> >>
+> >> Applying it too early might break WiFi on those boards. I think
+> >
+> > It is just non-bisectable, so that's why I put above remark.
+> >
+> >> Krzysztof explicitly asked for it to be merged in +1 release, when the
+> >> driver changes are in.
+> >
+> > Yeah, that was the point.
+>
+> Driver changes are already in linux-next, and I've sent the pull request to
+> linux-wireless to hopefully have those changes land in the 6.15 merge window.
+> (ath => wireless => net => Linus)
+
+But if anything, bisecting over Bjorn's tree might give strange results.
 
 
-On Mon, 24 Feb 2025 12:17:35 +0000, Diogo Ivo wrote:
-> This series consists of Device Tree changes enabling two features:
->  - Using both TCA9539 GPIO expanders found on P2597 as IRQ controllers
->  - TMP451 temperature sensor found on P2180
-> 
-> For the first feature some preparation is needed:
->  - Patch 01: fix the enable GPIO line number for a regulator, freeing an
->    	     exposed line on P2597 expansion header J21
->  - Patch 02: add voltage level pinctrl information
->  - Patch 03: fill the TCA9539 DT nodes for IRQ controller operation
-> 
-> [...]
-
-Applied, thanks!
-
-[1/4] arm64: tegra: p2597: Fix gpio for vdd-1v8-dis regulator
-      commit: 67aa377b37f90c6fd8f6e9ede68e1e11f5def2e9
-[2/4] arm64: tegra: Define pinmuxing for gpio pads on Tegra210
-      commit: b9dd925d67d2d50667a2f3be275996dcca03e485
-[3/4] arm64: tegra: p2597: Enable TCA9539 as IRQ controllers
-      commit: 8f4897dac543a571a3dab432a3fcdffb12661f14
-[4/4] arm64: tegra: p2180: Add TMP451 temperature sensor node
-      commit: a2d23ef4c179aebdcace4c2406b798cdecf05d35
-
-Best regards,
 -- 
-Thierry Reding <treding@nvidia.com>
+With best wishes
+Dmitry
 
