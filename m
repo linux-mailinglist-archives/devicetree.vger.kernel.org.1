@@ -1,114 +1,117 @@
-Return-Path: <devicetree+bounces-155111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD208A55A34
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 23:53:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E798A55A3B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 23:55:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44573188A244
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 22:53:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FAA816C9C1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 22:55:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8307D27C85A;
-	Thu,  6 Mar 2025 22:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5263F27CB00;
+	Thu,  6 Mar 2025 22:55:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="iLvFTOS1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RpvMlfrE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C386DA2D
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 22:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F383206F22;
+	Thu,  6 Mar 2025 22:55:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741301622; cv=none; b=YrDVSqzxunCfyqQWPd4qeRx6tjf9VuHID3e4brnnZpdxy1NDjRgmQ+sXACMvJJLa6F+aNOZ26cwmvP45ecOepLIGLwcFn86fO4udXkwKyY6HVG0ZgSKoAtq6OMjSNzeQCvEAszdKP8W6JjNM4Sh31hDG7tO/85TmUfovbEJ+RkI=
+	t=1741301753; cv=none; b=OA8+x9UBQz4nuPp1KYaEJUMzDtikUMo/cewT4Mn853Bux3Agp3sAmlCNAjJHhyW5pzlGgu8akMBZZIM7cQnB+sHjfjX9HP/PzKBZ2c9EMbdQ9xVbseCAv2a7sZU2PqxoaE9H6EDLxl4KrvIT1ywMTmxgqclM+0wGTxUqsj+RQto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741301622; c=relaxed/simple;
-	bh=qa2UV/Sy+MaIwgCS6wwLKc3HutozQpnXULdpZhWQNpk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lnG4aVMkxE1rT2kTH9dItfvvF3MFkCuXjyjenHQhR20vp9hzivClbUc43LqhxABvL8UuGfxbvrL/PIjkADdp/srFWb34Ur3Uo/gpJTFr+DJ5p4sAB+/azwm+3X3Bs1k/VK1TfJaZ79j+gnz7BxyFBsOTfGFRomQwODNQS1vpT4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=iLvFTOS1; arc=none smtp.client-ip=121.127.44.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1741301614;
- bh=BL399FFBDZ59QPzqtz+58fHUwMJC7+0wO+ycM6zcMQI=;
- b=iLvFTOS1rKWtnuzsH63gmdQJl3v1p61z9K5Gw6lclRCg/pPdZagDff3itldNJEyfU4Bu5DjXD
- /c5PI5qFisP5ahh65qIA1sjGwlrkdq9qSgazshzKsvZrARthy1AIUguZgr3l+zZ45tODlC2J0Cp
- jPD51WlpoQI/Jjr6AqUzmXuRAQQz6ah0oT8OMngQsSlJ01Vk1HTTVlpguL5KHDVArAPK7/B57vI
- WfeSzpdvgqr5VuTRMYtRYfC6suVcNW22LRPSZ8lH+TzwVikr5j2tgHQn+A2yQ/W5QghJw2vWBj5
- QnBaTUj2dlpJQw+gj0DqvE4VmDVc9/+T6r6eBPncURFQ==
-X-Forward-Email-ID: 67ca276cc1763851c065c79e
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.59
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <24a8691f-9faf-4657-b819-183fec3d1a15@kwiboo.se>
-Date: Thu, 6 Mar 2025 23:53:27 +0100
+	s=arc-20240116; t=1741301753; c=relaxed/simple;
+	bh=a+MtALUVY91zVDdEmvlAj9f3BESzAhxgQRJBbEz3RJs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SNWuzt3Wap43In2wNQbJsk0362eR6WFWwtdI4nS4WpWHjTIL5KaTt7bgBHi0FE43xQJ58SF+m1bi3XqmKdEm6S15K8QASpB+gv2os/DFQyVaeE4+U+/cSAQ0k+NCpLNk3xhy4TmJz8HaZmVzrXFl1yq4dSRpZg+zXB6wXw8PN/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RpvMlfrE; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5497e7bf2e0so1369392e87.3;
+        Thu, 06 Mar 2025 14:55:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741301748; x=1741906548; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Nm2qV+PayrFKZi2Qr9jDYU/KnrvQXtIuUzSZ0SYEFfA=;
+        b=RpvMlfrEOR/qLi9vCfwbfE7onQMdygwkzTu2HfhIPvozm8m+OPNcnkqnGiw1c+kETz
+         ubi0SvfY2FZsCpmDkL7UgbTe3+YALTI3KzvQm423qEraynzOHlM/fFrRZPYk5CSoBGw6
+         /IRzGo/mc4zmXARZ8wzEklqp6pnrVOrihXHpWEeuCpZsa2gSmXr1rOrcqewp4UThu0Q+
+         8ovTqx7VtxWADXqHjkNw5IkLtwta78be7a4tc0vG4dwZB1cygWzYcmeuJ3VKgFgNjtTy
+         tvPHG0XfcdxT4F7HHIhuSmwAsIPwfZap9zxfBoq/8oY23ajRSHhDP8cpA0r2lOmegn7Y
+         sYdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741301748; x=1741906548;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Nm2qV+PayrFKZi2Qr9jDYU/KnrvQXtIuUzSZ0SYEFfA=;
+        b=RtqTwLA7u5tm3LTnC7CXC55Q3m5qFm3wuwBA7jIceiwJ2Lmjm3ghMoovCAkObJ7aJf
+         wV0H8QVIoXoOr9V2OnqcViEd5jjup6JCPg89ic6KPtmr2ArFiv3ofDMu9iwdll0GW/27
+         7FOFgOm+ocT3hRhihxr67i+ULH2fa7vxA3UCeDYHpbM6SByzryBpUKgNiHO5Q/MMbgeG
+         zN66CVafa7Rbt3SH5ccMamd9WyvfikGLcN8XaNv1ujpN/Mq3xHwUhZ6piN4TD3P4NCBv
+         HQAPBkVVC1DDTGiUC5f/ILysIXR9RvGmFMHa5fResplrrFxNWvrFBgArY5SVDb173ARJ
+         as5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXFE7bjpS6QXF93wkAQcyhnWw8QpJB+MHJfQrtZr3pHRLfNpx0IB7MWTYCYI5A/D2ObVvfEAMMtHcqlfGSo@vger.kernel.org, AJvYcCXfsSnqvsYl3x5Js8x9x+g0zQ+Lj2jAazp+f0pOv2VtwxbjkfwM1lUjSkJXyrWOn4UzJijbDq5rtBs1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqLvS1+MNU9qwsN3AmrMgpRrnRM2H3aJ9cvHLS7DybNj3sK4Ol
+	KkL7C2yCdEvdpDsryQ/mF049mAS1HcVZRGyzccfCc15/OF4FefuwhnL+n6yOdJOZDjj4fHUDMMr
+	BkDNm+9BYcyH+d6drTiWIQeJefyBqkzpS
+X-Gm-Gg: ASbGncvogUv9/4tCauFT7/j/94RWc58uUUB072I1LjE86jDQYozOQIn/0k1/HcNtxQa
+	OYKuGdzApxshBPX4Mw6JHWg42ToWLyjPd5nxdxmKPOe5zYvVR+8hk9ViAdGgReBbgfgsSez+sIR
+	Jc4JtRseSIHihTHgGO62MOx+Lx802cmevo8gxABTMSGotrQ89Sy1SxGi31Jg==
+X-Google-Smtp-Source: AGHT+IELLnqdwKJ1evQmnO6miMjCOF6kWpjNInySnrLYVu8W39JXHce4tfrcyF/HH/vVvtpBmKUXlY5IKpjWjhg+MpM=
+X-Received: by 2002:a05:6512:1112:b0:549:4d7d:b61b with SMTP id
+ 2adb3069b0e04-54990eab0f1mr333594e87.35.1741301747365; Thu, 06 Mar 2025
+ 14:55:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: sdhci-of-dwcmhsc: Add compatible
- string for RK3528
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Ulf Hansson <ulf.hansson@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
- Yao Zi <ziyao@disroot.org>, linux-rockchip@lists.infradead.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250305214108.1327208-1-jonas@kwiboo.se>
- <20250305214108.1327208-2-jonas@kwiboo.se>
- <20250306-frisky-spiffy-bullmastiff-ad9e49@krzk-bin>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250306-frisky-spiffy-bullmastiff-ad9e49@krzk-bin>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250306222359.797855-1-Frank.Li@nxp.com>
+In-Reply-To: <20250306222359.797855-1-Frank.Li@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Thu, 6 Mar 2025 19:55:36 -0300
+X-Gm-Features: AQ5f1Jrc9-FFNpCeyDExi95YGo2Kn5IirxDCaG51gdscsys4mOsD1AzjUc9N6UE
+Message-ID: <CAOMZO5CL-qQSHuSoCtb+f_mqNG8vu4tTVDi-ThoHq+m9SeagxA@mail.gmail.com>
+Subject: Re: [PATCH] ARM64: dts: imx8mp-evk: add ecspi2 support
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Thu, Mar 6, 2025 at 7:24=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
 
-On 2025-03-06 10:36, Krzysztof Kozlowski wrote:
-> On Wed, Mar 05, 2025 at 09:41:02PM +0000, Jonas Karlman wrote:
->> The SDHCI controller in Rockchip RK3528 is similar to the one included
->> in RK3588.
->>
->> Add compatible string for the SDHCI controller in RK3528.
->>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->> ---
-> 
-> No power domains here? Post complete support, so this won't have to be
-> changed in near future.
+> +&ecspi2 {
+> +       #address-cells =3D <1>;
+> +       #size-cells =3D <0>;
+> +       num-cs =3D <1>;
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pinctrl_ecspi2 &pinctrl_ecspi2_cs>;
+> +       cs-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +       status =3D "okay";
+> +
+> +       spidev1: spi@0 {
+> +               compatible =3D "rohm,dh2228fv";
 
-To my knowledge this should be complete support. However, there are some
-rx/tx tap num and strobe delay num configuration that needs to be tuned
-to fully support the faster HS400/HS400ES transfer modes.
+That's not a correct description of the hardware.
 
-For that we could need something like the PHY output/input tap delays
-described in mmc/sdhci-am654.yaml. Still unclear to me if the different
-delayed used by vendor driver is SoC specific and can live in driver or
-if they instead are reference board specific and could be part of the
-device tree.
+Conor's effort was to clean up the abuses of using "rohm,dh2228fv" to
+get spidev support.
 
-Regards,
-Jonas
+Please check:
 
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
-
+fc28d1c1fe3b3 ("spi: spidev: add correct compatible for Rohm BH2228FV")
 
