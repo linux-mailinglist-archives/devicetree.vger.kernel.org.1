@@ -1,141 +1,94 @@
-Return-Path: <devicetree+bounces-154637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 687D9A53F2F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 01:32:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0D3A53F3B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 01:40:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A109D170F21
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 00:32:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5A8F172B61
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 00:40:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C6F21804A;
-	Thu,  6 Mar 2025 00:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F6911BC20;
+	Thu,  6 Mar 2025 00:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="atx8Y3TD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tu6cTkdv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16A002110E;
-	Thu,  6 Mar 2025 00:32:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37DA17C98;
+	Thu,  6 Mar 2025 00:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741221164; cv=none; b=RA9iIQ/0UZuze0EY9WIqlbxNzqLOedovkR9QAdB2zdVmx3jLtmuZfhlH8oJ2WGoFvE7mA3dfC6uptHGUsxL2XovMAm1ZoP4XpE/hf4v9XwgXSNXvcklEUnGu+tyiXdZfq/NGV2IFInyZVWBFZnKfJk3VVyMG47sTbdlKNXYp4SE=
+	t=1741221633; cv=none; b=c4r/al0d3JLR6I8dtNr8VPmM/WB2H89YMhjsnDkwgxHHVHy5x3gi9Z0/ZArxVX/pCKrEm+chrlekjlsVZctz0jeOsH7/A8Wk9HYFBNF5K/822xQ4pnxIkf4a4R+vUObcV+cFO7o3VVtro4kIogpwRH3ztlEwUuHGdZGX94BAIm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741221164; c=relaxed/simple;
-	bh=f5/msq66A8dGExPJS5orgs8AKsYIe/Lcr2NDLfzR7A8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IGXBDC2UF6ywIArkuSRvt7GWV1/cUBpLPp2hwwG+6zVKn50wD8pNuLl+amKxlZO0fy2uSRQjXMEk4eufG/U1+easmHjymHq9gWAjJVrQ2B4ZnkIPWS6sL40rFIUPvQnGS7FzbSENrntkKeyTOdySLQ4Vu0qyHwdw0Kgf5dk0E1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=atx8Y3TD; arc=none smtp.client-ip=209.85.219.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6e89959f631so1125716d6.3;
-        Wed, 05 Mar 2025 16:32:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741221161; x=1741825961; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kbniOkrcE/iLVnL8rQsYyL/qvVYTkKklM91CTqrRJBI=;
-        b=atx8Y3TDUXfX+GUHGeR84a2qbpKy/tWs7g+itfzhfjLqwdcJaA24vNwAbhNynSoLN6
-         KWL525s90CT+TsPKU6Zx0U1K7UkPqvS1LJh2ZNh3/GvXdbilO/jiLU+RLKFgCSXnOUur
-         uWAdQz3I0nVa2V92Jq5Y4EZ3XD2bpNeAAZ2aQPdG44qU2PO1mrMs4BWQ1Xd92UlZeFVp
-         2GqYrs2h0N0ZACD03usjyzU4wfYnDuxOavhE8/o31UJMeh/dgOG9NMe1ja9oYbD3Z5n5
-         +D+Ynx0zf6JPt1hwjMYgAC36FIzMk0PAZyZBxjDAIlbg7Xl5GOAkakM9U/2WAR1PWFZp
-         QfLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741221161; x=1741825961;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kbniOkrcE/iLVnL8rQsYyL/qvVYTkKklM91CTqrRJBI=;
-        b=kxt0pi6XxGsrYs3Tw1W7xURswgyijh4e9vMyl7Pd7ZgNfEa19cB3yLGFwuPeRQDPcP
-         O64Te/8AGVJ+uOqDgTnYquD2uB6+fFv+AdM6JV7napTxVcsK8/Bt8yn5BSnHwerdMwTM
-         0yyZCOeq2O1clh0gnOAJIKdHqOUEnOZDJb+WtZhqXxzKThZ7Kh5xqTAnYkGjmCWmjo5k
-         tPKLuXKcE0ofTj3d4RL49G97zgZLzE0s5B2C7cIbOHMTW5DYETU2CCYeouipOVnhnidO
-         CjsupwGWfcI7OOVBvjchybg3pntd8ex5i/L77aO+EPhWyfZ8/KQldOH9d2a3jwk5zzbw
-         kFRw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7YP+AUbE0+FdnuW2sgC7ZvPAwMKuhCqkfsVGkBEke2Hsb2TVy+Ke+dghvwJZLwBq17nLLliH704ed@vger.kernel.org, AJvYcCUq+kfxZIyJV4a6n1maCE/ZqRC/2EFJ1r0trWhUFRgyQfVVkj2XeLR4e88Wg3/TbAmPvn5bAEaXbe2H@vger.kernel.org, AJvYcCVa/VKd1TrwEw2zCPjKvGGln0QJLVrpcuP5L+CXh+5Rs/thwuwuwmTd4JBB20SXuzvFHUhwztROwUiKjior@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVY4tXK8oV8TGOzy4DSxWtw/0lHQcLKIlTJMUz1N9ZS5HdHRII
-	8IkSohoC6emnBRvJChFwTFMj8yi5b/O8V63OO8Ov5ug+UMeykmn4n5hePxLj4eJr/NoMZVjZwl/
-	SaCzFRElWWSnX1CXo2NVFN/i6hbI=
-X-Gm-Gg: ASbGncsPU0WCjPET+W/VFHt1d6oycFIlUTyBCOEfn9WV1fSNp8I3I4k5iO8l0DZ0YLX
-	SS/TPF5ouPsGkQqZypbsIrAIOTOTA0NERaG6rXjqdRzojHLLJWk9Zv6aTP1ZFs02Iw5yPbQCihY
-	zitIYe+pDDVfGZx3rg7Z0tsBe3Ig==
-X-Google-Smtp-Source: AGHT+IG+AhTOU/hFmUj2Gkpld0BqtJ/4yuByg5APV8R/JeUdRUJkWdIIvsJDj978xbhdoWG645LFlNqS3HrGShS/6Y0=
-X-Received: by 2002:a05:6214:2b09:b0:6e6:6535:17dd with SMTP id
- 6a1803df08f44-6e8e6d13ef2mr91605216d6.7.1741221160908; Wed, 05 Mar 2025
- 16:32:40 -0800 (PST)
+	s=arc-20240116; t=1741221633; c=relaxed/simple;
+	bh=spSyanY6lDrTp4+hUvjUAceIgKiQRFt9KTi6mE0l0WU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QwBsA4fGJ5+HD9Z5BSitzMzqscgwwSlAa9Gg9h0oC3PCaGVKfAmuwXez8lHtb1aiFJI3RagcBrXCY2SWyUbj4xxP5BasPAT6QzERmVeAD/fwGPo/cZYsx65QoqWnQJ7F/E1nddjG42y/hfMGLKuYki75X9ZELU/FMt6jB21rO6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tu6cTkdv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A35A2C4CED1;
+	Thu,  6 Mar 2025 00:40:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741221631;
+	bh=spSyanY6lDrTp4+hUvjUAceIgKiQRFt9KTi6mE0l0WU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tu6cTkdvPoLQBKt2y/ctCltQcUs578ttgYaqT+9P8WCOzeCN+KQAdPooLUq0p7ifC
+	 LXmV3wyHRMH73JIqXofxR1Bsr+PbvF6Sk91wUwRr15/yiH1J7d2ZjRXRr9stmi2Y41
+	 4YobdTP7NzBS0yyw99givCjWxqJ1++rAgI+lwSStzhUx67Hoxj/mZhsHwAfo2sXKs+
+	 pGW3nKBh6LX9/LRrJgYubthnI/vWP4Y+AKYCQkDgkeZE0acWx3++QM6y5eaP/BqdUE
+	 ey372jXyHj/pbw+bLkBINGuUvNpxx04Z61baOpcVSAdMFYMT0xN0lixFEhENq9NU8P
+	 /fkWuv57Bd+Hw==
+Date: Wed, 5 Mar 2025 16:40:29 -0800
+From: Lee Jones <lee@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, kernel@collabora.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+	Andrew Perepech <andrew.perepech@mediatek.com>
+Subject: Re: [PATCH v3 03/20] mfd: mt6397-core: Add mfd_cell for mt6359-accdet
+Message-ID: <20250306004029.GB8350@google.com>
+References: <20250304-mt6359-accdet-dts-v3-0-5b0eafc29f5b@collabora.com>
+ <20250304-mt6359-accdet-dts-v3-3-5b0eafc29f5b@collabora.com>
+ <a8fbb536-a246-4650-8085-d576652b0301@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250303235930.68731-1-danascape@gmail.com> <20250304143918.733d6cca@jic23-huawei>
-In-Reply-To: <20250304143918.733d6cca@jic23-huawei>
-From: Barry Song <21cnbao@gmail.com>
-Date: Thu, 6 Mar 2025 13:32:28 +1300
-X-Gm-Features: AQ5f1JosxNJs8S75DECePZKWETpL2y5LjB4cLtk5HNNr9lPQYzI9s5_-kDJ6Ibo
-Message-ID: <CAGsJ_4zGOvEK-NE1DBtk5jQZCfPp0vtjOb2pWskmhAAn_y93eQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: iio: accel: add binding documentation for ADIS16203
-To: Jonathan Cameron <jic23@kernel.org>, Saalim Quadri <danascape@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, gregkh@linuxfoundation.org, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-staging@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a8fbb536-a246-4650-8085-d576652b0301@sirena.org.uk>
 
-On Wed, Mar 5, 2025 at 3:39=E2=80=AFAM Jonathan Cameron <jic23@kernel.org> =
-wrote:
->
-> On Tue,  4 Mar 2025 05:29:30 +0530
-> Saalim Quadri <danascape@gmail.com> wrote:
->
-> > This patch add device tree binding documentation for ADIS16203.
-> >
-> > Signed-off-by: Saalim Quadri <danascape@gmail.com>
-> > ---
-> > Changes:
-> > V1 - V2: change compatible property from enum to const
-> >
-> >  .../bindings/iio/accel/adi,adis16203.yaml     | 52 +++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adi=
-s16203.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16203.=
-yaml b/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
-> > new file mode 100644
-> > index 000000000000..64370f13e1dc
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
-> > @@ -0,0 +1,52 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/accel/adi,adis16203.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices ADIS16203 Programmable 360 Degrees Inclinometer
-> > +
-> > +maintainers:
-> > +  - Barry Song <21cnbao@gmail.com>
-> I think you'll be dropping this patch anyway, but just a quick not that
-> it isn't good to volunteer people.  Barry hasn't worked on these
-> devices for quite a long time now so seems unlikely he agreed to this.
+On Tue, 04 Mar 2025, Mark Brown wrote:
 
-Hi Saalim, if you're sending a v2, feel free to nominate yourself or anyone
-interested as the maintainer. Apologies, but I probably won=E2=80=99t have =
-time to
-handle this :-)
+> On Tue, Mar 04, 2025 at 12:15:44PM -0300, Nícolas F. R. A. Prado wrote:
+> > From: Andrew Perepech <andrew.perepech@mediatek.com>
+> > 
+> > Add an mfd_cell for mt6359-accdet and describe its IRQ resources to
+> > allow the mt6359-accdet driver to probe.
+> 
+> Lee, is this OK to merge via ASoC?
 
->
-> Jonathan
+Yeah, should be okay.
 
-Thanks
-Barry
+Acked-by: Lee Jones <lee@kernel.org>
+
+-- 
+Lee Jones [李琼斯]
 
