@@ -1,95 +1,88 @@
-Return-Path: <devicetree+bounces-155022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E7AAA553F5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:03:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F08A553E0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:02:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1B1F18990B8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:03:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0FBA189AC84
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D893B26D5DE;
-	Thu,  6 Mar 2025 18:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6099526A0DD;
+	Thu,  6 Mar 2025 17:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="gnbmC2kM";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="iM7ureVS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bGZGDhJl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B14326D5B6;
-	Thu,  6 Mar 2025 18:00:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 286D9279334;
+	Thu,  6 Mar 2025 17:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741284014; cv=none; b=bBHTBHIaRXzT4kVIGOOfHdnBWp9445+S2Ptlu/Z/uXch6ECpWFMnSJTLwWYf2TAhj8tjZKbAcvsaqpeqYoqlxJuhzOqhTdwIElfvuB2V62oJ7YO2NG8PW9QTkxBYnHkxuTkVKMWPbyHG4CqmWb04opA4H1JaMsoRcLn2rigT9nI=
+	t=1741283978; cv=none; b=Td0DYMr+3eh5xVvRFvD5QS6e0fBZxuG+Be/WPJbbCSS00CKLDPL34f0oYR7Qm3J723w/eY7xG0xGs3R1UyJdZk8cWlogEHtUqoFWY5NTDZZ30KZ79U65sNBRG19N8Zt+TG7nt5T0/Fh6wq5b9Zi8hkgYHWV3CPae0PpdDhGVJ40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741284014; c=relaxed/simple;
-	bh=JPr5THma9S5EoKLt/y71Ozii0SHYauExya2FtBG0v2E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Yw/cJdvtwWOUSrsNva0iNbpAs9+VpPESuaLdQM9kKnkDWLxEt6czul4ZSiRMf7sYEkbE+FYMgcPsAhb2XXdF8BHbC1YNGje9g4T1kXh+nXrSk4XIl/7lxPVFImveUFSvXy4bQViXD1OrBBMKUDdDStX9yfjmGztcpolOxWL+H0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=gnbmC2kM; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=iM7ureVS; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id D6BE5EC59F2;
-	Thu, 06 Mar 2025 10:00:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1741284012; bh=JPr5THma9S5EoKLt/y71Ozii0SHYauExya2FtBG0v2E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=gnbmC2kMymAn7C0iu8thUpB82K7QC/5WbbLZzrKwvGPlUxc96W/0AuYeSv3O8ZSZ5
-	 KrutYX98iNSc0bUq0hF5i8y90d6baNdPMjZ9vDjPOF7vFLZbPI1nKTDPgva2cov4qd
-	 Jo6EsSH/YMlPDTJulTHbyL9AI+vPRellq+tNbmuCOrZH5co059HxnoT+giVo6hInqy
-	 zD1Uv2VjN9SZht2EyBwm+Vl2eufM5Pj5SLT16+WUiDBvNwYKENcdQG6zUrDoW0sjgq
-	 W6y1pC24nPmQgrpjH4Noiy1XUHn+zlocctj9ugpSJAqNIL1qJFBOqBQ7hR57PCDddl
-	 85YI7cNb7g26g==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Authentication-Results: bayard.4d2.org (amavisd-new); dkim=pass (2048-bit key)
- header.d=4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id kxjIPGOlARPg; Thu,  6 Mar 2025 10:00:11 -0800 (PST)
-Received: from localhost.localdomain (unknown [183.217.80.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id B3236EC59F5;
-	Thu, 06 Mar 2025 10:00:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1741284011; bh=JPr5THma9S5EoKLt/y71Ozii0SHYauExya2FtBG0v2E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=iM7ureVSa/S+7YUL3tB5xtVqkBhMyJqfdx9HDE0dvLZU4RHu/Jvph1InoCn00+FoF
-	 swBVcrDvNcWdDR/1ML4rc5lCMtlXUxaTn+pdFHUr+tmtriZgHSxTVdTZdrl/V4vxYh
-	 wIoAGDF9WuaCc0kyFFUa8CdAB1OjoaA8NbBc/GQYUjNjMDm87pxeaG8k1E19NWgqaP
-	 It1BZZBizokamqsTNNlwZ37jdJGRMbLSMhb62FPRnL8vlh9aE3QAaKJIsffzsVFqkw
-	 4dn4mImqEAaqnjdHtsEN+Dd1j6CunU0fU6djssw/H130M3VZLGURr1e+Oz52DwwSIg
-	 X/+D3MS841SPg==
-From: Haylen Chu <heylenay@4d2.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+	s=arc-20240116; t=1741283978; c=relaxed/simple;
+	bh=ptnDpw6IzDY5qpO9u23TfmbW8y90ukqjVE/OfuCOJX8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jXLqeRjuFNwbI2b77whRQnHCVzg20B7xAUEDxUWRsGiFsAmCMblvWTbG7Jn8Rn/cwZITBFbL6KTbhLzTbmyvhqYMd7IJogNzg2WLDBR9TVee1YbOdFNKrlPAV8W5tlo5+Q9QX3N1ne9SMQb/U7oFnGwPANuI49mvhEAbwMGK+aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bGZGDhJl; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43bcbdf79cdso6475725e9.2;
+        Thu, 06 Mar 2025 09:59:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741283973; x=1741888773; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b8ydr5dwE+tPsrRKvXCbYf2D+aelQJFLo7Ib1Huj3c4=;
+        b=bGZGDhJlrpodDX6A9VywxxYVaILZcyBzZLRJk1Ud0HBM/J1qfFJItQMhFiEnDQG4Bt
+         7UZmCDYoY+0dnCkVb0DuSD7Y+aA74jI63vqSgBKbyhefGiGDsTzO2NTMcKbdyJxrztSl
+         CUUwATYD2F29XDZIZ6oNAM++/VMgnG27Av76S0eNRlTKHNGEyV3wj6N0YRDHuKbgjDJQ
+         ke5ipkMmbEUZ6re2WhzDIhr9QWKVnAveifZLtbVxYoZll73XxiuoQ0+Ohj+o1rAaCVfY
+         RUooMiAH4uegBQsl5BQDU357ac18QE2u8FLaNb4ChbHEUGDdFcKTo3nNo0sVpR4kJimp
+         I1fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741283973; x=1741888773;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b8ydr5dwE+tPsrRKvXCbYf2D+aelQJFLo7Ib1Huj3c4=;
+        b=tmBDxoXDTOW7zBIeSJkpjJ8xsSf/EWKkFrXFC4FYjj98GWvWCZr5KwvbT05i4ScfFA
+         2eNA0uGplPRKbVMxTq2R/4zsXrQNnvCDSzgQzuzMe9Z/efKmcOdRmA+JWCA/gSyOBEJa
+         bHA5PdSZumrLx1h+X1Ghv5jrxNBskrp1+kl6mbtuU3rMnDBOSXZTfNFPazerjnMAzrpL
+         G7wvwIPukz/Hc8/5lD/Ny/QizFrF59lqLoVH8ewjeFrIsYj1C1FEK24F+ACb8Ycyj813
+         aBVAd5J/MwJzlAWM+aHhQomZdviKjcU0nV/jdC1zS6T4fJxnL7mCR+IbISAGcUCdgDOq
+         nBpg==
+X-Forwarded-Encrypted: i=1; AJvYcCVzfpyrejCA3w4p84jh2lQhKCAO8BvRtxDN5XxzN5Dv8r/dls1k6DL061sf/F49VG+LVwVKiWnGB4CP@vger.kernel.org, AJvYcCWdyyh7EU+1QrDQOv4fwJngsP5r8nYiNuj11oMepxM66e0fAzp0seDFeHkN1SyskMP8hfRX8c8j9UQptKs=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCGnQSc2pekFC9W/gJxfzZ3aRtNYnIGRdKqGR9GStlIejJqjm/
+	brihIjW0038qx89OGHBGVW5N0MG4029cHVWiemeKzrF49X6i8o77yNRbIA==
+X-Gm-Gg: ASbGncuZhnC/cTmmHhkgFbBy22pS1hgHLzyECLP8K7LUlH+fSmJIeWbvjzCDNxxbrIq
+	+sVYxJydjuWqb7QqsMXMZsKVDsNAJEzKr6TcOItJaydUjcQWqJ0Wkl7wryoktSJ+pnGZqqbF9d1
+	oAStJ2Y/l/SwxZ289cjZDGknUb1W/+GIKLOCmmDznmpHcgwM/sqPV0aJ+qXEHntrObdyDTJLFbz
+	mk6S/G8j0p7t7ZqYxJGpdpqumbyUTI1UCsdZSxakeT1fyju8ZUO3IjwSzu9gGuiWXvvz8HR8Ot9
+	Ludo18FaIR5s1rSid8NF4DKCxlriSCwRIFBalGuSSQ7YqiFnaolDft9PVqnctz+NrPuatjv41eU
+	VR5XL6iZLMQ/yzeYtvqQ8zNiHtGl67O7nY4p7
+X-Google-Smtp-Source: AGHT+IGPceT47czRVqMmIj5D67gcsz+03yLR2QEQkAhWqZem2iWegtm+6KOhcl5S7AFgcmVE7ddJOw==
+X-Received: by 2002:a5d:5f89:0:b0:390:f9d0:5e3 with SMTP id ffacd0b85a97d-39132d671b9mr56584f8f.1.1741283973270;
+        Thu, 06 Mar 2025 09:59:33 -0800 (PST)
+Received: from localhost (p200300e41f3a9f00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3a:9f00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3912c106a1asm2717239f8f.100.2025.03.06.09.59.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Mar 2025 09:59:32 -0800 (PST)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Jonathan Hunter <jonathanh@nvidia.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Yixun Lan <dlan@gentoo.org>
-Cc: linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Haylen Chu <heylenay@4d2.org>
-Subject: [PATCH v5 5/5] riscv: dts: spacemit: Add clock tree for Spacemit K1
-Date: Thu,  6 Mar 2025 17:57:51 +0000
-Message-ID: <20250306175750.22480-7-heylenay@4d2.org>
+	linux-tegra@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: display: tegra: Document Tegra124 MIPI
+Date: Thu,  6 Mar 2025 18:59:30 +0100
+Message-ID: <20250306175931.2028613-1-thierry.reding@gmail.com>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250306175750.22480-2-heylenay@4d2.org>
-References: <20250306175750.22480-2-heylenay@4d2.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,125 +91,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Describe the PLL and system controllers that're capable of generating
-clock signals in the devicetree.
+From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Haylen Chu <heylenay@4d2.org>
+The Tegra124 MIPI hardware block is very similar to the one found on
+earlier chip generations. Add a corresponding compatible string.
+
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 ---
- arch/riscv/boot/dts/spacemit/k1.dtsi | 79 ++++++++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
+ .../devicetree/bindings/display/tegra/nvidia,tegra114-mipi.yaml  | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index c670ebf8fa12..09a9100986b1 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -3,6 +3,8 @@
-  * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-  */
+diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-mipi.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-mipi.yaml
+index f448624dd779..193ddb105283 100644
+--- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-mipi.yaml
++++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-mipi.yaml
+@@ -17,6 +17,7 @@ properties:
+   compatible:
+     enum:
+       - nvidia,tegra114-mipi
++      - nvidia,tegra124-mipi
+       - nvidia,tegra210-mipi
+       - nvidia,tegra186-mipi
  
-+#include <dt-bindings/clock/spacemit,k1-ccu.h>
-+
- /dts-v1/;
- / {
- 	#address-cells = <2>;
-@@ -306,6 +308,40 @@ cluster1_l2_cache: l2-cache1 {
- 		};
- 	};
- 
-+	clocks {
-+		#address-cells = <0x2>;
-+		#size-cells = <0x2>;
-+		ranges;
-+
-+		vctcxo_1m: clock-1m {
-+			compatible = "fixed-clock";
-+			clock-frequency = <1000000>;
-+			clock-output-names = "vctcxo_1m";
-+			#clock-cells = <0>;
-+		};
-+
-+		vctcxo_24m: clock-24m {
-+			compatible = "fixed-clock";
-+			clock-frequency = <24000000>;
-+			clock-output-names = "vctcxo_24m";
-+			#clock-cells = <0>;
-+		};
-+
-+		vctcxo_3m: clock-3m {
-+			compatible = "fixed-clock";
-+			clock-frequency = <3000000>;
-+			clock-output-names = "vctcxo_3m";
-+			#clock-cells = <0>;
-+		};
-+
-+		osc_32k: clock-32k {
-+			compatible = "fixed-clock";
-+			clock-frequency = <32000>;
-+			clock-output-names = "osc_32k";
-+			#clock-cells = <0>;
-+		};
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		interrupt-parent = <&plic>;
-@@ -314,6 +350,17 @@ soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		syscon_apbc: system-control@d4015000 {
-+			compatible = "spacemit,k1-syscon-apbc";
-+			reg = <0x0 0xd4015000 0x0 0x1000>;
-+			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-+				 <&vctcxo_24m>;
-+			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-+				      "vctcxo_24m";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		uart0: serial@d4017000 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017000 0x0 0x100>;
-@@ -409,6 +456,38 @@ pinctrl: pinctrl@d401e000 {
- 			reg = <0x0 0xd401e000 0x0 0x400>;
- 		};
- 
-+		syscon_mpmu: system-controller@d4050000 {
-+			compatible = "spacemit,k1-syscon-mpmu";
-+			reg = <0x0 0xd4050000 0x0 0x209c>;
-+			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-+				 <&vctcxo_24m>;
-+			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-+				      "vctcxo_24m";
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
-+		pll: system-control@d4090000 {
-+			compatible = "spacemit,k1-pll";
-+			reg = <0x0 0xd4090000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>;
-+			spacemit,mpmu = <&syscon_mpmu>;
-+			#clock-cells = <1>;
-+		};
-+
-+		syscon_apmu: system-control@d4282800 {
-+			compatible = "spacemit,k1-syscon-apmu";
-+			reg = <0x0 0xd4282800 0x0 0x400>;
-+			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-+				 <&vctcxo_24m>;
-+			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-+				      "vctcxo_24m";
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		plic: interrupt-controller@e0000000 {
- 			compatible = "spacemit,k1-plic", "sifive,plic-1.0.0";
- 			reg = <0x0 0xe0000000 0x0 0x4000000>;
 -- 
 2.48.1
 
