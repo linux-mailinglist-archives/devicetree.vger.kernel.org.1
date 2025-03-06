@@ -1,155 +1,140 @@
-Return-Path: <devicetree+bounces-154769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F987A54760
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:10:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C138A54779
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:15:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 483FE7A3F1B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:09:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2DF07A726F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:14:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B07F61FDA84;
-	Thu,  6 Mar 2025 10:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DBAF203717;
+	Thu,  6 Mar 2025 10:14:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w++c08qH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GUid9j3C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28E01E7C0A
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 10:10:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F001FF7D2
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 10:14:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741255839; cv=none; b=h9wqIRycjOrIaD7bN2IgRtX8MD89Ai0RWh/DNCK2j7Ha2vxlrqacAvivA7LL4b1dUB4zkkCHcZMBEXjmIh1Vr2y21Xjqe3ikb/seCxAOdYf+vs9uUT/mRRxXWElGH7m/ySPEzKusd/hq5NalC2KXXbYw6ILQXiO7rsFaFOWCWW4=
+	t=1741256094; cv=none; b=HpOgKHKd/BnyVPThWpAJo7I7HLEBqviWpK5RP/r6vxhbhDgdVcM8CHM2srbRu6F+JjL7Urs7LU9sc5MANd2MSZhDLI2hJDh+Hy5YMLMQISMYVQsGrc3KW5ya3GClYB2e3FYiHFCUcQ6r5hUhUeq9gyXpG/i8fHtqY+ycMxoZC6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741255839; c=relaxed/simple;
-	bh=eYHRpoGMbEGwPMptizuEYfx9VxESUqNfPyr+BhppZYY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=liu+rW7cw13ajCEiUVp84adI0rbGNN5fvXXDwETW8L5BFkn9qQRoU7Dq9fcgXCoqTVrdEpsE8VpdxWrdxJlRyrGf8R6yyNatpR78bABlpRI+3TdQVxxpTf/eNKJ8WyIjekHNPUc/L7kZ2uPYhlP/c3MAGpiuTXinWruTMiMHO+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w++c08qH; arc=none smtp.client-ip=209.85.167.47
+	s=arc-20240116; t=1741256094; c=relaxed/simple;
+	bh=Eb7POQGunjSjP8253tuV8Q/qASH50C+05IivcjCHmm4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=I4dbPGEZu0cfMyTZq6HUq8jWGncJQXLOQ3S8rj+u6zTBo6OiuU9Hv72dvLb7r87ilzmPybu6UPEPLi+nfwZj1XrW1Pq8dTajR8HrFeO4ED9O9JQSdofAcS6orY/QA9Z9aSQ9HIBXoooQ9Jcw8gPqSIBbs3tytKX5m342KfwKcqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GUid9j3C; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-548430564d9so490933e87.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Mar 2025 02:10:37 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5e04064af07so834532a12.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Mar 2025 02:14:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741255836; x=1741860636; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8lXiXH7m4bW7beAtDaeOppbANkLDTvV0BWddr1dN36Q=;
-        b=w++c08qHzu5asHISohwyZH16TnRlJQMrE5DyPs14ENnb7BJezhusMneceSxxZ5ppB3
-         bhSw+JIyj4055Tc8jpbKq4g3R/ytCZYWBhfINvpCHsqiOprHD7o2gngSpn8TvrogJZvu
-         pmHrlZfAzYFsB74k1u65q0DdpUVfr1RKFotOc9E1zR+1VpEFtMR89rdb6v1m1NK+TXOu
-         uicjB0Sqc6n1jYGajTUN2q02c0f5YO1+A2VmrQhYa0UL6bw6yKP+CRdJcuS1Ed1u3tzH
-         c/2CxJLBtIj3IgKjw+LsuBXxyZqZv8RCgto2nqqsOrufEZp2OWnBPiCiVBvKcyfs9RXv
-         Q/Dg==
+        d=linaro.org; s=google; t=1741256089; x=1741860889; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gea8RDhxW52XRzq4nksHK4G+nluCQdGJ7LngFtiewMU=;
+        b=GUid9j3CNEGR5PKeXsIF1jHf3M53CacaM/BkJA8fOKzPaBkznlW1xdJGP8Zzad6P0f
+         MEth7R5KTVrq3KmnY/GVeC8DWovh1uBga4Zvae3LB40BSgaXuyTcqcsb2J+rQW4wLt5p
+         eI/4rBHnbqfyQppKe5mXCrf0GyD4hUJZEIscC24U8aAEUdUYX01sprenZO5Gaii7hjEO
+         dN2+kg9thQ1yrzJ8gHCTzDV5LvtKsAw2TGeE4cPkkHNNls53Bfp2YPO2S0Kg5ICCUJYn
+         z3Mgfqi4fcs5oKT9bDEfd9iaW68u8KXsQDV4/4Qdlsi4r3e2jxxZQ9tHuCKG/KmoX4e5
+         Ba9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741255836; x=1741860636;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8lXiXH7m4bW7beAtDaeOppbANkLDTvV0BWddr1dN36Q=;
-        b=Kj2Vq4QXpBztaD8iA/IeT0AmL1E/Bh6w/5HSAhlWP1M4udCzP2EoikWvnidbJfoXQ4
-         e1RK8SB1jxLMHayAU4QT5Dr4RyMhHYvY8y59PGsY9TGdeouyP6trdj0kfh+/fUyAw4q7
-         6VwdnSIPgMiL0c3esZDDM0XalMCgZv2mxNO/btk/DXCitDC6hDu2tfmbKmw/eZolkssC
-         x4A+s9CUXEFrDVsTmyCmlyv4Q3k2kYKYkeWnnqHxqOKn2VwTKyooGSUudkfwPAHo5e3d
-         T8qrg03cJIXuPwuikOZZ9yEYIlvRWEyJT28lDDGcBRi6g50fqN8CH+Gp6YiWVGzlN0Iz
-         6/pg==
-X-Forwarded-Encrypted: i=1; AJvYcCWVr08Ji3Bcao9yVwTPJ2mqSYCRSwmWYSEuF+W2/MJrHOsIa7m9gxgkUr5D0wOmQRtWDnCwGyyRZhZ8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVDVRqtkhSmMipEgK4XyRsZhtNY+qN6cgTr8EXu3PxSaf+YF4m
-	3Zh/AqYaNuXex7LCxVNi/I0PZgvOXqpfyksR5SrhqW0S8ZoGPbe2vOXBGOIKerw=
-X-Gm-Gg: ASbGncvv0pDKIbT+xTuNMwhiD8KGUPDbNObowbspLG8M+PW0FiYumLCwbTxhLnjXbIM
-	nSeJWkiElp3igFiskhmNnNxX+LTYnZTUWSNyIsCJb+WujgZRVHtTkMjJbdvRSb5zs8RoMtOmiFD
-	kuDGiQLc3EW6wSaZiDyQU+k7pn1tjX7EcC/iQnl6oZXfLN9nF0HnHseoPU4ALQoGZnrU9w+wrjM
-	UM63PsWkzPS31y87oyHFbamPv6sZH0m0feC9SbEnnQHvpyvNxznr7nDUb7aCQYotbCg6B1k3JrN
-	W/gLJQ9XHR8lPx4bukRJ7GnKP+wgg4K2KEP3KXMfV0aojmyGyMDKBDlVbWgvP5kbpNA9xlNNoZ0
-	pX+RoFVptfnmlLNReK/AAGWT8
-X-Google-Smtp-Source: AGHT+IEGoBCXiFknPijPVAnfPhY1JmrMAFB6C3192/jP8Nr//KDRez0P/W0L5K/UXtmr5uC8I7tOXQ==
-X-Received: by 2002:a05:6512:1094:b0:549:4e79:d4c0 with SMTP id 2adb3069b0e04-5497d383257mr2057776e87.53.1741255835620;
-        Thu, 06 Mar 2025 02:10:35 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498ae580c5sm130034e87.70.2025.03.06.02.10.33
+        d=1e100.net; s=20230601; t=1741256089; x=1741860889;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gea8RDhxW52XRzq4nksHK4G+nluCQdGJ7LngFtiewMU=;
+        b=CS1bVYk6MTAU3Njq/W6cvDK8kLjNod0GC38mnEs2hQoN9bScMaRQXWFVhb0kvGAjTl
+         4WR1PfkJerbvAJ8Y+87LzUuDHgCr9ZkRxaKgbwtShTXH2m4fh9DHKRpQgBd0h0e1A6nn
+         4jo+AAXXIwZAhTo0qsdQjOPCHJ4Cne3IGWAVAjvdXvejAnsNTYbIMIH7V/q/6YudAH7d
+         Y+DdCyg85Ktj5MI3EZmarbBoC1iAOiwz6eFsvCwbaurgy+/qr02etUYBK3TwHAESjkje
+         gOyfHGHQlmJ4VWF14TdmHutoI10L+OF+UChz7vU0SoDfankFesDCwEC8XzjIsUg6TdTk
+         Jf+g==
+X-Forwarded-Encrypted: i=1; AJvYcCVPfapjVUmQtPtHb8S54WxicauadO3szYP+U7cwjuyAUU680uRhXaIA0VPCJiai9L2bIAQqX1wpusis@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMU/zUtk9NP7icU3lNiCf4QvnStacQx4rOwA4oMWhNLuJ38CGN
+	MiNTrrbq30Mc8vxb4Mbkly98/Vn6atPw5b16pUeyWh//u9o3vdMpVAtvGmHFho4=
+X-Gm-Gg: ASbGncvkI172VCq/zyFg0l8IYP2Qyw5VmRMkk8bpcR2WBhbIWMvS0TS0w57xiNozoM1
+	P1xGo6Uq7LeT1mhrCcWrrjc/pUGFEPA7Wg7lW5IHbBJ8mGcK/MttLTOyovorZ52XYV+61qfuTVk
+	NIVGfgh8wpaQwFmcVYjK43VPafB7Jxw+J9hU157J7qivTq/25JcOrPsaPEaYQ4BlW9LayIz+U7v
+	0hUO8Pd/RzFe6nyHP00E6tOt3XfXjXcLU0iJOTqDRSkwty4rVF/Tz4RZKaoxGDO4FvAS2vJtKzU
+	+KMTngCU3s3IlISzT9MS7xLJYISJDNzXzNSJX6z1rbl1xv3NrhAtXs+GX48RfUUBVEI2naF5kg0
+	kWTPMvygaus39ZFmQlXkVlMrlDtkf
+X-Google-Smtp-Source: AGHT+IEgLGcDGlkE6kWAXN5bUDSnAdelHUlOLrSKWe6iPW2qcxJJbof7KnLLgyUzGGWjzI7ZpD00UQ==
+X-Received: by 2002:a05:6402:434a:b0:5e5:c0e7:f455 with SMTP id 4fb4d7f45d1cf-5e5c0e7f696mr2569873a12.8.1741256089115;
+        Thu, 06 Mar 2025 02:14:49 -0800 (PST)
+Received: from puffmais.c.googlers.com (30.171.91.34.bc.googleusercontent.com. [34.91.171.30])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c74a6af7sm708972a12.33.2025.03.06.02.14.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Mar 2025 02:10:34 -0800 (PST)
-Date: Thu, 6 Mar 2025 12:10:31 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v2 1/8] dt-bindings: clock: qcom,sm8450-videocc: Add MXC
- power domain
-Message-ID: <mboqw4on22m24njo22r3xajjkgmyobynv5qdx4yhbblz5lekw5@xd6xkhlrh62w>
-References: <20250306-videocc-pll-multi-pd-voting-v2-0-0cd00612bc0e@quicinc.com>
- <20250306-videocc-pll-multi-pd-voting-v2-1-0cd00612bc0e@quicinc.com>
+        Thu, 06 Mar 2025 02:14:48 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH 0/3] gs101 max77759 enablement (DT)
+Date: Thu, 06 Mar 2025 10:14:45 +0000
+Message-Id: <20250306-b4-max77759-mfd-dts-v1-0-9fe8b0eb8123@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250306-videocc-pll-multi-pd-voting-v2-1-0cd00612bc0e@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJV1yWcC/x3MywqAIBBA0V+JWTdgD7X6lWiROtYseqARQvTvS
+ cuzuPeBSIEpwlA8EOjmyMeeUZUF2HXeF0J22VCLWopGKDQtbnPSWsseN+/QXRG96TqjrDJOCcj
+ lGchz+q/j9L4fWtwzJWUAAAA=
+X-Change-ID: 20250306-b4-max77759-mfd-dts-fb88b6c6bd60
+To: Catalin Marinas <catalin.marinas@arm.com>, 
+ Will Deacon <will@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.14.2
 
-On Thu, Mar 06, 2025 at 02:25:33PM +0530, Jagadeesh Kona wrote:
-> To configure the video PLLs and enable the video GDSCs on SM8450,
-> SM8475, SM8550 and SM8650 platforms, the MXC rail must be ON along
-> with MMCX. Therefore, update the videocc bindings to include
-> the MXC power domain on these platforms.
-> 
-> Fixes: 1e910b2ba0ed ("dt-bindings: clock: qcom: Add SM8450 video clock controller")
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> index 62714fa54db82491a7a108f7f18a253d737f8d61..737efc4b46564c1e475b02873d2dc124329fb775 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> @@ -32,9 +32,11 @@ properties:
->        - description: Video AHB clock from GCC
->  
->    power-domains:
-> -    maxItems: 1
->      description:
-> -      MMCX power domain.
-> +      Power domains required for the clock controller to operate
-> +    items:
-> +      - description: MMCX power domain
-> +      - description: MXC power domain
->  
->    required-opps:
->      maxItems: 1
-> @@ -72,7 +74,8 @@ examples:
->        reg = <0x0aaf0000 0x10000>;
->        clocks = <&rpmhcc RPMH_CXO_CLK>,
->                 <&gcc GCC_VIDEO_AHB_CLK>;
-> -      power-domains = <&rpmhpd RPMHPD_MMCX>;
-> +      power-domains = <&rpmhpd RPMHPD_MMCX>,
-> +                      <&rpmhpd RPMHPD_MXC>;
->        required-opps = <&rpmhpd_opp_low_svs>;
+Hi,
 
-As pointed out by Vladimir, you probably also need a second entry in
-required-opps.
+This series enables the recently submitted Maxim max77759 driver and
+updates the DT for the Google Pixel 6 / Pro (oriole / raven) boards
+accordingly.
 
->        #clock-cells = <1>;
->        #reset-cells = <1>;
-> 
-> -- 
-> 2.34.1
-> 
+!!! Dependency note !!!
 
+This series depends on the corresponding driver and DT bindings
+proposed in
+https://lore.kernel.org/r/20250228-max77759-mfd-v3-0-0c3627d42526@linaro.org
+
+Note that in that series bindings and gpio driver are accepted, but mfd
+and nvmem drivers are still waiting for review comments.
+
+!!! Dependency note end !!!
+
+This gives us some extra GPIOs, and enables NVMEM which is used to
+communicate the requested boot mode to the bootloader when doing a cold
+reset.
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+André Draszik (3):
+      arm64: defconfig: enable Maxim max77759 driver
+      arm64: dts: exynos: gs101-pixel-common: add the MAX77759 PMIC
+      arm64: dts: exynos: gs101-pixel-common: add nvmem-reboot-mode
+
+ .../boot/dts/exynos/google/gs101-pixel-common.dtsi | 75 ++++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |  1 +
+ 2 files changed, 76 insertions(+)
+---
+base-commit: 0226d0ce98a477937ed295fb7df4cc30b46fc304
+change-id: 20250306-b4-max77759-mfd-dts-fb88b6c6bd60
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+André Draszik <andre.draszik@linaro.org>
+
 
