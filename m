@@ -1,183 +1,162 @@
-Return-Path: <devicetree+bounces-154648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B5FAA5417F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 05:02:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8467DA541A6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 05:26:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2487916A9C9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 04:02:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D19251890ED0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 04:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F41917B505;
-	Thu,  6 Mar 2025 04:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E9519CD1D;
+	Thu,  6 Mar 2025 04:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qUcvTTC+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="myN/k6lZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC1EFA2D
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 04:02:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F97319C54F;
+	Thu,  6 Mar 2025 04:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741233761; cv=none; b=TgACHhnoxT6Llc6eECgohOYQW5lSdLOuJJItxpR/5uIRyBQ3Y+Q0AYtt0dbewZ+h9YZ3K+Oyhe1AhRvUgHV4IetAwNL/kpHTNxXJx6vN517O6l1sL4F5p3YFRdUUglam2Fn0DJ2W6Wm7m5y8/jBjtMz10HoFDJhY+46rruRmcDE=
+	t=1741235159; cv=none; b=C5OWNQEhL+jNG4vwu39t2ZczwUK6cjAoA/yDNCQYhb+qaKN7aVMaP3hBgm9njlVZ8MNWQJgEKZaZr7/cGrMPtx5eym5Cvn8ZteqdSry1oEdDOMuP3o8d+SVd/qdhOWuKJlEn48fRRrl+XU5EAbMLV4nqcqwgmiZ8MaCgqPQE02Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741233761; c=relaxed/simple;
-	bh=Yz1TyZtoyOO+yp3SF0XFsZRQSomWzxQO3JYSPKoWncU=;
+	s=arc-20240116; t=1741235159; c=relaxed/simple;
+	bh=NJCVt2+YUa5c5YJ95PV1i2GlvWFyPhsZJ0jvLUACEOY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LBtwI2qNvb28ftngWEHegjICUvPmHGb/3m3D0Jq9kyagHBxS1a0/+pi2fjEaBP7Kt55AOlFS7X5NNI9Oar2bZe30wlGspwwvN+b9A77sETGAjDUadW21R+le6C0aBOtAx6aku//YXmW6HNkoHDl7C5VOuUTbaTcWZmA+BgxPSg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qUcvTTC+; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-223a7065ff8so3841105ad.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 20:02:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741233759; x=1741838559; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Lw/Ilrya6j097GwWNVWOLhnadgHKgXHG+cTCcShhr4s=;
-        b=qUcvTTC+5YNsFtGf1k9h8cwW12WCs0x3yzyND01DT0FxDJo5s/HDmKocPs594cPJWb
-         rqDudAFee7DXcpWYmJB419kjL7NchSJGG4zNNp71eug/pTcAwnG1X7W6xT911teSCrg7
-         Tr4dkqJ+Znq2AQNZio2ObuUkXc8F6nUK8nIp9kUh7c277RmLYRqrqhoaheKKWJPzGRzs
-         clRFccfCBwmsm/PEwSEnLOsLyZetSHQfwWlnlbK8J2fX6c7r2JKmAeYGRpZa9ecrm6tl
-         Z2PiybWDU7Ud5pVCSwBpNlzG5s8RrwUZvodGNL0gGBtrF4i74Sx2xGsKRt8I14pEbzBM
-         9RwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741233759; x=1741838559;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lw/Ilrya6j097GwWNVWOLhnadgHKgXHG+cTCcShhr4s=;
-        b=CPDR/C2pckbXYmG2gFpr19Tr6vJO7QoHTFu9ZX7vlUfE/NlPiwoZCo0BQjowKyC9Uh
-         c9eosCIyQZIjF7SeJkoZbqQY1+djXanILkiBXpKQGwmVG2EBnfGN6+zRfU3a6gkqA+zK
-         xRw8LOcDQa1o9/TX14HN8QBSNbCJAXd2dixuU2Sh75k74vrly8/w0okCR+6iT/cNbGw7
-         PWuul8fjRZrc8GMgFa4FouOClZecGWK/GtPu2CgmVil8XyHB3Hv9+siz0UOEB9WfXNIx
-         7eOfUUPDc/0nHSJR3dhloykb6duwNQP3ryGmahqWnu9npSuiPDh6McJ8I9UZTw4jMsjq
-         9qoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXamGmUHGWiK7k4tj1w2SYpFEWuKfy6UEDgK951RVTSQfcn0C7fxWl2w7m+eobhk56gu5RR7tzk1Qo9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwsUkJiBmbxg39S1Ciq9fVJuWHkSJlPqe73pa0pnDVChQYhVyX
-	Ka4ZhFDMK7gGYWt43XWyyYh/ugBe+Sqdm/KWBHZKEF1ZUoi5leZgzwwB62TWXg==
-X-Gm-Gg: ASbGnctNKzK/sKqZ62dm/hG+yhEFMw0nr7HtYs2SvhBo0UjAV5zG4DZ73YwBp+5G5Ok
-	epP6slGFvRrvNwGDH5h3wolfmnP5KDGg55iDKHb6QEp4OzWlmjtF3VnOK67OPETbn2W0jXVDoaZ
-	3RU+UYNnVqrpzcvWP8R2GzPmH76g5rxVF3vooq5UK5jY/SBvYtRirXn4bIKZhkuuUqzyxylUEcb
-	cjDpShtUro0F3kLZV0V5Tvoer/yEXp6khDfE3wFbNIpZnYyI5oa8l2ebEPAdb6Kk9SC+a5jUoNZ
-	0ObKYuFD9KPWGtvLJR8int3ODNnwMJ4wzhIUgSa06RaIcV1CDgEAQSQ=
-X-Google-Smtp-Source: AGHT+IG58paYn+J+qgT5QJO3fC3chvu880+fbbmJM8uArZCejhZm8gCUKnLMrFc6lv742T5le2yV+w==
-X-Received: by 2002:a05:6a00:c8f:b0:736:6b94:146d with SMTP id d2e1a72fcca58-73682d101e2mr9298228b3a.20.1741233758652;
-        Wed, 05 Mar 2025 20:02:38 -0800 (PST)
-Received: from thinkpad ([120.56.193.59])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af281096763sm252836a12.30.2025.03.05.20.02.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Mar 2025 20:02:38 -0800 (PST)
-Date: Thu, 6 Mar 2025 09:32:32 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	quic_mrana@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v7 4/4] PCI: dwc: Add support for configuring lane
- equalization presets
-Message-ID: <20250306040232.rkvxirmeropy44mu@thinkpad>
-References: <20250225-preset_v6-v7-0-a593f3ef3951@oss.qualcomm.com>
- <20250225-preset_v6-v7-4-a593f3ef3951@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=u/jECaM+Rke/xuxxeCaVLhkEpP3y2wGIlWvqwwEVw987NcRwYP5Jx+RA0HpeOq/WYnMNOgE4KKD3PH68TepWGasX99KDsjMEUeXjDHu9O+3GuzLaDplEd15v/WA1fDTw6tjwxlaedfS3j4T8FqQARAPwWetiYN18eiWd198Hs9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=myN/k6lZ; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741235157; x=1772771157;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NJCVt2+YUa5c5YJ95PV1i2GlvWFyPhsZJ0jvLUACEOY=;
+  b=myN/k6lZ7+uYPDMV+Oo+LtUQZTeik9LHDeunELxyNBzxDgTYoNsxcx2Z
+   WvxH8i1zsW+LyYtZ3cmjBsa07J2dSV94NyV8K7c0HJuKnoEn9ZSa2A44X
+   k96YDsv1PbemKxTRr05nSgdoW2rLxDaQHzSammjbposQKtAj9P6/KZTRD
+   nH/IJQt3cmbohFc+Rm7M/b5SJRezwILYoeT7icN9UB7TJdLhwwRL7f4/P
+   ZfJxZi9TRlbMVvd/Ukgc9+idfY4IskXWS7CrgFoyIlt0BE/GUfohZEcit
+   yRUG1HUr/Ea/+S0LXI5LRCnyWUxHc4EHRL411A487ssT1pydgAMhDONu4
+   g==;
+X-CSE-ConnectionGUID: zZeoU5FwSBaUBkojruNjsQ==
+X-CSE-MsgGUID: Av8sX98yT/ykmWBYuj+J3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="46003572"
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; 
+   d="scan'208";a="46003572"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 20:25:57 -0800
+X-CSE-ConnectionGUID: Wox4vV5jSb64q56XBB+2rg==
+X-CSE-MsgGUID: BmO2x536SbCjV5jLKsr7Dg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; 
+   d="scan'208";a="119075926"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+  by fmviesa008.fm.intel.com with ESMTP; 05 Mar 2025 20:25:51 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tq2ns-000MWc-2Z;
+	Thu, 06 Mar 2025 04:25:49 +0000
+Date: Thu, 6 Mar 2025 12:24:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Manikandan Muralidharan <manikandan.m@microchip.com>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, tudor.ambarus@linaro.org,
+	pratyush@kernel.org, mwalle@kernel.org, miquel.raynal@bootlin.com,
+	richard@nod.at, vigneshr@ti.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, manikandan.m@microchip.com,
+	Varshini Rajendran <varshini.rajendran@microchip.com>
+Subject: Re: [PATCH 1/2] mtd: spi-nor: sst: register SFDP region into NVMEM
+ framework to read MAC Address
+Message-ID: <202503061244.wH2sylN8-lkp@intel.com>
+References: <20250305100134.1171124-1-manikandan.m@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250225-preset_v6-v7-4-a593f3ef3951@oss.qualcomm.com>
+In-Reply-To: <20250305100134.1171124-1-manikandan.m@microchip.com>
 
-On Tue, Feb 25, 2025 at 05:15:07PM +0530, Krishna Chaitanya Chundru wrote:
-> PCIe equalization presets are predefined settings used to optimize
-> signal integrity by compensating for signal loss and distortion in
-> high-speed data transmission.
-> 
-> Based upon the number of lanes and the data rate supported, write
-> the preset data read from the device tree in to the lane equalization
-> control registers.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 66 +++++++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-designware.h      |  3 ++
->  include/uapi/linux/pci_regs.h                     |  3 ++
->  3 files changed, 72 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index dd56cc02f4ef..ea596119de92 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -507,6 +507,10 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  	if (pci->num_lanes < 1)
->  		pci->num_lanes = dw_pcie_link_get_max_link_width(pci);
->  
-> +	ret = of_pci_get_equalization_presets(dev, &pp->presets, pci->num_lanes);
-> +	if (ret)
-> +		goto err_free_msi;
-> +
->  	/*
->  	 * Allocate the resource for MSG TLP before programming the iATU
->  	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
-> @@ -808,6 +812,67 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
->  	return 0;
->  }
->  
-> +static void dw_pcie_program_presets(struct dw_pcie_rp *pp, enum pci_bus_speed speed)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	u8 lane_eq_offset, lane_reg_size, cap_id;
-> +	u8 *presets;
-> +	u32 cap;
-> +	int i;
-> +
-> +	if (speed == PCIE_SPEED_8_0GT) {
-> +		presets = (u8 *)pp->presets.eq_presets_8gts;
-> +		lane_eq_offset =  PCI_SECPCI_LE_CTRL;
-> +		cap_id = PCI_EXT_CAP_ID_SECPCI;
-> +		/* For data rate of 8 GT/S each lane equalization control is 16bits wide*/
-> +		lane_reg_size = 0x2;
-> +	} else if (speed == PCIE_SPEED_16_0GT) {
-> +		presets = pp->presets.eq_presets_Ngts[EQ_PRESET_TYPE_16GTS];
-> +		lane_eq_offset = PCI_PL_16GT_LE_CTRL;
-> +		cap_id = PCI_EXT_CAP_ID_PL_16GT;
-> +		lane_reg_size = 0x1;
-> +	} else {
-> +		dev_WARN_ONCE(pci->dev, 1, "Not supported data rate %s\n",
-> +			      pci_speed_string(speed));
+Hi Manikandan,
 
-No, this is not what I asked for. You should warn only when there is atleast one
-of the preset properties are specified in DT. But I think that would complicate
-the code. So let's just trust DT here and add the warning later if needed.
+kernel test robot noticed the following build warnings:
 
-> +		return;
-> +	}
-> +
-> +	if (presets[0] == PCI_EQ_RESV) {
-> +		dev_WARN_ONCE(pci->dev, 1,
-> +			      "Lane equalization preset properties are missing for %s\n",
-> +			      pci_speed_string(speed));
+[auto build test WARNING on mtd/spi-nor/next]
+[also build test WARNING on robh/for-next abelloni/rtc-next linus/master v6.14-rc5 next-20250305]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Same here. This is going to trigger warning on all DWC platforms. Please remove
-it.
+url:    https://github.com/intel-lab-lkp/linux/commits/Manikandan-Muralidharan/ARM-dts-microchip-sama5d29_curiosity-Add-nvmem-layout-in-QSPI-to-describe-EUI48-MAC-address-region/20250305-180433
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git spi-nor/next
+patch link:    https://lore.kernel.org/r/20250305100134.1171124-1-manikandan.m%40microchip.com
+patch subject: [PATCH 1/2] mtd: spi-nor: sst: register SFDP region into NVMEM framework to read MAC Address
+config: m68k-stmark2_defconfig (https://download.01.org/0day-ci/archive/20250306/202503061244.wH2sylN8-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250306/202503061244.wH2sylN8-lkp@intel.com/reproduce)
 
-- Mani
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503061244.wH2sylN8-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/mtd/spi-nor/sst.c:75: warning: Function parameter or struct member 'off' not described in 'sst26vf_sfdp_mac_addr_read'
+>> drivers/mtd/spi-nor/sst.c:75: warning: Excess function parameter 'offset' description in 'sst26vf_sfdp_mac_addr_read'
+
+
+vim +75 drivers/mtd/spi-nor/sst.c
+
+    61	
+    62	/**
+    63	 * sst26vf_sfdp_mac_addr_read() - check if the EUI-48 MAC Address is programmed
+    64	 * and read the data from the prestored SFDP data
+    65	 *
+    66	 * @priv: User context passed to read callbacks.
+    67	 * @offset: Offset within the NVMEM device.
+    68	 * @val: pointer where to fill the ethernet address
+    69	 * @bytes: Length of the NVMEM cell
+    70	 *
+    71	 * Return: 0 on success, -EINVAL  otherwise.
+    72	 */
+    73	static int sst26vf_sfdp_mac_addr_read(void *priv, unsigned int off,
+    74					      void *val, size_t bytes)
+  > 75	{
+    76		struct spi_nor *nor = priv;
+    77		struct sfdp *sfdp = nor->sfdp;
+    78		loff_t offset = off;
+    79		size_t sfdp_size;
+    80	
+    81		/*
+    82		 * Check if the EUI-48 MAC address is programmed in the next six address
+    83		 * locations.
+    84		 * @off is programmed in the DT and stores the start of MAC Address
+    85		 * byte, (off - 1) stores the bit length of the Extended Unique
+    86		 * Identifier
+    87		 */
+    88		if (SST26VF_SFDP_EUI48 != *((u8 *)sfdp->dwords + (offset - 1)))
+    89			return -EINVAL;
+    90	
+    91		sfdp_size = sfdp->num_dwords * sizeof(*sfdp->dwords);
+    92		memory_read_from_buffer(val, bytes, &offset, sfdp->dwords,
+    93					sfdp_size);
+    94		return 0;
+    95	}
+    96	
 
 -- 
-மணிவண்ணன் சதாசிவம்
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
