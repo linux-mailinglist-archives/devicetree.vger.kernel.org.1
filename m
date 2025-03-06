@@ -1,140 +1,161 @@
-Return-Path: <devicetree+bounces-154822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35FEBA549BB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:42:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE330A549BE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:42:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A718F3AB693
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:40:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B65E01898A32
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E145820E700;
-	Thu,  6 Mar 2025 11:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F488210190;
+	Thu,  6 Mar 2025 11:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Uo43b6+M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t0ZjVSbH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0F320E32B;
-	Thu,  6 Mar 2025 11:34:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C5020B1F3;
+	Thu,  6 Mar 2025 11:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741260867; cv=none; b=sTU7LZqFvLl5PyiOLTsG4Snb5w6YzKz0m6crkXAgOVueQpevIzHP3c+crikEDSsaGwfKmGmtyHgpVEzVLwRCyAp40LZ62y1rZ9tb57tZ38YfR06nbLDKLcDclZFqDbZWmasml3g3AW1QQ1C8oOHsLyxnS73l4jBNpIETc8puSk4=
+	t=1741260953; cv=none; b=rWQpQo0LKQMETMN+gS2bsaYbQ8Hr9FlesCcrZVAz6kzhixckoow1A0yvQjga4VGnePBRJ7zJx4QsDgozm2tlcO2GbFMTpvORYYL++/RgMEN9gHlwCBz9VLKj0u7U1wjsPp2a74j1Pm3eYW5f46rZHDGKtxukBeeqXbDR8I2B8UU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741260867; c=relaxed/simple;
-	bh=rwW+wVmO0GZtCL0AAvWT/a2oJMHmg0m4UxcUjLdVDvw=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SoZ3Tg+wYQ8KBXpV9kwVy/D2t2sTzNc6sVwJ5lEWsISs6wf8vnl9NA0Gy/TVIXeOi2FhDcwRsLQhulS/eCcC7QWgJ5ZHe6ygi6S/7wewGDFkZ00p5sZaMTnpThGLkgxIi6Dy44p7VejSXBoPvKr7TtRxeWYl6ykNQAflv2QOfEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Uo43b6+M; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5269VQQ8009868;
-	Thu, 6 Mar 2025 11:34:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	d0e97DjrXeAEuFqYxH5w5Wx+iR6d8fIH+0eHGbB8JBo=; b=Uo43b6+M2xkSaNg8
-	GD2J2lt+59gTnqpOCZFUo/7eoXRL4MjdRGKf9231hpBenAQnzNUeEwNlAZZGd2Jp
-	jdliWl2HjwvgFV+VrP9SwzY+GhpBIu7O+sw5WmwDaFugTGcezhcyAHHVehhH24EU
-	NLo4nDA/pFLmzLAAyc5LLZ8KU/ua0kGvy4FARK2V6aRMSQl4WxVj/ktHE7uYU6gj
-	Hg4aFAEJH6ugBgJDM0tTOvrff1EOQQYKAzvkyczz95IX0RR2GhMEM/6EH497mEye
-	30BPh4O2UYoRB/M2ao2Dvrm5bq6N3U9yY/rjNrSj2NQYEjdCLLghlzu7nu8BOKCp
-	1oqG6A==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6trucg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 06 Mar 2025 11:34:23 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 526BYMgu021296
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 6 Mar 2025 11:34:22 GMT
-Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 6 Mar 2025 03:34:19 -0800
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: ipq9574: Remove eMMC node
-Date: Thu, 6 Mar 2025 17:03:57 +0530
-Message-ID: <20250306113357.126602-4-quic_mdalam@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250306113357.126602-1-quic_mdalam@quicinc.com>
-References: <20250306113357.126602-1-quic_mdalam@quicinc.com>
+	s=arc-20240116; t=1741260953; c=relaxed/simple;
+	bh=Leu1gIlGz01KC2qXmkX9EuXv0fktHfYgkAuj3cjXmYc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W7+26HCbdzx0Qb8tcyp/dR7EGjLUzVfODGOYat2bOAscA8ZuwLLAiWKsclCC8eqIkxw9ZTXMvXuCa/8ZAg6I0rXRWprtB5p4O74Skr/D1K9DSK+VjG9OT5M0Feb2id9g31+kD14RDqPmXPg/W/NCgiGpZFXdi0nedDR01q5HTBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t0ZjVSbH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFD17C4CEE0;
+	Thu,  6 Mar 2025 11:35:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741260952;
+	bh=Leu1gIlGz01KC2qXmkX9EuXv0fktHfYgkAuj3cjXmYc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t0ZjVSbHtMk/AGk/0+5zsZZmWz1J7zYKKn+hgJMgEH/5yGLibX4OccWyYTsj6JiFn
+	 8uT1wq0eVoMClAebU6guvInopQZS8/Z7J88QvR4dOVuk18BEu/PWpZR3tzmot/iiO/
+	 mbda0FdpDb2a0eZe48pUemGsg1lyySxbs+kaP6TFgD7xicZK4+X30SBzNQ/3G4AHuR
+	 LK4tmDjTqwl6YLhd6bVVOZWyQ0nFwnzYBLXnhXzO/FcR6W8DYoBXYhi7SjrzKVE8a9
+	 wfABHD6hbH43LxKxNNbnRiWgm2tZKFRvVltOdPlqRzWkHne7xu2MAfN/j6QBtwBqEp
+	 aIerDMl4OwgAA==
+Date: Thu, 6 Mar 2025 12:35:49 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, 
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
+ color encoder
+Message-ID: <20250306-kangaroo-of-pastoral-typhoon-8aefb2@houat>
+References: <20250304101530.969920-1-victor.liu@nxp.com>
+ <20250304101530.969920-4-victor.liu@nxp.com>
+ <20250304152320.GA2630063-robh@kernel.org>
+ <1891036.atdPhlSkOF@steina-w>
+ <20250305163805.GA2071011-robh@kernel.org>
+ <7d98163d-10c8-457d-92e7-6a1d6e379beb@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=HZbuTjE8 c=1 sm=1 tr=0 ts=67c9883f cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=3crLPPiErI15JQRwp_kA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: sVErtzt5rj6WNVTLLH5L1yBndQzVj66D
-X-Proofpoint-ORIG-GUID: sVErtzt5rj6WNVTLLH5L1yBndQzVj66D
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-06_05,2025-03-06_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 mlxscore=0 spamscore=0 clxscore=1015 phishscore=0 bulkscore=0
- priorityscore=1501 impostorscore=0 suspectscore=0 malwarescore=0
- mlxlogscore=643 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503060087
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="qxu4bxugckchmvib"
+Content-Disposition: inline
+In-Reply-To: <7d98163d-10c8-457d-92e7-6a1d6e379beb@nxp.com>
 
-Remove eMMC node for rdp433, since rdp433
-default boot mode is norplusnand
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
----
-Change in [v2]
+--qxu4bxugckchmvib
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
+ color encoder
+MIME-Version: 1.0
 
-* No change
+On Thu, Mar 06, 2025 at 03:02:41PM +0800, Liu Ying wrote:
+> On 03/06/2025, Rob Herring wrote:
+> > On Wed, Mar 05, 2025 at 10:35:26AM +0100, Alexander Stein wrote:
+> >> Hi,
+> >>
+> >> Am Dienstag, 4. M=E4rz 2025, 16:23:20 CET schrieb Rob Herring:
+> >>> On Tue, Mar 04, 2025 at 06:15:28PM +0800, Liu Ying wrote:
+> >>>> A DPI color encoder, as a simple display bridge, converts input DPI =
+color
+> >>>> coding to output DPI color coding, like Adafruit Kippah DPI hat[1] w=
+hich
+> >>>> converts input 18-bit pixel data to 24-bit pixel data(with 2 low pad=
+ding
+> >>>> bits in every color component though). Document the DPI color encode=
+r.
+> >>>
+> >>> Why do we need a node for this? Isn't this just wired how it is wired=
+=20
+> >>> and there's nothing for s/w to see or do? I suppose if you are trying=
+ to=20
+> >>> resolve the mode with 24-bit on one end and 18-bit on the other end, =
+you=20
+> >>> need to allow that and not require an exact match. You still might ne=
+ed=20
+> >>> to figure out which pins the 18-bit data comes out on, but you have t=
+hat=20
+> >>> problem with an 18-bit panel too. IOW, how is this any different if y=
+ou=20
+> >>> have an 18-bit panel versus 24-bit panel?
+> >>
+> >> Especially panel-simple.c has a fixed configuration for each display, =
+such as:
+> >>> .bus_format =3D MEDIA_BUS_FMT_RGB666_1X18
+> >>
+> >> How would you allow or even know it should be addressed as
+> >> MEDIA_BUS_FMT_RGB888_1X24 instead? I see different ways:
+> >> 1. Create a new display setting/compatible
+> >> 2. Add an overwrite property to the displays
+> >> 3. Use a (transparent) bridge (this series)
+> >>
+> >> Number 1 is IMHO out of question.=20
+> >=20
+> > Agreed.
+> >=20
+> >> I personally don't like number 2 as this
+> >> feels like adding quirks to displays, which they don't have.
+> >=20
+> > This is what I would do except apply it to the controller side. We know=
+=20
+> > the panel side already. This is a board variation, so a property makes=
+=20
+> > sense. I don't think you need any more than knowing what's on each end.=
+=20
+>=20
+> With option 2, no matter putting a property in source side or sink side,
+> impacted display drivers and DT bindings need to be changed, once a board
+> manipulates the DPI color coding.  This adds burdens and introduces new
+> versions of those DT bindings.  Is this what we want?
 
-Change in [v1]
+There's an option 4: make it a property of the OF graph endpoints. In
+essence, it's similar to properties that are already there like
+lane-mapping, and it wouldn't affect the panel drivers, or create an
+intermediate bridge.
 
-* Added 'Reviewed-by: Konrad Dybcio'
-* For full change log see - https://lore.kernel.org/linux-arm-msm/20241120091507.1404368-9-quic_mdalam@quicinc.com/
+Maxime
 
- arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 12 ------------
- 1 file changed, 12 deletions(-)
+--qxu4bxugckchmvib
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-index 165ebbb59511..fa7bb521e786 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-@@ -55,18 +55,6 @@ &pcie3 {
- 	status = "okay";
- };
- 
--&sdhc_1 {
--	pinctrl-0 = <&sdc_default_state>;
--	pinctrl-names = "default";
--	mmc-ddr-1_8v;
--	mmc-hs200-1_8v;
--	mmc-hs400-1_8v;
--	mmc-hs400-enhanced-strobe;
--	max-frequency = <384000000>;
--	bus-width = <8>;
--	status = "okay";
--};
--
- &tlmm {
- 
- 	pcie1_default: pcie1-default-state {
--- 
-2.34.1
+-----BEGIN PGP SIGNATURE-----
 
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ8mIlQAKCRAnX84Zoj2+
+dnSoAYDBB/bDc4oiForTt6hTu2T7k5fxsgOo6hpzAFvD1SElI/SAR1gLrEg+btZA
+V7TvczkBgLPm3LiHqD7N6MPlIcKl0SPzNFbP8/UcGvqUWcgBigVdJhw6AY6uj4Ey
+73K5s0Sz4A==
+=a1cs
+-----END PGP SIGNATURE-----
+
+--qxu4bxugckchmvib--
 
