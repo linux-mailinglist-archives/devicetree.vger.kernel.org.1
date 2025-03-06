@@ -1,100 +1,121 @@
-Return-Path: <devicetree+bounces-155119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991A4A55AFA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 00:40:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 544FDA55B06
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 00:42:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 677583B24D6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 23:40:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95E661777FB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 23:42:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9FB27EC6D;
-	Thu,  6 Mar 2025 23:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3E427E1D9;
+	Thu,  6 Mar 2025 23:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rhc1fDh6"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="FQ/Qn62y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010FA27E1D3;
-	Thu,  6 Mar 2025 23:40:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805E627CCE8
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 23:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741304405; cv=none; b=k7R2k1+UhMblE/KtADmAIOB+ox2eJqZFFZXY2C1LWPYp4RRCcmg0TsFjIA9LQFn5gPNCBl9qFLcVHtNriD7JPrxGDs01LjwXkR6wF/G9e70+tgy3uAXUS3kY8NkbMD4MmRieuYiDdef4f4rbtTrraR6vFHGcD2LV5rngYK1LBSA=
+	t=1741304553; cv=none; b=VJTSLRfCRGtvNcTVm3U0puiHgUvO84wGArN0gzOO3bSDaR5tRLWETXNpp28k52Onae4E9D2ud2zqzuZI5oJHOpkqNjSCsPIEZA+edqUmOWF4brrwBU5hBN9z23bf7b9bNS8+PCsHeRefl4E4dQ1pXJpWq20rAjoAbfQ4DcwLk2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741304405; c=relaxed/simple;
-	bh=2QSee9WokSYspQJ+xRHNNYB0mN5bS+JLoP/ZWB/o79g=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=Ep/mXmDDhNB5NlHbfDwix5xA/KykU78qhIxklXfHs/kQ1p+lILqv9bKMJDuu8MNV5Oq0mDpay916QPkGDbm1nHPDk+CXDHjz2LqWHepRepzRcvMce5mSMX6CoyxdxS1jUhXYZuU5XZwfCrsQUdIr/kjr6L6ai+TYj1DyYffUwU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rhc1fDh6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FF55C4CEE0;
-	Thu,  6 Mar 2025 23:40:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741304404;
-	bh=2QSee9WokSYspQJ+xRHNNYB0mN5bS+JLoP/ZWB/o79g=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=rhc1fDh67EBOuiKV1bApq40dxAjAq5x/hauy5rCh6DpnHSwhNcSTIFmjmPMQpai5C
-	 shJSi+TKWch6PItoD7htSicRlB2sHSCDkYo0guwyt7ogxakmmmycXo37+hRMcO2b0n
-	 c5v1gFuSk2PyInqkK3UsRmzbhdaPO+Ru6N5lCGl4KTPc4IydcEnDrTsWqsYXqDv1wz
-	 B4Arp2PgfIzhYVegzstUmNjA814/2FXMYtdwpXPktI0C+Roxlb+0KkLmJitsH08GPD
-	 Ak0a47mxubiTcIVi43Ktk11jaij8nSVZbHLzyXeqzq9YTeR1VPXg3wIay6yL6pJUXb
-	 TXn9plJ9h1pyA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EAFC6380CFF6;
-	Thu,  6 Mar 2025 23:40:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1741304553; c=relaxed/simple;
+	bh=tJEJfQjhxKeAqPrvSWuWasiFZZaUalkdDqunLHyvNDQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F79BLO4rZnUt5QHDyPq/PxawvgJHXMuejiLgtYmNaA8lcp0heu/OcTMslDZkX3UST2Nd+VSRfyiIEa1DMTUyJ1AouatMGruAp3jRYbvWM8mm/HK7SlgvgzpJvBFnHyMHmJU4cmj9N3ZhrV38XvlyvNkgGZQLZ15nqrAehvSO2yI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=FQ/Qn62y; arc=none smtp.client-ip=121.127.44.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1741304550;
+ bh=hK36UdkUAC80MW7rI32wQbKkvzzOhAooKnorAx3Xf5w=;
+ b=FQ/Qn62yhfaawlmV87Y9HKuHV1xOnSpm0/Y3rwCxdut+mZbXUaIslnwCGtsOBIjRqLSMIET0D
+ a7DsCfrcgfQAg4ipSi+4oaVe+9ZnyCO6pO4mpCWJQsrxkgXHUdbHqOciObjEpteRmPn9VPDbgwF
+ ABvmZ+Z+0r0tzq3HWY27D3j3ZDbuvtNB+eMzLjOgtqyfAx1TYHSxox1kfGCwEIRBkQkCGai7DVg
+ TEGGJEI/+EdkvOlaLakEjo7s2KKBLLcLJK4N2hLhh4uW6XHZsg8ktRRj/MeIWd8fxdpqkzftBHq
+ dMdcBHBElBU8QIDSacLMNzL+h1IY58DU4aRLeINT6wgA==
+X-Forward-Email-ID: 67ca32e3c1763851c065d3ce
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.59
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <3f341b96-1add-4eeb-b185-b4bfe0bf0250@kwiboo.se>
+Date: Fri, 7 Mar 2025 00:42:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v8 0/2] net: stmmac: dwc-qos: Add FSD EQoS support
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <174130443748.1819102.11441827117696182422.git-patchwork-notify@kernel.org>
-Date: Thu, 06 Mar 2025 23:40:37 +0000
-References: <20250305091246.106626-1-swathi.ks@samsung.com>
-In-Reply-To: <20250305091246.106626-1-swathi.ks@samsung.com>
-To: Swathi K S <swathi.ks@samsung.com>
-Cc: krzk+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- conor+dt@kernel.org, richardcochran@gmail.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: rockchip-dwmac: Require
+ rockchip,grf and rockchip,php-grf
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Wu <david.wu@rock-chips.com>,
  netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- pankaj.dubey@samsung.com, ravi.patel@samsung.com, gost.dev@samsung.com
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250306210950.1686713-1-jonas@kwiboo.se>
+ <20250306210950.1686713-2-jonas@kwiboo.se>
+ <5d69f4a2-511a-4e7e-bafe-5ce6171cb1d5@lunn.ch>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <5d69f4a2-511a-4e7e-bafe-5ce6171cb1d5@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello:
+Hi Andrew,
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Wed,  5 Mar 2025 14:42:44 +0530 you wrote:
-> FSD platform has two instances of EQoS IP, one is in FSYS0 block and
-> another one is in PERIC block. This patch series add required DT binding
-> and platform driver specific changes for the same.
+On 2025-03-06 23:32, Andrew Lunn wrote:
+> On Thu, Mar 06, 2025 at 09:09:45PM +0000, Jonas Karlman wrote:
+>> All Rockchip GMAC variants require writing to GRF to configure e.g.
+>> interface mode and MAC rx/tx delay.
+>>
+>> Change binding to require rockchip,grf and rockchip,php-grf to reflect
+>> that GRF (and PHP-GRF for RK3576/RK3588) control part of GMAC.
 > 
-> Changes since v1:
-> 1. Updated dwc_eqos_setup_rxclock() function as per the review comments
-> given by Andrew.
+> It is pretty unusual to change the binding such that something
+> optional becomes mandatory. I would expect a bit more of a comment
+> explaining why this does not cause backwards compatibility
+> issues. Have all the .dtsi files always had these properties?
+
+rockchip,grf was listed under required properties prior to the commit
+b331b8ef86f0 ("dt-bindings: net: convert rockchip-dwmac to json-schema"),
+maybe this was just lost during the conversion to yaml schema.
+
+The DT's I have managed to check all seem to have the rockchip,grf prop
+and the old .txt schema listed "phandle to the syscon grf used to
+control speed and mode".
+
+Without the rockchip,grf the driver just logged an error and ignored
+trying to configure speed or mode.
+
+We could possible leave it as optional, but when it is missing speed and
+mode cannot be configured by the driver. Today this just result in an
+error message, after this series there will instead be a probe error.
+
+Regards,
+Jonas
+
 > 
-> [...]
-
-Here is the summary with links:
-  - [v8,1/2] dt-bindings: net: Add FSD EQoS device tree bindings
-    https://git.kernel.org/netdev/net-next/c/1f6c3899833a
-  - [v8,2/2] net: stmmac: dwc-qos: Add FSD EQoS support
-    https://git.kernel.org/netdev/net-next/c/ae7f6b34f5cd
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+>     Andrew
+> 
+> ---
+> pw-bot: cr
 
 
