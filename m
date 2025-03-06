@@ -1,84 +1,180 @@
-Return-Path: <devicetree+bounces-154746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C39A545BD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:02:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36AF2A545C6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:03:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0822416450E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:02:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6447D7A5635
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F1C620297F;
-	Thu,  6 Mar 2025 09:02:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE639207DEA;
+	Thu,  6 Mar 2025 09:03:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="kXmdeiK/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE6F81DF759;
-	Thu,  6 Mar 2025 09:02:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69050202C4D;
+	Thu,  6 Mar 2025 09:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741251747; cv=none; b=JO7Hl1bkT+VGaIz1hCbnRfHvj0cxzD7moAmwyjU4oMaPHZ7QUvwDahwxcLqgD0Rop3igE9engTPPzD8el3ilDeC12H4OhsmlvEXaZCBA8g7o7F7Nk7tHmq6QLCLyoeI4pnawwsHr3x+0mu9P7xIBYFqjVeKyj9HC2rHZ8/gSIDo=
+	t=1741251810; cv=none; b=khZ3/pujczy4kiXcIie9GWjmMmMEhZ4gON8OBaF3cCActCgTUuQb2Al86PE8M/Wt7wBHl/BE+iQW9GZi/yjiF8AZnfspXTOO9oupHfs07FrdwWTbq3UF0d6PZRYhGdJI10vF3+HenflzgaIB2nQn1XmhtmZ6sRztYAXSTmkhm+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741251747; c=relaxed/simple;
-	bh=D9/WEW6tyPw9DbuSZopa9attlAEU5bOtQtJOBNnThlg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fN02le5vkwQoB4H5sOq7BKybK4Z/aBRGb91v9bL4qIuWESP6HjyW2zU/HH65bdV2NX8ToZLVzH0kmCsAAGX39WubR+jfhSMLxcATxcZl8MjaJqaO60O/eeFH4jnhi80QkEwLiQgnvIBXcrblbsIxiPiBHrT9/SyHy8JVIvkTtiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [119.122.215.89])
-	by smtp.qiye.163.com (Hmail) with ESMTP id d2603c59;
-	Thu, 6 Mar 2025 17:02:11 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH 0/3] rockchip: Add support for onboard eMMC on Radxa E20C
-Date: Thu,  6 Mar 2025 17:00:01 +0800
-Message-Id: <20250306090001.113127-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250305214108.1327208-1-jonas@kwiboo.se>
-References: <20250305214108.1327208-1-jonas@kwiboo.se>
+	s=arc-20240116; t=1741251810; c=relaxed/simple;
+	bh=cpIhfzRQfyAuBaafeZo6QXxygGLDe7ulLKTftDugqOM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CtRE3Z47jhT44M/6oZFVOy+KXiEajTeypsWJMpkrTnEeg/5fSVao8oklXH4u9ked1YiyGeg5/00NAinwsfKxaL2b2T/W3f+8MOjhIcOn4w9MYTKdtwhETFULHKH2+F86hxqWPVPKND8o7idDG6saDiXtV45zcJylloaXg5ez33Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=kXmdeiK/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C6F8C4CEE0;
+	Thu,  6 Mar 2025 09:03:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1741251809;
+	bh=cpIhfzRQfyAuBaafeZo6QXxygGLDe7ulLKTftDugqOM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kXmdeiK/PSu5WC7U2LW7pvdm4dRSvDK8TGVY/KXqJI1K1kXFcPNPvL1c5fQhJiuWB
+	 X1ob1NDcwRw9PaNqmiL2koEbNzyCP900K66TSXNEuwBoFMhBagmpC+4BZu6TAlTyrV
+	 /ROLVgjlKNI7PRN6B2X/3o+FfmuQ/QApUxepU3yA=
+Date: Thu, 6 Mar 2025 10:03:26 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: David Jander <david@protonic.nl>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>
+Subject: Re: [RFC PATCH 1/7] drivers: Add motion control subsystem
+Message-ID: <2025030638-wavy-napkin-41ab@gregkh>
+References: <20250227162823.3585810-1-david@protonic.nl>
+ <20250227162823.3585810-2-david@protonic.nl>
+ <6c6cqaxmsy7miesel4ghdeiea6nrpe4gti4xf5enfyg4uqro5u@vpmtd2t7gydi>
+ <20250305164046.4de5b6ef@erd003.prtnl>
+ <mzxammninwmak5ti4c6is4pbdx3xzzziiwbxiwrldjyxgae4ok@ocec24vu4txa>
+ <2025030611-embezzle-sacrament-00d9@gregkh>
+ <20250306092013.1147f27e@erd003.prtnl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHR5PVkJOQktIQ0gdTE1MGVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVDQllXWRYaDxIVHRRZQVlPS0hVSktISk5MTlVKS0tVSk
-	JLS1kG
-X-HM-Tid: 0a956ab0e16203a2kunmd2603c59
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MDo6Dww5SjJKIjwxDjgIPkIR
-	AS8wFENVSlVKTE9KSU5KTEhJQkxOVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpOVUNCWVdZCAFZQUhISTcG
+In-Reply-To: <20250306092013.1147f27e@erd003.prtnl>
 
-Hi,
+On Thu, Mar 06, 2025 at 09:20:13AM +0100, David Jander wrote:
+> On Thu, 6 Mar 2025 08:18:46 +0100
+> Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
+> 
+> > On Thu, Mar 06, 2025 at 12:21:22AM +0100, Uwe Kleine-König wrote:
+> > > Hello David,
+> > > 
+> > > On Wed, Mar 05, 2025 at 04:40:45PM +0100, David Jander wrote:  
+> > > > On Fri, 28 Feb 2025 17:44:27 +0100
+> > > > Uwe Kleine-König <u.kleine-koenig@baylibre.com> wrote:  
+> > > > > On Thu, Feb 27, 2025 at 05:28:17PM +0100, David Jander wrote:
+> > > > > [...]  
+> > > > > > +static int motion_open(struct inode *inode, struct file *file)
+> > > > > > +{
+> > > > > > +	int minor = iminor(inode);
+> > > > > > +	struct motion_device *mdev = NULL, *iter;
+> > > > > > +	int err;
+> > > > > > +
+> > > > > > +	mutex_lock(&motion_mtx);    
+> > > > > 
+> > > > > If you use guard(), error handling gets a bit easier.  
+> > > > 
+> > > > This looks interesting. I didn't know about guard(). Thanks. I see the
+> > > > benefits, but in some cases it also makes the locked region less clearly
+> > > > visible. While I agree that guard() in this particular place is nice,
+> > > > I'm hesitant to try and replace all mutex_lock()/_unlock() calls with guard().
+> > > > Let me know if my assessment of the intended use of guard() is incorrect.  
+> > > 
+> > > I agree that guard() makes it harder for non-trivial functions to spot
+> > > the critical section. In my eyes this is outweight by not having to
+> > > unlock in all exit paths, but that might be subjective. Annother
+> > > downside of guard is that sparse doesn't understand it and reports
+> > > unbalanced locking.
+> > >    
+> > > > > > +	list_for_each_entry(iter, &motion_list, list) {
+> > > > > > +		if (iter->minor != minor)
+> > > > > > +			continue;
+> > > > > > +		mdev = iter;
+> > > > > > +		break;
+> > > > > > +	}    
+> > > > > 
+> > > > > This should be easier. If you use a cdev you can just do
+> > > > > container_of(inode->i_cdev, ...);  
+> > > > 
+> > > > Hmm... I don't yet really understand what you mean. I will have to study the
+> > > > involved code a bit more.  
+> > > 
+> > > The code that I'm convinced is correct is
+> > > https://lore.kernel.org/linux-pwm/00c9f1181dc351e1e6041ba6e41e4c30b12b6a27.1725635013.git.u.kleine-koenig@baylibre.com/
+> > > 
+> > > This isn't in mainline because there is some feedback I still have to
+> > > address, but I think it might serve as an example anyhow.
+> > >   
+> > > > > > [...]
+> > > > > > +
+> > > > > > +static const struct class motion_class = {
+> > > > > > +	.name		= "motion",
+> > > > > > +	.devnode	= motion_devnode,    
+> > > > > 
+> > > > > IIRC it's recommended to not create new classes, but a bus.  
+> > > > 
+> > > > Interesting. I did some searching, and all I could find was that the chapter
+> > > > in driver-api/driver-model about classes magically vanished between versions
+> > > > 5.12 and 5.13. Does anyone know where I can find some information about this?
+> > > > Sorry if I'm being blind...  
+> > > 
+> > > Half knowledge on my end at best. I would hope that Greg knows some
+> > > details (which might even be "no, classes are fine"). I added him to Cc:  
+> > 
+> > A class is there for when you have a common api that devices of
+> > different types can talk to userspace (i.e. the UAPI is common, not the
+> > hardware type).  Things like input devices, tty, disks, etc.  A bus is
+> > there to be able to write different drivers to bind to for that hardware
+> > bus type (pci, usb, i2c, platform, etc.)
+> > 
+> > So you need both, a bus to talk to the hardware, and a class to talk to
+> > userspace in a common way (ignore the fact that we can also talk to
+> > hardware directly from userspace like raw USB or i2c or PCI config
+> > space, that's all bus-specific stuff).
+> 
+> Thanks for chiming in. Let me see if I understand this correctly: In this
+> case, I have a UAPI that is common to different types of motion control
+> devices. So I need a class. check.
 
-> Driver changes to use different delay and tap num is needed to be able
-> to support HS400 modes, something for a future series. With this HS200
-> mode should work:
+Correct.
 
-I have tried HS200 mode on other rk3528 boards and it works fine,
-so can we enable HS200 mode for Radxa E20C first?
+> Do I need a bus? If one can conceive other drivers or kernel parts that talk to
+> motion drivers, I would need a bus. If that doesn't make sense, I don't. Right?
 
-Thanks,
-Chukun
+Correct.
 
--- 
-2.25.1
+> I actually can think of a new motion device that acts as an aggregator of
+> several single-channel motion devices into a single "virtual" multi-channel
+> device... so do I need also a bus? I suppose...?
 
+Nope, that should just be another class driver.  Think about how input
+does this, some input /dev/ nodes are the sum of ALL input /dev/ nodes
+together, while others are just for individual input devices.
+
+> Then the question remains: why did the chapter about classes vanish?
+
+What are you specifically referring to?  I don't remember deleting any
+documentation, did files move around somehow and the links not get
+updated?
+
+thanks,
+
+greg k-h
 
