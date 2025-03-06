@@ -1,100 +1,105 @@
-Return-Path: <devicetree+bounces-155098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3270EA5588C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 22:16:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A90A5585E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 22:10:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9403C7AA99C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 21:15:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AC19188FBED
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 21:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 342BF277020;
-	Thu,  6 Mar 2025 21:15:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0FC207DF0;
+	Thu,  6 Mar 2025 21:10:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="p5ugOss8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from proxima.lasnet.de (proxima.lasnet.de [78.47.171.185])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1AC8277017;
-	Thu,  6 Mar 2025 21:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.47.171.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E6B2063DD
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 21:10:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741295736; cv=none; b=BiEgWsNJM5wj/r+NXdks033+e8tOqb6QRKbW+W9Tv5WHYAa81SwYp6LALDgzNv7n++53KLw2zXHlEOPE0+DRaZ+4yTAeUh1jp1xlO+VFg4ouYGrHPjVx0LdOHNgGYIVi9lbxct4oKyCAJ0olk0I791StGQIn2zrWZF9v39zA5SQ=
+	t=1741295404; cv=none; b=rrcJ+gc9P0NqgqFkBkBu6Uwr7oJgBnr7AFTIJ/zZrknugGmrGUldRGEUZXNRMDS+gutgIfmyoAJu7VjC9NdWx301taQpS5lwu21Myi1KkxWz1FNMQYlYogosBn0aksaKslv/p9+TGWe34FwcF6qrWwLDGTa/Sf1aUP6022CHE1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741295736; c=relaxed/simple;
-	bh=gij/ZjBozazw9QMucfCzOqeE+vX+wQDy+lz7JzWJloM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TFo73rJjEu1UsP5ro/4q6j9IAxQboG7719qGlxrVdbHFTzRRLBsndPxyUdX77sVOc+4iY+lgknalysRyHrQDMUyYuiv3/XG2PsLGvoZ0ui1BP0C/5UFS2nv8tm+CQrK1ULkVfFcl5qJDpxEAzarfnPfTFO5KSS48CIIroi59EFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=datenfreihafen.org; spf=pass smtp.mailfrom=datenfreihafen.org; arc=none smtp.client-ip=78.47.171.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=datenfreihafen.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=datenfreihafen.org
-Received: from work.datenfreihafen.local (unknown [45.118.184.53])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: stefan@sostec.de)
-	by proxima.lasnet.de (Postfix) with ESMTPSA id BBCF5C03F3;
-	Thu,  6 Mar 2025 22:05:54 +0100 (CET)
-From: Stefan Schmidt <stefan@datenfreihafen.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-wpan@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Stefan Schmidt <stefan@datenfreihafen.org>,
+	s=arc-20240116; t=1741295404; c=relaxed/simple;
+	bh=CqDwVU/7nprSiF8y5VrrWZurTCaefDs5QFxlc3Lmriw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nxMJFmEbYIHYmFzCn4M9q6B7mWlo73oL/sdSslzUJkvU0TMnIjHWdXOrv/NQB3uAHHxia2QxPaTka++1+HV9NssOKai42mv88Lj8ftzHmJOLDi4AVPcMDTT9mJunrrNr+vZ+nSEkmR+voWtCApM2OIBGxtglpXdtzsNh5U3u5F0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=p5ugOss8; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1741295402;
+ bh=sDXS6ccmXHM7aVTn2W8PvKDj84puFXbx1PJBmmh83iE=;
+ b=p5ugOss8RGqOEIGV/X54kmjfx87TiB2fCDoZPDjw5Qec+e91CPS8dGVsiESxNXqMj7A7/k5xr
+ j5HNU+BnEMeFynL9+tInZLOmA6SNYtlR82RC//TS59KTEE/GJnL8Eqmg++QBVn7WDZqgSy7fM+R
+ qcFxjJ3gUX+4wJ6hrboOiT3V2xJUDfO9uSgoYhd3L33E5oVJhsn3yreNIrHbdbW3XVSqnO+Jom6
+ cK4E1VZrBw3ioXKJshWTNyMps4exY9nQqErn0GLQfT5vBC+SYaC/MP4+a2p6M+76RlnfAWitUmm
+ Py84Y2YuIbhSVXDa+uF3taQo7XeAvSFFWvQ9qoEer7Jg==
+X-Forward-Email-ID: 67ca0f24ad3e70e1cd99d7f2
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
+	"David S . Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>,
 	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Alexander Aring <alex.aring@gmail.com>
-Subject: Re: [PATCH net-next v4 0/4] ieee802154: ca8210: Sparse fix and GPIOd conversion
-Date: Thu,  6 Mar 2025 22:05:01 +0100
-Message-ID: <174129482390.1935348.6456362941147965930.b4-ty@datenfreihafen.org>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250305105656.2133487-1-andriy.shevchenko@linux.intel.com>
-References: <20250305105656.2133487-1-andriy.shevchenko@linux.intel.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH 0/2] net: stmmac: dwmac-rk: Validate rockchip,grf and php-grf during probe
+Date: Thu,  6 Mar 2025 21:09:44 +0000
+Message-ID: <20250306210950.1686713-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-Hello Andy Shevchenko.
+All Rockchip GMAC variants require writing to GRF to configure e.g.
+interface mode and MAC rx/tx delay. The GRF syscon regmap is located
+with help of a rockchip,grf and rockchip,php-grf phandle.
 
-On Wed, 05 Mar 2025 12:55:33 +0200, Andy Shevchenko wrote:
-> The main part is the patch 3 that converts the driver to GPIO descriptor APIs,
-> the first one is just an ad-hoc fix WRT sparse complains on the bitwise
-> types misuse. The second one is a small cleanup that helps patch 3 to be nicer.
-> 
-> In v4:
-> - split DT patch (Krzysztof)
-> - collected tags (Miquel)
-> 
-> [...]
+However, validating the rockchip,grf and rockchip,php-grf syscon regmap
+is deferred until e.g. interface mode or speed is configured.
 
-Applied to wpan/wpan-next.git, thanks!
+This series change to validate the rockchip,grf and rockchip,php-grf
+syscon regmap at probe time to help simplify the SoC specific operations.
 
-[1/4] ieee802154: ca8210: Use proper setters and getters for bitwise types
-      https://git.kernel.org/wpan/wpan-next/c/169b22622058
-[2/4] ieee802154: ca8210: Get platform data via dev_get_platdata()
-      https://git.kernel.org/wpan/wpan-next/c/0a3e89b06d36
-[3/4] ieee802154: ca8210: Switch to using gpiod API
-      https://git.kernel.org/wpan/wpan-next/c/20629a48d50a
-[4/4] dt-bindings: ieee802154: ca8210: Update polarity of the reset pin
-      https://git.kernel.org/wpan/wpan-next/c/a5d4d993fac4
+I do not expect that this will introduce any regression. Prior to this,
+use of a device tree without a rockchip,grf would fail when interface
+mode or speed is configured, with this use of such device tree would
+instead result in failure at probe time.
 
-regards,
-Stefan Schmidt
+Jonas Karlman (2):
+  dt-bindings: net: rockchip-dwmac: Require rockchip,grf and
+    rockchip,php-grf
+  net: stmmac: dwmac-rk: Validate rockchip,grf and php-grf during probe
+
+ .../bindings/net/rockchip-dwmac.yaml          |  17 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 269 ++----------------
+ 2 files changed, 32 insertions(+), 254 deletions(-)
+
+-- 
+2.48.1
+
 
