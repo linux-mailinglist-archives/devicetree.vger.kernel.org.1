@@ -1,159 +1,126 @@
-Return-Path: <devicetree+bounces-155026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37312A55433
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:10:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5632A55473
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:13:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3899C1898BF4
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:09:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 253CD3B5168
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:09:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B682702AA;
-	Thu,  6 Mar 2025 18:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9138D26BDA7;
+	Thu,  6 Mar 2025 18:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qfJrvxPJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SKgYoExK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1640A2702C7;
-	Thu,  6 Mar 2025 18:07:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F4E26B0A2;
+	Thu,  6 Mar 2025 18:08:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741284472; cv=none; b=RirEnHTL/x7e5QsMjgtHp9QbL8kGtDDiNyypKO4HirQBqMYwp5mZeCA3drrGEohK7bzUXunbn5LAHivCCAYg547njmag719AXe+XZHtbE6fz/mC14VVFjez/afHDq9QFMjFUMM9CEKpgeZyBlYnoQU6QdcwXjihgET85ntfoUgE=
+	t=1741284493; cv=none; b=gyOxxsqTCpdQriqPA6Q07DIImkBD7EoLVB0ZysiwxL0bPNU/x+Vx5+pSlCBdbIo2sxhgyV9QYcwDx41aMFAmghckEVvTYUGAG/WP/EC2vO73x97b+JrMs7GTRxlZUs3+c2pMH2G+A7OS05u58p570z+6oSxNVp1yZDqKW89L/y4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741284472; c=relaxed/simple;
-	bh=d6BibUDSE0mb5iLcPsRSauFGpJaMOrregbvVx9t9eLI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iLOmdCXp5zqVrArBS0w0ZMWIQNrV6RAzbH3nmq/Ck9JAR3YIKoqvPpCY4cDvvHaj2Pls7ERSf9u6TP8jxnEaxemgOpAgX8meUiUhebfMUm7yghOUdueIEec3sbvzYa1unK42rCXNUJbhDRYrQ0H/McLvec3jisdbNd7BMHjcJFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qfJrvxPJ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741284467;
-	bh=d6BibUDSE0mb5iLcPsRSauFGpJaMOrregbvVx9t9eLI=;
-	h=From:To:Cc:Subject:Date:From;
-	b=qfJrvxPJBnSS3+4O9YX/cwRugyGiSpPEnXVe6T0GDC9kMgyrOMVzacjEXHRWcI7Cy
-	 QJ4e3qo4gBS0LGaylCmHDRH4IuY264npknx/poMLGcmFUNGmiFC+dpsNorkX0p7u6U
-	 n0WpBuTNcyZE67Unweiks+vFmF9N44m7zAf+aDWxBl0SYHfQI9He6wr1Y006jokVig
-	 qbvDuW7eJe0Upq6EzlxX1F7hwcsQX+arQOmbTsEwTIs7IEaFBzfFHO1a7a3dsO7Vtv
-	 M7dIAPBUI1qTquK4mYb4diuxvVjGTCQcwK2njdrmu/gObOGTrljyrrt5d1AvScIsVp
-	 i2+vfypFI4B4Q==
-Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3596617E088C;
-	Thu,  6 Mar 2025 19:07:45 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741284493; c=relaxed/simple;
+	bh=j06EL31i3IPFuTmvGwiP0spu12Gs946czl/F1iE3NA0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=G8sLvsd8O2sOWNrmDcKIQg5t+AKhh4bdIShQrdQX6xqCow5Qii2eoVDWgNUMO4gPXkAl215coXp6Hy0ZZhTdk8dVUYW2hoEiidX8H6wSBDAYw1fcovXUGCXTGxaJhurQ/27rV9aroeCytdjXBm0ErBbXPrFWS4L7FkfCx5HwR9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SKgYoExK; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43bd5644de8so11864865e9.3;
+        Thu, 06 Mar 2025 10:08:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741284490; x=1741889290; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zbZ7rV9PIZhbR6mjMktwzWQBoJPQWYVRr14tM9aOJxE=;
+        b=SKgYoExK8+lFyohMPSopbbvkN3QDt5r8dpgnDYtMMGWgzI4W0jNNbzQ8qwvmCwhiW3
+         VMBxxiGlDcJd12L+iwLgAflDyIiSAhO9ENqWlF7eK1QThBGtRJ6+mBGByLEmB7mKv662
+         exJP0GQTycBcJPKG/YF9gDcBD0aWDwNMUANucKb22AUHgDxZiDkXbQK9zuYsFvQ7hN7W
+         sC9CM0trrPpSf8qmJNmcLzC+L+DUH45/r0TYeaPC6Ei14P/vnm35GoMNgbSbGSN2LwxI
+         fa992N3/GmHDPHYj1NjG8sP5Iisp7A5TibUI1SyejYca2hWzuNkdpRHbsfMTL0m6QL6B
+         ixGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741284490; x=1741889290;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zbZ7rV9PIZhbR6mjMktwzWQBoJPQWYVRr14tM9aOJxE=;
+        b=hlbU5Fzg7hnE2xUGv/J4u7Ic13uPgsSsfQ+er71yoWhN2QlHbKB5V3a95JfZDUf5pE
+         jeD/sOhe2dre919ohvWGVBSXz+ekC5ZrhGNxgatQL7KDZkd56GG3RXqSenxlioOJ03FU
+         fxMcRKLQef2RrOV/05So6NwRp2pymvZshBfY2wCDUVu1nnzItBs7BYAMLp2PLVwjJ9BI
+         uCuSWoMqpJyymmpXuK1R/IE3fuQ+vkODU7mclsQ4k88LqV1k3YTZQz+VecGT7gk8eUGE
+         B8xeNnY87XOocOX7KjwDLRu2yJv8Eks2Lk1I9LpgwQcCvqUzkIpuuQLyeDmBImpXc9aX
+         I9BA==
+X-Forwarded-Encrypted: i=1; AJvYcCUELXPobPgVU1Q6cATVWTPhtmy3KirYUPKcstxWUgRHJVB/jUFygawGaPS1nbHaZfJNBi35NMmH+dwSy4Y=@vger.kernel.org, AJvYcCUmgFVdtlPLWev34QCbHkZrbBtnVtk8ef0HysmDMmgI4akxrT4OU62w7XSsV4e4G0yGFdbiqQ1m@vger.kernel.org, AJvYcCVR1paXbr6fCWyyCCEB7vAQW9YnGYklLi7f53jkcR4FX7/qwwxmDU3yokDlwWg1VIZp4pO1xmDLi/ak@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+MnMrkOh50HDCGx48CSjHqPRsVOq7715ge+WbSGhE76hsn3JX
+	59jKymv5OdxxZF2H+6L2XAPOZG09qv5R5z0ndgpf5pvkA/P09qu/tQGX3A==
+X-Gm-Gg: ASbGncv5NzrQ6wfTERe/glnteUNWezYIVenJxPaiYI8Xs8KYG5XAsET85SNY6r6w6tJ
+	i3/SMHoeF+8AY9Z4mMFxFCrv7cUBbxsLYvLwQEzfeaosYlBVntu09a/3creavaOIefUNes2yQs4
+	4KySRb3QhQi40wwzo+2+dveOc7jAoLvhgTXYyDw0NaUne84cd3IaOxTpArr4vGacEb2MlmyV3Ks
+	BKq2+y78j/ZoW8Fdy7C+TmcGk1vV5liHAFqcMTz3tNWj0O6se4mdyI233JHHgj1xCsF7sSb80hw
+	Ep9skDgyDnLg0t2wO38ws6HPMVRuJMXjSZT1PmDLXIJVzhI0EJM2QyK/7hs6KF1y69wDh3kdIdW
+	0lAu98147z4Pw27s2CfE7d2pmDCIrIS6mtApd
+X-Google-Smtp-Source: AGHT+IGlO67Hk1Kj9iKqLPiU517t7iWkn79CeIVJF8espGBKzHLJoK7xjAHMRKlXW7hxXZb4oOjWNA==
+X-Received: by 2002:a05:600c:5112:b0:43b:8198:f713 with SMTP id 5b1f17b1804b1-43c5a630255mr5445205e9.4.1741284490027;
+        Thu, 06 Mar 2025 10:08:10 -0800 (PST)
+Received: from localhost (p200300e41f3a9f00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3a:9f00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-43bd42b7245sm56685215e9.17.2025.03.06.10.08.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Mar 2025 10:08:08 -0800 (PST)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Stephen Chen <stephen@radxa.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH v2] arm64: dts: rockchip: Add HDMI support for rock-4d
-Date: Thu,  6 Mar 2025 13:06:31 -0500
-Message-ID: <20250306180737.127726-1-detlev.casanova@collabora.com>
+	linux-tegra@vger.kernel.org,
+	Brad Griffis <bgriffis@nvidia.com>,
+	Ivy Huang <yijuh@nvidia.com>
+Cc: Ninad Malwade <nmalwade@nvidia.com>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra: delete the Orin NX/Nano suspend key
+Date: Thu,  6 Mar 2025 19:08:06 +0100
+Message-ID: <174128447779.2030480.8261977491890867272.b4-ty@nvidia.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250206224034.3691397-1-yijuh@nvidia.com>
+References: <20250206224034.3691397-1-yijuh@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-Enable HDMI and VOP nodes for the rock-4d board.
+From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
 
-Changes since v1:
- - Remove extra blank line
+On Thu, 06 Feb 2025 22:40:34 +0000, Ivy Huang wrote:
+> As per the Orin Nano Dev Kit schematic, GPIO_G.02 is not available
+> on this device family. It should not be used at all on Orin NX/Nano.
+> Having this unused pin mapped as the suspend key can lead to
+> unpredictable behavior for low power modes.
+> 
+> Orin NX/Nano uses GPIO_EE.04 as both a "power" button and a "suspend"
+> button.  However, we cannot have two gpio-keys mapped to the same
+> GPIO. Therefore delete the "suspend" key.
+> 
+> [...]
 
- .../boot/dts/rockchip/rk3576-rock-4d.dts      | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-index 5dc1c18a3b211..bccd77c3a906f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-@@ -26,6 +26,17 @@ chosen {
- 		stdout-path = "serial0:1500000n8";
- 	};
- 
-+	hdmi-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds: leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -238,6 +249,26 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&hdmi_in {
-+	hdmi_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi>;
-+	};
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&hdptxphy {
-+	status = "okay";
-+};
-+
- &i2c1 {
- 	status = "okay";
- 
-@@ -687,3 +718,18 @@ &usb_drd1_dwc3 {
- 	dr_mode = "host";
- 	status = "okay";
- };
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi_in_vp0>;
-+	};
-+};
+[1/1] arm64: tegra: delete the Orin NX/Nano suspend key
+      commit: c695ff32564a4e9532f2c1892ef0a7cb27cfb34c
+
+Best regards,
 -- 
-2.48.1
-
+Thierry Reding <treding@nvidia.com>
 
