@@ -1,101 +1,111 @@
-Return-Path: <devicetree+bounces-155097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B01BA5588D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 22:16:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48CDFA558AB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 22:21:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5822B18994BA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 21:16:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DE643A796B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 21:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22DD4207DF3;
-	Thu,  6 Mar 2025 21:15:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E32A207DED;
+	Thu,  6 Mar 2025 21:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P5sPRdEz"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="guMhklL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08E41FF1AA;
-	Thu,  6 Mar 2025 21:15:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0E620469E;
+	Thu,  6 Mar 2025 21:21:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741295736; cv=none; b=r5egLM3J6Iz+zsiYmwfqYi7ySwdLGp6o0fmBvog6CAtbp+RozazOzMjNhzSMOZ2nj0hnXpeLc0xnFKPGe+DV07OJErtOMwHRrZ/fdqLe1vdrqX0a8hQYCeCcflu7UcMOZFlprRZy1Hj3U0djVBEV0N0E86+YKJ/ZJmDcQxhJ0U4=
+	t=1741296102; cv=none; b=DiEDcjvzhgFteC76fVzOorit8Po8lT2ZbeSt4rY0LoQQvVGBpWGNPFwptXkd8+or9m/yI/ahKB5ADNdr4d5m6S0D8hhsQS2l68zl2c2V5r59YRIYxy2p8+HEIhJfLB+W0T0VJMQ9XMOuQ88JpZ5R11O7KXvuuqB8DNOprRpEUr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741295736; c=relaxed/simple;
-	bh=sYQMd9jtAcMXQq31WqrbCsoeBlpEOogNZ42LeKgZRLE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=M9Ivm6Amz7zmCRkoaj9wzYYmEeT2or6/I89MxbCUTgfeWZPPZWOnJC57Ys5FiQfjxB8orRV0XYQlQdFaCBwE6Gueh2rSJyW/zektgjjvdyP+BJACkMkNI0YMzNG2wOihNRhfzIG9GT/8eT/gF/i8OA9DFP4mUIu3MGQYJL3RzQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P5sPRdEz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16C27C4CEE0;
-	Thu,  6 Mar 2025 21:15:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741295735;
-	bh=sYQMd9jtAcMXQq31WqrbCsoeBlpEOogNZ42LeKgZRLE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=P5sPRdEzBxLsvmJQ4ev5ME8sxk0V0l/CWholldIGCQ9ojT1YjN9XAYmBia0q+cr+Z
-	 7pFhmUyV5qdIzp1rF8Yxyvpvz7ITIs6wMcxzgScGlryhcFRWKONh6Cdt2lSzxPhUTd
-	 7h8NmPoHxk/SZQGbTq/mDGoVh8dBaVUCoSkXEWgWCaQVuXXAEbAwoAsBad249CDYGM
-	 BCRvYBSOFV1FsY70Y3RFgu3r+XZMLzHHmPw75xX1NjZErpHQX0P8LL4B6r8G3CQhWg
-	 SIlGyXkbmjn/2e0lDtmJHTUG7Ab0HtkpFzgIHPq2Ab9CUOO7RZ8X4jbOxNtmPXmody
-	 8CNrI96VmvZog==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
- linux-spi@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev
-In-Reply-To: <20250306170954.242707-1-Frank.Li@nxp.com>
-References: <20250306170954.242707-1-Frank.Li@nxp.com>
-Subject: Re: [PATCH] dt-bindings: spi: fsl-lpspi: Add i.MX94 support
-Message-Id: <174129573262.723955.4642185166611701005.b4-ty@kernel.org>
-Date: Thu, 06 Mar 2025 21:15:32 +0000
+	s=arc-20240116; t=1741296102; c=relaxed/simple;
+	bh=dG3d9aBGMx3DfnzuFFKM0PvgEVAcQQKTYUoYLJZ2bfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gpxH2YtPeLbSPFeG7XI+1y0btE78hs2KV8g4qh5I+ENIpjoWxM7/OtEb/tbl54mPuz4a+k72Fd1iY+14xuTtGwy3KvtQNgF8v8M9TEsDv8BqO4ZQyoEusMYkdW2xpaEj/V9m9/EdM/yliq/xMdAxivPZ7+yhCS8jfU0QKbrXCj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=guMhklL/; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=9H78NGtDgrJN8almAooGMPfIHicQD7QyEml+BfISIgg=; b=guMhklL/+BIxtizh+xS6aUCkcs
+	xiqV6+jRMkvDCFI1Sdi2vxBbaC8HFPmkFSPNomuM1DaFuR9gXBO5W5pyVze8dw4T1rail/m4jEtUx
+	Sl+bfrPyvulBDrN60FqU93ZP8sEOV2aYu0DUfALLj08VQcaukP31Ov9Z/eDXCzgNeMYfJ7JgOoYxm
+	LPp2dr+vWeNh/k4dbT3BM/AH62dODYTy86qE4hCFZTafmDcEGEjAArTWjqtWhJCGRgRQU2TGorsuO
+	lhbZjQJ6ndCqIFdVoMdRuVoKtIzDJrHoh05ZDgdAg/TKTa1NWtUgxeKTc/aq5QAwqsoVm3sVyDVdT
+	vzH1AxrA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44602)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tqIeb-0006Vr-05;
+	Thu, 06 Mar 2025 21:21:17 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tqIeW-00078z-38;
+	Thu, 06 Mar 2025 21:21:12 +0000
+Date: Thu, 6 Mar 2025 21:21:12 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and
+ php-grf during probe
+Message-ID: <Z8oRyHThun9mLgx8@shell.armlinux.org.uk>
+References: <20250306210950.1686713-1-jonas@kwiboo.se>
+ <20250306210950.1686713-3-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-1b0d6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250306210950.1686713-3-jonas@kwiboo.se>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Thu, 06 Mar 2025 12:09:53 -0500, Frank Li wrote:
-> Add compatible string "fsl,imx94-spi" for the i.MX94 chip, which is
-> backward compatible with i.MX7ULP. Set it to fall back to
-> "fsl,imx7ulp-spi".
-> 
-> 
+On Thu, Mar 06, 2025 at 09:09:46PM +0000, Jonas Karlman wrote:
+> @@ -1813,8 +1564,24 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
+>  
+>  	bsp_priv->grf = syscon_regmap_lookup_by_phandle(dev->of_node,
+>  							"rockchip,grf");
+> -	bsp_priv->php_grf = syscon_regmap_lookup_by_phandle(dev->of_node,
+> -							    "rockchip,php-grf");
+> +	if (IS_ERR(bsp_priv->grf)) {
+> +		ret = PTR_ERR(bsp_priv->grf);
+> +		dev_err_probe(dev, ret, "failed to lookup rockchip,grf\n");
+> +		return ERR_PTR(ret);
 
-Applied to
+Did you consider using ERR_CAST() for these, which would look like this:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+		dev_err_probe(dev, PTR_ERR(bsp_priv->grf),
+			      "failed to lookup rockchip,grf\n");
+		return ERR_CAST(bsp_priv->grf);
 
-Thanks!
+?
 
-[1/1] dt-bindings: spi: fsl-lpspi: Add i.MX94 support
-      commit: 02a838b01b8e7c00e2efe78db06fff356a112dec
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
