@@ -1,105 +1,104 @@
-Return-Path: <devicetree+bounces-154904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 246B5A54D28
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:13:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6584EA54D6E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:19:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02BDE1759D2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:12:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E33E16A83E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3283155757;
-	Thu,  6 Mar 2025 14:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0289158851;
+	Thu,  6 Mar 2025 14:19:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF6615383D;
-	Thu,  6 Mar 2025 14:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BC28F5E;
+	Thu,  6 Mar 2025 14:19:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741270357; cv=none; b=eSX/anUKLUmhekQDJYi+CRPQObbNlS4IaVDj3AFu7whPmPQMW7itkKU7XMNflXGhrUTEPROg71L4TTGUH86NpD5C95G8deDdscboQl8Eq2j3KpeM4HbbhiHi0OqVGa2k4ggi+EAXXbm/cm+Dg0l3eKOQD5jd/tWkszhiZYlD6T4=
+	t=1741270755; cv=none; b=n3yj/3RAlLWvkAaduM6Znn2HkedZelBBee7yQHMT5+Fa7cZ5S6dEIt+bvSXIvOU/PpZgPc5uy1eYJSJN35HvYvFU1+Gs542wQbKlyMSpc4lUHGNRFG26dX6zYalkHi4jIIqbn2GAuBlPcrn7AJrlV1l87zJbQojfHJejMOeTLxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741270357; c=relaxed/simple;
-	bh=cLicbPWFnAoD6lUokaPp8hSNzwgqsx9fHiiKE5uzlzw=;
+	s=arc-20240116; t=1741270755; c=relaxed/simple;
+	bh=Q1j8gHpbri1CxFrvKlgL6l/RLbYkeNcBavgftpIbKpo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kPYJw3DbXuagSYVgWcy9aE03o60QXWT8M1yOzQUMiZ1X8c/6pe5N1jHf7HNaH3/BIbY56w6RvaDaoTv7DT9p7dtURemnSRccbErbGfVFDjVrR0ArgPY9gjyp68k1HA34HLQGFIgXo2oh8e7zF64vhX/gt1ep4Lr8vU9JlM1jQDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.173
+	 To:Cc:Content-Type; b=Chr0tDjkezYOt8+vGqi3Ow+Sfg9aXe9aY5MSbSMy+Nvmh25kkSTmA7/9snyfoP1nZsCHfKIPKmWXcoZMOUdpnNTLq6mZxCV+lcaHozbx3U2LLlhucQRuolX0m4fUM9whN+oYDmZh7M2kcBjUaQzlQyU4dNj8+6s2KGJ8dmPXaMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4750ca77d47so5131761cf.0;
-        Thu, 06 Mar 2025 06:12:36 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-abf518748cbso131696766b.2;
+        Thu, 06 Mar 2025 06:19:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741270354; x=1741875154;
+        d=1e100.net; s=20230601; t=1741270749; x=1741875549;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9w95l6741tt/4ainrJVSGUVwqtU9mkEIQhAfIpu6hIQ=;
-        b=gDiWDN6ylxiYBJcgGmxCQn4vaJt7+QHLxP+ptxQNAbCDWltV7D1WxThRm2Uco5YuPY
-         JUfOOdrIhpJUn9K9w5s969E8ZhMyN13z3Lt5FTX7Pi9BEC9v7iKM34LKfx29CfbqkNns
-         vWG/zWMFEOPod0/IXbcpbGwiqFIOi2jE1VR35g0tMZNiBXTqZZ19SF3bZLTS6+/GEBIC
-         9gtlktBbO4ad/TM75iqETeGCLpkGsgKrnq1iEOh9UnEDF1HY5GMSaWIJ+/tRzqvCKJIm
-         wnZrZ4WrMcpWk9ibEoiwqsoSwax/mKgIrXcNcm8aa5JfSsdmY8BCnM3yvqTYTQjT8ldi
-         5c6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUO0+eqL5wZ6MHWEf4uGb63En8p9VUWHDVaMyHxpOY+iHVLYtpF2xJck+Ytop9ptEcGtuyf2gXhNsDDainH@vger.kernel.org, AJvYcCW/lZBhD4Sud/Lon69pOyV2bywqSw7T1tn6MugHhfKsABWM2aLlRUrf+ZribcCipIWfpQ1wYXUYyWA2@vger.kernel.org
-X-Gm-Message-State: AOJu0YypF/SYpQRVeMtXDlJzl1TAANewVMc/1CEzHRsbc0axRODbvcwO
-	+NSG91tI5QEIwrt5li0CyS03uaiKKsUd9T8q7gGGL8y+PIL8qRreyoZD/jNG
-X-Gm-Gg: ASbGnctDmNVQkO76IhyR+7OHr8uVDmmUV2ym2hUNjC03vsUDek4HBs7rKVb1ywphUCJ
-	yMzawDfMyHdD3Qd0bDCyUaYlQ5xM5SwJC2vi+YEPp8hVAwIUUErjWeWw8xyO++plyIMzpjXOuqm
-	17xhZzoeR1zPew104/Fn4clZF+zjF/+pjXPueeKmiSiRh24zTSAZECadGhS6EeqX631t+pUP6mP
-	Z7hL4H+hbqECb8/R2vDnYaVfhAbiQB5NHyqgv/l/RWNESFvKsdVKw8rFvc8L23cioPjW7JUC1Yn
-	spqDRWKnodP0iUzZXKrMD7Zi2bIKuw1X6fkEVvSroXDZumgQON5j6TDHXKbLYWPztxXjG9HB4C4
-	8MvEDu76TjFg=
-X-Google-Smtp-Source: AGHT+IEaibezR3zts/0tGt24md0yxYzCaCjsy02r+qdlu91DzGebVj5b5HGnvwXbELT+rHT52LO5VA==
-X-Received: by 2002:a05:6214:4012:b0:6e8:ad15:e0b9 with SMTP id 6a1803df08f44-6e8e6d34670mr114845576d6.20.1741270354214;
-        Thu, 06 Mar 2025 06:12:34 -0800 (PST)
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com. [209.85.160.169])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e8f715bab5sm7443576d6.86.2025.03.06.06.12.33
+        bh=/nVfiSll248rUsfwTdZE7ebVgcWytnodaotzGSUKaQ4=;
+        b=ClCZ+PBsxy7Rqlx39kJ/zSsVeRarWNo37tfZCOlwSb8q9msh8/B2TH2UM9rE/qF1wO
+         C7ipWiAqkUa/LcG+hZMJtXqH6eWJg4OP0tqFZWRObwv6LM3ivdg7DCCQgJXFjN+a0fiP
+         QSL5Wje7TS+af6JNQN2bpxwAYdzQtadrb7PVppfSZbJ0TVKFu5HwWIw+fW2nFPKMKG3b
+         zqBA/l1ismH1Ub1TdkcflnIwnMIz5z8CUayzE6EnvhLJCguJ/HYsnynvLFkl36Qm0Jm7
+         brHobEBl2q7WgdhzXcMLEzOIoVBMU3mkpH+M3V85L6JgUFQStYGfy1o2IR0utboCXMZo
+         cdNA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCxvidpILSqd+oqi3k7oAmH1WKSINiK0NS/9A9yhZ5fMw9AQjWxaDfPSHKyy9CInAwqdEktkIQdE8=@vger.kernel.org, AJvYcCVgA9p8+jaNxITD+3ORC22RAuXOMAb95fIXi5P250nTtu2aSDGywTnKLwyUCF/qD7a3C2GJBOMQ1/Rj@vger.kernel.org, AJvYcCVuhGNksJEPcRSYS1RLmt7zuiPuJvlgwGY+Lfa4hFRE9G3UIwq7ClJI1hnzhG+9lCb193cYT4PD1c+SXArJYX15X1M=@vger.kernel.org, AJvYcCWN6CaZ1y5qBteXMfb+1j+CfNKw+B19eYL26WgyYwmGNskwFsxpLat5Yh3Drz45IgsYV2S8a+p1c6j4b9Mr@vger.kernel.org, AJvYcCX3z75FDRao5tgoDGk+e11kYLxn0U/aWvjryPCcU6QbUrfU+fybj+lFs5dJpPfh6jR+hJOF2Xarfx9Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8r/lfztxhruQymMT7h6aTk7bYK9BogLcRXf+mWpbuJSStkHpX
+	ActfCyFTgGF7/iJw0JV4gFgG3JZSDjEzcXVmzgZALhwGFwuC/coGHo/ExbUX7Ho=
+X-Gm-Gg: ASbGnctMW0ywuAzdkIq7bX/JAuvB6yhI7cQXBClmcfczANW8wG87ZWTGHaCMIP+eAf8
+	FbUnQt1cgNGtZxAPYhy80pMvGq1ozT+c0MDgoXJH6PpwAzxzyOnlz1AjMSC0KtdI4OiguSkAWiw
+	vGwWbQ4+iasUsNrVgRT31+1/2lAPmux9Lq29JJaD3isu448sjf/HBkv/JG97Zr8l8MUriC1VKIz
+	yzOF3Ss9AsQpFXmWXsm8lS4BSvKi0IctuKxqeE1ylq8C2ue4tbXsq4OW91jZdLf7z9lH5I8SFKM
+	JzeBdIIetLC0kL6pfpEcuA9v/QFH5Bgls/sL3Mo1nENgkYgT6adIBTanawqyKJn3CavBf+0+7nW
+	6kyab+Uc=
+X-Google-Smtp-Source: AGHT+IHc53ajEExPLTmKtS4CSNRVGzQJulovXInObWfYQzjzXRe3tdupsM3v1I1o8ziklEj11TVPpA==
+X-Received: by 2002:a17:907:940d:b0:ac1:e7a2:f5e8 with SMTP id a640c23a62f3a-ac20da87bb6mr831742666b.35.1741270749148;
+        Thu, 06 Mar 2025 06:19:09 -0800 (PST)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com. [209.85.218.41])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2397366b0sm103690766b.95.2025.03.06.06.19.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Mar 2025 06:12:33 -0800 (PST)
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-4750a85ce4eso5566801cf.2;
-        Thu, 06 Mar 2025 06:12:33 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWCPWVOKhBEzc1PKYfolPwpQ65iToRlFZpXxNflTI1wPcw2UVKyeWf3mZ+KxEhQNdBjO31UDCRxpmiBG+e8@vger.kernel.org, AJvYcCXdGMvQoKL+PMY5pTtWTNYw/kMZChAgA0M3MyPlXxQD4XY/Xm81aVRnAMAv9Wooupr6pNaq8Atc3YKq@vger.kernel.org
-X-Received: by 2002:a05:6214:5287:b0:6e6:683c:1e32 with SMTP id
- 6a1803df08f44-6e8e6cfe364mr103086106d6.8.1741270353722; Thu, 06 Mar 2025
- 06:12:33 -0800 (PST)
+        Thu, 06 Mar 2025 06:19:06 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-abf538f7be0so137019566b.3;
+        Thu, 06 Mar 2025 06:19:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU3oScEQtf/dRxo5zlJDup1sCGlySalLmywSCvVjwee2z/6yg5+EinUZR7LzWA95YmX4wAMBr3cCgsC@vger.kernel.org, AJvYcCWCw4ffZBLzFZUePHVWj9YbSDauw9NW8Wh2YlWSoY9XBnHkQQDUjBYlou8fQR8cmFkrV+Xkqh6fAm2q@vger.kernel.org, AJvYcCWPBw01Ne78wM5e/A2V292n9S7q1LqtEWuNzIecysJGIia7H4ot1r+pXo9+g0+TOA+hxFDULPLmlwtlvYq3GQpZcT0=@vger.kernel.org, AJvYcCWZ0JA1nyA8sQc3KnRJfnxzAtb4ZK72W9T2atuaHtYqjZ+mXx48OYfA7fTo+ijqJEJFKP6kMYM9av0=@vger.kernel.org, AJvYcCXLDYTknwEqBKxNJZNyB4dXK6xAKuI7ZI+o6oEt3uwnwub7s5KdBWJedw8DKIlWGQOkOQtbJtHNe33m8qd0@vger.kernel.org
+X-Received: by 2002:a17:907:c27:b0:abc:c34:4130 with SMTP id
+ a640c23a62f3a-ac20d8bf8c7mr709557766b.18.1741270746647; Thu, 06 Mar 2025
+ 06:19:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250225210316.3043357-1-robh@kernel.org> <20250225210316.3043357-2-robh@kernel.org>
-In-Reply-To: <20250225210316.3043357-2-robh@kernel.org>
+References: <20250227122453.30480-1-john.madieu.xa@bp.renesas.com> <20250227122453.30480-3-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250227122453.30480-3-john.madieu.xa@bp.renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 6 Mar 2025 15:12:21 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVuTgOnTw_xXZ23-+RTvPxgQFpMQD=fPgu0CaeP2bQE2Q@mail.gmail.com>
-X-Gm-Features: AQ5f1Jp-7DXJEQQeg30O9jhmPV8jIkRv8kW6lNjjvAd7Gsc4GXS7ywNeuGDPxjI
-Message-ID: <CAMuHMdVuTgOnTw_xXZ23-+RTvPxgQFpMQD=fPgu0CaeP2bQE2Q@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: display: mitsubishi,aa104xd12: Adjust
- allowed and required properties
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 6 Mar 2025 15:18:51 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUoXSerYfb2L_tLmC2-5w9mhoZHc20LSYQgCHxB+bJOtw@mail.gmail.com>
+X-Gm-Features: AQ5f1JpSCkfow0oWUCpHHLfYKAm9cW04YyVX-MUYgns8UbS1cnyHUBvgSNPUv8M
+Message-ID: <CAMuHMdUoXSerYfb2L_tLmC2-5w9mhoZHc20LSYQgCHxB+bJOtw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/7] clk: renesas: r9a09g047: Add clock and reset
+ signals for the TSU IP
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
+	rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
+	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	p.zabel@pengutronix.de, catalin.marinas@arm.com, will@kernel.org, 
+	john.madieu@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, biju.das.jz@bp.renesas.com
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 25 Feb 2025 at 22:03, Rob Herring (Arm) <robh@kernel.org> wrote:
-> The Mitsubishi aa104xd12 panel requires an external backlight driver
-> circuit, so allow the "backlight" property.
+On Thu, 27 Feb 2025 at 13:25, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> Add required clocks and resets signals for the TSU IP available on the
+> Renesas RZ/G3E SoC
 >
-> There are users of this panel without a vcc-supply, so it shouldn't be
-> required.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v6.15.
 
 Gr{oetje,eeting}s,
 
