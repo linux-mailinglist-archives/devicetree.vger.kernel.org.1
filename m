@@ -1,221 +1,144 @@
-Return-Path: <devicetree+bounces-154824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5267AA549E6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:47:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13495A549FC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:50:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F8837A3AA0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:46:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 844E07A416A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FB3209F31;
-	Thu,  6 Mar 2025 11:47:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1578B20C468;
+	Thu,  6 Mar 2025 11:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IyAOGc7j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FP8MOTlt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9C02080F9;
-	Thu,  6 Mar 2025 11:47:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB44F20C02E;
+	Thu,  6 Mar 2025 11:49:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741261669; cv=none; b=EDMWxAl5yrxJRNJpe5FDodoIWhY7S4ZKjqmcexSKJaLBu9zmbuCyQxQpkK+V/pGIrh+HPYTfMaOKAnASx9DZILGtNN9GezjPQhIQbT0OBcOysBrLVwjDr1yxkMEC/LzWAimhYltgkPdm7hh45G/sSQ6ym0W0GkVDiCitkXiszYg=
+	t=1741261773; cv=none; b=EZPpgxuWGFCQ9+ePkqPJUaf6HH2puDclzzd32jy6yFs99oG8PjiTNmBnehW23vObnXq1wMtoYxDtoWIPf/ES+lub/ED7B5IhX0Env2zrdfFNZ2aaZdY1YxUMyJdggfjFuHWUJyktOcSN694bStZ3zc/+5C9uLlCJfvp0wUJy+ag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741261669; c=relaxed/simple;
-	bh=dEJU0Oe1WgC6cKTgwv4DNPi2NzyjIhMtHcYQU2kxbYM=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=D6ZZRTJTqhYlRvIku8muIIIXpYynfWZRJwfcSO+py7ij3Noto3zNR7j1YuS0Y2LGe/qZn0x/SnJE7Mj/ojFuFK31rtp/bhOzG6HYsAmY8tBGANNYed9bGKjEe8Cbnkx6IlrFcT8f9PJTh04G3Hh08ij9pWTb3g0l1IB5njdyffk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IyAOGc7j; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e4c0c12bccso947985a12.1;
-        Thu, 06 Mar 2025 03:47:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741261666; x=1741866466; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FeRfzX4J4SSpOIDf0qW1PY6Ceutjf1oaVySsSvMl5vc=;
-        b=IyAOGc7jGoPRVUbPNa857B1rMofSHQAso4WTYZfOW9bDlYfpReel/v5x6sduq1lpK+
-         HYZMkZL2EHRbOw0i7xvB0uZjuDMZae2X2OiKiC1EQZwm+Oxf9lsycycvCA6pP/qli1Ee
-         MTKRX5wU3kywsMVsYROyrQV6FtEO0MMLTftds7+TuZ28sCt5FI2Jx0oCt/K/PPV636A/
-         IQnrFeDGTe+I7yoTiPHq05b/og+aqTbrD+AiReeYYYXviVip4RbL/2jj3ORN/b+Q/vLw
-         /5h/FzQNU7kzd7OtboZ2tmYfbiLREU/oAYgmZyq2SFmdMJmnVqYgt2ROei3rH3UNqpmD
-         zEXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741261666; x=1741866466;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FeRfzX4J4SSpOIDf0qW1PY6Ceutjf1oaVySsSvMl5vc=;
-        b=g5Aw/dNGAuZ+lM13TlxuzwXupuYF5v6AqOL877aOgU9CuAkfzniBgkyU/sGjnFs0W0
-         +2kkzUlv5BKg7dKVvyYxj5Mm5dgdWanZ/qon2HDs8zjZKLycreJq7mJ+DO/FzdGcBGf/
-         XdOHYSYu0zYlTjh0CRdTYK/4F2Ds3IMhSwqeW7ggy1o6m17TqrYx9en5IFJjvBovpRiV
-         yO3QP+BTdpw0eAiuKTr7YyhrnECBOBJ5V32iGc405RqFoT4ge3FRCxbJPOefopF2xnzl
-         O4l+WwT5qyxtsv0FE0ferYep4skMvDcH5Pej0kbug7MObDRTaoEZ8AADlCS2SmoC8LJs
-         9+qQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUI024+2JhlGh2FB8vGltgy9rZwhdvRZXS6vMwiyZ4qJy+Pkibc1E+SV261malMSAVEMlcHUflFWjMqcAqg@vger.kernel.org, AJvYcCW1a4Pxfw+JWXJYXiVmkJlZsWyYnjawD1leF+s761mmEQnThYCkOBs0dpNe9SjflCppOnMVA5QuJnwU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbuCSwZWWm2Z0eFpAJZ8QdRqdqAotQzNIH4ebmpl3rgSIOZHI7
-	zJyb8lSjchr6NkapheEXZgsU06hwLFOhe171NAjepEfwE/Iv3tJ9
-X-Gm-Gg: ASbGnct5FAmVuxvlFOn8S7anZLv0sSYuvj7OtuMaDngYgyDgKkJdEodFIphTYj7cgCc
-	G0wPH3ijYCsrdo3Z7InSTmplXy3/GaAa9dj3fduyc4RtLMuz2u5dY3/V2eggWa7M2BR9uSkFhWa
-	eNLMKKZmMWgb0iWCf4Bvz17UPwBly6uS/6pVnKu6KvMvb/crF1T7q6BdQcC8KRYKsG2KAd+Pb3Q
-	P1+OQXsIMJyI4egB/moJt6EeeFDVqx/kaJHrvjYTQ6kT5lsSwv5bcqS6uVnkV2LzhfbF2yA3Ggv
-	jJiC3vS61TyEjTqj6lpZf2DT8DBI+pwO36HRv8MVfZyFXTQ3SpLUXdeSjDc72lIWc7xYonWCNAd
-	Pp48UUD/hG4OLhVpwdQfCupnZsQ==
-X-Google-Smtp-Source: AGHT+IGmWH/iGLqzVwuFP7RJWXn1M1/VMzVhYdWXO/tkwNgc0iTeL4UpWXsQLzyXQnZ0n4LlZ1JcXg==
-X-Received: by 2002:a17:906:730d:b0:ac2:63b:6a45 with SMTP id a640c23a62f3a-ac20db4ccd0mr725046966b.30.1741261665523;
-        Thu, 06 Mar 2025 03:47:45 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac23973a8d0sm82006266b.87.2025.03.06.03.47.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 06 Mar 2025 03:47:45 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1741261773; c=relaxed/simple;
+	bh=mV0euh285v75kNmGgabf/yMOj5wCPrSi9H0U89iCxAc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=LhodUZBiF1R38vIEOO3fdGVkOnutj8IhzMtbjpDml2uK3X1XhWkdKxoTRjR2l6hjRDT3vugLalcgzqULFjBnPYeb7FJ3ZVFvD9TYymULLI8a9gNFJGbTGpmV8STyYcFrWptN661ty14ROEw3gVyp1O15QVguWUw30+CZ4yL02Ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FP8MOTlt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FEFBC4CEE0;
+	Thu,  6 Mar 2025 11:49:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741261771;
+	bh=mV0euh285v75kNmGgabf/yMOj5wCPrSi9H0U89iCxAc=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=FP8MOTltSChGzSWIIP/TRET8MsI3JgKJcfGqXFtVG+9sX/lg5J+A5MBLnUca0wyOF
+	 yBklM6TJ7SSMB1RS46d1FhV71Oezo3T0f5vPVXyzyRNnRfw12AfPXnEZThNHWrqpAp
+	 gbFsepCzt2aQYj6RUFXdioySZTZFRq6AicEr0bLYoFyjUPVvxRrCH7zPJDfv92hteF
+	 7UsZC/D7tbGU31NbF4YcMtXKTTXAvgDoEich/m1PjY717TeSCeKtqUjhMr7YXNR58s
+	 ielWYvCIvWjNGewbSwd+ciWevhff9SIPUdP7IcNR8gklB03BIHOON4t6Dz4Rf6MEN9
+	 QU5QJij+D6u1Q==
+Message-ID: <b3d7374e-b144-4b0a-96f8-0538f9cd1a39@kernel.org>
+Date: Thu, 6 Mar 2025 12:49:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
-Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-X-Priority: 3
-In-Reply-To: <74c154b6.8c50.1956aa8c8d2.Coremail.andyshrk@163.com>
-Date: Thu, 6 Mar 2025 12:47:31 +0100
-Cc: heiko@sntech.de,
- neil.armstrong@linaro.org,
- sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org,
- hjc@rock-chips.com,
- mripard@kernel.org,
- linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- yubing.zhang@rock-chips.com,
- dri-devel@lists.freedesktop.org,
- Andy Yan <andy.yan@rock-chips.com>,
- krzk+dt@kernel.org,
- robh@kernel.org,
- linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <1573D5D6-AFED-4D92-8112-B0C6BB52D5FF@gmail.com>
-References: <25401bfa.291d.19564244e54.Coremail.andyshrk@163.com>
- <75189787-28E1-4FC2-8E10-4960B3877A6F@gmail.com>
- <28b0d3fc.bb3.19568f6b5f8.Coremail.andyshrk@163.com>
- <44213B17-FE14-4FB8-8319-1E31BBF6EAA0@gmail.com>
- <74c154b6.8c50.1956aa8c8d2.Coremail.andyshrk@163.com>
-To: Andy Yan <andyshrk@163.com>
-X-Mailer: Apple Mail (2.3826.400.131.1.6)
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 4/7] arm64: dts: qcom: ipq9574: Reorder reg and
+ reg-names
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, bhelgaas@google.com,
+ lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+ kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ p.zabel@pengutronix.de, quic_nsekar@quicinc.com,
+ dmitry.baryshkov@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20250220094251.230936-1-quic_varada@quicinc.com>
+ <20250220094251.230936-5-quic_varada@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250220094251.230936-5-quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 20/02/2025 10:42, Varadarajan Narayanan wrote:
+> The 'reg' & 'reg-names' constraints used in the bindings and dtsi are
+> different resulting in dt_bindings_check errors. Re-order the reg entries,
+
+Why?
+
+> fix the node names and move the nodes to maintain sort order to address the
+
+Fixing (how?) node name looks like separate problem.
 
 
-> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
-6 mar 2025, o godz. 09:53:
->=20
->=20
-> Hi,
->=20
-> =E5=9C=A8 2025-03-06 16:42:00=EF=BC=8C"Piotr Oniszczuk" =
-<piotr.oniszczuk@gmail.com> =E5=86=99=E9=81=93=EF=BC=9A
->>=20
->>=20
->>> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w =
-dniu 6 mar 2025, o godz. 01:59:
->>>=20
->>>=20
->>>=20
->>>=20
->>> Both of the two config options should be enabled.
->>> andy@Pro480:~/WorkSpace/linux-next$ rg DW_DP .config
->>> 4044:CONFIG_ROCKCHIP_DW_DP=3Dy
->>=20
->> here i=E2=80=99m a bit lost=E2=80=A6.
->> greping on full kernel sources (with applied =
-https://patchwork.kernel.org/project/linux-rockchip/list/?series=3D936784)=
- gives me no single appearance of ROCKCHIP_DW_DP=E2=80=A6
->> Do i miss something?
->=20
-> see PATCH 3/6:  =20
->=20
->=20
-> diff --git a/drivers/gpu/drm/rockchip/Kconfig =
-b/drivers/gpu/drm/rockchip/Kconfig
-> index 26c4410b2407..c8638baf9641 100644
-> --- a/drivers/gpu/drm/rockchip/Kconfig
-> +++ b/drivers/gpu/drm/rockchip/Kconfig
-> @@ -8,6 +8,7 @@ config DRM_ROCKCHIP
-> select DRM_PANEL
-> select VIDEOMODE_HELPERS
-> select DRM_ANALOGIX_DP if ROCKCHIP_ANALOGIX_DP
-> + select DRM_DW_DP if ROCKCHIP_DW_DP
-> select DRM_DW_HDMI if ROCKCHIP_DW_HDMI
-> select DRM_DW_HDMI_QP if ROCKCHIP_DW_HDMI_QP
-> select DRM_DW_MIPI_DSI if ROCKCHIP_DW_MIPI_DSI
-> @@ -58,6 +59,12 @@ config ROCKCHIP_CDN_DP
->  RK3399 based SoC, you should select this
->  option.
->=20
-> +config ROCKCHIP_DW_DP
-> + bool "Rockchip specific extensions for Synopsys DW DP"
-> + help
-> +  Choose this option for Synopsys DesignWare Cores DisplayPort
-> +  transmit controller support on Rockchip SoC.
->=20
-> =
-https://lore.kernel.org/linux-rockchip/047EECFC-7E55-44EC-896F-13FE04333E4=
-D@gmail.com/T/#m178a325ea0ebc64187aae474d77c3f7a9e0bc93d
->>=20
+> following errors/warnings.
+> 
+> 	arch/arm64/boot/dts/qcom/ipq9574-rdp449.dtb: pcie@20000000: reg-names:0: 'parf' was expected
 
+So this was added back in 2024 and never tested?
 
-Ah my bad!
-One patch patch was commented - so not all dp code was applied.
+> 	arch/arm64/boot/dts/qcom/ipq9574.dtsi:1045.24-1127.5: Warning (simple_bus_reg): /soc@0/pcie@20000000: simple-bus unit address format error, expected "88000"
+> 
+> Move the nodes to maintain sort order w.r.t address.
+> 
 
-Now it is much better:
+I don't understand this commit msg and huge diff does not help. It's
+very difficult to spot the actual changes and since Qualcomm was never
+testing this in the past, I do not believe it is being tested now.
 
-root@myth-frontend-56b0f018b5e0:~ # dmesg | grep drm
-[    9.795380] panthor fb000000.gpu: [drm] clock rate =3D 198000000
-[    9.796257] panthor fb000000.gpu: [drm] mali-g610 id 0xa867 major 0x0 =
-minor 0x0 status 0x5
-[    9.796262] panthor fb000000.gpu: [drm] Features: L2:0x7120306 =
-Tiler:0x809 Mem:0x301 MMU:0x2830 AS:0xff
-[    9.796265] panthor fb000000.gpu: [drm] shader_present=3D0x50005 =
-l2_present=3D0x1 tiler_present=3D0x1
-[    9.851869] panthor fb000000.gpu: [drm] Firmware protected mode entry =
-not be supported, ignoring
-[    9.851921] panthor fb000000.gpu: [drm] Firmware git sha: =
-814b47b551159067b67a37c4e9adda458ad9d852
-[    9.852127] panthor fb000000.gpu: [drm] CSF FW using interface =
-v1.1.0, Features 0x0 Instrumentation features 0x71
-[    9.852436] [drm] Initialized panthor 1.3.0 for fb000000.gpu on minor =
-0
-[   10.003108] rockchip-drm display-subsystem: bound fdd90000.vop (ops =
-vop2_component_ops)
-[   10.004705] rockchip-drm display-subsystem: bound fde60000.dp (ops =
-dw_dp_rockchip_component_ops)
-[   10.006085] rockchip-drm display-subsystem: bound fdea0000.hdmi (ops =
-dw_hdmi_qp_rockchip_ops)
-[   10.006679] [drm] Initialized rockchip 1.0.0 for display-subsystem on =
-minor 1
-[   10.006737] rockchip-drm display-subsystem: [drm] Cannot find any =
-crtc or sizes
-[   10.007663] rockchip-drm display-subsystem: [drm] Cannot find any =
-crtc or sizes
+Clearly explain what is the problem - *each of them*.
 
-Unfortunately still nothing on screen
-
-dri state: =
-https://gist.github.com/warpme/5e971dfd2e9fd52fae76641831cebe46
-
-and kernel dmesg https://termbin.com/r0m3
-
-i=E2=80=99m not sure what is missing (some dts enablement or=E2=80=A6.)
- =20
-
-
-
-
-
-
+Best regards,
+Krzysztof
 
