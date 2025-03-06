@@ -1,261 +1,178 @@
-Return-Path: <devicetree+bounces-154665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25403A5432C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:01:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD76A54333
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:05:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 450CD16F2E4
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:01:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1372F16D14B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA7D31A2C25;
-	Thu,  6 Mar 2025 07:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D2171A3A8D;
+	Thu,  6 Mar 2025 07:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Eu/y4Xe0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hecywSUY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2084.outbound.protection.outlook.com [40.107.241.84])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC5919DF4D;
-	Thu,  6 Mar 2025 07:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.84
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741244494; cv=fail; b=BDi8gBgB0xGxjSowCqlbuqjAT2llatJDbAfw5yj64eLv0SPUAhRt4ESoRWxL3NrnQCqpDZq2lL2QL7q6VnBsMTE86Anlr1nT1t4gQOIkJx/5rbjZMcuqLFy2jW+RFnL+L+xONY6WM0AauGe+Be2Y3EPhyGDUqx04kYg/R83BL0s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741244494; c=relaxed/simple;
-	bh=bpZR2g0vHLi4hHg6f0BlDIfJg7kRCH3FyjhCOVfIfkk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=n5sMqd2OjKeiAildeo/8oTOG9XeIMuU9Fx0v0sznFtuwEDypSLlxUten6r0b4mPym8QNKvJ/Ld4xKHU4/JMwYTcVR31WMXU811QT2nM9bXl2vMC9VF24rxpcitRoXf+jV318mrOA2ucKEiDbx2wi9XoFVco8yumgkbsoqMSIl1A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Eu/y4Xe0; arc=fail smtp.client-ip=40.107.241.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P+5cc7e/99Y18VZX40S/aM9IVxBuckYQO2A0LC3+Zc0xBVMRdjOiou/xaJ3xS7h5Y7leucVRl7pI3yqNyhQfRn3kfHV7+bkmpxwiclEYBWzUArQYxIy6ZiTOkOlS0P3Y0urcazPv2RGN6tpPNdJGCSMcngNJdPAFdfeiuo7FQtRmnd29zVxZyTyR2XslbotnDzSPUxK6dmlMvTsiib1frFuRZ+KLqr5NMhWLNkbHKsBL3fQX58iZWl8ytPuiG1/42ffHDPyEqXNFoq1DAqsuqJGQ9/LJ+w42yjez41CrGVa4o6Wo0Q3z8jqO17S6UOrb3fC+VdYuclrSE7BYORN1/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W9/UpD9T1Rcyv7GXufVhrwh/y2oPj75HiCc8tPDnj1I=;
- b=tjrTekVIarRvG071RuUwX+nIctyqgcu53zqDxcHVZmc+fTPPCrhLVHh4ywCr6MVow80HE/nnF/Qpi369RLaGAHBOoe5GEM9uey3dtqfvNKkgZ0g/+68YLjz+8imrcceg3d82yzHYnnLClnnLMXGY1jZlsmCOt6zoVnlFfyfEvNb3nLxMwfOBUQGotETmikl4eRvdVRXO/SxIo4AVO7zIKcvazX3h793gPjlUX5QG1fe91w1YMKsLjkgyH9YfbxFkxbvKn3Y65+L+/e6xnKgzxzA3WBBeuKYiGfwQ4S77jQUEx+DmWLkyZxZeWc2FnugmViC/ZCqCoSc7xFEujF97KA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9/UpD9T1Rcyv7GXufVhrwh/y2oPj75HiCc8tPDnj1I=;
- b=Eu/y4Xe0OFqMlf3UzP3RQC6Q9X4icKOT8ILUA2yWESt2Ab0tzcQv8PTlZMOdS0NGStymhC3Eo1Ma82MyFib0vORvob5e1YKTqV/c8NAcJwqfvZengoGUBe6ChUgFAvZVMHeh8Vbr4v0VVnB6WSP6Sz+cF+O4tKWwcF9xRLGy5+maRVpAEaN4C2isahRcODic3o14QtbAOe4ACycsalSYK3LJ2sXDapAu6xbxAatgvZiRRulI5yBACEsiNrnkHuO/kIrzF7U7M9g4IV9s6uzLr3R8mBkkT5tGNFGsKoch8IgJSYjGDLAiRk7VQzG4F/omc3Roo6kEDjEPwxeWVSWu5w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by DU4PR04MB10863.eurprd04.prod.outlook.com (2603:10a6:10:588::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.28; Thu, 6 Mar
- 2025 07:01:29 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90%4]) with mapi id 15.20.8511.017; Thu, 6 Mar 2025
- 07:01:29 +0000
-Message-ID: <7d98163d-10c8-457d-92e7-6a1d6e379beb@nxp.com>
-Date: Thu, 6 Mar 2025 15:02:41 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
- color encoder
-To: Rob Herring <robh@kernel.org>,
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
-References: <20250304101530.969920-1-victor.liu@nxp.com>
- <20250304101530.969920-4-victor.liu@nxp.com>
- <20250304152320.GA2630063-robh@kernel.org> <1891036.atdPhlSkOF@steina-w>
- <20250305163805.GA2071011-robh@kernel.org>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <20250305163805.GA2071011-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI1PR02CA0041.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::18) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F23019DF4D;
+	Thu,  6 Mar 2025 07:05:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741244734; cv=none; b=aOxOYVvmhR9FUTI6swLu8jouz15+ClEaI8X5/AaEMA0WnXCZ8knre5IVKgm2hvX9O3TWYy4uZ+PCsVF+LP+fP9DHjG50p1FMHb0jQjxujliqA9n6hpWd6ccgl+l4b+PrOnQ418m48deI3JaA9k5/HNo6YPKSfTN6xKo2VsWRdss=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741244734; c=relaxed/simple;
+	bh=2mj5Lmm88y0kQhwct/3wA//D7aNt1Lt6qq942WjAldk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pEQrmi8deyqvItoYOnmSvexVgk0t5B4EHNcXXDLyKTj24RInmi86sRhloSjNG7RPYto4IMErpu5ocHWY8EhpzfSlfMgYK8v1TbTTN69SaT/RQHHnBE3dnOodVTgvNAaaahD25Yg2m4Z8zlkjdbIwv0DmLq7KGhTtLlIg81MA95Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hecywSUY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5351C4CEE4;
+	Thu,  6 Mar 2025 07:05:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741244733;
+	bh=2mj5Lmm88y0kQhwct/3wA//D7aNt1Lt6qq942WjAldk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hecywSUYoB+yhiCnpdiocJrMUNx0RFZxotj9PrwxwOJfD+IpqekqyEGYzIoC/Ki6s
+	 0pSBfM6vb6795Kc4ZhfRBXfWpvf/kE2mdScp4ZsFSWoBqN8i8RESTgAMJncMDoYrPm
+	 /WF0TBB6Cy+6xza1/byUoc8H5eMdxZDJ5YLetldg4u/YsEMjbsyz2aI8MQpvo3nojR
+	 KZ4QutpDIis4cR+rovFhn+587Bw7rIN5/GiHcJZ1BMMAsP6g0fsDr7vbAUOZ7sAX3y
+	 xDWZtuOr9Y4Tu3dAaX6EqdSofxeYwQX6ywsdXd0UGW4eGRjzcomZ2XYu3ZSMk1a02/
+	 sz15W+hbCJMiw==
+Message-ID: <a9ddeccf-8fc6-453c-af62-55e895888a77@kernel.org>
+Date: Thu, 6 Mar 2025 08:05:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|DU4PR04MB10863:EE_
-X-MS-Office365-Filtering-Correlation-Id: 88d7f74a-2c49-4bec-30cc-08dd5c7cb7d0
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?Y1BWWHdmejFzVDRBb2h5cU02azZ1SjRJeDJ2RGE5eWRBek1vTThXYzh4Wll6?=
- =?utf-8?B?R2Ftd0w2dDNLNW1GVHhZRnRZOWdweGx4c2ljTU9lWlR3cXhlQTJpbGpnd0Mw?=
- =?utf-8?B?Y1U3Y2F1SEt4NGJJUGtCb3FHbWExM2dRa1prenJzZS95TjByUUdMemFGTDc5?=
- =?utf-8?B?KzBZQVJJV0kzNzBPUFBWdVAwZWxBM2p1alE3ZlI5MUVUZ1l0RDRqejVteDNm?=
- =?utf-8?B?ZjBaYWxvOW4xY1FmazNkMkQzOVZ5VVNaLzE4M2RDQUZFYkVNbStJdHUzdzVH?=
- =?utf-8?B?WUo1ME9KUzFqUEl3eUpoZkwvTlArQks4QU9lT21tN2RwUVBMZHNMZ3pINnk2?=
- =?utf-8?B?d3hmUUN2eUZ2VVVDTkkvUzUrelBxa3puMkFNa2JpSG5RaXlQYTBML2lVSG5P?=
- =?utf-8?B?R3h2VmFBb3E0ZktZWXBrak1yZVA5SGczMmxBSU5QakJGNlZGOHd3ZnRERG91?=
- =?utf-8?B?N3lsKzg2OGRyK05vUFhQZWt3a3RMOE5nNnp4dk56UTJWcmRueFkwcHpWY3B1?=
- =?utf-8?B?YUVaUTVnWUZPY1F2M2NqTUtYcjdhOXA5TDlwTk01Q0x0WWw0a2pEVXVtRk9G?=
- =?utf-8?B?VEFYWmNJS0d4TjVRREc2SG5FVTBkNmRmR1pKTjRJdWppd2NmNGx4UDlsZGtu?=
- =?utf-8?B?UjJRdFN2TnFEMUJWYjlQR2NDdVpFYkQ4OFpXM0tVeFR3SHF1OTZhNlBkQmhh?=
- =?utf-8?B?QW8xYy9VaGs2VnhWRmdDR3JTbXFmMm8yaUNuZkx6ZEhBem1BM3ZCVUQ0YVhr?=
- =?utf-8?B?czZQc3hZUkIzVlE1d3hQd1NJbTFWUFRUanhIR0x3aDBGeTVsWG9pZE5wOE9y?=
- =?utf-8?B?TFEyck52RWFYanJqWGRRRGkzYytXaHltKzl1L3Y1eWx6YW5ickZWWkVadmd2?=
- =?utf-8?B?ZGw4dzljSmRNdXIwRENLVjdFdW45OVlZN2hVZFg0Z1dpbjI2TUF5WUNyU3RN?=
- =?utf-8?B?Tmh2WGk1UmNOSmNpNzU1MHFzaDgyWWIyY3oyaFM3QnNMTFRtV0Y0L05SK0Jw?=
- =?utf-8?B?R2JORVJSSGxCU0lGR2NFU1gvK1l2OVVDZGh6cWFvY2QzQmpMMlkwRGJsc1hj?=
- =?utf-8?B?bkpLN0pSWDQvendiS1JCd3JoZ29Sajg0Tkhmb0NQWlcrSVpLT1NNc3d0OVRO?=
- =?utf-8?B?VDZJQVc3a0NKdlV3eTJzV3ExajRvNHliVTlLYW5KOTg3QzlwaXd3clJnK3Fv?=
- =?utf-8?B?RFhSRjZEMlZhazgvWExZOTJQUjVCYlJURktoWFMwbTVkRXdXVWxEdmxlQnRa?=
- =?utf-8?B?b2RFaXdmVDRkVHFpOVRKTU5LOXBucHFYY25CZ2hLUE42VXhvVFFUcUVQVVA0?=
- =?utf-8?B?RW0zTDJkM1h4cUFRSjFkSFNqV3pUWDdIR2Fncll6TEU2MS9tZlJVZXpWZGR2?=
- =?utf-8?B?WlBGbVJPWm4vV09xYUhUVGtSMmZTU3Z5TVhBc1poSVhFM2RtRklxYnlRSTNJ?=
- =?utf-8?B?Z0VkSUVqWlRaU3p6dFpkTlNab1dsdUswenZKbmVYOHd3NTBhRndld25yY2xw?=
- =?utf-8?B?a3BOWmcvdXoxNDVsMmJrWVBtTjBRZ0w4QjA4TzViUkhoVTNGSHg4cU1ETnN6?=
- =?utf-8?B?V1V4bUdqanVzR1Z6L1FuY2tmeTVLRkxtd1ZDaHU4MzhrdHFGWlVUYjBrYk9j?=
- =?utf-8?B?b0pkNmhMMko3VytJTEF3VGdLc3cxbTQxU2NaakV1NFUyRjF4NlRKeGI1cXdS?=
- =?utf-8?B?d3d5WUxTQnBITUczdGJTK1h3aGYyU3hxNFpvanE1VDFISHBEeHllZ2F5enBr?=
- =?utf-8?B?V3pmV2ppcmVhNHdzRXFKNUNHNE4zZ2o1TUdwZ2VuVGMwaWF3b2Rwck5Pc2lW?=
- =?utf-8?B?SGhBdXN5QUNvdTBJNWZnZGZlMmtGZys2cmp5aERWaUJaeEpzbDMrdE9aV1gv?=
- =?utf-8?Q?LMPn6IHuh2w/d?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?T0hXSkxSdzBrVmJpSXd5d0VnMTg5c1BVaHZZL3dyelBRcy9HcStKNFBqbW1T?=
- =?utf-8?B?d2NvN09zTDdndldwb3FJMjFzUnFETGFiQVNVTjBuNnNFY0VraUpDaFRLUitk?=
- =?utf-8?B?ako3TllUWVhOMEpJYk02SVRicjdGTmxFWUJleUd0NTJGNUcvUWZMMGpVTGU2?=
- =?utf-8?B?dy85N0IyWkU3TTMweWIrMXN2NmFnSzB1YTJaTFdPVkdrZzltdHVBZE0yMzl5?=
- =?utf-8?B?c3F3bWFyWDlxUWR4ZWxLeDl0YVBXWWowbmcwWEUwN3dTY0g1Rm9laWRvKzUz?=
- =?utf-8?B?eXk2UTE3QnIwTTQ1Sko5bTdNcnNISlN2ZU1sRHB6enZBMUZIWmkyVm1nYmU4?=
- =?utf-8?B?azk5YVlqaCtZL2ZsWEwvMWtVMS9vYU96T0JMRXdpVnV3andCVmhLRGJLSFFI?=
- =?utf-8?B?TS9CYlRucGlTbG0xOXlhUDBqV0dCa25yMzY5VlprYzQ2b2djWEI1bVUwcWMw?=
- =?utf-8?B?TzVDblV2WWpqWWNqOHlsbHB4aGttWUw0c3owV3dyNTJtMXEvWWVnQUorcUpt?=
- =?utf-8?B?a2RFRDlzM3l4RUlUUmhWVmF4eU95Wlk4bXhpSG1uencyaVIrbytEOHlNUUhL?=
- =?utf-8?B?dEYvVkc4RUlBSFZWUnhUQVZneXNnUFE2V2xuM2JwTVNoeU9COVN4SW96MlVv?=
- =?utf-8?B?cUFIYUw5QXZGUDV6dzZ4SXo3cXlvcFdNaFNReEg1Sk01OWhaWTU5Y01SaE4x?=
- =?utf-8?B?SC8waXhNTFhmZ21CUjI5cWRibHYzdWFrOXJRb3Ziem9HYUFVVG4zUVMrQ1Ir?=
- =?utf-8?B?NGFWVzRsUG1KWWoyWEI0ZjNiZHl2MnZCcDdlN3NObkxmQ3BhbFlnbW5jUm12?=
- =?utf-8?B?dnRtZTFqbVBoVlhYSnRYZVNrQXFNb1cvbG9HRkpMQTByQkRLS0xQZklkWmJu?=
- =?utf-8?B?RTBCNllobUhKWWc3L0YrcytKc0lKRlhwV2dRM1lOZjZFMU9xaG5QVk01c255?=
- =?utf-8?B?YXNnbm9EWEhydUFKTXo3S29penFFSmRmMnNtVytadGlhN3htNDhkU05aelIz?=
- =?utf-8?B?ZUd3d0VsOHdkTFZNWFViclVUbythbDJyVnlvZWJFQnZxTHZXS2JWK3B1RUJx?=
- =?utf-8?B?YjJUbzlhUVM1WEd6N01Oa2tLa3ZvQW1wbHY1YjNHSTJTSDByUnBMSFBUMnVl?=
- =?utf-8?B?YXdQUTF2QmdscHpVMUFHREk1K3Y1K090MllQRzZyZzZnVkVsRWpnZmNjT0du?=
- =?utf-8?B?SWgrR2lKa2RWYXI4ZUpVaWJWa1NxeEh0ZDR2ZklsVThjWk91WFJSSHBrY3dB?=
- =?utf-8?B?UnpJRktWaGVrSHdrQmlqbHc3UmplYW56NXQyMWhDclRtMG14cjJ4VUU0ODRS?=
- =?utf-8?B?TmUrWkp0THVRemVtb2p0d1d6WTJYOEU0WThuNy8yaDdZVjMwUk11c0NjRndU?=
- =?utf-8?B?blFMTHd0aUw3SnNBTzBLUkw5UmxjVGR2cGp2ZGdPZ3BUa0hrTG9Qc0IwSVd2?=
- =?utf-8?B?dlg5Ly9ZTVU0dG5WaHF2dmpjY2lJWllOTStPRnV5RHZrT1VrZXQvZ1pyajJj?=
- =?utf-8?B?Nm41NnRKN3VLYmRIN2UveUtxUEdJTFhEZHZXalFtQ0NsUFJzNWg2WHQzTHBv?=
- =?utf-8?B?KzdnSm0vaWhHYnJrK28vUGh3eUpOTlBXbVJQdzZKV1lIbno5WFNCV3haVWxy?=
- =?utf-8?B?aDFaNjNjbnM2KzFBanpxNnlWTklBWWRwdE1od1NzQUNQYlVDVU5rRGE1cW5X?=
- =?utf-8?B?M0VJWkFKdEhEdk1YczAyVHpsN3IvckRLRE4yOUdLdE9LaXFXd2l1SHNySlpz?=
- =?utf-8?B?Z0NnS0J6MUsxWnJJRUtoTkZJckwwMWxrUlRScndiL1Ezd1cycm1zR1FIbjVu?=
- =?utf-8?B?WHBjODhzQlk1b2d5TXpCeTBXK1lGb3RmM0pHRUQveDE4d1AvdDVTNTdUZHN3?=
- =?utf-8?B?YjVGcWxrQUdDZHlCYWlybnZlRE9ySEtSMWpIWDNPVk5weWcxem5JalJOSE5x?=
- =?utf-8?B?UHlaZTllckc4d2FZekxkWWFKVkJVbEhtakFCaGc2S3IwU3hWY3lhTVlwL0Jz?=
- =?utf-8?B?RFJtZjhFdks2S0M2YmhNTmtFSVNkRG1sQm5tYzdtdXFlVWQyNVZ1d2pyZk4r?=
- =?utf-8?B?MnBJZnBER1BYUHl0d3Awc2I3T1kyYTNKK09pbXByOVZ1eFBET21GdUdDRGV4?=
- =?utf-8?Q?6yzQ8wNRlLkyNmeIwdKoKGfX7?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88d7f74a-2c49-4bec-30cc-08dd5c7cb7d0
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2025 07:01:29.0138
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Bnt+c1J956efYm9LfNBA06Xs+Hqcqz1maARnnvaHaf8skO0WCSW6xSvCUEl0UFpBKwYtGODwA+Ozhn1xyMU/wQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10863
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/2] dt-bindings: net: Add FSD EQoS device tree
+ bindings
+To: Swathi K S <swathi.ks@samsung.com>, krzk+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, conor+dt@kernel.org,
+ richardcochran@gmail.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com
+Cc: rmk+kernel@armlinux.org.uk, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ pankaj.dubey@samsung.com, ravi.patel@samsung.com, gost.dev@samsung.com
+References: <20250305091246.106626-1-swathi.ks@samsung.com>
+ <CGME20250305091852epcas5p18a0853e85a5ed3d36d5d42ef89735ca6@epcas5p1.samsung.com>
+ <20250305091246.106626-2-swathi.ks@samsung.com>
+ <89dcfb2a-d093-48f9-b6d7-af99b383a1bc@kernel.org>
+ <00e301db8e49$95bfbf90$c13f3eb0$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <00e301db8e49$95bfbf90$c13f3eb0$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 03/06/2025, Rob Herring wrote:
-> On Wed, Mar 05, 2025 at 10:35:26AM +0100, Alexander Stein wrote:
->> Hi,
+On 06/03/2025 04:40, Swathi K S wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: 05 March 2025 21:12
+>> To: Swathi K S <swathi.ks@samsung.com>; krzk+dt@kernel.org;
+>> andrew+netdev@lunn.ch; davem@davemloft.net; edumazet@google.com;
+>> kuba@kernel.org; pabeni@redhat.com; robh@kernel.org;
+>> conor+dt@kernel.org; richardcochran@gmail.com;
+>> mcoquelin.stm32@gmail.com; alexandre.torgue@foss.st.com
+>> Cc: rmk+kernel@armlinux.org.uk; netdev@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-stm32@st-md-mailman.stormreply.com;
+>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+>> pankaj.dubey@samsung.com; ravi.patel@samsung.com;
+>> gost.dev@samsung.com
+>> Subject: Re: [PATCH v8 1/2] dt-bindings: net: Add FSD EQoS device tree
+>> bindings
 >>
->> Am Dienstag, 4. März 2025, 16:23:20 CET schrieb Rob Herring:
->>> On Tue, Mar 04, 2025 at 06:15:28PM +0800, Liu Ying wrote:
->>>> A DPI color encoder, as a simple display bridge, converts input DPI color
->>>> coding to output DPI color coding, like Adafruit Kippah DPI hat[1] which
->>>> converts input 18-bit pixel data to 24-bit pixel data(with 2 low padding
->>>> bits in every color component though). Document the DPI color encoder.
+>> On 05/03/2025 10:12, Swathi K S wrote:
+>>> Add FSD Ethernet compatible in Synopsys dt-bindings document. Add FSD
+>>> Ethernet YAML schema to enable the DT validation.
 >>>
->>> Why do we need a node for this? Isn't this just wired how it is wired 
->>> and there's nothing for s/w to see or do? I suppose if you are trying to 
->>> resolve the mode with 24-bit on one end and 18-bit on the other end, you 
->>> need to allow that and not require an exact match. You still might need 
->>> to figure out which pins the 18-bit data comes out on, but you have that 
->>> problem with an 18-bit panel too. IOW, how is this any different if you 
->>> have an 18-bit panel versus 24-bit panel?
+>>> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+>>> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
+>>> Signed-off-by: Swathi K S <swathi.ks@samsung.com>
 >>
->> Especially panel-simple.c has a fixed configuration for each display, such as:
->>> .bus_format = MEDIA_BUS_FMT_RGB666_1X18
+>> <form letter>
+>> This is a friendly reminder during the review process.
 >>
->> How would you allow or even know it should be addressed as
->> MEDIA_BUS_FMT_RGB888_1X24 instead? I see different ways:
->> 1. Create a new display setting/compatible
->> 2. Add an overwrite property to the displays
->> 3. Use a (transparent) bridge (this series)
+>> It looks like you received a tag and forgot to add it.
 >>
->> Number 1 is IMHO out of question. 
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions of patchset, under or above your Signed-off-by tag, unless patch
+>> changed significantly (e.g. new properties added to the DT bindings). Tag is
+>> "received", when provided in a message replied to you on the mailing list.
+>> Tools like b4 can help here. However, there's no need to repost patches
+>> *only* to add the tags. The upstream maintainer will do that for tags
+>> received on the version they apply.
+>>
+>> Please read:
+>> https://protect2.fireeye.com/v1/url?k=19972162-781c345b-1996aa2d-
+>> 000babffae10-7bd6b1a1d78b210b&q=1&e=94dcc3a6-5303-441a-8c1e-
+>> de696b216f86&u=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv6.12-
+>> rc3%2Fsource%2FDocumentation%2Fprocess%2Fsubmitting-
+>> patches.rst%23L577
+>>
+>> If a tag was not added on purpose, please state why and what changed.
 > 
-> Agreed.
-> 
->> I personally don't like number 2 as this
->> feels like adding quirks to displays, which they don't have.
-> 
-> This is what I would do except apply it to the controller side. We know 
-> the panel side already. This is a board variation, so a property makes 
-> sense. I don't think you need any more than knowing what's on each end. 
+> Hi Krzysztof, 
+> As per a review comment received from Russell, I had added 2 new properties to the DT - assigned-clocks and assigned-clock-parents properties. 
+> The example in the DT binding reflects the same.
+> I felt it wouldn't be fair to add 'Reviewed-by' tag without you reviewing the updates again.
+> But I should have mentioned that in cover letter and apologies for missing to do that.
+Nothing in changelog explained new properties. Nothing mentioned
+dropping tag, which you always must explicitly say.
 
-With option 2, no matter putting a property in source side or sink side,
-impacted display drivers and DT bindings need to be changed, once a board
-manipulates the DPI color coding.  This adds burdens and introduces new
-versions of those DT bindings.  Is this what we want?
-
-> 
->> Number 3 actually describe the hardware connection. The only impact for
->> software is to know which bus format it should use.
-> 
-> I'm not opposed to this, but only if it provides *something* that option 
-> 2 does not. I'm not seeing what that is.
-
-Option 3 provides an intermediate bridge for both DT and OSes.  It makes
-the DPI color coding manipulation transparent to source side and sink side.
-
-> 
-> Node or not, either case needs a format property. We already have a 
-> variety of bus/pixel format related properties. I've rejected new ones 
-> because we need something common here that's flexible enough to handle 
-> any situation. That's either something that can describe any bit layout 
-> or something enumerating the formats (as MEDIA_BUS_FMT_* does). The 
-> former is hard to get right and there's always something else you can't 
-> handle. I'm not opposed to just reusing MEDIA_BUS_FMT_ if that works.
-
-Agree that the former is hard to get right.
-
-Since this is all about DPI and we have that MIPI DPI standard document
-which specifies color codings, maybe it's fine to start with those limited
-color codings.
-
-BTW, I'd admit that the artificial paddings are not described by this patch
-set, though maybe no one cares about that.  The paddings could be floating/
-low/high/other component bits.
-
-> 
-> Rob
-
--- 
-Regards,
-Liu Ying
+Best regards,
+Krzysztof
 
