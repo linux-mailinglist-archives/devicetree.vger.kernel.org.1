@@ -1,250 +1,213 @@
-Return-Path: <devicetree+bounces-154642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4FCA54131
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 04:23:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF030A54171
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 04:54:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C9FC3AC083
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 03:22:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFD82189276A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 03:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB41197A7A;
-	Thu,  6 Mar 2025 03:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C8319B5B1;
+	Thu,  6 Mar 2025 03:54:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u4FCKJ1a"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="qiGViF3o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB5A19342E
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 03:22:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4AD199238
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 03:54:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741231379; cv=none; b=q8m0Yr8XJcNDnzIPdWNo5gE3kiAN/h9VWj6yQvexSJPaHKm1pC+E1w827OJW8r/dNwSkluNXXxW9i8pgx2tnCzg5i8UgrllFALRrT1KCrDkbIl84pKNIJ6NBOILY35bodspFLu2970Qqgkw9zHI1kUmJBsotoU7lTXLk9vlGy/I=
+	t=1741233263; cv=none; b=HYDjzEBEtald039FTZzHNW1lRoBBVp+jgjQpNFPmdv5OfoCQ9jHEUa751z2462Ae3QlnZ6VnWsHCOLZ2/ZRoOsyj5BTIH5soP+mVEmd5fau1PZxU3ACbSAqc0WZpfKBtdVC+4O9oAT6jzkbPNRmEWhT4bk/QtvkhdwjaI/BJIe8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741231379; c=relaxed/simple;
-	bh=Ru/CpGpxmay/9MsSLlCOfSZnuKnc/nvpzizPFZJ2vUk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Le3gsEon1sbd1TP9+pyzGQCSM+3QDROCZ4aWWsusODKFjvPrIYjMQhutrmXQ2kcBsAy0GD9CysTlDAI50Jvwaq8c95piiGe97vFTSGhDEX3TE0RADhnD3ygfINscWYbmUFQuOo5tKIsVLkNibqXgY28nYvAqW8nwznAJAo59sTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u4FCKJ1a; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2235908a30aso3336165ad.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 19:22:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741231377; x=1741836177; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kVRUb8q7uQnpUvlMyzRGCkdnBEaB/99BqJE+CFAT52A=;
-        b=u4FCKJ1a/5FlPi3yxllrioCGopfyEFkRgtOeU7QN7xKS0zFrAgKgX4a6bnOkwgGzp2
-         oX15Otuxr0DnoPNRWe+xLn1+rD9j2xB001WSY4nW0LmaBYuCpKHi9iQFfq/keJLzMqIp
-         ecNqDUR5367BXvap1vc/EDmEEdJsejYCl5O6iMVlV5XeirIw6oD+eE+9OwV3m0axBL6d
-         QQNhcoABnWRddfQnMCNeIXv0oEFUdDPEwlNJFKbas1uOj7vDMIGHxy5LuSevhuHMx68Y
-         aoHpQRdwr7A8rvIz+q5z6Mj01hIApEmopaDk9IPtQuGN2+YN3dROUlo2zqTpYhf2OxsM
-         s19A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741231377; x=1741836177;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kVRUb8q7uQnpUvlMyzRGCkdnBEaB/99BqJE+CFAT52A=;
-        b=jl9XBr/TZ2vNE0zHAfHBjYNMh7A6x18wTP5betWSbRKq1xVM81nVjsjav/wwuof7b0
-         2fU/s9JESiNddB1QzvrjpRsI9kpUPCn0CkR1HN0a5i7+BPOoABnvJqmnHx64MDW2SOXe
-         +wnkHQmE8v0cj2GO9kZBzvh0GduMQvGAvnxBKePS7YWj76mHr1GuJfjJUB/p/9WJck1K
-         n8+074vueww8scLWfhBOcpfKdrBReAaLJqbcl/bwtWPHIkWJzWjjS9r8yCLU34OFfcer
-         Wt5YQbU9+fHvM/nWZzheHHJuzhtEuSX3gTuzsyX3M3EBiNp3LAd9lK29KeKMSOmk63w+
-         foEg==
-X-Forwarded-Encrypted: i=1; AJvYcCV36GIlxs0QI+z+Y307ex4i1EHOx0m5bgBq51Uh5DPP3qObhACKqW2BAJGwycmzaHhGufhZmt0b6fGp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVXWYYrGWValff41Sf5OwG6HlbntiYuOkUauSVsASQyJ7DD6Sq
-	yqWCVu/h57S2lJHI5YMsBu/J2tA4Wz1SY98ClXZhmmlZaydAUCZgKNkelFc23A==
-X-Gm-Gg: ASbGncsdOaXfIX3KRr2v02raYcFZd+7EKnR6PhTK3cZIbtI4j/pMkJ3VNquI4KSVU+e
-	YZy/SDlhCkuU06ZPLV1ToGi1+bSj7ECfEfLv6C5FnktWp/RVwQrQeEILGDclV4YTsSYKkAawu5j
-	/77pT5J26BBnmZr6ez4KA27M5MM6Rwsimy3IXJgisTBKUsM5p+Ubm9az3Q9vU0ShiGIefFJ+CNe
-	WP3uJGc2IWHH0ipkBjBn9iv+03ytpe5AHpKB/gBy6ByHmrwL4j7/jlIXfzLHGYn6fNgl7qtg0K2
-	ndrTxmVc74rhJ8PNrXtztwTFtm1swz22MrJYTBxZlyzoTaPSKUnDn3w=
-X-Google-Smtp-Source: AGHT+IFKgh0FiksUVgR3j46APqXiDJlCf1FcFsiDNFfW2pnSFNjsBifU8IM2NHTcJLX+Pjppt76cJA==
-X-Received: by 2002:a17:902:d4c8:b0:220:e5be:29c8 with SMTP id d9443c01a7336-223f1cf56camr94178765ad.32.1741231377300;
-        Wed, 05 Mar 2025 19:22:57 -0800 (PST)
-Received: from thinkpad ([120.56.193.59])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22410a9193fsm1689105ad.164.2025.03.05.19.22.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Mar 2025 19:22:56 -0800 (PST)
-Date: Thu, 6 Mar 2025 08:52:50 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	quic_mrana@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v7 2/4] PCI: of: Add API to retrieve equalization presets
- from device tree
-Message-ID: <20250306032250.vzfhznmionz3qkx7@thinkpad>
-References: <20250225-preset_v6-v7-0-a593f3ef3951@oss.qualcomm.com>
- <20250225-preset_v6-v7-2-a593f3ef3951@oss.qualcomm.com>
+	s=arc-20240116; t=1741233263; c=relaxed/simple;
+	bh=M+tdIbH/OOQ9B2+GPQFTqQLawkecNMO/8W+4Ii4xSzk=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=gGedF3p9c+LsmiNbk6rOp14Zo8RlXZctjYy5aGJqQr4tBy3myQ6rQQK1NlijUOCpdzFWihnIjqA7gjIxR/najYNCaqC5Mvhsmrqj8mwNcMPmpgpzEmfq+y4s0VIv0hn279xiWxghYwJOzz30UN/YHTWC3oySCxd1TZQmThi/kpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=qiGViF3o; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250306035413epoutp012fa7176eb9f2d7d2e652f1e3953c5eb6~qGmsQZNX52520225202epoutp01F
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 03:54:13 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250306035413epoutp012fa7176eb9f2d7d2e652f1e3953c5eb6~qGmsQZNX52520225202epoutp01F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1741233253;
+	bh=M+tdIbH/OOQ9B2+GPQFTqQLawkecNMO/8W+4Ii4xSzk=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=qiGViF3ogjRaWBCI9FhNDOUwoNPTblslDHBLmJRk2eCEzYc5qrWj+G1Kyt5zkiB6M
+	 Q6MIuwEvv3/Q43eiBy4xeLJOnlUS5yv3DqVtXCHV6DOs3gFCzBPE+D8pKt/Y2Dd1I6
+	 8atGyNM9fsTo2sxE94UWczir0VTvjGFF9NFrDOYE=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+	20250306035412epcas5p26ae10de1003a9c71415d135415e756d9~qGmrrFaG00784807848epcas5p26;
+	Thu,  6 Mar 2025 03:54:12 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.174]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4Z7bBp3xQ6z4x9Pt; Thu,  6 Mar
+	2025 03:54:10 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+	epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	6A.7B.19933.26C19C76; Thu,  6 Mar 2025 12:54:10 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250306034103epcas5p2f1f67fe07c770d22c74a5ccabe69430f~qGbNDbm5C2061720617epcas5p2M;
+	Thu,  6 Mar 2025 03:41:03 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250306034103epsmtrp10afca51e630cdde56b25613551c21e60~qGbNCJhEJ1649016490epsmtrp1J;
+	Thu,  6 Mar 2025 03:41:03 +0000 (GMT)
+X-AuditID: b6c32a4a-b87c770000004ddd-8f-67c91c626329
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	98.56.33707.F4919C76; Thu,  6 Mar 2025 12:41:03 +0900 (KST)
+Received: from FDSFTE596 (unknown [107.122.82.131]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250306034100epsmtip2475c2bc5a013bdb7f4b299ba32f5c694~qGbKRDM9N0050300503epsmtip26;
+	Thu,  6 Mar 2025 03:41:00 +0000 (GMT)
+From: "Swathi K S" <swathi.ks@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <krzk+dt@kernel.org>,
+	<andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
+	<conor+dt@kernel.org>, <richardcochran@gmail.com>,
+	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>
+Cc: <rmk+kernel@armlinux.org.uk>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<pankaj.dubey@samsung.com>, <ravi.patel@samsung.com>, <gost.dev@samsung.com>
+In-Reply-To: <89dcfb2a-d093-48f9-b6d7-af99b383a1bc@kernel.org>
+Subject: RE: [PATCH v8 1/2] dt-bindings: net: Add FSD EQoS device tree
+ bindings
+Date: Thu, 6 Mar 2025 09:10:49 +0530
+Message-ID: <00e301db8e49$95bfbf90$c13f3eb0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250225-preset_v6-v7-2-a593f3ef3951@oss.qualcomm.com>
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-in
+Thread-Index: AQHcwqSBZNYxUrKMqce/4F1P5N/GfgGyT6S5AetEnA8CjXdByrMxtKXg
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpkl+LIzCtJLcpLzFFi42LZdlhTSzdJ5mS6wZxJshY/X05jtFj+YAer
+	xZq955gs5pxvYbGYf+Qcq8XTY4/YLW4e2Mlk8XLWPTaL8+c3sFtc2NbHarHp8TVWi8u75rBZ
+	dF17wmox7+9aVotjC8Qsvp1+w2ixaOsXdouHH/awWxw584LZ4lL/RCaL/3t2sDuIely+dpHZ
+	Y8vKm0weT/u3snvsnHWX3WPBplKPTas62Tw2L6n32LnjM5PH+31X2Tz6tqxi9Di4z9Dj8ya5
+	AJ6obJuM1MSU1CKF1Lzk/JTMvHRbJe/geOd4UzMDQ11DSwtzJYW8xNxUWyUXnwBdt8wcoF+V
+	FMoSc0qBQgGJxcVK+nY2RfmlJakKGfnFJbZKqQUpOQUmBXrFibnFpXnpenmpJVaGBgZGpkCF
+	CdkZPUf3sxUcF63YseUBWwPjAqEuRk4OCQETicPXVjCD2EICuxklOncUdzFyAdmfGCUevHnI
+	BOe8nbGRDabj78bjUImdjBLL3j9mhHBeMEr0f+hlB6liE9CSWNS3D8wWEdjLJPGsMQCkiFlg
+	AZPExuOLmUASnAJ2Eh8e9oLZwgKBEnOO3WEEsVkEVCRuT1sA1swrYCkx884HNghbUOLkzCcs
+	IDazgLbEsoWvmSFOUpD4+XQZK0RcXOLozx5miMVuEq+efmYHWSwhsJhT4mDDNqgGF4mZK5ez
+	Q9jCEq+Ob4GypSRe9rdB2fESq/uuskDYGRJ3f02E+t9e4sCVOUBxDqBlmhLrd+lDhGUlpp5a
+	xwRxA59E7+8nTBBxXokd82BsZYm/r69BjZSU2Lb0PfsERqVZSF6bheS1WUjemYWwbQEjyypG
+	ydSC4tz01GLTAqO81HJ4jCfn525iBOcFLa8djA8ffNA7xMjEwXiIUYKDWUmE9/Wp4+lCvCmJ
+	lVWpRfnxRaU5qcWHGE2B4T2RWUo0OR+YmfJK4g1NLA1MzMzMTCyNzQyVxHmbd7akCwmkJ5ak
+	ZqemFqQWwfQxcXBKNTAFzfz49MH2JzIq3hsE95mz2U2f/Ojx5o3TRe7vrmOZlS+7KMpPLNL8
+	mfVM4YwXMuntCTaPrK69Ffv5OIKh0T9tgdc6qYdcX/aZhXnaOf4Jqdu/bXvdfdPJ4m0PUh7+
+	PGvEO3133LGNy3LPHBVfOLvEWnOVb7PX+frMJEFfoxbZlaVCbbundl77dfyu3FYF3nV294/b
+	5a221JblS7B9mnY6yv68jmfHGUbh43WTfh9yM5AL/sF8RNGBWVney2nu/ae7tvtySn9Yp/I+
+	9Pf+t3t7bRfuX5XR/7/7vp/dufv/Kuc/q9yz+USt2vLbe4qv/8tTOVkgE3J8gezFhDfZO2sS
+	jztHNFQs9L+SJ3iT8f1FJZbijERDLeai4kQA44zLsZQEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrOIsWRmVeSWpSXmKPExsWy7bCSvK6/5Ml0g/1/5C1+vpzGaLH8wQ5W
+	izV7zzFZzDnfwmIx/8g5Vounxx6xW9w8sJPJ4uWse2wW589vYLe4sK2P1WLT42usFpd3zWGz
+	6Lr2hNVi3t+1rBbHFohZfDv9htFi0dYv7BYPP+xhtzhy5gWzxaX+iUwW//fsYHcQ9bh87SKz
+	x5aVN5k8nvZvZffYOesuu8eCTaUem1Z1snlsXlLvsXPHZyaP9/uusnn0bVnF6HFwn6HH501y
+	ATxRXDYpqTmZZalF+nYJXBndN1axFkwTrXj17BBTA+NLwS5GTg4JAROJvxuPM3UxcnEICWxn
+	lPi45TEbREJS4lPzVFYIW1hi5b/n7BBFzxgl9q9qBStiE9CSWNS3DywhInCaSeJH+z8wh1lg
+	FZPEtqWnoOa+Z5R4/mMJ2CxOATuJDw97mUBsYQF/iaZ7M5lBbBYBFYnb0xawg9i8ApYSM+98
+	YIOwBSVOznzCAmIzC2hL9D5sZYSxly18zQxxn4LEz6fLWCHi4hJHf/aAxUUE3CRePf3MPoFR
+	eBaSUbOQjJqFZNQsJO0LGFlWMYqmFhTnpucmFxjqFSfmFpfmpesl5+duYgSnBa2gHYzL1v/V
+	O8TIxMF4iFGCg1lJhPf1qePpQrwpiZVVqUX58UWlOanFhxilOViUxHmVczpThATSE0tSs1NT
+	C1KLYLJMHJxSDUwWyb90Lb7Iak3+17zBgIdF6PmBQ4+DpkUZRGrzqM5vLXQvuMU4b+8fdvfj
+	t0ryulKSXj282FD+ZJn2SaMdYn65099U1y58n/A8s2r1dpnO5A6Fx3HKwU5/Feax56fbsax6
+	Mjc+/MaMirfvtr8+fthkGXNZd/SNTGWNfwZGBTKpG3l3ma8NKD61KdZ1r13T6R9uK9226W76
+	Y3ciuqCgQeqIT4f35tTH9yL2bfxqFRqUKl0pxSdqvX1lpuPsS9O2aciXsrfeXO9UaDPj6+uE
+	W4u22B0+7fElb7GDlPDV/k+bA8KVXjyWdt3VpqLt8ly839XdKGBRgKnK70xfnrRXNZ+/HV7K
+	+GLvsumJ/B1WO5RYijMSDbWYi4oTAQNZDc96AwAA
+X-CMS-MailID: 20250306034103epcas5p2f1f67fe07c770d22c74a5ccabe69430f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250305091852epcas5p18a0853e85a5ed3d36d5d42ef89735ca6
+References: <20250305091246.106626-1-swathi.ks@samsung.com>
+	<CGME20250305091852epcas5p18a0853e85a5ed3d36d5d42ef89735ca6@epcas5p1.samsung.com>
+	<20250305091246.106626-2-swathi.ks@samsung.com>
+	<89dcfb2a-d093-48f9-b6d7-af99b383a1bc@kernel.org>
 
-On Tue, Feb 25, 2025 at 05:15:05PM +0530, Krishna Chaitanya Chundru wrote:
-> PCIe equalization presets are predefined settings used to optimize
-> signal integrity by compensating for signal loss and distortion in
-> high-speed data transmission.
-> 
-> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
-> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
-> configure lane equalization presets for each lane to enhance the PCIe
-> link reliability. Each preset value represents a different combination
-> of pre-shoot and de-emphasis values. For each data rate, different
-> registers are defined: for 8.0 GT/s, registers are defined in section
-> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
-> an extra receiver preset hint, requiring 16 bits per lane, while the
-> remaining data rates use 8 bits per lane.
-> 
-> Based on the number of lanes and the supported data rate, this function
-> reads the device tree property and stores in the presets structure.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/pci/of.c  | 43 +++++++++++++++++++++++++++++++++++++++++++
->  drivers/pci/pci.h | 27 ++++++++++++++++++++++++++-
->  2 files changed, 69 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index 7a806f5c0d20..9ebe7d0e4e0c 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -851,3 +851,46 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
->  	return slot_power_limit_mw;
->  }
->  EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
-> +
-> +/**
-> + * of_pci_get_equalization_presets - Parses the "eq-presets-Ngts" property.
-> + *
-> + * @dev: Device containing the properties.
-> + * @presets: Pointer to store the parsed data.
-> + * @num_lanes: Maximum number of lanes supported.
-> + *
-> + * If the property is present read and store the data in the preset structure
-> + * else assign default value 0xff to indicate property is not present.
 
-'If the property is present, read and store the data in the @presets structure.
-Else, assign a default value of PCI_EQ_RESV.'
 
-> + *
-> + * Return: 0 if the property is not available or successfully parsed; errno otherwise.
-> + */
-> +int of_pci_get_equalization_presets(struct device *dev,
-> +				    struct pci_eq_presets *presets,
-> +				    int num_lanes)
-> +{
-> +	char name[20];
-> +	int ret;
-> +
-> +	presets->eq_presets_8gts[0] = PCI_EQ_RESV;
-> +	ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
-> +					 presets->eq_presets_8gts, num_lanes);
-> +	if (ret && ret != -EINVAL) {
-> +		dev_err(dev, "Error reading eq-presets-8gts :%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	for (int i = 0; i < EQ_PRESET_TYPE_MAX; i++) {
-> +		presets->eq_presets_Ngts[i][0] = PCI_EQ_RESV;
-> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << (i + 1));
-> +		ret = of_property_read_u8_array(dev->of_node, name,
-> +						presets->eq_presets_Ngts[i],
-> +						num_lanes);
-> +		if (ret && ret != -EINVAL) {
-> +			dev_err(dev, "Error reading %s :%d\n", name, ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index 01e51db8d285..c8d44b21ef03 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -9,6 +9,8 @@ struct pcie_tlp_log;
->  /* Number of possible devfns: 0.0 to 1f.7 inclusive */
->  #define MAX_NR_DEVFNS 256
->  
-> +#define MAX_NR_LANES 16
-> +
->  #define PCI_FIND_CAP_TTL	48
->  
->  #define PCI_VSEC_ID_INTEL_TBT	0x1234	/* Thunderbolt */
-> @@ -808,6 +810,20 @@ static inline u64 pci_rebar_size_to_bytes(int size)
->  
->  struct device_node;
->  
-> +#define PCI_EQ_RESV	0xff
-> +
-> +enum equalization_preset_type {
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 05 March 2025 21:12
+> To: Swathi K S <swathi.ks=40samsung.com>; krzk+dt=40kernel.org;
+> andrew+netdev=40lunn.ch; davem=40davemloft.net; edumazet=40google.com;
+> kuba=40kernel.org; pabeni=40redhat.com; robh=40kernel.org;
+> conor+dt=40kernel.org; richardcochran=40gmail.com;
+> mcoquelin.stm32=40gmail.com; alexandre.torgue=40foss.st.com
+> Cc: rmk+kernel=40armlinux.org.uk; netdev=40vger.kernel.org;
+> devicetree=40vger.kernel.org; linux-stm32=40st-md-mailman.stormreply.com;
+> linux-arm-kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org;
+> pankaj.dubey=40samsung.com; ravi.patel=40samsung.com;
+> gost.dev=40samsung.com
+> Subject: Re: =5BPATCH v8 1/2=5D dt-bindings: net: Add FSD EQoS device tre=
+e
+> bindings
+>=20
+> On 05/03/2025 10:12, Swathi K S wrote:
+> > Add FSD Ethernet compatible in Synopsys dt-bindings document. Add FSD
+> > Ethernet YAML schema to enable the DT validation.
+> >
+> > Signed-off-by: Pankaj Dubey <pankaj.dubey=40samsung.com>
+> > Signed-off-by: Ravi Patel <ravi.patel=40samsung.com>
+> > Signed-off-by: Swathi K S <swathi.ks=40samsung.com>
+>=20
+> <form letter>
+> This is a friendly reminder during the review process.
+>=20
+> It looks like you received a tag and forgot to add it.
+>=20
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions of patchset, under or above your Signed-off-by tag, unless patch
+> changed significantly (e.g. new properties added to the DT bindings). Tag=
+ is
+> =22received=22, when provided in a message replied to you on the mailing =
+list.
+> Tools like b4 can help here. However, there's no need to repost patches
+> *only* to add the tags. The upstream maintainer will do that for tags
+> received on the version they apply.
+>=20
+> Please read:
+> https://protect2.fireeye.com/v1/url?k=3D19972162-781c345b-1996aa2d-
+> 000babffae10-7bd6b1a1d78b210b&q=3D1&e=3D94dcc3a6-5303-441a-8c1e-
+> de696b216f86&u=3Dhttps%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv6.12-
+> rc3%2Fsource%2FDocumentation%2Fprocess%2Fsubmitting-
+> patches.rst%23L577
+>=20
+> If a tag was not added on purpose, please state why and what changed.
 
-For the sake of completeness, you should add EQ_PRESET_TYPE_8GTS also. You could
-skip it while reading the of_property_read_u8_array().
+Hi Krzysztof,=20
+As per a review comment received from Russell, I had added 2 new properties=
+ to the DT - assigned-clocks and assigned-clock-parents properties.=20
+The example in the DT binding reflects the same.
+I felt it wouldn't be fair to add 'Reviewed-by' tag without you reviewing t=
+he updates again.
+But I should have mentioned that in cover letter and apologies for missing =
+to do that.
 
-> +	EQ_PRESET_TYPE_16GTS,
-> +	EQ_PRESET_TYPE_32GTS,
-> +	EQ_PRESET_TYPE_64GTS,
-> +	EQ_PRESET_TYPE_MAX
-> +};
-> +
-> +struct pci_eq_presets {
-> +	u16 eq_presets_8gts[MAX_NR_LANES];
-> +	u8 eq_presets_Ngts[EQ_PRESET_TYPE_MAX][MAX_NR_LANES];
-> +};
-> +
->  #ifdef CONFIG_OF
->  int of_get_pci_domain_nr(struct device_node *node);
->  int of_pci_get_max_link_speed(struct device_node *node);
-> @@ -822,7 +838,9 @@ void pci_release_bus_of_node(struct pci_bus *bus);
->  
->  int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge);
->  bool of_pci_supply_present(struct device_node *np);
-> -
-> +int of_pci_get_equalization_presets(struct device *dev,
-> +				    struct pci_eq_presets *presets,
-> +				    int num_lanes);
->  #else
->  static inline int
->  of_get_pci_domain_nr(struct device_node *node)
-> @@ -867,6 +885,13 @@ static inline bool of_pci_supply_present(struct device_node *np)
->  {
->  	return false;
->  }
-> +
-> +static inline int of_pci_get_equalization_presets(struct device *dev,
-> +						  struct pci_eq_presets *presets,
-> +						  int num_lanes)
-> +{
+- Swathi
 
-Don't you need to initialize presets to PCI_EQ_RESV?
+> </form letter>
+>=20
+> Best regards,
+> Krzysztof
 
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
