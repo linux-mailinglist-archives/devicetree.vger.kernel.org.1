@@ -1,69 +1,57 @@
-Return-Path: <devicetree+bounces-154715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83FDBA544FB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:34:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C69EA5450E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:38:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC5461636F9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:34:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 761001886423
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:38:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE4320766A;
-	Thu,  6 Mar 2025 08:34:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB84020766A;
+	Thu,  6 Mar 2025 08:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mF8P6ZyA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LeSbsgD7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F1C19C54C;
-	Thu,  6 Mar 2025 08:34:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8437A224FA;
+	Thu,  6 Mar 2025 08:38:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741250087; cv=none; b=agbD6cDchAX6IXpSnL3hHBAamGQvLZq034GWGTAnxNDgE0AMccaoosSD8AhcjlBh1MWmk6gDDCXHgpfYx4VbZZdZjkHX5qgQpWrEThxrNF4uPyaESUuYcD3Kpa3FrBRUM0PgUURtlpxVxbsuAvfn338OCDzqgKa3iYYMPQ7lFAI=
+	t=1741250316; cv=none; b=faNQUeJvFUk2Gicuum+DUW9u0EZj+ypc3POxWCJFX+HC1FB/a7MGQ1DxvtN2MsxC2/HFaAfbCoUPNW3/JSCPxmEt6rPH8rGtITfpeD12mxL7ACG2u0fLXuZBLAsPkNJ+x1/8kh3nU79wBik6EFDPJAnPOGa74IH5km2n5A1iHl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741250087; c=relaxed/simple;
-	bh=gBbw0fjQDznlJtTVw1BdqqMtyMCcthJvjl2WCmyzYyU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=enK1d1v64yVmfeRsCsU1lAtkbQlNTr4CAK7pM5DfarXoY/2ZW/zeB5wEbLoicmV4XlEzNodsNLp3BP8uT6VJC313dvd57Wq0lPG5O7U8df8hv1IOTLdZch/h0mNODFJpi1e+Fin/cZH52dNcp3dwQNw/t3RvHXQXa0hZN4og1O8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mF8P6ZyA; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 435F744267;
-	Thu,  6 Mar 2025 08:34:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1741250083;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4X+FnHVpWzWW4W0hGDVyaY0sBAjRDXZg/ShUEe46pbo=;
-	b=mF8P6ZyAPX08OLt4l16Kpo2v7XG2grorpNpUUF2ND52CndXRHfjFV0oy/0WjBehTD5VZE7
-	f+mraZVyAQQPAt4SFEev/YX24UWI4LhjvB3GTRNaQ4YNrbhNUIVGK3QsMawpwpYOW9obEh
-	RsMG6stsKk68DAv6eZY+InvMQF3LSz7/wKKtC+ZkE41HylBQNUuEYyUYSSnscCKfXdnNsV
-	DWqFrp872aRrtLF8IuGFzj8oqNxq61u+Kl1ye0+RDclKmW4kGejtdp8d/4RwrLRPeiOhiS
-	DLrtSBWgq6iM6miU7AmQNzvXBkHjT5nT88HacGvinpbJAQMAPOlu57ikZO4d+A==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: <Manikandan.M@microchip.com>
-Cc: <mwalle@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
-  <conor+dt@kernel.org>,  <Nicolas.Ferre@microchip.com>,
-  <alexandre.belloni@bootlin.com>,  <claudiu.beznea@tuxon.dev>,
-  <tudor.ambarus@linaro.org>,  <pratyush@kernel.org>,  <richard@nod.at>,
-  <vigneshr@ti.com>,  <devicetree@vger.kernel.org>,
-  <linux-arm-kernel@lists.infradead.org>,  <linux-kernel@vger.kernel.org>,
-  <linux-mtd@lists.infradead.org>,  <Varshini.Rajendran@microchip.com>
-Subject: Re: [PATCH 1/2] mtd: spi-nor: sst: register SFDP region into NVMEM
- framework to read MAC Address
-In-Reply-To: <6fee6e71-106f-474b-9a0c-5df5fb0caa00@microchip.com> (Manikandan
-	M.'s message of "Thu, 6 Mar 2025 07:09:44 +0000")
-References: <20250305100134.1171124-1-manikandan.m@microchip.com>
-	<D889CRJC6W19.2LDQCDVG7BLNG@kernel.org>
-	<6fee6e71-106f-474b-9a0c-5df5fb0caa00@microchip.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Thu, 06 Mar 2025 09:34:41 +0100
-Message-ID: <87eczawo9q.fsf@bootlin.com>
+	s=arc-20240116; t=1741250316; c=relaxed/simple;
+	bh=SVc8DKxbNt+l+FxYP2MLjnyozd9se439KWELWFr8Zyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ODqxZxGKfrHekSTGbP5DS3yel4q9R8cRIDlUE2re+ygKUxj5PVlSuBB/1ZtQ7ewMYhsyBmdqX+0OjlMloBVDamfPKvfGMMJuL/GcDVMOaur8wHC/ZM+GGs6IVUncAp5J7ISxSDsQR/I2OfT4Qka8PHpuZMkfB79d9nkR6ZFO3eg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LeSbsgD7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44DACC4CEE0;
+	Thu,  6 Mar 2025 08:38:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741250316;
+	bh=SVc8DKxbNt+l+FxYP2MLjnyozd9se439KWELWFr8Zyc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LeSbsgD7wyHuMUS84+iH9lebnsQen3fmbxfxfkSaZKqdq/4bxSTNedS3mAO4fpa3b
+	 ku0nLe+VmSIyCTXs3lGRgmphqyAco00SC6IkFsW5yWrfD6ERuRqV4N+KSSO7SMRsiZ
+	 xdS8Ag4oFSpVewaSfYYSon7bH2K0u0gVP9dacK8R0G/xgAwGc1uL6mEI3Bxd6xuPYq
+	 D1hco7zVUKbLp6PVgTynVuaseVPLcL35+SukkmNGslPV687nGp4F/d5y55myZrp7mR
+	 yhRH8C+O5SXX7oYU6YAOE4sbu9feFGJL1WNx77PoL3iz3I6ed0pw2CBXThzab/cf4W
+	 Jnd9Tf+eXCYRg==
+Date: Thu, 6 Mar 2025 09:38:32 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	heiko@sntech.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] docs: dt-bindings: Specify ordering for properties
+ within groups
+Message-ID: <20250306-dexterous-goshawk-of-aptitude-e4f1f6@krzk-bin>
+References: <47c51c10098f089e52fb14c5c5527611dc8daf32.1741164239.git.dsimic@manjaro.org>
+ <166a7b77-74e3-40b7-a536-ee56850d9318@kernel.org>
+ <f05919742c34f5d4489d2cd711c7736f@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,47 +59,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: 0
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddutdejvdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecunecujfgurhephffvvefujghffgffkfggtgfgsehtqhertddtreejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepffeghfejtdefieeguddukedujeektdeihfelleeuieeuveehkedvleduheeivdefnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudejpdhrtghpthhtohepofgrnhhikhgrnhgurghnrdfosehmihgtrhhotghhihhprdgtohhmpdhrtghpthhtohepmhifrghllhgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopefpihgtohhlrghsrdfhvghrrhgvsehmihgtrhhotghhihhprdgto
- hhmpdhrtghpthhtoheprghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopegtlhgruhguihhurdgsvgiinhgvrgesthhugihonhdruggvvh
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Disposition: inline
+In-Reply-To: <f05919742c34f5d4489d2cd711c7736f@manjaro.org>
 
+On Wed, Mar 05, 2025 at 10:53:48AM +0100, Dragan Simic wrote:
+> Hello Krzysztof,
+> 
+> On 2025-03-05 10:36, Krzysztof Kozlowski wrote:
+> > On 05/03/2025 09:45, Dragan Simic wrote:
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst
+> > > b/Documentation/devicetree/bindings/dts-coding-style.rst
+> > > index 8a68331075a0..15de3ede2d9c 100644
+> > > --- a/Documentation/devicetree/bindings/dts-coding-style.rst
+> > > +++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+> > > @@ -133,6 +133,12 @@ The above-described ordering follows this
+> > > approach:
+> > >  3. Status is the last information to annotate that device node is
+> > > or is not
+> > >     finished (board resources are needed).
+> > > 
+> > > +The above-described ordering specifies the preferred ordering of
+> > > property
+> > > +groups, while the individual properties inside each group shall use
+> > > natural
+> > > +sort order by the property name.  More specifically, natural sort
+> > > order shall
+> > > +apply to multi-digit numbers found inside the property names, while
+> > > alpha-
+> > > +numerical ordering shall apply otherwise.
+> > 
+> > The last sentence was not here and I don't get the point. Natural sort
+> > order should be always preferred over alpha-numerical for properties.
+> > About which other case ("...apply otherwise.") are you thinking?
+> 
+> Yes, I added that sentence in the v2 to, hopefully, clarify the natural
+> sort order itself a bit.  I've researched the natural sort order a bit
+> further, and it technically applies only to the multi-digit numbers found
+> inside the sorted strings.  That's what I wanted to explain, and "shall
 
->>> +static int sst26vf_nor_post_sfdp(struct spi_nor *nor)
->>> +{
->>> +     struct nvmem_device *nvmem;
->>> +
->>> +     sst26vf_sfdp_nvmem_config.dev =3D nor->dev;
->>> +     sst26vf_sfdp_nvmem_config.size =3D nor->sfdp->num_dwords * sizeof=
-(*nor->sfdp->dwords);
->>> +     sst26vf_sfdp_nvmem_config.priv =3D nor;
->>> +     sst26vf_sfdp_nvmem_config.reg_read =3D sst26vf_sfdp_mac_addr_read;
->>> +
->>> +     nvmem =3D devm_nvmem_register(nor->dev, &sst26vf_sfdp_nvmem_confi=
-g);
->>> +     if (IS_ERR(nvmem)) {
->>> +             dev_err(nor->dev, "failed to register NVMEM device: %ld\n=
-", PTR_ERR(nvmem));
->>> +             return PTR_ERR(nvmem);
->>=20
->> I don't think it makes sense to have this one-off in a particular
->> driver. If at all, this should be handled in the core. Sorry, but
->> this really looks like an ugly hack.
->>=20
->
-> Because the EUI identifier within the SFDP is unique to the=20
-> SST26VF064BEUI flash, I opted to handle it here rather than in the core.
->
-> Also here the MAC address data resides within the 0x260-0x26F range, I=20
-> will resize the nvmem_config.size to 0x10 instead of registering the=20
-> full SFDP region as NVMEM.
+Natural sort applies to everywhere. It's just the same as
+alpha-numerical sort for single digits.
 
-Open question to all parties in this thread: how do we give an offset in
-the device tree that is relative to the sfdp region and not the data
-region? I believe we care not to mix these areas while describing.
+> apply otherwise" refers to applying the alpha-numerical sort order to the
+> remainders of the sorted strings, i.e. to everything but the multi-digit
+> numbers found in the property names.
 
-Thanks,
-Miqu=C3=A8l
+Sorry, still don't get. What would be the difference if for remainders
+of properties you would also apply natural sort instead of
+alphanumerical sort?
+
+Best regards,
+Krzysztof
+
 
