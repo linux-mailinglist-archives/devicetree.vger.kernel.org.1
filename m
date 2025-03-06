@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-154886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E33A54C86
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:46:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AF9A54C99
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:51:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5DE3188F509
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:46:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5061188FD33
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3DA83BBD8;
-	Thu,  6 Mar 2025 13:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 928106A33F;
+	Thu,  6 Mar 2025 13:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rxUCETqa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CY5IBsiF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB00C22094;
-	Thu,  6 Mar 2025 13:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613AD33FD;
+	Thu,  6 Mar 2025 13:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741268755; cv=none; b=biNXGPB/8Blsc7XYtAHTeCI2K9Yh+wcnY674jpUCX6BZRfADxWI44qvVAgg86QylG9AV0EP/hxuU2hAPEm5DyOaLI1LfFuXXDXdLdUBsDU6oIVGEB/gFJXaA62Dy81ODSb5ZqjABTpTIyIecDuChn4RaBVj6x4/UwSIDC2scqqs=
+	t=1741269072; cv=none; b=lT4Su9z+snZZ4dnBNnuvQXB5+wF4na0T+ggF7AQW5xKZxhI1ibHiSkmmI4W7zXM8oldOGuXGiiB6vjsL9J7OHHLjeyBl3oguGBGq0Gw7m4nvpggV9kGJWYtvVYkoD1ZCxm2efST3uFS27ltXrxUB9Fai9QncctYSI2h73DmHmcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741268755; c=relaxed/simple;
-	bh=lUDIx8cRoGJFhjhDxOz8LvIHrj8yIQp4abSALcX5iKQ=;
+	s=arc-20240116; t=1741269072; c=relaxed/simple;
+	bh=MDHqWx3qK8RGM3fr6S9WaYEhaVQkVBdZ75ZCdRSLAdY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QtKJRy7vvPqf04tBSI19LeZEVIUCDInLvonWZSmaT9mpP73jlTT7QugnyvCUaTFwFEMUAZqemcaOJLgdvnnuNz+u0M5TrfhDfAcEuEsToYafaaLx79uEva/Jjhpi/bAGsyO+ur4uhg+q6qonmlabbfQITroWMPT3+5MaUKLOxzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rxUCETqa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 129A5C4CEE0;
-	Thu,  6 Mar 2025 13:45:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kzHdMR7+Rkp6gSMy3SqsDaCwn0G2JoAR2V/ZhwP05qGU0L25eExyf6viF7xJU/U6E/8CH/30ZF3ynsRvi/+MTb5LnRILycG21KtDNjctCyZ5bigU1jNuj/AAA8J3Zf8luWLIj1RCU0LoMyWYmdSCoSnBBhnuFhUHPCP15bH67Bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CY5IBsiF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C3D6C4CEE4;
+	Thu,  6 Mar 2025 13:51:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741268755;
-	bh=lUDIx8cRoGJFhjhDxOz8LvIHrj8yIQp4abSALcX5iKQ=;
+	s=k20201202; t=1741269071;
+	bh=MDHqWx3qK8RGM3fr6S9WaYEhaVQkVBdZ75ZCdRSLAdY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rxUCETqaapLYu0EO251fg/Sc6Lo2+5mJ8Y45kyIHRNN2etGI4/pe1nKecWhbO3rZN
-	 utwlv50Y/pTH+btfFqkNtKmKhRBmkkcGK9ERRe8VWmAbyqMz5kbZ3yYrHfwJpKsqtt
-	 bS55FGPdd9CNdG/q5uowwtKfsZVuWCy/Y0Gmpa2qQrCFzA3L01HI/mKwOe4Qfe6izx
-	 whrjeR0I0Jzdzjl7zAuqbhr8bpXcgHGMyN3z75B9p7N5ZjXQ1Xy+9mgyZ7ah0u/Azc
-	 QVEHC9NKhqAdwpykIuX1EbHgQtPK3nGavbPDxcwFHTR3cXqb3LF2MtPYS/wWVE0E7R
-	 /XQ9OIyhQiZ0Q==
-Message-ID: <10115c0f-4a7f-460a-a0bd-0c86d1e7d3b6@kernel.org>
-Date: Thu, 6 Mar 2025 14:45:49 +0100
+	b=CY5IBsiFS9eBDNIWJ7sQjbryFpiM2GgSdUyXXiqGdWXk8uyLplvdlIkMSTgkEJfEl
+	 oIbo4qRtoLfrO/QJIs7+mdUyKWhMU7elEfrNasigeMs09OkxxC4Tj1zSL4PDsh7d15
+	 3B4MfCcLZgca4I+d7qvBH7bLyT6mG9aN7unQL7SEM+uejp2HsetY636RFHmAd+HUqz
+	 E1KfN4g9Mk3Ufe40wVwhVmVMRmaWmssNWvf9uajzHFaVM5dG6TUyDn2FVyoTDhXoTS
+	 dvk7Xnb1rGlGn9g64KmHOd22Kg3m+FJOxBVuDNQLlCR27sEGy0lLWtWVn/038Io9cB
+	 TeN3yHfWu+D6g==
+Message-ID: <ab483a68-40a8-4b44-ad73-d8a34bd32c69@kernel.org>
+Date: Thu, 6 Mar 2025 14:51:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: enable SCMI clk for RK3528 SoC
-To: Chukun Pan <amadeus@jmu.edu.cn>, heiko@sntech.de
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, robh@kernel.org, ziyao@disroot.org
-References: <4856313.kQq0lBPeGt@diego>
- <20250306134002.380690-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
+Subject: Re: [PATCH 1/2] dt-bindings: memory-controllers:
+ samsung,exynos4210-srom: Enforce child props
+To: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Bjorn Andersson <andersson@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20250306085849.32852-1-krzysztof.kozlowski@linaro.org>
+ <CAL_JsqKODHZcrpqskA2aeK6EqGNx9aGNuPqGzhcZ_Nqiu+Ccww@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -102,24 +106,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250306134002.380690-1-amadeus@jmu.edu.cn>
+In-Reply-To: <CAL_JsqKODHZcrpqskA2aeK6EqGNx9aGNuPqGzhcZ_Nqiu+Ccww@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/03/2025 14:40, Chukun Pan wrote:
-> Hi,
-> 
->> That sram is part of the soc (and has an mmio-address), so I'd think
->> it should live inside the soc node?
-> 
-> But soc ranges starts from 0xfe000000, I don't know whether to change it.
-> And all other nodes are 0xf..., except this sram.
+On 06/03/2025 14:39, Rob Herring wrote:
+> Why do we need this? Any child node should have a schema which needs
+> to include mc-peripheral-props.yaml if any properties from it can be
+> used.
 
-Maybe they are wrong?
+From correctness point of view, you are right, we don't need it. However:
 
-> Any suggestions would be greatly appreciated.
-Where is the SRAM located? Inside the SoC or is it carved out external
-ROM/RAM?
+1. Convention was so far to have in every controller. I think this also
+is easier to understand whenever one reads the bindings - clear
+documentation what children on this bus should look like.
+
+2. To clearly document from where samsung,srom-timing comes in the
+required block:
+
+https://web.git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/Documentation/devicetree/bindings/memory-controllers/exynos-srom.yaml?h=dt/next#n50
+Otherwise for me it is a bit confusing to require a property which is
+nowhere here defined.
+
 
 Best regards,
 Krzysztof
