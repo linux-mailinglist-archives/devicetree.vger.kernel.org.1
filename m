@@ -1,151 +1,94 @@
-Return-Path: <devicetree+bounces-154674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2FD6A54385
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:20:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5BDA5438D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:24:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9EDB16FCC8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:20:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4D021672DA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:24:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F281A9B58;
-	Thu,  6 Mar 2025 07:20:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="WecRY+Fx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36A91A9B58;
+	Thu,  6 Mar 2025 07:24:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp134-100.sina.com.cn (smtp134-100.sina.com.cn [180.149.134.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D68018DB04;
-	Thu,  6 Mar 2025 07:20:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 037A218DB04
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 07:24:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741245601; cv=none; b=ZuZY43jLi0dkynYEeRBcvjGFM53jfg0eD9lRMtG0Ud1AbL4KzWBkCqhcTj4dBuoip9tmWyUVPpbY738XdyZ99/YZPCeeofdja05W5cczS5LabDqqySGTWFVUgHaSyEOmRGz1Zjs+sHGkrMK2PCnOm9+kUEUVg+HM1SpYdf59YHM=
+	t=1741245854; cv=none; b=AMwrVVR294lSeiUA6BowZVpm2Xga7FthjJ/Nigihsnysx18qNbbdHe/vMP4m2XKI4adtlZkhhZ1mQnnfwkkIurNCsFsfxR8XERse8gxF50WKkddOgXiRMRK8+DJlIB8MUAmaErPG28F0wosIdrxX/6iPI5VkE3Q7lplEtmjCfmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741245601; c=relaxed/simple;
-	bh=qLuqTZiAoEdE5ZqzkuOEquYAHoFjFE1U9aW4fu6/tYE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iEa2PKz+1XLXS2mMnFo6QR+E1An0Wb64GPddHudvga5Ky+Qv4ZZr0E27Bw5q+I/bgY8Zu3NZyvQ15AkOVDltMyTUKpvbB08CzYE3huTpnHNiFaJ/RFfkd7Bz4VqwNrp+Xt6lH4gvhyFhkTU9k8ETFkMOuwk0hyANwR1a7XIvogw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=WecRY+Fx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 503A9C4CEE0;
-	Thu,  6 Mar 2025 07:20:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1741245600;
-	bh=qLuqTZiAoEdE5ZqzkuOEquYAHoFjFE1U9aW4fu6/tYE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WecRY+FxXOJFSeHz07hdLmt4UZKnKWvJEscFSOnyndfNaDgAGzNxTPftEKZTK5Yz1
-	 vBy6K9J5miiQnrj2vHPqMW+Jh5qtFA8JuyKnlMmZYpu2XMEs7TefYNNL8UuMwKcbrs
-	 bQqnF/wwWMjzaxAaVtdgsvr0xBSAd5I/LcLozbtw=
-Date: Thu, 6 Mar 2025 08:18:46 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
-Cc: David Jander <david@protonic.nl>, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [RFC PATCH 1/7] drivers: Add motion control subsystem
-Message-ID: <2025030611-embezzle-sacrament-00d9@gregkh>
-References: <20250227162823.3585810-1-david@protonic.nl>
- <20250227162823.3585810-2-david@protonic.nl>
- <6c6cqaxmsy7miesel4ghdeiea6nrpe4gti4xf5enfyg4uqro5u@vpmtd2t7gydi>
- <20250305164046.4de5b6ef@erd003.prtnl>
- <mzxammninwmak5ti4c6is4pbdx3xzzziiwbxiwrldjyxgae4ok@ocec24vu4txa>
+	s=arc-20240116; t=1741245854; c=relaxed/simple;
+	bh=wn6xJhbl/Pse1EyyU15U5P4N59HzRgpmak3FGuqgezc=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=XdqneBejPsTVbw13cK5knwqREJUKvsN7hTD5nGKndfP+/SyJcwO8QiJI2Y6PFp9t8qeJ9DRxhcysdnFHluQWn+Ka2Ce0u6D8JlvNCPqCqfEBNu5hgnoPT20iV343Bfe9b6vBne4x988t+nEvq/SEeKyLu+oQEt8YypEmze8km0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
+Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
+	by sina.net (10.185.250.32) with ESMTP
+	id 67C94D8B0000292F; Thu, 6 Mar 2025 15:23:57 +0800 (CST)
+X-Sender: zhangyi@everest-semi.com
+X-Auth-ID: zhangyi@everest-semi.com
+Authentication-Results: sina.net;
+	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
+	 dkim=none header.i=none;
+	 dmarc=none action=none header.from=zhangyi@everest-semi.com
+X-SMAIL-MID: 855E3EFC9669480CB4C67813C17AA883
+X-SMAIL-UIID: 855E3EFC9669480CB4C67813C17AA883-20250306-152357
+From: Zhang Yi <zhangyi@everest-semi.com>
+To: alsa-devel@alsa-project.org,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org
+Cc: tiwai@suse.com,
+	amadeuszx.slawinski@linux.intel.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Subject: RE: [PATCH v4 1/2] ASoC: codecs: add support for ES8389
+Date: Thu,  6 Mar 2025 15:23:54 +0800
+Message-Id: <20250306072354.19987-1-zhangyi@everest-semi.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <mzxammninwmak5ti4c6is4pbdx3xzzziiwbxiwrldjyxgae4ok@ocec24vu4txa>
 
-On Thu, Mar 06, 2025 at 12:21:22AM +0100, Uwe Kleine-König wrote:
-> Hello David,
+> > > set_tdm_slot()
 > 
-> On Wed, Mar 05, 2025 at 04:40:45PM +0100, David Jander wrote:
-> > On Fri, 28 Feb 2025 17:44:27 +0100
-> > Uwe Kleine-König <u.kleine-koenig@baylibre.com> wrote:
-> > > On Thu, Feb 27, 2025 at 05:28:17PM +0100, David Jander wrote:
-> > > [...]
-> > > > +static int motion_open(struct inode *inode, struct file *file)
-> > > > +{
-> > > > +	int minor = iminor(inode);
-> > > > +	struct motion_device *mdev = NULL, *iter;
-> > > > +	int err;
-> > > > +
-> > > > +	mutex_lock(&motion_mtx);  
-> > > 
-> > > If you use guard(), error handling gets a bit easier.
-> > 
-> > This looks interesting. I didn't know about guard(). Thanks. I see the
-> > benefits, but in some cases it also makes the locked region less clearly
-> > visible. While I agree that guard() in this particular place is nice,
-> > I'm hesitant to try and replace all mutex_lock()/_unlock() calls with guard().
-> > Let me know if my assessment of the intended use of guard() is incorrect.
+> > We will register multiple codecs inside a single dai_link and differentiate these
+> > codecs by of_node. And the adc_slot and the dac_slot may be different, they can 
+> > be decided by the user.If we use set_tdm_slot,the adc_slot and the dac_slot will
+> > be same.
 > 
-> I agree that guard() makes it harder for non-trivial functions to spot
-> the critical section. In my eyes this is outweight by not having to
-> unlock in all exit paths, but that might be subjective. Annother
-> downside of guard is that sparse doesn't understand it and reports
-> unbalanced locking.
->  
-> > > > +	list_for_each_entry(iter, &motion_list, list) {
-> > > > +		if (iter->minor != minor)
-> > > > +			continue;
-> > > > +		mdev = iter;
-> > > > +		break;
-> > > > +	}  
-> > > 
-> > > This should be easier. If you use a cdev you can just do
-> > > container_of(inode->i_cdev, ...);
-> > 
-> > Hmm... I don't yet really understand what you mean. I will have to study the
-> > involved code a bit more.
-> 
-> The code that I'm convinced is correct is
-> https://lore.kernel.org/linux-pwm/00c9f1181dc351e1e6041ba6e41e4c30b12b6a27.1725635013.git.u.kleine-koenig@baylibre.com/
-> 
-> This isn't in mainline because there is some feedback I still have to
-> address, but I think it might serve as an example anyhow.
-> 
-> > > > [...]
-> > > > +
-> > > > +static const struct class motion_class = {
-> > > > +	.name		= "motion",
-> > > > +	.devnode	= motion_devnode,  
-> > > 
-> > > IIRC it's recommended to not create new classes, but a bus.
-> > 
-> > Interesting. I did some searching, and all I could find was that the chapter
-> > in driver-api/driver-model about classes magically vanished between versions
-> > 5.12 and 5.13. Does anyone know where I can find some information about this?
-> > Sorry if I'm being blind...
-> 
-> Half knowledge on my end at best. I would hope that Greg knows some
-> details (which might even be "no, classes are fine"). I added him to Cc:
+> No, the machine driver should be configuring different TDM slots for
+> each device - that's the whole point of the API.
 
-A class is there for when you have a common api that devices of
-different types can talk to userspace (i.e. the UAPI is common, not the
-hardware type).  Things like input devices, tty, disks, etc.  A bus is
-there to be able to write different drivers to bind to for that hardware
-bus type (pci, usb, i2c, platform, etc.)
+We are using multiple codecs as a single device.So we can't use set_tdm_slot to configure
+different slots for multiple codecs under one device.
 
-So you need both, a bus to talk to the hardware, and a class to talk to
-userspace in a common way (ignore the fact that we can also talk to
-hardware directly from userspace like raw USB or i2c or PCI config
-space, that's all bus-specific stuff).
+> > > > +		ret = clk_prepare_enable(es8389->mclk);
+> > > > +		if (ret) {
+> > > > +			dev_err(codec->dev, "%s, unable to enable mclk\n", __func__);
+> > > > +			return ret;
+> > > > +		}
+> > > > +	}
+> 
+> > > Making the use of a MCLK depend on the configuration of a TDM slot for
+> > > the ADC seems *very* unusual, what's going on there?
+> 
+> > Because we are associating multiple codecs under a single dai_link, we will be
+> > executing probe and init many times during initialization.But MCLK only needs
+> > to be used once.So we decided making the use of a MCLK depend on the configuration
+> > of a TDM slot for the ADC 
+> 
+> No, each device should just get and enable the MCLK itself - the clock
+> API does reference counting so there's no problem with this, it's normal
+> for a clok to have multiple consumers.
 
-Did that help?
-
-thanks,
-
-greg k-h
+ok,I'll fix it
 
