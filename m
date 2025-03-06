@@ -1,73 +1,90 @@
-Return-Path: <devicetree+bounces-154914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D408A54E5B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:55:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5E1A54E71
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 16:00:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E47E41656A5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:55:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E60A188DB02
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA42016DEB3;
-	Thu,  6 Mar 2025 14:54:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E44146A63;
+	Thu,  6 Mar 2025 15:00:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 744FC1865E2;
-	Thu,  6 Mar 2025 14:54:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D362114;
+	Thu,  6 Mar 2025 15:00:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741272898; cv=none; b=eqTFhvWO9I7mLj5UCuaJynlq8xPWkTVvGEaIgUaQbyirqOYbai/MjnZMe43sDV6kN3n/Wtw7F2S00ZUJ+ySsY7rCIzomxOKa6NpxNTZiQfggom5U5R/N+Nsv6IK13SbXk/J4+5r0PWT2PZp7ZmOVrVF1ZxvB4sdni/6nhYUaXQQ=
+	t=1741273232; cv=none; b=XTR/8I0ntKBzRnIj1an2N4ffm+a6gh/wWEd7OhHiXTu3DanI7bveBpDBGu+olJaLYsgBb7hzkhEsEXB3sq8EByE9RdcYbLm7rVGnHDcxdSNslBl4/oRq5SgxuGNUz8p3N+ft8V1mJwCe+IRj6U+Af4FNNRHRHJHGChfgizIi0Tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741272898; c=relaxed/simple;
-	bh=G/7ufUZAgQpnpck1JlJdbyEAj4moMXPcIbdHDJkvMRE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JpmREIdDEPotyag2l1ZsFwu96YVzZu8JONiwOW4Cla4Akw6E0ZqqYGpku4lgPsCoRvLPx1gypyINrCyCn5cPypGGokVnUyWUOgllKT2INB8ZNJQ1Ymlk7IG2LbDY4DjL4BwIa2B76GhZTtW8aLRBAx6Od0GMM+96Thaxw+vo4Hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9B15B1007;
-	Thu,  6 Mar 2025 06:55:08 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C57E93F66E;
-	Thu,  6 Mar 2025 06:54:53 -0800 (PST)
-Date: Thu, 6 Mar 2025 14:54:50 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Heiko Stuebner <heiko@sntech.de>, Yao Zi <ziyao@disroot.org>,
-	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741273232; c=relaxed/simple;
+	bh=hezXwQmAD2ohMOpvDM101WmNrZfgGxw1Xk9qpZyn9RE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CMrYvMBZFAq65mDc7ReQOqcXHdQvPCkMhp86ndVBivUHRB5rvgOVS2/aU4BnfxasCZlqXqmSZt/6ZkHvF1L/FwumvNTLx/Z+6h15onjy6WHUMet0n7JuvPQNm1wpCuSZhF4v1KBdEN0mG++2PKJWGMsvLNaIbYYt5P6Ch/qygO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.215.89])
+	by smtp.qiye.163.com (Hmail) with ESMTP id d2dcd17b;
+	Thu, 6 Mar 2025 23:00:26 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Yao Zi <ziyao@disroot.org>,
+	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-rockchip@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: enable SCMI clk for RK3528 SoC
-Message-ID: <Z8m3OkHAedbQyKbu@bogus>
-References: <20250306131016.281290-1-amadeus@jmu.edu.cn>
- <20250306131016.281290-2-amadeus@jmu.edu.cn>
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH v2 0/1]  arm64: dts: rockchip: enable SCMI clk for RK3528 SoC
+Date: Thu,  6 Mar 2025 23:00:16 +0800
+Message-Id: <20250306150017.488975-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250306131016.281290-2-amadeus@jmu.edu.cn>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGkgZVhgeGklOGkseT0MaT1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVDQllXWRYaDxIVHRRZQVlPS0hVSktISk5MTlVKS0tVSk
+	JLS1kG
+X-HM-Tid: 0a956bf8dde403a2kunmd2dcd17b
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MBw6Tww4CjJCSTNWDSs#Eg9K
+	ITYKCR9VSlVKTE9KSUxISUlMSE1DVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpOVUNCWVdZCAFZQUxDSDcG
 
-On Thu, Mar 06, 2025 at 09:10:16PM +0800, Chukun Pan wrote:
-> Same as RK3568, RK3528 uses SCMI clk instead of ARMCLK.
-> Add SCMI clk for CPU, GPU and RNG will also use it.
-> 
+Same as RK3568, RK3528 uses SCMI clk instead of standard ARMCLK.
+Add SCMI clk for CPU, GPU and RNG will also use it.
 
-It is highly recommended not to use clock protocol for CPUs and GPUs
-especially if the plan is to drive regulators separately. Please use
-the performance protocol instead which can abstract the clock and the
-regulator details for the OS.
+dmesg:
+[    0.061333] scmi_core: SCMI protocol bus registered
+[    0.125780] scmi_protocol scmi_dev.1: Enabled polling mode TX channel - prot_id:16
+[    0.126628] arm-scmi firmware:scmi: SCMI Notifications - Core Enabled.
+[    0.127233] arm-scmi firmware:scmi: SCMI Protocol v2.0 'rockchip:' Firmware version 0x0
+
+CPU frequency: ~# mhz
+count=611657 us50=19994 us250=99945 diff=79951 cpu_MHz=1530.080
+
+Changes in v2:
+  Change sram to reserved-memory
+
+Chukun Pan (1):
+  arm64: dts: rockchip: enable SCMI clk for RK3528 SoC
+
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi | 33 ++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
 -- 
-Regards,
-Sudeep
+2.25.1
+
 
