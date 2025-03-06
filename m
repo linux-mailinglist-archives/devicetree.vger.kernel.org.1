@@ -1,98 +1,129 @@
-Return-Path: <devicetree+bounces-154892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A2EBA54CB6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:57:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D30A0A54CC7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:00:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EBE91898230
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:57:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07A243A1D76
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB6C13C682;
-	Thu,  6 Mar 2025 13:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="ZYLN+D7X"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9286C33981;
+	Thu,  6 Mar 2025 14:00:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3183874059;
-	Thu,  6 Mar 2025 13:57:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1726D28F1;
+	Thu,  6 Mar 2025 14:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741269425; cv=none; b=uDg2dg31FIoqNurQ8E1WQ7zTFGRM1cpow6F0TsX4d6mlX8q3kfPpnor40QHK4d7SZMKTxNAIp1MYa3wt5ye9rrKMGsUdvWpFyVQqlpa7BurHecUmLTGmuhxRBalKpAwVdPHr4MDs8JvYI/1ULAuFP0SW4v5xMZFVJ63ryppGojE=
+	t=1741269625; cv=none; b=rstG7GrnyRpmo9UxYRtXcMnXkvBlBJU8DLt79U2nkcMpMpYH9jyv8cNSDJWUWfqSx2q+jGbzak4URbCxB8lD7vZk6ULMyNukd66eUnEQtUqRUedleJsZlSCUkbpnX8jBJIIoCBWRv4x+PJ1gJaw4n/GnpTr8GDwGQMmpiBnzZvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741269425; c=relaxed/simple;
-	bh=oV9F+a884N+xaC28QLacb3BrnPMfcnJSbpQ7M1sZLFk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Dd1ct6kUmRcGLTZnhv1kqCCy9cRNOVMcaicsHDvwzNlDA1XUTjz1w0+udQHQ74wnZHW/0rlNzNfB6NuxqWEOoOf4GyAMygH8GRxkC44lZoBz0mQ5Saar2YUTdU4xqeSIRddaGowJvS/n+gztC4DIXOTaYF59/Jpv+72mT3Ha/P8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=ZYLN+D7X; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=oV9F+a884N+xaC28QLacb3BrnPMfcnJSbpQ7M1sZLFk=; b=ZYLN+D7X+5Wzty1yFojtJK6qrx
-	Bpy2s2k1EvqZmxUugYeeiz1+KeKSjdq2spIR7VzN0kvnc7o4m4F6lhdYk020KR6N8nuzVw9t10a/l
-	iA3wB57zrogFJi/aoAUvJRF/i6SajC68s2V9lVYZtb02vZfeRtg2A7xsaVmgK/SJjIclkjlOU1J1o
-	wKnQBo5gSC6RGpi01zGa6E7xc0jMUBPNFpnxVjCefeE3cnXbE88PtYaM4VsGCwp8to08QUqVEx0ls
-	/0m68679LrajjGB9XYKtxYqCA/d6Rkin9n2ZI0JHaJDtiKqzgg3eMLnbBZwAXQxy+bGQISnwfWmcv
-	gxe+Nzpw==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tqBif-0003YT-8p; Thu, 06 Mar 2025 14:57:01 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, robh@kernel.org, ziyao@disroot.org
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: enable SCMI clk for RK3528 SoC
-Date: Thu, 06 Mar 2025 14:57:00 +0100
-Message-ID: <3008437.usQuhbGJ8B@diego>
-In-Reply-To: <b57e0930-c9a3-4c44-a740-a5623d6904ba@kernel.org>
-References:
- <4856313.kQq0lBPeGt@diego> <7020561.MhkbZ0Pkbq@diego>
- <b57e0930-c9a3-4c44-a740-a5623d6904ba@kernel.org>
+	s=arc-20240116; t=1741269625; c=relaxed/simple;
+	bh=MX91utLsuHl/Mi5AdWERdY/2ktfYjHMbQfX9saG1XSU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=H6Fw3GTWZ/iQnBAR3BHIvWdbhTAaKRW45aXsjuu8iFP1d0MhlWs8/24KnPf+6eK1hV1CqyvAXgMJt5k1weRaCIU09o8PVEnr0FFTllQSWTxRBM7re+w75BHAM+a+ytfLU3sBXARL9DCscOnwe0CU9f4ezderpEKGaEshf0FntJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.215.89])
+	by smtp.qiye.163.com (Hmail) with ESMTP id d2ca3002;
+	Thu, 6 Mar 2025 22:00:14 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: ziyao@disroot.org
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	cristian.ciocaltea@collabora.com,
+	detlev.casanova@collabora.com,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 7/8] arm64: dts: rockchip: Add SDMMC/SDIO controllers for RK3528
+Date: Thu,  6 Mar 2025 22:00:09 +0800
+Message-Id: <20250306140009.384469-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250305194612.47171-1-ziyao@disroot.org>
+References: <20250305194612.47171-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGEhMVktMQhodSkhOQx1OQ1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVDQllXWRYaDxIVHRRZQVlPS0hVSktISk5MTlVKS0tVSk
+	JLS1kG
+X-HM-Tid: 0a956bc1c0ea03a2kunmd2ca3002
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ODo6Cyo4STIDNjM9N0JRDTwZ
+	LB8wChpVSlVKTE9KSU1CTUpOTEJOVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpOVUNCWVdZCAFZQUpNTEw3Bg++
 
-Am Donnerstag, 6. M=C3=A4rz 2025, 14:54:04 MEZ schrieb Krzysztof Kozlowski:
-> On 06/03/2025 14:51, Heiko St=C3=BCbner wrote:
-> > Am Donnerstag, 6. M=C3=A4rz 2025, 14:40:02 MEZ schrieb Chukun Pan:
-> >> Hi,
-> >>
-> >>> That sram is part of the soc (and has an mmio-address), so I'd think
-> >>> it should live inside the soc node?
-> >>
-> >> But soc ranges starts from 0xfe000000, I don't know whether to change =
-it.
-> >> And all other nodes are 0xf..., except this sram.
-> >> Any suggestions would be greatly appreciated.
-> >=20
-> > darn ... I didn't realize that this is not sram, but main memory :-)
->=20
->=20
-> Heh, I think carving out reserved blocks from the main RAM and calling
-> it a SRAM is a stretch.
+Hi,
 
-yep, hence going with the reserved memory instead
-and not trying to call it sram :-)
+> +		sdio0: mmc@ffc10000 {
+> +			compatible = "rockchip,rk3528-dw-mshc",
+> +				     "rockchip,rk3288-dw-mshc";
+> +			reg = <0x0 0xffc10000 0x0 0x4000>;
+> +			clocks = <&cru HCLK_SDIO0>,
+> +				 <&cru CCLK_SRC_SDIO0>,
+> +				 <&cru SCLK_SDIO0_DRV>,
+> +				 <&cru SCLK_SDIO0_SAMPLE>;
+> +			clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+> +			fifo-depth = <0x100>;
+> +			interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
+> +			max-frequency = <150000000>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&sdio0_bus4>, <&sdio0_clk>, <&sdio0_cmd>,
+> +				    <&sdio0_det>, <&sdio0_pwren>;
 
-And I just saw rk3576 has the same issue, only that there
-the mmio area is sitting before the main memory address space
+The sdio module is usually "non-removable", no need det,
+and pwren may be other gpio (use mmc-pwrseq). So it should
+be `pinctrl-0 = <&sdio0_bus4>, <&sdio0_clk>, <&sdio0_cmd>;`
 
+> +			resets = <&cru SRST_H_SDIO0>;
+> +			reset-names = "reset";
+> +			status = "disabled";
+> +		};
+> +
+> +		sdio1: mmc@ffc20000 {
+> +			compatible = "rockchip,rk3528-dw-mshc",
+> +				     "rockchip,rk3288-dw-mshc";
+> +			reg = <0x0 0xffc20000 0x0 0x4000>;
+> +			clocks = <&cru HCLK_SDIO1>,
+> +				 <&cru CCLK_SRC_SDIO1>,
+> +				 <&cru SCLK_SDIO1_DRV>,
+> +				 <&cru SCLK_SDIO1_SAMPLE>;
+> +			clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+> +			fifo-depth = <0x100>;
+> +			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+> +			max-frequency = <150000000>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&sdio1_bus4>, <&sdio1_clk>, <&sdio1_cmd>,
+> +				    <&sdio1_det>, <&sdio1_pwren>;
+
+Same here.
+
+> +			resets = <&cru SRST_H_SDIO1>;
+> +			reset-names = "reset";
+> +			status = "disabled";
+> +		};
+
+Thanks,
+Chukun
+
+-- 
+2.25.1
 
 
