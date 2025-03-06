@@ -1,143 +1,119 @@
-Return-Path: <devicetree+bounces-155067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81875A55732
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 20:56:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDDFEA55744
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 21:07:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B22111888909
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:56:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39D7718972FB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 20:07:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4FBA270EC3;
-	Thu,  6 Mar 2025 19:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2D226FDBF;
+	Thu,  6 Mar 2025 20:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="ouj9JeLT";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="NxX0pN5H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ba5JXzJh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a7-smtp.messagingengine.com (fhigh-a7-smtp.messagingengine.com [103.168.172.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E37711FC0F9;
-	Thu,  6 Mar 2025 19:56:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F80242A8C;
+	Thu,  6 Mar 2025 20:06:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741291001; cv=none; b=KMGYbfR4R/LVHgKWQbtf0feDF+B8D7cxzE+3W9uzRhsBZlLfKt+vr632rp7hIfi5RSWcbQLcADf06FBZAEODmLEdtelCRxAOwCoBIn8Ca4B8QV61rRm46ItC2vQIgzpfnP7J/2Cdv3Ky8KmSQNuPMlq2sBRpmqZe3b8YmkBDsXo=
+	t=1741291620; cv=none; b=V9dyEfZ08KkPpK2y0Ozwj9ph5mUDC1OPBTl6wrc9JHTNv0x7sU5xszFLACOQxyE6g6W2TMo2j2c3FvUvZbC9/Zg2nKq29cQPxVQXOKGAVZ9Ub4G3UDDNGsrAKtwvdnwAJm5cI3PzCTqroKl0r9PkuDpcfAVxeStVfWoLP16+gW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741291001; c=relaxed/simple;
-	bh=kP/2X4/iyO9gLoyY2JfFsbQHz4Mgh65Z3H3cmmaf8Bw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=lzYkZZ1/swCT0xug19gI/uA/J/fXb4zDl0x18p1Z6AX6s7YAwXL2LqyUYzSrXeQZ8dIQjqT4exTDI5/KdXRKx/ertJMa/Y5ZXgiwitdsdq7FK7CgcHVhE1WT0PBauDBtT3G+eDtHhsYrrYl5QnseKn1Wwk7zU+RY9kluRb+qm9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=ouj9JeLT; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=NxX0pN5H; arc=none smtp.client-ip=103.168.172.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
-Received: from phl-compute-08.internal (phl-compute-08.phl.internal [10.202.2.48])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id E3F2E114018C;
-	Thu,  6 Mar 2025 14:56:38 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-08.internal (MEProxy); Thu, 06 Mar 2025 14:56:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1741290998; x=1741377398; bh=vtNbkKW92oiyf/MEWed49iOf2vBzLZ2d
-	wi5nMQkMZIc=; b=ouj9JeLTgrXCx8BuncX57zY1qS606ouLDBYXMspDJxMXAsBu
-	DTd4CaabpmKucH4R1TrWq7V9s2nb4u2yIMNAkVEvE0BNBv0HRt91tkmkl98nwr+G
-	aEG13IPuK0QnOWCv4qdsc3ijIetAip87ac9VdPoSyKjpThkc6D1SswQ7+HLTqNzH
-	fDnokTMxpin6dtQZvIl5NFJeQ9kdJcK+PvhT+qv0fyMcNQZNuRSNFG4/1wqhvEll
-	Rou9mdzh2eo/txOI9sw4SNPwqNUHbwi5HbTnl8SbQjVeZGU6nHc/KVqtntmUoRgF
-	3TUkM4TxNa8Ivg4ud6imy6BCPTwefyFD5Nlu+g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1741290998; x=
-	1741377398; bh=vtNbkKW92oiyf/MEWed49iOf2vBzLZ2dwi5nMQkMZIc=; b=N
-	xX0pN5HeT34HZqxVu98+U7wiz6BYZ90rGbPc80C4MHpde5rPS43wGMX6OSHbjlcT
-	miGKGxE7J2Cd51IfqMK2CrLYtrM5KcKSqj8RNbUJjUtG8CaJeETx9f6fL5JCFDTR
-	MpjTQ0NB0m6EG7uyoFIZnLxK7bVZCCtuy1xxl4CjDzcKMbpMv159gUp1V8llAm9L
-	MOZzlbDTO0dympwy617AOzYQLHqjJE/LdfG+I+odMG6KR5l8KELKotktrsOv3oL1
-	US4fmSY2bIgvswal9++vjq/HZQnSdmrVFr17KMgXp0ekwo2uLyvD6fjicwZvaFQS
-	1SLlZIzZu0OurTWmJeOhA==
-X-ME-Sender: <xms:9v3JZ7lvEmwPT69snFH8eVv6Y42cnFRNAxH62XeI8RhyBgkXw4DjoA>
-    <xme:9v3JZ-3ju0g6eTH2TOwJsO3v17HEOipiVN8BXvhaS8tGRYGUrkKUt87pPm-f1Pkvq
-    jSsJgIDtOq9xrhxJRM>
-X-ME-Received: <xmr:9v3JZxpSo2LAYSTDuCr3JYdLG4prV5_rPIGsYXUOUuJfwCkbQzVv29RVIaTWJS2C3LDWniEda3hg8WA3cJJzyMidwBh7g9j2I4A4_sP5HC7MoMNNqWk0R0zx2fjz6zQETA5dnl3bCWd0xbH2cgnC46ydLeW9t9jV_QTMVOWW5fR4_OVJ8Qt7dxHqPq99Yoycpa0W>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddutdekieegucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhephffvvegjfhfukfffgggtgffosehtjeertder
-    tdejnecuhfhrohhmpefuvhgvnhcurfgvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrh
-    druggvvheqnecuggftrfgrthhtvghrnhepfeefjeeiueejteffjeetueekjedtgfehiedt
-    uefgtdeuvdfgfefhledufeevgffgnecuffhomhgrihhnpehgihhthhhusgdrtghomhenuc
-    evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsvhgvnhes
-    shhvvghnphgvthgvrhdruggvvhdpnhgspghrtghpthhtohepuddtpdhmohguvgepshhmth
-    hpohhuthdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdr
-    ohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlh
-    drohhrghdprhgtphhtthhopehtohifihhntghhvghnmhhisehgmhgrihhlrdgtohhmpdhr
-    tghpthhtohepjhesjhgrnhhnrghurdhnvghtpdhrtghpthhtohepkhhriihkodgutheskh
-    gvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehl
-    ihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheprghlhihsshgrsehroh
-    hsvghniiifvghighdrihhopdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdp
-    rhgtphhtthhopegrshgrhhhisehlihhsthhsrdhlihhnuhigrdguvghv
-X-ME-Proxy: <xmx:9v3JZzm9KDznGdcZs_dVEDUiTzahiftdf77uyXeSGDPY694uzATSiA>
-    <xmx:9v3JZ52LKVIos3GMrngwOoYyiEe77xOfpbtd12UjzPoy1qOkqay0vg>
-    <xmx:9v3JZyscwqqR5mEQZdaIw3O15X4JmrOyqfGKgtudAPOd3xkwcjMRsA>
-    <xmx:9v3JZ9UxNs7g636yz5cb4TwjvoH995PVjcj-iPpW_YhyXlB6r-EDVQ>
-    <xmx:9v3JZys_LuNuW9qp-z_RihXTje-4G52tbfTkXAq3RrKBRAwdWzSDRrH1>
-Feedback-ID: i51094778:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 6 Mar 2025 14:56:36 -0500 (EST)
-From: Sven Peter <sven@svenpeter.dev>
-To: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Nick Chan <towinchenmi@gmail.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250228-dwi-dt-v2-0-69e450bc4bfb@gmail.com>
-References: <20250228-dwi-dt-v2-0-69e450bc4bfb@gmail.com>
-Subject: Re: [PATCH RESEND v2 0/5] arm64: dts: apple: Add DWI backlight dt
- nodes
-Message-Id: <174129099660.23709.379545131530961336.b4-ty@svenpeter.dev>
-Date: Thu, 06 Mar 2025 20:56:36 +0100
+	s=arc-20240116; t=1741291620; c=relaxed/simple;
+	bh=sdkT02jNcS0kZespb84Kp2RIi1ofiLBxjATolU61Mq8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oNIFw3F2WvSMjlxJEp7BmIBi55Ijhve+1NXX3AsbZlj/9RArOglbBl9BBtRKrOgc7EIQWGkzou4uEMc5GjZ7P2NboFwNsawRy+7X4cRJ3uqVjZyzcTeqf9O/PdPa2wNsAGtTwMI7dbgs2OTsZ7mkPW4SW4tXtCVbZIRgJeWZfCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ba5JXzJh; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5495888f12eso1361582e87.0;
+        Thu, 06 Mar 2025 12:06:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741291615; x=1741896415; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JRaihiIVCnkowWXGgsHIbBoXLF7FM0TLnnmIMsCpwNQ=;
+        b=Ba5JXzJh16ltvMfKl23nggz8ccGzaZYPZczQsIzKqXpQDSBdGSEZYZIP02MQDrAg04
+         d6V5XCzvI35kQD4A/GoG4hn4WsDmgAsuFvYSfVh13eAJPSF9bRbvwWGeZoGnPHR4EaZ6
+         m6pNVbGx0vl5gvJd6rnzaXA5eoxZwPvJocQgfBEPacqqAid4Z7Y4aUvJ1TBW/FkTRSgQ
+         /HYUDGXRSEVozyJZWq/DKN8ZJMSDojzaeZ7BvEAg56CZ0NnP0zGEsrIvLJ2fTPGGPmpc
+         jYuP2dGGy/yfAv8kAzeg9rKCx0ytrXt0N6wAwVAwS6LGMNFf7JqboDPGcGdNrj5Xt+BM
+         IRrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741291615; x=1741896415;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JRaihiIVCnkowWXGgsHIbBoXLF7FM0TLnnmIMsCpwNQ=;
+        b=E4YN02CU0Z45SS/cQHFkh8yQZHiocVC+LQ6bB8A8UipJptkfdX4PWKY0GD5t6nGkZx
+         SYFW/6hCXObIB7ptfeOl47cGtpNudWdjNIovRXLCKMw6kQSii8b7bpm0GNBZrdnvVz6w
+         89PZVg0gvqoEPmXBrSFTVa2W9rntDqNlMxCdcIefk1ozUBPP56PV8uFFG3pGO3SJg3as
+         x9vneYhyxRVFp7Whpy/IPY8goe42g/uFu/XZ4fgAlnD4RpjRf+xRM66MIZiekRgWnxx5
+         fBA6Fqo9YkD44c+Vy3LrrUx4EVQZGthyYOID8GJ9K+guYvvzUCZxQIhy2t+9zYGf0HjD
+         um1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUWb/8HSSG2WhpaempML/Q5l5BZNjbuJY3VrtRbj4drD1ODn/2ucf8j2LNPg848rld9gPxUpdYXnLKn@vger.kernel.org, AJvYcCW3da5wy5ikSecmMkms0y5SYb+DNjEsKPMMJeG7/hpwk0BQY0aHT4bEHTKaDHxpiE22gnD1C4OZ+CCN@vger.kernel.org, AJvYcCWMq1/59oBlloh7Hv8l3gVzblLVkdM188fMWPsjx/rLZaHe08GnJEJNJci6lZXGN+i1vapXg0dx7um7RQiJ@vger.kernel.org, AJvYcCWuNz8OBYWrIBTJjFU2SWwQb6dntbr1vHHE7lFUSpAsW17nm447uAoOputfAJ5flmsH9Nc0fQuh99EzW5o=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0k2T5PRsv+gLTbazvBmwetdgSqvcEuAzkq+Fjwpuup54QVWLH
+	3MjGyRHWsB4iH9E6x09058luO+TF/VqacBiS3XD1BKCmRTQH1rxh
+X-Gm-Gg: ASbGncvHEq+3XNYZKGGZzbqZXYLs50N7dqRnCiAuefNwrWStAhN7A2khj4znnkCjnIQ
+	3Qj+Bae14O3B+jJFsKRYsMQflGRzBqCBN7PG398d7onQNGqbQGPH3hZ6Meec5XgCaWhIcCouyeB
+	12kabaEnAdixy2ApDo3S1Eqs8lMGjzTeMbURLJ/16kyJdESv2Mpt3mMzF+/82VxsKE+lWWAtuhR
+	4shbw9x3tkoZfbL1XiztKztwrnXvEbQyJkb/lZEULUNzdRVARSlMZYScfBhvd6BoiN9YoYMP/wh
+	oNvKugafCj+ebwNv9HOchG9kMq8snUd61QwphF4GQ44CaYuY+sU18x5Mp7Zpz5i6WlP/ttBl6Uj
+	sbsNWlXfR8w==
+X-Google-Smtp-Source: AGHT+IHny4LHnfSKwvHyf2ZJEoh1X3YqmWiY9P/tjCCfHQlD7eb6btN+FHrNOfcIFgN4DNeoJcLJVQ==
+X-Received: by 2002:a05:6512:3b8f:b0:548:5095:e3a3 with SMTP id 2adb3069b0e04-54990ec5d18mr142683e87.46.1741291615185;
+        Thu, 06 Mar 2025 12:06:55 -0800 (PST)
+Received: from [192.168.2.145] (109-252-148-237.dynamic.spd-mgts.ru. [109.252.148.237])
+        by smtp.googlemail.com with ESMTPSA id 38308e7fff4ca-30be98f2690sm3013111fa.41.2025.03.06.12.06.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Mar 2025 12:06:54 -0800 (PST)
+Message-ID: <a2170519-ec9d-4453-a2ee-0cd46d94d52b@gmail.com>
+Date: Thu, 6 Mar 2025 23:06:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 7/9] memory: tegra: Add Tegra114 EMC driver
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Georgi Djakov <djakov@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250225143501.68966-1-clamor95@gmail.com>
+ <20250225143501.68966-8-clamor95@gmail.com>
+ <04be5106-0d93-449c-b8a9-d8b3dc15ef24@gmail.com>
+ <CAPVz0n1ZTDZnZHu6R_YVfhDqkjcMV0xH1UHVih=bgv9DGoZ2nw@mail.gmail.com>
+Content-Language: en-US
+From: Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <CAPVz0n1ZTDZnZHu6R_YVfhDqkjcMV0xH1UHVih=bgv9DGoZ2nw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, 28 Feb 2025 12:32:11 +0800, Nick Chan wrote:
-> Add device tree nodes for DWI backlight found on some Apple iPhones, iPads
-> and iPod touches. Not all devices have this feature, as some devices
-> instead have their backlights directly connected to the WLED output of a
-> PMU or use self-emissive panels.
+06.03.2025 22:48, Svyatoslav Ryhel пишет:
+> чт, 6 бер. 2025 р. о 21:42 Dmitry Osipenko <digetx@gmail.com> пише:
+>>
+>> 25.02.2025 17:34, Svyatoslav Ryhel пишет:
+>>> +     /* Read register to wait until programming has settled */
+>>> +     readl(emc->regs + EMC_INTSTATUS);
+>>
+>> Tegra4 TRM says this must be MC register and not EMC
+>>
 > 
-> Resned because a network error occured and some patches failed to send.
-> 
-> [...]
+> Are you sure? Tegra4 has no MC_INTSTATUS but it has EMC_INTSTATUS
 
-Applied to git@github.com:AsahiLinux/linux.git (asahi-soc/dt), thanks!
-
-[1/5] arm64: dts: apple: s5l8960x: Add backlight nodes
-      https://github.com/AsahiLinux/linux/commit/0f8f64b2329f
-[2/5] arm64: dts: apple: t7000: Add backlight nodes
-      https://github.com/AsahiLinux/linux/commit/897359ae3c50
-[3/5] arm64: dts: apple: s800-0-3: Add backlight nodes
-      https://github.com/AsahiLinux/linux/commit/4384b6c781bc
-[4/5] arm64: dts: apple: t8010: Add backlight nodes
-      https://github.com/AsahiLinux/linux/commit/074db7d6f51b
-[5/5] arm64: dts: apple: t8015: Add backlight nodes
-      https://github.com/AsahiLinux/linux/commit/e1bc21d8f8fd
-
-Best regards,
--- 
-Sven Peter <sven@svenpeter.dev>
-
-
+Can be any MC register, downstream driver reads MC_EMEM_ADR_CFG.
 
