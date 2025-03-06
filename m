@@ -1,109 +1,116 @@
-Return-Path: <devicetree+bounces-155114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09EBAA55A48
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 23:59:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7D4A55B62
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 01:04:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4798F7A243B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 22:58:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA6161888E7E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 00:04:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 960AF27CB24;
-	Thu,  6 Mar 2025 22:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33AAB27706;
+	Fri,  7 Mar 2025 00:03:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jIz0dKih"
+	dkim=pass (2048-bit key) header.d=delugo.co.za header.i=@delugo.co.za header.b="W4SPr/zX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from outgoing12.cpt4.host-h.net (outgoing12.cpt4.host-h.net [197.189.249.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5DF4207DEB;
-	Thu,  6 Mar 2025 22:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4C625569
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 00:03:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=197.189.249.69
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741301962; cv=none; b=fGXSuYaMO6DO4tN09qYXrYR4Q4SMoA7wX9U6gaO8l9cV80nRM52ITOqLQ1PdxZmbOXNYWtEF918Axf/NuLJCwoQkwh7XjgFGbLoOEhqBUeADmU90oTf2VbQWv2+jwWzeT91BeL/UNh+y2WfxOhw8Is9u2rB32+C+Ps9+zcHCs4U=
+	t=1741305830; cv=none; b=uQx9ASOvWluRenm8Y7nQsL9u0YrVOcMjkL8or1QEl2ZtWZssH6ff2/oKzaSy58em9JagPrwgobfGA7E0P0s+f/Ot3rRq/eMD0o47sdcJht/FRtvPDo/zgEfZII+9gnG3QZMPLVnDIqgnG3p0ZBcO4ISoaAeUuoV0GssZG0k2ATw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741301962; c=relaxed/simple;
-	bh=Jf0MxEB10sflgfsvRkT5hws5jwvyGsK7uJS7JlC8ThM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JAHg84tfKicWXx3W3nEPiBXqE5WajJlEHG/FfZWKrBKSddC/z2fUKgy4PVgnGTlRwQaiTEIkn0lkZRD2hkdnNoXLsNXsIuyEWuVXJwWdAb/gB6rCOI4RvDeQfHI9LwbnZIqO8Rl2frXBZj3oSfiCrDtT2rdEY4vRRQ3NjpZTPfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jIz0dKih; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 526Mwn6O3789931
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 6 Mar 2025 16:58:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1741301929;
-	bh=Ao1UCJvy5o35BF452S6POkKpCsYW0YF06kyYzjy1P9Q=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=jIz0dKihK45sdAhxyua/6cD8mSzTIXdWaHKJwlmosUljXiD+UOcwk3F6vSDtCCU2k
-	 dOp2XKKBijaJpChxkTeTh3VKcuXIqQISf93EGpLsCwQDNphB407BDMGhuVTgi6un6c
-	 8Nz8IC82ROkXdze5WZKwPGl/Ait/1/pz43PD4W78=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 526Mwn2d039476
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 6 Mar 2025 16:58:49 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
- Mar 2025 16:58:49 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 6 Mar 2025 16:58:48 -0600
-Received: from [10.247.26.234] (lt5cd3040qtn.dhcp.ti.com [10.247.26.234])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 526MwmfT002376;
-	Thu, 6 Mar 2025 16:58:48 -0600
-Message-ID: <d4e183c7-4ad6-4454-b854-8f1d64f296fa@ti.com>
-Date: Thu, 6 Mar 2025 16:58:48 -0600
+	s=arc-20240116; t=1741305830; c=relaxed/simple;
+	bh=UOdy1uc1Ja6Ouzx9Gp3orqw2OLpxN4Hd+lHG4CKFzvE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EnvqcsKYlDKaacJ0wSaEtelnVQ4df3Hs5XWcILc5CSDgO5+JoT5r0uQhJ9z2UJvRvdxCSY9ARWskGAJ+MU3CDO++QWsyBuTHwyDfTwXNcM3z1A27nubLBrNyNByEu3H6MNB2bm6puPJZNHzacrF7Q0cNDri0aAmcl8Pwc/Du7io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=delugo.co.za; spf=pass smtp.mailfrom=delugo.co.za; dkim=pass (2048-bit key) header.d=delugo.co.za header.i=@delugo.co.za header.b=W4SPr/zX; arc=none smtp.client-ip=197.189.249.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=delugo.co.za
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=delugo.co.za
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=delugo.co.za; s=xneelo; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-ID:Date:Subject:To:From:Reply-To:sender:cc:bcc:
+	in-reply-to:references; bh=UOdy1uc1Ja6Ouzx9Gp3orqw2OLpxN4Hd+lHG4CKFzvE=; b=W4
+	SPr/zXdp7+DEUUDCAJcA2Jtkl3RTYmnjW/8PVfZdtbbZ4oAj6xw5CZbAkK7vB4m8NUpmk8c2YosqF
+	rhDvyfZSJRcNPdoWBBnjGvZQ79hVuY/AO35sVfIBjut/aWY3OHlXf7Lu6aazw9X1HIbSWGRSMSrH/
+	6dMH6QCJTu0fV2oEfBp9CZX2plwPyFKkSIgfmzX958anyV7KRRjlgLTDXAm/I6Sh5hrYg3MyxAoMP
+	DUXe7P2TEo2AkEX+jJxc3UhFRnQ0xNuhKAgIGbW2lX2nCEpx1MbRmVxUDGfgdCeNQ/xbPfbOaE0H9
+	8r+GlXiL6Xk1RIotejmLPiF1GFNMkWAg==;
+Received: from www46.cpt3.host-h.net ([197.221.14.46])
+	by antispam2-cpt4.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <orders@delugo.co.za>)
+	id 1tqK5D-0047zU-RO
+	for devicetree@vger.kernel.org; Fri, 07 Mar 2025 00:52:53 +0200
+Received: from [104.192.5.240] (helo=delugo.co.za)
+	by www46.cpt3.host-h.net with esmtpsa (TLS1.2:ECDHE_SECP521R1__RSA_SHA512__AES_256_GCM:256)
+	(Exim 4.98)
+	(envelope-from <orders@delugo.co.za>)
+	id 1tqK5D-0000000DmNA-0R0W
+	for devicetree@vger.kernel.org;
+	Fri, 07 Mar 2025 00:52:51 +0200
+Reply-To: barry@investorstrustco.net
+From: Barry <orders@delugo.co.za>
+To: devicetree@vger.kernel.org
+Subject: Re: The Business Loan/financing.1
+Date: 06 Mar 2025 22:52:47 +0000
+Message-ID: <20250306223012.B6FE211F415E4DB4@delugo.co.za>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/9] regulator: dt-bindings: Add TI TPS65214 PMIC
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>, <andreas@kemnade.info>,
-        <khilman@baylibre.com>, <rogerq@kernel.org>, <tony@atomide.com>,
-        <lee@kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <m-leonard@ti.com>, <praneeth@ti.com>
-References: <20250305210351.249811-1-s-ramamoorthy@ti.com>
- <20250305210351.249811-3-s-ramamoorthy@ti.com>
- <acea75f2-337e-4125-88d8-fbb07c8bf6c3@kernel.org>
-Content-Language: en-US
-From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-In-Reply-To: <acea75f2-337e-4125-88d8-fbb07c8bf6c3@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Authenticated-Sender: orders@delugo.co.za
+X-Virus-Scanned: Clear
+X-SpamExperts-Domain: delugo.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@delugo.co.za
+X-SpamExperts-Outgoing-Class: unsure
+X-SpamExperts-Outgoing-Evidence: Combined (0.75)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+5DhM0jw86KsbkaGfFMuQCPUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5yOHTdQik0kM+e6Ms1j+Yjst8C9mOBdONdnsxgsk1D2pw/C
+ h5SE4jAyhe1COeASyU/2eYdgLivhdeufWiye511G4ld5rdi2ZxohSIq+dqifZlCd7avjZD0taH/y
+ 4/+XXYqWrRCR/TGJ+LxBEbBCS4VQhbGGV64cVSYcP2YC3p8uWs7Yc9LzZDl/BJuHI+g/8HVJpmI0
+ 71bWBu5BNTe7wFyCnh3a5vBW18gsvawjm2ajtK7VZqJmzCeHtqZ+QtMgTB0iLwRMaKsK8lAeAhb+
+ aZDwTMQ3Kg3hL2oXz5A5E5R/dS4GkJ5hfB+qWugfDEytZYoACfRtBjLzEjgIZNLWhI/M137eOf6N
+ RB/j0ivUpaZqI8fh8bbok1C/KftraXn4bBWU/86+VeHQfEPfz3YUMMqBqSIGAS5g6SocktP6HR2V
+ 1Mnsv/4cfDtSkJz6hRSdrQzTHuxweXeDMpjWlleKrN32mP5wriU8jSHrtsnI5JD0GxR9Ovbqz/k9
+ Jlx8RTZkJCspOMQJvQ/Ck3iiU+4DQAj366V+bW1tsfg2xPA2CLYwN84+SW+DL5+1ec8lBNKn8Rj0
+ 3SuRo2LznmAWN0MOY/3Dn3xriYIDKJuyWRMBsMZVihbq+sSHvC+WfaMBEJOSE0AlS9YoHFltGqun
+ dRd2vfQDxRcLZivEDcmpAbM9ZRc0Alq9oGq7mjcOPoVxa1p/QPl2h0EEwfIgbv/J09XLof9u2GCS
+ jvxqrHPrHCYUWFgHcor26SQ2SWEYeyUhqp4ktHBUoXAOl772tkAFRI6aswDW+Uj9pJtt6B8Tpsq6
+ DWJdj2Xnc6jMUUXOkUFY5B+P8Wul7mJaw/iwwebBuk5LV2jMILC2fFbQBLMNMOLysyB79ZMJCHTP
+ HTgQEte1jtLMUCqmPfgZ1bW4yXQpgwwgMMWk14/qnUAcO7jpJHYNgbE1NaYwMiapd0qkXA5KI/7V
+ mPb40obrdWL7kIiRcTpQDerH
+X-Report-Abuse-To: spam@antispamquarantine.host-h.net
+X-Complaints-To: abuse@antispammaster.host-h.net
 
-Hi,
+Hello,
 
-On 3/6/2025 1:25 AM, Krzysztof Kozlowski wrote:
-> On 05/03/2025 22:03, Shree Ramamoorthy wrote:
->>  
->> @@ -102,7 +106,9 @@ allOf:
->>        properties:
->>          compatible:
->>            contains:
->> -            const: ti,tps65215
->> +            enum:
->> +              - ti,tps65214
->> +              - ti,tps65215
-> I do not see improvements and you did not respond to my comment.
->
-> Best regards,
-> Krzysztof
+My name is Barry at Investment Consult, we are a consultancy and
+brokerage Firm specializing in Growth Financial Loan and joint
+partnership venture. We specialize in investments in all Private
+and public sectors in a broad range of areas within our Financial
+Investment Services.
 
-Sorry for missing the enum fix, I thought I had included that and should've double checked.
-Thank you again for reviewing these patches!
+ We are experts in financial and operational management, due
+diligence and capital planning in all markets and industries. Our
+Investors wish to invest in any viable Project presented by your
+Management after reviews on your Business Project Presentation
+Plan.
 
+ We look forward to your Swift response. We also offer commission
+to consultants and brokers for any partnership referrals.
+
+ Regards,
+Barry
+Senior Broker
 
