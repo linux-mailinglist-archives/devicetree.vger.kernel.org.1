@@ -1,286 +1,130 @@
-Return-Path: <devicetree+bounces-154873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1185FA54C1E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:27:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B85CA54C3B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:30:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C70116CC9D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:27:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70C987A6D2E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B1DB20E319;
-	Thu,  6 Mar 2025 13:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AEAF211278;
+	Thu,  6 Mar 2025 13:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="w4QRgGNM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E5A20E310;
-	Thu,  6 Mar 2025 13:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C164320F078;
+	Thu,  6 Mar 2025 13:29:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741267642; cv=none; b=pOKC8rjMUbI36fQSNgTBH/Z40bXbhDav+HSovcsWXz6/8fHdB3Y2JQFFu94ImOb61OumFkjcquQVoIuzSeTdiGXJxenp8vRfu/gIjWF+108V6RFjQnnPBbRChyRxscIhjI6Oh8M8/pwiLuuv0sMN6cctR2t7r4PEFaLU3iDebbU=
+	t=1741267800; cv=none; b=MGL+HIcgd+zS23eCs3BjpXtaZkefnCUfu9d9yoMNPG9uMG4DsfazVWYwxXDjImWKUmEUyP8pS4JuWDmAE/xEPVSv2BJv71ihjD21mBdiaKB4uvLoP9qJxt4pA/kF995mJN+jiaB1bbZXyUYGKYnXFw9PY8woJuYf4sDkAvRgZvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741267642; c=relaxed/simple;
-	bh=XKcEeWbzH4fA5/cvRfTVPBDGny582CAz/diU/D9T8do=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ApGOFXxXY5xEoeIl/WBW66aQ7r/9ZlOn0m15WH05p+oNFV49qWgH7pOj3jTCkJsq2lhEupbkvm/KYx7bmxZOg/mZ9J6l0dste9tWfMf63AapHKw07fB7zRKg3qsdFgep6H7p202zdJ2TZwA8ws4AegxTmrPVBmHlKMQPevpS3vU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-86b6be2c480so226858241.0;
-        Thu, 06 Mar 2025 05:27:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741267638; x=1741872438;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E1V4GXjxaHQ1MX8XrAYuwsdCJjMPQ0MFEVUQeYP147s=;
-        b=m3qxBlVPwOPZnKoVJLeJFLRQqSBq+WbqIqNIwbx7HmBOvt4sIcfh18c92G00LjtvQJ
-         w5a1MYM25R8JWyumJSeue63VPLAoiV3v2DYww+CviSXxBbO7NaHM4ch5YsC0nl/vv7AU
-         zYYO4DmPUx51yQwhH2ENUmJ6IcPM9B/IXAr327FjQhvy7pP7zHXIXcg4A9KvEdyUO6Kh
-         5WRFEU1VkbzA5KfNSfhIYRnod8YeMNf0V4gh3NPoKXQGq19EgNnMSuzy9TKHsnUrg8Ug
-         w++2t5Va1cAyEcT9yGddVj3YBTnVB5B43ScuixXLD3Gd6HNKtdECXK5hZiGZCJQ5CBqT
-         d+zw==
-X-Forwarded-Encrypted: i=1; AJvYcCU4gHPoXFd0H9ZuvkD/UCd9+3JKd5t/qtqsrI1wF7GF53Nj4fhH9+8lJcYns/dGMl9azQO5+94KVCPzduUB@vger.kernel.org, AJvYcCWYjG3/BuECLQptl9FrYWqlQLnlC/mUbTVyR9SsWpUq8gtOFZP7UtkZPdyUMsSNym+q/6lZCUNRg37e@vger.kernel.org, AJvYcCWcSesvGcWQFnXdAQ1fIEjV/mR5GqA8Q8lB9jKx0hS8mkRFhfHwtz2S51A3mI0lDOS0mdAuwTKGlB+M@vger.kernel.org, AJvYcCXhMWOUe76kpzRs5oFP4NOPSXI13pDo16svGp8GXkney8NdwodfFjEs1el9Gk/waZdpIr1kR+dBElbb8aBt5HzLy78=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxf2JQTgStjCK+DJH210+Y+KXxB5UgyoDdf1TTfcoCOcCQDzTfI
-	G4Mmn0j6Dsx+0SpowfnCCFeNIUvQPZnBgP2PVb22q3IZP23s8/yV5tX6NPdn
-X-Gm-Gg: ASbGncvRbFvGv+xl5+WXigAH2SMHGnWPGKgVo+l0ku4Bj4JdxBC6IQ/39cR59N5RbAs
-	mMmhiqg3Wa97GR/BF0BlcNcPzbothJk7KZUcPbQp5Modp6IqLH5PkLdSPvWy2cKZ960vWBWOQeK
-	6EoMZrOOE+FaI8znPMLPitcM8Q8cDBmRiSl0j6OAYRCSLIptVCu2PvDrXqbFywajUvX9jv+4ZMi
-	tV068QMFYrbfVHL5qAXTz+q8smm9MYanAymKHjYs3X8xdbB7Eomw4GCGez9SS/frQ9QkjtUDJK2
-	ZMBANtW6uwNEN1j5LEnRL2qYjSPpnAVG/eT9U+ha/TqA+i21UVZyHJiRASkU9WtedrYV/zRlYHD
-	8vFkh6+Y=
-X-Google-Smtp-Source: AGHT+IEy6Rv4wjm84q5K+TbBTG944eiJABN0mDsfYMGHJX/ZGbboYio9IbTuwHyaN29m5pVPVd1RoQ==
-X-Received: by 2002:a05:6102:dce:b0:4bb:cf25:c5a7 with SMTP id ada2fe7eead31-4c2e27a6d7dmr4441933137.7.1741267638412;
-        Thu, 06 Mar 2025 05:27:18 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-86d33ca65a9sm219399241.27.2025.03.06.05.27.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Mar 2025 05:27:18 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-86b6be2c480so226841241.0;
-        Thu, 06 Mar 2025 05:27:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU92WFNfySAnYVgKlWOUXgBHaW565dGpVNMpOpzEHn+/1MNShzgqaaPC2QX98aP+ZbjeaCvoblDJgIp@vger.kernel.org, AJvYcCUWpNX27F7ebNDUkBz3h1pY1ByBTTFcKVPP8Bzsun8T9ESkqvxBWkODOxesfiX35Of8+T8lXl1Z7btGQrBj@vger.kernel.org, AJvYcCXiBXrAqOoa+R2A3TM8EqkQ9+zsy+ToCENjOlElsCuMYeKbpo7oGQp6UC9Z2RNaqqYIcWMjQa+crshHZWPb1waIh8A=@vger.kernel.org, AJvYcCXvpHYzGUcDC92TMRiTc5rrAPamygUFPdZ4RTwEWWiRfSwTwea2XMSJQzeiKi+z0WkLlr1lkvHWazDY@vger.kernel.org
-X-Received: by 2002:a05:6102:e12:b0:4bd:3519:44be with SMTP id
- ada2fe7eead31-4c2e2804512mr4388822137.15.1741267637914; Thu, 06 Mar 2025
- 05:27:17 -0800 (PST)
+	s=arc-20240116; t=1741267800; c=relaxed/simple;
+	bh=mUWv69KxFp1nkfKwXwTvoUTd8hihwnHohClUV7h795A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jI7qROGyn8OjGgG+7PYIBEjITdVR5rTAh0iORJT5y8viQJEo46VheGxtoiizdlohMhlkMKtBKeJbm2+gw85LIgQfKRoy6+eL1q5E/UnQbbvDknG4fQp5RqI4OGMm4wVZvCMDYxBmSlxg9yf4alz1T/BrVT56TZDnR1ZxricdOQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=w4QRgGNM; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 526DTGEP4163412
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 6 Mar 2025 07:29:16 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1741267756;
+	bh=j1l3rkpvSqXIl+5ZitL+bxerJBlyJLYrf9pOoucxKqU=;
+	h=From:To:CC:Subject:Date;
+	b=w4QRgGNM5VaMda1+JD4dipmKY6JrBZeshEv18M10QvBrbzJw4jygrBCpd63c9Pe1l
+	 t9yZRZPiEt8zt+M5e2Z7ddtLu4hDLX0ppK3sfAY56YCNkAU7Oe/SM7wB3SjzDiJ3xp
+	 u9w50BCwsGFm/aIHPA1vWf2US7HIEQ37GKUgrTd0=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 526DTGPW088332
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 6 Mar 2025 07:29:16 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
+ Mar 2025 07:29:15 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 6 Mar 2025 07:29:15 -0600
+Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 526DTFOb021890;
+	Thu, 6 Mar 2025 07:29:15 -0600
+From: Devarsh Thakkar <devarsht@ti.com>
+To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+        <airlied@gmail.com>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>,
+        <dri-devel@lists.freedesktop.org>, <simona@ffwll.ch>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <praneeth@ti.com>, <vigneshr@ti.com>, <aradhya.bhatia@linux.dev>,
+        <s-jain1@ti.com>, <r-donadkar@ti.com>, <j-choudhary@ti.com>,
+        <h-shenoy@ti.com>, <devarsht@ti.com>
+Subject: [PATCH v3 0/3] Add support for AM62L DSS
+Date: Thu, 6 Mar 2025 18:59:11 +0530
+Message-ID: <20250306132914.1469387-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.39.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250305002112.5289-1-fabrizio.castro.jz@renesas.com> <20250305002112.5289-3-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20250305002112.5289-3-fabrizio.castro.jz@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 6 Mar 2025 14:27:06 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVeLiQKHm5BQXhqEjKTP4p7Y20b5ocsjvNCnicDQym19A@mail.gmail.com>
-X-Gm-Features: AQ5f1JroeThd9ulD1ahlmdpsXT6NLFZFZZdIi3Hy9pIsRu-zZy6kxIxGiyfRxZQ
-Message-ID: <CAMuHMdVeLiQKHm5BQXhqEjKTP4p7Y20b5ocsjvNCnicDQym19A@mail.gmail.com>
-Subject: Re: [PATCH v5 2/6] dt-bindings: dma: rz-dmac: Document RZ/V2H(P)
- family of SoCs
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Fabrizio,
+This adds support for DSS subsystem present in TI's AM62L SoC
+which supports single display pipeline with DPI output which
+is also routed to DSI Tx controller within the SoC.
 
-On Wed, 5 Mar 2025 at 01:21, Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> Document the Renesas RZ/V2H(P) family of SoCs DMAC block.
-> The Renesas RZ/V2H(P) DMAC is very similar to the one found on the
-> Renesas RZ/G2L family of SoCs, but there are some differences:
-> * It only uses one register area
-> * It only uses one clock
-> * It only uses one reset
-> * Instead of using MID/IRD it uses REQ No
-> * It is connected to the Interrupt Control Unit (ICU)
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v4->v5:
-> * Removed ACK No from the specification of the dma cell.
-> * I have kept the tags received as this is a minor change and the
->   structure remains the same as v4. Please let me know if this is
->   not okay.
+Change Log:
+V3:
+- Make generic infra to support truncated K3 DSS IP's
+- Remove AM62A updates from AM62L DT binding updates
 
-Thanks for the update!
+V2:
+- Fix incorrect format of compatible string (comma instead of
+  hyphen) for AM62L SoC
+- Use separate register space and helper functions for AM62L
+  due to minor differences in register offset/bit position differences
+  for first plane
 
-> --- a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> @@ -61,14 +66,21 @@ properties:
->    '#dma-cells':
->      const: 1
->      description:
-> -      The cell specifies the encoded MID/RID values of the DMAC port
+Rangediff:
+V2->V3:
+- https://gist.github.com/devarsht/24fa8dd2986861efa431352d19ebbb41
 
-Please just insert "or the REQ No" and be done with it?
+V1->V2
+- https://gist.github.com/devarsht/11d47f25ca9fea6976e6284330ddf443
 
-> -      connected to the DMA client and the slave channel configuration
-> -      parameters.
-> +      For the RZ/A1H, RZ/Five, RZ/G2{L,LC,UL}, RZ/V2L, and RZ/G3S SoCs, the cell
-> +      specifies the encoded MID/RID values of the DMAC port connected to the
-> +      DMA client and the slave channel configuration parameters.
->        bits[0:9] - Specifies MID/RID value
->        bit[10] - Specifies DMA request high enable (HIEN)
->        bit[11] - Specifies DMA request detection type (LVL)
->        bits[12:14] - Specifies DMAACK output mode (AM)
->        bit[15] - Specifies Transfer Mode (TM)
-> +      For the RZ/V2H(P) SoC the cell specifies the DMAC REQ No and the slave channel
-> +      configuration parameters.
-> +      bits[0:9] - Specifies the DMAC REQ No
-> +      bit[10] - Specifies DMA request high enable (HIEN)
-> +      bit[11] - Specifies DMA request detection type (LVL)
-> +      bits[12:14] - Specifies DMAACK output mode (AM)
-> +      bit[15] - Specifies Transfer Mode (TM)
+Links to previous versions:
+V2: https://lore.kernel.org/all/20250204061552.3720261-1-devarsht@ti.com/
+V1: https://lore.kernel.org/all/20241231090432.3649158-1-devarsht@ti.com/
 
-... so the casual reader doesn't have to look for the (nonexisting)
-differences in the other bits.
+Test logs:
+https://gist.github.com/devarsht/16fe796b8fd3ea8abf5df8e2327d2311
 
->
->    dma-channels:
->      const: 16
-> @@ -80,12 +92,29 @@ properties:
->      items:
->        - description: Reset for DMA ARESETN reset terminal
->        - description: Reset for DMA RST_ASYNC reset terminal
-> +    minItems: 1
->
->    reset-names:
->      items:
->        - const: arst
->        - const: rst_async
->
-> +  renesas,icu:
-> +    description:
-> +      On the RZ/V2H(P) SoC configures the ICU to which the DMAC is connected to.
+Devarsh Thakkar (3):
+  dt-bindings: display: ti,am65x-dss: Add support for AM62L DSS
+  drm/tidss: Update infra to support DSS7 cut-down versions
+  drm/tidss: Add support for AM62L display subsystem
 
-Are other SoCs with ICU planned?
+ .../bindings/display/ti/ti,am65x-dss.yaml     |  21 +-
+ drivers/gpu/drm/tidss/tidss_crtc.c            |   7 +-
+ drivers/gpu/drm/tidss/tidss_dispc.c           | 185 +++++++++++++++---
+ drivers/gpu/drm/tidss/tidss_dispc.h           |  12 +-
+ drivers/gpu/drm/tidss/tidss_drv.c             |   1 +
+ drivers/gpu/drm/tidss/tidss_irq.c             |   6 +
+ drivers/gpu/drm/tidss/tidss_kms.c             |  10 +-
+ 7 files changed, 211 insertions(+), 31 deletions(-)
 
-> +      It must contain the phandle to the ICU, and the index of the DMAC as seen
-> +      from the ICU (e.g. parameter k from register ICU_DMkSELy).
+-- 
+2.39.1
 
-This is already described more formally below
-
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to the ICU node.
-> +          - description: The DMAC index.
-> +              4 for DMAC0
-> +              0 for DMAC1
-> +              1 for DMAC2
-> +              2 for DMAC3
-> +              3 for DMAC4
-
-Other SoCs may have other mappings.
-So perhaps leave out the translation table, but write:
-
-    The number of the DMAC as seen from the ICU, i.e. parameter k from
-register ICU_DMkSELy.
-    This may differ from the actual DMAC instance number!
-
-> +
->  required:
->    - compatible
->    - reg
-> @@ -98,13 +127,25 @@ allOf:
->    - $ref: dma-controller.yaml#
->
->    - if:
-> -      not:
-> -        properties:
-> -          compatible:
-> -            contains:
-> -              enum:
-> -                - renesas,r7s72100-dmac
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r9a07g043-dmac
-> +              - renesas,r9a07g044-dmac
-> +              - renesas,r9a07g054-dmac
-> +              - renesas,r9a08g045-dmac
->      then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +        clocks:
-> +          minItems: 2
-> +        resets:
-> +          minItems: 2
-> +
-> +        renesas,icu: false
-> +
->        required:
->          - clocks
->          - clock-names
-> @@ -112,13 +153,42 @@ allOf:
->          - resets
->          - reset-names
->
-> -    else:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r7s72100-dmac
-> +    then:
->        properties:
-
-    reg:
-        minItems: 2
-
->          clocks: false
->          clock-names: false
->          power-domains: false
->          resets: false
->          reset-names: false
-> +        renesas,icu: false
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g057-dmac
-> +    then:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-> +        clocks:
-> +          maxItems: 1
-> +        resets:
-> +          maxItems: 1
-> +
-> +        clock-names: false
-> +        reset-names: false
-> +
-> +      required:
-> +        - clocks
-> +        - power-domains
-> +        - renesas,icu
-> +        - resets
->
->  additionalProperties: false
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
