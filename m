@@ -1,56 +1,54 @@
-Return-Path: <devicetree+bounces-154921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 088EBA54EB5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 16:16:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5EB4A54ED4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 16:22:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C6A51897D1B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:16:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04D7D174952
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B71158858;
-	Thu,  6 Mar 2025 15:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C4C21448E3;
+	Thu,  6 Mar 2025 15:22:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="sCnMgo2x"
+	dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="dxnQCWqB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com [157.90.84.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5B9D299
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 15:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7096B1624C8;
+	Thu,  6 Mar 2025 15:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=157.90.84.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741274179; cv=none; b=qWAHdtgKFWaz30woENbLPt2HJdnggP/5g/yq/lUSd7pHfL2SejHmHry6BKm0LpPCCx7BIWJsbbo1CiTGMq0rF5lOoWM1AgYRMBV5aWD8RVsQfzKJFxLDajjKFnw1XhtKgWTCpGO5gqQMDMWoc9S9wtv2bfF279ZmHsqyL7U3lOQ=
+	t=1741274551; cv=none; b=WLUJVcwWSv2Pqujkwo6pT9/Wy+9cvOrKC7YQOUb+Uqd2uhA3aiKuYjKlOqeFA1AAa5YnsL8lEOgbNyYxmg/vC0xANrgPIP37FZuvuPluYJVgB/w+3+++G2JEwjwWZyCYVqKWxTyg6THqCdgHx2wX8EY2fcCh+ggrPFAglNkFU08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741274179; c=relaxed/simple;
-	bh=lK+vRH600i1adJh8Bk09nBcEHPeyoBBqSlrQrBD/hwo=;
+	s=arc-20240116; t=1741274551; c=relaxed/simple;
+	bh=SPwTqU1FQuydEUYFS8l2kMBpEKRE4wRRl01iyIDM5mQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZgHXXPJqb6zpEypISl446vT6wn3PDnsK5vnDpA41hlxGINvjg5pjUGfsyUksaRUz5Xk9pQT3LnVUcI0wIPbHeCf6ccSJTfzN0bVieB3qf3fncrVjjaDZGmMLGLnHsj7givv2Oh+eLtFCa8eHvlY9bmNBfNaZnQNQu8SwnIKJgmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=sCnMgo2x; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1741274176;
- bh=v3aEbi3vbvtvRY+uN9WWZd+0zMgBkgvraJ9LrR9SE5c=;
- b=sCnMgo2xx8FAVt7UTYtQP74jNhGUNvtPg1IsmBUQ/q6f7D3CyhlwBaJ6nW+oIqZGf8gHdsvL/
- haRx4svJQ1aHZs/6uaByehicEmuZ5IBrInzGcB+7VGlFidDxs0ePdNNizmJenvoBaXJE53yce/i
- MhBBf1wJbV7ZFQkSu+PwztsQ2hJdezYu3tn82idLqlsrOS7v6cShLR9au+Jlu7hYCKsH/pDgES9
- xaad1yENhayoGJeU5LIKN8mGAMqNJwgYtDAjUCZSI2kGAX/wFTI0FOPypq++2rpyprtoYnM9omr
- AdlXPG5KE4KrEhb2vXETlpqsUZdc7CZAWsfeFqoRJKZQ==
-X-Forward-Email-ID: 67c9bc3e7d53aa09926028af
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <281b8025-8288-4274-b863-f091c05cbabe@kwiboo.se>
-Date: Thu, 6 Mar 2025 16:16:09 +0100
+	 In-Reply-To:Content-Type; b=RXMEqgY/TqulrY1NBthONqQzOV1dP06R4QaWF+fYvl6YqihC0qfRZQeWngzZyzwOYKcGmjwFf2uAlaSXU+7Isizc/bpUZhuGWsPIXYqhAzD0kzZgYQf76wJUstT5kOB2H6LqeKGEVeA2s1JsUWLi7Oq8zpj6aSC+4oLIbvm8sjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com; spf=pass smtp.mailfrom=tuxedocomputers.com; dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b=dxnQCWqB; arc=none smtp.client-ip=157.90.84.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxedocomputers.com
+Received: from [192.168.178.76] (business-24-134-207-61.pool2.vodafone-ip.de [24.134.207.61])
+	(Authenticated sender: g.gottleuber@tuxedocomputers.com)
+	by mail.tuxedocomputers.com (Postfix) with ESMTPSA id C96782FC0048;
+	Thu,  6 Mar 2025 16:22:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+	s=default; t=1741274545;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Xi3cMLXECUOiOsPb3EvB2cc73af22xJrE8sr9a/N9is=;
+	b=dxnQCWqBc2gkM3N72XgL9j3bdEvSKu1LBfLXf6gwU5d8BuJkqKDcvCitHzg1RDmoBzIjRl
+	9tYb1TpSblY6Op92xhbdPZZhbQf+oxlQADUHaVOBKSZwLx4WIFgtfGkEzUCWZZXvJ5wOot
+	Sfsf744jbPzHDLPph0s8fZCAWIwnk0E=
+Authentication-Results: mail.tuxedocomputers.com;
+	auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com smtp.mailfrom=g.gottleuber@tuxedocomputers.com
+Message-ID: <58d6c774-2976-43ef-aa04-b339df4b6ff1@tuxedocomputers.com>
+Date: Thu, 6 Mar 2025 16:22:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,113 +56,149 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: enable SCMI clk for RK3528
- SoC
-To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
-Cc: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250306150017.488975-1-amadeus@jmu.edu.cn>
- <20250306150017.488975-2-amadeus@jmu.edu.cn>
+Subject: Re: [PATCH] arm64: dts: qcom: Add device tree for TUXEDO Elite 14
+ Gen1
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Georg Gottleuber <ggo@tuxedocomputers.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, wse@tuxedocomputers.com, cs@tuxedocomputers.com
+References: <57589859-fec1-4875-9127-d1f99e40a827@tuxedocomputers.com>
+ <5e72992c-170c-48b9-8df4-2caf31c4ae44@oss.qualcomm.com>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250306150017.488975-2-amadeus@jmu.edu.cn>
+From: Georg Gottleuber <g.gottleuber@tuxedocomputers.com>
+In-Reply-To: <5e72992c-170c-48b9-8df4-2caf31c4ae44@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi Chukun,
 
-On 2025-03-06 16:00, Chukun Pan wrote:
-> Same as RK3568, RK3528 uses SCMI clk instead of ARMCLK.
-> Add SCMI clk for CPU, GPU and RNG will also use it.
+
+Am 06.03.25 um 13:50 schrieb Konrad Dybcio:
+> On 6.03.2025 1:25 PM, Georg Gottleuber wrote:
+>> Initial support for TUXEDO Elite 14 Gen1 based on Qualcomm Snapdragon X
+>> Elite SoC (X1E78100).
+>>
+>> Working:
+>> * Touchpad
+>> * Keyboard
+>> * eDP (no brightness control yet)
 > 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 33 ++++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
+> in case your panel as a PWM backlight, you will need to set the PWM
+> output pin function explicitly, see x1e80100-microsoft-romulus.dtsi
+
+Thank you, will check this.
+
+>> * NVMe
+>> * USB Type-C port
+>> * WiFi (WiFi 7 untested)
+>> * GPU (software rendering)
+>>
+>> Not working:
+>> * GPU (WIP: firmware loading but output is jerky)
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> index b1713ed4d7e2..476b83f98834 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> @@ -59,6 +59,9 @@ cpu0: cpu@0 {
->  			reg = <0x0>;
->  			device_type = "cpu";
->  			enable-method = "psci";
-> +			clocks = <&scmi_clk SCMI_CLK_CPU>;
-> +			assigned-clocks = <&scmi_clk SCMI_CLK_CPU>;
-> +			assigned-clock-rates = <1200000000>;
+> Please tell us more
 
-This is new compared to v1, please add operating-points instead.
-cpu_pvtpll is already initialized to 1.2 GHz by firmware, see e.g. [1].
+Oh, this is already an older thing: with kernel 6.10 loading
+gen70500_gmu.bin and gen70500_sqe.fw leading to partly slow and
+stuttering video output. Sometimes it rendered black edges / borders to
+KDE menus. Surely I did something wrong.
 
-[1] https://lore.kernel.org/u-boot/20250123224844.3104592-5-jonas@kwiboo.se/
+I have just tried to reproduce the same setup, but I couldn't get it to
+work just now. If you are interested, I can try it again with a
+new/current kernel. (which is preferred? linux? linux-next?)
+
+>> * USB Type-A (WIP)
+>> * Suspend with substantial energy saving
+>> * Audio, Speakers, Microphones
+>> * Camera
+>> * Fingerprint Reader
+> 
+> If it's connected to the multiport controller, you should be able to
+> just enable it, like on the T14s, similarly to the Type-A port
+
+sounds promising
+
+> [...]
+> 
+>> Signed-off-by: Georg Gottleuber <ggo@tuxedocomputers.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>  .../qcom/x1e80100-tuxedo-elite-14-gen1.dts    | 798 ++++++++++++++++++
+>>  2 files changed, 799 insertions(+)
+>>  create mode 100644
+>> arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index 140b0b2abfb5..f0a9d677d957 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -298,3 +298,4 @@ dtb-$(CONFIG_ARCH_QCOM)     += x1e80100-lenovo-yoga-slim7x.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)        += x1e80100-microsoft-romulus13.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)        += x1e80100-microsoft-romulus15.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)        += x1e80100-qcp.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)        += x1e80100-tuxedo-elite-14-gen1.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
+>> new file mode 100644
+>> index 000000000000..86bdec4a2dd8
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
+>> @@ -0,0 +1,798 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2025 TUXEDO Computers GmbH
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>> +
+>> +#include "x1e80100.dtsi"
+>> +#include "x1e80100-pmics.dtsi"
+>> +
+>> +/ {
+>> +       model = "TUXEDO Elite 14 Gen1";
+> 
+> Please use 8-wide tabs instead of spaces
+
+Sorry.
+
+>> +       compatible = "tuxedo,elite14gen1", "qcom,x1e80100";
+> 
+> You'll need to define a new vendor in:
+> 
+> Documentation/devicetree/bindings/vendor-prefixes.yaml
+> 
+> [...]
+> 
+>> +       vreg_edp_3p3: regulator-edp-3p3 {
+>> +               compatible = "regulator-fixed";
+>> +
+>> +               regulator-name = "VREG_EDP_3P3";
+>> +               regulator-min-microvolt = <3300000>;
+>> +               regulator-max-microvolt = <3300000>;
+>> +
+>> +               // EDP_VDD_EN_GPIO54
+> 
+> C-style (/* foo */) comments are preferred, but these ones can be
+> removed, as they repeat what the code says
+
+I have overlooked this. Sorry.
+
+> [...]
+> 
+>> +&gpu {
+>> +       status = "okay";
+>> +
+>> +       zap-shader {
+>> +               firmware-name = "qcom/a740_zap.mbn";
+> 
+> Are the laptop's OEM key/security fuses not blown?
+
+I'm not sure. How can I verify this?
 
 Regards,
-Jonas
-
->  		};
->  
->  		cpu1: cpu@1 {
-> @@ -66,6 +69,7 @@ cpu1: cpu@1 {
->  			reg = <0x1>;
->  			device_type = "cpu";
->  			enable-method = "psci";
-> +			clocks = <&scmi_clk SCMI_CLK_CPU>;
->  		};
->  
->  		cpu2: cpu@2 {
-> @@ -73,6 +77,7 @@ cpu2: cpu@2 {
->  			reg = <0x2>;
->  			device_type = "cpu";
->  			enable-method = "psci";
-> +			clocks = <&scmi_clk SCMI_CLK_CPU>;
->  		};
->  
->  		cpu3: cpu@3 {
-> @@ -80,6 +85,22 @@ cpu3: cpu@3 {
->  			reg = <0x3>;
->  			device_type = "cpu";
->  			enable-method = "psci";
-> +			clocks = <&scmi_clk SCMI_CLK_CPU>;
-> +		};
-> +	};
-> +
-> +	firmware {
-> +		scmi: scmi {
-> +			compatible = "arm,scmi-smc";
-> +			arm,smc-id = <0x82000010>;
-> +			shmem = <&scmi_shmem>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			scmi_clk: protocol@14 {
-> +				reg = <0x14>;
-> +				#clock-cells = <1>;
-> +			};
->  		};
->  	};
->  
-> @@ -88,6 +109,18 @@ psci {
->  		method = "smc";
->  	};
->  
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		scmi_shmem: shmem@10f000 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x0 0x0010f000 0x0 0x100>;
-> +			no-map;
-> +		};
-> +	};
-> +
->  	timer {
->  		compatible = "arm,armv8-timer";
->  		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-
+Georg
 
