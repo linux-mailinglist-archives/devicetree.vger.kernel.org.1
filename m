@@ -1,85 +1,84 @@
-Return-Path: <devicetree+bounces-154745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 786F8A545AD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:59:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C39A545BD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:02:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8A0716A49D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:59:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0822416450E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63E52080E4;
-	Thu,  6 Mar 2025 08:59:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cCBzjB3i"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F1C620297F;
+	Thu,  6 Mar 2025 09:02:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB3C19D880;
-	Thu,  6 Mar 2025 08:59:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE6F81DF759;
+	Thu,  6 Mar 2025 09:02:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741251548; cv=none; b=e80Ab2EZbTQMfNfrT0iHRr7ms7DLop5GVogC3FekQ9VFfUQOv++9ExeIuRvxrFNPVte2lW0eRv9W34nq5Z30QF0KppWzKsLl4Wg+zR2H3ZzliHUOqxl5lWDeSwrNNxcCpPA91W4dKKAO0VCGKrHd5+wJC/vQUBG7Vn2R7tgiIc8=
+	t=1741251747; cv=none; b=JO7Hl1bkT+VGaIz1hCbnRfHvj0cxzD7moAmwyjU4oMaPHZ7QUvwDahwxcLqgD0Rop3igE9engTPPzD8el3ilDeC12H4OhsmlvEXaZCBA8g7o7F7Nk7tHmq6QLCLyoeI4pnawwsHr3x+0mu9P7xIBYFqjVeKyj9HC2rHZ8/gSIDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741251548; c=relaxed/simple;
-	bh=7afTJcSkXdN+IE3Z0j2vXlLxFn4CzdNno9ZzAKaoSDA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=liexrhziK4Z6YHeIDGULkw1OC2ceOE/0RXXeAFdNxi9MWFJAEYJ67Up73/Ecplh44D48GOIIS7z4UdzG8js5xrvhjbmZtBWvXUYZgS6rAoECdTQy1M5/QbAD5PPSUniqR4zw9+5xAdFoYo3ydyHSLrIkA4upHIoFAkzE4pTYHXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cCBzjB3i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17704C4CEE2;
-	Thu,  6 Mar 2025 08:59:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741251548;
-	bh=7afTJcSkXdN+IE3Z0j2vXlLxFn4CzdNno9ZzAKaoSDA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cCBzjB3iQBfU8FGGKQz6jXuzV/+/NDtQe61AYBMGARWlO8C0qyjGaOCV/hWRPzS7l
-	 TAl7B4gFNoqrJbNoaa9RzgJmP/Q5yb9qNnMIg0vOIpKII4sQ0kb2m0pn8EkynMRvMm
-	 ezvBg0vVGoPQDNwc2KCpPI+GTg5WR89RGclnNXkIB6hp7zgU6OWKuUVB8sZBHEvCu/
-	 mvh/3wp2iSHz1GXeCQ4u72LMyNHca4phaZEaHtVcbS0TfaiWYkhevTpvUo4Yt12xRC
-	 yaSpKgIc4tB0gdUsQIE9uddtEuhaDC+HstHwmeH00ee5H0VCsR++t2nkSvs1dQB7sN
-	 4KU7mA63atRzg==
-Date: Thu, 6 Mar 2025 09:59:03 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Vaishnav Achath <vaishnav.a@ti.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 3/3] spi: dt-bindings: cdns,qspi-nor: Make the example
- real
-Message-ID: <20250306-crystal-elk-of-superiority-e783ac@krzk-bin>
-References: <20250305200133.2511308-1-miquel.raynal@bootlin.com>
- <20250305200133.2511308-4-miquel.raynal@bootlin.com>
+	s=arc-20240116; t=1741251747; c=relaxed/simple;
+	bh=D9/WEW6tyPw9DbuSZopa9attlAEU5bOtQtJOBNnThlg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=fN02le5vkwQoB4H5sOq7BKybK4Z/aBRGb91v9bL4qIuWESP6HjyW2zU/HH65bdV2NX8ToZLVzH0kmCsAAGX39WubR+jfhSMLxcATxcZl8MjaJqaO60O/eeFH4jnhi80QkEwLiQgnvIBXcrblbsIxiPiBHrT9/SyHy8JVIvkTtiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [119.122.215.89])
+	by smtp.qiye.163.com (Hmail) with ESMTP id d2603c59;
+	Thu, 6 Mar 2025 17:02:11 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: jonas@kwiboo.se
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH 0/3] rockchip: Add support for onboard eMMC on Radxa E20C
+Date: Thu,  6 Mar 2025 17:00:01 +0800
+Message-Id: <20250306090001.113127-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250305214108.1327208-1-jonas@kwiboo.se>
+References: <20250305214108.1327208-1-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250305200133.2511308-4-miquel.raynal@bootlin.com>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHR5PVkJOQktIQ0gdTE1MGVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVDQllXWRYaDxIVHRRZQVlPS0hVSktISk5MTlVKS0tVSk
+	JLS1kG
+X-HM-Tid: 0a956ab0e16203a2kunmd2603c59
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MDo6Dww5SjJKIjwxDjgIPkIR
+	AS8wFENVSlVKTE9KSU5KTEhJQkxOVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpOVUNCWVdZCAFZQUhISTcG
 
-On Wed, Mar 05, 2025 at 09:01:33PM +0100, Miquel Raynal wrote:
-> Add several properties to the example. They are actually mandatory from
-> a description point of view. Unfortunately, because of some YAML
-> limitations, they are just listed in a file showing the peripheral
-> properties that "can" be used for this specific controller without
-> marking them "required" explicitly.
+Hi,
 
-You can mark them as required - in this binding. See exynos-srom.yaml
-(I fixed missing ref to mc-peripheral-props in separate patch).
+> Driver changes to use different delay and tap num is needed to be able
+> to support HS400 modes, something for a future series. With this HS200
+> mode should work:
 
-> 
-> At least mention these properties in the example to hint people they
-> exist.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+I have tried HS200 mode on other rk3528 boards and it works fine,
+so can we enable HS200 mode for Radxa E20C first?
 
-Best regards,
-Krzysztof
+Thanks,
+Chukun
+
+-- 
+2.25.1
 
 
