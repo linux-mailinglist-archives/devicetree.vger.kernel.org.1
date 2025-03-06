@@ -1,246 +1,190 @@
-Return-Path: <devicetree+bounces-154705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 937A7A5446A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:15:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BDBDA54415
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:57:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20FB017195E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:14:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9487718962F5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:56:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16206205E33;
-	Thu,  6 Mar 2025 08:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 704C51FC7ED;
+	Thu,  6 Mar 2025 07:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="HF0rffSX"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GbZWke5b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B45320550A
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 08:14:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 784EE1FC7D9;
+	Thu,  6 Mar 2025 07:55:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741248853; cv=none; b=oyTuspPPs2e4hcS1aGa6JwP6XRH8yEp3ApV829e9ZwBPaYS2bkWpXW5FwQH2eonDFclza51pay0b3nVirogh8NyndCAe9fR5jOsXq9fTAU1I5jNx9cOlLaKFSQj9cQaqINpvtXAGVV5DogMHIPv0bRF1Yp5DNAjgU9cQfJ4HBus=
+	t=1741247720; cv=none; b=aWosuyK0AfXczVOjZfCZ30lqBxPdAvEOH//Rnmr+xXhMInMJGjWaHilwnSDB94vcGk4BROXwWCQlttzJOS2M6yMyFCPuxok+7yZuPcMsoHyviXp65J9PuJPTrrCyCbWtTpDP31RJYy3/ui19XeqjxDdmyBjTASXncqc/ObIPSBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741248853; c=relaxed/simple;
-	bh=k6mnkPFomq2MGfRQMtgnPUDBce80u9EQGOgXgPA1+xs=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=b20jmbSWnLWz34PzKQxt341Ph/0/ynG4AcOGeGj420G3/tFszdNbM2YFk5wBSb/jJmFx0Um45Qvp84bRoQ249x4YLPTK9XCYApn4c6OSv1NoXqN0SkUNNOBCMhroH+aLzPIJ8WhwkKkXw8vjO0+qv8horm9G5ex/Dw8NGUgZa7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=HF0rffSX; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250306081408epoutp03e58d64c7c81686c4cd9fa236b5047438~qKJo7GHi42640526405epoutp03b
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 08:14:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250306081408epoutp03e58d64c7c81686c4cd9fa236b5047438~qKJo7GHi42640526405epoutp03b
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1741248848;
-	bh=k6mnkPFomq2MGfRQMtgnPUDBce80u9EQGOgXgPA1+xs=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=HF0rffSXDqhsnmM54aUq5+ZRyqRdGkmV1MvgSSslW7Rh3O0cwX548zh/Y6/nACohJ
-	 Qe0idONuj5mZcuhCKJ2z2CQGKJURQhIAm1fOsvSPhk2Jmh9o6G3BjQg3DHFiItcGBz
-	 WbyRNkdAkdgu8dXGyNoEJLPC1eTfTqbGutSS5LOk=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-	20250306081408epcas5p2cc5cdb6d66503223b5cebc08e06df4f9~qKJoSUYnV1774417744epcas5p2J;
-	Thu,  6 Mar 2025 08:14:08 +0000 (GMT)
-Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.177]) by
-	epsnrtp4.localdomain (Postfix) with ESMTP id 4Z7hyk0Pxzz4x9QK; Thu,  6 Mar
-	2025 08:14:06 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	10.85.19710.D4959C76; Thu,  6 Mar 2025 17:14:05 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250306074847epcas5p286f512436a15d1b62ee1e5cc65b8a291~qJzgaAEVu2622726227epcas5p2O;
-	Thu,  6 Mar 2025 07:48:47 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250306074847epsmtrp2908ed13f055262cc6cec405330b5e0af~qJzgY7Ck91823218232epsmtrp2N;
-	Thu,  6 Mar 2025 07:48:47 +0000 (GMT)
-X-AuditID: b6c32a44-36bdd70000004cfe-14-67c9594d1953
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	92.FE.18729.F5359C76; Thu,  6 Mar 2025 16:48:47 +0900 (KST)
-Received: from FDSFTE596 (unknown [107.122.82.131]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250306074844epsmtip29eefffb54bed9090fc6baa6289c5ff5b~qJzdkUr7x2203522035epsmtip2g;
-	Thu,  6 Mar 2025 07:48:44 +0000 (GMT)
-From: "Swathi K S" <swathi.ks@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <krzk+dt@kernel.org>,
-	<andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
-	<kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
-	<conor+dt@kernel.org>, <richardcochran@gmail.com>,
-	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>
-Cc: <rmk+kernel@armlinux.org.uk>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<pankaj.dubey@samsung.com>, <ravi.patel@samsung.com>, <gost.dev@samsung.com>
-In-Reply-To: <a9ddeccf-8fc6-453c-af62-55e895888a77@kernel.org>
-Subject: RE: [PATCH v8 1/2] dt-bindings: net: Add FSD EQoS device tree
- bindings
-Date: Thu, 6 Mar 2025 13:18:37 +0530
-Message-ID: <012901db8e6c$3179a730$946cf590$@samsung.com>
+	s=arc-20240116; t=1741247720; c=relaxed/simple;
+	bh=axrHsvIoToNXtK0iAOYLE5adm2QDP3djMRMvBFQ4YJA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OZLQniPktb+3mJVuXdd/GAq1GKiH+w84hYmHuTGawJPZfICof7tzngR2nfhUCLZfHoqYUzIdYbWhC3sHrbsOc7YAwDUhhLwP2l+XlNMvIVT/sCdRAhTywubUcGLMDJaNowYrW/yHaxF3zIRHh1VfX+4wozyacjtgTco2FvbN1ZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GbZWke5b; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741247718; x=1772783718;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=axrHsvIoToNXtK0iAOYLE5adm2QDP3djMRMvBFQ4YJA=;
+  b=GbZWke5b11pxlEVGz6JpVd4x9Kdl3rw6468gbZEOSomPPn02jMIAtrmP
+   4yf35/gexKZt1oucyHJSNcXJPC2caj3UDK8yrrnYtCSpPSuLGBAOE7J6l
+   7Lc6sum24ZilxZit4W4TKQoGBKcFq2cLJs/owF5vRdbZkzTOpYl2zmASR
+   tOAJXhyW4fZrKGLEddE9iGrS6RKOBCAI4hOuEdAC4vig0JqNXjrvoLdfG
+   Swf2F24bomLUFOP3R1Pr+RKTXyfDaad7Ceu9eexn8XKDWWncNvHDhClV1
+   fKk+rpyTfmFi9I7W2L79uHotoE17gb0UrFFZRkFGFs3+8oK00FCWTZPjP
+   w==;
+X-CSE-ConnectionGUID: BJJFbI8lTtyybWZzrCxrQg==
+X-CSE-MsgGUID: 0dw2IPq3S96IxecHnYf90Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42381286"
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; 
+   d="scan'208";a="42381286"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 23:55:17 -0800
+X-CSE-ConnectionGUID: Ue34cYsHQjixUvWidGjgIw==
+X-CSE-MsgGUID: puAi2faCRquha8QEsWnO6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; 
+   d="scan'208";a="123893882"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+  by orviesa003.jf.intel.com with ESMTP; 05 Mar 2025 23:55:14 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tq64L-000MjA-1j;
+	Thu, 06 Mar 2025 07:55:05 +0000
+Date: Thu, 6 Mar 2025 15:53:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Hironori KIKUCHI <kikuchan98@gmail.com>, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] drm: panel: Add a driver for Generic
+ MIPI-DSI/DPI(+SPI) panels
+Message-ID: <202503061541.2JX2lTlc-lkp@intel.com>
+References: <20250226112552.52494-4-kikuchan98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-in
-Thread-Index: AQHcwqSBZNYxUrKMqce/4F1P5N/GfgGyT6S5AetEnA8CjXdBygKIabXqAWIbQ0mzEqYV4A==
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Te0xTVxzOubftLQpyByJH9khTTQhslFZKdzCUmY3NuxdjD93GNuECdy0C
-	bdPHcGbO6tA4Bi3ofDWVl1NcGbh1QAoKImgZolRkFInrFAcISkTGQgIbspYLG/995/u+3/n9
-	vnPy4+NBRiKMn6XSM1oVnSPkreA0tEeER735YadCXNQdj2bGjgBUdcfBRT80d2PI6srnoLJL
-	3Vw07LxLoIHWRgyNWX7nIZfrRwJdbzBxkf0PNxf1Nll5qMA9xEWlczVc5Cxfg6a7xgGqrP+L
-	QIOPzhPo0tVRHN0wl2Bo/ryD2BRC9bp7cKru+wGMGjbXE1SjxUNQ5XYDZbd9zaN+/m431eiY
-	wqiJlj4eZaqzAepii4Sasj+T7J+SHa9k6ExGK2BUGerMLJVCLnz93dSXUmNlYkmUJA49LxSo
-	6FxGLkx8Iznqlawcb1ah4DM6x+ClkmmdThidEK9VG/SMQKnW6eVCRpOZo5FqRDo6V2dQKUQq
-	Rr9RIhZviPUa07KVta3tQLNfsKNjupAwgn1PFgA/PiSlcOToCaIArOAHkecALNp/iOMTgsg/
-	AWyaTGKFaQBHHx8mlipuTY7xWKEZwPbifi57GAXwjG2a53PxyEhYaWpZqFhNNmNwZE+yz4ST
-	5Rj8qeMk5hP8yATYO9KL+3Aw+Ta0On8DPswh18PxvdULngAyDt4/MgtY/ATsPD60MB9OPgtP
-	VzzA2ZEEcGb4NJflQ+HlmUIvz/c23gq/tW319YVklR+c6rvGYf2JsPHQUm0wvN9RtxgtDE49
-	bOaxOBVWm/oW/UromS1Z5F+Arb9aOb77cTICnm2KZumn4eErtRg7wipY9PcQxvIB0FG6hNfB
-	uQfuxSvXwoZTE0QxEFqWJbMsS2ZZlsbyf7dywLGBtYxGl6tgMmI1EhWT99+HZ6hz7WBhFSIT
-	HeBm2WNRG8D4oA1APi5cHdCT1KkICsikP9/JaNWpWkMOo2sDsd7nLsHDQjLU3l1S6VMl0jix
-	VCaTSeNiZBJhaMBXjfmKIFJB65lshtEw2qU6jO8XZsQEB4j019zUGm3FUMW8w9/UVdv/xcUt
-	mz0t4Rd0Edcdw+mhN17eIG/xp9/PxNJGRQ/Xmdy7inecdLuDtZXDc8pvnNXiLdVv3Qu8reko
-	KufXEJtcbkPxwWbzreK6Vo05haRWlealVHyaf7B9m3bCEwI+PofjxsmNr2ZHZ/Vw9jzXYzx7
-	Jt4ym7TdVW/cvWtbv7z6l0+eMp+wfymirC/Gm+94yMs9hpu30zgrXahbdKzwwF7rsZWB3Pds
-	0ojCWPlVxRXncee9wXx6e0Zv1QdlDfYLkcmSa55HmwvJ/sEaevKjBHGMLB3mdVFxdeED7wSe
-	coz7tcpy5+/G/LOvLC+qyb5TyNEpaUkkrtXR/wJmf8iikwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrJIsWRmVeSWpSXmKPExsWy7bCSvG588Ml0gwNrNS1+vpzGaLH8wQ5W
-	izV7zzFZzDnfwmIx/8g5Vounxx6xW9w8sJPJ4uWse2wW589vYLe4sK2P1WLT42usFpd3zWGz
-	6Lr2hNVi3t+1rBbHFohZfDv9htFi0dYv7BYPP+xhtzhy5gWzxaX+iUwW//fsYHcQ9bh87SKz
-	x5aVN5k8nvZvZffYOesuu8eCTaUem1Z1snlsXlLvsXPHZyaP9/uusnn0bVnF6HFwn6HH501y
-	ATxRXDYpqTmZZalF+nYJXBmPZq5mK5gjX3FpWkUD42ypLkZODgkBE4nbH1+ydTFycQgJ7GaU
-	uHH+IDtEQlLiU/NUVghbWGLlv+fsEEXPGCV+9/awgCTYBLQkFvXtA0uICJxmkvjR/g/MYRZY
-	xSSxbekpJoiW80wSN+Y8YgNp4RSwk7j87DIziC0s4C/RdG8mmM0ioCLxpmk1E4jNK2Ap8Wra
-	L0YIW1Di5MwnYOuYBbQleh+2MsLYyxa+Zoa4T0Hi59NlrBBxcYmjP3uA4hxAJ4VJTFkVNoFR
-	eBaSSbOQTJqFZNIsJN0LGFlWMUqmFhTnpucWGxYY5qWW6xUn5haX5qXrJefnbmIEpwYtzR2M
-	21d90DvEyMTBeIhRgoNZSYT3ot/JdCHelMTKqtSi/Pii0pzU4kOM0hwsSuK84i96U4QE0hNL
-	UrNTUwtSi2CyTBycUg1MPUI/s/Tl+z92JAp5H98/Le33Kd3lQcdzHd0nbbHhP8DzOoSpd5re
-	/4O6HJOOeDSbPFSYtUYyySFpYySThYWthFfI7pKvprbXp/kuTtyb8X6egK/Q1Zp9H8O9ZOzO
-	NMiacTgcUMqYLm736EbE2TUPHqz9ujM+e8sUfqbwXdqfG/o3P75stys3OKBQrDIzWfWRttdq
-	bT7LyQkcvZ/apKyvmq3zm+4vOulentPispXRFjrvLn1YnnhUvOQIf5Rm08yZF79o/VESiztR
-	55xmdzRMpSFLofj4lq2/PJuilrOXtAlJ+sYlbjcTYtXU6svad6bu/8kySb2nd/mbHT5PebSl
-	VIr1k8C7hEVGB2M8PJVYijMSDbWYi4oTATPsM7d8AwAA
-X-CMS-MailID: 20250306074847epcas5p286f512436a15d1b62ee1e5cc65b8a291
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250305091852epcas5p18a0853e85a5ed3d36d5d42ef89735ca6
-References: <20250305091246.106626-1-swathi.ks@samsung.com>
-	<CGME20250305091852epcas5p18a0853e85a5ed3d36d5d42ef89735ca6@epcas5p1.samsung.com>
-	<20250305091246.106626-2-swathi.ks@samsung.com>
-	<89dcfb2a-d093-48f9-b6d7-af99b383a1bc@kernel.org>
-	<00e301db8e49$95bfbf90$c13f3eb0$@samsung.com>
-	<a9ddeccf-8fc6-453c-af62-55e895888a77@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250226112552.52494-4-kikuchan98@gmail.com>
 
+Hi Hironori,
 
+kernel test robot noticed the following build warnings:
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: 06 March 2025 12:35
-> To: Swathi K S <swathi.ks=40samsung.com>; krzk+dt=40kernel.org;
-> andrew+netdev=40lunn.ch; davem=40davemloft.net; edumazet=40google.com;
-> kuba=40kernel.org; pabeni=40redhat.com; robh=40kernel.org;
-> conor+dt=40kernel.org; richardcochran=40gmail.com;
-> mcoquelin.stm32=40gmail.com; alexandre.torgue=40foss.st.com
-> Cc: rmk+kernel=40armlinux.org.uk; netdev=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-stm32=40st-md-mailman.stormreply.com;
-> linux-arm-kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org;
-> pankaj.dubey=40samsung.com; ravi.patel=40samsung.com;
-> gost.dev=40samsung.com
-> Subject: Re: =5BPATCH v8 1/2=5D dt-bindings: net: Add FSD EQoS device tre=
-e
-> bindings
->=20
-> On 06/03/2025 04:40, Swathi K S wrote:
-> >
-> >
-> >> -----Original Message-----
-> >> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> >> Sent: 05 March 2025 21:12
-> >> To: Swathi K S <swathi.ks=40samsung.com>; krzk+dt=40kernel.org;
-> >> andrew+netdev=40lunn.ch; davem=40davemloft.net;
-> edumazet=40google.com;
-> >> kuba=40kernel.org; pabeni=40redhat.com; robh=40kernel.org;
-> >> conor+dt=40kernel.org; richardcochran=40gmail.com;
-> >> mcoquelin.stm32=40gmail.com; alexandre.torgue=40foss.st.com
-> >> Cc: rmk+kernel=40armlinux.org.uk; netdev=40vger.kernel.org;
-> >> devicetree=40vger.kernel.org; linux-stm32=40st-md-
-> mailman.stormreply.com;
-> >> linux-arm-kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org=
-;
-> >> pankaj.dubey=40samsung.com; ravi.patel=40samsung.com;
-> >> gost.dev=40samsung.com
-> >> Subject: Re: =5BPATCH v8 1/2=5D dt-bindings: net: Add FSD EQoS device
-> >> tree bindings
-> >>
-> >> On 05/03/2025 10:12, Swathi K S wrote:
-> >>> Add FSD Ethernet compatible in Synopsys dt-bindings document. Add
-> >>> FSD Ethernet YAML schema to enable the DT validation.
-> >>>
-> >>> Signed-off-by: Pankaj Dubey <pankaj.dubey=40samsung.com>
-> >>> Signed-off-by: Ravi Patel <ravi.patel=40samsung.com>
-> >>> Signed-off-by: Swathi K S <swathi.ks=40samsung.com>
-> >>
-> >> <form letter>
-> >> This is a friendly reminder during the review process.
-> >>
-> >> It looks like you received a tag and forgot to add it.
-> >>
-> >> If you do not know the process, here is a short explanation:
-> >> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> >> versions of patchset, under or above your Signed-off-by tag, unless
-> >> patch changed significantly (e.g. new properties added to the DT
-> >> bindings). Tag is =22received=22, when provided in a message replied t=
-o you
-> on the mailing list.
-> >> Tools like b4 can help here. However, there's no need to repost
-> >> patches
-> >> *only* to add the tags. The upstream maintainer will do that for tags
-> >> received on the version they apply.
-> >>
-> >> Please read:
-> >> https://protect2.fireeye.com/v1/url?k=3D19972162-781c345b-1996aa2d-
-> >> 000babffae10-7bd6b1a1d78b210b&q=3D1&e=3D94dcc3a6-5303-441a-8c1e-
-> >> de696b216f86&u=3Dhttps%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv6.12-
-> >> rc3%2Fsource%2FDocumentation%2Fprocess%2Fsubmitting-
-> >> patches.rst%23L577
-> >>
-> >> If a tag was not added on purpose, please state why and what changed.
-> >
-> > Hi Krzysztof,
-> > As per a review comment received from Russell, I had added 2 new
-> properties to the DT - assigned-clocks and assigned-clock-parents propert=
-ies.
-> > The example in the DT binding reflects the same.
-> > I felt it wouldn't be fair to add 'Reviewed-by' tag without you reviewi=
-ng the
-> updates again.
-> > But I should have mentioned that in cover letter and apologies for miss=
-ing
-> to do that.
-> Nothing in changelog explained new properties. Nothing mentioned
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.14-rc5 next-20250305]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Had mentioned under 'changes since v7' in the cover letter patch where I ha=
-d mentioned about addressing Russell's comment and corresponding DT binding=
- example changes of setting clock tree in DT.
+url:    https://github.com/intel-lab-lkp/linux/commits/Hironori-KIKUCHI/dt-bindings-vendor-prefixes-Add-hothmi-vendor-prefix/20250226-192724
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250226112552.52494-4-kikuchan98%40gmail.com
+patch subject: [PATCH v2 3/3] drm: panel: Add a driver for Generic MIPI-DSI/DPI(+SPI) panels
+config: csky-randconfig-r112-20250306 (https://download.01.org/0day-ci/archive/20250306/202503061541.2JX2lTlc-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 14.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20250306/202503061541.2JX2lTlc-lkp@intel.com/reproduce)
 
-- Swathi=20
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503061541.2JX2lTlc-lkp@intel.com/
 
-> dropping tag, which you always must explicitly say.
->=20
-> Best regards,
-> Krzysztof
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/panel/panel-mipi.c:407:26: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:408:27: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:410:20: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:424:29: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:425:28: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:426:29: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:427:33: sparse: sparse: cast to restricted __be16
+>> drivers/gpu/drm/panel/panel-mipi.c:429:27: sparse: sparse: cast to restricted __be32
+   drivers/gpu/drm/panel/panel-mipi.c:854:23: sparse: sparse: cast to restricted __be32
+   drivers/gpu/drm/panel/panel-mipi.c:856:26: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:857:46: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:858:47: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:859:42: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:861:26: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:862:46: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:863:47: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:864:42: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:866:23: sparse: sparse: cast to restricted __be32
+   drivers/gpu/drm/panel/panel-mipi.c:1047:22: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:1048:23: sparse: sparse: cast to restricted __be16
+   drivers/gpu/drm/panel/panel-mipi.c:1049:27: sparse: sparse: cast to restricted __be32
+   drivers/gpu/drm/panel/panel-mipi.c: note: in included file (through include/linux/mutex.h, include/drm/drm_mipi_dbi.h):
+   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
 
+vim +407 drivers/gpu/drm/panel/panel-mipi.c
+
+   392	
+   393	static int panel_mipi_read_firmware(const struct device *dev,
+   394					    struct panel_mipi *mipi,
+   395					    const struct panel_firmware *firmware)
+   396	{
+   397		int rotation;
+   398		int err;
+   399	
+   400		err = panel_mipi_load_commands(mipi, firmware->commands.data,
+   401					       firmware->commands.size);
+   402		if (err) {
+   403			dev_err(dev, "firmware: Malformed command sequence\n");
+   404			return err;
+   405		}
+   406	
+ > 407		mipi->width_mm = be16_to_cpu(firmware->config->width_mm);
+   408		mipi->height_mm = be16_to_cpu(firmware->config->height_mm);
+   409	
+   410		rotation = be16_to_cpu(firmware->config->rotation);
+   411		if (rotation == 0)
+   412			mipi->orientation = DRM_MODE_PANEL_ORIENTATION_NORMAL;
+   413		else if (rotation == 90)
+   414			mipi->orientation = DRM_MODE_PANEL_ORIENTATION_RIGHT_UP;
+   415		else if (rotation == 180)
+   416			mipi->orientation = DRM_MODE_PANEL_ORIENTATION_BOTTOM_UP;
+   417		else if (rotation == 270)
+   418			mipi->orientation = DRM_MODE_PANEL_ORIENTATION_LEFT_UP;
+   419		else {
+   420			dev_err(dev, "firmware: Invalid rotation %u\n", rotation);
+   421			return -EINVAL;
+   422		}
+   423	
+   424		mipi->reset_delay = be16_to_cpu(firmware->config->reset_delay);
+   425		mipi->init_delay = be16_to_cpu(firmware->config->init_delay);
+   426		mipi->sleep_delay = be16_to_cpu(firmware->config->sleep_delay);
+   427		mipi->backlight_delay = be16_to_cpu(firmware->config->backlight_delay);
+   428	
+ > 429		mipi->bus_flags = be32_to_cpu(firmware->config->bus_flags);
+   430	
+   431		return 0;
+   432	}
+   433	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
