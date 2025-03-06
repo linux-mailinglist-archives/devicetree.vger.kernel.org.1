@@ -1,66 +1,59 @@
-Return-Path: <devicetree+bounces-154951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E1AA550DD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 17:30:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3439AA55110
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 17:33:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0DBC177196
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 16:29:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEA2F189735E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 16:32:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 324F12144B4;
-	Thu,  6 Mar 2025 16:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 157F123C8CA;
+	Thu,  6 Mar 2025 16:27:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SIzzk/VY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tyQKJlX5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D548D214215;
-	Thu,  6 Mar 2025 16:26:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEEEC23C8C7;
+	Thu,  6 Mar 2025 16:27:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741278398; cv=none; b=dPPmvL654Ur99OqL/i5vfY3/k6EPE+NiaXWy5e9gc1L5WxvbG4Np+kDMfnEGHwJxSGQ01/aBa7dAUIjsgqQiFz2uvQXYIqs6PM18P+k41Mb5MDP1K7nNoxn0tfKRQDtv/RAe0EhuqcoA4yOnhuCnqtpdZIm0bTktzCMk8ONTudc=
+	t=1741278454; cv=none; b=PtCfkSN8xNHPzoZ/1yef4xRImIIj7zYIgeYYaj3dq9Yf0r/aWjPkP31xGCmUroMCKB4DaQUL586Qq0Rq5LejLoeLnWRKnINsvVZ7D2o2SPvA2puIhuyCKCQ/7TJHLbXjdmTB3uhuAqLQMNuY7OHvSg3IKfSAd1q1ehTpqfuZVIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741278398; c=relaxed/simple;
-	bh=p1xxl5U+OpWnSGGhMDfZZryJ7dgXJL+8/fxRSuOy6tA=;
+	s=arc-20240116; t=1741278454; c=relaxed/simple;
+	bh=jthW/fL1Zasqiw/0qv4ietdcvP4mUzmlvnMjEK6S/c8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Emk5JRgwX5+/XuPCiJM/64hh+4+Te0qeFKKGbwiOYjBoJDNET4mgJwIJN6UEE6uPiJWbNXTO4dkuPFi8uD9nJ2RRdCZE9zChwKy8vzncVJeFzPD2NRLA4jA2GjXgatLaQOkcfVmTavMarzo3xjA33QHh1DaifONxOvdNhPe5Mn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SIzzk/VY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7A77C4CEE0;
-	Thu,  6 Mar 2025 16:26:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=J2k3hBwhv2aphOV9uhECjx5Jlqi/AqKlkpCdlG6MBBkzUkfMt4pu78ywdOWBUOjx2nhKMiob4VzaPyZQBnB9WAlidXJOdurenSbGDw58GiTRo3OMjXgRmllY8wdRbC6QnNaSXHi48lHNSflS1aJGVMpQSbHAPF/AnoiQNAnoVU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tyQKJlX5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8012EC4CEE9;
+	Thu,  6 Mar 2025 16:27:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741278397;
-	bh=p1xxl5U+OpWnSGGhMDfZZryJ7dgXJL+8/fxRSuOy6tA=;
+	s=k20201202; t=1741278453;
+	bh=jthW/fL1Zasqiw/0qv4ietdcvP4mUzmlvnMjEK6S/c8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SIzzk/VY6Vgd2uPb6a3xN8O3a9SNzgSLtHnGLiUktfMIk0F3urhpDtwwNZsg3Gwqt
-	 rDbb5VIwdBD8IT8aiuMxMp4tgYcnZLcAxOg6kdiT7N+M8bY/wMy7490LwJYKPuDl8+
-	 UmMLVzdWE8rX/mSBctB+ce9oOpdSpmVQqi8xIu/Vjko9TL4lVjPCs4TdlIHrG46So/
-	 pnm3iGVLlK812LAfJFEp9GC8fh5VxbUSf5a3n5aq94YcZazqxF3dDAV3o9dUDHbMN+
-	 VIZOjcMr7uIfKe2or1eRdogLf0KceWKRNeH8MtSBVQy0RItfjWnAIboZq1nCpc7UJk
-	 FFmqXEOieXoGA==
-Date: Thu, 6 Mar 2025 16:26:32 +0000
+	b=tyQKJlX5QTnZ9LVFjuBHhFWvLxUQ/SOjbUgz6ld452D3UEM5bil3vqclpHWBrXa1V
+	 qPT0Cl9KG/A2CD3WXvk/nrB+4KzdGdJvIT1qUmAICiY1Kc+UawzAnBTjuPP6o62Xj9
+	 kMcZIaMYKqVO3CmcdA8WjpcZLff95jpB9wWNdydA0zxJ0oQWCHw/HUblZiP5hEbO8/
+	 je+KFdxtcXX4KH+i0LI4HDCYnY7ZBYDqa6VzN9KRiVEzeAHoKLDHMuHAAJyWRsD0gB
+	 nYacfdM8dQAFkLc4D0SIWi3yMTz7SBy3nStVCKD/u1GN2DIYUCptAliXLt1zt/it7c
+	 bG/GQB+5s/0/Q==
+Date: Thu, 6 Mar 2025 16:27:29 +0000
 From: Conor Dooley <conor@kernel.org>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: Document RZ/V2H(P) USB2PHY
- Control
-Message-ID: <20250306-slather-audition-a6b28ba1483e@spud>
-References: <20250305123915.341589-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250305123915.341589-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250305-cesspool-headlock-4d28a2a1333e@spud>
- <CA+V-a8uQTL+SHYqVU_J0th4PT6YPF7q6ypzDu33nS_6onWLoOQ@mail.gmail.com>
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	"open list:MAILBOX API" <linux-kernel@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: mailbox: fsl,mu: Add i.MX94 compatible
+Message-ID: <20250306-immature-ether-d92fb5b8f18a@spud>
+References: <20250306155225.99807-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,141 +61,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DOLIzUy4BmDDCltF"
+	protocol="application/pgp-signature"; boundary="FX1q63A62l42URpo"
 Content-Disposition: inline
-In-Reply-To: <CA+V-a8uQTL+SHYqVU_J0th4PT6YPF7q6ypzDu33nS_6onWLoOQ@mail.gmail.com>
+In-Reply-To: <20250306155225.99807-1-Frank.Li@nxp.com>
 
 
---DOLIzUy4BmDDCltF
-Content-Type: text/plain; charset=utf-8
+--FX1q63A62l42URpo
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 05, 2025 at 09:35:13PM +0000, Lad, Prabhakar wrote:
-> Hi Conor,
+On Thu, Mar 06, 2025 at 10:52:24AM -0500, Frank Li wrote:
+> Add compatible string "fsl,imx94-mu" for the i.MX94 chip, which is backwa=
+rd
+> compatible with i.MX95. Set it to fall back to "fsl,imx95-mu".
 >=20
-> Thank you for the review.
->=20
-> On Wed, Mar 5, 2025 at 4:26=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
-> >
-> > On Wed, Mar 05, 2025 at 12:39:13PM +0000, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Add device tree binding document for the Renesas RZ/V2H(P) USB2PHY Co=
-ntrol
-> > > Device. It mainly controls reset and power down of the USB2.0 PHY (for
-> > > both host and function).
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > ---
-> > >  .../reset/renesas,rzv2h-usb2phy-ctrl.yaml     | 56 +++++++++++++++++=
-++
-> > >  1 file changed, 56 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/reset/renesas,r=
-zv2h-usb2phy-ctrl.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/reset/renesas,rzv2h-us=
-b2phy-ctrl.yaml b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb=
-2phy-ctrl.yaml
-> > > new file mode 100644
-> > > index 000000000000..ed156a1d3eb3
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-c=
-trl.yaml
-> > > @@ -0,0 +1,56 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/reset/renesas,rzv2h-usb2phy-ctrl.=
-yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Renesas RZ/V2H(P) USB2PHY Control
-> > > +
-> > > +maintainers:
-> > > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > +
-> > > +description:
-> > > +  The RZ/V2H(P) USB2PHY Control mainly controls reset and power down=
- of the
-> > > +  USB2.0 PHY.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: renesas,r9a09g057-usb2phy-ctrl  # RZ/V2H(P)
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  resets:
-> > > +    maxItems: 1
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#reset-cells':
-> > > +    const: 0
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - clocks
-> > > +  - resets
-> > > +  - power-domains
-> > > +  - '#reset-cells'
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/renesas,r9a09g057-cpg.h>
-> > > +
-> > > +    usbphy-ctrl@15830000 {
-> >
-> > How come your nodename isn't "reset-controller"?
-> This is to keep consistency with the other similar IP blocks found on
-> Renesas SoCs [0].
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-That sounds awfully like "it was wrong before, and I want to keep using
-the wrong node name"... If you're claiming to be some other class of
-device, "ctrl" should really be "controller" like all the other sorts of
-controllers ;)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+> ---
+>  Documentation/devicetree/bindings/mailbox/fsl,mu.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 >=20
-> [0] https://elixir.bootlin.com/linux/v6.14-rc5/source/Documentation/devic=
-etree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml#L66
+> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Docu=
+mentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> index 00631afcd51d8..581425aacdccf 100644
+> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> @@ -54,6 +54,10 @@ properties:
+>                - fsl,imx8qm-mu
+>                - fsl,imx8qxp-mu
+>            - const: fsl,imx6sx-mu
+> +      - items:
+> +          - enum:
+> +              - fsl,imx94-mu
+> +          - const: fsl,imx95-mu
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -142,7 +146,8 @@ allOf:
+>        not:
+>          properties:
+>            compatible:
+> -            const: fsl,imx95-mu
+> +            contains:
+> +              const: fsl,imx95-mu
+>      then:
+>        patternProperties:
+>          "^sram@[a-f0-9]+": false
+> --=20
+> 2.34.1
 >=20
-> > Otherwise,
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > > +        compatible =3D "renesas,r9a09g057-usb2phy-ctrl";
-> > > +        reg =3D <0x15830000 0x10000>;
-> > > +        clocks =3D <&cpg CPG_MOD 0xb6>;
-> > > +        resets =3D <&cpg 0xaf>;
-> > > +        power-domains =3D <&cpg>;
-> > > +        #reset-cells =3D <0>;
-> > > +    };
-> > > --
-> > > 2.43.0
-> > >
->=20
-> Cheers,
-> Prabhakar
 
---DOLIzUy4BmDDCltF
+--FX1q63A62l42URpo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8nMuAAKCRB4tDGHoIJi
-0oGbAQD1DEsVJ26txgtMwHVJFjjyDvTc4QPtoSqHjqDxyI68/wEApouaX/KT91rL
-yXazIwVT6hH2o50iPf/75oKx00Mlvgc=
-=ry25
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8nM8QAKCRB4tDGHoIJi
+0puLAQDaMSbzKyckc83ABSYO3V7PLYkBLV70po+etx2BbBLI+QD/Ux+vA7N69rjQ
+cOR9TOdmWil9KRROSc7oGB1n6PkOsgo=
+=U1NF
 -----END PGP SIGNATURE-----
 
---DOLIzUy4BmDDCltF--
+--FX1q63A62l42URpo--
 
