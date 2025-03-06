@@ -1,180 +1,191 @@
-Return-Path: <devicetree+bounces-154643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D63FEA54157
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 04:45:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36A65A54172
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 04:54:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 214547A6E47
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 03:44:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6157B1693FE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 03:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D07011993BD;
-	Thu,  6 Mar 2025 03:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381F3199E88;
+	Thu,  6 Mar 2025 03:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MrjwQWM0"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="EeOmRY61"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A9317C98
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 03:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F0A519D898
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 03:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741232708; cv=none; b=KzpncilVNRreH7mF+sN0JgvMaNYvH43EUDz1xE97SMBVjaoBc/vabWiggp+i3pgueYh/rMVvhmyBqCSCstS631gVPg3+P8jkns+VtKeTn5gM5eQpjH9gJdBxZh/Sty6LrBuY3bsS4hfx8qrDJ2QmJcc5ulFPYsG+erx1I2h+6XA=
+	t=1741233267; cv=none; b=DwRfAa10PgRErqbObFgyVewIyvtYlzUchEjDEsiRaoSutYy4k0SLMD4ctouHwnIEidW7TkV2xaV08/xgDm0hYpkP0kls3f/0a2H1iZQHcnCz/XNQSGVa1UrXCjMFbCqR9VRWlex6wTi2KYak0aDczqMa9pF1CQt4qUumwo+u4vU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741232708; c=relaxed/simple;
-	bh=s8ihgNf+/lTzOH0KKqwJ/Y6ngXzFB3uo/jmic8WGk6c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T7W6s3CVmqXZWx2afp4dc7k5ZhzbJPYRbtXu+wpnO5qPWEqudwx1k1wBRvTe3Mxu2ISUXl/rnYakvDJOe0z1sxU1gofpNH1C7VUqb/WRyb6qRVhI7QxxWDP/pGePpz0jUiDkgfIRU0/GL2uP/WJkbSYapqz/Ktfd9Z3O5A9Ftb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MrjwQWM0; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-223594b3c6dso2262825ad.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 19:45:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741232706; x=1741837506; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RR/3Sh2yGD8FYmZXDeG1gkp5RyyAVqAwHMabcS8vVWU=;
-        b=MrjwQWM0VX3Jkcruam4NVPBR16WsJoRYMa0CjdvL4UYun9QCTk2m4aqQPSRkj1+n2P
-         /knF4wCdb4mOK83r9Fap7jwKcjg+5V/qC0UZsSotPj78tcLSPRQ/e2SxzWdzqnz3YciC
-         lJhC/6+cEErpTC5tI3Cyx4X77zvJn16VB1dxDvnDECDLneeKc9gWwiP8KXNbkEzx07HO
-         i1BZ151IiHp15Kgmig0jY3ms1nXCJuYhfClKv3X5e7tnetOGJgviimem3UWco5JNIq/q
-         xRow5enu1vkgQRboZC2/8yhRipERSf+iy3fLz1FA2U6Guyd0tRFSO4GSeBxjzdOSHs/e
-         7aww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741232706; x=1741837506;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RR/3Sh2yGD8FYmZXDeG1gkp5RyyAVqAwHMabcS8vVWU=;
-        b=DIiOaoZqtmZCsfP3M3sWkIoWsJdom8MAaWNGPDJ9cE6/dGxBKrfbZX4zxk12HoB0hS
-         Z9gm21l7RdNFGOV+x5RXEEPOjDnchPjL+RejaxBs5d9KS6LQWJ+ejSUmZo5pmHnFrJfn
-         5B1DIMn6rq9cfpWZCcffkbl+yZhRl2xaKKF56YBJ8yL7KPt2DcCucoKPKoAH63b05Jzf
-         l0/aFpP0UXaB7Di3ERcp6yv75gWj+t3LnmjQnGHWiaa8BFl6qjHPdYeSqPVqPeaSF/oF
-         OYvOcMrt1bzlgsZmwUaog/MD9I6tP+C3fQNp0niQDMNnYrZSWLrcYTBLN4Xqb5NAr8Vi
-         tvMw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYf4U/ph6E1BtthuZh/I1iiIp41YBWbD1mb+vJkhl4xHDPmm3psH67mZnzmua6GnsZQqKQ83uZ4rgr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/WlesHNknxjkyctVVAzIqiHfe5Fji1bMSNgZOEZx17bcOOFvm
-	WLV5l1YYIjU2CK2vDDEwXUMMAqqn1dF4FacANrd61EtT1TQ7eFg3MGxFaT+k+A==
-X-Gm-Gg: ASbGncvEcxdHiTfsk6QSpZe8YDk4cTX4JCIIzdZNRi5rfe+0dqVnqTpQs/NHhaLEFe7
-	QV9GvZZYi91imBSCBlOv+UQlNYrAIAAhmyufXeBNcWthGPg+Am6gSlIdy5NNZM/wOqukSpq+Lzl
-	rA6OrjC3gspuC7e8vcfwtWdLK1zSIVGFDEUNDqUoS0gFWTm5BpUGDMxJdMXHn6hVOZWs0rOLEeP
-	mQ4Lou+4IASGFYYYq78fegjV1WNyVRT1Y4sF39XQ4M1LdtZqaazDrsLiC0UYHOt8fYH92bILfeo
-	O85DfP2sHa/gWO1P4tzr7QGWfh95YS98MrXRFz/DCv3K3MrZS3aZXFE=
-X-Google-Smtp-Source: AGHT+IGKJttGqJWItASqbCKDIt2tzUlENZ2HliebcQ18gZfjLIkLG4+OaRrcXjLUk9Kxrd+AX1YZIg==
-X-Received: by 2002:a05:6a00:338d:b0:736:755b:8311 with SMTP id d2e1a72fcca58-73682c89e14mr8508343b3a.16.1741232706353;
-        Wed, 05 Mar 2025 19:45:06 -0800 (PST)
-Received: from thinkpad ([120.56.193.59])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73698206c6dsm243250b3a.9.2025.03.05.19.45.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Mar 2025 19:45:05 -0800 (PST)
-Date: Thu, 6 Mar 2025 09:14:59 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	quic_mrana@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v7 3/4] PCI: dwc: Improve handling of PCIe lane
- configuration
-Message-ID: <20250306034459.uc4qlnsnxijotplo@thinkpad>
-References: <20250225-preset_v6-v7-0-a593f3ef3951@oss.qualcomm.com>
- <20250225-preset_v6-v7-3-a593f3ef3951@oss.qualcomm.com>
+	s=arc-20240116; t=1741233267; c=relaxed/simple;
+	bh=v7LFaMMQT5qrY+eFMcg0qAr81bixG1aaagmkYP4Xk5w=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=keEcJ/nvBOyRCGyvKQvAEa/WTh10xqn+cjOwDP6NST1qE++etvX6K4AbCwQYfBIs+ZvmQ/JYzI0C+GATVbt/737Ya4oidS5zAW22/sfVjWK9du9kB7KXUFechsDvxQGfaiyY0KeOHhHI/+1Ho1KOdychLR1VObKhj0seVqL6EGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=EeOmRY61; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250306035417epoutp016cdf69b60dc9065999f875ea7fb8e198~qGmwmgrCO2530825308epoutp018
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 03:54:17 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250306035417epoutp016cdf69b60dc9065999f875ea7fb8e198~qGmwmgrCO2530825308epoutp018
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1741233257;
+	bh=DXfDqyB+rOhMKjLXfrimA7pgRFXTlWdnO4cbB4v1SdY=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=EeOmRY61sEKDO0l7sOdjyCn+ZPZV4UGF0WLSmIOgmlbgPD2ZR+Usrbcbd0FBNfRnc
+	 pyPCHa/Nu+ecaiyboYVpMv6oCWjcc6kAGhp21Ymlcx+rkM5aCX877alVyS1VFxJ0cl
+	 j4ybLqSQPs3P3bOlngGINXC2gaSIXtliv4z+KNRQ=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+	20250306035417epcas5p1558e19e920f71ce54e9b929f23ebb9fb~qGmv9b5UE2592825928epcas5p1j;
+	Thu,  6 Mar 2025 03:54:17 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.174]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4Z7bBt6v0cz4x9Q1; Thu,  6 Mar
+	2025 03:54:14 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+	epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	7E.76.20052.66C19C76; Thu,  6 Mar 2025 12:54:14 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250306034910epcas5p3e2ae456558f38e44a3fb55bf878d4abc~qGiSLgvFs1755017550epcas5p3R;
+	Thu,  6 Mar 2025 03:49:10 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250306034910epsmtrp296caea2bdd3a7a864c9828418b7d2075~qGiSKVou30610606106epsmtrp2g;
+	Thu,  6 Mar 2025 03:49:10 +0000 (GMT)
+X-AuditID: b6c32a49-3d20270000004e54-9b-67c91c66a7c6
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	17.E6.33707.63B19C76; Thu,  6 Mar 2025 12:49:10 +0900 (KST)
+Received: from FDSFTE596 (unknown [107.122.82.131]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250306034907epsmtip2ecdb5a27d89d31aa4ee2d2e8068aff98~qGiP9j43W0601306013epsmtip26;
+	Thu,  6 Mar 2025 03:49:07 +0000 (GMT)
+From: "Swathi K S" <swathi.ks@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <krzk+dt@kernel.org>,
+	<linux-fsd@tesla.com>, <robh@kernel.org>, <conor+dt@kernel.org>,
+	<richardcochran@gmail.com>, <alim.akhtar@samsung.com>
+Cc: <jayati.sahu@samsung.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<pankaj.dubey@samsung.com>, <ravi.patel@samsung.com>, <gost.dev@samsung.com>
+In-Reply-To: <7328e538-31cf-4674-83d2-943f1a2d1455@kernel.org>
+Subject: RE: [PATCH v7 1/2] arm64: dts: fsd: Add Ethernet support for FSYS0
+ Block of FSD SoC
+Date: Thu, 6 Mar 2025 09:18:34 +0530
+Message-ID: <00e801db8e4a$b7c2e990$2748bcb0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250225-preset_v6-v7-3-a593f3ef3951@oss.qualcomm.com>
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-in
+Thread-Index: AQHnZW/QZNZXP7mFyf6Or/FDfq+edAEP4FfLAl/FyHABH54M5LMpTuNQ
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNJsWRmVeSWpSXmKPExsWy7bCmlm6azMl0g7vLzC0ezNvGZrFm7zkm
+	i/lHzrFa3Dywk8niyKklTBYvZ91jszh/fgO7xabH11gtHr4Kt7i8aw6bxYzz+5gsji0Qs1i0
+	9Qu7xcMPe9gtjpx5wWzxf88OdgcBj52z7rJ7bFrVyeaxeUm9R9+WVYwe/5rmsnt83iQXwBaV
+	bZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6DrlpkDdLWSQlli
+	TilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8CkQK84Mbe4NC9dLy+1xMrQwMDIFKgwITtj
+	78pdLAVbeCtO7NjP1MC4iLuLkZNDQsBE4vCPI4xdjFwcQgK7GSW+7O1khnA+MUpcOfmTEc65
+	NfEoO0zL5neP2CASOxklPh/9DVX1glHi7/M1YFVsAloSi/r2sYMkRAT2M0qcnvABzGEWmMYk
+	cWTmayaQKk4BO4lVr0+wgdjCAnESfVffAcU5OFgEVCQ6NnKAhHkFLCWeHfrFBmELSpyc+YQF
+	xGYW0JZYtvA1M8RJChI/ny5jhYiLSxz92QMWFxFwk2h58oIJouYOh8TVOWYQtovE3tszoOLC
+	Eq+Ob4F6TUri87u9bBB2vMTqvqssEHaGxN1fE6Hi9hIHrsxhATmTWUBTYv0ufYiwrMTUU+uY
+	IE7gk+j9/QRqPK/EjnkwtrLE39fXoEZKSmxb+p59AqPSLCSfzULy2Swk38xC2LaAkWUVo2Rq
+	QXFuemqxaYFhXmo5PMaT83M3MYJTtZbnDsa7Dz7oHWJk4mA8xCjBwawkwvv61PF0Id6UxMqq
+	1KL8+KLSnNTiQ4ymwNCeyCwlmpwPzBZ5JfGGJpYGJmZmZiaWxmaGSuK8zTtb0oUE0hNLUrNT
+	UwtSi2D6mDg4pRqYYu+bvUl8aV/hnGqefOnHoyXHc75+sZEUe8zdLe7yd2X9dbbKNdkW0aWC
+	FwrmzT/Ju8Npg22qV562/uPqSyWG8439tmy/+2yzw9rllgZOb3xdNE8frd/90ehuZe1aeTd9
+	Mdeu8ier0/Ys2f4maJ6ixr9Fdd3WyWejN6x5qOM3azNfpr7HoSkNcWotR7N+N7R+n8g0xSSh
+	9VajhvQirQ9Mqn3qm6eELLr5J/rin+yS71VVEx737tldle5Yse5fz5w97oyaZ869VX8mIBP8
+	deeDObkS91nD765e79kVk1BjscK8dts59if7boWFJKZrcZbH3I8qnptXciDVge0kq8IS20/F
+	D4pPTnFTXL/58tIyJZbijERDLeai4kQAuMf5RV4EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPIsWRmVeSWpSXmKPExsWy7bCSvK6Z9Ml0g1PXWCwezNvGZrFm7zkm
+	i/lHzrFa3Dywk8niyKklTBYvZ91jszh/fgO7xabH11gtHr4Kt7i8aw6bxYzz+5gsji0Qs1i0
+	9Qu7xcMPe9gtjpx5wWzxf88OdgcBj52z7rJ7bFrVyeaxeUm9R9+WVYwe/5rmsnt83iQXwBbF
+	ZZOSmpNZllqkb5fAlbFq2mzGgu88FTcmvWFvYHzM1cXIySEhYCKx+d0jti5GLg4hge2MEqvO
+	H2CCSEhKfGqeygphC0us/PecHaLoGaPEwkdHwIrYBLQkFvXtA0uICBxnlJj+cAkziMMssIBJ
+	4kPvXzaQKiGBt4wSW9/ZgdicAnYSq16fAIsLC8RIPDnyiLGLkYODRUBFomMjB0iYV8BS4tmh
+	X2wQtqDEyZlPWEBsZgFtid6HrYww9rKFr5khrlOQ+Pl0GStEXFzi6M8esLiIgJtEy5MXTBMY
+	hWchGTULyahZSEbNQtK+gJFlFaNoakFxbnpucoGhXnFibnFpXrpecn7uJkZwnGoF7WBctv6v
+	3iFGJg7GQ4wSHMxKIryvTx1PF+JNSaysSi3Kjy8qzUktPsQozcGiJM6rnNOZIiSQnliSmp2a
+	WpBaBJNl4uCUamAqUHrF7rwsfQZz8ueWp+c9zlXucth1arFMqqDzjAlqD1w27G660Kh1W2zC
+	+VDJZzeNckT2RTH+NTHear1mTug8d84/myN1eL2OuX1icGpkt5jL+29WTwCHqp3wlqnf5a7/
+	iWd7tGsqi+pHO9FjXWWiz9Y0vys8LTBr06sqXe7qVU0hu1jvcrXWG6dESZlaVV9LfvU1cm9P
+	ykMd9VPdqp+aXT4FmSSqJ6+Xmc6fLBLwZbvbJTOj938bU1k6UhdtfvdZJW/i7f+NH/9z9VTM
+	X5t6nqGl+O77dR42c2/uyNqUe9XC8a/hbtmK494vz/GFfDz2/v/lJ4dS7h1yNK1ril25pfr8
+	78Y4mZUfhc8YPHyjxFKckWioxVxUnAgAFoU4UkIDAAA=
+X-CMS-MailID: 20250306034910epcas5p3e2ae456558f38e44a3fb55bf878d4abc
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250220073944epcas5p495ee305ca577a7e1be51ff916f20fc53
+References: <20250220073527.22233-1-swathi.ks@samsung.com>
+	<CGME20250220073944epcas5p495ee305ca577a7e1be51ff916f20fc53@epcas5p4.samsung.com>
+	<20250220073527.22233-2-swathi.ks@samsung.com>
+	<7328e538-31cf-4674-83d2-943f1a2d1455@kernel.org>
 
-On Tue, Feb 25, 2025 at 05:15:06PM +0530, Krishna Chaitanya Chundru wrote:
-> Currently even if the number of lanes hardware supports is equal to
-> the number lanes provided in the devicetree, the driver is trying to
-> configure again the maximum number of lanes which is not needed.
-> 
-> Update number of lanes only when it is not equal to hardware capability.
-> 
 
-'Update max link width only...'
 
-> And also if the num-lanes property is not present in the devicetree
-> update the num_lanes with the maximum hardware supports.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 01 March 2025 19:29
+> To: Swathi K S <swathi.ks=40samsung.com>; krzk+dt=40kernel.org; linux-
+> fsd=40tesla.com; robh=40kernel.org; conor+dt=40kernel.org;
+> richardcochran=40gmail.com; alim.akhtar=40samsung.com
+> Cc: jayati.sahu=40samsung.com; linux-arm-kernel=40lists.infradead.org; li=
+nux-
+> samsung-soc=40vger.kernel.org; devicetree=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; netdev=40vger.kernel.org;
+> pankaj.dubey=40samsung.com; ravi.patel=40samsung.com;
+> gost.dev=40samsung.com
+> Subject: Re: =5BPATCH v7 1/2=5D arm64: dts: fsd: Add Ethernet support for=
+ FSYS0
+> Block of FSD SoC
+>=20
+> On 20/02/2025 08:35, Swathi K S wrote:
+> >  &pinctrl_peric =7B
+> > diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi
+> > b/arch/arm64/boot/dts/tesla/fsd.dtsi
+> > index 690b4ed9c29b..01850fbf761f 100644
+> > --- a/arch/arm64/boot/dts/tesla/fsd.dtsi
+> > +++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
+> > =40=40 -1007,6 +1007,26 =40=40
+> >  			clocks =3D <&clock_fsys0
+> UFS0_MPHY_REFCLK_IXTAL26>;
+> >  			clock-names =3D =22ref_clk=22;
+> >  		=7D;
+> > +
+> > +		ethernet0: ethernet=4015300000 =7B
+> > +			compatible =3D =22tesla,fsd-ethqos=22;
+>=20
+> I don't see bindings in the linux-next, so I am dropping this patch from =
+my
+> queue. Please resend when the bindings hit the linux-next.
 
-'...update 'pci->num_lanes' with the hardware supported maximum link width using
-the newly introduced dw_pcie_link_get_max_link_width() API.'
+Thanks for informing me.
+I have posted v8 of DT bindings: https://lore.kernel.org/netdev/89dcfb2a-d0=
+93-48f9-b6d7-af99b383a1bc=40kernel.org/
+Will wait for some time for the DT binding to reflect on linux-next before =
+posting v8 patches of DT files.
 
-> 
-> Introduce dw_pcie_link_get_max_link_width() to get the maximum lane
-> width the hardware supports.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-host.c |  3 +++
->  drivers/pci/controller/dwc/pcie-designware.c      | 11 ++++++++++-
->  drivers/pci/controller/dwc/pcie-designware.h      |  1 +
->  3 files changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index ffaded8f2df7..dd56cc02f4ef 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -504,6 +504,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  
->  	dw_pcie_iatu_detect(pci);
->  
-> +	if (pci->num_lanes < 1)
-> +		pci->num_lanes = dw_pcie_link_get_max_link_width(pci);
-> +
->  	/*
->  	 * Allocate the resource for MSG TLP before programming the iATU
->  	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 145e7f579072..9fc5916867b6 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -737,12 +737,21 @@ static void dw_pcie_link_set_max_speed(struct dw_pcie *pci)
->  
->  }
->  
-> +int dw_pcie_link_get_max_link_width(struct dw_pcie *pci)
-> +{
-> +	u8 cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> +	u32 lnkcap = dw_pcie_readl_dbi(pci, cap + PCI_EXP_LNKCAP);
-> +
-> +	return FIELD_GET(PCI_EXP_LNKCAP_MLW, lnkcap);
-> +}
-> +
->  static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 num_lanes)
->  {
-> +	int max_lanes = dw_pcie_link_get_max_link_width(pci);
->  	u32 lnkcap, lwsc, plc;
->  	u8 cap;
->  
-> -	if (!num_lanes)
-> +	if (max_lanes == num_lanes)
+- Swathi
 
-This gives the assumption that the link width in PCIE_PORT_LINK_CONTROL and
-PCIE_LINK_WIDTH_SPEED_CONTROL registers are same as MLW. Is it really true as
-per the DWC spec?
+>=20
+> Best regards,
+> Krzysztof
 
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
