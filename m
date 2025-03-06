@@ -1,135 +1,112 @@
-Return-Path: <devicetree+bounces-155071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE742A557C1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 21:50:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57698A557DE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 21:54:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 820467A8C5E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 20:49:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64FC01891B59
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 20:54:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2247B205AD5;
-	Thu,  6 Mar 2025 20:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED59E207A0A;
+	Thu,  6 Mar 2025 20:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IYLduU9d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="APHTg84B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E6D205502;
-	Thu,  6 Mar 2025 20:50:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5DEE206F2C;
+	Thu,  6 Mar 2025 20:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741294222; cv=none; b=TpL9wPv8e+2lTuYa6qbfNoItTFj0nH+gmG9tmuagC57DGdlt9WJ1g1My6w7H+OROx1fcMImKjn9fqBiJok6L6+bDFk2u5uIc4XWh/YO5UrtHzypw/HqUlY/xxKqlXUEo6J/HuFCjmK3kkQvvOxAg2teZEzkK4nDRNlWqrBnlv0g=
+	t=1741294385; cv=none; b=ZxpStSxfeAkcy1fK3219ACfkJmiajYdHRl5b/M0ZvyPDXU0dwMuqChiX9jVwB2UV9L7hX+XqaAq8IZufD3ajEJ9AL0Qw7vH2nOTRtO3yqnHDDpEjft8xXZIYH1f14E94f+L3oVVdnw0IfHtU/AmZahKtot/XrwH2EQRAcPxm1DU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741294222; c=relaxed/simple;
-	bh=cvf/ipSb+K3a68VNt2N4RXjMJlyp30yAxRniCB2UBM8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KADt2pWJIln/dT8qqRXEjv4EGdl/Yopd80QKJDvaeqvOS37bsglCiI8SMROGo8rSOQRiXExm5RVdx017siflOtwAF+GPbolna/cj1e/SY4W2loWfkj8QOOtkwc1rOEBHOxsg04guYNd3lbM0OA73nu0W6N1IpO0PfZbG6LoKGas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IYLduU9d; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741294221; x=1772830221;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=cvf/ipSb+K3a68VNt2N4RXjMJlyp30yAxRniCB2UBM8=;
-  b=IYLduU9dQn2RXRnZfTZHeIilSD0zvpt3Lw8CEWmXDR8nnBw3p3qHTJVn
-   Uclgy1gXhEORB03Tjn9sC5TqkCekrnyNZyXeJX3lUiiNhHJpWE/hqQkUu
-   3lFniyvPhKqyeSfg+e0+aSeXatD9oNPD4x2JRtOXsnnbTx+b9nG/ResCP
-   n8sQw9tJ8rDRw17gqJcPwKmhzBFWW/ycsxGCbC92eo/+SGxL9LzOWgITU
-   caOQ95ukKogQ7UOQ2Pghfj1GoGENkAX+rC2CXrVKey5WAoI3501fytPyJ
-   YswMxPJBZ2kP7w8Nu5ioyQnyuUAtdz6FkMNs4A2WZMIX/maA3HyiI7GnV
-   A==;
-X-CSE-ConnectionGUID: fg45Lxw4QvicRNx6RWFggQ==
-X-CSE-MsgGUID: udITrILpS76cgepxiJHRVQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41502045"
-X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; 
-   d="scan'208";a="41502045"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2025 12:50:20 -0800
-X-CSE-ConnectionGUID: ZCMNw3ZDQFC0f7jhlngx6A==
-X-CSE-MsgGUID: qh4lq5bpSq+Xez7Ou7jcRQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="119052143"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by orviesa010.jf.intel.com with ESMTP; 06 Mar 2025 12:50:09 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tqIAQ-000NbS-31;
-	Thu, 06 Mar 2025 20:50:06 +0000
-Date: Fri, 7 Mar 2025 04:49:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, kernel@collabora.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>,
-	Andrew Perepech <andrew.perepech@mediatek.com>
-Subject: Re: [PATCH v3 04/20] ASoC: mediatek: mt6359-accdet: Add compatible
- property
-Message-ID: <202503070421.25fbw6zg-lkp@intel.com>
-References: <20250304-mt6359-accdet-dts-v3-4-5b0eafc29f5b@collabora.com>
+	s=arc-20240116; t=1741294385; c=relaxed/simple;
+	bh=8EIWBk4tJ9DcjCef0B68zkL4TVv6vr+br//UXXBebTY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=liu1w5kWT1SJwFQplTAi5ACz+5dvTIIlDbwOK/1zS4+lTblFDtx02rAZBEw6V1vkRNnYSq7DIeS7ViseskotZ05o2cJ1+qyWvBuhyPGDG+1FWymvCCQIYcvii0Q3tgZkjPhMbleETxlL33l4zysyu6sigRf5g+T1vbZSyte2Yl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=APHTg84B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96AECC4CEEA;
+	Thu,  6 Mar 2025 20:53:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741294385;
+	bh=8EIWBk4tJ9DcjCef0B68zkL4TVv6vr+br//UXXBebTY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=APHTg84BNm+76XY0dyuzNBRx0u2sI1vm9wZIimm8V+cO2XEMAFRCfxCu+rEO2L3Qm
+	 mvpTBYdCn5GL1Q15EXkthJHdqWucSw4lV8/Alyz95gHWUuhBP5PPYOM8Rxmd3zTluV
+	 iQQmQVYMnDpNwNd34gUe4crgyVg2eDmkaLN0kzuD4knRY2Tk0sufBhQ/WWdawKz+5G
+	 siXCIETkPU2Niu9CxAUhI52Vjzm6GB8d4XmAWALexEOg9vBVIrOEBsmEkfc6m8yTpU
+	 WQVsx3rHzd84XzYN+6FTkOkzKFdCyyXDl0bcABZClPvuCxsEnyIH3UlwGTQFkqPxdd
+	 3AyN8e1offIsw==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-abf5f4e82caso223353866b.1;
+        Thu, 06 Mar 2025 12:53:05 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUqgQN3Ftml2CbmA/+YQzlZn5VCkrRXkJMPbGJZ7YTRF3GYvv/d5OUNzCBN9G1CLtrkqIfOvo7qxCzX@vger.kernel.org, AJvYcCWgLY8TocmDzxfzZh0nlfUyRVrSYbEJAoYWA6zER37k88hxZR/2mq+9C4llxyiZ5T43YsG6CpLklvB8Q6qJGVpAFe4=@vger.kernel.org, AJvYcCWgjeurzHOvlYodARvwUIzqjRyM0GAGwKJprYEe6062ZUvAw6ezZBnWsXBP1UGZJZbvNkrbrcYZ9HRpbLysjQ==@vger.kernel.org, AJvYcCX430SHTxLZLjgO4xOmFdufqAjrRTIOScklSjfPZca7/lt21OakRs7jlARvAluxcV3leRwYyP5iIdpJkJlX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4OgGEyHrjQCM+CWc2Tufn5sRF1UpxDh5Q4eRgb5hxWKrhlyR4
+	msZZ0B0EVnaskQZ8jPtQVLxca24Ttdr2UY0xePjO6e19MedfZ2Fnsyp343UgDMB8ZDb2qrw3YwR
+	gN5zi8+BX3mOAekqbKIMa+Iv0Hg==
+X-Google-Smtp-Source: AGHT+IH5psFXwVKCyxrdJBjvpX6e1H0zocq3/4I54Esgc8tc7oSOEtw6YqwbDn8nqXPQKSRVO+jSPulH7nXNnGe2JD4=
+X-Received: by 2002:a17:907:710f:b0:abf:70af:f33a with SMTP id
+ a640c23a62f3a-ac252a88a07mr42095366b.21.1741294384101; Thu, 06 Mar 2025
+ 12:53:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250304-mt6359-accdet-dts-v3-4-5b0eafc29f5b@collabora.com>
+References: <20250306085849.32852-1-krzysztof.kozlowski@linaro.org>
+ <CAL_JsqKODHZcrpqskA2aeK6EqGNx9aGNuPqGzhcZ_Nqiu+Ccww@mail.gmail.com> <ab483a68-40a8-4b44-ad73-d8a34bd32c69@kernel.org>
+In-Reply-To: <ab483a68-40a8-4b44-ad73-d8a34bd32c69@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 6 Mar 2025 14:52:51 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+95KW-JwA_OZsqQ9htirBUtBE9reJpa5fzeZ8iwYBeOQ@mail.gmail.com>
+X-Gm-Features: AQ5f1JpdgrHGl-0Gb__H6h9xuDppF_MhNrX5FMmy6vVAVzcGGn2TGfrvWYVxLpM
+Message-ID: <CAL_Jsq+95KW-JwA_OZsqQ9htirBUtBE9reJpa5fzeZ8iwYBeOQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: memory-controllers: samsung,exynos4210-srom:
+ Enforce child props
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Bjorn Andersson <andersson@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Nícolas,
+On Thu, Mar 6, 2025 at 7:51=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On 06/03/2025 14:39, Rob Herring wrote:
+> > Why do we need this? Any child node should have a schema which needs
+> > to include mc-peripheral-props.yaml if any properties from it can be
+> > used.
+>
+> From correctness point of view, you are right, we don't need it. However:
+>
+> 1. Convention was so far to have in every controller. I think this also
+> is easier to understand whenever one reads the bindings - clear
+> documentation what children on this bus should look like.
+>
+> 2. To clearly document from where samsung,srom-timing comes in the
+> required block:
 
-kernel test robot noticed the following build warnings:
+I could be wrong, but I want to say that's pretty much an exception.
+They are usually optional (other than reg). Though I guess we want to
+enforce 'reg'...
 
-[auto build test WARNING on 20d5c66e1810e6e8805ec0d01373afb2dba9f51a]
+> https://web.git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/D=
+ocumentation/devicetree/bindings/memory-controllers/exynos-srom.yaml?h=3Ddt=
+/next#n50
+> Otherwise for me it is a bit confusing to require a property which is
+> nowhere here defined.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/N-colas-F-R-A-Prado/ASoC-dt-bindings-Add-document-for-mt6359-accdet/20250304-233834
-base:   20d5c66e1810e6e8805ec0d01373afb2dba9f51a
-patch link:    https://lore.kernel.org/r/20250304-mt6359-accdet-dts-v3-4-5b0eafc29f5b%40collabora.com
-patch subject: [PATCH v3 04/20] ASoC: mediatek: mt6359-accdet: Add compatible property
-config: s390-randconfig-r133-20250306 (https://download.01.org/0day-ci/archive/20250307/202503070421.25fbw6zg-lkp@intel.com/config)
-compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
-reproduce: (https://download.01.org/0day-ci/archive/20250307/202503070421.25fbw6zg-lkp@intel.com/reproduce)
+It's a bit weird that non-exynos properties are allowed too, though
+that's always the case for these properties.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503070421.25fbw6zg-lkp@intel.com/
+I'll apply these.
 
-sparse warnings: (new ones prefixed by >>)
->> sound/soc/codecs/mt6359-accdet.c:1050:27: sparse: sparse: symbol 'accdet_of_match' was not declared. Should it be static?
-
-vim +/accdet_of_match +1050 sound/soc/codecs/mt6359-accdet.c
-
-  1049	
-> 1050	const struct of_device_id accdet_of_match[] = {
-  1051		{ .compatible = "mediatek,mt6359-accdet", },
-  1052		{ /* sentinel */ },
-  1053	};
-  1054	MODULE_DEVICE_TABLE(of, accdet_of_match);
-  1055	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
 
