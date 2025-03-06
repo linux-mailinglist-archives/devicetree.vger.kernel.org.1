@@ -1,63 +1,40 @@
-Return-Path: <devicetree+bounces-154767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6C21A54736
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:03:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB2B9A54746
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:04:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53B6A7A604A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:01:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE0A416AF55
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30CE71EDA3E;
-	Thu,  6 Mar 2025 10:02:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S2xB2lWj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35CE6202C22;
+	Thu,  6 Mar 2025 10:04:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394762E64A;
-	Thu,  6 Mar 2025 10:02:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A54202971;
+	Thu,  6 Mar 2025 10:04:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741255338; cv=none; b=lHfb543M/FkwLw+eeoLbA4zQKNJOAyKlPUO10WoME30K0cU685MFUH2vVNQDxLNIJ4WeznMZQRGNeGv/7SQA1yEDELL79+cxM+3s0okq9hFgHUBOta7vC1pFxfRN2lBes+YmCC62eNeZolpqQUBEZ+QGabV3wB7efvnW//Goa2o=
+	t=1741255448; cv=none; b=orv5vsHQwislctzef21SwHxY8m3mAg/ETNGqpCfjLNSwVGaXt594gSrMMJe6CLgH6gaC0lRPDNV6bGANvhbcuKfO5vkHwSt1sIOW90BHox+WcSv4m2Kbt7ESfQ/fGE+GTKzyQutPThJAI/hOnV+rf5Z0O5Rs/ExJZtsLaZa8V8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741255338; c=relaxed/simple;
-	bh=4PhF8y6VGkokPsiYhWYkMDRA6AcFOvVZ20VX6LyDvh8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=jIT/UjvFzV1ZxMk2NYDTu4bZ95OojgsgJ2ePXQs63Gt54N1zfKlVCWx8RMuvavzUXeVzpKV9bProa3R7oPEQxwYvohGlG1+X7CwIu3t4f4tYe3R9PVnqlMxWIagQ3tG5/nciyC5yAdagpMbK2WThwtnuK1NdyuWnMOSlQdR7m8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=S2xB2lWj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5268stUI027093;
-	Thu, 6 Mar 2025 10:01:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GUiNQxR6oXFyrfw8pmpUcgdUr3UYT8uMhlX0EwErzwg=; b=S2xB2lWjBg2sjruf
-	Qioeo9dhbHS8bie7RPugvvpgnWm9GDmfsS78ExNm7PQ8wXuQ5E9WJA1YzLBXtaSg
-	iVBRqa0vKn2LMkafTk9O6AcuKP8XWXCvsrJwRZlHgC8cE1x+fJtJY3U1SUl2L6x1
-	XgRLjPi1wiPbfjnAcfsoPwUuVpm8/b6AUAv5AyOfn6DXQY//oBT7uklBk/Yzti+H
-	jj+e4cyJzDWUFfceXxsMVmm7qRwOPW4gQ9oz2qv9tekLQv50olhcOPqcR6/swP6h
-	Z+dSCngBj9RUBEj5xV/mRUkhl+2le8IX+QujkrIUHavcTiNK2eHM8/3XnjM7ZhwJ
-	iSWRew==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 455p6trhph-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 06 Mar 2025 10:01:58 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 526A1vdl007311
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 6 Mar 2025 10:01:57 GMT
-Received: from [10.253.37.89] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 6 Mar 2025
- 02:01:51 -0800
-Message-ID: <cffdd8e8-76bc-4424-8cdb-d48f5010686d@quicinc.com>
-Date: Thu, 6 Mar 2025 18:01:49 +0800
+	s=arc-20240116; t=1741255448; c=relaxed/simple;
+	bh=Oy3sdejRyxIC9YUWZWkva5gjh/7c3mBVfg/OHYuRFjI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ny0R3jTFbadQ+GVinrgFWfBV05n2iFENyUFY1h+6lyvY5WRvn1ohEiReNPjSvBQv3R2vxRT0RTGtlJvDvcgs4Jb1pz3gXQmcfHrfUKPnAx5pknSnCYQeoFlbY4o1k1v/J4lXhX9v9BBU2nbWqEetNOQ/R03hrLrJqwJQHlZl6ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BAF44FEC;
+	Thu,  6 Mar 2025 02:04:18 -0800 (PST)
+Received: from [10.57.83.26] (unknown [10.57.83.26])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 79E4A3F66E;
+	Thu,  6 Mar 2025 02:04:03 -0800 (PST)
+Message-ID: <67659d9d-f228-42ac-b096-01020bf66b7f@arm.com>
+Date: Thu, 6 Mar 2025 10:04:01 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,184 +42,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Jie Luo <quic_luoj@quicinc.com>
-Subject: Re: [PATCH net-next v3 04/14] net: ethernet: qualcomm: Initialize PPE
- buffer management for IPQ9574
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
-        Suruchi Agarwal
-	<quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>,
-        "Simon
- Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <john@phrozen.org>
-References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
- <20250209-qcom_ipq_ppe-v3-4-453ea18d3271@quicinc.com>
- <a79027ed-012c-4771-982c-b80b55ab0c8a@lunn.ch>
- <c592c262-5928-476f-ac2a-615c44d67277@quicinc.com>
- <33529292-00cd-4a0f-87e4-b8127ca722a4@lunn.ch>
+Subject: Re: [PATCH v3 2/2] thermal: thermal-generic-adc: add temperature
+ sensor channel
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ Jonathan Cameron <jic23@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>
+References: <20250303122151.91557-1-clamor95@gmail.com>
+ <20250303122151.91557-3-clamor95@gmail.com>
+ <3bc7c5a5-8fe7-4c4b-a80e-23522922debb@arm.com>
+ <CAPVz0n0yvw4kyYKSve9sSZEvcZrCYZ6RqCjFSO5OCqtvRZSfJg@mail.gmail.com>
+ <f56596fe-92e8-481b-b15b-29b531eaec32@arm.com>
+ <CAPVz0n2ywjm+nLQ+ZAYbR1P6yCr8FQgOMeDT07s_YHZ7xA_6uA@mail.gmail.com>
 Content-Language: en-US
-In-Reply-To: <33529292-00cd-4a0f-87e4-b8127ca722a4@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=HZbuTjE8 c=1 sm=1 tr=0 ts=67c97296 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=P-IC7800AAAA:8 a=pGLkceISAAAA:8 a=-cV8Hw4QFi719GmBsEsA:9
- a=QEXdDO2ut3YA:10 a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-GUID: ORV12Dt2uiUbTZnam6MxJqs5otzzHqIG
-X-Proofpoint-ORIG-GUID: ORV12Dt2uiUbTZnam6MxJqs5otzzHqIG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-06_04,2025-03-06_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 mlxscore=0 spamscore=0 clxscore=1015 phishscore=0 bulkscore=0
- priorityscore=1501 impostorscore=0 suspectscore=0 malwarescore=0
- mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503060074
+From: Lukasz Luba <lukasz.luba@arm.com>
+In-Reply-To: <CAPVz0n2ywjm+nLQ+ZAYbR1P6yCr8FQgOMeDT07s_YHZ7xA_6uA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
 
-On 2/20/2025 11:09 PM, Andrew Lunn wrote:
-> On Thu, Feb 20, 2025 at 10:38:03PM +0800, Jie Luo wrote:
+On 3/6/25 09:49, Svyatoslav Ryhel wrote:
+> ср, 5 бер. 2025 р. о 16:37 Lukasz Luba <lukasz.luba@arm.com> пише:
 >>
 >>
->> On 2/11/2025 9:22 PM, Andrew Lunn wrote:
->>>> +	/* Configure BM flow control related threshold. */
->>>> +	PPE_BM_PORT_FC_SET_WEIGHT(bm_fc_val, port_cfg.weight);
->>>> +	PPE_BM_PORT_FC_SET_RESUME_OFFSET(bm_fc_val, port_cfg.resume_offset);
->>>> +	PPE_BM_PORT_FC_SET_RESUME_THRESHOLD(bm_fc_val, port_cfg.resume_ceil);
->>>> +	PPE_BM_PORT_FC_SET_DYNAMIC(bm_fc_val, port_cfg.dynamic);
->>>> +	PPE_BM_PORT_FC_SET_REACT_LIMIT(bm_fc_val, port_cfg.in_fly_buf);
->>>> +	PPE_BM_PORT_FC_SET_PRE_ALLOC(bm_fc_val, port_cfg.pre_alloc);
->>>
+>>
+>> On 3/5/25 10:06, Svyatoslav Ryhel wrote:
+>>> ср, 5 бер. 2025 р. о 11:52 Lukasz Luba <lukasz.luba@arm.com> пише:
+>>>>
+>>>>
+>>>>
+>>>> On 3/3/25 12:21, Svyatoslav Ryhel wrote:
+>>>>> To avoid duplicating sensor functionality and conversion tables, this design
+>>>>> allows converting an ADC IIO channel's output directly into a temperature IIO
+>>>>> channel. This is particularly useful for devices where hwmon isn't suitable
+>>>>> or where temperature data must be accessible through IIO.
+>>>>>
+>>>>> One such device is, for example, the MAX17040 fuel gauge.
+>>>>>
+>>>>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+>>>>> ---
+>>>>>     drivers/thermal/thermal-generic-adc.c | 54 ++++++++++++++++++++++++++-
+>>>>>     1 file changed, 53 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/thermal-generic-adc.c
 >>> ...
+>>>>>
+>>>>> +static const struct iio_chan_spec gadc_thermal_iio_channel[] = {
+>>>>> +     {
+>>>>> +             .type = IIO_TEMP,
+>>>>> +             .info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
+>>>>
+>>>> I would add the IIO_CHAN_INFO_SCALE and say it's in milli-degrees.
+>>>>
 >>>
->>>> +#define PPE_BM_PORT_FC_CFG_TBL_ADDR		0x601000
->>>> +#define PPE_BM_PORT_FC_CFG_TBL_ENTRIES		15
->>>> +#define PPE_BM_PORT_FC_CFG_TBL_INC		0x10
->>>> +#define PPE_BM_PORT_FC_W0_REACT_LIMIT		GENMASK(8, 0)
->>>> +#define PPE_BM_PORT_FC_W0_RESUME_THRESHOLD	GENMASK(17, 9)
->>>> +#define PPE_BM_PORT_FC_W0_RESUME_OFFSET		GENMASK(28, 18)
->>>> +#define PPE_BM_PORT_FC_W0_CEILING_LOW		GENMASK(31, 29)
->>>> +#define PPE_BM_PORT_FC_W1_CEILING_HIGH		GENMASK(7, 0)
->>>> +#define PPE_BM_PORT_FC_W1_WEIGHT		GENMASK(10, 8)
->>>> +#define PPE_BM_PORT_FC_W1_DYNAMIC		BIT(11)
->>>> +#define PPE_BM_PORT_FC_W1_PRE_ALLOC		GENMASK(22, 12)
->>>> +
->>>> +#define PPE_BM_PORT_FC_SET_REACT_LIMIT(tbl_cfg, value)	\
->>>> +	u32p_replace_bits((u32 *)tbl_cfg, value, PPE_BM_PORT_FC_W0_REACT_LIMIT)
->>>> +#define PPE_BM_PORT_FC_SET_RESUME_THRESHOLD(tbl_cfg, value)	\
->>>> +	u32p_replace_bits((u32 *)tbl_cfg, value, PPE_BM_PORT_FC_W0_RESUME_THRESHOLD)
->>>
->>> Where is u32p_replace_bits()?
+>>> I have hit this issue already with als sensor. This should definitely
+>>> be a IIO_CHAN_INFO_PROCESSED since there is no raw temp data we have,
+>>> it gets processed into temp data via conversion table. I will add
+>>> Jonathan Cameron to list if you don't mind, he might give some good
+>>> advice.
 >>
->> u32p_replace_bits is defined by the macro __MAKE_OP(32) in the header
->> file "include/linux/bitfield.h".
-> 
-> Given it is pretty well hidden, and not documented, it makes me think
-> you should not be using it. The macros you are expected to use from
-> that file are all well documented.
-
-OK, understand.
-
-> 
->>> This cast does not look good.
+>> I'm not talking about 'PROCESSED' vs 'RAW'...
+>> I'm asking if you can add the 'SCALE' case to handle and report
+>> that this device will report 'processed' temp value in milli-degrees
+>> of Celsius.
 >>
->> Yes, we can remove the cast.
 > 
-> To some extent, this is a symptom. Why is the cast there in the first
-> place? Cast suggest bad design, not thinking about types, thinking it
-> is actual O.K. to cast between types. Please look at all the casts you
-> have. Is it because of bad design? If so, please fix your types to
-> eliminate the casts.
-
-Sure, this cast is actually redundant, the type of value passed to this
-macro is already defined as the type u32. I will review and remove the
-remaining casts in the ppe_reg.h file.
-
+> It seems that SCALE is not applied to PROCESSED channel. I can use RAW
+> which would work as intended and I will add a note in commit
+> description why I used RAW. Would that be acceptable?
 > 
->>> And this does not look like anything any
->>> other driver does. I suspect you are not using FIELD_PREP() etc when
->>> you should.
->>>
->>> https://elixir.bootlin.com/linux/v6.14-rc2/source/include/linux/bitfield.h
->>>
->>> 	Andrew
->>
->> The PPE_BM_XXX macros defined here write to either of two different
->> 32bit words in the register table, and the actual word used (0 or 1)
->> is hidden within the macro. For example, the below macro.
->>
->> #define PPE_BM_PORT_FC_SET_CEILING_HIGH(tbl_cfg, value)	\
->> 	u32p_replace_bits((u32 *)(tbl_cfg) + 0x1, value,
->> 	PPE_BM_PORT_FC_W1_CEILING_HIGH)
->>
->> We could have used FIELD_PREP as well for this purpose. However using
->> u32p_replace_bits() seemed more convenient and cleaner in this case,
->> since with FIELD_PREP, we would have needed an assignment statement to
->> be defined in the macro implementation. We also noticed many other
->> drivers using u32_replace_bits(). Hope this is ok.
-> 
-> Please extend the set of FIELD_{GET,PREP} macros to cover your use
-> case. Document them to the level of the existing macros. Submit the
-> patch to:
-> 
-> Yury Norov <yury.norov@gmail.com> (maintainer:BITMAP API)
-> Rasmus Villemoes <linux@rasmusvillemoes.dk> (reviewer:BITMAP API)
-> etc
-> 
-> and see what they say about this.
-> 
-> 	Andrew
 
-Thanks for the suggestion. Just to clarify, we preferred
-u32p_replace_bits() over FIELD_PREP() because the former does
-a clear-and-set operation against a given mask, where as with
-FIELD_PREP(), we need to clear the bits first before we use the
-macro and then set it. Due to this, we preferred using
-u32_replace_bits() since it made the macro definitions to modify
-the registers simpler. Given this, would it be acceptable to
-document u32p_replace_bits() better, as it is already being used
-by other drivers as well?
-
-If you prefer to use FIELD_PREP() over u32p_replace_bits(), we
-can update the driver to change the macros to use FIELD_PREP().
-Please note that all our macros for register modifications
-operate only on 32bit values. so we do not have any necessity
-for casts in the code.
-
-Below is one example per my understanding, implemented for
-both cases - u32p_replace_bits() and FIELD_PREP:
-
-#define PPE_BM_PORT_FC_SET_WEIGHT(tbl_cfg, value) \
-       u32p_replace_bits(tbl_cfg + 0x1, value, PPE_BM_PORT_FC_W1_WEIGHT)
-		
-#define PPE_BM_PORT_FC_SET_WEIGHT(tbl_cfg, value) \
-do { \
-      *(tbl_cfg + 0x1) &= ~PPE_BM_PORT_FC_W1_WEIGHT; \
-      *(tbl_cfg + 0x1) |= FIELD_PREP(PPE_BM_PORT_FC_W1_WEIGHT, value); \
-} while (0)
-
+In that case, yes that would be the preferred solution.
 
