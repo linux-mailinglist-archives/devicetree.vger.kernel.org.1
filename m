@@ -1,133 +1,85 @@
-Return-Path: <devicetree+bounces-154744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1FADA545A6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:59:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 786F8A545AD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:59:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C9251895B8F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:59:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8A0716A49D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:59:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04B72080F9;
-	Thu,  6 Mar 2025 08:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63E52080E4;
+	Thu,  6 Mar 2025 08:59:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dMegtc2A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cCBzjB3i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D844A2080DB
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 08:58:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB3C19D880;
+	Thu,  6 Mar 2025 08:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741251538; cv=none; b=pYySX1RDY/g/C0IIhWZqNT0xOFm7YvhYqCceWMFqZxFzzD7E92LhZz7M2qtjpZFy96YlELfnO2cCrXcgtkq0f6M6q2CG0DjSw7r9U6pX0pTE1EPFMvHLEWVTKvyZr9cx6T/n+VfL8AkvYEDvZ/mnFEA/GFJacU2TEZ0ANW/KA+E=
+	t=1741251548; cv=none; b=e80Ab2EZbTQMfNfrT0iHRr7ms7DLop5GVogC3FekQ9VFfUQOv++9ExeIuRvxrFNPVte2lW0eRv9W34nq5Z30QF0KppWzKsLl4Wg+zR2H3ZzliHUOqxl5lWDeSwrNNxcCpPA91W4dKKAO0VCGKrHd5+wJC/vQUBG7Vn2R7tgiIc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741251538; c=relaxed/simple;
-	bh=h8r+LBE+AI2ozP6h7eTjG3J4/BjLDXG10kpvMQ2oQN8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MRbIosG9azvYKWkj49vYuq7kojQilNX4TQDa1a8IZTgfrTaPVk4tF91GnReMoOVYrqEj/z8R8+R2SFWZ/qcXIzSLZtHpDPL1gGiCWQigdSnCsL5HLnp3uSLw04oywVd/Rs1DvpIaRFMFKF5DshmsB1WwCno79jeTVsXnFHW6WXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dMegtc2A; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43935d1321aso314775e9.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Mar 2025 00:58:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741251535; x=1741856335; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8hEmsvIcMhwbu7qmMBTCnWlLRUTQP6Sh0jelKQ7eVPQ=;
-        b=dMegtc2AgzVA1a5u67kGMZfWNM6Y2LiF3j33GyVUqWf6SkLWzu4w6S46qfUGkDb4GF
-         cWglMRcyrJzUohaMbBZgI2jQrruFryCXRNMZSEPpDKcRPtRe7z9eR0SHhaMRP3hvLVT/
-         VwWG9bM/xsRGhvR2KP5PGpj36t7Gbn5Z+Y2Yy+mbvhwM44fCQD91Wc0xTis0sz2RC6P0
-         gbyauqLKeBK0ke+s81PVqBg9sARw6ShhzqbWGRwmZrKcJgJFwIeplITKA56D0qfBmkwh
-         HxqQjjS/cpX4oYOvObL9vJp8pUNdYQdvE9KaYx5rLATq5yaOpguLZ2WYp7uxRY2CvpsZ
-         OEHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741251535; x=1741856335;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8hEmsvIcMhwbu7qmMBTCnWlLRUTQP6Sh0jelKQ7eVPQ=;
-        b=qnYi6sQ+qcr5JzEbo76fgfW/2DHdxtPNdJxLPHJFSqIjZWA2xk6XkI4EOvAz5/oWca
-         X8D1t/ggswNn3l5Fx4nNRKKzlyDByYFRcT7UcZyHXfcFQpxHJgKkXVqbp/jX752IC8Pm
-         a86n3ul+6jEH877ii+/CW6d5+6xEF2J63ak7ek/QzMI7hE1bohvoHZgec4YXE7COVj7k
-         oNUk7Z/2fLrnkbUEFbzK29c1Bg0lLLLDEn66NK7niQ/d9g27xklxhB9VJYHIYTM2SgE6
-         570jH+b+xYoZz+nnpAHL7zB27+pa7pi1+O8mkIoWEAsN6yjbs1c74v2uzrf2RiRwg/dX
-         BaBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWtFzJtDnMDo4Rb080I/e3wuq/2dpZUTJFpfr67PJUZ1FsHJZkA3UHup5uhUoDo51sT5sQSSr6CYg6s@vger.kernel.org
-X-Gm-Message-State: AOJu0YyA/AduwmGEXVg0nOfZA13BH619R8nJqifdbcmVWlaG3h1sd6HC
-	ij7LjBT2ER7G5ZhIIh4vYiWIqskJIkGzzVx3a8UkoushCxpVv5G4iDZAbt2b898=
-X-Gm-Gg: ASbGncsIeYVujdSMeB2CCMPsA/9J6hCtbuNxLauOvy4bZE38cwzl1mmdqqgQPz0om32
-	0xLQvY3y0doM9bS6PwIfJofp2JKwVWH+WAWCmRX3QiDeTsHRX4/IBZSaa0rXphDq+YAW5jEuPMF
-	mDr76ewwzkETx+pxgNaBgH3WterURFrFaC7Qs3VcAmfPnjnfJIk4BKaWOB07rvQrGGIfPjQ9egG
-	AoR8lIwVOMfTYoSVLtfwFA26CEtaIorn386PBf/yzgHkhNRSFr3Cn9S55hUDabPXwl8qJkfFgfC
-	V0nRDOPDPbg/74VLr8RyeeuW1J9r6zqMDsLIpvqW1IKhf/r5uvFoJFgk9nY=
-X-Google-Smtp-Source: AGHT+IHIwsYxtasUsH7F1cqK4+j6EXhOQvlZn/zl/WS+mfi7XrhQaNW7pJTzxIk7YBr7G3/zWRlTbA==
-X-Received: by 2002:a05:600c:b8e:b0:439:90f5:3919 with SMTP id 5b1f17b1804b1-43bd29b66eamr20092285e9.4.1741251535085;
-        Thu, 06 Mar 2025 00:58:55 -0800 (PST)
-Received: from krzk-bin.. ([178.197.206.225])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43bdd8b046dsm13184405e9.5.2025.03.06.00.58.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Mar 2025 00:58:54 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: memory-controllers: qcom,ebi2: Enforce child props
-Date: Thu,  6 Mar 2025 09:58:49 +0100
-Message-ID: <20250306085849.32852-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250306085849.32852-1-krzysztof.kozlowski@linaro.org>
-References: <20250306085849.32852-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1741251548; c=relaxed/simple;
+	bh=7afTJcSkXdN+IE3Z0j2vXlLxFn4CzdNno9ZzAKaoSDA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=liexrhziK4Z6YHeIDGULkw1OC2ceOE/0RXXeAFdNxi9MWFJAEYJ67Up73/Ecplh44D48GOIIS7z4UdzG8js5xrvhjbmZtBWvXUYZgS6rAoECdTQy1M5/QbAD5PPSUniqR4zw9+5xAdFoYo3ydyHSLrIkA4upHIoFAkzE4pTYHXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cCBzjB3i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17704C4CEE2;
+	Thu,  6 Mar 2025 08:59:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741251548;
+	bh=7afTJcSkXdN+IE3Z0j2vXlLxFn4CzdNno9ZzAKaoSDA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cCBzjB3iQBfU8FGGKQz6jXuzV/+/NDtQe61AYBMGARWlO8C0qyjGaOCV/hWRPzS7l
+	 TAl7B4gFNoqrJbNoaa9RzgJmP/Q5yb9qNnMIg0vOIpKII4sQ0kb2m0pn8EkynMRvMm
+	 ezvBg0vVGoPQDNwc2KCpPI+GTg5WR89RGclnNXkIB6hp7zgU6OWKuUVB8sZBHEvCu/
+	 mvh/3wp2iSHz1GXeCQ4u72LMyNHca4phaZEaHtVcbS0TfaiWYkhevTpvUo4Yt12xRC
+	 yaSpKgIc4tB0gdUsQIE9uddtEuhaDC+HstHwmeH00ee5H0VCsR++t2nkSvs1dQB7sN
+	 4KU7mA63atRzg==
+Date: Thu, 6 Mar 2025 09:59:03 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Vaishnav Achath <vaishnav.a@ti.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 3/3] spi: dt-bindings: cdns,qspi-nor: Make the example
+ real
+Message-ID: <20250306-crystal-elk-of-superiority-e783ac@krzk-bin>
+References: <20250305200133.2511308-1-miquel.raynal@bootlin.com>
+ <20250305200133.2511308-4-miquel.raynal@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250305200133.2511308-4-miquel.raynal@bootlin.com>
 
-Qualcomm EBI2 peripheral properties were moved from the device schema to
-separate "peripheral-props" schema for child node, but the device schema
-does not reference the new one.
+On Wed, Mar 05, 2025 at 09:01:33PM +0100, Miquel Raynal wrote:
+> Add several properties to the example. They are actually mandatory from
+> a description point of view. Unfortunately, because of some YAML
+> limitations, they are just listed in a file showing the peripheral
+> properties that "can" be used for this specific controller without
+> marking them "required" explicitly.
 
-Reference the peripheral-props schema so the child nodes will be
-properly validated from the device schema.
+You can mark them as required - in this binding. See exynos-srom.yaml
+(I fixed missing ref to mc-peripheral-props in separate patch).
 
-Fixes: 06652f348f28 ("dt-bindings: memory-controllers: qcom,ebi2: Split out child node properties")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> At least mention these properties in the example to hint people they
+> exist.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
----
-
-Fix for Rob's tree.
----
- .../devicetree/bindings/memory-controllers/qcom,ebi2.yaml        | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/memory-controllers/qcom,ebi2.yaml b/Documentation/devicetree/bindings/memory-controllers/qcom,ebi2.yaml
-index 3e6da1ba460e..423d7a75134f 100644
---- a/Documentation/devicetree/bindings/memory-controllers/qcom,ebi2.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/qcom,ebi2.yaml
-@@ -104,6 +104,7 @@ required:
- patternProperties:
-   "^.*@[0-5],[0-9a-f]+$":
-     type: object
-+    $ref: mc-peripheral-props.yaml#
-     additionalProperties: true
- 
- additionalProperties: false
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
