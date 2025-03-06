@@ -1,111 +1,112 @@
-Return-Path: <devicetree+bounces-155099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CDFA558AB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 22:21:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DAE0A55974
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 23:14:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DE643A796B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 21:21:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1ACD1898C27
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 22:14:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E32A207DED;
-	Thu,  6 Mar 2025 21:21:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C9F27C17A;
+	Thu,  6 Mar 2025 22:14:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="guMhklL/"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="JYfG0Eco"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0E620469E;
-	Thu,  6 Mar 2025 21:21:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30DED272917
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 22:14:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741296102; cv=none; b=DiEDcjvzhgFteC76fVzOorit8Po8lT2ZbeSt4rY0LoQQvVGBpWGNPFwptXkd8+or9m/yI/ahKB5ADNdr4d5m6S0D8hhsQS2l68zl2c2V5r59YRIYxy2p8+HEIhJfLB+W0T0VJMQ9XMOuQ88JpZ5R11O7KXvuuqB8DNOprRpEUr0=
+	t=1741299261; cv=none; b=XTPnL0w0fOS1GtUy7dnZBm9cnRuDugPfmNwKwhLH4fziS5JFLvtw1dspmAETtUt0QukrVeIxC30s3+g3BPQyBCJrBm/eoG/r8vKZB6/SrA78K8j6fwsIOlUXXJfNBzB1FP2Pg7K4FUTXE/njArggwUIBGMybF/ony80pG1NNqN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741296102; c=relaxed/simple;
-	bh=dG3d9aBGMx3DfnzuFFKM0PvgEVAcQQKTYUoYLJZ2bfw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gpxH2YtPeLbSPFeG7XI+1y0btE78hs2KV8g4qh5I+ENIpjoWxM7/OtEb/tbl54mPuz4a+k72Fd1iY+14xuTtGwy3KvtQNgF8v8M9TEsDv8BqO4ZQyoEusMYkdW2xpaEj/V9m9/EdM/yliq/xMdAxivPZ7+yhCS8jfU0QKbrXCj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=guMhklL/; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=9H78NGtDgrJN8almAooGMPfIHicQD7QyEml+BfISIgg=; b=guMhklL/+BIxtizh+xS6aUCkcs
-	xiqV6+jRMkvDCFI1Sdi2vxBbaC8HFPmkFSPNomuM1DaFuR9gXBO5W5pyVze8dw4T1rail/m4jEtUx
-	Sl+bfrPyvulBDrN60FqU93ZP8sEOV2aYu0DUfALLj08VQcaukP31Ov9Z/eDXCzgNeMYfJ7JgOoYxm
-	LPp2dr+vWeNh/k4dbT3BM/AH62dODYTy86qE4hCFZTafmDcEGEjAArTWjqtWhJCGRgRQU2TGorsuO
-	lhbZjQJ6ndCqIFdVoMdRuVoKtIzDJrHoh05ZDgdAg/TKTa1NWtUgxeKTc/aq5QAwqsoVm3sVyDVdT
-	vzH1AxrA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44602)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tqIeb-0006Vr-05;
-	Thu, 06 Mar 2025 21:21:17 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tqIeW-00078z-38;
-	Thu, 06 Mar 2025 21:21:12 +0000
-Date: Thu, 6 Mar 2025 21:21:12 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	s=arc-20240116; t=1741299261; c=relaxed/simple;
+	bh=cCoP6aXG4yPoXwVcoUk7nKLL2NAgfPX8X1apZ4tN17A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=scU/y813pU1OQDllNaSbxNY4dmTb9AaUHmgmYsafpEv7OqBtBg6BU42P8ynmb+ePDowVidQmHSDAgESfBi/ZYV3q38Cp/sX1S35+BiHZZ3Tygh/IZAu5Ukua7rSRZYHk4eP/3OoUJQcppHkfEAP9lWNNoj7O2beyFrVa5wWqBZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=JYfG0Eco; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1741299258;
+ bh=ywH7Q8mbcPn4w2SCHmS2eCxM0WaPqI6rsN6MI+52pMk=;
+ b=JYfG0EcoAkIbroPgp4UPHQa3n33ybdfEs+QHavEV+njqi0UkHSXAZTZ/AkeX5B0i7TGFrlB3g
+ tD2c/s25n16zzsg74s0B0OvPnwGnbhV+k0GqAteUIsGp3HbdXrJ7qqU3qJTuDWUd8wPEJrcH198
+ Iu2raNrhfBUf5YqFQ7IXTqY/+XsPDS5a0vQPdmhrftA8cyurqT12GRELRoCvQooS4oE/ZQrGnQ3
+ ml78xjEC4AbOGkSpzER211GNXm59NxB+zzZwYy3HrTVxveaijoQ35nFixmN0gftfV3iEsBuLbjl
+ tRZlL14+q+x/hDako4kGCzqvnuNF9+L3XZs8o/vzHXMg==
+X-Forward-Email-ID: 67ca1e30c1763851c065bfe9
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S . Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Yao Zi <ziyao@disroot.org>,
 	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and
- php-grf during probe
-Message-ID: <Z8oRyHThun9mLgx8@shell.armlinux.org.uk>
-References: <20250306210950.1686713-1-jonas@kwiboo.se>
- <20250306210950.1686713-3-jonas@kwiboo.se>
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH 0/4] rockchip: Enable Ethernet controller on Radxa E20C
+Date: Thu,  6 Mar 2025 22:13:53 +0000
+Message-ID: <20250306221402.1704196-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250306210950.1686713-3-jonas@kwiboo.se>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Mar 06, 2025 at 09:09:46PM +0000, Jonas Karlman wrote:
-> @@ -1813,8 +1564,24 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
->  
->  	bsp_priv->grf = syscon_regmap_lookup_by_phandle(dev->of_node,
->  							"rockchip,grf");
-> -	bsp_priv->php_grf = syscon_regmap_lookup_by_phandle(dev->of_node,
-> -							    "rockchip,php-grf");
-> +	if (IS_ERR(bsp_priv->grf)) {
-> +		ret = PTR_ERR(bsp_priv->grf);
-> +		dev_err_probe(dev, ret, "failed to lookup rockchip,grf\n");
-> +		return ERR_PTR(ret);
+The Rockchip RK3528 has two Ethernet controllers, one 100/10 MAC to be
+used with the integrated PHY and a second 1000/100/10 MAC to be used
+with an external Ethernet PHY.
 
-Did you consider using ERR_CAST() for these, which would look like this:
+This series add initial support for the Ethernet controllers found in
+RK3528 and enable the LAN interface on Radxa E20C.
 
-		dev_err_probe(dev, PTR_ERR(bsp_priv->grf),
-			      "failed to lookup rockchip,grf\n");
-		return ERR_CAST(bsp_priv->grf);
+This only add a bare minimum gmac0 node for the 100/10 MAC and skip e.g.
+parts to power on and off the integrated PHY in GMAC driver becayse I do
+not have any RK3528 device that make use of gmac0.
 
-?
+This series depends on the "net: stmmac: dwmac-rk: Validate rockchip,grf
+and php-grf during probe" cleanup series to ensure bsp_priv->grf can be
+used. And possible also on the leds+buttons, sdio+sdmmc and sdhci series
+for RK3528 for a clean apply.
+
+David Wu (1):
+  ethernet: stmmac: dwmac-rk: Add GMAC support for RK3528
+
+Jonas Karlman (3):
+  dt-bindings: net: rockchip-dwmac: Add compatible string for RK3528
+  arm64: dts: rockchip: Add GMAC nodes for RK3528
+  arm64: dts: rockchip: Enable Ethernet controller on Radxa E20C
+
+ .../bindings/net/rockchip-dwmac.yaml          |   4 +-
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  30 ++++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      |  92 ++++++++++++
+ .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 132 ++++++++++++++++++
+ 4 files changed, 257 insertions(+), 1 deletion(-)
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.48.1
+
 
