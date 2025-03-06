@@ -1,161 +1,221 @@
-Return-Path: <devicetree+bounces-154823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE330A549BE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:42:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5267AA549E6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:47:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B65E01898A32
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:40:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F8837A3AA0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F488210190;
-	Thu,  6 Mar 2025 11:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FB3209F31;
+	Thu,  6 Mar 2025 11:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t0ZjVSbH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IyAOGc7j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C5020B1F3;
-	Thu,  6 Mar 2025 11:35:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9C02080F9;
+	Thu,  6 Mar 2025 11:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741260953; cv=none; b=rWQpQo0LKQMETMN+gS2bsaYbQ8Hr9FlesCcrZVAz6kzhixckoow1A0yvQjga4VGnePBRJ7zJx4QsDgozm2tlcO2GbFMTpvORYYL++/RgMEN9gHlwCBz9VLKj0u7U1wjsPp2a74j1Pm3eYW5f46rZHDGKtxukBeeqXbDR8I2B8UU=
+	t=1741261669; cv=none; b=EDMWxAl5yrxJRNJpe5FDodoIWhY7S4ZKjqmcexSKJaLBu9zmbuCyQxQpkK+V/pGIrh+HPYTfMaOKAnASx9DZILGtNN9GezjPQhIQbT0OBcOysBrLVwjDr1yxkMEC/LzWAimhYltgkPdm7hh45G/sSQ6ym0W0GkVDiCitkXiszYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741260953; c=relaxed/simple;
-	bh=Leu1gIlGz01KC2qXmkX9EuXv0fktHfYgkAuj3cjXmYc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W7+26HCbdzx0Qb8tcyp/dR7EGjLUzVfODGOYat2bOAscA8ZuwLLAiWKsclCC8eqIkxw9ZTXMvXuCa/8ZAg6I0rXRWprtB5p4O74Skr/D1K9DSK+VjG9OT5M0Feb2id9g31+kD14RDqPmXPg/W/NCgiGpZFXdi0nedDR01q5HTBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t0ZjVSbH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFD17C4CEE0;
-	Thu,  6 Mar 2025 11:35:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741260952;
-	bh=Leu1gIlGz01KC2qXmkX9EuXv0fktHfYgkAuj3cjXmYc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t0ZjVSbHtMk/AGk/0+5zsZZmWz1J7zYKKn+hgJMgEH/5yGLibX4OccWyYTsj6JiFn
-	 8uT1wq0eVoMClAebU6guvInopQZS8/Z7J88QvR4dOVuk18BEu/PWpZR3tzmot/iiO/
-	 mbda0FdpDb2a0eZe48pUemGsg1lyySxbs+kaP6TFgD7xicZK4+X30SBzNQ/3G4AHuR
-	 LK4tmDjTqwl6YLhd6bVVOZWyQ0nFwnzYBLXnhXzO/FcR6W8DYoBXYhi7SjrzKVE8a9
-	 wfABHD6hbH43LxKxNNbnRiWgm2tZKFRvVltOdPlqRzWkHne7xu2MAfN/j6QBtwBqEp
-	 aIerDMl4OwgAA==
-Date: Thu, 6 Mar 2025 12:35:49 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
-	jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, 
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
-Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
- color encoder
-Message-ID: <20250306-kangaroo-of-pastoral-typhoon-8aefb2@houat>
-References: <20250304101530.969920-1-victor.liu@nxp.com>
- <20250304101530.969920-4-victor.liu@nxp.com>
- <20250304152320.GA2630063-robh@kernel.org>
- <1891036.atdPhlSkOF@steina-w>
- <20250305163805.GA2071011-robh@kernel.org>
- <7d98163d-10c8-457d-92e7-6a1d6e379beb@nxp.com>
+	s=arc-20240116; t=1741261669; c=relaxed/simple;
+	bh=dEJU0Oe1WgC6cKTgwv4DNPi2NzyjIhMtHcYQU2kxbYM=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=D6ZZRTJTqhYlRvIku8muIIIXpYynfWZRJwfcSO+py7ij3Noto3zNR7j1YuS0Y2LGe/qZn0x/SnJE7Mj/ojFuFK31rtp/bhOzG6HYsAmY8tBGANNYed9bGKjEe8Cbnkx6IlrFcT8f9PJTh04G3Hh08ij9pWTb3g0l1IB5njdyffk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IyAOGc7j; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e4c0c12bccso947985a12.1;
+        Thu, 06 Mar 2025 03:47:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741261666; x=1741866466; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FeRfzX4J4SSpOIDf0qW1PY6Ceutjf1oaVySsSvMl5vc=;
+        b=IyAOGc7jGoPRVUbPNa857B1rMofSHQAso4WTYZfOW9bDlYfpReel/v5x6sduq1lpK+
+         HYZMkZL2EHRbOw0i7xvB0uZjuDMZae2X2OiKiC1EQZwm+Oxf9lsycycvCA6pP/qli1Ee
+         MTKRX5wU3kywsMVsYROyrQV6FtEO0MMLTftds7+TuZ28sCt5FI2Jx0oCt/K/PPV636A/
+         IQnrFeDGTe+I7yoTiPHq05b/og+aqTbrD+AiReeYYYXviVip4RbL/2jj3ORN/b+Q/vLw
+         /5h/FzQNU7kzd7OtboZ2tmYfbiLREU/oAYgmZyq2SFmdMJmnVqYgt2ROei3rH3UNqpmD
+         zEXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741261666; x=1741866466;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FeRfzX4J4SSpOIDf0qW1PY6Ceutjf1oaVySsSvMl5vc=;
+        b=g5Aw/dNGAuZ+lM13TlxuzwXupuYF5v6AqOL877aOgU9CuAkfzniBgkyU/sGjnFs0W0
+         +2kkzUlv5BKg7dKVvyYxj5Mm5dgdWanZ/qon2HDs8zjZKLycreJq7mJ+DO/FzdGcBGf/
+         XdOHYSYu0zYlTjh0CRdTYK/4F2Ds3IMhSwqeW7ggy1o6m17TqrYx9en5IFJjvBovpRiV
+         yO3QP+BTdpw0eAiuKTr7YyhrnECBOBJ5V32iGc405RqFoT4ge3FRCxbJPOefopF2xnzl
+         O4l+WwT5qyxtsv0FE0ferYep4skMvDcH5Pej0kbug7MObDRTaoEZ8AADlCS2SmoC8LJs
+         9+qQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUI024+2JhlGh2FB8vGltgy9rZwhdvRZXS6vMwiyZ4qJy+Pkibc1E+SV261malMSAVEMlcHUflFWjMqcAqg@vger.kernel.org, AJvYcCW1a4Pxfw+JWXJYXiVmkJlZsWyYnjawD1leF+s761mmEQnThYCkOBs0dpNe9SjflCppOnMVA5QuJnwU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbuCSwZWWm2Z0eFpAJZ8QdRqdqAotQzNIH4ebmpl3rgSIOZHI7
+	zJyb8lSjchr6NkapheEXZgsU06hwLFOhe171NAjepEfwE/Iv3tJ9
+X-Gm-Gg: ASbGnct5FAmVuxvlFOn8S7anZLv0sSYuvj7OtuMaDngYgyDgKkJdEodFIphTYj7cgCc
+	G0wPH3ijYCsrdo3Z7InSTmplXy3/GaAa9dj3fduyc4RtLMuz2u5dY3/V2eggWa7M2BR9uSkFhWa
+	eNLMKKZmMWgb0iWCf4Bvz17UPwBly6uS/6pVnKu6KvMvb/crF1T7q6BdQcC8KRYKsG2KAd+Pb3Q
+	P1+OQXsIMJyI4egB/moJt6EeeFDVqx/kaJHrvjYTQ6kT5lsSwv5bcqS6uVnkV2LzhfbF2yA3Ggv
+	jJiC3vS61TyEjTqj6lpZf2DT8DBI+pwO36HRv8MVfZyFXTQ3SpLUXdeSjDc72lIWc7xYonWCNAd
+	Pp48UUD/hG4OLhVpwdQfCupnZsQ==
+X-Google-Smtp-Source: AGHT+IGmWH/iGLqzVwuFP7RJWXn1M1/VMzVhYdWXO/tkwNgc0iTeL4UpWXsQLzyXQnZ0n4LlZ1JcXg==
+X-Received: by 2002:a17:906:730d:b0:ac2:63b:6a45 with SMTP id a640c23a62f3a-ac20db4ccd0mr725046966b.30.1741261665523;
+        Thu, 06 Mar 2025 03:47:45 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac23973a8d0sm82006266b.87.2025.03.06.03.47.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Mar 2025 03:47:45 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="qxu4bxugckchmvib"
-Content-Disposition: inline
-In-Reply-To: <7d98163d-10c8-457d-92e7-6a1d6e379beb@nxp.com>
-
-
---qxu4bxugckchmvib
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
+Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+X-Priority: 3
+In-Reply-To: <74c154b6.8c50.1956aa8c8d2.Coremail.andyshrk@163.com>
+Date: Thu, 6 Mar 2025 12:47:31 +0100
+Cc: heiko@sntech.de,
+ neil.armstrong@linaro.org,
+ sebastian.reichel@collabora.com,
+ devicetree@vger.kernel.org,
+ hjc@rock-chips.com,
+ mripard@kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ yubing.zhang@rock-chips.com,
+ dri-devel@lists.freedesktop.org,
+ Andy Yan <andy.yan@rock-chips.com>,
+ krzk+dt@kernel.org,
+ robh@kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
- color encoder
-MIME-Version: 1.0
+Message-Id: <1573D5D6-AFED-4D92-8112-B0C6BB52D5FF@gmail.com>
+References: <25401bfa.291d.19564244e54.Coremail.andyshrk@163.com>
+ <75189787-28E1-4FC2-8E10-4960B3877A6F@gmail.com>
+ <28b0d3fc.bb3.19568f6b5f8.Coremail.andyshrk@163.com>
+ <44213B17-FE14-4FB8-8319-1E31BBF6EAA0@gmail.com>
+ <74c154b6.8c50.1956aa8c8d2.Coremail.andyshrk@163.com>
+To: Andy Yan <andyshrk@163.com>
+X-Mailer: Apple Mail (2.3826.400.131.1.6)
 
-On Thu, Mar 06, 2025 at 03:02:41PM +0800, Liu Ying wrote:
-> On 03/06/2025, Rob Herring wrote:
-> > On Wed, Mar 05, 2025 at 10:35:26AM +0100, Alexander Stein wrote:
-> >> Hi,
-> >>
-> >> Am Dienstag, 4. M=E4rz 2025, 16:23:20 CET schrieb Rob Herring:
-> >>> On Tue, Mar 04, 2025 at 06:15:28PM +0800, Liu Ying wrote:
-> >>>> A DPI color encoder, as a simple display bridge, converts input DPI =
-color
-> >>>> coding to output DPI color coding, like Adafruit Kippah DPI hat[1] w=
-hich
-> >>>> converts input 18-bit pixel data to 24-bit pixel data(with 2 low pad=
-ding
-> >>>> bits in every color component though). Document the DPI color encode=
-r.
-> >>>
-> >>> Why do we need a node for this? Isn't this just wired how it is wired=
-=20
-> >>> and there's nothing for s/w to see or do? I suppose if you are trying=
- to=20
-> >>> resolve the mode with 24-bit on one end and 18-bit on the other end, =
-you=20
-> >>> need to allow that and not require an exact match. You still might ne=
-ed=20
-> >>> to figure out which pins the 18-bit data comes out on, but you have t=
-hat=20
-> >>> problem with an 18-bit panel too. IOW, how is this any different if y=
-ou=20
-> >>> have an 18-bit panel versus 24-bit panel?
-> >>
-> >> Especially panel-simple.c has a fixed configuration for each display, =
-such as:
-> >>> .bus_format =3D MEDIA_BUS_FMT_RGB666_1X18
-> >>
-> >> How would you allow or even know it should be addressed as
-> >> MEDIA_BUS_FMT_RGB888_1X24 instead? I see different ways:
-> >> 1. Create a new display setting/compatible
-> >> 2. Add an overwrite property to the displays
-> >> 3. Use a (transparent) bridge (this series)
-> >>
-> >> Number 1 is IMHO out of question.=20
-> >=20
-> > Agreed.
-> >=20
-> >> I personally don't like number 2 as this
-> >> feels like adding quirks to displays, which they don't have.
-> >=20
-> > This is what I would do except apply it to the controller side. We know=
-=20
-> > the panel side already. This is a board variation, so a property makes=
-=20
-> > sense. I don't think you need any more than knowing what's on each end.=
-=20
+
+> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
+6 mar 2025, o godz. 09:53:
 >=20
-> With option 2, no matter putting a property in source side or sink side,
-> impacted display drivers and DT bindings need to be changed, once a board
-> manipulates the DPI color coding.  This adds burdens and introduces new
-> versions of those DT bindings.  Is this what we want?
+>=20
+> Hi,
+>=20
+> =E5=9C=A8 2025-03-06 16:42:00=EF=BC=8C"Piotr Oniszczuk" =
+<piotr.oniszczuk@gmail.com> =E5=86=99=E9=81=93=EF=BC=9A
+>>=20
+>>=20
+>>> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w =
+dniu 6 mar 2025, o godz. 01:59:
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>> Both of the two config options should be enabled.
+>>> andy@Pro480:~/WorkSpace/linux-next$ rg DW_DP .config
+>>> 4044:CONFIG_ROCKCHIP_DW_DP=3Dy
+>>=20
+>> here i=E2=80=99m a bit lost=E2=80=A6.
+>> greping on full kernel sources (with applied =
+https://patchwork.kernel.org/project/linux-rockchip/list/?series=3D936784)=
+ gives me no single appearance of ROCKCHIP_DW_DP=E2=80=A6
+>> Do i miss something?
+>=20
+> see PATCH 3/6:  =20
+>=20
+>=20
+> diff --git a/drivers/gpu/drm/rockchip/Kconfig =
+b/drivers/gpu/drm/rockchip/Kconfig
+> index 26c4410b2407..c8638baf9641 100644
+> --- a/drivers/gpu/drm/rockchip/Kconfig
+> +++ b/drivers/gpu/drm/rockchip/Kconfig
+> @@ -8,6 +8,7 @@ config DRM_ROCKCHIP
+> select DRM_PANEL
+> select VIDEOMODE_HELPERS
+> select DRM_ANALOGIX_DP if ROCKCHIP_ANALOGIX_DP
+> + select DRM_DW_DP if ROCKCHIP_DW_DP
+> select DRM_DW_HDMI if ROCKCHIP_DW_HDMI
+> select DRM_DW_HDMI_QP if ROCKCHIP_DW_HDMI_QP
+> select DRM_DW_MIPI_DSI if ROCKCHIP_DW_MIPI_DSI
+> @@ -58,6 +59,12 @@ config ROCKCHIP_CDN_DP
+>  RK3399 based SoC, you should select this
+>  option.
+>=20
+> +config ROCKCHIP_DW_DP
+> + bool "Rockchip specific extensions for Synopsys DW DP"
+> + help
+> +  Choose this option for Synopsys DesignWare Cores DisplayPort
+> +  transmit controller support on Rockchip SoC.
+>=20
+> =
+https://lore.kernel.org/linux-rockchip/047EECFC-7E55-44EC-896F-13FE04333E4=
+D@gmail.com/T/#m178a325ea0ebc64187aae474d77c3f7a9e0bc93d
+>>=20
 
-There's an option 4: make it a property of the OF graph endpoints. In
-essence, it's similar to properties that are already there like
-lane-mapping, and it wouldn't affect the panel drivers, or create an
-intermediate bridge.
 
-Maxime
+Ah my bad!
+One patch patch was commented - so not all dp code was applied.
 
---qxu4bxugckchmvib
-Content-Type: application/pgp-signature; name="signature.asc"
+Now it is much better:
 
------BEGIN PGP SIGNATURE-----
+root@myth-frontend-56b0f018b5e0:~ # dmesg | grep drm
+[    9.795380] panthor fb000000.gpu: [drm] clock rate =3D 198000000
+[    9.796257] panthor fb000000.gpu: [drm] mali-g610 id 0xa867 major 0x0 =
+minor 0x0 status 0x5
+[    9.796262] panthor fb000000.gpu: [drm] Features: L2:0x7120306 =
+Tiler:0x809 Mem:0x301 MMU:0x2830 AS:0xff
+[    9.796265] panthor fb000000.gpu: [drm] shader_present=3D0x50005 =
+l2_present=3D0x1 tiler_present=3D0x1
+[    9.851869] panthor fb000000.gpu: [drm] Firmware protected mode entry =
+not be supported, ignoring
+[    9.851921] panthor fb000000.gpu: [drm] Firmware git sha: =
+814b47b551159067b67a37c4e9adda458ad9d852
+[    9.852127] panthor fb000000.gpu: [drm] CSF FW using interface =
+v1.1.0, Features 0x0 Instrumentation features 0x71
+[    9.852436] [drm] Initialized panthor 1.3.0 for fb000000.gpu on minor =
+0
+[   10.003108] rockchip-drm display-subsystem: bound fdd90000.vop (ops =
+vop2_component_ops)
+[   10.004705] rockchip-drm display-subsystem: bound fde60000.dp (ops =
+dw_dp_rockchip_component_ops)
+[   10.006085] rockchip-drm display-subsystem: bound fdea0000.hdmi (ops =
+dw_hdmi_qp_rockchip_ops)
+[   10.006679] [drm] Initialized rockchip 1.0.0 for display-subsystem on =
+minor 1
+[   10.006737] rockchip-drm display-subsystem: [drm] Cannot find any =
+crtc or sizes
+[   10.007663] rockchip-drm display-subsystem: [drm] Cannot find any =
+crtc or sizes
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ8mIlQAKCRAnX84Zoj2+
-dnSoAYDBB/bDc4oiForTt6hTu2T7k5fxsgOo6hpzAFvD1SElI/SAR1gLrEg+btZA
-V7TvczkBgLPm3LiHqD7N6MPlIcKl0SPzNFbP8/UcGvqUWcgBigVdJhw6AY6uj4Ey
-73K5s0Sz4A==
-=a1cs
------END PGP SIGNATURE-----
+Unfortunately still nothing on screen
 
---qxu4bxugckchmvib--
+dri state: =
+https://gist.github.com/warpme/5e971dfd2e9fd52fae76641831cebe46
+
+and kernel dmesg https://termbin.com/r0m3
+
+i=E2=80=99m not sure what is missing (some dts enablement or=E2=80=A6.)
+ =20
+
+
+
+
+
+
 
