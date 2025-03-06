@@ -1,619 +1,651 @@
-Return-Path: <devicetree+bounces-155050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17935A5551B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93D53A5561F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 20:03:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 418D8167C30
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:35:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C93B1600E1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC45926B957;
-	Thu,  6 Mar 2025 18:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B06326B0BE;
+	Thu,  6 Mar 2025 19:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="iCMPRokJ"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="A3lXl5tt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-16.pe-b.jellyfish.systems (out-16.pe-b.jellyfish.systems [198.54.127.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.smtpout.orange.fr (smtp-14.smtpout.orange.fr [80.12.242.14])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 742CE1DE4EC;
-	Thu,  6 Mar 2025 18:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1D2825A2B5;
+	Thu,  6 Mar 2025 19:03:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741286095; cv=none; b=sLuiuv5JI2ewoUUIx3QJsbYOOhDVNO0dGXRsJUD0G2+699sI9OgCvIpJD8FNIbOX8AR7mucos5lrxkOg2i4YZPr4+TVsHytugpJhtj1Qg+dpwYaCYBeW2/mWdsck6QTkWuXfQTaW24SaUzS3xi2LSvpkCO3V+vaqr9CBk7iu7XE=
+	t=1741287785; cv=none; b=fPgAMex//r5w1xeNlxkRJBXnG5V1jP3zsH8UT7XqRm5kd4gDludRAWpTMJRKn8nz/GlvkIBAxXVg4pbLFJLazqHp3bzjbXC5Ma57CS7muqciGe87R9J5XWF/biOTo3J1cU0BbvbehQNV48XemLdoTG40eguUqZz49MmVfQ4euDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741286095; c=relaxed/simple;
-	bh=5DdoYI1N24gBpAiXXoKVPC5fmN2nbZKC9ZzPHPUeQjc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uzZyZfpd/nw3RqdqPsfKMhXptvrCu9T0W1vki1+OLjTezOBv9Ch3s5UblPIaewQ58/GrFtaGabxNcQ+I3GCJqZYe2lu6XRD0f/A0izwiTtgh/z8YVKD7Km2dlAhrOhUFIeVMG4gNY+hoX60ipSMm1eC11Wy80Z25MNYfnVQsd9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=iCMPRokJ; arc=none smtp.client-ip=198.54.127.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
-Received: from prod-lbout-phx.jellyfish.systems (new-01.privateemail.com [198.54.118.220])
-	by pe-b.jellyfish.systems (Postfix) with ESMTPA id 4Z7yl03mHHzGpKV;
-	Thu, 06 Mar 2025 18:34:52 +0000 (UTC)
-Received: from MTA-05.privateemail.com (unknown [10.50.14.15])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by NEW-01.privateemail.com (Postfix) with ESMTPS id 4Z7yl02lBFz3hhVZ;
-	Thu,  6 Mar 2025 13:34:52 -0500 (EST)
-Received: from mta-05.privateemail.com (localhost [127.0.0.1])
-	by mta-05.privateemail.com (Postfix) with ESMTP id 4Z7yl00v7dz3hhbw;
-	Thu,  6 Mar 2025 13:34:52 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
-	s=default; t=1741286092;
-	bh=5DdoYI1N24gBpAiXXoKVPC5fmN2nbZKC9ZzPHPUeQjc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=iCMPRokJ+5m2WsUIZ6s8QbTU1H/eGsqo56ulaLJmd7lCkhMg7LGPyoTAFYQ2400Ec
-	 4Y/7s2f/L4vWTDJ2K7bhbaPjmUU9x4XglYajSpwfLQqK1TvBReOTLR+YEKjUheKGFW
-	 8c1aw56gXCNGwHxrHk6PAC05Oh1c6s4kPiixAoj33C5nAPGIb1uxEDMecCIm9K4sr1
-	 KMGoXg/o1Y7NWNteelFhxa6dQuL9l6UZBX9FP6YNNZc9Ckg0e0m2e3DggSNs6r8amn
-	 vMJJqYpf6qY4HlkRKTpLCovAJJBtAwFJph4uNBDUoVvoALxzZXIdu7GPQgGkExIR3z
-	 SngsBulQDvNRA==
-Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
-	by mta-05.privateemail.com (Postfix) with ESMTPA;
-	Thu,  6 Mar 2025 13:34:37 -0500 (EST)
-From: Sam Winchenbach <sam.winchenbach@framepointer.org>
-To: linux-kernel@vger.kernel.org
-Cc: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	antoniu.miclaus@analog.com,
-	jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	sam.winchenbach@framepointer.org,
-	bpellegrino@arka.org
-Subject: [PATCH v5 4/6] iio: filter: admv8818: fix range calculation
-Date: Thu,  6 Mar 2025 13:33:12 -0500
-Message-ID: <20250306183314.150253-4-sam.winchenbach@framepointer.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250306183314.150253-1-sam.winchenbach@framepointer.org>
-References: <20250306183314.150253-1-sam.winchenbach@framepointer.org>
+	s=arc-20240116; t=1741287785; c=relaxed/simple;
+	bh=kj5Vmw4cKQN/TQ8VqYNYKR0rJdxfE93ognsDe1M3Pfo=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=bu4sHwZIYDV6mhHdtDeQem2d6MpTdQZoPghz1e+kcALmAbk5IfEsNxvljL9H0I+XCT4IQSGXNP8fBc/8VeWm/c7pY2x0+7wO7JlMRhG36xUsyoZImJiJQ1n1lPi7tDs7c+hD289TXf01fvHvQhI/YeJ2xB3UAlLKBuRo1gufhBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=A3lXl5tt; arc=none smtp.client-ip=80.12.242.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id qGLut4db0nwqeqGLxtYKJ1; Thu, 06 Mar 2025 19:53:53 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1741287234;
+	bh=yHhGP/Jm26P5uwbDPOENf49unxj+shHxyBA4UaYTmg0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=A3lXl5ttdRliA8u3heg1nxTFfnbcfzmZAqrviLjz+wZT7ZQ280NqTrvStqzG9QwWC
+	 +U5EdOw7ARIB+kvkQe5IzqnqwihoI6xPmZ4yEwDYF0L5/BroNobYKagD44W6cBjJ2O
+	 fGw5PGUJSZwzGX18h6bE//RwvsqaaIOMBuVvpGAJUw3FyWcp8EcJNO6DQgljwOAWpx
+	 mM8h8PVK77wa5FqUGG5f9tALK8/2xHIIiCgfu5u4mSK/i7viwRYmdooeRPrpPmmwQX
+	 19mdRHwv8bJhHKcIXFuHzvSyE+I6Of+8t0tys9q2c+52kZmIstqp/RMgGmqjb7LIpm
+	 PJETLfqstm/Uw==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Thu, 06 Mar 2025 19:53:54 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <50dab2fb-27ad-4a29-8af9-a0f07098cec2@wanadoo.fr>
+Date: Thu, 6 Mar 2025 19:53:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] leds: add new LED driver for TI LP5812
+References: <20250306172126.24667-1-trannamatk@gmail.com>
+ <20250306172126.24667-4-trannamatk@gmail.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: trannamatk@gmail.com
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ lee@kernel.org, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+ pavel@kernel.org, robh@kernel.org
+In-Reply-To: <20250306172126.24667-4-trannamatk@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
 
-Search for the minimum error while ensuring that the LPF corner
-frequency is greater than the target, and the HPF corner frequency
-is lower than the target
+Le 06/03/2025 à 18:21, Nam Tran a écrit :
+> The chip can drive LED matrix 4x3.
+> This driver enables LED control via I2C.
+> 
+> The driver is implemented in two parts:
+> - Core driver logic in leds-lp5812.c
+> - Common support functions in leds-lp5812-common.c
+> 
+> Signed-off-by: Nam Tran <trannamatk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
 
-This fixes issues where the range calculations were suboptimal.
+A few comments/nitpicks.
 
-Add two new DTS properties to set the margin between the input frequency
-and the calculated corner frequency
+Some of them can be applied in several places, I've not spotted all of 
+them, but you get the idea.
 
-Below is a generated table of the differences between the old algorithm
-and the new. This is a sweep from 0 to 20 GHz in 10 MHz steps.
-=== HPF ===
-freq = 1750 MHz, 3db: bypass => 1750 MHz
-freq = 3400 MHz, 3db: 3310 => 3400 MHz
-freq = 3410 MHz, 3db: 3310 => 3400 MHz
-freq = 3420 MHz, 3db: 3310 => 3400 MHz
-freq = 3660 MHz, 3db: 3550 => 3656 MHz
-freq = 6600 MHz, 3db: 6479 => 6600 MHz
-freq = 6610 MHz, 3db: 6479 => 6600 MHz
-freq = 6620 MHz, 3db: 6479 => 6600 MHz
-freq = 6630 MHz, 3db: 6479 => 6600 MHz
-freq = 6640 MHz, 3db: 6479 => 6600 MHz
-freq = 6650 MHz, 3db: 6479 => 6600 MHz
-freq = 6660 MHz, 3db: 6479 => 6600 MHz
-freq = 6670 MHz, 3db: 6479 => 6600 MHz
-freq = 6680 MHz, 3db: 6479 => 6600 MHz
-freq = 6690 MHz, 3db: 6479 => 6600 MHz
-freq = 6700 MHz, 3db: 6479 => 6600 MHz
-freq = 6710 MHz, 3db: 6479 => 6600 MHz
-freq = 6720 MHz, 3db: 6479 => 6600 MHz
-freq = 6730 MHz, 3db: 6479 => 6600 MHz
-freq = 6960 MHz, 3db: 6736 => 6960 MHz
-freq = 6970 MHz, 3db: 6736 => 6960 MHz
-freq = 6980 MHz, 3db: 6736 => 6960 MHz
-freq = 6990 MHz, 3db: 6736 => 6960 MHz
-freq = 7320 MHz, 3db: 7249 => 7320 MHz
-freq = 7330 MHz, 3db: 7249 => 7320 MHz
-freq = 7340 MHz, 3db: 7249 => 7320 MHz
-freq = 7350 MHz, 3db: 7249 => 7320 MHz
-freq = 7360 MHz, 3db: 7249 => 7320 MHz
-freq = 7370 MHz, 3db: 7249 => 7320 MHz
-freq = 7380 MHz, 3db: 7249 => 7320 MHz
-freq = 7390 MHz, 3db: 7249 => 7320 MHz
-freq = 7400 MHz, 3db: 7249 => 7320 MHz
-freq = 7410 MHz, 3db: 7249 => 7320 MHz
-freq = 7420 MHz, 3db: 7249 => 7320 MHz
-freq = 7430 MHz, 3db: 7249 => 7320 MHz
-freq = 7440 MHz, 3db: 7249 => 7320 MHz
-freq = 7450 MHz, 3db: 7249 => 7320 MHz
-freq = 7460 MHz, 3db: 7249 => 7320 MHz
-freq = 7470 MHz, 3db: 7249 => 7320 MHz
-freq = 7480 MHz, 3db: 7249 => 7320 MHz
-freq = 7490 MHz, 3db: 7249 => 7320 MHz
-freq = 7500 MHz, 3db: 7249 => 7320 MHz
-freq = 12500 MHz, 3db: 12000 => 12500 MHz
+Hoping, this will help to clean the code and help other reviewers.
 
-=== LPF ===
-freq = 2050 MHz, 3db: bypass => 2050 MHz
-freq = 2170 MHz, 3db: 2290 => 2170 MHz
-freq = 2290 MHz, 3db: 2410 => 2290 MHz
-freq = 2410 MHz, 3db: 2530 => 2410 MHz
-freq = 2530 MHz, 3db: 2650 => 2530 MHz
-freq = 2650 MHz, 3db: 2770 => 2650 MHz
-freq = 2770 MHz, 3db: 2890 => 2770 MHz
-freq = 2890 MHz, 3db: 3010 => 2890 MHz
-freq = 3010 MHz, 3db: 3130 => 3010 MHz
-freq = 3130 MHz, 3db: 3250 => 3130 MHz
-freq = 3250 MHz, 3db: 3370 => 3250 MHz
-freq = 3260 MHz, 3db: 3370 => 3350 MHz
-freq = 3270 MHz, 3db: 3370 => 3350 MHz
-freq = 3280 MHz, 3db: 3370 => 3350 MHz
-freq = 3290 MHz, 3db: 3370 => 3350 MHz
-freq = 3300 MHz, 3db: 3370 => 3350 MHz
-freq = 3310 MHz, 3db: 3370 => 3350 MHz
-freq = 3320 MHz, 3db: 3370 => 3350 MHz
-freq = 3330 MHz, 3db: 3370 => 3350 MHz
-freq = 3340 MHz, 3db: 3370 => 3350 MHz
-freq = 3350 MHz, 3db: 3370 => 3350 MHz
-freq = 3370 MHz, 3db: 3490 => 3370 MHz
-freq = 3490 MHz, 3db: 3610 => 3490 MHz
-freq = 3610 MHz, 3db: 3730 => 3610 MHz
-freq = 3730 MHz, 3db: 3850 => 3730 MHz
-freq = 3850 MHz, 3db: 3870 => 3850 MHz
-freq = 3870 MHz, 3db: 4130 => 3870 MHz
-freq = 4130 MHz, 3db: 4390 => 4130 MHz
-freq = 4390 MHz, 3db: 4650 => 4390 MHz
-freq = 4650 MHz, 3db: 4910 => 4650 MHz
-freq = 4910 MHz, 3db: 5170 => 4910 MHz
-freq = 5170 MHz, 3db: 5430 => 5170 MHz
-freq = 5430 MHz, 3db: 5690 => 5430 MHz
-freq = 5690 MHz, 3db: 5950 => 5690 MHz
-freq = 5950 MHz, 3db: 6210 => 5950 MHz
-freq = 6210 MHz, 3db: 6470 => 6210 MHz
-freq = 6470 MHz, 3db: 6730 => 6470 MHz
-freq = 6730 MHz, 3db: 6990 => 6730 MHz
-freq = 6990 MHz, 3db: 7250 => 6990 MHz
-freq = 7000 MHz, 3db: 7250 => 7000 MHz
-freq = 7250 MHz, 3db: 7400 => 7250 MHz
-freq = 7400 MHz, 3db: 7800 => 7400 MHz
-freq = 7800 MHz, 3db: 8200 => 7800 MHz
-freq = 8200 MHz, 3db: 8600 => 8200 MHz
-freq = 8600 MHz, 3db: 9000 => 8600 MHz
-freq = 9000 MHz, 3db: 9400 => 9000 MHz
-freq = 9400 MHz, 3db: 9800 => 9400 MHz
-freq = 9800 MHz, 3db: 10200 => 9800 MHz
-freq = 10200 MHz, 3db: 10600 => 10200 MHz
-freq = 10600 MHz, 3db: 11000 => 10600 MHz
-freq = 11000 MHz, 3db: 11400 => 11000 MHz
-freq = 11400 MHz, 3db: 11800 => 11400 MHz
-freq = 11800 MHz, 3db: 12200 => 11800 MHz
-freq = 12200 MHz, 3db: 12600 => 12200 MHz
-freq = 12210 MHz, 3db: 12600 => 12550 MHz
-freq = 12220 MHz, 3db: 12600 => 12550 MHz
-freq = 12230 MHz, 3db: 12600 => 12550 MHz
-freq = 12240 MHz, 3db: 12600 => 12550 MHz
-freq = 12250 MHz, 3db: 12600 => 12550 MHz
-freq = 12260 MHz, 3db: 12600 => 12550 MHz
-freq = 12270 MHz, 3db: 12600 => 12550 MHz
-freq = 12280 MHz, 3db: 12600 => 12550 MHz
-freq = 12290 MHz, 3db: 12600 => 12550 MHz
-freq = 12300 MHz, 3db: 12600 => 12550 MHz
-freq = 12310 MHz, 3db: 12600 => 12550 MHz
-freq = 12320 MHz, 3db: 12600 => 12550 MHz
-freq = 12330 MHz, 3db: 12600 => 12550 MHz
-freq = 12340 MHz, 3db: 12600 => 12550 MHz
-freq = 12350 MHz, 3db: 12600 => 12550 MHz
-freq = 12360 MHz, 3db: 12600 => 12550 MHz
-freq = 12370 MHz, 3db: 12600 => 12550 MHz
-freq = 12380 MHz, 3db: 12600 => 12550 MHz
-freq = 12390 MHz, 3db: 12600 => 12550 MHz
-freq = 12400 MHz, 3db: 12600 => 12550 MHz
-freq = 12410 MHz, 3db: 12600 => 12550 MHz
-freq = 12420 MHz, 3db: 12600 => 12550 MHz
-freq = 12430 MHz, 3db: 12600 => 12550 MHz
-freq = 12440 MHz, 3db: 12600 => 12550 MHz
-freq = 12450 MHz, 3db: 12600 => 12550 MHz
-freq = 12460 MHz, 3db: 12600 => 12550 MHz
-freq = 12470 MHz, 3db: 12600 => 12550 MHz
-freq = 12480 MHz, 3db: 12600 => 12550 MHz
-freq = 12490 MHz, 3db: 12600 => 12550 MHz
-freq = 12500 MHz, 3db: 12600 => 12550 MHz
-freq = 12510 MHz, 3db: 12600 => 12550 MHz
-freq = 12520 MHz, 3db: 12600 => 12550 MHz
-freq = 12530 MHz, 3db: 12600 => 12550 MHz
-freq = 12540 MHz, 3db: 12600 => 12550 MHz
-freq = 12550 MHz, 3db: 12600 => 12550 MHz
-freq = 12600 MHz, 3db: 13000 => 12600 MHz
-freq = 12610 MHz, 3db: 13000 => 12970 MHz
-freq = 12620 MHz, 3db: 13000 => 12970 MHz
-freq = 12630 MHz, 3db: 13000 => 12970 MHz
-freq = 12640 MHz, 3db: 13000 => 12970 MHz
-freq = 12650 MHz, 3db: 13000 => 12970 MHz
-freq = 12660 MHz, 3db: 13000 => 12970 MHz
-freq = 12670 MHz, 3db: 13000 => 12970 MHz
-freq = 12680 MHz, 3db: 13000 => 12970 MHz
-freq = 12690 MHz, 3db: 13000 => 12970 MHz
-freq = 12700 MHz, 3db: 13000 => 12970 MHz
-freq = 12710 MHz, 3db: 13000 => 12970 MHz
-freq = 12720 MHz, 3db: 13000 => 12970 MHz
-freq = 12730 MHz, 3db: 13000 => 12970 MHz
-freq = 12740 MHz, 3db: 13000 => 12970 MHz
-freq = 12750 MHz, 3db: 13000 => 12970 MHz
-freq = 12760 MHz, 3db: 13000 => 12970 MHz
-freq = 12770 MHz, 3db: 13000 => 12970 MHz
-freq = 12780 MHz, 3db: 13000 => 12970 MHz
-freq = 12790 MHz, 3db: 13000 => 12970 MHz
-freq = 12800 MHz, 3db: 13000 => 12970 MHz
-freq = 12810 MHz, 3db: 13000 => 12970 MHz
-freq = 12820 MHz, 3db: 13000 => 12970 MHz
-freq = 12830 MHz, 3db: 13000 => 12970 MHz
-freq = 12840 MHz, 3db: 13000 => 12970 MHz
-freq = 12850 MHz, 3db: 13000 => 12970 MHz
-freq = 12860 MHz, 3db: 13000 => 12970 MHz
-freq = 12870 MHz, 3db: 13000 => 12970 MHz
-freq = 12880 MHz, 3db: 13000 => 12970 MHz
-freq = 12890 MHz, 3db: 13000 => 12970 MHz
-freq = 12900 MHz, 3db: 13000 => 12970 MHz
-freq = 12910 MHz, 3db: 13000 => 12970 MHz
-freq = 12920 MHz, 3db: 13000 => 12970 MHz
-freq = 12930 MHz, 3db: 13000 => 12970 MHz
-freq = 12940 MHz, 3db: 13000 => 12970 MHz
-freq = 12950 MHz, 3db: 13000 => 12970 MHz
-freq = 12960 MHz, 3db: 13000 => 12970 MHz
-freq = 12970 MHz, 3db: 13000 => 12970 MHz
-freq = 13000 MHz, 3db: 13390 => 13000 MHz
-freq = 13390 MHz, 3db: 13810 => 13390 MHz
-freq = 13810 MHz, 3db: 14230 => 13810 MHz
-freq = 14230 MHz, 3db: 14650 => 14230 MHz
-freq = 14650 MHz, 3db: 15070 => 14650 MHz
-freq = 15070 MHz, 3db: 15490 => 15070 MHz
-freq = 15490 MHz, 3db: 15910 => 15490 MHz
-freq = 15910 MHz, 3db: 16330 => 15910 MHz
-freq = 16330 MHz, 3db: 16750 => 16330 MHz
-freq = 16750 MHz, 3db: 17170 => 16750 MHz
-freq = 17170 MHz, 3db: 17590 => 17170 MHz
-freq = 17590 MHz, 3db: 18010 => 17590 MHz
-freq = 18010 MHz, 3db: 18430 => 18010 MHz
-freq = 18430 MHz, 3db: 18850 => 18430 MHz
-freq = 18850 MHz, 3db: bypass => 18850 MHz
+> +
+> +static ssize_t led_mode_store(struct kobject *kobj,
+> +		struct kobj_attribute *attr, const char *buf, size_t count)
+> +{
+> +	int val, ret;
+> +	struct lp5812_led *led = to_lp5812_led(kobj);
+> +	struct lp5812_chip *chip = led->priv;
+> +
+> +	if (sysfs_streq(buf, "manual")) {
+> +		/* Remove AEU sysfs interface for current led in manual mode */
+> +		aeu_remove_multi_sysfs_groups(led);
+> +		val = 0;
 
-Fixes: f34fe888ad05 ("iio:filter:admv8818: add support for ADMV8818")
-Signed-off-by: Sam Winchenbach <sam.winchenbach@framepointer.org>
----
- drivers/iio/filter/admv8818.c | 199 +++++++++++++++++++++++++---------
- 1 file changed, 146 insertions(+), 53 deletions(-)
+Maybe use AUTONOMOUS or MANUAL directly.
 
-diff --git a/drivers/iio/filter/admv8818.c b/drivers/iio/filter/admv8818.c
-index a059282e0251..8cdfae56199b 100644
---- a/drivers/iio/filter/admv8818.c
-+++ b/drivers/iio/filter/admv8818.c
-@@ -14,6 +14,7 @@
- #include <linux/mod_devicetable.h>
- #include <linux/mutex.h>
- #include <linux/notifier.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/spi/spi.h>
- #include <linux/units.h>
-@@ -70,6 +71,16 @@
- #define ADMV8818_HPF_WR0_MSK			GENMASK(7, 4)
- #define ADMV8818_LPF_WR0_MSK			GENMASK(3, 0)
- 
-+#define ADMV8818_BAND_BYPASS       0
-+#define ADMV8818_BAND_MIN          1
-+#define ADMV8818_BAND_MAX          4
-+#define ADMV8818_BAND_CORNER_LOW   0
-+#define ADMV8818_BAND_CORNER_HIGH  1
-+
-+#define ADMV8818_STATE_MIN   0
-+#define ADMV8818_STATE_MAX   15
-+#define ADMV8818_NUM_STATES  16
-+
- enum {
- 	ADMV8818_BW_FREQ,
- 	ADMV8818_CENTER_FREQ
-@@ -90,16 +101,20 @@ struct admv8818_state {
- 	struct mutex		lock;
- 	unsigned int		filter_mode;
- 	u64			cf_hz;
-+	u64			lpf_margin_hz;
-+	u64			hpf_margin_hz;
- };
- 
--static const unsigned long long freq_range_hpf[4][2] = {
-+static const unsigned long long freq_range_hpf[5][2] = {
-+	{0ULL, 0ULL}, /* bypass */
- 	{1750000000ULL, 3550000000ULL},
- 	{3400000000ULL, 7250000000ULL},
- 	{6600000000, 12000000000},
- 	{12500000000, 19900000000}
- };
- 
--static const unsigned long long freq_range_lpf[4][2] = {
-+static const unsigned long long freq_range_lpf[5][2] = {
-+	{U64_MAX, U64_MAX}, /* bypass */
- 	{2050000000ULL, 3850000000ULL},
- 	{3350000000ULL, 7250000000ULL},
- 	{7000000000, 13000000000},
-@@ -121,44 +136,59 @@ static const char * const admv8818_modes[] = {
- 
- static int __admv8818_hpf_select(struct admv8818_state *st, u64 freq)
- {
--	unsigned int hpf_step = 0, hpf_band = 0, i, j;
--	u64 freq_step;
--	int ret;
-+	int band, state, ret;
-+	unsigned int hpf_state = ADMV8818_STATE_MIN, hpf_band = ADMV8818_BAND_BYPASS;
-+	u64 freq_error, min_freq_error, freq_corner, freq_step;
- 
--	if (freq < freq_range_hpf[0][0])
-+	if (freq < freq_range_hpf[ADMV8818_BAND_MIN][ADMV8818_BAND_CORNER_LOW])
- 		goto hpf_write;
- 
--	if (freq > freq_range_hpf[3][1]) {
--		hpf_step = 15;
--		hpf_band = 4;
--
-+	if (freq >= freq_range_hpf[ADMV8818_BAND_MAX][ADMV8818_BAND_CORNER_HIGH]) {
-+		hpf_state = ADMV8818_STATE_MAX;
-+		hpf_band = ADMV8818_BAND_MAX;
- 		goto hpf_write;
- 	}
- 
--	for (i = 0; i < 4; i++) {
--		freq_step = div_u64((freq_range_hpf[i][1] -
--			freq_range_hpf[i][0]), 15);
-+	/* Close HPF frequency gap between 12 and 12.5 GHz */
-+	if (freq >= 12000ULL * HZ_PER_MHZ && freq < 12500ULL * HZ_PER_MHZ) {
-+		hpf_state = ADMV8818_STATE_MAX;
-+		hpf_band = 3;
-+		goto hpf_write;
-+	}
- 
--		if (freq > freq_range_hpf[i][0] &&
--		    (freq < freq_range_hpf[i][1] + freq_step)) {
--			hpf_band = i + 1;
-+	min_freq_error = U64_MAX;
-+	for (band = ADMV8818_BAND_MIN; band <= ADMV8818_BAND_MAX; band++) {
-+		/*
-+		 * This (and therefore all other ranges) have a corner
-+		 * frequency higher than the target frequency.
-+		 */
-+		if (freq_range_hpf[band][ADMV8818_BAND_CORNER_LOW] > freq)
-+			break;
- 
--			for (j = 1; j <= 16; j++) {
--				if (freq < (freq_range_hpf[i][0] + (freq_step * j))) {
--					hpf_step = j - 1;
--					break;
--				}
-+		freq_step = freq_range_hpf[band][ADMV8818_BAND_CORNER_HIGH] -
-+			    freq_range_hpf[band][ADMV8818_BAND_CORNER_LOW];
-+		freq_step = div_u64(freq_step, ADMV8818_NUM_STATES - 1);
-+
-+		for (state = ADMV8818_STATE_MIN; state <= ADMV8818_STATE_MAX; state++) {
-+			freq_corner = freq_range_hpf[band][ADMV8818_BAND_CORNER_LOW] +
-+				      freq_step * state;
-+
-+			/*
-+			 * This (and therefore all other states) have a corner
-+			 * frequency higher than the target frequency.
-+			 */
-+			if (freq_corner > freq)
-+				break;
-+
-+			freq_error = freq - freq_corner;
-+			if (freq_error < min_freq_error) {
-+				min_freq_error = freq_error;
-+				hpf_state = state;
-+				hpf_band = band;
- 			}
--			break;
- 		}
- 	}
- 
--	/* Close HPF frequency gap between 12 and 12.5 GHz */
--	if (freq >= 12000ULL * HZ_PER_MHZ && freq < 12500ULL * HZ_PER_MHZ) {
--		hpf_band = 3;
--		hpf_step = 15;
--	}
--
- hpf_write:
- 	ret = regmap_update_bits(st->regmap, ADMV8818_REG_WR0_SW,
- 				 ADMV8818_SW_IN_SET_WR0_MSK |
-@@ -170,7 +200,7 @@ static int __admv8818_hpf_select(struct admv8818_state *st, u64 freq)
- 
- 	return regmap_update_bits(st->regmap, ADMV8818_REG_WR0_FILTER,
- 				  ADMV8818_HPF_WR0_MSK,
--				  FIELD_PREP(ADMV8818_HPF_WR0_MSK, hpf_step));
-+				  FIELD_PREP(ADMV8818_HPF_WR0_MSK, hpf_state));
- }
- 
- static int admv8818_hpf_select(struct admv8818_state *st, u64 freq)
-@@ -186,31 +216,52 @@ static int admv8818_hpf_select(struct admv8818_state *st, u64 freq)
- 
- static int __admv8818_lpf_select(struct admv8818_state *st, u64 freq)
- {
--	unsigned int lpf_step = 0, lpf_band = 0, i, j;
--	u64 freq_step;
--	int ret;
-+	int band, state, ret;
-+	unsigned int lpf_state = ADMV8818_STATE_MIN, lpf_band = ADMV8818_BAND_BYPASS;
-+	u64 freq_error, min_freq_error, freq_corner, freq_step;
- 
--	if (freq > freq_range_lpf[3][1])
-+	if (freq > freq_range_lpf[ADMV8818_BAND_MAX][ADMV8818_BAND_CORNER_HIGH])
- 		goto lpf_write;
- 
--	if (freq < freq_range_lpf[0][0]) {
--		lpf_band = 1;
--
-+	if (freq < freq_range_lpf[ADMV8818_BAND_MIN][ADMV8818_BAND_CORNER_LOW]) {
-+		lpf_state = ADMV8818_STATE_MIN;
-+		lpf_band = ADMV8818_BAND_MIN;
- 		goto lpf_write;
- 	}
- 
--	for (i = 0; i < 4; i++) {
--		if (freq > freq_range_lpf[i][0] && freq < freq_range_lpf[i][1]) {
--			lpf_band = i + 1;
--			freq_step = div_u64((freq_range_lpf[i][1] - freq_range_lpf[i][0]), 15);
-+	min_freq_error = U64_MAX;
-+	for (band = ADMV8818_BAND_MAX; band >= ADMV8818_BAND_MIN; --band) {
-+		/*
-+		 * At this point the highest corner frequency of
-+		 * all remaining ranges is below the target.
-+		 * LPF corner should be >= the target.
-+		 */
-+		if (freq > freq_range_lpf[band][ADMV8818_BAND_CORNER_HIGH])
-+			break;
-+
-+		freq_step = freq_range_lpf[band][ADMV8818_BAND_CORNER_HIGH] -
-+			    freq_range_lpf[band][ADMV8818_BAND_CORNER_LOW];
-+		freq_step = div_u64(freq_step, ADMV8818_NUM_STATES - 1);
- 
--			for (j = 0; j <= 15; j++) {
--				if (freq < (freq_range_lpf[i][0] + (freq_step * j))) {
--					lpf_step = j;
--					break;
--				}
-+		for (state = ADMV8818_STATE_MAX; state >= ADMV8818_STATE_MIN; --state) {
-+
-+			freq_corner = freq_range_lpf[band][ADMV8818_BAND_CORNER_LOW] +
-+				      state * freq_step;
-+
-+			/*
-+			 * At this point all other states in range will
-+			 * place the corner frequency below the target
-+			 * LPF corner should >= the target.
-+			 */
-+			if (freq > freq_corner)
-+				break;
-+
-+			freq_error = freq_corner - freq;
-+			if (freq_error < min_freq_error) {
-+				min_freq_error = freq_error;
-+				lpf_state = state;
-+				lpf_band = band;
- 			}
--			break;
- 		}
- 	}
- 
-@@ -225,7 +276,7 @@ static int __admv8818_lpf_select(struct admv8818_state *st, u64 freq)
- 
- 	return regmap_update_bits(st->regmap, ADMV8818_REG_WR0_FILTER,
- 				  ADMV8818_LPF_WR0_MSK,
--				  FIELD_PREP(ADMV8818_LPF_WR0_MSK, lpf_step));
-+				  FIELD_PREP(ADMV8818_LPF_WR0_MSK, lpf_state));
- }
- 
- static int admv8818_lpf_select(struct admv8818_state *st, u64 freq)
-@@ -242,16 +293,28 @@ static int admv8818_lpf_select(struct admv8818_state *st, u64 freq)
- static int admv8818_rfin_band_select(struct admv8818_state *st)
- {
- 	int ret;
-+	u64 hpf_corner_target, lpf_corner_target;
- 
- 	st->cf_hz = clk_get_rate(st->clkin);
- 
-+	/* Check for underflow */
-+	if (st->cf_hz > st->hpf_margin_hz)
-+		hpf_corner_target = st->cf_hz - st->hpf_margin_hz;
-+	else
-+		hpf_corner_target = 0;
-+
-+	/* Check for overflow */
-+	lpf_corner_target = st->cf_hz + st->lpf_margin_hz;
-+	if (lpf_corner_target < st->cf_hz)
-+		lpf_corner_target = U64_MAX;
-+
- 	mutex_lock(&st->lock);
- 
--	ret = __admv8818_hpf_select(st, st->cf_hz);
-+	ret = __admv8818_hpf_select(st, hpf_corner_target);
- 	if (ret)
- 		goto exit;
- 
--	ret = __admv8818_lpf_select(st, st->cf_hz);
-+	ret = __admv8818_lpf_select(st, lpf_corner_target);
- exit:
- 	mutex_unlock(&st->lock);
- 	return ret;
-@@ -278,8 +341,11 @@ static int __admv8818_read_hpf_freq(struct admv8818_state *st, u64 *hpf_freq)
- 
- 	hpf_state = FIELD_GET(ADMV8818_HPF_WR0_MSK, data);
- 
--	*hpf_freq = div_u64(freq_range_hpf[hpf_band - 1][1] - freq_range_hpf[hpf_band - 1][0], 15);
--	*hpf_freq = freq_range_hpf[hpf_band - 1][0] + (*hpf_freq * hpf_state);
-+	*hpf_freq = freq_range_hpf[hpf_band][ADMV8818_BAND_CORNER_HIGH] -
-+		    freq_range_hpf[hpf_band][ADMV8818_BAND_CORNER_LOW];
-+	*hpf_freq = div_u64(*hpf_freq, ADMV8818_NUM_STATES - 1);
-+	*hpf_freq = freq_range_hpf[hpf_band][ADMV8818_BAND_CORNER_LOW] +
-+		    (*hpf_freq * hpf_state);
- 
- 	return ret;
- }
-@@ -316,8 +382,11 @@ static int __admv8818_read_lpf_freq(struct admv8818_state *st, u64 *lpf_freq)
- 
- 	lpf_state = FIELD_GET(ADMV8818_LPF_WR0_MSK, data);
- 
--	*lpf_freq = div_u64(freq_range_lpf[lpf_band - 1][1] - freq_range_lpf[lpf_band - 1][0], 15);
--	*lpf_freq = freq_range_lpf[lpf_band - 1][0] + (*lpf_freq * lpf_state);
-+	*lpf_freq = freq_range_lpf[lpf_band][ADMV8818_BAND_CORNER_HIGH] -
-+		    freq_range_lpf[lpf_band][ADMV8818_BAND_CORNER_LOW];
-+	*lpf_freq = div_u64(*lpf_freq, ADMV8818_NUM_STATES - 1);
-+	*lpf_freq = freq_range_lpf[lpf_band][ADMV8818_BAND_CORNER_LOW] +
-+		    (*lpf_freq * lpf_state);
- 
- 	return ret;
- }
-@@ -647,6 +716,26 @@ static int admv8818_clk_setup(struct admv8818_state *st)
- 	return devm_add_action_or_reset(&spi->dev, admv8818_clk_notifier_unreg, st);
- }
- 
-+static int admv8818_read_properties(struct admv8818_state *st)
-+{
-+	struct spi_device *spi = st->spi;
-+	int ret;
-+
-+	ret = device_property_read_u64(&spi->dev, "adi,lpf-margin-hz", &st->lpf_margin_hz);
-+	if (ret == -EINVAL)
-+		st->lpf_margin_hz = 0;
-+	else if (ret < 0)
-+		return ret;
-+
-+	ret = device_property_read_u64(&spi->dev, "adi,hpf-margin-hz", &st->hpf_margin_hz);
-+	if (ret == -EINVAL)
-+		st->hpf_margin_hz = 0;
-+	else if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
- static int admv8818_probe(struct spi_device *spi)
- {
- 	struct iio_dev *indio_dev;
-@@ -678,6 +767,10 @@ static int admv8818_probe(struct spi_device *spi)
- 
- 	mutex_init(&st->lock);
- 
-+	ret = admv8818_read_properties(st);
-+	if (ret)
-+		return ret;
-+
- 	ret = admv8818_init(st);
- 	if (ret)
- 		return ret;
--- 
-2.48.1
+> +	} else if (sysfs_streq(buf, "autonomous")) {
+> +		val = 1;
+> +	} else {
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&chip->lock);
+> +	ret = lp5812_set_led_mode(chip, led->led_number,
+> +			val ? AUTONOMOUS : MANUAL);
+> +	if (ret) {
+> +		ret = -EIO;
+> +		goto out;
+> +	}
+> +
+> +	ret = aeu_create_multi_sysfs_groups(led);
+> +	if (ret) {
+> +		dev_err(chip->dev, "aeu_create_multi_sysfs_groups() failed\n");
+> +		goto out;
+> +	}
+> +
+> +	mutex_unlock(&chip->lock);
+> +	return count;
+> +out:
+> +	mutex_unlock(&chip->lock);
+> +	return ret;
+> +}
+
+...
+
+> +static ssize_t led_manual_pwm_store(struct kobject *kobj,
+> +		struct kobj_attribute *attr, const char *buf, size_t count)
+> +{
+> +	int manual_pwm;
+> +	int ret;
+> +	struct lp5812_led *led = to_lp5812_led(kobj);
+> +	struct lp5812_chip *chip = led->priv;
+> +
+> +	ret = kstrtoint(buf, 0, &manual_pwm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (manual_pwm < 0 || manual_pwm > 255)
+> +		return -EINVAL; /* Invalid argument */
+
+Useless comment (here and in several other places)
+
+> +
+> +	/* set to hardware */
+> +	mutex_lock(&chip->lock);
+> +	if (lp5812_manual_dc_pwm_control(chip, led->led_number,
+> +		manual_pwm, PWM)) {
+> +		mutex_unlock(&chip->lock);
+> +		return -EIO;
+> +	}
+> +	mutex_unlock(&chip->lock);
+> +
+> +	return count;
+> +}
+
+...
+
+> +static ssize_t led_auto_dc_store(struct kobject *kobj,
+> +		struct kobj_attribute *attr, const char *buf, size_t count)
+> +{
+> +	int auto_dc;
+> +	int ret;
+> +	struct lp5812_led *led = to_lp5812_led(kobj);
+> +	struct lp5812_chip *chip = led->priv;
+> +
+> +	ret = kstrtoint(buf, 0, &auto_dc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (auto_dc < 0 || auto_dc > 255)
+> +		return -EINVAL; /* Invalid argument */
+
+Useless comment
+
+> +
+> +	/* set to hardware */
+> +	mutex_lock(&chip->lock);
+> +	if (lp5812_autonomous_dc_pwm_control(chip, led->led_number,
+> +			auto_dc, ANALOG)) {
+> +		mutex_unlock(&chip->lock);
+> +		return -EIO;
+> +	}
+> +	mutex_unlock(&chip->lock);
+> +
+> +	return count;
+> +}
+
+...
+
+> +static int parse_autonomous_animation_config(struct lp5812_led *led,
+> +		const char *user_buf)
+> +{
+> +	int ret;
+> +	int i;
+> +	char *str;
+> +	char *sub_str;
+> +	int aeu_select, start_pause_time, stop_pause_time, led_playback_time;
+> +
+> +	str = kmalloc(strlen(user_buf) + 1, GFP_KERNEL);
+
+kstrdup()?
+
+> +	if (!str)
+> +		return -ENOMEM;
+> +	strscpy(str, user_buf, strlen(user_buf) + 1);
+> +
+> +	/* parse aeu_select */
+> +	sub_str = strsep(&str, ":");
+> +	ret = kstrtoint(sub_str, 0, &aeu_select);
+> +	if (ret)
+> +		return ret;
+> +	if (aeu_select < 1 || aeu_select > 3)
+> +		return -EINVAL;
+> +
+> +	aeu_remove_multi_sysfs_groups(led);
+> +
+> +	for (i = 0; i < aeu_select; i++)
+> +		aeu_create_sysfs_group(&led->aeu[i]);
+> +	led->led_playback.s_led_playback.aeu_selection = aeu_select - 1;
+> +
+> +	/* parse start_pause_time */
+> +	sub_str = strsep(&str, ":");
+> +	if (sub_str) {
+> +		ret = kstrtoint(sub_str, 0, &start_pause_time);
+> +		if (ret)
+> +			return ret;
+> +		if (start_pause_time < 0 || start_pause_time > 15)
+> +			return -EINVAL;
+> +		led->start_stop_pause_time.s_time.second = start_pause_time;
+> +	} else {
+> +		led->start_stop_pause_time.s_time.second = 15;
+> +	}
+> +
+> +	/* parse stop_pause_time */
+> +	sub_str = strsep(&str, ":");
+> +	if (sub_str) {
+> +		ret = kstrtoint(sub_str, 0, &stop_pause_time);
+> +		if (ret)
+> +			return ret;
+> +		if (stop_pause_time < 0 || stop_pause_time > 15)
+> +			return -EINVAL;
+> +		led->start_stop_pause_time.s_time.first = stop_pause_time;
+> +	} else {
+> +		led->start_stop_pause_time.s_time.first = 15;
+> +	}
+> +
+> +	/* parse led_playback_time */
+> +	sub_str = strsep(&str, ":");
+> +	if (sub_str) {
+> +		ret = kstrtoint(sub_str, 0, &led_playback_time);
+> +		if (ret)
+> +			return ret;
+> +		if (led_playback_time < 0 || led_playback_time > 15)
+> +			return -EINVAL;
+> +		led->led_playback.s_led_playback.led_playback_time =
+> +			led_playback_time;
+> +	} else {
+> +		led->led_playback.s_led_playback.led_playback_time = 15;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static ssize_t led_auto_animation_show(struct kobject *kobj,
+> +		struct kobj_attribute *attr, char *buf)
+> +{
+> +	int ret;
+> +	char tmp_str[256] = {};
+> +	char usage[128] = {};
+> +	char *aeu_select = "AEU Select: ";
+> +	char *start_pause_time = "Start pause time: ";
+> +	char *stop_pause_time = "; Stop pause time: ";
+> +	char *led_playback_time = "; LED Playback time: ";
+> +	int aeu_selection, playback_time, start_pause, stop_pause;
+> +	struct lp5812_led *led = to_lp5812_led(kobj);
+> +	struct lp5812_chip *chip = led->priv;
+> +
+> +	sprintf(usage, "%s%s",
+> +	"Command usage: echo (aeu number):(start pause time):",
+> +	"(stop pause time):(playback time) > autonomous_animation");
+> +
+> +	mutex_lock(&chip->lock);
+> +	ret = led_get_autonomous_animation_config(led);
+> +	if (ret) {
+> +		ret = -EIO;
+> +		goto out;
+> +	}
+> +
+> +	/* parse config and feedback to userspace */
+> +	aeu_selection = led->led_playback.s_led_playback.aeu_selection;
+> +	playback_time = led->led_playback.s_led_playback.led_playback_time;
+> +	start_pause = led->start_stop_pause_time.s_time.second;
+> +	stop_pause = led->start_stop_pause_time.s_time.first;
+> +	if (aeu_selection == ONLY_AEU1) {
+> +		sprintf(tmp_str, "%s%s%s%s%s%s%s%s\n", aeu_select,
+
+Maybe add a least 1 tab for all this parameters, to improve readability?
+
+> +		"Only use AEU1; ", start_pause_time,
+> +		time_name_array[start_pause], stop_pause_time,
+> +		time_name_array[stop_pause], led_playback_time,
+> +		led_playback_time_arr[playback_time]);
+> +	} else if (aeu_selection == AEU1_AEU2) {
+> +		sprintf(tmp_str, "%s%s%s%s%s%s%s%s\n", aeu_select,
+> +		"Use AEU1 and AEU2; ", start_pause_time,
+> +		time_name_array[start_pause], stop_pause_time,
+> +		time_name_array[stop_pause], led_playback_time,
+> +		led_playback_time_arr[playback_time]);
+> +	} else {
+> +		sprintf(tmp_str, "%s%s%s%s%s%s%s%s\n", aeu_select,
+> +		"Use AEU1,AEU2 and AEU3; ", start_pause_time,
+> +		time_name_array[start_pause], stop_pause_time,
+> +		time_name_array[stop_pause], led_playback_time,
+> +		led_playback_time_arr[playback_time]);
+> +	}
+> +	strcat(tmp_str, usage);
+> +	mutex_unlock(&chip->lock);
+> +	return sprintf(buf, "%s\n", tmp_str);
+> +
+> +out:
+> +	mutex_unlock(&chip->lock);
+> +	return ret;
+> +}
+
+...
+
+> +static ssize_t led_pwm_dimming_scale_store(struct kobject *kobj,
+> +		struct kobj_attribute *attr, const char *buf, size_t count)
+> +{
+> +	int val, ret;
+> +	struct lp5812_led *led = to_lp5812_led(kobj);
+> +	struct lp5812_chip *chip = led->priv;
+> +
+> +	if (sysfs_streq(buf, "linear"))
+> +		val = 0;
+
+Maybe use directly LINEAR or EXPONENTIAL to simplify the code?
+
+> +	else if (sysfs_streq(buf, "exponential"))
+> +		val = 1;
+> +	else
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&chip->lock);
+> +	ret = lp5812_set_pwm_dimming_scale(chip, led->led_number,
+> +			val ? EXPONENTIAL : LINEAR);
+> +	mutex_unlock(&chip->lock);
+> +	if (ret)
+> +		return -EIO;
+> +
+> +	return count;
+> +}
+
+...
+
+> +static struct attribute *led_kobj_attributes[] = {
+> +	&kobj_attr_enable.attr,
+> +	&kobj_attr_mode.attr,
+> +	&kobj_attr_manual_dc.attr,
+> +	&kobj_attr_manual_pwm.attr,
+> +	&kobj_attr_autonomous_dc.attr,
+> +	&kobj_attr_autonomous_animation.attr,
+> +	&kobj_attr_lod_lsd.attr,
+> +	&kobj_attr_auto_pwm_val.attr,
+> +	&kobj_attr_aep_status.attr,
+> +	&kobj_attr_pwm_phase_align.attr,
+> +	&kobj_attr_pwm_dimming_scale.attr,
+> +	NULL,
+
+Nitpick: unneeded comma after a terminator
+
+> +};
+
+...
+
+> +static ssize_t aeu_pwm4_store(struct kobject *kobj,
+> +		struct kobj_attribute *attr, const char *buf, size_t count)
+> +{
+> +	int val = 0;
+> +	int ret = 0;
+> +	struct anim_engine_unit *aeu = to_anim_engine_unit(kobj);
+> +	struct lp5812_chip *chip = aeu->led->priv;
+> +
+> +	ret = kstrtoint(buf, 0, &val);
+> +	if (ret)
+> +		return -EINVAL;
+> +	if (val < 0 || val > 255)
+> +		return -EINVAL; /* Invalid argument */
+
+This comment is not really useful.
+
+> +
+> +	mutex_lock(&chip->lock);
+> +	ret = led_aeu_pwm_set_val(aeu, val, PWM4);
+> +	if (ret != 0) {
+> +		mutex_unlock(&chip->lock);
+> +		return -EIO;
+> +	}
+> +	mutex_unlock(&chip->lock);
+> +
+> +	return count;
+> +}
+> +
+> +static ssize_t aeu_pwm4_show(struct kobject *kobj,
+> +		struct kobj_attribute *attr, char *buf)
+> +{
+> +	int ret = 0;
+> +	u8 val = 0;
+> +	struct anim_engine_unit *aeu = to_anim_engine_unit(kobj);
+> +	struct lp5812_chip *chip = aeu->led->priv;
+> +
+> +	mutex_lock(&chip->lock);
+> +	ret = led_aeu_pwm_get_val(aeu, &val, PWM4);
+> +	mutex_unlock(&chip->lock);
+> +	if (ret)
+> +		return -EIO;
+> +
+> +	return sprintf(buf, "%d\n", val);
+> +
+
+Maybe the core of aeu_pwm|14]_store() and aeu_pwm[14]_show() could be 
+implemented only once, with an additional parameter for PWx?
+
+}
+
+...
+
+> +static ssize_t aeu_playback_time_show(struct kobject *kobj,
+> +		struct kobj_attribute *attr, char *buf)
+> +{
+> +	int ret = 0;
+> +	u8 val = 0;
+> +	struct anim_engine_unit *aeu = to_anim_engine_unit(kobj);
+> +	struct lp5812_chip *chip = aeu->led->priv;
+> +
+> +	mutex_lock(&chip->lock);
+> +	ret = led_aeu_playback_time_get_val(aeu, &val);
+> +	if (ret != 0) {
+> +		mutex_unlock(&chip->lock);
+> +		return -EIO;
+> +	}
+> +	mutex_unlock(&chip->lock);
+> +
+> +	return sprintf(buf, "%d\n", val);
+
+sysfs_emit? (here and in mayne places)
+
+> +}
+> +
+> +static LP5812_KOBJ_ATTR_RW(pwm1, aeu_pwm1_show, aeu_pwm1_store);
+> +static LP5812_KOBJ_ATTR_RW(pwm2, aeu_pwm2_show, aeu_pwm2_store);
+> +static LP5812_KOBJ_ATTR_RW(pwm3, aeu_pwm3_show, aeu_pwm3_store);
+> +static LP5812_KOBJ_ATTR_RW(pwm4, aeu_pwm4_show, aeu_pwm4_store);
+> +static LP5812_KOBJ_ATTR_RW(pwm5, aeu_pwm5_show, aeu_pwm5_store);
+> +static LP5812_KOBJ_ATTR_RW(slope_time_t1, aeu_slope_time_t1_show,
+> +		aeu_slope_time_t1_store);
+> +static LP5812_KOBJ_ATTR_RW(slope_time_t2, aeu_slope_time_t2_show,
+> +		aeu_slope_time_t2_store);
+> +static LP5812_KOBJ_ATTR_RW(slope_time_t3, aeu_slope_time_t3_show,
+> +		aeu_slope_time_t3_store);
+> +static LP5812_KOBJ_ATTR_RW(slope_time_t4, aeu_slope_time_t4_show,
+> +		aeu_slope_time_t4_store);
+> +static LP5812_KOBJ_ATTR_RW(playback_time, aeu_playback_time_show,
+> +		aeu_playback_time_store);
+> +
+> +static struct attribute *aeu_kobj_attributes[] = {
+> +	&kobj_attr_pwm1.attr,
+> +	&kobj_attr_pwm2.attr,
+> +	&kobj_attr_pwm3.attr,
+> +	&kobj_attr_pwm4.attr,
+> +	&kobj_attr_pwm5.attr,
+> +	&kobj_attr_slope_time_t1.attr,
+> +	&kobj_attr_slope_time_t2.attr,
+> +	&kobj_attr_slope_time_t3.attr,
+> +	&kobj_attr_slope_time_t4.attr,
+> +	&kobj_attr_playback_time.attr,
+> +	NULL,
+
+Nitpick: unneeded comma after a terminator
+
+> +};
+> +
+> +static void aeu_init_properties(struct lp5812_led *led)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < MAX_AEU; i++) {
+> +		led->aeu[i].aeu_name = aeu_name_array[i];
+> +		led->aeu[i].aeu_number = i + 1;
+> +		led->aeu[i].led = led;
+> +		led->aeu[i].enabled = 0;
+> +		led->aeu[i].attr_group.attrs = aeu_kobj_attributes;
+> +		kobject_init(&led->aeu[i].kobj, &aeu_ktype);
+> +	}
+> +}
+> +
+> +static int lp5812_probe(struct i2c_client *client)
+> +{
+> +	struct lp5812_chip *chip;
+> +	int i;
+> +	int ret;
+> +	u8 val;
+> +
+> +	chip = devm_kzalloc(&client->dev, sizeof(struct lp5812_chip),
+> +			GFP_KERNEL);
+> +	if (!chip)
+> +		return -ENOMEM;
+> +	mutex_init(&chip->lock);
+> +	chip->i2c_cl = client;
+> +	chip->dev = &client->dev;
+> +	chip->regs = &regs;
+> +	chip->command = NONE;
+> +	chip->total_leds = MAX_LEDS;
+> +	chip->attr_group.name = "lp5812_chip_setup";
+> +	chip->attr_group.attrs = lp5812_chip_attributes;
+> +	chip->chip_leds_map = chip_leds_map;
+> +	chip->u_drive_mode.drive_mode_val = 0x10;
+> +	chip->u_scan_order.scan_order_val = 0x00;
+> +
+> +	/* initialize property for each led */
+> +	for (i = 0; i < MAX_LEDS; i++) {
+> +		chip->leds[i].led_name = led_name_array[i];
+> +		chip->leds[i].led_number = i;
+> +		chip->leds[i].anim_base_addr = anim_base_addr_array[i];
+> +		chip->leds[i].enable = 0; /* LED disable as default */
+> +		chip->leds[i].mode = MANUAL; /* manual mode as default */
+> +		chip->leds[i].priv = chip;
+> +		chip->leds[i].total_aeu = MAX_AEU;
+> +		chip->leds[i].led_playback.led_playback_val = 0;
+> +		chip->leds[i].start_stop_pause_time.time_val = 0;
+> +		/* sysfs for this led not be created */
+> +		chip->leds[i].is_sysfs_created = 0;
+> +		chip->leds[i].attr_group.attrs = led_kobj_attributes;
+> +		kobject_init(&chip->leds[i].kobj, &led_ktype);
+> +
+> +		/* init animation engine unit properties */
+> +		aeu_init_properties(&chip->leds[i]);
+> +
+> +		/* set autonomous animation config as default for all LEDs */
+> +		led_set_autonomous_animation_config(&chip->leds[i]);
+> +	}
+> +
+> +	i2c_set_clientdata(client, chip);
+> +
+> +	ret = sysfs_create_group(&chip->dev->kobj, &chip->attr_group);
+> +	if (ret) {
+> +		dev_err(chip->dev, "sysfs_create_group failed\n");
+
+Maybe return dev_err_probe?
+
+> +		return ret;
+> +	}
+> +
+> +	ret = lp5812_init_dev_config(chip, "tcmscan:4:0:1:2:3", 0);
+> +	if (ret) {
+> +		dev_err(chip->dev, "%s: lp5812_init_dev_config failed\n",
+> +			__func__);
+
+Maybe return dev_err_probe?
+
+> +		return ret;
+> +	}
+> +	/* initialize lp5812 chip */
+
+Nitpick: this comment is not really useful, IMHO, the line just after 
+should be enough
+
+> +	ret = lp5812_initialize(chip);
+
+Missing error handling?
+
+> +
+> +	/* code to verify i2c read/write ok or not */
+> +	lp5812_read(chip, (u16)DEV_CONFIG2, &val);
+> +
+> +	lp5812_write(chip, (u16)LED_A1_AUTO_BASE_ADRR, 0x14);
+> +	lp5812_read(chip, (u16)LED_A1_AUTO_BASE_ADRR, &val);
+> +	/* End code to verify i2c read/write*/
+> +
+> +	return 0;
+> +}
+> +
+> +static void lp5812_remove(struct i2c_client *client)
+> +{
+> +	struct lp5812_chip *chip = i2c_get_clientdata(client);
+> +
+> +	mutex_destroy(&chip->lock);
+> +	leds_remove_existed_sysfs(chip);
+> +	sysfs_remove_group(&chip->dev->kobj, &chip->attr_group);
+> +
+> +	/* Disable all Leds */
+
+Nitpick: this comment is not really useful, IMHI, the line just after 
+should be enough
+
+> +	lp5812_disable_all_leds(chip);
+> +
+> +	/* Disable lp5812 device */
+> +	lp5812_enable_disable(chip, 0);
+> +}
+> +
+> +static const struct i2c_device_id lp5812_id[] = {
+> +	{ "lp5812", 0 },
+
+Nitpick: unneeded explicit 0
+
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i2c, lp5812_id);
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id of_lp5812_match[] = {
+> +	{ .compatible = "ti,lp5812", },
+> +	{/* NULL */},
+
+Nitpick: unneeded comma after a terminator
+
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, of_lp5812_match);
+> +#endif
+> +
+> +static struct i2c_driver lp5812_driver = {
+> +	.driver = {
+> +		.name   = "lp5812",
+> +		.of_match_table = of_match_ptr(of_lp5812_match),
+> +	},
+> +	.probe          = lp5812_probe,
+> +	.remove         = lp5812_remove,
+> +	.id_table       = lp5812_id,
+> +};
+> +
+> +module_i2c_driver(lp5812_driver);
+> +
+> +MODULE_DESCRIPTION("Texas Instruments LP5812 LED Driver");
+> +MODULE_AUTHOR("Jared Zhou");
+> +MODULE_LICENSE("GPL");
 
 
