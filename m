@@ -1,161 +1,179 @@
-Return-Path: <devicetree+bounces-154631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28785A53EC4
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 01:01:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CAC0A53EE3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 01:08:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BECD18929E9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 00:02:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81B57167825
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 00:08:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83A261373;
-	Thu,  6 Mar 2025 00:01:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14700EC2;
+	Thu,  6 Mar 2025 00:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQY3jNOo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YSGyQeHY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5156A367;
-	Thu,  6 Mar 2025 00:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61673366;
+	Thu,  6 Mar 2025 00:08:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741219311; cv=none; b=nTuODKoqG9cxVOvJNX03YbZ5R0aWCllvjqkOXyp12UYQZQlIx7VL1GddHEvQQRVeTQMYGXzEBQsp4Li6A95o0UGZFeZXaib+o1MFyRY4B+rG3bHguLbaRNv+KWx8GlhI3zVLaqdqNRvWRgPlX1DhlbnaKBAiIxM4eERJISd/gZQ=
+	t=1741219693; cv=none; b=rIvDt/lS6ZMPydIr8Zm1AoIdAoZ69tXnnrpDvkB10cThjJdgBR4D67CfuySauvKKBftJPorPYv7952kO/dziQ0JalF3UwV31DFRSkUBIfuPzB/BA4wU/AdXqArnFmwyFirUWykSzmkfxoSqwFf+7LZNtLEy5CxAQ4HnFEanaOZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741219311; c=relaxed/simple;
-	bh=azxlGePwOlFA7zcE0N3ZDl8+Ny9Zkx377il0JTO8MG8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KAKCtEcoWOjj4q6LcHQTiomMlznUqFGTdPtf3V4c219TDD8nR5nzaigUPS0DaXTguXP3Um2R2fFbMm1xFa0yCzeHCnha4TctK1U44WQLbtlNHxxkR9OqOXmodsK17HClf/7/y9E2Eplgg4z0POnLTX2RrHaKciH0crNAtZpjWWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQY3jNOo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35488C4CED1;
-	Thu,  6 Mar 2025 00:01:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741219310;
-	bh=azxlGePwOlFA7zcE0N3ZDl8+Ny9Zkx377il0JTO8MG8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tQY3jNOoCTqdU4vTPCjeXnOwgKa7GfKQYUou91frUhAgjUwUZpl4E11vgHD0RAjBb
-	 SYh0JnHNYWbdB6tMQutB6nJYR/wBmGfdJjesBAoEd9El3MU9Wme7yzSYLY5Nyi9pz4
-	 LmSvx8EO4a2FJ4uFahl/InA/mPT2fC6qq8WxZosMN4pTTiKAwsQsrZAAPLhZmf00nf
-	 qLsqCwUMJWy93wH+bGQzufJRtKXIuj9DWBl4eHTHPckG0umgWPMJnuT0ePcU9QGqv9
-	 mqMiyDj3ET/u/0BTxhQ1NsiwGKX/EHvtGkvGlY33VANia95wsTaEJh5RbfFsHMQtc8
-	 nsm6LNd61CFoA==
-Date: Thu, 6 Mar 2025 00:01:36 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>, "Rob Herring (Arm)"
- <robh@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, Ramona
- Gradinariu <ramona.bolboaca13@gmail.com>, David Lechner
- <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet
- <corbet@lwn.net>
-Subject: Re: [PATCH v6 0/3] Add support for AD7191
-Message-ID: <20250306000136.7de51170@jic23-huawei>
-In-Reply-To: <20250228141327.262488-1-alisa.roman@analog.com>
-References: <20250228141327.262488-1-alisa.roman@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741219693; c=relaxed/simple;
+	bh=XmkEAc+/w2Dkxu/1TNTvMeosZ3tOVAg+QYljZPhFBjc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TQ/lUSzBaDqS6PDVexIHBbZn0L8bwCM4rcAVK4F+eGGB72iVRlcxMCOFvbbG8g0bsAAoh1QwiL7PShDebQFiNLVR6fPKTKYUHaxSPSRXdPnxGgTp6/3j681+InDL1NJ1RJlHnHGiIE9AL6MxCDVjPLvizrooKWQ7MiZXe5F3GlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YSGyQeHY; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741219692; x=1772755692;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XmkEAc+/w2Dkxu/1TNTvMeosZ3tOVAg+QYljZPhFBjc=;
+  b=YSGyQeHYdoUNPvRIFBRAPZnPaKMd+rxh08PCBS9imL31ht5nHuvGY9G/
+   xQWCjcn1gfy22MP+O+aJT02DVRQ+0So59oaT24hJF/RZe7T1i9yJj3OT6
+   X8ebJDZG7gZB0g23EFkWdsm0tZf/tKa4DfUO0y/9NJQyeqBXmiSnG2hVJ
+   AovSNX8K3bKXkAek4oSu17uBv/LXuMsrb+dk1NqT29QvACMLGR5nFBcsn
+   rztdqK5aGNthh8s62QbAJA+cRhVTjksgQ1+B31+DryTl9fSJvINsBO3J1
+   wHo3Hqfh+sChcHt6oKzQPNMRUQrW6uEc8X6+GsJKGVdbZ1upzcXp/vWkd
+   g==;
+X-CSE-ConnectionGUID: 8VsXSkovQ86/RTBQMBd0nQ==
+X-CSE-MsgGUID: U7vsS2ckS2G9VH5+ixXtyQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42341118"
+X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; 
+   d="scan'208";a="42341118"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 16:05:55 -0800
+X-CSE-ConnectionGUID: QY7iUrB3R0C/1HrbrZxxLg==
+X-CSE-MsgGUID: 3ucTVqz5SF+bWZZ35HJ1vQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; 
+   d="scan'208";a="149619719"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+  by orviesa002.jf.intel.com with ESMTP; 05 Mar 2025 16:05:47 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tpyju-000MLA-0L;
+	Thu, 06 Mar 2025 00:05:27 +0000
+Date: Thu, 6 Mar 2025 08:04:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com,
+	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	jszhang@kernel.org, ulf.hansson@linaro.org,
+	m.szyprowski@samsung.com
+Cc: oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Michal Wilczynski <m.wilczynski@samsung.com>
+Subject: Re: [PATCH v1 2/5] firmware: thead: Add AON firmware protocol driver
+Message-ID: <202503060707.a8CwuQbH-lkp@intel.com>
+References: <20250303145901.446791-3-m.wilczynski@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250303145901.446791-3-m.wilczynski@samsung.com>
 
-Hi Alisa-Dariana,
-Looks good to me.  Applied to the togreg branch of iio.git and pushed out
-for now as testing to see if 0-day finds anything we missed.
+Hi Michal,
 
-Thanks,
+kernel test robot noticed the following build warnings:
 
-Jonathan
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.14-rc5 next-20250305]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Michal-Wilczynski/dt-bindings-firmware-thead-th1520-Add-support-for-firmware-node/20250303-230224
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250303145901.446791-3-m.wilczynski%40samsung.com
+patch subject: [PATCH v1 2/5] firmware: thead: Add AON firmware protocol driver
+config: arc-allmodconfig (https://download.01.org/0day-ci/archive/20250306/202503060707.a8CwuQbH-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250306/202503060707.a8CwuQbH-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503060707.a8CwuQbH-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/firmware/thead,th1520-aon.c: In function 'th1520_aon_init':
+   drivers/firmware/thead,th1520-aon.c:206:20: error: implicit declaration of function 'kzalloc' [-Werror=implicit-function-declaration]
+     206 |         aon_chan = kzalloc(sizeof(*aon_chan), GFP_KERNEL);
+         |                    ^~~~~~~
+>> drivers/firmware/thead,th1520-aon.c:206:18: warning: assignment to 'struct th1520_aon_chan *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     206 |         aon_chan = kzalloc(sizeof(*aon_chan), GFP_KERNEL);
+         |                  ^
+   drivers/firmware/thead,th1520-aon.c:219:17: error: implicit declaration of function 'kfree' [-Werror=implicit-function-declaration]
+     219 |                 kfree(aon_chan);
+         |                 ^~~~~
+   cc1: some warnings being treated as errors
 
 
-On Fri, 28 Feb 2025 16:05:59 +0200
-Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
+vim +206 drivers/firmware/thead,th1520-aon.c
 
-> v5: https://lore.kernel.org/all/20250226115451.249361-1-alisa.roman@analog.com/
-> 
-> v5 -> v6:
-> 	- use GPL-2.0-only
-> 	- remove kernel.h
-> 	- remove unused macros
-> 	- initialize local indexes
-> 	- check number of gpio pins
-> 	- use bitmap
-> 	- inverse if condition and remove continue in 2 places
-> 	- fit .compatible initialization in one line
-> 	- change MODULE_IMPORT_NS() content to string
-> 	- use iio_device_claim_direct()
-> 	- refactor heading levels in docs
-> 
-> v4: https://lore.kernel.org/all/20250203133254.313106-1-alisa.roman@analog.com/
-> 
-> v4 -> v5:
-> 	- use static arrays in the ad7191_config_setup function, instead of keeping
-> them in the state structure
-> 	- added error checking for devicetree parsing of pga-value and odr-value
-> 	- for now, it doesn't return error when the index corresponding to pga-value
-> or odr-value doesn't match, since index is initialized to 0, so it will use the
-> first value in this case (the bindings constrain the possbile values for these
-> 2 properties, so I thought it's ok like this)
-> 	- use gpiod_multi_set_value_cansleep()
-> 	- move sampling frequency attribute to mask separate (the avail unmodified)
-> 	- removed unused argument form ad7191_setup()
-> 	- removed 2 redundant sections from docs, and renamed one to Devicetree
-> 	- add ad7191.rst to MAINTAINERS
-> 
-> v3: https://lore.kernel.org/all/20250129143054.225322-1-alisa.roman@analog.com/
-> 
-> v3 -> v4:
-> 	- addressed all replies for v3
-> 	- refactored the scale and sampling frequencies configurations to use 2
-> different arrays for gpio case vs pinstrap case
-> 
-> v2: https://lore.kernel.org/all/20250122132821.126600-1-alisa.roman@analog.com/
-> 
-> v2 -> v3:
-> 	- correct binding title
-> 	- remove clksel_state and clksel_gpio, assume the clksel pin is always
-> pinstrapped
-> 	- rephrase clocks description accordingly
-> 	- simplify binding constraints
-> 	- specify in binding description that PDOWN must be connected to SPI's
-> controller's CS
-> 	- add minItems for gpios in bindings
-> 	- make scope explicit for mutex guard
-> 	- remove spi irq check
-> 	- add id_table to spi_driver struct
-> 	- changed comments as suggested
-> 	- use spi_message_init_with_transfers()
-> 	- default returns an error in ad7191_set_mode()
-> 	- replace hard-coded 2 with st->pga_gpios->ndescs
-> 	- use gpiod_set_array_value_cansleep()
-> 	- change .storagebits to 32
-> 	- check return value for ad_sd_init()
-> 	- change to adi,odr-value and adi,pga-value, which now accepts the value as
-> suggested
-> 	- modify variables names and refactor the setup of odr and pga gpios,
-> indexes and available arrays into ad7191_config_setup(), since they are all
-> related
-> 	- add ad7191.rst
-> 
-> v1: https://lore.kernel.org/all/20241221155926.81954-1-alisa.roman@analog.com/
-> 
-> v1 -> v2:
-> 	- removed patch adding function in ad_sigma_delta.h/.c
-> 	- added a function set_cs() for asserting/deasserting the cs
-> 	- handle pinstrapping cases
-> 	- refactored all clock handling
-> 	- updated bindings: corrected and added new things
-> 	- -> address of the channels is used in set_channel()  
-> 	- addressed all the other changes
-> 
-> 
+   185	
+   186	/**
+   187	 * th1520_aon_init() - Initialize TH1520 AON firmware protocol interface
+   188	 * @dev: Device pointer for the AON subsystem
+   189	 *
+   190	 * This function initializes the TH1520 AON firmware protocol interface by:
+   191	 * - Allocating and initializing the AON channel structure
+   192	 * - Setting up the mailbox client
+   193	 * - Requesting the AON mailbox channel
+   194	 * - Initializing synchronization primitives
+   195	 *
+   196	 * Return:
+   197	 * * Valid pointer to th1520_aon_chan structure on success
+   198	 * * ERR_PTR(-ENOMEM) if memory allocation fails
+   199	 * * ERR_PTR() with other negative error codes from mailbox operations
+   200	 */
+   201	struct th1520_aon_chan *th1520_aon_init(struct device *dev)
+   202	{
+   203		struct th1520_aon_chan *aon_chan;
+   204		struct mbox_client *cl;
+   205	
+ > 206		aon_chan = kzalloc(sizeof(*aon_chan), GFP_KERNEL);
+   207		if (!aon_chan)
+   208			return ERR_PTR(-ENOMEM);
+   209	
+   210		cl = &aon_chan->cl;
+   211		cl->dev = dev;
+   212		cl->tx_block = true;
+   213		cl->tx_tout = MAX_TX_TIMEOUT;
+   214		cl->rx_callback = th1520_aon_rx_callback;
+   215	
+   216		aon_chan->ch = mbox_request_channel_byname(cl, "aon");
+   217		if (IS_ERR(aon_chan->ch)) {
+   218			dev_err(dev, "Failed to request aon mbox chan\n");
+   219			kfree(aon_chan);
+   220			return ERR_CAST(aon_chan->ch);
+   221		}
+   222	
+   223		mutex_init(&aon_chan->transaction_lock);
+   224		init_completion(&aon_chan->done);
+   225	
+   226		return aon_chan;
+   227	}
+   228	EXPORT_SYMBOL_GPL(th1520_aon_init);
+   229	
 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
