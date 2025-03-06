@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-155025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C68A55420
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:08:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37312A55433
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 19:10:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C55E03B558A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:05:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3899C1898BF4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:09:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A2325D54E;
-	Thu,  6 Mar 2025 18:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B682702AA;
+	Thu,  6 Mar 2025 18:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="F5aec+rS"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qfJrvxPJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE4DE25D53F;
-	Thu,  6 Mar 2025 18:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1640A2702C7;
+	Thu,  6 Mar 2025 18:07:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741284249; cv=none; b=cid+E8fJ5ybiurMo67W9R6iKnZF3siuQfHziBSitzgEzUlrRPmfdeL8CgspaXI837k/dNTl0gvDyNRVnns4SR5p8CBjGZOduvPmc3m2gB6jc23qpG91Q2a/QGoHvMRRXP0AuBwO1kjp/YEsbXxM0fQjTixXYd/xrYyc+P/8q2/o=
+	t=1741284472; cv=none; b=RirEnHTL/x7e5QsMjgtHp9QbL8kGtDDiNyypKO4HirQBqMYwp5mZeCA3drrGEohK7bzUXunbn5LAHivCCAYg547njmag719AXe+XZHtbE6fz/mC14VVFjez/afHDq9QFMjFUMM9CEKpgeZyBlYnoQU6QdcwXjihgET85ntfoUgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741284249; c=relaxed/simple;
-	bh=XUoZmVfvgm+iV3BJUEqJmJKTR6CIvcIOFGmj9mu2tRc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=blLW1Gsay5XsCRIHVNNTdXWqOXM55O1ADPSS+HTKtOZbFIrzzFh9uYMRVVgG/nEqijdBokwfZvnl3gqaWp5keDOQ8YH5PKPyDh1ET7Ada1KQo1U/K1ekellrvULR0emAVi2WLUhp22j8f9/SSDjENqEp+R883hBHHHs2VpgV1J0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=F5aec+rS; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1741284472; c=relaxed/simple;
+	bh=d6BibUDSE0mb5iLcPsRSauFGpJaMOrregbvVx9t9eLI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iLOmdCXp5zqVrArBS0w0ZMWIQNrV6RAzbH3nmq/Ck9JAR3YIKoqvPpCY4cDvvHaj2Pls7ERSf9u6TP8jxnEaxemgOpAgX8meUiUhebfMUm7yghOUdueIEec3sbvzYa1unK42rCXNUJbhDRYrQ0H/McLvec3jisdbNd7BMHjcJFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qfJrvxPJ; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741284244;
-	bh=XUoZmVfvgm+iV3BJUEqJmJKTR6CIvcIOFGmj9mu2tRc=;
+	s=mail; t=1741284467;
+	bh=d6BibUDSE0mb5iLcPsRSauFGpJaMOrregbvVx9t9eLI=;
 	h=From:To:Cc:Subject:Date:From;
-	b=F5aec+rSsmt7o/TX27ZQARx2IXgaKfhSsUdxHrFi5z7c6roBtbOMaB++fpu8S2WxF
-	 HBNQZ3ZbdEQH/mSQADdULTlN/3hcsZZasD6kmGpDoib7bT7VB2G+vl5Hkl+A7OZalH
-	 i1bmmQUpAD2HJgK2JAxWd+hKXOeAvdKK32P5XYhdOriI4Na+9uTCdNWsHacSB/ajMB
-	 7qO+GUfKoMN2Rgt3T0mjoDV5j8keC5ez67dgBBpNQE3gAtRHBBGEoNXK60NaG52Gfo
-	 xleZZR/jz3emgmlrwqllUamRKOdehQPXp4pMlKM7dI3sdYbGoZhfeWm8A/qu65COKY
-	 GM68iqy//kBeQ==
+	b=qfJrvxPJBnSS3+4O9YX/cwRugyGiSpPEnXVe6T0GDC9kMgyrOMVzacjEXHRWcI7Cy
+	 QJ4e3qo4gBS0LGaylCmHDRH4IuY264npknx/poMLGcmFUNGmiFC+dpsNorkX0p7u6U
+	 n0WpBuTNcyZE67Unweiks+vFmF9N44m7zAf+aDWxBl0SYHfQI9He6wr1Y006jokVig
+	 qbvDuW7eJe0Upq6EzlxX1F7hwcsQX+arQOmbTsEwTIs7IEaFBzfFHO1a7a3dsO7Vtv
+	 M7dIAPBUI1qTquK4mYb4diuxvVjGTCQcwK2njdrmu/gObOGTrljyrrt5d1AvScIsVp
+	 i2+vfypFI4B4Q==
 Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B512E17E0673;
-	Thu,  6 Mar 2025 19:04:02 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3596617E088C;
+	Thu,  6 Mar 2025 19:07:45 +0100 (CET)
 From: Detlev Casanova <detlev.casanova@collabora.com>
 To: linux-kernel@vger.kernel.org
 Cc: Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Rob Herring <robh@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	kernel@collabora.com
-Subject: [PATCH] arm64: dts: rockchip: Add HDMI support for rock-4d
-Date: Thu,  6 Mar 2025 13:03:44 -0500
-Message-ID: <20250306180344.126189-1-detlev.casanova@collabora.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Add HDMI support for rock-4d
+Date: Thu,  6 Mar 2025 13:06:31 -0500
+Message-ID: <20250306180737.127726-1-detlev.casanova@collabora.com>
 X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -78,11 +78,15 @@ Enable HDMI and VOP nodes for the rock-4d board.
 
 Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 ---
- .../boot/dts/rockchip/rk3576-rock-4d.dts      | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+
+Changes since v1:
+ - Remove extra blank line
+
+ .../boot/dts/rockchip/rk3576-rock-4d.dts      | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-index 5dc1c18a3b211..f39bd441dce18 100644
+index 5dc1c18a3b211..bccd77c3a906f 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
 @@ -26,6 +26,17 @@ chosen {
@@ -103,7 +107,7 @@ index 5dc1c18a3b211..f39bd441dce18 100644
  	leds: leds {
  		compatible = "gpio-leds";
  		pinctrl-names = "default";
-@@ -238,6 +249,27 @@ &gpu {
+@@ -238,6 +249,26 @@ &gpu {
  	status = "okay";
  };
  
@@ -127,11 +131,10 @@ index 5dc1c18a3b211..f39bd441dce18 100644
 +	status = "okay";
 +};
 +
-+
  &i2c1 {
  	status = "okay";
  
-@@ -687,3 +719,18 @@ &usb_drd1_dwc3 {
+@@ -687,3 +718,18 @@ &usb_drd1_dwc3 {
  	dr_mode = "host";
  	status = "okay";
  };
