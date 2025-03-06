@@ -1,122 +1,106 @@
-Return-Path: <devicetree+bounces-154698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA770A54417
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:57:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B1EA5443B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:08:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 391F13A7C65
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:57:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C55641891929
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:08:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18A91E1C2B;
-	Thu,  6 Mar 2025 07:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B1D81F3FF8;
+	Thu,  6 Mar 2025 08:07:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DWi8fvt7"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="Erj10uqx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D251DF964;
-	Thu,  6 Mar 2025 07:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741247851; cv=none; b=lHZhrwiE6kkwUyDMisYS1R7DWy1PQOWTZz9d2wv9LkQxlKsTjTKIOyj88U3r/mfqU9u4hrZELIQEKqSaP/d1CwKXL77kKH5iE4X+devUzoX1k/ZoubIekcvnGrmLtLclfyHSHakNE/lyL0axeaiCZpbURml6fUHLClSI2mnakyo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741247851; c=relaxed/simple;
-	bh=pH/NwpaMg9Ocf6/GG426eX1DXAWQDLNc+lU1WIH8/QU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ITbMGarVWct32V+iyLAoO3lVc8hbeZlOnN2vLrxnCH6aduWt02LdB8aVT4A9JvBpaFkXEMQUgLMHvNDojLGWcaf+V6JBkiehd0dNH3tXcEahSKK9x/QLxLZjxIX1wjCxvBuZ+u9ioQnFfFHjC/Q2JE8l5yi1lo1S8yuIpdXWIro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DWi8fvt7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F25FEC4CEE8;
-	Thu,  6 Mar 2025 07:57:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741247850;
-	bh=pH/NwpaMg9Ocf6/GG426eX1DXAWQDLNc+lU1WIH8/QU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DWi8fvt71RfuEChdxeFW1z5xzOV52XkMxEFre9acnh9RpzpbHDygtR55Xq9OnDKTw
-	 yBakukkMrljf/7vLgd7Fd8FY7J9EkTMeDxHCw4CPnqlo62IqBwNZdGRL+jTP00WfHH
-	 hfOHqjHu95VgIIVZtXkaPyiTI5+Z4wNDsQnvTKBrCoc2c646KbXq/ZjXnuF3Loqgkk
-	 waPgyV0wIZ7PpHAqpd7iPcKVHVo+TeEfvYKLt6cQbcbOf0iebhvfb7fDGquXQ4JarN
-	 G/JkFFk1ICN0jZ2eYvkCVNK4jviTojvPs8rAjIdaZRkhzBIeK5ufO67oLokGe6x5V3
-	 sjWY1vIj0RzZg==
-Date: Thu, 6 Mar 2025 08:57:27 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sen Chu <sen.chu@mediatek.com>, 
-	Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
-	Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, kernel@collabora.com, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 01/19] dt-bindings: mfd: mediatek: mt6397: Add accdet
- subnode
-Message-ID: <20250306-certain-jasmine-mastiff-fd67ba@krzk-bin>
-References: <20250305-mt6359-accdet-dts-v4-0-e5ffa5ee9991@collabora.com>
- <20250305-mt6359-accdet-dts-v4-1-e5ffa5ee9991@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C60081C8602;
+	Thu,  6 Mar 2025 08:07:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741248445; cv=pass; b=nnscRxojIqA+BKPyS/a9UgMG/gXzXlYWQeTF8xWYDuG5WnUSF/qclOiz+/wmeTcO5M5jmjM1mgwOuGi0MScBMUMsz6zJrD7uLn+le/FnGh8ItwNbqRoiBTQsTqjiORlBlU+6OtZSmdM8PvF+tG+q+0lRitQJrBwz+WZJKSJJAoI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741248445; c=relaxed/simple;
+	bh=lA+iBJcFX6Jy8GTqBQJtCX4q+kEAxMYiJnZ1Q1Vk6YI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oMj8lFehRCVbu5W/+xPwZ4Ted5vsa30MIMzQvRuUuuN3oSNf6jIcUPo0BJXrTGEeWJcDWiAANcyhEynP0ehExDhVqNRIBfzXlu3bmUghqJUnt4deSjXvAWc9jsjaPU7XQNVB4Sr2NP00llx9Y3uYZalRL0xICWBEnx6ma+s0Yl8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=Erj10uqx; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1741248391; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=CWvERW0aqJYos4A9ChZ0WUYpVAlLVFcka6xZ2DPgwvhNJaLV+ulwb86isCMTiDUYd/JbTGnMv/Icx1AmyM30qhjBwxVm5cA48k1rqgJuQrUa0vV0UY1EM+hZj70FX7usbKyLso6eyU5KZfDMJf25DqHEL3d6tMFRQsuLItb+BRM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1741248391; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=pJnrzorwJZg5YVopIF87hrP6/JAWjqvnB+RBADKXXwE=; 
+	b=aweY4RFBbqtihLY1gVBtSPV4PS6Wk+Z8mXv28xlIXIhoreRVvzDEdPa8yyInVep2ODkU8e+MowviUpKgc9CmVy4YYRVsZ+lbMxrfQFDQ6mNihiQwIv2Kz/ArAkwcmkntfaXTaGUla47ZCdaFOuvlVbYcMc0TMe3saX+2Iuo1tm0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741248391;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=pJnrzorwJZg5YVopIF87hrP6/JAWjqvnB+RBADKXXwE=;
+	b=Erj10uqxvm9Iu8s/SDjtOeOxUkedSot1Wk0iS/H8EzDUM92HUKs+A3KDhXr6nWns
+	NFJQYC7clS0PRJq9vuIyYAEefmD/K7BVwYaoRc6bD/ffZb+/xP4n43Q30UjJGjxSXt8
+	ZDotbJ9sVKoP7QVH4dCkq4Rvdg3uKuje3p99xhhw=
+Received: by mx.zohomail.com with SMTPS id 174124838915716.167179851729884;
+	Thu, 6 Mar 2025 00:06:29 -0800 (PST)
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: Shreeya Patel <shreeya.patel@collabora.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	jose.abreu@synopsys.com,
+	nelson.costa@synopsys.com,
+	shawn.wen@rock-chips.com,
+	nicolas.dufresne@collabora.com,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v1 0/3] Remove unused code from HDMI RX driver
+Date: Thu,  6 Mar 2025 11:05:30 +0300
+Message-ID: <20250306080533.294964-1-dmitry.osipenko@collabora.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250305-mt6359-accdet-dts-v4-1-e5ffa5ee9991@collabora.com>
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On Wed, Mar 05, 2025 at 03:58:16PM -0300, N=C3=ADcolas F. R. A. Prado wrote:
-> Describe the accessory detection (accdet) module as a possible subnode
-> of the MT6359 PMIC.
->=20
-> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> ---
->  .../devicetree/bindings/mfd/mediatek,mt6397.yaml   | 51 ++++++++++++++++=
-++++++
->  1 file changed, 51 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml b=
-/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> index 6a89b479d10fad3c8b61cab5a3af1453baca4d1a..51012b8bbfaef3df7bdb619a4=
-f8d828d6f9cc15a 100644
-> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> @@ -24,6 +24,7 @@ description: |
->    - LED
->    - Keys
->    - Power controller
-> +  - Accessory Detection
-> =20
->    It is interfaced to host controller using SPI interface by a proprieta=
-ry hardware
->    called PMIC wrapper or pwrap. MT6397/MT6323 PMIC is a child device of =
-pwrap.
-> @@ -224,6 +225,30 @@ properties:
->      description:
->        Pin controller
-> =20
-> +  accdet:
-> +    type: object
-> +    additionalProperties: false
-> +    description:
-> +      The Accessory Detection module found on the PMIC allows detecting =
-audio
-> +      jack insertion and removal, as well as identifying the type of eve=
-nts
-> +      connected to the jack.
-> +
-> +    properties:
-> +      compatible:
-> +        const: mediatek,mt6359-accdet
+Hi Hans,
 
-You just removed the other file, no folding happened here. Drop the
-accdet node and fold this into parent.
+This is a follow up to the v13 HDMI RX patches [1] addressing warning
+produced by Intel's test robot.
 
-Best regards,
-Krzysztof
+It also removes the unused HDMI CODEC leftovers that we accidentally
+missed to remove previously and makes minor improvement to the definition
+of struct snps_hdmirx_dev, all of which I noticed while was looking at
+the warning report.
+
+Dmitry Osipenko (3):
+  media: platform: synopsys: hdmirx: Remove duplicated header inclusion
+  media: platform: synopsys: hdmirx: Remove unused HDMI audio CODEC
+    relics
+  media: platform: synopsys: hdmirx: Optimize struct snps_hdmirx_dev
+
+ drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+-- 
+2.48.1
 
 
