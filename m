@@ -1,197 +1,194 @@
-Return-Path: <devicetree+bounces-154765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B18A546C9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:47:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F098A546E5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:52:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FA1D16B93A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:47:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4B6D1897B14
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71DA1209F24;
-	Thu,  6 Mar 2025 09:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C93D320ADE9;
+	Thu,  6 Mar 2025 09:50:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KjwCjN2B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l38UIdFg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C3E19F438;
-	Thu,  6 Mar 2025 09:47:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA86220A5C1;
+	Thu,  6 Mar 2025 09:50:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741254473; cv=none; b=RXoFEfwbXmegFkw8mXYIfd/Q6WWGpVQER8RwtzspiXhiMl/9xlZ0xa2n4ySPsEt0XwVwdWfizr2aWXc8mysFHG1nO0UixIrfBy11RRxb3AO3sF7kmR8kxH/awdVkdod6eaBZNYwwCVOG0NLdCEThL9+bz4IqAYK8sRUORUeOJGI=
+	t=1741254610; cv=none; b=YF7D4wE1RZnEpmLzCMibx/2ILlaynbR8rORZz74MysYpiq10rRlaYZ8W4pkKu2PCexHlmO4Td/Lvu0uSvnBdk3kHJMimssWcS+dv7+Tnw49IgYhxO7smlLOE/gyv5zf5iA2gBx3NkYrog8pokq/AvbOkLmPPWQIN4lfjIxqSinQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741254473; c=relaxed/simple;
-	bh=eirDffSZXQnuWFuuk3LO+GhR4ye9aHsev/7ZgRDFsZE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OtWxOYQzN+uFZ4ioPu6oe4/41t8m2TmWHSYu4JxPskIq1gufFdxddep1nETme8eGyKsfpOC64Bg1mCswgI+9roJhwKUaET3Fz1aHVQWK9y5a6zVjonRkN76AtMEX5pZ6DTCNl0x4lWrHGPmSKvpgnNg0j4x6FFdMLHo5o0E3dQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KjwCjN2B; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741254469;
-	bh=eirDffSZXQnuWFuuk3LO+GhR4ye9aHsev/7ZgRDFsZE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KjwCjN2BJjbtWfG9AsHIp0aneWHpiAVyB05RKDW866qB9fy0lUTbpdMIZawilrQVa
-	 lIykk/y3I1JQbrvpDP8+p1lJC9Lqvx6hApqU/ARpDNPT6JWrA1Jilb37YUArx7w16o
-	 jhYGi5LlUZa5Dis19/YUcGWvdoNW9sHa2PowipRhkq0NtnBGXR7OcYy5d13OktL0nq
-	 Lm+HvvyzWbGAHvzBNiQLSHcT+hDjl7U2Pk2nL+uw0Y/dxiqoDJf8z788RXWdv3aRwH
-	 oivqfb7tJnYw7a1AKyZEHiblWWXaCbnBIFAmMCFsdh7OHbIWJaZ0YANcTX1B4r3QrN
-	 gk861/ltW+1qA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D6FD317E088C;
-	Thu,  6 Mar 2025 10:47:47 +0100 (CET)
-Message-ID: <d1c2dfa8-c7e0-40b2-8b39-c04854e3ee24@collabora.com>
-Date: Thu, 6 Mar 2025 10:47:47 +0100
+	s=arc-20240116; t=1741254610; c=relaxed/simple;
+	bh=e/AROmtNQA02sSTZ4A2FXigthR1D6TwSo1b/w26IaUM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y/pOVlcCUcgACaXm9G2TJBRTOFcMK5XuAGRAWgM/myNQ6dSg/GE6kUoOol/jevEcn4iZuwV1HWMGaY+6qChnaa8aPK0qdxVUTKQfUfG862NKCNgW+hi+iC6VBzOwoU2ceBSy0nVwVQa2pxMcEtxqyr8533dJxY9sq7DJIR/cPxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l38UIdFg; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-390e702d481so233324f8f.1;
+        Thu, 06 Mar 2025 01:50:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741254607; x=1741859407; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KZbn0ZWk1+rvuFKVTnqNPyrfKXHkL/ZMvNqwP+kgElY=;
+        b=l38UIdFg955w9D+jMVU4EcxJXQa6S0sern+d6jsHjl/hpCwZeIrkloveRzdEVKUJ7J
+         Irg6v+u++FLJ1WlbNs7t+zfzeGFKYImfM6ReWbKpCm0kCP2LnqU88bG0FQoId+GqVooK
+         kKIQuR53PrOCyngbC0y2Fy8xBOlsZ3lVZ1YSeVz/6zl537IXAf/Vua9GSGiXWD70hIma
+         s6n101sE07HeQJ9dQkAZxJlpVh5Y58aF1CldCU4sZYfuti+XQ8eYVItajAhtqrEy6Eiw
+         qP1H8tD6fJQH8JczZWlnYhHQu6nDqLXbKDO1E+7lMbYV7kDud5S01axptDEUyizu0ino
+         fQOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741254607; x=1741859407;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KZbn0ZWk1+rvuFKVTnqNPyrfKXHkL/ZMvNqwP+kgElY=;
+        b=F798f8yYYxpLtMkNPgD4mex53PHbgmIFOmyHk029mdx54+ad2ulW22MPxvRD4u+JpP
+         /BVUyNQrhlOdUJa69ZWsPPbTlRGT3Td31+HjWb9v6qFNYXYsPn7SLxyu/dcWZBl7oolB
+         DAbhFIxPlen9tpVLt7b73xh0/KZnyqQ4oh0Tq4p3lQkMZP5+ZoP4A9mhXta30gCgLZbj
+         cVe1FLpaCwvTDIQ+cfvF4JBDrV8URTnSGq+tLwMazD0MsCyn655culBwvLsQxC5H+rQ8
+         dMiWm9bBpQFnd6t6elfs6T1MefoshykHt1jiC7plqLSsW311x8Eiyu99uyKYwWlhKGkR
+         PLZA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCcR+2aqEzZRCWEk4WlqvRpUjIE25WldJEuEaQ4FxqVThf6rV9a4EkAOQwVMZ216lsc6MgeuVd6v2V@vger.kernel.org, AJvYcCXHeUuwKVGlO7cUOgHVdLFgGe6yUdbtQj4nqTb/a1cq5dVOCuA31w58INfhrX+uC4rn8ytVu7d62x4V13RB@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEfRcIo2xZlJqEaTmU9pfERCqboDkOfgZi+T2fZQ2oI3FVkFUx
+	ntikvDdAmV+eYFk6XHrQV3pfbF6VTBNQ5Ud7UzcHiIfDSRxNzn3j+dJXXIru1c/fQWFzFJlIHtP
+	h2A6pFnFUFGVFitc08Hd9GOjqP38=
+X-Gm-Gg: ASbGncuhS87Qf7xwGFTFRxm7GmZV2dkUoxULGsSfIfYd1QS6wx52UIB+95AlE8jHEp/
+	wyNYkIWBaw7XLLzesiG7g0qFTZUAQgirqPZgHL/yzNXkO2Q2TRoVUWW4+GG1miLdh3W3wMe39h4
+	AByarc27WssIPeCm57AEolPsldzoU=
+X-Google-Smtp-Source: AGHT+IHsd4hBnwqBMV6hYs1c9OgJ34UfLr66Fmw5hh4VbcZbcNnGwo18Hw3rs1KLCrQQNBpTyvxsy6Y6md6nFJblGKw=
+X-Received: by 2002:a05:6000:1a8f:b0:390:e7c1:59d3 with SMTP id
+ ffacd0b85a97d-3911f72620bmr5556599f8f.2.1741254606826; Thu, 06 Mar 2025
+ 01:50:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/8] drm/mediatek: Add programming flow for unsupported
- subsys ID hardware
-To: Jason-JH Lin <jason-jh.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
- Nancy Lin <nancy.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>,
- Moudy Ho <moudy.ho@mediatek.com>, Xavier Chang <xavier.chang@mediatek.com>,
- Xiandong Wang <xiandong.wang@mediatek.com>,
- Sirius Wang <sirius.wang@mediatek.com>, Fei Shao <fshao@chromium.org>,
- Pin-yen Lin <treapking@chromium.org>,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- CK Hu <ck.hu@mediatek.com>
-References: <20250218054405.2017918-1-jason-jh.lin@mediatek.com>
- <20250218054405.2017918-8-jason-jh.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250218054405.2017918-8-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250303122151.91557-1-clamor95@gmail.com> <20250303122151.91557-3-clamor95@gmail.com>
+ <3bc7c5a5-8fe7-4c4b-a80e-23522922debb@arm.com> <CAPVz0n0yvw4kyYKSve9sSZEvcZrCYZ6RqCjFSO5OCqtvRZSfJg@mail.gmail.com>
+ <f56596fe-92e8-481b-b15b-29b531eaec32@arm.com>
+In-Reply-To: <f56596fe-92e8-481b-b15b-29b531eaec32@arm.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Thu, 6 Mar 2025 11:49:55 +0200
+X-Gm-Features: AQ5f1JpB7S5f4HnXIbqgzShFt_D77QbK0bshvECgENO_LYSZuaLirvex7ZfhGe8
+Message-ID: <CAPVz0n2ywjm+nLQ+ZAYbR1P6yCr8FQgOMeDT07s_YHZ7xA_6uA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] thermal: thermal-generic-adc: add temperature
+ sensor channel
+To: Lukasz Luba <lukasz.luba@arm.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 18/02/25 06:41, Jason-JH Lin ha scritto:
-> To support hardware without subsys IDs on new SoCs, add a programming
-> flow that checks whether the subsys ID is valid. If the subsys ID is
-> invalid, the flow will call 2 alternative CMDQ APIs:
-> cmdq_pkt_assign() and cmdq_pkt_write_s_value() to achieve the same
-> functionality.
-> 
-> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> ---
->   drivers/gpu/drm/mediatek/mtk_ddp_comp.c | 33 ++++++++++++++++++++-----
->   1 file changed, 27 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-> index edc6417639e6..219d67735a54 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-> @@ -66,14 +66,37 @@ struct mtk_ddp_comp_dev {
->   	struct cmdq_client_reg cmdq_reg;
->   };
->   
-> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-> +static void mtk_ddp_write_cmdq_pkt(struct cmdq_pkt *cmdq_pkt, struct cmdq_client_reg *cmdq_reg,
-> +				   unsigned int offset, unsigned int value, unsigned int mask)
-> +{
-> +	offset += cmdq_reg->offset;
-> +
-> +	if (cmdq_reg->subsys != CMDQ_SUBSYS_INVALID) {
-> +		if (mask == GENMASK(31, 0))
-> +			cmdq_pkt_write(cmdq_pkt, cmdq_reg->subsys, offset, value);
-> +		else
-> +			cmdq_pkt_write_mask(cmdq_pkt, cmdq_reg->subsys, offset, value, mask);
+=D1=81=D1=80, 5 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 16:37 Lukas=
+z Luba <lukasz.luba@arm.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+>
+>
+> On 3/5/25 10:06, Svyatoslav Ryhel wrote:
+> > =D1=81=D1=80, 5 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 11:52 L=
+ukasz Luba <lukasz.luba@arm.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> >>
+> >>
+> >>
+> >> On 3/3/25 12:21, Svyatoslav Ryhel wrote:
+> >>> To avoid duplicating sensor functionality and conversion tables, this=
+ design
+> >>> allows converting an ADC IIO channel's output directly into a tempera=
+ture IIO
+> >>> channel. This is particularly useful for devices where hwmon isn't su=
+itable
+> >>> or where temperature data must be accessible through IIO.
+> >>>
+> >>> One such device is, for example, the MAX17040 fuel gauge.
+> >>>
+> >>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> >>> ---
+> >>>    drivers/thermal/thermal-generic-adc.c | 54 +++++++++++++++++++++++=
++++-
+> >>>    1 file changed, 53 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/=
+thermal-generic-adc.c
+> > ...
+> >>>
+> >>> +static const struct iio_chan_spec gadc_thermal_iio_channel[] =3D {
+> >>> +     {
+> >>> +             .type =3D IIO_TEMP,
+> >>> +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_PROCESSED),
+> >>
+> >> I would add the IIO_CHAN_INFO_SCALE and say it's in milli-degrees.
+> >>
+> >
+> > I have hit this issue already with als sensor. This should definitely
+> > be a IIO_CHAN_INFO_PROCESSED since there is no raw temp data we have,
+> > it gets processed into temp data via conversion table. I will add
+> > Jonathan Cameron to list if you don't mind, he might give some good
+> > advice.
+>
+> I'm not talking about 'PROCESSED' vs 'RAW'...
+> I'm asking if you can add the 'SCALE' case to handle and report
+> that this device will report 'processed' temp value in milli-degrees
+> of Celsius.
+>
 
-Sorry but this is pointless, really...
+It seems that SCALE is not applied to PROCESSED channel. I can use RAW
+which would work as intended and I will add a note in commit
+description why I used RAW. Would that be acceptable?
 
-Function cmdq_pkt_write_mask() in mtk-cmdq-helper is doing:
-
-	if (mask != GENMASK(31, 0)) {
-		err = cmdq_pkt_mask(pkt, mask);
-		if (err < 0)
-			return err;
-
-		offset_mask |= CMDQ_WRITE_ENABLE_MASK;
-	}
-	return cmdq_pkt_write(pkt, subsys, offset_mask, value);
-
-here you're doing the exact inverse check.
-
-At this point you can just do:
-
-static int mtk_ddp_write_cmdq_pkt(struct cmdq_pkt *cmdq_pkt, struct cmdq_client_reg 
-*cmdq_reg,
-				  u16 offset, u32 value, u32 mask)
-{
-	u16 gce_offset = cmdq_reg->offset + offset;
-
-	if (cmdq_reg->subsys != CMDQ_SUBSYS_INVALID)
-		return cmdq_pkt_write_mask(pkt, cmdq_reg->subsys, gce_offset, value, mask);
-
-	return cmdq_pkt_write_mask_pa(cmdq_pkt, cmdq_reg->pa_base, gce_offset, value, mask);
-}
-
-Cheers,
-Angelo
-
-> +	} else {
-> +		/* only MMIO access, no need to check mminfro_offset */
-> +		cmdq_pkt_assign(cmdq_pkt, 0, CMDQ_ADDR_HIGH(cmdq_reg->pa_base));
-> +		if (mask == GENMASK(31, 0))
-> +			cmdq_pkt_write_s_value(cmdq_pkt, CMDQ_THR_SPR_IDX0,
-> +					       CMDQ_ADDR_LOW(offset), value);
-> +		else
-> +			cmdq_pkt_write_s_mask_value(cmdq_pkt, CMDQ_THR_SPR_IDX0,
-> +						    CMDQ_ADDR_LOW(offset), value, mask);
-> +	}
-> +}
-> +#endif
-> +
->   void mtk_ddp_write(struct cmdq_pkt *cmdq_pkt, unsigned int value,
->   		   struct cmdq_client_reg *cmdq_reg, void __iomem *regs,
->   		   unsigned int offset)
->   {
->   #if IS_REACHABLE(CONFIG_MTK_CMDQ)
->   	if (cmdq_pkt)
-> -		cmdq_pkt_write(cmdq_pkt, cmdq_reg->subsys,
-> -			       cmdq_reg->offset + offset, value);
-> +		mtk_ddp_write_cmdq_pkt(cmdq_pkt, cmdq_reg, offset, value, GENMASK(31, 0));
->   	else
->   #endif
->   		writel(value, regs + offset);
-> @@ -85,8 +108,7 @@ void mtk_ddp_write_relaxed(struct cmdq_pkt *cmdq_pkt, unsigned int value,
->   {
->   #if IS_REACHABLE(CONFIG_MTK_CMDQ)
->   	if (cmdq_pkt)
-> -		cmdq_pkt_write(cmdq_pkt, cmdq_reg->subsys,
-> -			       cmdq_reg->offset + offset, value);
-> +		mtk_ddp_write_cmdq_pkt(cmdq_pkt, cmdq_reg, offset, value, GENMASK(31, 0));
->   	else
->   #endif
->   		writel_relaxed(value, regs + offset);
-> @@ -98,8 +120,7 @@ void mtk_ddp_write_mask(struct cmdq_pkt *cmdq_pkt, unsigned int value,
->   {
->   #if IS_REACHABLE(CONFIG_MTK_CMDQ)
->   	if (cmdq_pkt) {
-> -		cmdq_pkt_write_mask(cmdq_pkt, cmdq_reg->subsys,
-> -				    cmdq_reg->offset + offset, value, mask);
-> +		mtk_ddp_write_cmdq_pkt(cmdq_pkt, cmdq_reg, offset, value, mask);
->   	} else {
->   #endif
->   		u32 tmp = readl(regs + offset);
-
+> >
+> >>> +     }
+> >>> +};
+> >>> +
+> >>> +static int gadc_thermal_read_raw(struct iio_dev *indio_dev,
+> >>> +                              struct iio_chan_spec const *chan,
+> >>> +                              int *temp, int *val2, long mask)
+> >>> +{
+> >>> +     struct gadc_thermal_info *gtinfo =3D iio_priv(indio_dev);
+> >>> +     int ret;
+> >>> +
+> >>> +     if (mask !=3D IIO_CHAN_INFO_PROCESSED)
+> >>> +             return -EINVAL;
+> >>
+> >> Therefore, here it would need to handle such case as well, when
+> >> a client is asking about scale.
+> >>
+> >>> +
+> >>> +     ret =3D gadc_thermal_get_temp(gtinfo->tz_dev, temp);
+> >>> +     if (ret < 0)
+> >>> +             return ret;
+> >>> +
+> >>> +     *temp /=3D 1000;
+> >>
+> >> IMO we shouldn't cut the precision if it's provided.
+> >> The user of this would know what to do with the value (when
+> >> the proper information about scale is also available).
+> >>
+> >
+> > The it will not fit existing IIO framework and thermal readings will
+> > be 1000 off. I have had to adjust this since my battery suddenly got
+> > temperature reading of 23200C which obviously was not true. With
+> > adjustment temperature will be in 10th of C (yes, odd, I know but it
+> > is what it is).
+>
+> Your battery driver should get and check the 'SCALE' info first, then
+> it will know that the value is in higher resolution than it needs.
+> Therefore, it can divide the value inside its code.
+> Your proposed division here is creating a limitation.
+>
+> You shouldn't force all other drivers to ignore and drop the
+> available information about milli-degC (which is done in this patch).
 
