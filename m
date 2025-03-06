@@ -1,113 +1,181 @@
-Return-Path: <devicetree+bounces-155118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4E7A55ACE
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 00:14:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3636BA55B00
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 00:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E8493A9392
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 23:14:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F864189611A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 23:41:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5BC27D77D;
-	Thu,  6 Mar 2025 23:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="0AoLfdrJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC6A280404;
+	Thu,  6 Mar 2025 23:40:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC15259C9F
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 23:14:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4BF27F4D1;
+	Thu,  6 Mar 2025 23:40:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741302876; cv=none; b=N1rYgBoH4AxQ8oWZaAVeATfFCd8KGLe4onX6vTqevT7DiHMKdQez/rU6kgTTb/I5AA8FxPEjQH8oDDifm5Epfx9q6ZFFZ+iElHiFYZzetDePyjrZaj2gVW+qdDYobf8uyni/k7UFTj9W9x2gISljzvK3S8uADhmq7pMhCFon2BM=
+	t=1741304410; cv=none; b=tOP0rAZYTwmwmSRR8/N+PB8no5D4Ty7t2w1qry5R4HRg1Xsxc6lA8slTYWTkF4n8+pInsXF2YUV4xQSb7KaXqlCH2uh9VUgXeArdYjy1vGyYMHZZBICNqFIiur9zqUM9bd/Ui/AlPvDVcMQFHxaL1haSwt8g8F6x97gjPchJR7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741302876; c=relaxed/simple;
-	bh=ISHZTcm+GqlEDq0aQUpzk+UrBVxd7NbDoYI9H9eDnKY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cMTXjPg3US5f4Sz7t+K8wiyIs1QjeRQPxXJ5AJQoiIz93WQwZS4+CX2MJuNBuJoxyFdRT+CYFctWaxUjq0rOyy/xeb4WmgnL9IgXiqqSb8hcIirIpxgfdYo7aQevvJiYOB8A4fuUZPfMbMMHAbGyHTb62g/nBs42u+oLBQlzIIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=0AoLfdrJ; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1741302873;
- bh=9ebAVhQ0TGXTIyGcuXtNEtXmOIcwu+d1ad+w9Xc0xIw=;
- b=0AoLfdrJQNcSJKpDFzG7T0+7SVbj32fILos+Shth7RRAFf0A0+lx9ev1bmMUvyuo9MieHiLF7
- R4SfSlx0j2Fm+0SMv0V9an9DliAHlt247Y508sX7C0MqVitbKa+tI4XNuddHK/m5Rx40pGlRKTt
- UovvizQAkOJBxK0bGr74MTvT9vb5RDHl86UoaL1WQkrNAzTFbyl+K5XMQIClDmm0b23VmuYPXjX
- sx9tArN8DsAxMbMCaRixHhpqrQIBznxL+LDXOvo76Q24JeAUaLJPpogqrrqn9Sq7qDJS2g1pFI3
- JPX4B2Hey/PVDF5FAK76N6SDMqfFJEHf7Z6UWfkOFUOQ==
-X-Forward-Email-ID: 67ca2c4ec1763851c065cf4c
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <ef815b08-207d-41c2-a2d0-aeab70111761@kwiboo.se>
-Date: Fri, 7 Mar 2025 00:14:16 +0100
+	s=arc-20240116; t=1741304410; c=relaxed/simple;
+	bh=LE6Y75buJxrkZK3eTiY9vZJQdFYr8tXNgoDl3nQ0z6E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WJKWB1/o3pSS8z8mt7mVwpgGpcG8Lt9IfT9HcMYOJdo37fcD4yTYvm+kWyP2/6Ixd3/Tu7hvho8dm4wxVGEDedQFfupzpq2FwkAZytGyS5CTuzu6+7/gLHGp//kefVcCJ8RleGsndHFg4EzTqU58HJJjG7tLao//dvhSsLkup9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DA1DA169E;
+	Thu,  6 Mar 2025 15:40:18 -0800 (PST)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7EC033F5A1;
+	Thu,  6 Mar 2025 15:40:04 -0800 (PST)
+Date: Thu, 6 Mar 2025 23:39:49 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Samuel Holland
+ <samuel@sholland.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/8] pinctrl: sunxi: support moved power
+ configuration registers
+Message-ID: <20250306233949.23924567@minigeek.lan>
+In-Reply-To: <6028746.MhkbZ0Pkbq@jernej-laptop>
+References: <20250227231447.20161-1-andre.przywara@arm.com>
+	<20250227231447.20161-5-andre.przywara@arm.com>
+	<6028746.MhkbZ0Pkbq@jernej-laptop>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and
- php-grf during probe
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20250306210950.1686713-1-jonas@kwiboo.se>
- <20250306210950.1686713-3-jonas@kwiboo.se>
- <Z8oRyHThun9mLgx8@shell.armlinux.org.uk>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <Z8oRyHThun9mLgx8@shell.armlinux.org.uk>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 2025-03-06 22:21, Russell King (Oracle) wrote:
-> On Thu, Mar 06, 2025 at 09:09:46PM +0000, Jonas Karlman wrote:
->> @@ -1813,8 +1564,24 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
->>  
->>  	bsp_priv->grf = syscon_regmap_lookup_by_phandle(dev->of_node,
->>  							"rockchip,grf");
->> -	bsp_priv->php_grf = syscon_regmap_lookup_by_phandle(dev->of_node,
->> -							    "rockchip,php-grf");
->> +	if (IS_ERR(bsp_priv->grf)) {
->> +		ret = PTR_ERR(bsp_priv->grf);
->> +		dev_err_probe(dev, ret, "failed to lookup rockchip,grf\n");
->> +		return ERR_PTR(ret);
-> 
-> Did you consider using ERR_CAST() for these, which would look like this:
-> 
-> 		dev_err_probe(dev, PTR_ERR(bsp_priv->grf),
-> 			      "failed to lookup rockchip,grf\n");
-> 		return ERR_CAST(bsp_priv->grf);
-> 
-> ?
-> 
+On Wed, 05 Mar 2025 18:50:34 +0100
+Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
 
-No, I did not, I only duplicated the same handling that was done for
-the "failed to get phy regulator" case a little bit earlier in the
-rk_gmac_setup() function.
+Hi,
 
-I can adjust this (and the regulator case) to use ERR_CAST in a v2.
+> Dne petek, 28. februar 2025 ob 00:14:43 Srednjeevropski standardni =C4=8D=
+as je Andre Przywara napisal(a):
+> > The Allwinner pincontroller IP features some registers to control the
+> > withstand voltage of each pin group. So far those registers were always
+> > located at the same offset, but the A523 SoC has moved them (probably to
+> > accommodate all eleven pin banks).
+> >=20
+> > Add a flag to note this feature, and use that to program the registers
+> > either at offset 0x340 or 0x380. So far no pincontroller driver uses
+> > this flag, but we need it for the upcoming A523 support.
+> >=20
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  drivers/pinctrl/sunxi/pinctrl-sunxi.c | 15 +++++++++++----
+> >  drivers/pinctrl/sunxi/pinctrl-sunxi.h |  7 +++++--
+> >  2 files changed, 16 insertions(+), 6 deletions(-)
+> >=20
+> > diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/su=
+nxi/pinctrl-sunxi.c
+> > index 83a031ceb29f2..fc12e6f807e4d 100644
+> > --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> > +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> > @@ -736,9 +736,9 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct sun=
+xi_pinctrl *pctl,
+> >  		val =3D uV > 1800000 && uV <=3D 2500000 ? BIT(bank) : 0;
+> > =20
+> >  		raw_spin_lock_irqsave(&pctl->lock, flags);
+> > -		reg =3D readl(pctl->membase + PIO_POW_MOD_CTL_REG);
+> > +		reg =3D readl(pctl->membase + pctl->pow_mod_sel_offset);
+> >  		reg &=3D ~BIT(bank);
+> > -		writel(reg | val, pctl->membase + PIO_POW_MOD_CTL_REG);
+> > +		writel(reg | val, pctl->membase + pctl->pow_mod_sel_offset); =20
+>=20
+> These two are missing "+ PIO_POW_MOD_CTL_OFS" right?
 
-Regards,
-Jonas
+Ah, you are right, I mixed that up. Nice catch!
+
+> >  		raw_spin_unlock_irqrestore(&pctl->lock, flags);
+> > =20
+> >  		fallthrough;
+> > @@ -746,9 +746,12 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct su=
+nxi_pinctrl *pctl,
+> >  		val =3D uV <=3D 1800000 ? 1 : 0;
+> > =20
+> >  		raw_spin_lock_irqsave(&pctl->lock, flags);
+> > -		reg =3D readl(pctl->membase + PIO_POW_MOD_SEL_REG);
+> > +		reg =3D readl(pctl->membase + pctl->pow_mod_sel_offset +
+> > +			    PIO_POW_MOD_CTL_OFS);
+> >  		reg &=3D ~(1 << bank);
+> > -		writel(reg | val << bank, pctl->membase + PIO_POW_MOD_SEL_REG);
+> > +		writel(reg | val << bank,
+> > +		       pctl->membase + pctl->pow_mod_sel_offset +
+> > +		       PIO_POW_MOD_CTL_OFS); =20
+>=20
+> And these two have "+ PIO_POW_MOD_CTL_OFS" too much, right?
+
+Indeed, fixed now.
+
+Thanks,
+Andre
+
+> Best regards,
+> Jernej
+>=20
+> >  		raw_spin_unlock_irqrestore(&pctl->lock, flags);
+> >  		return 0;
+> >  	default:
+> > @@ -1520,6 +1523,10 @@ int sunxi_pinctrl_init_with_flags(struct platfor=
+m_device *pdev,
+> >  		pctl->pull_regs_offset =3D PULL_REGS_OFFSET;
+> >  		pctl->dlevel_field_width =3D DLEVEL_FIELD_WIDTH;
+> >  	}
+> > +	if (flags & SUNXI_PINCTRL_ELEVEN_BANKS)
+> > +		pctl->pow_mod_sel_offset =3D PIO_11B_POW_MOD_SEL_REG;
+> > +	else
+> > +		pctl->pow_mod_sel_offset =3D PIO_POW_MOD_SEL_REG;
+> > =20
+> >  	pctl->irq_array =3D devm_kcalloc(&pdev->dev,
+> >  				       IRQ_PER_BANK * pctl->desc->irq_banks,
+> > diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/su=
+nxi/pinctrl-sunxi.h
+> > index 6cf721876d89d..742fc795c7664 100644
+> > --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> > +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> > @@ -87,9 +87,11 @@
+> >  #define SUNXI_PINCTRL_VARIANT_MASK	GENMASK(7, 0)
+> >  #define SUNXI_PINCTRL_NEW_REG_LAYOUT	BIT(8)
+> >  #define SUNXI_PINCTRL_PORTF_SWITCH	BIT(9)
+> > +#define SUNXI_PINCTRL_ELEVEN_BANKS	BIT(10)
+> > =20
+> > -#define PIO_POW_MOD_SEL_REG	0x340
+> > -#define PIO_POW_MOD_CTL_REG	0x344
+> > +#define PIO_POW_MOD_SEL_REG		0x340
+> > +#define PIO_11B_POW_MOD_SEL_REG		0x380
+> > +#define PIO_POW_MOD_CTL_OFS		0x004
+> > =20
+> >  #define PIO_BANK_K_OFFSET		0x500
+> > =20
+> > @@ -173,6 +175,7 @@ struct sunxi_pinctrl {
+> >  	u32				bank_mem_size;
+> >  	u32				pull_regs_offset;
+> >  	u32				dlevel_field_width;
+> > +	u32				pow_mod_sel_offset;
+> >  };
+> > =20
+> >  #define SUNXI_PIN(_pin, ...)					\
+> >  =20
+>=20
+>=20
+>=20
+>=20
+>=20
+
 
