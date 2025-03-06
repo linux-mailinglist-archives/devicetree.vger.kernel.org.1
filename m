@@ -1,94 +1,136 @@
-Return-Path: <devicetree+bounces-154675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D5BDA5438D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:24:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD6CA54390
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:24:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4D021672DA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:24:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8047A3AFCEA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36A91A9B58;
-	Thu,  6 Mar 2025 07:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51C331C7015;
+	Thu,  6 Mar 2025 07:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rM7Ruas4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp134-100.sina.com.cn (smtp134-100.sina.com.cn [180.149.134.100])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 037A218DB04
-	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 07:24:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13BBB1A840E;
+	Thu,  6 Mar 2025 07:24:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741245854; cv=none; b=AMwrVVR294lSeiUA6BowZVpm2Xga7FthjJ/Nigihsnysx18qNbbdHe/vMP4m2XKI4adtlZkhhZ1mQnnfwkkIurNCsFsfxR8XERse8gxF50WKkddOgXiRMRK8+DJlIB8MUAmaErPG28F0wosIdrxX/6iPI5VkE3Q7lplEtmjCfmE=
+	t=1741245857; cv=none; b=DVLhC0HIjLFCx9cx1fzrfiQa6K2UgofLtHcAWZiuy0UZOSY/ktMGJQ93ShO12vMKxfT3nI7uuJkW5RHEGwWJLVsoltZ1H8KEtSjCCjFHRksgYVJhgFsWls8qH7O+yaeYHO1goEoAqMfcIxeryS8o5ds4gKGhC51WoVs+CHBNyuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741245854; c=relaxed/simple;
-	bh=wn6xJhbl/Pse1EyyU15U5P4N59HzRgpmak3FGuqgezc=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=XdqneBejPsTVbw13cK5knwqREJUKvsN7hTD5nGKndfP+/SyJcwO8QiJI2Y6PFp9t8qeJ9DRxhcysdnFHluQWn+Ka2Ce0u6D8JlvNCPqCqfEBNu5hgnoPT20iV343Bfe9b6vBne4x988t+nEvq/SEeKyLu+oQEt8YypEmze8km0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
-	by sina.net (10.185.250.32) with ESMTP
-	id 67C94D8B0000292F; Thu, 6 Mar 2025 15:23:57 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 855E3EFC9669480CB4C67813C17AA883
-X-SMAIL-UIID: 855E3EFC9669480CB4C67813C17AA883-20250306-152357
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Cc: tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Subject: RE: [PATCH v4 1/2] ASoC: codecs: add support for ES8389
-Date: Thu,  6 Mar 2025 15:23:54 +0800
-Message-Id: <20250306072354.19987-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1741245857; c=relaxed/simple;
+	bh=fufvW07eBLoyK26nh7xqxSSJVeU193rLs4MeIXNWyt4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZlClCBdRZd8MDyHyGlt9oaeIycKQrxpP76xgNbLEgJtI5zZMaeoUw3/4JXgY/eQdnNDsbHO7xiLO4zIaodJjg0xk8WJ3gmWRW91Q+24jjBI2qljyzn4dGuFGL2oxZgZPmOJYaD41T7ROXwEfkJLLaSZ1UOsEH9FP0vuTjpUpd4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rM7Ruas4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD243C4CEE4;
+	Thu,  6 Mar 2025 07:24:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741245856;
+	bh=fufvW07eBLoyK26nh7xqxSSJVeU193rLs4MeIXNWyt4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rM7Ruas4RD+YHhFuiYZO7582WtCK+aYXHRB+fFIxw3Z2Gf3F0DEeBNQds59DTngNq
+	 /H5nT49qstGD40L0ce8nJtaatWsGT3HdJeMy8+fkMWtDFgwGAi3Q3tsDPRXE5zzRbA
+	 0fgXcOav8LTwgqOMB6rDa6kI1IcHADI2aGZ38VGZVgoEhlTyr4v9QyEZRTEP0DC1ZZ
+	 JJ6fA+42g/qxfO4j+DCCFA4zISFZizG+SAVuorVarttdyT2csN3V+UBGvTJvcm2iEQ
+	 vs/ZSUO46aEhrE0rTdVb4XaFJ+qX674/lz2fzLxH7m3lbn7xhsKC8gKZUDsKNTJ9ms
+	 0kZerVwlE//QQ==
+Message-ID: <2ef018c4-884a-4390-906c-8898b31228a5@kernel.org>
+Date: Thu, 6 Mar 2025 08:24:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/6] dt-bindings: PCI: qcom: Add IPQ5018 SoC
+To: George Moussalem <george.moussalem@outlook.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+ andersson@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org, kishon@kernel.org,
+ konradybcio@kernel.org, krzk+dt@kernel.org, kw@linux.com,
+ lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org,
+ p.zabel@pengutronix.de, quic_nsekar@quicinc.com, robh@kernel.org,
+ robimarko@gmail.com, vkoul@kernel.org
+Cc: quic_srichara@quicinc.com
+References: <20250305134239.2236590-1-george.moussalem@outlook.com>
+ <DS7PR19MB8883E7167E44F92DBC29FF3C9DCB2@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <a95b4c01-9d8c-49eb-8242-93ae411caec0@linaro.org>
+ <DS7PR19MB888309B506D25ABA03F218EB9DCB2@DS7PR19MB8883.namprd19.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <DS7PR19MB888309B506D25ABA03F218EB9DCB2@DS7PR19MB8883.namprd19.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> > > set_tdm_slot()
+On 05/03/2025 17:41, George Moussalem wrote:
 > 
-> > We will register multiple codecs inside a single dai_link and differentiate these
-> > codecs by of_node. And the adc_slot and the dac_slot may be different, they can 
-> > be decided by the user.If we use set_tdm_slot,the adc_slot and the dac_slot will
-> > be same.
 > 
-> No, the machine driver should be configuring different TDM slots for
-> each device - that's the whole point of the API.
+> On 3/5/25 19:51, Krzysztof Kozlowski wrote:
+>> On 05/03/2025 14:41, George Moussalem wrote:
+>>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>>
+>>> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+>> Nope, that's not a correct chain. Apply it yourself and check results.
+> this series is dependent on the series to add support for IPQ5332:
+> https://lore.kernel.org/all/20250220094251.230936-1-quic_varada@quicinc.com/
+> which was applied to dt-bindings
 
-We are using multiple codecs as a single device.So we can't use set_tdm_slot to configure
-different slots for multiple codecs under one device.
+Your comment is not relevant to reported problem. Instead of
+disagreeing, why can't you try it yourself and see?
 
-> > > > +		ret = clk_prepare_enable(es8389->mclk);
-> > > > +		if (ret) {
-> > > > +			dev_err(codec->dev, "%s, unable to enable mclk\n", __func__);
-> > > > +			return ret;
-> > > > +		}
-> > > > +	}
-> 
-> > > Making the use of a MCLK depend on the configuration of a TDM slot for
-> > > the ADC seems *very* unusual, what's going on there?
-> 
-> > Because we are associating multiple codecs under a single dai_link, we will be
-> > executing probe and init many times during initialization.But MCLK only needs
-> > to be used once.So we decided making the use of a MCLK depend on the configuration
-> > of a TDM slot for the ADC 
-> 
-> No, each device should just get and enable the MCLK itself - the clock
-> API does reference counting so there's no problem with this, it's normal
-> for a clok to have multiple consumers.
-
-ok,I'll fix it
+Best regards,
+Krzysztof
 
