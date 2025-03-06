@@ -1,179 +1,108 @@
-Return-Path: <devicetree+bounces-154632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CAC0A53EE3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 01:08:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD11A53EF9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 01:16:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81B57167825
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 00:08:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 990E33AF408
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 00:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14700EC2;
-	Thu,  6 Mar 2025 00:08:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B721373;
+	Thu,  6 Mar 2025 00:15:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YSGyQeHY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a9699QBa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61673366;
-	Thu,  6 Mar 2025 00:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADAD353A7;
+	Thu,  6 Mar 2025 00:15:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741219693; cv=none; b=rIvDt/lS6ZMPydIr8Zm1AoIdAoZ69tXnnrpDvkB10cThjJdgBR4D67CfuySauvKKBftJPorPYv7952kO/dziQ0JalF3UwV31DFRSkUBIfuPzB/BA4wU/AdXqArnFmwyFirUWykSzmkfxoSqwFf+7LZNtLEy5CxAQ4HnFEanaOZY=
+	t=1741220158; cv=none; b=OQ4dXwQqBrJLAwgt05ks3weFRT3AQiW2ZvAa3mf49EHUlWpK4M5+Vw1pyNa+xDpcaMAqMz4Z2W7xCIbP7MfoNpiF0h1XXcWOkWL1N8r6j6ukYJNpd7M7jypcytvqsPnVNJ3pYxB6q+8y8HO49KmJ7FlEayMSDwNJHuwtiUPBCbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741219693; c=relaxed/simple;
-	bh=XmkEAc+/w2Dkxu/1TNTvMeosZ3tOVAg+QYljZPhFBjc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TQ/lUSzBaDqS6PDVexIHBbZn0L8bwCM4rcAVK4F+eGGB72iVRlcxMCOFvbbG8g0bsAAoh1QwiL7PShDebQFiNLVR6fPKTKYUHaxSPSRXdPnxGgTp6/3j681+InDL1NJ1RJlHnHGiIE9AL6MxCDVjPLvizrooKWQ7MiZXe5F3GlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YSGyQeHY; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741219692; x=1772755692;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XmkEAc+/w2Dkxu/1TNTvMeosZ3tOVAg+QYljZPhFBjc=;
-  b=YSGyQeHYdoUNPvRIFBRAPZnPaKMd+rxh08PCBS9imL31ht5nHuvGY9G/
-   xQWCjcn1gfy22MP+O+aJT02DVRQ+0So59oaT24hJF/RZe7T1i9yJj3OT6
-   X8ebJDZG7gZB0g23EFkWdsm0tZf/tKa4DfUO0y/9NJQyeqBXmiSnG2hVJ
-   AovSNX8K3bKXkAek4oSu17uBv/LXuMsrb+dk1NqT29QvACMLGR5nFBcsn
-   rztdqK5aGNthh8s62QbAJA+cRhVTjksgQ1+B31+DryTl9fSJvINsBO3J1
-   wHo3Hqfh+sChcHt6oKzQPNMRUQrW6uEc8X6+GsJKGVdbZ1upzcXp/vWkd
-   g==;
-X-CSE-ConnectionGUID: 8VsXSkovQ86/RTBQMBd0nQ==
-X-CSE-MsgGUID: U7vsS2ckS2G9VH5+ixXtyQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42341118"
-X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; 
-   d="scan'208";a="42341118"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2025 16:05:55 -0800
-X-CSE-ConnectionGUID: QY7iUrB3R0C/1HrbrZxxLg==
-X-CSE-MsgGUID: 3ucTVqz5SF+bWZZ35HJ1vQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,224,1736841600"; 
-   d="scan'208";a="149619719"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by orviesa002.jf.intel.com with ESMTP; 05 Mar 2025 16:05:47 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tpyju-000MLA-0L;
-	Thu, 06 Mar 2025 00:05:27 +0000
-Date: Thu, 6 Mar 2025 08:04:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com,
-	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	jszhang@kernel.org, ulf.hansson@linaro.org,
-	m.szyprowski@samsung.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Michal Wilczynski <m.wilczynski@samsung.com>
-Subject: Re: [PATCH v1 2/5] firmware: thead: Add AON firmware protocol driver
-Message-ID: <202503060707.a8CwuQbH-lkp@intel.com>
-References: <20250303145901.446791-3-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1741220158; c=relaxed/simple;
+	bh=favXHBjW2XqGOaXq1mR0Rb2UpGKt6GW39kYnwTEyA+o=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=YXmdQ4DW8c8q3BJqr8BGkk8GiDNJthH/VEthV28VZ7xPSU070Q2rgFrBwAV30Ezsqr6RyiKUcR/ItKfJNFAbMIHtmC9t64JmFsLQOIgTV+oBSPHGVJbvIh+8DRbMBhVG7e07+3+SuzrjxGwMXaKFNAyIjHdX5JZHkQ9vQaaPmkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a9699QBa; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2235908a30aso770485ad.3;
+        Wed, 05 Mar 2025 16:15:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741220156; x=1741824956; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=favXHBjW2XqGOaXq1mR0Rb2UpGKt6GW39kYnwTEyA+o=;
+        b=a9699QBa4Vt7XTv1Rxjn0ugnS+eI+p0tM2z38LThkxsBPiVM3maFPOJFUfWOgXk9mD
+         LD12dv7Jo9awmN1lhQ78ej2FPVWNmuXiBOBpMDNCOtxUu77Yi2stCAeKCVlUtGvsR2lA
+         Z8nzK8RzP0Mko0LyzirDt6dx6YPrcjAnuRHckotnTcymCPqxCOB50PRgXlwANksDSpdJ
+         InMGfNSkWpG/b/LmIXO4N76mTq79Vwvh/JEZL9K2F7BuWTAlonV27+7g60C8AYV8JHPO
+         dmZ21v0HsaTYHNCeibNY/7qdX66jswGN9wd6JFqLQc/pP50Nz8egxi8wOZd0X4j40Ngp
+         J81A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741220156; x=1741824956;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=favXHBjW2XqGOaXq1mR0Rb2UpGKt6GW39kYnwTEyA+o=;
+        b=SWhTFl5IkpYMkCrvD8ywNfqWcSyX0gXJcPALWuo9HbbkU2IVSoDrc015fvCsTGeIxy
+         MSuV/jiVfLPBrDydQp3fMX2il9P5uCzWyBDcP2s8MEfwhjhy0nPROx6LvcV/Ds4wNij/
+         UKoJnUUhTMfj80rawSYs6YZBufyr/KosaP1iorBIXKUQTjm09TxqLHDCWJ2S5J2llO1n
+         EZygNN0iXC9VV5xEGzuUdVnDkk8ZrFwXSDVHFi4Q9q06Kd9eXuFkmQ1Wrm/Hnhv19d6q
+         fLgDbCISnHozbwB+RobTs26f7TQAbnjsCBd9wVNXC21UQ0y/8KrNKG8Dq5pEdTdp+aHN
+         y+aw==
+X-Forwarded-Encrypted: i=1; AJvYcCUFSR8+IzBB9w+U+F6V6QWA+CtgreHjsO/l5e+2VZyzelLUjdE/1muCfd3WGBpI1z0IYbyYC3xYABodl41w@vger.kernel.org, AJvYcCVGYd2XQMiE0eJBCTe3p16MdY+UBDuTUv4NmCEzM7PTFovMdjXOqOnj7LifG9ypzdJWnjN9pmsgsK1X@vger.kernel.org, AJvYcCXNceVk6NyQkVU4LwJIUIy4Mq60tB5+mhXh3qetozLmdL9JTEwMksr687tmiLSTXrqi/xHuRyXEVo7W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxi42H+LAb6vU9YemLDv4Pb9T78IuW6Pp2dPMei0FkgC5+Rbbat
+	YeSizhmJYzqJVhmfnK4CTxY0rMPk8nbC84Ofxfe84LBaNECTnEEB
+X-Gm-Gg: ASbGncs6MYOxXnqDZYvJPKDCHO3yI0eBOHFtuGPuS315pCSv4CT1gV6c9V4ZaC1Vn/f
+	RNM5WKSZnWeMiSQpfiqE6/G38A79Wn4zJe84N6WQv3tG60XEbZF5pqXDuU9NyNXfFEmobJaEMcj
+	ys389/mU0BR3qNNFeUzcHV11dzo3tLqvQvSkWqiy5WcWaZaU/NEhWEVE9EidOUWlCMb3pojG2fs
+	1nVIlQyEFLoaQLwWrR+sCmzXZj40uN6toOFXYefzrz7K3gVdci1s1R7Sm3mFWxcX7seIprpnQ32
+	or/BnCcdpnSLlaVbk7OOUa6x8wDN3qvCH/1fur1k6b/b63QagC1SId7JXloc3zNf/nU=
+X-Google-Smtp-Source: AGHT+IH0KfutgjAyQ57rGNBxxUkmDhrjevQ3H0lmsRe1Jaub+nCdx0wlT3TR/LNg6JGp9CtdqBt+Nw==
+X-Received: by 2002:a05:6a00:1995:b0:736:73ad:365b with SMTP id d2e1a72fcca58-73682bf0da3mr7851367b3a.14.1741220155668;
+        Wed, 05 Mar 2025 16:15:55 -0800 (PST)
+Received: from danascape.tail34aafc.ts.net ([2402:e280:218d:2e5:857:3077:7768:d8a9])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73698243f21sm46067b3a.52.2025.03.05.16.15.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Mar 2025 16:15:55 -0800 (PST)
+From: Saalim Quadri <danascape@gmail.com>
+To: jic23@kernel.org
+Cc: 21cnbao@gmail.com,
+	Michael.Hennerich@analog.com,
+	conor+dt@kernel.org,
+	danascape@gmail.com,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	krzk+dt@kernel.org,
+	lars@metafoo.de,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	robh@kernel.org
+Subject: Re: [PATCH v2] dt-bindings: iio: accel: add binding documentation for ADIS16203
+Date: Thu,  6 Mar 2025 05:45:50 +0530
+Message-Id: <20250306001550.1555151-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250304143918.733d6cca@jic23-huawei>
+References: <20250304143918.733d6cca@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250303145901.446791-3-m.wilczynski@samsung.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Michal,
+Apologies, it was a mistake on my end, I had wrong dependencies
+installed which passed the dt-bindings check on my end when I tried to verify.
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.14-rc5 next-20250305]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Michal-Wilczynski/dt-bindings-firmware-thead-th1520-Add-support-for-firmware-node/20250303-230224
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250303145901.446791-3-m.wilczynski%40samsung.com
-patch subject: [PATCH v1 2/5] firmware: thead: Add AON firmware protocol driver
-config: arc-allmodconfig (https://download.01.org/0day-ci/archive/20250306/202503060707.a8CwuQbH-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250306/202503060707.a8CwuQbH-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503060707.a8CwuQbH-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/firmware/thead,th1520-aon.c: In function 'th1520_aon_init':
-   drivers/firmware/thead,th1520-aon.c:206:20: error: implicit declaration of function 'kzalloc' [-Werror=implicit-function-declaration]
-     206 |         aon_chan = kzalloc(sizeof(*aon_chan), GFP_KERNEL);
-         |                    ^~~~~~~
->> drivers/firmware/thead,th1520-aon.c:206:18: warning: assignment to 'struct th1520_aon_chan *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     206 |         aon_chan = kzalloc(sizeof(*aon_chan), GFP_KERNEL);
-         |                  ^
-   drivers/firmware/thead,th1520-aon.c:219:17: error: implicit declaration of function 'kfree' [-Werror=implicit-function-declaration]
-     219 |                 kfree(aon_chan);
-         |                 ^~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +206 drivers/firmware/thead,th1520-aon.c
-
-   185	
-   186	/**
-   187	 * th1520_aon_init() - Initialize TH1520 AON firmware protocol interface
-   188	 * @dev: Device pointer for the AON subsystem
-   189	 *
-   190	 * This function initializes the TH1520 AON firmware protocol interface by:
-   191	 * - Allocating and initializing the AON channel structure
-   192	 * - Setting up the mailbox client
-   193	 * - Requesting the AON mailbox channel
-   194	 * - Initializing synchronization primitives
-   195	 *
-   196	 * Return:
-   197	 * * Valid pointer to th1520_aon_chan structure on success
-   198	 * * ERR_PTR(-ENOMEM) if memory allocation fails
-   199	 * * ERR_PTR() with other negative error codes from mailbox operations
-   200	 */
-   201	struct th1520_aon_chan *th1520_aon_init(struct device *dev)
-   202	{
-   203		struct th1520_aon_chan *aon_chan;
-   204		struct mbox_client *cl;
-   205	
- > 206		aon_chan = kzalloc(sizeof(*aon_chan), GFP_KERNEL);
-   207		if (!aon_chan)
-   208			return ERR_PTR(-ENOMEM);
-   209	
-   210		cl = &aon_chan->cl;
-   211		cl->dev = dev;
-   212		cl->tx_block = true;
-   213		cl->tx_tout = MAX_TX_TIMEOUT;
-   214		cl->rx_callback = th1520_aon_rx_callback;
-   215	
-   216		aon_chan->ch = mbox_request_channel_byname(cl, "aon");
-   217		if (IS_ERR(aon_chan->ch)) {
-   218			dev_err(dev, "Failed to request aon mbox chan\n");
-   219			kfree(aon_chan);
-   220			return ERR_CAST(aon_chan->ch);
-   221		}
-   222	
-   223		mutex_init(&aon_chan->transaction_lock);
-   224		init_completion(&aon_chan->done);
-   225	
-   226		return aon_chan;
-   227	}
-   228	EXPORT_SYMBOL_GPL(th1520_aon_init);
-   229	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Sincerely,
+Saalim Quadri
 
