@@ -1,198 +1,133 @@
-Return-Path: <devicetree+bounces-155006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF398A55373
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:50:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56645A55383
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 18:53:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DFFF177D97
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 17:50:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B773518991F5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 17:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFC5525C708;
-	Thu,  6 Mar 2025 17:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E046C25B67E;
+	Thu,  6 Mar 2025 17:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ABRF7DlS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K13B35LP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B1525A638;
-	Thu,  6 Mar 2025 17:50:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436F11FC7F9;
+	Thu,  6 Mar 2025 17:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741283454; cv=none; b=BfbW6LhOkkcqe4U3ljIHKb6pzWON1Bm4hQmfIiv0IB1EjLPAVXWGBv/Jgqls2QFPnURW9IplUGOVAnJV/Zs84R2khnGt/763mw3is+vJdIQKEJhkUFxEI/LLBVIp5eydakw51jCtsoSI16Az3ZpC4uclTHlBHWAn097soN1ZU1c=
+	t=1741283585; cv=none; b=RA1ZH4PJfpJQovDIUf79skg5kpGqqubD4U3ybXKmANVn+aR3vq+vY/a/Vvk5Ki7TVG+8AK7kL2yYu7J6QuAn6EG2YjR5f7a2KCNoWYI1g7MgH/27bbiOOJgPSaheefJOVr2B0XAnzQPmna4l5BTjJeg4VV/Pw6e1fJ/dLIdbVjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741283454; c=relaxed/simple;
-	bh=PbmD1kFv3+1BgQZMJaKX/JavH2z6eXzjqWH/xXgLcCM=;
+	s=arc-20240116; t=1741283585; c=relaxed/simple;
+	bh=c6I0nLrVkfWZQz6+G7cnrTCJ+R+DQozU/B38AUSSt14=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KxCfdhSdsLkFaB87RnFdOzRc0/fKb9iCcqkFd4lpPoifvzCMannlXKNzuoOYka6L/wKQpFeXzuKaDrx3kaow9oEPAN6dHCIyFcn9k13/tsxNOMICF8tYUsUrsCRH2MYUJVYlY0sDQB42Ak5Dnri0MeFWtr2ZlkKNRD05h/Qd5Co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ABRF7DlS; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741283453; x=1772819453;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PbmD1kFv3+1BgQZMJaKX/JavH2z6eXzjqWH/xXgLcCM=;
-  b=ABRF7DlSI8M+V8GByPAyfMnDe3e4XLPfEyeOE99U36NPijqzRUiP/pFw
-   cWA0uKPAR1yk/nK0IiE9hHKkwSTOCm2/8tHDTTWvvy4RPTXPp5sO/LObU
-   rbsFbEqc8NepvqeOH4FPFkHz7V5ha3Yj+DDOtVRacCJsYWEP1iBeooKrd
-   nCL58wrAePnrfZQ9Daf0OHDdeM6YiMcVZr7mCz9dBhzQVAc5/ZKMAAmPq
-   2gWP/BY/fikcNg1vYfM6NOC+Ml4kcRhVZMeuT3j/CEyevmfOTvx30vYTF
-   ACJPeE6vb8cIUtfgech1v89YQegPMCZih9aqj1zfoa5jIMA0Aic8JkbFN
-   g==;
-X-CSE-ConnectionGUID: 9c6FRcqJTE6b0Gl+YO6RQg==
-X-CSE-MsgGUID: +45iLMv+RrSwFou27kiu9w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42445680"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; 
-   d="scan'208";a="42445680"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2025 09:50:52 -0800
-X-CSE-ConnectionGUID: egZ7sObHSZG31vCHuMPaag==
-X-CSE-MsgGUID: j2ujJPyGTFK5c7CMR2MRtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; 
-   d="scan'208";a="119278140"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa008.fm.intel.com with ESMTP; 06 Mar 2025 09:50:49 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tqFMs-000NOs-2E;
-	Thu, 06 Mar 2025 17:50:46 +0000
-Date: Fri, 7 Mar 2025 01:49:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sricharan R <quic_srichara@quicinc.com>, jassisinghbrar@gmail.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, andersson@kernel.org,
-	konradybcio@kernel.org, manivannan.sadhasivam@linaro.org,
-	dmitry.baryshkov@linaro.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH V3 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox
- driver
-Message-ID: <202503070135.WJVIL67R-lkp@intel.com>
-References: <20250228045356.3527662-3-quic_srichara@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=szygTbUIhThVHBLvG4Jm7bec46KK4+03W2MuTt4e8krOV7OppbE6yW//92acedUEYfwUYZ1DxrIAlVVVbqJEJvu98SG240XeZyYUdJxKGHVD4/GVRerBoXtwblvd3UWFEEKbQUy88RtGknfZb5KaMMaF0+BV0dypOF+05IqxJxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K13B35LP; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-390edaee0cfso744954f8f.2;
+        Thu, 06 Mar 2025 09:53:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741283582; x=1741888382; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=c6I0nLrVkfWZQz6+G7cnrTCJ+R+DQozU/B38AUSSt14=;
+        b=K13B35LPSGIbA+F6ICYnvZAgjHu6zwPSXELKuda7HFjGkg4OJXCVtGXhC7rtTLUiU2
+         DOG1m6AA11+cLJhBVaSVZXfOL3lOUpBbav8A+0J1haNy/PG3CuhDs32Iy/s5rQs4lEop
+         WKmoFxK8mZH2/gphs3gXREgz+5CHUAdOJbOnfGsMQU9Q/27jtgwZZj4OP1Ur9s736CIA
+         sl+GCO5C279hce0ZVCz81CrnQkuOvuu3W5gMoWkrR22kfaWOua+2+oKz8v9zoQiEpUZC
+         OTOFxbyDERkhfJmD+lQRv9rUZTl/0jofh6GC+tgdduTUUqUsYyTRFlp/TRRgJtkBLT3i
+         w5SQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741283582; x=1741888382;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c6I0nLrVkfWZQz6+G7cnrTCJ+R+DQozU/B38AUSSt14=;
+        b=nJjvrmqh+kgfH926d3CJt3lF1K8yd/mcdJs9WtrqPDutnrcNA1T5Su6E/YrGS4rMi7
+         V6zZr/+LoTAt8YzJur9/Anhd0haoRrFXBUQpfsFhJERKxgbhVpGilYouIKPnGTcdyZtT
+         ZwvHGngW3EzhCmW+EHbhpn1vE4AAW4MEjJGCO9KT3sGkbbxfOq9PJsqVNr+z71V3U5Hu
+         xVp+CZZRlIwKieMUP1+CII9q4U70ar/fqJtmQw1u15XSGmzrJKr2JZlVFPafI1H32RIM
+         0TNHT4j4iahlElyhLvT35H709CdcLtEtiMILAkxU/v4rrvJhCeZ8giXiIGU7YCkbLSrv
+         S7og==
+X-Forwarded-Encrypted: i=1; AJvYcCUL4rRA8o8l/NvMepbCDA689iQSKC8fjOfmbmmtMqq+kEgEt7wVpGf9iSGOgoc6Kptw/pGO8Txymb8ZcaI=@vger.kernel.org, AJvYcCUVBQsPDUKVQ5qPupGEsfZYdQdnxG8b74TRSWxb6Zku4WSpf6vYN2BekqIjLuwr0pBGafWrmUqjoppnNZl1@vger.kernel.org, AJvYcCWBTxwKsR4l7Nre1BrTedD0MCF9aeVgsgh/kvxHpgAVlsEqFM4FevYeKFVzoX22chJFmI5sf0mpY5Zo@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJWyqIXwCGvAcvzaqkNWlasOefAwrixEzORqEtQ281SWGRbe55
+	NbG/g8g8HSmM+ktCdxeO2abrztRzARXEFPLCPno70NoYp24u2Pr+xbTvKg==
+X-Gm-Gg: ASbGncuXeGIMqRBFgQcsAWDD5snnEFGbz5ZMHRCb7ud8+11pu7bcKi833d6ehSV6XhG
+	CE/w37dRseGyuhk0qF0G6tE/NaTEtc8hTDV94+ylPB2Dem2VtZ4Ni1bznt/2Vaw181JlRk3DBMU
+	sm6veHm8S42t8/GLv0aXJ4NHc2iwGNfV+IvAIUonb6DoTwySKpNsNTq7Z1dcqnfmWvOlzMDh5SX
+	aOBfacEJHFD56AUC7V53adiD/+U3E+++D2qUFlLsAmU4utnR527s8tpNi428VrZDmbBc51nSC3O
+	jP7SV1EPeUnLi8UIbFdLDO00GiR7/b9GTlRfJEL4jpmgvM2jQPGxjVgRCykIZRFE0dQWTgWo+0r
+	bV3Cno+SakTN7+GUbiaFcRq/VQnF8zos=
+X-Google-Smtp-Source: AGHT+IEQY5OcJUB0sdW/l6Z/hIaVtwgVmdyAdNPHYbc3geWNFzzHLS+BOgy6BhlXJ/1/6zxpiCTnag==
+X-Received: by 2002:a5d:6d8c:0:b0:390:f902:f961 with SMTP id ffacd0b85a97d-39132da8ff7mr29874f8f.45.1741283582302;
+        Thu, 06 Mar 2025 09:53:02 -0800 (PST)
+Received: from orome (p200300e41f3a9f00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f3a:9f00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912bfb7aefsm2684828f8f.20.2025.03.06.09.52.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Mar 2025 09:53:00 -0800 (PST)
+Date: Thu, 6 Mar 2025 18:52:58 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 6/6] ARM: tegra124: complete HOST1X devices binding
+Message-ID: <tob3hj44k6rt6rq2o23fn2dqvq4qye2yezxqbvqcek62c7h6vq@r7jakxxf3whx>
+References: <20250226105615.61087-1-clamor95@gmail.com>
+ <20250226105615.61087-7-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hiw3l23uohoylxof"
 Content-Disposition: inline
-In-Reply-To: <20250228045356.3527662-3-quic_srichara@quicinc.com>
-
-Hi Sricharan,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.14-rc5 next-20250306]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Sricharan-R/dt-bindings-mailbox-Document-qcom-tmel-qmp/20250228-125707
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250228045356.3527662-3-quic_srichara%40quicinc.com
-patch subject: [PATCH V3 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox driver
-config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20250307/202503070135.WJVIL67R-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250307/202503070135.WJVIL67R-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503070135.WJVIL67R-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:15,
-                    from include/linux/dma-mapping.h:5,
-                    from drivers/mailbox/qcom-tmel-qmp.c:6:
-   drivers/mailbox/qcom-tmel-qmp.c: In function 'qmp_send_data':
-   drivers/mailbox/qcom-tmel-qmp.c:196:36: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
-     196 |                 dev_err(mdev->dev, "Unsupported packet size %ld\n", pkt->iov_len);
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c:196:17: note: in expansion of macro 'dev_err'
-     196 |                 dev_err(mdev->dev, "Unsupported packet size %ld\n", pkt->iov_len);
-         |                 ^~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c:196:63: note: format string is defined here
-     196 |                 dev_err(mdev->dev, "Unsupported packet size %ld\n", pkt->iov_len);
-         |                                                             ~~^
-         |                                                               |
-         |                                                               long int
-         |                                                             %d
-   In file included from drivers/mailbox/qcom-tmel-qmp.c:10:
-   drivers/mailbox/qcom-tmel-qmp.c: In function 'tmel_prepare_msg':
->> include/linux/mailbox/tmelcom-qmp.h:16:41: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
-      16 | #define TMEL_MSG_UID_MSG_TYPE(v)        FIELD_GET(GENMASK(15, 8), v)
-         |                                         ^~~~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c:406:29: note: in expansion of macro 'TMEL_MSG_UID_MSG_TYPE'
-     406 |         msg_hdr->msg_type = TMEL_MSG_UID_MSG_TYPE(msg_uid);
-         |                             ^~~~~~~~~~~~~~~~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c: In function 'tmel_process_request':
-   drivers/mailbox/qcom-tmel-qmp.c:501:36: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
-     501 |                 dev_err(tdev->dev, "Invalid pkt.size received size: %ld, expected: %zu\n",
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c:501:17: note: in expansion of macro 'dev_err'
-     501 |                 dev_err(tdev->dev, "Invalid pkt.size received size: %ld, expected: %zu\n",
-         |                 ^~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c:501:71: note: format string is defined here
-     501 |                 dev_err(tdev->dev, "Invalid pkt.size received size: %ld, expected: %zu\n",
-         |                                                                     ~~^
-         |                                                                       |
-         |                                                                       long int
-         |                                                                     %d
-   drivers/mailbox/qcom-tmel-qmp.c: In function 'tmel_secboot_sec_auth':
->> include/linux/mailbox/tmelcom-qmp.h:13:10: error: implicit declaration of function 'FIELD_PREP_CONST' [-Wimplicit-function-declaration]
-      13 |         (FIELD_PREP_CONST((0xff << 8), msg_type) | FIELD_PREP_CONST(0xff, action_id))
-         |          ^~~~~~~~~~~~~~~~
-   include/linux/mailbox/tmelcom-qmp.h:55:45: note: in expansion of macro 'TMEL_MSG_UID_CREATE'
-      55 | #define TMEL_MSG_UID_SECBOOT_SEC_AUTH       TMEL_MSG_UID_CREATE(TMEL_MSG_SECBOOT,\
-         |                                             ^~~~~~~~~~~~~~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c:541:42: note: in expansion of macro 'TMEL_MSG_UID_SECBOOT_SEC_AUTH'
-     541 |         ret = tmel_process_request(tdev, TMEL_MSG_UID_SECBOOT_SEC_AUTH, msg,
-         |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c: In function 'tmel_qmp_send_work':
->> drivers/mailbox/qcom-tmel-qmp.c:595:9: error: case label does not reduce to an integer constant
-     595 |         case TMEL_MSG_UID_SECBOOT_SEC_AUTH:
-         |         ^~~~
-   drivers/mailbox/qcom-tmel-qmp.c:598:9: error: case label does not reduce to an integer constant
-     598 |         case TMEL_MSG_UID_SECBOOT_SS_TEAR_DOWN:
-         |         ^~~~
+In-Reply-To: <20250226105615.61087-7-clamor95@gmail.com>
 
 
-vim +/FIELD_GET +16 include/linux/mailbox/tmelcom-qmp.h
+--hiw3l23uohoylxof
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v1 6/6] ARM: tegra124: complete HOST1X devices binding
+MIME-Version: 1.0
 
-     7	
-     8	/*
-     9	 * Macro used to define unique TMEL Message Identifier based on
-    10	 * message type and action identifier.
-    11	 */
-    12	#define TMEL_MSG_UID_CREATE(msg_type, action_id)	\
-  > 13		(FIELD_PREP_CONST((0xff << 8), msg_type) | FIELD_PREP_CONST(0xff, action_id))
-    14	
-    15	/** Helper macro to extract the messageType from TMEL_MSG_UID. */
-  > 16	#define TMEL_MSG_UID_MSG_TYPE(v)	FIELD_GET(GENMASK(15, 8), v)
-    17	
+On Wed, Feb 26, 2025 at 12:56:15PM +0200, Svyatoslav Ryhel wrote:
+> Add nodes for devices on the HOST1X bus: VI, ISP, ISPB, MSENC and TSEC.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Same as for Tegra114, we're missing the bindings for ISP, MSENC and
+TSEC.
+
+Thierry
+
+--hiw3l23uohoylxof
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmfJ4PYACgkQ3SOs138+
+s6FwPA/9F3Nxec0GTI6FIleP0IiwQkJiu8tujBm4hwBpqpIRic+AhSuJkFm4FqQi
+PrXypIf5dmUnKwv4gQ3XWC3SAwdpQVRyn1URSFtpTbiE+/2oMIt71SdHkFE8uen4
+zmT+h/depJgWYhF5N2M7nyfmZp+QPA/iyCFT78ODD5ulFeDN/3hIFAkC/KdM3cLx
+1GK2nyiQ/GzeoRZ4UdqYXpclkwtPNdanYO1Zl9WBsPHs1YghBPmuN6pz4mvrlrfm
+1EkW8Mc+qJ3XgUI5K/TAMD8Vjm5t8kyNpdynWmToyV4UG1cjGQ0mpatBj2i4PUEj
+Y7+xs2BG0rtsB3BTf5edd01n/UQB/qWUe7fuSsL2PVpWNxXtYhx2qwMviD8xgDSX
+OPxz8IpgrGJ5myrnMi6TiYHZx+pNZRocNJ6xf077QAYOg1KSCbOUuiZqlfozTKMS
+rVoH9dzJtxD6rLYgPnSP7Mkwzz5Ij4JvQ9s7DfA9an4ZYNM9c8JONqDa7Gu5pqoX
+dZVKaHF675Di9qeKftrgyDw0u6d7tILSUrIHdbIYvPtWqNMhKYiCGocp9XIH15Ue
+MKEpV/Wys3ykCc2Kv3+xrpDL/6OS+ckjlyi1xn9s2qw9nTWhHq9h3WckYBA0nhrU
+4k7emmyYNOoJD9Au87cb+PBFsL3JIn6Fnubk7HxzG4vWoObt6Ew=
+=v+Ha
+-----END PGP SIGNATURE-----
+
+--hiw3l23uohoylxof--
 
