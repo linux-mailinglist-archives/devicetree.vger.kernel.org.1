@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-154680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C8DBA543AE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:29:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F456A543CA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 08:38:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CDAA1892DDB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:29:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C25C3ACAAC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 07:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EEFC1C8638;
-	Thu,  6 Mar 2025 07:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF011A23BB;
+	Thu,  6 Mar 2025 07:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WjmW+W5Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I/6gab8a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 440811C8625;
-	Thu,  6 Mar 2025 07:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E08184E;
+	Thu,  6 Mar 2025 07:38:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741246155; cv=none; b=hjP//QMpE4lwsz0UM1bXRHVTuaKPRe/ajMOYdMnRsGCq3ayAzLG1klgkKWzAhRVvhRWbAU1ARgUlTpiWHdpX3Hsz+AlK+T+fcfZYL3bwqygceqBJrzS57HqdgMEyuQZ9K47/5P9od0GksNV1CYzoTtZQJ+inkR90XwdgWKd1gds=
+	t=1741246687; cv=none; b=qHhxuHHbW9xc4bn3Ymq0QxxRIC/RCF4rYKtkQcnb4/n7GYdPgG2/Ihgga4LlorKxJm/o06uSb9miUl2JFhk9RJ8n8lBZkiITcfHMO6AS7TMyAFJ+NCmdK7mh77b+5QmhkjrJ09debPQqvK4BWlfsbWjNEb0foe1JirzSox58WKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741246155; c=relaxed/simple;
-	bh=UHABwz7deCMq6VmoeOJOZCNr+1pSSgpT8myP0hHyVAA=;
+	s=arc-20240116; t=1741246687; c=relaxed/simple;
+	bh=rFPZE20n9wv4t8EMIVt3RGa0RZ2Yy2nLVqSAsVGRS+w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HrixyNd8V765I5TJiRpkZKx31y1xpkPWoc8daUPkHFN/UYDDSxMnhCzWZOoUPgHMsF0qlhDQsRB8T/0apjRD77/Nd01oMdSH32b8yc/6akt3nrP0HMoE+ujPHlWJNHB6nF8tZ9oQIKzvKr7vBjDdfILBxE1XtGT6t1icItcYcTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WjmW+W5Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78660C4CEE0;
-	Thu,  6 Mar 2025 07:29:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=k7GBzMW6t6zkPWiHLHC0bYneTlsbJx8XTRcacoijnkSJcjjiPpRxy4ZN/HX9/kqDigh0p5UN53W1rlLhdpz9zHK1ObkRqzVlWQMAllMTL6slqVlzyNFAlTgCOpEWqrgvt0AcLObHuKV4sg1l6x0zI3hyWK7zGaolkvtW9drKuUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I/6gab8a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC65CC4CEE0;
+	Thu,  6 Mar 2025 07:37:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741246154;
-	bh=UHABwz7deCMq6VmoeOJOZCNr+1pSSgpT8myP0hHyVAA=;
+	s=k20201202; t=1741246685;
+	bh=rFPZE20n9wv4t8EMIVt3RGa0RZ2Yy2nLVqSAsVGRS+w=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WjmW+W5QWjTTfJGBg1pHU0Xy8F+3x1lSda3sHWSURxiky9YUedB+h/g2fHrcuBtHN
-	 TZuFxuiMoJGvkzraI+i/F6d1q/LRfvoKJGKLm0KWnqInACm6i5Mfyj5TBwhv01A3p7
-	 LGYnc6ZqtbHFLZzJBd5W/mk09goT+Ps3G1hbGDewdL8iwbpCoxr6+xHBZt7a1Ganke
-	 p6Abpq6xfhslIvl2TPfYbyNokfI1T3eTKZJkC5ntNwR2OVtA7MG8qG6PZxjOJiVfXc
-	 jjZFSsoRAHtuHZC1ffuOQrre6Aj0LCpWU4/J1R/PohJe4RQGH4VftBAIysxMMQKtWH
-	 7+Xh6+XMbAslA==
-Message-ID: <03b14353-5d47-48de-99fd-9cc48bad5651@kernel.org>
-Date: Thu, 6 Mar 2025 08:29:06 +0100
+	b=I/6gab8a+V9MXEtW7WeV9EZmRpdko3E+eujj5dgQCdAyNbG1pUMCDD6/f3761D1ze
+	 isNClkFhOGFJMpaY5F+EH1vkmjF73NO7CQvEYYS42sETIrmfFyrXzCt4hx+88AQGGn
+	 l+yHl6jZXh/WpwT6C7mE4xMhyM/3HFzJfGuANjzGaHYY7dbPOsIq4/CCD8A1cAwJs3
+	 RKL1QFKIuH/AnumyiMcEev5XJegIEw1f+91v+yyh4tUIVRJiJubEANYUINzDaAGcNE
+	 gulwjBxT6pz4t30fYqWW1ByRHs0cX1ieI6jBK8iVHslif1yZvbsqGScL7KMHsc1Zcf
+	 PHwxtBg5ag8Tg==
+Message-ID: <20e4754b-ea9a-404d-b529-ec44a7263cbf@kernel.org>
+Date: Thu, 6 Mar 2025 08:37:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: marvell: cp11x: Add reset controller
- node
-To: Wilson Ding <dingwei@marvell.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "robh@kernel.org" <robh@kernel.org>
-Cc: "andrew@lunn.ch" <andrew@lunn.ch>,
- "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
- "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- Sanghoon Lee <salee@marvell.com>, Geethasowjanya Akula <gakula@marvell.com>
-References: <20250227192536.2426490-1-dingwei@marvell.com>
- <20250227192536.2426490-4-dingwei@marvell.com>
- <d085c34a-fdbf-4950-a2e3-b3d25a1c0145@kernel.org>
- <BY3PR18MB46730C150D4CB9619B3B05FBA7CC2@BY3PR18MB4673.namprd18.prod.outlook.com>
- <050ae833-10b5-4d80-9856-8bc2f434a74f@kernel.org>
- <BY3PR18MB46739700B533630D65C60808A7C82@BY3PR18MB4673.namprd18.prod.outlook.com>
- <87b9e9c3-87db-4ebe-96b0-4f04705ef6f8@kernel.org>
- <BY3PR18MB4673B4CEB60D3D21AB17B01DA7C82@BY3PR18MB4673.namprd18.prod.outlook.com>
+Subject: Re: [PATCH 4/7] ASoC: rockchip: add Serial Audio Interface (SAI)
+ driver
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
+References: <20250305-rk3576-sai-v1-0-64e6cf863e9a@collabora.com>
+ <20250305-rk3576-sai-v1-4-64e6cf863e9a@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,32 +114,138 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <BY3PR18MB4673B4CEB60D3D21AB17B01DA7C82@BY3PR18MB4673.namprd18.prod.outlook.com>
+In-Reply-To: <20250305-rk3576-sai-v1-4-64e6cf863e9a@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/03/2025 20:08, Wilson Ding wrote:
-> 
-> I did consider shrinking the syscon's register address range to
-> make the reset-controller node to be independent from the
-> syscon node. However, I found the syscon node is also referred
-> by some devices for miscellaneous configurations . The reset
-> configuration register happens to be located in between these
-> registers and clock/GPIO registers.
-> 
->> drop offset in your patch or unify everything into 'reg'.
->>
-> 
-> This is exactly what I proposed in v3 patch. Do I misunderstand
-> you?
-> 
-> CP11X_LABEL(swrst): reset-controller@268 {
-> 	compatible = "marvell,armada8k-reset";
-> 	reg = <0x268 0x4>;
-> 	#reset-cells = <1>;
-> };
+On 05/03/2025 22:24, Nicolas Frattaroli wrote:
+...
 
-I don't see the other device being fixed here. How did you unify them?
+> +
+> +static int rockchip_sai_runtime_resume(struct device *dev)
+> +{
+> +	struct rk_sai_dev *sai = dev_get_drvdata(dev);
+> +	unsigned long flags;
+> +	int ret;
+> +
+> +	dev_dbg(dev, "Runtime resuming device!\n");
+
+Drop probe entry/exit messages. Core already gives you tracing for this.
+
+> +
+> +	ret = clk_prepare_enable(sai->hclk);
+> +	if (ret)
+> +		goto err_hclk;
+> +
+> +	ret = clk_prepare_enable(sai->mclk);
+> +	if (ret)
+> +		goto err_mclk;
+> +
+> +	regcache_cache_only(sai->regmap, false);
+> +	regcache_mark_dirty(sai->regmap);
+> +	ret = regcache_sync(sai->regmap);
+> +	if (ret)
+> +		goto err_regmap;
+> +
+> +	if (sai->quirks & QUIRK_ALWAYS_ON && sai->is_master_mode) {
+> +		spin_lock_irqsave(&sai->xfer_lock, flags);
+> +		regmap_update_bits(sai->regmap, SAI_XFER,
+> +				   SAI_XFER_CLK_MASK |
+> +				   SAI_XFER_FSS_MASK,
+> +				   SAI_XFER_CLK_EN |
+> +				   SAI_XFER_FSS_EN);
+> +		spin_unlock_irqrestore(&sai->xfer_lock, flags);
+> +	}
+> +
+
+...
+
+> +
+> +	ret = devm_snd_dmaengine_pcm_register(&pdev->dev, NULL, 0);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Failed to register PCM: %d\n", ret);
+> +		goto err_runtime_suspend;
+> +	}
+> +
+> +	ret = devm_snd_soc_register_component(&pdev->dev,
+> +					      &rockchip_sai_component,
+> +					      dai, 1);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Failed to register component: %d\n", ret);
+> +		goto err_runtime_suspend;
+> +	}
+> +
+> +	pm_runtime_use_autosuspend(&pdev->dev);
+> +	pm_runtime_put(&pdev->dev);
+> +
+> +	/*
+> +	 * runtime_resume already enabled our hclk again, so we need to also
+> +	 * get rid of the manual enable we did earlier to balance the counts.
+> +	 */
+
+Your way of handling this is extra confusing. You rely on some other
+methods to poke the enable/disable count. It is rather expected that
+each function handles this fully, so it disables what it have enabled.
+You must not rely on PM runtime to do something with clocks which you
+now unwind.
+
+> +	clk_disable_unprepare(sai->hclk);
+> +
+> +	return 0;
+> +
+> +err_runtime_suspend:
+> +	/* If we're !CONFIG_PM, we get -ENOSYS and disable manually */
+> +	if (pm_runtime_put(&pdev->dev))
+> +		rockchip_sai_runtime_suspend(&pdev->dev);
+> +err_disable_hclk:
+> +	clk_disable_unprepare(sai->hclk);
+> +
+> +	return ret;
+> +}
+> +
+
+_device_id tables are supposed to be around probe, not beginning of the
+file.
+
+> +static void rockchip_sai_remove(struct platform_device *pdev)
+> +{
+> +#ifndef CONFIG_PM
+> +	rockchip_sai_runtime_suspend(&pdev->dev);> +#endif
+> +}
+> +
+> +static const struct dev_pm_ops rockchip_sai_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(rockchip_sai_runtime_suspend, rockchip_sai_runtime_resume, NULL)
+> +	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_resume)
+> +};
+> +
+> +static struct platform_driver rockchip_sai_driver = {
+> +	.probe = rockchip_sai_probe,
+> +	.remove = rockchip_sai_remove,
+> +	.driver = {
+> +		.name = DRV_NAME,
+> +		.of_match_table = of_match_ptr(rockchip_sai_match),
+
+Drop of_match_ptr, you have warning here.
+
+> +		.pm = &rockchip_sai_pm_ops,
+> +	},
+> +};
+> +module_platform_driver(rockchip_sai_driver);
+> +
+> +MODULE_DESCRIPTION("Rockchip SAI ASoC Interface");
+> +MODULE_AUTHOR("Sugar Zhang <sugar.zhang@rock-chips.com>");
+> +MODULE_AUTHOR("Nicolas Frattaroli <nicolas.frattaroli@collabora.com>");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:" DRV_NAME);
+
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong (e.g. misses either
+entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+for incomplete ID table.
+
+
+> +MODULE_DEVICE_TABLE(of, rockchip_sai_match);
+
 
 Best regards,
 Krzysztof
