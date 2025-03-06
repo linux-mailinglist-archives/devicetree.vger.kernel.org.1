@@ -1,178 +1,144 @@
-Return-Path: <devicetree+bounces-154640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D215CA53FC1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 02:21:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF96A54111
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 04:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F35DD1673A5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 01:21:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66F7A18926AA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 03:13:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD934158851;
-	Thu,  6 Mar 2025 01:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DAA3192D9A;
+	Thu,  6 Mar 2025 03:13:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JLnHnJcm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Al+nf66H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33562156F39;
-	Thu,  6 Mar 2025 01:20:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA13192D8F
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 03:13:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741224059; cv=none; b=DRoWlqJrp5YNaP0/HT9RKt7J9ayJFhIlMiOvrNczKUaGF/aFJAmmJ1cgTNDn5bm+TRnlP0pm6PVWg9YtHLVSwkpT/hIM3vGNL07ycR3oOzirQbTYJD2JltKCe10mnSGnM8MTLqFwPZ+5wlkJsPENwdPogcD7x0JkrWa2uEXr3KQ=
+	t=1741230814; cv=none; b=h5gxA3gW3K8YotNwbnJKaFn9Grqx/ot+p9MP+KlEbBeif4tQUzGvHmJuYi0ctNS6XNVGMw16LoXV+Y+M7b3r5+NM4FLGnjwK4aQiP6Lv38ToxGW9ljwPCZQvGSC01uGTAS6Rd4kiWFHW4FDjOqXRO9ONl0LNAUDVslffYcvY+dE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741224059; c=relaxed/simple;
-	bh=qChrOs8Y7o3tEDCaxcShduGkeVGkFSi1RvOK1nsdh0I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M/bssauEWRw60WKc98tHg39KczwekzsmgPeYjag74UdSj34GMoDbWD6ubwNt0XkOndzgYBj8YYQeZD19OZZZ1dp24UVMsHqR8CdhyBu/ysysel7d9s9qZahsbWx8jzCgtQLEOFWhg8HCNM1MOg9oNJ2tePJDyS170JyxXRL0JN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JLnHnJcm; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2feb9078888so305723a91.3;
-        Wed, 05 Mar 2025 17:20:57 -0800 (PST)
+	s=arc-20240116; t=1741230814; c=relaxed/simple;
+	bh=Tveglffe8ZqIwGSYe2WrroPWZ6zSCid8BKA2Rrxbctc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QqJaXMbKx6iT7ZeESatW4g48zR3fBUaJy/tyhKGMqe6dTpv76CE1HpDLg9yvIW/ZZKKbQ1fqCU7rV/kwmMogAaikig6cxl4ZGSYlPevhIih6mOnnE9VLH63mbZtFhcH7/PCNOKPeBu2BMvZnkaceYIWotpSm8X243Ymr1hYnLmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Al+nf66H; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-223f4c06e9fso3616735ad.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Mar 2025 19:13:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741224057; x=1741828857; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ply0/CzY0yvzBEfEzCiDMoXMyvQu4tZWubmfbiISKOM=;
-        b=JLnHnJcm8nJ8VtMpBfw3F/YNjtlJTcaMddQQmobF9RJXGHecw4fHbO1LMsDRV7it/4
-         2vIwfxEuOMUhaqIN7DR4UsoAbkG/k2g5UBh00yPGyQoZxzdfDttmh/akPNWZKapv6bG9
-         BPThudb4KcBzI7n09NTfe2ltldNqheNVFZtamuoL0H+Om2NiIIjgpUERyD7m9bgxAQND
-         qp6o2Xv7Hst/UKHbnCWZO/uxfJfKK5LFHNFlZuX0hJ3Bi9dBRq//El1uY4WuDx+mdb8B
-         ecyCH6pzhfzhp+AIpDJ8/SI3G8caSfX/k5eim+ZmIrpqHgJntMB6mYEEjeMcoI0/DT4J
-         J/BQ==
+        d=linaro.org; s=google; t=1741230813; x=1741835613; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1xC4B23ZVUrI+v0nWKIC4hRtohRTbUpDYv0ldFM8Y84=;
+        b=Al+nf66HEEs5M50XPaD9As54O3i83iWFQYo4pHJWvRRdBLiBuORBNTX1rjz1znKazc
+         6PzI2oBstzsNXgN0tAnx5zMYiRhxVu1cora1nThZu0mGDN6qeGl29I5d51ly+T01NG7y
+         fMRZ2SnQGqDqGAFgmuXiZoL2AnhVP3mCZqtToEbQRvNcdD/7rr9/U9WmwnECaEmdwu8C
+         pWs8MSWfd3R7RwwaWRjYMHDX1zbBl6QttyeXDQ6pmg8wgOqK0XEz1Yr+vcf8ULWNajd7
+         W3ej8KnWlUYbZ2AX1ieRESyQPK/iakPnJtr8i1nLONAtxlyeLgD5V7+PGCi8aJ7pBCXe
+         zsNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741224057; x=1741828857;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1741230813; x=1741835613;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ply0/CzY0yvzBEfEzCiDMoXMyvQu4tZWubmfbiISKOM=;
-        b=NRK6maAvloE2O1Mx+QuNqGFDdj6RrR3rbN+xPCE6yYF88JLdZcx4KoDSqrjwHCc1QR
-         N/j9aisfL/HcG5Jip0xyTy0Ex77Ba/4yc2ZsuGZU+N+MHr0YTbedxAemFfj/R7qopZyX
-         z7Glv/5N8/69cYpvLWWXEBAgGz8KU+D8nE9aYVen9TBrPr5CsaiCDmLos8Ce23HNDcCG
-         C+0+rK1o0T8ThQco2ch89E0q3rDqL+uh30MDTr9Gd+Kjqb/PvGx4u4nWTLnBjziJR3a9
-         8wz/egtQi6iKU+DdC4rVIr8ponjnaLjKnlSt4DzNvXBUrsTMp/JHUOUTc9DzEGf+UgjC
-         gx+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWpuT7dT8wZ8+tXW0sHtVI0iDbiFrGJ0gI5h9po5cvhD7tCQeNPQKEnX3gmGqE+y7+bIQDYVkWAhxcU0ns3@vger.kernel.org, AJvYcCX5k4KZeu5M9HtlwMguApwOaKwATJgGxtEIyXzuaLSCX2M3Zj5sQeTUWMEXis38V+xv3UHgw/sKe+W+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqXBHnEuJwVV414RCi48bZ+mbL3fN/4ZgfzY15KEQe3fGePytK
-	2OaK6eJvC3Q1SEyxL1d6Z7LS7zkMzxuo/5C6pPh3Mc+5VncZsPXe
-X-Gm-Gg: ASbGncvObVgMH9ifsHibx5vwO2LPMoIYYkMG4BnIOY3YoJb1iIngVkhua1J7VgWdWMG
-	nosCNzK+zdwu/E1yuMOTMmrxdj29JZ0KymyD2lUyk+UxPo4D47lTq34uJT0zDklwdkXljLJacky
-	l33PztzUk20VNpnyUse/RfPTNdiwpsBojF8crxyEgVTezLKPUitazgtZswnpuK+pqQ7rZAtfyzW
-	EaRPR6I74l3KOuy8mOntNxVfk9fWwJCDyyL/U7VdQ2J4vbl8kVPYglUBcfJIezExmDEC/YSHiZW
-	16L9V9MkYS+i+fx/E1wqzrIhoVjy1lRrQwRgw51dIF+X+WwEjaI6c+69i6rkrPWi85Oar9mehQQ
-	kpXZ2
-X-Google-Smtp-Source: AGHT+IFojcpy6KUP4bTQSiEwcKBMBi3P0iygm73XtFG4pDDpmIlmVKc+itvV/UD4VcBCJUi2g4g2pw==
-X-Received: by 2002:a17:90b:3c41:b0:2fa:ba3:5457 with SMTP id 98e67ed59e1d1-2ff497cce9amr10138543a91.17.1741224057323;
-        Wed, 05 Mar 2025 17:20:57 -0800 (PST)
-Received: from [10.89.236.32] (wf126-032.ust.hk. [175.159.126.32])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-224109ddfc7sm730455ad.22.2025.03.05.17.20.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Mar 2025 17:20:56 -0800 (PST)
-Message-ID: <b13f29b8-2906-489d-b955-3f94a9bcb231@gmail.com>
-Date: Thu, 6 Mar 2025 09:20:53 +0800
+        bh=1xC4B23ZVUrI+v0nWKIC4hRtohRTbUpDYv0ldFM8Y84=;
+        b=FKP1NdiJlOcFItI9/cZ5sVXvvoNRoa6nUVvt7K23iWDfBV1QOM/5Vs0eSnp4A0aeDh
+         IZKM41t9ybOGO18i2DcSrSLQjTRoVrcZptPYAbHD7zYD0uItO/VxYZ2e1QikGpkFgLNe
+         77VK8zHBJEFm17ufDw+LgT49Rmc+mUal/jalNS+U0fMeO/J9qOKX1U/dkg4vaS2Y9AUX
+         NrjNa3dLdC9u6Yxp6futNjINApaYH/n49waPIiRANaEJLLN7hbzkl8YJRhDzHVDoNg8p
+         yw3IvJokvHsoeFVrz1tuD92aU2Pbs4viSHKnMT2AFBX5V7SWW6DmtSLQPh+n24qlva1r
+         P+Yw==
+X-Forwarded-Encrypted: i=1; AJvYcCXEQc9BoKx1aedbOWQW0uez8YdJDPrHNs2PWsTsYRYiPuqOFXV7ttyQT9AQTFT4kNoDVnwFwi8P7ShX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0csGtgfNzh1QxMAyThRbBtsS3YBHCvVSGqjfUCTwxlj/vVAIa
+	w90mDt6vknV+qmzjxq7EXCZO/IKQJvYqgJhxNs8E/kdj5MIVquW9hJt7wUPMgw==
+X-Gm-Gg: ASbGncv0GfMW/xfHvh8PLGgF5PqL6DPwTszzmjRobuPq7Eyb/W39wk8tmkzrQcjuRfI
+	mILuoMErA5fDf8a3USRw2lltosuswM/Dzo4iahQnLcRExYimdBJfEjddtwivBUlKETUpt73aLs5
+	gT+IhFpqNmkyOzC7Cer9a1rt/7TCqB3tyliG5+u2VgzZtzOtKCIqRdbk1cFElAun8agtpO59iw+
+	1bq7D3Clz0+gMGivnXho1feG5bg5EWnjBqzE+7UrqN1tWDgq1inZuCycze2odtF1BJ2QJHwrJKV
+	vnowOqML8LhBkTDxc+kpqDu+W1eo/PuW3iTExNSvqi0MC9Qi8SsrB1o=
+X-Google-Smtp-Source: AGHT+IFy40lU01QwIDD6NgP1MWN6uVEbwb2emHO+b5oCOTPTFjpkYhW+N4OcEkblRt9yRpkBHJpIww==
+X-Received: by 2002:a17:902:e5ca:b0:223:517a:d4ed with SMTP id d9443c01a7336-22409457e5dmr21605625ad.15.1741230812657;
+        Wed, 05 Mar 2025 19:13:32 -0800 (PST)
+Received: from thinkpad ([120.56.193.59])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22410a91c43sm1613815ad.183.2025.03.05.19.13.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Mar 2025 19:13:32 -0800 (PST)
+Date: Thu, 6 Mar 2025 08:43:25 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	quic_mrana@quicinc.com, quic_vbadigan@quicinc.com,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v7 1/4] arm64: dts: qcom: x1e80100: Add PCIe lane
+ equalization preset properties
+Message-ID: <20250306031325.bmx3p6htwtb6l6ji@thinkpad>
+References: <20250225-preset_v6-v7-0-a593f3ef3951@oss.qualcomm.com>
+ <20250225-preset_v6-v7-1-a593f3ef3951@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: apple: Add SPMI controller nodes
-To: fnkl.kernel@gmail.com, Sven Peter <sven@svenpeter.dev>,
- Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250305-spmi-v1-0-c98f561fa99f@gmail.com>
- <20250305-spmi-v1-3-c98f561fa99f@gmail.com>
-Content-Language: en-US
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <20250305-spmi-v1-3-c98f561fa99f@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250225-preset_v6-v7-1-a593f3ef3951@oss.qualcomm.com>
 
+On Tue, Feb 25, 2025 at 05:15:04PM +0530, Krishna Chaitanya Chundru wrote:
+> Add PCIe lane equalization preset properties for 8 GT/s and 16 GT/s data
+> rates used in lane equalization procedure.
+> 
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 
-Sasha Finkelstein via B4 Relay 於 2025/3/6 凌晨4:26 寫道:
-> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
->
-> Add device tree entries for the SPMI controller
->
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+One minor nit below.
+
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
->  arch/arm64/boot/dts/apple/t600x-die0.dtsi | 7 +++++++
->  arch/arm64/boot/dts/apple/t8103.dtsi      | 8 ++++++++
->  arch/arm64/boot/dts/apple/t8112.dtsi      | 8 ++++++++
->  3 files changed, 23 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/apple/t600x-die0.dtsi b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-> index b1c875e692c8fb9c0af46a23568a7b0cd720141b..d544a35c8af414c583d38b040e1aa753902f1c93 100644
-> --- a/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-> @@ -53,6 +53,13 @@ wdt: watchdog@2922b0000 {
->  		interrupts = <AIC_IRQ 0 631 IRQ_TYPE_LEVEL_HIGH>;
->  	};
+> This patch depends on the this dt binding pull request which got recently
+> merged: https://github.com/devicetree-org/dt-schema/pull/146
+> ---
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index 4936fa5b98ff..9a18b8f90145 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -3209,6 +3209,11 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>  			phys = <&pcie3_phy>;
+>  			phy-names = "pciephy";
 >  
-> +	nub_spmi0: spmi@2920a1300 {
-> +		compatible = "apple,t6000-spmi", "apple,spmi";
-> +		reg = <0x2 0x920a1300 0x0 0x100>;
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +	};
+> +			eq-presets-8gts = /bits/ 16 <0x5555 0x5555 0x5555 0x5555
+> +						     0x5555 0x5555 0x5555 0x5555>;
 > +
->  	sio_dart_0: iommu@39b004000 {
->  		compatible = "apple,t6000-dart";
->  		reg = <0x3 0x9b004000 0x0 0x4000>;
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-> index 9b0dad6b618444ac6b1c9735c50cccfc3965f947..0f03dc808cf7c6b7d71afc79dd29d368f957f979 100644
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> @@ -11,6 +11,7 @@
->  #include <dt-bindings/interrupt-controller/apple-aic.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/pinctrl/apple.h>
-> +#include <dt-bindings/spmi/spmi.h>
->  
->  / {
->  	compatible = "apple,t8103", "apple,arm-platform";
-> @@ -604,6 +605,13 @@ pcie_pins: pcie-pins {
->  			};
->  		};
->  
-> +		nub_spmi: spmi@23d0d9300 {
-> +			compatible = "apple,t8103-spmi", "apple,spmi";
-> +			reg = <0x2 0x3d0d9300 0x0 0x100>;
-> +			#address-cells = <2>;
-> +			#size-cells = <0>;
-> +		};
-> +
->  		pinctrl_nub: pinctrl@23d1f0000 {
->  			compatible = "apple,t8103-pinctrl", "apple,pinctrl";
->  			reg = <0x2 0x3d1f0000 0x0 0x4000>;
-> diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
-> index 1666e6ab250bc0be9b8318e3c8fc903ccd3f3760..4b3730c46c4d14a582627f69094b458ec7481da9 100644
-> --- a/arch/arm64/boot/dts/apple/t8112.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8112.dtsi
-> @@ -641,6 +641,14 @@ pcie_pins: pcie-pins {
->  			};
->  		};
->  
-> +
-> +		nub_spmi: spmi@23d714000 {
-> +			compatible = "apple,t8112-spmi", "apple,spmi";
-> +			reg = <0x2 0x3d714000 0x0 0x100>;
-> +			#address-cells = <2>;
-> +			#size-cells = <0>;
-> +		};
-> +
->  		pinctrl_nub: pinctrl@23d1f0000 {
->  			compatible = "apple,t8112-pinctrl", "apple,pinctrl";
->  			reg = <0x2 0x3d1f0000 0x0 0x4000>;
->
-Reviewed-by: Nick Chan <towinchenmi@gmail.com>
+
+Get rid of the newline between eq-presets-8gts and eq-presets-16gts.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
