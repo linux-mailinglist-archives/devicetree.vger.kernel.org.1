@@ -1,126 +1,107 @@
-Return-Path: <devicetree+bounces-154927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44891A54F21
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 16:31:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B829FA54F1E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 16:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6580F1764CE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:31:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 397057AA8EC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F72222A7F1;
-	Thu,  6 Mar 2025 15:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39D220F071;
+	Thu,  6 Mar 2025 15:29:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fZezFYM7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17507211A37;
-	Thu,  6 Mar 2025 15:26:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD68C20E6F6;
+	Thu,  6 Mar 2025 15:29:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741274820; cv=none; b=NhSGnNYugTjeyYkUjfioT6KQ+nRWwt9Uy4JqaNukAm5z+Ze9ulWg0naYYnYKTJ61jtqRpwyPu+dv259ZK5k5lIHynagjoorwopGU5uLBSPavslZbFM2aXyU4OI1Vgde/B2QhbdCe/CzuCFzQ5ekxKVNGJq+enPc8pWkcO3zZa6o=
+	t=1741274977; cv=none; b=IRHIIxnhHTSu4z+FUG1jnPL+DVjQ/+l8hBSPywd9glphIjDkRCWbkQ8G5a+S/7Mk8tJB2b+z6KSWsVnBfiByUe8t1BN4ZvywEhm7IIROE4YZ7K6krfQ1xn1r54Jki0kEDI+5b1GHr6pJL5bNYu9ArHZ94AU4TqorZ9xSrau2TEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741274820; c=relaxed/simple;
-	bh=0+pqNFu7TxQvcjP+//nUT3iQoPNsjsR2Ar8xl8yxd6Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=T33RMojpyjLgiFZe+TOU44fUgWnWrwuYyen0eYHU1vKlO39XWCocsc2XZ/1xguzj2E/W808veldQHCP8BbuDdeoX8XhJWtJ3F6dX6JB5sZnJZjYc0s+wmP3X5qAxPUnP+gyvJOweaP2tYq2ynHvIwK0OZh/TGbyw/aU0Oj4HFPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: PaZn3BUZRlKugQ0K3+ZdpQ==
-X-CSE-MsgGUID: L90m2T6xQ2u5NmjIoThzcg==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 07 Mar 2025 00:26:57 +0900
-Received: from superbuilder.administration.lan (unknown [10.226.93.123])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1460F4007213;
-	Fri,  7 Mar 2025 00:26:54 +0900 (JST)
-From: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-To: thierry.bultel@linatsea.fr
-Cc: linux-renesas-soc@vger.kernel.org,
-	geert@linux-m68k.org,
-	paul.barker.ct@bp.renesas.com,
-	Thierry Bultel <thierry.bultel.yh@bp.renesas.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 12/13] arm64: dts: renesas: Add initial support for renesas RZ/T2H eval board
-Date: Thu,  6 Mar 2025 16:24:46 +0100
-Message-ID: <20250306152451.2356762-13-thierry.bultel.yh@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250306152451.2356762-1-thierry.bultel.yh@bp.renesas.com>
-References: <20250306152451.2356762-1-thierry.bultel.yh@bp.renesas.com>
+	s=arc-20240116; t=1741274977; c=relaxed/simple;
+	bh=fOOQowHJHtW+gHqQRw+cobzO7tlDBCXQk58mod4OwP4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H8XHDjItxwBtyNG7qjOXWb9c/m+sKqC1WMdiuoxZio+iEGRqslPGQuiM5HidzP6EP+lLRbnrFegQKg65waUh8yJi+1/zDEAr/52f0ftO8Hwij3R5WDD/0Pcc9evkJAqhsdzkBxaC3fkHzrl5b3RRA3HAtYj9u0HS0J2Wq/8wHsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fZezFYM7; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=+IzmAbgju3FDk0Ryltpo+ejh+hoS4Rf/7x9rJ3Yw0EU=; b=fZezFYM7Q7hsuSZ7fLNC1YsWMD
+	DMwJd4MIBQUfPVlx1hne+poqp2G3TNmrhsdZ10bbkAJkvrwOoaKZRJI6Frn1wp/XUr/I4vKrB3sgN
+	XPoJWax9YeByq6lz1rUci/uJ0sZ1jzmG+TQ3rdi1O35pli7N37Qp6ofYEqu27pc6pHGs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tqDA0-002pzB-Ms; Thu, 06 Mar 2025 16:29:20 +0100
+Date: Thu, 6 Mar 2025 16:29:20 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lei Wei <quic_leiwei@quicinc.com>,
+	Suruchi Agarwal <quic_suruchia@quicinc.com>,
+	Pavithra R <quic_pavir@quicinc.com>,
+	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
+	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
+	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+	john@phrozen.org
+Subject: Re: [PATCH net-next v3 04/14] net: ethernet: qualcomm: Initialize
+ PPE buffer management for IPQ9574
+Message-ID: <74f89e1e-c440-42cb-9d8e-be213a3d83a4@lunn.ch>
+References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
+ <20250209-qcom_ipq_ppe-v3-4-453ea18d3271@quicinc.com>
+ <a79027ed-012c-4771-982c-b80b55ab0c8a@lunn.ch>
+ <c592c262-5928-476f-ac2a-615c44d67277@quicinc.com>
+ <33529292-00cd-4a0f-87e4-b8127ca722a4@lunn.ch>
+ <cffdd8e8-76bc-4424-8cdb-d48f5010686d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cffdd8e8-76bc-4424-8cdb-d48f5010686d@quicinc.com>
 
-Add the initial device tree for the RZ/T2H evaluation board.
+> Thanks for the suggestion. Just to clarify, we preferred
+> u32p_replace_bits() over FIELD_PREP() because the former does
+> a clear-and-set operation against a given mask, where as with
+> FIELD_PREP(), we need to clear the bits first before we use the
+> macro and then set it. Due to this, we preferred using
+> u32_replace_bits() since it made the macro definitions to modify
+> the registers simpler. Given this, would it be acceptable to
+> document u32p_replace_bits() better, as it is already being used
+> by other drivers as well?
 
-Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
----
-Changes v3->v4: none
----
- arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    | 35 +++++++++++++++++++
- 2 files changed, 36 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+I suggest you submit a patch to those who maintain that file and see
+what they say.
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 928635f2e76b..ee1af560f5e6 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -148,6 +148,7 @@ dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc.dtb
- 
-+dtb-$(CONFIG_ARCH_R9A09G077) += r9a09g077m44-rzt2h-evk.dtb
- dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
- 
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-new file mode 100644
-index 000000000000..0fe3a08ca9c3
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/T2H Development EVK board
-+ *
-+ * Copyright (C) 2025 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "r9a09g077m44.dtsi"
-+
-+/ {
-+	model = "Renesas Development EVK based on r9a09g077m44";
-+	compatible = "renesas,rzt2h-evk", "renesas,r9a09g077m44", "renesas,r9a09g077";
-+
-+	aliases {
-+		serial0 = &sci0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&extal_clk {
-+	clock-frequency = <25000000>;
-+};
-+
-+&loco_clk {
-+	clock-frequency = <1000000>;
-+};
-+
-+&sci0 {
-+	status = "okay";
-+};
--- 
-2.43.0
+But maybe also look at how others are using u32p_replace_bits() and
+should it be wrapped up in a macro? FIELD_MOD()? These macros do a lot
+of build time checking that you are not overflowing the type. It would
+be good to have that to catch bugs at build time, rather than years
+later at runtime.
 
+      Andrew
 
