@@ -1,163 +1,124 @@
-Return-Path: <devicetree+bounces-154818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BF6FA549AE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:41:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 290EDA549B0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:41:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8E483B225C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:39:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 793D73B2657
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:39:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CCE20D4E6;
-	Thu,  6 Mar 2025 11:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6005920AF96;
+	Thu,  6 Mar 2025 11:34:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JAHtQOn6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KwOmASA5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0CAB20AF8D;
-	Thu,  6 Mar 2025 11:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB8120AF8D;
+	Thu,  6 Mar 2025 11:34:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741260826; cv=none; b=jSW6+ynrdKVrrsnGRZ18ljbDIfKc0iLHcNCG8blhc8+xpojY8GDeL+G9ZeaSW/a2wqHK1/4LS+LwcP8kqqc+zB5qZUP68x1uWFF8kVu0etL4LVbEtkePADMpNi6VJwd+H6ylouq9Gpofl3AVdtYxjWvyIIYWgDtSxBlY+rK8ZKo=
+	t=1741260861; cv=none; b=qRpBOSxussn/3uQPZxnIrbRe2myOxD6aMME/WdhzAowWhm6YIpm3oww0iRCD1YkPIXYRqPxsCZZmPw+stQRUrZU/Q5Xh4TwAG++WYToJiCXQPyEo5lDCUwHwwG2CIb6sKLlYVAtre/nOOw6mmRYaCpSnSgF/+GE0KvY9vzZJqQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741260826; c=relaxed/simple;
-	bh=0RkHv2NVUIjDTMRzp3ZLW9jex5M/ZIevpBWyXbznxKs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aGRJ1GU4rAF4mQJmttI+Cg48bliRPkp/Wu7ZkK9/4F5UIQ3q30MF1feKPPVlYMxQRSpo5Swy7w8HD4HAA/NAW+YwSt6drqFbNDCrFJukPNIxJDFiU8UmKhjlUzFJ909Zp+za7ScEqFgG0FeILPtmaGe0Ha+7h4u1fy0NESsEn1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JAHtQOn6; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741260825; x=1772796825;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0RkHv2NVUIjDTMRzp3ZLW9jex5M/ZIevpBWyXbznxKs=;
-  b=JAHtQOn6hDyOcaqX4dzp6SJ/JhHAsyveLdX9qhvXD4IHzL26STVhpDVF
-   QIa0jz4SO0tkocladzGvuYw/VB2A0/2iejZKcjWZXFvaiYepCN72SBc6F
-   aVGyYr2GD1KIGYxvrZhB32Ci6BkR/dGu1bPJbtYTqOHaEspeGi5AW3eL+
-   mQbKJzkvBgTENsvFO/NHaWSp6a5d9wT6bphU+Zu7oA00Ig+w0ren01B3Z
-   HXcEHysUjMbrunCyT/H62eBgLwDESg8YVIqTV1uWQHeXjhr9XAD7OgPQl
-   LSZNLOYBwkaybX6q6mUL8cSBq1RVa8B3oLXM8g9WiBPk/Iyw4KklPBnNA
-   Q==;
-X-CSE-ConnectionGUID: CyYVksOmT3WTqjuhTJFreA==
-X-CSE-MsgGUID: dwDFRNYVQbuocXGhbyzfGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="59673239"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; 
-   d="scan'208";a="59673239"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2025 03:33:45 -0800
-X-CSE-ConnectionGUID: iKI6AAlYRAmEUJI/bGQSYA==
-X-CSE-MsgGUID: wyJvtgh2SWSibKMKNc9NZg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; 
-   d="scan'208";a="124093820"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 06 Mar 2025 03:33:42 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tq9Tw-000Mz8-1P;
-	Thu, 06 Mar 2025 11:33:40 +0000
-Date: Thu, 6 Mar 2025 19:33:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Robin Murphy <robin.murphy@arm.com>, vkoul@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] dmaengine: Add Arm DMA-350 driver
-Message-ID: <202503061910.eJW7M2H3-lkp@intel.com>
-References: <55e084dd2b5720bdddf503ffac560d111032aa96.1740762136.git.robin.murphy@arm.com>
+	s=arc-20240116; t=1741260861; c=relaxed/simple;
+	bh=nGIlFjPYnDd6KjV6z/AEdHqnp7KJ+f7+nfAoiU0G0/8=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SwPDV3Hfo67uyNI4xcYuoPaGwd6yzCf0hK5Aw47uSGkfREaYZT82qJRz8RVOdQeC0J03VKi0H4kCnMMGqqjyOrnVmtQCDZimPj7IFId7bw11M+a7GC7oN7+Xhng/xC+hoELTCc2ATY7Sbk6Upr07GQC4ZCjncen4IURWMpAhKLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KwOmASA5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5269522S020153;
+	Thu, 6 Mar 2025 11:34:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=m38iNQD4koMGK2VXT+LG9Q
+	CzgpS3c5nrGPsF+OFZWTo=; b=KwOmASA5DV8ODUd4xZgvQLXf6pN/urZmhJofkO
+	SMCUz0NLM8Kw8gOcXmcPBMtOqEhTqMXeI6Q1MpZaZg6dQWyEFpxZIibjHytAjSjS
+	kna/WkOKlBWSZP+Wai6lggs3K/eUmP1XtRaISLILBbIOHahyNG35xCyKXIoy6EjL
+	4IPQ74/F3ngJEsyF8jKrqKMocyZ4drbpFy2c6+L2rjYl7JAuBKyW4g68gJvZBM5H
+	m4q1DifgokZ57Za3LiEVMgi3+4NehODoItMuuYB+fgRicdhhTa3IKM17AUdLV0QX
+	PxZ4erfz6Ola1kdSeHrSvVjPPIkNvl5YvyUY/+J7srj6rqBQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 456xcuj1kc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Mar 2025 11:34:15 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 526BYExZ030294
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 6 Mar 2025 11:34:14 GMT
+Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 6 Mar 2025 03:34:11 -0800
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/3] Add SPI nand support in IPQ9574
+Date: Thu, 6 Mar 2025 17:03:54 +0530
+Message-ID: <20250306113357.126602-1-quic_mdalam@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <55e084dd2b5720bdddf503ffac560d111032aa96.1740762136.git.robin.murphy@arm.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GTzxqXOLvvF-6sqFjlQLN_I6h6dYZdQ8
+X-Proofpoint-GUID: GTzxqXOLvvF-6sqFjlQLN_I6h6dYZdQ8
+X-Authority-Analysis: v=2.4 cv=eeXHf6EH c=1 sm=1 tr=0 ts=67c98837 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=sZtYx3W4YspbH7VN3wYA:9
+ a=NqO74GWdXPXpGKcKHaDJD/ajO6k=:19 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-06_05,2025-03-06_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=739 mlxscore=0
+ impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
+ priorityscore=1501 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503060087
 
-Hi Robin,
+v2:
+ * Added Reviewed-by tag
+ * Added new line befroe "status = okay" in qpic_nand node
+ * Added "qcom,bam-v1.7.4" compatible in qpic_bam node
+ * sorted qpic_nand and qpic_bam entry in dt
 
-kernel test robot noticed the following build warnings:
+v1:
+ * This was a part of 'Add QPIC SPI NAND driver' - [1]. Have split it out
+   into a separate series based on the community feedback [2].
+ * Additionally, address comments. Please see individual patches for
+   details
+ * The 'dt' and 'dtsi' portions of 'arm64: dts: qcom: ipq9574: Add SPI
+   nand support' are split and posted as separate patches in this series. 
 
-[auto build test WARNING on vkoul-dmaengine/next]
-[also build test WARNING on linus/master v6.14-rc5 next-20250305]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+ 1 - https://lore.kernel.org/linux-arm-msm/20241120091507.1404368-1-quic_mdalam@quicinc.com/
+ 2 - https://lore.kernel.org/linux-arm-msm/4c1fe789-5190-465d-bb41-3fe1534d2523@oss.qualcomm.com/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Robin-Murphy/dt-bindings-dma-Add-Arm-DMA-350/20250301-012733
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
-patch link:    https://lore.kernel.org/r/55e084dd2b5720bdddf503ffac560d111032aa96.1740762136.git.robin.murphy%40arm.com
-patch subject: [PATCH 2/2] dmaengine: Add Arm DMA-350 driver
-config: nios2-randconfig-r111-20250306 (https://download.01.org/0day-ci/archive/20250306/202503061910.eJW7M2H3-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 14.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20250306/202503061910.eJW7M2H3-lkp@intel.com/reproduce)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503061910.eJW7M2H3-lkp@intel.com/
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/dma/arm-dma350.c:485:31: sparse: sparse: dubious: !x & y
-   drivers/dma/arm-dma350.c: note: in included file (through include/linux/smp.h, include/linux/lockdep.h, include/linux/spinlock.h, ...):
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
+Md Sadre Alam (3):
+  arm64: dts: qcom: ipq9574: Add SPI nand support
+  arm64: dts: qcom: ipq9574: Enable SPI NAND for ipq9574
+  arm64: dts: qcom: ipq9574: Remove eMMC node
 
-vim +485 drivers/dma/arm-dma350.c
-
-   462	
-   463	static irqreturn_t d350_irq(int irq, void *data)
-   464	{
-   465		struct d350_chan *dch = data;
-   466		struct device *dev = dch->vc.chan.device->dev;
-   467		struct virt_dma_desc *vd = &dch->desc->vd;
-   468		u32 ch_status;
-   469	
-   470		ch_status = readl(dch->base + CH_STATUS);
-   471		if (!ch_status)
-   472			return IRQ_NONE;
-   473	
-   474		if (ch_status & CH_STAT_INTR_ERR) {
-   475			u32 errinfo = readl_relaxed(dch->base + CH_ERRINFO);
-   476	
-   477			if (errinfo & (CH_ERRINFO_AXIRDPOISERR | CH_ERRINFO_AXIRDRESPERR))
-   478				vd->tx_result.result = DMA_TRANS_READ_FAILED;
-   479			else if (errinfo & CH_ERRINFO_AXIWRRESPERR)
-   480				vd->tx_result.result = DMA_TRANS_WRITE_FAILED;
-   481			else
-   482				vd->tx_result.result = DMA_TRANS_ABORTED;
-   483	
-   484			vd->tx_result.residue = d350_get_residue(dch);
- > 485		} else if (!ch_status & CH_STAT_INTR_DONE) {
-   486			dev_warn(dev, "Unexpected IRQ source? 0x%08x\n", ch_status);
-   487		}
-   488		writel_relaxed(ch_status, dch->base + CH_STATUS);
-   489	
-   490		spin_lock(&dch->vc.lock);
-   491		vchan_cookie_complete(vd);
-   492		if (ch_status & CH_STAT_INTR_DONE) {
-   493			dch->status = DMA_COMPLETE;
-   494			dch->residue = 0;
-   495			d350_start_next(dch);
-   496		} else {
-   497			dch->status = DMA_ERROR;
-   498			dch->residue = vd->tx_result.residue;
-   499		}
-   500		spin_unlock(&dch->vc.lock);
-   501	
-   502		return IRQ_HANDLED;
-   503	}
-   504	
+ .../boot/dts/qcom/ipq9574-rdp-common.dtsi     | 44 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   | 12 -----
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 27 ++++++++++++
+ 3 files changed, 71 insertions(+), 12 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
