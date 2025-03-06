@@ -1,113 +1,141 @@
-Return-Path: <devicetree+bounces-154901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A55FA54CF6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:06:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBA02A54D09
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:09:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D74F83B0512
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:05:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B593B3B2025
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C60DC153803;
-	Thu,  6 Mar 2025 14:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B71A413C9B8;
+	Thu,  6 Mar 2025 14:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kfNXRKyV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E48718C337;
-	Thu,  6 Mar 2025 14:05:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15517CA64;
+	Thu,  6 Mar 2025 14:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741269906; cv=none; b=iUfEIuzYRp0z+JKR8MyP7zu1CfSLflvSf9sGopsWLPLg8s+DQ97h0t7uVklSQEa4GUS6kQ+D33JMl2i3YQX9zwcMtT2mcSDTzrO/n3DwhUUX8gJ2WsKvEv4d9MY5J/z87l5B/L8hzXtzNRKbeTSsDIqi2mKulZJAfKbT484cevg=
+	t=1741270113; cv=none; b=cgbjNKHMp0U3d8Lc6THsRNdZHpmB4I0vn2SfhKfG0sdByPH/IcBdq65FD83o106WpKWwS4LqBxzXNoxGTguQVEM5hYokQzqw7xEtWH3Dzx/UkpfUCNANDhnmaNO08jnQinMVblKabL3GD7ktxkQ5LqwXoQ2b/j+8LaJkts0m+F0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741269906; c=relaxed/simple;
-	bh=Nk7WcGueiphMJ0fsWCxuYrZdcFJavYrEb4pNdBUzcZw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aLmVATbvO6rR90nFPUrVOixegpvK3uK7ra0ceVg2/M7+x9rVVFRlmg4y3fwJA7PaMww1e99Hfdy7gk/IOpe+tWOH3Xd+Yk5M9Mb0vHXB5/q8TnIzrpQgrjI/fsBpmlKqdGvk3d8yc7uVcTzi9Avq/pie1laIBl07/+pie1wogxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1741270113; c=relaxed/simple;
+	bh=kWV8ljageqb0izUaC+/nzAbBvrv81I+4eNjdwXRR/Fs=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=G3QSuSxvSTAAxblb80J+vgGAW1ULUzKBq31UTbOR4IZV2Vhon8MtPeh0gEz6cHR0g1hmqdnhPVxhA9LP0SREhi2sIIVmrkX9ZnPacNrT9BdrBYX7VAf/yEIkjCpzVPmpy1rJlbJNwYDKVeAn4pjr4mUzzUbY7luRSQ22RARbjMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kfNXRKyV; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-4751bec4449so3267421cf.2;
-        Thu, 06 Mar 2025 06:05:04 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e539ea490dso988864a12.0;
+        Thu, 06 Mar 2025 06:08:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741270110; x=1741874910; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kWV8ljageqb0izUaC+/nzAbBvrv81I+4eNjdwXRR/Fs=;
+        b=kfNXRKyVBzqghavRJ2mKMvpHonCN/nHXFLlVs60BJwRQl/LQDRoL559vzBoSVROKZQ
+         kXmXc1ctFZ8of2RjqBdezeZu7JLOFfw6cyBGlrMWfWI0nHognKmwjCS+hOjoOa92crkp
+         eV3QF98To5aNkyyK5XQNHCp/mywDqU3ocGJ+S0sI+RhacDW3gI1fCZGqe3nWRRKajdmw
+         16HMxRyftcQM0+tgGm+eJrB2OW3sEt8A/luA6+sN0xtHOw+pe84XV4z9qB4DA5JkSQvx
+         Jr96EWv3FTJZ+P3LNQh8qFTIQdv5vIV82E3m5TigdGjfyz8bB6wpWjU1f5vRybAi/WXw
+         S53A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741269903; x=1741874703;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KvdtDEC9XOZ4SiNShBFndqkvatMXAPv3rT5wVsIIH7w=;
-        b=SEacuXJDv1dEyFT2XYTVKHOSJqFhqQlrwAq9DZd3MKb9pMEYKKDwl6hz/W25aXv54f
-         h6U55KXCQDl/aTZQnbR4Bw9J4icux6QtlxoalE9+X4kReVyGBQXgAlDyofRvQWYl3j2+
-         f4PekiUwg/DJvorDIKOW8hEZog5EYc3ahAZFlsgQrpYmfr5oPx3uRPUPbRdi0piOzvfu
-         KXafNTiGTREoCHXeXJG6VGLzT/aPDgGM0U30DVqvwDmFYiSrYfRSqHeB/dbvL2YB5IzH
-         SX6ABO6s9/y6JQMTwLbka2R+Vvz226JRuJtA8J2n2HDobg4wzvk8tbFnVvZiy2ucGDi5
-         aB3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUJLEKsOittVlX8kbLo1qnOUiS2rfe1Ac51cSemTJnrMWBuCIy/S72kCSJDpZA9DdI8osBJQTQ9zGHl@vger.kernel.org, AJvYcCUeUUyUPEZ8Vt+8tHLI/AuiwUCJ3W45Zjy2OGP09TOtTV6CJBBsrrIOEqbwtN+uCMD6eLgdSpYt/GuodQY6@vger.kernel.org, AJvYcCWHdGbduv5KK4Rqmxlpx0JLnnualn0cUP07msgJwO92gz25PZ85wKEkrcVhcKu458gOGdVR84WJt4LPgaVjac+SebQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/ilcnjbw2+KGlrW2NexHm7KZfV00gkTDTdqF/aB/P0eP7Go2x
-	jvh9HZtu3Ep9cEhup90afiUyUEqEeGAHWA/ZoyCcvtGhOPWsk9Vcgd8XoAx9
-X-Gm-Gg: ASbGncuEpLVGYSRfK2JnK3vkDM7ac/BgOqB6VN9E2Jj9fvI+2v86P2OWEmslUYu0PvM
-	DN3fu970QSDorNQQWwBVgdsw5m86PRoFxKyBJz8u273o6m7/gNiE7zq7lGmJ0McmtSywSjUe/i6
-	16YLN/fbf1+mw1W9nCICScbR9kzL/0mEiQjph4mXFUMO052Tkz92X8oJF72wZp+P68eB+JoUnlH
-	q44NKPKFp9S4bz0vG0KmZ8lTp0JrXKIVJzC9crwViUkmM+OG7gFnJ8QFojUmfy4TndihRC/fqG5
-	FwngmuvAcB6SnWd9zqASb18aTUnCKaDe8hkMF7ZDdogRzhSCol5KUlMXcgiV8RRH+66yVBymy9O
-	HPw7yO7mVU54=
-X-Google-Smtp-Source: AGHT+IF2FXnT9gsF1Uh+ASPCzX7IIsWPsTLKneJ01L5YU4onJHkF9PlOMt4NpEn5AJX9OAiZYsD8qA==
-X-Received: by 2002:ad4:4ead:0:b0:6e8:fad6:7104 with SMTP id 6a1803df08f44-6e8fad67424mr14944606d6.35.1741269903107;
-        Thu, 06 Mar 2025 06:05:03 -0800 (PST)
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com. [209.85.160.174])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e8f707c5dcsm7450156d6.3.2025.03.06.06.05.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Mar 2025 06:05:02 -0800 (PST)
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-4751bec4449so3267061cf.2;
-        Thu, 06 Mar 2025 06:05:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUKUKICBuIbnspBAMwyI1k5prF7JziVhnes55nFbBtmeDFVDXiiXCl3TfhGJtKSu/hnqTfBPAUc8blns+oplZY8cqg=@vger.kernel.org, AJvYcCW8ijbK0hz42CpBUP1ER5J0G1jcDfKNOlwIqLxbwQojCvNA10arQrvcZGlUxp8Jz67AJPqHuhZIcJn9uljX@vger.kernel.org, AJvYcCXETDljOomF3F6PItMCfzw2kpv1ODYg3leh/PdD30gCDyJHMsKFTrrbZMTJP6OyfcLgK0/diKs3Gncr@vger.kernel.org
-X-Received: by 2002:a05:622a:4f:b0:474:dc44:28c4 with SMTP id
- d75a77b69052e-4750b4d3938mr107138931cf.38.1741269902594; Thu, 06 Mar 2025
- 06:05:02 -0800 (PST)
+        d=1e100.net; s=20230601; t=1741270110; x=1741874910;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kWV8ljageqb0izUaC+/nzAbBvrv81I+4eNjdwXRR/Fs=;
+        b=j9WwgOHsWzKcfYA5B1pF/ef5r94itNldKEsY77VN2u0nFCKDVMC4ccFY+nhCh5VZ8D
+         V4rh+JBciqIq1WrA9g+gEEB0rB2PJ5KmTsU9t9iJPKnEgzcIOcxbLpWt6YCJg+rMH3y8
+         0J7Ag1duDso2W4MT3sJxc7rLh67rOMZhzZtArwS16slmSeEcQatwj6zj915zzJTzTJ2E
+         raT+YCri6x5Ar+Th2n69eK+W9p64pqSPHrMutDU5gn56vpcTmxAfcAaVEbap8Y3Sij6S
+         NlmNYw5r2cAhZSe6hnEB7qV+8SC26g3mzgFapt+xELYxtgMc8HakK7kdEYuh8JmVW1Dq
+         XPwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU2R7wRjGSiqTWK2OY3s0wDVckCHdXEKdVkl1+sK3ft/L6sDiHItaMO1fpmO7A+onJeekgsB0bCi00Q@vger.kernel.org, AJvYcCXSEheWDo9I9UiIbjKC+Sfjgu8SN4lgPvZyzUrSHZCWUMLXxfFN82+wxDNjDJV0YLOr6v5E1vOxEik5dMBN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyO+1FxSXIJq3UKIhz0R4iT85jADrk15qx1pMBRL49EuSEcapVW
+	cVGl9lc/0RvHqCwm3ZIPTLsrkCpFwFXXgw4+ArRZB5GRWzzarRFF
+X-Gm-Gg: ASbGncuUTJpSzijwt/+Lr/gV+hNLD7OLMmGA3d0qdQ/jOw1tj30Kuy4qkA/y2zTSgp5
+	4IYmen2j6ckncJQ0FBm2ruGIDRN+5ZK+OaEhEgWwIdmXrdbpv0bBJ1LyiRiVlUN9R4yZsorz36t
+	ghKfgiYsO2ZSX7fHqQPXyHiKGpBXOvWHHKPGE5OB1TSGkwcLRkiTSLyr0fd2Hvz9DyeTe+ZqeEg
+	JlVh21xDzFc9ZjcRjjbLrUa7u5bM8C+VBmqWdhKZwWcYwHxw+W4kIx+pE6eA45mq7NF2iONGS85
+	kQL0ss3czDA2ySgLTMLMwl8rLdjaA7ZuGzMeIlP3tRE1XxVpyNOLkamuI91HuQR6EDCHvF31YQH
+	rCzo0vJ/O1Tlw7CuVqRT/y9vUxg==
+X-Google-Smtp-Source: AGHT+IEjOK8tItru0CnDJMfpuW+YocWEOgCRwuy6WiSEato+NxCIl7mKq10KFt+G6Q2r3z6rTWjduA==
+X-Received: by 2002:a05:6402:2186:b0:5e5:be7f:a1f6 with SMTP id 4fb4d7f45d1cf-5e5be7fa870mr8495205a12.1.1741270109496;
+        Thu, 06 Mar 2025 06:08:29 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c7475e9dsm989794a12.30.2025.03.06.06.08.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Mar 2025 06:08:28 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250218115922.407816-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250218115922.407816-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250218115922.407816-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 6 Mar 2025 15:04:51 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUN-wGtZPZMOKjK9jLoG4v36XWON-G-1x01vk+pX3bsXw@mail.gmail.com>
-X-Gm-Features: AQ5f1Jr5FGGmyRUsY7dF6NNrna-C1X_Xx4h4D0DCZ6Sms6J1TfoVs9ByrC17zCQ
-Message-ID: <CAMuHMdUN-wGtZPZMOKjK9jLoG4v36XWON-G-1x01vk+pX3bsXw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable Mali-G31
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
+Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+X-Priority: 3
+In-Reply-To: <46c0d239.a4f5.1956b619b97.Coremail.andyshrk@163.com>
+Date: Thu, 6 Mar 2025 15:08:14 +0100
+Cc: heiko@sntech.de,
+ neil.armstrong@linaro.org,
+ sebastian.reichel@collabora.com,
+ devicetree@vger.kernel.org,
+ hjc@rock-chips.com,
+ mripard@kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ yubing.zhang@rock-chips.com,
+ dri-devel@lists.freedesktop.org,
+ Andy Yan <andy.yan@rock-chips.com>,
+ krzk+dt@kernel.org,
+ robh@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <252BB2E2-4BC5-4402-953D-F7B30EA5DE14@gmail.com>
+References: <25401bfa.291d.19564244e54.Coremail.andyshrk@163.com>
+ <75189787-28E1-4FC2-8E10-4960B3877A6F@gmail.com>
+ <28b0d3fc.bb3.19568f6b5f8.Coremail.andyshrk@163.com>
+ <44213B17-FE14-4FB8-8319-1E31BBF6EAA0@gmail.com>
+ <74c154b6.8c50.1956aa8c8d2.Coremail.andyshrk@163.com>
+ <1573D5D6-AFED-4D92-8112-B0C6BB52D5FF@gmail.com>
+ <46c0d239.a4f5.1956b619b97.Coremail.andyshrk@163.com>
+To: Andy Yan <andyshrk@163.com>
+X-Mailer: Apple Mail (2.3826.400.131.1.6)
 
-On Tue, 18 Feb 2025 at 12:59, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Enable Mali-G31 (GPU) node on EVK board.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.15.
 
-Gr{oetje,eeting}s,
+> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
+6 mar 2025, o godz. 13:15:
+>=20
+> Hi Piotr,
+>=20
+>=20
+>=20
+> Then when you DP cable plugin, you can run command as bellow to see if =
+the driver detects the HPD:
+>=20
+> # cat /sys/class/drm/card0-DP-1/status=20
+> connected
+> #=20
+>=20
 
-                        Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Andy,
+Thx!
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+With above changes i=E2=80=99m getting =E2=80=9Econnected=E2=80=9D.
+Also it looks crtc gets reasonable mode: =
+https://gist.github.com/warpme/d6220e3cc502086a4c95f05bd9f9cf0c
+
+Still black screen however... =20=
 
