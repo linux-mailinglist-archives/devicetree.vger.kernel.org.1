@@ -1,180 +1,136 @@
-Return-Path: <devicetree+bounces-154747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36AF2A545C6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:03:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E561A545CD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 10:05:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6447D7A5635
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:02:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33A01188A2F7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 09:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE639207DEA;
-	Thu,  6 Mar 2025 09:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BB0720896D;
+	Thu,  6 Mar 2025 09:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="kXmdeiK/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ThygRnQD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69050202C4D;
-	Thu,  6 Mar 2025 09:03:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E5DF1EDA10
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 09:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741251810; cv=none; b=khZ3/pujczy4kiXcIie9GWjmMmMEhZ4gON8OBaF3cCActCgTUuQb2Al86PE8M/Wt7wBHl/BE+iQW9GZi/yjiF8AZnfspXTOO9oupHfs07FrdwWTbq3UF0d6PZRYhGdJI10vF3+HenflzgaIB2nQn1XmhtmZ6sRztYAXSTmkhm+0=
+	t=1741251924; cv=none; b=KZ0tv/q/JG7kRJ40/R+1C+iT2VLM7Povz6pJHDoft8XDpO9jgMtKkndj0gU5UBR9POkeNUZsG/PDGgCdEkIRcWFeuz9+qoSNuhKkTf/7ScS7XyXNlITkhoNMw6So0x7EcWpJxUa+bwvcTLzzD8eNW9Q+7+FxHHbnjCKA4ZSACrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741251810; c=relaxed/simple;
-	bh=cpIhfzRQfyAuBaafeZo6QXxygGLDe7ulLKTftDugqOM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CtRE3Z47jhT44M/6oZFVOy+KXiEajTeypsWJMpkrTnEeg/5fSVao8oklXH4u9ked1YiyGeg5/00NAinwsfKxaL2b2T/W3f+8MOjhIcOn4w9MYTKdtwhETFULHKH2+F86hxqWPVPKND8o7idDG6saDiXtV45zcJylloaXg5ez33Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=kXmdeiK/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C6F8C4CEE0;
-	Thu,  6 Mar 2025 09:03:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1741251809;
-	bh=cpIhfzRQfyAuBaafeZo6QXxygGLDe7ulLKTftDugqOM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kXmdeiK/PSu5WC7U2LW7pvdm4dRSvDK8TGVY/KXqJI1K1kXFcPNPvL1c5fQhJiuWB
-	 X1ob1NDcwRw9PaNqmiL2koEbNzyCP900K66TSXNEuwBoFMhBagmpC+4BZu6TAlTyrV
-	 /ROLVgjlKNI7PRN6B2X/3o+FfmuQ/QApUxepU3yA=
-Date: Thu, 6 Mar 2025 10:03:26 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: David Jander <david@protonic.nl>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741251924; c=relaxed/simple;
+	bh=JvhKk3j6bzUfojj0ONyioWlTV4mog5yq3Mn6X6smoCk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=R6NpOfxgayxbjeJUFJd7B1Es1F0iJ3FXWOcygUtpHzbZ4zi2fAJ8E7b+kxRsaKAZIf2sKIhZ/KCQFgQQghAKj+QgZErNHjDp0b2e6ytjKN4DlaytnGgYqQiWNm9cQLH2dzyq+eSBYJRrLeQhHFeSbGWa/96Cn28mjThF6ohfytU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ThygRnQD; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac2400d1c01so26972466b.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Mar 2025 01:05:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741251920; x=1741856720; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MAX58En/Hb1n0GC+JRkiHWBwbQ4TWebixhTAU0+fOXw=;
+        b=ThygRnQDG2Qx03PRK56Kc2J8x8VUAsHZB65HWvdAfr6CpETxWydOTrcqdrcBZk6Fzq
+         YHkMeHR65JQIUGHdTFVd8HVnZryDUfuQo/UE39Pvv4cpFBMdrKxFhS6cC+sFSwWY5tAB
+         DlYC0apQ2XHAXd5U00Ng3H4LyBeWioukLuKa42bWYmx8qULJu3OFtGGMywLZFmzMTkEy
+         ZF2D8YENn7P1VX/0ivlcxPaUUrKE+CrzraWNitniQd+6WH3DvYkwOn628gyuT7naXzvm
+         bNcThKWj36pS07j580L/e1W3ABYyYs/4ZpYXl5UGAKdJutkLiHloaZIpTDK7H2GgPF67
+         jCMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741251920; x=1741856720;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MAX58En/Hb1n0GC+JRkiHWBwbQ4TWebixhTAU0+fOXw=;
+        b=LOrqvZnHqp15EDRiJuHgcB4OEodpbRyPkVWVA1CC4t9ThSTUmrwqNMw4y69nHM8Prk
+         q5T9RmrLr53Tn17xnZ+SNvbTKwFYa1Cgpkxi5le829/7TpG8i1UW8+qMH0CNV+yW8gz3
+         HirYMWkeJ+GCRWAmBd0vKyQlkJyHuh1GY0sI7QZ6R9yALGW1kPQYskKgw8E8u2kyQy8n
+         rDh+aczgXxBR6aSGIEkJz516A4e0Ws7Akod9To5hOP5pn0QHf7JG8JbFTF5aimqK5mHV
+         QhatFknrZ3BLiSTqA2qvZX09wF5whUWgYWZUA3Cihg25DdOLYmnWEBdCdMaAnuoAoWXa
+         erOA==
+X-Forwarded-Encrypted: i=1; AJvYcCWZsaxCiE8bLqUVavHdP8dp0kDXxRtRz2f2Y9tWCYzMyPMU0N/PNbvHNr7WYAVxvr5XW0uq7VeN1wil@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYsZ7Exo6gCkvln+G9gWGFtYehJ84PeKY2h90rX6Iqgb1dDSab
+	MrF+mkErK6wfTw/jh8sqr43TwUCBwKHSGxCfvxnRCbBVXG1Cf5zg6iOAD1v4rnE=
+X-Gm-Gg: ASbGncsgUgQ7IR2c9MVnAymcTMy8x3vrGkKpfvFz4xqvuboc2JCKCTh/wzEb0oB1twZ
+	eWPE9NXVSM/R5CNa8Xw13U0mn6YooKuDvygeAVzMf2S0yuvRSocZkCpqRzwymLf8p0N3weO4chS
+	vq7C+GvgrWoC+R8zOKeogTfec8uVGJ8ewTi9d89O6Vo8WFSo9EEqPnek0qQAZY4GkMHEa/mZWcj
+	5+UE0kfUJnGnAFsuNN3WOfeLrL4D0zRJQ5X+LXBRnpk9hFuvmk7c8fDTqo5MzYAf+UJFLiSG/YP
+	ILeVH2QWntzghnx2KKgJ9OHuczX4+qHqxyGCKap63tU=
+X-Google-Smtp-Source: AGHT+IFBF85ne/IZkMGc2B/0aHOH+ZFaKTA8+EhhThtignsfXZxxEqemHN79VLEWyfsCNJMyXOwolQ==
+X-Received: by 2002:a17:907:608d:b0:ac1:e18d:a738 with SMTP id a640c23a62f3a-ac22ca9e8fdmr254010966b.3.1741251919650;
+        Thu, 06 Mar 2025 01:05:19 -0800 (PST)
+Received: from hackbox.lan ([62.231.96.41])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac23943a194sm61606866b.37.2025.03.06.01.05.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Mar 2025 01:05:19 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [RFC PATCH 1/7] drivers: Add motion control subsystem
-Message-ID: <2025030638-wavy-napkin-41ab@gregkh>
-References: <20250227162823.3585810-1-david@protonic.nl>
- <20250227162823.3585810-2-david@protonic.nl>
- <6c6cqaxmsy7miesel4ghdeiea6nrpe4gti4xf5enfyg4uqro5u@vpmtd2t7gydi>
- <20250305164046.4de5b6ef@erd003.prtnl>
- <mzxammninwmak5ti4c6is4pbdx3xzzziiwbxiwrldjyxgae4ok@ocec24vu4txa>
- <2025030611-embezzle-sacrament-00d9@gregkh>
- <20250306092013.1147f27e@erd003.prtnl>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sre@kernel.org>
+Subject: [RFC 0/2] arm64: dts: qcom: x1e78100-t14s: Rework devicetree for LCD and OLED SKUs
+Date: Thu,  6 Mar 2025 11:05:01 +0200
+Message-Id: <20250306090503.724390-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250306092013.1147f27e@erd003.prtnl>
 
-On Thu, Mar 06, 2025 at 09:20:13AM +0100, David Jander wrote:
-> On Thu, 6 Mar 2025 08:18:46 +0100
-> Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
-> 
-> > On Thu, Mar 06, 2025 at 12:21:22AM +0100, Uwe Kleine-König wrote:
-> > > Hello David,
-> > > 
-> > > On Wed, Mar 05, 2025 at 04:40:45PM +0100, David Jander wrote:  
-> > > > On Fri, 28 Feb 2025 17:44:27 +0100
-> > > > Uwe Kleine-König <u.kleine-koenig@baylibre.com> wrote:  
-> > > > > On Thu, Feb 27, 2025 at 05:28:17PM +0100, David Jander wrote:
-> > > > > [...]  
-> > > > > > +static int motion_open(struct inode *inode, struct file *file)
-> > > > > > +{
-> > > > > > +	int minor = iminor(inode);
-> > > > > > +	struct motion_device *mdev = NULL, *iter;
-> > > > > > +	int err;
-> > > > > > +
-> > > > > > +	mutex_lock(&motion_mtx);    
-> > > > > 
-> > > > > If you use guard(), error handling gets a bit easier.  
-> > > > 
-> > > > This looks interesting. I didn't know about guard(). Thanks. I see the
-> > > > benefits, but in some cases it also makes the locked region less clearly
-> > > > visible. While I agree that guard() in this particular place is nice,
-> > > > I'm hesitant to try and replace all mutex_lock()/_unlock() calls with guard().
-> > > > Let me know if my assessment of the intended use of guard() is incorrect.  
-> > > 
-> > > I agree that guard() makes it harder for non-trivial functions to spot
-> > > the critical section. In my eyes this is outweight by not having to
-> > > unlock in all exit paths, but that might be subjective. Annother
-> > > downside of guard is that sparse doesn't understand it and reports
-> > > unbalanced locking.
-> > >    
-> > > > > > +	list_for_each_entry(iter, &motion_list, list) {
-> > > > > > +		if (iter->minor != minor)
-> > > > > > +			continue;
-> > > > > > +		mdev = iter;
-> > > > > > +		break;
-> > > > > > +	}    
-> > > > > 
-> > > > > This should be easier. If you use a cdev you can just do
-> > > > > container_of(inode->i_cdev, ...);  
-> > > > 
-> > > > Hmm... I don't yet really understand what you mean. I will have to study the
-> > > > involved code a bit more.  
-> > > 
-> > > The code that I'm convinced is correct is
-> > > https://lore.kernel.org/linux-pwm/00c9f1181dc351e1e6041ba6e41e4c30b12b6a27.1725635013.git.u.kleine-koenig@baylibre.com/
-> > > 
-> > > This isn't in mainline because there is some feedback I still have to
-> > > address, but I think it might serve as an example anyhow.
-> > >   
-> > > > > > [...]
-> > > > > > +
-> > > > > > +static const struct class motion_class = {
-> > > > > > +	.name		= "motion",
-> > > > > > +	.devnode	= motion_devnode,    
-> > > > > 
-> > > > > IIRC it's recommended to not create new classes, but a bus.  
-> > > > 
-> > > > Interesting. I did some searching, and all I could find was that the chapter
-> > > > in driver-api/driver-model about classes magically vanished between versions
-> > > > 5.12 and 5.13. Does anyone know where I can find some information about this?
-> > > > Sorry if I'm being blind...  
-> > > 
-> > > Half knowledge on my end at best. I would hope that Greg knows some
-> > > details (which might even be "no, classes are fine"). I added him to Cc:  
-> > 
-> > A class is there for when you have a common api that devices of
-> > different types can talk to userspace (i.e. the UAPI is common, not the
-> > hardware type).  Things like input devices, tty, disks, etc.  A bus is
-> > there to be able to write different drivers to bind to for that hardware
-> > bus type (pci, usb, i2c, platform, etc.)
-> > 
-> > So you need both, a bus to talk to the hardware, and a class to talk to
-> > userspace in a common way (ignore the fact that we can also talk to
-> > hardware directly from userspace like raw USB or i2c or PCI config
-> > space, that's all bus-specific stuff).
-> 
-> Thanks for chiming in. Let me see if I understand this correctly: In this
-> case, I have a UAPI that is common to different types of motion control
-> devices. So I need a class. check.
+The Lenovo Thinkpad T14s Gen6 comes in different SKUs when it comes to
+panels. The only difference that is important is whether it is an OLED
+or an LCD. The way that backlight is handled in devicetree between OLED
+and LCD forces the need of two separate DTBs.
 
-Correct.
+So create a common T14s dtsi that describes everything except the
+backlight handling, by renaming the existent dts to dtsi. Then make the
+legacy dts the LCD version, while adding a prepended oled dts. Both
+include the generic T14s dtsi.
 
-> Do I need a bus? If one can conceive other drivers or kernel parts that talk to
-> motion drivers, I would need a bus. If that doesn't make sense, I don't. Right?
+For the OLED version, I do not have HW to test it on, so OLED specific
+bits will come at a later stage. Still, add the OLED dts in order to set
+the stage for it.
 
-Correct.
+Sending this as an RFC in order to get an agreement on the way this will
+be handled from now on.
 
-> I actually can think of a new motion device that acts as an aggregator of
-> several single-channel motion devices into a single "virtual" multi-channel
-> device... so do I need also a bus? I suppose...?
+Had to format it using "git format-patch" since b4 doesn't currently
+support -B when formatting the patch, and the renaming of the dts into
+dtsi (plus the panel properties being dropped) would've not been visible
+enough for reviewers.
 
-Nope, that should just be another class driver.  Think about how input
-does this, some input /dev/ nodes are the sum of ALL input /dev/ nodes
-together, while others are just for individual input devices.
+Abel Vesa (2):
+  arm64: dts: qcom: x1e78100-t14s: Add LCD variant with backlight
+    support
+  arm64: dts: qcom: x1e78100-t14s: Add OLED variant
 
-> Then the question remains: why did the chapter about classes vanish?
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ .../x1e78100-lenovo-thinkpad-t14s-oled.dts    |    6 +
+ .../qcom/x1e78100-lenovo-thinkpad-t14s.dts    | 1190 +----------------
+ ...dts => x1e78100-lenovo-thinkpad-t14s.dtsi} |    6 +-
+ 4 files changed, 64 insertions(+), 1139 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts
+ rewrite arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts (98%)
+ copy arch/arm64/boot/dts/qcom/{x1e78100-lenovo-thinkpad-t14s.dts => x1e78100-lenovo-thinkpad-t14s.dtsi} (99%)
 
-What are you specifically referring to?  I don't remember deleting any
-documentation, did files move around somehow and the links not get
-updated?
+-- 
+2.34.1
 
-thanks,
-
-greg k-h
 
