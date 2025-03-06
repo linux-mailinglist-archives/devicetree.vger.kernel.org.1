@@ -1,131 +1,140 @@
-Return-Path: <devicetree+bounces-154828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215FCA54A29
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:57:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A5BA54A3B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 13:03:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F1A016A4FD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 11:57:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A336F188C7BE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 12:03:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BBB20A5C1;
-	Thu,  6 Mar 2025 11:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3346120B1EB;
+	Thu,  6 Mar 2025 12:03:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fd36YxGP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RZe83yYN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9CE20371F;
-	Thu,  6 Mar 2025 11:57:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1320E201022
+	for <devicetree@vger.kernel.org>; Thu,  6 Mar 2025 12:03:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741262222; cv=none; b=DL5KQ3frdtDTd3zlskcrYYdXm9PY/CUF1Bd7g3I5GUBq7MoRYCffb6v4ud/0vJnHMOzhgrdjvyWgl9r2HsLjuo6b1Sx2Ftvu+VcaXA/ZYQ0xhzb/MDJZnsmBN2GNO5kkSX21wNHWKRcPYnuCBvLFQINamBq4uFuv1cWO6UU5fIE=
+	t=1741262607; cv=none; b=nOZFLOIm4zsvXXOqBMkJQktJcgInS3jrn26h4jy6UQj+Imh9jbpxrdMuTGD5eQ39Eh5MgT4SUxIAX5MH/MMSaEMHoLegXO9TvoF6wLaiGo3EnXbTMNEvriCHRRa+01z8YPuKHtknup46Yq6fXBFouOy6yc1wMnhEbeciaqQ3twY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741262222; c=relaxed/simple;
-	bh=G01RTVIeXOf6DrzPUQQ5C7Z2zidGc3v8Gt+/9EHtOFg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I4avDK5e67eaF0mTiAL48Hq+fYLxu5REcAML8cXzxRoQi2Vo7P21Hs5/ehWulKapF5+akHMM0nkbJctXdMQeWv3U7QC9+E8zMeCpv1EnE5P/SVzr4PKpAo7emgbJevNa9nT0YqH3xXzw7n+jcqSFU6xyV0ZV9+UuVbxFsvb1Kkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fd36YxGP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAFE5C4CEE0;
-	Thu,  6 Mar 2025 11:56:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741262221;
-	bh=G01RTVIeXOf6DrzPUQQ5C7Z2zidGc3v8Gt+/9EHtOFg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fd36YxGPDjRZEWXAu7gJvUw6HxvxlH77r9HD9BdNok4cI2kkY5qNT+IaqduH/OmVi
-	 7PHyii+8XbcdJnIh0onGNXDZjdO/qksqN0AMzdUtE/3MdWbDM/2ln6QnYzavfDdt3b
-	 v09sTV0JFQC8JXWzuepzuS5E7QjvlQveIodZi2+/slBgx/MFR7tbIHyEviNlOT0i4U
-	 eYbFuCTmfqUuG3CK0lUdwgn2o60wTGcKyhAMmNV/vDM+fiLqcXxOzQPuNgtc/1ouXj
-	 l7f/NnmGy+uSamugDaEdKvw/OcnLIW8AZZ6F3YTtUUIaIgmVvFkEBV8LgXmI+clkmr
-	 wIXpmri9gSXcw==
-Message-ID: <d399a2be-3010-43fc-9531-e4f3560ea6df@kernel.org>
-Date: Thu, 6 Mar 2025 12:56:52 +0100
+	s=arc-20240116; t=1741262607; c=relaxed/simple;
+	bh=gGxnmraNZe8Q/xOLQH6kZuR8AkdvqJ9awxgGCS31jpQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hcZdUav/3WtDQ+ZfErYImrqCoKUWmzo1uus/17IbZ55P6qLG+Ic8XSNYqZMNQdGEWEsxbp36d/uVu11uqU8utSaXePTHHnAfQvVQe8xY9TuBgVTq4R8SWfmho2rkzYH+l4BICEKMA030KH/4McnPcsBv8q4wAMGecDEwj4jcoOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RZe83yYN; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-39127effa72so91091f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Mar 2025 04:03:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741262602; x=1741867402; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FGk2GIgwQpiYu5Yel4uNS+HbqVhI6i7/CI1/SuQv8FE=;
+        b=RZe83yYN8/PlXWjqejKOzfvoewsqHIvyVOhCUFf5RrDILogNLW6jP0YTAAND7sZWUX
+         8BDyBCg3R/Y8hkvnGoZik/+7+SM/bG2rjonuNOovMlOj7kPRl4C5ThIRifJmetWPGm8Q
+         C3QUvOSI5CYPzk8KNjHpcLFaDSYTjr6RTiNyKdQ+Mu+KSsC0Q0FSPaAeJ91iSLwKbQ0L
+         lZBI42YuQZ7yvAdPqEXCblgbv31Ze0ktrEjRY5zLMW9jysBYZkzPu1QaA0wUGBwfKN9R
+         qlK4iee1r85zFD90RKjfSG2YPFg4QPaiZDfUdjljiRbfyt1gWw2hXU3KquMbWG1JDkQN
+         rJvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741262602; x=1741867402;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FGk2GIgwQpiYu5Yel4uNS+HbqVhI6i7/CI1/SuQv8FE=;
+        b=tLKXcVA1vgCnPyGvo6NwajFnrCU6+CiKUX7SFGlWXugcDVruVfeC+V/JgN+LmQNcQN
+         x92OqCo79zvXYud/7OpFM4bz4BIhdqJxbliqpjzswcQC0TjJH4C4SXxYnFL0uVQrPY+S
+         jpxfyxEkhHu+WOZunV0hzj1xdwOGS9Ul8if+6duhl60fnsZq7tVFIBMCIx6UmcXF/3mJ
+         e7bd2sjK7BEHXZ2gBJdTF/dRM/c+EqcWKLI8tPeWZ/VTmzysvFxr94EKjnlZ6rVL8j9b
+         9HUvvUjAlvC8zfkgMzCq5nFKNViHz9EAbyN33xxw20l4Z9MOLFrY4rERQtRTBzURnQYT
+         Ahxw==
+X-Forwarded-Encrypted: i=1; AJvYcCV5MqpKUyJTfdtGyf1ouoWjbA7+vIXXC/yTQJv72QYzgSdOyugeBjyQAgSpsVnqE128wvk6t3d7HIIW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxymsao3r74BOwFKneg0XV0GI9hhb/SPKIgK5KQ+7Nto6kWOySU
+	X/+7+JcAs+nOk91pxrny7oD7A8YPwDIthD9hOZdlO6eDWmevNsx8iy1nR3EvqGA=
+X-Gm-Gg: ASbGncuUW+VsN84MEOpVuoUXdE7Rxoh0a+yc5JP13EsTJKztdgE7Kxzf7duJtRMjFJt
+	DLjw/vazFpv31OTAXZeEByrnAcgePiXhJU/8XONvDRdyxqePKO1pZgSV/YNWMfUCfDOYreEe741
+	7ZwQibe7Fzo3MVRLMWOoPObxS2FcZXBlFCW2SgfrWW0tC5d0OguZGUjW0YjDzt9O/XyrHwbrY5H
+	m8Yc1BsNc06HTFke9otl43DjNPI5Y/qekVXGB3vaifg2fm7fSPeLCA5PFiM6Vs69KOT3Vq6eGdw
+	Uv8zRsrRVrhMjm1GVTIISdECraskiJeYT7am2+cyNixqS2xaozE+mtB9X60=
+X-Google-Smtp-Source: AGHT+IHWVCk6Fgh5QuVOuSqxO+Qal21JaZ2TqyoYfqoerG0z/hBOKoduA4Dwpb7zBfJiHhjp0wyWRw==
+X-Received: by 2002:a5d:6486:0:b0:38d:d69e:1316 with SMTP id ffacd0b85a97d-3911f72725bmr2118733f8f.1.1741262602316;
+        Thu, 06 Mar 2025 04:03:22 -0800 (PST)
+Received: from krzk-bin.. ([178.197.206.225])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912c0e2eafsm1886661f8f.68.2025.03.06.04.03.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Mar 2025 04:03:21 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Varadarajan Narayanan <quic_varada@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: [PATCH] dt-bindings: PCI:: Revert "dt-bindings: PCI: qcom: Use SDX55 'reg' definition for IPQ9574"
+Date: Thu,  6 Mar 2025 13:03:18 +0100
+Message-ID: <20250306120318.200177-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 0/7] Add PCIe support for Qualcomm IPQ5332
-To: =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org,
- manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, p.zabel@pengutronix.de,
- quic_nsekar@quicinc.com, dmitry.baryshkov@linaro.org,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20250220094251.230936-1-quic_varada@quicinc.com>
- <20250220144551.GB1777078@rocinante>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250220144551.GB1777078@rocinante>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 20/02/2025 15:45, Krzysztof Wilczyński wrote:
-> Hello,
-> 
->> Patch series adds support for enabling the PCIe controller and
->> UNIPHY found on Qualcomm IPQ5332 platform. PCIe0 is Gen3 X1 and
->> PCIe1 is Gen3 X2 are added.
-> 
-> Applied to dt-bindings, thank you!
-I will send reverts for these. This patchset affects users without
-mentioning it and without providing any rationale.
+Revert commit 829aa3693f8d ("dt-bindings: PCI: qcom: Use SDX55 'reg'
+definition for IPQ9574") because it affected existing DTS (already
+released), without any valid reason and without explanation.
 
-What's more, it introduces known to author warnings just to fix them
-later...
+Reverted commit 829aa3693f8d ("dt-bindings: PCI: qcom: Use SDX55 'reg'
+definition for IPQ9574") also introduces new warnings:
 
-Best regards,
-Krzysztof
+  ipq9574-rdp449.dtb: pcie@10000000: reg-names:0: 'parf' was expected
+
+Reported-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Fixes: 829aa3693f8d ("dt-bindings: PCI: qcom: Use SDX55 'reg' definition for IPQ9574")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index 6696a36009da..8f628939209e 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -170,6 +170,7 @@ allOf:
+             enum:
+               - qcom,pcie-ipq6018
+               - qcom,pcie-ipq8074-gen3
++              - qcom,pcie-ipq9574
+     then:
+       properties:
+         reg:
+@@ -210,7 +211,6 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - qcom,pcie-ipq9574
+               - qcom,pcie-sdx55
+     then:
+       properties:
+-- 
+2.43.0
+
 
