@@ -1,97 +1,195 @@
-Return-Path: <devicetree+bounces-154908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-154909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594E1A54DAE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:26:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26E9FA54DC1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 15:28:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A3251896CA5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:26:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D0C2173A05
+	for <lists+devicetree@lfdr.de>; Thu,  6 Mar 2025 14:28:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483741624FF;
-	Thu,  6 Mar 2025 14:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD7316DEA9;
+	Thu,  6 Mar 2025 14:28:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="VbHNERiP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XGrnyQbX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 418A114F9FF;
-	Thu,  6 Mar 2025 14:25:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 588DA1624DC;
+	Thu,  6 Mar 2025 14:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741271147; cv=none; b=oFQoZs7yfP+ejotMdUFenI4Bad8lPlXiUZ0ZL+W7uPK4Iy8baL1T7sScsDfH+Qf9kFCgQcTNaJlT/SiMnk84W8EAHhBSv9fIJzLwtz5yD23K5Q3R9WkChkp7GHdc/7UX5I1ZEBHvn3oFfReAAM1VWmKp1Bz6mdsoIrNjnFXS4ZU=
+	t=1741271306; cv=none; b=oHilNyLB73fQbsYkeR49AYlleLtcxVwXNripsdAV7sYtpAm/UyMz45p4fjft4yU9KPiYaxolHA7xM5bSH2WjPjxnep60/bSWXFTB5pYw43X5HMrK6/1QF2iFJrFRUjCc52v16kIjlOL8cmPZ75g+yWZnVnBzq60xP8tPoDe3s9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741271147; c=relaxed/simple;
-	bh=n5aD5c3lPAMGKpNg0pZzLgDxoQS/0A88tfAf7d3Ga4w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O5rCW/S7xHP54m0hWmzhG5RyJ9TIFmb6t80Ow4VjhsMHTAJII8wISMN6UoX6zkhxCYYNLcF81qMHC3tSSSJVb4kmroGg9e1oHwIHuj6met00SeTPi4zCaTcjFSPQeezIrFvvul6NBW2TN3WkSdGa4tSULthXGs202LahqbTgkus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=VbHNERiP; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=n5aD5c3lPAMGKpNg0pZzLgDxoQS/0A88tfAf7d3Ga4w=; b=VbHNERiPVO6UZVnSVLhH/tOQiz
-	HLsRkehic5Kdr8Pkuh5l32tXLLGTr0jhQtsWV1LR8rF+68sFVabAncu0fMP4PLN9WUaCt3YLNwSMJ
-	8ni205h1cSu/7MwtOXW8pGSzGwa/E2cY+umKUZzBEgZrrm9kaHOQvmYd0NkSv1gwi61L6K60D0Ql5
-	GYNOi8ZtbUVJZzAGpFHczQQewDlR0l+5tjK2v7YgoHuwMXiDg7uhwa7VqSh0JiTcJTycvLQEYHOaF
-	GyylM3xLjEWC8L2ZNMf5X9PyGDM15ntLOcfiFxAXCm52uujTsq6dxcADQIQ1zO+4odHPrgRdWRHWv
-	dG7NbngA==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tqCAL-0003oY-Bc; Thu, 06 Mar 2025 15:25:37 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: krzk@kernel.org, Chukun Pan <amadeus@jmu.edu.cn>
-Cc: amadeus@jmu.edu.cn, conor+dt@kernel.org, devicetree@vger.kernel.org,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Jonas Karlman <jonas@kwiboo.se>
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: enable SCMI clk for RK3528 SoC
-Date: Thu, 06 Mar 2025 15:25:36 +0100
-Message-ID: <24848438.6Emhk5qWAg@diego>
-In-Reply-To: <20250306142008.389243-1-amadeus@jmu.edu.cn>
-References:
- <10115c0f-4a7f-460a-a0bd-0c86d1e7d3b6@kernel.org>
- <20250306142008.389243-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1741271306; c=relaxed/simple;
+	bh=AbwweIdVlQuGTpxqBxt0AtzrQBaGwIPj9kBjzOEZl2k=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=ufgDrgRxni59wd16Tgxa0WlZ7VoUCoVgSQM/98NLEZ9GKb5zz8NdoIEzt/bZEATCVckVc/ad84sbMlny510qxvGdr06dcV15TDi3p9tiZvtN+C2q/amMcagfIWfGWmVMvaNgiiMzRH8KjeUoRMOCAl97UjC/05pwacVEuG/yvk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XGrnyQbX; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-abbb12bea54so150317066b.0;
+        Thu, 06 Mar 2025 06:28:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741271302; x=1741876102; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e0vWWMcXjFfg9c9qiH6NSV7bmKttHRNGNsOhNehrSvM=;
+        b=XGrnyQbX2toPV8G9GlRc1SC+IHbLR6cc2yEYSR/w7PxwENlnZoTz2/MtW/I9INpBSS
+         bsGVdRnSREAq+1fVKM3d15ER0I5MnxiQ0PnFQ3+Bp1DtqG16Dpe+tHee1wPytyMeuq7p
+         BTot7cnFGVjpDaEuXnLeUDw4aHO6hCsfKXIh3Pvs5tGViTXa97/Xdy6YiwtKYfR1Od2o
+         fbicEoTQWTwfPu4yWtwkZTWoLYUT2LeMfgKmlmY5Z46YL5gmsqrN6E9l7tqXT+d75MOU
+         VQNvSHH+7MzJRUHIJ+avIHr8Wz4omI9fm6Iu7mmX5cp+PDJSTqSy3KeWAtSlN+LBdydH
+         cjqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741271302; x=1741876102;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=e0vWWMcXjFfg9c9qiH6NSV7bmKttHRNGNsOhNehrSvM=;
+        b=hguHVZws8OsciStjwAVCQW5wvwSiv3Z612rDlTqj91gCljWEoFag3rFVFS59xlnIJv
+         DS/iZbR8TL4dgXf+e55JE3izx59Kg9AChRSbQSjownwICR+UvsY0v08LFL2ccqHJ+aiX
+         /FzsgZZLpHCid+uB/ENeYtYDRRDU5EKUsxga6AM3hVZAupcHpVv/SOwQKBRQ2+TQSYVP
+         01EuKI65HszbDJeXQ6dDt4i9mdT7+7RpjTKfNp3TiZo59I+6dwix4RoNGoQ4C9Aadwk1
+         QF145FdlQwBFOpyUgGmSjpv5p9Uh9rrOl3S8uWjszy8+d69ouRp+XBbg0aA7W/kpyjQP
+         7MPw==
+X-Forwarded-Encrypted: i=1; AJvYcCUTMC4C0YdjgAJFEPlVKbdavK1vHyTk/szcKo4HXo3YWMcVBzbC7A/9WBoincWckvDepfFPxt1bmZCt@vger.kernel.org, AJvYcCW7bhn8fB1pUa3usKXjftpdlNJXLyDplpB/BcDR/Z46M3GtxKHvn3FSp4f2LlwhLTVuWnHPgziIv1TpXTxC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8WCBRx3HSAwBhwO9RMs31H/pzoqUJ4Y8VtCRSMVHFjqMsFHq7
+	55kNEOVAiVI/DDZkocIQBPKeYBhyapossaf9qb2rqJtgWjrJzJ3I
+X-Gm-Gg: ASbGnct5FVMePMaBvKi1g5JvZ03FtB7eOerM80HLXgEFM6au2BNH3+mxNHKAeEBZ06z
+	P9cCeby8vxkaSCOaMh08H9hHFDD5KfYebCBPPmXPptHZYzypopQJwuRADO7U9HrkjgjEBbzOhN6
+	iBn4HhOx4zVOzlEj9QhYhgA7TEYLZwU3uvizhR7KnqSMsRuf8kGUjN96Pql0XyurBjcN7/Cantg
+	N5FRSxe61bTgWcGHSztQ8SK6Pbm4PFke/LdYnKWVQLxGzr7qKJ+AWc1UmuWvMy+iUPwUcwPLP3h
+	UqeD0i3wqBN12E9/6qZKvTKMeoj3F90cbKNvXV0TfgzlWQr/VUf0PRhP4Yx+iKj/jd141cPv7SB
+	cd6UCTpI9AfYhR0G8GUgHPcQXBQ==
+X-Google-Smtp-Source: AGHT+IFozHswlf0bg9ThZSp1FbgljtVYCPPvnTD1k5tckBB+eJRBJhF1NQdof80kjppsiFvLEvgOsA==
+X-Received: by 2002:a17:907:3da2:b0:ac1:e2e0:f8d6 with SMTP id a640c23a62f3a-ac20d8bcb19mr672425066b.17.1741271302225;
+        Thu, 06 Mar 2025 06:28:22 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2399d4ed4sm104210166b.178.2025.03.06.06.28.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Mar 2025 06:28:21 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.400.131.1.6\))
+Subject: Re: [PATCH 0/6] Add support for RK3588 DisplayPort Controller
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+X-Priority: 3
+In-Reply-To: <252BB2E2-4BC5-4402-953D-F7B30EA5DE14@gmail.com>
+Date: Thu, 6 Mar 2025 15:28:08 +0100
+Cc: heiko@sntech.de,
+ neil.armstrong@linaro.org,
+ sebastian.reichel@collabora.com,
+ devicetree@vger.kernel.org,
+ hjc@rock-chips.com,
+ mripard@kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ yubing.zhang@rock-chips.com,
+ dri-devel@lists.freedesktop.org,
+ Andy Yan <andy.yan@rock-chips.com>,
+ krzk+dt@kernel.org,
+ robh@kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Message-Id: <326B91E9-FB91-43C3-B98B-3EF079F313C6@gmail.com>
+References: <25401bfa.291d.19564244e54.Coremail.andyshrk@163.com>
+ <75189787-28E1-4FC2-8E10-4960B3877A6F@gmail.com>
+ <28b0d3fc.bb3.19568f6b5f8.Coremail.andyshrk@163.com>
+ <44213B17-FE14-4FB8-8319-1E31BBF6EAA0@gmail.com>
+ <74c154b6.8c50.1956aa8c8d2.Coremail.andyshrk@163.com>
+ <1573D5D6-AFED-4D92-8112-B0C6BB52D5FF@gmail.com>
+ <46c0d239.a4f5.1956b619b97.Coremail.andyshrk@163.com>
+ <252BB2E2-4BC5-4402-953D-F7B30EA5DE14@gmail.com>
+To: Andy Yan <andyshrk@163.com>
+X-Mailer: Apple Mail (2.3826.400.131.1.6)
 
-Am Donnerstag, 6. M=C3=A4rz 2025, 15:20:08 MEZ schrieb Chukun Pan:
-> Hi,
+
+
+> Wiadomo=C5=9B=C4=87 napisana przez Piotr Oniszczuk =
+<piotr.oniszczuk@gmail.com> w dniu 6 mar 2025, o godz. 15:08:
 >=20
-> >> Any suggestions would be greatly appreciated.
-> > Where is the SRAM located? Inside the SoC or is it carved out external
-> > ROM/RAM?
 >=20
-> It is located in the SoC.
-> "Embedded Memory" Area:
-> BootROM | PMU_SRAM (8KB) | SYSTEM_SRAM (64KB) | OTP
+>=20
+>> Wiadomo=C5=9B=C4=87 napisana przez Andy Yan <andyshrk@163.com> w dniu =
+6 mar 2025, o godz. 13:15:
+>>=20
+>> Hi Piotr,
+>>=20
+>>=20
+>>=20
+>> Then when you DP cable plugin, you can run command as bellow to see =
+if the driver detects the HPD:
+>>=20
+>> # cat /sys/class/drm/card0-DP-1/status=20
+>> connected
+>> #=20
+>>=20
+>=20
+>=20
+> Andy,
+> Thx!
+>=20
+> With above changes i=E2=80=99m getting =E2=80=9Econnected=E2=80=9D.
+> Also it looks crtc gets reasonable mode: =
+https://gist.github.com/warpme/d6220e3cc502086a4c95f05bd9f9cf0c
+>=20
+> Still black screen however=E2=80=A6
+>  =20
 
-are you really sure about that?
-
-Looking at Jonas' recent rk3528 u-boot series [0]
-0x0 _to_ 0xfc000000 is the SDRAM memory area
-so 0x10f000 is a carveout of the main sdram.
+some additional data point: /sys/kernel/debug/dri/1/vop2/summary=20
 
 
-Heiko
+working hdmi:
+
+Video Port1: ACTIVE
+    Connector: HDMI-A-1
+        bus_format[0]: Unknown
+        output_mode[f] color_space[0]
+    Display mode: 1920x1080p60
+        clk[148500] real_clk[148500] type[48] flag[5]
+        H: 1920 2008 2052 2200
+        V: 1080 1084 1089 1125
+    Cluster0-win0: ACTIVE
+        win_id: 0
+        format: XR24 little-endian (0x34325258) glb_alpha[0xff]
+        rotate: xmirror: 0 ymirror: 0 rotate_90: 0 rotate_270: 0
+        zpos: 0
+        src: pos[0, 0] rect[1920 x 1080]
+        dst: pos[0, 0] rect[1920 x 1080]
+        buf[0]: addr: 0x00000000017e1000 pitch: 7680 offset: 0
+Video Port2: DISABLED
 
 
-[0] https://lists.denx.de/pipermail/u-boot/2025-January/578393.html
 
+
+non-working DP:
+
+Video Port1: DISABLED
+Video Port2: ACTIVE
+    Connector: DP-1
+        bus_format[100a]: RGB888_1X24
+        output_mode[f] color_space[0]
+    Display mode: 1920x1080p60
+        clk[148500] real_clk[148500] type[48] flag[5]
+        H: 1920 2008 2052 2200
+        V: 1080 1084 1089 1125
+    Cluster1-win0: ACTIVE
+        win_id: 1
+        format: XR24 little-endian (0x34325258) glb_alpha[0xff]
+        rotate: xmirror: 0 ymirror: 0 rotate_90: 0 rotate_270: 0
+        zpos: 0
+        src: pos[0, 0] rect[1920 x 1080]
+        dst: pos[0, 0] rect[1920 x 1080]
+        buf[0]: addr: 0x00000000007ed000 pitch: 7680 offset: 0
 
 
