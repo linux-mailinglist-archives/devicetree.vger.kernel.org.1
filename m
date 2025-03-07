@@ -1,56 +1,71 @@
-Return-Path: <devicetree+bounces-155466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E21A56C7C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:47:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CCD5A56C8E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:49:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81AE63AD737
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:47:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66DBF177816
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:49:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B4C521CC62;
-	Fri,  7 Mar 2025 15:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B28D22069A;
+	Fri,  7 Mar 2025 15:48:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IVQ06ypS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N65vVkRX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E5221ABC8;
-	Fri,  7 Mar 2025 15:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A51621D3C0;
+	Fri,  7 Mar 2025 15:48:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741362432; cv=none; b=uvVR1zNO3gMRPGB7/ylqcTN3u5OJDwyx1xzH8mJPBg3C5hJPee8UBHMvDH1KhiU1EVqFmI7f/J2EBXHuTtkwYxQVv30IuQUxGeCCAmWzDVVg6xDv/E4ijjPcahQPDcicqcTtrtbfZ9g3YoyFh5xIdyAuUFa2FoL9LtLPnkCoeDQ=
+	t=1741362530; cv=none; b=Ni7uBcce2qygdhRWxdHjAR3RToOKjXpo+BtDWSMySE+3hekicRDRSavwbv15ckSCAFMr06nMKqe0e5IoyihkhDhKgIHAQJMDqzjleeG0syBbqztEtff8lZGbDLZiH4Ntd0M0xCmXloyyVacfX0eZJZb3zMvAlOqfE2vAuM8PSP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741362432; c=relaxed/simple;
-	bh=x/CERfZyKM/rdHcgijO40aVAeqKltJT3gaT1z5p7GXc=;
+	s=arc-20240116; t=1741362530; c=relaxed/simple;
+	bh=cbQpumLmb4zRxxzXeh/NJGWOgnbL/WBEsGAddfW0Fcc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RnSWYAk4DqNWT74hsj/27Vg2lGaVDsJUZKV4ovtaxSdGL0tong8HGmP82dEgDW0CmCLOAdef3DZ+fVe0sZDd4gC6W2InEYo1QNkuXlj2dKpzNPohEKqh+PLVznzCr8Kx+9itcVhY36kB4W9Ey2hic1nVUWsAyk+2b32IyKaPPn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IVQ06ypS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04E5BC4CED1;
-	Fri,  7 Mar 2025 15:47:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PFSYQal552DnwhRrbqQpib3X76PHyER3wSfDrbv95coYIGKWFiSKWlNtWcsl6Ht6hmrP2eqPfqBHErSDnjQH0ZotXUqFicAhefzLWclUp0JrZ7ZXYGtsP8trzFKpDH9BO9yzlec12bzEA0jwr7I7GyIaAo9V83WN9/CQbpWxF6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N65vVkRX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 314C7C4CED1;
+	Fri,  7 Mar 2025 15:48:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741362431;
-	bh=x/CERfZyKM/rdHcgijO40aVAeqKltJT3gaT1z5p7GXc=;
+	s=k20201202; t=1741362529;
+	bh=cbQpumLmb4zRxxzXeh/NJGWOgnbL/WBEsGAddfW0Fcc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IVQ06ypSeVPv0ZhynHki34xynvoryCN9UUZ0Mt1R8NgxUYneuOt0lfymTVrbHHkM3
-	 RjAJaTYPJmNDw6zYmDQrG+faizH965OSZeAgEEks2pwGflI3HbwjVSZW/7wGjCJGda
-	 Z/v25xqMzIS/bp5vqVl6wVNumZ/uJ5ar+LU8ssClntAeNP2E0NRK6SXm3+ECXDFWPb
-	 y6Mmte0dmM26BPrg1Sln9myk2jQgn1EP5gadOC9WAQb6/N04ruE1MLDUR9c+11xDFW
-	 7o7LKEBlzA+yXezeyhaogsOjj1laviTZAq1a01S3FFb4Vhmda7YwVl19nvzoNiTBqh
-	 TJIy8FtcR00Lw==
-Date: Fri, 7 Mar 2025 15:47:07 +0000
+	b=N65vVkRX2qnTNsHI/Mryj3yrgzuscpAKf0NbItOKxb932B9Tb+1GNpcL+r80CVzSs
+	 /ueBhWKSiB3bJ7bGUc1946kLvdkvQc9PnKTvdKitZbw9VWvnl/A3JS+AA/JzYA5dXE
+	 PQvQPLjOSpKbNoA4Fyit4SuXtAyX6VeAKycEphJyepBR1hmKfg8MLhwIxbE9HWbtSq
+	 4vjrXvxpZSuGt7YkqB1uZskUNPLxeruSW3me2Zop8Z7Aaf0Yex6KHzNVSCuwlEY9BH
+	 1cJRbxta4F2xG52gXmzZVKXk2/Uk6IOiTaL8dO0oBKAcEDBjcHYQsuPnC9OdxUwiWE
+	 EJq3Hj/sTn2hg==
+Date: Fri, 7 Mar 2025 15:48:44 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: tegra: Document Tegra124 MIPI
-Message-ID: <20250307-oops-anemia-814894c038f6@spud>
-References: <20250306175931.2028613-1-thierry.reding@gmail.com>
+To: Axe Yang =?utf-8?B?KOadqOejiik=?= <Axe.Yang@mediatek.com>
+Cc: Wenbin Mei =?utf-8?B?KOaiheaWh+W9rCk=?= <Wenbin.Mei@mediatek.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Chaotian Jing =?utf-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+	Andy-ld Lu =?utf-8?B?KOWNouS4nCk=?= <Andy-ld.Lu@mediatek.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Yong Mao =?utf-8?B?KOavm+WLhyk=?= <yong.mao@mediatek.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Qingliang Li =?utf-8?B?KOm7juaZtOS6rik=?= <Qingliang.Li@mediatek.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: mtk-sd: add single burst switch
+Message-ID: <20250307-bust-diving-a57644a51543@spud>
+References: <20250306085028.5024-1-axe.yang@mediatek.com>
+ <20250306085028.5024-2-axe.yang@mediatek.com>
+ <3e84fda8-2566-4f18-8ef9-850c84789c34@collabora.com>
+ <f84800fac589429157cd84034ef2f4541d3486a7.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,55 +73,121 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="u/5QmGjouEpEm4b2"
+	protocol="application/pgp-signature"; boundary="JvgKecrTkt2V/rEI"
 Content-Disposition: inline
-In-Reply-To: <20250306175931.2028613-1-thierry.reding@gmail.com>
+In-Reply-To: <f84800fac589429157cd84034ef2f4541d3486a7.camel@mediatek.com>
 
 
---u/5QmGjouEpEm4b2
-Content-Type: text/plain; charset=us-ascii
+--JvgKecrTkt2V/rEI
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 06, 2025 at 06:59:30PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Fri, Mar 07, 2025 at 06:59:03AM +0000, Axe Yang (=E6=9D=A8=E7=A3=8A) wro=
+te:
+> On Thu, 2025-03-06 at 10:19 +0100, AngeloGioacchino Del Regno wrote:
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >=20
+> >=20
+> > Il 06/03/25 09:48, Axe Yang ha scritto:
+> > > Add 'mediatek,disable-single-burst' setting. This property can be
+> > > used to switch bus burst type, from single burst to INCR, which is
+> > > determined by the bus type within the IP. Some versions of the IP
+> > > are using AXI bus, thus this switch is necessary as 'single' is not
+> > > the burst type supported by the bus.
+> > >=20
+> > > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> >=20
+> > I am mostly sure that this is not something to put in devicetree, but
+> > as
+> > platform data for specific SoC(s), as much as I'm mostly sure that
+> > all of
+> > the instances of the MSDC IP in one SoC will be *all* using either
+> > single
+> > or INCR.
 >=20
-> The Tegra124 MIPI hardware block is very similar to the one found on
-> earlier chip generations. Add a corresponding compatible string.
+> No, actually MSDC IPs in one SoC are using different versions.
+> Usually MSDC1 (index from 1) is used as eMMC host, the left hosts are
+> used as SD/SDIO hosts. They have similar designs, but there are still
+> difference.
 >=20
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../devicetree/bindings/display/tegra/nvidia,tegra114-mipi.yaml  | 1 +
->  1 file changed, 1 insertion(+)
+> >=20
+> > So, I think I know the answer but I'll still ask just to be extremely
+> > sure:
+> >=20
+> > is there any MediaTek SoC that has different IP versions for
+> > different MSDC
+> > instances, and that hence require single burst on one instance and
+> > INCR on
+> > another instance?
 >=20
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra=
-114-mipi.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegr=
-a114-mipi.yaml
-> index f448624dd779..193ddb105283 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-mip=
-i.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-mip=
-i.yaml
-> @@ -17,6 +17,7 @@ properties:
->    compatible:
->      enum:
->        - nvidia,tegra114-mipi
-> +      - nvidia,tegra124-mipi
->        - nvidia,tegra210-mipi
->        - nvidia,tegra186-mipi
+> Yes. Actually every SoC has different IP versions for eMMC and SD/SDIO
+> host as I said.
+> e.g. For MT8168, signel burst bit should be set to 1 for eMMC Host, but
+> 0 for SD/SDIO Host.
+>=20
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Sounds like two different IPs that really should have different
+compatibles to me...
 
---u/5QmGjouEpEm4b2
+> >=20
+> > And if there is - is there a pattern? Is it always SDIO requiring
+> > INCR or
+> > always eMMC/SD requiring it?
+> >=20
+> >=20
+>=20
+> No, there is no pattern. Both eMMC and SD/SDIO hosts need to be
+> configured base on IP version. There is no binding relationship between
+> eMMC/SD/SDIO and the burst type. eMMC burst type might be INCR or
+> single, same as SD/SDIO.
+>=20
+>=20
+> Regards,
+> Axe
+>=20
+>=20
+> >=20
+> > > ---
+> > >   Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 8 ++++++++
+> > >   1 file changed, 8 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > > b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > > index 0debccbd6519..6076aff0a689 100644
+> > > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > > @@ -100,6 +100,14 @@ properties:
+> > >       minimum: 0
+> > >       maximum: 0xffffffff
+> > >=20
+> > > +  mediatek,disable-single-burst:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description:
+> > > +      Burst type setting. For some versions of the IP that do not
+> > > use
+> > > +      AHB bus, the burst type need to be switched to INCR.
+> > > +      If present, use INCR burst type.
+> > > +      If not present, use single burst type.
+> > > +
+> > >     mediatek,hs200-cmd-int-delay:
+> > >       $ref: /schemas/types.yaml#/definitions/uint32
+> > >       description:
+> >=20
+> >=20
+> >=20
+
+--JvgKecrTkt2V/rEI
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8sU+wAKCRB4tDGHoIJi
-0rAPAQCKX9qf4Y4lGvF9CoFtcPz9b1A77ZMQh/HzfOrf8dgQGwEAn/F+ye38ztkZ
-nvso/P13VPOUfDmtN73a/YmEDGypdgY=
-=sWD6
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8sVWwAKCRB4tDGHoIJi
+0hRVAP9JFaU0LfHys70qFKw8YsFg94BJakg2ezMs8dUwmp2z1QD/cUINRP2md0VA
+qLxlWwCzLY6tY2JS7ftifR6/W+OfwQg=
+=ZH2G
 -----END PGP SIGNATURE-----
 
---u/5QmGjouEpEm4b2--
+--JvgKecrTkt2V/rEI--
 
