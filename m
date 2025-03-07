@@ -1,193 +1,212 @@
-Return-Path: <devicetree+bounces-155303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FFA7A562A9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:38:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D801A562B0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:39:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 611353A69CD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:38:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FE9D1893C02
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15FFC1DE2C8;
-	Fri,  7 Mar 2025 08:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 074981C84B7;
+	Fri,  7 Mar 2025 08:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EwVZiggL"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="e6Zg2pXY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11021101.outbound.protection.outlook.com [52.101.129.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3FF1A83FB
-	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 08:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741336694; cv=none; b=G7wrviIBCMMlAMacgCA5IRb4OjF3mlspukxmGdFuZwGQ1Fm7DOIOg0eCWvd1FJ3Z+EMo9mHTH1Rwz1J1HlOycHN/eXeDvXflnfGbRgBTUsV7CzzqjYrn2KjuKF+SamJfsbW8HnCSE9awk+bVkP2mQCkL/cyQVREtTr14R4AETp0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741336694; c=relaxed/simple;
-	bh=GYxyFRQKZQBt9XGGtRQ5AC7grdC0Qr21Eraa7nH9i/s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fiN/qBpI7SEymmLYWW0o2KHKz1N/s6SRr1HHMr3Q/+7C+OHBGf3KFSU/z803hbn96+1IKJoZgiXBDA6TRBKB1GeoYFDdgpEt5SVebhQ8PYf8mqX2L7pucUqc4Z8UEgg0keigMbBUJzHouVEY7kHry7onLXK0RP4ya2FPlUJfo3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EwVZiggL; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-54955222959so1673855e87.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 00:38:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741336689; x=1741941489; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+N6yDlV0NFncs+ZNUB+wRwddFt938JHfbLuCUG/BitY=;
-        b=EwVZiggLREqY/iuY3dJVLoEV4iTF4jVxPQoY20NpVajKhCZ451OmORDbcT+UeFFiXA
-         Gw0mw5J4ZQGQO/8gZ85bf/5okULC9DXsE5rgeuXHVLOMS5FsHpWo/aQPEO8OurBwXU9v
-         dCOcIbFinqQ3fJAqE/CQmtSjmhiw1bG7FjZHhrfsKQm7O2Bc1y/CQndO/EDl6eEX+9FD
-         pINfW98VojfXWNVw5wBjZtIqSe2T9OhnbKTC+0adzrszaEq704ysvQnguLMmAjDJpPun
-         AsFPd/tdsJRT5zqEKyVSqjv0QuBLSPih4IxFu7pp+tnK/efTzGJUF0WWGc5VcJsCQHkm
-         mhBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741336689; x=1741941489;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+N6yDlV0NFncs+ZNUB+wRwddFt938JHfbLuCUG/BitY=;
-        b=QmYZXeH6Px66E4+h1Zc1kfyoR7AwG9MmYpp0PeJYaIxrTex0ABbjG/mcfC3xs6HYov
-         NscTxbR2wCZmWVa7ooXQUBxTsV94BcmJjIMlXtoePCPPk9wiToKglGbHUFMyrbBZLXPD
-         OzbCcW96qPM4R7AP4bluT6ov6iIv/7Iu0RSDPrKKbcbAeJXjmqH9EH1FyRrx9qdpS2RH
-         7mTdqvCdPmciCb3e0VA3zu1ZkY+eh/DhNCgr2pijhLx8c1INwYgA7FyERUPVTB+Gg+Z+
-         sS2HX0m5pVSERqyqDkobxGF8L5BtR3Vh4PPiYoydF+d91cWIUIH9s6rDSWotV8Fw8gY7
-         0YBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWpj5tIhGVgJozL/eDvLmZYkdDLrISf5jhXMRCQZKl4/W6GLpttpdNtLXXq/ZHeSGmupT7UtmOIaRGf@vger.kernel.org
-X-Gm-Message-State: AOJu0YziFVOjerCM5aSwI3bdZJOOaeH/mSwtBvMVDPCAWfUFj4lMqa8W
-	qIX+re4YJP2Wnz/gQg07EthFrys9w2e3j9Fsc+ZHW3rJwm7k5z1nyFHnhysLiN0=
-X-Gm-Gg: ASbGncthMcPAaJjtBoQwvIe9OlC4HPmq90oeyfGKoE/ln43TR7REX/jW7OFtm/UVZ99
-	QSQGQVDl+nyvvw5hvhy+dRuVINpz1NH+kvxxyyHHm4m1Z4lPhRGFNdRLe4edXag50JVfqPEdezF
-	y64Pt0kibduF4ny+b9IacgfH+qUCpoNj9lXpVLvwuvpgpeW7dXSyLO467mGdskT3bgnyiVSfP1G
-	tXl8qq8iJMgNQB7eMKs3VDyY6z+Cz6BotU7B3/lsUqo+oC7t9ECSeNQmyvbjc6/YqyDDbauji0o
-	YmsedX1mK9SEjqfsBPZYe9mMzeMwvbsP5y1SRvgpzWoZlHmrKELf9gczTgudtvV8WpEHHjehD9S
-	zW+AAzOBPesnI0aSBYL5qNl6F
-X-Google-Smtp-Source: AGHT+IGfVv7MlpX59E0f3tOSQukf2FN0b9H49VnDyqRemuSX3X6T5WqxxVCQMq9nBH5XyTBY2wHgBg==
-X-Received: by 2002:a05:6512:2313:b0:549:74a7:12da with SMTP id 2adb3069b0e04-549910b765bmr856831e87.51.1741336689064;
-        Fri, 07 Mar 2025 00:38:09 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498ae46042sm417789e87.30.2025.03.07.00.38.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Mar 2025 00:38:08 -0800 (PST)
-Date: Fri, 7 Mar 2025 10:38:05 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 7/7] media: platform: qcom/iris: add sm8650 support
-Message-ID: <noowenzvhkcmx7cmwbnqqepuabown6taznmuuomw6lp7mo6tam@zihcgcjsmt73>
-References: <20250305-topic-sm8x50-iris-v10-v2-0-bd65a3fc099e@linaro.org>
- <20250305-topic-sm8x50-iris-v10-v2-7-bd65a3fc099e@linaro.org>
- <feea4c41-d3cf-4dc7-d197-6d91313d90ff@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3281A5B91;
+	Fri,  7 Mar 2025 08:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.129.101
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741336784; cv=fail; b=Ijk7DN8++IA8UPazOFXrDDjjkVXrLTLmUsJumq5FTd71X8j8H2GWNapOja1Rq7iyKeUh55F6HvXQXlB7iDcygBQbqs7ygD2LYrO19cXvza+AsaD/J8ctNcBI/N6Tc3pST/uDXrSvaaDKdGld7baC8LYvlJgwbveEBSV4OOZIZ3Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741336784; c=relaxed/simple;
+	bh=hLk4SAxagZ63D+wyWyPTs1Ibq4jNF/ULrEm+xEiB3bQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=B4Qq8DXzlWgC7WdnG3qz0J5Tewhknh34HuQ/Mqm3Jf0N0t2TiokpvOg/M3NWRnDdDa0pavYqbQKQoU06pCxRKeGs1ESLDU+bhYxffzDCPgASlF+icdakVge8DK6edp1kGCb+QobnQVKiRBefOekPMdXcXVfUSn34AGb2BI8ZPoI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=e6Zg2pXY; arc=fail smtp.client-ip=52.101.129.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rpJkfvy7xlxZBz0bcBMDKn+D4mzdVPOdqFAohtZ5IETFRk88vpsDkeMhaKAZYmMPxlcfUImUSdW36vcNbud0szK0NtgZWq3RILbjbqG8pYUl+SovHXml0IOHxVnE2bFScQD9rd8ON6gHH1QxAIKp5KpsCfHECc9wnhorEMJWIBNOxA36++Lrf6PSUMcvtX2LRoJjR0+rUqQwauqWT/HkvuPsZwvn7tCA08bsgIJc6KioKYUwyrFXQ+mzBWd0rmUNqGPY9e3AAMDzO5TI30ub124Jc5FxJQsFoB2ERriDxOYRzrT7yw6d0Z0gRQNHIB2lbjgcKnI8tSCxD/6lubCeoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=q3RZLb9giQnQVZyaIoiOUs31Ix+a8ubAPbTY01p/s6U=;
+ b=Z25ERJP09WEiGE/XRyXsee+lvamwaIiD9vqCyBJyuotcvGSGcyoQFxrvd+a8WQnPATQkOJ/mTs3xhIGb0pbPDpwnpspuTmOS1u6TZvegtOKXFB9E/7FOr2hFbZ1SENI3KV3EEfk40bpJuose0arcMcIWxWIoJvESY7dPf6+514WutVyZ0TTdfR0EsuW3zlH22hLC7K33G1mBAuwOTtt023tbAXUGdbFvX92orLnI42+vDMTDmGkgfOBVm44OX9T1El6o72kffEI7PB6ajXiUdBfR9kbBGznP+bOtbT/b4nCrLUDkjhd0wOAgxMp8ZKYU86Rsl+DGgUEfWdtVMFh5YA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q3RZLb9giQnQVZyaIoiOUs31Ix+a8ubAPbTY01p/s6U=;
+ b=e6Zg2pXYzJtsMm/HNyW8V2rhoa2duscUpDonpxSNfRQ+6IyqCEyX9OqQJFXWITUjSEMUUEvSXwHDeDUfTK9x4dSE+W/4dIbp5WVGHSEBTF1gQHR4KLM2OiQ+9NA2+/hfRyQxoErBjNI6c/lQvB7TftCYHQg2G+XRj/UchPblAAYqC6ZNtEEORJC7L9MLUonIjaq20s/BX02lhYVUKgzlBdogxYaQ2uTGrD3LIHtXpi05doT0HHPjVYnryNx0u7hPJ6yOiknJmNLo5stfvwZm0ETyfTuZ6wnpUMbD9X2rfg0Pue+/lzxjNawvPOKq5233nYl0UyQtsOZmNiPY5sN6nw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by SEZPR03MB7246.apcprd03.prod.outlook.com (2603:1096:101:a9::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.20; Fri, 7 Mar
+ 2025 08:39:39 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123%6]) with mapi id 15.20.8511.017; Fri, 7 Mar 2025
+ 08:39:39 +0000
+Message-ID: <a7c5f76e-241e-486b-86c9-ae9b64f3d52d@amlogic.com>
+Date: Fri, 7 Mar 2025 16:39:36 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
+Content-Language: en-US
+To: Thomas Gleixner <tglx@linutronix.de>,
+ Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
+ <20250305-irqchip-gpio-a4-a5-v3-2-1eec70352fea@amlogic.com>
+ <87h64546ca.ffs@tglx>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <87h64546ca.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: TYCP286CA0027.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:263::18) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <feea4c41-d3cf-4dc7-d197-6d91313d90ff@quicinc.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEZPR03MB7246:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41ea3b06-332b-4f23-4429-08dd5d539912
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|366016|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Mzc3SUgzWjI0VFgyWHF5Qnc2d3ZyTTRwQ2o5MUZ1QmRUSWFFKzlBWDJkdmlX?=
+ =?utf-8?B?Wmt2VzR0UEF5WjhGaDhEMzVIZmx2YjFxNTlZU2hPV2NIYnFMMnFDaVBsYVZY?=
+ =?utf-8?B?Qi95RlZKQ3ZGei9zd09Jd2ZTWWNQSnRuQkZqTGVMRm03VlFaOGgxQVdtbDhw?=
+ =?utf-8?B?UGtOTTFxT2s0dCtveVZYc2taN2xPSUF2V1VENjIyNHMzclhKcmFkY2RYdXlz?=
+ =?utf-8?B?WGRlTlF3Vk1lVUg3ZkJHcjNFOUh4NDJoTGp6SWFUNXdkd1BROWNFVG5lNW4z?=
+ =?utf-8?B?YWpHbG0rbXdzTDlleFpRbldwK1NxZ0duc2dEOE1uTUJINHhSR0RNbHNBcUgx?=
+ =?utf-8?B?S042d2Z1citBTVFNSE42dHR2aWd6dzF2TVY0ZTBQOXNaMkZUQUVraU1qZ3R1?=
+ =?utf-8?B?QWh6K2pOeHpSZEVUK2xKeDh0MHp0dTE2b0MvZzE1VGRKNzRlRnljT24rZ3pj?=
+ =?utf-8?B?aTQwT09CK1dIeHJuWDNOVTFTWUdhVXhGM0F4aE5PZVBidXpIMXdFTnlzNlh5?=
+ =?utf-8?B?TTNiYTRXT29KK0lNTGpHUGg4NUM5SFNZYndNSjhFS1VWUTdkYUpNeVVCSWYz?=
+ =?utf-8?B?Q3Fvb1ZMalhZTGZMbFZoL2JrdHMzNzFZUlltQm9hT0JGd1FJV3d5WVp1WXpk?=
+ =?utf-8?B?NFI4MmF0WXhQcU1idm1aUTNUb1lNNHY2Z1ppbCtBMGV1QnIwVkpobHU4VFNZ?=
+ =?utf-8?B?L0xTNTZZbGI1M2JrZjd1cjJYMm15SStYQmJRZG5lWk9kbTZiQ2ZwWVlHU0hU?=
+ =?utf-8?B?R1ZvaGRuQlQxTzRsZlVXc29ETjBYM0NYWWxzQVBBSWFrZGd3WlFHVjM5VWQr?=
+ =?utf-8?B?QThhWjVHMFZ6cTZFSmhCdWxIVHhjZVFyR2NoZkhnZlc5RW1EMGI1OEsrT2V2?=
+ =?utf-8?B?NEptbSt2dm9SYy9Cam5KMDR6WSt2WGNFVUhRbDFXNk9ZblpYRmZwTForR3cv?=
+ =?utf-8?B?VGd6SG1xUlQ2V0JGTFloZFR2UmttT2VhbVpYOTRVZUVPczlvT0VpYmYwNGVu?=
+ =?utf-8?B?UFR1TlZGZjFUS0p3dzdKb205UEhJejJ5eWo0aVhkZEpkWFNCTTR0eHJOaUhM?=
+ =?utf-8?B?dGdBSUxQRmZEK3dNZFpmcU5WRk8wcXlNalpGbnlQak1SZEYwbUc5UWdRVkp4?=
+ =?utf-8?B?YVJmR0Z1eEEwdEhZcXRwQXFteUhHbElpajA0aklwUkJyUkdndk45STZjWFVh?=
+ =?utf-8?B?bSs5Kyt4cUZCNjBqYlludWNIMmNqNzBERXhpUFJoeHQ3enBPQjRmWVBlZ1o4?=
+ =?utf-8?B?d3JJT1kzUGpXYmc2Uko4UXhkTE03K3MwbFQzK2JQMFRXWjhxSVM0dkxqaGkw?=
+ =?utf-8?B?K0J1TWNZMEJqRGJTTXBtaG9EYWIzSmpneWxZd0tXdStyQWhZNjVoNjlyZkpa?=
+ =?utf-8?B?YnVVUzJZdHU4cHE3TFNqc2xscXpSbzN0VDlzT3VvUnNmRmR2M0dHMEVrZDh6?=
+ =?utf-8?B?ajVxMUR2VFNNRlMxMDYyeTFIZmZLSER5b3h2L3hkUXc4UEhJMWZqWEpXbXRD?=
+ =?utf-8?B?b1hFZm5GTW5ucE55bnJUeHA4K1gvZ25nZUdYcjZxcmFMeWhwZ2hVYnJxZmkr?=
+ =?utf-8?B?MnJPQ2d2ejFLYWl1M2h1WDZPRnowSzVFdEVkZU40MjRSeUx2Qk9yUGV5eWI0?=
+ =?utf-8?B?WjBiNUpJSndwd2x0QVorUWRQYmFNYjFyRllyUUZGZ1RIRG9WRm5yL1hjRmVP?=
+ =?utf-8?B?R3JQbzVxYjBqSE5aSFR2THJqZUNYdkRoMVVEOVF0dlN0Y1d5NDNZUGZ1RXgx?=
+ =?utf-8?B?Wi9RRDIzYVJQYm9WRUsrOUw5RWlLNTZ2VXR6cGFnOXlzQmU5YTJTZDErMmxI?=
+ =?utf-8?B?SGM2YldVVzNrZFoxNlNJK2ZkVGZlaXJsaEdEQ09PZmFPcTQ2ZEl2Y0N1SDVX?=
+ =?utf-8?B?OXV2Tm9LbFV5MzluWnd5RGdlWlVVM0lpQy9kMGZjYXpEWHNyV2IwVmJzcDZn?=
+ =?utf-8?Q?RLuSzvo0sRQ=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?cnVDN1NPdjQzNGZwOG1MYzBNOUpFK0xnY2Z2eGFoQUdsZ2JLUGJXVDFQRFdv?=
+ =?utf-8?B?N1UvbW9KNHh4Z2V1djI2UFBCOWl3bnVub3hZSXRmb2lRUkxLZENFemJXVDJK?=
+ =?utf-8?B?dFczS29BSURvYU9ZWXFoKzBHc0VOTHBzL3lRbUlaelZ4dGdnTys4ZUtaaHVi?=
+ =?utf-8?B?ejRmTmlvT1BWb1FuQXdweWN6K3Q0bVFST2ZwMjc3S29IdE5uSHhPV3RMNGJt?=
+ =?utf-8?B?YlhFM0RUMDVjRTVwRVZvd3FPSWp4S1lmUXQ5RStVWVlYeHNmYmRCUXlXbjRv?=
+ =?utf-8?B?L2RBZkx6NmtFNGpuMlU0Qkt5cnNYWmhiSmYwVk5LT3gwaC9rSVpNNWZMajZZ?=
+ =?utf-8?B?UlUvbGZnT055Y2hUQzNjQnFsdzBaL1VCaDlsamhEd21oRGpjenk5R0MvRnU5?=
+ =?utf-8?B?Q1c1ZzhGRUZVVTdlbThpaTFVci9NQVAyS3BnN2E0dWJTYUVNbDJXZU1sRmx1?=
+ =?utf-8?B?VGdMMDZrSXVlWHR2QldtdWdIN3VEQjRkUDdQKy82ZHFRQk5QcUZ2Sm1KMDZD?=
+ =?utf-8?B?VXNlak4vVi9hUW9sRWhEVEhDM1NQaFhqT0EwZUtkZDRwMjNzY0x2M3FqZVVD?=
+ =?utf-8?B?Q1BuWm9NNjFTcklwMG5TZjkrL01wK2xkSExuK3Y5VEdDOStWanBOUVJJNDRD?=
+ =?utf-8?B?cHNuRFhoVWh6NkFNKzdzeXVObHVlVklPNlU3NVRZSERSam9FWDA3eWYyNU1Y?=
+ =?utf-8?B?NW4wcWV1UkNMQlVCYnhRYzN4ZzhvVjJDOXZ1cHR3YnVrSC9rK3Z2MlJ1N3Uz?=
+ =?utf-8?B?cjlkdHVTSGhsekM5VldlcU9EbG1XZmNkUHRmZUkvY0M1N0FSQkQvQmMyRHVD?=
+ =?utf-8?B?NU9DQmZMallsWGgxRzFWcXN1aUNhV0Jna2RYdlluRkt5N0tEaFE1MXU4dE9D?=
+ =?utf-8?B?Y3VkZmxpMlcvMldmNjIrcFlzd0xValJGVnRCZlMwM1ZJcS9IT1doT1RwdzIr?=
+ =?utf-8?B?R3Via3FabzRhRTh1SCtKT0xnU0hOWXNiTHVkWER3OG5mcmFMa1NPNTBhaUZq?=
+ =?utf-8?B?amhDUk1ZS29udjVmc0tUYk1ablFhYjdVYnA5ekVMMmt6emN0TlZJVlN3M1dN?=
+ =?utf-8?B?NThsc2tad3AzbjErYUlLUDZOcXRISStrUTNiT3poWEZCMG1vQTNTU1J0c01n?=
+ =?utf-8?B?K1pVaXFYSUZHRjFjeW5mbFdmRmJudDlvV0g1V1Y0MU8rbFJlbE1WQjFOYVYr?=
+ =?utf-8?B?dnhiaS82bkRPdjZGQ1o5Q0dJeTAvY3V1R1pTL3RQM3ZXRGp1bjY3b2REak9h?=
+ =?utf-8?B?TzJWUmtQUkxqUlBKak1MSlVxa29WaGZPYWd6TVVETGpEb1J5V2U1N20yV0NN?=
+ =?utf-8?B?RUpXSjBkdXJSd2lEeUgwVU02OVNWdzV1TjZnQW92STR6amFsUUcwK0lSbFpp?=
+ =?utf-8?B?T25uTWsyM2sxRXRBblRESERwcnJUemxiVUh6ckNjc2lmVU5rekRmR1B0KzRy?=
+ =?utf-8?B?d01sWGVuZmMrNFBiNFI2V1lQUjRFSkxCMUcxdHdoakZxL0lURTB5R3hBbllN?=
+ =?utf-8?B?UmprbDFwRUlMUlJwa3FFdHBqdXJCL0FjblovSmZIZW9qT1h6RzJUcmhwMmx1?=
+ =?utf-8?B?WEFSOGRCbE96blNXcjdFN3JnNnRuT0RmMCt2MS94N21VUU1QKy9xVVhLYWkx?=
+ =?utf-8?B?NWlhdVdtZ3cxNXZ4SHVBT2VGOHhzNkZ4TWhoKzVHN3V0S2hnQVRJWDVsUnM4?=
+ =?utf-8?B?aUZNcGg0aGp3eER2REw2Zk5BQ0ZBckdiNC9oRnFTQmM3bWsyQ2VxVVliellz?=
+ =?utf-8?B?eGxhUzFTMmhLdUlWcHBDbmo5c2cxemd3WkQwOXNRSW5BSjE1MFMraE9SRTNH?=
+ =?utf-8?B?TUhFdnpMMzk2WTl3d3ZKa3hMd0ZydUJxWldwY1hZTUpmSzFPMThzeE9xTDJN?=
+ =?utf-8?B?V2NvS0tjdG1CNEdJQURZNURWU25ERTZtYnBVTVVIWFgya0dEcWJ2YU0yTE05?=
+ =?utf-8?B?RkxjVHEyWStSbzY1R2lMSGxsblY1cmZCWW9uenpwZzV5T0hkUzVsVEt1WitT?=
+ =?utf-8?B?MWxsbW1mRmh1Z2lqaHdNd0ZnTkU0emZLNXRNcVZWVG04Wm1hTzBmQy9RdDdi?=
+ =?utf-8?B?elhUUEVzM2lURWdpaWpLMHBGWXJWVURMVkdyUGlZaHBiaURabjdyQTRoR2VL?=
+ =?utf-8?B?a2RkTyt0KzIwZmlTcTEraWJDOGhVWGhNcjA4RDVaSytoNmcyWXN5amFHMXhk?=
+ =?utf-8?B?R1E9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41ea3b06-332b-4f23-4429-08dd5d539912
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2025 08:39:38.9793
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +sAApoE79tMUulO6mh8US8qpXhWlrjb8uEtrfif/JAgdApJbB4ndiuS0pd5+/QUoZNEAQGRTnbLCeo5Wktqaaz9zn0fcRm8Uq6qshbzefkw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7246
 
-On Thu, Mar 06, 2025 at 06:46:06PM +0530, Dikshita Agarwal wrote:
+Hi Thomas,
+    Thanks for your advice.
+
+On 2025/3/7 16:01, Thomas Gleixner wrote:
+> [ EXTERNAL EMAIL ]
 > 
+> On Wed, Mar 05 2025 at 18:02, Xianwei Zhao via wrote:
+>> @@ -358,16 +385,19 @@ static int meson_s4_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
+>>   {
+>>        u32 val = 0;
+>>        unsigned int idx;
+>> +     const struct meson_gpio_irq_params *params;
+>> +
+>> +     params = ctl->params;
 > 
-> On 3/6/2025 12:35 AM, Neil Armstrong wrote:
-> > Add support for the SM8650 platform by re-using the SM8550
-> > definitions and using the vpu33 ops.
-> > 
-> > The SM8650/vpu33 requires more reset lines, but the H.284
-> > decoder capabilities are identical.
-> > 
-> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > ---
-> >  .../platform/qcom/iris/iris_platform_common.h      |  1 +
-> >  .../platform/qcom/iris/iris_platform_sm8550.c      | 64 ++++++++++++++++++++++
-> >  drivers/media/platform/qcom/iris/iris_probe.c      |  4 ++
-> >  3 files changed, 69 insertions(+)
-> > 
-> > diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> > index fdd40fd80178c4c66b37e392d07a0a62f492f108..6bc3a7975b04d612f6c89206eae95dac678695fc 100644
-> > --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> > +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> > @@ -35,6 +35,7 @@ enum pipe_type {
-> >  
-> >  extern struct iris_platform_data sm8250_data;
-> >  extern struct iris_platform_data sm8550_data;
-> > +extern struct iris_platform_data sm8650_data;
-> >  
-> >  enum platform_clk_type {
-> >  	IRIS_AXI_CLK,
-> > diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-> > index 35d278996c430f2856d0fe59586930061a271c3e..d0f8fa960d53367023e41bc5807ba3f8beae2efc 100644
-> > --- a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-> > +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-> > @@ -144,6 +144,10 @@ static const struct icc_info sm8550_icc_table[] = {
-> >  
-> >  static const char * const sm8550_clk_reset_table[] = { "bus" };
-> >  
-> > +static const char * const sm8650_clk_reset_table[] = { "bus", "core" };
-> > +
-> > +static const char * const sm8650_controller_reset_table[] = { "xo" };
-> > +
-> >  static const struct bw_info sm8550_bw_table_dec[] = {
-> >  	{ ((4096 * 2160) / 256) * 60, 1608000 },
-> >  	{ ((4096 * 2160) / 256) * 30,  826000 },
-> > @@ -264,3 +268,63 @@ struct iris_platform_data sm8550_data = {
-> >  	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
-> >  	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
-> >  };
-> > +
-> > +/*
-> > + * Shares most of SM8550 data except:
-> > + * - vpu_ops to iris_vpu33_ops
-> > + * - clk_rst_tbl to sm8650_clk_reset_table
-> > + * - controller_rst_tbl to sm8650_controller_reset_table
-> > + * - fwname to "qcom/vpu/vpu33_p4.mbn"
-> > + */
-> > +struct iris_platform_data sm8650_data = {
-[...]
-> > +
-> > +	.dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
-> > +	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
-> > +	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
-> > +	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
-> > +};
-> This approach looks good to me, reusing the platform data like this keeps
-> the code cleaner and avoids duplication. I think this is a good way to
-> handle the differences while sharing the common parts.
+> Please fix up the variable declaration according to
+> 
+>    https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
+> 
+> and initialize params right in the declaration.
+> 
 
-Just to share some thoughts. We had this kind of data-sharing in the DPU
-driver. It looked good in the beginning, but at some point we found
-ourselves stuck with the platform data being named semi-randomly
-(following the first-added SoC instead of the first-in-family).
+Will fix.
 
-Modifying "catalog" data became troublesome as it was no longer clear,
-which chipsets are going to be affected by the change. So, after some
-thought we ended up duplicating data all over the catalog files for the
-sake of them being easy to modify. There are some ideas on how to
-simplify that, but for now we have (almost) full data set for each SoC.
-
-For example, imagine somebody adding sm8450 support and sm8450 reusing
-sm8550 data. It would be a bit troublesome to remember that changing
-sm8550 data would affect sm8450. And maybe some of the SAR, SA or
-QCM/QCS platforms. I think you see the point.
-
-If you are to explore the data sharing solution, I'd suggest exploring
-an idea similar to the DPU catalog: start naming each of the platform
-files with some kind of generation-like ID. In case of DPU it was easy
-as each DPU instance has unique version. For the Iris devices it might
-be as easy as vpu30_sm8550, vpu33_sm8650, etc. It might make it easier
-to make assumptions and derive common pieces of data.
-
--- 
-With best wishes
-Dmitry
+> Thanks,
+> 
+>          tglx
 
