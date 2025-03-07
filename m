@@ -1,80 +1,145 @@
-Return-Path: <devicetree+bounces-155307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67EC3A562D2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:43:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52767A562E6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:48:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EAC13A7AD9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:43:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC52F188E02E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:48:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE07B1DB365;
-	Fri,  7 Mar 2025 08:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0FA1E1DE7;
+	Fri,  7 Mar 2025 08:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DiKw0JZc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o40S2uN1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DA414D283;
-	Fri,  7 Mar 2025 08:43:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D8F14D283
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 08:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741337008; cv=none; b=DuHo1XnSofVKUc/YhUyEM76hAvsT8rCdq9E+YFIPvar5hLUOZILocoxL2UVZfz1bdb3eBrvLlynZDWMdvRLZ+Nn77hxG8Z49tztMrKXuOp1kBBnIuSupOnKPuTRjnnlbdsBZHwTAGB/jryFl/6IYL0sPPnXPOvRWRZTARfNdGaI=
+	t=1741337272; cv=none; b=c5voOjdYJe76g6FNO+aMaEKZPOkNlKwf3NtkkRonhGPuOD4jHpNjoHKwhwMuCFwfqzoJCoG3Lk6NRxhGUDvEW1f2LF4XgP/GEsQ9y6bQSUiqwLdPXVDIBYhXKOY/H0/6DfIgCAJpRjvGfPLYHXdlQOCh/NebCSHFtS4tap9IvVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741337008; c=relaxed/simple;
-	bh=8KPJb1P6FNS1Z6J5XoclkSIqkAidbacbSyBws3+0lqw=;
+	s=arc-20240116; t=1741337272; c=relaxed/simple;
+	bh=1klQmpUuK3tpkUPnhlarREZmlq+0v1VMdGLEMIYqCk0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FH7QanXcuhjuFHyl0soL+7ENXoBtsPWCXuInxxmGWtqlsjlxrKclpln7Npw5N7T5VHyq6Zrea9mRs2sL4TCtt3GFAbEMe0v7oRLeiUhG/jTtWwYOgEQlF12Ie2nJ8dLvEipYApYNDJqMBHh/AnDrx6dW4sD2tszh/5ZW/Eqxz9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DiKw0JZc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44567C4CED1;
-	Fri,  7 Mar 2025 08:43:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741337008;
-	bh=8KPJb1P6FNS1Z6J5XoclkSIqkAidbacbSyBws3+0lqw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DiKw0JZcMzxRtAxmGSsSH+Rg1lbbLrhXi6dj7g8JedQntMLtKbNyZpjpZ1pB1o235
-	 baQ/g7lnMYi2HSgA+QOuXA9tg7JGmwpAtYW0uLzdKd4sPqgKO88UzEdtwgAhYQS3Rh
-	 DIQmHd9vCJ7/oe0QLKqcRPNfjD281+yrchlFE0PRCOq9YQaZzbdIDRLeUHkz1NPaAX
-	 kbgRpIW6VO1ThybV1vS9+puaAhIgA1ByMZt6HJT+Yq7/PAb35Y27TfVvLTwUUED6r3
-	 TyQYnNwrlEeJ91F2ZlN/K0tPezDp0oxZL9FKlEo53sZh//t1KU+VyC3VtCqFNgOA60
-	 nfQ6ueFe2D7rg==
-Date: Fri, 7 Mar 2025 09:43:24 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nam Tran <trannamatk@gmail.com>
-Cc: pavel@kernel.org, lee@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] arm64: dts: Add LP5812 LED node for Raspberry Pi
- 4 Model B
-Message-ID: <20250307-offbeat-simple-manatee-8cfa2a@krzk-bin>
-References: <20250306172126.24667-1-trannamatk@gmail.com>
- <20250306172126.24667-3-trannamatk@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=PUCefgrbqNXWgdI5vy0/y2rzcEHwI+pYWJntvS4isB8DX5K1HzGcPc2ifmadP6gDW8UqFmN0xnFcPEUkNgs8KMI2mb9TkSEU51r15uYV3rm3n2OUJciKhR9F9hhvS8ANcrIWeHW8g8pw3SjMYlZGZL6I0SLvHtPSq6JhX5ztYDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o40S2uN1; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-30bfb6ab47cso61471fa.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 00:47:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741337268; x=1741942068; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LcV1MZ5e0X4Au7sgZSdAJMfYoBCfZQzOt7NC7B6Xb5o=;
+        b=o40S2uN1UD4snsy1yMtLQ9aX0HoTHUsEC+4WNc+zoiie9OSmSC9NVvwhuJedncdKAc
+         htJ1Oe9u3okimtRLAv3M6umbLrwvd8BV586IHDtfs3yd+CfCuccOc36nZ19qEnOGHfdM
+         4mT+scV9S63ywTmTRcTiKWfuBjKhUIO7BUtgByvTF99Q9QrKzwm3BGaK6EkO4MJmhTOm
+         /9AC6AqGW9oHHlpvP9e3lyK0rh9aviATAw5KUpPqsUHZm4Q6cHA9/giF8ySNG0Uju5Vj
+         cQ0tHhjvrbjwuk2tICQ53z6FvTa7XKY+f8TLzwamjl79/JW/5i3nfrAzyHI+3hWxWU9z
+         FZdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741337268; x=1741942068;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LcV1MZ5e0X4Au7sgZSdAJMfYoBCfZQzOt7NC7B6Xb5o=;
+        b=lUTQhCEjq6DSUQ7WhznAm82nbPbsxe76PpvoBKAItZWkM4805TjGpXI8XiZ67yiML3
+         erX/+ItwUL9F62Hd2LH4YZmTVoCsLSMmZJfHae6C4GvK99Q+iVk4WCLu+odp4obIBqIN
+         27clSKjT7rFxULF1Cf03XbIFHk0bEVmXNVZA7y+2kczym8hXECxBHrvZ9lQPc/w+kSap
+         cgxV97dX73v7f7LVCy84eSVJKHLu2tUDjiKSEZVcLeHOgpIBB79KhTyfqXlUDQa8xkMW
+         IdSPo2ia50wzMJ0WQRiLaqf9O6n6r8BPjAqcj4vhoRFk495g0kjdgQT/HnVpBZ+8VIfy
+         iZjA==
+X-Forwarded-Encrypted: i=1; AJvYcCXxjH7BVMCzprcn3TxeaTsx/e23EQxWP1JkSoh3YU24+XaLHGkiHSMQk6XoCC5MmqzYW0ZGK0WYLVGU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTe+el8V2GIovLrmmOBtb6GhQLtryHfB80mBYh0kNsxjyIes86
+	34Ws5P4QrqAMdIztv5qwxdEpHWVgjk3EvpCXIUdCIOtLtVhLeyi1z6ZOKTpt4HM=
+X-Gm-Gg: ASbGnctm//Gs7mLYv7JRBPK9ot+uCaSTNdfBHXYLI1+UZWSMQcmRNawW3XAYHNkz1uR
+	UwLW1fD1w9XsIPd2iYnnBHOYhSlgU9YR8H8eSt5MgXr5MMk+MTHBxluzYXRQC8ECIoYAGN+qzuw
+	Fa1kv+axwTP40vEn2GhLKjfjlzYQg7BRf9iI7I8Fc/kxDraWU6UFBLzvJpzMDyD7QcSPmK8z+HB
+	aw/3d8/OCEYEGOsXTJJxElRrE/eO40OrPGpvq/x0wo0P6sJr57YgUuLNuVGSLXncSwa42wu/5kv
+	HxfdxCjwnEb+jeZSqmowF8LXAokdM1qCGDNV/eR0C65J8tITEA3JyV5syqUWH6cjUMC+F++Elso
+	5KTWRZkgQBc/Q4ZzLhcl2S8dz
+X-Google-Smtp-Source: AGHT+IEiTwEYJTrTPyGNimhSVQS4rhsKdEBaz+K9T/k8At9auSzopeTRHY7N/xxUYxj35p79+k7uWg==
+X-Received: by 2002:a2e:838a:0:b0:306:501:4772 with SMTP id 38308e7fff4ca-30bf4613cd7mr7319681fa.37.1741337267601;
+        Fri, 07 Mar 2025 00:47:47 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30be98d0897sm4763021fa.2.2025.03.07.00.47.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Mar 2025 00:47:46 -0800 (PST)
+Date: Fri, 7 Mar 2025 10:47:43 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/8] clk: qcom: common: Manage rpm, configure PLLs &
+ AON clks in really probe
+Message-ID: <vmxwmunmlknwp7elhp5zayoraccunxw5fex2hse2w4nwhuxzu5@atbcrfp2jgdm>
+References: <20250306-videocc-pll-multi-pd-voting-v2-0-0cd00612bc0e@quicinc.com>
+ <20250306-videocc-pll-multi-pd-voting-v2-3-0cd00612bc0e@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250306172126.24667-3-trannamatk@gmail.com>
+In-Reply-To: <20250306-videocc-pll-multi-pd-voting-v2-3-0cd00612bc0e@quicinc.com>
 
-On Fri, Mar 07, 2025 at 12:21:25AM +0700, Nam Tran wrote:
-> Add the LP5812 LED driver node to the Device Tree for Raspberry Pi 4 B.
-> This enables the LED connected to the LP5812 to be controlled via I2C.
+On Thu, Mar 06, 2025 at 02:25:35PM +0530, Jagadeesh Kona wrote:
+> Add support for runtime power management, PLL configuration and enabling
+> critical clocks in qcom_cc_really_probe() to commonize the clock
+> controller probe.
+
+Please split this into two commits: one for the runtime PM and another
+one for clock configuration, because ...
+
 > 
-> Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> The runtime power management is not required for all clock controllers,
+> hence handle the rpm based on use_rpm flag in clock controller descriptor.
+> Also the power domains need to be kept enabled during pll configuration,
+> hence attach all required power domains prior to calling get_sync() on the
+> device.
+> 
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
 > ---
->  arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>  drivers/clk/qcom/common.c | 45 ++++++++++++++++++++++++++++++++++++---------
+>  drivers/clk/qcom/common.h | 16 ++++++++++++++++
+>  2 files changed, 52 insertions(+), 9 deletions(-)
 
-One more: DTS is *never* in the middle of patchset. It is always at the
-end.
+[...]
 
-Best regards,
-Krzysztof
+> +
+> +	for (i = 0; i < desc->num_plls; i++)
+> +		qcom_cc_clk_pll_configure(desc->plls[i], regmap);
+> +
+> +	for (i = 0 ; i < desc->num_clks_cfg; i++)
+> +		regmap_update_bits(regmap, clks_cfg[i].offset,
+> +				   clks_cfg[i].mask, clks_cfg[i].mask);
+> +
 
+... just calling regmap_update_bits() looks like a step backwards. In
+the past several years we got several sensible wrappers and helpers. I
+suggest having a callback instead of a fixed 'update bits' table.
+
+>  	reset = &cc->reset;
+>  	reset->rcdev.of_node = dev->of_node;
+>  	reset->rcdev.ops = &qcom_reset_ops;
+
+The RPM part is fine with me.
+
+-- 
+With best wishes
+Dmitry
 
