@@ -1,259 +1,210 @@
-Return-Path: <devicetree+bounces-155345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD24A56452
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:49:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 108D6A56458
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:50:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A070718930CE
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:49:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BD2916ACE6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92BA20B1F2;
-	Fri,  7 Mar 2025 09:49:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C9120C02C;
+	Fri,  7 Mar 2025 09:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lkEP1op/"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ErCxTPZU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B825B1519B4;
-	Fri,  7 Mar 2025 09:49:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82D51DACB8;
+	Fri,  7 Mar 2025 09:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741340964; cv=none; b=TgjtH10wrnvj7tFhZyHKNN3uqV0Rp6ik+sFNXb9IpI8S3J59V3HzuJQVFjAIwMmtGt1dhJsN0aeeCEI5seWBEyXkaBvxtzbuhIOTmCT186toSdFrh9ZPBJ3+3rIFlksyrdYe6zYbOM8XfT6dFr79nF+ClMexBLsDL9/awchSQyw=
+	t=1741341027; cv=none; b=RMUMdK2RZjaHHxpPzYXekoHh0i2U+gaGvPCUP5csIEIAI7qLp6moeYmMNL9KHmE6y9TVGzW/GVwLzn6VB32MqtLMW38ZdHvvop9Uxheg1YMKJbwk0ze8qHOK3sswxox8FDgVeRRGq4fxF9kIKCt4s0STR70Uvd5caageLT79ZRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741340964; c=relaxed/simple;
-	bh=UMv+mWNoFkGiSJzPQ4HjhZzF/GGFwH++BILQFYuqJjc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FqmA0Nj2l2WL426S/p3do00h95uWKLdGG4ga5wtkBijncokEGgq67CKU3q4JqAF2OEOAFL9svOWefKzAJU/xZFUE2GqX0a8ZODvN9BN98bVuGRFur8FLyH1TSmzSIbO2+9reAetbX79G5M7UGS1U81ougiL4iRdQ4LACv1oqLkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lkEP1op/; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741340963; x=1772876963;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UMv+mWNoFkGiSJzPQ4HjhZzF/GGFwH++BILQFYuqJjc=;
-  b=lkEP1op//qEerqIxLMJUlsPba89MAepx9HqUkw5DcJNuyJQuBIbGF2yp
-   dlduPsWnaKBzvpS5XUb8L7AUmKb9ckqaVQdOmWIjZXKacyH+6/U1/iKa2
-   npPqTRtB2ssF5gSWzLajbwH7LIaiZGeUMmKoA0ZYKejaJ0PA+7ejO5sX9
-   pZdNxUJ3mIofBeamBA7N9igRxP1lKjaWLHP5bEEDrOoB6TvxBMzIbErld
-   vGfT/twEteQuSex8/VjNJWynm/FB9+mWWXrzXlfTa6MvyHCNfAuXupYGN
-   LRM8xVK0/qDyfSjR/BuKajiob0NK1h56sj7fui0EaYQdQrdx9HnTlCiEQ
-   g==;
-X-CSE-ConnectionGUID: 0W9mkAo1RyeGoEDCZJcizg==
-X-CSE-MsgGUID: aCsGCXKiRbmiAnZLNkBXFw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41553786"
-X-IronPort-AV: E=Sophos;i="6.14,228,1736841600"; 
-   d="scan'208";a="41553786"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2025 01:49:22 -0800
-X-CSE-ConnectionGUID: PaMUlQqVQtK1CzZrnIll9g==
-X-CSE-MsgGUID: d7CscytIQdiOtvxDoGLfRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="120197533"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2025 01:49:15 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id C298411F9DA;
-	Fri,  7 Mar 2025 11:49:12 +0200 (EET)
-Date: Fri, 7 Mar 2025 09:49:12 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Riesch <michael.riesch@wolfvision.net>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v5 03/11] media: dt-bindings: media: add bindings for
- rockchip rk3568 vicap
-Message-ID: <Z8rBGHK9Tjx7D1D2@kekkonen.localdomain>
-References: <20250306-v6-8-topic-rk3568-vicap-v5-0-f02152534f3c@wolfvision.net>
- <20250306-v6-8-topic-rk3568-vicap-v5-3-f02152534f3c@wolfvision.net>
- <20250307-pink-dalmatian-of-kindness-f87ad2@krzk-bin>
+	s=arc-20240116; t=1741341027; c=relaxed/simple;
+	bh=v3XPh/i9gJzfFogPfFd2VWXUphI0PZZDx976fbGrcuM=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=haQGDfqDELPURD39L1lFrQHF0aVzbycu3wN8zkehy65APNluWpUORi0GzIiSLUXVY+TssnIc4TKiTnajfym2zb2YYpAQRhrIPpUtBLr5NuR9Y6Mo6wrD6OqYC8EL+MlIr2C0n2/PV0KSOrK9eXw6lF5QTHeGrImktJP/NEKX7g0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ErCxTPZU; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250307-pink-dalmatian-of-kindness-f87ad2@krzk-bin>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1741341017;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=X+v6m2gMUALt/DSU6yD9ZupV909qVVDvbIZQSohGMX0=;
+	b=ErCxTPZUdZTWeOVfbb0DTXyJp7VEFz9TR5Ocb6D/0yk6vfgB0KyjJ3aP2/kvlp7tc/zZF3
+	hw/j7FEookgzhvP/SqO0U3R96haRnyYp5qlG2wHlksPJz3O32ib9QHiaMPjvNX90KflbUB
+	gbjiWqWclKJbFiT6d4JHf+BlxhXqP7cCPn6xMTKjPVH2gwoFPQoEP2dtgHToDDhO7D5jVV
+	N9MWsY9oCncB2t4iQaQQPRUyTWxIR1NUfklli7xlQTnINhrCU0vk/PV+pv3MlO2Dyfg7eg
+	zIdPGlb2OHxqgES9ai0T4awz/I4eOC49tFj7aLSUp95Rei68yq86DK4tuV2U1w==
+Date: Fri, 07 Mar 2025 10:50:16 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ heiko@sntech.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] docs: dt-bindings: Specify ordering for properties
+ within groups
+In-Reply-To: <20250307-logical-nimble-okapi-3ba081@krzk-bin>
+References: <7276139ea1f4a5f4db48c77f536a3638492e6c2f.1741321984.git.dsimic@manjaro.org>
+ <20250307-logical-nimble-okapi-3ba081@krzk-bin>
+Message-ID: <0df01d9863f72df3bebff1868f010954@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Krzysztof, Michael,
+Hello Krzysztof,
 
-On Fri, Mar 07, 2025 at 08:51:54AM +0100, Krzysztof Kozlowski wrote:
-> On Thu, Mar 06, 2025 at 05:56:04PM +0100, Michael Riesch wrote:
-> > Add documentation for the Rockchip RK3568 Video Capture (VICAP) unit.
-> > 
-> > Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+On 2025-03-07 10:28, Krzysztof Kozlowski wrote:
+> On Fri, Mar 07, 2025 at 05:33:37AM +0100, Dragan Simic wrote:
+>> When it comes to ordering of the individual properties inside each 
+>> property
+>> group, applying natural sort order to multi-digit numbers [1] found 
+>> inside
+>> the property names can result in more logical and more usable property 
+>> lists,
+>> similarly to what's already the case with the alpha-numerical ordering 
+>> of
+>> the nodes without unit addresses.
+>> 
+>> Let's have this clearly specified in the DTS coding style, together 
+>> with
+>> a brief description of the natural sort order for those readers who 
+>> aren't
+>> familiar with it already.  Also expand the provided node example a 
+>> bit, to
+>> actually show the results of applying natural sort order.
+>> 
+>> Applying strict alpha-numerical ordering can result in property lists 
+>> that
+>> are suboptimal from the usability standpoint.  For the provided 
+>> example,
+>> which stems from a real-world DT, [2][3][4] applying strict 
+>> alpha-numerical
+>> ordering produces the following undesirable result:
 > 
-> subject: only one media prefix, the first
-> 
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> 
-> > ---
-> >  .../bindings/media/rockchip,rk3568-vicap.yaml      | 169 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   1 +
-> >  2 files changed, 170 insertions(+)
-> > 
-> 
-> ...
-> 
-> > +  clocks:
-> > +    items:
-> > +      - description: ACLK
-> > +      - description: HCLK
-> > +      - description: DCLK
-> > +      - description: ICLK
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: aclk
-> > +      - const: hclk
-> > +      - const: dclk
-> > +      - const: iclk
-> > +
-> > +  rockchip,cif-clk-delaynum:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0
-> > +    maximum: 127
-> > +    description:
-> > +      Delay the DVP path clock input to align the sampling phase, only valid
-> > +      in dual edge sampling mode. Delay is zero by default and can be adjusted
-> > +      optionally.
-> 
-> default: 0
+> BTW, your entire commit msg still has incorrect wrapping. Please use
+> standard editors which understand Git commit msg style (which I believe
+> is equal to Linux submitting patches).
 
-And this is technically specific to the DVP port (0). Should (or could?) it
-be located there?
+Sorry, but what makes the wrapping wrong?  I wrap patch descriptions
+at or well before 78 columns, which I belive is the desired way to do
+so.  The longest line in this patch description is 77 characters long,
+which is still below 78 characters.
 
-> 
-> > +
-> > +  iommus:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    items:
-> > +      - description: ARST
-> > +      - description: HRST
-> > +      - description: DRST
-> > +      - description: PRST
-> > +      - description: IRST
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: arst
-> > +      - const: hrst
-> > +      - const: drst
-> > +      - const: prst
-> > +      - const: irst
-> > +
-> > +  rockchip,grf:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: Phandle to general register file used for video input block control.
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        unevaluatedProperties: false
-> > +        description: The digital video port (DVP, a parallel video interface).
-> > +
-> > +        properties:
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +
-> > +            properties:
-> > +              bus-type:
-> > +                enum: [5, 6]
-> > +
-> > +            required:
-> > +              - bus-type
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Internal port connected to a MIPI CSI-2 host.
-> > +
-> > +        properties:
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> 
-> Hm, does it actually work? graph/port does not allow any other
-> properties. You should use graph/port-base and probably still narrow
-> lanes for both of port@0 and port@1.
+Also, please note that I don't "just use" some random editor, but I use
+a highly customized Vim setup, in which I over time wrote about 46 KB
+of Vimscript code in my ~/.vimrc, all by hand.  I've even contributed
+smaller patches to Vim.
 
-I'd list the relevant properties for both DVP and CSI-2, either as
-mandatory or with defaults (could be reasonable for DVP signal polarities
-but not e.g. on number of CSI-2 lanes).
+>>   vdd-0v9-supply = <&board_vreg1>;
+>>   vdd-12v-supply = <&board_vreg3>;
+>>   vdd-1v8-supply = <&board_vreg4>;
+>>   vdd-3v3-supply = <&board_vreg2>;
+>> 
+>> Having the properties sorted in natural order by their associated 
+>> voltages
+>> is more logical, more usable, and a bit more consistent.
+>> 
+>> [1] https://en.wikipedia.org/wiki/Natural_sort_order
+>> [2] 
+>> https://lore.kernel.org/linux-rockchip/b39cfd7490d8194f053bf3971f13a43472d1769e.1740941097.git.dsimic@manjaro.org/
+>> [3] 
+>> https://lore.kernel.org/linux-rockchip/174104113599.8946.16805724674396090918.b4-ty@sntech.de/
+>> [4] 
+>> https://lore.kernel.org/linux-rockchip/757afa87255212dfa5abf4c0e31deb08@manjaro.org/
+>> 
+>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>> ---
+>> 
+>> Notes:
+>>     Changes in v3:
+>>       - Rewrote the part of the changes that describes natural sort 
+>> order
+>>         and its relation to "standard" alpha-numerical ordering, to 
+>> make
+>>         it more understandable, as suggested by Krzysztof [6]
+>>       - Slightly expanded the patch description, to clarify the 
+>> additional
+>>         goal of explaining the natural sort order briefly
+>> 
+>>     Changes in v2:
+>>       - Changed the additions to the coding style to specify natural 
+>> sort
+>>         order, which avoids amibguity, as suggested by Krzysztof [5]
+>>       - Adjusted and expanded the patch description appropriately, 
+>> together
+>>         with including one more reference for the natural sort order
+>> 
+>>     Link to v1: 
+>> https://lore.kernel.org/linux-kernel/09d6f2fc111b3d6e58987336944f93ec36b65118.1741071107.git.dsimic@manjaro.org/T/#u
+>>     Link to v2: 
+>> https://lore.kernel.org/linux-kernel/47c51c10098f089e52fb14c5c5527611dc8daf32.1741164239.git.dsimic@manjaro.org/T/#u
+>> 
+>>     [5] 
+>> https://lore.kernel.org/linux-kernel/20250305-defiant-serious-newt-b7c5ea@krzk-bin/
+>>     [6] 
+>> https://lore.kernel.org/linux-kernel/20250306-dexterous-goshawk-of-aptitude-e4f1f6@krzk-bin/
+>> 
+>>  .../devicetree/bindings/dts-coding-style.rst       | 14 
+>> +++++++++++++-
+>>  1 file changed, 13 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst 
+>> b/Documentation/devicetree/bindings/dts-coding-style.rst
+>> index 8a68331075a0..7d183c1ade74 100644
+>> --- a/Documentation/devicetree/bindings/dts-coding-style.rst
+>> +++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+>> @@ -133,6 +133,15 @@ The above-described ordering follows this 
+>> approach:
+>>  3. Status is the last information to annotate that device node is or 
+>> is not
+>>     finished (board resources are needed).
+>> 
+>> +The above-described ordering specifies the preferred ordering of 
+>> property
+>> +groups, while the individual properties inside each group shall use 
+>> natural
+>> +sort order by the property name.
+> 
+> I guess you sent it after my today's reply. Full stop, done. Such
+> trivial thing as sorting should have one line. Three lines is already
+> longish, but fine, especially that it can be one line.
+> 
+> "Properties within each of above groups should use natural sort order."
 
-> 
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/rk3568-cru.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/power/rk3568-power.h>
-> > +    #include <dt-bindings/media/video-interfaces.h>
-> > +
-> > +    parent {
-> 
-> soc {
-> 
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> 
-> Best regards,
-> Krzysztof
-> 
+If you insist that the brief sentence you provided is to be used,
+I can live with it, but I have to note that it could be improved
+from the style and grammar viewpoints.
 
--- 
-Kind regards,
+Could we, please, settle on using the version I proposed above,
+together with dropping the additional description, visible below?
 
-Sakari Ailus
+>> +
+>> +The natural sort order differs from alpha-numerical ordering only by 
+>> treating
+>> +any single- and multi-digit numbers found inside the property names 
+>> atomically,
+>> +and by taking their actual numerical values and comparing those 
+>> values between
+>> +themselves to determine the order of property names.
+> 
+> 8 lines is 8 times too long.
+
+Alright, I'll drop that additional description.  I can agree that it
+might be seen as redundant.
 
