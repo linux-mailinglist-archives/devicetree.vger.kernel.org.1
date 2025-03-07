@@ -1,117 +1,127 @@
-Return-Path: <devicetree+bounces-155419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABB1FA569E2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:03:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 130CEA569EF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:06:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78C0E16A312
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:03:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 584677A4792
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:05:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E33D21ABA6;
-	Fri,  7 Mar 2025 14:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A6A21ADA4;
+	Fri,  7 Mar 2025 14:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="YC2hEVy4"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="k4LLpH1x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8FF21ABBD;
-	Fri,  7 Mar 2025 14:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741356188; cv=none; b=IURIFs9lLTDTnts855vjz81b2eGQKhBbAle5H0Z9MJh/WAMrsm0YcGcZpxLJuX2Jw99TaM18FGroFwoEkDBkZVZU3IvE8G85ljYV0YP2YzUubwc+d61mqrDfcaZh3nHNkmIyOXmVX4dxJcP7oFT9Pz3qCDRGbT0Bm248kyl4DGY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741356188; c=relaxed/simple;
-	bh=CrhhOIMTVL+IZJGVGxgGzbJTCVnnSVtzlH5FBaVUETw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uumqnixpwAPRLUCc3rKp4cVY7JCyJUk+VfNWx3a+GG5HshnQf1MoKkXA8pl79VhxnWRZk9dT71nT1WAt1aBJY6MnrdTwVAXp9B3W3BrHp9dFYFs1sOGKYaqN9uR9Wqv56NbEQUxwFKtmUqNTS7ieCPGHBCFe71Z+ktzDG5UlkKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=YC2hEVy4; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=nB1Ff94gX6hUEiR4vaLcBQczfcyrPErlm6RF/exj1rY=; b=YC2hEVy4NZANVuitqKYVpsTfLw
-	Vq53fYjnsZ/1ipxexmYUW+xwwvwoTr6C2S4WvrqLu/Wx/vj7Bfejk8gxeXpGpMi9v41K7xmJNq4KH
-	294pI4i61HdG3JE6B7pDvyY8tUpME3f5/uDtjCZDQwO1PVRguDqOkUFJoi5SAEEV5xbI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tqYHs-0039gt-1L; Fri, 07 Mar 2025 15:02:52 +0100
-Date: Fri, 7 Mar 2025 15:02:52 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
-	linux-rockchip@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add GMAC nodes for RK3528
-Message-ID: <f6c6aeb5-bdec-4283-87c8-e870f59008c8@lunn.ch>
-References: <20250306221402.1704196-1-jonas@kwiboo.se>
- <20250306221402.1704196-4-jonas@kwiboo.se>
- <a827e7e9-882a-40c6-9f2c-03d8181dff88@lunn.ch>
- <003d3726-680a-4e91-89cd-d127bc3b5609@kwiboo.se>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6C8518DF65;
+	Fri,  7 Mar 2025 14:06:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741356396; cv=pass; b=pBgaS9tSPdH5zs3qjs72FkBI1qUTINcjK6a3w+DZSI1ZxNdLRNQsn00zKep1JBNzUneyGf2h0nXgWPsHd1t+tJqeXp6Vcuer8uhHFmfeoHzsU/UQ1O22qyMT2jKzuEVGpZu3qwJqqWgBI3i7JHhNxhAz1kHtCcYl8MfrDz60CFM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741356396; c=relaxed/simple;
+	bh=ykdhXmylYh6z/rNdao/fGKzQPI3z2XmS1ESDJTS7TYQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QGQiIX2zO3ezoyJiUS/o1x6WiTTwwug645zoFo+5NrKnCaJMCPE5xBMQBjEeiNTa2/JO7/JWo9vVpDMjHMe+FFlcYeJeEgqW/AvP1PT5zI3IGIWGMoKp5rvv5qerUXiperkO40i6p4BboCeBcK1FwfjWezQQDXXRCUHC0AiR2OU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=k4LLpH1x; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1741356358; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=RUSqeTjX0/f+vSCIJFG7Ivi/H9ExZZOTIGsH8b/7NgnDNY+UPVZ7ECjWzwOuDI3RzpTfQqmbZSAsfna/nJrzgxqNHi9CItEF9nS40fA67K5OyjyabwmfpK9um35EBQjHtXoOmHIdnjUaDBCCDMC8yAzHg++9XIkIh6wtiClIxik=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1741356358; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=FP+ifasHniIC8neSq6VwSq5ZsIenCwU36aCvQ3EbV9k=; 
+	b=M4EErEyApvaCAnFL5c92n1M0wMYZ4/LNdYQL/JjFfVIWr1+oWZ7LWHG91M7LH/wdakw0O6B/Z6DdW1CFhUYSU8YrcdcDdi/S/B33oM+ZFqVbEURJgvl8Ve4JwYi+DVhf5OMbdwCpJiS1Sj2d8rpDnz9ZN6y3eCQFi/Cx2aen930=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741356358;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=FP+ifasHniIC8neSq6VwSq5ZsIenCwU36aCvQ3EbV9k=;
+	b=k4LLpH1xLhH5D3H7h2upAramGsfkMWDuPKZ9FZ0XGVS9QKMQsdQP0bKN4azcuUGk
+	pMfBCbFEZtyQaxyMl/XEFyBtH0id4McTIUQZz/KeSYcNbJQotbnjO7wP5JrTi+oGXgB
+	95fO8bj46v0ezvai2ZHpniitwdl6VAtoA17B70u4=
+Received: by mx.zohomail.com with SMTPS id 1741356356876241.9419093370691;
+	Fri, 7 Mar 2025 06:05:56 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Daniel Golle <daniel@makrotopia.org>,
+ Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject:
+ Re: [PATCH v2] dt-bindings: rng: rockchip,rk3588-rng: Drop unnecessary status
+ from example
+Date: Fri, 07 Mar 2025 15:05:50 +0100
+Message-ID: <5417098.31r3eYUQgx@workhorse>
+In-Reply-To: <20250307093309.44950-1-krzysztof.kozlowski@linaro.org>
+References: <20250307093309.44950-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <003d3726-680a-4e91-89cd-d127bc3b5609@kwiboo.se>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-So this is a bit more complicated than i first guessed...
-
-> 	phy-mode = "rmii";
-> 	clock_in_out = "input";
-
-Probably will not get passed the DT maintainers. The clocking needs
-investigating.
-
-> 	phy-handle = <&rmii0_phy>;
+On Friday, 7 March 2025 10:33:09 Central European Standard Time Krzysztof 
+Kozlowski wrote:
+> Device nodes are enabled by default, so no need for 'status = "okay"' in
+> the DTS example.
 > 
-> 	mdio0: mdio {
-> 		compatible = "snps,dwmac-mdio";
-> 		#address-cells = <0x1>;
-> 		#size-cells = <0x0>;
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> 		rmii0_phy: ethernet-phy@2 {
-> 			compatible = "ethernet-phy-id0044.1400", "ethernet-phy-ieee802.3-c22";
-> 			reg = <2>;
-> 			clocks = <&cru CLK_MACPHY>;
-> 			resets = <&cru SRST_MACPHY>;
+> ---
+> 
+> Changes in v2:
+> 1. Drop unnecessary full stop in subject prefix after ':'.
+> 2. Add Rb tag.
+> ---
+>  Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml
+> b/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml index
+> 757967212f55..ca71b400bcae 100644
+> --- a/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml
+> +++ b/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml
+> @@ -53,7 +53,6 @@ examples:
+>          interrupts = <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH 0>;
+>          clocks = <&scmi_clk SCMI_HCLK_SECURE_NS>;
+>          resets = <&scmi_reset SCMI_SRST_H_TRNG_NS>;
+> -        status = "okay";
+>        };
+>      };
 
-Using the ID suggests there might be a chicken/egg with the reset and
-clock. The ID registers cannot be read from the PHY?
+Hi,
 
-> 			phy-is-integrated;
+is there the possibility we could make dtschema as invoked by `make 
+dt_binding_check W=1` (or W=2) add a warning for examples that have disabled 
+or explicitly listed status properties when not needed? Or is this something 
+better handled in, say, checkpatch.pl?
 
-This suggests the possibility exists to route the RMII interface to the
-outside world:
+The question arises because dumb mistakes by me like this should ideally be 
+caught before they waste precious maintainer time.
 
-  phy-is-integrated:
-    $ref: /schemas/types.yaml#/definitions/flag
-    description:
-      If set, indicates that the PHY is integrated into the same
-      physical package as the Ethernet MAC. If needed, muxers
-      should be configured to ensure the integrated PHY is
-      used. The absence of this property indicates the muxers
-      should be configured so that the external PHY is used.
+If it's best handled in dtschema, I can look into working on that so you guys 
+don't have to do even more work due to me.
 
-Given these issues, i suggest you keep with the DT as you have it
-now. Adding the PHY node will require access to hardware and some
-investigations.
+Cheers,
+Nicolas Frattaroli
 
-	Andrew
+
 
