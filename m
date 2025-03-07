@@ -1,192 +1,156 @@
-Return-Path: <devicetree+bounces-155511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22DE7A57117
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 20:08:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D500A57194
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 20:23:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62BBC18930C3
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 19:08:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0AA967A46F4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 19:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C73924DFF6;
-	Fri,  7 Mar 2025 19:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3424E2512E1;
+	Fri,  7 Mar 2025 19:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="b7V50YEv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e9opeFQQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011005.outbound.protection.outlook.com [52.101.70.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4EAC21C198;
-	Fri,  7 Mar 2025 19:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.5
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741374515; cv=fail; b=QfcaOPK1blnMCJ4qQpXpCyGB8U8McpeFy3sz2Cnej341yzfUzuf98sWVaduc/mlAgtW7Mjtsdvo/JVEfQsDs9iVufqvNRDOHzVTvJ3Oxrz4cb4Vb1FvH9OByStfONQRl31O8SoHI8GsSPckkqYMMD4ESfnZQGYwA0W5Z3Dsj/5w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741374515; c=relaxed/simple;
-	bh=mELjSAKausVg6hjnlQmtmLcMCvxIS7hpzjGeVYehRRs=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=QRoVPZKJG6OGmiPUvqkdQd/9Lyst5Lb01mP6txYPm66trdw4/YnQeSBpUmqu4EBAV4aA3AZ7uhm8LVjVEeT9d1qUajMpDD6Zs6oWjWOkRHosgdmvdfzHHXDj9u9jzlbiKaH4yoPpyCnxWcsw25PQNiA3LrkkdxLFkzYDkyy20vk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=b7V50YEv; arc=fail smtp.client-ip=52.101.70.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k+Tx92f6HxryCTlC4HB5h/N+Zl9HKyMk9SridFuTHz2xJr/8YC9hclpW3lj73bLqTAwEWtEwX+kfGwC+cbAO+T5Pij8J4V5ochybysaXrjTCrpS80IvjA6tS8IpKLod01q0/ckWLwXKViZxTDCUOkecQ0Cb79zD9gzO8EImOblSkHZnJT33YR4J+gs2Odh5N8a3wHoBzJg06b19hj1SR0RjbAp1e2s7GgIUEQhdJMlgo1Fxy4FwxV+OcKUzUUk6t/mTePPWmhncOxgU1JOGbjEuJHP4kZKNepICI2p0/ZPExf2BhMzOtuzCGg4OhfJk9p+yy9/2akgjA8+UrTe+bgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZD1b8cjBJxO6Bu2H3Bw6dXaLQV4eL5x7iWJgIChuvNA=;
- b=oB08uYdVFNRiS/OAxpovFoqIX5p6n6O5+zISvXDAEic2ehzikyhficsTygSaSdxYz3vpmWy1MwpOG93g+uviq/0Kl1LlvZCbKkTy0Ja0mRnlDs7OvjLVR07eBvH9gJq74xFCLC4YrL9FxESQ8aISBQJ0K90q5xZXJwIPlNWIEfkMI2Q11MN6Njg+irXJ6aRhGQ4YxHw7eDCQ/Jg2VUGfmLXPG2xTwSI0AFPNhhEfXTCCimQMXPl73w679MHULnZIjdzBzqu9bv/sJxRFnEgWb1vhOT5kLsVtl4lWtUXAuSjDTYZgZ0cwyJNBIZqZ4Z1gvCrXxmkI6W4MFgKslt02/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZD1b8cjBJxO6Bu2H3Bw6dXaLQV4eL5x7iWJgIChuvNA=;
- b=b7V50YEv+YJ6WFPSIGhZr+9deUxpMC6/xBVQQRJ7CjLGToVBDcLKO+fYEC6tKZv5ZPuHmqE/DZ0uum2c92EsenEzSklOUXTDWDKcZdRmPYGAYaIkmmdCqCcYEEbyuqc51sYSYQY1CFsFWazgYnWHj03rVvSFTlIS5mDbgwl+5vVOW7WxT1C7R9tmWKsQy8xW4xsNW9Yn8PlAiLZ95YjEBuXSt+1iS6r7B0jNjXkcNKQSFbFvz6TmZRSFQp+mvNqYvlyME2PysEEDOxjjLjdGXlq+4ZGb2iTocZ8vewSvfRB7pYEaFkTt7tjzrkBrfBPwmEE3sM/E4bZfodlPfIXLuw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8911.eurprd04.prod.outlook.com (2603:10a6:102:20e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.22; Fri, 7 Mar
- 2025 19:08:28 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8511.017; Fri, 7 Mar 2025
- 19:08:28 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63AF4250BFB;
+	Fri,  7 Mar 2025 19:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741375391; cv=none; b=BjsNGNgBpfMBcw88hEdM+RNwX7NEzU4hlElXoejCZyxYEAed3aoAmExws2q0lXCm2aqu4SZ1VmIjF1ubwfGENN/KR2p+eH8XZbcnnqngvU4H2vTfF2hX3VLI6t91lWqaPErsskFhNXzNcTZ+LQMU8+BZBgYSO3NqIg/xhvtw7gk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741375391; c=relaxed/simple;
+	bh=7GlVd0V/EedW0bDmkVw/rKRm1b7/IHKp8oyprPziWYQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IMH802BHmr73OiMQmfD1WzQSMW5oMYvu7GlSitU5ky17sLS76E2JlzPMwQEj1DukGhtB/P/qfgbb8btbSpB4bhfIdRh0fCa6rEkeBOwfgUEex+Yh7wAt1wlFWwkDihGMjAjxAcoqi55WLoO0sBLWZCqm6D7NZZFtdsVzdbRr+8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e9opeFQQ; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43bd5644de8so25960575e9.3;
+        Fri, 07 Mar 2025 11:23:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741375388; x=1741980188; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=C1+RmpRBuPh+de0SwHONnyOjz2fjlSyauEN398sj7MU=;
+        b=e9opeFQQC6Tph8RJqZTm1wlyAHuvMBe6GDJMXl51MwYo/PuRI/UmgfuMbuTmrCtrOK
+         jIEvpraRqt8RO6EdMMBdx5uBHzDarKofUS3aa/45C3th9CNryL05HJi/CfrxQ4PWMGFY
+         8MOvZfDU0S/zKEpBizCGk9sypqYK1M88k/Ny7+XrM7mE+G/KXWQuOP8oDu3EdL+n6R+h
+         ZJW0JsV/mS9BPDdpxosZOOSK9iMjF3t67B591o+eyJle3YgEhotakkb+Dvv9ts6OWUn0
+         +/AifI6tFNdL3+6ue2IQpEHINEgzb50WaiAcc4xdZZ3EF9uXlLLle66IkZO83FTtFq6+
+         cZNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741375388; x=1741980188;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C1+RmpRBuPh+de0SwHONnyOjz2fjlSyauEN398sj7MU=;
+        b=AlCpJt3mcJFZ7vJF4sgUfQV8VzXC85xRDeWCLnkoGn7Q9te4wEC3Re3KH6fFIrseUf
+         IrGwg5mdBfxsNE6+FWW5er0D2i7BEAAZ61BDxFVItipKU67p8d8ZKT1iUJp2f/6hvSSJ
+         hG6zNdompueWyT0VYXyNfCzAj+ExFiFvuW3+ShBa5erRcvceCMQWwahw02QWnr9gaICy
+         mrp+DSN6Q6jn/DsXsy9LELe+cKpZS+jO7+eWs0uctpiEWRaMTMhq8iJdIoQQcR6aLw98
+         j40iZzm196K99q1bcwZ7jcM3vLPIPsOfcN052PoFeJW4VVAlU9s6dBQDVrXrSS6nnRJ4
+         +tNg==
+X-Forwarded-Encrypted: i=1; AJvYcCUxzaIcK24a5xiNKyjbO55y5tab4yEaLpG1+JPRQ8SZtpaMjZR/yI0WbNAwsF7JdwPwUIsbaAx5xC4mnQcm@vger.kernel.org, AJvYcCWtCYRHMjLuKoaXUCyvrR6TBW2Z4x9uTZt/0WWEs5fw5FUio2njZAnk2dGOOWnv2biIwwfUqYql@vger.kernel.org, AJvYcCXpYclT4lloVuheSWYHS9FSZ1+7G5Zvpnyc+Wnl54oF4AJ23yQCroniCUgzVXjfOlnjG+30uxsOafHL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzz6LUNPSPf8q8VGf1qkkz6UzX73yu9rs2QqMqs53f8kqkU9l42
+	5yrY5kQrMT5/XESWvkBbMqvM64FuHZ6KhZW3IqW4NaGsRuLSlBWZ
+X-Gm-Gg: ASbGnctju1AYAhppGWt9S3lF+pKH/F5P5ezh4tzIUjETBwz4s6ZvA3rHGfmF0eXWVZg
+	p+LxsOC9u6nmJDXsH589Ev4C5QELCktcEzvOeKDZt3Kb0lY9rtCrZnEKQYpSkMy/pqQJCrj9T02
+	hIsaSw7j5dttE/qgRzHl/tMxyT3o8oi1y9nhazsLZi6hlVjnBR29Jys/1qZn1pznSHOJ0HeWHeW
+	YqNqs9Pdib08fDMhypJz++PcPidEJA/B870SeVwgPvh/uRmGoX6nQXcWcv0Xqb3FrHNn503QcR4
+	IPQ4w3o6uGSvAZcGRNa0E/VT8XMi0VwRgo2GCU9R6g==
+X-Google-Smtp-Source: AGHT+IHWmU/+ViicytjGYK5fn4UCskJJEuhITp5rYhpxrYYlvOK7Z9KmnpTMe1nfseuXDV0mBeUeKQ==
+X-Received: by 2002:a05:600c:1c10:b0:43b:cf9c:700c with SMTP id 5b1f17b1804b1-43c601d06a7mr53392505e9.16.1741375387295;
+        Fri, 07 Mar 2025 11:23:07 -0800 (PST)
+Received: from debian ([2a00:79c0:614:ea00:3000:d590:6fca:357f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912c10437dsm6348819f8f.99.2025.03.07.11.23.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Mar 2025 11:23:06 -0800 (PST)
+Date: Fri, 7 Mar 2025 20:23:05 +0100
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: dimitri.fedrau@liebherr.com, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-can@vger.kernel.org (open list:CAN NETWORK DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] dt-bindings: can: fsl,flexcan: add i.MX94 support
-Date: Fri,  7 Mar 2025 14:08:15 -0500
-Message-Id: <20250307190816.2971810-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY1P220CA0022.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:5c3::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 0/3] net: phy: dp83822: Add support for changing
+ the MAC series termination
+Message-ID: <20250307192305.GA8328@debian>
+References: <20250307-dp83822-mac-impedance-v1-0-bdd85a759b45@liebherr.com>
+ <6aee57d3-8657-44d6-ac21-9f443ca0924e@lunn.ch>
+ <20250307142252.GA2326148@legfed1>
+ <d57aff5b-7d1d-43bf-95a1-ee90689f5ac0@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8911:EE_
-X-MS-Office365-Filtering-Correlation-Id: e888a074-7dcf-47ce-0a71-08dd5dab717e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?gciw4l8rZLJavIdJZDvpbab4ScNhRy0/wxGvFDyyruEF/FZ8XCYqNSNZHhAe?=
- =?us-ascii?Q?FnTMFVE0CMnvObCzwzz48wEg+ko6O5mzzzagtIye3TjV5nwdqyMASCTxiWp9?=
- =?us-ascii?Q?R6w4upL+LCUmhFSZPuv2ZYa5a2l9I/gQOkrmC8GpvCd5IFlet9vCjmAm3OCv?=
- =?us-ascii?Q?sTf8l6uXaOkyE62IeuW/1EOXdrjP2EATcMVXMcYDpmv9/PR7tOc3Kycfclj+?=
- =?us-ascii?Q?L35WnceVxtLFwIx4Nozqpm5+kAAsi9w9KhKnI9+XaEhKheulAI/tqWooAjhx?=
- =?us-ascii?Q?5J8C22APVgapvRB6V76wUuM4jq8YFQnNzQGqWwlcwu9PmRyRC3AshLRBGfAg?=
- =?us-ascii?Q?DrWTq+eXZ6ITy4n/QUcoALNTjN8Hs/GhLFmUIlc9wMz4Yw8ubU6dQUjiafOC?=
- =?us-ascii?Q?VgnIDu0PS/4IU6duzk3cGpdJv6IFgYfqYsVQ19wLfbYbeiuuq3MVTe/O8VhH?=
- =?us-ascii?Q?2nHgxquT+vBqqjQElyKCc2S6o+qT3mK5yrofqPHEF2cnhVOTYjcfUO+9Klkb?=
- =?us-ascii?Q?zgUr7rNWleeC6O+/XrZcSGOH/QgBT+ApWTj6TLiVsfeX35I5hhITG1WTLAcR?=
- =?us-ascii?Q?aAzaepw669cyitNBWxSEsuG7HVTA59+TIdUtS5/QoQFlwKZ9YT2039Sq+49U?=
- =?us-ascii?Q?8uFzTfanrJ/tbSe6jxbM4MRbsz2McEofVbBiduCaNxv6fFTLFOjMy7WtQkn2?=
- =?us-ascii?Q?z5K5O9bPJPXDbC/Ba7QOwZppKKE92SlNTo1zRCQJ7KFoeHiRP5hyiORRmoTn?=
- =?us-ascii?Q?teER2Dnpl2IeoMFk4K8aRZvm8VpWn0683y+oyaEoy1EQ7PJPLreSgeWnzxXY?=
- =?us-ascii?Q?RC02itn9SD5tOOhO7mfecd9sYoIwaNvVAMLDZZznRvy1BpsbEiV557ktTiV1?=
- =?us-ascii?Q?E1iCljqnN2crfTetHDXQCth9UyIsLyOYVXHGYQ69+2bKmiYjuTBZQgDH9YvJ?=
- =?us-ascii?Q?bjxJAcMMQV0hqoUhaUuPjxDNy2YBneSco+iHrVt3cO/STvd45riI69zU9iRx?=
- =?us-ascii?Q?97DEha9eIrj8a6W1TdEdvDY9CRlW5XpzaOHrLWRuu3ndX/+Z7d1xfrUWI9Dt?=
- =?us-ascii?Q?+tSsAnhqlU8HAdnG0KLQswkidpEDHJk29vHNg5dvZ9Lu3WxcL5u20ktJikNS?=
- =?us-ascii?Q?q66b45PvRkJGcov5udhxAPAbwhC41h/PXR67uK1F2uc7x1KP6MVvtOTNcWFm?=
- =?us-ascii?Q?NbOXhYYp9Cvi7Fn9RZ6dUS88SluSPuChx+bMZSB68NVJ4C3vOiLmds3Hh78z?=
- =?us-ascii?Q?GcP4DZHrPoSvAz4HvYPjwZQy1U7+G01XH0KpcXA4yghq0WRRbzzimQ22W3yF?=
- =?us-ascii?Q?t+ahwFBQJcJDwQPesvFtB+HSFGtDKWT8MbWJTMoE6u12iaPoyVPNXeCU7Oir?=
- =?us-ascii?Q?xi9BkgX0JtY6au+XSBItVOG1GqRqTBy9Vs4A29vTCB4XkjdWgXXl8BTwBsRo?=
- =?us-ascii?Q?/94DYUCOZ6Ewz74pC5RTJFxbbGcXyPQF?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?iZXcX7+Ih3k/bx8y2NSa5a1Ogz8HNaifK4pmghfaU2JST12iGYc5rTfMCN2L?=
- =?us-ascii?Q?wjXnelODUoNavLhbvhhfngPzZ4hyU1Ca0IGfQypQed2R5iIujUd13gAAmIec?=
- =?us-ascii?Q?OrUlEx04sIde7R5CLgKhh+fpxwZoWDBl+Q7VD7is4lLqmrl2MqM/0u24gEF3?=
- =?us-ascii?Q?T0rAYNLEnRqXHPzXLhlT6vVS2VJeVd1xXFAcsx7oZzBMuIDBLLY9xafKekK/?=
- =?us-ascii?Q?9mQb060ATaV0VqiVCmfNRul5JtOnN54oWDRgUdyYVgy35CyEzGtncE35N7ad?=
- =?us-ascii?Q?4Gth/KT5mvxDXuK6YmnNA/HC0rCwkKiIXT44Nnfb1FNc/iGQCnK1eH+9BkMk?=
- =?us-ascii?Q?8jq6Oj/Ej/6blJm6ZmLhsAjSHxosGbBwqrOFgOM0jfhErd6R8TGriSFXq94K?=
- =?us-ascii?Q?U786wLVgqXWRo+cQBIuLUtlvRrnCHmmhgBS+X+KSjItlMsNQPKPidQJi1b1Z?=
- =?us-ascii?Q?4s3zTVv0+PJaKDGrmv66gH/c0ooYtkGueHzP5z9oLC0KgoZcg3MwIcvfojGn?=
- =?us-ascii?Q?YJD2yRYb1VCSzPQBtfZm0EliJRQmYcBGIzq8O6D5Ue8G+7opBNJkjSsL4b1T?=
- =?us-ascii?Q?+LCVE9BdQ04WQHUBZFRg496yohhWu7pS8pwpPPUPEqOo9xAr09uuYBSRQj5e?=
- =?us-ascii?Q?F9vZe0f5BN9otriIJp5oybS2pwNfh+9FGEd2Urb7m60C4E0tzwC7r1QYQjof?=
- =?us-ascii?Q?mwI0P7wsGOfRgOO7v/GnRMGwOuOLeQ47v1tSpjak3hunTQEWfgcnY29Zm1cI?=
- =?us-ascii?Q?3jEtpTWqy7a8O+V2yE01UwCluM3PP8gpASOq5ClFAHLTZEtbyqO3/Toe9m6m?=
- =?us-ascii?Q?TBUzNRPtmWUBr2fl5ouERZUj/15uFSNvVH9KXZnODfhY3Ja9DMiKGneJPW4O?=
- =?us-ascii?Q?ZSuzLvs1DfLJwPoeoT05Arg83m/pN6+OLcn6n1U2oQbNbQeUehUWsskFZTDH?=
- =?us-ascii?Q?a0aofzVpyZhiLA+UCXXToxaZ5Z2Lama1YBs7UcnTtAzCDRoI6TJP4DJEagaR?=
- =?us-ascii?Q?4REC7q+hVfEorLsWaFD7WJc67umO/T8Vc/vqQkg3HzfaRdQG9RyoTl4onQIf?=
- =?us-ascii?Q?C8sqn7K7dZbBC/SZe4kNKWwCD8YJ3zugwA1RV8FCYSR+C25Fhcs++T2E/LtG?=
- =?us-ascii?Q?iwmRHtHaCQEGFsyN2L9gcyLclr+2ZP0pbzigdVmwSiet267MW6cJQScxjHpC?=
- =?us-ascii?Q?lkuFeiWq6PJqlLHN1iLiY9EtSYAuvnY0fsMfwLw34kk9ms0m/jiyKf1c6jap?=
- =?us-ascii?Q?sdBPjMagKEPCq8NPZqiWstQ1dQ8ZLUbIrx7oCL658fauVSrFM1Q6Ea+b8fGc?=
- =?us-ascii?Q?MI8MvVWY3BGLgiK3IEFCo0nOEW6LikzlYzoZQq2Fc0HQLRg47v18Tmiuf3xa?=
- =?us-ascii?Q?w1XnbrZCC5ObRCE7v3c/pi5CeaJAQ4mQXsDaAqtLM3jCcnpfH3fyReHWCxM1?=
- =?us-ascii?Q?yIskJoRUIlf/FixfNfJbTnsgH66MvZ/Y+/jg3PSFHDu/1Ck5qCQS0eGppuLb?=
- =?us-ascii?Q?KUN0Bb7C1ZHvMUlqOZAexEcRfNRjmsI15VaQpdQ3VYHA2VKIb64GKrb1oRRW?=
- =?us-ascii?Q?JBgY8gMZTCZ37WPBQl0=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e888a074-7dcf-47ce-0a71-08dd5dab717e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2025 19:08:28.4676
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M1+fk9liPx4es/QDtNahHVAhgBSIdJ7lK0/lIoIikpT/jxSMUKe8HBbVOT8Ca83TyVx+B07JPq5hedYgdT95Mw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8911
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d57aff5b-7d1d-43bf-95a1-ee90689f5ac0@lunn.ch>
 
-Add compatible string "fsl,imx94-flexcan" for the i.MX94 chip, which is
-backward compatible with i.MX95. Set it to fall back to
-"fsl,imx95-flexcan".
+Am Fri, Mar 07, 2025 at 04:34:59PM +0100 schrieb Andrew Lunn:
+> > Should I add the proper description in the bindings ? Description of the
+> > properties are somehow short. However will expand the description.
+> 
+> Yes, please expand the description. For well known concepts, we can
+> keep the binding description short. But i would not consider this a
+> well known concept, so we need to spell out in detail what it is.
+>
+Ok.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change from v1 to v2
-- add Conor Dooley's tag
-- fix typo "fall back to fsl,imx94-flexcan", should be fallback to
-fsl,imx95-flexcan
----
- Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+> My knowledge of transmission lines and termination is not so good....
+> 
+> So this configures the resistor on the PHY outputs. Do PHY inputs also
+> need termination resistors? Could there be PHYs which also allow such
+> resistors to be configured? Are there use cases where you need
+> asymmetric termination resistors?
+>
+I think they are also needed for the PHY inputs, but termination
+resistors should be placed near the driver. In case the MAC doesn't have
+them integrated they should be placed near the MAC outputs. From PHY
+perspective we just care about the PHY outputs.
 
-diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-index 73252fe56fe6c..560da9fa1ea15 100644
---- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-+++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-@@ -45,6 +45,10 @@ properties:
-           - enum:
-               - nxp,s32g3-flexcan
-           - const: nxp,s32g2-flexcan
-+      - items:
-+          - enum:
-+              - fsl,imx94-flexcan
-+          - const: fsl,imx95-flexcan
- 
-   reg:
-     maxItems: 1
--- 
-2.34.1
+https://resources.pcb.cadence.com/blog/termination-resistors-in-pcb-design
 
+I don't know if there is a general rule that states wether to use series
+termination or not. I think it depends on the PCB design and if there are
+issues with signal quality. Maybe this one helps, there is a small
+chapter regarding series termination:
+
+https://resources.altium.com/p/gigabit-ethernet-101-basics-implementation
+
+Found it reading this:
+
+https://community.nxp.com/t5/i-MX-Processors/Why-doesn-t-NXP-use-termination-resistors-for-MII-data-lines/td-p/1360873
+
+> My questions are trying to lead to an answer to your question:
+> 
+> > Should I rename then "mac-series-termination-ohms" to
+> > "output-mac-series-termination-ohms" or similar ?
+> 
+> We should think about this from the general case, not one specific
+> PHY, and ideally from thinking about the physics of termination.
+> 
+> https://electronics.stackexchange.com/questions/524620/impedance-termination-of-marvell-phy
+> 
+> This seems to suggest RGMII only has termination resistors at the
+> outputs. So "mac-series-termination-ohms" would be O.K.
+>
+Ok.
+
+Best regards,
+Dimitri Fedrau
 
