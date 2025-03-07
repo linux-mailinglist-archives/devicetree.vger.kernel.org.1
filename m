@@ -1,117 +1,106 @@
-Return-Path: <devicetree+bounces-155408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 910BBA56940
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:45:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21C00A56948
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:46:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0DD3175902
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:45:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 919DC18982C1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:47:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A65219A67;
-	Fri,  7 Mar 2025 13:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B6B21ABBD;
+	Fri,  7 Mar 2025 13:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="0cShVDer"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="DMD604B4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35F832CA6
-	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 13:45:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A49219A67
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 13:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741355136; cv=none; b=I3whHEvUXt1Cli4JJKrszOA6NF3jwPeelmwdah5/ioQTNogF1w8iemUBEOxbPlaXMLfxcbUe3PIVt7dMN/59mPaD7476IBkI1za0gtGg8TrgpOl1Ry9hhclGx7pP0MK1X/2DAnsh75UmxBxS+F/qWkYX3wO7IgcT/rJ+LbrecrA=
+	t=1741355200; cv=none; b=cK9qL/vve3OqB8or4BSst6yhMzoR4aMftUlOqZSK+I8LL3XY67/+Ai7Cmc2JuhOF7DFykIkxAX4xaQoIApbSR27HAjH0BA0l4sGgixmm/heg9F1FbcQIwYLGugi+34vd8mzV3fW1UMAkiMPO0yFNDgjAoMi+/B7KcLPD+/dfKXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741355136; c=relaxed/simple;
-	bh=0TFrNUave7u0c/TFcLUTVj6EnbOoF9/okdBtc8ZpfRA=;
+	s=arc-20240116; t=1741355200; c=relaxed/simple;
+	bh=Ajl5yz/9HKZfXlHGqdiD19xxNeWVYLkq3LJ7DODmHrU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NsoGf2TVHm9T6sSryPQQ9cIIOEHjh209jIKuZv7jyKJpXWtjXsPLCu8iu1hAiwTPyKXkdVkWqY/t6pkekknpMxTWzqXVV8q6jAqwnzCmhfYnymi4q+ttZTei1Zl6Pu7CAE3D5wYjMnrb3fmdUex3EDx8IZGLL31/w+czq4nUyws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=0cShVDer; arc=none smtp.client-ip=209.85.208.182
+	 To:Cc:Content-Type; b=oONllPU1bhLCRyJNxGTUOEJonO5R+PzHw+cBSq+MmRX2MnKvnZZy1ByBTdnT5gYSqOhxjlV5+8Gml8wz4kfoc0oqYr4HrsnkQTxukPJMiE7vx3dWDJNK9uulANYKNTyiCSEcg+KAFwndK/e+lrRk2lNMH+77SsIUjxiGX3CrD38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=DMD604B4; arc=none smtp.client-ip=209.85.208.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-307c13298eeso22039941fa.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 05:45:34 -0800 (PST)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30761be8fa8so18976961fa.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 05:46:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1741355133; x=1741959933; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1741355197; x=1741959997; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0TFrNUave7u0c/TFcLUTVj6EnbOoF9/okdBtc8ZpfRA=;
-        b=0cShVDeriLRrwT4wUp+Mr7DxhRumgDMo3z5AUUN/isi08PFbQyVe6kyBpuw1YLA0Oh
-         7IQ9T9xR+s+8gtIFA6hHBNJK4f2VBnMnC0248BRwyGv0tPp0Cefrk6x6mwgY9wS2LY7m
-         MA7tOU9bPLClp2pYfd+0vP6u4IuS9aJZW9GhQ8FY4P3kC6W9UgVFUEBJFWC0BRi3VrU5
-         2H83BfQNVlIZh464+AblSBgJrrmkB3rTDByU+WT02h//DN0DVWppHG/HR0t8U8ppC7sc
-         VcbWgTe4RVPr4ghqckOsPA1XLShhPDa+Zvvav445cyerOOvNqrCBL2d3hguLCm8XbQiw
-         odqg==
+        bh=Ajl5yz/9HKZfXlHGqdiD19xxNeWVYLkq3LJ7DODmHrU=;
+        b=DMD604B4fbXzD1Wo2WnupxIXIjhzkmP8xTghIQQWhmo90EZcuSk9ZKamSnhtewFpnu
+         1m+kBcFogccaSrcp/im2htxyr/WDqEjj0NnR+tEm0fl7cuZaeWJaLeq9/YueXNQRZter
+         X3NU5Nu3aHrCCBNJCdhVg50NT+EHFlIpezZ7T8wDfIC1eLPNQ3nbM1fMjWIqGbpv1fRZ
+         Qee7Tx5xefQC33pZezQIqVvxfNbdo5Ldw2z6nb/WZyPd/PB3hebnWDdr37FSPaQNMt+m
+         XWNdFuwZISQaNsfCG7SFJlNhLPSq7pORBh0URo16JHGtlF3Dkz22/Fu2RxG1Ia42os9V
+         1ITg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741355133; x=1741959933;
+        d=1e100.net; s=20230601; t=1741355197; x=1741959997;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0TFrNUave7u0c/TFcLUTVj6EnbOoF9/okdBtc8ZpfRA=;
-        b=wd7wV3TlOum/qPgxu6BRCFzHwUbHvPZcvaBb1XeLDhIS6xvpA7Km4hSLCSPi991JDG
-         ilqCfXHgJqfOeNr1jks51LAV9f6XdYHgu7s8XqAJUtvt0PSbg0YA+U7CdvWISB7bEnOb
-         RIzMSc6H4R9lULri3pbp8t4oB5Ne+s2F64qOfQU5h9EdcyIj6VQvYN57bdSysS3qJuni
-         gGzEOZH95+G8i0ZeQZ8Rymd3aBOEY0MeXkoAtEwdxvgtievt9Z2WFwJta44DQCZgOhxk
-         oHFT9Nk+1fwMvybllMXB3xhkbuKVu0CfVBFZd0ru1sQxkRfwitcHvt0RlSYX3ouBPhMM
-         naUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVYqYuGhA6K/EriIYaFS207Hyvx9MNACNHCwQW7fqnD5+PJXBaKBQC5w3di6JEWEdoCZisIZDDVpWMR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpVv1AAoFK5PiHMT7CX80Y/dYZ8QvVWTiSN2FZHnP28VVB/ZFO
-	bODzIoB1FIV/9NEW3sMEkFOHvsQGSMt/n8npQ9L5Zi8W33jWwSWsK9zYxrSrK2JdwZmHZWV3wj4
-	zBb9MO+5sPfwoB59w9U0Mf2CD1odwffv/yVlkdA==
-X-Gm-Gg: ASbGncsnKCf8SmiWQjG9GcZHEeipiLOrPIXaK7SfM6KPyvQWsOSJ+EaR63QRK5iu8BE
-	1apjidroKIwpUZoX9rF8v57w1d5VvwBMMvjGsXb7JS5/80boa94QNULmjEF7qp8jBPzJoOVmUOL
-	d+eufPQYFfoOyL8UFDA2AdNdpyewKu1Xmj0Qgjf04M9t4Vdidm/ae3TXQS
-X-Google-Smtp-Source: AGHT+IHCHWdcrf+CS34Y1FeHjxgNuNdVmDEgpUXU6Qys+5+tGGxXxtTXUnsy+/28mQy/IygcRJFkYAAqwSVuG2rzZoE=
-X-Received: by 2002:a2e:8819:0:b0:30b:e73e:e472 with SMTP id
- 38308e7fff4ca-30be73f011amr23073541fa.14.1741355133270; Fri, 07 Mar 2025
- 05:45:33 -0800 (PST)
+        bh=Ajl5yz/9HKZfXlHGqdiD19xxNeWVYLkq3LJ7DODmHrU=;
+        b=dRujddw+6gfGz1YgARozUM/oNtKdU0vSm+hsL+DW0iQNTsBiG0/GqlDW9G+lnAhwjQ
+         9/VxN4pyAakY95bVKLxBvM7Xi/FhtuxadaWJUR190M6UwkTahAYL7327fixPDP3/rCng
+         zbJuAJcwAidYQk2+d1534tODSAgC28fQnC7PGGsUkJZ6RHoLT+0WjXTqx91jDrQhCQzR
+         CIpWePK0QORgRSFr+RxpzuWNe08hf2f4tgqIArQ+LyxWMPar21a9y6g3nTpxvwga9PtZ
+         LRXxyEDsWnJ7kahiPAqvcy40Hc3rqqCqTTcaOgicaU6nFLsgwM2+q1zMC5RcmBLHG1y9
+         Ifbw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJjSNNsXaAVZFt9xW9wRQieiIUC0XIeDdx/dPgg3opi/LoPRBAAlssvuMqPM2VUrCe72fBbvp4qfRw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yykof1m3oFOTspTMCAhAvWS1tqP2rjqm+tVa5GydMf4jPfnRQgP
+	7foTA48Px7SoQ0OTdhGaTgwKJtH4J5N7ReLZas45QzHHSR21lU3eNt9BbYN7ZCQCmZ1/dmIPAPE
+	OM8ywVAbWTg+/0OqZgFao1Brvt/RpIrVpnysV9A==
+X-Gm-Gg: ASbGncuMwKE3mpC8t+HC+3GbljoE/z11N/r/FAxA9OY5OMqK4BukllyWuMceg97tYK4
+	7yVDcWLzzoNOHo1hnF3UpnRAzH7VGKnbd1GOpYGEWcaBGaIi6hIJnYu0NZI9LN21aN4HaZ636li
+	woXGAC3bUhCjfwTvM4/XFWSQyx8n51huPs4SxlSwdEbOOrk7STpWAseCiN
+X-Google-Smtp-Source: AGHT+IGMK8J2Fdw7g+cXg5tysK151M2NSF7Hkehrjd3iBWvSDjUL/heh6bjcQSsvIwkLA6Oc0HqPFi8q7sGz5nh4GlA=
+X-Received: by 2002:a05:6512:23a4:b0:545:9ce:7608 with SMTP id
+ 2adb3069b0e04-549910b7d3bmr1262013e87.50.1741355196646; Fri, 07 Mar 2025
+ 05:46:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1741268122.git.Jonathan.Santos@analog.com> <efdbddad734021f38a43cc9d101a22424e71dcef.1741268122.git.Jonathan.Santos@analog.com>
-In-Reply-To: <efdbddad734021f38a43cc9d101a22424e71dcef.1741268122.git.Jonathan.Santos@analog.com>
+References: <cover.1741268122.git.Jonathan.Santos@analog.com> <d055d21a2a1e4e1d64c457d38e3cf6630d4183bc.1741268122.git.Jonathan.Santos@analog.com>
+In-Reply-To: <d055d21a2a1e4e1d64c457d38e3cf6630d4183bc.1741268122.git.Jonathan.Santos@analog.com>
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 7 Mar 2025 14:45:21 +0100
-X-Gm-Features: AQ5f1JoTCLJx2G8kFEf7gAq4XDizdZoV-M-jLWjt5ZT4aPIJLHyyF3f0r8-4KBQ
-Message-ID: <CAMRc=McTdmgRhzN-tLdxvUXnxRVE7AiFDUJWPnnHC-pnfZc3uA@mail.gmail.com>
-Subject: Re: [PATCH v4 12/17] iio: adc: ad7768-1: Add GPIO controller support
+Date: Fri, 7 Mar 2025 14:46:25 +0100
+X-Gm-Features: AQ5f1JpJ3gRq2Xfa5Nj21IAupyoFyo1b_V79VVEOQLABEY8o2gr7Aj8D3DfetLY
+Message-ID: <CAMRc=MfKD4PNfZHz+BdVjUpCcZJ+eSjaNYYQkdVt1a4vo-2yzQ@mail.gmail.com>
+Subject: Re: [PATCH v4 04/17] dt-bindings: iio: adc: ad7768-1: Document GPIO controller
 To: Jonathan Santos <Jonathan.Santos@analog.com>
 Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de, Michael.Hennerich@analog.com, 
-	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org, 
-	lgirdwood@gmail.com, broonie@kernel.org, dlechner@baylibre.com, 
-	marcelo.schmitt1@gmail.com, jonath4nns@gmail.com
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, lars@metafoo.de, 
+	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linus.walleij@linaro.org, lgirdwood@gmail.com, broonie@kernel.org, 
+	dlechner@baylibre.com, marcelo.schmitt1@gmail.com, jonath4nns@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 6, 2025 at 10:03=E2=80=AFPM Jonathan Santos
+On Thu, Mar 6, 2025 at 10:01=E2=80=AFPM Jonathan Santos
 <Jonathan.Santos@analog.com> wrote:
 >
-> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> The AD7768-1 ADC exports four bidirectional GPIOs accessible
+> via register map.
 >
-> The AD7768-1 has the ability to control other local hardware (such as gai=
-n
-> stages),to power down other blocks in the signal chain, or read local
-> status signals over the SPI interface.
+> Document GPIO properties necessary to enable GPIO controller for this
+> device.
 >
-> Add direct mode conditional locks in the gpio callbacks to prevent regist=
-er
-> access when the device is in buffered mode.
->
-> This change exports the AD7768-1's four gpios and makes them accessible
-> at an upper layer.
->
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
-> Co-developed-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
 > ---
 
