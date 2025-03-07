@@ -1,71 +1,91 @@
-Return-Path: <devicetree+bounces-155425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499EDA56A49
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:25:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE6DA56A67
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:32:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8678E189B08B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:25:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88A221899119
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:32:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81BAD21B91D;
-	Fri,  7 Mar 2025 14:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6DEE21ABB6;
+	Fri,  7 Mar 2025 14:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nVao6tuI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Actd3/V4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B25A21B8FE;
-	Fri,  7 Mar 2025 14:25:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ADBA1547C0;
+	Fri,  7 Mar 2025 14:32:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741357511; cv=none; b=pI4vCbXnEJnnT/PGXk3WJbeNaHQJh9p75nW3K0TAGyx6QbzPC5D/WdT1fQPwvrwE3EHswakvFtpcbeUoe5UoDswAUrzdnH0P6iDGoqeE2UEFaDp1tBIKc82sAIfJZIM3FRe0i42D/bN7qHhXxCdmz1wwKIAMdEjUK5LfPhQF7v8=
+	t=1741357925; cv=none; b=P25fIOA4VBxzMFzVwKiueQlU5bO5QYI9NygpZ4ItMvLacTmibyNtqk7Wvt4ppV9J0HEuVhKxSr9fUZDrgZa4Yd3MMzHhnMe3UPyiXagtWPpFHYgaCsU2uL+BUnffVMYb1FM1sIOBa9ei55bFcMAXYR+VvWbUuANCLRUrXEiW+Mk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741357511; c=relaxed/simple;
-	bh=KDsgPCgOzgPDAzo4i3S+8MmS09X6FfWFRxch1f9mvno=;
+	s=arc-20240116; t=1741357925; c=relaxed/simple;
+	bh=D7PjqOAh9SKjXHiL9afXsgsvVJDJHo2uy8CQAes/kWc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KzdSBOwZw3fNlIM99eRB7nztvEwXF16eNc+eH80J9Eb6l2/8p/7H5OMm04BJ4HdRexE8jlrjWWuS4Qnnw3u1DQMkmWKgtLrDWUKktTpc6WEy8WKMnNs9ow8GXMsKaH2AznmsGmyGt+cKXIRQzumW7YPn5WpCtJMIFXou8eAfUkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVao6tuI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABB4EC4CED1;
-	Fri,  7 Mar 2025 14:25:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741357509;
-	bh=KDsgPCgOzgPDAzo4i3S+8MmS09X6FfWFRxch1f9mvno=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nVao6tuIM/7Bcq+XvIU35pqwTfLdO+d+o60dBldGxHj5JCWI8V6w4sDA7q4sGGfv6
-	 gnAIdQBIY1fZxM0iwRyPyOVht/UbTx4GzcdlUUN312lLnfcapZAAt3oieAOvyKAMEr
-	 XnGAh4MaSfhc3jrt4umQ6HhYuVgGfhMIzQyLQeMhnzlfLRP6blI7/v7yCqrjcJRhJe
-	 N6Vf5dbEk5hzSagBgO0OP8y5sEnFQEddxpBhUg9TRr6fctK1NX5Y/anxe6eFfvPve4
-	 BGvgCjFBJX39r9Zd6nWDc/6Uz59j64tqesoXti+JY2IDEpWPqGE0EGo7O6I9Lgsz29
-	 iCdSlngof+Zbw==
-Date: Fri, 7 Mar 2025 15:24:59 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Charan Teja Kalla <quic_charante@quicinc.com>
-Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
- path
-Message-ID: <Z8sBuzx6sGq24n0g@lpieralisi>
-References: <cover.1740753261.git.robin.murphy@arm.com>
- <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OgUB8jqtbKADklNkzz3BBlbhqZp6nvDlyu/00JJkK2beOS1SxVSs8Bu646ouwyXeDpIHl+KbgEaFCoe1h5l19nQmwQaDZo36yKmoK77IYeVDotMAu+3I6PtMV5n2eTnv5DsC52XFkwpY+8jnbEu8lONougIiX072VaL87njhIkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Actd3/V4; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2234bec7192so5365585ad.2;
+        Fri, 07 Mar 2025 06:32:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741357923; x=1741962723; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lkjFWxvpSWuoPGTgzoz3W9lo19IOJLxr0YDfumLq/hY=;
+        b=Actd3/V4BgTMljq6BWX7sw8oRWfKeFRDdAQKEKnXIoBRjmZdQ/t8xiaVrRure2a6UT
+         ftctRVbLd3Hnpo2naLRDyZQqXQ/vfzHLvJU3qLkg9V8s7iVXtHM5QjXFX+AwuoRaudV5
+         OyZNGn0/mUXyLWHTjBZf3M4MQPgy2HiWtaGoqlcZKc+uZNNOP/jFVbqETyFgn+zyuKGs
+         DkkDl8craKFK+LBXgHN6HGiLZ3SR3OCjWkTwqCm27qlmJ2tOAiCDFzvnK5zPxGdR7Xwb
+         TTTEZMw9PBkWazBgTKqY9Aw42bwtX1526VyOA+8TJY/5WYIKTHgBwfgzw3p+YgGK9WDD
+         zPew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741357923; x=1741962723;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lkjFWxvpSWuoPGTgzoz3W9lo19IOJLxr0YDfumLq/hY=;
+        b=jgf9Qdo4biNzWBoD+a3Lur+y8z65th1CXJGswxNLxuQl9a3uUuKLeCIHCyh5uKp+4N
+         MfCCYGVtNxuwff2lOSvY8pb83HB2eqI8oArH8H4Br4ViePqkjKfBJuwDgEQeiyhezj1o
+         4tXvrWXiOj03r81kC3m/VrwIDe06U3ZLp8Z/j/OAL7VkPj5OM1QK8zZ6IYBlUxnHvFRZ
+         wdVMqi8519EKgcR/3XD51XCKWOOMJkmcI3k9djA6s0G1HFVPwuHAFHlsUnZ8MoDM/3Tj
+         y4hUB1XvQBuNScVufETtd4gwoD4NJrbv5jOpTOFHbyfL4Vu9TnYgVR4gFouU5e5bsMwW
+         Mylg==
+X-Forwarded-Encrypted: i=1; AJvYcCU6x26alKCZob7Yfp0nFQDGH4Vk3w4vhH5UJkPZCjHMUONq+XHk5ndNI9c513z1SavFxfb3B58RrBMtww==@vger.kernel.org, AJvYcCUtq9shV7KzcYtZlluAcTklh/Ho422v3ivPaOv2sgit9HpPKEy0u+7JPzQ79R7QjgQH9f3T/4KTqWWq@vger.kernel.org, AJvYcCXdfWO/FXGlRAmMTgIOeQB1enFE5kVkaCBNjLSuGLJTityasH8A7n06hdzF7yUyq/vqp5Qp4WX3xm8xwKzl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxP/BuEWdWtchzQVQYzHHlhhg/yTlwtlTW6zYgG0TDIpkt/7Hc
+	IVuEHV+0l81NfRPHcJqniiqXVIokHAsghcwW5oiAuCW0e8c1uiHG
+X-Gm-Gg: ASbGncvs5bknk0/4qmCcBoq36XismmFeXh04QJnOnzIECsfgKJlziHUOcuYJiZpZ7+z
+	3UixuExcogxHeS2XJHWZB5kmPGI7fxSc9MPiHycUj2MVM03Fl8ZDAHFa+HpsJNZ/tC/2GpQSdiO
+	PAveGJ/yiMk+ud+MR6L9rJTyguyCDrvy/3e+stewQIQYbWQtzgiP6vGEbD4JdXJzmchFdOrGzWv
+	KFyiZs1XwZBDGPIfJNLA5sxykm4B9oEEOvex7iYcXScQL1l46+rp37HKLBz+DQ4X4T+gYv0/wwo
+	8HTW+zmV71L3XZFfJqtpNgsJaMoAJtSVg0ngxof7MMzEzZe1lGziDg==
+X-Google-Smtp-Source: AGHT+IEGhrQ335K3XW6S574DK86uaSTUMYHRtvp9Cj7tim0GA1sP3eT0MXM02+TNiSPz6pbU1kJPUA==
+X-Received: by 2002:a05:6a21:6d97:b0:1e1:e2d9:7f0a with SMTP id adf61e73a8af0-1f544c60385mr7121808637.34.1741357923419;
+        Fri, 07 Mar 2025 06:32:03 -0800 (PST)
+Received: from localhost ([2804:30c:1f21:4300:1cf6:c485:6555:b1c5])
+        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-af28126dc75sm2593446a12.50.2025.03.07.06.32.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Mar 2025 06:32:02 -0800 (PST)
+Date: Fri, 7 Mar 2025 11:32:54 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl, lgirdwood@gmail.com, broonie@kernel.org,
+	dlechner@baylibre.com, jonath4nns@gmail.com
+Subject: Re: [PATCH v4 11/17] iio: adc: ad7768-1: add regulator to control
+ VCM output
+Message-ID: <Z8sDlsOX0Elauabg@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1741268122.git.Jonathan.Santos@analog.com>
+ <40c586006b5cee0570ae577db2b58e6e7e36a6e6.1741268122.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,281 +94,284 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
+In-Reply-To: <40c586006b5cee0570ae577db2b58e6e7e36a6e6.1741268122.git.Jonathan.Santos@analog.com>
 
-On Fri, Feb 28, 2025 at 03:46:33PM +0000, Robin Murphy wrote:
-> In hindsight, there were some crucial subtleties overlooked when moving
-> {of,acpi}_dma_configure() to driver probe time to allow waiting for
-> IOMMU drivers with -EPROBE_DEFER, and these have become an
-> ever-increasing source of problems. The IOMMU API has some fundamental
-> assumptions that iommu_probe_device() is called for every device added
-> to the system, in the order in which they are added. Calling it in a
-> random order or not at all dependent on driver binding leads to
-> malformed groups, a potential lack of isolation for devices with no
-> driver, and all manner of unexpected concurrency and race conditions.
-> We've attempted to mitigate the latter with point-fix bodges like
-> iommu_probe_device_lock, but it's a losing battle and the time has come
-> to bite the bullet and address the true source of the problem instead.
+Looks ok. One minor commnet inline.
+
+On 03/06, Jonathan Santos wrote:
+> The VCM output voltage can be used as a common-mode voltage within the
+> amplifier preconditioning circuits external to the AD7768-1.
 > 
-> The crux of the matter is that the firmware parsing actually serves two
-> distinct purposes; one is identifying the IOMMU instance associated with
-> a device so we can check its availability, the second is actually
-> telling that instance about the relevant firmware-provided data for the
-> device. However the latter also depends on the former, and at the time
-> there was no good place to defer and retry that separately from the
-> availability check we also wanted for client driver probe.
+> This change allows the user to configure VCM output using the regulator
+> framework.
 > 
-> Nowadays, though, we have a proper notion of multiple IOMMU instances in
-> the core API itself, and each one gets a chance to probe its own devices
-> upon registration, so we can finally make that work as intended for
-> DT/IORT/VIOT platforms too. All we need is for iommu_probe_device() to
-> be able to run the iommu_fwspec machinery currently buried deep in the
-> wrong end of {of,acpi}_dma_configure(). Luckily it turns out to be
-> surprisingly straightforward to bootstrap this transformation by pretty
-> much just calling the same path twice. At client driver probe time,
-> dev->driver is obviously set; conversely at device_add(), or a
-> subsequent bus_iommu_probe(), any device waiting for an IOMMU really
-> should *not* have a driver already, so we can use that as a condition to
-> disambiguate the two cases, and avoid recursing back into the IOMMU core
-> at the wrong times.
-> 
-> Obviously this isn't the nicest thing, but for now it gives us a
-> functional baseline to then unpick the layers in between without many
-> more awkward cross-subsystem patches. There are some minor side-effects
-> like dma_range_map potentially being created earlier, and some debug
-> prints being repeated, but these aren't significantly detrimental. Let's
-> make things work first, then deal with making them nice.
-> 
-> With the basic flow finally in the right order again, the next step is
-> probably turning the bus->dma_configure paths inside-out, since all we
-> really need from bus code is its notion of which device and input ID(s)
-> to parse the common firmware properties with...
-> 
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com> # pci-driver.c
-> Acked-by: Rob Herring (Arm) <robh@kernel.org> # of/device.c
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+
+Acked-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+
 > ---
+> v4 Changes:
+> * Added iio_device_claim_direct_mode() to regulator callbacks to avoid register access
+>   while in buffered mode.
+> * Changed regulator name to "ad7768-1-vcm".
+> * When regulator enable is called, it will set the last voltage selector configured.
+> * Disabled regulator before configuring it.
+> * Adressed other nits.
 > 
-> v2:
->  - Comment bus driver changes for clarity
->  - Use dev->iommu as the now-robust replay condition
->  - Drop the device_iommu_mapped() checks in the firmware paths as they
->    weren't doing much - we can't replace probe_device_lock just yet...
->  
->  drivers/acpi/arm64/dma.c        |  5 +++++
->  drivers/acpi/scan.c             |  7 -------
->  drivers/amba/bus.c              |  3 ++-
->  drivers/base/platform.c         |  3 ++-
->  drivers/bus/fsl-mc/fsl-mc-bus.c |  3 ++-
->  drivers/cdx/cdx.c               |  3 ++-
->  drivers/iommu/iommu.c           | 24 +++++++++++++++++++++---
->  drivers/iommu/of_iommu.c        |  7 ++++++-
->  drivers/of/device.c             |  7 ++++++-
->  drivers/pci/pci-driver.c        |  3 ++-
->  10 files changed, 48 insertions(+), 17 deletions(-)
+> v3 Changes:
+> * Register VCM output via the regulator framework for improved flexibility
+>   and external integration.
 > 
-> diff --git a/drivers/acpi/arm64/dma.c b/drivers/acpi/arm64/dma.c
-> index 52b2abf88689..f30f138352b7 100644
-> --- a/drivers/acpi/arm64/dma.c
-> +++ b/drivers/acpi/arm64/dma.c
-> @@ -26,6 +26,11 @@ void acpi_arch_dma_setup(struct device *dev)
->  	else
->  		end = (1ULL << 32) - 1;
+> v2 Changes:
+> * VCM output support is now defined by a devicetree property, instead of 
+>   and IIO attribute.
+> ---
+>  drivers/iio/adc/Kconfig    |   1 +
+>  drivers/iio/adc/ad7768-1.c | 181 +++++++++++++++++++++++++++++++++++++
+>  2 files changed, 182 insertions(+)
+> 
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index a2fdb7e03a66..d8f2ed477ba7 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -277,6 +277,7 @@ config AD7766
+>  config AD7768_1
+>  	tristate "Analog Devices AD7768-1 ADC driver"
+>  	depends on SPI
+> +	select REGULATOR
+>  	select REGMAP_SPI
+>  	select IIO_BUFFER
+>  	select IIO_TRIGGER
+> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> index e88e9431bb7a..2a6317f5b582 100644
+> --- a/drivers/iio/adc/ad7768-1.c
+> +++ b/drivers/iio/adc/ad7768-1.c
+> @@ -12,8 +12,10 @@
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+> +#include <linux/of.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/regulator/driver.h>
+>  #include <linux/sysfs.h>
+>  #include <linux/spi/spi.h>
 >  
-> +	if (dev->dma_range_map) {
-> +		dev_dbg(dev, "dma_range_map already set\n");
-> +		return;
-> +	}
+> @@ -80,9 +82,15 @@
+>  #define AD7768_CONV_MODE_MSK		GENMASK(2, 0)
+>  #define AD7768_CONV_MODE(x)		FIELD_PREP(AD7768_CONV_MODE_MSK, x)
+>  
+> +/* AD7768_REG_ANALOG2 */
+> +#define AD7768_REG_ANALOG2_VCM_MSK	GENMASK(2, 0)
+> +#define AD7768_REG_ANALOG2_VCM(x)	FIELD_PREP(AD7768_REG_ANALOG2_VCM_MSK, x)
+
+Should we enforce macro argument evaluation here?
+#define AD7768_REG_ANALOG2_VCM(x)	FIELD_PREP(AD7768_REG_ANALOG2_VCM_MSK, (x))
+
 > +
-
-Why are we checking that dev->dma_range_map exists here rather than
-at function entry ? Is that because we want to run the previous code
-for some reasons even if dev->dma_range_map is already set ?
-
-Just noticed, the OF counterpart does not seem to take the same
-approach, so I am just flagging this up if it matters at all.
-
-Other than that, for acpi/arm64:
-
-Reviewed-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-
->  	ret = acpi_dma_get_range(dev, &map);
->  	if (!ret && map) {
->  		end = dma_range_map_max(map);
-> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-> index 9f4efa8f75a6..fb1fe9f3b1a3 100644
-> --- a/drivers/acpi/scan.c
-> +++ b/drivers/acpi/scan.c
-> @@ -1632,13 +1632,6 @@ static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
->  		err = viot_iommu_configure(dev);
->  	mutex_unlock(&iommu_probe_device_lock);
+>  #define AD7768_RD_FLAG_MSK(x)		(BIT(6) | ((x) & 0x3F))
+>  #define AD7768_WR_FLAG_MSK(x)		((x) & 0x3F)
 >  
-> -	/*
-> -	 * If we have reason to believe the IOMMU driver missed the initial
-> -	 * iommu_probe_device() call for dev, replay it to get things in order.
-> -	 */
-> -	if (!err && dev->bus)
-> -		err = iommu_probe_device(dev);
-> -
->  	return err;
+> +#define AD7768_VCM_OFF			0x07
+> +
+>  enum ad7768_conv_mode {
+>  	AD7768_CONTINUOUS,
+>  	AD7768_ONE_SHOT,
+> @@ -160,6 +168,8 @@ struct ad7768_state {
+>  	struct regmap *regmap;
+>  	struct regmap *regmap24;
+>  	struct regulator *vref;
+> +	struct regulator_dev *vcm_rdev;
+> +	unsigned int vcm_output_sel;
+>  	struct clk *mclk;
+>  	unsigned int mclk_freq;
+>  	unsigned int samp_freq;
+> @@ -644,6 +654,172 @@ static int ad7768_triggered_buffer_alloc(struct iio_dev *indio_dev)
+>  					       &ad7768_buffer_ops);
 >  }
 >  
-> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
-> index 8ef259b4d037..71482d639a6d 100644
-> --- a/drivers/amba/bus.c
-> +++ b/drivers/amba/bus.c
-> @@ -364,7 +364,8 @@ static int amba_dma_configure(struct device *dev)
->  		ret = acpi_dma_configure(dev, attr);
->  	}
->  
-> -	if (!ret && !drv->driver_managed_dma) {
-> +	/* @drv may not be valid when we're called from the IOMMU layer */
-> +	if (!ret && dev->driver && !drv->driver_managed_dma) {
->  		ret = iommu_device_use_default_domain(dev);
->  		if (ret)
->  			arch_teardown_dma_ops(dev);
-> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
-> index 6f2a33722c52..1813cfd0c4bd 100644
-> --- a/drivers/base/platform.c
-> +++ b/drivers/base/platform.c
-> @@ -1451,7 +1451,8 @@ static int platform_dma_configure(struct device *dev)
->  		attr = acpi_get_dma_attr(to_acpi_device_node(fwnode));
->  		ret = acpi_dma_configure(dev, attr);
->  	}
-> -	if (ret || drv->driver_managed_dma)
-> +	/* @drv may not be valid when we're called from the IOMMU layer */
-> +	if (ret || !dev->driver || drv->driver_managed_dma)
->  		return ret;
->  
->  	ret = iommu_device_use_default_domain(dev);
-> diff --git a/drivers/bus/fsl-mc/fsl-mc-bus.c b/drivers/bus/fsl-mc/fsl-mc-bus.c
-> index d1f3d327ddd1..a8be8cf246fb 100644
-> --- a/drivers/bus/fsl-mc/fsl-mc-bus.c
-> +++ b/drivers/bus/fsl-mc/fsl-mc-bus.c
-> @@ -153,7 +153,8 @@ static int fsl_mc_dma_configure(struct device *dev)
->  	else
->  		ret = acpi_dma_configure_id(dev, DEV_DMA_COHERENT, &input_id);
->  
-> -	if (!ret && !mc_drv->driver_managed_dma) {
-> +	/* @mc_drv may not be valid when we're called from the IOMMU layer */
-> +	if (!ret && dev->driver && !mc_drv->driver_managed_dma) {
->  		ret = iommu_device_use_default_domain(dev);
->  		if (ret)
->  			arch_teardown_dma_ops(dev);
-> diff --git a/drivers/cdx/cdx.c b/drivers/cdx/cdx.c
-> index c573ed2ee71a..780fb0c4adba 100644
-> --- a/drivers/cdx/cdx.c
-> +++ b/drivers/cdx/cdx.c
-> @@ -360,7 +360,8 @@ static int cdx_dma_configure(struct device *dev)
->  		return ret;
->  	}
->  
-> -	if (!ret && !cdx_drv->driver_managed_dma) {
-> +	/* @cdx_drv may not be valid when we're called from the IOMMU layer */
-> +	if (!ret && dev->driver && !cdx_drv->driver_managed_dma) {
->  		ret = iommu_device_use_default_domain(dev);
->  		if (ret)
->  			arch_teardown_dma_ops(dev);
-> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-> index a3b45b84f42b..1cec7074367a 100644
-> --- a/drivers/iommu/iommu.c
-> +++ b/drivers/iommu/iommu.c
-> @@ -414,9 +414,21 @@ static int iommu_init_device(struct device *dev)
->  	if (!dev_iommu_get(dev))
->  		return -ENOMEM;
->  	/*
-> -	 * For FDT-based systems and ACPI IORT/VIOT, drivers register IOMMU
-> -	 * instances with non-NULL fwnodes, and client devices should have been
-> -	 * identified with a fwspec by this point. Otherwise, we can currently
-> +	 * For FDT-based systems and ACPI IORT/VIOT, the common firmware parsing
-> +	 * is buried in the bus dma_configure path. Properly unpicking that is
-> +	 * still a big job, so for now just invoke the whole thing. The device
-> +	 * already having a driver bound means dma_configure has already run and
-> +	 * either found no IOMMU to wait for, or we're in its replay call right
-> +	 * now, so either way there's no point calling it again.
-> +	 */
-> +	if (!dev->driver && dev->bus->dma_configure) {
-> +		mutex_unlock(&iommu_probe_device_lock);
-> +		dev->bus->dma_configure(dev);
-> +		mutex_lock(&iommu_probe_device_lock);
-> +	}
-> +	/*
-> +	 * At this point, relevant devices either now have a fwspec which will
-> +	 * match ops registered with a non-NULL fwnode, or we can reasonably
->  	 * assume that only one of Intel, AMD, s390, PAMU or legacy SMMUv2 can
->  	 * be present, and that any of their registered instances has suitable
->  	 * ops for probing, and thus cheekily co-opt the same mechanism.
-> @@ -426,6 +438,12 @@ static int iommu_init_device(struct device *dev)
->  		ret = -ENODEV;
->  		goto err_free;
->  	}
-> +	/*
-> +	 * And if we do now see any replay calls, they would indicate someone
-> +	 * misusing the dma_configure path outside bus code.
-> +	 */
-> +	if (dev->driver)
-> +		dev_WARN(dev, "late IOMMU probe at driver bind, something fishy here!\n");
->  
->  	if (!try_module_get(ops->owner)) {
->  		ret = -EINVAL;
-> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> index e10a68b5ffde..6b989a62def2 100644
-> --- a/drivers/iommu/of_iommu.c
-> +++ b/drivers/iommu/of_iommu.c
-> @@ -155,7 +155,12 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
->  		dev_iommu_free(dev);
->  	mutex_unlock(&iommu_probe_device_lock);
->  
-> -	if (!err && dev->bus)
-> +	/*
-> +	 * If we're not on the iommu_probe_device() path (as indicated by the
-> +	 * initial dev->iommu) then try to simulate it. This should no longer
-> +	 * happen unless of_dma_configure() is being misused outside bus code.
-> +	 */
-> +	if (!err && dev->bus && !dev_iommu_present)
->  		err = iommu_probe_device(dev);
->  
->  	if (err && err != -EPROBE_DEFER)
-> diff --git a/drivers/of/device.c b/drivers/of/device.c
-> index edf3be197265..5053e5d532cc 100644
-> --- a/drivers/of/device.c
-> +++ b/drivers/of/device.c
-> @@ -99,6 +99,11 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
->  	bool coherent, set_map = false;
->  	int ret;
->  
-> +	if (dev->dma_range_map) {
-> +		dev_dbg(dev, "dma_range_map already set\n");
-> +		goto skip_map;
-> +	}
+> +static int ad7768_vcm_enable(struct regulator_dev *rdev)
+> +{
+> +	struct iio_dev *indio_dev = rdev_get_drvdata(rdev);
+> +	struct ad7768_state *st = iio_priv(indio_dev);
+> +	int ret, regval;
 > +
->  	if (np == dev->of_node)
->  		bus_np = __of_get_dma_parent(np);
->  	else
-> @@ -119,7 +124,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
->  		end = dma_range_map_max(map);
->  		set_map = true;
->  	}
-> -
-> +skip_map:
->  	/*
->  	 * If @dev is expected to be DMA-capable then the bus code that created
->  	 * it should have initialised its dma_mask pointer by this point. For
-> diff --git a/drivers/pci/pci-driver.c b/drivers/pci/pci-driver.c
-> index f57ea36d125d..4468b7327cab 100644
-> --- a/drivers/pci/pci-driver.c
-> +++ b/drivers/pci/pci-driver.c
-> @@ -1653,7 +1653,8 @@ static int pci_dma_configure(struct device *dev)
+> +	if (!indio_dev)
+> +		return -EINVAL;
+> +
+> +	ret = iio_device_claim_direct_mode(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* To enable, set the last selected output */
+> +	regval = AD7768_REG_ANALOG2_VCM(st->vcm_output_sel + 1);
+> +	ret = regmap_update_bits(st->regmap, AD7768_REG_ANALOG2,
+> +				 AD7768_REG_ANALOG2_VCM_MSK, regval);
+> +	iio_device_release_direct_mode(indio_dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7768_vcm_disable(struct regulator_dev *rdev)
+> +{
+> +	struct iio_dev *indio_dev = rdev_get_drvdata(rdev);
+> +	struct ad7768_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (!indio_dev)
+> +		return -EINVAL;
+> +
+> +	ret = iio_device_claim_direct_mode(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(st->regmap, AD7768_REG_ANALOG2,
+> +				 AD7768_REG_ANALOG2_VCM_MSK, AD7768_VCM_OFF);
+> +	iio_device_release_direct_mode(indio_dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7768_vcm_is_enabled(struct regulator_dev *rdev)
+> +{
+> +	struct iio_dev *indio_dev = rdev_get_drvdata(rdev);
+> +	struct ad7768_state *st = iio_priv(indio_dev);
+> +	int ret, val;
+> +
+> +	if (!indio_dev)
+> +		return -EINVAL;
+> +
+> +	ret = iio_device_claim_direct_mode(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(st->regmap, AD7768_REG_ANALOG2, &val);
+> +	if (ret)
+> +		goto err_release;
+> +
+> +	ret = FIELD_GET(AD7768_REG_ANALOG2_VCM_MSK, val) != AD7768_VCM_OFF;
+> +err_release:
+> +	iio_device_release_direct_mode(indio_dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7768_set_voltage_sel(struct regulator_dev *rdev,
+> +				  unsigned int selector)
+> +{
+> +	unsigned int regval = AD7768_REG_ANALOG2_VCM(selector + 1);
+> +	struct iio_dev *indio_dev = rdev_get_drvdata(rdev);
+> +	struct ad7768_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (!indio_dev)
+> +		return -EINVAL;
+> +
+> +	ret = iio_device_claim_direct_mode(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(st->regmap, AD7768_REG_ANALOG2,
+> +				 AD7768_REG_ANALOG2_VCM_MSK, regval);
+> +	iio_device_release_direct_mode(indio_dev);
+> +	st->vcm_output_sel = selector;
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7768_get_voltage_sel(struct regulator_dev *rdev)
+> +{
+> +	struct iio_dev *indio_dev = rdev_get_drvdata(rdev);
+> +	struct ad7768_state *st = iio_priv(indio_dev);
+> +	int ret, val;
+> +
+> +	if (!indio_dev)
+> +		return -EINVAL;
+> +
+> +	ret = iio_device_claim_direct_mode(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(st->regmap, AD7768_REG_ANALOG2, &val);
+> +	if (ret)
+> +		goto err_release;
+> +
+> +	val = FIELD_GET(AD7768_REG_ANALOG2_VCM_MSK, val);
+> +	ret = clamp(val, 1, (int)rdev->desc->n_voltages) - 1;
+> +err_release:
+> +	iio_device_release_direct_mode(indio_dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct regulator_ops vcm_regulator_ops = {
+> +	.enable = ad7768_vcm_enable,
+> +	.disable = ad7768_vcm_disable,
+> +	.is_enabled = ad7768_vcm_is_enabled,
+> +	.list_voltage = regulator_list_voltage_table,
+> +	.set_voltage_sel = ad7768_set_voltage_sel,
+> +	.get_voltage_sel = ad7768_get_voltage_sel,
+> +};
+> +
+> +static const unsigned int vcm_voltage_table[] = {
+> +	2500000,
+> +	2050000,
+> +	1650000,
+> +	1900000,
+> +	1100000,
+> +	900000,
+> +};
+> +
+> +static const struct regulator_desc vcm_desc = {
+> +	.name = "ad7768-1-vcm",
+> +	.of_match = of_match_ptr("vcm-output"),
+> +	.regulators_node = of_match_ptr("regulators"),
+> +	.n_voltages = ARRAY_SIZE(vcm_voltage_table),
+> +	.volt_table = vcm_voltage_table,
+> +	.ops = &vcm_regulator_ops,
+> +	.type = REGULATOR_VOLTAGE,
+> +	.owner = THIS_MODULE,
+> +};
+> +
+> +static int ad7768_register_regulators(struct device *dev, struct ad7768_state *st,
+> +				      struct iio_dev *indio_dev)
+> +{
+> +	struct regulator_config config = {
+> +		.dev = dev,
+> +		.driver_data = indio_dev,
+> +	};
+> +	int ret;
+> +
+> +	/* Disable the regulator before registering it */
+> +	ret = regmap_update_bits(st->regmap, AD7768_REG_ANALOG2,
+> +				 AD7768_REG_ANALOG2_VCM_MSK, AD7768_VCM_OFF);
+> +	if (ret)
+> +		return -EINVAL;
+> +
+> +	st->vcm_rdev = devm_regulator_register(dev, &vcm_desc, &config);
+> +	if (IS_ERR(st->vcm_rdev))
+> +		return dev_err_probe(dev, PTR_ERR(st->vcm_rdev),
+> +				     "failed to register VCM regulator\n");
+> +
+> +	return 0;
+> +}
+> +
+>  static int ad7768_probe(struct spi_device *spi)
+>  {
+>  	struct ad7768_state *st;
+> @@ -708,6 +884,11 @@ static int ad7768_probe(struct spi_device *spi)
+>  	indio_dev->info = &ad7768_info;
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
 >  
->  	pci_put_host_bridge_device(bridge);
->  
-> -	if (!ret && !driver->driver_managed_dma) {
-> +	/* @driver may not be valid when we're called from the IOMMU layer */
-> +	if (!ret && dev->driver && !driver->driver_managed_dma) {
->  		ret = iommu_device_use_default_domain(dev);
->  		if (ret)
->  			arch_teardown_dma_ops(dev);
+> +	/* Register VCM output regulator */
+> +	ret = ad7768_register_regulators(&spi->dev, st, indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+>  	ret = ad7768_setup(st);
+>  	if (ret < 0) {
+>  		dev_err(&spi->dev, "AD7768 setup failed\n");
 > -- 
-> 2.39.2.101.g768bb238c484.dirty
+> 2.34.1
 > 
 
