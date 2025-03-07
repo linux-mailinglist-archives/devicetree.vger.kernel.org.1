@@ -1,61 +1,67 @@
-Return-Path: <devicetree+bounces-155283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95098A561F2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:41:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748C7A56208
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C140E175309
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:41:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BFC93B24CC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD69E1A83E2;
-	Fri,  7 Mar 2025 07:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D3F1A9B3E;
+	Fri,  7 Mar 2025 07:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L9uZgIlX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ga9J963q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1EF618B476;
-	Fri,  7 Mar 2025 07:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DD7E1A4E98;
+	Fri,  7 Mar 2025 07:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741333293; cv=none; b=u3DHbrObsGT1paONNmsmr59QzWlQ744glHrwfGtYoQ5pzr1bdkn98v2WWZKvNc7DDOgF9aIgRY+2uJMuAc0g4fuvFMZTgLROs6+xGsuHQyM7Yt+JQWU19uMAXbUu9bB2d+lZv/mUTTsTiEnFbEqS8WcgPZqgYGjWuTRQPhlgpFo=
+	t=1741333918; cv=none; b=gF8/fLVUlsYl+qBgeWjezkxuNOeU4f9u47vDh7C0FZnvGx+Y8MFBuHGXaL2/oNWxHu/EwEIVZR0SYq5RAOXYkRsK+rlFqvS0B7iVItpnrRKS2N7FaB44+R1vci2Avu04m0L6WwqG4y4O5ntqfiEAf659FbM65frWb+8HlCiIt08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741333293; c=relaxed/simple;
-	bh=bF4mHFm8U4if18/YMhPJOe0mEyH61C7WCg62Scl77Zk=;
+	s=arc-20240116; t=1741333918; c=relaxed/simple;
+	bh=ieDYzfj//1cDvOJNqapCIuJLLqt1QzcZn23Zs1tsHJE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qjpmJKk+mMFfaSDwGyrmK8UhY8HSh7EDvgY6oHftpuPgc5YHpeCw9jMnJmx2VQ0+7XPBXHc7B2y5fvZqNEBgG9itf0Ddvhmdee8m4kE+MfwsfO0TlwO5h4pP3jNHEsXsSHVWQuR5U5ymB/s0sXKel930U3RnT14SS6nWiAH7ZF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L9uZgIlX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA816C4CEE3;
-	Fri,  7 Mar 2025 07:41:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NhwylaFTEXihuSmJElX1tbFOIysjDpXMgnRU4ZZgUUui7i2hu67PUh4Fc9HydlpTXOe7gPluO2ld2YmIoCXypnSPz7lPB++PYpaC9A0fDAYq0N1T+u3XLYu7baJ+hfcBatkGG3SgWD52XBKAIA8V29dZyKvXZ81bF+A3KPcVX7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ga9J963q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04BCAC4CEE2;
+	Fri,  7 Mar 2025 07:51:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741333293;
-	bh=bF4mHFm8U4if18/YMhPJOe0mEyH61C7WCg62Scl77Zk=;
+	s=k20201202; t=1741333917;
+	bh=ieDYzfj//1cDvOJNqapCIuJLLqt1QzcZn23Zs1tsHJE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L9uZgIlXLqnJo2uw3DIO3ns8wZj+4j/ii84D6nl2S4GBYtIj4MjIDSFEwm5O7CU/r
-	 GEGSe/s3pDrwVduFkj/QQ3lFydgrpCtm8GSqsjp6PNy53ePPAU7y9ry5fPdsJ0lR/v
-	 CuEVEUS4OinFeaEbljbYWAEUy98q3CkdeBrRAJQjk2FIVcHUoJ5tZOVo0BvV00il0e
-	 CH1RC/W7l9I2/MJJp0dxSy/roJKTfUdkyhCh3RxA90u7dEZiIUvVYZv5OQ+ewwAXgl
-	 kgIjafzCTI4Q6D95Y6qVSryy3dHrcYCj7JzljY73jYIKPKfIlWGe5bgSQtN4mjwmM4
-	 hrY4G743ZdEiw==
-Date: Fri, 7 Mar 2025 08:41:28 +0100
+	b=ga9J963q3jHOvwg8Bwp0RNJuOWzcccUyRJWI2xTjYAg5QED3WlCMzuoONL6CE4NrB
+	 RifjplPbC03fT8ktbrWoyz249WfmVfgjRf3O6UrugHTkXn4sixProkryssCrhdQQaj
+	 8pKZLeYqnwDxdhgyaCyqdM6MNoIo/iexGkKUHjYp81LfeILY6TGNMXar+Tytzwb4dR
+	 bX2ikQ8Y6wSJpiOCLZ1M8IuOfU71Cq1GV4F6Unfiza/aWF3U+smLBCRHIYplZoc8l7
+	 IS/GauBEpOHoIXSulE7RUTkl2/MUcNBUQIj+OEuVarAgNPfq9mWkGRvQ8CNo3K7kyE
+	 36uHSDM3ikbDw==
+Date: Fri, 7 Mar 2025 08:51:54 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Guangjie Song <guangjie.song@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH 12/13] dt-bindings: power: mediatek: Add new MT8196 power
- domain
-Message-ID: <20250307-groovy-opalescent-spoonbill-cb569e@krzk-bin>
-References: <20250307034454.12243-1-guangjie.song@mediatek.com>
- <20250307034454.12243-13-guangjie.song@mediatek.com>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
+	Gerald Loacker <gerald.loacker@wolfvision.net>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Kever Yang <kever.yang@rock-chips.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Paul Kocialkowski <paulk@sys-base.io>, Alexander Shiyan <eagle.alexander923@gmail.com>, 
+	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v5 03/11] media: dt-bindings: media: add bindings for
+ rockchip rk3568 vicap
+Message-ID: <20250307-pink-dalmatian-of-kindness-f87ad2@krzk-bin>
+References: <20250306-v6-8-topic-rk3568-vicap-v5-0-f02152534f3c@wolfvision.net>
+ <20250306-v6-8-topic-rk3568-vicap-v5-3-f02152534f3c@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,141 +70,139 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250307034454.12243-13-guangjie.song@mediatek.com>
+In-Reply-To: <20250306-v6-8-topic-rk3568-vicap-v5-3-f02152534f3c@wolfvision.net>
 
-On Fri, Mar 07, 2025 at 11:44:36AM +0800, Guangjie Song wrote:
-> Add the binding documentation for power domain on MediaTek MT8196.
+On Thu, Mar 06, 2025 at 05:56:04PM +0100, Michael Riesch wrote:
+> Add documentation for the Rockchip RK3568 Video Capture (VICAP) unit.
 > 
-> Signed-off-by: Guangjie Song <guangjie.song@mediatek.com>
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+
+subject: only one media prefix, the first
+
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
 > ---
->  .../mediatek,mt8196-power-controller.yaml     | 74 +++++++++++++++++++
->  include/dt-bindings/power/mt8196-power.h      | 57 ++++++++++++++
-
-
-You keep sending multiple patchsets and none of them are tested.
-
-
->  2 files changed, 131 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/mediatek,mt8196-power-controller.yaml
->  create mode 100644 include/dt-bindings/power/mt8196-power.h
-
-Comments from other patches apply.
-
+>  .../bindings/media/rockchip,rk3568-vicap.yaml      | 169 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 170 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/mediatek,mt8196-power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,mt8196-power-controller.yaml
-> new file mode 100644
-> index 000000000000..6c2867b25967
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/mediatek,mt8196-power-controller.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/mediatek,mt8196-power-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek MT8196 Power Domains Controller
-> +
-> +maintainers:
-> +  - Guangjie Song <guangjie.song@mediatek.com>
-> +
-> +description: |
-> +  Mediatek processors include support for multiple power domains which can be
-> +  powered up/down by software based on different application scenes to save power.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^power-controller(@[0-9a-f]+)?$'
 
+...
 
-How unit address can be optional?
-
-> +
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8196-scpsys
-> +      - mediatek,mt8196-hfrpsys
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    description: Address range of the power controller.
-
-No, look how other bindings do it.
-
-> +
 > +  clocks:
-> +    description: |
-
-Look at other bindings.
-
-> +      A number of phandles to clocks that need to be enabled during domain
-> +      power-up sequencing.
-
-Look at other bindings.
-
+> +    items:
+> +      - description: ACLK
+> +      - description: HCLK
+> +      - description: DCLK
+> +      - description: ICLK
 > +
 > +  clock-names:
-> +    description: |
-> +      List of names of clock.
+> +    items:
+> +      - const: aclk
+> +      - const: hclk
+> +      - const: dclk
+> +      - const: iclk
 > +
-> +  domain-supply:
-> +    description: domain regulator supply.
-> +
-> +  spm:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to the device containing the spm register range.
-> +
-> +  mmpc:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to the device containing the mmpc register range.
-> +
-> +  vote-regmap:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to the device containing the vote register range.
-> +
-> +  mm-vote-regmap:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to the device containing the mm-vote register range.
+> +  rockchip,cif-clk-delaynum:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 127
+> +    description:
+> +      Delay the DVP path clock input to align the sampling phase, only valid
+> +      in dual edge sampling mode. Delay is zero by default and can be adjusted
+> +      optionally.
 
-None of these are correct.
+default: 0
+
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: ARST
+> +      - description: HRST
+> +      - description: DRST
+> +      - description: PRST
+> +      - description: IRST
+> +
+> +  reset-names:
+> +    items:
+> +      - const: arst
+> +      - const: hrst
+> +      - const: drst
+> +      - const: prst
+> +      - const: irst
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle to general register file used for video input block control.
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: The digital video port (DVP, a parallel video interface).
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-type:
+> +                enum: [5, 6]
+> +
+> +            required:
+> +              - bus-type
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Internal port connected to a MIPI CSI-2 host.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+
+Hm, does it actually work? graph/port does not allow any other
+properties. You should use graph/port-base and probably still narrow
+lanes for both of port@0 and port@1.
+
 
 > +
 > +required:
 > +  - compatible
-
-That's just incomplete.
-
-This binding is really incomplete and with multiple issues. Considering
-this was never tested, please first consult some internal folks to do
-proper internal review.
-
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - ports
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/power/mt8196-power.h>
+> +    #include <dt-bindings/clock/rk3568-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/rk3568-power.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
 > +
-> +    scpsys: power-controller@1c004000 {
-> +      compatible = "mediatek,mt8196-scpsys", "syscon";
-> +      reg = <0 0x1c004000 0 0x1000>;
-> +      #power-domain-cells = <1>;
-> +      spm = <&scpsys_bus>;
-> +      vote-regmap = <&vote>;
-> +    };
-> diff --git a/include/dt-bindings/power/mt8196-power.h b/include/dt-bindings/power/mt8196-power.h
-> new file mode 100644
-> index 000000000000..b0db89cc435d
-> --- /dev/null
-> +++ b/include/dt-bindings/power/mt8196-power.h
-> @@ -0,0 +1,57 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +/*
-> + * Copyright (c) 2023 MediaTek Inc.
+> +    parent {
 
-We have 2025.
+soc {
+
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
 
 Best regards,
 Krzysztof
