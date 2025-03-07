@@ -1,141 +1,145 @@
-Return-Path: <devicetree+bounces-155376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3DC3A56804
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:41:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C87F4A5680D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:44:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECDAD177641
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 12:41:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 203C67A7E1D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 12:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E6C219307;
-	Fri,  7 Mar 2025 12:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED99F219312;
+	Fri,  7 Mar 2025 12:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z9FcE8v1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jxh0/UOm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421DE2192F6;
-	Fri,  7 Mar 2025 12:41:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C044219310;
+	Fri,  7 Mar 2025 12:44:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741351304; cv=none; b=Zik28Jiu+OM33jvZgUo6sFrBq/ZG+tYtEyha5NjvGPcRcJzhZj4bcVCpRHSK5gAI4NzbaiwchcuQSo/H83PqG4H9IEOdixpNoMNLCFEx+BiNpSa90P4sL1dFGemTAxXuKf6i2o3FWd5heISr+W/DplMFpW740a2c3QaCZnA53Ao=
+	t=1741351462; cv=none; b=TfvCV7TbZRcT+/Knzp2pw1/RSHbng/soRDKgk2hRdPsjqf20kNms6s9KR279XSVXHlsK392I177MEXi3NWcTzQ6LO6ruDY0+XS/WlkWx8lD0tGXVWF5bQMiW0qRld5gNbclUok3p2yM92vg8VoTURkNN08yJB/IAJkbqLSqkduc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741351304; c=relaxed/simple;
-	bh=l2rzz0wip4MQkGxJ5wsAg/4zacNmQ7VcCbwkXPm1c/U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AjEY2FbQQlBR8/nGjhMdCnf7wG26nLfJHjiDuJ9DaZa7j1og5oH3ojf6EYXwJquU+nisPTbZhCjSOlcYWF0Koo4bv9JkcwlMyHoZ2pM6zsGg5AYhlVkz1nlx36DGBc2cmMo2Q/DIktTtUfa7AeDO4nIXk5jRxsXePwwzDGOW6GA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z9FcE8v1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C07DC4CED1;
-	Fri,  7 Mar 2025 12:41:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741351303;
-	bh=l2rzz0wip4MQkGxJ5wsAg/4zacNmQ7VcCbwkXPm1c/U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Z9FcE8v1NMCcmi0cp8tpLTenryP4/jT5o6FSKGll/qlYuma26qdp1LDBGQqbu6Kch
-	 CPNRiE2bfjzocpqauwdGXz2OhFM9d8GJTVAAFGl6SeWuiGJVazF0pKGO0gTvCZmozE
-	 tEGRKyuErEiBgMklP7Wo7lNGX9wWAbvXWonBCFyOR+/z/otvm5lqFDl8ZfW2nGf09c
-	 J8pHlKdZE1aX+7Xjoy43mKmh2cJi7C9Y/m0iPDJGkTz8pCqqA9PRUjDaGkCk+/0PSb
-	 mRP40MPq2ZL2el9v81znEyDOBM04kQR83klhzE2asTChpJ2vRbzDOu8EDDb8RchsaJ
-	 tiOLXTIsA7r1A==
-Message-ID: <f9779027-63cf-4cb7-8399-1f3f1843c900@kernel.org>
-Date: Fri, 7 Mar 2025 13:41:38 +0100
+	s=arc-20240116; t=1741351462; c=relaxed/simple;
+	bh=pEgUfTgW2S7gBugBF/6PSUkopxJLG2pTgy1gx153wqs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E6HQdhFYy1+SaFrNnT3O8YSUMuEwQ0ql4Qd8JoVKYGBL0ZLGee0vNXrAB4o3OpkSU4PswJplKgeGvWxk1DNdkM//JkFvo7J67BU1MXDTOj21WigUmInY/oNyDh2Icz8CLb8QYqRm7Nel5Q4GP+yMvKhVV9vooGZg0L3zy05fON0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jxh0/UOm; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ff85fec403so510748a91.1;
+        Fri, 07 Mar 2025 04:44:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741351461; x=1741956261; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iwzKC+BoRKyvxXzUfOtE+LFJN29dSh3BAY3ttGocc2c=;
+        b=Jxh0/UOmevRHjzzZjYWsRHvv1L2i/OxlhCT7byC/Kp5gZG7WKsN4MY0KpwU8hZxQIg
+         zY30/AcVL89cC14u1NdP4OeUujNUHUYFTLymqTVMhugZNw8mwKahRkmaoJqcLKjsPUNm
+         6s5WkVCw40kAdqMZX1r2MNhFoNJR2oANbF9iLYOiqJp+Y7u87cqpURqIm9tWHFMHxOk2
+         dfq0OMyqXfU7cv29dfzh9xN7mAinZAgl8O8bO67VYOlg0tsLrGkhwzpQtG00bKwQi+3k
+         o+E0y4Ng3HSzh+zoomJJOEyMM5As2iZgBzdh4lrgI4CUv6bvjJCC4fankflUYwlgB9qM
+         Yswg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741351461; x=1741956261;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iwzKC+BoRKyvxXzUfOtE+LFJN29dSh3BAY3ttGocc2c=;
+        b=oWqDsRHLHFatFeUHJn9hxzcLg/cYpuCRSezwgDXp/Ra+t/g54Ou+qK9EBp8UzB3uvU
+         RNOiGFGWm+VxeMZKaSMOydN7c0unGXkUxHPc0PdSg1Glf/KGErcxeXGfgBYmH9ISdzBY
+         +GD4j8sJxeImonWiQoME4tcvBcPcLKe+7GhypnzE3ulvk22t4flU4fHciUxmiBj4/px0
+         0ddzfuxWeKPwrHMoNNsQJaSvffnoOeNzvwP2mFfEntzrOecEtge6rK6ftG93sdDofQTJ
+         m//M9DUs92HoDxaEeXGjfQ9RsuYMpg2Dmr0WgcGhBWC2h4MfhEeVcRj3ODpwhLjxRTHC
+         xRWw==
+X-Forwarded-Encrypted: i=1; AJvYcCUn3oRIWvZepOE/gXf/Wpl2NOhqImRXdsewcPC1RpA1CmIltZe8pRTsxh543a6p5JSM2WJKq+YyZyyDpw==@vger.kernel.org, AJvYcCXWgtvjqfDPamsCJffaPzQSfHWAHSVrnH8hg2eHLm4UpvNhxjs69t0EpdNrgPYcaOJlHalTlmuG2dwdplUZ@vger.kernel.org, AJvYcCXfGxrjameF/s9Fc6aC0MLsV8nImEbTqTlMzbWYuz9D/pr8V3hFjvH6D4Ps/DtBvN73YtLgc7EN96UB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxobDIZN9mmPfaGsGQ34GR/ioFxAUOX4lgJLRNTqq39jTap5iWN
+	++ZpAt/W1X+vI1eXH8rvhf9prhU/2Vc1Y30aImRFRzM0UNxtnHEn
+X-Gm-Gg: ASbGncuPEDzhjmhBgAVkChp5BB4W9Y3E0BscA5xu5rLR6fhnfjquu3p8DVkF99D9T3t
+	S0MEXHidtj3wzJuJOi5luBXrK+x2gb8shc1HcrLriQc/aCYhjK4WU8S8ig7Tgth6pDjHejco7Cb
+	4CzQqwtRT5iK50IStuIzRlk1pEETw7RSlUmFDCh/l11q3BuouOJ6AzvAfSzVHVCMdaNJ25ITX2t
+	SDt4A/CU+dd6/hBVKjcZ3QlekbLPPe4dxzcEXS5GXPJLbDxqzZ1j0aGLZ/py0uq7EwvC+IaiDIn
+	xm/CL8hOr5m30V61EmNZeePFHee9tTuDr7Yc/Xw3UJnO2oYE4j1RcA==
+X-Google-Smtp-Source: AGHT+IHMu9qUUyOvbqivlw3hkwW3To7hdGzWlPlEcierAxxBBP/Hf/0k3ExYeldcV6lFv+wY39JSVg==
+X-Received: by 2002:a17:90b:4c8a:b0:2ff:556f:bf9 with SMTP id 98e67ed59e1d1-2ff7b59dec9mr5451858a91.4.1741351460582;
+        Fri, 07 Mar 2025 04:44:20 -0800 (PST)
+Received: from localhost ([2804:30c:1f21:4300:1cf6:c485:6555:b1c5])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-224109def8bsm29093965ad.8.2025.03.07.04.44.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Mar 2025 04:44:19 -0800 (PST)
+Date: Fri, 7 Mar 2025 09:45:13 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl, lgirdwood@gmail.com, broonie@kernel.org,
+	dlechner@baylibre.com, jonath4nns@gmail.com
+Subject: Re: [PATCH v4 06/17] Documentation: ABI: add wideband filter type to
+ sysfs-bus-iio
+Message-ID: <Z8rqWR7OKZMIcmB6@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1741268122.git.Jonathan.Santos@analog.com>
+ <b390ec6d92dd742ace93bd8e40a0df4379b98e23.1741268122.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] docs: dt-bindings: Specify ordering for properties
- within groups
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <7276139ea1f4a5f4db48c77f536a3638492e6c2f.1741321984.git.dsimic@manjaro.org>
- <20250307-logical-nimble-okapi-3ba081@krzk-bin>
- <0df01d9863f72df3bebff1868f010954@manjaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <0df01d9863f72df3bebff1868f010954@manjaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b390ec6d92dd742ace93bd8e40a0df4379b98e23.1741268122.git.Jonathan.Santos@analog.com>
 
-On 07/03/2025 10:50, Dragan Simic wrote:
->>> Applying strict alpha-numerical ordering can result in property lists 
->>> that
->>> are suboptimal from the usability standpoint.  For the provided 
->>> example,
->>> which stems from a real-world DT, [2][3][4] applying strict 
->>> alpha-numerical
->>> ordering produces the following undesirable result:
->>
->> BTW, your entire commit msg still has incorrect wrapping. Please use
->> standard editors which understand Git commit msg style (which I believe
->> is equal to Linux submitting patches).
+On 03/06, Jonathan Santos wrote:
+> The Wideband Low Ripple filter is used for AD7768-1 Driver.
+> Document wideband filter option into filter_type_available
+> attribute.
 > 
-> Sorry, but what makes the wrapping wrong?  I wrap patch descriptions
-> at or well before 78 columns, which I belive is the desired way to do
-> so.  The longest line in this patch description is 77 characters long,
-> which is still below 78 characters.
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> ---
 
-Because it is not correct. Read submitting patches. Run checkpatch.
+LGTM
 
+Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+
+FWIW, ADAQ7768-1 datasheet provides more info about what wideband should mean
+for these devices.
+"The wideband filter offers a filter profile similar to
+an ideal brick wall filter, making it ideal for frequency analysis."
+The proposed doc seems to portray that to some extent.
+
+> v4 Changes:
+> * None.
 > 
-> Also, please note that I don't "just use" some random editor, but I use
-> a highly customized Vim setup, in which I over time wrote about 46 KB
-> of Vimscript code in my ~/.vimrc, all by hand.  I've even contributed
-> smaller patches to Vim.
-
-OK, so not random, but incorrectly configured. Different tools, same result.
-
-
-Best regards,
-Krzysztof
+> v3 Changes:
+> * None, since we still did not agree on a better name for this filter type.
+> 
+> v2 Changes:
+> * Removed FIR mentions.
+> ---
+>  Documentation/ABI/testing/sysfs-bus-iio | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
+> index f83bd6829285..9b879e7732cd 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-iio
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio
+> @@ -2291,6 +2291,8 @@ Description:
+>  		* "sinc3+pf2" - Sinc3 + device specific Post Filter 2.
+>  		* "sinc3+pf3" - Sinc3 + device specific Post Filter 3.
+>  		* "sinc3+pf4" - Sinc3 + device specific Post Filter 4.
+> +		* "wideband" - filter with wideband low ripple passband
+> +		  and sharp transition band.
+>  
+>  What:		/sys/.../events/in_proximity_thresh_either_runningperiod
+>  KernelVersion:	6.6
+> -- 
+> 2.34.1
+> 
 
