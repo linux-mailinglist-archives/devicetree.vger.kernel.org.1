@@ -1,108 +1,80 @@
-Return-Path: <devicetree+bounces-155491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8966DA56E55
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:51:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5475A56E69
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:56:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1287C1695D2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:51:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1807A18892B0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7347923FC54;
-	Fri,  7 Mar 2025 16:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFAE23C8BE;
+	Fri,  7 Mar 2025 16:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KJev8qlq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AVpLkgsm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4EC23F401;
-	Fri,  7 Mar 2025 16:50:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE6A221D92;
+	Fri,  7 Mar 2025 16:56:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741366241; cv=none; b=rjZGjk/B1jKxTU3i4UijVapPDNsj7D9lGUk5sUivjt16TtGTYEyeFFmYVL//0uD1ZRGxT8sT81Qo/Otn+IFeJc8ID7rCIe7Peh54VQX8jVnVcXmFmkZOOiYjNqW056/kSTsggatRJrXFioypsbSIlxXNkEwsc0f8BOxKT0eM3s0=
+	t=1741366560; cv=none; b=KFbZE5m/2AqB/KJ7rZ6+4j+j7EWf/rIUJBO6mKzIIOAz9bXxP0RcyaQk4tCaS/wGM7uqECzI7oKloqF2GQUadsR6hVXTlrUYY+GID5YD43n9n8r5GwPVoUTcpdGuqZEAoswacmzPBBXsX6WL5nE6ZYcY4679vHWH3ZXPd/JA4Kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741366241; c=relaxed/simple;
-	bh=rUXD9TcSMWpiIaqwioMcbkWAcaPs5VI0GxZ9OWztz90=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=SgfxLHH5U+2qDTHFeXEXFa4wZD1LXwuteDuh9oyrYEWanvOnp3kz+obezc4C/2j00j6tdyfAbfTCXIl5iz9diry6kWD3lLUttvJOyjakqdy1cwFc6crqaKpnUCq6NqKRGk7iYKGzHV101aDr+A9WnzgSy9uyTtksihB95BMlVrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KJev8qlq; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E33C3433C9;
-	Fri,  7 Mar 2025 16:50:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1741366237;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=S57DKTWXLs/9f2IPDzxcNXYUu/FS7kJ5cAjwwKfx/Ds=;
-	b=KJev8qlqpoqNIqLvR5qWEghesnn+TdwjmMtw/IYaX3Vk1G9bDZIH3e5M3i4RL7AHdr57HI
-	MsN/sqnsV6QEZJ1wpqnWVmcXuhkkiOqEk/TPVJfWwMDWh/zGMBbVs+o8miFzDeZA1W3AzC
-	Lmi7n1K+uL0lit+uItX3LhqBnQ9drzZDEZm+6NisnCfrfsO9TvbtQtfAlhNWfPDhm2zZjL
-	O5cplwqVUuR62syad3UxTxWDKaNU71vemFOy4zfIU+mysGNh26KfUl4ZRJfJbgMhxtDX0C
-	XuEQ3mqQ6dngNXKbtWMR71TQrXfL4ZZkKMbh2Vfy+mv8sOdYqO5Hi5gAmoo8gw==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+	s=arc-20240116; t=1741366560; c=relaxed/simple;
+	bh=zm4IUNRU5F9Q7F6IslhySw9XY0LvJZqmHl7UPH2oVUQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HBN34UTWiLbT68FEjBf4A5OrC/2in1y4dFwtPTO1Vsl7N5rSzRbftcpb2ScBCJske6hfW+ZYvzKvroV56lu0uTKTSQiq6fw+FWVViNj5A6y7W84SVlhaX5WJ+4H/CVQ+f7sFgL+RGCVtB/p5i04bdEf+y4YgfPQdgLMmjz0zPXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AVpLkgsm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FB91C4CED1;
+	Fri,  7 Mar 2025 16:55:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741366559;
+	bh=zm4IUNRU5F9Q7F6IslhySw9XY0LvJZqmHl7UPH2oVUQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=AVpLkgsm+rJ1/+ojcbOf8+M3KoFzyiiESQHwjozKAPjF8B36+xTNHrBJm+OV0IzoP
+	 9DIl30BifTky83nb+ef9gFAfamPXZoSgWIfmpA9euJYTrs3wu9ivgapJI6JR3gFCA1
+	 CmjG6ORlNPfFLBEhuTr35fy8VNDn2/WcqANJ0KGlI4nwtFgIJwW2aIS2H4i8v4MZV/
+	 5ubKCGk/uJxRELly6gsEXqtT/B4vlKspg7bln92m2n9XTmZwRFUEnruBztw+BLShQq
+	 APwS0a6x/LJuzZQ7QklhKw3O/u2zP8pBoWkBqbqNfww/A8IKi8k251LDbdwJQX11IJ
+	 v5MuibhQrFa/g==
+Date: Fri, 7 Mar 2025 08:55:58 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Jonas Karlman <jonas@kwiboo.se>, Andrew Lunn <andrew@lunn.ch>
+Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
  <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: marvell: armada: Align GPIO hog name with
- bindings
-In-Reply-To: <6bed3249-9905-4949-8031-52217f123f2e@lunn.ch>
-References: <20250116085947.87241-1-krzysztof.kozlowski@linaro.org>
- <6bed3249-9905-4949-8031-52217f123f2e@lunn.ch>
-Date: Fri, 07 Mar 2025 17:50:36 +0100
-Message-ID: <87plis23ab.fsf@BLaptop.bootlin.com>
+ <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and
+ php-grf during probe
+Message-ID: <20250307085558.5f8fcb90@kernel.org>
+In-Reply-To: <1dd9e663-561e-4d6c-b9d9-6ded22b9f81b@kwiboo.se>
+References: <20250306210950.1686713-1-jonas@kwiboo.se>
+	<20250306210950.1686713-3-jonas@kwiboo.se>
+	<bab793bb-1cbe-4df6-ba6b-7ac8bfef989d@lunn.ch>
+	<1dd9e663-561e-4d6c-b9d9-6ded22b9f81b@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduudduudelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhffkfggtgfgsehtqhertddttdejnecuhfhrohhmpefirhgvghhorhihucevnffgoffgpffvuceoghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgffhgedvhefgtdejvdethfdvieekgfetuefhueekteetgfdvueeutedttdekgeevnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemledtrggumedvvggutdemlegstgdtmeeivdgstdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemledtrggumedvvggutdemlegstgdtmeeivdgstddphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddtpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepkhhriiihshiithhofhdrkhhoiihlohifshhkiheslhhinhgrrhhordhorhhgpdhrtghpthhtohepshgvsggrshhti
- hgrnhdrhhgvshhsvghlsggrrhhthhesghhmrghilhdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigsegrrhhmlhhinhhugidrohhrghdruhhkpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Andrew Lunn <andrew@lunn.ch> writes:
+On Fri, 7 Mar 2025 00:49:38 +0100 Jonas Karlman wrote:
+> Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and php-grf during probe
+> 
+> [encrypted.asc  application/octet-stream (3384 bytes)] 
 
-> On Thu, Jan 16, 2025 at 09:59:47AM +0100, Krzysztof Kozlowski wrote:
->> Bindings expect GPIO hog names to end with 'hog' suffix, so correct it
->> to fix dtbs_check warnings like:
->>=20
->>   armada-385-clearfog-gtr-s4.dtb: wifi-disable: $nodename:0: 'wifi-disab=
-le' does not match '^.+-hog(-[0-9]+)?$'
->=20=20
-
-Applied on mvebu/dt64
-
-Thanks,
-
-Gregory
-
-> Hi Krzysztof
->
-> I believe the mvebu pull request for the next merge window has already
-> been sent to arm-soc. So please repost after -rc1.
->
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->
->     Andrew
-
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Is it just me or does anyone else get blobs from Jonas?
+The list gets text, according to lore.
 
