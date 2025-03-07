@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-155273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D4BA56156
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:01:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D43A5616A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:05:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64358170837
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:01:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99EED3B4073
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2960719E7E2;
-	Fri,  7 Mar 2025 07:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE2A19D8A4;
+	Fri,  7 Mar 2025 07:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U8pgzZNS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kySxEx0Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF8A191461
-	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 07:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524E5193409;
+	Fri,  7 Mar 2025 07:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741330869; cv=none; b=MsthC6VZA41ZA3nldn8cEmJJoZJfR+IwsUrVi5hMbBFvgiktOX+UpxUGKDPAxStkarOn87ATjnS7weaL1/k4WBE7Crp55RJlJHrWPPbXVpZ1jlqAYIN/6V9cM6WkLTSgxqmFjd8fgddP2sYIkW/B5chGDBO7FHVS8eKj0NR+vIE=
+	t=1741331097; cv=none; b=C7ohu9lNl9szhH+ZfUjy/Dbl37BpKNNbMlNyZoJBYWI+gt+REThpiWsRathtnKl4E5UXKSX0jDg1gqkvmlQyQoEyxrx5u6l2eCXW7r2c7y96z3J8RxTapfam9XrJVO9pLhdw6zl7sX11jAQ7FDlr8mjI0woZs/1DSRQwYxdr+/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741330869; c=relaxed/simple;
-	bh=X/1WIt4m62AnsW9clW0kmKnhiadtF9DhwD0siHnB6AU=;
+	s=arc-20240116; t=1741331097; c=relaxed/simple;
+	bh=5e5MJqakEHjCgRgY1uejLfs+Wy8KtSWOqlKL58qDFPI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DTZu1ZjFzVrpe7cBcyfCfBMQNM9ItRfyT+GrbrG+vcxpn4lj50u+btdWZinhn3aMCptl4i/M+vdXr8UV/tUVA5C66tjnKq4SCzYOY7eBjgX3uK7G+1p/qYLzG6VxHz6LfZ19XSKbB6qwFMSiDkTgjdH49tIPPd9Xu3S5OHHwVW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U8pgzZNS; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-abf675756b8so22494266b.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Mar 2025 23:01:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741330865; x=1741935665; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nj3ICwfsh5ahAZoKIfoUbUTllZ0ZuMzKTnzon9oJUZs=;
-        b=U8pgzZNSvOhhxEqM/14iJjFE5UvwTJCZTY2ki3ZzW/+JeeduRyL1n0QcOQ2hfTADI4
-         lG36cGRK8/nSJG8XMSSGrrAx8ZQJa0Mj5wQ7MgSNlZWLBf7ba7zk3c5hfEOAT6iaQvnU
-         jIvwCZwt2bdkmJq7cPNENvESQvsuJbCEalr7KSfh/Jjih+rGToj6+GAFvEwgqYQ/lvnR
-         eqWAxWtmK4dm6jIvzBaSnfvyxTv/GI+vx+bnQlYexS0qOKAK9a58EzB0qJqv2teWaQkq
-         BUZZb1hJmLAFEVt1Fbv9bgVWKk47D4ljbzlIsb6eUa5wdyAFfg+75s8zVpK2TRfybDqn
-         1JHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741330865; x=1741935665;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nj3ICwfsh5ahAZoKIfoUbUTllZ0ZuMzKTnzon9oJUZs=;
-        b=Z3DqUZBQ7JgLX0m2vNajNOraf6S12ExrwlKmtEY4KbtSGw6t/Mqsi3uuXyou78IDFe
-         UggWHY3PkGqoEL2329b9cXx+7jAHu+0GDwnianufmk0gSVFqQyWz5phLjgVgMzwU8yzB
-         C6ymJK9mZNVCjVbyXSBVgYPyQ1W3sZ7TlJllJzjsG7h6t/yftekOswJbgyx3UkFJM1ND
-         TAgXTxUwa738r23ivRSbs7q34MP+5f1rB0IUu1XnasyBbnvGBRk5QhHpRguuvZTl4Ymk
-         an9KfFd64J8pndNx7NGXzHYmCg9KBXLerKaLglZdAD+M4jybdD7llPbXNMYfclseRDN5
-         z6tA==
-X-Forwarded-Encrypted: i=1; AJvYcCVgU4Y2uD7hp6Z+oR/5qnqtNZgcpdFG8OXdFOTHOC9fMg9d5xEnOjPzrF7LSM1TtSbEfaQFh8grvZ2V@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlgHlrTZKfgV8gmB6NFx13A4CdVCeYJqmOBKZXS2aKwWlHja6L
-	LLE1MUCL0z6LFAj4JtGdggJO8MT6J6YtoMybTrT/0ncvpfGekkkYCvq3Pkc4Y+KAIAMERdv0KvV
-	v6iU=
-X-Gm-Gg: ASbGncuHOC1k4IMqDiUuEt10Q7oIGN2D1KTEc7XQh/GuEBFPAJ3QmaT2fC/rNBybf27
-	WRkRVeGlFU44Brq/Ul9NYe4YQnAJkDAbG81+VFcWoJ4PLlCDsNhvnEEb4+Csjek0A4+uLUyeFIz
-	gDUWU76St9iuZrGjNA0ZUMfxeXRB+1Sk3bPRDYf6V/AUu/1158v7p+b+qo+BbsAJcI/GBLziHHw
-	X5+UO+0iMMQHz8esKPlcdDH+Wv5zJJsuYvi8MIG8jtybQriEFyfUTl17/QJfuJBjgtJFOzhimQI
-	MjhcQ51ZI4WyocprumfPHNydRuCVib42Ah2OchMBI2x2Ep0urU71QE3+b/GU6QJL
-X-Google-Smtp-Source: AGHT+IF+M/xZPpIeRG9RDSy5qax/tGXYxnvtE8mW0s2b/f4NLMlUiRZ4R5LHomszFoqRKC1ASyqiOA==
-X-Received: by 2002:a17:907:9691:b0:abf:5d56:7a50 with SMTP id a640c23a62f3a-ac252b9d9d3mr86747866b.10.1741330865519;
-        Thu, 06 Mar 2025 23:01:05 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.206.225])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac239439a7csm226025266b.6.2025.03.06.23.01.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Mar 2025 23:01:04 -0800 (PST)
-Message-ID: <c5ac8c5f-1654-41ad-9a0c-d4af5f1c0859@linaro.org>
-Date: Fri, 7 Mar 2025 08:01:03 +0100
+	 In-Reply-To:Content-Type; b=gYYgOwnYW2f5GklJ3lAXLtStzAIZhsF81dqzbzE8uU5aAWqqXZ1pi07Hk6gOHJ3uLDNDMxdgkmw+vdwo74FpHrDrcs/544qeCWZvNm2fW5CvsldCu4TrV/GPnDl/6TKpfmCLfu4vs4B8bplfm+ovc23hGsY2NihDQzACYTPhuPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kySxEx0Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D1DFC4CED1;
+	Fri,  7 Mar 2025 07:04:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741331096;
+	bh=5e5MJqakEHjCgRgY1uejLfs+Wy8KtSWOqlKL58qDFPI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kySxEx0QFGm/OEDdq6/QsJaUdCjxywWV5uPO1+QreWZnwSJrHoYfIgtSUJQyMWZAS
+	 i3Y0KTwmFM8iB8KN62vj+gWq4xFhvKj3CxDYQyyOo2JQBt8FjGxcYDv6JUMu3W1J2T
+	 RpV7CARznlHW3WfZOYEmgKruraRnGGhDs5xPq2qjnldo2ZgzZ5qz6QOTDE43cUOs2L
+	 A2ISq9LCYZsQK8RCA8Esi863eujw4oFnAxcajjUqtIoFGpOOfYB/ngMYR7tzemhF1v
+	 75kKA/kWb5gWqXq7KlC3wGPE90eADK+Fxym1s9vGe08JzAXtL4a2kHTu2ZihecXYLC
+	 4Fv7JUqpTWiZA==
+Message-ID: <8d90731b-4b5a-45a8-83d1-4351044f59c7@kernel.org>
+Date: Fri, 7 Mar 2025 08:04:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,20 +50,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: qcom,dwc3: Synchronize minItems for
- interrupts and -names
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250306-topic-dt_bindings_fixes_usb-v1-1-e1e6a5bde871@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: memory: mediatek: Add SMI reset and
+ clamp for MT8188
+To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20250221074846.14105-1-friday.yang@mediatek.com>
+ <20250221074846.14105-2-friday.yang@mediatek.com>
+ <0dcb2efd-6bbb-4701-960a-74930eb457e4@collabora.com>
+ <264f78c1067e363c69e146543ebb77dbedfbd181.camel@mediatek.com>
+ <463ca2df-a0ee-4b9e-a988-12f316ae7d1a@kernel.org>
+ <9305a4fd6829e5e2ae6c3247d11b9f47ed277f8b.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -106,57 +84,129 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20250306-topic-dt_bindings_fixes_usb-v1-1-e1e6a5bde871@oss.qualcomm.com>
+ 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 fv0=
+In-Reply-To: <9305a4fd6829e5e2ae6c3247d11b9f47ed277f8b.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06/03/2025 19:10, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On 07/03/2025 07:38, Friday Yang (杨阳) wrote:
+> On Thu, 2025-03-06 at 13:48 +0100, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>
+>>
+>> On 06/03/2025 13:45, Friday Yang (杨阳) wrote:
+>>>>> +          const: mediatek,mt8188-smi-larb
+>>>>> +        mediatek,larb-id:
+>>>>> +          oneOf:
+>>>>
+>>>> Are you really sure that you need 'oneOf' here? :-)
+>>>>
+>>>> Regards,
+>>>> Angelo
+>>>
+>>> Yes, I have tested it. If I try to modify the 'examples'
+>>> like this. That is:
+>>>   change the compatible to "mediatek,mt8188-smi-larb",
+>>>   add 'mediatek,larb-id = <10>;'
+>>>
+>>> examples:
+>>>   - |+
+>>>     #include <dt-bindings/clock/mt8173-clk.h>
+>>>     #includ
+>>> e <dt-bindings/power/mt8173-power.h>
+>>>
+>>>     larb1: larb@16010000 {
+>>>       compatible = "mediatek,mt8188-smi-larb";
+>>>       reg = <0x16010000 0x1000>;
+>>>       mediatek,smi = <&smi_common>;
+>>>       mediatek,larb-id = <10>;
+>>>       power-domains = <&scpsys MT8188_POWER_DOMAIN_VDEC>;
+>>>       clocks = <&vdecsys CLK_VDEC_CKEN>,
+>>>                <&vdecsys CLK_VDEC_LARB_CKEN>;
+>>>       clock-names = "apb", "smi";
+>>>     };
+>>>
+>>> The 'dt_binding_check' could give the following
+>>> errors:
+>>>
+>>> Documentation/devicetree/bindings/memory-controllers/mediatek,smi-
+>>> larb.example.dtb: larb@16010000: 'resets' is a required property
+>>> from schema $id:
+>>>
+> https://urldefense.com/v3/__http://devicetree.org/schemas/memory-controllers/mediatek,smi-larb.yaml*__;Iw!!CTRNKA9wMg0ARbw!kEwWhxyfjVtuHKBHazZGRaFdlmrU2bcIsiVDcsUDzEIManMw2XIG9RgOzq773vtmqlR9_sWZDFhU09SV$
+>>> Documentation/devicetree/bindings/memory-controllers/mediatek,smi-
+>>> larb.example.dtb: larb@16010000: 'reset-names' is a required
+>>> property
+>>> from schema $id:
+>>>
+> https://urldefense.com/v3/__http://devicetree.org/schemas/memory-controllers/mediatek,smi-larb.yaml*__;Iw!!CTRNKA9wMg0ARbw!kEwWhxyfjVtuHKBHazZGRaFdlmrU2bcIsiVDcsUDzEIManMw2XIG9RgOzq773vtmqlR9_sWZDFhU09SV$
+>>>
+>>> And this is what I want to achieve. On the MediaTek MT8188 SoC
+>>> platform, 'resets' and 'reset-names' are only required for SMI
+>>> LARBs
+>>> located in image, camera and ipe subsys. Others can be ignored. And
+>>> the
+>>> 'larb-id' of these SMI LARBs are shown in this array: [ 9, 10, 11,
+>>> 12,
+>>> 13, 16, 17, 18, 19, 20 ].
+>>>
+>>> Please feel free to let me know if you have any doubts.
+>>
+>> You did not really answer the question. Where is anything about oneOf
+>> in
+>> your reply?
+>>
+>> I am dropping this patchset from my queue.
+>>
 > 
-> It makes sense that ARRAY_SIZE(prop) should == ARRAY_SIZE(prop-names),
-> so allow that to happen with interrupts.
+> In this SoC, we encountered power-off failures and SMI bus hang issues
+> during camera stress tests. SMI LARBs located in the image, IPE, and
+> camera subsystems need to implement a reset, while other LARBs do not
+> require it.
 > 
-> Fixes bogus warnings such as:
-> usb@c2f8800: interrupt-names: ['pwr_event', 'qusb2_phy', 'hs_phy_irq'] is too short
+> The 'mediatek,larb-id' for SMI LARBs in the image, IPE, and camera
+> subsystems are as follows:
+> - image subsystem: 9, 10, 11, 12, 16
+> - IPE subsystem: 13
+> - camera subsystem: 17, 18, 19, 20
 > 
-> Fixes: 7db25e95589e ("dt-bindings: usb: qcom,dwc3: Fix SDM660 clock description")
+> Therefore, we believe that 'mediatek,larb-id' should be 'oneOf' the
 
 
-I don't see this commit causing it. It touched only clocks.
+So explain me where is the second condition?
 
 Best regards,
 Krzysztof
