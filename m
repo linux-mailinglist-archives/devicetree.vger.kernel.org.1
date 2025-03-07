@@ -1,57 +1,76 @@
-Return-Path: <devicetree+bounces-155225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B47FA55EB8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 04:41:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9CCA55ECE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 04:45:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6C413B4AA5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 03:41:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B6553A554E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 03:44:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FAA018BB9C;
-	Fri,  7 Mar 2025 03:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E49118FDDF;
+	Fri,  7 Mar 2025 03:45:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="s1YqEYFY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E62A1547F3;
-	Fri,  7 Mar 2025 03:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9263C187872;
+	Fri,  7 Mar 2025 03:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741318522; cv=none; b=tdLM3nUwmqL21wPx1uxxkZ5lgXTTqAv3l+Zm+uQTERdlPPGXGHiYbQh/7xYi0OVXhMluroJMpTVJx8O2Z3IkhJfrkdpRvg552I9eAyRzJh71q/By021FqjSdJpltyEXCEI8psL9ZolpN1C1LMvD9QbM63bck8s625ALX6aw9oT4=
+	t=1741319107; cv=none; b=KN1E1dmIJ3mMwqwgd3Y4i2k+LMaP3MP5VzSspvDgMSx5mo2N0dH3yxwXcMoQcJBOQQbxXbTf4BdPptQeXiTQhMcWynxmWCN3EFryiB0PE0wzmFxNHIMWYSjefff3hawiaqVtgI7D+k5manCEcaY8LYTkokvjYtnyBaHr7BN4flM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741318522; c=relaxed/simple;
-	bh=TomOsV6xN/eLdlBn3dkwWmca3gdaJ1l8qHa0Yclsgb8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=U420TZ5nGL6b69yaXeZLSkf68nFegDir0uoRNsXvuMG1tUkKd2KpjF97cvqYzKCghLbPGVzZr6Qnk6Nwu8LqLjwBPkG45d2IsIEfSww98SqTXCcljR0fpb7K8p7/9h8nVWU7R9C6iq+dzCHov6vFMKAyEs4yuukCInk5BllJobw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:3300:bb12:a0a3:40d:e82f])
-	by smtp.qiye.163.com (Hmail) with ESMTP id d41b6403;
-	Fri, 7 Mar 2025 11:35:11 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: ziyao@disroot.org
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	cristian.ciocaltea@collabora.com,
-	detlev.casanova@collabora.com,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 8/8] arm64: dts: rockchip: Enable SD-card interface on Radxa E20C
-Date: Fri,  7 Mar 2025 11:35:08 +0800
-Message-Id: <20250307033508.656479-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250305194638.47187-1-ziyao@disroot.org>
-References: <20250305194638.47187-1-ziyao@disroot.org>
+	s=arc-20240116; t=1741319107; c=relaxed/simple;
+	bh=QAudi0vbwHorwbjwLc/y9hhLGMJKGpkcbFkupOp6/BY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=vBlE57jLC0yZ5KfxhuolaAeRBfiUj4lnyPFd7KIE+Wd3AgbpaHi4inTR4H5Y4mXIxKh1NQsO/p/ElyJDb6ZPHaCM8DvttltoVHqo1TexnQg6XXgSGZVcX/hQy0szciFUB445Dg5Y3zzN3g5rAje93Q+Kw7ZB+FXAmWApWeSpVaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=s1YqEYFY; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 8a7518aefb0611efaae1fd9735fae912-20250307
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=bubgnY0zrmF8D2EJUSPC+Gnryw9Y+zgy2Y+PYLhxYXg=;
+	b=s1YqEYFY2FOwhBBaVlqT8HtPvQSxHcAk0K+91TylI5O4+WStuAYnBRFc3ZJj2Ph5WYcQpDzU2H9RGXP6K4/NN3k5DwRsJxj+Px/Y/JwEWEZRtA1IkMXQ2hOjsKwuMUC6FJ5xC1YnTG/MBtc7oaG9qrB/GbeYw8IA9siZ6AXkdrc=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:6a164fc0-6fd5-469b-929e-f519744d5451,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:1297108c-f5b8-47d5-8cf3-b68fe7530c9a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 8a7518aefb0611efaae1fd9735fae912-20250307
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <guangjie.song@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1822769354; Fri, 07 Mar 2025 11:44:58 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Fri, 7 Mar 2025 11:44:56 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Fri, 7 Mar 2025 11:44:56 +0800
+From: Guangjie Song <guangjie.song@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Ulf Hansson
+	<ulf.hansson@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-pm@vger.kernel.org>, Guangjie Song <guangjie.song@mediatek.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 00/13] pmdomain: mediatek: Add MT8196 power domain
+Date: Fri, 7 Mar 2025 11:44:24 +0800
+Message-ID: <20250307034454.12243-1-guangjie.song@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,59 +78,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDHk5NVh0eSh9ITk0YGhpLS1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQUhIS0tBGRlKSUEaSxpIQU9LH0EeQ0kdWVdZFhoPEh
-	UdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQktLWQY+
-X-HM-Tid: 0a956eabdd2903a2kunmd41b6403
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OTI6TBw4VjJLPjBJHAg0E0gJ
-	SDgaCypVSlVKTE9KSEpDTkpJQ0xCVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0tBSEhLS0EZGUpJQRpLGkhBT0sfQR5DSR1ZV1kIAVlBSkxMQjcG
+Content-Type: text/plain
 
-Hi,
+This series is based on linux-next, tag: next-20250306.
 
-> +&sdmmc {
-> +	bus-width = <4>;
-> +	cap-mmc-highspeed;
-> +	cap-sd-highspeed;
-> +	disable-wp;
-> +	no-sdio;
+Changes:
+- Update mtk-scpsys driver for MT8196
+- Add MT8196 power domain support
 
-With 'no-sdio' property:
-[  129.608986] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
-[  130.711168] mmc1: Card stuck being busy! __mmc_poll_for_busy
-[  130.725536] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
-[  131.751240] mmc1: Card stuck being busy! __mmc_poll_for_busy
-[  131.765608] mmc_host mmc1: Bus speed (slot 0) = 200000Hz (slot req 200000Hz, actual 200000HZ div = 0)
-[  132.825083] mmc1: Card stuck being busy! __mmc_poll_for_busy
-[  132.839413] mmc_host mmc1: Bus speed (slot 0) = 187500Hz (slot req 187500Hz, actual 187500HZ div = 0)
-[  133.960141] mmc1: Card stuck being busy! __mmc_poll_for_busy
+Guangjie Song (13):
+  pmdomain: mediatek: Support sram isolation
+  pmdomain: mediatek: Support sram low power
+  pmdomain: mediatek: Support power on bypass
+  pmdomain: mediatek: Support check power on/off ack
+  pmdomain: mediatek: Support voting for power domain
+  pmdomain: mediatek: Support trigger subsys save/restore regesters
+  pmdomain: mediatek: Support power domain irq safe
+  pmdomain: mediatek: Support power domain always on
+  pmdomain: mediatek: Refactor parameters of init_scp
+  pmdomain: mediatek: Support bus protect with table
+  pmdomain: mediatek: Add post init callback
+  dt-bindings: power: mediatek: Add new MT8196 power domain
+  pmdomain: mediatek: Add MT8196 power domain support
 
-Without 'no-sdio' property:
-[  105.224019] mmc1: error -22 whilst initialising SDIO card
-[  106.290838] mmc1: Card stuck being busy! __mmc_poll_for_busy
-[  106.801931] dwmmc_rockchip ffc30000.mmc: Busy; trying anyway
-[  107.385835] mmc_host mmc1: Timeou sending command (cmd 0x202000 arg 0x0 status 0x80202000)
-[  107.400425] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
-[  107.431561] mmc_host mmc1: Bus speed (slot 0) = 49800000Hz (slot req 50000000Hz, actual 49800000HZ div = 0)
-[  107.433107] mmc1: new high speed SDIO card at address 0001
-
-# cat /sys/kernel/debug/mmc1/ios
-clock:          50000000 Hz
-vdd:            21 (3.3 ~ 3.4 V)
-bus mode:       2 (push-pull)
-chip select:    0 (don't care)
-power mode:     2 (on)
-bus width:      2 (4 bits)
-timing spec:    2 (sd high-speed)
-signal voltage: 0 (3.30 V)
-driver type:    0 (driver type B)
-
-Thanks,
-Chukun
+ .../mediatek,mt8196-power-controller.yaml     |   74 +
+ drivers/pmdomain/mediatek/mt8196-scpsys.h     |  114 ++
+ drivers/pmdomain/mediatek/mtk-scpsys.c        | 1276 ++++++++++++++++-
+ include/dt-bindings/power/mt8196-power.h      |   57 +
+ 4 files changed, 1483 insertions(+), 38 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/mediatek,mt8196-power-controller.yaml
+ create mode 100644 drivers/pmdomain/mediatek/mt8196-scpsys.h
+ create mode 100644 include/dt-bindings/power/mt8196-power.h
 
 -- 
-2.25.1
+2.45.2
 
 
