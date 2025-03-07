@@ -1,95 +1,93 @@
-Return-Path: <devicetree+bounces-155503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE1FA56ECB
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:12:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BDF0A56EDA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:15:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80EAC1891A59
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:12:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 288653B1A81
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:15:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D7823F434;
-	Fri,  7 Mar 2025 17:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3DB18A92D;
+	Fri,  7 Mar 2025 17:15:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PXgbI2H6"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="0vR1x4S5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCC2623ED66;
-	Fri,  7 Mar 2025 17:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117DE101F2;
+	Fri,  7 Mar 2025 17:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741367559; cv=none; b=CSjoHYWVeKPou1/gze6TWR0iKmH0J/pwNOR/MHHYH8smJ7Tt7ut3UA70UGcWVKOaokjdlDW3/qT82sAN35IyhjLHqPzWhgmf6mUwODRGtC+9aTg3oond48hjwt8E4qg9m4d153nsjcAgFlSyRJ71laCsOyCaZi/pn40B5ie2hAg=
+	t=1741367719; cv=none; b=okG3W0pBsbXnleJCwXvAHYhwx4HfNV15HHloTMmaeW95/peSC3FXhYpIwScP+e1JZ8xZhYaMrWIA38Fv9rX+BOfN9HYRip44nRwf+THjacFdV3ts9oTsB+ARaCztT8XDXfU8CvtBOaw7NvrqLzVcos3wqL/hiyqY3TOgcxre0ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741367559; c=relaxed/simple;
-	bh=Q/vvrj9UGLHleS9BpAr+5VVP4/OHqMSL80va3MFiSVQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SFfIZC9No6MgTcpSAj/jykluQu7gdzpKYnaLvTLIpGBhR6AQGGt3HVWsEsanwIvxT2r+DTVz21EV7TAoKNCXLs/T0W7KFfq1Rlihp0toeDbz3S2W2UaKChjeOT7Za8uRV2FYdq8f32UNMjIybry9ADBcRI9kwBmC9ZWaiwGWjrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PXgbI2H6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68FE4C4CEE8;
-	Fri,  7 Mar 2025 17:12:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741367558;
-	bh=Q/vvrj9UGLHleS9BpAr+5VVP4/OHqMSL80va3MFiSVQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PXgbI2H66xdcgoB87/IfDMvXr1xwoNFTWtZOs7PGrADDbs1c3IWa7IjBzaPZE/zn3
-	 ipTSD+XCbtUCMzpaXBRQS5CneXfErZ5Xr+kpK8XWO5kQoDqLSHGVkWDU82EEtyQ+qb
-	 5gjbG7L7NFDZ7gC2c57XKXC3q8B5S8KCxj19h/YvGRNGMxfcQVDvzdHsB1PDyQjnOZ
-	 usObnpEBNk6YJV9tUKupke4EnRQSd/KWw8yFuA09Os80X0z3mdKDrurK2l9twEL3Fv
-	 +rYJdOWljfTEyMGo1FyV6Nqa3kKdNIRHAdiAtlhtJxZHGHGJBN/qrpjFMyEwpuiDo5
-	 abcM9acGYztmQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1tqbFV-000000001x9-1Ovj;
-	Fri, 07 Mar 2025 18:12:37 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741367719; c=relaxed/simple;
+	bh=3BahQm5SlDJBdR5+KwEJ+91JdOtYIMdEQszQ3pvKMhc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lEKUBBC1c7cJ5TRyaBP9aUmqwnNcAfHjF5vPULXb4tx/pFNdxTIvtkIct5qmvq/YXhqVikrUsfzJLy2gbfVclA2M2Oyc2Vn4hnXQVFBtcvdPg2YdRWq3IcsHOW3QDoAsFuRAnU04ylSm1aodR1CNj2m4FV81YRZd4NPCj+43/kU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=0vR1x4S5; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=7iCfeCNhNbSrVOG/TQp6z3O5xsMhBDg1NtYO7QQkYWU=; b=0vR1x4S5bgxV4e+q8kztTqAS5Q
+	FZaQNPmxqGbP43RmbWr8HlU0OPAcKw8UrBdet7aVdujyV7eYAoR69y2AZjCxL4k7++Kgr/0AAwLw8
+	Fkrx4cZsD11XbOXigk7VXhIuhC/tlX1eUTow5XtzblBl28J/We/kxNk8JqogbMksssAA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tqbHq-003CZh-KO; Fri, 07 Mar 2025 18:15:02 +0100
+Date: Fri, 7 Mar 2025 18:15:02 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: x1e80100-crd: add gpio-keys label for lid switch
-Date: Fri,  7 Mar 2025 18:12:22 +0100
-Message-ID: <20250307171222.7470-3-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250307171222.7470-1-johan+linaro@kernel.org>
-References: <20250307171222.7470-1-johan+linaro@kernel.org>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and
+ php-grf during probe
+Message-ID: <1995782a-0a1c-46dc-8929-7fa3428a5ca3@lunn.ch>
+References: <20250306210950.1686713-1-jonas@kwiboo.se>
+ <20250306210950.1686713-3-jonas@kwiboo.se>
+ <bab793bb-1cbe-4df6-ba6b-7ac8bfef989d@lunn.ch>
+ <1dd9e663-561e-4d6c-b9d9-6ded22b9f81b@kwiboo.se>
+ <20250307085558.5f8fcb90@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250307085558.5f8fcb90@kernel.org>
 
-Add a gpio-keys label for the lid-switch for consistency and to separate
-it from the volume-up key (e.g. in /proc/interrupts).
+On Fri, Mar 07, 2025 at 08:55:58AM -0800, Jakub Kicinski wrote:
+> On Fri, 7 Mar 2025 00:49:38 +0100 Jonas Karlman wrote:
+> > Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and php-grf during probe
+> > 
+> > [encrypted.asc  application/octet-stream (3384 bytes)] 
+> 
+> Is it just me or does anyone else get blobs from Jonas?
+> The list gets text, according to lore.
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/boot/dts/qcom/x1-crd.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Sorry, already deleted, but i was able to read the contents, so either
+they are plain text, or mutt is clever enough to make sense of the
+blob.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-index 0b62fdc85478..fc4ea6be5fd1 100644
---- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-@@ -63,6 +63,7 @@ key-vol-up {
- 		};
- 
- 		switch-lid {
-+			label = "lid";
- 			gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
- 			linux,input-type = <EV_SW>;
- 			linux,code = <SW_LID>;
--- 
-2.45.3
-
+	Andrew
 
