@@ -1,211 +1,108 @@
-Return-Path: <devicetree+bounces-155508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7886A56FB7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:54:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B222A57064
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 19:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14D6916E2AF
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:54:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16FD83AFE68
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ACD2243965;
-	Fri,  7 Mar 2025 17:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD25F2405E4;
+	Fri,  7 Mar 2025 18:22:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="WMhOKhug"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D80E5241667
-	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 17:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E46721C17B;
+	Fri,  7 Mar 2025 18:22:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741370011; cv=none; b=UeGjkqXgZcOf8Sx7j2qvCc2Wig7ccd4DrQWHCR3AfudEmn5shBjAF5kOyo86yLITBn/CLlGZ/4oTowutsGQSot/Bzsli8SNljjqT/RPFWVpnMaZux0TJjOYjaI8jQ3n0aDNpny/sxA5pAmyg9kyM3dJjM9+bYgTvp4lpGv9k0nA=
+	t=1741371773; cv=none; b=jZTLuzq1VAcaLp0jXCYmuFifTnvIK1cgi/CRB5foPPFbGSDomqS5wqU4jR564/bl91r9BMKUvwxNgnTxApOayTJmgGslV9RWtaJ9GlNMtuk8rMzKGpOV96rNiLzJeznV5Io8+laCFaCreHK0c4L6xYTE6m67kNgigSmtbXrGmtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741370011; c=relaxed/simple;
-	bh=uGp2XOYaAoeUpb/9b5BbIParJDTxLmqRE1Kf/2le0gE=;
+	s=arc-20240116; t=1741371773; c=relaxed/simple;
+	bh=UhbysGiaH8FQ+ovQ5mfhRgpDsda9xG/VbV10XXNS1tw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OMe1GEjRD6IHo31BMvJrWUQQu6vdeKb1elX7IiGUaMGYBhbGNPqaNgRUEhQw4wHBCsKALFpJPabmSTgUmUCLvOczvVGATA+M8ne8PSXO8D1yABdtUJZc7VoiQgb7ici9k9e+XE8qzsc976Ntp+rvKDywFH0W1sJX28qQ3g1LA7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tqbsk-0007Ns-8T; Fri, 07 Mar 2025 18:53:10 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	 Content-Type:Content-Disposition:In-Reply-To; b=I3MJu/dr8BDPEkIpND1pDioSIRsnLjqKGxzrFDaVubYvdRZ1q5ev6TkOQktypmISt/dKgLMtydqBeVreWNZ4+LpZYmzD+msodRHJTXprQh53b+1PJ35BCnOswr/4iIxonS8zNwJKSWUcZjoN7DV9qDjaJZ3AhlQa339EvL/M3TY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=WMhOKhug; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=MWbVuIUV4GkljN1k7GKXrppH1dlxoAA7vzJpSPCNsbU=; b=WMhOKhuglrHkpbV/vRsZcs+D0H
+	zLiPV7i2eS2xvJsy0QnqQ6mVDhonciTp5SLpB27cs0NnxoDn3yM7TG7eV1jDuQaZdcMZhuBUn3Fsa
+	qfRUokBI3yXbTHrB6OJXuykdi02AgOzdCuoESh6jeNdui4Wgbra/wOXOnnPZPiZ55dAdBo7nH54vb
+	408s4a7FJoZ+suIFg0bI01v/KJv1Fg4eWSb91v6g+ab64bDZI/QjTbcCf3psM2U0ukL9L2mkjwct6
+	cMr+fGCgpq9y5z7Dfqn5r7xbKtX9fAZPLc45O60XUV5vmcE0nzlnIuBWreEHZ7MNpwGWE8AywAKeg
+	fJe3EoKw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:53270)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tqbsj-004Wj2-1G;
-	Fri, 07 Mar 2025 18:53:09 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tqbsj-000Zmp-0n;
-	Fri, 07 Mar 2025 18:53:09 +0100
-Date: Fri, 7 Mar 2025 18:53:09 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>,
-	Daniel Baluta <daniel.baluta@gmail.com>,
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tqcLB-0007sw-21;
+	Fri, 07 Mar 2025 18:22:33 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tqcL7-00083J-0h;
+	Fri, 07 Mar 2025 18:22:29 +0000
+Date: Fri, 7 Mar 2025 18:22:29 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Jonas Karlman <jonas@kwiboo.se>, Andrew Lunn <andrew@lunn.ch>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] ASoC: dt-bindings: support imx95's CM7 core
-Message-ID: <20250307175309.od3grjzr63dxp6ec@pengutronix.de>
-References: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
- <20250211225808.3050-2-laurentiumihalcea111@gmail.com>
- <20250212093610.x4ixrackmn3u2xrf@pengutronix.de>
- <CAEnQRZBeQdnC+K92+Udb5awTmom10YHHNt7Ld-pYK4A1i8sr3Q@mail.gmail.com>
- <d66996eb-f49b-448b-9743-d19a3c3eba52@sirena.org.uk>
- <e45411df-1b8b-4f21-878d-d52e1112e62d@gmail.com>
- <20250213064724.kbmxsk5szpxwclj6@pengutronix.de>
- <88584d8f-e1cd-4b56-8906-461e1e6d9cc9@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and
+ php-grf during probe
+Message-ID: <Z8s5ZZyTCpS9xHlA@shell.armlinux.org.uk>
+References: <20250306210950.1686713-1-jonas@kwiboo.se>
+ <20250306210950.1686713-3-jonas@kwiboo.se>
+ <bab793bb-1cbe-4df6-ba6b-7ac8bfef989d@lunn.ch>
+ <1dd9e663-561e-4d6c-b9d9-6ded22b9f81b@kwiboo.se>
+ <20250307085558.5f8fcb90@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <88584d8f-e1cd-4b56-8906-461e1e6d9cc9@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20250307085558.5f8fcb90@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 25-03-04, Laurentiu Mihalcea wrote:
-> On 2/13/2025 8:47 AM, Marco Felsch wrote:
-> > Hi Laurentiu, Daniel,
-> >
-> > On 25-02-12, Laurentiu Mihalcea wrote:
-> >> On 2/12/2025 2:38 PM, Mark Brown wrote:
-> >>> On Wed, Feb 12, 2025 at 12:11:49PM +0200, Daniel Baluta wrote:
-> >>>> On Wed, Feb 12, 2025 at 11:38 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
-> >>>>> On 25-02-11, Laurentiu Mihalcea wrote:
-> >>>>>> +    const: fsl,imx95-cm7-sof
-> >>>>> Albeit Krzysztof already add his Reviewed-by, can I ask why we need to
-> >>>>> add the -sof suffix instead of -audio or so? SOF is a software project
-> >>>>> but you can clearly run different software on the audio-copro as well.
-> >>>> Sure you can run a different software project on the audio DSP but
-> >>>> you will need a way to distinguish between the different projects.
-> >>>> There might be different mailbox, memory configurations. So you will  need
-> >>>> to invent another suffix specific to the new project.
-> >>>> We can make  const: fsl,imx95-cm7-audio as the one used with SOF
-> >>>> and think about a different name later for when another project will
-> >>>> want to use the DSP.
-> >>> I think the point here was that the DT should stay the same even if the
-> >>> DSP firwmare changes, just as how changing the main OS shouldn't affect
-> >>> the DT.
-> >> It's rather unfortunate but based on the experience from the 8 series
-> >> (imx8qm, imx8qxp, imx8mp), the programming model can differ quite
-> >> a bit (e.g: remoteproc vs SOF) even if the core is the same (i.e: DSP core).
-> >>
-> >> The different programming models also required different DT configurations
-> >> (e.g: dif. mboxes as Daniel mentioned, some extra properties (i.e: reg-names), etc...)
-> >>
-> >> The "-sof" suffix was chosen here instead of the more generic "-audio" (or whatever else
-> >> alternative) because the DT configuration is specific to SOF's programming model. Other
-> >> audio applications running on the same core may have dif. configurations (e.g: use
-> >> DTCM/ITCM for memory instead of DDR, dif. mbox count, etc...). I suppose this kind of thing
-> >> is bound to happen to some degree since the DT node doesn't just describe the CM7 core
-> >> (but, rather, it also encompasses information on the memory, mboxes, etc. used)
-> >> but perhaps I'm wrong?
-> > Time will tell if there will be any other user except for SOF for the
-> > DSP but and this is what I wanted to point out: the DTS should abstract
-> > the HW. IMHO The CM7-Audio node should contain all properties required
-> > to turn power and reset the core (e.g. clocks, reset, pm-domains). I get
-> > your point regarding different configs but please have a look at
-> > mt8183-kukui.dtsi. Here the rpmsg config is a subnode of the actual
-> > system-control-proc. This makes much more sense to me since the HW part
-> > is part of the generic core-node and all the software config goes into a
-> > separate subnode.
-> >
-> > Regards,
-> >   Marco
+On Fri, Mar 07, 2025 at 08:55:58AM -0800, Jakub Kicinski wrote:
+> On Fri, 7 Mar 2025 00:49:38 +0100 Jonas Karlman wrote:
+> > Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and php-grf during probe
+> > 
+> > [encrypted.asc  application/octet-stream (3384 bytes)] 
 > 
-> I understand your point but we're dealing with 2 different programming
-> models here: SOF and remoteproc as opposed to just remoteproc as it's
-> the case for Mediatek.
+> Is it just me or does anyone else get blobs from Jonas?
+> The list gets text, according to lore.
 
-The idea is exactly to decouple the CM7 HW config from the
-software/firmware running on it and this is what MediaTek did.
+Looking at the emails I've received, some which were via the list, some
+which were direct, I don't see anything out of the ordinary - seems to
+just be text/plain here.
 
-Of course they are only interested in teh RPMsg part but this approach
-could be used to decouple the HW and the FW part which is your use-case
-(different FWs running on the CM7).
-
-> Going for a similar approach would also mean quite a bit of software
-> changes as we'd need to factor out the common bits (most importantly here:
-> core operations like start/stop) and placing them in a common driver. 
-
-Exactly but shouldn't be to hard to implement. Of course it is more work
-than just adapting the compatible.
-
-> This is not trivial and I'm not sure it's worth the effort right now
-> given that:
-> 
->     1) The current way we model the hardware inside the DT is not exactly inaccurate.
->     The core does physically use those memory regions, mailboxes, etc.
-> 
->     2) Whatever we do, the information in the DT will still depend on the programming model.
->     It's just that you're placing it in a child node, instead of the parent, which is arguably not that
->     big of an improvement?
-
-The benefit is to have different configs in place and a board can choose
-between them, e.g.:
-
-	sof_cpu: cm7-cpu@80000000 {
-		compatible = "fsl,imx95-cm7";
-		reg = <0x0 0x80000000 0x0 0x6100000>;
-		reg-names = "sram";
-		clocks = <...>;
-		resets = <...>;
-		access-controllers = <...>;
-
-		firmware-name = "nxp/foo";
-		firmware-config = <&cm7_sof>;
-
-		cm7_sof: cm7-sof {
-			compatible = "fsl,imx95-sof";
-			memory-region = <&adma_res>;
-			memory-region-names = "dma";
-			mboxes = <&mu7 2 0>, <&mu7 2 1>, <&mu7 3 0>, <&mu7 3 1>;
-			mbox-names = "txdb0", "txdb1", "rxdb0", "rxdb1";
-
-			cpu: port {
-				cpu_ep: endpoint {
-					remote-endpoint = <&codec_ep>;
-				};
-			};
-		};
-
-		cm7_rpmsg: cm7-rpmsg {
-			compatible = "fsl,imx95-rpmsg";
-		};
-
-		cm7_foo: cm7-foo {
-			compatible = "fsl,imx95-foo";
-		};
-	};
-
-I get your point and I'm not against your patchset. Just IMHO the above
-example would make more sense to me since the CM7 hardware handling
-(en-/disable/access/reset/clock) can be done by a common driver and must
-not be done by each subsystem driver: sof, rpmsg, etc. Also the since
-the driver would be common it could be reused by other CoProcessors
-within the system as well since there are now more and more CoProcessors
-on a SoC.
-
-Regards,
-  Marco
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
