@@ -1,467 +1,456 @@
-Return-Path: <devicetree+bounces-155372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518CDA567A2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:15:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 349CEA567AE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:17:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98A551890204
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 12:16:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60C31174193
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 12:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79DEE215760;
-	Fri,  7 Mar 2025 12:15:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BDFB218AD3;
+	Fri,  7 Mar 2025 12:17:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QAx0mt9E"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RMfKgFh0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D94154423;
-	Fri,  7 Mar 2025 12:15:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3689920D4FA
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 12:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741349747; cv=none; b=QsZJrRwfTzs5C6mitJaELJi8haTEdQt9qebjJO1lF1UOda53PmcY+EqKwoPEmhGu75DOnGUgiBpyGnMjYHd2ECaB8UwGZ3RyfeOmpWbKZxAwW3pDdGoUpEOSXpsfJeEqIvXFPpZzblyKd/T4b8HQJJx/Kd/jwcwTHqh8ZnyKWjU=
+	t=1741349841; cv=none; b=PTDtmK5J4E/lBd4vRhsVsA0XJ/hqFUzhLI6X+cDCebeL8CmBJ9hhsxtAtv7gh/0+uvTpbAmtyj41oUHgSMiEzYxAi8COJ1kH3rh8w0d8FXuAa8KdZFIfy7yeS+vX8o/UD40uVmUxi0aoi1OaViMidROQ6cYeTxUdo/ATCMSB914=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741349747; c=relaxed/simple;
-	bh=NUTcwqh7MCASvD4w+bVQSfE4QAqRs9qXkw2IdgX9WCo=;
+	s=arc-20240116; t=1741349841; c=relaxed/simple;
+	bh=95Sqv0StA8OGODYElwMV9P+e9Z/vyzlsd2TUirln5ZA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=B8x9u1Camdco44KBLvzt0xYauHEhr7s2dM+EpijZ1m0pJfQZMczZAnGJjm56/S7QqRYJafqOSXrGfkKhuicjvZgLly95k9MKqMaxxwO3i4AgRwlszAKHWsXIXm0rSPbDOCAm9d1vfQQLQvVe6DD9BfTJO6ba0PefCZGvqPtwPzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QAx0mt9E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C29EEC4CEE7;
-	Fri,  7 Mar 2025 12:15:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741349745;
-	bh=NUTcwqh7MCASvD4w+bVQSfE4QAqRs9qXkw2IdgX9WCo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=QAx0mt9ExXV5hggC/+MxyKsU0jZkRktXz8OxehcXJcyZh1o9vlwub2+ig0vt8jec8
-	 6rX7tSL86uv0pL/9c0VGRLHTGQCZfVYmZiDh0X2BlXgelBaTEbZ3hSxrx1IcvwFnMK
-	 1nSe1gYdRrv9XNyYQbVSqGQoatlGFpMe5EZc8RhKKX+60N5XNcTJjw2Fr8yBcMDJZp
-	 EGOQ5whrZM/v+0HjQuttTXVzlYlmExawYdtRZdVnKK5ca86eWkFjSWp/+CLcvU+K09
-	 77IW07Nz8NRLKfrsgJpeEIIMvoemRxShTvz3HFKdb1/vsq72NfxIYqbVo6hH+KIuT2
-	 5tmnZYgwZ3XQg==
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e4f88ea298so3121356a12.2;
-        Fri, 07 Mar 2025 04:15:45 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU/87uVx9drFAQanRM/k/DrR/25mK1PUhiMcUGgS7ACt7EempumLUmeBiglKuH0tRvkBH7kp50NLvxr@vger.kernel.org, AJvYcCUyQ/ykTE/HULmjiofxCH2jss+mnlKXTVrVw003xhPWfsjCpPZD7KMOsQ2yAUibOgpg61lXuDGKYM0AHLbz@vger.kernel.org
-X-Gm-Message-State: AOJu0YyP3NgplXBwmPMCXUPbQJKjOAFHSeM1zyCxbZI5jL7Myd31l9Ij
-	SPk3vuaPdIc5UbiXvBdR2HDktgZP1VpuujpaoGRfsrkah3QeUuLvYo2OBl+TlP/hO0xWAcl6UTO
-	PSM2HlT/IMEqqpbcasNkE0SsXvw==
-X-Google-Smtp-Source: AGHT+IGVdHSFZn3+WiSlThdpTVs0r4OoYpx/U2Lbt6NNoKziKPQIgxGTCb1pgFt4bob2aUbhXriG1Al/+sIfqRUQvOM=
-X-Received: by 2002:a17:907:2d92:b0:ac1:fab4:a83 with SMTP id
- a640c23a62f3a-ac252b5a837mr346883966b.25.1741349744102; Fri, 07 Mar 2025
- 04:15:44 -0800 (PST)
+	 To:Cc:Content-Type; b=rcCkP1dThweBFaRTDlgJSX/xkqIti/CqRRyjBj4JAWRMcGvPbXJ0LyRlSh1oK/c0L2jW1wAawnSZyrB5n72tVADwFZl6HAWW7u+1ppd6NMsvuPr91T+L4vecwhFEmF0T21oWe3Oy7pglhQCZtAVejsb4eyu5rGXy0nPxaTX/Ja8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RMfKgFh0; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2240b4de12bso3782365ad.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 04:17:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741349838; x=1741954638; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hv/gVLl2qHT3OP5ugQYjdLZvq+nefm2QS0Hproa/Q1s=;
+        b=RMfKgFh0j70baDIS9XSwxylUILg3sA4Suiydcru82/mAj6q1RaRMNkwHpV06eghUwc
+         SZjpKc2g4/C1W/cPGmaqabvkaQayhh8wsc8NyrHedRnhADSvTxZOBM7C0hJfiVrbiR0U
+         PpGqi15rJAcvo9im5nxa6n407SJ3rO7wrTkEeGL4IuWO+kzuuzeyVzb00P+aiHdKE91b
+         3XEYWSOybwYvofuzIJmDYQTmSdtoq5ja3HglVuqT63QGavIfGGBqFwwMGs36dgyHgCGc
+         BhOTkOL9at1dK6d3qtGJhcJ6ksNAcjDAmwoIrs4TQTwGr0zpC/BtATIq4FZAsk+j4woS
+         2x0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741349838; x=1741954638;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Hv/gVLl2qHT3OP5ugQYjdLZvq+nefm2QS0Hproa/Q1s=;
+        b=nOWqqfvj2Ez8c96lBOLsDS4njLgS5nOIMCt1yKYpWw4fm5AuChqfBgEk8ftWq8rVEF
+         rQ67/7jfYx8csnNpL/cGvGqJAnPOl8I3JIcs4k+yWtwcrAVcPzmV6tiL+m9eHGrTfFt0
+         fHSjBRdTk9MphcY0sxNtzL+DLrsKRJ1+vQnvd1lA9G93xECk3NLzEr+7+SulJEnn1bXX
+         HQ/QnfouI774gpBmT8rzeOsF7Y0my+sOgpkc2G++d6u2hrO9vkGy1XssuUPsvKUcWWSO
+         7eiE+etRJ9F+4FGGvUX4zVUGB8Bbd2npWHNdhxEU8wT7NpMiIQgBIAP6EkTN+8ayl2Ih
+         qX0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU/hbZWQ2i93LVGqMJRCkqVKmOutPxZhP5yAqAxuuURWcWkGYPCPZZtebFyyUgFCaPj9Ic9kg0BeEF5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOj4LVfo/SVzZq9c63ZAsnmp6AhgHIbzAnKX4h8COvRfvj6ZtO
+	kJWAVbOB1gV+H0A15oCn9X8UbeFCrZRXJzXM8nHeWTK9xSu8OC74PiaRWgJaqYN5VlcNow0oRJH
+	q1UeLPFbXo/eq2Tos6qdvXFESP9EjM7hh8N/yXQ==
+X-Gm-Gg: ASbGncva+Fn0AbiZaB51FdJmu3DUhTN8Lt6y3yebavsammqxPwJPfEjdvd1I0LrqGJA
+	42D98WBPXVmRTCBRr8vl+ib3UPu3XegGmrurUinYBLZgZDW9o7kPFc/DJ5OmAOQ+28aitZAkznS
+	JwnqKbQ1QEOsctb+hKsiUmzPyYoAI=
+X-Google-Smtp-Source: AGHT+IH573IS5QtUx20I6gmw8IwbjOS9N3JKhGKodkJA2RjHHnjVw0eGQJw9/ecW7LGByF/yQgZQ/285vJSUaEc7A0Y=
+X-Received: by 2002:a05:6a00:843:b0:736:a973:748 with SMTP id
+ d2e1a72fcca58-736aaad3d00mr5126533b3a.22.1741349838300; Fri, 07 Mar 2025
+ 04:17:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250218185452.600797-1-vaishnav.a@ti.com> <20250218185452.600797-6-vaishnav.a@ti.com>
-In-Reply-To: <20250218185452.600797-6-vaishnav.a@ti.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 7 Mar 2025 06:15:32 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLxHKdQujWdSkGe6_cUftdgNgJ2PyVZR41A_LJ241_D3g@mail.gmail.com>
-X-Gm-Features: AQ5f1JomHAua_qKY6p65rhjGZzmCsboNe30YpEDs67TH3wT0hxy-QRQycqLiaFA
-Message-ID: <CAL_JsqLxHKdQujWdSkGe6_cUftdgNgJ2PyVZR41A_LJ241_D3g@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: ti: k3-j722s-evm: Add overlay for TEVI OV5640
-To: Vaishnav Achath <vaishnav.a@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	jai.luthra@linux.dev, y-abhilashchandra@ti.com
+References: <20250227092640.2666894-1-quic_songchai@quicinc.com> <20250227092640.2666894-4-quic_songchai@quicinc.com>
+In-Reply-To: <20250227092640.2666894-4-quic_songchai@quicinc.com>
+From: Mike Leach <mike.leach@linaro.org>
+Date: Fri, 7 Mar 2025 12:17:05 +0000
+X-Gm-Features: AQ5f1JokkN84bPdZY7gP5fhbY5F7Y4Itc_hcgefVYh4EcU6KzYt95XIRUUYFQ2Q
+Message-ID: <CAJ9a7Vi9CWGKGYe6jBELFN_X6dSG4EfQQd5moju5ekbrLWxi2g@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] coresight-tgu: Add signal priority support
+To: songchai <quic_songchai@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@arm.com>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 18, 2025 at 12:55=E2=80=AFPM Vaishnav Achath <vaishnav.a@ti.com=
-> wrote:
+Hi
+
+On Thu, 27 Feb 2025 at 09:27, songchai <quic_songchai@quicinc.com> wrote:
 >
-> TechNexion TEVI OV5640 camera is a 5MP camera that can be used with
-> J722S EVM through the 22-pin CSI-RX connector. Add a reference overlay
-> for quad TEVI OV5640 modules on J722S EVM.
+> From: Songwei Chai <quic_songchai@quicinc.com>
 >
-> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> Like circuit of a Logic analyzer, in TGU, the requirement could be
+> configured in each step and the trigger will be created once the
+> requirements are met. Add priority functionality here to sort the
+> signals into different priorities. The signal which is wanted could
+> be configured in each step's priority node, the larger number means
+> the higher priority and the signal with higher priority will be sensed
+> more preferentially.
+>
+> Signed-off-by: Songwei Chai <quic_songchai@quicinc.com>
+> Signed-off-by: songchai <quic_songchai@quicinc.com>
 > ---
->  arch/arm64/boot/dts/ti/Makefile               |   4 +
->  .../k3-j722s-evm-csi2-quad-tevi-ov5640.dtso   | 319 ++++++++++++++++++
->  2 files changed, 323 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov=
-5640.dtso
+>  .../testing/sysfs-bus-coresight-devices-tgu   |   7 +
+>  drivers/hwtracing/coresight/coresight-tgu.c   | 139 ++++++++++++++++++
+>  drivers/hwtracing/coresight/coresight-tgu.h   | 110 ++++++++++++++
+>  3 files changed, 256 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Mak=
-efile
-> index 9ae0917e5763..0370392abda8 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -120,6 +120,7 @@ dtb-$(CONFIG_ARCH_K3) +=3D k3-j721s2-evm-pcie1-ep.dtb=
-o
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-am67a-beagley-ai.dtb
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-j722s-evm.dtb
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
-> +dtb-$(CONFIG_ARCH_K3) +=3D k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
+> index 741bc9fd9df5..af7332153833 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
+> @@ -7,3 +7,10 @@ Description:
+>                 Accepts only one of the 2 values -  0 or 1.
+>                 0 : disable TGU.
+>                 1 : enable TGU.
+> +
+> +What:           /sys/bus/coresight/devices/<tgu-name>/step[0:7]_priority[0:3]/reg[0:17]
+> +Date:           February 2025
+> +KernelVersion   6.15
+> +Contact:        Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Sam Chai (QUIC) <quic_songchai@quicinc.com>
+> +Description:
+> +                (RW) Set/Get the sensed siganal with specific step and priority for TGU.
+
+sp/siganal/signal
+
+> diff --git a/drivers/hwtracing/coresight/coresight-tgu.c b/drivers/hwtracing/coresight/coresight-tgu.c
+> index da4c04ac1097..f28761619ebe 100644
+> --- a/drivers/hwtracing/coresight/coresight-tgu.c
+> +++ b/drivers/hwtracing/coresight/coresight-tgu.c
+> @@ -17,9 +17,92 @@
 >
->  # Boards with J784s4 SoC
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-am69-sk.dtb
-> @@ -212,6 +213,8 @@ k3-j721s2-evm-pcie1-ep-dtbs :=3D k3-j721s2-common-pro=
-c-board.dtb \
->         k3-j721s2-evm-pcie1-ep.dtbo
->  k3-j722s-evm-csi2-quad-rpi-cam-imx219-dtbs :=3D k3-j722s-evm.dtb \
->         k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
-> +k3-j722s-evm-csi2-quad-tevi-ov5640-dtbs :=3D k3-j722s-evm.dtb \
-> +       k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
->  k3-j784s4-evm-pcie0-pcie1-ep-dtbs :=3D k3-j784s4-evm.dtb \
->         k3-j784s4-evm-pcie0-pcie1-ep.dtbo
->  k3-j784s4-evm-quad-port-eth-exp1-dtbs :=3D k3-j784s4-evm.dtb \
-> @@ -247,6 +250,7 @@ dtb- +=3D k3-am625-beagleplay-csi2-ov5640.dtb \
->         k3-j721e-sk-csi2-dual-imx219.dtb \
->         k3-j721s2-evm-pcie1-ep.dtb \
->         k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtb \
-> +       k3-j722s-evm-csi2-quad-tevi-ov5640.dtb \
->         k3-j784s4-evm-pcie0-pcie1-ep.dtb \
->         k3-j784s4-evm-quad-port-eth-exp1.dtb \
->         k3-j784s4-evm-usxgmii-exp1-exp2.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dt=
-so b/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
-> new file mode 100644
-> index 000000000000..f33f50465a07
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
-> @@ -0,0 +1,319 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>  DEFINE_CORESIGHT_DEVLIST(tgu_devs, "tgu");
+>
+> +static int calculate_array_location(struct tgu_drvdata *drvdata, int step_index,
+> +                         int operation_index, int reg_index)
+> +{
+> +       int ret = -EINVAL;
+> +
+> +       ret = operation_index * (drvdata->max_step) *
+> +                     (drvdata->max_reg) + step_index * (drvdata->max_reg)
+> +                               + reg_index;
+> +
+> +       return ret;
+> +}
+> +
+> +static ssize_t tgu_dataset_show(struct device *dev,
+> +                               struct device_attribute *attr, char *buf)
+> +{
+> +       struct tgu_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +       struct tgu_attribute *tgu_attr =
+> +               container_of(attr, struct tgu_attribute, attr);
+> +
+> +       return sysfs_emit(buf, "0x%x\n",
+> +                         drvdata->value_table->priority[calculate_array_location(
+> +                                 drvdata, tgu_attr->step_index,
+> +                                 tgu_attr->operation_index, tgu_attr->reg_num)]);
+> +
+> +}
+> +
+> +static ssize_t tgu_dataset_store(struct device *dev,
+> +                                struct device_attribute *attr, const char *buf,
+> +                                size_t size)
+> +{
+> +       unsigned long val;
+> +       ssize_t ret = -EINVAL;
+> +
+> +       struct tgu_drvdata *tgu_drvdata = dev_get_drvdata(dev->parent);
+> +       struct tgu_attribute *tgu_attr =
+> +               container_of(attr, struct tgu_attribute, attr);
+> +
+> +       if (kstrtoul(buf, 0, &val))
+> +               return ret;
+> +
+> +       guard(spinlock)(&tgu_drvdata->spinlock);
+> +       tgu_drvdata->value_table->priority[calculate_array_location(
+> +               tgu_drvdata, tgu_attr->step_index, tgu_attr->operation_index,
+> +               tgu_attr->reg_num)] = val;
+> +       ret = size;
+> +
+> +       return ret;
+
+ret is unneeded - directly return either size or -EINVAL.
+
+> +}
+> +
+> +static umode_t tgu_node_visible(struct kobject *kobject, struct attribute *attr,
+> +                               int n)
+> +{
+> +       struct device *dev = kobj_to_dev(kobject);
+> +       struct tgu_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +       int ret = 0;
+> +
+> +       struct device_attribute *dev_attr =
+> +               container_of(attr, struct device_attribute, attr);
+> +       struct tgu_attribute *tgu_attr =
+> +               container_of(dev_attr, struct tgu_attribute, attr);
+> +
+> +       if (tgu_attr->step_index < drvdata->max_step) {
+> +               ret = (tgu_attr->reg_num < drvdata->max_reg) ?
+> +                                           attr->mode : 0;
+> +               return ret;
+> +       }
+> +       return SYSFS_GROUP_INVISIBLE;
+> +}
+
+default ret as SYSFS_GROUP_INVISIBLE, and returnret at end
+
+> +
+>  static void tgu_write_all_hw_regs(struct tgu_drvdata *drvdata)
+>  {
+> +       int i, j, k;
+> +
+>         CS_UNLOCK(drvdata->base);
+> +
+> +       for (i = 0; i < drvdata->max_step; i++) {
+> +               for (j = 0; j < MAX_PRIORITY; j++) {
+> +                       for (k = 0; k < drvdata->max_reg; k++) {
+> +                               tgu_writel(drvdata,
+> +                                          drvdata->value_table->priority
+> +                                                  [calculate_array_location(drvdata, i, j, k)],
+> +                                          PRIORITY_REG_STEP(i, j, k));
+> +                       }
+> +               }
+> +       }
+> +
+>         /* Enable TGU to program the triggers */
+>         tgu_writel(drvdata, 1, TGU_CONTROL);
+>         CS_LOCK(drvdata->base);
+> @@ -130,6 +213,38 @@ static const struct attribute_group tgu_common_grp = {
+>
+>  static const struct attribute_group *tgu_attr_groups[] = {
+>         &tgu_common_grp,
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(0, 0),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(0, 1),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(0, 2),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(0, 3),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(1, 0),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(1, 1),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(1, 2),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(1, 3),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(2, 0),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(2, 1),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(2, 2),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(2, 3),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(3, 0),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(3, 1),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(3, 2),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(3, 3),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(4, 0),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(4, 1),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(4, 2),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(4, 3),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(5, 0),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(5, 1),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(5, 2),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(5, 3),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(6, 0),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(6, 1),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(6, 2),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(6, 3),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(7, 0),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(7, 1),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(7, 2),
+> +       PRIORITY_ATTRIBUTE_GROUP_INIT(7, 3),
+>         NULL,
+>  };
+>
+> @@ -164,6 +279,30 @@ static int tgu_probe(struct amba_device *adev, const struct amba_id *id)
+>
+>         spin_lock_init(&drvdata->spinlock);
+>
+> +       ret = of_property_read_u32(adev->dev.of_node, "tgu-regs",
+> +                                  &drvdata->max_reg);
+> +       if (ret)
+> +               return -EINVAL;
+> +
+> +       ret = of_property_read_u32(adev->dev.of_node, "tgu-steps",
+> +                                  &drvdata->max_step);
+> +       if (ret)
+> +               return -EINVAL;
+> +
+> +       drvdata->value_table =
+> +               devm_kzalloc(dev, sizeof(*drvdata->value_table), GFP_KERNEL);
+> +       if (!drvdata->value_table)
+> +               return -ENOMEM;
+> +
+> +       drvdata->value_table->priority = devm_kzalloc(
+> +               dev,
+> +               MAX_PRIORITY * drvdata->max_reg * drvdata->max_step *
+> +                       sizeof(*(drvdata->value_table->priority)),
+> +               GFP_KERNEL);
+> +
+> +       if (!drvdata->value_table->priority)
+> +               return -ENOMEM;
+> +
+>         drvdata->enable = false;
+>         desc.type = CORESIGHT_DEV_TYPE_HELPER;
+>         desc.pdata = adev->dev.platform_data;
+> diff --git a/drivers/hwtracing/coresight/coresight-tgu.h b/drivers/hwtracing/coresight/coresight-tgu.h
+> index 380686f94130..6e5d465117df 100644
+> --- a/drivers/hwtracing/coresight/coresight-tgu.h
+> +++ b/drivers/hwtracing/coresight/coresight-tgu.h
+> @@ -13,6 +13,110 @@
+>  #define tgu_writel(drvdata, val, off) __raw_writel((val), drvdata->base + off)
+>  #define tgu_readl(drvdata, off) __raw_readl(drvdata->base + off)
+>
 > +/*
-> + * 4 x TEVI OV5640 MIPI Camera module on RPI camera connector.
+> + *  TGU configuration space                              Step configuration
+> + *  offset table                                         space layout
+> + * x-------------------------x$                          x-------------x$
+> + * |                         |$                          |             |$
+> + * |                         |                           |   reserve   |$
+> + * |                         |                           |             |$
+> + * |coresight management     |                           |-------------|base+n*0x1D8+0x1F4$
+> + * |     registe             |                     |---> |prioroty[3]  |$
+> + * |                         |                     |     |-------------|base+n*0x1D8+0x194$
+> + * |                         |                     |     |prioroty[2]  |$
+> + * |-------------------------|                     |     |-------------|base+n*0x1D8+0x134$
+> + * |                         |                     |     |prioroty[1]  |$
+> + * |         step[7]         |                     |     |-------------|base+n*0x1D8+0xD4$
+> + * |-------------------------|->base+0x40+7*0x1D8  |     |prioroty[0]  |$
+> + * |                         |                     |     |-------------|base+n*0x1D8+0x74$
+> + * |         ...             |                     |     |  condition  |$
+> + * |                         |                     |     |   select    |$
+> + * |-------------------------|->base+0x40+1*0x1D8  |     |-------------|base+n*0x1D8+0x60$
+> + * |                         |                     |     |  condition  |$
+> + * |         step[0]         |-------------------->      |   decode    |$
+> + * |-------------------------|-> base+0x40               |-------------|base+n*0x1D8+0x50$
+> + * |                         |                           |             |$
+> + * | Control and status space|                           |Timer/Counter|$
+> + * |        space            |                           |             |$
+> + * x-------------------------x->base                     x-------------x base+n*0x1D8+0x40$
 > + *
-> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.co=
-m/
 > + */
 > +
-> +/dts-v1/;
-> +/plugin/;
+> +/* Calculate compare step addresses */
+> +#define PRIORITY_REG_STEP(step, priority, reg)\
+> +       (0x0074 + 0x60 * priority + 0x4 * reg + 0x1D8 * step)
 > +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "k3-pinctrl.h"
-> +
-> +&{/} {
-> +       clk_ov5640_fixed: ov5640-xclk {
 
-clock-24000000 for the node name.
+use #defines + explanation instead of arbitrary magic numbers
 
-> +               compatible =3D "fixed-clock";
-> +               #clock-cells =3D <0>;
-> +               clock-frequency =3D <24000000>;
-> +       };
-> +};
+> +#define tgu_dataset_ro(name, step_index, type, reg_num)     \
+> +       (&((struct tgu_attribute[]){ {                      \
+> +               __ATTR(name, 0444, tgu_dataset_show, NULL), \
+> +               step_index,                                 \
+> +               type,                                       \
+> +               reg_num,                                    \
+> +       } })[0].attr.attr)
 > +
-> +
-> +&main_pmx0 {
-> +       cam0_reset_pins_default: cam0-reset-pins-default {
 
-Doesn't match the schema. Please test your changes:
 
-pinctrl@f4000: 'cam0-reset-pins-default', 'cam1-reset-pins-default',
-'cam2-reset-pins-default', 'cam3-reset-pins-default' do not match any
-of the regexes: '-pins(-[0-9]+)?$|-pin$', 'pinctrl-[0-9]+'
+This define unused in this patch, Drop till it is used.
 
-> +               pinctrl-single,pins =3D <
-> +                       J722S_IOPAD(0x03c, PIN_OUTPUT, 7)
-> +               >;
-> +       };
+> +#define tgu_dataset_rw(name, step_index, type, reg_num)                  \
+> +       (&((struct tgu_attribute[]){ {                                   \
+> +               __ATTR(name, 0644, tgu_dataset_show, tgu_dataset_store), \
+> +               step_index,                                              \
+> +               type,                                                    \
+> +               reg_num,                                                 \
+> +       } })[0].attr.attr)
 > +
-> +       cam1_reset_pins_default: cam1-reset-pins-default {
-> +               pinctrl-single,pins =3D <
-> +                       J722S_IOPAD(0x044, PIN_OUTPUT, 7)
-> +               >;
-> +       };
+> +#define STEP_PRIORITY(step_index, reg_num, priority)                     \
+> +       tgu_dataset_rw(reg##reg_num, step_index, TGU_PRIORITY##priority, \
+> +                      reg_num)
 > +
-> +       cam2_reset_pins_default: cam2-reset-pins-default {
-> +               pinctrl-single,pins =3D <
-> +                       J722S_IOPAD(0x04c, PIN_OUTPUT, 7)
-> +               >;
-> +       };
+> +#define STEP_PRIORITY_LIST(step_index, priority)  \
+> +       {STEP_PRIORITY(step_index, 0, priority),  \
+> +        STEP_PRIORITY(step_index, 1, priority),  \
+> +        STEP_PRIORITY(step_index, 2, priority),  \
+> +        STEP_PRIORITY(step_index, 3, priority),  \
+> +        STEP_PRIORITY(step_index, 4, priority),  \
+> +        STEP_PRIORITY(step_index, 5, priority),  \
+> +        STEP_PRIORITY(step_index, 6, priority),  \
+> +        STEP_PRIORITY(step_index, 7, priority),  \
+> +        STEP_PRIORITY(step_index, 8, priority),  \
+> +        STEP_PRIORITY(step_index, 9, priority),  \
+> +        STEP_PRIORITY(step_index, 10, priority), \
+> +        STEP_PRIORITY(step_index, 11, priority), \
+> +        STEP_PRIORITY(step_index, 12, priority), \
+> +        STEP_PRIORITY(step_index, 13, priority), \
+> +        STEP_PRIORITY(step_index, 14, priority), \
+> +        STEP_PRIORITY(step_index, 15, priority), \
+> +        STEP_PRIORITY(step_index, 16, priority), \
+> +        STEP_PRIORITY(step_index, 17, priority), \
+> +        NULL                   \
+> +       }
 > +
-> +       cam3_reset_pins_default: cam3-reset-pins-default {
-> +               pinctrl-single,pins =3D <
-> +                       J722S_IOPAD(0x054, PIN_OUTPUT, 7)
-> +               >;
-> +       };
+> +#define PRIORITY_ATTRIBUTE_GROUP_INIT(step, priority)\
+> +       (&(const struct attribute_group){\
+> +               .attrs = (struct attribute*[])STEP_PRIORITY_LIST(step, priority),\
+> +               .is_visible = tgu_node_visible,\
+> +               .name = "step" #step "_priority" #priority \
+> +       })
+> +
+> +enum operation_index {
+> +       TGU_PRIORITY0,
+> +       TGU_PRIORITY1,
+> +       TGU_PRIORITY2,
+> +       TGU_PRIORITY3
+> +
 > +};
 > +
-> +&exp1 {
-> +       p06-hog{
-> +               /* P06 - CSI01_MUX_SEL_2 */
-> +               gpio-hog;
-> +               gpios =3D <6 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name =3D "CSI01_MUX_SEL_2";
-> +       };
+> +/* Maximum priority that TGU supports */
+> +#define MAX_PRIORITY 4
 > +
-> +       p07-hog{
-> +               /* P01 - CSI23_MUX_SEL_2 */
-> +               gpio-hog;
-> +               gpios =3D <7 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name =3D "CSI23_MUX_SEL_2";
-> +       };
+> +struct tgu_attribute {
+> +       struct device_attribute attr;
+> +       u32 step_index;
+> +       enum operation_index operation_index;
+> +       u32 reg_num;
 > +};
 > +
-> +&main_gpio0 {
-> +       p15-hog {
-> +               /* P15 - CSI2_CAMERA_GPIO1 */
-> +               gpio-hog;
-> +               gpios =3D <15 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name =3D "CSI2_CAMERA_GPIO1";
-> +       };
-> +
-> +       p17-hog {
-> +               /* P17 - CSI2_CAMERA_GPIO2 */
-> +               gpio-hog;
-> +               gpios =3D <17 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name =3D "CSI2_CAMERA_GPIO2";
-> +       };
-> +
-> +       p19-hog {
-> +               /* P19 - CSI2_CAMERA_GPIO3 */
-> +               gpio-hog;
-> +               gpios =3D <19 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name =3D "CSI2_CAMERA_GPIO3";
-> +       };
-> +
-> +       p21-hog {
-> +               /* P21 - CSI2_CAMERA_GPIO4 */
-> +               gpio-hog;
-> +               gpios =3D <21 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name =3D "CSI2_CAMERA_GPIO4";
-> +       };
+> +struct value_table {
+> +       unsigned int *priority;
 > +};
 > +
-> +&pca9543_0 {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +
-> +       i2c-alias-pool =3D /bits/ 16 <0x3c 0x3d>;
-> +
-> +       i2c@0 {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +               reg =3D <0>;
-> +
-> +               ov5640_0: camera@3c {
-> +                       compatible =3D "ovti,ov5640";
-> +                       reg =3D <0x3c>;
-> +                       clocks =3D <&clk_ov5640_fixed>;
-> +                       clock-names =3D "xclk";
-> +
-> +                       pinctrl-names =3D "default";
-> +                       pinctrl-0 =3D <&cam0_reset_pins_default>;
-> +
-> +                       port {
-> +                               csi2_cam0: endpoint {
-> +                                       remote-endpoint =3D <&csi2rx0_in_=
-sensor>;
-> +                                       clock-lanes =3D <0>;
-> +                                       data-lanes =3D <1 2>;
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +
-> +       i2c@1 {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +               reg =3D <1>;
-> +
-> +               ov5640_1: camera@3c {
-> +                       compatible =3D "ovti,ov5640";
-> +                       reg =3D <0x3c>;
-> +                       clocks =3D <&clk_ov5640_fixed>;
-> +                       clock-names =3D "xclk";
-> +
-> +                       pinctrl-names =3D "default";
-> +                       pinctrl-0 =3D <&cam1_reset_pins_default>;
-> +
-> +                       port {
-> +                               csi2_cam1: endpoint {
-> +                                       remote-endpoint =3D <&csi2rx1_in_=
-sensor>;
-> +                                       clock-lanes =3D <0>;
-> +                                       data-lanes =3D <1 2>;
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&pca9543_1 {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +
-> +       i2c-alias-pool =3D /bits/ 16 <0x3c 0x3d>;
-> +
-> +       i2c@0 {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +               reg =3D <0>;
-> +
-> +               ov5640_2: camera@3c {
-> +                       compatible =3D "ovti,ov5640";
-> +                       reg =3D <0x3c>;
-> +                       clocks =3D <&clk_ov5640_fixed>;
-> +                       clock-names =3D "xclk";
-> +
-> +                       pinctrl-names =3D "default";
-> +                       pinctrl-0 =3D <&cam2_reset_pins_default>;
-> +
-> +                       port {
-> +                               csi2_cam2: endpoint {
-> +                                       remote-endpoint =3D <&csi2rx2_in_=
-sensor>;
-> +                                       clock-lanes =3D <0>;
-> +                                       data-lanes =3D <1 2>;
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +
-> +       i2c@1 {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +               reg =3D <1>;
-> +
-> +               ov5640_3: camera@3c {
-> +                       compatible =3D "ovti,ov5640";
-> +                       reg =3D <0x3c>;
-> +                       clocks =3D <&clk_ov5640_fixed>;
-> +                       clock-names =3D "xclk";
-> +
-> +                       pinctrl-names =3D "default";
-> +                       pinctrl-0 =3D <&cam3_reset_pins_default>;
-> +
-> +                       port {
-> +                               csi2_cam3: endpoint {
-> +                                       remote-endpoint =3D <&csi2rx3_in_=
-sensor>;
-> +                                       clock-lanes =3D <0>;
-> +                                       data-lanes =3D <1 2>;
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&cdns_csi2rx0 {
-> +       ports {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +
-> +               csi0_port0: port@0 {
-> +                       reg =3D <0>;
-> +                       status =3D "okay";
-> +
-> +                       csi2rx0_in_sensor: endpoint {
-> +                               remote-endpoint =3D <&csi2_cam0>;
-> +                               bus-type =3D <4>; /* CSI2 DPHY */
-> +                               clock-lanes =3D <0>;
-> +                               data-lanes =3D <1 2>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&cdns_csi2rx1 {
-> +       ports {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +
-> +               csi1_port0: port@0 {
-> +                       reg =3D <0>;
-> +                       status =3D "okay";
-> +
-> +                       csi2rx1_in_sensor: endpoint {
-> +                               remote-endpoint =3D <&csi2_cam1>;
-> +                               bus-type =3D <4>; /* CSI2 DPHY */
-> +                               clock-lanes =3D <0>;
-> +                               data-lanes =3D <1 2>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&cdns_csi2rx2 {
-> +       ports {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +
-> +               csi2_port0: port@0 {
-> +                       reg =3D <0>;
-> +                       status =3D "okay";
-> +
-> +                       csi2rx2_in_sensor: endpoint {
-> +                               remote-endpoint =3D <&csi2_cam2>;
-> +                               bus-type =3D <4>; /* CSI2 DPHY */
-> +                               clock-lanes =3D <0>;
-> +                               data-lanes =3D <1 2>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&cdns_csi2rx3 {
-> +       ports {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +
-> +               csi3_port0: port@0 {
-> +                       reg =3D <0>;
-> +                       status =3D "okay";
-> +
-> +                       csi2rx3_in_sensor: endpoint {
-> +                               remote-endpoint =3D <&csi2_cam3>;
-> +                               bus-type =3D <4>; /* CSI2 DPHY */
-> +                               clock-lanes =3D <0>;
-> +                               data-lanes =3D <1 2>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&ti_csi2rx0 {
-> +       status =3D "okay";
-> +};
-> +
-> +&dphy0 {
-> +       status =3D "okay";
-> +};
-> +
-> +&ti_csi2rx1 {
-> +       status =3D "okay";
-> +};
-> +
-> +&dphy1 {
-> +       status =3D "okay";
-> +};
-> +
-> +
-> +&ti_csi2rx2 {
-> +       status =3D "okay";
-> +};
-> +
-> +&dphy2 {
-> +       status =3D "okay";
-> +};
-> +
-> +
-> +&ti_csi2rx3 {
-> +       status =3D "okay";
-> +};
-> +
-> +&dphy3 {
-> +       status =3D "okay";
-> +};
-> --
-> 2.34.1
+>  /**
+>   * struct tgu_drvdata - Data structure for a TGU (Trigger Generator Unit) device
+>   * @base: Memory-mapped base address of the TGU device
+> @@ -20,6 +124,9 @@
+>   * @csdev: Pointer to the associated coresight device
+>   * @spinlock: Spinlock for handling concurrent access
+>   * @enable: Flag indicating whether the TGU device is enabled
+> + * @value_table: Store given value based on relevant parameters.
+> + * @max_reg: Maximum number of registers
+> + * @max_step: Maximum step size
+>   *
+>   * This structure defines the data associated with a TGU device, including its base
+>   * address, device pointers, clock, spinlock for synchronization, trigger data pointers,
+> @@ -31,6 +138,9 @@ struct tgu_drvdata {
+>         struct coresight_device *csdev;
+>         spinlock_t spinlock;
+>         bool enable;
+> +       struct value_table *value_table;
+> +       int max_reg;
+> +       int max_step;
+>  };
 >
+>  #endif
+
+Regards
+
+Mike
+
+-- 
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
 
