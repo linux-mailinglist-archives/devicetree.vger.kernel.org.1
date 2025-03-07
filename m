@@ -1,213 +1,90 @@
-Return-Path: <devicetree+bounces-155274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7D43A5616A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:05:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EB96A56195
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:10:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99EED3B4073
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:04:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7E1816606B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:10:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE2A19D8A4;
-	Fri,  7 Mar 2025 07:04:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kySxEx0Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2767E1A2632;
+	Fri,  7 Mar 2025 07:10:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524E5193409;
-	Fri,  7 Mar 2025 07:04:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11A5D1519A3;
+	Fri,  7 Mar 2025 07:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741331097; cv=none; b=C7ohu9lNl9szhH+ZfUjy/Dbl37BpKNNbMlNyZoJBYWI+gt+REThpiWsRathtnKl4E5UXKSX0jDg1gqkvmlQyQoEyxrx5u6l2eCXW7r2c7y96z3J8RxTapfam9XrJVO9pLhdw6zl7sX11jAQ7FDlr8mjI0woZs/1DSRQwYxdr+/w=
+	t=1741331433; cv=none; b=rlDxpC481op5aAkk7fL5sdkT3LNqzvQTFIdIrx4CMUUstZFC/4qc4MjMdpnRcfxqJ5Mcu3X2h3/BZQUlmks6XK8DDokIF5Up+4UYkTC+FkjQPjMU+puWOoo7Wz4zVrw+/2HHC3Ana2u9qAUAGhW895Cljxe1bAudcXM+0Uej0VE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741331097; c=relaxed/simple;
-	bh=5e5MJqakEHjCgRgY1uejLfs+Wy8KtSWOqlKL58qDFPI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gYYgOwnYW2f5GklJ3lAXLtStzAIZhsF81dqzbzE8uU5aAWqqXZ1pi07Hk6gOHJ3uLDNDMxdgkmw+vdwo74FpHrDrcs/544qeCWZvNm2fW5CvsldCu4TrV/GPnDl/6TKpfmCLfu4vs4B8bplfm+ovc23hGsY2NihDQzACYTPhuPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kySxEx0Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D1DFC4CED1;
-	Fri,  7 Mar 2025 07:04:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741331096;
-	bh=5e5MJqakEHjCgRgY1uejLfs+Wy8KtSWOqlKL58qDFPI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kySxEx0QFGm/OEDdq6/QsJaUdCjxywWV5uPO1+QreWZnwSJrHoYfIgtSUJQyMWZAS
-	 i3Y0KTwmFM8iB8KN62vj+gWq4xFhvKj3CxDYQyyOo2JQBt8FjGxcYDv6JUMu3W1J2T
-	 RpV7CARznlHW3WfZOYEmgKruraRnGGhDs5xPq2qjnldo2ZgzZ5qz6QOTDE43cUOs2L
-	 A2ISq9LCYZsQK8RCA8Esi863eujw4oFnAxcajjUqtIoFGpOOfYB/ngMYR7tzemhF1v
-	 75kKA/kWb5gWqXq7KlC3wGPE90eADK+Fxym1s9vGe08JzAXtL4a2kHTu2ZihecXYLC
-	 4Fv7JUqpTWiZA==
-Message-ID: <8d90731b-4b5a-45a8-83d1-4351044f59c7@kernel.org>
-Date: Fri, 7 Mar 2025 08:04:49 +0100
+	s=arc-20240116; t=1741331433; c=relaxed/simple;
+	bh=/i61AFTna0JtqgSXTvtVBwSvEIxrH0iTFTAZj2TrUDs=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=G8VWWqostKIBVYUXwPm4hI+QW/qGIeE2RIycqTWz6kKUW/NFeQ4Ks8sus/j5v2g0rvynWpI1bdnA/si8O9aBrGcNnPSlkzxzCUOG4JX8GzGjZ4KuLcScUKsiwVu2F4b69x1pJjylH8s+NaenHh25bUPUeW9KTJH2718UArxZRWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:3300:bb12:a0a3:40d:e82f])
+	by smtp.qiye.163.com (Hmail) with ESMTP id d4f8d463;
+	Fri, 7 Mar 2025 15:10:22 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: jonas@kwiboo.se
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	cristian.ciocaltea@collabora.com,
+	detlev.casanova@collabora.com,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH v2 8/8] arm64: dts: rockchip: Enable SD-card interface on Radxa E20C
+Date: Fri,  7 Mar 2025 15:10:20 +0800
+Message-Id: <20250307071020.756277-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <5a0a7ce1-1dfb-4d19-8a1e-0d89d177f5b8@kwiboo.se>
+References: <5a0a7ce1-1dfb-4d19-8a1e-0d89d177f5b8@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: memory: mediatek: Add SMI reset and
- clamp for MT8188
-To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20250221074846.14105-1-friday.yang@mediatek.com>
- <20250221074846.14105-2-friday.yang@mediatek.com>
- <0dcb2efd-6bbb-4701-960a-74930eb457e4@collabora.com>
- <264f78c1067e363c69e146543ebb77dbedfbd181.camel@mediatek.com>
- <463ca2df-a0ee-4b9e-a988-12f316ae7d1a@kernel.org>
- <9305a4fd6829e5e2ae6c3247d11b9f47ed277f8b.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <9305a4fd6829e5e2ae6c3247d11b9f47ed277f8b.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTU4eVhlNHRkaTU9JHkMdGFYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQUhIS0tBGRlKSUEaSxpIQU9LH0EeQ0kdWVdZFhoPEh
+	UdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQktLWQY+
+X-HM-Tid: 0a956f70dd1003a2kunmd4f8d463
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NVE6Hjo6MDICHDcIIjULGjVC
+	CAIKCT9VSlVKTE9KSEhKT0lISUNCVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0tBSEhLS0EZGUpJQRpLGkhBT0sfQR5DSR1ZV1kIAVlBT0NCNwY+
 
-On 07/03/2025 07:38, Friday Yang (杨阳) wrote:
-> On Thu, 2025-03-06 at 13:48 +0100, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> On 06/03/2025 13:45, Friday Yang (杨阳) wrote:
->>>>> +          const: mediatek,mt8188-smi-larb
->>>>> +        mediatek,larb-id:
->>>>> +          oneOf:
->>>>
->>>> Are you really sure that you need 'oneOf' here? :-)
->>>>
->>>> Regards,
->>>> Angelo
->>>
->>> Yes, I have tested it. If I try to modify the 'examples'
->>> like this. That is:
->>>   change the compatible to "mediatek,mt8188-smi-larb",
->>>   add 'mediatek,larb-id = <10>;'
->>>
->>> examples:
->>>   - |+
->>>     #include <dt-bindings/clock/mt8173-clk.h>
->>>     #includ
->>> e <dt-bindings/power/mt8173-power.h>
->>>
->>>     larb1: larb@16010000 {
->>>       compatible = "mediatek,mt8188-smi-larb";
->>>       reg = <0x16010000 0x1000>;
->>>       mediatek,smi = <&smi_common>;
->>>       mediatek,larb-id = <10>;
->>>       power-domains = <&scpsys MT8188_POWER_DOMAIN_VDEC>;
->>>       clocks = <&vdecsys CLK_VDEC_CKEN>,
->>>                <&vdecsys CLK_VDEC_LARB_CKEN>;
->>>       clock-names = "apb", "smi";
->>>     };
->>>
->>> The 'dt_binding_check' could give the following
->>> errors:
->>>
->>> Documentation/devicetree/bindings/memory-controllers/mediatek,smi-
->>> larb.example.dtb: larb@16010000: 'resets' is a required property
->>> from schema $id:
->>>
-> https://urldefense.com/v3/__http://devicetree.org/schemas/memory-controllers/mediatek,smi-larb.yaml*__;Iw!!CTRNKA9wMg0ARbw!kEwWhxyfjVtuHKBHazZGRaFdlmrU2bcIsiVDcsUDzEIManMw2XIG9RgOzq773vtmqlR9_sWZDFhU09SV$
->>> Documentation/devicetree/bindings/memory-controllers/mediatek,smi-
->>> larb.example.dtb: larb@16010000: 'reset-names' is a required
->>> property
->>> from schema $id:
->>>
-> https://urldefense.com/v3/__http://devicetree.org/schemas/memory-controllers/mediatek,smi-larb.yaml*__;Iw!!CTRNKA9wMg0ARbw!kEwWhxyfjVtuHKBHazZGRaFdlmrU2bcIsiVDcsUDzEIManMw2XIG9RgOzq773vtmqlR9_sWZDFhU09SV$
->>>
->>> And this is what I want to achieve. On the MediaTek MT8188 SoC
->>> platform, 'resets' and 'reset-names' are only required for SMI
->>> LARBs
->>> located in image, camera and ipe subsys. Others can be ignored. And
->>> the
->>> 'larb-id' of these SMI LARBs are shown in this array: [ 9, 10, 11,
->>> 12,
->>> 13, 16, 17, 18, 19, 20 ].
->>>
->>> Please feel free to let me know if you have any doubts.
->>
->> You did not really answer the question. Where is anything about oneOf
->> in
->> your reply?
->>
->> I am dropping this patchset from my queue.
->>
+Hi,
+
+> On the E20C the sdmmc controller is routed to a microSD card slot mainly
+> intended for use with microSD-cards and should normally not need SDIO.
 > 
-> In this SoC, we encountered power-off failures and SMI bus hang issues
-> during camera stress tests. SMI LARBs located in the image, IPE, and
-> camera subsystems need to implement a reset, while other LARBs do not
-> require it.
-> 
-> The 'mediatek,larb-id' for SMI LARBs in the image, IPE, and camera
-> subsystems are as follows:
-> - image subsystem: 9, 10, 11, 12, 16
-> - IPE subsystem: 13
-> - camera subsystem: 17, 18, 19, 20
-> 
-> Therefore, we believe that 'mediatek,larb-id' should be 'oneOf' the
+> What card/adapter do you have inserted in the microSD card slot that
+> requires use of SDIO instead of just SD or MMC? What is the use case you
+> have that requires removal of no-sdio on E20C?
 
+I inserted an sdio wifi module (via sdcard adapter) for testing.
+Just out of curiosity :)
 
-So explain me where is the second condition?
+Thanks,
+Chukun
 
-Best regards,
-Krzysztof
+-- 
+2.25.1
+
 
