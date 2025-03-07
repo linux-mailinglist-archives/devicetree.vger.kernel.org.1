@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-155316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02480A5630F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:57:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5116FA5631B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:59:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AFE41892492
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:57:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D46916DDA4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:59:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7ED1E1DE2;
-	Fri,  7 Mar 2025 08:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9811D1E1DEA;
+	Fri,  7 Mar 2025 08:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q8DCTYdo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ernTCcp2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E5D1A5B9E;
-	Fri,  7 Mar 2025 08:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DBB41DC99A;
+	Fri,  7 Mar 2025 08:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741337825; cv=none; b=VS6NvzvCcoa25nSXDW0Wy2c4sdUYnQMj+sBPeBDcBYqwtf/VSXeff+MamTg/fmpf44rF6Kfn4j0Ypq3/wQ3PesyiJ/pQmwcq6DBa15l3Mk+NxbPmxOr/yyb5kbjV+Kls7l1vG8L5LUo+qGbaPFVa6yuAdCFnE9qVjUKHniZqgpA=
+	t=1741337988; cv=none; b=EKJQa6M8GYERy7Xv8gTbCiWqAacxCMI8aPn/3ClOi36Uj2G7hdTTf5ef/7XLoLdAcvYN09Z0X7qHNvnx1Crg14XKKAf6hzWTL31lz1Z3ig3r2qRjB8LGruixM34sJIwcOmxbKSu+Jkcz0lLbIfoV9bcmJUsYjf6tmgOnLRZ58PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741337825; c=relaxed/simple;
-	bh=GdvVVcDXx825xwHiDeenmFGVQv+cy7j7wXByGy3GLRA=;
+	s=arc-20240116; t=1741337988; c=relaxed/simple;
+	bh=OUm7r7IpsmT73wpd2azBUljbUrW/IqVpCS+NbA3cdD8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NCQgEej2VXPxHahIobkHnRm7833yR5ssKKaGMtx4BmIcxnURCEgKD7uUvrQVWZuTNkso+ZGcGm3G7oNOrFjFlPyntXwDmlHHHpV5do7P53P5RZ1CVSJP9AuUm+2O6HXPZlqLgqynNMCtcbdkyMrD5PlZGDP5EwBCa9L6LV6G8k8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q8DCTYdo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83B75C4CED1;
-	Fri,  7 Mar 2025 08:56:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=A76j1sr5wVHFUe+OwQTo95RcUy6XUxE+3aP/yoJGbjEbllVWDkJUqI0bPeOnMSSQG87WWNOOfQAGCluV6RBbORFVPyx6frkEBdwynvAUF/iOvi+XnHu0oVKeW8EyMUhjve7WYMTX4JcpLmtZea+8vCUseOZoR/9GM97M80yZ8JA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ernTCcp2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09EC7C4CED1;
+	Fri,  7 Mar 2025 08:59:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741337824;
-	bh=GdvVVcDXx825xwHiDeenmFGVQv+cy7j7wXByGy3GLRA=;
+	s=k20201202; t=1741337987;
+	bh=OUm7r7IpsmT73wpd2azBUljbUrW/IqVpCS+NbA3cdD8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q8DCTYdo+Xi9+P2rH/JhJ2Z8naxSK1QwDzwMWmhO2epqAOBNa+SZOA8OsM+jdzVgt
-	 8rQx8cHWBr6hpVTUDYj5u+99BIQ2ga6pSgyon6ACNHyFBy6fD/JaUCkDG6XkSI/cDi
-	 5Zb0gOt/oVIPUj0LozoFvBhCTR5v83aNNmV5q06Ppl2QaAZpuAVrP9z+n7q2LbQAEu
-	 veaTzYie9lg55aNKqGSkqLWajDVlwhoIcOrMCSFsnrKZkT8RmXkIQUHmQAyW2NkPSn
-	 FRIu0yStlp8hO9dXQIydoMGnGrfkK7trduXY7lv4nHs13LZpGsJLSNAp+6eqGor7rE
-	 UqaiDwUlLqt8g==
-Message-ID: <f8e2091b-52dc-4b7a-b781-84588dd6b1ba@kernel.org>
-Date: Fri, 7 Mar 2025 09:56:56 +0100
+	b=ernTCcp2o/kCxExwSGkbZOyzh6oF9W/6wtDyKXNyH900Nr+5vjVjbCzhxnoBlYtym
+	 HLFZVN2MhtEYTdw9aPiCSX+aMKWnb3OySFZ6jaFmOnJHIQ9sAuuaAH6caSepvR/uqf
+	 WC1rA+By+L0IxyLYkAHhAeslfFc2keV7H0cr+0u7HhFuu1hUiy0OM86F60PkWYDr32
+	 pUjyYIANYz4kRLOTYS9OQ0rlsW20BdgbeMbIhkT9IlHPmCfqpyABZRZzKnWhYe8JUD
+	 6x2qI1C1/ulCK+pl34ozOSypZ/H0lXk6Jh9Uh6MqRjGwPQUO+RbaOU69T3EvRXNUVJ
+	 idKQ/9hRlbG7w==
+Message-ID: <2f39acd2-e378-47cf-b852-bee1a38108c5@kernel.org>
+Date: Fri, 7 Mar 2025 09:59:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Add Armada8K reset controller
-To: Wilson Ding <dingwei@marvell.com>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Sanghoon Lee <salee@marvell.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
+Subject: Re: [EXTERNAL] Re: [PATCH v3 3/3] arm64: dts: marvell: cp11x: Add
+ reset controller node
+To: Wilson Ding <dingwei@marvell.com>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- Geethasowjanya Akula <gakula@marvell.com>,
  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "andrew@lunn.ch" <andrew@lunn.ch>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>,
- "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "robh@kernel.org" <robh@kernel.org>
+Cc: "andrew@lunn.ch" <andrew@lunn.ch>,
+ "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+ "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ Sanghoon Lee <salee@marvell.com>, Geethasowjanya Akula <gakula@marvell.com>
 References: <20250227192536.2426490-1-dingwei@marvell.com>
- <20250227192536.2426490-2-dingwei@marvell.com>
- <174068786548.161165.4348563654300627455.robh@kernel.org>
- <BY3PR18MB467346EB1FA7CEF0A3300350A7CD2@BY3PR18MB4673.namprd18.prod.outlook.com>
- <d2929546-27de-4893-a611-dd4a3bca1a64@kernel.org>
- <BY3PR18MB46734A2425361D8BE83E4282A7D52@BY3PR18MB4673.namprd18.prod.outlook.com>
+ <20250227192536.2426490-4-dingwei@marvell.com>
+ <d085c34a-fdbf-4950-a2e3-b3d25a1c0145@kernel.org>
+ <BY3PR18MB46730C150D4CB9619B3B05FBA7CC2@BY3PR18MB4673.namprd18.prod.outlook.com>
+ <050ae833-10b5-4d80-9856-8bc2f434a74f@kernel.org>
+ <BY3PR18MB46739700B533630D65C60808A7C82@BY3PR18MB4673.namprd18.prod.outlook.com>
+ <87b9e9c3-87db-4ebe-96b0-4f04705ef6f8@kernel.org>
+ <BY3PR18MB4673B4CEB60D3D21AB17B01DA7C82@BY3PR18MB4673.namprd18.prod.outlook.com>
+ <03b14353-5d47-48de-99fd-9cc48bad5651@kernel.org>
+ <BY3PR18MB4673BD07048F8AF7EA55282CA7CA2@BY3PR18MB4673.namprd18.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,64 +119,63 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <BY3PR18MB46734A2425361D8BE83E4282A7D52@BY3PR18MB4673.namprd18.prod.outlook.com>
+In-Reply-To: <BY3PR18MB4673BD07048F8AF7EA55282CA7CA2@BY3PR18MB4673.namprd18.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/03/2025 01:03, Wilson Ding wrote:
->> reset.example.dts
->>>   DTC [C]
->>> Documentation/devicetree/bindings/reset/marvell,armada8k-reset.example
->>> .dtb
->>>
+On 06/03/2025 18:42, Wilson Ding wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Wednesday, March 5, 2025 11:29 PM
+>> To: Wilson Ding <dingwei@marvell.com>; linux-kernel@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> robh@kernel.org
+>> Cc: andrew@lunn.ch; gregory.clement@bootlin.com;
+>> sebastian.hesselbarth@gmail.com; krzk+dt@kernel.org; conor+dt@kernel.org;
+>> p.zabel@pengutronix.de; Sanghoon Lee <salee@marvell.com>;
+>> Geethasowjanya Akula <gakula@marvell.com>
+>> Subject: [EXTERNAL] Re: [PATCH v3 3/3] arm64: dts: marvell: cp11x: Add reset
+>> controller node
 >>
->> That's a bit odd but anyway warning is correct: you cannot have such
->> compatibles alone.
+>> On 04/03/2025 20:08, Wilson Ding wrote:
+>>>
+>>> I did consider shrinking the syscon's register address range to make
+>>> the reset-controller node to be independent from the syscon node.
+>>> However, I found the syscon node is also referred by some devices for
+>>> miscellaneous configurations . The reset configuration register
+>>> happens to be located in between these registers and clock/GPIO
+>>> registers.
+>>>
+>>>> drop offset in your patch or unify everything into 'reg'.
+>>>>
+>>>
+>>> This is exactly what I proposed in v3 patch. Do I misunderstand you?
+>>>
+>>> CP11X_LABEL(swrst): reset-controller@268 {
+>>> 	compatible = "marvell,armada8k-reset";
+>>> 	reg = <0x268 0x4>;
+>>> 	#reset-cells = <1>;
+>>> };
+>>
+>> I don't see the other device being fixed here. How did you unify them?
 > 
-> I understand I need to add one compatible here to resolve the
-> warning. However, as we agreed, we keep the sud-nodes while
-> there will be no new compatibles in parent node. So how shall
-> I avoid this warning?
-> 
-> If we do want to add a compatible in parent node, what should
-> be used for the compatible name? I think the most suitable name
-> would be something like "marvell,cp110-system-controller0".
+> This patch series is about the proposal of Armada8K's reset controller
+> dt-binding. The dt-bindings issues of clock/GPIO controllers have been
+> there for years. Having to say, it is not just a simple patch to fix it. It
 
-I don't know. I don't work in Marvell, I know nothing about Marvell
-Armada and I was not involved in any Armada SoCs.
 
-Read your datasheet and come up with some reasonable name based on
-datasheet. Why do you ask people who do not have datasheet?
+I understand, you just want to throw your patch here over the wall. It's
+reasonable, I feel it. Just like previous cases for this binding -
+everyone wanted one subnode at a time, ignoring bigger picture, each
+time making it franken-node or franken-binding.
 
-> However, it was already taken for in Armada clock controller to
-> be compatible for legacy dt.
-> 
-> https://lore.kernel.org/all/bb21ee9acc55efac884450ff710049b99b27f8bf.1496328934.git-series.gregory.clement@free-electrons.com/
+Please listen to Greg's talk from years ago about upstreaming. "I don't
+want your code":
+https://www.youtube.com/watch?v=fMeH7wqOwXA
 
-I don't understand what it means.
 
-> 
-> This is something about 8 years ago. I wonder if we do need to
-> have the backward compatibility for the field devices at that
-> time. Can we drop it now?
-
-Drop what? You need to keep ABI.
-
-> 
->     syscon0: system-controller@440000 {
->         compatible = "marvell,cp110-system-controller0",
->                                 "syscon", "simple-mfd";
->         reg = <0x440000 0x2000>;
->         #address-cells = <1>;
->         #size-cells = <1>;
-> 
->         swrst: reset-controller@268 {
->             compatible = "marvell,armada8k-reset";
->             reg = <0x268 0x4>;
->             #reset-cells = <1>;
->         };
->     };
-> 
 Best regards,
 Krzysztof
 
