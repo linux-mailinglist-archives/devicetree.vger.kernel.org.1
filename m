@@ -1,119 +1,120 @@
-Return-Path: <devicetree+bounces-155439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F2CCA56B31
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:06:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A14A56B37
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:07:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E19B3B44C7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:06:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A929D3A8785
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:07:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE80921C179;
-	Fri,  7 Mar 2025 15:06:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3744D21C187;
+	Fri,  7 Mar 2025 15:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wxd9Q4Ml"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="yW0AcufO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3C18218AB4
-	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 15:06:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF96218AB4;
+	Fri,  7 Mar 2025 15:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741359991; cv=none; b=kRGoK++cb+e6NCkNgcTeFHJF20HCoVCBjLBzeJfuUkwwtypwSwTkt5/fswo/04bOaf8aHaukZ4HA2M6BRxaKmMNVoOnBzMJlS4asD1JTq4AZX5cBOus5TGSq2gTVJrLaD8o0ikzyRHO2nnG6i6sxsxOCUcIHL4g4FDvAZqP/5Vs=
+	t=1741360038; cv=none; b=asBDkyZ1EkcMzwOK4AEjP/yxqQP8KjKvWO42lQn7zr7waLo9tpGQkWS9yURCH103d+q/3bSbljA6dUzlODDUzC7L2ZEVCoWYUb97YNJ5uu/+ItiC1mMq9UU3ki6zDl8F9k7plJtoM/ZuF5sQETDeSFclGopreX9XLEAs467dzHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741359991; c=relaxed/simple;
-	bh=9Y/Y73m9zuvLRA6vGtkNTS7BPX54Zx9NPuwy9xoTbQo=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=m79GHlrQ8V0m1r3gbWPAH/8RcNWz6JqoWvu9lGqikc9DoWq4M56Okx+wsQS8tvi/nithiIvtn15pnR0LYidnqXAZ17BCOpN2/K+MaEqsiizvjBT3rLckWnpt4TJK8s8hDS5NmgLu1hol88liNV20bdxu4ZofgTY4uZHe61HxNPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Wxd9Q4Ml; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-38f54938d1bso51262f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 07:06:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741359988; x=1741964788; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iArDif38+fZWZHkgSuOxfgSy+rEDqBvDc+u/YR4aXK4=;
-        b=Wxd9Q4MlVmNFiwwtrfqzzFBBOnHB7G46pBet8K0p9sePNyrr6/7UwxCZQQEV7OlTuO
-         qR83GWnJ7XYmaK/ecey4kFtw0xG/+H70Xq9jZoXcDeU8SFH5OFyR46M7ep0RFez4Dc1w
-         pZKHEX7BxLg5kNIkmyASxTi89/lr5hEMDZkCpXDFHlB1Eqgfd33DSVoGxRDECSfFZtTN
-         xVHMABYa7cj5GLnUjb+TujiurC+PNun83ubzA1DINnvS7aMWh/N//TNXUfSWmWL8zBv+
-         RJjq4hvbwr1SWz//MwkvsiSbCu4hIYFRnrbOdlCEmmnkKzQaqeEKf9E1sef9q67rRwzR
-         oekQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741359988; x=1741964788;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iArDif38+fZWZHkgSuOxfgSy+rEDqBvDc+u/YR4aXK4=;
-        b=ncZFJa1Hw3rMpkJnNwCFX56spHzbu3VTj7xHD+NMYyBZP3AUoqiUxlEPjr2lA+YPTo
-         f27hakIECyonbvykyQgujrvNoyVZE1NVOZUEOIeKVqnc7z5Zki6gkLW+32AnpzeR2ccN
-         c1VCM/BYN645ISVZaFsh69CpZiGXYLMr4rg/bMuqBUFVSnnM5jehEhFYb+vTFhp0RuP9
-         bB0C2NCmCTgKZ+E3KVR5Ti6Qt83yILEkclHCJER1UoUJAtAe5VrOYjMcJU5qIRGmxXhq
-         yxBKtnDlllwAB4IEieNO4J6j1IQgbknlUEd76J1Bra6aBcJx4+n6mhM62Q6yC5R+phem
-         fXmw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1YxAKim57YXznCTmQK3sPlPXuNQ+oGuLWkGwwsFQuh0ATwYWLx8fHC4lebnLtp+xnygLpkEWszlox@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjZ5TVYggx1CclJ043bpEqhrEFygm0rkAXfGCxmRx2f2YHK21Q
-	JfVR2FPqr3/sReJlvM6QkM2aXpTinndV237NKGnmkJFz/ow2iTl4M8EM7a1Enb4=
-X-Gm-Gg: ASbGnctgCimNR/jRIiSaONsFMiE2VGLx5K2LQ7xMFmCILGkAOW939T85naU7veNItBC
-	Hz5I/zMYsJbbzWag9PXDZdqsxL3t+VqqVHTQMoosx9BDWGeQepjHMNNO3gQdt62DTeG8ru6O9nJ
-	4s2wXMQqGV1SpBiLGp3OKh45deXAmyzInIE1GmUf4yMswlKTUJ4rNzFaNsG/QkL69rybQpgDliX
-	w7AQ2OlOv1/ZyGo3ZzT78+d9uKEXM+hjZhq4kjSNRrLub+W2pAlmMtABqJbqfvGd1PH4JPe/TK0
-	BJET/cgObgBG2W/Jqpc3I/PehPF2RjcZT6cv7MJcQdp10Dr027l/NXzFqvik
-X-Google-Smtp-Source: AGHT+IEepjQ7imgYoD7q4HWijAiTHHIHKB+RaF8r7Ya6WdH9B4Go9g4Q6bd0zl6386Q12ZEaV7KLTg==
-X-Received: by 2002:a5d:5f92:0:b0:38f:2b3c:569e with SMTP id ffacd0b85a97d-3913a8b4205mr53814f8f.11.1741359988167;
-        Fri, 07 Mar 2025 07:06:28 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.206.225])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912c0e4065sm5694633f8f.62.2025.03.07.07.06.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Mar 2025 07:06:27 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- linux-fsd@tesla.com, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250219085726.70824-1-krzysztof.kozlowski@linaro.org>
-References: <20250219085726.70824-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 1/2] arm64: dts: exynos: gs101: Change labels to
- lower-case
-Message-Id: <174135998630.202917.16887190642980215810.b4-ty@linaro.org>
-Date: Fri, 07 Mar 2025 16:06:26 +0100
+	s=arc-20240116; t=1741360038; c=relaxed/simple;
+	bh=k2RsuBJenczQo70HERB+LmBalKEDkzEizBCy+Q/+BJQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GHe2CYccpEukiQXKzZxlZurEGVC8s1C8QkC7cUSI/BNoDBEKuHEqNKvK4C2LD+6iVsNVavj6M3q7E4wfshADAls166t73JmQrASrUG0QiEfaqLQamTTQhjIIzL02EncKWnHD9af5uHanGfZ/ToqFlPOaN9LIEv/tMFUjWnD3m/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=yW0AcufO; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=+YoQ2bMScfM3XAjlW+ut1pe8WVSp2EYOFx87rsgzN5k=; b=yW0AcufOGRYzmpgjGUgGNmg/0F
+	56qmo0oQ6Pdz6e0J5QHj/u774MNjQpmgTkNm+4Z8BViLIV96x9aPBHpaG529Rn9Y9cYfKboGR2qfX
+	1wNc3hnNoSARSM4ggrltwjCJJfa61gsC3vk5Nb2/f7d1VqjEMsOr2WEEa6T4QXBsqulZlf/fIfABR
+	r390rRxnArS/qTzhbLk5afn2oiPQRawCCjC9QIBgjvYNE/j/QUzUzUnx86lj365Vo0vpxJzlanMxA
+	w+GBPP64swpFjcRItYcpFUsgWldeODSnI6aEXLNBJuhpPKTMAb47O43gsDJkOTqmGIGNlD2AP20O3
+	mMjClxuQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34076)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tqZHh-0007ZK-2W;
+	Fri, 07 Mar 2025 15:06:45 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tqZHX-0007uI-2E;
+	Fri, 07 Mar 2025 15:06:35 +0000
+Date: Fri, 7 Mar 2025 15:06:35 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	"Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>,
+	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Vladimir Oltean <olteanv@gmail.com>, Furong Xu <0x1207@gmail.com>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+	Lothar Rubusch <l.rubusch@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next v7 4/4] net: stmmac: Add glue layer for Sophgo
+ SG2044 SoC
+Message-ID: <Z8sLeyixPzH60mJ_@shell.armlinux.org.uk>
+References: <20250307011623.440792-1-inochiama@gmail.com>
+ <20250307011623.440792-5-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250307011623.440792-5-inochiama@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-
-On Wed, 19 Feb 2025 09:57:25 +0100, Krzysztof Kozlowski wrote:
-> DTS coding style expects labels to be lowercase.  No functional impact.
-> Verified with comparing decompiled DTB (dtx_diff and fdtdump+diff).
+On Fri, Mar 07, 2025 at 09:16:17AM +0800, Inochi Amaoto wrote:
+> Adds Sophgo dwmac driver support on the Sophgo SG2044 SoC.
 > 
-> 
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 
-Applied, thanks!
+Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-[1/2] arm64: dts: exynos: gs101: Change labels to lower-case
-      https://git.kernel.org/krzk/linux/c/73fd2bb607387a77b2dde43a2c47db2b71c65a96
-[2/2] arm64: dts: tesla: Change labels to lower-case
-      https://git.kernel.org/krzk/linux/c/056106b030b73c7d53749469bd1cdbc89b4d2daf
+Thanks!
 
-Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
