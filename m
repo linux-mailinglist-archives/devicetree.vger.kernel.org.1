@@ -1,63 +1,56 @@
-Return-Path: <devicetree+bounces-155300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B51A56289
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:26:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D3BA5629A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:34:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF3063B2C1F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:26:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A6FD3B49D0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:34:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3151B413D;
-	Fri,  7 Mar 2025 08:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D2B1ACEDF;
+	Fri,  7 Mar 2025 08:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MUy9Ewf3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWJRy/cT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BA8D1A5B86;
-	Fri,  7 Mar 2025 08:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B0215382E;
+	Fri,  7 Mar 2025 08:34:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741336011; cv=none; b=VmsIhHSuEKT72J2mPRaIDzD9mBuP45jwQZE33K3de8KEl33JpeqYyxXJUXdL6mQpztSj5YLnelfrEGy9hBJnuTLYkR3yYQ/jG9QHk8TmXuJPhxdPK3ZCGRkGni/f8m/GXQztQDju/O6Frp93bGg3Nbp7vWDIm5/udm8sM3ze7c4=
+	t=1741336468; cv=none; b=RfJhFpjufLr+1QbSG5hXXOR1XXra393tKrgtE2QVIVGyiMajZ1m+u+C5dxQkqc/612RCYn+D++3Hud+zwMlvLufE0f7tY+kKtoGz8vqzzy9XN6dXqqVeXaLiPpOja4DNvHbza1CViK/Xjsrmmt5D+JzhcAktDl97FJ94MSJp15w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741336011; c=relaxed/simple;
-	bh=4g4KFVEllHF9Fzyk30OF0hRqc9JoCbYtjKmWSqDx7uI=;
+	s=arc-20240116; t=1741336468; c=relaxed/simple;
+	bh=eFJNtO+gPLfeMVIMbA8EOsQEQtMeWOxWdDojxK6sC4U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rGQYf9xhm7QHkMBsENKsZN7UTVM7knXjnJ5Ngr+Q0S3mkzWK5cv6pOIKDfuKzw+AQoKvhonIHu0BTatiOOXKCTuvN4fabxCw7T84iPGNfQPY1uuk64RT46Fv9rSDHPOqBkd3rd6klWkuesGsP8Jk0yYZPOm/P/+r1B2ziySV+Cs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MUy9Ewf3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78902C4CED1;
-	Fri,  7 Mar 2025 08:26:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RPvi8PQAavZ8KFqIOrx3i1z59m0a8OGEs5SH7vQV/acbH6AL+NbJIz1b+XLovFYz+RogbfI+Dac41OwnA6Lzl4uLWlZOj0tHZwzxDxNLe3yaZuaSv+VhptQbsLP0FNtz/6F6WfBBbw+kMqQO+1is0KtFVIvW9gCTMDLAKEYpqbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWJRy/cT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1B6BC4CED1;
+	Fri,  7 Mar 2025 08:34:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741336010;
-	bh=4g4KFVEllHF9Fzyk30OF0hRqc9JoCbYtjKmWSqDx7uI=;
+	s=k20201202; t=1741336467;
+	bh=eFJNtO+gPLfeMVIMbA8EOsQEQtMeWOxWdDojxK6sC4U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MUy9Ewf3tVuuvEuoi4JjxRnHfFDBBZ8agqsMeht/L3IHHDfmSNPi0UcsbLnezXZxm
-	 gICDgiLTQMxGAwN2+xp1MhFsfCf5CnUY6LOjVJEHwxiKwbN8zbNrNTLCLSqt61c2wD
-	 PF9YNGMMQ4DILHADeaTzVndOBQuO82CVSjjF4UJf6U6fmYzN53Hki4xhfMIbEKFs/X
-	 BPR8yGXVrX6vXPSeSeDKo7eVscXnAgDTJ7d3DvqQlBkPSoU3bE1MsU9vh9ba0gMUqF
-	 CWkvb8SPDaPFJb4sHYjPfNqslI17euLFM9qRWgBokn7/9AlaM0N6Aw8LQRhw806TZs
-	 KrlUrV+tyxZmQ==
-Date: Fri, 7 Mar 2025 09:26:46 +0100
+	b=PWJRy/cTBnY4eQjRSnNxKHgwOvZvf7FPvMe4vxvX5RazqS7VAMis0zbS6nMGp5q6x
+	 oJwiPXy1OuRdMHTScBusB2utPearjfmaTeBfnHOaEAGxPf4HsSw/NWe1OjhiHhh+NS
+	 OqQAGKEUkR+bc1PrKsjpgETvq3tXx3Q4t1hmP5CScZea0/JDgJApcJMQ3CZT44WhAz
+	 UaUQ54AjYKb23nwx3cFdHUnTIkL35Un4xUw9Fzn5459939eeHc/3umq/D31n9n24A7
+	 Zy+FHo2fOCRGeUBfYfi6eOPAND/OSmd19pOfVMFYxSIsrQEvDsRNFzbzQ1QF6uhXOp
+	 K9QkjEhrp5yjg==
+Date: Fri, 7 Mar 2025 09:34:24 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Haylen Chu <heylenay@4d2.org>
-Cc: Yixun Lan <dlan@gentoo.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Haylen Chu <heylenay@outlook.com>, linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
-	Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicornxdotw@foxmail.com>, 
-	Jisheng Zhang <jszhang@kernel.org>, Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-Subject: Re: [PATCH v5 3/5] clk: spacemit: Add clock support for Spacemit K1
- SoC
-Message-ID: <20250307-impossible-fine-panther-38c66b@krzk-bin>
-References: <20250306175750.22480-2-heylenay@4d2.org>
- <20250306175750.22480-5-heylenay@4d2.org>
- <20250307005149-GYA66361@gentoo>
- <Z8qVOssDHaVDQmLY@ketchup>
+To: Sam Winchenbach <sam.winchenbach@framepointer.org>
+Cc: linux-kernel@vger.kernel.org, lars@metafoo.de, 
+	Michael.Hennerich@analog.com, antoniu.miclaus@analog.com, jic23@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, bpellegrino@arka.org
+Subject: Re: [PATCH v5 1/6] dt-bindings: iio: filter: Add lpf/hpf freq margins
+Message-ID: <20250307-handsome-merry-alpaca-17da9f@krzk-bin>
+References: <20250306183314.150253-1-sam.winchenbach@framepointer.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,44 +59,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Z8qVOssDHaVDQmLY@ketchup>
+In-Reply-To: <20250306183314.150253-1-sam.winchenbach@framepointer.org>
 
-On Fri, Mar 07, 2025 at 06:42:02AM +0000, Haylen Chu wrote:
-> > > +static int k1_ccu_probe(struct platform_device *pdev)
-> > > +{
-> > > +	struct regmap *base_regmap, *lock_regmap = NULL;
-> > > +	struct device *dev = &pdev->dev;
-> > > +	int ret;
-> > > +
-> > > +	base_regmap = device_node_to_regmap(dev->of_node);
-> > > +	if (IS_ERR(base_regmap))
-> > > +		return dev_err_probe(dev, PTR_ERR(base_regmap),
-> > > +				     "failed to get regmap\n");
-> > > +
-> > > +	if (of_device_is_compatible(dev->of_node, "spacemit,k1-pll")) {
-> > ..
-> > > +		struct device_node *mpmu = of_parse_phandle(dev->of_node,
-> > > +							    "spacemit,mpmu", 0);
-> > > +		if (!mpmu)
-> > > +			return dev_err_probe(dev, -ENODEV,
-> > > +					     "Cannot parse MPMU region\n");
-> > > +
-> > > +		lock_regmap = device_node_to_regmap(mpmu);
-> > > +		of_node_put(mpmu);
-> > > +
-> > you can simplify above with syscon_regmap_lookup_by_phandle(), which
-> > would save a few lines
-> > 
-> > or further, just call syscon_regmap_lookup_by_compatible()? then
-> > won't be necessary to introduce the "spacemit,mpmu" property..
-> > 
+On Thu, Mar 06, 2025 at 01:33:09PM -0500, Sam Winchenbach wrote:
+> Adds two properties to add a margin when automatically finding the
+> corner frequencies.
 > 
-> These syscon_* functions differ a little from device_node_to_regmap():
-> they get and enable the first item in "clocks" property when
-> instantiating a regmap, which isn't desired for a clock controller.
+> Signed-off-by: Sam Winchenbach <sam.winchenbach@framepointer.org>
+> ---
+>  .../bindings/iio/filter/adi,admv8818.yaml     | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+> index b77e855bd594..3f9c61547a78 100644
+> --- a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+> +++ b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+> @@ -44,6 +44,27 @@ properties:
+>    '#clock-cells':
+>      const: 0
+>  
+> +
 
-Yes. And mpmu is not a syscon, so it would be inaccurate or even wrong
-API to use.
+Unnecessary blank line
+
+> +  adi,lpf-margin-hz:
+> +    description:
+> +      Sets the minimum distance (in Hz) between the fundamental
+> +      frequency of `rf_in` and the corner frequency of the low-pass, output
+> +      filter when operatred in 'auto' mode. The selected low-pass corner
+> +      frequency will be greater than, or equal to, `rf_in` + `lpf-margin-hz`. If
+> +      not setting is found that satisfies this relationship the filter will be
+> +      put into 'bypass'.
+> +    default: 0
+
+hz are 32-bit, not 64-bit, so I think you need:
+
+  default: [0, 0]
+  minItems: 2
+  maxItems: 2
 
 Best regards,
 Krzysztof
