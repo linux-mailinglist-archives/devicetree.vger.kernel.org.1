@@ -1,182 +1,175 @@
-Return-Path: <devicetree+bounces-155369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458F0A5675F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:00:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BBEFA5677F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:07:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D5DE7AAF74
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 11:59:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C27E1898D09
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 12:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4C2217F31;
-	Fri,  7 Mar 2025 12:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AEAD218AD4;
+	Fri,  7 Mar 2025 12:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SrupaYid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E291A5BBB;
-	Fri,  7 Mar 2025 12:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5325E217F31;
+	Fri,  7 Mar 2025 12:06:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741348821; cv=none; b=GsIrSyuT4mgwBfKz/lkyUezfAsq8Y3xfAN3p/0TjOHTZlu9iB5E+3Y4SKZAZoxnqyEeCExq7wskVad3AWKczqfpbaqlhne6nL6OpXyLdEvNUZIe2N6WK09LWGP3pMtnCt5La60Z9RxQ1CJUKDnIQbyhww3nC8kXC53AVwJwrHtA=
+	t=1741349210; cv=none; b=oMjiA+Blnc8g2Zob7ju4FHGh0mtVPw6qvhr6IrC6lW3Sk3hY618rg+wjvAenkAe5wiG4LU40P2U/zvzh9loBky64CMkNFWdyUlRCXFWE0YINWh4YudMLr+x9SpOLHBa3/QBmwF2SfvZNzKBdHglXDxu9io+kkUaz/VrWD1PPkEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741348821; c=relaxed/simple;
-	bh=/x+qSuyLXYULQi4EgZ4qvLN2WXhpLCIge5kiEBcHkng=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cq6T5cgUDCInTFwbnSZKR/s/WrE8hOMlamY03gtr1UrUCID9yOZoMYCC1w+lC8tG4FmimTjhf7oqj22a0P2dzGuNI2AY8EGTbdAWr06xFi21kHc8QS5kqyssfBHHeGcwL/IcsPycS+Gc09xBdgcNUaKCX7SQl6mDShb815eUpCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [119.122.215.89])
-	by smtp.qiye.163.com (Hmail) with ESMTP id d5c9f2d7;
-	Fri, 7 Mar 2025 20:00:12 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741349210; c=relaxed/simple;
+	bh=HAZxAV0kKIr9bNaLTZEMnA90XTslNhxbETGdPtCuEfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HQoyj0YfblpY57mYQdLw6x50Y123BYe5wGuHj3sRWgfXuosU0kKIPwSbD1ztEqxvnFvFBvPpTXH3DRcdf2MPgxWrmdLxF5RcOSrFIz3mPZZXpa+n4HIzv8IrmnhtNhllapauk0G6KFW5W7dKC5LTvo3jeJoWHww2d5DetDwBsjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SrupaYid; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741349209; x=1772885209;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HAZxAV0kKIr9bNaLTZEMnA90XTslNhxbETGdPtCuEfw=;
+  b=SrupaYid32EOijizWGImvTGAil7fAMLTxugHFXXJstj7ocXYRt6CoQlK
+   YKUdZvIpbiSUKYpM+bSlvedQxLFf804slw1iABMx6TMaboofLIoz4NNh6
+   iitMJhzGYINWs+iiTL/N0bveTSUSUT0P6yXiv+OkWjes8Q0TwXHt0geiD
+   +T+Vmy1WQV2Obft6lXqax+0DHt2HroRVi1je8aGrcQ7P5Zu1cL2fGQq8F
+   zN9P7tEaxJM0DjbnufitiERqiB/J2neduS5im4VNAxchcroUJOUkMtOXk
+   FYdxAz+Gdd3k4cJk0ex0OSA3YUnMwO4YynrleRNjr+iCwCC+SkDWcf7Pp
+   A==;
+X-CSE-ConnectionGUID: o8jTK5DMTLOywUdz40Uebg==
+X-CSE-MsgGUID: +nqj0MBlT/S6zcYMeR6Mpg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42250770"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; 
+   d="scan'208";a="42250770"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2025 04:06:47 -0800
+X-CSE-ConnectionGUID: twvlSRkKRhmqSqbU0yMTOg==
+X-CSE-MsgGUID: oi1X6wwIS/28+ISkReyDMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; 
+   d="scan'208";a="119476456"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa008.fm.intel.com with ESMTP; 07 Mar 2025 04:06:45 -0800
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tqWTS-0000Qp-0N;
+	Fri, 07 Mar 2025 12:06:42 +0000
+Date: Fri, 7 Mar 2025 20:06:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jorge Marques <jorge.marques@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Yao Zi <ziyao@disroot.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Add pwm nodes for RK3528
-Date: Fri,  7 Mar 2025 20:00:04 +0800
-Message-Id: <20250307120004.959980-3-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250307120004.959980-1-amadeus@jmu.edu.cn>
-References: <20250307120004.959980-1-amadeus@jmu.edu.cn>
+	Jonathan Corbet <corbet@lwn.net>,
+	David Lechner <dlechner@baylibre.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, Jorge Marques <jorge.marques@analog.com>
+Subject: Re: [PATCH 4/4] iio: adc: add support for ad4052
+Message-ID: <202503071916.STHJTSlp-lkp@intel.com>
+References: <20250306-iio-driver-ad4052-v1-4-2badad30116c@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTR4ZVklLH05NSUxNGENPGFYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVDQllXWRYaDxIVHRRZQVlPS0hVSktJSEJLQ1VKS0tVSk
-	JZBg++
-X-HM-Tid: 0a95707a369203a2kunmd5c9f2d7
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NAw6TAw4KzJKMjUKMzMpCEkp
-	EBUKCSJVSlVKTE9KSE9DQ0pISk1IVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpOVUNCWVdZCAFZQUhIQ083Bg++
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250306-iio-driver-ad4052-v1-4-2badad30116c@analog.com>
 
-Add pwm nodes for RK3528. The PWM core on RK3528 is the same as
-RK3328, but the driver does not support interrupts yet.
+Hi Jorge,
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/arm64/boot/dts/rockchip/rk3528.dtsi | 88 ++++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-index b1713ed4d7e2..ab1ac3273611 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-@@ -264,6 +264,94 @@ uart7: serial@ffa28000 {
- 			status = "disabled";
- 		};
- 
-+		pwm0: pwm@ffa90000 {
-+			compatible = "rockchip,rk3528-pwm", "rockchip,rk3328-pwm";
-+			reg = <0x0 0xffa90000 0x0 0x10>;
-+			clocks = <&cru CLK_PWM0>, <&cru PCLK_PWM0>;
-+			clock-names = "pwm", "pclk";
-+			pinctrl-0 = <&pwm0m0_pins>;
-+			pinctrl-names = "active";
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm1: pwm@ffa90010 {
-+			compatible = "rockchip,rk3528-pwm", "rockchip,rk3328-pwm";
-+			reg = <0x0 0xffa90010 0x0 0x10>;
-+			clocks = <&cru CLK_PWM0>, <&cru PCLK_PWM0>;
-+			clock-names = "pwm", "pclk";
-+			pinctrl-0 = <&pwm1m0_pins>;
-+			pinctrl-names = "active";
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm2: pwm@ffa90020 {
-+			compatible = "rockchip,rk3528-pwm", "rockchip,rk3328-pwm";
-+			reg = <0x0 0xffa90020 0x0 0x10>;
-+			clocks = <&cru CLK_PWM0>, <&cru PCLK_PWM0>;
-+			clock-names = "pwm", "pclk";
-+			pinctrl-0 = <&pwm2m0_pins>;
-+			pinctrl-names = "active";
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm3: pwm@ffa90030 {
-+			compatible = "rockchip,rk3528-pwm", "rockchip,rk3328-pwm";
-+			reg = <0x0 0xffa90030 0x0 0x10>;
-+			clocks = <&cru CLK_PWM0>, <&cru PCLK_PWM0>;
-+			clock-names = "pwm", "pclk";
-+			pinctrl-0 = <&pwm3m0_pins>;
-+			pinctrl-names = "active";
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm4: pwm@ffa98000 {
-+			compatible = "rockchip,rk3528-pwm", "rockchip,rk3328-pwm";
-+			reg = <0x0 0xffa98000 0x0 0x10>;
-+			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
-+			clock-names = "pwm", "pclk";
-+			pinctrl-0 = <&pwm4m0_pins>;
-+			pinctrl-names = "active";
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm5: pwm@ffa98010 {
-+			compatible = "rockchip,rk3528-pwm", "rockchip,rk3328-pwm";
-+			reg = <0x0 0xffa98010 0x0 0x10>;
-+			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
-+			clock-names = "pwm", "pclk";
-+			pinctrl-0 = <&pwm5m0_pins>;
-+			pinctrl-names = "active";
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm6: pwm@ffa98020 {
-+			compatible = "rockchip,rk3528-pwm", "rockchip,rk3328-pwm";
-+			reg = <0x0 0xffa98020 0x0 0x10>;
-+			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
-+			clock-names = "pwm", "pclk";
-+			pinctrl-0 = <&pwm6m0_pins>;
-+			pinctrl-names = "active";
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm7: pwm@ffa98030 {
-+			compatible = "rockchip,rk3528-pwm", "rockchip,rk3328-pwm";
-+			reg = <0x0 0xffa98030 0x0 0x10>;
-+			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
-+			clock-names = "pwm", "pclk";
-+			pinctrl-0 = <&pwm7m0_pins>;
-+			pinctrl-names = "active";
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
- 		pinctrl: pinctrl {
- 			compatible = "rockchip,rk3528-pinctrl";
- 			rockchip,grf = <&ioc_grf>;
+[auto build test WARNING on aac287ec80d71a7ab7e44c936a434625417c3e30]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jorge-Marques/iio-code-mark-iio_dev-as-const-in-iio_buffer_enabled/20250306-220719
+base:   aac287ec80d71a7ab7e44c936a434625417c3e30
+patch link:    https://lore.kernel.org/r/20250306-iio-driver-ad4052-v1-4-2badad30116c%40analog.com
+patch subject: [PATCH 4/4] iio: adc: add support for ad4052
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20250307/202503071916.STHJTSlp-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250307/202503071916.STHJTSlp-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503071916.STHJTSlp-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/adc/ad4052.c:239:18: warning: 'ad4052_sample_rate_avail' defined but not used [-Wunused-const-variable=]
+     239 | static const int ad4052_sample_rate_avail[] = {
+         |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/adc/ad4052.c:214:41: warning: 'ad4052_regmap_wr_table' defined but not used [-Wunused-const-variable=]
+     214 | static const struct regmap_access_table ad4052_regmap_wr_table = {
+         |                                         ^~~~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/adc/ad4052.c:201:41: warning: 'ad4052_regmap_rd_table' defined but not used [-Wunused-const-variable=]
+     201 | static const struct regmap_access_table ad4052_regmap_rd_table = {
+         |                                         ^~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/ad4052_sample_rate_avail +239 drivers/iio/adc/ad4052.c
+
+   200	
+ > 201	static const struct regmap_access_table ad4052_regmap_rd_table = {
+   202		.yes_ranges = ad4052_regmap_rd_ranges,
+   203		.n_yes_ranges = ARRAY_SIZE(ad4052_regmap_rd_ranges),
+   204	};
+   205	
+   206	static const struct regmap_range ad4052_regmap_wr_ranges[] = {
+   207		regmap_reg_range(AD4052_REG_INTERFACE_CONFIG_A, AD4052_REG_DEVICE_CONFIG),
+   208		regmap_reg_range(AD4052_REG_SCRATCH_PAD, AD4052_REG_SCRATCH_PAD),
+   209		regmap_reg_range(AD4052_REG_STREAM_MODE, AD4052_REG_INTERFACE_STATUS),
+   210		regmap_reg_range(AD4052_REG_MODE_SET, AD4052_REG_MON_VAL),
+   211		regmap_reg_range(AD4052_REG_FUSE_CRC, AD4052_REG_DEVICE_STATUS),
+   212	};
+   213	
+ > 214	static const struct regmap_access_table ad4052_regmap_wr_table = {
+   215		.yes_ranges = ad4052_regmap_wr_ranges,
+   216		.n_yes_ranges = ARRAY_SIZE(ad4052_regmap_wr_ranges),
+   217	};
+   218	
+   219	static const struct iio_event_spec ad4052_events[] = {
+   220		{
+   221			.type = IIO_EV_TYPE_THRESH,
+   222			.dir = IIO_EV_DIR_EITHER,
+   223			.mask_shared_by_all = BIT(IIO_EV_INFO_ENABLE)
+   224		},
+   225		{
+   226			.type = IIO_EV_TYPE_THRESH,
+   227			.dir = IIO_EV_DIR_RISING,
+   228			.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
+   229					      BIT(IIO_EV_INFO_HYSTERESIS)
+   230		},
+   231		{
+   232			.type = IIO_EV_TYPE_THRESH,
+   233			.dir = IIO_EV_DIR_FALLING,
+   234			.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
+   235					      BIT(IIO_EV_INFO_HYSTERESIS)
+   236		}
+   237	};
+   238	
+ > 239	static const int ad4052_sample_rate_avail[] = {
+   240		2000000, 1000000, 300000, 100000, 33300,
+   241		10000, 3000, 500, 333, 250, 200,
+   242		166, 140, 125, 111
+   243	};
+   244	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
