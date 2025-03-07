@@ -1,138 +1,81 @@
-Return-Path: <devicetree+bounces-155328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8427FA56398
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:21:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 842E9A56381
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:19:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 255A53B56FB
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:20:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFD2F188C8F6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E393320C463;
-	Fri,  7 Mar 2025 09:20:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="KSpoOqsK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6E591FC0E3;
+	Fri,  7 Mar 2025 09:19:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp134-89.sina.com.cn (smtp134-89.sina.com.cn [180.149.134.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CB2206F2E;
-	Fri,  7 Mar 2025 09:20:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741339221; cv=pass; b=P35EKEGcSrnx4FdMMDCsjZHhEbn0f+G77xO8rnk3DiJuhAwCErvcL3pqMg92CEQntPIDcGSwxhx2qvIXCyPAYPjAbkNY3ntk4eDfj01+By4r/sc6McYD13E+Eg6sQOdPkKzzBIgnvcjNd5ZSBVPPRTr/9/0Ite/Gpl299yZWF5c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741339221; c=relaxed/simple;
-	bh=MCVLwHtjp9cOKQrVeDdnlO2+2vwGDRg37Vk1PFA+8Qo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=h4ADQS3zpDQVb7x/myHOZo4CxFdbV+DpLvG/S8V3Zsnt1M7giSAPZgnIHHjV4qTTBmZINCJtpY1y6mPuDag5K8aZwFCB/9wENJGw7+PbuOVD+injEB0fkc6zfjNTIKlOcb7DAyC6rO6yt6dfBomKUOIIC3iNEkjes0xFjBwpJUM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=KSpoOqsK; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1741339175; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=kd2PxLRyDbHiEsHU4i2pu2uulTUubchrEKAJv9Ql/9HjC8TZCGciBkngP5jmdGoFYbJMICoQZiUA/9AEQ6F05UscKLmmgL1o1VRIMu5ywlmy+iR6PgMKDOP9NP8rPDZyY/0X4zqsKYk3ftZ52OztECzhSMFZ0yQSqDYXJzC32AA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1741339175; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=/U61HHgit3TG325CG81jVLePHjTZCns1zkq/zcF+5IM=; 
-	b=AI3a4cWZ3/EmRVHMZ3Uy2KimoiGjkNC1Uu7Uc4n8VVjZvmUeWbCGKBa9xI1vNpt4a62weqzUnnhUP2heIxhSFcLo5I6dkpN/cK/ytUYOBevOeKrU8HRK7Kl8taehUFvTmZRzUA81XYci1MyVxG9GePOhcrRbGKSuhxgKwqEhBh8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741339175;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=/U61HHgit3TG325CG81jVLePHjTZCns1zkq/zcF+5IM=;
-	b=KSpoOqsKWm0EIVaANKirRhaJc4PtPKZB5jRk87SkXHUoy109PI6NKWxNKlTiPbq0
-	cUHY5FLZSkHoVCImZvLQAExt4UcYwce4gVq92epySJGGuQGuCbQEjA9tHmMLjR7rvdJ
-	egcyfmQxPFr4EgW3hi4tsElyn8TPkzc97iw7Nxi0=
-Received: by mx.zohomail.com with SMTPS id 1741339174644626.3807889582921;
-	Fri, 7 Mar 2025 01:19:34 -0800 (PST)
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Shreeya Patel <shreeya.patel@collabora.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	jose.abreu@synopsys.com,
-	nelson.costa@synopsys.com,
-	shawn.wen@rock-chips.com,
-	nicolas.dufresne@collabora.com,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Tim Surber <me@timsurber.de>
-Subject: [PATCH v15 2/2] arm64: dts: rockchip: Enable HDMI receiver on rock-5b
-Date: Fri,  7 Mar 2025 12:18:57 +0300
-Message-ID: <20250307091857.646581-3-dmitry.osipenko@collabora.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250307091857.646581-1-dmitry.osipenko@collabora.com>
-References: <20250307091857.646581-1-dmitry.osipenko@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6461F4164
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 09:19:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.89
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741339175; cv=none; b=bYCk8kZe+8gHezw2MYiNLsFE+o14qfow1WsHuJvTeUjivrG3NFmaHsdHW+XpwluSUCxehIPccBbKWUo4kSMVh4Dx9jyUO64gBiHZWb/ohZhsfaqqqySyCASnyW9UdyaWMX4DN+GeoIRNoVSViqjO7ypfD6lBLgCyohIF7rgCUZk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741339175; c=relaxed/simple;
+	bh=iQm8sWQLixhrBmZI1qc0O/vS2hKCX3hKr9bQSgEnE9A=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=YyHNsEhHeESKfg4U1TgiepMqJH4A92X+PxeduGl1Te9+OD3jffDbk39FbQCcVZfRBthEC3Y53XSufZlLtENHeO9oOtwkcsIapdCa8fa1qj2dqmjlURQz0COOYbrhrbqrYbVU1DnjO36OHEGjBwyNDhfsN9kieIOZ3xmb7mXCW20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
+Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
+	by sina.net (10.185.250.31) with ESMTP
+	id 67CABA1500000B5C; Fri, 7 Mar 2025 17:19:19 +0800 (CST)
+X-Sender: zhangyi@everest-semi.com
+X-Auth-ID: zhangyi@everest-semi.com
+Authentication-Results: sina.net;
+	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
+	 dkim=none header.i=none;
+	 dmarc=none action=none header.from=zhangyi@everest-semi.com
+X-SMAIL-MID: 965132DDB5D9483B94DFB473ECF3E9BB
+X-SMAIL-UIID: 965132DDB5D9483B94DFB473ECF3E9BB-20250307-171919
+From: Zhang Yi <zhangyi@everest-semi.com>
+To: alsa-devel@alsa-project.org,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org
+Cc: tiwai@suse.com,
+	amadeuszx.slawinski@linux.intel.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	Zhang Yi <zhangyi@everest-semi.com>
+Subject: [PATCH v5 0/2] ASoC: codecs: add support for ES8389
+Date: Fri,  7 Mar 2025 17:19:14 +0800
+Message-Id: <20250307091916.100164-1-zhangyi@everest-semi.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
 
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
+The driver is for codec ES8389 of everest-semi.
 
-The Rock 5B has a Micro HDMI port, which can be used for receiving
-HDMI data. This enables support for it.
+Zhang Yi (2):
+  ASoC: codecs: add support for ES8389
+  ASoC: dt-bindings: Add Everest ES8389 audio CODEC
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ .../bindings/sound/everest,es8389.yaml        |  50 +
+ sound/soc/codecs/Kconfig                      |   6 +-
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/es8389.c                     | 966 ++++++++++++++++++
+ sound/soc/codecs/es8389.h                     | 140 +++
+ 5 files changed, 1163 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/everest,es8389.yaml
+ create mode 100644 sound/soc/codecs/es8389.c
+ create mode 100644 sound/soc/codecs/es8389.h
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index d597112f1d5b..54a59a691538 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -220,6 +220,17 @@ hdmi0_out_con: endpoint {
- 	};
- };
- 
-+&hdmi_receiver_cma {
-+	status = "okay";
-+};
-+
-+&hdmi_receiver {
-+	hpd-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_hpd>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &hdptxphy_hdmi0 {
- 	status = "okay";
- };
-@@ -377,6 +388,12 @@ &pcie3x4 {
- };
- 
- &pinctrl {
-+	hdmirx {
-+		hdmirx_hpd: hdmirx-5v-detection {
-+			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	hym8563 {
- 		hym8563_int: hym8563-int {
- 			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
 -- 
-2.48.1
+2.17.1
 
 
