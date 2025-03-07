@@ -1,93 +1,221 @@
-Return-Path: <devicetree+bounces-155504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BDF0A56EDA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:15:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F1FCA56EEF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:22:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 288653B1A81
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:15:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE6601894D4E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:22:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3DB18A92D;
-	Fri,  7 Mar 2025 17:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF5623F417;
+	Fri,  7 Mar 2025 17:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="0vR1x4S5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="etX6k/nL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117DE101F2;
-	Fri,  7 Mar 2025 17:15:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB10214293
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 17:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741367719; cv=none; b=okG3W0pBsbXnleJCwXvAHYhwx4HfNV15HHloTMmaeW95/peSC3FXhYpIwScP+e1JZ8xZhYaMrWIA38Fv9rX+BOfN9HYRip44nRwf+THjacFdV3ts9oTsB+ARaCztT8XDXfU8CvtBOaw7NvrqLzVcos3wqL/hiyqY3TOgcxre0ug=
+	t=1741368148; cv=none; b=cnIuvJKCRizp2tD6vz3kBhqds5jzWtSFJrldqS9kQoSNIrO1M5jwWhJdHc8EpO1bpV61geIc6ounhPGddtfFWZkAfhTV4MND61Fl6pcZv32nNubFtDvfE5ullaQctxkRDrRM8JI9n4Sw/xQ/KLQsQrHveNIhICyHV4DSqXHeizY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741367719; c=relaxed/simple;
-	bh=3BahQm5SlDJBdR5+KwEJ+91JdOtYIMdEQszQ3pvKMhc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lEKUBBC1c7cJ5TRyaBP9aUmqwnNcAfHjF5vPULXb4tx/pFNdxTIvtkIct5qmvq/YXhqVikrUsfzJLy2gbfVclA2M2Oyc2Vn4hnXQVFBtcvdPg2YdRWq3IcsHOW3QDoAsFuRAnU04ylSm1aodR1CNj2m4FV81YRZd4NPCj+43/kU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=0vR1x4S5; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=7iCfeCNhNbSrVOG/TQp6z3O5xsMhBDg1NtYO7QQkYWU=; b=0vR1x4S5bgxV4e+q8kztTqAS5Q
-	FZaQNPmxqGbP43RmbWr8HlU0OPAcKw8UrBdet7aVdujyV7eYAoR69y2AZjCxL4k7++Kgr/0AAwLw8
-	Fkrx4cZsD11XbOXigk7VXhIuhC/tlX1eUTow5XtzblBl28J/We/kxNk8JqogbMksssAA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tqbHq-003CZh-KO; Fri, 07 Mar 2025 18:15:02 +0100
-Date: Fri, 7 Mar 2025 18:15:02 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and
- php-grf during probe
-Message-ID: <1995782a-0a1c-46dc-8929-7fa3428a5ca3@lunn.ch>
-References: <20250306210950.1686713-1-jonas@kwiboo.se>
- <20250306210950.1686713-3-jonas@kwiboo.se>
- <bab793bb-1cbe-4df6-ba6b-7ac8bfef989d@lunn.ch>
- <1dd9e663-561e-4d6c-b9d9-6ded22b9f81b@kwiboo.se>
- <20250307085558.5f8fcb90@kernel.org>
+	s=arc-20240116; t=1741368148; c=relaxed/simple;
+	bh=ghV9ihfmg8YmSosaHyRmZbhBW4iEZyINguG2X264RDE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ld11w1g3LxPglXoOlSGM/Mquwmqzl0ZUmG4mmlwt8+jLcRQRMXxsHlXPvuaHdB0tDdNeAxeeAevi8ylZ2L4zvFRI5R7Y+UprIxfaKJRhqjCj3oB6gZ/j6HCrWhr22l+ixZVJF5lFMAeI3Olle6hgKqHK7AWOGlA0/bHKv2TS4tc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=etX6k/nL; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-abf5f4e82caso410787666b.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 09:22:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741368145; x=1741972945; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vse37ndJVrSuVrU7yJGVW1Lu8SXvK77ID0V4XIpDEEM=;
+        b=etX6k/nL3xuOeiwQnkjus6WwhhYb/3nJL1rfG3pohQbeX3fnO1MtIKyBBYFDp2nAZW
+         KdRAH7Sq+uuj5yRdtzshkvWCWVcRER3j619wBVZ4AUNME3t/2NG5Po4vOH6HF87wUpxK
+         QYX3Pf6+Ooe+cvRnVNdGC1pUMVYs9jqLq9u/C+xPx6nAh6slXzlj7HD5uW97IE60Qq/H
+         kfDGWyuNSrYxfdJo7uvs/4I5uh73PUx87FqaJJMJRaM60Jj1X6fQB6tGaSYKe60LvzEz
+         ET0HU6ezZCcqXSMU9QfRDmzNkfPS/FkhUsskiyZdqwga6ZEyp1+2DShKT+rBDLM1xVTz
+         ENsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741368145; x=1741972945;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vse37ndJVrSuVrU7yJGVW1Lu8SXvK77ID0V4XIpDEEM=;
+        b=uHYTk1XgCJ8oKr1/jpsFL8abx4FqYJvQnVmYSm4g2txvOs9IWalrCZnKyxJsIwLDR+
+         SpaBZoyCe5HuETxMK+tINI1j+TveYzqQuRYQ+tsZ5bY4prvgtZexbwqOtYG56cNMdA6F
+         aeH2JZz+nOXPLMxRsddn9O+FG9Wvo7Zz+UdCuc5ofOZS5q+FA8iJBzaA5PrVINgptxUh
+         xaanMsCm4K71NbVQUcyXLK6n1LvQ/9IZqAe8MbR/nK7p0VTVpKBNXbDfx5ZwSNlAgvcH
+         cXlOCe0SQKvR9UesEubFFcTUjPekYVPjlCHMXbsBWg3PfViqEgMkq5h7EcMplGvRI6VU
+         QrpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWngVdcjgXYAOLhcSrR58VWDfGlenJQPb45jkHggy0lTOQaEWZrUZLmUlZSXGS/lVPMGIFx/YW0kfkE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJSSHbF3cuthYuzbtI2EFffd4z3DbWrizoS4xfzcshk/qeGqcf
+	sCbUtLesemTaq8jX9LcWoBigHKSGxmuqgXYTj6iLOeZqDpzjGFMM5++naMQqYTM=
+X-Gm-Gg: ASbGncvtjyrveWZJUTtvgIuM07c7j4e3lM/NAfIEMWmspKjTxP/Dv5U8y3nbthOdu+U
+	0xj+eiEs9hy/agnLKWu62w9+StuQwa6IIMZC0nld0dcicdnzZy0NVIczgdQ6wgL9eDzLCqETSqo
+	hhPtMwfq0PBsRo/tKX4AlZlVwci/aBH/lW2s51qsRNRQvJwgg3bkIDqiBVhG8pzOJqoO3kiRdlA
+	4jUfsMu+SWFgLu/W5/BKG3RUvidGH2kXGmfQGRLQlZMZD/AZ5WOVtx5h7OriaS1RZg/ZrnXmGMv
+	dz4xsCjc61EkYMThHNrz/YDXNrJ3e9BLy0zfVKD3VTXQFBY7+g45vcvGLdl+Cdw=
+X-Google-Smtp-Source: AGHT+IGr645XsGNFfy2D7vw+gO6HKk73sp4lP/e3Bd4vMO2M4emrS5p1ZDikAS21V2w6uEA4dxu5ag==
+X-Received: by 2002:a17:907:94ce:b0:ac1:e1e1:1f37 with SMTP id a640c23a62f3a-ac25273af3dmr535156566b.10.1741368145070;
+        Fri, 07 Mar 2025 09:22:25 -0800 (PST)
+Received: from [192.168.68.113] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ac2395174c8sm300319266b.85.2025.03.07.09.22.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Mar 2025 09:22:24 -0800 (PST)
+Message-ID: <f662da0e-431f-4e04-b8ee-e8b04a08337d@linaro.org>
+Date: Fri, 7 Mar 2025 17:22:23 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250307085558.5f8fcb90@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: nvmem: rockchip,otp: Add support for
+ rk3562 and rk3568
+To: Kever Yang <kever.yang@rock-chips.com>, heiko@sntech.de
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org
+References: <20250227110804.2342976-1-kever.yang@rock-chips.com>
+Content-Language: en-US
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20250227110804.2342976-1-kever.yang@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Mar 07, 2025 at 08:55:58AM -0800, Jakub Kicinski wrote:
-> On Fri, 7 Mar 2025 00:49:38 +0100 Jonas Karlman wrote:
-> > Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and php-grf during probe
-> > 
-> > [encrypted.asc  application/octet-stream (3384 bytes)] 
+Hi Kever,
+
+
+On 27/02/2025 11:08, Kever Yang wrote:
+> Add compatible entry for the otp controller in rk3562 and rk3568, add schema
+> for different clock names for new entry.
 > 
-> Is it just me or does anyone else get blobs from Jonas?
-> The list gets text, according to lore.
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> ---
 
-Sorry, already deleted, but i was able to read the contents, so either
-they are plain text, or mutt is clever enough to make sense of the
-blob.
+Am unable to apply this patch, Could you rebase it on top of linux-next 
+or 
+https://web.git.kernel.org/pub/scm/linux/kernel/git/srini/nvmem.git/log/?h=for-next
 
-	Andrew
+
+--srini
+
+> 
+> Changes in v2:
+> - Update the commit message and add maxItems in schema.
+> 
+>   .../bindings/nvmem/rockchip,otp.yaml          | 53 ++++++++++++++++---
+>   1 file changed, 46 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
+> index a44d44b32809..7572f4a1d73b 100644
+> --- a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
+> @@ -14,6 +14,8 @@ properties:
+>       enum:
+>         - rockchip,px30-otp
+>         - rockchip,rk3308-otp
+> +      - rockchip,rk3562-otp
+> +      - rockchip,rk3568-otp
+>         - rockchip,rk3588-otp
+>   
+>     reg:
+> @@ -25,19 +27,15 @@ properties:
+>   
+>     clock-names:
+>       minItems: 3
+> -    items:
+> -      - const: otp
+> -      - const: apb_pclk
+> -      - const: phy
+> -      - const: arb
+> +    maxItems: 4
+>   
+>     resets:
+>       minItems: 1
+> -    maxItems: 3
+> +    maxItems: 4
+>   
+>     reset-names:
+>       minItems: 1
+> -    maxItems: 3
+> +    maxItems: 4
+>   
+>   required:
+>     - compatible
+> @@ -62,12 +60,45 @@ allOf:
+>         properties:
+>           clocks:
+>             maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: otp
+> +            - const: apb_pclk
+> +            - const: phy
+>           resets:
+>             maxItems: 1
+>           reset-names:
+>             items:
+>               - const: phy
+>   
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,rk3562-otp
+> +              - rockchip,rk3568-otp
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 4
+> +          maxItems: 4
+> +        clock-names:
+> +          items:
+> +            - const: usr
+> +            - const: sbpi
+> +            - const: apb_pclk
+> +            - const: phy
+> +        resets:
+> +          minItems: 4
+> +          maxItems: 4
+> +        reset-names:
+> +          items:
+> +            - const: usr
+> +            - const: sbpi
+> +            - const: apb
+> +            - const: phy
+> +
+>     - if:
+>         properties:
+>           compatible:
+> @@ -78,8 +109,16 @@ allOf:
+>         properties:
+>           clocks:
+>             minItems: 4
+> +          maxItems: 4
+> +        clock-names:
+> +          items:
+> +            - const: otp
+> +            - const: apb_pclk
+> +            - const: phy
+> +            - const: arb
+>           resets:
+>             minItems: 3
+> +          maxItems: 3
+>           reset-names:
+>             items:
+>               - const: otp
 
