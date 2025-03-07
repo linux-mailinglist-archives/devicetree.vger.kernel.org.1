@@ -1,126 +1,100 @@
-Return-Path: <devicetree+bounces-155319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F876A5634B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:11:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B457A56364
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:16:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D48793A8AA0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:10:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33C6C1895A88
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC83D1E5B85;
-	Fri,  7 Mar 2025 09:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40351FC0E3;
+	Fri,  7 Mar 2025 09:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cEJQDx7P"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="kNqBrPsa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD5C31E1DE4;
-	Fri,  7 Mar 2025 09:10:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5E319CC0A
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 09:16:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741338644; cv=none; b=I2ijc3M2Vm4xy7/ZLqZ+QGja1XJ/6R1bPqSafQ3XsZWIRi58h3haaYaZQ3665dnjiUEexVZJeC5FlzkcC39I/760YspE4y0OAtS5Pg25LSzQiPi60v37MkpVfYuJU98xzNCocDzg1miOd94lkGCuTLVAn6Yu6aNqxvkB+JxUSLc=
+	t=1741338994; cv=none; b=Dh/CnGsRd26NSdmyV633qrYTRlXz/2S3AxN8Qz52VgPopX31piO6RdzzOsomOL3DZfq4BFGSUwjAa9YzU+5s4Y25N21xRQL6oc5LL1Q9arUEv77lQrd0zjY2fh2vFKqmjxCyN7XSHqyZFT2ESqL6KEebLXBa+VRfulgQcyqIddg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741338644; c=relaxed/simple;
-	bh=uZL3atvFoiEClypzAOdKdARG9JhS9v3gZMmDlO4iStk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lYo0vhDdSpx/uxAUzXaexA9bajNMjFSwZt6Ix4aDrdn9ShPDhUSyvUj9RGxZ+mD+cAh9wihgFb4lFrhwH7MJWnYCrxNkKbQ94uQ2oEqz5yvEtYOm05sta8VfLX/lI/DpucRN+HVDnyIieGbA9JdYeerlnqUS4fZqW87Ifuer6Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cEJQDx7P; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CCC6C42DF9;
-	Fri,  7 Mar 2025 09:10:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1741338639;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+rJUwtH82uIgJmxU1hir8Izx4pXr/sEMOtTSjrNMmOU=;
-	b=cEJQDx7PvsebvwWPjWe6jCL4kkCFVK8faKield18UFn/7DqDeN8mF20F9fl1KZw9Sz2JuU
-	hWznocf+F9hQ+dMQPsX4wSnyGS7zGDy0FHQ0x23gx4CnSTuAFeSbHV7pVHExbiRgJoUJ8B
-	+E8NBO55q/J89sRiMGN9OTXg2WSyrCWYeJg9ORySg/L802rjx025rEOZ0UIoQQAeSh0/fT
-	CK6Xqsz2Hi2fp82yRnnkv18FRnWKR6IpswSlVDgoc//TQA9L5tCU1vU78uWjDr0WQr0q6G
-	PHL1IVIF74dkAzUyliRRZxAf3VnrvguVgbCN0IbquXjvWqnBO14C9Hxz1u6sjg==
-Date: Fri, 7 Mar 2025 10:10:35 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
- <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, Rob Herring
- <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman
- <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v6 06/12] net: pse-pd: Add support for budget
- evaluation strategies
-Message-ID: <20250307101035.21397a1a@kmaincent-XPS-13-7390>
-In-Reply-To: <20250306174619.2823b23a@kernel.org>
-References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
-	<20250304-feature_poe_port_prio-v6-6-3dc0c5ebaf32@bootlin.com>
-	<20250306174619.2823b23a@kernel.org>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741338994; c=relaxed/simple;
+	bh=9B1x7tm7VGsWqJAdosAMjavJ8BGidB6ECj8LF+UqJ58=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qjwebSRUql2r4aDUCAu2CCEIK8wMpcXDmXLwGYG/CY8z0i/BsrQiTWtb2JFovHITbcnJTpVL2AFiQ7T9TT3jLwfAOcSJaDPJR7cSUoSKa0mSgOMxqWeJvKqRnY7Vka64I2DxbcP699g71vT2nBbVrm+DhxVpwU4E+/hrbPywzVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=kNqBrPsa; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1741338991;
+ bh=l7Bmpx1B1OFaUSgPQarXLFPl0uH+PohveX2hywvmfnE=;
+ b=kNqBrPsaubi+LI2RvY1AUqmwcLqP+yYnb2LdK1egTX0Q2W+v7IYP5A2VWvgiMaHV16jHlZaXo
+ /mjrx17COXr/Sh1oZM9tqOmDfcwLQPZ6z64Ai4xpJ9TKTSqW4GYWi3xk3Bmp8OlI58mjQY9Z8x/
+ dl0ZHMWFjMm6dvCwB+khLsn3t1yKOYJb3wA6qiX0RBcxDFHOPeC2p4tJMmMXovJkntYtN3VeZw3
+ T36rglp2dzGx6XbqbCRBpz/n1eZJLRhcOq94Z0/2bIGCMiVzH8o9n2OZwcR4eARau8h8m1QybcI
+ tw9cajLN4IOh5S+SON1bZi0+miq2nQK9fq+KhCud/N9A==
+X-Forward-Email-ID: 67cab95fd992817a57e35d57
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <cbd6d3ee-8ad1-443f-9506-e28240ffb09e@kwiboo.se>
+Date: Fri, 7 Mar 2025 10:16:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Enable Ethernet controller on
+ Radxa E20C
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
+ linux-rockchip@lists.infradead.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250306221402.1704196-1-jonas@kwiboo.se>
+ <20250306221402.1704196-5-jonas@kwiboo.se>
+ <e0e8fa5e-07a2-4f4f-80b9-ddb2332c27ea@lunn.ch>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <e0e8fa5e-07a2-4f4f-80b9-ddb2332c27ea@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduuddtvdeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudelmeekheekjeemjedutddtmeektdhfheemgegulegvmeejugehsgemjeeggeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkeehkeejmeejuddttdemkedtfhehmeegugelvgemjeguhegsmeejgeegfedphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdejpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehordhrvghmphgvlhesphgvn
- hhguhhtrhhonhhigidruggvpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvthdprhgtphhtthhopeguohhnrghlugdrhhhunhhtvghrsehgmhgrihhlrdgtohhm
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Transfer-Encoding: 7bit
 
-On Thu, 6 Mar 2025 17:46:19 -0800
-Jakub Kicinski <kuba@kernel.org> wrote:
+Hi Andrew,
 
-> On Tue, 04 Mar 2025 11:18:55 +0100 Kory Maincent wrote:
-> > +/**
-> > + * enum ethtool_pse_budget_eval_strategies - PSE budget evaluation
-> > strategies.
-> > + * @ETHTOOL_PSE_BUDGET_EVAL_STRAT_DISABLED: Budget evaluation strategy
-> > disabled.
-> > + * @ETHTOOL_PSE_BUDGET_EVAL_STRAT_STATIC: PSE static budget evaluation
-> > strategy.
-> > + *	Budget evaluation strategy based on the power requested during PD
-> > + *	classification. This strategy is managed by the PSE core.
-> > + * @ETHTOOL_PSE_BUDGET_EVAL_STRAT_DYNAMIC: PSE dynamic budget evaluati=
-on
-> > + *	strategy. Budget evaluation strategy based on the current
-> > consumption
-> > + *	per ports compared to the total	power budget. This mode
-> > is managed by
-> > + *	the PSE controller.
-> > + */
-> > +
-> > +enum ethtool_pse_budget_eval_strategies {
-> > +	ETHTOOL_PSE_BUDGET_EVAL_STRAT_DISABLED	=3D 1 << 0,
-> > +	ETHTOOL_PSE_BUDGET_EVAL_STRAT_STATIC	=3D 1 << 1,
-> > +	ETHTOOL_PSE_BUDGET_EVAL_STRAT_DYNAMIC	=3D 1 << 2,
-> >  }; =20
->=20
-> Leftover?
+On 2025-03-06 23:49, Andrew Lunn wrote:
+>> +&mdio1 {
+>> +	rgmii_phy: ethernet-phy@1 {
+>> +		compatible = "ethernet-phy-ieee802.3-c22";
+> 
+> The compatible is not needed. That is the default.
 
-We still need these to know the PSE method but they shall not be in the uAPI
-for now. I will move it out of it.
+Interesting, however I rather be explicit to not cause any issue for
+U-Boot or any other user of the device trees beside Linux kernel.
 
 Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Jonas
+
+> 
+> 	Andrew
+
 
