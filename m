@@ -1,107 +1,118 @@
-Return-Path: <devicetree+bounces-155518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80D63A572DF
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 21:20:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D172A57319
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 21:52:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6747B3B5E56
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 20:20:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DD461751CC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 20:52:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD9D254B09;
-	Fri,  7 Mar 2025 20:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3670A25743B;
+	Fri,  7 Mar 2025 20:51:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rx3UG0nl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2B81A4E9E;
-	Fri,  7 Mar 2025 20:20:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C722561BD;
+	Fri,  7 Mar 2025 20:51:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741378825; cv=none; b=MZSID0bmZDJEJzoJxGT6IIJf7jS360RwruJ5yD4ClK6AKo/0VtnKqVtSVTqqLw3i7QBTCdQdZ6TlLRAyRAelDLWjLS6uPu3GV1uy+IiqiLa6p4DE8feZH0CR0RXDC7K4jIJjFXjyU46TKwzHjjMNHxtL366WTDTUjFrwEsgXsDU=
+	t=1741380719; cv=none; b=Aj5hce5YNIuLXeCLL5QHF5aKDHk7gMs1UFJLi3kJoCZee4nzIkpIK0Q6pv1j6MglzFn77F9iKKa70/7XvKHVxN+Kl4bOdO/+rAI4mQNVDurjbBaBwqoPASANxim5+CDJ8ja5HS/bG6cn9SoQ64j/tqrNFTHjKjVxbTaAhx+xl1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741378825; c=relaxed/simple;
-	bh=JpJH0rWkOmn0NClRLdATD4XUL+hcKgZciootdkF/49Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gVu/3w0X8Goc5nnKo9xWwXePo3jXiFTYy4jmq442xfcKwvh0eH+Sqe2D7iFyIxykkKvPcTb45cofVKcfam9zg6/T6gikxFKL1ziYRDES4YuLxnfm21GsHY1XLQT8EKlPaga3mSOCmZSh9JrbvWUuse+clNiDXU2cSqI9u0HQIz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 55B7413D5;
-	Fri,  7 Mar 2025 12:20:34 -0800 (PST)
-Received: from [10.57.37.135] (unknown [10.57.37.135])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A666F3F5A1;
-	Fri,  7 Mar 2025 12:20:17 -0800 (PST)
-Message-ID: <ea78c21b-db4a-4144-b1b5-b1a37e1ed51c@arm.com>
-Date: Fri, 7 Mar 2025 20:20:15 +0000
+	s=arc-20240116; t=1741380719; c=relaxed/simple;
+	bh=GGNUHmMxcy6R0lwyYXAWHuq9IENeuZCWMCuYICMOCkI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fzvItq3NIjFH5Teb9Q5CNcBPy/hkgi4fh+LRbxD5KWJ6qYqiFltRvzI5W6ggrvqRYESvp0y5M1BQTxCpXdrfq4jcY19tHV3i2+HMBup7YVOMnXwDThJzAr79QTMNb5ko8KKCWucorIP7qJF2DmkhGRiWbMmVpUZ1lqK1PV/BofU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rx3UG0nl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5359CC4CED1;
+	Fri,  7 Mar 2025 20:51:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741380718;
+	bh=GGNUHmMxcy6R0lwyYXAWHuq9IENeuZCWMCuYICMOCkI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rx3UG0nlOjx2wRLfI/VRDwIiaxqaXwSPwrIiXjzY/IMj28NcF+NdHw7yBo5QUatvc
+	 ET5KAUPkdBK8ZQn5tDanolEjB8FkpVFAtTUFjgxDzhZFDBaqiyl1fK23EFDFDnkKsw
+	 npSNfgAqT52sZ0YsemlTbGO9ZJCJrKwYx0hpDc/Ltqv6WnG7FER/qAmEZiNk+R+eTj
+	 r9sbQ7tOLdj7WUXpvoKM6NEYOBYm7t+WslJp6McQ9ihfbpVoWfiMDBRxuuCv92NkET
+	 BPJZc1fgiDRsxzswxSxXqTehRj8YYBh2avtj1SMcjMHJ+tPfYDxWXr2i3PpSQeOsP5
+	 yJ71XFg7vh2Vw==
+Date: Fri, 7 Mar 2025 14:51:56 -0600
+From: Rob Herring <robh@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
+	Baojun Xu <baojun.xu@ti.com>, Dan Murphy <dmurphy@ti.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shi Fu <shifu0704@thundersoft.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	asahi@lists.linux.dev, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v3 17/20] ASoC: dt-bindings: tas2770: add flags for SDOUT
+ pulldown and zero-fill
+Message-ID: <20250307205156.GA583954-robh@kernel.org>
+References: <20250227-apple-codec-changes-v3-0-cbb130030acf@gmail.com>
+ <20250227-apple-codec-changes-v3-17-cbb130030acf@gmail.com>
+ <20250304135050.GA2485358-robh@kernel.org>
+ <CAHgNfTyVKFuT0fZ3Qj=MdcXs67KscwkSepAH95xkAAKWM1g8Xg@mail.gmail.com>
+ <20250305132239.GA1415729-robh@kernel.org>
+ <CAHgNfTxS1Q4PPsw520-J4Yn6xg+QZOYFkYhg5yv-uZFu5waN_g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
- path
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>,
- Laurentiu Tudor <laurentiu.tudor@nxp.com>, Nipun Gupta
- <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, Charan Teja Kalla <quic_charante@quicinc.com>
-References: <cover.1740753261.git.robin.murphy@arm.com>
- <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
- <Z8sBuzx6sGq24n0g@lpieralisi>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <Z8sBuzx6sGq24n0g@lpieralisi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHgNfTxS1Q4PPsw520-J4Yn6xg+QZOYFkYhg5yv-uZFu5waN_g@mail.gmail.com>
 
-On 2025-03-07 2:24 pm, Lorenzo Pieralisi wrote:
-[...]
->> diff --git a/drivers/acpi/arm64/dma.c b/drivers/acpi/arm64/dma.c
->> index 52b2abf88689..f30f138352b7 100644
->> --- a/drivers/acpi/arm64/dma.c
->> +++ b/drivers/acpi/arm64/dma.c
->> @@ -26,6 +26,11 @@ void acpi_arch_dma_setup(struct device *dev)
->>   	else
->>   		end = (1ULL << 32) - 1;
->>   
->> +	if (dev->dma_range_map) {
->> +		dev_dbg(dev, "dma_range_map already set\n");
->> +		return;
->> +	}
->> +
+On Fri, Mar 07, 2025 at 04:18:31PM +1000, James Calligeros wrote:
+> On Wed, Mar 5, 2025 at 11:22 PM Rob Herring <robh@kernel.org> wrote:
+> > This just feels like something common because any TDM interface may need
+> > to control this. It's not really a property of the chip, but requirement
+> > of the TDM interface.
 > 
-> Why are we checking that dev->dma_range_map exists here rather than
-> at function entry ? Is that because we want to run the previous code
-> for some reasons even if dev->dma_range_map is already set ?
+> What I'm imagining then is something like:
 > 
-> Just noticed, the OF counterpart does not seem to take the same
-> approach, so I am just flagging this up if it matters at all.
+> dai-link@0 {
+>     cpu {
+>         sound-dai = <&some_cpu>;
+>     };
+>     codec {
+>         sound-dai = <&some_codec>;
+>         dai-tdm-tx-zerofill;
+>         dai-tdm-tx-pulldown; /* either or, having both makes no sense */
 
-The intent is just to ensure it's safe to come through this path more 
-than once for the time being - it doesn't really matter whether or not 
-we repeat anything apart from allocating and assigning dma_range_map, 
-since that leaks the previous allocation. Thus this check is logically 
-guarding the acpi_dma_get_range() call in this path, and the 
-of_dma_get_range() call in the other.
+If they are mutually exclusive, it's best to design the properties that 
+way. So something like:
 
-> Other than that, for acpi/arm64:
+dai-tdm-tx-idle = "zerofill";
+dai-tdm-tx-idle = "pulldown";
+
+>     };
+> };
 > 
-> Reviewed-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Codec drivers would then provide a function to set TDM TX behaviour if they
+> support it, and export that as a dai op for use by machine drivers
+> when they parse
+> the dai link similar to dai-tdm-tx-slot and friends. Is that close to
+> what you have
+> in mind?
 
-Thanks!
+How would it work when you need a mask? "dai-tdm-slot-tx-mask" is 
+enough?
 
-Robin.
+Rob
 
