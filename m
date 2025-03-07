@@ -1,105 +1,73 @@
-Return-Path: <devicetree+bounces-155507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44111A56F65
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:44:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7886A56FB7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:54:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 428BD7AAEA2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:42:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14D6916E2AF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BFD5242927;
-	Fri,  7 Mar 2025 17:40:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xB5cSBqx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ACD2243965;
+	Fri,  7 Mar 2025 17:53:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2924E2405F1
-	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 17:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D80E5241667
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 17:53:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741369256; cv=none; b=PIWmYFNT/jZyMz22jocBXlEdoKDkU9fYc2PamYrh8XL9svkAKTYynUDpGKpKNPtxDKzx6Ot+OCOFKqUM+ASALfBUSAaP9v+/aUlVIlBnNOvUckTtP1DxFwc6n0G7KSeKT+nCqKKMMh9/v2/+4zPXmHNqIMLWnVU2JKhWDIlicf4=
+	t=1741370011; cv=none; b=UeGjkqXgZcOf8Sx7j2qvCc2Wig7ccd4DrQWHCR3AfudEmn5shBjAF5kOyo86yLITBn/CLlGZ/4oTowutsGQSot/Bzsli8SNljjqT/RPFWVpnMaZux0TJjOYjaI8jQ3n0aDNpny/sxA5pAmyg9kyM3dJjM9+bYgTvp4lpGv9k0nA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741369256; c=relaxed/simple;
-	bh=vvsDem0LWEb3rv3KK4bNEQLkDkJSUlyDTuvfqYCUcTQ=;
+	s=arc-20240116; t=1741370011; c=relaxed/simple;
+	bh=uGp2XOYaAoeUpb/9b5BbIParJDTxLmqRE1Kf/2le0gE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oD/+XOFEcPKznHkuulDqPOS+K1qM9x2rwG8GClc+6vb/wUCIFmH6jiRYF64o7f4oFYdiUziOSmBCWfvBfOWfsBObU9dYHdqFIA0rN6FNyyA9MzA3mcRVH+O9JwULQbHELH/cTuxgyzOCJMQevivQDs7g8Vf085YlfxtQt9KFw9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xB5cSBqx; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-22359001f1aso54734555ad.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 09:40:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741369253; x=1741974053; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YFDw1TpDcZv57gXTEDbqMyPjxYXThMMnlm4QJcP2uvQ=;
-        b=xB5cSBqx+JylvcBZkJiZdn0/ORxDg67SEJslJQt+W/FG6QsOmQbVRqyEVXaOZPpFw0
-         fsQn77G1sGQe5u/Gaeh1VKmpv/DVnNb0ngVku8uON2nmrtoPZhNiKpy3YiMWdmKhv1gx
-         c3PQatB4AKQnmrzoEIha0guIW2FutZO+dWWbaT+smbD0oYAUJ2Xem18Vwp/my9hEo7CY
-         cVxU53iKibzHHO6apD4RJ846C4jU7NEh6mrurngLiiRef5l9mw3IwTjkbDlZIeExTZLk
-         Mtfe2aoVfhJTx6DJnVKwz2szjNuUEDjr1Ld21OFkD5lnC7l+Upxmp+aiNQHhotBawwCi
-         QivQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741369253; x=1741974053;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YFDw1TpDcZv57gXTEDbqMyPjxYXThMMnlm4QJcP2uvQ=;
-        b=OxPdZ4xRzCHo8UO8ebtDmw/uGv/keu6vSTj0B9EGJZ2XZcysugzdLQDholXsCj2unS
-         5KBFYLG9tfj4PPpR+UXJ07LSZtgbkzQxEKIYX5r+LwJQW4g0eXPbVPL3/RcxUrLnz2ZE
-         tt2mOGmlKXfgmphizNjt292HhEFC1q3dQooRAJxr+mobICPR7/tuagS36cuO01VTIEwY
-         urJL49XarMs4Lfzy+0pJW9ZW784AA75B6n02M0hGfxBzVMotvNSI1lIeJEgk5oqoEgSB
-         WUt7Ew1ruHUU5ZJYAJGBiC4T231trhSD+4gUBDt2ZWWO068yRAKVC3NBXxP0XauWxG3p
-         AT3A==
-X-Forwarded-Encrypted: i=1; AJvYcCXBElzklaBEt9rjTzlI3fECZLiFcvnsmPx0ROAQ6U2MQYefsa9JgktcAWKJc949UbkxeB1155+WxrB1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuGaNxRhvBsfpvathCEwGbwMS5DRnznpF4Z8qYv1vsb7bowuZz
-	rJgl16CS7rU1fI12hLCmOvnnYduAgID/lAgK5q7EeSwgGePRph5MIboFlYO+xA==
-X-Gm-Gg: ASbGncsmJMAjdsVFnTP73LMx4/3/f9vCm321WZGsrFcGahDHwI3QGtkzjqtQjnWuYqC
-	axTMQJwuqgv5/mF1iBKhDywKhpoybWc4T/pA1msu6zNiQjnpKXHjct6GgrZI5w+IC0Kj4EhFLvb
-	tJ549qoLRNkj0t5eDpUrtNvQRgNC6vpBrx/PELhG2DwuFILP6DOAAwS6sUCUB0VK8lfUeYWfvcB
-	4ZZ0Cc+NX6fCUnkTcSfIenYmt0dlbOtXEYtErDWdva7iq9+rgtJuioKU+1vlvA3ufyKlejcidBV
-	/rv9vJEi9XP71Gw+9jJGJ4kZcG7k/pgF3IZTKyjaeR9eofMYlvXMM1g=
-X-Google-Smtp-Source: AGHT+IH2Gm7EH0VzWhkmc1lSsBMkw3yz36z3PAc81n5kU3dgXqc5+Cu/jVWB6qmViZyU3wZuvOYzUA==
-X-Received: by 2002:a17:903:98b:b0:223:397f:46be with SMTP id d9443c01a7336-22428ad4a09mr75342445ad.47.1741369253483;
-        Fri, 07 Mar 2025 09:40:53 -0800 (PST)
-Received: from thinkpad ([120.60.79.235])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-736982077c8sm3646560b3a.10.2025.03.07.09.40.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Mar 2025 09:40:53 -0800 (PST)
-Date: Fri, 7 Mar 2025 23:10:45 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	cros-qcom-dts-watchers@chromium.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=OMe1GEjRD6IHo31BMvJrWUQQu6vdeKb1elX7IiGUaMGYBhbGNPqaNgRUEhQw4wHBCsKALFpJPabmSTgUmUCLvOczvVGATA+M8ne8PSXO8D1yABdtUJZc7VoiQgb7ici9k9e+XE8qzsc976Ntp+rvKDywFH0W1sJX28qQ3g1LA7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tqbsk-0007Ns-8T; Fri, 07 Mar 2025 18:53:10 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tqbsj-004Wj2-1G;
+	Fri, 07 Mar 2025 18:53:09 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tqbsj-000Zmp-0n;
+	Fri, 07 Mar 2025 18:53:09 +0100
+Date: Fri, 7 Mar 2025 18:53:09 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>,
+	Daniel Baluta <daniel.baluta@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_mrana@quicinc.com, quic_vpernami@quicinc.com,
-	mmareddy@quicinc.com
-Subject: Re: [PATCH v4 4/4] PCI: qcom: Enable ECAM feature
-Message-ID: <20250307174045.5r5dj56nmajnhygg@thinkpad>
-References: <20250207-ecam_v4-v4-0-94b5d5ec5017@oss.qualcomm.com>
- <20250207-ecam_v4-v4-4-94b5d5ec5017@oss.qualcomm.com>
- <20250210092240.5b67fsdervb2tvxp@thinkpad>
- <5fc8c993-4993-d930-2687-96fdf95dc1cf@oss.qualcomm.com>
- <20250210094709.lih7lhnwjhmvrk7r@thinkpad>
- <149f513f-a68f-8966-4c3a-ed8c7aafb1ab@quicinc.com>
- <20250305182639.ov6yiqplyaymdbpa@thinkpad>
- <263aa955-943d-5bdf-8eb9-74e90d289fb5@oss.qualcomm.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/3] ASoC: dt-bindings: support imx95's CM7 core
+Message-ID: <20250307175309.od3grjzr63dxp6ec@pengutronix.de>
+References: <20250211225808.3050-1-laurentiumihalcea111@gmail.com>
+ <20250211225808.3050-2-laurentiumihalcea111@gmail.com>
+ <20250212093610.x4ixrackmn3u2xrf@pengutronix.de>
+ <CAEnQRZBeQdnC+K92+Udb5awTmom10YHHNt7Ld-pYK4A1i8sr3Q@mail.gmail.com>
+ <d66996eb-f49b-448b-9743-d19a3c3eba52@sirena.org.uk>
+ <e45411df-1b8b-4f21-878d-d52e1112e62d@gmail.com>
+ <20250213064724.kbmxsk5szpxwclj6@pengutronix.de>
+ <88584d8f-e1cd-4b56-8906-461e1e6d9cc9@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,203 +77,135 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <263aa955-943d-5bdf-8eb9-74e90d289fb5@oss.qualcomm.com>
+In-Reply-To: <88584d8f-e1cd-4b56-8906-461e1e6d9cc9@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Fri, Mar 07, 2025 at 06:44:53AM +0530, Krishna Chaitanya Chundru wrote:
+On 25-03-04, Laurentiu Mihalcea wrote:
+> On 2/13/2025 8:47 AM, Marco Felsch wrote:
+> > Hi Laurentiu, Daniel,
+> >
+> > On 25-02-12, Laurentiu Mihalcea wrote:
+> >> On 2/12/2025 2:38 PM, Mark Brown wrote:
+> >>> On Wed, Feb 12, 2025 at 12:11:49PM +0200, Daniel Baluta wrote:
+> >>>> On Wed, Feb 12, 2025 at 11:38 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >>>>> On 25-02-11, Laurentiu Mihalcea wrote:
+> >>>>>> +    const: fsl,imx95-cm7-sof
+> >>>>> Albeit Krzysztof already add his Reviewed-by, can I ask why we need to
+> >>>>> add the -sof suffix instead of -audio or so? SOF is a software project
+> >>>>> but you can clearly run different software on the audio-copro as well.
+> >>>> Sure you can run a different software project on the audio DSP but
+> >>>> you will need a way to distinguish between the different projects.
+> >>>> There might be different mailbox, memory configurations. So you will  need
+> >>>> to invent another suffix specific to the new project.
+> >>>> We can make  const: fsl,imx95-cm7-audio as the one used with SOF
+> >>>> and think about a different name later for when another project will
+> >>>> want to use the DSP.
+> >>> I think the point here was that the DT should stay the same even if the
+> >>> DSP firwmare changes, just as how changing the main OS shouldn't affect
+> >>> the DT.
+> >> It's rather unfortunate but based on the experience from the 8 series
+> >> (imx8qm, imx8qxp, imx8mp), the programming model can differ quite
+> >> a bit (e.g: remoteproc vs SOF) even if the core is the same (i.e: DSP core).
+> >>
+> >> The different programming models also required different DT configurations
+> >> (e.g: dif. mboxes as Daniel mentioned, some extra properties (i.e: reg-names), etc...)
+> >>
+> >> The "-sof" suffix was chosen here instead of the more generic "-audio" (or whatever else
+> >> alternative) because the DT configuration is specific to SOF's programming model. Other
+> >> audio applications running on the same core may have dif. configurations (e.g: use
+> >> DTCM/ITCM for memory instead of DDR, dif. mbox count, etc...). I suppose this kind of thing
+> >> is bound to happen to some degree since the DT node doesn't just describe the CM7 core
+> >> (but, rather, it also encompasses information on the memory, mboxes, etc. used)
+> >> but perhaps I'm wrong?
+> > Time will tell if there will be any other user except for SOF for the
+> > DSP but and this is what I wanted to point out: the DTS should abstract
+> > the HW. IMHO The CM7-Audio node should contain all properties required
+> > to turn power and reset the core (e.g. clocks, reset, pm-domains). I get
+> > your point regarding different configs but please have a look at
+> > mt8183-kukui.dtsi. Here the rpmsg config is a subnode of the actual
+> > system-control-proc. This makes much more sense to me since the HW part
+> > is part of the generic core-node and all the software config goes into a
+> > separate subnode.
+> >
+> > Regards,
+> >   Marco
 > 
+> I understand your point but we're dealing with 2 different programming
+> models here: SOF and remoteproc as opposed to just remoteproc as it's
+> the case for Mediatek.
+
+The idea is exactly to decouple the CM7 HW config from the
+software/firmware running on it and this is what MediaTek did.
+
+Of course they are only interested in teh RPMsg part but this approach
+could be used to decouple the HW and the FW part which is your use-case
+(different FWs running on the CM7).
+
+> Going for a similar approach would also mean quite a bit of software
+> changes as we'd need to factor out the common bits (most importantly here:
+> core operations like start/stop) and placing them in a common driver. 
+
+Exactly but shouldn't be to hard to implement. Of course it is more work
+than just adapting the compatible.
+
+> This is not trivial and I'm not sure it's worth the effort right now
+> given that:
 > 
-> On 3/5/2025 11:56 PM, Manivannan Sadhasivam wrote:
-> > On Mon, Feb 10, 2025 at 03:23:43PM +0530, Krishna Chaitanya Chundru wrote:
-> > > 
-> > > 
-> > > On 2/10/2025 3:17 PM, Manivannan Sadhasivam wrote:
-> > > > On Mon, Feb 10, 2025 at 03:04:43PM +0530, Krishna Chaitanya Chundru wrote:
-> > > > > 
-> > > > > 
-> > > > > On 2/10/2025 2:52 PM, Manivannan Sadhasivam wrote:
-> > > > > > On Fri, Feb 07, 2025 at 04:58:59AM +0530, Krishna Chaitanya Chundru wrote:
-> > > > > > > The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
-> > > > > > > gives us the offset from which ELBI starts. so use this offset and cfg
-> > > > > > > win to map these regions instead of doing the ioremap again.
-> > > > > > > 
-> > > > > > > On root bus, we have only the root port. Any access other than that
-> > > > > > > should not go out of the link and should return all F's. Since the iATU
-> > > > > > > is configured for the buses which starts after root bus, block the
-> > > > > > > transactions starting from function 1 of the root bus to the end of
-> > > > > > > the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
-> > > > > > > outside the link through ECAM blocker through PARF registers.
-> > > > > > > 
-> > > > > > > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> > > > > > > ---
-> > > > > > >     drivers/pci/controller/dwc/pcie-qcom.c | 77 ++++++++++++++++++++++++++++++++--
-> > > > > > >     1 file changed, 73 insertions(+), 4 deletions(-)
-> > > > > > > 
-> > > > > > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > > > > > index e4d3366ead1f..84297b308e7e 100644
-> > > > > > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > > > > > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > > > > > @@ -52,6 +52,7 @@
-> > > > > > >     #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
-> > > > > > >     #define PARF_Q2A_FLUSH				0x1ac
-> > > > > > >     #define PARF_LTSSM				0x1b0
-> > > > > > > +#define PARF_SLV_DBI_ELBI			0x1b4
-> > > > > > >     #define PARF_INT_ALL_STATUS			0x224
-> > > > > > >     #define PARF_INT_ALL_CLEAR			0x228
-> > > > > > >     #define PARF_INT_ALL_MASK			0x22c
-> > > > > > > @@ -61,6 +62,17 @@
-> > > > > > >     #define PARF_DBI_BASE_ADDR_V2_HI		0x354
-> > > > > > >     #define PARF_SLV_ADDR_SPACE_SIZE_V2		0x358
-> > > > > > >     #define PARF_SLV_ADDR_SPACE_SIZE_V2_HI		0x35c
-> > > > > > > +#define PARF_BLOCK_SLV_AXI_WR_BASE		0x360
-> > > > > > > +#define PARF_BLOCK_SLV_AXI_WR_BASE_HI		0x364
-> > > > > > > +#define PARF_BLOCK_SLV_AXI_WR_LIMIT		0x368
-> > > > > > > +#define PARF_BLOCK_SLV_AXI_WR_LIMIT_HI		0x36c
-> > > > > > > +#define PARF_BLOCK_SLV_AXI_RD_BASE		0x370
-> > > > > > > +#define PARF_BLOCK_SLV_AXI_RD_BASE_HI		0x374
-> > > > > > > +#define PARF_BLOCK_SLV_AXI_RD_LIMIT		0x378
-> > > > > > > +#define PARF_BLOCK_SLV_AXI_RD_LIMIT_HI		0x37c
-> > > > > > > +#define PARF_ECAM_BASE				0x380
-> > > > > > > +#define PARF_ECAM_BASE_HI			0x384
-> > > > > > > +
-> > > > > > >     #define PARF_NO_SNOOP_OVERIDE			0x3d4
-> > > > > > >     #define PARF_ATU_BASE_ADDR			0x634
-> > > > > > >     #define PARF_ATU_BASE_ADDR_HI			0x638
-> > > > > > > @@ -84,6 +96,7 @@
-> > > > > > >     /* PARF_SYS_CTRL register fields */
-> > > > > > >     #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
-> > > > > > > +#define PCIE_ECAM_BLOCKER_EN			BIT(26)
-> > > > > > >     #define MST_WAKEUP_EN				BIT(13)
-> > > > > > >     #define SLV_WAKEUP_EN				BIT(12)
-> > > > > > >     #define MSTR_ACLK_CGC_DIS			BIT(10)
-> > > > > > > @@ -294,6 +307,44 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
-> > > > > > >     	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
-> > > > > > >     }
-> > > > > > > +static void qcom_pci_config_ecam(struct dw_pcie_rp *pp)
-> > > > > > > +{
-> > > > > > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > > > > > +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> > > > > > > +	u64 addr, addr_end;
-> > > > > > > +	u32 val;
-> > > > > > > +
-> > > > > > > +	/* Set the ECAM base */
-> > > > > > > +	writel_relaxed(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
-> > > > > > > +	writel_relaxed(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
-> > > > > > > +
-> > > > > > > +	/*
-> > > > > > > +	 * The only device on root bus is the Root Port. Any access other than that
-> > > > > > > +	 * should not go out of the link and should return all F's. Since the iATU
-> > > > > > > +	 * is configured for the buses which starts after root bus, block the transactions
-> > > > > > > +	 * starting from function 1 of the root bus to the end of the root bus (i.e from
-> > > > > > > +	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
-> > > > > > > +	 */
-> > > > > > > +	addr = pci->dbi_phys_addr + SZ_4K;
-> > > > > > > +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
-> > > > > > > +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
-> > > > > > > +
-> > > > > > > +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
-> > > > > > > +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
-> > > > > > > +
-> > > > > > > +	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
-> > > > > > > +
-> > > > > > > +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
-> > > > > > > +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
-> > > > > > > +
-> > > > > > > +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
-> > > > > > > +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
-> > > > > > > +
-> > > > > > > +	val = readl_relaxed(pcie->parf + PARF_SYS_CTRL);
-> > > > > > > +	val |= PCIE_ECAM_BLOCKER_EN;
-> > > > > > > +	writel_relaxed(val, pcie->parf + PARF_SYS_CTRL);
-> > > > > > > +}
-> > > > > > > +
-> > > > > > >     static int qcom_pcie_start_link(struct dw_pcie *pci)
-> > > > > > >     {
-> > > > > > >     	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> > > > > > > @@ -303,6 +354,9 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
-> > > > > > >     		qcom_pcie_common_set_16gt_lane_margining(pci);
-> > > > > > >     	}
-> > > > > > > +	if (pci->pp.ecam_mode)
-> > > > > > > +		qcom_pci_config_ecam(&pci->pp);
-> > > > > > > +
-> > > > > > >     	/* Enable Link Training state machine */
-> > > > > > >     	if (pcie->cfg->ops->ltssm_enable)
-> > > > > > >     		pcie->cfg->ops->ltssm_enable(pcie);
-> > > > > > > @@ -1233,6 +1287,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> > > > > > >     {
-> > > > > > >     	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > > > > >     	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> > > > > > > +	u16 offset;
-> > > > > > >     	int ret;
-> > > > > > >     	qcom_ep_reset_assert(pcie);
-> > > > > > > @@ -1241,6 +1296,11 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> > > > > > >     	if (ret)
-> > > > > > >     		return ret;
-> > > > > > > +	if (pp->ecam_mode) {
-> > > > > > > +		offset = readl(pcie->parf + PARF_SLV_DBI_ELBI);
-> > > > > > > +		pcie->elbi = pci->dbi_base + offset;
-> > > > > > > +	}
-> > > > > > 
-> > > > > > If you use the existing 'elbi' register offset defined in DT, you can just rely
-> > > > > > on the DWC core to call dw_pcie_ecam_supported() as I mentioned in my comment in
-> > > > > > patch 3.
-> > > > > >    >> +
-> > > > > > >     	ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-> > > > > > >     	if (ret)
-> > > > > > >     		goto err_deinit;
-> > > > > > > @@ -1615,6 +1675,13 @@ static int qcom_pcie_probe(struct platform_device *pdev)
-> > > > > > >     	pci->ops = &dw_pcie_ops;
-> > > > > > >     	pp = &pci->pp;
-> > > > > > > +	pp->bridge = devm_pci_alloc_host_bridge(dev, 0);
-> > > > > > > +	if (!pp->bridge) {
-> > > > > > > +		ret = -ENOMEM;
-> > > > > > > +		goto err_pm_runtime_put;
-> > > > > > > +	}
-> > > > > > > +
-> > > > > > 
-> > > > > > This will also go away.
-> > > > > > 
-> > > > > Hi Mani,
-> > > > > 
-> > > > > I get your point but the problem is in ECAM mode the DBI address to maximum
-> > > > > of 256 MB will be ioremap by pci_ecam_create(). If we don't skip
-> > > > > this ioremap of elbi ioremap in pci_ecam_create because we already
-> > > > > iormaped elbi which falls in dbi address to 256 MB region( as we can't
-> > > > > remap same region twice). so we need to skip doing ioremap for elbi
-> > > > > region.
-> > > > > 
-> > > > 
-> > > > Then obviously, your DT entries are wrong. You cannot define overlapping regions
-> > > > on purpose. Can't you leave the ELBI region and start the config region?
-> > > > 
-> > > > - Mani
-> > > ELBI is part of DBI space(present in the first 4kb of the dbi) we can't
-> > > relocate ELBI region to different location.
-> > > can we keep this elbi region as optional and remove elbi from the
-> > > devicetree and binding?
-> > > 
-> > 
-> > Since ELBI is a DWC generic region, you should move the resource get call to
-> > dw_pcie_get_resources(). Also, it is an optional region, so you should open code
-> > devm_platform_ioremap_resource_byname() to skip devm_ioremap_resource() if
-> > platform_get_resource_byname() returns NULL. DT binding should make sure that
-> > the DTS has the region specified if required.
-> > 
-> Hi Mani,
-> even though elbi is a dwc region the registers in the elbi are specific
-> to the vendors. The ELBI register contents in the qcom might not match
-> with the other vendors. So we can skip this adding this in
-> dw_pcie_get_resources()
+>     1) The current way we model the hardware inside the DT is not exactly inaccurate.
+>     The core does physically use those memory regions, mailboxes, etc.
 > 
+>     2) Whatever we do, the information in the DT will still depend on the programming model.
+>     It's just that you're placing it in a child node, instead of the parent, which is arguably not that
+>     big of an improvement?
 
-No. I was just asking you to move the devm_platform_ioremap_resource_byname() of
-ELBI to dw_pcie_get_resources(), like DBI, iATU. Then controller drivers can use
-'dw_pcie::elbi' to access EBI specific registers with their own offset.
+The benefit is to have different configs in place and a board can choose
+between them, e.g.:
 
-Since ELBI is DWC specific, the resource fetch code should belong to the DWC
-core. And it will simplify your patch also.
+	sof_cpu: cm7-cpu@80000000 {
+		compatible = "fsl,imx95-cm7";
+		reg = <0x0 0x80000000 0x0 0x6100000>;
+		reg-names = "sram";
+		clocks = <...>;
+		resets = <...>;
+		access-controllers = <...>;
 
-- Mani
+		firmware-name = "nxp/foo";
+		firmware-config = <&cm7_sof>;
 
--- 
-மணிவண்ணன் சதாசிவம்
+		cm7_sof: cm7-sof {
+			compatible = "fsl,imx95-sof";
+			memory-region = <&adma_res>;
+			memory-region-names = "dma";
+			mboxes = <&mu7 2 0>, <&mu7 2 1>, <&mu7 3 0>, <&mu7 3 1>;
+			mbox-names = "txdb0", "txdb1", "rxdb0", "rxdb1";
+
+			cpu: port {
+				cpu_ep: endpoint {
+					remote-endpoint = <&codec_ep>;
+				};
+			};
+		};
+
+		cm7_rpmsg: cm7-rpmsg {
+			compatible = "fsl,imx95-rpmsg";
+		};
+
+		cm7_foo: cm7-foo {
+			compatible = "fsl,imx95-foo";
+		};
+	};
+
+I get your point and I'm not against your patchset. Just IMHO the above
+example would make more sense to me since the CM7 hardware handling
+(en-/disable/access/reset/clock) can be done by a common driver and must
+not be done by each subsystem driver: sof, rpmsg, etc. Also the since
+the driver would be common it could be reused by other CoProcessors
+within the system as well since there are now more and more CoProcessors
+on a SoC.
+
+Regards,
+  Marco
 
