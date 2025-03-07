@@ -1,214 +1,128 @@
-Return-Path: <devicetree+bounces-155341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A1FCA56424
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:42:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70290A5644A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:49:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 519AB188E704
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:42:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 066933AAB48
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B743209F5C;
-	Fri,  7 Mar 2025 09:41:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8907020CCF3;
+	Fri,  7 Mar 2025 09:48:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b="Ntf3wSeW"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="lHwrbHYE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013036.outbound.protection.outlook.com [52.101.67.36])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6B02063F1;
-	Fri,  7 Mar 2025 09:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.36
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741340518; cv=fail; b=tpyuJE/wvU0PJKYOTGkXxAgbvndzvoAia7tCmcaRk4v/fxiJuPFW0LikcbOj/CmXbC+iP0AH1E1t6/3z/fgAQMGCLwUgR/2v3NsZA87uZSCZOtCQxry+DYZfrYIP7bhrOjOdlebBP2A4Wd93F1BPVAqqC6spd1Jetn7vZsyW6mI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741340518; c=relaxed/simple;
-	bh=bd2qyFZPzLM/vHrJtWfOViNgOk7OeteGbdKWJgoFcYU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=nV9gplGBn4kBfqi0K+76LY1YQpaf7VPgVefkyJIw3rQFoPZ6At49l8kJjBzikTV1m81j/r9FwfqvebgOJawCd446o8MTRBbOkUlwQ32lVNND0gPfFbGkCjgdY9qpxQphxfNihoXhh0GslIG7GAibF8hp3p8ExaVS24zQqOhJa1Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com; spf=pass smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=Ntf3wSeW; arc=fail smtp.client-ip=52.101.67.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mt.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k1BVN6EnRykWYHVfXsaw5LLgOonroQCqh+PHvWKZaispO6xVmZW1MFd16Y+LPCTvYTHbrcsCTqDo1t//YRK6Ho0TiWDXnMBBtuofcpUzKRUfJMWwAeUWdN6ZtzSZIbrVTyVM6hrY7hiw3+Lx3Git3rAab76tN5J/ZcCTbuOiutP5SilDCMphHcGiUhaxcRBcBavA0Y+Fsj0kVErY5rQSS/yJk6VF4+kegD8yLcH+lZcldHw7AkaOjiv0gNulL7mM3KaXmOOQx7I6pp+X800zg3SIOUNAUL8EadtEcjUHPDsc+Zv0hocRuSiBhVmFG8UgxJsq5Q2rKknbadEfYD7kxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JR98LGZXt+CNTV5AR5kD4p2FkRbUo68pZ81MKP2qhAQ=;
- b=vgvpROH7fqjoLOrd0DiYimwnkzG228eU3XHbPJAqLyVB2wDzjdGEOVNGQ81pVon+G/HIR/RmMy3FbOS59sl01mMgj4OpGFSN/sZkknwjOjPSm8gMpmL5fCIMkzUr3ulpvi3H3o+LmFT1+QhoK3AEEJABMGA0SVTuwcLxzA3uumAg6lKG6OZJPqcka1cUW8VXycWXFsY35XIOB6M9ZVelqWGZEDe4MuoaqAILFlTeV+Vt/kj0tfRpwY/6J4MU4wGSyW2KvhJvt9dPk5HzwQGyVGv4UyoP+v32/aKSEYcG5S5GR3tn4Vqhidm5plunqK/ZalgD7/tOQcuJTBR3L3yMxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
- header.d=mt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JR98LGZXt+CNTV5AR5kD4p2FkRbUo68pZ81MKP2qhAQ=;
- b=Ntf3wSeW/PAXm8xpACMuztxyIaHcAhx5m6d0whzybCL7aoZIniLvA+qGJwopZAWb92vYu7fAC2FpOjTOYb+/IwjeBJ6jfPRQBeoRT/aJlRUbtyf1VRbzgevn3qpQLXoCmJhxyHe+uQP6xba7D3R21pLLuUI6lXzkQVSueLz13zdnKC/Z9ErQoVfHJXkKd9S/fMdJjxm7xm3Z8vamxmkMJrLYxhMcD/CgD7UhLLte6Wfr7AUFVc+JIszuJsqoj8ZlXgGVheenSvbtwq4Z5IiqTSjCNxgt7fQRUl8CFngbWaunD88qPcLxIJw0CC/ye9fDpNvYeZVHlpVlCpoD7/Hlqw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mt.com;
-Received: from DBBPR03MB10396.eurprd03.prod.outlook.com (2603:10a6:10:53a::11)
- by VI2PR03MB10738.eurprd03.prod.outlook.com (2603:10a6:800:272::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.17; Fri, 7 Mar
- 2025 09:41:54 +0000
-Received: from DBBPR03MB10396.eurprd03.prod.outlook.com
- ([fe80::ee3c:c9be:681:c0bf]) by DBBPR03MB10396.eurprd03.prod.outlook.com
- ([fe80::ee3c:c9be:681:c0bf%7]) with mapi id 15.20.8511.017; Fri, 7 Mar 2025
- 09:41:53 +0000
-Date: Fri, 7 Mar 2025 10:41:47 +0100
-From: Mathis Foerst <mathis.foerst@mt.com>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A01D20B1F1;
+	Fri,  7 Mar 2025 09:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741340917; cv=none; b=C9TNOK5inlJMUpwLlbKi7Tu5Zoz/Epc65AoPtO4AmM+s/mzMVi/xBeseRdKaL8hZeWIMO37W3ThSYHz2e3cWHfX/JhpzZ7K+1FXn0J5YwEuPStumQ8aj3pbbPHUiqTmW/5ukbXXkliSwHWWcldt0V7bP52pqJYPFTWYBG3WRXQ0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741340917; c=relaxed/simple;
+	bh=fkL6jmFr3d63PEsNWtPGrE+L422cPzBDrwITjTLPbfM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dP8HdrBu9mYaBlL+L9kLkoRexb61QDQ41lZhVHYDP3+jQpyEisr3O/bmCZyD0xinGh/8VNcsjgcTbZLZC5OWnEt2S6eB9WJc6xvt/vyKTarUeYdlaoyuFzpUwoos7tG3rqz/IAXqgKodXWDziR+bbfND7/izZz8BfwmTLIF+7W8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=lHwrbHYE; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from karma.space.aachen.ccc.de (xdsl-78-35-222-202.nc.de [78.35.222.202])
+	by mail.mainlining.org (Postfix) with ESMTPSA id DB784BBAAE;
+	Fri,  7 Mar 2025 09:48:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1741340905;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=KjWv8YhyFWBOjGNKwkG6xxoYNxmGePkmbs3b2HdBSqw=;
+	b=lHwrbHYEWm46ANmSvvTB4i86GezMUMQTMIZDC9XWplBhIUotGKARzYx6gQ2jI8IwNVWLwP
+	OPBdhJSk/m922Ap+96w3V4YH+5x1CRTPDqSdyDHm2KVdxSfLL3Bs038F6LeP+NBOP7vHMG
+	aWOn4AebMpzzbZQJtd8eDw8n5q7pZh4P6hILzL2E/vkdgeJEGd7WYu+q99cE88LMIjPGkW
+	KAjrZPwCLc3/sZpmXh326qtO5iNQlAHa2rUtWGFPIcpvpU4Mc+DDuUUtN2QQc/6hiYxexx
+	hPxMltmqUA10ppjLzHX7NZj8guTvcG6ar9RzOq77AFDq6i462s7LjmjXWnmubA==
+From: Jens Reidel <adrian@mainlining.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	manuel.traut@mt.com, mathis.foerst@zuehlke.com
-Subject: Re: [PATCH v3 1/6] media: dt-bindings: mt9m114: Add onnn,slew-rate
- DT-binding
-Message-ID: <Z8q/W+wHnERu9P6G@mt.com>
-References: <20250305101453.708270-1-mathis.foerst@mt.com>
- <20250305101453.708270-2-mathis.foerst@mt.com>
- <20250305130821.GA1374586-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250305130821.GA1374586-robh@kernel.org>
-X-ClientProxiedBy: ZR2P278CA0037.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:47::19) To DBBPR03MB10396.eurprd03.prod.outlook.com
- (2603:10a6:10:53a::11)
+	Bastien Nocera <hadess@hadess.net>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Luca Weiss <luca.weiss@fairphone.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	linux@mainlining.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Jens Reidel <adrian@mainlining.org>
+Subject: [PATCH v3 0/2] Add Goodix Berlin-A series support
+Date: Fri,  7 Mar 2025 10:48:21 +0100
+Message-ID: <20250307094823.478152-1-adrian@mainlining.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DBBPR03MB10396:EE_|VI2PR03MB10738:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e99c133-1325-4b0d-20a5-08dd5d5c4b3a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Ck/o0JMTAIx4QLINx92L+oZcGT516Vi8tNAmqT99EQaXP168Tot0nAUoMZYM?=
- =?us-ascii?Q?npZ/SROHFn65dEZxpAOQhlhe0Ec5jpWNQbsMWZgkpVywL6FFdMZm8q2aZWq9?=
- =?us-ascii?Q?oQaea61zs+rg+VPhVUtTO0+ni3Ri/bmKkTV1DC1StZvHZzG/w1nMZhrV2rW/?=
- =?us-ascii?Q?SJrdYxZIluPvvraufb83MKZuzdks00lCrLEmeFRPtX1qy4t2yHUNpRaOyPiG?=
- =?us-ascii?Q?GDFXZVnYcogAVM0IjT2hPtbnn9QqiK78uMCeW3naDfV1pCTEmG41wLhjeF4T?=
- =?us-ascii?Q?RB6Jqd+uAtYtQNXvAgEWGXT/bjZ5nzvZfYU7/9kl17tT3xf5Nal0ygzwaL0L?=
- =?us-ascii?Q?MRBSykByOu2XD7F5pc5KSZT2nTyV/CvG1xjCvjGzxzcGZlsJFqwnD7EjrJHu?=
- =?us-ascii?Q?i3Gb4HPsfE0hE11k2FNHzpvL95Htp0/SIPbEdO+ZehHoWfm3yGetzb6K5Qmo?=
- =?us-ascii?Q?1kToS/yCYO2Cz+ZyX7bvcOAFaIv/LnHKZFmo9EKkJQ+XtUfk0G8bX19JAG5h?=
- =?us-ascii?Q?gIgqxTQDzMGpes+O/1/i3HCNUYKgqU279gKP5xRyHcz9GfteL4L3tyS5LhQL?=
- =?us-ascii?Q?L8dzZ/UpO9yXXfFvi/lulO2KJEPNvszkmw/G9+4xG8bUFq52hmcAYgMX4Sle?=
- =?us-ascii?Q?vDPu3suEJ159vKMtwhCvafNlFoLDe0urXZcbAwN/mvcV/nIWMyL56OIKM7aM?=
- =?us-ascii?Q?5BuaDWKj4H1SZ96RDiF6yPd5JyvqqXHTEmbWVX47BcHIkHs39xPlwM4TzvNE?=
- =?us-ascii?Q?Ih5yiCkSZdlvl/oj0ucNbDqJAOFX0BzROtloacvoRF8Ezd5dFCkvGoMHEdWw?=
- =?us-ascii?Q?4NHLozzm7e52UK3Id4My57srjnjjCoTZkhH00gFrZOUdejSEgiL/68CkqhMG?=
- =?us-ascii?Q?uparKc5pKTQw+5dA7bLXEPPlPPaq8SKY0IYo2AdrZhlJS+s8EWhyWRne4ybu?=
- =?us-ascii?Q?Bpn6tKSfHmdcKHP3mywTCYXakngRtrWXfYhuEdcnM9x0efclIatAo/3raiOu?=
- =?us-ascii?Q?nnSUdR6kz9gJxeKXeTfmRQjbXpVLIZDDeA3wq9rYyzeFG2jzBCxLbOPFCnnf?=
- =?us-ascii?Q?D0V3KuoPSEqTx+FXyyFG0qGSd6Yg/yx09So4oBofo/LfCrVNo1lPRcI/Fijc?=
- =?us-ascii?Q?kAoZlcaaLhddApo/DhPmV1FgLG3Qv41WYtB5k4kYsX4lN5dz3izzuly5JB9N?=
- =?us-ascii?Q?a5FF1MjbA3qk/9mHrq4gcZtSm21qlAOFN2PGj/IEKFaunN8Qstoe/p6v2rDs?=
- =?us-ascii?Q?ZuRh8T57tAuIumEfGMKNCFq9bEE+dy6GPbBivLT2CGeSTIG/zTlz0Ou3swRt?=
- =?us-ascii?Q?81kx/aXl7wqYgCUCKTlKqWfsGE7INluQ47Kj90nWRw4OPdHOkterQD1GNctT?=
- =?us-ascii?Q?CTlaiMNaspZyHuOCUkLHRttGOqvpMIBG2hRBnp2n7PYADolLF2iUA6jy3EjL?=
- =?us-ascii?Q?4OffDOya6HU8qdzF/dcyWTZ68UveGTLP?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR03MB10396.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Se1WoQ3C0yqCQ8PQpi99YiLkPrAkwCdwr3yEzKytbWVm6D9TKOszSMVKspI6?=
- =?us-ascii?Q?n3uHFC8d3UZwz/qzEpLbLKQXkFJzvIzw0IYoLd9kJqP9aAgnCbiBijIH1dmd?=
- =?us-ascii?Q?0rjg1IYxGJXk7+P/CizvJf8ZQayDdzrxl6AbzVqk3PHQkBVL58SYNMSsqKB9?=
- =?us-ascii?Q?kZmUI8dxSTGqfenCW+ml9A7d7FvBRcgxOAwLa1tMAq97/ERvmbR3OHBgSqkg?=
- =?us-ascii?Q?ZFSbfCMUdXdhZCJG2wUN2P/k98/W35tgQbvz2smtNaGOkaOnH/e85gNTBuNi?=
- =?us-ascii?Q?OgpFsYAia1fUz2JMu/x0axPJtK8nd+M6ccy+fNqheYe/wSsHiBE2iEzGYUgH?=
- =?us-ascii?Q?AcedAm6/MDr8MslsKhKURpJP2wWWuqM24gQqTsJ/eGJVWJwpuz2JOyTV3nYd?=
- =?us-ascii?Q?kPR3Rjcu8bpt90lim2oC4c9UjxllV6uIZQWNtQ0SsxjGjaB2xK9SSdQImpys?=
- =?us-ascii?Q?jgXGkAgbcHlk+Bx/nTdWBLmNfBSUeZ+UFwgqMC6fIjD9H7e1ZyIZAoNXV0yi?=
- =?us-ascii?Q?TR+Kr/8PzyHIFPqtnwlT2e3O138eaG0I5cdNe7ro6fWOMCBtXiZLHi98pAKw?=
- =?us-ascii?Q?GTiXsZSn46dMD4L+7pERbLkQ1cMHJvd0myE8dzPQw2lqil1iuPqfuvBHl8RM?=
- =?us-ascii?Q?+EGxhfZg0oafYiRRNgDkvewE+ys4Y7eSIjk1uG6r/Etk4gHp85s1kVA+P9xJ?=
- =?us-ascii?Q?tViUrPqG7DPbyjrX1kiqYnWGKlOD3wN/QpWxHq7Ptfbm290NiI2LndsgRzly?=
- =?us-ascii?Q?FRMMr/ACytauZCaTeWXxinTKoyVk34bvClWiGt0V0rACKw8fMbgHZQAEGSje?=
- =?us-ascii?Q?wmix3T9kx3rIwq3THrn848mz3LPjwbM+48edte2kr8Ggq8l4YWkskxyYUOX3?=
- =?us-ascii?Q?9/AxRHKpiA0Q75KAb/iVi9wnp+hjnniox4TaYky2Nuu8rnJ5B1eS88kirv09?=
- =?us-ascii?Q?kUf/WjhPIOZ05rJ9loqE75IbKkvIOLZ4ZtCxMuwwQVUkGw15udVMMGyQ9fMw?=
- =?us-ascii?Q?UKPkk2KJIyaYRZKjgI4qrPYE+L7Fja9dRfrrnA2JJhK2BMtVACA+rqRr0v+W?=
- =?us-ascii?Q?Nmjx+o/KLkGjcW2/P3psOWZpcc+2tK9Q08Rec3/sTtIdDPuALDcZxs2f1aba?=
- =?us-ascii?Q?Akv9+ju/H7GvgovjYlLuH/V4ciXYJfGU7L7nSBoSuJthzZAjNH41o6oz2M6j?=
- =?us-ascii?Q?YsoMTXvHDs517FBq92anosos+FpPfznP6EZasvDULBcsRIk/sgix5fiXJkos?=
- =?us-ascii?Q?kdDYMg+LrRqx7DpHuP0MPROxFWQ7xtqRjmTHFJcSljqRkA5n/PIZeLthQxDC?=
- =?us-ascii?Q?P+bkX9y6m0cy5eI4YD8/LEbLF2javcmFSwUjxH2h1g/i8XpTpFV63IqIknSD?=
- =?us-ascii?Q?pEk5D1wlBcbRNgaOeGKTTuj7FxY3BRJqg0Mju7xWdO0Cry0ubFsbYPqo/FZX?=
- =?us-ascii?Q?StzkxSRcbEyER7E0wFCRxmqM2GaxGd1mk4sx81oZcvjOfxxpziOMHvQBVS/M?=
- =?us-ascii?Q?vT0sanNuujrvCpIUpSYx5mHhw2T9XAc1fDdILxzTQ2IE+3MLBPoOP6vN8QCB?=
- =?us-ascii?Q?3E8k1737Rh1be/e3P5e0Q7bD/MiNKfQdNLeOiQ0U?=
-X-OriginatorOrg: mt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e99c133-1325-4b0d-20a5-08dd5d5c4b3a
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR03MB10396.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2025 09:41:53.8962
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Wrr61AH4To0KJAh975js3eJHsHMubzYy17Q8c2YjkjYTcEIDhb8z0f+6EWbVUpNMK6GvrDOJf4HgG142VhD8qA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR03MB10738
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
+This series adds support for the Goodix Berlin-A series touch ICs
+(gt9897). This was tested on a Xiaomi 11 Lite 5G NE (xiaomi-lisa),
+which uses the gt9897 IC connected over SPI. I am not aware of any
+device that has gt9897 connected over I2C and therefore could not
+test it, so I didn't add a compatible in the I2C driver.
 
-thank you for your input.
+Changes in v3:
+- Store the ic data in the goodix_berlin_core struct and pass it to
+  goodix_berlin_probe from the i2c/spi probes (requested by Neil)
+- Resent from my now preferred e-mail for kernel work
 
-On Wed, Mar 05, 2025 at 07:08:21AM -0600, Rob Herring wrote:
-> On Wed, Mar 05, 2025 at 11:14:48AM +0100, Mathis Foerst wrote:
-> > The MT9M114 supports the different slew rates (0 to 7) on the output pads.
-> > At the moment, this is hardcoded to 7 (the fastest rate).
-> > The user might want to change this values due to EMC requirements.
-> > 
-> > Add the 'onnn,slew-rate' property to the MT9M114 DT-bindings for selecting
-> > the desired slew rate.
-> > 
-> > Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
-> > ---
-> >  .../devicetree/bindings/media/i2c/onnn,mt9m114.yaml      | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > index f6b87892068a..c184bc04b743 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > @@ -70,6 +70,15 @@ properties:
-> >            - bus-type
-> >            - link-frequencies
-> >  
-> > +  onnn,slew-rate:
-> 
-> Just 'slew-rate' which is already defined in the pinctrl binding.
+Changes in v2:
+- Added Rob's A-b tag (patch no. 1)
+- Added Luca's T-b tag (patch no. 2)
+- Updated the i2c and spi device id tables with the driver data and
+  switched to spi_get_device_match_data where possible (requested by
+  Neil)
+- Switched to device_get_match_data in goodix_berlin_core.c
+- Move all revision specific addresses and other properties into the
+  goodix_berlin_ic_data struct (requested by Dmitry)
+- Link to v1:
+  https://lore.kernel.org/all/20250203174309.21574-1-adrian@travitia.xyz/
 
-Okay, I fixed this in v4.
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bastien Nocera <hadess@hadess.net>
+To: Hans de Goede <hdegoede@redhat.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Luca Weiss <luca.weiss@fairphone.com>
+Cc: linux-input@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: phone-devel@vger.kernel.org
+Cc: linux@mainlining.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Signed-off-by: Jens Reidel <adrian@mainlining.org>
 
-> 
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Slew rate ot the output pads DOUT[7:0], LINE_VALID, FRAME_VALID and
-> > +      PIXCLK. Higher values imply steeper voltage-flanks on the pads.
-> > +    minimum: 0
-> > +    maximum: 7
-> > +    default: 7
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > -- 
-> > 2.34.1
-> > 
+Jens Reidel (2):
+  dt-bindings: input: goodix,gt9916: Document gt9897 compatible
+  Input: goodix_berlin - Add support for Berlin-A series
 
-Best regards,
-Mathis Foerst
+ .../input/touchscreen/goodix,gt9916.yaml      |  1 +
+ drivers/input/touchscreen/goodix_berlin.h     | 16 ++++++-
+ .../input/touchscreen/goodix_berlin_core.c    | 21 ++++----
+ drivers/input/touchscreen/goodix_berlin_i2c.c | 14 ++++--
+ drivers/input/touchscreen/goodix_berlin_spi.c | 48 ++++++++++++++-----
+ 5 files changed, 74 insertions(+), 26 deletions(-)
+
+-- 
+2.48.1
+
 
