@@ -1,119 +1,171 @@
-Return-Path: <devicetree+bounces-155482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020C0A56CE9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:01:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2B67A56D13
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:04:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E55637A9361
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:00:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A210F3B81CE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F7C221DAC;
-	Fri,  7 Mar 2025 16:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6349221713;
+	Fri,  7 Mar 2025 16:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j7m9z5+o"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="j+HbEQvu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB739221DA8;
-	Fri,  7 Mar 2025 16:00:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7393E21E0BC
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 16:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741363216; cv=none; b=Smq1XO/NX0r5F0GCnnSQhitXV4A7coBrTsaSp8Rg6WaufcYsci/mZUp6xRvUyFObAomdNyGQzDm9jgySzs/IHMvskrm1Rl6hHUysihuXqpoYn/r3JMU7GF51YTu2tEeIK6vhkv71UUja80tg6ht//Jon8Lln4JIynDfqFNiulBg=
+	t=1741363349; cv=none; b=KG2QyzwP1b8vz5V0jLv25VABo81M8QVE9mXbNCYvXBOGQqnppf9BLQUGfZDySUVOFHUmoNizugHBhroRy/vcdO3HpcT1GMC99K4NhFMxNJxemWle14ToKhDdWehtJfp4jhIDNSdwQYRUbxSXFHSotN7HvoQKOCWPL+tbtm8w+qI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741363216; c=relaxed/simple;
-	bh=VudDSmr/bb26uUnWCE5q6tgUy6/4HJohTadUBLtnWlg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qXds4j/0L1A2tDnKYVFXqmrexSfPuIR6rMa3xxqfe8c/A3OIAr6bKXQfzCIz1V3JZADSmMYtUIeTU7XGX7PLmHS7eFPEXevm4XsQrnKnaz3q19RHjHSWl9Vl6hN2xi0xxPh8TB5+FCCpGl29p1yswgnOuaCR7zDfl0nYeT0Zz1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j7m9z5+o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 941D0C4CED1;
-	Fri,  7 Mar 2025 16:00:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741363216;
-	bh=VudDSmr/bb26uUnWCE5q6tgUy6/4HJohTadUBLtnWlg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j7m9z5+oBQ4j+RHzsUYpANvSdOj0ewonqIUOZq59qBiEMPWqBy8o0f0gj6zQErJn0
-	 IpenFHbf1LcClkHvDElPusOdjXEJmlOHKhxgr4HRHUqzPuPYeYgo1tJmaXX/xDzlTD
-	 Xir+wclpoXzgmqdMVK/Qej1vmsS3oSaRsbBdjYMQSeghRcWbzPUyPkG9SlkuhVzyma
-	 e7rb8CAfjhuWEOT6hAyHScVM7WxB6ZCc1gBUQaN5WsjgHBvtrJTCIfs7fjJNZSa2Am
-	 C9auxav2wOoqU14lUxrXXKZQE7lW/GixZsjJZRrnWY9Teu45tdKmg8MQ2xdAKl4maZ
-	 eKMohi2cBB3LA==
-Date: Fri, 7 Mar 2025 16:00:12 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	"open list:IRQCHIP DRIVERS" <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	imx@lists.linux.dev
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: fsl,irqsteer: Add
- i.MX94 support
-Message-ID: <20250307-jitters-hatchling-169243ef6a26@spud>
-References: <20250306170810.239489-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1741363349; c=relaxed/simple;
+	bh=pl0XdGNLYz9x5NdFwUSgV/y76o1nKr6GfSx+T2FWcDA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C0lD+F/kirID8AqMA8mxSEVMDc/0vx8X7/VWiJfv51q628clRRqvq6HXYMXFkc6YThSQe/6qxcAPXqeQtqs8yyf2CNqNAN05I1vVxMblpgqD3vkvftv+cGhBoMcIbx+MHP1xBXyMLeOc/SjGQZ7G8oGfGDxH5SVdeffzEmPcMQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=j+HbEQvu; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1741363341;
+ bh=aCrPvOluCec+vwfJ2dRCW1m+hFa1hc7eEdH3qmC/0uk=;
+ b=j+HbEQvud+Q+Ni8rf3aqaCex6yPxhR3oNiwAV2Xh2hswFyFZEtMzz0sVvwx+zqIRf1qKcMZN8
+ eTlIBzAmxbQ7dEYiy1Pno5jGiUYMc4FS5FxCLaZBZ4GvRvrorF6p5j5ZG5azyY1LZqh4tHfjdbl
+ MfBGIX/0j1qvV3MRfUdkZnljnBxsKJST8U9P0o96EPXGoDY98mSr0qNdOsQTlzKzxplhtmRGOwh
+ AT/tydxh7Zy0rtFkKlIEEXGZ/zsIm+QRPxVvoNvWCvPbmeypcosnt8GXC3nwPo5vgTfg6NHDXDb
+ Iio+sFREMHPOFQYB8Lgovc48riHl6J3D60/ngQPLqqZw==
+X-Forward-Email-ID: 67cb18782ea74034f8b964f0
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <de2fb6c6-b053-4be9-8c44-2476c5eb26a6@kwiboo.se>
+Date: Fri, 7 Mar 2025 17:01:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="YyfNEs8L1pvicd3h"
-Content-Disposition: inline
-In-Reply-To: <20250306170810.239489-1-Frank.Li@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: net: rockchip-dwmac: Add compatible
+ string for RK3528
+To: Conor Dooley <conor@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Wu <david.wu@rock-chips.com>,
+ Yao Zi <ziyao@disroot.org>, linux-rockchip@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250306221402.1704196-1-jonas@kwiboo.se>
+ <20250306221402.1704196-2-jonas@kwiboo.se>
+ <20250307-tipping-womanlike-a1ce2370d8d3@spud>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250307-tipping-womanlike-a1ce2370d8d3@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Conor,
 
---YyfNEs8L1pvicd3h
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2025-03-07 16:42, Conor Dooley wrote:
+> On Thu, Mar 06, 2025 at 10:13:54PM +0000, Jonas Karlman wrote:
+>> Rockchip RK3528 has two Ethernet controllers based on Synopsys DWC
+>> Ethernet QoS IP.
+>>
+>> Add compatible string for the RK3528 variant.
+>>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>> ---
+>> I was not able to restrict the minItems change to only apply to the new
+>> compatible, please advise on how to properly restrict the minItems
+>> change if needed.
+> 
+> What do you mean by that? As in, what did you try and did not work?
+> Usually you do something like
+> if:
+>   not:
+>     compatible:
+>       contains:
+>         rockchip,rk3528-gmac
+> then:
+>   properties:
+>     clocks:
+>       minItems: 5
+> 
 
-On Thu, Mar 06, 2025 at 12:08:10PM -0500, Frank Li wrote:
-> Add compatible string "fsl,imx94-irqsteer" for the i.MX94 chip, which is
-> backward compatible with "fsl,imx-irqsteer".
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Thanks, this seem to work, will use in a v2.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I tried to do something opposite and instead set minItems: 4 when
+compatible contains rockchip,rk3528-gmac:
 
-> ---
->  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml   | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,i=
-rqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,i=
-rqsteer.yaml
-> index 6076ddf56bb5a..c49688be10581 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
-=2Eyaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
-=2Eyaml
-> @@ -19,6 +19,7 @@ properties:
->                - fsl,imx8mp-irqsteer
->                - fsl,imx8qm-irqsteer
->                - fsl,imx8qxp-irqsteer
-> +              - fsl,imx94-irqsteer
->            - const: fsl,imx-irqsteer
-> =20
->    reg:
-> --=20
-> 2.34.1
->=20
+if:
+  compatible:
+    contains:
+      rockchip,rk3528-gmac
+then:
+  properties:
+    clocks:
+      minItems: 4
 
---YyfNEs8L1pvicd3h
-Content-Type: application/pgp-signature; name="signature.asc"
+but that resulted in something like:
 
------BEGIN PGP SIGNATURE-----
+  rockchip/rk3528-radxa-e20c.dtb: ethernet@ffbe0000: clocks: [[7, 173], [7, 172], [7, 171], [7, 170]] is too short
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8sYDAAKCRB4tDGHoIJi
-0qTZAP4nOT4nsBqJLVYalDInc5xXbYf2tE0A/46xWYBGQOwdXAEAwA2s+yiN7fwr
-9gWOeRaS7KWUj3WkMJOayiHtDh7EtAg=
-=E2+9
------END PGP SIGNATURE-----
+Regards,
+Jonas
 
---YyfNEs8L1pvicd3h--
+>>
+>> Also, because snps,dwmac-4.20a is already listed in snps,dwmac.yaml
+>> adding the rockchip,rk3528-gmac compatible did not seem necessary.
+>> ---
+>>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+>> index 05a5605f1b51..3c25b49bd78e 100644
+>> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+>> @@ -24,6 +24,7 @@ select:
+>>            - rockchip,rk3366-gmac
+>>            - rockchip,rk3368-gmac
+>>            - rockchip,rk3399-gmac
+>> +          - rockchip,rk3528-gmac
+>>            - rockchip,rk3568-gmac
+>>            - rockchip,rk3576-gmac
+>>            - rockchip,rk3588-gmac
+>> @@ -49,6 +50,7 @@ properties:
+>>                - rockchip,rv1108-gmac
+>>        - items:
+>>            - enum:
+>> +              - rockchip,rk3528-gmac
+>>                - rockchip,rk3568-gmac
+>>                - rockchip,rk3576-gmac
+>>                - rockchip,rk3588-gmac
+>> @@ -56,7 +58,7 @@ properties:
+>>            - const: snps,dwmac-4.20a
+>>  
+>>    clocks:
+>> -    minItems: 5
+>> +    minItems: 4
+>>      maxItems: 8
+>>  
+>>    clock-names:
+>> -- 
+>> 2.48.1
+>>
+
 
