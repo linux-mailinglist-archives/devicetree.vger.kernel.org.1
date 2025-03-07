@@ -1,72 +1,97 @@
-Return-Path: <devicetree+bounces-155286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 080F4A5621D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:00:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E25D9A5621F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:02:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F28503B468C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:00:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1043F3B473D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5494C6E;
-	Fri,  7 Mar 2025 08:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93CB519ABAC;
+	Fri,  7 Mar 2025 08:01:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="cGUTpD/p";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="X/42zBxj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail78-50.sinamail.sina.com.cn (mail78-50.sinamail.sina.com.cn [219.142.78.50])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36E9328E8
-	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 08:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1F228E8;
+	Fri,  7 Mar 2025 08:01:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741334440; cv=none; b=PKejWmORhoHZSzQOIvOis1bjBtw5X2Ep696vgD564HUQFtsyenquYac5DPjXOOIdLy7hrt3YQerd9njUtsLefLYulAnbM5aXOmmKgKUyyDvlfFFgrESeitRcgHUfnHFLye/c2ipbmkNt/eu8EQBtgiY73Gby8ZuzDVJY8k33yIg=
+	t=1741334505; cv=none; b=f8VElK/ChSkydx2WVvuTBKdT6O9uCzZl3s3fFY80WdW0j/fc9GGJ4pXvTEQ/dy7It6B2lxBb7udmnK2OpQSU5fIvsE2r5K/OEADbE0sofZRvBjyFiUzWk4+XUyqsE+4iehKIgnSjjDONhxTw8d5oquoaZv3Qtxpwx+/LLJVmw+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741334440; c=relaxed/simple;
-	bh=0JFI5Z8/U/mF6yj+0eCDZGsxNJSh+rt5QoGEH8wGgSs=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=ppw9RlVAAPi4x+Zc366DTvPacg0qYn3Vhl448u8e7kazRNKHjA6xFPBN85WxSzgUGlfJrO4LfvOfpOVmNu+bafwVVTdDbrfLtiid2VlnOVoXtmLyoGEohxAndcChynJv+MLt/FY6XeszXZuSrmsaYfSIGTMtpWcYEIGdFkwyGv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
-	by sina.net (10.185.250.30) with ESMTP
-	id 67CAA797000047AE; Fri, 7 Mar 2025 16:00:24 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 6E3499F1222B4B0A95D319F782851310
-X-SMAIL-UIID: 6E3499F1222B4B0A95D319F782851310-20250307-160024
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Cc: tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Subject: RE: [PATCH v4 1/2] ASoC: codecs: add support for ES8389
-Date: Fri,  7 Mar 2025 16:00:23 +0800
-Message-Id: <20250307080023.63815-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1741334505; c=relaxed/simple;
+	bh=7FwadEiQoLyNtMeiuJrDoqH2BzOXedSd+yAyT04YNDg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=BtNOKbMydELwrBzGSoJVo3yTU+375/tbra8SuqSi0b569awG/3/gXsH8z3k8RoXIGogtZz+8Yk/TslMGK+mJdKFDbtUEQ8iH+pY1XShikiG20B0VRBZ5rMX6irEAfVpugDmZ1Tv+P1SIOQ0u1t3eiC+6FJvP/6Fs9CMeZTQrIi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=cGUTpD/p; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=X/42zBxj; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1741334502;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VrTQhqGlLV5cWQ6Nh+cod8+JI+BnnsiYR1gmH7cf4OM=;
+	b=cGUTpD/pe3+W5tQmc1UM6R77BLDtZLZPh4MzBkWfM8xdOdIstwwUc72y/EM8DW5lICWEtO
+	QDmtT7tYePDwwGwkUCsSEFKl6oHKnmJYGulQtm7IP/OZuM+B0a0LulmxnQ24WxVSOhIYHc
+	Ilayib+gPL/+blLqWb51BoD388E2Kdm4OYFXFqM/rH3olhYhLmc1/iKAMZ+o0EbzY12bDl
+	/o8gJBKYfy7GsGxjGn5gN19tGPN6jOeZzt8FZWAwJopqI9MSJ+CUJ51evyKYseUlCMzzz/
+	8ME1P1KZANA7uwYovrS1UZ3ZNEw696ySyr5djYKum6oNMBGYmJs0yRN9nNIwwA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1741334502;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VrTQhqGlLV5cWQ6Nh+cod8+JI+BnnsiYR1gmH7cf4OM=;
+	b=X/42zBxjbdatW11BeZBnTTaD80z26A5ii1/XPwd/MSjYv0wfuJQfp1V0qduef7uS1MOlJU
+	UowQ9qoOHXEF1bBg==
+To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Heiner Kallweit
+ <hkallweit1@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH v3 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
+In-Reply-To: <20250305-irqchip-gpio-a4-a5-v3-2-1eec70352fea@amlogic.com>
+References: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
+ <20250305-irqchip-gpio-a4-a5-v3-2-1eec70352fea@amlogic.com>
+Date: Fri, 07 Mar 2025 09:01:41 +0100
+Message-ID: <87h64546ca.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain
 
-> > > No, the machine driver should be configuring different TDM slots for
-> > > each device - that's the whole point of the API.
-> 
-> > We are using multiple codecs as a single device.So we can't use set_tdm_slot to configure
-> > different slots for multiple codecs under one device.
-> 
-> What do you mean by using it "as a single device"?  Multiple CODECs on
-> the same link is the main use case for set_tdm_slot().
+On Wed, Mar 05 2025 at 18:02, Xianwei Zhao via wrote:
+> @@ -358,16 +385,19 @@ static int meson_s4_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
+>  {
+>  	u32 val = 0;
+>  	unsigned int idx;
+> +	const struct meson_gpio_irq_params *params;
+> +
+> +	params = ctl->params;
 
-Thanks for the advice.The method you mentioned could work.
-I will modify my driver.
+Please fix up the variable declaration according to
+
+  https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
+
+and initialize params right in the declaration. 
+
+Thanks,
+
+        tglx
 
