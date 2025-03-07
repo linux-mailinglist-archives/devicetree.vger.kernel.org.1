@@ -1,130 +1,102 @@
-Return-Path: <devicetree+bounces-155459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A210A56C31
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A74FDA56C37
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:35:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F03541893624
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:33:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 180F41890154
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9035221D002;
-	Fri,  7 Mar 2025 15:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20EC221D004;
+	Fri,  7 Mar 2025 15:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ReTwye1m"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bGc5tA3K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6744F21ABDA;
-	Fri,  7 Mar 2025 15:33:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAF121CC7C;
+	Fri,  7 Mar 2025 15:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741361627; cv=none; b=UCtgg2TG4s0HK+6NBcqXhIkMaLEdSVU99QgYQczi9b+VY0jcM6JgXGAXemD41cinKnmcG4NPc7jW6Bihr82As83YPfSdUJ5V7RXr//fmMwY9Su2qoFm6NzfvpNztaYxexTJdCWlAqA8cD9teyECptQz5bLa466TRT3tLYc563hk=
+	t=1741361714; cv=none; b=OyVS8ud72WRQMG6nAAydHM6YbqW5dAm4d4sEFaUUQ/EvrO1ad4VlywzVo3ZBPFxN3pG23i7sSJ08vwZM+MRcA3rEgP6q/9LJaOG/j6uoJT+b+IAUtkolqmuZJNoC2n8D01UFwC1n526kb//ct6BTHjLGwNaOWhNb0qSYdgxJ78I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741361627; c=relaxed/simple;
-	bh=/8G731r/9zVK2cgbL3Wu2RrfDupfpYfNtUS7AyBXLFk=;
+	s=arc-20240116; t=1741361714; c=relaxed/simple;
+	bh=zpDzNzMQTz7b7/qntlneyT/nKeNHRUPJIdqF4FdT5GM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cVMVxybF4Pg7ga7Gj4xbAwRgYPRB/Gja4NrFDrZecNW4YGOHyANkTkVz4mmA3EbrWX0yGnTC2URNJnFmYxCdxldM542tJvOZfuM3KABO/AUJ5GoMDZnN7vLkHQWaiCANd+MqT7viSs3gUeLxctWfnpwW1HUR0pKo+C9Dpo8AcE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ReTwye1m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B70C4CED1;
-	Fri,  7 Mar 2025 15:33:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741361626;
-	bh=/8G731r/9zVK2cgbL3Wu2RrfDupfpYfNtUS7AyBXLFk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ReTwye1mXmyF6GpfQCIWUOALaK0prXPUj/2+2PgnHcmYtGY7IkdpTO2AhskQZb3Ki
-	 wNbSeFPuyS55PYZ4/eAdERkgeC/mF/rnlkqKYDfBOgT3t6cPgmF3dOGUIVjdQ80Vci
-	 vnO+V8Xc3C8gwMQ4QNLk6AiB1s1WGTutwdLvVtmMjvnQ5PkV6vU3pD6ryQ3OPVJNiI
-	 FLOSMj2e8mPTIV5VbmtfrYzYvdq8tI/l1hrFx3h/rTVB88EQ/oZ6c5p8PSlmye9Pk1
-	 vWcvcqIYRHNTTO45qTfOArVQouYceu3ZBu9XsGTXIylZ7LaEe6cBuFdUw6bgaCObw0
-	 hy0R+pwKJih9g==
-Date: Fri, 7 Mar 2025 15:33:40 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=JSOTn3S7iXmk8EV/K/TD7CnUUBgPhwlYbmFXH5y9rLKnBhnqtgAWEVaaQZ7CvyTpARsrOyr8FQpgpZVvYrATy5yUqdBIdNlR+0jMtdvFtzD9rk8KWixWhQPfK2qM4UHiyaeI2CUKMwFcvyw/S/YL+yjTEyEDHn77aNcCfP7ZluI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=bGc5tA3K; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=hCshOJoEiJOSmt4EMGwGg+lny2/v+WdYh03qhKxiJ/0=; b=bGc5tA3KbdA/PPZAg53oSE+w3r
+	ha2dbU/dEeNSx02jKLsnXuahA6Xmpp5kKEUdJstHEMUxoPAg01ChRd7BB0fRaiIJWltp1vAvIkfnF
+	N+oRxqvu5c385AwEXQK7JM55jykYsSFxGxlDlVa+SocAjjRojhOdkO7bGbEvVQ/wkJDM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tqZj1-003B1F-RW; Fri, 07 Mar 2025 16:34:59 +0100
+Date: Fri, 7 Mar 2025 16:34:59 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: dimitri.fedrau@liebherr.com, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	"Pu, Hui" <Hui.Pu@gehealthcare.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: display: simple: Add Tianma
- P0700WXF1MBAA panel
-Message-ID: <20250307-tile-parasitic-604a675fe8e2@spud>
-References: <20250307-tianma-p0700wxf1mbaa-v1-0-1c31039a3790@bootlin.com>
- <20250307-tianma-p0700wxf1mbaa-v1-1-1c31039a3790@bootlin.com>
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 0/3] net: phy: dp83822: Add support for changing
+ the MAC series termination
+Message-ID: <d57aff5b-7d1d-43bf-95a1-ee90689f5ac0@lunn.ch>
+References: <20250307-dp83822-mac-impedance-v1-0-bdd85a759b45@liebherr.com>
+ <6aee57d3-8657-44d6-ac21-9f443ca0924e@lunn.ch>
+ <20250307142252.GA2326148@legfed1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qerg8HnSeY8a+FU/"
-Content-Disposition: inline
-In-Reply-To: <20250307-tianma-p0700wxf1mbaa-v1-1-1c31039a3790@bootlin.com>
-
-
---qerg8HnSeY8a+FU/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250307142252.GA2326148@legfed1>
 
-On Fri, Mar 07, 2025 at 03:54:47PM +0100, Luca Ceresoli wrote:
-> Add the Tianma Micro-electronics P0700WXF1MBAA 7.0" LVDS LCD TFT panel.
->=20
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Should I add the proper description in the bindings ? Description of the
+> properties are somehow short. However will expand the description.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Yes, please expand the description. For well known concepts, we can
+keep the binding description short. But i would not consider this a
+well known concept, so we need to spell out in detail what it is.
 
-> ---
->  Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple=
-=2Eyaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index e3ee3a332bb7e1736a8d44773b0aef4873153be1..56b636560cbeb2277d65fce83=
-916650de7ec4cbf 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -282,6 +282,8 @@ properties:
->        - startek,kd070wvfpa
->          # Team Source Display Technology TST043015CMHX 4.3" WQVGA TFT LC=
-D panel
->        - team-source-display,tst043015cmhx
-> +        # Tianma Micro-electronics P0700WXF1MBAA 7.0" WXGA (1280x800) LV=
-DS TFT LCD panel
-> +      - tianma,p0700wxf1mbaa
->          # Tianma Micro-electronics TM070JDHG30 7.0" WXGA TFT LCD panel
->        - tianma,tm070jdhg30
->          # Tianma Micro-electronics TM070JDHG34-00 7.0" WXGA (1280x800) L=
-VDS TFT LCD panel
->=20
-> --=20
-> 2.48.1
->=20
+My knowledge of transmission lines and termination is not so good....
 
---qerg8HnSeY8a+FU/
-Content-Type: application/pgp-signature; name="signature.asc"
+So this configures the resistor on the PHY outputs. Do PHY inputs also
+need termination resistors? Could there be PHYs which also allow such
+resistors to be configured? Are there use cases where you need
+asymmetric termination resistors?
 
------BEGIN PGP SIGNATURE-----
+My questions are trying to lead to an answer to your question:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ8sR1AAKCRB4tDGHoIJi
-0gCLAP90Ydu+twouujWugpnx76CgrBd+/h0KxzXaRt0fjMaqJgEA8a2mFDWymeDP
-WkSo/6vd5vc4LiYGVTmeZB2T8Whb8gE=
-=NRmH
------END PGP SIGNATURE-----
+> Should I rename then "mac-series-termination-ohms" to
+> "output-mac-series-termination-ohms" or similar ?
 
---qerg8HnSeY8a+FU/--
+We should think about this from the general case, not one specific
+PHY, and ideally from thinking about the physics of termination.
+
+https://electronics.stackexchange.com/questions/524620/impedance-termination-of-marvell-phy
+
+This seems to suggest RGMII only has termination resistors at the
+outputs. So "mac-series-termination-ohms" would be O.K.
+
+	Andrew
 
