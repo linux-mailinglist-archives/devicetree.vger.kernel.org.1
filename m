@@ -1,80 +1,91 @@
-Return-Path: <devicetree+bounces-155492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5475A56E69
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:56:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DF10A56E8E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:04:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1807A18892B0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 16:56:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86FE43B65A8
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFAE23C8BE;
-	Fri,  7 Mar 2025 16:56:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AVpLkgsm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A909C23F26A;
+	Fri,  7 Mar 2025 17:03:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE6A221D92;
-	Fri,  7 Mar 2025 16:56:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA9A21D3D7;
+	Fri,  7 Mar 2025 17:03:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741366560; cv=none; b=KFbZE5m/2AqB/KJ7rZ6+4j+j7EWf/rIUJBO6mKzIIOAz9bXxP0RcyaQk4tCaS/wGM7uqECzI7oKloqF2GQUadsR6hVXTlrUYY+GID5YD43n9n8r5GwPVoUTcpdGuqZEAoswacmzPBBXsX6WL5nE6ZYcY4679vHWH3ZXPd/JA4Kk=
+	t=1741367027; cv=none; b=CaitiFg2zrHnk4aJqs37ink3xlJZdtpmlgoBaalIyT+YqYW3AdDLBLjvYpmDk8X6Q1y+ug2/A4mzhQV/oOYGVl3T4r/vExHMXzXBSk6D9PuXcRLx34wC2C9f8sr9snEJQcDUzCGNbJSQWyjqKMnaaG5Moxz+FuGBAmVKyzYYf7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741366560; c=relaxed/simple;
-	bh=zm4IUNRU5F9Q7F6IslhySw9XY0LvJZqmHl7UPH2oVUQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HBN34UTWiLbT68FEjBf4A5OrC/2in1y4dFwtPTO1Vsl7N5rSzRbftcpb2ScBCJske6hfW+ZYvzKvroV56lu0uTKTSQiq6fw+FWVViNj5A6y7W84SVlhaX5WJ+4H/CVQ+f7sFgL+RGCVtB/p5i04bdEf+y4YgfPQdgLMmjz0zPXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AVpLkgsm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FB91C4CED1;
-	Fri,  7 Mar 2025 16:55:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741366559;
-	bh=zm4IUNRU5F9Q7F6IslhySw9XY0LvJZqmHl7UPH2oVUQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=AVpLkgsm+rJ1/+ojcbOf8+M3KoFzyiiESQHwjozKAPjF8B36+xTNHrBJm+OV0IzoP
-	 9DIl30BifTky83nb+ef9gFAfamPXZoSgWIfmpA9euJYTrs3wu9ivgapJI6JR3gFCA1
-	 CmjG6ORlNPfFLBEhuTr35fy8VNDn2/WcqANJ0KGlI4nwtFgIJwW2aIS2H4i8v4MZV/
-	 5ubKCGk/uJxRELly6gsEXqtT/B4vlKspg7bln92m2n9XTmZwRFUEnruBztw+BLShQq
-	 APwS0a6x/LJuzZQ7QklhKw3O/u2zP8pBoWkBqbqNfww/A8IKi8k251LDbdwJQX11IJ
-	 v5MuibhQrFa/g==
-Date: Fri, 7 Mar 2025 08:55:58 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>, Andrew Lunn <andrew@lunn.ch>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and
- php-grf during probe
-Message-ID: <20250307085558.5f8fcb90@kernel.org>
-In-Reply-To: <1dd9e663-561e-4d6c-b9d9-6ded22b9f81b@kwiboo.se>
-References: <20250306210950.1686713-1-jonas@kwiboo.se>
-	<20250306210950.1686713-3-jonas@kwiboo.se>
-	<bab793bb-1cbe-4df6-ba6b-7ac8bfef989d@lunn.ch>
-	<1dd9e663-561e-4d6c-b9d9-6ded22b9f81b@kwiboo.se>
+	s=arc-20240116; t=1741367027; c=relaxed/simple;
+	bh=e2zB3YVItrEFO5HQaM5For8g9Laax3Bo0hBz7C9JI5k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=r5Rdj9PQEqPRS3SsLobpwvUFOHLKK1dg8mYQ4aWuGIMbC3RwJgq9qFB8Qs7NWqCadxAvnM8Oz8rOSNGO9XCHdeFJWwI8+sP2vm71isD/PPmniCClqXb6WIQ5P9fF3CqSs1JS3LrI4t2S65akp4T+9CzgsP0Y92XEnUWORJxYzn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: 8iHyRgHWRmSrMIfK3BIjDg==
+X-CSE-MsgGUID: JVlkhBwHT+6ws2dP0Ofdyw==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 08 Mar 2025 02:03:37 +0900
+Received: from localhost.localdomain (unknown [10.226.93.104])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id EB3054039AFC;
+	Sat,  8 Mar 2025 02:03:32 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>,
+	Simon Horman <horms@kernel.org>,
+	stable@vger.kernel.org,
+	linux-can@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v3 0/2] R-Car CANFD fixes
+Date: Fri,  7 Mar 2025 17:03:25 +0000
+Message-ID: <20250307170330.173425-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Fri, 7 Mar 2025 00:49:38 +0100 Jonas Karlman wrote:
-> Subject: Re: [PATCH 2/2] net: stmmac: dwmac-rk: Validate rockchip,grf and php-grf during probe
-> 
-> [encrypted.asc  application/octet-stream (3384 bytes)] 
+This patch series addresses 2 issues
+ 1) Fix typo in pattern properties for R-Car V4M.
+ 2) Fix page entries in the AFL list.
 
-Is it just me or does anyone else get blobs from Jonas?
-The list gets text, according to lore.
+v2->v3:
+ * Collected tags.
+ * Dropped unused variables cfg and start from
+   rcar_canfd_configure_afl_rules().
+v1->v2:
+ * Split fixes patches as separate series.
+ * Added Rb tag from Geert for binding patch.
+ * Added the tag Cc:stable@vger.kernel.org
+
+Biju Das (2):
+  dt-bindings: can: renesas,rcar-canfd: Fix typo in pattern properties
+    for R-Car V4M
+  can: rcar_canfd: Fix page entries in the AFL list
+
+ .../bindings/net/can/renesas,rcar-canfd.yaml  |  2 +-
+ drivers/net/can/rcar/rcar_canfd.c             | 28 ++++++++-----------
+ 2 files changed, 12 insertions(+), 18 deletions(-)
+
+-- 
+2.43.0
+
 
