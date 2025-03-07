@@ -1,139 +1,133 @@
-Return-Path: <devicetree+bounces-155400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31267A568C6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:23:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98D18A568D9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:26:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 954621888D02
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:23:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9EAF87A41A1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5637219A64;
-	Fri,  7 Mar 2025 13:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276EC219A95;
+	Fri,  7 Mar 2025 13:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UH30BZtw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ujmQT0N6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C0D39ACC;
-	Fri,  7 Mar 2025 13:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F03E722EE5;
+	Fri,  7 Mar 2025 13:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741353773; cv=none; b=sEtHYYwRR2g2g13XiNv9y6DKfn5U4ILSMscQD6hRTa07obzSUz+VnKh+l5g3/5l72fvNEX5cl2H70MoYBysix4BGq1jnzn8otkoJoeo6Fm93emdaMRLZe1yyLEvc8jxGVeKKI6FlRhFpsqgw1HR1mBHsvOqS/OGMCadpNZlqtLE=
+	t=1741353960; cv=none; b=kM8jpe8JWWx+3Ps6xOuFdSpPMD9CIZYgKbfkq3aj9AVosjDPfeWSFS7fPnyVhCoJ0bOLsHgXWLghSUL/I1Y0Q9lgmIgU19XUhzgMPzrTEVol0WWrxlhRXHZHam2e++QLaDlSks9qQc4p7ShT3cxTaecIIIklwiz4CRZCHZ5NITA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741353773; c=relaxed/simple;
-	bh=nMdElkX27SYzjIYLE2Nq3THJhnIkeKxIRL8VmbGk6kM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=abWB9QQ9JjZbBWYLlQlNBXq7d1hQak6UZuYtZ1Wbaa+M/uNvPYx3V5PtXPJoiBRo8m+J6s1llQmzDRz55YLV3L2BOw4gv3kx3LDaoNr0pgBbev4OhAGF66mni8ACf5k1Cp4d4wqGyDkICY41UT15FOUBc0SRsNCqu5otwMYUPpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UH30BZtw; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741353763;
-	bh=nMdElkX27SYzjIYLE2Nq3THJhnIkeKxIRL8VmbGk6kM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UH30BZtwjumsTG+ymcK82JDw2TOztk6pPaFGRIpxdfLL1yrF5Rmrv9L+JIpB89d94
-	 ka7coYAc8FoQpIRTFFbPiKgBC//VrsODHU+kGTJxpx9+Ng0X/71/Ny2kMGDpjBVY+0
-	 ODUgWtfT8q1pjxowPX9FiTO3UPu+04ep7laZhiObugs3aPEkCrZr2FrZI6FDCHxv3g
-	 BXWuwjjbT9K0PdGHnHZh131bbuZcUHc1yWlKt0ZMbXggm/q6uOk8W3E54qS4BZJvd6
-	 mkdlKAI6qFkfL7sDjOm41FPFfpS7Qp7vgQzpDzA3oRd6sKGVbxDXyy2Ac0NupiiBG3
-	 9Q96c+BviI4RQ==
-Received: from notapiano (unknown [IPv6:2804:14c:1a9:53ee::1001])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A168917E05C1;
-	Fri,  7 Mar 2025 14:22:38 +0100 (CET)
-Date: Fri, 7 Mar 2025 10:22:36 -0300
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, kernel@collabora.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 01/19] dt-bindings: mfd: mediatek: mt6397: Add accdet
- subnode
-Message-ID: <cb2820d8-84e8-49ca-b497-1ea815679a3d@notapiano>
-References: <20250305-mt6359-accdet-dts-v4-0-e5ffa5ee9991@collabora.com>
- <20250305-mt6359-accdet-dts-v4-1-e5ffa5ee9991@collabora.com>
- <20250306-certain-jasmine-mastiff-fd67ba@krzk-bin>
- <2fa6037d-b5e9-45b2-a5d5-dbc92fb3434b@notapiano>
- <0663e03e-e331-4a06-be95-ce8d9059ed6b@kernel.org>
+	s=arc-20240116; t=1741353960; c=relaxed/simple;
+	bh=LEKn/iVCDqHF6UuoX0gnwRLWk845tZ27d/a8XRfdFns=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=UEeaRsLFoU/n6TSFy2OHbom880pP6fuK+nCaED7VYaa51X3wc30xzrBHkRCaxMS2GjU+Fvyc4FmrkzJTDkc2E72tkCAZTYqbQ5n9sfEGghpwhKnv/BZ+iDCnQIsHzcmAuNv2jV8qDiGEYKYtGjD0Xpo12IWPjZXRYmLZzgqhPGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ujmQT0N6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C6EEC4AF09;
+	Fri,  7 Mar 2025 13:25:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741353959;
+	bh=LEKn/iVCDqHF6UuoX0gnwRLWk845tZ27d/a8XRfdFns=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ujmQT0N6gf65OIZAzyctWyrhVDHH+NoBKkPRP9nIUk8R/cDtq0oWXQXk2/EsBIsfu
+	 0sGEj5/wXbPMZDZXSKxL2AO6+gq0rhyrxBzDWkT/7DEHzvi5N1wYHsWSCJOkHh6CzO
+	 lLqXe6RR2nwGRbexL2qTzE/HRNiVUdUReSnVZTSa7cAOCk0BL8vYn64HvFUFPDEyfa
+	 nMwkWgAUehuE5qYIW0p+WQmOZ2lvM90B/5fa97faBy5R2vjG7SCdDsPFFkkxttwlEt
+	 JTyRl8mD6AoGVfNOzrh4xkvDdEXH/0l5IxpAuqUv3bq/ub4GTzJBOFzUjshpTuxM9H
+	 2+b+fz8o486VQ==
+Date: Fri, 07 Mar 2025 07:25:57 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0663e03e-e331-4a06-be95-ce8d9059ed6b@kernel.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+ linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+In-Reply-To: <20250307081047.13724-1-clamor95@gmail.com>
+References: <20250307081047.13724-1-clamor95@gmail.com>
+Message-Id: <174135385223.4031140.10808514258285152164.robh@kernel.org>
+Subject: Re: [PATCH v2 0/3] ARM: tegra: complete Tegra 4 and Tegra K1
+ device trees
 
-On Fri, Mar 07, 2025 at 08:11:26AM +0100, Krzysztof Kozlowski wrote:
-> On 06/03/2025 13:19, Nícolas F. R. A. Prado wrote:
-> >>>    It is interfaced to host controller using SPI interface by a proprietary hardware
-> >>>    called PMIC wrapper or pwrap. MT6397/MT6323 PMIC is a child device of pwrap.
-> >>> @@ -224,6 +225,30 @@ properties:
-> >>>      description:
-> >>>        Pin controller
-> >>>  
-> >>> +  accdet:
-> >>> +    type: object
-> >>> +    additionalProperties: false
-> >>> +    description:
-> >>> +      The Accessory Detection module found on the PMIC allows detecting audio
-> >>> +      jack insertion and removal, as well as identifying the type of events
-> >>> +      connected to the jack.
-> >>> +
-> >>> +    properties:
-> >>> +      compatible:
-> >>> +        const: mediatek,mt6359-accdet
-> >>
-> >> You just removed the other file, no folding happened here. Drop the
-> >> accdet node and fold this into parent.
-> > 
-> > Sorry, I'm still not sure what you mean by folding here then. Right now the
-> > accdet is a subnode of the PMIC. If you want me to remove the accdet node, where
-> 
-> Yes
-> 
-> > would its compatible and property go?
-> 
-> compatible: nowhere, because it is close to redundancy.
-> 
-> property: to the parent pmic node.
-> 
->     pmic {
->         compatible = "mediatek,mt6359";
->         interrupt-controller;
->         #interrupt-cells = <2>;
-> 
->         mediatek,hp-eint-high;
->     };
 
-I'm not sure that's right. The ACCDET submodule does have some resources, IRQs,
-that it registers in its mfd cell, see patch 2 of this series [1]. It also has
-its own driver (sound/soc/codecs/mt6359-accdet.c) that probes based on this
-compatible and handles those interrupts. Why would it not get its own node like
-the other MFD cells?
+On Fri, 07 Mar 2025 10:10:44 +0200, Svyatoslav Ryhel wrote:
+> Complete T114 and T124 device trees.
+> 
+> ---
+> Changes in v2:
+> - dropped accepted commits
+> - added EPP, MPE and ISP compatibility for T114 and T124
+> - added TSEC schema
+> ---
+> 
+> Svyatoslav Ryhel (3):
+>   dt-bindings: display: tegra: document EPP, ISP, MPE and TSEC for
+>     Tegra114 and Tegra124
+>   ARM: tegra114: complete HOST1X devices binding
+>   ARM: tegra124: complete HOST1X devices binding
+> 
+>  .../display/tegra/nvidia,tegra114-tsec.yaml   | 70 +++++++++++++++++++
+>  .../display/tegra/nvidia,tegra20-epp.yaml     | 12 ++--
+>  .../display/tegra/nvidia,tegra20-isp.yaml     | 16 +++--
+>  .../display/tegra/nvidia,tegra20-mpe.yaml     | 30 ++++++--
+>  arch/arm/boot/dts/nvidia/tegra114.dtsi        | 65 +++++++++++++++++
+>  arch/arm/boot/dts/nvidia/tegra124.dtsi        | 65 +++++++++++++++++
+>  6 files changed, 244 insertions(+), 14 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
+> 
+> --
+> 2.43.0
+> 
+> 
+> 
 
-[1] https://lore.kernel.org/all/20250305-mt6359-accdet-dts-v4-2-e5ffa5ee9991@collabora.com
 
-Thanks,
-Nícolas
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/nvidia/' for 20250307081047.13724-1-clamor95@gmail.com:
+
+arch/arm/boot/dts/nvidia/tegra124-apalis-v1.2-eval.dtb: isp@54680000: reset-names:0: 'isp' was expected
+	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-isp.yaml#
+arch/arm/boot/dts/nvidia/tegra124-nyan-blaze.dtb: isp@54680000: reset-names:0: 'isp' was expected
+	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-isp.yaml#
+arch/arm/boot/dts/nvidia/tegra124-apalis-eval.dtb: isp@54680000: reset-names:0: 'isp' was expected
+	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-isp.yaml#
+arch/arm/boot/dts/nvidia/tegra124-nyan-big.dtb: isp@54680000: reset-names:0: 'isp' was expected
+	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-isp.yaml#
+arch/arm/boot/dts/nvidia/tegra124-venice2.dtb: isp@54680000: reset-names:0: 'isp' was expected
+	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-isp.yaml#
+arch/arm/boot/dts/nvidia/tegra124-nyan-big-fhd.dtb: isp@54680000: reset-names:0: 'isp' was expected
+	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-isp.yaml#
+arch/arm/boot/dts/nvidia/tegra124-jetson-tk1.dtb: isp@54680000: reset-names:0: 'isp' was expected
+	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-isp.yaml#
+
+
+
+
+
 
