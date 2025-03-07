@@ -1,194 +1,107 @@
-Return-Path: <devicetree+bounces-155406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287A5A5691D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:41:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88A55A56928
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:43:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 134573B22A6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:41:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 756191670D0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066DC21A422;
-	Fri,  7 Mar 2025 13:41:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F2A219EB8;
+	Fri,  7 Mar 2025 13:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G4ENfnLT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FlxFRTfh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F71DEBE;
-	Fri,  7 Mar 2025 13:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 231E0EBE
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 13:43:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741354880; cv=none; b=hOZrC1UMAnJYkZRg0F4M5unmv5Bvx+ZCoXn/zBOUfP7dOKFx/koVkZDWxZEjvRJMBjjqSF0snbK8I6OhezX6n7oBA7OwJ8m+AACdrhctfdwcioiw5xm1yX46c7Kq6DcuviAVI/njxvyFJXr018Kdp7sauRZ94RT11JYClWp9Zdk=
+	t=1741354987; cv=none; b=uduSBpHZ4vHJH4H7h4R1OVjD1+RKDqRR4zYa3e/C/d09Nwjo9ab22b75KgX3JOkMj7P2amBGNJ4dUUMT6ZGGjl8psh1J1/zmM3cVy3JkdMbHdsW60SqqER7Mnqs3hY8oFUggvhIJwR91n8PNI7md2pHz92J3qv0+Yi5rFDtYIpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741354880; c=relaxed/simple;
-	bh=N8sYo3uz0FrCRUbMqngY+YYmmopRY57XHjzEdmi1tY0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bXiuHSv0R4fe4kVTj+9d2u9pp0AW7UMcYKeHuIjOLcCdjsz6QGXWSSAI+eHdsQgxd9kZW7aFEGxEK/Du1jNdM0PaTXsWE8XFWFuqu8meptTYRV1fugyVMueZo34+V4gBm+MMtW7BaSlWRquCtgl2zAn+NGJ1g8S+FwRpiiCHYvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G4ENfnLT; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-223a7065ff8so5895965ad.0;
-        Fri, 07 Mar 2025 05:41:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741354877; x=1741959677; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=h38aqFe9Ma4NHWsTUuQBby7UCorGRNLzawB5Rnpg1KI=;
-        b=G4ENfnLTH4tvY2co9QGuN7K2rR1L4r7dXc9OgAm2byrNAvYj84i1bc0xaytPVDWB6L
-         Xla8YFi3DA0q78MXfUEHh5v0W8W3zVxfct/HDLhX73kvGsAOcO4bGH7EG8Q1Os560a9i
-         DvMj63ZWGRRInA+pvSu8BZ8fohR/Q9OeS3R3a09DaMHvnPKRmgBJa1yrTToD0RqoHmYw
-         1bvMAxYKR8GuEZc2jvfbxOPCWvN/YUFNshDYJg1TGEJKNzhw83gOVZmCDVMzm0+IWaT6
-         yTDi6CE4cmLLvOtKCUpObm1bUgatcc7/OhVdM7hxATSh/QypcVhOk9q8ft7kAxDOD6Do
-         E75w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741354877; x=1741959677;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h38aqFe9Ma4NHWsTUuQBby7UCorGRNLzawB5Rnpg1KI=;
-        b=pjm6FVI4bfZfRDypFDwvCYZXbuQJQ1+udhy3NUpdEr183Bzs0mv5bBmLfRmlAF+8sY
-         kD0fpwQTedhb8QfIo3CRm0gblj/zs33kAbPdG554uQ76m2lJPWGyILhfTX3ejZ9Ckyft
-         MgMvWDjPYzfn3xktFJkZJeXhGrSImjhbroaIPeZRzp3OMMII+1DJfNhpGY2W5C//HV1L
-         j2n7d98h4JYrlbZpHz5tdinJNFAUanc/i608q4uBBYNpH1HD7OJl74XyVdP3fCQirx6D
-         9gPG5CcxGgmr9MnhU7HBSe4IWSGp81VSfHWBd4LhHj0t7jv5NwtOWiRwVTG2lwLO0kLB
-         1z4g==
-X-Forwarded-Encrypted: i=1; AJvYcCUBf13ovEKM8w3S+1luF7l46fO94UHsbf9jvkpdj+bKUx8HlpUxBstrvsLSAl/GrkcfI9BB+01f0lHC9A==@vger.kernel.org, AJvYcCV4oeeNZkRCe5y1B0nwy72939j4O2P3PzaFASSQsfyzKumjcNUeYF8iU8D9mFkYsdq6lIDSPqGMGgxZJTrI@vger.kernel.org, AJvYcCXIDylVZ7RCyeXMZd7VTyDYW5/hluZTNH7quRJiIQPG8D4GcEA7qWbj0CrELYuz/FpWQFOqwH0BKEoD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxN1pFk9l7iB64xm4Va5KBsyLQJed2WJpOJNf/9zc/LksE7RH2S
-	peDR9jcdlEfDzVUjmoFWI5XCo9dso6/CRusa3kK7A9MZXVan5b1K
-X-Gm-Gg: ASbGncsN9TBGAfLJSE0CiruZdZ4kM3qFFQbe2Ru/mAYkGICYPDtEsx8x4ZGyo5yE37y
-	fajVynOSdBnXjpIc0ulSwT6zTOixuoVVeu/+cd2AuHgPjFRcKU2Avp2CM8nBefTi0VbHqUpDYrc
-	+5tVgy9HYGoNIYwC2TrK8pn3M5SwErFj0SyKuJlFMJBogcnbp8OQr1zSfVcyLqSpuVq41awaEWi
-	cbK/WjzFNfsGNZV3IEe9g1v+l4W088herq3y84bLTQbMYeNHa9YOpXwFsUbP824bVYBCNhFhIFA
-	7Heok+yp4PzkNqE9YwjKpPOKfsTBGXRsX3IFEDzxELsuX/597skGcg==
-X-Google-Smtp-Source: AGHT+IFNfcJHZ+3VSfDlVytA+8MieA2fcDSQnh0iehKMSSKusFnNT8AR7I9mN5SQu5o+C1VqXZA3zA==
-X-Received: by 2002:a05:6a00:2d90:b0:736:48d1:57f7 with SMTP id d2e1a72fcca58-736aa9dc1d5mr5359686b3a.7.1741354877520;
-        Fri, 07 Mar 2025 05:41:17 -0800 (PST)
-Received: from localhost ([2804:30c:1f21:4300:1cf6:c485:6555:b1c5])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-73698206ba4sm3220610b3a.4.2025.03.07.05.41.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Mar 2025 05:41:16 -0800 (PST)
-Date: Fri, 7 Mar 2025 10:42:09 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de,
-	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
-	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linus.walleij@linaro.org, brgl@bgdev.pl,
-	lgirdwood@gmail.com, broonie@kernel.org, dlechner@baylibre.com,
-	jonath4nns@gmail.com
-Subject: Re: [PATCH v4 09/17] iio: adc: ad7768-1: Add reset gpio
-Message-ID: <Z8r3sR740CpZfVFr@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1741268122.git.Jonathan.Santos@analog.com>
- <305f0bb4a90aba547de6b46d4c9dcf04a2a4db72.1741268122.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1741354987; c=relaxed/simple;
+	bh=o96a4oADz87hcePQZSEpuJiCyGHWz0jL1FgSaASzVTc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e4ufrDkj3SBLYEhs72rHcOFn1TnNDkkWy/Opedec/Fz5iZAILsIKixQV3F34PlmrWhBCswgdk94PIvOU1YZSc+WvCpL8WYHJW962GtdiH6tArRaC2pVPqTD5pYbZ631QEylVCHpAeuD0OUv909FC3/LWpagD1UjjWAeydDID8CE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FlxFRTfh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9704CC4CEEA
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 13:43:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741354986;
+	bh=o96a4oADz87hcePQZSEpuJiCyGHWz0jL1FgSaASzVTc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=FlxFRTfhSBwo922hmTW11IXjvhW/tAIZVDbJEm+HjtIjbS9RC10S2sqSyQNooq96/
+	 QSDFRUWk4LxTWlMRwmgJUQz9TmNgRsKKtK6NFiPF4bwnIca+gNzuW8McAezgihKHCV
+	 ZKndao72LlMb1v7Jlku9RFV5SbxAEtfXPIaj7fsPepYSfpybmdSM2mbFtqY9VdFaIv
+	 qBUCLC22whf7LV2Ezx24b3zZi3JtQM4DDSed/464CcY07K1TBVF8P4K/Lb4PTlZdXJ
+	 NROe7vAb7OxmAJa5ubEUf5f/BA+W+TSYxtP+vupPQ15dskOCyomsuRZl8h5QCzq8Rd
+	 2t7JAFB++AwTw==
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e5cd420781so3071967a12.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 05:43:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUrCad7Mq7++GotFNNfshv5xb46rcvLw3msoxCJEF+vffYEBIVmWHYKhb6wng21lWBh2qaXl9xznVeL@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDGxpa20lVbPKEIx7ObNOCl9q/v8Hhe8zeBpMFeSipJT93m6qT
+	GHN/ZWhtk4V90yxIPkUgXEXeFcpwx/0BRvQLshXAALSD3GDtYf2ESNz5NWVSXu/ruTPhvcoIDhj
+	b4DdhMvS/BhprAW8RK3l+po9vVA==
+X-Google-Smtp-Source: AGHT+IFc3bvdtsW0T/1KqLHL/xTobzr93bIMREKqlZT8Ch30B7IGpnpqrwxAJREqDwYwuE6RMxrqFbzrjwLiAl1/mP8=
+X-Received: by 2002:a17:906:dc8e:b0:abf:6ec7:65e9 with SMTP id
+ a640c23a62f3a-ac252f8f556mr339325966b.43.1741354985185; Fri, 07 Mar 2025
+ 05:43:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <305f0bb4a90aba547de6b46d4c9dcf04a2a4db72.1741268122.git.Jonathan.Santos@analog.com>
+References: <ad457a08aa7607a094872bab41b5fb670b978cec.camel@siemens.com>
+In-Reply-To: <ad457a08aa7607a094872bab41b5fb670b978cec.camel@siemens.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 7 Mar 2025 07:42:53 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLX_t90QYa+Z45wpLhmf0xQ_=i6aJgyFRG2pXJZaYY1PQ@mail.gmail.com>
+X-Gm-Features: AQ5f1Jrvew8iFiDP4ewWteXcG7Dqcn4PyDmf1R7IENOP-Eb7ppBmiUmNuzHzPpA
+Message-ID: <CAL_JsqLX_t90QYa+Z45wpLhmf0xQ_=i6aJgyFRG2pXJZaYY1PQ@mail.gmail.com>
+Subject: Re: How legal is #interrupt-cells = <0>?
+To: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
+Cc: "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/06, Jonathan Santos wrote:
-> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
-> 
-> Depending on the controller, the default state of a gpio can vary. This
-> change excludes the probability that the dafult state of the ADC reset
-> gpio will be HIGH if it will be passed as reference in the devicetree.
+On Fri, Mar 7, 2025 at 6:29=E2=80=AFAM Sverdlin, Alexander
+<alexander.sverdlin@siemens.com> wrote:
+>
+> Dear DT and bindings maintainers!
+>
+> I'm facing a dilemma trying to provide new bindings for an interrupt
+> controller which only has one interrupt in one configuration. It must
+> be modelled in the DT because its driver has to acknowledge the IRQ
+> request in HW, but otherwise there is no information required to
+> select or configure this single interrupt.
+>
+> Logically thinking the above would mean #interrupt-cells =3D <0> in this
+> interrupt-controller node.
 
-The description doesn't seem to match the changes nor the patch title. You are
-essentinally adding support for hardware reset. Change the commit description to
-reflect that.
+You don't need #interrupt-cells unless you have a consumer with
+'interrupts". And "interrupts" requires at least one cell. I suppose
+you could use "interrupts-extended", but that was intended just for
+different parents, not 0 cells.
 
-The default state of GPIOs would not impact device reset because (in theory)
-they weren't being connected to the reset pin prevously.
+> And except all the hell breaks loose in the drivers/of/irq.c I see
+> no other issues with this.
 
-> 
-> Reviewed-by: David Lechner <dlechner@baylibre.com>
-> Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
-> Co-developed-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> ---
-> v4 Changes:
-> * None.
-> 
-> v3 Changes:
-> * fixed SoB order.
-> * increased delay after finishing the reset action to 200us, as the
->   datasheet recommends.
-> 
-> v2 Changes:
-> * Replaced usleep_range() for fsleep() and gpiod_direction_output() for 
->   gpiod_set_value_cansleep().
-> * Reset via SPI register is performed if the Reset GPIO is not defined. 
-> ---
->  drivers/iio/adc/ad7768-1.c | 36 ++++++++++++++++++++++++------------
->  1 file changed, 24 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-> index 04a26e5b7d5c..86f44d28c478 100644
-> --- a/drivers/iio/adc/ad7768-1.c
-> +++ b/drivers/iio/adc/ad7768-1.c
-> @@ -166,6 +166,7 @@ struct ad7768_state {
->  	struct completion completion;
->  	struct iio_trigger *trig;
->  	struct gpio_desc *gpio_sync_in;
-> +	struct gpio_desc *gpio_reset;
->  	const char *labels[ARRAY_SIZE(ad7768_channels)];
->  	/*
->  	 * DMA (thus cache coherency maintenance) may require the
-> @@ -487,19 +488,30 @@ static int ad7768_setup(struct ad7768_state *st)
->  {
->  	int ret;
->  
-> -	/*
-> -	 * Two writes to the SPI_RESET[1:0] bits are required to initiate
-> -	 * a software reset. The bits must first be set to 11, and then
-> -	 * to 10. When the sequence is detected, the reset occurs.
-> -	 * See the datasheet, page 70.
-> -	 */
-> -	ret = regmap_write(st->regmap, AD7768_REG_SYNC_RESET, 0x3);
-> -	if (ret)
-> -		return ret;
-> +	st->gpio_reset = devm_gpiod_get_optional(&st->spi->dev, "reset",
-> +						 GPIOD_OUT_HIGH);
-> +	if (IS_ERR(st->gpio_reset))
-> +		return PTR_ERR(st->gpio_reset);
->  
-> -	ret = regmap_write(st->regmap, AD7768_REG_SYNC_RESET, 0x2);
-> -	if (ret)
-> -		return ret;
-> +	if (st->gpio_reset) {
-> +		fsleep(10);
-> +		gpiod_set_value_cansleep(st->gpio_reset, 0);
-> +		fsleep(200);
-> +	} else {
-> +		/*
-> +		 * Two writes to the SPI_RESET[1:0] bits are required to initiate
-> +		 * a software reset. The bits must first be set to 11, and then
-> +		 * to 10. When the sequence is detected, the reset occurs.
-> +		 * See the datasheet, page 70.
-> +		 */
-> +		ret = regmap_write(st->regmap, AD7768_REG_SYNC_RESET, 0x3);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_write(st->regmap, AD7768_REG_SYNC_RESET, 0x2);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	st->gpio_sync_in = devm_gpiod_get(&st->spi->dev, "adi,sync-in",
->  					  GPIOD_OUT_LOW);
-> -- 
-> 2.34.1
-> 
+For this reason alone, I would just use 1 cell and move on.
+
+> Do you see this as definitely illegal combination? (Aside of the
+> two already existing examples in both arch/.../*.dts and in bindings,
+> one marked as "will not be an irq parent" and another example being
+> an MSI controller, probably taking other code paths.
+
+I think all these cases are just to abuse IRQCHIP_DECLARE() as they
+are all MSI controllers. It's been on my radar to fix these.
+
+Rob
 
