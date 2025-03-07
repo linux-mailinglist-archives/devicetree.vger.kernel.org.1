@@ -1,60 +1,80 @@
-Return-Path: <devicetree+bounces-155529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5276AA5740C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 22:54:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B65EA57417
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 22:55:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C797718966D6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 21:54:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 956BE189A5D7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 21:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FEA20AF8E;
-	Fri,  7 Mar 2025 21:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CDC022069A;
+	Fri,  7 Mar 2025 21:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FDPfjuKC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BO8+HRZH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0FBF2080FD;
-	Fri,  7 Mar 2025 21:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84F120C01A;
+	Fri,  7 Mar 2025 21:55:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741384449; cv=none; b=thNOMFZ2VR7CvoIeyezClRE07LxvyQt9IqvsctuJ9y9a8kazk/Jlox/mNKyczSBkW+SUZtArEbv/4yM3r22j81ymbnDbimO7qoJMXQDI66Q7ejEs0a/sJlOh3k+OCjoFrq+4JfOnnKHZ5tM6v94Xlb3fOW21p8aCnGXq1Nor7kE=
+	t=1741384546; cv=none; b=CuL6C7ChW3iC8aJoavVPpw+3UBM1gybLmzyeMiBr39sn0yMw1CATzd7I4GS0uCG8/NbVPVCzVF1JcedNMjc2Sxjr8ZMPFvCxHb/DYaUWT+9LkHK4p64+GaWDTOBgoFI1+PE7q8sar7cW4fto8WvC8TtcSuPsEldCWonKvNzDClo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741384449; c=relaxed/simple;
-	bh=OYkDFDN++s9mXl2BERPZRbOwLjSw7X2E+xn2cE2k+sQ=;
+	s=arc-20240116; t=1741384546; c=relaxed/simple;
+	bh=HHaLvWmewEA0UB1/ZT/LTbWWfHBvq2qa7R4z05u++JU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jAGLP1zUrBfktwo3NOpkusb2m776/pMSpKf7qEAP3sNu2DZF82L5PZNZZyfFMRdr/qS+yaPBHtqJmrZpQOgVmz32sZCqmLuhrL1PiqCLO2u53CM8snvg3ji2grE8POPOLp/ZGKizhaR2jGzoKm/n5yCY62eoboGc8VBsoULHoCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FDPfjuKC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ECA9C4CED1;
-	Fri,  7 Mar 2025 21:54:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ieGwSwnk+j1U8VHhkDWB3ShouqD6SGOnmudTF/VAlzflFzxSG1feXwgAfK99k4xdrepZFSngQq+krb7lNN62WNtsCCPiYue/yjLux3Ldosi3PIq7MQVx4WX1ftZwgRFDNRNTUwLIPFcA7i2TerSM7euFY/6D6w1jqpt6rsGFPP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BO8+HRZH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F3F9C4CED1;
+	Fri,  7 Mar 2025 21:55:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741384448;
-	bh=OYkDFDN++s9mXl2BERPZRbOwLjSw7X2E+xn2cE2k+sQ=;
+	s=k20201202; t=1741384545;
+	bh=HHaLvWmewEA0UB1/ZT/LTbWWfHBvq2qa7R4z05u++JU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FDPfjuKCLPcmODM/mpQszeD+fH1oOnyE+g26bB9sJR0YeOSQeDEjG6lpru6IhjLyK
-	 i7wOyboV+mZJ6mKrEsttT4VIXFqtH9b53QbpoCZyyePXy/EWODOadXYTJlkXCR5Sjn
-	 avTHG6JN26FsgyJxWt3iars2OypKHXDeMA41F5nZsNuJ7i5G+rKde2w4gOxJJowlwZ
-	 jXnwOo+PFwgIKaBSm1ePVwiVB8RGBANf7AZPvbVs+y5zTPUFLt17lFKkmzc/cOpO+T
-	 w53K2Prh1qksQWbyF8Pd4UewYzyWQRheRLrPzrdUeX/SEgqoUMdQKcEzC40LhFQmi9
-	 NVDB53G9rrqlg==
-Date: Fri, 7 Mar 2025 15:54:06 -0600
+	b=BO8+HRZHaRE5kBHYT5HbpF7Opg3fQElryBtTp79LF07A/DKXJqfN1cBNszyyLOZLp
+	 Zj/UXPE/cnP+e1xIVF4dASEHoSMqTI7lluUu8NU92nhImuS417cLyVFasX2YQMzUic
+	 YntmikDx2twsr+L8tnb+7HTCbaB7d+IyjtvEVFtEcF6jzuXO6Z7dbfvynPPfAWDWOf
+	 kCHS3DX+UD7q5dyC6Rg5pK+O42N3h0IZjjuXJ14StHMBGdmHHRMCpOut2u9e5+BZOd
+	 refk7J2V+p1cayr1hOWGseGVZOtr3QHuGI4MTnCgwfk0N/nuNcgAfJfQ4llGrtREjC
+	 ROgVzbuJzoNTw==
+Date: Fri, 7 Mar 2025 15:55:43 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: add regulator support to dmic
- codec
-Message-ID: <174138444621.670593.13171992364660148960.robh@kernel.org>
-References: <20250306171840.593443-1-olivier.moysan@foss.st.com>
- <20250306171840.593443-2-olivier.moysan@foss.st.com>
+	Will Deacon <will@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, linux-usb@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Kyle Deng <quic_chunkaid@quicinc.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Clark <robdclark@gmail.com>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>, iommu@lists.linux.dev,
+	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Robert Foss <rfoss@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Rohit Agarwal <quic_rohiagar@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Joerg Roedel <joro@8bytes.org>
+Subject: Re: [PATCH 01/11] dt-bindings: iommu: qcom,iommu: Add optional TBU
+ clock
+Message-ID: <174138454322.672545.5612308446106419533.robh@kernel.org>
+References: <20250306-topic-dt_bindings_fixups-v1-0-0c84aceb0ef9@oss.qualcomm.com>
+ <20250306-topic-dt_bindings_fixups-v1-1-0c84aceb0ef9@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +83,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250306171840.593443-2-olivier.moysan@foss.st.com>
+In-Reply-To: <20250306-topic-dt_bindings_fixups-v1-1-0c84aceb0ef9@oss.qualcomm.com>
 
 
-On Thu, 06 Mar 2025 18:18:39 +0100, Olivier Moysan wrote:
-> Add optional vref-supply property to describe the regulator supplying
-> the digital microphones.
+On Thu, 06 Mar 2025 19:11:13 +0100, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> Some MMU instances feature a Translation Buffer Unit (TBU), which comes
+> with its own clock. Allow describing it.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/sound/dmic-codec.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/iommu/qcom,iommu.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
