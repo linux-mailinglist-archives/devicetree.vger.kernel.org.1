@@ -1,109 +1,228 @@
-Return-Path: <devicetree+bounces-155332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F1AA563CD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:30:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68772A563EC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:33:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C0E5188B45A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:29:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1A30165895
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 09:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41511A5BBB;
-	Fri,  7 Mar 2025 09:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C8620E6FB;
+	Fri,  7 Mar 2025 09:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="MfBYfJcD"
+	dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b="QrpCLw+y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013008.outbound.protection.outlook.com [40.107.159.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D27202C42;
-	Fri,  7 Mar 2025 09:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741339779; cv=none; b=JLx/DFgIHg0zowm4OPf421TLYsKU107op30MjFKHqixTt8aAOYSC7z9VDrKgVtGQwXaXn1+MtQObb0UhI/mIjVET0DminxmOmXZ14BB4fDKgVuDQC/kM1fJiiAJRihQj/14h1UVGvxWri7R8OCrx+dlwEnrMczVFTkJ80w9+/Bo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741339779; c=relaxed/simple;
-	bh=G1lCccy/OszgdLNgqruHVs1sxATd6Zr72E+2mhbDyfQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=P4qkzqzKQ2EOdfkaHE97HgsTTs/GpbvCAW0Uj2akN7n7wVb2Vgwjak1LSrrcJ2pr8YQ3uFfp8FWKMutozo+mNdzq+fJLitb9FRNL5L2qNmnfeE89jdK5QVMt9nSmMkTQQv6fIWLGPuTvW1ABTJl/PERxyU9uSqdXcwjFgum0zF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=MfBYfJcD; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=D2F6Zdb1CkSBitSIoiyY8ywRdELphgvUiwPTl0y2m+g=; b=MfBYfJcDOUJ7bmp4dok8wEmuaJ
-	s+yyx3IlEJGd4KThHeWy3pAxTHVErNEA+3t9rrrGyHhIC1iQ+ZefIqjYk7FknH3oKX1GjF2gY3WLT
-	+lUHpZPwe7d2cLz5xeEN6MiYDqzmLU124SaDix8I1yDz9h/nJOWkU25hJB96NDIOe/KL7D9WeUZyy
-	pKWGJnS728oPVRpb60e1WJAaDeNsSG8y0bj9ocXbmZSCYH+bmYT9X9qsbYhB7GeJxVRUT8u1XNv1+
-	RFFGO32ilew0RNMPDCaMkVYG9KjTO/rZTL7gkmRUNjHbh66yygeEemgVc3gb0CuLZRwoc0wz+6PkS
-	NKUMyvLw==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tqU0n-0002G6-II; Fri, 07 Mar 2025 10:28:57 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Daniel Golle <daniel@makrotopia.org>,
- Aurelien Jarno <aurelien@aurel32.net>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: [PATCH] dt-bindings: rng: rockchip,rk3588-rng.: Drop unnecessary status
- from example
-Date: Fri, 07 Mar 2025 10:28:55 +0100
-Message-ID: <5865714.DvuYhMxLoT@diego>
-In-Reply-To: <20250307081406.35242-1-krzysztof.kozlowski@linaro.org>
-References: <20250307081406.35242-1-krzysztof.kozlowski@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A96520DD7E;
+	Fri,  7 Mar 2025 09:32:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.8
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741339922; cv=fail; b=SiwAagPUkw2lfNgjEOhzsM7gxpby2oA6RAaIemAPRZ7WMggoVC+nCl1cQ2aV5LFHjycajMz7LjOLHZ0CkIJmLeH+jQaNUnQ5RsYOGzVVPFPxpNAIaMnm1VCO5kQZIEZ9A/WZ6q3G2UTrWJ23yeaKf4WtM3392NybPUY19HI8jjM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741339922; c=relaxed/simple;
+	bh=LWDfWVIcAl8Q2HBS8LGe8GbPbwM3Z8KvBVKdsGXbT5I=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ln0gJ+bhyupEWcccihLeYF2R8BC1lbB4yWdcrhOqDmzV5V0rwZfAtF3r/CgKvLcroFYXobsnJatqFjxf8L6ahKss1zBmNXpNf5ARw47k6kF7c/Nbpiur6aCKEhf5tK8RqK3Rqu4/vNKaqdEgobu9EDX3Ql8C2IhqD1OQ8f8fFEA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com; spf=pass smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=QrpCLw+y; arc=fail smtp.client-ip=40.107.159.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mt.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EXDwH8yosIypuyQujOr5qa96Joyh/a5SpNv/mVpqu5Y3CYlA9x+weI4QqTbVUmB+iWY+k9/oWNJ35CIHVp+nqBK8cWxz9ySuijaEKSv1E0hBW5jFRyHAqdOdlAaAfeklQD08KEIxwRqO2Y6ddLvtSeOFDTnornczVUnz6Fd6Pb3Ou9SKCNpf8lwTtlNWQEyinktpFf+VBFzFeKmYbrTF+fIEzDMDKX/pxg/gXLdloo5AI+0Sa4EMISIz3PIFk0Ui2yNGOzFPlaloyndX56ana51ZRS1gXiPnmvYsJp28XyQp8aUAQi17O3CvIhMQkPnt9/kCwHgM3PDua5RdZ4vl9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v8Yxb3UfmpZp3dSZSi8/zV0DjgkB2hm0k0Vea3G4ND8=;
+ b=zFJGbhXODy1OjbJHpNYCyIUQXQGqDxKr0OOe9rv2Ox6I+uurdSq4vCrPhpTCJAJUc4uLm1uTJ+vmzbzYXkuo5bl0Z8wvyP0NpInPR01qvD8Ag0hbqtGMBWHyiXW4BNkFEPR2qcmjMvR7LTK8q88GyUXW+nK/rm1jzd3pkISs3ccuka2SG+qkNzfojmGnJ6C0QuuicoC4mdwOE3RD55phLznn97YJTXws1FMAKg82uJ+Me5hrvBTHPQPEaFDz6EgD2dEJTlNKF2CTQIjY+P4/Qi2CnYYkT3HFqkZRyCaxsf1wWRRAH0w+oVDLHJKdBcfNXULESfUMh1DE4q47G8f+9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
+ header.d=mt.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v8Yxb3UfmpZp3dSZSi8/zV0DjgkB2hm0k0Vea3G4ND8=;
+ b=QrpCLw+y2S/pGmdBD30IPDS1KglyJCc9HBxuRuPf2rCJuR+wRLvk4fJcE0dCDMw8gFfybX24uVNW90UtsRLqYpDhZH/jP5FAxF/y7S7GpFix4r2aEYOkTGZMxL8/vP0n2RCGFJNnCGt3mzlWyT7hQYz2rTLxzVtv4MzxLWlN5EalRB7JJRHf1YMbRy2aVrXfwbmjs0lbLQvI8fWjcmTWzB0sWqGtEKl3UO0Rc9JXOWHJAPPlWsCM+C3zNbkgeIe4OaIIWqqc1XVc3AUODQdGiYkkZPIiIvNYjprqDqinIbVJnSvlrVBSwCI2uBQRoQuS8Zaj6CaC3+9dp1LvpqF6Hg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mt.com;
+Received: from DBBPR03MB10396.eurprd03.prod.outlook.com (2603:10a6:10:53a::11)
+ by DU5PR03MB10443.eurprd03.prod.outlook.com (2603:10a6:10:529::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.17; Fri, 7 Mar
+ 2025 09:31:53 +0000
+Received: from DBBPR03MB10396.eurprd03.prod.outlook.com
+ ([fe80::ee3c:c9be:681:c0bf]) by DBBPR03MB10396.eurprd03.prod.outlook.com
+ ([fe80::ee3c:c9be:681:c0bf%7]) with mapi id 15.20.8511.017; Fri, 7 Mar 2025
+ 09:31:51 +0000
+From: Mathis Foerst <mathis.foerst@mt.com>
+To: linux-kernel@vger.kernel.org
+Cc: Mathis Foerst <mathis.foerst@mt.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	manuel.traut@mt.com,
+	mathis.foerst@zuehlke.com
+Subject: [PATCH v4 0/6] MT9M114 driver bugfix and improvements
+Date: Fri,  7 Mar 2025 10:31:34 +0100
+Message-Id: <20250307093140.370061-1-mathis.foerst@mt.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MI0P293CA0008.ITAP293.PROD.OUTLOOK.COM
+ (2603:10a6:290:44::13) To DBBPR03MB10396.eurprd03.prod.outlook.com
+ (2603:10a6:10:53a::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DBBPR03MB10396:EE_|DU5PR03MB10443:EE_
+X-MS-Office365-Filtering-Correlation-Id: 494db3fa-d60c-4909-dae6-08dd5d5ae3fc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|52116014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?66tbeNL6i6hyWiQwucKkDhuyVjCXHJy2xpvqq/eYT5jFgebOr8c67AHMq410?=
+ =?us-ascii?Q?ZxHFmzwT4umamf+1eCNcbUAaSSAhwpSnd1gYJO3ZOTuFcqwJhbyoKD+DcHdM?=
+ =?us-ascii?Q?RVhbEq8f0163fitlz5nhQiR8VMGGm/ZR52hoVYwCkOYq6tybHm2QdDIV70bz?=
+ =?us-ascii?Q?xTixp1DAzbb7VLBScvbo85aAvIjm+jv59EC38G+rXkT0P6K66mGYefg2X9FY?=
+ =?us-ascii?Q?qt55RbGIMEhz94TFxlQ1Qbs5Vz2JQkTQ5JFj0YwTURMU0ZmWrfInvmWNPimy?=
+ =?us-ascii?Q?9Vb1Mql5qdoh+wlgV877Mq1v5NcAWipDaTAmUnx/Qrz4C+9DrlDGnaf49vAY?=
+ =?us-ascii?Q?kT0Xe8rDFrmey7088p/7Yl71zXVkbaLh4XmBJRWYBOELEF9bvspQbRW+bhRb?=
+ =?us-ascii?Q?BuQuYSDLS7dQtfQRaGcheeVEjbY9WmgM46ls2QHzKFY5XM4s+YLLk36CCywN?=
+ =?us-ascii?Q?lZ8Dl+RtPW4hFWg99vojVwuYatzEQZfrZ+7FHWc32C/rrTxg93PVlvrVaVmU?=
+ =?us-ascii?Q?uD52cPCZRQLkV+dXM7nqGtR9ZX4bD+QMf4qlFjtRDc4ThCG3nwTdIWKJqX+p?=
+ =?us-ascii?Q?WFpAOtYgs42N/wGWtyFQt8W5xlXzkwXIa0ssA3299Nsdj7C0bX/8G9J+HhNa?=
+ =?us-ascii?Q?QfIdE6WPHlfzVL4V+SHmaTVDeFyXrh8i3NfFbVOet/VqmUafBvz5CMUQFYUV?=
+ =?us-ascii?Q?Px+myQjlsFVZmYo6nTZp3cTe/14vKM1oCs5Aunk6tANRMf71NjioYutOfXqw?=
+ =?us-ascii?Q?Z6JSrMz8IaAzxdB7DBa4qdD/H5anpMrYwfYvMiGYvAfQtoD5F3QBt6U6bGXf?=
+ =?us-ascii?Q?89DSUKI6/O62sVHllvH9GWJRLEJcigV2J6tRDWgwLOr5Qtd3Ynet42P/Xw+x?=
+ =?us-ascii?Q?lFCJqaM6PVQPoxhfFEiD+GP1s2BLNKfZxY5VOKGvci2grzOLOumRmSEqRwC0?=
+ =?us-ascii?Q?3g0Cct96JV0tH4CrvQQ2QmfZFh4hoK43a4urmo6+RYBKMgMWL3omCEuyymeZ?=
+ =?us-ascii?Q?owAbxDDvjYesTZ1Jkul97sv0rKEQxHOlf8LPk3X1MSUMYaCuixPhvq0qOwpE?=
+ =?us-ascii?Q?AuNYPM5JlWLQxitmp5MKZfyb6KQLeHQMoI+1ABXceaYcLjkc9qF8cvvN+fRy?=
+ =?us-ascii?Q?31T81J8Lih3nPXwG6lnjQz/mxKzlzu4xoUpNEFGhkpBEbLr3evqTaG+14CHn?=
+ =?us-ascii?Q?/8ObqqG32mcop6NFmV04IqVRdY05EYiPJpPxrBjWkxorYnNJQYw/j1nPOFr+?=
+ =?us-ascii?Q?wW1kbQmlLKD0J4flS8nGSeA4cSUnomto7R6scmb+Zg6xI+rMSshEPWkmvvuD?=
+ =?us-ascii?Q?5Y26pD2pphB0q+LVfel8/r49S8iHr11tEo6FzNSV+ytXUjTzO+9s045bzu4n?=
+ =?us-ascii?Q?Kke6q1oUTIoxYyI4z8qFHeWRNsi0lyZHyqlEO8NP5TcjYhpziveOsoADEkvo?=
+ =?us-ascii?Q?LwK7GIUZG6NwpOtVlnFZVhtvM7XM86+L?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR03MB10396.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?REFHjFGezyWzFFSsMbZnhubq3/5nzkqNB6Aa2AtLkpVvkBjyqYuIT9z9CX6k?=
+ =?us-ascii?Q?olJMrsYzclqQcGJDNpw3SiqvzZYAGOssc3pyJbSahq5JRyCis35aR//4x3uk?=
+ =?us-ascii?Q?lKpqqeVv4TaT2eVYD1xcaiTjezdus+GNYd5B2Syr/OBXBRd8qyMPhtmBI8C+?=
+ =?us-ascii?Q?yUmM/it5z4lHPgjFnVjIKH3OqLxCM1VnWAjt3wK2morV74vDHEwOZCJgDtim?=
+ =?us-ascii?Q?UlSU03u2uVyxVblPguAI7E6EQ1uQMc2SLyWbOtE2aLyvgedUKEtHoV4fM6bz?=
+ =?us-ascii?Q?3dSNw05rFuLXRF7kGk1EUOy4qC6KMKMhzQ0+LbU4UJukOryAeOyj7yv38oNB?=
+ =?us-ascii?Q?cktBUALroAv5boKv0JvbKJFH5oEGBWbFo+NGZIXfjwOBAByFxwm2Bd5b9lgJ?=
+ =?us-ascii?Q?wuMVEhV5x1po1EcakG18/YB4qcXp5VPP750aDvcfqVmy/VZoxkPPDtZOJKLp?=
+ =?us-ascii?Q?6zbf7rbTYuHaK4QAw9ew7C1QqREX/vY3MKWK9oyO0jwn+UaqhqTGayfxsJjl?=
+ =?us-ascii?Q?BBqPt2eUGnPwvTmfZ9YdMP2dsAPbtokLj/baNIHVLH6mBGBBF/nGyiKjWqaB?=
+ =?us-ascii?Q?ub3K/RYjBVzDK2/qP6u1wKt8ev9d3SczRr2Lj1ia5WdkDMGOcLPhe2X3qO10?=
+ =?us-ascii?Q?KFSc7diNbjLo+hkmvHGYL5ZQCjKJf5mfOQTo7eGv9yRZzhqtkex+m1Sv3ubZ?=
+ =?us-ascii?Q?zi763RXqyaVEAJ2Dcsd/GFP9SRggjn7TxYXmaM4ZmlcFiZ/idW7oROFdKV2J?=
+ =?us-ascii?Q?HsjX3lVZueWOV1hxgLQgX8O13anBrjCe8r51PkOywNjsUqtU3MeeQg5A5bya?=
+ =?us-ascii?Q?P/fWOKMNxNZUpSQ388W/9+ZTqcToILKkldFfobQOHy8V2/5/hc22Kt3XjiRL?=
+ =?us-ascii?Q?9955iruoLUBhevHAfGwfuW1UuAaoMfoYD+6r051rA5khP6HkQZSaqhUwQYgu?=
+ =?us-ascii?Q?/jfHaMWejW41RCKR8YwSOZ1EDb/ScMA8/NvJ0Csqbh5uf10pa9yClFdY5eUD?=
+ =?us-ascii?Q?0mERiw/mbQ94/vN6/Ve/zDe9x/owBEvo+YnIyca/H8ObmTgV0vezuwTQh+Sz?=
+ =?us-ascii?Q?7qh1KzwGDlxT0kN2X8JmkRBksT+B6tbqpwHtO19fNLq97TqKnLg1X2eaqOJe?=
+ =?us-ascii?Q?/eCTCixb1sUIQhxs27KLT76O+7ElkBqoXz+gnV4MeWIj0KQzFFT/N6jNq+rH?=
+ =?us-ascii?Q?f8yX8fJPd9RlgZnQsqZ3UEPYLDFcVVnu+TYuaxak6HE0Zqv4nTxwHcVIN21R?=
+ =?us-ascii?Q?wnTADTiffO71Wfn2ZK3iFLe7t7AxQC3JCsNEtLt7B+B1QNO5gseNF+n1i8Nl?=
+ =?us-ascii?Q?igv0M0UzTUi9ceG0v1As3M9ZHWW0ynTkJYteaJkARiqhPsU1dKz5/hQK+OHQ?=
+ =?us-ascii?Q?HtbEnhzdSsZz25+RrwUF5EI7pKE9TT8Kwslm451ANjSNR0akrnVACvXNW3tw?=
+ =?us-ascii?Q?7TzNr84ilkeOdDkFMRsCX7IkgVoMFwH/3xvZTNIrITg/hFIK8pdYlAb3GEXr?=
+ =?us-ascii?Q?UfVYwJHbXwilDluJS53FMkFFihAHsIBlvk+t0puaDoHZ2bGvUdJslro7uGPH?=
+ =?us-ascii?Q?Bjnq5+kSwPIiAdNeunN4ltiKYLWcHwuaUT0Atkx+?=
+X-OriginatorOrg: mt.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 494db3fa-d60c-4909-dae6-08dd5d5ae3fc
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR03MB10396.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2025 09:31:51.1993
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: S4YnfyjtingfPBtZUDRs0qypiUbxcCLl65HT5sump0fKV4vNHbFby+WGt7AfoGryZeXjKGQ0DZb4yo2q0lrN6Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU5PR03MB10443
 
-Am Freitag, 7. M=C3=A4rz 2025, 09:14:06 MEZ schrieb Krzysztof Kozlowski:
-> Device nodes are enabled by default, so no need for 'status =3D "okay"' in
-> the DTS example.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi,
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+this patch series contains the following bugfix and improvements
+for the MT9M114 camera driver:
 
-> ---
->  Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.ya=
-ml b/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml
-> index 757967212f55..ca71b400bcae 100644
-> --- a/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml
-> +++ b/Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml
-> @@ -53,7 +53,6 @@ examples:
->          interrupts =3D <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH 0>;
->          clocks =3D <&scmi_clk SCMI_HCLK_SECURE_NS>;
->          resets =3D <&scmi_reset SCMI_SRST_H_TRNG_NS>;
-> -        status =3D "okay";
->        };
->      };
-> =20
->=20
+Changelog:
+
+v3 -> v4:
+- Rename DT binding from "onnn,slew-rate" to "slew-rate" in PATCH 1 and 6 as
+  requested in the review comment.
+
+v2 -> v3:
+- Dropped PATCH 2 ("media: mt9m114: Add get_mbus_config").
+  Based on the comments, this issure won't be fixed in the MT9M114
+  driver but in "imx-media-csi.c" in a separate patch.
+- Renumbered patches accordingly.
+- Fix the incomplete renaming of the DT property from 'pad-slew-rate'
+  to 'onnn,slew-rate' in PATCH 1 and 6.
+- Fix checkpatch formatting suggestions in PATCH 2 and 6.
+
+v1 -> v2:
+- Fix the subjects of the patches
+- Dropped PATCH 1 ("Add bypass-pll DT-binding") as it can be automatically
+  detected if the PLL should be bypassed.
+- Renumbered patches accordingly
+- Switch to uint32, add default value and clarify documentation in PATCH 1
+- Add 'Fixes' and 'Cc' tags as suggested in PATCH 6
+
+Link to v1 discussion:
+https://lore.kernel.org/linux-media/20250226153929.274562-1-mathis.foerst@mt.com/
+Link to v2 discussion:
+https://lore.kernel.org/linux-media/20250304103647.34235-1-mathis.foerst@mt.com/
+Link to v3 discussion:
+https://lore.kernel.org/linux-media/20250305101453.708270-1-mathis.foerst@mt.com/
 
 
+Bugfixes:
+- Fix a deadlock when using the V4L2 pad-ops get/set_frame_interval
 
+New Features:
+- Bypass the internal PLL if EXTCLK matches the configured link_frequency
+- Make the slew-rate of the output pads configurable via DT
+- Allow to change the cropping configuration and the horizontal/vertical
+  flipping while the sensor is in streaming state
+
+Thanks,
+Mathis
+
+
+Mathis Foerst (6):
+  media: dt-bindings: mt9m114: Add slew-rate DT-binding
+  media: mt9m114: Bypass PLL if required
+  media: mt9m114: Factor out mt9m114_configure_pa
+  media: mt9m114: Allow set_selection while streaming
+  media: mt9m114: Fix deadlock in get_frame_interval/set_frame_interval
+  media: mt9m114: Set pad-slew-rate
+
+ .../bindings/media/i2c/onnn,mt9m114.yaml      |   9 +
+ drivers/media/i2c/mt9m114.c                   | 172 ++++++++++++------
+ 2 files changed, 130 insertions(+), 51 deletions(-)
+
+
+base-commit: ac9c34d1e45a4c25174ced4fc0cfc33ff3ed08c7
+-- 
+2.34.1
 
 
