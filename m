@@ -1,167 +1,467 @@
-Return-Path: <devicetree+bounces-155370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44A00A56779
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:06:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 518CDA567A2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:15:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D26018983A6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 12:06:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98A551890204
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 12:16:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED1B2217728;
-	Fri,  7 Mar 2025 12:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79DEE215760;
+	Fri,  7 Mar 2025 12:15:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KWBY/ML3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QAx0mt9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A8E192D7C;
-	Fri,  7 Mar 2025 12:05:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D94154423;
+	Fri,  7 Mar 2025 12:15:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741349159; cv=none; b=cARSpt1IiFqAe7H26CmkyL0pIV/WaqKFvMyG41EZTqsKTOo4ARhN5UBbC30KLXV2CrRifwQe+FUOCTjCEFAbAn5eXI4RO+5mGGneJ00JXJ17ouVxctEFhun//3b1GJxgHbh+5R9rq19uOOwu1UmZ8mrhVLLFPM5e4QDmfPk0si4=
+	t=1741349747; cv=none; b=QsZJrRwfTzs5C6mitJaELJi8haTEdQt9qebjJO1lF1UOda53PmcY+EqKwoPEmhGu75DOnGUgiBpyGnMjYHd2ECaB8UwGZ3RyfeOmpWbKZxAwW3pDdGoUpEOSXpsfJeEqIvXFPpZzblyKd/T4b8HQJJx/Kd/jwcwTHqh8ZnyKWjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741349159; c=relaxed/simple;
-	bh=o4JarWW/MUbOyvdB3aVz3LV8uhCJAFPqTqIujRLiLC0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O1YvTuYu5Y0xrBeBs5H2sLl5R+nVy4scASkRObaU1BOVv6X4TZyuLvQ6pNHUFfqm6a4JjeMaUrljZN6LEK1tkNe3kIKr2Xk70lRrfejdxDwOnB5Hq7HpAU4hmcucJkXo/q0eW8inKmvnPNANUj2JPedsYDKdmQrczxaehpsIOZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KWBY/ML3; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-223378e2b0dso25140085ad.0;
-        Fri, 07 Mar 2025 04:05:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741349158; x=1741953958; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FrmrTRS8Hu1HqQv6SIP179ZqkMWR94/wJgTSiRfF+20=;
-        b=KWBY/ML3bQ7fPg21g9eTzxC99gwQqWj1LcrJT37P+NZ5dLHI3QgMFu9eAZjay8g667
-         8RIGzXetIJXQAiWr9sNvf+ZpgF1ngY0wptPFtcSD5sst506F/gVLTJNdIAIb2U0ja8YZ
-         h+VjE7kigrBADkE0xvzg+5YieLTJCTASjFIplFCu28UHSCzHZMD3JOnoQJ0F8Up24do1
-         UWtf/7QonXiCxzSVDKFftnZBa9EswBaCC45YV8pZwvcf5yta2KEwDLD1WKH58f5tShE+
-         OJdQm8Qiov0YOwkP1HAoS68QwPwg8f7pQol5N5Ar9OsUcS8W9L+y0UTRX4RezIxmI7yL
-         h+4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741349158; x=1741953958;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FrmrTRS8Hu1HqQv6SIP179ZqkMWR94/wJgTSiRfF+20=;
-        b=nB6wG9ue00eQQ0oj6BwkpbOgHo8RGzxK5xKh18tq//zTjmJEc2B2wgSgFm2259e39l
-         kcXs35pCVpTJcKi6eZwVZXW7hv40lHms8RlmpO5yhtefy66h+GzSCIH3obbGyrXX4QNA
-         lH4bAM/FY3L+pQrJbdxRjKsqoRFUze3mO46wM9BJaNa0XNhM0tlGPWjsQBAzucwjH+AC
-         nrCvWXsltUu3Qiro3spUkiJK9VOHlKU/csVhD/U+TJ9wy05DZqmPCI+2L4pXL8I9JnGO
-         Dvn/MTvdzN9Jq+pwJSHomNRrb+OyLVVXRnq59VSnSRIiuUOhgQ4TtmSt5UX6D8ivPUMx
-         c/HA==
-X-Forwarded-Encrypted: i=1; AJvYcCUMoGeei4fHIq5FYjCockWTEzIPnlkort4ayS2ittgm4SuV9tdulgfxLkYec6aK1gd45n9vk/JAEUNR@vger.kernel.org, AJvYcCUOCgm6WsZFLxd7YvC67YxDtcBnk7UpktFGWGnCyrSZfozOAz6QvMX4PsABCSjAwn4qS0OMy26brgpKiYPU@vger.kernel.org, AJvYcCX2RjEk0hnuQYt8anG2kR/g1c+RqjLiTtM7k5RJ4PlQqkBaLiTo3Dc+CiH5leTiTqu1HQ9LLygt+YRMVg==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9YruFjzYYPxYNC/edOUXumI83wV/6dHflDf02VpkhVZZ8SHPu
-	82cMdb75zhUKnrJOaocMEZzn8VjF0TkLUoNR2N9pXNPMX5W7x1s2
-X-Gm-Gg: ASbGncuaWSToyrxHEaZ8Ikvay3kh3ZY4k0lUIu3x1h6JctDVXauTfcz9wvUaPEasIGE
-	Kl/Ichtt9aJhMgka3ck4hmHwAsDjXs9JtW93qoAuu/FZ0rfz0FZMeKW11zlWOeqXfICu+nBChrI
-	l+tC/uENb+0fy11z/itjObDy2kSnMbmLd91105BmotHzTAJr0H9CXwVXwvyAMkEhB9vC2r4LWlm
-	X6b/YdYnnnIqDh7xHHOVqo83/h8yLcAYAhmQESs/p3NbYpEJRcQXS3RO3JMsh10RJPGB5XrrN/d
-	hpzs/JAeYiBsVN4Mn2bME4cnSbxq/kdT5xWSeIe7v3OgU+VBUQh1Wg==
-X-Google-Smtp-Source: AGHT+IH7hW6CQv7KXxiwAEKf27FKpfxNgGTgX9XMOGE2DCZirz393uzNz0ltsUEj3zWjPg31mHD2yQ==
-X-Received: by 2002:a17:903:22cc:b0:224:76f:9e59 with SMTP id d9443c01a7336-22428886833mr53916435ad.10.1741349157554;
-        Fri, 07 Mar 2025 04:05:57 -0800 (PST)
-Received: from localhost ([2804:30c:1f21:4300:1cf6:c485:6555:b1c5])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-224109e944csm28368535ad.74.2025.03.07.04.05.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Mar 2025 04:05:56 -0800 (PST)
-Date: Fri, 7 Mar 2025 09:06:48 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com,
-	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
-	brgl@bgdev.pl, lgirdwood@gmail.com, broonie@kernel.org,
-	dlechner@baylibre.com, jonath4nns@gmail.com
-Subject: Re: [PATCH v4 02/17] iio: adc: ad7768-1: set MOSI idle state to
- prevent accidental reset
-Message-ID: <Z8rhWLz32fdySDyN@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1741268122.git.Jonathan.Santos@analog.com>
- <c2a2b0f3d54829079763a5511359a1fa80516cfb.1741268122.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1741349747; c=relaxed/simple;
+	bh=NUTcwqh7MCASvD4w+bVQSfE4QAqRs9qXkw2IdgX9WCo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=B8x9u1Camdco44KBLvzt0xYauHEhr7s2dM+EpijZ1m0pJfQZMczZAnGJjm56/S7QqRYJafqOSXrGfkKhuicjvZgLly95k9MKqMaxxwO3i4AgRwlszAKHWsXIXm0rSPbDOCAm9d1vfQQLQvVe6DD9BfTJO6ba0PefCZGvqPtwPzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QAx0mt9E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C29EEC4CEE7;
+	Fri,  7 Mar 2025 12:15:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741349745;
+	bh=NUTcwqh7MCASvD4w+bVQSfE4QAqRs9qXkw2IdgX9WCo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=QAx0mt9ExXV5hggC/+MxyKsU0jZkRktXz8OxehcXJcyZh1o9vlwub2+ig0vt8jec8
+	 6rX7tSL86uv0pL/9c0VGRLHTGQCZfVYmZiDh0X2BlXgelBaTEbZ3hSxrx1IcvwFnMK
+	 1nSe1gYdRrv9XNyYQbVSqGQoatlGFpMe5EZc8RhKKX+60N5XNcTJjw2Fr8yBcMDJZp
+	 EGOQ5whrZM/v+0HjQuttTXVzlYlmExawYdtRZdVnKK5ca86eWkFjSWp/+CLcvU+K09
+	 77IW07Nz8NRLKfrsgJpeEIIMvoemRxShTvz3HFKdb1/vsq72NfxIYqbVo6hH+KIuT2
+	 5tmnZYgwZ3XQg==
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e4f88ea298so3121356a12.2;
+        Fri, 07 Mar 2025 04:15:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU/87uVx9drFAQanRM/k/DrR/25mK1PUhiMcUGgS7ACt7EempumLUmeBiglKuH0tRvkBH7kp50NLvxr@vger.kernel.org, AJvYcCUyQ/ykTE/HULmjiofxCH2jss+mnlKXTVrVw003xhPWfsjCpPZD7KMOsQ2yAUibOgpg61lXuDGKYM0AHLbz@vger.kernel.org
+X-Gm-Message-State: AOJu0YyP3NgplXBwmPMCXUPbQJKjOAFHSeM1zyCxbZI5jL7Myd31l9Ij
+	SPk3vuaPdIc5UbiXvBdR2HDktgZP1VpuujpaoGRfsrkah3QeUuLvYo2OBl+TlP/hO0xWAcl6UTO
+	PSM2HlT/IMEqqpbcasNkE0SsXvw==
+X-Google-Smtp-Source: AGHT+IGVdHSFZn3+WiSlThdpTVs0r4OoYpx/U2Lbt6NNoKziKPQIgxGTCb1pgFt4bob2aUbhXriG1Al/+sIfqRUQvOM=
+X-Received: by 2002:a17:907:2d92:b0:ac1:fab4:a83 with SMTP id
+ a640c23a62f3a-ac252b5a837mr346883966b.25.1741349744102; Fri, 07 Mar 2025
+ 04:15:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c2a2b0f3d54829079763a5511359a1fa80516cfb.1741268122.git.Jonathan.Santos@analog.com>
+References: <20250218185452.600797-1-vaishnav.a@ti.com> <20250218185452.600797-6-vaishnav.a@ti.com>
+In-Reply-To: <20250218185452.600797-6-vaishnav.a@ti.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 7 Mar 2025 06:15:32 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLxHKdQujWdSkGe6_cUftdgNgJ2PyVZR41A_LJ241_D3g@mail.gmail.com>
+X-Gm-Features: AQ5f1JomHAua_qKY6p65rhjGZzmCsboNe30YpEDs67TH3wT0hxy-QRQycqLiaFA
+Message-ID: <CAL_JsqLxHKdQujWdSkGe6_cUftdgNgJ2PyVZR41A_LJ241_D3g@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: ti: k3-j722s-evm: Add overlay for TEVI OV5640
+To: Vaishnav Achath <vaishnav.a@ti.com>
+Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	jai.luthra@linux.dev, y-abhilashchandra@ti.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/06, Jonathan Santos wrote:
-> Datasheet recommends Setting the MOSI idle state to high in order to
-> prevent accidental reset of the device when SCLK is free running.
-> This happens when the controller clocks out a 1 followed by 63 zeros
-> while the CS is held low.
-> 
-> Check if SPI controller supports SPI_MOSI_IDLE_HIGH flag and set it.
-> 
-> Fixes: a5f8c7da3dbe ("iio: adc: Add AD7768-1 ADC basic support")
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+On Tue, Feb 18, 2025 at 12:55=E2=80=AFPM Vaishnav Achath <vaishnav.a@ti.com=
+> wrote:
+>
+> TechNexion TEVI OV5640 camera is a 5MP camera that can be used with
+> J722S EVM through the 22-pin CSI-RX connector. Add a reference overlay
+> for quad TEVI OV5640 modules on J722S EVM.
+>
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
 > ---
-
-LGTM
-
-Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-
-> v4 Changes:
-> * None.
-> 
-> v3 Changes:
-> * Patch moved closer to the start of the patch set.
-> 
-> v2 Changes:
-> * Only setup SPI_MOSI_IDLE_HIGH flag if the controller supports it, otherwise the driver
->   continues the same. I realized that using bits_per_word does not avoid the problem that
->   MOSI idle state is trying to solve. If the controller drives the MOSI low between bytes
->   during a transfer, nothing happens.
-
-When you say nothing happens if the controller drives MOSI low between data
-bytes you mean the data is still good in that case? Just trying to understand
-the device behavior.
-
-Thanks,
-Marcelo
-
-> ---
->  drivers/iio/adc/ad7768-1.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-> index c3cf04311c40..2e2d50ccb744 100644
-> --- a/drivers/iio/adc/ad7768-1.c
-> +++ b/drivers/iio/adc/ad7768-1.c
-> @@ -574,6 +574,21 @@ static int ad7768_probe(struct spi_device *spi)
->  		return -ENOMEM;
->  
->  	st = iio_priv(indio_dev);
-> +	/*
-> +	 * Datasheet recommends SDI line to be kept high when data is not being
-> +	 * clocked out of the controller and the spi clock is free running,
-> +	 * to prevent accidental reset.
-> +	 * Since many controllers do not support the SPI_MOSI_IDLE_HIGH flag
-> +	 * yet, only request the MOSI idle state to enable if the controller
-> +	 * supports it.
-> +	 */
-> +	if (spi->controller->mode_bits & SPI_MOSI_IDLE_HIGH) {
-> +		spi->mode |= SPI_MOSI_IDLE_HIGH;
-> +		ret = spi_setup(spi);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
+>  arch/arm64/boot/dts/ti/Makefile               |   4 +
+>  .../k3-j722s-evm-csi2-quad-tevi-ov5640.dtso   | 319 ++++++++++++++++++
+>  2 files changed, 323 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov=
+5640.dtso
+>
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Mak=
+efile
+> index 9ae0917e5763..0370392abda8 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -120,6 +120,7 @@ dtb-$(CONFIG_ARCH_K3) +=3D k3-j721s2-evm-pcie1-ep.dtb=
+o
+>  dtb-$(CONFIG_ARCH_K3) +=3D k3-am67a-beagley-ai.dtb
+>  dtb-$(CONFIG_ARCH_K3) +=3D k3-j722s-evm.dtb
+>  dtb-$(CONFIG_ARCH_K3) +=3D k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
+> +dtb-$(CONFIG_ARCH_K3) +=3D k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
+>
+>  # Boards with J784s4 SoC
+>  dtb-$(CONFIG_ARCH_K3) +=3D k3-am69-sk.dtb
+> @@ -212,6 +213,8 @@ k3-j721s2-evm-pcie1-ep-dtbs :=3D k3-j721s2-common-pro=
+c-board.dtb \
+>         k3-j721s2-evm-pcie1-ep.dtbo
+>  k3-j722s-evm-csi2-quad-rpi-cam-imx219-dtbs :=3D k3-j722s-evm.dtb \
+>         k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
+> +k3-j722s-evm-csi2-quad-tevi-ov5640-dtbs :=3D k3-j722s-evm.dtb \
+> +       k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
+>  k3-j784s4-evm-pcie0-pcie1-ep-dtbs :=3D k3-j784s4-evm.dtb \
+>         k3-j784s4-evm-pcie0-pcie1-ep.dtbo
+>  k3-j784s4-evm-quad-port-eth-exp1-dtbs :=3D k3-j784s4-evm.dtb \
+> @@ -247,6 +250,7 @@ dtb- +=3D k3-am625-beagleplay-csi2-ov5640.dtb \
+>         k3-j721e-sk-csi2-dual-imx219.dtb \
+>         k3-j721s2-evm-pcie1-ep.dtb \
+>         k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtb \
+> +       k3-j722s-evm-csi2-quad-tevi-ov5640.dtb \
+>         k3-j784s4-evm-pcie0-pcie1-ep.dtb \
+>         k3-j784s4-evm-quad-port-eth-exp1.dtb \
+>         k3-j784s4-evm-usxgmii-exp1-exp2.dtb
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dt=
+so b/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
+> new file mode 100644
+> index 000000000000..f33f50465a07
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
+> @@ -0,0 +1,319 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * 4 x TEVI OV5640 MIPI Camera module on RPI camera connector.
+> + *
+> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.co=
+m/
+> + */
 > +
->  	st->spi = spi;
->  
->  	st->vref = devm_regulator_get(&spi->dev, "vref");
-> -- 
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "k3-pinctrl.h"
+> +
+> +&{/} {
+> +       clk_ov5640_fixed: ov5640-xclk {
+
+clock-24000000 for the node name.
+
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <24000000>;
+> +       };
+> +};
+> +
+> +
+> +&main_pmx0 {
+> +       cam0_reset_pins_default: cam0-reset-pins-default {
+
+Doesn't match the schema. Please test your changes:
+
+pinctrl@f4000: 'cam0-reset-pins-default', 'cam1-reset-pins-default',
+'cam2-reset-pins-default', 'cam3-reset-pins-default' do not match any
+of the regexes: '-pins(-[0-9]+)?$|-pin$', 'pinctrl-[0-9]+'
+
+> +               pinctrl-single,pins =3D <
+> +                       J722S_IOPAD(0x03c, PIN_OUTPUT, 7)
+> +               >;
+> +       };
+> +
+> +       cam1_reset_pins_default: cam1-reset-pins-default {
+> +               pinctrl-single,pins =3D <
+> +                       J722S_IOPAD(0x044, PIN_OUTPUT, 7)
+> +               >;
+> +       };
+> +
+> +       cam2_reset_pins_default: cam2-reset-pins-default {
+> +               pinctrl-single,pins =3D <
+> +                       J722S_IOPAD(0x04c, PIN_OUTPUT, 7)
+> +               >;
+> +       };
+> +
+> +       cam3_reset_pins_default: cam3-reset-pins-default {
+> +               pinctrl-single,pins =3D <
+> +                       J722S_IOPAD(0x054, PIN_OUTPUT, 7)
+> +               >;
+> +       };
+> +};
+> +
+> +&exp1 {
+> +       p06-hog{
+> +               /* P06 - CSI01_MUX_SEL_2 */
+> +               gpio-hog;
+> +               gpios =3D <6 GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name =3D "CSI01_MUX_SEL_2";
+> +       };
+> +
+> +       p07-hog{
+> +               /* P01 - CSI23_MUX_SEL_2 */
+> +               gpio-hog;
+> +               gpios =3D <7 GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name =3D "CSI23_MUX_SEL_2";
+> +       };
+> +};
+> +
+> +&main_gpio0 {
+> +       p15-hog {
+> +               /* P15 - CSI2_CAMERA_GPIO1 */
+> +               gpio-hog;
+> +               gpios =3D <15 GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name =3D "CSI2_CAMERA_GPIO1";
+> +       };
+> +
+> +       p17-hog {
+> +               /* P17 - CSI2_CAMERA_GPIO2 */
+> +               gpio-hog;
+> +               gpios =3D <17 GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name =3D "CSI2_CAMERA_GPIO2";
+> +       };
+> +
+> +       p19-hog {
+> +               /* P19 - CSI2_CAMERA_GPIO3 */
+> +               gpio-hog;
+> +               gpios =3D <19 GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name =3D "CSI2_CAMERA_GPIO3";
+> +       };
+> +
+> +       p21-hog {
+> +               /* P21 - CSI2_CAMERA_GPIO4 */
+> +               gpio-hog;
+> +               gpios =3D <21 GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name =3D "CSI2_CAMERA_GPIO4";
+> +       };
+> +};
+> +
+> +&pca9543_0 {
+> +       #address-cells =3D <1>;
+> +       #size-cells =3D <0>;
+> +
+> +       i2c-alias-pool =3D /bits/ 16 <0x3c 0x3d>;
+> +
+> +       i2c@0 {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               reg =3D <0>;
+> +
+> +               ov5640_0: camera@3c {
+> +                       compatible =3D "ovti,ov5640";
+> +                       reg =3D <0x3c>;
+> +                       clocks =3D <&clk_ov5640_fixed>;
+> +                       clock-names =3D "xclk";
+> +
+> +                       pinctrl-names =3D "default";
+> +                       pinctrl-0 =3D <&cam0_reset_pins_default>;
+> +
+> +                       port {
+> +                               csi2_cam0: endpoint {
+> +                                       remote-endpoint =3D <&csi2rx0_in_=
+sensor>;
+> +                                       clock-lanes =3D <0>;
+> +                                       data-lanes =3D <1 2>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +
+> +       i2c@1 {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               reg =3D <1>;
+> +
+> +               ov5640_1: camera@3c {
+> +                       compatible =3D "ovti,ov5640";
+> +                       reg =3D <0x3c>;
+> +                       clocks =3D <&clk_ov5640_fixed>;
+> +                       clock-names =3D "xclk";
+> +
+> +                       pinctrl-names =3D "default";
+> +                       pinctrl-0 =3D <&cam1_reset_pins_default>;
+> +
+> +                       port {
+> +                               csi2_cam1: endpoint {
+> +                                       remote-endpoint =3D <&csi2rx1_in_=
+sensor>;
+> +                                       clock-lanes =3D <0>;
+> +                                       data-lanes =3D <1 2>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&pca9543_1 {
+> +       #address-cells =3D <1>;
+> +       #size-cells =3D <0>;
+> +
+> +       i2c-alias-pool =3D /bits/ 16 <0x3c 0x3d>;
+> +
+> +       i2c@0 {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               reg =3D <0>;
+> +
+> +               ov5640_2: camera@3c {
+> +                       compatible =3D "ovti,ov5640";
+> +                       reg =3D <0x3c>;
+> +                       clocks =3D <&clk_ov5640_fixed>;
+> +                       clock-names =3D "xclk";
+> +
+> +                       pinctrl-names =3D "default";
+> +                       pinctrl-0 =3D <&cam2_reset_pins_default>;
+> +
+> +                       port {
+> +                               csi2_cam2: endpoint {
+> +                                       remote-endpoint =3D <&csi2rx2_in_=
+sensor>;
+> +                                       clock-lanes =3D <0>;
+> +                                       data-lanes =3D <1 2>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +
+> +       i2c@1 {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               reg =3D <1>;
+> +
+> +               ov5640_3: camera@3c {
+> +                       compatible =3D "ovti,ov5640";
+> +                       reg =3D <0x3c>;
+> +                       clocks =3D <&clk_ov5640_fixed>;
+> +                       clock-names =3D "xclk";
+> +
+> +                       pinctrl-names =3D "default";
+> +                       pinctrl-0 =3D <&cam3_reset_pins_default>;
+> +
+> +                       port {
+> +                               csi2_cam3: endpoint {
+> +                                       remote-endpoint =3D <&csi2rx3_in_=
+sensor>;
+> +                                       clock-lanes =3D <0>;
+> +                                       data-lanes =3D <1 2>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&cdns_csi2rx0 {
+> +       ports {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +
+> +               csi0_port0: port@0 {
+> +                       reg =3D <0>;
+> +                       status =3D "okay";
+> +
+> +                       csi2rx0_in_sensor: endpoint {
+> +                               remote-endpoint =3D <&csi2_cam0>;
+> +                               bus-type =3D <4>; /* CSI2 DPHY */
+> +                               clock-lanes =3D <0>;
+> +                               data-lanes =3D <1 2>;
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&cdns_csi2rx1 {
+> +       ports {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +
+> +               csi1_port0: port@0 {
+> +                       reg =3D <0>;
+> +                       status =3D "okay";
+> +
+> +                       csi2rx1_in_sensor: endpoint {
+> +                               remote-endpoint =3D <&csi2_cam1>;
+> +                               bus-type =3D <4>; /* CSI2 DPHY */
+> +                               clock-lanes =3D <0>;
+> +                               data-lanes =3D <1 2>;
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&cdns_csi2rx2 {
+> +       ports {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +
+> +               csi2_port0: port@0 {
+> +                       reg =3D <0>;
+> +                       status =3D "okay";
+> +
+> +                       csi2rx2_in_sensor: endpoint {
+> +                               remote-endpoint =3D <&csi2_cam2>;
+> +                               bus-type =3D <4>; /* CSI2 DPHY */
+> +                               clock-lanes =3D <0>;
+> +                               data-lanes =3D <1 2>;
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&cdns_csi2rx3 {
+> +       ports {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +
+> +               csi3_port0: port@0 {
+> +                       reg =3D <0>;
+> +                       status =3D "okay";
+> +
+> +                       csi2rx3_in_sensor: endpoint {
+> +                               remote-endpoint =3D <&csi2_cam3>;
+> +                               bus-type =3D <4>; /* CSI2 DPHY */
+> +                               clock-lanes =3D <0>;
+> +                               data-lanes =3D <1 2>;
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&ti_csi2rx0 {
+> +       status =3D "okay";
+> +};
+> +
+> +&dphy0 {
+> +       status =3D "okay";
+> +};
+> +
+> +&ti_csi2rx1 {
+> +       status =3D "okay";
+> +};
+> +
+> +&dphy1 {
+> +       status =3D "okay";
+> +};
+> +
+> +
+> +&ti_csi2rx2 {
+> +       status =3D "okay";
+> +};
+> +
+> +&dphy2 {
+> +       status =3D "okay";
+> +};
+> +
+> +
+> +&ti_csi2rx3 {
+> +       status =3D "okay";
+> +};
+> +
+> +&dphy3 {
+> +       status =3D "okay";
+> +};
+> --
 > 2.34.1
-> 
+>
 
