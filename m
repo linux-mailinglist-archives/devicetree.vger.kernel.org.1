@@ -1,150 +1,170 @@
-Return-Path: <devicetree+bounces-155268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31DEDA56110
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:45:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9464FA56113
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:45:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B078176A90
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 06:45:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDCF7176B75
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 06:45:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7DF185920;
-	Fri,  7 Mar 2025 06:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038F119EED7;
+	Fri,  7 Mar 2025 06:45:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="t+gKDz57"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pPdKXMHl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23DE91A00F2
-	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 06:45:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E868715B54C
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 06:45:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741329918; cv=none; b=d3pmZzWJ6w/U0RXnJ89drFk98DxxTFdHR0uyvzC1alVuSWjOhByhFaYJ0kqwLhDpDPiiQciTJPlTp6VU+Ec0fH5L4gnIalXVe/oz9FV/fBRUvNwWEYV6FpqIL7VPpXLWnG5uYgpA8itR7ZWpL63DzdB48CnJsosSsrPQBs1G3x4=
+	t=1741329940; cv=none; b=FViux8ctgG/0kK+XLtpADT9cMqNCe9rSGk8NIIncKZZI9dPpvcuhP3yixar1VMHEP92tuHv71KPVJatrLz5qPTtvZ3VeqC3fR3nMEwVc2stIcLFQej474uDSFrBF+3XTx+geLV+f4xGvejz01yvKRkMeAOKgn3ptJ6m4TEJuYz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741329918; c=relaxed/simple;
-	bh=NHKBjrh1dCf5Ik9zbFcVqwD1Ifih8fZMuBnNW+lLYhI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oahuz0qbcKtlWFRri9PDFyKeOj3zfRew6d4cPvY0KI0tScOlmCdWcyF5yMb3Ch3C+lHD3SjTuEXNfFIV2xkArgAFQuo+qVfl4//x+sL4Bcvh11dXSX0wIL1ilODFOjriF9Iqlri0kwhbhv8ePdr5wi1r4soYp3c9k3XxFpOi+LQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=t+gKDz57; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1741329914;
- bh=xrrqReRVP8vJeyg5PfphNvWCkrOXLcDZ4zm3kNo2Lt8=;
- b=t+gKDz57JwTS6/fNAym0qyO/eqA55I49wOOkiFW0kokOVm/1NRn/y2BJZnMz+kCTE50mUEpBG
- ayLzFI/WgC4YoDpPbszadlJ6O5+b3x5Z4+3lmWk5gqJm5JlhTDdr1nivFmwNhWkpaeWRMwe7hmY
- S6B8XStWUfTLdt8OfnwkdC+S0VhbjNIsLVd6g9WRFp6pFebZ0AtsURKqi48uNlbcGpFBhhOLz05
- POgPNXgE0u6rmAdBjSTg65cNspPCPijD1LjBq7BsBX1yCG4qEl2rS3NCNkCGJAest6CmEI+Yc4X
- EzGFzoijwoAq2xk26cfM9mDi36EJVmw3ptruLHkncMdA==
-X-Forward-Email-ID: 67ca95f1d992817a57e34193
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <5a0a7ce1-1dfb-4d19-8a1e-0d89d177f5b8@kwiboo.se>
-Date: Fri, 7 Mar 2025 07:45:00 +0100
+	s=arc-20240116; t=1741329940; c=relaxed/simple;
+	bh=2IbWjjX0WxGiZ8sC4vYfyq7mDesPs3GJVhh1I5IA2tw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qC3yiYRR7QV1atEskCTsXQOs7/L8+YBD+XrnQSQPJQRhfHH5VXTY/0K0uSJypvMo6khecVu/ksoPwzqFQd6k7l5YJt2L+ke2rcmT1L1si/IKPLvg/DIgDMgY89c3BaImVueW6JHsFblvfkOka3DxmhdGHeB1wiBHai5MH+KEMrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pPdKXMHl; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-30bf8632052so1336711fa.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Mar 2025 22:45:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741329937; x=1741934737; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=DkifpUNIVfalfehyoZ5anyUq+7xOJAxWFQWwUGknXdA=;
+        b=pPdKXMHlySjylHroamrtvXuQwvwY9J+lAvfKDC3EFIKu3h8unGh1552CwiLMhlqAdB
+         KeB6WUq89tjsQThjl98nyH0OlYX26qrnKIW6xA7Zm0o6zw8VlnRGAA8dY16WjFVq/zw2
+         SqCZKTx80MbWDJdKYP8v5HlsXVlg7D/EwrTBngBAjlMB1O+SFz+j0FaHVE/oX9+pkKP0
+         htcEgdU8W2poWkMqBVJxOtkQZdjSIzrcJLkEtSHTMfYfAfFyZuArUmRhUac2DeDGlZd8
+         zYfPMn3nKlDVTx8Fm4gx0nP1/aS6cyUT5ap3QGA3ph37H+FRAR4iEzZuKFLiR1pJ56bJ
+         sW1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741329937; x=1741934737;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DkifpUNIVfalfehyoZ5anyUq+7xOJAxWFQWwUGknXdA=;
+        b=xUdfBqYs3Pe1lcO8OP0XmiPnDqYmiTlpi6NYsY0gIX5xR7QbhTSn+9yu90C+fQJ1M1
+         +xt6zRwxcdtOJBghLKXTzxQp0gktVM2OlHiaEV+uauN1SXW90hRwvW87lOrtTr7XBGKm
+         qP5oIbOFeQY22U8ojB+MENsOXPQChNTOZ1bT5dRRHw9CLt7kVOdgqrKZXeD5cq2AcoPf
+         R9ccM/u/HbiX0qKwRxcyV3+KStYCh0+jiDJcGKBUFo5gz1Tv9FiEd2YPuMnNqT24dVlg
+         Nk9dYyEKNPH4rUgizjOjzQsF7H8zBx3jUEBc5TZ5PyBX75ZRaQdz9PNEe8Tr7A+5ZGHw
+         Or5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWo7Sqt8AVZTkXmW8KOrle7aC/I+ntXrEA6Yr2QqBGb9nJ2a+JDIcPDvEMzUcZW7gB56z/soQCTPnIO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxw07WvDEfPZ3LyCC9pp+R0YD0tI7Djnm5MGN6EJ9nsOiYerlz5
+	yHUOm8LNDrxyz+P8t4ubaqopfPG4dBUdee9zM/Z3O4m/MkCOMv/XRga4Eui4JbILCGFEw3Ylaev
+	jNss=
+X-Gm-Gg: ASbGncuFFIEFSs8O2lg9bCQDKP78UGJvLfscMinyTDV9Z3qyxdyhsztUDSSyTtd3XJx
+	6wb8INkI7peoNWWFHp6pBRoitT235djNZ1i4QM5YoyjJHP+RuBCr8Trs7Et+xXypUVihw7FGAPK
+	g74BRGZYiDeNcBgGbduHOv2KebIw7PtznhukrzfGMrcwkEGfKGVM9W118A98E5TBsX8mYQVQUnt
+	jSuOncYmrh0Tr9C9LkTXTJmY2SeLQtTfhbzI0hBhw8efhIzWG12k30OAQ/Dck6lC8oJNs9TdmN0
+	z2hDf3V/ph8j+JIiIyJtoE0naPqCnnC9fRV55Dy1vW9MTHtcVb3/8ekepD55NdROyCSVXt84SFd
+	VqS3Agl5KIjo4NrhqquUDZvue
+X-Google-Smtp-Source: AGHT+IEVwXNQL271t+0M8gZNNjaFYj/wP3rsGJm5Z+AyP5M40rV9YMISVPS8byjNiGXn0/FUIobKLQ==
+X-Received: by 2002:a05:6512:3b9b:b0:549:38eb:d690 with SMTP id 2adb3069b0e04-549910b5e9fmr731477e87.36.1741329936903;
+        Thu, 06 Mar 2025 22:45:36 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498b1bcd96sm394407e87.207.2025.03.06.22.45.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Mar 2025 22:45:35 -0800 (PST)
+Date: Fri, 7 Mar 2025 08:45:34 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Georg Gottleuber <ggo@tuxedocomputers.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	wse@tuxedocomputers.com, cs@tuxedocomputers.com
+Subject: Re: [PATCH] arm64: dts: qcom: Add device tree for TUXEDO Elite 14
+ Gen1
+Message-ID: <5hvghahezqms6x4pi3acgaujyhiql6mzl2xhzph5phhki2yiyq@oi3xjatj7r64>
+References: <57589859-fec1-4875-9127-d1f99e40a827@tuxedocomputers.com>
+ <5e72992c-170c-48b9-8df4-2caf31c4ae44@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/8] arm64: dts: rockchip: Enable SD-card interface on
- Radxa E20C
-To: Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, cristian.ciocaltea@collabora.com,
- detlev.casanova@collabora.com, devicetree@vger.kernel.org, heiko@sntech.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20250305194638.47187-1-ziyao@disroot.org>
- <20250307033508.656479-1-amadeus@jmu.edu.cn> <Z8qJqpUwi7VV8tJk@pie>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <Z8qJqpUwi7VV8tJk@pie>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5e72992c-170c-48b9-8df4-2caf31c4ae44@oss.qualcomm.com>
 
-Hi Chukun,
-
-On 2025-03-07 06:52, Yao Zi wrote:
-> On Fri, Mar 07, 2025 at 11:35:08AM +0800, Chukun Pan wrote:
->> Hi,
->>
->>> +&sdmmc {
->>> +	bus-width = <4>;
->>> +	cap-mmc-highspeed;
->>> +	cap-sd-highspeed;
->>> +	disable-wp;
->>> +	no-sdio;
->>
->> With 'no-sdio' property:
->> [  129.608986] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
->> [  130.711168] mmc1: Card stuck being busy! __mmc_poll_for_busy
->> [  130.725536] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
->> [  131.751240] mmc1: Card stuck being busy! __mmc_poll_for_busy
->> [  131.765608] mmc_host mmc1: Bus speed (slot 0) = 200000Hz (slot req 200000Hz, actual 200000HZ div = 0)
->> [  132.825083] mmc1: Card stuck being busy! __mmc_poll_for_busy
->> [  132.839413] mmc_host mmc1: Bus speed (slot 0) = 187500Hz (slot req 187500Hz, actual 187500HZ div = 0)
->> [  133.960141] mmc1: Card stuck being busy! __mmc_poll_for_busy
->>
->> Without 'no-sdio' property:
->> [  105.224019] mmc1: error -22 whilst initialising SDIO card
->> [  106.290838] mmc1: Card stuck being busy! __mmc_poll_for_busy
->> [  106.801931] dwmmc_rockchip ffc30000.mmc: Busy; trying anyway
->> [  107.385835] mmc_host mmc1: Timeou sending command (cmd 0x202000 arg 0x0 status 0x80202000)
->> [  107.400425] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
->> [  107.431561] mmc_host mmc1: Bus speed (slot 0) = 49800000Hz (slot req 50000000Hz, actual 49800000HZ div = 0)
->> [  107.433107] mmc1: new high speed SDIO card at address 0001
+On Thu, Mar 06, 2025 at 01:50:56PM +0100, Konrad Dybcio wrote:
+> On 6.03.2025 1:25 PM, Georg Gottleuber wrote:
+> > Initial support for TUXEDO Elite 14 Gen1 based on Qualcomm Snapdragon X
+> > Elite SoC (X1E78100).
+> > 
+> > Working:
+> > * Touchpad
+> > * Keyboard
+> > * eDP (no brightness control yet)
 > 
-> So it seems the sdmmc controller actually works with SDIO commands as
-> well? I don't expect that since the datasheet says RK3528 has only two
-> SDIO 3.0 controllers.
+> in case your panel as a PWM backlight, you will need to set the PWM
+> output pin function explicitly, see x1e80100-microsoft-romulus.dtsi
 > 
-> We could remove the "no-sdio" property if SDIO actually works. Will
-> apply it in the next version if there's no objection against this.
-
-On the E20C the sdmmc controller is routed to a microSD card slot mainly
-intended for use with microSD-cards and should normally not need SDIO.
-
-What card/adapter do you have inserted in the microSD card slot that
-requires use of SDIO instead of just SD or MMC? What is the use case you
-have that requires removal of no-sdio on E20C?
-
-Regards,
-Jonas
-
+> > * NVMe
+> > * USB Type-C port
+> > * WiFi (WiFi 7 untested)
+> > * GPU (software rendering)
+> > 
+> > Not working:
+> > * GPU (WIP: firmware loading but output is jerky)
 > 
-> Further tests about the capabilities of the controller are welcome.
+> Please tell us more
 > 
->> # cat /sys/kernel/debug/mmc1/ios
->> clock:          50000000 Hz
->> vdd:            21 (3.3 ~ 3.4 V)
->> bus mode:       2 (push-pull)
->> chip select:    0 (don't care)
->> power mode:     2 (on)
->> bus width:      2 (4 bits)
->> timing spec:    2 (sd high-speed)
->> signal voltage: 0 (3.30 V)
->> driver type:    0 (driver type B)
->>
->> Thanks,
->> Chukun
->>
->> -- 
->> 2.25.1
->>
+> > * USB Type-A (WIP)
+> > * Suspend with substantial energy saving
+> > * Audio, Speakers, Microphones
+> > * Camera
+> > * Fingerprint Reader
 > 
-> Best regards,
-> Yao Zi
+> If it's connected to the multiport controller, you should be able to
+> just enable it, like on the T14s, similarly to the Type-A port
+> 
+> [...]
+> 
+> > Signed-off-by: Georg Gottleuber <ggo@tuxedocomputers.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >  .../qcom/x1e80100-tuxedo-elite-14-gen1.dts    | 798 ++++++++++++++++++
+> >  2 files changed, 799 insertions(+)
+> >  create mode 100644
+> > arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 140b0b2abfb5..f0a9d677d957 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -298,3 +298,4 @@ dtb-$(CONFIG_ARCH_QCOM)     += x1e80100-lenovo-yoga-slim7x.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)        += x1e80100-microsoft-romulus13.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)        += x1e80100-microsoft-romulus15.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)        += x1e80100-qcp.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)        += x1e80100-tuxedo-elite-14-gen1.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
+> > new file mode 100644
+> > index 000000000000..86bdec4a2dd8
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
+> 
+> > +&gpu {
+> > +       status = "okay";
+> > +
+> > +       zap-shader {
+> > +               firmware-name = "qcom/a740_zap.mbn";
+> 
+> Are the laptop's OEM key/security fuses not blown?
 
+Can this laptop use "qcom/x1e80100/gen70500_zap.mbn" which is already a
+part of linux-firmware?
+
+-- 
+With best wishes
+Dmitry
 
