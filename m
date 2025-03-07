@@ -1,108 +1,88 @@
-Return-Path: <devicetree+bounces-155496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A1EBA56EB2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:08:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23D97A56EBA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 18:09:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B3E67A6161
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:07:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0DA93B7421
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 17:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4743923F420;
-	Fri,  7 Mar 2025 17:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2624B23F40D;
+	Fri,  7 Mar 2025 17:08:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h0K1jrRm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sz4TdbAY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A48E219A8D;
-	Fri,  7 Mar 2025 17:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B49219A8D;
+	Fri,  7 Mar 2025 17:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741367287; cv=none; b=nBvIm7snk27RJdN7oyKMCVYY9gdjfjuajUHWC1RBjukD2snSw9Cek0K56lKepNGKdiw1CbLOrnfsMAB4BaGOozLD2BwhQ5MtzOwMsuJeuOZP6IIWOiNbHh5polsOPAmS1N0av13N7jvoYrKHt3KYVAR+G6rDyMp8DUkgpc3hM2I=
+	t=1741367313; cv=none; b=o4OtyEkGFcftYPZ4Inu1BiuOj1Tt4llFA50DPiiZ7eIdrTBH2R05gExFMzZBUOOArOZ3q7SAT5DAtOEizUgaHQ9AgRFk4bhfDhORlfkqv7rMbixtk4Z10m+BmzdXfX7KtDVmV3uKfHy0NGur8hIH5TZSogdMXxqZ+jXxqq/oqQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741367287; c=relaxed/simple;
-	bh=EAinxqSqYdnbbnkb1uHxYXPyfcX7MUeugdwP+4COtn4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Av9uKkoILi5ROIyWb9m90AgUBhdhrYQ5gL0eq2/dr1TFh67DY+Uc4xc+lqoWdaEP6JHYAO+vLdmoChO+sLPuvW1UaZ5jxg/9BOWJ8SRk6IW7mGDBYsOj659yBaE7p5iexOXjhrfnnCCFpsd+GL+iD+s03QHx8H1vUnoOZ+gIlbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h0K1jrRm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C231C4CEE2;
-	Fri,  7 Mar 2025 17:07:59 +0000 (UTC)
+	s=arc-20240116; t=1741367313; c=relaxed/simple;
+	bh=rDDTdWoW3F3zLKcm1y89ZgAulGu1KIWL3Ub3VEnBd1o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hStTOTNgNYm0hU7+rLmaB5lw2Zop9KMc7l7TUj1BxFNCWQLV3/tgPFV+9pK38vZjhlWSKw09cppNQ8D1apNWugKvrS0tgHR9SzkcW5Wz2EmsJ5nuswyfZgxcXCcLYhdEO3J/rG33r5g4gyGl4ELkVjWYKP1K8otkJg/jofJQIN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sz4TdbAY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ACEDC4CED1;
+	Fri,  7 Mar 2025 17:08:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741367286;
-	bh=EAinxqSqYdnbbnkb1uHxYXPyfcX7MUeugdwP+4COtn4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h0K1jrRmxiAUJWS03xTcfLzFu2VVktzzAj9NYVtmVTFXOAx5R78Q5ipUEkNKGAOJ3
-	 Mi5z8WBddzSpRXrQMw9JXzLPBt3Rrq7gXS0zkcn4iHMD5Q/pvKxdPb+1dc5yAdXVZS
-	 ZoxZcgg4EABtlcq+N6NhcQYsIZshHZ8I7hlEJ7UgkUSYonGY1libiBHLJ7ItMZErpd
-	 1gDQfsl9uZeNC/qPIFlot9LCDH37RKNYhTzG2vMCWVXuDni4CvWK0zuhaEawyZ+lqN
-	 cFHmgWTJGYlXeT6G4F+hqtSwKsCOB9+Kt2XzWrGcXGrnKA2QEPw49M9to2iOn0mgnm
-	 y70NMXdpwmeJw==
-Date: Fri, 7 Mar 2025 18:07:47 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Jonas Karlman <jonas@kwiboo.se>, Yao Zi <ziyao@disroot.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: rockchip: Add rockchip,rk3528-pwm
-Message-ID: <pnlkcc2rl7fegltovgtvp4xdxhonw72rclvhn7qmvb7xyuullm@xf5x6lcigji3>
-References: <20250307120004.959980-1-amadeus@jmu.edu.cn>
- <20250307120004.959980-2-amadeus@jmu.edu.cn>
+	s=k20201202; t=1741367312;
+	bh=rDDTdWoW3F3zLKcm1y89ZgAulGu1KIWL3Ub3VEnBd1o=;
+	h=From:Subject:Date:To:Cc:From;
+	b=sz4TdbAYn8qfnLpUX2pMwFYNhjck5ipk/K0NTtOi4DHV78+SLm3CWDoNwth6erWWz
+	 Jd9yPAs/mynFZzCGf2yHr+y6NlBrX7WyH9W5pKSW0K4px0/+TUTk19+s9XuAEVoJsN
+	 /RPRo7/Vf93OgCwzCSaYuoud8SRT/s8F6Lzkl/XaAUFF6HQh7CpD7SYFizvEd0aDVC
+	 eU1N/8xaYKL/+oPxRZxcgBiTEjBXfKE05sYAWaOmwfwRwmvgUJQJRt3G9fnQVPOeab
+	 sv7Sfl7fAgmR66QIIaZDcqFU9AZCW2jgJf16fSSiiDQ5rUIu0Q3TBGPdjO5CwjVt61
+	 vmb9izOLHOavQ==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH 0/2] Add gpio-ranges property for EN7581 gpio controller
+Date: Fri, 07 Mar 2025 18:08:18 +0100
+Message-Id: <20250307-en7581-gpio-range-v1-0-de1262105428@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4uzxop7jt47pbx4n"
-Content-Disposition: inline
-In-Reply-To: <20250307120004.959980-2-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAIoy2cC/x2MSwqAIBQArxJvneAHsbpKtCh72tuoKEQg3j1xO
+ TAzFQpmwgLbVCHjS4Vi6CDmCexzBo+M7s4gudRcccMwGL0I5hNFlofgLF6KW4PSrtC7lNHRN57
+ 70doPPuGuwGMAAAA=
+X-Change-ID: 20250307-en7581-gpio-range-fceb30c7e2c9
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Lorenzo Bianconi <lorenzo@kernel.org>
+X-Mailer: b4 0.14.2
 
+Introduce missing gpio-ranges property for Airoha EN7581 evaluation
+board
 
---4uzxop7jt47pbx4n
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: rockchip: Add rockchip,rk3528-pwm
-MIME-Version: 1.0
+---
+Lorenzo Bianconi (2):
+      dt-bindings: pinctrl: airoha: Add missing gpio-ranges property
+      arm64: dts: airoha: en7581: Add gpio-ranges property for gpio controller
 
-Hello,
+ Documentation/devicetree/bindings/pinctrl/airoha,en7581-pinctrl.yaml | 3 +++
+ arch/arm64/boot/dts/airoha/en7581-evb.dts                            | 4 ++++
+ 2 files changed, 7 insertions(+)
+---
+base-commit: a8a297e8bb3dd304cac77f7c435a4983d885a657
+change-id: 20250307-en7581-gpio-range-fceb30c7e2c9
 
-On Fri, Mar 07, 2025 at 08:00:03PM +0800, Chukun Pan wrote:
-> Document pwm compatible for rk3528 which is fallback compatible
-> of rk3328-pwm group.
->=20
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
 
-to prevent binding warnings it's probably sensible to let both patches
-go in via the same tree at the same time. Feel free to take the binding
-patch via rockchip/arm-soc.
-
-Acked-by: Uwe Kleine-K=F6nig <ukleinek@kernel.org>
-
-Thanks
-Uwe
-
---4uzxop7jt47pbx4n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfLJ9kACgkQj4D7WH0S
-/k5higf+OtJXTgkdDcHKWNOd31O7K9VCUQJDc9jVPE6elaMvtBo5dwg6YPmSENkq
-ytj0JsR4nNH7OBlOWgTMI9uiAzueeTr7kqAngX/xQknxRsHHljJJYmlWlDz5RJj1
-T5uEfryN3ghnCz4YZhcSCA8VAk1AYpyipEdsVsGAAZ5GaNTUwOQ6RYuzPZTh377G
-WMROK/e9xoWg5g+WZAdCV9TMstu6EDVzzWke7HfR3D3ToxiTGuB2tsM+LQHw90xg
-R/wVXYjbb7sgvIdyV3d/cF6/0m/o+yXnBEubhcNEUSUXsFkVRS2X5b2vJxIuvj3P
-LwEhsNNCCJ0w4nC/Xs/LVJfHstbt+g==
-=W8Nn
------END PGP SIGNATURE-----
-
---4uzxop7jt47pbx4n--
 
