@@ -1,88 +1,116 @@
-Return-Path: <devicetree+bounces-155270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5769DA56129
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:50:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E91A56147
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:58:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5BEA188FEBE
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 06:50:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 606B41711D4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 06:58:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2FC19DFA7;
-	Fri,  7 Mar 2025 06:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B110F1A238C;
+	Fri,  7 Mar 2025 06:58:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SqapLK0v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E381632D9;
-	Fri,  7 Mar 2025 06:50:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F397346F;
+	Fri,  7 Mar 2025 06:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741330226; cv=none; b=ZQ0COv6SSJAQAoermX+SovrNSbJ+fR7aPwcg/t6y+y2GKNUhi8xNCasx9MvwijL6RKToxrTN1D8bdPDb6NaV8MtPu+b7EI3ePypejh+7qgA6TW6nRniOOBcZpw9BIPFpP6G9UVYuF+BriSBb2luW9xR4o2QVoEMTzl5d7wDHYFM=
+	t=1741330696; cv=none; b=UUHAlW6zWk0PdZBEuOCGJFkZMZ8Qa7QkkmOaSPWsiOkpL+mGY5q39jLWCU8QQ7BkrFYjEtfb63HTedEarxH4s1WBAchywmzLMKwlvB8KgWZoK3FcdgspSi+8yGnxW0Wiql+xcBrsUnLCTKfn20QIm+POmn2jT77HjA5DKl3WHvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741330226; c=relaxed/simple;
-	bh=654CtTZeddqqETFu/ZnAfcGbXdZy/aUh1qunbf6aBT8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=OIMIZqeTTO7Vn4Hm8RXKoHkh8BLcGzpl/bikdACqF3tj43wJjaIzPbPhOSJ5KmIl9KVxVsNBDN630MKNYFNVlt7CzD6SaXD10w5UoDrj9w0+S3HfXKkXOac/9joBGTnZsK/mbrYjoTtzP5RanN6pJH2SuDr6hw3hEeWcwkLtXR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:3300:bb12:a0a3:40d:e82f])
-	by smtp.qiye.163.com (Hmail) with ESMTP id d4e0a9b3;
-	Fri, 7 Mar 2025 14:50:17 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	robh@kernel.org,
-	ziyao@disroot.org
-Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: enable SCMI clk for RK3528 SoC
-Date: Fri,  7 Mar 2025 14:50:15 +0800
-Message-Id: <20250307065015.697377-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <281b8025-8288-4274-b863-f091c05cbabe@kwiboo.se>
-References: <281b8025-8288-4274-b863-f091c05cbabe@kwiboo.se>
+	s=arc-20240116; t=1741330696; c=relaxed/simple;
+	bh=PiXd/45wF5pZwmRSHv2Zl90XxcOIcIo1yRbez2da2NY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e1nfOAClztz+Hzqqku7l5IvlRc6M8DNqS0csmk5XyOKKeEDvyv2XxLNolZP34qYsYZ4CPA5Iy/FU8a+S/dZLq9yhVufOweNVSKgnxJJTNg/1KHm4kI+SLsabxL4+yIXvNVqbBFaUyPvB0ehU6xshKgI/56hqc9KmYJ3GaqWjndc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SqapLK0v; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-390e88caa4dso806980f8f.1;
+        Thu, 06 Mar 2025 22:58:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741330693; x=1741935493; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=disXzokau1gUQ+hfEjMpewIrRbZ8/qNkRCbJd7tHiss=;
+        b=SqapLK0vnPzhTtZd/GlFA9XvMKIk3QYt+XrBsHDWLANPVbl0LEDg7vGhAxInmrlcdj
+         01AP8gV5lyuW4DZe1e0PQwiO7n4Aq6aGjz+RkbuXqdD0uO/IhU/zL/na37lPo35Rib9J
+         Dlo87EK16+9jkE48EC5fKqIQuAU5vfMnw28XlVNkZpis/qLBOHyzKTpBonE+HhTlJ7q1
+         z3AiMfHZ0OKeXbmYZjvMGhx5t8v9ph4HKUJ1fMcY2dT19zQAGdDl7Oe0s+FX2X6k1+f0
+         KU0527SEfGydn07oljHBu48/eIri9/y8HD5KR4OnGq7pBTFZKj0Hdagq5dPRvTwq7jsE
+         AX7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741330693; x=1741935493;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=disXzokau1gUQ+hfEjMpewIrRbZ8/qNkRCbJd7tHiss=;
+        b=dIp03v5b1WRNxVXgmUI64VxEBQBAO7NJU9TfRoLjE+R+eIbc1zpmvqAvtOBtDcQWWX
+         ODSpyyhh46XPeK3OcriO1kh66kDj7zP5hPADRQUAaMBKAsdIUogf64N+32eJH02M0qsq
+         z5CK6axV2aEs4ARemlWrXMxDrNZGX5tmGmKUCOpn2en4JaCEinKFv3+jxo1YK1Lrh2o0
+         YizoCqPSR6AwNr3X/RMDdtoS0fQTKbWMECQJpNbu8alLZPBzUjcgX9GfWVEKGV3P1jWG
+         0IQtGMj+0u6pntsiNHb8iHTsJOYqQ29zbpmL1VTab4K2MMtJQZrXLxjZCBKye7nUT7nT
+         Kb5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUDI5LxYSCuqdH2sMxnodIHnY4w9RLsBtQrZ6UUeeUt3aN9v4MoZ+LuI8TJTBKvz34KzgrBT1bqR3k3tBw=@vger.kernel.org, AJvYcCVJxns86zlC2LDv9sC1o3enuUIo4lC8xFJh1cuYjdtq/MJXRfOiYJN+vpLT9Ka7qI/AV1G0tDAYhw9J@vger.kernel.org, AJvYcCWj5iZNTCERBG2Lt3eiKn6C8y0bvM9rJ+u1FMwQeW8MUI4znht7SatS9swHtBpKI1ij0hnM7LUV0NbgRc8e@vger.kernel.org, AJvYcCXY0I+A2WY4urPJNU/Qr7xojT0KnWlEzlbFFpZ9my1SxK9lXdQ1emiRnFQau/A67zsz6iU4a3dz2byG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEiMVB1rrnP/x+E2j2FwNopvD0FbDyOImQTkKqQhm9g1OEJFra
+	RIbpOR9nOrXOyHWRSH3zHbIyxvUWB+S6+1ddt2Ho52M28f0QsgUVHuecoRXIA6pTLQHS6jFxD+L
+	WhQFLLvx2pi/PQf7BdgcrOczkYuw=
+X-Gm-Gg: ASbGnctsolgQyo4WWP2irOy5sG2lL0OwzEkyrcv2jClG6sVyEJ4V3Sv4q9aX3L9mn9v
+	qjHOgpQQAm1OC90NL32Z9JNUeuGXJrxqZHqnf2QaKE8/mnbNTgNzNp+i9LmltU520Acr8Qg27w2
+	Yb+ROBa2HXSYdROKGUeD5lgfChZSo=
+X-Google-Smtp-Source: AGHT+IG1Kf4GDRiX3+bXqKFTJ7wPU+tbu1U0QznMuTGnfavR7i0imOCxuT5vQOwR5UpE6/+tyRPUNF9Ucmq4PfQqNtA=
+X-Received: by 2002:a05:6000:2ac:b0:391:2f2f:818 with SMTP id
+ ffacd0b85a97d-39132d78446mr981403f8f.9.1741330693076; Thu, 06 Mar 2025
+ 22:58:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDHh1OVhpMTk9CSklCHk1PS1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQUhIS0tBGRlKSUEaSxpIQU9LH0EeQ0kdWVdZFhoPEh
-	UdFFlBWU9LSFVKS0lIQktDVUpLS1VKQlkG
-X-HM-Tid: 0a956f5e7a9803a2kunmd4e0a9b3
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MyI6Vhw4NDJWNjdCVh4tT0IO
-	GDxPCRFVSlVKTE9KSEhLSUpDTkhNVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0tBSEhLS0EZGUpJQRpLGkhBT0sfQR5DSR1ZV1kIAVlBT01PNwY+
+References: <20250225143501.68966-1-clamor95@gmail.com> <20250225143501.68966-8-clamor95@gmail.com>
+ <04be5106-0d93-449c-b8a9-d8b3dc15ef24@gmail.com> <CAPVz0n1ZTDZnZHu6R_YVfhDqkjcMV0xH1UHVih=bgv9DGoZ2nw@mail.gmail.com>
+ <a2170519-ec9d-4453-a2ee-0cd46d94d52b@gmail.com>
+In-Reply-To: <a2170519-ec9d-4453-a2ee-0cd46d94d52b@gmail.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Fri, 7 Mar 2025 08:58:01 +0200
+X-Gm-Features: AQ5f1Jp8kv9xn3VaS_UorhKcaXLUiDZXcb4wlrrq9us8IIWVA8fVhdhXxb2AG9E
+Message-ID: <CAPVz0n36onhJ2fRP+RotE5LTufphuuNtL91Rywqvv1jqta=s-g@mail.gmail.com>
+Subject: Re: [PATCH v1 7/9] memory: tegra: Add Tegra114 EMC driver
+To: Dmitry Osipenko <digetx@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	Georgi Djakov <djakov@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+=D1=87=D1=82, 6 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 22:06 Dmitr=
+y Osipenko <digetx@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> 06.03.2025 22:48, Svyatoslav Ryhel =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > =D1=87=D1=82, 6 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 21:42 D=
+mitry Osipenko <digetx@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> >>
+> >> 25.02.2025 17:34, Svyatoslav Ryhel =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> >>> +     /* Read register to wait until programming has settled */
+> >>> +     readl(emc->regs + EMC_INTSTATUS);
+> >>
+> >> Tegra4 TRM says this must be MC register and not EMC
+> >>
+> >
+> > Are you sure? Tegra4 has no MC_INTSTATUS but it has EMC_INTSTATUS
+>
+> Can be any MC register, downstream driver reads MC_EMEM_ADR_CFG.
 
-> This is new compared to v1, please add operating-points instead.
-> cpu_pvtpll is already initialized to 1.2 GHz by firmware, see e.g. [1].
-> 
-> [1] https://lore.kernel.org/u-boot/20250123224844.3104592-5-jonas@kwiboo.se/
-
-Thanks for this information, I will remove assigned-clocks.
-However, due to unknown reasons, the cpu opp-table does not
-match the actual frequency at all.
-e.g. set 2016MHz, actual 1610MHz
-
-Thanks,
-Chukun
-
--- 
-2.25.1
-
+I can confirm this, thank you for pointing out.
 
