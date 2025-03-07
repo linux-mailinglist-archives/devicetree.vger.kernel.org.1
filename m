@@ -1,123 +1,271 @@
-Return-Path: <devicetree+bounces-155362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41607A56599
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 11:39:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 047C7A565BD
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 11:52:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7400A173711
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:39:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E72BB3B16C5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 10:52:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9CC2101B5;
-	Fri,  7 Mar 2025 10:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A9620DD71;
+	Fri,  7 Mar 2025 10:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YmgbTYzp"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZtArpcoG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C59211A20;
-	Fri,  7 Mar 2025 10:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5071AA1EC
+	for <devicetree@vger.kernel.org>; Fri,  7 Mar 2025 10:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741343965; cv=none; b=djS4pZZJNqumKFcYOvSoPnvSwmNqEAhyvYyueHKiAM2F5VlkNlVkZ94ph7loGnE46v0FKencUS/iMV1Fc3eP7tNS+2YVK0cMjGgdNiA7gssFnVtukAqWUirXYSUacJqsgxAdEd/afQF7CZD2RRaeAE6EpNOf/GH7fM4SUp5L7yk=
+	t=1741344732; cv=none; b=MMcVSGNYy6KGVcKYcRFDPor4tVz1rLTg41FAVvCFkI6nLKvZiHG/LWE0ihgfTtldvVCyIF5zqIRZ3T+reZweQ1dH/ChiHK7dRTrJ0TQOrFo2D3cY8X3pUG1qb7M0NHLVyX7AAqFAMp+1GADkx6dhFW03o8FlVl0ZYVFGGUoSjoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741343965; c=relaxed/simple;
-	bh=HxWFlzYZ/kTUSwmC8giaqnJl4ApMkmawbxezqzBZsMQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WOJ639Y5P0H4V10Dy94GemTSH9Mr01F6LJXbl3Kwh0L6uqZ2DTrEr0WZ1iHTF7C02jlcbhfszfOWPv/BZXjopdSdoxHxGxXasRfS+l5VhOk1ocwi9L4JE3O329j1N1CiuqC/N5ucpobV35wHXPUXuxsywavwIaktm41Lp5a50wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YmgbTYzp; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 527AdAd94040303
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 7 Mar 2025 04:39:11 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1741343951;
-	bh=YU88KIu28z7FJc3ACej39tJ8cAKVnj4yM8ha3DZROns=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=YmgbTYzpuzp2KYj0yx0UEIjAjZFY/Ns7gVzjbZXvDPQOF90datY/E1DWIswto0oDP
-	 cTn89tlo+BCHcA/MGcdgi9li1WjQ3h7q7ExNliNOjzZaHdE24hvTnXRqDFruBu7K1k
-	 DF46X4VLGzHEKqt1gxVt9U2OhsroZ113B0TdFVXI=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 527AdA44004468
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 7 Mar 2025 04:39:10 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 7
- Mar 2025 04:39:10 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 7 Mar 2025 04:39:10 -0600
-Received: from uda0132425.dhcp.ti.com (dhcp-10-24-69-250.dhcp.ti.com [10.24.69.250])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 527Ad65t082496;
-	Fri, 7 Mar 2025 04:39:07 -0600
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Daniel Schultz
-	<d.schultz@phytec.de>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <w.egorov@phytec.de>,
-        <upstream@lists.phytec.de>
-Subject: Re: [PATCH v2] arm64: dts: ti: am64-phyboard-electra: Add DT overlay for X27 connector
-Date: Fri, 7 Mar 2025 16:09:03 +0530
-Message-ID: <174133309360.1072814.5781136460553851194.b4-ty@ti.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250128100356.462934-1-d.schultz@phytec.de>
-References: <20250128100356.462934-1-d.schultz@phytec.de>
+	s=arc-20240116; t=1741344732; c=relaxed/simple;
+	bh=2yrl245pQFYTteb+/aA4r5Ui0KBjICUD+1rxdgPp0wA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GoVkmNRFoTtreoGK3ho6VAzQltRBdyHA0BGysBQ3T+g+Bak9Ve19N/qhdRDUJB0pVGKt/j5vzksGox8pWQqMnVR2X0cDpL5SfaKR117Rs82g3j6jxnt5vQZClkx0anFSAFpLlaUFcUnIOFyDj+OS+Xk8Y9eAusOM554WpUFmX3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZtArpcoG; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-30bf251025aso8086871fa.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Mar 2025 02:52:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1741344728; x=1741949528; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VRsjrYylaGqHOYSS2Im8OTeS/8b87MG8RUTJovWmnVs=;
+        b=ZtArpcoG4xHxWeEYG8wOl/3hi3Tzm3qdOwHW2xTnK/WVdHb0RLYpcy7dcpfp4fEt1I
+         4wgkWBRyLhdlERz0dfGu35NYoqSUEj4Rwxb7smcVVBN83u75ZI++K8xMsAG16HnYdnwr
+         u6iBzCJZO1ELuz1qpEyqrRJycZrU5FEEAnatTk2jUzXEw/R3lfqWwJiyEM3FKo/XLCAZ
+         L+bgFTD2j/YLzgn3yzfXgDL5f5xk1FfI5RGSR8QKRaFldJsIwLVH3yK1Xs+/kFhqhMwK
+         tkP6+ZFIK63Lm8HgpECxWD0rB6zwXtx8b/af1tQ6PGEaaj8ZNGxXWJ2NeRbHby2TYPuV
+         kf2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741344728; x=1741949528;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VRsjrYylaGqHOYSS2Im8OTeS/8b87MG8RUTJovWmnVs=;
+        b=cIsnS2u29hc15voQnPqAfExwOM6XCeC9pNrcSbt7NrXVzQ0ZykDS7Cqq0OqlGUQnoM
+         +YjT+TyPiJOr0P5vMLqQPJvKeyLQjUTqEVGFBfA2SpBRufS0sacILolzHFytezYd6lz7
+         8ggGOM/sB8duXSRm+yvkS9sr4XdGnwGa/Wyz2YIwTaQ+VWNktZS/a/hU252vWIuA+5sw
+         1BJyEJSWNmMIfKGc+L1KlfxP7RlAX+lGjTYbHNZtUB9KdPhOnLnUJNFR1mC1GkdC5+Go
+         YeyYnk7NBlTPvzpsxdf02eDeHDiPgdLzFURc9xS3HLxi7H7AZmn+8ZOfwNrp5KeI2xPv
+         r8Dw==
+X-Forwarded-Encrypted: i=1; AJvYcCVGUzQPYbpV2B36c1qaXd2Qph6dOSspKlhxn8WWRpatsKI4PaVelAVFEBkD6tl4qYvs5uOZDxIeygCF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzdcy1zOa89ELJVkE17PPVh3RjPgav4tEjtzyQCQC9bJaGCY2Dv
+	4rB4e3kpPYPh0yX0AbK3z6sJBMn2MY8f+s2FoNozcCL84U6MM7BpR5i4170p8cK+hwVAxsYFI9O
+	tN7rkyCTm+8ZKXgVgo8saCqOwL6Kuz4CCatB+8Q==
+X-Gm-Gg: ASbGncspWYa8g+GIDJg3SHxSWB0G5jxhR+Wnzq/GkybED7e02mitOuzQX/KCeMCPBLB
+	tfVmL75vuEpjGFkT7EDqC2cn6sp9qHLYpnL4zEzHy9OVsqKf17Zf4bPnkCbJKW+znQ4BqY5mIu+
+	xr0O/KMs7wBr8SCrcsaGg5UZTybw==
+X-Google-Smtp-Source: AGHT+IGTv8b2iGGJntdmFYPrxn5rBDY0hEoMs3EOIxh9tMQRsB5GFmoHIuYXVfRwM0Is+sU2gQz8J72mVJX/HKidY/U=
+X-Received: by 2002:a2e:3a15:0:b0:308:eb34:103a with SMTP id
+ 38308e7fff4ca-30bf45f4820mr8917921fa.28.1741344728194; Fri, 07 Mar 2025
+ 02:52:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250306-iio-driver-ad4052-v1-0-2badad30116c@analog.com> <20250306-iio-driver-ad4052-v1-2-2badad30116c@analog.com>
+In-Reply-To: <20250306-iio-driver-ad4052-v1-2-2badad30116c@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 7 Mar 2025 11:51:57 +0100
+X-Gm-Features: AQ5f1Jo2uhYB71XpyIkYmXnZs7v-ATTx9ln-Jijl_UCZHNfpilpA8uAirwbAS44
+Message-ID: <CAMknhBHeqhkGaSM0S_zahC1ZrKTfoYj87fFEwL362FhhjNOfpA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: iio: adc: Add adi,ad4052
+To: Jorge Marques <jorge.marques@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Daniel Schultz,
+On Thu, Mar 6, 2025 at 3:04=E2=80=AFPM Jorge Marques <jorge.marques@analog.=
+com> wrote:
+>
+> Add dt-bindings for AD4052 family, devices AD4050/AD4052/AD4056/AD4058,
+> low-power with monitor capabilities SAR ADCs.
 
-On Tue, 28 Jan 2025 02:03:56 -0800, Daniel Schultz wrote:
-> Add a device tree overlay for SPI1 , UART3 and GPIO1 on
-> X27 connector.
-> 
-> By default, not all interfaces on the X27 connector are accessible
-> due to being disabled or set to alternative pin mux configurations.
-> This overlay activates and configures these interfaces to support
-> connections with external devices.
-> 
-> [...]
+> Contain selectable oversampling and sample rate, the latter for both
+> oversampling and monitor mode.
+> The monitor capability is exposed as an IIO threshold either direction
+> event.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+These sounds like they are describing the driver so aren't appropriate
+for this commit message. Here we should only be talking about the
+bindings.
 
-[1/1] arm64: dts: ti: am64-phyboard-electra: Add DT overlay for X27 connector
-      commit: 638ab30ce4c63edae4934dcaa7a61f37b96efe6c
+>
+> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad4052.yaml    | 80 ++++++++++++++++=
+++++++
+>  MAINTAINERS                                        |  6 ++
+>  2 files changed, 86 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4052.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad4052.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..4602f1f0184d58f33883852ff=
+6d76933758825f1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4052.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2025 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4052.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD4052 ADC family device driver
+> +
+> +maintainers:
+> +  - Jorge Marques <jorge.marques@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD4052 Single Channel Precision SAR ADC family
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+4050.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+4052.pdf
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+The links above don't work for me. Instead...
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+https://www.analog.com/media/en/technical-documentation/data-sheets/ad4050-=
+ad4056.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/ad4052-=
+ad4058.pdf
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad4050
+> +      - adi,ad4052
+> +      - adi,ad4056
+> +      - adi,ad4058
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      Reference clock
+> +    maxItems: 1
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+I don't see any pins in the datasheet about a "reference clock" input.
+Is this for the CNV pin? If this is for the internal clock, then we
+don't need a property for it.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+> +
+> +  interrupts:
+> +    items:
+> +      - description: threshold events.
+> +      - description: device ready and data ready.
+> +
 
+Since there are multiple interrupts, we should also have an
+interrupt-names property. Also, the interrupts should be named after
+the pin they are connected to, not the function. So the interrupt
+names should be "rdy", "gp0", and "gp1".
+
+> +  cnv-gpios:
+> +    maxItems: 1
+
+Not necessary, but I would not mind having a description that says
+that the CNV pin may also be connected to the CS line of the SPI
+controller if it is not connected to a GPIO.
+
+> +
+> +  spi-max-frequency:
+> +    maximum: 62500000
+> +
+> +  vdd-supply: true
+
+> +  vdd_1_8-supply: true
+
+This one seems redundant and should be dropped.
+
+But there is also a possible separate reference voltage supply, so we
+should have a ref-supply property.
+
+> +  vio-supply: true
+
+These chips also have GPIO pins, so we can add the gpio-controller and
+#gpio-cells properties to the bindings even if we don't implement this
+in the driver.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+
+The chip won't work without vcc-supply and vio-supply so they should
+be required. ref-supply is clearly optional though.
+
+
+
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@0 {
+> +            compatible =3D "adi,ad4052";
+> +            reg =3D <0>;
+> +            spi-max-frequency =3D <25000000>;
+> +
+> +            interrupt-parent =3D <&gpio>;
+> +            interrupts =3D <0 0 IRQ_TYPE_EDGE_RISING>,
+> +                         <0 1 IRQ_TYPE_EDGE_RISING>;
+> +            cnv-gpios =3D <&gpio 2 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 06f122cb8bbd15a0076c229dfc89be0b5126f237..fef8adaee888d59e1aa3b3592=
+dda5a8bea0b7677 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1317,6 +1317,12 @@ F:       Documentation/devicetree/bindings/iio/adc=
+/adi,ad4030.yaml
+>  F:     Documentation/iio/ad4030.rst
+>  F:     drivers/iio/adc/ad4030.c
+>
+> +ANALOG DEVICES INC AD4052 DRIVER
+> +M:     Jorge Marques <jorge.marques@analog.com>
+> +S:     Supported
+> +W:     https://ez.analog.com/linux-software-drivers
+> +F:     Documentation/devicetree/bindings/iio/adc/adi,ad4052.yaml
+> +
+>  ANALOG DEVICES INC AD4130 DRIVER
+>  M:     Cosmin Tanislav <cosmin.tanislav@analog.com>
+>  L:     linux-iio@vger.kernel.org
+>
+> --
+> 2.48.1
+>
 
