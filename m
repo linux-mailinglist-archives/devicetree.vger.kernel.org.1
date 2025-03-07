@@ -1,87 +1,97 @@
-Return-Path: <devicetree+bounces-155280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48BD4A561C4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:29:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B899A561CE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 08:29:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7D331884AAB
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:29:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74D8E172D58
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 07:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2390B1A3171;
-	Fri,  7 Mar 2025 07:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C0251A5BB6;
+	Fri,  7 Mar 2025 07:29:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WWklyrBs"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="uzS+Bb3h";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="jvzlICJ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46F01A314C;
-	Fri,  7 Mar 2025 07:29:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3B61A4E9E;
+	Fri,  7 Mar 2025 07:29:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741332546; cv=none; b=VNJ0At+WCPaFsM178TRo34ly3xggmjBG8SmNGsH6Wnjv4wmueY64LZOs35BIn2GYdZC6PQt403z6b7S/yB3rV+xJPm8ldSBzVH8SQnzP95oXvZOOeuKvCjh4ojEDXj10GFPrapq5UJCa3FB4guFaI0DH4lhZA1L8P/KXi/UKICE=
+	t=1741332587; cv=none; b=jfrYKmUP39W9T4bw/MyPM7GEWwu7Tax0Jmy6RfndxYog9aaEhyvqGeWzVrP0vj74JG940vrcJqiWlNB2vCZRl9+qgrKxCnycGhUPigvUMtdMFGVehp7FodT6IJSWvCMQI5jPJ0EZGXzldKrpNBIG/uM9XW2Hbat2n4or5xXvgRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741332546; c=relaxed/simple;
-	bh=2QV4HyitRVqMFXPW4Hi7wniqOCXjn7Z/b1mVwIcEbs4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=htA5eIuUMF7F9V/gcSPf83nPychhWe3GaMMbNQ3HMHfQrJNdEnbE1qd3i/OH99xMH9rUXoHJi9ntlh4vG4VyIiAs6GQGydV6tcHsTmFUahUkg1bKRHJVpXG2+1x/pPDazJFzeaUtCcFAfQPS/LFwK8HXj15O2Sa55dR24mTpBKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WWklyrBs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50C8DC4CED1;
-	Fri,  7 Mar 2025 07:29:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741332545;
-	bh=2QV4HyitRVqMFXPW4Hi7wniqOCXjn7Z/b1mVwIcEbs4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WWklyrBsCLgsFwE4UpYcmgzEcle2ZjJQEOQhpnkw5nX0m//baSpQhvwAlVWxTum4d
-	 vAQ8gJ8WV3oNddWIKGgM5ZocxhTUnnzawLDhUJGSTzDfPQVr2eSljSGBw6TQk2Ss7p
-	 PIx1D0w249ZsHFvtVVIq/qVcCbQawwBToLy+l4DPZIaWCJ3i3X3xufgoQ5sxxA/ZuE
-	 YFoy+wE6ZV9y40CTDBA/JWdaWO2QnhUrqiMKUv8d5WF6OubfcChH/LsZCykOoAalZF
-	 VVnDCjcl1pEI12NF/r+xd2+1DSQpp8lwNPFG8nWpjNIozwRuRQxP0x9YmjQXF+LwDS
-	 oyw6Iw+1tATmQ==
-Date: Fri, 7 Mar 2025 08:29:01 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Guangjie Song <guangjie.song@mediatek.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Richard Cochran <richardcochran@gmail.com>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH 06/26] dt-bindings: clock: mediatek: Add new MT8196 clock
-Message-ID: <20250307-mindful-raspberry-cow-c112ce@krzk-bin>
-References: <20250307032942.10447-1-guangjie.song@mediatek.com>
- <20250307032942.10447-7-guangjie.song@mediatek.com>
+	s=arc-20240116; t=1741332587; c=relaxed/simple;
+	bh=6HGQLlWSoK+5RydpzDF3V5oysgqjMllADgJLZnvsSpo=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=P64kGv1pkNZkMBn+2uDvS+AIh1XI+wMK7B7d3yw+0SsItT5e+7bdOGnBXfiHSEaG7XnAykqirKwrNV9tCOQrGZ00cHHgz28I3Up4QyV3oY51HesUPqIM1Jrknby/pXrsO6xLe+WH1qHv4s7whzpl1roxl9oKM0G18wMDGzXQzSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=uzS+Bb3h; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=jvzlICJ+; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1741332583;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/WWLpb5STJ4E9HKptpFyE8OtdVIxQ5Lh8Y5krflY3QY=;
+	b=uzS+Bb3hnCqx/32zoV79G652YJU9dEJUZ907RdBaM988vMOm6cy1xFI5SG0b0PQccf+GOC
+	7HnhHzQPyDXIsIJKkoO20brcC0fxVdoAwqm+osAI9RCIELYOwlIF8Dj124WfZ1LhHKOPzW
+	MJC1ZqgCaD5nMKxuGKAWD14O20qKLVr0B8yS3Z2czEhfPVCoeTAafidFYGq8XPDUYa4PkN
+	A8mAL9eX2sAHp1+kODOG6FP60myIbC2Y95C7rTEDfSenrVaIhvYyyHVJStxp3Jww/NZxpN
+	vPJJaX5IlKL080d0W9lbPwgFkaUM5+2gXS0YBtWGhpfzKDs3e9pq6veDAsXveA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1741332583;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/WWLpb5STJ4E9HKptpFyE8OtdVIxQ5Lh8Y5krflY3QY=;
+	b=jvzlICJ+gFguLlzx7hmzvmunSuYCmtov+nV4Vh2WxoZGBh7dk6QykUdKEQaiocDeQhBS/w
+	b/WGk1luZya/ItDA==
+To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+ <inochiama@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ sophgo@lists.linux.dev, Yixun Lan <dlan@gentoo.org>, Longbin Li
+ <looong.bin@gmail.com>
+Subject: Re: [PATCH v2 2/2] irqchip/sg2042-msi: Add the Sophgo SG2044 MSI
+ interrupt controller
+In-Reply-To: <20250307010649.422359-3-inochiama@gmail.com>
+References: <20250307010649.422359-1-inochiama@gmail.com>
+ <20250307010649.422359-3-inochiama@gmail.com>
+Date: Fri, 07 Mar 2025 08:29:42 +0100
+Message-ID: <87jz9147tl.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250307032942.10447-7-guangjie.song@mediatek.com>
+Content-Type: text/plain
 
-On Fri, Mar 07, 2025 at 11:27:02AM +0800, Guangjie Song wrote:
-> Add the new binding documentation for system clock and functional clock
-> on Mediatek MT8196.
-> 
-> Signed-off-by: Guangjie Song <guangjie.song@mediatek.com>
-> ---
->  .../bindings/clock/mediatek,mt8196-clock.yaml |   66 +
->  .../clock/mediatek,mt8196-sys-clock.yaml      |   63 +
->  include/dt-bindings/clock/mt8196-clk.h        | 1503 +++++++++++++++++
+Inochi!
 
-Filename matching binding, so mediatek,mt8196-clock.h
+On Fri, Mar 07 2025 at 09:06, Inochi Amaoto wrote:
+> Add support for Sophgo SG2044 MSI interrupt controller.
 
-I would not even dream about people testing patches before sending
-them...
+I asked you in my reply to V1 to split this up into two patches:
 
-Best regards,
-Krzysztof
+  "The conversion of the existing code to this should be a preparatory patch
+   for ease of review and the support for the new chip built on top."
+
+And yet you come back with a patch doing both things at once. Feel free
+to ignore me...
+
+Thanks,
+
+        tglx
+
+
+
 
 
