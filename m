@@ -1,294 +1,117 @@
-Return-Path: <devicetree+bounces-155416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1AC5A56988
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:54:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB1FA569E2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:03:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85337179B0E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 13:53:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78C0E16A312
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30BB721CA08;
-	Fri,  7 Mar 2025 13:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E33D21ABA6;
+	Fri,  7 Mar 2025 14:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="j8BOWY4M"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="YC2hEVy4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 087FD21B9F3;
-	Fri,  7 Mar 2025 13:53:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8FF21ABBD;
+	Fri,  7 Mar 2025 14:03:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741355583; cv=none; b=bvL7be4uUIC0MbaXe5QivzAVW74L8L8uOr4xZs0DeSEwaY5pOzazrYJFjxvKpgCvYTAK7mQkCNMLR6+fQ657M5txSPJ4cipdLe4HU/+AzsHnPI8x+MVfN/5lAmafcBQeejxKSS/uqCbJjf736+WlftQ23sJder72WCJ7XwaiBTk=
+	t=1741356188; cv=none; b=IURIFs9lLTDTnts855vjz81b2eGQKhBbAle5H0Z9MJh/WAMrsm0YcGcZpxLJuX2Jw99TaM18FGroFwoEkDBkZVZU3IvE8G85ljYV0YP2YzUubwc+d61mqrDfcaZh3nHNkmIyOXmVX4dxJcP7oFT9Pz3qCDRGbT0Bm248kyl4DGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741355583; c=relaxed/simple;
-	bh=sHRLAO4wCiytD5iI8SH+wtX/O42fBKBwUxkn8F6qv20=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BOVSZELJrFpYwCCN0mhOkNamsBxkWWOMa4DRsJ3ISazoahOgQGyuBJlB81Jc6M0X01Wo1i2mlXbBQQjAFhMvRW/FA4pvXZiHsn49nN4rN6+wNVRZIVvEbjHQZrbbKMwI1c0hnsiMEr37eRwqV8+X4dgMJKHW2iKokcOUdmMZ8B4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=j8BOWY4M; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 876051FA6D;
-	Fri,  7 Mar 2025 14:52:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1741355572;
-	bh=VPoVv1lgA88o7hB5e7PVRv/YBZy3UtnhyURhz1siZbw=; h=From:To:Subject;
-	b=j8BOWY4M+xQVPsNz1XHATLeJwTeKK2fMRuh/zyJv8dqv6yL4eKHdpY4EG2Qm8LSHb
-	 n3EZENEaukjRVWCx8nOFUtKDuxJKXmVPGAo+RV+jS5ZcBIS1UAG8OfcatQ5Y9O233p
-	 FymIBLmLofnAIa9B0dJl9asEOY/HTYSF00jnLRx2B0fSYM00H2th6UyINaAZHpGlon
-	 E77ADh2zC2A1tKNsPgTHIy2blvZ36CbxR8qjj9dA43aY09I7PI0gY5gVWks61tx+cc
-	 JI72X9jPLgnjmoGGcHihnavo1AK+fAxW0jFzkHwDlLGt65kJ2R1fzlwnjAKWi5/yXG
-	 sw5iY5USpJgfg==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+	s=arc-20240116; t=1741356188; c=relaxed/simple;
+	bh=CrhhOIMTVL+IZJGVGxgGzbJTCVnnSVtzlH5FBaVUETw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uumqnixpwAPRLUCc3rKp4cVY7JCyJUk+VfNWx3a+GG5HshnQf1MoKkXA8pl79VhxnWRZk9dT71nT1WAt1aBJY6MnrdTwVAXp9B3W3BrHp9dFYFs1sOGKYaqN9uR9Wqv56NbEQUxwFKtmUqNTS7ieCPGHBCFe71Z+ktzDG5UlkKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=YC2hEVy4; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=nB1Ff94gX6hUEiR4vaLcBQczfcyrPErlm6RF/exj1rY=; b=YC2hEVy4NZANVuitqKYVpsTfLw
+	Vq53fYjnsZ/1ipxexmYUW+xwwvwoTr6C2S4WvrqLu/Wx/vj7Bfejk8gxeXpGpMi9v41K7xmJNq4KH
+	294pI4i61HdG3JE6B7pDvyY8tUpME3f5/uDtjCZDQwO1PVRguDqOkUFJoi5SAEEV5xbI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tqYHs-0039gt-1L; Fri, 07 Mar 2025 15:02:52 +0100
+Date: Fri, 7 Mar 2025 15:02:52 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	patches@opensource.cirrus.com
-Cc: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>
-Subject: [PATCH v3 5/5] ASoC: wm8904: add DMIC support
-Date: Fri,  7 Mar 2025 14:52:44 +0100
-Message-Id: <20250307135244.100443-6-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250307135244.100443-1-francesco@dolcini.it>
-References: <20250307135244.100443-1-francesco@dolcini.it>
+	Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
+	linux-rockchip@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add GMAC nodes for RK3528
+Message-ID: <f6c6aeb5-bdec-4283-87c8-e870f59008c8@lunn.ch>
+References: <20250306221402.1704196-1-jonas@kwiboo.se>
+ <20250306221402.1704196-4-jonas@kwiboo.se>
+ <a827e7e9-882a-40c6-9f2c-03d8181dff88@lunn.ch>
+ <003d3726-680a-4e91-89cd-d127bc3b5609@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <003d3726-680a-4e91-89cd-d127bc3b5609@kwiboo.se>
 
-From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+So this is a bit more complicated than i first guessed...
 
-The WM8904 codec supports both ADC and DMIC inputs.
+> 	phy-mode = "rmii";
+> 	clock_in_out = "input";
 
-Get input pin functionality from the platform data and add the necessary
-controls depending on the possible additional routing.
+Probably will not get passed the DT maintainers. The clocking needs
+investigating.
 
-The ADC and DMIC share the IN1L/DMICDAT1 and IN1R/DMICDAT2 pins.
+> 	phy-handle = <&rmii0_phy>;
+> 
+> 	mdio0: mdio {
+> 		compatible = "snps,dwmac-mdio";
+> 		#address-cells = <0x1>;
+> 		#size-cells = <0x0>;
+> 
+> 		rmii0_phy: ethernet-phy@2 {
+> 			compatible = "ethernet-phy-id0044.1400", "ethernet-phy-ieee802.3-c22";
+> 			reg = <2>;
+> 			clocks = <&cru CLK_MACPHY>;
+> 			resets = <&cru SRST_MACPHY>;
 
-This leads to a few scenarios requiring different DAPM routing:
-- When both are connected to an analog input, only the ADC is used.
-- When one line is a DMIC and the other an analog input, the DMIC source
-  is set from the platform data and a mux is added to select whether to
-  use the ADC or DMIC.
-- When both are connected to a DMIC, another mux is added to this to
-  select the DMIC source. Note that we still need to be able to select
-  the ADC system for use with the IN2L, IN2R, IN3L and IN3R pins.
+Using the ID suggests there might be a chicken/egg with the reset and
+clock. The ID registers cannot be read from the PHY?
 
-Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
----
-v3: no changes
-v2: DAPM routes have been reworked, please see the commit message body.
-    The previous approach forgot that the ADC is still needed for the
-    IN2L/R and IN3L/R pins, and did not properly disconnect the PGAs
-    from the ADC when only the DMIC was in use.
-v1: https://lore.kernel.org/lkml/20250206163152.423199-6-francesco@dolcini.it/
+> 			phy-is-integrated;
 
-Cc: ckeepax@opensource.cirrus.com
----
- sound/soc/codecs/wm8904.c | 125 ++++++++++++++++++++++++++++++++++++--
- 1 file changed, 120 insertions(+), 5 deletions(-)
+This suggests the possibility exists to route the RMII interface to the
+outside world:
 
-diff --git a/sound/soc/codecs/wm8904.c b/sound/soc/codecs/wm8904.c
-index 8a2b98745964..b85872a373c1 100644
---- a/sound/soc/codecs/wm8904.c
-+++ b/sound/soc/codecs/wm8904.c
-@@ -844,6 +844,26 @@ static int out_pga_event(struct snd_soc_dapm_widget *w,
- 	return 0;
- }
- 
-+static const char * const dmic_text[] = {
-+	"DMIC1", "DMIC2"
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(dmic_enum, WM8904_DIGITAL_MICROPHONE_0,
-+			    WM8904_DMIC_SRC_SHIFT, dmic_text);
-+
-+static const struct snd_kcontrol_new dmic_mux =
-+	SOC_DAPM_ENUM("DMIC Mux", dmic_enum);
-+
-+static const char * const cin_text[] = {
-+	"ADC", "DMIC"
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(cin_enum, WM8904_DIGITAL_MICROPHONE_0,
-+			    WM8904_DMIC_ENA_SHIFT, cin_text);
-+
-+static const struct snd_kcontrol_new cin_mux =
-+	SOC_DAPM_ENUM("Capture Input", cin_enum);
-+
- static const char *input_mode_text[] = {
- 	"Single-Ended", "Differential Line", "Differential Mic"
- };
-@@ -963,6 +983,15 @@ SND_SOC_DAPM_AIF_OUT("AIFOUTL", "Capture", 0, SND_SOC_NOPM, 0, 0),
- SND_SOC_DAPM_AIF_OUT("AIFOUTR", "Capture", 1, SND_SOC_NOPM, 0, 0),
- };
- 
-+static const struct snd_soc_dapm_widget wm8904_dmic_dapm_widgets[] = {
-+SND_SOC_DAPM_MUX("DMIC Mux", SND_SOC_NOPM, 0, 0, &dmic_mux),
-+};
-+
-+static const struct snd_soc_dapm_widget wm8904_cin_dapm_widgets[] = {
-+SND_SOC_DAPM_MUX("Left Capture Input", SND_SOC_NOPM, 0, 0, &cin_mux),
-+SND_SOC_DAPM_MUX("Right Capture Input", SND_SOC_NOPM, 0, 0, &cin_mux),
-+};
-+
- static const struct snd_soc_dapm_widget wm8904_dac_dapm_widgets[] = {
- SND_SOC_DAPM_AIF_IN("AIFINL", "Playback", 0, SND_SOC_NOPM, 0, 0),
- SND_SOC_DAPM_AIF_IN("AIFINR", "Playback", 1, SND_SOC_NOPM, 0, 0),
-@@ -1101,12 +1130,45 @@ static const struct snd_soc_dapm_route adc_intercon[] = {
- 	{ "AIFOUTR", NULL, "AIFOUTR Mux" },
- 
- 	{ "ADCL", NULL, "CLK_DSP" },
--	{ "ADCL", NULL, "Left Capture PGA" },
--
- 	{ "ADCR", NULL, "CLK_DSP" },
-+};
-+
-+/* No DMICs, always connect PGAs */
-+static const struct snd_soc_dapm_route cin_nodmic_con[] = {
-+	{ "ADCL", NULL, "Left Capture PGA" },
- 	{ "ADCR", NULL, "Right Capture PGA" },
- };
- 
-+/* DMIC system in use: mux between ADC and DMICDAT1, 2 or both */
-+static const struct snd_soc_dapm_route cin_adc_dmic_con[] = {
-+	{ "Left Capture Input", "ADC", "Left Capture PGA" },
-+	{ "Right Capture Input", "ADC", "Right Capture PGA" },
-+
-+	{ "ADCL", NULL, "Left Capture Input" },
-+	{ "ADCR", NULL, "Right Capture Input" },
-+};
-+
-+/*  IN1L as DMICDAT1 */
-+static const struct snd_soc_dapm_route cin_dmic1_con[] = {
-+	{ "Left Capture Input", "DMIC", "IN1L" },
-+	{ "Right Capture Input", "DMIC", "IN1L" },
-+};
-+
-+/* IN1R as DMICDAT2 */
-+static const struct snd_soc_dapm_route cin_dmic2_con[] = {
-+	{ "Left Capture Input", "DMIC", "IN1R" },
-+	{ "Right Capture Input", "DMIC", "IN1R" },
-+};
-+
-+/* DMICDAT1 and DMICDAT2: mux between them, ADC still used for IN2 and IN3 */
-+static const struct snd_soc_dapm_route cin_2dmics_con[] = {
-+	{ "DMIC Mux", "DMIC1", "IN1L" },
-+	{ "DMIC Mux", "DMIC2", "IN1R" },
-+
-+	{ "Left Capture Input", "DMIC", "DMIC Mux" },
-+	{ "Right Capture Input", "DMIC", "DMIC Mux" },
-+};
-+
- static const struct snd_soc_dapm_route dac_intercon[] = {
- 	{ "DACL Mux", "Left", "AIFINL" },
- 	{ "DACL Mux", "Right", "AIFINR" },
-@@ -2050,18 +2112,70 @@ static void wm8904_handle_retune_mobile_pdata(struct snd_soc_component *componen
- 			"Failed to add ReTune Mobile control: %d\n", ret);
- }
- 
-+static void wm8904_handle_dmic_pdata(struct snd_soc_component *component)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_component_get_dapm(component);
-+	struct wm8904_priv *wm8904 = snd_soc_component_get_drvdata(component);
-+	struct wm8904_pdata *pdata = wm8904->pdata;
-+	unsigned int dmic_src;
-+
-+	if (!pdata->in1l_as_dmicdat1 && !pdata->in1r_as_dmicdat2) {
-+		snd_soc_dapm_add_routes(dapm, cin_nodmic_con,
-+					ARRAY_SIZE(cin_nodmic_con));
-+		snd_soc_component_update_bits(component, WM8904_DIGITAL_MICROPHONE_0,
-+					      WM8904_DMIC_ENA_MASK, 0);
-+		return;
-+	}
-+
-+	/* Need a control and routing to switch between DMIC and ADC */
-+	snd_soc_dapm_new_controls(dapm, wm8904_cin_dapm_widgets,
-+				  ARRAY_SIZE(wm8904_cin_dapm_widgets));
-+	snd_soc_dapm_add_routes(dapm, cin_adc_dmic_con,
-+				ARRAY_SIZE(cin_adc_dmic_con));
-+
-+	if (pdata->in1l_as_dmicdat1 && pdata->in1r_as_dmicdat2) {
-+		/* Need a control and routing to mux between DMICDAT1 and 2 */
-+		dev_dbg(component->dev, "DMICDAT1 and DMICDAT2 in use\n");
-+		snd_soc_dapm_new_controls(dapm, wm8904_dmic_dapm_widgets,
-+					  ARRAY_SIZE(wm8904_dmic_dapm_widgets));
-+		snd_soc_dapm_add_routes(dapm, cin_2dmics_con,
-+					ARRAY_SIZE(cin_2dmics_con));
-+		return;
-+	}
-+
-+	/* Either DMICDAT1 or DMICDAT2 is in use, not both */
-+	if (pdata->in1l_as_dmicdat1) {
-+		dmic_src = 0;
-+		snd_soc_dapm_add_routes(dapm, cin_dmic1_con,
-+					ARRAY_SIZE(cin_dmic1_con));
-+	} else {
-+		dmic_src = 1;
-+		snd_soc_dapm_add_routes(dapm, cin_dmic2_con,
-+					ARRAY_SIZE(cin_dmic2_con));
-+	}
-+	dev_dbg(component->dev, "DMIC_SRC (0 or 1): %d\n", dmic_src);
-+	snd_soc_component_update_bits(component, WM8904_DIGITAL_MICROPHONE_0,
-+				      WM8904_DMIC_SRC_MASK,
-+				      dmic_src << WM8904_DMIC_SRC_SHIFT);
-+}
-+
- static void wm8904_handle_pdata(struct snd_soc_component *component)
- {
-+	struct snd_soc_dapm_context *dapm = snd_soc_component_get_dapm(component);
- 	struct wm8904_priv *wm8904 = snd_soc_component_get_drvdata(component);
- 	struct wm8904_pdata *pdata = wm8904->pdata;
- 	int ret, i;
- 
- 	if (!pdata) {
-+		snd_soc_dapm_add_routes(dapm, cin_nodmic_con,
-+					ARRAY_SIZE(cin_nodmic_con));
- 		snd_soc_add_component_controls(component, wm8904_eq_controls,
--				     ARRAY_SIZE(wm8904_eq_controls));
-+					       ARRAY_SIZE(wm8904_eq_controls));
- 		return;
- 	}
- 
-+	wm8904_handle_dmic_pdata(component);
-+
- 	dev_dbg(component->dev, "%d DRC configurations\n", pdata->num_drc_cfgs);
- 
- 	if (pdata->num_drc_cfgs) {
-@@ -2117,10 +2231,11 @@ static int wm8904_probe(struct snd_soc_component *component)
- 		return -EINVAL;
- 	}
- 
--	wm8904_handle_pdata(component);
--
- 	wm8904_add_widgets(component);
- 
-+	/* This can add dependent widgets, so it is done after add_widgets */
-+	wm8904_handle_pdata(component);
-+
- 	return 0;
- }
- 
--- 
-2.39.5
+  phy-is-integrated:
+    $ref: /schemas/types.yaml#/definitions/flag
+    description:
+      If set, indicates that the PHY is integrated into the same
+      physical package as the Ethernet MAC. If needed, muxers
+      should be configured to ensure the integrated PHY is
+      used. The absence of this property indicates the muxers
+      should be configured so that the external PHY is used.
 
+Given these issues, i suggest you keep with the DT as you have it
+now. Adding the PHY node will require access to hardware and some
+investigations.
+
+	Andrew
 
