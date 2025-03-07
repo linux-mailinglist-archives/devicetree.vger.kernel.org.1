@@ -1,366 +1,242 @@
-Return-Path: <devicetree+bounces-155422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 565D9A569FD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:07:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CF39A56A3B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 15:22:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2FE33A7CE4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:07:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A87951696EC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 14:22:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F3A21ADCC;
-	Fri,  7 Mar 2025 14:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3312B21B9D9;
+	Fri,  7 Mar 2025 14:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U+i3hJmC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aylFrI/M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EA7821ABDB;
-	Fri,  7 Mar 2025 14:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40AE021B9CE;
+	Fri,  7 Mar 2025 14:22:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741356423; cv=none; b=A+9KaHuxPfPAALyHmkx/Vwz1aupD/u+tm3xn5wBW/Wqx81uiNxV2duZZb3k49YqAqJOVpbBv2sN724ddnX1fMG030UxyT7ScoBV5cKhICt5syCcF+Fgj6koiw6ciQQvPTStwsVfP1+itnh3gUp2uDwQigQsz6w5xafQLhNq2whs=
+	t=1741357342; cv=none; b=FOdqOwUOk9Sv6uozHy/QNINQ6CQ4RVY/NbkJlgQbMpDenivBmCbXf/x4q3btNmkh9GJCjPos6fWzucGd6TM+rO31WWYpBX5wB778nuQlKSyXWo67ax9jbr9rISJud/JfqbK+AMQSA4FGxCv0bmcSt1tPQ9zBW/eMGGNnVZ2YkJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741356423; c=relaxed/simple;
-	bh=mmv2E9F+UfPAQ/2f6RZO6VoS3fV6ohPEF0Q1R0VuLMA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=htELGh44E7tmEKAWaPPjhcTKbjqV9ko+6PPIRH6F7DElLvkYEZKgIz/PVGFVdr+xnxpjIJP+tgFZNxdrCM4gW5AHl7QHI7yz3EHgjIu6dC3MnZhXiC+AIaT630Ohu4NxynnIIzYdjeIOs5O5SoibAhiD+af/xYj6SrqT32SNdR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U+i3hJmC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B93B4C4CEE7;
-	Fri,  7 Mar 2025 14:06:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741356422;
-	bh=mmv2E9F+UfPAQ/2f6RZO6VoS3fV6ohPEF0Q1R0VuLMA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U+i3hJmCJq6JdAbCq+2zbE69YmNji1k0H0ii5Ri5sz4QeoUo1/TN+bARDZ+XjLq+2
-	 gJ72mbISMZTAyIxM3Yf3BTwnDRVLfzJ3Nafs8PeUamTQG5/JUu3sGWlnm8ncY/MkF0
-	 C0N32lyuYRuNr2VvRDqfA0xW8VeLDCqm2fvXGu79in40Whw8tOal+48G9sj0Oxk9Rh
-	 yEVsC59CwB7UHWKdokmzCBicZiOXjJTMG12om5QsKzaWPoNdIcZVGDxjnm+jyR9/J6
-	 PPPk83FOcThC2tiV21VcYkgciYZDQ38S4YSjNmU37zO12BVv4P2F+d3Ph+cfGFM6BV
-	 Fidw7qSt7PsOA==
-Message-ID: <7d3b0aa7-9ebf-4493-94ae-338207448429@kernel.org>
-Date: Fri, 7 Mar 2025 15:06:54 +0100
+	s=arc-20240116; t=1741357342; c=relaxed/simple;
+	bh=Xq0iwcDh7S4jmFV/WUP4gOkUzHiVYQo8h95MoE9/hh0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UPvHRuW8aIaF+r/G69LhMQjMq1jKj22ehCqzfTDJ3ECjfi8wUxBy23BrIrbH87MxRLNhqrM+nYA63Ic9CWWMQ8j+0CjgykbRI4pVWYB/TSwV0S+B7+vTlKyaPeOMdXSh4Hnmr1LTcZYEVkWOUNqPmmQ4I5KVlW1B2OW1t62YPS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aylFrI/M; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741357340; x=1772893340;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Xq0iwcDh7S4jmFV/WUP4gOkUzHiVYQo8h95MoE9/hh0=;
+  b=aylFrI/MiF/8bLt5ceuyurxWJDqHTU8pSZKi5Y33N7y0NWnC+sbeB70b
+   zOs8b9sS5nGSeieMVrdr8O7lPH6VsOU9IxpkljhQP+S7T4YWf4ZW/oCqT
+   SW5bDPxpMWdQmy0oJgzQG0xXyyArCTcmdcIoNh5E+pmCBvNWE05o7o+Fy
+   kXoTkJpark5leyNUQJy3N44Ju8tUIDfeGLCpnztoXm+aCSxURD/7FYfJl
+   L1Hpmiz1yTNkcpb8dvb56YkcEmtB6xSbyfQa/T4XEXNRw9XGcO6IvjgVd
+   2tJ8Xz7dRlV+16WQ/HFmlC3EdjMUEKKVdCIf3JvtTUrVw2EQB0vft9pDJ
+   g==;
+X-CSE-ConnectionGUID: UZK/TksyQCi4r8lFQQzvHw==
+X-CSE-MsgGUID: YIiyeMnVSROIjYRXWZ2/WQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="53042140"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; 
+   d="scan'208";a="53042140"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2025 06:22:19 -0800
+X-CSE-ConnectionGUID: 5CF1E6FQR2CSWgcWhZHL5g==
+X-CSE-MsgGUID: 1+VCvBl2Tx+8X9gueM0WGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="150280816"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa001.fm.intel.com with ESMTP; 07 Mar 2025 06:22:16 -0800
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tqYac-0000ZH-1A;
+	Fri, 07 Mar 2025 14:22:14 +0000
+Date: Fri, 7 Mar 2025 22:22:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jorge Marques <jorge.marques@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	David Lechner <dlechner@baylibre.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, Jorge Marques <jorge.marques@analog.com>
+Subject: Re: [PATCH 4/4] iio: adc: add support for ad4052
+Message-ID: <202503080031.APfLdyiz-lkp@intel.com>
+References: <20250306-iio-driver-ad4052-v1-4-2badad30116c@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: tegra: document EPP, ISP,
- MPE and TSEC for Tegra114 and Tegra124
-To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <treding@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250307081047.13724-1-clamor95@gmail.com>
- <20250307081047.13724-2-clamor95@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250307081047.13724-2-clamor95@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250306-iio-driver-ad4052-v1-4-2badad30116c@analog.com>
 
-On 07/03/2025 09:10, Svyatoslav Ryhel wrote:
-> The current EPP, ISP and MPE schemas are largely compatible with Tegra114 and Tegra124,
-> requiring only minor adjustments. Additionally, the TSEC schema for the Security engine,
-> which is available from Tegra114 onwards, is included.
+Hi Jorge,
 
+kernel test robot noticed the following build warnings:
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+[auto build test WARNING on aac287ec80d71a7ab7e44c936a434625417c3e30]
 
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  .../display/tegra/nvidia,tegra114-tsec.yaml   | 70 +++++++++++++++++++
->  .../display/tegra/nvidia,tegra20-epp.yaml     | 12 ++--
->  .../display/tegra/nvidia,tegra20-isp.yaml     | 16 +++--
->  .../display/tegra/nvidia,tegra20-mpe.yaml     | 30 ++++++--
->  4 files changed, 114 insertions(+), 14 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
-> new file mode 100644
-> index 000000000000..84d9ab9394d5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra114-tsec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra Security co-processor
+url:    https://github.com/intel-lab-lkp/linux/commits/Jorge-Marques/iio-code-mark-iio_dev-as-const-in-iio_buffer_enabled/20250306-220719
+base:   aac287ec80d71a7ab7e44c936a434625417c3e30
+patch link:    https://lore.kernel.org/r/20250306-iio-driver-ad4052-v1-4-2badad30116c%40analog.com
+patch subject: [PATCH 4/4] iio: adc: add support for ad4052
+config: um-randconfig-r073-20250307 (https://download.01.org/0day-ci/archive/20250308/202503080031.APfLdyiz-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250308/202503080031.APfLdyiz-lkp@intel.com/reproduce)
 
-How security processor is related to display?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503080031.APfLdyiz-lkp@intel.com/
 
+All warnings (new ones prefixed by >>):
 
-
-> +
-> +maintainers:
-> +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> +  - Thierry Reding <thierry.reding@gmail.com>
-
-Please provide description of the hardware here.
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: nvidia,tegra114-tsec
-> +      - const: nvidia,tegra124-tsec
-
-That's just enum
-
-> +      - items:
-> +          - const: nvidia,tegra132-tsec
-> +          - const: nvidia,tegra124-tsec
-> +      - const: nvidia,tegra210-tsec
-
-And this goes to enum.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: module clock
-
-Instead: maxItems: 1
-
-> +
-> +  resets:
-> +    items:
-> +      - description: module reset
-
-Instead: maxItems: 1
+   In file included from drivers/iio/adc/ad4052.c:14:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from arch/um/include/asm/hardirq.h:5:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:549:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     549 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:567:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     567 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/iio/adc/ad4052.c:14:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from arch/um/include/asm/hardirq.h:5:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:585:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/iio/adc/ad4052.c:14:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from arch/um/include/asm/hardirq.h:5:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:601:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     601 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:616:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     616 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:631:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     631 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:724:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     724 |         readsb(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:737:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     737 |         readsw(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:750:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     750 |         readsl(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:764:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     764 |         writesb(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:778:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     778 |         writesw(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:792:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     792 |         writesl(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+>> drivers/iio/adc/ad4052.c:201:41: warning: unused variable 'ad4052_regmap_rd_table' [-Wunused-const-variable]
+     201 | static const struct regmap_access_table ad4052_regmap_rd_table = {
+         |                                         ^~~~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/adc/ad4052.c:214:41: warning: unused variable 'ad4052_regmap_wr_table' [-Wunused-const-variable]
+     214 | static const struct regmap_access_table ad4052_regmap_wr_table = {
+         |                                         ^~~~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/adc/ad4052.c:239:18: warning: unused variable 'ad4052_sample_rate_avail' [-Wunused-const-variable]
+     239 | static const int ad4052_sample_rate_avail[] = {
+         |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+   15 warnings generated.
 
 
-> +
-> +  reset-names:
-> +    items:
-> +      - const: tsec
+vim +/ad4052_regmap_rd_table +201 drivers/iio/adc/ad4052.c
 
-Drop reset-names, redundant.
+   200	
+ > 201	static const struct regmap_access_table ad4052_regmap_rd_table = {
+   202		.yes_ranges = ad4052_regmap_rd_ranges,
+   203		.n_yes_ranges = ARRAY_SIZE(ad4052_regmap_rd_ranges),
+   204	};
+   205	
+   206	static const struct regmap_range ad4052_regmap_wr_ranges[] = {
+   207		regmap_reg_range(AD4052_REG_INTERFACE_CONFIG_A, AD4052_REG_DEVICE_CONFIG),
+   208		regmap_reg_range(AD4052_REG_SCRATCH_PAD, AD4052_REG_SCRATCH_PAD),
+   209		regmap_reg_range(AD4052_REG_STREAM_MODE, AD4052_REG_INTERFACE_STATUS),
+   210		regmap_reg_range(AD4052_REG_MODE_SET, AD4052_REG_MON_VAL),
+   211		regmap_reg_range(AD4052_REG_FUSE_CRC, AD4052_REG_DEVICE_STATUS),
+   212	};
+   213	
+ > 214	static const struct regmap_access_table ad4052_regmap_wr_table = {
+   215		.yes_ranges = ad4052_regmap_wr_ranges,
+   216		.n_yes_ranges = ARRAY_SIZE(ad4052_regmap_wr_ranges),
+   217	};
+   218	
+   219	static const struct iio_event_spec ad4052_events[] = {
+   220		{
+   221			.type = IIO_EV_TYPE_THRESH,
+   222			.dir = IIO_EV_DIR_EITHER,
+   223			.mask_shared_by_all = BIT(IIO_EV_INFO_ENABLE)
+   224		},
+   225		{
+   226			.type = IIO_EV_TYPE_THRESH,
+   227			.dir = IIO_EV_DIR_RISING,
+   228			.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
+   229					      BIT(IIO_EV_INFO_HYSTERESIS)
+   230		},
+   231		{
+   232			.type = IIO_EV_TYPE_THRESH,
+   233			.dir = IIO_EV_DIR_FALLING,
+   234			.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
+   235					      BIT(IIO_EV_INFO_HYSTERESIS)
+   236		}
+   237	};
+   238	
+ > 239	static const int ad4052_sample_rate_avail[] = {
+   240		2000000, 1000000, 300000, 100000, 33300,
+   241		10000, 3000, 500, 333, 250, 200,
+   242		166, 140, 125, 111
+   243	};
+   244	
 
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  interconnects:
-> +    maxItems: 6
-
-You need to list the items.
-
-> +
-> +  interconnect-names:
-> +    maxItems: 6
-
-You need to list the items.
-
-> +
-> +  operating-points-v2: true
-
-No opp-table?
-
-> +
-> +  power-domains:
-> +    items:
-> +      - description: phandle to the core power domain
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/tegra114-car.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    tsec@54500000 {
-> +        compatible = "nvidia,tegra114-tsec";
-> +        reg = <0x54500000 0x00040000>;
-> +        interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&tegra_car TEGRA114_CLK_TSEC>;
-> +        resets = <&tegra_car TEGRA114_CLK_TSEC>;
-> +        reset-names = "tsec";
-> +    };
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-epp.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-epp.yaml
-> index 3c095a5491fe..a50e3261a191 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-epp.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-epp.yaml
-> @@ -15,10 +15,14 @@ properties:
->      pattern: "^epp@[0-9a-f]+$"
->  
->    compatible:
-> -    enum:
-> -      - nvidia,tegra20-epp
-> -      - nvidia,tegra30-epp
-> -      - nvidia,tegra114-epp
-> +    oneOf:
-> +      - const: nvidia,tegra20-epp
-> +      - const: nvidia,tegra30-epp
-> +      - const: nvidia,tegra114-epp
-> +      - const: nvidia,tegra124-epp
-
-No, that was an enum.
-
-> +      - items:
-> +          - const: nvidia,tegra132-epp
-> +          - const: nvidia,tegra124-epp
->  
->    reg:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-isp.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-isp.yaml
-> index 3bc3b22e98e1..bfef4f26a3d7 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-isp.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-isp.yaml
-> @@ -11,11 +11,19 @@ maintainers:
->    - Jon Hunter <jonathanh@nvidia.com>
->  
->  properties:
-> +  $nodename:
-> +    pattern: "^isp@[0-9a-f]+$"
-
-Why?
-
-Nothing in commit msg explains this.
-
-
-> +
->    compatible:
-> -    enum:
-> -      - nvidia,tegra20-isp
-> -      - nvidia,tegra30-isp
-> -      - nvidia,tegra210-isp
-> +    oneOf:
-> +      - const: nvidia,tegra20-isp
-> +      - const: nvidia,tegra30-isp
-> +      - const: nvidia,tegra114-isp
-> +      - const: nvidia,tegra124-isp
-> +      - items:
-> +          - const: nvidia,tegra132-isp
-> +          - const: nvidia,tegra124-isp
-> +      - const: nvidia,tegra210-isp
->  
->    reg:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-mpe.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-mpe.yaml
-> index 2cd3e60cd0a8..35e3991f1135 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-mpe.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-mpe.yaml
-> @@ -12,13 +12,19 @@ maintainers:
->  
->  properties:
->    $nodename:
-> -    pattern: "^mpe@[0-9a-f]+$"
-> +    oneOf:
-> +      - pattern: "^mpe@[0-9a-f]+$"
-> +      - pattern: "^msenc@[0-9a-f]+$"
->  
->    compatible:
-> -    enum:
-> -      - nvidia,tegra20-mpe
-> -      - nvidia,tegra30-mpe
-> -      - nvidia,tegra114-mpe
-> +    oneOf:
-> +      - const: nvidia,tegra20-mpe
-> +      - const: nvidia,tegra30-mpe
-> +      - const: nvidia,tegra114-msenc
-> +      - const: nvidia,tegra124-msenc
-> +      - items:
-> +          - const: nvidia,tegra132-msenc
-> +          - const: nvidia,tegra124-msenc
->  
->    reg:
->      maxItems: 1
-> @@ -36,7 +42,9 @@ properties:
->  
->    reset-names:
->      items:
-> -      - const: mpe
-> +      - enum:
-> +          - mpe
-> +          - msenc
-
-No, why? That's redundant. Having names equal to module name brings zero
-benefits. This change even shows that it is counter productive.
-
->  
->    iommus:
->      maxItems: 1
-> @@ -58,6 +66,7 @@ additionalProperties: false
->  examples:
->    - |
->      #include <dt-bindings/clock/tegra20-car.h>
-> +    #include <dt-bindings/clock/tegra114-car.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->  
->      mpe@54040000 {
-> @@ -68,3 +77,12 @@ examples:
->          resets = <&tegra_car 60>;
->          reset-names = "mpe";
->      };
-> +
-> +    msenc@544c0000 {
-> +        compatible = "nvidia,tegra114-msenc";
-
-Difference in compatible does not mean you need new example.
-
-
-Best regards,
-Krzysztof
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
