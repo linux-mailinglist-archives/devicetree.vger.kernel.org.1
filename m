@@ -1,116 +1,134 @@
-Return-Path: <devicetree+bounces-155585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C155A578BF
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 07:20:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9077BA57912
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 09:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B29C116EF50
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 06:20:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7EC0F7A5D06
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 08:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596C6188733;
-	Sat,  8 Mar 2025 06:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E90A1922D4;
+	Sat,  8 Mar 2025 08:03:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UngE8yea"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="rEdsjyaS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CAF17A318;
-	Sat,  8 Mar 2025 06:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8B01714C6;
+	Sat,  8 Mar 2025 08:03:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741414838; cv=none; b=mQ2ORyrgab1d5lqzvaV9LWo5zV4GSl782imxOSamSVZgGmsd5Wa8b0uWAn7culYeiaB5hvRKxjT55F9uR13+e+EyLVMJrgbRxEpUWlMHriC19KWWdncX/oumBd7TSF58sw/TvFEqqL9/4HEgIEwizieow+YzHQWfr7piNmI6JRw=
+	t=1741421000; cv=none; b=aoHeEissQlxqaU5av5XcGqTzzIJMMimQ2I2mJUJcHizojuGBpWXtQtw2uJyBqFt76P70YWgpG8+ECjOdQxdOVok9NnbhEKucn8r0S5E8tG4v38s2aKF7a/ko/EHrjyepXK5I44h5Dl1A7NnoJGCaejAERXld5Jf7499HJTPntG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741414838; c=relaxed/simple;
-	bh=5YfqZTbEGIseGzwqMQm6Q/pxFyZ7sTTqrLNxwSsyqPc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aTXrOjrlije/A6tj59sV17nlTntn9PS1Y/H6fa2NMcj7eD4Fcn35RTf9u+Nhk7Aksg02M7y9DCS4u/66krmrITfoS5SZzwDHV9+HYAelioC54KszmHxZ1GZtRl/ijGJVnYNChZlz7ybYQZK/LViOrAO4TaCQYIm8qzDLZXgHrIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UngE8yea; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741414835; x=1772950835;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5YfqZTbEGIseGzwqMQm6Q/pxFyZ7sTTqrLNxwSsyqPc=;
-  b=UngE8yeayas6Tx3Bdc3bNuuFhwChrat7UM3tPDbFIy3W1pzvgwqZBgW/
-   YIEYRvrU5M76euPiL2UVHCxpvmxssHnSB+Rm/PqoHFmIN5efT+YO2Q9eA
-   2gPj7rByDaiGhpKoCBYmybdptDWwjHENldV3OFpUmKLXQkORb+EWXLQlu
-   lIF+CevsX4lNQTbZu3qqqlCMIX4JZsQWjHYRdt7XwQUwmKhCP6HzMiryl
-   /GhHZAnDJd2xUrUGGL2ZBpXhIcKKLEC83VtfeXo19tNUFw+HyFHCytebV
-   xslg9JDdkoDM/3C5AsW1hmtX18ceFebUXfkM+hP3IrLkQVa7p93TuVbrT
-   w==;
-X-CSE-ConnectionGUID: M7TwBbLMQpmLFNSDsqDZAQ==
-X-CSE-MsgGUID: mkNXwAsoRVS1yNhAZ2txIg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11366"; a="42611147"
-X-IronPort-AV: E=Sophos;i="6.14,231,1736841600"; 
-   d="scan'208";a="42611147"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2025 22:20:34 -0800
-X-CSE-ConnectionGUID: TBMUlj87R0qD7RzuhIEVTg==
-X-CSE-MsgGUID: aA64BUCcSjudK9qzQo3J1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="123689338"
-Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
-  by fmviesa003.fm.intel.com with ESMTP; 07 Mar 2025 22:20:30 -0800
-Received: from kbuild by a4747d147074 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tqnXv-0001Zs-2J;
-	Sat, 08 Mar 2025 06:20:27 +0000
-Date: Sat, 8 Mar 2025 14:20:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	perex@perex.cz, tiwai@suse.com, ivprusov@salutedevices.com,
-	jack.yu@realtek.com, zhoubinbin@loongson.cn,
-	luca.ceresoli@bootlin.com, quic_pkumpatl@quicinc.com,
-	paulha@opensource.cirrus.com, rf@opensource.cirrus.com,
-	nuno.sa@analog.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	yijiangtao@awinic.com
-Subject: Re: [PATCH V2 2/2] ASoC: codecs: Add aw88166 amplifier driver
-Message-ID: <202503081433.xufVVq8t-lkp@intel.com>
-References: <20250228034958.181934-3-wangweidong.a@awinic.com>
+	s=arc-20240116; t=1741421000; c=relaxed/simple;
+	bh=2VwE+gjSVO8aAdTi/KkzJ0K11zKXGmlKPuqCLvDz0rY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=II4FhfAHBxVEU8F213PR489LExI9JvDPyvdbidGp/fyaCAX61kgNAK7o9Br9H+q9veIuVNjdl9FQXXqjWazjzAEr/mwV5V3xIT+aPTDS5Ls0t5Cnyt2Gs7nd4wvYPCxRquqpCCim7ldMucPUbaRVnuGevkA4q2FdQcxULPuVnE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=rEdsjyaS; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: ab2769c6fbf111efaae1fd9735fae912-20250308
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=6nXu7KSD6tf6cobmFDtax1hDH31QEZ+uhW/Em9uGb1k=;
+	b=rEdsjyaSLos9IBJ/dAVag+sofQhuQTkuoF23VCzHwW18WzZSaDBHXGepgm0BF4BW46Z1WG5XZ4uIEzu/ADknGD2xWMaFhT0mWlePM9fwlCZTNJz1tYP4xrpwHhXGQPeWYs0xLyxAJskDtccFtsTeb8yYQzjUaH5qwAFoUjFQpGo=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:ed74171a-98d1-4d99-8340-6a015b18b3af,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:5bf3d749-a527-43d8-8af6-bc8b32d9f5e9,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: ab2769c6fbf111efaae1fd9735fae912-20250308
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 94889012; Sat, 08 Mar 2025 15:48:04 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Sat, 8 Mar 2025 15:48:03 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Sat, 8 Mar 2025 15:48:02 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>
+CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, Yunfei
+ Dong <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v8 0/3] media: mediatek: vcodec: support h264 extend vsi
+Date: Sat, 8 Mar 2025 15:47:54 +0800
+Message-ID: <20250308074802.18929-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250228034958.181934-3-wangweidong.a@awinic.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-Hi,
+The working buffer address start and end are calculated in kernel
+side currently, the address end can't be calculated if the driver
+only getting the address file handle, not the real physical address.
+Need to send the extended vsi to firmware to calculate the address
+end.
 
-kernel test robot noticed the following build warnings:
+Re-construct some interface and add configuration to support extend
+and non extend driver at the same time. Needn't to parse nal info for
+extended architecture.
+---
+compared with v7:
+- fix smatch warning for patch 2
 
-[auto build test WARNING on 1e15510b71c99c6e49134d756df91069f7d18141]
+compared with v6:
+- fix the coding style for patch 2
+- rewrite commit message for patch 2/3
 
-url:    https://github.com/intel-lab-lkp/linux/commits/wangweidong-a-awinic-com/ASoC-dt-bindings-Add-schema-for-awinic-aw88166/20250228-115709
-base:   1e15510b71c99c6e49134d756df91069f7d18141
-patch link:    https://lore.kernel.org/r/20250228034958.181934-3-wangweidong.a%40awinic.com
-patch subject: [PATCH V2 2/2] ASoC: codecs: Add aw88166 amplifier driver
-config: x86_64-buildonly-randconfig-004-20250308 (https://download.01.org/0day-ci/archive/20250308/202503081433.xufVVq8t-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250308/202503081433.xufVVq8t-lkp@intel.com/reproduce)
+compared with v5:
+- add some parameters comment for patch 2
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503081433.xufVVq8t-lkp@intel.com/
+compared with v4:
+- rebase this patch series with latest vcodec driver
 
-All warnings (new ones prefixed by >>):
+compared with v3:
+- change code logic with callback to decode for patch 2
 
->> sound/soc/codecs/snd-soc-aw88166.o: warning: objtool: .text.aw_dev_dsp_update_cfg: unexpected end of section
+compared with v2:
+- squash patch 2/3/4 together
+- re-write commit message for patch 1
+
+compared with v1:
+- combine some pathes together for patch 2
+- re-write patch 4
+---
+Yunfei Dong (3):
+  media: mediatek: vcodec: remove vsi operation in common interface
+  media: mediatek: vcodec: support extended h264 decode
+  media: mediatek: vcodec: add description for vsi struct
+
+ .../vcodec/decoder/mtk_vcodec_dec_drv.h       |   2 +
+ .../decoder/vdec/vdec_h264_req_multi_if.c     | 652 +++++++++++++++---
+ 2 files changed, 562 insertions(+), 92 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.46.0
+
 
