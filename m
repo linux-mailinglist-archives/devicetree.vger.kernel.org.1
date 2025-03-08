@@ -1,229 +1,254 @@
-Return-Path: <devicetree+bounces-155674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F0FA57C45
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 18:19:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6056A57C4F
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 18:24:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FE723ADFE7
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 17:19:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F2737A557D
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 17:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B261E51FD;
-	Sat,  8 Mar 2025 17:19:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF3721DE2AA;
+	Sat,  8 Mar 2025 17:23:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MrnmAze8"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="x3Lnoc3f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662591537A7;
-	Sat,  8 Mar 2025 17:19:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60AA14831E
+	for <devicetree@vger.kernel.org>; Sat,  8 Mar 2025 17:23:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741454385; cv=none; b=RUsbfMO0jUNIjyo3GibA1gAZE/XtshG4KsUT2g+8O5B8ehDo8cQDijbsDtXW+psJlUIzWcqxoempw/LcActR85Erc6hX20ZGhDsALQLLMQtjjaJZmLpcHs14YShwPirbKVklnRuZzEMA7hPbMXEOnsNTLFYH8NFKvH/ZZCYIbaM=
+	t=1741454636; cv=none; b=ONoEjSzMfDQt6v4bI20o+F56Ax1Kiobnm2kbz5/puBRqutDzvhwmeDR5Y1oFsf2R/p9QMCCd5j8AT5dBoVRv8byHkJL48G4Ks3OrfdxH1N13zAq0/lXTQ1nT/DdnNODeZ9uH23bZWHJCIW0ZUNLyPjLhghkv2FKeFK/0dcoapC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741454385; c=relaxed/simple;
-	bh=WIXPEAfYW6XziCXxNrSUx8MTO0qn8BfggsX4aIVdclE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SLMK4igxRIUTpG3f23+eLJHL0K6KEuyGDMIOV7z8v87i6Tgvj+uJDHvdSVa+tehq9kRZm+pL3gqEIC3rfeol8TcZ3f7cHPckzT1Ajg3Cfrx4NElO3Zx4Sye4h95hJEkafvv8qbyUcoP+hX7G2chs2jcwLiUQ4EHqLwF3Y53OSQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MrnmAze8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 392D4C4CEE0;
-	Sat,  8 Mar 2025 17:19:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741454384;
-	bh=WIXPEAfYW6XziCXxNrSUx8MTO0qn8BfggsX4aIVdclE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MrnmAze88WmBN/BzwaskCEYUl/E7BBXL4zio3IYdhby50e3KiZaPauGIURpacE/Dw
-	 UBb+o9RKvUtD8FZcx+9DBz69KbwMmZvn2ADR3VrAbBy/2I1GDssGYJO/4K4wzG8GHO
-	 ZNbnsL1ebkV6GXU+0h1iUkYgnp4fYYw0r6cpHTSamn2fJL7YrK3H+DbBSVhBrHd79z
-	 4+8kH/U1hj2tQWYIYiWfT6rJ+xAVemaQUqHdmxSzu99yAMjBKruAuTJ6pwXAwXukK4
-	 3H6s/bCklWlVZPO+/buxuUFR+Kh2tQE6JcuTP6m2tyv9PI3eg6FIP25uHYQWvuJQmp
-	 EmH1Nmlv0ciDg==
-Date: Sat, 8 Mar 2025 17:19:32 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>, Daniel
- Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Helge
- Deller <deller@gmx.de>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
- <u.kleine-koenig@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-leds@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] mfd: lm3533: convert to use OF
-Message-ID: <20250308171932.2a5f0a9b@jic23-huawei>
-In-Reply-To: <CAPVz0n3Qt00my1ejoyEgxTRi-mQszHybwhPq70eO=94oxMfECQ@mail.gmail.com>
-References: <20250224114815.146053-1-clamor95@gmail.com>
-	<20250224114815.146053-3-clamor95@gmail.com>
-	<20250228085927.GM824852@google.com>
-	<CAPVz0n0jaR=UM7WbBs3zM-cZzuaPVWBjf4Q7i82hvxtXg2oCzQ@mail.gmail.com>
-	<20250305134455.2843f603@jic23-huawei>
-	<CAPVz0n3Qt00my1ejoyEgxTRi-mQszHybwhPq70eO=94oxMfECQ@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741454636; c=relaxed/simple;
+	bh=rphzLWt8qRKS8I5IQKDSTFV4IenJ2J85dPuChCgbMhk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mX/pW8UJYljBFU3JApIy6ozJ7Sse7LDDe32fKZ/OXFLDrb4FA3Tk7qcfeXlSGgfPMXNGa2hnVB9lKlHJ71Rx8Az6lRN17/ljTBF4+ui3nrzC/0KFSkbYX5FQTVeN6j2Vn6xtlrW3vF6CNm6Xc6AEoYY3kn1ndfJeMptJDDOiyQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=x3Lnoc3f; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1741454628;
+ bh=rdKpkKhc5DWF4kJy316aJ1WXtNP0Vx9DhX/sV/rVTxg=;
+ b=x3Lnoc3f9C7fFGKNB4v0icQZ7btgsRRNtQZ9es4o4bJl38BfvCozP65PnP1PKhkvPVxxef6qO
+ BfB0p+TbHmWqkt+0c/V+MazlOf0BmCihm6K/4TIToFUIDiW9cBsEHxMtyUxDlmCa8YKSIOTXZmF
+ EX6Crn6oRKl4jwrs5BGtPwQWGUEbZK8wRoIpzZJLmO7xa1hAOuDj+Hkyld5M7qer+lxQz0nSu8n
+ eIocCPFlVVtYcJMG+Z7xd/SDjE3jqHMJT61DoivH5OP/ghr3/bYGSuB9b6qIvp8gkyd27i6pxc7
+ QLKx/TMBJ/08McQk/WH0prpsFgDlSQlQDhFweKwObonw==
+X-Forward-Email-ID: 67cc7d1891daabb65c1b483f
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <8af199e4-90bb-4ad9-b0d3-84cf443b04bb@kwiboo.se>
+Date: Sat, 8 Mar 2025 18:23:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 8/8] arm64: dts: rockchip: Enable SD-card interface on
+ Radxa E20C
+To: Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>
+Cc: conor+dt@kernel.org, cristian.ciocaltea@collabora.com,
+ detlev.casanova@collabora.com, devicetree@vger.kernel.org, heiko@sntech.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20250305194638.47187-1-ziyao@disroot.org>
+ <20250307033508.656479-1-amadeus@jmu.edu.cn> <Z8qJqpUwi7VV8tJk@pie>
+ <5a0a7ce1-1dfb-4d19-8a1e-0d89d177f5b8@kwiboo.se> <Z8xh2mE1BTE4co43@pie>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <Z8xh2mE1BTE4co43@pie>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, 5 Mar 2025 16:18:38 +0200
-Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+On 2025-03-08 16:27, Yao Zi wrote:
+> Hi Jonas,
+> 
+> On Fri, Mar 07, 2025 at 07:45:00AM +0100, Jonas Karlman wrote:
+>> Hi Chukun,
+>>
+>> On 2025-03-07 06:52, Yao Zi wrote:
+>>> On Fri, Mar 07, 2025 at 11:35:08AM +0800, Chukun Pan wrote:
+>>>> Hi,
+>>>>
+>>>>> +&sdmmc {
+>>>>> +	bus-width = <4>;
+>>>>> +	cap-mmc-highspeed;
+>>>>> +	cap-sd-highspeed;
+>>>>> +	disable-wp;
+>>>>> +	no-sdio;
+>>>>
+>>>> With 'no-sdio' property:
+>>>> [  129.608986] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+>>>> [  130.711168] mmc1: Card stuck being busy! __mmc_poll_for_busy
+>>>> [  130.725536] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
+>>>> [  131.751240] mmc1: Card stuck being busy! __mmc_poll_for_busy
+>>>> [  131.765608] mmc_host mmc1: Bus speed (slot 0) = 200000Hz (slot req 200000Hz, actual 200000HZ div = 0)
+>>>> [  132.825083] mmc1: Card stuck being busy! __mmc_poll_for_busy
+>>>> [  132.839413] mmc_host mmc1: Bus speed (slot 0) = 187500Hz (slot req 187500Hz, actual 187500HZ div = 0)
+>>>> [  133.960141] mmc1: Card stuck being busy! __mmc_poll_for_busy
+>>>>
+>>>> Without 'no-sdio' property:
+>>>> [  105.224019] mmc1: error -22 whilst initialising SDIO card
+>>>> [  106.290838] mmc1: Card stuck being busy! __mmc_poll_for_busy
+>>>> [  106.801931] dwmmc_rockchip ffc30000.mmc: Busy; trying anyway
+>>>> [  107.385835] mmc_host mmc1: Timeou sending command (cmd 0x202000 arg 0x0 status 0x80202000)
+>>>> [  107.400425] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
+>>>> [  107.431561] mmc_host mmc1: Bus speed (slot 0) = 49800000Hz (slot req 50000000Hz, actual 49800000HZ div = 0)
+>>>> [  107.433107] mmc1: new high speed SDIO card at address 0001
+>>>
+>>> So it seems the sdmmc controller actually works with SDIO commands as
+>>> well? I don't expect that since the datasheet says RK3528 has only two
+>>> SDIO 3.0 controllers.
+>>>
+>>> We could remove the "no-sdio" property if SDIO actually works. Will
+>>> apply it in the next version if there's no objection against this.
+>>
+>> On the E20C the sdmmc controller is routed to a microSD card slot mainly
+>> intended for use with microSD-cards and should normally not need SDIO.
+> 
+> As pointed out by Chukun, I found the hardware design guide for
+> RK3528[1] (in Chinese) does claim that SDIO 3.0 is supported on all
+> these three controllers in Chapter 2.3.1 (SDMMC/SDIO),
+> 
+>   RK3528 集成了 1 个 SDMMC 控制器和 2 个 SDIO 控制器，均可支持 SDIO3.0 协
+>   议，以及 MMC V4.51 协议。其中 SDIO0 和 SDIO1 最高可支持 200MHz，SDMMC
+>   最高只支持到 150MHz
+> 
+> translated to English,
+> 
+>   RK3528 integrates one SDMMC controller and two SDIO controllers, all
+>   support SDIO3.0 protocol and MMC V4.51 protocol. Among them SDIO0 and
+>   SDIO1 support 200MHz frequency at maximum, and SDMMC supports up to
+>   150MHz.
+> 
+> So I think there's no reason to explicitly deny SDIO initialization
+> sequence for the controller on Radxa E20C. imho this won't break
+> anything even for a sdcard slot, will it?
 
-> =D1=81=D1=80, 5 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 15:45 Jon=
-athan Cameron <jic23@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > On Fri, 28 Feb 2025 11:30:51 +0200
-> > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
-> > =20
-> > > =D0=BF=D1=82, 28 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 10:5=
-9 Lee Jones <lee@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5: =20
-> > > >
-> > > > On Mon, 24 Feb 2025, Svyatoslav Ryhel wrote:
-> > > > =20
-> > > > > Remove platform data and fully relay on OF and device tree
-> > > > > parsing and binding devices.
-> > > > >
-> > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > > ---
-> > > > >  drivers/iio/light/lm3533-als.c      |  40 ++++---
-> > > > >  drivers/leds/leds-lm3533.c          |  46 +++++---
-> > > > >  drivers/mfd/lm3533-core.c           | 159 ++++++++--------------=
-------
-> > > > >  drivers/video/backlight/lm3533_bl.c |  71 ++++++++++---
-> > > > >  include/linux/mfd/lm3533.h          |  35 +-----
-> > > > >  5 files changed, 164 insertions(+), 187 deletions(-)
-> > > > > =20
-> ...
-> > > > >       /* ALS input is always high impedance in PWM-mode. */
-> > > > > -     if (!pdata->pwm_mode) {
-> > > > > -             ret =3D lm3533_als_set_resistor(als, pdata->r_selec=
-t);
-> > > > > +     if (!als->pwm_mode) {
-> > > > > +             ret =3D lm3533_als_set_resistor(als, als->r_select)=
-; =20
-> > > >
-> > > > You're already passing 'als'.
-> > > >
-> > > > Just teach lm3533_als_set_resistor that 'r_select' is now contained.
-> > > > =20
-> > >
-> > > This is not scope of this patchset. I was already accused in too much
-> > > changes which make it unreadable. This patchset is dedicated to
-> > > swapping platform data to use of the device tree. NOT improving
-> > > functions, NOT rewriting arbitrary mechanics. If you feed a need for
-> > > this change, then propose a followup. I need from this driver only one
-> > > thing, that it could work with device tree. But it seems that it is
-> > > better that it just rots in the garbage bin until removed cause no one
-> > > cared. =20
-> >
-> > This is not an unreasonable request as you added r_select to als.
-> > Perhaps it belongs in a separate follow up patch. =20
->=20
-> I have just moved values used in pdata to private structs of each
-> driver. Without changing names or purpose.
->=20
-> > However
-> > it is worth remembering the motivation here is that you want get
-> > this code upstream, the maintainers don't have that motivation. =20
->=20
-> This driver is already upstream and it is useless and incompatible
-> with majority of supported devices. Maintainers should encourage those
-> who try to help and instead we have what? A total discouragement. Well
-> defined path into nowhere.
+I have no strong opinion on this, just something I have done on a few
+boards recently.
 
-That is not how I read the situation. A simple request was made to
-result in more maintainable code as a direct result of that
-improvement being enabled by code changes you were making.
-I'm sorry to hear that discouraged you.
+When sd/sdio/mmc controller is attached to a microSD card slot I add
+no-sdio, when my uSD to eMMC adapter is not working I also add no-mmc.
 
->=20
-> >
-> > Greg KH has given various talks on the different motivations in the
-> > past. It maybe worth a watch.
-> >
-> > =20
-> > > =20
-> > > > >               if (ret)
-> > > > >                       return ret;
-> > > > >       }
-> > > > > @@ -828,22 +833,16 @@ static const struct iio_info lm3533_als_inf=
-o =3D {
-> > > > >
-> > > > >  static int lm3533_als_probe(struct platform_device *pdev)
-> > > > >  {
-> > > > > -     const struct lm3533_als_platform_data *pdata;
-> > > > >       struct lm3533 *lm3533;
-> > > > >       struct lm3533_als *als;
-> > > > >       struct iio_dev *indio_dev;
-> > > > > +     u32 val; =20
-> > > >
-> > > > Value of what, potatoes?
-> > > > =20
-> > >
-> > > Oranges. =20
-> >
-> > A well named variable would avoid need for any discussion of
-> > what it is the value of.
-> > =20
->=20
-> This is temporary placeholder used to get values from the tree and
-> then pass it driver struct.
+Similar if the controller is attached to emmc, I add no-sd and no-sdio,
+and if used for sdio wifi, I add no-sd and no-mmc.
 
-Better if it is a temporary placeholder with a meaningful name.
+Mostly to minimize initialization time when slot is unpopulated or card
+or module is faulty.
 
->=20
-> > > =20
-> > > > >       int ret;
-> > > > >
-> > > > >       lm3533 =3D dev_get_drvdata(pdev->dev.parent);
-> > > > >       if (!lm3533)
-> > > > >               return -EINVAL;
-> > > > >
-> > > > > -     pdata =3D dev_get_platdata(&pdev->dev);
-> > > > > -     if (!pdata) {
-> > > > > -             dev_err(&pdev->dev, "no platform data\n");
-> > > > > -             return -EINVAL;
-> > > > > -     }
-> > > > > -
-> > > > >       indio_dev =3D devm_iio_device_alloc(&pdev->dev, sizeof(*als=
-));
-> > > > >       if (!indio_dev)
-> > > > >               return -ENOMEM;
-> > > > > @@ -864,13 +863,21 @@ static int lm3533_als_probe(struct platform=
-_device *pdev)
-> > > > >
-> > > > >       platform_set_drvdata(pdev, indio_dev);
-> > > > >
-> > > > > +     val =3D 200 * KILO; /* 200kOhm */ =20
-> > > >
-> > > > Better to #define magic numbers; DEFAULT_{DESCRIPTION}_OHMS
-> > > > =20
-> > >
-> > > Why? that is not needed. =20
-> > If this variable had a more useful name there would be no need for
-> > the comment either.
-> >
-> >         val_resitor_ohms =3D 200 * KILLO;
-> >
-> > or similar.
-> > =20
->=20
-> So I have to add a "reasonably" named variable for each property I
-> want to get from device tree? Why? It seems to be a bit of overkill,
-> no? Maybe I am not aware, have variables stopped being reusable?
+Not sure how common it is to use a microSD to SDIO adapter, sound like
+an uncommon edge case, possible by someone who would know how to create
+and use a dt-overlay. I also do not think there will be a common use
+case with a uSD to eMMC adapter, however that is something this board
+vendor sell themself [3], so may be a slightly more likely use case.
 
-Lets go with yes if you want a definitive answer. In reality it's
-a question of how many are needed.  If 10-100s sure reuse is fine,
-if just a few sensible naming can remove the need for comments
-and improve readability.
+[3] https://radxa.com/products/accessories/emmc-to-usd
 
-Jonathan
+Use of these no- props could possible be considered configuration
+and not information about the board hw design, so I am torn and as
+mentioned above, I have no strong opinion about keeping no-sdio or not.
+
+> 
+> Additionally, this piece of information points out that wrong
+> max-frequency is set for SDIO{0,1}. Rockchip overrides the frequency in
+> devicetrees for the demo boards[2], I'm not sure whether it's for some
+> speical reason or not.
+> 
+> Since I don't have a SDIO-capable board on hand, could you please test
+> whether 200MHz actually works? If so I'll correct the SoC devicetree in
+> v3.
+
+I would change to use default 200MHz as stated in the HW design guide.
+
+Did a short boot test on my Sige1 board and the SDIO module can at
+least be identified using 200 MHz:
+
+  dwmmc_rockchip ffc10000.mmc: IDMAC supports 32-bit address mode.
+  dwmmc_rockchip ffc10000.mmc: Using internal DMA controller.
+  dwmmc_rockchip ffc10000.mmc: Version ID is 270a
+  dwmmc_rockchip ffc10000.mmc: DW MMC controller at irq 35,32 bit host data width,256 deep fifo
+  mmc_host mmc2: card is non-removable.
+  mmc_host mmc2: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+  mmc_host mmc2: Bus speed (slot 0) = 198000000Hz (slot req 200000000Hz, actual 198000000HZ div = 0)
+  dwmmc_rockchip ffc10000.mmc: Successfully tuned phase to 30
+  mmc2: new UHS-I speed SDR104 SDIO card at address 0001
+  brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac43752-sdio for chip BCM43752/2
+  brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac43752-sdio.armsom,sige1.bin failed with error -2
+  brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac43752-sdio.bin failed with error -2
+  brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl 0x50
+
+  ~ # cat /sys/kernel/debug/mmc2/ios
+  clock:          200000000 Hz
+  actual clock:   198000000 Hz
+  vdd:            21 (3.3 ~ 3.4 V)
+  bus mode:       2 (push-pull)
+  chip select:    0 (don't care)
+  power mode:     2 (on)
+  bus width:      2 (4 bits)
+  timing spec:    6 (sd uhs SDR104)
+  signal voltage: 1 (1.80 V)
+  driver type:    0 (driver type B)
+
+If it turns out to be any instability issues for a specific board using
+default 200 MHz, such board can always define a lower max-frequency in
+its board .dts-file.
+
+Regards,
+Jonas
+
+> 
+>> What card/adapter do you have inserted in the microSD card slot that
+>> requires use of SDIO instead of just SD or MMC? What is the use case you
+>> have that requires removal of no-sdio on E20C?
+>>
+>> Regards,
+>> Jonas
+>>
+>>>
+>>> Further tests about the capabilities of the controller are welcome.
+>>>
+>>>> # cat /sys/kernel/debug/mmc1/ios
+>>>> clock:          50000000 Hz
+>>>> vdd:            21 (3.3 ~ 3.4 V)
+>>>> bus mode:       2 (push-pull)
+>>>> chip select:    0 (don't care)
+>>>> power mode:     2 (on)
+>>>> bus width:      2 (4 bits)
+>>>> timing spec:    2 (sd high-speed)
+>>>> signal voltage: 0 (3.30 V)
+>>>> driver type:    0 (driver type B)
+>>>>
+>>>> Thanks,
+>>>> Chukun
+>>>>
+>>>> -- 
+>>>> 2.25.1
+>>>>
+>>>
+>>> Best regards,
+>>> Yao Zi
+>>
+> 
+> Thanks,
+> Yao Zi
+> 
+> [1]: https://github.com/DeciHD/rockchip_docs/blob/main/rk3528/RK3528%20Hardware%20Design%20Guide-CN-V1.0-20230525.pdf
+> [2]: https://github.com/rockchip-linux/kernel/blob/604cec4004abe5a96c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3528-demo1-lp4-v10.dtsi#L47
 
 
