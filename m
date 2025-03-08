@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-155732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACB5EA57E99
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 22:37:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 233C4A57EA3
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 22:38:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8243616E224
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 21:37:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4CEDE7A7397
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 21:37:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA31206F2A;
-	Sat,  8 Mar 2025 21:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16BD8214215;
+	Sat,  8 Mar 2025 21:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
 	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="yTYUSQYu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345A61A5BA5
-	for <devicetree@vger.kernel.org>; Sat,  8 Mar 2025 21:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619FF213246
+	for <devicetree@vger.kernel.org>; Sat,  8 Mar 2025 21:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741469862; cv=none; b=PpZvX9bxwU0BB8S4ZRAj4XBbfJW94sirsUoskrkFUVSvFxCxAJNrsUuoigP1RkPBDwZz0MHQXbo8EIX3Xjxx+PgcIqvyJR7ejwUHuXUfh4kHyT/7/wFo4zG51dZkQLHAIJN5154sPSP0r+p9oBfgbKmq6720UJW+M2+IiajSHHU=
+	t=1741469866; cv=none; b=lvAjDUbozWsAB2bjHuFmCq5oTd9MtCLKUQvUYwwxWh+fN9hQ3DmtBy+jg3OUckdk3hlC7iiYqm6T0r6Ube4cFBJTGkGVa+V+ErHZgptyC4cOQgkp8cGTuXfnphblqf37Qz8qsTkSzHPU3gr8L8wc47wCLD0iPjuSd94KSgNqH1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741469862; c=relaxed/simple;
+	s=arc-20240116; t=1741469866; c=relaxed/simple;
 	bh=ZNcLqMM/SppNIWCsDUuU2QqjwnokOxUw+1emVVIkXaU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AjlvLYMjyhZUGDi1MhWSaAIlLP6VAimAmHrnDTOhSikANOCjc8txREQUqKwyDnBPQ8NXl71sYuP1joIqYePEbGTGvMfcAmkvJJ3emXpDdfYAHJ4uOXypIDEhHlJqnjcwjxpp8scw1DmMxxUS81db03yeOOJyUgHG/aNgg06VOA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=yTYUSQYu; arc=none smtp.client-ip=121.127.44.73
+	 MIME-Version; b=T1YBZJ0DVSH1UbIj1BncYYkf9igovX4b3o/8IvnTL+xWEhyglBO95A0sLU7QRX1okB5y2gmEe1XuWhbIgMfyZelX8Sk9EgZ+2Ba4ui8aZDBw8y4q2+iwz+ajNaWmEeU/wGMehl58vcKtcbLruKGXiZ+HI1YMsPL2GVMifssniVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=yTYUSQYu; arc=none smtp.client-ip=121.127.44.59
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
@@ -42,7 +42,7 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  nAcKDXrsX3ehjTnV7CRrQP+dZz9GhibTBdJzQHcAaAkg==
 X-Forward-Email-ID: 67ccb8a0bfe70eb1bfc13b1e
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
+ 121.127.44.59
 X-Forward-Email-Version: 0.4.40
 X-Forward-Email-Website: https://forwardemail.net
 X-Complaints-To: abuse@forwardemail.net
