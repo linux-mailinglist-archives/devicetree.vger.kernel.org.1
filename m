@@ -1,155 +1,100 @@
-Return-Path: <devicetree+bounces-155653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 081AEA57B47
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 15:54:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C132FA57B4D
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 15:58:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE1703AF65B
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 14:53:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFCE516501D
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 14:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634051D0E2B;
-	Sat,  8 Mar 2025 14:54:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SYFHH0LJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4371DC9A3;
+	Sat,  8 Mar 2025 14:58:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EE3F17C77;
-	Sat,  8 Mar 2025 14:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F96D10F4;
+	Sat,  8 Mar 2025 14:58:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741445644; cv=none; b=M3QX1RyFycyVC0wyddT/anoy/qXD752u6R+r75xmmQx0argJNGMiJ1fwuO76jyX9TjdUHVTc2Rx0iSTZtPNXlk+q+eAJe7Jb3rSBGTnbbsNPiS8dVvgRNvPthQ2miNRFhRGouaYtLf5mdDrwgKBLiZZ59d4eMlqKMchGNnWmzTE=
+	t=1741445887; cv=none; b=Kzqm6gY+TIZ8sJbRVf+udNkgVgPPMm1c8FR0ZgYE64kQKUYezJYbrOgjnnf4N0qBfTGVLHdDqOgcq3Lu9ANhXjgBBAaOwY1nDULHtyelipCQj8Oz0rtMxGIbOOJ2Z5iksZMFpsgwFzmpWRC1KtFbc7JUqTnn3ECl9rl+N09X7oI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741445644; c=relaxed/simple;
-	bh=QBwQ8twtndtJEIY4YU0hJ5zZuI4VjHC06S9DrSkJeWs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I2RD4JuoINOOiGDGTiTzYvsT4Rck8jt0ITdHSdHUP2QflAEBNrzMp83YozU3KUc/1y/5P8JZIv2vNCLeq12ltuBrtFpceF0xah0gPV68d4BA5UnbbUUn5bqtQvZh+JmUd/6OS8cZn+WPG4fgwkoWhYxAkWKZ2E0S8O2rdXYkMLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SYFHH0LJ; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1741445887; c=relaxed/simple;
+	bh=hMDlrsxv5N1HhsTBGniC6IAMAhMKkBOp/z2a3zXv6EM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KpHiQbmFwBUN6NoiBxuoy4qVdMEMiMB3W2Rb9ul7ZWFlB3MRny/nIWl3xIEhpxvdhVhXvIQL/VoybQrESkV/TOBvceACAwKi1ZRQC6Xls3jNbrehNrIQypzKK0zx0JcV5ZQikUH3XdhkFnK8qoumFqhi3nZAVzzcg/PtH8m7UEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54954fa61c9so3333345e87.1;
-        Sat, 08 Mar 2025 06:54:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741445641; x=1742050441; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Keyp5UqooSuCZNdvM6L5386ygoD++VE/io10zX0U4b4=;
-        b=SYFHH0LJ67K8eZSW2r/eBv/PG0Yu5X7b4x/xkVhzD7Lry1WSso0EGihFf2N7ftojDt
-         T1Qor7fvl5DG4XQ1j8KOedY7nYC64uR+alh0oSq8O1MKNxFaH1W4LsEN7E8M5ilTrwEr
-         6zEEXlRR8WhPH8O1UErOk9mIJHd1EGTvPJ1r3BWFCuWm3Br+MV1anB+ql+C+bRDUEfPF
-         MJZ3rpqs5qULR+wi3frsjrmqxvozrAsgF6gkn+HL3N93HB1gXAKC6n+66eJ1NDi9QnGk
-         ydQzJ2Ybzg6PI7lhdJOGpgVPi5kvzfMjePGJs3Pvm0jsvYV6s1hzPiKyYSZc2DryaT4Q
-         9DQw==
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-223fb0f619dso56208545ad.1;
+        Sat, 08 Mar 2025 06:58:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741445641; x=1742050441;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Keyp5UqooSuCZNdvM6L5386ygoD++VE/io10zX0U4b4=;
-        b=Q1hH78+zhG61Ew+C5+24GNWnjwf2ff1/1GKaTA/n0BiKJt5vtfAPbVw98oBsJOiCqa
-         SxaElyg6zuM5xflc8MfALFcHTLezkc3YPzm7vN7oE5acNPI7/bXu83oLKwwQ+sRbQP0m
-         IVIQlFsWiyaUImysbZoTszx+NXldAwiNUSzSIcaMgjydVkVQuONe7lPEmnlvMnnjJD6q
-         NJq8YtQF5PiCNXmtQDhzuWERbxKBQODP8FWVA+w189132ngzQw2CePhr1Gipb96AljXn
-         wqT8PXZ261BkIt1VouBuxbfWYxH96HKsN4KYiPYfePAmhkM86j8rVlidpIUZ6h/s+9lR
-         Uddg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPIlS9EqthCtQceCSiZmEY8HJaXHfq/VLAcI+SWE7DE54VZHydE9eQHZC1C5CSlOAckHtXvIAp/U0GuM4=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyb4fcqUPxr2fZ8iLSjPDsru/lemkxx99ADKu3CPpIdHKl9lU6j
-	TlTvSdShCNSP3rgRUjfpzoADoGNWQb5NTot16XgYIk5dq3PGtvVV
-X-Gm-Gg: ASbGncuUwLL8nkrAV4K4GpHgHOsLg28FZHAHBqDxdt49dD4ajIuVupm9HX8yG7UzwOH
-	v4gB6cd04X/WtTRN5OeVcx/SBDi3/L6tcUhr4rOazhzsEBuDBYGtHbDWTo2sfQ9IJdUUlYWmupO
-	n0qDpC5tQtq4JeQA5Vn4uNJcIBTw4umD4CV2lsb9KgoDiyeyfHYLUymJj0q8Uq+sZDQ0m41V487
-	unyU5MXEzyj9b+CzM23tMAidqdD7cpzMUBMhrzD9ys9CLqiv6cyOw4TKiQi9VWK7sqmjUWNIqkt
-	/vJovm6xPE6fJ1z7TnMIViv9A8N9PvGpEc9mAl3mCDnu29B64WKMiTVcW4FHtpsDru9q/w==
-X-Google-Smtp-Source: AGHT+IFdMQ6igpHYoU+OFcqiUCRXxji/FOXpGlAvF0Doh5wY4O8NygnwUp3CThZfRGttQjNw6hi+jQ==
-X-Received: by 2002:a05:6512:3d27:b0:549:8fc0:bc30 with SMTP id 2adb3069b0e04-54990e2bbcdmr2520218e87.2.1741445640251;
-        Sat, 08 Mar 2025 06:54:00 -0800 (PST)
-Received: from [192.168.3.116] ([78.56.129.233])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498b0bd128sm831788e87.152.2025.03.08.06.53.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 Mar 2025 06:53:59 -0800 (PST)
-Message-ID: <d1c600f1-a874-4bb8-8b9f-22a3414edfcc@gmail.com>
-Date: Sat, 8 Mar 2025 16:53:56 +0200
+        d=1e100.net; s=20230601; t=1741445885; x=1742050685;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0KDrEoyP4jGfL5KBLDfRqPR/7suUQU11UZUvsVsBe/g=;
+        b=sm/TZDTnMa4qT12vB26GijVV4xCw3UYjEi/b+AktbgSqYGXhMJf0YhL59c6aAcGAna
+         6Yh3BqOGQsE1wHC0fAl6Y2/cecrl9lqaZzZonyolJlZkoA78UWlBQd0qlbhT2Ke+Wb8a
+         iM4VCLSqz9lN/hKIOaF2QEWGq0mkMcE+SKYarviXt55Ay8aWbAfArC6mcOTAHEjRRJmi
+         yHQtS45Nf5S/RupyTuGbu9Q+tdUyrc7aC2bCUrBNH5RC+YuzkBKH0JmwzChj3RkLsgWR
+         5iHag5fPBHGNYDeFiQXob976pFPk86oILgE/o4lDUz9Bud0IfPHgn0ZtFQArV+0gR7wu
+         QZpA==
+X-Forwarded-Encrypted: i=1; AJvYcCVoKyI+9O3JL7ccvMsbHMGChXWcgBTW118WYfPPfiz0bG+sPpHbfy0R5JhPOs4KwWKxqtXkpzGQD59H7wS9@vger.kernel.org, AJvYcCWnAEfxutFUmlbc2ZpyIEy+RAcHNwMnvLprQ6pHaQj7TNw1yesiRAV2N+ghu6j3qvZScN8QlpHLninZ@vger.kernel.org, AJvYcCXSwEAVOkZvDeQG6EtreupGDRbvaWI5kkPbQ/gJ3ykBTS/HPWrpW8QLRxWY2Rg/HIJpnV0DJsC+UPEc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjknVm8G6dzjUK3UO92vws76Ckvc8C9IkmpAmCDLw1z2YE7yBb
+	Br/jrqs4k5ngbtfa8JjII4j0IGFXsewk1HeGtH5o0JW58Pueh5Kl
+X-Gm-Gg: ASbGncv0nEtF7YJq5V6X4dD1XUizOaIPGpyJgPav7rw2dT8T81aGjBh0MEvBQEIWuEN
+	Gg3SnxnvsIxskeBxB9xhUUoB9SHmpbK+hdu+iKhzI+aIkcgwZ9JGZwrJEnbV5sol8rx89iPLWaR
+	tV+Wo8ip6mEXISd3OYWDMOXnkX1rgvwb5e1hs9VJoO1H/y3H8AWzAUczQCU9A637WmpZl0nM6Ey
+	UmtJmyM7efR+3qqPP7QSgjI58zInnb7aEyZ83bZflytFdqRTpq0bFFs1zzMp7dyMmKe7cC8Od1G
+	CKaj9Gdi4Bl5N0gHWzQcNuk68IzFRGpUMPj/b7ss/QjRTG9veALmQfNth7lkRAXh6bd4wsEegrD
+	YfQE=
+X-Google-Smtp-Source: AGHT+IFrki4JZBZlTOdD9wNIdmnZOMDK+QF1rINfsxHIZ8KiUTgx72Vi+I+qLYVyzk80DV0WCZDW6g==
+X-Received: by 2002:a05:6a21:6d96:b0:1ee:c7c8:ca4 with SMTP id adf61e73a8af0-1f544c92b65mr15412514637.36.1741445884819;
+        Sat, 08 Mar 2025 06:58:04 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-73698514f58sm5236020b3a.133.2025.03.08.06.58.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Mar 2025 06:58:04 -0800 (PST)
+Date: Sat, 8 Mar 2025 23:58:02 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: fsl,layerscape-pcie-ep: Drop
+ deprecated windows
+Message-ID: <20250308145802.GA482803@rocinante>
+References: <20250307081327.35153-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Xunlong Orange Pi 3B
-To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240626230319.1425316-1-jonas@kwiboo.se>
- <20240626230319.1425316-3-jonas@kwiboo.se>
-Content-Language: en-US
-From: Arturas Moskvinas <arturas.moskvinas@gmail.com>
-In-Reply-To: <20240626230319.1425316-3-jonas@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250307081327.35153-1-krzysztof.kozlowski@linaro.org>
 
-On 6/27/24 2:03 AM, Jonas Karlman wrote:
+Hello,
 
-> The Xunlong Orange Pi 3B is a single-board computer based on the
-> Rockchip RK3566 SoC.
-...> +
-> +&gmac1 {
-> +	phy-handle = <&rgmii_phy1>;
-> +	status = "okay";
-> +};
-> +
-> +&mdio1 {
-> +	rgmii_phy1: ethernet-phy@1 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <1>;
+> The example DTS uses 'num-ib-windows' and 'num-ob-windows' properties
+> but these are not defined in the binding.  Binding also does not
+> reference snps,dw-pcie-common.yaml, probably because it is quite
+> different even though the device is based on Synopsys controller.
+> 
+> The properties are actually deprecated, so simply drop them from the
+> example.
 
-Jonas, were you able to test V1.1 board's Ethernet?
+Applied to dt-bindings, thank you!
 
-Whenever I start the board - Ethernet initialization fails with:
-```
-[   21.140055] rk_gmac-dwmac fe010000.ethernet eth0: __stmmac_open: 
-Cannot attach to PHY (error: -19)
-```
-
-But if reset is performed inside gmac - initialization succeeds.
-
-Eg. patch:
-```
---- 
-linux-6.12.17.orig/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b-v1.1.dts
-+++ linux-6.12.17/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b-v1.1.dts
-@@ -16,14 +16,14 @@
-  &gmac1 {
-  	phy-handle = <&rgmii_phy1>;
-  	status = "okay";
-+	snps,reset-gpio = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 50000 200000>;
-  };
-
-  &mdio1 {
-  	rgmii_phy1: ethernet-phy@1 {
-  		compatible = "ethernet-phy-ieee802.3-c22";
-  		reg = <1>;
--		reset-assert-us = <20000>;
--		reset-deassert-us = <50000>;
--		reset-gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
-  	};
-  };
-```
-> +		reset-assert-us = <20000>;
-> +		reset-deassert-us = <50000>;
-> +		reset-gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
-> +	};
-> +};
-
-
-Arturas Moskvinas
+	Krzysztof
 
