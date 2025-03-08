@@ -1,133 +1,172 @@
-Return-Path: <devicetree+bounces-155728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9DF4A57E36
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 21:45:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 193E2A57E53
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 22:05:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3E1D3ACB14
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 20:45:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A21D7A66DF
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 21:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255B72116F6;
-	Sat,  8 Mar 2025 20:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15C11A4E9D;
+	Sat,  8 Mar 2025 21:05:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kz1LBSgr"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="PbjaYFSX";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="2k09chLW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from flow-a6-smtp.messagingengine.com (flow-a6-smtp.messagingengine.com [103.168.172.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4BEA20F07F;
-	Sat,  8 Mar 2025 20:45:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C23919597F;
+	Sat,  8 Mar 2025 21:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741466702; cv=none; b=e/juhXs11IIPryM61VTZMh138WbNCz3h9hDXHLMXuAMHC4ppr2j6xK4h7rxCG7McAxxan5VCm6cQX4HWx6HYhcoyKpx71gu1SBLKm5gfVFiflT32ktvDN2Q6wwFEVOAU43mJB+KqU9bfmXTFUVqNxNR12h2fkSXHAE7FW9VX+Vk=
+	t=1741467951; cv=none; b=YZAPlbS9Bcpo6hzh+BlGJsUwoWw3VsXbfyPu32YvVI13tnRmWPEVLmtTGU9JJW4WMUc88MYVZDZJzb+L9pNdhzuyO/ag524pKMb91GdBeynegkyecJllRVeIz0lQORbion+/Sh/rDvJ9N+Bb4pi3SnckW+FVU29Ez3QnHVFHg48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741466702; c=relaxed/simple;
-	bh=10nSWWi5MGce0BH+GQkLNo0/x4b1dtShGmGc6K9YmIY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=FNvim2VRqGGPkjrKT1cWMSGl3P1og5h574f/liHOvBaqdWS0x5c5vpRaJOik0Alt+fKJEDSCzBh4UnjptZTM60YEUwZJHMYq4uQG0K27ZDV3RfuP9Hivjr06klF7NifeeqD4JWiOeEm4kB6TYoKkAkfQZbfWzVTkMIi0q7NHLJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kz1LBSgr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2458CC4CEE0;
-	Sat,  8 Mar 2025 20:45:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741466701;
-	bh=10nSWWi5MGce0BH+GQkLNo0/x4b1dtShGmGc6K9YmIY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Kz1LBSgrogv+lhsn7L7DdYBf6ZHwHChsXvgRU+mU6ABQDwN9mDk8O0mvvImrQfxA3
-	 +6cJoz5rO/+wVrrqWjG+CMsxuxz7PIKH+Habq2cisTL/QpOcjfCJmolFfR62CGiIUf
-	 Jcvd9uykI4kWXvDLSgcD4uSC9YlpPCBPq0wtPBt93UIxRBCqbxGRn18MahlajdRYz2
-	 JtIts04s1WUZ7r3BxY1lnOV9mlm3OD29pY7V4AaPgIiO/2c+IoOchKcXVvc3pP8SVx
-	 GZ9HsT6YFxXfc1f481f1IXCoEPi2G+pq4FoiOAxg91rko91KYb6ayRgXSws+ijHsIk
-	 HgvPceEkU+wXA==
-Date: Sat, 08 Mar 2025 14:44:59 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1741467951; c=relaxed/simple;
+	bh=soAQYnXR+lBcoAqzICQ9dhN2P4GRiTJuBPmQemVV+zk=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=LYMtKMWOdR2DJEMF4H5CDhTz3uF3ltjYPyoik5SD664abP3b2cxuB0V4qLCc99By6EzN+EuPU2+SXDXBd5SqlEynHrBRO9sEJ4mPSq6qz7QhZdobXV5FNu7P++Hn62NheYsBlk0C7k7zwPsOnu8SxAzxdbteftpFUbwcnpDOmok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=PbjaYFSX; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=2k09chLW; arc=none smtp.client-ip=103.168.172.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
+	by mailflow.phl.internal (Postfix) with ESMTP id DE8FE2017E6;
+	Sat,  8 Mar 2025 16:05:46 -0500 (EST)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-07.internal (MEProxy); Sat, 08 Mar 2025 16:05:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1741467946;
+	 x=1741475146; bh=W4poDmOA64pY4uvHZcOCt8hPoavx9e3hXSZvtxdXHKk=; b=
+	PbjaYFSX9IBx2Zrs40HbC9+xW+mfnGRXkjrLnF/lmBTxXHH5vogiHSSOspqIeun1
+	NHfBh6H00r3dQfPeg/5Np/6Z9XnSuH0FKD+DR2HubpiuMGQ/cIlXZj4R8B8ROhDL
+	goKIgFL/GsoFSOene+PO+8yhXJyNpaw+RIaTc2mAtJJGV6CjknGC9TlrbTxPTF9X
+	pWcsaTZU3KhhEbiIyNbOPqhcecuUGjnfGnDJ2dWkoU+YL+V5DIIga1Rn2j0Bl5qL
+	u59YI9TE/OHE24iRU+89XEMwS2VxZLS7RtbtY5u5kVRUVTePTpxwefPCm6nJdU9/
+	et5ORwsXOuqEk213wxjyfw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1741467946; x=
+	1741475146; bh=W4poDmOA64pY4uvHZcOCt8hPoavx9e3hXSZvtxdXHKk=; b=2
+	k09chLWM/lSt9ok/EPaPM1tR7eBje/kIsmlJQe/3mXR56QFqC9W69F7BHwDF0fGM
+	kODKlY76T3e9H8oa0C+vm3AnKrYBg4EHOFO+NeDTv9i2LVhrbDe+4On1enx+SXkf
+	jCuY+jGWCb7dq6bVKRic6ilsWWRffPxqNl3G4H3ZyFTFR5vG3CC93kYg0GtIJREx
+	i7ppS1ZpZObOXtg1acJC8U8r4gnYj7l+dkuLnVJPKp/LgM21hZnVKFd/s3wHJv+C
+	oYUKaTLoubtPOBBZsxqlbvftF3FJJh5RQfjk0WIAx3lkCwrtVye9WojKDgsaWm8w
+	eqXtQNTKoXuDuJ4eq/jTA==
+X-ME-Sender: <xms:KrHMZwqQWf1vmDRRZmKYix9_AvEX71hk9A5-PUg-mMHoqyGuX43GTw>
+    <xme:KrHMZ2psuRMKaam0ybx-JZLEC1a7vUGqphSu1hLVSUR3YOE3xwz-daI2PPjxwEq4X
+    bngyXPelqUm1rvI9Vg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduudegheekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertder
+    tddtnecuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnug
+    gsrdguvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeet
+    fefggfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohep
+    gedvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegsphesrghlihgvnhekrdguvg
+    dprhgtphhtthhopegtrghtrghlihhnrdhmrghrihhnrghssegrrhhmrdgtohhmpdhrtghp
+    thhtohepjhhovgihrdhgohhulhihsegrrhhmrdgtohhmpdhrtghpthhtohepmhgrrhhkrd
+    hruhhtlhgrnhgusegrrhhmrdgtohhmpdhrtghpthhtohepshhuuggvvghprdhhohhllhgr
+    segrrhhmrdgtohhmpdhrtghpthhtohepshhuiihukhhirdhpohhulhhoshgvsegrrhhmrd
+    gtohhmpdhrtghpthhtohepsghhvghlghgrrghssehgohhoghhlvgdrtghomhdprhgtphht
+    thhopeihuhiivghnghhhuhhisehhuhgrfigvihdrtghomhdprhgtphhtthhopegtohhnoh
+    hrodgutheskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:KrHMZ1O9ctL676w5AHUIxE0SC1uXzVCBMq5d4oaLxLgUSw773mfxVg>
+    <xmx:KrHMZ36aWng3VojtFfg9JWrEIO2NAAnLf-1dP-OHoquiOYe6lO0u_Q>
+    <xmx:KrHMZ_6_zJEf_V0pq87wzL4JG8U2CRExCG9veX074cbH5tYyr-yvvg>
+    <xmx:KrHMZ3iPusvaeexA7SSSlwDrRNP8bOUuPa3aybP_Ilx1k2AiNrnRHA>
+    <xmx:KrHMZxAOYkkYPw5ZnbYA_W8w8hNAHsxDFHKJb1ECP7qxkoZka0El8mlf>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id E676A2220072; Sat,  8 Mar 2025 16:05:45 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Heiko Stuebner <heiko@sntech.de>, Dan Carpenter <dan.carpenter@linaro.org>, 
- Cosmin Tanislav <cosmin.tanislav@analog.com>, linux-kernel@vger.kernel.org, 
- Ross Burton <ross.burton@arm.com>, Ricardo Ribalda <ribalda@chromium.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Will Deacon <will@kernel.org>, 
- Bjorn Andersson <quic_bjorande@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, 
- Javier Carrasco <javier.carrasco@wolfvision.net>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Julien Massot <julien.massot@collabora.com>, linux-gpio@vger.kernel.org, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Eric Biggers <ebiggers@google.com>, Conor Dooley <conor+dt@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Ihor Matushchak <ihor.matushchak@foobox.net>, 
- Taniya Das <quic_tdas@quicinc.com>, Mark Brown <broonie@kernel.org>, 
- devicetree@vger.kernel.org, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- =?utf-8?q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>, 
- linux-staging@lists.linux.dev, Biju Das <biju.das.jz@bp.renesas.com>, 
- linux-media@vger.kernel.org, Tommaso Merciai <tomm.merciai@gmail.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
- Umang Jain <umang.jain@ideasonboard.com>, 
- Dongcheng Yan <dongcheng.yan@intel.com>, 
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
- Zhi Mao <zhi.mao@mediatek.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Hans Verkuil <hverkuil@xs4all.nl>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <20250308183410.3013996-10-demonsingur@gmail.com>
-References: <20250308183410.3013996-1-demonsingur@gmail.com>
- <20250308183410.3013996-10-demonsingur@gmail.com>
-Message-Id: <174146669769.3550313.9537741171612632999.robh@kernel.org>
-Subject: Re: [RFC PATCH 09/24] dt-bindings: media: i2c: max96714: make
- i2c-gate conditional on compatible
+Date: Sat, 08 Mar 2025 22:05:24 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Roman Kisel" <romank@linux.microsoft.com>, bhelgaas@google.com,
+ "Borislav Petkov" <bp@alien8.de>,
+ "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Dave Hansen" <dave.hansen@linux.intel.com>,
+ "Dexuan Cui" <decui@microsoft.com>,
+ "Haiyang Zhang" <haiyangz@microsoft.com>,
+ "H. Peter Anvin" <hpa@zytor.com>, "Joey Gouly" <joey.gouly@arm.com>,
+ krzk+dt@kernel.org, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ "K. Y. Srinivasan" <kys@microsoft.com>, "Len Brown" <lenb@kernel.org>,
+ "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
+ "Manivannan Sadhasivam" <manivannan.sadhasivam@linaro.org>,
+ "Mark Rutland" <mark.rutland@arm.com>, "Marc Zyngier" <maz@kernel.org>,
+ "Ingo Molnar" <mingo@redhat.com>,
+ "Oliver Upton" <oliver.upton@linux.dev>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, ssengar@linux.microsoft.com,
+ "Sudeep Holla" <sudeep.holla@arm.com>,
+ "Suzuki K Poulose" <suzuki.poulose@arm.com>,
+ "Thomas Gleixner" <tglx@linutronix.de>, "Wei Liu" <wei.liu@kernel.org>,
+ "Will Deacon" <will@kernel.org>, "Zenghui Yu" <yuzenghui@huawei.com>,
+ devicetree@vger.kernel.org, kvmarm@lists.linux.dev,
+ linux-acpi@vger.kernel.org, Linux-Arch <linux-arch@vger.kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org
+Cc: apais@microsoft.com, benhill@microsoft.com, bperkins@microsoft.com,
+ sunilmut@microsoft.com
+Message-Id: <e0f81049-688e-4f53-a002-5d246281bf8d@app.fastmail.com>
+In-Reply-To: <20250307220304.247725-4-romank@linux.microsoft.com>
+References: <20250307220304.247725-1-romank@linux.microsoft.com>
+ <20250307220304.247725-4-romank@linux.microsoft.com>
+Subject: Re: [PATCH hyperv-next v5 03/11] Drivers: hv: Enable VTL mode for arm64
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-
-On Sat, 08 Mar 2025 20:33:38 +0200, Cosmin Tanislav wrote:
-> Devices to be added in following patches don't use I2C gate.
+On Fri, Mar 7, 2025, at 23:02, Roman Kisel wrote:
+> @@ -5,18 +5,20 @@ menu "Microsoft Hyper-V guest support"
+>  config HYPERV
+>  	tristate "Microsoft Hyper-V client drivers"
+>  	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
+> -		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
+> +		|| (ARM64 && !CPU_BIG_ENDIAN)
+> +	depends on (ACPI || HYPERV_VTL_MODE)
+>  	select PARAVIRT
+>  	select X86_HV_CALLBACK_VECTOR if X86
+> -	select OF_EARLY_FLATTREE if OF
+>  	help
+>  	  Select this option to run Linux as a Hyper-V client operating
+>  	  system.
 > 
-> Make this property conditional on the compatible strings.
-> 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-> ---
->  .../bindings/media/i2c/maxim,max96714.yaml    | 21 ++++++++++++-------
->  1 file changed, 13 insertions(+), 8 deletions(-)
-> 
+>  config HYPERV_VTL_MODE
+>  	bool "Enable Linux to boot in VTL context"
+> -	depends on X86_64 && HYPERV
+> +	depends on (X86_64 || ARM64)
+>  	depends on SMP
+> +	select OF_EARLY_FLATTREE
+> +	select OF
+>  	default n
+>  	help
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Having the dependency below the top-level Kconfig entry feels a little
+counterintuitive. You could flip that back as it was before by doing
 
-yamllint warnings/errors:
+      select HYPERV_VTL_MODE if !ACPI
+      depends on ACPI || SMP
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96714.example.dtb: deserializer@28: 'i2c-gate' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/media/i2c/maxim,max96714.yaml#
+in the HYPERV option, leaving the dependency on HYPERV in
+HYPERV_VTL_MODE.
 
-doc reference errors (make refcheckdocs):
+Is OF_EARLY_FLATTREE actually needed on x86?
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250308183410.3013996-10-demonsingur@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+      Arnd
 
