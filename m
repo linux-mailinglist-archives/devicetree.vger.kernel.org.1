@@ -1,251 +1,164 @@
-Return-Path: <devicetree+bounces-155671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 371B1A57BEF
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 17:29:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34168A57BFA
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 17:34:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5ABA316D38A
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 16:29:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC10B1890AE6
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 16:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E561E5218;
-	Sat,  8 Mar 2025 16:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456131DF97C;
+	Sat,  8 Mar 2025 16:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NSzp+BIy"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="rIPGoYzu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F341B21B4;
-	Sat,  8 Mar 2025 16:29:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4DC1AD4B
+	for <devicetree@vger.kernel.org>; Sat,  8 Mar 2025 16:34:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741451383; cv=none; b=V7gBPrPlqbd9o1xODD8IBPzwIVWnvhyEt/1BSaPrgPcynFloeVrSL6IIageP+YgKKHwQbJeyNfj/h2UL6aqq6fyZiXMDKfMf2lL8w7cf2QpGDMrnVreoLvLLMkfT04bG6LyC0NxjwJeY79m1ziJsn2WV+gwmJBoFzISh2EEo00M=
+	t=1741451680; cv=none; b=IfrfzhictbtKk/GsjZlzhvxvj6qCNURQiExjyx1yOsu+t6sYmcciedBRUKQDNXIm6G7klSwmwcaSomTbfJ8KR8qT29ZfWdYXMECrbEifGmzswX/bNYlrX2oj5+qA6scYVZU7Bys+TLRPhtoDk2MAeuyJRcGwW080WSo938a5K+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741451383; c=relaxed/simple;
-	bh=SdeY4HUDR25gSwHntex8TgQMRjhWp1R3x/osJlwkf2A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=u57RRz4rlN//oeRQ7AQh3oZLQW7+rt92lc/5jwSlfUoX3x//v0IAry+0APgVtpKV5yPVTqBb4jvB9i4bLTWsH2XqvlWO3Kw2ozkEt4HVAju6GwU2rVrjQ3pT9TLYuFpC5l5q2g7vrdr6fuWYgR+gWcPvBwNMt672dBA+u/MGyBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NSzp+BIy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0032C4CEE0;
-	Sat,  8 Mar 2025 16:29:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741451383;
-	bh=SdeY4HUDR25gSwHntex8TgQMRjhWp1R3x/osJlwkf2A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=NSzp+BIy+RyYAh5eXPfpEeXytNRO+Yn6QDm61AqJR8JPEZz8lPYUdH5rwAtQ05Xgi
-	 nJ52JT45pfwi6qQmjNAQl3PQm42j3TaIFdCd9qBeOGwEiLP5I4ChuxG/eiUIvHz+gf
-	 vFNeOPjjYakfsWHf3baQaOKsl1voaEzszbfYyZf3MV94dErx1nbWai2CFl3Azkw15j
-	 rPpzaDB7MAis2oreAPGOwD994ClDh/BRvfWkNboiV69CTNipPu/XspI5zRPgzAWTgR
-	 owYLqgaQkKxX174yazNjuFoEFyme0FYmA2oF6DDFWudPFsQy0VFIbtdTW9FkcU73tW
-	 wdzVAijHUAy0A==
-Date: Sat, 8 Mar 2025 16:29:28 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa
- <nuno.sa@analog.com>, Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Guillaume Stols <gstols@baylibre.com>, Dumitru Ceclan
- <mitrutzceclan@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>, Matteo
- Martelli <matteomartelli3@gmail.com>, Alisa-Dariana Roman
- <alisadariana@gmail.com>, Ramona Alexandra Nechita
- <ramona.nechita@analog.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v5 03/10] iio: adc: add helpers for parsing ADC nodes
-Message-ID: <20250308162928.72bd1d1b@jic23-huawei>
-In-Reply-To: <54a031d0-df47-4baa-a23a-1a79c0922542@gmail.com>
-References: <cover.1740993491.git.mazziesaccount@gmail.com>
-	<e71c63c2f61135f9a8c7884525aab2c48f1e84c2.1740993491.git.mazziesaccount@gmail.com>
-	<CAMknhBGQaqFZJsPAoauZL4S5MYtN05EOQ-BO2vw5gH+Z2RLOhw@mail.gmail.com>
-	<54a031d0-df47-4baa-a23a-1a79c0922542@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741451680; c=relaxed/simple;
+	bh=QGLh/6JQgeudjVxuHIxfA33KxLX+oZAVVM/slJ0bCEU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VtLIZl+olJGvqIWIm7DfOc/68u9CkWGvYW9YYxSGIS9QuIejMcud/GwZbKGG7BYy1i/F1yKEYfB3pCt12WoS+rLB9BCAojqVkInsJ/qhFwgpnEBafI1ZBgYyanKiAylAk97eWyTtU9DSAsiUKG8wiOcIvEpX+FUR5wbQ+aDR+Mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=rIPGoYzu; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1741451677;
+ bh=XfxZ2EUMtcYRuh5iiI7Ca6IZaZJZ9N99juCripq5x6I=;
+ b=rIPGoYzuIXmmVJU4IuQe2o6/daWE+eDF6a6nIfxnr0+hvJIz51MGuzUzRjsmUmuCVfoxOIJ48
+ jUSMaxgMjXKLunUXL4/3S7O9yTcfliUrKH/+/HjPbvvrPeJM3D1d6MYBM0z/e47anteV5+AXjZh
+ 9HSaRTh3JXyUYcU2iau9e9t3Vix0QsjnjX0DpYIeUOf9DP37+u1R2+2j0grjn5WNd//WdW52KgA
+ TZB7LRc6fHoGipR1BQq3CMp9+Bi4BqRpgw6WWgBZ+OIXgr9h9vomartD7h8WOsJvt1oHLsqILZJ
+ RAceyuHBrybYoNzyDX/gGPkQdCrFLIayEXp20/XkcIeg==
+X-Forward-Email-ID: 67cc719a91daabb65c1b40e8
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <29739e60-15f5-4361-a57a-2e6b93fba09c@kwiboo.se>
+Date: Sat, 8 Mar 2025 17:34:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Xunlong Orange Pi 3B
+To: Arturas Moskvinas <arturas.moskvinas@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240626230319.1425316-1-jonas@kwiboo.se>
+ <20240626230319.1425316-3-jonas@kwiboo.se>
+ <d1c600f1-a874-4bb8-8b9f-22a3414edfcc@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <d1c600f1-a874-4bb8-8b9f-22a3414edfcc@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Wed, 5 Mar 2025 12:54:33 +0200
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+Hi Arturas,
 
-> Thanks for the review David.
->=20
-> On 04/03/2025 11:25, David Lechner wrote:
-> > On Mon, Mar 3, 2025 at 12:32=E2=80=AFPM Matti Vaittinen
-> > <mazziesaccount@gmail.com> wrote: =20
-> >>
-> >> There are ADC ICs which may have some of the AIN pins usable for other
-> >> functions. These ICs may have some of the AIN pins wired so that they
-> >> should not be used for ADC.
-> >>
-> >> (Preferred?) way for marking pins which can be used as ADC inputs is to
-> >> add corresponding channels@N nodes in the device tree as described in
-> >> the ADC binding yaml.
-> >>
-> >> Add couple of helper functions which can be used to retrieve the chann=
-el
-> >> information from the device node.
-> >>
-> >> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> >>
-> >> --- =20
->=20
-> >> + *
-> >> + * Return:     Number of found channels on succes. Negative value to =
-indicate =20
-> >=20
-> > s/succes/success/ =20
->=20
-> Thanks!
->=20
-> >> +int devm_iio_adc_device_alloc_chaninfo_se(struct device *dev,
-> >> +                                         const struct iio_chan_spec *=
-template,
-> >> +                                         int max_chan_id,
-> >> +                                         struct iio_chan_spec **cs)
-> >> +{
-> >> +       struct iio_chan_spec *chan_array, *chan;
-> >> +       int num_chan =3D 0, ret;
-> >> +
-> >> +       num_chan =3D iio_adc_device_num_channels(dev);
-> >> +       if (num_chan < 1)
-> >> +               return num_chan;
-> >> +
-> >> +       chan_array =3D devm_kcalloc(dev, num_chan, sizeof(*chan_array),
-> >> +                                 GFP_KERNEL);
-> >> +       if (!chan_array)
-> >> +               return -ENOMEM;
-> >> +
-> >> +       chan =3D &chan_array[0];
-> >> +
-> >> +       device_for_each_child_node_scoped(dev, child) {
-> >> +               u32 ch;
-> >> +
-> >> +               if (!fwnode_name_eq(child, "channel"))
-> >> +                       continue;
-> >> +
-> >> +               ret =3D fwnode_property_read_u32(child, "reg", &ch);
-> >> +               if (ret)
-> >> +                       return ret;
-> >> +
-> >> +               if (max_chan_id !=3D -1 && ch > max_chan_id)
-> >> +                       return -ERANGE;
-> >> + =20
-> >=20
-> > Should we use return dev_err_probe() on these to help with debugging a =
-bad dtb?
-> >  =20
->=20
-> I am not fan of using dev_err_probe() in a 'library code'. This is=20
-> because we never know if there'll be some odd use-case where this is not=
-=20
-> called from the probe.
->=20
-> All in all, I'd leave adding most of the debugs to the callers -=20
-> especially because we do not expect to have bad device-trees after the=20
-> initial 'development stage' of a board. The board 'development stage'=20
-> should really reveal bugs which prevent the channels from being=20
-> registered - and after the DT is correct, these debug prints become=20
-> unnecessary (albeit minor) binary bloat.
->=20
-> >> +               *chan =3D *template;
-> >> +               chan->channel =3D ch;
-> >> +               chan++;
-> >> +       }
-> >> +
-> >> +       *cs =3D chan_array;
-> >> +
-> >> +       return num_chan;
-> >> +}
-> >> +EXPORT_SYMBOL_NS_GPL(devm_iio_adc_device_alloc_chaninfo_se, "IIO_DRIV=
-ER"); =20
-> >=20
-> > We can make this less verbose by setting #define
-> > DEFAULT_SYMBOL_NAMESPACE at the start of the file. Then we can just do
-> > EXPORT_SYMBOL_GPL() throughout the rest of the file. =20
->=20
-> I am not sure what to think of this. I use the good old 'ctrl + ]' in my=
-=20
-> editor when I need to check how a function was supposed to be used. That=
-=20
-> jumps to the spot of code where the function is. I'd like to see the=20
-> namespace mentioned there in order to not accidentally miss the fact the=
-=20
-> function belongs to one.
->=20
-> OTOH, I do like simplifications. Yet, the added simplification might not=
-=20
-> warrant the namespace not being visible in the function definition.
->=20
-> > Also, I would prefer if the namespace matched config name (IIO_ADC_HELP=
-ER). =20
->=20
-> I had some lengthy discussion about this with Andy and Jonathan during=20
-> earlier review versions. In short, I don't like the idea of very=20
-> fragmented namespaces in IIO, which will just complicate the drivers=20
-> without providing any obvious benefit.
->=20
-> https://lore.kernel.org/all/20250222174842.57c091c5@jic23-huawei/
->=20
-> >> +
-> >> +int devm_iio_adc_device_alloc_chaninfo_se(struct device *dev,
-> >> +                                         const struct iio_chan_spec *=
-template,
-> >> +                                         int max_chan_id,
-> >> +                                         struct iio_chan_spec **cs);
-> >> + =20
-> >=20
-> > There are some different opinions on this, but on the last patch I did
-> > introducing a new namespace, the consensus seems to be that putting
-> > the MODULE_IMPORT_NS() in the header file was convenient so that users
-> > of the API don't have to remember to both include the header and add
-> > the import macro.
-> >  =20
->=20
-> I do like this suggestion, and I believe this would be the balance=20
-> between getting the benefit of hiding part of the symbols - while not=20
-> unnecessarily complicating the callers. I know some people are opposing=20
-> it though. My personal opinion is that having the MODULE_IMPORT_NS() in=20
-> a header would be neatly simplifying the calling code with very little=20
-> harm, especially here where including the header hardly has use-cases=20
-> outside the IIO ADC.
->=20
-> Unfortunately, the "safety" seems to often be a synonym for just "making=
-=20
-> it intentionally hard". As Finnish people say: "K=C3=A4rsi, k=C3=A4rsi,=20
-> kirkkaamman kruunun saat". :)
-> (Roughly translated as "Suffer, suffer, you will get a brighter crown").
->=20
-> Let's hear what Jonathan thinks of your suggestion.
+On 2025-03-08 15:53, Arturas Moskvinas wrote:
+> On 6/27/24 2:03 AM, Jonas Karlman wrote:
+> 
+>> The Xunlong Orange Pi 3B is a single-board computer based on the
+>> Rockchip RK3566 SoC.
+> ...> +
+>> +&gmac1 {
+>> +	phy-handle = <&rgmii_phy1>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdio1 {
+>> +	rgmii_phy1: ethernet-phy@1 {
+>> +		compatible = "ethernet-phy-ieee802.3-c22";
+>> +		reg = <1>;
+> 
+> Jonas, were you able to test V1.1 board's Ethernet?
 
-For this particular case my intent was that all the IIO exports that
-are suitable for use in simple IIO drives will be in this namespace,
-we just haven't started that conversion yet.
+Yes, I have both a v1.1.1 and v2.1 hw revision of this board and
+Ethernet should be working on both hw revisions.
 
-As such, having it defined from a header for this helper isn't a good
-thing to do.  Generally I prefer to see in driver code what namespaces
-are involved but do understand the other viewpoint. In this case I
-definitely don't think it is appropriate unless we go for a specific namesp=
-ace
-for just this helper.
+> 
+> Whenever I start the board - Ethernet initialization fails with:
+> ```
+> [   21.140055] rk_gmac-dwmac fe010000.ethernet eth0: __stmmac_open: 
+> Cannot attach to PHY (error: -19)
+> ```
 
-Jonathan
+This is because of a reset issue with Ethernet PHYs in Linux, see [1].
 
->=20
-> Thanks!
-> 	-- Matti
->=20
+Two workarounds:
+1. Let boot firmware reset the PHY before Linux, i.e. use U-Boot
+   v2024.10 or newer.
+2. Use a ethernet-phy-id compatible with correct phy-id to force Linux
+   to attach the PHY.
+
+I suggest you try to wipe U-Boot from SPI flash on your board and update
+to use U-Boot v2025.01 and try again.
+
+> 
+> But if reset is performed inside gmac - initialization succeeds.
+
+Use of deprecated snps,reset- props is not a proper fix for this issue,
+instead Linux could use an improve Ethernet PHY initialization handling
+and ensuring the PHY is reset before it tries to read a phy-id from it.
+
+[1] https://lore.kernel.org/r/47d55aca-bee6-810f-379f-9431649fefa6@kwiboo.se/
+
+Regards,
+Jonas
+
+> 
+> Eg. patch:
+> ```
+> --- 
+> linux-6.12.17.orig/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b-v1.1.dts
+> +++ linux-6.12.17/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b-v1.1.dts
+> @@ -16,14 +16,14 @@
+>   &gmac1 {
+>   	phy-handle = <&rgmii_phy1>;
+>   	status = "okay";
+> +	snps,reset-gpio = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
+> +	snps,reset-active-low;
+> +	snps,reset-delays-us = <0 50000 200000>;
+>   };
+> 
+>   &mdio1 {
+>   	rgmii_phy1: ethernet-phy@1 {
+>   		compatible = "ethernet-phy-ieee802.3-c22";
+>   		reg = <1>;
+> -		reset-assert-us = <20000>;
+> -		reset-deassert-us = <50000>;
+> -		reset-gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
+>   	};
+>   };
+> ```
+>> +		reset-assert-us = <20000>;
+>> +		reset-deassert-us = <50000>;
+>> +		reset-gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
+>> +	};
+>> +};
+> 
+> 
+> Arturas Moskvinas
 
 
