@@ -1,159 +1,138 @@
-Return-Path: <devicetree+bounces-155559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC04DA57650
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 00:41:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60082A57675
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 01:02:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C789177F1A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Mar 2025 23:41:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC561189BB16
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 00:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C5F20E014;
-	Fri,  7 Mar 2025 23:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCF633E4;
+	Sat,  8 Mar 2025 00:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Udfo0dUo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tKXLMBNB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30191DC99A;
-	Fri,  7 Mar 2025 23:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F871137E;
+	Sat,  8 Mar 2025 00:01:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741390893; cv=none; b=EGA+mnxnRiAuhvqzrcZjJzuMpqPKz4FXVUW59ZQlaM4dZhmN5zx16eVYBbjFmVTn43+HaTwON+/gsxUJXI7BtHXJBcP3mjiBM+GU5C7YxXlBKa4KnPYRYblw9Ocay8uJ2vhzsfJADTIJE+awxh4sdZB1hGn578bRtXfiBR0+z0c=
+	t=1741392096; cv=none; b=FNFKxx0S7HA7HmIGOafTEkmJd5aagRzGyzSNVblI0I22JgdjbTG9JrQC8oVhCti1X855A7BWwQERh1dAXDoHUYaLqNiEB5siEN6sA1WvVeWrJRcQeBYtl/0Xm4hoSs1EEANvrIQA2/1EKJomP2hm5iZBr9eAOt1nGJapT5E6Tyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741390893; c=relaxed/simple;
-	bh=yyE7KOWWH/DThx7lyaD0ORCMpjEmY7tHAL2lQSTtrxA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=IM6aipUZKLAuy4zEgxcx396r2CjxduBu2oSbXX55/PjNmP0anSiF0rTBgK1YZrbOztayyuP4D1x2qq9gGZfcHgetYklrAkIo6e5SaOykTbS6LC0LteMkejUT0ZUSvrQFAfQ0NJx1e6hM2HOAaQTuv55mEqNTjD4qnlQ+1QuPTaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Udfo0dUo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEE84C4CED1;
-	Fri,  7 Mar 2025 23:41:32 +0000 (UTC)
+	s=arc-20240116; t=1741392096; c=relaxed/simple;
+	bh=RxrYJHQ56oEI9BGDiBCfydVzW7XVfkyco8V5ApsDlQY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IdnUiBv0DY5XOYgyvqL0q8PkSiPpJr0tfnYZPe2Z6dM/qM1VnQmdm2vhB69hYt+8uqcbgg9AjXNPzoKnm6Cjus2tWXPtcQycIofLlZN4KnHzxCCPAkUhFt0oRVEC7huJOKmso4q7T2zvf4OzkBgIGpBfDbQCqqlniMG6vDn0xiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tKXLMBNB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46537C4CED1;
+	Sat,  8 Mar 2025 00:01:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741390893;
-	bh=yyE7KOWWH/DThx7lyaD0ORCMpjEmY7tHAL2lQSTtrxA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Udfo0dUo1NqX33GUbGYVRCfE2XukS0+19Lq8BUfwh5a2MSfyFC0FzoFb+JV12kTeB
-	 N4VIx3dpaVde/6VorEOKIcGmoej71DV/NyP/+9MitDa7Ih1tlnSnI7yhFK503YOAZZ
-	 Nto95q0f4z+O+vPziWEJswiMg4zMIj/PGdjeqlFnNvFKPv/rUILi05vjTQ2d6XyliB
-	 TDfAL1SdOjRUbvF7FkV+O7VnEE6hROtjKiATZWC5xSxk0l15uzGP6xdeonUhFwOqTn
-	 /agcd7Po8MoZzLUptFMYStBJ7uBuzgc8KBHB8zKUiYUJ7k/ACW+cW1khknah3fly8d
-	 BXAI1/rbZExhA==
-Date: Fri, 7 Mar 2025 17:41:31 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v9 3/7] PCI: Add parent_bus_offset to resource_entry
-Message-ID: <20250307234131.GA440690@bhelgaas>
+	s=k20201202; t=1741392094;
+	bh=RxrYJHQ56oEI9BGDiBCfydVzW7XVfkyco8V5ApsDlQY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tKXLMBNBEG4l/WGTfeUKVbn4j3rdE8gJ6Ilcva4PJSJcslzXv6M6WfGCNgacYUXkn
+	 US65jmiBuIuulxzETgm01TOt7owT/UpNqIBEt5hGmKSmSfEqIe3oTs1ZPs+n0cEt/X
+	 +Iu1yfibj7iPQmzG69qyA845987YQTBDw9GtIJ88kmaZW02/57lSJVWzcBoR2r7nAe
+	 eeP3mRg8Ig5AajMqymimA2WHZycUViBklTfnUGeSXA3DXfbmilQX049h6Vr6eq5dGk
+	 n94JiTWskjViv4kLtGofrhuYO8HJOoRlaeByRmvFEc5si0HWdN2//l9MRk6uKl5+JV
+	 KZ401FLEJF/UA==
+Received: by venus (Postfix, from userid 1000)
+	id 3564A180B97; Sat, 08 Mar 2025 01:01:32 +0100 (CET)
+Date: Sat, 8 Mar 2025 01:01:31 +0100
+From: Sebastian Reichel <sre@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johan Hovold <johan@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC 1/2] arm64: dts: qcom: x1e78100-t14s: Add LCD variant with
+ backlight support
+Message-ID: <lolqokpczxdscvgj6xdfyxblmle3csgzje3fgo4itzspgmeriy@7zzx7hg2zfks>
+References: <20250306090503.724390-1-abel.vesa@linaro.org>
+ <20250306090503.724390-2-abel.vesa@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="y6zodhuo7ebbvgn4"
 Content-Disposition: inline
-In-Reply-To: <Z8sRl1c//SZXKhB+@lizhi-Precision-Tower-5810>
+In-Reply-To: <20250306090503.724390-2-abel.vesa@linaro.org>
 
-On Fri, Mar 07, 2025 at 10:32:39AM -0500, Frank Li wrote:
-> On Tue, Mar 04, 2025 at 05:25:45PM -0500, Frank Li wrote:
-> > On Tue, Mar 04, 2025 at 05:11:54PM -0500, Frank Li wrote:
-> > > On Tue, Mar 04, 2025 at 11:50:10AM -0600, Bjorn Helgaas wrote:
-> > > > On Mon, Mar 03, 2025 at 04:57:29PM -0500, Frank Li wrote:
-> > > > > On Wed, Feb 26, 2025 at 06:23:26PM -0600, Bjorn Helgaas wrote:
-> > > > > > On Tue, Jan 28, 2025 at 05:07:36PM -0500, Frank Li wrote:
-> > > > > > > Introduce `parent_bus_offset` in `resource_entry` and a new API,
-> > > > > > > `pci_add_resource_parent_bus_offset()`, to provide necessary information
-> > > > > > > for PCI controllers with address translation units.
-> > > > > > >
-> > > > > > > Typical PCI data flow involves:
-> > > > > > >   CPU (CPU address) -> Bus Fabric (Intermediate address) ->
-> > > > > > >   PCI Controller (PCI bus address) -> PCI Bus.
-> > > > > > >
-> > > > > > > While most bus fabrics preserve address consistency, some modify addresses
-> > > > > > > to intermediate values. The `parent_bus_offset` enables PCI controllers to
-> > > > > > > translate these intermediate addresses correctly to PCI bus addresses.
-> > > > > > >
-> > > > > > > Pave the road to remove hardcoded cpu_addr_fixup() and similar patterns in
-> > > > > > > PCI controller drivers.
-> > > > > > > ...
-> > > > > >
-> > > > > > > +++ b/drivers/pci/of.c
-> > > > > > > @@ -402,7 +402,17 @@ static int devm_of_pci_get_host_bridge_resources(struct device *dev,
-> > > > > > >  			res->flags &= ~IORESOURCE_MEM_64;
-> > > > > > >  		}
-> > > > > > >
-> > > > > > > -		pci_add_resource_offset(resources, res,	res->start - range.pci_addr);
-> > > > > > > +		/*
-> > > > > > > +		 * IORESOURCE_IO res->start is io space start address.
-> > > > > > > +		 * IORESOURCE_MEM res->start is cpu start address, which is the
-> > > > > > > +		 * same as range.cpu_addr.
-> > > > > > > +		 *
-> > > > > > > +		 * Use (range.cpu_addr - range.parent_bus_addr) to align both
-> > > > > > > +		 * IO and MEM's parent_bus_offset always offset to cpu address.
-> > > > > > > +		 */
-> > > > > > > +
-> > > > > > > +		pci_add_resource_parent_bus_offset(resources, res, res->start - range.pci_addr,
-> > > > > > > +						   range.cpu_addr - range.parent_bus_addr);
-> > > > > >
-> > > > > > I don't know exactly where it needs to go, but I think we can call
-> > > > > > .cpu_addr_fixup() once at startup on the base of the region.  This
-> > > > > > will tell us the offset that applies to the entire region, i.e.,
-> > > > > > parent_bus_offset.
-> > > > > >
-> > > > > > Then we can remove all the .cpu_addr_fixup() calls in
-> > > > > > cdns_pcie_host_init_address_translation(),
-> > > > > > cdns_pcie_set_outbound_region(), and dw_pcie_prog_outbound_atu().
-> > > > > >
-> > > > > > Until we can get rid of all the .cpu_addr_fixup() implementations,
-> > > > > > We'll still have that single call at startup (I guess once for cadence
-> > > > > > and another for designware), but it should simplify the current
-> > > > > > callers quite a bit.
-> > > > >
-> > > > > I don't think it can simple code. cdns_pcie_set_outbound_region() and
-> > > > > dw_pcie_prog_outbound_atu() are called by EP functions, which have not use
-> > > > > "resource" to manage outbound windows.
-> > > >
-> > > > Let's ignore cadence for now.  I don't think we need to solve that
-> > > > until later.
-> > > >
-> > > > dw_pcie_prog_outbound_atu() is called by:
-> > > >
-> > > >   - dw_pcie_other_conf_map_bus(): atu.parent_bus_addr = pp->cfg0_base
-> > > >
-> > > >     I think dw_pcie_host_init() can set pp->cfg0_base with the correct
-> > > >     intermediate address, either via the the of_property_read_reg() or
-> > > >     .cpu_addr_fixup().
-> >
-> > And chicken and egg problem here for artpec6_pcie_cpu_addr_fixup(), which
-> > need cfg0_base. But try to use .cpu_addr_fixup() to get cfg0_base's
-> > intermediate address.
-> 
-> Bjorn:
-> 	Do you have chance to check my reply? some dwc platform driver
-> .cpu_addr_fixup() implement have dependence with old initilize sequency.
 
-Yes, I tried to sketch out what I was thinking to make it more
-concrete.  I posted it and sent to you, but just for other readers of
-this thread, it's at:
+--y6zodhuo7ebbvgn4
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [RFC 1/2] arm64: dts: qcom: x1e78100-t14s: Add LCD variant with
+ backlight support
+MIME-Version: 1.0
 
-https://lore.kernel.org/linux-pci/20250307233744.440476-1-helgaas@kernel.org/T/#t
+Hi,
 
-Bjorn
+On Thu, Mar 06, 2025 at 11:05:02AM +0200, Abel Vesa wrote:
+> Due to the fact that Lenovo Thinkpad T14s Gen6 is available with both
+> OLED and LCD, the backlight control differs HW-wise. For the LCD variant,
+> the panel's backlight is controlled via one of the PWMs provided by the
+> PMK8550 PMIC. For the OLED variant, the backlight is internal to the
+> panel and therefore it is not described in devicetree.
+>=20
+> For this reason, create a generic dtsi for the T14s by renaming the
+> existing dts. While at it, add a node name to panel and drop the enable
+> gpio and pinctrl properties from the panel node. Then add the LCD variant
+> dts file with the old name and describe all backlight related nodes.
+>=20
+> So the existing dts will now be used for LCD variant while for OLED new
+> dts will be added.
+>=20
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> [...]
+> +	backlight: backlight {
+> +		compatible =3D "pwm-backlight";
+> +		pwms =3D <&pmk8550_pwm 0 5000000>;
+
+I've tried this patch series together with the fix series [0], but
+without the duty cycle calculation change [1]. Instead I changed the
+period from 5000000 to 4266667. With that everything works as
+expected for me.
+
+[0] https://lore.kernel.org/all/20250305-leds-qcom-lpg-fix-max-pwm-on-hi-re=
+s-v4-0-bfe124a53a9f@linaro.org/
+[1] https://lore.kernel.org/all/20250303-leds-qcom-lpg-compute-pwm-value-us=
+ing-period-v1-1-833e729e3da2@linaro.org/
+
+Greetings,
+
+-- Sebastian
+
+--y6zodhuo7ebbvgn4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmfLiNAACgkQ2O7X88g7
++ppf3xAAlXHluicXnkOYso5FoMHezzKxZjWtgPdfvJrO1u9ofgYj2f/Ge6kgRMWP
+1bp5iE3MgKeVdlyx20FZ4fCi+ETG379ozRXgUQULpe3QdW23k/tCzPTZvB0zWnl3
+thkrUn6vJOFUEOIJR7d7J104eT04kvDXAUV+ift/Rvx46p2YrEwT57yktbylYpkt
+2LyX4RM+aHCc7Dux3Am9FZcmRciHUnWsxFt9ZGIzLOU6PiYeo1OIK2j07vvWxNYP
+ReRVZP3dy+HkXIp76BKpvf85Qp827KitUKrHLMTtq5vb/qpyDn00F9WuKgFpm8aw
+qseJhwgyDnSFKri6ZXkJzeIDJbzB/bYlqkJSFNr/n1j6NJuqVWhm+5bMcn0yeGTI
+sNFYKCeER0BrQeiOWXl8wSDR7CFE8WqYibiSkZ9Fuf1UVYF83+gHry9p7amX2u9o
+ArhpXakQtpQCFZqWsWqHyz3KtZdt2EaEVK2qpWCfV7aqmmERHDSYyMqMIDxz/kXR
+0QqJwLOniL/bxCwUjRyXMrQ0AZeDuAT208s7TCcLL1KWdir10MChg6jeRZ/qQ6zS
+Cr8fsFZKzOUwEC8mH6xvZDyJc6rUrn0kSNA9JnsaRleidenAg4r5eVWe05kPRdo3
+QyJuA9h2TPDK05AVHdq1qeA+4tf2BVy7CvAGoZVgIPZAdARbnHQ=
+=tLqZ
+-----END PGP SIGNATURE-----
+
+--y6zodhuo7ebbvgn4--
 
