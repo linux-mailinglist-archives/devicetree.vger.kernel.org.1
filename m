@@ -1,186 +1,127 @@
-Return-Path: <devicetree+bounces-155664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0446A57B92
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 16:27:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CDEDA57B95
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 16:29:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29F2316CFFC
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 15:27:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6804416D791
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 15:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78F541DE3DF;
-	Sat,  8 Mar 2025 15:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C652D1E1DF4;
+	Sat,  8 Mar 2025 15:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="YEB9KXBS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BWUplUDZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0423D1C84C1;
-	Sat,  8 Mar 2025 15:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0441B1DE4E7
+	for <devicetree@vger.kernel.org>; Sat,  8 Mar 2025 15:29:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741447671; cv=none; b=EgLFu1eDR2zTi6uo07jKSIAXtGDG8YdjU/Lj51BI7fYCmozT+yvZZnePw3S5f82KVNw1Wou6n8xK16aG4+RMF11rR5Z/6n+KM5yurq/YhJPJfulmmWtDzNlVmzkoGZAnSxYTiDq5CA+FxGIuTXMGAXbH5VcKUgRXanwiEaWyuNE=
+	t=1741447752; cv=none; b=ikRarVpTFctM9AGb/Advs9+5+cKClGUTHKy+jIJ4GwMI2+nANEWybK2IovPfAMuBncYjVasauSyVbPZEt8I3+bDH/hL259pu3hqo7UHhuOj1wSikSJt9mLRYfUTWfg5ZwMMotqUsZUZx5mtjUqWu4+IonztfrE/hBwTn5TC7TCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741447671; c=relaxed/simple;
-	bh=BzbdGhFUgbWVE36GSc3NNkv4xumU2hEjxnkJ3qaNKvA=;
+	s=arc-20240116; t=1741447752; c=relaxed/simple;
+	bh=DngW6UKwtoP4vTNhZNLO04627yOjUXfCZEoZdkARLkI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fiizuFou6cunY2K3lfGUWzUupFP789RZuBdpHpmh2Me4A4PagkYhxfW8MKl/fbUT6reiFUpX4OeD4/HxOJ8om9WKt+70OaLp1Deg5WfmkXi4WgwevpWEc/XeDSuuyWQHOgovbUT1nR7OOW4XCnB9drs1RgnI8ITcaERrCde9Vsw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=YEB9KXBS; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id C074025B9B;
-	Sat,  8 Mar 2025 16:27:44 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id DXIS_cdflHBn; Sat,  8 Mar 2025 16:27:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1741447664; bh=BzbdGhFUgbWVE36GSc3NNkv4xumU2hEjxnkJ3qaNKvA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=YEB9KXBSTSSxK41VGw2GC7PrpTTMzDI2U5XmJyAEGPEb94zjWE4AbiD0RxINY17+1
-	 4XL7MXJ2AT3qa9I+ZIWh+m7STiSpUEkqX6fAXKH0s1CCkEaMGvh9z8PN/2+MgYWPXR
-	 B4bfUgc/37PlGfmXwu9rla9qnEL6qjzdnvvYs78Mg6O5vGci6tDQ466GSBnnhH9PYj
-	 3UrAyT9rSExMAcnggY3s6LrDSHHfttlQQhCvgtF2r307Hp7jZo0gfS3ZyjVIEjBZQy
-	 xVRZxwEGWyOKmltxDOKfq1kPRdGDjlDbLF0+cbt0OmozVZSXlorn69J05DTnS63NHe
-	 gwbQFasUTva3w==
-Date: Sat, 8 Mar 2025 15:27:22 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, cristian.ciocaltea@collabora.com,
-	detlev.casanova@collabora.com, devicetree@vger.kernel.org,
-	heiko@sntech.de, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 8/8] arm64: dts: rockchip: Enable SD-card interface on
- Radxa E20C
-Message-ID: <Z8xh2mE1BTE4co43@pie>
-References: <20250305194638.47187-1-ziyao@disroot.org>
- <20250307033508.656479-1-amadeus@jmu.edu.cn>
- <Z8qJqpUwi7VV8tJk@pie>
- <5a0a7ce1-1dfb-4d19-8a1e-0d89d177f5b8@kwiboo.se>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bl1yFLvaNfXkeARO1H0FmidvpJ/RUBk7nlE9CGCcP2Pz+yi+UsEoetRDI4hitETv+24QnGYgIVjJ3MBrjDXXJ9bXuPF3B/dSFZ54gKud76k4AQVVIoRTrUYfKisJeyA63uiz/lhrn8kdp7r0kl2iEbmYeEtMNE6dlaUv1j5ogpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BWUplUDZ; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30bf1d48843so20606191fa.2
+        for <devicetree@vger.kernel.org>; Sat, 08 Mar 2025 07:29:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741447749; x=1742052549; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=j1erwRbEpf42IpSPu2HfeF24p9T9l4keifT6FQUxIMM=;
+        b=BWUplUDZeU96vc/TLQ7w/otbqzRgDvT04TbNFonvcJaruyHrXUlYrduHQmt78qat6q
+         GmonXuEAXKDRBa90glxwaCN77+Wde2D5FsSFPkXNcQ2vy2MVdRbAu/YuPHQcD3M6EsSR
+         dlCD9uJGmSBQYvIpmokxA1U+N/WFnKyJJGNiHwgOTlQGijR17Dz1nBGt/teRWg85WzgL
+         MdtsLpgZ7rLGnZzIlDxhE9zg4ijroIIpoCzw/+dfvkBmCa4/V2BOa7Mjm/JL1V+T715o
+         oKXC1OtQIA47M2C5tQmXRuaRhiTz5K3fYWqSaWM76Ss3/vq6KjMxEwb+6RarroS5CjCZ
+         fW5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741447749; x=1742052549;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j1erwRbEpf42IpSPu2HfeF24p9T9l4keifT6FQUxIMM=;
+        b=VgtqsGQ4plPUJwyFh13WFn9GJ4XdpM57AYAaOcb7ofhQqLVO7RAbrkmG7UkUDZ4DSV
+         Xs8TdbArb1ia/m4eoIum5zGG/pjVagIntWLbeyl3yJfQFp0cRwdw8eH/WVpFGxuJuXUq
+         Q8p7cFYNFLW0LmuK/bkxgCfTtthz7Fe0Rbeiyyr2BVE47N5FpHzjRnYMi6OPOH0HGHFA
+         fFCe5cYWCHarzcsIBGxPo58afWGkvjNouulp7TVenBpGAD9RvfmOfJKXUylHHVZrARwt
+         sHPWD2vt1vj8ZXYQ3B7v7KnYrXLBd1ZPwUzNAQOwHFYC8PZcGJ31kudbZiGTKlIJSne4
+         az1g==
+X-Forwarded-Encrypted: i=1; AJvYcCXknYUXBLALxijtAz/olzvgoTaqYEhDtjocLJFofdHwr3RRhbOLE3JO+4WJV/nk9OWzrPFR+PICKGLv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0+nryIx9Xd87ET83dmXuPSHWNM+TfzMyRWq0JjDCvzJ25E3Vc
+	Rtv6KRfTRvGaE+N0bdU62aDyaj5r2e4byso18qlb+RtD7rtapaVAFwbN7YIaQ0c=
+X-Gm-Gg: ASbGncsebdVqlqDuP93WovFwEB9pWwdn8i8p58evDRP5RohOOYh1Zo9iLa6gcl7bpe7
+	lHwJp2ilRLg/0pAGWgoqvBTOeT8m2Zij38CPqj4eoX7cTecEiPtJP5wv4r0Fg4M+jZLvvhlt1Yb
+	uaDR9w5AN4vmsRuZ4cwf/VGCdeTaVz2fCbgLFQCsFPxC6tGJByYHq0uR5m77tnAqi/vmG9yAcZ7
+	pnjGbsBPiVXunv3WaemEe6pYGSaCBnRn6K3i+eii1Rxz1dTHdTdtzmHbFWo2UjehKs+feosYryw
+	RvaUe6TNREhDP8dvXMrPU+EclAQcTyAz+lAcWpLhaedWEzPmmdzfo+Gr1519f/yinJb15gKZcVh
+	1ICB7yLX24lpvgClMaAMOwqjl
+X-Google-Smtp-Source: AGHT+IHWJzyRENoKYCsCD6ryWleW1FfCxkcxA9oKFolKIPqPM2Gc1cW/mG3/aDezKXNBCG2jOe6Msg==
+X-Received: by 2002:a05:651c:2106:b0:30b:b204:6b80 with SMTP id 38308e7fff4ca-30bf44eda0cmr24484481fa.8.1741447749006;
+        Sat, 08 Mar 2025 07:29:09 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30bfcc80809sm3965871fa.86.2025.03.08.07.29.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Mar 2025 07:29:07 -0800 (PST)
+Date: Sat, 8 Mar 2025 17:29:05 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: George Moussalem <george.moussalem@outlook.com>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-phy@lists.infradead.org, andersson@kernel.org, bhelgaas@google.com, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, kishon@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, 
+	kw@linux.com, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, 
+	p.zabel@pengutronix.de, quic_nsekar@quicinc.com, robh@kernel.org, robimarko@gmail.com, 
+	vkoul@kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH v3 2/6] phy: qualcomm: qcom-uniphy-pcie 28LP add support
+ for IPQ5018
+Message-ID: <fwpdzm4gdulyhfnmcvoqsbnu3fwbqyc6gne3ayz7sr6eu2yyqy@hhii6x4pk7a7>
+References: <20250305134239.2236590-1-george.moussalem@outlook.com>
+ <DS7PR19MB8883A6C7E8FA6810089453149DCB2@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <oeu6wkfhx2masvendoweoufzit6dcwwer5bakzvg75dz3uc4bj@bwuj4slnb24e>
+ <e2d84147-c061-4f12-a44b-f60919625f77@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5a0a7ce1-1dfb-4d19-8a1e-0d89d177f5b8@kwiboo.se>
+In-Reply-To: <e2d84147-c061-4f12-a44b-f60919625f77@oss.qualcomm.com>
 
-Hi Jonas,
-
-On Fri, Mar 07, 2025 at 07:45:00AM +0100, Jonas Karlman wrote:
-> Hi Chukun,
-> 
-> On 2025-03-07 06:52, Yao Zi wrote:
-> > On Fri, Mar 07, 2025 at 11:35:08AM +0800, Chukun Pan wrote:
-> >> Hi,
+On Sat, Mar 08, 2025 at 03:25:05PM +0100, Konrad Dybcio wrote:
+> On 5.03.2025 9:39 PM, Dmitry Baryshkov wrote:
+> > On Wed, Mar 05, 2025 at 05:41:27PM +0400, George Moussalem wrote:
+> >> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > >>
-> >>> +&sdmmc {
-> >>> +	bus-width = <4>;
-> >>> +	cap-mmc-highspeed;
-> >>> +	cap-sd-highspeed;
-> >>> +	disable-wp;
-> >>> +	no-sdio;
-> >>
-> >> With 'no-sdio' property:
-> >> [  129.608986] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
-> >> [  130.711168] mmc1: Card stuck being busy! __mmc_poll_for_busy
-> >> [  130.725536] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
-> >> [  131.751240] mmc1: Card stuck being busy! __mmc_poll_for_busy
-> >> [  131.765608] mmc_host mmc1: Bus speed (slot 0) = 200000Hz (slot req 200000Hz, actual 200000HZ div = 0)
-> >> [  132.825083] mmc1: Card stuck being busy! __mmc_poll_for_busy
-> >> [  132.839413] mmc_host mmc1: Bus speed (slot 0) = 187500Hz (slot req 187500Hz, actual 187500HZ div = 0)
-> >> [  133.960141] mmc1: Card stuck being busy! __mmc_poll_for_busy
-> >>
-> >> Without 'no-sdio' property:
-> >> [  105.224019] mmc1: error -22 whilst initialising SDIO card
-> >> [  106.290838] mmc1: Card stuck being busy! __mmc_poll_for_busy
-> >> [  106.801931] dwmmc_rockchip ffc30000.mmc: Busy; trying anyway
-> >> [  107.385835] mmc_host mmc1: Timeou sending command (cmd 0x202000 arg 0x0 status 0x80202000)
-> >> [  107.400425] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
-> >> [  107.431561] mmc_host mmc1: Bus speed (slot 0) = 49800000Hz (slot req 50000000Hz, actual 49800000HZ div = 0)
-> >> [  107.433107] mmc1: new high speed SDIO card at address 0001
+> >> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > > 
-> > So it seems the sdmmc controller actually works with SDIO commands as
-> > well? I don't expect that since the datasheet says RK3528 has only two
-> > SDIO 3.0 controllers.
-> > 
-> > We could remove the "no-sdio" property if SDIO actually works. Will
-> > apply it in the next version if there's no objection against this.
+> > Something is wrong here. There can't be two authors for the patch.
 > 
-> On the E20C the sdmmc controller is routed to a microSD card slot mainly
-> intended for use with microSD-cards and should normally not need SDIO.
+> It may be that Nitheesh was the original author, whose patch was then
+> picked up by Sricharan for sending (no additional notices of
+> co-development), but George later did the same, forgetting to remove
+> Sricharan from the chain.
 
-As pointed out by Chukun, I found the hardware design guide for
-RK3528[1] (in Chinese) does claim that SDIO 3.0 is supported on all
-these three controllers in Chapter 2.3.1 (SDMMC/SDIO),
+That would go to the SoB trailers. The issue is slightly different. I
+can't even come up with a normal way to end up with the patch having
+two From: headers:
 
-  RK3528 集成了 1 个 SDMMC 控制器和 2 个 SDIO 控制器，均可支持 SDIO3.0 协
-  议，以及 MMC V4.51 协议。其中 SDIO0 和 SDIO1 最高可支持 200MHz，SDMMC
-  最高只支持到 150MHz
+The only way how one can get the From: header is by doing git
+format-patch. But then git am would get rid of it by filling the commit
+metadata.
 
-translated to English,
-
-  RK3528 integrates one SDMMC controller and two SDIO controllers, all
-  support SDIO3.0 protocol and MMC V4.51 protocol. Among them SDIO0 and
-  SDIO1 support 200MHz frequency at maximum, and SDMMC supports up to
-  150MHz.
-
-So I think there's no reason to explicitly deny SDIO initialization
-sequence for the controller on Radxa E20C. imho this won't break
-anything even for a sdcard slot, will it?
-
-Additionally, this piece of information points out that wrong
-max-frequency is set for SDIO{0,1}. Rockchip overrides the frequency in
-devicetrees for the demo boards[2], I'm not sure whether it's for some
-speical reason or not.
-
-Since I don't have a SDIO-capable board on hand, could you please test
-whether 200MHz actually works? If so I'll correct the SoC devicetree in
-v3.
-
-> What card/adapter do you have inserted in the microSD card slot that
-> requires use of SDIO instead of just SD or MMC? What is the use case you
-> have that requires removal of no-sdio on E20C?
-> 
-> Regards,
-> Jonas
-> 
-> > 
-> > Further tests about the capabilities of the controller are welcome.
-> > 
-> >> # cat /sys/kernel/debug/mmc1/ios
-> >> clock:          50000000 Hz
-> >> vdd:            21 (3.3 ~ 3.4 V)
-> >> bus mode:       2 (push-pull)
-> >> chip select:    0 (don't care)
-> >> power mode:     2 (on)
-> >> bus width:      2 (4 bits)
-> >> timing spec:    2 (sd high-speed)
-> >> signal voltage: 0 (3.30 V)
-> >> driver type:    0 (driver type B)
-> >>
-> >> Thanks,
-> >> Chukun
-> >>
-> >> -- 
-> >> 2.25.1
-> >>
-> > 
-> > Best regards,
-> > Yao Zi
-> 
-
-Thanks,
-Yao Zi
-
-[1]: https://github.com/DeciHD/rockchip_docs/blob/main/rk3528/RK3528%20Hardware%20Design%20Guide-CN-V1.0-20230525.pdf
-[2]: https://github.com/rockchip-linux/kernel/blob/604cec4004abe5a96c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3528-demo1-lp4-v10.dtsi#L47
+-- 
+With best wishes
+Dmitry
 
