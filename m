@@ -1,137 +1,151 @@
-Return-Path: <devicetree+bounces-155721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2AAA57DE3
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 20:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96415A57DF3
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 21:09:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A52D316DE69
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 19:59:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A177516E0B8
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 20:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7BF1F7904;
-	Sat,  8 Mar 2025 19:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D6F11E833E;
+	Sat,  8 Mar 2025 20:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hkLZMjRU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HDp/DdYN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1547F382;
-	Sat,  8 Mar 2025 19:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53B63ECF;
+	Sat,  8 Mar 2025 20:09:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741463979; cv=none; b=Cu7f/N+aPGTeGPBcIC8+dnEp41LDjYh9T9CGDZsNUb7qbuJlUQS3M59Fyk2vJpbqQdVQol5XLAse8DIx6ybz3wcPU1Z5tHl/+jG7Jr1R/356dcXwDbERl1tR7+ivUmddqD1nyiuPQj5Uwgh15NMFGUi7OucoZ8OlwN/jXPNPeh8=
+	t=1741464590; cv=none; b=tMbLK+SzciaZgHH9z7V1pHb3P0zONFMOFbTiapNhEZKBP/+wlli23uwPNNtvOGVwFBFRebgcIyPUuGpsMTueEVJmDfN83mUNoO2oGKD1ulk5DMl9xayEotBmG0ZL9Vso5i0NPuDBnqg8Jqehsd3uSQFjYPudddYpXQUlWZWLrOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741463979; c=relaxed/simple;
-	bh=x3E1fq8IZUwU/fUF2C5GTmbaJW+Wcl0XpQM85Bz+Stg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=FM+QJj9GaDvTHcUBhem+A74d6eoQclAPI5JArJci3z9DWR0hUFqaYuv87AwetEs+OUTGclss3hEzpVYIW0x0CDJhKoI01Mll9l/jZhjwXAzNgSvjxFQtYdZcRMeOAd88NtZ2Lgt+naI0bcV3Eatr8yYxo7NbCNR9oYqE1XCxr+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hkLZMjRU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A5CDC4CEE0;
-	Sat,  8 Mar 2025 19:59:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741463978;
-	bh=x3E1fq8IZUwU/fUF2C5GTmbaJW+Wcl0XpQM85Bz+Stg=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=hkLZMjRUhZKV6eypsedqDvbQn7W1IHnBcglKkq/TE5/sFLtFpOheLF6YwiqIzy/9d
-	 reFkhemx4IRp/QKuwZXOGfn3ACLxmKqii8mD/5F9Fk/kRySyD+yk1Zi3a54/Z7piU/
-	 +vQjmu6fqSFGluVC94BAGLKsQs+WUZ7FWol7WwoHzr9CIxC+JyAaNA8+XoocHR+4M8
-	 WZxWCwk8GrNM7KFNIwbK+saC16tHOFij1wRXem+E0XOM/RZxn2v4wLfVqjnsA+HGoo
-	 oJIWGgqLxyz2ctbI7vlOw6dGHsHCq7kmZVQUXVa09oWQ35m5OyNjet/t44zRZf+MTs
-	 YLZrMGE3ieZ7g==
-Date: Sat, 08 Mar 2025 13:59:37 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1741464590; c=relaxed/simple;
+	bh=7DbSfqfG0OJrAlmTX/0lgkV5+HY7VTxbQGptLaJkJPo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nce519zc8sH0Pr0idzlMABM1bdKU1V26RGncOF/zY2HRsVB2FLdDabiz953t9SlB2l20nEFYcU8gzSHxslSd+QjnPGjfOTZ9mDcdyenihbozgbCsYcKFMpn23c9+qT4GAf8/xVSbR4IUSlxCKG1eIXoVkrnxbBARK/0ldJgYnTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HDp/DdYN; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ac202264f9cso557248766b.0;
+        Sat, 08 Mar 2025 12:09:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741464586; x=1742069386; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OTrUFD6ZSyRMB0wCSziCDfkXlxW30EZjxre+ifvNxBI=;
+        b=HDp/DdYN3yU2rFzdjBnVUdpAW1xJQaxSeWucoMlDUaRPHLiDdyEnYVdFGT2OY4xQiS
+         KPE2q0iiRmn9hKKKM3DiM78SqNme+sKf2w4sfd9tyZ91FdtWfQljhZ4xSKkAVpbeDCJb
+         KzjkOytSe5xLiiOmpAA7+LBuOuCGUH93kutCkjvH9JZXA0hl8ht7kf86bfPAlcbZZ7it
+         bcVAagD7XASIQve6hLtQXLJiTlz003WuF5USxJoNTp2uUfUHME1vVszoJ9K2eczRyIhp
+         VGFVRadkLO0Uk40/hMI5dBUJlFgHv8JHLMmdqlkO0Mj0SRCn2hFERwj8ElsnZWoLZ5HD
+         GMXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741464586; x=1742069386;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OTrUFD6ZSyRMB0wCSziCDfkXlxW30EZjxre+ifvNxBI=;
+        b=jZkzPx7ucnr/BnZdno74WwgMuL1jbI9fdybOe1FJgIPEv6WXYvXfqj401c8QtrMnxZ
+         kVyaP/yARZnJs3AcPTVzWbD092t9aaO0UDD2nXQZS29898/pEMPHaLtXF3N2Jg8PMRkb
+         nTsEHHci5VlfRc0LWuUkRMIiwUGe1sZFWDvq/iz6sIza81V2XzcFhTVokG4JwJvVTq2S
+         moxgIppSBhpTfzuzsqMXz+jIxeVBl4H+18OcfvOK2LlRz9EIzpCg4ozmxTcJftd8vold
+         7duQrslefXI3nMMdEFfQ6UfV6z0eOrETPgezp6/fcaXarvYB+zB8dOPeY+OTNbsKc8VF
+         lhOA==
+X-Forwarded-Encrypted: i=1; AJvYcCVarHhHJxdnNZ4estljaBdakMpaEpxCVj/70WICw7/kJBY5Z821DL48dWQICiDWJ2m8j2X9riDmk9bPCA7u@vger.kernel.org, AJvYcCWSU+OOCPAiwv/tLjWCis1PrJyPa1EZ9rkGjV2eWUcnWpd9s46owu8EtRVuHMn2MfuE4h22Z6BFgafAieFXnzGDuWc=@vger.kernel.org, AJvYcCX+IgI1mS/gjzlnXeiFyOsThi6NNDkZZXOpjrsg7cRae7tZ9qO0w8t5PnSQ32OPTKw4vxLLnxeElIs2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYEwwNpP0mOWd9HV+tsYoYUxGm/CT33w6abiErGB+5VL5rPWPr
+	iMFgvO9UeIo/LX7D+NqRH/CG5HFA9GMIGS6awtEjlYutaeCCzyla
+X-Gm-Gg: ASbGncvDSFik+jPE6W9TuUvAnNJlzlN2VicZBy3Hgckg1RqDI3+1+ugs+bx+rXC4Exg
+	F+sGTDlEeU881mpGgtYJ8N7iuNY/+tMjvWonOuJfOKKuVT1qpU2XFwWtey9guwy3M7Gvxw3FYpL
+	RzFjIAGeEi6ZOf6lVMV5TZUpclvZ7AHwb3UPP5b347DmnRPHtBXE5JV0xEM5YYHv2Wy/PtKDIJy
+	jkfD1hmtDCrT24uokWt4+UAHfRRx41DC6eYUCAdTiDor9w5vn51Nx7mvgaJ+cFQ1Vk6zuqVLAVD
+	Sjg1aglqKPgwG9nMWqdjb4Ub0VEGiqgAKYbzqJ1zMb7CsNj7KKnq048aTrNXzN3RDP0hMUTvQQ=
+	=
+X-Google-Smtp-Source: AGHT+IFmLPH2ghjiTWtO7YGrC+OE0mPpUY+wE7bzmV3kCuNx44mWlf1z04daaz8OzN93OZ1eR28nZg==
+X-Received: by 2002:a17:907:970e:b0:ac1:e07b:63ca with SMTP id a640c23a62f3a-ac252a9d0b7mr756393066b.22.1741464586226;
+        Sat, 08 Mar 2025 12:09:46 -0800 (PST)
+Received: from prasmi.Home ([2a06:5906:61b:2d00:238d:d8a2:7f2b:419e])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac254346ce8sm340766466b.177.2025.03.08.12.09.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Mar 2025 12:09:44 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH net-next v2 0/3] Add GBETH glue layer driver for Renesas RZ/V2H(P) SoC
+Date: Sat,  8 Mar 2025 20:09:18 +0000
+Message-ID: <20250308200921.1089980-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
- linux-media@vger.kernel.org, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Eric Biggers <ebiggers@google.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Mark Brown <broonie@kernel.org>, 
- =?utf-8?q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>, 
- Ihor Matushchak <ihor.matushchak@foobox.net>, 
- Ricardo Ribalda <ribalda@chromium.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Hans Verkuil <hverkuil@xs4all.nl>, Umang Jain <umang.jain@ideasonboard.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Biju Das <biju.das.jz@bp.renesas.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Dongcheng Yan <dongcheng.yan@intel.com>, 
- Julien Massot <julien.massot@collabora.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-staging@lists.linux.dev, 
- Tommaso Merciai <tomm.merciai@gmail.com>, Heiko Stuebner <heiko@sntech.de>, 
- Taniya Das <quic_tdas@quicinc.com>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Conor Dooley <conor+dt@kernel.org>, Zhi Mao <zhi.mao@mediatek.com>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Dan Carpenter <dan.carpenter@linaro.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
- Cosmin Tanislav <cosmin.tanislav@analog.com>, Will Deacon <will@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Ross Burton <ross.burton@arm.com>, 
- Javier Carrasco <javier.carrasco@wolfvision.net>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Bjorn Andersson <quic_bjorande@quicinc.com>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <20250308183410.3013996-20-demonsingur@gmail.com>
-References: <20250308183410.3013996-1-demonsingur@gmail.com>
- <20250308183410.3013996-20-demonsingur@gmail.com>
-Message-Id: <174146397700.3496940.17285353944853657369.robh@kernel.org>
-Subject: Re: [RFC PATCH 19/24] dt-bindings: media: i2c: max96712: add
- support for POC supplies
+Content-Transfer-Encoding: 8bit
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Sat, 08 Mar 2025 20:33:48 +0200, Cosmin Tanislav wrote:
-> The GMSL links can carry power to the serializer when using coaxial
-> cables.
-> 
-> Document this capability.
-> 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-> ---
->  .../devicetree/bindings/media/i2c/maxim,max96712.yaml         | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+Hi All,
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This patch series adds support for the GBETH (Gigabit Ethernet) interface
+on the Renesas RZ/V2H(P) SoC. The changes include updating the device tree
+bindings, documenting the GBETH bindings, and adding the DWMAC glue layer
+for the Renesas GBETH.
 
-yamllint warnings/errors:
+Got to the root cause of unbind/bind failures and fixed the clock driver,
+test logs can be found here https://pastebin.com/nJpNkysf
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml: patternProperties: 'port[0-3]-poc-supply' does not match '[\\^$()*@]'
-	hint: Fixed strings belong in 'properties', not 'patternProperties'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+v1->v2
+- Updated commit description for patch 2/3
+- Updated tx/rx queue completion interrupt names
+- Added clks_config callback
 
-doc reference errors (make refcheckdocs):
+v1:
+https://lore.kernel.org/all/20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250308183410.3013996-20-demonsingur@gmail.com
+Cheers,
+Prabhakar
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Lad Prabhakar (3):
+  dt-bindings: net: dwmac: Increase 'maxItems' for 'interrupts' and
+    'interrupt-names'
+  dt-bindings: net: Document support for Renesas RZ/V2H(P) GBETH
+  net: stmmac: Add DWMAC glue layer for Renesas GBETH
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+ .../bindings/net/renesas,r9a09g057-gbeth.yaml | 213 ++++++++++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   7 +-
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../stmicro/stmmac/dwmac-renesas-gbeth.c      | 165 ++++++++++++++
+ 5 files changed, 395 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.43.0
 
 
