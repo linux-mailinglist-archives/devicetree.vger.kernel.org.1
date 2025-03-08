@@ -1,112 +1,116 @@
-Return-Path: <devicetree+bounces-155584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C09DEA578AD
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 06:44:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C155A578BF
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 07:20:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A11A4188DC47
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 05:43:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B29C116EF50
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 06:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89694188733;
-	Sat,  8 Mar 2025 05:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596C6188733;
+	Sat,  8 Mar 2025 06:20:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qdOF2JqA"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UngE8yea"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DDB7196;
-	Sat,  8 Mar 2025 05:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CAF17A318;
+	Sat,  8 Mar 2025 06:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741412609; cv=none; b=dvxP+AwAAK7LK8Nl9Xm4hiz9XpgOVWflqZ1tMBDl6UrjDcXllj5icOsMUL+IkBSSBWK6DLsdCjf7efsqa0jy5eSwUzWGfQJWe5/F0VTKajPTJRiVhJhjJzLRFNmiyISNYb4DQ02nFP1c3g/efmmD9gU80P2jVzEdGTu0AaPpYWU=
+	t=1741414838; cv=none; b=mQ2ORyrgab1d5lqzvaV9LWo5zV4GSl782imxOSamSVZgGmsd5Wa8b0uWAn7culYeiaB5hvRKxjT55F9uR13+e+EyLVMJrgbRxEpUWlMHriC19KWWdncX/oumBd7TSF58sw/TvFEqqL9/4HEgIEwizieow+YzHQWfr7piNmI6JRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741412609; c=relaxed/simple;
-	bh=ovZlCRfpGxU3/hjuo4CLsJ1CEQZkEYIY+jKDnqT6rSY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gbF60SfM4kQwPppwxttcvZ8AHRFX1Si8JuGQ2iHT/9hiu6DJzY5bH4x2oewWNRpg16kbicA9lODvXJ8kq2G2hSSRoiT+311ULvWAO6+wzNib2/1Gzz1pcPD/2/ugdhh4vNZcZUpqqpR+mEXsGcyKKfL4ELGzr2fuyY6UlsyjfN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qdOF2JqA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA39FC4CEE0;
-	Sat,  8 Mar 2025 05:43:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741412608;
-	bh=ovZlCRfpGxU3/hjuo4CLsJ1CEQZkEYIY+jKDnqT6rSY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=qdOF2JqAGlZ3avu+8eSjQmrorNfh5LAh3694+nIPDuUdNdmAcEqD3CtUUBz9ZS4P0
-	 UaC/bPe/yBJnZKSgohUjBrYuMApX9swb/yhBsOe5IbcqFRchtfdpXWht+22aBGzCGB
-	 z/m9vNlNDbIiCwoKoqTqUawawmXjxgihNbJQ0e8+f7tgvA+jpmk2yv6IX/bRo5BgQ+
-	 oGgCHvmFDsComwPcm2g/bNYH1CmZXIhnpl2VZzEDOnRJhITbgfRVeJGuJwP9PYhshr
-	 yXzXLQsPyBV83WIbKfJlKeiEZa/KATUISQeN4GfrEGCP3WlRka1i/0En57/Fb1W1Tl
-	 EiHTT3ntKrR4Q==
-From: Dmitry Baryshkov <lumag@kernel.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krishna Manikandan <quic_mkrishn@quicinc.com>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Rob Clark <robdclark@chromium.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>
-Subject: Re: [PATCH v3 00/21] drm/msm: Add support for SM8750
-Date: Sat,  8 Mar 2025 07:43:13 +0200
-Message-Id: <174141256285.1924437.13836613214296970424.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250221-b4-sm8750-display-v3-0-3ea95b1630ea@linaro.org>
-References: <20250221-b4-sm8750-display-v3-0-3ea95b1630ea@linaro.org>
+	s=arc-20240116; t=1741414838; c=relaxed/simple;
+	bh=5YfqZTbEGIseGzwqMQm6Q/pxFyZ7sTTqrLNxwSsyqPc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aTXrOjrlije/A6tj59sV17nlTntn9PS1Y/H6fa2NMcj7eD4Fcn35RTf9u+Nhk7Aksg02M7y9DCS4u/66krmrITfoS5SZzwDHV9+HYAelioC54KszmHxZ1GZtRl/ijGJVnYNChZlz7ybYQZK/LViOrAO4TaCQYIm8qzDLZXgHrIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UngE8yea; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741414835; x=1772950835;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5YfqZTbEGIseGzwqMQm6Q/pxFyZ7sTTqrLNxwSsyqPc=;
+  b=UngE8yeayas6Tx3Bdc3bNuuFhwChrat7UM3tPDbFIy3W1pzvgwqZBgW/
+   YIEYRvrU5M76euPiL2UVHCxpvmxssHnSB+Rm/PqoHFmIN5efT+YO2Q9eA
+   2gPj7rByDaiGhpKoCBYmybdptDWwjHENldV3OFpUmKLXQkORb+EWXLQlu
+   lIF+CevsX4lNQTbZu3qqqlCMIX4JZsQWjHYRdt7XwQUwmKhCP6HzMiryl
+   /GhHZAnDJd2xUrUGGL2ZBpXhIcKKLEC83VtfeXo19tNUFw+HyFHCytebV
+   xslg9JDdkoDM/3C5AsW1hmtX18ceFebUXfkM+hP3IrLkQVa7p93TuVbrT
+   w==;
+X-CSE-ConnectionGUID: M7TwBbLMQpmLFNSDsqDZAQ==
+X-CSE-MsgGUID: mkNXwAsoRVS1yNhAZ2txIg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11366"; a="42611147"
+X-IronPort-AV: E=Sophos;i="6.14,231,1736841600"; 
+   d="scan'208";a="42611147"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2025 22:20:34 -0800
+X-CSE-ConnectionGUID: TBMUlj87R0qD7RzuhIEVTg==
+X-CSE-MsgGUID: aA64BUCcSjudK9qzQo3J1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="123689338"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa003.fm.intel.com with ESMTP; 07 Mar 2025 22:20:30 -0800
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tqnXv-0001Zs-2J;
+	Sat, 08 Mar 2025 06:20:27 +0000
+Date: Sat, 8 Mar 2025 14:20:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	perex@perex.cz, tiwai@suse.com, ivprusov@salutedevices.com,
+	jack.yu@realtek.com, zhoubinbin@loongson.cn,
+	luca.ceresoli@bootlin.com, quic_pkumpatl@quicinc.com,
+	paulha@opensource.cirrus.com, rf@opensource.cirrus.com,
+	nuno.sa@analog.com, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	yijiangtao@awinic.com
+Subject: Re: [PATCH V2 2/2] ASoC: codecs: Add aw88166 amplifier driver
+Message-ID: <202503081433.xufVVq8t-lkp@intel.com>
+References: <20250228034958.181934-3-wangweidong.a@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250228034958.181934-3-wangweidong.a@awinic.com>
 
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Hi,
 
+kernel test robot noticed the following build warnings:
 
-On Fri, 21 Feb 2025 16:24:10 +0100, Krzysztof Kozlowski wrote:
-> Dependency / Rabased on top of
-> ==============================
-> https://lore.kernel.org/all/20241214-dpu-drop-features-v1-0-988f0662cb7e@linaro.org/
-> 
-> Merging
-> =======
-> DSI pieces here might not be ready - I got modetest writeback working,
-> but DSI panel on MTP8750 still shows darkness.  Therefore we discussed
-> that DPU/catalog things could be applied first.
-> 
-> [...]
+[auto build test WARNING on 1e15510b71c99c6e49134d756df91069f7d18141]
 
-Applied, thanks!
+url:    https://github.com/intel-lab-lkp/linux/commits/wangweidong-a-awinic-com/ASoC-dt-bindings-Add-schema-for-awinic-aw88166/20250228-115709
+base:   1e15510b71c99c6e49134d756df91069f7d18141
+patch link:    https://lore.kernel.org/r/20250228034958.181934-3-wangweidong.a%40awinic.com
+patch subject: [PATCH V2 2/2] ASoC: codecs: Add aw88166 amplifier driver
+config: x86_64-buildonly-randconfig-004-20250308 (https://download.01.org/0day-ci/archive/20250308/202503081433.xufVVq8t-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250308/202503081433.xufVVq8t-lkp@intel.com/reproduce)
 
-[01/21] dt-bindings: display/msm: dsi-controller-main: Combine if:then: entries
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/0edf7b1f3190
-[02/21] dt-bindings: display/msm: dsi-controller-main: Add missing minItems
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/83ee6d2ec52f
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503081433.xufVVq8t-lkp@intel.com/
 
-Best regards,
+All warnings (new ones prefixed by >>):
+
+>> sound/soc/codecs/snd-soc-aw88166.o: warning: objtool: .text.aw_dev_dsp_update_cfg: unexpected end of section
+
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
