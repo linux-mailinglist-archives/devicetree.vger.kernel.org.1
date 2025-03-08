@@ -1,151 +1,120 @@
-Return-Path: <devicetree+bounces-155718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50853A57D4C
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 19:43:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDFA7A57D9E
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 20:04:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18AB61889068
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 18:43:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F4B51890B96
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 19:04:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67BF81F5852;
-	Sat,  8 Mar 2025 18:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03281EFF9C;
+	Sat,  8 Mar 2025 19:04:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="mTBtVL1T"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gs0Pprfw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30ABC1F584C
-	for <devicetree@vger.kernel.org>; Sat,  8 Mar 2025 18:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2698F1DB122;
+	Sat,  8 Mar 2025 19:04:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741459252; cv=none; b=Jq9joOVQXi9XXLjNDrEYN+e/8ramD4GtqWK0uh0JqQbOckYWoIWxDqHr4zLfpiClHPWUqVnovIUUjeOSOMqcBjJ5LHU+IvAZjUniDtg0BM91ipXTn7T4uZz+gc+A1KPvNBxObvnRDctueVaOSFLfFOjjeD98lYHGEMacOXrr0NU=
+	t=1741460647; cv=none; b=qNMDG8bR4YUul+Pbc+cwNnC/AtZv4s7cyJfZp0XtztbatRgokaSsisImoeXCOqe+CMZlXfMCbJH3YpgREvGE5gxsqBcwVYEeE8Xybo6BrfSNd0XB3JVFYFxfaUSxpuzBzcUFxk8hjAh/ogHio3RxNz66DS50JneiReqX9QH0qlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741459252; c=relaxed/simple;
-	bh=otfbaXRx0KCNwf5peLoJ1CCs5/Kof2zck2m5p70R2NE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gtJK0odJYITPDjSvUvlfwyhwq2pII3cjgnB70yq8WHKvO7/DY72GQXheixT/UqR1S2pqvycGv2CRDXJydaWUgRjItISwNgouJvWOtAwj7b5qBAl+E5b0M4xGpppWM140AJwZGuigl16xSMoMjmibugHtvAtKD9+KPjce8iyLnyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=mTBtVL1T; arc=none smtp.client-ip=185.67.36.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 4F176240027
-	for <devicetree@vger.kernel.org>; Sat,  8 Mar 2025 19:40:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1741459248; bh=otfbaXRx0KCNwf5peLoJ1CCs5/Kof2zck2m5p70R2NE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=mTBtVL1TWiC8G4clZSZq+BE6ABeCrUGM7K0jQBhRzIPo7NmAjPNhD0py6m7frpeLp
-	 PItpcLoQIg2hinHO/Z9QW3ARnQo/UIFRTVRWX/C3JZHSHrnskoLf1yJs7C1NsBwCbw
-	 KIABpO4Bgm7f/bVPvVjIDroJpUqd+3b4zHezCF6jBqKikmVHITZPVRwxdsBEkFl2gc
-	 wLX1gAz2/2B5ARv4uXa3Z30MEQ4dtIkh9cw7Va9JQcrBkoSzIzCgzdU61YitpynTM9
-	 grmeKFm6j45bnS4EMu5MPE0gDS4RAOHTxZS8x4ljAG9tlQuqEi3n393+TGJ+6flnsR
-	 eJ1XtRhmsfOtg==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4Z9Bmr3JbPz9rxB;
-	Sat,  8 Mar 2025 19:40:43 +0100 (CET)
-Date: Sat,  8 Mar 2025 18:40:43 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Rob Herring <robh@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	Richard Weinberger <richard@nod.at>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Crystal Wood <oss@buserror.net>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	linux-mtd@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Naveen N Rao <naveen@kernel.org>, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: nand: Add fsl,elbc-fcm-nand
-Message-ID: <Z8yPKx1U-sT1OGeb@probook>
-References: <20250226-ppcyaml-elbc-v3-0-a90ed71da838@posteo.net>
- <20250226-ppcyaml-elbc-v3-2-a90ed71da838@posteo.net>
- <174059551678.3319332.12055848852503108874.robh@kernel.org>
- <20250303140021.GA1732495-robh@kernel.org>
+	s=arc-20240116; t=1741460647; c=relaxed/simple;
+	bh=hLQRFBlo3PiBpW/PV5t75PCUgkfxdVXkjt3uDuaXM2k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zv7sBcLHTf4pkoI3V7XfsVhyVopHq6esdvIfBzD0fxqv2tRQsCDDyKW9PMNrms/EqujwhEQ5cf3aYUd9i2jrLmWwhrzw1wuSzeJ5DSmIOp0XSOb+NZk9s/8LMsp0wkgkOqiSOlyiZfK+YpVuCUKiK+INFXCLJl/VJ+YtFhUYVXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gs0Pprfw; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30bfb6ab47cso14698331fa.3;
+        Sat, 08 Mar 2025 11:04:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741460644; x=1742065444; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eTVbXxjWlsf93+TNBRlPrQnC9sQtCvCemMI+xBM+RLA=;
+        b=gs0PprfwHwLOYeBY5LdOMnj0FBBxwVKznWpgHfqpcKqy/woloSSMnvpHGxjSYNtNEx
+         XOSev05zu71UJTM88m8YzEywjtx+e+ilKVQ3OmzXR5Vr9EIWF2T9pnkRvk8c5H5+OOM5
+         mawJIJS1pFGenRzs5PnLGtPf2M2fnurEdZm7DYXmz7VFRDzZEghyDk3hEUTT6jw9ho8+
+         zv/WM07ZYCVJLWzEz8v5Ecbsvy70IOPAXyTnCEdvjkB2xrC5BluR4Av+6heYkDvc08FU
+         Rj/ZAnQTH5X+527+GvuaOGdX3baOESjfEPAvl876NnEWiwNT05AASV/bjBs0Hzv2FMEo
+         UqzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741460644; x=1742065444;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eTVbXxjWlsf93+TNBRlPrQnC9sQtCvCemMI+xBM+RLA=;
+        b=p7jSso7baoAcujIoPrrcWCiDaIl0FIw/HGWhWwmKCkZ8wIzHGEXFc9enuB1qH4LvH2
+         7l4wuyB0M0Y2kuM12KVlV+VjZXUEEF30TTCDnuH+TiMCz9sF00jNlRkZUdDad8fWMw6Q
+         TtbDaJQ4WH/aAQlNsOjWeUW1cUJ3HWYRdjPhjOwnErItYcUqbl+PgwZ2nZ+FmHNf6VaR
+         IKhrXiWfiiY+XjuJA2vvUg/QI6vYL88dPGjKXfokgbUa70ail55LxHI5Hli6NR4XtwkY
+         2fAJcSzr9wh5ITSysD9W3HjDvHraTkx0OC0Fg2gyg9XtUjsfCtKawONbbvI8GH8791dM
+         MA1A==
+X-Forwarded-Encrypted: i=1; AJvYcCVvYzOPQaCifv9DrBGP+kdFnY32vCoEwWZzwYOCnnJrW8F9q6bMpp1R7eVxfLdLBS7MVaV/mK9RFAI2Y3qs@vger.kernel.org, AJvYcCXJ4Ej7GSg53hh7ggFbVTONtvI5NJcBwTMAgGLY9Ki7I6StPosiVdv9UKafRlLDiOvKYQ07B/khkPfM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJl8kuARMxxtdQnyt/ktLGBLmN1KjVUTpNypK62dFBBhFEWP7R
+	PQzfrzPchte9qHXZSuVqXa7Pmyn8NZD0SDsP1m2w7y9V2/062r03
+X-Gm-Gg: ASbGncuhEJptwob/qBfsNGd9OmkGhxaWmfPzIzrIwhG3bbVGIfhJHDsU9/AER4gmY9C
+	MMCYM3s5gj5pDi+cX8lQ+5NQhhpyOZ37VHf3PAXla6IDo/1BUzKZDerEohY14flc5JDOyGjSDkS
+	ASdfZPqKHUEWms9Ik9glt+7Gf4dVE1C7rIV9Od93N11QKGiMdo6OTVpBRyoata6/15XSk7l+VKG
+	mIck4Lk9IPA8FM1fsWMm9duZyLxuZhgB22VWJ7p7i9GcDHvzFF3qDT+kjTvS8mnULwueimp/mWx
+	TnkBpKGCyj/swLIu8dY9p9ta/icJv4i8zHJIEHYMXmlR1Zj/nC9anz6w1lw=
+X-Google-Smtp-Source: AGHT+IHONdtOGFlS7xPC7CsMoQUtrhTnztXQBlowSZtaB1Dgbc0GCjes4fUV0lQgJ2cvnPRqYxqQbg==
+X-Received: by 2002:a05:6512:a93:b0:545:2fa9:8cf5 with SMTP id 2adb3069b0e04-549910b7c6fmr3484311e87.49.1741460643774;
+        Sat, 08 Mar 2025 11:04:03 -0800 (PST)
+Received: from [192.168.3.116] ([78.56.129.233])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498b1c3adcsm883370e87.249.2025.03.08.11.04.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 08 Mar 2025 11:04:02 -0800 (PST)
+Message-ID: <5bb045fe-89c3-46dd-bd9a-dee8800a6d58@gmail.com>
+Date: Sat, 8 Mar 2025 21:03:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250303140021.GA1732495-robh@kernel.org>
-
-Miquel, what do you think about Rob's suggestion below?
-
-On Mon, Mar 03, 2025 at 08:00:21AM -0600, Rob Herring wrote:
-> On Wed, Feb 26, 2025 at 12:45:17PM -0600, Rob Herring (Arm) wrote:
-> > 
-> > On Wed, 26 Feb 2025 18:01:41 +0100, J. Neuschäfer wrote:
-> > > Formalize the binding already supported by the fsl_elbc_nand.c driver
-> > > and used in several device trees in arch/powerpc/boot/dts/.
-> > > 
-> > > raw-nand-chip.yaml is referenced in order to accommodate situations in
-> > > which the ECC parameters settings are set in the device tree. One such
-> > > example is in arch/powerpc/boot/dts/turris1x.dts:
-> > > 
-> > > 	/* MT29F2G08ABAEAWP:E NAND */
-> > > 	nand@1,0 {
-> > > 		compatible = "fsl,p2020-fcm-nand", "fsl,elbc-fcm-nand";
-> > > 		reg = <0x1 0x0 0x00040000>;
-> > > 		nand-ecc-mode = "soft";
-> > > 		nand-ecc-algo = "bch";
-> > > 
-> > > 		partitions { ... };
-> > > 	};
-> > > 
-> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > > ---
-> > > 
-> > > V3:
-> > > - remove unnecessary #address/size-cells from nand node in example
-> > > - add Frank Li's review tag
-> > > - add missing end of document marker (...)
-> > > - explain choice to reference raw-nand-chip.yaml
-> > > 
-> > > V2:
-> > > - split out from fsl,elbc binding patch
-> > > - constrain #address-cells and #size-cells
-> > > - add a general description
-> > > - use unevaluatedProperties=false instead of additionalProperties=false
-> > > - fix property order to comply with dts coding style
-> > > - include raw-nand-chip.yaml instead of nand-chip.yaml
-> > > ---
-> > >  .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml | 68 ++++++++++++++++++++++
-> > >  1 file changed, 68 insertions(+)
-> > > 
-> > 
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/fsl,elbc-fcm-nand.example.dtb: nand@1,0: $nodename:0: 'nand@1,0' does not match '^nand@[a-f0-9]$'
-> > 	from schema $id: http://devicetree.org/schemas/mtd/fsl,elbc-fcm-nand.yaml#
-> 
-> Drop the unit address in raw-nand-chip.yaml. So: 
-> 
-> properties:
->   $nodename:
->     pattern: "^nand@"
-> 
-
-^^^
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Xunlong Orange Pi 3B
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240626230319.1425316-1-jonas@kwiboo.se>
+ <20240626230319.1425316-3-jonas@kwiboo.se>
+ <d1c600f1-a874-4bb8-8b9f-22a3414edfcc@gmail.com>
+ <29739e60-15f5-4361-a57a-2e6b93fba09c@kwiboo.se>
+Content-Language: en-US
+From: Arturas Moskvinas <arturas.moskvinas@gmail.com>
+In-Reply-To: <29739e60-15f5-4361-a57a-2e6b93fba09c@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
+On 3/8/25 6:34 PM, Jonas Karlman wrote:
+> This is because of a reset issue with Ethernet PHYs in Linux, see [1].
+>
+> Two workarounds:
+> 1. Let boot firmware reset the PHY before Linux, i.e. use U-Boot
+>     v2024.10 or newer.
+> 2. Use a ethernet-phy-id compatible with correct phy-id to force Linux
+>     to attach the PHY.
+>
+> I suggest you try to wipe U-Boot from SPI flash on your board and update
+> to use U-Boot v2025.01 and try again.
+Wiping board SPI flash which contained old U-boot and using 2025.01 from 
+SD card fixed issue hence DTS is OK.
+Though I do not remember that I ever wrote anything into SPI flash in 
+first place (I touched board almost year ago so potentially forgot about 
+it) maybe it was shipped like that with the board...
 
-Best Regards,
-J. Neuschäfer
+Arturas Moskvinas
 
