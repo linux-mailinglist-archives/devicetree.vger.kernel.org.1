@@ -1,164 +1,229 @@
-Return-Path: <devicetree+bounces-155672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34168A57BFA
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 17:34:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5F0FA57C45
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 18:19:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC10B1890AE6
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 16:34:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FE723ADFE7
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 17:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456131DF97C;
-	Sat,  8 Mar 2025 16:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B261E51FD;
+	Sat,  8 Mar 2025 17:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="rIPGoYzu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MrnmAze8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4DC1AD4B
-	for <devicetree@vger.kernel.org>; Sat,  8 Mar 2025 16:34:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662591537A7;
+	Sat,  8 Mar 2025 17:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741451680; cv=none; b=IfrfzhictbtKk/GsjZlzhvxvj6qCNURQiExjyx1yOsu+t6sYmcciedBRUKQDNXIm6G7klSwmwcaSomTbfJ8KR8qT29ZfWdYXMECrbEifGmzswX/bNYlrX2oj5+qA6scYVZU7Bys+TLRPhtoDk2MAeuyJRcGwW080WSo938a5K+Q=
+	t=1741454385; cv=none; b=RUsbfMO0jUNIjyo3GibA1gAZE/XtshG4KsUT2g+8O5B8ehDo8cQDijbsDtXW+psJlUIzWcqxoempw/LcActR85Erc6hX20ZGhDsALQLLMQtjjaJZmLpcHs14YShwPirbKVklnRuZzEMA7hPbMXEOnsNTLFYH8NFKvH/ZZCYIbaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741451680; c=relaxed/simple;
-	bh=QGLh/6JQgeudjVxuHIxfA33KxLX+oZAVVM/slJ0bCEU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VtLIZl+olJGvqIWIm7DfOc/68u9CkWGvYW9YYxSGIS9QuIejMcud/GwZbKGG7BYy1i/F1yKEYfB3pCt12WoS+rLB9BCAojqVkInsJ/qhFwgpnEBafI1ZBgYyanKiAylAk97eWyTtU9DSAsiUKG8wiOcIvEpX+FUR5wbQ+aDR+Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=rIPGoYzu; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1741451677;
- bh=XfxZ2EUMtcYRuh5iiI7Ca6IZaZJZ9N99juCripq5x6I=;
- b=rIPGoYzuIXmmVJU4IuQe2o6/daWE+eDF6a6nIfxnr0+hvJIz51MGuzUzRjsmUmuCVfoxOIJ48
- jUSMaxgMjXKLunUXL4/3S7O9yTcfliUrKH/+/HjPbvvrPeJM3D1d6MYBM0z/e47anteV5+AXjZh
- 9HSaRTh3JXyUYcU2iau9e9t3Vix0QsjnjX0DpYIeUOf9DP37+u1R2+2j0grjn5WNd//WdW52KgA
- TZB7LRc6fHoGipR1BQq3CMp9+Bi4BqRpgw6WWgBZ+OIXgr9h9vomartD7h8WOsJvt1oHLsqILZJ
- RAceyuHBrybYoNzyDX/gGPkQdCrFLIayEXp20/XkcIeg==
-X-Forward-Email-ID: 67cc719a91daabb65c1b40e8
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <29739e60-15f5-4361-a57a-2e6b93fba09c@kwiboo.se>
-Date: Sat, 8 Mar 2025 17:34:29 +0100
+	s=arc-20240116; t=1741454385; c=relaxed/simple;
+	bh=WIXPEAfYW6XziCXxNrSUx8MTO0qn8BfggsX4aIVdclE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SLMK4igxRIUTpG3f23+eLJHL0K6KEuyGDMIOV7z8v87i6Tgvj+uJDHvdSVa+tehq9kRZm+pL3gqEIC3rfeol8TcZ3f7cHPckzT1Ajg3Cfrx4NElO3Zx4Sye4h95hJEkafvv8qbyUcoP+hX7G2chs2jcwLiUQ4EHqLwF3Y53OSQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MrnmAze8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 392D4C4CEE0;
+	Sat,  8 Mar 2025 17:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741454384;
+	bh=WIXPEAfYW6XziCXxNrSUx8MTO0qn8BfggsX4aIVdclE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=MrnmAze88WmBN/BzwaskCEYUl/E7BBXL4zio3IYdhby50e3KiZaPauGIURpacE/Dw
+	 UBb+o9RKvUtD8FZcx+9DBz69KbwMmZvn2ADR3VrAbBy/2I1GDssGYJO/4K4wzG8GHO
+	 ZNbnsL1ebkV6GXU+0h1iUkYgnp4fYYw0r6cpHTSamn2fJL7YrK3H+DbBSVhBrHd79z
+	 4+8kH/U1hj2tQWYIYiWfT6rJ+xAVemaQUqHdmxSzu99yAMjBKruAuTJ6pwXAwXukK4
+	 3H6s/bCklWlVZPO+/buxuUFR+Kh2tQE6JcuTP6m2tyv9PI3eg6FIP25uHYQWvuJQmp
+	 EmH1Nmlv0ciDg==
+Date: Sat, 8 Mar 2025 17:19:32 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Pavel Machek <pavel@ucw.cz>, Daniel
+ Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Helge
+ Deller <deller@gmx.de>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <u.kleine-koenig@baylibre.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-leds@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] mfd: lm3533: convert to use OF
+Message-ID: <20250308171932.2a5f0a9b@jic23-huawei>
+In-Reply-To: <CAPVz0n3Qt00my1ejoyEgxTRi-mQszHybwhPq70eO=94oxMfECQ@mail.gmail.com>
+References: <20250224114815.146053-1-clamor95@gmail.com>
+	<20250224114815.146053-3-clamor95@gmail.com>
+	<20250228085927.GM824852@google.com>
+	<CAPVz0n0jaR=UM7WbBs3zM-cZzuaPVWBjf4Q7i82hvxtXg2oCzQ@mail.gmail.com>
+	<20250305134455.2843f603@jic23-huawei>
+	<CAPVz0n3Qt00my1ejoyEgxTRi-mQszHybwhPq70eO=94oxMfECQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Xunlong Orange Pi 3B
-To: Arturas Moskvinas <arturas.moskvinas@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240626230319.1425316-1-jonas@kwiboo.se>
- <20240626230319.1425316-3-jonas@kwiboo.se>
- <d1c600f1-a874-4bb8-8b9f-22a3414edfcc@gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <d1c600f1-a874-4bb8-8b9f-22a3414edfcc@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-Hi Arturas,
+On Wed, 5 Mar 2025 16:18:38 +0200
+Svyatoslav Ryhel <clamor95@gmail.com> wrote:
 
-On 2025-03-08 15:53, Arturas Moskvinas wrote:
-> On 6/27/24 2:03 AM, Jonas Karlman wrote:
-> 
->> The Xunlong Orange Pi 3B is a single-board computer based on the
->> Rockchip RK3566 SoC.
-> ...> +
->> +&gmac1 {
->> +	phy-handle = <&rgmii_phy1>;
->> +	status = "okay";
->> +};
->> +
->> +&mdio1 {
->> +	rgmii_phy1: ethernet-phy@1 {
->> +		compatible = "ethernet-phy-ieee802.3-c22";
->> +		reg = <1>;
-> 
-> Jonas, were you able to test V1.1 board's Ethernet?
+> =D1=81=D1=80, 5 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 15:45 Jon=
+athan Cameron <jic23@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> >
+> > On Fri, 28 Feb 2025 11:30:51 +0200
+> > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+> > =20
+> > > =D0=BF=D1=82, 28 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 10:5=
+9 Lee Jones <lee@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5: =20
+> > > >
+> > > > On Mon, 24 Feb 2025, Svyatoslav Ryhel wrote:
+> > > > =20
+> > > > > Remove platform data and fully relay on OF and device tree
+> > > > > parsing and binding devices.
+> > > > >
+> > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > > > ---
+> > > > >  drivers/iio/light/lm3533-als.c      |  40 ++++---
+> > > > >  drivers/leds/leds-lm3533.c          |  46 +++++---
+> > > > >  drivers/mfd/lm3533-core.c           | 159 ++++++++--------------=
+------
+> > > > >  drivers/video/backlight/lm3533_bl.c |  71 ++++++++++---
+> > > > >  include/linux/mfd/lm3533.h          |  35 +-----
+> > > > >  5 files changed, 164 insertions(+), 187 deletions(-)
+> > > > > =20
+> ...
+> > > > >       /* ALS input is always high impedance in PWM-mode. */
+> > > > > -     if (!pdata->pwm_mode) {
+> > > > > -             ret =3D lm3533_als_set_resistor(als, pdata->r_selec=
+t);
+> > > > > +     if (!als->pwm_mode) {
+> > > > > +             ret =3D lm3533_als_set_resistor(als, als->r_select)=
+; =20
+> > > >
+> > > > You're already passing 'als'.
+> > > >
+> > > > Just teach lm3533_als_set_resistor that 'r_select' is now contained.
+> > > > =20
+> > >
+> > > This is not scope of this patchset. I was already accused in too much
+> > > changes which make it unreadable. This patchset is dedicated to
+> > > swapping platform data to use of the device tree. NOT improving
+> > > functions, NOT rewriting arbitrary mechanics. If you feed a need for
+> > > this change, then propose a followup. I need from this driver only one
+> > > thing, that it could work with device tree. But it seems that it is
+> > > better that it just rots in the garbage bin until removed cause no one
+> > > cared. =20
+> >
+> > This is not an unreasonable request as you added r_select to als.
+> > Perhaps it belongs in a separate follow up patch. =20
+>=20
+> I have just moved values used in pdata to private structs of each
+> driver. Without changing names or purpose.
+>=20
+> > However
+> > it is worth remembering the motivation here is that you want get
+> > this code upstream, the maintainers don't have that motivation. =20
+>=20
+> This driver is already upstream and it is useless and incompatible
+> with majority of supported devices. Maintainers should encourage those
+> who try to help and instead we have what? A total discouragement. Well
+> defined path into nowhere.
 
-Yes, I have both a v1.1.1 and v2.1 hw revision of this board and
-Ethernet should be working on both hw revisions.
+That is not how I read the situation. A simple request was made to
+result in more maintainable code as a direct result of that
+improvement being enabled by code changes you were making.
+I'm sorry to hear that discouraged you.
 
-> 
-> Whenever I start the board - Ethernet initialization fails with:
-> ```
-> [   21.140055] rk_gmac-dwmac fe010000.ethernet eth0: __stmmac_open: 
-> Cannot attach to PHY (error: -19)
-> ```
+>=20
+> >
+> > Greg KH has given various talks on the different motivations in the
+> > past. It maybe worth a watch.
+> >
+> > =20
+> > > =20
+> > > > >               if (ret)
+> > > > >                       return ret;
+> > > > >       }
+> > > > > @@ -828,22 +833,16 @@ static const struct iio_info lm3533_als_inf=
+o =3D {
+> > > > >
+> > > > >  static int lm3533_als_probe(struct platform_device *pdev)
+> > > > >  {
+> > > > > -     const struct lm3533_als_platform_data *pdata;
+> > > > >       struct lm3533 *lm3533;
+> > > > >       struct lm3533_als *als;
+> > > > >       struct iio_dev *indio_dev;
+> > > > > +     u32 val; =20
+> > > >
+> > > > Value of what, potatoes?
+> > > > =20
+> > >
+> > > Oranges. =20
+> >
+> > A well named variable would avoid need for any discussion of
+> > what it is the value of.
+> > =20
+>=20
+> This is temporary placeholder used to get values from the tree and
+> then pass it driver struct.
 
-This is because of a reset issue with Ethernet PHYs in Linux, see [1].
+Better if it is a temporary placeholder with a meaningful name.
 
-Two workarounds:
-1. Let boot firmware reset the PHY before Linux, i.e. use U-Boot
-   v2024.10 or newer.
-2. Use a ethernet-phy-id compatible with correct phy-id to force Linux
-   to attach the PHY.
+>=20
+> > > =20
+> > > > >       int ret;
+> > > > >
+> > > > >       lm3533 =3D dev_get_drvdata(pdev->dev.parent);
+> > > > >       if (!lm3533)
+> > > > >               return -EINVAL;
+> > > > >
+> > > > > -     pdata =3D dev_get_platdata(&pdev->dev);
+> > > > > -     if (!pdata) {
+> > > > > -             dev_err(&pdev->dev, "no platform data\n");
+> > > > > -             return -EINVAL;
+> > > > > -     }
+> > > > > -
+> > > > >       indio_dev =3D devm_iio_device_alloc(&pdev->dev, sizeof(*als=
+));
+> > > > >       if (!indio_dev)
+> > > > >               return -ENOMEM;
+> > > > > @@ -864,13 +863,21 @@ static int lm3533_als_probe(struct platform=
+_device *pdev)
+> > > > >
+> > > > >       platform_set_drvdata(pdev, indio_dev);
+> > > > >
+> > > > > +     val =3D 200 * KILO; /* 200kOhm */ =20
+> > > >
+> > > > Better to #define magic numbers; DEFAULT_{DESCRIPTION}_OHMS
+> > > > =20
+> > >
+> > > Why? that is not needed. =20
+> > If this variable had a more useful name there would be no need for
+> > the comment either.
+> >
+> >         val_resitor_ohms =3D 200 * KILLO;
+> >
+> > or similar.
+> > =20
+>=20
+> So I have to add a "reasonably" named variable for each property I
+> want to get from device tree? Why? It seems to be a bit of overkill,
+> no? Maybe I am not aware, have variables stopped being reusable?
 
-I suggest you try to wipe U-Boot from SPI flash on your board and update
-to use U-Boot v2025.01 and try again.
+Lets go with yes if you want a definitive answer. In reality it's
+a question of how many are needed.  If 10-100s sure reuse is fine,
+if just a few sensible naming can remove the need for comments
+and improve readability.
 
-> 
-> But if reset is performed inside gmac - initialization succeeds.
-
-Use of deprecated snps,reset- props is not a proper fix for this issue,
-instead Linux could use an improve Ethernet PHY initialization handling
-and ensuring the PHY is reset before it tries to read a phy-id from it.
-
-[1] https://lore.kernel.org/r/47d55aca-bee6-810f-379f-9431649fefa6@kwiboo.se/
-
-Regards,
-Jonas
-
-> 
-> Eg. patch:
-> ```
-> --- 
-> linux-6.12.17.orig/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b-v1.1.dts
-> +++ linux-6.12.17/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b-v1.1.dts
-> @@ -16,14 +16,14 @@
->   &gmac1 {
->   	phy-handle = <&rgmii_phy1>;
->   	status = "okay";
-> +	snps,reset-gpio = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
-> +	snps,reset-active-low;
-> +	snps,reset-delays-us = <0 50000 200000>;
->   };
-> 
->   &mdio1 {
->   	rgmii_phy1: ethernet-phy@1 {
->   		compatible = "ethernet-phy-ieee802.3-c22";
->   		reg = <1>;
-> -		reset-assert-us = <20000>;
-> -		reset-deassert-us = <50000>;
-> -		reset-gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
->   	};
->   };
-> ```
->> +		reset-assert-us = <20000>;
->> +		reset-deassert-us = <50000>;
->> +		reset-gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
->> +	};
->> +};
-> 
-> 
-> Arturas Moskvinas
+Jonathan
 
 
