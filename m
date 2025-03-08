@@ -1,275 +1,208 @@
-Return-Path: <devicetree+bounces-155638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB0D6A57AEA
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 15:09:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC288A57AFD
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 15:17:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52F1818900A5
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 14:09:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16A213B2221
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 14:17:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331A21D958E;
-	Sat,  8 Mar 2025 14:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD2D1B3935;
+	Sat,  8 Mar 2025 14:17:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vJwhmt9w"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IoxtfEpz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0071BD4E5;
-	Sat,  8 Mar 2025 14:08:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94E681917D8
+	for <devicetree@vger.kernel.org>; Sat,  8 Mar 2025 14:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741442924; cv=none; b=MDpzn/ZBoA9bRePiO240YeqVeA5FSFGluf8d8OiwVfvuPueGD4zabbETJWwaGSZEmvLpvwGA9bQqzVJWLTbd7Yu65QLBkx4E7lJdvTMpS/HyYAeCWC755L1mipBy8a9yqbt8QY6j4tWHKIQty+xcALqr850HW+BzjGEH12Xu6wI=
+	t=1741443469; cv=none; b=dwLWO3ZOmVYcXeNhBPArxQFWPLRmek96wXRkopprgoZQDOnmmQ0AfFtwhwF6I+osjfqqKU8RNc32R+33d+aI6bA8IzyZ9NEqTeC8eTxh65rzD6ICKX2tKWqvqeki95rEW4x9VLDlGWZj+4Qx//WaCM5yBC95i/BwicO3opVolbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741442924; c=relaxed/simple;
-	bh=Ib1RxKPJXDynmwe5rkzdveYc0pqL9TtucOCQXMLF+aQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lDhTf9pjsA2B8XhCAauPTro7mapsKHN0WPPsnUbIr5/Yqg/SsU0lzciKCpZxRzkw+BTyVAFxRxKkKe2iq93k/UJ1GXZdNi1MYC4suTp91Mpoea09l87zX5lDLnhpWNQNEdiCejvZr4yXxXYI4aNsVsm18YS+3OBhe/KrZlY+dGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vJwhmt9w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 805CEC4CEFB;
-	Sat,  8 Mar 2025 14:08:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741442924;
-	bh=Ib1RxKPJXDynmwe5rkzdveYc0pqL9TtucOCQXMLF+aQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=vJwhmt9wEXKMyvyyfgyOii7S36GnSv8DBHl6qDMRxlD/mL5qIoWa4Npki09dtcRp7
-	 qoxLmbi3YtiTvOguyXcfTzAMCMgmWtx4RPvBwZzZ0gJkaEiQhtuWeJhgtf1ni9/jPb
-	 ntmtynaLx7IEt7EJbNTowItltQUVSJBKqf9n+amc+TkDYOAw2vi96L4yccJ3CREl7Y
-	 JL06d8jQp5PSGNs9K3kKPPNiufJ1y12TzTocFr5hsbAjs4+7CQKQLaWHvztgH70sW4
-	 qiQzeXvxnWVDaYuQ8gPkLNytMM4B4uMrMCDrsx3oy+sLrjWTmR7B6qjKiuLNtuuEpa
-	 ToTJIon34FHtw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 74A28C282EC;
-	Sat,  8 Mar 2025 14:08:44 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Sat, 08 Mar 2025 15:08:43 +0100
-Subject: [PATCH v3 7/7] Input: synaptics-rmi4 - support fallback values for
- PDT descriptor bytes
+	s=arc-20240116; t=1741443469; c=relaxed/simple;
+	bh=VHhYh29HAmnBbgx55i+6SXtV+sSpE13dSW2GVjGVlrE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g7ks78GxG1oNeZMTVBMSDfzoAKFHrM+0ENgginuxvt95rFkHB6wxoUdPs+XT8l7s+5zK9ZT0HaobMnz7mXaND5zNFRklqPP0TmJG/1T23XJNqTjoALfSXe+rUhhj/qqQeJvtBcoACIbUjzQ7ZX/AU0BeEXI4oENN2v6YBBakLl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IoxtfEpz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 528BGxbK019647
+	for <devicetree@vger.kernel.org>; Sat, 8 Mar 2025 14:17:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	D1//V6hw7ZeJCpBe534PNy3XxpjNRBUsFUM+ImnjOdk=; b=IoxtfEpzYKF+eVbu
+	g/Up9NSNM3H0qu2+btdGjoL3d3q6dfAswAlRe64+JUfRwPPKCF15lAjCS7H3eCp0
+	VRT87TWNlZzejd3XV0gGfUxLVVW2X9D1PwWmCphVTFwWKLAXID3DAzYgyEbXvoZd
+	1UL6Lhm+DTq9Co8FYVe0Gf1bH2YESK+lS9O0Aq7dDPm+/9WxS4okIWkMekqpbr0A
+	Smmz1kKpPOrO5NKkTaoPt0fPm7OCTSP9KTQQdEY+luYYKu94ABSZdmVADwRiMHzD
+	gz4iir8+Jjl+B3FE7AkMfuHvtUg4sI8qRrnKnsLHWKPRfl1Q2RM2NbTukxFIHOzN
+	Ytgknw==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458eyp8nx7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 08 Mar 2025 14:17:46 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6e8fec7ab4dso5606086d6.3
+        for <devicetree@vger.kernel.org>; Sat, 08 Mar 2025 06:17:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741443450; x=1742048250;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=D1//V6hw7ZeJCpBe534PNy3XxpjNRBUsFUM+ImnjOdk=;
+        b=joHmE/zp+HXcSS/9Euhdsr/pEAmdffz0DgFnU3X2UvhgvHZDHp0U76F1kdKSiLfuCh
+         f21qpGHqRRqtusBamHUU/0BrOZTNF73kseTYO2f4Rg7qyVvllGDuVwjMNptVhon+fqZe
+         djxsGbHjyyl3zsCLFrenNcwOAGy46gYsPTb5+4YPwn+cORjjxCI3zfXKmGFMjhNEArLn
+         AEVb+ICOj901dsxon0nx1z29Dftupx/K9FVlsc8BqaHlVvES4upOqmcq60lNU2chq1TO
+         C+C8VtgW5Fizs+kQhbVT3XmWs8b03oD75lI4PKnjrRrRU0aiSw/HYuuer7EX97VctXB8
+         YS3g==
+X-Forwarded-Encrypted: i=1; AJvYcCUmH3v2jxn7Wg4OvccOmLy9J0hoOxRoi0AHwfRaPzXU9AD6mbKVH2e/xY/060/35v4mdvjPubzYaNsx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnyeSy996iQBasvLypz233RtBncW9Tgo1/6iToQIbyjKVFmN7V
+	1x+cnGrOarIFKpZDtzSRTXSa9MDykUej7yQrvuO3g51OP345Y59XcpgF3vMeFKMhWJ4tf/Gc0bl
+	Z9jeI0BgAin/VQVWLB+0J95S+/3uhYo5jfeK+b8T+Th2BO+5Ss7BpzKXkSLVpefqBa3wW
+X-Gm-Gg: ASbGnctdkyCkAhi7DBl4m02t0Xjb3NxUUwikQB1B3ssqwDRaBaCf3GiXnfDc9EgK6Iu
+	U9Cm/1sPTtGOYzLDiWKLjDR3JDkNzDwb+Zgz1+ridJFkIOn0kBxS4jl9DYJ80/BN5TevCqnvm+y
+	MQNzd3pmtK4GsTPpsApl/x60q1/8RKyL9S/7A7VH06oZsg9MHLFoeFx360NgfzFxXjPEQHVu2c3
+	6600S4CKUX1A1/t3td5fAV2a1PHWTyHysMXb3dYE9TJGxlSUeAJ/qBvxYfpyOZCr+6Xs+kRCxHq
+	wXLn9Rs3TNUlXINKLesq8VIg1Ngv6eFFCEHTRKC+f3zbUdmVCrnFPMRP/mm5nvapLO76HQ==
+X-Received: by 2002:ad4:5d63:0:b0:6e8:9c91:227a with SMTP id 6a1803df08f44-6e908a8299emr17047686d6.0.1741443449932;
+        Sat, 08 Mar 2025 06:17:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFn+apy78yObNDX132VCgoB+/Ws3nmpk1YJl8IUzHLq1owpnyugCLpRkOWW986ipasi3vQVoA==
+X-Received: by 2002:ad4:5d63:0:b0:6e8:9c91:227a with SMTP id 6a1803df08f44-6e908a8299emr17047406d6.0.1741443449547;
+        Sat, 08 Mar 2025 06:17:29 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac23973810csm439279366b.118.2025.03.08.06.17.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 08 Mar 2025 06:17:29 -0800 (PST)
+Message-ID: <53c3d2c3-2bfb-43f9-ad25-0d1fdd96f19f@oss.qualcomm.com>
+Date: Sat, 8 Mar 2025 15:17:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/10] drm/msm/dsi/phy: add configuration for SAR2130P
+To: Dmitry Baryshkov <lumag@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org
+References: <20250308-sar2130p-display-v1-0-1d4c30f43822@linaro.org>
+ <20250308-sar2130p-display-v1-7-1d4c30f43822@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250308-sar2130p-display-v1-7-1d4c30f43822@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250308-synaptics-rmi4-v3-7-215d3e7289a2@ixit.cz>
-References: <20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz>
-In-Reply-To: <20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, methanal <baclofen@tuta.io>, 
- Caleb Connolly <caleb.connolly@linaro.org>, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6298; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=Dn5bsYg4pf/Oeca1et0GD9N++L1Q1XHbzr6rlTyTyRc=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBnzE9qXHjqdifeUGdAvEjMz8T7DdSjpZMWlnOYu
- zAQbOZe63WJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCZ8xPagAKCRBgAj/E00kg
- curOD/wJdyymSHG97wQFh8EeZ1106F5az7WIyDPmIUgofVsYkTF3uasNhbkgfPE80jS85WoqIa4
- gIAp+YZEC/F//wfVz8hzOm/OFsYJJNTvnYoybV5h4MkK1U4PPo1KUyj3f+Z2UmM5I9HrkDJEiaj
- QlBtUgF9SNH34XVm4vN2PjKJLk7+zzd8fIedwYu0zhkhRoY98VDAUgn0S6R3lHmpgTxgCJh686F
- T3kc4BtmMSrLjyTEljMpU0l3WRMH/hNqRassLVwHCVIE9FB65NeknQQwUHYeRP2tknO6qoM5YGc
- UI/IPQ5ZRjdt6KzmxbzZPeDDeXzMZYEV9PY/2nngYnoDhCQvVamDcFH3gJq3FbW2hZxMgZI5noc
- rhRL690JIj9kaXtpthFeRL/G8vEuup4FQL15lGCtTIWYMVkkdFDP8s95SBUR8/SGGCUrtyzIED7
- Ss9iNQZTgr23jdG/Z3WlD0wOqUMSHmJXJDCTtm+HhaHOnWQZhbF7DMM2Gzs0S5AjsvEQGq09bMu
- ETE3dnr3vmzi4XnE5gTI57M6y39szjMX3tw1x4S+LEpmqD6Mgu3UO3LUQMtkgL5umfJ2y9qnhV4
- HNJMCT094qzX+cbETpNHiJA1cuJiTuIvohMkDId6s8FpXfNjXwejtqcWFklieRj6lrPIJj4xzoz
- epJI+EeucsSY4jQ==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+X-Authority-Analysis: v=2.4 cv=A9yWP7WG c=1 sm=1 tr=0 ts=67cc518a cx=c_pps a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=WWvJJprN3eueWNfT7O0A:9 a=QEXdDO2ut3YA:10
+ a=jpH7HpYVSZo6v3SV3j0F:22 a=1HOtulTD9v-eNWfpl4qZ:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: J6aORp351D5xMCf6ZzKjvKWkLa71efh4
+X-Proofpoint-GUID: J6aORp351D5xMCf6ZzKjvKWkLa71efh4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-08_05,2025-03-07_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 impostorscore=0 spamscore=0
+ suspectscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503080107
 
-From: methanal <baclofen@tuta.io>
+On 8.03.2025 2:42 AM, Dmitry Baryshkov wrote:
+> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> Qualcomm SAR2130P requires slightly different setup for the DSI PHY. It
+> is a 5nm PHY (like SM8450), so supplies are the same, but the rest of
+> the configuration is the same as SM8550 DSI PHY.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c     |  2 ++
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h     |  1 +
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c | 23 +++++++++++++++++++++++
+>  3 files changed, 26 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> index c0bcc68289633fd7506ce4f1f963655d862e8f08..a58bafe9fe8635730cb82e8c82ec1ded394988cd 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> @@ -581,6 +581,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
+>  	  .data = &dsi_phy_7nm_cfgs },
+>  	{ .compatible = "qcom,dsi-phy-7nm-8150",
+>  	  .data = &dsi_phy_7nm_8150_cfgs },
+> +	{ .compatible = "qcom,sar2130p-dsi-phy-5nm",
+> +	  .data = &dsi_phy_5nm_sar2130p_cfgs },
+>  	{ .compatible = "qcom,sc7280-dsi-phy-7nm",
+>  	  .data = &dsi_phy_7nm_7280_cfgs },
+>  	{ .compatible = "qcom,sm6375-dsi-phy-7nm",
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> index 1925418d9999a24263d6621299cae78f1fb9455c..1ed08b56e056094bc0096d07d4470b89d9824060 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> @@ -59,6 +59,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_7nm_8150_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_7nm_7280_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8350_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8450_cfgs;
+> +extern const struct msm_dsi_phy_cfg dsi_phy_5nm_sar2130p_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_4nm_8550_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_4nm_8650_cfgs;
+>  
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+> index a92decbee5b5433853ed973747f7705d9079068d..cad55702746b8d35949d22090796cca60f03b9e1 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+> @@ -1289,6 +1289,29 @@ const struct msm_dsi_phy_cfg dsi_phy_5nm_8450_cfgs = {
+>  	.quirks = DSI_PHY_7NM_QUIRK_V4_3,
+>  };
+>  
+> +const struct msm_dsi_phy_cfg dsi_phy_5nm_sar2130p_cfgs = {
+> +	.has_phy_lane = true,
+> +	.regulator_data = dsi_phy_7nm_97800uA_regulators,
+> +	.num_regulators = ARRAY_SIZE(dsi_phy_7nm_97800uA_regulators),
+> +	.ops = {
+> +		.enable = dsi_7nm_phy_enable,
+> +		.disable = dsi_7nm_phy_disable,
+> +		.pll_init = dsi_pll_7nm_init,
+> +		.save_pll_state = dsi_7nm_pll_save_state,
+> +		.restore_pll_state = dsi_7nm_pll_restore_state,
+> +		.set_continuous_clock = dsi_7nm_set_continuous_clock,
+> +	},
+> +	.min_pll_rate = 600000000UL,
+> +#ifdef CONFIG_64BIT
+> +	.max_pll_rate = 5000000000UL,
+> +#else
+> +	.max_pll_rate = ULONG_MAX,
+> +#endif
+> +	.io_start = { 0xae95000, 0xae97000 },
+> +	.num_dsi_phy = 2,
+> +	.quirks = DSI_PHY_7NM_QUIRK_V5_2,
+> +};
 
-Some replacement displays include third-party touch ICs which do not
-expose the function number and the interrupt status in its PDT entries.
+I'm squinting very very hard and can't tell how this is different from
+dsi_phy_4nm_8550_cfgs
 
-OnePlus 6 (original touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2b 22 0d 06 01 01)
-
-OnePlus 6 (aftermarket touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2c 23 0d 06 00 00)
-
-Introduce a new devicetree property `syna,pdt-desc` which can be used to
-provide platform-specific fallback values for users with a replacement
-display with an aftermarket touch IC.
-
-Signed-off-by: methanal <baclofen@tuta.io>
-[codeflow adjustments, checkpatch fixes, wording]
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- drivers/input/rmi4/rmi_driver.c | 73 ++++++++++++++++++++++++++++++++++++-----
- drivers/input/rmi4/rmi_driver.h |  2 ++
- include/linux/rmi.h             |  3 ++
- 3 files changed, 70 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/input/rmi4/rmi_driver.c b/drivers/input/rmi4/rmi_driver.c
-index 2790f00a58bc66c04656d0cd1b4afe9f843ee093..f233c0b1f8e6a936089fd81344c46b6741d3d82d 100644
---- a/drivers/input/rmi4/rmi_driver.c
-+++ b/drivers/input/rmi4/rmi_driver.c
-@@ -461,9 +461,10 @@ static int rmi_driver_reset_handler(struct rmi_device *rmi_dev)
- 	return 0;
- }
- 
--static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
--			      struct pdt_entry *entry, u16 pdt_address)
-+static int rmi_read_pdt_entry(struct rmi_device *rmi_dev, struct pdt_entry *entry,
-+			      struct pdt_scan_state *state, u16 pdt_address)
- {
-+	const struct rmi_device_platform_data *pdata = rmi_get_platform_data(rmi_dev);
- 	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int error;
- 
-@@ -474,6 +475,21 @@ static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
- 		return error;
- 	}
- 
-+	if (pdata->pdt_fallback_size > state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1) {
-+		/* Use the description bytes from DT */
-+		buf[5] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS];
-+		buf[4] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1];
-+
-+		error = rmi_read_block(rmi_dev, pdt_address, buf,
-+				RMI_PDT_ENTRY_SIZE - 2);
-+		if (error) {
-+			dev_err(&rmi_dev->dev,
-+					"Read PDT entry at %#06x failed, code: %d.\n",
-+					pdt_address, error);
-+			return error;
-+		}
-+	}
-+
- 	entry->page_start = pdt_address & RMI4_PAGE_MASK;
- 	entry->query_base_addr = buf[0];
- 	entry->command_base_addr = buf[1];
-@@ -551,7 +567,7 @@ static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
- 	int retval;
- 
- 	for (addr = pdt_start; addr >= pdt_end; addr -= RMI_PDT_ENTRY_SIZE) {
--		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, addr);
-+		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, state, addr);
- 		if (error)
- 			return error;
- 
-@@ -1028,9 +1044,11 @@ static int rmi_driver_remove(struct device *dev)
- }
- 
- #ifdef CONFIG_OF
--static int rmi_driver_of_probe(struct device *dev,
--				struct rmi_device_platform_data *pdata)
-+static int rmi_driver_of_probe(struct rmi_device *rmi_dev,
-+			       struct rmi_device_platform_data *pdata)
- {
-+	struct device *dev = rmi_dev->xport->dev;
-+	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int retval;
- 
- 	retval = rmi_of_property_read_u32(dev, &pdata->reset_delay_ms,
-@@ -1038,11 +1056,50 @@ static int rmi_driver_of_probe(struct device *dev,
- 	if (retval)
- 		return retval;
- 
-+	/*
-+	 * In some aftermerket touch ICs, the first PDT entry is empty and
-+	 * the function number register is 0. If so, the platform
-+	 * may have provided backup PDT entries in the device tree.
-+	 */
-+
-+	retval = rmi_read_block(rmi_dev, PDT_START_SCAN_LOCATION,
-+			buf, RMI_PDT_ENTRY_SIZE);
-+	if (retval) {
-+		dev_err(dev, "Read PDT entry at %#06x failed, code: %d.\n",
-+			PDT_START_SCAN_LOCATION, retval);
-+		return retval;
-+	}
-+
-+	if (!RMI4_END_OF_PDT(buf[5]))
-+		return 0;
-+
-+	pdata->pdt_fallback_size = of_property_count_u8_elems(dev->of_node,
-+						  "syna,pdt-fallback-desc");
-+
-+	/* The rmi4 driver would fail later anyway, so just error out now. */
-+	if (pdata->pdt_fallback_size == -EINVAL) {
-+		dev_err(dev, "First PDT entry is empty and no backup values provided\n");
-+		return -EINVAL;
-+	}
-+
-+	if (pdata->pdt_fallback_size < 0) {
-+		dev_err(dev, "syna,pdt-fallback-desc property was not specified properly: %d\n",
-+			pdata->pdt_fallback_size);
-+		return pdata->pdt_fallback_size;
-+	}
-+
-+	pdata->pdt_fallback_desc = devm_kzalloc(dev, pdata->pdt_fallback_size, GFP_KERNEL);
-+
-+	retval = of_property_read_u8_array(dev->of_node, "syna,pdt-fallback-desc",
-+		pdata->pdt_fallback_desc, pdata->pdt_fallback_size);
-+	if (retval < 0)
-+		return retval;
-+
- 	return 0;
- }
- #else
--static inline int rmi_driver_of_probe(struct device *dev,
--					struct rmi_device_platform_data *pdata)
-+static inline int rmi_driver_of_probe(struct rmi_device *rmi_dev,
-+				      struct rmi_device_platform_data *pdata)
- {
- 	return -ENODEV;
- }
-@@ -1163,7 +1220,7 @@ static int rmi_driver_probe(struct device *dev)
- 	pdata = rmi_get_platform_data(rmi_dev);
- 
- 	if (rmi_dev->xport->dev->of_node) {
--		retval = rmi_driver_of_probe(rmi_dev->xport->dev, pdata);
-+		retval = rmi_driver_of_probe(rmi_dev, pdata);
- 		if (retval)
- 			return retval;
- 	}
-diff --git a/drivers/input/rmi4/rmi_driver.h b/drivers/input/rmi4/rmi_driver.h
-index 0ecbd19cefffe00ce7c8001db6479a2e213ac466..67a04133a4d85c56d80d0eafee65797319c75c54 100644
---- a/drivers/input/rmi4/rmi_driver.h
-+++ b/drivers/input/rmi4/rmi_driver.h
-@@ -31,6 +31,8 @@
- #define RMI_PDT_FUNCTION_VERSION_MASK   0x60
- #define RMI_PDT_INT_SOURCE_COUNT_MASK   0x07
- 
-+#define RMI_OF_PDT_DESC_CELLS 2
-+
- #define PDT_START_SCAN_LOCATION 0x00e9
- #define PDT_END_SCAN_LOCATION	0x0005
- #define RMI4_END_OF_PDT(id) ((id) == 0x00 || (id) == 0xff)
-diff --git a/include/linux/rmi.h b/include/linux/rmi.h
-index ab7eea01ab4274bfc9efcefcdb0cced6ec34966f..974597960b5ee61b670ab55a78c317710022d7cc 100644
---- a/include/linux/rmi.h
-+++ b/include/linux/rmi.h
-@@ -214,6 +214,9 @@ struct rmi_device_platform_data {
- 	int reset_delay_ms;
- 	int irq;
- 
-+	u8 *pdt_fallback_desc;
-+	int pdt_fallback_size;
-+
- 	struct rmi_device_platform_data_spi spi_data;
- 
- 	/* function handler pdata */
-
--- 
-2.47.2
-
-
+Konrad
 
