@@ -1,120 +1,180 @@
-Return-Path: <devicetree+bounces-155719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDFA7A57D9E
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 20:04:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55FA3A57DD6
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 20:44:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F4B51890B96
-	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 19:04:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1A81188C326
+	for <lists+devicetree@lfdr.de>; Sat,  8 Mar 2025 19:44:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03281EFF9C;
-	Sat,  8 Mar 2025 19:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87CCE1EB5D3;
+	Sat,  8 Mar 2025 19:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gs0Pprfw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="riP0Iyqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2698F1DB122;
-	Sat,  8 Mar 2025 19:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B622A8C1;
+	Sat,  8 Mar 2025 19:44:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741460647; cv=none; b=qNMDG8bR4YUul+Pbc+cwNnC/AtZv4s7cyJfZp0XtztbatRgokaSsisImoeXCOqe+CMZlXfMCbJH3YpgREvGE5gxsqBcwVYEeE8Xybo6BrfSNd0XB3JVFYFxfaUSxpuzBzcUFxk8hjAh/ogHio3RxNz66DS50JneiReqX9QH0qlw=
+	t=1741463073; cv=none; b=pQBwncH867VQpfYIxv8505oaRgAhyqutAmiZADWfkNHxQfmJXRLddrHsBdcbl7omgpg5+D3DpLS/GiwbtCJDBBPE33T6EvkmQcxxJ5v2Mr557myPvtvAcvUgiEv+/1Mrl15vXrvjmV8SqBA3sJOfKeUL5c7FOrtVUjAFN7eyfFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741460647; c=relaxed/simple;
-	bh=hLQRFBlo3PiBpW/PV5t75PCUgkfxdVXkjt3uDuaXM2k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zv7sBcLHTf4pkoI3V7XfsVhyVopHq6esdvIfBzD0fxqv2tRQsCDDyKW9PMNrms/EqujwhEQ5cf3aYUd9i2jrLmWwhrzw1wuSzeJ5DSmIOp0XSOb+NZk9s/8LMsp0wkgkOqiSOlyiZfK+YpVuCUKiK+INFXCLJl/VJ+YtFhUYVXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gs0Pprfw; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30bfb6ab47cso14698331fa.3;
-        Sat, 08 Mar 2025 11:04:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741460644; x=1742065444; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eTVbXxjWlsf93+TNBRlPrQnC9sQtCvCemMI+xBM+RLA=;
-        b=gs0PprfwHwLOYeBY5LdOMnj0FBBxwVKznWpgHfqpcKqy/woloSSMnvpHGxjSYNtNEx
-         XOSev05zu71UJTM88m8YzEywjtx+e+ilKVQ3OmzXR5Vr9EIWF2T9pnkRvk8c5H5+OOM5
-         mawJIJS1pFGenRzs5PnLGtPf2M2fnurEdZm7DYXmz7VFRDzZEghyDk3hEUTT6jw9ho8+
-         zv/WM07ZYCVJLWzEz8v5Ecbsvy70IOPAXyTnCEdvjkB2xrC5BluR4Av+6heYkDvc08FU
-         Rj/ZAnQTH5X+527+GvuaOGdX3baOESjfEPAvl876NnEWiwNT05AASV/bjBs0Hzv2FMEo
-         UqzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741460644; x=1742065444;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eTVbXxjWlsf93+TNBRlPrQnC9sQtCvCemMI+xBM+RLA=;
-        b=p7jSso7baoAcujIoPrrcWCiDaIl0FIw/HGWhWwmKCkZ8wIzHGEXFc9enuB1qH4LvH2
-         7l4wuyB0M0Y2kuM12KVlV+VjZXUEEF30TTCDnuH+TiMCz9sF00jNlRkZUdDad8fWMw6Q
-         TtbDaJQ4WH/aAQlNsOjWeUW1cUJ3HWYRdjPhjOwnErItYcUqbl+PgwZ2nZ+FmHNf6VaR
-         IKhrXiWfiiY+XjuJA2vvUg/QI6vYL88dPGjKXfokgbUa70ail55LxHI5Hli6NR4XtwkY
-         2fAJcSzr9wh5ITSysD9W3HjDvHraTkx0OC0Fg2gyg9XtUjsfCtKawONbbvI8GH8791dM
-         MA1A==
-X-Forwarded-Encrypted: i=1; AJvYcCVvYzOPQaCifv9DrBGP+kdFnY32vCoEwWZzwYOCnnJrW8F9q6bMpp1R7eVxfLdLBS7MVaV/mK9RFAI2Y3qs@vger.kernel.org, AJvYcCXJ4Ej7GSg53hh7ggFbVTONtvI5NJcBwTMAgGLY9Ki7I6StPosiVdv9UKafRlLDiOvKYQ07B/khkPfM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJl8kuARMxxtdQnyt/ktLGBLmN1KjVUTpNypK62dFBBhFEWP7R
-	PQzfrzPchte9qHXZSuVqXa7Pmyn8NZD0SDsP1m2w7y9V2/062r03
-X-Gm-Gg: ASbGncuhEJptwob/qBfsNGd9OmkGhxaWmfPzIzrIwhG3bbVGIfhJHDsU9/AER4gmY9C
-	MMCYM3s5gj5pDi+cX8lQ+5NQhhpyOZ37VHf3PAXla6IDo/1BUzKZDerEohY14flc5JDOyGjSDkS
-	ASdfZPqKHUEWms9Ik9glt+7Gf4dVE1C7rIV9Od93N11QKGiMdo6OTVpBRyoata6/15XSk7l+VKG
-	mIck4Lk9IPA8FM1fsWMm9duZyLxuZhgB22VWJ7p7i9GcDHvzFF3qDT+kjTvS8mnULwueimp/mWx
-	TnkBpKGCyj/swLIu8dY9p9ta/icJv4i8zHJIEHYMXmlR1Zj/nC9anz6w1lw=
-X-Google-Smtp-Source: AGHT+IHONdtOGFlS7xPC7CsMoQUtrhTnztXQBlowSZtaB1Dgbc0GCjes4fUV0lQgJ2cvnPRqYxqQbg==
-X-Received: by 2002:a05:6512:a93:b0:545:2fa9:8cf5 with SMTP id 2adb3069b0e04-549910b7c6fmr3484311e87.49.1741460643774;
-        Sat, 08 Mar 2025 11:04:03 -0800 (PST)
-Received: from [192.168.3.116] ([78.56.129.233])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498b1c3adcsm883370e87.249.2025.03.08.11.04.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 Mar 2025 11:04:02 -0800 (PST)
-Message-ID: <5bb045fe-89c3-46dd-bd9a-dee8800a6d58@gmail.com>
-Date: Sat, 8 Mar 2025 21:03:59 +0200
+	s=arc-20240116; t=1741463073; c=relaxed/simple;
+	bh=WH7ragwrHlwuij9dMvPOSWuZiuTHQ1s+svKzfPzvvuA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=rtjewLaTvRPkZ4j1v5el11shm14qeyP41VtdUyth/iDCCwktnsTUkz9/85lxXy+uF27sDY/erdu8s+x/4sBXQHZTa+gp6aJ+a0HFfYikHsDHO8iQd11mQAQJeJoJ2sqZr29/ryuLTcrb1f/kkh2b9/oDBkrFj1WqSK+vu18JC+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=riP0Iyqt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F9C0C4CEE0;
+	Sat,  8 Mar 2025 19:44:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741463071;
+	bh=WH7ragwrHlwuij9dMvPOSWuZiuTHQ1s+svKzfPzvvuA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=riP0IyqtTT36pME2aDILYcOKdGQiC1l+NduMZWCe/7KZ6Ce4hvZVAlipLR+lqrImc
+	 aE2oulRYfxV9lcv8FbAIRsJjYjwdnwzimm+AwAqMITy3lfQnyB2KwQwi9XGsYV+SFc
+	 hKmB/q/QiKkncAhQQnZYUwxsR5/tpSfFfLHxMjU+E+/TKPVTubTDfGwDkKk0PVt6tD
+	 JhrnL6/gKO6MTku6s0IAOfR5rVR3UlqMzQ9iHf3xSzo/xPfXQTpZgxL9+zCCpdWFWK
+	 DU40utvTxgaxb0a9z3hCso1gJZQN2gMa8gFvJiT4KZWo3GIyZaqfjguvh9die/sM+f
+	 0Mr9uJFA1W4gw==
+Date: Sat, 08 Mar 2025 13:44:30 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Xunlong Orange Pi 3B
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240626230319.1425316-1-jonas@kwiboo.se>
- <20240626230319.1425316-3-jonas@kwiboo.se>
- <d1c600f1-a874-4bb8-8b9f-22a3414edfcc@gmail.com>
- <29739e60-15f5-4361-a57a-2e6b93fba09c@kwiboo.se>
-Content-Language: en-US
-From: Arturas Moskvinas <arturas.moskvinas@gmail.com>
-In-Reply-To: <29739e60-15f5-4361-a57a-2e6b93fba09c@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-gpio@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
+ =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
+ linux-staging@lists.linux.dev, Mark Brown <broonie@kernel.org>, 
+ Bjorn Andersson <quic_bjorande@quicinc.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Taniya Das <quic_tdas@quicinc.com>, Zhi Mao <zhi.mao@mediatek.com>, 
+ Umang Jain <umang.jain@ideasonboard.com>, 
+ =?utf-8?q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>, 
+ Heiko Stuebner <heiko@sntech.de>, linux-media@vger.kernel.org, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Dan Carpenter <dan.carpenter@linaro.org>, 
+ Biju Das <biju.das.jz@bp.renesas.com>, 
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
+ Cosmin Tanislav <cosmin.tanislav@analog.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Ross Burton <ross.burton@arm.com>, 
+ Julien Massot <julien.massot@collabora.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Ricardo Ribalda <ribalda@chromium.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Ihor Matushchak <ihor.matushchak@foobox.net>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Eric Biggers <ebiggers@google.com>, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Tommaso Merciai <tomm.merciai@gmail.com>, Hans Verkuil <hverkuil@xs4all.nl>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Will Deacon <will@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Dongcheng Yan <dongcheng.yan@intel.com>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Javier Carrasco <javier.carrasco@wolfvision.net>
+To: Cosmin Tanislav <demonsingur@gmail.com>
+In-Reply-To: <20250308183410.3013996-19-demonsingur@gmail.com>
+References: <20250308183410.3013996-1-demonsingur@gmail.com>
+ <20250308183410.3013996-19-demonsingur@gmail.com>
+Message-Id: <174146307027.3480579.7919845264276459579.robh@kernel.org>
+Subject: Re: [RFC PATCH 18/24] dt-bindings: media: i2c: max96712: add
+ support for I2C MUX
 
 
-On 3/8/25 6:34 PM, Jonas Karlman wrote:
-> This is because of a reset issue with Ethernet PHYs in Linux, see [1].
->
-> Two workarounds:
-> 1. Let boot firmware reset the PHY before Linux, i.e. use U-Boot
->     v2024.10 or newer.
-> 2. Use a ethernet-phy-id compatible with correct phy-id to force Linux
->     to attach the PHY.
->
-> I suggest you try to wipe U-Boot from SPI flash on your board and update
-> to use U-Boot v2025.01 and try again.
-Wiping board SPI flash which contained old U-boot and using 2025.01 from 
-SD card fixed issue hence DTS is OK.
-Though I do not remember that I ever wrote anything into SPI flash in 
-first place (I touched board almost year ago so potentially forgot about 
-it) maybe it was shipped like that with the board...
+On Sat, 08 Mar 2025 20:33:47 +0200, Cosmin Tanislav wrote:
+> MAX96712 and MAX96724 have more than one GMSL2 link, and each link is
+> capable of connecting to a separate serializer. If these serializers
+> have the same CFG pins configuration, they will also have the same I2C
+> address, causing conflicts unless the deserializer muxes the I2C
+> channels. Moreover, the serializers can have the same hardware attached
+> to their respective I2C bus.
+> 
+> The MAX96712 and MAX96724 suppot I2C channel muxing via the GMSL2 link
+> to facilitate communication to each of the connected serializers.
+> 
+> Document this capability.
+> 
+> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
+> ---
+>  .../devicetree/bindings/media/i2c/maxim,max96712.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
 
-Arturas Moskvinas
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml: properties:i2c-mux:patternProperties:^i2c@[0-3]$:properties:reg:items: 'oneOf' conditional failed, one must be fixed:
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml: properties:i2c-mux:patternProperties:^i2c@[0-3]$:properties:reg:items: 'anyOf' conditional failed, one must be fixed:
+		'min' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+		'type' was expected
+		from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml: properties:i2c-mux:patternProperties:^i2c@[0-3]$:properties:reg:items: 'anyOf' conditional failed, one must be fixed:
+		'max' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+		'type' was expected
+		from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+	{'min': 0, 'max': 3} is not of type 'array'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml: properties:i2c-mux:patternProperties:^i2c@[0-3]$:properties:reg: 'anyOf' conditional failed, one must be fixed:
+	'maxItems' is a required property
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'items' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml: properties:i2c-mux:patternProperties:^i2c@[0-3]$:properties:reg:items: 'oneOf' conditional failed, one must be fixed:
+		/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml: properties:i2c-mux:patternProperties:^i2c@[0-3]$:properties:reg:items: 'anyOf' conditional failed, one must be fixed:
+			'maxItems' is a required property
+				hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+			'min' is not one of ['maxItems', 'description', 'deprecated']
+				hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+			'max' is not one of ['maxItems', 'description', 'deprecated']
+				hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+			Additional properties are not allowed ('max', 'min' were unexpected)
+				hint: Arrays must be described with a combination of minItems/maxItems/items
+			'min' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+				hint: "items" can be a list defining each entry or a schema applying to all items. A list has an implicit size. A schema requires minItems/maxItems to define the size.
+			'max' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+				hint: "items" can be a list defining each entry or a schema applying to all items. A list has an implicit size. A schema requires minItems/maxItems to define the size.
+			hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+			from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+		{'min': 0, 'max': 3} is not of type 'array'
+		hint: "items" can be a list defining each entry or a schema applying to all items. A list has an implicit size. A schema requires minItems/maxItems to define the size.
+		from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml: i2c-mux: Missing additionalProperties/unevaluatedProperties constraint
+
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml: ^i2c@[0-3]$: Missing additionalProperties/unevaluatedProperties constraint
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250308183410.3013996-19-demonsingur@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
