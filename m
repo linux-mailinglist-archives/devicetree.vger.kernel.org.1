@@ -1,163 +1,178 @@
-Return-Path: <devicetree+bounces-155806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 411C4A583FF
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 13:19:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7105BA58405
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 13:28:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3525188D19D
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 12:19:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4BE5163523
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 12:28:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91911CAA76;
-	Sun,  9 Mar 2025 12:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E34461CCEDB;
+	Sun,  9 Mar 2025 12:28:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="oX1YZjPS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ug5jSivZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE52211C;
-	Sun,  9 Mar 2025 12:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25FB52A8C1;
+	Sun,  9 Mar 2025 12:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741522763; cv=none; b=Iq7CamF3246UcUAKvleLR6P4vpNCV1WVLjkyo7iVPhbynKsOke3GY2wPWorgotBNVal0WWWM7h2VwSFXAUrMUvNb7Vvd7VBKOd7pNZkqmdJWwuDuj39osreKO/ADGlrJTDVlaQYwtYIj9ePOcVPZIbv6/VQXZl4KOY3RUXlaknk=
+	t=1741523288; cv=none; b=hkHbnF8WyaFJlKVFEbWAAbjUqwXERu7fEWdVaAiwqnsjaw8U8hkCrJ8czlgJxzW9UOE7qOCdw4rBNB9C6VjOtwXR5HD0Fcj+LiUaLaZW8aYoeD+ug4iVWQLLRTvy7j4NXqrLXJluApVIQ5jd6zCa3DhLjU7b+8Kd6J8loSleSTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741522763; c=relaxed/simple;
-	bh=7sRUR7aLQX7IAeaQn8fJoeQ7LQHllbHbgib8KkJCZIc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gKG8P1qSCCrXYkIOr/qkvbqL4M5krEa5xmbdBPujbAgak/8A4BYFN9QO7rPBUrWPYMr0wPxilS7L0c13jl9fJ21REnVUKRd0ytU+m3AxIxPMBkphmDS5BKimNi4d9bS7/IONId+s/BdFL+29FCr+y5o029sbevZh62JW+2fido4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=oX1YZjPS; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=OMe7X162PbDqxZBfjfEZb0yB4rbjLUrUqRTmqcMmD3s=; b=oX1YZjPSAQKU3UNOsLDu2gjBmb
-	UxrHVxYi7zyyfKsU2/azO2LEFgyG2OVO5dsFHwonypD4Vp0IKKHUNj9I3q6G3Z4krTozlD5tAS01W
-	V0T3EPVX6uxHShf5NQQpXYwRbvd8XBsRDQpwxZAKaFoTIudUk0IblZEW9ftEnDl+Gk+xhn0pWtA4R
-	8IRWI1OJj8V29WT3PF5t+wgA/6uFjTjETvhU/JmWnIxabJRJaDTdv9yVlGedayTA717/p+sfZ55/e
-	ecbvfTgy646NnQC8PAqdNhNlhEvRs/jQtyiDDKuWA0YYpwfT9pl069hoy68F0LhKu3bWmpqc3JuT/
-	26k5FttQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35288)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1trFcT-0001Ht-2w;
-	Sun, 09 Mar 2025 12:19:02 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1trFcN-0001Rl-1P;
-	Sun, 09 Mar 2025 12:18:55 +0000
-Date: Sun, 9 Mar 2025 12:18:55 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next v2 3/3] net: stmmac: Add DWMAC glue layer for
- Renesas GBETH
-Message-ID: <Z82HL6NX0B1SdgPU@shell.armlinux.org.uk>
-References: <20250308200921.1089980-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250308200921.1089980-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Z81WVNGlvRNW5JFk@shell.armlinux.org.uk>
- <CA+V-a8stuYLJMA5UEKpyLpH1kcgEvA=b5BzUOEaCKcfNtdSSfg@mail.gmail.com>
+	s=arc-20240116; t=1741523288; c=relaxed/simple;
+	bh=Q/8ho1ZPlzJ4nVNZTI/wYYtiJyJFUkXUDFvNcQZFKT8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kOmY1ZpvZMCfTlyqC1UVq9GskplgIAplo0lbJNOSpPFmnHGtm/2bbpgkus1F0L/GxdLx4sMYXvrQSWAQgpQeeN57a0nwBtgm9uZPhvu92pu3XS6kJGJVWW5QdZvLpiMmuYAg7/h+M40WBBFntg4D4RwBwTOO4oiRiMNcsE9JaQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ug5jSivZ; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43bcc04d4fcso19464385e9.2;
+        Sun, 09 Mar 2025 05:28:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741523285; x=1742128085; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jaCjmy/2wA14pbhhG2CRaGe/sVh+09XO5wxJxcfM2WQ=;
+        b=Ug5jSivZhQcLu75xxMboRSNZglpyiFdhMo/3aGcZxTlCzHT+yBcUlaIyFHynyVEjaE
+         Og1TNZp54dXC96HZs4aJq3bXbmUJvDjKeckudAIf+LylqEbhBWlH2LI6rrKjXDhZwyqS
+         zFb+l8GczhKpEI1nI04kps+XRnkOaGWoslu/lv4iPNPYTofdhxfr7tWmaX0MUDfwL/KA
+         XXl7w29YF85XatNf0pJK9PeWiAP6S9WmNAYnBfX4wew+gKIjiyPJG7LHS5ZUQexvzBAe
+         ATDWzrlntLtEa0N9TQWVA2OY5HzZjoCrWbqckk71knqD9cb3+FmzW0OYT83R8k4kfl4W
+         mZ4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741523285; x=1742128085;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jaCjmy/2wA14pbhhG2CRaGe/sVh+09XO5wxJxcfM2WQ=;
+        b=TXva2XzkTibuMqMzbTF/7df3NJzF50TaEmeBwL1AaOnC8ZzZrsxxLC0kzEOTBjIgvz
+         C0Z1psM6DOcu30WW0JgQm9IU7MrKB7hlqweLGvu1lQha/0ZIevD29gXtbxHeyTNhB/kp
+         gltHw8ko2hH2t7048YlPqeKwZKIdAFi3Jablp+U0O9Qgk64BkSujM9ht2Pov7FxHyDzl
+         0vGMGupF1biCBhkMQP1UR9PHohncIuMnA9YvUR9tHcYYQCveHYVQu9wpgLKjmsFMhJgW
+         l1gBzVjTi0f3oFliXygW4nZQi8hh4wGatOWPfWzFSx/NzBOfOomzRWhyo0ZLNR10gOml
+         gizg==
+X-Forwarded-Encrypted: i=1; AJvYcCU3kjCI2ABHWCulAh1aTbCKz4gSgmBhvkMoLgXQdzC+DlIBjFrGBNE7W3m+jcUZBB+5dWteHDDoNyhnN447@vger.kernel.org, AJvYcCUn+QupypbKCXLMq0id0IeW98OBZoVQ3x58bSDCTwiI1bQ2jcrwWrrg8k5VyxgNcDZAbO9iRAOI0DGJnp9mZw==@vger.kernel.org, AJvYcCX0NzcaN6G42thjG34C9pjZRsLMCcmdPbsr+8/EUbK04eQbLwDTHbdCvkRzf7hsEsJeBS5Yin7jEPwA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuZJXtVZ6pyiml9+3JpbJxUF5GdvoNeCy2fW0W7kFObGrtsRe4
+	snsOgkkQmF39pOpJYO/6+arZKvYIa2wzTMQQgdHdgeLIL4BXIfPZ1wvck3o=
+X-Gm-Gg: ASbGncvsIiyPPQJxkQkzmdcbAEd72N7wK6wC9NOhg+a/2V7Xe2f0+Z1i+12T7HbnK8M
+	pVQo8HILAlmjq4iO4fDxRpYfvkl7oTOfPIWmD76GT6qjpaaI9aEvxkkJ9CmcRc+NPiDEoWUspB8
+	A/XhCxX0yk1WZ8syoaL2s3l8FpmAqz+9qoMKN/agWDorLYZhqty/a0DHD6v7dOHjP2xpqzINOVp
+	f0vYNtCCLzCkvsFtT0d5jYCk23yDHsKuNZPC19iZl9ZDsSAS47fThA5DMHR4LLHLsZQ2dkap0Fc
+	MklAljUDLBRyf6ZXLkiWnaT6WxN9BSUy32GsrrqYibYjn6SU3DK4wvi64Z+zVJXsjYa8pwaw8p0
+	EE/hxQV4gjeBYJFSBFZiTdg==
+X-Google-Smtp-Source: AGHT+IFSO5uThCc8aF0617UoNV6mIu70QgwC87l0qV/cAQ+YxnazTbkI0OmibCRClFRWINwkmuItzw==
+X-Received: by 2002:a05:600c:3b82:b0:43b:c3b0:56af with SMTP id 5b1f17b1804b1-43c601e1314mr71367915e9.14.1741523284803;
+        Sun, 09 Mar 2025 05:28:04 -0700 (PDT)
+Received: from [192.168.20.192] (adsl-178-39-53-103.adslplus.ch. [178.39.53.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ce3f573f6sm39528065e9.0.2025.03.09.05.28.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Mar 2025 05:28:04 -0700 (PDT)
+Message-ID: <33b00810-2fd3-4a38-bfdd-47f543cb51bd@gmail.com>
+Date: Sun, 9 Mar 2025 13:28:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8stuYLJMA5UEKpyLpH1kcgEvA=b5BzUOEaCKcfNtdSSfg@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v5 0/4] arm64: dts: qcom: x1e80100: crd/t14s:
+ Enable Parade Type-C retimers
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>,
+ Sibi Sankar <quic_sibis@quicinc.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250220-x1e80100-dts-crd-t14s-enable-typec-retimers-v5-0-380a3e0e7edc@linaro.org>
+ <ea9344b7-6646-4329-b8f6-45d2b51f183b@gmail.com>
+ <Z81eAMoXb9li4lba@linaro.org>
+Content-Language: en-US
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+In-Reply-To: <Z81eAMoXb9li4lba@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sun, Mar 09, 2025 at 11:24:57AM +0000, Lad, Prabhakar wrote:
-> Hi Russell,
+
+
+On 3/9/25 10:23, Abel Vesa wrote:
+> On 25-03-07 23:03:07, Aleksandrs Vinarskis wrote:
+>>
+>>
+>> On 2/20/25 18:42, Abel Vesa wrote:
+>>> Since the driver and dt-bindings have been alread merged, it has been
+>>> agreed offline that there is no point of holding on to these DT patches
+>>> even though there are some issues with plug/unplug during suspend in
+>>> both pmic-glink-altmode and ucsi-glink. These issues are being worked on
+>>> meanwhile. Merging these means that even though this will provide external DP
+>>> and USB orientation, plug/unplug during suspend will give some splats
+>>> and render both the USB orientation and DP broken. But then, other
+>>> X Elite boards already have these nodes described, so lets bring the crd
+>>> and t14s to the same level.
+>>>
+>>> These patches are just a resend of the ones found in v5 and dropped in the v6
+>>> patchset of the driver and dt-bindings.
+>>>
+>>> Link to v5: https://lore.kernel.org/all/20241112-x1e80100-ps8830-v5-0-4ad83af4d162@linaro.org/
+>>>
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>
+>> If you will be respinning, could you please add link-frequencies to
+>> enable HBR3 speeds, similarly to [1]? Alternatively, I can also send
+>> fixups once this series lands.
 > 
-> Thank you for the review.
 > 
-> On Sun, Mar 9, 2025 at 8:50 AM Russell King (Oracle)
-> <linux@armlinux.org.uk> wrote:
-> >
-> > On Sat, Mar 08, 2025 at 08:09:21PM +0000, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Add the DWMAC glue layer for the GBETH IP found in the Renesas RZ/V2H(P)
-> > > SoC.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > ---
-> > > v1->v2
-> > > - Dropped __initconst for renesas_gbeth_clks array
-> > > - Added clks_config callback
-> > > - Dropped STMMAC_FLAG_RX_CLK_RUNS_IN_LPI flag as this needs
-> > >   investigation.
-> >
-> > I thought you had got to the bottom of this, and it was a bug in your
-> > clock driver?
-> >
-> I have added a fix in the clock driver to ignore CLK_MON bits for
-> external clocks. The main reason for dropping this flag was despite
-> trying the below i.e. adding phy_eee_rx_clock_stop() just before
-> unregister_netdev() in stmmac_dvr_remove() still doesnt stop the Rx
-> clocks.
+> It's already re-spun here:
+> 
+> https://lore.kernel.org/all/20250304-x1e80100-dts-crd-t14s-enable-typec-retimers-v6-0-e5a49fae4e94@linaro.org/
+> 
+> Waiting to be merged.
 
-That's not unexpected, because phy_eee_rx_clock_stop() does not control
-a clock gate.
+My bad, somehow missed the respin.
 
-What phy_eee_rx_clock_stop() does is control the clock stop enable bit
-in the PHY. Please see IEEE 802.3 section 45.2.3.1.4 and other sections
-referred to from that section to gain the appropriate understanding.
+> 
+> Lets make the HBR3 enablement a separate patchset as I'm not able to
+> test it in time, if we want external DP to be part of 6.15.
+> 
 
-The point of adding the phy_eee_rx_clock_stop() call before
-stmmac_dvr_remove() was to _test_ (and *only as a test* - a point that
-I did stress) to see whether preventing the PHY from stopping it's
-receive clock solved the reset timeout on module reload. This test
-only makes sense if STMMAC_FLAG_RX_CLK_RUNS_IN_LPI has not been set.
+Sure. Will send as follow up once its merged.
 
-As I understand it, you have found the real issue why that occurs, so
-it seems there is little need to continue with that test if, and only
-if, everything is now working reliably when removing and re-inserting
-the module.
+Thanks,
+Alex
 
-The key point here is "reliably". The receive side of the link *could*
-enter or exit LPI at *any* moment - it depends in the link partner. If
-the PHY has permission to stop it's receive clock, then this might lead
-to stmmac_reset() timing out because the PHY has stopped it's receive
-clock _if_ the receive-side LPI persists longer than the reset timeout.
+>>
+>> [1]
+>> https://lore.kernel.org/all/20250226231436.16138-1-alex.vinarskis@gmail.com/
+>>
+>> Thanks,
+>> Alex
+>>
+>>> ---
+>>> Abel Vesa (4):
+>>>         arm64: dts: qcom: x1e80100-crd: Describe the Parade PS8830 retimers
+>>>         arm64: dts: qcom: x1e80100-crd: Enable external DisplayPort support
+>>>         arm64: dts: qcom: x1e80100-t14s: Describe the Parade PS8830 retimers
+>>>         arm64: dts: qcom: x1e80100-t14s: Enable external DisplayPort support
+>>>
+>>>    .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 321 +++++++++++++-
+>>>    arch/arm64/boot/dts/qcom/x1e80100-crd.dts          | 474 ++++++++++++++++++++-
+>>>    2 files changed, 785 insertions(+), 10 deletions(-)
+>>> ---
+>>> base-commit: 50a0c754714aa3ea0b0e62f3765eb666a1579f24
+>>> change-id: 20250220-x1e80100-dts-crd-t14s-enable-typec-retimers-325cdb7b097d
+>>>
+>>> Best regards,
+>>
 
-At this point, I am not certain what the current situation is. Are you
-now setting STMMAC_FLAG_RX_CLK_RUNS_IN_LPI because it solves a problem?
-If the answer is yes, then there is still a bug in the driver that needs
-to be solved and I've presented several solutions to that.
-
-I want to remove STMMAC_FLAG_RX_CLK_RUNS_IN_LPI from the stmmac driver
-so I'm going to NACK patches that add new uses. Sorry, but we need to
-solve the root problem, and stop hacking around it with flags to change
-behaviours.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
