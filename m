@@ -1,92 +1,90 @@
-Return-Path: <devicetree+bounces-155898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87984A58786
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 20:27:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3694A587E8
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 20:44:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F7523AAFEF
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 19:26:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A288188AB30
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 19:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0631DED7B;
-	Sun,  9 Mar 2025 19:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFA8215F57;
+	Sun,  9 Mar 2025 19:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XSUrHM+A"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JEUgcZWQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E67A16A959;
-	Sun,  9 Mar 2025 19:26:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE2A2153F3;
+	Sun,  9 Mar 2025 19:44:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741548419; cv=none; b=l578v+JZQhBvpBUTsea7SlK83Wy4DBH1AtrNvNVWarbbCY1EwhOVw7zfq64tjuhR3L12MGYpla1JAs9oL7HeK2viGOi4heRYEN79IiIpkt9e7+Bk7xwGx1KCDJzxDETyU3rArvdu6W9O+18+nWD5s4Zm3AbtjWlMJyuuSLdQDQo=
+	t=1741549450; cv=none; b=gJrAUCSNpfoBbhh+GpcEac+a1G3NyK/BTxgVLy3Z3QdYvxUtvSc6R4GqKgM/e6ylqC5B8rZBivsyUsQghaUgXZ3nJ08HdDgjLiBNIJZynhnDdeLX0x3wQ2802YuOBJK1jp1wgLyaYZqGGQ9VB3eH4Hd6cUqVg2deSInXpupwpTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741548419; c=relaxed/simple;
-	bh=Dk3dyE0dtJPnVxAV4n6omrRWpps5/OsjqC9n7SUzIAY=;
+	s=arc-20240116; t=1741549450; c=relaxed/simple;
+	bh=WwY1W3tQgFSjIAfiO3XQF5op28JvXU6ecwmLK8zBMEw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LpSTyFgyQJAtXQ+POHxHm+iQ+CkpBiiW9j3YQy30TQqX1bXF/k8LqmKnoSeOwFwnnFtUf4ExOJD//NHruhwuLGpEB3W6WuUJMFPmgHqbkTrZMdL/2TCP6oT5d6mDmNyoutMA0hMJNbpAuWGcGYZCAOhwsx4cj/zsFNG7L/LRirU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XSUrHM+A; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741548417; x=1773084417;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Dk3dyE0dtJPnVxAV4n6omrRWpps5/OsjqC9n7SUzIAY=;
-  b=XSUrHM+AvsgTkyH0jGb22UiXdwXBsmFvcXnT3sZ22xM5Ul1w6rEkEPge
-   YwRKUryn52j66sBKjF+qpOtILcJdV79HgdC8srvwuPs3bW8sXA6Zj3VUg
-   jsNwkNLe+qXh/fKZkDOTmgHeZXyCT23F1loDFzizOFPYyNTCi1AveU2RU
-   5QwcnSn9RWbYS7DjqSjZJ0a5mWTvZ89bIVYGQQYQlC/ZcAL989ug8vWkW
-   iROywfm8lleMk7HvHLnnVii6RO9n+O+cwZdJkcn5BtNPtSIh+LpvtKcgg
-   E++5g1ZUcQxsIbxwqqQ3tfGjwqbk/x7NVYFLugZoxVFSMT8GO/bxQuqVz
-   Q==;
-X-CSE-ConnectionGUID: HCja15hSQ/m3UipVP6OQwg==
-X-CSE-MsgGUID: ghOLCTDiSx6uq0puh8hl2w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="42414966"
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
-   d="scan'208";a="42414966"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2025 12:26:56 -0700
-X-CSE-ConnectionGUID: UsC/pV4tTLOMuh37iVyUtw==
-X-CSE-MsgGUID: 5kmuBSalTDaAtTsev3gd4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,234,1736841600"; 
-   d="scan'208";a="120288769"
-Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
-  by fmviesa010.fm.intel.com with ESMTP; 09 Mar 2025 12:26:52 -0700
-Received: from kbuild by a4747d147074 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1trMIT-0003PE-1U;
-	Sun, 09 Mar 2025 19:26:49 +0000
-Date: Mon, 10 Mar 2025 03:26:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, upstream@airoha.com
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org
-Subject: Re: [net-next PATCH v12 05/13] dt-bindings: mfd: Document support
- for Airoha AN8855 Switch SoC
-Message-ID: <202503100331.nksmBPCd-lkp@intel.com>
-References: <20250309172717.9067-6-ansuelsmth@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AvtRLlVtczlsZXF+ml/OZ4fuQJs6JyrgQB2SEbs6VVS01pa+okN81AmafzXyOx7gR/A3SdZn4qirlAbvGNPv+0v6j462mNBtKd3GL6HITaieMDioQx+P3afklMW9BBhjVJOodjiI508uorvUOaYC/anXyNZnc+cchJopRbD2xGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JEUgcZWQ; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2255003f4c6so13462865ad.0;
+        Sun, 09 Mar 2025 12:44:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741549448; x=1742154248; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TYl6otMjDxf5o4MwZVe7zcqDnHx+0uhKoubJ0akptmg=;
+        b=JEUgcZWQzZdWWTLI7EHfUxY2fHsdjBq12bLvHPN7m4tZm5xZgN8zmxtiBnIjwuf7YH
+         KyogLZ8yaOi6P3eMsIdyXrcb+rCtsMzj9M035qdY64dluW8LWPhby5k2wKhC5KPXUaBA
+         u+ofl5JJ93rYNcJo/sgMVJybt5o4TOO4ucD6MtgU+vGb97nt86/uTl5jTeaJz0/XGRtC
+         CB2Txz8ZPsqjskcjtR8fLRPuWfuVQ0sorzdhl7os9+fkUEodMK987ddrhHfqLYLO+65N
+         qvNmZR4T0RrB8feFAVO7reVGFUYnz5qTd4T/OGYQn4CCHH8Iy+yGyVHztLK/qEDi9Bw1
+         D8fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741549448; x=1742154248;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TYl6otMjDxf5o4MwZVe7zcqDnHx+0uhKoubJ0akptmg=;
+        b=rv9gXCAgzpwJvKNZK7HkdipnkV6zWDXXoyBRgz7BSAk8L6Bspgv05klZ6Q8RaqoFU1
+         UYGCdW2Fs7FHbZfBjWr2Iy+doB1wp6lg93D8zTjUUxP4uie6RvS/VGPBIfAkSNXXH9k/
+         /X+N4nWlH2oSst53Z+M/iwGpoZa5ftCfGK556inm0ma844yqD0DEnIc117pt0GmdJ9N+
+         euCpr+vaLyyDtSA9OhoJK+pUaFlyPuIriifKa1YEry78w2YJzahbR1AY0pYdhx4yvQX9
+         SIunHzHOVZsnjn1SUKgDt/kCc7hy/iYC9khnqIbrnuyOSwv+358e4FLHNFeg/oxkDNFJ
+         QdRg==
+X-Forwarded-Encrypted: i=1; AJvYcCU4pccOGPAVqy0JMdo6LTywZ7dSE0Gk8JEOiPa8YmOGFs/8hPWUz6ezMHzId92Zzbr/4U3rFCw1bofKUqkg@vger.kernel.org, AJvYcCUseD6kKJtCQgJ9MC+NXEvTEjtjff8vogjpsw2M1y98+UbBFGb3z84JOPH3IBJyT5+VFX3pURW0HYYl@vger.kernel.org, AJvYcCVaGRBHd0YeDxEu05p51fn/56wjstmksZHH/KfBZ7fu4a5p2UPXIJK2KasuzYMPw2jNx4gUz6KyyU2g@vger.kernel.org, AJvYcCXOuM1t+K6Hb68AXFpB+FXBCvxcUjf8cosWDWK3+jCCh201J/bJaIQ9HJ4EywkHO6qBljz4GGBQR4fz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIFbv3OtwB+oX+egWh90s1JPesbqiQsTsoHQ4hBdqWvewjHgwE
+	jjDF5oZ1zjvUBT84MyhAQEOnLjgnPpzPXtZ4kMSA80MwYI3QGPS3
+X-Gm-Gg: ASbGncu1cIGfaffTy8dMpQXokVF8jufAsXcr9VXcJXH409GPJX0ROQgBprreLgxzUf0
+	554ym5RKl9jUPKx/vXwWwsJJ3gBDnRm2Zd2n9B/hc5ZsJ2gLNigD9IvgB1ffs4ZXdGcnKYZtLB1
+	ywlIYrMNuGDvRKmMSLiFlgQ1HK3ObEmP4886v4+LL90n6gA+6hdOJtp2zcHn8JB1T2898X5gpn0
+	JOJ0znW3B7G+zSPZRwMxbzmMH2r/UFRnY1KeJeVFEhS9VY/M+WMYwRGfacPIKbAYGn8sePwczIU
+	FwXTl22HXJ+gtjeJoropnU4asPXof2gu+lpYr6i1fq31CaSQ/vmxABwtVmVTn/aoggtOjMRq
+X-Google-Smtp-Source: AGHT+IGXBsTw552ea3aL8FF+/CnuSmMcYTPShFFEl56V9oVJGZzP0iyUGDFFyglJTEizSY7RSxvhGg==
+X-Received: by 2002:a05:6a20:1594:b0:1f1:431:9d7f with SMTP id adf61e73a8af0-1f544aedbbemr19952487637.13.1741549448143;
+        Sun, 09 Mar 2025 12:44:08 -0700 (PDT)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2a02:2455:1853:7000:fc49:126f:e12d:f79c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af28109676esm6312073a12.28.2025.03.09.12.44.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Mar 2025 12:44:07 -0700 (PDT)
+Date: Sun, 9 Mar 2025 20:43:55 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: iio: adc: Add adi,ad4052
+Message-ID: <sf7hqjyzal2jmbrf72xxj4cewrkq6bsjwlkbinqv2zan57cq3s@hwhfwmabtk5q>
+References: <20250306-iio-driver-ad4052-v1-0-2badad30116c@analog.com>
+ <20250306-iio-driver-ad4052-v1-2-2badad30116c@analog.com>
+ <20250306-promotion-tarmac-bc5172f38f31@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,39 +93,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250309172717.9067-6-ansuelsmth@gmail.com>
+In-Reply-To: <20250306-promotion-tarmac-bc5172f38f31@spud>
 
-Hi Christian,
+> > +  compatible:
+> > +    enum:
+> > +      - adi,ad4050
+> > +      - adi,ad4052
+> > +      - adi,ad4056
+> > +      - adi,ad4058
+> 
+> Can you mention in your commit message what differs between these
+> devices that makes picking one as the "base"/fallback compatible
+> unsuitable please?
+Sure, to be added:
 
-kernel test robot noticed the following build warnings:
+ Each variant of the family differs in speed and resolution, resulting
+ in different scan types and spi word sizes, that are matched by the
+ compatible with the chip_info.
+ The device contains two required interrupts (gp0, gp1) and one optional
+ gpio (cnv).
 
-[auto build test WARNING on net-next/main]
+> > +
+> > +  vdd-supply: true
+> > +  vdd_1_8-supply: true
+> 
+> You're allowed to use . in property names, and the _s should be -s.
+> That said, vdd and vdd 1.8? Shouldn't both have the voltage in them in
+> that case?
+I overlooked the supplies, the correct are vdd, vio as mandatory,
+and vref is optional.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-nvmem-Document-support-for-Airoha-AN8855-Switch-EFUSE/20250310-013306
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20250309172717.9067-6-ansuelsmth%40gmail.com
-patch subject: [net-next PATCH v12 05/13] dt-bindings: mfd: Document support for Airoha AN8855 Switch SoC
-reproduce: (https://download.01.org/0day-ci/archive/20250310/202503100331.nksmBPCd-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503100331.nksmBPCd-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   Warning: Documentation/translations/ja_JP/SubmittingPatches references a file that doesn't exist: linux-2.6.12-vanilla/Documentation/dontdiff
-   Warning: Documentation/translations/zh_CN/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/mfd/airoha,an8855-mfd.yaml
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
-   Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
-   Using alabaster theme
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Jorge
 
