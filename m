@@ -1,243 +1,197 @@
-Return-Path: <devicetree+bounces-155810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB575A5842B
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 14:16:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44473A5844F
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 14:31:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FF49188D9A6
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 13:16:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3610616BC1A
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 13:31:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 390F71D79A5;
-	Sun,  9 Mar 2025 13:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED4B1DC98C;
+	Sun,  9 Mar 2025 13:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SvCqKlbf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JxErZIng"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 104C2188915;
-	Sun,  9 Mar 2025 13:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 168BC13AD05;
+	Sun,  9 Mar 2025 13:30:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741526186; cv=none; b=GUVxebaxImAaCWgjCF1lHCUmKBOMuHoSRUUx43kSdqXMaUAo8/dXpx4WT707VDaLyxLo+U9MVL/twRZVuDBcqVUNyAjKbwiuUDUFfmnmK2xLL1+khHpB0MeOhHyWL3g4xRSTG8mhxiw8nK00YaJ1Zx/EKR6nQi4OXaZk6CUYyBs=
+	t=1741527041; cv=none; b=N5UrgWm6+Bmm5+b/px0FC5vdLgUq98eusD8icuHtD1pAPu+XySIQCZ85I/VVVlH4CbP1w6/HC3Rs6x4yNdFuIdhM7u44sWyO8jhQMyaEN3ocaGCcTSapu5jSvjyDDOwxrg0pp/kiZwhRgYgbv0LPMlb3Kepqr9OhysvS5SFKOXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741526186; c=relaxed/simple;
-	bh=SHZtBJAG+o4RRVLthnCajXIZ2+BgK5nZRZEOGGpVBTg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XZ0BxpjeuU5pqOCNF76sQfD9oHU5clo9dTDCRNgeaNcYG7n0YvkaHtOgxyhlknbSAIm8lG6o3/Ot3IJUtzkBCkLDM/UKkeoqPILgAcwDyCRE/9fBTzqryrE6u8+pmj4Hj5BTJlguA2mC7vKnrRxw5jhppMG6eU1+mELXusnaTjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SvCqKlbf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 7B359C4CEEE;
-	Sun,  9 Mar 2025 13:16:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741526185;
-	bh=SHZtBJAG+o4RRVLthnCajXIZ2+BgK5nZRZEOGGpVBTg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=SvCqKlbfwXeyDko/+0Omsj8qcKAQkuW6rNS3mPgph6cbliD8/8NMhmYpelLlWtuCt
-	 aTA9g8ENErDnNm7Ox5uM9roljunATr3VCeWbysQEHsFmcECBjG/Nk3YLIz2sX33tji
-	 o6dY7XVcmc9zs+A2Xml8tsG+skgyJD58te3KK0ZxRv6G4xYiVckTlJ5Yrobaxe3G61
-	 2N+r0evPNfjs+IOElIoxgSd06o3y6sxnR1b0pTtcPdPN3wSVqaSS0gN1tocm7QNmk6
-	 9yrWGSyDry1G3EHzWBwl8TLHtVsl+CVxY9jnNj1qSl83vtXjpMZ2WgCdod/HSLH6oM
-	 qwU67IxL7886w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B0F8C35FF1;
-	Sun,  9 Mar 2025 13:16:25 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Sun, 09 Mar 2025 14:16:21 +0100
-Subject: [PATCH 2/2] arm64: dts: amlogic: Add Ogoos AM3
+	s=arc-20240116; t=1741527041; c=relaxed/simple;
+	bh=KtoYCVFRdDBGt22qWMUCcP9r+LbYhDeld20HTnAPhbw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=nQkqnLpaLSLsmRhPAJ/fgl4OdQfNuZ3kLEGT5lv+iKgid/TkJjodkpzPOa2devmSYLl+uc5cKz3hLKgNTgDFYPfJ89Wdiklqmxy2uFMWlaEKfi8m2oxhKCkcdzqcwLnUYUnuUrH0NPpBYThz7PQmxvghQgCjQX+bX0DigLKBQwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JxErZIng; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3913cf69784so1127016f8f.1;
+        Sun, 09 Mar 2025 06:30:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741527038; x=1742131838; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3IZp5z7nS232anPaIUnFqLxoHjUC4RU66ewstLpUgIU=;
+        b=JxErZIngdHPCgDwVvjmPLiy3ywIe5NPc6hD4MpfB3kAFEzmmYLbWlX7/lfLFQ6kOQL
+         Upp8gQo9E0exmQeViBIDlbqCOLWWcv9vVAASq44Gu1F7GGHAFvAaIcEb3EOkLlXHhMRX
+         Wb+ziDiA1yivOnA+LS8gOKuy09zxPTyFtNTWg1pOZOKHKbMtMcbVZ6LgkbaEuhuWmaWl
+         CUV4O/XiqViRms//FqbOhu7hlajmdMM+9/pZfle3K0KHA9G0JJE4nnFOrsoTGUu8zgxw
+         jJDkloWg8paQzQoKnoo4EaDNQai5VHlX/H7CHCsHGRWIB2jDtb6fVM9VNBAdDPLYgIKy
+         /PWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741527038; x=1742131838;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3IZp5z7nS232anPaIUnFqLxoHjUC4RU66ewstLpUgIU=;
+        b=sfWGZ5sIKKCszKdvoB+Q8CJKx5+ef0BLxLCAWhQLb5/Z5CQzuZJ/OpW0/YIEP+oXVt
+         pAly14qDFL5P2yZp/cYJ5n6RbgYpR3+Jope+pFfJJ1DR5N6ax8mQULrX+aIIb/q77Pa2
+         wjXVrYL17gTHxP4Q7cWtTbJNBvx4uu15g2HIj80X3xU8fe8S0vR+pYAz82/52kqd/gNz
+         4mrd2CqUevIRijn83C1I4333BE8QIZSgPqLbR8whMKhnzwvO1LIwVYQy3e7DQ1+apC9D
+         nmm6GdRAFv85fmsrunyF6j/ybCe3enaig+jCmR5XXAacaUha0r8evjiPr8yv3eDFx5FM
+         6NLA==
+X-Forwarded-Encrypted: i=1; AJvYcCV29lssPRfeHa/fe87kSOsz+YjcW8GXMpDSET/nhtil1Zq+RSi9rDlMPNGLf1tUIkPWK43Wn6tXuB74@vger.kernel.org, AJvYcCWFxu8GjywMj0Z00DKUvvN6qXM1eNhcEAE9UNk5cZ4PIyq7MRH15StehrU8xPBLCBUm3JDit7wSb9RE@vger.kernel.org, AJvYcCWM5AazYWSqP0nI1fY03a8wel+xwdsX9+C0E0VoF23djI/mChkIpIvcQO7oOVMJ0DTtaQXTaJA+bHxs@vger.kernel.org, AJvYcCXsatwIahUU7dKIgj3Gw7lJH/qAWbJPjSVhtjwoNX79xTFcpI7+EcB8kU7QuByQVbTd4Fi0T5z2KuIby4yG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCcrMisfO6r/b2wxmwP397jFChabQUn3/6M1YgyL8MQ9ulr5p/
+	MYHJUdyQ1BQQANBGMCDlmlw3J9U/urfKz4YuJf2fQ7bm+DOXrGWqbt4yqA==
+X-Gm-Gg: ASbGncvcj2xXQvyZNwR/cZszM4QaKdBKckvag4jsbH7OQQBY9ynE6plT3UHc+6E+hQu
+	/BR72px1gURTmOmUpeZGu+7Xh7xKsYhhzzWEvPeVPadGwtNcdjFNnndtDj1C6MjfEgzxrY5dRL1
+	r4h1BVXX6XL/PfoXxBFkbiqFpXbBcT0HYJmnwqmSyg3CCalGADJYEoLaG6EG7WmDWwDN+pIWInh
+	SI4fHucPuBsw79XSX7BVg0TSaBZnQkw++5Ym1Beamw1oNgquQ33+F4Y1kA+ve5Dae5SZ99Uw24x
+	mk73kztnhAa5FNTcFgGTY25xeTCqA3632MbdahNKkvjN2h0WMETw5aOn/Vs2OQkBj1U++9r+/It
+	K0TszYTZohKERWQ==
+X-Google-Smtp-Source: AGHT+IEg/pmtwT7lVJCZK8BpVYZB76uZfLQXRI3/kWO/yuj5TZlAaT7OiGF/3WHcicI73lmrX/qPnw==
+X-Received: by 2002:adf:cb01:0:b0:38f:3245:21fc with SMTP id ffacd0b85a97d-39132db1fdamr6602070f8f.50.1741527038019;
+        Sun, 09 Mar 2025 06:30:38 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-129.ip49.fastwebnet.it. [93.34.90.129])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3912bee262esm11867536f8f.0.2025.03.09.06.30.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Mar 2025 06:30:37 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Daniel Danzberger <dd@embedd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Nikita Shubin <nikita.shubin@maquefel.me>,
+	Guo Ren <guoren@kernel.org>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Ben Hutchings <ben@decadent.org.uk>,
+	Felix Fietkau <nbd@nbd.name>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-usb@vger.kernel.org,
+	upstream@airoha.com
+Subject: [PATCH 00/13] airoha: en7581: clk cleanup + USB support
+Date: Sun,  9 Mar 2025 14:29:31 +0100
+Message-ID: <20250309132959.19045-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250309-ugoos-am3-v1-2-38cab5a4725b@posteo.net>
-References: <20250309-ugoos-am3-v1-0-38cab5a4725b@posteo.net>
-In-Reply-To: <20250309-ugoos-am3-v1-0-38cab5a4725b@posteo.net>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741526184; l=4569;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=r2xd+Ae/jy3p72pJ06WqDTpZeVRV52iMgB3vroAEsT0=;
- b=HT0H/WdaPMebTfWtVNUzbITgKdjZOBqvnQAfEt/VLbNCnctGgaFBwEt6w1YtFQVcwUvL0AMce
- JFmBOWaKuP6BjVG2dzUrKBhmNKXu3cq7x1RqdhhvLMVbjcE9hofvn8J
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+This series implement all the changes required to correctly handle
+USB support for the Airoha EN7581 SoC.
 
-The Ugoos AM3 is a small set-top box based on the Amlogic S912 SoC,
-with a board design that is very close to the Q20x development boards.
-The MMC max-frequency properties are copied from the downstream device
-tree.
+The first few patch are cleanup for the clock driver and the
+introduction of the SCU SSR SoC driver.
 
-  https://ugoos.com/ugoos-am3-16g
+The SoC always support USB 2.0 but for USB 3.0 it needs additional
+configuration for the Serdes port. Such port can be either configured
+for USB usage or for PCIe lines or HSGMII and these are configured
+in the SCU space.
 
-The following functionality has been tested and is known to work:
- - debug serial port
- - "update" button inside the case
- - USB host mode, on all three ports
- - HDMI video/audio output
- - eMMC, MicroSD, and SDIO WLAN
- - S/PDIF audio output
- - Ethernet
- - Infrared remote control input
+To correctly handle this, the SCU is changed to a simple-mfd
+implemenetation and the clock controller updated to follow this new
+node structure. Both implementation are supported to handle old
+binding.
 
-The following functionality doesn't seem to work:
- - USB role switching and device mode on the "OTG" port
- - case LED
+The xHCI USB is based on the Mediatek implementation but the PHY
+handling although conceptually similar, is indded different compared
+to Mediatek due to SSR checks and different port power up.
 
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
- arch/arm64/boot/dts/amlogic/Makefile               |  1 +
- .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  2 +-
- .../arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts | 95 ++++++++++++++++++++++
- 3 files changed, 97 insertions(+), 1 deletion(-)
+The SSR driver expose an API to poll the current status of the Serdes
+port and the USB PHY driver validates it. Refer to the specific commit
+for additional info.
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 2fbda8419c65a3056410ac45ca3ddaceb69ea4f5..bf2bc14528bfa27e8d6ae2730085fc356d6c6dd8 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q201.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-libretech-pc.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxm-ugoos-am3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-index 45ccddd1aaf0546632c81a52c8917a923beae883..4223b26f7d0f3aa47e42e9434d24f73b20441981 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-@@ -97,7 +97,7 @@ sdio_pwrseq: sdio-pwrseq {
- 		clock-names = "ext_clock";
- 	};
- 
--	cvbs-connector {
-+	cvbs_connector: cvbs-connector {
- 		compatible = "composite-video-connector";
- 
- 		port {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..c413736f4096df8727311844de352debd89cdfb9
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts
-@@ -0,0 +1,95 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025 J. Neuschäfer <j.ne@posteo.net>
-+ *
-+ * Debug UART (3.3V, 115200 baud) at the corner of the board:
-+ *   (4) (3) (2) [1]
-+ *   Vcc RXD TXD GND
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/amlogic,meson-g12a-gpio-intc.h>
-+
-+#include "meson-gxm.dtsi"
-+#include "meson-gx-p23x-q20x.dtsi"
-+
-+/ {
-+	compatible = "ugoos,am3", "amlogic,s912", "amlogic,meson-gxm";
-+	model = "Ugoos AM3";
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 0>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1710000>;
-+
-+		button-function {
-+			label = "Update";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <10000>;
-+		};
-+	};
-+};
-+
-+&cvbs_connector {
-+	/* Not used on this board */
-+	status = "disabled";
-+};
-+
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>;
-+	pinctrl-names = "default";
-+
-+	/* Select external PHY by default */
-+	phy-handle = <&external_phy>;
-+
-+	amlogic,tx-delay-ns = <2>;
-+
-+	/* External PHY is in RGMII */
-+	phy-mode = "rgmii";
-+
-+	status = "okay";
-+};
-+
-+&external_mdio {
-+	external_phy: ethernet-phy@0 {
-+		/* Realtek RTL8211F (0x001cc916) */
-+		reg = <0>;
-+
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <80000>;
-+		reset-gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_LOW>;
-+
-+		interrupt-parent = <&gpio_intc>;
-+		/* MAC_INTR on GPIOZ_15 */
-+		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&i2c_B {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c_b_pins>;
-+
-+	rtc: rtc@51 {
-+		compatible = "haoyu,hym8563";
-+		reg = <0x51>;
-+		#clock-cells = <0>;
-+	};
-+};
-+
-+/* WLAN: Atheros 10k (QCA9377) */
-+&sd_emmc_a {
-+	max-frequency = <200000000>;
-+};
-+
-+&sdio_pwrseq {
-+	reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_HIGH>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	max-frequency = <100000000>;
-+};
+Consider that there is currently an inconsistency as AN7581 and
+EN7581 refer to the same thing. This is due to the fact that
+the SoC born under EcoNet but then was acquired by Airoha.
+
+Christian Marangi (13):
+  clk: en7523: convert driver to regmap API
+  clk: en7523: generalize register clocks function
+  dt-bindings: soc: airoha: add SCU SSR Serdes port binding
+  dt-bindings: soc: airoha: add Documentation for Airoha AN7581 SCU SSR
+  dt-bindings: mfd: add Documentation for Airoha EN7581 SCU
+  dt-bindings: clock: airoha: make reg optional for Airoha EN7581
+  clk: en7523: support getting regmap from parent node for EN7581
+  soc: airoha: add support for configuring SCU SSR Serdes port
+  dt-bindings: phy: Add documentation for Airoha AN7581 USB PHY
+  phy: airoha: Add support for Airoha AN7581 USB PHY
+  usb: host: add ARCH_AIROHA in XHCI MTK dependency
+  arm64: dts: airoha: en7581: convert SCU clock node to MFD
+    implementation
+  arm64: dts: airoha: en7581: add USB and SCU SSR nodes
+
+ .../bindings/clock/airoha,en7523-scu.yaml     |  13 +-
+ .../mfd/airoha,en7581-scu-sysctl.yaml         |  68 +++
+ .../bindings/phy/airoha,an7581-usb-phy.yaml   | 106 ++++
+ .../soc/airoha/airoha,an7581-scu-ssr.yaml     | 106 ++++
+ MAINTAINERS                                   |  15 +
+ arch/arm64/boot/dts/airoha/en7581.dtsi        |  74 ++-
+ drivers/clk/clk-en7523.c                      | 258 ++++----
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   3 +-
+ drivers/phy/airoha/Kconfig                    |  13 +
+ drivers/phy/airoha/Makefile                   |   3 +
+ drivers/phy/airoha/phy-airoha-usb.c           | 554 ++++++++++++++++++
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/airoha/Kconfig                    |  18 +
+ drivers/soc/airoha/Makefile                   |   3 +
+ drivers/soc/airoha/airoha-scu-ssr.c           | 195 ++++++
+ drivers/usb/host/Kconfig                      |   2 +-
+ include/dt-bindings/soc/airoha,scu-ssr.h      |  24 +
+ include/linux/soc/airoha/airoha-scu-ssr.h     |  17 +
+ include/linux/soc/soc/airoha-scu-ssr.h        |  17 +
+ 21 files changed, 1355 insertions(+), 137 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/airoha,en7581-scu-sysctl.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/airoha/airoha,an7581-scu-ssr.yaml
+ create mode 100644 drivers/phy/airoha/Kconfig
+ create mode 100644 drivers/phy/airoha/Makefile
+ create mode 100644 drivers/phy/airoha/phy-airoha-usb.c
+ create mode 100644 drivers/soc/airoha/Kconfig
+ create mode 100644 drivers/soc/airoha/Makefile
+ create mode 100644 drivers/soc/airoha/airoha-scu-ssr.c
+ create mode 100644 include/dt-bindings/soc/airoha,scu-ssr.h
+ create mode 100644 include/linux/soc/airoha/airoha-scu-ssr.h
+ create mode 100644 include/linux/soc/soc/airoha-scu-ssr.h
 
 -- 
-2.48.0.rc1.219.gb6b6757d772
-
+2.48.1
 
 
