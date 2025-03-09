@@ -1,211 +1,114 @@
-Return-Path: <devicetree+bounces-155766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7456AA5813C
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 07:53:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E70CA58139
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 07:53:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EAE93AA5ED
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 06:53:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A98E168260
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 06:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49C115ECDF;
-	Sun,  9 Mar 2025 06:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2B215ECDF;
+	Sun,  9 Mar 2025 06:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N6+vtyDa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.197.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594D414A639
-	for <devicetree@vger.kernel.org>; Sun,  9 Mar 2025 06:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=43.154.197.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9AA1EA6F;
+	Sun,  9 Mar 2025 06:53:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741503214; cv=none; b=FTCkTBdk84vOuq76+2bnvOoWz34ND2fHGDgPDNRfsAKmPnPHlBUov0TvmFkBTPwSAPZ8fztXOYDxvmYtJyFgWs2ac7OL7fhIJxvleUoRmq24JBg1EIBj71beaTh1Fr8J7+i9l3Go32zpCFVRAPqrt45Z3hV5TKSGVfcewXOINsA=
+	t=1741503190; cv=none; b=P6dZ9zL9cc0a4GOK0vDiibmFeEVVHsXLbxb+ZCdHoIobLa2DyIC/k+POeRCJMe2BxmIWRwfS2qOdDbRxnKOmNGioVKRVjNQQx/vDf2VqtAXohpRLBflKH2KXZVvt08If+X/ybFiPPrL0CvcpsEtWGi484vcpfXlNONN6ZrWAQ+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741503214; c=relaxed/simple;
-	bh=9i3kB0uiF+cAxVwrkkle2JYDjeoaYLOYGwAi2FgSGjc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VbIhUbuQSmLLJWgMjliVakmHH3wCMzj+VC+/5W7o3HFDK34EywK4suBZbj/xdJ0pUXbA//fBAVZXkBX343PKgX+xyzO9tbP9K3VPryLeJ05a/PthW0p9aHJu4U6E0Qzea7+G3ox/lVEhM5VabwqjArm/wleURP/+NKT2bKgbu0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=43.154.197.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip2t1741503090t8sbs1w
-X-QQ-Originating-IP: XwhKMfl3zf720/W1DEA9jiyONxzExdR32tccPWBx8ps=
-Received: from [IPV6:240f:10b:7440:1:893e:bed3 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Sun, 09 Mar 2025 14:51:24 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 12559739766669339929
-Message-ID: <4F8F58DC9699ED12+95e301f9-a9f1-4f6b-8b8f-21c6c1df5cc2@radxa.com>
-Date: Sun, 9 Mar 2025 15:51:24 +0900
+	s=arc-20240116; t=1741503190; c=relaxed/simple;
+	bh=8FLOytRST1b7cBgnwTPUTHSCubeWY65ELvAASAoo8K8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Vp3N3qSdveK2X968X8iulvWmUbo42PRulWj3lKmpmso3wL+6s/CATxNuXitQus8MRWC33+rVgnRtPsvj6W4bcR5/B8ptOVE8bKIaQN1l2GRwmh+UZN7w2nbOv2jUxsCq7uqVyMgB55O86e+RRpguk9nhjWk7Ip0qBSveCu4mQHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N6+vtyDa; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e64700a38cso883028a12.1;
+        Sat, 08 Mar 2025 22:53:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741503187; x=1742107987; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8FLOytRST1b7cBgnwTPUTHSCubeWY65ELvAASAoo8K8=;
+        b=N6+vtyDadsK1mYiJ4rdCnGzzwqtn0mtuR9awLNHs0r7jKivtbgkOTBGknS707iXDpT
+         5nksaiwuw/36jkQFE+8B1rwWC07/RjjnGmI1hhC3R8Qs58GiUH62B8hMHFVHiPG2Nrdk
+         7SBjoyDEtx3rvti9oZjkfToo8PeA4JBPD6yqkkw/nzZ4Wg7PikPA4auVSEvLmAdXAFay
+         AjkAKsTISPO6cAwGHG/+QbKqKB8sKWL3ybW8XBvYgSRAAW8xoM11Nfdj1qYh0kb5wqus
+         QS8XHimDryzl7XSbcoNbFcP6MeDgpEK/amGMyGwlJ4wy5SOYhrhgD8N+3KtCEpSSPdgC
+         OGZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741503187; x=1742107987;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8FLOytRST1b7cBgnwTPUTHSCubeWY65ELvAASAoo8K8=;
+        b=xUvimwQqiMKw25vSFq5/vgivkLkN7Jmqxrt5jw8T8k21EoPJG3y3NgE7NftC9k/NEe
+         22tQJS3AA1J4pcWtM3343NgHCO5iBUerKWZM+QoaNYs/JaJMyXXv5YfxGFJF4CPKb6fw
+         FYtue9Jg4t5RWVyxgYrwMIsj0oEuKtbe92ByFx7c6IIM7B6xAbYlluwqDdjogyQsSnez
+         1tfODh3JzjAYvb0eCF0M2KVh+Qu3HBbF/xvgAufc5bABlCjMyRRqIB+ocS4Plru2zy29
+         v3q8sOmPfE/3IoQhWSzAgYAi4vlh6PO3mt6c4P285KZxsUmDqs+4BJxMC86h2i2qOJ4R
+         rGVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVcYi/IrZknHwE5bRjvLz5f80ZB6XXfrthfEoETNzmWrKjAQDaLjlJQaNpsEkuvDuiIOY90PP9qCiJnGMcz@vger.kernel.org, AJvYcCVrrvNXVN1lHiALQvczaJMYkwDBfwC0zONGzjgyKZp7HCcF1murJzZ7r0l3vLVMUA3qkB2OLQPSlYNj@vger.kernel.org, AJvYcCWMewI2uQSfH5hfogGTIP33ps65XAllEOu0T85p8WLfi5TLsq4dzNU4YdYVe4mHsn0bw8uxR0fDXMUL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAwHlYcltK/dJZoRjBlgNLRd+0lux+newf47yQvgBhc+DLj2oo
+	8w5VIiwOQlsGdjtQh2EYeo1jniz1lQTHOulaaxj6fVBFCjbQHtHZ
+X-Gm-Gg: ASbGnctVQxElCTHN6q8qSPqr79OUL9GO7ODdUFivlR1lZfmk9rF1HEkXcWM5+GPYcjp
+	3yL1lqrKYTB7QLZihPVMGHh2zAd2GnFLn/VS+jko2tju+x5kCIRGkqTD1s3m1nYNF4Zc607ZWUq
+	Vw1W452oNGb05xNP8K6qQ1TcQKonn2Hr8MN34IPH71fcroylVhFBmPHbnhNyNWj35KhvNQui/WQ
+	T0/PkhSDHX3h6hoiMiubLlsulflKTau49F7HHXywZAmYOzToW4FqXU9HXuZOIKkMERrohqNmH0n
+	QnItOBpd7Ih1QICNlY7Tzc6SElOjS0x3Cy8M7AkE5Z8fL+7lpDXDWrWg+SzM0EcguA==
+X-Google-Smtp-Source: AGHT+IEozQjXyjRcOAbnbhkCB/GeONnnBAob1GnncFL/WgIvYzJGUOAd/PvSRjZxlM/Y0ifrf89/uw==
+X-Received: by 2002:a05:6402:5387:b0:5e0:9254:c10e with SMTP id 4fb4d7f45d1cf-5e5e22dbbf6mr10635788a12.11.1741503187497;
+        Sat, 08 Mar 2025 22:53:07 -0800 (PST)
+Received: from jernej-laptop.localnet ([188.159.248.16])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c74a7176sm4845027a12.35.2025.03.08.22.53.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Mar 2025 22:53:06 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ Andre Przywara <andre.przywara@arm.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 09/14] clk: sunxi-ng: a523: add interface mod clocks
+Date: Sun, 09 Mar 2025 07:53:05 +0100
+Message-ID: <2978516.e9J7NaK4W3@jernej-laptop>
+In-Reply-To: <20250307002628.10684-10-andre.przywara@arm.com>
+References:
+ <20250307002628.10684-1-andre.przywara@arm.com>
+ <20250307002628.10684-10-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] drm/bridge: synopsys: Add DW DPTX Controller support
- library
-To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
-Cc: neil.armstrong@linaro.org, sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org, hjc@rock-chips.com, mripard@kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- yubing.zhang@rock-chips.com, dri-devel@lists.freedesktop.org,
- Andy Yan <andy.yan@rock-chips.com>, krzk+dt@kernel.org, robh@kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250223113036.74252-1-andyshrk@163.com>
- <20250223113036.74252-3-andyshrk@163.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20250223113036.74252-3-andyshrk@163.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: N4WhQbLQyIqS188IzcypNGG75bD7D7grAHlZbfB5iQ737s2ShidHPf3W
-	D24PZj6r/6fo1zR2GVFe7nBZap1F332I3LLeXM28iN/kWjEoyUfqulM4bH9FWFsl5S0T6ww
-	qNyPAr6p9XGHZJFvYmDKzwYG/htRkFuieVUWJbHyXGS5WC+EwowByO9PyG0cNPd9LJlyMh2
-	PuxPJWcIq+1FvoeOQsbwGr7tRrp3sMHL/ScmimrdwU0WheNOQ3fLL4pnuOl9I8rQwPhNadZ
-	1hPmlBtpS1L4xzD7k8wg7SQ4gd6IktVan1U5PFxv0pMWdJXwVnWJyOCS5fhPVPs9zR9l5we
-	fCDkk2XQvQTM08CQ6v6RaceEyHnm0sLXfODMJx2VO9U1mToOiEYJCRZXkkSPfYr2kih3M+Z
-	MbzGu2cvQZ6iEe2jmvFpy2gPQBK8vij/LYnb1NrHRtvF6LyUJIsjv0/ibQMRB2uARsDwBZh
-	mX/IYyt/lY/uHnPquQvDyKrWB8FD/d8K5D9Y6SQXrkLmAEw16mTKoivN13ejc+YKVi3hdFQ
-	m2TOSrPI5klyA9RJB6vuR6db4gwtrCL48YhX/KxXMdKlqw2+SENy90n0HWQm0L7wqA9jbVN
-	Nc3/JElAHGMkqWWMLX7NoXshqNEnM9lFs2d/TA6CfoTB9G6hIkKo2h4cnECT/ByTLfUOVIl
-	P6CXFU2iK34H3di42fvDo2RJjUzZ5BI+ZezGZgdZAFn/QBQ7d3RqeuKSzy7RoOvDgcWSCPs
-	uSHWV7LbrW4AzkW9k9Gg4ETOvtI5WVRPGvaX0zvLqS+0zvIzuHK3Ry41RKpO6zDgo+9QFwq
-	GfOIA4JUks/+t+lanrl1b+VH2odcLYnqYzUV6qYTWiS6Uk51kO+NGQAl0LQVUvtGrGn5YVd
-	K4UF1MK7y/H6OOVnAzbdkGtEU8+orOekqPwsNjujZyMP86lPYx0FZg==
-X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
-X-QQ-RECHKSPAM: 0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hi Andy,
+Dne petek, 7. marec 2025 ob 01:26:23 Srednjeevropski standardni =C4=8Das je=
+ Andre Przywara napisal(a):
+> Add the clocks driving what the user manual summarises under "interface"
+> devices: raw NAND flash, MMC, SPI, EMAC, "IR" infrared, and the "GPADC"
+> general purpose analogue/digital converter.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-On 2/23/25 20:30, Andy Yan wrote:
-(snip)
-> +struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
-> +			 const struct dw_dp_plat_data *plat_data)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct dw_dp *dp;
-> +	struct drm_bridge *bridge;
-> +	void __iomem *res;
-> +	int ret;
-> +
-> +	dp = devm_kzalloc(dev, sizeof(*dp), GFP_KERNEL);
-> +	if (!dp)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	dp->dev = dev;
-> +	dp->video.pixel_mode = DW_DP_MP_QUAD_PIXEL;
-> +
-> +	dp->plat_data = plat_data;
-> +	bridge = &dp->bridge;
-> +	mutex_init(&dp->irq_lock);
-> +	INIT_WORK(&dp->hpd_work, dw_dp_hpd_work);
-> +	init_completion(&dp->complete);
-> +
-> +	res = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(res))
-> +		return ERR_CAST(res);
-> +
-> +	dp->regmap = devm_regmap_init_mmio(dev, res, &dw_dp_regmap_config);
-> +	if (IS_ERR(dp->regmap)) {
-> +		dev_err_probe(dev, PTR_ERR(dp->regmap), "failed to create regmap\n");
-> +		return ERR_CAST(dp->regmap);
-> +	}
-> +
-> +	dp->phy = devm_of_phy_get(dev, dev->of_node, NULL);
-> +	if (IS_ERR(dp->phy)) {
-> +		dev_err_probe(dev, PTR_ERR(dp->phy), "failed to get phy\n");
-> +		return ERR_CAST(dp->phy);
-> +	}
-> +
-> +	dp->apb_clk = devm_clk_get_enabled(dev, "apb");
-> +	if (IS_ERR(dp->apb_clk)) {
-> +		dev_err_probe(dev, PTR_ERR(dp->apb_clk), "failed to get apb clock\n");
-> +		return ERR_CAST(dp->apb_clk);
-> +	}
-> +
-> +	dp->aux_clk = devm_clk_get_enabled(dev, "aux");
-> +	if (IS_ERR(dp->aux_clk)) {
-> +		dev_err_probe(dev, PTR_ERR(dp->aux_clk), "failed to get aux clock\n");
-> +		return ERR_CAST(dp->aux_clk);
-> +	}
-> +
-> +	dp->i2s_clk = devm_clk_get(dev, "i2s");
-> +	if (IS_ERR(dp->i2s_clk)) {
-> +		dev_err_probe(dev, PTR_ERR(dp->i2s_clk), "failed to get i2s clock\n");
-> +		return ERR_CAST(dp->i2s_clk);
-> +	}
-> +
-> +	dp->spdif_clk = devm_clk_get(dev, "spdif");
-> +	if (IS_ERR(dp->spdif_clk)) {
-> +		dev_err_probe(dev, PTR_ERR(dp->spdif_clk), "failed to get spdif clock\n");
-> +		return ERR_CAST(dp->spdif_clk);
-> +	}
-> +
-> +	dp->hdcp_clk = devm_clk_get(dev, "hdcp");
-> +	if (IS_ERR(dp->hdcp_clk)) {
-> +		dev_err_probe(dev, PTR_ERR(dp->hdcp_clk), "failed to get hdcp clock\n");
-> +		return ERR_CAST(dp->hdcp_clk);
-> +	}
-> +
-> +	dp->rstc = devm_reset_control_get(dev, NULL);
-> +	if (IS_ERR(dp->rstc)) {
-> +		dev_err_probe(dev, PTR_ERR(dp->rstc), "failed to get reset control\n");
-> +		return ERR_CAST(dp->rstc);
-> +	}
-> +
-> +	dp->irq = platform_get_irq(pdev, 0);
-> +	if (dp->irq < 0)
-> +		return ERR_PTR(ret);
-> +
-> +	ret = devm_request_threaded_irq(dev, dp->irq, NULL, dw_dp_irq,
-> +					IRQF_ONESHOT, dev_name(dev), dp);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "failed to request irq\n");
-> +		return ERR_PTR(ret);
-> +	}
-> +
-> +	bridge->of_node = dev->of_node;
-> +	bridge->funcs = &dw_dp_bridge_funcs;
-> +	bridge->ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_HPD;
-> +	bridge->type = DRM_MODE_CONNECTOR_DisplayPort;
-> +	bridge->ycbcr_420_allowed = true;
-> +	bridge->vendor = "Synopsys";
-> +	bridge->product = "DW DP TX";
-> +
-> +	platform_set_drvdata(pdev, dp);
-> +
-> +	dp->aux.dev = dev;
-> +	dp->aux.drm_dev = encoder->dev;
-> +	dp->aux.name = dev_name(dev);
-> +	dp->aux.transfer = dw_dp_aux_transfer;
-> +	ret = drm_dp_aux_register(&dp->aux);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Aux register failed\n");
-> +		return ERR_PTR(ret);
-> +	}
-> +
-> +	ret = drm_bridge_attach(encoder, bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-> +	if (ret)
-> +		dev_err_probe(dev, ret, "Failed to attach bridge\n");
-> +
-> +	dw_dp_init_hw(dp);
-> +
-> +	return dp;
-> +}
-
-EXPORT_SYMBOL_GPL(dw_dp_bind);
-
-is required to build it as a module.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
+Jernej
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+
 
