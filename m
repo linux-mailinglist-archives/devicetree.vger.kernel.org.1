@@ -1,524 +1,320 @@
-Return-Path: <devicetree+bounces-155776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A25A581A2
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 09:33:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C04F3A58226
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 09:48:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C03EB3AAB7F
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 08:33:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED4F716B0AA
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 08:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD431922C0;
-	Sun,  9 Mar 2025 08:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75F1F185B4C;
+	Sun,  9 Mar 2025 08:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eQM7SNW3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mHVmUGis"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D992C18E743
-	for <devicetree@vger.kernel.org>; Sun,  9 Mar 2025 08:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67AC018E1F;
+	Sun,  9 Mar 2025 08:48:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741509231; cv=none; b=VkXwdZQMW56bZZaQkYoEJQB3EF+9EApSDqCZkKPi+h1ft25rNJGPSBJSYed9PObM7c9Z6KWHzlS5G8lugonap6eMk+IhdqCfIS9ZjZLWonvVfgAaxQYOrxsbAxXdpFqi5U/iKdTIRdE+a7B5zShH0yy7wF4QRHRBDytomIaSk2E=
+	t=1741510108; cv=none; b=pllSvSV3MMlCYw6Hl/x0+tdHnwDTNbqDotPcde67QXlxrHJuEetjhOLYBA1cVFqKq50cCX+lWKfFw9ZBYohAOeAENMHCraaBAeaoR08GbLT3XyXbGb7sAdjilLOl/orY8EeEYLc2Z3CBIMcHJ80K5w6j5tEdyqbACdDZPBjS6ME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741509231; c=relaxed/simple;
-	bh=DA4Kxjtg2wyfiGDjO0XkWZ8J8EZ7dUH8HeuhUhvDAGw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZWiID68GdtghcXglmsHbwW/Bj0uvLKN0wZxpWV7Cq4NIRuaugv5PgwIC0aurtKXsifxw1+ytLF/O1P8yxBMEhU65NKxZPFV6R7yWWL83FPrq/GRx2QzQfD6wRPahHQxa7nZYmJOP5wlPn5AWp8QpAbRQYB/zz1RDxSfPmekGrIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eQM7SNW3; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30bfd4d4c63so16410801fa.2
-        for <devicetree@vger.kernel.org>; Sun, 09 Mar 2025 00:33:48 -0800 (PST)
+	s=arc-20240116; t=1741510108; c=relaxed/simple;
+	bh=uPre4oTLY075H7ytM2SiW9AMN/odpcJY90t1k53KMzc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IOtojpOTrzBj0ZfU9KZXcmkBUaL2KF6u/hokPAWfSgDywhf+RfFqSXyczpJbglT0dIx998Ih79tzjxE814hbCiXMQY+uwDLeSbwKoTffSCJXOi9fjrTUOMaadAov0iQjSH/cR1LksfXooMcJipdIYYKtLfaH3aZNrSDdxWETpgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mHVmUGis; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-aaec111762bso615017966b.2;
+        Sun, 09 Mar 2025 00:48:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741509227; x=1742114027; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rKR4H/QECSO/fobjTrFesS+ZjcSBWrrROqlfipaQXZQ=;
-        b=eQM7SNW35/m/HoGbWCq4xC8drIOSJM8BTkpYqE1Px1/RCBavPlyaNNLx6MNcvXApSQ
-         rZHPXzqHSwFoVpnic/1y9ikE23mVSVBf+S2+0ypCnSPngKy24ladqwAmb+iEIrgTRFJD
-         nw74SoLZ+tc74qoFgncqpLXeAY+XZLalzpwd+YXq4Kmi8Svaid0bG5TC7con8MAUMnbK
-         QwbZck+ZpCk1Ly+ugJ5KXkuxxkof+mWmEUOj+wpZwX+knlLKB/AxWcXh39DIp01HBL+e
-         8LKTnTppqbjYR1p2PhaufZnEjzZ4BmL8rvCBMsrV1t5aSyW3e2VKiDOm+SFpsqbdFF0L
-         69bQ==
+        d=gmail.com; s=20230601; t=1741510105; x=1742114905; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZVGcsUdrY4Ojxb0Wjt3O7HW8bB7/V56V860JdJdtjqA=;
+        b=mHVmUGisfzahqUhYLkwUpBK8oqvbXfkleT3W1uvBZndBn76ID63DZQA9c9Y1+BuXII
+         C0Hc7WTSvsR+SRxqQ8OLyvQG7giL1hBuTrojmGtuEHUV+8sij58t+RWKyFqrHUFjrNQ4
+         L+HNYIhaRy+tf0ts8VX8Z2RGBv3ZGFrW9b+TE6ah0zyBiPqLh9OOMX4T6JOWYksp2TO3
+         xu0EP95fuseMbnJ4wC0U6WwHLYRarZ27ghYnY1bID1RkhD21ibGOViYWhoU7DImcYLTD
+         sMTeztNvsgr4AHNYBeHSvk1c9YpU4LdyNhdjgCoKtQav2vAIlsYqE6dXjNUhaa1FK9Cs
+         nRQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741509227; x=1742114027;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rKR4H/QECSO/fobjTrFesS+ZjcSBWrrROqlfipaQXZQ=;
-        b=dMvoNVw3pgF1n8aEi+xyz8V4kD0gZ16FQWB1zYuVlDSpjfFktHzRZK5AJMTD9HvV5e
-         MGlgkV3RO1z7pRAVzoMUxrD662uRvrhAxTYkbC/BLfM1BLSo2naQJs8yeVHeTvl+7m2k
-         8ZUQlkg8+NLYAWNFcOrbN7LqHA7osOT+QzLfdHt0uFZHBmAUZsoSs/UVILshOfjl/e1B
-         eOeNgHlXbVWPZJ6nHdR4OLU7XEq0EFnIsD2GJbaFrLX9zo5Dj4SVaE65jMbTxIADL9ay
-         wm9HnAAaCu7476ajzhZrujVK2JCfEsJGLWJMaOLIRyFyXfvvalOl3meZ3ljtYU0ZrASO
-         kTiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXO+Z+2PNfkr2b4NOnSFetvCOccqqtlWfwa3ZTLqcIH/ChouhykzV091HLIZHRICtdOtDlB1rm9btPO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyY4eMm1kfB8ceyCSrzyjFHLWPBiIowmYRnbIs9sTLfAXs1HXYF
-	GIe0BvkWAm2XlpdYrG+VzxVEdzuPbwc6tEVFDgiZRq8CcwaLbXe2fB1PRRGM9fg=
-X-Gm-Gg: ASbGncsgcXVpxktbkt5ZODbtfHsWeCsoEq+mJFMBlOzAquBgtJ4N17orVeeaHRyxynl
-	Y2fxDCoP7b/tj0KDQtnc4vXrAJF6R2e+v236Lztz/kFCDdvHo/2N93zFQjmJZyYG6Z0vZZDXKmO
-	gOxHb2GT8iNwvJ4rx/9wYPtJgoIyl9y2JxtSJtSJvDeqpLg9/OrSnE48vieVTlzZuekxozpyHJ4
-	sCPfAJxlcZjqjuC+x3penM5XaHR3mDn9uOwQcRmKQHJxfIpZCrNPU74BMNB/KxfnPcsPKqSjUCp
-	paoXgZHYiQk+ifKUPt9iaB+bxT+kSZEzQbaXNNMhU9wmKpYYlGA1FyPsyKCtK0x2+g6DrmZoVCH
-	I5/kxjsUOAh8VrIQZVjEsPOmg
-X-Google-Smtp-Source: AGHT+IGeARXVcG2cHhhuIEZTvFQOsMPoaHjmx3ib/t6sXJ722tNpW4RJ3V2x8jYPJEBhJrS3NGqcyA==
-X-Received: by 2002:a05:6512:1597:b0:549:8d67:c48b with SMTP id 2adb3069b0e04-54990e5d44dmr3729878e87.20.1741509226867;
-        Sun, 09 Mar 2025 00:33:46 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498ae4605asm1047163e87.29.2025.03.09.00.33.45
+        d=1e100.net; s=20230601; t=1741510105; x=1742114905;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZVGcsUdrY4Ojxb0Wjt3O7HW8bB7/V56V860JdJdtjqA=;
+        b=uHBbuWxMA7TDAfE63sHEjltQYJPdXHESPmjL7QIQXXmKUTK+h009dQzKqJ7wmCXfEm
+         XVAMM+/m/Gv0o8Lu4tXRcb0pnI7VMQu3jSAkbv+YOFjYr/0MWU04pWVFlu3IzV9x039l
+         O1kDddhElRIpfdiGvzcvcg25/1hxV8UYsikQ9XGO+kyGmi788k/yLkNhDC/9JESeaDeC
+         eC41WS+egSYDc2NXl7//stmWasakXPIC0z0KJTDr6MdKQnw4IdMIrGoWU1SmiuXZZfFT
+         EaNvJT+2sG4r3d/rquDSTtgQ7dR8VFSp9RbjLF9D+6M9T/M5bGBFl9iGO8E7Zo+AIqG6
+         YmVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV3rzI5fowxzS556dKxS2FGn3gUWTb8KD05fAAe2/qIrG/u5e+m8B4t6QohKT4F9jFaJv3UTvrp5CXd3CI=@vger.kernel.org, AJvYcCWM0LSXLjquPstI8y88of0Rtv2xsbvEZhyvj3jkT6AFciZ4mEJQCEPjOtCtt+4Yb88p3jZwb1z+0WY6TItG@vger.kernel.org, AJvYcCX5hGuHpGGQ1r6iePH1f42UvCLnCpzsevpAhfQL8gLoyjziedu9PsZPggIUoiJ02hLHNj03rZ9WwQlB@vger.kernel.org, AJvYcCXz7jPxg/aiwmWltB3Y9ONwjc3FW8EJQqOdUoFlbMgEl+aEtxSDHRAe880sZExNQM/kS0M2A1Dq2U169A==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzR+mkwqybxWQsMvNOStxeH1RVl/KTjpWyKadlXyxk9L0vWAUBq
+	OKaTOji2DiZfUITgbGCh/P2McdaNbsKl9yv2u+u8pOiq9R3JNXMaWL/p7g==
+X-Gm-Gg: ASbGncvp8Gz1qEtqWR8zlicu48DZaVky0z53BfGf/lbN+gaKbZO3fERZ005EpdOPCA/
+	oPJB8rmIrLcYePwXO2WQRMRpfbgZMf75A11jPstimIUH4+palcqijegCMLvO5iaRjvajKgVh9rE
+	494oGVDwhOPUIfxPkejVSrGn99kfkEWu8IVg+/YrTAyIH81umpOiN40Kl/0iuJwURf4k2rvy4xm
+	wpvaoRdc4ZMGyG6QxrbGDNOGtK5HJLMq+b3D+3DHdQld9+DETy6r02+ZL1hSsUbCH7PEWWaKzOw
+	2e7dWvfRAtG3yJsqm3+OBy40CT6ub8Auyk+5XRdL6xEQYf2vOfI8iFO1sQ==
+X-Google-Smtp-Source: AGHT+IHI4Zyfvvqb7frkRpwXvq+ngfIqgiZRQjrvqboXWAs52psPPFqtYXNUWfj7KjP1zDv7XZFEpw==
+X-Received: by 2002:a17:906:f590:b0:ab8:c215:fd27 with SMTP id a640c23a62f3a-ac252a9e65bmr864919566b.14.1741510104309;
+        Sun, 09 Mar 2025 00:48:24 -0800 (PST)
+Received: from demon-pc.localdomain ([188.27.130.21])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac239736153sm566347466b.108.2025.03.09.00.48.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Mar 2025 00:33:46 -0800 (PST)
-Date: Sun, 9 Mar 2025 10:33:44 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: david@ixit.cz
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
-	Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-hardening@vger.kernel.org, Ivan Belokobylskiy <belokobylskij@gmail.com>
-Subject: Re: [PATCH v3] ARM: dts: nexus4: Initial dts
-Message-ID: <l4lv22oi2ktubf7aveqxqtwb7zz7cfrzdayuxxgwdj46ygubfs@qpl6ut37taoe>
-References: <20250309-lg-nexus4-mako-v3-1-1dc2807df296@ixit.cz>
+        Sun, 09 Mar 2025 00:48:23 -0800 (PST)
+From: Cosmin Tanislav <demonsingur@gmail.com>
+To: 
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+	Julien Massot <julien.massot@collabora.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	Eric Biggers <ebiggers@google.com>,
+	Javier Carrasco <javier.carrasco@wolfvision.net>,
+	Ross Burton <ross.burton@arm.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Zhi Mao <zhi.mao@mediatek.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	Ihor Matushchak <ihor.matushchak@foobox.net>,
+	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	linux-gpio@vger.kernel.org,
+	Cosmin Tanislav <demonsingur@gmail.com>
+Subject: [RFC PATCH v2 00/16]  media: i2c: add Maxim GMSL2/3 serializer and deserializer drivers
+Date: Sun,  9 Mar 2025 10:47:52 +0200
+Message-ID: <20250309084814.3114794-1-demonsingur@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250309-lg-nexus4-mako-v3-1-1dc2807df296@ixit.cz>
+Content-Transfer-Encoding: 8bit
 
-On Sun, Mar 09, 2025 at 01:45:51AM +0100, David Heidelberg via B4 Relay wrote:
-> From: Ivan Belokobylskiy <belokobylskij@gmail.com>
-> 
-> Add initial support for LG Nexus 4 (mako).
-> 
-> Features currently working: regulators, eMMC, WiFi, and volume keys.
-> 
-> Signed-off-by: Ivan Belokobylskiy <belokobylskij@gmail.com>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> Changes in v3:
-> - rebased against next-20250307
-> - dropped backlight until driver gets converted to DT
-> 
-> Changes in v2:
-> - lge vendor doesn't exist anymore, rename to lg
-> - sdcc@ to mmc@ to comply with dt-schema
-> ---
->  arch/arm/boot/dts/qcom/Makefile                    |   1 +
->  .../boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts  | 342 +++++++++++++++++++++
->  2 files changed, 343 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-> index f06c6d425e91dd73c2b453d15543d95bd32383b9..0c1d116f6e84f76994aa8c8286350bdcd1657a42 100644
-> --- a/arch/arm/boot/dts/qcom/Makefile
-> +++ b/arch/arm/boot/dts/qcom/Makefile
-> @@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
->  	qcom-apq8064-ifc6410.dtb \
->  	qcom-apq8064-sony-xperia-lagan-yuga.dtb \
->  	qcom-apq8064-asus-nexus7-flo.dtb \
-> +	qcom-apq8064-lg-nexus4-mako.dtb \
->  	qcom-apq8074-dragonboard.dtb \
->  	qcom-apq8084-ifc6540.dtb \
->  	qcom-apq8084-mtp.dtb \
-> diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..bcb57675aa24892b290d543601f7a6b36b6a65f6
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
-> @@ -0,0 +1,342 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +#include "qcom-apq8064-v2.0.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/mfd/qcom-rpm.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +/ {
-> +	model = "LG Nexus 4 (mako)";
-> +	compatible = "lg,nexus4-mako", "qcom,apq8064";
-> +
-> +	aliases {
-> +		serial0 = &gsbi7_serial;
-> +		serial1 = &gsbi6_serial;
-> +		serial2 = &gsbi4_serial;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial2:115200n8";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		ramoops@88d00000{
-> +			compatible = "ramoops";
-> +			reg = <0x88d00000 0x100000>;
-> +			record-size = <0x00020000>;
-> +			console-size = <0x00020000>;
-> +			ftrace-size = <0x00020000>;
-> +		};
-> +	};
-> +
-> +	battery_cell: battery-cell {
-> +		compatible = "simple-battery";
-> +		constant-charge-current-max-microamp = <900000>;
-> +		operating-range-celsius = <0 45>;
-> +	};
-> +
-> +	soc {
-> +		rpm@108000 {
+This series adds new drivers for multiple Maxim GMSL2 and GMSL3 devices,
+replacing the few GMSL2 drivers already in upstream, and introducing a
+common framework that can be used to implement such GMSL chips, which
+avoids code duplication while also adding support for previously
+unsupported features.
 
-Please use &rpm { ... }; instead.
+While the normally acceptable and polite way would be to extend the
+current mainline drivers, the choice was made here to add a totally new
+set of drivers. The current drivers support only a small subset of the
+possible features, and only a few devices, so the end result after
+extending them would in any case be essentially fully rewritten, new
+drivers.
 
-> +			regulators {
-> +				vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
-> +				vin_lvs1_3_6-supply = <&pm8921_s4>;
+This series depends on these two series:
+ * https://lore.kernel.org/lkml/20250306-fpc202-v9-0-2779af6780f6@bootlin.com
+ * https://lore.kernel.org/lkml/20250228151730.1874916-1-demonsingur@gmail.com
 
-Please move vin_lvs2-supply here.
+The following deserializers are supported:
+ * MAX96712 (already exists in staging)
+ * MAX96714 (already exists)
+ * MAX96716 (GMSL2)
+ * MAX96724 (part of existing MAX96712 driver)
+ * MAX9296A (GMSL2)
+ * MAX96792A (GMSL3)
 
-> +				vin_lvs4_5_7-supply = <&pm8921_s4>;
-> +
+The following serializers are supported:
+ * MAX96717 (already exists)
+ * MAX9295A (GMSL2)
+ * MAX96793 (GMSL3)
 
-Please move vdd_l1_l2_l12_l18 here.
+Missing features:
+ * The current TPG implementation makes use of the V4L2_CID_TEST_PATTERN
+   V4L2 control. With V4L2 streams support added, we would like to hook
+   up TPG using the internal pad feature which has not been accepted
+   upstream yet. We decided to leave TPG out for the moment and add it
+   back after internal pads have been accepted.
 
-> +				vdd_l24-supply = <&pm8921_s1>;
-> +				vdd_l25-supply = <&pm8921_s1>;
-> +				vin_lvs2-supply = <&pm8921_s1>;
-> +
-> +				vdd_l26-supply = <&pm8921_s7>;
-> +				vdd_l27-supply = <&pm8921_s7>;
-> +				vdd_l28-supply = <&pm8921_s7>;
-> +
-> +				/* Buck SMPS */
-> +				s1 {
-> +					regulator-always-on;
-> +					regulator-min-microvolt = <1225000>;
-> +					regulator-max-microvolt = <1225000>;
-> +					qcom,switch-mode-frequency = <3200000>;
-> +					bias-pull-down;
-> +				};
+Known backward compatibility breakages:
+ * No default routing. Default routing has been intentionally ommitted
+   as the devices support quite complex routing and it would be
+   unfeasible to provide sane defaults for multi-link deserialziers.
+   It is expected that userspace programs would set appropritate
+   routing. 
 
-empty line
+The following list enumerates new features that are supported by the
+common framework and their respective chip-specific drivers:
+ * Full Streams API support. Most deserializers have support for more
+   than one link, and more than one PHY. Streams support allows
+   configuration of routing between these links and PHYs.
 
-> +				s2 {
-> +					regulator-min-microvolt = <1300000>;
-> +					regulator-max-microvolt = <1300000>;
-> +					qcom,switch-mode-frequency = <1600000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* msm otg HSUSB_VDDCX */
-> +				s3 {
-> +					regulator-min-microvolt = <500000>;
-> +					regulator-max-microvolt = <1150000>;
-> +					qcom,switch-mode-frequency = <4800000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/*
-> +				 * msm_sdcc.1-sdc-vdd_io
-> +				 * tabla2x-slim-CDC_VDDA_RX
-> +				 * tabla2x-slim-CDC_VDDA_TX
-> +				 * tabla2x-slim-CDC_VDD_CP
-> +				 * tabla2x-slim-VDDIO_CDC
-> +				 */
-> +				s4 {
-> +					regulator-always-on;
-> +					regulator-min-microvolt	= <1800000>;
-> +					regulator-max-microvolt	= <1800000>;
-> +					qcom,switch-mode-frequency = <1600000>;
-> +					bias-pull-down;
-> +					qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
-> +				};
-> +
-> +				/*
-> +				 * supply vdd_l26, vdd_l27, vdd_l28
-> +				 */
-> +				s7 {
-> +					regulator-min-microvolt = <1300000>;
-> +					regulator-max-microvolt = <1300000>;
-> +					qcom,switch-mode-frequency = <3200000>;
-> +				};
-> +
-> +				s8 {
-> +					regulator-min-microvolt = <2200000>;
-> +					regulator-max-microvolt = <2200000>;
-> +					qcom,switch-mode-frequency = <1600000>;
-> +				};
-> +
-> +				l1 {
-> +					regulator-min-microvolt = <1100000>;
-> +					regulator-max-microvolt = <1100000>;
-> +					regulator-always-on;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* mipi_dsi.1-dsi1_pll_vdda */
-> +				l2 {
-> +					regulator-min-microvolt = <1200000>;
-> +					regulator-max-microvolt = <1200000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* msm_otg-HSUSB_3p3 */
-> +				l3 {
-> +					regulator-min-microvolt = <3075000>;
-> +					regulator-max-microvolt = <3500000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* msm_otg-HSUSB_1p8 */
-> +				l4 {
-> +					regulator-always-on;
-> +					regulator-min-microvolt = <1800000>;
-> +					regulator-max-microvolt = <1800000>;
-> +				};
-> +
-> +				/* msm_sdcc.1-sdc_vdd */
-> +				l5 {
-> +					regulator-min-microvolt = <2950000>;
-> +					regulator-max-microvolt = <2950000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* earjack_debug */
-> +				l6 {
-> +					regulator-min-microvolt = <3000000>;
-> +					regulator-max-microvolt = <3000000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* mipi_dsi.1-dsi_vci */
-> +				l8 {
-> +					regulator-min-microvolt = <2800000>;
-> +					regulator-max-microvolt = <3000000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* wcnss_wlan.0-iris_vddpa */
-> +				l10 {
-> +					regulator-min-microvolt = <2900000>;
-> +					regulator-max-microvolt = <2900000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* mipi_dsi.1-dsi1_avdd */
-> +				l11 {
-> +					regulator-min-microvolt = <2850000>;
-> +					regulator-max-microvolt = <2850000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* touch_vdd */
-> +				l15 {
-> +					regulator-min-microvolt = <1800000>;
-> +					regulator-max-microvolt = <2950000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* slimport_dvdd */
-> +				l18 {
-> +					regulator-min-microvolt = <1100000>;
-> +					regulator-max-microvolt = <1100000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* touch_io */
-> +				l22 {
-> +					regulator-min-microvolt = <1800000>;
-> +					regulator-max-microvolt = <1800000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/*
-> +				 * mipi_dsi.1-dsi_vddio
-> +				 * pil_qdsp6v4.1-pll_vdd
-> +				 * pil_qdsp6v4.2-pll_vdd
-> +				 * msm_ehci_host.0-HSUSB_1p8
-> +				 * msm_ehci_host.1-HSUSB_1p8
-> +				 */
-> +				l23 {
-> +					regulator-min-microvolt = <1800000>;
-> +					regulator-max-microvolt = <1800000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/*
-> +				 * tabla2x-slim-CDC_VDDA_A_1P2V
-> +				 * tabla2x-slim-VDDD_CDC_D
-> +				 */
-> +				l24 {
-> +					regulator-min-microvolt = <750000>;
-> +					regulator-max-microvolt = <1150000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				l25 {
-> +					regulator-min-microvolt = <1250000>;
-> +					regulator-max-microvolt = <1250000>;
-> +					regulator-always-on;
-> +					bias-pull-down;
-> +				};
-> +
-> +				l26 {
-> +					regulator-min-microvolt = <375000>;
-> +					regulator-max-microvolt = <1050000>;
-> +					regulator-always-on;
-> +					bias-pull-down;
-> +				};
-> +
-> +				l27 {
-> +					regulator-min-microvolt = <1100000>;
-> +					regulator-max-microvolt = <1100000>;
-> +				};
-> +
-> +				l28 {
-> +					regulator-min-microvolt = <1050000>;
-> +					regulator-max-microvolt = <1050000>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* wcnss_wlan.0-iris_vddio */
-> +				lvs1 {
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* wcnss_wlan.0-iris_vdddig */
-> +				lvs2 {
-> +					bias-pull-down;
-> +				};
-> +
-> +				lvs3 {
-> +					bias-pull-down;
-> +				};
-> +
-> +				lvs4 {
-> +					bias-pull-down;
-> +				};
-> +
-> +				lvs5 {
-> +					bias-pull-down;
-> +				};
-> +
-> +				/* mipi_dsi.1-dsi_iovcc */
-> +				lvs6 {
-> +					bias-pull-down;
-> +				};
-> +
-> +				/*
-> +				 * pil_riva-pll_vdd
-> +				 * lvds.0-lvds_vdda
-> +				 * mipi_dsi.1-dsi1_vddio
-> +				 * hdmi_msm.0-hdmi_vdda
-> +				 */
-> +				lvs7 {
-> +					bias-pull-down;
-> +				};
-> +
-> +				ncp {
-> +					regulator-min-microvolt = <1800000>;
-> +					regulator-max-microvolt = <1800000>;
-> +					qcom,switch-mode-frequency = <1600000>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&pmicintc {
-> +	keypad@148 {
-> +		compatible = "qcom,pm8921-keypad";
-> +		reg = <0x148>;
-> +		interrupt-parent = <&pmicintc>;
-> +		interrupts = <74 1>, <75 1>;
+ * .get_frame_desc() support. Both the serializers and deserializers
+   implement this to query and provide frame descriptor data. This is
+   used in features explained in-depth below.
 
-IRQ_TYPE_EDGE_RISING
+ * .get_mbus_config() support. The deserializers implement this to allow
+   upstream devices to query the link frequency of its pads.
 
+ * Address translation with I2C ATR for the serializers.
 
-> +		linux,keymap = <
-> +			MATRIX_KEY(0, 0, KEY_VOLUMEDOWN)
-> +			MATRIX_KEY(0, 1, KEY_VOLUMEUP)
-> +		>;
-> +
-> +		keypad,num-rows = <1>;
-> +		keypad,num-columns = <5>;
-> +		debounce = <15>;
-> +		scan-delay = <32>;
-> +		row-hold = <91500>;
-> +	};
-> +};
-> +
-> +&gsbi1 {
-> +	status = "okay";
+ * I2C MUX where supported by the hardware for deserializers, otherwise
+   I2C ATR translation - some deserializers cannot do muxing since I2C
+   communication channel masking is not available per-link, and the only
+   other way to select links is to turn them off, causing link resets.
+   For such cases, I2C ATR is used to change the address of
+   the serializers at probe time.
 
-Status should be the last property. Add empty line before it (here and
-further)
+ * Automatic VC remapping on the deserializers. VCs are picked so that
+   if they were unique on the sink pad, they will end up as unique on
+   the source pad they are routed to too, prioritizing using the same
+   VC ID as the sink pad, to facilitate the possibility of using tunnel
+   mode.
 
-> +	qcom,mode = <GSBI_PROT_I2C>;
-> +};
-> +
-> +&gsbi1_i2c {
-> +	status = "okay";
-> +	clock-frequency = <200000>;
-> +	pinctrl-0 = <&i2c1_pins>;
-> +	pinctrl-names = "default";
+ * Automatic pixel mode / tunnel mode selection. Tunnel mode is used
+   when VC IDs do not need to be changed and all hardware supports
+   tunnel mode, otherwise, pixel mode is used. The serializers are
+   automatically switched between the two by using a private API.
 
-I don't see i2c1_pins being defined. Did it pass the build?
-Also there is already a pinctrl for this device. Why do you need to
-overwrite it?
+ * Automatic double mode selection. In pixel mode, double mode can be
+   used to pack two pixels into a single data unit, optimizing bandwidth
+   usage. The serializers are automatically set up to support the double
+   modes determined by the deserializers using a private API.
 
-> +};
-> +
-> +&gsbi4 {
-> +	status = "okay";
-> +	qcom,mode = <GSBI_PROT_I2C_UART>;
-> +};
-> +
-> +&gsbi4_serial {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&gsbi4_uart_pin_a>;
+ * Automatic data padding. In pixel mode, if the data being transferred
+   uses two different BPPs, data needs to be padded. The serializers
+   automatically set this up depending on the configured double mode
+   settings and incoming data types.
 
-Unnecessary, can be dropped. It's set in qcom-apq8064.dtsi.
+ * Logging. Both the deserializers and serializers implement the V4L2
+   .log_status() ops to allow debugging of the internal state and
+   important chip status registers.
 
-> +};
-> +
-> +/* eMMC */
-> +&sdcc1 {
-> +	status = "okay";
-> +	vmmc-supply = <&pm8921_l5>;
-> +	vqmmc-supply = <&pm8921_s4>;
-> +};
-> +
-> +&riva {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&riva_wlan_pin_a>;
+ * PHY modes. Deserializer chips commonly have more than a single PHY.
+   The firmware ports are parsed to determine the modes in which to
+   configure the PHYs (2x4, 4x2, 1x4+2x2, 2x2+1x4, and variations using
+   fewer lanes).
 
-Where is it defined? Also pinctrl-names should come after pinctrl-N.
+ * Serializer pinctrl. Serializers implement pinctrl to allow setting
+   configs which would otherwise be inaccessible through GPIO: TX/RX via
+   GMSL link, pull-up & pull-down (with strength), open-drain &
+   push-pull, slew rate, RCLK pin selection.
 
-> +};
-> 
-> ---
-> base-commit: 0a2f889128969dab41861b6e40111aa03dc57014
-> change-id: 20250309-lg-nexus4-mako-da0833885b26
-> 
-> Best regards,
-> -- 
-> David Heidelberg <david@ixit.cz>
-> 
-> 
+The drivers have been tested on the following hardware combinations, but
+further testing is welcome to ensure no / minimal breakage:
+ * Raspberry Pi 5 + MAX96724 + 4xMAX96717 + 4xIMX219
+ * Raspberry Pi 5 + MAX96792A + 1xMAX96793 + 1xMAX96717 + 2xIMX219
+ * Raspberry Pi 5 + MAX96792A + 2xMAX96717 + 2xIMX219
+ * Renesas V4H + MAX96712 + 2xMAX96717 + 2xIMX219 
+
+Analog Devices is taking responsibility for the maintenance of these
+drivers and common framework, and plans to add support for new
+broad-market chips on top of them.
+
+Special thanks go to Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+for testing the drivers, helping debug and coming up with ideas /
+implementations for various features.
+
+V2:
+ * add missing compatible for MAX96717F
+ * fix embarrassing dt-bindings mistakes
+ * move MAX9296A/MAX96716/MAX96792A to a separate file as they have two
+   links / PHYs, and adding those conditionally seems impossible
+
+Cosmin Tanislav (16):
+  dt-bindings: media: i2c: max96717: add myself as maintainer
+  dt-bindings: media: i2c: max96717: reflow text
+  dt-bindings: media: i2c: max96717: add support for I2C ATR
+  dt-bindings: media: i2c: max96717: add support for pinctrl/pinconf
+  dt-bindings: media: i2c: max96717: add support for MAX9295A
+  dt-bindings: media: i2c: max96717: add support for MAX96793
+  dt-bindings: media: i2c: max96712: add myself as maintainer
+  dt-bindings: media: i2c: max96712: use pattern properties for ports
+  dt-bindings: media: i2c: max96712: add support for I2C MUX
+  dt-bindings: media: i2c: max96712: add support for POC supplies
+  dt-bindings: media: i2c: add MAX9296A, MAX96716A, MAX96792A
+  media: i2c: add Maxim GMSL2/3 serializer and deserializer drivers
+  arm64: defconfig: disable deprecated MAX96712 driver
+  staging: media: remove MAX96712 driver
+  media: i2c: remove MAX96717 driver
+  media: i2c: remove MAX96714 driver
+
+ .../bindings/media/i2c/maxim,max9296a.yaml    |  281 ++
+ .../bindings/media/i2c/maxim,max96712.yaml    |   47 +-
+ .../media/i2c/maxim,max96717-pinctrl.yaml     |   71 +
+ .../bindings/media/i2c/maxim,max96717.yaml    |   80 +-
+ MAINTAINERS                                   |   13 +-
+ arch/arm64/configs/defconfig                  |    1 -
+ drivers/media/i2c/Kconfig                     |   34 +-
+ drivers/media/i2c/Makefile                    |    3 +-
+ drivers/media/i2c/max96714.c                  | 1024 --------
+ drivers/media/i2c/max96717.c                  | 1103 --------
+ drivers/media/i2c/maxim-serdes/Kconfig        |   53 +
+ drivers/media/i2c/maxim-serdes/Makefile       |    6 +
+ drivers/media/i2c/maxim-serdes/max9296a.c     | 1146 ++++++++
+ drivers/media/i2c/maxim-serdes/max96717.c     | 1501 +++++++++++
+ drivers/media/i2c/maxim-serdes/max96724.c     |  905 +++++++
+ drivers/media/i2c/maxim-serdes/max_des.c      | 2321 +++++++++++++++++
+ drivers/media/i2c/maxim-serdes/max_des.h      |  135 +
+ drivers/media/i2c/maxim-serdes/max_ser.c      | 1584 +++++++++++
+ drivers/media/i2c/maxim-serdes/max_ser.h      |  132 +
+ drivers/media/i2c/maxim-serdes/max_serdes.c   |  302 +++
+ drivers/media/i2c/maxim-serdes/max_serdes.h   |   88 +
+ drivers/staging/media/Kconfig                 |    2 -
+ drivers/staging/media/Makefile                |    1 -
+ drivers/staging/media/max96712/Kconfig        |   14 -
+ drivers/staging/media/max96712/Makefile       |    2 -
+ drivers/staging/media/max96712/max96712.c     |  487 ----
+ 26 files changed, 8634 insertions(+), 2702 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96717-pinctrl.yaml
+ delete mode 100644 drivers/media/i2c/max96714.c
+ delete mode 100644 drivers/media/i2c/max96717.c
+ create mode 100644 drivers/media/i2c/maxim-serdes/Kconfig
+ create mode 100644 drivers/media/i2c/maxim-serdes/Makefile
+ create mode 100644 drivers/media/i2c/maxim-serdes/max9296a.c
+ create mode 100644 drivers/media/i2c/maxim-serdes/max96717.c
+ create mode 100644 drivers/media/i2c/maxim-serdes/max96724.c
+ create mode 100644 drivers/media/i2c/maxim-serdes/max_des.c
+ create mode 100644 drivers/media/i2c/maxim-serdes/max_des.h
+ create mode 100644 drivers/media/i2c/maxim-serdes/max_ser.c
+ create mode 100644 drivers/media/i2c/maxim-serdes/max_ser.h
+ create mode 100644 drivers/media/i2c/maxim-serdes/max_serdes.c
+ create mode 100644 drivers/media/i2c/maxim-serdes/max_serdes.h
+ delete mode 100644 drivers/staging/media/max96712/Kconfig
+ delete mode 100644 drivers/staging/media/max96712/Makefile
+ delete mode 100644 drivers/staging/media/max96712/max96712.c
 
 -- 
-With best wishes
-Dmitry
+2.48.1
+
 
