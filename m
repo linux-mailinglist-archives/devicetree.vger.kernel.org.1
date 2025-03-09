@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-155896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5D0A58755
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 19:50:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDB6BA58782
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 20:20:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 920CF3A8DC2
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 18:50:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32C58188A570
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 19:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7230202999;
-	Sun,  9 Mar 2025 18:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6202817A307;
+	Sun,  9 Mar 2025 19:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mPxiRP5w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mQRPYnG/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9840A2556E;
-	Sun,  9 Mar 2025 18:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38974632;
+	Sun,  9 Mar 2025 19:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741546209; cv=none; b=TTjpEVjwfpqVE2aOrdujyf3kTnLLk3X7p1M82BYPYLGDdTV3kUIl5ttlyyFBXdhZqakMoXT6E7k6muhh4JzNBOd9dRbpnZq97dvnkaWyyvUAaYkT+80Z8KFHbwDe0GtZ4DRV8CDfGsKxjnTFRvBm/Vj+yWdKJ2pf+5/sHPPqsdg=
+	t=1741548021; cv=none; b=FBhqlRS4GJEAqCy1IgJxCoGDYx4Q0S5+eOsr39AxYQ+MCylTPHw049q/hEtJmhGrSqFlaQjRIwAUX4Mq2hoKviAri8y1rNtQVZY5fcxr2loKrzjoG1e5ItYYIp7m+loKnYJMe0oN0LpcqXeSBy19Fvb5omJ0EhZuSNotc555qoo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741546209; c=relaxed/simple;
-	bh=DE7rxV5hRZWbRfzVNpNP3kMmumFkL5JphKjCeeXHOkA=;
+	s=arc-20240116; t=1741548021; c=relaxed/simple;
+	bh=e9jsJPt3rxxt3JCEOy0V44SWUpK7aFmyt5qQ6Jg4yuI=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=tavH+c4KW8fEFvdtCnUGVo43GnwjNaGTEUuzkrdebOYEWyb7JckNHBz5sTOwiNMaHdy/PxpR6e/3xRJ/kVLVT6jRx8SJxDEhpz3HSC6QOqkRf2cvb4roEw5uHBTlhQnCfLt+n+OeRiEEP/ADfnfmmdSoSuSlV1QTJeDnugjlg8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mPxiRP5w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43868C4CEE3;
-	Sun,  9 Mar 2025 18:50:09 +0000 (UTC)
+	 Message-Id:Subject; b=tTF3JHJmqxNxYFhfNKa5v9KOzpTJtOIrYcVR7m3FoEUqEs1k8D+3LRGvt7Q8OjfOebYYbltAApQB+6R1M76M3PPrPiq2R13SUh+dx+l+xHqLgYuY/5+qCvAoQx8ipsNt3Dw3fx88WhMudoO0MCs1UKa5nho0DtrjSpF8LnWqv2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mQRPYnG/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E888C4CEE3;
+	Sun,  9 Mar 2025 19:20:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741546209;
-	bh=DE7rxV5hRZWbRfzVNpNP3kMmumFkL5JphKjCeeXHOkA=;
+	s=k20201202; t=1741548020;
+	bh=e9jsJPt3rxxt3JCEOy0V44SWUpK7aFmyt5qQ6Jg4yuI=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=mPxiRP5wubFDs2aPs2uofBXSSevfhY1+Vm9j0ECn/EBxpR8GmpdAAS9JN9/M9jiCn
-	 bXAdVXOtQA7TDMrMVZrWkoiOrH8W4VFYUB5+QgedAAAEu0FvBYYh/T/LvJk0Id6dOm
-	 n1TOCKn3vIf+kEI+1+BzugoexCdqS1V8KvM4A8mBrtL6pv+lWRtxIN3LyG4Qik1/F7
-	 T4NqvW5+siU69hRS6SDVjhKPWBjNWPe/EYL5WXGQ6YJAy52g11rbIVCP1cuDSlkk4r
-	 ejdb/+osl4SG2D9m1hJQ6enPOVKfMLZzxGXfkuJjy8uMOPQ7MR/w0bevrgtyLQ1Y+j
-	 bd+1kSKK2B3iw==
-Date: Sun, 09 Mar 2025 13:50:07 -0500
+	b=mQRPYnG/R19rXJOvfwcg1loO2ZcuHcn7/zzqPCFWhG7rbiDSSWuuLoT8EI9MGh32f
+	 dKojFFNvmLUoPKXyMwvCdPpKwQOZH/1ciEX8hPyca+jH6mCU+A3h+SyIRQcaip81OY
+	 siQEQZkumEopv3WznCepdxrg7W+X8GmzC+9mlQ8lYszvYMqpVqniHQDWWqhoR2eFiM
+	 3JD0S2uHfnMKZAeLI5I/Rf44fX9msXD46afS6T2Bk6e6kUCtgbPs0eHEV+glJ84l4z
+	 w6x9tXDz20DwqE9K9ef3Ju8yoMown3kyFe9ewRL+mhSX8+etRm17kM4KS24NPyoBUQ
+	 iTCL+oH87Jc2g==
+Date: Sun, 09 Mar 2025 14:20:18 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,42 +51,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
- linux-mediatek@lists.infradead.org, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- upstream@airoha.com, linux-arm-kernel@lists.infradead.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, 
- Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org, 
- netdev@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, 
- Lee Jones <lee@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-In-Reply-To: <20250309172717.9067-6-ansuelsmth@gmail.com>
-References: <20250309172717.9067-1-ansuelsmth@gmail.com>
- <20250309172717.9067-6-ansuelsmth@gmail.com>
-Message-Id: <174154620758.1888708.16493498235993467665.robh@kernel.org>
-Subject: Re: [net-next PATCH v12 05/13] dt-bindings: mfd: Document support
- for Airoha AN8855 Switch SoC
+Cc: Kevin Hilman <khilman@baylibre.com>, Takashi Iwai <tiwai@suse.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-sound@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-kernel@vger.kernel.org
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
+References: <20250309181630.1322745-1-jan.dakinevich@salutedevices.com>
+ <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
+Message-Id: <174154801891.2046627.7087067779247838486.robh@kernel.org>
+Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: meson: t9015: add support
+ for A1 SoC family
 
 
-On Sun, 09 Mar 2025 18:26:50 +0100, Christian Marangi wrote:
-> Document support for Airoha AN8855 Switch SoC. This SoC expose various
-> peripherals like an Ethernet Switch, a NVMEM provider and Ethernet PHYs.
+On Sun, 09 Mar 2025 21:16:29 +0300, Jan Dakinevich wrote:
+> Add support for internal audio codec found A1 SoC family. On this SoC
+> the component supports capturing from ADC and has specific configuration
+> of input/output lines.
 > 
-> It does also support i2c and timers but those are not currently
-> supported/used.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 > ---
->  .../bindings/mfd/airoha,an8855.yaml           | 186 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 187 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
+>  .../bindings/sound/amlogic,t9015.yaml         | 69 +++++++++++++++++--
+>  1 file changed, 65 insertions(+), 4 deletions(-)
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -94,20 +86,30 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: phy@1: $nodename:0: 'phy@1' does not match '^ethernet-phy(@[a-f0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/net/airoha,an8855-phy.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: phy@1: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/net/airoha,an8855-phy.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: phy@2: $nodename:0: 'phy@2' does not match '^ethernet-phy(@[a-f0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/net/airoha,an8855-phy.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: phy@2: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/net/airoha,an8855-phy.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'lineout-left' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'lineout-right' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'linein-left' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'linein-right' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'micbias' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
 
 doc reference errors (make refcheckdocs):
-Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/mfd/airoha,an8855-mfd.yaml
-MAINTAINERS: Documentation/devicetree/bindings/mfd/airoha,an8855-mfd.yaml
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250309172717.9067-6-ansuelsmth@gmail.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250309181630.1322745-3-jan.dakinevich@salutedevices.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
