@@ -1,84 +1,192 @@
-Return-Path: <devicetree+bounces-155900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6480FA587ED
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 20:47:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62954A587F7
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 20:50:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A225C16ACD2
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 19:47:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F09D3AD0C4
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 19:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB325216610;
-	Sun,  9 Mar 2025 19:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DF152185A3;
+	Sun,  9 Mar 2025 19:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="XdEDtKem"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vL4uHPJ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64D892165F9;
-	Sun,  9 Mar 2025 19:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5082217F48;
+	Sun,  9 Mar 2025 19:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741549666; cv=none; b=ukzjqyEY97QB1wgP76AIwEphHC7otUAcN4j12y6bsAvi9RhS7dMJSwzexciGZxXSmb8ToBZUiM9xu5SOTNdrDNzVLEdxT1NZTK8QeWd1WQBnYJLXjnAOp8ycK8OJl+UuQfzhtm/5a9KyH8gx6WFn72vSAHBO92cnsbD+2a4hMmc=
+	t=1741549850; cv=none; b=O8dCXTg7rIJQDgk6nwgw0SfoOQSNbTjfU8Jl0zf6jAwoqFO0go+YY6juTlwGIebB7Ory2bFA41HrRMVTla93Si+jjUH2LVtr1BbxiCZwrw96vqLgv+UP5G9CtoecJ+/Mnbu21ZHUPN6m8OlelVe7sJg5EJ5Iv9Ssfmj5mCA70SE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741549666; c=relaxed/simple;
-	bh=ggVdP5WB7dmKeqoWnaYejxWiD8uyj1cRmz9hIWSjxgI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MX3BUkg2u4BPRdP2UyPi/8ePzfT97BmSRBtEcXOdgEpte58KmBgmzPdHY4HZMMU748bvz3H+5c2yyN8xsIuiSN0Zafaqs/nLBmDvaGYAYP6jKwlg5qL24iCNedvnVwjX4prmwtvK4NhZWvT/1zC7wcasVOLzCNF7lxQ23yUM6Pw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=XdEDtKem; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=ggVdP5WB7dmKeqoWnaYejxWiD8uyj1cRmz9hIWSjxgI=; b=XdEDtKemwiyOxfou/xXkzu2wSA
-	uKIzI70rg8yVmSfOgB8RBcPiosdXczqgBH73d1ahIJBBvkP+/1JjO/qyqGMAydwIU7lr4mg5G+9Il
-	3y7wuWg3MwoRAJE3XVTeIFK8nTEBcArjAd3iKTPPZCeg4h7sKH9S9C5p4+uq4NkwQLdCX7eSQWvky
-	MT5WgaV7NViv5skVp5OzZ02U9I5Ybm5BZ96WzfM5fZVJwolqfTS1M+h928y8hBhuTuouXUyRblC2p
-	ErII2wchfWP4o17/z3iLG/tO2L6LM/AwEH2t5br5+Hc35gI/F5ppGqGsRMgdWG7RfE5qUSulXjFNQ
-	0Vb3YEeg==;
-Received: from i53875a38.versanet.de ([83.135.90.56] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1trMcP-0003bO-AZ; Sun, 09 Mar 2025 20:47:25 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>, Yao Zi <ziyao@disroot.org>,
- Chukun Pan <amadeus@jmu.edu.cn>, Yao Zi <ziyao@disroot.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 1/3] dt-bindings: i2c: i2c-rk3x: Add compatible string for RK3528
-Date: Sun, 09 Mar 2025 20:47:24 +0100
-Message-ID: <1914308.tdWV9SEqCh@diego>
-In-Reply-To: <20250309070603.35254-2-ziyao@disroot.org>
-References:
- <20250309070603.35254-1-ziyao@disroot.org>
- <20250309070603.35254-2-ziyao@disroot.org>
+	s=arc-20240116; t=1741549850; c=relaxed/simple;
+	bh=8ySbkKhFRXNuJHrR+dQojieyUf+Le6VlZ6dqAVE1rBA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J9UuMLxCMGcaW20YuUdHXqyYJc6O6SBN4gahnoTBbZ5QsBvqRDPNIRv+j6G5gVFprqWhQZCl8FzRSSXV+udNjstJwMabzmzAnsBTg5uNsZrEoy6mbZSWZccj7x7rX8eQSYntiK+BauCREJuUZmzbuwA2aApVrUin4sW9ekHJsnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vL4uHPJ9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D01DDC4CEED;
+	Sun,  9 Mar 2025 19:50:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741549849;
+	bh=8ySbkKhFRXNuJHrR+dQojieyUf+Le6VlZ6dqAVE1rBA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=vL4uHPJ9xNFvMEfLN4Ec7wuCyQBk4CvGg96VRLiQVjTdErydTSp7ri+PuMR/AqNvE
+	 Kmgts1dW8zJBzTEUubXkXyzukwbGalmCnd/ojq/0vSQE12plU3rrF54+8cge6/zdoz
+	 Bbnjlswtzje1uBkOeg6DHIWLXh07ojZf0+S86fVRH1SplUiVWdh0Rq58oevPcccqC1
+	 tu0B8TVkzt2MJsS4wJjDkZPYnQfIRa1yNK1V7pmaD2/CCmWCK3bbQAdvYACbUdlPqT
+	 Z80aksp2iPxS9LGFWTaCTU8qI5zHnwm9m6z3Fr2E2A8w72C8vFdVyOpUDGr50KAjPO
+	 TaRGpHsWSquBQ==
+Message-ID: <668ada6a-3e53-474d-be81-d69d75277c26@kernel.org>
+Date: Sun, 9 Mar 2025 20:50:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/19] dt-bindings: mfd: mediatek: mt6397: Add accdet
+ subnode
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+ Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ kernel@collabora.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org
+References: <20250305-mt6359-accdet-dts-v4-0-e5ffa5ee9991@collabora.com>
+ <20250305-mt6359-accdet-dts-v4-1-e5ffa5ee9991@collabora.com>
+ <20250306-certain-jasmine-mastiff-fd67ba@krzk-bin>
+ <2fa6037d-b5e9-45b2-a5d5-dbc92fb3434b@notapiano>
+ <0663e03e-e331-4a06-be95-ce8d9059ed6b@kernel.org>
+ <cb2820d8-84e8-49ca-b497-1ea815679a3d@notapiano>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <cb2820d8-84e8-49ca-b497-1ea815679a3d@notapiano>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Am Sonntag, 9. M=C3=A4rz 2025, 08:06:01 MEZ schrieb Yao Zi:
-> Document I2C controllers integrated in RK3528, which are compatible with
-> the RK3399 variant.
->=20
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+On 07/03/2025 14:22, Nícolas F. R. A. Prado wrote:
+> On Fri, Mar 07, 2025 at 08:11:26AM +0100, Krzysztof Kozlowski wrote:
+>> On 06/03/2025 13:19, Nícolas F. R. A. Prado wrote:
+>>>>>    It is interfaced to host controller using SPI interface by a proprietary hardware
+>>>>>    called PMIC wrapper or pwrap. MT6397/MT6323 PMIC is a child device of pwrap.
+>>>>> @@ -224,6 +225,30 @@ properties:
+>>>>>      description:
+>>>>>        Pin controller
+>>>>>  
+>>>>> +  accdet:
+>>>>> +    type: object
+>>>>> +    additionalProperties: false
+>>>>> +    description:
+>>>>> +      The Accessory Detection module found on the PMIC allows detecting audio
+>>>>> +      jack insertion and removal, as well as identifying the type of events
+>>>>> +      connected to the jack.
+>>>>> +
+>>>>> +    properties:
+>>>>> +      compatible:
+>>>>> +        const: mediatek,mt6359-accdet
+>>>>
+>>>> You just removed the other file, no folding happened here. Drop the
+>>>> accdet node and fold this into parent.
+>>>
+>>> Sorry, I'm still not sure what you mean by folding here then. Right now the
+>>> accdet is a subnode of the PMIC. If you want me to remove the accdet node, where
+>>
+>> Yes
+>>
+>>> would its compatible and property go?
+>>
+>> compatible: nowhere, because it is close to redundancy.
+>>
+>> property: to the parent pmic node.
+>>
+>>     pmic {
+>>         compatible = "mediatek,mt6359";
+>>         interrupt-controller;
+>>         #interrupt-cells = <2>;
+>>
+>>         mediatek,hp-eint-high;
+>>     };
+> 
+> I'm not sure that's right. The ACCDET submodule does have some resources, IRQs,
+> that it registers in its mfd cell, see patch 2 of this series [1]. It also has
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Binding is supposed to be complete, so why suddenly we have here some
+resources which you did not add?
 
+Post complete binding, so you will get proper review.
 
+> its own driver (sound/soc/codecs/mt6359-accdet.c) that probes based on this
+
+Drivers do not define bindings.
+
+> compatible and handles those interrupts. Why would it not get its own node like
+
+Sorry, cannot go. You cannot document binding post factum and claim "I
+have a driver which uses that compatible".
+
+This would be a nice way to bypass review.
+
+> the other MFD cells?
+
+I explained why. I gave you the exact reason.
+
+Best regards,
+Krzysztof
 
