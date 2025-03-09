@@ -1,135 +1,141 @@
-Return-Path: <devicetree+bounces-155833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0EAA58543
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 16:03:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA57A58585
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 16:51:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C15E8188C04A
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 15:03:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABA6A7A46DD
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 15:50:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5341DC9AB;
-	Sun,  9 Mar 2025 15:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04531DE8A6;
+	Sun,  9 Mar 2025 15:51:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="V0LDMxA9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mQkgWgI5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37F91552FD;
-	Sun,  9 Mar 2025 15:02:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177998836;
+	Sun,  9 Mar 2025 15:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741532574; cv=none; b=LWcVfFmaOlzZ6uvvo8ro+kKQl1jZdN4MY6+1kRGqx1TDcJcLgUe6tQAck0UGqbmRlHf+mb6KuDBgurTM7WL/nwMDjdU2GComc+a0fiDZeh7qrz0X+1Pl0Djk+MdMVVKB+DGvoJxaUNFZb/K4cZQmkwR1GGp2okNXN49dPXGwuzM=
+	t=1741535483; cv=none; b=DjEBm23BiSGJmntLzWnUzKWwtQ33IICSH9tYYOfFgTmdM0OtkBdbvMnHGvvOnda3sWjmXXUw7dJ6GDNn4Cq6ZdnJhJsqfELu79jfVNEfIh5d9jML1v2zuIa8Nb2rdt3OfxyYpSGzfCvRFbFht7DklKs44Pi1nWetz7kTqdDMbeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741532574; c=relaxed/simple;
-	bh=1kwvq2NYsuuJrxWJlRvbnJSoaTQgLxL3w17Tfmkb7ic=;
-	h=In-Reply-To:References:From:To:Cc:Subject:MIME-Version:
-	 Content-Disposition:Content-Type:Message-Id:Date; b=aypmXahrrAllCKk0rm+E5uNyqRayJWxkjYksWRHBBrFCWYdmyQNVgS2F2aFv7tjvkiUwjCvwxZIGRRKTnq31TITqlbjLqJ0IvNADOUHZbLvtRIO3SSILfxHpVx9Gg1ONrfDr5wRfX0kdu0ARmGFDmbP8IZXJCQmo8W0iRwp49Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=V0LDMxA9; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
-	In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=coDruLhzUwUWr9PQ9J/pkDgkm+WduLU7r2hwaAyS0V4=; b=V0LDMxA9XXnN23KO23D3IVotVM
-	cEPL32OqeRxlXdXp7d4LH9bdhDJskMizXu0Nim7EZ9rlBmdJ8ouT6pnKAD8I/qiZ8CDEPw/+hQAoa
-	2QxYbL8nky4i36uULsWeUazSRrLabCw5IXQ2dl9a/UsML7jo8up0Or1455yPxtL8ZKiFoF2rCEtW8
-	TTFkUsz0bM1RR/9dJa/iMbg9einjoxtWw9jUfH8Os+x9GyscTG825Rlix5sgWnNBeeb1skUv8wibK
-	bHpp+B1B0f/2gjM3UE0GEyyxNZwymji0DwcLnXsyGAcKptUIlxZDJXP4JGz62IBBh4wj6KjhxYbMX
-	LveXY4zA==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:41688 helo=rmk-PC.armlinux.org.uk)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <rmk@armlinux.org.uk>)
-	id 1trIAr-0001Qu-0Z;
-	Sun, 09 Mar 2025 15:02:41 +0000
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1trIAV-005ntu-7r; Sun, 09 Mar 2025 15:02:19 +0000
-In-Reply-To: <Z82tWYZulV12Pjir@shell.armlinux.org.uk>
-References: <Z82tWYZulV12Pjir@shell.armlinux.org.uk>
-From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Conor Dooley <conor@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	devicetree@vger.kernel.org,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Eric Dumazet <edumazet@google.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	netdev@vger.kernel.org,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH net-next 7/7] net: stmmac: deprecate
- "snps,en-tx-lpi-clockgating" property
+	s=arc-20240116; t=1741535483; c=relaxed/simple;
+	bh=z26VWBNMz80YyF/hRHm8Hl23tDMXIjOJUiY/5dcLl2Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=exl1hRMGcwmrJyeu4ajzJjJBH26/DBA2hS1Hs3qdPSy9CK2TBQpDW3H9NTkypydUOxNYJpgCypC0Jv5CNchgKB76HW+nV+niHewJasoKIcx7G2qBLUvh56wdfg8qDuNmuP4R8SNGFbAsx/KH2nPciTRGrYZ/hERrOEF3vaNMSy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mQkgWgI5; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741535481; x=1773071481;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=z26VWBNMz80YyF/hRHm8Hl23tDMXIjOJUiY/5dcLl2Q=;
+  b=mQkgWgI5eKCkAx7WYOKVlMXw1aQj8+lLLsJ2kk3aCdEwfOURLsVyzGVT
+   E/fx1O0o+k8kfFTAmojXYer8cYYnJH7mZIguepPfAjzl8iDfwvKJO5dT1
+   qQxdKs7Tz8+p8pNW0AYWmPBDtOXcu0OUNK6F9utsLs5rN6DloRRFf6APk
+   6eU/S/BVZXqOQmQM2ruxdXR86MTIVNCOB7sSl7kFdGB8PbQex/Wi8S13I
+   pxgrTaeS+CGKM1xjEQDLKZUztZOHbt3n6CtaWVTOEgZljYRbe2gfjOEq7
+   YjliK+yM5we2f2NOPGtxDOSwbtZhL7C2on9A32IkLbh6aJ9PrUFjZVhtx
+   Q==;
+X-CSE-ConnectionGUID: XrGUtreURlCZqK0P8ujtqw==
+X-CSE-MsgGUID: AlAosqvpSFyoCBNLcbDcpg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="42670980"
+X-IronPort-AV: E=Sophos;i="6.14,234,1736841600"; 
+   d="scan'208";a="42670980"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2025 08:51:20 -0700
+X-CSE-ConnectionGUID: aMKZlXlkRZmvTo3hOOJy6g==
+X-CSE-MsgGUID: elAGiMi7SmG61Nx2Z1eQnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,234,1736841600"; 
+   d="scan'208";a="124782869"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by orviesa004.jf.intel.com with ESMTP; 09 Mar 2025 08:51:13 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1trIvi-0003Ey-22;
+	Sun, 09 Mar 2025 15:51:07 +0000
+Date: Sun, 9 Mar 2025 23:50:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Daniel Danzberger <dd@embedd.com>, Arnd Bergmann <arnd@arndb.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Nikita Shubin <nikita.shubin@maquefel.me>,
+	Guo Ren <guoren@kernel.org>, Yangyu Chen <cyy@cyyself.name>,
+	Ben Hutchings <bwh@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org, linux-mediatek@lists.infradead.org,
+	linux-usb@vger.kernel.org, upstream@airoha.com
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 09/13] dt-bindings: phy: Add documentation for Airoha
+ AN7581 USB PHY
+Message-ID: <202503092318.xReLDuUG-lkp@intel.com>
+References: <20250309132959.19045-10-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1trIAV-005ntu-7r@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date: Sun, 09 Mar 2025 15:02:19 +0000
+In-Reply-To: <20250309132959.19045-10-ansuelsmth@gmail.com>
 
-Whether the MII transmit clock can be stopped is primarily a property
-of the PHY (there is a capability bit that should be checked first.)
-Whether the MAC is capable of stopping the transmit clock is a separate
-issue, but this is already handled by the core DesignWare MAC code.
+Hi Christian,
 
-Therefore, snps,en-tx-lpi-clockgating is technically incorrect, and
-this commit adds a warning should a DT be encountered with the property
-present.
+kernel test robot noticed the following build warnings:
 
-However, we keep backwards compatibility.
+[auto build test WARNING on next-20250307]
+[also build test WARNING on v6.14-rc5]
+[cannot apply to clk/clk-next robh/for-next usb/usb-testing usb/usb-next usb/usb-linus linus/master v6.14-rc5 v6.14-rc4 v6.14-rc3]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/clk-en7523-convert-driver-to-regmap-API/20250309-213623
+base:   next-20250307
+patch link:    https://lore.kernel.org/r/20250309132959.19045-10-ansuelsmth%40gmail.com
+patch subject: [PATCH 09/13] dt-bindings: phy: Add documentation for Airoha AN7581 USB PHY
+reproduce: (https://download.01.org/0day-ci/archive/20250309/202503092318.xReLDuUG-lkp@intel.com/reproduce)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 8dc3bd6946c6..c73eff6a56b8 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -497,8 +497,11 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
- 	plat->force_sf_dma_mode =
- 		of_property_read_bool(np, "snps,force_sf_dma_mode");
- 
--	if (of_property_read_bool(np, "snps,en-tx-lpi-clockgating"))
-+	if (of_property_read_bool(np, "snps,en-tx-lpi-clockgating")) {
-+		dev_warn(&pdev->dev,
-+			 "OF property snps,en-tx-lpi-clockgating is deprecated, please convert driver to use STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP\n");
- 		plat->flags |= STMMAC_FLAG_EN_TX_LPI_CLOCKGATING;
-+	}
- 
- 	/* Set the maxmtu to a default of JUMBO_LEN in case the
- 	 * parameter is not present in the device tree.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503092318.xReLDuUG-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   Warning: Documentation/translations/ja_JP/process/submit-checklist.rst references a file that doesn't exist: Documentation/translations/ja_JP/SubmitChecklist
+   Warning: Documentation/translations/zh_CN/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
+   Warning: Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
+   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
+   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yam
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+   Can't build as 1 mandatory dependency is missing at ./scripts/sphinx-pre-install line 984.
+   make[2]: *** [Documentation/Makefile:121: htmldocs] Error 255
+   make[1]: *** [Makefile:1792: htmldocs] Error 2
+
 -- 
-2.30.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
