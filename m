@@ -1,156 +1,189 @@
-Return-Path: <devicetree+bounces-155916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F086BA5887C
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 22:18:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7D4A58885
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 22:39:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2661416A4A6
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 21:18:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9618E168B1F
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 21:39:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43591A08DB;
-	Sun,  9 Mar 2025 21:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C320221ABAD;
+	Sun,  9 Mar 2025 21:39:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="cExVH6ef"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="OOGlV582"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185C33208;
-	Sun,  9 Mar 2025 21:18:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741555084; cv=pass; b=GuAOh+JdOru38PirSwzyYI1QQ4bQgfrFhUQIHFhHHgyj7HJ46ZpQjhIiPfVOMTDsXUnXmr29I/BIIphHBiu4FS6xNDeMot7kbxKsW7ZGoStZJvcXheLP9+axoifYxUaONePuvYgzOUXeSkVe7MhGdWPAejQskHbu4TiLwhxJscw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741555084; c=relaxed/simple;
-	bh=ieOYj5InZF+mZjB9/5aIN60Ku2Gh9R9Bl8qSs1rUfk8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cyBS/lmW7d5JTGDzaLKw6D2j9es5JN0CE/8XIcZ7BBWP/PTo0geZiXF6tWJkSFjVOvS5wIc3z6GyBhdBZ9x5dYjFjv4lNLMSaOHG7yBSOT+6ODUSA3UI22H0Zq03zCZR29FdRMoYgHwUavyaJQuSDqukgBBdeb0mvXUUEkY3VHM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=cExVH6ef; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1741555057; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=TL+le3Fjjl1o4ZHF9iog5whT86KEGyTlV+8Xk5gwUd7Q55AweYktohMQxsXou2Ry5qbuhLD6lHvfVhIAXy+Us5dHhyGXvQcW+YOJdeWP8t66tDR7XiWONEHZI+d/jwvRfQOp+IpEyeBHN7WtC/m0lV6aKwVimkf0iSXjmT9pgeY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1741555057; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=FEHqnFFPGOtZDYCXmFfRdj+VMlzCOmjRhnGLeYoAHkA=; 
-	b=HpfqP6iWN8sIOokjz7ipFBUSczQiH/dRDsJu2QNlGteqs0WyMFLMEsnBRBksIsT3oDDIk3kPe2krtPrEAMNx+E4h7LGIGfKjYb2CuWDEkwpJs+EPouoOBjjQgVbr1aTADkAL9yfSR6jKnV9BXYSTx77BPguofmKGLT92C+zEH1c=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741555057;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=FEHqnFFPGOtZDYCXmFfRdj+VMlzCOmjRhnGLeYoAHkA=;
-	b=cExVH6efvz0/jHzn3PRYqBAlIf7GljmOjGbtiMf1ycGEypHmLDIixUuzvw5B56iL
-	Qg/FH5nfS0RnpY++bLVhpAgwp6o950rneXUbiEXX9n/dq0U/JkvkNphwVA9++Nd5ncm
-	sZfXoAZxvFlmN4wAPGrTK7Ij9GJQj4/Q0FlE1RSM=
-Received: by mx.zohomail.com with SMTPS id 1741555055557728.5348605229481;
-	Sun, 9 Mar 2025 14:17:35 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id F36F7180073; Sun, 09 Mar 2025 22:17:29 +0100 (CET)
-Date: Sun, 9 Mar 2025 22:17:29 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] net: stmmac: dwmac-rk: Validate GRF and
- peripheral GRF during probe
-Message-ID: <n6frqyzi2rn3sbzmmerq5ennoo6dn2husrtw3qzbtummpjutc7@2bu2753xrb7a>
-References: <20250308213720.2517944-1-jonas@kwiboo.se>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C464E18D63E;
+	Sun,  9 Mar 2025 21:39:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741556354; cv=none; b=ThzQicMxnTeMPDitFdw346b14nisFwfv1vUGQHsJ1g1mbnp/FI/2prquabdK/orsO9dIOHfBSDb21EqgYbidRZWDefdXhRQYd5zEzYiz9Lq+hWjEkkRo1PfCSBDlRGy1cmx8nZqtSdUigHSt8PDLY2NppGS+5RIi6OhwCpKOG9c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741556354; c=relaxed/simple;
+	bh=Si40yYbjw5xkQi8h39UOyoDhXwGNFDHxZufNemknE74=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pGzCYyoSKqfdGKMrm6dpM/b90jJ6Gzrph5VCVTAm7sbKFecu+8EmB6U1C6E9kfCQwSKREPlY8PVuFM97VMMo6TDKwR43REILd3/WXn2pZ5uZLvJ9fxQzeIE4fDHb6qUmziL5EAxYlSVAiOIdS6TJH6N/x38DdsgHosiPm+d46UQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=OOGlV582; arc=none smtp.client-ip=89.177.23.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id E6EF31657D6;
+	Sun,  9 Mar 2025 22:39:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1741556349;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=IJnxpoX5bM/Os4e/E/FGypenuAivDP6SD80QJnuEr8s=;
+	b=OOGlV582zsNMG+i71wjyceU/0B3pudejwI98JUg6+1XuNf86dC2dY188vNlR05lYF4hadb
+	EhTXzts+WWBZ6eMyGDmpR/S7YIApouPUGTaEZ86YtdCzcu8yt6Rm/D/FwzaugY1/pDyUtL
+	/BRI5K1cxLp/olWUA9pP8ovV5mzSV48=
+Message-ID: <c67defb5-f677-45e0-9316-cf0a60238393@ixit.cz>
+Date: Sun, 9 Mar 2025 22:39:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="b5zfvhkwd55d7y42"
-Content-Disposition: inline
-In-Reply-To: <20250308213720.2517944-1-jonas@kwiboo.se>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.2/241.192.19
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v3] ARM: dts: nexus4: Initial dts
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, Ivan Belokobylskiy <belokobylskij@gmail.com>
+References: <20250309-lg-nexus4-mako-v3-1-1dc2807df296@ixit.cz>
+ <l4lv22oi2ktubf7aveqxqtwb7zz7cfrzdayuxxgwdj46ygubfs@qpl6ut37taoe>
+ <88da307c-0403-405d-8356-c8baeb18eaba@ixit.cz>
+ <qu5w56bp5yurdgbhjpeiabn5pvpoov7xfyta5j7djnnrveak42@povbs5bddtsz>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <qu5w56bp5yurdgbhjpeiabn5pvpoov7xfyta5j7djnnrveak42@povbs5bddtsz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---b5zfvhkwd55d7y42
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 0/3] net: stmmac: dwmac-rk: Validate GRF and
- peripheral GRF during probe
-MIME-Version: 1.0
 
-Hi,
+On 09/03/2025 10:36, Dmitry Baryshkov wrote:
+> On Sun, Mar 09, 2025 at 10:17:29AM +0100, David Heidelberg wrote:
+>> Hello Dmitry!
+>>
+>> Thank you for looking into it. See replies.
+>>
+>> On 09/03/2025 09:33, Dmitry Baryshkov wrote:
+>>> On Sun, Mar 09, 2025 at 01:45:51AM +0100, David Heidelberg via B4 Relay wrote:
+>>>> +
+>>>> +&riva {
+>>>> +	status = "okay";
+>>>> +	pinctrl-names = "default";
+>>>> +	pinctrl-0 = <&riva_wlan_pin_a>;
+>>>
+>>> Where is it defined? Also pinctrl-names should come after pinctrl-N.
+>>
+>> definition is kinda aside in qcom-apq8064-pins.dtsi .
+> 
+> Ack, missed it.
+> 
+>>
+>> All other suggestions incorporated, if it's OK otherwise, let me send v2
+> 
+> I think this also needs several supplies in the riva device itself and
+> in the iris subdevice. See qcom-apq8064-sony-xperia-lagan-yuga.dts.
+> 
 
-On Sat, Mar 08, 2025 at 09:37:12PM +0000, Jonas Karlman wrote:
-> All Rockchip GMAC variants typically write to GRF regs to control e.g.
-> interface mode, speed and MAC rx/tx delay. Newer SoCs such as RK3576 and
-> RK3588 use a mix of GRF and peripheral GRF regs. These syscon regmaps is
-> located with help of a rockchip,grf and rockchip,php-grf phandle.
->=20
-> However, validating the rockchip,grf and rockchip,php-grf syscon regmap
-> is deferred until e.g. interface mode or speed is configured.
->=20
-> This series change to validate the GRF and peripheral GRF syscon regmap
-> at probe time to help simplify the SoC specific operations.
->=20
-> This should not introduce any backward compatibility issues as all
-> GMAC nodes have been added together with a rockchip,grf phandle (and
-> rockchip,php-grf where required) in their initial commit.
->=20
-> Changes in v2:
-> - Split removal of the IS_ERR() check in each SoC specific operation to
->   a separate patch
-> - Disable rockchip,php-grf in schema for GMAC not requiring it
-> - Add a php_grf_required flag to indicate when peripheral GRF is
->   required
-> - Only lookup rockchip,php-grf phandle when php_grf_required is true
-> - Use ERR_CAST() instead of ERR_PTR()
->=20
-> Jonas Karlman (3):
->   dt-bindings: net: rockchip-dwmac: Require rockchip,grf and
->     rockchip,php-grf
->   net: stmmac: dwmac-rk: Validate GRF and peripheral GRF during probe
->   net: stmmac: dwmac-rk: Remove unneeded GRF and peripheral GRF checks
->=20
->  .../bindings/net/rockchip-dwmac.yaml          |  21 +-
->  .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 270 ++----------------
->  2 files changed, 37 insertions(+), 254 deletions(-)
+I don't have the device in my hands, so if I figure out the regulators, 
+I'll not be able to test new WiFi setup. I would drop the WiFi node for 
+now, so at least the base regulators and eMMC gets and possible someone 
+with devices in his hand can push more functionality forward, if you 
+don't object.
 
-The series is
+There is slowly forming some APQ8064/MSM8960 community, so I think there 
+will be updates, now I would just settle with minimum, so our downstream 
+changes will contain only small chunks to get upstreamed.
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Would you be ok with this approach?
 
--- Sebastian
+>>
+>> Thank you
+>> David
+>>
+>>>
+>>>> +};
+>>>>
+>>>> ---
+>>>> base-commit: 0a2f889128969dab41861b6e40111aa03dc57014
+>>>> change-id: 20250309-lg-nexus4-mako-da0833885b26
+>>>>
+>>>> Best regards,
+>>>> -- 
+>>>> David Heidelberg <david@ixit.cz>
+>>>>
+>>>>
+>>>
+>>
+>> -- 
+>> David Heidelberg
+>>
+> 
 
---b5zfvhkwd55d7y42
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+David Heidelberg
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmfOBWIACgkQ2O7X88g7
-+ppXPQ//QTO5/6yllSRnNLdmY8b6+WI244U8KRooF4JYZwUq1OFC/ZlozoNaZrOG
-aqJpTCkevGsaUstJ0sBrLrn/rr+lxkTLn39v7LSLNCEupLM1QikVRQYn7lgLB6rK
-eDgSMEAXAUwux/v3D/wX/470LwLAWnffXX5wDxha7183La0P6JgL2Ue8TC6jyU25
-ULQ4IoCPlGME4z472RngSBuN/g0zZDajgmCBNiRYaCIya07pPOtT/PrVNEYfQ9CS
-oa0t1M/jPDS3VvsJMOmwzxOtiOD9VJxS90xLpphqUei4dyWFu/7aV7GaXEhm9UYb
-/HCeOEBFuXcsNvZitv0oSsQBpbzUKwiS5zKxZFpRyiEMbRuyMLHwajpwdGaHI4Ji
-3iXll3AjBTh+Rc8kEBlzXkcdCJlznz9FGBSkwCWYCSQXm8MuCZ7+cc8rBNgEowbG
-h8mUntbIWKHcIYOjYGDOppdLXsK1D3qxP5GO1t/0cNEqZhWdGeRtK2l2gK4faH7K
-92dtEtDzLzSe/9Awg3txooKrizcuo6L6bl6eopu8bzTNjLPsLAmFtr/vsQBbFVet
-tfJBYiQD7WkYdYpB0NiSIE1w7y6H/YIvjhhqI5yuUBoYVtnzrY4EWt6nHtU1XAl1
-OAQMUaQAf2IIvxGFYDmVtG8bm7rSsLw6RYvmQMluvoviGPs6meY=
-=Fj91
------END PGP SIGNATURE-----
-
---b5zfvhkwd55d7y42--
 
