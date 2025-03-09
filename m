@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-155901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62954A587F7
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 20:50:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A5E8A587FC
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 20:55:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F09D3AD0C4
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 19:50:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CB7F16ABB6
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 19:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DF152185A3;
-	Sun,  9 Mar 2025 19:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B225321A446;
+	Sun,  9 Mar 2025 19:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vL4uHPJ9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JqTEi/uc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5082217F48;
-	Sun,  9 Mar 2025 19:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8340F1DA109;
+	Sun,  9 Mar 2025 19:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741549850; cv=none; b=O8dCXTg7rIJQDgk6nwgw0SfoOQSNbTjfU8Jl0zf6jAwoqFO0go+YY6juTlwGIebB7Ory2bFA41HrRMVTla93Si+jjUH2LVtr1BbxiCZwrw96vqLgv+UP5G9CtoecJ+/Mnbu21ZHUPN6m8OlelVe7sJg5EJ5Iv9Ssfmj5mCA70SE=
+	t=1741550146; cv=none; b=pGyAEkmQ99fH5ldpt7uhNbkMd711eWQFBnMFOlP4fX3QbzOnIar/x4amJqaAddBLfS6jXU+q2f33hTkw99nrzxj2/pDUP/34d0+ZzF3hq2UJS5wYp37e/Asj+4iFE/sEbKkXgFSHhuWoBqIfe55aABGtmdGX7n3EilveIYovMFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741549850; c=relaxed/simple;
-	bh=8ySbkKhFRXNuJHrR+dQojieyUf+Le6VlZ6dqAVE1rBA=;
+	s=arc-20240116; t=1741550146; c=relaxed/simple;
+	bh=zAPNcUFsX5MrJrlX6bLNUJsHyy42N48ffEZW73+2rUY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J9UuMLxCMGcaW20YuUdHXqyYJc6O6SBN4gahnoTBbZ5QsBvqRDPNIRv+j6G5gVFprqWhQZCl8FzRSSXV+udNjstJwMabzmzAnsBTg5uNsZrEoy6mbZSWZccj7x7rX8eQSYntiK+BauCREJuUZmzbuwA2aApVrUin4sW9ekHJsnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vL4uHPJ9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D01DDC4CEED;
-	Sun,  9 Mar 2025 19:50:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ifm6GTg2Z+OuNAbNSPR8qkdxM5i7EiYP4Ka0UX+wccYK0rP91fvg2d5DFBSgbrZKyMQgX/N7Mhm+buYObjzcB2Y1EC9QNJj/RysgoXYDiFJWhVMykboukBxYWNmB+hkD4e/pVHLpyZF8GrAi9kPGUydSe+uyYERl7QDAvBsWOOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JqTEi/uc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB7F6C4CEE3;
+	Sun,  9 Mar 2025 19:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741549849;
-	bh=8ySbkKhFRXNuJHrR+dQojieyUf+Le6VlZ6dqAVE1rBA=;
+	s=k20201202; t=1741550146;
+	bh=zAPNcUFsX5MrJrlX6bLNUJsHyy42N48ffEZW73+2rUY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vL4uHPJ9xNFvMEfLN4Ec7wuCyQBk4CvGg96VRLiQVjTdErydTSp7ri+PuMR/AqNvE
-	 Kmgts1dW8zJBzTEUubXkXyzukwbGalmCnd/ojq/0vSQE12plU3rrF54+8cge6/zdoz
-	 Bbnjlswtzje1uBkOeg6DHIWLXh07ojZf0+S86fVRH1SplUiVWdh0Rq58oevPcccqC1
-	 tu0B8TVkzt2MJsS4wJjDkZPYnQfIRa1yNK1V7pmaD2/CCmWCK3bbQAdvYACbUdlPqT
-	 Z80aksp2iPxS9LGFWTaCTU8qI5zHnwm9m6z3Fr2E2A8w72C8vFdVyOpUDGr50KAjPO
-	 TaRGpHsWSquBQ==
-Message-ID: <668ada6a-3e53-474d-be81-d69d75277c26@kernel.org>
-Date: Sun, 9 Mar 2025 20:50:39 +0100
+	b=JqTEi/uccPc2B7x4ifj3kLnrDXYgD3cQF7rNBNLDwcagkvL26TaEemWzJVflcHOxY
+	 LJ0t9HR7PSsIaUyORMb3C2lRqAwFCMAiOIb0vgLjQvubvWupkyntj+wY2/uqLd4PMB
+	 0ZPZJlWeBwMXr4O2CpK7Oqf1Vndw/UaiAecqMHv2hra0xZ6NGhB8BozYy1aCa+K3VY
+	 T7pJTI5x8BiW/uI2+pG8lPfFHMYC/5isjtDvRtuUZlYYMvQQz3OnO+OiLzAFUneaeb
+	 C843b9O7Qq3t4AZwOkEq5lcmvfSF46Alo7tUSSpYXmcJzcOrowTMOoZkATQa2bcot3
+	 cFCXuz3yoP0VA==
+Message-ID: <49d6bdfd-a2d3-48e6-aabc-e6674256e5a8@kernel.org>
+Date: Sun, 9 Mar 2025 20:55:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/19] dt-bindings: mfd: mediatek: mt6397: Add accdet
- subnode
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- kernel@collabora.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-pm@vger.kernel.org
-References: <20250305-mt6359-accdet-dts-v4-0-e5ffa5ee9991@collabora.com>
- <20250305-mt6359-accdet-dts-v4-1-e5ffa5ee9991@collabora.com>
- <20250306-certain-jasmine-mastiff-fd67ba@krzk-bin>
- <2fa6037d-b5e9-45b2-a5d5-dbc92fb3434b@notapiano>
- <0663e03e-e331-4a06-be95-ce8d9059ed6b@kernel.org>
- <cb2820d8-84e8-49ca-b497-1ea815679a3d@notapiano>
+Subject: Re: [PATCH v5 1/6] dt-bindings: iio: filter: Add lpf/hpf freq margins
+To: Sam Winchenbach <sam.winchenbach@framepointer.org>
+Cc: linux-kernel@vger.kernel.org, lars@metafoo.de,
+ Michael.Hennerich@analog.com, antoniu.miclaus@analog.com, jic23@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, bpellegrino@arka.org
+References: <20250306183314.150253-1-sam.winchenbach@framepointer.org>
+ <20250307-handsome-merry-alpaca-17da9f@krzk-bin>
+ <Z8r45sR7uy0b4UEQ@65YTFL3.secure.tethers.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,75 +104,64 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <cb2820d8-84e8-49ca-b497-1ea815679a3d@notapiano>
+In-Reply-To: <Z8r45sR7uy0b4UEQ@65YTFL3.secure.tethers.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 07/03/2025 14:22, Nícolas F. R. A. Prado wrote:
-> On Fri, Mar 07, 2025 at 08:11:26AM +0100, Krzysztof Kozlowski wrote:
->> On 06/03/2025 13:19, Nícolas F. R. A. Prado wrote:
->>>>>    It is interfaced to host controller using SPI interface by a proprietary hardware
->>>>>    called PMIC wrapper or pwrap. MT6397/MT6323 PMIC is a child device of pwrap.
->>>>> @@ -224,6 +225,30 @@ properties:
->>>>>      description:
->>>>>        Pin controller
->>>>>  
->>>>> +  accdet:
->>>>> +    type: object
->>>>> +    additionalProperties: false
->>>>> +    description:
->>>>> +      The Accessory Detection module found on the PMIC allows detecting audio
->>>>> +      jack insertion and removal, as well as identifying the type of events
->>>>> +      connected to the jack.
->>>>> +
->>>>> +    properties:
->>>>> +      compatible:
->>>>> +        const: mediatek,mt6359-accdet
->>>>
->>>> You just removed the other file, no folding happened here. Drop the
->>>> accdet node and fold this into parent.
+On 07/03/2025 14:47, Sam Winchenbach wrote:
+> On Fri, Mar 07, 2025 at 09:34:24AM +0100, Krzysztof Kozlowski wrote:
+>> On Thu, Mar 06, 2025 at 01:33:09PM -0500, Sam Winchenbach wrote:
+>>> Adds two properties to add a margin when automatically finding the
+>>> corner frequencies.
 >>>
->>> Sorry, I'm still not sure what you mean by folding here then. Right now the
->>> accdet is a subnode of the PMIC. If you want me to remove the accdet node, where
+>>> Signed-off-by: Sam Winchenbach <sam.winchenbach@framepointer.org>
+>>> ---
+>>>  .../bindings/iio/filter/adi,admv8818.yaml     | 23 +++++++++++++++++++
+>>>  1 file changed, 23 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+>>> index b77e855bd594..3f9c61547a78 100644
+>>> --- a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+>>> +++ b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+>>> @@ -44,6 +44,27 @@ properties:
+>>>    '#clock-cells':
+>>>      const: 0
+>>>  
+>>> +
 >>
->> Yes
+>> Unnecessary blank line
 >>
->>> would its compatible and property go?
->>
->> compatible: nowhere, because it is close to redundancy.
->>
->> property: to the parent pmic node.
->>
->>     pmic {
->>         compatible = "mediatek,mt6359";
->>         interrupt-controller;
->>         #interrupt-cells = <2>;
->>
->>         mediatek,hp-eint-high;
->>     };
 > 
-> I'm not sure that's right. The ACCDET submodule does have some resources, IRQs,
-> that it registers in its mfd cell, see patch 2 of this series [1]. It also has
+> Noted for v6.
+> 
+>>> +  adi,lpf-margin-hz:
+>>> +    description:
+>>> +      Sets the minimum distance (in Hz) between the fundamental
+>>> +      frequency of `rf_in` and the corner frequency of the low-pass, output
+>>> +      filter when operatred in 'auto' mode. The selected low-pass corner
+>>> +      frequency will be greater than, or equal to, `rf_in` + `lpf-margin-hz`. If
+>>> +      not setting is found that satisfies this relationship the filter will be
+>>> +      put into 'bypass'.
+>>> +    default: 0
+>>
+>> hz are 32-bit, not 64-bit, so I think you need:
+>>
+>>   default: [0, 0]
+>>   minItems: 2
+>>   maxItems: 2
+>>
+> 
+> I think I finally understand - "-hz" is a schema type defined as a uint32. 
 
-Binding is supposed to be complete, so why suddenly we have here some
-resources which you did not add?
+No, it is uint32-array.
 
-Post complete binding, so you will get proper review.
+> Is that correct? I am really surprised that `dt_binding_check` did not complain about it being 64-bits.  I will update these to `-mhz` and make them uint32 in v6.
 
-> its own driver (sound/soc/codecs/mt6359-accdet.c) that probes based on this
+so your code worked fine, because it assumed you will pass two 32-bit
+integers, so two items. That's why I proposed to define the number of
+items, even though it looks odd, but that's result of 32-bit value.
 
-Drivers do not define bindings.
-
-> compatible and handles those interrupts. Why would it not get its own node like
-
-Sorry, cannot go. You cannot document binding post factum and claim "I
-have a driver which uses that compatible".
-
-This would be a nice way to bypass review.
-
-> the other MFD cells?
-
-I explained why. I gave you the exact reason.
+Maybe we need "-hz-64" or "-64-hz" property suffix?
 
 Best regards,
 Krzysztof
