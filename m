@@ -1,293 +1,485 @@
-Return-Path: <devicetree+bounces-155738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CC83A58008
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 01:33:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80E9EA5800E
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 01:46:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7D64188C849
-	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 00:33:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62A1E3AFE98
+	for <lists+devicetree@lfdr.de>; Sun,  9 Mar 2025 00:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6091B4C7C;
-	Sun,  9 Mar 2025 00:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA234A1A;
+	Sun,  9 Mar 2025 00:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YY3TuekF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NnpeMxNZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E574A07;
-	Sun,  9 Mar 2025 00:33:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC34849C;
+	Sun,  9 Mar 2025 00:46:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741480398; cv=none; b=SkN5MEUerOjEIhaGidC83AMS+PWj/qA2ecl4VblxD7j92WTxlCqG8B+UX1TYXVEAFUgP67oKBG0sOD+ToD5FfKcJA7fdDeyQipc7LHNqeKRoWxQ9LPRKUC9Y3sydwIKawxi3wfU+HyCY0aRDaXxX+n40nRDy5O0qCTtRV0TXawQ=
+	t=1741481190; cv=none; b=Z+UOxWsgZrakGycutpf0dF+5L1uq7ygHvr8n5uD20eG/g6FOFRUQdHYGDuuyh9WueIJc8rwZtqKwYF3P99QFC9BZvte5N+8O1qETOf2qnKzJ9jyZ/J+GSl/onsDFVACct59AIIyf2cPtSstywsHjt6hYg1ehSTxwp9fj8sCfkIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741480398; c=relaxed/simple;
-	bh=H5vGGdWJkwimPxQknMpb14wXFyU4qmgXRHQJ9Ps5V7w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mfFNu+39sk2PozKA5Zr3AKCVaJi+HhYoB/8trZ10COX8vpqOWQkJbQQxocSekmLV4e2Gstq53ddZbj1mdKovfGL686PTjN3KroBNwnInegdYOhc30xJKeZUXRGRRVOr9kqumlw4jqgh3q4PyjlKA5YDSfN4Iivv6RHL1IP8D5Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YY3TuekF; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3912e96c8e8so1609256f8f.2;
-        Sat, 08 Mar 2025 16:33:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741480394; x=1742085194; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qPD5zeaLyTv7Qy4hdBTQxNRUyG0FnO7mcXkBMLrnQgo=;
-        b=YY3TuekFIqkBenIBILtjB9Dog1kMoR14a/1PYOXbJb/yKELoA2RXGE+Y3CbJlA6pqM
-         DCt9o5cPjth4dihCaR7upYS5CEARwa6be1sgfyifIqD31izO1OiDSZNEnxCJqS1vZ4JQ
-         w2xEQ7Ian1RJHCr8012Zdn60dUSSYk7dpg3hw248jxYiAFCcpbJ6FF2CxZKFsZ8l8Qnt
-         1yzl8Ozcdr8i+3LwloxDFa6nb73vJB3CBUtvqu0spEk4yX74O3r79myXbIP9FJplfaee
-         +wD3VwjY0zzOnHuEr4X8Ax8np2dKfqCOnrF4U28GqxA6lNDsHpuXfoDXbyrB5P3xqrAZ
-         pf6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741480394; x=1742085194;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qPD5zeaLyTv7Qy4hdBTQxNRUyG0FnO7mcXkBMLrnQgo=;
-        b=isO0sUwkvQxLsCzasz5MAMc7fDyilq6/n4jmBgrb9PeTu8gAMNf5a9zeeM1ifIZDX0
-         6pfJVWV5TpkFH4PXOgHP5H4qPetnKXGMtz0fGsfGTR8Edd+kAqAblBg3HEmp49eshHF8
-         na2bc1sGVcX1BMktlhqlHfCI6bokKzYgZTLSNxiPVMRg8gQDXKKR8fRNK45EduBVGRJS
-         icFi4WhqbffVMTZFiy87fBontViesRSVKu02YBsERALWxUW/rgU7CAOkBeEuUS98+//6
-         0rhktEPxfE/9ZyAvIIdvYKXX3hRZ4YAkj66orCf5ctnYV2vIvOQ6KJAtjsRhZEjU3d8R
-         t0OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV8vUs+KXkrwAjpWAHfBiNlN3kWjJTehMaiGZTrAFZWZ7A+8Lal71/GeT/9zOlO3cDk+KMY+Tj7@vger.kernel.org, AJvYcCXIItFLpb2lxU/v4idg4C+B86OZxw95uurun1fl/80e27Ibmoi9pNgtehCSPWstNpjUYNEB0X2p41Yhp08=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvAHNEyTEbdOm44/+fMvcPnSjwJAqtamncuFKiyOOl5cTcKPHZ
-	pLlMtPFOmFRZHqW80oGZ2egG9Gitx4VP28RDJctagvkN4axmDqaJ
-X-Gm-Gg: ASbGnct/07ARu1jvrrHbo18g2NflLGW5G1HZAf2opsGVPSNXdeJE0WjYy9KA1C2fmuL
-	GaU4aaXnAP0bpGeklg9j/qDtak7I+OBG93RttWhea6nkwScPSS95arVpDEpHxrt7weMQ7lE4VVP
-	o60vSPFy/H10o5erPQjrvhVYvXm87QNvJeBosSEkofJpB6+s0CPROKtsS/pCOhIUdvJaqQXZgXI
-	dDw8BMIKpkdBNm+m1wdRyPp9Vdo2yhqrP3fXlGC7WUtd3SBp8/iPwjuR8mWCnLo9ywqeonBV2qX
-	JKIQhxx7bM5zviYAZCATJATLVU7JOItpf6OTnzeIpmEr4gxxZ54RdJtMboETCdQF6RMXJxudmQ=
-	=
-X-Google-Smtp-Source: AGHT+IH28MQPA+zgYnEC4J5mfzAYw/utosENTHqe/I9TDxz+92mmLwx5LY/MLbLi26Rzp9G7AsQlAA==
-X-Received: by 2002:a5d:584f:0:b0:391:ffc:2413 with SMTP id ffacd0b85a97d-39132da08b4mr5384923f8f.40.1741480393495;
-        Sat, 08 Mar 2025 16:33:13 -0800 (PST)
-Received: from prasmi.Home ([2a06:5906:61b:2d00:238d:d8a2:7f2b:419e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912c1031fdsm9976382f8f.89.2025.03.08.16.33.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Mar 2025 16:33:11 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
-	Biao Huang <biao.huang@mediatek.com>,
-	Clark Wang <xiaoning.wang@nxp.com>,
-	Linux Team <linux-imx@nxp.com>,
-	David Wu <david.wu@rock-chips.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	netdev@vger.kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-rockchip@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-mediatek@lists.infradead.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH net-next] dt-bindings: net: Define interrupt constraints for DWMAC vendor bindings
-Date: Sun,  9 Mar 2025 00:33:01 +0000
-Message-ID: <20250309003301.1152228-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1741481190; c=relaxed/simple;
+	bh=+K/qSQikLSMzGbByUNc5tfjAV6eBo6IZaxaudIoRBVA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pMuIPVPo6XogtG2ds59MOVrhwpFYy/ZSunc1IkdpjzryJRLv5+HvcitWZ+1pR3aU6arvGd+CctOVj/Crf0WWLvcfdCfsdK8jRXLSrCpOEYuK2H4Tv8l7Alo8hwgjboAGyO5t1OUdmkU1KPvBw4cJtDBYHDey9uxZTOWDE+EogaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NnpeMxNZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0CE3EC4CEE0;
+	Sun,  9 Mar 2025 00:46:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741481190;
+	bh=+K/qSQikLSMzGbByUNc5tfjAV6eBo6IZaxaudIoRBVA=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=NnpeMxNZtlLnLcmpJsnGfh6O4ktaiVySbbP5qK2gMhU/SNuVIGEfs39ItM1fOCbDW
+	 2p1hN36sy+7ZwickFl8pPD7uKbuKd92nVcdRtn2kN/0Kbyp1gMc8THFucc5QFSoxbL
+	 Xe7S+pXZBTS9SOgrWNbP4QPMSazs6Q2EY1Wm2uXH2Wo4nE/oPveUGWNMlEuh4uPyY3
+	 qQRaOahYWoLwVDufc8kk2qg6a3oj9B51sq2tkO/MqnF5V6WBjFOUmez/QOvu2xgv0B
+	 AOYGtIjEN0g1GfL9IXRdxqKW8OHc8nmjMqbOSLXciAHADFLD01+/73o/Z7n8px2xg9
+	 eVGUuWPE/d5eA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EBDE4C282EC;
+	Sun,  9 Mar 2025 00:46:29 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Date: Sun, 09 Mar 2025 01:45:51 +0100
+Subject: [PATCH v3] ARM: dts: nexus4: Initial dts
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250309-lg-nexus4-mako-v3-1-1dc2807df296@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIAL7kzGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDYwNL3Zx03bzUitJiE93cxOx83ZREAwtjYwsL0yQjMyWgpoKi1LTMCrC
+ B0bG1tQBZJpPaYAAAAA==
+X-Change-ID: 20250309-lg-nexus4-mako-da0833885b26
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ Ivan Belokobylskiy <belokobylskij@gmail.com>, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9332; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=9lc+Nh7NerfyDiSvyeKzTUvba0fLnRsfpQ800uDYWYk=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBnzOTkF/2WfSE74KadOYDw/DH6i+wOCpVPvKM+q
+ iX/6x4qPu6JAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCZ8zk5AAKCRBgAj/E00kg
+ cu+jEAC8UFxNROOHGz3fyWMPTfko908pWET3p05yvENRIVS7OHjVZQVMDNVaLRp24S7CQ/Sf9cx
+ YUE2BGM8HhqED/D44msppu4ZwhQW0Q8EC7a6NTOvbQXhH/YjzIS4bUeovAn20GpMpzv+7BGcYtl
+ qHB3Nut0I1r+oOuWvQIwbEsLw3XZ26QUk3lgNvf+vrGj+FDuzGxXjtu8R/oDG5H+mtIEU+Mukt/
+ Q3HbJP0+18+fchDkpTTvG+XAgY4CWpQz1mViThWt8TjEsZLQ1UGi46fYVZwhY8rPf0N4kdIVj8h
+ 0S8QBrX/pKpOslRieggwP/8gRN8s7KMhX/p0CQAANEg47ON90LDYCEzwUt1o/2nzf1nVGH0bfvR
+ Nb1SHFZad1dhvXPSIOEYaAcqmEWoMqrmHwlb5JoFHW/g7c7RbG/GZM/dyIQuCpZBGLkxdXKCqjl
+ UDSp7eX2NxYYtngxgHoDvdVhQvK5fx44OvKVABohKTOK6hx9kFThXTybEcLiMpvOZQQWD+lSayj
+ rHru2m3oamz+5bF3rU2U/TCXtmt48jn84O5k65PJDPEWD7JTETcyA+bv4tqVh6ZVtkDV4swLkwj
+ l4B/tJgItXIM/kCbKNBqynjcWHca8rjM4xJC3Y0+PeQenhY9zJ7HVPqpnvoCv7pamemGLfn/0sW
+ qemrCaPS4X9HvMA==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Ivan Belokobylskiy <belokobylskij@gmail.com>
 
-The `snps,dwmac.yaml` binding currently sets `maxItems: 3` for the
-`interrupts` and `interrupt-names` properties, but vendor bindings
-selecting `snps,dwmac.yaml` do not impose these limits.
+Add initial support for LG Nexus 4 (mako).
 
-Define constraints for `interrupts` and `interrupt-names` properties in
-various DWMAC vendor bindings to ensure proper validation and consistency.
+Features currently working: regulators, eMMC, WiFi, and volume keys.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Ivan Belokobylskiy <belokobylskij@gmail.com>
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
-Hi All,
+Changes in v3:
+- rebased against next-20250307
+- dropped backlight until driver gets converted to DT
 
-Based on recent patch [0] which increases the interrupts to 11
-and adds `additionalItems: true` its good to have constraints
-to validate the schema. Ive made the changes based on the DT
-binding doc and the users. Ive ran dt binding checks to ensure
-the constraints are valid. Please let me know if you'd like me
-to split this patch or if any of the constraints are incorrect,
-as I don't have documentation for all of these platforms.
-
-https://lore.kernel.org/all/20250308200921.1089980-2-prabhakar.mahadev-lad.rj@bp.renesas.com/
-
-Cheers, Prabhakar
+Changes in v2:
+- lge vendor doesn't exist anymore, rename to lg
+- sdcc@ to mmc@ to comply with dt-schema
 ---
- .../devicetree/bindings/net/amlogic,meson-dwmac.yaml   |  6 ++++++
- .../devicetree/bindings/net/intel,dwmac-plat.yaml      |  6 ++++++
- .../devicetree/bindings/net/mediatek-dwmac.yaml        |  6 ++++++
- .../devicetree/bindings/net/nxp,dwmac-imx.yaml         |  8 ++++++++
- .../devicetree/bindings/net/rockchip-dwmac.yaml        | 10 ++++++++++
- Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 10 ++++++++++
- .../bindings/net/toshiba,visconti-dwmac.yaml           |  6 ++++++
- 7 files changed, 52 insertions(+)
+ arch/arm/boot/dts/qcom/Makefile                    |   1 +
+ .../boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts  | 342 +++++++++++++++++++++
+ 2 files changed, 343 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-index 798a4c19f18c..0cd78d71768c 100644
---- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-@@ -152,6 +152,12 @@ properties:
-           The second range is is for the Amlogic specific configuration
-           (for example the PRG_ETHERNET register range on Meson8b and newer)
- 
-+  interrupts:
-+    maxItems: 1
+diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
+index f06c6d425e91dd73c2b453d15543d95bd32383b9..0c1d116f6e84f76994aa8c8286350bdcd1657a42 100644
+--- a/arch/arm/boot/dts/qcom/Makefile
++++ b/arch/arm/boot/dts/qcom/Makefile
+@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+ 	qcom-apq8064-ifc6410.dtb \
+ 	qcom-apq8064-sony-xperia-lagan-yuga.dtb \
+ 	qcom-apq8064-asus-nexus7-flo.dtb \
++	qcom-apq8064-lg-nexus4-mako.dtb \
+ 	qcom-apq8074-dragonboard.dtb \
+ 	qcom-apq8084-ifc6540.dtb \
+ 	qcom-apq8084-mtp.dtb \
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
+new file mode 100644
+index 0000000000000000000000000000000000000000..bcb57675aa24892b290d543601f7a6b36b6a65f6
+--- /dev/null
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
+@@ -0,0 +1,342 @@
++// SPDX-License-Identifier: GPL-2.0-only
++#include "qcom-apq8064-v2.0.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/mfd/qcom-rpm.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
++/ {
++	model = "LG Nexus 4 (mako)";
++	compatible = "lg,nexus4-mako", "qcom,apq8064";
 +
-+  interrupt-names:
-+    const: macirq
++	aliases {
++		serial0 = &gsbi7_serial;
++		serial1 = &gsbi6_serial;
++		serial2 = &gsbi4_serial;
++	};
 +
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml b/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml
-index 42a0bc94312c..62c1da36a2b5 100644
---- a/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml
-+++ b/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml
-@@ -41,6 +41,12 @@ properties:
-       - const: ptp_ref
-       - const: tx_clk
- 
-+  interrupts:
-+    maxItems: 1
++	chosen {
++		stdout-path = "serial2:115200n8";
++	};
 +
-+  interrupt-names:
-+    const: macirq
++	reserved-memory {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
 +
- required:
-   - compatible
-   - clocks
-diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-index ed9d845f6008..3aab21b8e8de 100644
---- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-@@ -64,6 +64,12 @@ properties:
-       - const: rmii_internal
-       - const: mac_cg
- 
-+  interrupts:
-+    maxItems: 1
++		ramoops@88d00000{
++			compatible = "ramoops";
++			reg = <0x88d00000 0x100000>;
++			record-size = <0x00020000>;
++			console-size = <0x00020000>;
++			ftrace-size = <0x00020000>;
++		};
++	};
 +
-+  interrupt-names:
-+    const: macirq
++	battery_cell: battery-cell {
++		compatible = "simple-battery";
++		constant-charge-current-max-microamp = <900000>;
++		operating-range-celsius = <0 45>;
++	};
 +
-   power-domains:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-index 87bc4416eadf..e5db346beca9 100644
---- a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-+++ b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-@@ -56,6 +56,14 @@ properties:
-         - tx
-         - mem
- 
-+  interrupts:
-+    maxItems: 2
++	soc {
++		rpm@108000 {
++			regulators {
++				vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
++				vin_lvs1_3_6-supply = <&pm8921_s4>;
++				vin_lvs4_5_7-supply = <&pm8921_s4>;
 +
-+  interrupt-names:
-+    items:
-+      - const: macirq
-+      - const: eth_wake_irq
++				vdd_l24-supply = <&pm8921_s1>;
++				vdd_l25-supply = <&pm8921_s1>;
++				vin_lvs2-supply = <&pm8921_s1>;
 +
-   intf_mode:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     items:
-diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-index f8a576611d6c..891396140a7f 100644
---- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-@@ -58,6 +58,16 @@ properties:
-               - rockchip,rv1126-gmac
-           - const: snps,dwmac-4.20a
- 
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
++				vdd_l26-supply = <&pm8921_s7>;
++				vdd_l27-supply = <&pm8921_s7>;
++				vdd_l28-supply = <&pm8921_s7>;
 +
-+  interrupt-names:
-+    minItems: 1
-+    items:
-+      - const: macirq
-+      - const: eth_wake_irq
++				/* Buck SMPS */
++				s1 {
++					regulator-always-on;
++					regulator-min-microvolt = <1225000>;
++					regulator-max-microvolt = <1225000>;
++					qcom,switch-mode-frequency = <3200000>;
++					bias-pull-down;
++				};
++				s2 {
++					regulator-min-microvolt = <1300000>;
++					regulator-max-microvolt = <1300000>;
++					qcom,switch-mode-frequency = <1600000>;
++					bias-pull-down;
++				};
 +
-   clocks:
-     minItems: 5
-     maxItems: 8
-diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-index 85cea9966a27..987254900d0d 100644
---- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
-@@ -54,6 +54,16 @@ properties:
-     items:
-       - const: stmmaceth
- 
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
++				/* msm otg HSUSB_VDDCX */
++				s3 {
++					regulator-min-microvolt = <500000>;
++					regulator-max-microvolt = <1150000>;
++					qcom,switch-mode-frequency = <4800000>;
++					bias-pull-down;
++				};
 +
-+  interrupt-names:
-+    minItems: 1
-+    items:
-+      - const: macirq
-+      - const: eth_wake_irq
++				/*
++				 * msm_sdcc.1-sdc-vdd_io
++				 * tabla2x-slim-CDC_VDDA_RX
++				 * tabla2x-slim-CDC_VDDA_TX
++				 * tabla2x-slim-CDC_VDD_CP
++				 * tabla2x-slim-VDDIO_CDC
++				 */
++				s4 {
++					regulator-always-on;
++					regulator-min-microvolt	= <1800000>;
++					regulator-max-microvolt	= <1800000>;
++					qcom,switch-mode-frequency = <1600000>;
++					bias-pull-down;
++					qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
++				};
 +
-   clocks:
-     minItems: 3
-     items:
-diff --git a/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml b/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
-index 052f636158b3..f0f32e18fc85 100644
---- a/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
-@@ -42,6 +42,12 @@ properties:
-       - const: stmmaceth
-       - const: phy_ref_clk
- 
-+  interrupts:
-+    maxItems: 1
++				/*
++				 * supply vdd_l26, vdd_l27, vdd_l28
++				 */
++				s7 {
++					regulator-min-microvolt = <1300000>;
++					regulator-max-microvolt = <1300000>;
++					qcom,switch-mode-frequency = <3200000>;
++				};
 +
-+  interrupt-names:
-+    const: macirq
++				s8 {
++					regulator-min-microvolt = <2200000>;
++					regulator-max-microvolt = <2200000>;
++					qcom,switch-mode-frequency = <1600000>;
++				};
 +
- required:
-   - compatible
-   - reg
++				l1 {
++					regulator-min-microvolt = <1100000>;
++					regulator-max-microvolt = <1100000>;
++					regulator-always-on;
++					bias-pull-down;
++				};
++
++				/* mipi_dsi.1-dsi1_pll_vdda */
++				l2 {
++					regulator-min-microvolt = <1200000>;
++					regulator-max-microvolt = <1200000>;
++					bias-pull-down;
++				};
++
++				/* msm_otg-HSUSB_3p3 */
++				l3 {
++					regulator-min-microvolt = <3075000>;
++					regulator-max-microvolt = <3500000>;
++					bias-pull-down;
++				};
++
++				/* msm_otg-HSUSB_1p8 */
++				l4 {
++					regulator-always-on;
++					regulator-min-microvolt = <1800000>;
++					regulator-max-microvolt = <1800000>;
++				};
++
++				/* msm_sdcc.1-sdc_vdd */
++				l5 {
++					regulator-min-microvolt = <2950000>;
++					regulator-max-microvolt = <2950000>;
++					bias-pull-down;
++				};
++
++				/* earjack_debug */
++				l6 {
++					regulator-min-microvolt = <3000000>;
++					regulator-max-microvolt = <3000000>;
++					bias-pull-down;
++				};
++
++				/* mipi_dsi.1-dsi_vci */
++				l8 {
++					regulator-min-microvolt = <2800000>;
++					regulator-max-microvolt = <3000000>;
++					bias-pull-down;
++				};
++
++				/* wcnss_wlan.0-iris_vddpa */
++				l10 {
++					regulator-min-microvolt = <2900000>;
++					regulator-max-microvolt = <2900000>;
++					bias-pull-down;
++				};
++
++				/* mipi_dsi.1-dsi1_avdd */
++				l11 {
++					regulator-min-microvolt = <2850000>;
++					regulator-max-microvolt = <2850000>;
++					bias-pull-down;
++				};
++
++				/* touch_vdd */
++				l15 {
++					regulator-min-microvolt = <1800000>;
++					regulator-max-microvolt = <2950000>;
++					bias-pull-down;
++				};
++
++				/* slimport_dvdd */
++				l18 {
++					regulator-min-microvolt = <1100000>;
++					regulator-max-microvolt = <1100000>;
++					bias-pull-down;
++				};
++
++				/* touch_io */
++				l22 {
++					regulator-min-microvolt = <1800000>;
++					regulator-max-microvolt = <1800000>;
++					bias-pull-down;
++				};
++
++				/*
++				 * mipi_dsi.1-dsi_vddio
++				 * pil_qdsp6v4.1-pll_vdd
++				 * pil_qdsp6v4.2-pll_vdd
++				 * msm_ehci_host.0-HSUSB_1p8
++				 * msm_ehci_host.1-HSUSB_1p8
++				 */
++				l23 {
++					regulator-min-microvolt = <1800000>;
++					regulator-max-microvolt = <1800000>;
++					bias-pull-down;
++				};
++
++				/*
++				 * tabla2x-slim-CDC_VDDA_A_1P2V
++				 * tabla2x-slim-VDDD_CDC_D
++				 */
++				l24 {
++					regulator-min-microvolt = <750000>;
++					regulator-max-microvolt = <1150000>;
++					bias-pull-down;
++				};
++
++				l25 {
++					regulator-min-microvolt = <1250000>;
++					regulator-max-microvolt = <1250000>;
++					regulator-always-on;
++					bias-pull-down;
++				};
++
++				l26 {
++					regulator-min-microvolt = <375000>;
++					regulator-max-microvolt = <1050000>;
++					regulator-always-on;
++					bias-pull-down;
++				};
++
++				l27 {
++					regulator-min-microvolt = <1100000>;
++					regulator-max-microvolt = <1100000>;
++				};
++
++				l28 {
++					regulator-min-microvolt = <1050000>;
++					regulator-max-microvolt = <1050000>;
++					bias-pull-down;
++				};
++
++				/* wcnss_wlan.0-iris_vddio */
++				lvs1 {
++					bias-pull-down;
++				};
++
++				/* wcnss_wlan.0-iris_vdddig */
++				lvs2 {
++					bias-pull-down;
++				};
++
++				lvs3 {
++					bias-pull-down;
++				};
++
++				lvs4 {
++					bias-pull-down;
++				};
++
++				lvs5 {
++					bias-pull-down;
++				};
++
++				/* mipi_dsi.1-dsi_iovcc */
++				lvs6 {
++					bias-pull-down;
++				};
++
++				/*
++				 * pil_riva-pll_vdd
++				 * lvds.0-lvds_vdda
++				 * mipi_dsi.1-dsi1_vddio
++				 * hdmi_msm.0-hdmi_vdda
++				 */
++				lvs7 {
++					bias-pull-down;
++				};
++
++				ncp {
++					regulator-min-microvolt = <1800000>;
++					regulator-max-microvolt = <1800000>;
++					qcom,switch-mode-frequency = <1600000>;
++				};
++			};
++		};
++	};
++};
++
++&pmicintc {
++	keypad@148 {
++		compatible = "qcom,pm8921-keypad";
++		reg = <0x148>;
++		interrupt-parent = <&pmicintc>;
++		interrupts = <74 1>, <75 1>;
++		linux,keymap = <
++			MATRIX_KEY(0, 0, KEY_VOLUMEDOWN)
++			MATRIX_KEY(0, 1, KEY_VOLUMEUP)
++		>;
++
++		keypad,num-rows = <1>;
++		keypad,num-columns = <5>;
++		debounce = <15>;
++		scan-delay = <32>;
++		row-hold = <91500>;
++	};
++};
++
++&gsbi1 {
++	status = "okay";
++	qcom,mode = <GSBI_PROT_I2C>;
++};
++
++&gsbi1_i2c {
++	status = "okay";
++	clock-frequency = <200000>;
++	pinctrl-0 = <&i2c1_pins>;
++	pinctrl-names = "default";
++};
++
++&gsbi4 {
++	status = "okay";
++	qcom,mode = <GSBI_PROT_I2C_UART>;
++};
++
++&gsbi4_serial {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&gsbi4_uart_pin_a>;
++};
++
++/* eMMC */
++&sdcc1 {
++	status = "okay";
++	vmmc-supply = <&pm8921_l5>;
++	vqmmc-supply = <&pm8921_s4>;
++};
++
++&riva {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&riva_wlan_pin_a>;
++};
+
+---
+base-commit: 0a2f889128969dab41861b6e40111aa03dc57014
+change-id: 20250309-lg-nexus4-mako-da0833885b26
+
+Best regards,
 -- 
-2.43.0
+David Heidelberg <david@ixit.cz>
+
 
 
