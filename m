@@ -1,184 +1,214 @@
-Return-Path: <devicetree+bounces-156058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ED37A59038
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:49:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536D9A59048
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:51:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50B573A31CD
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:49:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8489188D3EE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7F3224B01;
-	Mon, 10 Mar 2025 09:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0DA921D585;
+	Mon, 10 Mar 2025 09:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ip58Zrlp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cl6366UW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB95A17A2E7
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 09:49:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CC42248A8;
+	Mon, 10 Mar 2025 09:51:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741600188; cv=none; b=ekszKv8PjhjbaIdv28G/nQkDNAA87ebRao0Wx07RB+CEAP5C5H4/R8cdWujjdVAwio6SiDe1UkY9Krx8rHJMZlXdj08tgMLE56duJvuj492PJ83aFJuFiK7qeCTNA3dL8nnE9KLJMHnF1IkJs5adBqSE7cmvP1+uclFVgt3JYp8=
+	t=1741600297; cv=none; b=M9vdWwZmQMFqH/bTHt8Drt5a6BCblPw1aHFBn+D4hIFi57LY7qT+manxqima57Yx/Vji4RFAEurGOqO1mJDDJt8lkKWnBRpBlSAXf5HwtkWRtR+YwBkl7uJ90RdLfK1X3FG14cwcDHa6HnJxS5kQwLaFzdIa+Nd3Zqwal1zXXis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741600188; c=relaxed/simple;
-	bh=U0fqyLzoEiBduTFUD3IxVvg2fyHscMYPNzGm4QJC+TI=;
+	s=arc-20240116; t=1741600297; c=relaxed/simple;
+	bh=KcsuoE5oc+tflOf5s+fkW50lshhYKgljE2mWx5LItuc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RxiEh8cCIBntsLUxK/SyLyX0cuSqo0y6qjrbo8iW4y2a8ST1oacceTvSX4AeCJw66meGpQxx9zJs7WrCpJRChi1OtSNvEdJN0rZFDWVjbO4FmAmz30PiFqy0Ck5TYCMlVoRSTRIRQWknXDHJuM4/SaDiAk34nRXDmvnECfVLkSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ip58Zrlp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D66AC4CEE5;
-	Mon, 10 Mar 2025 09:49:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741600188;
-	bh=U0fqyLzoEiBduTFUD3IxVvg2fyHscMYPNzGm4QJC+TI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ip58ZrlpbOZAS3K9qIphNCNejE3AS7p/0sOmuG7Yg4Sy8fe+/Mr+QLN8GwrJIMmmL
-	 0wADap2iRzNQVuPZnA9Hp1iHKTNbuGgqZsvBiJAzRyrSbpHbfECd6v2xAIAvzlKldb
-	 sKFdJPPC5pcpGZQuTpU6eQEP0N+B1yYeurGfhbskO5dydFxihYIq3bMOaCghf18U9j
-	 /AYqU3jNerLK7kl5Wh0n+WXemSYrUV0H6+XPYKFnVToG8X15zIVJN9w1u/R3nP+Ge1
-	 Y1puqO2yaS16RbsQT+cTiYVQbte8tWO4Ox3hz0WuJUXkNR1OTqXpSP3ZFupsxekNtD
-	 Z1YVePeRLNu+w==
-Date: Mon, 10 Mar 2025 10:49:44 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>
-Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>, 
-	Jose Maria Casanova Crespo <jmcasanova@igalia.com>, Phil Elwell <phil@raspberrypi.com>, 
-	dri-devel@lists.freedesktop.org, kernel-dev@igalia.com, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] dt-bindings: gpu: v3d: Add SMS to the registers'
- list
-Message-ID: <20250310-calculating-flat-cuttlefish-4c9fc2@krzk-bin>
-References: <20250308-v3d-gpu-reset-fixes-v2-0-2939c30f0cc4@igalia.com>
- <20250308-v3d-gpu-reset-fixes-v2-4-2939c30f0cc4@igalia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=K0GJWuNPwPJCSGSehNG6xdTVv5gvQhEj2hT2tzVV8qUhotAs3+OInThAumJbcx/jNfL0kjufD7UyO9afag94fywHvvm/dA3Q14utPkJ5yNw7rhekFnxjMSfejq8Ipxy9hMEFl2cFb1wCECRk5nOE3IJqLz8zZeSMy4XALkdT+Ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cl6366UW; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-abf4b376f2fso750590066b.3;
+        Mon, 10 Mar 2025 02:51:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741600294; x=1742205094; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7fIk/wLn8siLSomZZskx1hmM4iyC641S3xGJlKKijlM=;
+        b=cl6366UWtMCfZLO1rHOgXS7DihlEtSbIlvmgXfCK/TTp7e879cYQ/fMO/1QfrgSahQ
+         EWRX+ckMiP0lJZzdkapUiT4ulNP8UHaxnQ5fpQKw4p0dkcaHqlxve8yOGHrhXnAxgf2X
+         plq9tKh0a8sR8WhFjPPTfhs7sV+ZC+5omeQlk+aM5aTd7/C4KhFSe4We9nXsoR4gyj1Y
+         QXYf4d/fwQay6q3VSOfnAhk85AI0vCcKcsDJkSdbzmOqO2vr8SlTJ2zb3hRoStLCd4cU
+         RoilNsv3clVOJawPXcuBOYMzULuU1zQfo6KB2rCaHu17EsRhG6RIQKMsfBrWSFBWcrm/
+         EYGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741600294; x=1742205094;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :reply-to:message-id:subject:cc:to:from:date:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=7fIk/wLn8siLSomZZskx1hmM4iyC641S3xGJlKKijlM=;
+        b=WHzrqGR68pC9JKfMB1Br947PJ8U7N3TJvHdo/64IBl66BOidfMkD5o2LNQux9lm5uZ
+         lIYefm0/D7O8mh73ZW3A6aXCzvN9jOZXhMkUOOq8Oup5h5d4N5xS6qmSM20GRtGcbnvg
+         Ho6b7usCFvEMLeWRe8FUAMyDyxr/G/hHf8vX4IIZCe6jGIoYyiu/57fuAFi2nlQSvSYh
+         pguQ7L6uzEkxIxgdT8RprzdVLIuw7DTHVNxdnSunw7EaLQonJHkTx9TjBW1D5KP0+0kH
+         tbWEyOD7lZ7ReziVo/DWhzbbZLLHG2/BRzxD7hOs9djwEVWc3hwVKFXR/al4ucZ8h8cS
+         334Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVxWrCMX7+imHK5yid25aSgePBgXXPtSdQt29iBlmuW0T7q/AXcRsfh1i5g2OFpjQu/r+TY5PWm23Mp@vger.kernel.org, AJvYcCW0kflvjg8MEvnJiJEuT92INi6dNxy9P1cJIB/8Fx128iKY7NHDJTqqoe1wLKUDyWaulY1UvFMVq6bU@vger.kernel.org, AJvYcCWpW7fb7rj3k9qiS4qGEgB9CA0fLeEquy+3/Xu/dqQTshKPmDehAo+4nXqeptEkDJbP3C0tSgPL4HJqG4DD@vger.kernel.org
+X-Gm-Message-State: AOJu0YydbIZWWHU52nCwLlyaUqvLWudGAFzr8CLVRl6yJubXNkXOO6rt
+	uFyV472ASbwuEkFD+LssO7NiHGFee67ndzXNJ0BzpRJFJ3WwQpcC
+X-Gm-Gg: ASbGncs/6jZrbXnAJJGaVbN6Roji4ySRxUrFhHF5/L7XSuvU2RIoW6poqSLoq33KTho
+	gmGlLxTPdiQIuL9VsgJ69U7YtdnXL7siMxLhjzOXCtuNIUgXzy4nDFT3IWRD/HSTZ5mnw7QLwLe
+	qh+W5xZ0ciIwoancG123tmNTIFGAOPJzEDd205gVdX6AVle/m+SAI2fqj2Zf++N3FE2+h2e5vku
+	npsP3DHA2uSklL6TS8lq+LMNEwaLyBWfHOUzqUUpWO1u4k9G1lA6fKnERyHQReMXWMHuNKygann
+	MOfCZege2v9SeiNFKOUGfiifIZIYSA50+mkDfJthLrPSHoWbREaxqQE=
+X-Google-Smtp-Source: AGHT+IEnsaBC89bibOD1BqC+ZZ1kovv3JGu+umNRENY/jx8wzQl9KTymklI/3Rp6DH54iA+FTxPRUw==
+X-Received: by 2002:a17:907:3f2a:b0:abf:5fa3:cf96 with SMTP id a640c23a62f3a-ac252a879d7mr1234111666b.14.1741600293920;
+        Mon, 10 Mar 2025 02:51:33 -0700 (PDT)
+Received: from localhost ([185.92.221.13])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac255589a30sm594247266b.107.2025.03.10.02.51.25
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 10 Mar 2025 02:51:25 -0700 (PDT)
+Date: Mon, 10 Mar 2025 09:51:24 +0000
+From: Wei Yang <richard.weiyang@gmail.com>
+To: Wei Yang <richard.weiyang@gmail.com>
+Cc: Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org,
+	Alexander Graf <graf@amazon.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Andy Lutomirski <luto@kernel.org>,
+	Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Borislav Petkov <bp@alien8.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Eric Biederman <ebiederm@xmission.com>,
+	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	Pasha Tatashin <pasha.tatashin@soleen.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Pratyush Yadav <ptyadav@amazon.de>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Tom Lendacky <thomas.lendacky@amd.com>,
+	Usama Arif <usama.arif@bytedance.com>,
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v4 02/14] memblock: add MEMBLOCK_RSRV_KERN flag
+Message-ID: <20250310095124.pa7dwgqhxglqrfes@master>
+Reply-To: Wei Yang <richard.weiyang@gmail.com>
+References: <20250206132754.2596694-1-rppt@kernel.org>
+ <20250206132754.2596694-3-rppt@kernel.org>
+ <20250218155004.n53fcuj2lrl5rxll@master>
+ <Z7WHL_Xqgoln9oLg@kernel.org>
+ <20250223002229.xuk6xlp23zr72hkc@master>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250308-v3d-gpu-reset-fixes-v2-4-2939c30f0cc4@igalia.com>
+In-Reply-To: <20250223002229.xuk6xlp23zr72hkc@master>
+User-Agent: NeoMutt/20170113 (1.7.2)
 
-On Sat, Mar 08, 2025 at 11:33:43AM -0300, Ma=C3=ADra Canal wrote:
-> V3D 7.1 exposes a new register block, called V3D_SMS. As BCM2712 has a
+On Sun, Feb 23, 2025 at 12:22:29AM +0000, Wei Yang wrote:
+>On Wed, Feb 19, 2025 at 09:24:31AM +0200, Mike Rapoport wrote:
+>>Hi,
+>>
+>>On Tue, Feb 18, 2025 at 03:50:04PM +0000, Wei Yang wrote:
+>>> On Thu, Feb 06, 2025 at 03:27:42PM +0200, Mike Rapoport wrote:
+>>> >From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+>>> >
+>>> >to denote areas that were reserved for kernel use either directly with
+>>> >memblock_reserve_kern() or via memblock allocations.
+>>> >
+>>> >Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+>>> >---
+>>> > include/linux/memblock.h | 16 +++++++++++++++-
+>>> > mm/memblock.c            | 32 ++++++++++++++++++++++++--------
+>>> > 2 files changed, 39 insertions(+), 9 deletions(-)
+>>> >
+>>> >diff --git a/include/linux/memblock.h b/include/linux/memblock.h
+>>> >index e79eb6ac516f..65e274550f5d 100644
+>>> >--- a/include/linux/memblock.h
+>>> >+++ b/include/linux/memblock.h
+>>> >@@ -50,6 +50,7 @@ enum memblock_flags {
+>>> > 	MEMBLOCK_NOMAP		= 0x4,	/* don't add to kernel direct mapping */
+>>> > 	MEMBLOCK_DRIVER_MANAGED = 0x8,	/* always detected via a driver */
+>>> > 	MEMBLOCK_RSRV_NOINIT	= 0x10,	/* don't initialize struct pages */
+>>> >+	MEMBLOCK_RSRV_KERN	= 0x20,	/* memory reserved for kernel use */
+>>> 
+>>> Above memblock_flags, there are comments on explaining those flags.
+>>> 
+>>> Seems we miss it for MEMBLOCK_RSRV_KERN.
+>>
+>>Right, thanks!
+>> 
+>>> > 
+>>> > #ifdef CONFIG_HAVE_MEMBLOCK_PHYS_MAP
+>>> >@@ -1459,14 +1460,14 @@ phys_addr_t __init memblock_alloc_range_nid(phys_addr_t size,
+>>> > again:
+>>> > 	found = memblock_find_in_range_node(size, align, start, end, nid,
+>>> > 					    flags);
+>>> >-	if (found && !memblock_reserve(found, size))
+>>> >+	if (found && !__memblock_reserve(found, size, nid, MEMBLOCK_RSRV_KERN))
+>>> 
+>>> Maybe we could use memblock_reserve_kern() directly. If my understanding is
+>>> correct, the reserved region's nid is not used.
+>>
+>>We use nid of reserved regions in reserve_bootmem_region() (commit
+>>61167ad5fecd ("mm: pass nid to reserve_bootmem_region()")) but KHO needs to
+>>know the distribution of reserved memory among the nodes before
+>>memmap_init_reserved_pages().
+>> 
+>
+>I took another look into this commit. There maybe a very corner case in which
+>will leave a reserved region with no nid set.
+>
+>memmap_init_reserved_pages()
+>    for_each_mem_region() {
+>        ...
+>	memblock_set_node(start, end, &memblock.reserved, nid);
+>    }
+>
+>We leverage the iteration here to set nid to all regions in memblock.reserved.
+>But memblock_set_node() may call memblock_double_array() to expand the array,
+>which may get a range before current start. So we would miss to set the
+>correct nid to the new reserved region.
+>
+>I have tried to create a case in memblock test. This would happen when there
+>are 126 memblock.reserved regions. And the last region is across the last two
+>node.
+>
+>One way to fix this is compare type->max in memblock_set_node(). Then check
+>this return value in memmap_init_reserved_pages(). If we found the size
+>changes, repeat the iteration.
+>
+>But this is a very trivial one, not sure it worth fix.
+>
 
-Where is the comaptible for this new block? Or was it already documented
-but with missing register?
+Hi, Mike
 
-> V3D 7.1 core, add a new register item to the list. Similar to the GCA
-> and bridge register, SMS is optional and should only be added for V3D
-> 7.1 variants.
->=20
-> In order to enforce per-SoC register rules, add per-compatible
-> restrictions. The restrictions will assure that GCA will only be added
-> in BCM7268 (V3D 3.3) and SMS will only be added in BCM2712 (V3D 7.1).
->=20
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> Cc: devicetree@vger.kernel.org
+I have done a user space test which shows we may have a chance to leave a
+region with non-nid set.
 
-Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
-commit msg. There is no single need to store automated output of
-get_maintainers.pl in the git log. It can be easily re-created at any
-given time, thus its presence in the git history is redundant and
-obfuscates the log.
+Not sure you are ok with my approach of fixing.
 
-If you need it for your own patch management purposes, keep it under the
---- separator.
-
-> Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
-> ---
->  .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 60 ++++++++++++++++=
-++++--
->  1 file changed, 55 insertions(+), 5 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Do=
-cumentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> index dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..c0caee055e8c18dbcac0e51aa=
-192951996545695 100644
-> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> @@ -27,15 +27,12 @@ properties:
->        - description: core0 register (required)
->        - description: GCA cache controller register (if GCA controller pr=
-esent)
->        - description: bridge register (if no external reset controller)
-> +      - description: SMS register (if SMS controller present)
-
-This lists five items, but you say you have max 4?
-
->      minItems: 2
-> =20
->    reg-names:
-> -    items:
-> -      - const: hub
-> -      - const: core0
-> -      - enum: [ bridge, gca ]
-> -      - enum: [ bridge, gca ]
->      minItems: 2
-> +    maxItems: 4
-
-So here 4, but earlier 5? These must come in sync.
-
-> =20
->    interrupts:
->      items:
-> @@ -60,6 +57,59 @@ required:
-> =20
->  additionalProperties: false
-> =20
-> +allOf:
-
-This goes above additionalProperties.
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - brcm,2711-v3d
-> +              - brcm,7278-v3d
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +          maxItems: 3
-> +        reg-names:
-> +          items:
-> +            - const: hub
-> +            - const: core0
-> +            - const: bridge
-
-Again un-synced lists.
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,2712-v3d
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 3
-> +          maxItems: 4
-> +        reg-names:
-> +          items:
-> +            - const: hub
-> +            - const: core0
-> +            - enum: [ bridge, sms ]
-> +            - enum: [ bridge, sms ]
-> +          minItems: 3
-
-Why is this flexible?
-
-Best regards,
-Krzysztof
-
+-- 
+Wei Yang
+Help you, Help me
 
