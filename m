@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-155965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DCB9A58C7F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:10:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6BBCA58C92
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:15:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBBCB169E23
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:10:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50346188CD01
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:15:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 108C01D5AB2;
-	Mon, 10 Mar 2025 07:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74AAE1B6CE4;
+	Mon, 10 Mar 2025 07:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lAUFjLvL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rl4jWlx1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A3A13E41A;
-	Mon, 10 Mar 2025 07:10:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD4A1A841C;
+	Mon, 10 Mar 2025 07:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741590611; cv=none; b=BtodpNVx3AgY7cKel/SIHjqRlStmjHvqgOLqa6t2pLrHE6A0f+PgFz0pGjVCbESToY8SDmu03HYevfICg9LCgIRO/gqsVCmL0QOWYWXNQF33QRN/0yXWXEEM5eFluFHGrIGiWtY+kPOnMnb4MunS4YRp3QfBvsLOskpsj7D6tfM=
+	t=1741590929; cv=none; b=K242rrgHPJxBYNF69R77YZdEOkz76icphPDLN302CaZAnjAuIzH4qK3OYXUtOiDZtV+cfjsRTTJuNml6iQXcxp8tABYjWxQlQMg1P/7XhGlMAbXF/EVHWVZGu1wOR3ZHSM9TG83vmCyqJKae6+tAgMFlriuyQmMk1xChvI3eC7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741590611; c=relaxed/simple;
-	bh=QA3bbwt1UA1O5SKgVnD1/ykmutWxVSH9ooV6JFzCOLA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GbQAnuaPNYTurf4kHzmg7ToW/zwRRWTfVL0newUsuN9xG2c376hIlGk1no4dQnR0k47ez/pTy3pYYSsmCf4xKx8xxmP77sIO/NIrrVhC9YPPu0kWdLeAn+mSc8BZOzQwzMZ9o59ZDtYMOStF/QJNaMKNXZsHWGj9JgzvSSZHllI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lAUFjLvL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E15C4CEE5;
-	Mon, 10 Mar 2025 07:10:06 +0000 (UTC)
+	s=arc-20240116; t=1741590929; c=relaxed/simple;
+	bh=ukmBN1EwaxLenjYh9LRHAQi25Riq9TJLf4Rh32znRWU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=DSPlzw/f5tkYkKTi6XTDPA3eYRpfEtvb/t+PSAi52EC8Kcorw8QlcNnRClv9a2ZrnYdwGGPzmeKOLftJKgAI2WfJJrl7/M/GbmG+rZO/YkOV7t7BYrNvaSWuzB1/MXclbDyAhPRDkjXUVXl7n6JOuPsX7jn1Ale+NDXzGafpANU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rl4jWlx1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E459C4CEE5;
+	Mon, 10 Mar 2025 07:15:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741590610;
-	bh=QA3bbwt1UA1O5SKgVnD1/ykmutWxVSH9ooV6JFzCOLA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lAUFjLvLVtFibL/Ahwre76yZO6Gvs5qIY38563ZVTjl2fdJhsi/3GiVYvbMlR3rw/
-	 +9bRX9TUgfh64Va4Y+T0OFLqnR+1WnyfWwTgr8ZTpFQ+fVgVAEtn4nMu9ks+o45Xwc
-	 Pjgn6TG33/gZTOUTNFjbaEt3cdOP3KCd5uPLQvdH805RR5znn5u5jYc+7uj2H/xn/D
-	 BkRlQyYKdrNwJL70MpfaaDemf0n5DSDynieO1eTBHeB5Eardba4MJmMwQsTRvtXkmt
-	 4maRSmsYq1CK2nkDEiKnD6DNXxXr+h+0nBpuVV8QvXkIwOyVO11lfEre3wcDSpmA4f
-	 0uP/K18aG7vpw==
-Message-ID: <b5487295-241f-4b6a-9274-4764f42fc36d@kernel.org>
-Date: Mon, 10 Mar 2025 08:10:04 +0100
+	s=k20201202; t=1741590928;
+	bh=ukmBN1EwaxLenjYh9LRHAQi25Riq9TJLf4Rh32znRWU=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=rl4jWlx14Ui4SWBpbVbkusbb+1KD/CyraNvvMNlQlfm4Sj/MOtaBNFQPYaH5dB9md
+	 jxIJPpsvvAE/S01SPXxL1y8id2UyEV1ZNhmtM53lREI+QO6YWDq2j64n60VN2ccWxr
+	 kbLbBmB/aDtZoOydQBiEWQYPrIYp3mhIER0pjvpVswumtc/RaSMvYJ8bvO1jLVidcY
+	 tgw3SAp/96nUKGSwpZg8RSMH2CgDXQVx4rOwWRYk16LsMjd2nfDL8OhUFYe8eXR2Tb
+	 b917+Am92yndoTxAjoHULvNcsmbp9uybDjhnEyQAryiXItGPSNG2ZrCcAJcMyC20HV
+	 Dcqp7Gb3lM9pA==
+Message-ID: <e17cdf9d-ba96-41d2-9656-9e50d0e0795a@kernel.org>
+Date: Mon, 10 Mar 2025 08:15:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] ASoC: codecs: add support for ES8389
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: tiwai@suse.com, robh@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
- devicetree@vger.kernel.org, lgirdwood@gmail.com,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, perex@perex.cz
-References: <20250310030357.120390-1-zhangyi@everest-semi.com>
+Subject: Re: [PATCH v2 1/3] dt-binding: aspeed: Add LPC PCC controller
+To: Kevin Chen <kevin_chen@aspeedtech.com>, "lee@kernel.org"
+ <lee@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
+ <joel@jms.id.au>, "andrew@codeconstruct.com.au"
+ <andrew@codeconstruct.com.au>, "derek.kiernan@amd.com"
+ <derek.kiernan@amd.com>, "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
+ "arnd@arndb.de" <arnd@arndb.de>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Mo Elbadry <elbadrym@google.com>
+References: <20250304104434.481429-1-kevin_chen@aspeedtech.com>
+ <20250304104434.481429-2-kevin_chen@aspeedtech.com>
+ <8740eeb8-9467-48bb-a911-e70c3da3c45a@kernel.org>
+ <PSAPR06MB494973DC08A8105EA05FBE6D89D62@PSAPR06MB4949.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,21 +115,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250310030357.120390-1-zhangyi@everest-semi.com>
+In-Reply-To: <PSAPR06MB494973DC08A8105EA05FBE6D89D62@PSAPR06MB4949.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/03/2025 04:03, Zhang Yi wrote:
-> I apologize for not responding to this review comment.
-> But I did view these review comments and fixed the error.
-> In the meantime I will modify my cc list, do I need to resend a new version
-> of the patch to correct my error in my cc list?
+On 10/03/2025 02:50, Kevin Chen wrote:
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +        description: The LPC I/O ports to pcc
+>>
+>> Description is too vague. Why would we encode I/O ports as some numbers
+>> instead of GPIOs for example? If these are ports, why this is not a graph?
+> For the port-mmaped I/O in x80 architecture, BMC need to handle specific port I/O in the relative HW module.
+> So, I need to add the pcc-ports property as the snoop-ports property in Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
+> 
+>>
+>> Missing constraints - min/maxItems, defaults, minimum/maximum etc.
+> The port-mmaped I/O is defined from host, BMC as the device would capture the port I/O from the pcc-ports property defined in dts.
 
-Why this list uses different addresses in the first place?
+Put this information in the description, instead of copying property name.
 
-None of the patches had changelog, so you put additional effort on us to
-actually check what changed (see submitting patches).
+> 
+>>
+>>> +
+>>> +    required:
+>>> +      - compatible
+>>> +      - interrupts
+>>> +      - pcc-ports
+>>> +
+>>>    "^uart-routing@[0-9a-f]+$":
+>>>      $ref: /schemas/soc/aspeed/uart-routing.yaml#
+>>>      description: The UART routing control under LPC register space @@
+>>> -176,6 +205,13 @@ examples:
+>>>          #size-cells = <1>;
+>>>          ranges = <0x0 0x1e789000 0x1000>;
+>>>
+>>> +        lpc_pcc: lpc-pcc@0 {
+>>> +            compatible = "aspeed,ast2600-lpc-pcc";
+>>> +            reg = <0x0 0x140>;
+>>> +            interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+>>> +            pcc-ports = <0x80>;
+>>
+>> So what 0x80 stands for?
+> Host as x86 architecture would access the 0x80 port, which is mapped to the BMC PCC HW module.
+> As a result, x86 can keep the port-mmaped I/O usage and access the BMC device, which is needed to know which port using in the PCC module in BMC.
 
+And on different boards this is not 0x80?
 
 Best regards,
 Krzysztof
