@@ -1,176 +1,144 @@
-Return-Path: <devicetree+bounces-156236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82CC2A59AD2
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 725A4A59AD9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:22:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 394AC3A3BCC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:20:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E1D13A3AAF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE6AA22F166;
-	Mon, 10 Mar 2025 16:20:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A3A22FDE2;
+	Mon, 10 Mar 2025 16:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="X13QNl68"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BzapjECG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-80006.amazon.com (smtp-fw-80006.amazon.com [99.78.197.217])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E927A22B8A0;
-	Mon, 10 Mar 2025 16:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=99.78.197.217
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE5A219D8A0;
+	Mon, 10 Mar 2025 16:22:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741623634; cv=none; b=WLT9IxeBe3HQa/5k96HFIdrueriLmMERR8TCpofj0bD3wZfG0DjOH2Sz26T5cg+yLK4bfqSWqdBaBfUtCPjQTYF38rH1NKqf+NYbSuEVaPgkX0uRz3U1N1QnK3K4b3qCcMQJIyFt19HWos8fJW/k+2w6g+BWZau05QFJwbBCiPs=
+	t=1741623727; cv=none; b=o9tDVepUvl0irpaWyxNqHfrcRJNfiwFB3rYF8bQkQGYc9HaLX1RcF+IzJEf52nQ/FKAU4EVGI5zwaoiP6GtLfKBrwJBIljssWSYYs/mesjwawBVk9TtVQLAcMEIzGVmuH1s9AcYTqv0sVFowM+yc9ONsTCPc60DizsL4kUhX0Cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741623634; c=relaxed/simple;
-	bh=1v3xRWteGrI67pFecY5ifRB8yjRjr4Q9dY4h7fCYqW0=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=DoPrz7MURzYx2DuKDsh5jeYw/bWCKfwnWXD5knGeiHFhOtMV771YK+/XUy2hjY4/vWim17VjPjFohOiHlkTLk5RjXvRkttxD3n1O0LEJusGuSzbi/tsDn9vSDTK6GTTZwmzOhqrEIOyLwJtgFoul/MzhPYpUU1UTeggVLWYAVSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=X13QNl68; arc=none smtp.client-ip=99.78.197.217
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
-  t=1741623630; x=1773159630;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=kua1+P7pBuS50I7egTYFseHRI4Y7N92xh/jBVSs2A1g=;
-  b=X13QNl68/Tb2qC/W+0Ysu9lx4YStKf4N+gncnZq05VNfwahDnuDniqV+
-   jn7VLFRKL8HIBdva5GqTUChzeeHkVx62HfSxxBW+rzUDDKNW8TMllgu2B
-   y8IwY+iRElmpZ2TrGWMNTxctgJi7CN7mK67+rul63ob5+8YYmX4sX1uyF
-   A=;
-X-IronPort-AV: E=Sophos;i="6.14,236,1736812800"; 
-   d="scan'208";a="30459260"
-Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.214])
-  by smtp-border-fw-80006.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 16:20:19 +0000
-Received: from EX19MTAUWB002.ant.amazon.com [10.0.38.20:25065]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.22.127:2525] with esmtp (Farcaster)
- id 4286f8c0-5c5d-4095-b20b-85582cfebec2; Mon, 10 Mar 2025 16:20:18 +0000 (UTC)
-X-Farcaster-Flow-ID: 4286f8c0-5c5d-4095-b20b-85582cfebec2
-Received: from EX19D020UWC001.ant.amazon.com (10.13.138.157) by
- EX19MTAUWB002.ant.amazon.com (10.250.64.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Mon, 10 Mar 2025 16:20:02 +0000
-Received: from EX19MTAUWC002.ant.amazon.com (10.250.64.143) by
- EX19D020UWC001.ant.amazon.com (10.13.138.157) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Mon, 10 Mar 2025 16:20:02 +0000
-Received: from email-imr-corp-prod-pdx-all-2c-475d797d.us-west-2.amazon.com
- (10.25.36.210) by mail-relay.amazon.com (10.250.64.149) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id
- 15.2.1544.14 via Frontend Transport; Mon, 10 Mar 2025 16:20:02 +0000
-Received: from dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com [172.19.91.144])
-	by email-imr-corp-prod-pdx-all-2c-475d797d.us-west-2.amazon.com (Postfix) with ESMTP id 1694FA04AA;
-	Mon, 10 Mar 2025 16:20:02 +0000 (UTC)
-Received: by dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (Postfix, from userid 23027615)
-	id A154B6221; Mon, 10 Mar 2025 16:20:01 +0000 (UTC)
-From: Pratyush Yadav <ptyadav@amazon.de>
-To: Mike Rapoport <rppt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, Alexander Graf <graf@amazon.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>, Arnd Bergmann <arnd@arndb.de>,
-	Ashish Kalra <ashish.kalra@amd.com>, Benjamin Herrenschmidt
-	<benh@kernel.crashing.org>, Borislav Petkov <bp@alien8.de>, Catalin Marinas
-	<catalin.marinas@arm.com>, Dave Hansen <dave.hansen@linux.intel.com>, "David
- Woodhouse" <dwmw2@infradead.org>, Eric Biederman <ebiederm@xmission.com>,
-	"Ingo Molnar" <mingo@redhat.com>, James Gowans <jgowans@amazon.com>, Jonathan
- Corbet <corbet@lwn.net>, Krzysztof Kozlowski <krzk@kernel.org>, Mark Rutland
-	<mark.rutland@arm.com>, Paolo Bonzini <pbonzini@redhat.com>, Pasha Tatashin
-	<pasha.tatashin@soleen.com>, "H. Peter Anvin" <hpa@zytor.com>, Peter Zijlstra
-	<peterz@infradead.org>, Rob Herring <robh+dt@kernel.org>, Rob Herring
-	<robh@kernel.org>, Saravana Kannan <saravanak@google.com>, "Stanislav
- Kinsburskii" <skinsburskii@linux.microsoft.com>, Steven Rostedt
-	<rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>, Tom Lendacky
-	<thomas.lendacky@amd.com>, Usama Arif <usama.arif@bytedance.com>, Will Deacon
-	<will@kernel.org>, <devicetree@vger.kernel.org>, <kexec@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-doc@vger.kernel.org>,
-	<linux-mm@kvack.org>, <x86@kernel.org>
-Subject: Re: [PATCH v4 06/14] kexec: Add KHO parsing support
-In-Reply-To: <20250206132754.2596694-7-rppt@kernel.org>
-References: <20250206132754.2596694-1-rppt@kernel.org>
-	<20250206132754.2596694-7-rppt@kernel.org>
-Date: Mon, 10 Mar 2025 16:20:01 +0000
-Message-ID: <mafs0zfhs97ta.fsf@amazon.de>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1741623727; c=relaxed/simple;
+	bh=A5qQmJExp6DielSJgYQNXBWO5HpaXjbjKE8NY5xct+w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FSfA+xvTDORJfLLWGdxMoQU/4PW2LjSxmO08ww6WCHkKBfg5DzgnnWMiJiElHpRQ2D56IJVhRg6TIcttIOIDgy53DVrrmZ2ltHz5HXOrbn0fC1uCtgWjT18dxJ4MYPpR2xRaL/zsZNa1ztR5DaL3TQpgVG82NejJ9dhb0cy3NoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BzapjECG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A792C4CEE5;
+	Mon, 10 Mar 2025 16:22:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741623727;
+	bh=A5qQmJExp6DielSJgYQNXBWO5HpaXjbjKE8NY5xct+w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BzapjECGdpMjq0uUmm70apc52tQeL2y+JZlg17EqsK4Dl4OjdX5yYmPbG3TD3Tnst
+	 r59kdpb4QgbAqZkLs2dZH2571u2ELmeXEDH3YkFXNEKo2tVPBSGLTNXAtyPfCGcLMa
+	 5MPbVMuACwUezyvbG+r+Q2G188g26QxeZWfwhgqN22H41pgyJhqzVaIxaSrcuEwPLA
+	 gAcg7uES8cRzgKhI8L5+rgany+JdRdw3cYeCFchKHhYKHex4ZMf+JlftaSBnStNnMo
+	 Le4Zl89NgMsS2s6/8DKvbfeyxxGgtEomedAU/1GAWAU7Dd/i5QiQiNeMs2qmT6kD1s
+	 4AaOoyErtFeDA==
+Message-ID: <63f8aa7d-fcd4-450f-b3a1-44886a29fc7e@kernel.org>
+Date: Mon, 10 Mar 2025 17:22:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: fsl: Add VAR-SOM-MX6UL SoM and
+ Concerto board
+To: Antonin Godard <antonin.godard@bootlin.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20250310-varsom6ul-concerto-dts-v3-0-551e60713523@bootlin.com>
+ <20250310-varsom6ul-concerto-dts-v3-1-551e60713523@bootlin.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250310-varsom6ul-concerto-dts-v3-1-551e60713523@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Mike,
+On 10/03/2025 16:56, Antonin Godard wrote:
+> Add support for the Variscite i.MX6UL VAR-SOM-MX6UL and the Variscite
+> Concerto carrier board.
+> 
+> Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
+> ---
+<form letter>
+This is a friendly reminder during the review process.
 
-On Thu, Feb 06 2025, Mike Rapoport wrote:
-[...]
-> @@ -444,7 +576,141 @@ static void kho_reserve_scratch(void)
->  	kho_enable = false;
->  }
->  
-> +/*
-> + * Scan the DT for any memory ranges and make sure they are reserved in
-> + * memblock, otherwise they will end up in a weird state on free lists.
-> + */
-> +static void kho_init_reserved_pages(void)
-> +{
-> +	const void *fdt = kho_get_fdt();
-> +	int offset = 0, depth = 0, initial_depth = 0, len;
-> +
-> +	if (!fdt)
-> +		return;
-> +
-> +	/* Go through the mem list and add 1 for each reference */
-> +	for (offset = 0;
-> +	     offset >= 0 && depth >= initial_depth;
-> +	     offset = fdt_next_node(fdt, offset, &depth)) {
-> +		const struct kho_mem *mems;
-> +		u32 i;
-> +
-> +		mems = fdt_getprop(fdt, offset, "mem", &len);
-> +		if (!mems || len & (sizeof(*mems) - 1))
-> +			continue;
-> +
-> +		for (i = 0; i < len; i += sizeof(*mems)) {
-> +			const struct kho_mem *mem = &mems[i];
+It looks like you received a tag and forgot to add it.
 
-i goes from 0 to len in steps of 16, but you use it to dereference an
-array of type struct kho_mem. So you end up only looking at only one of
-every 16 mems and do an out of bounds access. I found this when testing
-the memfd patches and any time the file was more than 1 page, it started
-to crash randomly.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
 
-Below patch should fix that:
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
----- 8< ----
-diff --git a/kernel/kexec_handover.c b/kernel/kexec_handover.c
-index c26753d613cbc..40d1d8ac68d44 100644
---- a/kernel/kexec_handover.c
-+++ b/kernel/kexec_handover.c
-@@ -685,13 +685,15 @@ static void kho_init_reserved_pages(void)
-             offset >= 0 && depth >= initial_depth;
-             offset = fdt_next_node(fdt, offset, &depth)) {
-                const struct kho_mem *mems;
--               u32 i;
-+               u32 i, nr_mems;
- 
-                mems = fdt_getprop(fdt, offset, "mem", &len);
-                if (!mems || len & (sizeof(*mems) - 1))
-                        continue;
- 
--               for (i = 0; i < len; i += sizeof(*mems)) {
-+               nr_mems = len / sizeof(*mems);
-+
-+               for (i = 0; i < nr_mems; i++) {
-                        const struct kho_mem *mem = &mems[i];
- 
-                        memblock_reserve(mem->addr, mem->size);
----- >8 ----
-[...]
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
--- 
-Regards,
-Pratyush Yadav
+
+Best regards,
+Krzysztof
 
