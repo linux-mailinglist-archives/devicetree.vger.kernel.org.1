@@ -1,169 +1,111 @@
-Return-Path: <devicetree+bounces-155925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714C8A5897F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 01:09:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0FD1A58994
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 01:13:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF28816971C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 00:09:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50EC2188B559
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 00:13:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886C1139E;
-	Mon, 10 Mar 2025 00:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8475139E;
+	Mon, 10 Mar 2025 00:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="owXf03Nz"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="B53pD1jc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DF0481E;
-	Mon, 10 Mar 2025 00:09:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C42210FD
+	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 00:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741565361; cv=none; b=JK0YzriVkFvddyfMG3zzceZxQ0kFnOgMOCiJfMuW4tjbFwF1YD7bN8dEdmxGlq61yamqZ/PuBOS0LEbTON5lOeaA4nAfrAITAje3XUN53Le5USSTrSkwbx0WgTRZ6AxSiUUA4vYLhlfwZZAgJkCj0lx6hs3TKMeKGlNpUyE2P0g=
+	t=1741565588; cv=none; b=Mvkdq1ttrWrVviI2IeyUln2JTkCczmnEZ8KcjkdUIxtIrOHrOqbXwUwY/iglTXa+arMxtTiQ/mKROSRqJXA7Yt3w5iUhGm1PciPpqATzMMpWsUhHfJNu5iVcjTJTQFLKLQRB2kqKlDn3bzjnRFUYm56Xv+Q6HBONCgXcZkbj3+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741565361; c=relaxed/simple;
-	bh=xhdh8DfzjzkkyMzCsHq/3sp7L1dCisrxi/w6JvA65VM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nsw7jewiZxo5GiV7s8yiB5xKov6eOPElUtArAqttniZ1A8aoile2/5H8KNnoy4TBtB+svyoao0Mg55srFTHVJPluM2qKJfZgcTS1S9V1ins0MYpJ8q8HQtH/oqmV3IQwl0ZJ07yc2BeK8mFoij4PXLb0pfsvKM05cw7Ng8OYa84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owXf03Nz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D6BDC4CEED;
-	Mon, 10 Mar 2025 00:09:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741565360;
-	bh=xhdh8DfzjzkkyMzCsHq/3sp7L1dCisrxi/w6JvA65VM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=owXf03NzPRZYWvMX/ceVRzsVgnyp8t/wzqg4ZFNlPLtcyuhdBRRUcF7PBKAnp0RbF
-	 9U/xNMsyOgVBQ4YAks0VasLcRdX0kB94ZqbQTQyw+wNQbYgUxbizDnSQ54SxNGpYp8
-	 jixZe/4tBIyomISBimbNNVTz3nyOHY9fDpgLYvEz+g3Fl6lnR/lqFj8ifKnFDdUqNT
-	 MoYTXdX6/QPdO4F9ryrKGdl+EDNiNPobAvOQkw8cBt3AX7ClOCDiHHs/W5fEzoHAhH
-	 Z1UjD3/WetPQhAU8ZgQOSqk61+c0mUQM2wMhd3SF6hA0TREBSvkBU96PZm8Jv08aTf
-	 NpEe1/E4XOngQ==
-Received: by venus (Postfix, from userid 1000)
-	id 55276180B94; Mon, 10 Mar 2025 01:09:17 +0100 (CET)
-Date: Mon, 10 Mar 2025 01:09:17 +0100
-From: Sebastian Reichel <sre@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hovold <johan@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC 1/2] arm64: dts: qcom: x1e78100-t14s: Add LCD variant with
- backlight support
-Message-ID: <qh6bb2h6ntyy6cvcigvnfp6gurxcvryg44ybd3kf3y73wxl5ua@hk4wydp4tn45>
-References: <20250306090503.724390-1-abel.vesa@linaro.org>
- <20250306090503.724390-2-abel.vesa@linaro.org>
- <lolqokpczxdscvgj6xdfyxblmle3csgzje3fgo4itzspgmeriy@7zzx7hg2zfks>
- <Z81dODU91zDPo/H5@linaro.org>
+	s=arc-20240116; t=1741565588; c=relaxed/simple;
+	bh=iGJdYcl/t5QjJX9+gwTgiqfKfbbSeqSFhSlg9Qw2U2g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GRzXQms9hkIbdRpPL525/S0SnIvbPr1ypwRSOXMmZRl9aNUAs4WQ2B0rtLVFEYzc/MOfvmz0ewBVobnOMEV4NyI/zXP+vIeZpdRWbaK82Ng1ndHAJthbnd3wpMc+Z118/xvmDsq7tuTHZZuBwuJn1mhNTSmYAsLQm97XZqM0y/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=B53pD1jc; arc=none smtp.client-ip=121.127.44.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1741565586;
+ bh=HkcBOyMrU08By5wz8cHkuMlZXuzZuC30spWDpSCMgq8=;
+ b=B53pD1jch6CAxTz1fMg7CbahBoJSxCIjl43fYcIFY6Bt9u/tjPf2nuhUyGH+8785GBDOICVPr
+ gyXPIFf4hPW32QBUwnNbWG1JZeu8vin2n5/fO7OGAefhciZRhXTh1ncf+b1DWkD1DbKS7NiNpZ/
+ o6Z5mlcXLviFKsJh57TizDTxfrM2sjMjp39B+1OMy0i95ik1R7nPe9oDXO/dizRY8fFk9su//B8
+ 14xp7RfFCPuyW2dpjGPv2n20izuhGnTrvgLcg0m1yf2JgbSDVSQ3sD+Mh+kM6y8QzSCF2P8F5CF
+ Cbgb4ceISf4YlCIybvTI78SaKdPZqMXcHV7xIPVfpU1Q==
+X-Forward-Email-ID: 67ce2e8ff812de2512d1f540
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.59
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Yao Zi <ziyao@disroot.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH v2 0/2] rockchip: Enable Ethernet controller on Radxa E20C
+Date: Mon, 10 Mar 2025 00:12:49 +0000
+Message-ID: <20250310001254.1516138-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="j6wfhyh62rj4x5ws"
-Content-Disposition: inline
-In-Reply-To: <Z81dODU91zDPo/H5@linaro.org>
+Content-Transfer-Encoding: 8bit
 
+The Rockchip RK3528 has two Ethernet controllers, one 100/10 MAC to be
+used with the integrated PHY and a second 1000/100/10 MAC to be used
+with an external Ethernet PHY.
 
---j6wfhyh62rj4x5ws
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC 1/2] arm64: dts: qcom: x1e78100-t14s: Add LCD variant with
- backlight support
-MIME-Version: 1.0
+This series add device tree nodes for the Ethernet controllers found in
+RK3528 and enable the LAN interface on Radxa E20C.
 
-Hi,
+This include a gmac0 node for the 100/10 MAC and its related integrated
+PHY node that only have recived limited testing. I have no board that
+expose an Ethernet port for the gmac0 and the integrated PHY. However,
+the PHY can be identified on addr 0x2 as 0044.1400 and in vendor kernel
+this relate to the Rockchip RK630 PHY. A proper PHY driver will be
+needed to support any real use of gmac0.
 
-On Sun, Mar 09, 2025 at 11:19:52AM +0200, Abel Vesa wrote:
-> On 25-03-08 01:01:31, Sebastian Reichel wrote:
-> > Hi,
-> >=20
-> > On Thu, Mar 06, 2025 at 11:05:02AM +0200, Abel Vesa wrote:
-> > > Due to the fact that Lenovo Thinkpad T14s Gen6 is available with both
-> > > OLED and LCD, the backlight control differs HW-wise. For the LCD vari=
-ant,
-> > > the panel's backlight is controlled via one of the PWMs provided by t=
-he
-> > > PMK8550 PMIC. For the OLED variant, the backlight is internal to the
-> > > panel and therefore it is not described in devicetree.
-> > >=20
-> > > For this reason, create a generic dtsi for the T14s by renaming the
-> > > existing dts. While at it, add a node name to panel and drop the enab=
-le
-> > > gpio and pinctrl properties from the panel node. Then add the LCD var=
-iant
-> > > dts file with the old name and describe all backlight related nodes.
-> > >=20
-> > > So the existing dts will now be used for LCD variant while for OLED n=
-ew
-> > > dts will be added.
-> > >=20
-> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > > ---
-> > > [...]
-> > > +	backlight: backlight {
-> > > +		compatible =3D "pwm-backlight";
-> > > +		pwms =3D <&pmk8550_pwm 0 5000000>;
-> >=20
-> > I've tried this patch series together with the fix series [0], but
-> > without the duty cycle calculation change [1]. Instead I changed the
-> > period from 5000000 to 4266667. With that everything works as
-> > expected for me.
-> >=20
-> > [0] https://lore.kernel.org/all/20250305-leds-qcom-lpg-fix-max-pwm-on-h=
-i-res-v4-0-bfe124a53a9f@linaro.org/
-> > [1] https://lore.kernel.org/all/20250303-leds-qcom-lpg-compute-pwm-valu=
-e-using-period-v1-1-833e729e3da2@linaro.org/
->=20
-> Yes, I forgot to squash in the correct period.
->=20
-> The period should actually be 4266537. This is because the max PWM value
-> is actually BIT(resolution) - 1.
+Changes in v2:
+- Split from the "Add GMAC support for RK3528" driver series [1]
+- Add ethernet-phy@2 for the integrated PHY
+- Rebase on top of the "Support I2C controllers in RK3528" series [2]
 
-For the version with 4266537:
+This series depend on the "net: stmmac: dwmac-rk: Add GMAC support for
+RK3528" [1] series and the "Support I2C controllers in RK3528" [2]
+series for a clean apply.
 
-Tested-by: Sebastian Reichel <sre@kernel.org>
+[1] https://lore.kernel.org/r/20250309232622.1498084-1-jonas@kwiboo.se
+[2] https://lore.kernel.org/r/20250309070603.35254-1-ziyao@disroot.org
 
--- Sebastian
+Jonas Karlman (2):
+  arm64: dts: rockchip: Add GMAC nodes for RK3528
+  arm64: dts: rockchip: Enable Ethernet controller on Radxa E20C
 
->=20
-> Will update in next version.
->=20
-> The [1] patch was basically NACKed by Uwe. It is not needed if we set
-> the period to 4266537 in DT.
->=20
-> >=20
-> > Greetings,
-> >=20
-> > -- Sebastian
->=20
->=20
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  30 +++++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 105 ++++++++++++++++++
+ 2 files changed, 135 insertions(+)
 
---j6wfhyh62rj4x5ws
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.48.1
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmfOLakACgkQ2O7X88g7
-+pomfA//c6tWamks7e9QRfaDSQenMPScMxhqbQZjY+ppsNnrMMNNHx/CITtewZEW
-2eg5Ne6KXOTGxBUT64GA/aOQwRZztfaxwpjZ0g14SWB3Ev1WMrEFHthmpXXm15/j
-37pN7HZ0aD9fDHj1SDQziW4I1MyA3dIKWRVvJLd2gRybo2zcjW3HGkHYoVIoxJ3l
-IA+cyLgPdG5tPS2tlQQ/lIkyPtU2YIaLFqsCMtecm3BBDMHJVoV6oBhsilR+sNRu
-98XbyPRuEQ+Bt5/migLolPY8DyxMNHJalgKdYeba1LaY95GV77KebfqzuZx0bWPR
-eh15BKn9OdVjMoIAG7rCVTx0J9ZEeVCbMwaPYjEsrmZozx1p5SlrLQ8uHaoo8Opm
-wSu4eh2FlYx2i2mHynTS1PPH/x+K4u/tl59BVUTcFpGqjt9F7EvEJ0qbayYh1kWO
-u2BgY/BNVaXAbmxOapEfhPwYaOkOtO98WQImN2EkAbMEzZxQrJCcWyGIDPQWTXdq
-EzfT4yxM5usnFX35NBOabFsmWBcTu3htk4JPaql4ixJNjkpU2/nJomuZj7tIWnaD
-IznIjXdJPFNLMJ2w1aXCLj1ONXnBdq3pGfR8rYw1d4FxUDOnMTMEpSHNZfbIAMHd
-sp7m8ewzuPKd3+ClJADvhiKRA8vd8H4hT0UP8vEFGpnzApvKp8E=
-=L13G
------END PGP SIGNATURE-----
-
---j6wfhyh62rj4x5ws--
 
