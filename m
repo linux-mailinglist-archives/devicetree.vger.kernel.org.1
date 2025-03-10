@@ -1,87 +1,59 @@
-Return-Path: <devicetree+bounces-155948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 149D3A58BF3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:31:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E7BA58C21
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:39:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B76D63AB773
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 06:31:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4579B1889E77
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 06:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E34219DF99;
-	Mon, 10 Mar 2025 06:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TRREvZjI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480CD1CCB40;
+	Mon, 10 Mar 2025 06:39:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E0638B;
-	Mon, 10 Mar 2025 06:31:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CE11C5D7E;
+	Mon, 10 Mar 2025 06:38:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741588289; cv=none; b=t5tv9dSL3up5XbInADaHth7yapEp+H25G2Er8SR9Ed3Z45GyHpApGyHtac6Mk8aHEKSuUIgKBTHE555QcZuQr0C4LeAzHkhZW//Wgz4+bNNdP+nIPQh+Ba+XN8SrjtcU0fXksODH5oe+J601I4DK4jUdoMAA8CBn27juTasHDzM=
+	t=1741588740; cv=none; b=VPJlGHB/rvySPbUo0H5RqdgZzG8NRI0DnnBSLuFcl+QuuwzMve+rDGLWFYBZGyQmUsT9GTTWsBk39aWoaTuAP7/NILpcACvevj4joZgzfj4dvZHkNmzqYl4vG9zULCep8/xrYrHcd//GNpTOnLoB/ehzQk0YpKMQc9SRQwpVgFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741588289; c=relaxed/simple;
-	bh=N1IVw9Prc7yS+KvL8jqwChraNtxKkPbzlQHFDSxrf00=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=XIVkgn9CG1L2DYWwaR8kYjiTSpDcrhEZ+J+I4aZfMI5QQbM9i3DHGCqUmppPR5OMvnYqfSka4l52RvB3Z+d4Frt/hJGsx4/BMAVDaTmDbUctR9UQ78mNY9i7GTLGncxil9xJK0kK1dymF3R5q9OzdyOkXRbaJkghnIOYoOHwUQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TRREvZjI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 529NaHe3016888;
-	Mon, 10 Mar 2025 06:31:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=ugel6sWWUGF
-	rO4y4IZjbjidfYFBeyAc1dEwU3vLE/ns=; b=TRREvZjIEETGK+ULqvU0uK9etHg
-	ojYe8jmEolGuDdBliRehh3a+h9h1yQ4A5F/TPM3y8kzB1j2Ism8HO7QI56vXt+n1
-	dbA3hF6boOQ/XzzSM68NRTnm6DSGB4EBwvvoRhjNVthvW4yAUkqcQcscl0tlxAut
-	VyZhH/4xbBg8YLVg7itaOwMy9FeMMFxXxh6+0Tq4ndOnjSL0PWGymmNrRt3KJBN6
-	s+r6ZBSRQ4Ipt5gUhoCeGlupJwmKjwc/4kpWZvplvLelvPPF6Yoc2DQf0knuDPB6
-	iTn+2fuHgyDV3ulvnyOUJociy6TWk3Pe376/xrXZldnIckD3s1vg26vTT5g==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458eyt3pr7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 06:31:15 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 52A6VDRf026045;
-	Mon, 10 Mar 2025 06:31:13 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 45900hqg7f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 06:31:13 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 52A6VD53026032;
-	Mon, 10 Mar 2025 06:31:13 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 52A6VCnX026031
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 06:31:13 +0000
-Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
-	id BCFBD27C8; Mon, 10 Mar 2025 14:31:11 +0800 (CST)
-From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-To: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-        manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org,
-        dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
-        abel.vesa@linaro.org
-Cc: quic_ziyuzhan@quicinc.com, quic_qianyu@quicinc.com,
-        quic_krichai@quicinc.com, johan+linaro@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v4 8/8] arm64: dts: qcom: qcs8300: enable pcie1 interface
-Date: Mon, 10 Mar 2025 14:31:03 +0800
-Message-Id: <20250310063103.3924525-9-quic_ziyuzhan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250310063103.3924525-1-quic_ziyuzhan@quicinc.com>
-References: <20250310063103.3924525-1-quic_ziyuzhan@quicinc.com>
+	s=arc-20240116; t=1741588740; c=relaxed/simple;
+	bh=tZOgiknuCCubhajeAM4Mx79q2OJ2RkOqlALyn/E/1EA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RuDo8qnl460Qe0grNeJLZZyx8qA/JJOJufNWlaWlIe7vGDI+7Ffo6eOMuC7EZPNfeHDMiW1SP0Gp5E5Bc+Y0VmlZcNC2u9wB/XbNuwGkAVqc9i3Hy0CxVY4ipz6fOSmebWqtJ/VMs507cJ+pbJt2gUjA0I24MdP5ir0MM2QM6D0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 89F082020FC;
+	Mon, 10 Mar 2025 07:38:51 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3DED12020EC;
+	Mon, 10 Mar 2025 07:38:51 +0100 (CET)
+Received: from lsv03305.swis.in-blr01.nxp.com (lsv03305.swis.in-blr01.nxp.com [92.120.147.118])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id B9B241800081;
+	Mon, 10 Mar 2025 14:38:49 +0800 (+08)
+From: Pankit Garg <pankit.garg@nxp.com>
+To: linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	conor+dt@kernel.org,
+	robh@kernel.org,
+	alexandre.belloni@bootlin.com
+Cc: vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com,
+	daniel.aguirre@nxp.com,
+	shashank.rebbapragada@nxp.com,
+	aman.kumarpandey@nxp.com,
+	Pankit Garg <pankit.garg@nxp.com>
+Subject: [PATCH 1/2] dt-bindings: rtc: Add pcf85053a support
+Date: Mon, 10 Mar 2025 12:08:45 +0530
+Message-Id: <20250310063846.1867615-1-pankit.garg@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,91 +61,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PJigBdtmaczCEjX399J1bNnPdIOMPYWr
-X-Authority-Analysis: v=2.4 cv=CupFcm4D c=1 sm=1 tr=0 ts=67ce8734 cx=c_pps a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=6PXyUK08jhmDTziS1HcA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: PJigBdtmaczCEjX399J1bNnPdIOMPYWr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-10_02,2025-03-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- suspectscore=0 phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
- bulkscore=0 spamscore=0 mlxlogscore=897 lowpriorityscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503100049
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-Add configurations in devicetree for PCIe1, board related gpios,
-PMIC regulators, etc.
+Add device tree bindings for NXP PCF85053a RTC chip.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Signed-off-by: Pankit Garg <pankit.garg@nxp.com>
 ---
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 40 +++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ .../bindings/rtc/nxp,pcf85053a.yaml           | 44 +++++++++++++++++++
+ MAINTAINERS                                   |  6 +++
+ 2 files changed, 50 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85053a.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index c3fe3b98b1b6..2d849d060286 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -302,6 +302,23 @@ &pcie0_phy {
- 	status = "okay";
- };
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85053a.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85053a.yaml
+new file mode 100644
+index 000000000000..177afbe128d4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85053a.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2025 NXP
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/nxp,pcf85053a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PCF85053A Real Time Clock
++
++allOf:
++  - $ref: rtc.yaml#
++
++maintainers:
++  - Pankit Garg <pankit.garg@nxp.com>
++
++properties:
++  compatible:
++    enum:
++      - nxp,pcf85053a
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@6f {
++          compatible = "nxp,pcf85053a";
++          reg = <0x6f>;
++        };
++      };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8e0736dc2ee0..21a05e169564 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -17158,6 +17158,12 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+ F:	sound/soc/codecs/tfa989x.c
  
-+&pcie1 {
-+	perst-gpios = <&tlmm 23 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
++NXP RTC PCF85053A DRIVER
++M:	Pankit Garg<pankit.garg@nxp.com>
++L:	linux-kernel@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/rtc/nxp,pcf85053a.yaml
 +
-+	pinctrl-0 = <&pcie1_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie1_phy {
-+	vdda-phy-supply = <&vreg_l6a>;
-+	vdda-pll-supply = <&vreg_l5a>;
-+
-+	status = "okay";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -350,6 +367,29 @@ perst-pins {
- 		};
- 	};
- 
-+	pcie1_default_state: pcie1-default-state {
-+		wake-pins {
-+			pins = "gpio21";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		clkreq-pins {
-+			pins = "gpio22";
-+			function = "pcie1_clkreq";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		perst-pins {
-+			pins = "gpio23";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+	};
-+
- 	ethernet0_default: ethernet0-default-state {
- 		ethernet0_mdc: ethernet0-mdc-pins {
- 			pins = "gpio5";
+ NZXT-KRAKEN2 HARDWARE MONITORING DRIVER
+ M:	Jonas Malaco <jonas@protocubo.io>
+ L:	linux-hwmon@vger.kernel.org
 -- 
-2.34.1
+2.25.1
 
 
