@@ -1,121 +1,142 @@
-Return-Path: <devicetree+bounces-156070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF99A590F9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:21:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2ED5A59139
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:31:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A71387A4CCC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:19:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F1303A8D95
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:30:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9351224234;
-	Mon, 10 Mar 2025 10:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6DCC22579F;
+	Mon, 10 Mar 2025 10:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Vz5X2esZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RXuI27M1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A9D722577E
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 10:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E188B22578F;
+	Mon, 10 Mar 2025 10:30:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741602052; cv=none; b=jhztWq4wsm6Yzijxpzih/kMmhIcY0oLaiiwK1gsAxPf2Kt4P3SQXwDtTi0kZvqX8k1YmM+fzXJG+28fjPM5MLU4aPKR6gURB1zMZssjf5/VbGLbiSgW02wy6hxfSLGy+ng5ofBtLzumaguzxQqwzMfERb2ovy+fzgepecaoodCQ=
+	t=1741602657; cv=none; b=dXdWVlEWNmYkpNsptkT1DvWZFWlsROA3ZTLobUU40v/F0d+m7ylNy6A0iTGPoZ66CrQECZ3Nk6JFk1HVJ4hSnHpZoeWNgeeyebht5mTKmIVA6N81MHTHHimwniZpQYh5w8yOlD0uIn18mXMipg8zcVzjtWa5oAgqbKB+vtZq4II=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741602052; c=relaxed/simple;
-	bh=JL/iJrs0I5b9N2nPbKpSW6ls+LbJc9PGy7+bMaAhX1c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=krVXghzp3bquQiBjkrxfAEYVYEEe8971feo2Z0znkecF/T+Q7UeW7ixXrOxm4FKudnd5w77xULxIFCOe8LVLJgPii+CdJJ2e03dWskKu66Oq27zkJPZFsojBXIbabFXqrfNQjuci4cYV8FTdBEQs/VNNMDlX6Wol+lOpLL3Qf9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Vz5X2esZ; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-391342fc0b5so3192408f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 03:20:50 -0700 (PDT)
+	s=arc-20240116; t=1741602657; c=relaxed/simple;
+	bh=NgEc5/eyDsM2hrEW1RmGOqc9E+kFy+95H4SiztZ6Hnk=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eTmRmVjk7zuUqFNH5nofjHQiAc+EnPYMvfkZYsW1bqYac4h/h3dy+XRLWmz35pKtVb5n0n8/JVGd7q0PH9lGjqOpRI4BmkNseIiZGkwZk6MXqsLJedW17U/eQLxCQl9uXuwzg4Dw1Qy02NCxIxmkSLCNh9C58s0wxaq/Z/2xgX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RXuI27M1; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e66407963fso2235499a12.2;
+        Mon, 10 Mar 2025 03:30:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1741602049; x=1742206849; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/apE3VuG/fufAOpi2xtHrpN+LPCwiTLqat5jnVcZLFc=;
-        b=Vz5X2esZCUrYGhNvwmZms3LEf5m2fIIeP8Qo4q6XsYGl7HrRHu5lq5wZ/dYrtbeyFf
-         +e3E3DU7L9sMiDZjtKg750KT2ni/jqa96gskQn3XzM54acNmqEixqTPsO7SG21OrzIU8
-         l9NKsvIyvj6pOl+Q4aNwB8OndREXTmKfQXohyJU++oswyLIWsRJl/uExzw0YoY4NK5EZ
-         +tV0Df8DXb3LwWicZlgj1V/2zX6uaJrDzah3yy/KYWWi5VINzGQUEL4npoFAUal9PzPq
-         uaW2Vi790cQeT/KuuwUDSd8/Teq60q032FZAVNhBQlg10uMh/VshKAOLQLBNMAFOA4AL
-         zOHg==
+        d=gmail.com; s=20230601; t=1741602654; x=1742207454; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=kNhM/0IjcjblchV98Qq8e/1t6zgAbQVQNq8rXKMpriY=;
+        b=RXuI27M1ZZ2EDK+NwW/jLNuulYzmFql3mQ2Qk9avvK+qmcHO4LucBTvhUerCEhgG5J
+         rcIJcN8CSB3TMEd5it/uPQuV619eI8Zw2CH3TZ1VWwCj/leFbALYNmNbW4E/5fa+r5Yw
+         Va7v2YwzKU+c9VQU1yP+tRPSHiSRxLqKs0mlsxpa71iBSvSp3aBNfnq6MxAToMIm6xXH
+         jgq507Pk/yDzEUak8FqtPceMqusnsahOBO5q8DyjjNNOBGsat305Y6OF8omzNvn3a5GW
+         zneW3SbyzQRFHqS0n0w7sgUBIy6vtxLGkfE/piMFkQ/c3qh3cVDg+o07Q9s0Ly2Fn/Qj
+         fsuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741602049; x=1742206849;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/apE3VuG/fufAOpi2xtHrpN+LPCwiTLqat5jnVcZLFc=;
-        b=KjI5K6HKnqD5E1DePOGihgj0+8sLHA1zObFU3GGGby0CLYQWqO/AaNyShWuL8PwF7X
-         JHBFlKdLlylbh1jjTyvJYp9jeYopJQPJN2ypsWdMO0/2SOO38APXdHxUXV1+KtR2I/Mo
-         i81skJ2tjTwwn8V6pS24ubuZXKM20xn9b6pfAFvdWp7+e1nzVJUUq8FIC2ajtXx6/FbA
-         cyu2H/MRrmDHh695bbK/z6zDNfoK8uL/3KYMPFlvLdRs8YVUuHcYUnEoNlO0ONgRz6iq
-         3eyRnqA9fJB6s/5Idn2Ck0lfOkuNK2AAxVs41EYbSx7XAOFL6gNNWiD8RrsnQfJsbjOn
-         6IUA==
-X-Forwarded-Encrypted: i=1; AJvYcCUroTkOsrn9TvHljNlYe2bYnt9Kr1GNePK8HMlKfBwnB07PJQ+pwlrAx9mp4xWJJqZsGeqLuB19BxKQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUS2zwJNCf4VOjolxKCg1yQKCIMZ8D0X5Z01Neg0RTwvPcs/ex
-	NuLgRhMqSekIWuDBfZUtJSXjSQCBnD6FlJTl1hfzJ3QXxD/iXU1t51ZA1cfNMfE=
-X-Gm-Gg: ASbGncsLLETRD3WbLZFEiBxZI97Ns9wBsXpmlGMEYx5TO3wS1Mecar0GCzyh2lcGfVY
-	bPq4aV+I6kfZRVQpaajucdshZc+wK32pOIEbVCLmEypoI4x1IHuDdIZacXe1p40i0F4imUD0iJt
-	ZdTkYVuf05eAhdAcjVMuVMrvXteQrCW/PtJYs/w3ss4tOyGGBO+AsEy2R58ZEo0bgfnqfhj+Y8c
-	kT9irvt179NCzTsmFzknIEs6BU7gGsvWW9uDC7gzVII52X/Aq3Iz+HWdBHuHxs3rg0kwRDjSN2n
-	sxVWQOypgRIUGY3U5blyRJw/lG8mzdVZOEkO/k2xvAZH
-X-Google-Smtp-Source: AGHT+IFfzfWd3QOlDox/vtQwZeERmiQYf6W46ID0K0ZY6jsQM3TpjDckCeiqjrDVUJkjElclE1Hehw==
-X-Received: by 2002:a5d:59a8:0:b0:391:328d:65a2 with SMTP id ffacd0b85a97d-39132da24ddmr10077276f8f.38.1741602049284;
-        Mon, 10 Mar 2025 03:20:49 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:2711:39c0:fb51:b639])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912bfdfa52sm14068218f8f.21.2025.03.10.03.20.48
+        d=1e100.net; s=20230601; t=1741602654; x=1742207454;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kNhM/0IjcjblchV98Qq8e/1t6zgAbQVQNq8rXKMpriY=;
+        b=lovOuE3B8mwi4r/Frrz75aH48n87ktkrwkdKkmge6enrk+PSoRtEWBGpIgEgoy3BHq
+         nCTIeYNbev7RhuP1Q6dydbQVE+XkbXXS3wcVpnv+9pWoKfY9wyEL4hqxOOnCF4QOM0iX
+         RrTxwnr2x608H/jcEI+qd0pyby9QftIbKLCBds32MZUL0Av8+E/opNnSGWhp0g177c1o
+         wjoWnFeM4Lar1NnNuZPr6GoYEJoQNNxji+bAdcpqUP3lnIUlGjxMfXMDvwQ661udAE4B
+         r7kiGFuRbngM8+SSPgBghgdOsHeXNwPk1MQ1JSzWELbbouZUvlzcbvH5tUA6NZdVoC+w
+         4A7A==
+X-Forwarded-Encrypted: i=1; AJvYcCVaCJmVWWAZGGt7NVMikEy6+BRO4h0Rn9ZwGBaftmwn818ouy/BQOq7I/mkrgr9ujfdd0pHGxuRCNPxBAvO@vger.kernel.org, AJvYcCVqQvsvFG/dYcetrt8nWbruRixO1Is6zbIK/5mwA6avRHPbJHyoHk6W9TPqngwyFPqqRM2LT/41Zucl@vger.kernel.org, AJvYcCWRK4CHOruCOpPnw4+y0KiBW+oQ3HjAIKKJny9XiJKkeN6yR8e4jCQVe+JAQz2hqX5tO7JCkGdD89d7@vger.kernel.org, AJvYcCWTNMWcD/CbUhf//+4U2QCXm02idP8FCkhktA1nxYSR/WycLWkOUD/soyFLPI8j3cvYr5+BL4BgNakz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeELg9YWD1sdET90gGOV80ZyT6KkM3/v1313+mzMzetCJje5IS
+	Q/kGPDC72Xn0OTnZq1o/8JqMYSukyyFm5BwIRrhN0FJqDAFErK4b
+X-Gm-Gg: ASbGncv8yBe6C8kaT2hZtXuT+so8xQ9uk7I+7arRw96IpfxzE2iCExhlnSQNeWclKs5
+	itobLAnQdx3nvnSCyzlxnBC3eZcIEAjkFpoo6Na/qSGEnanTU3V5ZN0jLpT4pyvKL7lHHeGUpXR
+	Mx3wFKiCvGfJNZNG+lQwkySqbIK5K9zgJdfcykaRYFnTFElpd54DRKaaofrhs5PJ7RCSVZA1inE
+	/EndJVCb39yDvPIKBSbzuqeBME1h7GTJPSFHdeX+99EOU77mR+RlU0pj9qFP5QASeT3ueht8jUL
+	uHGnfqYloG72B2w+T1ezLNFNj0Z+Y+nFP4PjujKd3w==
+X-Google-Smtp-Source: AGHT+IHOgY/2k2K6r8nbyooLCIqhLZNyi8g28UASQ2a6eAtRtlwzSxaLJolXF0bJ1EZNYwNFw8sjfA==
+X-Received: by 2002:a05:6402:518a:b0:5d9:82bc:ad06 with SMTP id 4fb4d7f45d1cf-5e5e22bf16amr15660909a12.3.1741602653855;
+        Mon, 10 Mar 2025 03:30:53 -0700 (PDT)
+Received: from Ansuel-XPS. ([85.119.46.8])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c733f9d4sm6630840a12.10.2025.03.10.03.30.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Mar 2025 03:20:48 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
+        Mon, 10 Mar 2025 03:30:53 -0700 (PDT)
+Message-ID: <67cebf5d.a70a0220.fe6c9.6ad3@mx.google.com>
+X-Google-Original-Message-ID: <Z86_WkfgZk_HLWuy@Ansuel-XPS.>
+Date: Mon, 10 Mar 2025 11:30:50 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stefan Agner <stefan@agner.ch>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Frank Li <Frank.Li@nxp.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	imx@lists.linux.dev
-Subject: Re: [PATCH] dt-bindings: gpio: vf610: Add i.MX94 support
-Date: Mon, 10 Mar 2025 11:20:46 +0100
-Message-ID: <174160204380.20418.6002822066800519604.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250306170921.241690-1-Frank.Li@nxp.com>
-References: <20250306170921.241690-1-Frank.Li@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Daniel Danzberger <dd@embedd.com>, Arnd Bergmann <arnd@arndb.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Nikita Shubin <nikita.shubin@maquefel.me>,
+	Guo Ren <guoren@kernel.org>, Yangyu Chen <cyy@cyyself.name>,
+	Ben Hutchings <ben@decadent.org.uk>, Felix Fietkau <nbd@nbd.name>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org, linux-mediatek@lists.infradead.org,
+	linux-usb@vger.kernel.org, upstream@airoha.com
+Subject: Re: [PATCH 03/13] dt-bindings: soc: airoha: add SCU SSR Serdes port
+ binding
+References: <20250309132959.19045-1-ansuelsmth@gmail.com>
+ <20250309132959.19045-4-ansuelsmth@gmail.com>
+ <20250310-ultraviolet-earthworm-of-honor-df114b@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250310-ultraviolet-earthworm-of-honor-df114b@krzk-bin>
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-
-
-On Thu, 06 Mar 2025 12:09:21 -0500, Frank Li wrote:
-> Add compatible string "fsl,imx94-gpio" for the i.MX94 chip, which is
-> backward compatible with i.MX8ULP. Set it to fall back to
-> "fsl,imx8ulp-gpio".
+On Mon, Mar 10, 2025 at 08:54:14AM +0100, Krzysztof Kozlowski wrote:
+> On Sun, Mar 09, 2025 at 02:29:34PM +0100, Christian Marangi wrote:
+> > Add Airoha AN7581 SCU SSR Serdes port binding to define what mode is
+> > supported by each Serdes port. These special binding are needed to
+> > identify and provide the port mode from any user driver.
+> > 
+> > These modes are mutually exclusive and driver needs to correctly
+> > validate the current mode for the Serdes port in use.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  MAINTAINERS                              |  6 ++++++
+> >  include/dt-bindings/soc/airoha,scu-ssr.h | 24 ++++++++++++++++++++++++
 > 
-> 
+> This should be squashed with the binding for the device.
+>
 
-Applied, thanks!
+I split them to mute checkpatch warning
 
-[1/1] dt-bindings: gpio: vf610: Add i.MX94 support
-      commit: e93160942585832a1836381018daf9729eb9ca64
+"DT binding docs and includes should be a separate patch. See:
+Documentation/devicetree/bindings/submitting-patches.rst"
 
-Best regards,
+But I think I always took it wrong and with "docs and includes" it's
+intended in a single patch.
+
+Ok will squash!
+
 -- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+	Ansuel
 
