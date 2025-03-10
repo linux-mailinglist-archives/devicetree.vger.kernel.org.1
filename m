@@ -1,237 +1,311 @@
-Return-Path: <devicetree+bounces-156125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AC12A59548
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 13:55:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EC44A5954A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 13:56:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82C6516DC8F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 12:55:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20D1D188DA73
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 12:56:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A58713CFB6;
-	Mon, 10 Mar 2025 12:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F36F2227E96;
+	Mon, 10 Mar 2025 12:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5VLUjbt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KTKkoM9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D6F3EA76
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 12:55:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F407A3EA76;
+	Mon, 10 Mar 2025 12:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741611317; cv=none; b=MbTTVQgJfYjjmz07AAp+yJqfnyY4PqIVcvTm60OFNbzuRUIYEqIbg5KnXsaQxdIf+ch9SedJCf+YgrUg6fVDfl/bqbBasMpwNYzt8g2Mp9Z1+fnGzCC1I6u62rt9fL1Kx2jwD2/JBZObcA4PWpiNgVXamTs0BXLGSltZuSKMtIA=
+	t=1741611365; cv=none; b=Ez8u30hPSD3qrsb4ilpjNgrbzKyytj/Oq7C2oxmOqKdrk+75KUSKlHw/2GNAfM1zLu4+BUC3hfqxk9m0knQ4vt5znBiKFt688LNMwuu1rOgxvf7mFGg2ihZN/BaRGohUhAVwxanzxv9Pexjp+eMnpt/ntEeCLhtYZJ8UB1MmxOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741611317; c=relaxed/simple;
-	bh=FKHx3hmkGeOEpcIh5h+GlCH3fd6fGXZt7R80JKQ3PbE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sRk07IebtOFF1I74M4SdFjWhPGCp5wlFGwaaC4Z+SSZ0lpSuMGc4GmoDy5rogNIWbOUSVz6LMtZ8hhsQptGHI9nvvCgttkdzIFET4RdmyqLeCGDkpL42iK6Jo4MfUBS8YxE3AJmjNZrZHz12MfDwkTOxrbYWE7dbRCmYh3kro8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5VLUjbt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9635C4CEE5;
-	Mon, 10 Mar 2025 12:55:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741611317;
-	bh=FKHx3hmkGeOEpcIh5h+GlCH3fd6fGXZt7R80JKQ3PbE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M5VLUjbtCcPc3+4syWE7Ssk/AZZiJLFZnMCE+OaJZyOKl7MlddliiJ63d15Z6zNhW
-	 lKwu7Wdx2YNX54StXvzA2gKiUFUWN2e2c/kT38vBPDcKBiC+ewiGWPps40YzPSmRA3
-	 P1Dclzjg92vnb9ZmUGj81xEKoWyJYMFH+E+p5Pa2zMYVVykB70Ikl6xFbp9VOAMN+7
-	 xD361vB54s7aY7fYtQv8anbA8n8l2fyBbmbTJ3vVC72YxOfeCM0NabAMWwMmYM9fe1
-	 WAA+NmjQ0feMmXDziYxyrurcdmucpAu86M2n+ALEybFcWXTyM1iG0FwVrcXc8Z2QXh
-	 DuWcQDOHK6GqQ==
-Message-ID: <6f87918b-b4ca-4404-8f1e-e1100190c0f6@kernel.org>
-Date: Mon, 10 Mar 2025 13:55:09 +0100
+	s=arc-20240116; t=1741611365; c=relaxed/simple;
+	bh=W50C9myyD+f04dNjjlf3vCz4lf/WRKAWpjph/AEznqo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AtlIBXBifl2aU4+cE5A7VV24riJgFfIZmAz/tkFLSu+Pr7PESKMFaHUNofhQhcisT1oF5+CvRjSiNN42V2JMkirBTi2cebPh/FE1th1tIb3qtkBYldlKoIK3NNSvOeXnFM97mBC9nvY0rCGooAv7KWldDMfgk7gGYQZDKOrDk2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KTKkoM9E; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5499bd3084aso1860989e87.0;
+        Mon, 10 Mar 2025 05:56:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741611362; x=1742216162; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tqSie8Pu9UlkmTVB8KCTPHYG/3Uxc6sn89mUIbchqHc=;
+        b=KTKkoM9Et51nyvxx4sHogZU+DMTla7Dv+5oNIhpdIOj9TmXYAFtKytwxzsL1GTUjcZ
+         UtL+dv6n0k0wvUSakkuIDHdtWFR8kNHlVq7xhrFKtxyl4G+H6XXf6tq8dRPFNRKrq+SP
+         HZtvXcVbB0kQXuXMEiJWyQgwsHOoEDCtYkhIs+Tty2rCsfRJWs0LvuqGZva2ilGXc7Lo
+         x/B85THYWzWrnf6chu1Vj4IS8khoEMT2JrL/h9cf9mgL5kGqEXYMjLq/2pCxeIUqDMmU
+         st+8NKJRO276RcmnOvd9z0kHJyasth8WSY3uKL4NeYNDnAnHWL/7ZytrtjmXgLATO71n
+         x/7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741611362; x=1742216162;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tqSie8Pu9UlkmTVB8KCTPHYG/3Uxc6sn89mUIbchqHc=;
+        b=CIctrukcSMpBfZIb57zjRb6uXDia0TNXGSEgbveRXqOzfgjxUQspGpdmJtfgac4Srp
+         JB1KSCmeVptgOUfEBBT8OraVlJIwaO6ZA2OTvG2hEIuZeluvarqPGDXqcUngsv/GECdw
+         uVqGEnaWEaFHoWw5Wc+ZfKiUp3MUDewuM/65IO0y2W2SiNTc7eXBwNgEe4OYtenINn2y
+         PrwtoStKlvYGI04UTArlvtrUM8qTdHP7qZMUlIGpgE2FHrd07dYRsmzRZ9tAVSktJJJS
+         aus1Afwt4vvNM0ApOSa/aiG93AGx/tvWD5/0FfIt80a2lmxGRFkUlDSWfaxi60zYwXxl
+         OLGg==
+X-Forwarded-Encrypted: i=1; AJvYcCV0W9jHQrvZz8cQMxBHBpbSYDLv4M+GZGci5bsPQD+YSGvUosLrO7I4PItiRDXjhtV0U/3MUFdj@vger.kernel.org, AJvYcCVAKb1VCeHtYhms3+IvpqsJN1NXVGnR6y1kILWKZci8HChofvrZjhZlc1qypwCsB/kNwA3ocCSPN3ytBg==@vger.kernel.org, AJvYcCVAyIYVJnBgqH6jYAQjt1yM07ktp0QZjGVqFj0yzK0mrZxEkh3kbseN/2ILzwARQCy4F1gduu1sQwFX@vger.kernel.org, AJvYcCW1WLDoWz95LLjUhRAC2xgwt3NWCPJH8KOqPKoZ/Fcekrjqz+GLCDxAOwc+jDgWqo/IqenQzyhcNmMAKnw5@vger.kernel.org, AJvYcCWuXt+Ic+6LI+7e33mD0wyKRcNoEkBedLm/8xWG973zgDIuLKOxno6KACIXGOADM/H+8EcZ58bbeh4u@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqrqHJeZnlbVLx4rOuHiwe+aF8mWiEhca9QKE2PRIj1WEsmAzl
+	QtivqUeujaNp61XEsK6NLonTNoeYRp1w4GIFP7yBqMW8s+TEs5WF
+X-Gm-Gg: ASbGncvN1XJdZoe9wi2qDpwlcLEoWpDlaVVyC9qtS6H4NXBRoTIjiceNj9aBFFDiu1I
+	TDUCahE4/SxF78MtwQkB1EYVUmWNm8Ah2/FXzR7xw7CwHhRb66IaQrrP9v4hxbaPCkNPNApswds
+	ms0Pz//8iAsrKurpp8FErOjnjqKdLtZ9a9RNqNu98jiW4vO+dD3lyNI4JmT2CmEtitNfm96ttAA
+	PBE0jOf72tJLrlvKc2mlWSoz1l5qYMzqAf4BXsuHSN1JT6MPyxvJSktB9KvOiqvwrcjc6MhLguh
+	7iSXnjJk9k8JBCJguixKRaRdEAMhSajUArVh6BTlnMWTPJu05W0=
+X-Google-Smtp-Source: AGHT+IGhZSWHAvtCtWF+S1BsjEkbqrkDYmcIb4DzzzZPqCMUNu5kqWN7ZmWqkl/XnpG1SgIQ2+ZSNg==
+X-Received: by 2002:a05:6512:3e2a:b0:545:114a:5618 with SMTP id 2adb3069b0e04-54990e29ba2mr4430176e87.7.1741611361580;
+        Mon, 10 Mar 2025 05:56:01 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498b1c33f1sm1442139e87.226.2025.03.10.05.55.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Mar 2025 05:56:00 -0700 (PDT)
+Date: Mon, 10 Mar 2025 14:55:53 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v6 02/10] property: Add functions to iterate named child
+Message-ID: <ff924f640feeb87819d40557f12a04e607894682.1741610847.git.mazziesaccount@gmail.com>
+References: <cover.1741610847.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] dt-bindings: gpu: v3d: Add SMS to the registers'
- list
-To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
- Jose Maria Casanova Crespo <jmcasanova@igalia.com>,
- Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
- kernel-dev@igalia.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>, devicetree@vger.kernel.org
-References: <20250308-v3d-gpu-reset-fixes-v2-0-2939c30f0cc4@igalia.com>
- <20250308-v3d-gpu-reset-fixes-v2-4-2939c30f0cc4@igalia.com>
- <20250310-calculating-flat-cuttlefish-4c9fc2@krzk-bin>
- <4d224fc2-d077-47aa-8b52-edba30c62d19@igalia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <4d224fc2-d077-47aa-8b52-edba30c62d19@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-On 10/03/2025 12:57, Maíra Canal wrote:
->>
->>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->>> ---
->>>   .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 60 ++++++++++++++++++++--
->>>   1 file changed, 55 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>> index dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..c0caee055e8c18dbcac0e51aa192951996545695 100644
->>> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>> @@ -27,15 +27,12 @@ properties:
->>>         - description: core0 register (required)
->>>         - description: GCA cache controller register (if GCA controller present)
->>>         - description: bridge register (if no external reset controller)
->>> +      - description: SMS register (if SMS controller present)
->>
->> This lists five items, but you say you have max 4?
-> 
-> V3D 3.1 uses hub, core0, gca, and bridge (optional)
-> V3D 4.1 and 4.2 uses hub, core, and bridge (optional)
-> V3D 7.1 uses hub, core0, sms, and bridge (optional)
-> 
-> Therefore, for a given DT, you will have 4 items max.
-
-And how many items do you have here?
-
-> 
->>
->>>       minItems: 2
->>>   
->>>     reg-names:
->>> -    items:
->>> -      - const: hub
->>> -      - const: core0
->>> -      - enum: [ bridge, gca ]
->>> -      - enum: [ bridge, gca ]
->>>       minItems: 2
->>> +    maxItems: 4
->>
->> So here 4, but earlier 5? These must come in sync.
-> 
-> I added maxItems for reg in the allOf section.
-
-I don't think you answer the comments. I said you listed earlier 5 items
-and then you answered with saying devices have 4 items. Here I said
-these properties must be synced and you said why you added maxItems...
-Not related, read again the feedback.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qGIIpiwQ9PmQialC"
+Content-Disposition: inline
+In-Reply-To: <cover.1741610847.git.mazziesaccount@gmail.com>
 
 
-> 
->>
->>>   
->>>     interrupts:
->>>       items:
->>> @@ -60,6 +57,59 @@ required:
->>>   
->>>   additionalProperties: false
->>>   
->>> +allOf:
->>
->> This goes above additionalProperties.
-> 
-> Got it.
-> 
->>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - brcm,2711-v3d
->>> +              - brcm,7278-v3d
->>> +    then:
->>> +      properties:
->>> +        reg:
->>> +          minItems: 2
->>> +          maxItems: 3
->>> +        reg-names:
->>> +          items:
->>> +            - const: hub
->>> +            - const: core0
->>> +            - const: bridge
->>
->> Again un-synced lists.
-> 
-> Sorry, what do you mean by un-synced lists?
+--qGIIpiwQ9PmQialC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-xxx and xxx-names must have the same constraints. They do not have here.
-You have two different constraints and you can test your DTS to see that.
+There are a few use-cases where child nodes with a specific name need to
+be parsed. Code like:
 
-> 
->>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: brcm,2712-v3d
->>> +    then:
->>> +      properties:
->>> +        reg:
->>> +          minItems: 3
->>> +          maxItems: 4
->>> +        reg-names:
->>> +          items:
->>> +            - const: hub
->>> +            - const: core0
->>> +            - enum: [ bridge, sms ]
->>> +            - enum: [ bridge, sms ]
->>> +          minItems: 3
->>
->> Why is this flexible?
-> 
-> I cannot guarantee the order and bridge is optional.
+fwnode_for_each_child_node()
+	if (fwnode_name_eq())
+		...
 
-Hm? You must guarantee the order and I do not understand why this needs
-some sort of exception from all other bindings that only here you cannot
-guarantee the order.
+can be found from a various drivers/subsystems. Adding a macro for this
+can simplify things a bit.
+
+In a few cases the data from the found nodes is later added to an array,
+which is allocated based on the number of found nodes. One example of
+such use is the IIO subsystem's ADC channel nodes, where the relevant
+nodes are named as channel[@N].
+
+Add a helpers for iterating and counting device's sub-nodes with certain
+name instead, of open-coding this in every user.
+
+Suggested-by: Jonathan Cameron <jic23@kernel.org>
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+---
+Revision history:
+v5 =3D> v6:
+ - Add helpers to also iterate through the nodes.
+v4 =3D> v5:
+ - Use given name instead of string 'channel' when counting the nodes
+ - Add also fwnode_get_child_node_count_named() as suggested by Rob.
+v3 =3D> v4:
+ - New patch as suggested by Jonathan, see discussion in:
+https://lore.kernel.org/lkml/20250223161338.5c896280@jic23-huawei/
+
+Please note, the checkpatch.pl was not happy about the for_each...()
+macros. I tried to make them to follow the existing convention. I am
+open to suggestions how to improve.
+
+---
+ drivers/base/property.c  | 54 ++++++++++++++++++++++++++++++++++++++++
+ include/linux/property.h | 20 +++++++++++++++
+ 2 files changed, 74 insertions(+)
+
+diff --git a/drivers/base/property.c b/drivers/base/property.c
+index c1392743df9c..335262a894f4 100644
+--- a/drivers/base/property.c
++++ b/drivers/base/property.c
+@@ -945,6 +945,60 @@ unsigned int device_get_child_node_count(const struct =
+device *dev)
+ }
+ EXPORT_SYMBOL_GPL(device_get_child_node_count);
+=20
++/**
++ * fwnode_get_named_child_node_count - number of child nodes with given na=
+me
++ * @fwnode: Node which child nodes are counted.
++ * @name: String to match child node name against.
++ *
++ * Scan child nodes and count all the nodes with a specific name. Return t=
+he
++ * number of found nodes. Potential '@number' -ending for scanned names is
++ * ignored. Eg,
++ * device_get_child_node_count(dev, "channel");
++ * would match all the nodes:
++ * channel { }, channel@0 {}, channel@0xabba {}...
++ *
++ * Return: the number of child nodes with a matching name for a given devi=
+ce.
++ */
++unsigned int fwnode_get_named_child_node_count(const struct fwnode_handle =
+*fwnode,
++					       const char *name)
++{
++	struct fwnode_handle *child;
++	unsigned int count =3D 0;
++
++	fwnode_for_each_named_child_node(fwnode, child, name)
++		count++;
++
++	return count;
++}
++EXPORT_SYMBOL_GPL(fwnode_get_named_child_node_count);
++
++/**
++ * device_get_named_child_node_count - number of child nodes with given na=
+me
++ * @dev: Device to count the child nodes for.
++ * @name: String to match child node name against.
++ *
++ * Scan device's child nodes and find all the nodes with a specific name a=
+nd
++ * return the number of found nodes. Potential '@number' -ending for scann=
+ed
++ * names is ignored. Eg,
++ * device_get_child_node_count(dev, "channel");
++ * would match all the nodes:
++ * channel { }, channel@0 {}, channel@0xabba {}...
++ *
++ * Return: the number of child nodes with a matching name for a given devi=
+ce.
++ */
++unsigned int device_get_named_child_node_count(const struct device *dev,
++					       const char *name)
++{
++	struct fwnode_handle *child;
++	unsigned int count =3D 0;
++
++	device_for_each_named_child_node(dev, child, name)
++		count++;
++
++	return count;
++}
++EXPORT_SYMBOL_GPL(device_get_named_child_node_count);
++
+ bool device_dma_supported(const struct device *dev)
+ {
+ 	return fwnode_call_bool_op(dev_fwnode(dev), device_dma_supported);
+diff --git a/include/linux/property.h b/include/linux/property.h
+index e214ecd241eb..6dd9ae83e9a5 100644
+--- a/include/linux/property.h
++++ b/include/linux/property.h
+@@ -167,10 +167,18 @@ struct fwnode_handle *fwnode_get_next_available_child=
+_node(
+ 	for (child =3D fwnode_get_next_child_node(fwnode, NULL); child;	\
+ 	     child =3D fwnode_get_next_child_node(fwnode, child))
+=20
++#define fwnode_for_each_named_child_node(fwnode, child, name)		\
++		fwnode_for_each_child_node(fwnode, child)		\
++			if (!fwnode_name_eq(child, name)) { } else
++
+ #define fwnode_for_each_available_child_node(fwnode, child)		       \
+ 	for (child =3D fwnode_get_next_available_child_node(fwnode, NULL); child;\
+ 	     child =3D fwnode_get_next_available_child_node(fwnode, child))
+=20
++#define fwnode_for_each_available_named_child_node(fwnode, child, name)	\
++		fwnode_for_each_available_child_node(fwnode, child)	\
++			if (!fwnode_name_eq(child, name)) { } else
++
+ struct fwnode_handle *device_get_next_child_node(const struct device *dev,
+ 						 struct fwnode_handle *child);
+=20
+@@ -178,11 +186,19 @@ struct fwnode_handle *device_get_next_child_node(cons=
+t struct device *dev,
+ 	for (child =3D device_get_next_child_node(dev, NULL); child;	\
+ 	     child =3D device_get_next_child_node(dev, child))
+=20
++#define device_for_each_named_child_node(dev, child, name)		\
++		device_for_each_child_node(dev, child)			\
++			if (!fwnode_name_eq(child, name)) { } else
++
+ #define device_for_each_child_node_scoped(dev, child)			\
+ 	for (struct fwnode_handle *child __free(fwnode_handle) =3D	\
+ 		device_get_next_child_node(dev, NULL);			\
+ 	     child; child =3D device_get_next_child_node(dev, child))
+=20
++#define device_for_each_named_child_node_scoped(dev, child, name)	\
++		device_for_each_child_node_scoped(dev, child)		\
++			if (!fwnode_name_eq(child, name)) { } else
++
+ struct fwnode_handle *fwnode_get_named_child_node(const struct fwnode_hand=
+le *fwnode,
+ 						  const char *childname);
+ struct fwnode_handle *device_get_named_child_node(const struct device *dev,
+@@ -209,6 +225,10 @@ int fwnode_irq_get(const struct fwnode_handle *fwnode,=
+ unsigned int index);
+ int fwnode_irq_get_byname(const struct fwnode_handle *fwnode, const char *=
+name);
+=20
+ unsigned int device_get_child_node_count(const struct device *dev);
++unsigned int fwnode_get_named_child_node_count(const struct fwnode_handle =
+*fwnode,
++					       const char *name);
++unsigned int device_get_named_child_node_count(const struct device *dev,
++					       const char *name);
+=20
+ static inline int device_property_read_u8(const struct device *dev,
+ 					  const char *propname, u8 *val)
+--=20
+2.48.1
 
 
-Best regards,
-Krzysztof
+--qGIIpiwQ9PmQialC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfO4VkACgkQeFA3/03a
+ocXsFAf+LU/OMaLIK90guOZkCXVmdXWtZFayDmc2+XF+caxfZMX94Kw/Mcuk1I/M
+02dvrotcuGJztwgBBt4ZGZNYBm9aJfT5Xo6F4NQkEBrTNPJlgqUbdIIhSK1udrdO
+ecSH1jlN4ccNivYLjGrniD/3HD/FfrPDfejNTNyMmgtypLfigGSU671fM4Dve6Py
+9xdAispXLckAx9GcI/khoMw1H/NHMwEWUl2Lk1JRNQN2mXzPgiXm4YRV67t6mger
+e9VEr86Hxc4f8P4Warlt6V95nx8Mk0LUxJnHohbkULYHGL8KtE37gEYOaVD0riz2
+qb0adk3zTUTrMof2AMgaKds6u5P4rQ==
+=gndi
+-----END PGP SIGNATURE-----
+
+--qGIIpiwQ9PmQialC--
 
