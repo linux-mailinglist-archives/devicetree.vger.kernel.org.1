@@ -1,89 +1,74 @@
-Return-Path: <devicetree+bounces-156003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90646A58E22
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:28:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9B7A58E2A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:29:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92EFE7A4134
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:27:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CEF33ACCA8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD55B22330F;
-	Mon, 10 Mar 2025 08:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4A422333A;
+	Mon, 10 Mar 2025 08:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dt+61OBu"
+	dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b="pLvQJdim"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8451D54FA;
-	Mon, 10 Mar 2025 08:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail.8bytes.org (mail.8bytes.org [85.214.250.239])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562FF22330F;
+	Mon, 10 Mar 2025 08:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.250.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741595303; cv=none; b=dT3n1k4vGgi36HDvQzi+JLJKxAffI01ms4FnzlTvrnzCACwwVfNJJMdZtNhU2c+5TquT0h7BnbMUnCkh4+uBIIiApDCp+yGnCoWGO3wsVdVJCl09XgilgNeIq/PDLnAKJh4E/9DWawY6F7kcP4zJak79AFyNs5YaI+WH7VRF9VM=
+	t=1741595357; cv=none; b=sZTcqN5QlKXqU4y8qIpw3ON9Zy9vMXF51GmnC7zNOo+UWysjYX35C+uyo1gOgkg04X2ANFknapRlI9xGQ/6PaMr/AvTuo/sTNBnmmMarz0dLyqFMvVgydstv/VUv0SZcj2PTN+TDKme0tPbAl5c/YBDV70bXPGBrP3CBLsHaE/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741595303; c=relaxed/simple;
-	bh=7uCFQcex+j6cpQPJF/6LfRBEaDs9jns/4ey91A2Sm5Q=;
+	s=arc-20240116; t=1741595357; c=relaxed/simple;
+	bh=frX4G4i69BdoHfaR05B7WfBtiGFjU59BqKAKCBlX6vc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PLFjUHdFQo9/XyDWZRIIrUQn/sDUHV8ZAnxjCr7ahbhY03rzYD7qefrLl+VpY+XcoPaOKhV/gcOyfsRcmbKbHfy5lAFOxru24YGnYVYZg1nWtDVMxLVkwaGO9NVDXWWd0JLI90cTjPX4eZAgXOGA+IU4Ab6ku3b2R1Mzg4KLXds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dt+61OBu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20474C4CEED;
-	Mon, 10 Mar 2025 08:28:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741595303;
-	bh=7uCFQcex+j6cpQPJF/6LfRBEaDs9jns/4ey91A2Sm5Q=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=QZ0oklARkZ+OlLgPGFXjzBHs44wcQzH/4ONOsKD3xsj/x1JkPff8hdTHWQmSCNs3gG7gahKIk/HwAv4SWwQzG12T/F7JOvJOOyRbMmoTToJrE2IO+omg0t0dS5h9ToHjhs4KBv3Zj/zIi9cw+RH6A6SbCs0gHriWAID/KRyxZco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org; spf=pass smtp.mailfrom=8bytes.org; dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b=pLvQJdim; arc=none smtp.client-ip=85.214.250.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8bytes.org
+Received: from 8bytes.org (p4ffe03ae.dip0.t-ipconnect.de [79.254.3.174])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.8bytes.org (Postfix) with ESMTPSA id 1364A45229;
+	Mon, 10 Mar 2025 09:29:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+	s=default; t=1741595354;
+	bh=frX4G4i69BdoHfaR05B7WfBtiGFjU59BqKAKCBlX6vc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Dt+61OBuhSx0XzWa7kuR97NtRZolf+Ni76hFMdBs33YLt/1k+RMsxShKq8ywE5izv
-	 Xq0lyi+y7SJzKRcmF6pLe0/pMIp2CN1NtohvIhp4Lfz70fUXaKP8fdlcvDgL6nFqFz
-	 egPccLakn6UNDZwAc49vCsDGQvAccm2S6VOGcQu87kNkGYRfcWBfvdZMHBeMdQgSn4
-	 J/L+XCc+GdJd0FpcGKyrg/IzPOfmKo79PxsSU2iqjEbBsVqKufsF8EZdPd3pBHuFq6
-	 ipnF9XH2wTyTICRsMyZozegPxkb/EOVYqYIAdiNDHZduHzAW48E8qnjKEoT8Kf1pgw
-	 OUmx0WBZnksfg==
-Date: Mon, 10 Mar 2025 10:28:02 +0200
-From: Mike Rapoport <rppt@kernel.org>
-To: Wei Yang <richard.weiyang@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Eric Biederman <ebiederm@xmission.com>,
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Pasha Tatashin <pasha.tatashin@soleen.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	b=pLvQJdim6IyNh9OflrLb5oh+e8PpvuLCM7gou4Gbs0/mv/l0Y/CTYc5KJYczw60zh
+	 tyB81d0pFn7H4QWWzddDp47l9aIy2fBqzokWlz0g3XJfyBzaHLj7Cw/XF+dOnvcUgx
+	 ltV0QEF5YEldt6xlVgABrLyQ8mNC66Vlbe9G+8u9THehDW1Rde0MdBuqOWbjX1VyNw
+	 rqWATAisQ6IvQiG29+Xa3szaWqDZjlEB62Nqd/BeNV2EBXhGcEyXVkAdSJvBAaYkOy
+	 u8HEDFkVKAkbbvlEbGh0YDF5gu1Oor0qHpQjrXpS2vPEDIswU1Ee60j+y7dGCO00PP
+	 lG20mHqj4VUaA==
+Date: Mon, 10 Mar 2025 09:29:12 +0100
+From: Joerg Roedel <joro@8bytes.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Stuart Yoder <stuyoder@gmail.com>,
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+	Nipun Gupta <nipun.gupta@amd.com>,
+	Nikhil Agarwal <nikhil.agarwal@amd.com>,
+	Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
 	Saravana Kannan <saravanak@google.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v4 02/14] memblock: add MEMBLOCK_RSRV_KERN flag
-Message-ID: <Z86ikkLVHQhLmBWj@kernel.org>
-References: <20250206132754.2596694-1-rppt@kernel.org>
- <20250206132754.2596694-3-rppt@kernel.org>
- <20250218155004.n53fcuj2lrl5rxll@master>
- <Z7WHL_Xqgoln9oLg@kernel.org>
- <20250224013131.fzz552bn7fs64umq@master>
- <Z711VP45tjBi0kwx@kernel.org>
- <20250226020915.ytxusrrl7rv4g64l@master>
- <20250310075627.5hettrn2j2ien5bj@master>
+	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Charan Teja Kalla <quic_charante@quicinc.com>
+Subject: Re: [PATCH v2 0/4] iommu: Fix the longstanding probe issues
+Message-ID: <Z86i2BHhmAINErv_@8bytes.org>
+References: <cover.1740753261.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,56 +77,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250310075627.5hettrn2j2ien5bj@master>
+In-Reply-To: <cover.1740753261.git.robin.murphy@arm.com>
 
-Hi Wei,
-
-On Mon, Mar 10, 2025 at 07:56:27AM +0000, Wei Yang wrote:
-> On Wed, Feb 26, 2025 at 02:09:15AM +0000, Wei Yang wrote:
-> >>> 
-> >>> From the above call flow and background, there are three cases when
-> >>> memblock_alloc_range_nid() would be called:
-> >>> 
-> >>>   * If it is called before (1), memblock.reserved's nid would be adjusted correctly.
-> >>>   * If it is called after (2), we don't touch memblock.reserved.
-> >>>   * If it happens between (1) and (2), it looks would break the consistency of
-> >>>     nid information in memblock.reserved. Because when we use
-> >>>     memblock_reserve_kern(), NUMA_NO_NODE would be stored in region.
-> >>> 
-> >>> So my question is if the third case happens, would it introduce a bug? If it
-> >>> won't happen, seems we don't need to specify the nid here?
-> >>
-> >>We don't really care about proper assignment of nodes between (1) and (2)
-> >>from one side and the third case does not happen on the other side. Nothing
-> >>should call membloc_alloc() after memblock_free_all(). 
-> >>
-> >
-> >My point is if no one would call memblock_alloc() after memblock_free_all(),
-> >which set nid in memblock.reserved properly, it seems not necessary to do
-> >__memblock_reserve() with exact nid during memblock_alloc()? 
-> >
-> >As you did __memblock_reserve(found, size, nid, MEMBLOCK_RSRV_KERN) in this
-> >patch.
-> >
+On Fri, Feb 28, 2025 at 03:46:29PM +0000, Robin Murphy wrote:
+> This spin irons out a couple of issues which v1 had. Firstly there
+> should now be no change in behaviour for the weird of_dma_configure()
+> calls, other than possibly getting the warning if they deserve it.
+> Secondly I think there was still a possibility for probe to run via
+> the replay path while its "real" probe was waiting to reacquire the
+> lock; this is now solved by making dev->iommu a reliable indicator of
+> the probe lifecycle, with a couple more prep patches.
 > 
-> Hi, Mike
+> Thanks,
+> Robin.
 > 
-> Do you think my understanding is reasonable?
+> 
+> Robin Murphy (4):
+>   iommu: Handle race with default domain setup
+>   iommu: Resolve ops in iommu_init_device()
+>   iommu: Keep dev->iommu state consistent
+>   iommu: Get DT/ACPI parsing into the proper probe path
+> 
+>  drivers/acpi/arm64/dma.c        |  5 +++
+>  drivers/acpi/scan.c             |  7 -----
+>  drivers/amba/bus.c              |  3 +-
+>  drivers/base/platform.c         |  3 +-
+>  drivers/bus/fsl-mc/fsl-mc-bus.c |  3 +-
+>  drivers/cdx/cdx.c               |  3 +-
+>  drivers/iommu/iommu-priv.h      |  2 ++
+>  drivers/iommu/iommu.c           | 55 ++++++++++++++++++++++++---------
+>  drivers/iommu/of_iommu.c        | 13 ++++++--
+>  drivers/of/device.c             |  7 ++++-
+>  drivers/pci/pci-driver.c        |  3 +-
+>  11 files changed, 74 insertions(+), 30 deletions(-)
 
-Without KHO it is indeed not strictly necessary to set nid during memblock_alloc().
-But since we anyway have nid parameter in memblock_alloc_range_nid() and it
-anyway propagates to memblock_add_range(), I think it's easier and cleaner
-to pass nid to __memblock_reserve() there.
-
-And for KHO estimation of scratch size it is important to have nid assigned to
-the reserved areas before memblock_free_all(), at least for the allocations
-that request particular nid explicitly.
- 
-> -- 
-> Wei Yang
-> Help you, Help me
-
--- 
-Sincerely yours,
-Mike.
+Applied, thanks Robin.
 
