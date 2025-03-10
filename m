@@ -1,210 +1,156 @@
-Return-Path: <devicetree+bounces-155989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150D4A58D62
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C5D2A58D79
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:00:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86D96188CB24
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:58:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20C80188C561
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405BC223336;
-	Mon, 10 Mar 2025 07:57:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4762D215F70;
+	Mon, 10 Mar 2025 08:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L5nQZ++0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LuCX5OSx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BAE22222BC;
-	Mon, 10 Mar 2025 07:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16BED3D3B3;
+	Mon, 10 Mar 2025 08:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741593442; cv=none; b=B0Ru+yYHx0/Txyp+8PuhT/tmVaPenMBFjY4FaT6KFSGhSNEAG6E/F5I3s7v5McEP+ww/9eTZLNtwsWkSxkTDsLdeAc4WLuAYdwL68BCGEXDceE5POSkEq/KfE/y0TRbfn0bBC4PCc5T0aDEctzutkThuycSXwnQLxGxOBaMUL4I=
+	t=1741593644; cv=none; b=hjYA0GMUV57iuEAhyQ77bi5c3akW2ixW30+mHtcjbtHpTMpRR44OUVQbzgxay55Nok/M3eqL2PVs+PP2h4noE02ruS7KW4+UIeQQary6Q1m3unf5qDEt9xb4+eAUhMZNmTha3izExhVfUYUP0tlLhMmNlxxjqPH1ng/9dyg+5IA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741593442; c=relaxed/simple;
-	bh=IRW2DIUZjUg11Wxpe6r9qiFzm+6oup2NeqXVoEzJym4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rwl+egwQXh48mE2faGMI+pVzzyu9+PmVj8cNIXv4pwBYfa1hADzkB4XWsDcScBQjRSeXPrG15E2I2S9eiVICdBBOYJFNQINx0tbfLYkdc659CUhm5Fgpa2bcWhm9Q6wMNFxv70LlOVMhRGI/arGeUVURlXsd2tPtjxb4MN3IjdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L5nQZ++0; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac286d4ed05so177349266b.3;
-        Mon, 10 Mar 2025 00:57:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741593437; x=1742198237; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Um6v6XdMIQ/YPUNEUAxNwsTqTXuDEykk4Jq5COm9hZ0=;
-        b=L5nQZ++0DJposk6lKH7IR5UUCspl6BOG7gwNjXSLuJxn9ALXeyiqmXWc6wJAuleqpT
-         mAV/VEaAdwgaH4b2DLauZcOjV6XQtS8sfM1RrsZ2pnKZ/Zz6Y9TySPEQBTv8VqxvjnBj
-         yU7PoxXl0wtIzQ7RYstrqRDV0tUi5i5/nm9LhfFpcK/kl54KFxwtca/ymqoMVnHxDdL7
-         fosQ4T7Qd2UdMQoMFPxy/WIYWKH4niW9GHgD5ArooUmubXn9ScWHhfQhjUTk7Bm6839c
-         emZSD82JOUhkGoeTW6aoswpgZHDG+sy+6TbvncfYF7V7DC/t3C+RlUbw6OBNIp2908US
-         TFww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741593437; x=1742198237;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Um6v6XdMIQ/YPUNEUAxNwsTqTXuDEykk4Jq5COm9hZ0=;
-        b=NU3TUZnwJ/Z0kOMGDQIXYy9ZD2zc/nkNlRNZlUbQ7TON+uDiKDlIS5Qy3Fk2suQosc
-         uDvUHP4tf+FManvKU7z691kzb3uauGAOslwrFsc1Zhvst1zj7PeLUtO8d4gFoYDkoWND
-         mLuijwKk1Jrvzu71XDGDSLKS1EmNSknjLz0tMNWzeO2nltGYB7vk6/lyRlepE6qw7tsJ
-         tocWD+swz289FuMDClepog6aKKJfE1WCZfTBt2SvzTaVQEXF9WG0CEbCMp1LmrF2F8ne
-         BoFvxUUzovW9XvB57G6Ybpy6icYB5YN3dV/Rnn1IqeYB7zpSDetGJ8LBv1kJglOIKxxU
-         ircg==
-X-Forwarded-Encrypted: i=1; AJvYcCULGQjrqHKi55oFZqZrOwV4KQO+UMS/GxStVcwREiEvB9rDd5+diJgiumsF/jxG0pzCoedDlpBOv1Z2BJ/X@vger.kernel.org, AJvYcCW1uDsU4ShZoLbuSlf5QpWNTKwRrH2zJoDx6XaQSxjv4+KfNIXJvp1WVXxwJ4nCQvCk88yyAoLMGBL9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWevfc5QOqVeX10AOpns775JcmGtTDeVkx577q7aW2Cl2S5JTQ
-	oCKW2Y3jQEPlSUoH9XrSPheiOmljedDwsS7JKoI+IshX955mtU82
-X-Gm-Gg: ASbGncvt8GHfAMKZfm0Cg7C6eGQJjdm+/7RHjvgfC0hkCjauuElIarBKtnDi2UwofAU
-	fHx/FYLJbvL96pghG80IA8yU8g7p9eYz3NwXwJ9MsvCuYUALczfv8CQ1KftkNP6aKppPV4HbjO1
-	ZUIW7ON6FvaAtscei8zufo4zg9yEL8bMvn8MGqNsMdkWxwd+PIsC9Rc1P02Oh3vL57qrV/bUHyC
-	XHGEnVKM7AwSjdo4LFscg6ZhefFm2g9bLUzGNNfWl5pXmbASMzP097rXdYU86gj6Q++PN8B05Hc
-	oaCePxOTfISbInSPVVrHnW6beX/T82VUkosGJEeFp3clYCU=
-X-Google-Smtp-Source: AGHT+IFLKGUKxsl6twHWzzRJajNzVYfmXdVnBYN9298SUG7/OC3ET3EOjHh1Ib8lt3dCyN+uJOv1UQ==
-X-Received: by 2002:a17:907:1998:b0:ac2:a473:4186 with SMTP id a640c23a62f3a-ac2a4734ebdmr264406366b.34.1741593434836;
-        Mon, 10 Mar 2025 00:57:14 -0700 (PDT)
-Received: from xeon.. ([188.163.112.51])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2895e7e6asm274697566b.54.2025.03.10.00.57.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Mar 2025 00:57:14 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] thermal: thermal-generic-adc: add temperature sensor channel
-Date: Mon, 10 Mar 2025 09:56:38 +0200
-Message-ID: <20250310075638.6979-3-clamor95@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250310075638.6979-1-clamor95@gmail.com>
-References: <20250310075638.6979-1-clamor95@gmail.com>
+	s=arc-20240116; t=1741593644; c=relaxed/simple;
+	bh=5pb18jHnC9oIYuysg+/rVDZqxx+VuW6N1Fk5JOZi52Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=umIJeeYbPRlSIlenfab66cBHRm1rhC7rNJbFHAJvg0H0XNJH3ZGQzaLLdjK1HmndKkpvHanWGQ2lUEBfh+MXZinnsUU+cQGu5td/ngOSLIN1whiOs5Zzjr+8kwToTn980dPheH26lKc3+kjaIOFhwfQvEzjK4WGo84z5D6x3A9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LuCX5OSx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8967C4CEE5;
+	Mon, 10 Mar 2025 08:00:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741593643;
+	bh=5pb18jHnC9oIYuysg+/rVDZqxx+VuW6N1Fk5JOZi52Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LuCX5OSxtvek+3jpeLGGivDX9bH5syZEQoh3fo7lIu2tSrUfzV1OSaBB+3YTJxt0i
+	 XruzWeoeQam7CCtEEnyjDL4Ygz3VqYrPrJiJ7Np0TGF/EGCnkyUQoLY3X3JadalAy1
+	 rOP/GHb6ALOJNzOOgNcC2cA3GUjWfSlDV4MGx4CpH+jBP+PdzHcGs57g/l9kxSK2k5
+	 lFbrR25L7gee4y5RYyw8vmQVUSZhLdCxwn14Czzkfv2pobA9Lx7Bw12DUL0itcAoV9
+	 pS2rWV4p74DN6Pe06y/fJw0WvemJiOBhpYR7o4y5zp8LpI8OvLCZZubb88iFxqeYVE
+	 yukd9Ws74Pg3g==
+Date: Mon, 10 Mar 2025 09:00:40 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Daniel Danzberger <dd@embedd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Linus Walleij <linus.walleij@linaro.org>, Nikita Shubin <nikita.shubin@maquefel.me>, 
+	Guo Ren <guoren@kernel.org>, Yangyu Chen <cyy@cyyself.name>, 
+	Ben Hutchings <ben@decadent.org.uk>, Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org, upstream@airoha.com
+Subject: Re: [PATCH 04/13] dt-bindings: soc: airoha: add Documentation for
+ Airoha AN7581 SCU SSR
+Message-ID: <20250310-aromatic-chihuahua-of-priority-4ee73b@krzk-bin>
+References: <20250309132959.19045-1-ansuelsmth@gmail.com>
+ <20250309132959.19045-5-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250309132959.19045-5-ansuelsmth@gmail.com>
 
-To avoid duplicating sensor functionality and conversion tables, this
-design allows converting an ADC IIO channel's output directly into a
-temperature IIO channel. This is particularly useful for devices where
-hwmon isn't suitable or where temperature data must be accessible through
-IIO.
+On Sun, Mar 09, 2025 at 02:29:35PM +0100, Christian Marangi wrote:
+> The Airoha AN7581 SoC have in the SCU register space particular
+> address that control how some peripheral are configured.
+> 
+> These are toggeled in the System Status Register and are used to
+> toggle Serdes port for USB 3.0 mode or HSGMII, USB 3.0 mode or PCIe2
+> or setup port for PCIe mode or Ethrnet mode (HSGMII/USXGMII).
+> 
+> Modes are mutually exclusive and selecting one mode cause the
+> other feature to not work (example a mode in USB 3.0 cause PCIe
+> port 2 to not work) This depends also on what is physically
+> connected to the Hardware and needs to correctly reflect the
+> System Status Register bits.
+> 
+> Special care is needed for PCIe port 0 in 2 line mode that
+> requires both WiFi1 and WiFi2 Serdes port set to PCIe0 2 Line
+> mode.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../soc/airoha/airoha,an7581-scu-ssr.yaml     | 106 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 107 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/airoha/airoha,an7581-scu-ssr.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/airoha/airoha,an7581-scu-ssr.yaml b/Documentation/devicetree/bindings/soc/airoha/airoha,an7581-scu-ssr.yaml
+> new file mode 100644
+> index 000000000000..4bbf6e3b79a4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/airoha/airoha,an7581-scu-ssr.yaml
+> @@ -0,0 +1,106 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/airoha/airoha,an7581-scu-ssr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Airoha AN7581 SCU System Status Register
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +description: >
+> +  The Airoha AN7581 SoC have in the SCU register space particular
+> +  address that control how some peripheral are configured.
+> +
+> +  These are toggeled in the System Status Register and are used to
+> +  toggle Serdes port for USB 3.0 mode or HSGMII, USB 3.0 mode or PCIe2
+> +  or setup port for PCIe mode or Ethrnet mode (HSGMII/USXGMII).
 
-One such device is, for example, the MAX17040 fuel gauge.
+typo, Ethernet
 
-The temperature data, while technically a product of conversion and thus
-categorized as IIO_CHAN_INFO_PROCESSED, maintains its unscaled state
-(milli-degree). To account for this, IIO_CHAN_INFO_RAW is used along with
-IIO_CHAN_INFO_SCALE to provide different degrees of accuracy.
+> +
+> +  Modes are mutually exclusive and selecting one mode cause the
+> +  other feature to not work (example a mode in USB 3.0 cause PCIe
+> +  port 2 to not work) This depends also on what is physically
+> +  connected to the Hardware and needs to correctly reflect the
+> +  System Status Register bits.
+> +
+> +  Special care is needed for PCIe port 0 in 2 line mode that
+> +  requires both WiFi1 and WiFi2 Serdes port set to PCIe0 2 Line
+> +  mode.
+> +
+> +properties:
+> +  compatible:
+> +    const: airoha,an7581-scu-ssr
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/thermal/thermal-generic-adc.c | 62 ++++++++++++++++++++++++++-
- 1 file changed, 61 insertions(+), 1 deletion(-)
+That's not a separate device, but part of the SCU.
 
-diff --git a/drivers/thermal/thermal-generic-adc.c b/drivers/thermal/thermal-generic-adc.c
-index ee3d0aa31406..7dcc2e1168a4 100644
---- a/drivers/thermal/thermal-generic-adc.c
-+++ b/drivers/thermal/thermal-generic-adc.c
-@@ -7,6 +7,7 @@
-  * Author: Laxman Dewangan <ldewangan@nvidia.com>
-  */
- #include <linux/iio/consumer.h>
-+#include <linux/iio/iio.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/platform_device.h>
-@@ -73,6 +74,65 @@ static const struct thermal_zone_device_ops gadc_thermal_ops = {
- 	.get_temp = gadc_thermal_get_temp,
- };
- 
-+static const struct iio_chan_spec gadc_thermal_iio_channel[] = {
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE),
-+	}
-+};
-+
-+static int gadc_thermal_read_raw(struct iio_dev *indio_dev,
-+				 struct iio_chan_spec const *chan,
-+				 int *val, int *val2, long mask)
-+{
-+	struct gadc_thermal_info *gtinfo = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = gadc_thermal_get_temp(gtinfo->tz_dev, val);
-+		if (ret)
-+			return ret;
-+
-+		return IIO_VAL_INT;
-+
-+	case IIO_CHAN_INFO_SCALE:
-+		/* scale to a degree centigrade */
-+		*val = 1;
-+		*val2 = 1000;
-+		return IIO_VAL_FRACTIONAL;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info gadc_thermal_iio_info = {
-+	.read_raw = gadc_thermal_read_raw,
-+};
-+
-+static int gadc_iio_register(struct device *dev, struct gadc_thermal_info *gti)
-+{
-+	struct gadc_thermal_info *gtinfo;
-+	struct iio_dev *indio_dev;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(struct gadc_thermal_info));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	gtinfo = iio_priv(indio_dev);
-+	memcpy(gtinfo, gti, sizeof(struct gadc_thermal_info));
-+
-+	indio_dev->name = dev_name(dev);
-+	indio_dev->info = &gadc_thermal_iio_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = gadc_thermal_iio_channel;
-+	indio_dev->num_channels = ARRAY_SIZE(gadc_thermal_iio_channel);
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
- static int gadc_thermal_read_linear_lookup_table(struct device *dev,
- 						 struct gadc_thermal_info *gti)
- {
-@@ -153,7 +213,7 @@ static int gadc_thermal_probe(struct platform_device *pdev)
- 
- 	devm_thermal_add_hwmon_sysfs(dev, gti->tz_dev);
- 
--	return 0;
-+	return gadc_iio_register(&pdev->dev, gti);
- }
- 
- static const struct of_device_id of_adc_thermal_match[] = {
--- 
-2.43.0
+But more important - such definition of choice of serial engines is
+really not flexible, not reabable and not helping integrating into DTS.
+Are you going to grow this for next chip airoha,serdes-wifi20, then
+airoha,serdes-wifi21, 22... ? And then how the if:then: would look like?
+
+Assuming you do not have here child-parent relationship, like usually
+for serial engines, so then this should be somehow list of devices
+(strings) you want to run.
+
+Best regards,
+Krzysztof
 
 
