@@ -1,119 +1,214 @@
-Return-Path: <devicetree+bounces-156134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB40A59597
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:08:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14444A59614
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:21:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23738188D757
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 13:08:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE07E3AAB37
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 13:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8DD224AE8;
-	Mon, 10 Mar 2025 13:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 049B622ACCE;
+	Mon, 10 Mar 2025 13:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IheArypQ"
+	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="Hs6KCTK7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B1F178395;
-	Mon, 10 Mar 2025 13:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6F1229B01;
+	Mon, 10 Mar 2025 13:20:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741612115; cv=none; b=ako2Xd6poivFYaVQVoXTDlugr5Pc0s/he8x2sxbig4FT35zBxhwo1YTMPjWSDyDftck2SiX84jZJW56DsdkcgIF+tFSpNTglhYqwoxyUfkT4NRR5CTSjvXKHa5LPdsR83mKT0/RGGy7mPNWw/K0KhIUKF8P7joC74JZ7SpAR4s8=
+	t=1741612844; cv=none; b=AF7jdxjKATJkfSuPHk94jcyhkOPlmZ5h+OA1Kb2GFynEdbdCD0pmLcyfbysP7Svrh/q16rS/h8W/ncVw9rnylEwdYSaKnoGYSVMLLIbp6dLM0T05x6TAZH+tAD2daAO+2Uit5qzuqgr4jguD2XrQy39haVjxpWL8DADc1ZJ8BSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741612115; c=relaxed/simple;
-	bh=2V13hVHvXTQg/CvSvaloH3gQXs0wrbSB+sIyuBsXghs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tH+5vQagTJRz+4RgZQa7VwIteKQCebScZ/PbctH1K3tXDPYKzD2D4thoebMvGK3BntyvquEErFWDvca4edE/yL/86Y0tuNbQ8QxC3AReRHQB6O0rR3PLsvwfrJ3iFRePOXn6sI+Pjgphfi7JM2Y1mAiG2qhJDmpmmk/w9aRTNqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IheArypQ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741612111;
-	bh=2V13hVHvXTQg/CvSvaloH3gQXs0wrbSB+sIyuBsXghs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IheArypQWOv9UwpKrgUcsLA0s7vBqv5CjrTQWYvVaDACSjJcSVW7bOxWJJRWuNh+K
-	 P8pVN2NV/ZzDfik5eC98VMBi0z9/pAVoYCsSipyoaSWI14fRFHIAcgFx9/07A9jH2f
-	 ikaVTr48JHjOeEvHeYEWjriIS8PvlAMvqWegW+2YuwO2lQEzImraGGMR+xrR1U3ZbX
-	 tDSpvYfMD461Pmq358tMEeUNDUiPbGuhIQY0jJSpDpJQvCAYB3sZPT5Rett2ym7MvC
-	 29jSKLt//tJqG22ia6WF/qvx1lBLSabvt2VLpd5gDufDoCc4G2GrxcJHYCcPqtUzs4
-	 HYeq7Ba7hvQkQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3BE4517E0B56;
-	Mon, 10 Mar 2025 14:08:31 +0100 (CET)
-Message-ID: <0abe6c3a-cffe-4aec-a95d-ea27704729b2@collabora.com>
-Date: Mon, 10 Mar 2025 14:08:30 +0100
+	s=arc-20240116; t=1741612844; c=relaxed/simple;
+	bh=SqV1IJTAkSWRFFjRTnZftoakZj1+AKPrc1tTCrwNB9Q=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=MX6vtdzmbK/+5P+ZFBQjcLQxs/5pb3OIagWo8EV20JNOo3Ebjqulf0j2NoVexzdrtLUY1Q0mnKDT/yvvBft62NZqUgsAb2vsB6JKaIIXFBE3wrsQa9JWnR7HIkKV6h8pYVn2FGrzMxjY8sPmT1TGatUTZt5tMu4gAyLs4Piuhzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=Hs6KCTK7; arc=none smtp.client-ip=91.207.212.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
+Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
+	by mx08-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52A7nW1g015329;
+	Mon, 10 Mar 2025 13:10:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=dk201812; bh=eVEunwoeTDsdAhdaNChHP7S
+	AFdZNASrhuCkvqq03in8=; b=Hs6KCTK7egH4HQMh2QoiIoV/Tp9cm4d32sOcSO0
+	dfUO3LfKW0+3FLsaM2lZTtbMYPHCBABFPAzo2/OVWq7STXjgoY8Vu+xpK+2Yc+2s
+	iKFazfIBSnApcaPpDwbnnBSzHz5Raip4TZ1HwXWdCDhyMjOCyeyZP62AXPBAC0/p
+	f+7yi7GaZZlXaeFUUHDhwfawESXqjOne6SSSz020OU7YkWktYOm3KnBttCztCkfZ
+	7RWsRQbGtU8K4gY1I/f0iZ0gejHJLm7EpbmJesKaIftNurqcpS08gMBjdM57nI3z
+	EvR3yOG+eHz2+PU8abgyVtZZJ7hK4Ry/nB5MPnWRuejUj6A==
+Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
+	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 458d1wha4n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Mon, 10 Mar 2025 13:10:44 +0000 (GMT)
+Received: from Matts-MacBook-Pro.local (172.25.0.133) by
+ HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 10 Mar 2025 13:10:42 +0000
+From: Matt Coster <matt.coster@imgtec.com>
+Subject: [PATCH v3 00/18] Imagination BXS-4-64 MC1 GPU support
+Date: Mon, 10 Mar 2025 13:10:24 +0000
+Message-ID: <20250310-sets-bxs-4-64-patch-v1-v3-0-143b3dbef02f@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/13] pmdomain: mediatek: Add MT8196 power domain
-To: Guangjie Song <guangjie.song@mediatek.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-pm@vger.kernel.org, Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250307034454.12243-1-guangjie.song@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250307034454.12243-1-guangjie.song@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMDkzmcC/3XNvQ6DIBDA8VdpmHsNIBjt1PdoOuhxKIMfAUJsj
+ O9etEs7mNzyv+R+t7JA3lFg98vKPCUX3DTmKK4Xhn0zdgTO5GaSSyW4FBAoBmiXAApKBXMTsYc
+ kQCk0tkbUWluWj2dP1i0H/Hzl7l2Ik38ff5LYt19ScH1G5uGgyBScqlJXtXy4oYuEN5wGtptJ/
+ jiiOnVkdgprlDa1bTnaP2fbtg/kxSKOBQEAAA==
+X-Change-ID: 20241021-sets-bxs-4-64-patch-v1-44cdf9cc555f
+To: Frank Binns <frank.binns@imgtec.com>,
+        Matt Coster
+	<matt.coster@imgtec.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        "Vignesh
+ Raghavendra" <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
+        "Alessio
+ Belle" <alessio.belle@imgtec.com>,
+        Alexandru Dadu
+	<alexandru.dadu@imgtec.com>,
+        Sarah Walker <sarah.walker@imgtec.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5405;
+ i=matt.coster@imgtec.com; h=from:subject:message-id;
+ bh=SqV1IJTAkSWRFFjRTnZftoakZj1+AKPrc1tTCrwNB9Q=;
+ b=owGbwMvMwCFWuUfy8817WRsYT6slMaSfe3J+c/ib4pLjWpM1v5S8+KA46dF1vuPRb9PXzueac
+ HnGVUbFtI5SFgYxDgZZMUWWHSssV6j9UdOSuPGrGGYOKxPIEAYuTgGYCJMfw/+w+88+XNNyeV0W
+ f+WV7dsdt5nOBcocnW1iZ1ss6jcr/uAjRob1H/JSw+5JWrsnPLmcab1Cwr9izflQFRNNF5PiRr7
+ /X5kB
+X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
+ fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
+X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
+X-Proofpoint-ORIG-GUID: VrFyge1iEh50KcVMlLEaUiCo0fw9WM9Z
+X-Proofpoint-GUID: VrFyge1iEh50KcVMlLEaUiCo0fw9WM9Z
+X-Authority-Analysis: v=2.4 cv=U8+SDfru c=1 sm=1 tr=0 ts=67cee4d4 cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=ETbM1kImDFEA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=e5mUnYsNAAAA:8 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8
+ a=RIdblNn2LqOEELPeUbIA:9 a=QEXdDO2ut3YA:10 a=Vxmtnl_E_bksehYqCbjh:22 a=t8nPyN_e6usw4ciXM-Pk:22
 
-Il 07/03/25 04:44, Guangjie Song ha scritto:
-> This series is based on linux-next, tag: next-20250306.
-> 
-> Changes:
-> - Update mtk-scpsys driver for MT8196
-> - Add MT8196 power domain support
+This GPU is found in the TI AM68 family of SoCs, with initial support
+added to the k3-j721s2 devicetree and tested on a TI SK-AM68 board.
 
-The mtk-scpsys driver is deprecated since ... 2 years ago, and I have no idea why
-MediaTek folks still use it downstream.
+A suitable firmware binary can currently be found in the IMG
+linux-firmware repository[1] as powervr/rogue_36.53.104.796_v1.fw.
 
-Please refactor this and use the mtk-pm-domains driver for any new MTCMOS
-implementation.
+No new UAPI will be necessary for this platform as it is sufficiently
+similar to the already supported AXE-1-16M.
 
-Thanks,
-Angelo
+UMD support is close to being complete. We're now able to pass >90% of
+Vulkan conformance on our Mesa development branch. The compiler has been
+undergoing a significant rework needed to accomodate the BXS-4-64, as
+well as to make it more flexible to support additional Rogue GPUs going
+forward. The first part of this rework landed in Mesa in [2], and more
+MRs will follow in the coming weeks.
 
-> 
-> Guangjie Song (13):
->    pmdomain: mediatek: Support sram isolation
->    pmdomain: mediatek: Support sram low power
->    pmdomain: mediatek: Support power on bypass
->    pmdomain: mediatek: Support check power on/off ack
->    pmdomain: mediatek: Support voting for power domain
->    pmdomain: mediatek: Support trigger subsys save/restore regesters
->    pmdomain: mediatek: Support power domain irq safe
->    pmdomain: mediatek: Support power domain always on
->    pmdomain: mediatek: Refactor parameters of init_scp
->    pmdomain: mediatek: Support bus protect with table
->    pmdomain: mediatek: Add post init callback
->    dt-bindings: power: mediatek: Add new MT8196 power domain
->    pmdomain: mediatek: Add MT8196 power domain support
-> 
->   .../mediatek,mt8196-power-controller.yaml     |   74 +
->   drivers/pmdomain/mediatek/mt8196-scpsys.h     |  114 ++
->   drivers/pmdomain/mediatek/mtk-scpsys.c        | 1276 ++++++++++++++++-
->   include/dt-bindings/power/mt8196-power.h      |   57 +
->   4 files changed, 1483 insertions(+), 38 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/power/mediatek,mt8196-power-controller.yaml
->   create mode 100644 drivers/pmdomain/mediatek/mt8196-scpsys.h
->   create mode 100644 include/dt-bindings/power/mt8196-power.h
-> 
+There are several dt-bindings changes at the beginning of this series.
+We expect the result to be versatile enough to handle all Imagination
+Rogue GPUs while being a strong foundation to build bindings for the
+newer Volcanic architecture (for which we're currently developing
+support).
 
+The DTS changes at the end of the series are marked [DO NOT MERGE]. Once
+the series is reviewed, we will request these be taken through the
+relevant tree.
 
+[1]: https://gitlab.freedesktop.org/imagination/linux-firmware/-/tree/powervr
+[3]: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/32258
+
+---
+Changes in v3:
+- Reorder some patches to ensure the proper sequencing
+- Update status of UMD support (cover)
+- Don't use more specific compatible strings when not required (P1)
+- Avoid ABI break by limiting new required properties to new compatible
+  strings (P2)
+- Move power domain changes to the patch in which they're used (P2/P5)
+- Update register definitions (P3) [Thanks, Alessio!]
+- Don't use more specific compatible strings when not required (P4)
+- Enhanced commit messages (P4)
+- Remove unnecessary example (P5)
+- Add proper fixes for threaded IRQs (P6) [Thanks, Alessio!]
+- Include fix for a separate IRQ issue (P7) [Thanks, Alessio!]
+- Don't enable firmware debug module (was P13 in v2, also in P14)
+- Change from a workaround to a regular codepath (P15)
+- Drop platform overrides framework (was P18 in v2, also in P16)
+- Mark DTS changes [DO NOT MERGE] (P17/P18)
+- Link to v2: https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-0-3fd45d9fb0cf@imgtec.com
+
+Changes in v2:
+- Clarified justification for compatible strings (P1)
+- Simplified clocks constraints (P2)
+- Simplified power-domains constraints (P3/P4)
+- Use normal reg syntax for 64-bit values (P8/P21)
+- Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1-v1-0-4ed30e865892@imgtec.com
+
+---
+Alessio Belle (3):
+      drm/imagination: Update register defs for newer GPUs
+      drm/imagination: Mask GPU IRQs in threaded handler
+      drm/imagination: Handle Rogue safety event IRQs
+
+Matt Coster (14):
+      dt-bindings: gpu: img: Future-proofing enhancements
+      dt-bindings: gpu: img: Add BXS-4-64 devicetree bindings
+      drm/imagination: Use new generic compatible string
+      drm/imagination: Add power domain control
+      drm/imagination: Remove firmware enable_reg
+      drm/imagination: Rename event_mask -> status_mask
+      drm/imagination: Make has_fixed_data_addr a value
+      drm/imagination: Use a lookup table for fw defs
+      drm/imagination: Use callbacks for fw irq handling
+      drm/imagination: Move ELF fw utils to common file
+      drm/imagination: Use cached memory with dma_coherent
+      drm/imagination: Add support for TI AM68 GPU
+      [DO NOT MERGE] arm64: dts: ti: k3-am62: New GPU binding details
+      [DO NOT MERGE] arm64: dts: ti: k3-j721s2: Add GPU node
+
+Sarah Walker (1):
+      drm/imagination: Add RISC-V firmware processor support
+
+ .../devicetree/bindings/gpu/img,powervr-rogue.yaml |  77 +++++++++-
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi           |   3 +-
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi         |  12 ++
+ drivers/gpu/drm/imagination/Makefile               |   2 +
+ drivers/gpu/drm/imagination/pvr_device.c           | 124 ++++++++++++++--
+ drivers/gpu/drm/imagination/pvr_device.h           |  31 +++-
+ drivers/gpu/drm/imagination/pvr_drv.c              |  16 ++
+ drivers/gpu/drm/imagination/pvr_fw.c               |  28 +++-
+ drivers/gpu/drm/imagination/pvr_fw.h               |  85 +++++------
+ drivers/gpu/drm/imagination/pvr_fw_meta.c          |  23 +--
+ drivers/gpu/drm/imagination/pvr_fw_mips.c          |  82 ++---------
+ drivers/gpu/drm/imagination/pvr_fw_riscv.c         | 163 +++++++++++++++++++++
+ drivers/gpu/drm/imagination/pvr_fw_startstop.c     |  17 +++
+ drivers/gpu/drm/imagination/pvr_fw_util.c          |  67 +++++++++
+ drivers/gpu/drm/imagination/pvr_gem.c              |  10 +-
+ drivers/gpu/drm/imagination/pvr_gem.h              |   6 +-
+ drivers/gpu/drm/imagination/pvr_mmu.c              |   8 +-
+ drivers/gpu/drm/imagination/pvr_power.c            | 114 ++++++++++++++
+ drivers/gpu/drm/imagination/pvr_power.h            |   3 +
+ drivers/gpu/drm/imagination/pvr_rogue_cr_defs.h    | 153 ++++++++++++++++---
+ drivers/gpu/drm/imagination/pvr_rogue_riscv.h      |  41 ++++++
+ 21 files changed, 886 insertions(+), 179 deletions(-)
+---
+base-commit: 10232dac98d3803ec4fcc0cd8a4d1bd2a09b3e18
+change-id: 20241021-sets-bxs-4-64-patch-v1-44cdf9cc555f
 
 
