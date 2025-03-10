@@ -1,115 +1,117 @@
-Return-Path: <devicetree+bounces-156300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9CECA5A4E3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 21:25:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92448A5A4EE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 21:28:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0E3E3A657A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 20:25:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0C83172286
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 20:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89921DE3DB;
-	Mon, 10 Mar 2025 20:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C731DE4F9;
+	Mon, 10 Mar 2025 20:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xH+OswmP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BxTlFGHF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19EAB1D54EE
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 20:25:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44768EC5;
+	Mon, 10 Mar 2025 20:28:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741638338; cv=none; b=ittHOo2cTlAqKjmmu/hDoXObqDsQ9DPXY4cxwEnOQOfTbiFz4+hjiQWyA2RY6NFrjR4AJ6Dx0F1rSylRXTataDdOV+cn6zzFnDSsSSdAWKH8jGK1oR1ylgMQPbBmfQIdREkbkphBE0uHajRH3MdYnxmWwNqMXxJSfXU33djX4SY=
+	t=1741638482; cv=none; b=TX81Ejq29t7HeyYcfaF/KImx88XHcW2RpCa4Ior3DdCrHGrdOemdM30J0mCL2iPCXctWaxpUDfN2olBNPMgt5815SuXzgyQEmm4AITF5Dyf1vO8D9k8kMTbtGoKgXOhEJNyo+jkGlbtOXjkd7m9cPqK7Mqfk13rka1JO+uU7lqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741638338; c=relaxed/simple;
-	bh=L9+uLSJLlnFoF8qnj42PdQx3Q5RYzcJ6a/f47QtrPHs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xyc8zY6bF0B9o6j3HTZvPEaWryinq6TPm745DWiPzbuM/8fd6Ivy0rcKwuNJHzNLVkLq1m+0R3EvVUUXaDy8fwmgC2ooFK3D76znHJrKIxVScpoUKZdl1ZnLS2PZzB3XFWPsyMngFYS6ZeBZX0Ut26XhzHfWDi4jCqKejaG00o0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xH+OswmP; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-307325f2436so47949081fa.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 13:25:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741638335; x=1742243135; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dYNmRZYB/IDO1RurR4i6iqDD/1mktBUeW4kgdxDpZIw=;
-        b=xH+OswmP/CcgSiKX7NC5EIZKpFzqTMBvQKOua8bj2RCt/4KmiTK1Kj9rW64FBMSob6
-         RS382yhw5sZlzayoKWCCuOXdNJa4Gz8HJWPX1U3Pu6xDDmOAR8pp5nYOpZb2/YbZAnVs
-         crPuzbjdQRFMQ0eYUBe6G9YrnF18gMUtEOg1ex7ZoEGb8FK9lNWCiz4/dLijIU4UZr4/
-         xwQO7Yj/ldfq3hxzF5TiSuhtAePwdWzvWo1WnBK6RB81VbCohnmN7E7ntYZ/QZrt5nfH
-         hi7v4JHreheuI/szkNYb3NlbDXa1p0pXqM1GkzEmliccRQCsl05n5PyPQDXlgIkGzHjc
-         doYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741638335; x=1742243135;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dYNmRZYB/IDO1RurR4i6iqDD/1mktBUeW4kgdxDpZIw=;
-        b=JI9xtTk7FdZ7iJfQpy8Ele5PwKsJhQcl+51WMcXkJKDpleUqtdTTCSfPViVlKY4XC5
-         5uDHtggIsu7x9vATsQHkktcJweeNG2AC38BVqQiWYY6qDLNYfjQrB5ftWoq27nFYBtMx
-         3D6WyLDQF8ZMsvvbH5mLARTE4fPrdww9kpEGb2K3V3KvjMAqIXCUwTGnqQ7kTse61REJ
-         8mrb2AGFdKP8lIr+A56DpwRvlhBF87Deg8BE6+/JuOISQtDmqxzPMEi9me/ePBj+kzaS
-         lDU9ATFDQzvqSc3zPornqte2u+ne3E8+pOsbEnLU2VzMaG73oNjrcpkY/RaAv/fWHLpu
-         TjBw==
-X-Forwarded-Encrypted: i=1; AJvYcCU5Xd5E8jX/24J0wYilb4+jc0yQUAY6rdQY/+ze1lKq48lk7qWWAonbdIi6KLEW66vqmjuT601M0P+y@vger.kernel.org
-X-Gm-Message-State: AOJu0YztuYpr2shXfQx0ZL76AHMV8nSYWvlRKOg9VtZelvQtbiTt7UhP
-	gahBUUGb+jCqpQMpyrx8DhCbApOwCKvGTxwhTMbizua79qqKIyG8dH2PL9W1kyI=
-X-Gm-Gg: ASbGncv5nYWqT3lP9yHhcg0rp7rIpDuyzXtuoYB1NX/skmb31LBFqbErJmQXWuWkEgp
-	oXAz9oJe4GY0A8m9tfmFh5+Ae2Ne0av8JhZ1fVncCI37wZb9x6ZOS/a9kP5yloYYY6NUrWChqu4
-	Dave4vA5NHQi9KfEemfnOoEV3Nbpq+apr7qiZiooT8PFWU+KpcQGhTEe0TruFQRURdAbMEaqnhv
-	RAfMDJIJ8MMm21hxWrU2b9qmpqNaoO3adTXtN6SQvAE9UE2y+fDINLO1quDd3TcZ9wHpX5Fc1h6
-	tGICGwQWHEV2PFOSUvYjhCZgU6TP9oc22w78zUkY4GG3ryGUndNHxFbW9+kJqefbacEMyAoLEyT
-	EKuox+W8Z3wHSKE6XP+/ePt1w
-X-Google-Smtp-Source: AGHT+IEPVrqhzKdG85UY4VL7q1PeHiNjtgCxYCgNnkHHR37Br6Hv/tkjnMqe/JrlEqz3SvLMcEnR1A==
-X-Received: by 2002:a05:6512:b84:b0:545:f1d:6f2c with SMTP id 2adb3069b0e04-54990e5d4c2mr4659162e87.18.1741638335156;
-        Mon, 10 Mar 2025 13:25:35 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498b0bcf77sm1556084e87.107.2025.03.10.13.25.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Mar 2025 13:25:33 -0700 (PDT)
-Date: Mon, 10 Mar 2025 22:25:31 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
-	neil.armstrong@linaro.org, abel.vesa@linaro.org, quic_qianyu@quicinc.com, 
-	quic_krichai@quicinc.com, johan+linaro@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v4 6/8] arm64: dts: qcom: qcs8300: enable pcie0 interface
-Message-ID: <mxqrssteqfzp2llhp7exj7yoduv3h26qrxnsb7tobxkk7lxyeh@ywers6elgmwy>
-References: <20250310063103.3924525-1-quic_ziyuzhan@quicinc.com>
- <20250310063103.3924525-7-quic_ziyuzhan@quicinc.com>
+	s=arc-20240116; t=1741638482; c=relaxed/simple;
+	bh=jrIUTRkOVwF4DrP6Op5FQkTYRiWzZRjfoY/yn1onSOU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BVOoL/aPZNYvZ2XGhkC7ruZTaqr3RTvs0Jzxj6eK/p6Bz2seLAX6TLXMkvh/PGPBOW25tsnsp73IqrX9BJiPtaRz7P6O5JVEisJvHlCZVqYcXC+ms8G11JoKNKEy8d9NEW6BhUmRUkP5zMzZJjwR1r8draONWjWNIo3O/mvAGqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BxTlFGHF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2E9CC4CEE5;
+	Mon, 10 Mar 2025 20:27:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741638481;
+	bh=jrIUTRkOVwF4DrP6Op5FQkTYRiWzZRjfoY/yn1onSOU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=BxTlFGHFoOW0phWUqgQyWBIzCHGcDhnWX71cIrTi/V6o/OiL21j07oJLCGyw+KM9b
+	 3ReRfXP2z6sHkLW/fYS14usJ4jMUA8tFPVNPUAhN+ZxdAfy1XPr0YAmsmYh3s+qBui
+	 l2Wg09MH9ZYmq/RERxrvpEx04dsu66PALYPHHmAaXl1yEKkjMIGzESQeeRoKto5vB9
+	 uudFqXko3mnxN3db9MwQRFSZksb8SB6QtcJFypy/s9kCh1WO+iV5BSZT1OZ5cpY3tx
+	 6Lr2DFTSxmYrDwDKk7SRg7EUIcKe4UbqK4DBQxh9+NErcIzOCq2Ql/DTx8UkrUkQ8x
+	 2uGVdAQ1eUAzg==
+Date: Mon, 10 Mar 2025 20:27:38 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, linux-arm-kernel@lists.infradead.org,
+ Samuel Holland <samuel@sholland.org>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, netdev@vger.kernel.org, Rob Herring
+ <robh@kernel.org>, Herve Codina <herve.codina@bootlin.com>, Thomas
+ Bonnefille <thomas.bonnefille@bootlin.com>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Nuno Sa <nuno.sa@analog.com>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>, linux-media@vger.kernel.org, Claudiu
+ Manoil <claudiu.manoil@nxp.com>, devicetree@vger.kernel.org, Marcelo
+ Schmitt <marcelo.schmitt@analog.com>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ "David S. Miller" <davem@davemloft.net>, Lars-Peter Clausen
+ <lars@metafoo.de>, linux-acpi@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-iio@vger.kernel.org, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, Eric Dumazet <edumazet@google.com>, Conor
+ Dooley <conor+dt@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Olivier
+ Moysan <olivier.moysan@foss.st.com>, Trevor Gamblin
+ <tgamblin@baylibre.com>, Ramona Alexandra Nechita
+ <ramona.nechita@analog.com>, Paul Elder <paul.elder@ideasonboard.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Matteo Martelli
+ <matteomartelli3@gmail.com>, Guillaume Stols <gstols@baylibre.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>, Jakub Kicinski
+ <kuba@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Dumitru Ceclan <mitrutzceclan@gmail.com>, Paolo Abeni <pabeni@redhat.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, David Lechner <dlechner@baylibre.com>, Chen-Yu
+ Tsai <wens@csie.org>, Daniel Scally <djrscally@gmail.com>
+Subject: Re: [PATCH v6 00/10] Support ROHM BD79124 ADC
+Message-ID: <20250310202738.13301548@jic23-huawei>
+In-Reply-To: <cover.1741610847.git.mazziesaccount@gmail.com>
+References: <cover.1741610847.git.mazziesaccount@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250310063103.3924525-7-quic_ziyuzhan@quicinc.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Mar 10, 2025 at 02:31:01PM +0800, Ziyue Zhang wrote:
-> Add configurations in devicetree for PCIe0, board related gpios,
-> PMIC regulators, etc.
+On Mon, 10 Mar 2025 14:53:50 +0200
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+
+> Support ROHM BD79124 ADC.
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 40 +++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
+> This series adds also couple of IIO ADC helper functions for parsing the
+> channel information from the device tree. There are also new helpers
+> included for iterating and counting firmware child nodes with a specific
+> name.
+> 
+> Series does also convert couple of drivers to use these helpers. The
+> rzg2l_adc and the sun20i-gpadc are converted to use the new ADC helper.
+> 
+> The gianfar driver under net and the thp7312 under media/i2c are added as
+> first users of the newly added "named child node" -helpers.
+> 
+> There has been some discussion about how useful these ADC helpers are,
+> and whether they should support also differential and single ended channel
+> configurations. This version does not include support for those - with the
+> benefit of reduced complexity and easier to use API.
+> 
+> NOTE: Patches 4,5,9 and 10 are untested as I lack of relevant HW.
+> They have been compile tested only.
+This probably wants an update.  Also, 00/10? There are only 8 that I can see.
 
-NIT: patch subject mentions qcs8300 (SoC), while the patch enables PCIe
-on qcs8300-ride (board).
-
--- 
-With best wishes
-Dmitry
+Jonathan
 
