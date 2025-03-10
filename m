@@ -1,185 +1,140 @@
-Return-Path: <devicetree+bounces-156041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C0BA58F94
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:25:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0980A58F24
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:13:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE89D7A4456
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:24:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 903073A81FD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:12:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7838622539D;
-	Mon, 10 Mar 2025 09:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842812248AA;
+	Mon, 10 Mar 2025 09:12:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="kxyabCu0";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="m3l+9H4H"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IGVdSzwk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC101224AEB;
-	Mon, 10 Mar 2025 09:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15473224888;
+	Mon, 10 Mar 2025 09:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741598732; cv=none; b=CSNx2vSXibik2DtI9q4Ygop2X0+D4hKhcfngk1OeZwWx7NkTtP/6uzKj8VLu8KaeRq+LG4elFJ6dHQknvoctCiVHzG31uvQGJIFxbdQbO3J9u6xTQ049ifkcdJNgHr9WPF8xvZ8EfdqER12PuML24EFncdci0P76oPNqvQxEWvM=
+	t=1741597979; cv=none; b=uru+ERb9TEu76KuJ/6DrGIb46rzJpU2BeUgZuXULZhfqQ4xE8wp5KHYy3lnnz3Ivn3WxtDq5isTAZr7cJDrLhIh9lJQcZb+l6fxxHtETDBXXV9J3pPLw25kBfVR4DsIEoB7s0yCZPWSWViL7hZ5IUv+VNkUxehfuyA2YqEg4dZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741598732; c=relaxed/simple;
-	bh=IXGfzjQio0Y+t7ILTS7YE1FptVrtx0dwevI+NTETtSs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=d1jbINOZTlkMDm8K8s0/f6mhvihPjsohMchaHqELByl22XLhSgn5ik49cw5m/5u4g0TylJkxYW3WgyW+ltVEOiiGZWwQnsQjNHLrGAqSJLcz9h2Qz5PwC8BYhEzki/D3FO+GuqZmYWoEp7XUGbTehSDphY90vP9NV4BH0k1cWaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=kxyabCu0; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=m3l+9H4H; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 27804114011F;
-	Mon, 10 Mar 2025 05:25:30 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-05.internal (MEProxy); Mon, 10 Mar 2025 05:25:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm1; t=1741598730; x=
-	1741685130; bh=pQyWylFAyJnMLkqiKKSxQk8VM67tzXzIRvPkj3Li65k=; b=k
-	xyabCu0FH+tpmKT5FbxWp1SVxkWf5jFtHIRAiLJEeJtks6sRsS8v/GsrzYAk7Ol4
-	+dv0gXeQ/36ZzgaOI9baiGW/jcb3QxEx2b4jyOiHTqkztSNzLUlgHTSAqdhqFRlP
-	uSccfHBFvmwvcRRKQ8e4zhVrMLkOUdRdQAQdzUTgA1BR/VmBWhusqKukKcsQ44TF
-	QwPvJo1LYAH5I0/y0hpGVKUMxaEEuAwrZA/d4bYSo5rXU5vWVbo3N63dbtjydLwN
-	qF9cefmHalT1cQ/fV8y8HY5uRnKkLz3xKA3lxbHJXqmTrXwbiMJGRJgpftPYiCKN
-	9EcoZ6g1CWR5gBMJBzw8g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm1; t=1741598730; x=1741685130; bh=p
-	QyWylFAyJnMLkqiKKSxQk8VM67tzXzIRvPkj3Li65k=; b=m3l+9H4HDOzcYApdz
-	1U4ALKcqQg3TcahdWFBvxn73eqkZxZ2QF4WhU35NhZUJPuqFHs6RYZpSeefrmcNs
-	01sEA+ILI5uM0Yrpfeh/lK8+QOPqtmSkXMF/2601wYNb6ILDZje+RR8hoeiHQwjF
-	KVmeHB6KPedOsCAKL59akfVclOPQfOoWWMIBc1D0iH3elbf3w14Sy031DTV3e9Yz
-	UgQ57RTV5LxdyUp01DPWcESiOO3KF4Swwn5vs76V4BumG4BcMW0vMiIVyyrznqQO
-	L4X7hjQB0EjRcLyQOJCd/oODVSBldS7xGBfUYlaT+gqS7xQ4T1SZfUa6DxED3rrb
-	PXr+g==
-X-ME-Sender: <xms:CbDOZyHSPnFjnKtAa3B7TlIEuC7DjqIetGT-3IJfK1PJ-nuU5_g9Rg>
-    <xme:CbDOZzU660R9SB4Ctu_Ypm47fuA_2NHxZNr0raQO0RGd7eWnRwEvDYPOa5bAl1FmQ
-    9RdYo9yBtk5mj3cjg>
-X-ME-Received: <xmr:CbDOZ8K-r0RLjGGcK-y5uF42S1eXuSA839Lp29QqERBQephBvM1U4YNV9rP_MANg0zYKRqsmmPdMzDTR5NwjsPpshGaSmySIcJ3k9fUylP_0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduudekleekucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredt
-    tdenucfhrhhomheptfihrghnucghrghlkhhlihhnuceorhihrghnsehtvghsthhtohgrsh
-    htrdgtohhmqeenucggtffrrghtthgvrhhnpeffheeiffegtdfgffejteevgeefkeelieel
-    keevueetffetteduffevgeeiieehteenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
-    grmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgspghr
-    tghpthhtohepvdegpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehmrhhiphgrrh
-    gusehkvghrnhgvlhdrohhrghdprhgtphhtthhopeifvghnshestghsihgvrdhorhhgpdhr
-    tghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlh
-    drtghomhdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghp
-    thhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopegurghnihgvlh
-    esfhhffihllhdrtghhpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgr
-    ihhlrdgtohhmpdhrtghpthhtohepshgrmhhuvghlsehshhholhhlrghnugdrohhrghdprh
-    gtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:CbDOZ8Hw8X-6wMvozKlgNsFJUeZvvHg3uL0HJId7qNmgX05C71kjZQ>
-    <xmx:CbDOZ4WsgGTunXqN7PtPOG1V3pknYOw4KtZxA-c2x2Du770mMgUq2g>
-    <xmx:CbDOZ_OOS0cqihFHMUgAcqK8OIlcSPOKB3zWtwUUj57X5_JY_Zg3qQ>
-    <xmx:CbDOZ_3AOzIe08lYuy7kuASxhGwbVV5f5BWIMV1uwTAOyJhUg5dxWA>
-    <xmx:CrDOZ-kp90zEwP8XxCXCbO1M8XzFgTj4SrIV5SCysGZ2L5ZQxYhYHIr7>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 10 Mar 2025 05:25:22 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Maxime Ripard <mripard@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v8 11/11] drm: sun4i: de33: mixer: add mixer configuration for the H616
-Date: Mon, 10 Mar 2025 22:09:57 +1300
-Message-ID: <20250310092345.31708-12-ryan@testtoast.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250310092345.31708-1-ryan@testtoast.com>
-References: <20250310092345.31708-1-ryan@testtoast.com>
+	s=arc-20240116; t=1741597979; c=relaxed/simple;
+	bh=Mn6h+BMB87DiWKU6Yz9hRi+1rLg+5Nit1ed7x3nBj9g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kQri2Se2NY+JceAA9f6VdomKHAPRYdPMyMrNU8guhuZ3t3xDdo6DP8uPFXUuIOKGwfhs2cl44/l+Oip+Fyhjehu02CvwOxpy8cs6JWYIx7CDjgDGEKgw5yRusv07/IyQXzM5dieO9JTq5Om8N1uUYHJciDdn7eAuZ2+1H6WELU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IGVdSzwk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 529LXgnA009677;
+	Mon, 10 Mar 2025 09:12:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ReJX62Xlf6McKbA8XnwDlwjOxpXHu63zuqxlPTrACqg=; b=IGVdSzwkbAHfppba
+	IFroBkOnvrgviBLWCBXhpfHIVPE6HatcuHc3QwhfEOkCYSeX7s1SP5lCnr2E8CyB
+	8HyPpivytCmraM1LL64G52ISlUJKxwwL/T7gv0h36LppXlccgp3/oKPcfUwQH1yP
+	sgshf/VBulhLeMQ0NS671d005FAzL3BWvBuVUU3MSb6JnQP/TUWmvAYpo7wmpqAf
+	lWEVu5R8YqL0dyAcx6WzK6inrLy8f9PC1WKfb+rhvQhPx7FJ0RG1IGNQLpcXvveW
+	WrYBrlr3lDwF7/LSIn+QV0yExTH5dZDsllnDEhdpHgH8h3Ejm3f24UkP91tukYTf
+	ltukkg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458eypc7uy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 09:12:41 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52A9CeMp003336
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 09:12:40 GMT
+Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Mar
+ 2025 02:12:35 -0700
+Message-ID: <ca5e2cf0-598f-484f-a096-137baeed381d@quicinc.com>
+Date: Mon, 10 Mar 2025 17:12:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 4/4] arm64: dts: qcom: sa8775p: Add interrupts to CTCU
+ device
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Suzuki K Poulose
+	<suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark
+	<james.clark@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao
+	<quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20250310090407.2069489-1-quic_jiegan@quicinc.com>
+ <20250310090407.2069489-5-quic_jiegan@quicinc.com>
+ <24d5b56f-5078-4128-be66-436b1755d4b7@kernel.org>
+Content-Language: en-US
+From: Jie Gan <quic_jiegan@quicinc.com>
+In-Reply-To: <24d5b56f-5078-4128-be66-436b1755d4b7@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=A9yWP7WG c=1 sm=1 tr=0 ts=67cead09 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=LYRhW265CccdMHecqKcA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: NwpcMfXHA5abAe_BogOW2WBCoXpe-CLW
+X-Proofpoint-GUID: NwpcMfXHA5abAe_BogOW2WBCoXpe-CLW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-10_03,2025-03-07_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=863
+ adultscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 impostorscore=0 spamscore=0
+ suspectscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503100072
 
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-The H616 (and related SoC packages sharing the same die) carry the new
-DE33 display engine.
 
-Add the mixer configuration and a compatible string for the H616 to the
-mixer.
+On 3/10/2025 5:08 PM, Krzysztof Kozlowski wrote:
+> On 10/03/2025 10:04, Jie Gan wrote:
+>> Add interrupts to enable byte-cntr function for TMC ETR devices.
+>>
+>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+>> ---
+>> Dependency:
+>> prerequisite-message-id: 20250303032931.2500935-11-quic_jiegan@quicinc.com
+> Which too generated such changelog? Why this cannot be lore link?
+> 
+> Best regards,
+> Krzysztof
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+Hi Krzysztof,
 
---
-Changelog v7..v8:
-- Separate DE33 support and H616 enablement in the mixer.
----
- drivers/gpu/drm/sun4i/sun8i_mixer.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+It was entered manually. It's my fault, will fix in next version.
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-index 0bfd4b28b283..c9211a173a13 100644
---- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-@@ -799,6 +799,17 @@ static const struct sun8i_mixer_cfg sun50i_h6_mixer0_cfg = {
- 	.vi_num		= 1,
- };
- 
-+static const struct sun8i_mixer_cfg sun50i_h616_mixer0_cfg = {
-+	.ccsc		= CCSC_MIXER0_LAYOUT,
-+	.de_type	= sun8i_mixer_de33,
-+	.mod_rate	= 600000000,
-+	.scaler_mask	= 0xf,
-+	.scanline_yuv	= 4096,
-+	.ui_num		= 3,
-+	.vi_num		= 1,
-+	.map		= {0, 6, 7, 8},
-+};
-+
- static const struct of_device_id sun8i_mixer_of_table[] = {
- 	{
- 		.compatible = "allwinner,sun8i-a83t-de2-mixer-0",
-@@ -844,6 +855,10 @@ static const struct of_device_id sun8i_mixer_of_table[] = {
- 		.compatible = "allwinner,sun50i-h6-de3-mixer-0",
- 		.data = &sun50i_h6_mixer0_cfg,
- 	},
-+	{
-+		.compatible = "allwinner,sun50i-h616-de33-mixer-0",
-+		.data = &sun50i_h616_mixer0_cfg,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, sun8i_mixer_of_table);
--- 
-2.48.1
+Thanks,
+Jie
 
 
