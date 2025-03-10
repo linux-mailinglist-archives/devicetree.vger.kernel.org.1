@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-156269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DB2EA5A108
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:56:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC50A5A141
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:59:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25A5A1892EB5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:56:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95C3C3ABA1A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E90A23237F;
-	Mon, 10 Mar 2025 17:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6549B232792;
+	Mon, 10 Mar 2025 17:58:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="iB0IHfs1";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="bh/F4PMr"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="j//qbsSw";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="tay6z8pi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34452D023;
-	Mon, 10 Mar 2025 17:56:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E27E422E418;
+	Mon, 10 Mar 2025 17:58:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741629404; cv=none; b=iF/FCeBUVThMKp/PEO+KV6jF+WXyIBP+CoL4ILedi3rcP3SObGLmjWEpjtNT2HyQShqeUU19w/wWMDBEYNui4gkRmsa0vejdPE2y2BnvN6Kd47QB2Kvtks8ARKAlylONP6u19u+xNeFZEKjhCqrLtTUxnBDCypME9J6lwyVdNvY=
+	t=1741629537; cv=none; b=PbmdabaKkh9CWEbpcMKXi/fB6faalVE/2I8UjZK6RVyJhvCk7wq3fY2VL2Zm2ZI1597q0/V4WjDEc6F1I9wPnH6uzDhdKmZWJW2BYk8UFYn7bvi/xVswgs+Ht8WCVcZRKMOIMkLr4yRuEKBXqFHT7X5AMR1LnHPGlg0O3XFsvcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741629404; c=relaxed/simple;
-	bh=erkuifRMYQK4tztGPHvImgvFQm1pB1g92AINpwj2/vs=;
+	s=arc-20240116; t=1741629537; c=relaxed/simple;
+	bh=Al66dsQDQ1AjZ4p3RvfOqWj4xDz7Yh0Li6CQqx31OAA=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ENneCLmxt5QlaAvMhoOR6ul13Jzc1uAVfaYYddU3tbGfMbebMv5DlPlwhz8YVm0jm8EsmCllveP5bJOou8pm5R7XwA3mvlGstxRy53JQXlUUUe4RGQZikioxirOGhGAt7dh1UdxRGONq7E211DaCD6RjrvuAanZFxOapHplyv6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=iB0IHfs1; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=bh/F4PMr; arc=none smtp.client-ip=193.142.43.55
+	 MIME-Version:Content-Type; b=Y4a9Y8tGmlt3dVCTqNOlqcg2UZDTrOFkhxK3oGZVUqAuMGZnPRq96VDQuwMyS/UXIquS8RnvnIgvH51UU+V72Uu4vCKz1+HN2bJQsNO6cl0lGeE4TXy79TXPhhx1Ztq9fDB52NjPDWPbLQg1AM4FkRgrO9OTBnFa8YOlxWZJ2i0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=j//qbsSw; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=tay6z8pi; arc=none smtp.client-ip=193.142.43.55
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
 From: Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1741629401;
+	s=2020; t=1741629534;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=I/jbGKRUts84NApaIU4ODSIOqYgEZ7ke4E1YEaVdoBo=;
-	b=iB0IHfs12VxJhCVnUQPcHdSj6A35Caff7fnpnJc2rZHzEHS+J+VZOVZg0Y7Oq0J2yzI0ug
-	UjbptTofrkQ3jTEvaBQ4pef3OI4GTh/EPGvnIZ+Cl7km1q2RL9WilUyRof7ANHeY/yOw4Q
-	g+hH+vIfC5QYGHwrs1Yqh4wMHGcZ3SYARh3IDh3/kSW2A+rIRN5R4cslQDlLjcwzTBLRHP
-	crEFNblsAF4eHXZnEilusHyv0psL8mReZhecpKSacf5LgGfGrNSHbt+0/51fMZfTWpfxgg
-	QGGT50z6R6cwIRqss5f332b8PyKRlOLDn4ueRV58yWs9ZgDqJRg+Z2kGQk3C2g==
+	bh=1Ly81vQvGXLIQAxg5uok81uLig8KVjTlFKKgmBlnmwM=;
+	b=j//qbsSwkuy/0qqOlBzR/DCCFBWPkp8dpqdoEsmmHRzZS3qU6u2n2wupSWSz6nM1dpuUri
+	aiLxBe/uYDvzyTjKz0ZvnjLnA1uv9j3zNWECtlFN2n6PjkVPVNkGSaBLsY7jNRCa0oHt+Z
+	TR4Et6ZYlJTN7ceEdWzvdd+J49x8+htWKzrawqyGXmwAEbf9cOxCjQmiuZeoUQK7lu/o09
+	8w+CMSlbnB87sxTKWO5zeS0E+NAL/NZf0OenWsDqsF7VPTwh+A9VeKwvzjemMYwQ83IXaS
+	LkW1H8ID12Cw/KuajwYfbJJaPkUKhk+vx63TXUbvqVyJ0nozoB4BKQ0FKBZ3zw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1741629401;
+	s=2020e; t=1741629534;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=I/jbGKRUts84NApaIU4ODSIOqYgEZ7ke4E1YEaVdoBo=;
-	b=bh/F4PMrokCyw/FNdKUi8/VPBZ3V3SiUaJ3FDva1iG/o9JezcsMxR/uar4iwib/R0af1Cl
-	DwXqIg6jjxlSV9Dg==
+	bh=1Ly81vQvGXLIQAxg5uok81uLig8KVjTlFKKgmBlnmwM=;
+	b=tay6z8piYzjYTDcVT49X42zfRg7CquVlxe7fBfutBqZbIPgXozgKkKf1wQKrMY9lhcs+Eg
+	x0hweM8q8QaQwsAA==
 To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Neil Armstrong
@@ -62,12 +62,12 @@ To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH v4 0/4] Add GPIO interrupt support for Amlogic A4 and A5
- SoCs
-In-Reply-To: <20250307-irqchip-gpio-a4-a5-v4-0-d03a9424151b@amlogic.com>
+Subject: Re: [PATCH v4 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
+In-Reply-To: <20250307-irqchip-gpio-a4-a5-v4-2-d03a9424151b@amlogic.com>
 References: <20250307-irqchip-gpio-a4-a5-v4-0-d03a9424151b@amlogic.com>
-Date: Mon, 10 Mar 2025 18:56:40 +0100
-Message-ID: <87h64022hz.ffs@tglx>
+ <20250307-irqchip-gpio-a4-a5-v4-2-d03a9424151b@amlogic.com>
+Date: Mon, 10 Mar 2025 18:58:53 +0100
+Message-ID: <87ecz422ea.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,24 +77,21 @@ MIME-Version: 1.0
 Content-Type: text/plain
 
 On Fri, Mar 07 2025 at 16:49, Xianwei Zhao via wrote:
-> Xianwei Zhao (4):
->       dt-bindings: interrupt-controller: Add support for Amlogic A4 and A5 SoCs
->       irqchip: Add support for Amlogic A4 and A5 SoCs
->       arm64: dts: Add gpio_intc node for Amlogic A4 SoCs
->       arm64: dts: Add gpio_intc node for Amlogic A5 SoCs
->
->  .../amlogic,meson-gpio-intc.yaml                   | 19 ++++++++-
->  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 19 +++++++++
->  arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 12 ++++++
->  drivers/irqchip/irq-meson-gpio.c                   | 45 +++++++++++++++++-----
+>  
+>  	if (type == IRQ_TYPE_EDGE_BOTH) {
+>  		val |= BIT(ctl->params->edge_both_offset + idx);
 
-I can't take that through the irqchip tree as the amlogic dtsi files are
-new and in Neil's for-next branch.
+Not new, but this really should be 'val = ...'
 
-Neil, feel free to pick the lot up, I don't have conflicting changes for
-that driver sitting in my tree. I'll reply to the irqchip patch seperately.
+> -		meson_gpio_irq_update_bits(ctl, REG_EDGE_POL_S4,
+> +		meson_gpio_irq_update_bits(ctl, params->edge_pol_reg,
+>  					   BIT(ctl->params->edge_both_offset + idx), val);
 
-Thanks,
+and this BIT() calculation is obviously redundant as it is the same as @val.
 
-        tglx
+Would be nice to have that cleaned up.
+
+With that fixed:
+
+Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
 
