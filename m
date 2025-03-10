@@ -1,159 +1,171 @@
-Return-Path: <devicetree+bounces-156163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C6F2A596EA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:01:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8382A59712
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:08:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7F931889B42
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:01:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DB9E3A4A34
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC1522B5A8;
-	Mon, 10 Mar 2025 14:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313F222A4EA;
+	Mon, 10 Mar 2025 14:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DuK80jpk"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="jY6+5yJF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F167F1BC3F;
-	Mon, 10 Mar 2025 14:00:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D04E11CBA;
+	Mon, 10 Mar 2025 14:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741615259; cv=none; b=WUdUlcv4+AhiAMASMHUSIMacz1QFeZFCMQVknMfDwGFwM2iz2++Ost9XKwaL9OpgeBIbX9sF9nDQYavSKRDgYbw07snpogYiYwJVnL6FuTyRmmUkZlgObxq/1r2H2yRUs1Re+Iyhc8dBRIeauv7TaXydt/gRTphYsAztzK1Dr7c=
+	t=1741615695; cv=none; b=UoFeTQMUC9Jo3ma8XCFriQMmFR1VPbwgSNoILTyMs3sjRwxIv80Uvw8GDoZ2pIJObi3jMWp3lqiRddcxdlwv3HQCEf8SrmqgNiBrXPYybwkMXic250cMsRpNer4PXUpSlCw35QkkJQ2Bp5iqyLRky1Uq7wWhTyPYxNimuBNMP98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741615259; c=relaxed/simple;
-	bh=IhYu9da6QFSDDsbPqHxYIft82wSywXeglIjGNyg4cBM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=a4R7Z2sfAL8YM4meITnU208UTavNrmjVbVFIApj02TCGZpiiZUTcrqAM9F+LSVsBCuEt5xdYSHQPiyaQ4WmKN7dEsXbPy1wwFSNX5wK6t09hjUN+AWMj12NZCMVCXZFekDpJn8RvxPFBTdDB8Jg7r/+Rf4RS0NLseWwzYc2uNsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DuK80jpk; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D8F6344287;
-	Mon, 10 Mar 2025 14:00:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1741615255;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ic1Dx7Jc0GBQUrs269FgO1VmANg/4PfSayG+I8hDFAw=;
-	b=DuK80jpkLcFQYmRVTQyZYRzbWd5veudVS7lStznyElUVSl4NgOQMEwoub8NqVmncBWeIN3
-	rITac9+BaOxeX/0oMlHZZXVKP7XhTSkVc2X7R58j4qlUD3T8n7y3YwjdfgYMyc56g5RlGI
-	V7uO9XmSG9G15dT+Ui3SJkI2Yw/0sFxzLTCoAmwC9MJHGpzvsut4sPo39pr1ftGDdzHHLk
-	becCl4cOkHPGy6BeoqQBEYVbRb7Kw6YFX5tZxHHfGSylO7zH/oLvhhiKDWuNWm/6HccR8z
-	7dZk2DzQqcMZ52w0chHlB5oo610DZbP6n+4Udifr4zHSrJoaEk3PEhTFUIq1UA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: J. =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>
-Cc: Rob Herring <robh@kernel.org>,  Richard Weinberger <richard@nod.at>,
-  Michael Ellerman <mpe@ellerman.id.au>,  Nicholas Piggin
- <npiggin@gmail.com>,  Conor Dooley <conor+dt@kernel.org>,
-  linux-kernel@vger.kernel.org,  Crystal Wood <oss@buserror.net>,
-  Christophe Leroy <christophe.leroy@csgroup.eu>,
-  devicetree@vger.kernel.org,  Frank Li <Frank.Li@nxp.com>,  Vignesh
- Raghavendra <vigneshr@ti.com>,  Madhavan Srinivasan <maddy@linux.ibm.com>,
-  linux-mtd@lists.infradead.org,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Krzysztof Kozlowski <krzk@kernel.org>,  Naveen N Rao <naveen@kernel.org>,
-  linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: nand: Add fsl,elbc-fcm-nand
-In-Reply-To: <Z8yPKx1U-sT1OGeb@probook> ("J. =?utf-8?Q?Neusch=C3=A4fer=22'?=
- =?utf-8?Q?s?= message of "Sat, 8
-	Mar 2025 18:40:43 +0000")
-References: <20250226-ppcyaml-elbc-v3-0-a90ed71da838@posteo.net>
-	<20250226-ppcyaml-elbc-v3-2-a90ed71da838@posteo.net>
-	<174059551678.3319332.12055848852503108874.robh@kernel.org>
-	<20250303140021.GA1732495-robh@kernel.org> <Z8yPKx1U-sT1OGeb@probook>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 10 Mar 2025 15:00:53 +0100
-Message-ID: <87o6y97zoq.fsf@bootlin.com>
+	s=arc-20240116; t=1741615695; c=relaxed/simple;
+	bh=wVQ0GrsA9V/xwQXnJN2Tvuh/J/kguCpINvjpvEksh7Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=gCzNjqSXpitwtZyG2VUEHk9UUUZlVIPd8QTknElZiUeeZyMuHx3IcYlQAF1J1tq2seNuh1J2k9D1hCjhrl0qSgNKWg1yV/AzBB7BlBJQNMquhZ1zIYKPeOgbUp+2Z/xc04WZCwlC1YDveC+a14JoVO4HjQNLDxRd3BLg8Bu6giE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=jY6+5yJF; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52ABsrVw030002;
+	Mon, 10 Mar 2025 15:07:52 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	wHZLk8GMBYcp21rNrCan1n6xZhSfhobwhRSqB5Pb/MY=; b=jY6+5yJFskM7sedP
+	xRJKKRvkjPeLpa/SWUjtjEHRHLKj/BIy1KhqyC1v9NxVheYl8L06KRzUeNRBaKlc
+	PStW2gqgICRmIYHskEvQKFU4H780H2DIfO8kkRL6dP2IQAzV325OyOewUUgAI6hX
+	8spLWZxJCAgTmfJL5cc/S0Qo7Zh2Ncxmc88cz1wfFdst/zMYVIcXWLV8M28rbSca
+	x21yuHrHOtiYRvP8fZycl+pDzdcEIOdqJYR7sQ0/fL8S8imyR7TFo8iiSgYuut90
+	o5Fk7twnByLML0apClcnGdkinnqUGGSILZxO40jNhMmuXAu6eWMGtpU7P+QzsGl/
+	JN80ug==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 458ev648m8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 15:07:51 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2E5BE4004B;
+	Mon, 10 Mar 2025 15:06:37 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8419D4F631D;
+	Mon, 10 Mar 2025 15:05:20 +0100 (CET)
+Received: from [10.48.87.120] (10.48.87.120) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 10 Mar
+ 2025 15:05:19 +0100
+Message-ID: <6f776853-65e9-4574-85c2-c2a0446addfe@foss.st.com>
+Date: Mon, 10 Mar 2025 15:05:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduudelheefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffuddvueeigeegkeffveeuledtvdefteeiuddthffhtdefhfffledtleeuteejvdenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgpdihrghmlhdrshhonecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudekpdhrtghpthhtohepjhdrnhgvsehpohhsthgvohdrnhgvthdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhitghhrghrugesnhhougdrrghtpdhrtghpthhtohepmhhpvgesvghllhgvrhhmrghnrdhiugdrrghupdhrtghpthhtohepnhhpihhgghhinhesghhmrghilhdrtghom
- hdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepohhsshessghushgvrhhrohhrrdhnvght
-X-GND-Sasl: miquel.raynal@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/10] Expand STM32MP2 family with new SoC and boards
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>, Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250225-b4-stm32mp2_new_dts-v2-0-1a628c1580c7@foss.st.com>
+Content-Language: en-US
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+In-Reply-To: <20250225-b4-stm32mp2_new_dts-v2-0-1a628c1580c7@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-10_05,2025-03-07_03,2024-11-22_01
 
-On 08/03/2025 at 18:40:43 GMT, J. Neusch=C3=A4fer <j.ne@posteo.net> wrote:
+On 2/25/25 09:54, Amelie Delaunay wrote:
+> Add STM32MP25 Discovery Kit board [1] STM32MP257F-DK. It is based on a
+> different package of STM32MP257 SoC than STM32MP257F-EV1, and has 4GB of
+> LPDDR4 instead of DDR4.
+> Introduce two new SoC families [2] with Arm Cortex-A35 and Cortex-M33,
+> in development:
+> - STM32MP23x SoCs family, with STM32MP231 (single Arm Cortex-A35),
+> STM32MP233 and STM32MP235 (dual Arm Cortex-A35) [3]. Add STM32MP235F-DK
+> board to demonstrate the differences with STM32MP257F-DK board;
+> - STM32MP21x SoCs family, based on Cortex-A35 single-core, with
+> STM32MP211, STM32MP213 and STM32MP215. Add STM32MP215F-DK board based on
+> STM32MP215 SoC, with 2GB of LPDDR4.
+> 
+> [1] https://www.st.com/en/evaluation-tools/stm32mp257f-dk.html
+> [2] https://www.st.com/en/microcontrollers-microprocessors/stm32-arm-cortex-mpus.html
+> [3] https://www.st.com/en/microcontrollers-microprocessors/stm32mp235.html
+> 
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> ---
+> Changes in v2:
+> - Address Krzysztof's comments:
+>    - squash arm64 Kconfig updates for STM32MP21 and STM32MP23
+>    - add new compatibles st,stm32mp21-syscfg and st,stm32mp23-syscfg
+>    - comply with DTS coding style
+>    - move interrupt controller node under soc
+>    - remove status property from button nodes
+> - Link to v1: https://lore.kernel.org/r/20250210-b4-stm32mp2_new_dts-v1-0-e8ef1e666c5e@foss.st.com
 
-> Miquel, what do you think about Rob's suggestion below?
->
-> On Mon, Mar 03, 2025 at 08:00:21AM -0600, Rob Herring wrote:
->> On Wed, Feb 26, 2025 at 12:45:17PM -0600, Rob Herring (Arm) wrote:
->> >=20
->> > On Wed, 26 Feb 2025 18:01:41 +0100, J. Neusch=C3=A4fer wrote:
->> > > Formalize the binding already supported by the fsl_elbc_nand.c driver
->> > > and used in several device trees in arch/powerpc/boot/dts/.
->> > >=20
->> > > raw-nand-chip.yaml is referenced in order to accommodate situations =
-in
->> > > which the ECC parameters settings are set in the device tree. One su=
-ch
->> > > example is in arch/powerpc/boot/dts/turris1x.dts:
->> > >=20
->> > > 	/* MT29F2G08ABAEAWP:E NAND */
->> > > 	nand@1,0 {
->> > > 		compatible =3D "fsl,p2020-fcm-nand", "fsl,elbc-fcm-nand";
->> > > 		reg =3D <0x1 0x0 0x00040000>;
->> > > 		nand-ecc-mode =3D "soft";
->> > > 		nand-ecc-algo =3D "bch";
->> > >=20
->> > > 		partitions { ... };
->> > > 	};
->> > >=20
->> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
->> > > Signed-off-by: J. Neusch=C3=A4fer <j.ne@posteo.net>
->> > > ---
->> > >=20
->> > > V3:
->> > > - remove unnecessary #address/size-cells from nand node in example
->> > > - add Frank Li's review tag
->> > > - add missing end of document marker (...)
->> > > - explain choice to reference raw-nand-chip.yaml
->> > >=20
->> > > V2:
->> > > - split out from fsl,elbc binding patch
->> > > - constrain #address-cells and #size-cells
->> > > - add a general description
->> > > - use unevaluatedProperties=3Dfalse instead of additionalProperties=
-=3Dfalse
->> > > - fix property order to comply with dts coding style
->> > > - include raw-nand-chip.yaml instead of nand-chip.yaml
->> > > ---
->> > >  .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml | 68 +++++++++++=
-+++++++++++
->> > >  1 file changed, 68 insertions(+)
->> > >=20
->> >=20
->> > My bot found errors running 'make dt_binding_check' on your patch:
->> >=20
->> > yamllint warnings/errors:
->> >=20
->> > dtschema/dtc warnings/errors:
->> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/binding=
-s/mtd/fsl,elbc-fcm-nand.example.dtb: nand@1,0: $nodename:0: 'nand@1,0' does=
- not match '^nand@[a-f0-9]$'
->> > 	from schema $id: http://devicetree.org/schemas/mtd/fsl,elbc-fcm-nand.=
-yaml#
->>=20
->> Drop the unit address in raw-nand-chip.yaml. So:=20
->>=20
->> properties:
->>   $nodename:
->>     pattern: "^nand@"
+Hi,
 
-I am not a big fan of lowering the constraint, but if our current schema
-doesn't allow to express this need differently, we may need to do that.
-I obviously trust Rob on this regard.
+Gentle ping, are there any additional comments on this series?
 
-Thanks,
-Miqu=C3=A8l
+Regards,
+Amelie
+
+> 
+> ---
+> Alexandre Torgue (3):
+>        arm64: dts: st: add stm32mp257f-dk board support
+>        arm64: dts: st: introduce stm32mp23 SoCs family
+>        arm64: dts: st: introduce stm32mp21 SoCs family
+> 
+> Amelie Delaunay (7):
+>        dt-bindings: stm32: document stm32mp257f-dk board
+>        arm64: Kconfig: expand STM32 Armv8 SoC with STM32MP21/STM32MP23 SoCs family
+>        dt-bindings: stm32: add STM32MP21 and STM32MP23 compatibles for syscon
+>        dt-bindings: stm32: document stm32mp235f-dk board
+>        arm64: dts: st: add stm32mp235f-dk board support
+>        dt-bindings: stm32: document stm32mp215f-dk board
+>        arm64: dts: st: add stm32mp215f-dk board support
+> 
+>   .../bindings/arm/stm32/st,stm32-syscon.yaml        |    2 +
+>   .../devicetree/bindings/arm/stm32/stm32.yaml       |   13 +
+>   arch/arm64/Kconfig.platforms                       |    4 +
+>   arch/arm64/boot/dts/st/Makefile                    |    6 +-
+>   arch/arm64/boot/dts/st/stm32mp211.dtsi             |  128 +++
+>   arch/arm64/boot/dts/st/stm32mp213.dtsi             |    9 +
+>   arch/arm64/boot/dts/st/stm32mp215.dtsi             |    9 +
+>   arch/arm64/boot/dts/st/stm32mp215f-dk.dts          |   49 +
+>   arch/arm64/boot/dts/st/stm32mp21xc.dtsi            |    8 +
+>   arch/arm64/boot/dts/st/stm32mp21xf.dtsi            |    8 +
+>   arch/arm64/boot/dts/st/stm32mp231.dtsi             | 1214 ++++++++++++++++++++
+>   arch/arm64/boot/dts/st/stm32mp233.dtsi             |   94 ++
+>   arch/arm64/boot/dts/st/stm32mp235.dtsi             |   16 +
+>   arch/arm64/boot/dts/st/stm32mp235f-dk.dts          |  113 ++
+>   arch/arm64/boot/dts/st/stm32mp23xc.dtsi            |    8 +
+>   arch/arm64/boot/dts/st/stm32mp23xf.dtsi            |    8 +
+>   arch/arm64/boot/dts/st/stm32mp257f-dk.dts          |  113 ++
+>   17 files changed, 1801 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 8c6d469f524960a0f97ec74f1d9ac737a39c3f1e
+> change-id: 20250210-b4-stm32mp2_new_dts-8fddd389850a
+> 
+> Best regards,
 
