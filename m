@@ -1,177 +1,153 @@
-Return-Path: <devicetree+bounces-155980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 497ADA58D2D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:45:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0730A58D3A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:46:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95D807A464F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:44:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E65B1888395
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:46:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8502221F2A;
-	Mon, 10 Mar 2025 07:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A491BD9D8;
+	Mon, 10 Mar 2025 07:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ePnHMrmY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K8Dd6CWJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08453221F24;
-	Mon, 10 Mar 2025 07:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E2635965;
+	Mon, 10 Mar 2025 07:46:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741592704; cv=none; b=sNfdzBPPzO9L78wbesW65abtuPtzOKNwpMF10K4A8jvYtQSr9/FSoo11hMsHNDkySwvJjs4akxGy9MYRSb6j+Fn4SbVS/vl6ws5qD6m65v2nBGzKP8s/6zS9sr7HHK1h7XX7Y70BylML9lyT/tcbWNUt0hEBfHx5WxpVhEZ4MvY=
+	t=1741592807; cv=none; b=sSOx+BmdUX6LKwz9WSZi5/phxIZZo7mrrK9m57njSl68Wa107frgY2NCEQYl1B7AqLxB93GFDmQOzJWSrI27MAsJsspV6lEuYyo68MsBBs0x57OJqU5xjTrrlwo2sPSYtr2DZLPucDTuCByVC0R8LF9io2wnCV8BXH5c6/49q18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741592704; c=relaxed/simple;
-	bh=i1ZR9sGKO7nVQ2pJs+9N75lDoKQYGSjRkjYZ3oqofx0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kPDnkGTZfBaDIdP+nBJRvtagKMXeI8ffB0eUnWFgkTYQAmfwMeSGJ+47u0jlxqayx0xOxpuyDJy6Q3nxLDvyKfPck+TkjeeHCxRDg/WxCtpR3S4vJsSUV4w8nGxR8Nk0AJsG0yQ1omLq/srZIutCnAPXVQg5x1cY8Jr3YEWxz9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ePnHMrmY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 529MgpOc026525;
-	Mon, 10 Mar 2025 07:44:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Kj+FcVSY+eBJxVSNZlJRNzZJ
-	m+ebTIDlOJzCtE3EAtM=; b=ePnHMrmY+dGNZTh/jYCIa6BvA8CPNu+5Tc2CSWC8
-	bM4E54AmLJAXC6pJLjwk9gR9PWiW0tmdWswWPdQnK2x4tqnOMRxeOrtBxiEc2hsw
-	4GJ7ZNK6VEKCfTKs7B+EDj+3IicOlrGmZklG8J+i8oLXev9J09+Ya7b5Tq9ASolB
-	uNZavBoLW4SXlWrfXRQQQw8AX5CgXPAV80DMM/v9Dtsqk6IXsj0o4LTw1XEjKY8e
-	GbJ/awRoxkb0NPasADPfjBPH5kk4Vxe07fZMcHAEwEglpSrQTDjQVKgKQfNo1cLb
-	GcdvHDr9s5QB7yXj4nhOHGEoohpGYUyvd2GZGkRXGIUSQQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458f2mbwxq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 07:44:47 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52A7ikPs025363
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 07:44:46 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 10 Mar 2025 00:44:09 -0700
-Date: Mon, 10 Mar 2025 13:14:05 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <p.zabel@pengutronix.de>, <quic_nsekar@quicinc.com>,
-        <dmitry.baryshkov@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v11 3/7] dt-bindings: PCI: qcom: Use sdx55 reg
- description for ipq9574
-Message-ID: <Z86YReHsKeF165F6@hu-varada-blr.qualcomm.com>
-References: <20250220094251.230936-1-quic_varada@quicinc.com>
- <20250220094251.230936-4-quic_varada@quicinc.com>
- <41b400fe-5e08-42c0-9bc6-a238d25d155a@kernel.org>
- <33bb1cb2-0c5e-402b-a5c6-9604b1dd8d99@kernel.org>
+	s=arc-20240116; t=1741592807; c=relaxed/simple;
+	bh=ub7S9UjkWephhWy9OiK6pIkZGzkEwPNxQKygjXfKnKI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i6K2H6/mHXt8w8i32bdwuSi9L7O6hto5L5JYWiKDXIU1H1MjLMLVUDg4QM/etf2PnwX0W8jccY8dekCJuudotlHdpWsD6rNCH0D4429zjYpVxNhfybwnhInhHdydToUO6Hrf5u347FjYzUyN8WxKAlU69tO06kM4072oyf9sD88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K8Dd6CWJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1B50C4CEE5;
+	Mon, 10 Mar 2025 07:46:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741592805;
+	bh=ub7S9UjkWephhWy9OiK6pIkZGzkEwPNxQKygjXfKnKI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=K8Dd6CWJH/Ai8pGC/rSX1+JSS0dW4CX2Aq3IZL4KwwlykRhg2bmVprwX4oqQ1I5/r
+	 MjZfmeshMFYZ/ru+Ix0hlwo+VsgSufR3bB3S//PqkKvrAdIzi0elBx27UV/d+3L2/L
+	 eIVL8xPiRqj1HEzFMS+EUajMBp7dTWiu0BqetOzhKlt7L3IFU+W4isp80IDNBpGGK2
+	 l3FIOpBJHlTYsHxLsGtZKZQTjqdC3DyjmuQrLghKmEBtHzn94J3wBK/NDtzXLGhmpD
+	 s06AefAxW4/bmLWf3ugfteMhaIFfaaBKqZpJT/LGBPCjqlOEsX1cHxFqD1ERahPr4a
+	 CBZtbmHJ7N1qg==
+Message-ID: <554823f8-be69-452d-908d-a7c7a80bcd9e@kernel.org>
+Date: Mon, 10 Mar 2025 08:46:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <33bb1cb2-0c5e-402b-a5c6-9604b1dd8d99@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 13Znxcki_patImFqJYtxtGVAtEB8lGJl
-X-Proofpoint-ORIG-GUID: 13Znxcki_patImFqJYtxtGVAtEB8lGJl
-X-Authority-Analysis: v=2.4 cv=ab+bnQot c=1 sm=1 tr=0 ts=67ce986f cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
- a=dj0ERmanKLZXDvYKl08A:9 a=CjuIK1q_8ugA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-10_03,2025-03-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- mlxlogscore=999 priorityscore=1501 lowpriorityscore=0 bulkscore=0
- mlxscore=0 impostorscore=0 phishscore=0 clxscore=1015 spamscore=0
- adultscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503100059
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] leds: tps6131x: add support for Texas Instruments
+ TPS6131X flash LED driver
+To: Matthias Fend <matthias.fend@emfend.at>, Pavel Machek <pavel@ucw.cz>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bsp-development.geo@leica-geosystems.com
+References: <20250228-leds-tps6131x-v1-0-d1071d90f9ea@emfend.at>
+ <20250228-leds-tps6131x-v1-2-d1071d90f9ea@emfend.at>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250228-leds-tps6131x-v1-2-d1071d90f9ea@emfend.at>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Mar 06, 2025 at 01:06:13PM +0100, Krzysztof Kozlowski wrote:
-> On 06/03/2025 12:52, Krzysztof Kozlowski wrote:
-> > On 20/02/2025 10:42, Varadarajan Narayanan wrote:
-> >> All DT entries except "reg" is similar between ipq5332 and ipq9574. ipq9574
-> >> has 5 registers while ipq5332 has 6. MHI is the additional (i.e. sixth
-> >> entry). Since this matches with the sdx55's "reg" definition which allows
-> >> for 5 or 6 registers, combine ipq9574 with sdx55.
-> >>
-> >> This change is to prepare ipq9574 to be used as ipq5332's fallback
-> >> compatible.
-> >>
-> >> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >
-> > Unreviewed.
-> >
-> >> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> >> ---
-> >> v8: Add 'Reviewed-by: Krzysztof Kozlowski'
-> >> ---
-> >>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
-> >>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> >> index 7235d6554cfb..4b4927178abc 100644
-> >> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> >> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> >> @@ -169,7 +169,6 @@ allOf:
-> >>              enum:
-> >>                - qcom,pcie-ipq6018
-> >>                - qcom,pcie-ipq8074-gen3
-> >> -              - qcom,pcie-ipq9574
-> >
-> > Why you did not explain that you are going to affect users of DTS?
-> >
-> > NAK
+On 28/02/2025 11:31, Matthias Fend wrote:
+> +	tps6131x->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
+> +	ret = tps6131x_reset_chip(tps6131x);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to reset LED controller\n");
+> +
+> +	ret = tps6131x_init_chip(tps6131x);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to initialize LED controller\n");
+> +
+> +	ret = tps6131x_led_class_setup(tps6131x);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to setup led class\n");
+> +
+> +	ret = tps6131x_v4l2_setup(tps6131x);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to setup v4l2 flash\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static void tps6131x_remove(struct i2c_client *client)
+> +{
+> +	struct tps6131x *tps6131x = i2c_get_clientdata(client);
+> +
+> +	v4l2_flash_release(tps6131x->v4l2_flash);
+> +
+> +	cancel_delayed_work_sync(&tps6131x->torch_refresh_work);
+> +}
+> +
+> +static const struct of_device_id of_tps6131x_leds_match[] = {
+> +	{ .compatible = "ti,tps61310" },
+> +	{ .compatible = "ti,tps61311" },
 
-Sorry for not explicitly calling this out. I thought that would be seen from the
-following DTS related patches.
 
-> I did not connect the dots, but I pointed out that you break users and
-> your DTS is wrong:
-> https://lore.kernel.org/all/f7551daa-cce5-47b3-873f-21b9c5026ed2@kernel.org/
->
-> so you should come back with questions to clarify what to do, not keep
-> pushing this incorrect patchset.
->
-> My bad, I should really have zero trust.
+No differences? So devices are fully compatible? Then it should be
+expressed in the binding with fallback. Or the binding description or
+commit msg should explain why they are not compatible.
 
-It looks like it is not possible to have ipq9574 as fallback (for ipq5332)
-without making changes to ipq9574 since the "reg" constraint is different
-between the two. And this in turn would break the ABI w.r.t. ipq9574.
 
-To overcome this, two approaches seem to be availabe
-
-	1. Document that ipq9574 is impacted and rework these patches to
-	   minimize the impact as much as possible
-
-		(or)
-
-	2. Handle ipq5332 as a separate compatible (without fallback) and reuse
-	   the constraints of sdx55 for "reg" and ipq9574 for the others (like
-	   clock etc.). This approach will also have to revert [1], as it
-	   assumes ipq9574 as fallback.
-
-Please advice which of the above would be appropriate. If there is a better 3rd
-alternative please let me know, will align with that approach.
-
-Thanks
-Varada
-
-1 - https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/Documentation/devicetree/bindings/pci/qcom,pcie.yaml?id=f67d04b18337249b0faa5cab6223c0bb203f6333
+Best regards,
+Krzysztof
 
