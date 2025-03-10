@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-156097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5EECA592ED
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 12:43:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74FE4A592F8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 12:46:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 960083A67CE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:43:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5022169A0D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97D1F221700;
-	Mon, 10 Mar 2025 11:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5688B2206AB;
+	Mon, 10 Mar 2025 11:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y1fF+ejS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z8a1yOY7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C36C18D63E;
-	Mon, 10 Mar 2025 11:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A7FF19F103;
+	Mon, 10 Mar 2025 11:46:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741607019; cv=none; b=urnipCVDvPJGzOhqUPeX1mJ0CnhxRBtvjpTkb40iGPx4M9KkIoOeRK56SY2ZZlTyPS7ul3g4TgIHnpVKitCMK5MUWFJVha8gGAZRvPZ/JxiBwxsQoXpo6G0L4AXCJPpn6ugTuFwEzP1AczjKS7JPkj2e6FVBewoo/fUrzevXNy0=
+	t=1741607161; cv=none; b=dqVnJNsLyXqf2wjW9V2sl7TbnNTZrICmXWRYNvyQ+egeOZaIj9H9YdrhvLtMpeitmHD0qglgn2tWjLviuqeRx6+zOyO0XwgnIiq9grkkab8wuGjriIkTx5or+sSSimFXlEJnB5d7PSyEDTA/SmEWqnFqBSrBV3wG7F3ipMEu6R8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741607019; c=relaxed/simple;
-	bh=tQwFxFodDyYLTyLCaNMHIBv2+xezKs5dn2xjZoV+LO8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=NKUd8rm/rD6guJ15FixWFxFYPfiyH8/CpdEBEnrEf4IhuB9lDegDY8a4+DsFEuBNVWxUz1TBA/XWcHEJnGNmkFax4D8Y4arnF6R4fapCrrrDHqmRAMHgYfzGG9pfY5Gn82WXeWO5FSHwTcyzbq5m/bSS64Z4Xw0S0GxMn9WQobQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y1fF+ejS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9FDCC4CEE5;
-	Mon, 10 Mar 2025 11:43:33 +0000 (UTC)
+	s=arc-20240116; t=1741607161; c=relaxed/simple;
+	bh=ANGJH8Sj9o9T5oT7alkDK/1d7R9Ia3tZGYd5lKf8fqs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qt5eZgDjdXpczkYb18xMHa6SKFd8wu+l3RCU87D7NWulTcFk1S/JLR8X12skTbjd6wk1jFIMyw+HXkbwAjB+JmfGpRWgC0FejuTn0XzhzJ+RoifXHHDPxZckOvv1cAQStCH4+Dv3tHeYyzRv5s6LkL6LMHX4xl57b+K1Ah6r8+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z8a1yOY7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAEB8C4CEEA;
+	Mon, 10 Mar 2025 11:45:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741607019;
-	bh=tQwFxFodDyYLTyLCaNMHIBv2+xezKs5dn2xjZoV+LO8=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Y1fF+ejSeQjhZG03rGEzTxp4uHwG4FJ88H+cfBpnOWdfhlXWFidYySRC0n7RvTvY8
-	 o78WgeYmEpny+6uUDNOEAM4GBB56bsnkguIYCeaAJDgmdYZ9IbxZiogpahqH2Rtynb
-	 UdI36etroRrla+LhumrlCCR1Dmdc2Z/6RdfAp6kv/Lb9F8vKZHT740yXpJXvU04MVJ
-	 0PA/LAXPiuLAr2gmuVNGQ8bQW+RqKEZXJC+pQZdsZbSqBKMStOFVYJO2GSRquFZ9lZ
-	 ubOB9bhKTjJ51nuW3AEa8PGsaROhbykS+YoofW9AbNWH485bqFvsdB7lZNOICaiNgL
-	 0zb9KBCim9gnQ==
-Message-ID: <58466532-3e17-4968-bade-210f478ccc76@kernel.org>
-Date: Mon, 10 Mar 2025 12:43:29 +0100
+	s=k20201202; t=1741607160;
+	bh=ANGJH8Sj9o9T5oT7alkDK/1d7R9Ia3tZGYd5lKf8fqs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Z8a1yOY73nzdKnQqqd1RoncZdbvX0JV+OFmccCLWVdfwADrRgyVFtMHpwWddqaSNp
+	 xd8CsXPfGcBed9yj+7BlKG1Cski0vLwZcAE8NoP10Lfz/RkB5BHkKszgqJoNbZ2N0p
+	 kVwBzTPOgxSX58gjsPLIFjSTIUaU4JcEHjvcDVN5JYhtvDqIMng7LUagHA2wqTBPzK
+	 ktT89I6GI5sMmzSfyadBpkc1lpzCz0ek3fX6/iOFLp+laY2yhfHTgyMhEiFfXtS/xS
+	 83vQI4yhM0m4aafWM15625GRWp8cnXp9aQw2Otkd5UGPF9kwZ0bCR/L+AURGoy9ATq
+	 JV8qC75kDgTuw==
+Message-ID: <1091b3cc-d24f-4a45-ae9e-d439b94267da@kernel.org>
+Date: Mon, 10 Mar 2025 12:45:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] soc: aspeed: lpc-pcc: Add PCC controller support
-To: Kevin Chen <kevin_chen@aspeedtech.com>, "lee@kernel.org"
- <lee@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
- <joel@jms.id.au>, "andrew@codeconstruct.com.au"
- <andrew@codeconstruct.com.au>, "derek.kiernan@amd.com"
- <derek.kiernan@amd.com>, "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
- "arnd@arndb.de" <arnd@arndb.de>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250304104434.481429-1-kevin_chen@aspeedtech.com>
- <20250304104434.481429-4-kevin_chen@aspeedtech.com>
- <2fd83d68-7104-4755-a0f0-8ce4a2601e09@kernel.org>
- <TY0PR06MB496072786197162F19ED7DDD89D62@TY0PR06MB4960.apcprd06.prod.outlook.com>
+Subject: Re: [PATCH 1/2] dt-bindings: leds: add Texas Instruments TPS6131x
+ flash LED driver
+To: Matthias Fend <matthias.fend@emfend.at>, Pavel Machek <pavel@ucw.cz>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bsp-development.geo@leica-geosystems.com
+References: <20250228-leds-tps6131x-v1-0-d1071d90f9ea@emfend.at>
+ <20250228-leds-tps6131x-v1-1-d1071d90f9ea@emfend.at>
+ <d5e73894-0e30-499f-a723-2ada72d3b864@kernel.org>
+ <d30e5994-9e7a-4f0c-96e6-14fe6f132f5f@emfend.at>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,42 +106,114 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <TY0PR06MB496072786197162F19ED7DDD89D62@TY0PR06MB4960.apcprd06.prod.outlook.com>
+In-Reply-To: <d30e5994-9e7a-4f0c-96e6-14fe6f132f5f@emfend.at>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/03/2025 11:05, Kevin Chen wrote:
->> On 04/03/2025 11:44, Kevin Chen wrote:
+On 10/03/2025 09:40, Matthias Fend wrote:
+> Hi Krzysztof,
+> 
+> thanks for your review.
+> 
+> Am 10.03.2025 um 08:49 schrieb Krzysztof Kozlowski:
+>> On 28/02/2025 11:31, Matthias Fend wrote:
 >>> +
->>> +static int aspeed_pcc_probe(struct platform_device *pdev) {
->>> +	int rc;
->>> +	struct aspeed_pcc_ctrl *pcc;
->>> +	struct device *dev;
->>> +	uint32_t fifo_size = PAGE_SIZE;
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - ti,tps61310
+>>> +      - ti,tps61311
 >>> +
->>> +	dev = &pdev->dev;
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  '#address-cells':
+>>> +    const: 1
+>>> +
+>>> +  '#size-cells':
+>>> +    const: 0
 >>
->> This goes to declaration.
-> OK. I will move it to declaration.
+>> Why do you need these two?
+> 
+> As a template, I also used recently added bindings 
+> (silergy,sy7802.yaml). These entries come from there, but as I 
+> understand it, they are supposed to be removed, right?
+
+They make no sense based on the bindings.
+
 > 
 >>
 >>> +
->>> +	pcc = devm_kzalloc(&pdev->dev, sizeof(*pcc), GFP_KERNEL);
+>>> +  reset-gpios:
+>>> +    maxItems: 1
+>>> +    description: GPIO connected to NRESET pin
+>>> +
+>>> +  ti,valley-current-limit:
+>>> +    type: boolean
+>>> +    description:
+>>> +      Reduce the valley peak current limit from 1750mA to 1250mA (TPS61310) or
+>>> +      from 2480mA to 1800mA (TPS61311).
+>>> +
+>>> +  led:
 >>
->> Maybe my previous comment was not clear, but you agreed with it. Anyway
->> nothing improved here.
-> Could I reserve the pcc variable using for the pcc_ctrl data structure?
-> Pcc_ctrl data include the regmap/irq/io_port/dma/kfifo.
-> If I change the name to dev, it does not make sense for these data to be.
+>> Why do you have only one led node? Description says three: LED1-3,
+>> unless these are just sinks which always have to be connected to the
+>> same LED?
+> 
+> That is basically correct. If you just want to switch the 3 LEDs on or 
+> off, you could map that accordingly.
+> In detail, however, the 3 channels are not really independent of each 
+> other. All channels share, for example, the flash controller, the safety 
+> timers and the operating mode. In addition, two channels share the 
+> configuration registers. It is therefore not possible to use one channel 
+> as a flash and another as a normal LED.
+> For use as an LED flash controller (what the chip actually is), it 
+> therefore only makes sense if one or more channels are combined.
+
+You define the binding which will be set in stone. This binding says it
+is not possible to use two or three LEDs. I am fine with this, but be
+aware of it and explain this in binding description.
+
 > 
 >>
->> If you have 'dev' variable, use it.
-> Do you mean just use the pdev->dev not local dev variable?
-What is the point of this:
-dev = &pdev->dev;
-
-if you do not use 'dev'? If you come with a reason, sure. If you do not
-have such, then everything should use 'dev', not pdev->dev.
+>>> +    type: object
+>>> +    $ref: common.yaml#
+>>> +    unevaluatedProperties: false
+>>> +
+>>> +    properties:
+>>> +      led-sources:
+>>> +        allOf:
+>>
+>> Drop allOf
+>>
+>>> +          - minItems: 1
+>>> +            maxItems: 3
+>>> +            items:
+>>> +              enum: [1, 2, 3]
+>>> +
+>>> +      led-max-microamp:
+>>> +        anyOf:
+>>
+>> oneOf
+>>
+>>> +          - minimum: 25000
+>>> +            maximum: 350000
+>>> +            multipleOf: 50000
+>>> +          - minimum: 25000
+>>> +            maximum: 525000
+>>
+>> Why two different values?
+> 
+> The channels can in principle be configured in 25mA steps.
+> If only the two channels that share the configuration register are used, 
+> the step size doubles to 50mA. The maximum current values ​​for such a 
+> configuration are also different.
+> There are of course several other combinations of channels that would 
+> result in different maximum values, but since the step size is an 
+> important value for the API, I wanted to describe these two cases 
+> explicitly.
+> 
+ok
 
 Best regards,
 Krzysztof
