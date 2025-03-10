@@ -1,328 +1,251 @@
-Return-Path: <devicetree+bounces-155938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9EBFA58ABA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 03:58:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73929A58AC5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 04:04:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32B39188E159
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 02:58:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEA92188D939
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 03:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A911AA1D2;
-	Mon, 10 Mar 2025 02:58:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IY6XfO+c"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C6C18CC1D;
+	Mon, 10 Mar 2025 03:04:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp134-86.sina.com.cn (smtp134-86.sina.com.cn [180.149.134.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA3D17C225;
-	Mon, 10 Mar 2025 02:58:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23372136349
+	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 03:04:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741575484; cv=none; b=tedogHvHM7U0F7AtusUdXSE6D7qudQM3Zs7uBqA3gaTkXgsNU2XdHRDS1vSNaDrgo3RK1SMuF6H12Gf3m/OaXC3ezhrEYyz5+Ua5k8JQKu9KTMO40CuUmid/SRtj2sQ7CY68Zg3CcfZZM0JAPdm5DY1CU3EcNpgiWBmoBmHZNm0=
+	t=1741575854; cv=none; b=uxotJNi+zGehOSFFd7shwCO4xlVATKZc6fSQyc86TA9DgePSGtW0fH74OcuYsGUxE74fPLdtDv8DZahSOJ8Y+Am/YkDBZoJ9wTzCw0mc7Fw5wGH/DAq27cBJuY+Z55BrZSolauLpoy8gUM7AzteorGH9RojDF604c38nDGC7PGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741575484; c=relaxed/simple;
-	bh=e29fZWnuaNP/FqFEDoIvxeI8O6oxKjfJFLcq6t6DOLQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Jf61YA27xzYBxv9lMNTQkFrYktC+fdMlq75TqZcGvglvuuxh0VSlImlpcGhgvg0bOtVcwF2qZthdfyecEHFuMVJ1LRRK3LwBGD+Kj+XC5grbYLVF2xFG7IFU7yVBlvRJSCEvNMg/p3LFkmfAyjioOKWbwj/fQKhH3cYHpmVIZCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IY6XfO+c; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 529MtPYX012672;
-	Mon, 10 Mar 2025 02:57:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qEoCZTviZ2GCsxW2OdhKOgQUL5/J0NoI75VbggP73rw=; b=IY6XfO+cyEyKgtTh
-	VvwZBcAkKx5ZDHo5iFWZd+3zeGNlVAgcUYEEjtGnGFtOHHMr2/7LDIs9+q4PZhnJ
-	zAAl8pQmpSgsxI+jW41MyxCrevjIYKmkwN/Sl1SFPRw9TesoT8SHJxiWXF8zc+1K
-	qeiRCdQQjin5WNF2j21k4fTy9qSnubuDlxM3MPZlx3sbeAfNxSTvaLNyie2Pp8yl
-	U+fXFQp3m642p+ST9DzaYpGTgAfzez4rhzyaZZzyWANZxlDBHE54EMnBNN6FrSEf
-	ACw29qurRz8qqyc7RUorX8y9J4Uc4VZEzS1WBR5EtKwsrv/8sy9QipcWJ2tZV+j7
-	i+7bXg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458ex0uath-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 02:57:45 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52A2vi3f005518
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 02:57:44 GMT
-Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 9 Mar 2025
- 19:57:38 -0700
-Message-ID: <942d0b2f-c3c1-466d-b894-9dd32ec4e6a1@quicinc.com>
-Date: Mon, 10 Mar 2025 10:57:36 +0800
+	s=arc-20240116; t=1741575854; c=relaxed/simple;
+	bh=26cx/vvyLmyfjqV5b45btoxXJllLg5LCM9Zt3cXbU8Y=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=n5R3YUsodkej1yM7TEuAR8beTBV6QuYgI1gy1uVccUH7P7ZtqatIhXasBIpaVHJZfKqfiCDmv6nd7af5vCoAfO5XZReBU08gaRFXQpNV02A3ReN5qwXXzQq0mwN7wBC3DIoyUupinH6PCJvxN68B0u1EruEJG1HCeth6pHC2SiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
+Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
+	by sina.net (10.185.250.30) with ESMTP
+	id 67CE569D000009D8; Mon, 10 Mar 2025 11:03:58 +0800 (CST)
+X-Sender: zhangyi@everest-semi.com
+X-Auth-ID: zhangyi@everest-semi.com
+Authentication-Results: sina.net;
+	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
+	 dkim=none header.i=none;
+	 dmarc=none action=none header.from=zhangyi@everest-semi.com
+X-SMAIL-MID: B3C55CFE67994179ABD0A7C2F67E6B58
+X-SMAIL-UIID: B3C55CFE67994179ABD0A7C2F67E6B58-20250310-110358
+From: Zhang Yi <zhangyi@everest-semi.com>
+To: krzk@kernel.org
+Cc: tiwai@suse.com,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org,
+	lgirdwood@gmail.com,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	perex@perex.cz
+Subject: RE: [PATCH v4 1/2] ASoC: codecs: add support for ES8389
+Date: Mon, 10 Mar 2025 11:03:57 +0800
+Message-Id: <20250310030357.120390-1-zhangyi@everest-semi.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 10/10] arm64: dts: qcom: sa8775p: Add CTCU and ETR
- nodes
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-References: <20250303032931.2500935-1-quic_jiegan@quicinc.com>
- <20250303032931.2500935-11-quic_jiegan@quicinc.com>
- <0be31ecd-4386-4eb6-ad6f-a4409a3fc6ad@arm.com>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <0be31ecd-4386-4eb6-ad6f-a4409a3fc6ad@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tFJVOVLCoCIHttOaOYSCI63izxriGM9H
-X-Authority-Analysis: v=2.4 cv=f/qyBPyM c=1 sm=1 tr=0 ts=67ce5529 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=7CQSdrXTAAAA:8
- a=wwPabD9cbYV0bnQw2J4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-GUID: tFJVOVLCoCIHttOaOYSCI63izxriGM9H
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-10_01,2025-03-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- bulkscore=0 phishscore=0 lowpriorityscore=0 mlxlogscore=999 clxscore=1015
- priorityscore=1501 malwarescore=0 adultscore=0 suspectscore=0 mlxscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503100022
 
+I apologize for not responding to this review comment.
+But I did view these review comments and fixed the error.
+In the meantime I will modify my cc list, do I need to resend a new version
+of the patch to correct my error in my cc list?
 
-
-On 3/4/2025 8:28 PM, Suzuki K Poulose wrote:
-> On 03/03/2025 03:29, Jie Gan wrote:
->> Add CTCU and ETR nodes in DT to enable related functionalities.
->>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+> > +static int es8389_probe(struct snd_soc_component *codec)
+> > +{
+> > +	int ret = 0;
+> > +	struct es8389_private *es8389 = snd_soc_component_get_drvdata(codec);
+> > +
+> > +	ret = device_property_read_u8(codec->dev, "everest,mclk-src", &es8389->mclk_src);
+> > +	if (ret != 0) {
+> > +		dev_dbg(codec->dev, "mclk-src return %d", ret);
+> > +		es8389->mclk_src = ES8389_MCLK_SOURCE;
+> > +	}
+> > +
+> > +	ret = device_property_read_u8(codec->dev, "everest,adc-slot", &es8389->adc_slot);
+> > +	if (ret != 0) {
+> > +		dev_dbg(codec->dev, "adc-slot return %d", ret);
+> > +		es8389->adc_slot = 0x00;
+> > +	}
+> > +
+> > +	ret = device_property_read_u8(codec->dev, "everest,dac-slot", &es8389->dac_slot);
+> > +	if (ret != 0) {
+> > +		dev_dbg(codec->dev, "dac-slot return %d", ret);
+> > +		es8389->dac_slot = 0x00;
+> > +	}
+> > +
+> > +	es8389->dmic = device_property_read_bool(codec->dev,
+> > +			"everest,dmic-enabled");
+> > +	dev_dbg(codec->dev, "dmic-enabled %x", es8389->dmic);
+> > +
+> > +	if (!es8389->adc_slot) {
+> > +		es8389->mclk = devm_clk_get(codec->dev, "mclk");
+> > +		if (IS_ERR(es8389->mclk)) {
+> > +			dev_err(codec->dev, "%s,unable to get mclk\n", __func__);
 > 
-> Assuming this goes via the soc tree,
+> Syntax is return dev_err_probe. Also, drop __func__.
+
+Ok,I'll fix it
+
+> > +static struct snd_soc_component_driver soc_codec_dev_es8389 = {
+> > +	.probe = es8389_probe,
+> > +	.remove = es8389_remove,
+> > +	.suspend = es8389_suspend,
+> > +	.resume = es8389_resume,
+> > +	.set_bias_level = es8389_set_bias_level,
+> > +
+> > +	.controls = es8389_snd_controls,
+> > +	.num_controls = ARRAY_SIZE(es8389_snd_controls),
+> > +	.dapm_widgets = es8389_dapm_widgets,
+> > +	.num_dapm_widgets = ARRAY_SIZE(es8389_dapm_widgets),
+> > +	.dapm_routes = es8389_dapm_routes,
+> > +	.num_dapm_routes = ARRAY_SIZE(es8389_dapm_routes),
+> > +	.idle_bias_on = 1,
+> > +	.use_pmdown_time = 1,
+> > +};
+> > +
+> > +static struct regmap_config es8389_regmap = {
+> > +	.reg_bits = 8,
+> > +	.val_bits = 8,
+> > +
+> > +	.max_register = ES8389_MAX_REGISTER,
+> > +
+> > +	.volatile_reg = es8389_volatile_register,
+> > +	.cache_type = REGCACHE_MAPLE,
+> > +};
+> > +
+> > +#ifdef CONFIG_OF
+> > +static struct of_device_id es8389_if_dt_ids[] = {
+> > +	{ .compatible = "everest,es8389", },
 > 
-> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Bindings are before the user (see DT submitting patches).
 
-Hi Bjorn, Konrad
+Ok,I'll fix it
 
-Gentle ping.
-
-The driver part has applied. BTW, I found this patch has a conflict on 
-tag next-20250307, do you need me to send a new rebased patch?
-
-Thanks,
-Jie
-
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, es8389_if_dt_ids);
+> > +#endif
+> > +
+> > +static void es8389_i2c_shutdown(struct i2c_client *i2c)
+> > +{
+> > +	struct snd_soc_component *component;
+> > +	struct es8389_private *es8389;
+> > +
+> > +	es8389 = i2c_get_clientdata(i2c);
+> > +	component = es8389->component;
+> > +	dev_dbg(component->dev, "Enter into %s\n", __func__);
 > 
-> 
->> ---
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 153 ++++++++++++++++++++++++++
->>   1 file changed, 153 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/ 
->> dts/qcom/sa8775p.dtsi
->> index 3394ae2d1300..31aa94d2a043 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -2429,6 +2429,35 @@ crypto: crypto@1dfa000 {
->>               interconnect-names = "memory";
->>           };
->> +        ctcu@4001000 {
->> +            compatible = "qcom,sa8775p-ctcu";
->> +            reg = <0x0 0x04001000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb";
->> +
->> +            in-ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                port@0 {
->> +                    reg = <0>;
->> +
->> +                    ctcu_in0: endpoint {
->> +                        remote-endpoint = <&etr0_out>;
->> +                    };
->> +                };
->> +
->> +                port@1 {
->> +                    reg = <1>;
->> +
->> +                    ctcu_in1: endpoint {
->> +                        remote-endpoint = <&etr1_out>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->>           stm: stm@4002000 {
->>               compatible = "arm,coresight-stm", "arm,primecell";
->>               reg = <0x0 0x4002000 0x0 0x1000>,
->> @@ -2633,6 +2662,122 @@ qdss_funnel_in1: endpoint {
->>               };
->>           };
->> +        replicator@4046000 {
->> +            compatible = "arm,coresight-dynamic-replicator", 
->> "arm,primecell";
->> +            reg = <0x0 0x04046000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +
->> +            in-ports {
->> +                port {
->> +                    qdss_rep_in: endpoint {
->> +                        remote-endpoint = <&swao_rep_out0>;
->> +                    };
->> +                };
->> +            };
->> +
->> +            out-ports {
->> +                port {
->> +                    qdss_rep_out0: endpoint {
->> +                        remote-endpoint = <&etr_rep_in>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->> +        tmc_etr: tmc@4048000 {
->> +            compatible = "arm,coresight-tmc", "arm,primecell";
->> +            reg = <0x0 0x04048000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +            iommus = <&apps_smmu 0x04c0 0x00>;
->> +
->> +            arm,scatter-gather;
->> +
->> +            in-ports {
->> +                port {
->> +                    etr0_in: endpoint {
->> +                        remote-endpoint = <&etr_rep_out0>;
->> +                    };
->> +                };
->> +            };
->> +
->> +            out-ports {
->> +                port {
->> +                    etr0_out: endpoint {
->> +                        remote-endpoint = <&ctcu_in0>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->> +        replicator@404e000 {
->> +            compatible = "arm,coresight-dynamic-replicator", 
->> "arm,primecell";
->> +            reg = <0x0 0x0404e000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +
->> +            in-ports {
->> +                port {
->> +                    etr_rep_in: endpoint {
->> +                        remote-endpoint = <&qdss_rep_out0>;
->> +                    };
->> +                };
->> +            };
->> +
->> +            out-ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                port@0 {
->> +                    reg = <0>;
->> +
->> +                    etr_rep_out0: endpoint {
->> +                        remote-endpoint = <&etr0_in>;
->> +                    };
->> +                };
->> +
->> +                port@1 {
->> +                    reg = <1>;
->> +
->> +                    etr_rep_out1: endpoint {
->> +                        remote-endpoint = <&etr1_in>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->> +        tmc_etr1: tmc@404f000 {
->> +            compatible = "arm,coresight-tmc", "arm,primecell";
->> +            reg = <0x0 0x0404f000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +            iommus = <&apps_smmu 0x04a0 0x40>;
->> +
->> +            arm,scatter-gather;
->> +            arm,buffer-size = <0x400000>;
->> +
->> +            in-ports {
->> +                port {
->> +                    etr1_in: endpoint {
->> +                        remote-endpoint = <&etr_rep_out1>;
->> +                    };
->> +                };
->> +            };
->> +
->> +            out-ports {
->> +                port {
->> +                    etr1_out: endpoint {
->> +                        remote-endpoint = <&ctcu_in1>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->>           funnel@4b04000 {
->>               compatible = "arm,coresight-dynamic-funnel", 
->> "arm,primecell";
->>               reg = <0x0 0x4b04000 0x0 0x1000>;
->> @@ -2708,6 +2853,14 @@ out-ports {
->>                   #address-cells = <1>;
->>                   #size-cells = <0>;
->> +                port@0 {
->> +                    reg = <0>;
->> +
->> +                    swao_rep_out0: endpoint {
->> +                        remote-endpoint = <&qdss_rep_in>;
->> +                    };
->> +                };
->> +
->>                   port@1 {
->>                       reg = <1>;
->>                       swao_rep_out1: endpoint {
-> 
+> Please drop simple probe enter/exit debugs. Tracing is for that in
+> general.
 
+I'll drop these.
+
+> > +
+> > +	regmap_write(es8389->regmap, ES8389_MASTER_MODE, 0x28);
+> > +	regmap_write(es8389->regmap, ES8389_HPSW, 0x00);
+> > +	regmap_write(es8389->regmap, ES8389_VMID, 0x00);
+> > +	regmap_write(es8389->regmap, ES8389_RESET, 0x00);
+> > +	regmap_write(es8389->regmap, ES8389_CSM_JUMP, 0xCC);
+> > +	usleep_range(500000, 550000);//500MS
+> > +	regmap_write(es8389->regmap, ES8389_CSM_JUMP, 0x00);
+> > +	regmap_write(es8389->regmap, ES8389_ANA_CTL1, 0x08);
+> > +	regmap_write(es8389->regmap, ES8389_ISO_CTL, 0xC1);
+> > +	regmap_write(es8389->regmap, ES8389_PULL_DOWN, 0x00);
+> > +}
+> > +
+> > +static int es8389_i2c_probe(struct i2c_client *i2c_client)
+> > +{
+> > +	struct es8389_private *es8389;
+> > +	int ret = -1;
+> > +
+> > +	es8389 = devm_kzalloc(&i2c_client->dev,
+> > +			sizeof(*es8389), GFP_KERNEL);
+> 
+> You wrapping is odd: unnecessary and not matching coding style.
+
+Ok,I'll fix it
+
+>> +	if (es8389 == NULL)
+>> +		return -ENOMEM;
+>> +
+>> +	i2c_set_clientdata(i2c_client, es8389);
+>> +	es8389->regmap = devm_regmap_init_i2c(i2c_client, &es8389_regmap);
+>> +	if (IS_ERR(es8389->regmap))
+>> +		return dev_err_probe(&i2c_client->dev, PTR_ERR(es8389->regmap),
+>> +			"regmap_init() failed\n");
+>> +
+>> +	ret =  devm_snd_soc_register_component(&i2c_client->dev,
+>> +			&soc_codec_dev_es8389,
+>> +			&es8389_dai,
+>> +			1);
+>> +	if (ret < 0) {
+>> +		kfree(es8389);
+>
+>You have a bug here - double free. You can easily trigger this and see
+>the result with KASAN.
+
+Ok,I'll fix it
+
+> > +		return ret;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static const struct i2c_device_id es8389_i2c_id[] = {
+> > +	{"es8389"},
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, es8389_i2c_id);
+> > +
+> > +static struct i2c_driver es8389_i2c_driver = {
+> > +	.driver = {
+> > +		.name	= "es8389",
+> > +		.owner	= THIS_MODULE,
+> 
+> So you sent us an old code, probably based on downstream, duplicating
+> issues we already fixed in upstream.
+> 
+> That's really suboptimal choice.
+> 
+> First, you have the issues here which we already fixed. Second, you ask
+> us to review and find the same problems we already pointed out and
+> fixed.
+> 
+> Instead, please take the newest reviewed driver and use it as base.
+
+Ok,I'll fix it
+
+> > +		.of_match_table = of_match_ptr(es8389_if_dt_ids),
+> > +	},
+> > +	.shutdown = es8389_i2c_shutdown,
+> > +	.probe = es8389_i2c_probe,
+> > +	.id_table = es8389_i2c_id,
+> > +};
+> > +module_i2c_driver(es8389_i2c_driver);
+> > +
+> > +MODULE_DESCRIPTION("ASoC es8389 driver");
+> > +MODULE_AUTHOR("Michael Zhang <zhangyi@everest-semi.com>");
+> > +MODULE_LICENSE("GPL");
+> > +
+> > +
+> 
+> No need for blank lines at the end.
+
+Ok,I'll fix it
 
