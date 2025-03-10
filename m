@@ -1,97 +1,115 @@
-Return-Path: <devicetree+bounces-156000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44636A58DF7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:21:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52098A58E0B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:23:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82CC116B2A1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:21:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF4CE7A23B9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75A90224225;
-	Mon, 10 Mar 2025 08:21:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D19222257E;
+	Mon, 10 Mar 2025 08:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="domvwVM/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M8T+aQzp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486A3224222;
-	Mon, 10 Mar 2025 08:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED40213E93;
+	Mon, 10 Mar 2025 08:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741594860; cv=none; b=CGiBfFZBOppXNPG9V3RNpaYygyTjWPGYXUlO+nhiM9b2YXDdy5w6RRT4507fGAUim6Ie4FmBfH8x5Us2pYn0cQUZVqCGmIJAEd4kA+STuEw+89HLOjYJQM1crqEGxVG6PGIN7Ezv5siebfA8ywnydBHgrbmOA0aDrpyWtkAuZjk=
+	t=1741595012; cv=none; b=NWQU7b1neTzUlsmeNqeNbx9z8JUjvJJsGJFi6a6QtzReSay/RrQJOE6z384E19M22ECyQ8aKEoH8NyV0fM79fWfN35dQAqQ3Rr6DnfXEtdpAOSlyJx1T7/n1C0EDe1w3OM8OVO+M9Ntm/Hw5q5BfZ6IP6wWu7JpXw1KEhPs8vjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741594860; c=relaxed/simple;
-	bh=el1rL8iBygMhoB5kwTVvjfVwI/TFyrebUfurth93Vi8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G0kt1IXBKyTE+vq2GrpJAYPABNTQUaKJE6WuYvABQvIez+gUrMhvvJDOhNEfOLpE6GFeaNMjQjHk4Zxx25IKXZ2qJ5aXLFXOncuhkcU6zvr3dmcvBq3i2NzmMBhgovT/xNIMMcddu49pYkkCvGtYfv0yW68TuxkKYfi1HhQonRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=domvwVM/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8148C4CEEF;
-	Mon, 10 Mar 2025 08:20:58 +0000 (UTC)
+	s=arc-20240116; t=1741595012; c=relaxed/simple;
+	bh=6YS12As8AjAjGZ/NYR1OL7LWdlVVM8Ywxsw7OqaqjCw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=LCgu1APZKAhsja1owIHH1mF/XJd3pg9+mkAnLJuukjfUzyG10fKH+3kCe7JsVhmrrrQFf+DKM3o+MM5hrlVWE70570AC8mjdWeCMp+12g767PrSPwdagFaP2nGl6Ui+YsVIvsBFb7SuUtWmTPrUW6+jI1QhbZW76H9Hxnfz4ezc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M8T+aQzp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82443C4CEE5;
+	Mon, 10 Mar 2025 08:23:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741594859;
-	bh=el1rL8iBygMhoB5kwTVvjfVwI/TFyrebUfurth93Vi8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=domvwVM/UD6N2tud3bU+GjIibogzVm5H4DD9kZotdvjMLLpxNWBJWwM5Ed2l1vR3B
-	 /ZxXQWc/H2/lYhr+/gd0JcOKA0lKAbY/16UdDxdgRN+f7fmwel79gbOp3jIw/kYfxC
-	 El0HxTZ/vA0zShCM+VOYJXqx5hGAEpPivlrBz8mXAQ60SgUlmr2voSLAti7a835wLd
-	 6xs2dYwCwctmyYXhzwjyKZjxzKllfcothJP1hmBfaitHW9DjtczA58NFjMGm6AfESd
-	 zsgyeFWSUeWrdJ/XAYVbwIDkFP7pszRczcSx6uoPUrEkmpjXvqoV+4/f3BJe2skRHJ
-	 o7oayTbuzU69Q==
-Date: Mon, 10 Mar 2025 09:20:55 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Santosh Shilimkar <ssantosh@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Anand Gadiyar <gadiyar@ti.com>, 
-	Chandrasekar Ramakrishnan <rcsekar@samsung.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Vishal Mahaveer <vishalm@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
-	Kendall Willis <k-willis@ti.com>, linux-can@vger.kernel.org
-Subject: Re: [PATCH v5 03/13] dt-bindings: can: m_can: Add wakeup properties
-Message-ID: <20250310-gifted-coati-of-sympathy-dabc5d@krzk-bin>
-References: <20250306-topic-am62-partialio-v6-12-b4-v5-0-f9323d3744a2@baylibre.com>
- <20250306-topic-am62-partialio-v6-12-b4-v5-3-f9323d3744a2@baylibre.com>
+	s=k20201202; t=1741595010;
+	bh=6YS12As8AjAjGZ/NYR1OL7LWdlVVM8Ywxsw7OqaqjCw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=M8T+aQzptkie1CRGdVDOBLsQKkwmiHQ7cqdLudZskVnXs6UfjBFtoBV/3o1LOXlRF
+	 3deQyAH8FPL+0DH3RnJfWbMiIkfUVyMrQTgx7+wAa4WTHpyoCUeI5cicmUq5UVYRTE
+	 HgJfqDe6B66Ar4pdnRt+Ix7Qcyj0YSvbBz2H1D6TbNSGoIZOpqD6TR551rv1YrkV0D
+	 nggLc84OktxwOKoB3s7p1xrm16gyu/nEumhk/920jINDpOmeI+ffKfrbQgc8kNVGKs
+	 llIqyVT8NzH/o4EgXxhdTqGeKZmkXxv61lmAWRcnNH6biWz2XJ4jL1QPZnanxCPROM
+	 v4zXQ7WhhoNgA==
+Date: Mon, 10 Mar 2025 03:23:29 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250306-topic-am62-partialio-v6-12-b4-v5-3-f9323d3744a2@baylibre.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, abel.vesa@linaro.org, 
+ linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, kw@linux.com, 
+ johan+linaro@kernel.org, neil.armstrong@linaro.org, lpieralisi@kernel.org, 
+ conor+dt@kernel.org, vkoul@kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, kishon@kernel.org, andersson@kernel.org, 
+ dmitry.baryshkov@linaro.org, konradybcio@kernel.org, 
+ quic_krichai@quicinc.com, krzk+dt@kernel.org, bhelgaas@google.com, 
+ manivannan.sadhasivam@linaro.org, quic_qianyu@quicinc.com
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+In-Reply-To: <20250310065613.151598-2-quic_ziyuzhan@quicinc.com>
+References: <20250310065613.151598-1-quic_ziyuzhan@quicinc.com>
+ <20250310065613.151598-2-quic_ziyuzhan@quicinc.com>
+Message-Id: <174159500913.3380799.14221924313975247180.robh@kernel.org>
+Subject: Re: [PATCH v3 1/4] dt-bindings: PCI: qcom: Document the QCS615
+ PCIe Controller
 
-On Thu, Mar 06, 2025 at 12:14:41PM +0100, Markus Schneider-Pargmann wrote:
-> +  pinctrl-names:
-> +    description:
-> +      When present should contain at least "default" describing the default pin
-> +      states. The second state called "wakeup" describes the pins in their
-> +      wakeup configuration required to exit sleep states.
-> +    minItems: 1
-> +    items:
-> +      - const: default
-> +      - const: wakeup
-> +
->    power-domains:
->      description:
->        Power domain provider node and an args specifier containing
-> @@ -122,6 +138,8 @@ properties:
->      minItems: 1
->      maxItems: 2
->  
-> +  wakeup-source: true
 
-If this patchset depends on dtschema pull, then this should be narrowed
-to specific type, I think. Otherwise how exactly your drivers are going
-to work if this is just "wakeup-source;"?
+On Mon, 10 Mar 2025 14:56:10 +0800, Ziyue Zhang wrote:
+> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> 
+> Add dedicated schema for the PCIe controllers found on QCS615.
+> Due to qcs615's clock-names do not match any of the existing
+> dt-bindings, a new compatible for qcs615 is needed.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+> ---
+>  .../bindings/pci/qcom,qcs615-pcie.yaml        | 160 ++++++++++++++++++
+>  1 file changed, 160 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/qcom,qcs615-pcie.yaml
+> 
 
-Best regards,
-Krzysztof
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/pci/qcom,qcs615-pcie.example.dts:58.35-36 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/pci/qcom,qcs615-pcie.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1511: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250310065613.151598-2-quic_ziyuzhan@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
