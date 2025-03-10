@@ -1,74 +1,93 @@
-Return-Path: <devicetree+bounces-155984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BEB7A58D48
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:51:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC868A58D50
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:54:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D55A188CCD1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:51:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99ECE7A4537
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1163221F17;
-	Mon, 10 Mar 2025 07:51:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B74221F39;
+	Mon, 10 Mar 2025 07:54:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vQkIKmyF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail78-60.sinamail.sina.com.cn (mail78-60.sinamail.sina.com.cn [219.142.78.60])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B41011CBA
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 07:51:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.60
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC3511CBA;
+	Mon, 10 Mar 2025 07:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741593096; cv=none; b=FVDq2kICyu0y9da0qoAo8oJUxz01xXR7Nqjk6n7hdyTl7naxqlqSv2k4nejHgN0wPD3MzD2Hxfk+pH7CRxGY4r6PioDauR74z62ST2f7dFNKzkyvDxCGECSZyeikfHdQLwbhdIhzBLiD+PQ19TbjmBE/o4S2Y5ea8ZZOhJ6c3uw=
+	t=1741593259; cv=none; b=TINwbhj9NG315INH1x7/FvNBdBEuFVRAx9Srl/3TaZ1AnRIDDQqO5vVFgIRFhH5WuReLd3q05mt1tsnnkR0tQQQB+jKpeupth40jqq+sS4hvSsxmXBT2siKMI5Jbynvv/IJvO72eEXcFRuh1D0uuvUpCw4GyFK59pwQx+CgpqZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741593096; c=relaxed/simple;
-	bh=TQzZQoSP3cx7FAowpyPZuaxx4zOSlBAHDOzvU+DlU9M=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=KkNlnWhOvNDrQwtXqzucUmSVGp8MOu+itpgpFNIEVhZOgIkbuLTgEBisMIQd6VvsiVne+tLQRJpSnPXAlRCUv/onJMts04KhsLp9rSfmAxWt0Zx9VoZ+U2C1ZGwWoFr/plaRNTlSVgAwgjFdoxw01apAi4Lllb7ajv0HgH9KupI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.137])
-	by sina.net (10.185.250.30) with ESMTP
-	id 67CE99FF0000652E; Mon, 10 Mar 2025 15:51:28 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: AC44FE096A064EA196718CD54B3D1E00
-X-SMAIL-UIID: AC44FE096A064EA196718CD54B3D1E00-20250310-155128
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: krzysztof.kozlowski@linaro.org
-Cc: tiwai@suse.com,
-	conor+dt@kernel.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org,
-	amadeuszx.slawinski@linux.intel.com
-Subject: RE: [PATCH v5 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-Date: Mon, 10 Mar 2025 15:51:26 +0800
-Message-Id: <20250310075126.122915-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1741593259; c=relaxed/simple;
+	bh=IxPWphu3F+xLc4GiSypSOK76zaVHnRzhR45Z6VPd2NA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=svMgKm6Z5uedgPsTHBnPCiurYszvqf8oRUeRMrTnrjCvU+gQjWocZ+pmbukeaF8EeXLo05nBjZs39SCOD9zfRjrfojKvKECww95zHyDmbPciv4Xei4vzdefwJ9hXSButBn9BJMDaxd/lb5M+fqR+CFir9AeDj5pkyv5J9opmreU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vQkIKmyF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0263C4CEE5;
+	Mon, 10 Mar 2025 07:54:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741593257;
+	bh=IxPWphu3F+xLc4GiSypSOK76zaVHnRzhR45Z6VPd2NA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vQkIKmyFW93JJq+SgIA7Kse9XO9YgQMLKEKIqMmNnJSQgaZQ3nXDievCakMRQjSg4
+	 z3hShvH+sQJGvYnAmuIrM1a3q6k2kop5itpDaYBvhABLaKfd4LXUaGU6UEiZf8uWIn
+	 18W+/DjHirhmrCHl6zXDOZpoRmWfC1Tx4bgobW2s9J+04wO6DR6aztFTpOxOyTMpVf
+	 KP2OQLwmA8Flik0e5pfZZj/QkkZ+v4XkeHamrJJupxPXofgO1Kkt0IRTnXpk4pZUUF
+	 Ti4HK/VcgbT9uKGsxiFGRrwIRmzxZetqXTWEKsDBQatp+DDi4SNgEssK5pJf8FTZ+D
+	 Vx+Zxv1IOq4rw==
+Date: Mon, 10 Mar 2025 08:54:14 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Daniel Danzberger <dd@embedd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Linus Walleij <linus.walleij@linaro.org>, Nikita Shubin <nikita.shubin@maquefel.me>, 
+	Guo Ren <guoren@kernel.org>, Yangyu Chen <cyy@cyyself.name>, 
+	Ben Hutchings <ben@decadent.org.uk>, Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org, upstream@airoha.com
+Subject: Re: [PATCH 03/13] dt-bindings: soc: airoha: add SCU SSR Serdes port
+ binding
+Message-ID: <20250310-ultraviolet-earthworm-of-honor-df114b@krzk-bin>
+References: <20250309132959.19045-1-ansuelsmth@gmail.com>
+ <20250309132959.19045-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250309132959.19045-4-ansuelsmth@gmail.com>
 
-> > Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
-> > ---
+On Sun, Mar 09, 2025 at 02:29:34PM +0100, Christian Marangi wrote:
+> Add Airoha AN7581 SCU SSR Serdes port binding to define what mode is
+> supported by each Serdes port. These special binding are needed to
+> identify and provide the port mode from any user driver.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> These modes are mutually exclusive and driver needs to correctly
+> validate the current mode for the Serdes port in use.
 > 
-> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
-> 
-> <form letter>
-> This is an automated instruction, just in case, because many review tags are being ignored. If you know the process, you can skip it (please do not feel offended by me posting it here - no bad intentions intended).
-> If you do not know the process, here is a short explanation:
-> 
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions of patchset, under or above your Signed-off-by tag, unless patch changed significantly (e.g. new properties added to the DT bindings). Tag is "received", when provided in a message replied to you on the mailing list. Tools like b4 can help here. However, there's no need to repost patches *only* to add the tags. The upstream maintainer will do that for tags received on the version they apply.
+>  MAINTAINERS                              |  6 ++++++
+>  include/dt-bindings/soc/airoha,scu-ssr.h | 24 ++++++++++++++++++++++++
 
-Thank you for the explanation.I will do it in a following patch
+This should be squashed with the binding for the device.
+
+Best regards,
+Krzysztof
+
 
