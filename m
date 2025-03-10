@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-156309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66589A5A59D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 22:07:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67E6FA5A5A1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 22:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01AEF7A7B4E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 21:05:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 728033A7142
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 21:07:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF071E1025;
-	Mon, 10 Mar 2025 21:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5405F1E3DCD;
+	Mon, 10 Mar 2025 21:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ttHr8cmG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ngHwvGQo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F53E1D5CDB;
-	Mon, 10 Mar 2025 21:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295141DF987;
+	Mon, 10 Mar 2025 21:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741640802; cv=none; b=WGgCOWcDxTHp1cUnTYsFTqo3Ri/nCDP+9rHUXn4CyhwK7emNmgNj8ISHBwI9EaDVCuE19py4MxiE+hlEf/akfDBJqK8N/DsZaacrlHVrvtz0Y/xEyfNIn8zlHX9IXheGuNLD57UClm0q4vaUNCIUjftoqqc8lYgzxjttrvIKVVU=
+	t=1741640808; cv=none; b=IaZyu6vthZb6cdqbyDjcz5EdpH/9gtVhaaJ4iGoVXPgk9Q6r6YVeGAz8WvQnTyu5DjEDbSL4fuBVKGJBv1D6uuSp8s2kWJptwhrvITXRNv2CYYJEIuGA7GhS35VGAIA57RPJMSLg12IT+WI2iQVTh/fgF0NIxbH/iPVQ8bEn8dU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741640802; c=relaxed/simple;
-	bh=oezQm/NlqvpkxgAhyp0aHWDGb6ijzzY4BmowWL/8DaM=;
+	s=arc-20240116; t=1741640808; c=relaxed/simple;
+	bh=LUIaBdTMgvjB8mW49OVudEiPUFjgQuQv0DcfOzsjxKw=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=DIKV2xcyCmnP/YUMhkquy7qhtW9Qo+FpGZP/m++AnreFWIniLIQmQhPUaAbAdeYo2u7wUuZ1lHZqLUWrgfKb9OqIIos+njewywXk13N4Kj/puXwLJ7o9DpHqxlCsLc0lXiK+QnvH0HUjKsbiputxpHNCy8ZReh+fB6hzIt1KhGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ttHr8cmG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF394C4CEEA;
-	Mon, 10 Mar 2025 21:06:37 +0000 (UTC)
+	 MIME-Version:Content-Type; b=dQHklyCnJ5J1xelmZ+2aiVQVjkf+lAnRd3r2rCryUEUjI+tDT9WZHnvg9u5yXED1A7R+s5efGE5yYjRfCdonK+PEf8JcZtib3BENm0LiBRWxbaJOl0GkFya0GfzTZtJoqQoJg2/A/aj3wZZLzcqSCtECkIPBVu/nKHBp+PK2bGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ngHwvGQo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CA55C4CEEA;
+	Mon, 10 Mar 2025 21:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741640801;
-	bh=oezQm/NlqvpkxgAhyp0aHWDGb6ijzzY4BmowWL/8DaM=;
+	s=k20201202; t=1741640808;
+	bh=LUIaBdTMgvjB8mW49OVudEiPUFjgQuQv0DcfOzsjxKw=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ttHr8cmGF+ms+kff7kQnZn/6JCpkF13AQHNSOSeG9UYG4mK3/v0Cl78/UoD8OlcSJ
-	 qA1Xjx4yLlYtDLnraNTKL/cMYaAPPdwFxlEIS57IWGalz5MxDKmJPxq90WrTHLY/nY
-	 3VV2/RgWOnFhVaklGQCk9rOajgztlz71l0EBRd2Td98CS6MQvZdkTHHizpcwEesm1Q
-	 vOfcCnOi0n5k5BJidMr7UXB9Xnve3/dqgNwd26DCAX8AVJ/eXJah40mqIXl32CLPrO
-	 +XHvjsDDllOkkROVTMSd4d+c4UwJtzzTnpYGPreq1Ez5XB2aFhNJ9l39lfTY2lKC1+
-	 BlMjsaTTAPWyQ==
+	b=ngHwvGQoDXr044MyVtgiG8m59kvGx4OVARGotRxpewNDcQHeCU2C0LCtik0qh6xFn
+	 GEbxJfWvVbLRvBVy8Fn3tjWbZnXBnEo1NCIz9nryAh44hkqCO5+siX0CMy/d0nPygl
+	 U0Wgg+CTJbBJSZx3rRwuSZk1oMqXK53PkAfNM8YXkPrbGyRBVCQkihUEAY7vrwbeUE
+	 nquHm7gRXGp4xc++eRJYPp8LU7YYBvkcFZzQjGUhJ6tW1xAIpJKCiHf1MaoZHQ3Wlh
+	 XjwYq/ftAsTfNAzCPogMwnc0xpGz0897Jmj53dOLARBF9XjVZBP1GyAv0HMpOURkS6
+	 UxRmz/1lv+mQg==
 From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Crystal Wood <oss@buserror.net>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Naveen N Rao <naveen@kernel.org>, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
 Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-In-Reply-To: <20250308-ppcyaml-dma-v4-1-20392ea81ec6@posteo.net>
-References: <20250308-ppcyaml-dma-v4-1-20392ea81ec6@posteo.net>
-Subject: Re: [PATCH v4] dt-bindings: dma: Convert fsl,elo*-dma to YAML
-Message-Id: <174164079739.489187.17067218233592397100.b4-ty@kernel.org>
-Date: Tue, 11 Mar 2025 02:36:37 +0530
+ linux-kernel@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, 
+ Longbin Li <looong.bin@gmail.com>
+In-Reply-To: <20250303065649.937233-1-inochiama@gmail.com>
+References: <20250303065649.937233-1-inochiama@gmail.com>
+Subject: Re: [PATCH] dt-bindings: dma: snps,dw-axi-dmac: Allow devices to
+ be marked as noncoherent
+Message-Id: <174164080465.489187.953643142070263441.b4-ty@kernel.org>
+Date: Tue, 11 Mar 2025 02:36:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +61,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Sat, 08 Mar 2025 19:33:39 +0100, J. Neuschäfer wrote:
-> The devicetree bindings for Freescale DMA engines have so far existed as
-> a text file. This patch converts them to YAML, and specifies all the
-> compatible strings currently in use in arch/powerpc/boot/dts.
+On Mon, 03 Mar 2025 14:56:48 +0800, Inochi Amaoto wrote:
+> A RISC-V platform can have both DMA coherent/noncoherent devices.
+> Since the RISC-V architecture is marked coherent, devices should
+> be marked as noncoherent when coherent devices exist.
 > 
+> Add dma-noncoherent property for snps,dw-axi-dmac device. It will
+> be used on SG2044, and it has other coherent devices.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: dma: Convert fsl,elo*-dma to YAML
-      commit: 1fe283e850d6659dc3ccc295c6a0b470dd461047
+[1/1] dt-bindings: dma: snps,dw-axi-dmac: Allow devices to be marked as noncoherent
+      commit: 6ec29d4086ed8b951fa794ac6c0e7cd7ae3762d9
 
 Best regards,
 -- 
