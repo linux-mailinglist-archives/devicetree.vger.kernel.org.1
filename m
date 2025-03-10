@@ -1,95 +1,89 @@
-Return-Path: <devicetree+bounces-156002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3603A58E15
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:24:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90646A58E22
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:28:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 374BB3AC59A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:24:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92EFE7A4134
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6314D223709;
-	Mon, 10 Mar 2025 08:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD55B22330F;
+	Mon, 10 Mar 2025 08:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NeCcaNX7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dt+61OBu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FFFE2236EE;
-	Mon, 10 Mar 2025 08:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8451D54FA;
+	Mon, 10 Mar 2025 08:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741595044; cv=none; b=OKAEigsAajACsPEM7G1aNCKt0zrcWSC0DKks3ckZ4QkXfi0sBVB+Bfu6Kvive1cIQrhi0/UMXrRhR34FtwYBkGVyE9mesGJvU72h0eKuYy/WI4oY1uKHuHhwqGPcS1xi7IXS3rhEE24nfu4m+l6QRaFrr/9ebfMufHG/1qfa6E8=
+	t=1741595303; cv=none; b=dT3n1k4vGgi36HDvQzi+JLJKxAffI01ms4FnzlTvrnzCACwwVfNJJMdZtNhU2c+5TquT0h7BnbMUnCkh4+uBIIiApDCp+yGnCoWGO3wsVdVJCl09XgilgNeIq/PDLnAKJh4E/9DWawY6F7kcP4zJak79AFyNs5YaI+WH7VRF9VM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741595044; c=relaxed/simple;
-	bh=wDUt90Ru1pIsLbuQaEl1/JJ92mn4IFdSALT9enUC0Zk=;
+	s=arc-20240116; t=1741595303; c=relaxed/simple;
+	bh=7uCFQcex+j6cpQPJF/6LfRBEaDs9jns/4ey91A2Sm5Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fZIKRT3z1zdQ00AsGtLGuvkN7N+ajufz473asw+8/nstr2zEqPGvYCbZzBD9IHhsMqtkQ89BXXaWpnglfuM0mvni/cY6SH32Ae6mTptmLpqPtOnIIMLSYbrWNopFf9y3HRqFxTe7yMJXmdnGntVo3I3kcDMZ6I7TqMPXCqoL0mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NeCcaNX7; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741595042; x=1773131042;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wDUt90Ru1pIsLbuQaEl1/JJ92mn4IFdSALT9enUC0Zk=;
-  b=NeCcaNX7i9BJWq4O6CV+jxRS4NbMYDJShewxSWeslW+RqWxkaNIciz9/
-   1oDxIdzkwBl1QmFlNOCIb6fPphpdR0EjsCCO61LwHFyKKMmD/wKEtLE4t
-   tHabTQj6bRWnBfdxn6FK1okU4sYZX8um/Nab0BUivVEb/mc4kl9o3o2MP
-   DGL02yQhXsfRiS4pACU90fDPi98S4Tn43a9fAQp5/hyulF5X/nL9tGbf/
-   6xXC5P9xjJEIi7wbEY8/uCz3p32qpyLceDGYvTEnQSdNtaczbL4zgvT4n
-   07QIRhWzpWkuvd7Pd3AqCN1HJ7oPMyARDPY2oVRIMTXRP2aDVjoIMNsn7
-   Q==;
-X-CSE-ConnectionGUID: FssS8ukdRlintfeHZuHctA==
-X-CSE-MsgGUID: z/qQHn14RzCewYUPudVCww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="42452034"
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
-   d="scan'208";a="42452034"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 01:23:57 -0700
-X-CSE-ConnectionGUID: +bOE7dHbRoqsk9GwXYWRSQ==
-X-CSE-MsgGUID: uueDdXFiROSxh6W7LvQjPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
-   d="scan'208";a="125170132"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 01:23:51 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1trYQO-00000001Bqq-066w;
-	Mon, 10 Mar 2025 10:23:48 +0200
-Date: Mon, 10 Mar 2025 10:23:47 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH v5 02/10] property: Add functions to count named child
- nodes
-Message-ID: <Z86hk7iXRA5GeOtr@smile.fi.intel.com>
-References: <cover.1740993491.git.mazziesaccount@gmail.com>
- <5e35f44db2b4ed43f75c4c53fd0576df9ad24ab2.1740993491.git.mazziesaccount@gmail.com>
- <Z8WZh5EzFqxvU5rb@smile.fi.intel.com>
- <39cbe817-fef4-405c-b30c-79b592c0bcfe@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=PLFjUHdFQo9/XyDWZRIIrUQn/sDUHV8ZAnxjCr7ahbhY03rzYD7qefrLl+VpY+XcoPaOKhV/gcOyfsRcmbKbHfy5lAFOxru24YGnYVYZg1nWtDVMxLVkwaGO9NVDXWWd0JLI90cTjPX4eZAgXOGA+IU4Ab6ku3b2R1Mzg4KLXds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dt+61OBu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20474C4CEED;
+	Mon, 10 Mar 2025 08:28:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741595303;
+	bh=7uCFQcex+j6cpQPJF/6LfRBEaDs9jns/4ey91A2Sm5Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Dt+61OBuhSx0XzWa7kuR97NtRZolf+Ni76hFMdBs33YLt/1k+RMsxShKq8ywE5izv
+	 Xq0lyi+y7SJzKRcmF6pLe0/pMIp2CN1NtohvIhp4Lfz70fUXaKP8fdlcvDgL6nFqFz
+	 egPccLakn6UNDZwAc49vCsDGQvAccm2S6VOGcQu87kNkGYRfcWBfvdZMHBeMdQgSn4
+	 J/L+XCc+GdJd0FpcGKyrg/IzPOfmKo79PxsSU2iqjEbBsVqKufsF8EZdPd3pBHuFq6
+	 ipnF9XH2wTyTICRsMyZozegPxkb/EOVYqYIAdiNDHZduHzAW48E8qnjKEoT8Kf1pgw
+	 OUmx0WBZnksfg==
+Date: Mon, 10 Mar 2025 10:28:02 +0200
+From: Mike Rapoport <rppt@kernel.org>
+To: Wei Yang <richard.weiyang@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Andy Lutomirski <luto@kernel.org>,
+	Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Borislav Petkov <bp@alien8.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Eric Biederman <ebiederm@xmission.com>,
+	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	Pasha Tatashin <pasha.tatashin@soleen.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Pratyush Yadav <ptyadav@amazon.de>,
+	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Tom Lendacky <thomas.lendacky@amd.com>,
+	Usama Arif <usama.arif@bytedance.com>,
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v4 02/14] memblock: add MEMBLOCK_RSRV_KERN flag
+Message-ID: <Z86ikkLVHQhLmBWj@kernel.org>
+References: <20250206132754.2596694-1-rppt@kernel.org>
+ <20250206132754.2596694-3-rppt@kernel.org>
+ <20250218155004.n53fcuj2lrl5rxll@master>
+ <Z7WHL_Xqgoln9oLg@kernel.org>
+ <20250224013131.fzz552bn7fs64umq@master>
+ <Z711VP45tjBi0kwx@kernel.org>
+ <20250226020915.ytxusrrl7rv4g64l@master>
+ <20250310075627.5hettrn2j2ien5bj@master>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,25 +92,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <39cbe817-fef4-405c-b30c-79b592c0bcfe@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20250310075627.5hettrn2j2ien5bj@master>
 
-On Mon, Mar 10, 2025 at 08:23:15AM +0200, Matti Vaittinen wrote:
-> On 03/03/2025 13:59, Andy Shevchenko wrote:
-> > On Mon, Mar 03, 2025 at 01:31:45PM +0200, Matti Vaittinen wrote:
+Hi Wei,
 
-...
-
-> > Also do we care about secondary fwnodes?
+On Mon, Mar 10, 2025 at 07:56:27AM +0000, Wei Yang wrote:
+> On Wed, Feb 26, 2025 at 02:09:15AM +0000, Wei Yang wrote:
+> >>> 
+> >>> From the above call flow and background, there are three cases when
+> >>> memblock_alloc_range_nid() would be called:
+> >>> 
+> >>>   * If it is called before (1), memblock.reserved's nid would be adjusted correctly.
+> >>>   * If it is called after (2), we don't touch memblock.reserved.
+> >>>   * If it happens between (1) and (2), it looks would break the consistency of
+> >>>     nid information in memblock.reserved. Because when we use
+> >>>     memblock_reserve_kern(), NUMA_NO_NODE would be stored in region.
+> >>> 
+> >>> So my question is if the third case happens, would it introduce a bug? If it
+> >>> won't happen, seems we don't need to specify the nid here?
+> >>
+> >>We don't really care about proper assignment of nodes between (1) and (2)
+> >>from one side and the third case does not happen on the other side. Nothing
+> >>should call membloc_alloc() after memblock_free_all(). 
+> >>
+> >
+> >My point is if no one would call memblock_alloc() after memblock_free_all(),
+> >which set nid in memblock.reserved properly, it seems not necessary to do
+> >__memblock_reserve() with exact nid during memblock_alloc()? 
+> >
+> >As you did __memblock_reserve(found, size, nid, MEMBLOCK_RSRV_KERN) in this
+> >patch.
+> >
 > 
-> We have the device_get_child_node_count().
-> device_get_child_node_count_named() should follow the same logic.
+> Hi, Mike
+> 
+> Do you think my understanding is reasonable?
 
-Okay, so we don't care about them right now.
+Without KHO it is indeed not strictly necessary to set nid during memblock_alloc().
+But since we anyway have nid parameter in memblock_alloc_range_nid() and it
+anyway propagates to memblock_add_range(), I think it's easier and cleaner
+to pass nid to __memblock_reserve() there.
+
+And for KHO estimation of scratch size it is important to have nid assigned to
+the reserved areas before memblock_free_all(), at least for the allocations
+that request particular nid explicitly.
+ 
+> -- 
+> Wei Yang
+> Help you, Help me
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Sincerely yours,
+Mike.
 
