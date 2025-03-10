@@ -1,121 +1,124 @@
-Return-Path: <devicetree+bounces-156330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CFCCA5A682
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 22:54:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E92EA5A6BC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 23:08:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 329743ADF63
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 21:54:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C49371887678
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 22:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABD71E520B;
-	Mon, 10 Mar 2025 21:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DC931E5734;
+	Mon, 10 Mar 2025 22:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="McgzG9DD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JIwkxpXT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1B31E1A3B;
-	Mon, 10 Mar 2025 21:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F161DF72D;
+	Mon, 10 Mar 2025 22:08:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741643658; cv=none; b=BTlIM4lJcytjoZpP/zMupEw0xx+hXAAclc0r+deDaqS3XBTMgYoFKItTkGZxN3MaX/Z0rFJ1qx37AiIJgV8RWqqN2E+DQsh8ZVrrL1LGeM7B8JBt2FU9nBWvx3EFXE/2vabMpmF6ZiwQDsugI6rR3EU+7sY/D/BPqu3gkctFj5Y=
+	t=1741644481; cv=none; b=uahWeToBIVM2uoDhKtgSfjnX0U9j8QU1D1BLZuVMN7BAlpd9gDhD7HUiMoMRj4VTLOfG+Y9ovq5p997Pl22BIJDv/w5+1dYh4pr3UuWJoegL4kRflpBT9SiyjcrYcn+kbIqFZZ2FqQyuh64gFOGpeJOXQlk3OWmcRoTrD+2e5bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741643658; c=relaxed/simple;
-	bh=et/pdKFP+xbz0ie0UenwlW3LyYpkTB1+CTlrZCSRz0E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yu6TRuZbzGkduJvmZTBAomjvAMEobyzE2ZyYkNcaeUKBxgW2QUIcVPm5Chza4QiJvDItDukqIDQy/i5YSwbE2crCNaY4E7XI0CaZZQOun7WmsD1oD/k0PVDfMyOj7rgloaYOSdzM2GYUbrsnSxEVlrkflu6eG2T9UVPOHLGbQvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=McgzG9DD; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 15DAD205492D;
-	Mon, 10 Mar 2025 14:54:16 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 15DAD205492D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1741643656;
-	bh=Q/Uol1uipNTEM+J17AFsSpdT73eLsQ4d8Vvzl/nmsl8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=McgzG9DDr6wUujEwBpMK6suD9qJbrij6gjrcnO6q78gHuFDI4Yr4Tspg3OQhzXnvy
-	 ZBcTeYtfuccZ9RLNcrdoJVs3fmZPUyV/lIGeyh9OJnGPJJ8tlNKBYhrfODMjRGfclv
-	 IMuXMlRQZ/ulJ9+Rs7PP9zZSHIssAH1Tc/M/SXWc=
-Message-ID: <28970d64-40b7-408a-a072-c3449d3de08e@linux.microsoft.com>
-Date: Mon, 10 Mar 2025 14:54:15 -0700
+	s=arc-20240116; t=1741644481; c=relaxed/simple;
+	bh=4NH90Cs04TqlOhUoz/iIw6tRYGsatu8fWNgt044t36M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dzk1nPb+UcpvxP7CLIbga5NJWHOklTgiXg3sEcPJzxX9fqCOfw2vXekuPGU1Z4noYHSINv0E+p/pXmCszp6ioJLcsGS8r8ycT04AFMOJjYUzAQ7Dg4bBrstu0XPI/DmVpOuFCX89zb1zDq0KPXoxQROx0pN4OHDwGN/LkGawEjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JIwkxpXT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7DD8BC4CEE5;
+	Mon, 10 Mar 2025 22:08:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741644480;
+	bh=4NH90Cs04TqlOhUoz/iIw6tRYGsatu8fWNgt044t36M=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=JIwkxpXTq/hqnVz9dSP6RI4Jmyb7693CWCXpJM+qFms3Jspu4Y3OrPrxhHae7OYfn
+	 UCKXxm5Z3kPaEusKVorAlLhBOuRSuo/Xe9lqhda6CPcgkBG8QAQMq4W8gvnyFJLyXi
+	 DsaxCcUTZ75dDYOozAIIXJm7mqxSgJcw9e1HQ4HiLCPJ4O2qCgFlBm3CfqTr4frKtG
+	 08c/q5Atp9mjXqPmb9n9jHuIRmt3VJ8Yv9nvlY50+8k8FgzXe7QQ6AkSupz40QGyaM
+	 6DtzTRKf0ib9C8T27kfgdn5FELUxarbjBa0k3GAAQ944fg9iHQXSr6D+n2E3TGDgVN
+	 /c+VnSGsaVqVQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D12EC282DE;
+	Mon, 10 Mar 2025 22:08:00 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Subject: [PATCH v3 0/3] Driver for the Apple SPMI controller
+Date: Mon, 10 Mar 2025 23:07:57 +0100
+Message-Id: <20250310-spmi-v3-0-92a82e7d9f0d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v5 01/11] arm64: kvm, smccc: Introduce and use
- API for detectting hypervisor presence
-To: Michael Kelley <mhklinux@outlook.com>, "arnd@arndb.de" <arnd@arndb.de>,
- "bhelgaas@google.com" <bhelgaas@google.com>, "bp@alien8.de" <bp@alien8.de>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
- "decui@microsoft.com" <decui@microsoft.com>,
- "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
- "hpa@zytor.com" <hpa@zytor.com>, "joey.gouly@arm.com" <joey.gouly@arm.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "kw@linux.com" <kw@linux.com>,
- "kys@microsoft.com" <kys@microsoft.com>, "lenb@kernel.org"
- <lenb@kernel.org>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
- "mark.rutland@arm.com" <mark.rutland@arm.com>,
- "maz@kernel.org" <maz@kernel.org>, "mingo@redhat.com" <mingo@redhat.com>,
- "oliver.upton@linux.dev" <oliver.upton@linux.dev>,
- "rafael@kernel.org" <rafael@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "ssengar@linux.microsoft.com"
- <ssengar@linux.microsoft.com>, "sudeep.holla@arm.com"
- <sudeep.holla@arm.com>, "suzuki.poulose@arm.com" <suzuki.poulose@arm.com>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "wei.liu@kernel.org" <wei.liu@kernel.org>, "will@kernel.org"
- <will@kernel.org>, "yuzenghui@huawei.com" <yuzenghui@huawei.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
- "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "x86@kernel.org" <x86@kernel.org>
-Cc: "apais@microsoft.com" <apais@microsoft.com>,
- "benhill@microsoft.com" <benhill@microsoft.com>,
- "bperkins@microsoft.com" <bperkins@microsoft.com>,
- "sunilmut@microsoft.com" <sunilmut@microsoft.com>
-References: <20250307220304.247725-1-romank@linux.microsoft.com>
- <20250307220304.247725-2-romank@linux.microsoft.com>
- <BN7PR02MB4148539DEFFF5ABA42AB44D3D4D62@BN7PR02MB4148.namprd02.prod.outlook.com>
-Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <BN7PR02MB4148539DEFFF5ABA42AB44D3D4D62@BN7PR02MB4148.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL1iz2cC/02MyQrCMBRFf6W8tZEMHUxX/oe4SNKkfWAHEglKy
+ b+bVoUuz+Wes0KwHm2AtljB24gB5ymDOBVgBjX1lmCXGTjlFRW0JGEZkdSdMLzUkvJGQb4u3jp
+ 87ZnbPfOA4Tn7916NbFv/geobiIxQYuTFVTVzSkp37UeFj7OZR9gCkR+l5ifxLFljOk1r5bSUR
+ yml9AH68rAFzQAAAA==
+X-Change-ID: 20250304-spmi-6d3c24b9027a
+To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Stephen Boyd <sboyd@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Sasha Finkelstein <fnkl.kernel@gmail.com>, 
+ Jean-Francois Bortolotti <jeff@borto.fr>, Nick Chan <towinchenmi@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741644479; l=1465;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=4NH90Cs04TqlOhUoz/iIw6tRYGsatu8fWNgt044t36M=;
+ b=g8CnRI6E0LKqOAOS/T7gnJRQIpwR+RGZtCOByjaUTDPnkY/76IvmqdKFQH66bpW46p5MmnOXm
+ cbATFvvfMoqBVkC6MTfJwMvVEb2+tmF81rCQYQLPCjubErPipZ6zuYG
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
+Hi.
 
+This patch series adds support for the SPMI controller persent in most
+Apple SoCs. The drivers for the attached PMU and subdevices will be in
+further patch series.
 
-On 3/10/2025 2:16 PM, Michael Kelley wrote:
-> From: Roman Kisel <romank@linux.microsoft.com> Sent: Friday, March 7, 2025 2:03 PM
->>
-> 
-> In the Subject line,
-> 
-> s/detectting/detecting/
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+---
+Changes in v3:
+- Inlined helpers, dropped unneccesary error prefixes
+- Link to v2: https://lore.kernel.org/r/20250307-spmi-v2-0-eccdb06afb99@gmail.com
 
-[...]
+Changes in v2:
+- Removed redundant error prints
+- Various style fixes
+- Better explanation of why the driver is needed
+- Link to v1: https://lore.kernel.org/r/20250305-spmi-v1-0-c98f561fa99f@gmail.com
 
-> s/cenrtal/central/
-> 
+---
+Jean-Francois Bortolotti (1):
+      spmi: add a spmi driver for Apple SoC
 
-My bad, will fix! Thanks for spotting that, I'll be sure to have
-the spellchecker on.
+Sasha Finkelstein (2):
+      dt-bindings: spmi: Add Apple SPMI controller
+      arm64: dts: apple: Add SPMI controller nodes
 
--- 
-Thank you,
-Roman
+ .../devicetree/bindings/spmi/apple,spmi.yaml       |  49 ++++++
+ MAINTAINERS                                        |   2 +
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi          |   7 +
+ arch/arm64/boot/dts/apple/t8103.dtsi               |   8 +
+ arch/arm64/boot/dts/apple/t8112.dtsi               |   7 +
+ drivers/spmi/Kconfig                               |   8 +
+ drivers/spmi/Makefile                              |   1 +
+ drivers/spmi/spmi-apple-controller.c               | 168 +++++++++++++++++++++
+ 8 files changed, 250 insertions(+)
+---
+base-commit: 48a5eed9ad584315c30ed35204510536235ce402
+change-id: 20250304-spmi-6d3c24b9027a
+
 
 
