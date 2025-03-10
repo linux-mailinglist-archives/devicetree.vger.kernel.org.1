@@ -1,333 +1,237 @@
-Return-Path: <devicetree+bounces-156092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1DC6A592CA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 12:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D70A592D9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 12:37:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E104216B42B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:36:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E212E16C783
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0982022156C;
-	Mon, 10 Mar 2025 11:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33FF22222B5;
+	Mon, 10 Mar 2025 11:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eGvZsrnn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iZw8iFji"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14EA428EA;
-	Mon, 10 Mar 2025 11:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C5022156E
+	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 11:37:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741606569; cv=none; b=qQwyZGdfkgYPcZsNRhVSOZoa579EFTmmuHS7o0vxMg3AsjAAaMDVx4F4rafvTAefojxaEq1Gf6d0ADzdJ8TKiGeKAwQtecB08BzPcBsGzV7G3YQ6rpTldNIonO8ucCTaWDFGPI78EvM2r530mG/S8WqOTEJk3ZUoIf1TOiRGbyo=
+	t=1741606658; cv=none; b=WOxHWWbb72FJ7VbD2U2+fKK9j9P4Owu3j9/lEye3G6fugXwkjruWnL+g652wkpSIHNcoY0i5ggi6HB5hK06OMI1IBqVRCA6rrQiapGvf9RDbXseGnAKT/QlPew3XvSzvPqKmIoA8+r2xPJtGopTzNoWAXc4+gsXsWwur1kVvzNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741606569; c=relaxed/simple;
-	bh=ArUkuMYyVMyRgyzw49Oucx0cxbpRmb/j4KxfbcZ6zIQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q/goMz7z360Rl5cPehUwtn+cvFVpnlDv6dRLGJdMspxS+hrLJ+vNt9g32a7t1q5JUUrz+XgckdF9jk8afKZl4VUM9JRP+DT7Ft9cywa9gbrUB9858k/o9HApesWIrWhsoUG0yZPv/w77h4LbbSP+G0V8MqVp3RuitA1d/U+yn4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eGvZsrnn; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac297cbe017so193452566b.0;
-        Mon, 10 Mar 2025 04:36:07 -0700 (PDT)
+	s=arc-20240116; t=1741606658; c=relaxed/simple;
+	bh=SWYXB4Sbnes3rwwGjqIMW8bPKSgUg4OOy9VIN+TMSqE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D0X7EKy6zWtKQfcWvZI+68gVx+G8jVxhhd5POy52EOglsa6UoYNnvODu3paDREAwvpH9y/2AaZGXG2AM09r5FloGjIbRuQGjRdWVWUFsyxIqfdudbZJQZmEJ2FGkiqEa+mVI3q6QlwPBKhOm0/ooPLT16+lDReFTQ1QWoSRmF5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iZw8iFji; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43ce5cd91e5so1661635e9.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 04:37:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741606566; x=1742211366; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/8+5USeHmSgmVlekyvx7qsgwmwBwnZMJfqFGewVU4UE=;
-        b=eGvZsrnnlNskGj31jlUhnLVf9RhIy1cC9g7ZZlv9HlI1VitedVBaqwpAlbpsi9+KM2
-         KFuUKZV3XTmGU+xaUhPJP6q9RxESY9Dkz31agZ3jKLhBUjgDBVx95BLRgtpCIgC+1rqw
-         5xPSgx4jSvcUKh/46MeECiVIjMxfXhUYM6Ff6j3VrhcwyqoNoWyNjthZQz1OeoMySfsu
-         Qt97w+MBTv2QVFzUEQdbJl27vIlEwioV3FvknkcCfcbExK71abb5f+ITxgbYYTLwKvJ6
-         qnA6K1O8F04Kdvfb3Pyn2cm8uetyIhhJZhxsuLQ0uLuzPDD1xuWAtEzQ07tM2JzyojyV
-         5Uig==
+        d=linaro.org; s=google; t=1741606654; x=1742211454; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=gGfOrW92/g9FWKX8O8L7LMakAWexPAiIdn5s8oGVVyY=;
+        b=iZw8iFjiOi2KmZX9d8UCWopsSsdpaa1aZUVh5hGqy3jGT0ySVjQwwSxUSVkiIRQ0rU
+         yME1UDkNUyA5xMf6fUhwkED3M7EAd8hxLebhQdpI+qiEkcvB+Ew8OYPYk0QC3GZEqS+3
+         bXxeU1xWWTHm1i3VVLxH07TcvYSbKsj4+gtZx3H5GGwuQsMtytmFX9vyHC0E2xATIgYy
+         DkpjCMGBhY59PoZEEXhpt34mfuN7lsy6d/Szd9FeOf7wZXBZ99O0zRGAXdNZEul1onyi
+         Gk9vNe3386nwSFJ+2xx9CGz1bIBUPNXkEsnOKxOuICDOqpZXJytf++dtk/jcL1PBMktn
+         o0Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741606566; x=1742211366;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/8+5USeHmSgmVlekyvx7qsgwmwBwnZMJfqFGewVU4UE=;
-        b=nzJK8a5cCTFHMArD0V+0rxiUnKYmOGdbYh8q5obssdfx7ogL/aBpmFvsu8WOHl1mKH
-         OjVe4aXV0WmOEtOO2zRsAVb0cTk2Xa34E7Evn0k+jyPW66dPIqYTQSYdBbzQPz/Wvw4R
-         aLNZzRQgTGt+2eO/ScNcxRr4DI8nuuRXEOi++rfUQofFXwDY5Qa7a8Tdm1mjuQscwRI/
-         4MdJEQ08Z02oJJlFUVTKQ+GxnnqUC8365Cgum8elMakwxms2oal37FdpJyvKTM4PS3Kx
-         UXIwAxtVx7tOGotmQzJIa7qh3SLTAhZ7s/9lxv7NcCYWpnNWJKoSyyzbwXBVInmQq8rS
-         kYwA==
-X-Forwarded-Encrypted: i=1; AJvYcCUC9do9ZnQ0Dtm29y9iGpckeq375L4PJXvzwlPgucD6H183cNEgSk0AI+ThJAjVJ9KrBCraMUjBUisx@vger.kernel.org, AJvYcCV81inhPUwUZ57vUmu16d9pYf1jqil3SBoNU/ImccbX3BUwR9iy2NR3bRaeHMMxne331T5fcNMTV3j/@vger.kernel.org, AJvYcCVQP+GH9GcXqN31X32f4HZ77zOXKyxDJB27wzIsqmqS+K2wKjqJ02g5DStMBb1lpWBFG5KhW8Mp4DMX6knF@vger.kernel.org, AJvYcCWehe98Z12KRpwYV07v6P8oZVQ3D/1lupc71fRI84zGCKBceF6ysZs8G8ml2Yxqdq1Uokv3tzvevGru@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVIuY3ufsmi6iieEO/QnTJdmXf0+BjiiM/LU1EfIRx3e93n8Vb
-	IkDqGhZfha3wjuG1L3Wqy7oiG3byeFAiRWeVG0cWTkdf+zmC366Q
-X-Gm-Gg: ASbGncvEitd1wTzqgmzg3ltgVWjv+JzYl2NlBxbhHhkmaUcBwYcVPm2O9ZtKjuJtlfs
-	5Pgd9qZ93KoMXqSlDKW4HqHNQfDzSOtvXIeeSDL/l2N9hiBbAu6LtSdghZ3hB6nPeE2T1g/jaKy
-	RwmAPezFmBjD0vgp6itylL1qC7AsN1Rcgl6LOpOr+/NqRLmFjQqpWMjnt23OVoUmoaCQPox3aOb
-	deCEDZUtiQi239NyDtx/2ZOQcZk3nOEp/no5xnDb67b6yrOc62AftRLNz/uVo1sjh6MamAuoGaB
-	jxPKC6mRCfuC2vKOTAjFZCJ1Dz8BY3u3pWfJvV1y+Qy0DLpH09ygFLl3wFGi4ocrKAtQ5VfskO+
-	SwPWeTQ==
-X-Google-Smtp-Source: AGHT+IGt9pk4cOWLU0L9So++JSj6V2Rmf2jxnNguWzT5yBOI36c+FugZzH0ZGjBGx90UzDPn+uYxEw==
-X-Received: by 2002:a17:907:cf94:b0:ac1:ecb0:ca98 with SMTP id a640c23a62f3a-ac26cc77b35mr955140566b.26.1741606565955;
-        Mon, 10 Mar 2025 04:36:05 -0700 (PDT)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([2a02:3038:26a:50e7:149f:5ffb:56d9:92cd])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2811e5b32sm354627066b.159.2025.03.10.04.36.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Mar 2025 04:36:05 -0700 (PDT)
-Date: Mon, 10 Mar 2025 12:36:03 +0100
-From: Jorge Marques <gastmaier@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 4/4] iio: adc: add support for ad4052
-Message-ID: <jotrsravanvshffv7uuqk7ocl7nnabvndjh2aa6dbwsaenmiki@xaqfm6sst4ce>
-References: <20250306-iio-driver-ad4052-v1-0-2badad30116c@analog.com>
- <20250306-iio-driver-ad4052-v1-4-2badad30116c@analog.com>
- <20250308160257.051395fa@jic23-huawei>
+        d=1e100.net; s=20230601; t=1741606654; x=1742211454;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gGfOrW92/g9FWKX8O8L7LMakAWexPAiIdn5s8oGVVyY=;
+        b=gM6dOToCsXihVd9cIV/qEJh80vJgtXbXuV1rFv2xn/6+I2b1OTD3b+2pNwoutFeLi6
+         Fz31OFr6jOSh9GrZrXa4rK6RTM+XQYQi8qMMp33DqYg7iDROZSsUrvAUwtlR2a6hmQhk
+         Yuqdjrnac80JAGoGXKRtAhhw8mVeHJqay3vvLnAb7/c6ZgX3qeMsLU/5nN/xk97wZok5
+         95nC2+uv5RS3spkEX9OnCyHY9/ykGld/I1a1n+JWjXvpVOp0Lmt3DJpshJwRYeQnxHws
+         S2W2321JrQa0QABdQ0NcWfnruS4DwWyPQs47qfgocB4QK4eYOVJMUItbN+ymLMU/qKHt
+         Od1A==
+X-Forwarded-Encrypted: i=1; AJvYcCWLJdI5aV8ARVPxtFHXQthMI0VqIarH+2L7TCk4hEoS9XT3i7hv6j7N86yNSVHwj+Y0AT86H0hWMr/Z@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTSt4IoQreoFka5ZfFbMPmlO2akgz7cvclToF2tYcE1YEa/mvL
+	KdBUG3H6M/s5IYj+8jy8w8tlnyuYIjr9hCw3Cwnw2FSH3ZOBqdS68PjgCnLUIjw=
+X-Gm-Gg: ASbGncv+PpePVNu/pn0gjlQyHai4d2UlwqRW/rPyJAl3S5IcB/qgwaryUlz84y9PZSt
+	m7RgIeHW8LCG0EUqxwhSkC/nE5+4SGJZKZLI+DHv8V0XpW9Djw92jJEJ8AY0BEHP7XVK5jdShdg
+	WeuxPl5c8z7Omx0fdd6NKIzFiM0vk/Pt/CtHaxatxtolgBC3iTIDocssYZBniddTLcgNffG97Gn
+	YaMma6kjlaIPze4o8hKhEKPOeSTM1mie6mpox1T1iqf9A56a6J+Jrw3Fx79f1LbuAf6WrBSlray
+	gYk3zdepTDLAXzMiOyVhdo4nv6l66CyjvAGvd2uG9jDIdp9wWpckNd8VhG481hmR
+X-Google-Smtp-Source: AGHT+IG00xtqbS1VwoAxwSFH6756q5uvepy5sz2gF9TEqzOa+dNzzqxywHau5PaKvFx1OQWUzkyGrA==
+X-Received: by 2002:a05:600c:1e1e:b0:439:9dec:b794 with SMTP id 5b1f17b1804b1-43ce6b12a2amr20146065e9.1.1741606654399;
+        Mon, 10 Mar 2025 04:37:34 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.206.225])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43cf86b1d80sm32020725e9.9.2025.03.10.04.37.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Mar 2025 04:37:32 -0700 (PDT)
+Message-ID: <84456c70-e933-469f-ac7a-7d899f85e777@linaro.org>
+Date: Mon, 10 Mar 2025 12:37:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250308160257.051395fa@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 3/7] dt-bindings: PCI: qcom: Use sdx55 reg description
+ for ipq9574
+To: Varadarajan Narayanan <quic_varada@quicinc.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, p.zabel@pengutronix.de,
+ quic_nsekar@quicinc.com, dmitry.baryshkov@linaro.org,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20250220094251.230936-1-quic_varada@quicinc.com>
+ <20250220094251.230936-4-quic_varada@quicinc.com>
+ <41b400fe-5e08-42c0-9bc6-a238d25d155a@kernel.org>
+ <33bb1cb2-0c5e-402b-a5c6-9604b1dd8d99@kernel.org>
+ <Z86YReHsKeF165F6@hu-varada-blr.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <Z86YReHsKeF165F6@hu-varada-blr.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Jonathan thank you for the review, comments excluded in the reply are
-agreed and applied.
-
-> > --- a/drivers/iio/adc/Kconfig
-> > +++ b/drivers/iio/adc/Kconfig
-> >  	  To compile this driver as a module, choose M here: the module will be
-> >  	  called ad4130.
-> >  
-> > +config AD4052
-> Aim for alphanumeric order so this should at least be before AD4130
-Ups, I got tricked during cherry-pick.
- 
-> > +#define AD4052_MIN_FLAG			BIT(2)
-> > +#define AD4052_EVENT_CLEAR		(AD4052_THRESH_OVERRUN | AD4052_MAX_FLAG | AD4052_MIN_FLAG)
-> Wrap the define with \ to break the line.
-Deadcode... removed.
-
-> > +};
-> > +
-> > +static const char *const ad4052_sample_rates[] = {
-> > +	"2000000", "1000000", "300000", "100000", "33300",
-> > +	"10000", "3000", "500", "333", "250", "200",
-> > +	"166", "140", "124", "111",
-> Not sure why this can't be done with read_avail and the values above.
-Since it is the internal device sample rate, it is an extended
-device attribute.
-The channel IIO_SAMPLING_FREQUENCY is used for the sampling frequency during
-buffer readings.
-The macro IIO_ENUM_AVAILABLE is used to reduce redundancy.
-
-The previous integer declaration was unused since the char array index is
-used as the register r/w value.
-
-> > +};
-> > +
-> > +static int ad4052_iio_device_claim_direct(struct iio_dev *indio_dev,
-> > +					  struct ad4052_state *st)
-> > +{
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return false;
+On 10/03/2025 08:44, Varadarajan Narayanan wrote:
+> On Thu, Mar 06, 2025 at 01:06:13PM +0100, Krzysztof Kozlowski wrote:
+>> On 06/03/2025 12:52, Krzysztof Kozlowski wrote:
+>>> On 20/02/2025 10:42, Varadarajan Narayanan wrote:
+>>>> All DT entries except "reg" is similar between ipq5332 and ipq9574. ipq9574
+>>>> has 5 registers while ipq5332 has 6. MHI is the additional (i.e. sixth
+>>>> entry). Since this matches with the sdx55's "reg" definition which allows
+>>>> for 5 or 6 registers, combine ipq9574 with sdx55.
+>>>>
+>>>> This change is to prepare ipq9574 to be used as ipq5332's fallback
+>>>> compatible.
+>>>>
+>>>> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>> Unreviewed.
+>>>
+>>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>>> ---
+>>>> v8: Add 'Reviewed-by: Krzysztof Kozlowski'
+>>>> ---
+>>>>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
+>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>> index 7235d6554cfb..4b4927178abc 100644
+>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>> @@ -169,7 +169,6 @@ allOf:
+>>>>              enum:
+>>>>                - qcom,pcie-ipq6018
+>>>>                - qcom,pcie-ipq8074-gen3
+>>>> -              - qcom,pcie-ipq9574
+>>>
+>>> Why you did not explain that you are going to affect users of DTS?
+>>>
+>>> NAK
 > 
-> This might stretch sparses ability to keep track or __acquire / __release.
-> Make sure to check that with a C=1 build. If the cond_acquires
-> stuff is merged into sparse, this may need a revisit for markings.
-
-You are right!
-I also did further fixes caught by sparse.
-
-> > +{
-> > +	int ret;
-> > +
-> > +	if (st->mode == AD4052_SAMPLE_MODE) {
-> > +		*val = 0;
+> Sorry for not explicitly calling this out. I thought that would be seen from the
+> following DTS related patches.
 > 
-> Probably = 1 to reflect no oversampling.
-> IIRC the attribute allows either but to me at least a default of 1
-> is more logical.
-  
-Agreed, 1 is now the only no oversampling value.
-
-> > +}
-> > +
-> > +static int ad4052_assert(struct ad4052_state *st)
-> Slighly odd name.  check_ids or something like that.
+>> I did not connect the dots, but I pointed out that you break users and
+>> your DTS is wrong:
+>> https://lore.kernel.org/all/f7551daa-cce5-47b3-873f-21b9c5026ed2@kernel.org/
+>>
+>> so you should come back with questions to clarify what to do, not keep
+>> pushing this incorrect patchset.
+>>
+>> My bad, I should really have zero trust.
 > 
-Went with 'check_ids'.
+> It looks like it is not possible to have ipq9574 as fallback (for ipq5332)
+> without making changes to ipq9574 since the "reg" constraint is different
+> between the two. And this in turn would break the ABI w.r.t. ipq9574.
 
-> > +
-> > +	val = be16_to_cpu(st->d16);
-> > +	if (val != st->chip->prod_id)
-> > +		return -ENODEV;
+I don't get why this is not possible. You have one list for ipq9574 and
+existing compatible devices, and you add second list for new device.
+
+... or you just keep existing order. Why you need to keep changing order
+every time you add new device?
+
+
 > 
-> Should not be treated as a failure as that breaks the future use of
-> fallback compatible values in DT (support new hardware on old kernel)
-> Instead just print a message saying it didn't match and carry on as if it did.
-
-Noted, added:
-
-  "Production ID x%x does not match known values", val);
-
-> > +{
-> > +	struct ad4052_state *st = iio_priv(indio_dev);
-> > +	struct device *dev = &st->spi->dev;
-> > +	int ret = 0;
-> > +
-> > +	ret = fwnode_irq_get(dev_fwnode(&st->spi->dev), 0);
+> To overcome this, two approaches seem to be availabe
 > 
-> As per the binding review, use named variant as we should
-> not be controlling the order, but rather specifying which
-> is which in the dt-binding.
+> 	1. Document that ipq9574 is impacted and rework these patches to
+> 	   minimize the impact as much as possible
 
-Makes more sense indeed.
+What impact? What is the reason to impact ipq9574? What is the actual issue?
 
-> > +					IRQF_TRIGGER_RISING | IRQF_ONESHOT,
 > 
-> Direction should come from firmware, not be specified here.
-> There might be an inverter in the path.  That used to be a common cheap
-> way of doing level conversion for interrupt lines and it is handled by
-> flipping the sense of the interrupt in the dts.
+> 		(or)
 > 
-Agreed, defined the level flags as 0, and kept IRQF_ONESHOT the irq
-flag, to dismiss the threaded IRQ with NULL handler needs to be oneshot.
-
-
-> > +static int ad4052_write_event_config(struct iio_dev *indio_dev,
-> > +				     const struct iio_chan_spec *chan,
-> > +				     enum iio_event_type type,
-> > +				     enum iio_event_direction dir,
-> > +				     bool state)
-> > +{
-> > +	struct ad4052_state *st = iio_priv(indio_dev);
-> > +	int ret = -EBUSY;
-> > +
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
-> > +
-> > +	if (st->wait_event == state)
-> > +		goto out_release;
-> > +
-> > +	if (state) {
-> > +		ret = pm_runtime_resume_and_get(&st->spi->dev);
-> > +		if (ret)
-> > +			goto out_release;
-> > +
-> > +		ret = ad4052_set_operation_mode(st, AD4052_MONITOR_MODE);
-> > +		if (ret)
-> > +			goto out_err_suspend;
-> Given the error handling is different in the two paths, I'd
-> split this into two helpers - one each for enable and disable.
-> Probably take the direct claim around where they are called.
-
-Yes, that will make it easier to follow.
-
-> > +
-> > +	ret = ad4052_update_xfer_offload(indio_dev, indio_dev->channels);
-> > +	if (ret)
-> > +		goto out_error;
-> > +
-> > +	disable_irq(st->gp1_irq);
+> 	2. Handle ipq5332 as a separate compatible (without fallback) and reuse
+> 	   the constraints of sdx55 for "reg" and ipq9574 for the others (like
+> 	   clock etc.). This approach will also have to revert [1], as it
+> 	   assumes ipq9574 as fallback.
 > 
-> Add a comment on why.
+> Please advice which of the above would be appropriate. If there is a better 3rd
+> alternative please let me know, will align with that approach.
 
-Added 
+Keep existing order. Why every time we see new device, it comes up with
+a different order?
 
-   /* SPI Offload handles the data ready irq */
-
-> > +	struct ad4052_state *st = iio_priv(indio_dev);
-> > +
-> > +	/*
-> > +	 * REVISIT: the supported offload has a fixed length of 32-bits
-> > +	 * to fit the 24-bits oversampled case, requiring the additional
-> > +	 * offload scan types.
-> > +	 */
-> 
-> That's an additional feature I think. We don't need to have a comment
-> about things we haven't done in the driver.
-
-Removed comment.
-
-> > +	if (IS_ERR(st->cnv_gp))
-> > +		return dev_err_probe(dev, PTR_ERR(st->cnv_gp),
-> > +				    "Failed to get cnv gpio\n");
-> > +
-> > +	indio_dev->modes = INDIO_BUFFER_HARDWARE | INDIO_DIRECT_MODE;
-> > +	indio_dev->num_channels = 1;
-> > +	indio_dev->info = &ad4052_info;
-> > +	indio_dev->name = chip->name;
-> > +
-> > +	st->offload = devm_spi_offload_get(dev, spi, &ad4052_offload_config);
-> > +	ret = PTR_ERR_OR_ZERO(st->offload);
-> 
-> Use IS_ERR() to detect error and PTR_ERR() to get it if needed (will
-> end up calling PTR_ERR() twice but similar anyway.
-
-Ok.
-
-> > +	ret = regmap_write(st->regmap, AD4052_REG_DEVICE_STATUS, buf);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = ad4052_request_irq(indio_dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ad4052_update_xfer_raw(indio_dev, indio_dev->channels);
-> > +
-> > +	pm_runtime_set_autosuspend_delay(dev, 1000);
-> > +	pm_runtime_use_autosuspend(dev);
-> 
-> These autosuspend things are normally done after enabling runtime pm.
-> If nothing else that keeps the devm cleanup as being in opposite
-> order of what is set up here.  
-> https://elixir.bootlin.com/linux/v6.13.5/source/drivers/base/power/runtime.c#L1548
-
-Makes sense.
-
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	fsleep(2000);
-> 
-> Sleeps like this should ideally have a spec reference as a comment to
-> justify why that value is chosen.
-> 
-
-This sleep is not needed since there is no timing specification in the
-datasheet, removed.
-
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct dev_pm_ops ad4052_pm_ops = {
-> > +	RUNTIME_PM_OPS(ad4052_runtime_suspend, ad4052_runtime_resume, NULL)
-> Can you allow this to be used for suspend and resume as well?  e.g.
-> DEFINE_RUNTIME_DEV_PM_OPS()
-> 
-> It is a rare case where that isn't safe to do even if there might be
-> deeper sleep states available that would be even better.
-
-Yes.
-
-> > +	{}
-> Trivial but I'm slowly trying to standardize formatting of these tables
-> in IIO and I randomly decided to go with 
-> 	{ }
-> Please use that for terminating entries in this new driver.
-
-Done on all instances.
-
-I will wait further reviews before resubmitting the patch
-If useful for other reviewers, my current head is at
-https://github.com/analogdevicesinc/linux/tree/staging/ad4052
-
-Jorge
+Best regards,
+Krzysztof
 
