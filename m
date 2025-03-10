@@ -1,154 +1,165 @@
-Return-Path: <devicetree+bounces-155947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A83A58BE5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:23:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAD9A58C05
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:32:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7653D3AAF60
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 06:23:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2730C188CCB9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 06:32:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B401C8FCE;
-	Mon, 10 Mar 2025 06:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17A591DC994;
+	Mon, 10 Mar 2025 06:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AcHkPltc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fjrGECq+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A74919DF52;
-	Mon, 10 Mar 2025 06:23:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84D961D7989;
+	Mon, 10 Mar 2025 06:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741587801; cv=none; b=rmM7xjHWDhNGtAKZ0N1TgsX3Yh2Fg33tkLnZR5SXwPAl+wgwO1svBrjvnXKMKIbkvCW67RTliYfqtkQ9Blh/zJRb64TA4I45YOCBi87Rt97F2QBr3SwZyS2OofYnJEpbGZvpVj3HpiRmuChYN4qiRgQu/9Oox54A/kGNRJvCfgg=
+	t=1741588297; cv=none; b=nXHYKyGoekxWU3mvynF53yoNmwm1Zyr0kWwrSBJnJeNUwza5vV3kfs3Hy0hQoUYVRRjLRAOPJ0CvxG5TAV2lVNEkBdIZNNzesk9IYbC3fnx3KPUvfSbV2/4bPo76FLPO4ltfAmFHlBYnd9wWJHK8/aJJizqo5g4NNSXMAT4UShk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741587801; c=relaxed/simple;
-	bh=y1WLy5Q6m5GCQaLq9SLKzBI+xlyIHZSpXTFXkqz4xNo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c5CWYcyDkpLujRINx3fw+Sc5plL9zMzm4juIQjFhcdhs7So+0/Ey/NfFIO+R0wUi1pCES0CAjVUf716GrEdmjn3A/TX0hu2mONpJKlOMIYlJPogpyoy7s8XzcFU8lhtJ9pxsmHfOV3X5a1z5YcOhqbbsc9/x+3lmwA55aZybcJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AcHkPltc; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-30b83290b7bso43358751fa.1;
-        Sun, 09 Mar 2025 23:23:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741587798; x=1742192598; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hAmQnryV5yX4Eifk2YIq8zjRl5ptnm3MWltewWinEHI=;
-        b=AcHkPltc8PI2loeeFyswo8bsj+NOrQmmGfn/XdctOFWVQWQ0oQZ+tibhAOjhoc50Fp
-         OFrIPXRNuRQWj6PA3LcQ0jy7ELFOkuMpYMFNp6ZWetShWmxz61iMbcDxyJfuAjKid+R9
-         Y51C4FZ0sy3DTLVn9EBJE8VAzTQpQb43xB0N4babKFSJDrkKEEZbj0FzlbSfS00A6Y68
-         cS2UqdJMDEFb5U5rqgNdWgvle8o5wUdBqXG6OYwCkHhvNMQ7SjnE8FKpf21M3qWtthZi
-         FQ03EyeHwU29vP+Mh5bVsHS/S+lvQMmponLgajC1dnek9s4pzYMhwPhbTAS/r/3BRzmF
-         Tq8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741587798; x=1742192598;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hAmQnryV5yX4Eifk2YIq8zjRl5ptnm3MWltewWinEHI=;
-        b=mmPvycw/E0ylzpbCYh4gHHt8HPLK1IydjAxtLekeAccM/mwTeoK6YX0QX2nCOLdvzN
-         B641mSXS3yoRJ0YL28NUB409eV47i3bJU6tgpMhlfkafhee0s3obpZ6pLc6Q0h0E5vDv
-         2Z9GwM+J1t3dIXDai34/p07AlU5E33DkZuyhYq4h+B5ge0VI5dNDxalWwUNphPMH5lVf
-         D/Yo6PKJvwui4/adJYvbiyhZb0L1Fe2AfVl5emcz7s2aLcAXhsGV3CAyD2xatxDGxvQf
-         0g3vc69Jz44AxhsCpW6NpNVrO7QFmM/qlR21LPepd9GSpGrEfA9PB8aQhql8jqCRCFed
-         wBZg==
-X-Forwarded-Encrypted: i=1; AJvYcCW8MGEPIKiT5YSs0L36aHT+b3HCUTrDQU75xc2uCWEHdXet8mLQFBbaj2i8c/kUHz7u68JNBsude7a6PXcj@vger.kernel.org, AJvYcCWR17jg0SaP6NOGyWjyUgAsNcygkJTpVewh7BwBciul2PqFTBFx0l1U5RvAiF19JOXz+nUnc5XPJJWQ@vger.kernel.org, AJvYcCX7rWaO7edXbeUI37Y4JCNqm6EZDEMw0F1ejWPAyg3OXdM4gaXdv7pWDIz2qUoQoXqP++ECgg9B@vger.kernel.org, AJvYcCXstdTiywWAn0loUDRISxqsb+d8E7SmEhHBews8kVw8Ql6/Fw6UkluDfLneKaLpCknIb81Rf7seTQRu3A==@vger.kernel.org, AJvYcCXxdvEp24ICJ51OFeMcrc/loEtE+Hc9rvt2K4Mz9Q3W6YrNDZtg7OQylFyf2ZntJpddCICkOSdt5Orh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yytw/AMYQgagaVKd07X5Nkfgt65V1JiTqWZ9LkKjUnA5UfZ84NM
-	8c5UxZVzWjMxJ5IWh1Twj1x4HOBQ/mrOri1jH51eJVAs7FAPlGhj
-X-Gm-Gg: ASbGncvOKbHbQjInHreD0U0V3L54XevR9dCnIOiW2Kp6G5GMtULNkPaVO5he+M926sy
-	Lmp4Te2NXD1LdSqojTKmHVQLQNyZryBR+pBcYa0dw2bXgm3aW0VyAJOJIqtpCxw6wd9D7XyXO0O
-	v+4wtDcRlXEdW6IYgPOI/70/N24Nzw1crIP0Mfj6l+VXpIqzdqHGm14OyMZvx0XMdblo2aolQFq
-	3DDQz4J/ihscAXLLVfXYIZRFrjo6URCZRcpiSBSJWy2SDrHJrm5AM/ULhYkGYdK+jyE2mWWGhR/
-	jygbHEZFFCpIX8dHuDaSSB8Yeu84lXwwFm6R68qSYuoCyetbpXruTE2Hg2KN1qYFkHOg+OoGlPS
-	Tk3JwtrdIK8RFZLiQNLRofg2uzA==
-X-Google-Smtp-Source: AGHT+IGJBZ5CCzAaFqmrdrM7KCGkRbTWKFMoKMp4dabz1hEs0dIexM72Iu1vZT6PUZaq5cwRhBMOsg==
-X-Received: by 2002:a05:651c:4ca:b0:30c:aae:6d4a with SMTP id 38308e7fff4ca-30c0aae6dfamr13860001fa.26.1741587797306;
-        Sun, 09 Mar 2025 23:23:17 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30c0b1f3d53sm5395891fa.59.2025.03.09.23.23.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Mar 2025 23:23:16 -0700 (PDT)
-Message-ID: <39cbe817-fef4-405c-b30c-79b592c0bcfe@gmail.com>
-Date: Mon, 10 Mar 2025 08:23:15 +0200
+	s=arc-20240116; t=1741588297; c=relaxed/simple;
+	bh=OvZuaUhi9xuMOVrix4zxXYOdoru9rGCOGh2ItydCSn8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FWPxDVFPwW6Q5UbgpM2P9xpaILKKJw+e6h3yWGUzmgwiXvb2Z+C/DfZLOESDSrzEXNHbdem5SPKhsTmTUOcWZVL58b95OKlwQh7Hj1qtPkpK+rEOqujFjni80qaybfUMhmxIOaVL8PvcF5hOBdYiQbVdjO23cJ4l2jvW1nr9SME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fjrGECq+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52A0NHW2010043;
+	Mon, 10 Mar 2025 06:31:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=mPhwJjtbJrss1ksQWKfZCY5ugnmZ/AD4n4/
+	dI1xSZVg=; b=fjrGECq+e7i1PTPuXfjeapwXYCSELKy05Ty/R6p/C8zpKlJgR0A
+	g+FUiPefDc5wObKkAS+Gieu6qCAp4RuObXPGwXVb6aPqTL5EjXySjnrWILtXLwcJ
+	tAKA36HXfLwDasQLNMrfBvZU9OtYYjIRK6bEmF1VYLQH7d3WqTl77IZifyVix1/0
+	OBXK/DdsyxgxjgfZVZtjgv3fIQgoVvYF8dUkomoKjRwgQyHVYw7LPDC0HYN+y4rf
+	XmuaTzmJazy+Q5d9f4awDrPkbGwVpioqWtzKjLIjmOQDPurgIL90VoToh95Vcwob
+	0xLmvMCSiPvpS9AmvJgDIOI8zv3t91vR28g==
+Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458ewpkqex-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 06:31:10 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 52A6V806011075;
+	Mon, 10 Mar 2025 06:31:08 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 458yu87f2k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 06:31:08 +0000
+Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 52A6V8PY011070;
+	Mon, 10 Mar 2025 06:31:08 GMT
+Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 52A6V709011067
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 06:31:08 +0000
+Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
+	id 7042D27C6; Mon, 10 Mar 2025 14:31:06 +0800 (CST)
+From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+To: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+        manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org,
+        dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
+        abel.vesa@linaro.org
+Cc: quic_ziyuzhan@quicinc.com, quic_qianyu@quicinc.com,
+        quic_krichai@quicinc.com, johan+linaro@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: [PATCH v4 0/8] pci: qcom: Add QCS8300 PCIe support
+Date: Mon, 10 Mar 2025 14:30:55 +0800
+Message-Id: <20250310063103.3924525-1-quic_ziyuzhan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/10] property: Add functions to count named child
- nodes
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-acpi@vger.kernel.org, netdev@vger.kernel.org
-References: <cover.1740993491.git.mazziesaccount@gmail.com>
- <5e35f44db2b4ed43f75c4c53fd0576df9ad24ab2.1740993491.git.mazziesaccount@gmail.com>
- <Z8WZh5EzFqxvU5rb@smile.fi.intel.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <Z8WZh5EzFqxvU5rb@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _NaMtD_mFuwSwvtEmGUGB9iCP8_BpM5t
+X-Proofpoint-ORIG-GUID: _NaMtD_mFuwSwvtEmGUGB9iCP8_BpM5t
+X-Authority-Analysis: v=2.4 cv=C5sTyRP+ c=1 sm=1 tr=0 ts=67ce872e cx=c_pps a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=QyXUC8HyAAAA:8 a=Rx9dfpPETavtrPkqVs0A:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-10_02,2025-03-07_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ adultscore=0 clxscore=1011 bulkscore=0 lowpriorityscore=0 malwarescore=0
+ impostorscore=0 suspectscore=0 spamscore=0 priorityscore=1501
+ mlxlogscore=703 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503100049
 
-On 03/03/2025 13:59, Andy Shevchenko wrote:
-> On Mon, Mar 03, 2025 at 01:31:45PM +0200, Matti Vaittinen wrote:
+This series adds document, phy, configs support for PCIe in QCS8300.
+The series depend on the following devicetree.
 
-...
+PCIe SMMU:
+https://lore.kernel.org/all/20250206-qcs8300-pcie-smmu-v1-1-8eee0e3585bc@quicinc.com/
 
-> 
->> +	return count;
->> +}
-> 
->> +	if (!fwnode)
->> +		return -EINVAL;
->> +
->> +	if (IS_ERR(fwnode))
->> +		return PTR_ERR(fwnode);
-> 
-> I expect that this will return 0 or number of nodes. Why do we need an error code?
-> If it's really required, it should be in the fwnode API above.
-> 
-> Also do we care about secondary fwnodes?
+Have follwing changes:
+	- Document the QMP PCIe PHY on the QCS8300 platform.
+	- Add dedicated schema for the PCIe controllers found on QCS8300.
+	- Add compatible for qcs8300 platform.
+	- Add configurations in devicetree for PCIe0, including registers, clocks, interrupts and phy setting sequence.
+	- Add configurations in devicetree for PCIe1, including registers, clocks, interrupts and phy setting sequence.
 
-We have the device_get_child_node_count(). 
-device_get_child_node_count_named() should follow the same logic.
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+---
+Changes in v4:
+- Add received tag
+- Fixed compile error found by kernel test robot
+- Link to v3: https://lore.kernel.org/lkml/202412211301.bQO6vXpo-lkp@intel.com/T/#mdd63e5be39acbf879218aef91c87b12d4540e0f7
 
-> 
->> +	return fwnode_get_child_node_count_named(fwnode, name);
->> +}
-> 
-> ...
-> 
->> +unsigned int fwnode_get_child_node_count_named(const struct fwnode_handle *fwnode,
->> +					       const char *name);
-> 
-> To me the following name sounds better: fwnode_get_named_child_node_count().
+Changes in v3:
+- Add received tag(Rob & Dmitry)
+- Update pcie_phy in gcc node to soc dtsi(Dmitry & Konrad)
+- remove pcieprot0 node(Konrad & Mani)
+- Fix format comments(Konrad)
+- Update base-commit to tag: next-20241213(Bjorn)
+- Corrected of_device_id.data from 1.9.0 to 1.34.0.
+- Link to v2: https://lore.kernel.org/all/20241128081056.1361739-1-quic_ziyuzhan@quicinc.com/
 
-Agree.
+Changes in v2:
+- Fix some format comments and match the style in x1e80100(Konrad)
+- Add global interrupt for PCIe0 and PCIe1(Konrad)
+- split the soc dtsi and the platform dts into two changes(Konrad)
+- Link to v1: https://lore.kernel.org/all/20241114095409.2682558-1-quic_ziyuzhan@quicinc.com/
 
-> 
->> +unsigned int device_get_child_node_count_named(const struct device *dev,
->> +					       const char *name);
-> 
-> In the similar way.
-> 
+Ziyue Zhang (8):
+  dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the QCS8300 QMP
+    PCIe PHY Gen4 x2
+  phy: qcom-qmp-pcie: add dual lane PHY support for QCS8300
+  dt-bindings: PCI: qcom,pcie-sa8775p: document qcs8300
+  PCI: qcom: Add QCS8300 PCIe support
+  arm64: dts: qcom: qcs8300: enable pcie0
+  arm64: dts: qcom: qcs8300: enable pcie0 interface
+  arm64: dts: qcom: qcs8300: enable pcie1
+  arm64: dts: qcom: qcs8300: enable pcie1 interface
+
+ .../bindings/pci/qcom,pcie-sa8775p.yaml       |   7 +-
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |   2 +
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts     |  80 +++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 289 +++++++++++++++++-
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      |  89 ++++++
+ 6 files changed, 465 insertions(+), 3 deletions(-)
+
+
+base-commit: cd3215bbcb9d4321def93fea6cfad4d5b42b9d1d
+-- 
+2.34.1
 
 
