@@ -1,87 +1,91 @@
-Return-Path: <devicetree+bounces-156225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65AF8A59A4F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:48:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5F1A59A52
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:48:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A448216BAA3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:48:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D27EE16DD12
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A58221701;
-	Mon, 10 Mar 2025 15:48:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C38C22E3EA;
+	Mon, 10 Mar 2025 15:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NiqDy+7a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Iyghe4HH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D67192B82;
-	Mon, 10 Mar 2025 15:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AEA122D4F4;
+	Mon, 10 Mar 2025 15:48:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741621692; cv=none; b=keaVvbcKWAWfZJ2g5mISwNtaGSUeNbgxahyDqun8HTTDDp1aU4wKipXRRK4Wdl3IhOsWBAvn9wYE8R0IkE939C0xXCxI2Wh3+IJ+1wgMiibNMwlVXO67xPOTZtDQcLBffWXA5iD91QxZrMqJbWtEI3UxKz7IP/vu3b7mrdvURRs=
+	t=1741621695; cv=none; b=vCcJ33QuM78Y7Qu/NbCti647Ug4s9c+0QKS+kEqCcp98iQgCmeDjsiLwRggbawIDYItDm4wC18/0LQcsfM2+UKJKpeqIz5yCZskbb9WwZjaOL4udIU1uC6/pCu8LmX4oiaMfHHRg19WUOPhNsIcP61F29RG+oCH7qCXmKfzY7II=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741621692; c=relaxed/simple;
-	bh=SIVt748yjhXN61lTCBdrIOqbrGqJcOCWdZVCSIknig8=;
+	s=arc-20240116; t=1741621695; c=relaxed/simple;
+	bh=VwlxioAXeqYmZW093eoXPHRf7zdX+6VaniBbohgAfb8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=g2Vn45m4FZ4MO8e2XuQNzIlkVnTJ059Ij1R4+Rh9Q2HoePUWopOPcBlvFFWjCzbyzHfwPIkWhmhl5A7560fImyY4k7YMGYFpaqEtHHL07rRreST5ygHLE9BvVjqM6nmXQXAloRwBB/nNoYYFFJRAiLOuvDhJ+8+BAdu+y+DpMww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NiqDy+7a; arc=none smtp.client-ip=209.85.208.49
+	 MIME-Version:Content-Type; b=J5XwLqbijMNYw2DWf2L10WPZQDlhb6/qU4BxF2uaUQI7LRhV5tofJwAp/NbRFUvYptGdWf69/bhmcsEJdxn/JkorHKVyHbehdX7SyPy4mehkMoMcsoqSPde2m3yXHaIeNCdwyCgZICobfe8jKiM/eLrX405WSx2V7m8HS4NRAmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Iyghe4HH; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e61da95244so3523435a12.2;
-        Mon, 10 Mar 2025 08:48:10 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5dccaaca646so787a12.0;
+        Mon, 10 Mar 2025 08:48:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741621689; x=1742226489; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1741621692; x=1742226492; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=z8Qki/M6cF25Z9mXICuii0r2Qp6u8hLmIzSqDO0dJFc=;
-        b=NiqDy+7ackWTgRDsNW/LE0yOUyht9F3k2TLbgy+0VInJ/ph5G9FR7QiTgc0Lpk0CK4
-         /0PNhOx+hN1i9+7j3fMujfZNjYnSD+VkYbR46wZCIYwe5l/BT2DsV7g02z0JQ+mD5HSK
-         hP0oGOV/E3ZJNvGB0pozhNifchdC0s/TNbOV8Agc66XsKT88/5l7chjBy38bQJGABfv/
-         v3CUhX07HYMbbXK3zRu6BG7WOx1JaxgXdmf3SxgE0vReyBss/3rUkAhHDH4g2eZ/AWFv
-         brpSLgTkWV2JG+sB1ZKXcRrF+TT73o5QWZIckVNj1RajS582pLlICTfZb6H17C/0Pd/A
-         E+VA==
+        bh=AE1sTeqM+1AGfrmmwn3FDyVaoKa/iwOIi7NTDRnQcf0=;
+        b=Iyghe4HHdQzeizmwIBKCTRDdE4YU+N0AWEgfb7deP01Vfz/fl5EffqNSPeakqsvalR
+         oBtC4EKB1GW7U+MaI/Tu9408G/4x3BhCfNMNf29wna1jScoypCbvNlAWQnFu1LMAAVio
+         y8GQUjCVJWGK9VDuT8aBdkuQCNnvRi8ZvWJAuQPxuF3uFH7Lv3oj+EOHpeXkFIb8mklk
+         b+KcDGvysfegc+PnXn2VQbyecnN3hw1cuJgd9RoGu3QtOtt+VLhe+xre8IIeStdVxNT/
+         bJZIakq6IsmrK3BM6TBE9lhWmyO7GiDyKazjXGmhVtX3xLVJ8WY9H7Z0nn5yjiByUi4W
+         22bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741621689; x=1742226489;
+        d=1e100.net; s=20230601; t=1741621692; x=1742226492;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=z8Qki/M6cF25Z9mXICuii0r2Qp6u8hLmIzSqDO0dJFc=;
-        b=sHC33i9GkEOICfcYxB33E3uLqar4a1RgPKm2FUOwzkUrxfF3aKCRpkkV4V8j+um38l
-         xaU0PgC5LyCr1bXg4JwmEpXQGDbzm0/CGu3udBB3nrrYhHWGyN64Gn4TenK5rSCdK8Q/
-         yUzkxkBYeQAeMZzGoI5ZngHHzoZJM64t6sMMkDmVSuMl/c/Lqp+jBA2KQMEd7vsBwqNr
-         Umi17cvUThF+NmEgh/pWPHle213B1EQgjd+RpesLMAKKFXGGHp1cYHl7UH/RFb7hOc1N
-         TBCM0jeEAe7KImoTR/WpgPl9bhFJk3tcj/CdMfAS16fAZvnWlZw0zSxCbqrryPX/f32f
-         fnYg==
-X-Forwarded-Encrypted: i=1; AJvYcCUEO5HigeX+YfvH3VrEcVXmOiOM/vXLGxOEjNnsABHs/Gw4MH11QETYSAaommRvsBWJc2AgikT4PHL+amXv@vger.kernel.org, AJvYcCXECFzgyn21tNbrOL9J3eyiKlgislPFW5XIBCiXV95F3eZ1/F4ixgzdbUbxopQHTSt6fDEwVYS6gPUY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJuG5ksAz39fnFyQxfY7VGNClErTycC10km7NuQgr0xigThMtU
-	u1C1CK0VTe4nPpTvUAWo01x2GxEIHglWJs0DiOyHRXq/ynQaV7hs
-X-Gm-Gg: ASbGnctMe/LSxnMDH9rsvef8585quSQNgi9MRLKGgc1IXp5EMuc/ZsvE+GIYTTX2F4D
-	TX2Rzi+iZqJG30SLR+O7WE8thAvnC2IvrpG/+ljRgTRf8KlGlOe5kYYy9s9RVC1M16Wj4TxNDVn
-	G1Rc5XyHSbz49bDJT/3Gv7aEV8IsrQSztSmZERCqVvKujIcUB1KVmQOy0KXdIsfMp+Zu1AHsAVf
-	6gyNNN7QbXeLQ/NH86Dw8m7TbrsmDIJvZ3XjHgOdFn6HYZ04zVli41fqrVwyKqTT52h7PNHoDcz
-	6NNqLu02qdAI3xjVQQzEz9i5jltX0EJx1TSpAqRnN0vrvqXV
-X-Google-Smtp-Source: AGHT+IEdg7fwP49o1tXyXWKqfxK/eu1a7dIocwJZ5jiVtXvBnrVoYPaIUXHxtiURUXgbSYhcfA+iyA==
-X-Received: by 2002:a05:6402:2550:b0:5e1:8604:9a2d with SMTP id 4fb4d7f45d1cf-5e5e229949amr16131275a12.4.1741621689100;
-        Mon, 10 Mar 2025 08:48:09 -0700 (PDT)
+        bh=AE1sTeqM+1AGfrmmwn3FDyVaoKa/iwOIi7NTDRnQcf0=;
+        b=YcNN5DrLoYZGD15yaZ1jj9NqDgZ8LyYs9o6RI0TQpxsozr29GOX6vf+0/wSwOEL3gd
+         6tj8vzMTtO54GjH0HLS5/CIcYxsvNrsJUXh6BgK7axs/r+yzpbCTIo4lImGqzaAa7BhR
+         7H+viTUcOGRlnK+4uHL4l5ureJCUvTC92N1p+0Fd6gCPYqaPkcujGY1zaosWuD4IcqkZ
+         wB7H4Hf6J59vjhm7xnwiVR7UYyWQYBZ3Q9flMzo2Q3Xt7929Xl7vg1dnR7UHN94Zvb10
+         NdI6k9iCF44JAaonBPZ+jeNgeMYWxOaWTHTFqF2Mf9KsiJ8qrAQ9zhz8Hgk22JE+Fd5I
+         xF3g==
+X-Forwarded-Encrypted: i=1; AJvYcCWU7PNyxzs1GhGMSGSriBiUJnUUo/Ao/YuSMtf0kpMB75H9XV7fLsq5g6w873hfsS0EBSzqIzE6a7hu@vger.kernel.org, AJvYcCWh2yG1YR4Gy9t8plFuMS1nS4AjLqaKhLomDcXoa9be3aVUrGzrR11DYgVy0znoNT9vcrxZSgTX6iD78ytD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvQrgZIIe/WySK4u6t12cHQTBIf2QALKzyyMvYmPJX0C/tIyTh
+	ne8nsSZqBCCrhrxavT/SftGMuCeUl3KBgkBFT4Dp9UKyJjveK8+lUun3ryNCBcg=
+X-Gm-Gg: ASbGnctS5+45HDWVHj6QIkcqSxVYwJCQsqJo+k15SiamslVuQreqF75+NEdJnN35w6i
+	H/Xpm63Im/PqcMPXV5H+SFCgiMkmgKAi3UGTqISyR0f8V1Ak2Xl7OG8+iKdY3KeoNZ7n8CPI7pJ
+	KzigID+HCcTT15lsIfzNI20XO3nQ7oDpOzl501L6bKra8a1QSP7kQe0Dw/TClrzIJ1OZGmWuIaE
+	HanPrvmCGXSiT1tvHcqs2zBC69YMJ78mpdKb7gVzE0SQYUnu4HGodtKsB6wAurot/K/ijykVThf
+	W59iOfdEzSy5iwB2f71izV44NVcfeVDZd/K0L1FmsIpuEc7JoNDqTvXm95w=
+X-Google-Smtp-Source: AGHT+IEn29ZIrELth1vqpMB17cSDSf9zSUtKS9md/Y6FhQ/FeXOR6GLoNZVchkEQaWPlzFBlIxy9Lw==
+X-Received: by 2002:a05:6402:3513:b0:5db:e88c:914f with SMTP id 4fb4d7f45d1cf-5e614f1f459mr10527894a12.4.1741621691847;
+        Mon, 10 Mar 2025 08:48:11 -0700 (PDT)
 Received: from wslxew242.. ([188.193.103.108])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c766d0e0sm7252732a12.64.2025.03.10.08.48.08
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c766d0e0sm7252732a12.64.2025.03.10.08.48.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Mar 2025 08:48:08 -0700 (PDT)
+        Mon, 10 Mar 2025 08:48:11 -0700 (PDT)
 From: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
 Cc: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <gradenovic@ultratronik.de>,
 	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/4] dt-bindings: vendor-prefixes: Add Ultratronik
-Date: Mon, 10 Mar 2025 16:47:58 +0100
-Message-ID: <20250310154804.326943-2-goran.radni@gmail.com>
+Subject: [PATCH 3/4] dt-bindings: arm: stm32: Document Ultratronik's Fly board DT binding
+Date: Mon, 10 Mar 2025 16:48:00 +0100
+Message-ID: <20250310154804.326943-4-goran.radni@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250310154804.326943-1-goran.radni@gmail.com>
 References: <20250310154804.326943-1-goran.radni@gmail.com>
@@ -96,27 +100,30 @@ Content-Transfer-Encoding: 8bit
 
 From: Goran Rađenović <gradenovic@ultratronik.de>
 
-Ultratronik GmbH is a German electronics company:
-https://www.ultratronik-ems.de/
+This commit documents ultra-fly-sbc devicetree binding based on
+STM32MP157 SoC.
 
 Signed-off-by: Goran Rađenović <gradenovic@ultratronik.de>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 5079ca6ce1d1..563d319fb73e 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1599,6 +1599,8 @@ patternProperties:
-     description: U.S. Robotics Corporation
-   "^utoo,.*":
-     description: Aigo Digital Technology Co., Ltd.
-+  "^ux,.*":
-+    description: Ultratronik GmbH
-   "^v3,.*":
-     description: V3 Semiconductor
-   "^vaisala,.*":
+diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+index b6c56d4ce6b9..2cfc08430a87 100644
+--- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
++++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+@@ -175,6 +175,11 @@ properties:
+           - const: phytec,phycore-stm32mp157c-som
+           - const: st,stm32mp157
+ 
++      - description: Ultratronik STM32MP1 SBC based Boards
++        items:
++          - const: ux,stm32mp157c-ultra-fly-sbc
++          - const: st,stm32mp157
++
+       - description: ST STM32MP257 based Boards
+         items:
+           - enum:
 -- 
 2.43.0
 
