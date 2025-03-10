@@ -1,193 +1,166 @@
-Return-Path: <devicetree+bounces-156262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F0C2A59CB9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:14:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 451BCA59CCC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:15:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66ADA7A8B45
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:13:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 390CD16F1B0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:15:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8EB222D4C3;
-	Mon, 10 Mar 2025 17:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D40230BF8;
+	Mon, 10 Mar 2025 17:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bnedYXm5"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="izQvo7Lt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD5317CA12;
-	Mon, 10 Mar 2025 17:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910CC22FACA;
+	Mon, 10 Mar 2025 17:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741626844; cv=none; b=Oh+R5V5zZxYUxJZ3EAvys9c/ZAXc3/9KtBFyxGwYoxwcae65zBJls+xyvOq8b8D7R+6gI+iO6doZ1/Gts8JlTcbC8Fafwb1JVO8m+p5F1oKZE1qCKjzEMLywaX8zppsHJnlJ3FMtlSpr82jgqtbhHyZ4geEw/48ROdOVdhxN5pg=
+	t=1741626915; cv=none; b=Z1NFjbDJKobfe8QCTeIa7UvUFOVJaGcVdlCX2H5/4nQHovwW9A6sVGhKYJ4gCTNRBnap05v/24zcS3EFX1SmWl41/67AoA/swHTHNtsVF66KEAqnA9PG+f6tAgDj4qcyi8o6Fnj0wI7SBG/taAi76KApjGPvOkeAN+z+IVbgwT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741626844; c=relaxed/simple;
-	bh=DzuST+tAc1H4SkPJV1eeY+j6xO5QqxQLswRjnYXe5hY=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=YOFr+hzNG1VBkqD3J65cMBNDOiKlACWtQglsXjq5F7OgpQCHuQwujFLUtklYYApq+A23xy9AG0h0OMEEkrrQQnyZl/yqvPgWdVR8mHRj//E2i4uV5CxKOQfq8V1vw52J2hxtHVAVwelHicADDTpockk/vuTmHzKVixx9rM4Xzkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bnedYXm5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52A9V3V4030297;
-	Mon, 10 Mar 2025 17:13:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PEwlZ3gpqNniHEI3bdWrdB+zU5HM/oQDFAC7kVivyGE=; b=bnedYXm5O5BKIUST
-	3wNZQBj0VrTYLItQxcjsFDW9ZnZc6NNEJxxrTBYk3Q9pGV+hU1eIykq3Cmfdz77X
-	LrG2GQ+PFS1UZ2yGsSbALMSuuS992Fjk/skgW+mYx2MHXuD4sUlU191Kb3aWsc2d
-	0YHwjnCB7rhKw1kD11w06x6qOLqn5sj7+HHNYdcUwrLhGOthDiUOruEGwd4d2Mx5
-	j60YQaqDPetTQ41CrScp8oaHopkizUrypffqtHuXfd0B9BMvW3eSmFFSK7JwRDz9
-	7RX3o3E9fp3G5vEVwndoA2umi+JAHVYc40J47ucpBeBdOe4BgJqiV25Aw+79jJWe
-	7ATcyQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458eyt5j9k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 17:13:52 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52AHDpf0009306
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 17:13:51 GMT
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 10 Mar 2025 10:13:50 -0700
-Received: from nalasex01a.na.qualcomm.com ([fe80::fc0a:7737:fa2e:7315]) by
- nalasex01a.na.qualcomm.com ([fe80::fc0a:7737:fa2e:7315%4]) with mapi id
- 15.02.1544.009; Mon, 10 Mar 2025 10:13:50 -0700
-From: "Gaurav Kashyap (QUIC)" <quic_gaurkash@quicinc.com>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>,
-        "Melody Olvera (QUIC)"
-	<quic_molvera@quicinc.com>
-CC: Thara Gopinath <thara.gopinath@gmail.com>,
-        Herbert Xu
-	<herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konradybcio@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Satya Durga Srinivasu Prabhala (QUIC)" <quic_satyap@quicinc.com>,
-        "Trilok
- Soni (QUIC)" <quic_tsoni@quicinc.com>,
-        "linux-crypto@vger.kernel.org"
-	<linux-crypto@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org"
-	<linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "Gaurav Kashyap (QUIC)"
-	<quic_gaurkash@quicinc.com>
-Subject: RE: [PATCH 2/6] arm64: dts: qcom: sm8750: Add QCrypto nodes
-Thread-Topic: [PATCH 2/6] arm64: dts: qcom: sm8750: Add QCrypto nodes
-Thread-Index: AQHbZgBqulxhwD1PeEOf2Oy4z8OuvLMaLA8AgFM8yWA=
-Date: Mon, 10 Mar 2025 17:13:50 +0000
-Message-ID: <28715695978543f7884357bd7c4153cb@quicinc.com>
-References: <20250113-sm8750_crypto_master-v1-0-d8e265729848@quicinc.com>
- <20250113-sm8750_crypto_master-v1-2-d8e265729848@quicinc.com>
- <Z4k8kibtnlnpKspN@linaro.org>
-In-Reply-To: <Z4k8kibtnlnpKspN@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1741626915; c=relaxed/simple;
+	bh=bWqJ4FD0rh4Jv7wGJ1mKbUp1hDMD5nvjAYgteY/Eo4U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J/7QbO8GnHje7q1Y7SlMMFPHc2fvlb0VnuoC2Zrq4kp/eM+/a2jaCAGLYL+mPiOLpUIHuLBgXdRuh0fh1/YXDd7wGQeQpPkOVu4ARSZOr7t3m2cMVlE9InNsX6IUpVBECv3i+8xN9X3J/PRcqqdEorGgefqukTd3QyojLrF/iyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=izQvo7Lt; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [10.137.184.60] (unknown [131.107.160.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id BFF802038F32;
+	Mon, 10 Mar 2025 10:15:12 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com BFF802038F32
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1741626913;
+	bh=eME4gRmjVE3w6nzuhE7xqtEmYJ+fLHcjVchsKhgalL8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=izQvo7LtPEn8QdsyQJfUA53eTxUOuoeOz82pbmQ0wQaG1gObJiMFAQaBdi4A4iWNR
+	 uP46JGVDaO3cRF/G9lVcXt9kOcQnz5el35Sjj0jweE8RV1fyt3eecjS3tkMovWnNwm
+	 xH3wS8Mi9wqAyRiK3OyMT3uXWKNOYhhn5jgty0K8=
+Message-ID: <319aac20-229e-4a81-b2c5-e870453634bb@linux.microsoft.com>
+Date: Mon, 10 Mar 2025 10:15:12 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 91VHT1CWabQnyc5z7TFb_bsnVAS-R14v
-X-Authority-Analysis: v=2.4 cv=CupFcm4D c=1 sm=1 tr=0 ts=67cf1dd0 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=xqWC_Br6kY4A:10 a=hWaPqv8yfGMA:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=2aYPDqRTfl-tYw73yZEA:9
- a=CjuIK1q_8ugA:10 a=632RQ6DdpRuuCkNA2XZ6:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 91VHT1CWabQnyc5z7TFb_bsnVAS-R14v
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-10_06,2025-03-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1011
- suspectscore=0 phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
- bulkscore=0 spamscore=0 mlxlogscore=819 lowpriorityscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503100134
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH hyperv-next v5 11/11] PCI: hv: Get vPCI MSI IRQ domain
+ from DeviceTree
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
+ catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com,
+ decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
+ joey.gouly@arm.com, krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com,
+ lenb@kernel.org, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org,
+ mark.rutland@arm.com, maz@kernel.org, mingo@redhat.com,
+ oliver.upton@linux.dev, rafael@kernel.org, robh@kernel.org,
+ ssengar@linux.microsoft.com, sudeep.holla@arm.com, suzuki.poulose@arm.com,
+ tglx@linutronix.de, wei.liu@kernel.org, will@kernel.org,
+ yuzenghui@huawei.com, devicetree@vger.kernel.org, kvmarm@lists.linux.dev,
+ linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
+ apais@microsoft.com, benhill@microsoft.com, bperkins@microsoft.com,
+ sunilmut@microsoft.com
+References: <20250310164122.GA551965@bhelgaas>
+Content-Language: en-US
+From: Roman Kisel <romank@linux.microsoft.com>
+In-Reply-To: <20250310164122.GA551965@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 16, 2025 at 9:06 AM PST, Stephan Gerhold wrote:
-> On Mon, Jan 13, 2025 at 01:16:22PM -0800, Melody Olvera wrote:
-> > From: Gaurav Kashyap <quic_gaurkash@quicinc.com>
-> >
-> > Add the QCE and Crypto BAM DMA nodes.
-> >
-> > Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
-> > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8750.dtsi | 30
-> > ++++++++++++++++++++++++++++++
-> >  1 file changed, 30 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> > b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> > index
-> >
-> 3bbd7d18598ee0a3a0d5130c03a3166e1fc14d82..1ddb33ea83885e73bf15244c
-> 9cbd
-> > 7067ae28cded 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-> > @@ -1939,6 +1939,36 @@ mmss_noc: interconnect@1780000 {
-> >                       #interconnect-cells =3D <2>;
-> >               };
-> >
-> > +             cryptobam: dma-controller@1dc4000 {
-> > +                     compatible =3D "qcom,bam-v1.7.4", "qcom,bam-v1.7.=
-0";
-> > +                     reg =3D <0x0 0x01dc4000 0x0 0x28000>;
-> > +
-> > +                     interrupts =3D <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +                     #dma-cells =3D <1>;
-> > +
-> > +                     iommus =3D <&apps_smmu 0x480 0>,
-> > +                              <&apps_smmu 0x481 0>;
->=20
-> Should be equivalent to iommus =3D <&apps_smmu 0x480 0x1>?
->=20
 
-Hello Stephan, we tried this out internally, and the use case was not funct=
-ional.
-The masks are explicitly mentioned in our hardware documents and we are jus=
-t following that.
 
-So, we are looking to keep it the same.
+On 3/10/2025 9:41 AM, Bjorn Helgaas wrote:
+> On Fri, Mar 07, 2025 at 02:03:03PM -0800, Roman Kisel wrote:
+>> The hyperv-pci driver uses ACPI for MSI IRQ domain configuration on
+>> arm64. It won't be able to do that in the VTL mode where only DeviceTree
+>> can be used.
+>>
+>> Update the hyperv-pci driver to get vPCI MSI IRQ domain in the DeviceTree
+>> case, too.
+>>
+>> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
+> 
+> A couple minor comments below, but I don't have any objection to this,
+> so if it's OK with the pci-hyperv.c folks, it's OK with me.
+> 
 
-> > +
-> > +                     qcom,ee =3D <0>;
-> > +                     qcom,controlled-remotely;
->=20
-> If you don't have clocks here, you need to provide num-channels and
-> qcom,num-ees. Otherwise, there is a risk this will crash if the BAM is no=
-t up
-> while being probed.
->=20
+Bjorn, thanks a lot for your help and guidance! I'll be most happy to
+incorporate your suggestions into the next version of the series :)
 
-Ack.
+>> +#ifdef CONFIG_OF
+>> +
+>> +static struct irq_domain *hv_pci_of_irq_domain_parent(void)
+>> +{
+>> +	struct device_node *parent;
+>> +	struct irq_domain *domain;
+>> +
+>> +	parent = of_irq_find_parent(hv_get_vmbus_root_device()->of_node);
+>> +	domain = NULL;
+>> +	if (parent) {
+>> +		domain = irq_find_host(parent);
+>> +		of_node_put(parent);
+>> +	}
+>> +
+>> +	return domain;
+> 
+> I think this would be a little simpler as:
+> 
+>    parent = of_irq_find_parent(hv_get_vmbus_root_device()->of_node);
+>    if (!parent)
+>      return NULL;
+> 
+>    domain = irq_find_host(parent);
+>    of_node_put(parent);
+>    return domain;
+> 
+>> +}
+>> +
+>> +#endif
+>> +
+>> +#ifdef CONFIG_ACPI
+>> +
+>> +static struct irq_domain *hv_pci_acpi_irq_domain_parent(void)
+>> +{
+>> +	struct irq_domain *domain;
+>> +	acpi_gsi_domain_disp_fn gsi_domain_disp_fn;
+>> +
+>> +	if (acpi_irq_model != ACPI_IRQ_MODEL_GIC)
+>> +		return NULL;
+>> +	gsi_domain_disp_fn = acpi_get_gsi_dispatcher();
+>> +	if (!gsi_domain_disp_fn)
+>> +		return NULL;
+>> +	domain = irq_find_matching_fwnode(gsi_domain_disp_fn(0),
+>> +				     DOMAIN_BUS_ANY);
+>> +
+>> +	if (!domain)
+>> +		return NULL;
+>> +
+>> +	return domain;
+> 
+>    if (!domain)
+>      return NULL;
+> 
+>    return domain;
+> 
+> is the same as:
+> 
+>    return domain;
+> 
+> or even just:
+> 
+>    return irq_find_matching_fwnode(gsi_domain_disp_fn(0), DOMAIN_BUS_ANY);
+> 
+>> +}
 
-> Thanks,
-> Stephan
+-- 
+Thank you,
+Roman
 
-Regards,
-Gaurav
 
