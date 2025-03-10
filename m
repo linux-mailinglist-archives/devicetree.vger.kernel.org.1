@@ -1,115 +1,122 @@
-Return-Path: <devicetree+bounces-156001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52098A58E0B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:23:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3603A58E15
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:24:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF4CE7A23B9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:22:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 374BB3AC59A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:24:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D19222257E;
-	Mon, 10 Mar 2025 08:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6314D223709;
+	Mon, 10 Mar 2025 08:24:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M8T+aQzp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NeCcaNX7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED40213E93;
-	Mon, 10 Mar 2025 08:23:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FFFE2236EE;
+	Mon, 10 Mar 2025 08:23:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741595012; cv=none; b=NWQU7b1neTzUlsmeNqeNbx9z8JUjvJJsGJFi6a6QtzReSay/RrQJOE6z384E19M22ECyQ8aKEoH8NyV0fM79fWfN35dQAqQ3Rr6DnfXEtdpAOSlyJx1T7/n1C0EDe1w3OM8OVO+M9Ntm/Hw5q5BfZ6IP6wWu7JpXw1KEhPs8vjw=
+	t=1741595044; cv=none; b=OKAEigsAajACsPEM7G1aNCKt0zrcWSC0DKks3ckZ4QkXfi0sBVB+Bfu6Kvive1cIQrhi0/UMXrRhR34FtwYBkGVyE9mesGJvU72h0eKuYy/WI4oY1uKHuHhwqGPcS1xi7IXS3rhEE24nfu4m+l6QRaFrr/9ebfMufHG/1qfa6E8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741595012; c=relaxed/simple;
-	bh=6YS12As8AjAjGZ/NYR1OL7LWdlVVM8Ywxsw7OqaqjCw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=LCgu1APZKAhsja1owIHH1mF/XJd3pg9+mkAnLJuukjfUzyG10fKH+3kCe7JsVhmrrrQFf+DKM3o+MM5hrlVWE70570AC8mjdWeCMp+12g767PrSPwdagFaP2nGl6Ui+YsVIvsBFb7SuUtWmTPrUW6+jI1QhbZW76H9Hxnfz4ezc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M8T+aQzp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82443C4CEE5;
-	Mon, 10 Mar 2025 08:23:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741595010;
-	bh=6YS12As8AjAjGZ/NYR1OL7LWdlVVM8Ywxsw7OqaqjCw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=M8T+aQzptkie1CRGdVDOBLsQKkwmiHQ7cqdLudZskVnXs6UfjBFtoBV/3o1LOXlRF
-	 3deQyAH8FPL+0DH3RnJfWbMiIkfUVyMrQTgx7+wAa4WTHpyoCUeI5cicmUq5UVYRTE
-	 HgJfqDe6B66Ar4pdnRt+Ix7Qcyj0YSvbBz2H1D6TbNSGoIZOpqD6TR551rv1YrkV0D
-	 nggLc84OktxwOKoB3s7p1xrm16gyu/nEumhk/920jINDpOmeI+ffKfrbQgc8kNVGKs
-	 llIqyVT8NzH/o4EgXxhdTqGeKZmkXxv61lmAWRcnNH6biWz2XJ4jL1QPZnanxCPROM
-	 v4zXQ7WhhoNgA==
-Date: Mon, 10 Mar 2025 03:23:29 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1741595044; c=relaxed/simple;
+	bh=wDUt90Ru1pIsLbuQaEl1/JJ92mn4IFdSALT9enUC0Zk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fZIKRT3z1zdQ00AsGtLGuvkN7N+ajufz473asw+8/nstr2zEqPGvYCbZzBD9IHhsMqtkQ89BXXaWpnglfuM0mvni/cY6SH32Ae6mTptmLpqPtOnIIMLSYbrWNopFf9y3HRqFxTe7yMJXmdnGntVo3I3kcDMZ6I7TqMPXCqoL0mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NeCcaNX7; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741595042; x=1773131042;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wDUt90Ru1pIsLbuQaEl1/JJ92mn4IFdSALT9enUC0Zk=;
+  b=NeCcaNX7i9BJWq4O6CV+jxRS4NbMYDJShewxSWeslW+RqWxkaNIciz9/
+   1oDxIdzkwBl1QmFlNOCIb6fPphpdR0EjsCCO61LwHFyKKMmD/wKEtLE4t
+   tHabTQj6bRWnBfdxn6FK1okU4sYZX8um/Nab0BUivVEb/mc4kl9o3o2MP
+   DGL02yQhXsfRiS4pACU90fDPi98S4Tn43a9fAQp5/hyulF5X/nL9tGbf/
+   6xXC5P9xjJEIi7wbEY8/uCz3p32qpyLceDGYvTEnQSdNtaczbL4zgvT4n
+   07QIRhWzpWkuvd7Pd3AqCN1HJ7oPMyARDPY2oVRIMTXRP2aDVjoIMNsn7
+   Q==;
+X-CSE-ConnectionGUID: FssS8ukdRlintfeHZuHctA==
+X-CSE-MsgGUID: z/qQHn14RzCewYUPudVCww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="42452034"
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
+   d="scan'208";a="42452034"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 01:23:57 -0700
+X-CSE-ConnectionGUID: +bOE7dHbRoqsk9GwXYWRSQ==
+X-CSE-MsgGUID: uueDdXFiROSxh6W7LvQjPA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
+   d="scan'208";a="125170132"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 01:23:51 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1trYQO-00000001Bqq-066w;
+	Mon, 10 Mar 2025 10:23:48 +0200
+Date: Mon, 10 Mar 2025 10:23:47 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH v5 02/10] property: Add functions to count named child
+ nodes
+Message-ID: <Z86hk7iXRA5GeOtr@smile.fi.intel.com>
+References: <cover.1740993491.git.mazziesaccount@gmail.com>
+ <5e35f44db2b4ed43f75c4c53fd0576df9ad24ab2.1740993491.git.mazziesaccount@gmail.com>
+ <Z8WZh5EzFqxvU5rb@smile.fi.intel.com>
+ <39cbe817-fef4-405c-b30c-79b592c0bcfe@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, abel.vesa@linaro.org, 
- linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, kw@linux.com, 
- johan+linaro@kernel.org, neil.armstrong@linaro.org, lpieralisi@kernel.org, 
- conor+dt@kernel.org, vkoul@kernel.org, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, kishon@kernel.org, andersson@kernel.org, 
- dmitry.baryshkov@linaro.org, konradybcio@kernel.org, 
- quic_krichai@quicinc.com, krzk+dt@kernel.org, bhelgaas@google.com, 
- manivannan.sadhasivam@linaro.org, quic_qianyu@quicinc.com
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-In-Reply-To: <20250310065613.151598-2-quic_ziyuzhan@quicinc.com>
-References: <20250310065613.151598-1-quic_ziyuzhan@quicinc.com>
- <20250310065613.151598-2-quic_ziyuzhan@quicinc.com>
-Message-Id: <174159500913.3380799.14221924313975247180.robh@kernel.org>
-Subject: Re: [PATCH v3 1/4] dt-bindings: PCI: qcom: Document the QCS615
- PCIe Controller
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <39cbe817-fef4-405c-b30c-79b592c0bcfe@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+On Mon, Mar 10, 2025 at 08:23:15AM +0200, Matti Vaittinen wrote:
+> On 03/03/2025 13:59, Andy Shevchenko wrote:
+> > On Mon, Mar 03, 2025 at 01:31:45PM +0200, Matti Vaittinen wrote:
 
-On Mon, 10 Mar 2025 14:56:10 +0800, Ziyue Zhang wrote:
-> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+...
+
+> > Also do we care about secondary fwnodes?
 > 
-> Add dedicated schema for the PCIe controllers found on QCS615.
-> Due to qcs615's clock-names do not match any of the existing
-> dt-bindings, a new compatible for qcs615 is needed.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
->  .../bindings/pci/qcom,qcs615-pcie.yaml        | 160 ++++++++++++++++++
->  1 file changed, 160 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/qcom,qcs615-pcie.yaml
-> 
+> We have the device_get_child_node_count().
+> device_get_child_node_count_named() should follow the same logic.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Okay, so we don't care about them right now.
 
-yamllint warnings/errors:
+-- 
+With Best Regards,
+Andy Shevchenko
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/pci/qcom,qcs615-pcie.example.dts:58.35-36 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/pci/qcom,qcs615-pcie.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1511: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250310065613.151598-2-quic_ziyuzhan@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
