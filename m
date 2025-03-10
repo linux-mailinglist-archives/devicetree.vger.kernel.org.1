@@ -1,125 +1,162 @@
-Return-Path: <devicetree+bounces-156255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AC9EA59B9C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:53:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6CB0A59BB0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:54:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 646EA3A5492
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:52:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF90C16C8C3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999B323814A;
-	Mon, 10 Mar 2025 16:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F38D1230BCB;
+	Mon, 10 Mar 2025 16:53:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H4+/EqRW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T90BZrzK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68980230BD5;
-	Mon, 10 Mar 2025 16:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6CAA216392;
+	Mon, 10 Mar 2025 16:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741625367; cv=none; b=ihAsLN7lw0Mm19x4TkbeAOPyjwekF605Pz4DvG3ErYhm1MUUQ2lbfQTwiI5qWm1t724mlrgEx6qYmXXKkqjgygTcDJR7VLrBRkJdX9Q+i62YVE1/MjVufSp20NWC71uJ6ADpeZVrxdxoA72czL1gokM9bdCN/3O/fny4OdlMjFk=
+	t=1741625596; cv=none; b=BdTkF07lo/P+nEycTrsjOAKL088DTE8BdsbtxRRTTBFF+NFhSc7vA/CShJq5mXDq6Kb2D7rwXIDSa6D85KgaDBz/hBWD11blfUgkTztg99dqjffiPB/45Dgo4+R+MFeTIHRTO7Z8UHXuQcSA1JUrINYcOVvXPHxzyD3dl8tOoKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741625367; c=relaxed/simple;
-	bh=XUiWyHwI4Vxt1OJNKKDv1Etb8h9Z/vi/oeIFxbkHNkU=;
+	s=arc-20240116; t=1741625596; c=relaxed/simple;
+	bh=1BgaCQUGjQAOFM2D533osL0JWW3ihZoxHt/01NLC7o4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eav+YBqS6aI576q8bTBNW7kQy6x+EbIFtsODSkMR7SnPUo+Jxn0pujoQQZq4/JYYsem2wVVgXlBk6iAGXKwq0LILDM8sdwloe5eWasFDmTZsv3NInM6cuMfjn2jbPnzsmP7WxaR3IWfLewgVKbM39IsA5i715suAEozALtCFuRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H4+/EqRW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AEF5C4CEE5;
-	Mon, 10 Mar 2025 16:49:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pj21qTRPn/AUC2LgaWTeenPX7AF5KQScM0fRw3WXKfGIowYpq/LrITMuidieP1+/rvJ+VZZ1CTg10FXhut6sKAadwYS+6uvypAlXB7qFNQAlKdv5Zr3V0bT/8xurU5BpotCC+G4zHVMIQPkwXxL+OS4uJOe3VnTNeHqtOrpgoDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T90BZrzK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D301C4CEE5;
+	Mon, 10 Mar 2025 16:53:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741625366;
-	bh=XUiWyHwI4Vxt1OJNKKDv1Etb8h9Z/vi/oeIFxbkHNkU=;
+	s=k20201202; t=1741625595;
+	bh=1BgaCQUGjQAOFM2D533osL0JWW3ihZoxHt/01NLC7o4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H4+/EqRWTbjykk1EFMzcNIRqB+I32bKyVBDmEQtowE1KL82pRRCezE8mg6mZ/feqi
-	 fDiHjF0GVntnfRVHVy8dR53O3+FPfaHnfilD0JNcohxr0EKiSGtkm0NvkE4Y4cVqJU
-	 FtULpUP4pLHxpLoARU4ol/cAR0bPQ2bYSP4Nw0A3VHQHEtf5QPJJzSxpDm9uoRUwTI
-	 Ek00FHbXRQtUHY3CQfa83KODtzrj6QIRgYxye0jizw7rR7wx/b4D9rP5cKot0HGDQp
-	 A0Tfu3bxkbHZVbUi0lsnARbLm5Zsn8dg7qYzLwULHrk72rmlx4HUL4S99LnMYDMY3z
-	 +uORw6VRge1sg==
-Date: Mon, 10 Mar 2025 16:49:21 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
-	"open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" <dmaengine@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: dma: fsl-mxs-dma: Add compatible string for
- i.MX8 chips
-Message-ID: <20250310-either-ambulance-541738a32b2c@spud>
-References: <20250307215100.3257649-1-Frank.Li@nxp.com>
+	b=T90BZrzKkMaFjQSN1Wg9F/kJ/P0/1qgdM5YfI/PPzUXluWCl/0lAsIuPt4k3EisEJ
+	 6g5WBqtRXrh0DztHQE16HokVpCRvdv3gXBFYJEc1ns+kyMsYAoTvsHv+1DZtP/RdZK
+	 iuXuFB+zwH89BPHlDjijaLla71syZ8n+Dhhg9qViTmcScJY3zpkZgooDXLykJTZvck
+	 IB/uTUXesE9e/kJZQ8MyRb42iANVgt2fbt2+PwNNAnqiFW7G13vJiylJEqlqXH8H1J
+	 HULez/bKqe48z/oNYxTLZbiVWDg8EQAQ9JvQOhkAgn3WUw6tdm8nLLlLRV8IMJvME5
+	 6IA/VEFHVgVhw==
+Date: Mon, 10 Mar 2025 16:53:13 +0000
+From: Wei Liu <wei.liu@kernel.org>
+To: Roman Kisel <romank@linux.microsoft.com>
+Cc: Wei Liu <wei.liu@kernel.org>, arnd@arndb.de, bhelgaas@google.com,
+	bp@alien8.de, catalin.marinas@arm.com, conor+dt@kernel.org,
+	dave.hansen@linux.intel.com, decui@microsoft.com,
+	haiyangz@microsoft.com, hpa@zytor.com, joey.gouly@arm.com,
+	krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com,
+	lenb@kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, mark.rutland@arm.com,
+	maz@kernel.org, mingo@redhat.com, oliver.upton@linux.dev,
+	rafael@kernel.org, robh@kernel.org, ssengar@linux.microsoft.com,
+	sudeep.holla@arm.com, suzuki.poulose@arm.com, tglx@linutronix.de,
+	will@kernel.org, yuzenghui@huawei.com, devicetree@vger.kernel.org,
+	kvmarm@lists.linux.dev, linux-acpi@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, x86@kernel.org, apais@microsoft.com,
+	benhill@microsoft.com, bperkins@microsoft.com,
+	sunilmut@microsoft.com
+Subject: Re: [PATCH hyperv-next v5 06/11] arm64, x86: hyperv: Report the VTL
+ the system boots in
+Message-ID: <Z88Y-R7BnXa4Xi3I@liuwe-devbox-ubuntu-v2.lamzopl0uupeniq2etz1fddiyg.xx.internal.cloudapp.net>
+References: <20250307220304.247725-1-romank@linux.microsoft.com>
+ <20250307220304.247725-7-romank@linux.microsoft.com>
+ <Z84yyAqkqJ2ZyAd-@liuwe-devbox-ubuntu-v2.lamzopl0uupeniq2etz1fddiyg.xx.internal.cloudapp.net>
+ <2342dda1-2976-4506-ab68-640739a1bd5b@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="larkxOhmSP7+JbNi"
-Content-Disposition: inline
-In-Reply-To: <20250307215100.3257649-1-Frank.Li@nxp.com>
-
-
---larkxOhmSP7+JbNi
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <2342dda1-2976-4506-ab68-640739a1bd5b@linux.microsoft.com>
 
-On Fri, Mar 07, 2025 at 04:50:59PM -0500, Frank Li wrote:
-> Add compatible string for all i.MX8 chips, which is backward compatible
-> with i.MX28. Set it to fall back to "fsl,imx28-dma-apbh".
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On Mon, Mar 10, 2025 at 09:42:15AM -0700, Roman Kisel wrote:
+> 
+> 
+> On 3/9/2025 5:31 PM, Wei Liu wrote:
+> > On Fri, Mar 07, 2025 at 02:02:58PM -0800, Roman Kisel wrote:
+> > > The hyperv guest code might run in various Virtual Trust Levels.
+> > > 
+> > > Report the level when the kernel boots in the non-default (0)
+> > > one.
+> > > 
+> > > Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
+> > > ---
+> > >   arch/arm64/hyperv/mshyperv.c | 2 ++
+> > >   arch/x86/hyperv/hv_vtl.c     | 2 +-
+> > >   2 files changed, 3 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
+> > > index a7db03f5413d..3bc16dbee758 100644
+> > > --- a/arch/arm64/hyperv/mshyperv.c
+> > > +++ b/arch/arm64/hyperv/mshyperv.c
+> > > @@ -108,6 +108,8 @@ static int __init hyperv_init(void)
+> > >   	if (ms_hyperv.priv_high & HV_ACCESS_PARTITION_ID)
+> > >   		hv_get_partition_id();
+> > >   	ms_hyperv.vtl = get_vtl();
+> > > +	if (ms_hyperv.vtl > 0) /* non default VTL */
+> > 
+> > "non-default".
+> > 
+> 
+> Thanks, will fix that!
+> 
+> > > +		pr_info("Linux runs in Hyper-V Virtual Trust Level %d\n", ms_hyperv.vtl);
+> > >   	ms_hyperv_late_init();
+> > > diff --git a/arch/x86/hyperv/hv_vtl.c b/arch/x86/hyperv/hv_vtl.c
+> > > index 4e1b1e3b5658..c21bee7e8ff3 100644
+> > > --- a/arch/x86/hyperv/hv_vtl.c
+> > > +++ b/arch/x86/hyperv/hv_vtl.c
+> > > @@ -24,7 +24,7 @@ static bool __init hv_vtl_msi_ext_dest_id(void)
+> > >   void __init hv_vtl_init_platform(void)
+> > >   {
+> > > -	pr_info("Linux runs in Hyper-V Virtual Trust Level\n");
+> > > +	pr_info("Linux runs in Hyper-V Virtual Trust Level %d\n", ms_hyperv.vtl);
+> > 
+> > Where isn't there a check for ms_hyperv.vtl > 0 here?
+> > 
+> 
+> On x86, there is
+> 
+> #ifdef CONFIG_HYPERV_VTL_MODE
+> void __init hv_vtl_init_platform(void);
+> int __init hv_vtl_early_init(void);
+> #else
+> static inline void __init hv_vtl_init_platform(void) {}
+> static inline int __init hv_vtl_early_init(void) { return 0; }
+> #endif
+> 
+> > Please be consistent across different architectures.
+> > 
+> 
+> In the earlier versions of the patch series, I had that piece
+> from the above mirrored in the arm64, and there was advice on
+> removing the function as it contained just one statement.
+> I'll revisit the approach, thanks for your help!
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+As long as the output is consistent across different architectures, I'm
+good.
 
-> ---
->  Documentation/devicetree/bindings/dma/fsl,mxs-dma.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/fsl,mxs-dma.yaml b/Doc=
-umentation/devicetree/bindings/dma/fsl,mxs-dma.yaml
-> index a17cf2360dd4a..75a7d9556699c 100644
-> --- a/Documentation/devicetree/bindings/dma/fsl,mxs-dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/fsl,mxs-dma.yaml
-> @@ -31,6 +31,12 @@ properties:
->                - fsl,imx6q-dma-apbh
->                - fsl,imx6sx-dma-apbh
->                - fsl,imx7d-dma-apbh
-> +              - fsl,imx8dxl-dma-apbh
-> +              - fsl,imx8mm-dma-apbh
-> +              - fsl,imx8mn-dma-apbh
-> +              - fsl,imx8mp-dma-apbh
-> +              - fsl,imx8mq-dma-apbh
-> +              - fsl,imx8qm-dma-apbh
->                - fsl,imx8qxp-dma-apbh
->            - const: fsl,imx28-dma-apbh
->        - enum:
-> --=20
-> 2.34.1
->=20
+Wei.
 
---larkxOhmSP7+JbNi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ88YEQAKCRB4tDGHoIJi
-0lKZAQDr225yfRoRFlt+qxcw8GhROf/Qi13nYKV/U8XrDdEYlwD+NChVWxFGNI/W
-+sC4s9WDIuQNt0zbNBIMR+pWkiX3AA4=
-=+r4I
------END PGP SIGNATURE-----
-
---larkxOhmSP7+JbNi--
+> 
+> > >   	x86_platform.realmode_reserve = x86_init_noop;
+> > >   	x86_platform.realmode_init = x86_init_noop;
+> > > -- 
+> > > 2.43.0
+> > > 
+> > > 
+> 
+> -- 
+> Thank you,
+> Roman
+> 
 
