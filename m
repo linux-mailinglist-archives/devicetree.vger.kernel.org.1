@@ -1,101 +1,117 @@
-Return-Path: <devicetree+bounces-156063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A97AAA5907D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:57:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 845F8A59097
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:01:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA72E188E94D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:57:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B30B188FC42
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65BD8225413;
-	Mon, 10 Mar 2025 09:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 168F822578F;
+	Mon, 10 Mar 2025 10:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="owiKa/n9"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="H41kcfGV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D1E2253EC;
-	Mon, 10 Mar 2025 09:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741600638; cv=none; b=a8A/3cDL6CHD9dAgJVB1dqZ57zb+MuEwOUsAW+ZWpyksW3fhca+l6ejGoP7tX7NL1MrLBUzMFAxWkda+aE0oSDOYMZrNH5XdWIIxnrJhrJW2JeAohiDVPH2RWBxpXHR6E7D41d9Ma5yJrEuEvgukiOqjnwmXIOQoHcR0FJ76xhE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741600638; c=relaxed/simple;
-	bh=XM35sEGq9rPsxDvrLDp2hhBJWfUNe2voFFy34EJh/FY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EF/LB/SZxbCA4eFiW7OpMNr3QixooCfUu3JY4MegNNpfU0wNmf8QtyRmqLwhtJiO+LbgA20ZC1BiyDfvyCnTq8GlcFDxeAD4nzZT8RtWaqbBbGm48YFOxcFwZrV6RTVsudtSMEC3ngzknwTQcPAz8N8UDM69LvFPToY/mVQn+J8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owiKa/n9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 129E6C4CEE5;
-	Mon, 10 Mar 2025 09:57:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741600637;
-	bh=XM35sEGq9rPsxDvrLDp2hhBJWfUNe2voFFy34EJh/FY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=owiKa/n9XL5IGC0X+K77PmWU9Iy3QL46VKZQNfTyuKKjVkYTh4V67hkN0CGG/ufq3
-	 l+hj4A9QQ1oiivy3+ugmqsoZOsDZJXtSS98fzgW/7z5pbPrSzaBesxfLa6K7AtQLrr
-	 Zi6BqymX4ILWFQt5MQKhT/NDAfWCwlqspOxOAtRNle8SyLRZcyHI0ptjQcJJkJanji
-	 opsHtDAc4APfc5zMnshG46lasStgvLFz61O/jJkBR9UkOHCndcPajaJ4HWMNcNWepH
-	 r44S8UqmpxOVY6cEKaw2FnsiDfE6kzoJJmHvoMdougllrjrpmxKDSMKN0NDPHH36Oj
-	 d+Z33dXyG+9Rg==
-Date: Mon, 10 Mar 2025 10:57:13 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Wu <david.wu@rock-chips.com>, netdev@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: rockchip-dwmac: Require
- rockchip,grf and rockchip,php-grf
-Message-ID: <20250310-striped-perfect-sambar-bdcb3e@krzk-bin>
-References: <20250308213720.2517944-1-jonas@kwiboo.se>
- <20250308213720.2517944-2-jonas@kwiboo.se>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB4C18C02E;
+	Mon, 10 Mar 2025 10:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741600873; cv=pass; b=ZOTc5yktWf4bS7PeU9RBynShLDSt9IrANoY89RO6kK0qO3M382nkGVJZ7iSU6Nf8OJ6WBwfYuG0gTv2l2/uMU282rxscLjxmWtvFcjc8qOCQRnSBgsFuwD17HJIKQiYUB6Pbo0EzIA5skfgKs875A+xaoUHFLGHlfQgsybsdSUo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741600873; c=relaxed/simple;
+	bh=Rm3gOZ31VuZ+SKZ3tMs4s7MfGetnjl0qusm9vId4TOs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XK+SnBfTcoFBhnNno90gtBmTPRO5eeVwl5Zep73JTsqDDpUT6/0OYdJ+0yNf7gnK/+NlzCzETqDPmpwDERAlIRhIRp5UV8qwR0cxzVeuDyJHh+Q+RlUKw3sG9jgk2ZjOcdUqz+iXbNQjYP/MEivk6rPI5KmRTgxHiQHZV2SDmDI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=H41kcfGV; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1741600834; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=dob90s3z+DONEzCUXvAaOGYEGDPs+bd4jgxP31YtrPBNE5GxV4QlxFaWohCjFzrWzA11X4kNHqzW+z9MelRjDmBcaA1t57uYfZUIq9zgFC8vMn/jK430n3L/lp1iWawoIQn5EedojvNh839bKCYolkT5Vsf/MQuUz+UUXT1Sl4k=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1741600834; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ZT8kUfSIqR+U8jrdTEq3259tcSEYOxweQkSV2xoZlKM=; 
+	b=RH9E2xuXmJP1UAgRBfLw546oEGYFEFhDpNrHIkkF1mMB5nziRoJM4HxGN3/BBHyH36dBcMw2Jk/mzO3taQ1CmhbQq0FzzGXoNLa8NzUEgNjBokGThCILxYNpDCFPkMCnQmYu8e1sL+l31mhP+6VGeTesKQGAgmS8f+Sm+MGFytY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1741600834;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=ZT8kUfSIqR+U8jrdTEq3259tcSEYOxweQkSV2xoZlKM=;
+	b=H41kcfGVxS+NJd7AoxBHL0YbVoPVD1GftC5jSHsAdnKxn4HHq95F7V6bcRpA/aXD
+	Ycccp/ZEjkZkDQcYY4MLMpsMuve3R2YE8PpGQbOActapzRbBf9QdKKTAhg3X94L+uVQ
+	UrlKhd11KF4B2+cwfqfyN5c6ucxkIi3vR81Ysynk=
+Received: by mx.zohomail.com with SMTPS id 1741600832221948.8309673820739;
+	Mon, 10 Mar 2025 03:00:32 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH 0/2] Fix CPU and GPU clocks on RK3576
+Date: Mon, 10 Mar 2025 10:59:55 +0100
+Message-Id: <20250310-rk3576-scmi-clocks-v1-0-e165deb034e8@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250308213720.2517944-2-jonas@kwiboo.se>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABu4zmcC/yXMQQrDIBCF4avIrDtgFCPkKiULY6btkKqt2hIIu
+ XulLv8H7zugUGYqMIkDMn25cIothosA/3DxTshra1BSGakHiXnTxo5YfGD0z+S3gk7L0ZjVSmc
+ VtOMr0433P3qde2d6f5pd+wiLK4Q+hcB1EpH2it2XFubz/AFYKoUflQAAAA==
+X-Change-ID: 20250310-rk3576-scmi-clocks-a30655d70a72
+To: Jonas Karlman <jonas@kwiboo.se>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Heiko Stuebner <heiko@sntech.de>, 
+ Detlev Casanova <detlev.casanova@collabora.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liang Chen <cl@rock-chips.com>, 
+ Elaine Zhang <zhangqing@rock-chips.com>, 
+ Finley Xiao <finley.xiao@rock-chips.com>, 
+ Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Cc: kernel@collabora.com, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.2
 
-On Sat, Mar 08, 2025 at 09:37:13PM +0000, Jonas Karlman wrote:
-> All Rockchip GMAC variants typically write to GRF regs to control e.g.
-> interface mode, speed and MAC rx/tx delay. Newer SoCs such as RK3562,
-> RK3576 and RK3588 use a mix of GRF and peripheral GRF regs.
-> 
-> Prior to the commit b331b8ef86f0 ("dt-bindings: net: convert
-> rockchip-dwmac to json-schema") the property rockchip,grf was listed
-> under "Required properties". During the conversion this was lost and
-> rockchip,grf has since then incorrectly been treated as optional and
-> not as required.
-> 
-> Similarly, when rockchip,php-grf was added to the schema in the
-> commit a2b77831427c ("dt-bindings: net: rockchip-dwmac: add rk3588 gmac
-> compatible") it also incorrectly has been treated as optional for all
-> GMAC variants, when it should have been required for RK3588, and later
-> also for RK3576.
-> 
-> Update this binding to require rockchip,grf and rockchip,php-grf to
-> properly reflect that GRF (and peripheral GRF for RK3576/RK3588) is
-> required to control part of GMAC.
-> 
-> This should not introduce any breakage as all Rockchip GMAC nodes have
-> been added together with a rockchip,grf phandle (and rockchip,php-grf
-> where required) in their initial commit.
-> 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+As Jonas Karlman pointed out on the #linux-rockchip IRC channel on
+Libera yesterday, mainline has once again chosen a different set of
+clock IDs compared to downstream, with hugely detrimental effects to
+mainline's ability to use SCMI for clock operations. This is because
+TF-A will use the downstream IDs, and when we reclock things through
+SCMI, TF-A will get the wrong clock ID from us.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+So this series adds the three relevant clock IDs to the bindings in
+patch 1, and then uses them in the SoC .dtsi in patch 2. That way, we
+actually get functional GPU reclocking, and cpufreq will work as well.
+As a bonus, we no longer change random unrelated clocks all over the
+place, and it seems somewhat miraculous this didn't blow up in our faces
+in a much bigger way before this.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Nicolas Frattaroli (2):
+      dt-bindings: clock: rk3576: add SCMI clocks
+      arm64: dts: rockchip: fix RK3576 SCMI clock IDs
+
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi        | 18 +++++++++---------
+ include/dt-bindings/clock/rockchip,rk3576-cru.h |  5 +++++
+ 2 files changed, 14 insertions(+), 9 deletions(-)
+---
+base-commit: f064b0a4aa5f2bc61c9611a23a7fc83855751626
+change-id: 20250310-rk3576-scmi-clocks-a30655d70a72
 
 Best regards,
-Krzysztof
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
 
