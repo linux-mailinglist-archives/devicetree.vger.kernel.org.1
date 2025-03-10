@@ -1,118 +1,155 @@
-Return-Path: <devicetree+bounces-156246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2B6FA59B32
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:39:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A20C5A59B3C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:40:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B8657A2037
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:38:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0BEB16DAB5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:40:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 057AB2309A8;
-	Mon, 10 Mar 2025 16:38:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B47230BF3;
+	Mon, 10 Mar 2025 16:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K5F8LiPb"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cZAJdWPe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5802309A6;
-	Mon, 10 Mar 2025 16:38:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00301230BDA;
+	Mon, 10 Mar 2025 16:40:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741624737; cv=none; b=YEXV2Veeve2bOmm/qMO9bUfvHxLpA/i+UaYMMRGEQQZL5YL+WWNLSmG5ZO3AKvhoCJ1svtommQsLGP16QM6UudvVDHZHJ4tlhHf+jIRP87DgcwqM9o6Is+Ol2Vo6Om5dWzXJQyIKMz/U/PUKU6vl9xYQGYxOeWpctQu1uIaKqhQ=
+	t=1741624810; cv=none; b=U1RyNNMx1K0NFvQgvN2wleB8XcHdbFNpYxZ+6vtJzspJ13u4vaRZ+V0vETXc5zpHq/lnTe/ouTMyGihUfxCPL3kEMfK2iMldHD0Bm7wvz5HpotaFmGetEaEQo6kpmxCb340aUovlAKlffrY2DmqpkTBuzI1+cGKgmDu5KzbquLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741624737; c=relaxed/simple;
-	bh=IWvNhk3alqBkKhFhNbB9Ip8DmjSWG5Z1yAYgQA1qk/s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B55HSOOC0VhOqMpvO4SU7k08hz7sT1VmkvGw6rObV2VdiW7oEWgZYLpJyfGgC6XUYvVMzThnaM9qXdtOK5MjJR0hflg2DzHnleF5z7Jc+nrd2FQYhConPXw1ijvwhMb/CM/9ruK0SlpjGdpx9yaLcwANDvpMAeQObzbCdEAX5/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K5F8LiPb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA865C4CEE5;
-	Mon, 10 Mar 2025 16:38:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741624737;
-	bh=IWvNhk3alqBkKhFhNbB9Ip8DmjSWG5Z1yAYgQA1qk/s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K5F8LiPb6IMR+i6b0xnHy61Sh7xnP8dNL6xlfD3p1+Vz/5ir+ZehR4UVFa9FzZFFB
-	 th4QfuW8y6YCoufZgfCucRDyG9UKsVsxXexOMZuwWUYg+92ryvRAOmuZeioG3Q6jL5
-	 A7HugzuFWlnWAxpH/1wSF01ipn1T/qHOHxQzCPfw1EJvtNbm8t9tsHkKhI60OKrBra
-	 KxqxB6/yuD21RQVjCmvDhI+rEp0poQY4QznEmTjS6hC9fnJr9b6bhIuBxnLCozYp9X
-	 IFhv5jfgPjBPjmpiBX2/4l/MOC6YBxXlCWRqmZfHYuFpOnRxvkQz4g1cXBtfrCsutt
-	 XGI11CNCxQ1hg==
-Date: Mon, 10 Mar 2025 16:38:52 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: i2c: i2c-rk3x: Add compatible string
- for RK3528
-Message-ID: <20250310-tidy-passable-434c473861a6@spud>
-References: <20250309070603.35254-1-ziyao@disroot.org>
- <20250309070603.35254-2-ziyao@disroot.org>
+	s=arc-20240116; t=1741624810; c=relaxed/simple;
+	bh=XPW/PNHU2C/8e9ggxKB1To3j4bIZAqkuOL8WACIX//o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=d7vJNx9e3ULyx7u4n6g8iMA5C19Xa3f5MTwBdk4Bl2SPSiwTUgUGjST3st8aqZYeWK4AjahB4K/Re0qYf2OP3iSjXwSQts6f/E0uokjCWPRslKFwOLCByLFZEMUpUMqm7BTDjDesPPPSQeKSq7mpkwgEWwxKNr4V5cymg8EQ0iY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cZAJdWPe; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9462B44420;
+	Mon, 10 Mar 2025 16:40:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1741624806;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=g0FHvk7naxccnXtThg65SMBGYmS/oNOjelthUAROF7I=;
+	b=cZAJdWPeX2l6AmnRUrcI6g36eTjGObKFBUGlz+W2ZGYkamFITqLe5V6R19BKXwlt6JpWJz
+	y2GNpuI4qwbGQiuHZLSRebaj5L0gwBYZcoh2xqYJNbcxpAeKDKpooqsr2hOgQdryx22jr9
+	b6soNUnbxVc2kDUkFz3qAAxNlkul5kSXNiLIMb4i0ojz2vzkQ2CesoX5fE/znTJV6zijFx
+	cVeEj5fRonO4GyD1Ak5gtCYrKKctkDK7s5+74mVn0ceOLlBQmIR+TeIRPcQRHblG8KBhgu
+	pXi1s35+U3ev9P25WDy2geiEW+GpVkdCSbZsPuwnVE1sYPrQSSxOJoTT8OVliw==
+From: Antonin Godard <antonin.godard@bootlin.com>
+Subject: [PATCH v4 0/3] Add Variscite i.MX6UL SoM and Concerto board
+ support
+Date: Mon, 10 Mar 2025 17:39:47 +0100
+Message-Id: <20250310-varsom6ul-concerto-dts-v4-0-6034fda6ec64@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="t70f0xBAOBC9N4NB"
-Content-Disposition: inline
-In-Reply-To: <20250309070603.35254-2-ziyao@disroot.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANMVz2cC/3XQQQ7CIBAF0KsY1mJgKCiuvIdxQemoJFoUkGhM7
+ y6tGjWmyz/JvMmfO4kYHEaynNxJwOyi820J1XRC7N60O6SuKZkAA8k4MJpNiP6oLgdqfWsxJE+
+ bFKlhixrBKOC6JmX5FHDrrgO83pS8dzH5cBvuZN5P3yQfIzOnjGItKm3slhmrVrX36eDamfVH0
+ qMZvqH5KAQFqhpjQYNUeqH/IfGBBB8tmUWBpOSo2JwLCeIX6p69A54v5Y/pVb7rHp3J0CllAQA
+ A
+X-Change-ID: 20250120-varsom6ul-concerto-dts-a08be2a6219b
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Antonin Godard <antonin.godard@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2339;
+ i=antonin.godard@bootlin.com; h=from:subject:message-id;
+ bh=XPW/PNHU2C/8e9ggxKB1To3j4bIZAqkuOL8WACIX//o=;
+ b=owEBbQKS/ZANAwAIAdGAQUApo6g2AcsmYgBnzxXlA4CwvIV3hDMNMGAj0KX5KcGsHpcacPtqQ
+ cVQ4ig44iKJAjMEAAEIAB0WIQSGSHJRiN1AG7mg0//RgEFAKaOoNgUCZ88V5QAKCRDRgEFAKaOo
+ Nk05D/wN7QtblCSzXP24wqWsH+praenTTdVTidGDLesjDjGPOC11EKF1hUp6HpdZCgIl8p+QEm0
+ 29EPDiD8b31hRZs+fL9eDN0LdhOtbtD5Oj1OqaHq50unamFep+0VuHenwnUcm9cHyYdB7uAbyZz
+ XuDCeM1itX303K/hmPh6gQ1fJdfTJkYNsuyd9dbPiQwEqL7jiFFwbmgRClIXY5YUAybnsf89V09
+ cGjH5b2UMk2OkGsDG4sSoShJ4i7XHRe2OwSG2Ti6uyGx7iB5RyC64F1Zr96oIf6ZxH7Fh73N6/p
+ M+FQ8+ePUD7sr2sJWFBQuBURjRwn6yyZwduOMiIerbd2R1Uf15ZQ6fPfttHeaMxZodTCbVK1yFo
+ 18XYMZYP1H1nL6uibTVaKbGoYN1zPVbpy9QH1BjGF9g/vWvGmR/PfBXb/AF97kgtJEpuT3lCGHV
+ 55JO+kOqsrMyKx6SeXP/Hypx1bZQjpXwD4zMhkZvk7yNpSbZe10dg7UARm0TslPOIJ5B0yapC8A
+ HOvTEYjKXTRjWI/CrUobOmoGWGUANxKmrD/kT/V963ZTBDxB5rTlB4T/+9Xt3wi8NEaD8mCRGik
+ XP+JmQlU18Xob0mSUvTv7ifOIYYMD++f3rxQ9HyndqGi8yOS3V5tltX9HcQqOx0BSZtVN2Ba9WO
+ B72aPWUTGX5YkNg==
+X-Developer-Key: i=antonin.godard@bootlin.com; a=openpgp;
+ fpr=8648725188DD401BB9A0D3FFD180414029A3A836
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduudelkeeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthejredtredtjeenucfhrhhomheptehnthhonhhinhcuifhouggrrhguuceorghnthhonhhinhdrghhouggrrhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedtudeuhfelveehueevudefgedvtdfffeevleefuedtjeeuteelgeelvefftdejteenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemjegthegtmeeirgguvgemjeelgeekmeegtdehleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemjegthegtmeeirgguvgemjeelgeekmeegtdehledphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomheprghnthhonhhinhdrghhouggrrhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdpr
+ hgtphhtthhopehfvghsthgvvhgrmhesghhmrghilhdrtghomhdprhgtphhtthhopehimhigsehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtohepshhhrgifnhhguhhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhhtohhnihhnrdhgohgurghrugessghoohhtlhhinhdrtghomhdprhgtphhtthhopegtohhnohhrrdguohholhgvhiesmhhitghrohgthhhiphdrtghomh
+X-GND-Sasl: antonin.godard@bootlin.com
 
+Add support for the i.MX6UL Variscite SoM (VAR-SOM-6UL) and the
+Variscite Concerto Carrier Board.
 
---t70f0xBAOBC9N4NB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I tested this with a VAR-SOM-6UL_G2_700C_512R_8N_IT_REV1.3A (one variant
+of this SoM), meaning I couldn't test all of the possible options of the
+SoM - so this device tree includes partial support for it.
 
-On Sun, Mar 09, 2025 at 07:06:01AM +0000, Yao Zi wrote:
-> Document I2C controllers integrated in RK3528, which are compatible with
-> the RK3399 variant.
->=20
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+These are based on the 5.15 Variscite kernel fork but adapted for
+mainline.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
+---
+Changes in v4:
+- Add missing trailer on first patch ("Acked-by: Conor Dooley
+  <conor.dooley@microchip.com>").
+- Link to v3: https://lore.kernel.org/r/20250310-varsom6ul-concerto-dts-v3-0-551e60713523@bootlin.com
 
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml b/Docume=
-ntation/devicetree/bindings/i2c/i2c-rk3x.yaml
-> index a9dae5b52f28..259770b1aa08 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
-> @@ -37,6 +37,7 @@ properties:
->                - rockchip,px30-i2c
->                - rockchip,rk3308-i2c
->                - rockchip,rk3328-i2c
-> +              - rockchip,rk3528-i2c
->                - rockchip,rk3568-i2c
->                - rockchip,rk3576-i2c
->                - rockchip,rk3588-i2c
-> --=20
-> 2.48.1
->=20
+Changes in v3:
+- Reviews from Shawn:
+  - Fix alphabetical order of nodes and pinctrl entries.
+  - Fix rmii-ref-clk label (remove "-grp" added by mistake).
+  - Fix order of properties for eth nodes.
+  - Convert deprecated fec properties to eth properties.
+- Link to v2: https://lore.kernel.org/r/20250127-varsom6ul-concerto-dts-v2-0-4dac29256989@bootlin.com
 
---t70f0xBAOBC9N4NB
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v2:
+- Reviews from Krzysztof:
+  - Use imperative mood in commit descriptions.
+  - Remove backlight node as I am unable to test it.
+  - Rename gpled2 node to led-0, and set function, color and label for
+    it.
+  - Remove unnecessary comment "DS1337 RTC module".
+- Rename binding "variscite,mx6concerto" to "variscite,mx6ulconcerto"
+  since this is for the VAR-SOM-6UL mounted on the Concerto.
+- Remove pinctrl_ft5x06_ts_gpio iomuxc node, unused.
+- Link to v1: https://lore.kernel.org/r/20250121-varsom6ul-concerto-dts-v1-0-eb349acf0ac6@bootlin.com
 
------BEGIN PGP SIGNATURE-----
+---
+Antonin Godard (3):
+      dt-bindings: arm: fsl: Add VAR-SOM-MX6UL SoM and Concerto board
+      ARM: dts: imx6ul: Add Variscite VAR-SOM-MX6UL SoM support
+      ARM: dts: imx6ul: Add Variscite Concerto board support
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ88VnAAKCRB4tDGHoIJi
-0g7KAQCX8LQzI7F76ogrQQyJQ8ZKll5YFYoR+50BLXS5RprrMQEApxbq77XDuAUD
-8wcWFI82HpSSD5Hi4Jfec3VI8glOmQY=
-=jdhP
------END PGP SIGNATURE-----
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   6 +
+ arch/arm/boot/dts/nxp/imx/Makefile                 |   1 +
+ .../boot/dts/nxp/imx/imx6ul-var-som-concerto.dts   | 320 +++++++++++++++++++++
+ arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi      | 233 +++++++++++++++
+ 4 files changed, 560 insertions(+)
+---
+base-commit: 66683f3b2661643f694607283ee8f01b7a934c83
+change-id: 20250120-varsom6ul-concerto-dts-a08be2a6219b
 
---t70f0xBAOBC9N4NB--
+Best regards,
+-- 
+Antonin Godard <antonin.godard@bootlin.com>
+
 
