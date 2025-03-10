@@ -1,207 +1,193 @@
-Return-Path: <devicetree+bounces-156261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8B2A59C58
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:11:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F0C2A59CB9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:14:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4012188D710
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:11:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66ADA7A8B45
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA745230BE6;
-	Mon, 10 Mar 2025 17:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8EB222D4C3;
+	Mon, 10 Mar 2025 17:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ctmerySW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bnedYXm5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19506230BD5;
-	Mon, 10 Mar 2025 17:11:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD5317CA12;
+	Mon, 10 Mar 2025 17:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741626664; cv=none; b=qDAPqs1JX10vlAxnDdM9C2Z6Sy8C9V/K/u6m2PUO+jb2U+2rCSV9rlqk6kxTumY97SLJvWQvjBMNYkc15n/wC+bUIRcEjfRrp34X2Y8nOIQhHCG0VOdPOArHvTMFRUrPLVqAmIR7UZ3tUgI644KzKlQljiDr03gW0NRQY4dGozA=
+	t=1741626844; cv=none; b=Oh+R5V5zZxYUxJZ3EAvys9c/ZAXc3/9KtBFyxGwYoxwcae65zBJls+xyvOq8b8D7R+6gI+iO6doZ1/Gts8JlTcbC8Fafwb1JVO8m+p5F1oKZE1qCKjzEMLywaX8zppsHJnlJ3FMtlSpr82jgqtbhHyZ4geEw/48ROdOVdhxN5pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741626664; c=relaxed/simple;
-	bh=voNjo21o3BJ1yoO1GHLS+0pcetuEukpGtYife/kyYB8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qmGJ/6biqPPF8NUV2Mp7OHegWLXuouw2DQiYyqqPa1FwTgR3rg8D81Q6VxjdhxtqdExTXXHFhVdHU82nBon349+wS+77xHkbjOChdEvwkBB7XLc/iI4dhSaRf46abwEJ06GNB04lv80nFg0u/B2Qt1oxXqKqqtM1HaSlBI0VV8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ctmerySW; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741626663; x=1773162663;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=voNjo21o3BJ1yoO1GHLS+0pcetuEukpGtYife/kyYB8=;
-  b=ctmerySWfqAOXNCtX/1QgqLRv/JJ2q1M2AdIop2VcxyskJjVE7ADTbgA
-   wj4ShXt2hTS7Rq3HMFChprnBVkY2QN5WEXFIaJ2BytbjRvDto0QOiurUW
-   G5F2DZTXCl1rPCy+nIkOoGwYdx4GnBgXfEYTFklVsVRJpBlu4PhWFm/n4
-   FHGMCmjieYGyjowfOwlKqkNxAfM+IXORkZ8Pv1yXSA9QCT4uzmKgSaS++
-   xCzX/668lDzmuGFvabn5HJKz50jBuuVXlHQ4V8lLM+PFeIYMyjJFa46LY
-   PPf7BXZiEQt+2TlMHUhIKxl3R/EuaKrdKtjoIXZPkvhQ165qZTba+NJpS
-   Q==;
-X-CSE-ConnectionGUID: ETqQ2FItReCItU23gBHlqA==
-X-CSE-MsgGUID: zgTfJ9d3TcKUPIAa62W1FA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="45427063"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; 
-   d="scan'208";a="45427063"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 10:11:02 -0700
-X-CSE-ConnectionGUID: rcALvII3SWuG40FzH3koiw==
-X-CSE-MsgGUID: ZncTHJjsQEyr2ybwv6q34A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; 
-   d="scan'208";a="120070023"
-Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
-  by fmviesa007.fm.intel.com with ESMTP; 10 Mar 2025 10:10:59 -0700
-Received: from kbuild by a4747d147074 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1trgeT-0004W8-1G;
-	Mon, 10 Mar 2025 17:10:54 +0000
-Date: Tue, 11 Mar 2025 01:10:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v6 3/4] clk: meson: a1: add the audio clock controller
- driver
-Message-ID: <202503110016.L1KdYGVj-lkp@intel.com>
-References: <20250309180940.1322531-4-jan.dakinevich@salutedevices.com>
+	s=arc-20240116; t=1741626844; c=relaxed/simple;
+	bh=DzuST+tAc1H4SkPJV1eeY+j6xO5QqxQLswRjnYXe5hY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=YOFr+hzNG1VBkqD3J65cMBNDOiKlACWtQglsXjq5F7OgpQCHuQwujFLUtklYYApq+A23xy9AG0h0OMEEkrrQQnyZl/yqvPgWdVR8mHRj//E2i4uV5CxKOQfq8V1vw52J2hxtHVAVwelHicADDTpockk/vuTmHzKVixx9rM4Xzkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bnedYXm5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52A9V3V4030297;
+	Mon, 10 Mar 2025 17:13:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PEwlZ3gpqNniHEI3bdWrdB+zU5HM/oQDFAC7kVivyGE=; b=bnedYXm5O5BKIUST
+	3wNZQBj0VrTYLItQxcjsFDW9ZnZc6NNEJxxrTBYk3Q9pGV+hU1eIykq3Cmfdz77X
+	LrG2GQ+PFS1UZ2yGsSbALMSuuS992Fjk/skgW+mYx2MHXuD4sUlU191Kb3aWsc2d
+	0YHwjnCB7rhKw1kD11w06x6qOLqn5sj7+HHNYdcUwrLhGOthDiUOruEGwd4d2Mx5
+	j60YQaqDPetTQ41CrScp8oaHopkizUrypffqtHuXfd0B9BMvW3eSmFFSK7JwRDz9
+	7RX3o3E9fp3G5vEVwndoA2umi+JAHVYc40J47ucpBeBdOe4BgJqiV25Aw+79jJWe
+	7ATcyQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458eyt5j9k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 17:13:52 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52AHDpf0009306
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 17:13:51 GMT
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 10 Mar 2025 10:13:50 -0700
+Received: from nalasex01a.na.qualcomm.com ([fe80::fc0a:7737:fa2e:7315]) by
+ nalasex01a.na.qualcomm.com ([fe80::fc0a:7737:fa2e:7315%4]) with mapi id
+ 15.02.1544.009; Mon, 10 Mar 2025 10:13:50 -0700
+From: "Gaurav Kashyap (QUIC)" <quic_gaurkash@quicinc.com>
+To: Stephan Gerhold <stephan.gerhold@linaro.org>,
+        "Melody Olvera (QUIC)"
+	<quic_molvera@quicinc.com>
+CC: Thara Gopinath <thara.gopinath@gmail.com>,
+        Herbert Xu
+	<herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konradybcio@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Satya Durga Srinivasu Prabhala (QUIC)" <quic_satyap@quicinc.com>,
+        "Trilok
+ Soni (QUIC)" <quic_tsoni@quicinc.com>,
+        "linux-crypto@vger.kernel.org"
+	<linux-crypto@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org"
+	<linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "Gaurav Kashyap (QUIC)"
+	<quic_gaurkash@quicinc.com>
+Subject: RE: [PATCH 2/6] arm64: dts: qcom: sm8750: Add QCrypto nodes
+Thread-Topic: [PATCH 2/6] arm64: dts: qcom: sm8750: Add QCrypto nodes
+Thread-Index: AQHbZgBqulxhwD1PeEOf2Oy4z8OuvLMaLA8AgFM8yWA=
+Date: Mon, 10 Mar 2025 17:13:50 +0000
+Message-ID: <28715695978543f7884357bd7c4153cb@quicinc.com>
+References: <20250113-sm8750_crypto_master-v1-0-d8e265729848@quicinc.com>
+ <20250113-sm8750_crypto_master-v1-2-d8e265729848@quicinc.com>
+ <Z4k8kibtnlnpKspN@linaro.org>
+In-Reply-To: <Z4k8kibtnlnpKspN@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250309180940.1322531-4-jan.dakinevich@salutedevices.com>
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 91VHT1CWabQnyc5z7TFb_bsnVAS-R14v
+X-Authority-Analysis: v=2.4 cv=CupFcm4D c=1 sm=1 tr=0 ts=67cf1dd0 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=xqWC_Br6kY4A:10 a=hWaPqv8yfGMA:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=2aYPDqRTfl-tYw73yZEA:9
+ a=CjuIK1q_8ugA:10 a=632RQ6DdpRuuCkNA2XZ6:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 91VHT1CWabQnyc5z7TFb_bsnVAS-R14v
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-10_06,2025-03-07_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1011
+ suspectscore=0 phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ bulkscore=0 spamscore=0 mlxlogscore=819 lowpriorityscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503100134
 
-Hi Jan,
+On Thu, Jan 16, 2025 at 9:06 AM PST, Stephan Gerhold wrote:
+> On Mon, Jan 13, 2025 at 01:16:22PM -0800, Melody Olvera wrote:
+> > From: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> >
+> > Add the QCE and Crypto BAM DMA nodes.
+> >
+> > Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8750.dtsi | 30
+> > ++++++++++++++++++++++++++++++
+> >  1 file changed, 30 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> > b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> > index
+> >
+> 3bbd7d18598ee0a3a0d5130c03a3166e1fc14d82..1ddb33ea83885e73bf15244c
+> 9cbd
+> > 7067ae28cded 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> > @@ -1939,6 +1939,36 @@ mmss_noc: interconnect@1780000 {
+> >                       #interconnect-cells =3D <2>;
+> >               };
+> >
+> > +             cryptobam: dma-controller@1dc4000 {
+> > +                     compatible =3D "qcom,bam-v1.7.4", "qcom,bam-v1.7.=
+0";
+> > +                     reg =3D <0x0 0x01dc4000 0x0 0x28000>;
+> > +
+> > +                     interrupts =3D <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +                     #dma-cells =3D <1>;
+> > +
+> > +                     iommus =3D <&apps_smmu 0x480 0>,
+> > +                              <&apps_smmu 0x481 0>;
+>=20
+> Should be equivalent to iommus =3D <&apps_smmu 0x480 0x1>?
+>=20
 
-kernel test robot noticed the following build errors:
+Hello Stephan, we tried this out internally, and the use case was not funct=
+ional.
+The masks are explicitly mentioned in our hardware documents and we are jus=
+t following that.
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on robh/for-next krzk/for-next krzk-dt/for-next linus/master v6.14-rc6 next-20250307]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+So, we are looking to keep it the same.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jan-Dakinevich/clk-meson-axg-share-the-set-of-audio-helper-macros/20250310-022012
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20250309180940.1322531-4-jan.dakinevich%40salutedevices.com
-patch subject: [PATCH v6 3/4] clk: meson: a1: add the audio clock controller driver
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20250311/202503110016.L1KdYGVj-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250311/202503110016.L1KdYGVj-lkp@intel.com/reproduce)
+> > +
+> > +                     qcom,ee =3D <0>;
+> > +                     qcom,controlled-remotely;
+>=20
+> If you don't have clocks here, you need to provide num-channels and
+> qcom,num-ees. Otherwise, there is a risk this will crash if the BAM is no=
+t up
+> while being probed.
+>=20
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503110016.L1KdYGVj-lkp@intel.com/
+Ack.
 
-All errors (new ones prefixed by >>):
+> Thanks,
+> Stephan
 
->> drivers/clk/meson/a1-audio.c:807:11: error: call to undeclared function '__devm_auxiliary_device_create'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     807 |         auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
-         |                  ^
-   drivers/clk/meson/a1-audio.c:807:11: note: did you mean '__auxiliary_device_add'?
-   include/linux/auxiliary_bus.h:221:5: note: '__auxiliary_device_add' declared here
-     221 | int __auxiliary_device_add(struct auxiliary_device *auxdev, const char *modname);
-         |     ^
->> drivers/clk/meson/a1-audio.c:807:9: error: incompatible integer to pointer conversion assigning to 'struct auxiliary_device *' from 'int' [-Wint-conversion]
-     807 |         auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
-         |                ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     808 |                                                 data->rst_drvname, NULL, 0);
-         |                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   2 errors generated.
-
-
-vim +/__devm_auxiliary_device_create +807 drivers/clk/meson/a1-audio.c
-
-   748	
-   749	static int a1_audio_clkc_probe(struct platform_device *pdev)
-   750	{
-   751		struct device *dev = &pdev->dev;
-   752		const struct a1_audio_data *data;
-   753		struct auxiliary_device *auxdev;
-   754		struct regmap *map;
-   755		void __iomem *base;
-   756		struct clk *clk;
-   757		unsigned int i;
-   758		int ret;
-   759	
-   760		data = device_get_match_data(dev);
-   761		if (!data)
-   762			return -EINVAL;
-   763	
-   764		clk = devm_clk_get_enabled(dev, "pclk");
-   765		if (IS_ERR(clk))
-   766			return PTR_ERR(clk);
-   767	
-   768		base = devm_platform_ioremap_resource(pdev, 0);
-   769		if (IS_ERR(base))
-   770			return PTR_ERR(base);
-   771	
-   772		map = devm_regmap_init_mmio(dev, base, &a1_audio_regmap_cfg);
-   773		if (IS_ERR(map))
-   774			return PTR_ERR(map);
-   775	
-   776		ret = device_reset(dev);
-   777		if (ret)
-   778			return ret;
-   779	
-   780		for (i = 0; i < data->hw_clks.num; i++) {
-   781			struct clk_hw *hw = data->hw_clks.hws[i];
-   782			struct clk_regmap *clk_regmap = to_clk_regmap(hw);
-   783	
-   784			if (!hw)
-   785				continue;
-   786	
-   787			clk_regmap->map = map;
-   788		}
-   789	
-   790		for (i = 0; i < data->hw_clks.num; i++) {
-   791			struct clk_hw *hw;
-   792	
-   793			hw = data->hw_clks.hws[i];
-   794			if (!hw)
-   795				continue;
-   796	
-   797			ret = devm_clk_hw_register(dev, hw);
-   798			if (ret)
-   799				return ret;
-   800		}
-   801	
-   802		ret = devm_of_clk_add_hw_provider(dev, meson_clk_hw_get,
-   803						  (void *)&data->hw_clks);
-   804		if (ret)
-   805			return ret;
-   806	
- > 807		auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
-   808							data->rst_drvname, NULL, 0);
-   809		if (!auxdev)
-   810			return -ENODEV;
-   811	
-   812		return 0;
-   813	}
-   814	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Gaurav
 
