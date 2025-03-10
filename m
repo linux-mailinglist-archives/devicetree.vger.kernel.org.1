@@ -1,117 +1,225 @@
-Return-Path: <devicetree+bounces-156305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB8F1A5A54D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 21:51:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6992AA5A574
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 22:01:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92DDE3A67C0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 20:51:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0A7118911CC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 21:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8FF1DF269;
-	Mon, 10 Mar 2025 20:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90631DF98E;
+	Mon, 10 Mar 2025 21:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fdeGd4j9"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Cwjc3gM1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazolkn19011028.outbound.protection.outlook.com [52.103.14.28])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A331DEFE1
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 20:51:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741639881; cv=none; b=c8R0XXAq9zOre/rPBsz9yoO89nBIXZqw9vNZ74NHzFCZIlsnheXh/HdE8G96c1VoqvUp8q/wHAoiTZ/dg8LxjTyzCLUDn9F3IF5UzQDZ2f3QEaZ3uEcEAypOXiiTwu5/NqVnPYLl17if/E3s3N2ysepgOLMNQJqOl6sLcTG2Y+w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741639881; c=relaxed/simple;
-	bh=muuR9vmT98iiYtwswpTs+MU5Qwfio13uvWoszKSnByU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cIpCnB+iH4AzAwzYjnLX/QyBrggynTEaERF9qJVUACPr/gdmLQBB/abF8qddg/evddI0ODEU/TD3JWwNTsg1HLCpAvCzV6UkbcQx7iX9k5JSC7OyiNM4CS69ZHsJlGkUBAp8Xw3GB1wUUQtgf0EYEU9KXNwHZvIQLeHwYgqcoTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fdeGd4j9; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-30bf5d7d107so35770981fa.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 13:51:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741639877; x=1742244677; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=kxNF8e48hf51wGrFc06CsODYSc9fXYwI5IwZer2AB2U=;
-        b=fdeGd4j97YJz+TWRtdsq8vPeb5oynvgpcfobCuOTBiprYLircq5JJhni196MUWp2jS
-         qK8FcrDQFGSVsEgjxSKHK0TFEnlVbZMv7rH8BN4Ww9Pff9zNJLKSKYeuVHRK1zuuwR7r
-         FXgTB8xDLLTuWEg1R+rLGlJ34dbaHv99bn+rjq+bTQ5ATCwJ9YmzXRmpTDBxv6pd3nGB
-         /rMHokjkqF7RwWdddKf0epDOC72OUea/W4/e0AumdrfEuN8kEWEkYYN7dhKgRGT6XAmp
-         kIZyKJqB5EvDSbzkJuyn9E1kIAiisYCY82NkvJeeLOy5c3UPMxMh+lqGk03UxWzyxjyF
-         Snjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741639877; x=1742244677;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kxNF8e48hf51wGrFc06CsODYSc9fXYwI5IwZer2AB2U=;
-        b=PG89sWd8h8SlnaaZUY0HJt1g9DqkWisc1SceDvVz3qxCys7sDNTnNKMURCetqEjKT0
-         DuWC+eeAbn9u2SeNyo9v1VJzWRsmS+fSO0Ia2ATUmGlpJ08jr7z8hehqodmI1onax+mq
-         vgkqGBflepKvs0Fb/QBlG+fAcKXsJZBCom51ZnqZmS5eYMn8cFlYH1rNQE7cxIoPTZjJ
-         55255nBWUUJ816M04YbPThgGFCAjezLHadtzJZ736+OHhBwgnPvIsumabzz80ZOeW6FH
-         2lEzAiD7sXz/gyxwLL+ff3/CppTwK1IvoKedXvvXJyTxmYdMIuJ4scQJQzGPOsp188wU
-         HB2g==
-X-Forwarded-Encrypted: i=1; AJvYcCVG39+DOgu/qReBN9FyMbMLyNVTNVPetUNorGyijqCmfarLGMCCQ5JM1Ddk17voS0pqyJAGY1NJ/bna@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxXiur2/HlDTl1dxpRbGK43uBUgBsQJ/VuD/10BJw35605Y8ZX
-	0dPUwHu4cWM+P+/FVW3W1xQXfeN99NastRi5QKqOyDbJ5FKEpqPHTiWIKvFvCIg=
-X-Gm-Gg: ASbGncudmAUFIVUa7bYdNkTCk4iTrsLidBpec8RUOL+i7CUbLYNcumaP0hwjtJIE93B
-	q2zMSSE6xyeOkHs26FTZZcZBa5eF7LEngDr4PLR3Sg4m4DwqaPePR0npglmh16wKLfShTd1HmiR
-	FwTKkcJC3g1SMQFZ8qLjJGL00r4nJxfbJCjMFvDjbpTYolV40192EMmz7MdO4RB5SCPoZqYSn9/
-	PcAjP5iQeZmU1PDUMwhoXyVN0aNUqhPUeJKKO033rYQBgVS5pMsU23nLa/hxr3JkVU5KFIl7YvF
-	PXZwPxMouH5KllBJqTKyCNI+Q3fvUFe+XtTI4NIkpT5hSCbjyKKLnQOBstzylqKkcjKlJ7rIjW+
-	BOCR5Zjx1ms0Otd/uW0CcAXWr
-X-Google-Smtp-Source: AGHT+IFPbDF/2E9yu0QkgjYjNcSbSQMHb9SKSyVgCW0jWJzt0rN/zgSyXWNMQzVNMXXx8FaEgf2kjw==
-X-Received: by 2002:a2e:81a:0:b0:30c:12b8:fb76 with SMTP id 38308e7fff4ca-30c12b90187mr13907201fa.15.1741639877485;
-        Mon, 10 Mar 2025 13:51:17 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30be99e81cbsm17438501fa.93.2025.03.10.13.51.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Mar 2025 13:51:16 -0700 (PDT)
-Date: Mon, 10 Mar 2025 22:51:13 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: heiko@sntech.de, andy.yan@rock-chips.com, hjc@rock-chips.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, dianders@chromium.org, 
-	sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com, boris.brezillon@collabora.com, 
-	l.stach@pengutronix.de, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 06/13] drm/bridge: analogix_dp: Add support to get
- panel from the DP AUX bus
-Message-ID: <mz7qmjokw4b3zk4y2u45ykzgtgqpsu6f53pflhqodyjd6svvvk@7jzggqezbubl>
-References: <20250310104114.2608063-1-damon.ding@rock-chips.com>
- <20250310104114.2608063-7-damon.ding@rock-chips.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4161D7994;
+	Mon, 10 Mar 2025 21:01:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.14.28
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741640510; cv=fail; b=WoFrqqiO07XawWdKLCtPh+fFd74X5BDNI5/fK+nMV/UYBUb+joygab1leL2G/Z7dnixOgiJCoISszRHYFV+OBSZEl/hMc8rKRkeE92CekKoVEUROruwqwvSP68gS2CrVUTrE6ABaAs5AbBKzdeRfIWNfdfLFyeNof3peUkqMOIg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741640510; c=relaxed/simple;
+	bh=mei0vUIwLqNS17scsXNxr3lVn+loG8C3FOJBGpaUfUg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=KQd+DkUw+0R0N9GXc2Uc75NWqVRjselF7PU/iSG3kJ0lJ62LhO2yX2w7lXkrP3QWkVl6cxpKA7larqo499rQq+rQ8+4CVMeN5PXlipdonNQmQwrJNn83/YmMrP9OK7IPLwLy2C9nZ3XfAkdHkw6z0ZMYn/sfUl44oOsvXq2WOlU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Cwjc3gM1; arc=fail smtp.client-ip=52.103.14.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=e2NJblJ6VhllOJRfUK7eNUNnM0HBR0Lh28tWFCdXiJLsz/EYxh7WNAPvzSidCjQxzOcH6x9CfnviVDE0bpF9tkyOYz8OwySW+iPzyYyu8OdiI6BoIVI+EspkkTgAwdRX4NXu2eSVQIy9RAkmURL81/6FywD0JGEV3WV6OuZQ5JP0aKBdupdSy2KidoeHqWXGWdmRWT81Px/OXp+jCG2jKMDY2je3X4K+Arm+vvVuM+7O3lrnDhOz/+jjj19/AyugoYAAt5Xdy97Lol73rzchE17viJ14d2cYKyiiHse8A0EYym1W6VQN2FrxgeESuA9COZ8bo1kmHRj/GxqH8UAclw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NOjhH8PjIg6kBmhPNKgfXY6zMMp03rtAP8TfoVS+cVs=;
+ b=cjNWSRaba48DEn16j6I5OA3Hh4njtOpLwDQAkn73A4Sm1ayp2OQJXOnoXGOGHNDUILM4tJXAehaxGx0fgxjjKIuXGW4mRYv2Qm3LbfuSbDWX3+4rinHKtu8eSfe3zNCSAcFgIapmPFDX3Ko9k1XpzLAUKvOFx6xNj6lYjjuokCHoZDeJeJ0JDdMnynoWvvX5adbA5C8MyZRjcbPQYNnDNfTHUP2ZqmMZSvKmvf6R9eEOdvW+OVx0i3cLR3z5TI38OSlrWskJSggNDvu/2C9okZTq6t5KaEi5FhgZluElyntqmwm5IlXet2X0c/qcRP/8Ge2JKJ/fgz+pXKwCuJCfsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NOjhH8PjIg6kBmhPNKgfXY6zMMp03rtAP8TfoVS+cVs=;
+ b=Cwjc3gM17lM86t2aVRP7EUTUSJs2RSIh+GPscR6P4e3s1WlO93k3fDd2SzD0HhFr/kp0FJwKOcmDX8Z9CBMPpN6kFJmfXeoe0ySAac93qPol3TUDkuo2g2xg8zxpjfYtE2GgvIArP7pwtD7Gs4EXYt3xGcqd/8wXnsuSoeIqc1SGm9XUbdObyqOslhqkZyrXzHIrujzDnX/6T0CZG1HxCXI/GkT/OPmDwSsvSFgy6s2OWz7mAMwPv12WqnAPamD7oQgrsjxnSXA2gXK4E28ktiRUCsMv0gCCeiivqGEhWEHfGCIdPIXAGo/D0BfDSXfIQRuAiPIqb9IpsPW0JNZoIQ==
+Received: from BN7PR02MB4148.namprd02.prod.outlook.com (2603:10b6:406:f6::17)
+ by MW4PR02MB7236.namprd02.prod.outlook.com (2603:10b6:303:72::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.26; Mon, 10 Mar
+ 2025 21:01:42 +0000
+Received: from BN7PR02MB4148.namprd02.prod.outlook.com
+ ([fe80::1c3a:f677:7a85:4911]) by BN7PR02MB4148.namprd02.prod.outlook.com
+ ([fe80::1c3a:f677:7a85:4911%4]) with mapi id 15.20.8511.026; Mon, 10 Mar 2025
+ 21:01:42 +0000
+From: Michael Kelley <mhklinux@outlook.com>
+To: Arnd Bergmann <arnd@arndb.de>, Roman Kisel <romank@linux.microsoft.com>,
+	"bhelgaas@google.com" <bhelgaas@google.com>, Borislav Petkov <bp@alien8.de>,
+	Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
+	<conor+dt@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>, Dexuan Cui
+	<decui@microsoft.com>, Haiyang Zhang <haiyangz@microsoft.com>, "H. Peter
+ Anvin" <hpa@zytor.com>, Joey Gouly <joey.gouly@arm.com>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>,
+	"K. Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>, Lorenzo
+ Pieralisi <lpieralisi@kernel.org>, Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>, Mark Rutland <mark.rutland@arm.com>, Marc
+ Zyngier <maz@kernel.org>, Ingo Molnar <mingo@redhat.com>, Oliver Upton
+	<oliver.upton@linux.dev>, "Rafael J . Wysocki" <rafael@kernel.org>, Rob
+ Herring <robh@kernel.org>, "ssengar@linux.microsoft.com"
+	<ssengar@linux.microsoft.com>, Sudeep Holla <sudeep.holla@arm.com>, Suzuki K
+ Poulose <suzuki.poulose@arm.com>, Thomas Gleixner <tglx@linutronix.de>, Wei
+ Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>, Zenghui Yu
+	<yuzenghui@huawei.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "kvmarm@lists.linux.dev"
+	<kvmarm@lists.linux.dev>, "linux-acpi@vger.kernel.org"
+	<linux-acpi@vger.kernel.org>, Linux-Arch <linux-arch@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-hyperv@vger.kernel.org"
+	<linux-hyperv@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "x86@kernel.org" <x86@kernel.org>
+CC: "apais@microsoft.com" <apais@microsoft.com>, "benhill@microsoft.com"
+	<benhill@microsoft.com>, "bperkins@microsoft.com" <bperkins@microsoft.com>,
+	"sunilmut@microsoft.com" <sunilmut@microsoft.com>
+Subject: RE: [PATCH hyperv-next v5 03/11] Drivers: hv: Enable VTL mode for
+ arm64
+Thread-Topic: [PATCH hyperv-next v5 03/11] Drivers: hv: Enable VTL mode for
+ arm64
+Thread-Index: AQHbj6zpmH+gYA9h/kGlfIiTOb0OO7NpvEQAgAMg+bA=
+Date: Mon, 10 Mar 2025 21:01:42 +0000
+Message-ID:
+ <BN7PR02MB41488C06B7E42830C700318DD4D62@BN7PR02MB4148.namprd02.prod.outlook.com>
+References: <20250307220304.247725-1-romank@linux.microsoft.com>
+ <20250307220304.247725-4-romank@linux.microsoft.com>
+ <e0f81049-688e-4f53-a002-5d246281bf8d@app.fastmail.com>
+In-Reply-To: <e0f81049-688e-4f53-a002-5d246281bf8d@app.fastmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN7PR02MB4148:EE_|MW4PR02MB7236:EE_
+x-ms-office365-filtering-correlation-id: 29c79212-4e59-45b8-25c2-08dd6016c272
+x-microsoft-antispam:
+ BCL:0;ARA:14566002|15080799006|8062599003|461199028|8060799006|19110799003|3412199025|440099028|102099032;
+x-microsoft-antispam-message-info:
+ =?iso-8859-2?Q?NywOq99eMtEU7k3N6u2iDjRd7vDScWD46d4fuozC+5GIL26oYrXAJzstWL?=
+ =?iso-8859-2?Q?YWj2Z9th8BW1fTKa+tHmoc32pkN7qLCa8oZNWvXij4LTAk1aXHdVTOeT8C?=
+ =?iso-8859-2?Q?bu41zvfrg3wPLjnRbkFKM5U8tqKhOY1E7O45b+sZ84YPwD9Ig42b457H/d?=
+ =?iso-8859-2?Q?7P0F6Q3FEB39MnUXtMraxLiI3d1bQyCHtQz4pIxAkLz3T+mm9izi4xFt5y?=
+ =?iso-8859-2?Q?jb07H9nhnVwgVYBy/nk1a7Wk2ZMPDOOCMdJ0USn0zHSkrqPV1nCSynsYNZ?=
+ =?iso-8859-2?Q?uFgPDoCKq8iQpYPohv9JMSRmlFuYKzRIMyIFHpKh1FgQCZ6gKn2JYZUlMM?=
+ =?iso-8859-2?Q?K1nGsnz+X0PCAO7yY4HxTT7F4D48+D6vRgRJO1umTAQ+WQY/xxcvDPUtSi?=
+ =?iso-8859-2?Q?sjtVC2AlC2/3J3lxievZR9wkESW3GgYOp9dIeCuSQpqY2MwrWnFiOMxSc+?=
+ =?iso-8859-2?Q?wsV2sWvM2xeidNKIQqraeR4dDjn8BKixgQtTSK8/nnfUTjpQLTHoc14Of2?=
+ =?iso-8859-2?Q?5V0jcMarGQx2ekZgC/0pmkRyF/6PxzdfRXd/ec1e8tMQAhEAamrHC58XIk?=
+ =?iso-8859-2?Q?AOpnm7KsHOudwJmuy5Chab4iCIf4YJGL1nTSnBTop31KfupaQaKG6pZoPa?=
+ =?iso-8859-2?Q?f9jDCXpnJeE5XPlvXvJhnFtK685VM3Oc8d5BFuZH2pHodnwnY5Dd+M/0xd?=
+ =?iso-8859-2?Q?qmKBzEdq2KAdm968ohk5u9Y5Ouvo/82j/zFamaT5qI7d+thNOlaiFJ5pqq?=
+ =?iso-8859-2?Q?6tHIdYEY1LVQE+lSWEHQX3PPLcypOWjOJb4Ka/NfA8gz8ihaUaeZiOve/M?=
+ =?iso-8859-2?Q?raOP+nkjwZc22AxojIW2cQVBBYSpoedeVGvBG9QXynlilqLcJ7ZYEtFOTU?=
+ =?iso-8859-2?Q?dQ/oW0uXU80JBXv2Aigwaw4GKCjj6rUnhjgW2/u/OES5ykM5hUCP+Cc5SO?=
+ =?iso-8859-2?Q?jYP7iCQTg6MGtRtnvN1ifIGeArbmueLYoU2mqkkcisMku3we8paCcN9qYa?=
+ =?iso-8859-2?Q?hk9cyYpS3PqU2xLEfvI7T3t9Cx7KHBzDY98/NMPoWCTl4DqRNioI3lXq/+?=
+ =?iso-8859-2?Q?GechPnnvKtyhv55iVrydPaI=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-2?Q?G8tr5+G/2Go7/9P5OYb56G0qk8/zYDuhS0WD0rywdFsPyNh+TClDgER4ex?=
+ =?iso-8859-2?Q?8JS8ESRAezs3V7xPaL7WqjiZ72X78BF8as5zhpSzg0VCejpnD5HC6u8/YB?=
+ =?iso-8859-2?Q?0vfGV8Os1szcmPyvz1QDIQZ/WNeJMwaO1MOuumZsrO4vyD9ovUt98EMIWN?=
+ =?iso-8859-2?Q?+rexg1NvrT47iBPIQWEhm6CyAoDMaklHzikXzC2IhrCNVG5EOreAG/tTpo?=
+ =?iso-8859-2?Q?w9mBRwSbipnj8HBnzAhw6wD1izpcOuMvGNWqQxh12IRUM/Za8w7qfaj5eE?=
+ =?iso-8859-2?Q?1ZEtipOjr2gSCXXRRECp6gKmCIx8ACfFv9L2BSlPaiowNZziRbU2OUQwLt?=
+ =?iso-8859-2?Q?T2mYq/XT4/TqRYkGHFEcUw2rQpRLud+NDSsKD1sePIusDBZO3ZOrZNAb2h?=
+ =?iso-8859-2?Q?wLBgCm2X/tdBRoyi9BZPYsgF9WDNfMW/1tAY/uHw+3sbS1dQ2J7ve0I+M4?=
+ =?iso-8859-2?Q?dwvpB9QCzVMpjCxxa24ml4SiTSQO3Ntb1NZNhp3raSUPqVZbkLzDb/pHAp?=
+ =?iso-8859-2?Q?BX9bCBtHu85MEmtKX16Vmeb+ikIJcDHwGh4QxpGIW/0c3YQDGJ8FnGewCk?=
+ =?iso-8859-2?Q?/nAPkKHT9aiuWyDp//hobnVRdSJaQbIb0O8KAh1CdV1RU4pmFNFtAbB2gC?=
+ =?iso-8859-2?Q?+XPGGazNYLaD9XPxN1aIdpbfBoV5xaofLvRsmWQy8tFswTJ53Trn031JTv?=
+ =?iso-8859-2?Q?Va6lrRHWusYjKGCIAU1Pxvzanm+NgLhN+rR9a7tHMHKo2XerRiEiK9Y27y?=
+ =?iso-8859-2?Q?UkJM2nkycKoDt9v6DBujJuYOu8oiqNzVE2/1G/lCDB62UF/+/R8OWTfxeA?=
+ =?iso-8859-2?Q?vx9CUNpAS/CRXa+rcksu+74N6pNFRoeEhV7Hx1kbonezvXxrvCFz07l2ty?=
+ =?iso-8859-2?Q?uVKW2FytV+tx8yWg/E78w4CWNb+b66gPaNMy8enx6D0YR6r601fyolvOq/?=
+ =?iso-8859-2?Q?esqBQIuCTD6bVe23qD95GqSLTrIiShO9h1E0Jh+dSe8tttInhdb4a/vo6w?=
+ =?iso-8859-2?Q?eKqMys5grrhMpO46B9shhfUoKbtluE0HnoJ91dXoAroEraa6IACx1RKl5/?=
+ =?iso-8859-2?Q?O88M32Tx97aJxTLpDKyweIjO4RnGukuJ1sMDZJxPekdqjsKgd7hOSYC9vd?=
+ =?iso-8859-2?Q?agW2mk8IJc7YBsJjVhIVONzFR7f4EOhtUdo2JH+O/ahhshVW7mT61TI5Yo?=
+ =?iso-8859-2?Q?ra3nmMUEZQ9t7H9RqyZ2tbBaHfwRkOWaQMmheDz11shMKosA34g4fyrQ1s?=
+ =?iso-8859-2?Q?Gxe6spLpWjbNy7xPd3EHCs/iLxcAFfxqW9taBzh/8=3D?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250310104114.2608063-7-damon.ding@rock-chips.com>
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN7PR02MB4148.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29c79212-4e59-45b8-25c2-08dd6016c272
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2025 21:01:42.3802
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR02MB7236
 
-On Mon, Mar 10, 2025 at 06:41:07PM +0800, Damon Ding wrote:
-> The main modification is moving the DP AUX initialization from function
-> analogix_dp_bind() to analogix_dp_probe(). In order to get the EDID of
-> eDP panel during probing, it is also needed to advance PM operations to
-> ensure that eDP controller and phy are prepared for AUX transmission.
-> 
-> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> 
-> ---
-> 
+From: Arnd Bergmann <arnd@arndb.de> Sent: Saturday, March 8, 2025 1:05 PM
+>=20
+> On Fri, Mar 7, 2025, at 23:02, Roman Kisel wrote:
+> > @@ -5,18 +5,20 @@ menu "Microsoft Hyper-V guest support"
+> >  config HYPERV
+> >  	tristate "Microsoft Hyper-V client drivers"
+> >  	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
+> > -		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
+> > +		|| (ARM64 && !CPU_BIG_ENDIAN)
+> > +	depends on (ACPI || HYPERV_VTL_MODE)
+> >  	select PARAVIRT
+> >  	select X86_HV_CALLBACK_VECTOR if X86
+> > -	select OF_EARLY_FLATTREE if OF
+> >  	help
+> >  	  Select this option to run Linux as a Hyper-V client operating
+> >  	  system.
+> >
+> >  config HYPERV_VTL_MODE
+> >  	bool "Enable Linux to boot in VTL context"
+> > -	depends on X86_64 && HYPERV
+> > +	depends on (X86_64 || ARM64)
+> >  	depends on SMP
+> > +	select OF_EARLY_FLATTREE
+> > +	select OF
+> >  	default n
+> >  	help
+>=20
+> Having the dependency below the top-level Kconfig entry feels a little
+> counterintuitive. You could flip that back as it was before by doing
+>=20
+>       select HYPERV_VTL_MODE if !ACPI
+>       depends on ACPI || SMP
+>=20
+> in the HYPERV option, leaving the dependency on HYPERV in
+> HYPERV_VTL_MODE.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+I would argue that we don't ever want to implicitly select
+HYPERV_VTL_MODE because of some other config setting or
+lack thereof.  VTL mode is enough of a special case that it should
+only be explicitly selected. If someone omits ACPI, then HYPERV
+should not be selectable unless HYPERV_VTL_MODE is explicitly
+selected.
 
--- 
-With best wishes
-Dmitry
+The last line of the comment for HYPERV_VTL_MODE says
+"A kernel built with this option must run at VTL2, and will not run
+as a normal guest."  In other words, don't choose this unless you
+100% know that VTL2 is what you want.
+
+Michael
+
+>=20
+> Is OF_EARLY_FLATTREE actually needed on x86?
+>=20
+>       Arnd
 
