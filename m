@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-155999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5068A58DB9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:09:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44636A58DF7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:21:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60D661884BF6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:09:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82CC116B2A1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08D8F223311;
-	Mon, 10 Mar 2025 08:09:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75A90224225;
+	Mon, 10 Mar 2025 08:21:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a+66pxfo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="domvwVM/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE09B1DA614;
-	Mon, 10 Mar 2025 08:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486A3224222;
+	Mon, 10 Mar 2025 08:20:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741594166; cv=none; b=t1HPm2+on0BtUBkLdhYhE5Y/CrSwlEUZpEVVUUF9D9TW5kF8CG4RSOF3rWFTFC9DU8WvsxwAL5Ap2nwg/XI9X3wEhGAuxrcOqCtd/+13cO3o3k+TsqMEqdnBb++AK+kf/Rpk9KfLG/2iH81TtQ2jmkqeApPLiFsA/7f4ATdImFc=
+	t=1741594860; cv=none; b=CGiBfFZBOppXNPG9V3RNpaYygyTjWPGYXUlO+nhiM9b2YXDdy5w6RRT4507fGAUim6Ie4FmBfH8x5Us2pYn0cQUZVqCGmIJAEd4kA+STuEw+89HLOjYJQM1crqEGxVG6PGIN7Ezv5siebfA8ywnydBHgrbmOA0aDrpyWtkAuZjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741594166; c=relaxed/simple;
-	bh=gwas8E4kvvAA/eUvbABEADodAjBCs+rgr6xiwge6OXE=;
+	s=arc-20240116; t=1741594860; c=relaxed/simple;
+	bh=el1rL8iBygMhoB5kwTVvjfVwI/TFyrebUfurth93Vi8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pczyaievHnXjNOh1DFf1/k91dYGB+UzNnTBrwKP82vSqmu7g3Yp2fN5+iBFrkuq2CSlJZ9Ob45F0pcoj89jEkjpvQgVyQYP2x5jAXAhXN8PGHmryFhtqwrFOqn+t3nH20pNLEnsVV/WLyJvBM8+CXy4PlC1ub39W6RLccdnRmc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a+66pxfo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 590AEC4CEE5;
-	Mon, 10 Mar 2025 08:09:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=G0kt1IXBKyTE+vq2GrpJAYPABNTQUaKJE6WuYvABQvIez+gUrMhvvJDOhNEfOLpE6GFeaNMjQjHk4Zxx25IKXZ2qJ5aXLFXOncuhkcU6zvr3dmcvBq3i2NzmMBhgovT/xNIMMcddu49pYkkCvGtYfv0yW68TuxkKYfi1HhQonRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=domvwVM/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8148C4CEEF;
+	Mon, 10 Mar 2025 08:20:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741594166;
-	bh=gwas8E4kvvAA/eUvbABEADodAjBCs+rgr6xiwge6OXE=;
+	s=k20201202; t=1741594859;
+	bh=el1rL8iBygMhoB5kwTVvjfVwI/TFyrebUfurth93Vi8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a+66pxfoikf19N4ZasCwPfg8jAydGU3Gk+jsm+rgiOAD3usvsqyWDS7W6OzK4ss47
-	 JyaAG7IZNJHl3E0gHRNI0g0oUpdr0BeO/Wk1Cjtog4US8Elt69O3dllahJ8GrjQEcg
-	 agdKCJ3hR+sOwTGvnQDAtc14qdFAwk6nc14R6CZhVyGKL2vove7TKEvpPur9qy5cxc
-	 aEeH4JD80K987+bq+mfpRAecYzYAksY81JkSA9G9iuj7hCMpT3IRlA6xoK+oKOfY4K
-	 IaeN09ULdgMOrS/mNZ4BCZDZRZLQLVj7087aDkIuex3SOUqq1/Xu4EKUi39Ju24HEK
-	 64P5KU46tsj4Q==
-Date: Mon, 10 Mar 2025 09:09:22 +0100
+	b=domvwVM/UD6N2tud3bU+GjIibogzVm5H4DD9kZotdvjMLLpxNWBJWwM5Ed2l1vR3B
+	 /ZxXQWc/H2/lYhr+/gd0JcOKA0lKAbY/16UdDxdgRN+f7fmwel79gbOp3jIw/kYfxC
+	 El0HxTZ/vA0zShCM+VOYJXqx5hGAEpPivlrBz8mXAQ60SgUlmr2voSLAti7a835wLd
+	 6xs2dYwCwctmyYXhzwjyKZjxzKllfcothJP1hmBfaitHW9DjtczA58NFjMGm6AfESd
+	 zsgyeFWSUeWrdJ/XAYVbwIDkFP7pszRczcSx6uoPUrEkmpjXvqoV+4/f3BJe2skRHJ
+	 o7oayTbuzU69Q==
+Date: Mon, 10 Mar 2025 09:20:55 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Jaroslav Kysela <perex@perex.cz>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
-	Mark Brown <broonie@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>
-Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: meson: t9015: add support for
- A1 SoC family
-Message-ID: <20250310-smiling-gerbil-of-whirlwind-8fa4a5@krzk-bin>
-References: <20250309181630.1322745-1-jan.dakinevich@salutedevices.com>
- <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Santosh Shilimkar <ssantosh@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Anand Gadiyar <gadiyar@ti.com>, 
+	Chandrasekar Ramakrishnan <rcsekar@samsung.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Vishal Mahaveer <vishalm@ti.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
+	Kendall Willis <k-willis@ti.com>, linux-can@vger.kernel.org
+Subject: Re: [PATCH v5 03/13] dt-bindings: can: m_can: Add wakeup properties
+Message-ID: <20250310-gifted-coati-of-sympathy-dabc5d@krzk-bin>
+References: <20250306-topic-am62-partialio-v6-12-b4-v5-0-f9323d3744a2@baylibre.com>
+ <20250306-topic-am62-partialio-v6-12-b4-v5-3-f9323d3744a2@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,135 +65,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
+In-Reply-To: <20250306-topic-am62-partialio-v6-12-b4-v5-3-f9323d3744a2@baylibre.com>
 
-On Sun, Mar 09, 2025 at 09:16:29PM +0300, Jan Dakinevich wrote:
-> Add support for internal audio codec found A1 SoC family. On this SoC
-> the component supports capturing from ADC and has specific configuration
-> of input/output lines.
-> 
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> ---
->  .../bindings/sound/amlogic,t9015.yaml         | 69 +++++++++++++++++--
->  1 file changed, 65 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-> index 5f5cccdbeb34..962795470601 100644
-> --- a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-> @@ -9,9 +9,6 @@ title: Amlogic T9015 Internal Audio DAC
->  maintainers:
->    - Jerome Brunet <jbrunet@baylibre.com>
->  
-> -allOf:
-> -  - $ref: dai-common.yaml#
-> -
->  properties:
->    $nodename:
->      pattern: "^audio-controller@.*"
-> @@ -21,7 +18,9 @@ properties:
->  
->    compatible:
->      items:
-> -      - const: amlogic,t9015
-> +      - enum:
-> +          - amlogic,t9015
-> +          - amlogic,t9015-a1
->  
->    clocks:
->      items:
-> @@ -43,6 +42,17 @@ properties:
->  
->    sound-name-prefix: true
->  
-> +  lineout-left:
-
-Missing vendor prefix.
-
-> +    $ref: /schemas/types.yaml#/definitions/string
-
-enum with values
-
-> +  lineout-right:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +  linein-left:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +  linein-right:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +  micbias:
-
-use proper unit suffix name, e.g. microvolt
-
-> +    $ref: /schemas/types.yaml#/definitions/string
+On Thu, Mar 06, 2025 at 12:14:41PM +0100, Markus Schneider-Pargmann wrote:
+> +  pinctrl-names:
+> +    description:
+> +      When present should contain at least "default" describing the default pin
+> +      states. The second state called "wakeup" describes the pins in their
+> +      wakeup configuration required to exit sleep states.
+> +    minItems: 1
+> +    items:
+> +      - const: default
+> +      - const: wakeup
 > +
->  required:
->    - "#sound-dai-cells"
->    - compatible
-> @@ -52,6 +62,57 @@ required:
->    - resets
->    - AVDD-supply
+>    power-domains:
+>      description:
+>        Power domain provider node and an args specifier containing
+> @@ -122,6 +138,8 @@ properties:
+>      minItems: 1
+>      maxItems: 2
 >  
-> +
+> +  wakeup-source: true
 
-Only one blank line
-
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: amlogic,t9015-a1
-> +    then:
-> +      properties:
-> +        lineout-left:
-> +          items:
-
-You do not have multiple items here, drop.
-
-> +            - enum:
-> +                - none
-> +                - right
-> +                - left-inverted
-> +        lineout-right:
-> +          items:
-> +            - enum:
-> +                - none
-> +                - left
-> +                - right-inverted
-> +        linein-left:
-> +          items:
-> +            - enum:
-> +                - none
-> +                - differential
-> +                - positive
-> +                - negative
-> +        linein-right:
-> +          items:
-> +            - enum:
-> +                - none
-> +                - differential
-> +                - positive
-> +                - negative
-
-All these go to the top level.
-
-> +        micbias:
-> +          items:
-> +            - enum:
-> +                - 2.0V
-> +                - 2.1V
-> +                - 2.3V
-> +                - 2.5V
-> +                - 2.8V
-> +    else:
-> +      lineout-left: false
-> +      lineout-right: false
-> +      linein-left: false
-> +      linein-right: false
-> +      micbias: false
-
-This is correct.
+If this patchset depends on dtschema pull, then this should be narrowed
+to specific type, I think. Otherwise how exactly your drivers are going
+to work if this is just "wakeup-source;"?
 
 Best regards,
 Krzysztof
