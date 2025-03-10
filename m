@@ -1,71 +1,77 @@
-Return-Path: <devicetree+bounces-155929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD25A589A8
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 01:31:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7CAA589E7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 02:21:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ACB6188D08B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 00:31:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07219188D4F0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 01:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47AC79C8;
-	Mon, 10 Mar 2025 00:31:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC7912A177;
+	Mon, 10 Mar 2025 01:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eneyuQA7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="l/0w8Obw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7345A632;
-	Mon, 10 Mar 2025 00:31:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F9DD3597B;
+	Mon, 10 Mar 2025 01:21:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741566666; cv=none; b=EcKsYhqweNz3jBxfLSC2TzGc4rNev7cPBJmWVUqnayKeiOeyBbRFl3o0OtQOgdlHJOjZ11yPcWAMysOX7qtJjXdVB4F7+Uu8bge7+no8C5bJdw0Yw7CfCCZSq6oR4Kz4Z95MO0nA63SZabFrQy7dgIE1NtYkBvPt78sa/nmBJK0=
+	t=1741569712; cv=none; b=G2VoMXfztteEhMBzqqHwxMQkuh+47kfPnbQKwd54yazHsjV0WEhlR0iZ2OE+b87moAkWSl8NXEN6rjgRPjScOkGaCBCc8brOA+Lp3urV0Nh9aTjFlnScA2eDiFfvjXB+NgCMn3W/yRfQq+I6JkKplMUubD461DLZHguHZ35vhKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741566666; c=relaxed/simple;
-	bh=127U7j9Ed6A/U+MTwMIn2yifTZmeLRlUzJiRx4bf5Qg=;
+	s=arc-20240116; t=1741569712; c=relaxed/simple;
+	bh=z8QdkKRYlOpmTs+ivZoED/+3/x2JDmVV+mfVt3piMxQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p2OeRBwqIShIwGgie66OoX3Ywi7XacK2QVIo0phYbVAM/KKw5L4EQB4rjvshqZKrYqPwlBCF1JnQMrUADlpVCM0Bkeo4jofTBtFt0HDscfbxTUURILzqkS864Q+LCLOsOZ4qmoD9k9klged1Pa3E81e7Wi7aJVkwNWUiViNBO3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eneyuQA7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FF5BC4CEE3;
-	Mon, 10 Mar 2025 00:31:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741566665;
-	bh=127U7j9Ed6A/U+MTwMIn2yifTZmeLRlUzJiRx4bf5Qg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eneyuQA7ykopq6S8UEKfLVTAcoh47yfGIyP+jGj+MeeDBzaNFNhxvkIPnaRvDW4GR
-	 3ElSa1Rcld7O5AzJkk8twIU5lFCgWiBf5vNLPutmhvohsLYdekOvuQxlcATOOmNSOL
-	 oy+78DKZe/m1Q8ZxkYJJvGoPrVwC1BrNfuxgULZNHz65IH/M/37K/rifMBJJpuVcom
-	 N+TobUAr9cPgkoULGmReb1NG5sZjys6iojuvRBPAwPXGsncjJKQ2ONRM5aUK0ykDOe
-	 yCd+V0vOGqXO+XPoZw9/6/ZJu0a+v7uQNA+ckeDwo4Su72E7JnlkAVup+KFU6O2u9D
-	 /UkG5nAGdv14g==
-Date: Mon, 10 Mar 2025 00:31:04 +0000
-From: Wei Liu <wei.liu@kernel.org>
-To: Roman Kisel <romank@linux.microsoft.com>
-Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
-	catalin.marinas@arm.com, conor+dt@kernel.org,
-	dave.hansen@linux.intel.com, decui@microsoft.com,
-	haiyangz@microsoft.com, hpa@zytor.com, joey.gouly@arm.com,
-	krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com,
-	lenb@kernel.org, lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org, mark.rutland@arm.com,
-	maz@kernel.org, mingo@redhat.com, oliver.upton@linux.dev,
-	rafael@kernel.org, robh@kernel.org, ssengar@linux.microsoft.com,
-	sudeep.holla@arm.com, suzuki.poulose@arm.com, tglx@linutronix.de,
-	wei.liu@kernel.org, will@kernel.org, yuzenghui@huawei.com,
-	devicetree@vger.kernel.org, kvmarm@lists.linux.dev,
-	linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	x86@kernel.org, apais@microsoft.com, benhill@microsoft.com,
-	bperkins@microsoft.com, sunilmut@microsoft.com
-Subject: Re: [PATCH hyperv-next v5 06/11] arm64, x86: hyperv: Report the VTL
- the system boots in
-Message-ID: <Z84yyAqkqJ2ZyAd-@liuwe-devbox-ubuntu-v2.lamzopl0uupeniq2etz1fddiyg.xx.internal.cloudapp.net>
-References: <20250307220304.247725-1-romank@linux.microsoft.com>
- <20250307220304.247725-7-romank@linux.microsoft.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YP4D794QGKjN5GSnD/VUlXTVCJdWgQJ2JH0VcHDJIaR3m/soMK8k3Oe1Hun4lDOcaNmwowLKBf9hOhP4d7rKETPRjt2JUrhJ52+LIpUqgbTnA4TRz01IekxA080RmsGwEK8WaqBw0HFjtHLwVh83sOYn1d8PwYJAY5QxaJAi90Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=l/0w8Obw; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741569710; x=1773105710;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=z8QdkKRYlOpmTs+ivZoED/+3/x2JDmVV+mfVt3piMxQ=;
+  b=l/0w8Obw4iPo2fcIyV75TtHLFdxAepTQ+9iRhfnYCqCDGZnuSPjnAgsL
+   vXMbHKH9IOwUGk+p8Dbhw4hqGu6xBwvBrNUD9RmG6pbJ1YtbPCFVG6uqC
+   HCbtFJHCFWFgqI92oSr3gkgczBg100zFJTwvPvSlEuHLIPbm+9tlsjp2f
+   yNKTcCHsnEujRmCqW2gGCcglcGrvAOLvz+EZq0vAEiCIgiD6aa35LFGN1
+   eOpZv+9Vp0oA1lgqB18RZ/0k7QAEOqCJwdYqqHDevrtck2urcLSpiBhEa
+   ikwFCrogys3YnJaA5WA8tMK6QWELu9uM1i8oufnXioMGtpJervIoyRrKx
+   g==;
+X-CSE-ConnectionGUID: UbIGbG9+R7KTeD7YuseYXg==
+X-CSE-MsgGUID: 9doK0O2eRu+C7RODITgmFQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="53929401"
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
+   d="scan'208";a="53929401"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2025 18:21:50 -0700
+X-CSE-ConnectionGUID: ZNSrZuboRGCjuTdXMONxgA==
+X-CSE-MsgGUID: Gx/TtrTmTz27T9IJebfdUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
+   d="scan'208";a="119839028"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa007.fm.intel.com with ESMTP; 09 Mar 2025 18:21:46 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1trRpw-0003fw-1Z;
+	Mon, 10 Mar 2025 01:21:44 +0000
+Date: Mon, 10 Mar 2025 09:21:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nam Tran <trannamatk@gmail.com>, pavel@kernel.org, lee@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Nam Tran <trannamatk@gmail.com>
+Subject: Re: [PATCH v3 3/3] leds: add new LED driver for TI LP5812
+Message-ID: <202503100925.eZz1D0kw-lkp@intel.com>
+References: <20250306172126.24667-4-trannamatk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,56 +80,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250307220304.247725-7-romank@linux.microsoft.com>
+In-Reply-To: <20250306172126.24667-4-trannamatk@gmail.com>
 
-On Fri, Mar 07, 2025 at 02:02:58PM -0800, Roman Kisel wrote:
-> The hyperv guest code might run in various Virtual Trust Levels.
-> 
-> Report the level when the kernel boots in the non-default (0)
-> one.
-> 
-> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
-> ---
->  arch/arm64/hyperv/mshyperv.c | 2 ++
->  arch/x86/hyperv/hv_vtl.c     | 2 +-
->  2 files changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
-> index a7db03f5413d..3bc16dbee758 100644
-> --- a/arch/arm64/hyperv/mshyperv.c
-> +++ b/arch/arm64/hyperv/mshyperv.c
-> @@ -108,6 +108,8 @@ static int __init hyperv_init(void)
->  	if (ms_hyperv.priv_high & HV_ACCESS_PARTITION_ID)
->  		hv_get_partition_id();
->  	ms_hyperv.vtl = get_vtl();
-> +	if (ms_hyperv.vtl > 0) /* non default VTL */
+Hi Nam,
 
-"non-default".
+kernel test robot noticed the following build errors:
 
-> +		pr_info("Linux runs in Hyper-V Virtual Trust Level %d\n", ms_hyperv.vtl);
->  
->  	ms_hyperv_late_init();
->  
-> diff --git a/arch/x86/hyperv/hv_vtl.c b/arch/x86/hyperv/hv_vtl.c
-> index 4e1b1e3b5658..c21bee7e8ff3 100644
-> --- a/arch/x86/hyperv/hv_vtl.c
-> +++ b/arch/x86/hyperv/hv_vtl.c
-> @@ -24,7 +24,7 @@ static bool __init hv_vtl_msi_ext_dest_id(void)
->  
->  void __init hv_vtl_init_platform(void)
->  {
-> -	pr_info("Linux runs in Hyper-V Virtual Trust Level\n");
-> +	pr_info("Linux runs in Hyper-V Virtual Trust Level %d\n", ms_hyperv.vtl);
+[auto build test ERROR on lee-leds/for-leds-next]
+[also build test ERROR on robh/for-next linus/master v6.14-rc5 next-20250307]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Where isn't there a check for ms_hyperv.vtl > 0 here?
+url:    https://github.com/intel-lab-lkp/linux/commits/Nam-Tran/dt-bindings-leds-Add-LP5812-LED-driver/20250307-012604
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20250306172126.24667-4-trannamatk%40gmail.com
+patch subject: [PATCH v3 3/3] leds: add new LED driver for TI LP5812
+config: x86_64-randconfig-005-20250310 (https://download.01.org/0day-ci/archive/20250310/202503100925.eZz1D0kw-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250310/202503100925.eZz1D0kw-lkp@intel.com/reproduce)
 
-Please be consistent across different architectures.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503100925.eZz1D0kw-lkp@intel.com/
 
->  
->  	x86_platform.realmode_reserve = x86_init_noop;
->  	x86_platform.realmode_init = x86_init_noop;
-> -- 
-> 2.43.0
-> 
-> 
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "led_set_autonomous_animation_config" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_initialize" [drivers/leds/leds-lp5812.ko] undefined!
+ERROR: modpost: "lp5812_read" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_write" [drivers/leds/leds-lp5812.ko] undefined!
+ERROR: modpost: "lp5812_disable_all_leds" [drivers/leds/leds-lp5812.ko] undefined!
+ERROR: modpost: "lp5812_enable_disable" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_device_command" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_reset" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_update_regs_config" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_fault_clear" [drivers/leds/leds-lp5812.ko] undefined!
+WARNING: modpost: suppressed 23 unresolved symbol warnings because there were too many)
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
