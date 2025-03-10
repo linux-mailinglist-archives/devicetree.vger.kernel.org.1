@@ -1,219 +1,202 @@
-Return-Path: <devicetree+bounces-155934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B27AA58A2D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 02:58:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B46FCA58A32
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 03:03:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ABB616A06E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 01:58:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 171F31887D58
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 02:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0120175D53;
-	Mon, 10 Mar 2025 01:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96979156861;
+	Mon, 10 Mar 2025 02:03:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MkvJBEHt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bVOnBdhh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C825B33991;
-	Mon, 10 Mar 2025 01:58:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97DF0AD2F;
+	Mon, 10 Mar 2025 02:03:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741571929; cv=none; b=OPo2rLVDvh7n6VW/Yv+KD7Ry1eSxGiYdTCq7E8gCmTbhzUxqnu9VA3zv0TRF/o3bVZZeOGBzIuhWAOtdPOS4uY+hbag/r11eo3/7Uhx7fWX6po9HenhfSM8vc+ZgML8vMxfZGm3iRzdaaSMFkkeAlU5C57HMJmG7jxq62/zx/lE=
+	t=1741572233; cv=none; b=qtFGsOGn4qyGdM4NNjJHnej6KN4awnRtQbUe6oqzGWfzdhF/6+nLeKCycXzRC72OzHhfHnSlDrwVyv4YChTVaeCMbBdR2eY2rcVQw+NNeHka4LLEy57hRX8V1hxNl5McVOKypHMpPCBRiqOqW4GZaWb8qXL2i4OwA1jrMeKC/fk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741571929; c=relaxed/simple;
-	bh=6P/sYsBlPXI28YDPL6e6GYfTaKI9Syduhlo2Whk9kB4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=a07WP4u98tI1Y//QmqtVJJIE7s8cQAjUnV2QmLaCuDjEAlMRlwRkJIXxzuhYEjT15xEXVITrdJOaIHoV/gUvktkDJB3uIbUWJoRsABGUwoPS8YSir230Ad+zIfR+zvKrChKqZ/orXnvqvyBFsPPHWI8FTn9smvc5e8X8eKAISXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MkvJBEHt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 529MiPoD030297;
-	Mon, 10 Mar 2025 01:58:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7JC319lKqZ7+vrTPClXjMYMJqgypPY72vRxSw96Gvac=; b=MkvJBEHtlosz/Fgz
-	s73A1C4PIwDWz+v7MECqXuMe5OEtMnCKC1eNtmJun2lUt08LatyE/7KzKqSwt13r
-	dB0wsFUvj1V+ZhBIfJLLgV2rMT2ShJJhy+zjYYIUqQv6p41+WruIaueFWFaJSj8f
-	tASVv8hgdvavheNmO5zzYdDpkxQwrTErZ0Qq8nXCHcJ0BWTFOYUqNfkDO7kFA81P
-	N30m+QFmYlml91+N1TKd2uBf4a0ReU8mzA6Yk1Pe7eF4YVEPZ1hvtaQuamrQHbAc
-	GPumqVwQsA0nZbaPznhL3Zniacpyvxkt1jdgxKUmZrhMQmwT9DuwodhSbsFFJwQw
-	6ifUnA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458eyt34w7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 01:58:43 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52A1wgTY006829
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 01:58:42 GMT
-Received: from [10.216.28.75] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 9 Mar 2025
- 18:58:36 -0700
-Message-ID: <f1dd5c1f-3bfb-427b-8e17-030776df38a1@quicinc.com>
-Date: Mon, 10 Mar 2025 07:28:33 +0530
+	s=arc-20240116; t=1741572233; c=relaxed/simple;
+	bh=6CykNk9cUToWOqSzi+0FSLKdtYh2ymFzaVs96PibQ6M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lOrpxHsAHhgW9/mspaITc4Zz13J/hglJd5jZBUz0OSMlAkGF/vUqhSu2cJO/sUaIWiTq5XQDweOVySFEd/LXNnBoKUYxJYwJ4P74girMsiMGV3q6YxDRvyOmGbe+0K1c6gQKYV3yhXJ9rHjcugk5kHHRR9VEnsjIU92g6MXuuu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bVOnBdhh; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741572232; x=1773108232;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6CykNk9cUToWOqSzi+0FSLKdtYh2ymFzaVs96PibQ6M=;
+  b=bVOnBdhhHR3fLgAUAoxH2rDH8/4BS8UwCRvnhjaX5qMo1hL86QRktfKS
+   FxIcl603aNrBvLmRPcB3xccrcRYkNp0QjHluYkM8KBQcPR3sCSGEPlEA0
+   ZhGIKncuuDPoNIRRviehtnAp6iPqedMz3ZxgDu64raUJ0Of7+il+VG7oG
+   Kwwhd530B/TVPhQ8bYiQvIpfU95+VWdafQfM+ytqHUgbx739FnF/hrL6x
+   LZV1OiEC5kcaOxLtarOwY7RRj0C9Tkpy066L5hVuZTCyvw6fqsrULRgJP
+   wW+iVXRSdLjTtIkaMt1WLG9xD7eK/bAn47VsFYiBtnqllucUyErHYVly0
+   w==;
+X-CSE-ConnectionGUID: RUD2yqGSRHKE/8glGRdbGw==
+X-CSE-MsgGUID: ERt7U/cWT/ur0vlls/gYEw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="53193565"
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
+   d="scan'208";a="53193565"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2025 19:03:50 -0700
+X-CSE-ConnectionGUID: BjxoIDHuSPq56c0P2KxA4Q==
+X-CSE-MsgGUID: que1fRfzQBqTdfIlhlvZOQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
+   d="scan'208";a="124456649"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa005.fm.intel.com with ESMTP; 09 Mar 2025 19:03:17 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1trSU6-0003hE-2M;
+	Mon, 10 Mar 2025 02:03:14 +0000
+Date: Mon, 10 Mar 2025 10:02:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Jaroslav Kysela <perex@perex.cz>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 2/4] ASoC: meson: g12a-toacodec: drop the definition
+ of bits
+Message-ID: <202503100909.xnqNYW9u-lkp@intel.com>
+References: <20250309181600.1322701-3-jan.dakinevich@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V9 4/7] interconnect: qcom: icc-rpmh: Add dynamic icc node
- id support
-To: Mike Tipton <quic_mdtipton@quicinc.com>
-CC: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Odelu Kukatla <quic_okukatla@quicinc.com>,
-        "Jeff
- Johnson" <jeff.johnson@oss.qualcomm.com>,
-        Jagadeesh Kona
-	<quic_jkona@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250227155213.404-1-quic_rlaggysh@quicinc.com>
- <20250227155213.404-5-quic_rlaggysh@quicinc.com>
- <20250307035357.GA7435@hu-mdtipton-lv.qualcomm.com>
-Content-Language: en-US
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-In-Reply-To: <20250307035357.GA7435@hu-mdtipton-lv.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RJrcnw5ojGXVqg8O4O9pz_BuYZHRkJWH
-X-Authority-Analysis: v=2.4 cv=CupFcm4D c=1 sm=1 tr=0 ts=67ce4753 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=sHi-3QDVYUbo2YnzGAgA:9 a=QEXdDO2ut3YA:10
- a=mn1kVZPsorgl7L_8cYVa:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: RJrcnw5ojGXVqg8O4O9pz_BuYZHRkJWH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-10_01,2025-03-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- suspectscore=0 phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
- bulkscore=0 spamscore=0 mlxlogscore=999 lowpriorityscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503100014
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250309181600.1322701-3-jan.dakinevich@salutedevices.com>
+
+Hi Jan,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on broonie-sound/for-next]
+[also build test WARNING on linus/master v6.14-rc5 next-20250307]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jan-Dakinevich/ASoC-meson-codec-glue-add-support-for-capture-stream/20250310-022013
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20250309181600.1322701-3-jan.dakinevich%40salutedevices.com
+patch subject: [PATCH v2 2/4] ASoC: meson: g12a-toacodec: drop the definition of bits
+config: i386-buildonly-randconfig-005-20250310 (https://download.01.org/0day-ci/archive/20250310/202503100909.xnqNYW9u-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250310/202503100909.xnqNYW9u-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503100909.xnqNYW9u-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> sound/soc/meson/g12a-toacodec.c:83:11: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((mclk_sel), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (mclk_sel)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+      83 |                                       FIELD_PREP(mclk_sel, mux));
+         |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:115:3: note: expanded from macro 'FIELD_PREP'
+     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:72:53: note: expanded from macro '__BF_FIELD_CHECK'
+      72 |                 BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+      73 |                                  __bf_cast_unsigned(_reg, ~0ull),       \
+         |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      74 |                                  _pfx "type of reg too small for mask"); \
+         |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:39:58: note: expanded from macro 'BUILD_BUG_ON_MSG'
+      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+         |                                     ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+   include/linux/compiler_types.h:542:22: note: expanded from macro 'compiletime_assert'
+     542 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:530:23: note: expanded from macro '_compiletime_assert'
+     530 |         __compiletime_assert(condition, msg, prefix, suffix)
+         |         ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:522:9: note: expanded from macro '__compiletime_assert'
+     522 |                 if (!(condition))                                       \
+         |                       ^~~~~~~~~
+   1 warning generated.
 
 
+vim +83 sound/soc/meson/g12a-toacodec.c
 
-On 3/7/2025 9:23 AM, Mike Tipton wrote:
-> On Thu, Feb 27, 2025 at 03:52:10PM +0000, Raviteja Laggyshetty wrote:
->> To facilitate dynamic node ID support, the driver now uses
->> node pointers for links instead of static node IDs.
->> Additionally, the default node ID is set to -1 to prompt
->> the ICC framework for dynamic node ID allocation.
->>
->> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
->> ---
->>  drivers/interconnect/qcom/icc-rpmh.c | 16 ++++++++++++++--
->>  drivers/interconnect/qcom/icc-rpmh.h |  3 ++-
->>  2 files changed, 16 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/interconnect/qcom/icc-rpmh.c b/drivers/interconnect/qcom/icc-rpmh.c
->> index f2d63745be54..2e654917f535 100644
->> --- a/drivers/interconnect/qcom/icc-rpmh.c
->> +++ b/drivers/interconnect/qcom/icc-rpmh.c
->> @@ -285,13 +285,25 @@ int qcom_icc_rpmh_probe(struct platform_device *pdev)
->>  			ret = PTR_ERR(node);
->>  			goto err_remove_nodes;
->>  		}
->> +		qn->id = node->id;
->>  
->>  		node->name = qn->name;
->>  		node->data = qn;
->>  		icc_node_add(node, provider);
->>  
->> -		for (j = 0; j < qn->num_links; j++)
->> -			icc_link_create(node, qn->links[j]);
->> +		for (j = 0; j < qn->num_links; j++) {
->> +			struct qcom_icc_node *qn_link_node = qn->link_nodes[j];
->> +			struct icc_node *link_node;
->> +
->> +			if (qn_link_node) {
->> +				link_node = icc_node_create(qn_link_node->id);
->> +				qn_link_node->id = link_node->id;
->> +				icc_link_create(node, qn_link_node->id);
->> +			} else {
->> +				/* backward compatibility for target using static IDs */
->> +				icc_link_create(node, qn->links[j]);
->> +			}
->> +		}
->>  
->>  		data->nodes[i] = node;
->>  	}
->> diff --git a/drivers/interconnect/qcom/icc-rpmh.h b/drivers/interconnect/qcom/icc-rpmh.h
->> index 82344c734091..cf4aa69c707c 100644
->> --- a/drivers/interconnect/qcom/icc-rpmh.h
->> +++ b/drivers/interconnect/qcom/icc-rpmh.h
->> @@ -95,7 +95,8 @@ struct qcom_icc_qosbox {
->>  struct qcom_icc_node {
->>  	const char *name;
->>  	u16 links[MAX_LINKS];
->> -	u16 id;
->> +	struct qcom_icc_node *link_nodes[MAX_LINKS];
-> 
-> This is very inefficient. MAX_LINKS = 128, which means we're adding an
-> additional 1KB *per-node*. The vast majority of nodes don't come
-> anywhere close to this number of links, so this is almost entirely
-> unused and wasted space.
-> 
-> As an example: sa8775p has 193 nodes, so we're adding 193K to the driver
-> from this alone. The current driver size is 84K, and the size after this
-> change is 283K.
-> 
-> Instead of embedding this array with a hardcoded size, we could point to
-> an array that's sized for the number of links required by the node:
-> 
->     - struct qcom_icc_node *link_nodes[MAX_LINKS];
->     + struct qcom_icc_node **link_nodes;
-> 
-> Then when initializing the arrays, we could:
-> 
->     - .link_nodes = { &qns_a1noc_snoc },
->     + .link_nodes = (struct qcom_icc_node *[]) { &qns_a1noc_snoc },
-> 
-> And for handling compatiblity with older drivers, we'd check for
-> link_nodes != NULL instead of checking the array indices.
-> 
-> Doing it this way would reduce the new sa8775p size from 283K to 88K.
-> 
-> A similar argument could be made for qcom_icc_node::links, since that's
-> also hardcoded to MAX_LINKS. But it's not quite as bad since it's an
-> array of u16 rather than an array of pointers. Still, if we implemented
-> similar changes for qcom_icc_node::links, then we'd save almost 256B
-> per-node, which for sa8775p would reduce the size by roughly another
-> 50K. If we're ultimately planning on switching all the old drivers over
-> to link_nodes, then we could just wait and get rid of links entirely.
-> Regardless, optimizing links doesn't have to happen in this series, but
-> I don't want to further bloat the size from the addition of link_nodes.
-> 
+    42	
+    43	static int g12a_toacodec_mux_put_enum(struct snd_kcontrol *kcontrol,
+    44					      struct snd_ctl_elem_value *ucontrol)
+    45	{
+    46		struct snd_soc_component *component =
+    47			snd_soc_dapm_kcontrol_component(kcontrol);
+    48		struct g12a_toacodec *priv = snd_soc_component_get_drvdata(component);
+    49		struct snd_soc_dapm_context *dapm =
+    50			snd_soc_dapm_kcontrol_dapm(kcontrol);
+    51		struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
+    52		unsigned int mclk_sel = GENMASK(2, 0);
+    53		unsigned int mux, reg;
+    54	
+    55		if (ucontrol->value.enumerated.item[0] >= e->items)
+    56			return -EINVAL;
+    57	
+    58		mux = snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0]);
+    59		regmap_field_read(priv->field_dat_sel, &reg);
+    60	
+    61		if (mux == reg)
+    62			return 0;
+    63	
+    64		/* Force disconnect of the mux while updating */
+    65		snd_soc_dapm_mux_update_power(dapm, kcontrol, 0, NULL, NULL);
+    66	
+    67		regmap_field_write(priv->field_dat_sel, mux);
+    68		regmap_field_write(priv->field_lrclk_sel, mux);
+    69		regmap_field_write(priv->field_bclk_sel, mux);
+    70	
+    71		/*
+    72		 * FIXME:
+    73		 * On this soc, the glue gets the MCLK directly from the clock
+    74		 * controller instead of going the through the TDM interface.
+    75		 *
+    76		 * Here we assume interface A uses clock A, etc ... While it is
+    77		 * true for now, it could be different. Instead the glue should
+    78		 * find out the clock used by the interface and select the same
+    79		 * source. For that, we will need regmap backed clock mux which
+    80		 * is a work in progress
+    81		 */
+    82		snd_soc_component_update_bits(component, e->reg, mclk_sel,
+  > 83					      FIELD_PREP(mclk_sel, mux));
+    84	
+    85		snd_soc_dapm_mux_update_power(dapm, kcontrol, mux, e, NULL);
+    86	
+    87		return 1;
+    88	}
+    89	
 
-Ok Mike, I would make use of struct qcom_icc_node **link_nodes instead
-of *link_nodes[MAX_LINKS] in the next patch series, we can clean up the
-links[MAX_LINKS] as part of another patch series. This suggestion does
-help in reducing size of the driver.
-
->> +	int id;
->>  	u16 num_links;
->>  	u16 channels;
->>  	u16 buswidth;
->> -- 
->> 2.43.0
->>
->>
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
