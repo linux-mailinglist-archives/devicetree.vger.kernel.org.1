@@ -1,166 +1,129 @@
-Return-Path: <devicetree+bounces-156045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E90A4A58FB3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:31:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE2AA58FB7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:32:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73C01188FDF9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:31:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2025F3AC959
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B154522333B;
-	Mon, 10 Mar 2025 09:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8B72236E8;
+	Mon, 10 Mar 2025 09:31:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="crOe3gB2";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="u0EkRWlI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HpR+Y2Lt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a1-smtp.messagingengine.com (fout-a1-smtp.messagingengine.com [103.168.172.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C4A042048;
-	Mon, 10 Mar 2025 09:30:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B640EAC7;
+	Mon, 10 Mar 2025 09:31:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741599060; cv=none; b=aVK1O0xsfNHGwWTn8Nv9THKydiUHkZwtf3JLd/B5y5PJm3fgOVQ2cpxmVNP+2YRYtkXHYA2GR0ZfxYONQH1pf4pAjp95Gh/OPK/CwtZUPgtftRt2rsb+bHtGpvdbAqCJdnXHtWOznde0UNI9MpqY8N80Zh2xHhqgaAixkHdApT8=
+	t=1741599114; cv=none; b=hK9bTIeGCUuqdHoBuSelnnTNshrn97QK1oaHerG3skEQOBRLz00ayRpg0QUrAzitJ0GyopLzEwqgbtET3G7116j1y+4ubL1GcM96RdEJc4jz0QNdeqcClYVTgI/dUIhGP+iZg+MOWdVEnFPPmjQbEi/SEBy9Op1ojJxNzejQf8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741599060; c=relaxed/simple;
-	bh=lRi5W35xGNH5dHBw89pU7IiFn3gC5KvO6PdSIKkNM34=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=QzxdDch1p0yWnVUTAL7wyOQ2MI9TDFD3R8mRJYvOMAx17T40C3yo5Oim+TG1V+kXXjrmlmus9f0B3K27HnYDOodSflL/N0BDv5HHf6a6rLBMiYnRozMSPYJ1qFduYVhHeeLpNAm+5yNb6pRtpgBES3at6NDKIcJRovlVLioEWfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=crOe3gB2; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=u0EkRWlI; arc=none smtp.client-ip=103.168.172.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-13.internal (phl-compute-13.phl.internal [10.202.2.53])
-	by mailfout.phl.internal (Postfix) with ESMTP id 1D02C1382D1A;
-	Mon, 10 Mar 2025 05:30:58 -0400 (EDT)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-13.internal (MEProxy); Mon, 10 Mar 2025 05:30:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1741599058; x=1741685458; bh=TlfIZxwEH199yoeoqgqRaK5o2m1xiByl
-	+CXP110BFB0=; b=crOe3gB2m9g9LoW1nZ9xJ4JRKWSvgMKPhyNVaRc6CqiYaLoA
-	3U0pyvo9RVmrTPbjo4c/bdDRKkY5vVhKod+VE4309QlgDDHp59sRVK3mkj2vxiGd
-	Y3huigyNK2yXlM4VG/znms3jSLiah/7SCNG2BNLE3tUu3xmOKg8N0mQOsnFgFmB0
-	ALAP7tti1+xqy8hx4+G/Pc6QblscqXMVsOkboANEqGyS0TTFxChdeluSwazoNLXr
-	HpQ7Wn7D2O7qjpHw8ul/4hh8mhRS793lDgwzUjxPA1siH74LoROmOf64Oihrtw37
-	7EGJAoMm7VtYpBqelniC3TuvpZbUdRDYZDMHnA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1741599058; x=
-	1741685458; bh=TlfIZxwEH199yoeoqgqRaK5o2m1xiByl+CXP110BFB0=; b=u
-	0EkRWlI+dB79gh3+6iouR+oWqISL8XTriiMRFPHBOE5yd+eWRSn1rNKC4EkGZ+LE
-	3tH4Jd+tiWbs/jVEauBT8EQmRkfUzzclWhw+2cjDkpyBKv0fXzXxqgcI97Imyiyb
-	FIzutPS72ft7kiH0QqYvsT4Vq+sCPjprAYEhVoW9DUtLlzP8VC3Fqbt46dZbw8Oj
-	zxQ8ZJaBVN1MPx8eCBRS7O3CG1ma0lfqeA7p1kaIkZVCRhhTyLzBaGlt3nB4Nnc0
-	YaWP9m7ZbWbsYX5DRaTK3lq6ksdletNNL/5cZ9YO64JxaCjv9HOnSQErHp8s48eE
-	BUt110looaBeZ0mrc3n3Q==
-X-ME-Sender: <xms:UbHOZ8wHmz67RttlxjK4vuG8ibl4ELp5ZmYqeioxIV-co8ABaWrfXg>
-    <xme:UbHOZwS2CVHk_NYWZDOYQhaZTXgnQUg0mNZFku3oJ3idzN4zc6cgmUgxAP7IIGNhU
-    uFEjMZOOZXCHI7D6Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduudekleelucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertder
-    tddtnecuhfhrohhmpedftfihrghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtth
-    horghsthdrtghomheqnecuggftrfgrthhtvghrnhepjefhueekjeejgfduvdffheevveej
-    hfdtuddthfduuddvveefjeffgfdvleefuefgnecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhn
-    sggprhgtphhtthhopedvgedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprghnug
-    hrvgdrphhriiihfigrrhgrsegrrhhmrdgtohhmpdhrtghpthhtohepmhhtuhhrqhhuvght
-    thgvsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopeifvghnshestghsihgvrdhorh
-    hgpdhrtghpthhtohepuggrnhhivghlsehffhiflhhlrdgthhdprhgtphhtthhopegrihhr
-    lhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvg
-    gtsehgmhgrihhlrdgtohhmpdhrtghpthhtohepkhhikhhutghhrghnleeksehgmhgrihhl
-    rdgtohhmpdhrtghpthhtohepmhgrtghrohgrlhhphhgrkedvsehgmhgrihhlrdgtohhmpd
-    hrtghpthhtohepshhimhhonhhsrdhphhhilhhiphhpvgesghhmrghilhdrtghomh
-X-ME-Proxy: <xmx:UbHOZ-VvunW_sPPqtlJ4BobU9ozGTaPNwI7gISNyjW605kq8rsiutg>
-    <xmx:UbHOZ6jO6KL1OWVSrcVwHKnfQWL_hNjwzCti0stxgZ1la7IGZ1xd-g>
-    <xmx:UbHOZ-Cx7vVhpcqtxcRLmRLEyFb62dzxk45gt33YtUBx2HWjWMk-0w>
-    <xmx:UbHOZ7KY1-XU9dCC_z9ki8E0QLxUx5ETJ4qaVoMyAV2eEid6ajUrDg>
-    <xmx:UrHOZ_z3lUbW02xPGs-PdXpXZY7xJAo2BujQGyYXOK-S67PqbneLl-A2>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 76AABBA006F; Mon, 10 Mar 2025 05:30:57 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1741599114; c=relaxed/simple;
+	bh=Iz8IZsYghrJMpQWOE7HLH833OewDZeMFRdw2jLto4lY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FQtjoMslEQXNShKtK8B0nc6gcTHjrE3tN9lioFwZJZlP7jlf7kz1xjTzLmxTSVoAd/fIYseMOi7IQTpUDWSq7n+/x7Pm9kKhYGdH7c8ycUbd/6gSLVa52y9MveRWi4oO5PnZCxKGQR2sKLejBlMqu4N2K3pgqBMPW7qYoBs1e/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HpR+Y2Lt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E22A3C4CEE5;
+	Mon, 10 Mar 2025 09:31:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741599113;
+	bh=Iz8IZsYghrJMpQWOE7HLH833OewDZeMFRdw2jLto4lY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HpR+Y2LtdYEw57ZtfSRH7/eXAUwpNUKT7IIQzhC2CCz7+9CCZRVVSztv/WLPJMo8B
+	 8aEjM+9OVnnTY6exKNMyVPJcEQ6vUwmdSJVhniOEg5oXwzBGb9hObVLJXrztFttIOw
+	 IiIKSuLnxRVSV11wCWDRnwT1/DkzixqF4bPL1KJWuCFrXd69iLVO0k7qbXx6v4RC9y
+	 H14E7FjjKCdmVgbpW5q7H5kQEni09amJLpCzvpl/CFcEsvMKux/3TB30/tfUS5mpQ8
+	 ZvTaw3Lj68U7shAz1GZlTKh88foRs59CKURuG0+JSNKulqZsz1+jK/Hz1QUfT7Z7hX
+	 H4Ab1Lfo1fQTA==
+Date: Mon, 10 Mar 2025 10:31:49 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com, quic_vpernami@quicinc.com, 
+	mmareddy@quicinc.com
+Subject: Re: [PATCH v5 2/7] dt-bindings: PCI: qcom,pcie-sc7280: Make elbi
+ register as an optional
+Message-ID: <20250310-rainbow-ebony-panda-cd0ad3@krzk-bin>
+References: <20250309-ecam_v4-v5-0-8eff4b59790d@oss.qualcomm.com>
+ <20250309-ecam_v4-v5-2-8eff4b59790d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 10 Mar 2025 22:30:36 +1300
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Andre Przywara" <andre.przywara@arm.com>
-Cc: "Maxime Ripard" <mripard@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "David Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Chris Morgan" <macroalpha82@gmail.com>,
- "Hironori KIKUCHI" <kikuchan98@gmail.com>,
- "Philippe Simons" <simons.philippe@gmail.com>,
- "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, "Conor Dooley" <conor.dooley@microchip.com>
-Message-Id: <c8b85753-5c97-4258-a158-06a17929fad6@app.fastmail.com>
-In-Reply-To: <20250224175642.170c124e@donnerap.manchester.arm.com>
-References: <20250216183710.8443-3-ryan@testtoast.com>
- <20250216183710.8443-23-ryan@testtoast.com>
- <20250224175642.170c124e@donnerap.manchester.arm.com>
-Subject: Re: [PATCH v7 22/27] dt-bindings: allwinner: add H616 DE33 mixer binding
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250309-ecam_v4-v5-2-8eff4b59790d@oss.qualcomm.com>
 
-On Tue, 25 Feb 2025, at 6:56 AM, Andre Przywara wrote:
+On Sun, Mar 09, 2025 at 11:15:24AM +0530, Krishna Chaitanya Chundru wrote:
+> ELBI regitsers are optional registers and not been using in this
 
-Apologies Andre, I came to review your comments on the TCON series and realised I had missed responding to this comment before sending v8. 
+What does it mean "optional"? Hardware can miss them or they can be
+restricted by firmware? Which board has such issue?
 
->> +      - allwinner,sun50i-h616-de33-mixer-0
->>  
->>    reg:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 3
->
-> What are those three regions? I wonder if we should have reg-names here,
-> to fix the order, and to document them on the way?
+Your commit must explain this.
 
-This would be the top, display and mixer groups for the DE333, and mixer for DE3 and earlier. Can certainly add in names for these. Is there any example elsewhere in the bindings to look at?
+> platform. Having this register as required is not allowing to enable
+> ECAM feature of the PCIe cleanly. ECAM feature needs to do single
+> remap of entire 256MB which includes DBI and ELBI. Having optional
+> ELBI registers in the devicetree and binding is causing resorce
+> conflicts when enabling ECAM feature.
 
->> @@ -61,6 +63,23 @@ properties:
->>      required:
->>        - port@1
->>  
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - allwinner,sun50i-h616-de33-mixer-0
->> +
->> +    then:
->> +      properties:
->> +        reg:
->> +          maxItems: 3
->
-> Should we override minItems here as well? I guess any driver would need
-> all three region to work?
+I don't think it is possible that register in binding causes anything.
+Linux does not parse the binding doc. You are changing bindings based on
+some issues in your drivers.
 
-This seems sensible, as you say it would always be 3 groups for the DE33.
+Fix your drivers.
 
-Regards,
 
-Ryan
+> 
+> So, make ELBI registers as optional one.
+> 
+> Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml | 9 ++++-----
+>  1 file changed, 4 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml
+> index 76cb9fbfd476..326059a59b61 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml
+> @@ -19,17 +19,17 @@ properties:
+>      const: qcom,pcie-sc7280
+>  
+>    reg:
+> -    minItems: 5
+> +    minItems: 4
+>      maxItems: 6
+>  
+>    reg-names:
+> -    minItems: 5
+> +    minItems: 4
+>      items:
+>        - const: parf # Qualcomm specific registers
+>        - const: dbi # DesignWare PCIe registers
+> -      - const: elbi # External local bus interface registers
+>        - const: atu # ATU address space
+>        - const: config # PCIe configuration space
+> +      - const: elbi # External local bus interface registers
+
+NAK, ABI break based on issues on drivers. Fix your drivers.
+
+Best regards,
+Krzysztof
+
 
