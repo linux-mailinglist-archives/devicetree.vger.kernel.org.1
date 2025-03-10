@@ -1,180 +1,123 @@
-Return-Path: <devicetree+bounces-156224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CDD0A59A47
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:45:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65AF8A59A4F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 16:48:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D0111624E0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:45:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A448216BAA3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B529192B82;
-	Mon, 10 Mar 2025 15:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A58221701;
+	Mon, 10 Mar 2025 15:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fbKFcNSN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NiqDy+7a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D6AA22D79B
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 15:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D67192B82;
+	Mon, 10 Mar 2025 15:48:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741621507; cv=none; b=MdL5xRLEek4YgFXLwJSUX/ShcTsR/sLQv4HabzQhafgTyCgUOW62WLft3RFZ+QbD0oOfDqLmSd1dlrO0rTm90Sm82+gkkXHqzcwIpOgsIIpQI7j4zvtUPfs+cE7GflMtsdn/TjeapSrUKnYa6QN173AEl555hucpAVirLuGEIbQ=
+	t=1741621692; cv=none; b=keaVvbcKWAWfZJ2g5mISwNtaGSUeNbgxahyDqun8HTTDDp1aU4wKipXRRK4Wdl3IhOsWBAvn9wYE8R0IkE939C0xXCxI2Wh3+IJ+1wgMiibNMwlVXO67xPOTZtDQcLBffWXA5iD91QxZrMqJbWtEI3UxKz7IP/vu3b7mrdvURRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741621507; c=relaxed/simple;
-	bh=uVdNAfnF5QVoXZdwn56fbLrLpEwf1iwrLhOZBKx2VR8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
-	 In-Reply-To:Content-Type; b=itRRupkiAnO4Jvbj1ujb326zZxwufZKIvcVYWnnlWos8hZXaLTi5u0WEgKMbEozD5kL4AvJhumyTQbyWLG9dLsSXDy5QcJR0pGN+tX5GB2vepFERi0PZt0q8d1tmLe4VamB66Zxp9YEkX4bgJmp1c1ef8kZ7Zdv2daQARQT0ycc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fbKFcNSN; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43cfebc343dso4246545e9.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 08:45:05 -0700 (PDT)
+	s=arc-20240116; t=1741621692; c=relaxed/simple;
+	bh=SIVt748yjhXN61lTCBdrIOqbrGqJcOCWdZVCSIknig8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=g2Vn45m4FZ4MO8e2XuQNzIlkVnTJ059Ij1R4+Rh9Q2HoePUWopOPcBlvFFWjCzbyzHfwPIkWhmhl5A7560fImyY4k7YMGYFpaqEtHHL07rRreST5ygHLE9BvVjqM6nmXQXAloRwBB/nNoYYFFJRAiLOuvDhJ+8+BAdu+y+DpMww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NiqDy+7a; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e61da95244so3523435a12.2;
+        Mon, 10 Mar 2025 08:48:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741621504; x=1742226304; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:cc:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Mdl6doeBbRhuv++z4Ic7f25SbHL5xJEu/1avDDNXqp0=;
-        b=fbKFcNSNU07XtlvSvpkDgJIKyBtHGFUb9S1JgcZB/0vUSxhVcr6G0OQ/y7E84L2jwD
-         MA1FKR/jQSLMiedrZjMSaeGZs6rtM7GSM/RpC7/GyUEmckvcg7wu2CMhfQ0FQJB2gkYG
-         DyvV0AOOz0BwdV4r5ZuMYr/vCRXl8Je7q7rmHTFfdHWAJ9qmQnOyxDQGR+dUveLM+t0u
-         8OIpmG1L2EosoI8bsFZAsKAw6t3kgmMKLOnlsTmWh8lMiHVZ/dZuC1wkmSUVPnGBjRfa
-         c9qj7I9cfE4FnObp8mM6m+G54rKNYc01FzBWalDDEkQ55iag/HGgZNRwTRZn6/HgmhRv
-         Jqkg==
+        d=gmail.com; s=20230601; t=1741621689; x=1742226489; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z8Qki/M6cF25Z9mXICuii0r2Qp6u8hLmIzSqDO0dJFc=;
+        b=NiqDy+7ackWTgRDsNW/LE0yOUyht9F3k2TLbgy+0VInJ/ph5G9FR7QiTgc0Lpk0CK4
+         /0PNhOx+hN1i9+7j3fMujfZNjYnSD+VkYbR46wZCIYwe5l/BT2DsV7g02z0JQ+mD5HSK
+         hP0oGOV/E3ZJNvGB0pozhNifchdC0s/TNbOV8Agc66XsKT88/5l7chjBy38bQJGABfv/
+         v3CUhX07HYMbbXK3zRu6BG7WOx1JaxgXdmf3SxgE0vReyBss/3rUkAhHDH4g2eZ/AWFv
+         brpSLgTkWV2JG+sB1ZKXcRrF+TT73o5QWZIckVNj1RajS582pLlICTfZb6H17C/0Pd/A
+         E+VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741621504; x=1742226304;
-        h=content-transfer-encoding:in-reply-to:from:cc:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mdl6doeBbRhuv++z4Ic7f25SbHL5xJEu/1avDDNXqp0=;
-        b=nfiCBoASPhipzUjgbHy+5lhRMbtkLSxWws2K4WZKNmJaY7PlkZF03clL3+u4xX/UVq
-         NX2ueUx06+4ZsobynqQ1UQ3NMmqYPpQAD241kN79xMk5yjzw+ECsUCm+/qyHm6oVG1Lf
-         6f99I1evJL3ecCJLkplh+p/0HaihxWNUNVxKBWp2Wplgl5C6rfxp+zT3Y+pLct/DDibX
-         HmQsMzNFh1E86zGV7egyf9FsAKAVjSQnC2BFwX2ZKtBkN0gs+8KuHuF1x2QNQ6NCllbE
-         EA4MtjDYvpcUz9pBx8KrdN/m2KkMGQzOjgYERggzaFL2xaF+GLQbApZRL9DayZRL2Jqy
-         XB/A==
-X-Forwarded-Encrypted: i=1; AJvYcCXG3Jj24XAkKFNZ2AsrqworXc3iBX/zL0QVoMih67LPSrLI/CsYQAqPEXcqfU9ObYESXTICTJoPy8lc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxd0hv84TaOFfy7Ql3b5n9aAikfYIx9JbzLF/iag1mhKbAzRl5B
-	4FW1sBMtm0ZevLpzpIutH5L0V+TGmhbgHrZ61RXh2DxjAvBptsbePkJXp3SQJUk=
-X-Gm-Gg: ASbGncvaW2AUeMMSZYWrXG08rrks8nVXScPt6TpXZZyIa59pYMmN+aK1KX1TFuOI5Ie
-	k1Ix6jRF4k65n4d1rWoyIrRzqkPL6TEngsv03ROUPfW5+iJmlrcbRDeRN6pQPZcJfBEGXZP45p5
-	WQOFt0RuI3ER8Jb0iCUMt4vk1ikH4v3FJ1uYCjZyIpjksh3FP5FiwMMFpFQDlZTUxcjQvp1j/Nl
-	XyJuBk4szOvEq6zvngWNjDUn+NJEmYY0gOPvLUaguZsDZjjJPxWyMo7D8wiHOXvdfM2WeTarVr7
-	jk3LZS8tBAjLdczt1szAyB94K//KJmCvG8sz/JFpLLopxBxIgOba
-X-Google-Smtp-Source: AGHT+IFpljTvUVIl7JTZh4WjEvDEDgvw0oNPeyMebheR2S+x50AjXyNjLmVY1VFRW/5YAcqlN0ZQiw==
-X-Received: by 2002:a05:6000:18af:b0:391:3b1b:f3b7 with SMTP id ffacd0b85a97d-3913b1bf54amr5474836f8f.28.1741621503683;
-        Mon, 10 Mar 2025 08:45:03 -0700 (PDT)
-Received: from [192.168.1.247] ([145.224.65.43])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912c01cb82sm15767349f8f.51.2025.03.10.08.45.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Mar 2025 08:45:03 -0700 (PDT)
-Message-ID: <aded13c4-a8cb-464a-b7c5-34cc7d88d918@linaro.org>
-Date: Mon, 10 Mar 2025 15:45:02 +0000
+        d=1e100.net; s=20230601; t=1741621689; x=1742226489;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=z8Qki/M6cF25Z9mXICuii0r2Qp6u8hLmIzSqDO0dJFc=;
+        b=sHC33i9GkEOICfcYxB33E3uLqar4a1RgPKm2FUOwzkUrxfF3aKCRpkkV4V8j+um38l
+         xaU0PgC5LyCr1bXg4JwmEpXQGDbzm0/CGu3udBB3nrrYhHWGyN64Gn4TenK5rSCdK8Q/
+         yUzkxkBYeQAeMZzGoI5ZngHHzoZJM64t6sMMkDmVSuMl/c/Lqp+jBA2KQMEd7vsBwqNr
+         Umi17cvUThF+NmEgh/pWPHle213B1EQgjd+RpesLMAKKFXGGHp1cYHl7UH/RFb7hOc1N
+         TBCM0jeEAe7KImoTR/WpgPl9bhFJk3tcj/CdMfAS16fAZvnWlZw0zSxCbqrryPX/f32f
+         fnYg==
+X-Forwarded-Encrypted: i=1; AJvYcCUEO5HigeX+YfvH3VrEcVXmOiOM/vXLGxOEjNnsABHs/Gw4MH11QETYSAaommRvsBWJc2AgikT4PHL+amXv@vger.kernel.org, AJvYcCXECFzgyn21tNbrOL9J3eyiKlgislPFW5XIBCiXV95F3eZ1/F4ixgzdbUbxopQHTSt6fDEwVYS6gPUY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJuG5ksAz39fnFyQxfY7VGNClErTycC10km7NuQgr0xigThMtU
+	u1C1CK0VTe4nPpTvUAWo01x2GxEIHglWJs0DiOyHRXq/ynQaV7hs
+X-Gm-Gg: ASbGnctMe/LSxnMDH9rsvef8585quSQNgi9MRLKGgc1IXp5EMuc/ZsvE+GIYTTX2F4D
+	TX2Rzi+iZqJG30SLR+O7WE8thAvnC2IvrpG/+ljRgTRf8KlGlOe5kYYy9s9RVC1M16Wj4TxNDVn
+	G1Rc5XyHSbz49bDJT/3Gv7aEV8IsrQSztSmZERCqVvKujIcUB1KVmQOy0KXdIsfMp+Zu1AHsAVf
+	6gyNNN7QbXeLQ/NH86Dw8m7TbrsmDIJvZ3XjHgOdFn6HYZ04zVli41fqrVwyKqTT52h7PNHoDcz
+	6NNqLu02qdAI3xjVQQzEz9i5jltX0EJx1TSpAqRnN0vrvqXV
+X-Google-Smtp-Source: AGHT+IEdg7fwP49o1tXyXWKqfxK/eu1a7dIocwJZ5jiVtXvBnrVoYPaIUXHxtiURUXgbSYhcfA+iyA==
+X-Received: by 2002:a05:6402:2550:b0:5e1:8604:9a2d with SMTP id 4fb4d7f45d1cf-5e5e229949amr16131275a12.4.1741621689100;
+        Mon, 10 Mar 2025 08:48:09 -0700 (PDT)
+Received: from wslxew242.. ([188.193.103.108])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c766d0e0sm7252732a12.64.2025.03.10.08.48.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Mar 2025 08:48:08 -0700 (PDT)
+From: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <gradenovic@ultratronik.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] dt-bindings: vendor-prefixes: Add Ultratronik
+Date: Mon, 10 Mar 2025 16:47:58 +0100
+Message-ID: <20250310154804.326943-2-goran.radni@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250310154804.326943-1-goran.radni@gmail.com>
+References: <20250310154804.326943-1-goran.radni@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: hi3660: Add property for fixing CPUIdle
-To: Leo Yan <leo.yan@arm.com>
-References: <20250310093708.9332-1-leo.yan@arm.com>
-Content-Language: en-US
-Cc: Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, coresight@lists.linaro.org
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20250310093708.9332-1-leo.yan@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+From: Goran Rađenović <gradenovic@ultratronik.de>
 
+Ultratronik GmbH is a German electronics company:
+https://www.ultratronik-ems.de/
 
-On 10/03/2025 9:37 am, Leo Yan wrote:
-> During CPU low power modes, ETM components will lose their context.  Add
-> the "arm,coresight-loses-context-with-cpu" property to ETM nodes to save
-> and restore ETM context for CPU idle states.
-> 
-> Signed-off-by: Leo Yan <leo.yan@arm.com>
-> ---
->   arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi
-> index 79a55a0fa2f1..4c6a075908d1 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi
-> @@ -17,6 +17,7 @@ etm@ecc40000 {
->   			clocks = <&crg_ctrl HI3660_PCLK>;
->   			clock-names = "apb_pclk";
->   			cpu = <&cpu0>;
-> +			arm,coresight-loses-context-with-cpu;
->   
->   			out-ports {
->   				port {
-> @@ -34,6 +35,7 @@ etm@ecd40000 {
->   			clocks = <&crg_ctrl HI3660_PCLK>;
->   			clock-names = "apb_pclk";
->   			cpu = <&cpu1>;
-> +			arm,coresight-loses-context-with-cpu;
->   
->   			out-ports {
->   				port {
-> @@ -51,6 +53,7 @@ etm@ece40000 {
->   			clocks = <&crg_ctrl HI3660_PCLK>;
->   			clock-names = "apb_pclk";
->   			cpu = <&cpu2>;
-> +			arm,coresight-loses-context-with-cpu;
->   
->   			out-ports {
->   				port {
-> @@ -68,6 +71,7 @@ etm@ecf40000 {
->   			clocks = <&crg_ctrl HI3660_PCLK>;
->   			clock-names = "apb_pclk";
->   			cpu = <&cpu3>;
-> +			arm,coresight-loses-context-with-cpu;
->   
->   			out-ports {
->   				port {
-> @@ -160,6 +164,7 @@ etm@ed440000 {
->   			clocks = <&crg_ctrl HI3660_PCLK>;
->   			clock-names = "apb_pclk";
->   			cpu = <&cpu4>;
-> +			arm,coresight-loses-context-with-cpu;
->   
->   			out-ports {
->   				port {
-> @@ -177,6 +182,7 @@ etm@ed540000 {
->   			clocks = <&crg_ctrl HI3660_PCLK>;
->   			clock-names = "apb_pclk";
->   			cpu = <&cpu5>;
-> +			arm,coresight-loses-context-with-cpu;
->   
->   			out-ports {
->   				port {
-> @@ -194,6 +200,7 @@ etm@ed640000 {
->   			clocks = <&crg_ctrl HI3660_PCLK>;
->   			clock-names = "apb_pclk";
->   			cpu = <&cpu6>;
-> +			arm,coresight-loses-context-with-cpu;
->   
->   			out-ports {
->   				port {
-> @@ -211,6 +218,7 @@ etm@ed740000 {
->   			clocks = <&crg_ctrl HI3660_PCLK>;
->   			clock-names = "apb_pclk";
->   			cpu = <&cpu7>;
-> +			arm,coresight-loses-context-with-cpu;
->   
->   			out-ports {
->   				port {
+Signed-off-by: Goran Rađenović <gradenovic@ultratronik.de>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Reviewed-by: James Clark <james.clark@linaro.org>
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 5079ca6ce1d1..563d319fb73e 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1599,6 +1599,8 @@ patternProperties:
+     description: U.S. Robotics Corporation
+   "^utoo,.*":
+     description: Aigo Digital Technology Co., Ltd.
++  "^ux,.*":
++    description: Ultratronik GmbH
+   "^v3,.*":
+     description: V3 Semiconductor
+   "^vaisala,.*":
+-- 
+2.43.0
 
 
