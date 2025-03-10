@@ -1,268 +1,237 @@
-Return-Path: <devicetree+bounces-156124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E18D2A59541
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 13:54:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AC12A59548
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 13:55:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08CF21685A7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 12:54:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82C6516DC8F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 12:55:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D41229B16;
-	Mon, 10 Mar 2025 12:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A58713CFB6;
+	Mon, 10 Mar 2025 12:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XffAynss"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5VLUjbt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCE6229B10;
-	Mon, 10 Mar 2025 12:54:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D6F3EA76
+	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 12:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741611262; cv=none; b=mshMDtGWS58buY5ZmLFtWwqZb56qn8nLptF7sYFkOlH2iaZR99GOAlytOgJ7T1B9YgvA9F9noc2lBKOfCUtLsrA3hTQLTqXDI7BhpV9oKk2I2dETdafhGBL//CL6A4TeSIXDk5MocjAZsnrb9azIe0YL5hgrKQ944fSFkexqxhg=
+	t=1741611317; cv=none; b=MbTTVQgJfYjjmz07AAp+yJqfnyY4PqIVcvTm60OFNbzuRUIYEqIbg5KnXsaQxdIf+ch9SedJCf+YgrUg6fVDfl/bqbBasMpwNYzt8g2Mp9Z1+fnGzCC1I6u62rt9fL1Kx2jwD2/JBZObcA4PWpiNgVXamTs0BXLGSltZuSKMtIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741611262; c=relaxed/simple;
-	bh=hfonMr9KTehGSUCJiTUluzcfc+ZrHJdVr6Koj9sDnPQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n8F3nUQG9Udd1oLw8oDlcxG7myED9MZ2+FN3Xfhfb9aqssskcQww1zxHs9LB5nXrHoClUKtrnm6stYLN1rDprR1hwakIyKOyFpoQpt8txLf7DF+EojGuyCcL+t1Mhof8VlzJu0frCUJ4Bxwn/57/K+btE3JDx+8C7/pSvtttLFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XffAynss; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-30bfe0d2b6dso25178811fa.3;
-        Mon, 10 Mar 2025 05:54:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741611259; x=1742216059; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1S912joY+zkoMzH+dL5TkQE1Cyu56ln68Q97QOeykWw=;
-        b=XffAynsslqXLU6C9ZYjZVOjy1/RDGsrhbTAL1VqXCSaP2OIgpUdc2JKhDRFCETecFr
-         Y/tpBXm5kqkLb00EfH2Q9L06whtj2YJrt+I0NsZLAt82n5CGbYu8G6Poc9XTtToNVaEZ
-         Gbnjd0plS2c96/6XPnpWMWz2xz8DyUcAYSlNB5xq7kH4OLe3P78IVM8ESWTJHFlqGtzq
-         yujLrXiI38BVy/U7lRIoz1Rvtla0s8qdccu7wNokwW/YUNxWaI3BzQTkiiPVoqlDgfSU
-         zRrCmT+2aaAttZlDe+I5sBejJWGTv4fYRNO9hP4tbfieh8vesLWL2uiW12I64ST869jo
-         p41A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741611259; x=1742216059;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1S912joY+zkoMzH+dL5TkQE1Cyu56ln68Q97QOeykWw=;
-        b=oD1U3ei3kBe4Vz7FkGG23QsidLwRufwiQSlj+MIcW5Ik+qq2S8Zk3Ujgi3MHCz528Q
-         DHd/U918FzR8ZdDy7HoVLgy/YW+0xMxTLtcs8mG6VWtywmsnKiGf0inL1GxXZ1qne+kY
-         kieq72elqGab9wcRFmujbWVCBLES811TA5TVGVOBKRG2jWZLn3463ci+vHpgFjrTlRAn
-         /P2uhzFyobU/tNGs5z7qrWd1ROhy4lIcaBy3uIezETLysQLqK76uB1ZAAft9bkEKmAdp
-         yjNkCezdUJOXRIZccb0+HhGVZFDQwg9Sm1V3SIVSs2i5vfOXIo2NXmjIZ24C5fjxneC/
-         BTrg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6AiHHzLBkN0NfkQX3XVsNz64uzAJvVRUSSXAHAOhZdCaZMlc+JUkwmHUvo4B585CbtfAf0DMn5EzEiKcV@vger.kernel.org, AJvYcCV/Prae6IjFDQSbn0uib5i9pfInoyUsDcQ80yFtK9SV0Hapz25v/fDh8sXJhUc0KPMCyraWcsrCzpHh@vger.kernel.org, AJvYcCWHIfzsOVrE2scVpaZVUXPZZD4sM+XQU6vF3wFLIpFYR2+47cGp0PNYbXTnmPYFT7gAV+J4lwcQUGEH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0PHT3tdRdfhDipufaHWfUA7wSNXJEt16X6s/EbUxgozGUKKS0
-	J4PwRZ74rg1voR6E5Oa0XK7/oUsUCq0x4vQWYfc/+JnGq/JW7XAh3FA3Pg==
-X-Gm-Gg: ASbGncusg5GEY7L2YWAm/k9Hw4DQMu2DVdAAuOiw8AkW2HkE/sFJuWfLP1t4r9pcYpq
-	Vg7AHYzSFLE4ik33ZUg8S32rPDImT5iNvh9FedhpyzVsFS41hYKtpelNInN/FmB6xz/32tHmCFE
-	EOPB7L4Yq1eh+1nkifMJiX55ta+Qfmmlx0YRX9HcXkcsQbPQgDr0vIoH9tl69Cvs6RzwIxsVDh+
-	zLusTo+GXufPO1ZyRio0JnuZJB0XZ1CDZu0svrRSNW2vWjcnIf+f8YPVJjSp0PIF3col6NXQGga
-	W8NkBbixBUVYfKZUt7+EijS7S31FYrvnvxUP4NJ3dprhns1vJCM=
-X-Google-Smtp-Source: AGHT+IEjzphsV6P0hk/5xhJyDaWRVpCGeGeS7n2u+CXNMtaBpAxEOkdqhC1cED+x/K9ALJo0pWWYBQ==
-X-Received: by 2002:a05:6512:2342:b0:549:8b24:988f with SMTP id 2adb3069b0e04-54990da2790mr4279341e87.0.1741611258357;
-        Mon, 10 Mar 2025 05:54:18 -0700 (PDT)
-Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30bf0297ef4sm15174581fa.38.2025.03.10.05.54.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Mar 2025 05:54:17 -0700 (PDT)
-Date: Mon, 10 Mar 2025 14:54:14 +0200
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v6 01/10] dt-bindings: ROHM BD79124 ADC/GPO
-Message-ID: <a710ebd82dbbd3ba3fb2352a1f592e9f09b4fb92.1741610847.git.mazziesaccount@gmail.com>
-References: <cover.1741610847.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1741611317; c=relaxed/simple;
+	bh=FKHx3hmkGeOEpcIh5h+GlCH3fd6fGXZt7R80JKQ3PbE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sRk07IebtOFF1I74M4SdFjWhPGCp5wlFGwaaC4Z+SSZ0lpSuMGc4GmoDy5rogNIWbOUSVz6LMtZ8hhsQptGHI9nvvCgttkdzIFET4RdmyqLeCGDkpL42iK6Jo4MfUBS8YxE3AJmjNZrZHz12MfDwkTOxrbYWE7dbRCmYh3kro8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5VLUjbt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9635C4CEE5;
+	Mon, 10 Mar 2025 12:55:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741611317;
+	bh=FKHx3hmkGeOEpcIh5h+GlCH3fd6fGXZt7R80JKQ3PbE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=M5VLUjbtCcPc3+4syWE7Ssk/AZZiJLFZnMCE+OaJZyOKl7MlddliiJ63d15Z6zNhW
+	 lKwu7Wdx2YNX54StXvzA2gKiUFUWN2e2c/kT38vBPDcKBiC+ewiGWPps40YzPSmRA3
+	 P1Dclzjg92vnb9ZmUGj81xEKoWyJYMFH+E+p5Pa2zMYVVykB70Ikl6xFbp9VOAMN+7
+	 xD361vB54s7aY7fYtQv8anbA8n8l2fyBbmbTJ3vVC72YxOfeCM0NabAMWwMmYM9fe1
+	 WAA+NmjQ0feMmXDziYxyrurcdmucpAu86M2n+ALEybFcWXTyM1iG0FwVrcXc8Z2QXh
+	 DuWcQDOHK6GqQ==
+Message-ID: <6f87918b-b4ca-4404-8f1e-e1100190c0f6@kernel.org>
+Date: Mon, 10 Mar 2025 13:55:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8H+5vsLgzbREdEV/"
-Content-Disposition: inline
-In-Reply-To: <cover.1741610847.git.mazziesaccount@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/6] dt-bindings: gpu: v3d: Add SMS to the registers'
+ list
+To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+ Jose Maria Casanova Crespo <jmcasanova@igalia.com>,
+ Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ kernel-dev@igalia.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, devicetree@vger.kernel.org
+References: <20250308-v3d-gpu-reset-fixes-v2-0-2939c30f0cc4@igalia.com>
+ <20250308-v3d-gpu-reset-fixes-v2-4-2939c30f0cc4@igalia.com>
+ <20250310-calculating-flat-cuttlefish-4c9fc2@krzk-bin>
+ <4d224fc2-d077-47aa-8b52-edba30c62d19@igalia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <4d224fc2-d077-47aa-8b52-edba30c62d19@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+On 10/03/2025 12:57, Maíra Canal wrote:
+>>
+>>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
+>>> ---
+>>>   .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 60 ++++++++++++++++++++--
+>>>   1 file changed, 55 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>>> index dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..c0caee055e8c18dbcac0e51aa192951996545695 100644
+>>> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>>> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>>> @@ -27,15 +27,12 @@ properties:
+>>>         - description: core0 register (required)
+>>>         - description: GCA cache controller register (if GCA controller present)
+>>>         - description: bridge register (if no external reset controller)
+>>> +      - description: SMS register (if SMS controller present)
+>>
+>> This lists five items, but you say you have max 4?
+> 
+> V3D 3.1 uses hub, core0, gca, and bridge (optional)
+> V3D 4.1 and 4.2 uses hub, core, and bridge (optional)
+> V3D 7.1 uses hub, core0, sms, and bridge (optional)
+> 
+> Therefore, for a given DT, you will have 4 items max.
+
+And how many items do you have here?
+
+> 
+>>
+>>>       minItems: 2
+>>>   
+>>>     reg-names:
+>>> -    items:
+>>> -      - const: hub
+>>> -      - const: core0
+>>> -      - enum: [ bridge, gca ]
+>>> -      - enum: [ bridge, gca ]
+>>>       minItems: 2
+>>> +    maxItems: 4
+>>
+>> So here 4, but earlier 5? These must come in sync.
+> 
+> I added maxItems for reg in the allOf section.
+
+I don't think you answer the comments. I said you listed earlier 5 items
+and then you answered with saying devices have 4 items. Here I said
+these properties must be synced and you said why you added maxItems...
+Not related, read again the feedback.
 
 
---8H+5vsLgzbREdEV/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> 
+>>
+>>>   
+>>>     interrupts:
+>>>       items:
+>>> @@ -60,6 +57,59 @@ required:
+>>>   
+>>>   additionalProperties: false
+>>>   
+>>> +allOf:
+>>
+>> This goes above additionalProperties.
+> 
+> Got it.
+> 
+>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - brcm,2711-v3d
+>>> +              - brcm,7278-v3d
+>>> +    then:
+>>> +      properties:
+>>> +        reg:
+>>> +          minItems: 2
+>>> +          maxItems: 3
+>>> +        reg-names:
+>>> +          items:
+>>> +            - const: hub
+>>> +            - const: core0
+>>> +            - const: bridge
+>>
+>> Again un-synced lists.
+> 
+> Sorry, what do you mean by un-synced lists?
 
-Add binding document for the ROHM BD79124 ADC / GPO.
+xxx and xxx-names must have the same constraints. They do not have here.
+You have two different constraints and you can test your DTS to see that.
 
-ROHM BD79124 is a 8-channel, 12-bit ADC. The input pins can also be used
-as general purpose outputs.
+> 
+>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            const: brcm,2712-v3d
+>>> +    then:
+>>> +      properties:
+>>> +        reg:
+>>> +          minItems: 3
+>>> +          maxItems: 4
+>>> +        reg-names:
+>>> +          items:
+>>> +            - const: hub
+>>> +            - const: core0
+>>> +            - enum: [ bridge, sms ]
+>>> +            - enum: [ bridge, sms ]
+>>> +          minItems: 3
+>>
+>> Why is this flexible?
+> 
+> I cannot guarantee the order and bridge is optional.
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
----
-Revision history:
-v3 =3D>
- - No changes
-v2 =3D> v3:
- - Restrict channel numbers to 0-7 as suggested by Conor
-RFC v1 =3D> v2:
- - drop MFD and represent directly as ADC
- - drop pinmux and treat all non ADC channel pins as GPOs
----
- .../bindings/iio/adc/rohm,bd79124.yaml        | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/rohm,bd79124.=
-yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml b/=
-Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
-new file mode 100644
-index 000000000000..503285823376
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/rohm,bd79124.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/rohm,bd79124.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ROHM BD79124 ADC/GPO
-+
-+maintainers:
-+  - Matti Vaittinen <mazziesaccount@gmail.com>
-+
-+description: |
-+  The ROHM BD79124 is a 12-bit, 8-channel, SAR ADC. The ADC supports
-+  an automatic measurement mode, with an alarm interrupt for out-of-window
-+  measurements. ADC input pins can be also configured as general purpose
-+  outputs.
-+
-+properties:
-+  compatible:
-+    const: rohm,bd79124
-+
-+  reg:
-+    description:
-+      I2C slave address.
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 1
-+    description:
-+      The pin number.
-+
-+  vdd-supply: true
-+
-+  iovdd-supply: true
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^channel@[0-7]+$":
-+    type: object
-+    $ref: /schemas/iio/adc/adc.yaml#
-+    description: Represents ADC channel.
-+
-+    properties:
-+      reg:
-+        description: AIN pin number
-+        minimum: 0
-+        maximum: 7
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - iovdd-supply
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/leds/common.h>
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+        adc: adc@10 {
-+            compatible =3D "rohm,bd79124";
-+            reg =3D <0x10>;
-+
-+            interrupt-parent =3D <&gpio1>;
-+            interrupts =3D <29 8>;
-+
-+            vdd-supply =3D <&dummyreg>;
-+            iovdd-supply =3D <&dummyreg>;
-+
-+            #address-cells =3D <1>;
-+            #size-cells =3D <0>;
-+
-+            channel@0 {
-+                reg =3D <0>;
-+            };
-+            channel@1 {
-+                reg =3D <1>;
-+            };
-+            channel@2 {
-+                reg =3D <2>;
-+            };
-+            channel@3 {
-+                reg =3D <3>;
-+            };
-+            channel@4 {
-+                reg =3D <4>;
-+            };
-+            channel@5 {
-+                reg =3D <5>;
-+            };
-+            channel@6 {
-+                reg =3D <6>;
-+            };
-+        };
-+    };
---=20
-2.48.1
+Hm? You must guarantee the order and I do not understand why this needs
+some sort of exception from all other bindings that only here you cannot
+guarantee the order.
 
 
---8H+5vsLgzbREdEV/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfO4PUACgkQeFA3/03a
-ocX4wwgAzsQUi5lNe1jSvxTxy6cVLAS7BzrzRtZayeWBfoIhK24kAlc5dPnPrIf1
-t+LYOvUPWSVp7nvriNnW0xtRjkGOcQ4Zj4F+IE7+W1xsGW3qkvESKL1HEBBYlNlS
-bB6FZ+cQX0C9yvUUj1oq60IJ20sb9vZFkUI/xBfr0OBnESFsH2FAHm28JlUSCt1L
-UzpwhqeJCZyDz0TtjXc8EZDxh9cAD56smeVQHZSa9IArVmsXUinO/J6kkJRKhOXY
-bCYwVhFcXZ/vRE2w7XRICYMsa6P526tuHfzq3SQHNNoDaFywWcYtQx68fMFbIOac
-doViorM4eYMkU8CDQ4yyjmJVWozC+g==
-=RVE0
------END PGP SIGNATURE-----
-
---8H+5vsLgzbREdEV/--
+Best regards,
+Krzysztof
 
