@@ -1,152 +1,129 @@
-Return-Path: <devicetree+bounces-155928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F5F0A58998
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 01:13:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD25A589A8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 01:31:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E90C1605C0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 00:13:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ACB6188D08B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 00:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA06E552;
-	Mon, 10 Mar 2025 00:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47AC79C8;
+	Mon, 10 Mar 2025 00:31:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="F7yxa6K0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eneyuQA7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EDED2FB
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 00:13:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7345A632;
+	Mon, 10 Mar 2025 00:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741565594; cv=none; b=fL+51aQdk7IgXied1qEM3jwDHSpEq/ZMy0FqfnhA69KeYoKj6FEIc85VEW7echhRWYPv3ESZASRomiKXxvv7HAnnk28XpZ4nMzq2MvTIjk0NEgIK+SpCFuyb1YZWrwv2tNmQ5d9N4mjIk7ED+1GqSgo+RSEYiVVzRx7htEekA6k=
+	t=1741566666; cv=none; b=EcKsYhqweNz3jBxfLSC2TzGc4rNev7cPBJmWVUqnayKeiOeyBbRFl3o0OtQOgdlHJOjZ11yPcWAMysOX7qtJjXdVB4F7+Uu8bge7+no8C5bJdw0Yw7CfCCZSq6oR4Kz4Z95MO0nA63SZabFrQy7dgIE1NtYkBvPt78sa/nmBJK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741565594; c=relaxed/simple;
-	bh=6QrsQCgfLGlEEg2v/k0LauMQmTYl0OG7sCbgjB1yoeo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=e2vxxxdUNvWqG7M5VeOzAv3wOwUy4LlI5KY9ptaboVw/c6AoXGj2Y+9nKRK9Ktv+PnKGNKkmZVcm5QQzP4CqlAhVmFlLtTI3fjQHN5aHN5gotIMOm1W4Ui3P8iNTqz5SvvsvLLaJ8+ZS6hk2Yp/a2nF7Drg/VTRpllQgkBwgpHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=F7yxa6K0; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1741565591; bh=zOLH/juLTXvxgHLu54B/ak9W7ilP6o7Nh3Sn02QT/08=;
- b=F7yxa6K066HAtxtjrLM9eJ/XKqvl/rbySkZhxQ8N5K6OOb2W4UNSeY5k8MEy1syKzwHNJ4mFJ
- Ud/+zjQe/UQVUi9so+qcGDs8REdAienfv1RHM/NndCeXFMczWIhV9jGsp4U60f2lr671MgKwv0r
- w99pn9RZx5fZkcuZWmjLQ1tjUQ57I1RYoqEOkB7Zab2lMGS0alm7hZ2q/WLNCPcJgDnT1SwytVc
- lz1x4QaU0gpbfLZrbGkfAfRrzw0rTTIfrAqoE2vSZnJP5wn/862VPpH/jIyEOoOpSOetujXuaME
- 31GckNeJtGytJX8HrDRqg2j5l0Hjg6YycVlclrikal8Q==
-X-Forward-Email-ID: 67ce2e96f812de2512d1f57c
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Yao Zi <ziyao@disroot.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: Enable Ethernet controller on Radxa E20C
-Date: Mon, 10 Mar 2025 00:12:51 +0000
-Message-ID: <20250310001254.1516138-3-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250310001254.1516138-1-jonas@kwiboo.se>
-References: <20250310001254.1516138-1-jonas@kwiboo.se>
+	s=arc-20240116; t=1741566666; c=relaxed/simple;
+	bh=127U7j9Ed6A/U+MTwMIn2yifTZmeLRlUzJiRx4bf5Qg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p2OeRBwqIShIwGgie66OoX3Ywi7XacK2QVIo0phYbVAM/KKw5L4EQB4rjvshqZKrYqPwlBCF1JnQMrUADlpVCM0Bkeo4jofTBtFt0HDscfbxTUURILzqkS864Q+LCLOsOZ4qmoD9k9klged1Pa3E81e7Wi7aJVkwNWUiViNBO3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eneyuQA7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FF5BC4CEE3;
+	Mon, 10 Mar 2025 00:31:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741566665;
+	bh=127U7j9Ed6A/U+MTwMIn2yifTZmeLRlUzJiRx4bf5Qg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eneyuQA7ykopq6S8UEKfLVTAcoh47yfGIyP+jGj+MeeDBzaNFNhxvkIPnaRvDW4GR
+	 3ElSa1Rcld7O5AzJkk8twIU5lFCgWiBf5vNLPutmhvohsLYdekOvuQxlcATOOmNSOL
+	 oy+78DKZe/m1Q8ZxkYJJvGoPrVwC1BrNfuxgULZNHz65IH/M/37K/rifMBJJpuVcom
+	 N+TobUAr9cPgkoULGmReb1NG5sZjys6iojuvRBPAwPXGsncjJKQ2ONRM5aUK0ykDOe
+	 yCd+V0vOGqXO+XPoZw9/6/ZJu0a+v7uQNA+ckeDwo4Su72E7JnlkAVup+KFU6O2u9D
+	 /UkG5nAGdv14g==
+Date: Mon, 10 Mar 2025 00:31:04 +0000
+From: Wei Liu <wei.liu@kernel.org>
+To: Roman Kisel <romank@linux.microsoft.com>
+Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
+	catalin.marinas@arm.com, conor+dt@kernel.org,
+	dave.hansen@linux.intel.com, decui@microsoft.com,
+	haiyangz@microsoft.com, hpa@zytor.com, joey.gouly@arm.com,
+	krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com,
+	lenb@kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, mark.rutland@arm.com,
+	maz@kernel.org, mingo@redhat.com, oliver.upton@linux.dev,
+	rafael@kernel.org, robh@kernel.org, ssengar@linux.microsoft.com,
+	sudeep.holla@arm.com, suzuki.poulose@arm.com, tglx@linutronix.de,
+	wei.liu@kernel.org, will@kernel.org, yuzenghui@huawei.com,
+	devicetree@vger.kernel.org, kvmarm@lists.linux.dev,
+	linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	x86@kernel.org, apais@microsoft.com, benhill@microsoft.com,
+	bperkins@microsoft.com, sunilmut@microsoft.com
+Subject: Re: [PATCH hyperv-next v5 06/11] arm64, x86: hyperv: Report the VTL
+ the system boots in
+Message-ID: <Z84yyAqkqJ2ZyAd-@liuwe-devbox-ubuntu-v2.lamzopl0uupeniq2etz1fddiyg.xx.internal.cloudapp.net>
+References: <20250307220304.247725-1-romank@linux.microsoft.com>
+ <20250307220304.247725-7-romank@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250307220304.247725-7-romank@linux.microsoft.com>
 
-The Radxa E20C has two GbE ports, LAN and WAN. The LAN port is provided
-using a GMAC controller and a YT8531C PHY and the WAN port is provided
-by an RTL8111H PCIe Ethernet controller.
+On Fri, Mar 07, 2025 at 02:02:58PM -0800, Roman Kisel wrote:
+> The hyperv guest code might run in various Virtual Trust Levels.
+> 
+> Report the level when the kernel boots in the non-default (0)
+> one.
+> 
+> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
+> ---
+>  arch/arm64/hyperv/mshyperv.c | 2 ++
+>  arch/x86/hyperv/hv_vtl.c     | 2 +-
+>  2 files changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
+> index a7db03f5413d..3bc16dbee758 100644
+> --- a/arch/arm64/hyperv/mshyperv.c
+> +++ b/arch/arm64/hyperv/mshyperv.c
+> @@ -108,6 +108,8 @@ static int __init hyperv_init(void)
+>  	if (ms_hyperv.priv_high & HV_ACCESS_PARTITION_ID)
+>  		hv_get_partition_id();
+>  	ms_hyperv.vtl = get_vtl();
+> +	if (ms_hyperv.vtl > 0) /* non default VTL */
 
-Enable support for the LAN port on Radxa E20C.
+"non-default".
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
-Changes in v2:
-- Rebase on top of the "Support I2C controllers in RK3528" series [1]
+> +		pr_info("Linux runs in Hyper-V Virtual Trust Level %d\n", ms_hyperv.vtl);
+>  
+>  	ms_hyperv_late_init();
+>  
+> diff --git a/arch/x86/hyperv/hv_vtl.c b/arch/x86/hyperv/hv_vtl.c
+> index 4e1b1e3b5658..c21bee7e8ff3 100644
+> --- a/arch/x86/hyperv/hv_vtl.c
+> +++ b/arch/x86/hyperv/hv_vtl.c
+> @@ -24,7 +24,7 @@ static bool __init hv_vtl_msi_ext_dest_id(void)
+>  
+>  void __init hv_vtl_init_platform(void)
+>  {
+> -	pr_info("Linux runs in Hyper-V Virtual Trust Level\n");
+> +	pr_info("Linux runs in Hyper-V Virtual Trust Level %d\n", ms_hyperv.vtl);
 
-[1] https://lore.kernel.org/r/20250309070603.35254-1-ziyao@disroot.org
----
- .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Where isn't there a check for ms_hyperv.vtl > 0 here?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-index 790cd18f29cb..f4984e036f38 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-@@ -16,6 +16,7 @@ / {
- 	compatible = "radxa,e20c", "rockchip,rk3528";
- 
- 	aliases {
-+		ethernet0 = &gmac1;
- 		mmc0 = &sdhci;
- 		mmc1 = &sdmmc;
- 	};
-@@ -123,6 +124,17 @@ vccio_sd: regulator-vccio-sd {
- 	};
- };
- 
-+&gmac1 {
-+	clock_in_out = "output";
-+	phy-handle = <&rgmii_phy>;
-+	phy-mode = "rgmii-id";
-+	phy-supply = <&vcc_3v3>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rgmii_miim>, <&rgmii_tx_bus2>, <&rgmii_rx_bus2>,
-+		    <&rgmii_rgmii_clk>, <&rgmii_rgmii_bus>;
-+	status = "okay";
-+};
-+
- &i2c1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c1m0_xfer>;
-@@ -136,7 +148,25 @@ eeprom@50 {
- 	};
- };
- 
-+&mdio1 {
-+	rgmii_phy: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&gmac1_rstn_l>;
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
- &pinctrl {
-+	ethernet {
-+		gmac1_rstn_l: gmac1-rstn-l {
-+			rockchip,pins = <4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	gpio-keys {
- 		user_key: user-key {
- 			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
--- 
-2.48.1
+Please be consistent across different architectures.
 
+>  
+>  	x86_platform.realmode_reserve = x86_init_noop;
+>  	x86_platform.realmode_init = x86_init_noop;
+> -- 
+> 2.43.0
+> 
+> 
 
