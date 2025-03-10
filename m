@@ -1,240 +1,207 @@
-Return-Path: <devicetree+bounces-156260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B6DEA59C56
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:11:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8B2A59C58
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:11:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 105C33A7948
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:10:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4012188D710
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B05233729;
-	Mon, 10 Mar 2025 17:09:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA745230BE6;
+	Mon, 10 Mar 2025 17:11:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="l1AipWqa"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ctmerySW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F71822D79B;
-	Mon, 10 Mar 2025 17:09:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19506230BD5;
+	Mon, 10 Mar 2025 17:11:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741626588; cv=none; b=mVe3aiB928ZEqkhgbpofJRFxq1CRpOGXriWhhhmeCr3QWjLierbTXE/90fAtJ1RswfVN2nVQd3nouBbShTrd+casM/xH6br7b2URCp9kIbKq0CCXNVASSniHtBIF5n1Z2sWmlxEuw4iUDP7Gzcbn/H9CVGXwB6F7iRPFFugU3eA=
+	t=1741626664; cv=none; b=qDAPqs1JX10vlAxnDdM9C2Z6Sy8C9V/K/u6m2PUO+jb2U+2rCSV9rlqk6kxTumY97SLJvWQvjBMNYkc15n/wC+bUIRcEjfRrp34X2Y8nOIQhHCG0VOdPOArHvTMFRUrPLVqAmIR7UZ3tUgI644KzKlQljiDr03gW0NRQY4dGozA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741626588; c=relaxed/simple;
-	bh=yVNu05pqKMvUkTRfJJGadIbGslAZMjfMrFefbqDKqXM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k2RTmOnBwcjSlPXADnO0iaVp7lmFZjUc084/f1+etIhPO59NTbsbaPHB6QpqHtbnAklvGLGILkl0ic5kSLBJFUEdwe0Swm1XzB78IDI8vXNeggsaN7lL7zTWOxrBmQcugIX2giAshJwE3HEeCY42kWeYidOw2138bjFUreGk5Ec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=l1AipWqa; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 0DA692038F32;
-	Mon, 10 Mar 2025 10:09:46 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 0DA692038F32
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1741626586;
-	bh=ZPp0js6+jrg5sVe7XA7ERrTixZv7xjbVVvf7fRlGlAE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=l1AipWqanSYF7uSInl5in5VBJSpUKdzXNs6Z6Cc5jMQikOncxE6pClVlB5vRa3No/
-	 iDoZQTAoQd9hGHqs2vaxzFNRGIT6LEpWYSUp2mlFkdRWAt98W4RXVrPRI1lDqFK6Qv
-	 S3kLzNTctjFEFKHQ9Tw6wh1lVjMxr+HbU/Mq8eew=
-Message-ID: <e3414583-0437-4fc4-b464-1426e5fe9628@linux.microsoft.com>
-Date: Mon, 10 Mar 2025 10:09:45 -0700
+	s=arc-20240116; t=1741626664; c=relaxed/simple;
+	bh=voNjo21o3BJ1yoO1GHLS+0pcetuEukpGtYife/kyYB8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qmGJ/6biqPPF8NUV2Mp7OHegWLXuouw2DQiYyqqPa1FwTgR3rg8D81Q6VxjdhxtqdExTXXHFhVdHU82nBon349+wS+77xHkbjOChdEvwkBB7XLc/iI4dhSaRf46abwEJ06GNB04lv80nFg0u/B2Qt1oxXqKqqtM1HaSlBI0VV8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ctmerySW; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741626663; x=1773162663;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=voNjo21o3BJ1yoO1GHLS+0pcetuEukpGtYife/kyYB8=;
+  b=ctmerySWfqAOXNCtX/1QgqLRv/JJ2q1M2AdIop2VcxyskJjVE7ADTbgA
+   wj4ShXt2hTS7Rq3HMFChprnBVkY2QN5WEXFIaJ2BytbjRvDto0QOiurUW
+   G5F2DZTXCl1rPCy+nIkOoGwYdx4GnBgXfEYTFklVsVRJpBlu4PhWFm/n4
+   FHGMCmjieYGyjowfOwlKqkNxAfM+IXORkZ8Pv1yXSA9QCT4uzmKgSaS++
+   xCzX/668lDzmuGFvabn5HJKz50jBuuVXlHQ4V8lLM+PFeIYMyjJFa46LY
+   PPf7BXZiEQt+2TlMHUhIKxl3R/EuaKrdKtjoIXZPkvhQ165qZTba+NJpS
+   Q==;
+X-CSE-ConnectionGUID: ETqQ2FItReCItU23gBHlqA==
+X-CSE-MsgGUID: zgTfJ9d3TcKUPIAa62W1FA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="45427063"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; 
+   d="scan'208";a="45427063"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 10:11:02 -0700
+X-CSE-ConnectionGUID: rcALvII3SWuG40FzH3koiw==
+X-CSE-MsgGUID: ZncTHJjsQEyr2ybwv6q34A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; 
+   d="scan'208";a="120070023"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa007.fm.intel.com with ESMTP; 10 Mar 2025 10:10:59 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1trgeT-0004W8-1G;
+	Mon, 10 Mar 2025 17:10:54 +0000
+Date: Tue, 11 Mar 2025 01:10:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v6 3/4] clk: meson: a1: add the audio clock controller
+ driver
+Message-ID: <202503110016.L1KdYGVj-lkp@intel.com>
+References: <20250309180940.1322531-4-jan.dakinevich@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v5 09/11] Drivers: hv: vmbus: Introduce
- hv_get_vmbus_root_device()
-To: Tianyu Lan <ltykernel@gmail.com>
-Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
- catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com,
- decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
- joey.gouly@arm.com, krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com,
- lenb@kernel.org, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org,
- mark.rutland@arm.com, maz@kernel.org, mingo@redhat.com,
- oliver.upton@linux.dev, rafael@kernel.org, robh@kernel.org,
- ssengar@linux.microsoft.com, sudeep.holla@arm.com, suzuki.poulose@arm.com,
- tglx@linutronix.de, wei.liu@kernel.org, will@kernel.org,
- yuzenghui@huawei.com, devicetree@vger.kernel.org, kvmarm@lists.linux.dev,
- linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
- apais@microsoft.com, benhill@microsoft.com, bperkins@microsoft.com,
- sunilmut@microsoft.com
-References: <20250307220304.247725-1-romank@linux.microsoft.com>
- <20250307220304.247725-10-romank@linux.microsoft.com>
- <CAMvTesCFZ6sxQp7qqSDjD9idRjVHxh96Sp4betomgFH-OFLZ3Q@mail.gmail.com>
-Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <CAMvTesCFZ6sxQp7qqSDjD9idRjVHxh96Sp4betomgFH-OFLZ3Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250309180940.1322531-4-jan.dakinevich@salutedevices.com>
+
+Hi Jan,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on robh/for-next krzk/for-next krzk-dt/for-next linus/master v6.14-rc6 next-20250307]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jan-Dakinevich/clk-meson-axg-share-the-set-of-audio-helper-macros/20250310-022012
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20250309180940.1322531-4-jan.dakinevich%40salutedevices.com
+patch subject: [PATCH v6 3/4] clk: meson: a1: add the audio clock controller driver
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20250311/202503110016.L1KdYGVj-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250311/202503110016.L1KdYGVj-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503110016.L1KdYGVj-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/meson/a1-audio.c:807:11: error: call to undeclared function '__devm_auxiliary_device_create'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     807 |         auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
+         |                  ^
+   drivers/clk/meson/a1-audio.c:807:11: note: did you mean '__auxiliary_device_add'?
+   include/linux/auxiliary_bus.h:221:5: note: '__auxiliary_device_add' declared here
+     221 | int __auxiliary_device_add(struct auxiliary_device *auxdev, const char *modname);
+         |     ^
+>> drivers/clk/meson/a1-audio.c:807:9: error: incompatible integer to pointer conversion assigning to 'struct auxiliary_device *' from 'int' [-Wint-conversion]
+     807 |         auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
+         |                ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     808 |                                                 data->rst_drvname, NULL, 0);
+         |                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   2 errors generated.
 
 
+vim +/__devm_auxiliary_device_create +807 drivers/clk/meson/a1-audio.c
 
-On 3/10/2025 6:41 AM, Tianyu Lan wrote:
-> On Sat, Mar 8, 2025 at 6:05 AM Roman Kisel <romank@linux.microsoft.com> wrote:
->>
->> The ARM64 PCI code for hyperv needs to know the VMBus root
->> device, and it is private.
->>
->> Provide a function that returns it. Rename it from "hv_dev"
->> as "hv_dev" as a symbol is very overloaded. No functional
->> changes.
->>
->> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
-> 
-> Why change all device's parent to vmbus_root_device?
-> 
-
-No changes from my account of the code. Please let me know if I am
-misunderstanding the question.
-
-> The ARM64 platform uses the device tree to enumerate vmbus
-> devices..  Can we find the root device via device tree? vmbus
-> code on the x86 use ACPI and it seems to work via ACPI.
-> 
-> 
-
-Right, we find it from the DT as shown in the next patch:
-
-+static struct irq_domain *hv_pci_of_irq_domain_parent(void)
-+{
-+	struct device_node *parent;
-+	struct irq_domain *domain;
-+
-+	parent = of_irq_find_parent(hv_get_vmbus_root_device()->of_node);
-+	domain = NULL;
-+	if (parent) {
-+		domain = irq_find_host(parent);
-+		of_node_put(parent);
-+	}
-+
-+	return domain;
-+}
-+
-
-and later use it for `irq_create_hierarchy()`. Please let me know
-if I missed anything in your question.
-
->> ---
->>   drivers/hv/vmbus_drv.c | 23 +++++++++++++++--------
->>   include/linux/hyperv.h |  2 ++
->>   2 files changed, 17 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
->> index c8474b48dcd2..7bfafe702963 100644
->> --- a/drivers/hv/vmbus_drv.c
->> +++ b/drivers/hv/vmbus_drv.c
->> @@ -45,7 +45,8 @@ struct vmbus_dynid {
->>          struct hv_vmbus_device_id id;
->>   };
->>
->> -static struct device  *hv_dev;
->> +/* VMBus Root Device */
->> +static struct device  *vmbus_root_device;
->>
->>   static int hyperv_cpuhp_online;
->>
->> @@ -80,9 +81,15 @@ static struct resource *fb_mmio;
->>   static struct resource *hyperv_mmio;
->>   static DEFINE_MUTEX(hyperv_mmio_lock);
->>
->> +struct device *hv_get_vmbus_root_device(void)
->> +{
->> +       return vmbus_root_device;
->> +}
->> +EXPORT_SYMBOL_GPL(hv_get_vmbus_root_device);
->> +
->>   static int vmbus_exists(void)
->>   {
->> -       if (hv_dev == NULL)
->> +       if (vmbus_root_device == NULL)
->>                  return -ENODEV;
->>
->>          return 0;
->> @@ -861,7 +868,7 @@ static int vmbus_dma_configure(struct device *child_device)
->>           * On x86/x64 coherence is assumed and these calls have no effect.
->>           */
->>          hv_setup_dma_ops(child_device,
->> -               device_get_dma_attr(hv_dev) == DEV_DMA_COHERENT);
->> +               device_get_dma_attr(vmbus_root_device) == DEV_DMA_COHERENT);
->>          return 0;
->>   }
->>
->> @@ -1930,7 +1937,7 @@ int vmbus_device_register(struct hv_device *child_device_obj)
->>                       &child_device_obj->channel->offermsg.offer.if_instance);
->>
->>          child_device_obj->device.bus = &hv_bus;
->> -       child_device_obj->device.parent = hv_dev;
->> +       child_device_obj->device.parent = vmbus_root_device;
->>          child_device_obj->device.release = vmbus_device_release;
->>
->>          child_device_obj->device.dma_parms = &child_device_obj->dma_parms;
->> @@ -2292,7 +2299,7 @@ static int vmbus_acpi_add(struct platform_device *pdev)
->>          struct acpi_device *ancestor;
->>          struct acpi_device *device = ACPI_COMPANION(&pdev->dev);
->>
->> -       hv_dev = &device->dev;
->> +       vmbus_root_device = &device->dev;
->>
->>          /*
->>           * Older versions of Hyper-V for ARM64 fail to include the _CCA
->> @@ -2383,7 +2390,7 @@ static int vmbus_device_add(struct platform_device *pdev)
->>          struct device_node *np = pdev->dev.of_node;
->>          int ret;
->>
->> -       hv_dev = &pdev->dev;
->> +       vmbus_root_device = &pdev->dev;
->>
->>          ret = of_range_parser_init(&parser, np);
->>          if (ret)
->> @@ -2702,7 +2709,7 @@ static int __init hv_acpi_init(void)
->>          if (ret)
->>                  return ret;
->>
->> -       if (!hv_dev) {
->> +       if (!vmbus_root_device) {
->>                  ret = -ENODEV;
->>                  goto cleanup;
->>          }
->> @@ -2733,7 +2740,7 @@ static int __init hv_acpi_init(void)
->>
->>   cleanup:
->>          platform_driver_unregister(&vmbus_platform_driver);
->> -       hv_dev = NULL;
->> +       vmbus_root_device = NULL;
->>          return ret;
->>   }
->>
->> diff --git a/include/linux/hyperv.h b/include/linux/hyperv.h
->> index 7f4f8d8bdf43..1f0851fde041 100644
->> --- a/include/linux/hyperv.h
->> +++ b/include/linux/hyperv.h
->> @@ -1333,6 +1333,8 @@ static inline void *hv_get_drvdata(struct hv_device *dev)
->>          return dev_get_drvdata(&dev->device);
->>   }
->>
->> +struct device *hv_get_vmbus_root_device(void);
->> +
->>   struct hv_ring_buffer_debug_info {
->>          u32 current_interrupt_mask;
->>          u32 current_read_index;
->> --
->> 2.43.0
->>
->>
-> 
-> 
+   748	
+   749	static int a1_audio_clkc_probe(struct platform_device *pdev)
+   750	{
+   751		struct device *dev = &pdev->dev;
+   752		const struct a1_audio_data *data;
+   753		struct auxiliary_device *auxdev;
+   754		struct regmap *map;
+   755		void __iomem *base;
+   756		struct clk *clk;
+   757		unsigned int i;
+   758		int ret;
+   759	
+   760		data = device_get_match_data(dev);
+   761		if (!data)
+   762			return -EINVAL;
+   763	
+   764		clk = devm_clk_get_enabled(dev, "pclk");
+   765		if (IS_ERR(clk))
+   766			return PTR_ERR(clk);
+   767	
+   768		base = devm_platform_ioremap_resource(pdev, 0);
+   769		if (IS_ERR(base))
+   770			return PTR_ERR(base);
+   771	
+   772		map = devm_regmap_init_mmio(dev, base, &a1_audio_regmap_cfg);
+   773		if (IS_ERR(map))
+   774			return PTR_ERR(map);
+   775	
+   776		ret = device_reset(dev);
+   777		if (ret)
+   778			return ret;
+   779	
+   780		for (i = 0; i < data->hw_clks.num; i++) {
+   781			struct clk_hw *hw = data->hw_clks.hws[i];
+   782			struct clk_regmap *clk_regmap = to_clk_regmap(hw);
+   783	
+   784			if (!hw)
+   785				continue;
+   786	
+   787			clk_regmap->map = map;
+   788		}
+   789	
+   790		for (i = 0; i < data->hw_clks.num; i++) {
+   791			struct clk_hw *hw;
+   792	
+   793			hw = data->hw_clks.hws[i];
+   794			if (!hw)
+   795				continue;
+   796	
+   797			ret = devm_clk_hw_register(dev, hw);
+   798			if (ret)
+   799				return ret;
+   800		}
+   801	
+   802		ret = devm_of_clk_add_hw_provider(dev, meson_clk_hw_get,
+   803						  (void *)&data->hw_clks);
+   804		if (ret)
+   805			return ret;
+   806	
+ > 807		auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
+   808							data->rst_drvname, NULL, 0);
+   809		if (!auxdev)
+   810			return -ENODEV;
+   811	
+   812		return 0;
+   813	}
+   814	
 
 -- 
-Thank you,
-Roman
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
