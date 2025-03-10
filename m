@@ -1,48 +1,47 @@
-Return-Path: <devicetree+bounces-156265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A02A59EDA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:35:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03265A59F0E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:36:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FFF81884A00
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:35:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE37A3A64BD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:34:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF31A22D7A6;
-	Mon, 10 Mar 2025 17:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC9DB233153;
+	Mon, 10 Mar 2025 17:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O4/CQePa"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="TKhga+c9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 986391DE89C
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 17:35:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4827E1DE89C;
+	Mon, 10 Mar 2025 17:35:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741628104; cv=none; b=bSrOpZPotxeyYXvMWoZUUwP0KmBvMu7Un9TM4E8B+5Y0tTbGhsAbCTPi34FgYKQWYB7Xw7ADrJ65aoM4tqrQhjzG93C8LWyBt2GivCNzSPXK+yvwtaxU6wkhuz6v+RoEFpxDGEZN/cfDnG3kDGhSnOrOI4VUVN11t60jD5a+6xs=
+	t=1741628107; cv=none; b=Q9uOda5Xzf7JVadLcmAHrBRF8YAntdjoY9XvJsopg822dDSDQRQdM3VliqRB5L6ZoU18Cu9ygapgh8UeMPU29C+7HwHGxBg/fDfXL84oQ2JeznZiLdsOGAiRFet+8BPU/ZKKkCKlSM1hv24LIGp0qBkAL3vdLjOaKH3E5Ar66L4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741628104; c=relaxed/simple;
-	bh=ebmnlRJLW9EKdXGx/lld0Ko4HRB+e24LWFwQ0Ym8SqU=;
+	s=arc-20240116; t=1741628107; c=relaxed/simple;
+	bh=Hq7MojTzFFLgMgx4YbvO4dGDGVR8qIrMvtm/qCi9a/o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eu0iul0m9Jun1GOBzIEeODTpdrWnfI5tOG4mEoB7lh4roVq7KL2smsV2TdpkNGP05s82vX3hODNXmnnOj/yZ6CVsqKUlYYCaE55+3kK+iPqiwOXQ1+ZxvRyHAUpmzMxJJdlBeO801IXCZp6g07YL+a5rgYZwK2N21Txl5uU6KNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O4/CQePa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D246C4CEE5;
-	Mon, 10 Mar 2025 17:34:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741628104;
-	bh=ebmnlRJLW9EKdXGx/lld0Ko4HRB+e24LWFwQ0Ym8SqU=;
+	 In-Reply-To:Content-Type; b=QnPGmK/+JGTFazka1m8ehcVlNhF16KCOi4l11svdvxipCE/VWZrdLqcxtG4bA7XQ/3L071Xv3VSbD8ACJugH06YPQwKBElzMCmih+AzqUwG/FRgnrgRRPiRflGjQOevilrqm/6cccIe6QkmoJE1upEoi+G3Pu4anSNNCoiuaB3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=TKhga+c9; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [10.137.184.60] (unknown [131.107.160.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 64E3B2038F33;
+	Mon, 10 Mar 2025 10:35:05 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 64E3B2038F33
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1741628105;
+	bh=1+ofQwuGVRqhE03VmsYlGEcNUurWgNiie1yoZECtaVQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O4/CQePa3rImkHy6pSVkICKnYDcMUSjCBIl29XTsUgvlZ8gaAbCV23UqlHsui8oWj
-	 5l7ED8gGpwmq4HSn9VpuiBJvor6T8+js3xvHXbtZ6BO5vwp7RQDarX9BybCfk+MBKX
-	 nfns71YVygCM55EaCxudYykBLqBHVLVF0tPk0kfTN1IWoQnJuovTMXTtUOz+Z1/cD8
-	 N2tu6T5oRYYFUp/5LLKOB6WYvVsdZapoPSfjNcCSaGATosWqspT9qDJm4kKxyU9gjj
-	 jSR+d012Gx7KY482dwotAT7ZrAfpSN7I7Lhp6b3yaCdq+wtWBpDVn6/rpAB/F2BLQW
-	 XWTwRUMb+Ay0A==
-Message-ID: <130b6c9e-9e11-433c-881f-1a7ea8b0f86e@kernel.org>
-Date: Mon, 10 Mar 2025 18:34:57 +0100
+	b=TKhga+c9cuJgMknPM13jAgQP1DCYNGUPpcl+c1m94c8yVqD62xkfoXvk7bLjOxBY2
+	 Jd/ln5jDO+gGUjD6Z3n3nQwi1hJPN7SvGVn7aNlAeIKOpA9Lr5y1NMvcg21OqMdsUE
+	 Sb7ps3xymomjl6NcnK+v0qVmLnYE/BpYP3OBs4GY=
+Message-ID: <e0dce529-0777-491d-aced-1e9ead31ac17@linux.microsoft.com>
+Date: Mon, 10 Mar 2025 10:35:05 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,217 +49,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] dt-bindings: gpu: v3d: Add SMS to the registers'
- list
-To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
- Jose Maria Casanova Crespo <jmcasanova@igalia.com>,
- Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
- kernel-dev@igalia.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>, devicetree@vger.kernel.org
-References: <20250308-v3d-gpu-reset-fixes-v2-0-2939c30f0cc4@igalia.com>
- <20250308-v3d-gpu-reset-fixes-v2-4-2939c30f0cc4@igalia.com>
- <20250310-calculating-flat-cuttlefish-4c9fc2@krzk-bin>
- <4d224fc2-d077-47aa-8b52-edba30c62d19@igalia.com>
- <6f87918b-b4ca-4404-8f1e-e1100190c0f6@kernel.org>
- <2bc573c6-e44f-441b-9b13-baa7df64a641@igalia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH hyperv-next v5 03/11] Drivers: hv: Enable VTL mode for
+ arm64
+To: Arnd Bergmann <arnd@arndb.de>, Michael Kelley <mhklinux@outlook.com>
+Cc: apais@microsoft.com, benhill@microsoft.com, bperkins@microsoft.com,
+ sunilmut@microsoft.com, bhelgaas@google.com, Borislav Petkov <bp@alien8.de>,
+ Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
+ <conor+dt@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Dexuan Cui <decui@microsoft.com>, Haiyang Zhang <haiyangz@microsoft.com>,
+ "H. Peter Anvin" <hpa@zytor.com>, Joey Gouly <joey.gouly@arm.com>,
+ krzk+dt@kernel.org, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ "K. Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Oliver Upton <oliver.upton@linux.dev>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+ ssengar@linux.microsoft.com, Sudeep Holla <sudeep.holla@arm.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Wei Liu <wei.liu@kernel.org>,
+ Will Deacon <will@kernel.org>, Zenghui Yu <yuzenghui@huawei.com>,
+ devicetree@vger.kernel.org, kvmarm@lists.linux.dev,
+ linux-acpi@vger.kernel.org, Linux-Arch <linux-arch@vger.kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org
+References: <20250307220304.247725-1-romank@linux.microsoft.com>
+ <20250307220304.247725-4-romank@linux.microsoft.com>
+ <e0f81049-688e-4f53-a002-5d246281bf8d@app.fastmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <2bc573c6-e44f-441b-9b13-baa7df64a641@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Roman Kisel <romank@linux.microsoft.com>
+In-Reply-To: <e0f81049-688e-4f53-a002-5d246281bf8d@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 10/03/2025 14:15, Maíra Canal wrote:
-> Hi Krzysztof,
+
+
+On 3/8/2025 1:05 PM, Arnd Bergmann wrote:
+> On Fri, Mar 7, 2025, at 23:02, Roman Kisel wrote:
+>> @@ -5,18 +5,20 @@ menu "Microsoft Hyper-V guest support"
+>>   config HYPERV
+>>   	tristate "Microsoft Hyper-V client drivers"
+>>   	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
+>> -		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
+>> +		|| (ARM64 && !CPU_BIG_ENDIAN)
+>> +	depends on (ACPI || HYPERV_VTL_MODE)
+>>   	select PARAVIRT
+>>   	select X86_HV_CALLBACK_VECTOR if X86
+>> -	select OF_EARLY_FLATTREE if OF
+>>   	help
+>>   	  Select this option to run Linux as a Hyper-V client operating
+>>   	  system.
+>>
+>>   config HYPERV_VTL_MODE
+>>   	bool "Enable Linux to boot in VTL context"
+>> -	depends on X86_64 && HYPERV
+>> +	depends on (X86_64 || ARM64)
+>>   	depends on SMP
+>> +	select OF_EARLY_FLATTREE
+>> +	select OF
+>>   	default n
+>>   	help
 > 
-> On 3/10/25 09:55, Krzysztof Kozlowski wrote:
->> On 10/03/2025 12:57, Maíra Canal wrote:
->>>>
->>>>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->>>>> ---
->>>>>    .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 60 ++++++++++++++++++++--
->>>>>    1 file changed, 55 insertions(+), 5 deletions(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>>>> index dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..c0caee055e8c18dbcac0e51aa192951996545695 100644
->>>>> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>>>> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>>>> @@ -27,15 +27,12 @@ properties:
->>>>>          - description: core0 register (required)
->>>>>          - description: GCA cache controller register (if GCA controller present)
->>>>>          - description: bridge register (if no external reset controller)
->>>>> +      - description: SMS register (if SMS controller present)
->>>>
->>>> This lists five items, but you say you have max 4?
->>>
->>> V3D 3.1 uses hub, core0, gca, and bridge (optional)
->>> V3D 4.1 and 4.2 uses hub, core, and bridge (optional)
->>> V3D 7.1 uses hub, core0, sms, and bridge (optional)
->>>
->>> Therefore, for a given DT, you will have 4 items max.
->>
->> And how many items do you have here?
->>
->>>
->>>>
->>>>>        minItems: 2
->>>>>    
->>>>>      reg-names:
->>>>> -    items:
->>>>> -      - const: hub
->>>>> -      - const: core0
->>>>> -      - enum: [ bridge, gca ]
->>>>> -      - enum: [ bridge, gca ]
->>>>>        minItems: 2
->>>>> +    maxItems: 4
->>>>
->>>> So here 4, but earlier 5? These must come in sync.
->>>
->>> I added maxItems for reg in the allOf section.
->>
->> I don't think you answer the comments. I said you listed earlier 5 items
->> and then you answered with saying devices have 4 items. Here I said
->> these properties must be synced and you said why you added maxItems...
->> Not related, read again the feedback.
+> Having the dependency below the top-level Kconfig entry feels a little
+> counterintuitive. You could flip that back as it was before by doing
 > 
-> I'm sorry, I don't usually write DTBs. I believe what I need is to
-> specify the reg items for each compatible, right?
-
-You need to list four items in 'reg' and last items' description would
-need to describe two different sets.
-
-And commit msg must explain why now this device needs to use sms, not
-gca. Why you cannot use the gca range instead of sms? So many questions.
-
+>        select HYPERV_VTL_MODE if !ACPI
+>        depends on ACPI || SMP
 > 
->>
->>
->>>
->>>>
->>>>>    
->>>>>      interrupts:
->>>>>        items:
->>>>> @@ -60,6 +57,59 @@ required:
->>>>>    
->>>>>    additionalProperties: false
->>>>>    
->>>>> +allOf:
->>>>
->>>> This goes above additionalProperties.
->>>
->>> Got it.
->>>
->>>>
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            enum:
->>>>> +              - brcm,2711-v3d
->>>>> +              - brcm,7278-v3d
->>>>> +    then:
->>>>> +      properties:
->>>>> +        reg:
->>>>> +          minItems: 2
->>>>> +          maxItems: 3
->>>>> +        reg-names:
->>>>> +          items:
->>>>> +            - const: hub
->>>>> +            - const: core0
->>>>> +            - const: bridge
->>>>
->>>> Again un-synced lists.
->>>
->>> Sorry, what do you mean by un-synced lists?
->>
->> xxx and xxx-names must have the same constraints. They do not have here.
->> You have two different constraints and you can test your DTS to see that.
->  >
+> in the HYPERV option, leaving the dependency on HYPERV in
+> HYPERV_VTL_MODE.
 > 
-> I used `make dt_binding_check` to test it and it didn't catch any
-> errors.
 
-So change the example to have one list with two items and second list
-with three items. Is it correct DTS? No. Does this pass tests? Yes.
+I was implementing Michael's suggestion, and might've gone a bit
+overboard, my bad. I'll fix this, thanks a lot for reviewing!
 
+> Is OF_EARLY_FLATTREE actually needed on x86?
 > 
->>>
->>>>
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            const: brcm,2712-v3d
->>>>> +    then:
->>>>> +      properties:
->>>>> +        reg:
->>>>> +          minItems: 3
->>>>> +          maxItems: 4
->>>>> +        reg-names:
->>>>> +          items:
->>>>> +            - const: hub
->>>>> +            - const: core0
->>>>> +            - enum: [ bridge, sms ]
->>>>> +            - enum: [ bridge, sms ]
->>>>> +          minItems: 3
->>>>
->>>> Why is this flexible?
->>>
->>> I cannot guarantee the order and bridge is optional.
->>
->> Hm? You must guarantee the order and I do not understand why this needs
->> some sort of exception from all other bindings that only here you cannot
->> guarantee the order.
-> 
-> I'm trying to keep backwards compatibility. This binding exists for many
-> years and it always used "enum: [ bridge, gca ]".
 
-But it is now sms, not gca,, so I do not see how the ABI is preserved.
+No, it is not needed on x86. It is only needed when VTL mode is used.
 
-Best regards,
-Krzysztof
+>        Arnd
+
+-- 
+Thank you,
+Roman
+
 
