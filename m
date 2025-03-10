@@ -1,305 +1,204 @@
-Return-Path: <devicetree+bounces-156011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 242C6A58E78
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:46:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35BEAA58ECA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:02:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F8543A7848
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:46:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E79FD3A5EF7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B64422424E;
-	Mon, 10 Mar 2025 08:46:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB11222425E;
+	Mon, 10 Mar 2025 09:02:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="JBtCstpm"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="j2/vNt6U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp16.bhosted.nl (smtp16.bhosted.nl [94.124.121.27])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C90D224245
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 08:45:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948992236F4
+	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 09:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741596362; cv=none; b=tL/pxErhvJ+R4hWQS4TJnS8Y2zA3q6LhZYbr3LItIAem03kUb1gcNx85ErmKtPpAywQqbVXoE8GHFrk2B0+BRiokQZUpibzDFXveMIwNMP61AQPvewvMcRGEw0BS3oaQuZlUFKtA0cZ8A2bjbQ7ZXKS+jASwjx59W3ruTQzZBx8=
+	t=1741597346; cv=none; b=WMPQs9YV5AAp93q1GE3iM/O8cSuGPWCYXK0s3vvUnR7fsJdt2Zffj3b8RE+tqCHF86X3wyUpFIrNB0XjV7PtD86J21QUW6iaIMW4HXHLS7mEyB7oVZrBFz0OyqX+6YkbzdVLh89/ISHeggGf4ENwC/L171ymuWUO31CN0RmegYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741596362; c=relaxed/simple;
-	bh=0w1TgQzISAr8i+4WRfQJcWw1/xqHrdODd50KfsR9/AU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fiqdjf2+sudZOahx3xJKniXTcDf/wAI+cXRuPGXLmEdaatVtPLXNy8Ss4rxlJy4dhLAiFdsNdnyFfjGf8FAu392qnJbD7ho25qAmipOu5Eat/RqyPvKXjwSBn7Y+xWGC7fddzPEVLI0vCUGnXGh0d1Yeo3In8oGQjd2cQOJPjJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=JBtCstpm; arc=none smtp.client-ip=94.124.121.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=protonic.nl; s=202111;
-	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-	 message-id:subject:cc:to:from:date:from;
-	bh=80uCm2kn3K3NcR4Sztxqu4bumx6uvoO71bXTneb6OBk=;
-	b=JBtCstpmlwBcCCf4JHltkqAAyxEtoF3O1dKxalhy6avPiHYDQ3ZbsguQUp9aknD/+MgMJgil+psu3
-	 lq6TNmfaT6keJ01ksV/StRqALBvTN6IjRDWynAIGvMcYKzTsrr1a4bE8g7+nZ27tDXdoIfMOdXg+rP
-	 eXr0mef/fGlwFtE4h7vP45MdRTT/8RduEetgh8VqYs2FisxECLNmTMinN55PfFFU67bNNXj4rKyiMm
-	 raD7DEmZ5VY5OHZ3B9cPeboWbOlkhznZ4YO8F4S+NxpLdMy2Jk4PZJ+zzcrnLAVeCd2eSm/sk5JXMi
-	 27Gd/lR5ObZG+wm5BNdAEqDou0YPd6g==
-X-MSG-ID: 118667f3-fd8c-11ef-8b4e-005056817704
-Date: Mon, 10 Mar 2025 09:45:49 +0100
-From: David Jander <david@protonic.nl>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, Jonathan Corbet
- <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Nuno Sa
- <nuno.sa@analog.com>, Oleksij Rempel <o.rempel@pengutronix.de>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [RFC PATCH 1/7] drivers: Add motion control subsystem
-Message-ID: <20250310094549.2d78bec7@erd003.prtnl>
-In-Reply-To: <20250309173250.68956c88@jic23-huawei>
-References: <20250227162823.3585810-1-david@protonic.nl>
-	<20250227162823.3585810-2-david@protonic.nl>
-	<6c6cqaxmsy7miesel4ghdeiea6nrpe4gti4xf5enfyg4uqro5u@vpmtd2t7gydi>
-	<20250305164046.4de5b6ef@erd003.prtnl>
-	<mzxammninwmak5ti4c6is4pbdx3xzzziiwbxiwrldjyxgae4ok@ocec24vu4txa>
-	<20250306102540.7f0f6146@erd003.prtnl>
-	<20250309173250.68956c88@jic23-huawei>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1741597346; c=relaxed/simple;
+	bh=pGNvpqXz4dk2wpA68JlN4uRCgnPpRJDnASYBe9j8/IE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=UoFET/gLT6kFSk/JhysMwyo2K92P/VCemgbTEy2nH72cIJV64XFJpyHY1in8nurHJQv4y+voN20lw2XVi9l4VT+Qu1w0jCy1uxVLng13yAxcrjKk+LQ7V1JElxHnfCGa9sSPUNSLP1aIFLbtvxhduIQRx100E9gWD9MRw+rsGmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=j2/vNt6U; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250310090217euoutp02d752c7a9a783cfe7b24e738e59771ae2~rZY0G_xVU2552925529euoutp02o
+	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 09:02:17 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250310090217euoutp02d752c7a9a783cfe7b24e738e59771ae2~rZY0G_xVU2552925529euoutp02o
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1741597337;
+	bh=lWi4k7LoXBXBjEqfyhissO8ACphrRBwedlkg/6BKx6o=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=j2/vNt6U0hd/yovHuh0bdpiBqdyFVUaCqR4aCmpHe56O/HZ7Q8fkS53e3Vx0SbhBX
+	 EezQtA3hXWtG8b0LqJrZEa8FUageb9gtzbY7xfiBk9Xtx4itTEjPeTmrRbl4R3fLRo
+	 x5kj0qHc2J3mLg9heGWAjwYR7umjAYe7oG7M6lho=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20250310090216eucas1p174d4234a585a6d02aff24b7e758e7059~rZYzxjHK40821608216eucas1p1o;
+	Mon, 10 Mar 2025 09:02:16 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id 0F.87.20397.89AAEC76; Mon, 10
+	Mar 2025 09:02:16 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250310090216eucas1p1b2f476904cad548ebe9066b10c43a0a0~rZYzYwDuC0649306493eucas1p1t;
+	Mon, 10 Mar 2025 09:02:16 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250310090216eusmtrp2b069f674cd1cb62f20abc594b3a1af01~rZYzX-jbh2373823738eusmtrp2Y;
+	Mon, 10 Mar 2025 09:02:16 +0000 (GMT)
+X-AuditID: cbfec7f5-ed1d670000004fad-d6-67ceaa98b0f7
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id ED.D5.19920.89AAEC76; Mon, 10
+	Mar 2025 09:02:16 +0000 (GMT)
+Received: from AMDC4942.home (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250310090215eusmtip23dc7fd24a78cbed62d1d8ab2411b8342~rZYyWcdKW2591825918eusmtip2H;
+	Mon, 10 Mar 2025 09:02:15 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com,
+	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	jszhang@kernel.org, ulf.hansson@linaro.org, m.szyprowski@samsung.com
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, Michal
+	Wilczynski <m.wilczynski@samsung.com>
+Subject: [PATCH v7 0/5] TH1520 SoC: Add AON firmware & power-domain support
+Date: Mon, 10 Mar 2025 10:02:06 +0100
+Message-Id: <20250310090211.286549-1-m.wilczynski@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrEKsWRmVeSWpSXmKPExsWy7djP87ozVp1LN3j10cTi2Z2vrBZbf89i
+	t1iz9xyTxfwj51gt7l3awmTxYm8ji0XzsfVsFi9n3WOzuLxrDpvF594jjBbbPrewWaw9cpfd
+	Yv3X+UwWLy/3MFu0zeK3+L9nB7vF8bXhFi37p7A4CHm8efmSxeNwxxd2j3snprF6bFrVyeZx
+	59oeNo/NS+o9WtYeY/J4v+8qm0ffllWMHpear7N7fN4kF8AdxWWTkpqTWZZapG+XwJXRtW82
+	W8EMqYplEw+wNDAeFeli5OSQEDCRmHF1P3MXIxeHkMAKRolTv/oYQRJCAl8YJbYtCoGwPzNK
+	HLukCNNwovUBG0TDckaJhpe7obrfADW8/QTWzSZgJPFg+XxWkISIQD+TRN+R/2AOs8BKRon7
+	F84CtXBwCAt4S2x4FAzSwCKgKrHo4V4mEJtXwE5i1ror7BDr5CX2HwQpB4kLSpyc+YQFxGYG
+	ijdvnQ22WUJgPqfEpadLGCEaXCT+TbnBBGELS7w6vgVqkIzE/53zoeL5Eg+2fmKGsGskdvYc
+	h7KtJe6c+8UGchuzgKbE+l36EGFHiYNdC9hBwhICfBI33gpCnMAnMWnbdGaIMK9ER5sQRLWa
+	xNSeXril51Zsg1rqIfF3w2tWSIDGSlxZMZFxAqPCLCSPzULy2CyEGxYwMq9iFE8tLc5NTy02
+	zkst1ytOzC0uzUvXS87P3cQITIan/x3/uoNxxauPeocYmTgYDzFKcDArifCqbT+VLsSbklhZ
+	lVqUH19UmpNafIhRmoNFSZx30f7WdCGB9MSS1OzU1ILUIpgsEwenVANT7XkhiVlb7dde/nGn
+	58UUxYVMTxZIPbx16ebZHXeEd+69s7lQtEVse9LVE1demyxQkBGJcXiYvTPobblE1tSFRb5p
+	tnfYG/sV+09cOzg96rLQhzcbbyprNH0KTWjxn2Hi/XhGpojM0uYnJfoJ+38oZGRPe7uhu05Y
+	vM5GkUk6o7JsU5v5FnXd+5PXPZ/cw6U9bYNFv/w0mT3Wy0tDfP2eSJR6aoeomF/UfbtX9PY9
+	pRDBVvdVixr74vZMtry4THeS5dIXk64c4d7w7H7JapXns9IUXM4sMNA6nrTDformD87Jos+k
+	7Av/PujUP5+/jlEtfNvP69GnizbkZT8yvy1a6jB35Q6h3oyiuYvaWQ7IKbEUZyQaajEXFScC
+	AA9LPUT1AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrNIsWRmVeSWpSXmKPExsVy+t/xe7ozVp1LN2i+KGrx7M5XVoutv2ex
+	W6zZe47JYv6Rc6wW9y5tYbJ4sbeRxaL52Ho2i5ez7rFZXN41h83ic+8RRottn1vYLNYeuctu
+	sf7rfCaLl5d7mC3aZvFb/N+zg93i+Npwi5b9U1gchDzevHzJ4nG44wu7x70T01g9Nq3qZPO4
+	c20Pm8fmJfUeLWuPMXm833eVzaNvyypGj0vN19k9Pm+SC+CO0rMpyi8tSVXIyC8usVWKNrQw
+	0jO0tNAzMrHUMzQ2j7UyMlXSt7NJSc3JLEst0rdL0Mvo2jebrWCGVMWyiQdYGhiPinQxcnJI
+	CJhInGh9wNbFyMUhJLCUUWLu6X2MEAkZiWvdL1kgbGGJP9e6oIpeMUp83/eTCSTBJmAk8WD5
+	fFaQhIjAQiaJq1M2MIM4zAJrGSUOX73E3sXIwSEs4C2x4VEwSAOLgKrEood7wZp5BewkZq27
+	wg6xQV5i/8GzzBBxQYmTM5+AbWYGijdvnc08gZFvFpLULCSpBYxMqxhFUkuLc9Nziw31ihNz
+	i0vz0vWS83M3MQJjcduxn5t3MM579VHvECMTB+MhRgkOZiURXrXtp9KFeFMSK6tSi/Lji0pz
+	UosPMZoC3TeRWUo0OR+YDPJK4g3NDEwNTcwsDUwtzYyVxHndLp9PExJITyxJzU5NLUgtgulj
+	4uCUamDybvnzTHtRQS7/th2T0r51xO/ftXblGaEuBRn9juuJRbsV5m+/wjYlze3xgXCGArv9
+	3PbnfZfKRFwzOyFrvnWGiGnCDgfVJp03Gy467ZpidrR1Q/nujNXxl++2lZcyJQS5t98Od1bl
+	/Moe9MP8wYsbLX0OB9YsnfmnSq3mpXaeovVen7NxT/nFFFLnFE46aFG9YPrTsmypeVGX5E06
+	5i5+ZvRPwmKvj6fSsS0LXv2Llzu5gK3z2qxnvO+WJ+0L1t0sbJum8mxJs+W9K+Ill0vjKnas
+	uTJDOUP7RZEEK/Oj9rRzjX2LM+zWJSjy9nR8yLad6jh9pt0T14rYCAWHZam55/je8PIKh+d2
+	Pb057Y0SS3FGoqEWc1FxIgDD2wo5TgMAAA==
+X-CMS-MailID: 20250310090216eucas1p1b2f476904cad548ebe9066b10c43a0a0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250310090216eucas1p1b2f476904cad548ebe9066b10c43a0a0
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250310090216eucas1p1b2f476904cad548ebe9066b10c43a0a0
+References: <CGME20250310090216eucas1p1b2f476904cad548ebe9066b10c43a0a0@eucas1p1.samsung.com>
 
+This patch series introduces and documents power management (PM) support and
+the AON firmware driver for the T-Head TH1520 SoC, as used on the LicheePi 4A
+board. While part of a larger effort to enable the Imagination BXM-4-64 GPU
+upstream, these patches can merge independently.
 
-Hi Jonathan,
+Bigger series cover letter:
+https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
 
-On Sun, 9 Mar 2025 17:32:50 +0000
-Jonathan Cameron <jic23@kernel.org> wrote:
+This series is versioned to maintain continuity with the bigger patchset it is
+a subseries of. Please find below a changelog for the AON & power-domain:
 
-> On Thu, 6 Mar 2025 10:25:40 +0100
-> David Jander <david@protonic.nl> wrote:
->=20
-> > On Thu, 6 Mar 2025 00:21:22 +0100
-> > Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> wrote:
-> >  =20
-> [...]
-> > >=20
-> > > Sad, so a userspace process still has to know some internal things ab=
-out
-> > > the motor it drives. :-\   =20
-> >=20
-> > Unfortunately that is almost impossible to avoid entirely.
-> > You can replace one stepper motor driver with another that might have
-> > different micro-stepping subdivision, by looking at struct
-> > mot_capabilities.subdiv, but a simple brushed DC motor just isn't able =
-to
-> > replace a stepper motor in all but the most trivial applications. I als=
-o think
-> > that burdening the kernel with all sorts of complicated math to model t=
-he
-> > mechanical conversion factors involved in anything that's connected to =
-the
-> > motor drive shaft is overkill. As well as trying to emulate all missing
-> > capabilities from a motion device that is lacking that functionality na=
-tively.
-> >=20
-> > So just like in IIO you cannot just replace one ADC with any other, in =
-LMC you
-> > also cannot replace any device with any other.
-> >=20
-> > That's why there is struct mot_capabilities and MOT_IOCTL_GET_CAPA. It =
-enables
-> > user-space to optionally support different devices more easily. It is p=
-robably
-> > best used in conjunction with a LMC user-space library, although I don'=
-t want
-> > to rely on such a library for being able to use LMC. There is some midd=
-le
-> > ground here I guess... just like in IIO.
-> >=20
-> > One thing I could try to improve though, is to include some additional
-> > information in struct mot_capabilities that tells something more about =
-the
-> > nature of the used units, just like the speed_conv and accel_conv const=
-ants do
-> > for time conversion. Something that can be placed in the device tree (p=
-ossibly
-> > in a motor child-node connected to the motor-controller) that contains =
-some
-> > conversion constant for distance. That way, if one were to (for example)
-> > replace a stepper motor with a BLDC motor + encoder in a new hardware
-> > revision, this constant could be used to make the units backwards compa=
-tible.
-> >=20
-> > As background information: A stepper motor controller counts distance i=
-n steps
-> > and/or micro-steps. There are mot_capabilities.subdiv micro-steps in ea=
-ch
-> > step. The amount of angle the actual motor shaft advances with each who=
-le step
-> > depends on the motor construction and is often 200 steps per revolution=
- (1.8
-> > degrees), but can vary from 4 to 400 steps per revolution depending on =
-the
-> > motor. So it is not only the controller that matters but also the type =
-of
-> > motor. This suggests the need of motor sub-nodes in the device-tree if =
-one
-> > wanted to extend the hardware knowledge further down from the motor dri=
-ver.
-> > But then there are gear boxes, pulleys, etc... it's basically conversion
-> > factors all the way down. How many of them is sensible to bother the ke=
-rnel
-> > with? =20
->=20
-> I'd have a motor description that is sufficient to be able to swap steppe=
-rs
-> between hardware versions and present sufficient info to userspace to all=
-ow
-> a library to hide those differences. That description might well be of
-> an aggregate device consisting of motor and whatever mechanics to get you
-> to the point you care about (actuator motion).  Hardest bit will be docum=
-enting
-> 'where' in the system the DT is describing.
+v7:
+- add '#include <linux/slab.h", due to kernel robot issue
 
-Is it really the purpose of a DT to describe mechanical aspects of a machin=
-e?
-Aren't we stretching things here?
+v6:
+- split the firmware & power-domain patches into a separate series
 
-In case this makes sense, it would need to be optional. Only the electronics
-are on the "board", the rest can vary beyond the scope of the DT: one can
-connect different motors to a stepper motor controller and often that's the
-purpose. Just as one can connect anything to a USB port.
+v5:
+- changed the AON driver to be a set of library functions rather than a
+  standalone driver
 
-Sometimes the controller is single purpose, just as some USB ports that hav=
-e a
-fixed device connected to it on the board, like a USB-ethernet interface for
-example, which also has a certain fixed phy hooked up to it, etc...
+v4:
+- added workaround to disable AUDIO power domain to prevent firmware crashes
 
-If the purpose of the DT is to potentially go beyond the borders of a PCB (=
-or
-stack of PCB's) and even beyond the realm of electronic parts into mechanic=
-al
-parts, wouldn't we need a way to describe a lot of things, like gearboxes,
-pulleys, etc...?
+v3:
+ - consolidated device tree representation by merging aon and power-domain nodes
+   while maintaining separate drivers internally
+ - power-domain driver is now instantiated from within the aon driver
+ - fixed optional module dependencies in Kconfig
+ - added kernel-doc comments for all exported functions
+ - implemented th1520_aon_remove() to properly clean up mailbox channel
+   resources
 
-Also, in the spirit of the DT, shouldn't that description be complete and
-independent of the software (or even OS) involved? If that's the case, I fe=
-ar
-that "...to the point you care about..." is probably not enough?
+v2:
+ - introduced a new firmware driver to manage power-related operations.
+ - rewrote the power-domain driver to function alongside the firmware driver.
+   These nodes in the device tree lack direct address spaces, despite
+   representing HW blocks. Control is achieved via firmware protocol messages
+   transmitted through a mailbox to the E902 core.
+ - added new dt-bindings for power and firmware nodes.
+ - ran dtbs_check and dt_binding_check to ensure compliance.
 
-> It's not that heavily used but we do have analog front ends in IIO that
-> provide a not dissimilar thing to the various potential mechanisms here.
+Michal Wilczynski (5):
+  dt-bindings: firmware: thead,th1520: Add support for firmware node
+  firmware: thead: Add AON firmware protocol driver
+  dt-bindings: power: Add TH1520 SoC power domains
+  pmdomain: thead: Add power-domain driver for TH1520
+  riscv: Enable PM_GENERIC_DOMAINS for T-Head SoCs
 
-AFE's are still part of the electronics and often also part of the same boa=
-rd,
-so there it does make more sense. I've used them.
+ .../bindings/firmware/thead,th1520-aon.yaml   |  53 ++++
+ MAINTAINERS                                   |   5 +
+ arch/riscv/Kconfig.socs                       |   1 +
+ drivers/firmware/Kconfig                      |   9 +
+ drivers/firmware/Makefile                     |   1 +
+ drivers/firmware/thead,th1520-aon.c           | 248 ++++++++++++++++++
+ drivers/pmdomain/Kconfig                      |   1 +
+ drivers/pmdomain/Makefile                     |   1 +
+ drivers/pmdomain/thead/Kconfig                |  12 +
+ drivers/pmdomain/thead/Makefile               |   2 +
+ drivers/pmdomain/thead/th1520-pm-domains.c    | 209 +++++++++++++++
+ .../dt-bindings/power/thead,th1520-power.h    |  19 ++
+ .../linux/firmware/thead/thead,th1520-aon.h   | 200 ++++++++++++++
+ 13 files changed, 761 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+ create mode 100644 drivers/firmware/thead,th1520-aon.c
+ create mode 100644 drivers/pmdomain/thead/Kconfig
+ create mode 100644 drivers/pmdomain/thead/Makefile
+ create mode 100644 drivers/pmdomain/thead/th1520-pm-domains.c
+ create mode 100644 include/dt-bindings/power/thead,th1520-power.h
+ create mode 100644 include/linux/firmware/thead/thead,th1520-aon.h
 
-Don't get me wrong, if there is general agreement that information
-about mechanical things like a motor, gearbox or other mechanical
-transformation of motion should be contained in the DT, I'm fine with it.
-Maybe we should create an example to have something to talk about?
+-- 
+2.34.1
 
-Take for example the extruder of a 3D printer:
-
-Complete description of the mechanics, including the stepper motor of type
-17HS4401 from a Chinese manufacturer called "songshine" and the extruder,
-which consists of a gear reduction and a hobbled shaft pressing the filament
-into the hot-end. The stepper motor does one full 360 degree turn per 200
-whole steps. The extruder then pushes 2178 micrometer of filament into the
-hot-end per whole turn of the motor shaft. We will assume that the extruder
-itself is not a standard part that can be ordered and could not have a
-standardize compatible string. The motor... could. Or it could be a generic
-motor with some parameters in the DT, like this:
-
-&spi2 {
-	...
-	stepper-controller3: tmc5240@0 {
-		compatible =3D "adi,tmc5240";
-		reg =3D <3>;
-		spi-max-frequency =3D <10000000>;
-		interrupts-extended =3D <&gpiok 6 IRQ_TYPE_LEVEL_LOW>;
-		clocks =3D <&clock_tmc5240>;
-
-		motor0 {
-			compatible =3D "bipolar-stepper-motor";
-			run-current-ma =3D <1300>;
-			hold-current-ma =3D <260>;
-			rated-voltage-mv =3D <3600>;
-			induction-uh =3D <2800>;
-			dc-resistance-mohm =3D <1500>;
-			holding-torque-nmm =3D <400>;
-			detent-torque-nmm =3D <22>;
-			steps-per-turn =3D <200>;
-
-			extruder0 {
-				compatible =3D "rotation-to-linear";
-				distance-per-turn-um =3D <2178>;
-			};
-		};
-	};
-};
-
-Or the motor could be a reusable part with its own entry in some
-"bipolar-stepper-motors.c" database under a compatible string:
-
-&spi2 {
-	...
-	stepper-controller3: tmc5240@0 {
-		compatible =3D "adi,tmc5240";
-		reg =3D <3>;
-		spi-max-frequency =3D <10000000>;
-		interrupts-extended =3D <&gpiok 6 IRQ_TYPE_LEVEL_LOW>;
-		clocks =3D <&clock_tmc5240>;
-
-		motor0 {
-			compatible =3D "songshine,17HS4401";
-
-			extruder0 {
-				compatible =3D "rotation-to-linear";
-				distance-per-turn-um =3D <2178>;
-			};
-		};
-	};
-};
-
-Or one could just condense all the information of the motor and mechanics i=
-nto
-one node with the needed properties to obtain the conversion factors the
-motion framework needs. But that would make the DT dependent on the software
-used, and AFAIK this is not the purpose of a DT, right? It might look like
-this:
-
-&spi2 {
-	...
-	stepper-controller3: tmc5240@0 {
-		compatible =3D "adi,tmc5240";
-		reg =3D <3>;
-		spi-max-frequency =3D <10000000>;
-		interrupts-extended =3D <&gpiok 6 IRQ_TYPE_LEVEL_LOW>;
-		clocks =3D <&clock_tmc5240>;
-
-		motor0 {
-			compatible =3D "stepper-linear-actuator";
-			run-current-ma =3D <1300>;
-			hold-current-ma =3D <260>;
-			steps-per-turn =3D <200>;
-			...
-			distance-per-turn-um =3D <2178>;
-		};
-	};
-};
-
-I've left out properties like reg, #address-cells and #size-cells here for =
-brevity.
-
-Let me know if you think any of this makes sense.
-
-Best regards,
-
---=20
-David Jander
 
