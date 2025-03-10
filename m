@@ -1,167 +1,177 @@
-Return-Path: <devicetree+bounces-156077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 709BBA591A7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:48:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC385A591C4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:50:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F03DC18904EE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:48:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11F83188B173
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D930F227BA1;
-	Mon, 10 Mar 2025 10:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46BF22B8D6;
+	Mon, 10 Mar 2025 10:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="P3NUyQxt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j9W1OZnb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C41226868;
-	Mon, 10 Mar 2025 10:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05337228C9C;
+	Mon, 10 Mar 2025 10:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741603640; cv=none; b=WD1GwOLlpI+6jcaXUGIpLy9qu2cwHLf0I7re4YAXLIrCVdqnAgQHsUbaxHzjPbP3Wga8q+eR268n4QXBSpFcs1XmJByV7B2M9uaFitSlIFHwoVeoRxJ+sI3sCclzPV1f8670FRl9oKp+CahnFYgIUagjW8TTvXt4IG1BpmYG9hk=
+	t=1741603679; cv=none; b=NPgAVDtswl/6LCm3ErC5rdf66+dTuagu7PYvQNQKu5MB7qR3ev+HUCNaLDoZm9EguX5oKMNzKcnowunY+l1IYGba2vrQSBvHsLNemdjYORj55kYiM7Vce4JKJGwVPj+QRDzbkTtY1WwpcI6Sk7nyNLDU4sUydW+6Okg7VJIwMpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741603640; c=relaxed/simple;
-	bh=bf3rL+TDSf5P368lHU4ralf2rfLpeitkXg/3WIk0R3Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tPb/jZzRhCVePoXFFisttZ+lEhSH9knrEHG6xLCYHU4JZQ1Uw72yIjXv91UW09HtQG/kLfq5KqdjoIz9vWcrEkWiZLY/rtIpeCPobeaFyvAbHBJ3uesaxr1CEJbWTMwatyax6O9/mh/dPHjqXDV7SPIk2kwgEV5Mnxfeh4jAxb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=P3NUyQxt; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [192.168.2.71] (office.icewarp.com [82.113.48.146])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 819D8166881;
-	Mon, 10 Mar 2025 11:47:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1741603633;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Nzj0btXvOi8OnL6w5Yyd/H9VmA52rQ1XlqhNW4xR/FM=;
-	b=P3NUyQxtYCy6NFcez5KefaHxwctGzP9vJ1N6kbsBbkhzOGYQbnjVNLCBDDy7ud0RZFdmhE
-	depWdrQtJyO1GhuOIza+KtebFCHRsGYaPl1gpXMCMz52D30xvFwZ72CDcatn/FF1dad0Er
-	RzwtgD8TMNxBORFEEl0Nx7KxGzIWASs=
-Message-ID: <eb4aec7f-3c2f-4c6b-aa84-7798d7ff57a8@ixit.cz>
-Date: Mon, 10 Mar 2025 11:47:12 +0100
+	s=arc-20240116; t=1741603679; c=relaxed/simple;
+	bh=ksn8IQPKpJzP0SAfN/0TA4qOZ0TZecOeK/E6ed415e0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZcvI6GgPPbSbvtHrFOTg0khciQ2ZPYHPRuC74/GPWkBdbqzu+b/kjgTgiyuXvGPMErTMzxq8eGDhkvY3DgMVo1zJyckGBj7gwQopQySlktg3ySOZUUVW7idImX6hGyVf9VUWAbvhtXJ/1lXxDVjhbrkooTRFapXD7O+EtKwffCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j9W1OZnb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52A9LfuR006483;
+	Mon, 10 Mar 2025 10:47:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=gb/rZDUC2eGqGowkMWPm+s
+	ZwIMzFCl2wQLIKc8hQF6k=; b=j9W1OZnb0LQTeUk9QiTFmKRk0Y5D7ieE/IiPi8
+	A27HwiefqpsbRAwdVMfeYhY7w51L1VFsOwFqfoXTLR1ZD/cGktKnfJfmIzQGPjS5
+	DvGlFLK0pcCT4Nfhtrisg1ktWvKUzopAMcftDlcPcgXhBD42P8JFTxbBTVLJdBM3
+	StJSsDo1owhw3kddytGcsy+Y/AJ2Kc+TGltIPoXtier3T8TLtFWekpGP9C76rkmH
+	zrjnqGefrOgHSPhx4iCDscfWoyhk8pB8YHoO03El7UZCU8lqs2hT30W7VTtEb0yp
+	baEnDeK6AQOxYAlnoGtgYd4hRDD+zc0V/kdJL8Baqg4lG3cQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458ewpmhte-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 10:47:55 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52AAlspp010108
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 10:47:54 GMT
+Received: from hu-mnagar-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 10 Mar 2025 03:47:51 -0700
+From: Manish Nagar <quic_mnagar@quicinc.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        Krishna Kurapati
+	<krishna.kurapati@oss.qualcomm.com>
+Subject: [PATCH] arm64: dts: qcom: qcs8300-ride: Enable second USB controller on QCS8300 Ride
+Date: Mon, 10 Mar 2025 16:17:43 +0530
+Message-ID: <20250310104743.976265-1-quic_mnagar@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v3 0/7] Subject: [PATCH v3 0/7] Input: synaptics-rmi4: add
- quirks for third party touchscreen controllers
-To: Caleb Connolly <caleb.connolly@linaro.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, methanal <baclofen@tuta.io>
-References: <20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz>
- <53224260-4f3a-447b-9e7b-f68c5c4ba05e@linaro.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-In-Reply-To: <53224260-4f3a-447b-9e7b-f68c5c4ba05e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: asiVt0grXUnT1VyPq3sZm_1EZq5iVg3D
+X-Proofpoint-ORIG-GUID: asiVt0grXUnT1VyPq3sZm_1EZq5iVg3D
+X-Authority-Analysis: v=2.4 cv=C5sTyRP+ c=1 sm=1 tr=0 ts=67cec35b cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=0nCIlMqfeCQfA5XZMt8A:9
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-10_04,2025-03-07_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ adultscore=0 clxscore=1011 bulkscore=0 lowpriorityscore=0 malwarescore=0
+ impostorscore=0 suspectscore=0 spamscore=0 priorityscore=1501
+ mlxlogscore=939 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503100086
 
-Hello Caleb,
+Enable secondary USB controller on QCS8300 Ride platform. Since it is a
+Type-A port, the dr_mode has been set to "host". The VBUS to connected
+peripherals is provided by TPS2559QWDRCTQ1 regulator connected to the
+port. The regulator has an enable pin controlled by PMM8650. Model it as
+fixed regulator and keep it Always-On at boot, since the regulator is
+GPIO controlled regulator.
 
-I'm very sorry about that. Next time I include your patches in the 
-series I'll definitely send you heads up.
+Co-developed-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Signed-off-by: Manish Nagar <quic_mnagar@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 35 +++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-David
-
-On 10/03/2025 11:04, Caleb Connolly wrote:
-> Hi David,
-> 
-> Please at least give me a heads up if you're going to resend a patch 
-> series of mine. I understand it's an old series but I don't think that 
-> courtesy is too much to ask.
-> 
-> On 3/8/25 14:08, David Heidelberg via B4 Relay wrote:
->> With the growing popularity of running upstream Linux on mobile devices,
->> we're beginning to run into more and more edgecases. The OnePlus 6 is a
->> fairly well supported 2018 era smartphone, selling over a million units
->> in it's first 22 days. With this level of popularity, it's almost
->> inevitable that we get third party replacement displays, and as a
->> result, replacement touchscreen controllers.
->>
->> The OnePlus 6 shipped with an extremely usecase specific touchscreen
->> driver, it implemented only the bare minimum parts of the highly generic
->> rmi4 protocol, instead hardcoding most of the register addresses.
->> As a result, the third party touchscreen controllers that are often
->> found in replacement screens, implement only the registers that the
->> downstream driver reads from. They additionally have other restrictions
->> such as heavy penalties on unaligned reads.
->> This series attempts to implement the necessary workaround to support
->> some of these chips with the rmi4 driver. Although it's worth noting
->> that at the time of writing there are other unofficial controllers in
->> the wild that don't work even with these patches.
->> We have been shipping these patches in postmarketOS for the last several
->> months, and they are known to not cause any regressions on the OnePlus
->> 6/6T (with the official Synaptics controller), however I don't own any
->> other rmi4 hardware to further validate this.
->>
->> ---
->> Changes since v2:
->> - reworded dt-bindings property description
->> - fixed the rmi_driver_of_probe definition for non device-tree builds.
->> - fixed some indentation issues reported by checkpatch
->> - change rmi_pdt_entry_is_valid() variable to unsigned
->> - Link to v2: https://patchwork.kernel.org/project/linux-input/ 
->> cover/20230929-caleb-rmi4-quirks-v2-0-b227ac498d88@linaro.org/
-> 
-> Please use lore links
->>
->> Changes since v1:
->> - Improve dt-bindings patch (thanks Rob)
->> - Add missing cast in patch 5 to fix the pointer arithmetic
->> - Link to v1: https://lore.kernel.org/r/20230929-caleb-rmi4-quirks- 
->> v1-0-cc3c703f022d@linaro.org
->>
->> ---
->> Caleb Connolly (2):
->>        dt-bindings: input: syna,rmi4: document syna,pdt-fallback-desc
->>        Input: synaptics-rmi4 - handle duplicate/unknown PDT entries
->>
->> methanal (5):
->>        Input: synaptics-rmi4 - f12: use hardcoded values for 
->> aftermarket touch ICs
->>        Input: synaptics-rmi4 - f55: handle zero electrode count
->>        Input: synaptics-rmi4 - don't do unaligned reads in IRQ context
->>        Input: synaptics-rmi4 - read product ID on aftermarket touch ICs
->>        Input: synaptics-rmi4 - support fallback values for PDT 
->> descriptor bytes
->>
->>   .../devicetree/bindings/input/syna,rmi4.yaml       |  18 +++
->>   drivers/input/rmi4/rmi_driver.c                    | 140 +++++++++++ 
->> ++++++----
->>   drivers/input/rmi4/rmi_driver.h                    |   8 ++
->>   drivers/input/rmi4/rmi_f01.c                       |  14 +++
->>   drivers/input/rmi4/rmi_f12.c                       | 117 +++++++++++ 
->> ++----
->>   drivers/input/rmi4/rmi_f55.c                       |   5 +
->>   include/linux/rmi.h                                |   3 +
->>   7 files changed, 258 insertions(+), 47 deletions(-)
->> ---
->> base-commit: 0a2f889128969dab41861b6e40111aa03dc57014
->> change-id: 20250308-synaptics-rmi4-c832b2f73ceb
->>
->> Best regards,
-> 
-
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+index 916d4e6da922..7947e48f6a95 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
++++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+@@ -22,6 +22,16 @@ aliases {
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
++
++	regulator-usb2-vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "USB2_VBUS";
++		gpio = <&pmm8650au_1_gpios 7 GPIO_ACTIVE_HIGH>;
++		pinctrl-0 = <&usb2_en>;
++		pinctrl-names = "default";
++		enable-active-high;
++		regulator-always-on;
++	};
+ };
+ 
+ &apps_rsc {
+@@ -286,6 +296,15 @@ queue3 {
+ 	};
+ };
+ 
++&pmm8650au_1_gpios {
++	usb2_en: usb2-en-state {
++		pins = "gpio7";
++		function = "normal";
++		output-enable;
++		power-source = <0>;
++	};
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+@@ -355,6 +374,14 @@ &usb_1_hsphy {
+ 	status = "okay";
+ };
+ 
++&usb_2_hsphy {
++	vdda-pll-supply = <&vreg_l7a>;
++	vdda18-supply = <&vreg_l7c>;
++	vdda33-supply = <&vreg_l9a>;
++
++	status = "okay";
++};
++
+ &usb_qmpphy {
+ 	vdda-phy-supply = <&vreg_l7a>;
+ 	vdda-pll-supply = <&vreg_l5a>;
+@@ -369,3 +396,11 @@ &usb_1 {
+ &usb_1_dwc3 {
+ 	dr_mode = "peripheral";
+ };
++
++&usb_2 {
++	status = "okay";
++};
++
++&usb_2_dwc3 {
++	dr_mode = "host";
++};
 -- 
-David Heidelberg
+2.25.1
 
 
