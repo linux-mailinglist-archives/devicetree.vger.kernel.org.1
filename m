@@ -1,416 +1,148 @@
-Return-Path: <devicetree+bounces-156167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98A0BA59729
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:12:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47296A59746
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:15:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C82A01665BE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:12:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1774C3ABC2A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5543222A818;
-	Mon, 10 Mar 2025 14:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE3122CBEC;
+	Mon, 10 Mar 2025 14:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Q7fGuGPD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y2S9Tz16"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68BA22157A;
-	Mon, 10 Mar 2025 14:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3085F22C35E
+	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 14:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741615946; cv=none; b=sCyZvoNqcVtrj0LMRspSGXpsiUkSaC4QEvN6FQf4KkkDf1nO6/i7LMDav+qArcZJpQMwoHt7hqfbja293Ll3j2GErl86Vr19Jrvy48/zKgfX1CzO/yrWq7Xok9a6+vuvy8gJLCLP6Fe9JQTuARk4oD2UeawiZKw9zxsciogRbNE=
+	t=1741616120; cv=none; b=oWCUyGVzYagFNMAYAwz7gbYLbUsrSj8E3SE8kUwRlR3jlv3cROiT5SpzaBBjBG3hfb+5nZZHAId6yBUzuPOP9qmulNDZ3BOLQkGJ+usecx7jfUxL1xG4wbNyGClj4r+FmjqW07oo/mqearaeIN+FL8KERInypLj3vhsGkn0Gyxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741615946; c=relaxed/simple;
-	bh=VvTbrukqJECgVTvGE9CueOWKZHry7TuKRTj4dDd5LMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AV9Onvplbnk9Sp1t4vwj2hk/5IVIX3kUDcE1WtfE7n3Q5Q5Q+Oz3F9QLdyGDkOWGu3iUlsJJCrRDFcpo7PW2CvfcOiFGNirZPDsnM+9FDM5Vcpk6Hv/rHj9TOAeEJA/X09CDxwjVorNZTG7/2ysccUrKkYYIOtxl5/Vqv8ySSCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Q7fGuGPD; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1741615940;
-	bh=VvTbrukqJECgVTvGE9CueOWKZHry7TuKRTj4dDd5LMQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q7fGuGPDPQQJuuvqwAmmG3YOMdB37C0ASjXgb30wy90gx7lXAsc5rwAnHkoB66KUt
-	 ez18FMdGSvq2oA1gYWklHwyoO4/Egrjat7yUr3NBwkLgh7oPvfzGzSZoGIsdr2IwgD
-	 GeYyjdFXgsk8X9J34l+eXs9DJnFyxCx9JCR0niYPBZZmEDRqIEkSdo99Q3ZxEareA0
-	 8z/bhoA7xanekNn4DVkbLtoyjzYmwGhr3pDw9Oy32aiOCbI5HcMMLzC+qa7AXSB314
-	 rq6/ia07V1BV0upd1PLbPiRk3Jhl0p5elG5jpyxm7KZ+XlnQLrLpyEtkRrNd2vKGM2
-	 BYy25HPKHu/0A==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 16B1F17E0649;
-	Mon, 10 Mar 2025 15:12:20 +0100 (CET)
-Message-ID: <cd8bd504-8d91-4420-8053-10ee814417bf@collabora.com>
-Date: Mon, 10 Mar 2025 15:12:19 +0100
+	s=arc-20240116; t=1741616120; c=relaxed/simple;
+	bh=0cnSqb4EHHZH1jZBocUugKDbkHDTwqCmWiPGEzjYk3I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CIs9EzYLOLXyf30h/m7qAT1kH2ONf/QvClVHgZkU1a1PFEKLRz6IOvrXotMgba8AzJ+UpCcsQWF2nDpKW32fxbOYQ3pG3z0ZpohYgi40+Sf9KLDZsLTzAZwLh2HVCbgPDOHFaCyc6U7iibAQ60dgV/8xVdtcofhIWq0bOQKCEAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y2S9Tz16; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3914bc3e01aso535668f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 07:15:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741616116; x=1742220916; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oiOvI1jdSHYxDi7DOGuskPixkiPIYyxQOmAzG/sEzYk=;
+        b=y2S9Tz16E7Ok9SWlYeU+1GkjzYLpSj4xLpoL4ZJkTlJokLP8NpQvuaD0mN7u0nOWR9
+         7veEt7+suL8RjFXm7lJLZmxzcPBD9sQx2pI0ScJmhdq8UXy27ZXLNA/4mRVdBIUODcs+
+         op3TViYfzVRDVAob0pKjUnJdAT4RMg4n7tVpgh5mi7TPzy7mUlqWcuh2vSwBaxmm24G0
+         BpbcPc62HeIo9pY7nVr4N3ruuqKHAqBqcFYcZrBoifZmLgFwGztK2kbb11hh1cmRFjE/
+         MoDk8+ffCTA6dZXlnmMblUYaT8XHfJ/Tq8z6LlzAGCb5lGGoALUBONJGpfcDUCiHKwN1
+         2LLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741616116; x=1742220916;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oiOvI1jdSHYxDi7DOGuskPixkiPIYyxQOmAzG/sEzYk=;
+        b=w7GEyhZH/GcSU5ZSL9VD7I9P19dzfzd4fCvjVe8hPzFI2upSJLBZomkF2g93F2m/si
+         iJBNqAs/k/sU/Gf6oJOmjRoEVOXzRLbWpKalSxMS3NSwh0gUj7PMnGd1lSibF0amUjeR
+         /EIgBVPiekAwDIO0d9m3sj0ZhkYiYu1lUsgyZRIOYlDdEcJXP/LLke1GSI1n4EGez+sb
+         usZz4muPBpG7oHwpWa95eaJMhgS0Y5E1Z4SBsR+Ymxcb4WasBhHYxxpaPg8iKIormO6v
+         KzknXHKvwnk36LhDXjhhm9Ipiyf9OvrkDBdnXeqYoC5KaFAyxx051q4j7jR2Zgj6oRXP
+         rzcA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJCCSoacbr9uu99sIC405JOsygr7+nqiFglDCV3H9DAhZVbOibbL3oh88h4WZdNU+S0qrLmta5qTDU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7uTSwdG//dC6jS8DdgFzu388KbeYOUKxhg4L3nXEvco2I2F9q
+	54f4rDDLEVcbklm+XAnU2QmFXZGX8flUgcw3+dONf5C1/Job+QNpX5rtJUbJP5KuMv/N70HZOep
+	X
+X-Gm-Gg: ASbGncvWsPGdKhBCvuv/l6nmYWqgqJnvolHH4DaN8RomHF24PDn2lXP0K+2yh83xAQ/
+	5SXLXY/gRj+krQ7+qVAZkzPD8rkH9ZcfooB4c8UjXkldmSEkTE3sp9qHk04xRhcd4dQHMQRs4yf
+	ciVcOqAyObs+zrOicICQC8Koa6TrSHQpzU65ww7KRkE90Nw4xv+5ai0bI+E3SPm0pkQNQgILzT/
+	U5JGDpJfnC6e2tyL3XgePuENfYF/ff7Tj7OwckHza+zMHHh3SHkV7XHKi0jxxURbAA0hTa1x8/A
+	OnmrDGt9GkFlQaRraFk1ljMUvgFiINsnyicEVb7fkcrHR5yqGLOs4w==
+X-Google-Smtp-Source: AGHT+IHa45QnkYD1vqqthYS3xXFkFKfr9pmWfxHxp8awb40Um6CRd646Vsb+NIScIuubTXcOwu6+Lg==
+X-Received: by 2002:a05:6000:1a86:b0:38d:e48b:1787 with SMTP id ffacd0b85a97d-39132d1d1efmr8985888f8f.14.1741616116199;
+        Mon, 10 Mar 2025 07:15:16 -0700 (PDT)
+Received: from hackbox.lan ([62.231.96.41])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43bdd8da097sm149824545e9.17.2025.03.10.07.15.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Mar 2025 07:15:15 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sre@kernel.org>
+Subject: [PATCH v2 0/3] arm64: dts: qcom: x1e78100-t14s: Rework devicetree for LCD and OLED SKUs
+Date: Mon, 10 Mar 2025 16:15:01 +0200
+Message-Id: <20250310141504.3008517-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/26] clk: mediatek: Support voting for mux
-To: Guangjie Song <guangjie.song@mediatek.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250307032942.10447-1-guangjie.song@mediatek.com>
- <20250307032942.10447-4-guangjie.song@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250307032942.10447-4-guangjie.song@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 07/03/25 04:26, Guangjie Song ha scritto:
-> Add data fields, defines and ops to support voting for mux.
-> 
+The Lenovo Thinkpad T14s Gen6 comes in different SKUs when it comes to
+panels. The only difference that is important is whether it is an OLED
+or an LCD. The way that backlight is handled in devicetree between OLED
+and LCD forces the need of two separate DTBs.
 
-The main thing that is missing here is an answer to an obvious question....
+So create a common T14s dtsi that describes everything except the
+backlight handling, by renaming the existent dts to dtsi. Then make the
+legacy dts the LCD version, while adding a prepended oled dts. Both
+include the generic T14s dtsi.
 
-...what are the advantages of hardware voting, and why do we need to use
-HW voting instead of the refcount that is already kept by the common clock
-framework?
+For the OLED version, I do not have HW to test it on, so OLED specific
+bits will come at a later stage. Still, add the OLED dts in order to set
+the stage for it.
 
-As far as I can see here, the only difference is that the enable/disable
-is more complex, losing more time for polling after writes and nothing else?
+Had to format it using "git format-patch" since b4 doesn't currently
+support -B when formatting the patch, and the renaming of the dts into
+dtsi (plus the panel properties being dropped) would've not been visible
+enough for reviewers.
 
-Is this to synchronize the clock voting between SCP and AP or what?!
-If this is the answer, I don't see why we should use this HW voter for all
-clocks, since it's simply more expensive (so the clock drivers are wrong as
-they enable the voter for all clocks).
+Changes in v2:
+ - rebased on next-20250307
+ - Dropped the RFC, as it seems to be agreed upon already
+ - Added dt-bindings patch to document the new oled and lcd compatibles
+ - Added panel variant compatible strings to each dts and included the
+   the panel type into model string as well
+ - Changed backlight PWM period to 4266537 to match exact period the
+   PMIC can do.
+ - Link to v1 (RFC):
+   https://lore.kernel.org/r/20250306090503.724390-1-abel.vesa@linaro.org/
 
+Abel Vesa (3):
+  dt-bindings: arm: qcom: Document Lenovo ThinkPad T14s Gen 6 LCD and
+    OLED
+  arm64: dts: qcom: x1e78100-t14s: Add LCD variant with backlight
+    support
+  arm64: dts: qcom: x1e78100-t14s: Add OLED variant
 
-> Signed-off-by: Guangjie Song <guangjie.song@mediatek.com>
-> ---
->   drivers/clk/mediatek/clk-mux.c | 198 ++++++++++++++++++++++++++++++++-
->   drivers/clk/mediatek/clk-mux.h |  79 +++++++++++++
->   2 files changed, 275 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/clk/mediatek/clk-mux.c b/drivers/clk/mediatek/clk-mux.c
-> index 60990296450b..8a2c89cb3cd5 100644
-> --- a/drivers/clk/mediatek/clk-mux.c
-> +++ b/drivers/clk/mediatek/clk-mux.c
-> @@ -15,11 +15,13 @@
->   #include <linux/spinlock.h>
->   #include <linux/slab.h>
->   
-> +#include "clk-mtk.h"
->   #include "clk-mux.h"
->   
->   struct mtk_clk_mux {
->   	struct clk_hw hw;
->   	struct regmap *regmap;
-> +	struct regmap *vote_regmap;
->   	const struct mtk_mux *data;
->   	spinlock_t *lock;
->   	bool reparent;
-> @@ -30,6 +32,46 @@ static inline struct mtk_clk_mux *to_mtk_clk_mux(struct clk_hw *hw)
->   	return container_of(hw, struct mtk_clk_mux, hw);
->   }
->   
-> +static int mtk_clk_mux_fenc_enable_setclr(struct clk_hw *hw)
-> +{
-> +	struct mtk_clk_mux *mux = to_mtk_clk_mux(hw);
-> +	unsigned long flags = 0;
-> +	u32 val = 0;
-> +	int i = 0;
-> +	int ret = 0;
-> +
-> +	if (mux->lock)
-> +		spin_lock_irqsave(mux->lock, flags);
-> +	else
-> +		__acquire(mux->lock);
-> +
-> +	regmap_write(mux->regmap, mux->data->clr_ofs, BIT(mux->data->gate_shift));
-> +
-> +	while (1) {
-> +		regmap_read(mux->regmap, mux->data->fenc_sta_mon_ofs, &val);
+ .../devicetree/bindings/arm/qcom.yaml         |    4 +-
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ .../x1e78100-lenovo-thinkpad-t14s-oled.dts    |   12 +
+ .../qcom/x1e78100-lenovo-thinkpad-t14s.dts    | 1194 +----------------
+ ...dts => x1e78100-lenovo-thinkpad-t14s.dtsi} |    6 +-
+ 5 files changed, 77 insertions(+), 1140 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts
+ rewrite arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts (98%)
+ copy arch/arm64/boot/dts/qcom/{x1e78100-lenovo-thinkpad-t14s.dts => x1e78100-lenovo-thinkpad-t14s.dtsi} (99%)
 
-Why are you reinventing the wheel instead of just using regmap_read_poll_timeout()?
-
-> +
-> +		if ((val & BIT(mux->data->fenc_shift)) != 0)
-> +			break;
-> +
-> +		if (i < MTK_WAIT_FENC_DONE_CNT) {
-> +			udelay(MTK_WAIT_FENC_DONE_US);
-> +		} else {
-> +			pr_err("%s wait fenc done timeout\n", clk_hw_get_name(hw));
-> +			ret = -EBUSY;
-> +			break;
-> +		}
-> +
-> +		i++;
-> +	}
-> +
-> +	if (mux->lock)
-> +		spin_unlock_irqrestore(mux->lock, flags);
-> +	else
-> +		__release(mux->lock);
-> +
-> +	return ret;
-> +}
-> +
->   static int mtk_clk_mux_enable_setclr(struct clk_hw *hw)
->   {
->   	struct mtk_clk_mux *mux = to_mtk_clk_mux(hw);
-> @@ -70,6 +112,16 @@ static void mtk_clk_mux_disable_setclr(struct clk_hw *hw)
->   			BIT(mux->data->gate_shift));
->   }
->   
-> +static int mtk_clk_mux_fenc_is_enabled(struct clk_hw *hw)
-> +{
-> +	struct mtk_clk_mux *mux = to_mtk_clk_mux(hw);
-> +	u32 val = 0;
-> +
-> +	regmap_read(mux->regmap, mux->data->fenc_sta_mon_ofs, &val);
-> +
-> +	return (val & BIT(mux->data->fenc_shift)) != 0;
-
-That's just `return val & BIT(mux->data->fenc_shift);` ...
-
-> +}
-> +
->   static int mtk_clk_mux_is_enabled(struct clk_hw *hw)
->   {
->   	struct mtk_clk_mux *mux = to_mtk_clk_mux(hw);
-> @@ -80,6 +132,106 @@ static int mtk_clk_mux_is_enabled(struct clk_hw *hw)
->   	return (val & BIT(mux->data->gate_shift)) == 0;
->   }
->   
-> +static int mtk_clk_vote_mux_is_enabled(struct clk_hw *hw)
-> +{
-> +	struct mtk_clk_mux *mux = to_mtk_clk_mux(hw);
-> +	u32 val = 0;
-> +
-> +	regmap_read(mux->vote_regmap, mux->data->vote_set_ofs, &val);
-> +
-> +	return (val & BIT(mux->data->gate_shift)) != 0;
-
-same
-
-> +}
-> +
-> +static int mtk_clk_vote_mux_is_done(struct clk_hw *hw)
-> +{
-> +	struct mtk_clk_mux *mux = to_mtk_clk_mux(hw);
-> +	u32 val = 0;
-> +
-> +	regmap_read(mux->vote_regmap, mux->data->vote_sta_ofs, &val);
-> +
-> +	return (val & BIT(mux->data->gate_shift)) != 0;
-
-ditto
-
-> +}
-> +
-> +static int mtk_clk_mux_vote_fenc_enable(struct clk_hw *hw)
-> +{
-> +	struct mtk_clk_mux *mux = to_mtk_clk_mux(hw);
-> +	u32 val = 0, val2 = 0;
-> +	bool is_done = false;
-> +	int i = 0;
-> +
-> +	regmap_write(mux->vote_regmap, mux->data->vote_set_ofs, BIT(mux->data->gate_shift));
-> +
-> +	while (!mtk_clk_vote_mux_is_enabled(hw)) {
-> +		if (i < MTK_WAIT_VOTE_PREPARE_CNT) {
-> +			udelay(MTK_WAIT_VOTE_PREPARE_US);
-
-regmap_readl_poll_timeout().....
-
-> +		} else {
-> +			pr_err("%s mux prepare timeout(%x)\n", clk_hw_get_name(hw), val);
-> +			return -EBUSY;
-> +		}
-> +
-> +		i++;
-> +	}
-> +
-> +	i = 0;
-> +
-> +	while (1) {
-> +		if (!is_done)
-> +			regmap_read(mux->vote_regmap, mux->data->vote_sta_ofs, &val);
-> +
-> +		if (((val & BIT(mux->data->gate_shift)) != 0))
-> +			is_done = true;
-> +
-
-and again - twice.
-
-> +		if (is_done) {
-> +			regmap_read(mux->regmap, mux->data->fenc_sta_mon_ofs, &val2);
-> +			if ((val2 & BIT(mux->data->fenc_shift)) != 0)
-> +				break;
-> +		}
-> +
-> +		if (i < MTK_WAIT_VOTE_DONE_CNT) {
-> +			udelay(MTK_WAIT_VOTE_DONE_US);
-> +		} else {
-> +			pr_err("%s mux enable timeout(%x %x)\n", clk_hw_get_name(hw), val, val2);
-> +			return -EBUSY;
-> +		}
-> +
-> +		i++;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void mtk_clk_mux_vote_disable(struct clk_hw *hw)
-> +{
-> +	struct mtk_clk_mux *mux = to_mtk_clk_mux(hw);
-> +	int i = 0;
-> +
-> +	regmap_write(mux->vote_regmap, mux->data->vote_clr_ofs, BIT(mux->data->gate_shift));
-> +
-> +	while (mtk_clk_vote_mux_is_enabled(hw)) {
-> +		if (i < MTK_WAIT_VOTE_PREPARE_CNT) {
-> +			udelay(MTK_WAIT_VOTE_PREPARE_US);
-> +		} else {
-> +			pr_err("%s mux unprepare timeout\n", clk_hw_get_name(hw));
-> +			return;
-> +		}
-> +
-
-....and again....
-
-> +		i++;
-> +	}
-> +
-> +	i = 0;
-> +
-> +	while (!mtk_clk_vote_mux_is_done(hw)) {
-> +		if (i < MTK_WAIT_VOTE_DONE_CNT) {
-> +			udelay(MTK_WAIT_VOTE_DONE_US);
-> +		} else {
-> +			pr_err("%s mux disable timeout\n", clk_hw_get_name(hw));
-> +			return;
-> +		}
-> +
-> +		i++;
-> +	}
-> +}
-> +
->   static u8 mtk_clk_mux_get_parent(struct clk_hw *hw)
->   {
->   	struct mtk_clk_mux *mux = to_mtk_clk_mux(hw);
-> @@ -151,6 +303,12 @@ static int mtk_clk_mux_determine_rate(struct clk_hw *hw,
->   	return clk_mux_determine_rate_flags(hw, req, mux->data->flags);
->   }
->   
-> +static void mtk_clk_mux_vote_fenc_disable_unused(struct clk_hw *hw)
-> +{
-> +	mtk_clk_mux_vote_fenc_enable(hw);
-> +	mtk_clk_mux_vote_disable(hw);
-
-Why would you need to enable and disable?
-
-If this is not a mistake... this definitely needs a comment in the code.
-
-> +}
-> +
->   const struct clk_ops mtk_mux_clr_set_upd_ops = {
->   	.get_parent = mtk_clk_mux_get_parent,
->   	.set_parent = mtk_clk_mux_set_parent_setclr_lock,
-> @@ -168,9 +326,31 @@ const struct clk_ops mtk_mux_gate_clr_set_upd_ops  = {
->   };
->   EXPORT_SYMBOL_GPL(mtk_mux_gate_clr_set_upd_ops);
->   
-> +const struct clk_ops mtk_mux_gate_fenc_clr_set_upd_ops = {
-> +	.enable = mtk_clk_mux_fenc_enable_setclr,
-> +	.disable = mtk_clk_mux_disable_setclr,
-> +	.is_enabled = mtk_clk_mux_fenc_is_enabled,
-> +	.get_parent = mtk_clk_mux_get_parent,
-> +	.set_parent = mtk_clk_mux_set_parent_setclr_lock,
-> +	.determine_rate = mtk_clk_mux_determine_rate,
-> +};
-> +EXPORT_SYMBOL_GPL(mtk_mux_gate_fenc_clr_set_upd_ops);
-> +
-> +const struct clk_ops mtk_mux_vote_fenc_ops = {
-> +	.enable = mtk_clk_mux_vote_fenc_enable,
-> +	.disable = mtk_clk_mux_vote_disable,
-> +	.is_enabled = mtk_clk_mux_fenc_is_enabled,
-> +	.get_parent = mtk_clk_mux_get_parent,
-> +	.set_parent = mtk_clk_mux_set_parent_setclr_lock,
-> +	.determine_rate = mtk_clk_mux_determine_rate,
-> +	.disable_unused = mtk_clk_mux_vote_fenc_disable_unused,
-> +};
-> +EXPORT_SYMBOL_GPL(mtk_mux_vote_fenc_ops);
-> +
->   static struct clk_hw *mtk_clk_register_mux(struct device *dev,
->   					   const struct mtk_mux *mux,
->   					   struct regmap *regmap,
-> +					   struct regmap *vote_regmap,
->   					   spinlock_t *lock)
->   {
->   	struct mtk_clk_mux *clk_mux;
-> @@ -185,9 +365,17 @@ static struct clk_hw *mtk_clk_register_mux(struct device *dev,
->   	init.flags = mux->flags;
->   	init.parent_names = mux->parent_names;
->   	init.num_parents = mux->num_parents;
-> -	init.ops = mux->ops;
-> +	if (mux->flags & CLK_USE_VOTE) {
-> +		if (vote_regmap)
-> +			init.ops = mux->ops;
-> +		else
-> +			init.ops = mux->dma_ops;
-
-Sorry why is this called dma_ops?!
-That's at least confusing, if not simply wrong.... please explain.
-
-> +	} else {
-> +		init.ops = mux->ops;
-> +	}
->   
->   	clk_mux->regmap = regmap;
-> +	clk_mux->vote_regmap = vote_regmap;
->   	clk_mux->data = mux;
->   	clk_mux->lock = lock;
->   	clk_mux->hw.init = &init;
-> @@ -220,6 +408,7 @@ int mtk_clk_register_muxes(struct device *dev,
->   			   struct clk_hw_onecell_data *clk_data)
->   {
->   	struct regmap *regmap;
-> +	struct regmap *vote_regmap = NULL;
->   	struct clk_hw *hw;
->   	int i;
->   
-> @@ -238,8 +427,13 @@ int mtk_clk_register_muxes(struct device *dev,
->   			continue;
->   		}
->   
-> -		hw = mtk_clk_register_mux(dev, mux, regmap, lock);
-> +		if (mux->vote_comp) {
-> +			vote_regmap = syscon_regmap_lookup_by_phandle(node, mux->vote_comp);
-> +			if (IS_ERR(vote_regmap))
-> +				vote_regmap = NULL;
-> +		}
->   
-> +		hw = mtk_clk_register_mux(dev, mux, regmap, vote_regmap, lock);
-
-...and this change just breaks each and every MediaTek SoC that is currently
-supported upstream.
-
-Please test your changes on older platforms before submitting upstream.
-
-Regards,
-Angelo
+-- 
+2.34.1
 
 
