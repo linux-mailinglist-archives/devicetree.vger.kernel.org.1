@@ -1,214 +1,188 @@
-Return-Path: <devicetree+bounces-156060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 536D9A59048
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:51:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4E4AA5904F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:53:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8489188D3EE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:51:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35038188D8B0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:53:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0DA921D585;
-	Mon, 10 Mar 2025 09:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14C9B224B01;
+	Mon, 10 Mar 2025 09:53:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cl6366UW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e7FE5Dfz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CC42248A8;
-	Mon, 10 Mar 2025 09:51:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1EE021D585;
+	Mon, 10 Mar 2025 09:53:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741600297; cv=none; b=M9vdWwZmQMFqH/bTHt8Drt5a6BCblPw1aHFBn+D4hIFi57LY7qT+manxqima57Yx/Vji4RFAEurGOqO1mJDDJt8lkKWnBRpBlSAXf5HwtkWRtR+YwBkl7uJ90RdLfK1X3FG14cwcDHa6HnJxS5kQwLaFzdIa+Nd3Zqwal1zXXis=
+	t=1741600397; cv=none; b=BRHVbB111Gxnax49gXmLPOCn+S1fv9mioYSNP8GWBnXGbKdNkOqOC2rK8UM9hCWA8Rt6bdgxA/8HrjGUvJ2vHcEEcs8kHiJ2zVy+hFHyVpE0M/jf0IJSn/lR85406uUq6mtwFR+cigaRwmq8DhSlZSM3XhtDikXR9k7ymTOZGqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741600297; c=relaxed/simple;
-	bh=KcsuoE5oc+tflOf5s+fkW50lshhYKgljE2mWx5LItuc=;
+	s=arc-20240116; t=1741600397; c=relaxed/simple;
+	bh=C8cQBoSLgcQl6tmD3Xal2tFbWst3CZYzZlbhfgxnR8I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K0GJWuNPwPJCSGSehNG6xdTVv5gvQhEj2hT2tzVV8qUhotAs3+OInThAumJbcx/jNfL0kjufD7UyO9afag94fywHvvm/dA3Q14utPkJ5yNw7rhekFnxjMSfejq8Ipxy9hMEFl2cFb1wCECRk5nOE3IJqLz8zZeSMy4XALkdT+Ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cl6366UW; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-abf4b376f2fso750590066b.3;
-        Mon, 10 Mar 2025 02:51:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741600294; x=1742205094; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7fIk/wLn8siLSomZZskx1hmM4iyC641S3xGJlKKijlM=;
-        b=cl6366UWtMCfZLO1rHOgXS7DihlEtSbIlvmgXfCK/TTp7e879cYQ/fMO/1QfrgSahQ
-         EWRX+ckMiP0lJZzdkapUiT4ulNP8UHaxnQ5fpQKw4p0dkcaHqlxve8yOGHrhXnAxgf2X
-         plq9tKh0a8sR8WhFjPPTfhs7sV+ZC+5omeQlk+aM5aTd7/C4KhFSe4We9nXsoR4gyj1Y
-         QXYf4d/fwQay6q3VSOfnAhk85AI0vCcKcsDJkSdbzmOqO2vr8SlTJ2zb3hRoStLCd4cU
-         RoilNsv3clVOJawPXcuBOYMzULuU1zQfo6KB2rCaHu17EsRhG6RIQKMsfBrWSFBWcrm/
-         EYGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741600294; x=1742205094;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :reply-to:message-id:subject:cc:to:from:date:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=7fIk/wLn8siLSomZZskx1hmM4iyC641S3xGJlKKijlM=;
-        b=WHzrqGR68pC9JKfMB1Br947PJ8U7N3TJvHdo/64IBl66BOidfMkD5o2LNQux9lm5uZ
-         lIYefm0/D7O8mh73ZW3A6aXCzvN9jOZXhMkUOOq8Oup5h5d4N5xS6qmSM20GRtGcbnvg
-         Ho6b7usCFvEMLeWRe8FUAMyDyxr/G/hHf8vX4IIZCe6jGIoYyiu/57fuAFi2nlQSvSYh
-         pguQ7L6uzEkxIxgdT8RprzdVLIuw7DTHVNxdnSunw7EaLQonJHkTx9TjBW1D5KP0+0kH
-         tbWEyOD7lZ7ReziVo/DWhzbbZLLHG2/BRzxD7hOs9djwEVWc3hwVKFXR/al4ucZ8h8cS
-         334Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVxWrCMX7+imHK5yid25aSgePBgXXPtSdQt29iBlmuW0T7q/AXcRsfh1i5g2OFpjQu/r+TY5PWm23Mp@vger.kernel.org, AJvYcCW0kflvjg8MEvnJiJEuT92INi6dNxy9P1cJIB/8Fx128iKY7NHDJTqqoe1wLKUDyWaulY1UvFMVq6bU@vger.kernel.org, AJvYcCWpW7fb7rj3k9qiS4qGEgB9CA0fLeEquy+3/Xu/dqQTshKPmDehAo+4nXqeptEkDJbP3C0tSgPL4HJqG4DD@vger.kernel.org
-X-Gm-Message-State: AOJu0YydbIZWWHU52nCwLlyaUqvLWudGAFzr8CLVRl6yJubXNkXOO6rt
-	uFyV472ASbwuEkFD+LssO7NiHGFee67ndzXNJ0BzpRJFJ3WwQpcC
-X-Gm-Gg: ASbGncs/6jZrbXnAJJGaVbN6Roji4ySRxUrFhHF5/L7XSuvU2RIoW6poqSLoq33KTho
-	gmGlLxTPdiQIuL9VsgJ69U7YtdnXL7siMxLhjzOXCtuNIUgXzy4nDFT3IWRD/HSTZ5mnw7QLwLe
-	qh+W5xZ0ciIwoancG123tmNTIFGAOPJzEDd205gVdX6AVle/m+SAI2fqj2Zf++N3FE2+h2e5vku
-	npsP3DHA2uSklL6TS8lq+LMNEwaLyBWfHOUzqUUpWO1u4k9G1lA6fKnERyHQReMXWMHuNKygann
-	MOfCZege2v9SeiNFKOUGfiifIZIYSA50+mkDfJthLrPSHoWbREaxqQE=
-X-Google-Smtp-Source: AGHT+IEnsaBC89bibOD1BqC+ZZ1kovv3JGu+umNRENY/jx8wzQl9KTymklI/3Rp6DH54iA+FTxPRUw==
-X-Received: by 2002:a17:907:3f2a:b0:abf:5fa3:cf96 with SMTP id a640c23a62f3a-ac252a879d7mr1234111666b.14.1741600293920;
-        Mon, 10 Mar 2025 02:51:33 -0700 (PDT)
-Received: from localhost ([185.92.221.13])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac255589a30sm594247266b.107.2025.03.10.02.51.25
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 10 Mar 2025 02:51:25 -0700 (PDT)
-Date: Mon, 10 Mar 2025 09:51:24 +0000
-From: Wei Yang <richard.weiyang@gmail.com>
-To: Wei Yang <richard.weiyang@gmail.com>
-Cc: Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org,
-	Alexander Graf <graf@amazon.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andy Lutomirski <luto@kernel.org>,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Arnd Bergmann <arnd@arndb.de>, Ashish Kalra <ashish.kalra@amd.com>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Eric Biederman <ebiederm@xmission.com>,
-	Ingo Molnar <mingo@redhat.com>, James Gowans <jgowans@amazon.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Pasha Tatashin <pasha.tatashin@soleen.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v4 02/14] memblock: add MEMBLOCK_RSRV_KERN flag
-Message-ID: <20250310095124.pa7dwgqhxglqrfes@master>
-Reply-To: Wei Yang <richard.weiyang@gmail.com>
-References: <20250206132754.2596694-1-rppt@kernel.org>
- <20250206132754.2596694-3-rppt@kernel.org>
- <20250218155004.n53fcuj2lrl5rxll@master>
- <Z7WHL_Xqgoln9oLg@kernel.org>
- <20250223002229.xuk6xlp23zr72hkc@master>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wnz8mI9HzUuloGHxtrQSziXGPap66WYSPHl3IVRpp43VED0Ua7ZuBp1I4gVAvOZsUBOE1O5RgjT8W9mQV+221+xB0H3chL7Jjeoj3Q/rGDjXrWgE1tAHt2zu+mjxIYksP+9o3uGr2r2xjXmO4zSr6vtLNJyfPQUZYU6IHTRgjps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e7FE5Dfz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 450ADC4CEE5;
+	Mon, 10 Mar 2025 09:53:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741600396;
+	bh=C8cQBoSLgcQl6tmD3Xal2tFbWst3CZYzZlbhfgxnR8I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e7FE5DfzHboSIvO5aiHAlSQ6D2hWo3tT4t6XteTOws1h+83pp7enNxpUqjQ7UylSL
+	 bmjDnqykEs7XyNzSI/QQfptktGsTuvXWOzBLfd98Xb8mos7gElcihUuPu6TS5aF/Og
+	 2jiuUHYqsg4Qk4zb0P391BlcP6FNMA83O0cIXVphEkHMrqcuh7KerRZjoGADBZV7SR
+	 RCwVyZS/sdGx0xvFGB/d11mPyszuAkA3y6VX9tvAkw/IGeqYCFtRYO4KMZQBt+FRpb
+	 WlUlrSZn2MLnYS6MZQVn7NQ7F7Wm5vSWr0d4Rv3sYI9afbf1bbO61fOHv9uF8v4bik
+	 7y177l72prllw==
+Date: Mon, 10 Mar 2025 10:53:14 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, 
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
+ color encoder
+Message-ID: <20250310-orthodox-unyielding-kagu-decaf9@houat>
+References: <20250304101530.969920-1-victor.liu@nxp.com>
+ <20250304101530.969920-4-victor.liu@nxp.com>
+ <20250304152320.GA2630063-robh@kernel.org>
+ <1891036.atdPhlSkOF@steina-w>
+ <20250305163805.GA2071011-robh@kernel.org>
+ <7d98163d-10c8-457d-92e7-6a1d6e379beb@nxp.com>
+ <20250306-kangaroo-of-pastoral-typhoon-8aefb2@houat>
+ <20250306203444.GA570402-robh@kernel.org>
+ <3836a4d2-ef4e-427e-a820-39dd4823458b@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nokzvrads2o637d3"
 Content-Disposition: inline
-In-Reply-To: <20250223002229.xuk6xlp23zr72hkc@master>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <3836a4d2-ef4e-427e-a820-39dd4823458b@nxp.com>
 
-On Sun, Feb 23, 2025 at 12:22:29AM +0000, Wei Yang wrote:
->On Wed, Feb 19, 2025 at 09:24:31AM +0200, Mike Rapoport wrote:
->>Hi,
->>
->>On Tue, Feb 18, 2025 at 03:50:04PM +0000, Wei Yang wrote:
->>> On Thu, Feb 06, 2025 at 03:27:42PM +0200, Mike Rapoport wrote:
->>> >From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
->>> >
->>> >to denote areas that were reserved for kernel use either directly with
->>> >memblock_reserve_kern() or via memblock allocations.
->>> >
->>> >Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
->>> >---
->>> > include/linux/memblock.h | 16 +++++++++++++++-
->>> > mm/memblock.c            | 32 ++++++++++++++++++++++++--------
->>> > 2 files changed, 39 insertions(+), 9 deletions(-)
->>> >
->>> >diff --git a/include/linux/memblock.h b/include/linux/memblock.h
->>> >index e79eb6ac516f..65e274550f5d 100644
->>> >--- a/include/linux/memblock.h
->>> >+++ b/include/linux/memblock.h
->>> >@@ -50,6 +50,7 @@ enum memblock_flags {
->>> > 	MEMBLOCK_NOMAP		= 0x4,	/* don't add to kernel direct mapping */
->>> > 	MEMBLOCK_DRIVER_MANAGED = 0x8,	/* always detected via a driver */
->>> > 	MEMBLOCK_RSRV_NOINIT	= 0x10,	/* don't initialize struct pages */
->>> >+	MEMBLOCK_RSRV_KERN	= 0x20,	/* memory reserved for kernel use */
->>> 
->>> Above memblock_flags, there are comments on explaining those flags.
->>> 
->>> Seems we miss it for MEMBLOCK_RSRV_KERN.
->>
->>Right, thanks!
->> 
->>> > 
->>> > #ifdef CONFIG_HAVE_MEMBLOCK_PHYS_MAP
->>> >@@ -1459,14 +1460,14 @@ phys_addr_t __init memblock_alloc_range_nid(phys_addr_t size,
->>> > again:
->>> > 	found = memblock_find_in_range_node(size, align, start, end, nid,
->>> > 					    flags);
->>> >-	if (found && !memblock_reserve(found, size))
->>> >+	if (found && !__memblock_reserve(found, size, nid, MEMBLOCK_RSRV_KERN))
->>> 
->>> Maybe we could use memblock_reserve_kern() directly. If my understanding is
->>> correct, the reserved region's nid is not used.
->>
->>We use nid of reserved regions in reserve_bootmem_region() (commit
->>61167ad5fecd ("mm: pass nid to reserve_bootmem_region()")) but KHO needs to
->>know the distribution of reserved memory among the nodes before
->>memmap_init_reserved_pages().
->> 
->
->I took another look into this commit. There maybe a very corner case in which
->will leave a reserved region with no nid set.
->
->memmap_init_reserved_pages()
->    for_each_mem_region() {
->        ...
->	memblock_set_node(start, end, &memblock.reserved, nid);
->    }
->
->We leverage the iteration here to set nid to all regions in memblock.reserved.
->But memblock_set_node() may call memblock_double_array() to expand the array,
->which may get a range before current start. So we would miss to set the
->correct nid to the new reserved region.
->
->I have tried to create a case in memblock test. This would happen when there
->are 126 memblock.reserved regions. And the last region is across the last two
->node.
->
->One way to fix this is compare type->max in memblock_set_node(). Then check
->this return value in memmap_init_reserved_pages(). If we found the size
->changes, repeat the iteration.
->
->But this is a very trivial one, not sure it worth fix.
->
 
-Hi, Mike
+--nokzvrads2o637d3
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
+ color encoder
+MIME-Version: 1.0
 
-I have done a user space test which shows we may have a chance to leave a
-region with non-nid set.
+On Fri, Mar 07, 2025 at 11:25:40AM +0800, Liu Ying wrote:
+> On 03/07/2025, Rob Herring wrote:
+> > On Thu, Mar 06, 2025 at 12:35:49PM +0100, Maxime Ripard wrote:
+> >> On Thu, Mar 06, 2025 at 03:02:41PM +0800, Liu Ying wrote:
+> >>> On 03/06/2025, Rob Herring wrote:
+> >>>> On Wed, Mar 05, 2025 at 10:35:26AM +0100, Alexander Stein wrote:
+> >>>>> Hi,
+> >>>>>
+> >>>>> Am Dienstag, 4. M=E4rz 2025, 16:23:20 CET schrieb Rob Herring:
+> >>>>>> On Tue, Mar 04, 2025 at 06:15:28PM +0800, Liu Ying wrote:
+> >>>>>>> A DPI color encoder, as a simple display bridge, converts input D=
+PI color
+> >>>>>>> coding to output DPI color coding, like Adafruit Kippah DPI hat[1=
+] which
+> >>>>>>> converts input 18-bit pixel data to 24-bit pixel data(with 2 low =
+padding
+> >>>>>>> bits in every color component though). Document the DPI color enc=
+oder.
+> >>>>>>
+> >>>>>> Why do we need a node for this? Isn't this just wired how it is wi=
+red=20
+> >>>>>> and there's nothing for s/w to see or do? I suppose if you are try=
+ing to=20
+> >>>>>> resolve the mode with 24-bit on one end and 18-bit on the other en=
+d, you=20
+> >>>>>> need to allow that and not require an exact match. You still might=
+ need=20
+> >>>>>> to figure out which pins the 18-bit data comes out on, but you hav=
+e that=20
+> >>>>>> problem with an 18-bit panel too. IOW, how is this any different i=
+f you=20
+> >>>>>> have an 18-bit panel versus 24-bit panel?
+> >>>>>
+> >>>>> Especially panel-simple.c has a fixed configuration for each displa=
+y, such as:
+> >>>>>> .bus_format =3D MEDIA_BUS_FMT_RGB666_1X18
+> >>>>>
+> >>>>> How would you allow or even know it should be addressed as
+> >>>>> MEDIA_BUS_FMT_RGB888_1X24 instead? I see different ways:
+> >>>>> 1. Create a new display setting/compatible
+> >>>>> 2. Add an overwrite property to the displays
+> >>>>> 3. Use a (transparent) bridge (this series)
+> >>>>>
+> >>>>> Number 1 is IMHO out of question.=20
+> >>>>
+> >>>> Agreed.
+> >>>>
+> >>>>> I personally don't like number 2 as this
+> >>>>> feels like adding quirks to displays, which they don't have.
+> >>>>
+> >>>> This is what I would do except apply it to the controller side. We k=
+now=20
+> >>>> the panel side already. This is a board variation, so a property mak=
+es=20
+> >>>> sense. I don't think you need any more than knowing what's on each e=
+nd.=20
+> >>>
+> >>> With option 2, no matter putting a property in source side or sink si=
+de,
+> >>> impacted display drivers and DT bindings need to be changed, once a b=
+oard
+> >>> manipulates the DPI color coding.  This adds burdens and introduces n=
+ew
+> >>> versions of those DT bindings.  Is this what we want?
+> >>
+> >> There's an option 4: make it a property of the OF graph endpoints. In
+> >> essence, it's similar to properties that are already there like
+> >> lane-mapping, and it wouldn't affect the panel drivers, or create an
+> >> intermediate bridge.
+> >=20
+> > Yes, that's actually where I meant to put the property(ies).
+>=20
+> Put optional dpi-color-coding or something else in endpoint-base?
 
-Not sure you are ok with my approach of fixing.
+I'm not sure what you mean by endpoint base, but it would be just like
+data-lanes, on the endpoint itself, right next to remote-endpoint. Given
+the nomenclature we have, something like "color-format" or
+"color-encoding", and taking the media format bus as value.
 
--- 
-Wei Yang
-Help you, Help me
+> Assuming it's optional, then it implies that it will overwrite OS's
+> setting, which sounds kinda awkward, because it is supposed to be
+> required to describe the actual color coding.
+
+I'm sorry, I don't understand what you mean here. Your bridge would have
+been optional as well, right?
+
+Worst case scenario, your driver could make that property mandatory on
+its endpoints. Plenty of drivers are doing it.
+
+Maxime
+
+--nokzvrads2o637d3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZ862iQAKCRDj7w1vZxhR
+xfjPAP9Q21oDiutNW4kjM5Uqr1gdJjlndAkKPdt4WIFvmF8NagD7BJzqcRLgcvQ2
+oQiFDp8F/4TL/si8mNvOwh7oIGZonwo=
+=j0ea
+-----END PGP SIGNATURE-----
+
+--nokzvrads2o637d3--
 
