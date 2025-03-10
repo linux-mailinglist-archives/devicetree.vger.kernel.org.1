@@ -1,309 +1,159 @@
-Return-Path: <devicetree+bounces-156162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F49AA596D2
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C6F2A596EA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:01:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9ADA188A7D0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 13:58:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7F931889B42
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:01:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB3422AE75;
-	Mon, 10 Mar 2025 13:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC1522B5A8;
+	Mon, 10 Mar 2025 14:00:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="AHY/c072"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DuK80jpk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB4B1AA7BA
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 13:58:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F167F1BC3F;
+	Mon, 10 Mar 2025 14:00:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741615115; cv=none; b=hPxfZ1jTUnqlLgZEV74+97X1oy99PlQfsPMfw1MzdNBTl08gExTMygr6b2b9idEq1UqzXptrnIVPWYeWPbSPjAhjS3EIGY/jTdg+AnyVoT1YGJGZGUjjGP9cC79bfoW4yl1c89ybc8nEws9Xx+cHZeaa/bRrYL5jirP+OyTS5yA=
+	t=1741615259; cv=none; b=WUdUlcv4+AhiAMASMHUSIMacz1QFeZFCMQVknMfDwGFwM2iz2++Ost9XKwaL9OpgeBIbX9sF9nDQYavSKRDgYbw07snpogYiYwJVnL6FuTyRmmUkZlgObxq/1r2H2yRUs1Re+Iyhc8dBRIeauv7TaXydt/gRTphYsAztzK1Dr7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741615115; c=relaxed/simple;
-	bh=i9GxyKAVB18HnH+g2lVwQvXz5I//zOKa3JmIOEbrK94=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QZbdlbybXxUS2U+RZT2WjPk9+j9w5WTaIloSxJ5yaPXDLN5ePS+qwUXP6qgUXRxwGM1dE8uU2ogjvtzrlWpmsZC8tZhE1Nj/Ys7IDHx2RaRU9Ukr+OfFMolp+D/UiyD+VPOorID/i376XN0nYNgZqTCVaosKQs8bFOQps6/h7XI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=AHY/c072; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-390cf7458f5so4140439f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 06:58:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1741615112; x=1742219912; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=x6bOGmoklXRtJQxdeWHpYOOfYuKnU0zJof9I6zGwu64=;
-        b=AHY/c072S/rTv5X4B7RzTjFt+WNE6wTGVRHpxbTVLrZCFV122NhUaa1ZGl1h+d3FzJ
-         ravRkaFQp+F0YVLAa+VXB/q5BfrZFE81RLywDtCjHLejTadqpGDN6wajA7Wukj98+rlc
-         Q5f+7l+2x1a++74psGcqjOhZS2FyRYlzK7X/tgDlXL0a3yN8SPzuax81c7QvgeLKezR2
-         NI2tl2hDaLsU/nY0Yoj05y9ueF6fYS30hk+a3vbTxFzXTG1oHUM+rD454QEnSdD+iDt8
-         88yfbRVK7lMVEtvq4wqc32w19TNg3yPHi56qroS2EATt25fKgrgLqjkeJIJlBe67d92r
-         +m3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741615112; x=1742219912;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x6bOGmoklXRtJQxdeWHpYOOfYuKnU0zJof9I6zGwu64=;
-        b=ScedNszVhd5yuXhQ2i3suM/4Yjzkbxd6q+H5utPN788VzPXEo5j4L5YEG3hnVIVHsf
-         yp2zShH9fGsfxW/WJzzWk3RlHig9JS8j9WB8DBo7KWPO+OO4lAlmOJrt/rbThjFuvisa
-         cCtzbEV3NgXWiHMt8xnPYVsznAY0n+qO3/WOz+eQz0uMT2XZpWLgV5IVVMPKtDtXFX3g
-         tGpt3yGvSHNRxAXYlGnXoYn5RFzRTnY82Wp3RlGcRSPC4/XymT2vQTp291mu/PPdZp2u
-         ONzVa2AUvHeEkPfgPB6c75CPU6ShLnC4yERPJmGtEVPUuxzAgAMqSmTs3JWzNaSj3nfR
-         N3Tw==
-X-Forwarded-Encrypted: i=1; AJvYcCWDRJMhGsVxeu8v9MWFna4DwF9BAQMHmy5ZrhKgqF2bA27x7RsW8WXI134ywRr2xRnF0o07V74RzM7G@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzbgbk9oAWyaOIUEtfvaGnXOTdL1sJ8Tc+/whHuOhXhZMRn1X5P
-	I6F4C8VBYz6cKWIUmtfGujq+kIZ0PUhvIdw9aPpP5gJ9BWjDf01jGV4nRg/VFM0=
-X-Gm-Gg: ASbGncvaqtnBdFq3Op8ngwnd6hVSNBK/u35TFhpK979bFCCPVIMNJ30X76Q+AvvG9Uc
-	rvgN4/XwMppKdCzbMqtX0Wu7fIkqkHwGkKFdafYvQmoY3xG54Dskw/xT6HB9zT89FDJRmQ6xvOH
-	2iSlxnE4uQK+K0BBG3kyudvH2juZaL9Xtaniuw3rUHZzZW9ypKeyYbLzvKtk+LyEo3YNRplpdNw
-	0JdJeMHg1GQAOFFBdhEleRqFGoQopzIsiXjbHJkdbTPJtzntB18dik0z2K/PZ6d/Zor0xTpf2o1
-	hdRs13eqECExbUm+f+Ksbf4m8gS4helfXqGbP6qTa0xFSDBlXDaAVW56RGWLNzzDqp45FKYulsc
-	hnK7jsI7UhBVCBzStpHOut0U=
-X-Google-Smtp-Source: AGHT+IGyhk5+VAMcITm5rrq0aJ90sKdh4cQmUoqGgN6Meob+XW4ZpicfvmV1X3pFEScV3weEws3UqA==
-X-Received: by 2002:a05:6000:1fa4:b0:38f:577f:2f6d with SMTP id ffacd0b85a97d-39132d093demr10173742f8f.2.1741615111629;
-        Mon, 10 Mar 2025 06:58:31 -0700 (PDT)
-Received: from localhost (host-87-14-236-98.retail.telecomitalia.it. [87.14.236.98])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac299a025c7sm236754666b.51.2025.03.10.06.58.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Mar 2025 06:58:31 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Mon, 10 Mar 2025 14:59:41 +0100
-To: Phil Elwell <phil@raspberrypi.com>
-Cc: Herve Codina <herve.codina@bootlin.com>,
-	Andrea della Porta <andrea.porta@suse.com>, andrew@lunn.ch,
-	Arnd Bergmann <arnd@arndb.de>,
-	"maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" <bcm-kernel-feedback-list@broadcom.com>,
-	bhelgaas@google.com, brgl@bgdev.pl,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>, derek.kiernan@amd.com,
-	devicetree@vger.kernel.org, dragan.cvetic@amd.com,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org,
-	kw@linux.com, Linus Walleij <linus.walleij@linaro.org>,
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	LKML <linux-kernel@vger.kernel.org>,
-	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>,
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
-	lpieralisi@kernel.org, luca.ceresoli@bootlin.com,
-	manivannan.sadhasivam@linaro.org, masahiroy@kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>, saravanak@google.com,
-	Stephen Boyd <sboyd@kernel.org>, thomas.petazzoni@bootlin.com,
-	Stefan Wahren <wahrenst@gmx.net>, Will Deacon <will@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH v6 00/10] Add support for RaspberryPi RP1 PCI device
- using a DT overlay
-Message-ID: <Z87wTfChRC5Ruwc0@apocalypse>
-References: <CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com>
- <20250213171435.1c2ce376@bootlin.com>
- <CAMEGJJ1++aeE7WWLVVesbujME+r2WicEkK+CQgigRRp2grYf=A@mail.gmail.com>
+	s=arc-20240116; t=1741615259; c=relaxed/simple;
+	bh=IhYu9da6QFSDDsbPqHxYIft82wSywXeglIjGNyg4cBM=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=a4R7Z2sfAL8YM4meITnU208UTavNrmjVbVFIApj02TCGZpiiZUTcrqAM9F+LSVsBCuEt5xdYSHQPiyaQ4WmKN7dEsXbPy1wwFSNX5wK6t09hjUN+AWMj12NZCMVCXZFekDpJn8RvxPFBTdDB8Jg7r/+Rf4RS0NLseWwzYc2uNsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DuK80jpk; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D8F6344287;
+	Mon, 10 Mar 2025 14:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1741615255;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ic1Dx7Jc0GBQUrs269FgO1VmANg/4PfSayG+I8hDFAw=;
+	b=DuK80jpkLcFQYmRVTQyZYRzbWd5veudVS7lStznyElUVSl4NgOQMEwoub8NqVmncBWeIN3
+	rITac9+BaOxeX/0oMlHZZXVKP7XhTSkVc2X7R58j4qlUD3T8n7y3YwjdfgYMyc56g5RlGI
+	V7uO9XmSG9G15dT+Ui3SJkI2Yw/0sFxzLTCoAmwC9MJHGpzvsut4sPo39pr1ftGDdzHHLk
+	becCl4cOkHPGy6BeoqQBEYVbRb7Kw6YFX5tZxHHfGSylO7zH/oLvhhiKDWuNWm/6HccR8z
+	7dZk2DzQqcMZ52w0chHlB5oo610DZbP6n+4Udifr4zHSrJoaEk3PEhTFUIq1UA==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: J. =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>
+Cc: Rob Herring <robh@kernel.org>,  Richard Weinberger <richard@nod.at>,
+  Michael Ellerman <mpe@ellerman.id.au>,  Nicholas Piggin
+ <npiggin@gmail.com>,  Conor Dooley <conor+dt@kernel.org>,
+  linux-kernel@vger.kernel.org,  Crystal Wood <oss@buserror.net>,
+  Christophe Leroy <christophe.leroy@csgroup.eu>,
+  devicetree@vger.kernel.org,  Frank Li <Frank.Li@nxp.com>,  Vignesh
+ Raghavendra <vigneshr@ti.com>,  Madhavan Srinivasan <maddy@linux.ibm.com>,
+  linux-mtd@lists.infradead.org,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Krzysztof Kozlowski <krzk@kernel.org>,  Naveen N Rao <naveen@kernel.org>,
+  linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: nand: Add fsl,elbc-fcm-nand
+In-Reply-To: <Z8yPKx1U-sT1OGeb@probook> ("J. =?utf-8?Q?Neusch=C3=A4fer=22'?=
+ =?utf-8?Q?s?= message of "Sat, 8
+	Mar 2025 18:40:43 +0000")
+References: <20250226-ppcyaml-elbc-v3-0-a90ed71da838@posteo.net>
+	<20250226-ppcyaml-elbc-v3-2-a90ed71da838@posteo.net>
+	<174059551678.3319332.12055848852503108874.robh@kernel.org>
+	<20250303140021.GA1732495-robh@kernel.org> <Z8yPKx1U-sT1OGeb@probook>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 10 Mar 2025 15:00:53 +0100
+Message-ID: <87o6y97zoq.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMEGJJ1++aeE7WWLVVesbujME+r2WicEkK+CQgigRRp2grYf=A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduudelheefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffuddvueeigeegkeffveeuledtvdefteeiuddthffhtdefhfffledtleeuteejvdenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgpdihrghmlhdrshhonecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudekpdhrtghpthhtohepjhdrnhgvsehpohhsthgvohdrnhgvthdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhitghhrghrugesnhhougdrrghtpdhrtghpthhtohepmhhpvgesvghllhgvrhhmrghnrdhiugdrrghupdhrtghpthhtohepnhhpihhgghhinhesghhmrghilhdrtghom
+ hdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepohhsshessghushgvrhhrohhrrdhnvght
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hi,
+On 08/03/2025 at 18:40:43 GMT, J. Neusch=C3=A4fer <j.ne@posteo.net> wrote:
 
-On 16:27 Thu 13 Feb     , Phil Elwell wrote:
-> Hi Hervé,
-> 
-> On Thu, 13 Feb 2025 at 16:14, Herve Codina <herve.codina@bootlin.com> wrote:
-> >
-> > Hi Phil,
-> >
-> > On Thu, 13 Feb 2025 15:18:45 +0000
-> > Phil Elwell <phil@raspberrypi.com> wrote:
-> >
-> > > Hi Andrea,
-> > >
-> > > The problem with this approach (loading an overlay from the RP1 PCIe
-> > > driver), and it's one that I have raised with you offline, is that
-> > > (unless anyone can prove otherwise) it becomes impossible to create a
-> > > Pi 5 DTS file which makes use of the RP1's resources. How do you
-> > > declare something as simple as a button wired to an RP1 GPIO, or fan
-> > > connected to a PWM output?
-> >
-> > The driver could be improved in a second step.
-> > For instance, it could load the dtbo from user-space using request_firmare()
-> > instead of loading the embedded dtbo.
-> >
-> > >
-> > > If this is the preferred route to upstream adoption, I would prefer it
-> > > if rp1.dtso could be split in two - an rp1.dtsi similar to what we
-> > > have downstream, and an rp1.dtso that #includes it. In this way we can
-> > > keep the patching and duplication to a minimum.
-> >
-> > Indeed, having a rp1.dtsi avoid duplication but how the rp1.dtso in
-> > the the kernel sources could include user customization (button, fan, ...)
-> > without being modified ?
-> > At least we have to '#include <my_rp1_customizations.dtsi>'.
-> >
-> > Requesting the dtbo from user-space allows to let the user to create
-> > its own dtso without the need to modify the one in kernel sources.
-> >
-> > Does it make sense ?
-> 
-> I think I understand what you are saying, but at this point the RP1
-> overlay would no longer be an RP1 overlay - it would be an
-> RP1-and-everything-connected-to-it overlay, which is inherently
-> board-specific. Which user-space process do you think would be
-> responsible for loading this alternative overlay, choosing carefully
-> based on the platform it is running on? Doesn't that place quite a
-> burden on all the OS maintainers who up to now have just needed a
-> kernel and a bunch of dtb files?
-> 
-> If it is considered essential that the upstream Pi 5 dts file does not
-> include RP1 and its children, then Raspberry Pi are going to have to
-> walk a different path until we've seen how that can work. By splitting
-> rp1.dtso as I suggested, and perhaps providing an alternative helper
-> function that only applies the built-in overlay if the device node
-> doesn't already exist, we get to stay as close to upstream as
-> possible.
-> 
-> Phil
+> Miquel, what do you think about Rob's suggestion below?
+>
+> On Mon, Mar 03, 2025 at 08:00:21AM -0600, Rob Herring wrote:
+>> On Wed, Feb 26, 2025 at 12:45:17PM -0600, Rob Herring (Arm) wrote:
+>> >=20
+>> > On Wed, 26 Feb 2025 18:01:41 +0100, J. Neusch=C3=A4fer wrote:
+>> > > Formalize the binding already supported by the fsl_elbc_nand.c driver
+>> > > and used in several device trees in arch/powerpc/boot/dts/.
+>> > >=20
+>> > > raw-nand-chip.yaml is referenced in order to accommodate situations =
+in
+>> > > which the ECC parameters settings are set in the device tree. One su=
+ch
+>> > > example is in arch/powerpc/boot/dts/turris1x.dts:
+>> > >=20
+>> > > 	/* MT29F2G08ABAEAWP:E NAND */
+>> > > 	nand@1,0 {
+>> > > 		compatible =3D "fsl,p2020-fcm-nand", "fsl,elbc-fcm-nand";
+>> > > 		reg =3D <0x1 0x0 0x00040000>;
+>> > > 		nand-ecc-mode =3D "soft";
+>> > > 		nand-ecc-algo =3D "bch";
+>> > >=20
+>> > > 		partitions { ... };
+>> > > 	};
+>> > >=20
+>> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>> > > Signed-off-by: J. Neusch=C3=A4fer <j.ne@posteo.net>
+>> > > ---
+>> > >=20
+>> > > V3:
+>> > > - remove unnecessary #address/size-cells from nand node in example
+>> > > - add Frank Li's review tag
+>> > > - add missing end of document marker (...)
+>> > > - explain choice to reference raw-nand-chip.yaml
+>> > >=20
+>> > > V2:
+>> > > - split out from fsl,elbc binding patch
+>> > > - constrain #address-cells and #size-cells
+>> > > - add a general description
+>> > > - use unevaluatedProperties=3Dfalse instead of additionalProperties=
+=3Dfalse
+>> > > - fix property order to comply with dts coding style
+>> > > - include raw-nand-chip.yaml instead of nand-chip.yaml
+>> > > ---
+>> > >  .../devicetree/bindings/mtd/fsl,elbc-fcm-nand.yaml | 68 +++++++++++=
++++++++++++
+>> > >  1 file changed, 68 insertions(+)
+>> > >=20
+>> >=20
+>> > My bot found errors running 'make dt_binding_check' on your patch:
+>> >=20
+>> > yamllint warnings/errors:
+>> >=20
+>> > dtschema/dtc warnings/errors:
+>> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/binding=
+s/mtd/fsl,elbc-fcm-nand.example.dtb: nand@1,0: $nodename:0: 'nand@1,0' does=
+ not match '^nand@[a-f0-9]$'
+>> > 	from schema $id: http://devicetree.org/schemas/mtd/fsl,elbc-fcm-nand.=
+yaml#
+>>=20
+>> Drop the unit address in raw-nand-chip.yaml. So:=20
+>>=20
+>> properties:
+>>   $nodename:
+>>     pattern: "^nand@"
 
-So, the problem is twofold: the first is due to the fact that downstream
-expects the dtb to be fully declared at fw load time (I'll call that
-*monolithic* dtb from now on), the second is about how to represent dependencies
-between board dtb and rp1 overlay which arises only when using overlays instead
-of a monolithic dtb.
+I am not a big fan of lowering the constraint, but if our current schema
+doesn't allow to express this need differently, we may need to do that.
+I obviously trust Rob on this regard.
 
-The former issue must be solved first in order for the latter to even exists
-(if we don't use overlay, the dependencies are fully exposed in the dtb since
-the beginning), so I'll concentrate on the former for now.
-
-There are 3 possible scenarios to be reconciled:
-
-
-1 - MONOLITHIC DTB
-
-This is the downstream case, where it's advisable to have only one dtb blob
-containing everything (rp1 included) loaded by the fw. In this case the
-resulting devicetree would looks like:
-
-  axi {
-    pcie@120000 {
-      rp1_nexus {
-        pci-ep-bus@1 {
-             ...
-        }
-      }
-    }
-  }
-
-
-2 - RP1 LOADED FROM OVERLAY BY THE FW
-
-In this case the rp1 dt node is loaded from overlay directly by the fw and the 
-resulting devicetree is exactly equal to the monolithic dtb scenario.
-In order for that overlay to be loaded by fw, just add 'dtoverlay=rp1' in
-'config.txt'.
-
-
-3 - RP1 LOADED FROM OVERLAY AT RUNTIME
-
-Here it's the rp1 driver that loads the overlay at runtime, which is the case
-that this patchset originally proposed. The devicetree ends up like this:
-
-  axi {
-    pcie@120000 {
-      pci@0,0 {
-        dev@0,0 {
-          pci-ep-bus@1 {
-               ...
-          }
-        }
-      }
-    }
-  }
-
-and this is exepcially useful to cope with the case in which there's no DT
-natively used, e.g. on ACPI systems.
-
-
-In order for all those 3 mentioned scenatios to work, I propose the following
-inclusion scheme for for the dts files (the arrow points to the includer):
-                   
- 
- rp1-pci.dtso         rp1.dtso
-     ^                    ^
-     |                    |
-rp1-common.dtsi ----> rp1-nexus.dtsi ----> bcm2712-rpi-5-b-MONOLITHIC.dts
-   
-   
-where those dts are defined as follows (omitting the internal properties for
-clarity sake):
-
-
-- rp1-common.dtsi ------- // definition of core rp1 and its peripherals, common
-			  // for all cases
-
-	pci_ep_bus: pci-ep-bus@1 
-	{
-		rp1_clocks { };
-
-		rp1_gpio { };
-
-		rp1_eth { };
-	};
-
-- rp1-pci.dtso ---------- // ovl linked in the rp1 driver code to be loaded at
-			  // runtime from rp1 driver. Only for case 3
-
-	/plugin/;
-	fragment@0 {
-                target-path="";
-                __overlay__ {
-			#include "rp1-common.dtsi"
-		};
-	}
-
-- rp1-nexus.dtsi ------- // adapter to decouple rp1 ranges for non runtime-loaded
-		         // overlay case (i.e. only for case 1 and 2)
-
-	rp1_nexus {
-		ranges = ...
-		
-		 #include "rp1-common.dtsi"
-	};
-
-- rp1.dtso ------------ // overlay to be loaded by fw (case 2)
-
-	/plugin/;
-	&pcie2 {
-		#include "rp1-nexus.dtsi"
-	};
-
-- bcm2712-rpi-5-b-MONOLITHIC.dts --- // monolithic dtb to avoid any overlay use
-				     // (case 1)
-
-	/ {
-		... all rpi5 board dts ...
-		&pcie2 {
-        		#include "rp1-nexus.dtsi"
-		};
-	};
-
-
-with only minimal changes to the rp1 driver code, I can confirm that all those
-scenarios can coexits and are working fine. Before processding with a new patchset
-I'd like to have some thoughts about that, do you think this is a viable approach?
-
-Many thanks,
-Andrea
+Thanks,
+Miqu=C3=A8l
 
