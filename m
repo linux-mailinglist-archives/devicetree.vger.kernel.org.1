@@ -1,168 +1,156 @@
-Return-Path: <devicetree+bounces-156166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499DCA59723
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:11:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4A11A5971E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 15:11:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C15F9188C4DF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:11:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E19B03A46E6
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD7B22AE75;
-	Mon, 10 Mar 2025 14:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13A6022A4FC;
+	Mon, 10 Mar 2025 14:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="LrCLI2fm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ClPl/EeA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C96522B5B8;
-	Mon, 10 Mar 2025 14:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D923122A4EA;
+	Mon, 10 Mar 2025 14:11:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741615876; cv=none; b=IqVUIt0W9D9CjyJaSa8t77fVY3D3phZjO/nUJZ7wUfMr1qI1M1M4lDBuRvGSIBXXAi88Vf9g7hcHCsUCoXfAdKsMm25nekszK0I+SOZUW7/tocHQ3Y9WnYSxMtQq9hZ7dIhONw9RlC5+K295d3eYaUcAw27iA0y8mJqF1/wzjGo=
+	t=1741615863; cv=none; b=kx0Fi8gbAWdrHdIjYlgxC/hbaLgH+4/Pfq3fNHgfc36wQ79HvJ9m4qNpXWWd+7V5O1CluQROUk2DktIw3u6t8sCnQSB4UNa7MvqtbHfeA/PDMsVMutMj6HeZK6oLigzk0nS65PSRuq1j6aFRw65hCel/3GWMhbjgjZP6rCIcvr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741615876; c=relaxed/simple;
-	bh=h7IG7Iw5c8FBRHktz05awjGUOLRAhFTuYTO3Fk3rjPg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MEfrVaI0LJX5cSew7BYP6WU4BZ6F/tA3Y/DcArR1cJNw88AwAPPm9Ib8f+XsF3ZqpS7FZrmhNyIkUnwrINyYj119C/6uWSFdyz+1syJFC6lHFNuWmAtu+SMplA410smY3WD1wTFQ7lJKAplSl9duRivN8ojM34Qaov7Oug4iaps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=LrCLI2fm; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 55FF820E07;
-	Mon, 10 Mar 2025 15:11:11 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id sNrT02Q0KMYU; Mon, 10 Mar 2025 15:11:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1741615870; bh=h7IG7Iw5c8FBRHktz05awjGUOLRAhFTuYTO3Fk3rjPg=;
-	h=From:To:Cc:Subject:Date;
-	b=LrCLI2fmEFFUjqJfD6ojRGOv5jvEJu08U1Mycn2bhc1P+G0yAf0j+SEqO3LDGQbTQ
-	 T9ejM1B9XkwiWNjm2+h9NHjdzLEFwVM6MyEjkStLJzHX81iTKMfQlerSkboX0A1q+8
-	 aO0oDX1Vo/Q7F9v+SacOUcZWeKLTVqCNq/LmVWVuEbZ9M7EJ5PRVIXjw/gQIykemc3
-	 JgspNxqf8lJVuzWYYN1fPlXHbqsBRwGdGcvHjN0aoPuTl7sbFxx1JgVDLhrNRVl+J9
-	 iuoIqcs21uSNXl1k9aoIMnx62lKmQTaS9f9JJIczdDuGtLgZeN2szmEf8VAT59f4gF
-	 Q6bBtONyrrSFQ==
-From: Yao Zi <ziyao@disroot.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Yao Zi <ziyao@disroot.org>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Andy Yan <andyshrk@163.com>,
-	Damon Ding <damon.ding@rock-chips.com>,
-	Jing Luo <jing@jing.rocks>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Fix PWM pinctrl names
-Date: Mon, 10 Mar 2025 14:09:17 +0000
-Message-ID: <20250310140916.14384-2-ziyao@disroot.org>
+	s=arc-20240116; t=1741615863; c=relaxed/simple;
+	bh=yz+QldxCtNgccfZ6ARlzhW3yaYz3Keq073Sg+hhKyCs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DV6jFCNzRZNquR9iN8fFctWIGYRLCcy68sCmlaVGJRvvUdX8Ricx4xFix6bzNhuSts2IF9LBhDtcBg84fslxdF+y2Bf8bOPUjQ9XxSN0onUS8DdA8anP68P3YDYl9VXfQqib+IISqeYJcaBXHbjygqxsUjK1x1VTMwwXb/qtZWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ClPl/EeA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209EDC4CEEB;
+	Mon, 10 Mar 2025 14:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741615862;
+	bh=yz+QldxCtNgccfZ6ARlzhW3yaYz3Keq073Sg+hhKyCs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ClPl/EeA+JDtzs/dylVUaL3LMNXCfH9IIGzt0B2A90glh5jVcCyQu7WEqNZ8Kri3Z
+	 ndxfKVNWPZ8PJyfIKbR+SQPKoCp5cSsLK7WYGmOcVwpsGyZ/cKoTwAJbS1P72lUWok
+	 q4tKhELl9uAMVBJXtyrO7bLlDDSFGk5mmjVtSS4QnSr2smEzNcbyD8kdeAoQ3R4oI9
+	 9faifbo8q0JzcvCkTYrxJDUPaHdPfJ2xy4HwJqx3Socb4AnWbpu9EOLqlIh0wp+8Ns
+	 FChOu42LWzSBbPPM7cfZ1yky9oQNkVHztx3Y4hqOMIoY3lcWS5dFpAxwgXlm7z5Mub
+	 SoNEohrLD5urA==
+Message-ID: <ebc23aa2-c850-43c3-baa0-922da31208df@kernel.org>
+Date: Mon, 10 Mar 2025 15:10:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/8] memory: Add STM32 Octo Memory Manager driver
+To: Patrice CHOTARD <patrice.chotard@foss.st.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Arnd Bergmann <arnd@arndb.de>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ christophe.kerello@foss.st.com
+References: <20250219080059.367045-1-patrice.chotard@foss.st.com>
+ <20250219080059.367045-5-patrice.chotard@foss.st.com>
+ <6e1757ea-3f5e-4cc0-b142-aee52f016c8f@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <6e1757ea-3f5e-4cc0-b142-aee52f016c8f@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-These Rockchip boards assign "active" as the pinctrl name for PWM
-controllers, which has never been supported in mainline Rockchip PWM
-driver. It seems the name used by downstream kernel is accidentally
-brought into maineline. Let's fix them.
+On 10/03/2025 14:52, Patrice CHOTARD wrote:
+> 
+> 
+> On 2/19/25 09:00, patrice.chotard@foss.st.com wrote:
+>> From: Patrice Chotard <patrice.chotard@foss.st.com>
+>>
+>> Octo Memory Manager driver (OMM) manages:
+>>   - the muxing between 2 OSPI busses and 2 output ports.
+>>     There are 4 possible muxing configurations:
+>>       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
+>>         output is on port 2
+>>       - OSPI1 and OSPI2 are multiplexed over the same output port 1
+>>       - swapped mode (no multiplexing), OSPI1 output is on port 2,
+>>         OSPI2 output is on port 1
+>>       - OSPI1 and OSPI2 are multiplexed over the same output port 2
+>>   - the split of the memory area shared between the 2 OSPI instances.
+>>   - chip select selection override.
+>>   - the time between 2 transactions in multiplexed mode.
+>>   - check firewall access.
+>>
 
-Fixes: 4403e1237be3 ("arm64: dts: rockchip: Add devicetree for board roc-rk3308-cc")
-Fixes: 964ed0807b5f ("arm64: dts: rockchip: add rk3318 A95X Z2 board")
-Fixes: e7a095908227 ("arm64: dts: rockchip: Add devicetree for NanoPC-T4")
-Fixes: 3f5d336d64d6 ("arm64: dts: rockchip: Add support for rk3588s based board Cool Pi 4B")
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
 
-It's uncommon to have a commit carrying so many fix tags, but otherwise
-four seperate small commits will be created with the same topic. I'm
-willing to change this if it's inappropriate.
 
-I don't have these boards for a real test, but the change should be the
-right way.
+Please kindly trim the replies from unnecessary context. It makes it
+much easier to find new content.
 
-Thanks for your time and review.
+...
+> 
+> 
+> Hi all,
+> 
+> Anybody alse has additionnal remarks on this driver ?
 
- arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts     | 2 +-
- arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts    | 4 ++--
- arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi   | 2 +-
- arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts | 2 +-
- 4 files changed, 5 insertions(+), 5 deletions(-)
+I am waiting too...
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-index 629121de5a13..5e7181948992 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-@@ -147,7 +147,7 @@ rtc: rtc@51 {
- 
- &pwm5 {
- 	status = "okay";
--	pinctrl-names = "active";
-+	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm5_pin_pull_down>;
- };
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts b/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-index a94114fb7cc1..96c27fc5005d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-@@ -274,13 +274,13 @@ otg_vbus_drv: otg-vbus-drv {
- 
- &pwm0 {
- 	pinctrl-0 = <&pwm0_pin_pull_up>;
--	pinctrl-names = "active";
-+	pinctrl-names = "default";
- 	status = "okay";
- };
- 
- &pwm1 {
- 	pinctrl-0 = <&pwm1_pin_pull_up>;
--	pinctrl-names = "active";
-+	pinctrl-names = "default";
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
-index b169be06d4d1..c8eb5481f43d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
-@@ -603,7 +603,7 @@ &pwm1 {
- };
- 
- &pwm2 {
--	pinctrl-names = "active";
-+	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm2_pin_pull_down>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-index 8f00e0444c00..8b717c4017a4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-@@ -433,7 +433,7 @@ &pwm2 {
- };
- 
- &pwm13 {
--	pinctrl-names = "active";
-+	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm13m2_pins>;
- 	status = "okay";
- };
--- 
-2.48.1
-
+Best regards,
+Krzysztof
 
