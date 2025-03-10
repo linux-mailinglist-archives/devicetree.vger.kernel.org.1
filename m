@@ -1,97 +1,188 @@
-Return-Path: <devicetree+bounces-156270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC50A5A141
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:59:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C570DA5A1A4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 19:07:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95C3C3ABA1A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 17:58:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 793C73AE7A5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 18:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6549B232792;
-	Mon, 10 Mar 2025 17:58:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B2F233737;
+	Mon, 10 Mar 2025 18:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="j//qbsSw";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="tay6z8pi"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="lkfc7WqT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E27E422E418;
-	Mon, 10 Mar 2025 17:58:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFB7226D17;
+	Mon, 10 Mar 2025 18:07:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741629537; cv=none; b=PbmdabaKkh9CWEbpcMKXi/fB6faalVE/2I8UjZK6RVyJhvCk7wq3fY2VL2Zm2ZI1597q0/V4WjDEc6F1I9wPnH6uzDhdKmZWJW2BYk8UFYn7bvi/xVswgs+Ht8WCVcZRKMOIMkLr4yRuEKBXqFHT7X5AMR1LnHPGlg0O3XFsvcQ=
+	t=1741630031; cv=none; b=iP0mHF20f0PBmh4Cpqe8jsilntUMXpKI9VZE4g7+K/zrTZSdPLlnTdDADgwIbhAt565N6iYGYP+vaTfIEoDr7P8fBv/BZ+E/y9KKG1fsFiDIpwX6L56Ia4E76XfkALEfiJkDYQl+NnO1MWQiAy2TRnnuhCX60nfrYAI8/JB1koQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741629537; c=relaxed/simple;
-	bh=Al66dsQDQ1AjZ4p3RvfOqWj4xDz7Yh0Li6CQqx31OAA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Y4a9Y8tGmlt3dVCTqNOlqcg2UZDTrOFkhxK3oGZVUqAuMGZnPRq96VDQuwMyS/UXIquS8RnvnIgvH51UU+V72Uu4vCKz1+HN2bJQsNO6cl0lGeE4TXy79TXPhhx1Ztq9fDB52NjPDWPbLQg1AM4FkRgrO9OTBnFa8YOlxWZJ2i0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=j//qbsSw; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=tay6z8pi; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1741629534;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1Ly81vQvGXLIQAxg5uok81uLig8KVjTlFKKgmBlnmwM=;
-	b=j//qbsSwkuy/0qqOlBzR/DCCFBWPkp8dpqdoEsmmHRzZS3qU6u2n2wupSWSz6nM1dpuUri
-	aiLxBe/uYDvzyTjKz0ZvnjLnA1uv9j3zNWECtlFN2n6PjkVPVNkGSaBLsY7jNRCa0oHt+Z
-	TR4Et6ZYlJTN7ceEdWzvdd+J49x8+htWKzrawqyGXmwAEbf9cOxCjQmiuZeoUQK7lu/o09
-	8w+CMSlbnB87sxTKWO5zeS0E+NAL/NZf0OenWsDqsF7VPTwh+A9VeKwvzjemMYwQ83IXaS
-	LkW1H8ID12Cw/KuajwYfbJJaPkUKhk+vx63TXUbvqVyJ0nozoB4BKQ0FKBZ3zw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1741629534;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1Ly81vQvGXLIQAxg5uok81uLig8KVjTlFKKgmBlnmwM=;
-	b=tay6z8piYzjYTDcVT49X42zfRg7CquVlxe7fBfutBqZbIPgXozgKkKf1wQKrMY9lhcs+Eg
-	x0hweM8q8QaQwsAA==
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH v4 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
-In-Reply-To: <20250307-irqchip-gpio-a4-a5-v4-2-d03a9424151b@amlogic.com>
-References: <20250307-irqchip-gpio-a4-a5-v4-0-d03a9424151b@amlogic.com>
- <20250307-irqchip-gpio-a4-a5-v4-2-d03a9424151b@amlogic.com>
-Date: Mon, 10 Mar 2025 18:58:53 +0100
-Message-ID: <87ecz422ea.ffs@tglx>
+	s=arc-20240116; t=1741630031; c=relaxed/simple;
+	bh=CA9EMsdy0ESHhNUh8YAZSmW8LOgcKOF7hv3RuqiayFY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VlvvO4KvSwuNI7wmFqDPJu5PoTsb1MlA7Ieqip+74ReoRp72wv4/xmqbCeQExzUtW5reFkNr9wEVWE3bPSJ5pW5GTqWZbdCTCIoUcrE2P/52IOghPZYfV0FhBGbeiDLx5nqRcqCaNwqYh9l409dNH7X+9oiDed+HAVwNLGopZiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=lkfc7WqT; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [10.137.184.60] (unknown [131.107.160.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id AEB1B2038F50;
+	Mon, 10 Mar 2025 11:07:08 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com AEB1B2038F50
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1741630029;
+	bh=E13Z4tIU2QebiQ+fHYjb3GAytcpWMD9ZkrlSMteHVzY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lkfc7WqTTy9o/NtCmsNne2YvNu14qrm7uDsjvvXkQk5sfBSt0aW2JUGCLGbi53VQm
+	 x7EtA7dAZvpUOAdKpa+WyJR+DDJq7wyFqIlErDY/ZzM4lWwuea+zOldXaRC8xhF7xm
+	 s2kAl+3x2CXQIATrHNeR52YStsliYwkkKncXNNUo=
+Message-ID: <ba6b906d-04a2-423d-a527-9ef7ab1dccf2@linux.microsoft.com>
+Date: Mon, 10 Mar 2025 11:07:08 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH hyperv-next v5 07/11] dt-bindings: microsoft,vmbus: Add
+ interrupts and DMA coherence
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
+ catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com,
+ decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
+ joey.gouly@arm.com, krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com,
+ lenb@kernel.org, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org,
+ mark.rutland@arm.com, maz@kernel.org, mingo@redhat.com,
+ oliver.upton@linux.dev, rafael@kernel.org, robh@kernel.org,
+ ssengar@linux.microsoft.com, sudeep.holla@arm.com, suzuki.poulose@arm.com,
+ tglx@linutronix.de, wei.liu@kernel.org, will@kernel.org,
+ yuzenghui@huawei.com, devicetree@vger.kernel.org, kvmarm@lists.linux.dev,
+ linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
+ apais@microsoft.com, benhill@microsoft.com, bperkins@microsoft.com,
+ sunilmut@microsoft.com
+References: <20250307220304.247725-1-romank@linux.microsoft.com>
+ <20250307220304.247725-8-romank@linux.microsoft.com>
+ <20250310-demonic-ferret-of-judgment-5dbdbf@krzk-bin>
+ <c7f9d861-f617-4064-8c98-2ace06e9c25e@linux.microsoft.com>
+ <09d4966a-5804-40a4-9c5f-356a954a7704@kernel.org>
+Content-Language: en-US
+From: Roman Kisel <romank@linux.microsoft.com>
+In-Reply-To: <09d4966a-5804-40a4-9c5f-356a954a7704@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Mar 07 2025 at 16:49, Xianwei Zhao via wrote:
->  
->  	if (type == IRQ_TYPE_EDGE_BOTH) {
->  		val |= BIT(ctl->params->edge_both_offset + idx);
 
-Not new, but this really should be 'val = ...'
 
-> -		meson_gpio_irq_update_bits(ctl, REG_EDGE_POL_S4,
-> +		meson_gpio_irq_update_bits(ctl, params->edge_pol_reg,
->  					   BIT(ctl->params->edge_both_offset + idx), val);
+On 3/10/2025 10:40 AM, Krzysztof Kozlowski wrote:
+> On 10/03/2025 18:05, Roman Kisel wrote:
+>>
+>>
+>> On 3/10/2025 2:28 AM, Krzysztof Kozlowski wrote:
+>>> On Fri, Mar 07, 2025 at 02:02:59PM -0800, Roman Kisel wrote:
+>>>> To boot on ARM64, VMBus requires configuring interrupts. Missing
+>>>> DMA coherence property is sub-optimal as the VMBus transations are
+>>>> cache-coherent.
+>>>>
+>>>> Add interrupts to be able to boot on ARM64. Add DMA coherence to
+>>>> avoid doing extra work on maintaining caches on ARM64.
+>>>
+>>> How do you add it?
+>>>
+>>
+>> I added properties to the node. Should I fix the description, or I am
+>> misunderstanding the question?
+> 
+> I saw interrupts in the schema, but I did not see dma-coherence. I also
+> did not see any DTS patches here, so I don't understand what node you
+> are referring to.
+> 
 
-and this BIT() calculation is obviously redundant as it is the same as @val.
+I will refer to talks, example-bindings, writing-schema you've suggested
+to waste your time less. It appears there is some fundamental flaw in my
+understanding of how these YAML files work so much so that I cannot even
+write a commit description that can be understood, for the 5th time in
+the row, sorry about that.
 
-Would be nice to have that cleaned up.
+>>
+>>>>
+>>>> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
+>>>> ---
+>>>>    .../devicetree/bindings/bus/microsoft,vmbus.yaml          | 8 +++++++-
+>>>>    1 file changed, 7 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+>>>> index a8d40c766dcd..3ab7d0116626 100644
+>>>> --- a/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+>>>> +++ b/Documentation/devicetree/bindings/bus/microsoft,vmbus.yaml
+>>>> @@ -28,13 +28,16 @@ properties:
+>>>>    required:
+>>>>      - compatible
+>>>>      - ranges
+>>>> +  - interrupts
+>>>>      - '#address-cells'
+>>>>      - '#size-cells'
+>>>>    
+>>>> -additionalProperties: false
+>>>> +additionalProperties: true
+>>>
+>>> This is neither explained in commit msg nor correct.
+>>>
+>>
+>> Not explained, as there is no good explanation as described below.
+>>
+>>> Drop the change. You cannot have device bindings ending with 'true'
+>>> here - see talks, example-bindings, writing-schema and whatever resource
+>>> is there.
+>>>
+>>
+>> Thanks, I'll put more effort into bringing this into a better form!
+>> If you have time, could you comment on the below?
+>>
+>> The Documentation says
+>>
+>>     * additionalProperties: true
+>>       Rare case, used for schemas implementing common set of properties.
+>> Such schemas are supposed to be referenced by other schemas, which then
+>> use 'unevaluatedProperties: false'.  Typically bus or common-part schemas.
+>>
+>> This is a bus so I added that line to the YAML, and I saw it in many
+> 
+> If this is a bus, then where is schema using it for
+> bus-attached-devices? You cannot have bus without devices.
+> 
+> You *must* fulfill that part:
+> "Such schemas are supposed to be referenced by other schemas, which then"
+> 
+> instead of calling it bus...
+> 
 
-With that fixed:
+It is modeled as a bus in the kernel:
+https://www.kernel.org/doc/html/latest/virt/hyperv/vmbus.html
 
-Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+> Please upstream bindings for the bus devices and extend the example here
+> with these devices.
+
+The set of synthetic devices that reside on the bus isn't fixed, and
+they don't require description neither in ACPI nor in DT as
+the devices negotiate their MMIO regions through the hyperv driver.
+
+Perhaps, it is not as much bus as expected by the YAML files.
+
+> 
+> Or this is not bus (calling something vmpony does not make it a pony).
+> 
+ > > Best regards,
+> Krzysztof
+
+-- 
+Thank you,
+Roman
+
 
