@@ -1,244 +1,178 @@
-Return-Path: <devicetree+bounces-156147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9236BA595DB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:15:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0171A595E5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 14:16:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C29FD188E205
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 13:15:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF6DB16CB4B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 13:16:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2658A228C86;
-	Mon, 10 Mar 2025 13:14:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="DTuCIppL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ABFC227E96;
+	Mon, 10 Mar 2025 13:16:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412BC22157A
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 13:14:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23F53374EA;
+	Mon, 10 Mar 2025 13:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741612474; cv=none; b=Yhv9PmRnyPqjKQEreW56SekJzLXVXfVhrYYGsvqKzd7VSyCBQLc4gssQblDw6YGgFHGp78rHwzdyrKSWiMY5Zz3D7JNkau/HGD29J2uQ7g9rYW/j4/uBLUY2pvJLLLLLt0iHRjvKu3jx4NGcllZkmxMkjWAQHGALLFw9QgBC9/U=
+	t=1741612576; cv=none; b=gZz1+R7SyBcQlYC1J2+ErDXO2HOP/rg6BYgTX/9YldEyJ1GQPci6S6LOMeXmrKD8KbaccvXzFNQl40vqVIKErGapaRMMgcYuecmyOX3e3kvJK0x8DNNO0q56xyuf89NRytYbFRxctAmGMYDkcguTfIj9HUArog/vdxxFLZFnNhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741612474; c=relaxed/simple;
-	bh=mXYRr76iQEHPUIiMJyNNXujxFi1QRI+Wzxl4a5+XtMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=At3X89yZ51X1ZXrBDPziYtjzLJRRUbjQm+9akmcWDZCisEsqfYCK31Dawq5W9oq+9u9Nz/p9O475GTZJ3qFTK08dJnHVsUvcSkrs8flwHQkNmOyVkDpncBN3lzvkilM0z8FdhVGTO8ezQb3+D0KRQgf+sO+iZNnRVCVO4cx4duk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=DTuCIppL; arc=none smtp.client-ip=178.60.130.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=EnWtnxcfGbW/fp9pNfdQRpjXI4pB7apthfmkCMDnfpc=; b=DTuCIppLlbCab8Q0LtegY6sgiT
-	A5SYMhfnMYQxYySLdgRHNtZirI24ub1UXBF29wiBgwMiDq6rLOt0RvG1muvjIA43YpWShAKAnRZFb
-	MDUdKp6nYTzuU6a2B62nbGbqa1vOktt3m4+3FThjBQtGo62rS7RVkO06awlDd9mQv99IDEi0u7i+Q
-	yD+bScY1TBXO39Q+7FibreaViqeJsAuF7lSNZ0twxJIkTE3DvoCFj/0+Uy9YXPsfV+RNcyLAjAM+n
-	Zc0n9jf+gwrD9hyhPkuXLJ9bIEUfXQQdBGLxTkUyxBjlOkgCeBIXj3VptzU8aB76lvR13fnJBGBzK
-	9i+qVD2w==;
-Received: from [143.107.182.242] (helo=[10.41.68.132])
-	by fanzine2.igalia.com with esmtpsa 
-	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
-	id 1trcxT-006UJp-Mt; Mon, 10 Mar 2025 14:14:21 +0100
-Message-ID: <2bc573c6-e44f-441b-9b13-baa7df64a641@igalia.com>
-Date: Mon, 10 Mar 2025 10:15:13 -0300
+	s=arc-20240116; t=1741612576; c=relaxed/simple;
+	bh=+pe8nMgc4fByYrl/J+ifCMz86M7Dbvi7gJXrq56sYKw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ohoWH1wvDHKIrlSdrwgbg4osXR1N9hiKkYBV+mSTcySi+VZVYj4VOVI2JfjKQGyaZCSM0EZJNg9Oa2Cra0/7pI1P1xBug6HHHP4A0GwWzItW4cEYKNF5zO7AYxVZ9i0L8YhiSE1GY88Ij80C4EMUBX2yi78Zg1Y271aNPELMNRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-86b68e51af4so1571739241.1;
+        Mon, 10 Mar 2025 06:16:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741612572; x=1742217372;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3bwMEAH7Tb2p80rG5YQFDISiH+2UdxhzZVsTz2rTT24=;
+        b=t7j3P1PB0LMPauR2TSwADqFHF9kh9wqf0O/5vcm8YwCCZVhPYYIZB0Jtyg3sIJdf2p
+         9e+R7ZSz+LiTDryi37ZJUQ5QyCNUMMA5+PCv4pWcbb1TH73i2CbyZPfddKLUWekJ9t5V
+         v5cwmaCPuynNkXFJnYFS9lva0/tj5XvxRn5NEUFvsETGugrNEjs/P30E9sE5s41ZU43p
+         AO1LGmXuSiMYLQZ07WpSG9v2Qxdkf8CLs9uJPVkNdZKNsjzDzqwUF5+MwkzXny5CJqXb
+         UN1403kQAFCTp5HYe/KyT4o5wlRwx2K9z65CUm0xgc/y9lRrFJxVZcty5y6VxRIppSnn
+         C9Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCULVEHMV3HQRdKtqoTXhnGRgMra/mieCmSS15UgAR9muZae4NDcSq3+PS0/Czjiy2GeGvPVdCFQVsPkSw==@vger.kernel.org, AJvYcCW3iqEwe7AonyEAwR1kdMfa2UwTRXPaViYdnPiB4q3DuB5LgQoXKHROl0fo9/QyqMJOCFrnWipqvVfx@vger.kernel.org, AJvYcCWBjew7Qg5f6ogFrgSqhc5wmOG549CZnvGJD4o6dycVGDqylq90b80CwZiw4SLcHyewyt1LXa4V0vrS9eiyXMBp5SU=@vger.kernel.org, AJvYcCXKKES9M/K57Cy43q03UUatKTJvB5cA1Llar/NBtdQDjqJnfhVqujtFRVLUpO4jrQ9kdGhWmhuNa1G58Hcf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHrhOCrPM9KepIGIUuIkslSKiof/Kd2YUn4ENNfxikrg/GU0jF
+	uNcaAxVaJCcSPL96Oz6IWnhqFEHkZ/fS17UL8QlMLg+5D2tDbC7td2bYcge10sA=
+X-Gm-Gg: ASbGnct+F+ohhZFG9dMs666/wzZII150jggJ/0ugx73GzoTm8UAfAtmRZ00h8MuDNnO
+	rbmI1Sa6M3sy5fsJNg393FzohleJRI7g4bIWTNEtZHZ+OTte5DRS4UTpd2W0qrQQapZ7NMBFDzz
+	0aLpmMQQY4AiuhqqLXehqZHUXxEwVJLTOXraL7TmbprlkH1dbGMNZRJOFleDHCpqMaydx74uMVz
+	wDSSzwKCWf3gV+3uss4T7xklP1zj5JMd2+CCtAfE+v14Kziv0/J0fwmv7w3orrJP9Ps+F6OGODH
+	qban99AsFUmO8a1swglXzju6DgNMZ1ZEmZBSVeMA3wbmDy8HaYmUQRr8uqH/i6fsArZC2pWrAOR
+	GvizaZuc=
+X-Google-Smtp-Source: AGHT+IGWrgaTcuRoRn5yEgZmzyybev0b5x8Pgfkri+MWcuiq9g+56xaQ0aMAe/Ds6Y7so3QX7LZ2mA==
+X-Received: by 2002:a05:6102:a54:b0:4c1:b001:b53 with SMTP id ada2fe7eead31-4c30a65e00bmr7130200137.18.1741612572572;
+        Mon, 10 Mar 2025 06:16:12 -0700 (PDT)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c2fbca4f0dsm1953416137.21.2025.03.10.06.16.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Mar 2025 06:16:12 -0700 (PDT)
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-86718c2c3b9so1617846241.2;
+        Mon, 10 Mar 2025 06:16:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU7bS4SNYBFIDCLQzyaCt9+rVecXwAtEP3CFAQXCYj672PkPZSKFT4Ak0TcmEDrRMHHM+QtamChMj1wxpxS@vger.kernel.org, AJvYcCUyfVV02FlPf1N7Cu31Jvh4mXvAWJY7Egi4nDxOpicFaJzB92g1tFhuxal6T7wQjsdyXH62kBoFa5dF8aGZbcly920=@vger.kernel.org, AJvYcCWMAklpG8RKLlce+oKS/RE/hZ5nVZzsj6pwdA4cYb8V0VbKmYjdEHr3bh+hP+p4AKgRB5iGKA0fysiD@vger.kernel.org, AJvYcCXYULFZRpvku56HBjE350JYXjrdIBn5v9H5n3SmTh6OVjuf9GAR5hxyLo+sJX52hBBiQPAzHlcgeCCmPg==@vger.kernel.org
+X-Received: by 2002:a05:6102:3583:b0:4c3:6c4:e174 with SMTP id
+ ada2fe7eead31-4c30a65d92emr7228931137.16.1741612572135; Mon, 10 Mar 2025
+ 06:16:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] dt-bindings: gpu: v3d: Add SMS to the registers'
- list
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
- Jose Maria Casanova Crespo <jmcasanova@igalia.com>,
- Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
- kernel-dev@igalia.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>, devicetree@vger.kernel.org
-References: <20250308-v3d-gpu-reset-fixes-v2-0-2939c30f0cc4@igalia.com>
- <20250308-v3d-gpu-reset-fixes-v2-4-2939c30f0cc4@igalia.com>
- <20250310-calculating-flat-cuttlefish-4c9fc2@krzk-bin>
- <4d224fc2-d077-47aa-8b52-edba30c62d19@igalia.com>
- <6f87918b-b4ca-4404-8f1e-e1100190c0f6@kernel.org>
-Content-Language: en-US
-From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Autocrypt: addr=mcanal@igalia.com; keydata=
- xsBNBGcCwywBCADgTji02Sv9zjHo26LXKdCaumcSWglfnJ93rwOCNkHfPIBll85LL9G0J7H8
- /PmEL9y0LPo9/B3fhIpbD8VhSy9Sqz8qVl1oeqSe/rh3M+GceZbFUPpMSk5pNY9wr5raZ63d
- gJc1cs8XBhuj1EzeE8qbP6JAmsL+NMEmtkkNPfjhX14yqzHDVSqmAFEsh4Vmw6oaTMXvwQ40
- SkFjtl3sr20y07cJMDe++tFet2fsfKqQNxwiGBZJsjEMO2T+mW7DuV2pKHr9aifWjABY5EPw
- G7qbrh+hXgfT+njAVg5+BcLz7w9Ju/7iwDMiIY1hx64Ogrpwykj9bXav35GKobicCAwHABEB
- AAHNIE1hw61yYSBDYW5hbCA8bWNhbmFsQGlnYWxpYS5jb20+wsCRBBMBCAA7FiEE+ORdfQEW
- dwcppnfRP/MOinaI+qoFAmcCwywCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQ
- P/MOinaI+qoUBQgAqz2gzUP7K3EBI24+a5FwFlruQGtim85GAJZXToBtzsfGLLVUSCL3aF/5
- O335Bh6ViSBgxmowIwVJlS/e+L95CkTGzIIMHgyUZfNefR2L3aZA6cgc9z8cfow62Wu8eXnq
- GM/+WWvrFQb/dBKKuohfBlpThqDWXxhozazCcJYYHradIuOM8zyMtCLDYwPW7Vqmewa+w994
- 7Lo4CgOhUXVI2jJSBq3sgHEPxiUBOGxvOt1YBg7H9C37BeZYZxFmU8vh7fbOsvhx7Aqu5xV7
- FG+1ZMfDkv+PixCuGtR5yPPaqU2XdjDC/9mlRWWQTPzg74RLEw5sz/tIHQPPm6ROCACFls7A
- TQRnAsMsAQgAxTU8dnqzK6vgODTCW2A6SAzcvKztxae4YjRwN1SuGhJR2isJgQHoOH6oCItW
- Xc1CGAWnci6doh1DJvbbB7uvkQlbeNxeIz0OzHSiB+pb1ssuT31Hz6QZFbX4q+crregPIhr+
- 0xeDi6Mtu+paYprI7USGFFjDUvJUf36kK0yuF2XUOBlF0beCQ7Jhc+UoI9Akmvl4sHUrZJzX
- LMeajARnSBXTcig6h6/NFVkr1mi1uuZfIRNCkxCE8QRYebZLSWxBVr3h7dtOUkq2CzL2kRCK
- T2rKkmYrvBJTqSvfK3Ba7QrDg3szEe+fENpL3gHtH6h/XQF92EOulm5S5o0I+ceREwARAQAB
- wsB2BBgBCAAgFiEE+ORdfQEWdwcppnfRP/MOinaI+qoFAmcCwywCGwwACgkQP/MOinaI+qpI
- zQf+NAcNDBXWHGA3lgvYvOU31+ik9bb30xZ7IqK9MIi6TpZqL7cxNwZ+FAK2GbUWhy+/gPkX
- it2gCAJsjo/QEKJi7Zh8IgHN+jfim942QZOkU+p/YEcvqBvXa0zqW0sYfyAxkrf/OZfTnNNE
- Tr+uBKNaQGO2vkn5AX5l8zMl9LCH3/Ieaboni35qEhoD/aM0Kpf93PhCvJGbD4n1DnRhrxm1
- uEdQ6HUjWghEjC+Jh9xUvJco2tUTepw4OwuPxOvtuPTUa1kgixYyG1Jck/67reJzMigeuYFt
- raV3P8t/6cmtawVjurhnCDuURyhUrjpRhgFp+lW8OGr6pepHol/WFIOQEg==
-In-Reply-To: <6f87918b-b4ca-4404-8f1e-e1100190c0f6@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250109-dt-type-warnings-v1-0-0150e32e716c@kernel.org>
+ <20250109-dt-type-warnings-v1-2-0150e32e716c@kernel.org> <CAMuHMdU=QR-JLgEHKWpsr6SbaZRc-Hz9r91JfpP8c3n2G-OjqA@mail.gmail.com>
+ <CAL_JsqJNgxLgvB502Bk=5aMeP2rY6KVL_FykeSyN1tsDRXi9cA@mail.gmail.com> <CAMuHMdWZsQ9UbwVub=36P_2DCPEN0aORz9FxCbivKkOyeWkuww@mail.gmail.com>
+In-Reply-To: <CAMuHMdWZsQ9UbwVub=36P_2DCPEN0aORz9FxCbivKkOyeWkuww@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 10 Mar 2025 14:15:58 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUHsTYjamDkyoe_CwJhXbf7LpAPk+Dazd4wChEmfcuYPQ@mail.gmail.com>
+X-Gm-Features: AQ5f1JraxfzSSZiwFZoSk4-gLUnOHP6AW4upV-5J6BIK6IbQAuD0VMWwpRICbuw
+Message-ID: <CAMuHMdUHsTYjamDkyoe_CwJhXbf7LpAPk+Dazd4wChEmfcuYPQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] of: Warn when of_property_read_bool() is used on
+ non-boolean properties
+To: Rob Herring <robh@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, linux-acpi@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+	Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Wed, 15 Jan 2025 at 12:20, Geert Uytterhoeven <geert@linux-m68k.org> wro=
+te:
+> On Tue, Jan 14, 2025 at 8:19=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
+te:
+> > On Tue, Jan 14, 2025 at 12:35=E2=80=AFPM Geert Uytterhoeven
+> > <geert@linux-m68k.org> wrote:
+> > > On Thu, Jan 9, 2025 at 8:42=E2=80=AFPM Rob Herring (Arm) <robh@kernel=
+.org> wrote:
+> > > > The use of of_property_read_bool() for non-boolean properties is
+> > > > deprecated. The primary use of it was to test property presence, bu=
+t
+> > > > that has been replaced in favor of of_property_present(). With thos=
+e
+> > > > uses now fixed, add a warning to discourage new ones.
+> > > >
+> > > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > >
+> > > Thanks for your patch, which is now commit c141ecc3cecd7647 ("of:
+> > > Warn when of_property_read_bool() is used on non-boolean properties")
+> > > in dt-rh/for-next.
+> > >
+> > > I have bisected a failure in secondary CPU bring-up on R-Car H1 (quad
+> > > Cortex-A9 MPCore) to this commit:
+> > >
+> > >      Detected Renesas R-Car Gen1 r8a7779 ES1.0
+> > >      smp: Bringing up secondary CPUs ...
+> > >     -CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+> > >     -CPU1: Spectre v2: using BPIALL workaround
+> > >     -CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
+> > >     -CPU2: Spectre v2: using BPIALL workaround
+> > >     -CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
+> > >     -CPU3: Spectre v2: using BPIALL workaround
+> > >     -smp: Brought up 1 node, 4 CPUs
+> > >     -SMP: Total of 4 processors activated (2000.00 BogoMIPS).
+> > >     +CPU1: failed to come online
+> > >     +CPU2: failed to come online
+> > >     +CPU3: failed to come online
+> > >     +smp: Brought up 1 node, 1 CPU
+> > >     +SMP: Total of 1 processors activated (500.00 BogoMIPS).
+> > >      CPU: All CPU(s) started in SVC mode.
+> > >
+> > > Reverting this commit on top of my work tree fixes the issue, too.
+> > > However, I do not see how this commit could impact CPU bring-up?
+> >
+> > Strange. Perhaps the of_property_read_bool was inlined into some
+> > special section before?
+>
+> I re-added the old inline of_property_read_bool(), but with a different
+> name.  CPU bringup starts working again if I replace at least one call
+> to of_property_read_bool() in arch/arm/mm/cache-l2x0.c:aurora_of_parse()
+> by a call to the inline variant, or even if I just add
+>
+>     pr_info("xf_property_read_bool(np, \"wt-override\") =3D %d\n",
+> xf_property_read_bool(np, "wt-override"));
+>
+> to that function. Note that that function is not called at all on my plat=
+form.
+>
+> This small change causes quite some reordering in arch/arm/mm/cache-l2x0.=
+s,
+> so it looks like a layout issue. More analysis will follow...
 
-On 3/10/25 09:55, Krzysztof Kozlowski wrote:
-> On 10/03/2025 12:57, Maíra Canal wrote:
->>>
->>>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->>>> ---
->>>>    .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 60 ++++++++++++++++++++--
->>>>    1 file changed, 55 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>>> index dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..c0caee055e8c18dbcac0e51aa192951996545695 100644
->>>> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>>> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>>> @@ -27,15 +27,12 @@ properties:
->>>>          - description: core0 register (required)
->>>>          - description: GCA cache controller register (if GCA controller present)
->>>>          - description: bridge register (if no external reset controller)
->>>> +      - description: SMS register (if SMS controller present)
->>>
->>> This lists five items, but you say you have max 4?
->>
->> V3D 3.1 uses hub, core0, gca, and bridge (optional)
->> V3D 4.1 and 4.2 uses hub, core, and bridge (optional)
->> V3D 7.1 uses hub, core0, sms, and bridge (optional)
->>
->> Therefore, for a given DT, you will have 4 items max.
-> 
-> And how many items do you have here?
-> 
->>
->>>
->>>>        minItems: 2
->>>>    
->>>>      reg-names:
->>>> -    items:
->>>> -      - const: hub
->>>> -      - const: core0
->>>> -      - enum: [ bridge, gca ]
->>>> -      - enum: [ bridge, gca ]
->>>>        minItems: 2
->>>> +    maxItems: 4
->>>
->>> So here 4, but earlier 5? These must come in sync.
->>
->> I added maxItems for reg in the allOf section.
-> 
-> I don't think you answer the comments. I said you listed earlier 5 items
-> and then you answered with saying devices have 4 items. Here I said
-> these properties must be synced and you said why you added maxItems...
-> Not related, read again the feedback.
+The assembler SMP bring-up code for Renesas SoCs lacked an alignment
+directive.  I have posted a fix:
+https://lore.kernel.org/r/CAMuHMdU=3DQR-JLgEHKWpsr6SbaZRc-Hz9r91JfpP8c3n2G-=
+OjqA@mail.gmail.com
 
-I'm sorry, I don't usually write DTBs. I believe what I need is to
-specify the reg items for each compatible, right?
+Gr{oetje,eeting}s,
 
-> 
-> 
->>
->>>
->>>>    
->>>>      interrupts:
->>>>        items:
->>>> @@ -60,6 +57,59 @@ required:
->>>>    
->>>>    additionalProperties: false
->>>>    
->>>> +allOf:
->>>
->>> This goes above additionalProperties.
->>
->> Got it.
->>
->>>
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            enum:
->>>> +              - brcm,2711-v3d
->>>> +              - brcm,7278-v3d
->>>> +    then:
->>>> +      properties:
->>>> +        reg:
->>>> +          minItems: 2
->>>> +          maxItems: 3
->>>> +        reg-names:
->>>> +          items:
->>>> +            - const: hub
->>>> +            - const: core0
->>>> +            - const: bridge
->>>
->>> Again un-synced lists.
->>
->> Sorry, what do you mean by un-synced lists?
-> 
-> xxx and xxx-names must have the same constraints. They do not have here.
-> You have two different constraints and you can test your DTS to see that.
- >
+                        Geert
 
-I used `make dt_binding_check` to test it and it didn't catch any
-errors.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
->>
->>>
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            const: brcm,2712-v3d
->>>> +    then:
->>>> +      properties:
->>>> +        reg:
->>>> +          minItems: 3
->>>> +          maxItems: 4
->>>> +        reg-names:
->>>> +          items:
->>>> +            - const: hub
->>>> +            - const: core0
->>>> +            - enum: [ bridge, sms ]
->>>> +            - enum: [ bridge, sms ]
->>>> +          minItems: 3
->>>
->>> Why is this flexible?
->>
->> I cannot guarantee the order and bridge is optional.
-> 
-> Hm? You must guarantee the order and I do not understand why this needs
-> some sort of exception from all other bindings that only here you cannot
-> guarantee the order.
-
-I'm trying to keep backwards compatibility. This binding exists for many
-years and it always used "enum: [ bridge, gca ]".
-
-Best Regards,
-- Maíra
-
-> 
-> 
-> Best regards,
-> Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
