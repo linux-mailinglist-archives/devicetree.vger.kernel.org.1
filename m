@@ -1,128 +1,130 @@
-Return-Path: <devicetree+bounces-156080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B4A7A591D0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:51:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6409A591EE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:54:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CC983ADE31
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:51:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43DE47A3F6B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CB8227EAC;
-	Mon, 10 Mar 2025 10:48:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FFD4228C92;
+	Mon, 10 Mar 2025 10:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ko9A3bkK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCB1B199939;
-	Mon, 10 Mar 2025 10:48:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C345227B83;
+	Mon, 10 Mar 2025 10:50:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741603710; cv=none; b=X8rbMUFJ7NpzAdJ4dC0j1Uz27NMGABAQb1AWVp1u+38rtby8HX6aHKNgtymPPOVE7uHbKvvK1ECIe8/fE4ea2OP7vMNH9W01KLCx+Y/+eoxgNvu4YbvQlyQ+e5m1bPoAf4LHBYCUR7hQGa/UT4PCidaMYo0Xk7hgDUkEOofXYOw=
+	t=1741603851; cv=none; b=aoA8xJ1sdMdaYyxmiUo8BvMzBuTZDKJA9Tyy4uYf2ZrU0fcyhQGhibSCxknQzGzGAoPOKl0RpL3bDqRNSU4jee1LIXYca2nD3IAGOfOhSFrw1amq7h9ZkzbSPrn0JGnmowcBTbSe4iQkSA1Utscbbp4cP8ESjs7lL7CZ5usoyz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741603710; c=relaxed/simple;
-	bh=vp3GGKR2xiMcDEYzikelXFHF5XdEOgesgxhI4m2MWX8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SdPPPKR04voNzKH4z0KQfjAwmQtJK6pxqNqzUBXQ7NzniaNWStDIUEGqXw9iAHc4k7e+wcAHXwbJ/jAfg559PzgA96kCiDMacKANH0UkiI0swUPhmEEYXAGSbIoiZ7AbBZz+qKUxzUwP/ulLYGDKSh3+MSYG4Gd//m7GzIZV78Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 95160153B;
-	Mon, 10 Mar 2025 03:48:39 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8E4223F673;
-	Mon, 10 Mar 2025 03:48:24 -0700 (PDT)
-Date: Mon, 10 Mar 2025 10:48:21 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: "Ryan Walklin" <ryan@testtoast.com>
-Cc: "Maxime Ripard" <mripard@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Thomas
- Zimmermann" <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>, "Jernej Skrabec"
- <jernej.skrabec@gmail.com>, "Samuel Holland" <samuel@sholland.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Chris
- Morgan" <macroalpha82@gmail.com>, "Hironori KIKUCHI"
- <kikuchan98@gmail.com>, "Philippe Simons" <simons.philippe@gmail.com>,
- "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, "Conor Dooley" <conor.dooley@microchip.com>
-Subject: Re: [PATCH v7 22/27] dt-bindings: allwinner: add H616 DE33 mixer
- binding
-Message-ID: <20250310104821.3c85977a@donnerap.manchester.arm.com>
-In-Reply-To: <c8b85753-5c97-4258-a158-06a17929fad6@app.fastmail.com>
-References: <20250216183710.8443-3-ryan@testtoast.com>
-	<20250216183710.8443-23-ryan@testtoast.com>
-	<20250224175642.170c124e@donnerap.manchester.arm.com>
-	<c8b85753-5c97-4258-a158-06a17929fad6@app.fastmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1741603851; c=relaxed/simple;
+	bh=a4LHUipB9qkEfTODFAbdGuOOi65tkmIXS/JoJ86bPFI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=E+N3Fwl+4UR9iVO9SEQb3vNzRgv0QslDix+0nQOnLHWSvibmWsHwA4oqQhDukjL90CL6LYVu5Z0YDiiGjRvw0D4G5ZQS4srPs/BGdz3kSloBzDn2u2cKG4dw2BUNPMP1jcldfPxe1LLLRTa5UThyA5ZLzYLgDWd5Cr2MHhd09FM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ko9A3bkK; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52A9G8gL017253;
+	Mon, 10 Mar 2025 11:50:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	dfbmKwc6v1yeOOE9JCszYxgrUac0n2yNInRPRE4qjhw=; b=ko9A3bkKtA24VlrH
+	kBrInCzGMbc4p6W9TWc+ruaxkYw5Q7OnYOa2X466UnvXzzEbUPIMegQiHSRnwBgd
+	8F3W5l9bE3VuWTdsPcZcZOPwOjZ6xaAHaqIZ9MrmyYSMN7tgU6/EjQr6/0O/Pd+K
+	PbDr1N0RlYzTry9IXisVbuJ0gCRUbazozF3tUv3CEijRX4zS7TWdwwNIc627QMBF
+	yn/bwId8jPVcoOiypBuE7hE16cVmRkgC5r7IB/4KsjbRIr5K8YS6VlmDBBWIZhyo
+	gv7IP6y4rZgm/ifysDFv493rnbw6a48ISxAfEruYHXnugrCDBnyoBZvMzploIIHN
+	W574Xg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4590b8v7t7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 11:50:21 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 9377640057;
+	Mon, 10 Mar 2025 11:49:17 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 543A54235AC;
+	Mon, 10 Mar 2025 11:48:37 +0100 (CET)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 10 Mar
+ 2025 11:48:36 +0100
+Message-ID: <e5a5dd9b-475b-4c66-a580-08f11a80e5a3@foss.st.com>
+Date: Mon, 10 Mar 2025 11:48:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: use IRQ_TYPE_EDGE_FALLING on
+ stm32mp157c-dk2
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        <linux-kernel@vger.kernel.org>
+CC: <linux-amarula@amarulasolutions.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20250301115116.2862353-1-dario.binacchi@amarulasolutions.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250301115116.2862353-1-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-10_04,2025-03-07_03,2024-11-22_01
 
-On Mon, 10 Mar 2025 22:30:36 +1300
-"Ryan Walklin" <ryan@testtoast.com> wrote:
+Hi Dario
 
-Hi Ryan,
-
-> On Tue, 25 Feb 2025, at 6:56 AM, Andre Przywara wrote:
+On 3/1/25 12:51, Dario Binacchi wrote:
+> Replace the number 2 with the appropriate numerical constant defined in
+> dt-bindings/interrupt-controller/irq.h.
 > 
-> Apologies Andre, I came to review your comments on the TCON series and realised I had missed responding to this comment before sending v8. 
-
-No worries about that!
-
-> >> +      - allwinner,sun50i-h616-de33-mixer-0
-> >>  
-> >>    reg:
-> >> -    maxItems: 1
-> >> +    minItems: 1
-> >> +    maxItems: 3  
-> >
-> > What are those three regions? I wonder if we should have reg-names here,
-> > to fix the order, and to document them on the way?  
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 > 
-> This would be the top, display and mixer groups for the DE333, and mixer for DE3 and earlier. Can certainly add in names for these. Is there any example elsewhere in the bindings to look at?
-
-It's basically the same idea as for clock-names, as used in this very file
-here (allwinner,sun8i-a83t-de2-mixer.yaml). You can find an explicit
-example for reg-names in allwinner,sun4i-a10-mbus.yaml, for instance.
-In the code you would use devm_platform_ioremap_resource_byname() then.
-
-Cheers,
-Andre
-
-> >> @@ -61,6 +63,23 @@ properties:
-> >>      required:
-> >>        - port@1
-> >>  
-> >> +allOf:
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          enum:
-> >> +            - allwinner,sun50i-h616-de33-mixer-0
-> >> +
-> >> +    then:
-> >> +      properties:
-> >> +        reg:
-> >> +          maxItems: 3  
-> >
-> > Should we override minItems here as well? I guess any driver would need
-> > all three region to work?  
+> ---
 > 
-> This seems sensible, as you say it would always be 3 groups for the DE33.
+>   arch/arm/boot/dts/st/stm32mp157c-dk2.dts | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> Regards,
-> 
-> Ryan
+> diff --git a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
+> index 5f9c0160a9c4..dcf17c493022 100644
+> --- a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
+> +++ b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
+> @@ -11,6 +11,7 @@
+>   #include "stm32mp15-pinctrl.dtsi"
+>   #include "stm32mp15xxac-pinctrl.dtsi"
+>   #include "stm32mp15xx-dkx.dtsi"
+> +#include <dt-bindings/interrupt-controller/irq.h>
 
+really needed ? as it comes also with 
+dt-bindings/interrupt-controller/arm-gic.h
+
+>   / {
+>   	model = "STMicroelectronics STM32MP157C-DK2 Discovery Board";
+> @@ -67,7 +68,7 @@ &i2c1 {
+>   	touchscreen@38 {
+>   		compatible = "focaltech,ft6236";
+>   		reg = <0x38>;
+> -		interrupts = <2 2>;
+> +		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+>   		interrupt-parent = <&gpiof>;
+>   		touchscreen-size-x = <480>;
+>   		touchscreen-size-y = <800>;
 
