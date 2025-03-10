@@ -1,86 +1,56 @@
-Return-Path: <devicetree+bounces-155963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A780A58C5E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:57:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E56C5A58C65
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:00:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AD9F16A23E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 06:57:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 745B67A1228
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 06:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DFF51DE2CE;
-	Mon, 10 Mar 2025 06:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KgUnrJwR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD84F1C3F36;
+	Mon, 10 Mar 2025 07:00:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2950B1D63FA;
-	Mon, 10 Mar 2025 06:56:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DD43208;
+	Mon, 10 Mar 2025 07:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741589799; cv=none; b=jzv1tdU3XwpDNXBCxXpq5LTabH837QCJTBCadJoNufb6QquAImZfP8ZcLERfVCsmM0OiPo2iC0P7ueGy8uId2qFfUa7ZKl6lzzDDL6N35PZcUi4t0PM34nvzUdzG22WS0gQZxhqHws2R9fqrm0Y0Ols1ThZ1xuHtOtxCrhQ4xeo=
+	t=1741590042; cv=none; b=Ve/tU9m4BaopDfCtL9p4e7E4voEZLgVDUOYbTNVMFpVpy0Za9O3f6XGNyIOA72R6hBWp7SPa9s7skyxZujkDfnBmOuupxvXGuF0GIlU/HOUGu6RG9s/ckM70vEOCCdyeRtHcbKnMhLpsmt2mzxlsIQxP3dZ5VZ60QeLabRfO+eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741589799; c=relaxed/simple;
-	bh=U9Ji4lK5ohXCc2eoGDiTSkej8+VxN/ficC2c40SqZNw=;
+	s=arc-20240116; t=1741590042; c=relaxed/simple;
+	bh=kUfuGZPXvPR3kgyVVeeH1LkOAgS3PDj2HJO2Eap3JLc=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EhgoHzAx/PpeXJO2AW/olGOzcwMgRAEJ/7DyYMkQEljTjcvhJS3ch8qcksYZD810IhjxoPxsHVlOZiSfYqedgK/yzqOlN5VWwCt0OBKoQTbHsQ6QEEKDAFPEF9QFCnyoBnoXSA1Q0KUW9bdy3ntcgj5qd8drMldqtnNe74PxsOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KgUnrJwR; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 529LXgPo009677;
-	Mon, 10 Mar 2025 06:56:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=3X1VIWxdIte
-	u5gRvLdr/kDJ0nbjFfP4kSOKvLcoKQBg=; b=KgUnrJwRGFgFu291Zygc38Seslz
-	5WuAqLqic5jhRqCKIWhuTiuTzMwfTBDSPbNaCZhtM0/w0NfOp3ROkOiYoWw6UJFn
-	IH+iLHq3dMO0Xx7bEis11TXtDJ2qz1tzCq+uR0ae+gydnQ+C7qH3JdC7CNcaquYs
-	0VcE64TvMiasnn0nhK/xaFvZV3lzb6CVqpQAMovUob7zpS9To/CZdTtYfiT8OWe/
-	Dcj5Jw0Ejt9snZJpwRnP9dZDhVdfYV7L/7GTaezN1pgJdK3lvNKaAcggAHZelrNP
-	osz1ELu16A6GW6xUSt1C+rlB2gkns7zWJxxQklAFcHU5p70G+hcXbGMh0BQ==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458eypbs1t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 06:56:22 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 52A6uI8S019081;
-	Mon, 10 Mar 2025 06:56:18 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 45900hqkm2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 06:56:18 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 52A6uIIc019075;
-	Mon, 10 Mar 2025 06:56:18 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 52A6uIeY019069
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 06:56:18 +0000
-Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
-	id F079F27CC; Mon, 10 Mar 2025 14:56:16 +0800 (CST)
-From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-To: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-        manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org,
-        dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
-        abel.vesa@linaro.org
-Cc: quic_ziyuzhan@quicinc.com, quic_qianyu@quicinc.com,
-        quic_krichai@quicinc.com, johan+linaro@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: [PATCH v3 4/4] PCI: qcom: Add support for QCS615 SoC
-Date: Mon, 10 Mar 2025 14:56:13 +0800
-Message-Id: <20250310065613.151598-5-quic_ziyuzhan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250310065613.151598-1-quic_ziyuzhan@quicinc.com>
-References: <20250310065613.151598-1-quic_ziyuzhan@quicinc.com>
+	 MIME-Version; b=H1Pu3NzhxUauaUBmYfFq81T+f5EnwlMpTzCCWmisvwlD9w4hQ3HFmyYAALy2pqEnNuex1Zxs4V5zv4EEe9otUP8HgYHhFBvYnDgfjtSF/Zn2e2Zwh9Le38q6edIYD3fOO3AUkd62GeyRFv2Eve2yglpFyUaluNJEvycfZQkf3lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.215.89])
+	by smtp.qiye.163.com (Hmail) with ESMTP id db8a14d9;
+	Mon, 10 Mar 2025 15:00:28 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: ziyao@disroot.org
+Cc: amadeus@jmu.edu.cn,
+	andi.shyti@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add onboard EEPROM for Radxa E20C
+Date: Mon, 10 Mar 2025 15:00:23 +0800
+Message-Id: <20250310070023.52290-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250309070603.35254-4-ziyao@disroot.org>
+References: <20250309070603.35254-4-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,51 +58,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=A9yWP7WG c=1 sm=1 tr=0 ts=67ce8d16 cx=c_pps a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=2xCtamTgItnm92E9LnwA:9 a=TjNXssC_j7lpFel5tvFf:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: xNDmhTnKeoK_PGcGl93RBU8iNdp09mY3
-X-Proofpoint-GUID: xNDmhTnKeoK_PGcGl93RBU8iNdp09mY3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-10_02,2025-03-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
- adultscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015
- priorityscore=1501 malwarescore=0 impostorscore=0 spamscore=0
- suspectscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503100053
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGk1MVh5JGBpMHU8fSh5MGVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVDQllXWRYaDxIVHRRZQVlPS0hVSktISk5MTlVKS0tVSk
+	JLS1kG
+X-HM-Tid: 0a957edae03603a2kunmdb8a14d9
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pww6CRw4TzJCGCwCEwM5MREr
+	OkswCk5VSlVKTE9KTkJLS0lCSk1CVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpOVUNCWVdZCAFZQU9PTDcG
 
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Hi,
 
-Add the compatible and the driver data for QCS615 PCIe controller.
-There is only one controller instance found on this platform, which
-is capable of up to 8.0GT/s.
-The version of the controller is 1.38.0 which is compatible with 1.9.0
-config.
+> +&i2c1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c1m0_xfer>;
+> +	status = "okay";
+> +
+> +	eeprom@50 {
+> +		compatible = "belling,bl24c16a", "atmel,24c16";
+> +		reg = <0x50>;
+> +		pagesize = <16>;
+> +		vcc-supply = <&vcc_3v3>;
+> +	};
+> +};
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 1 +
- 1 file changed, 1 insertion(+)
+This eeprom stores the device information written by the manufacturer,
+such as mac address and sn. So it should be marked as read-only.
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index e4d3366ead1f..f69c6773708d 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -1862,6 +1862,7 @@ static const struct of_device_id qcom_pcie_match[] = {
- 	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
- 	{ .compatible = "qcom,pcie-sm8550", .data = &cfg_1_9_0 },
- 	{ .compatible = "qcom,pcie-x1e80100", .data = &cfg_sc8280xp },
-+	{ .compatible = "qcom,qcs615-pcie", .data = &cfg_1_9_0 },
- 	{ }
- };
- 
+Thanks,
+Chukun
+
 -- 
 2.25.1
 
