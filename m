@@ -1,174 +1,278 @@
-Return-Path: <devicetree+bounces-156276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A188A5A3A8
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 20:10:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB6DA5A3BA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 20:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6500C172495
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 19:10:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BEBE173108
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 19:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4E7235371;
-	Mon, 10 Mar 2025 19:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE88E235364;
+	Mon, 10 Mar 2025 19:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rb+yyCzH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TI1r+x0F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450331B395F;
-	Mon, 10 Mar 2025 19:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8186829D0B;
+	Mon, 10 Mar 2025 19:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741633836; cv=none; b=WhF0u4VrOPS36ML8SQcB8pnptOkqSTcsL3WcUuEDyvtmFx3e+vPdXhSIxdc3gx0hGnyB5utEDKsys1pSBZbXFCiZ+y/1QTVd74U7Ge4dkFfQ5k1Q90IK6EHQejaP82p/WJ4IVU9PaCd2WgdLN921PNtQm+BRBkBBuwFcgbEmtR0=
+	t=1741634720; cv=none; b=ogBcwZ+a4qxIcQCVkQUh78Ea8OWsXwMAivbOSQzIQd+VNVAmJ3EqspSDvMdRtS/kCl6a7KvxMEk88/IIC/Cq0jKbLfEAiSu2oq6H7yZem81Y0+YJ+QeP9Fdw+glm/gDynwXmutW48gF4u01tXnUWH6fU2/LyFoO4p4pWYMuZ17U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741633836; c=relaxed/simple;
-	bh=DBk/kZBw0odYTdZthQM7f2aDIlRMFe9FamwtssJayB4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fx164fKQTnHaIFiL/93ST1dH7X9s13exHHhnBeHNmZHoLGxM6B2tss4BEsdBNV7uO9SkGiGK8iNZ6LSumjfXM+Uhik+qQ1f6+JryMmui9FinfYr8FCltHzWF+6rUBe20dV0q67W49d3tv9/XFWn1Cqe5qD0nx5H5P+FfTn9C/Ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rb+yyCzH; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-223a7065ff8so11982505ad.0;
-        Mon, 10 Mar 2025 12:10:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741633834; x=1742238634; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XVWN+SFTID99BmAbNFLYqw3ORI4z7v5WGf9g0A9wLJw=;
-        b=Rb+yyCzHbPxaOzvubMG+ViGn8njRjEFb/eXPONhysL0JJhvc33aA56Xb8vH8IdPweh
-         h45AxbJDi+Dbmp25U04d9c+3CipJ8xxemJV0opiKmN1TZGcZomFyeBQTnJdHkldA+M3i
-         kMEr2D0L4efBt5syW8joUBCCkxvZaSApXrTOl2pIJRS0Yt3kuNSMCuSEUYtMKVlhw3Yx
-         Z+BrMcNHS+zXJ/RX1peoEFQKdovWw3A875n88ftrtj6+aQZkFXRLMfKth6pSFH5ClASM
-         qiZzvnG0SmcUSOUX4MVdPBvR7PL4lWHXRqtctx4YfDKo/ks++TgSsZd3tO2YosVlizR9
-         SMDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741633834; x=1742238634;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XVWN+SFTID99BmAbNFLYqw3ORI4z7v5WGf9g0A9wLJw=;
-        b=o5l2/kv08KgpphIeGuMinKpMG6CkcFJzPxy5EPSpbGpuN4wgx0GeY3UgrQyl28Vg1f
-         ICchNquyAB+Kf4tJ5jecoe0ssRCg1YKenQyQkxR6axM9k47y3eziIsvfq/2rWoEBO3jS
-         2fl8MzHBjzTJFMDfPt2qwuOBJ8rMh/Vi6JXJi12EbBYkjUE2LwENS03zf1Aa7GrxNFz7
-         dRi92xTp3Bz6RzrFtkAvxVQYJ22mjIrBXKWkjI4bPFrj1XcTZsXJrH4+8TNzTeGYGNjc
-         BwLmNDLQsb3jm1aC640+vK85JuRKe+2dK+QSgo0C2ThWMZ0/LN+5dK4hBcaHO+wvxn7X
-         3JWA==
-X-Forwarded-Encrypted: i=1; AJvYcCXLldzWyj1AvtAeD10VD5UAwko/HksmTBS0PuCqyXk2ib74d/0s8iJQa8N78cu2Rw0rAZc2ji/WkvqDrSE=@vger.kernel.org, AJvYcCXNublnxkfHsL5VlLK9i4jlk2mPF03UJL0/xqu+WHfkfrbifhMzzEtQP+dHqqpaO3YVBHRcCoYMm3xYMSM=@vger.kernel.org, AJvYcCXk7y7TkRj9ur1rYL6phMWJvYs5rSOvorGeiWDwUjWNPLIEhswtLARfr6HQlldcO1rkg07gW/FaPrPl@vger.kernel.org, AJvYcCXkIphTHp1+3Uwb9k1rjQRCiBp6qeR5xN31Yidt7Lc0992ECEHzjXF654BzjbaDpnr5ieES19TZxiWEb8YE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeBXkfZ7dADNiFNJAPpwjLoaJzK4wMOAOA7Zv1AUAP80HZdrlv
-	qEq8mDcECp4jHwp55k/jJQJnf+0NparZGVmvnaKy7FLaBh0msknU
-X-Gm-Gg: ASbGncvKHXCGfX/BUJxQ8s0w986h4T8Beouy9teMwEKea/waqKY+Rfnnnvv0+RU8EBk
-	fNf6sJwFzMm/EwDqdhiWy9WEvbwqENrwu1xVAV0DKgSjK6ejFL7xBzsBkudJdFAGLH971Dvor5j
-	xBhwA/cmk1jQ9MwHFotYss0yCNz+PiehZepuRFshzXox7ZHyD3yoA9PONXqqoNRGJEov0cLbRPA
-	rHal/V7klcqGn1sv0cv8/fZvj/uJrjyOC8hj/f66LrwsiqWrJs1xZc0vxrOrAnT8+nO+mZmtLGv
-	XO+XxuSrNyk67BFqI/CWSiIQcfH8cWfTTjAnFm1ztFfo
-X-Google-Smtp-Source: AGHT+IF+ZrgtiTtPoBLyTJnqVUSquMP/+lN5Pwz5HSsKTThsvLoBcjrUzpd566OoTHqNysD54SmIxg==
-X-Received: by 2002:a05:6a00:190a:b0:736:31cf:2590 with SMTP id d2e1a72fcca58-736aaaad27fmr21102717b3a.16.1741633834473;
-        Mon, 10 Mar 2025 12:10:34 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:eb9f:29c2:9ede:46d])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af28c0339cesm6841209a12.46.2025.03.10.12.10.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Mar 2025 12:10:34 -0700 (PDT)
-Date: Mon, 10 Mar 2025 12:10:31 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: david@ixit.cz
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Jason A. Donenfeld" <Jason@zx2c4.com>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Vincent Huang <vincent.huang@tw.synaptics.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Caleb Connolly <caleb.connolly@linaro.org>,
-	methanal <baclofen@tuta.io>
-Subject: Re: [PATCH v3 2/7] Input: synaptics-rmi4 - handle duplicate/unknown
- PDT entries
-Message-ID: <Z885Jw0K6d2h_2pl@google.com>
-References: <20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz>
- <20250308-synaptics-rmi4-v3-2-215d3e7289a2@ixit.cz>
+	s=arc-20240116; t=1741634720; c=relaxed/simple;
+	bh=HiJOVJUbPj9Y5EXs3EtkfouEzE6hMa/6Du8rJbM/8EI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AfSdfkA5QsqXcPF37CzDMZqUl4iUTMX3gBAUn7RMUgogHIuwnDCaDB8cZAehXalC7lHWVV16GSNeB10oqqEAxtZtbYwZEBRZo4iuQylEw4ei6vEklSRuOmIXn6ocoAOd6JAkZzk3c1sauaxOt6Tx/MnrlwsahryDvyRNQ6NdM6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TI1r+x0F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9842BC4CEE5;
+	Mon, 10 Mar 2025 19:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741634718;
+	bh=HiJOVJUbPj9Y5EXs3EtkfouEzE6hMa/6Du8rJbM/8EI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=TI1r+x0FIda8jW33SCD3Gv5Oz3Fcych+C9ZVqYndpSHwUYvX+I/aAlBs9Owiifmmx
+	 /Iu63dqXpopc8YBmK80269Dcs104vl1hmZnDLqLwFPyAT+Pj8e5ehGrIowBBd1vjN/
+	 SIKvbM/nqcvQSOfWE9ST4IKanpPHDFxX04whzNpCFzYwzEHSsakIbsLURs5bEeOCzC
+	 hqaF0mW6r1COEkHffTA1PKjcWH5qcytkZMeXqh8M5lVAy7JZ/xMXucG87Md231yowD
+	 cyJydDRql0PGCKRZ7wSsNyxGL+sJl+Hyq8apZ3+e7qNkXEZNux636deiwmQhu4caRP
+	 yHp++Me/nGUWg==
+Date: Mon, 10 Mar 2025 19:25:03 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Nuno Sa
+ <nuno.sa@analog.com>, Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Guillaume Stols <gstols@baylibre.com>, Dumitru Ceclan
+ <mitrutzceclan@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>, Matteo
+ Martelli <matteomartelli3@gmail.com>, Alisa-Dariana Roman
+ <alisadariana@gmail.com>, Ramona Alexandra Nechita
+ <ramona.nechita@analog.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v5 03/10] iio: adc: add helpers for parsing ADC nodes
+Message-ID: <20250310192503.71671275@jic23-huawei>
+In-Reply-To: <4d5212b3-3801-408c-9a5d-c6111189793c@gmail.com>
+References: <cover.1740993491.git.mazziesaccount@gmail.com>
+	<e71c63c2f61135f9a8c7884525aab2c48f1e84c2.1740993491.git.mazziesaccount@gmail.com>
+	<CAMknhBGQaqFZJsPAoauZL4S5MYtN05EOQ-BO2vw5gH+Z2RLOhw@mail.gmail.com>
+	<54a031d0-df47-4baa-a23a-1a79c0922542@gmail.com>
+	<20250308162928.72bd1d1b@jic23-huawei>
+	<4d5212b3-3801-408c-9a5d-c6111189793c@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250308-synaptics-rmi4-v3-2-215d3e7289a2@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi David,
+On Mon, 10 Mar 2025 09:41:00 +0200
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-On Sat, Mar 08, 2025 at 03:08:38PM +0100, David Heidelberg via B4 Relay wrote:
-> From: Caleb Connolly <caleb.connolly@linaro.org>
-> 
-> Some third party rmi4-compatible ICs don't expose their PDT entries
-> very well. Add a few checks to skip duplicate entries as well as entries
-> for unsupported functions.
-> 
-> This is required to support some phones with third party displays.
-> 
-> Validated on a stock OnePlus 6T (original parts):
-> manufacturer: Synaptics, product: S3706B, fw id: 2852315
-> 
-> Co-developed-by: methanal <baclofen@tuta.io>
-> Signed-off-by: methanal <baclofen@tuta.io>
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  drivers/input/rmi4/rmi_driver.c | 47 +++++++++++++++++++++++++++++++++++------
->  drivers/input/rmi4/rmi_driver.h |  6 ++++++
->  2 files changed, 47 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/input/rmi4/rmi_driver.c b/drivers/input/rmi4/rmi_driver.c
-> index 2168b6cd7167334d44553c9c566f870a4e034179..51c23a407b2731d5b6eaefe9cae6288f97316e34 100644
-> --- a/drivers/input/rmi4/rmi_driver.c
-> +++ b/drivers/input/rmi4/rmi_driver.c
-> @@ -493,12 +493,44 @@ static void rmi_driver_copy_pdt_to_fd(const struct pdt_entry *pdt,
->  	fd->function_version = pdt->function_version;
->  }
->  
-> +static bool rmi_pdt_entry_is_valid(struct rmi_device *rmi_dev,
-> +				   struct pdt_scan_state *state, u8 fn)
-> +{
-> +	unsigned int i;
-> +
-> +	switch (fn) {
-> +	case 0x01:
-> +	case 0x03:
-> +	case 0x11:
-> +	case 0x12:
-> +	case 0x30:
-> +	case 0x34:
-> +	case 0x3a:
-> +	case 0x54:
-> +	case 0x55:
+> On 08/03/2025 18:29, Jonathan Cameron wrote:
+> > On Wed, 5 Mar 2025 12:54:33 +0200
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >  =20
+> >> Thanks for the review David.
+> >>
+> >> On 04/03/2025 11:25, David Lechner wrote: =20
+> >>> On Mon, Mar 3, 2025 at 12:32=E2=80=AFPM Matti Vaittinen
+> >>> <mazziesaccount@gmail.com> wrote: =20
+> >>>>
+> >>>> There are ADC ICs which may have some of the AIN pins usable for oth=
+er
+> >>>> functions. These ICs may have some of the AIN pins wired so that they
+> >>>> should not be used for ADC.
+> >>>>
+> >>>> (Preferred?) way for marking pins which can be used as ADC inputs is=
+ to
+> >>>> add corresponding channels@N nodes in the device tree as described in
+> >>>> the ADC binding yaml.
+> >>>>
+> >>>> Add couple of helper functions which can be used to retrieve the cha=
+nnel
+> >>>> information from the device node.
+> >>>>
+> >>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >>>>
+> >>>> --- =20
+> >> =20
+> >>>> + *
+> >>>> + * Return:     Number of found channels on succes. Negative value t=
+o indicate =20
+> >>>
+> >>> s/succes/success/ =20
+> >>
+> >> Thanks!
+> >> =20
+> >>>> +int devm_iio_adc_device_alloc_chaninfo_se(struct device *dev,
+> >>>> +                                         const struct iio_chan_spec=
+ *template,
+> >>>> +                                         int max_chan_id,
+> >>>> +                                         struct iio_chan_spec **cs)
+> >>>> +{
+> >>>> +       struct iio_chan_spec *chan_array, *chan;
+> >>>> +       int num_chan =3D 0, ret;
+> >>>> +
+> >>>> +       num_chan =3D iio_adc_device_num_channels(dev);
+> >>>> +       if (num_chan < 1)
+> >>>> +               return num_chan;
+> >>>> +
+> >>>> +       chan_array =3D devm_kcalloc(dev, num_chan, sizeof(*chan_arra=
+y),
+> >>>> +                                 GFP_KERNEL);
+> >>>> +       if (!chan_array)
+> >>>> +               return -ENOMEM;
+> >>>> +
+> >>>> +       chan =3D &chan_array[0];
+> >>>> +
+> >>>> +       device_for_each_child_node_scoped(dev, child) {
+> >>>> +               u32 ch;
+> >>>> +
+> >>>> +               if (!fwnode_name_eq(child, "channel"))
+> >>>> +                       continue;
+> >>>> +
+> >>>> +               ret =3D fwnode_property_read_u32(child, "reg", &ch);
+> >>>> +               if (ret)
+> >>>> +                       return ret;
+> >>>> +
+> >>>> +               if (max_chan_id !=3D -1 && ch > max_chan_id)
+> >>>> +                       return -ERANGE;
+> >>>> + =20
+> >>>
+> >>> Should we use return dev_err_probe() on these to help with debugging =
+a bad dtb?
+> >>>     =20
+> >>
+> >> I am not fan of using dev_err_probe() in a 'library code'. This is
+> >> because we never know if there'll be some odd use-case where this is n=
+ot
+> >> called from the probe.
+> >>
+> >> All in all, I'd leave adding most of the debugs to the callers -
+> >> especially because we do not expect to have bad device-trees after the
+> >> initial 'development stage' of a board. The board 'development stage'
+> >> should really reveal bugs which prevent the channels from being
+> >> registered - and after the DT is correct, these debug prints become
+> >> unnecessary (albeit minor) binary bloat.
+> >> =20
+> >>>> +               *chan =3D *template;
+> >>>> +               chan->channel =3D ch;
+> >>>> +               chan++;
+> >>>> +       }
+> >>>> +
+> >>>> +       *cs =3D chan_array;
+> >>>> +
+> >>>> +       return num_chan;
+> >>>> +}
+> >>>> +EXPORT_SYMBOL_NS_GPL(devm_iio_adc_device_alloc_chaninfo_se, "IIO_DR=
+IVER"); =20
+> >>>
+> >>> We can make this less verbose by setting #define
+> >>> DEFAULT_SYMBOL_NAMESPACE at the start of the file. Then we can just do
+> >>> EXPORT_SYMBOL_GPL() throughout the rest of the file. =20
+> >>
+> >> I am not sure what to think of this. I use the good old 'ctrl + ]' in =
+my
+> >> editor when I need to check how a function was supposed to be used. Th=
+at
+> >> jumps to the spot of code where the function is. I'd like to see the
+> >> namespace mentioned there in order to not accidentally miss the fact t=
+he
+> >> function belongs to one.
+> >>
+> >> OTOH, I do like simplifications. Yet, the added simplification might n=
+ot
+> >> warrant the namespace not being visible in the function definition.
+> >> =20
+> >>> Also, I would prefer if the namespace matched config name (IIO_ADC_HE=
+LPER). =20
+> >>
+> >> I had some lengthy discussion about this with Andy and Jonathan during
+> >> earlier review versions. In short, I don't like the idea of very
+> >> fragmented namespaces in IIO, which will just complicate the drivers
+> >> without providing any obvious benefit.
+> >>
+> >> https://lore.kernel.org/all/20250222174842.57c091c5@jic23-huawei/
+> >> =20
+> >>>> +
+> >>>> +int devm_iio_adc_device_alloc_chaninfo_se(struct device *dev,
+> >>>> +                                         const struct iio_chan_spec=
+ *template,
+> >>>> +                                         int max_chan_id,
+> >>>> +                                         struct iio_chan_spec **cs);
+> >>>> + =20
+> >>>
+> >>> There are some different opinions on this, but on the last patch I did
+> >>> introducing a new namespace, the consensus seems to be that putting
+> >>> the MODULE_IMPORT_NS() in the header file was convenient so that users
+> >>> of the API don't have to remember to both include the header and add
+> >>> the import macro.
+> >>>     =20
+> >>
+> >> I do like this suggestion, and I believe this would be the balance
+> >> between getting the benefit of hiding part of the symbols - while not
+> >> unnecessarily complicating the callers. I know some people are opposing
+> >> it though. My personal opinion is that having the MODULE_IMPORT_NS() in
+> >> a header would be neatly simplifying the calling code with very little
+> >> harm, especially here where including the header hardly has use-cases
+> >> outside the IIO ADC.
+> >>
+> >> Unfortunately, the "safety" seems to often be a synonym for just "maki=
+ng
+> >> it intentionally hard". As Finnish people say: "K=C3=A4rsi, k=C3=A4rsi,
+> >> kirkkaamman kruunun saat". :)
+> >> (Roughly translated as "Suffer, suffer, you will get a brighter crown"=
+).
+> >>
+> >> Let's hear what Jonathan thinks of your suggestion. =20
+> >=20
+> > For this particular case my intent was that all the IIO exports that
+> > are suitable for use in simple IIO drives will be in this namespace,
+> > we just haven't started that conversion yet.
+> >=20
+> > As such, having it defined from a header for this helper isn't a good
+> > thing to do. =20
+>=20
+> Hmm. I agree.
+>=20
+> >  Generally I prefer to see in driver code what namespaces
+> > are involved but do understand the other viewpoint. In this case I
+> > definitely don't think it is appropriate unless we go for a specific na=
+mespace
+> > for just this helper. =20
+>=20
+> I suppose having the MODULE_IMPORT_NS() in the header would actually=20
+> make the more fine-grained namespaces (like IIO_ADC_HELPERS, IIO_GTS,=20
+> ...) much more usable. That'd relieved the drivers from explicitly=20
+> listing multiple namespaces while nicely limiting the visibility.
+>=20
+> If IIO was my territory, I might want to ask people to go with that=20
+> approach - but I am quite happy being a freeloade.. errm, I mean,=20
+> bystander ;)
+>=20
+It relieves the burden but I'd still prefer explicit opt in to namespaces
+unless there is general agreement on the approach of doing it in headers
+which there has not been so far.
 
-This mean that we need to update this code any time there is new
-function introduced. I'd rather we did not do that. The driver should be
-able to handle unknown functions.
+Jonathan
 
-> +		break;
-> +
-> +	default:
-> +		rmi_dbg(RMI_DEBUG_CORE, &rmi_dev->dev,
-> +			"PDT has unknown function number %#02x\n", fn);
-> +		return false;
-> +	}
-> +
-> +	for (i = 0; i < state->pdt_count; i++) {
-> +		if (state->pdts[i] == fn)
-> +			return false;
-> +	}
-> +
-> +	state->pdts[state->pdt_count++] = fn;
+> Thanks!
+>=20
+> Yours,
+> 	-- Matti
 
-Duplicate detection could be handled thorough a bitmap.
-
-Thanks.
-
--- 
-Dmitry
 
