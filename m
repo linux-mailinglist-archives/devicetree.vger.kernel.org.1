@@ -1,83 +1,88 @@
-Return-Path: <devicetree+bounces-156016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0093A58ED6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:03:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEF3A58EE9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:05:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D88D3A64B3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:02:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C10403A613A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 09:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FDB22539C;
-	Mon, 10 Mar 2025 09:02:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A2B224220;
+	Mon, 10 Mar 2025 09:05:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="bxznMqa9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dBU5GcSk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B295C223705
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 09:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C34380;
+	Mon, 10 Mar 2025 09:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741597350; cv=none; b=AoElvWkXgYDUkgzK8Agm+4fh2WRRNiZbOsZg2n2Mywn1AGZnaycT8E/uzFAG/ufGlA04Drn6YoVe4n/12m6s5vXCVt+ke10+wPpTrKit70qq8xccwgqeZzWNUO95JeGP8YXcWCoRXYN9Ze5x+Xv8kR/qCdSbEgGmyqFoDrEEJCI=
+	t=1741597504; cv=none; b=byM3/6Wo+pNsq+Cpeo74MnMbfhh027ICKbBXdDZRRYTcDT2loS8pE3DglHdMwje13iBLMHF3+1jzjHq/ql1K/aez/o6Ak1QaYBHzz9L41h8aSrPNyHvc7rCxM5/sX4NW7pREU6JL+1LpNFxLd0RNcVPpyvXvWQYooFmzGqcbU+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741597350; c=relaxed/simple;
-	bh=LjNeeGPZTSfwAfwVgmY6/aONFof+BNi8pWf8VZUD+9U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=PH+CAw5DBhSuIJP5Q7WVEia3PAJFCYwCQU8pkMDPJGzGpM7T2hwMxrjPlhQupati5Z59nbFh8STDzUL2Gt/R5RrQszn5BXqC2DduD8hNGtWgSphlG0p4bX99inr4OP9vVz4qvpVvQAi18mmle4n6PUN85gJ5Pm/JbfI8OtcCmsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=bxznMqa9; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250310090221euoutp0287f98d4d71b8d5c8f1cecc43aeec944a~rZY4OQmCo2551925519euoutp02n
-	for <devicetree@vger.kernel.org>; Mon, 10 Mar 2025 09:02:21 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250310090221euoutp0287f98d4d71b8d5c8f1cecc43aeec944a~rZY4OQmCo2551925519euoutp02n
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1741597341;
-	bh=GvH+KGxOLMWPvCT3kvkzzW6sq/iRIHCpZUQmHgtdxxI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bxznMqa9nXhUI8+SFusigApWXFGROHO2Annprj0ShgQ+lBhu4giEVznN92Kp1GHWV
-	 zDrPjQueKr5mf5fPi8xWBjUxen/rs5AffFvUnEVcyrd//DgH/wtNXby8J0yRwDrqaU
-	 j43MKqpsEsHm/RrFTql1ESjDKI+Cb0bFuoXmzhes=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20250310090221eucas1p18c5a64e40afb46abab95016c08a70fa2~rZY36jzSy2333723337eucas1p10;
-	Mon, 10 Mar 2025 09:02:21 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges2new.samsung.com (EUCPMTA) with SMTP id 19.86.20409.D9AAEC76; Mon, 10
-	Mar 2025 09:02:21 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250310090220eucas1p1bcb94d4d6c7145fa12a85305cb73068c~rZY3g6_8w2339523395eucas1p1v;
-	Mon, 10 Mar 2025 09:02:20 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250310090220eusmtrp1ad878aee0609448e3166f1fd98b0d986~rZY3gKuI41041010410eusmtrp1D;
-	Mon, 10 Mar 2025 09:02:20 +0000 (GMT)
-X-AuditID: cbfec7f4-c0df970000004fb9-d7-67ceaa9d9371
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id BE.0F.19654.C9AAEC76; Mon, 10
-	Mar 2025 09:02:20 +0000 (GMT)
-Received: from AMDC4942.home (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250310090220eusmtip26340f4f58568cd1b70452f8d5f384cac~rZY2rD9Xf2911429114eusmtip2G;
-	Mon, 10 Mar 2025 09:02:20 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com,
-	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	jszhang@kernel.org, ulf.hansson@linaro.org, m.szyprowski@samsung.com
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, Michal
-	Wilczynski <m.wilczynski@samsung.com>
-Subject: [PATCH v7 5/5] riscv: Enable PM_GENERIC_DOMAINS for T-Head SoCs
-Date: Mon, 10 Mar 2025 10:02:11 +0100
-Message-Id: <20250310090211.286549-6-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1741597504; c=relaxed/simple;
+	bh=9e4H2rOnPYGPDm/9KeG8ykhPaoW+GmadYPr+uX/QnW0=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fFeeIAX3Z7M0s/d46sAVlnkSnpZDfX1PI9zvCgMiNMA0YTDYZ+eBL8aN+v9QoCSp8QFk9cEoW62ztHI8NSd5geneWQNdh3ii/lc5L9eO35cgD6bmxpLfOglHzMOU4M8foqxiQgReJtjjqo+xBR1L9E45tr4PX6Ek9tKPh/VLPtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dBU5GcSk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 529LDiLj013127;
+	Mon, 10 Mar 2025 09:04:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/y3ccLGRS28rbxxS8x8ptTcuQEA4QZ6Z9IHOOS7Jtj0=; b=dBU5GcSkVasDyJxG
+	iIXVFoftvoQLIGg0srMZe1xG+kTM5vbY3UXB2Wxl2mVfe+TTFgRc14zO9yveey9k
+	AKnnD+xXcxZaz5mfPh8N57mlyqOf/Hg1Yy6TDtPht36kfhyGMlG2yoiGmFiygCq+
+	4uRsRb37m/NBw5ths8blzuLpjXgLGVgFirFXJ1T3l4gryx4r7xwfIk0qvzRCdQbR
+	2aqduWT90FHfccVxKulXym0pEO6YIpCLtRNXzmjW7LyhUm2oK3N6x+6ZmxCgPSp8
+	LhQsr5NHdb2PwcWQWCJmuxegzunvOeJ5Oc7zWQo2bzJOkAQ+bQWvc6ACb2Kc10g8
+	gLCtZQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458f0w4869-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 09:04:39 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52A94ccn024865
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Mar 2025 09:04:38 GMT
+Received: from jiegan-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 10 Mar 2025 02:04:33 -0700
+From: Jie Gan <quic_jiegan@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
+        "Alexander
+ Shishkin" <alexander.shishkin@linux.intel.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao
+	<quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH v1 1/4] coresight: tmc: Introduce new APIs to get the RWP offset of ETR buffer
+Date: Mon, 10 Mar 2025 17:04:04 +0800
+Message-ID: <20250310090407.2069489-2-quic_jiegan@quicinc.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250310090211.286549-1-m.wilczynski@samsung.com>
+In-Reply-To: <20250310090407.2069489-1-quic_jiegan@quicinc.com>
+References: <20250310090407.2069489-1-quic_jiegan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,81 +90,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrCKsWRmVeSWpSXmKPExsWy7djP87pzV51LN/hyWsji2Z2vrBZbf89i
-	t1iz9xyTxfwj51gt7l3awmTxYm8ji0XzsfVsFi9n3WOzuLxrDpvF594jjBbbPrewWaw9cpfd
-	Yv3X+UwWLy/3MFu0zeK3+L9nB7vF8bXhFi37p7A4CHm8efmSxeNwxxd2j3snprF6bFrVyeZx
-	59oeNo/NS+o9WtYeY/J4v+8qm0ffllWMHpear7N7fN4kF8AdxWWTkpqTWZZapG+XwJUxe+0Z
-	poIpnBU9uy+wNTCeZu9i5OSQEDCRuHH3N3MXIxeHkMAKRonns+YyQjhfGCUOX9kD5XxmlPjw
-	bDEbTEvn1C1QLcsZJX6f+scK4bxhlLjV+JEJpIpNwEjiwfL5YAkRgX4mib4j/8EcZoGVjBL3
-	L5xlBqkSFvCQeN3xFuwUFgFVid4ZT1lAbF4BO4meGddZIfbJS+w/CFHPKWAv8WLjJkaIGkGJ
-	kzOfgNUzA9U0b53NDFG/mVNi6tsACNtFYnHPGqi4sMSr41ug3paROD25hwXCzpd4sPUTVE2N
-	xM6e41C2tcSdc7+AfuYAmq8psX6XPkTYUeLMnq1gYQkBPokbbwUhLuCTmLRtOjNEmFeio00I
-	olpNYmpPL9zScyu2MUHYHhKfj79hnsCoOAvJL7OQ/DILYe8CRuZVjOKppcW56anFRnmp5XrF
-	ibnFpXnpesn5uZsYgQnx9L/jX3YwLn/1Ue8QIxMH4yFGCQ5mJRFete2n0oV4UxIrq1KL8uOL
-	SnNSiw8xSnOwKInzLtrfmi4kkJ5YkpqdmlqQWgSTZeLglGpg2v5w561A60+cJZxhmRvXet+a
-	Nq3E4smpMK5C1xeGdvOvclXJ6HwqNP9/N+aozpxfltde5F9ny+xlrewWkPvRHalQzZoXvMlK
-	KY3hVM/KcI0NC56du8+g9Zz5UQ/nb/ufqQLai4Il10rqbjwrXPwls/fVumNqbE62J5O4Jk0p
-	Md4t/PAgw8LoXWovXBf0TGhRjqjfrOCgPXVeMMOEJTt40nfmGE4oYL9T/M0qJfTXobPtjALL
-	btp8FGg1UH+6K9k5QzZwj7fc9XVnXFLkpXVUIz/dkKltvrDyj6X0B62Q41PKOt0ffamZv9f0
-	2eKn6owTbkr+fLvs8J1f2tU3lxn/bmvbvcd7tXqBMi+fddJ2JZbijERDLeai4kQA9VAKKPcD
-	AAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrCIsWRmVeSWpSXmKPExsVy+t/xe7pzVp1LN1hzwcTi2Z2vrBZbf89i
-	t1iz9xyTxfwj51gt7l3awmTxYm8ji0XzsfVsFi9n3WOzuLxrDpvF594jjBbbPrewWaw9cpfd
-	Yv3X+UwWLy/3MFu0zeK3+L9nB7vF8bXhFi37p7A4CHm8efmSxeNwxxd2j3snprF6bFrVyeZx
-	59oeNo/NS+o9WtYeY/J4v+8qm0ffllWMHpear7N7fN4kF8AdpWdTlF9akqqQkV9cYqsUbWhh
-	pGdoaaFnZGKpZ2hsHmtlZKqkb2eTkpqTWZZapG+XoJcxe+0ZpoIpnBU9uy+wNTCeZu9i5OSQ
-	EDCR6Jy6hbmLkYtDSGApo8SFH81sEAkZiWvdL1kgbGGJP9e62CCKXjFKtD6dywySYBMwkniw
-	fD4rSEJEYCGTxNUpG8BGMQusZZQ4fPUS2A5hAQ+J1x1vwWwWAVWJ3hlPwcbyCthJ9My4zgqx
-	Ql5i/8GzYFM5BewlXmzcxAhiCwHV7Oh+xwpRLyhxcuYTsF5moPrmrbOZJzAKzEKSmoUktYCR
-	aRWjSGppcW56brGRXnFibnFpXrpecn7uJkZg9G479nPLDsaVrz7qHWJk4mA8xCjBwawkwqu2
-	/VS6EG9KYmVValF+fFFpTmrxIUZToLsnMkuJJucD00deSbyhmYGpoYmZpYGppZmxkjgv25Xz
-	aUIC6YklqdmpqQWpRTB9TBycUg1Mc0MOZN47eZhTI9XTlX3WN0Hn6Lnd7ycL70u+FPf9LEdN
-	EcsJLomPju+OJDt+mnaq7WN5gFBrbfDd5cHivAYSoRtcHLWb/jDJXmf/leJlPEeWY5dhse0U
-	91zte0JRe0L913gIHLrnyrneTEexxHXjSc0KrWupP4MK524W/mGapOjv+dBWzN7KRN5+moQy
-	t3LzNr7ELJaVbPeY9+2ZuqG54N0DmaWZ+78zHJp8uVlwNtf+j0IG388dvP35j5rylbyrjhzb
-	H664/CXnt3NFs9Vf/uVzN3HOLW6bMjHq0dtzO6sjKnw4fbJ95DZO50z2v3n7y/adD+5aPJMR
-	k4j4ZMqn9Lg/9GHNwelKL/zr3bmVWIozEg21mIuKEwF33gf7ZwMAAA==
-X-CMS-MailID: 20250310090220eucas1p1bcb94d4d6c7145fa12a85305cb73068c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250310090220eucas1p1bcb94d4d6c7145fa12a85305cb73068c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250310090220eucas1p1bcb94d4d6c7145fa12a85305cb73068c
-References: <20250310090211.286549-1-m.wilczynski@samsung.com>
-	<CGME20250310090220eucas1p1bcb94d4d6c7145fa12a85305cb73068c@eucas1p1.samsung.com>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: wFn8xYvhJG6QyQN_corUmwD4YwxRiQIf
+X-Proofpoint-GUID: wFn8xYvhJG6QyQN_corUmwD4YwxRiQIf
+X-Authority-Analysis: v=2.4 cv=MICamNZl c=1 sm=1 tr=0 ts=67ceab27 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=NC6d20HEQiqhJ-MTNCwA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-10_03,2025-03-07_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=576 lowpriorityscore=0 phishscore=0 spamscore=0 suspectscore=0
+ priorityscore=1501 malwarescore=0 mlxscore=0 adultscore=0 bulkscore=0
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503100071
 
-T-Head SoCs feature separate power domains (power islands) for major
-components like the GPU, Audio, and NPU. To manage the power states of
-these components effectively, the kernel requires generic power domain
-support.
+The new functions calculate and return the offset to the write pointer of
+the ETR buffer based on whether the memory mode is SG, flat or reserved.
+The functions have the RWP offset can directly read data from ETR buffer,
+enabling the transfer of data to any required location.
 
-This commit enables `CONFIG_PM_GENERIC_DOMAINS` for T-Head SoCs,
-allowing the power domain driver for these components to be compiled and
-integrated. This ensures proper power management and energy efficiency
-on T-Head platforms.
-
-By selecting `PM_GENERIC_DOMAINS`, we provide the necessary framework
-for the power domain drivers to function correctly on RISC-V
-architecture with T-Head SoCs.
-
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
 ---
- arch/riscv/Kconfig.socs | 1 +
- 1 file changed, 1 insertion(+)
+ .../hwtracing/coresight/coresight-tmc-etr.c   | 40 +++++++++++++++++++
+ drivers/hwtracing/coresight/coresight-tmc.h   |  1 +
+ 2 files changed, 41 insertions(+)
 
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index 1916cf7ba450..83833ded8908 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -53,6 +53,7 @@ config ARCH_THEAD
- 	bool "T-HEAD RISC-V SoCs"
- 	depends on MMU && !XIP_KERNEL
- 	select ERRATA_THEAD
-+	select PM_GENERIC_DOMAINS if PM
- 	help
- 	  This enables support for the RISC-V based T-HEAD SoCs.
+diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+index eda7cdad0e2b..ec636ab1fd75 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
++++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+@@ -267,6 +267,46 @@ void tmc_free_sg_table(struct tmc_sg_table *sg_table)
+ }
+ EXPORT_SYMBOL_GPL(tmc_free_sg_table);
  
++static long tmc_flat_resrv_get_rwp_offset(struct tmc_drvdata *drvdata)
++{
++	dma_addr_t paddr = drvdata->sysfs_buf->hwaddr;
++	u64 rwp;
++
++	rwp = tmc_read_rwp(drvdata);
++	return rwp - paddr;
++}
++
++static long tmc_sg_get_rwp_offset(struct tmc_drvdata *drvdata)
++{
++	struct etr_buf *etr_buf = drvdata->sysfs_buf;
++	struct etr_sg_table *etr_table = etr_buf->private;
++	struct tmc_sg_table *table = etr_table->sg_table;
++	long w_offset;
++	u64 rwp;
++
++	rwp = tmc_read_rwp(drvdata);
++	w_offset = tmc_sg_get_data_page_offset(table, rwp);
++
++	return w_offset;
++}
++
++/*
++ * Retrieve the offset to the write pointer of the ETR buffer based on whether
++ * the memory mode is SG, flat or reserved.
++ */
++long tmc_get_rwp_offset(struct tmc_drvdata *drvdata)
++{
++	struct etr_buf *etr_buf = drvdata->sysfs_buf;
++
++	if (etr_buf->mode == ETR_MODE_ETR_SG)
++		return tmc_sg_get_rwp_offset(drvdata);
++	else if (etr_buf->mode == ETR_MODE_FLAT || etr_buf->mode == ETR_MODE_RESRV)
++		return tmc_flat_resrv_get_rwp_offset(drvdata);
++	else
++		return -EINVAL;
++}
++EXPORT_SYMBOL_GPL(tmc_get_rwp_offset);
++
+ /*
+  * Alloc pages for the table. Since this will be used by the device,
+  * allocate the pages closer to the device (i.e, dev_to_node(dev)
+diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
+index b48bc9a01cc0..baedb4dcfc3f 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc.h
++++ b/drivers/hwtracing/coresight/coresight-tmc.h
+@@ -442,5 +442,6 @@ void tmc_etr_remove_catu_ops(void);
+ struct etr_buf *tmc_etr_get_buffer(struct coresight_device *csdev,
+ 				   enum cs_mode mode, void *data);
+ extern const struct attribute_group coresight_etr_group;
++long tmc_get_rwp_offset(struct tmc_drvdata *drvdata);
+ 
+ #endif
 -- 
 2.34.1
 
