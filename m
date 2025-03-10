@@ -1,177 +1,128 @@
-Return-Path: <devicetree+bounces-156079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC385A591C4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:50:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4A7A591D0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 11:51:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11F83188B173
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:50:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CC983ADE31
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 10:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46BF22B8D6;
-	Mon, 10 Mar 2025 10:47:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j9W1OZnb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CB8227EAC;
+	Mon, 10 Mar 2025 10:48:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05337228C9C;
-	Mon, 10 Mar 2025 10:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCB1B199939;
+	Mon, 10 Mar 2025 10:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741603679; cv=none; b=NPgAVDtswl/6LCm3ErC5rdf66+dTuagu7PYvQNQKu5MB7qR3ev+HUCNaLDoZm9EguX5oKMNzKcnowunY+l1IYGba2vrQSBvHsLNemdjYORj55kYiM7Vce4JKJGwVPj+QRDzbkTtY1WwpcI6Sk7nyNLDU4sUydW+6Okg7VJIwMpM=
+	t=1741603710; cv=none; b=X8rbMUFJ7NpzAdJ4dC0j1Uz27NMGABAQb1AWVp1u+38rtby8HX6aHKNgtymPPOVE7uHbKvvK1ECIe8/fE4ea2OP7vMNH9W01KLCx+Y/+eoxgNvu4YbvQlyQ+e5m1bPoAf4LHBYCUR7hQGa/UT4PCidaMYo0Xk7hgDUkEOofXYOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741603679; c=relaxed/simple;
-	bh=ksn8IQPKpJzP0SAfN/0TA4qOZ0TZecOeK/E6ed415e0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZcvI6GgPPbSbvtHrFOTg0khciQ2ZPYHPRuC74/GPWkBdbqzu+b/kjgTgiyuXvGPMErTMzxq8eGDhkvY3DgMVo1zJyckGBj7gwQopQySlktg3ySOZUUVW7idImX6hGyVf9VUWAbvhtXJ/1lXxDVjhbrkooTRFapXD7O+EtKwffCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j9W1OZnb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52A9LfuR006483;
-	Mon, 10 Mar 2025 10:47:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=gb/rZDUC2eGqGowkMWPm+s
-	ZwIMzFCl2wQLIKc8hQF6k=; b=j9W1OZnb0LQTeUk9QiTFmKRk0Y5D7ieE/IiPi8
-	A27HwiefqpsbRAwdVMfeYhY7w51L1VFsOwFqfoXTLR1ZD/cGktKnfJfmIzQGPjS5
-	DvGlFLK0pcCT4Nfhtrisg1ktWvKUzopAMcftDlcPcgXhBD42P8JFTxbBTVLJdBM3
-	StJSsDo1owhw3kddytGcsy+Y/AJ2Kc+TGltIPoXtier3T8TLtFWekpGP9C76rkmH
-	zrjnqGefrOgHSPhx4iCDscfWoyhk8pB8YHoO03El7UZCU8lqs2hT30W7VTtEb0yp
-	baEnDeK6AQOxYAlnoGtgYd4hRDD+zc0V/kdJL8Baqg4lG3cQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458ewpmhte-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 10:47:55 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52AAlspp010108
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Mar 2025 10:47:54 GMT
-Received: from hu-mnagar-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 10 Mar 2025 03:47:51 -0700
-From: Manish Nagar <quic_mnagar@quicinc.com>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        Krishna Kurapati
-	<krishna.kurapati@oss.qualcomm.com>
-Subject: [PATCH] arm64: dts: qcom: qcs8300-ride: Enable second USB controller on QCS8300 Ride
-Date: Mon, 10 Mar 2025 16:17:43 +0530
-Message-ID: <20250310104743.976265-1-quic_mnagar@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1741603710; c=relaxed/simple;
+	bh=vp3GGKR2xiMcDEYzikelXFHF5XdEOgesgxhI4m2MWX8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SdPPPKR04voNzKH4z0KQfjAwmQtJK6pxqNqzUBXQ7NzniaNWStDIUEGqXw9iAHc4k7e+wcAHXwbJ/jAfg559PzgA96kCiDMacKANH0UkiI0swUPhmEEYXAGSbIoiZ7AbBZz+qKUxzUwP/ulLYGDKSh3+MSYG4Gd//m7GzIZV78Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 95160153B;
+	Mon, 10 Mar 2025 03:48:39 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8E4223F673;
+	Mon, 10 Mar 2025 03:48:24 -0700 (PDT)
+Date: Mon, 10 Mar 2025 10:48:21 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: "Ryan Walklin" <ryan@testtoast.com>
+Cc: "Maxime Ripard" <mripard@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Thomas
+ Zimmermann" <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>,
+ "Daniel Vetter" <daniel@ffwll.ch>, "Jernej Skrabec"
+ <jernej.skrabec@gmail.com>, "Samuel Holland" <samuel@sholland.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Chris
+ Morgan" <macroalpha82@gmail.com>, "Hironori KIKUCHI"
+ <kikuchan98@gmail.com>, "Philippe Simons" <simons.philippe@gmail.com>,
+ "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, "Conor Dooley" <conor.dooley@microchip.com>
+Subject: Re: [PATCH v7 22/27] dt-bindings: allwinner: add H616 DE33 mixer
+ binding
+Message-ID: <20250310104821.3c85977a@donnerap.manchester.arm.com>
+In-Reply-To: <c8b85753-5c97-4258-a158-06a17929fad6@app.fastmail.com>
+References: <20250216183710.8443-3-ryan@testtoast.com>
+	<20250216183710.8443-23-ryan@testtoast.com>
+	<20250224175642.170c124e@donnerap.manchester.arm.com>
+	<c8b85753-5c97-4258-a158-06a17929fad6@app.fastmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: asiVt0grXUnT1VyPq3sZm_1EZq5iVg3D
-X-Proofpoint-ORIG-GUID: asiVt0grXUnT1VyPq3sZm_1EZq5iVg3D
-X-Authority-Analysis: v=2.4 cv=C5sTyRP+ c=1 sm=1 tr=0 ts=67cec35b cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=0nCIlMqfeCQfA5XZMt8A:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-10_04,2025-03-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- adultscore=0 clxscore=1011 bulkscore=0 lowpriorityscore=0 malwarescore=0
- impostorscore=0 suspectscore=0 spamscore=0 priorityscore=1501
- mlxlogscore=939 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503100086
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Enable secondary USB controller on QCS8300 Ride platform. Since it is a
-Type-A port, the dr_mode has been set to "host". The VBUS to connected
-peripherals is provided by TPS2559QWDRCTQ1 regulator connected to the
-port. The regulator has an enable pin controlled by PMM8650. Model it as
-fixed regulator and keep it Always-On at boot, since the regulator is
-GPIO controlled regulator.
+On Mon, 10 Mar 2025 22:30:36 +1300
+"Ryan Walklin" <ryan@testtoast.com> wrote:
 
-Co-developed-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Signed-off-by: Manish Nagar <quic_mnagar@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 35 +++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Hi Ryan,
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index 916d4e6da922..7947e48f6a95 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -22,6 +22,16 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	regulator-usb2-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB2_VBUS";
-+		gpio = <&pmm8650au_1_gpios 7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb2_en>;
-+		pinctrl-names = "default";
-+		enable-active-high;
-+		regulator-always-on;
-+	};
- };
- 
- &apps_rsc {
-@@ -286,6 +296,15 @@ queue3 {
- 	};
- };
- 
-+&pmm8650au_1_gpios {
-+	usb2_en: usb2-en-state {
-+		pins = "gpio7";
-+		function = "normal";
-+		output-enable;
-+		power-source = <0>;
-+	};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -355,6 +374,14 @@ &usb_1_hsphy {
- 	status = "okay";
- };
- 
-+&usb_2_hsphy {
-+	vdda-pll-supply = <&vreg_l7a>;
-+	vdda18-supply = <&vreg_l7c>;
-+	vdda33-supply = <&vreg_l9a>;
-+
-+	status = "okay";
-+};
-+
- &usb_qmpphy {
- 	vdda-phy-supply = <&vreg_l7a>;
- 	vdda-pll-supply = <&vreg_l5a>;
-@@ -369,3 +396,11 @@ &usb_1 {
- &usb_1_dwc3 {
- 	dr_mode = "peripheral";
- };
-+
-+&usb_2 {
-+	status = "okay";
-+};
-+
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+};
--- 
-2.25.1
+> On Tue, 25 Feb 2025, at 6:56 AM, Andre Przywara wrote:
+> 
+> Apologies Andre, I came to review your comments on the TCON series and realised I had missed responding to this comment before sending v8. 
+
+No worries about that!
+
+> >> +      - allwinner,sun50i-h616-de33-mixer-0
+> >>  
+> >>    reg:
+> >> -    maxItems: 1
+> >> +    minItems: 1
+> >> +    maxItems: 3  
+> >
+> > What are those three regions? I wonder if we should have reg-names here,
+> > to fix the order, and to document them on the way?  
+> 
+> This would be the top, display and mixer groups for the DE333, and mixer for DE3 and earlier. Can certainly add in names for these. Is there any example elsewhere in the bindings to look at?
+
+It's basically the same idea as for clock-names, as used in this very file
+here (allwinner,sun8i-a83t-de2-mixer.yaml). You can find an explicit
+example for reg-names in allwinner,sun4i-a10-mbus.yaml, for instance.
+In the code you would use devm_platform_ioremap_resource_byname() then.
+
+Cheers,
+Andre
+
+> >> @@ -61,6 +63,23 @@ properties:
+> >>      required:
+> >>        - port@1
+> >>  
+> >> +allOf:
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          enum:
+> >> +            - allwinner,sun50i-h616-de33-mixer-0
+> >> +
+> >> +    then:
+> >> +      properties:
+> >> +        reg:
+> >> +          maxItems: 3  
+> >
+> > Should we override minItems here as well? I guess any driver would need
+> > all three region to work?  
+> 
+> This seems sensible, as you say it would always be 3 groups for the DE33.
+> 
+> Regards,
+> 
+> Ryan
 
 
