@@ -1,166 +1,102 @@
-Return-Path: <devicetree+bounces-155966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-155967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6BBCA58C92
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:15:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06819A58C9A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 08:16:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50346188CD01
-	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:15:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A73E3188CE40
+	for <lists+devicetree@lfdr.de>; Mon, 10 Mar 2025 07:16:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74AAE1B6CE4;
-	Mon, 10 Mar 2025 07:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40DC61CAA70;
+	Mon, 10 Mar 2025 07:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rl4jWlx1"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="iCfdHmgt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD4A1A841C;
-	Mon, 10 Mar 2025 07:15:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D441B4153;
+	Mon, 10 Mar 2025 07:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741590929; cv=none; b=K242rrgHPJxBYNF69R77YZdEOkz76icphPDLN302CaZAnjAuIzH4qK3OYXUtOiDZtV+cfjsRTTJuNml6iQXcxp8tABYjWxQlQMg1P/7XhGlMAbXF/EVHWVZGu1wOR3ZHSM9TG83vmCyqJKae6+tAgMFlriuyQmMk1xChvI3eC7o=
+	t=1741590989; cv=none; b=Xd5Q9hDc0CNw/XV5S0IN/M1bcIWcRvPkuiW1tkk68kMz0wX86fhbXpi1CiNp9W2B+EvWq06RNfGOb+jPzCa2p2ZBxDrFH4CU0XCweRrncuCZNIsUe7unB3FDNriSW+xlInfYR84pbC88i+SaF9QueliD/FWQ5P2atOOm/nruSY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741590929; c=relaxed/simple;
-	bh=ukmBN1EwaxLenjYh9LRHAQi25Riq9TJLf4Rh32znRWU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=DSPlzw/f5tkYkKTi6XTDPA3eYRpfEtvb/t+PSAi52EC8Kcorw8QlcNnRClv9a2ZrnYdwGGPzmeKOLftJKgAI2WfJJrl7/M/GbmG+rZO/YkOV7t7BYrNvaSWuzB1/MXclbDyAhPRDkjXUVXl7n6JOuPsX7jn1Ale+NDXzGafpANU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rl4jWlx1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E459C4CEE5;
-	Mon, 10 Mar 2025 07:15:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741590928;
-	bh=ukmBN1EwaxLenjYh9LRHAQi25Riq9TJLf4Rh32znRWU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=rl4jWlx14Ui4SWBpbVbkusbb+1KD/CyraNvvMNlQlfm4Sj/MOtaBNFQPYaH5dB9md
-	 jxIJPpsvvAE/S01SPXxL1y8id2UyEV1ZNhmtM53lREI+QO6YWDq2j64n60VN2ccWxr
-	 kbLbBmB/aDtZoOydQBiEWQYPrIYp3mhIER0pjvpVswumtc/RaSMvYJ8bvO1jLVidcY
-	 tgw3SAp/96nUKGSwpZg8RSMH2CgDXQVx4rOwWRYk16LsMjd2nfDL8OhUFYe8eXR2Tb
-	 b917+Am92yndoTxAjoHULvNcsmbp9uybDjhnEyQAryiXItGPSNG2ZrCcAJcMyC20HV
-	 Dcqp7Gb3lM9pA==
-Message-ID: <e17cdf9d-ba96-41d2-9656-9e50d0e0795a@kernel.org>
-Date: Mon, 10 Mar 2025 08:15:20 +0100
+	s=arc-20240116; t=1741590989; c=relaxed/simple;
+	bh=ZSuThKs4RRRiIQBWC7D0j8baNXGHTK3a7S1ckfF9qdA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ch9TwQxIGgFLysx1DW/A+cTq7O4w/OJnORmfNIXz7BuxwV8Qz3OGmoTHwp9y467B4ctU3Z6pw1XI2rYVNR6527CbM/0p14NoYOeU4Se/5LAHrIDSjMiycktHHShYwA+YDOqV2bPqhUsWjoYLVqb0DnD/dbwOANiUtJFl1UQ75RU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=iCfdHmgt; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id A9FC82591A;
+	Mon, 10 Mar 2025 08:16:18 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 0QO2kUGrrvhG; Mon, 10 Mar 2025 08:16:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1741590978; bh=ZSuThKs4RRRiIQBWC7D0j8baNXGHTK3a7S1ckfF9qdA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=iCfdHmgtbmqK8KQ3CKJXUznYpU7FQEJMgb78NWQR2d/qNTzzWwFfgdofObg9+B41p
+	 LhZlu+K9VHzifZnDVyKdO/xKBRnl+xAU4s4pA4zaQ43aqHj+5N+4M6glv7M4ISRWVA
+	 pCl9LPavMwU022eFNBiY7EgPRMCRkmPdT2dN2/yw93HLUaIFYF+/81NzB2ykfQrmMg
+	 ABQNBBa4sgKYyoKPyu0cxjPNnNy5cDWLgH7T0czc/YvzGlmoQN6X4a8aO9BbitRkBM
+	 dgaH/z7CjJ8qu7bAcXRtSFCWh2Btc1c23VlM4ZJjGlIbsGcjNgrvopi3JMirl4xfpd
+	 m66kMTlO7QTmQ==
+Date: Mon, 10 Mar 2025 07:15:58 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: andi.shyti@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	heiko@sntech.de, jonas@kwiboo.se, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add onboard EEPROM for Radxa
+ E20C
+Message-ID: <Z86RrlBTvt9d40Dk@pie>
+References: <20250309070603.35254-4-ziyao@disroot.org>
+ <20250310070023.52290-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-binding: aspeed: Add LPC PCC controller
-To: Kevin Chen <kevin_chen@aspeedtech.com>, "lee@kernel.org"
- <lee@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
- <joel@jms.id.au>, "andrew@codeconstruct.com.au"
- <andrew@codeconstruct.com.au>, "derek.kiernan@amd.com"
- <derek.kiernan@amd.com>, "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
- "arnd@arndb.de" <arnd@arndb.de>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Mo Elbadry <elbadrym@google.com>
-References: <20250304104434.481429-1-kevin_chen@aspeedtech.com>
- <20250304104434.481429-2-kevin_chen@aspeedtech.com>
- <8740eeb8-9467-48bb-a911-e70c3da3c45a@kernel.org>
- <PSAPR06MB494973DC08A8105EA05FBE6D89D62@PSAPR06MB4949.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <PSAPR06MB494973DC08A8105EA05FBE6D89D62@PSAPR06MB4949.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250310070023.52290-1-amadeus@jmu.edu.cn>
 
-On 10/03/2025 02:50, Kevin Chen wrote:
->>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
->>> +        description: The LPC I/O ports to pcc
->>
->> Description is too vague. Why would we encode I/O ports as some numbers
->> instead of GPIOs for example? If these are ports, why this is not a graph?
-> For the port-mmaped I/O in x80 architecture, BMC need to handle specific port I/O in the relative HW module.
-> So, I need to add the pcc-ports property as the snoop-ports property in Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
+On Mon, Mar 10, 2025 at 03:00:23PM +0800, Chukun Pan wrote:
+> Hi,
 > 
->>
->> Missing constraints - min/maxItems, defaults, minimum/maximum etc.
-> The port-mmaped I/O is defined from host, BMC as the device would capture the port I/O from the pcc-ports property defined in dts.
-
-Put this information in the description, instead of copying property name.
-
+> > +&i2c1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&i2c1m0_xfer>;
+> > +	status = "okay";
+> > +
+> > +	eeprom@50 {
+> > +		compatible = "belling,bl24c16a", "atmel,24c16";
+> > +		reg = <0x50>;
+> > +		pagesize = <16>;
+> > +		vcc-supply = <&vcc_3v3>;
+> > +	};
+> > +};
 > 
->>
->>> +
->>> +    required:
->>> +      - compatible
->>> +      - interrupts
->>> +      - pcc-ports
->>> +
->>>    "^uart-routing@[0-9a-f]+$":
->>>      $ref: /schemas/soc/aspeed/uart-routing.yaml#
->>>      description: The UART routing control under LPC register space @@
->>> -176,6 +205,13 @@ examples:
->>>          #size-cells = <1>;
->>>          ranges = <0x0 0x1e789000 0x1000>;
->>>
->>> +        lpc_pcc: lpc-pcc@0 {
->>> +            compatible = "aspeed,ast2600-lpc-pcc";
->>> +            reg = <0x0 0x140>;
->>> +            interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
->>> +            pcc-ports = <0x80>;
->>
->> So what 0x80 stands for?
-> Host as x86 architecture would access the 0x80 port, which is mapped to the BMC PCC HW module.
-> As a result, x86 can keep the port-mmaped I/O usage and access the BMC device, which is needed to know which port using in the PCC module in BMC.
+> This eeprom stores the device information written by the manufacturer,
+> such as mac address and sn. So it should be marked as read-only.
 
-And on different boards this is not 0x80?
+Thanks, this makes sense.
+
+> Thanks,
+> Chukun
+> 
+> -- 
+> 2.25.1
+> 
 
 Best regards,
-Krzysztof
+Yao Zi
 
