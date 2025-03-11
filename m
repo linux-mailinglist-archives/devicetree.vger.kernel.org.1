@@ -1,135 +1,196 @@
-Return-Path: <devicetree+bounces-156425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E15A5BACB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:28:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13B79A5BAD8
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1673B18923CE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:28:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6484218965A6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8689D224244;
-	Tue, 11 Mar 2025 08:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8683222156C;
+	Tue, 11 Mar 2025 08:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CjAJA3HS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4732C33E1;
-	Tue, 11 Mar 2025 08:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADDE11DE2A4;
+	Tue, 11 Mar 2025 08:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741681698; cv=none; b=GPtgptDkUeK9LwjsecF48zyVZ8xWlvNWwu5DK2OYMbDggBItuHBjvZVUTKP/aJxC5QQMHdgLzXohdiGHAJPkLNx23ZGsfiDZBHuE/9cFlNhLtaKbpGj1zPPWRN2WFctDLa1P/yofvdIhwQJ0r4Y7vEXRoS4uXJveEB8LSHMkjAg=
+	t=1741681826; cv=none; b=dP4IYr/pVhTXv3vnVzQA9SHdIH9LVMx2C7zKw5/uzzhLzWp72ejK1arQypm/8ZbYIPTodDVIL4pzSL5Fz5+M010dkAmDKVNNKp2swlC+EoVcEdcv0st38lkoP7hLfUPeNaW6cuq6S01rV8RvYFt1Y5834sV1n2WhqAgqtOsiIDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741681698; c=relaxed/simple;
-	bh=pQQFcvfVaQvEvbiIt4cCXjYx2eaw+CECMxZNp19aYRw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZIO52dwOdN67zNa2CLKcQot9+N0bX/RLXPnMHiGGcx8P+1R+iDaFQ8eTrdSota5JlJiOu1gFNX0jCUCY1KQSIuWfq29HwVTHZ/fgQ+ueWNDhL/XCsWqKzl23qWacPhZw9owLEyNj3ZFGBz9mD7A/V5di4RXQINwilN5Nru9/wBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1741681826; c=relaxed/simple;
+	bh=SlVTnK3vDqccU6cZFFpsWdMPhd31kMhyhL/i7QCcsvQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jEHCH+YpnQ7nUjU5AtFak9N11XzZXG+w4O70c7FU/oEXV/YplzS5RzQLBhd2jq3OjF56Xuv4VM+drRKdzYY3aDWsNPEsNV15lD87xpogrlMY1ZcqaogVjWz69Vltzi4wG7EVEcRKGspql/WDqHRjycXEWeFBEiOtXXKlopfIvag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CjAJA3HS; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-86cce5dac90so2279645241.0;
-        Tue, 11 Mar 2025 01:28:14 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ac28e66c0e1so339925766b.0;
+        Tue, 11 Mar 2025 01:30:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741681823; x=1742286623; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/wBUIzbfRjL8cYbjpKbIUr1nM3k/ZT4ERi+YMbxa2AA=;
+        b=CjAJA3HSlme6BdE9gcZK81tfe2Ez+al+pm9zrdtyxhJ8Q0Qowr+iAH62vT7M/Y1Fhl
+         UfsSpneGbPSXhgkg1IkXuUxpgRLbaRjDTMwIBvnLd3b8VYYCdNIyTZEUbZrVIzn+Db/Z
+         wHxt2YP1nkErqsBtgaAMVky2/XEt8/cxswXJTgrp6IzVV+R+BcpYG7FcXjCS3bA9Anqz
+         Ebn7ruFZDFxSdBgRbZs++0rtizSLapCKQL7tlW2sDEwPqfiYok8cbTUB1rEXdIwhyk/+
+         LFJv001hiuTiNeF8iFoK6qIvFOE4wSAr2w0ZD5PHGiUMae1zvmS9r7SPR5Nd+7JZF8Y+
+         U7Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741681693; x=1742286493;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j9asmBtW4ykGHIYyDIqC+wQbre8tc3Kb8DUbwi0bX30=;
-        b=dgENlN0Ht05O2k6WPCd1qewkkmupqNw0KCu/Q6q+xdOLX+r5e/Wc4xg3jTQ6W58Y5+
-         2pp+fxWVOjnAW9D+Kmeo1NmeFQZANlFykyhSeyDwmTs/B8dnnGywhuZ5VojNyDhysJTY
-         yexs63PyHwTYe6/KxErOpQa7MSvXh3fOf2CkNdlcjGUXgCDCq8UTSFabxy/wPbqNsVsU
-         UXAnwLcLnWsjSXvp/TlAOne1eLaGk6ivxCSQ3Ul3qmAPGEwprAs/HiL7v/schgmDJOgM
-         4prnhRs4g3qZbG0DRjEf/6SO3Nn0UDL7EbC+CyZdWqXckqNHflSfwjushjF3OBtvK106
-         8lYg==
-X-Forwarded-Encrypted: i=1; AJvYcCUucFtZouhXLCYBpX3U/SVGrsiqW3JhRoNv4XlhT+V2VtsDW5IlDCuU425z1IHQXZ7r8Ch+RzW1I2WNhgF/@vger.kernel.org, AJvYcCVslimWRkBT7Qw0SIID6iEs7MFR35e62uHGXriohn6hZ9atR35N0fA0qQO6Q+MGXzh4kTDlyVyNvjKIg3f6pB2c3C8=@vger.kernel.org, AJvYcCWdKebMrv1lWOfeuLFE/lICrz37IbNWNX7Xj9Xjr1QgUmS30S2s0QIma/tskxA3942t4sUtaTBRm/o=@vger.kernel.org, AJvYcCXjWXJ/QjBiPWWGfrCclEhYYUmPggLdRIdo1WpypgtM/9OGjcLQPNWBAuwZoFsSVUbQ6gUwWLNH+zLX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzhYfCJbZnYYi43oCKm6uJnAAJ/87G55X7FKkIpZaSCl/bwBj+
-	+eQfaVjVmPBQejGPNm1cte6cnSlmoTW9Tnrk4nRS9XJV5rlaDFvd/ZRtQqfPnb0=
-X-Gm-Gg: ASbGncs5XmLRd8uuPPtsVU38TlYsmJ8YphahPyeVoUiSHLFDXN5iftzgFUb6UU4I4pO
-	mV2dZ3MJXvVzOQ9f3XU1M8BBCmGHB/MAfpKPep2gD4KZGUFgvxmK3NPL0FjF72EKMrV5dRWkUCG
-	ZFZechKEG2P88WWfThVIiE8LXhivV1NcJMDjPzDIbF4iRifMDBEa/wFxQaxwwf/cAmQdp+iaWTS
-	cbwevdyXBZjuRlctZNS2YnJH5Iv/aRjO6AYfvXtkCvbsFyCl2ABzQ2z2jqebQ6AcmNL/DS6BMXf
-	OPMJG5jN2DzMlQXdvrvILPUTCkhC73SDQGAj9lISRTxuo1SwxGAYWZ2uVqY5vRzvTtSU/rlBhla
-	oGSyR14WJ7As=
-X-Google-Smtp-Source: AGHT+IF7dek3btzRXn+xNvr86jfhDDhmeoxJc/aKT5VNzzuyIyOrasaF+Ad8ZY9iHS8OuRPjapVU3w==
-X-Received: by 2002:a05:6102:374f:b0:4bb:c8e5:aa8b with SMTP id ada2fe7eead31-4c30a6e424dmr9602329137.22.1741681693472;
-        Tue, 11 Mar 2025 01:28:13 -0700 (PDT)
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com. [209.85.221.176])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-86d33ccba8bsm2199817241.34.2025.03.11.01.28.13
+        d=1e100.net; s=20230601; t=1741681823; x=1742286623;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/wBUIzbfRjL8cYbjpKbIUr1nM3k/ZT4ERi+YMbxa2AA=;
+        b=edCbec+MzXqXFO38QB8d6XPOCTakR94zGsgD2sSU+UrDPHTI9PMmseVDMKxIzqkfAs
+         iiVo4TnW/uF7H648kehKGEtEMNfv9ZxCIv+4ofh5zdisvU3JsF59ACUl8n1WioInZiFb
+         ir9oWwaApz7Rjes7aGby2V4xHJzVjCl/SK1vHUuar+qRy2nCQmZTxnXLynNN8PFvNT1f
+         1NOGS6u+3JpoAa5FqFSV++AfiJInWPuNoNoZi3JK+kfvCiQReZ/3G8lKyLcDrBDQ+rB6
+         yNecj2knQin9J0mtwGEAOlhKcxnDnrNh+YmOjsQyW3CX0NHGvmJv7nxsLCV3N9uM8gPf
+         nQXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUa9NXCdQaen9h7VETqErOs+wYrLdpBoA7/JDH7GsqBGtPro2JD7MYsAi+Fot+C6berbSCVDwPS3YVzuz4=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwuQLTcwT76KGxttP/Um6fvCy92PfNWSAQ48lSZUohF3deMI9U
+	PoM0KnPy6mJqtuEsF4o69fv3Bn36wXpzQkxL6DjhpqbUe7QYeiJ/
+X-Gm-Gg: ASbGncsA9kztCH5/Z6/HCOxFoN9a2TF8FFwWsX2brp+p4u544Nh1ZwpcdOuzCiwl7r+
+	/s9HLGSpTzvvB/jMlxEZNWmG4LrLLtuVQ2b4O569J/bjwJpdm1wKeiY/TisVUOeFNFrJXvXYulB
+	XqD1OXMfYXmez7emkRxueF561lWJ4erTeuFQ8FXR1ANxAE9I4Yyub7byhVGCLtQ2DUWRbp/mGV4
+	VGVWn+URDW70nf7pnByKWDF6Ym+IOaHjyMjcb4Pxr8CjZoFROvTfTlGbUow7uOvIloBY6EONNuH
+	8WUBNftT0NnY3ClIyEpe+AJm7yzAkPo1DojDzFsVcP81/VU/TjAmEw==
+X-Google-Smtp-Source: AGHT+IED4/BdBzDJtL90V4GvyA5vlzRx5/AdyTSCLrwu2fkiBvJHxCgGCstqtAFDn9HSo6VY65AMJw==
+X-Received: by 2002:a17:907:6d08:b0:abf:742e:1fd7 with SMTP id a640c23a62f3a-ac253096a6amr2126965266b.57.1741681822638;
+        Tue, 11 Mar 2025 01:30:22 -0700 (PDT)
+Received: from [192.168.1.130] ([188.193.103.108])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2394825efsm877216566b.45.2025.03.11.01.30.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Mar 2025 01:28:13 -0700 (PDT)
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-521b84da5e9so1867440e0c.0;
-        Tue, 11 Mar 2025 01:28:13 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU2Cwpsv83mRNRogYqto8bbJScLn3QMp7Z5S7aCPWMQOdePfwoPa3rbVr4V1bU8eKApnP54dhlJa+Y=@vger.kernel.org, AJvYcCUGeHTldYSdzc49Ki8ZBsWdH+8WeCph3qy/fur8OaVmGXYbyHRP+CAiOyNEi3d0QQHQk7E5LftaMF/7iom0fOBtdqs=@vger.kernel.org, AJvYcCWehXrENu2Sylwl6o1sujMaro9UmoWVNjWgoPIDGk70x8dbk18jom8E/b72Q7+Ia0AgF+QjCr1mXvhEAkQK@vger.kernel.org, AJvYcCX+zr40TBwrnzbAC/eaZt18iLRw7oBJnCYAMIyEez5aK2b09QLKhh6kb4dNEOsJH6+A5hoSHNkHQZ6R@vger.kernel.org
-X-Received: by 2002:a05:6102:3e16:b0:4bd:39a6:e98d with SMTP id
- ada2fe7eead31-4c30a346c43mr12172307137.0.1741681692988; Tue, 11 Mar 2025
- 01:28:12 -0700 (PDT)
+        Tue, 11 Mar 2025 01:30:22 -0700 (PDT)
+Message-ID: <23c708ef-c52d-40c1-a9e8-b05555b21667@gmail.com>
+Date: Tue, 11 Mar 2025 09:30:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250309121324.29633-1-john.madieu.xa@bp.renesas.com> <20250309121324.29633-2-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250309121324.29633-2-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 11 Mar 2025 09:28:01 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWV7CNBJbPKpymBvvQTbHcpSYFA7DfbOr27CRwwGxh18A@mail.gmail.com>
-X-Gm-Features: AQ5f1Jr5Xvuhwpg52kNPydAXsbsr-Q6lxsfd2ynCdmDZbt4PEMDZP2P4hNDUS8I
-Message-ID: <CAMuHMdWV7CNBJbPKpymBvvQTbHcpSYFA7DfbOr27CRwwGxh18A@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] thermal/cpuplog_cooling: Add CPU hotplug cooling driver
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: niklas.soderlund+renesas@ragnatech.se, conor+dt@kernel.org, 
-	krzk+dt@kernel.org, robh@kernel.org, rafael@kernel.org, 
-	daniel.lezcano@linaro.org, magnus.damm@gmail.com, 
-	claudiu.beznea.uj@bp.renesas.com, devicetree@vger.kernel.org, 
-	john.madieu@gmail.com, rui.zhang@intel.com, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] ARM: dts: stm32: add initial support for
+ stm32mp157-ultra-fly-sbc board
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?B?R29yYW4gUmHEkWVub3ZpxIc=?=
+ <gradenovic@ultratronik.de>, =?UTF-8?B?QsO2cmdlIFN0csO8bXBmZWw=?=
+ <bstruempfel@ultratronik.de>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250310154804.326943-1-goran.radni@gmail.com>
+ <20250310154804.326943-5-goran.radni@gmail.com>
+ <6af3a9fe-0c0b-497d-b143-77edc12f0c1e@kernel.org>
+Content-Language: en-US
+From: Goran Radenovic <goran.radni@gmail.com>
+In-Reply-To: <6af3a9fe-0c0b-497d-b143-77edc12f0c1e@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi John,
+Thank You for the feedback. I will fix this. I have to solve the problem 
+with my e-mails in MAINTAINERS first, because I cannot use them to send 
+e-mails "inline".
 
-On Sun, 9 Mar 2025 at 13:14, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> Add thermal cooling mechanism that dynamically manages CPU online/offline
-> states to prevent overheating. It registers  per-CPU cooling devices that can
-> take CPUs offline when thermal thresholds are excee and that integrates with
-> the Linux thermal framework as a cooling devices.
+Best regards
+Goran
+
+
+On 10.03.25 17:08, Krzysztof Kozlowski wrote:
+> On 10/03/2025 16:48, Goran Rađenović wrote:
+>> +&gpioj {
+>> +	gpio-line-names =
+>> +	"", "", "", "", "", "", "", "",
+>> +	"", "", "", "", "", "", "", "";
+>> +};
+>> +
+>> +&gpiok {
+>> +	gpio-line-names =
+>> +	"", "", "", "", "", "", "", "",
+>> +	"", "", "", "", "", "", "", "";
+>> +};
+>> +
+>> +&gpioz {
+>> +	gpio-line-names =
+>> +	"", "", "", "#SPI_CS2", "", "", "", "",
+>> +	"", "", "", "", "", "", "", "";
+>> +};
+>> +
+>> +&gpu {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&i2c1 {
+>> +	pinctrl-names = "default", "sleep";
+>> +	pinctrl-0 = <&i2c1_ux_pins_a>;
+>> +	pinctrl-1 = <&i2c1_ux_pins_sleep_a>;
+>> +	i2c-scl-rising-time-ns = <100>;
+>> +	i2c-scl-falling-time-ns = <7>;
+>> +	status = "okay";
+>> +	/delete-property/dmas;
+>> +	/delete-property/dma-names;
+>> +
+>> +	rtc@32 {
+>> +		compatible = "epson,rx8900";
+>> +		reg = <0x32>;
+>> +		epson,vdet-disable;
+>> +		trickle-diode-disable;
+>> +	};
+>> +};
+>> +
+>> +&i2c4 {
+>> +	pinctrl-names = "default", "sleep";
+>> +	pinctrl-0 = <&i2c4_ux_pins_a>;
+>> +	pinctrl-1 = <&i2c4_ux_pins_sleep_a>;
+>> +	i2c-scl-rising-time-ns = <185>;
+>> +	i2c-scl-falling-time-ns = <20>;
+>> +	status = "okay";
+>> +	/delete-property/dmas;
+>> +	/delete-property/dma-names;
+>> +
+>> +	pmic: stpmic@33 {
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 >
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-
-Thanks for your patch!
-
-> --- /dev/null
-> +++ b/drivers/thermal/cpuplug_cooling.c
-
-> +static int register_cpu_hotplug_cooling(struct device_node *cpu_node,
-> +                                       int cpu_id)
-> +{
-
-> +       hotplug_cdev = kzalloc(sizeof(*hotplug_cdev), GFP_KERNEL);
-> +       if (!hotplug_cdev) {
-> +               pr_err("Failed to allocate memory for cooling device\n");
-
-scripts/checkpatch.pl:
-
-WARNING: Possible unnecessary 'out of memory' message
-
-and checkpatch is right, as the memory core already takes care of
-printing a message.
-
-> +               return -ENOMEM;
-> +       }
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> pmic?
+>
+>> +		compatible = "st,stpmic1";
+>> +		reg = <0x33>;
+>> +		interrupts-extended = <&exti 0 IRQ_TYPE_EDGE_FALLING>;
+>> +		interrupt-controller;
+>> +		#interrupt-cells = <2>;
+>> +		status = "okay";
+> Does not look disabled
+>
+>
+> ...
+>
+>
+>> +	dac_ux_ch2_pins_a: dac_ux-ch2-0 {
+> No underscores in node names.
+>
+>> +		pins {
+>> +			pinmux = <STM32_PINMUX('A', 5, ANALOG)>;
+>> +		};
+>> +	};
+>> +
+>
+>
+>
+> Best regards,
+> Krzysztof
 
