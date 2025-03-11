@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-156388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30A54A5B8A2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 06:50:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E8AA5B912
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:16:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCEAA3AE64C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 05:49:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24C1E7A2C43
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 06:15:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFFAE1EE7A1;
-	Tue, 11 Mar 2025 05:49:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A28A71684AC;
+	Tue, 11 Mar 2025 06:16:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UfchkWX7"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o8xoj3wR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D401E7C2F;
-	Tue, 11 Mar 2025 05:49:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2DA820B22;
+	Tue, 11 Mar 2025 06:16:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741672184; cv=none; b=sK7iN0wewiNTjAWMp5CPfnPmzp/QzaciVJha+1HlWSDFfQXaIi8eDvgmxIT0Z785TKA0/51la2ZMnfX2iqW96g3tS6izImGj9MNCDCRVEmkBiGLulcDTLdj3+bFuftljjLnmbRmYlpxzv7IcofleHkuU14D6tbIhdNK1GzvZoEU=
+	t=1741673813; cv=none; b=kzUJfLT+whQ+8dqWNvbME4fJGEjaa3yTQM89tzXyenJMLekKHPJDy6vClVqtGpxAI6kj3VzUSF4AA32oWOxPXGx3UsDXRarjQqZ3HwfAmuHYnOAJXaK8eX759cf7Ba8HQxPeYny57dL4ig2j2lQQ4C6tCYuz7E040M772+nmYKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741672184; c=relaxed/simple;
-	bh=vcLPf/kGXdgNxEvJBEVrEREglMzwjiza70RRocx5oyM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JRasrrkxIhf0I22n3/A+6NcO/FZN4wXPxsq1vMbaECkx0pjIjP9GM/6GrcB6c4BOakh+wZAXuC7DSSXZ06xTlrojyxEvuhRQZQ9i/lkUmuTEtULRNcDnwNuHJqfYS0iEPgccuYHdWFpzrzJ3+LgSPgOdraKPemdP6eToLtXPiEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UfchkWX7; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30bd21f887aso45484621fa.1;
-        Mon, 10 Mar 2025 22:49:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741672179; x=1742276979; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zUlywhCQq4uCWufEMKrFo7MVjuzCwOMvUwcuZVYGs6Q=;
-        b=UfchkWX77VxXixzzLXs8+qWHR19kDBid+GpFT8tmFQukx5/kO8IgJlsXgVZyU+VZkT
-         qycHt6vH3UrXv9wW0ioorciJ3TiImhPK4rj6GClFTHnrN/dhcdk3CgO5nQBYZZtmggw8
-         K4pftWjKok0qfNLHJgzDloVsgcRzWKCONiwkLZrlO43zobEmIvHQeFnmE38mZhYD2l1u
-         PGdb2WZvRDu6cAwvVfG4wcdG6pR22jdfN8DiE4XufbSqUDnpnY7mNb3wmwWarIK50Ad8
-         9KkR/Ck/BgOO6UlaMKCiws5xvUUkV03ezeX7WaqOayI1aFTX3eH2eG8xEIF6clZl7l12
-         7xug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741672179; x=1742276979;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zUlywhCQq4uCWufEMKrFo7MVjuzCwOMvUwcuZVYGs6Q=;
-        b=A1KUNQfWTJybvEAy/ORgJnqUaMqYBiLuAKkiq33jjDCGc7N1yY/QFYNW5H2/z7756f
-         jytHzd5rAaoPNUU/Kq2dyvURRnagMFh6u6I/KYTZIQVS/f7LtXPxIw8aKvVsRdd/I6oy
-         4LNwxGdmPTUia5TFnq/2LaQsbeutkKAbHYRK9wbpvqGlQwXh6hT2SKKfm/9VstEMdi+h
-         h4JjFWvbMQW2p3SgBBJEUEmtZ2URQmaXU4j2jhv+VbIMga80BwlUI0WY3g/8EVA1Xibp
-         mOAu94I/A/foTnZQZo5FsPX5c0PuIUGR9vNeHDsfwXn5dkMOkTySwG2bw//hg7sfeSvk
-         3zGw==
-X-Forwarded-Encrypted: i=1; AJvYcCU2LFlsqaAmEApnO3SuatavLwR/NBGBDWi6yuBGHax20KJh23ISFQocp5BE5WdDBRXLVgfiMvK/wR5jaGA=@vger.kernel.org, AJvYcCULtm+QS1sjySKPRJ2XJbhnogA3FVdoxXO3sdcX4H4v4ldha1Bs04ZaRVhZUFPnF4zVopjQz3e8@vger.kernel.org, AJvYcCV91t7WRnm5mpoIBsyXLT8gg1mqeRAG5wT3j1v+Xrq31BHJyTGgbsrxKCaFig9Y7RdBe1MwtvQmqV0h+zZb@vger.kernel.org, AJvYcCVLy68anqHRt+qtQic63qhYFvTM1Hw8MY1siCe1HJjhnr0ghVCgnhj0zidAgWguA3Du6oIbHRthjP9n@vger.kernel.org, AJvYcCVeZoQHm8nqCNox59jErLjiFCPsGakLmM+8X63YjUeRzD5K8ow/X3NpzcsIpqdNIP0kwk1yJte6+BQGyQ==@vger.kernel.org, AJvYcCVk/atbRiT0CC7WS3ujQ7YrDA5np64Q+R77wcTq3V0h5lUw6EpBYfK0LHOSPz7ReMGNOnL7Cw4VVrB6Jc+v1nHwCrs=@vger.kernel.org, AJvYcCXNWt/FWGBtObGxQ6Zgeue3bhGC8DgDkoWppAn13umv9Yy3AWe2xPwdZz02KoKsUjS6uso62eD/0Sw2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7wsk8E6HC1pCLAg5n8onBUOfyaB5n07KbF2dZWoL7jcpu6iiE
-	wyTm2kpfBRTlYC+EoonmOLfi4qSzPaXii7H/EvRkJjFHy+WG6Cqs
-X-Gm-Gg: ASbGncuzDYy6XV0mqSaOBJBj0AQAmflrXxE0iL/nCY4BVficj1F/GS9bLcwzLSNEzo7
-	yr4CQ1knmRLpLXMd0fWlH6GC6QwF+ohviR0CT1e6EjabLPOF+AtSekT9qm3QXybIXn6vZBTh/Cu
-	HoRtUaTWgZyrySE6iOhZ16r+C1NQgnZ8mVaj4ncxhecnotrnDLVrqYBsCYjn6tLYNtoVe4MaZ4T
-	i4yH5sCnZZU6C9n9D4rwcx3TfZu0SOLQPStTqQbmruHm/gcpOwxecDq6uc7/Kai5mUubhXCQcIY
-	wtHhQBToTIme014NqM5IHqh304wo8/mDZ8XrUBtEvC4ChCX1QnVsC7zYvYbSHmLmd/BUL1A5yYQ
-	qg0UhRanezsrE3npcCDVgN9XeIg==
-X-Google-Smtp-Source: AGHT+IFm0afzcaF8TIv4cXHtJLsVwhvjYD4qt27mTceOLe/iKEGhGrdN2AEjY+GxRz1y2ryUkV4/gA==
-X-Received: by 2002:a05:6512:2309:b0:549:7145:5d25 with SMTP id 2adb3069b0e04-549910b6189mr5273956e87.34.1741672178594;
-        Mon, 10 Mar 2025 22:49:38 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498ae5904esm1651369e87.76.2025.03.10.22.49.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Mar 2025 22:49:36 -0700 (PDT)
-Message-ID: <e685d31c-8cdc-4732-b3a8-8e70a6f82578@gmail.com>
-Date: Tue, 11 Mar 2025 07:49:35 +0200
+	s=arc-20240116; t=1741673813; c=relaxed/simple;
+	bh=k/5Tg7LyN/7jDuAPLOSqYrB/029fVEk0sO1e1ygKico=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=hq4+mvgiJ5MmYnIfENfSw1CYSx6F/9L7hco0AT8YbTnRbt9AgHjHsToxv3ou3Br9dFqjRYuMsHv/TFY3FO/u2u4Te0DoV/JwWAypv+bm+p3BpQHfrrXyaey7NISQYE5WoxD4M1viP0f1IdsqrXUDGuogad/g6z8qLWs9+/Bx+24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o8xoj3wR; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52AKjhn9006253;
+	Tue, 11 Mar 2025 06:16:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	JHbVnjh4q9xB2LzjdS6wKi6kBiBzwQ1KsR99fp+DG5Q=; b=o8xoj3wRXkNGjHkd
+	m17NVXxJSmYebZ39uddwWFBFVLv7GC8TDVZ4ywuP/QbdtAM/LhcfsnLwgG6o8nz6
+	q4WtbRL9Jk9sPWwaUD+MdjKYce7WWHI0cult3UNBokRIGpZZXXS9WLH66+bvEHfA
+	yzdj7JWelO/OVKAiAoj0DblS6AzrWWKyRmT9D0db5LopDLxn3iVdAzoRi/Pj7fYm
+	kIo0Y1nNj8RJSLXvuHWWL1c6Vi43k/AGtlhSEWw/+XIv3jB5j0po6hRTE/e0Ud5R
+	AiPdvZmH942Qe0YOvsjCPtZoNcUCXoGmfL/of5UOVK7lvPDO3NtUJUZT7e0cADAt
+	GFjHpA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458f2mf92x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Mar 2025 06:16:21 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52B6GKfs015925
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Mar 2025 06:16:20 GMT
+Received: from [10.216.23.206] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Mar
+ 2025 23:16:13 -0700
+Message-ID: <8d54a612-433e-4860-a843-294fe0d6db4e@quicinc.com>
+Date: Tue, 11 Mar 2025 11:46:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,87 +65,147 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 00/10] Support ROHM BD79124 ADC
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- linux-arm-kernel@lists.infradead.org, Samuel Holland <samuel@sholland.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, netdev@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Herve Codina <herve.codina@bootlin.com>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Nuno Sa <nuno.sa@analog.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-media@vger.kernel.org, Claudiu Manoil <claudiu.manoil@nxp.com>,
- devicetree@vger.kernel.org, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- "David S. Miller" <davem@davemloft.net>, Lars-Peter Clausen
- <lars@metafoo.de>, linux-acpi@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-iio@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-sunxi@lists.linux.dev, Eric Dumazet <edumazet@google.com>,
- Conor Dooley <conor+dt@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Trevor Gamblin <tgamblin@baylibre.com>,
- Ramona Alexandra Nechita <ramona.nechita@analog.com>,
- Paul Elder <paul.elder@ideasonboard.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Matteo Martelli <matteomartelli3@gmail.com>,
- Guillaume Stols <gstols@baylibre.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>,
- Jakub Kicinski <kuba@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Dumitru Ceclan <mitrutzceclan@gmail.com>, Paolo Abeni <pabeni@redhat.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, David Lechner <dlechner@baylibre.com>,
- Chen-Yu Tsai <wens@csie.org>, Daniel Scally <djrscally@gmail.com>
-References: <cover.1741610847.git.mazziesaccount@gmail.com>
- <20250310202738.13301548@jic23-huawei>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250310202738.13301548@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v2 0/6] Support for Adreno 623 GPU
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, Simona Vetter <simona@ffwll.ch>,
+        <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        "Abhinav
+ Kumar" <quic_abhinavk@quicinc.com>,
+        Jie Zhang <quic_jiezh@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        "Thomas
+ Zimmermann" <tzimmermann@suse.de>,
+        Maxime Ripard <mripard@kernel.org>, <freedreno@lists.freedesktop.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Sean Paul <sean@poorly.run>,
+        "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>,
+        Rob Clark
+	<robdclark@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "David
+ Airlie" <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com>
+ <174075232770.2756163.15128447349702656600.robh@kernel.org>
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <174075232770.2756163.15128447349702656600.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: EFmODcM4L_YS48Fyr14FyKTDBWPkoAE0
+X-Proofpoint-ORIG-GUID: EFmODcM4L_YS48Fyr14FyKTDBWPkoAE0
+X-Authority-Analysis: v=2.4 cv=ab+bnQot c=1 sm=1 tr=0 ts=67cfd535 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=gEfo2CItAAAA:8
+ a=Qi1LLK4JJPgfJq4B5soA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-11_01,2025-03-07_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ mlxscore=0 impostorscore=0 phishscore=0 clxscore=1015 spamscore=0
+ adultscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503110040
 
-On 10/03/2025 22:27, Jonathan Cameron wrote:
-> On Mon, 10 Mar 2025 14:53:50 +0200
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On 2/28/2025 7:53 PM, Rob Herring (Arm) wrote:
 > 
->> Support ROHM BD79124 ADC.
+> On Fri, 28 Feb 2025 01:37:48 +0530, Akhil P Oommen wrote:
+>> This series adds support for A623 GPU found in QCS8300 chipsets. This
+>> GPU IP is very similar to A621 GPU, except for the UBWC configuration
+>> and the GMU firmware.
 >>
->> This series adds also couple of IIO ADC helper functions for parsing the
->> channel information from the device tree. There are also new helpers
->> included for iterating and counting firmware child nodes with a specific
->> name.
+>> Both DT patches are for Bjorn and rest of the patches for Rob Clark to
+>> pick up.
 >>
->> Series does also convert couple of drivers to use these helpers. The
->> rzg2l_adc and the sun20i-gpadc are converted to use the new ADC helper.
+>> ---
+>> Changes in v2:
+>> - Fix hwcg config (Konrad)
+>> - Split gpucc reg list patch (Rob)
+>> - Rebase on msm-next tip
+>> - Link to v1: https://lore.kernel.org/r/20250213-a623-gpu-support-v1-0-993c65c39fd2@quicinc.com
 >>
->> The gianfar driver under net and the thp7312 under media/i2c are added as
->> first users of the newly added "named child node" -helpers.
+>> ---
+>> Jie Zhang (6):
+>>       drm/msm/a6xx: Split out gpucc register block
+>>       drm/msm/a6xx: Fix gpucc register block for A621
+>>       drm/msm/a6xx: Add support for Adreno 623
+>>       dt-bindings: display/msm/gmu: Add Adreno 623 GMU
+>>       arm64: dts: qcom: qcs8300: Add gpu and gmu nodes
+>>       arm64: dts: qcom: qcs8300-ride: Enable Adreno 623 GPU
 >>
->> There has been some discussion about how useful these ADC helpers are,
->> and whether they should support also differential and single ended channel
->> configurations. This version does not include support for those - with the
->> benefit of reduced complexity and easier to use API.
+>>  .../devicetree/bindings/display/msm/gmu.yaml       |  1 +
+>>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts          |  8 ++
+>>  arch/arm64/boot/dts/qcom/qcs8300.dtsi              | 93 ++++++++++++++++++++++
+>>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c          | 29 +++++++
+>>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c              |  8 ++
+>>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        | 13 ++-
+>>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h        | 17 ++++
+>>  drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  5 ++
+>>  8 files changed, 171 insertions(+), 3 deletions(-)
+>> ---
+>> base-commit: 89839e69f6154feecd79bd01171375225b0296e9
+>> change-id: 20250213-a623-gpu-support-f6698603fb85
+>> prerequisite-change-id: 20250131-b4-branch-gfx-smmu-b03261963064:v5
+>> prerequisite-patch-id: f8fd1a2020c940e595e58a8bd3c55d00d3d87271
+>> prerequisite-patch-id: 08a0540f75b0f95fd2018b38c9ed5c6f96433b4d
 >>
->> NOTE: Patches 4,5,9 and 10 are untested as I lack of relevant HW.
->> They have been compile tested only.
-> This probably wants an update.  Also, 00/10? There are only 8 that I can see.
+>> Best regards,
+>> --
+>> Akhil P Oommen <quic_akhilpo@quicinc.com>
+>>
+>>
+>>
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com:
+> 
+> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:0: 'gcc_gpu_memnoc_gfx_clk' was expected
+> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
+> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:1: 'gcc_gpu_snoc_dvm_gfx_clk' was expected
+> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
+> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:2: 'gpu_cc_ahb_clk' was expected
+> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
+> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:3: 'gpu_cc_hlos1_vote_gpu_smmu_clk' was expected
+> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
+> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:4: 'gpu_cc_cx_gmu_clk' was expected
+> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
+> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:5: 'gpu_cc_hub_cx_int_clk' was expected
+> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
+> 
+> 
+> 
+> 
+> 
 
-That's odd.
-There should be 10 in total. And the 4, 5, 9 and 10 was updated.
+These warnings are for the smmu dt change which I marked as a
+dependency. Hopefully, the v6 revision from Pratyush will fix this.
 
-9/10:
-https://lore.kernel.org/all/1c4b9b4ceb1995bce76a0ddef0e04ad0d1d81190.1741610847.git.mazziesaccount@gmail.com/
+https://lore.kernel.org/linux-arm-kernel/20250310-b4-branch-gfx-smmu-v6-1-15c60b8abd99@quicinc.com/T/
 
-10/10:
-https://lore.kernel.org/all/ab79cf4415d21ff2854fee4f4189fac555c30b7a.1741610847.git.mazziesaccount@gmail.com/
-
-Perhaps it's because of the "net-next" in subject?
-
-Yours,
-	-- Matti
+-Akhil.
 
