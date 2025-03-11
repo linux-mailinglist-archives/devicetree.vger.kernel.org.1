@@ -1,271 +1,157 @@
-Return-Path: <devicetree+bounces-156453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9584FA5BBB4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 10:11:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CEEBA5BC7C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 10:42:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C710F172180
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:11:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BC671897AE6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1884122DFA5;
-	Tue, 11 Mar 2025 09:11:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F9FE22DFAD;
+	Tue, 11 Mar 2025 09:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tIMdHw6J"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R8JW6M/K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE8D22C35C;
-	Tue, 11 Mar 2025 09:11:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6396B22CBED
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 09:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741684280; cv=none; b=NjDL/GwMS47y5Boat9ZJBvNaySvoJ4yMmHUoH4DaIC3kLTyYSYSOubEhQqRKNQzZdsH7FSTTQtdqIKlUvSXIzkvnC6T9lGPrR22KsAKYZGE13AHW7Ov/ZS1fwQIQGv0NzAGtU5F56lPs5Xd8FT9au+rDO0qdT9JZ1buSx8NacK4=
+	t=1741686141; cv=none; b=ko0rjzakw03Sx3Te/2Wc+5THUqawrdwlUFK6xN04KKQLc65PPd3VIT/uzgnSU4ZCFgZCRRb2hCiy9Mz6Rff1uavN2HxpIvXKxV38F0a1puNED7Rb2QI0mzSGCwhs53EqBDVfCat4umwpeRpwU7GVi0828mURgXo4zrtY0k6XfPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741684280; c=relaxed/simple;
-	bh=1lJ7B25i8p5GtdNil3HW8mm+l4RVJROMZXaUz9AA+BI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DPUlT/bZXJvINqvXvgRGQtLBKxwuH//EE+FeaP3m6IeOkU+tsT2U2xoppXxEapYyJAVqwtzwiopdVHXggXqIdbKDwKn2hN05guX2tY1z6D1R1XbXdEl4T5csTDi7p0Y25LDTX8IMrzV1V+wAIjaOmK2eDE9FkVV8dit7qUKSkeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tIMdHw6J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id ADD04C2BC87;
-	Tue, 11 Mar 2025 09:11:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741684279;
-	bh=1lJ7B25i8p5GtdNil3HW8mm+l4RVJROMZXaUz9AA+BI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=tIMdHw6JFyOPWeOpeTEmWpzj0SL+J5aQlRQfT8WjaPpEaMn++YnXfuEp3H4L3ghbF
-	 RNTbBm81w5ssXK1iTKNp3883D2viO6/KcNIwHjBUj0EQXSoYqY+WOQ2+VkaafgPuZd
-	 N1dJe6QQxAXPCeu1B122rroYFSVoA6VpKM6d6r2xcrylboC0iPhhphPcqfiAWjaCwI
-	 5R8OLyxeLd7JQZeqGQ8/F+rhYBheQqqUeMkNHEvIofQ4B7q1tJ4KbI31ypC1FHeCJv
-	 VtG3X9PfT4GzQiV0ZE51N62k9cPA0wezJrkr557db/W/fsvVu9/HKFKxBHVohG1HsO
-	 bWZ4q4HXNKENA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A468AC28B2E;
-	Tue, 11 Mar 2025 09:11:19 +0000 (UTC)
-From: Keke Li via B4 Relay <devnull+keke.li.amlogic.com@kernel.org>
-Date: Tue, 11 Mar 2025 17:11:20 +0800
-Subject: [PATCH v7 10/10] Documentation: media: add documentation file
- c3-isp.rst
+	s=arc-20240116; t=1741686141; c=relaxed/simple;
+	bh=6G6q9gJE+xvV3I97HSJ4wqR6R7EQnz4zmkCtLbU3u8g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P6DieIVe3L8dAnArLchiHOiW6eA08C6iHcu9nDcYuuQ+gJZbqx9xmjfhoEogGQ580azghdFD61874T2XXO5xcD3j/CcPQKg3x90PYaYC9rox6CkqpeJ+PxH6Lz2FmkXyFN6H+yR6iTiRAolPotxarKWH+g+LoLKmZzYYyit4eBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R8JW6M/K; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52B1BsKm012316
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 09:42:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jLmEFyG3LTIS/8bd0t7FZ5xsj2uzD9vnCxgeQMsx2zY=; b=R8JW6M/Km9+3D2yt
+	U5m03KYMgJEVx+EdhRU/jwhD0Tq7GY20BnJjfEYNpPfJ1mPZ6T+Gox91keNRBQa3
+	jbEAmgGnEGICxwSAkR4C4kk7ER0IGsr6jfDKlB4KtJ8fyZ9lEpZeo7K5AZhQlsG8
+	EnC8BENpjx/3Nda8xExLwiiYbOj7NI+SHZ7p8YE/SNMYC+7teCz4Q3Kg83vrGkMz
+	Gh33SQ6JNSCaxbbuFtCkxgVcagQy2JO9woK8u2+/mELTTX4cCDylpkwc+2q7ZPKi
+	EdKuJ2zO4YMF3X0FG3h5Ivs33QrM2IcJLQ0DLk6uvXo6yCw8Cpbwb75sU1Eq31QS
+	cT4cGQ==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ab95hask-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 09:42:16 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6e4546f8c47so16287156d6.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 02:42:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741686135; x=1742290935;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jLmEFyG3LTIS/8bd0t7FZ5xsj2uzD9vnCxgeQMsx2zY=;
+        b=uof7kPc7jGwznTLubJsjyWK86bOQ5MwORXkmsY8NhiofY8f5sdqqlQ7vcuYB/Zx/i+
+         y6QJpCTMx44gZV2lOyDlpPmNn/6iBl0l97uhAEKFv04sgGlfP0ZOkf2yUFx2PDyEWpuw
+         7xsRtqyWOhxtrcp1Rfi07zuXGULQuT7C8ie2erMTJig36iYXiABxYXXUplbuXgHZdiUh
+         ZExBwxyXqKp1QOqZRvEEKo6Nqt1qpEzxBdMDdYOozXGH1jOhVIo3jpH3sjKVWTuePXTI
+         4U81qNG1KPrv+SoYfDAdw7SXMRLpEZnZmejsBprUFtmhznPKS85lkNkQHlVTK5bvc69N
+         Z9lg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIE3SS4jHH1/z/bZTUfTQTdFL0IGSVqymYEUIaKLYQHEH8gsxKMEo8jfI92xYyPVD2mNZwINX3RvrW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9y7KdzN8mMOQo9XrDv0GKjAo7C+TR4REpcSKvNDavO7YYRuoi
+	xeYGH3wveZ1gX6vwmSs+mP2m8A7u+NwFLgQieSYi4k868ysK0gglLr7oZO3AiqrVUFdvOXZXI4Y
+	+w6jDdq+ruc8ec5zW2j2ZAkVy+VKQfqVjol8fi8rCybwvwr5gQOiGyotJhIHQ
+X-Gm-Gg: ASbGncvhXQaM64wExP2Lj8RbXga3mZZdndZGk59BLfkFAh4TbSQ3IYyJnkaD9qOnaJ7
+	Qle0Loza3PFK5pqg/EDSywH/eBOpssK5SYsPUkwETepaXBYJwTaW8qWvzzVb5BHccZ7Z7eDTeir
+	p+8PQwKEnr/vwjIrrs6ct1UW79691AVo8dawGz5ft2puzQyM8RnLIzyBK5+QqnCWraNCowLFwww
+	pNwQcQC/HulQQfAam8BUBQpE5GLuLF0uLMGh7IfE74bJU2SFnY0Gh0hgidPHIWxpsnKlLIFqDoC
+	klA6uCYOn3GKNNTP99TcLvCacA8jL1TNhQRtaoMd8JgO9AzP+PxSDegmuANaetMbd44irw==
+X-Received: by 2002:ad4:5bcd:0:b0:6e8:fe16:4d42 with SMTP id 6a1803df08f44-6e908c726c7mr74383996d6.1.1741686135500;
+        Tue, 11 Mar 2025 02:42:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFGSytYD0gUExD8i7pJCZHGU18JQpmW4aJe9Ty5cJD0CL5USKGnlHQQ7o9cBjRcodkWS9b6EA==
+X-Received: by 2002:ad4:5bcd:0:b0:6e8:fe16:4d42 with SMTP id 6a1803df08f44-6e908c726c7mr74383746d6.1.1741686135118;
+        Tue, 11 Mar 2025 02:42:15 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac239438117sm882353366b.26.2025.03.11.02.42.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Mar 2025 02:42:14 -0700 (PDT)
+Message-ID: <e73b3666-9f1d-40c0-afd5-5c0c83771e37@oss.qualcomm.com>
+Date: Tue, 11 Mar 2025 10:42:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Add touchscreen
+ node
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Jens Reidel <adrian@mainlining.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250311-fp5-touchscreen-v1-1-4d80ad3e4dfc@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250311-fp5-touchscreen-v1-1-4d80ad3e4dfc@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250311-c3isp-v7-10-c3551bed9005@amlogic.com>
-References: <20250311-c3isp-v7-0-c3551bed9005@amlogic.com>
-In-Reply-To: <20250311-c3isp-v7-0-c3551bed9005@amlogic.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
- laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com, 
- jacopo.mondi@ideasonboard.com, Keke Li <keke.li@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741684276; l=8134;
- i=keke.li@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=cTXUlvciM5bq/Oo8Fo3W4OqsuftypyzktXG8YBzvTtQ=;
- b=8qIdhSOEGbWs7h0RLfygk91mkQdeuTG8eXX6Ee1ppIyiLrQuT75w5kcqth65aD/8LPtUya/Y7
- Z1ZBWYwNRVIA+eZRQB3AY/tR5EJoWm4qy4IcY0PHdLrQdJWMLCZsz7c
-X-Developer-Key: i=keke.li@amlogic.com; a=ed25519;
- pk=XxNPTsQ0YqMJLLekV456eoKV5gbSlxnViB1k1DhfRmU=
-X-Endpoint-Received: by B4 Relay for keke.li@amlogic.com/20240902 with
- auth_id=204
-X-Original-From: Keke Li <keke.li@amlogic.com>
-Reply-To: keke.li@amlogic.com
+X-Proofpoint-GUID: XYwrOo3-VSejjrBqZ3NAYbfbqhSrm4sm
+X-Authority-Analysis: v=2.4 cv=fvgmZE4f c=1 sm=1 tr=0 ts=67d00578 cx=c_pps a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=8DUqKY-xeV0tu31MSWsA:9
+ a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-ORIG-GUID: XYwrOo3-VSejjrBqZ3NAYbfbqhSrm4sm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-11_01,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ lowpriorityscore=0 impostorscore=0 spamscore=0 mlxlogscore=999
+ suspectscore=0 phishscore=0 priorityscore=1501 clxscore=1015 bulkscore=0
+ mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503110065
 
-From: Keke Li <keke.li@amlogic.com>
+On 3/11/25 9:23 AM, Luca Weiss wrote:
+> Add a node for the GT9897 touchscreen found on this smartphone connected
+> via SPI.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+> The series adding support for this chip (incl. dt-bindings) has been
+> applied on 2025-03-10 to the input tree:
+> https://web.git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git/log/?h=next
+> ---
+>  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+> index 356cee8aeba90e21c11f46df924ed180bfce3160..35ce9dfca6f092a88d8873673ff57b591e210b02 100644
+> --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+> @@ -1069,7 +1069,18 @@ &sdhc_2 {
+>  &spi13 {
+>  	status = "okay";
+>  
+> -	/* Goodix touchscreen @ 0 */
+> +	touchscreen@0 {
+> +		compatible = "goodix,gt9897";
+> +		reg = <0>;
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <81 IRQ_TYPE_LEVEL_LOW>;
 
-Add the file 'c3-isp.rst' that documents the c3-isp driver.
+interrupts-extended
 
-Signed-off-by: Keke Li <keke.li@amlogic.com>
----
- Documentation/admin-guide/media/c3-isp.dot      |  26 ++++++
- Documentation/admin-guide/media/c3-isp.rst      | 109 ++++++++++++++++++++++++
- Documentation/admin-guide/media/v4l-drivers.rst |   1 +
- MAINTAINERS                                     |   2 +
- 4 files changed, 138 insertions(+)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-diff --git a/Documentation/admin-guide/media/c3-isp.dot b/Documentation/admin-guide/media/c3-isp.dot
-new file mode 100644
-index 000000000000..42dc931ee84a
---- /dev/null
-+++ b/Documentation/admin-guide/media/c3-isp.dot
-@@ -0,0 +1,26 @@
-+digraph board {
-+	rankdir=TB
-+	n00000001 [label="{{<port0> 0 | <port1> 1} | c3-isp-core\n/dev/v4l-subdev0 | {<port2> 2 | <port3> 3 | <port4> 4 | <port5> 5}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000001:port3 -> n00000008:port0
-+	n00000001:port4 -> n0000000b:port0
-+	n00000001:port5 -> n0000000e:port0
-+	n00000001:port2 -> n00000027
-+	n00000008 [label="{{<port0> 0} | c3-isp-resizer0\n/dev/v4l-subdev1 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000008:port1 -> n00000016 [style=bold]
-+	n0000000b [label="{{<port0> 0} | c3-isp-resizer1\n/dev/v4l-subdev2 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000000b:port1 -> n0000001a [style=bold]
-+	n0000000e [label="{{<port0> 0} | c3-isp-resizer2\n/dev/v4l-subdev3 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000000e:port1 -> n00000023 [style=bold]
-+	n00000011 [label="{{<port0> 0} | c3-mipi-adapter\n/dev/v4l-subdev4 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000011:port1 -> n00000001:port0 [style=bold]
-+	n00000016 [label="c3-isp-cap0\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
-+	n0000001a [label="c3-isp-cap1\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
-+	n0000001e [label="{{<port0> 0} | c3-mipi-csi2\n/dev/v4l-subdev5 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000001e:port1 -> n00000011:port0 [style=bold]
-+	n00000023 [label="c3-isp-cap2\n/dev/video2", shape=box, style=filled, fillcolor=yellow]
-+	n00000027 [label="c3-isp-stats\n/dev/video3", shape=box, style=filled, fillcolor=yellow]
-+	n0000002b [label="c3-isp-params\n/dev/video4", shape=box, style=filled, fillcolor=yellow]
-+	n0000002b -> n00000001:port1
-+	n0000003f [label="{{} | imx290 2-001a\n/dev/v4l-subdev6 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000003f:port0 -> n0000001e:port0 [style=bold]
-+}
-diff --git a/Documentation/admin-guide/media/c3-isp.rst b/Documentation/admin-guide/media/c3-isp.rst
-new file mode 100644
-index 000000000000..8adac4605a6a
---- /dev/null
-+++ b/Documentation/admin-guide/media/c3-isp.rst
-@@ -0,0 +1,109 @@
-+.. SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+
-+.. include:: <isonum.txt>
-+
-+=================================================
-+Amlogic C3 Image Signal Processing (C3ISP) driver
-+=================================================
-+
-+Introduction
-+============
-+
-+This file documents the Amlogic C3ISP driver located under
-+drivers/media/platform/amlogic/c3/isp.
-+
-+The current version of the driver supports the C3ISP found on
-+Amlogic C308L processor.
-+
-+The driver implements V4L2, Media controller and V4L2 subdev interfaces.
-+Camera sensor using V4L2 subdev interface in the kernel is supported.
-+
-+The driver has been tested on AW419-C308L-Socket platform.
-+
-+Anlogic Camera hardware
-+=======================
-+
-+The Camera hardware found on C308L processors and supported by
-+the driver consists of:
-+
-+- 1 MIPI-CSI2 module. It handle the Physical layer of the CSI2 receivers and
-+  receive MIPI data.
-+  A separate camera sensor can be connected to MIPI-CSi2 module.
-+- 1 MIPI-ADAPTER module. Organize MIPI data to meet ISP input requirements and
-+  send MIPI data to ISP
-+- 1 ISP (Image Signal Processing) module. Contain a pipeline of image processing
-+  hardware blocks.
-+  The ISP pipeline contains three scalers at the end.
-+  The ISP also contains the DMA interface which writes the output data to memory.
-+
-+A high level functional view of the C3 ISP is presented below. The ISP
-+takes input from the sensor.::
-+
-+                                                                   +---------+    +-------+
-+                                                                   | Scaler  |--->| WRMIF |
-+  +---------+    +------------+    +--------------+    +-------+   |---------+    +-------+
-+  | Sensor  |--->| MIPI CSI-2 |--->| MIPI ADAPTER |--->|  ISP  |---|---------+    +-------+
-+  +---------+    +------------+    +--------------+    +-------+   | Scaler  |--->| WRMIF |
-+                                                                   +---------+    +-------+
-+                                                                   |---------+    +-------+
-+                                                                   | Scaler  |--->| WRMIF |
-+                                                                   +---------+    +-------+
-+
-+Supported functionality
-+=======================
-+
-+The current version of the driver supports:
-+
-+- Input from camera sensor via MIPI-CSI2;
-+
-+- Pixel output interface of ISP
-+
-+  - Scaling support. Configuration of the scaler module
-+    for downscalling with ratio up to 8x.
-+
-+Driver Architecture and Design
-+==============================
-+
-+The driver implements the V4L2 subdev interface. With the goal to model the
-+hardware links between the modules and to expose a clean, logical and usable
-+interface, the driver is split into V4L2 sub-devices as follows:
-+
-+- 1 c3-mipi-csi2 sub-device - mipi-csi2 is represented by a single sub-device.
-+- 1 c3-mipi-adapter sub-device - mipi-adapter is represented by a single sub-devices.
-+- 1 c3-isp-core sub-device - isp-core is represented by a single sub-devices.
-+- 3 c3-isp-resizer sub-devices - isp-resizer is represented by a number of sub-devices
-+  equal to the number of capture device.
-+
-+c3-isp-core sub-device is linked to 2 separate video device nodes and
-+3 c3-isp-resizer sub-devices nodes.
-+
-+- 1 capture statistics video device node.
-+- 1 output parameters video device node.
-+- 3 c3-isp-resizer sub-device nodes.
-+
-+c3-isp-resizer sub-device is linked to capture video device node.
-+
-+- c3-isp-resizer0 is linked to c3-isp-cap0
-+- c3-isp-resizer1 is linked to c3-isp-cap1
-+- c3-isp-resizer2 is linked to c3-isp-cap2
-+
-+The media controller pipeline graph is as follows (with connected a
-+IMX290 camera sensor):
-+
-+.. _isp_topology_graph:
-+
-+.. kernel-figure:: c3-isp.dot
-+    :alt:   c3-isp.dot
-+    :align: center
-+
-+    Media pipeline topology
-+
-+Implementation
-+==============
-+
-+Runtime configuration of the hardware via 'c3-isp-params' video device node.
-+Acquiring statistics of ISP hardware via 'c3-isp-stats' video device node.
-+Acquiring output image of ISP hardware via 'c3-isp-cap[0, 2]' video device node.
-+
-+The output size of the scaler module in the ISP is configured with
-+the pixel format of 'c3-isp-cap[0, 2]' video device node.
-diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documentation/admin-guide/media/v4l-drivers.rst
-index e8761561b2fe..3bac5165b134 100644
---- a/Documentation/admin-guide/media/v4l-drivers.rst
-+++ b/Documentation/admin-guide/media/v4l-drivers.rst
-@@ -10,6 +10,7 @@ Video4Linux (V4L) driver-specific documentation
- 	:maxdepth: 2
- 
- 	bttv
-+	c3-isp
- 	cafe_ccic
- 	cx88
- 	fimc
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1f9e81fa132e..43dfbc5a265a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1256,6 +1256,8 @@ AMLOGIC ISP DRIVER
- M:	Keke Li <keke.li@amlogic.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
-+F:	Documentation/admin-guide/media/c3-isp.dot
-+F:	Documentation/admin-guide/media/c3-isp.rst
- F:	Documentation/devicetree/bindings/media/amlogic,c3-isp.yaml
- F:	Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst
- F:	drivers/media/platform/amlogic/c3/isp/
-
--- 
-2.48.1
-
-
+Konrad
 
