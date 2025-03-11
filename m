@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-156465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6FDAA5BD1C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:02:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 315C1A5BD6B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:15:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 883EA1895ED6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 10:01:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6ABE18988EA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 10:15:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7BCE22577E;
-	Tue, 11 Mar 2025 10:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1554A235354;
+	Tue, 11 Mar 2025 10:12:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KF1CiMgi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Be+vbEiM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5C3015A8;
-	Tue, 11 Mar 2025 10:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECBD22343CF
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 10:12:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741687296; cv=none; b=NKnTFGc9aQ+SeVUV/L1B82edOwfvlzDyq1BsR1Frvb7tGqauJvVjU2gYlxuDugGBesUjKE7MmZqlpyDDMLAtEtc6ZB1a2aO1yRdi0sbZEXfvTXwhp78ZpDnbzd7JT8E5uvMCExXBXVwpLDRbqW283/jnu7YISxri88XPeByO7z0=
+	t=1741687949; cv=none; b=OxYll8cEsXz9Cn9sHCTlDyKyYh7shBMfy0FpBzI3UPykySGGQsW9HV592nmicfQGD98FsaZNDbo3E9OGAweBVzk1Xnbje1/PqfupUPIIvUesMjplSOr0DvBBYO8nWQ9GRVcyZ2QKgWrtde1p+XUqgYCbmqT+C/3xheaynoeGlgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741687296; c=relaxed/simple;
-	bh=4N1q9GIgi+6Irm5ddc/TZanBPrU7mddBu7T6VRBTVRE=;
+	s=arc-20240116; t=1741687949; c=relaxed/simple;
+	bh=+3yq1s96UJR2X/8rxc0GrcD75DfM7d3VNeS5ZzC5agU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AFismx8Yt6/vqUL8G3uN6KGh31QMAgWnbgoX/HlRIEWk1HPTUU/IQEkud4nJF/lW+qTkvENSuhjfKRnZZIaEDLpRU9Tlw/4pjGqpQcqSP+gdF2XBEq7KLhW6Q+Mqq/ErtUrLNUI0HllCoCnomnnNi7GGN4SbhZBziZMYyeRZxxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KF1CiMgi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93ACEC4CEE9;
-	Tue, 11 Mar 2025 10:01:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741687296;
-	bh=4N1q9GIgi+6Irm5ddc/TZanBPrU7mddBu7T6VRBTVRE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KF1CiMgiR0ImLestj6d0IPnkPovDOb5KgNQQnLiVsDPtWrZUENGFWe7O3BzYENwdm
-	 HXkACt81J4fTdM/YIo4rR0cygGH2XrNCNZGXvtMcScCkrPZb2oifRL6Eddlc+OCl8u
-	 lIXILIB4lDGtl5In5/5GGFf0yJ7dKYZr+oL3rjJmACRkJkYK8dx4XPmjZI0EfKl4hG
-	 2AJoCZNkfiNlTu28iyBB0tkqllkntyaAWPjrIpEU3rpy8heqD5LtfgBz/NzOnPb89w
-	 pHdW97S+4sT82srbqIvrM/hwfsZnv4dYpF7dc/vRnqaBLDifoAXNRb2kfqqQdwMPfS
-	 ZVECb3yrMcvEA==
-Message-ID: <acb5fa11-9dce-44d0-85e3-e67a6a10c48f@kernel.org>
-Date: Tue, 11 Mar 2025 11:01:28 +0100
+	 In-Reply-To:Content-Type; b=Me1KL1HxlmRxF+NmCzRlLHXo8msn577cwWloJe6pB+AdusPwNaM39do77/KWqpyK/wgOEYBABxcJvX3GBfLGDonxy3xMqBlT2Zn9CYLA6ZIVAKXToKlrF3JHKfGR2oP6F0TgNmFPFj3YEgq/imZx7DEmvVl1qlsbN4kbSdEA04A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Be+vbEiM; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5499af0cecdso434450e87.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 03:12:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741687945; x=1742292745; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=M0Ue4Q4qIT2SkgukgvQkQoV58AEl4Qx/JQQFOU8HKzc=;
+        b=Be+vbEiMYeyOEhWZc2tx9xaa0o21RFpqTNwCkJ4EE2iyCqmv4GqtReV+D1ZlTAStoF
+         9k2ZsMhaYQmPDGF2lgY143CTeQZl3IX9QDgfCjKsnITf/2cRBfLx/r+DByyZrIJ2rG1k
+         DkpKw+Ckmv3kLxPBWfHlkNAvHUpEVaGmzgIgk2N13OXZ3gjSGeeTnbYoA1evjrVfLTYD
+         FgZ1q5WVEIggr03LoEhULaaWa8bOOjeQHun3Zv1ib7faD+ZPH+rwqDFqoNp+QNzI93Ew
+         wPW6u3gTAi1D3OOJhg5pk3dm40NfM4Rbd6N1UFRUofeB37el5iyS7v8EfQ8OsxTacK7H
+         Q9iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741687945; x=1742292745;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=M0Ue4Q4qIT2SkgukgvQkQoV58AEl4Qx/JQQFOU8HKzc=;
+        b=A8GljF+cGXREVMR/IPkOY+d5KTxY5Zmnh1hFVmuQCM0f97sIvZO5rUPBCR5NWjLAHN
+         cEIiJg78zPBSMJ5d9rFEj1+hl262APguv4t2wpy7PWyLAbd+sCHZBmOubECbk4qhVTbW
+         evco3IQSVN0g1osizRT9c9bKIxszkGBqYFqs/aAQspbdnlJ9oOOUZ5ah/qpV8ckbz8wV
+         6wF2JEUTrVmdzr5swKJgQiGvWP7YVnKizTUJjb2TAUmzBYW+voalTCQxR64rmeaJFnwT
+         cISdu7xXiS84eu7MXuqn1I6sUJp/4Tr7HdPCUbldTEWZwNM/WNw3YA5ClOu3mfJ1l9/L
+         Rczw==
+X-Forwarded-Encrypted: i=1; AJvYcCVhhDzDMnW9JC227BCrFYNSwaUF5iPvJ8io6v+X0nJVAUKEdPn8P6iHIqFLnCQ1SgqWHuYf5Vl4TyEy@vger.kernel.org
+X-Gm-Message-State: AOJu0YypIB+9f6lIuGK/6CXhz+xJYgvNPGfHOROe+E3MJ6z/za6Wk1lT
+	OqcwBpndsK3zuGlBWmZOaeFKGVZL87uIz9sPgxaMHGn9x4TnGUEKLtY7yufVQVQ=
+X-Gm-Gg: ASbGncvzphMpT27JOur57C9DBHCXxLSZsxCwk6oyD1EVgmPSLLtxLFQdH2/hyW/2zv2
+	Azc38ExxmO295gh+TgOrytl6D51+r4iW9TjlvSwR89uF2Kb/4QVwrOuijiAHgaQAFNuTeas94jU
+	xkLIwxT6NlAxMOWrdDSxdQnsRhiC7kg00gbFgNYTW/wLNyPKaOfHSygQBG1cCSrk+n1K3coZEbc
+	f63eAldcvSrfVuioZJ7fby+ZpktctVzvheLK4x1bXfEgXqjbPEKqNEcOtpKU9enfjcsciS3DZEz
+	lGXE5hKU/KxSyhZlH2lUq3Yt6cEn0VposDU8Q5SPZFEZCBDxBDFODcuAm7Q9/3pcFBvfjZjqb19
+	f3UEMF87DRepU6zcCt+gLqwI=
+X-Google-Smtp-Source: AGHT+IGIs8Uu4dRag/V9E+dTalU6U6PS8Xj1gzq2Dg/DyTe7dnw6wtEZjbZZzgP2hxww523Rqg5BKg==
+X-Received: by 2002:a05:6512:3b0c:b0:549:732d:e2d1 with SMTP id 2adb3069b0e04-549abaf1056mr371507e87.11.1741687944758;
+        Tue, 11 Mar 2025 03:12:24 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498b0bd0b6sm1735773e87.109.2025.03.11.03.12.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Mar 2025 03:12:23 -0700 (PDT)
+Message-ID: <46d4f090-3e31-414f-abfc-3d1018913c56@linaro.org>
+Date: Tue, 11 Mar 2025 12:12:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,157 +82,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
- mailbox
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: Yunhong Jiang <yunhong.jiang@linux.intel.com>, tglx@linutronix.de,
- mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org,
- hpa@zytor.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
- decui@microsoft.com, rafael@kernel.org, lenb@kernel.org,
- kirill.shutemov@linux.intel.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-acpi@vger.kernel.org, ricardo.neri@intel.com, ravi.v.shankar@intel.com
-References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
- <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
- <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
- <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
- <20240910061227.GA76@yjiang5-mobl.amr.corp.intel.com>
- <1d0ba3fc-1504-4af3-a0bc-fba86abe41e8@kernel.org>
- <20240919191725.GA11928@yjiang5-mobl.amr.corp.intel.com>
- <874d5908-f1db-412f-96a2-83fcebe8dd98@kernel.org>
- <20250303222102.GA16733@ranerica-svr.sc.intel.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250303222102.GA16733@ranerica-svr.sc.intel.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v2 0/8] clk: qcom: Add support to attach multiple power
+ domains in cc probe
+Content-Language: ru-RU
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <CMTYKKilQJYeHUYYKvlqnwv4Q2P-58Ic1v1ndS9HQ8Yhq2xpHuNThibFDjXDEQ1PyNbx__f9BVBr0peoTUdvPg==@protonmail.internalid>
+ <20250306-videocc-pll-multi-pd-voting-v2-0-0cd00612bc0e@quicinc.com>
+ <5a45fd25-74ed-46e3-b0e3-5adf92b5e9f7@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <5a45fd25-74ed-46e3-b0e3-5adf92b5e9f7@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 03/03/2025 23:21, Ricardo Neri wrote:
-> On Fri, Sep 20, 2024 at 01:15:41PM +0200, Krzysztof Kozlowski wrote:
-> 
-> [...]
->  
->> enable-method is part of CPUs, so you probably should match the CPUs...
->> I am not sure, I don't have the big picture here.
+On 3/11/25 11:52, Bryan O'Donoghue wrote:
+> On 06/03/2025 08:55, Jagadeesh Kona wrote:
+>> In some of the recent chipsets, PLLs require more than one power domain
+>> to be kept ON to configure the PLL. But the current code doesn't enable
+>> all the required power domains while configuring the PLLs, this leads
+>> to functional issues due to suboptimal settings of PLLs.
 >>
->> Maybe if companies want to push more of bindings for purely virtual
->> systems, then they should first get involved more, instead of relying on
->> us. Provide reviews for your virtual stuff, provide guidance. There is
->> resistance in accepting bindings for such cases for a reason - I don't
->> even know what exactly is this and judging/reviewing based on my
->> practices will no be accurate.
+>> To address this, add support for handling runtime power management,
+>> configuring plls and enabling critical clocks from qcom_cc_really_probe.
+>> The clock controller can specify PLLs, critical clocks, and runtime PM
+>> requirements in the descriptor data. The code in qcom_cc_really_probe()
+>> ensures all necessary power domains are enabled before configuring PLLs
+>> or critical clocks.
+>>
+>> This series updates SM8450 & SM8550 videocc drivers to handle rpm,
+>> configure PLLs and enable critical clocks from within qcom_cc_really_probe()
+>> using above support, so video PLLs are configured properly.
+>>
+>> This series fixes the below warning reported in SM8550 venus testing due
+>> to video_cc_pll0 not properly getting configured during videocc probe
+>>
+>> [   46.535132] Lucid PLL latch failed. Output may be unstable!
+>>
+>> The patch adding support to configure the PLLs from common code is
+>> picked from below series and updated it.
+>> https://lore.kernel.org/all/20250113-support-pll-reconfigure-v1-0-1fae6bc1062d@quicinc.com/
+>>
+>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>> ---
+>> Changes in v2:
+>>    - Added support to handle rpm, PLL configuration and enable critical
+>>      clocks from qcom_cc_really_probe() in common code as per v1 commments
+>>      from Bryan, Konrad and Dmitry
+>>    - Added patches to configure PLLs from common code
+>>    - Updated the SM8450, SM8550 videocc patches to use the newly
+>>      added support to handle rpm, configure PLLs from common code
+>>    - Split the DT change for each target separately as per
+>>      Dmitry comments
+>>    - Added R-By and A-By tags received on v1
+>> - Link to v1: https://lore.kernel.org/r/20250218-videocc-pll-multi-pd-voting-v1-0-cfe6289ea29b@quicinc.com
+>>
+>> ---
+>> Jagadeesh Kona (7):
+>>         dt-bindings: clock: qcom,sm8450-videocc: Add MXC power domain
+>>         clk: qcom: common: Manage rpm, configure PLLs & AON clks in really probe
+>>         clk: qcom: videocc-sm8450: Move PLL & clk configuration to really probe
+>>         clk: qcom: videocc-sm8550: Move PLL & clk configuration to really probe
+>>         arm64: dts: qcom: Add MXC power domain to videocc node on SM8450
+>>         arm64: dts: qcom: Add MXC power domain to videocc node on SM8550
+>>         arm64: dts: qcom: Add MXC power domain to videocc node on SM8650
+>>
+> This list looks sparse.
 > 
-> Hi Krzysztof,
+> - camcc is missing
+> - x1e is missing
+> - sm8650 and sm8750 and both also missing
 > 
-> I am taking over this work from Yunhong.
-> 
-> First of all, I apologize for the late reply. I will make sure
-> communications are timely in the future.
-> 
-> Our goal is to describe in the device tree a mechanism or artifact to boot
-> secondary CPUs.
-> 
-> In our setup, the firmware puts secondary CPUs to monitor a memory location
-> (i.e., the wakeup mailbox) while spinning. From the boot CPU, the OS writes
-> in the mailbox the wakeup vector and the ID of the secondary CPU it wants
-> to boot. When a secondary CPU sees its own ID it will jump to the wakeup
-> vector.
-> 
-> This is similar to the spin-table described in the Device Tree
-> specification. The key difference is that with the spin-table CPUs spin
-> until a non-zero value is written in `cpu-release-addr`. The wakeup mailbox
-> uses CPU IDs.
-> 
-> You raised the issue of the lack of a `compatible` property, and the fact
-> that we are not describing an actual device.
-> 
-> I took your suggestion of matching by node and I came up with the binding
-> below. I see these advantages in this approach:
-> 
->   * I define a new node with a `compatible` property.
->   * There is precedent: the psci node. In the `cpus` node, each cpu@n has
 
-psci is a standard. If you are documenting here a standard, clearly
-express it and provide reference to the specification.
+Since there are concerns about DT bindings ABI change of CAMCC given by
+Krzysztof, likely CAMCC changes shall not be inserted into this series.
 
-
->     an `enable-method` property that specify `psci`.
->   * The mailbox is a device as it is located in a reserved memory region.
->     This true regardless of the device tree describing bare-metal or
->     virtualized machines.
-> 
-> Thanks in advance for your feedback!
-> 
-> Best,
-> Ricardo
-> 
-> (only the relevant sections of the binding are shown for brevity)
-> 
-> properties:
->   $nodename:
->     const: wakeup-mailbox
-> 
->   compatible:
->     const: x86,wakeup-mailbox
-
-You need vendor prefix for this particular device. If I pointed out lack
-of device and specific compatible, then adding random compatible does
-not solve it. I understand it solves for you, but not from the bindings
-point of view.
-
-> 
->   mailbox-addr:
->     $ref: /schemas/types.yaml#/definitions/uint64
-
-So is this some sort of reserved memory? Mailbox needs mbox-cells, so
-maybe that's not mailbox.
-
-
-
-Best regards,
-Krzysztof
+--
+Best wishes,
+Vladimir
 
