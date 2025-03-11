@@ -1,591 +1,498 @@
-Return-Path: <devicetree+bounces-156575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C61A5CA3A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 17:05:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC6DAA5CA64
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 17:10:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C8BC7A103F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:03:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87C963B0A9D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6B21C2DB2;
-	Tue, 11 Mar 2025 16:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79AE725EFB6;
+	Tue, 11 Mar 2025 16:10:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lIOy2yi/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K4rgSdt1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1DD10E5;
-	Tue, 11 Mar 2025 16:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4705025B68E;
+	Tue, 11 Mar 2025 16:10:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741709090; cv=none; b=hZ74TTryO0jR3inc+1o/9Pr4MLJmMU+YlAs67gpfZTtpNb131OEwVloaWdqJFCEiKGw6sfDRQmUwurP03Ywii5ULiHnkxQ2XItrLVh9rZySWC2B/zrVVGFcicQEbLq7gjQ/fcJgeIFa7IAnrn66BsUWvYmoqmo65gAgAeXy1ekM=
+	t=1741709443; cv=none; b=ctbgVkbONC8JW1w/qfzpXh5Kdzu3wCUFkBdgkSEBiOhErZBkip5iJDNR8z0lFZ3/Ux4dnhDL6r5NCcPohblG4OOIqnwoRGropxh/g3aTP7uqo8wQN4z7aH3Ty2e9pUi0sFenf9pHk9/YKedCa8gdB/7ywTa9aj4Ag2UdukavC7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741709090; c=relaxed/simple;
-	bh=ol541gNVPkNybWxr4NC+BgFFiX7TZtmw9LNu/oPSP6o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Boxk1vpwZDH/UNubnnKPRI9zVQQ/0NZ5UCAVlYYpThNUF8l6H/F/7JsyUR7V0MGr7jzdEnrY18CPx3gzNNTNYc9CwNGk25Kpp9iLeqcyAeK13iBGIBesQcNApCy3hB7jj9WLdtXzBxePrQ26UOZRpfgvdYCT2uU07n7B3rNC+cs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lIOy2yi/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6216EC4CEE9;
-	Tue, 11 Mar 2025 16:04:42 +0000 (UTC)
+	s=arc-20240116; t=1741709443; c=relaxed/simple;
+	bh=zgNmjhMoZPBMDiyBETdCfcW6FwZyRy/nV0ICAQVAZm8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=HbYUI8yt0I/kyu8fwHwVuvpOW9viaNZhEVrfgyk03cfseWZSmIq2b6Twb5OuYN8SiR6vbxsvUQoW6O7lRBlZuENAjJqV6Cwas/quM8p7ffBZh8i6LhUz4AX85smN74bQXkR8E4nGJfknFBFImThMjF7ewTW4ZMx7yiJkXG7DIaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K4rgSdt1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7BD24C4CEF3;
+	Tue, 11 Mar 2025 16:10:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741709089;
-	bh=ol541gNVPkNybWxr4NC+BgFFiX7TZtmw9LNu/oPSP6o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lIOy2yi/Gq8i+wdHBjBeBuiUwcRgl/AwBHbG96sQtzO/0phZoAfrjeSQIMv4LrRXr
-	 DW7LfyiF9CgF+jhzGx0jwBS+PNsPqJD1GvvRW0iuQM4NW4+XSafchSS8l01fCGle5d
-	 cdXRqta51y2Q+Mfze13VBtQBMEpiyls87/0VShwyLKZ4xNfQFdvra8MojkHLKKH35X
-	 oQztRib6rDj24vZtYqrnoBtBhQDTkdZWAuPe887eDO9WHqj1oxKcTSzJhD3s/i75+6
-	 L9A75ldpanNff2fngz89nxlCkmdguexnvz+AxwVNkHnUFo5/oaFevgUDvFvabLsQJ3
-	 iu/LeoNDLfaqA==
-Message-ID: <eaf1ecca-4fde-4128-8590-6013c3a13a04@kernel.org>
-Date: Tue, 11 Mar 2025 17:04:39 +0100
+	s=k20201202; t=1741709442;
+	bh=zgNmjhMoZPBMDiyBETdCfcW6FwZyRy/nV0ICAQVAZm8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=K4rgSdt1jALdxy4ZEx1QYVZwgD0PFlR1On6f8pAslLWTTSp6cx7wm7LqSp14Zd8Oi
+	 K77vbhWLsmu7xQLtdGBi5slR/fk84QpQQusPCvmVCXVzCB5oDLMSb8mmCPplApmnj5
+	 9YjJpf/gPB8YBotJSfAg046RHWh1XhF4kmMEFQ2uCOpApmtsSjHhl+1TVTie/e2Q5i
+	 QbM1KDi9y0dc0/DkHNvaShRW+bV9oApHRzcSewk4dz/aOwmcXDpoC+bPYWOGXFZNxO
+	 AuJ3+dJ318QR/vdet3OpqHF9HoK7yOOibHcn4OCyqu4baMvDzMWV/Ohp1+l9XoGGow
+	 b91C3DNUexWhw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 404C2C282EC;
+	Tue, 11 Mar 2025 16:10:42 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Date: Tue, 11 Mar 2025 17:10:02 +0100
+Subject: [PATCH v4] ARM: dts: nexus4: Initial dts
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/8] memory: Add STM32 Octo Memory Manager driver
-To: patrice.chotard@foss.st.com, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Arnd Bergmann <arnd@arndb.de>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- christophe.kerello@foss.st.com
-References: <20250219080059.367045-1-patrice.chotard@foss.st.com>
- <20250219080059.367045-5-patrice.chotard@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250219080059.367045-5-patrice.chotard@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250311-lg-nexus4-mako-v4-1-3916c8ec7edb@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIAFlg0GcC/3XMQQ6CMBCF4auQWTumtICFlfcwLCodYKJS0yKpE
+ u5uZe/yf8n7VgjkmQI02QqeFg7sphTFIYNuNNNAyDY1SCFLoUSN9wEniq9Q4MPcHFojtFJal1d
+ ZQTo9PfUcd/DSph45zM6/d39Rv/UvtSjMMbed1OJke1lXZ448H7sPtNu2fQFkqxLEqgAAAA==
+X-Change-ID: 20250309-lg-nexus4-mako-da0833885b26
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ Ivan Belokobylskiy <belokobylskij@gmail.com>, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9574; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=ej/fcyNobEhGu/DGU98SkH5ibaeHLK+oGaImrCZQGVA=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBn0GB8zy0C8e3ZvENnVBihwn53dFwRSkkTq3jft
+ 2A4dKa7tYmJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCZ9BgfAAKCRBgAj/E00kg
+ cqfQD/44hUKUo9cVwDBhie+HzrDf3AHjG0oITt5/Z7RJyLN24fKH//LeNRQ+4TXvtkOatEE/FAc
+ 3zZ0wJxirG7qC7SgFE4+MlC8/GYwCBxpIptg+JaruMkIjQxBoirSDJ2MHj/ScdjXYznh6818OTL
+ DlTSDPv71gHicU9n3z+rMpBXkDuNtcEMkIo0j1zlIUs8EO3/SenOojkRD2uRv5ser+my64v7JRF
+ Q99cZkPNh0+zFQvKEefTYWE7j6gI52gOrUu4ETcrTw3sukuNgXSNmgWf6Tr35uUHgaKIT0EAPOB
+ nkt80X0Te8x+xqp2DemmIGkmBCOdJm3cbrKFqe+Ty2EzSFPYe/ZxiqqoIL1XfaY9zjqlCBnhPhQ
+ +aj1byPigyXFGQSQkzUsJe9twZw47y0ul6KlH1PO9+JeK6tM5Q0S9H65s5jgpmxxzkl2fAtkEYa
+ ZrHrZ3eDQn50wAtI9B+C6wy8iuIbk1cV4jcGnHf9j8YDLV/rKxuw9tzx9sn7PgyaIe+Vucltp+t
+ Dz1faaV/BsPi85MqSbvblEmMCXep2SE4U921r3x+57zOVwAjVXEmuoobPmSVZDlS1Zh769WDCZt
+ uIHxrR43mXuVUAJZgevfMV6M7lEfog5rcFG1sexgXpRV50roYLkGe1wgfJWFe1dXj6gmhVydYvl
+ 8AdL8Na11FM2RBw==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-On 19/02/2025 09:00, patrice.chotard@foss.st.com wrote:
-> From: Patrice Chotard <patrice.chotard@foss.st.com>
-> 
-> Octo Memory Manager driver (OMM) manages:
->   - the muxing between 2 OSPI busses and 2 output ports.
->     There are 4 possible muxing configurations:
->       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
->         output is on port 2
->       - OSPI1 and OSPI2 are multiplexed over the same output port 1
->       - swapped mode (no multiplexing), OSPI1 output is on port 2,
->         OSPI2 output is on port 1
->       - OSPI1 and OSPI2 are multiplexed over the same output port 2
->   - the split of the memory area shared between the 2 OSPI instances.
->   - chip select selection override.
->   - the time between 2 transactions in multiplexed mode.
->   - check firewall access.
-> 
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
+From: Ivan Belokobylskiy <belokobylskij@gmail.com>
 
-Incorrect chain. You sent it, so you must be the last person signing it.
+Add initial support for LG Nexus 4 (mako).
 
-I was waiting for any ST review... did not happen, so if you wonder how
-to speed things up, you got a hint. Anyway, many questions futher.
+Features currently working: regulators, eMMC, and volume keys.
 
+Signed-off-by: Ivan Belokobylskiy <belokobylskij@gmail.com>
+Co-developed-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v4:
+- Sorted regulators and added regulators compatible.
+- Corrected pmic include and references.
+- Moved &rpm outside of / node.
+- Moved and simplify pm8921 keypad.
+- Added chasis-type.
+- Dropped incomplete WiFi node, will be provided in future
+  contributions.
+- Link to v3: https://lore.kernel.org/r/20250309-lg-nexus4-mako-v3-1-1dc2807df296@ixit.cz
 
-> +
-> +		if (i == 1) {
-> +			mm_ospi2_size = resource_size(&res);
-> +
-> +			/* check that OMM memory region 1 doesn't overlap memory region 2 */
-> +			if (resource_overlaps(&res, &res1)) {
-> +				dev_err(dev, "OMM memory-region %s overlaps memory region %s\n",
-> +					mm_name[0], mm_name[1]);
-> +				dev_err(dev, "%pR overlaps %pR\n", &res1, &res);
-> +
-> +				return -EFAULT;
-> +			}
-> +		}
-> +	}
-> +
-> +	syscfg_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "st,syscfg-amcr");
-> +	if (IS_ERR(syscfg_regmap)) {
-> +		dev_err(dev, "Failed to get st,syscfg-amcr property\n");
-> +		return PTR_ERR(syscfg_regmap);
+Changes in v3:
+- rebased against next-20250307
+- dropped backlight until driver gets converted to DT
 
-Same comments as usual, see further.
+Changes in v2:
+- lge vendor doesn't exist anymore, rename to lg
+- sdcc@ to mmc@ to comply with dt-schema
+---
+ arch/arm/boot/dts/qcom/Makefile                    |   1 +
+ .../boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts  | 344 +++++++++++++++++++++
+ 2 files changed, 345 insertions(+)
 
-> +	}
-> +
-> +	ret = of_property_read_u32_index(dev->of_node, "st,syscfg-amcr", 1,
-> +					 &amcr_base);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = of_property_read_u32_index(dev->of_node, "st,syscfg-amcr", 2,
-> +					 &amcr_mask);
-> +	if (ret)
-> +		return ret;
-> +
-> +	amcr = mm_ospi2_size / SZ_64M;
-> +
-> +	if (set)
-> +		regmap_update_bits(syscfg_regmap, amcr_base, amcr_mask, amcr);
-> +
-> +	/* read AMCR and check coherency with memory-map areas defined in DT */
-> +	regmap_read(syscfg_regmap, amcr_base, &read_amcr);
-> +	read_amcr = read_amcr >> (ffs(amcr_mask) - 1);
-> +
-> +	if (amcr != read_amcr) {
-> +		dev_err(dev, "AMCR value not coherent with DT memory-map areas\n");
-> +		ret = -EINVAL;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int stm32_omm_enable_child_clock(struct device *dev, bool enable)
-> +{
-> +	/* As there is only 2 children, remember first child in case of error */
-> +	struct clk *first_child_clk = NULL;
-> +	struct stm32_omm *omm = dev_get_drvdata(dev);
-> +	u8 i;
-> +	int ret;
-> +
-> +	for (i = 0; i < omm->nb_child; i++) {
-> +		if (enable) {
-> +			ret = clk_prepare_enable(omm->child[i].clk);
-> +			if (ret) {
-> +				if (first_child_clk)
-> +					clk_disable_unprepare(first_child_clk);
+diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
+index f06c6d425e91dd73c2b453d15543d95bd32383b9..0c1d116f6e84f76994aa8c8286350bdcd1657a42 100644
+--- a/arch/arm/boot/dts/qcom/Makefile
++++ b/arch/arm/boot/dts/qcom/Makefile
+@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+ 	qcom-apq8064-ifc6410.dtb \
+ 	qcom-apq8064-sony-xperia-lagan-yuga.dtb \
+ 	qcom-apq8064-asus-nexus7-flo.dtb \
++	qcom-apq8064-lg-nexus4-mako.dtb \
+ 	qcom-apq8074-dragonboard.dtb \
+ 	qcom-apq8084-ifc6540.dtb \
+ 	qcom-apq8084-mtp.dtb \
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
+new file mode 100644
+index 0000000000000000000000000000000000000000..51edd661e4bd903a32445d15955585a194574f30
+--- /dev/null
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
+@@ -0,0 +1,344 @@
++// SPDX-License-Identifier: GPL-2.0-only
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/mfd/qcom-rpm.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
++
++#include "qcom-apq8064-v2.0.dtsi"
++#include "pm8821.dtsi"
++#include "pm8921.dtsi"
++
++/ {
++	model = "LG Nexus 4 (mako)";
++	compatible = "lg,nexus4-mako", "qcom,apq8064";
++	chassis-type = "handset";
++
++	aliases {
++		serial0 = &gsbi7_serial;
++		serial1 = &gsbi6_serial;
++		serial2 = &gsbi4_serial;
++	};
++
++	chosen {
++		stdout-path = "serial2:115200n8";
++	};
++
++	reserved-memory {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++
++		ramoops@88d00000{
++			compatible = "ramoops";
++			reg = <0x88d00000 0x100000>;
++			record-size = <0x20000>;
++			console-size = <0x20000>;
++			ftrace-size = <0x20000>;
++		};
++	};
++
++	battery_cell: battery-cell {
++		compatible = "simple-battery";
++		constant-charge-current-max-microamp = <900000>;
++		operating-range-celsius = <0 45>;
++	};
++};
++
++&rpm {
++	regulators {
++		compatible = "qcom,rpm-pm8921-regulators";
++
++		vin_lvs1_3_6-supply = <&pm8921_s4>;
++		vin_lvs2-supply = <&pm8921_s1>;
++		vin_lvs4_5_7-supply = <&pm8921_s4>;
++
++		vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
++		vdd_l24-supply = <&pm8921_s1>;
++		vdd_l25-supply = <&pm8921_s1>;
++
++		vdd_l26-supply = <&pm8921_s7>;
++		vdd_l27-supply = <&pm8921_s7>;
++		vdd_l28-supply = <&pm8921_s7>;
++
++		/* Buck SMPS */
++		pm8921_s1: s1 {
++			regulator-always-on;
++			regulator-min-microvolt = <1225000>;
++			regulator-max-microvolt = <1225000>;
++			qcom,switch-mode-frequency = <3200000>;
++			bias-pull-down;
++		};
++
++		pm8921_s2: s2 {
++			regulator-min-microvolt = <1300000>;
++			regulator-max-microvolt = <1300000>;
++			qcom,switch-mode-frequency = <1600000>;
++			bias-pull-down;
++		};
++
++		/* msm otg HSUSB_VDDCX */
++		pm8921_s3: s3 {
++			regulator-min-microvolt = <500000>;
++			regulator-max-microvolt = <1150000>;
++			qcom,switch-mode-frequency = <4800000>;
++			bias-pull-down;
++		};
++
++		/*
++		 * msm_sdcc.1-sdc-vdd_io
++		 * tabla2x-slim-CDC_VDDA_RX
++		 * tabla2x-slim-CDC_VDDA_TX
++		 * tabla2x-slim-CDC_VDD_CP
++		 * tabla2x-slim-VDDIO_CDC
++		 */
++		pm8921_s4: s4 {
++			regulator-always-on;
++			regulator-min-microvolt	= <1800000>;
++			regulator-max-microvolt	= <1800000>;
++			qcom,switch-mode-frequency = <1600000>;
++			bias-pull-down;
++			qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
++		};
++
++		/*
++		 * supply vdd_l26, vdd_l27, vdd_l28
++		 */
++		pm8921_s7: s7 {
++			regulator-min-microvolt = <1300000>;
++			regulator-max-microvolt = <1300000>;
++			qcom,switch-mode-frequency = <3200000>;
++		};
++
++		pm8921_s8: s8 {
++			regulator-min-microvolt = <2200000>;
++			regulator-max-microvolt = <2200000>;
++			qcom,switch-mode-frequency = <1600000>;
++		};
++
++		pm8921_l1: l1 {
++			regulator-min-microvolt = <1100000>;
++			regulator-max-microvolt = <1100000>;
++			regulator-always-on;
++			bias-pull-down;
++		};
++
++		/* mipi_dsi.1-dsi1_pll_vdda */
++		pm8921_l2: l2 {
++			regulator-min-microvolt = <1200000>;
++			regulator-max-microvolt = <1200000>;
++			bias-pull-down;
++		};
++
++		/* msm_otg-HSUSB_3p3 */
++		pm8921_l3: l3 {
++			regulator-min-microvolt = <3075000>;
++			regulator-max-microvolt = <3500000>;
++			bias-pull-down;
++		};
++
++		/* msm_otg-HSUSB_1p8 */
++		pm8921_l4: l4 {
++			regulator-always-on;
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++		};
++
++		/* msm_sdcc.1-sdc_vdd */
++		pm8921_l5: l5 {
++			regulator-min-microvolt = <2950000>;
++			regulator-max-microvolt = <2950000>;
++			bias-pull-down;
++		};
++
++		/* earjack_debug */
++		pm8921_l6: l6 {
++			regulator-min-microvolt = <3000000>;
++			regulator-max-microvolt = <3000000>;
++			bias-pull-down;
++		};
++
++		/* mipi_dsi.1-dsi_vci */
++		pm8921_l8: l8 {
++			regulator-min-microvolt = <2800000>;
++			regulator-max-microvolt = <3000000>;
++			bias-pull-down;
++		};
++
++		/* wcnss_wlan.0-iris_vddpa */
++		pm8921_l10: l10 {
++			regulator-min-microvolt = <2900000>;
++			regulator-max-microvolt = <2900000>;
++			bias-pull-down;
++		};
++
++		/* mipi_dsi.1-dsi1_avdd */
++		pm8921_l11: l11 {
++			regulator-min-microvolt = <2850000>;
++			regulator-max-microvolt = <2850000>;
++			bias-pull-down;
++		};
++
++		/* touch_vdd */
++		pm8921_l15: l15 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <2950000>;
++			bias-pull-down;
++		};
++
++		/* slimport_dvdd */
++		pm8921_l18: l18 {
++			regulator-min-microvolt = <1100000>;
++			regulator-max-microvolt = <1100000>;
++			bias-pull-down;
++		};
++
++		/* touch_io */
++		pm8921_l22: l22 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			bias-pull-down;
++		};
++
++		/*
++		 * mipi_dsi.1-dsi_vddio
++		 * pil_qdsp6v4.1-pll_vdd
++		 * pil_qdsp6v4.2-pll_vdd
++		 * msm_ehci_host.0-HSUSB_1p8
++		 * msm_ehci_host.1-HSUSB_1p8
++		 */
++		pm8921_l23: l23 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			bias-pull-down;
++		};
++
++		/*
++		 * tabla2x-slim-CDC_VDDA_A_1P2V
++		 * tabla2x-slim-VDDD_CDC_D
++		 */
++		pm8921_l24: l24 {
++			regulator-min-microvolt = <750000>;
++			regulator-max-microvolt = <1150000>;
++			bias-pull-down;
++		};
++
++		pm8921_l25: l25 {
++			regulator-min-microvolt = <1250000>;
++			regulator-max-microvolt = <1250000>;
++			regulator-always-on;
++			bias-pull-down;
++		};
++
++		pm8921_l26: l26 {
++			regulator-min-microvolt = <375000>;
++			regulator-max-microvolt = <1050000>;
++			regulator-always-on;
++			bias-pull-down;
++		};
++
++		pm8921_l27: l27 {
++			regulator-min-microvolt = <1100000>;
++			regulator-max-microvolt = <1100000>;
++		};
++
++		pm8921_l28: l28 {
++			regulator-min-microvolt = <1050000>;
++			regulator-max-microvolt = <1050000>;
++			bias-pull-down;
++		};
++
++		/* wcnss_wlan.0-iris_vddio */
++		pm8921_lvs1: lvs1 {
++			bias-pull-down;
++		};
++
++		/* wcnss_wlan.0-iris_vdddig */
++		pm8921_lvs2: lvs2 {
++			bias-pull-down;
++		};
++
++		pm8921_lvs3: lvs3 {
++			bias-pull-down;
++		};
++
++		pm8921_lvs4: lvs4 {
++			bias-pull-down;
++		};
++
++		pm8921_lvs5: lvs5 {
++			bias-pull-down;
++		};
++
++		/* mipi_dsi.1-dsi_iovcc */
++		pm8921_lvs6: lvs6 {
++			bias-pull-down;
++		};
++
++		/*
++		 * pil_riva-pll_vdd
++		 * lvds.0-lvds_vdda
++		 * mipi_dsi.1-dsi1_vddio
++		 * hdmi_msm.0-hdmi_vdda
++		 */
++		pm8921_lvs7: lvs7 {
++			bias-pull-down;
++		};
++
++		pm8921_ncp: ncp {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			qcom,switch-mode-frequency = <1600000>;
++		};
++	};
++};
++
++&gsbi1 {
++	qcom,mode = <GSBI_PROT_I2C>;
++
++	status = "okay";
++};
++
++&gsbi1_i2c {
++	clock-frequency = <200000>;
++
++	status = "okay";
++};
++
++&gsbi4 {
++	qcom,mode = <GSBI_PROT_I2C_UART>;
++
++	status = "okay";
++};
++
++&gsbi4_serial {
++	status = "okay";
++};
++
++&pm8821 {
++	interrupts-extended = <&tlmm_pinmux 76 IRQ_TYPE_LEVEL_LOW>;
++};
++
++&pm8921 {
++	interrupts-extended = <&tlmm_pinmux 74 IRQ_TYPE_LEVEL_LOW>;
++};
++
++&pm8921_keypad {
++	linux,keymap = <
++		MATRIX_KEY(0, 0, KEY_VOLUMEDOWN)
++		MATRIX_KEY(0, 1, KEY_VOLUMEUP)
++	>;
++
++	keypad,num-rows = <1>;
++	keypad,num-columns = <5>;
++
++	status = "okay";
++};
++
++
++/* eMMC */
++&sdcc1 {
++	vmmc-supply = <&pm8921_l5>;
++	vqmmc-supply = <&pm8921_s4>;
++
++	status = "okay";
++};
 
-Function is called stm32_omm_enable_child_clock() but you disable.
-Confusing. Probably should be called toggle.
-
-> +
-> +				dev_err(dev, "Can not enable clock\n");
-> +				return ret;
-> +			}
-> +		} else {
-> +			clk_disable_unprepare(omm->child[i].clk);
-> +		}
-> +
-> +		first_child_clk = omm->child[i].clk;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int stm32_omm_configure(struct device *dev)
-> +{
-> +	struct stm32_omm *omm = dev_get_drvdata(dev);
-> +	struct reset_control *rstc;
-> +	unsigned long clk_rate, clk_rate_max = 0;
-> +	int ret;
-> +	u8 i;
-> +	u32 mux = 0;
-
-That's one big mess. Do not mix initialized declarations with
-non-initialized in the same line. Then group initialized ones together
-and use some reverse christmas tree.
-
-Then the rest also should be organized.
-
-> +	u32 cssel_ovr = 0;
-> +	u32 req2ack = 0;
-> +
-> +	omm->clk = devm_clk_get(dev, NULL);
-
-So here devm_clk_get, but later of_clk_get...
-
-> +	if (IS_ERR(omm->clk)) {
-> +		dev_err(dev, "Failed to get OMM clock (%ld)\n",
-> +			PTR_ERR(omm->clk));
-> +
-
-No. There is no such code anywhere. Please don't upstream downstream,
-but take upstream as template.
-
-It is *always* return dev_err_probe. You are flooding dmesg in deferral
-for no reason.
-
-> +		return PTR_ERR(omm->clk);
-> +	}
-> +
-> +	ret = pm_runtime_resume_and_get(dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* parse children's clock */
-> +	for (i = 0; i < omm->nb_child; i++) {
-> +		clk_rate = clk_get_rate(omm->child[i].clk);
-> +		if (!clk_rate) {
-> +			dev_err(dev, "Invalid clock rate\n");
-> +			pm_runtime_disable(dev);
-> +			goto err_clk_disable;
-> +		}
-> +
-> +		if (clk_rate > clk_rate_max)
-> +			clk_rate_max = clk_rate;
-> +	}
-> +
-> +	rstc = devm_reset_control_get_optional_exclusive(dev, NULL);
-> +	if (IS_ERR(rstc)) {
-> +		ret = dev_err_probe(dev, PTR_ERR(rstc), "reset get failed\n");
-> +		pm_runtime_disable(dev);
-
-Why? It was not enabled in this function. I cannot follow the logic,
-feels like random set of calls. Each of your function is supposed to
-reverse ONLY what it done so far.
-
-> +		goto err_clk_disable;
-> +	}
-> +
-> +	reset_control_assert(rstc);
-> +	udelay(2);
-> +	reset_control_deassert(rstc);
-> +
-> +	omm->cr = readl_relaxed(omm->io_base + OMM_CR);
-> +	/* optional */
-> +	ret = of_property_read_u32(dev->of_node, "st,omm-mux", &mux);
-> +	if (!ret) {
-> +		if (mux & CR_MUXEN) {
-> +			ret = of_property_read_u32(dev->of_node, "st,omm-req2ack-ns",
-> +						   &req2ack);
-> +			if (!ret && !req2ack) {
-> +				req2ack = DIV_ROUND_UP(req2ack, NSEC_PER_SEC / clk_rate_max) - 1;
-> +
-> +				if (req2ack > 256)
-> +					req2ack = 256;
-> +			}
-> +
-> +			req2ack = FIELD_PREP(CR_REQ2ACK_MASK, req2ack);
-> +
-> +			omm->cr &= ~CR_REQ2ACK_MASK;
-> +			omm->cr |= FIELD_PREP(CR_REQ2ACK_MASK, req2ack);
-> +
-> +			/*
-> +			 * If the mux is enabled, the 2 OSPI clocks have to be
-> +			 * always enabled
-> +			 */
-> +			ret = stm32_omm_enable_child_clock(dev, true);
-> +			if (ret) {
-> +				pm_runtime_disable(dev);
-> +				goto err_clk_disable;
-> +			}
-> +		}
-> +
-> +		omm->cr &= ~CR_MUXENMODE_MASK;
-> +		omm->cr |= FIELD_PREP(CR_MUXENMODE_MASK, mux);
-> +	}
-> +
-> +	/* optional */
-> +	ret = of_property_read_u32(dev->of_node, "st,omm-cssel-ovr", &cssel_ovr);
-> +	if (!ret) {
-> +		omm->cr &= ~CR_CSSEL_OVR_MASK;
-> +		omm->cr |= FIELD_PREP(CR_CSSEL_OVR_MASK, cssel_ovr);
-> +		omm->cr |= CR_CSSEL_OVR_EN;
-> +	}
-> +
-> +	omm->restore_omm = true;
-> +	writel_relaxed(omm->cr, omm->io_base + OMM_CR);
-> +
-> +	ret = stm32_omm_set_amcr(dev, true);
-> +
-> +err_clk_disable:
-> +	pm_runtime_put_sync_suspend(dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static int stm32_omm_check_access(struct device *dev, struct device_node *np)
-> +{
-> +	struct stm32_firewall firewall;
-> +	int ret;
-> +
-> +	ret = stm32_firewall_get_firewall(np, &firewall, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return stm32_firewall_grant_access(&firewall);
-> +}
-> +
-> +static int stm32_omm_disable_child(struct device *dev)
-> +{
-> +	struct stm32_omm *omm = dev_get_drvdata(dev);
-> +	struct reset_control *reset;
-> +	int ret;
-> +	u8 i;
-> +
-> +	for (i = 0; i < omm->nb_child; i++) {
-> +		ret = clk_prepare_enable(omm->child[i].clk);
-> +		if (ret) {
-> +			dev_err(dev, "Can not enable clock\n");
-> +			return ret;
-> +		}
-> +
-> +		reset = of_reset_control_get_exclusive(omm->child[i].node, 0);
-> +		if (IS_ERR(reset)) {
-> +			dev_err(dev, "Can't get child reset\n");
-
-Why do you get reset of child? Parent is not suppposed to poke there.
-You might not have the reset there in the first place and it would not
-be an error.
-
-
-> +			return PTR_ERR(reset);
-> +		};
-> +
-> +		/* reset OSPI to ensure CR_EN bit is set to 0 */
-> +		reset_control_assert(reset);
-> +		udelay(2);
-> +		reset_control_deassert(reset);
-
-No, the child should handle this, not parent.
-
-> +
-> +		reset_control_put(reset);
-> +		clk_disable_unprepare(omm->child[i].clk);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int stm32_omm_probe(struct platform_device *pdev)
-> +{
-> +	struct platform_device *vdev;
-> +	struct device *dev = &pdev->dev;
-> +	struct stm32_omm *omm;
-> +	struct clk *clk;
-> +	int ret;
-> +	u8 child_access_granted = 0;
-
-Keep inits/assignments together
-
-> +	u8 i, j;
-> +	bool child_access[OMM_CHILD_NB];
-> +
-> +	omm = devm_kzalloc(dev, sizeof(*omm), GFP_KERNEL);
-> +	if (!omm)
-> +		return -ENOMEM;
-> +
-> +	omm->io_base = devm_platform_ioremap_resource_byname(pdev, "regs");
-> +	if (IS_ERR(omm->io_base))
-> +		return PTR_ERR(omm->io_base);
-> +
-> +	omm->mm_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "memory_map");
-> +	if (IS_ERR(omm->mm_res))
-> +		return PTR_ERR(omm->mm_res);
-> +
-> +	/* check child's access */
-> +	for_each_child_of_node_scoped(dev->of_node, child) {
-> +		if (omm->nb_child >= OMM_CHILD_NB) {
-> +			dev_err(dev, "Bad DT, found too much children\n");
-> +			ret = -E2BIG;
-> +			goto err_clk_release;
-> +		}
-> +
-> +		if (!of_device_is_compatible(child, "st,stm32mp25-ospi")) {
-> +			ret = -EINVAL;
-> +			goto err_clk_release;
-> +		}
-> +
-> +		ret = stm32_omm_check_access(dev, child);
-> +		if (ret < 0 && ret != -EACCES)
-> +			goto err_clk_release;
-> +
-> +		child_access[omm->nb_child] = false;
-> +		if (!ret) {
-> +			child_access_granted++;
-> +			child_access[omm->nb_child] = true;
-> +		}
-> +
-> +		omm->child[omm->nb_child].node = child;
-> +
-> +		clk = of_clk_get(child, 0);
-
-Why are you taking children clock? And why with this API, not clk_get?
-This looks like mixing clock provider in the clock consumer.
-
-> +		if (IS_ERR(clk)) {
-> +			dev_err(dev, "Can't get child clock\n");
-
-Syntax is always return dev_err_probe (or ret = dev_err_probe).
-
-> +			ret = PTR_ERR(clk);
-> +			goto err_clk_release;
-> +		};
-> +
-> +		omm->child[omm->nb_child].clk = clk;
-> +		omm->nb_child++;
-> +	}
-> +
-> +	if (omm->nb_child != OMM_CHILD_NB) {
-> +		ret = -EINVAL;
-> +		goto err_clk_release;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, omm);
-> +
-> +	pm_runtime_enable(dev);
-> +
-> +	/* check if OMM's resource access is granted */
-> +	ret = stm32_omm_check_access(dev, dev->of_node);
-> +	if (ret < 0 && ret != -EACCES)
-> +		goto err_clk_release;
-> +
-> +	if (!ret && child_access_granted == OMM_CHILD_NB) {
-> +		/* Ensure both OSPI instance are disabled before configuring OMM */
-> +		ret = stm32_omm_disable_child(dev);
-> +		if (ret)
-> +			goto err_clk_release;
-> +
-> +		ret = stm32_omm_configure(dev);
-> +		if (ret)
-> +			goto err_clk_release;
-> +	} else {
-> +		dev_dbg(dev, "Octo Memory Manager resource's access not granted\n");
-> +		/*
-> +		 * AMCR can't be set, so check if current value is coherent
-> +		 * with memory-map areas defined in DT
-> +		 */
-> +		ret = stm32_omm_set_amcr(dev, false);
-> +		if (ret)
-> +			goto err_clk_release;
-> +	}
-> +
-> +	/* for each child, if resource access is granted and status "okay", probe it */
-> +	for (i = 0; i < omm->nb_child; i++) {
-> +		if (!child_access[i] || !of_device_is_available(omm->child[i].node))
-
-If you have a device available, why do you create one more platform device?
-
-> +			continue;
-> +
-> +		vdev = of_platform_device_create(omm->child[i].node, NULL, NULL);
-
-Why you cannot just populate the children?
-
-> +		if (!vdev) {
-> +			dev_err(dev, "Failed to create Octo Memory Manager child\n");
-> +			for (j = i; j > 0; --j) {
-> +				if (omm->child[j].dev)
-> +					of_platform_device_destroy(omm->child[j].dev, NULL);
-> +			}
-> +
-> +			ret = -EINVAL;
-> +			goto err_clk_release;
-> +		}
-> +		omm->child[i].dev = &vdev->dev;
-> +	}
-> +
-> +err_clk_release:
-> +	for (i = 0; i < omm->nb_child; i++)
-> +		clk_put(omm->child[i].clk);
-> +
-> +	return ret;
-> +}
-> +
-> +static void stm32_omm_remove(struct platform_device *pdev)
-> +{
-> +	struct stm32_omm *omm = platform_get_drvdata(pdev);
-> +	int i;
-> +
-> +	for (i = 0; i < omm->nb_child; i++)
-> +		if (omm->child[i].dev)
-> +			of_platform_device_destroy(omm->child[i].dev, NULL);
-> +
-> +	if (omm->cr & CR_MUXEN)
-> +		stm32_omm_enable_child_clock(&pdev->dev, false);
-> +
-> +	pm_runtime_disable(&pdev->dev);
-> +}
-> +
-> +static const struct of_device_id stm32_omm_of_match[] = {
-> +	{ .compatible = "st,stm32mp25-omm", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, stm32_omm_of_match);
-> +
-> +static int __maybe_unused stm32_omm_runtime_suspend(struct device *dev)
-> +{
-> +	struct stm32_omm *omm = dev_get_drvdata(dev);
-> +
-> +	clk_disable_unprepare(omm->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused stm32_omm_runtime_resume(struct device *dev)
-> +{
-> +	struct stm32_omm *omm = dev_get_drvdata(dev);
-> +
-> +	return clk_prepare_enable(omm->clk);
-> +}
-> +
-> +static int __maybe_unused stm32_omm_suspend(struct device *dev)
-> +{
-> +	struct stm32_omm *omm = dev_get_drvdata(dev);
-> +
-> +	if (omm->restore_omm && omm->cr & CR_MUXEN)
-> +		stm32_omm_enable_child_clock(dev, false);
-
-Why do you enable child clock for suspend?
-
-> +
-> +	return pinctrl_pm_select_sleep_state(dev);
-> +}
-> +
-
+---
+base-commit: 0a2f889128969dab41861b6e40111aa03dc57014
+change-id: 20250309-lg-nexus4-mako-da0833885b26
 
 Best regards,
-Krzysztof
+-- 
+David Heidelberg <david@ixit.cz>
+
+
 
