@@ -1,437 +1,171 @@
-Return-Path: <devicetree+bounces-156669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCF5CA5CEF7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:09:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5BCA5CEF4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:09:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D2AF3BB2B6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:08:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD2D31783B2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B91264610;
-	Tue, 11 Mar 2025 19:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1D4264A61;
+	Tue, 11 Mar 2025 19:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OJXIgoUP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JBnUNgfm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201332641E1;
-	Tue, 11 Mar 2025 19:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACDDE2641C2;
+	Tue, 11 Mar 2025 19:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741720033; cv=none; b=fIM7v6y0W0ZqZFo6YK94bBp/8jkUY49TH1+Y4omHopKUZu2sGBelVnSylbcV8Iumy/mTpcXnhhN6KUIQXvuxC+JA3e9z0NE/n+mDecEdA2tVZT1VTcMYiYTwHVkKRZK5+sXPaojuY8GxJ4AWF6cizuT5X0WlQlFPeKS9zfehkCw=
+	t=1741720090; cv=none; b=Komp9NGweSD/BjbhgTVhDJkvZZDAjVCl5peCP/4vkbTD1McAu48K/Jl7dxT9F9emn3us4sL7IMIcgWu/8qPGXE2H/yrlMv6UCCOwMpaDboZqfZ3bm5igDOBXBjtALg46x5qBHLUzAK5wALTe1+HywmtxBPX4ekn1NbD6X+hy5fA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741720033; c=relaxed/simple;
-	bh=vfXaMojQxXrOenb7DcUF+z+2Fku7SdE8waa4ob1RDZg=;
+	s=arc-20240116; t=1741720090; c=relaxed/simple;
+	bh=xeRfUAD1jft9a1eCHnyKsJSSNEwpqQuywYP7E6aXL8w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L7eyJ72sU5d5l9n32VHT8rcp4JzF25LVJZ8h9/pmQkHDSwxAUC+/W2JMPykBG/iQwW/xn6TethmX/lsBDqc/jGAhHdJ2LIEi0P/0VS97rpua7oMnhu834JO5i2maPsimxI87vbPXwsKrhjNroGtrZdog4Zhd0t5NEJt98qXxjFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OJXIgoUP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E155C4CEE9;
-	Tue, 11 Mar 2025 19:07:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dlh0YelimhWKhcXN5R+f7bK0CEPeG7jAqs/UhJjKX8AH1EINu+ydPwkfHcMYQaWVs+e5wbGXAW60P1S/b1By6u8hgoYbbO3yNhjEzv0TFNULCTSqIlHXRwo0HjMW9cBRoPUsTHJk0ImbhWtUdWHPQdddAL4U6cPUb/FNTbDtljE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JBnUNgfm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98DB3C4CEE9;
+	Tue, 11 Mar 2025 19:08:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741720032;
-	bh=vfXaMojQxXrOenb7DcUF+z+2Fku7SdE8waa4ob1RDZg=;
+	s=k20201202; t=1741720090;
+	bh=xeRfUAD1jft9a1eCHnyKsJSSNEwpqQuywYP7E6aXL8w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OJXIgoUPIQRAUHjcFUTDyIfqwQ2eFlwFY7LHUDwA5KlmDGsolin4xNlDw2FKmB+r0
-	 z5FTMUZKCOi+wXYZKb322bhqgH1aJFMmJk28VCdJ1y86Cd1H3nWGmJLeOgyzcRTXGE
-	 dwpJwnx26Eer6M+lqIxvqL/PAqQGxKGAa32IHHtDdxDmoYHp+nl3iEry727gNG7rmA
-	 oHh06bYfYuIU0E2gxniR7NJr+nxluemY9byk/h2tIOtoNYz3OIl7jTXpTbXvNMFgd0
-	 tdeMsjKdHzeKJf7MRD5bqjKWOIy4xxeRNtdlHfZdj2ClIJNig2AySCQ824bLiYwbu/
-	 uI95kmEn6Pp7w==
-Date: Tue, 11 Mar 2025 14:07:11 -0500
-From: Rob Herring <robh@kernel.org>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Cosmin Tanislav <cosmin.tanislav@analog.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Julien Massot <julien.massot@collabora.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Arnd Bergmann <arnd@arndb.de>, Taniya Das <quic_tdas@quicinc.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Eric Biggers <ebiggers@google.com>,
-	Javier Carrasco <javier.carrasco@wolfvision.net>,
-	Ross Burton <ross.burton@arm.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Zhi Mao <zhi.mao@mediatek.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Tommaso Merciai <tomm.merciai@gmail.com>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	Ihor Matushchak <ihor.matushchak@foobox.net>,
-	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org
-Subject: Re: [RFC PATCH v2 11/16] dt-bindings: media: i2c: add MAX9296A,
- MAX96716A, MAX96792A
-Message-ID: <20250311190711.GA3985355-robh@kernel.org>
-References: <20250309084814.3114794-1-demonsingur@gmail.com>
- <20250309084814.3114794-12-demonsingur@gmail.com>
+	b=JBnUNgfmOjojfJTGUs1AUZ73VM/aPmDrhcsqHEU4HxcC4t1WOioQye7pi+Mu+G93l
+	 TmMoUl06bBaFGVE3TGxluVpDlzHF3885P1AjRuTyrid3sZ2pAAIgBT+0Kf9ndxs4lf
+	 GTPkVDFlHFXUh6hSRGKjWtoLWfur7+SAxvvSoDEUL77sLCZki20Faf53G4t58P/JgT
+	 /eU5qTBa1A94P2yA6y+1SsmQLygkdmy6RN9qkSZBSQgZJGlRRkahPNxkFQxH1hQWto
+	 A4wD56WDxvfHvE47nxeVIH4jPVdZ1gKhDKc8j6fb1ki9/4wg2phTsA3QeOw0cRxzPY
+	 UrPfKyf8R7WzQ==
+Date: Tue, 11 Mar 2025 21:08:04 +0200
+From: Dmitry Baryshkov <lumag@kernel.org>
+To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Odelu Kukatla <quic_okukatla@quicinc.com>, Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+	Mike Tipton <mdtipton@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
+	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V9 4/7] interconnect: qcom: icc-rpmh: Add dynamic icc
+ node id support
+Message-ID: <pumodlsgqa43tq6c7hmk4eimf5u26dm3wvra2y27lmu3l6rhks@pjpnhp72pggo>
+References: <20250227155213.404-1-quic_rlaggysh@quicinc.com>
+ <20250227155213.404-5-quic_rlaggysh@quicinc.com>
+ <gxqjfabcqafqjzzwc3seadfuldqfxlfappsotjbhkbirvorcyd@mahdpv6klwn5>
+ <5278cb2e-6111-4e57-86b3-987f6f9eabf6@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250309084814.3114794-12-demonsingur@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5278cb2e-6111-4e57-86b3-987f6f9eabf6@quicinc.com>
 
-On Sun, Mar 09, 2025 at 10:48:03AM +0200, Cosmin Tanislav wrote:
-> The MAX9296A deserializer converts single or dual serial inputs to MIPI
-> CSI-2 outputs. The GMSL2 links operate at a fixed rate of 3Gbps or 6Gbps
-> in the forward direction and 187.5Mbps in the reverse direction.
-> In GMSL1 mode, each serial link can be paired with 3.12Gbps or 1.5Gbps
-> GMSL1 serializers or operate up to 4.5Gbps with GMSL2 serializers with
-> GMSL1 backward compatibility. The MAX9296A supports mixed GMSL2 and
-> GMSL1 links. The serial inputs operate independently, allowing videos
-> with different timings and resolutions to be received on each input.
+On Mon, Mar 10, 2025 at 07:54:15AM +0530, Raviteja Laggyshetty wrote:
 > 
-> MAX96716A supports both tunnel and pixel mode.
-> MAX96792A supports both tunnel and pixel mode, and has two GMSL3 links.
 > 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-> ---
->  .../bindings/media/i2c/maxim,max9296a.yaml    | 281 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 287 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
+> On 2/27/2025 9:46 PM, Dmitry Baryshkov wrote:
+> > On Thu, Feb 27, 2025 at 03:52:10PM +0000, Raviteja Laggyshetty wrote:
+> >> To facilitate dynamic node ID support, the driver now uses
+> >> node pointers for links instead of static node IDs.
+> >> Additionally, the default node ID is set to -1 to prompt
+> >> the ICC framework for dynamic node ID allocation.
+> >>
+> >> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> >> ---
+> >>  drivers/interconnect/qcom/icc-rpmh.c | 16 ++++++++++++++--
+> >>  drivers/interconnect/qcom/icc-rpmh.h |  3 ++-
+> >>  2 files changed, 16 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/drivers/interconnect/qcom/icc-rpmh.c b/drivers/interconnect/qcom/icc-rpmh.c
+> >> index f2d63745be54..2e654917f535 100644
+> >> --- a/drivers/interconnect/qcom/icc-rpmh.c
+> >> +++ b/drivers/interconnect/qcom/icc-rpmh.c
+> >> @@ -285,13 +285,25 @@ int qcom_icc_rpmh_probe(struct platform_device *pdev)
+> >>  			ret = PTR_ERR(node);
+> >>  			goto err_remove_nodes;
+> >>  		}
+> >> +		qn->id = node->id;
+> >>  
+> >>  		node->name = qn->name;
+> >>  		node->data = qn;
+> >>  		icc_node_add(node, provider);
+> >>  
+> >> -		for (j = 0; j < qn->num_links; j++)
+> >> -			icc_link_create(node, qn->links[j]);
+> >> +		for (j = 0; j < qn->num_links; j++) {
+> >> +			struct qcom_icc_node *qn_link_node = qn->link_nodes[j];
+> >> +			struct icc_node *link_node;
+> >> +
+> >> +			if (qn_link_node) {
+> >> +				link_node = icc_node_create(qn_link_node->id);
+> >> +				qn_link_node->id = link_node->id;
+> >> +				icc_link_create(node, qn_link_node->id);
+> > 
+> > I really don't like the idea of reading the ->id back. I think in the
+> > last cycle I have already asked to add an API to link two nodes instead
+> > of linking a node and an ID. Is there an issue with such an API?
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
-> new file mode 100644
-> index 000000000000..97731549d161
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
-> @@ -0,0 +1,281 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2024 Collabora Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/maxim,max9296a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim MAX9296A GMSL2 to CSI-2 Deserializer
-> +
-> +maintainers:
-> +  - Cosmin Tanislav <cosmin.tanislav@analog.com>
-> +
-> +description:
+> Yes, the link pointer may or may not be initialized during the link
+> creation as the link can belong to other provider which is yet to probe.
+> So, it is not possible to pass two node pointers as arguments for linking.
 
-Needs '>' token as you have paragraphs.
+Obviously, this needs to be handled. e.g. by specifying external
+provider + ID from dt-bindings. Yes, it requires a thought on how to
+solve it properly. No, in my opinion, reading the ID back is not a
+viable option. Ideally after converting to dynamic IDs we should be able
+to declare the ID to be an internal detail, which is of no concern to
+ICC providers (or even drop it completely). Historically we have had
+several subsystems which were using single-list IDs. Most of them have
+migrated from using those IDs.
 
-> +  The MAX9296A deserializer converts single or dual serial inputs to
-> +  MIPI CSI-2 outputs. The GMSL2 links operate at a fixed rate of 3Gbps
-> +  or 6Gbps in the forward direction and 187.5Mbps in the reverse
-> +  direction. In GMSL1 mode, each serial link can be paired with 3.12Gbps
-> +  or 1.5Gbps GMSL1 serializers or operate up to 4.5Gbps with GMSL2
-> +  serializers with GMSL1 backward compatibility. The MAX9296A supports
-> +  mixed GMSL2 and GMSL1 links. The serial inputs operate independently,
-> +  allowing videos with different timings and resolutions to be received
-> +  on each input.
-> +
-> +  MAX96716A supports both tunnel and pixel mode.
-> +  MAX96792A supports both tunnel and pixel mode, and has two GMSL3 links.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max9296a
-> +      - maxim,max96716a
-> +      - maxim,max96792a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description: Specifier for the GPIO connected to the PWDNB pin.
-> +
-> +  port0-poc-supply:
-> +    description: Regulator providing Power over Coax for GMSL port 0
-> +
-> +  port1-poc-supply:
-> +    description: Regulator providing Power over Coax for GMSL port 1
-> +
-> +  i2c-mux:
-> +    $ref: /schemas/i2c/i2c-mux.yaml#
-> +    unevaluatedProperties: false
-> +    patternProperties:
-> +      '^i2c@[0-1]$':
-> +        $ref: /schemas/i2c/i2c-controller.yaml#
-> +        unevaluatedProperties: false
-> +        properties:
-> +          reg:
-> +            items:
-> +              minimum: 0
-> +              maximum: 1
-> +
-> +  i2c-alias-pool:
-> +    maxItems: 2
-> +
-> +  i2c-atr:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +    patternProperties:
-> +      '^i2c@[0-1]$':
-> +        $ref: /schemas/i2c/i2c-controller.yaml#
-> +        unevaluatedProperties: false
-> +        properties:
-> +          reg:
-> +            items:
-> +              minimum: 0
-> +              maximum: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    patternProperties:
-> +      '^port@[0-1]$':
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        unevaluatedProperties: false
-> +        description: GMSL Input
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-
-What properties are you using from here?
-
-None actually because /schemas/graph.yaml#/properties/port won't allow 
-any.
-
-
-> +            unevaluatedProperties: false
-> +            description: Endpoint for GMSL2-Link port.
-> +
-> +      '^port@[2-3]$':
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: CSI-2 Output port
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              lane-polarities:
-> +                minItems: 1
-> +                maxItems: 5
-> +
-> +              link-frequencies:
-> +                maxItems: 1
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +    anyOf:
-> +      - required:
-> +          - port@2
-> +      - required:
-> +          - port@3
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-atr.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - maxim,max9296a
-> +              - maxim,max96792a
-> +    then:
-> +      not:
-> +        required: [i2c-mux]
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - maxim,max96716a
-> +    then:
-> +      not:
-> +        required: [i2c-atr]
-> +
-> +dependentRequired:
-> +  i2c-atr: [i2c-alias-pool]
-> +  i2c-alias-pool: [i2c-atr]
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/media/video-interfaces.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        deserializer@28 {
-> +            compatible = "maxim,max9296a";
-> +            reg = <0x28>;
-> +            powerdown-gpios = <&main_gpio0 37 GPIO_ACTIVE_LOW>;
-> +
-> +            i2c-alias-pool = <0x40 0x41>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    des_gmsl_in_0: endpoint {
-> +                        remote-endpoint = <&ser_0_gmsl_out>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg = <1>;
-> +                    des_gmsl_in_1: endpoint {
-> +                        remote-endpoint = <&ser_1_gmsl_out>;
-> +                    };
-> +                };
-> +
-> +                port@2 {
-> +                    reg = <2>;
-> +                    des_csi_out: endpoint {
-> +                        data-lanes = <1 2 3 4>;
-> +                        link-frequencies = /bits/ 64 <400000000>;
-> +                        remote-endpoint = <&csi_in>;
-> +                    };
-> +                };
-> +            };
-> +
-> +            i2c-atr {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                i2c@0 {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                    reg = <0>;
-> +
-> +                    serializer@40 {
-> +                        compatible = "maxim,max96717";
-> +                        reg = <0x40>;
-> +                        gpio-controller;
-> +                        #gpio-cells = <2>;
-> +                        #clock-cells = <0>;
-> +
-> +                        ports {
-> +                            #address-cells = <1>;
-> +                            #size-cells = <0>;
-> +
-> +                            port@0 {
-> +                                reg = <0>;
-> +                                ser_0_csi_in: endpoint {
-> +                                    data-lanes = <1 2>;
-> +                                    remote-endpoint = <&sensor_0_out>;
-> +                                };
-> +                            };
-> +
-> +                            port@1 {
-> +                                reg = <1>;
-> +                                ser_0_gmsl_out: endpoint {
-> +                                    remote-endpoint = <&des_gmsl_in_0>;
-> +                                };
-> +                            };
-> +                        };
-> +                    };
-> +                };
-> +
-> +                i2c@1 {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                    reg = <1>;
-> +
-> +                    serializer@40 {
-> +                        compatible = "maxim,max96717";
-> +                        reg = <0x40>;
-> +                        gpio-controller;
-> +                        #gpio-cells = <2>;
-> +                        #clock-cells = <0>;
-> +
-> +                        ports {
-> +                            #address-cells = <1>;
-> +                            #size-cells = <0>;
-> +
-> +                            port@0 {
-> +                                reg = <0>;
-> +                                ser_1_csi_in: endpoint {
-> +                                    data-lanes = <1 2>;
-> +                                    remote-endpoint = <&sensor_1_out>;
-> +                                };
-> +                            };
-> +
-> +                            port@1 {
-> +                                reg = <1>;
-> +                                ser_1_gmsl_out: endpoint {
-> +                                    remote-endpoint = <&des_gmsl_in_1>;
-> +                                };
-> +                            };
-> +                        };
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index abf3afc95fc9..c1e01668e81a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14220,6 +14220,12 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
->  F:	drivers/iio/proximity/mb1232.c
->  
-> +MAXIM GMSL2 SERIALIZERS AND DESERIALIZERS
-> +M:	Cosmin Tanislav <cosmin.tanislav@analog.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
-> +
->  MAXIM MAX11205 DRIVER
->  M:	Ramona Bolboaca <ramona.bolboaca@analog.com>
->  L:	linux-iio@vger.kernel.org
-> -- 
-> 2.48.1
+> RPMh driver has multiple providers and during the creation of links,
+> nodes associated with other providers are created in the icc_link_create
+> API. When the actual provider to which the link belongs is probed, its
+> initialization/node creation is skipped by checking the ID. To ensure
+> proper tracking of node initialization and prevent re-initialization, it
+> is essential to read back and store the node’s ID in qnode.
 > 
+> 
+> > 
+> >> +			} else {
+> >> +				/* backward compatibility for target using static IDs */
+> >> +				icc_link_create(node, qn->links[j]);
+> >> +			}
+> >> +		}
+> >>  
+> >>  		data->nodes[i] = node;
+> >>  	}
+> >> diff --git a/drivers/interconnect/qcom/icc-rpmh.h b/drivers/interconnect/qcom/icc-rpmh.h
+> >> index 82344c734091..cf4aa69c707c 100644
+> >> --- a/drivers/interconnect/qcom/icc-rpmh.h
+> >> +++ b/drivers/interconnect/qcom/icc-rpmh.h
+> >> @@ -95,7 +95,8 @@ struct qcom_icc_qosbox {
+> >>  struct qcom_icc_node {
+> >>  	const char *name;
+> >>  	u16 links[MAX_LINKS];
+> >> -	u16 id;
+> >> +	struct qcom_icc_node *link_nodes[MAX_LINKS];
+> >> +	int id;
+> >>  	u16 num_links;
+> >>  	u16 channels;
+> >>  	u16 buswidth;
+> >> -- 
+> >> 2.43.0
+> >>
+> > 
+> 
+
+-- 
+With best wishes
+Dmitry
 
