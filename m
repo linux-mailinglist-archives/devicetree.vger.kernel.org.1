@@ -1,346 +1,487 @@
-Return-Path: <devicetree+bounces-156709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6066CA5D278
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 23:18:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FBDFA5D283
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 23:26:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0758C189E4E4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 22:18:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EDC97A918D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 22:25:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFF2266184;
-	Tue, 11 Mar 2025 22:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1FE264FB6;
+	Tue, 11 Mar 2025 22:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OvUL0clV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f/ZlKnUe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFAAF26563F;
-	Tue, 11 Mar 2025 22:17:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F01C264FBF;
+	Tue, 11 Mar 2025 22:26:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741731474; cv=none; b=p2k0ihEzPuJKAGRpHSTNkSQC59XcmmfzTw1XtsmYKd2WVjekKCCB+jgQCZknCUDzomkkVtE0d6sOkbxDZXcl//1crXJCf61UA48Zy2wFaPKDd0f1w1vDvSYTRI70STKW0sOYfcsXq4KVZNHeY/9js90XTfcKf+vIKALuYPmNobI=
+	t=1741731987; cv=none; b=nyw9ykhMkxZ6Czt9XQSq3x9rhC1TfbfFLNYzzZZF1hKVivWn+9GZ0D3Tp6vNkZ1M5GngcCiF1AMWSqAU6GWkJ/tgIDyxSjUdQQDXZBRGNu8VWaOrZqGI5F5VzFm4p4s3RY9Qzi5Bo+ERycP/UAEFQ+GzqvNMOFwvUU1LMEnGvZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741731474; c=relaxed/simple;
-	bh=ijsntb4LOi+5NUnt7C/JgeGR/NdZMS/xVpQhimHP3es=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZYWMLJ7H5Z8VD+ffeFkGyB4kRKmHIz8uXrGVy1vhlKUkGnA2WQTAb1Z5V35/dzg4XzQofwe3+VEhquIvjyvZcO2fZ8gvZqLKrajqlNUG7tSsAqYnNJhFOrLf6gFVQTUHtsUaNE9e4aRcays0HRIMQ9R8VoZNRK/+B1QpOcR+NP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OvUL0clV; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1741731987; c=relaxed/simple;
+	bh=y/s1wHtwOdLkh+VUyBF9E+beDzVumNiYYUBEmQs7FJU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YVZpa1l/hhF4eiaKVXKFnVe2Eb0mhu/3PhZ+dv9H4DxjyBlKyaWXBwTW9EkmWTxKic24jKAxMKGFY5LDmKEB2n2e2YutbzKl6Khonih93FHnOf3JPmILvZLbnpfVPsdA8z5ujWyKyIFLi5bMIQY/4lYZvmQ/OPOLZm7vwPQ1hkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f/ZlKnUe; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43cf848528aso23831615e9.2;
-        Tue, 11 Mar 2025 15:17:52 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-38dcac27bcbso188630f8f.0;
+        Tue, 11 Mar 2025 15:26:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741731471; x=1742336271; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k8vcyr9TfojxaYrLbC0mKXHL6Mna3sstIQLyMxh6EXA=;
-        b=OvUL0clV9d9T6SNHiUzinupVCe1wlpieIOq2Yx/HYIVY3Pn+1n9VoZdQOJSEVFGbaG
-         BfUbXcjUlcYmAeDCl7Y03uZUdLhQ5nmnxo/e9X4sQ0U83RWEKT4WkJtlaTTpNl2G7MPY
-         H4l5rC5miKuie101wgg1cNZOfs1AI7Ygb1htXX8Qsecwyr34aG/yGvbp2rYRdBfjlYpI
-         Tnj2p+ZI2kmYL9SJaWJhcwiVcqyjNJYlHVxCynPel2s4CsQkipBI2dfeacVnOupvW/Yd
-         tELetZAOXfmB8FF4Hq+EtyxGPvbNDm4itjRpxbX8RZvbhduDCYEaJseqI7L5Lo4RYQWl
-         9KTg==
+        d=gmail.com; s=20230601; t=1741731983; x=1742336783; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FQVMT0SYg7MWzDSI+5t//19e57L1PwaokMNGGmBaDBc=;
+        b=f/ZlKnUeA1GWexLCdumAF7L9rOj92WjOu8ghriyiqwvZNpw9++DPjYBbv/sH8sceoE
+         7xdY6m0PK2pZCiuFgHO0HPVMw1LuVgEcF2wKC6JR/zLkXVv3voGap5KJv6RlumWQqZ1p
+         g/x5TEuJEz8YV1goFfK+5wEj3dksT/olu0K0hcS24DMjtRP34VzkkAJ1vU59HkXN1T5c
+         hrUTZtgufKLmVP8ZakMBKqfwZvCVg7uTiYlPufZ6jA+i76dOjAkSu4yJ1pGAfxjVg8tT
+         1nurR06RuWtLPvnOQurtxQSlTUVEc/cHVFneKH3rBgJ5bwfONmBYrng/5C4NVYWtzrVv
+         6JDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741731471; x=1742336271;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=k8vcyr9TfojxaYrLbC0mKXHL6Mna3sstIQLyMxh6EXA=;
-        b=bNX3UxJgm2Q7Xjqh6wK5wJBMRo75Kawy7ue3R3hkoxmCT1fkucOO2M+OFtV8fvv9M+
-         g78ihMAI9Je1Mj6jtjDGCVdNQ3s4fZH0fxWUPsI7PGLSLaZJqONr5W+eLvv7aQl2nvtX
-         6QrRrVP/nYMXwD9p2zB6eUyMJ+jqtagj/S/E+eE/f4SJ3+QQ/CIXOxSiWDXA5T1+/DoM
-         TEiahJ5YL0+z6TWHw/C5J0GRj5CFCuVXldjiHb5+01L4s2L7sX7REdhfUOGw78oewjAz
-         3BMQOYp/K48R7yLJgejG97jyR5seBW34Z3Gm8N+25FtHO/Iz7EitBDZAq2SoxrWHNSg2
-         Bpmg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOhkzYhNc04vH5Y4HisdXnxv7di+lHfFx1aX1F+N03s1m7NFqgXH2JrKfUEFkLlKcbZYqZK6oFhZssPWwA2fZEugA=@vger.kernel.org, AJvYcCVtS7OBkjiX3mpqwfAFrdnA5L13Acb8s0LmtD8kyPm+F1ALrvf6aFMDSJAVS5DBggzPA/8d8vGj7LUj@vger.kernel.org, AJvYcCWev4wwGvFHJn4fMdTzYhjbuCgD2BkcMqRkN7mHYEu5Tx8oOd2XEZVSMnOI+z98/s2Vo4xm9p/f9p2XbyuL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAu6mjcynfuJLOuocLySikDfqJwbDCBFjmntoPc/LJNS6Rjr5L
-	a9o0We8D1xdMj2gZvroqjmoKGcvFimdtY19OSJaJErx2m5J5eAbS
-X-Gm-Gg: ASbGncuNfC+UfEmY13r0G4PhntH5OdTpLy7sSS+FPkvMPvQbeKg4LssKXStjsreb7hR
-	8vI2su3aRIeEZABdoNfWBg1itC5UTE3MwuyxUfSNCj/m6UZEMiG0uE7FozmS4/BzUiI6lnOWpwc
-	+OVokpVy/AX7h3bJtTQIGfr6UJo4fQ2hbBzlJH5bBosnstYNewONJh06V8zYoqqbSYreDW/k9BP
-	iLmjhZ3D1Ki76rgHwVIGLciG5VDY7SRoWTk1pNHPZbUHOVHqvxEn4uTT83x4Vp9Kauv4xeVzUiL
-	n4nKGemkDeO/+J7QzC/U3jNivDQhcoQB0BLYjwNkEOzS4K/Ze0aAwYtLwo99FwOow/eU/2Ao
-X-Google-Smtp-Source: AGHT+IFL9v47ApLmQFGG6faV0/iikh5x9sy0+lzUWK1Rr0pkPfRBQmxOn1EYQv8MqkeLXF5PzPBsLA==
-X-Received: by 2002:a05:600c:198e:b0:43b:ce08:c382 with SMTP id 5b1f17b1804b1-43d01be6dfbmr73608475e9.16.1741731470778;
-        Tue, 11 Mar 2025 15:17:50 -0700 (PDT)
-Received: from prasmi.Home ([2a06:5906:61b:2d00:a6ad:9216:2ab5:120])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912bfdfcfbsm18782252f8f.28.2025.03.11.15.17.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Mar 2025 15:17:50 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH net-next v3 3/3] net: stmmac: Add DWMAC glue layer for Renesas GBETH
-Date: Tue, 11 Mar 2025 22:17:30 +0000
-Message-ID: <20250311221730.40720-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250311221730.40720-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250311221730.40720-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1741731983; x=1742336783;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FQVMT0SYg7MWzDSI+5t//19e57L1PwaokMNGGmBaDBc=;
+        b=gch7ptvXMki4eLs9UDveycPJ5c1gr/fQ2v/Us+SHRcoMvr9jS4sLClt+dwhq4L7aNi
+         WYOLSol5mS5l1pVcIplhhjFdpifKHElmN7xvt3VTHFN97EsD7dLftHiA88ptdUjudNjd
+         PwbZlOrlNYavUgJ3224tcfD6IKGy4KtJ51+kASaHfpkMKR8N/+Rp/EjfmIQQ7rL51hiv
+         1VckVeRp22T90NFh74at4KsSw9r4xGWdk0QlWlXuqihCdoTkYZAlxh+CbAF9A/nKOZak
+         H/Tx7y28mTiEx/YWQ0pGlIWuXekF6H/2nk3utzyK4/JVZTRIwIaPXGQC10qhCl2Bsgmy
+         1gxA==
+X-Forwarded-Encrypted: i=1; AJvYcCV/mtImgjRIV3kiBRUwnVWfSnLKL9Ao8dzmvRjeUILRT+eAzxlnZA+xOza+j9Y/p026p/5FxzS2oEHR@vger.kernel.org, AJvYcCXHmO+yBt76KZDnKV/cgKK5laz8lKGGyJ2A+tDjbEo7ekSXRBv2AVPoUjJOriasJELKp8aLsGJ0Hmx5XA==@vger.kernel.org, AJvYcCXQdSKOU7IsNbwY82fC/RShLtvAefdeKmByhTU4r/0vEXhpWI3h5dO4f3uDZpBdtALlGZWJr7PamSFGkhvK@vger.kernel.org, AJvYcCXewKyijZ3WqorFNHiDApVdaquzi7/KMaT0CdHH1OEPr6wbKCKWIS5fi/rewIpneQsYcpQB9RjB6dj/Pbg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLTVOq3fOxrF30A60V19ZEU+jPnpRbncImmhNnTrLk4U0KzY5q
+	OhJV+pYFWxxN23OPUNcSKs0x8t2SnT9Hv1B41id7LQrvUoknPQNK
+X-Gm-Gg: ASbGncsQoOREE0Q6SkjxtpYm/BQKPXu77NECQ6vreG1GqecUIje4QkMTyy+GCDaRktF
+	YSYJIxCFeHoVLgR65NE/xFNkur9vJdXdcIOhHQp0kTM4QjH9fER2e+LVI3aw5NYiQSXvzffM//b
+	U2MXp83+JLf+PsMeTIFpCk9Eb8wfQcRL7Qqa9ARo9TVuLTTkxR48+V5Iaq338Z1S5rJcsOKKrjP
+	3QCfxmA7S/DF8wu+V3VgG4XfjoA34Zabtes+wymVFO9FnNN4fblo+sZPXZ2cJnxCMBVvxdMCLrI
+	RP+erHlCQNv0khY4niPBStYbb5Jj96LW/8rrRFhPBpxO0/SeByo=
+X-Google-Smtp-Source: AGHT+IGRf3+rxXg9y5r2+u9zmmrMjmX28RK97Boc7y5I6WN3NsKiYYv7R2o+DZaG/J3zfHe+qJasNg==
+X-Received: by 2002:a5d:6d87:0:b0:391:65c:1b05 with SMTP id ffacd0b85a97d-3926c5a5dfamr6122321f8f.11.1741731983075;
+        Tue, 11 Mar 2025 15:26:23 -0700 (PDT)
+Received: from [192.168.0.100] ([188.27.130.21])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912bfba8a9sm19294599f8f.9.2025.03.11.15.26.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Mar 2025 15:26:21 -0700 (PDT)
+Message-ID: <80456f67-1742-4b54-98dd-0985f95c376e@gmail.com>
+Date: Wed, 12 Mar 2025 00:26:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 11/16] dt-bindings: media: i2c: add MAX9296A,
+ MAX96716A, MAX96792A
+To: Rob Herring <robh@kernel.org>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Cosmin Tanislav <cosmin.tanislav@analog.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund@ragnatech.se>, Julien Massot
+ <julien.massot@collabora.com>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Bjorn Andersson <quic_bjorande@quicinc.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Arnd Bergmann
+ <arnd@arndb.de>, Taniya Das <quic_tdas@quicinc.com>,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ Eric Biggers <ebiggers@google.com>,
+ Javier Carrasco <javier.carrasco@wolfvision.net>,
+ Ross Burton <ross.burton@arm.com>, Hans Verkuil <hverkuil@xs4all.nl>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Zhi Mao <zhi.mao@mediatek.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Dongcheng Yan <dongcheng.yan@intel.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Tommaso Merciai <tomm.merciai@gmail.com>,
+ Dan Carpenter <dan.carpenter@linaro.org>,
+ Ihor Matushchak <ihor.matushchak@foobox.net>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-staging@lists.linux.dev,
+ linux-gpio@vger.kernel.org
+References: <20250309084814.3114794-1-demonsingur@gmail.com>
+ <20250309084814.3114794-12-demonsingur@gmail.com>
+ <20250311190711.GA3985355-robh@kernel.org>
+Content-Language: en-US
+From: Cosmin Tanislav <demonsingur@gmail.com>
+In-Reply-To: <20250311190711.GA3985355-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Add the DWMAC glue layer for the GBETH IP found in the Renesas RZ/V2H(P)
-SoC.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2->v3
-- Handle clks from plat_dat
-- Replaced STMMAC_FLAG_EN_TX_LPI_CLOCKGATING flag with
-  STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP.
+On 3/11/25 9:07 PM, Rob Herring wrote:
+> On Sun, Mar 09, 2025 at 10:48:03AM +0200, Cosmin Tanislav wrote:
+>> The MAX9296A deserializer converts single or dual serial inputs to MIPI
+>> CSI-2 outputs. The GMSL2 links operate at a fixed rate of 3Gbps or 6Gbps
+>> in the forward direction and 187.5Mbps in the reverse direction.
+>> In GMSL1 mode, each serial link can be paired with 3.12Gbps or 1.5Gbps
+>> GMSL1 serializers or operate up to 4.5Gbps with GMSL2 serializers with
+>> GMSL1 backward compatibility. The MAX9296A supports mixed GMSL2 and
+>> GMSL1 links. The serial inputs operate independently, allowing videos
+>> with different timings and resolutions to be received on each input.
+>>
+>> MAX96716A supports both tunnel and pixel mode.
+>> MAX96792A supports both tunnel and pixel mode, and has two GMSL3 links.
+>>
+>> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
+>> ---
+>>   .../bindings/media/i2c/maxim,max9296a.yaml    | 281 ++++++++++++++++++
+>>   MAINTAINERS                                   |   6 +
+>>   2 files changed, 287 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
+>> new file mode 100644
+>> index 000000000000..97731549d161
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
+>> @@ -0,0 +1,281 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2024 Collabora Ltd.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/i2c/maxim,max9296a.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Maxim MAX9296A GMSL2 to CSI-2 Deserializer
+>> +
+>> +maintainers:
+>> +  - Cosmin Tanislav <cosmin.tanislav@analog.com>
+>> +
+>> +description:
+> 
+> Needs '>' token as you have paragraphs.
+> 
+>> +  The MAX9296A deserializer converts single or dual serial inputs to
+>> +  MIPI CSI-2 outputs. The GMSL2 links operate at a fixed rate of 3Gbps
+>> +  or 6Gbps in the forward direction and 187.5Mbps in the reverse
+>> +  direction. In GMSL1 mode, each serial link can be paired with 3.12Gbps
+>> +  or 1.5Gbps GMSL1 serializers or operate up to 4.5Gbps with GMSL2
+>> +  serializers with GMSL1 backward compatibility. The MAX9296A supports
+>> +  mixed GMSL2 and GMSL1 links. The serial inputs operate independently,
+>> +  allowing videos with different timings and resolutions to be received
+>> +  on each input.
+>> +
+>> +  MAX96716A supports both tunnel and pixel mode.
+>> +  MAX96792A supports both tunnel and pixel mode, and has two GMSL3 links.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - maxim,max9296a
+>> +      - maxim,max96716a
+>> +      - maxim,max96792a
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  powerdown-gpios:
+>> +    maxItems: 1
+>> +    description: Specifier for the GPIO connected to the PWDNB pin.
+>> +
+>> +  port0-poc-supply:
+>> +    description: Regulator providing Power over Coax for GMSL port 0
+>> +
+>> +  port1-poc-supply:
+>> +    description: Regulator providing Power over Coax for GMSL port 1
+>> +
+>> +  i2c-mux:
+>> +    $ref: /schemas/i2c/i2c-mux.yaml#
+>> +    unevaluatedProperties: false
+>> +    patternProperties:
+>> +      '^i2c@[0-1]$':
+>> +        $ref: /schemas/i2c/i2c-controller.yaml#
+>> +        unevaluatedProperties: false
+>> +        properties:
+>> +          reg:
+>> +            items:
+>> +              minimum: 0
+>> +              maximum: 1
+>> +
+>> +  i2c-alias-pool:
+>> +    maxItems: 2
+>> +
+>> +  i2c-atr:
+>> +    type: object
+>> +    additionalProperties: false
+>> +
+>> +    properties:
+>> +      '#address-cells':
+>> +        const: 1
+>> +
+>> +      '#size-cells':
+>> +        const: 0
+>> +
+>> +    patternProperties:
+>> +      '^i2c@[0-1]$':
+>> +        $ref: /schemas/i2c/i2c-controller.yaml#
+>> +        unevaluatedProperties: false
+>> +        properties:
+>> +          reg:
+>> +            items:
+>> +              minimum: 0
+>> +              maximum: 1
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    patternProperties:
+>> +      '^port@[0-1]$':
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        unevaluatedProperties: false
+>> +        description: GMSL Input
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+> 
+> What properties are you using from here?
+> 
+> None actually because /schemas/graph.yaml#/properties/port won't allow
+> any.
+> 
 
-v1->v2
-- Dropped __initconst for renesas_gbeth_clks array
-- Added clks_config callback
-- Dropped STMMAC_FLAG_RX_CLK_RUNS_IN_LPI flag as this needs
-  investigation.
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../stmicro/stmmac/dwmac-renesas-gbeth.c      | 166 ++++++++++++++++++
- 3 files changed, 178 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
+So these lines should be removed.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 3c820ef56775..2c99b23f0faa 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -131,6 +131,17 @@ config DWMAC_QCOM_ETHQOS
- 	  This selects the Qualcomm ETHQOS glue layer support for the
- 	  stmmac device driver.
- 
-+config DWMAC_RENESAS_GBETH
-+	tristate "Renesas RZ/V2H(P) GBETH support"
-+	default ARCH_RENESAS
-+	depends on OF && (ARCH_RENESAS || COMPILE_TEST)
-+	help
-+	  Support for Gigabit Ethernet Interface (GBETH) on Renesas
-+	  RZ/V2H(P) SoCs.
-+
-+	  This selects the Renesas RZ/V2H(P) Soc specific glue layer support
-+	  for the stmmac device driver.
-+
- config DWMAC_ROCKCHIP
- 	tristate "Rockchip dwmac support"
- 	default ARCH_ROCKCHIP
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index 594883fb4164..91050215511b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -20,6 +20,7 @@ obj-$(CONFIG_DWMAC_LPC18XX)	+= dwmac-lpc18xx.o
- obj-$(CONFIG_DWMAC_MEDIATEK)	+= dwmac-mediatek.o
- obj-$(CONFIG_DWMAC_MESON)	+= dwmac-meson.o dwmac-meson8b.o
- obj-$(CONFIG_DWMAC_QCOM_ETHQOS)	+= dwmac-qcom-ethqos.o
-+obj-$(CONFIG_DWMAC_RENESAS_GBETH) += dwmac-renesas-gbeth.o
- obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
- obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
- obj-$(CONFIG_DWMAC_S32)		+= dwmac-s32.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
-new file mode 100644
-index 000000000000..c5710e59323e
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
-@@ -0,0 +1,166 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * dwmac-renesas-gbeth.c - DWMAC Specific Glue layer for Renesas GBETH
-+ *
-+ * The Rx and Tx clocks are supplied as follows for the GBETH IP.
-+ *
-+ *                         Rx / Tx
-+ *   -------+------------- on / off -------
-+ *          |
-+ *          |            Rx-180 / Tx-180
-+ *          +---- not ---- on / off -------
-+ *
-+ * Copyright (C) 2025 Renesas Electronics Corporation
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+
-+#include "dwmac4.h"
-+#include "stmmac_platform.h"
-+
-+struct renesas_gbeth {
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct reset_control *rstc;
-+	struct device *dev;
-+	void __iomem *regs;
-+};
-+
-+static const char *const renesas_gbeth_clks[] = {
-+	"tx", "tx-180", "rx", "rx-180",
-+};
-+
-+static struct clk *renesas_gbeth_find_clk(struct plat_stmmacenet_data *plat_dat,
-+					  const char *name)
-+{
-+	for (unsigned int i = 0; i < plat_dat->num_clks; i++)
-+		if (!strcmp(plat_dat->clks[i].id, name))
-+			return plat_dat->clks[i].clk;
-+
-+	return NULL;
-+}
-+
-+static int renesas_gbeth_clks_config(void *priv, bool enabled)
-+{
-+	struct renesas_gbeth *gbeth = priv;
-+	struct plat_stmmacenet_data *plat_dat = gbeth->plat_dat;
-+	int ret;
-+
-+	if (enabled) {
-+		ret = reset_control_deassert(gbeth->rstc);
-+		if (ret) {
-+			dev_err(gbeth->dev, "Reset deassert failed\n");
-+			return ret;
-+		}
-+
-+		ret = clk_bulk_prepare_enable(plat_dat->num_clks, plat_dat->clks);
-+		if (ret)
-+			reset_control_assert(gbeth->rstc);
-+	} else {
-+		clk_bulk_disable_unprepare(plat_dat->num_clks, plat_dat->clks);
-+		ret = reset_control_assert(gbeth->rstc);
-+		if (ret)
-+			dev_err(gbeth->dev, "Reset assert failed\n");
-+	}
-+
-+	return ret;
-+}
-+
-+static int renesas_gbeth_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	struct device *dev = &pdev->dev;
-+	struct renesas_gbeth *gbeth;
-+	unsigned int i;
-+	int err;
-+
-+	err = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "failed to get resources\n");
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return dev_err_probe(dev, PTR_ERR(plat_dat),
-+				     "dt configuration failed\n");
-+
-+	gbeth = devm_kzalloc(dev, sizeof(*gbeth), GFP_KERNEL);
-+	if (!gbeth)
-+		return -ENOMEM;
-+
-+	plat_dat->num_clks = ARRAY_SIZE(renesas_gbeth_clks);
-+	plat_dat->clks = devm_kcalloc(dev, plat_dat->num_clks,
-+				      sizeof(*plat_dat->clks), GFP_KERNEL);
-+	if (!plat_dat->clks)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < plat_dat->num_clks; i++)
-+		plat_dat->clks[i].id = renesas_gbeth_clks[i];
-+
-+	err = devm_clk_bulk_get(dev, plat_dat->num_clks, plat_dat->clks);
-+	if (err < 0)
-+		return err;
-+
-+	plat_dat->clk_tx_i = renesas_gbeth_find_clk(plat_dat, "tx");
-+	if (!plat_dat->clk_tx_i)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "error finding tx clock\n");
-+
-+	gbeth->rstc = devm_reset_control_get_exclusive(dev, NULL);
-+	if (IS_ERR(gbeth->rstc))
-+		return PTR_ERR(gbeth->rstc);
-+
-+	gbeth->dev = dev;
-+	gbeth->regs = stmmac_res.addr;
-+	gbeth->plat_dat = plat_dat;
-+	plat_dat->bsp_priv = gbeth;
-+	plat_dat->set_clk_tx_rate = stmmac_set_clk_tx_rate;
-+	plat_dat->clks_config = renesas_gbeth_clks_config;
-+	plat_dat->flags |= STMMAC_FLAG_HWTSTAMP_CORRECT_LATENCY |
-+			   STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP |
-+			   STMMAC_FLAG_SPH_DISABLE;
-+
-+	err = renesas_gbeth_clks_config(gbeth, true);
-+	if (err)
-+		return err;
-+
-+	err = stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
-+	if (err) {
-+		renesas_gbeth_clks_config(gbeth, false);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static void renesas_gbeth_remove(struct platform_device *pdev)
-+{
-+	stmmac_dvr_remove(&pdev->dev);
-+
-+	renesas_gbeth_clks_config(get_stmmac_bsp_priv(&pdev->dev), false);
-+}
-+
-+static const struct of_device_id renesas_gbeth_match[] = {
-+	{ .compatible = "renesas,rzv2h-gbeth", },
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, renesas_gbeth_match);
-+
-+static struct platform_driver renesas_gbeth_driver = {
-+	.probe  = renesas_gbeth_probe,
-+	.remove = renesas_gbeth_remove,
-+	.driver = {
-+		.name		= "renesas-gbeth",
-+		.pm		= &stmmac_pltfr_pm_ops,
-+		.of_match_table	= renesas_gbeth_match,
-+	},
-+};
-+module_platform_driver(renesas_gbeth_driver);
-+
-+MODULE_AUTHOR("Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>");
-+MODULE_DESCRIPTION("Renesas GBETH DWMAC Specific Glue layer");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+         unevaluatedProperties: false
+         properties:
+           endpoint:
+             $ref: /schemas/media/video-interfaces.yaml#
+             unevaluatedProperties: false
+             description:
+               Endpoint for GMSL2-Link port.
+
+Should I submit patches to do the same for the maxim,max96714.yaml file?
+
+I basically copied these bindings from there and adapted them, and those
+bindings seem to have the same issue.
+
+> 
+>> +            unevaluatedProperties: false
+>> +            description: Endpoint for GMSL2-Link port.
+>> +
+>> +      '^port@[2-3]$':
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: CSI-2 Output port
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +
+>> +            properties:
+>> +              data-lanes:
+>> +                minItems: 1
+>> +                maxItems: 4
+>> +
+>> +              lane-polarities:
+>> +                minItems: 1
+>> +                maxItems: 5
+>> +
+>> +              link-frequencies:
+>> +                maxItems: 1
+>> +
+>> +            required:
+>> +              - data-lanes
+>> +
+>> +    anyOf:
+>> +      - required:
+>> +          - port@2
+>> +      - required:
+>> +          - port@3
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/i2c/i2c-atr.yaml#
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - maxim,max9296a
+>> +              - maxim,max96792a
+>> +    then:
+>> +      not:
+>> +        required: [i2c-mux]
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - maxim,max96716a
+>> +    then:
+>> +      not:
+>> +        required: [i2c-atr]
+>> +
+>> +dependentRequired:
+>> +  i2c-atr: [i2c-alias-pool]
+>> +  i2c-alias-pool: [i2c-atr]
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/media/video-interfaces.h>
+>> +
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        deserializer@28 {
+>> +            compatible = "maxim,max9296a";
+>> +            reg = <0x28>;
+>> +            powerdown-gpios = <&main_gpio0 37 GPIO_ACTIVE_LOW>;
+>> +
+>> +            i2c-alias-pool = <0x40 0x41>;
+>> +
+>> +            ports {
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +
+>> +                port@0 {
+>> +                    reg = <0>;
+>> +                    des_gmsl_in_0: endpoint {
+>> +                        remote-endpoint = <&ser_0_gmsl_out>;
+>> +                    };
+>> +                };
+>> +
+>> +                port@1 {
+>> +                    reg = <1>;
+>> +                    des_gmsl_in_1: endpoint {
+>> +                        remote-endpoint = <&ser_1_gmsl_out>;
+>> +                    };
+>> +                };
+>> +
+>> +                port@2 {
+>> +                    reg = <2>;
+>> +                    des_csi_out: endpoint {
+>> +                        data-lanes = <1 2 3 4>;
+>> +                        link-frequencies = /bits/ 64 <400000000>;
+>> +                        remote-endpoint = <&csi_in>;
+>> +                    };
+>> +                };
+>> +            };
+>> +
+>> +            i2c-atr {
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +
+>> +                i2c@0 {
+>> +                    #address-cells = <1>;
+>> +                    #size-cells = <0>;
+>> +                    reg = <0>;
+>> +
+>> +                    serializer@40 {
+>> +                        compatible = "maxim,max96717";
+>> +                        reg = <0x40>;
+>> +                        gpio-controller;
+>> +                        #gpio-cells = <2>;
+>> +                        #clock-cells = <0>;
+>> +
+>> +                        ports {
+>> +                            #address-cells = <1>;
+>> +                            #size-cells = <0>;
+>> +
+>> +                            port@0 {
+>> +                                reg = <0>;
+>> +                                ser_0_csi_in: endpoint {
+>> +                                    data-lanes = <1 2>;
+>> +                                    remote-endpoint = <&sensor_0_out>;
+>> +                                };
+>> +                            };
+>> +
+>> +                            port@1 {
+>> +                                reg = <1>;
+>> +                                ser_0_gmsl_out: endpoint {
+>> +                                    remote-endpoint = <&des_gmsl_in_0>;
+>> +                                };
+>> +                            };
+>> +                        };
+>> +                    };
+>> +                };
+>> +
+>> +                i2c@1 {
+>> +                    #address-cells = <1>;
+>> +                    #size-cells = <0>;
+>> +                    reg = <1>;
+>> +
+>> +                    serializer@40 {
+>> +                        compatible = "maxim,max96717";
+>> +                        reg = <0x40>;
+>> +                        gpio-controller;
+>> +                        #gpio-cells = <2>;
+>> +                        #clock-cells = <0>;
+>> +
+>> +                        ports {
+>> +                            #address-cells = <1>;
+>> +                            #size-cells = <0>;
+>> +
+>> +                            port@0 {
+>> +                                reg = <0>;
+>> +                                ser_1_csi_in: endpoint {
+>> +                                    data-lanes = <1 2>;
+>> +                                    remote-endpoint = <&sensor_1_out>;
+>> +                                };
+>> +                            };
+>> +
+>> +                            port@1 {
+>> +                                reg = <1>;
+>> +                                ser_1_gmsl_out: endpoint {
+>> +                                    remote-endpoint = <&des_gmsl_in_1>;
+>> +                                };
+>> +                            };
+>> +                        };
+>> +                    };
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +...
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index abf3afc95fc9..c1e01668e81a 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -14220,6 +14220,12 @@ S:	Maintained
+>>   F:	Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
+>>   F:	drivers/iio/proximity/mb1232.c
+>>   
+>> +MAXIM GMSL2 SERIALIZERS AND DESERIALIZERS
+>> +M:	Cosmin Tanislav <cosmin.tanislav@analog.com>
+>> +L:	linux-media@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
+>> +
+>>   MAXIM MAX11205 DRIVER
+>>   M:	Ramona Bolboaca <ramona.bolboaca@analog.com>
+>>   L:	linux-iio@vger.kernel.org
+>> -- 
+>> 2.48.1
+>>
 
 
