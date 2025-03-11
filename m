@@ -1,84 +1,110 @@
-Return-Path: <devicetree+bounces-156382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BFEA5B72B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 04:18:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63348A5B754
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 04:40:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 401D87A37A0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:17:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65EBA7A332A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374551E5B87;
-	Tue, 11 Mar 2025 03:18:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3582B1E9B1F;
+	Tue, 11 Mar 2025 03:40:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="GG5GFchA"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BJqogdby"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0755E79CD;
-	Tue, 11 Mar 2025 03:18:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C517F9D6;
+	Tue, 11 Mar 2025 03:40:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741663085; cv=none; b=nitaBBG2yLivF0xjh1kc+FFK3blFMN1Rraymh73rWo10y3EwG2kfEXHWIefg04WCXy9gmKDNkudu6jZzONMdeItDy4GMVaAZeAiCdZcqrP/AnD73A9aUWVhG3cNCaPW5y9vOlblHOYWQWE0pczTEX8GLkb4rgg9qeTm6TGL0Y2M=
+	t=1741664404; cv=none; b=AawgrWxQgOaXhVz2SN6SIsjZQntP8TUviRWjL56b4XfyWfIf4divFR3zLf4cCSgiqTzZbQSFpevx3tacIPR5ly8XsmUe8jqj6YG3NnQaioCH89Yindd8j1Rmud64FR8u/UKNBEK3oAfQ0RA+WY+5nggavNGQXxiukwzZQ6G03fA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741663085; c=relaxed/simple;
-	bh=ZCiXBTN1s3AS+r3AOui8T9WHCHy18ApE6M8Au11Pvi8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YxE5n9PtjUjVRMZuGFCnhovR3mnvCO9NrxVvwwu0VrJI2N3whK4c0kp3Hc/qwAFHRi43D9iyGKQJxhoZOAGK+TGQ6boVUqhJzueBs0le7wg5/M9JGEv8Gq4Ot52or15ZFI51ZDVBePFel/ZIPYt0sDlxuxy7JzMcS04U7uhRR6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=GG5GFchA; arc=none smtp.client-ip=220.197.32.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Aq8SV11ktNKPubNSIy42XayO8ZwBJ4qz7bkyi8r6F2Q=;
-	b=GG5GFchAxpAGPo82H5nUiF2ZbMql+rPtCfMG14RT6PpDA08JFfZvZ8YXfbX91T
-	SQcOsDkTcV0GT3KaFF0tBLdC1GEruSaWpfA8NtYG2yGJ9mn00zIenoqdX7j7OQjG
-	EMN1ggwZjC7VM/1o7BCBTqN+1Kv0Elzg7mDeoOJrrfNz0=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDXU9o_q89nCfS0AA--.943S3;
-	Tue, 11 Mar 2025 11:17:20 +0800 (CST)
-Date: Tue, 11 Mar 2025 11:17:18 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Stefan Agner <stefan@agner.ch>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/4] arm: fsl: drop usage of Toradex SOMs compatible
- alone
-Message-ID: <Z8+rPvG177Csh2m1@dragon>
-References: <20250228151352.91768-1-francesco@dolcini.it>
+	s=arc-20240116; t=1741664404; c=relaxed/simple;
+	bh=pMgpc6HC7nxifpscxz3EGmrjoCJUYcrNonuhhGwdVeg=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=DBd6mT6+rtbeAALhZdfptKiR9pLLb/29L+bBrdjX1kbz19BGwe887OD2byV5du+6RKiuAXxm5iY0Jxarj+7hI0/+tB75xLVOrX2bvHoYkvrnwVK9CRT44fPjNIHzOmxQ3onmijlvPNM4H5AskVOZiHbi5suc+lstAt1iiaBaBaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BJqogdby; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741664403; x=1773200403;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=pMgpc6HC7nxifpscxz3EGmrjoCJUYcrNonuhhGwdVeg=;
+  b=BJqogdbyyZJ8xfH+mXnBpQIk6jNfQrRX9kB81mpMp2w1m46U7kh1M8fk
+   903tBTp+p2LxGWVdPh2TF+JeVlHNplyg0PDHASNzxGKPJIpG7bK6WF+Eu
+   PuQ7TwZ6GNQfOq4tWwvHC/KCOTenBpD4x3QmSUyhhK34FWdn3OnkBTQac
+   c7Zk+eTGuCRd1FaL0milVOm99DCVFKNNISRrD0MKYpg/O/r7IqIScsvQu
+   zZxo/wArU9Yz8WdUSmyAQA0Zwxqt83Dc4aMqCXOXjLC/86+lO7OZqB9vq
+   kTNvydngwXZqSaiN2Y43tTkWpYU6qpPLDEhGvUWBM92Gc/hXuz/qbGqhY
+   Q==;
+X-CSE-ConnectionGUID: BGVr7c+0SMqGm9OKxeZ1kQ==
+X-CSE-MsgGUID: BJS3E3QSScSRHHzwqbjRiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="68042245"
+X-IronPort-AV: E=Sophos;i="6.14,237,1736841600"; 
+   d="scan'208";a="68042245"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 20:40:00 -0700
+X-CSE-ConnectionGUID: tVuMo/dXTSO4WZpIKx/95w==
+X-CSE-MsgGUID: bAy02E9YTl6TpeHpgUJ97Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,237,1736841600"; 
+   d="scan'208";a="125392660"
+Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
+  by orviesa005.jf.intel.com with ESMTP; 10 Mar 2025 20:39:57 -0700
+From: niravkumar.l.rabara@intel.com
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	niravkumar.l.rabara@intel.com,
+	nirav.rabara@altera.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH RESEND] arm64: dts: socfpga: agilex5: add VGIC maintenance interrupt
+Date: Tue, 11 Mar 2025 11:36:01 +0800
+Message-Id: <20250311033601.1940199-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250228151352.91768-1-francesco@dolcini.it>
-X-CM-TRANSID:Ms8vCgDXU9o_q89nCfS0AA--.943S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUcxpeUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxANZWfPo9QqJgAAsg
+Content-Transfer-Encoding: 8bit
 
-On Fri, Feb 28, 2025 at 04:13:48PM +0100, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> The Toradex SOMs cannot be used alone without a carrier board, so drop
-> the usage of its compatible alone.
-> 
-> Francesco Dolcini (4):
->   dt-bindings: arm: fsl: drop usage of Toradex SOMs compatible alone
->   ARM: dts: imx6qdl-apalis/colibri: Remove compatible from SoM dtsi
->   arm64: dts: imx8qm-apalis: Remove compatible from SoM dtsi
->   ARM: dts: vf610-colibri: Remove compatible from SoM dtsi
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-Applied all, thanks!
+Add VGIC maintenance interrupt and interrupt-parent property for
+interrupt controller, required to run Linux in virtualized environment.
+
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+---
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+index 51c6e19e40b8..75397e84bd2c 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+@@ -75,8 +75,11 @@ intc: interrupt-controller@1d000000 {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+ 		interrupt-controller;
++		interrupt-parent = <&intc>;
+ 		#redistributor-regions = <1>;
+ 		redistributor-stride = <0x0 0x20000>;
++		/* VGIC maintenance interrupt */
++		interrupts = <GIC_PPI 25 IRQ_TYPE_LEVEL_HIGH>;
+ 
+ 		its: msi-controller@1d040000 {
+ 			compatible = "arm,gic-v3-its";
+-- 
+2.25.1
 
 
