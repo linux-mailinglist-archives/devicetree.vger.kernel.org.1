@@ -1,56 +1,52 @@
-Return-Path: <devicetree+bounces-156357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 732A5A5B653
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 02:53:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FE4EA5B65E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 02:55:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9368A172786
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 01:52:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 101F03A40A9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 01:55:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11AD81E25EB;
-	Tue, 11 Mar 2025 01:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28BCC41C63;
+	Tue, 11 Mar 2025 01:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bb/WEbWa"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="lHdgC4mZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C8B1DF98B;
-	Tue, 11 Mar 2025 01:52:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C48118821
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 01:55:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741657974; cv=none; b=ocYTyBd+oF1fUSgAtFr1z6EkAxhKWbG8UnDC7DpywDcMjdy2yM9qlaU+JVRR6jtTPyx2C+b5mN7Kk0x4beFwRjPNgp7A4X/IRgdSXFy62mArMFBPufHnYdM/CkVhcQZqMpKN2/5ibZlswsrKPSKwqkV6+QqJaSx7J4QdJmq2cFc=
+	t=1741658150; cv=none; b=RS9bBArBS710idkprA9wLQRXKeUZrWH3FxUQKmLFgTqNFWNajA6amIEm0OEdQi0LjReRsJQbP39eYsvm9jDpcvWd5TzK1BYmE0fexy9YhdlCze/sVcKVZ0fezgk1FicaFqTFsM6QFkEsfIn1nIs/thQiISQWSOZjLpAiO1UEi1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741657974; c=relaxed/simple;
-	bh=BePCeOBZ4CRUJOn6ITYHMdMXC7Jdn4+7xT6rUAg2NZo=;
+	s=arc-20240116; t=1741658150; c=relaxed/simple;
+	bh=cuqzIDOhySCFTgOGSVbW6HfrQTrdB5bAwa362NFlG7s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XnyDQJgUGYpM8OEc8i5ptDJbPjHYUlfM8AtbjXXdzwsm7auymVqghfFivDFOHUO/YyER0kkzeIhA6FmdFzuO2qLQsv7NXld2bAes1TgHIaTdtEig4IrMy0OOo1WBKQxJSeh7jM4CM/iX9Ubwwa5inIpb4+mNyZKUyCfCaxydySg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bb/WEbWa; arc=none smtp.client-ip=1.95.21.15
+	 Content-Type:Content-Disposition:In-Reply-To; b=WSSGadUNsnXVMxYKdMcqm2RZCNdLLAFJ+uCkiLOzjuMIHWvmDuipjy2yv2IO66hDRcb1jw5m4Ijz5ichskRD3rmnz/f3Ja2iIs9gEfIyBXGhWq/Z4gE8DHF+qczDVr21K/FNc7ZzTmAqiD5nfmKUp6DOTNO79O1U0yGU7e6U1fQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=lHdgC4mZ; arc=none smtp.client-ip=1.95.21.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Y2j5IpfsHdKFIq/wwefRt4BQxdOS5Lzz8+3jguMQeEI=;
-	b=bb/WEbWaAcQBK5+/SWIhhJjQGY7QSw5WAcBBHbKVmjct4jdi2d60S4OI1j8Neg
-	i4e7C7VVShbb16g7RpTN8y86Mfc5t0NkrYHEYeh/47CUvXLQgkax895lamkfoh7h
-	kNQ7Ab3+rLlUtu3JY+H6kxNnS0Rnu5rdchdZBJPlZ6IO4=
+	Content-Type; bh=ZPSlj+DOZhRo3Cam9wIjJ4SVrhTvYwkYYTH4FNeO3TA=;
+	b=lHdgC4mZ2a0l7+ut7J0eq8QcsdE3VLD3oL1jzGNXEA/nU/UaVg4rDsby5e5rv9
+	IE7uYDzwTWMn/ffe2M4T7oOBdEeKt0EsQTMF+YbkTuzlhUQ5y9jGnf6+fIzO8kS8
+	SDvtyP7BTA5wVu1BGqhkJY055ixktUEGp/MHiqRksLIxs=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAnJdRFl89nbBawAA--.715S3;
-	Tue, 11 Mar 2025 09:52:07 +0800 (CST)
-Date: Tue, 11 Mar 2025 09:52:05 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgBnq+IKmM9nYu2zAA--.818S3;
+	Tue, 11 Mar 2025 09:55:24 +0800 (CST)
+Date: Tue, 11 Mar 2025 09:55:22 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/9] ARM: dts: TQMa6/6UL/7: DT cleanup
-Message-ID: <Z8+XRalDiwot8Xsl@dragon>
-References: <20250219081748.1181507-1-alexander.stein@ew.tq-group.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2] ARM: dts: vfxxx: Fix the order of the DMA entries
+Message-ID: <Z8+YCoJwtBeCSco5@dragon>
+References: <20250220124809.2361942-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,26 +55,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250219081748.1181507-1-alexander.stein@ew.tq-group.com>
-X-CM-TRANSID:Mc8vCgAnJdRFl89nbBawAA--.715S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUcb18DUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiERsNZWfPU+q+ZQAAso
+In-Reply-To: <20250220124809.2361942-1-festevam@gmail.com>
+X-CM-TRANSID:Ms8vCgBnq+IKmM9nYu2zAA--.818S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUx4EEUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgINZWfPVKnAwwAAsu
 
-On Wed, Feb 19, 2025 at 09:17:35AM +0100, Alexander Stein wrote:
-> Alexander Stein (4):
->   ARM: dts: imx6qdl-tqma6: Order DT properties
->   ARM: dts: imx6ul-tqma6ul: Order DT properties
->   ARM: dts: imx6ul-tqma6ul: Add vcc-supply for spi-nor
->   ARM: dts: imx7-tqma7: Add vcc-supply for spi-nor
+On Thu, Feb 20, 2025 at 09:48:09AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Markus Niebel (5):
->   ARM: dts: imx6qdl-tqma6: limit PMIC SW4 to 3.3V
->   ARM: dts: imx6qdl-tqma6: use sw4_reg as 3.3V supply
->   ARM: dts: imx6qdl-tqma6: Add partitions subnode to spi-nor
->   ARM: dts: tqma6ul: Add partitions subnode to spi-nor
->   ARM: dts: tqma7: Add partitions subnode to spi-nor
+> According to fsl,dspi.yaml the expected order for describing the dmas
+> and dma-names properties is "tx" first, followed by "rx".
+> 
+> Adjust it acordingly to fix the following dt-schema warnings:
+> 
+> spi@4002c000: dma-names:0: 'tx' was expected
+> spi@4002c000: dma-names:1: 'rx' was expected
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Applied all, thanks!
+Applied, thanks!
 
 
