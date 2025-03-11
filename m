@@ -1,112 +1,286 @@
-Return-Path: <devicetree+bounces-156480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA880A5BE43
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:53:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D1DEA5BE62
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:01:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 823843AAFDF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 10:53:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD0C816D006
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:01:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9EAB2505DE;
-	Tue, 11 Mar 2025 10:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C082528E4;
+	Tue, 11 Mar 2025 11:01:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ly03n0sG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27CBB24EF8E;
-	Tue, 11 Mar 2025 10:53:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BDD22F163
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 11:01:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741690390; cv=none; b=MTPASQFGkQPuKCsPraQZDZB/f0Hwc9A9n/ku5BLCQHc/kLyfzYXkA7EDXPFzuBFmC9PUrUtj1wjQte2NHJpVjXoj0oMGrgW6Slv2oC7TTFAFv4OJk8q6OHij2ojhuyS1HMclNTei0FJYnSnEkG8HasV5lSs46JjHZVT2D8ZoPNo=
+	t=1741690905; cv=none; b=n5tkmJ0A4BvBr5Pe243o+cj7pslTPfApohkH0T2dwDBAi8j5ExVKVHzmUc1msSDCPNDucb2jB4pYEPMeczEGgMz9E61Z5H4qY5gfFCpgn0z7t08PiHn/YPpB+eaNIcCxuyV5naSdjmzJ64HCMkZhZhDx4NLx+4l38BSPLYO5cyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741690390; c=relaxed/simple;
-	bh=RUjAfsKxlpnDn5k+IQNu6N7Ia574OxtzAeRXK9rEGak=;
+	s=arc-20240116; t=1741690905; c=relaxed/simple;
+	bh=A+f6h6EfmTGtZRZEGW74yESJsS+IX3pOBHVErJKcIns=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y96QaL+h8wts4kC2aNP/hug5WC76zLP7XyXA3BsrDsmOu6K5XuEHO6Pwr7RHRAsVfsbCsHawU4+yJYHpDlEQSkJ3iAm06gH2cWW2vBL2cbp/nfzzzCV2CIT4E1Hj7Exwp8cWKT3Zxsk7YHUJMxf/WP46kYLTqevUFku3ElgsZfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D4061762;
-	Tue, 11 Mar 2025 03:53:19 -0700 (PDT)
-Received: from [10.57.67.14] (unknown [10.57.67.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B2F743F673;
-	Tue, 11 Mar 2025 03:53:04 -0700 (PDT)
-Message-ID: <9b44d0ff-b28f-4d79-ad7b-b452db1db87a@arm.com>
-Date: Tue, 11 Mar 2025 10:53:02 +0000
+	 In-Reply-To:Content-Type; b=Cr8oZqfRrL0e+syhIPzO/7ecYNZPtf5xFD0htPmxMDV3byIkAj7gKTJR2SP2XLyFpu9g9gATBD11ux7sfIYj9bKQfqnTZ5sPvHIUSMzaQcuHb+JIkMg0a0WufAzesFih1baAlOhGboLoWbDyvBjtBD6oyPafjiDrFavVqxVriGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ly03n0sG; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52B7D9Aq006478
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 11:01:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	awHQ8/tSf8UnEsKyWlG4BaSlcVJSFDh55E2Y4eShfpE=; b=ly03n0sGnyRbWXZc
+	Eqmmn8T5v7nvzm1W+54NHl4VONNYs+ofF3qBBVxJmnT9jQ+LSElHdo7V953oVPwb
+	62Rw2UoZPLYr+cMO7iaOSMZW6X9oLfwB/k826PojqKeSSKsKueQ8ovkS259fw12p
+	+e5Cl0IGU5bj6UTfE3wym/GZEZcQbvRdulNkEJSqnp+hFKPkc3zatm5Xe067lr6q
+	ybhm0xllpzRjurkpzT0NGZ8lvTAw1t3zG3r0MlErqBSrP4YrvJ+kGuZQWgaa0GG7
+	T+JK9SNCjnmf7b/XorQg7IB3olq7itSCVXWETV/YzwBzK0Q5yiuPsW7uJeC+ESnN
+	yW96Ng==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458f0q06nk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 11:01:42 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-2ff55176edcso9286133a91.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 04:01:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741690901; x=1742295701;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=awHQ8/tSf8UnEsKyWlG4BaSlcVJSFDh55E2Y4eShfpE=;
+        b=jtvgJopftoh4V2hzZFcqTLYhHcVkFxiWh/v2pCyVJ2xv9BuYaJ1SXRkmo7sxxWYDWW
+         6rq87jkAaXpgICLsKlllphoUln4Sp/LEG+nyRk666fNvLN2ntAFeFG1ebqpm+VkvPI8t
+         E859Tx3LfghubasBs90GamxQHP49ayilXbAf96/SJbVRBsnKUipvFBosJ7Pgo8dky0dh
+         1LPhVU2NbIdXYhAvcheDCLGdt665PhdIl9MmMobwXtDKt52udUzbYtqKw7imQjYn+9xM
+         cMwPhqH6PlgtgHSscZbzbkMD7agRiez8RGaXkrQXRJUIP1NqSEhnHykdW3xT65L5eJ8n
+         4RzA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0Lzm/IYsP7/gtvAIZjagQOOIAIIG4SQQ+Z/NO0cMBRrnZtirxdJUkiWv/jytzTKyD1NXFMP9lvoOU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9Y6575tZLmUSvA7FiZp3vUO4dBl7awaUlBe42ETLeWsQZb6hZ
+	rv+EbAhdlGUHPV4SDNtZB3nGd3d3y7mUJmw9tfIVoHlgFE876aBSjyHq81dYGTfC2bo9V0chcpr
+	U35Ei+LaxEc2QI4QCrPCgZcZ/v5Ud6glJL3EhkJOs73kBEQkxzkGZjIuYiDMu
+X-Gm-Gg: ASbGnctDFbqVCfGiHnkWdwsDvxne/2iYPwXha2Ho3VAN3YCFwSryWLJCN5amhyMcYIl
+	InC6Lj+CiqKHh9/ohs6kLNh985XZmj7zpKVcxlE95O1LfghqHNZExn6VJfZvBMmrjyUnoK0eTPl
+	XFf6ieXYkPeSo1H34XepSIuRPkgLAAmhGrV+eDiHqAuA6xZixmSq8SiAyRkrS636FE8TAXH+rSr
+	o4FobgONQBW1UgkB3+dRBbWq9POTZdlNN9xjlL01/ERTBSjkLezU/Utj5FtETtjmKY7UzOVQrnu
+	BdvNkrbJlRWFVxO+AD2Gypof+875kCNq/ijOsjNdNldcAQ==
+X-Received: by 2002:a17:90b:164f:b0:2fe:a0ac:5fcc with SMTP id 98e67ed59e1d1-2ff7cf3e3eamr20418700a91.34.1741690900606;
+        Tue, 11 Mar 2025 04:01:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFvJShX7YcLtJuvnkvs5xiC1/MxsI3XPL/xg/+Wod3SHY2aB1lbaMeinxu1i1VNUiUbskVt6w==
+X-Received: by 2002:a17:90b:164f:b0:2fe:a0ac:5fcc with SMTP id 98e67ed59e1d1-2ff7cf3e3eamr20418654a91.34.1741690900084;
+        Tue, 11 Mar 2025 04:01:40 -0700 (PDT)
+Received: from [10.92.192.202] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ff693e7388sm10834772a91.35.2025.03.11.04.01.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Mar 2025 04:01:39 -0700 (PDT)
+Message-ID: <9be6ce8e-f0e2-7226-e900-3a0c2506a16a@oss.qualcomm.com>
+Date: Tue, 11 Mar 2025 16:31:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/3] arm64: dts: renesas: r9a09g047: Add thermal
- hotplug trip point
-To: John Madieu <john.madieu.xa@bp.renesas.com>, geert+renesas@glider.be,
- niklas.soderlund+renesas@ragnatech.se, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, rafael@kernel.org,
- daniel.lezcano@linaro.org
-Cc: magnus.damm@gmail.com, claudiu.beznea.uj@bp.renesas.com,
- devicetree@vger.kernel.org, john.madieu@gmail.com, rui.zhang@intel.com,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- biju.das.jz@bp.renesas.com, linux-pm@vger.kernel.org
-References: <20250309121324.29633-1-john.madieu.xa@bp.renesas.com>
- <20250309121324.29633-4-john.madieu.xa@bp.renesas.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v7 2/4] PCI: of: Add API to retrieve equalization presets
+ from device tree
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        Lorenzo Pieralisi
+ <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+ <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        quic_mrana@quicinc.com, quic_vbadigan@quicinc.com
+References: <20250225-preset_v6-v7-0-a593f3ef3951@oss.qualcomm.com>
+ <20250225-preset_v6-v7-2-a593f3ef3951@oss.qualcomm.com>
+ <20250306032250.vzfhznmionz3qkx7@thinkpad>
 Content-Language: en-US
-From: Christian Loehle <christian.loehle@arm.com>
-In-Reply-To: <20250309121324.29633-4-john.madieu.xa@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <20250306032250.vzfhznmionz3qkx7@thinkpad>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: qajvFNcy6kcHmyfNwcQsMXHNI19i_YAI
+X-Authority-Analysis: v=2.4 cv=KK2gDEFo c=1 sm=1 tr=0 ts=67d01816 cx=c_pps a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=OvU543Yhaul-O2FZsO4A:9 a=QEXdDO2ut3YA:10
+ a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-ORIG-GUID: qajvFNcy6kcHmyfNwcQsMXHNI19i_YAI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-11_01,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
+ clxscore=1015 malwarescore=0 adultscore=0 impostorscore=0 mlxscore=0
+ lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0
+ suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503110073
 
-On 3/9/25 12:13, John Madieu wrote:
-> Add CPU hotplug trip point to shutdown CPU1 and CPU2 when exceeding 110°C.
+
+
+On 3/6/2025 8:52 AM, Manivannan Sadhasivam wrote:
+> On Tue, Feb 25, 2025 at 05:15:05PM +0530, Krishna Chaitanya Chundru wrote:
+>> PCIe equalization presets are predefined settings used to optimize
+>> signal integrity by compensating for signal loss and distortion in
+>> high-speed data transmission.
+>>
+>> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
+>> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
+>> configure lane equalization presets for each lane to enhance the PCIe
+>> link reliability. Each preset value represents a different combination
+>> of pre-shoot and de-emphasis values. For each data rate, different
+>> registers are defined: for 8.0 GT/s, registers are defined in section
+>> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
+>> an extra receiver preset hint, requiring 16 bits per lane, while the
+>> remaining data rates use 8 bits per lane.
+>>
+>> Based on the number of lanes and the supported data rate, this function
+>> reads the device tree property and stores in the presets structure.
+>>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>   drivers/pci/of.c  | 43 +++++++++++++++++++++++++++++++++++++++++++
+>>   drivers/pci/pci.h | 27 ++++++++++++++++++++++++++-
+>>   2 files changed, 69 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+>> index 7a806f5c0d20..9ebe7d0e4e0c 100644
+>> --- a/drivers/pci/of.c
+>> +++ b/drivers/pci/of.c
+>> @@ -851,3 +851,46 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
+>>   	return slot_power_limit_mw;
+>>   }
+>>   EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
+>> +
+>> +/**
+>> + * of_pci_get_equalization_presets - Parses the "eq-presets-Ngts" property.
+>> + *
+>> + * @dev: Device containing the properties.
+>> + * @presets: Pointer to store the parsed data.
+>> + * @num_lanes: Maximum number of lanes supported.
+>> + *
+>> + * If the property is present read and store the data in the preset structure
+>> + * else assign default value 0xff to indicate property is not present.
 > 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
->  arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+> 'If the property is present, read and store the data in the @presets structure.
+> Else, assign a default value of PCI_EQ_RESV.'
 > 
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> index 93b57d7ad7b9..06bd394582e2 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> @@ -533,6 +533,13 @@ map0 {
->  							 <&cpu2 0 3>, <&cpu3 0 3>;
->  					contribution = <1024>;
->  				};
-> +
-> +				map1 {
-> +					trip = <&trip_emergency>;
-> +					cooling-device = <&cpu1 0 1>, <&cpu2 0 1>;
-> +					contribution = <1024>;
-> +				};
-> +
->  			};
->  
->  			trips {
-> @@ -542,6 +549,12 @@ target: trip-point {
->  					type = "passive";
->  				};
->  
-> +				trip_emergency: emergency {
-> +					temperature = <110000>;
-> +					hysteresis = <1000>;
-> +					type = "plug";
-> +				};
-> +
->  				sensor_crit: sensor-crit {
->  					temperature = <120000>;
->  					hysteresis = <1000>;
+>> + *
+>> + * Return: 0 if the property is not available or successfully parsed; errno otherwise.
+>> + */
+>> +int of_pci_get_equalization_presets(struct device *dev,
+>> +				    struct pci_eq_presets *presets,
+>> +				    int num_lanes)
+>> +{
+>> +	char name[20];
+>> +	int ret;
+>> +
+>> +	presets->eq_presets_8gts[0] = PCI_EQ_RESV;
+>> +	ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
+>> +					 presets->eq_presets_8gts, num_lanes);
+>> +	if (ret && ret != -EINVAL) {
+>> +		dev_err(dev, "Error reading eq-presets-8gts :%d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	for (int i = 0; i < EQ_PRESET_TYPE_MAX; i++) {
+>> +		presets->eq_presets_Ngts[i][0] = PCI_EQ_RESV;
+>> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << (i + 1));
+>> +		ret = of_property_read_u8_array(dev->of_node, name,
+>> +						presets->eq_presets_Ngts[i],
+>> +						num_lanes);
+>> +		if (ret && ret != -EINVAL) {
+>> +			dev_err(dev, "Error reading %s :%d\n", name, ret);
+>> +			return ret;
+>> +		}
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
+>> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+>> index 01e51db8d285..c8d44b21ef03 100644
+>> --- a/drivers/pci/pci.h
+>> +++ b/drivers/pci/pci.h
+>> @@ -9,6 +9,8 @@ struct pcie_tlp_log;
+>>   /* Number of possible devfns: 0.0 to 1f.7 inclusive */
+>>   #define MAX_NR_DEVFNS 256
+>>   
+>> +#define MAX_NR_LANES 16
+>> +
+>>   #define PCI_FIND_CAP_TTL	48
+>>   
+>>   #define PCI_VSEC_ID_INTEL_TBT	0x1234	/* Thunderbolt */
+>> @@ -808,6 +810,20 @@ static inline u64 pci_rebar_size_to_bytes(int size)
+>>   
+>>   struct device_node;
+>>   
+>> +#define PCI_EQ_RESV	0xff
+>> +
+>> +enum equalization_preset_type {
+> 
+> For the sake of completeness, you should add EQ_PRESET_TYPE_8GTS also. You could
+> skip it while reading the of_property_read_u8_array().
+Can we add like this to make parsing logic easier otherwise while
+deference the presets array we need to subtract -1.
+currently we are using like this presets[EQ_PRESET_TYPE_16GTS] if
+we want to keep in same way we need to use like below.
 
+	EQ_PRESET_TYPE_8GTS,
+	EQ_PRESET_TYPE_16GTS = 0,
+> 
+>> +	EQ_PRESET_TYPE_16GTS,
+>> +	EQ_PRESET_TYPE_32GTS,
+>> +	EQ_PRESET_TYPE_64GTS,
+>> +	EQ_PRESET_TYPE_MAX
+>> +};
+>> +
+>> +struct pci_eq_presets {
+>> +	u16 eq_presets_8gts[MAX_NR_LANES];
+>> +	u8 eq_presets_Ngts[EQ_PRESET_TYPE_MAX][MAX_NR_LANES];
+>> +};
+>> +
+>>   #ifdef CONFIG_OF
+>>   int of_get_pci_domain_nr(struct device_node *node);
+>>   int of_pci_get_max_link_speed(struct device_node *node);
+>> @@ -822,7 +838,9 @@ void pci_release_bus_of_node(struct pci_bus *bus);
+>>   
+>>   int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge);
+>>   bool of_pci_supply_present(struct device_node *np);
+>> -
+>> +int of_pci_get_equalization_presets(struct device *dev,
+>> +				    struct pci_eq_presets *presets,
+>> +				    int num_lanes);
+>>   #else
+>>   static inline int
+>>   of_get_pci_domain_nr(struct device_node *node)
+>> @@ -867,6 +885,13 @@ static inline bool of_pci_supply_present(struct device_node *np)
+>>   {
+>>   	return false;
+>>   }
+>> +
+>> +static inline int of_pci_get_equalization_presets(struct device *dev,
+>> +						  struct pci_eq_presets *presets,
+>> +						  int num_lanes)
+>> +{
+> 
+> Don't you need to initialize presets to PCI_EQ_RESV?
+> 
+I will update in the next patch.
 
-Are there no other cooling methods?
-How does it compare to idle inject?
-
-Furthermore, couldn't the offlining of some CPUs lead to the rest being
-operated at much higher OPPs therefore the overall power increase, too?
-(Without having looked at if this is a possibility for this particular
-SoC.)
-Some numbers would be helpful IMO.
+- Krishna Chaitanya.
+> - Mani
+> 
 
