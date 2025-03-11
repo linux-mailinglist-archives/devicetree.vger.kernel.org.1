@@ -1,55 +1,67 @@
-Return-Path: <devicetree+bounces-156612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 335D7A5CD20
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:04:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D3DA5CD2E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:06:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3652D7A2F36
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:03:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2509417065B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC8F261580;
-	Tue, 11 Mar 2025 18:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D92262D13;
+	Tue, 11 Mar 2025 18:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sVLtqc4+"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3D8qMqzI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B39025C6F5
-	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 18:04:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3B982620C3;
+	Tue, 11 Mar 2025 18:06:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741716280; cv=none; b=LfqO6yDJvlxIG54OvxVx8NYv7ezOt6f+ywam6fHfg1uQXzSQzP2LdUl2MWFadQMjq8thLJlp5YVBM/SMnqYyAHfVxcnoreNKKAynDONkBIGRcAg3OnV0jF/3XwJvqTD7z3zTlwuYNsNs53yg4lFenR9+o29i8HtgXMZgDR0DHgg=
+	t=1741716389; cv=none; b=uIVO5mY407xFIUjMN3Hn4jb1WjH5f9IWsTUoWkRo+/rkGB+cTng69Tq1tbK5V8rGOrnBoNQvhhXhP3Xus60t7BVxIJnG0sSJj1bVzWVYkgq0xiX5DDVjlQblpsZi6jBQ0i/AB/msFJ9TaH4P/NewnCPT+Tiow8N8nXG79Si/SMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741716280; c=relaxed/simple;
-	bh=zn3uUZNWsdE3x2MLSqtbb/9+3DdY8cFVykXA2GTlNjg=;
+	s=arc-20240116; t=1741716389; c=relaxed/simple;
+	bh=DippBqC0BBU0qH1E5vSEMORAFTY5N4fiUMqRFBzB8mQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYGd+ZYCV8nZkf8UHyAR/Cw30Sckf67ZxBcIH0ZwwhHGuAzDhHQspCzzZHiElcuskXv5JmqblzNSFEKBpROWDPHDHeG9LgzVxR4zC0uFiDUwy5PkuiWJiLriizixSsrilag49gGpdTNYqPznqjF6KX8Ls8dwCvw68v5qiHsgJ1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sVLtqc4+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE8C6C4CEE9;
-	Tue, 11 Mar 2025 18:04:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741716280;
-	bh=zn3uUZNWsdE3x2MLSqtbb/9+3DdY8cFVykXA2GTlNjg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sVLtqc4+GjFTqd+WwG0SCqfZMa1PWZIR3Yirhn0Gb7XEh6EeMV/9ji7+WDNBArIbA
-	 /kfna8SmsJ5n2KvOlgMKxzat75ZESHNBxYMQbZdFupncDkkU7yDyrrfwy6ok/b4Vvw
-	 s0AD9PRfnQwgNBcmubnljLjw42YbxNukusPXxYacf4wwmjX6To5zKYh1rw6fJSNLZH
-	 uucgj8e7Uzwg84ag+xTbh1sqkRauvmGgVG5O7GKLifS9z3XjUihampR9PArul04jfY
-	 ZeEgOXcSO7RDAojZx4gLaaFhzdtMGN35Yho67+JcNblbeaHYbhJJ6calnQ6nD4dmDr
-	 P5x7Ehy/225lw==
-Date: Tue, 11 Mar 2025 13:04:38 -0500
-From: Rob Herring <robh@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: airoha: Add the pbus-csr node for
- EN7581 SoC
-Message-ID: <20250311180438.GA3903655-robh@kernel.org>
-References: <20250308-en7581-pbus_csr-binding-v1-1-999bdc0e0e74@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=C+kEAc1lA3DDFhRSC2stkZHm7/p/V32oIibUZDZ2bTmzw4j1eGxCGKUGlCZOWv9Ce51lh3J+/5vESWivRV9PMyv8TYITPDEDyqCgBuuFxycFCZFLDBJYRLjqc2uEuIyXmCa6n9RQDj/9J8pbtBroXx806+HwlyEXix2ETRbkNjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3D8qMqzI; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=3OLyNSn1WdzXXSydJk+U4Xqnh9AkjR3NtHdm4uHlg2I=; b=3D8qMqzI2hLyJ4OmXTqaru27Sj
+	yuWdbwj4lnjwq0ZZyrOZmsml2cahvtrLvdfCwPVJf+fO//6p/cWAEJwc+Mm80x2NsDSdInA99QL6b
+	HEydjaVzn9+FbbYMbYCpHs6cAC2QFKgEF6jtqplLpjylWi09wQVpS/aSaQSpH2BkjSd0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ts3zV-004Ppo-Ho; Tue, 11 Mar 2025 19:06:09 +0100
+Date: Tue, 11 Mar 2025 19:06:09 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Rob Herring <robh@kernel.org>
+Cc: Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: ethernet-phy: add
+ property mac-series-termination-ohms
+Message-ID: <de68ea7e-1ca5-4983-9824-3fb432b00e82@lunn.ch>
+References: <20250307-dp83822-mac-impedance-v1-0-bdd85a759b45@liebherr.com>
+ <20250307-dp83822-mac-impedance-v1-1-bdd85a759b45@liebherr.com>
+ <20250311173344.GA3802548-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,15 +70,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250308-en7581-pbus_csr-binding-v1-1-999bdc0e0e74@kernel.org>
+In-Reply-To: <20250311173344.GA3802548-robh@kernel.org>
 
-On Sat, Mar 08, 2025 at 09:35:45AM +0100, Lorenzo Bianconi wrote:
-> Introduce pbus-csr document bindings for EN7581 SoC. The airoha pbus-csr
-> block provides a configuration interface for the PBUS controller used to
-> detect if a given address is accessible on PCIe controller.
+On Tue, Mar 11, 2025 at 12:33:44PM -0500, Rob Herring wrote:
+> On Fri, Mar 07, 2025 at 11:30:01AM +0100, Dimitri Fedrau wrote:
+> > Add property mac-series-termination-ohms in the device tree bindings for
+> > selecting the resistance value of the builtin series termination resistors
+> > of the PHY. Changing the resistance to an appropriate value can reduce
+> > signal reflections and therefore improve signal quality.
+> > 
+> > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > index 824bbe4333b7ed95cc39737d3c334a20aa890f01..4a710315a83ccf15bfc210ae432ae988cf31e04c 100644
+> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > @@ -238,6 +238,11 @@ properties:
+> >        peak-to-peak specified in ANSI X3.263. When omitted, the PHYs default
+> >        will be left as is.
+> >  
+> > +  mac-series-termination-ohms:
+> 
+> A property of the MAC (or associated with it) should be in the MAC's 
+> node.
 
-Assuming the binding is complete, you can just add the compatible to 
-syscon.yaml.
+But it is the PHY which uses the property, and the PHY which is
+implementing the resistor.
 
-Rob
+Also, a PHY has two sides, one towards the MAC and a second media side
+to the network peer via the Ethernet cable. Both sides need
+termination resistors. So we need something in the name to make it
+clear which side of the PHY we are talking about. So we might end up
+with something like mac-termination-ohms and media-termination-ohms,
+in the PHY node.
+
+> Also, sounds like either either end could have a property.
+
+True, the MAC could also need a similar property, since the outputs
+from the MAC to the PHY needs termination resistors.  For the MAC,
+termination-ohms is probably sufficient, or phy-termination-ohms to
+indicate it is towards the PHY?
+
+	Andrew
 
