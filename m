@@ -1,498 +1,239 @@
-Return-Path: <devicetree+bounces-156576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6DAA5CA64
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 17:10:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1F07A5CAB0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 17:21:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87C963B0A9D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:10:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 284257A63F0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79AE725EFB6;
-	Tue, 11 Mar 2025 16:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D266D25E83F;
+	Tue, 11 Mar 2025 16:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K4rgSdt1"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="BOZEZoyT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2054.outbound.protection.outlook.com [40.107.220.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4705025B68E;
-	Tue, 11 Mar 2025 16:10:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741709443; cv=none; b=ctbgVkbONC8JW1w/qfzpXh5Kdzu3wCUFkBdgkSEBiOhErZBkip5iJDNR8z0lFZ3/Ux4dnhDL6r5NCcPohblG4OOIqnwoRGropxh/g3aTP7uqo8wQN4z7aH3Ty2e9pUi0sFenf9pHk9/YKedCa8gdB/7ywTa9aj4Ag2UdukavC7c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741709443; c=relaxed/simple;
-	bh=zgNmjhMoZPBMDiyBETdCfcW6FwZyRy/nV0ICAQVAZm8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=HbYUI8yt0I/kyu8fwHwVuvpOW9viaNZhEVrfgyk03cfseWZSmIq2b6Twb5OuYN8SiR6vbxsvUQoW6O7lRBlZuENAjJqV6Cwas/quM8p7ffBZh8i6LhUz4AX85smN74bQXkR8E4nGJfknFBFImThMjF7ewTW4ZMx7yiJkXG7DIaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K4rgSdt1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 7BD24C4CEF3;
-	Tue, 11 Mar 2025 16:10:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741709442;
-	bh=zgNmjhMoZPBMDiyBETdCfcW6FwZyRy/nV0ICAQVAZm8=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=K4rgSdt1jALdxy4ZEx1QYVZwgD0PFlR1On6f8pAslLWTTSp6cx7wm7LqSp14Zd8Oi
-	 K77vbhWLsmu7xQLtdGBi5slR/fk84QpQQusPCvmVCXVzCB5oDLMSb8mmCPplApmnj5
-	 9YjJpf/gPB8YBotJSfAg046RHWh1XhF4kmMEFQ2uCOpApmtsSjHhl+1TVTie/e2Q5i
-	 QbM1KDi9y0dc0/DkHNvaShRW+bV9oApHRzcSewk4dz/aOwmcXDpoC+bPYWOGXFZNxO
-	 AuJ3+dJ318QR/vdet3OpqHF9HoK7yOOibHcn4OCyqu4baMvDzMWV/Ohp1+l9XoGGow
-	 b91C3DNUexWhw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 404C2C282EC;
-	Tue, 11 Mar 2025 16:10:42 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Tue, 11 Mar 2025 17:10:02 +0100
-Subject: [PATCH v4] ARM: dts: nexus4: Initial dts
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2EB25E833;
+	Tue, 11 Mar 2025 16:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741710070; cv=fail; b=dngwQPJQFqoOhldDllw2c9SDpeVisjoTrHQ6WIdHfUa8RZfsjcm+ZPHZJR4kcMZZ+6ca1JYjKxyN8eH7nEVtgPQL2TSBKHOMxDQcCjUrt/PotmWbL02XC6f5FtWDnVtar7DAPyFXO+cQdW0xv+pgb3YtpeF0XaHE8wxNUUSgXCk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741710070; c=relaxed/simple;
+	bh=TNiYMGVC3NHjW+UxW0y2c8Wrp+eihpFuzd/lPnbAhhI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Q5LEO881LoFx7wYHSaX1+0meNd3Zzy0WQCVk/ydINr2d4iqk+WvHcDNtcjH7ukj1Lm9PEPeMiDDI+lcp165oXh+O1B+xbUVVtmYOpi3sMBHjFLYc3k94yWaoS7FCXDSXTfyrikbzYwarAPDTiTQ8WBj+RcCq5bcEDIE+2m5PC3U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=BOZEZoyT; arc=fail smtp.client-ip=40.107.220.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=u7RQsnO+RLY2tyum+Cdccn29EfsH1IoK7IiKaGAQfN++3+6Dder4T73yLo9/ykdQ4QhOFlhRzY+OA62TUEbsMAASWNPL8JyrorZCdWlXuTcR0oqNy5cwxKCghd09+eJ9xsNcl30pAQJKPTpDdHMpXihywmDfDHLo58+VX2ZIE3fguAhTGKCE42cnUTz5lgJfN9MKZZRkoAqAEx4XM7NCPL7XvAQgT14uL38Q/db9LuizN2qMMvX1BiKgvb+7M2F5yAEopFlGG1g9VHvYMMkw/YmrYwT+0YBMePgkWotx8tPCCWAWsVZc8sBCdq7vlCtCudfJkSyOsG9n+HAVCcwZpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Xk464NwXSKnl4SIKPUvR9mzPvDOdgSXybDHjtYPLg5Y=;
+ b=K0KV1tFU0AODfIMPzIctrQZIGsLSUHskHC/UrfGUMvgSLMd7WoEfnvTurZrXHDziKrRLZ1yqyjOb9cRBnXXHFcOtcBOAyk/YIkbofVrJvvdYWDAMgzWJvV6qxfNLquyUjzf9wi0xs3iOMu/NpILKYzGwnrFIHSAqIc3U43W/+87b0VbAkVlJAriFYJATUTqeHq9WXAPvW9+iAkKVX+fy/arMB8tGtqvqC1ujQmICWeEeEN54VmW+1WKAGfwPuRFXtsO1vPgkBKWUBTsSh8/7a5TZNAQXl0j8wDPe+0ka/Jdn1quKbiQbM5g2ZDYKpHPuTzJP0GanyA0OOFYt9KRnIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xk464NwXSKnl4SIKPUvR9mzPvDOdgSXybDHjtYPLg5Y=;
+ b=BOZEZoyTS1KiFw0wzAU+TrOnLovnvXc265aZE8eydr0uBhF4RvPsEBY4LbynojyhIBM/JJEeFNQOSB6kZTVALHcMQ1QNCIzBBLcmlOZMru5ClEGbjWVGBXcDrDDy63oKQGdJYRFTYQ3T5WmJ7AFmk3baUtEZxHFk5S2tYhC83Xk=
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com (2603:10b6:806:2a8::22)
+ by IA1PR12MB8519.namprd12.prod.outlook.com (2603:10b6:208:44c::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Tue, 11 Mar
+ 2025 16:21:06 +0000
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::b25:4657:e9:cbc3]) by SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::b25:4657:e9:cbc3%3]) with mapi id 15.20.8511.026; Tue, 11 Mar 2025
+ 16:21:06 +0000
+From: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: "bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>,
+	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Simek,
+ Michal" <michal.simek@amd.com>, "Gogada, Bharat Kumar"
+	<bharat.kumar.gogada@amd.com>
+Subject: RE: [PATCH v5 3/3] PCI: xilinx-cpm: Add support for Versal Net CPM5NC
+ Root Port controller
+Thread-Topic: [PATCH v5 3/3] PCI: xilinx-cpm: Add support for Versal Net
+ CPM5NC Root Port controller
+Thread-Index: AQHbhtPeEUPAR7AKo0iR5vshusHgCrNssBiAgAF/bwCAAAW4sA==
+Date: Tue, 11 Mar 2025 16:21:06 +0000
+Message-ID:
+ <SN7PR12MB72013B1079A490505A285FD58BD12@SN7PR12MB7201.namprd12.prod.outlook.com>
+References: <20250310170717.GA556500@bhelgaas>
+ <20250311155938.GA629931@bhelgaas>
+In-Reply-To: <20250311155938.GA629931@bhelgaas>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=3d39f31f-c72c-4457-85e6-01a0cb1b2e5a;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-03-11T16:20:06Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10,
+ 3, 0, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR12MB7201:EE_|IA1PR12MB8519:EE_
+x-ms-office365-filtering-correlation-id: 19bfc1b9-05d8-4d3c-89fd-08dd60b8b9dc
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?x5HAQjOdow3yCpM4wCMOTBPn7VTwBKC9SxuuGDjYuzADsP9d5OZXdIr1JMhj?=
+ =?us-ascii?Q?ZBy0AYgqJ9e5873MiktI4dRbzxwoPNyh9yqQW2WKo0ZN0fysIMGWCg6l48Tc?=
+ =?us-ascii?Q?Dds/Vs8CpUiagxLa5uF9krmpGmN2wdu9nvzOUw+dClc3i1K6gc+KXSOC6og8?=
+ =?us-ascii?Q?A6tD18AXwZyorga84Xg/+53bTe6/XSyzRUc1h7XtPEvy/lXRvZIQreZBnCGx?=
+ =?us-ascii?Q?6iPg82QuAGuAs04IiB+SjqTc6/JhyjpoQK83uAI8gbo33R3TRc5WpSIZJBq7?=
+ =?us-ascii?Q?8pOS895OSzzQOLvvo95eE2A+2kw+nByGAPa0vxpYsymvOEsl2nazT9zMCMFG?=
+ =?us-ascii?Q?+6HwsDw1ALyHRUGRJzWeclBAHQ9CGDU4kxqIUgR6jXYpQZ6gir1ZtNcZdmxS?=
+ =?us-ascii?Q?V9vid9B63TKUAb1PKGtbMprBHJsDP8zJy+KUd9bbqhADsV0Ym2ghX7pVHwzq?=
+ =?us-ascii?Q?0JXri9oircXO1iWBxZqK+8i2zGfKAIaKgdUBUxEPKLQaEdJWhZTQfb3tmVDB?=
+ =?us-ascii?Q?yEzXKqVcMbw97VZOcaPHLZHKxg2iP2XtkPDKJmc0yntqif42+wneLKzaQoc6?=
+ =?us-ascii?Q?SI3v9jAyrEsznFRtwSuujQJBBrj8k3N5hfeuultsPAxD4HBkfTPlkF/pHyr+?=
+ =?us-ascii?Q?5JGUZKmHzKgWRPkG7w4W58tP/OHbBms/gw/d/BYdrCDlrHLAFKbas15Q0E96?=
+ =?us-ascii?Q?+q3U8p6REb8swG9gvS9CiMDvisz371GaEds3RKVSdCm/SBqvpQ+brVezXZBn?=
+ =?us-ascii?Q?gn8ayCQbk3PqYQkttiAV8YGEVLigIi3xZe36IBzGiMACYj29v7VJmTYBB82Q?=
+ =?us-ascii?Q?5Ilx+aB05LPEbkafsh9Bwf0TKmn666QZnasluNEdgS3M/DXsaOIiQAxfNkr7?=
+ =?us-ascii?Q?WiC0fIe0hKNHV46AIf28bL4qrLb0F289/GYhWZvwMyp2jru8mi29xATmr7m+?=
+ =?us-ascii?Q?zIcgIaBf/HxRvjjiP7Z92gG8HjztpRB+o4sK/9nwY8HuTqa2mcKkYZ7ZpixW?=
+ =?us-ascii?Q?ufCKYd0fE54dcrUerO25FIlIgCiIK4FYZnnwPZa7mcO8zMH/u0lf49aeOeco?=
+ =?us-ascii?Q?5EE/y28GLpOUnSRB4WsiA6SIU5RtKGNLkYEmeko+6e+N7H0Xj96WxWD4sxgD?=
+ =?us-ascii?Q?bd6MOnk2coCB4Z3aqoxzet/io0L6/1KJ08YuPE3kxKyyr5NgDdcU1b3b4bsE?=
+ =?us-ascii?Q?kFIiNk37OwWXzIqai0pOsYHgU7hxHJGkC1pXSn7JlhjdSzvT5N/kGUiZgg7P?=
+ =?us-ascii?Q?6VdLPi8XVJBeuqaxdL9NG2YRjKJW58v5cN82cR0Y7oA11DeEEy3Q38bWHDhB?=
+ =?us-ascii?Q?FAYebM26FgkkLMc20CKzYMdmUHp/MddmunK9loR25KnvDCP2i79YYULq/f/U?=
+ =?us-ascii?Q?HD3jxIuPfkXavjj8KMFiNKkSnKTakTAbRX8cASyX6Ng2Adat0aWsqppuI34h?=
+ =?us-ascii?Q?TpECQwSpYRTni5qqUzLCK1Ef37ur59ZR?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR12MB7201.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?FqPLMicnjsOXwYEfBZtHmVThSuwCXfIN+H4AvWVbLGVYkG7qwCJf8t7HM8S5?=
+ =?us-ascii?Q?DDQavhgGfyD9tmtGo6jGGhVHxCPwBMcsNtsmJksPaXYCS4bw4oiZOY9Urfs5?=
+ =?us-ascii?Q?00HlB6Hn/qz3Q+4kIuBkSSLJk0gCkkpQwaEtgYwDmVEBgbOgyqvMkriEPVCr?=
+ =?us-ascii?Q?uONyPoc29iNMGYMvOeZs/6hm7XtQWjg79PyjMlG/07Y+UAiSX29HE0N956MR?=
+ =?us-ascii?Q?Yn9BpB2N8+lsoRCYrCAUrB5vcYV8QTmyLlC0Bg10btVUQrbbb/9raLxBTIcV?=
+ =?us-ascii?Q?V878/catlFD7YXUN0zRgpzBKjjfYaMC0RJX5uVOnIxK/xvN2bLITVPa9zyUT?=
+ =?us-ascii?Q?RjjBmNkOfjGd3OCxi80B4HhMocaqCbv8B+b/PZWeACY3+jvn83/0PpiWXNaj?=
+ =?us-ascii?Q?UKZqnqprxB/ukUqns3zjfX8ZGxSJCSiobA8gwu54W8nV6MR5S4KHm0qn6xfv?=
+ =?us-ascii?Q?r9s/qqECN4eYk+HL5ab+lorz9xoMC/YNvwq3DST5UGxb9wOxbnI1EzTCnvlW?=
+ =?us-ascii?Q?/7KVtjh0QJFuvLqjH8zK7QeDfcTB+/uB2LmuR105ho2bQD8WOs/KbMG7JKJG?=
+ =?us-ascii?Q?ZJdJw27qwyG6kOHzdE43BLW8qP/b1kYwNJ7NlGOzjcAwgD9pzkG5ktzy6mOn?=
+ =?us-ascii?Q?ew0gUvWtIOGo9MYPqPBnKePofVQDSy3yAXGeWeZxKpwgLkFp6yfA8kJdkvFw?=
+ =?us-ascii?Q?Y+M5TsDJFTNgMQVgoYQkea1cOgkyuUbAF1KlwoU2VvnigE27LU8GEbdoh48d?=
+ =?us-ascii?Q?X7+Y0PPJPSi/4dd+pNXOkdLPLgMQQ9/0IKuI6j7NqYC/5eeqAEpSiptC5XoY?=
+ =?us-ascii?Q?uyreLhGIfC8Ysxyxbih0AodJkl2tfz1sLieo8dNXoHcGXQiiNOmfZKV/y8/c?=
+ =?us-ascii?Q?VL7GB7AtoGJs6mcHWUGqZ1O8ovJxgQN+G83ujnMyuQbMuP3F9fN/D5GxRNgC?=
+ =?us-ascii?Q?9ylEq6aMSrd7cRFv9xG2rPwfck3Q7r/HsOLavl6KJCAyBs/B8vvYyVc0s0A/?=
+ =?us-ascii?Q?iWZhYHGdVPsql1IaepDN23ukMQlxBWaLK6zpjzGWFHuLLIxSewX6U7ZSRHce?=
+ =?us-ascii?Q?dgkQpQJXlmUSwXSYRL10r3HH0KDWse/1d/vS8BVPvtZ66+S2g36ylC7ZfZvx?=
+ =?us-ascii?Q?q4qIOc7Yn+967m4FKmFXxNCupOZOkeq3GeTwyeoRG6hhkdNUvbq3Pth17Vj9?=
+ =?us-ascii?Q?NnpsuRHsrwVmxWPSslppodzdeMXdyCpzB6Fr4HYT40DBPT+ltbyaFDo9KJX8?=
+ =?us-ascii?Q?Y51RD5tMol91nIfhXjWuv4Tdi0wHPoK7t57pPRBzCEn7RNcXHlj++X3w9mxs?=
+ =?us-ascii?Q?MRWBbszbwN2dVsJdtOW4tZHgXPPiGQHg9Y/zM0WxJGvv4qWk+/ijHuPwoeeC?=
+ =?us-ascii?Q?6XYTPEnwqIXHv9JGIQh8aacKWgxrCfoJAwOZ6pXrXhzNfTgKhEw7Xdq3AdWF?=
+ =?us-ascii?Q?mGYon0ZbcpTOUa6gddXeVx3e0Na67kYCwO+28bJ9C1IXlU1AIEaUGJ6mscdD?=
+ =?us-ascii?Q?5KpOWcy5v9fkO2ahBgIH0IBMi33nWExNBa8BlsP9BChPtY49IKv3qNCZEwNq?=
+ =?us-ascii?Q?/6VvBMLDcLpnzkxnmB0=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250311-lg-nexus4-mako-v4-1-3916c8ec7edb@ixit.cz>
-X-B4-Tracking: v=1; b=H4sIAFlg0GcC/3XMQQ6CMBCF4auQWTumtICFlfcwLCodYKJS0yKpE
- u5uZe/yf8n7VgjkmQI02QqeFg7sphTFIYNuNNNAyDY1SCFLoUSN9wEniq9Q4MPcHFojtFJal1d
- ZQTo9PfUcd/DSph45zM6/d39Rv/UvtSjMMbed1OJke1lXZ448H7sPtNu2fQFkqxLEqgAAAA==
-X-Change-ID: 20250309-lg-nexus4-mako-da0833885b26
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
- Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
- Ivan Belokobylskiy <belokobylskij@gmail.com>, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9574; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=ej/fcyNobEhGu/DGU98SkH5ibaeHLK+oGaImrCZQGVA=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBn0GB8zy0C8e3ZvENnVBihwn53dFwRSkkTq3jft
- 2A4dKa7tYmJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCZ9BgfAAKCRBgAj/E00kg
- cqfQD/44hUKUo9cVwDBhie+HzrDf3AHjG0oITt5/Z7RJyLN24fKH//LeNRQ+4TXvtkOatEE/FAc
- 3zZ0wJxirG7qC7SgFE4+MlC8/GYwCBxpIptg+JaruMkIjQxBoirSDJ2MHj/ScdjXYznh6818OTL
- DlTSDPv71gHicU9n3z+rMpBXkDuNtcEMkIo0j1zlIUs8EO3/SenOojkRD2uRv5ser+my64v7JRF
- Q99cZkPNh0+zFQvKEefTYWE7j6gI52gOrUu4ETcrTw3sukuNgXSNmgWf6Tr35uUHgaKIT0EAPOB
- nkt80X0Te8x+xqp2DemmIGkmBCOdJm3cbrKFqe+Ty2EzSFPYe/ZxiqqoIL1XfaY9zjqlCBnhPhQ
- +aj1byPigyXFGQSQkzUsJe9twZw47y0ul6KlH1PO9+JeK6tM5Q0S9H65s5jgpmxxzkl2fAtkEYa
- ZrHrZ3eDQn50wAtI9B+C6wy8iuIbk1cV4jcGnHf9j8YDLV/rKxuw9tzx9sn7PgyaIe+Vucltp+t
- Dz1faaV/BsPi85MqSbvblEmMCXep2SE4U921r3x+57zOVwAjVXEmuoobPmSVZDlS1Zh769WDCZt
- uIHxrR43mXuVUAJZgevfMV6M7lEfog5rcFG1sexgXpRV50roYLkGe1wgfJWFe1dXj6gmhVydYvl
- 8AdL8Na11FM2RBw==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB7201.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19bfc1b9-05d8-4d3c-89fd-08dd60b8b9dc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2025 16:21:06.4634
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wBMJ3rQVPjWBOOCsEWgUO+9MwUbMAq9LsLrEhVQLhxu+s+M5w9D8O1gHE0zXii7o5vNMbEZYyP9IBjko3VtxOg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8519
 
-From: Ivan Belokobylskiy <belokobylskij@gmail.com>
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Add initial support for LG Nexus 4 (mako).
+Hi Bjorn,
 
-Features currently working: regulators, eMMC, and volume keys.
+> -----Original Message-----
+> From: Bjorn Helgaas <helgaas@kernel.org>
+> Sent: Tuesday, March 11, 2025 9:30 PM
+> To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>
+> Cc: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
+> manivannan.sadhasivam@linaro.org; robh@kernel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org; linux-pci@vger.kernel.org; devicetree@vger.kernel.or=
+g;
+> linux-kernel@vger.kernel.org; Simek, Michal <michal.simek@amd.com>;
+> Gogada, Bharat Kumar <bharat.kumar.gogada@amd.com>
+> Subject: Re: [PATCH v5 3/3] PCI: xilinx-cpm: Add support for Versal Net C=
+PM5NC
+> Root Port controller
+>
+> On Mon, Mar 10, 2025 at 12:07:17PM -0500, Bjorn Helgaas wrote:
+> > On Mon, Feb 24, 2025 at 09:20:24PM +0530, Thippeswamy Havalige wrote:
+> > > The Versal Net ACAP (Adaptive Compute Acceleration Platform) devices
+> > > incorporate the Coherency and PCIe Gen5 Module, specifically the
+> > > Next-Generation Compact Module (CPM5NC).
+> > >
+> > > The integrated CPM5NC block, along with the built-in bridge, can func=
+tion
+> > > as a PCIe Root Port & supports the PCIe Gen5 protocol with data trans=
+fer
+> > > rates of up to 32 GT/s, capable of supporting up to a x16 lane-width
+> > > configuration.
+> > >
+> > > Bridge errors are managed using a specific interrupt line designed fo=
+r
+> > > CPM5N. INTx interrupt support is not available.
+> > >
+> > > Currently in this commit platform specific Bridge errors support is n=
+ot
+> > > added.
+> >
+> > > @@ -478,6 +479,9 @@ static void xilinx_cpm_pcie_init_port(struct
+> xilinx_cpm_pcie *port)
+> > >  {
+> > >   const struct xilinx_cpm_variant *variant =3D port->variant;
+> > >
+> > > + if (variant->version !=3D CPM5NC_HOST)
+> > > +         return;
+> >
+> > You're adding support for CPM5NC_HOST, but this changes the behavior
+> > for all the NON-CPM5NC_HOST devices, which looks like a typo.
+> >
+> > Should it be "variant->version =3D=3D CPM5NC_HOST" instead?
+>
+> Thanks for your patch that fixes this part.
+>
+> > Also, this makes it look like CPM5NC_HOST doesn't support any
+> > interrupts at all.  No INTx, no MSI, no MSI-X.  Is that true?  If so,
+> > what good is a host controller where interrupts don't work?
+>
+> Does this controller support interrupts?
 
-Signed-off-by: Ivan Belokobylskiy <belokobylskij@gmail.com>
-Co-developed-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
-Changes in v4:
-- Sorted regulators and added regulators compatible.
-- Corrected pmic include and references.
-- Moved &rpm outside of / node.
-- Moved and simplify pm8921 keypad.
-- Added chasis-type.
-- Dropped incomplete WiFi node, will be provided in future
-  contributions.
-- Link to v3: https://lore.kernel.org/r/20250309-lg-nexus4-mako-v3-1-1dc2807df296@ixit.cz
+Yes, CPM5NC controller supports MSI & MSI-X via gic-its.
 
-Changes in v3:
-- rebased against next-20250307
-- dropped backlight until driver gets converted to DT
-
-Changes in v2:
-- lge vendor doesn't exist anymore, rename to lg
-- sdcc@ to mmc@ to comply with dt-schema
----
- arch/arm/boot/dts/qcom/Makefile                    |   1 +
- .../boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts  | 344 +++++++++++++++++++++
- 2 files changed, 345 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-index f06c6d425e91dd73c2b453d15543d95bd32383b9..0c1d116f6e84f76994aa8c8286350bdcd1657a42 100644
---- a/arch/arm/boot/dts/qcom/Makefile
-+++ b/arch/arm/boot/dts/qcom/Makefile
-@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-apq8064-ifc6410.dtb \
- 	qcom-apq8064-sony-xperia-lagan-yuga.dtb \
- 	qcom-apq8064-asus-nexus7-flo.dtb \
-+	qcom-apq8064-lg-nexus4-mako.dtb \
- 	qcom-apq8074-dragonboard.dtb \
- 	qcom-apq8084-ifc6540.dtb \
- 	qcom-apq8084-mtp.dtb \
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..51edd661e4bd903a32445d15955585a194574f30
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
-@@ -0,0 +1,344 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/qcom-rpm.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+
-+#include "qcom-apq8064-v2.0.dtsi"
-+#include "pm8821.dtsi"
-+#include "pm8921.dtsi"
-+
-+/ {
-+	model = "LG Nexus 4 (mako)";
-+	compatible = "lg,nexus4-mako", "qcom,apq8064";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		serial0 = &gsbi7_serial;
-+		serial1 = &gsbi6_serial;
-+		serial2 = &gsbi4_serial;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		ramoops@88d00000{
-+			compatible = "ramoops";
-+			reg = <0x88d00000 0x100000>;
-+			record-size = <0x20000>;
-+			console-size = <0x20000>;
-+			ftrace-size = <0x20000>;
-+		};
-+	};
-+
-+	battery_cell: battery-cell {
-+		compatible = "simple-battery";
-+		constant-charge-current-max-microamp = <900000>;
-+		operating-range-celsius = <0 45>;
-+	};
-+};
-+
-+&rpm {
-+	regulators {
-+		compatible = "qcom,rpm-pm8921-regulators";
-+
-+		vin_lvs1_3_6-supply = <&pm8921_s4>;
-+		vin_lvs2-supply = <&pm8921_s1>;
-+		vin_lvs4_5_7-supply = <&pm8921_s4>;
-+
-+		vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
-+		vdd_l24-supply = <&pm8921_s1>;
-+		vdd_l25-supply = <&pm8921_s1>;
-+
-+		vdd_l26-supply = <&pm8921_s7>;
-+		vdd_l27-supply = <&pm8921_s7>;
-+		vdd_l28-supply = <&pm8921_s7>;
-+
-+		/* Buck SMPS */
-+		pm8921_s1: s1 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1225000>;
-+			qcom,switch-mode-frequency = <3200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_s2: s2 {
-+			regulator-min-microvolt = <1300000>;
-+			regulator-max-microvolt = <1300000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+			bias-pull-down;
-+		};
-+
-+		/* msm otg HSUSB_VDDCX */
-+		pm8921_s3: s3 {
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <1150000>;
-+			qcom,switch-mode-frequency = <4800000>;
-+			bias-pull-down;
-+		};
-+
-+		/*
-+		 * msm_sdcc.1-sdc-vdd_io
-+		 * tabla2x-slim-CDC_VDDA_RX
-+		 * tabla2x-slim-CDC_VDDA_TX
-+		 * tabla2x-slim-CDC_VDD_CP
-+		 * tabla2x-slim-VDDIO_CDC
-+		 */
-+		pm8921_s4: s4 {
-+			regulator-always-on;
-+			regulator-min-microvolt	= <1800000>;
-+			regulator-max-microvolt	= <1800000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+			bias-pull-down;
-+			qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
-+		};
-+
-+		/*
-+		 * supply vdd_l26, vdd_l27, vdd_l28
-+		 */
-+		pm8921_s7: s7 {
-+			regulator-min-microvolt = <1300000>;
-+			regulator-max-microvolt = <1300000>;
-+			qcom,switch-mode-frequency = <3200000>;
-+		};
-+
-+		pm8921_s8: s8 {
-+			regulator-min-microvolt = <2200000>;
-+			regulator-max-microvolt = <2200000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+		};
-+
-+		pm8921_l1: l1 {
-+			regulator-min-microvolt = <1100000>;
-+			regulator-max-microvolt = <1100000>;
-+			regulator-always-on;
-+			bias-pull-down;
-+		};
-+
-+		/* mipi_dsi.1-dsi1_pll_vdda */
-+		pm8921_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			bias-pull-down;
-+		};
-+
-+		/* msm_otg-HSUSB_3p3 */
-+		pm8921_l3: l3 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3500000>;
-+			bias-pull-down;
-+		};
-+
-+		/* msm_otg-HSUSB_1p8 */
-+		pm8921_l4: l4 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		/* msm_sdcc.1-sdc_vdd */
-+		pm8921_l5: l5 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		/* earjack_debug */
-+		pm8921_l6: l6 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3000000>;
-+			bias-pull-down;
-+		};
-+
-+		/* mipi_dsi.1-dsi_vci */
-+		pm8921_l8: l8 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+			bias-pull-down;
-+		};
-+
-+		/* wcnss_wlan.0-iris_vddpa */
-+		pm8921_l10: l10 {
-+			regulator-min-microvolt = <2900000>;
-+			regulator-max-microvolt = <2900000>;
-+			bias-pull-down;
-+		};
-+
-+		/* mipi_dsi.1-dsi1_avdd */
-+		pm8921_l11: l11 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+			bias-pull-down;
-+		};
-+
-+		/* touch_vdd */
-+		pm8921_l15: l15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		/* slimport_dvdd */
-+		pm8921_l18: l18 {
-+			regulator-min-microvolt = <1100000>;
-+			regulator-max-microvolt = <1100000>;
-+			bias-pull-down;
-+		};
-+
-+		/* touch_io */
-+		pm8921_l22: l22 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			bias-pull-down;
-+		};
-+
-+		/*
-+		 * mipi_dsi.1-dsi_vddio
-+		 * pil_qdsp6v4.1-pll_vdd
-+		 * pil_qdsp6v4.2-pll_vdd
-+		 * msm_ehci_host.0-HSUSB_1p8
-+		 * msm_ehci_host.1-HSUSB_1p8
-+		 */
-+		pm8921_l23: l23 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			bias-pull-down;
-+		};
-+
-+		/*
-+		 * tabla2x-slim-CDC_VDDA_A_1P2V
-+		 * tabla2x-slim-VDDD_CDC_D
-+		 */
-+		pm8921_l24: l24 {
-+			regulator-min-microvolt = <750000>;
-+			regulator-max-microvolt = <1150000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l25: l25 {
-+			regulator-min-microvolt = <1250000>;
-+			regulator-max-microvolt = <1250000>;
-+			regulator-always-on;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l26: l26 {
-+			regulator-min-microvolt = <375000>;
-+			regulator-max-microvolt = <1050000>;
-+			regulator-always-on;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l27: l27 {
-+			regulator-min-microvolt = <1100000>;
-+			regulator-max-microvolt = <1100000>;
-+		};
-+
-+		pm8921_l28: l28 {
-+			regulator-min-microvolt = <1050000>;
-+			regulator-max-microvolt = <1050000>;
-+			bias-pull-down;
-+		};
-+
-+		/* wcnss_wlan.0-iris_vddio */
-+		pm8921_lvs1: lvs1 {
-+			bias-pull-down;
-+		};
-+
-+		/* wcnss_wlan.0-iris_vdddig */
-+		pm8921_lvs2: lvs2 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs3: lvs3 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs4: lvs4 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs5: lvs5 {
-+			bias-pull-down;
-+		};
-+
-+		/* mipi_dsi.1-dsi_iovcc */
-+		pm8921_lvs6: lvs6 {
-+			bias-pull-down;
-+		};
-+
-+		/*
-+		 * pil_riva-pll_vdd
-+		 * lvds.0-lvds_vdda
-+		 * mipi_dsi.1-dsi1_vddio
-+		 * hdmi_msm.0-hdmi_vdda
-+		 */
-+		pm8921_lvs7: lvs7 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_ncp: ncp {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+		};
-+	};
-+};
-+
-+&gsbi1 {
-+	qcom,mode = <GSBI_PROT_I2C>;
-+
-+	status = "okay";
-+};
-+
-+&gsbi1_i2c {
-+	clock-frequency = <200000>;
-+
-+	status = "okay";
-+};
-+
-+&gsbi4 {
-+	qcom,mode = <GSBI_PROT_I2C_UART>;
-+
-+	status = "okay";
-+};
-+
-+&gsbi4_serial {
-+	status = "okay";
-+};
-+
-+&pm8821 {
-+	interrupts-extended = <&tlmm_pinmux 76 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
-+&pm8921 {
-+	interrupts-extended = <&tlmm_pinmux 74 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
-+&pm8921_keypad {
-+	linux,keymap = <
-+		MATRIX_KEY(0, 0, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0, 1, KEY_VOLUMEUP)
-+	>;
-+
-+	keypad,num-rows = <1>;
-+	keypad,num-columns = <5>;
-+
-+	status = "okay";
-+};
-+
-+
-+/* eMMC */
-+&sdcc1 {
-+	vmmc-supply = <&pm8921_l5>;
-+	vqmmc-supply = <&pm8921_s4>;
-+
-+	status = "okay";
-+};
-
----
-base-commit: 0a2f889128969dab41861b6e40111aa03dc57014
-change-id: 20250309-lg-nexus4-mako-da0833885b26
-
-Best regards,
--- 
-David Heidelberg <david@ixit.cz>
-
-
+Regards,
+Thippeswamy H
 
