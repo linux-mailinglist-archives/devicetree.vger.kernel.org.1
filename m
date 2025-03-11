@@ -1,100 +1,93 @@
-Return-Path: <devicetree+bounces-156495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A897EA5BF73
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:43:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B5CA5BF9A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:47:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03B34189A2FF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:43:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EAC43B3ED8
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:46:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1F8255E3C;
-	Tue, 11 Mar 2025 11:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD49221737;
+	Tue, 11 Mar 2025 11:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gUXhwXQL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="onwm2Mwl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE1D254861;
-	Tue, 11 Mar 2025 11:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F39C1D514E;
+	Tue, 11 Mar 2025 11:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741693333; cv=none; b=mdodtUZgocFd0TZXWUWUix1xxskq/eUJuE3rKS7vADFKuHSh6YiZ7+HHIwQcmx9QByye1IYKtxQ9sWPhYMlGJ7Xat8Lgqop0IxYK27L7e1T5W7nN9uGFc/FoPry/EGMppFFGAbO/hy1wu+DvUuGY8O2wf4X7uF+LIVHCAB02Mdw=
+	t=1741693620; cv=none; b=WlNsfPl6ECm9f4rKBZeYQzzglu9tm3+jwoqIvQ4CyB+pLnPjUJImYDdVnQI15zELqWsHmZ9jHQTctVb1cSWgZ42cN4cvJvDtz+ZleUy50AhiCVRa/8ynnTik6DGjphaM9PPapjycKr4x5+uR+jtk8qEMkQ97ETZiT9ABOXeupAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741693333; c=relaxed/simple;
-	bh=0cT+g/6WFHRo97S8MzNd/drxoZXKifddanz+n4Uem64=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D83IQBorCdey99LBtEgzsKLMgQqYzkUioOUSVfKOzE35B+SlLJRaxzFGshumYIcVjd99kKlRUyF90LlWRihOjx6R7zTMdJTheQjRTVVPYBKWfw9QXsyqgXZdc3kzz4kUtaYmL10ZB3h9YmS1yxkLGtqd5Je6nZRIufCUgrRS13A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gUXhwXQL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AE5DC4CEEB;
-	Tue, 11 Mar 2025 11:42:11 +0000 (UTC)
+	s=arc-20240116; t=1741693620; c=relaxed/simple;
+	bh=/WYDs73Nm1lb/GTeRLCUHgCKaixHsBgVcb+f13tuZ6g=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=t4Hb/h+ZToSgwtp6+L07PCG8+yDr3kK/BDtQpV4z67JrOFXBs27IZ8Grrthr6UcIcGbmSCwVapdlCigA8c75lllfHxxLzEHoh9wFVq5gDNXhj7kAmqC3N8Xmu6w6j2X+xvxFprrm//uNxJDWSsiaDxL/emIDcpZdnxBAbt5dZVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=onwm2Mwl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C368CC4CEE9;
+	Tue, 11 Mar 2025 11:46:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741693332;
-	bh=0cT+g/6WFHRo97S8MzNd/drxoZXKifddanz+n4Uem64=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gUXhwXQLYpC885YJdW2TRx7RUjZm5rSn13EHYURan6o2jQC3pgD+e2hKRnYvENUev
-	 IoPstSAUq6ZbXhledQeIrrlmuOGplzdFM1g8h52AMbNS2RN6NK66yvHRSlMg8wX8FO
-	 FCPl/kZqLxUF+z1+oPfxJRZo6aRMd0lLFbbrHDqeWeBS5jYgku6BK34y1E8ambTZfo
-	 OM2Cy1Z5ZJ8VAZce1vPKhK2/JbXCBZPNeoLJQJ2V7+WW2ethWoFp5rqjolTGskUcSm
-	 TQOzVOGlkbYV9Ho9jsztzeW4fkWX8mLb5QS4yKdedn86e7qDzpe615WK+R8unxCa1d
-	 RsALeUlcGrUBA==
-Date: Tue, 11 Mar 2025 12:42:08 +0100
+	s=k20201202; t=1741693619;
+	bh=/WYDs73Nm1lb/GTeRLCUHgCKaixHsBgVcb+f13tuZ6g=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=onwm2MwlnqeJgtZJd3NdhDoXu8Lz8tXY5d6n9aeq3UyWSGx3qH/u6OfBkrUcdXTgK
+	 38j94IriQR1emZT5Ouc2dFRGIgFhAFJIYTNxvcF1xeRCIUqpnFMVmcEnqG/vs5zigG
+	 ++2QAq1jOSfaOf/fYDxhQAkKPxm1AxmhROmYrdimYjj1tzM86YO81eayu3XkYqY7rc
+	 pwtF2LcNAixeNvQ95Aky13e65ZL5ggMatdvS1vxpwUOlpEo1XIth6yAm1Q88Oj3Qug
+	 paJugIGzVftncZc0rxild65Sdkwt8b+MSDkBjHLKvo+A3Qi4xVaB6wX5p1drvCYCjg
+	 MAmQrBm3kjRWw==
 From: Vinod Koul <vkoul@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Daniel Danzberger <dd@embedd.com>, Arnd Bergmann <arnd@arndb.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Nikita Shubin <nikita.shubin@maquefel.me>,
-	Guo Ren <guoren@kernel.org>, Yangyu Chen <cyy@cyyself.name>,
-	Ben Hutchings <ben@decadent.org.uk>, Felix Fietkau <nbd@nbd.name>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-phy@lists.infradead.org, linux-mediatek@lists.infradead.org,
-	linux-usb@vger.kernel.org, upstream@airoha.com
-Subject: Re: [PATCH 10/13] phy: airoha: Add support for Airoha AN7581 USB PHY
-Message-ID: <Z9AhkByegWQgC9YE@vaman>
-References: <20250309132959.19045-1-ansuelsmth@gmail.com>
- <20250309132959.19045-11-ansuelsmth@gmail.com>
- <Z9AhN9T8s1oogCUn@vaman>
+To: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+ manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, kishon@kernel.org, andersson@kernel.org, 
+ konradybcio@kernel.org, p.zabel@pengutronix.de, quic_nsekar@quicinc.com, 
+ dmitry.baryshkov@linaro.org, linux-arm-msm@vger.kernel.org, 
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+ Varadarajan Narayanan <quic_varada@quicinc.com>
+In-Reply-To: <20250220094251.230936-1-quic_varada@quicinc.com>
+References: <20250220094251.230936-1-quic_varada@quicinc.com>
+Subject: Re: (subset) [PATCH v11 0/7] Add PCIe support for Qualcomm IPQ5332
+Message-Id: <174169361442.507381.5728010780608923977.b4-ty@kernel.org>
+Date: Tue, 11 Mar 2025 12:46:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z9AhN9T8s1oogCUn@vaman>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On 11-03-25, 12:40, Vinod Koul wrote:
-> On 09-03-25, 14:29, Christian Marangi wrote:
-> > Add support for Airoha AN7581 USB PHY driver. AN7581 supports up to 2
-> > USB port with USB 2.0 mode always supported and USB 3.0 mode available
-> > only if the Serdes port is correctly configured for USB 3.0.
-> > 
-> > On xLate probe, the Serdes mode is validated and the driver return error
-> > if the Serdes mode doesn't reflect the expected mode. This is required
-> > as Serdes mode are controlled by the SCU SSR bits and can be either USB
-> > 3.0 mode or HSGMII or PCIe 2. In such case USB 3.0 won't work.
-> > 
-> > If the USB 3.0 mode is not supported, the modes needs to be also
-> > disabled in the xHCI node or the driver will report unsable clock and
-> > fail probe.
 
-Also I dont see phy depends on rest. Please split this and post phy bits
-separately at least..
+On Thu, 20 Feb 2025 15:12:44 +0530, Varadarajan Narayanan wrote:
+> Patch series adds support for enabling the PCIe controller and
+> UNIPHY found on Qualcomm IPQ5332 platform. PCIe0 is Gen3 X1 and
+> PCIe1 is Gen3 X2 are added.
+> 
+> This series combines [1] and [2]. [1] introduces IPQ5018 PCIe
+> support and [2] depends on [1] to introduce IPQ5332 PCIe support.
+> Since the community was interested in [2] (please see [3]), tried
+> to revive IPQ5332's PCIe support with v2 of this patch series.
+> 
+> [...]
 
+Applied, thanks!
+
+[1/7] dt-bindings: phy: qcom,uniphy-pcie: Document PCIe uniphy
+      commit: a2e934885c82912caf3f72b9511ef626f3619e3d
+[2/7] phy: qcom: Introduce PCIe UNIPHY 28LP driver
+      commit: 74badb8b0b146668cc6c03eb58e2a814f9463d02
+
+Best regards,
 -- 
 ~Vinod
+
+
 
