@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-156416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BAD2A5BA51
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:59:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B37FA5BA59
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:02:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10AF03AAE1D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:59:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D264166CC3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:02:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B03E7222585;
-	Tue, 11 Mar 2025 07:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB69C1EF38D;
+	Tue, 11 Mar 2025 08:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JwBw/X5t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L1Ii6f0A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BCF360;
-	Tue, 11 Mar 2025 07:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F2211EA7FD;
+	Tue, 11 Mar 2025 08:02:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741679961; cv=none; b=K2kGRlNrUO1ls3A1dhQzh1hfdsjT75kLODmV2p3vZuuziotxPrYzJvON8VXYHPA9Fgrzc3iajfR6dlb8SR4c7sA/e/U/lpR+H+Mgz5z95/lplK8An1pxadnKpIZNlT0vaEzbX7aIa/SOK2FvJKWV2iCIibCelNKhOTb10qhe4wE=
+	t=1741680138; cv=none; b=AzTp0Ze9uuk6IPD/8g07BGnzoy5ZoWaIxNma5fTqXNTnZzY/NYbJ/6KaSiwEXXOv5jjDJzOip1x9VGMkRd0thyqfYQXs3R6a4ZDf/qvhE9Tr3xjQXwd2KGOT6tLIT3gZ1zwLncJ0J32+Vn9Q/QMNH3z6E46Wx+x9ugff32tpDPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741679961; c=relaxed/simple;
-	bh=lVxPN8WE7T2o7rpe7aTu0Mo4GEzROYSX14bI6LflcP8=;
+	s=arc-20240116; t=1741680138; c=relaxed/simple;
+	bh=ER+SoneXM3aC53kwTjsYgrHGqM1EmcSSSqClcNpsios=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ek9M3FswaCTUk4ddVk1j+K3Vm28DthnD3ZDu3SQ79oErXaYCvX1CjXoU1Vqjm4zQ6w8NDfBjukWsQvB4xT1/RiEis0vnLnQvB4NfM7xe9O0VgOWsrDx2Co6LtjMfls9tbZyyUfDgndRTj800Dxp6w59fTbZoPHZnOBcfJCic87c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JwBw/X5t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 778FEC4CEE9;
-	Tue, 11 Mar 2025 07:59:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gUbEq5evEruGaafD0gv21riPI3reXCw8ZqNhwRLU1k3vXt1UAmVg0IkXjskT6kVL2u6EmkYzk2C/H5KAqiCt6UEOGaX6bgos9VrZ2ITaqQc1cTI5SXnoQNEPTOhdAnZ5kwIvKhWpmvgTrog4j5AntmTb10iO2nVfbeisenXZwfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L1Ii6f0A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA9BAC4CEE9;
+	Tue, 11 Mar 2025 08:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741679960;
-	bh=lVxPN8WE7T2o7rpe7aTu0Mo4GEzROYSX14bI6LflcP8=;
+	s=k20201202; t=1741680134;
+	bh=ER+SoneXM3aC53kwTjsYgrHGqM1EmcSSSqClcNpsios=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JwBw/X5t06/ItCAxQOTa7ggRW5RunQzCg85Cp9TFaEv26DhAmIsEnjoutSsuvaP24
-	 uuEk5o12XTAWDTtxHy54Q9x/S7fsaWmHGNB101hYxsfj2kDNOue4MBqhpaBn8WrYnz
-	 Jt7QrTDc7DM1Zl07xm2tbvPgmGkxlcY3Eg2ax0+/LJK+atsTE+wY8VdwoqbF/vGCs4
-	 ZRLdjP9kkvhl20RY6eM3RLsOrYV8bK6RnyJQasnkxqpKmCaPHwHOO1XVWmtlu+3Rri
-	 JAdqjo1t5ZjqZ7Nh75wW50NQP9PE/NB18Znusae5DP9tnwwF/mXeLP+mZ81njT05vF
-	 mHKqWvm3sb7dA==
-Message-ID: <0b90b304-4ecb-4f08-8135-4ca20fe46dc0@kernel.org>
-Date: Tue, 11 Mar 2025 08:59:13 +0100
+	b=L1Ii6f0AYn5e94wJ6fY4sQ60vyv+Ve56Uvflq+oAUrLzFPD5ndP3C1i0zbDWVLBay
+	 DUSB2bZMaqvUBDC1Icgk3X1lrElTqnjUbhwmw7uiiNaJPjwmIV42bIDmKs6RJDEYLi
+	 MXRSYjh2JiZg1xEqC0loybvy11SrazORpc/Ruh6sDEkaePrkcetIL5WYE9da29O17k
+	 6vvL93mJM/lr1l9Ao9sDaj/zd7a7uXcPu8V/ti0UbwBkgJ0k2SyR+REmx9G3O2UunY
+	 4oQw3b5z6eE94rdwxjGg5iT9nPKWZV8xbcd5pMAYlS05vN0H1y80750gd8jsIs9kUV
+	 OmyPj3ORjNzAA==
+Message-ID: <e00a7061-5283-4809-b652-5f6c5e1e4496@kernel.org>
+Date: Tue, 11 Mar 2025 09:02:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,8 +59,7 @@ Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
- <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
+References: <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
  <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
  <67b888fb-2207-4da5-b52e-ce84a53ae1f9@kernel.org>
  <Z3/hmncCDG8OzVkc@hu-wasimn-hyd.qualcomm.com>
@@ -70,6 +69,7 @@ References: <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
  <Z8AWHiVu05s0RJws@hu-wasimn-hyd.qualcomm.com>
  <a8991221-88b2-4a39-a51b-587c4cdeebe4@kernel.org>
  <Z8laCxtHOdNm3rRu@hu-wasimn-hyd.qualcomm.com>
+ <Z8lb889QrqluPXXl@hu-wasimn-hyd.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,233 +115,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z8laCxtHOdNm3rRu@hu-wasimn-hyd.qualcomm.com>
+In-Reply-To: <Z8lb889QrqluPXXl@hu-wasimn-hyd.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 06/03/2025 09:17, Wasim Nazir wrote:
-> On Mon, Mar 03, 2025 at 08:46:55AM +0100, Krzysztof Kozlowski wrote:
->> On 27/02/2025 08:37, Wasim Nazir wrote:
->>> On Wed, Jan 15, 2025 at 09:35:34AM +0100, Krzysztof Kozlowski wrote:
->>>> On 15/01/2025 06:48, Wasim Nazir wrote:
->>>>>> The the SoC, I am asking about the board. Why each of them is for
->>>>>> example r3?
->>>>>>
->>>>>> So this is not sufficient explanation, nothing about the board, and
->>>>>> again just look Renesas and NXP.
->>>>>>
->>>>>
->>>>> Hi Krzysztof,
->>>>>
->>>>> sa8775p(AUTO), qcs9100(IOT), qcs9075(IOT) are different SoCs based on
->>>>> safety capabilities and memory map, serving different purpose.
->>>>> Ride & Ride-r3 are different boards based on ethernet capabilities and
->>>>> are compatible with all the SoCs mentioned.
->>>>
->>>
->>> Hi Krzysztof,
->>>
->>>> Compatible? What does it mean for a board?
->>>>
->>>
->>> Ride board is based on multiple daughter cards (SOC-card, display,
->>> camera, ethernet, pcie, sensor, etc.).
->>>
->>> The SOC is not directly soldered to Ride board, instead SOC is soldered
->>> on SIP (System in Package) card which can be mounted on SOC-daughter card of
->>> Ride board.
->>> 	- SoC => SIP-card => SOC-daughter-card (Ride)
->>
->>
->> So basically pretty like other designs using SoM.
->>
->>>
->>> Together with SIP cards and other daughter cards we are creating different
->>> <soc>-Ride Variants with differences in memory map & thermal mitigations.
->>>
->>> The SIP card consists of SOC, PMIC & DDR and it is pin compatible to the
->>> SOC daughter card of <soc>-Ride board. Only SOC is changing accross SIP
->>> cards, except an additional third party SIL-PMIC for SAIL, which is not
->>> present in QCS9075 Ride.
->>
->> Just like every SoM
->>
->>>
->>> Other daughter cards remains same for <soc>-Ride variants, except
->>> ethernet card which is different for <soc>-Ride rev3 variants.
->>>
->>> So the Ride board (combination of daughter cards) is same across the SIP,
->>> while SOC on SIP card is changing which can be sa8775p, qcs9100 or qcs9075.
->>>
->>>> Third time: did you look how other vendors do it?
->>>>
->>>
->>> Yes, we have reviewed other vendors. However, please feel free to share
->>> any specific reference you would like us to follow.
->>>
->>> Here are few reference files we found from other vendors where similar
->>> tasks are performed which includes code refactoring and HW modularity:
->>>  - Freescale: fsl-ls208xa.dtsi, fsl-ls2088a.dtsi, fsl-ls2081a-rdb.dts
->>
->> That's an unexpected choice - I would rather look at dozen of SoMs for
->> iMX platforms.
->>
->>>  - Renesas: white-hawk-common.dtsi, r8a779g0-white-hawk.dts
->>>  - Rockchip: px30-engicam-common.dtsi, px30-engicam-ctouch2.dtsi,
->>>    px30-engicam-px30-core-ctouch2.dts
->>>
->>> In our case along with describing the HW, code refactoring is also done
->>> which might be causing confusion, but we are ready for any inputs for
->>> correction.
->>
->> I don't understand why this was not properly described since beginning.
->> You had the hardware in your hands and went with incomplete or even
->> incorrect hardware description.
->>
->>>
->>> Putting this pictorial diagram for updated DT structure depicting our HW.
->>>  - qcs9xxx-module.dtsi specifying QCS9xxx based SIP card/module having
->>>    SoC, PMICs, Memory-map updates.
->>>  - qcom-ride-common.dtsi specifying ride daughter boards, here we are
->>>    doing code refactoring also as this is common for all ride boards.
->>>  - qcom-ride-ethernet-aqr115c.dtso specifying ethernet overlay board which
->>>    uses 2.5G phy and can be overlayed to ride boards to get ride-r3.
->>>    By default ride uses 1G phy.
->>>  - qcs9075-iq-9075-evk.dts is the new name for RB8 as per new product
->>>    name. We will be changing this in next patch series.
->>>
->>> +-----------------------------------------------------------------------------------------------------------------------------------------------+
->>> |                                                                                                                                               |
->>> |                                                          sa8775p.dtsi                                                                         |
->>> |                                                              |                                                                                |
->>> |                                    +-------------------------+-----------------------+                                                        |
->>> |                                    |                         |                       |                                                        |
->>> |                                    v                         |                       v                                                        |
->>> |                             qcs9075-module.dtsi              |                qcs9100-module.dtsi                                             |
->>
->> So this is the SoM?
-> 
-> Yes this is SoM.
-> 
->>
->>> |                                    |                         |                       |                                                        |
->>> |                                    v                         v                       v                                                        |
->>> |                                  (IOT)                    (AUTO)                   (IOT)                                                      |
->>> |                                    |                         |                       |                                                        |
->>> |             +----------------------+                         |                       |                                                        |
->>> |             |                      |                         |                       |                                                        |
->>> |             |                      | +-------------------------+-----------------------+-------------------< qcom-ride-common.dtsi            |
->>
->> Which piece of actual hardware is represented in qcom-ride-common?
->>
-> 
-> All daughter cards like SOC-card, display, camera, ethernet, pcie, sensor, etc.
-
-No, I asked about the name of the hardware, datasheet, ID or picture.
-Common DTSI represents somoething, not just because you wanted to add
-something you had in downstream.
+On 06/03/2025 09:25, Wasim Nazir wrote:
+>> +-----------------------------------------------------------------------------------------------------------------------------------------------+
+>> |                                                                                                                                               |
+>> |                                                          sa8775p.dtsi                                                                         |
+>> |                                                              |                                                                                |
+>> |                                    +-------------------------+-----------------------+                                                        |
+>> |                                    |                         |                       |                                                        |
+>> |                                    v                         |                       v                                                        |
+>> |                             qcs9075-som.dtsi                 |                qcs9100-som.dtsi                                                |
+>> |                                    |                         |                       |                                                        |
+>> |                                    v                         v                       v                                                        |
+>> |                                  (IOT)                    (AUTO)                   (IOT)                                                      |
+>> |                                    |                         |                       |                                                        |
+>> |             +----------------------+                         |                       |                                                        |
+>> |             |                      |                         |                       |                                                        |
+>> |             |                      | +-------------------------+-----------------------+-----------------< sa8775p-ride-common.dtsi           |
 
 
-> 
->>> |             |                      | |                       | |                     | |                                                      |
->>> |             v                      v v                       v v                     v v                                                      |
->>> |  qcs9075-iq-9075-evk.dts     qcs9075-ride.dts         sa8775p-ride.dts         qcs9100-ride.dts                                               |
->>> |                                    |                         |                       |                                                        |
->>> |                                    | +-------------------------+-----------------------+-------------------< qcom-ride-ethernet-aqr115c.dtso  |
->>> |                                    | |                       | |                     | |                                                      |
->>> |                                    v v                       v v                     v v                                                      |
->>> |                             qcs9075-ride-r3.dts      sa8775p-ride-r3.dts      qcs9100-ride-r3.dts                                             |
+There is no ride-common hardware. If there is, send us any proof of its
+existence. all your statements here show you want to create some
+structure because you like it. I don't think you get my questions. You
+painted diagram of DTS, not hardware.
+
+We talk about hardware. Not your DTS. Drop all DTSI, DTS, DTSO from here
+and show us the hardware.
+
+I have been asking it for two months now and it is just waste of time to
+keep talking the same.
+
+
+>> |             |                      | |                       | |                     | |                                                      |
+>> |             v                      v v                       v v                     v v                                                      |
+>> |  qcs9075-iq-9075-evk.dts     qcs9075-ride.dts         sa8775p-ride.dts         qcs9100-ride.dts                                               |
+>> |                                    |                         |                       |                                                        |
+>> |                                    +-------------------------+-----------------------+-------------------< sa8775p-ride-ethernet-aqr115c.dtso |
+
+How does "sa8775p-ride-ethernet-aqr115c" hardware look like?
+
+>> |                                    |                         |                       |                                                        |
+>> |                                    v                         v                       v                                                        |
+>> |                             qcs9075-ride-r3.dts      sa8775p-ride-r3.dts      qcs9100-ride-r3.dts                                             |
+>> |                                                                                                                                               |
+>> +-----------------------------------------------------------------------------------------------------------------------------------------------+
 >>
->> I think I gave already few times that answer: No. You cannot reference
->> from a module.c another .c file. You cannot reference DTS from DTS.
->>
->> Strictly speaking you can, of course, but you must not. That's not how
->> source code is done to be manageable and readable.
 > 
-> Ah the arrow is leading to confusion.
+> Updating typo: qcom-ride-* changed to sa8775p-ride-*.
 > 
-> Actually we are not including dts here instead *.dtso file will be
-> overlayed to *-ride.dts to generate *-ride-r3.dts.
-> 
-> Below is the correct arrow sequence.
-
-And the overlay represents what exactly? Different board? No, that's not
-how overlays should be used.
-
-You have different board, you have different DTS.
-
-
-> 
-> |  qcs9075-iq-9075-evk.dts     qcs9075-ride.dts         sa8775p-ride.dts         qcs9100-ride.dts                                               |
-> |                                    |                         |                       |                                                        |
-> |                                    +-------------------------+-----------------------+---------------------< qcom-ride-ethernet-aqr115c.dtso  |
-> |                                    |                         |                       |                                                        |
-> |                                    v                         v                       v                                                        |
-> |                             qcs9075-ride-r3.dts      sa8775p-ride-r3.dts      qcs9100-ride-r3.dts                                             |
-> 
->>
->>> |                                                                                                                                               |
->>> +-----------------------------------------------------------------------------------------------------------------------------------------------+
->>>
->>>>>
->>>>> With the combination of these 3 SoCs and 2 boards, we have 6 platforms,
->>>>> all of which we need.
->>>>> - sa8775p-ride.dts is auto grade Ride platform with safety feature.
->>>>> - qcs9100-ride.dts is IOT grade Ride platform with safety feature.
->>>>> - qcs9075-ride.dts is IOT grade Ride platform without safety feature.
->>>>>
->>>>> Since the Ride-r3 boards are essentially Ride boards with Ethernet
->>>>> modifications, we can convert the Ride-r3 DTS to overlays.
->>>> How one board can be with multiple SoCs? If it is soldered, it's close
->>>> to impossible - that's just not the same board. If it is not soldered,
->>>> why you are not explaining it? What is Ride board? What is there? What
->>>> can go there? How it can be used in other SoCs? Or for which SoCs? Is
->>>> there a datasheet available?
->>>>
->>>
->>> As our SoC is based on SIP card and SIP card is compatible with Ride
->>> board, we could able to use same Ride board (which is combination of
->>> multiple daughter cards) with multiple SIP cards.
->>> These SIP cards can be of sa8775p, qcs9100 or qcs9075 SOC.
->>
->> Describe properly the hardware - if you have a module or SIP if you
->> decide not to use industry-standard naming (but why...), then describe
->> it in DTSI.
-> 
-> We refer to it as ‘module’ in our datasheet, so I use the same term
-> here. Thanks for pointing it out; we can proceed with the SoM name.
-> 
-> Below is the updated diagram:
-> +-----------------------------------------------------------------------------------------------------------------------------------------------+
-> |                                                                                                                                               |
-> |                                                          sa8775p.dtsi                                                                         |
-> |                                                              |                                                                                |
-> |                                    +-------------------------+-----------------------+                                                        |
-> |                                    |                         |                       |                                                        |
-> |                                    v                         |                       v                                                        |
-> |                             qcs9075-som.dtsi                 |                qcs9100-som.dtsi                                                |
-> |                                    |                         |                       |                                                        |
-> |                                    v                         v                       v                                                        |
-> |                                  (IOT)                    (AUTO)                   (IOT)                                                      |
-> |                                    |                         |                       |                                                        |
-> |             +----------------------+                         |                       |                                                        |
-> |             |                      |                         |                       |                                                        |
-> |             |                      | +-------------------------+-----------------------+-------------------< qcom-ride-common.dtsi            |
-> |             |                      | |                       | |                     | |                                                      |
-> |             v                      v v                       v v                     v v                                                      |
-> |  qcs9075-iq-9075-evk.dts     qcs9075-ride.dts         sa8775p-ride.dts         qcs9100-ride.dts                                               |
-> |                                    |                         |                       |                                                        |
-> |                                    +-------------------------+-----------------------+---------------------< qcom-ride-ethernet-aqr115c.dtso  |
-> |                                    |                         |                       |                                                        |
-> |                                    v                         v                       v                                                        |
-> |                             qcs9075-ride-r3.dts      sa8775p-ride-r3.dts      qcs9100-ride-r3.dts                                             |
-> |                                                                                                                                               |
-> +-----------------------------------------------------------------------------------------------------------------------------------------------+
-
-
-Several companies solved it - most of NXP vendors, many Renesas etc. I
-really do not get why this needs so much talk and you cannot learn from
-their architecture how SoM should be represented.
 
 Best regards,
 Krzysztof
