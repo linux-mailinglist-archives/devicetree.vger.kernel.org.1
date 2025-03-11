@@ -1,117 +1,87 @@
-Return-Path: <devicetree+bounces-156691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B499A5D070
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:08:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24B60A5D082
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:12:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B0EE3A376F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:07:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65713173C1E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06BB52641FE;
-	Tue, 11 Mar 2025 20:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11DE9264A6E;
+	Tue, 11 Mar 2025 20:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tjeq6X04"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t9yJ5ktZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D098C2641C3;
-	Tue, 11 Mar 2025 20:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB107264A65;
+	Tue, 11 Mar 2025 20:12:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741723668; cv=none; b=NXNDRoPNWQIPSv5yY0d9jx0r+GO0jcWjyJ0GgyyKNMvlmo7bIj5+WwF85fDarEvkVrln3qSOCIYskAaCiXY6PfJYVF3MlR77Jxwe4tdq+NHT3BuMGsJefFZSv32F3S2axsj1Ypr3nNtqQ01v8nvN2qfSVk3HEmT4FQMKYce8OcY=
+	t=1741723942; cv=none; b=U5K6oS3RIWOViSgEH1qVQiHyTu6cLb4xvOKqe2YmHXyEkLcpnj1RH582YDv/NqA/MIRMga6+DSVmR0+0sYLYxC8KUB+ioE+ejZ9mY7c/+4yE4bbNIlaDrygzrNNEm6+yKMwUTC+uOuoGpLiC+l8yEu1FNyrGf4p97yrx7SZ+RLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741723668; c=relaxed/simple;
-	bh=kypsoT+y8Xwt8jAYhLNEnwar1djrWfc1JLO5IbchjC0=;
+	s=arc-20240116; t=1741723942; c=relaxed/simple;
+	bh=hwyJyim9PZ18lgcGQ/3SEBR/IWw6q8eLGltjBZQCTF4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B523K5qL4TWgucpbsXhFpGb807S/k44+ArhKBZwcy6cq/TcAfgo+VOhFR+rGKaS6M9mlVQS5SLG6YG0bVPQodXsHxFqLWEQaglYYpk0Ir6I6bSrKVaQ0aqKCcXQGlDCiAnpPHqNFzoLlLmW11dW1yitl6I9NZljIRcpYHOGeapA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tjeq6X04; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADF50C4CEE9;
-	Tue, 11 Mar 2025 20:07:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ncbKh3QdQvbwIZsNKv3yBENcaR44ZkDXjepXqiTzqetoAElekmaSdKl3ix9NfcVOG8PkrElk+4hC+MyzjqirEY9yzKGVlimCok4GbJZd7yRafueQBwrycGZvg+dkyVn72jXvTBs8f8/80ywpQxqHK3inlyXetd9yLpaLx/bd8nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t9yJ5ktZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 734B1C4CEEF;
+	Tue, 11 Mar 2025 20:12:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741723668;
-	bh=kypsoT+y8Xwt8jAYhLNEnwar1djrWfc1JLO5IbchjC0=;
+	s=k20201202; t=1741723941;
+	bh=hwyJyim9PZ18lgcGQ/3SEBR/IWw6q8eLGltjBZQCTF4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tjeq6X0429QkGYOfvtTSP68hCTEAk7tXifXZWYmaYPtIW1yT3Z41d3tlZ6tAEBjV6
-	 Nu5ijlgHQ8JR3KznPZcuksAkqMTzcrY0zIikKCMTg9syTFJy/7+Sd5RSy63wTFYru0
-	 4b87SAF4Ki23rjhuGrZV/ndPPHutoLSxxVBdiShjCDPfg01YMYUslYfTknrK/mqRyu
-	 kr2vBuysMCVssvx/2bGh2sClVnz81+Y36YPSlAuKj8angw/Kx9mARrh7Gxbbr5IJIg
-	 MoU+KZjksqaamOCy4qFUJF8+2Aia6G7AuovSHoL3JC1GLRErJqW0/4dtK7h4BXEOKB
-	 gysic/nHt3nUQ==
-Date: Tue, 11 Mar 2025 21:07:45 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	b=t9yJ5ktZ4eiLTqgwThzF4fTLnpb7IQWPT2bREztyjKs5HOPfGH1r1HTlEcKliZgkZ
+	 kejUXX1wTmT9snigPtspL1oGSXoLltbRKBGZy2cOic1WTrT1VXj6DCzCxv8qj7/FfF
+	 8ha/W9oFyzRgWQ6HoQAqS5VOqtlAuECoLDVxEfoNdnKQH+hBqXksl85PGX5DUr9Rgv
+	 c3tapUX4cm5coH8FJ0MENqB1htMZFz9IJapMWLtpGjOH2AHXevGow3MXl8+GOFUOrz
+	 wDqkbaJ7rqXzCdCVGWygR9k/m0SlHcJuPbMBXne1mSfhrOKlf0QqPgjRUihxl6ggdm
+	 ddvYCKEnd24zg==
+Date: Tue, 11 Mar 2025 15:12:20 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Antonin Godard <antonin.godard@bootlin.com>
+Cc: linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/2] Add gpio-ranges property for EN7581 gpio controller
-Message-ID: <Z9CYEZloamPhVdBS@lore-desk>
-References: <20250307-en7581-gpio-range-v1-0-de1262105428@kernel.org>
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	dri-devel@lists.freedesktop.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Simona Vetter <simona@ffwll.ch>, Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add POWERTIP
+ PH128800T004-ZZA01 panel
+Message-ID: <174172393994.51336.15963394687109008686.robh@kernel.org>
+References: <20250311-add-powertip-ph128800t004-v1-0-7f95e6984cea@bootlin.com>
+ <20250311-add-powertip-ph128800t004-v1-1-7f95e6984cea@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="icN7TOB+24o1XSzr"
-Content-Disposition: inline
-In-Reply-To: <20250307-en7581-gpio-range-v1-0-de1262105428@kernel.org>
-
-
---icN7TOB+24o1XSzr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250311-add-powertip-ph128800t004-v1-1-7f95e6984cea@bootlin.com>
 
-> Introduce missing gpio-ranges property for Airoha EN7581 evaluation
-> board
->=20
 
-Hi Linus and Angelo,
-
-is it fine if this series goes via linux-mediatek tree?
-en7581_pinctrl node is only defined there for the moment.
-
-Regards,
-Lorenzo
-
+On Tue, 11 Mar 2025 17:40:05 +0100, Antonin Godard wrote:
+> Add POWERTIP PH128800T004-ZZA01 10.1" LCD-TFT LVDS panel compatible
+> string.
+> 
+> Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
 > ---
-> Lorenzo Bianconi (2):
->       dt-bindings: pinctrl: airoha: Add missing gpio-ranges property
->       arm64: dts: airoha: en7581: Add gpio-ranges property for gpio contr=
-oller
->=20
->  Documentation/devicetree/bindings/pinctrl/airoha,en7581-pinctrl.yaml | 3=
- +++
->  arch/arm64/boot/dts/airoha/en7581-evb.dts                            | 4=
- ++++
->  2 files changed, 7 insertions(+)
-> ---
-> base-commit: a8a297e8bb3dd304cac77f7c435a4983d885a657
-> change-id: 20250307-en7581-gpio-range-fceb30c7e2c9
->=20
-> Best regards,
-> --=20
-> Lorenzo Bianconi <lorenzo@kernel.org>
->=20
+>  Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
---icN7TOB+24o1XSzr
-Content-Type: application/pgp-signature; name=signature.asc
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ9CYEQAKCRA6cBh0uS2t
-rMEWAP46Y725zv4QZ2O/ml8GZ0JZ2mc8jhx0fJFGt3Hkmmo2AAD/aNhB7oE+OqvP
-7D82+qP5g/4Qg6+HtlRX/B6Gk78LYQg=
-=nXDU
------END PGP SIGNATURE-----
-
---icN7TOB+24o1XSzr--
 
