@@ -1,161 +1,108 @@
-Return-Path: <devicetree+bounces-156561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A025EA5C758
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:33:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D2F3A5C73E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:32:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF973179C51
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 15:30:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92E617A3032
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 15:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156AF25F782;
-	Tue, 11 Mar 2025 15:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7C925F7A7;
+	Tue, 11 Mar 2025 15:32:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nkiqKK4U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 101C71DF749;
-	Tue, 11 Mar 2025 15:29:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC3725B69D;
+	Tue, 11 Mar 2025 15:32:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741706978; cv=none; b=VGjai8LMv6ahtn5e9TM29/KMPY62tH43Fi78/L4PtnGaZuI+fUe2jNW8nZj9cyQq6wksAU+un7o0QeDAGwtJdpohjpsBGjTcW4uhpXN116DPwGv9cCi1B4jf0EwjR3PHMjA5MO1mhuA1pRCmKCYN1CRlx67q34I8robhDnDt5MY=
+	t=1741707123; cv=none; b=p6k2uOo386zXTWVmPPPycgpZBAWlZY7Lae5C/rRkq5EfMuTmcAoq5IVku1OEwC5NFYwEQ6beHxwoahSCjYCgKKCqssaU8JlPUIfztqdp/c+Z0M2/ngF4ydH84L2UD+tH+GQ5XriqUtwb9xR1EQ6eUiLpdDOzdfRDh7zlftHc7b4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741706978; c=relaxed/simple;
-	bh=s1LuYLP8EsnOtLEdw1A7/euy88xVMYSC2fYBv3AKRiY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iYbG87YSyanPMGeqFOeD6Au0OIepp8xQY5lImU27XE7Bh2N/DKW109/nYoYqkCQXepa9b+1zDWF3Ni7LsW2u4ZPOTGsR7T0WkBovlU1N35RHedMmCtMcW1qpBCxW/AmusQozJaOuL0/6uYTC4LyDRuo2YcMp5IqpBw/sNkip0Nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5DD2F152B;
-	Tue, 11 Mar 2025 08:29:45 -0700 (PDT)
-Received: from [192.168.0.16] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DD6253F694;
-	Tue, 11 Mar 2025 08:29:30 -0700 (PDT)
-Message-ID: <647d38d6-e64b-47dc-9280-05b0d7ddcb43@arm.com>
-Date: Tue, 11 Mar 2025 15:29:28 +0000
+	s=arc-20240116; t=1741707123; c=relaxed/simple;
+	bh=VtkaJ7L6XEIE9QnAL1+dX4kibxBnJwlPy8zVdc2LrHM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V/p8E6nDey7AfC1eNGkYO9G5DRrT4q33vAWrPVm4sX4F6cj4vO0vex39tm9G2xtjSEzy/xnBz2CLKrXqfkixJDIBGZ+TXgnvjvWxbrPb79YvKTH1NBdVeb8Rau0m4Ep/VFuWTPFnYrwgnSMdQy9EDe/piFaQwLSFvRPJ8gnIP5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nkiqKK4U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2036AC4CEF3;
+	Tue, 11 Mar 2025 15:31:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741707123;
+	bh=VtkaJ7L6XEIE9QnAL1+dX4kibxBnJwlPy8zVdc2LrHM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nkiqKK4UlgQ3bHIj+Fa2H3znDor0YOQfCHGZi4BE+Oy4tLZIQ5G21b63zkyyJT5v2
+	 LR3rdQKJ5nfiK3qFXAmVgYZ2PYDrJgp0fXL9hZXH7EWRf2jbhX7Tw52DiJ58vUg79V
+	 umwYYl+FJAeSJocInIfr2sAR/85pHgdSsJ9i1g82EaYjlbpqeZF89RMsk8nlNRpgna
+	 nIaTjGeBj4RcwafWQ1nIabLujNUz7oB7GxNqf1Cjl+dgll4SCKGrgSq/ePeF9eeMVl
+	 6Sk+x8fFpz01tRLt7bRnZkp3/0WYa/jNg+qWCgW7oD+7Sz+K6Hv9RQbzW1/ryIeHBz
+	 q/MDAV1qBbYYg==
+Date: Tue, 11 Mar 2025 17:31:57 +0200
+From: Dmitry Baryshkov <lumag@kernel.org>
+To: Vikash Garodia <quic_vgarodia@quicinc.com>
+Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: media: qcom,sm8550-iris: document
+ SA8775p IRIS accelerator
+Message-ID: <ngzl7q3fli3bpuo5gjvppfrsnmlw6viy26ieqwhpfokgue2uxm@whomn2h6h3a7>
+References: <20250311-dtbinding-v1-0-5c807d33f7ae@quicinc.com>
+ <20250311-dtbinding-v1-2-5c807d33f7ae@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/3] arm64: dts: renesas: r9a09g047: Add thermal
- hotplug trip point
-To: John Madieu <john.madieu.xa@bp.renesas.com>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "niklas.soderlund+renesas@ragnatech.se"
- <niklas.soderlund+renesas@ragnatech.se>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "rafael@kernel.org" <rafael@kernel.org>,
- "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>
-Cc: "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "john.madieu@gmail.com" <john.madieu@gmail.com>,
- "rui.zhang@intel.com" <rui.zhang@intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- Biju Das <biju.das.jz@bp.renesas.com>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
-References: <20250309121324.29633-1-john.madieu.xa@bp.renesas.com>
- <20250309121324.29633-4-john.madieu.xa@bp.renesas.com>
- <9b44d0ff-b28f-4d79-ad7b-b452db1db87a@arm.com>
- <OSBPR01MB2775232DECBB0A67D74BCE3DFFD12@OSBPR01MB2775.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From: Christian Loehle <christian.loehle@arm.com>
-In-Reply-To: <OSBPR01MB2775232DECBB0A67D74BCE3DFFD12@OSBPR01MB2775.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250311-dtbinding-v1-2-5c807d33f7ae@quicinc.com>
 
-On 3/11/25 11:57, John Madieu wrote:
-> Hi Christian,
+On Tue, Mar 11, 2025 at 05:33:54PM +0530, Vikash Garodia wrote:
+> Document the IRIS video decoder and encoder accelerator found in the
+> SA8775P platform. SA8775P has collapsible MX compared to SM8550.
+
+How compatible is SA8775P to SM8550? Should it be using a fallback
+compatible?
+
+This kind of comes as a more generic question: is there anything like
+'IP version' or 'core version'? It would be really nice to determine the
+'baseline' SoCs and make other instances compatible with the baseline.
+
 > 
-> Thanks for reviewing.
+> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
->> -----Original Message-----
->> From: Christian Loehle <christian.loehle@arm.com>
->> Sent: Tuesday, March 11, 2025 11:53 AM
->> To: John Madieu <john.madieu.xa@bp.renesas.com>; geert+renesas@glider.be;
->> niklas.soderlund+renesas@ragnatech.se; conor+dt@kernel.org;
->> krzk+dt@kernel.org; robh@kernel.org; rafael@kernel.org;
->> daniel.lezcano@linaro.org
->> Cc: magnus.damm@gmail.com; Claudiu Beznea
->> <claudiu.beznea.uj@bp.renesas.com>; devicetree@vger.kernel.org;
->> john.madieu@gmail.com; rui.zhang@intel.com; linux-kernel@vger.kernel.org;
->> linux-renesas-soc@vger.kernel.org; Biju Das <biju.das.jz@bp.renesas.com>;
->> linux-pm@vger.kernel.org
->> Subject: Re: [RFC PATCH 3/3] arm64: dts: renesas: r9a09g047: Add thermal
->> hotplug trip point
->>
->> On 3/9/25 12:13, John Madieu wrote:
->>> Add CPU hotplug trip point to shutdown CPU1 and CPU2 when exceeding
->> 110°C.
->>>
->>> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
->>> ---
->>>  arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 13 +++++++++++++
->>>  1 file changed, 13 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
->>> b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
->>> index 93b57d7ad7b9..06bd394582e2 100644
->>> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
->>> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
->>> @@ -533,6 +533,13 @@ map0 {
->>>  							 <&cpu2 0 3>, <&cpu3 0 3>;
->>>  					contribution = <1024>;
->>>  				};
->>> +
->>> +				map1 {
->>> +					trip = <&trip_emergency>;
->>> +					cooling-device = <&cpu1 0 1>, <&cpu2 0 1>;
->>> +					contribution = <1024>;
->>> +				};
->>> +
->>>  			};
->>>
->>>  			trips {
->>> @@ -542,6 +549,12 @@ target: trip-point {
->>>  					type = "passive";
->>>  				};
->>>
->>> +				trip_emergency: emergency {
->>> +					temperature = <110000>;
->>> +					hysteresis = <1000>;
->>> +					type = "plug";
->>> +				};
->>> +
->>>  				sensor_crit: sensor-crit {
->>>  					temperature = <120000>;
->>>  					hysteresis = <1000>;
->>
->>
->> Are there no other cooling methods?
->> How does it compare to idle inject?
->>
->> Furthermore, couldn't the offlining of some CPUs lead to the rest being
->> operated at much higher OPPs therefore the overall power increase, too?
->> (Without having looked at if this is a possibility for this particular
->> SoC.)
->> Some numbers would be helpful IMO.
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> index 440a0d7cdfe19a1ccedefc207d96b26eed5d6630..20ac596638ba33f49cce9e42d70d31a8aaa7c36e 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
+> @@ -19,7 +19,9 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    const: qcom,sm8550-iris
+> +    enum:
+> +      - qcom,sm8550-iris
+> +      - qcom,sa8775p-iris
+>  
+>    power-domains:
+>      maxItems: 4
 > 
-> To clarify this, I tested with CPUFreq cooling, along with performance
-> Governor, with "plug" threshold higher than "passive" one. When passive
-> trip is crossed, we observe proper CPUs throttling, and when "plug" trip
-> is crossed, we observe target CPUs being put offline, while throttling
-> remains.
-> 
-> When "plug" targeted CPUs come back online, throttling is still operational.
-> 
-> Once I get comparison results with CPU idle cooling, I'll keep you posted.
+> -- 
+> 2.34.1
 > 
 
-Thanks John!
-Might make sense to also try this with schedutil, because my argument doesn't
-hold with performance governor.
-As long as we also have throttling that's not a concern anyway.
+-- 
+With best wishes
+Dmitry
 
