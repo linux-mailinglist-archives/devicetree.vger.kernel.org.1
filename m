@@ -1,172 +1,127 @@
-Return-Path: <devicetree+bounces-156484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB4CCA5BEBE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:19:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2120A5BECC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:21:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D1493A7DE9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:19:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C36B18982D0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:21:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D63253B68;
-	Tue, 11 Mar 2025 11:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF4E2512C9;
+	Tue, 11 Mar 2025 11:21:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZnMDEV2b"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="P3HAGsCR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DB829A1
-	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 11:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D34C225776;
+	Tue, 11 Mar 2025 11:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741691949; cv=none; b=I9CLbG90lSibLsM8T94vDy8Feq7bbdzzznxkncq0KsA5sGD0a8zHlT6mjSyhbAVaTN7an4VOOxiyuq5PAnwIGhvpSGxjJ2b1Jr+9kM8QfthyMizJ3gAFwNzcFzVQhnxxE5w3TqGgSJwXFwcl4teiUjfmUwtpKaG5Z3/ngWNLvCI=
+	t=1741692080; cv=none; b=K7Rhu20Uxp6nGvY7zzKPmSzyx/0MFYl0acdvbFACH6h9aiSVExj2iah2jcUC0liFfsR/8Zyu54Gf2tB0T2NVZtgnpLZw1/cFBCow9/CtJI8p8wamSsOI4WQDMrpP9TFiUecDDLhIPnQwqOMQR2A4kW6lkUhnS5RjgYQUWm81NWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741691949; c=relaxed/simple;
-	bh=KG2B2zG131J/s0YjenddE96hvagPtolWZ0k0Q1oZF9k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lEKTF7rFnEevpbMal7dEs/4DgV37s6cDevbG6+FC8i0fMlgBz2mPk+ct0QDcD0k4I2re/ElF5p279E/Lgvql3dA6sGd5xC9bZy4Hlq++RehbMM0Vx5zUp0zy/xgk6lNbGFPWYIFlrQ++LvPi7/CMuFOgbLWS/AA2egSwVV9l7BE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZnMDEV2b; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52BAKcY4007822
-	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 11:19:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	v/zsrPomSGC1iO5LSmQ+QJBzaniKLt0k5UGEjWJYgjM=; b=ZnMDEV2blLkM1v6j
-	yz+sUf2hDI0q+GO8vzhQ4koX6CWHGWxt+USTTF7vdAR8pG5Pun5GL0xLGPYlFpHm
-	VCercVTpc2OZNFgq1Sll8rcPHuSEMSkeUXkTWwDIC4JETfBANvLUmqAYvzEXbNb9
-	9PXbp6u4k0bNY1+uhh6mTp377KkHSGDJ7g7unANHauZe+W5vIQGOoy9wXbYSKLRB
-	fo8rNQvZvA1oRQ97U1Hbp4+soJs1FaqcTKjZIGA5CB1at82gqINh9OYZ9yy/44cZ
-	BHksC5VzdSSS0lnRNBQ951k31rSH+lz+RdeKhnGtQakSzCUmmd0fdXHhUehU1Q32
-	ygPmEQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ab95hn03-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 11:19:07 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e906c422a9so11235826d6.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 04:19:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741691946; x=1742296746;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v/zsrPomSGC1iO5LSmQ+QJBzaniKLt0k5UGEjWJYgjM=;
-        b=EjcTrZPwSkhg3UJb5DDReJsmCesibosCN6hq5ZpcbyxPBEV9/xEyNw11WD4B/5pxjM
-         CH+TVt3XIgf8gCIkb/G7pqrqKuD7Trxy3UdD8sadX4tLp0j1/vRXh3SRnKmPPHKGzmCU
-         AhUlqlg8GlFLOicYAGxo1L3BP3zPSZh/FM7l4M/HUuXygTJmChf9aesMEZLX9qmjPnSf
-         E4cRFLR2KDu8Tzld/wJq121fbFspcO/pPzFNJ7MXbNhxmO5PHIBYMmYRhE0RC61XLjGC
-         4X8zzfnTjExWYbUybRGIhVQpG9jX4OOh0Bps9WbnPp7DCg5G3LvMl6SOT6zaqFjF68PN
-         /Jxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUwmMM2qCCXnmageWqrjaiQr6xvVvTlPLVB3FNWu3VBzkdxy5skM5HkOFA8F/1gaYF6ExiPubmZEZnL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEUkZPnTaVeWz9tb6petwkE5lVBnKaNpG9kofatxaBUKy3E1ZD
-	nwyAXfVsxTZGSaLfVzdexHpui15R7gZtHGHgnf0VZDt6LM6OPsMDQ1l9jVGVRsY+re4WlOy2hNl
-	Lx9Ibrw8MGWJ2sCcPN+9g1Fif46JtsnUyAJNKVHnxIgtCS+/HWeneDwlDeNDT
-X-Gm-Gg: ASbGncuGkWnsluAWkFoREcQcvWDM+Ycp4RG1UWiJ+xQrW9YAs9w27tw/ob2Dic40bLu
-	G6GX3Vd54jjOFOYqxpSJ2QF9+PsxWgZ5jpvSIe2qvFmrETHx/HIThIjN66dfEhMHgvGHSfvk5Ek
-	/8UXAJcXYi0p1HYI8nLVEfCOWQ48/1QCF/ezj4fXdWo1LSCIoR+uNDlvqv7J9r8utt8VfVa24wB
-	0AqHfc3hrCRSfufClXn/Q9+WN7JiqF7G9lppzj2l0QA3Ovi0TybZvohrQ2KL+b0IFRw0j3uM1eS
-	o/vW0lw/F4oPRc1/kbfV12WGtE4qOYqCpCe8GLvEbABQp/noUxl9qsphPaP8/EjMEzf5Ag==
-X-Received: by 2002:a05:620a:1d03:b0:7c5:18b7:506d with SMTP id af79cd13be357-7c53e05f9c9mr737227385a.9.1741691945870;
-        Tue, 11 Mar 2025 04:19:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFMbOo9/SytOGUrUMo2XFyejsZDSP+j5JNs4kPwfKJu5yFVYu9xbBZSRIJg5VV2VeLv97QvVA==
-X-Received: by 2002:a05:620a:1d03:b0:7c5:18b7:506d with SMTP id af79cd13be357-7c53e05f9c9mr737225285a.9.1741691945534;
-        Tue, 11 Mar 2025 04:19:05 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2394fda1asm904961866b.78.2025.03.11.04.19.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Mar 2025 04:19:05 -0700 (PDT)
-Message-ID: <69fa7f33-e957-4dac-93dc-6fd40167873c@oss.qualcomm.com>
-Date: Tue, 11 Mar 2025 12:19:01 +0100
+	s=arc-20240116; t=1741692080; c=relaxed/simple;
+	bh=nnIQqMrvpootJdeosqnzjSHdzPQS3AA2sGWdn9jPN9Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=daOezmBwuQRsu0P1L1EC1Tk3M7BjhsGzWNxTcBNbe0Sdj8dVm8E213NiEgqIhbRqfJbCrGS1KNAXSpNWMqKTElHyny7J+VjdQasKvDL8ZLwbonsqBwk5c05hjmVZExKLLnM+xk5LmTUfs4FR4ZOvjZ8du9GlUK+iFpHvYgR+Qag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=P3HAGsCR; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741692079; x=1773228079;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nnIQqMrvpootJdeosqnzjSHdzPQS3AA2sGWdn9jPN9Y=;
+  b=P3HAGsCRRycGYd+qbk0Vhu4hcTV9qmIauxfMaUpeLdMjauv4paYwTw7s
+   erHoSS096xFOWofu48jWK66ItDYoCz/yUb6ZRgDLGVzdprO0xt2+WoSFi
+   lumx+V1AsYFOOL3IMrFTuOZPZqatrhsmyC4KjAA5s8LBDS1oMzWsIsioz
+   3hBJxekgKjQIZeyg4EWZvubWJ+SKYUXzdlpzzERq2+QW1IYh+PU6mWi5N
+   ju8iA6joQ2gdM19iaHer4bZyMmMhAOJmM+MHEzKVTU2OHm9zAz7QuxeuP
+   HsFOkTHj/99YcQKRj415spKvcntaulHl8ddgyKlbhHXJAMDFUTQecD75B
+   g==;
+X-CSE-ConnectionGUID: Af1Vl8VtTmqI2YtJm7scgg==
+X-CSE-MsgGUID: kJMyY+SmRgmWb+4rVs6iGw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="53350823"
+X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; 
+   d="scan'208";a="53350823"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2025 04:21:18 -0700
+X-CSE-ConnectionGUID: AARiflbFSIGPsZWc9OUZnw==
+X-CSE-MsgGUID: tjfMSEz4RMK62L9a6p2iMQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; 
+   d="scan'208";a="121000004"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa009.fm.intel.com with ESMTP; 11 Mar 2025 04:21:15 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1trxfX-0006bg-18;
+	Tue, 11 Mar 2025 11:21:09 +0000
+Date: Tue, 11 Mar 2025 19:20:57 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nam Tran <trannamatk@gmail.com>, pavel@kernel.org, lee@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Nam Tran <trannamatk@gmail.com>
+Subject: Re: [PATCH v3 3/3] leds: add new LED driver for TI LP5812
+Message-ID: <202503111910.ko7pwUem-lkp@intel.com>
+References: <20250306172126.24667-4-trannamatk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/9] phy: qcom: Add M31 based eUSB2 PHY driver
-To: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250304-sm8750_usb_master-v2-0-a698a2e68e06@quicinc.com>
- <20250304-sm8750_usb_master-v2-6-a698a2e68e06@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250304-sm8750_usb_master-v2-6-a698a2e68e06@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: oD2qD7TOOoqWeZMyanvASXhbgqDqoSiD
-X-Authority-Analysis: v=2.4 cv=fvgmZE4f c=1 sm=1 tr=0 ts=67d01c2b cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=obrcSLqBe2MPJ_po3l0A:9 a=QEXdDO2ut3YA:10
- a=T1PIRxOFuHhLvSGs3xkl:22 a=iYH6xdkBrDN1Jqds4HTS:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: oD2qD7TOOoqWeZMyanvASXhbgqDqoSiD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-11_01,2025-03-11_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- lowpriorityscore=0 impostorscore=0 spamscore=0 mlxlogscore=833
- suspectscore=0 phishscore=0 priorityscore=1501 clxscore=1015 bulkscore=0
- mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503110075
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250306172126.24667-4-trannamatk@gmail.com>
 
-On 3/4/25 10:56 PM, Melody Olvera wrote:
-> From: Wesley Cheng <quic_wcheng@quicinc.com>
-> 
-> SM8750 utilizes an eUSB2 PHY from M31.  Add the initialization
-> sequences to bring it out of reset and into an operational state.  This
-> differs to the M31 USB driver, in that the M31 eUSB2 driver will
-> require a connection to an eUSB2 repeater.  This PHY driver will handle
-> the initialization of the associated eUSB2 repeater when required.
-> 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> ---
+Hi Nam,
 
-[...]
+kernel test robot noticed the following build errors:
 
-> +static int msm_m31_eusb2_write_readback(void __iomem *base, u32 offset,
-> +					const u32 mask, u32 val)
-> +{
-> +	u32 write_val;
-> +	u32 tmp;
-> +
-> +	tmp = readl_relaxed(base + offset);
-> +	tmp &= ~mask;
-> +	write_val = tmp | val;
-> +
-> +	writel_relaxed(write_val, base + offset);
-> +
-> +	tmp = readl_relaxed(base + offset);
-> +	tmp &= mask;
-> +
-> +	if (tmp != val) {
-> +		pr_err("write: %x to offset: %x FAILED\n", val, offset);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
+[auto build test ERROR on lee-leds/for-leds-next]
+[also build test ERROR on robh/for-next linus/master v6.14-rc6 next-20250307]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Is there a reason we need to read back every write?
+url:    https://github.com/intel-lab-lkp/linux/commits/Nam-Tran/dt-bindings-leds-Add-LP5812-LED-driver/20250307-012604
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20250306172126.24667-4-trannamatk%40gmail.com
+patch subject: [PATCH v3 3/3] leds: add new LED driver for TI LP5812
+config: x86_64-randconfig-077-20250310 (https://download.01.org/0day-ci/archive/20250311/202503111910.ko7pwUem-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250311/202503111910.ko7pwUem-lkp@intel.com/reproduce)
 
-Does this have to do with some funny write buffering?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503111910.ko7pwUem-lkp@intel.com/
 
-Konrad
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+WARNING: modpost: missing MODULE_DESCRIPTION() in mm/kasan/kasan_test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in lib/slub_kunit.o
+>> ERROR: modpost: "lp5812_disable_all_leds" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_enable_disable" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_set_pwm_dimming_scale" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_get_pwm_dimming_scale" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_read" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_set_phase_align" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_get_phase_align" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_read_aep_status" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_read_auto_pwm_value" [drivers/leds/leds-lp5812.ko] undefined!
+>> ERROR: modpost: "lp5812_read_lsd_status" [drivers/leds/leds-lp5812.ko] undefined!
+WARNING: modpost: suppressed 23 unresolved symbol warnings because there were too many)
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
