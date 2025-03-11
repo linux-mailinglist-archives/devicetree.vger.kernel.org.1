@@ -1,256 +1,193 @@
-Return-Path: <devicetree+bounces-156505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8203A5C082
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:18:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12C8FA5C0C1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:23:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39760173E70
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:14:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59FCA189D20F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88350260A3D;
-	Tue, 11 Mar 2025 12:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE8A625CC8D;
+	Tue, 11 Mar 2025 12:10:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P81ZsbtE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CCD02561A3
-	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 12:05:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB978258CD0
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 12:10:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741694710; cv=none; b=S+fjCGvqLbXC2ITxY1blcithPnT6iBFgjfM/JzZjvecapBUJJnYK8KK2hcCNnbhhqoAo4jhv2Nsoz4NMaEokcwwsqAv3V/1jol+Abq7INvURM417xXRwGaRj5TyZXwoK7rWaVH8iQ0+I+TvdSLjlpAI7AY7JF9VlNnKFAIo+J6Q=
+	t=1741695058; cv=none; b=e07uMYGSQtwmUcNV0tqaWlFp9B45Sa0EUBa4SFXL6Y6MXu9N+73+h8Fpi6QQQ2YbcSQtsg8yTFLfCrvBGFoK0ogKMELKMqL+Asgh5DYADgIhTR870sYG6/INC50mF/S1aQLu+NgV4ZzktL8432hNaRdbn7vo2eEHmcJ1zQall10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741694710; c=relaxed/simple;
-	bh=t20yuOvGQQsvRDlo35tvfwHYzGxDYPuVQtBjEcVnqQg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XQR6D1XLG854zb6D+/wgYyEwG9Y4jjt32e50ywKGpDqMGSy+JLx7heJ5P9Hs6/0KbD0p5fdFx/wk8uATPigeEKqZ6W1if2eam3PPum2I6dkLAwxROGC2N/GhfTh8QxkPg+dAWTKTk9T2Se7hxCw/nl2xFAPQ5yVI0DJH4hesaxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tryM5-0008Nt-Gb; Tue, 11 Mar 2025 13:05:05 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tryM3-005B4L-13;
-	Tue, 11 Mar 2025 13:05:03 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tryM3-007j7z-0d;
-	Tue, 11 Mar 2025 13:05:03 +0100
-Date: Tue, 11 Mar 2025 13:05:03 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Frank Li <Frank.li@nxp.com>, Marc Kleine-Budde <mkl@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org, Daniel Baluta <daniel.baluta@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/5] arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
-Message-ID: <20250311120503.ryqg2thnj4mkgsjz@pengutronix.de>
-References: <20250221191909.31874-1-laurentiumihalcea111@gmail.com>
- <20250221191909.31874-5-laurentiumihalcea111@gmail.com>
- <Z7jahtO3bxjkMfnc@lizhi-Precision-Tower-5810>
- <cd6a84cd-ff17-45df-becc-9bfc74522f73@gmail.com>
- <20250227-monumental-whale-of-security-b1c84e-mkl@pengutronix.de>
- <Z8CWsI/DKZtDBkzE@lizhi-Precision-Tower-5810>
- <20250228101952.g6tae3ni5xrhjk3y@pengutronix.de>
- <bfe3c719-f1c5-4ae5-9a40-45ad75cd5855@gmail.com>
- <20250307152236.3ayulbjqnu3vn7mf@pengutronix.de>
- <ec38d41d-f2ce-4a98-bb02-d1ae9beb0b3b@gmail.com>
+	s=arc-20240116; t=1741695058; c=relaxed/simple;
+	bh=zSPwxXlU8zKoR89yCExd+rmcWFjM6s7206Ph0rFGYxE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EiL/0oCqWyGsmTTiMcIj0xmPLKjwCR9Kku+C8/EcjNyln9ugK8M+/m79xyC/4RX86LBUPNfwBrb0bPZ9lCnW7pTCQAkfu78Wx33lNW+9D8o2nQ2fYa36c/5lYFzUykK8o6BQoOS/cc+g5tMLRqhr+sTjRqJ8Z3n/Grc6ex/WkgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P81ZsbtE; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ac25313ea37so788522066b.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 05:10:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741695055; x=1742299855; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YpSRq2NhGx61IXcChX3O1OuFIQ+cWb4jvdaEjASRrWg=;
+        b=P81ZsbtEk7no/75QuS3gtdwkbY1wNkAiNf6mXZCHVfVN3cefBJJBpKFSWT6HodgyX3
+         Z0Vl9FyLYjTuml//dDN5jEGGGYlv2rik+eS2EMj+2OzKBBSa9sp/sD40JW9cNisWGNkf
+         j+zNmKd/uRoHCgWfsSG+rJEEiceXRwcdxsaqJ/pJZ2MhDeFcFGOyGswaS5nr0Mwp6PVx
+         vVbn2bMH18rGqcfG5zcUGbQnfOkFLKHyKG/j2hKX6lEj6eCkPiGtM4BystLmL5pZczH/
+         15kUUPbh7D9OWnOeR0a+CnA3QrMLf+oqBI8LN/ySKmBqDhosn7GOgdKQkCA9nYNBtV8s
+         td/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741695055; x=1742299855;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YpSRq2NhGx61IXcChX3O1OuFIQ+cWb4jvdaEjASRrWg=;
+        b=VFYQTA9JDltHvHxcwx79IG5egp78GhyFUvhYau7Iu9MSdvPk8lNqtRhgEYVeRJ9/pb
+         73U2ku7bwjuGhRAWEnmKSwubd6pesR/QG9tar3Y41ywyOPitvxN7D3cJJ82YirVz7nXX
+         jPNkB4fkb7Lz6Pk/k431yU2deGCANMdK1Uyc2RjRiw+bf1v0n3EZy4I8OJ4Fyc7qQl7U
+         6UJ5yahNTJP3TDblGsqyzc2QbRd/pA1BjJbqMwanoWUQoRR8nhCdhr9ojObPB6EmbSJ4
+         b+nBtI8YpKV+HlZJgCxXg3j9tY5SN9x5YrktCFTr8MKM7pGBYG5AWliNfYAYUDnqkoIF
+         9o7w==
+X-Forwarded-Encrypted: i=1; AJvYcCV8zc8C9bs/piGTzcFzCBVk90tO8WCopxnlf14rzJl4JvuS1+6/saL/4+JhT5LLB6yeAefTezqKhMxH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxP1/Mrd7qmaDDH5k4WM6jtYz+fnIDyrOFBbFRRy9KWpEIJaG9/
+	UEJg6abb34nvzsWoNyzitRn/Z0G4bybnGzyf152anzM76M0RQUEsI0gIExLnWUA=
+X-Gm-Gg: ASbGncuoBJ1KmRnlB9jy3GEMPiaXY5O9//hGT9lKrVA1Jkj8nc0YzeNY+9bdkLCTk3f
+	ZceZ9iyjom8JrbS/ree2YfqZKBmus5wQY6w1CP8DVLRm0Ik3PCizpdaF7Nxqobs8XgrXGuvX9NG
+	GOcAcaRdxzwbqgtVka57JAuZbDoIZWB5yaFBydw7ZgkFGvVqctc74JZwhbyURZjzfBLzk3NUbpM
+	et1t16tw9z2ZlTflkGAs6YgYiL5bdq1kH7/gvK48p07ZCWLg5Do7OkiM/4uZVAa8fDQId5EBpJf
+	CKxF5BXd5p1w/a7rVwUbtnxzBGTcUFbqTYGwdIUyT08Y+iHbEk6PKh7+FnzVwNAHIS9L0cIcDyB
+	56QDEHjnt8sRYtNPXEHdk
+X-Google-Smtp-Source: AGHT+IH6Ya7/iCUCKClbjsY4uNuhgYuKstLNpNY8OIGUfaJ0U+i2tVi/bJHr3Ky/JoXqb2hyREP3nA==
+X-Received: by 2002:a17:907:3f2a:b0:ac1:d91e:5596 with SMTP id a640c23a62f3a-ac25265915cmr1973198766b.23.1741695053409;
+        Tue, 11 Mar 2025 05:10:53 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac24a843884sm823958566b.102.2025.03.11.05.10.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Mar 2025 05:10:52 -0700 (PDT)
+Message-ID: <9e6fdcfe-3c6d-44c7-95a3-7652c0650bf4@linaro.org>
+Date: Tue, 11 Mar 2025 12:10:51 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/8] clk: qcom: Add support to attach multiple power
+ domains in cc probe
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <CMTYKKilQJYeHUYYKvlqnwv4Q2P-58Ic1v1ndS9HQ8Yhq2xpHuNThibFDjXDEQ1PyNbx__f9BVBr0peoTUdvPg==@protonmail.internalid>
+ <20250306-videocc-pll-multi-pd-voting-v2-0-0cd00612bc0e@quicinc.com>
+ <5a45fd25-74ed-46e3-b0e3-5adf92b5e9f7@linaro.org>
+ <46d4f090-3e31-414f-abfc-3d1018913c56@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <46d4f090-3e31-414f-abfc-3d1018913c56@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ec38d41d-f2ce-4a98-bb02-d1ae9beb0b3b@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 25-03-10, Laurentiu Mihalcea wrote:
-> On 3/7/2025 5:22 PM, Marco Felsch wrote:
-> > On 25-03-04, Laurentiu Mihalcea wrote:
-> >> On 2/28/2025 12:19 PM, Marco Felsch wrote:
-> >>> Hi,
-> >>>
-> >>> On 25-02-27, Frank Li wrote:
-> >>>> On Thu, Feb 27, 2025 at 11:57:54AM +0100, Marc Kleine-Budde wrote:
-> >>>>> On 25.02.2025 16:14:34, Mihalcea Laurentiu wrote:
-> >>>>>> On 21.02.2025 21:56, Frank Li wrote:
-> >>>>>>> On Fri, Feb 21, 2025 at 02:19:08PM -0500, Laurentiu Mihalcea wrote:
-> >>>>>>>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> >>>>>>>>
-> >>>>>>>> AIPS5 is actually AIPSTZ5 as it offers some security-related
-> >>>>>>>> configurations. Since these configurations need to be applied before
-> >>>>>>>> accessing any of the peripherals on the bus, it's better to make AIPSTZ5
-> >>>>>>>> be their parent instead of keeping AIPS5 and adding a child node for
-> >>>>>>>> AIPSTZ5. Also, because of the security configurations, the address space
-> >>>>>>>> of the bus has to be changed to that of the configuration registers.
-> >>>>>>> The orginal 0x30c0_0000..0x31200000 include 0x30df0000, why not map only
-> >>>>>>> config address part in your drivers.
-> >>>>>>>
-> >>>>>>> Frank
-> >>>>>> Any concerns/anything wrong with current approach?
-> >>>>>>
-> >>>>>>
-> >>>>>> I find it a bit awkward to have the whole bus address space
-> >>>>>> in the DT given that we're only interested in using the access
-> >>>>>> controller register space.
-> >>>>>>
-> >>>>>>
-> >>>>>> I'm fine with the approach you suggested but I don't see a
-> >>>>>> reason for using it?
-> >>>>> Looking at the "AIPS5 Memory Map" (page 34/35 in i.MX 8M Plus
-> >>>>> Applications Processor Reference Manual, Rev. 3, 08/2024), the
-> >>>>> AIPS5_Configuration is part of the AIPS5 bus. IMHO the bus is something
-> >>>>> different than the bus configuration. Why not model it as part of the
-> >>>>> bus?
-> >>>>>
-> >>>>>>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> >>>>>>>> index e0d3b8cba221..a1d9b834d2da 100644
-> >>>>>>>> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> >>>>>>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> >>>>>>>> @@ -1399,11 +1399,13 @@ eqos: ethernet@30bf0000 {
-> >>>>>>>>  			};
-> >>>>>>>>  		};
-> >>>>>>>>
-> >>>>>>>> -		aips5: bus@30c00000 {
-> >>>>>>>> -			compatible = "fsl,aips-bus", "simple-bus";
-> >>>>>>>> -			reg = <0x30c00000 0x400000>;
-> >>>>>>>> +		aips5: bus@30df0000 {
-> >>>>>                        ^^^^^^^^^^^^
-> >>>>>>>> +			compatible = "fsl,imx8mp-aipstz", "simple-bus";
-> >>>>>>>> +			reg = <0x30df0000 0x10000>;
-> >>>>>>>> +			power-domains = <&pgc_audio>;
-> >>>>>>>>  			#address-cells = <1>;
-> >>>>>>>>  			#size-cells = <1>;
-> >>>>>>>> +			#access-controller-cells = <0>;
-> >>>>>>>>  			ranges;
-> >>>>>>>>
-> >>>>>>>>  			spba-bus@30c00000 {
-> >>>>>                         ^^^^^^^^^^^^^^^^^
-> >>>>>
-> >>>>> This looks very strange: The aips5 bus starts at 0x30df0000 and has a
-> >>>>> child bus starting at 0x30c00000?
-> >>>> @30df0000 should match controller reg's address.
-> >>>>
-> >>>> subnode address 0x30c00000,  should be descript in "ranges", which 1:1 map.
-> >>>>
-> >>>> So it should be reasonable. another example:
-> >>>> i2c@1000 {
-> >>>>
-> >>>> 	device@1c <- which use difference address space.
-> >>>> }
-> >>>>
-> >>>> The similar case also happen at pcie.
-> >>> I'm not really convinced that pcie and i2c are good examples here. I2C
-> >>> does have an other addressing scheme by nature and the hotplug-able pcie
-> >>> is dependeds on the pcie device memory map of course.
-> >>>
-> >>> Here we're talking about an access control IP core on a bus which is
-> >>> static.
-> >>>
-> >>> But.. it looks like from DT abstraction it's fine because STM did
-> >>> something similiar with their st,stm32mp25-rifsc or st,stm32-etzpc
-> >>> albeit it does look strange and I don't know why we have to limit the
-> >>> address space since it was already mapped but used by the fsl,aips-bus
-> >>> driver.
-> >>>
-> >>> Regards,
-> >>>   Marco
-> >> The address space of the bridge was changed to that of the bridge's
-> >> configuration space because I think it's very awkward from the
-> >> software's point of view to have to hardcode the offset and size of
-> >> the configuration space inside the driver. 
-> > You mean the access-controller IP core. I could also arguee that it's
-> > akward to put the bridge access-controller IP core into the middle of
-> > the bridge address-space instead of placing it at the very beginning of
-> > the bridge. But this doesn't help here :)
-> >
-> > I see what you mean but from DT abstraction POV it seems more reasonable
-> > to keep it as it is and just adapt the compatible. The current driver
-> > maps the whole address space too, so I don't see why we need to change
-> > it if we change it to the aipstz driver. If you see the
-> > access-controller IP core as part of the bus I don't see any problem and
-> > would argue that the offset detail needs to be handled within the
-> > driver.
-> >
-> >> I also looked at what STM did with "st,stm32-etzpc" so I thought this
-> >> would be acceptable from the DT's POV.
-> >>
-> >> Regarding why I chose not to model the access controller part as a subnode of the
-> >> bus:
-> >>
-> >> ��� 1) The access controller is part of the bridge itself (not a separate module accessible
-> >> � � via the bridge like it's the case for its children) so I think the current approach
-> >> ��� should also make sense if we take the hardware into consideration.
-> > I don't like this approach if you see the controller as part of the
-> > bridge because the offset could be handled within the bridge driver.
-> > I also that the register offset needs to be supplied else we can't reuse
-> > the driver and we don't want to adapt the driver for each SoC.
-> >
-> > What came into my mind is the following:
-> >
-> > 	spba-bus@30c00000 {
-> > 		compatible = "nxp,imx8mp-aiptz-bus", "nxp,aiptz-bus";
-> > 		reg = <0x30c00000 0x400000>, <0x30df0000 0x10000>;
-> > 		reg-names = "bus", "aipstz";
-> >
-> > 		child-nodes {};
-> > 		child-nodes {};
-> > 		child-nodes {};
-> > 	}
-> >
-> > This way we can abstract the access-controller register space and the
-> > whole bus register space and a generic driver could be written just by
-> > making use two reg fields.
+On 11/03/2025 10:12, Vladimir Zapolskiy wrote:
+> On 3/11/25 11:52, Bryan O'Donoghue wrote:
+>> On 06/03/2025 08:55, Jagadeesh Kona wrote:
+>>> In some of the recent chipsets, PLLs require more than one power domain
+>>> to be kept ON to configure the PLL. But the current code doesn't enable
+>>> all the required power domains while configuring the PLLs, this leads
+>>> to functional issues due to suboptimal settings of PLLs.
+>>>
+>>> To address this, add support for handling runtime power management,
+>>> configuring plls and enabling critical clocks from qcom_cc_really_probe.
+>>> The clock controller can specify PLLs, critical clocks, and runtime PM
+>>> requirements in the descriptor data. The code in qcom_cc_really_probe()
+>>> ensures all necessary power domains are enabled before configuring PLLs
+>>> or critical clocks.
+>>>
+>>> This series updates SM8450 & SM8550 videocc drivers to handle rpm,
+>>> configure PLLs and enable critical clocks from within 
+>>> qcom_cc_really_probe()
+>>> using above support, so video PLLs are configured properly.
+>>>
+>>> This series fixes the below warning reported in SM8550 venus testing due
+>>> to video_cc_pll0 not properly getting configured during videocc probe
+>>>
+>>> [   46.535132] Lucid PLL latch failed. Output may be unstable!
+>>>
+>>> The patch adding support to configure the PLLs from common code is
+>>> picked from below series and updated it.
+>>> https://lore.kernel.org/all/20250113-support-pll-reconfigure- 
+>>> v1-0-1fae6bc1062d@quicinc.com/
+>>>
+>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>>> ---
+>>> Changes in v2:
+>>>    - Added support to handle rpm, PLL configuration and enable critical
+>>>      clocks from qcom_cc_really_probe() in common code as per v1 
+>>> commments
+>>>      from Bryan, Konrad and Dmitry
+>>>    - Added patches to configure PLLs from common code
+>>>    - Updated the SM8450, SM8550 videocc patches to use the newly
+>>>      added support to handle rpm, configure PLLs from common code
+>>>    - Split the DT change for each target separately as per
+>>>      Dmitry comments
+>>>    - Added R-By and A-By tags received on v1
+>>> - Link to v1: https://lore.kernel.org/r/20250218-videocc-pll-multi- 
+>>> pd-voting-v1-0-cfe6289ea29b@quicinc.com
+>>>
+>>> ---
+>>> Jagadeesh Kona (7):
+>>>         dt-bindings: clock: qcom,sm8450-videocc: Add MXC power domain
+>>>         clk: qcom: common: Manage rpm, configure PLLs & AON clks in 
+>>> really probe
+>>>         clk: qcom: videocc-sm8450: Move PLL & clk configuration to 
+>>> really probe
+>>>         clk: qcom: videocc-sm8550: Move PLL & clk configuration to 
+>>> really probe
+>>>         arm64: dts: qcom: Add MXC power domain to videocc node on SM8450
+>>>         arm64: dts: qcom: Add MXC power domain to videocc node on SM8550
+>>>         arm64: dts: qcom: Add MXC power domain to videocc node on SM8650
+>>>
+>> This list looks sparse.
+>>
+>> - camcc is missing
+>> - x1e is missing
+>> - sm8650 and sm8750 and both also missing
+>>
 > 
-> by changing the compatible, we've also effectively changed the
-> programming model.
+> Since there are concerns about DT bindings ABI change of CAMCC given by
+> Krzysztof, likely CAMCC changes shall not be inserted into this series.
+> 
+> -- 
+> Best wishes,
+> Vladimir
 
-You need to keep the backward compatible which means, a new kernel have
-to boot an old dts (firmware), which is stil the case since the
-"simple-bus" driver sill matches on the old dts files.
+drivers/clk/qcom/camcc-sm8650.c
+drivers/clk/qcom/camcc-x1e80100.c
 
-But this doesn't mean that a new dts (firmware) have to be compatible
-with an old kernel.
+In fact we appear to be amending the dts but not the driver for the 8650 
+here.
 
-> I don't really see why we need to stick to the old way of configuring
-> the bus node (i.e: specify the whole address space of the bus as well)
-> when all we really care about is the AC configuration region?
+@Jagadeesh please follow up.
 
-I see and as I said it's just my oppinion that we should abstract it
-this way since upstream already accepted the approach you implemented
-for the STM32 case.
-
-If NXP would have placed the AC at the beginning of each AIPS bus you
-wouldn't need to deal with this problem too since you would have the
-base register already.
-
-> anyhow, I'm not going to insist on this. I think the proposed approach
-> will work just fine. If there's no other comments on this then I'll
-> just switch to it in V3.
-
-That would be nice but please wait for maintainers feedback e.g Shawn.
-
-Regards,
-  Marco
+---
+bod
 
