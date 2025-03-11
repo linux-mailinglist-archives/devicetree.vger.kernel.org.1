@@ -1,91 +1,133 @@
-Return-Path: <devicetree+bounces-156712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D11C7A5D2FD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 00:13:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFD1A5D307
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 00:16:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F07D171D1A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 23:13:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D4B617B350
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 23:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F3822371C;
-	Tue, 11 Mar 2025 23:13:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5361F4CB7;
+	Tue, 11 Mar 2025 23:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n72wMNa3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EpjKsEAm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3CC51F09B4;
-	Tue, 11 Mar 2025 23:13:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442971D6DBB;
+	Tue, 11 Mar 2025 23:15:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741734798; cv=none; b=V2fPvgfRkmruXTpe/b20+82QctCvW8T+UJmYdc+d4hqLTkvTQ0GGe/PfcAE20dtAT37lVdOG1XHmcl6M0Jk48zfL9d+SPJY27RIcAkQu+XlLL7MR5LiRSJEBotzuKnlVf38lr8VS2QiLlMARs4ktgQbCJvdSOexgZfuHbSO/ZG0=
+	t=1741734961; cv=none; b=VOguHFq9iGMTykcNoHzVB/p2TMsVX35zavtB2eyTnbcwe5wh93C4dJEdlkSFdbj7sCcWr3OBgo1IpqRScuQCHh/8Z2zUSO4KJ3JcIffSXndLrHoR1M+uIh7fyQg5WwitzJE1eO0siLeaMFH5pkkm1jSJBlzEKoebaWf7HslKU3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741734798; c=relaxed/simple;
-	bh=8zqqrE6NewUBWLpJZUQ9TW4QDanmnleqtNEBYnbMVTE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kz4kQIth44eu4/G8nI4VFV3RApnFQiiIHYMr7ZImpjPFXvWDvtpgtz14NLn53/NQzm0nelyjZTlxBBVjPRx8XBXpQZnvu9+lJ7fsMtKwZZP9UNiUZmVrMTpLJVsZSLM6lDqt7ADeytEIaLGOJTm6fpwFk7rY4WBixgyTrJ4BPOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n72wMNa3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B16C4C4CEE9;
-	Tue, 11 Mar 2025 23:13:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741734797;
-	bh=8zqqrE6NewUBWLpJZUQ9TW4QDanmnleqtNEBYnbMVTE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n72wMNa3Jz0xhi592qwthWXHm9rUyqJmj8Nr/TkskBp7IiNe3/ds1wy404etUxux9
-	 vrkb8V8GqZiLBtTp4iWf9eCS2DEjEIA5LZNHJm4XsihtynVTav9pS1J/91Nue4CjS5
-	 EEiLv0EXT7CYCs8sSFH4FHo3QIKJfBcN0L48Bzvj8YvVuXYJ/rAYO7hZaVJ1H8EVEJ
-	 yxX9Ay8U1ETzjuP5dEx+uQ/Rc8ZDnKckGE/XmgV0/NtGAg4bqfubeKfaSdyI7PwDUS
-	 QqHWh6Qn0PJROsbHrVf+0f1b5mwlQMgPasICv6DpmpyTjYFsuK6PZIBU3F9/eBBC7I
-	 x6O1Hqzg4nGkw==
-Date: Wed, 12 Mar 2025 00:13:09 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Denzeel Oliva <wachiturroxd150@gmail.com>
-Cc: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com, 
-	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	conor+dt@kernel.org, igor.belwon@mentallysanemainliners.org, 
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] Add PERIC0/1 support for Exynos 990 and hsi2c
- compatible
-Message-ID: <jwihm4ahyjluillz5szgvwj3ntjypqekjf43g4c2poa7r3v7ar@5uka5xftxjzf>
-References: <20250212004824.1011-1-wachiturroxd150@gmail.com>
+	s=arc-20240116; t=1741734961; c=relaxed/simple;
+	bh=JfqA/cREN5ap0KC+NOoguLsVwcHMC4kC6hiUOpBMvyc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RT1eNH/kZOkLWw5wq9wNziLB/dgYITDslxqItPpxvF7SzZA84+o0Favf4negmHtXgbszWt9Z2tNlG65rN26dfCZu2Np1XVZLSyfvUHsHmlshfACDFxP6RFNcAlzQW93ig77qWRkqfw4Yp3QzOua0nT6qgF4H5BQ4IvlhRO8Zj4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EpjKsEAm; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43948f77f1aso36594205e9.0;
+        Tue, 11 Mar 2025 16:15:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741734958; x=1742339758; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tX/dTIeYNxTzj5gZHvJ5AtwpzySsIM3wBh1XC79KOyI=;
+        b=EpjKsEAm86dqI/AbWJorn+3jEH0EEXafb/YkpdV4iBQor+MoVVz6bZmAxImn9TcMtu
+         k3zKtv475p3Ki22bfMaaEksDLrT+CnQpi/GWOktqyJbDUX9mX2QfMjXxpvAW4vkdjZFq
+         yPGH+NGRMAFlGsYKglcQzCDGOQHlxveIvl95a4B5kazFeVNUuL4lWMicSkxos+XJQFlZ
+         YN0hXCJJGxNRbNz4bsMpILG0ZRZ/8K/cG5mzx/tCAb0Wc9CWeOV6FuXvZ81koM03ltAI
+         /AloDX8Uav+6UIMyYOIi87FXGfhq/jDBg22KRAHmSPsrSB6oi0vL+vRusDFLu09eqi2f
+         XZag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741734958; x=1742339758;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tX/dTIeYNxTzj5gZHvJ5AtwpzySsIM3wBh1XC79KOyI=;
+        b=DpowqH51dZ2lPgkNIVduaG1S/BXv4soG4WIqCgwfo4KtLxZUJaKBQNDwnIpqZ4u1wr
+         Pzt8ibUAnLmfucMALRCdPtCg5DVKmkZhYx+mVsPlOYWxo4ZvqxWzv1ttXt4cefa1xwf5
+         dBObou1PwMC0W0eoy35msgVauq3FJ6tPdxwvtorMfQNh6U2WTeo0PD7m1eU8suDq1478
+         HL84OZGJ8EOs6LHLg6GutSFT45evfgAzmOStZl9FQHWNlOFM0f8/q+tfe9sH5ZIMLu6Z
+         hO8ENbA8nyyoNLh0ZYzXjE5uQ+0Eh67RSnVNDjzbmJu3NH2BmbBXCHEKdy+nCg2MsqYE
+         wKqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVH6cAXA9a5lBi76iJRZBQ2HYaHP0NcmjIVypnRm8LekeBk9giwITZKUfw7h0wFix9QbBWVEELgJ+O2wNI+@vger.kernel.org, AJvYcCWPu4puuwMGvR23NkrVfBt0bergGbZtYuMHeNoLxVcYBTCODaN+V7iXFxMFRsdTWLQxBJkeHgpep8RG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsR6ocTTN469Mvpr6VGLLZpr9prtsCjrpqPyK+l2z+OPEcaMIm
+	MoLcXfRbfBZbBG7qH0l7NcTZok377Md5jlARbBJ1kL2zhI3YvuIY3RAzthn6+mdYcVxxXeKmnK0
+	C4mtu1zt7oBlduLxDAVxfyFQxlNM=
+X-Gm-Gg: ASbGncsTzC0tYYi+e1VmYbnD/Z9ybpfHZ/jiSu7UfLG3gPvsPXNgo16I9Y3QaNBLgOC
+	mYgBVD8RVmEjjrlwY4Xn0G0S/OblXDI2Q0jvzcG/HyH+M2WykxAsWOQNZj63DGQCrGL2gXtVh6S
+	79+hyeWSVKkr/flRD97++9iwKHyL7BudKD8520ksDaDzpjmqdV5+4nkJDwbaS+ymocgGIf
+X-Google-Smtp-Source: AGHT+IHdE+IvjKPy/H/187X9ESbJuc1W239VyqGDem3VC44hAK/6v4MUY7Ogj5IPUx6y6MopfRCWPyu9jEmvdN+2VSY=
+X-Received: by 2002:a5d:47cc:0:b0:391:23de:b1b4 with SMTP id
+ ffacd0b85a97d-39132db0648mr15300763f8f.45.1741734958355; Tue, 11 Mar 2025
+ 16:15:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250212004824.1011-1-wachiturroxd150@gmail.com>
+References: <20250311141245.2719796-1-liujianfeng1994@gmail.com>
+In-Reply-To: <20250311141245.2719796-1-liujianfeng1994@gmail.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Tue, 11 Mar 2025 18:15:47 -0500
+X-Gm-Features: AQ5f1JpTXjTmVT-uFEQ-cp0wVYjs646Qn0g9ep9yELCKIu65h4ws4boyJnIroik
+Message-ID: <CALWfF7JfJxudKKfvOBXiLOMijUi+xZCAUL_WRsB-UxpV3XKDEg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix pcie reset gpio on Orange Pi 5 Max
+To: Jianfeng Liu <liujianfeng1994@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Stephen Rothwell <sfr@canb.auug.org.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Denzel,
+On Tue, Mar 11, 2025 at 9:13=E2=80=AFAM Jianfeng Liu <liujianfeng1994@gmail=
+.com> wrote:
+>
+> According to the schematic, pcie reset gpio is GPIO3_D4,
+> not GPIO4_D4.
+Thanks for the correction.
+Also applies to the Orange Pi 5 Ultra.
 
-On Wed, Feb 12, 2025 at 12:48:20AM +0000, Denzeel Oliva wrote:
-> This patch series enables the PERIC0/1 (Peripheral Connectivity)
-> and compatible hsi2 for Exynos990:
-> 
-> - PERIC0/1 feeds HSI2C, SPI and UART
-> 
-> This part tests one by one to see which clock hangs without
-> the CLK_IGNORE_UNUSED flag.
-> 
-> Changes v2:
->  - Remove other unnecessary patches which is nothing related
->    to linux shipping style.
-> 
-> Denzeel Oliva (4):
->   dt-bindings: clock: samsung,exynos990-clock: add PERIC0/1 clock
->     management unit
->   dt-bindings: i2c: exynos5: add samsung,exynos990-hsi2c compatible
->   clk: samsung: exynos990: add support for CMU_PERIC0/1
->   arm64: dts: exyno990: enable cmu-peric0/1 clock controller
+I made the typo when starting with the Orange Pi 5 Plus with "gpio3
+RK_PB3" and changed both "3" to "4".
 
-what is the future of this series? Are you planning a v2?
+I'm guessing u-boot has already initialized the device, otherwise the
+problem would be more obvious.
 
-Andi
+>
+> Fixes: c600d252dc52 ("arm64: dts: rockchip: Add Orange Pi 5 Max board")
+> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+Reviewed-by: Jimmy Hon <honyuenkwun@gmail.com>
+
+> ---
+>
+>  arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi =
+b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi
+> index 6e4dcd8fff26..f748c6f760d8 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi
+> @@ -64,7 +64,7 @@ &led_blue_pwm {
+>
+>  /* phy2 */
+>  &pcie2x1l1 {
+> -       reset-gpios =3D <&gpio4 RK_PD4 GPIO_ACTIVE_HIGH>;
+> +       reset-gpios =3D <&gpio3 RK_PD4 GPIO_ACTIVE_HIGH>;
+>         vpcie3v3-supply =3D <&vcc3v3_pcie_eth>;
+>         status =3D "okay";
+>  };
+> --
+> 2.43.0
+>
 
