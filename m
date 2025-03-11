@@ -1,114 +1,95 @@
-Return-Path: <devicetree+bounces-156642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70E7EA5CE41
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:54:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD8EA5CE57
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:58:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C8011795B3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:54:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E626D3B4C77
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:58:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F9DE263C75;
-	Tue, 11 Mar 2025 18:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5843263F31;
+	Tue, 11 Mar 2025 18:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rTDlUznV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jh9ST8ih"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A67C26158C;
-	Tue, 11 Mar 2025 18:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7714E25B688;
+	Tue, 11 Mar 2025 18:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741719265; cv=none; b=gOMWcBFJQMT1Vhw+jfW8UM8Kyk0+Zi8877G3LDnilccvIJKBcAseKjNBBTiC0/ug5qRwvTdc7SmkT3++4Sb6BGos4iSVYLTxdxSPX6vE1ssRoohydzcX1dT+ZTStzRkMi4dss1XmrszmQvIw3UDs3s9TDmkGVOBTzq8u7hWsL5Q=
+	t=1741719509; cv=none; b=AFK+5oIkFR2Fy/bUfsFn5Bmu4ZmuQpCIjLmfdtbqSRVUIGRvd+NwVduAzv4p1WsiPhrfhYRkjXToYFl+i4xCMdwxG9/+BteI3zj4jqwf6Naiq5SSroX+Do7/DMmWXbtkG62dSnbUT+7EWPCItqJhYyM/Y8pbLVhaqCzaX5tSOL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741719265; c=relaxed/simple;
-	bh=DkxbPGCo5A/e7lDRlK6FKH/uxZlqGSzRqfvmnVsyDRY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X62AhwJOYRzITdg6EUwEJ/Ajco/ig9lvLq+J7WwAyTKChueWHGnvaOGVtRu8P3Y4yVgo06s8oa5t6+gbFYgVHvNCfdACOatlzab2RzMhoPDIauXm64e2Tj6HAKx95tzXe1CQ79ZyWhkiw9/PuCkYGopj0+exmMZ2kqqw1dglTUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rTDlUznV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5CABC4CEE9;
-	Tue, 11 Mar 2025 18:54:22 +0000 (UTC)
+	s=arc-20240116; t=1741719509; c=relaxed/simple;
+	bh=D9qHdpXll7vLrLHbuBC5ZIcyw1Mnbte9gmyw1jVzTV8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=o14u+HQ7L/QPq7uAAdU9xwpSplHZi2GeeMUPZcmfa3pEaxMWMcO1nFrK+FJjvQ7lmNaPAcEAbh6b7LIFGOVNPZKHbda4BivS6OGpHCo8jXOVN8WJCAkn/ANjPeKCa6XDokRShYw1AaYDF1RNEhZ25lfCdksb7A3zU9SHMzGSLHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jh9ST8ih; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05432C4CEEB;
+	Tue, 11 Mar 2025 18:58:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741719264;
-	bh=DkxbPGCo5A/e7lDRlK6FKH/uxZlqGSzRqfvmnVsyDRY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rTDlUznVD4Cj7FZ/kaNJUVwzonfwXS0c1KgC58c+1coh7IMQFvCkz3vbJ/U8udX+M
-	 9oSXhuPOzssLUsV9aiIG4Q3dywrNW9JkLNscaearhpYFtQgboZBChhYoS4VzwrnD77
-	 ARbSi3erLuagq9m13Joh9cXbMc2GB+B7ZIELq1PlsZX+zfX94eDTtoJ5BSduYFjcgW
-	 5ko5NRDgQdlL1e1LUnJBWovGDwI+NLhi08i7aXN/dT/szi0MnDc1CQuIEy33vmDpqT
-	 Pu9YwP62K8bBjNeXbnsKNF0cw2lKUe+gDfWfJteCVcNbNU88PPY528WARi06hRQoSV
-	 9EPO71I7F9yow==
-Date: Tue, 11 Mar 2025 13:54:21 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-Cc: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	linux-staging@lists.linux.dev,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Javier Carrasco <javier.carrasco@wolfvision.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>, devicetree@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>, Zhi Mao <zhi.mao@mediatek.com>,
-	Julien Massot <julien.massot@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Ross Burton <ross.burton@arm.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	s=k20201202; t=1741719509;
+	bh=D9qHdpXll7vLrLHbuBC5ZIcyw1Mnbte9gmyw1jVzTV8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=jh9ST8ihOpZEvI7y8d1x22jonvnRFPus3v0GMuAVzFLUhCbVlzxV1B7giVp9l7Mv7
+	 V8knRq/iMELH84ewawJSG6pmB/zB53hGgurgi9q6LXTJHnJSpfZMmjAEY662ITT6pT
+	 kwHF/mHXtSP38yTCCkPPZyPDxkTiNpphwLrkUwFHylM3NNktPB56aa2QEVWt5gx3Wx
+	 DYDEtHISCkTO2hYtslukSlo3doRq1fYop7n1NWq67WtPLtvE353si1Eie6mGnok95W
+	 nrGIVs29Il1Tpsyt6Sqqx+y6BI/F0DQI9VDx9RxB/bUUnHxxxmYhS39phtqHq5mlg0
+	 llr2b0lFyjgHw==
+From: Will Deacon <will@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Tommaso Merciai <tomm.merciai@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Ihor Matushchak <ihor.matushchak@foobox.net>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
-	Mark Brown <broonie@kernel.org>, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Eric Biggers <ebiggers@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-media@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Pratyush Brahma <quic_pbrahma@quicinc.com>
+Cc: catalin.marinas@arm.com,
+	kernel-team@android.com,
 	Will Deacon <will@kernel.org>,
-	Cosmin Tanislav <cosmin.tanislav@analog.com>
-Subject: Re: [RFC PATCH v2 07/16] dt-bindings: media: i2c: max96712: add
- myself as maintainer
-Message-ID: <174171926101.3971802.12167410956543937006.robh@kernel.org>
-References: <20250309084814.3114794-1-demonsingur@gmail.com>
- <20250309084814.3114794-8-demonsingur@gmail.com>
+	linux-arm-kernel@lists.infradead.org,
+	iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 0/2] Add support for GPU SMMU on QCS8300
+Date: Tue, 11 Mar 2025 18:58:15 +0000
+Message-Id: <174169911942.2776458.2825521492777245411.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20250310-b4-branch-gfx-smmu-v6-0-15c60b8abd99@quicinc.com>
+References: <20250310-b4-branch-gfx-smmu-v6-0-15c60b8abd99@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250309084814.3114794-8-demonsingur@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-
-On Sun, 09 Mar 2025 10:47:59 +0200, Cosmin Tanislav wrote:
-> Analog Devices is taking responsability for the maintenance of the Maxim
-> GMSL2/3 devices.
-> Add myself to the maintainers list and to the device tree bindings.
+On Mon, 10 Mar 2025 16:48:33 +0530, Pratyush Brahma wrote:
+> Enable GPU SMMU function on QCS8300 platform. GPU SMMU is required
+> for address translation in GPU device.
 > 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-> ---
->  Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml | 1 +
->  MAINTAINERS                                                     | 1 +
->  2 files changed, 2 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Applied SMMU bindings change to iommu (arm/smmu/bindings), thanks!
 
+[1/2] dt-bindings: arm-smmu: Document QCS8300 GPU SMMU
+      https://git.kernel.org/iommu/c/df90abbc31e6
+
+Cheers,
+-- 
+Will
+
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
 
