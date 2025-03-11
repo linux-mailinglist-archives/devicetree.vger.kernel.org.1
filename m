@@ -1,155 +1,117 @@
-Return-Path: <devicetree+bounces-156700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8442AA5D21A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 22:57:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 419B0A5D230
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 23:01:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 461DA1899B24
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:57:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 751A01754EA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 22:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7503264F99;
-	Tue, 11 Mar 2025 21:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB74264FA7;
+	Tue, 11 Mar 2025 22:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M/4EFY6c"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F+Mkd8EZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECE0D264A94
-	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 21:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598D22253E8
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 22:01:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741730214; cv=none; b=sXWnwQo394gFg/EodiUgSabwly7XpEBXch71ftwIh+/0x+uFqOMO3YD/KfucRPmvXevVfP4ja5dlQfD+H6u/KFW5xkFYAcuzFfOy6mT0BceUiHond8ZyfZYFKE7fmcdKi16WNSon2p6piCBaw+U5IM4ueK/3o6sZ69ChUAwohfI=
+	t=1741730472; cv=none; b=m+R9Gkc0+y2YB7zQN3MOHAaqe5WU9KJf/iz+XZJdl8XqrWN3uPPLY/HQR/xj5ZmV3iXT+siv80Gu73bYEAnPFDgY40QMvQbzLa6Lai0x/swXlMN/VTNBlNZ+DHuYI4K4k33dWHtH6XTCU+UXmsbj4C9uT0MZLD2dtBgGTTLSjj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741730214; c=relaxed/simple;
-	bh=avNY8ak+JQWmkFVsZS0aeZyCgTV7dWit3U7qT7O+ZI0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X0hSzErpdoNwpPMdX12TrTe4Znyih6zwvWYGQXAJxUH2UgQu7hK4lj16iiwK7lMKycTbFRBVo+CdDl+9Qayn0vbk3nL7Bzhf8jiYE0CwrVgy67j2kdey6EZNOl1IjQ5CeNw55HvuALvM8IUDyIyOVVH0/6SHInItl0g/qMjsTDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M/4EFY6c; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30bf25190f8so3842811fa.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 14:56:52 -0700 (PDT)
+	s=arc-20240116; t=1741730472; c=relaxed/simple;
+	bh=R8RuRnxBjgDCbhmHONSNJXWg1vt5oJAuNhFXR4jrKCA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L6OEr0x7AKO1xCaeTWK6kx6HyfHeJObOyR9v8j/pjKsL1328f4bowAB4Wgjeid0RDy8rqfSY7xAZF8lo0SSIk8WlS0KGgWYUH12NJaEUZ+JUm+L+BUmhGDwkKRWXEbJ+dUo0u4jMRzxIiC9WTv8Igc0XtH1kF22ww78ooSD3v4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F+Mkd8EZ; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3f6dccdcadaso2007555b6e.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 15:01:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741730211; x=1742335011; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qXfL2talT+3Pc3/IEr/DhQxuVz1xDl6VWwKjRxG3X98=;
-        b=M/4EFY6cIVYvdw2LILkLrz9hi5jz+hEd0WxqKe2+e2uXEhWds1c8wNc2TUGmnDd3F8
-         bvF+yC8mu3usy+jlHfhVXFZF+Smn4TSKgjHxWS7xgfJC/msJ7kJoamlnTfhDziUUPCe5
-         njbxjOMWOc84SrvU9qwyrO4/rCZ1moRke350leqQ2147BDUlevwfTEMyP43eKyVrLlPA
-         LDUEalgs8XfrRcYrlJulv2k77ZUSeXlGPzO9d+ImhM+ca2U+OePyOZ8GK3dLsTGrp9Se
-         nM3KAXw3aMM+jc/NpoIavEonN/HT32Nl8gUuAr6i6r7eI3G3LktTTa77Gh7HGIWKeXGe
-         Q4IQ==
+        d=gmail.com; s=20230601; t=1741730470; x=1742335270; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hO14LWvT6RF71LJw1vwVk3fu7V5c53lrYh2ZZrrSiK0=;
+        b=F+Mkd8EZXNZlk6zVrnrWnAm5jn1XyLSZ/+W8HgtyzObrZK95ReZmqs2tfEglSPghpb
+         9NbGecCfLkmp+zCTFaftPmWx1pPbCN1VIO7LPhT/J3gHM9h5eswaoZq7b3bcxNGRgbno
+         MPzNivALP7WKMxzFX+3d3Y3DdONGMOK3zyxJFAqNde8aMyQ96D2dTx4+Ej+bfdGMkhLl
+         U8uysW3k/U8J4aHX+ujc+1n/Ic4y52lk0HnqbKqhR2kPz8Imwf+30Ze+2JJW9HV2bNuM
+         3YHzxw2Z10wiXg42dBzcqlvPpHSxrrg/Pt+vifPaNp7rl3R85y8vkzTwYE3Bwd73dTNI
+         Nl8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741730211; x=1742335011;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qXfL2talT+3Pc3/IEr/DhQxuVz1xDl6VWwKjRxG3X98=;
-        b=o26otAZ6mP0WH3UnPpAHsXSbz+9Pypp52PKV0WqZuAU5+d6TydR2r4/cc02BdTMMCa
-         6FcvAt1UPVqeLtVJPbzuZZ8YN91spQk8QIwunRKtd88oOYfTgJPOWyppppfmkBaEfQHM
-         imEtltZBZJAbzhMmpMJ55gBkst+tLBikNKCyTuj+ZjRxepQv8xHA5okFmRUsHxz8I1Gn
-         ZnxchXXk3tZ2AZnWBOFpZ3biqw0yGNUxV96AstN9pWCJhowNO/st7OUDvMrraxtSaLnb
-         2ZxaaDZzRP698zdx1ncvXwX1ELsyxvU7gEE3+tOHRxqXRojQK7NhDduOR8hbY6AtbcuZ
-         Wxqg==
-X-Forwarded-Encrypted: i=1; AJvYcCVomP0aU3NZ0rH3HJexYh7K+8+NuqtznG0mseU9ts8gYW5MwbxkoteqZcdhekd2NU56ffFziadcRPeN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxO/hN8KcdRFts17HpcOXoDrhg9ziq6Oyr+vIwfZrpWDcTbbY13
-	EgpzNjUeYmKXZ6guXbxADMXT1d6C27aYsuRxXd3qKo7NJpAZAd4F6Zp3+cw+J5+D6mj8Cmd30bq
-	Tl7c=
-X-Gm-Gg: ASbGncs78nZF5cdPab3yEpRK0TzqtHD3NJL5O7dN5U0RDPjJCA42AXGwUUn2SffsLyM
-	Xi1ssFbTZv/cWZ4gGzmfqL8edibw5sf5UoxK52iiwgj3+P62BZWgnm9aPmtClevF0JddexPXs4P
-	yOyA7stnTWnatTWlimSbpi8Nth796R2xFEVIyoxKk78XVFnoZKl0BPS1ihSNV4smmwz0qZErxSU
-	9lwo77720Tsz0dO36JdKdVe6JftV1VQDtXyVV3Y/0NY/ubxUF1T9/zD9TkdAmhYoGemXhm19/Oi
-	WOJ8gPH6v/rm1lguthd/wuzDJXeYnfjtEs4pEbQITJZ6u8fESSHxFqdCsC8PtUe+JFt99wSurqT
-	i5utTHcxDu5gHPCUtoTSf5MA=
-X-Google-Smtp-Source: AGHT+IEYO4fmrspVYYrTHdjMDWmEnFADk1AWRMVfCLAiR2Kql+MwftBAWZmi1W1b6z3wGvyZYMCvEg==
-X-Received: by 2002:a05:6512:158e:b0:549:8b24:9889 with SMTP id 2adb3069b0e04-549ababf63cmr763732e87.6.1741730210970;
-        Tue, 11 Mar 2025 14:56:50 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498b0bd5b5sm1901122e87.158.2025.03.11.14.56.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Mar 2025 14:56:49 -0700 (PDT)
-Message-ID: <3caf6aa5-32d4-4e2a-8872-87e5ddadd7c4@linaro.org>
-Date: Tue, 11 Mar 2025 23:56:44 +0200
+        d=1e100.net; s=20230601; t=1741730470; x=1742335270;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hO14LWvT6RF71LJw1vwVk3fu7V5c53lrYh2ZZrrSiK0=;
+        b=SRGh9diqvJOn0QRP5Z46Ay4EEUY0HXwI7EV5qYvuyassKG3gNGzCCM/C0cjc2llRox
+         rUC6qieB6vMRYy70p4JLJegdmNdRkVF0pVOePYwf/y5DUpTnse/jSupg2tE2Udp9QT8g
+         KIrEO5RZx2y7AJ3ioDevJRF+TJ1nwtN/WpM/M7YS/PvalcLFnIC/H/bsiwjGipKNQ05H
+         DEKzPcWrRqPKPVYL9qjSI3Qsh4H+Gj3mc7Gfajz8BtL6AqZp5walftRlxDUUcXODr2fN
+         R8uFUJhKXZDYNlRMPAXc4E1Qg+JQHAT4zcOO6sCdJpjhz1+j3uXs3orFrAPJiyFqZj8I
+         lw5g==
+X-Forwarded-Encrypted: i=1; AJvYcCViK6sBZVPZM0ed5A2JhnNbpVBftLgaElwS8ITPhufs7X0tBensWGRp0DRCSaClvJo0+5rZWBycibCs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzs3aGN0it872rrk+hDiQgxOG1H3sgHUgte6Gj6rjRl5u1tRpv4
+	wzg2NjbIjtMXlTKY/ILFqu1dtBk4T6s6ldz8JTEumSOGt6Zy6vB2jRuPY9l6mFme8ded5efXpak
+	E1EV+mhEjg2YdAsUWPZcKFitjrWdpqtchGjM=
+X-Gm-Gg: ASbGncsY7pz5vDX7ZBPTTViEjq/Jx94qYsawP7jSV4TJvamO6zHA+9y/vz9iTEOITF7
+	sVZ7Wbt8P4ZLKlXB8gwTFDVd46IN6RtX/xrXHnZCIVhPlTAtnCIklloysb0EK17qz+Bu6Yb+cRW
+	nuwfCm6+XVjxBF5CNMTLOPGkfAG+sAHiqWUXinplzb4JWC96qFAfb+B6BAFv8=
+X-Google-Smtp-Source: AGHT+IEtQtK1Iedlr6fWywHHm6YLJ5pw3KzGPuOa1tPA+iCb0feQo7gMOWkm93j2OOJceBrScIcjgWGvXoXqmEz7oyA=
+X-Received: by 2002:a05:6808:148f:b0:3f8:b73b:684a with SMTP id
+ 5614622812f47-3f8b74ac847mr5214463b6e.33.1741730470244; Tue, 11 Mar 2025
+ 15:01:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: media: Add qcom,x1e80100-camss
-Content-Language: ru-RU
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-clk@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v4-0-c2964504131c@linaro.org>
- <20250119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v4-1-c2964504131c@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20250119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v4-1-c2964504131c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20241220120038.3137248-1-pbrobinson@gmail.com>
+In-Reply-To: <20241220120038.3137248-1-pbrobinson@gmail.com>
+From: Vasily Khoruzhick <anarsoul@gmail.com>
+Date: Tue, 11 Mar 2025 15:00:44 -0700
+X-Gm-Features: AQ5f1JoZh-NGU3L8eIpxDuwcRiYOWZhV0d89f1f2dzKHdizOfdf7E-JnqzsgH1M
+Message-ID: <CA+E=qVdbbRbR+57WRPTJ-WPJ2jZz0V=mD56Ts2oQmo-rjxvO_w@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] Add support for WiFi/BT header on Pine64 A64
+To: Peter Robinson <pbrobinson@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/19/25 02:54, Bryan O'Donoghue wrote:
-> Add bindings for qcom,x1e80100-camss in order to support the camera
-> subsystem for x1e80100 as found in various Co-Pilot laptops.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+On Fri, Dec 20, 2024 at 4:00=E2=80=AFAM Peter Robinson <pbrobinson@gmail.co=
+m> wrote:
+>
+> Add the BT and WiFi pins on the WiFi/BT header on the Pine64/Sopine
+> boards.
+>
+> Changes in v2:
+> - drop patch that enables the WiFi module, it'll move to a overlay later
 
-<snip>
+Any plans to send v3 with comments from Chen-Yu addressed?
 
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    description:
-> +      CSI input ports.
-> +
-> +    patternProperties:
-> +      "^port@[0-3]+$":
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +
-> +        description:
-> +          Input port for receiving CSI data from a CSIPHY.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
 
-bus-type property of the endpoint is missing.
-
---
-Best wishes,
-Vladimir
+> Peter Robinson (2):
+>   arm64: dts: allwinner: a64: Add WiFi/BT header on Pine64
+>   arm64: dts: allwinner: a64: Add WiFi/BT header on SoPine
+>
+>  .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 17 +++++++++++++
+>  .../allwinner/sun50i-a64-sopine-baseboard.dts | 24 +++++++++++++++++++
+>  2 files changed, 41 insertions(+)
+>
+> --
+> 2.47.1
+>
+>
 
