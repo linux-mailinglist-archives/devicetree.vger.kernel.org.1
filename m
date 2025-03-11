@@ -1,115 +1,161 @@
-Return-Path: <devicetree+bounces-156614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1FF7A5CD35
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:07:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 817C9A5CD3A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:07:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18FC97A8EC6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:06:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A7A7189CD5C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBDF5263C6C;
-	Tue, 11 Mar 2025 18:06:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8265262D24;
+	Tue, 11 Mar 2025 18:07:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IssCg3cS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lV9CbVES"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC29262D21;
-	Tue, 11 Mar 2025 18:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17B7262D0D;
+	Tue, 11 Mar 2025 18:07:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741716416; cv=none; b=PoySHhhlHALakB02R0gARVFX1Yyw76XtCG6ungMXYZ/hAzUp2XZicjw46MjoAVKpDIm9LxvldDeTADhhr/z3RUiltammZtAyXfLllAt5FM+99GKnqssQkm35U4e/7Pi8KlNWQvAPoBa4R+5pFned9qaarDdCRtSwWBho4jWuRrU=
+	t=1741716464; cv=none; b=CNlzR5UAqEnMpc6mzBP6V9WbYNYBIOABGHSOc9P5JqWkvoU9QH/HhMoTDywt3/UKV7A1BugYyuIGf5U2yUG1OAxmUVHxhmbbUxwXV4kFLPzGddJEjslVOYiEm0T6J5uonQLVce7R3s/n/wCHj7v46HRmE5V3LR/i1C53MiAI8s8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741716416; c=relaxed/simple;
-	bh=XuObIYw3RDsk53zQsCVI6/Eb60dSnbERWjSJp+4yvEA=;
+	s=arc-20240116; t=1741716464; c=relaxed/simple;
+	bh=/8sCzo09LD1mdUJPxmXKa2i8Cun9j2U4D43IY/3nebk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYQBedToJY6JsDDaGwrnzkx+PIeXBWx83lJRc0Bsb9O98HgOHEmY/mt98Rak83eqit4c3F71G1lyScuLeuhloNAFUy8ROabUhRjUMvgilUk4n5+Xak/emrfNCSYytnWDdOL+q9pENstf/zfUesMKAqrYJWMrvDVGFzRxzQGF29M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IssCg3cS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85EE0C4CEEA;
-	Tue, 11 Mar 2025 18:06:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q/xPN7z2kZhuaXcYa7y/XUVkp+CyH3f1OkVcXW9WRHgZevf5TszJBKh6ACFjVeww7gD6WteXRdm6V4miPIk7frg8W7MkfoG1u06eeEsoeYoBmRZ9tp1BXlqiO1oqdgUvwbD/pSwH/dc/JsEFsRusVe/ZjX1ke/IoxO9scWtnYhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lV9CbVES; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6AADC4CEE9;
+	Tue, 11 Mar 2025 18:07:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741716414;
-	bh=XuObIYw3RDsk53zQsCVI6/Eb60dSnbERWjSJp+4yvEA=;
+	s=k20201202; t=1741716464;
+	bh=/8sCzo09LD1mdUJPxmXKa2i8Cun9j2U4D43IY/3nebk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IssCg3cSilF7/wjdOftUOaTpCwST0CEsEV8ami2djc4HT6zPBbMCiV/cHwuS2qMND
-	 BkfRj2zSV9ascPDRQScmPra88Z/6OcwtlZIL7RGSerTgdXK4JbyQXZXkwysZ84tUzd
-	 gZ4N7XKY03vtOf/cOvrtsofH3ARPwTzhgLplkpSlhm0dIPwjn5mAlA8Q/vUIIbFzwj
-	 m4/QuKDoZcuIu69BBnRgW0ygpuhOPul9039z1kpkUtdnd+ZONfpPLcMbjkREjK8hY+
-	 cYmP28DjU0MSVrPw+EdEscCB7XKfcgomXkUj5k7doC8sXSppC2e8aGi+cTIHea0aNn
-	 wfgk00fV7KDxw==
-Date: Tue, 11 Mar 2025 13:06:52 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-Cc: Ross Burton <ross.burton@arm.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Eric Biggers <ebiggers@google.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Javier Carrasco <javier.carrasco@wolfvision.net>,
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Zhi Mao <zhi.mao@mediatek.com>, Hans Verkuil <hverkuil@xs4all.nl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Will Deacon <will@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-media@vger.kernel.org,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Ihor Matushchak <ihor.matushchak@foobox.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-staging@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
-	devicetree@vger.kernel.org,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Julien Massot <julien.massot@collabora.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Tommaso Merciai <tomm.merciai@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-gpio@vger.kernel.org,
-	Cosmin Tanislav <cosmin.tanislav@analog.com>
-Subject: Re: [RFC PATCH v2 01/16] dt-bindings: media: i2c: max96717: add
- myself as maintainer
-Message-ID: <174171641225.3915054.13208024290734160025.robh@kernel.org>
-References: <20250309084814.3114794-1-demonsingur@gmail.com>
- <20250309084814.3114794-2-demonsingur@gmail.com>
+	b=lV9CbVESi0mwa7NPSqazEt3LCxc+y7/vjXsNQr8IeoWR6WTTWSNoYVpN59cPpas+m
+	 UOUZu7MgC4+fHG8LtYnA56KbvlX41H8X02Z1Yy7V269IaHVoVljKyEwFMqPh30d/Ct
+	 kR8AGRAMy5NYtzXoc3Ng8HJInukn96ie0NF7uAc46dWYvw5fhvF1MFvvQnhdlOLyqI
+	 EfCAjw2FepzyKTH1KNaQSUZNFyRsSTY3EcEvmVr+nXYhsSoLZ6pYAe/3qkl8GuE0E4
+	 RS/SIteOeNQqoc+XbDm1r5j5zYZrSfJT8w8vR0KAUCMk8xBs85qP3+oT4rjQmWXKcp
+	 XY21ZaGmCmWEA==
+Date: Tue, 11 Mar 2025 18:07:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Min Lin <linmin@eswincomputing.com>,
+	Pritesh Patel <pritesh.patel@einfochips.com>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Yu Chien Peter Lin <peterlin@andestech.com>,
+	Charlie Jenkins <charlie@rivosinc.com>,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Darshan Prajapati <darshan.prajapati@einfochips.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
+	rafal@milecki.pl, Anup Patel <anup@brainfault.org>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/10] Basic device tree support for ESWIN EIC7700 RISC-V
+ SoC
+Message-ID: <20250311-backdrop-porthole-440ae005e8fa@spud>
+References: <20250311073432.4068512-1-pinkesh.vaghela@einfochips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ccnRVPIec56gG3E1"
+Content-Disposition: inline
+In-Reply-To: <20250311073432.4068512-1-pinkesh.vaghela@einfochips.com>
+
+
+--ccnRVPIec56gG3E1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250309084814.3114794-2-demonsingur@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Mar 11, 2025 at 01:04:22PM +0530, Pinkesh Vaghela wrote:
+> Add support for ESWIN EIC7700 SoC consisting of SiFive Quad-Core
+> P550 CPU cluster and the first development board that uses it, the
+> SiFive HiFive Premier P550.
+>=20
+> This patch series adds initial device tree and also adds ESWIN
+> architecture support.
+>=20
+> Boot-tested using intiramfs with Linux 6.14.0-rc2 on HiFive Premier
+> P550 board using U-Boot 2024.01 and OpenSBI 1.4.
 
-On Sun, 09 Mar 2025 10:47:53 +0200, Cosmin Tanislav wrote:
-> Analog Devices is taking responsability for the maintenance of the Maxim
-> GMSL2/3 devices.
-> Add myself to the maintainers list and to the device tree bindings.
-> 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-> ---
->  Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml | 1 +
->  MAINTAINERS                                                     | 1 +
->  2 files changed, 2 insertions(+)
-> 
+There's no git tree in your MAINTAINERS entry, nor mention here of what
+the story is going to be in terms of sending patches to Arnd. Who is
+going to be doing that?
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Cheers,
+Conor.
 
+> Darshan Prajapati (3):
+>   dt-bindings: riscv: Add SiFive P550 CPU compatible
+>   dt-bindings: interrupt-controller: Add ESWIN EIC7700 PLIC
+>   dt-bindings: timer: Add ESWIN EIC7700 CLINT
+>=20
+> Min Lin (2):
+>   riscv: dts: add initial support for EIC7700 SoC
+>   riscv: dts: eswin: add HiFive Premier P550 board device tree
+>=20
+> Pinkesh Vaghela (2):
+>   riscv: Add Kconfig option for ESWIN platforms
+>   cache: sifive_ccache: Add ESWIN EIC7700 support
+>=20
+> Pritesh Patel (3):
+>   dt-bindings: vendor-prefixes: add eswin
+>   dt-bindings: riscv: Add SiFive HiFive Premier P550 board
+>   dt-bindings: cache: sifive,ccache0: Add ESWIN EIC7700 SoC
+>     compatibility
+>=20
+>  .../bindings/cache/sifive,ccache0.yaml        |  28 +-
+>  .../sifive,plic-1.0.0.yaml                    |   1 +
+>  .../devicetree/bindings/riscv/cpus.yaml       |   1 +
+>  .../devicetree/bindings/riscv/eswin.yaml      |  29 ++
+>  .../bindings/timer/sifive,clint.yaml          |   1 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  MAINTAINERS                                   |   7 +
+>  arch/riscv/Kconfig.socs                       |   6 +
+>  arch/riscv/boot/dts/Makefile                  |   1 +
+>  arch/riscv/boot/dts/eswin/Makefile            |   2 +
+>  .../dts/eswin/eic7700-hifive-premier-p550.dts |  29 ++
+>  arch/riscv/boot/dts/eswin/eic7700.dtsi        | 344 ++++++++++++++++++
+>  drivers/cache/sifive_ccache.c                 |   2 +
+>  13 files changed, 450 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/eswin.yaml
+>  create mode 100644 arch/riscv/boot/dts/eswin/Makefile
+>  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550=
+=2Edts
+>  create mode 100644 arch/riscv/boot/dts/eswin/eic7700.dtsi
+>=20
+> --=20
+> 2.25.1
+>=20
+
+--ccnRVPIec56gG3E1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ9B76QAKCRB4tDGHoIJi
+0vQ8AP43Anh9XY0PB4DXa7cODFRPlV0FhokZ8K/uAp2SiIdq3gEA+iI1Mf0iiizD
+F/N0vWPXU/KQ4Y5X+2kFV9FcHGFH1Qs=
+=RNCF
+-----END PGP SIGNATURE-----
+
+--ccnRVPIec56gG3E1--
 
