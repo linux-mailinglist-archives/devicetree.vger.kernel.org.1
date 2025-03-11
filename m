@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-156373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEA75A5B700
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:57:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 254A4A5B70A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 04:05:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DB153AD347
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 02:57:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C53C03AFE3B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10FF41E47DD;
-	Tue, 11 Mar 2025 02:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4009C1E261F;
+	Tue, 11 Mar 2025 03:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bZN/HkxA"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Nu4Z8q8B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9E01DF25C;
-	Tue, 11 Mar 2025 02:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32F131ADC83;
+	Tue, 11 Mar 2025 03:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741661854; cv=none; b=TDM3wPcJb0R+oErwGftwGlc2ICQ912O7tiGvXORacpxktbDvO2RX5Ok7yAwCSogetj0NUZluVI3n9a4X7REgfqPg8RFxK6cX25LV0tK2sQDlbzE0XH9ytLZ0TD7baBjFb+2fd6rh8SxQcx5wFI/ln41qQ0x4dzajvPAYY90p+TE=
+	t=1741662322; cv=none; b=Yp+CBXh6HMe5sagWTMV1Ze1mYE3aU2KjAs96R5YCwuwWTqVTcDikkwioPMzEE7xJWebmBuAzHAWoPYTnKy+Rfz3BpPzmCPxPoXM9NFKsScX8WfP21cYFnsTcm7BoKGYqQwk2EzFzZ9mPaQPOBQfO9hEfZWgDEouPA554AA9rJjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741661854; c=relaxed/simple;
-	bh=rwQqyDcDc+bMra20ugcrb8veDxxTFzOfBpewMmM2OsI=;
+	s=arc-20240116; t=1741662322; c=relaxed/simple;
+	bh=Tvdo/LZO1dissNuv/0SYsd1MKjzBgYB27TXwIlSgDWo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g49JeEytmYZRR/zMjXPDiFPf2g1dPzXzhFlOHkHxVAa0Kgs55bMMz3gXXMRWfZZxxcne3AqdSxcLT9aPl4KjT+W2VMk4v41AhMvLNWBblrn/DpoqlkIfwOXe85/mZvJ25pzcxS5SHKfGa24JvgKlpjmn0yfwUGhoE8SVCiOjQ90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bZN/HkxA; arc=none smtp.client-ip=1.95.21.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZHNlkqiP2HJfghJ/+WOqbmYPjzGcsFxbocHIrXzkNYhrahLadPmHZrkTrk+yOT7IAARJd6/z5wPmTb62QhCAf4VV8atifuVU+mjRtZvK6HY0zMzDRyoBzZ9VJSzSu+WE4X/dVhPuD5uG+POO7FG43zY5TgGJOE9EdatCdjkG9Ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Nu4Z8q8B; arc=none smtp.client-ip=1.95.21.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=2UT5JWESlIqMK88Qm0fZJYn8VJFoNxpbvjgrdMRXN5E=;
-	b=bZN/HkxAw8pLxgZlkQiT5Uevk+4WAvRTFDqPITaWXNqhsjzQM27BtnVpAqTS+O
-	tUKdb3R6e3galk+evy/LBZmavjIEHvB6B55Z2DriV8CjulaoOsj2Hy3xklw0zMQJ
-	liWMaEFT+JF4XsDbDQ5vF/y3RqtwkOsdXEdJBeTRBDhX4=
+	Content-Type; bh=tPjzWEIRgrMC7GoOBG9nlVWAbgBUY/TGQT4CORiN6s4=;
+	b=Nu4Z8q8BfhcwGD/Cfdj8iKpZDOrY2WE5lT8uJsA6KpfyUxls4/rceTJeEasYV+
+	GOywZ15Kq318QEyWn+WHn5c8CnrT6OVRE8ChQE5SR/r6ySHlwIInvTem+6AadQEP
+	S6qUwhZ4PaTN+F6KjFXYbGAyFVrkTk9DG3EMsgcn1yXO4=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCXbUZxps9nP+awAA--.43587S3;
-	Tue, 11 Mar 2025 10:56:51 +0800 (CST)
-Date: Tue, 11 Mar 2025 10:56:49 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgCXlUJGqM9nrs20AA--.48493S3;
+	Tue, 11 Mar 2025 11:04:40 +0800 (CST)
+Date: Tue, 11 Mar 2025 11:04:38 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Adam Ford <aford173@gmail.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH resend v3 1/1] arm64: dts: imx93: add ddr edac support
-Message-ID: <Z8+mcZw9yjOr3m/y@dragon>
-References: <20250225192159.2907320-1-Frank.Li@nxp.com>
+	linux-clk@vger.kernel.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] arm64: dts: imx8mp: add AUDIO_AXI_CLK_ROOT to
+ AUDIOMIX block
+Message-ID: <Z8+oRjW7YN+kw73/@dragon>
+References: <20250226164513.33822-1-laurentiumihalcea111@gmail.com>
+ <20250226164513.33822-4-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,16 +65,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250225192159.2907320-1-Frank.Li@nxp.com>
-X-CM-TRANSID:Mc8vCgCXbUZxps9nP+awAA--.43587S3
+In-Reply-To: <20250226164513.33822-4-laurentiumihalcea111@gmail.com>
+X-CM-TRANSID:Ms8vCgCXlUJGqM9nrs20AA--.48493S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVvedUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNROT+GfPpnP3ogAA3l
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUI1CGUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNQgKb2fPqEj92gAA33
 
-On Tue, Feb 25, 2025 at 02:21:58PM -0500, Frank Li wrote:
-> Add ddr edac support for imx93.
+On Wed, Feb 26, 2025 at 11:45:12AM -0500, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Needed because the DSP and OCRAM_A components from AUDIOMIX are clocked
+> by AUDIO_AXI_CLK_ROOT instead of AUDIO_AHB_CLK_ROOT.
+> 
+> Fixes: b86c3afabb4f ("arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX")
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> Reviewed-by: Iuliana Prodan <iuliana.prodan@nxp.com>
 
 Applied, thanks!
 
