@@ -1,67 +1,92 @@
-Return-Path: <devicetree+bounces-156613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D3DA5CD2E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:06:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1FF7A5CD35
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:07:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2509417065B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:06:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18FC97A8EC6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D92262D13;
-	Tue, 11 Mar 2025 18:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBDF5263C6C;
+	Tue, 11 Mar 2025 18:06:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3D8qMqzI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IssCg3cS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3B982620C3;
-	Tue, 11 Mar 2025 18:06:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC29262D21;
+	Tue, 11 Mar 2025 18:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741716389; cv=none; b=uIVO5mY407xFIUjMN3Hn4jb1WjH5f9IWsTUoWkRo+/rkGB+cTng69Tq1tbK5V8rGOrnBoNQvhhXhP3Xus60t7BVxIJnG0sSJj1bVzWVYkgq0xiX5DDVjlQblpsZi6jBQ0i/AB/msFJ9TaH4P/NewnCPT+Tiow8N8nXG79Si/SMU=
+	t=1741716416; cv=none; b=PoySHhhlHALakB02R0gARVFX1Yyw76XtCG6ungMXYZ/hAzUp2XZicjw46MjoAVKpDIm9LxvldDeTADhhr/z3RUiltammZtAyXfLllAt5FM+99GKnqssQkm35U4e/7Pi8KlNWQvAPoBa4R+5pFned9qaarDdCRtSwWBho4jWuRrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741716389; c=relaxed/simple;
-	bh=DippBqC0BBU0qH1E5vSEMORAFTY5N4fiUMqRFBzB8mQ=;
+	s=arc-20240116; t=1741716416; c=relaxed/simple;
+	bh=XuObIYw3RDsk53zQsCVI6/Eb60dSnbERWjSJp+4yvEA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C+kEAc1lA3DDFhRSC2stkZHm7/p/V32oIibUZDZ2bTmzw4j1eGxCGKUGlCZOWv9Ce51lh3J+/5vESWivRV9PMyv8TYITPDEDyqCgBuuFxycFCZFLDBJYRLjqc2uEuIyXmCa6n9RQDj/9J8pbtBroXx806+HwlyEXix2ETRbkNjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3D8qMqzI; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=3OLyNSn1WdzXXSydJk+U4Xqnh9AkjR3NtHdm4uHlg2I=; b=3D8qMqzI2hLyJ4OmXTqaru27Sj
-	yuWdbwj4lnjwq0ZZyrOZmsml2cahvtrLvdfCwPVJf+fO//6p/cWAEJwc+Mm80x2NsDSdInA99QL6b
-	HEydjaVzn9+FbbYMbYCpHs6cAC2QFKgEF6jtqplLpjylWi09wQVpS/aSaQSpH2BkjSd0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1ts3zV-004Ppo-Ho; Tue, 11 Mar 2025 19:06:09 +0100
-Date: Tue, 11 Mar 2025 19:06:09 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Rob Herring <robh@kernel.org>
-Cc: Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYQBedToJY6JsDDaGwrnzkx+PIeXBWx83lJRc0Bsb9O98HgOHEmY/mt98Rak83eqit4c3F71G1lyScuLeuhloNAFUy8ROabUhRjUMvgilUk4n5+Xak/emrfNCSYytnWDdOL+q9pENstf/zfUesMKAqrYJWMrvDVGFzRxzQGF29M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IssCg3cS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85EE0C4CEEA;
+	Tue, 11 Mar 2025 18:06:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741716414;
+	bh=XuObIYw3RDsk53zQsCVI6/Eb60dSnbERWjSJp+4yvEA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IssCg3cSilF7/wjdOftUOaTpCwST0CEsEV8ami2djc4HT6zPBbMCiV/cHwuS2qMND
+	 BkfRj2zSV9ascPDRQScmPra88Z/6OcwtlZIL7RGSerTgdXK4JbyQXZXkwysZ84tUzd
+	 gZ4N7XKY03vtOf/cOvrtsofH3ARPwTzhgLplkpSlhm0dIPwjn5mAlA8Q/vUIIbFzwj
+	 m4/QuKDoZcuIu69BBnRgW0ygpuhOPul9039z1kpkUtdnd+ZONfpPLcMbjkREjK8hY+
+	 cYmP28DjU0MSVrPw+EdEscCB7XKfcgomXkUj5k7doC8sXSppC2e8aGi+cTIHea0aNn
+	 wfgk00fV7KDxw==
+Date: Tue, 11 Mar 2025 13:06:52 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Cosmin Tanislav <demonsingur@gmail.com>
+Cc: Ross Burton <ross.burton@arm.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Eric Biggers <ebiggers@google.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Javier Carrasco <javier.carrasco@wolfvision.net>,
+	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Zhi Mao <zhi.mao@mediatek.com>, Hans Verkuil <hverkuil@xs4all.nl>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Dimitri Fedrau <dima.fedrau@gmail.com>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: ethernet-phy: add
- property mac-series-termination-ohms
-Message-ID: <de68ea7e-1ca5-4983-9824-3fb432b00e82@lunn.ch>
-References: <20250307-dp83822-mac-impedance-v1-0-bdd85a759b45@liebherr.com>
- <20250307-dp83822-mac-impedance-v1-1-bdd85a759b45@liebherr.com>
- <20250311173344.GA3802548-robh@kernel.org>
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Will Deacon <will@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-media@vger.kernel.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Ihor Matushchak <ihor.matushchak@foobox.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-staging@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
+	devicetree@vger.kernel.org,
+	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	Julien Massot <julien.massot@collabora.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-gpio@vger.kernel.org,
+	Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: Re: [RFC PATCH v2 01/16] dt-bindings: media: i2c: max96717: add
+ myself as maintainer
+Message-ID: <174171641225.3915054.13208024290734160025.robh@kernel.org>
+References: <20250309084814.3114794-1-demonsingur@gmail.com>
+ <20250309084814.3114794-2-demonsingur@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,49 +95,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250311173344.GA3802548-robh@kernel.org>
+In-Reply-To: <20250309084814.3114794-2-demonsingur@gmail.com>
 
-On Tue, Mar 11, 2025 at 12:33:44PM -0500, Rob Herring wrote:
-> On Fri, Mar 07, 2025 at 11:30:01AM +0100, Dimitri Fedrau wrote:
-> > Add property mac-series-termination-ohms in the device tree bindings for
-> > selecting the resistance value of the builtin series termination resistors
-> > of the PHY. Changing the resistance to an appropriate value can reduce
-> > signal reflections and therefore improve signal quality.
-> > 
-> > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > index 824bbe4333b7ed95cc39737d3c334a20aa890f01..4a710315a83ccf15bfc210ae432ae988cf31e04c 100644
-> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > @@ -238,6 +238,11 @@ properties:
-> >        peak-to-peak specified in ANSI X3.263. When omitted, the PHYs default
-> >        will be left as is.
-> >  
-> > +  mac-series-termination-ohms:
+
+On Sun, 09 Mar 2025 10:47:53 +0200, Cosmin Tanislav wrote:
+> Analog Devices is taking responsability for the maintenance of the Maxim
+> GMSL2/3 devices.
+> Add myself to the maintainers list and to the device tree bindings.
 > 
-> A property of the MAC (or associated with it) should be in the MAC's 
-> node.
+> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml | 1 +
+>  MAINTAINERS                                                     | 1 +
+>  2 files changed, 2 insertions(+)
+> 
 
-But it is the PHY which uses the property, and the PHY which is
-implementing the resistor.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Also, a PHY has two sides, one towards the MAC and a second media side
-to the network peer via the Ethernet cable. Both sides need
-termination resistors. So we need something in the name to make it
-clear which side of the PHY we are talking about. So we might end up
-with something like mac-termination-ohms and media-termination-ohms,
-in the PHY node.
-
-> Also, sounds like either either end could have a property.
-
-True, the MAC could also need a similar property, since the outputs
-from the MAC to the PHY needs termination resistors.  For the MAC,
-termination-ohms is probably sufficient, or phy-termination-ohms to
-indicate it is towards the PHY?
-
-	Andrew
 
