@@ -1,57 +1,64 @@
-Return-Path: <devicetree+bounces-156362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5935A5B6A1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:23:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AC39A5B6AA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:28:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 757733AB15F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 02:23:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 397E63AD5C2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 02:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E3D31E0E13;
-	Tue, 11 Mar 2025 02:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBB431E47C7;
+	Tue, 11 Mar 2025 02:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ip1G6nMb"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="QJz17dUO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4133B1EF01;
-	Tue, 11 Mar 2025 02:23:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2671DF26B;
+	Tue, 11 Mar 2025 02:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741659796; cv=none; b=T7Cl/AkMc8ks4X5sgSGY3umuUVW5ewTth4hxqOL+NaYC1ynLhOdqkOirNMt62rW7NL6A3NPrYqMC0GXg4v7aeoVgSluQc7EIGTe4U3xr1DDeFsd68zlLUt4+w1A8sKWq+SnDiuuO2u3seaVdV7knUSPBqeyrrRjY2AZdZ4Ydrj4=
+	t=1741660082; cv=none; b=hwVTeUUFN9sVNjPbz0h0Ut9XjpVK5CoL0ASK0N26bN7YSpRdj70v7gHL5Akd8ZcKGT05ZIEcxIVKz8xNTMR/Hb0NYVbTqTpmT88okFRzcy8lydDh3RliOYstwyRk7KB4jv+yPKfjAGap7Z5ngxkdhS4QFbEdZhnWB8tcPxXed/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741659796; c=relaxed/simple;
-	bh=FwDXJPajxYapMkrEHeU4zgpIrMKAAFr1prC0HvmXJa0=;
+	s=arc-20240116; t=1741660082; c=relaxed/simple;
+	bh=KWatzy3ps/ft2pAnIO0ksgwLKinSyjdTbP0ffkXQcwA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P9OB5ljy0OkEXMAs3w8QI7BLHGby0YYZaBlSDhjyFhzh2KXn+sz50sIPmE/0Ww9Sl2LyocFz0b/PMTdwwzrH6o/2s00jW6RFyZhXGnFLgZt9RBG2N8Abig9sQXymm8678wxK6Br4ZcdFp+gfU4ogU30fSAVHo6t87Ieb4ECLUBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ip1G6nMb; arc=none smtp.client-ip=1.95.21.15
+	 Content-Type:Content-Disposition:In-Reply-To; b=QLeSdSflA1BJeUPHE7zj+iHbun8Ln/N5xkDrcYmTEGWyZYwVHxAfOJqbL0ryv077mtvzr2eYNFIU2tAMcVJ3Mzgrxa6h5sAteVbwSPCtcKrpxcyAKCc+lDPt+cjKln+0GM4ZpCHxl2c4TNQep3ApZLvUKGwZuyIRYt4A3daclk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=QJz17dUO; arc=none smtp.client-ip=1.95.21.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=SH7i3hEBunXl56kGHk5HmVNJ3ShdY5ZTb+FytLjyRoY=;
-	b=ip1G6nMbetQfy4n7AFrG5+zjHYqZOIHmTr3npDbaScpW1iyI9Rne44mmrPIlld
-	DHRemHeIcXi/ub2gwMyzlN1zfjIc2AAQ6EObqg08WoVAWD6C6890Mm2R5YFMng2C
-	xTrmstW6UnVyxH4LaGLe/xYwkKclUflqVQDUlzrAqdYNA=
+	Content-Type; bh=ICnWS1cvR/lqvpW3gZSBK0qzpmW+rKkDV9mICgOyRUw=;
+	b=QJz17dUOuRqwYZ4lw1SFnNr1/JueywpcOnyinBhnk7Mj3pbNGLgnEkb878/6qI
+	USJVuEPEyLp93fUX2fC+aEJf5yxBTLRDVJqpT084uww3n1eT98OIxAj0FMS1yej0
+	/4G5NII8rkRnaPKQvX7si2hZeDxGPh5fsYDJx4ZN6HzGw=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDHMiJwns9n3Eq0AA--.48756S3;
-	Tue, 11 Mar 2025 10:22:41 +0800 (CST)
-Date: Tue, 11 Mar 2025 10:22:39 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAnDnqBn89nqoywAA--.815S3;
+	Tue, 11 Mar 2025 10:27:15 +0800 (CST)
+Date: Tue, 11 Mar 2025 10:27:13 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 0/4] arm64: dts: add imx95_15x15_evk boards support
-Message-ID: <Z8+eb5HNX/FQPg5P@dragon>
-References: <20250221-imx95_15x15-v4-0-385ee8e03dfd@nxp.com>
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, NXP S32 Linux <s32@nxp.com>,
+	imx@lists.linux.dev, Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH] arm64: dts: s32g: add FlexCAN[0..3] support for s32g2
+ and s32g3
+Message-ID: <Z8+fgXENvCrqXvTP@dragon>
+References: <20250224134016.3921196-1-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,19 +67,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250221-imx95_15x15-v4-0-385ee8e03dfd@nxp.com>
-X-CM-TRANSID:Ms8vCgDHMiJwns9n3Eq0AA--.48756S3
+In-Reply-To: <20250224134016.3921196-1-ciprianmarian.costea@oss.nxp.com>
+X-CM-TRANSID:Mc8vCgAnDnqBn89nqoywAA--.815S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVpVbDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEQQNZWfPU+rdgwAAsy
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU3l1vUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCQcNZWfPUELrJgAAsR
 
-On Fri, Feb 21, 2025 at 04:15:56PM -0500, Frank Li wrote:
-> Frank Li (4):
->       dt-bindings: arm: fsl: add i.MX95 15x15 EVK board
->       arm64: dts: imx95: Add #io-channel-cells = <1> for adc node
->       arm64: dts: imx95: Add i3c1 and i3c2
->       arm64: dts: imx95: Add imx95-15x15-evk support
+On Mon, Feb 24, 2025 at 03:40:16PM +0200, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> 
+> Add FlexCAN[0..3] for S32G2 and S32G3 SoCs.
+> 
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-Applied all, thanks!
+Applied, thanks!
 
 
