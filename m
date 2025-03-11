@@ -1,226 +1,168 @@
-Return-Path: <devicetree+bounces-156491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B568DA5BF34
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:36:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E06F5A5BF2A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:36:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AFA83B2C71
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:36:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C5C417531E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D17253F0E;
-	Tue, 11 Mar 2025 11:36:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 380DC254AE2;
+	Tue, 11 Mar 2025 11:35:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="FlYvAtbW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52753C13B;
-	Tue, 11 Mar 2025 11:36:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE8B253331
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 11:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741692999; cv=none; b=ENmih2i6pjAj+BYNoIIgXbjY8lT3QXyBKzrwKM6mbgf2K46xH5xmStI8hR2F/attVWtMBUqqtbGFsN1mFJR9Xrol41Q9RfAvy63xxKsyVHqAQVDI9IiZQ8MWCMymRG7mcRLoH6k4GkokhD8hYw45Dukzl1pk9hpXUo+CmXqMVNs=
+	t=1741692955; cv=none; b=RdMycywo9Y4/a0CagsdG3Gvgmzsf6h1UHzpScpN66x+r44Hhf9AQpayaR8CJXLyzw3Sq+bfU9s8TO4ykmu5byB155lY5EsI7MzaPBS6t3zQWq2dUV8kiQfctRzcrvx8zDsTp/k144wn7nz2rlNHmMNdCMu8BOE3AzFWS7Sidl28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741692999; c=relaxed/simple;
-	bh=v4HlD+TguudWTV3d35WgZDJEydIfd/+y0DL3+VHMI+k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=usvH8vDCLu4E5can6eHGXV2FhclVctvBuBlVNJ8COCjLqz60l/BG0pz3Vs6Xjr+jGZk2bGAdvfcoWM4KFSqcNp6LS9lfDIYacLVCXX2jUnv6SX/+qopd/3yVNSr99HMGtXfT1A5/H+D+p6ZHXPtYO0f9/9bno6IzDsaaZ5/A88g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: 60K+NDf2QA2TMZVt9e3JbQ==
-X-CSE-MsgGUID: MpJcVCwKSeiZm/piJZcsHA==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 11 Mar 2025 20:36:32 +0900
-Received: from localhost.localdomain (unknown [10.226.92.227])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0482242AA21A;
-	Tue, 11 Mar 2025 20:36:27 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741692955; c=relaxed/simple;
+	bh=H8WHtwt8NwohMFMSJyOYCpjReRpfvizxw55BJZSel9E=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=omZsSej2o5JhYE+oNBlaZaaQkgUZsTE2VWONVVgefvcIDAYImLJxt1Xt4+0LRT8wP5RvUAPQ0ZF5qHGH8eFfsb1yoy+wxtpdX/7y6ftQVY60uLaLMQ28I1qzMSa8GrKvDOHb1xMluk86WCkwWxk6LqWbfwqqESxkXaYtq5fgZx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=FlYvAtbW; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab78e6edb99so808656966b.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 04:35:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1741692950; x=1742297750; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YRhhFOV50S8nkiKWbxOQjhnR/D7pnJ4RjNLNNRoG574=;
+        b=FlYvAtbWUQ783/BLA7JdmBN+i3taWgiMQfwzZ3MEwXpGQr5NXq59uc5Lys34D6Xqd2
+         KgFi0rEeyRNHRWcHVedFgHoLfiDJB+yYrlvS88+uMh8x5je/gnuyUBdUF14wybfr46Gg
+         lo5jWxagxDkLNH19pX/MyWbrFCBSwbMkj4soo1HKlN/6NmoKbp1vo0PBps4bC4WwQucA
+         gdyLsrnJVokl1sU+7ZwSaGnImjSMFDat3BNRpBdf7BpDq3SjxQsnDlJWTCTLgWObUTcR
+         PzhHG0vz+Feq6HFnQvARiEmpqNcCwzUSGSkYmsPQBQcncT4QF6FZAzSrkL0yJZ8pESs+
+         iGog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741692950; x=1742297750;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YRhhFOV50S8nkiKWbxOQjhnR/D7pnJ4RjNLNNRoG574=;
+        b=Qf30wsYNXE9h2NwgR6Zsx6t9k+YUkSPPDSR4pzSO4Bs2UulkyZN5ZknIrqhKe0jfhQ
+         orEob8DFXi8skaNkfp9LDtZSMeGrgdy7jP1+sbt5efLwBWsWd51s1KI/D6TrTWr6wgGb
+         6KX17/qO40lweMcKnGUQNQmvlcFuyRNgh359KtV4ESVWh0l86WKNlPV8XZAYGVtyiys7
+         zoyHy/qSdNYoASdMuFw7tkvzAx4HE80XQl6Yjp31JNqdtoO+aYBR3S/wRhCgYlkf7ujm
+         Ym/2JpJkUkrOsgLFWdutzyipUwmJGejqrGOKID1YQjxX5lly73foTsML5VvM1nW/XKDw
+         XIvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWosvjdYpIa3fv9n08ppUooOQOAYdjKau+8JBRvutR35fyc9CprtRCVYahVwQCQoFKirsJtzNeLvjiA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiWDlmZxOzQp/StT3gi52kAW4kNHZ8eMOAp1p+q+MRhE3vDiDN
+	Ce7IccUmvvQmCTmZluEF1YjU4oelN75MKnUrkMezEsVaml/zSNKG5diUitG3Nfg=
+X-Gm-Gg: ASbGncsiF/cSnuFPlxeIhuI4lI/RNxYww1eJ2LDhbVVCB8ry2nt6akmNXlqBo7DKEnW
+	gDm1h3qy/93oPjx7aKX7Rml2sEJWSjQ2r9poBlonGQEr5mr2eZpyTx0fn6VsGxTQjm55juXVlR+
+	rWz44POk5utL1kOIAbf4qU1vCHUyjjOonQOUZ6c8QRm8uA0PdANzjpDy27ZNs6t8VVViB8rRMGO
+	w487Bk/TgUOsGluRBWws6wSMkrDDUBx1wgfe0Tt2P7qMwOTefbUtVhIDFNqMzDATKNdHKKXg45E
+	0dP9XbOUeoPZj5dK3JVw3ZXdqlKDAvBadh+JRx5CWkwfgLyeDMqa38AbnT8lim1j7pXJNytohhV
+	jAncEodtbdEAN
+X-Google-Smtp-Source: AGHT+IGVJsJ/tQDtRk3D58VsHDhx/tt/Tli65otubVC+55JrPtE5bG4yX5BvCZyT6vnF2dPKlEKCgA==
+X-Received: by 2002:a17:907:3e16:b0:abf:fb78:6743 with SMTP id a640c23a62f3a-ac252fa0fedmr2145428366b.35.1741692949753;
+        Tue, 11 Mar 2025 04:35:49 -0700 (PDT)
+Received: from localhost (host-87-14-236-98.retail.telecomitalia.it. [87.14.236.98])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2a65c7f7esm277405266b.117.2025.03.11.04.35.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Mar 2025 04:35:49 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 11 Mar 2025 12:36:59 +0100
+To: Krzysztof Wilczynski <kw@linux.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v3 1/9] dt-bindings: memory: Document RZ/G3E support
-Date: Tue, 11 Mar 2025 11:36:07 +0000
-Message-ID: <20250311113620.4312-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250311113620.4312-1-biju.das.jz@bp.renesas.com>
-References: <20250311113620.4312-1-biju.das.jz@bp.renesas.com>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v7 03/11] dt-bindings: pci: Add common schema for devices
+ accessible through PCI BARs
+Message-ID: <Z9AgW1TEiJ3G9dvh@apocalypse>
+References: <cover.1738963156.git.andrea.porta@suse.com>
+ <c0acc51a7210fb30cae7b26f4ad1f0449beed95e.1738963156.git.andrea.porta@suse.com>
+ <20250310212125.GB2377483@rocinante>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250310212125.GB2377483@rocinante>
 
-Document support for the Expanded Serial Peripheral Interface (xSPI)
-Controller in the Renesas RZ/G3E (R9A09G047) SoC.
+Hi Krzysztof,
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * No change.
-v1->v2:
- * As rz-xspi is too generic, replaced file name rz-xspi->rzg3e-xspi
-   and dropped generic compatible rz-xspi.
- * Dropped prefix spi from interrupt names.
- * Updated the example with above changes.
- * Retained Rb tag from Rob as these changes are trivial.
----
- .../renesas,rzg3e-xspi.yaml                   | 135 ++++++++++++++++++
- 1 file changed, 135 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
+On 06:21 Tue 11 Mar     , Krzysztof Wilczynski wrote:
+> Hello,
+> 
+> [...]
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index d45c88955072..af2e4652bf3b 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -19752,6 +19752,7 @@ RASPBERRY PI RP1 PCI DRIVER
+> >  M:	Andrea della Porta <andrea.porta@suse.com>
+> >  S:	Maintained
+> >  F:	Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.yaml
+> > +F:	Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> >  F:	Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+> >  F:	include/dt-bindings/clock/rp1.h
+> >  F:	include/dt-bindings/misc/rp1.h
+> 
+> I would be happy to pick this via the PCI tree as per the standard
+> operating procedure.  However, the MAINTAINERS changes do not exist
+> for us yet, and are added in the first patch of the series, which is
+> not ideal.
+> 
+> I can add the missing dependency manually, but that would cause issues
+> for linux-next tree, which is also not ideal.
+> 
+> I saw some review feedback, as such, when you are going to be sending
+> another version, can you make MAINTAINERS changes to be the last patch,
+> perhaps.  Basically, something standalone that perhaps whoever will pick
+> the misc patch could also pick and apply at the same time.
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
-new file mode 100644
-index 000000000000..4d5aa5812d74
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
-@@ -0,0 +1,135 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/renesas,rzg3e-xspi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas Expanded Serial Peripheral Interface (xSPI)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  Renesas xSPI allows a SPI flash connected to the SoC to be accessed via
-+  the memory-mapping or the manual command mode.
-+
-+  The flash chip itself should be represented by a subnode of the XSPI node.
-+  The flash interface is selected based on the "compatible" property of this
-+  subnode:
-+  -  "jedec,spi-nor";
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: renesas,r9a09g047-xspi  # RZ/G3E
-+
-+  reg:
-+    items:
-+      - description: xSPI registers
-+      - description: direct mapping area
-+
-+  reg-names:
-+    items:
-+      - const: regs
-+      - const: dirmap
-+
-+  interrupts:
-+    items:
-+      - description: Interrupt pulse signal by factors excluding errors
-+      - description: Interrupt pulse signal by error factors
-+
-+  interrupt-names:
-+    items:
-+      - const: pulse
-+      - const: err_pulse
-+
-+  clocks:
-+    items:
-+      - description: AHB clock
-+      - description: AXI clock
-+      - description: SPI clock
-+      - description: Double speed SPI clock
-+
-+  clock-names:
-+    items:
-+      - const: ahb
-+      - const: axi
-+      - const: spi
-+      - const: spix2
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    items:
-+      - description: Hardware reset
-+      - description: AXI reset
-+
-+  reset-names:
-+    items:
-+      - const: hresetn
-+      - const: aresetn
-+
-+  renesas,xspi-cs-addr-sys:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: |
-+      Phandle to the system controller (sys) that allows to configure
-+      xSPI CS0 and CS1 addresses.
-+
-+patternProperties:
-+  "flash@[0-9a-f]+$":
-+    type: object
-+    additionalProperties: true
-+
-+    properties:
-+      compatible:
-+        contains:
-+          const: jedec,spi-nor
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - resets
-+  - reset-names
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/renesas-cpg-mssr.h>
-+
-+    spi@11030000 {
-+        compatible = "renesas,r9a09g047-xspi";
-+        reg = <0x11030000 0x10000>, <0x20000000 0x10000000>;
-+        reg-names = "regs", "dirmap";
-+        interrupts = <GIC_SPI 228 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 229 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "pulse", "err_pulse";
-+        clocks = <&cpg CPG_MOD 0x9f>, <&cpg CPG_MOD 0xa0>,
-+                 <&cpg CPG_MOD 0xa1>, <&cpg CPG_MOD 0xa1>;
-+        clock-names = "ahb", "axi", "spi", "spix2";
-+        power-domains = <&cpg>;
-+        resets = <&cpg 0xa3>, <&cpg 0xa4>;
-+        reset-names = "hresetn", "aresetn";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        flash@0 {
-+          compatible = "jedec,spi-nor";
-+          reg = <0>;
-+          spi-max-frequency = <40000000>;
-+          spi-tx-bus-width = <1>;
-+          spi-rx-bus-width = <1>;
-+        };
-+    };
--- 
-2.43.0
+Sure, I will split the changes for MAINTAINERS file to its own separate
+patch in the next revision.
 
+Many thanks,
+Andrea
+
+> 
+> Alternatively, someone else picking up the PCI dt-bindings would work, too.
+> 
+> Your thoughts?
+> 
+> Thank you!
+> 
+> 	Krzysztof
 
