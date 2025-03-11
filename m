@@ -1,66 +1,56 @@
-Return-Path: <devicetree+bounces-156692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B60A5D082
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:12:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D3BFA5D09A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:15:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65713173C1E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:12:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C4C01897BCE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11DE9264A6E;
-	Tue, 11 Mar 2025 20:12:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA5BB264615;
+	Tue, 11 Mar 2025 20:15:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t9yJ5ktZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IiEYtc1t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB107264A65;
-	Tue, 11 Mar 2025 20:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8F01DEFF3;
+	Tue, 11 Mar 2025 20:15:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741723942; cv=none; b=U5K6oS3RIWOViSgEH1qVQiHyTu6cLb4xvOKqe2YmHXyEkLcpnj1RH582YDv/NqA/MIRMga6+DSVmR0+0sYLYxC8KUB+ioE+ejZ9mY7c/+4yE4bbNIlaDrygzrNNEm6+yKMwUTC+uOuoGpLiC+l8yEu1FNyrGf4p97yrx7SZ+RLA=
+	t=1741724110; cv=none; b=ZbTHSs87Omm5TlP9GCaNHpBUR+C2VUfN0yzXft4Ynkf03tbnHsQgaBNOazQ2DU0zb7tsR+At1yafhTTEGsEbZmxcaOB/X0IR7thdpZgzfC0YfPiBZSIGtPrehky2e+Vmvczy2g/xHNRMHbfr9WL2UyULBsWPrws6LvFRw0F2qH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741723942; c=relaxed/simple;
-	bh=hwyJyim9PZ18lgcGQ/3SEBR/IWw6q8eLGltjBZQCTF4=;
+	s=arc-20240116; t=1741724110; c=relaxed/simple;
+	bh=xr7Mg3apWFhagDi7Tib6C8T7NatN1ptZtdreOZYK0TM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ncbKh3QdQvbwIZsNKv3yBENcaR44ZkDXjepXqiTzqetoAElekmaSdKl3ix9NfcVOG8PkrElk+4hC+MyzjqirEY9yzKGVlimCok4GbJZd7yRafueQBwrycGZvg+dkyVn72jXvTBs8f8/80ywpQxqHK3inlyXetd9yLpaLx/bd8nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t9yJ5ktZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 734B1C4CEEF;
-	Tue, 11 Mar 2025 20:12:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZeowMOlKD65ya/nKPgG3EVGS79oWACthrIDVpgU/xaSwQUPcm+rAlXNyV+m+afteEhuCTXXU3zGiyJ9Y+Ef3Ky8PjUuVXjlq2NU3ON4E9dpkEdJqgmaJ6fVsE8U39fHqkGfKG47d3hAoJ9jSlYUJ7Ouy80ZhxC+bbZjgqJb1cKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IiEYtc1t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9362C4CEE9;
+	Tue, 11 Mar 2025 20:15:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741723941;
-	bh=hwyJyim9PZ18lgcGQ/3SEBR/IWw6q8eLGltjBZQCTF4=;
+	s=k20201202; t=1741724110;
+	bh=xr7Mg3apWFhagDi7Tib6C8T7NatN1ptZtdreOZYK0TM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t9yJ5ktZ4eiLTqgwThzF4fTLnpb7IQWPT2bREztyjKs5HOPfGH1r1HTlEcKliZgkZ
-	 kejUXX1wTmT9snigPtspL1oGSXoLltbRKBGZy2cOic1WTrT1VXj6DCzCxv8qj7/FfF
-	 8ha/W9oFyzRgWQ6HoQAqS5VOqtlAuECoLDVxEfoNdnKQH+hBqXksl85PGX5DUr9Rgv
-	 c3tapUX4cm5coH8FJ0MENqB1htMZFz9IJapMWLtpGjOH2AHXevGow3MXl8+GOFUOrz
-	 wDqkbaJ7rqXzCdCVGWygR9k/m0SlHcJuPbMBXne1mSfhrOKlf0QqPgjRUihxl6ggdm
-	 ddvYCKEnd24zg==
-Date: Tue, 11 Mar 2025 15:12:20 -0500
+	b=IiEYtc1trjLrbmlCBKKDFUoON0GHTHA4+DmiWZr5YPhgEahVhpNr/TQnwuhW8IfbN
+	 Mu4+NAr4jEORUO8OnZLR0WJsfsHp9tfGGOTRdYfcE4mydal+tGECQSnUKJuAlpx9C4
+	 lmIz6c8SO5kCPW8zfBr+K1xoUeF+HPx1/KJhsXPiD3PZ5erNo1+V+HIOSIl4Kt7tYd
+	 zcKoits/AYHu2bXnVxQxsvGZ4pBQUkBfVYTQxc6A11dSxswAUMk425sJSFZqrPvnz4
+	 j/L04Geea2ph+M1kmLrHN+kvmK/GzGo7NWMf7/G+zsw08CW46lXq08Qrh8M3grjO6o
+	 p6tVU+SFmYPGw==
+Date: Tue, 11 Mar 2025 15:15:08 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Antonin Godard <antonin.godard@bootlin.com>
-Cc: linux-kernel@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Simona Vetter <simona@ffwll.ch>, Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add POWERTIP
- PH128800T004-ZZA01 panel
-Message-ID: <174172393994.51336.15963394687109008686.robh@kernel.org>
-References: <20250311-add-powertip-ph128800t004-v1-0-7f95e6984cea@bootlin.com>
- <20250311-add-powertip-ph128800t004-v1-1-7f95e6984cea@bootlin.com>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: linux-kernel@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+	tony@atomide.com, conor+dt@kernel.org, krzk+dt@kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: clock: ti: Convert ti-clkctrl.txt to
+ json-schema
+Message-ID: <174172410753.54630.13201931794020216053.robh@kernel.org>
+References: <20250311180215.173634-1-andreas@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,19 +59,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250311-add-powertip-ph128800t004-v1-1-7f95e6984cea@bootlin.com>
+In-Reply-To: <20250311180215.173634-1-andreas@kemnade.info>
 
 
-On Tue, 11 Mar 2025 17:40:05 +0100, Antonin Godard wrote:
-> Add POWERTIP PH128800T004-ZZA01 10.1" LCD-TFT LVDS panel compatible
-> string.
+On Tue, 11 Mar 2025 19:02:15 +0100, Andreas Kemnade wrote:
+> Convert the TI clkctrl clock device tree binding to json-schema.
+> Specify the creator of the original binding as a maintainer.
 > 
-> Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
+> reg property is used mostly with one item, in am3xxx also with
+> an arbitrary number of items, so divert from the original binding
+> specifying two (probably meaning one address and one size).
+> The consumer part of the example is left out because the full consumer
+> node would be needed.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
->  Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Changes in V2:
+> - additional maintainer
+> - remove txt binding
+> - dual licensing
+> 
+>  .../devicetree/bindings/clock/ti,clkctrl.yaml | 65 +++++++++++++++++++
+>  .../devicetree/bindings/clock/ti-clkctrl.txt  | 63 ------------------
+>  2 files changed, 65 insertions(+), 63 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/ti,clkctrl.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/clock/ti-clkctrl.txt
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
