@@ -1,223 +1,118 @@
-Return-Path: <devicetree+bounces-156584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00474A5CAF4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 17:34:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A173A5CB04
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 17:40:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CCA53B7FF2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:34:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE9833B8996
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D7225FA34;
-	Tue, 11 Mar 2025 16:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0996C26039D;
+	Tue, 11 Mar 2025 16:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yqg5IR1n"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="S0TFRpJ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF7B26039F;
-	Tue, 11 Mar 2025 16:34:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD01825B69D;
+	Tue, 11 Mar 2025 16:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741710868; cv=none; b=nZ+jk1feujE1Jjep88FWpD0GbK2TQxf77Acb8vNvAOWTsgqdffp7jmrs4D+adlAzqEpNF0MtIZTGGTtd48OEKcwc8t20AZnE85tqbRk5oCmNTjwZQjBoc4Lg1Ux9wMr7UaBUxaS1XhJBgHDlaJXVk3O3NV0y9c3T3Lz/ChKqCy0=
+	t=1741711247; cv=none; b=AXrnv5obD2ZwBBnhcdjFIX+mwfa8/qIkAG9bAAkTURm8A+NQ+Dk6MYG5+kr1sKkiG+4jiAZWaeFjkYbgognFU+2rSQHCdT6nroGEgrLM20adpLlbWZjF8qACk4VEjIziZOlCErrli9YHlR2vzgrO2AkTKfFib4s6+4CRz2SNi3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741710868; c=relaxed/simple;
-	bh=RT2VY9JqMuEddn2VQTKWzBs4dZez2Gw5N7kDC4CqOVo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=bzEZRSZHJgwIr5m/z/pvyQjEobFrBGdPIDs/dwtgrw3AzxOZiExgZ8h+Zd3nsRlYbOS4WzifqkUWNu3GbLTthTmFJB3psHbK//QkIDgSS6QdHXskAcr15yCEWuHi8UDUgiUGhP3ysZ7tZiXKmZZmt5bIMuD7dgY1THSzkt3dIPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yqg5IR1n; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43cf848528aso21362285e9.2;
-        Tue, 11 Mar 2025 09:34:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741710864; x=1742315664; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WmIEpE/8tfCzc9/UJAcbQGjEHM9lYmWTxU+CF4VeXxA=;
-        b=Yqg5IR1nqNk5gsWu1rkvOnCHOM6fyvkkv7JtkwcRaI0X2aSGy2qhqMGMJNTKvhymmY
-         2RViJuq/U6lzmSEYCNB+moCxTMO7s+NyJTUJhe8caNWdkMiurr8SQxQsLSln1DfDcrDj
-         SkoBnmh2ZjvfDkGI9eRcwAKqiFD25XRb/yDEaDF4PUOVPi5Obp/IRSIs+nh4am+g7MOt
-         RIdfrDLtPTJwne2zrJCrXYbYnMEerildv+MOv3DgCcbRsu58H7sSdW9/9t23zeP20r6T
-         stf4d32nnqA5kMf/6WDgLaaGRRukyJHVWnHorNmca9FtYw+5HWIF6mFaDQg6jmybcfbZ
-         6bTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741710864; x=1742315664;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WmIEpE/8tfCzc9/UJAcbQGjEHM9lYmWTxU+CF4VeXxA=;
-        b=eH4VNPqHu99QbjrdhjY9ecqnGJ/A9m8L9IcOzLLzAMGDRo7gJzck2m8U1HPLn4sv1p
-         fzjZHV+eeCngD3z6C6GfN5h13luukbXEAVOy5kcFZTlNY9ktngA5SZVbsxWt3BJHN+zT
-         PxBUvxqJJWUyjiqyj9t+5cv2sNtS2ZDog/7LWQtvHVRyHP8u1B9H2hMF8Da75qHN2kdQ
-         q6PbknGKJ/0dLIPwtheuAm5aPhg6hkP5eGq5FCkkIl5M1C9OvJ8g7kntziizYgq0qypa
-         D5/7nqjus0lR1D98fxqGE4yNhvzBkBj3DUKmZcOyJHa75jrCvV8Go9eYV3zDG77X9upM
-         OoMA==
-X-Forwarded-Encrypted: i=1; AJvYcCU/YLhpHbgFO9ebXHmIdVIBVC40TmyhR46ejxTY533mUMVw/DQ1/IRQh4ncHbMH0RMrxlegea7OqpGf@vger.kernel.org, AJvYcCXIGbPA5zalL0xAwhLS55Ap0niGc1GUWFI3rqkICZ4/uOhrf5ryvIvAL8on307QXgIpgWUNc3g3hMmNREI=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7OFaRYIaWMiPih6VdK9cZ6upR/ok5wClJ07ruFtvKUQQ00sVY
-	7HcgylrkjiVvSybbIgxeCt7pP5LOUoNHoD59FCKOIUyNUZw27eNb
-X-Gm-Gg: ASbGnct7VqbbVEVE9rOKvYdaTvMZ/8MQwDevHlRPhNZ2Agu0YM2amlpbVpUD4lLv1la
-	gWVknFLeq+jAsicosByvzdKksSJHxJsKDS0feGSLyNBENtJe55XtBMVCa3ywlc+sTtd3ux7epbu
-	X7+BVip9W5u5sWQa/UBt5KpHkeYliI4fz7O2ZyLc3OCZwQKyEmPiRdMoIAKbydj3gjfMBZbvD90
-	SZrqvBo5bhnAWM/PGkvhJMtzoGUEYt8e9IMpX84EmK0AyXX2CrPUfkNTo5j1R6FRo7yrK97cZ4N
-	Zd4Xyc6CCry/4kGbNhnnvspdFwFz4LM0JiGqw+hhxcQ0QV/5VjAi33NPdMssMtKeEgfpgoRAgru
-	ESi+5/iU=
-X-Google-Smtp-Source: AGHT+IFEWyfiuJdnyqtyoZYKg9bklwY80ObfuMi86YATpJPQGXZVWeSfXdJIo6hDrYC4S2OTrqZGsg==
-X-Received: by 2002:a05:600c:198e:b0:43b:ce08:c382 with SMTP id 5b1f17b1804b1-43d01be6dfbmr66002135e9.16.1741710864569;
-        Tue, 11 Mar 2025 09:34:24 -0700 (PDT)
-Received: from playground.localdomain ([82.79.237.110])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d07fd046esm13398935e9.19.2025.03.11.09.34.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Mar 2025 09:34:24 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Frank Li <Frank.li@nxp.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Iuliana Prodan <iuliana.prodan@nxp.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 3/3] arm64: dts: imx: add imx95 dts for sof
-Date: Tue, 11 Mar 2025 12:32:55 -0400
-Message-Id: <20250311163255.2664-4-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250311163255.2664-1-laurentiumihalcea111@gmail.com>
-References: <20250311163255.2664-1-laurentiumihalcea111@gmail.com>
+	s=arc-20240116; t=1741711247; c=relaxed/simple;
+	bh=Wy+8EZh4dGWZSx8yJwDto+VPZKMU0wZaUq8VJgwIZis=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oJitJchEoKYZ7sgm9hgzJ5cHeuBNxVXQO1C3mpRPqL1EAMmcOLY9E+FISQ9US//Ywo5ywnOamQBTcBz46hl7NkohVwGIungsVOiFMT+akZYUEvWuFQ9LNeXMTX0cmPdYYg8w+TL4zY1NeGJZx6hfq/oGNalPp+yWWO1OWpRUHXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=S0TFRpJ3; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 603A520454;
+	Tue, 11 Mar 2025 16:40:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1741711237;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=BX8MNYhz0nxWMzf1+xnQg1mi6wTmP7EBm2twdrUm7v8=;
+	b=S0TFRpJ3AyXV9KHXjY5DlNxy8NO77/HuAixVNSs7sGUyZTxK9DmwQWfxhelgTcgemMKMB7
+	UIyQ4/OfmUou5NxHIwa50NR8okTD8lwfCay12eooeCDGN55QL78Sg5LCO9z5mN16rHQSOr
+	K+jKvlF2WKQt1hIU7McWkR4W+kCPSoZFsnrURAlQbcQyCKFGGJk5szB4dKOyP8xasRka8k
+	leaMIh+0fGcyVvtomgHmSrBiBOlxblI5k2fs/8VwhyVs8N1Qwn5+PQsyYplsyuCWY0Mrc5
+	4h212PLBmKylB8nIa3iBN+MXwoGDNu9PxYxWqeqOOjZa4rQse0sAja2jWANfeA==
+From: Antonin Godard <antonin.godard@bootlin.com>
+Subject: [PATCH 0/2] Add POWERTIP PH128800T004-ZZA01 panel support
+Date: Tue, 11 Mar 2025 17:40:04 +0100
+Message-Id: <20250311-add-powertip-ph128800t004-v1-0-7f95e6984cea@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGVn0GcC/x3MQQqAIBBA0avErBsYLSm6SrSwHGs2JRoVhHdPW
+ r7F/y8kjsIJhuqFyJckOfYCVVewbHZfGcUVgyZtqFGE1jkMx83xlIBhU7rviU6iFtvGGt8pv2g
+ zQ+lDZC/P/x6nnD8NnyvfawAAAA==
+X-Change-ID: 20250310-add-powertip-ph128800t004-43a5f71fc25b
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Antonin Godard <antonin.godard@bootlin.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=764;
+ i=antonin.godard@bootlin.com; h=from:subject:message-id;
+ bh=Wy+8EZh4dGWZSx8yJwDto+VPZKMU0wZaUq8VJgwIZis=;
+ b=owEBbQKS/ZANAwAIAdGAQUApo6g2AcsmYgBn0Gd8GLC2HXiom4X5kjgGEKBoCePp32te7YSYp
+ g1Anj9pVY2JAjMEAAEIAB0WIQSGSHJRiN1AG7mg0//RgEFAKaOoNgUCZ9BnfAAKCRDRgEFAKaOo
+ Nl7cD/oCcuiDxHD7QS8L/NYIxlsF3/CkbY1JS5sa9dgPU3wg65FgLdhlVrywFTQa8vP7vf3wbbL
+ nrjEr9+1L1+U2ddN47tCM1ute9s3JD9/I32zMm6kU2GDm+v4AUvzaAIk4ey9Ze+JoFLc7O+e9s0
+ LyOZdNNqkypPCg/5Y/Uv0ZGersIZZk9P89dzoBnar5ADJ/TZewLIQOxYsl9gATCp1WsXAVG+j1X
+ LBc0Ly8q/bzVp/7xA6fSpkdnx+UNUu0TcDEsT3pDHxfFpULOAuHL8uJKP7lDJaQo6L5ULPECa48
+ OPomMsNGB89zVdcSEDjsgaEF9cTmr1rN+LpIwhiDwfYsODH506TTO+oTLl82OUkNGpjrY0tA0do
+ 79kKB5H+vMdfb1H1Xp+4KOcKWc4FyHir9yfJgdP242Qbdbb7HC89Z6oJZJrwiYwcv8j6q2DVwqm
+ qc0/GQaN0bSrwz8bnRfnRItPz4rTNGgbxREsoD2j/js5Z4s1QnOcNLgnR/F7EBTPMnt56/DMdDT
+ yzxDhrcf+t7VMxYIgoajRtsk2GdwljveeGea3Cd27pNfzyHAdjyPY5tRPXVS+h62EZ+KhnCdcl9
+ hCRMv9pwxfst9xPo/ZqD1ffBscmcnTsXFFf53iqxP7tWZkpfSgGfmLtOSpdHVarfRyAv3bpEBYg
+ 55a/I8VMSGMabzQ==
+X-Developer-Key: i=antonin.godard@bootlin.com; a=openpgp;
+ fpr=8648725188DD401BB9A0D3FFD180414029A3A836
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduvddvjeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthejredtredtjeenucfhrhhomheptehnthhonhhinhcuifhouggrrhguuceorghnthhonhhinhdrghhouggrrhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeduvdefkeffteeluedvgffhjeegffduveegfffghfejteejkedvgfeuvedtudejkeenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeejtgehtgemiegruggvmeejleegkeemgedtheelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeejtgehtgemiegruggvmeejleegkeemgedtheelpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpegrnhhtohhnihhnrdhgohgurghrugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudejpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepughrihdquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvl
+ hdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepthhhihgvrhhrhidrrhgvughinhhgsehgmhgrihhlrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlhdrtghomh
+X-GND-Sasl: antonin.godard@bootlin.com
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+The POWERTIP PH128800T004-ZZA01 panel is close to the POWERTIP
+PH128800T006-ZHC01, with different timings. Add a binding and a panel
+entry under panel-simple.c.
 
-Add imx95 DTS for SOF usage.
-
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-Reviewed-by: Iuliana Prodan <iuliana.prodan@nxp.com>
+Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
 ---
- arch/arm64/boot/dts/freescale/Makefile        |  1 +
- .../dts/freescale/imx95-19x19-evk-sof.dts     | 84 +++++++++++++++++++
- 2 files changed, 85 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
+Antonin Godard (2):
+      dt-bindings: display: simple: Add POWERTIP PH128800T004-ZZA01 panel
+      drm/panel: simple: Add POWERTIP PH128800T004-ZZA01 panel entry
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index be6ef4c56fbf..fa19250b6676 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -299,6 +299,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
- 
- imx8mm-kontron-dl-dtbs			:= imx8mm-kontron-bl.dtb imx8mm-kontron-dl.dtbo
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
-new file mode 100644
-index 000000000000..808a9fe3ebb2
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk-sof.dts
-@@ -0,0 +1,84 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2025 NXP
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx95-19x19-evk.dts"
-+
-+/ {
-+	sof_cpu: cm7-cpu@80000000 {
-+		compatible = "fsl,imx95-cm7-sof";
-+		reg = <0x0 0x80000000 0x0 0x6100000>;
-+		reg-names = "sram";
-+		memory-region = <&adma_res>;
-+		memory-region-names = "dma";
-+		mboxes = <&mu7 2 0>, <&mu7 2 1>, <&mu7 3 0>, <&mu7 3 1>;
-+		mbox-names = "txdb0", "txdb1", "rxdb0", "rxdb1";
-+
-+		sai3_cpu: port {
-+			sai3_cpu_ep: endpoint {
-+				remote-endpoint = <&wm8962_ep>;
-+			};
-+		};
-+	};
-+
-+	reserved-memory {
-+		adma_res: memory@86100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x86100000 0x0 0x100000>;
-+			no-map;
-+		};
-+	};
-+
-+	sof-sound {
-+		compatible = "audio-graph-card2";
-+		links = <&sai3_cpu>;
-+		label = "audio";
-+		hp-det-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_hp>;
-+		widgets = "Headphone", "Headphones",
-+			  "Microphone", "Headset Mic";
-+		routing = "Headphones", "HPOUTL",
-+			  "Headphones", "HPOUTR",
-+			  "Headset Mic", "MICBIAS",
-+			  "IN3R", "Headset Mic",
-+			  "IN1R", "Headset Mic";
-+	};
-+
-+	sound-wm8962 {
-+		status = "disabled";
-+	};
-+
-+};
-+
-+&edma2 {
-+	/* channels 30 and 31 reserved for FW usage */
-+	dma-channel-mask = <0xc0000000>, <0x0>;
-+};
-+
-+&sai3 {
-+	status = "disabled";
-+};
-+
-+&wm8962 {
-+	assigned-clocks = <&scmi_clk IMX95_CLK_AUDIOPLL1_VCO>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL2_VCO>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL1>,
-+			  <&scmi_clk IMX95_CLK_AUDIOPLL2>,
-+			  <&scmi_clk IMX95_CLK_SAI3>;
-+	assigned-clock-parents = <0>, <0>, <0>, <0>, <&scmi_clk IMX95_CLK_AUDIOPLL1>;
-+	assigned-clock-rates = <3932160000>, <3612672000>,
-+			       <393216000>, <361267200>,
-+			       <12288000>;
-+
-+	port {
-+		wm8962_ep: endpoint {
-+			bitclock-master;
-+			frame-master;
-+			remote-endpoint = <&sai3_cpu_ep>;
-+		};
-+	};
-+};
+ .../bindings/display/panel/panel-simple.yaml       |  2 ++
+ drivers/gpu/drm/panel/panel-simple.c               | 29 ++++++++++++++++++++++
+ 2 files changed, 31 insertions(+)
+---
+base-commit: 66683f3b2661643f694607283ee8f01b7a934c83
+change-id: 20250310-add-powertip-ph128800t004-43a5f71fc25b
+
+Best regards,
 -- 
-2.34.1
+Antonin Godard <antonin.godard@bootlin.com>
 
 
