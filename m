@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-156370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 482B7A5B6ED
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:48:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC097A5B6F0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:51:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE58318955B4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 02:48:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5949618948C3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 02:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC9D01DE889;
-	Tue, 11 Mar 2025 02:48:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 194231DF25C;
+	Tue, 11 Mar 2025 02:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="aUk0JzXj"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="CAvKBMGZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83E28566A;
-	Tue, 11 Mar 2025 02:48:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793E01DE4F0;
+	Tue, 11 Mar 2025 02:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741661283; cv=none; b=nH9tC7HQJX/vcPketAob1UD5QbfZ9snK6qWpyPZlxfWwExHsr8j20EM/dElkfxzFv1C/IHKjdi8LNZe9KZ+cVYBT/SkrZStpiy49QN/LCrWM1zKOIlThQsM5YuypczZhUrtD17zqBrJ72kxI+AsyyT3QethAXEG7WaQXeaRgkTU=
+	t=1741661463; cv=none; b=GynFSt2crCZD+D5hfxTZKaJ9HAHjCuCNLCO5fgaALknWPLg/B5dza+keGqyjdZM8UUQIHYMQu1+hTk9HOlTJPI8veV+//kUFhSJUTrCNh7Zh0J9lLmBWb8NH8lZXtLo4P6AV5StkQEmIhAK2ikKuyuDWH6AGX1EjsfwNiWqviLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741661283; c=relaxed/simple;
-	bh=Fzqz7dFMDlYf04/3j+5kk7viIEamjr4Tpo1oxYIS7Pk=;
+	s=arc-20240116; t=1741661463; c=relaxed/simple;
+	bh=1fbW+QU0NIiVwq5BQT5D3WXMNirWuD/+Eje0aoYYGe8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uZy6w6vI0nVHiV6TEucchLZxVorUd+MEnIqvKNjfpYWETNejVkmQc+RxOCbCypPWmFySZTACW8XAoBHZGQ5OnCYvR57PJDG8HE+YcgmzSh7Sfhjwdn9c4p4urOrnYiQktDjBJzO7jyK9s+Jwy4s0EKwGW2eBfgOaDfVhSL1dFZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=aUk0JzXj; arc=none smtp.client-ip=220.197.32.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=i15cx8O5NFfUNQyN2KQ1vizEHDVabLDzRAex4CmDKK8qFzRtmeEVloK+7Zo16pjVvQ1H3aD1FPAn9qeIAwVpsI8JhIejkEiXUINL6p6HNyUnJl7ys5ztu9ep8LbMD30tO7Fz6UAVPej8fKH28pJ2QcDpAcxGoXgumEEoxARLBuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=CAvKBMGZ; arc=none smtp.client-ip=1.95.21.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=WsOaeFx84mEMIUh1L0Rg4ey/wr5JNJW+7tpTSLncbys=;
-	b=aUk0JzXj24LIHoUlTD1VitEKqbk5WwNNDL1dNpHPSq1kBdHcdBqZLNPR7HRFRJ
-	d6xvoCXtdbkyhM2TBH3Mus6x9u3PLGyNPYufcRPWdofRIXPJ0I9svTRsbd0ns5Z3
-	xUhHsQxELYQvDN13ohHKEAMZOJb5Wkf9TevnFbZOA/wyU=
+	Content-Type; bh=yD8oPqx1bJfk/6wLNnCY911Tq4LRHUDIWKPgfRYfY9Y=;
+	b=CAvKBMGZE/ItnDvOCYd+rSxGncNxtQSNRWGL6AZRPdjVBtA5OxP1HUlVfl49Wa
+	LX7skFDHB4KyrfUj7e5ppoguMy1H2/GIoAY7fbq3uDHK1F6rqarapdz89D5f0tlL
+	Q2k0bFbAP7/zF1ECaANX98+b9mQokLMQcjlbwjQk5alUA=
 Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgCns4o+pM9nw3GvAA--.42893S3;
-	Tue, 11 Mar 2025 10:47:28 +0800 (CST)
-Date: Tue, 11 Mar 2025 10:47:26 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAnZD_2pM9nHKK0AA--.48569S3;
+	Tue, 11 Mar 2025 10:50:32 +0800 (CST)
+Date: Tue, 11 Mar 2025 10:50:30 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Frank Li <Frank.Li@nxp.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>, linux@ew.tq-group.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] ARM: dts: imx6ul-tqma6ul1: Change include order to
- disable fec2 node
-Message-ID: <Z8+kPrY3BsyniZS2@dragon>
-References: <20250225144436.813645-1-alexander.stein@ew.tq-group.com>
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/1] arm64: dts: imx95: add ref clock for pcie nodes
+Message-ID: <Z8+k9s/vrLE7N4km@dragon>
+References: <20250225170802.2671972-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,23 +61,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250225144436.813645-1-alexander.stein@ew.tq-group.com>
-X-CM-TRANSID:M88vCgCns4o+pM9nw3GvAA--.42893S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxG-eUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEQQNZWfPU+r87wAAs-
+In-Reply-To: <20250225170802.2671972-1-Frank.Li@nxp.com>
+X-CM-TRANSID:Ms8vCgAnZD_2pM9nHKK0AA--.48569S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVvedUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAh4NZWfPWknv1gAAs2
 
-On Tue, Feb 25, 2025 at 03:44:35PM +0100, Alexander Stein wrote:
-> From: Max Merchel <Max.Merchel@ew.tq-group.com>
+On Tue, Feb 25, 2025 at 12:08:02PM -0500, Frank Li wrote:
+> Add "ref" clock for i.MX95's pcie and fix below CHECK_DTBS warnings:
+> arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c300000: clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux'] is too short
+> 	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml
 > 
-> TQMa6UL1 has only one FEC which needs to be disabled as one of the last
-> steps.
-> imx6ul-tqma6ul2.dtsi can't be included in imx6ul-tqma6ul1.dtsi as the
-> defaults from imx6ul.dtsi will be applied again.
-> 
-> Fixes: 7b8861d8e627 ("ARM: dts: imx6ul: add TQ-Systems MBa6ULx device trees")
-> Signed-off-by: Max Merchel <Max.Merchel@ew.tq-group.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
 Applied, thanks!
 
