@@ -1,68 +1,61 @@
-Return-Path: <devicetree+bounces-156688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717A0A5CFE0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:49:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08D9EA5D03D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:00:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C56B77A6539
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:48:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51D067A88EC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E7726462A;
-	Tue, 11 Mar 2025 19:49:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C2B2222D6;
+	Tue, 11 Mar 2025 19:59:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iSCfDhN2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rBPJVxj5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08160217719;
-	Tue, 11 Mar 2025 19:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F63D1EBFE1;
+	Tue, 11 Mar 2025 19:59:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741722552; cv=none; b=Y1s6LpLXy8XUfSlgpY1g9mJEyIggVebeeBQO7KpJB3/tNlLryJEC9v594Uw/EgLHnfOAjnMVcnKLbxQXHAIwfM9pOERdYP4PSW2S4C8NMQrbwCfdyZuDQIyxlYyegkeZyCKCnBWNJmq9QJZ5EyJqXPwro/myUIduzFUo2+bLpsE=
+	t=1741723195; cv=none; b=Y8dEeLdI7+sXcSIvPIqnH53NeEGGKeo8c1NUmZbBKL+ncBXTUiHII3Wfv2VW+mFyoLDGiFrw+pbfiH5Ou2lBit/qdRrtNBr1hHeyuIg5JNGyuMfKKWdZqjtpOsa29PcWcpoVo6QflhaaVb5MmkdeX44wmLrFKZ8OMMtl/ilfPvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741722552; c=relaxed/simple;
-	bh=foDxJvYl6KBasGc4dz9ZaDGclCUqmjAtTLkdrSdETis=;
+	s=arc-20240116; t=1741723195; c=relaxed/simple;
+	bh=a7ft1FG1P7enHItsLHhcaGuRIOritOtiGuKBj8oJcz0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LgN9vGfIgWFdkN6F589D29taskwECIA0knaNjbP9UbiNYfeK/utMoYfjrwli+W/xAyUZpomMEugfR126oxOtlvVJpJM+K9bXuAjSYmmwRDyRy5vk4awOdeysASxfkiYH5a/kc3fyq0Nr85QOBVtLE6Giq+NkyRi2JGQKTJVj6dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSCfDhN2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D10DC4CEE9;
-	Tue, 11 Mar 2025 19:49:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZhKojm1CWOTHlAQLQGb4Mto5fQkUAb9STZv2/yjJq5a03gKQsmBzdZKfWHw4HKPP504j9Ckph9dN4m/7GqTZGbLISvPyTNAiGa0nSbucXB8TfMoE7RGXiZX5mOeHx1ctJI5SSdJGJAHSvdpsP9gG6iobaE6aml0RWXtMkgEcvDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rBPJVxj5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB074C4CEE9;
+	Tue, 11 Mar 2025 19:59:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741722549;
-	bh=foDxJvYl6KBasGc4dz9ZaDGclCUqmjAtTLkdrSdETis=;
+	s=k20201202; t=1741723195;
+	bh=a7ft1FG1P7enHItsLHhcaGuRIOritOtiGuKBj8oJcz0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iSCfDhN267WTd7uP6GT6lqCzD7QWFJY8RLRlu2G8GvlIbb3i8vPXYQWARMpHgw05u
-	 +14u0y7nvmEKpMGXRvR1q9UGtpp9oW/DDyqRGF1WAFgvKJvmEZJ9UaOIrqWGLeMjCo
-	 9r9sbhYnO1uDgS1Mtt4M+Px5UiwG4C6ucMZuIC451D86zc/AMm2teed5vxjQB5fsR5
-	 jZ1jFVDmj6fhxbU3vW/NqqJmDZUzm5e0Usbbd2CnIBR5origWHzAUW4wDHuq0qbu2m
-	 aVOIjOafmp7oQABWKnZAgh3W0t9WudUcXhPV0s4HEdBOWy7E0lYlDlEWWd9f90Evlo
-	 ccW6DoFHIjCEg==
-Date: Tue, 11 Mar 2025 14:49:08 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: linux-rockchip@lists.infradead.org,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Heiko Stuebner <heiko@sntech.de>, Liang Chen <cl@rock-chips.com>,
-	kernel@collabora.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+	b=rBPJVxj5GfO21nu2i/ZfFuupxvCFPw+ws7YV96bY5T36lgy7bR1ghLdlq6zhwpjYD
+	 AjFkGbeiwuXM8XLoL8oXgzYKFkxw6Mu5e8W3L7nh10Lygxx9aEC8lKjPb74hTiBW6Q
+	 dcSSc9ncWHoMFz+4dw6VwSbOkH/FrVu8b4IHsr1WpYQGIzBs3Cg8I6PSpe5OobeAE3
+	 hm/VSJhkpO+RDpIY5lvajhX3CSu7qTezLTvk2qQcHIhCMK3tBg7nqkAmpjJOj56Au0
+	 bepj+jVJftYM6Cd+mEWGdHYLehGGfh7cqwwNlC303BfLQb40Qi6YME/WOVxU7Gucn7
+	 Uz0C8nD1UoW2w==
+Date: Tue, 11 Mar 2025 14:59:53 -0500
+From: Rob Herring <robh@kernel.org>
+To: Nick Hu <nick.hu@sifive.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: rk3576: add SCMI clocks
-Message-ID: <174172254786.8700.16296927950928692659.robh@kernel.org>
-References: <20250310-rk3576-scmi-clocks-v1-0-e165deb034e8@collabora.com>
- <20250310-rk3576-scmi-clocks-v1-1-e165deb034e8@collabora.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: timer: Add SiFive CLINT2
+Message-ID: <20250311195953.GA14239-robh@kernel.org>
+References: <20250311051903.3825-1-nick.hu@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,22 +64,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250310-rk3576-scmi-clocks-v1-1-e165deb034e8@collabora.com>
+In-Reply-To: <20250311051903.3825-1-nick.hu@sifive.com>
 
-
-On Mon, 10 Mar 2025 10:59:56 +0100, Nicolas Frattaroli wrote:
-> Mainline Linux uses different clock IDs from both downstream and
-> mainline TF-A, which both got them from downstream Linux. If we want to
-> control clocks through SCMI, we'll need to know about these IDs.
+On Tue, Mar 11, 2025 at 01:19:03PM +0800, Nick Hu wrote:
+> Add compatible string and property for the SiFive CLINT v2.
 > 
-> Add the relevant ones prefixed with SCMI_ to the header.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Signed-off-by: Nick Hu <nick.hu@sifive.com>
+> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
 > ---
->  include/dt-bindings/clock/rockchip,rk3576-cru.h | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../bindings/timer/sifive,clint.yaml          | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> index 76d83aea4e2b..93d74c504b5f 100644
+> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> @@ -36,6 +36,9 @@ properties:
+>                - starfive,jh7110-clint   # StarFive JH7110
+>                - starfive,jh8100-clint   # StarFive JH8100
+>            - const: sifive,clint0        # SiFive CLINT v0 IP block
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Notice that we don't allow clint0 by itself. We shouldn't start now.
 
+> +      - items:
+
+If you don't have a specific one yet, then add '- {}' for the first 
+entry.
+
+> +          - const: sifive,clint2        # SiFive CLINT v2 IP block
+> +        description: SiFive CLINT v2 is the HRT that supports the Zicntr
+>        - items:
+>            - enum:
+>                - allwinner,sun20i-d1-clint
+> @@ -62,6 +65,22 @@ properties:
+>      minItems: 1
+>      maxItems: 4095
+>  
+> +  sifive,fine-ctr-bits:
+> +    description: The width in bits of the fine counter.
+
+maximum: 15
+
+Unless you know of a different maximum in which case why aren't you 
+documenting that too?
+
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: sifive,clint2
+> +then:
+> +  properties:
+> +    sifive,fine-ctr-bits:
+> +      maximum: 15
+> +else:
+> +  properties:
+> +    sifive,fine-ctr-bits: false
+> +
+>  additionalProperties: false
+>  
+>  required:
+> -- 
+> 2.17.1
+> 
 
