@@ -1,231 +1,146 @@
-Return-Path: <devicetree+bounces-156536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B27AA5C28E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 14:26:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C81A5C2B5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 14:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C371A18867DF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:26:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 197763B2E31
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:30:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17AA1420DD;
-	Tue, 11 Mar 2025 13:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9EC1ADC94;
+	Tue, 11 Mar 2025 13:30:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iDvThAAx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zjy+XG8H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77CBF5680;
-	Tue, 11 Mar 2025 13:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8601833E1;
+	Tue, 11 Mar 2025 13:30:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741699562; cv=none; b=V2+xcnJxbb/HoEPR9yQ/GDCIxwcFEigpZ0sixfgXG+8sS4QPkWv2Z14abervxE4ezl/rDRAkGvck/xH9Hc68qVuPH3bwyChcIGPftQCkP0x0raf9Ljv1/e18FaDMqWABMO40duvJeNNxwSpqG6uy6FL19F/otzbB9aAv7KixKo0=
+	t=1741699842; cv=none; b=NS6XLoD0qXWfXBHjDtMMMBbGpNB7IiNMo8g4akDOpOHX7yrPJzAhjj7SVNbyglKxSwKfZ3XRQgmtH4vjhFKcJ0tS/Nr2R6QwrCKVCUdjyGcIriWyF+ceek+oYLnu1zjGwf/GIe1KqMbjR4Fpao/uDr9p/wWu0/4YpVSZgouRIBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741699562; c=relaxed/simple;
-	bh=7taCYy0GzWbqsnJbUDHzsasZ27x+GWjvIkuximMnFcs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OBTh/RGlkQ0rZ0Zk22EfSLAVK8lyr2x1A64W3j8J+w685XthvXPd++rVZCJ6a7xb01G383k3vmPkCJV5e1ditRe9x9fJQlSsDovXTRdcxsD2VEGqnefdoI4bjzlzRRUSPks+e0y6rf1H+tpmbOhdjp6Ah87VwKZTqoVJhQ8nyPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iDvThAAx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18C82C4CEE9;
-	Tue, 11 Mar 2025 13:25:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741699561;
-	bh=7taCYy0GzWbqsnJbUDHzsasZ27x+GWjvIkuximMnFcs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iDvThAAxzTanVqhD/cNh3tKPAKBSuUl5bb4NGTxrTH3edhtquOIU+f9hJLfm+9HJO
-	 yvObIpeHfc6UWfDm0iqEc9tlwm3ZWM4Mv33J8xU3tX0z83wDpoH+L1dOAu+2DKBReC
-	 BQItK+7gzQg6mLzSZfGiSJtwMl1dGsJcbjywGqut7DP2zDEQR5zTzX8wpB46ThHYK8
-	 4jd7EtzZ/pv3+n+Df6Oq/H/OOMq+rfdG1WbBgvHmrh5FxTnfMMwd+1lxjnQnt74KTH
-	 JrGevUwngDLZHgGU98tHdKNvLQi90pygqBHU6gkea4ZyOGG0SVIeGc/nT1ub4FmoCO
-	 iRt28K7dcw74Q==
-Message-ID: <c7de47e5-9a5d-455e-b293-b25b6f801b2b@kernel.org>
-Date: Tue, 11 Mar 2025 14:25:52 +0100
+	s=arc-20240116; t=1741699842; c=relaxed/simple;
+	bh=DSIaqEYMgkyYCBJZ5KNBTAo4Vk3cJBXJ88bu6yBkm2U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qKkuQEAVjQ7rLccbGOLATsvL26ioj6FvRmuY2KsRKrlChChq6H0sTlzTJVlD7/iXJKU6sEyyRnsdSIsCpPilJnEeSbqpC6VLEpDe9mMhJU+Gi0CwimkNNW3Q2glNs4GHQm39iGBsrmsiyZ2+S+W9xhwjfSGvtOO8+bvFatRkW3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zjy+XG8H; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-51eb1a6ca1bso2243373e0c.1;
+        Tue, 11 Mar 2025 06:30:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741699839; x=1742304639; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OS+kx1EYJx8zGVZAVZxDQft66T1VTJ/fMWqkBxUi750=;
+        b=Zjy+XG8HgQmUhiQ3CY7P/s/MGHR3AYob+n5mWBjJ2iMkuzRGfZ2Q9tif7UE6rI4B9K
+         vt8lX7xTGKgk8x3v5Dzj38PyWtgPR73s0IX2o4w7QUP+4zzl+AFgzogP+A7NJDaJCrzl
+         X9LqaZhAsMyH4ITpGAObm281k9pzT7cBrQrlB1efblOUh8wCxr6wrebzo9cJsc6DvVy+
+         kW2heRsa4xJ7DMc56RVD0DQbM9ENN07EXxLfHzQi6l3qBKZ41BG8hl4E+lKhMb5I3DFO
+         BYwGtekbe8A7VQDii7G+6jd9+YV0btZeMVwyG14lFnGrgbY904mNdSM+zVc2L/jHKi56
+         KurQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741699839; x=1742304639;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OS+kx1EYJx8zGVZAVZxDQft66T1VTJ/fMWqkBxUi750=;
+        b=s58Tpkf3H6NOVkE2iHLqzWSzkFEjxDGGl5vVHhv73/V7FhO8LJYwL1p+drYAOYudKb
+         QrAFQAc7Ytrd37qhKY8qJZF6eT8cfEz0P8baaE+beZX+j3pq/VhpWVMRO0mY75CjND26
+         YaesTkMaXNiWhLca1gAfm5bB6s9hf/JcRjRhmH6Ykr2gfOhkHaggdovk24Kl0TMGi93N
+         8d3GkquwbjlOSxg5bTBEOMrHwyuL6qxVciQAnTHrmiieE/CwHUvhb3NbCh7W/fcY6XqI
+         TqMloUOuRL0Zeeue+8MXFzewqc2U9zjtvdkhTxdIN2WLU6pg3p6pSyLbo/DayGlGoAAv
+         7icA==
+X-Forwarded-Encrypted: i=1; AJvYcCV+eKHxgCz/mXnoj2LoJ8NiVRMyztnxgqnogvST9Q6SSj8Jwr7uKQ+j7LEGKi8bZKgcwnTpR7u3@vger.kernel.org, AJvYcCWefNikSYHS467zrzzUM+Qxmy/+9nGuHYabRRv5H7j0GoQpSNEggfUSNISWJvVZxzotmKop7ifNeB8T@vger.kernel.org
+X-Gm-Message-State: AOJu0YxN4rHQDG7L/b7IAPgoaTDMWKgOzRKRbRebuJE68QLV6V7mpR1w
+	LcLBvpYlEHoOWo4Glck5ueUFamjrRW0F4yZNbuIpAhM0u1NxVmwGPLzRqWN0m171mWHPNg7bRWr
+	AfHalfkxdBMs/kFxVkVqvH30YeZc=
+X-Gm-Gg: ASbGnctbZynmjyR+CVJTnD/Yhkw91xl6N7UViCnkKanjfR0rZe/BMT3MVx6FcNk2hws
+	3zy8NiIDUDaj0kYzKFi/lR4cMaBSLQRF2/a2QdC7HMnZOzTI7SDK7sDqQWE58LGLUeFdVRgYqKM
+	22ZpNEaUAJcntJVlCbJR4bxHyRyg==
+X-Google-Smtp-Source: AGHT+IFy2Sl8rkBIl4+/ZfojG+Lp511BkNoNkiebfxbXz25a/xXmKtCtJuK/D9U65TOMGgOaav+c8ESCttCkqV6X1J8=
+X-Received: by 2002:a05:6122:2011:b0:520:42d3:91aa with SMTP id
+ 71dfb90a1353d-523e3ff118fmr11782712e0c.2.1741699839299; Tue, 11 Mar 2025
+ 06:30:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/18] dt-bindings: gpu: img: Future-proofing
- enhancements
-To: Matt Coster <Matt.Coster@imgtec.com>
-Cc: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Randolph Sapp <rs@ti.com>,
- Darren Etheridge <detheridge@ti.com>,
- Alessio Belle <Alessio.Belle@imgtec.com>,
- Alexandru Dadu <Alexandru.Dadu@imgtec.com>
-References: <20250310-sets-bxs-4-64-patch-v1-v3-0-143b3dbef02f@imgtec.com>
- <20250310-sets-bxs-4-64-patch-v1-v3-1-143b3dbef02f@imgtec.com>
- <20250311-flashy-rattlesnake-of-rain-dcc4f6@krzk-bin>
- <cc6a19b3-ba35-465c-9fa6-a764df7c01c1@imgtec.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <cc6a19b3-ba35-465c-9fa6-a764df7c01c1@imgtec.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <Z82tWYZulV12Pjir@shell.armlinux.org.uk> <E1trIAQ-005nto-3w@rmk-PC.armlinux.org.uk>
+In-Reply-To: <E1trIAQ-005nto-3w@rmk-PC.armlinux.org.uk>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 11 Mar 2025 13:30:13 +0000
+X-Gm-Features: AQ5f1Jp3UtuRRhR-96fKi5aM9eNN6ctPoGEYrjWhhbpHpPNGlFs33K9fIDMWwbw
+Message-ID: <CA+V-a8u34cKgccW=qEw=FC34HH+Q6pVmRqeMq7Q_btxqkqNtnQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 6/7] dt-bindings: deprecate "snps,en-tx-lpi-clockgating"
+ property
+To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org, 
+	Emil Renner Berthing <kernel@esmil.dk>, Eric Dumazet <edumazet@google.com>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Jose Abreu <joabreu@synopsys.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Minda Chen <minda.chen@starfivetech.com>, 
+	netdev@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paolo Abeni <pabeni@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/03/2025 11:33, Matt Coster wrote:
->>> The currently supported GPU (AXE-1-16M) only requires a single power
->>> domain. Subsequent patches will add support for BXS-4-64 MC1, which has
->>> two power domains. Add infrastructure now to allow for this.
->>>
->>> Also allow the dma-coherent property to be added to IMG Rogue GPUs, which
->>> are DMA devices. The decision for coherency is made at integration time and
->>> this property should be applied wherever it accurately describes the
->>> vendor integration.
->>>
->>> Note that the new required properties for power domains are conditional on
->>> the new base compatible string to avoid an ABI break.
->>>
->>> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
->>> ---
->>> Changes in v3:
->>> - Remove unnecessary example
->>> - Remove second power domain details, add these where they're used instead
->>> - Avoid ABI breaks by limiting new required properties to new compatible
->>>   strings and making all binding changes in a single patch.
->>> - Links to v2:
->>>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-1-3fd45d9fb0cf@imgtec.com
->>>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-3-3fd45d9fb0cf@imgtec.com
->>>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-4-3fd45d9fb0cf@imgtec.com
->>> ---
->>>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 43 ++++++++++++++++++----
->>>  1 file changed, 36 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
->>> index 256e252f8087fa0d6081f771a01601d34b66fe19..5c16b2881447c9cda78e5bb46569e2f675d740c4 100644
->>> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
->>> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
->>> @@ -12,10 +12,20 @@ maintainers:
->>>  
->>>  properties:
->>>    compatible:
->>> -    items:
->>> -      - enum:
->>> -          - ti,am62-gpu
->>> -      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
->>> +    oneOf:
->>> +      - items:
->>> +          - enum:
->>> +              - ti,am62-gpu
->>> +          - const: img,img-axe-1-16m
->>> +          - const: img,img-rogue
->>
->> That's still ABI break. You got here NAK. You ust preserve img,img-axe.
->> Your marketing troubles do not concern Linux.
-> 
-> I think I'm misunderstanding something here. Is keeping the existing
-> compatible string around in the deprecated item below not sufficient to
-> maintain the existing ABI?
+On Sun, Mar 9, 2025 at 3:13=E2=80=AFPM Russell King (Oracle)
+<rmk+kernel@armlinux.org.uk> wrote:
+>
+> Whether the MII transmit clock can be stopped is primarily a property
+> of the PHY (there is a capability bit that should be checked first.)
+> Whether the MAC is capable of stopping the transmit clock is a separate
+> issue, but this is already handled by the core DesignWare MAC code.
+>
+> Therefore, snps,en-tx-lpi-clockgating is technically incorrect, so this
+> commit deprecates the property in the binding.
+>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> ---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
 
-I was not precise/correct. This indeed is not an ABI break itself.
-However you will break the users of DTS when anyone applies such DTS.
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> 
-> Would adding img,img-axe back into the updated list (bringing it to four
-> elements) be acceptable?
+Cheers,
+Prabhakar
 
-Yes, you must keep all the compatibles. Affecting users because of
-marketing choices is a no-go. No one here cares about marketing.
-
-> 
->>
->>> +
->>> +      # This legacy combination of compatible strings was introduced early on
->>> +      # before the more specific GPU identifiers were used.
->>> +      - items:
->>> +          - enum:
->>> +              - ti,am62-gpu
->>> +          - const: img,img-axe
->>> +        deprecated: true
->>>  
->>>    reg:
->>>      maxItems: 1
->>> @@ -34,8 +44,13 @@ properties:
->>>    interrupts:
->>>      maxItems: 1
->>>  
->>> -  power-domains:
->>> -    maxItems: 1
->>> +  power-domains: true
->>
->> No, widest constraints always stay here.
-> 
-> Ack
-> 
->>
->>> +
->>> +  power-domain-names:
->>> +    items:
->>> +      - const: a
->>
->> That's not a useful name. Are you sure that datasheet calls it power
->> domain A?
-> 
-> Sadly yes. With the Volcanic architecture the power domains get real
-> names, but until then we were stuck with abc. I shared a snipet from the
-> BXS-4-64 TRM with Conor in the replies to the V1 series in [1].
-
-OK, that's fine.
-
-
-Best regards,
-Krzysztof
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
+mentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 3f0aa46d798e..78b3030dc56d 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -494,6 +494,7 @@ title: Synopsys DesignWare MAC
+>
+>    snps,en-tx-lpi-clockgating:
+>      $ref: /schemas/types.yaml#/definitions/flag
+> +    deprecated: true
+>      description:
+>        Enable gating of the MAC TX clock during TX low-power mode
+>
+> --
+> 2.30.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
