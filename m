@@ -1,211 +1,187 @@
-Return-Path: <devicetree+bounces-156389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7E8AA5B912
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:16:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B3CA5B9A1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:17:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24C1E7A2C43
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 06:15:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 279761893AC6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A28A71684AC;
-	Tue, 11 Mar 2025 06:16:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCFC0221732;
+	Tue, 11 Mar 2025 07:17:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o8xoj3wR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jmuQ2Nsy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2DA820B22;
-	Tue, 11 Mar 2025 06:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3475821421F;
+	Tue, 11 Mar 2025 07:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741673813; cv=none; b=kzUJfLT+whQ+8dqWNvbME4fJGEjaa3yTQM89tzXyenJMLekKHPJDy6vClVqtGpxAI6kj3VzUSF4AA32oWOxPXGx3UsDXRarjQqZ3HwfAmuHYnOAJXaK8eX759cf7Ba8HQxPeYny57dL4ig2j2lQQ4C6tCYuz7E040M772+nmYKo=
+	t=1741677441; cv=none; b=UtW1Wy5Pczig930BSrR4VeujIoqnX/5AMdzageiFkERxDmkxGHUOc34J49XgDXteQA8Bf9uBpWKrgjQ5kSQfOHedspfvEOnPBjqpefgu4ymtLK84/rX8KVf8BwfJElf4z2zDjh4uhwFMkTNYBmUrjT+vgUzd7oCRP0Wh+7Xca7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741673813; c=relaxed/simple;
-	bh=k/5Tg7LyN/7jDuAPLOSqYrB/029fVEk0sO1e1ygKico=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hq4+mvgiJ5MmYnIfENfSw1CYSx6F/9L7hco0AT8YbTnRbt9AgHjHsToxv3ou3Br9dFqjRYuMsHv/TFY3FO/u2u4Te0DoV/JwWAypv+bm+p3BpQHfrrXyaey7NISQYE5WoxD4M1viP0f1IdsqrXUDGuogad/g6z8qLWs9+/Bx+24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o8xoj3wR; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52AKjhn9006253;
-	Tue, 11 Mar 2025 06:16:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JHbVnjh4q9xB2LzjdS6wKi6kBiBzwQ1KsR99fp+DG5Q=; b=o8xoj3wRXkNGjHkd
-	m17NVXxJSmYebZ39uddwWFBFVLv7GC8TDVZ4ywuP/QbdtAM/LhcfsnLwgG6o8nz6
-	q4WtbRL9Jk9sPWwaUD+MdjKYce7WWHI0cult3UNBokRIGpZZXXS9WLH66+bvEHfA
-	yzdj7JWelO/OVKAiAoj0DblS6AzrWWKyRmT9D0db5LopDLxn3iVdAzoRi/Pj7fYm
-	kIo0Y1nNj8RJSLXvuHWWL1c6Vi43k/AGtlhSEWw/+XIv3jB5j0po6hRTE/e0Ud5R
-	AiPdvZmH942Qe0YOvsjCPtZoNcUCXoGmfL/of5UOVK7lvPDO3NtUJUZT7e0cADAt
-	GFjHpA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458f2mf92x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Mar 2025 06:16:21 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52B6GKfs015925
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Mar 2025 06:16:20 GMT
-Received: from [10.216.23.206] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 10 Mar
- 2025 23:16:13 -0700
-Message-ID: <8d54a612-433e-4860-a843-294fe0d6db4e@quicinc.com>
-Date: Tue, 11 Mar 2025 11:46:11 +0530
+	s=arc-20240116; t=1741677441; c=relaxed/simple;
+	bh=lMQHpotAZT+or9bRBn1RXMX/D7xRB6YRlUt12c1LBPE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WVehsAxCDfj2ttAhnvhNxZXdEB5ASvAHl7XcDBpqAsLsx3CarOnOSHs3qHX4GdqeN7hf4ha0q3snDBeHcy5NaIMfXoZuGeKWjMvkYUQ7cfwH0F3h2RVF0bAFAs/wHz6PUgBGo05P63KjHRie+xD08s20z+CwbphRjeZaNTU8iH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jmuQ2Nsy; arc=none smtp.client-ip=209.85.221.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-523dc366e42so1980696e0c.2;
+        Tue, 11 Mar 2025 00:17:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741677438; x=1742282238; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QgXuDCwAmQulDTtjzIIH53l6D34oij/uowJ4XpgRVJo=;
+        b=jmuQ2NsyE8noLdtxc+TREY9oLrDvx9VBoTXoUmPe9JDF63vBIRCMzoMPoPOF0CTgE0
+         A3uZa3Mv565E6ZCX4A9H9yP0TKV1mjAdX80osSGcXYxoIwftBkSogxlnMwh6PQ8QmYWt
+         terLKAh7bVkCeKM9tZkP5Ytt1cMP3PGT+d8AwXQJ8M2Ze8DBY3eGVMX4eHj5bzFLAz+D
+         hS3Y0POn6viCl2NHNxIqoKdXJx/xlA8YQHeJuHsaQ/g6ZaOo2nV3f98vZMHgGkJSCQIW
+         uGF6yepsce4ILOnK6Y4pexCRHgJPhHUYewhAIOKK8hnWcmVN/KeGAd3iQAeW43JNwMMN
+         D1Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741677438; x=1742282238;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QgXuDCwAmQulDTtjzIIH53l6D34oij/uowJ4XpgRVJo=;
+        b=XgmqXqB4z9p/xl14qHBgQfetvxid479XV/o557fQiG8kjN6KrIi8nmOyzWKHKwHCHH
+         9K3zUGjgJMHNlrIX8l247YVp3KoIxyPoGVFQ22klkhSUwLMWZqHSkFB837z1d7+7Lv/z
+         rFb7srbA5K6oOH7m7N//mA+x5xhwb2cGxvZb8iLnaICq2mk5S0TtweYMiIAvTCQrSKvV
+         SCnNmufpDu9dwDrfSkdhdU41Pq74em1PVbQNZtaXNaVWEYqbEXmQclNb7RNt7hSot7wN
+         YaXYgJw7glOsp/weNYkoP2tVBKcxNKHL+a0fjjP5jSCPyChpIVrLdB/xa6Kf8QTXmv30
+         thkg==
+X-Forwarded-Encrypted: i=1; AJvYcCUFB7Y5aCYNAcWIkl+rv1zOX0id+NgNaSMVOyxG8bKUNVlinfhEjinE9TEtMHAlYhHBa/ciHzYwzGxk@vger.kernel.org, AJvYcCUY9dIax7uzn0ry0xAUH4zcOB1mjzhB3XAXwdbeP2wS1CMEa4DUYLXDIQTfdEW4UxH7eLOnKap7nq8XrQRC@vger.kernel.org, AJvYcCW2k4Q5awaEo87UM/6ISLLinjjKWNT8o6HDviAU/aOK29+JFAM0LXNuPhyJdL4wUntITr6kp82A@vger.kernel.org, AJvYcCX05hZFok/Ridsh6EYYSeNlzMwmHg0HrF5/HUd5McdacZj+plwfRDddJp5HZcCFF/omN8lvhlxVaTkZ2X4aygRsnm8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZuunyrTNG+TEJXYMwYajY3d3agXJ/PLxNMUy5kLv4pD+SG/sk
+	tER1pUV2a++zoxzpngSOlttUUN+SCSAstWK7E1yy4+aEIQAPLx7ER3iSaCCqGxhq9B8Ktw8I8g2
+	fDQykB7tXYFTpv7gObticqICFASw=
+X-Gm-Gg: ASbGncsLH8nr631j45bwGhMt1XsY2c2LGSHibwGKXL7ThyeRU32/XpdcqR5m6cfIupF
+	ZcvTuMTR5vmy6MFwCCTVVXU6Crp6813GdCdoKmrykyeJvEvRpnEHlQr7YTtcuYByHx1Yd5yIoUa
+	jPoekfsaYC4SCBrlsOihdlCt6fAA==
+X-Google-Smtp-Source: AGHT+IHL9bGh1peMKIZaQk5HkCRcMvybeFANZeZSC4bWbrbEOygDwgyxh5TwDNL6xNH9/SVkNxI01E1JJlfqV10gxoE=
+X-Received: by 2002:a05:6122:1809:b0:520:60c2:3f1 with SMTP id
+ 71dfb90a1353d-523e3fd2c81mr9612329e0c.0.1741677437848; Tue, 11 Mar 2025
+ 00:17:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/6] Support for Adreno 623 GPU
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, Simona Vetter <simona@ffwll.ch>,
-        <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        "Abhinav
- Kumar" <quic_abhinavk@quicinc.com>,
-        Jie Zhang <quic_jiezh@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        "Thomas
- Zimmermann" <tzimmermann@suse.de>,
-        Maxime Ripard <mripard@kernel.org>, <freedreno@lists.freedesktop.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Sean Paul <sean@poorly.run>,
-        "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>,
-        Rob Clark
-	<robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "David
- Airlie" <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com>
- <174075232770.2756163.15128447349702656600.robh@kernel.org>
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <174075232770.2756163.15128447349702656600.robh@kernel.org>
+References: <20250308200921.1089980-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250308200921.1089980-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250310213056.GA904881-robh@kernel.org>
+In-Reply-To: <20250310213056.GA904881-robh@kernel.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 11 Mar 2025 07:16:52 +0000
+X-Gm-Features: AQ5f1Jo8YORcwnFwKCITHCfJ8Sp8085yTfEpHt0PYoBNnCKqikUJMGmDGgK5HdU
+Message-ID: <CA+V-a8uinTxr8FheR5-Pbv37j9wFR1cfrFDX6gExA5dW8WWPSA@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: dwmac: Increase
+ 'maxItems' for 'interrupts' and 'interrupt-names'
+To: Rob Herring <robh@kernel.org>, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: EFmODcM4L_YS48Fyr14FyKTDBWPkoAE0
-X-Proofpoint-ORIG-GUID: EFmODcM4L_YS48Fyr14FyKTDBWPkoAE0
-X-Authority-Analysis: v=2.4 cv=ab+bnQot c=1 sm=1 tr=0 ts=67cfd535 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=gEfo2CItAAAA:8
- a=Qi1LLK4JJPgfJq4B5soA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-11_01,2025-03-07_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- mlxlogscore=999 priorityscore=1501 lowpriorityscore=0 bulkscore=0
- mlxscore=0 impostorscore=0 phishscore=0 clxscore=1015 spamscore=0
- adultscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503110040
+Content-Transfer-Encoding: quoted-printable
 
-On 2/28/2025 7:53 PM, Rob Herring (Arm) wrote:
-> 
-> On Fri, 28 Feb 2025 01:37:48 +0530, Akhil P Oommen wrote:
->> This series adds support for A623 GPU found in QCS8300 chipsets. This
->> GPU IP is very similar to A621 GPU, except for the UBWC configuration
->> and the GMU firmware.
->>
->> Both DT patches are for Bjorn and rest of the patches for Rob Clark to
->> pick up.
->>
->> ---
->> Changes in v2:
->> - Fix hwcg config (Konrad)
->> - Split gpucc reg list patch (Rob)
->> - Rebase on msm-next tip
->> - Link to v1: https://lore.kernel.org/r/20250213-a623-gpu-support-v1-0-993c65c39fd2@quicinc.com
->>
->> ---
->> Jie Zhang (6):
->>       drm/msm/a6xx: Split out gpucc register block
->>       drm/msm/a6xx: Fix gpucc register block for A621
->>       drm/msm/a6xx: Add support for Adreno 623
->>       dt-bindings: display/msm/gmu: Add Adreno 623 GMU
->>       arm64: dts: qcom: qcs8300: Add gpu and gmu nodes
->>       arm64: dts: qcom: qcs8300-ride: Enable Adreno 623 GPU
->>
->>  .../devicetree/bindings/display/msm/gmu.yaml       |  1 +
->>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts          |  8 ++
->>  arch/arm64/boot/dts/qcom/qcs8300.dtsi              | 93 ++++++++++++++++++++++
->>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c          | 29 +++++++
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c              |  8 ++
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        | 13 ++-
->>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h        | 17 ++++
->>  drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  5 ++
->>  8 files changed, 171 insertions(+), 3 deletions(-)
->> ---
->> base-commit: 89839e69f6154feecd79bd01171375225b0296e9
->> change-id: 20250213-a623-gpu-support-f6698603fb85
->> prerequisite-change-id: 20250131-b4-branch-gfx-smmu-b03261963064:v5
->> prerequisite-patch-id: f8fd1a2020c940e595e58a8bd3c55d00d3d87271
->> prerequisite-patch-id: 08a0540f75b0f95fd2018b38c9ed5c6f96433b4d
->>
->> Best regards,
->> --
->> Akhil P Oommen <quic_akhilpo@quicinc.com>
->>
->>
->>
-> 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->   pip3 install dtschema --upgrade
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com:
-> 
-> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:0: 'gcc_gpu_memnoc_gfx_clk' was expected
-> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
-> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:1: 'gcc_gpu_snoc_dvm_gfx_clk' was expected
-> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
-> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:2: 'gpu_cc_ahb_clk' was expected
-> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
-> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:3: 'gpu_cc_hlos1_vote_gpu_smmu_clk' was expected
-> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
-> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:4: 'gpu_cc_cx_gmu_clk' was expected
-> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
-> arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: iommu@3da0000: clock-names:5: 'gpu_cc_hub_cx_int_clk' was expected
-> 	from schema $id: http://devicetree.org/schemas/iommu/arm,smmu.yaml#
-> 
-> 
-> 
-> 
-> 
+Hi Rob,
 
-These warnings are for the smmu dt change which I marked as a
-dependency. Hopefully, the v6 revision from Pratyush will fix this.
+Thank you for the review.
 
-https://lore.kernel.org/linux-arm-kernel/20250310-b4-branch-gfx-smmu-v6-1-15c60b8abd99@quicinc.com/T/
+On Mon, Mar 10, 2025 at 9:30=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Sat, Mar 08, 2025 at 08:09:19PM +0000, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Increase the `maxItems` value for the `interrupts` and `interrupt-names=
+`
+> > properties to accommodate the Renesas RZ/V2H(P) SoC, which features the
+> > `snps,dwmac-5.20` IP with 11 interrupts.
+> >
+> > Also add `additionalItems: true` to allow specifying extra interrupts
+> > beyond the predefined ones. Update the `interrupt-names` property to
+> > allow specifying extra `interrupt-names`.
+> >
+> > Also refactor the optional `interrupt-names` property by consolidating
+> > repeated enums into a single enum list.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > Note, for this change I will be sending a sperate patch for vendor
+> > bindings to add constraints.
+> >
+> > v1->v2
+> > - No change
+> > ---
+> >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Do=
+cumentation/devicetree/bindings/net/snps,dwmac.yaml
+> > index 3f0aa46d798e..fad0d611a75c 100644
+> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > @@ -114,6 +114,8 @@ properties:
+> >
+> >    interrupts:
+> >      minItems: 1
+> > +    maxItems: 11
+> > +    additionalItems: true
+> >      items:
+> >        - description: Combined signal for various interrupt events
+> >        - description: The interrupt to manage the remote wake-up packet=
+ detection
+> > @@ -122,11 +124,11 @@ properties:
+> >
+> >    interrupt-names:
+> >      minItems: 1
+> > +    maxItems: 11
+> > +    additionalItems: true
+> >      items:
+> >        - const: macirq
+> >        - enum: [eth_wake_irq, eth_lpi, sfty]
+> > -      - enum: [eth_wake_irq, eth_lpi, sfty]
+> > -      - enum: [eth_wake_irq, eth_lpi, sfty]
+>
+> I think this should be structured similar to the DWC PCIe binding where
+> we define all possible names, but not the order:
+>
+> minItems: 1
+> maxItems: 11
+> items:
+>   oneOf:
+>     - const: macirq
+>       description: ...
+>     - const: eth_wake_irq
+>       description: ...
+>     - pattern: '^rx-queue-[0-3]$'
+>       description: ...
+>     - pattern: '^tx-queue-[0-3]$'
+>       description: ...
+>
+> And so on. Move the descriptions from 'interrupts' and drop 'items' and
+> 'additionalItems' from it.
+>
+Thanks for the pointer, I'll do as suggested above.
 
--Akhil.
+@Russel, are you OK from me to add rx-queue/tx-queue in this binding
+file or would you suggest different names for it. Please share your
+thoughts.
+
+Cheers,
+Prabhakar
 
