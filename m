@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-156689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08D9EA5D03D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:00:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03399A5D06C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:07:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51D067A88EC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:59:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62A243A2730
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C2B2222D6;
-	Tue, 11 Mar 2025 19:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372B0264615;
+	Tue, 11 Mar 2025 20:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rBPJVxj5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPGRFmy0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F63D1EBFE1;
-	Tue, 11 Mar 2025 19:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D85322F169;
+	Tue, 11 Mar 2025 20:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741723195; cv=none; b=Y8dEeLdI7+sXcSIvPIqnH53NeEGGKeo8c1NUmZbBKL+ncBXTUiHII3Wfv2VW+mFyoLDGiFrw+pbfiH5Ou2lBit/qdRrtNBr1hHeyuIg5JNGyuMfKKWdZqjtpOsa29PcWcpoVo6QflhaaVb5MmkdeX44wmLrFKZ8OMMtl/ilfPvE=
+	t=1741723624; cv=none; b=EmnLz/YYS/0eJETueAD9GALrM4EhjPwT+w3N4i3mfPv2pV95KNWVhLqf4opgnuzccuRy1AnmuJ5Ct7+EtieS7ea3q1OpkXYBPhSL1i9aspH85/6/iSqasbeOYhmF28WgxWAXdJ3dihrHlOFzhplz3dwiEoL270Se/KoeYdWqnBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741723195; c=relaxed/simple;
-	bh=a7ft1FG1P7enHItsLHhcaGuRIOritOtiGuKBj8oJcz0=;
+	s=arc-20240116; t=1741723624; c=relaxed/simple;
+	bh=vmaAEzFBzlwDTRy5wbpxrPDsyq9A9SymsOA8U2CimH0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZhKojm1CWOTHlAQLQGb4Mto5fQkUAb9STZv2/yjJq5a03gKQsmBzdZKfWHw4HKPP504j9Ckph9dN4m/7GqTZGbLISvPyTNAiGa0nSbucXB8TfMoE7RGXiZX5mOeHx1ctJI5SSdJGJAHSvdpsP9gG6iobaE6aml0RWXtMkgEcvDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rBPJVxj5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB074C4CEE9;
-	Tue, 11 Mar 2025 19:59:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IHYlcdvDJ2uQaD9Y3TCQT8N98B6Hpclz/ffT8FWFe14P5YUiV98XZ2Ymd7F2pfu6du8bpC0xO7ILo7X7tRJbWVZQKBL7SEvhmGnGCgd+iq49E+rZrSzplaQpp43ywk8jhkSP7RMnvtH/5yvMrFEJmh7s9wmV9zL/4WTJQ3Fy2JE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPGRFmy0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42233C4CEE9;
+	Tue, 11 Mar 2025 20:07:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741723195;
-	bh=a7ft1FG1P7enHItsLHhcaGuRIOritOtiGuKBj8oJcz0=;
+	s=k20201202; t=1741723623;
+	bh=vmaAEzFBzlwDTRy5wbpxrPDsyq9A9SymsOA8U2CimH0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rBPJVxj5GfO21nu2i/ZfFuupxvCFPw+ws7YV96bY5T36lgy7bR1ghLdlq6zhwpjYD
-	 AjFkGbeiwuXM8XLoL8oXgzYKFkxw6Mu5e8W3L7nh10Lygxx9aEC8lKjPb74hTiBW6Q
-	 dcSSc9ncWHoMFz+4dw6VwSbOkH/FrVu8b4IHsr1WpYQGIzBs3Cg8I6PSpe5OobeAE3
-	 hm/VSJhkpO+RDpIY5lvajhX3CSu7qTezLTvk2qQcHIhCMK3tBg7nqkAmpjJOj56Au0
-	 bepj+jVJftYM6Cd+mEWGdHYLehGGfh7cqwwNlC303BfLQb40Qi6YME/WOVxU7Gucn7
-	 Uz0C8nD1UoW2w==
-Date: Tue, 11 Mar 2025 14:59:53 -0500
-From: Rob Herring <robh@kernel.org>
-To: Nick Hu <nick.hu@sifive.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=CPGRFmy0YVDPHDZ7+K5ZTo4vlxXOfDmTaKHtwHWjkPwPsuD0S+rT853k4/cIXkN/Z
+	 SY3BYWAPve5Ok17t8mhicA4mhb7c0uBGGXA0ToN9E4WMR9cNXfgFElMzI3qWXI0XNp
+	 rhRJryEkB/c5tLMqPviYw8mea5GMaLjULNp9s6D4XEC9FHQdt6QI5eiEuHloahwB2j
+	 XA7lfhFwWnvSE9f2mkLHjSJaBm4klpwloKDLGhgKR60XEBmPwkTn4fDVl9P/Rhirda
+	 zN3OFgHa2bw1t+CFKFm2GKMnIeoNQjx2dZ+dBRMDHuPTSSYSj9gObLOB08K8iIVkvQ
+	 1/zGT3HdwoxNg==
+Date: Tue, 11 Mar 2025 15:07:02 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Friday Yang <friday.yang@mediatek.com>
+Cc: linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	Yong Wu <yong.wu@mediatek.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: timer: Add SiFive CLINT2
-Message-ID: <20250311195953.GA14239-robh@kernel.org>
-References: <20250311051903.3825-1-nick.hu@sifive.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: memory: mediatek: Add SMI reset and
+ clamp for MT8188
+Message-ID: <174172361378.44650.15345202042780383326.robh@kernel.org>
+References: <20250311122327.20685-1-friday.yang@mediatek.com>
+ <20250311122327.20685-2-friday.yang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,68 +66,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250311051903.3825-1-nick.hu@sifive.com>
+In-Reply-To: <20250311122327.20685-2-friday.yang@mediatek.com>
 
-On Tue, Mar 11, 2025 at 01:19:03PM +0800, Nick Hu wrote:
-> Add compatible string and property for the SiFive CLINT v2.
+
+On Tue, 11 Mar 2025 20:23:21 +0800, Friday Yang wrote:
+> From: "Friday Yang" <friday.yang@mediatek.com>
 > 
-> Signed-off-by: Nick Hu <nick.hu@sifive.com>
-> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+> On the MediaTek platform, some SMI LARBs are directly connected to
+> the SMI Common, while others are connected to the SMI Sub-Common,
+> which in turn is connected to the SMI Common. The hardware block
+> diagram can be described as follows.
+> 
+>              SMI-Common(Smart Multimedia Interface Common)
+>                  |
+>          +----------------+------------------+
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>        larb0       SMI-Sub-Common0     SMI-Sub-Common1
+>                    |      |     |      |             |
+>                   larb1  larb2 larb3  larb7       larb9
+> 
+> For previous discussion on the direction of the code modifications,
+> please refer to:
+> https://lore.kernel.org/all/CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=wXpobDWU1CnvkA@mail.gmail.com/
+> https://lore.kernel.org/all/CAPDyKFpokXV2gJDgowbixTvOH_5VL3B5H8eyhP+KJ5Fasm2rFg@mail.gmail.com/
+> 
+> On the MediaTek MT8188 SoC platform, we encountered power-off failures
+> and SMI bus hang issues during camera stress tests. The issue arises
+> because bus glitches are sometimes produced when MTCMOS powers on or
+> off. While this is fairly normal, the software must handle these
+> glitches to avoid mistaking them for transaction signals. What's
+> more, this issue emerged only after the initial upstreaming of this
+> binding. Without these patches, the SMI becomes unstable during camera
+> stress tests.
+> 
+> The software solutions can be summarized as follows:
+> 
+> 1. Use CLAMP to disable the SMI sub-common port after turning off the
+>    LARB CG and before turning off the LARB MTCMOS.
+> 2. Use CLAMP to disable/enable the SMI sub-common port.
+> 3. Implement an AXI reset for SMI LARBs.
+> 
+> This patch primarily add two changes:
+> 1. Add compatible for SMI sub-common on MT8188 SoC.
+> 2. Add 'resets' and 'reset-names' properties for SMI LARBs to
+>    support SMI reset operations.
+> 
+> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
 > ---
->  .../bindings/timer/sifive,clint.yaml          | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>  .../mediatek,smi-common.yaml                  |  2 ++
+>  .../memory-controllers/mediatek,smi-larb.yaml | 19 +++++++++++++++++++
+>  2 files changed, 21 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> index 76d83aea4e2b..93d74c504b5f 100644
-> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> @@ -36,6 +36,9 @@ properties:
->                - starfive,jh7110-clint   # StarFive JH7110
->                - starfive,jh8100-clint   # StarFive JH8100
->            - const: sifive,clint0        # SiFive CLINT v0 IP block
 
-Notice that we don't allow clint0 by itself. We shouldn't start now.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +      - items:
-
-If you don't have a specific one yet, then add '- {}' for the first 
-entry.
-
-> +          - const: sifive,clint2        # SiFive CLINT v2 IP block
-> +        description: SiFive CLINT v2 is the HRT that supports the Zicntr
->        - items:
->            - enum:
->                - allwinner,sun20i-d1-clint
-> @@ -62,6 +65,22 @@ properties:
->      minItems: 1
->      maxItems: 4095
->  
-> +  sifive,fine-ctr-bits:
-> +    description: The width in bits of the fine counter.
-
-maximum: 15
-
-Unless you know of a different maximum in which case why aren't you 
-documenting that too?
-
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: sifive,clint2
-> +then:
-> +  properties:
-> +    sifive,fine-ctr-bits:
-> +      maximum: 15
-> +else:
-> +  properties:
-> +    sifive,fine-ctr-bits: false
-> +
->  additionalProperties: false
->  
->  required:
-> -- 
-> 2.17.1
-> 
 
