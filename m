@@ -1,442 +1,215 @@
-Return-Path: <devicetree+bounces-156478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22CF4A5BDEF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:34:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E91D6A5BE29
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:45:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B03E3B0714
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 10:33:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2203D16EA88
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 10:45:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15E61EFFBB;
-	Tue, 11 Mar 2025 10:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAF51F4CB6;
+	Tue, 11 Mar 2025 10:45:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="KwPpmmqW";
-	dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b="i6AKt1wd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P7hPtugr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58ACFBA34;
-	Tue, 11 Mar 2025 10:33:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=91.207.212.86
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741689236; cv=fail; b=SIhZO/B6hS6JZ1olKX1ThQhwjWNNlVhFnLw1HsqSAnlUaezL1BiCfqsSuZyxoy0KqmVNqnmlTDc0/1HeNj0e+WnZTzkJ2Ws8U3AzZr395YgJqgBvnNg+rUZzzTEWPR5f0ixzBO/rxe7DfqX8Q9K8Z+kmY4wV2EdNIK+zTzYVfsc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741689236; c=relaxed/simple;
-	bh=l1eaC2oGKWnkuq0KlgrNPrHWOteY4JTpRxvWZuSDyCU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Si+xHCFXXC6nIiCSxR5bISeqsbYvE1OmdRjP5Fdh+QancfEPg6g+KxH+U7bGRvhaeNeVwHIrtCORlvNSMTcIKSCtjuH5HJtUZnhI1ARSLF7rBu6KSx7H3DEGd6GRIib2+48UiHnlejRlksw1JuCIpeLXGhaE8LwMo7viW0X3YP8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=KwPpmmqW; dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b=i6AKt1wd; arc=fail smtp.client-ip=91.207.212.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
-	by mx08-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52B7XLPM005315;
-	Tue, 11 Mar 2025 10:33:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=dk201812; bh=rlqqn/zV6dW+PVMvvzejjC3Tq
-	+ob+1gisKYrjIJdjEA=; b=KwPpmmqWqzI3h0FM+fuIdMGV7aKY+2+yiSnB2agGJ
-	jZbm5oWZNlYCMubjg3HiSmF5pIyqB95JBnnD8FJMfkl/zOcRApIpmCNyClofvpkX
-	+jGwutu3AD7okyWXUssOdcfMDh4oFsXMlll7rwkmgu02w/MZwmLeN44QRFKwPnaj
-	wPV/Qfa+p9Nx8YGs5nxjxaJOD/Psb6Ogdmi3Y0Tk+lkMiOoRD4xNO5iW8kRT18Dq
-	tFv57z9eaFgjhsyS62oREVi3HnR4b8P9WUgQfTcecQOZ6nxqAv5jLXOolJYS2AZn
-	yvzsXy/mKKjQjBX6fEujuJiDhBVRnsStwM4fjhjs5M6Yw==
-Received: from outbound.mail.protection.outlook.com (mail-ukwestazlp17010004.outbound.protection.outlook.com [40.93.68.4])
-	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 45a224rhjv-1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66661DE2BB;
+	Tue, 11 Mar 2025 10:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741689910; cv=none; b=tuxVwO809KjhvM8ccaDqoweH2byMFflsgNztUavxltmHdoBFpglmQGD8hA0eNBCJDzpFgmLK6A3RmqaEA4GRvn3iNKT1k2c5/jRfmZArDgPmY2ynnjEzP2WWqB5mkvmNejEwAmBEB6ZQBBH7TqTfauyASLHHrjpLhPAl9VTiI9o=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741689910; c=relaxed/simple;
+	bh=2qtZx71hOP7XTKnjKVCGoxZv4RprBeHFFlw7SOTHDCM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UYiuBSefdq202vHzVbMphTxrihmHxupU2jsAZLWYDTa16tcil0kEXjVPZTlDIOyQxexeMsr7ZujXjDioHFdoPw6cR3tfz7g/umSLx7utyptCcasNasXa3ool/oyBuNRwhXgOtclwbNWp0WxdHjOGjWaJgXXXRUMZNmUmaY/GGOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=P7hPtugr; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52BA4P1Z015125;
+	Tue, 11 Mar 2025 10:44:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	S2i6mRK0jajy0u0bUB2Z9AQTcwRxDHV/B/HG8iEiju8=; b=P7hPtugr6omYfGnF
+	DqAmVqW5Ec8QzF4iWGD/4Og9HQB5DAx/IavD+obS5gb5CdS5ikvpibXWZIF2RUVg
+	ezwUl16GdE9am/hNnwpU02HFbxGistvoPJNuov/DqWMw3eZM6cZo+Yv+IUTCH7fh
+	K3NO0eaoFqkNAhglRxQZSMooooPlLCQjOZYqZqnscMHrpCpDYANy1uzMm1zHrM0i
+	CmBM42HYPXIvxe3u7vfSo871QPqEs2QnTlI9OVAhc8pE97Wefe8ZZJ7cgDtRuATQ
+	C+0xq7slbdU6VCbxS3qpzrMXpkrGIt0jaeLMutPVO9UizqYf+9Pi6pJacA5lms1G
+	Dlk5uQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ab8m1hhm-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Mar 2025 10:33:29 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kqUlHdQ3lHwF5CsM2z2v/wxjPwsPfAx6h4LWVSFtUe4S553hp4DUqck69rGnN5x6oMVB+mm7faVTAetX7bORzyJDATBkCEzv2DoZF72E+gRlIhQbeZdaYDSikQZ8xBtqb+06RHe2J1tYL2glqj5JrK7bLLwtFNEOw31J59CkTRJ/KuhB0dBuPdjVNj/kOQbefik4pe1snzcBAWi1ZmcrGYCc8aPbQQ2mx5voM0VsA5sDID6k7q3PKP0NNhFsWHhjpM3AAefQ/OVUeCm1M8BNgig4zS+g3hLZmJrXwgcQkldyb3l+vqgAoRmoKu4KJlKYCfpM/QujDxpY9RV7TI7COA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rlqqn/zV6dW+PVMvvzejjC3Tq+ob+1gisKYrjIJdjEA=;
- b=mK4Ay3lLP8mj40BNuLyK9hWfjkPGm3Nemb2W34zKKxfFY15nz9G+uMBWrhwN4nVkTSHSpD6lWdSewMU8tcsUDMZjlrZS3327pNT+++Vv5C0eVyzsAEpxQYJXbjCokHz5+GiKeb74UIafsWInNRg4yOkUiCIPvRAP3TSMRP/EHLlQIWQ45X4octkBJ4HGNyULWulVGkMyuoDeACJ9INAKvi+lhHYJVYai3oy/8nx1kyl1WHml1FvPFTGrG37bll10ULqDssW21D9eyHCOPHUHJWFRt4JfgTPqt69OYS3bN0d/hOoiD97uGwFkBLOnEIR9i5t/BLAuHt55DV2bK3mJ3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rlqqn/zV6dW+PVMvvzejjC3Tq+ob+1gisKYrjIJdjEA=;
- b=i6AKt1wd3fPAkow0KhwtHd6CtNRNkJEsRaTnocAYhfJ+KWDtH8sXzxVpnE8fHwcGzNVSbomu2P3B1O4s64tS151N6Qs5KbjVLxCc//cwLV3dblcPRHdyLfikwdeaENiD1tbWIN55emHUz8L2HhsY/4UtQLvGM1aE+jEEpt0pKK0=
-Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:e7::8) by
- LO7P265MB7637.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:412::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.21; Tue, 11 Mar 2025 10:33:26 +0000
-Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9d:6b2f:9881:1e15]) by CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9d:6b2f:9881:1e15%4]) with mapi id 15.20.8534.018; Tue, 11 Mar 2025
- 10:33:23 +0000
-From: Matt Coster <Matt.Coster@imgtec.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
-        Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>,
-        "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        Randolph Sapp <rs@ti.com>, Darren
- Etheridge <detheridge@ti.com>,
-        Alessio Belle <Alessio.Belle@imgtec.com>,
-        Alexandru Dadu <Alexandru.Dadu@imgtec.com>
-Subject: Re: [PATCH v3 01/18] dt-bindings: gpu: img: Future-proofing
- enhancements
-Thread-Topic: [PATCH v3 01/18] dt-bindings: gpu: img: Future-proofing
- enhancements
-Thread-Index: AQHbkb3XF6GcdeLkqEaOsDCRsFWB5bNtkQqAgAAtgYA=
-Date: Tue, 11 Mar 2025 10:33:23 +0000
-Message-ID: <cc6a19b3-ba35-465c-9fa6-a764df7c01c1@imgtec.com>
-References: <20250310-sets-bxs-4-64-patch-v1-v3-0-143b3dbef02f@imgtec.com>
- <20250310-sets-bxs-4-64-patch-v1-v3-1-143b3dbef02f@imgtec.com>
- <20250311-flashy-rattlesnake-of-rain-dcc4f6@krzk-bin>
-In-Reply-To: <20250311-flashy-rattlesnake-of-rain-dcc4f6@krzk-bin>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CWXP265MB3397:EE_|LO7P265MB7637:EE_
-x-ms-office365-filtering-correlation-id: 59f4621a-efce-4fdc-5d87-08dd608826bf
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|366016|1800799024|4053099003|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?UmJOKyswaENZQUZpSDR6SlIyWlBZSGwydVRRT2tqcUIza1NaMGgxOUkxZE5O?=
- =?utf-8?B?VDVQRkx2OGl1V2tROU94dXBQUG1XRUxmc0g4VjlOUk1PbDlIbmVmbGJYUE1n?=
- =?utf-8?B?UlpzRnJ4U3ZhTTlPZjErZWc5TVdMMU9QUDhHcTEyUlN1S2lLNnpFYitUUDIy?=
- =?utf-8?B?bGlIbC94VUdqbGUyVXEvSDVyRmNSOVRMbEhnNFludGJBRU1sS1NOcnFSbTBU?=
- =?utf-8?B?U3dKNXZkVy9MSGJUVHUwNlJ4Zm1JUGdTaHg0czhNdFVTT3F5WXh0VXNrUzky?=
- =?utf-8?B?TFJ6UUtab0llSWNHbVJLSEFGNmxXcVRjUSs5RS80WVMzZU44NnhyUTA1OWRF?=
- =?utf-8?B?TEVKMFRoZWE5NnJraGltQlowcHdUQndGZTNSd1hnUy9YS05rZ2lsbzF5c0FE?=
- =?utf-8?B?eGNrYTdudkw1WW9MYm1MVDJ1OWdRNVRyNUxHTVM5Tzc5STlMMHE1aVhVeTNJ?=
- =?utf-8?B?a2lkNGczM1ZSam1mVTlpS09JWEZiWFc5OEs1c2pQVzZvWW04cjU4L0xBQ1BU?=
- =?utf-8?B?Q2h3TEdhaXAyV2FLSDBBT1Nwc3pvWmJBYXVMZ3RCS21LSjh4N1EzNXlONTRX?=
- =?utf-8?B?Z00rYjdvZ1VFL3AxNWwvVFB0QkdVdkYzNUlrSDdhbHhWWDNvOWs4WSt1L2l0?=
- =?utf-8?B?OFJUaUd3SXZocHFmdE43K1phdm1qbjN6SXhuVzFaSDV6bS9NY2xVb0xGZlJT?=
- =?utf-8?B?eWFDWDNnL1E4ZnNFQW9Bbm9wd1BrRkRkaXA4bGlXczg1Ny85d1lHclFEajk1?=
- =?utf-8?B?MmRNZWRBRk9WTkZTWFd3V3EremJXSVpES1QxNENpNWhCcGlJUEJBVHNjNXFN?=
- =?utf-8?B?YnZ0SXoyQmVlbDI3bFBsUUJoMlhDaTN3alMyQllaM3BhM2tSS0hKdUVUT3J0?=
- =?utf-8?B?T015a0lhdU9nR2dMc2hkdVMyYWtxSzVtaDI1czlwRThWcGNCaEl5UEVQWFN2?=
- =?utf-8?B?VFFQWlJHeG5TaGVHT2FyaWRyYmIyRHBxenFrcUhCWDdtUFQ1NVdZaGVaMWlh?=
- =?utf-8?B?aXdNS1N0MUVOd2hNUk8vK3JYTkpnRmdjd21xR3Zua3VMT1VUNDk5aVJRV0pp?=
- =?utf-8?B?UG12bWswMjRqdGdaZGVFZGl6b0ZWVWViRkgxZUhoWDNNWW5ORms5MWc2OTJ1?=
- =?utf-8?B?cXcvZzdCM2FrVEM4Q3pBck1icnJYazNxMzdwbzNRQzJMTkpCN1MxcG13NkJ1?=
- =?utf-8?B?MkdTdVIvZ2JseXZoWFIzTHdkUDBwMHBOelZiR3RQK3VnMWNBS0d0S242eHRZ?=
- =?utf-8?B?SzZON1FUa3F0UUQrRnJqR2lmd1lnR2FYdnBDL2V1ckhLV0J5cGRoaVN6LzFo?=
- =?utf-8?B?UWxGYlFWVzR1ajJ3YWdIZXNKbk1VdGhCNm1qU1YzY3ZzUmtDWUJ6L05ITnht?=
- =?utf-8?B?WmFxQU55VEIweDVJMFJSUDR0V1JHYVl5eWN4MjFNaVU4ckJtTmxENUVLWThS?=
- =?utf-8?B?Rm8rK0dIVlJhbHNBR0M4WlI5dVd5MDFWWlZyenVCTEdDT2J0bW9sVXZuczlr?=
- =?utf-8?B?d3FCdzNMWlZvZkxISFJqY3REaHlyTVhNcFhsTHZzZzY2S2d4cytIc1VQbkhN?=
- =?utf-8?B?ZlArZWd0aEVMSE81N3d0SjNRMGZCMWorWlZrUWVJQkdNbEtMVW1YMmNQZ2Fz?=
- =?utf-8?B?Zkc0TS9PWDJZNWEwQ2J1ZjV3TjNEcEVHanM2RXA0TkduOUdTdVVqNWkraUpy?=
- =?utf-8?B?b1MxY3JMcUhXeWM2NXFqdUM2U05FSW03RE03WXZ4MC9UemxOYVIwemt0TjFp?=
- =?utf-8?B?MUNxM052UTJqdFpXUXh3N2pLVFNmTTVsdG9jengyMW1iRzdMTURzYm5rcGlD?=
- =?utf-8?B?eVc0SURpbjNWU0NXYis2NFNweER4bFhHZStzYk1MblFaUThSaDg3emZCUFN4?=
- =?utf-8?B?WTRoemR6Znk0bG9JZ1IvYkNZRFhaVG9vUlp5ZDZaUnF6N3NRZWRNVjFjR2h6?=
- =?utf-8?B?ZEpUYmNlTG5zNkFwYVdpTktZVzRESFdBcU5qR3o2WGhGK3VUS3N4WGNEWWVW?=
- =?utf-8?B?dmV3MGlBdzRBPT0=?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(4053099003)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?elkzOTJmeXlpdGZOcDhWZU1KV20yMjU4VzRoS2Q0dTdReTB0eDNuUEVRQjhk?=
- =?utf-8?B?dy9MK1dZcVBjWFF5V2ozMnUvZWpSYkZlUEkxTlZxMkJuN3NTT2NKaCtTYmVq?=
- =?utf-8?B?K1Q1cHdYTG5JVWdtTDI3RnNtTjR1Z0hMa3VabXdSM3VKUGVOUWtKdTBESktP?=
- =?utf-8?B?OG9PM2p4YVZhSFUrQnhWQVhyOXJheCtDbS9OMk5ZemN0OWFaU3h2ZDBKekRt?=
- =?utf-8?B?Q0ppRmx5Sktpd1ZxNlk3VjNQNWxrcXE0MmhTcjNMNlIyUnZId29zdnF2NW96?=
- =?utf-8?B?MW1Bb2dlS1ZOZFA5TGRzOUZGU3FlcGxXdEVqck9jbGxOSkJDUzZEd2hHT3RB?=
- =?utf-8?B?SUZQUUROWlRGZERKU2dDQ3g0NmJlU0VWR0pxM3Fka2pGcmhKVHdYcnZ4VlhM?=
- =?utf-8?B?UE8rYXRjQnQ4bGN3QnAzTEFxYXJjYmhpa1lTYUZWaGcxTnIrekM2dE1VcEtB?=
- =?utf-8?B?WmIzR3JmVkJ4dTJIWUJ4SW1DTmtQZDIwV2hySGI4K00rNTA0OUw5UzlTNXdK?=
- =?utf-8?B?NnVOZ0tSWjJrZHBSaGh0VWYxZVFJUmNZd1B1dG1xcjVIZnlEWGE0MzNPSU9W?=
- =?utf-8?B?bTZxMG90VGNldW5SK0ViNGdtRmRFQ242UFdGaUpsWHNnaW5MYTFGR2ovOEZP?=
- =?utf-8?B?R0RhRFF6RlpaZUtzdW12NjdZUDJFRkI4TnY5TkFMN1N1ZjZZKzFnV1ZkQkFN?=
- =?utf-8?B?NmZlaVp1cFFuNnFtaXZvZWJqd3c3SXErQjk2NnRqcVhnUWRIMjhhN2NxWlh5?=
- =?utf-8?B?dCttQ2pTNzRwNXIxN3d4ZDMrclhBRXBNZHd4dGV6V3pKNVJ1NlJlb1d4cjda?=
- =?utf-8?B?L0NEa3duTzJpZzRJZVFOZXhYTmU5czV1QnRGY0NtZmxqM2wyT1g5UHp1QUZS?=
- =?utf-8?B?Zkh2Rzd5QzEwV3d4ZU41cXJEMzVYd014N0QyclBXVVZpOVM3eFdxckdZVDM1?=
- =?utf-8?B?Zkt0aFo0R1RUdm1Vc0k2Qk9DOExiQmRCUVMzZ3dhRUZpcGdrVC9va0U2ZFBn?=
- =?utf-8?B?MXNBMEErYWJVM1I2T0JtNnVDdE1kUTJ5ekVWdnVqbkQ4MFJjc2hqMkNqelZR?=
- =?utf-8?B?OEJNazdzWFd5emNNbWRYVHZzSk5rMkZPMHhLd3JGbnJRWXVWRk05SmgyTSs4?=
- =?utf-8?B?RDJzSGRJV2NWZTRSL1RPc0Jhbjk1L2pzenBGVjhWVEFYcVd4UFkveitaSUNv?=
- =?utf-8?B?K05JSUlZY1JQZm9CdVNqcjNxYWFZOFJCTkM2b2ttdXF5U1I5S3lJakR1QmEx?=
- =?utf-8?B?MHZKa1hIQlZKRjNYTnZoWkRMR2tER0prMG1PU0RLWUtDNWlzREFRZEUrRmtN?=
- =?utf-8?B?b2hBVlFOc0FhekthUlVHZFJIT0ZMWjdxV2NtUXljYmkxU3pFRzRXb1pKQ3Vm?=
- =?utf-8?B?TytLQWJNMExGRTdpYW5Qa3kyQ3NEcDVidFFUbWFxTm51dXFvemE2Y0g0MEg0?=
- =?utf-8?B?NlJCUkJOR0Nqa0l2UGc1SzV2M0hvUlUwaUhjRVN0TmF3endsT2tZaitPRWNp?=
- =?utf-8?B?czAxdGpUZjRmeTZ3RGxxejBmZEZHWGhERFlEc0c3VU95QURydFFvdFdjcW15?=
- =?utf-8?B?YjdRMWJWSjEyYWM4eThxMk44NjViL21CTEp6ODlzRGFUVnQ4QUFZOUg5Q3g2?=
- =?utf-8?B?K3hIUU5KN0lvN0ZSZ1pKUi9IM25kSW4yVzg4Q2JEdkYxRk1QQ2g4bWhjd2FS?=
- =?utf-8?B?OGVmQ1dNMlpuTE9oN3B6S250WDVCT1JxTlJmZThjT3h3UUJHTXVseTc1ZGZP?=
- =?utf-8?B?eXBKRzhkbjFtV0wwK1UvcmNqcW9FQUp1ZUlnNEtCU0cwVVVMOG8yWVNXTERD?=
- =?utf-8?B?SXdaQkpLdENJYXhLaDN6TGFLVEVBcXJKZTlvUjVrQkx6S2t3elFtZEU5UVAx?=
- =?utf-8?B?a2VnT1orbzZHOUNKdGRaNmsxT1VDRXZyMlk1RlNXRXd4ZkM3TWFWbDlOZ1c5?=
- =?utf-8?B?N2lWbmZxNGNXYmpJRlR1OEtJd0xRdkhwenFaR09CZ1NPQ0xxbXZLakhQSWti?=
- =?utf-8?B?Qlovb0JOdW1xemJDMnJlcDRWZ1dyQVRZc3FicEJYZTBxZytDMWNHTTM5TERD?=
- =?utf-8?B?RkJhS0kzUWhCcE4vZHBTeEJUZE5OeGc4QnA3OXljeERrbmx5Zm5UaUx4V2E1?=
- =?utf-8?B?QldFZVpzMnNRaEgzcjNyYUVNcXNvRjVpTFhhMFhwWHQ1TVYxSFJGdGVHa2th?=
- =?utf-8?B?MFE9PQ==?=
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="------------BIQGar00IJmhu2u0nlgGln1w"
+	Tue, 11 Mar 2025 10:44:50 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52BAinNJ018053
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Mar 2025 10:44:49 GMT
+Received: from [10.253.38.132] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 11 Mar
+ 2025 03:44:42 -0700
+Message-ID: <4c24723a-1773-4034-95fb-47748f6e8982@quicinc.com>
+Date: Tue, 11 Mar 2025 18:44:40 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: imgtec.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59f4621a-efce-4fdc-5d87-08dd608826bf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2025 10:33:23.8277
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: w5R3LC1CgwxmWpP0z5Ns/bPkXfX1Z8xXvaOHQ8xfp8YeXHEqNMvyeOAn53Nug6ZT3tBDj1wcZ+GLaQWa8afJaA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO7P265MB7637
-X-Proofpoint-ORIG-GUID: qa5IKub6wgxuRO9DMe69z5uOpbslksiL
-X-Authority-Analysis: v=2.4 cv=U+eSDfru c=1 sm=1 tr=0 ts=67d0117a cx=c_pps a=tbUAc5YXJZE2aXMCunvlBA==:117 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=Vs1iUdzkB0EA:10
- a=NgoYpvdbvlAA:10 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8 a=rntjs3-v37qsdkEPFO4A:9 a=QEXdDO2ut3YA:10 a=1zhuFutDXnl0JYzLNnYA:9 a=FfaGCDsud1wA:10 a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-GUID: qa5IKub6wgxuRO9DMe69z5uOpbslksiL
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 04/14] net: ethernet: qualcomm: Initialize PPE
+ buffer management for IPQ9574
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
+        Suruchi Agarwal
+	<quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>,
+        "Simon
+ Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Kees Cook
+	<kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        "Philipp
+ Zabel" <p.zabel@pengutronix.de>,
+        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
+        <john@phrozen.org>
+References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
+ <20250209-qcom_ipq_ppe-v3-4-453ea18d3271@quicinc.com>
+ <a79027ed-012c-4771-982c-b80b55ab0c8a@lunn.ch>
+ <c592c262-5928-476f-ac2a-615c44d67277@quicinc.com>
+ <33529292-00cd-4a0f-87e4-b8127ca722a4@lunn.ch>
+ <cffdd8e8-76bc-4424-8cdb-d48f5010686d@quicinc.com>
+ <74f89e1e-c440-42cb-9d8e-be213a3d83a4@lunn.ch>
+Content-Language: en-US
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <74f89e1e-c440-42cb-9d8e-be213a3d83a4@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: txnyqolXEKgHcYx5KUazcWu3fq0FVdnZ
+X-Authority-Analysis: v=2.4 cv=K9nYHzWI c=1 sm=1 tr=0 ts=67d01422 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=IKtIH902HmA1w457l2kA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: txnyqolXEKgHcYx5KUazcWu3fq0FVdnZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-11_01,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 spamscore=0 mlxlogscore=999 clxscore=1015
+ priorityscore=1501 mlxscore=0 bulkscore=0 malwarescore=0 suspectscore=0
+ adultscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503110070
 
---------------BIQGar00IJmhu2u0nlgGln1w
-Content-Type: multipart/mixed; boundary="------------1WpGWfr5QTDpGaYBknF1PKu0";
- protected-headers="v1"
-From: Matt Coster <matt.coster@imgtec.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Frank Binns <frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
- Alessio Belle <alessio.belle@imgtec.com>,
- Alexandru Dadu <alexandru.dadu@imgtec.com>
-Message-ID: <cc6a19b3-ba35-465c-9fa6-a764df7c01c1@imgtec.com>
-Subject: Re: [PATCH v3 01/18] dt-bindings: gpu: img: Future-proofing
- enhancements
-References: <20250310-sets-bxs-4-64-patch-v1-v3-0-143b3dbef02f@imgtec.com>
- <20250310-sets-bxs-4-64-patch-v1-v3-1-143b3dbef02f@imgtec.com>
- <20250311-flashy-rattlesnake-of-rain-dcc4f6@krzk-bin>
-In-Reply-To: <20250311-flashy-rattlesnake-of-rain-dcc4f6@krzk-bin>
 
---------------1WpGWfr5QTDpGaYBknF1PKu0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On 11/03/2025 07:50, Krzysztof Kozlowski wrote:
-> On Mon, Mar 10, 2025 at 01:10:25PM +0000, Matt Coster wrote:
->> The first compatible strings added for the AXE-1-16M are not sufficien=
-t to
->> accurately describe all the IMG Rogue GPUs. The current "img,img-axe"
->> string refers to the entire family of Series AXE GPUs, but this is
->> primarily a marketing term and does not denote a level of hardware
->> similarity any greater than just "Rogue".
->>
->> The more specific "img,img-axe-1-16m" string refers to individual AXE-=
-1-16M
->> GPU. For example, unlike the rest of the Series AXE GPUs, the AXE-1-16=
-M
->> only uses a single power domain.
->>
->> The situation is actually slightly worse than described in the first
->> paragraph, since many "series" (such as Series BXS found in the TI AM6=
-8
->> among others and added later in this series) contain cores with both R=
-ogue
->> and Volcanic architectures.
->>
->> Besides attempting to move away from vague groupings defined only
->> by marketing terms, we want to draw a line between properties inherent=
- to
->> the IP core and choices made by the silicon vendor at integration time=
-=2E
->> For instance, the number of power domains is a property of the IP core=
-,
->> whereas the decision to use one or multiple clocks is a vendor one.
->>
->> In the original compatible strings, we must use "ti,am62-gpu" to const=
-rain
->> both of these properties since the number of power domains cannot be f=
-ixed
->> for "img,img-axe".
->>
->> Work is currently underway to add support for volcanic-based Imaginati=
-on
->> GPUs, for which bindings will be added in "img,powervr-volcanic.yaml".=
+On 3/6/2025 11:29 PM, Andrew Lunn wrote:
+>> Thanks for the suggestion. Just to clarify, we preferred
+>> u32p_replace_bits() over FIELD_PREP() because the former does
+>> a clear-and-set operation against a given mask, where as with
+>> FIELD_PREP(), we need to clear the bits first before we use the
+>> macro and then set it. Due to this, we preferred using
+>> u32_replace_bits() since it made the macro definitions to modify
+>> the registers simpler. Given this, would it be acceptable to
+>> document u32p_replace_bits() better, as it is already being used
+>> by other drivers as well?
+> 
+> I suggest you submit a patch to those who maintain that file and see
+> what they say.
+> 
+> But maybe also look at how others are using u32p_replace_bits() and
+> should it be wrapped up in a macro? FIELD_MOD()? These macros do a lot
+> of build time checking that you are not overflowing the type. It would
+> be good to have that to catch bugs at build time, rather than years
+> later at runtime.
+> 
+>        Andrew
 
->> As alluded to previously, the split between rogue and volcanic cores i=
-s
->> non-obvious at times, so add a generic top-level "img,img-rogue" compa=
-tible
->> string here to allow for simpler differentiation in devicetrees withou=
-t
->> referring back to the bindings.
->>
->> The currently supported GPU (AXE-1-16M) only requires a single power
->> domain. Subsequent patches will add support for BXS-4-64 MC1, which ha=
-s
->> two power domains. Add infrastructure now to allow for this.
->>
->> Also allow the dma-coherent property to be added to IMG Rogue GPUs, wh=
-ich
->> are DMA devices. The decision for coherency is made at integration tim=
-e and
->> this property should be applied wherever it accurately describes the
->> vendor integration.
->>
->> Note that the new required properties for power domains are conditiona=
-l on
->> the new base compatible string to avoid an ABI break.
->>
->> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
->> ---
->> Changes in v3:
->> - Remove unnecessary example
->> - Remove second power domain details, add these where they're used ins=
-tead
->> - Avoid ABI breaks by limiting new required properties to new compatib=
-le
->>   strings and making all binding changes in a single patch.
->> - Links to v2:
->>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-1-3fd45=
-d9fb0cf@imgtec.com
->>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-3-3fd45=
-d9fb0cf@imgtec.com
->>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-4-3fd45=
-d9fb0cf@imgtec.com
->> ---
->>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 43 +++++++++++++=
-+++++----
->>  1 file changed, 36 insertions(+), 7 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.y=
-aml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
->> index 256e252f8087fa0d6081f771a01601d34b66fe19..5c16b2881447c9cda78e5b=
-b46569e2f675d740c4 100644
->> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
->> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
->> @@ -12,10 +12,20 @@ maintainers:
->> =20
->>  properties:
->>    compatible:
->> -    items:
->> -      - enum:
->> -          - ti,am62-gpu
->> -      - const: img,img-axe # IMG AXE GPU model/revision is fully disc=
-overable
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - ti,am62-gpu
->> +          - const: img,img-axe-1-16m
->> +          - const: img,img-rogue
->=20
-> That's still ABI break. You got here NAK. You ust preserve img,img-axe.=
+OK, understand. I will submit the patch by adding the FIELD_MODIFY()
+with required build time checking included.
 
-> Your marketing troubles do not concern Linux.
+Below is a draft of the macro, please take a look if possible before
+it is posted to maintainers. I will update the driver to use this macro
+if it can be accepted. Thanks.
 
-I think I'm misunderstanding something here. Is keeping the existing
-compatible string around in the deprecated item below not sufficient to
-maintain the existing ABI?
+/** 
+  
+  
 
-Would adding img,img-axe back into the updated list (bringing it to four
-elements) be acceptable?
+  * FIELD_MODIFY() - modify a bitfield element 
+  
+  
 
->=20
->> +
->> +      # This legacy combination of compatible strings was introduced =
-early on
->> +      # before the more specific GPU identifiers were used.
->> +      - items:
->> +          - enum:
->> +              - ti,am62-gpu
->> +          - const: img,img-axe
->> +        deprecated: true
->> =20
->>    reg:
->>      maxItems: 1
->> @@ -34,8 +44,13 @@ properties:
->>    interrupts:
->>      maxItems: 1
->> =20
->> -  power-domains:
->> -    maxItems: 1
->> +  power-domains: true
->=20
-> No, widest constraints always stay here.
+  * @_mask: shifted mask defining the field's length and position 
+  
+  
 
-Ack
+  * @_reg_p: point to the memory that should be updated 
+  
+  
 
->=20
->> +
->> +  power-domain-names:
->> +    items:
->> +      - const: a
->=20
-> That's not a useful name. Are you sure that datasheet calls it power
-> domain A?
+  * @_val: value to store in the bitfield 
+  
+  
 
-Sadly yes. With the Volcanic architecture the power domains get real
-names, but until then we were stuck with abc. I shared a snipet from the
-BXS-4-64 TRM with Conor in the replies to the V1 series in [1].
+  * 
+  
+  
 
-Cheers,
-Matt
+  * FIELD_MODIFY() modifies the set of bits in @_reg_p specified
+  * by @_mask, by replacing them with the bitfield value passed
+  * in as @_val. 
+  
+  
+  
+  
 
->=20
->> +
->> +  dma-coherent: true
->=20
-> Best regards,
-> Krzysztof
->=20
+  */ 
+  
+  
 
-[1]: https://lore.kernel.org/all/ff4e96e4-ebc2-4c50-9715-82ba3d7b8612@img=
-tec.com
+#define FIELD_MODIFY(_mask, _reg_p, _val)              		      \ 
+  
+  
 
---=20
-Matt Coster
-E: matt.coster@imgtec.com
+         ({                                  			      \ 
+  
+  
 
---------------1WpGWfr5QTDpGaYBknF1PKu0--
+                 __BF_FIELD_CHECK(_mask, *_reg_p, _val, "FIELD_MODIFY: 
+"); \ 
+  
 
---------------BIQGar00IJmhu2u0nlgGln1w
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+                 *_reg_p &= ~(_mask);                                  \ 
+  
+  
 
------BEGIN PGP SIGNATURE-----
+                 *_reg_p |= (_val) << __bf_shf(_mask) & (_mask);       \ 
+  
+  
 
-wnsEABYIACMWIQS4qDmoJvwmKhjY+nN5vBnz2d5qsAUCZ9ARcwUDAAAAAAAKCRB5vBnz2d5qsLP4
-AP9IpADjYkcJBxf2TbZu3S3oAJxkIuvu0dy1AhKw7cB1aQEA715g7+3Zb/78xF2DWdj0V7l5Tu72
-OlkyLJIxFjjWyAQ=
-=ukCL
------END PGP SIGNATURE-----
+         })
 
---------------BIQGar00IJmhu2u0nlgGln1w--
 
