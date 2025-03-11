@@ -1,117 +1,190 @@
-Return-Path: <devicetree+bounces-156701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419B0A5D230
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 23:01:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B670CA5D23C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 23:04:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 751A01754EA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 22:01:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA87D7A511E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 22:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB74264FA7;
-	Tue, 11 Mar 2025 22:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91573262819;
+	Tue, 11 Mar 2025 22:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F+Mkd8EZ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="JmzRFW+x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598D22253E8
-	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 22:01:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486E9199FBA
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 22:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741730472; cv=none; b=m+R9Gkc0+y2YB7zQN3MOHAaqe5WU9KJf/iz+XZJdl8XqrWN3uPPLY/HQR/xj5ZmV3iXT+siv80Gu73bYEAnPFDgY40QMvQbzLa6Lai0x/swXlMN/VTNBlNZ+DHuYI4K4k33dWHtH6XTCU+UXmsbj4C9uT0MZLD2dtBgGTTLSjj0=
+	t=1741730692; cv=none; b=frZRio4nuMg+W4eQuPhdOYV7+hy+34IG9gisPcC5s+rS3GVL2azDKhM/Scg4WJFIhxe5AXCkiKbmHv/G0WWgHaxK5vZRNyNAXizMzp0MVp8EUCM0T28PapdOMnmg95kSz+22IZ799PNJ6rjP6Dhi3k61i53SYQ9V2YK1EDaf9r8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741730472; c=relaxed/simple;
-	bh=R8RuRnxBjgDCbhmHONSNJXWg1vt5oJAuNhFXR4jrKCA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L6OEr0x7AKO1xCaeTWK6kx6HyfHeJObOyR9v8j/pjKsL1328f4bowAB4Wgjeid0RDy8rqfSY7xAZF8lo0SSIk8WlS0KGgWYUH12NJaEUZ+JUm+L+BUmhGDwkKRWXEbJ+dUo0u4jMRzxIiC9WTv8Igc0XtH1kF22ww78ooSD3v4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F+Mkd8EZ; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3f6dccdcadaso2007555b6e.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 15:01:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741730470; x=1742335270; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hO14LWvT6RF71LJw1vwVk3fu7V5c53lrYh2ZZrrSiK0=;
-        b=F+Mkd8EZXNZlk6zVrnrWnAm5jn1XyLSZ/+W8HgtyzObrZK95ReZmqs2tfEglSPghpb
-         9NbGecCfLkmp+zCTFaftPmWx1pPbCN1VIO7LPhT/J3gHM9h5eswaoZq7b3bcxNGRgbno
-         MPzNivALP7WKMxzFX+3d3Y3DdONGMOK3zyxJFAqNde8aMyQ96D2dTx4+Ej+bfdGMkhLl
-         U8uysW3k/U8J4aHX+ujc+1n/Ic4y52lk0HnqbKqhR2kPz8Imwf+30Ze+2JJW9HV2bNuM
-         3YHzxw2Z10wiXg42dBzcqlvPpHSxrrg/Pt+vifPaNp7rl3R85y8vkzTwYE3Bwd73dTNI
-         Nl8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741730470; x=1742335270;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hO14LWvT6RF71LJw1vwVk3fu7V5c53lrYh2ZZrrSiK0=;
-        b=SRGh9diqvJOn0QRP5Z46Ay4EEUY0HXwI7EV5qYvuyassKG3gNGzCCM/C0cjc2llRox
-         rUC6qieB6vMRYy70p4JLJegdmNdRkVF0pVOePYwf/y5DUpTnse/jSupg2tE2Udp9QT8g
-         KIrEO5RZx2y7AJ3ioDevJRF+TJ1nwtN/WpM/M7YS/PvalcLFnIC/H/bsiwjGipKNQ05H
-         DEKzPcWrRqPKPVYL9qjSI3Qsh4H+Gj3mc7Gfajz8BtL6AqZp5walftRlxDUUcXODr2fN
-         R8uFUJhKXZDYNlRMPAXc4E1Qg+JQHAT4zcOO6sCdJpjhz1+j3uXs3orFrAPJiyFqZj8I
-         lw5g==
-X-Forwarded-Encrypted: i=1; AJvYcCViK6sBZVPZM0ed5A2JhnNbpVBftLgaElwS8ITPhufs7X0tBensWGRp0DRCSaClvJo0+5rZWBycibCs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzs3aGN0it872rrk+hDiQgxOG1H3sgHUgte6Gj6rjRl5u1tRpv4
-	wzg2NjbIjtMXlTKY/ILFqu1dtBk4T6s6ldz8JTEumSOGt6Zy6vB2jRuPY9l6mFme8ded5efXpak
-	E1EV+mhEjg2YdAsUWPZcKFitjrWdpqtchGjM=
-X-Gm-Gg: ASbGncsY7pz5vDX7ZBPTTViEjq/Jx94qYsawP7jSV4TJvamO6zHA+9y/vz9iTEOITF7
-	sVZ7Wbt8P4ZLKlXB8gwTFDVd46IN6RtX/xrXHnZCIVhPlTAtnCIklloysb0EK17qz+Bu6Yb+cRW
-	nuwfCm6+XVjxBF5CNMTLOPGkfAG+sAHiqWUXinplzb4JWC96qFAfb+B6BAFv8=
-X-Google-Smtp-Source: AGHT+IEtQtK1Iedlr6fWywHHm6YLJ5pw3KzGPuOa1tPA+iCb0feQo7gMOWkm93j2OOJceBrScIcjgWGvXoXqmEz7oyA=
-X-Received: by 2002:a05:6808:148f:b0:3f8:b73b:684a with SMTP id
- 5614622812f47-3f8b74ac847mr5214463b6e.33.1741730470244; Tue, 11 Mar 2025
- 15:01:10 -0700 (PDT)
+	s=arc-20240116; t=1741730692; c=relaxed/simple;
+	bh=U6PcDxm9V+cHbEFTUGhMCtuFzRdstxCkXcQNRJpucXQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hx9VivvXvuopdnBUyLcmpsmu9vmrw7QeZD9JSd964Jzx9sI9+UMt7QxS00svjTHRm+Z4g4Icm3L0WNBkftOGwXTdhoFHYutpuYQXFWd0iAzvdTnyNZalI62tXxsTcfTQfP1Sb4eacA8++dl3LBF6J0E2Skj4klbHeTJND+81PcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=JmzRFW+x; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=BFgeDQs7T81DuVwZSrA2gicEi650fh+L/fGa0KPyxlI=; b=JmzRFW+xH12FRytGOW/Majhs4m
+	nczpqJjm0wg3oCPgTZeUFHopI7oc19kvP8pWF81GmP05h3epoGDFh4fKlgGr8Jpg9U5g4q5NAveh6
+	aSA6kt3qanUZJ90BUDJPuiX3BQnvGu+ao3/KeeS7UQRWbZps7AvbXxqXaWszfg3Q+ImvqTLKT5M1j
+	mEFTjuvlk2KkZziJy6yEPbyWWBv9FB3SryLTzEcFbxK8Jny9CyKNgDWjzJfupBFsP/i0uBZZSbnv0
+	gno3sFM+qVwpVJdgzhX4qED/Hd0DobpyxfSFl6pVMm7uzv1oMGPsIQHAivqwkxWT1Qt+X2P/HhqRh
+	9G13OJww==;
+Received: from [143.107.224.66] (helo=[172.25.74.207])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+	id 1ts7iD-007I6Q-Sl; Tue, 11 Mar 2025 23:04:40 +0100
+Message-ID: <7324785d-8af9-48b4-b9c6-55ac22c82426@igalia.com>
+Date: Tue, 11 Mar 2025 19:05:31 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241220120038.3137248-1-pbrobinson@gmail.com>
-In-Reply-To: <20241220120038.3137248-1-pbrobinson@gmail.com>
-From: Vasily Khoruzhick <anarsoul@gmail.com>
-Date: Tue, 11 Mar 2025 15:00:44 -0700
-X-Gm-Features: AQ5f1JoZh-NGU3L8eIpxDuwcRiYOWZhV0d89f1f2dzKHdizOfdf7E-JnqzsgH1M
-Message-ID: <CA+E=qVdbbRbR+57WRPTJ-WPJ2jZz0V=mD56Ts2oQmo-rjxvO_w@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Add support for WiFi/BT header on Pine64 A64
-To: Peter Robinson <pbrobinson@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/7] dt-bindings: gpu: v3d: Add SMS register to BCM2712
+ compatible
+To: Rob Herring <robh@kernel.org>
+Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+ Jose Maria Casanova Crespo <jmcasanova@igalia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com
+References: <20250311-v3d-gpu-reset-fixes-v3-0-64f7a4247ec0@igalia.com>
+ <20250311-v3d-gpu-reset-fixes-v3-5-64f7a4247ec0@igalia.com>
+ <20250311202359.GA54828-robh@kernel.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Autocrypt: addr=mcanal@igalia.com; keydata=
+ xsBNBGcCwywBCADgTji02Sv9zjHo26LXKdCaumcSWglfnJ93rwOCNkHfPIBll85LL9G0J7H8
+ /PmEL9y0LPo9/B3fhIpbD8VhSy9Sqz8qVl1oeqSe/rh3M+GceZbFUPpMSk5pNY9wr5raZ63d
+ gJc1cs8XBhuj1EzeE8qbP6JAmsL+NMEmtkkNPfjhX14yqzHDVSqmAFEsh4Vmw6oaTMXvwQ40
+ SkFjtl3sr20y07cJMDe++tFet2fsfKqQNxwiGBZJsjEMO2T+mW7DuV2pKHr9aifWjABY5EPw
+ G7qbrh+hXgfT+njAVg5+BcLz7w9Ju/7iwDMiIY1hx64Ogrpwykj9bXav35GKobicCAwHABEB
+ AAHNIE1hw61yYSBDYW5hbCA8bWNhbmFsQGlnYWxpYS5jb20+wsCRBBMBCAA7FiEE+ORdfQEW
+ dwcppnfRP/MOinaI+qoFAmcCwywCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQ
+ P/MOinaI+qoUBQgAqz2gzUP7K3EBI24+a5FwFlruQGtim85GAJZXToBtzsfGLLVUSCL3aF/5
+ O335Bh6ViSBgxmowIwVJlS/e+L95CkTGzIIMHgyUZfNefR2L3aZA6cgc9z8cfow62Wu8eXnq
+ GM/+WWvrFQb/dBKKuohfBlpThqDWXxhozazCcJYYHradIuOM8zyMtCLDYwPW7Vqmewa+w994
+ 7Lo4CgOhUXVI2jJSBq3sgHEPxiUBOGxvOt1YBg7H9C37BeZYZxFmU8vh7fbOsvhx7Aqu5xV7
+ FG+1ZMfDkv+PixCuGtR5yPPaqU2XdjDC/9mlRWWQTPzg74RLEw5sz/tIHQPPm6ROCACFls7A
+ TQRnAsMsAQgAxTU8dnqzK6vgODTCW2A6SAzcvKztxae4YjRwN1SuGhJR2isJgQHoOH6oCItW
+ Xc1CGAWnci6doh1DJvbbB7uvkQlbeNxeIz0OzHSiB+pb1ssuT31Hz6QZFbX4q+crregPIhr+
+ 0xeDi6Mtu+paYprI7USGFFjDUvJUf36kK0yuF2XUOBlF0beCQ7Jhc+UoI9Akmvl4sHUrZJzX
+ LMeajARnSBXTcig6h6/NFVkr1mi1uuZfIRNCkxCE8QRYebZLSWxBVr3h7dtOUkq2CzL2kRCK
+ T2rKkmYrvBJTqSvfK3Ba7QrDg3szEe+fENpL3gHtH6h/XQF92EOulm5S5o0I+ceREwARAQAB
+ wsB2BBgBCAAgFiEE+ORdfQEWdwcppnfRP/MOinaI+qoFAmcCwywCGwwACgkQP/MOinaI+qpI
+ zQf+NAcNDBXWHGA3lgvYvOU31+ik9bb30xZ7IqK9MIi6TpZqL7cxNwZ+FAK2GbUWhy+/gPkX
+ it2gCAJsjo/QEKJi7Zh8IgHN+jfim942QZOkU+p/YEcvqBvXa0zqW0sYfyAxkrf/OZfTnNNE
+ Tr+uBKNaQGO2vkn5AX5l8zMl9LCH3/Ieaboni35qEhoD/aM0Kpf93PhCvJGbD4n1DnRhrxm1
+ uEdQ6HUjWghEjC+Jh9xUvJco2tUTepw4OwuPxOvtuPTUa1kgixYyG1Jck/67reJzMigeuYFt
+ raV3P8t/6cmtawVjurhnCDuURyhUrjpRhgFp+lW8OGr6pepHol/WFIOQEg==
+In-Reply-To: <20250311202359.GA54828-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 20, 2024 at 4:00=E2=80=AFAM Peter Robinson <pbrobinson@gmail.co=
-m> wrote:
->
-> Add the BT and WiFi pins on the WiFi/BT header on the Pine64/Sopine
-> boards.
->
-> Changes in v2:
-> - drop patch that enables the WiFi module, it'll move to a overlay later
+Hi Rob,
 
-Any plans to send v3 with comments from Chen-Yu addressed?
+On 3/11/25 17:23, Rob Herring wrote:
+> On Tue, Mar 11, 2025 at 03:13:47PM -0300, Maíra Canal wrote:
+>> V3D 7.1 exposes a new register block, called V3D_SMS. As BCM2712 has a
+>> V3D 7.1 core, add a new register item to its compatible. Similar to the
+>> GCA, which is specific for V3D 3.3, SMS is optional and should only be
+>> added for V3D 7.1 variants (such as brcm,2712-v3d).
+> 
+> Based on the schema, that is not what optional means for bindings.
+> Optional is within a specific compatible, not present for one compatible
+> and not present for another compatible.
 
+Sorry for the poor writing! I'll improve it in the next version.
 
-> Peter Robinson (2):
->   arm64: dts: allwinner: a64: Add WiFi/BT header on Pine64
->   arm64: dts: allwinner: a64: Add WiFi/BT header on SoPine
->
->  .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 17 +++++++++++++
->  .../allwinner/sun50i-a64-sopine-baseboard.dts | 24 +++++++++++++++++++
->  2 files changed, 41 insertions(+)
->
-> --
-> 2.47.1
->
->
+> 
+>>
+>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
+>> ---
+>>   .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 22 +++++++++++++++++++++-
+>>   1 file changed, 21 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>> index 141f2ed540bb4ddb85a933d7d44a4078c386ba39..7349347da1c0034a8849deaa6d64dde6d9d5a81a 100644
+>> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>> @@ -57,7 +57,6 @@ allOf:
+>>             contains:
+>>               enum:
+>>                 - brcm,2711-v3d
+>> -              - brcm,2712-v3d
+>>                 - brcm,7278-v3d
+>>       then:
+>>         properties:
+>> @@ -71,6 +70,27 @@ allOf:
+>>               - const: hub
+>>               - const: core0
+>>               - const: bridge
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: brcm,2712-v3d
+>> +    then:
+>> +      properties:
+>> +        reg:
+>> +          items:
+>> +            - description: hub register (required)
+>> +            - description: core0 register (required)
+>> +            - description: SMS register (required)
+> 
+> minItems tells us these are all 'required'.
+> 
+>> +            - description: bridge register (if no external reset controller)
+>> +          minItems: 3
+>> +        reg-names:
+>> +          items:
+>> +            - const: hub
+>> +            - const: core0
+>> +            - const: sms
+>> +            - const: bridge
+> 
+> This is an ABI change because previously the 3rd entry was bridge and
+> you moved it. Put new entries on the end to keep compatibility. If
+> there's no users yet, then that's fine, but the commit message needs to
+> say that.
+> 
+
+Again, I'm sorry about the naive question, but "bridge" is an optional
+register. AFAIU if I add "sms" in the end, I won't be able to make
+"bridge" optional. Am I missing something?
+
+Initially, I thought about using "enum: [ bridge, sms ]", but from
+Krzysztof’s feedback on v2, I'm not sure if it is the correct approach.
+
+Thanks for your review!
+
+Best Regards,
+- Maíra
+
+>> +          minItems: 3
+>>     - if:
+>>         properties:
+>>           compatible:
+>>
+>> -- 
+>> Git-154)
+>>
+
 
