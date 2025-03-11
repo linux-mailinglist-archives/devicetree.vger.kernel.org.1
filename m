@@ -1,90 +1,58 @@
-Return-Path: <devicetree+bounces-156579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5779A5CACD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 17:27:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8237AA5CAE4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 17:32:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96C05178737
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:27:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D96E3B4D78
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5EF26038F;
-	Tue, 11 Mar 2025 16:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A50AC25F990;
+	Tue, 11 Mar 2025 16:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GcMdrCp9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K7Gao5kP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7D225F990
-	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 16:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC1A25C6F9;
+	Tue, 11 Mar 2025 16:32:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741710452; cv=none; b=YMnVbIod6Elt0r/OaccRWBn035lQYz+CRWFUVXBLbzyqYoGQtP7F9OBAp9lc2xDmFz6+kHVb9//8GexQxOaDvqaN0/wjfp8StBnWv2IFr+QOt0fv0jWSDPdQdDSUXRI793kM+jfs/jlaTCknxCR4pTr+4ZSFgU6RyW+rU98U2cY=
+	t=1741710720; cv=none; b=tSofEbn0k7ohgVJ/Wptsz5bNVBPGjeUITbMBs1epVqpH5dGIgg/FKYWDIB4NpcONl/Uv6GgdQCjaHx5ybYgSqLVEETEj7AYbj7KyKLMJ6FtHuTUz3HUWsu6SrHw1lbCwit+hA/ShfFx4QFvmcLgOnDAAEjqnyoiJm8iFy2DR6SA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741710452; c=relaxed/simple;
-	bh=0mCyXyj/1a5L4Ssc/7ltee11X6K/OBjhBSlN18FgDDQ=;
+	s=arc-20240116; t=1741710720; c=relaxed/simple;
+	bh=kli/27tDi+RYlPqX2bhJ2TuIz1lPgxcKET8b517wpPs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t3pOO24yPQEr/yGXYSnt8vtjAt1Tj+w+RLqFwxr1evKjmCXZLt4eV3VE4pc/hXbuirlkLkDww1QtBBO5PtEFEZO0fx9wC81Z5jtXmwxWE3KzuKPukSd/wDJ/2kcWPtZ3zcJeZwRu0OfueY2JD/Z6JeaaYVDZOk4S+HtkLLKSp2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GcMdrCp9; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2239aa5da08so94724575ad.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 09:27:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741710449; x=1742315249; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dl1JWfYJOg72EaaV3ldWA/0rrmYP/fUTPGuYqr0ndJY=;
-        b=GcMdrCp9TOCZMk/iaQjgcTGttfOksDTKdiuDinD+DYKp4LkZHWwS3GBGbmx4AysjFo
-         0mN7JuTDvAWljbN3vGzfQyrnotlhHlgtNDrs6mNvrteTc1iuitDbTs/KcI704InIiTVW
-         KTvAsp5WNEX3c58zUbgncpwAYD6qy/blUp95KtGGQJe37qHpUgqaV/GQ2kRfgx7ww1/U
-         mLnuKn4SlJumtk8EaZqAO4pvd4TYCIfCZDGAB9wFKWLe87eMsKIHDLWXS+RwqiACLedn
-         LDgj7Yb0I5/5IfsuHJzpsK7Aa1FaksOBsWWsrJnMKbipAUQuvge20VvZQH/HsX+wPcvY
-         U/EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741710449; x=1742315249;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dl1JWfYJOg72EaaV3ldWA/0rrmYP/fUTPGuYqr0ndJY=;
-        b=nTiRIp8tm9srUJ4iWDdpA3A0gGI46Cf7UIJUOpiRtX0MVtSmElL4dlbvEWx9HdMwzN
-         t7yiMasK0XxII9B+r8Mke8GiSnAfFXEJdNAO//Qu1rpJI+wdRCCs67oNe+ef0UbCE/zo
-         3Bt9aIcoYB1rtcIRo+rc062P+R+cGdKAGsEiQhAMVlHm3N3LWq20Nfx9NrEPk78B/J1C
-         Dz9QJId8Z4V5P/YVbrfM2Gg2qts7VVvehLbneEJrVKobCiJkUQ/R/B/5i7LhPVhev7OP
-         +VH6nEpkSa+t9mbZ93kIvMLr4eoEN/8UghbSKzobY65lX8SlFM+QhsURemb0/O8lkuoX
-         tcmw==
-X-Forwarded-Encrypted: i=1; AJvYcCW1Q/gVAFSs2gOjf3f8Yl/TQFTusuY8wH8QFvWcFsS6Z3ffWCylDJG9vknjaIcb5n7TEqTFiChmOJ5H@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9ArxuQz3ivIlzh1UD+wqDti9UVDga58ixBAQdUjd2Vm8D/C4x
-	kw9Y+jFC9I8kNGOISjeY+zHAY4tSrqSpuAt5VmaDvaMIGHldP5IPJAKPetGhuuA=
-X-Gm-Gg: ASbGnctOHDUGvV1HbSNsRK+xiwg8CgKe7bAVOhQPKyZ3nj9qvYePbBeU6M1Y34VE2su
-	W0ceKN8uMJCj/H88+EckftrI/7m7xK0KGNbAbMjxnWJUKIlj0B+7moU7cRO/3EGX2S3ZN+/Ru+H
-	cLsVYRKk2wtRkJLNUiFYJloupDbyb7EIdvVwUWdeNHAe2du2E2OBtcq3sAr760TOxEq+Oy4NR+w
-	XWj3Iqdtw9Mw30LRlZCe86LG2Xv8RQwFqYohy6jGCd3k2WQnnjXBXlo+3CUUDgeXbCV9ia9WP7M
-	bnaiiijxLWmxWLZxswzQKTt8vM2KxK09OFUC0hRnPqmDwY/8
-X-Google-Smtp-Source: AGHT+IF2UG2Kdovm4QQZtJqBjJbgL9SWkVL1VlYQjoRQyWIygr7zZtU2BIqigowT+nJo0KVbHMcrnA==
-X-Received: by 2002:a17:903:32c2:b0:224:1074:6393 with SMTP id d9443c01a7336-22428bffe92mr243601665ad.43.1741710449034;
-        Tue, 11 Mar 2025 09:27:29 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:ff32:9486:a333:ba9e])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-224109e948asm100400365ad.75.2025.03.11.09.27.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Mar 2025 09:27:28 -0700 (PDT)
-Date: Tue, 11 Mar 2025 10:27:25 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Daniel Baluta <daniel.baluta@nxp.com>
-Cc: p.zabel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
-	shawnguo@kernel.org, devicetree@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org, conor+dt@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, andersson@kernel.org,
-	Frank.Li@nxp.com, peng.fan@nxp.com, laurentiu.mihalcea@nxp.com,
-	iuliana.prodan@nxp.com, shengjiu.wang@nxp.com
-Subject: Re: [PATCH v5 0/8] imx8mp: Add support to Run/Stall DSP via reset API
-Message-ID: <Z9BkbVHlx60VFD7q@p14s>
-References: <20250311085812.1296243-1-daniel.baluta@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ew75n/+5mug6xL++uicplo4bNRyGJ5+2G7E7WoYGF241zoOecWMK7yYl6Wqv5ENVL1rwOlcSjGn9ydat9hukMdJZpra5hBmrI9NH/1VUrOnwaflEFAnY9AAkgqSFjNJ4vwUG+kR50BzLatb+upuxMUOI0r2D45jRQ3LaYJRpOLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K7Gao5kP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C97FBC4CEE9;
+	Tue, 11 Mar 2025 16:31:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741710719;
+	bh=kli/27tDi+RYlPqX2bhJ2TuIz1lPgxcKET8b517wpPs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K7Gao5kPaA2Z4H2TPZS1Ntt7tL+9AIYfDWmotpIX17gNI/61K9bGuQ+orPb0zA1Dv
+	 KWVz+OxIoVE4vTPBEn5GDhgrXZzzXpCz4GHsS4lcrI1skdxqjMwVtrYCvnhshs8UPK
+	 vNm6akE20cBs/KuAM2eZhE9sW2KTxUfTRO4FoynhMjoZeCxucaMLIn1j1FG5bmWZ+9
+	 E0nVETzp9hJy2TcNcrm20y8bBDCSUjskSgpOiGCkHx3CE+sTaqZXnSPkee15x1kdp1
+	 6zSMfkP7pNu1hQ7nCq4Lcq/eUo7TCkvl0IUhnzO3mC3+5dd+WFSgFsfhdn2+frn05U
+	 SoWzI8+3zj0Rg==
+Date: Tue, 11 Mar 2025 18:31:54 +0200
+From: Dmitry Baryshkov <lumag@kernel.org>
+To: david@ixit.cz
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+	Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, Ivan Belokobylskiy <belokobylskij@gmail.com>
+Subject: Re: [PATCH v4] ARM: dts: nexus4: Initial dts
+Message-ID: <6bgnui5ygiw5c6erf4mhtod4ww645ntgy267snhrf5efgetajy@kbi6aw23knqe>
+References: <20250311-lg-nexus4-mako-v4-1-3916c8ec7edb@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,97 +61,181 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250311085812.1296243-1-daniel.baluta@nxp.com>
+In-Reply-To: <20250311-lg-nexus4-mako-v4-1-3916c8ec7edb@ixit.cz>
 
-Thanks for the re-spin.  I will wait for Shawn and Sascha to review their
-respective bits before picking up this set.
+On Tue, Mar 11, 2025 at 05:10:02PM +0100, David Heidelberg via B4 Relay wrote:
+> From: Ivan Belokobylskiy <belokobylskij@gmail.com>
+> 
+> Add initial support for LG Nexus 4 (mako).
+> 
+> Features currently working: regulators, eMMC, and volume keys.
+> 
+> Signed-off-by: Ivan Belokobylskiy <belokobylskij@gmail.com>
+> Co-developed-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+> Changes in v4:
+> - Sorted regulators and added regulators compatible.
+> - Corrected pmic include and references.
+> - Moved &rpm outside of / node.
+> - Moved and simplify pm8921 keypad.
+> - Added chasis-type.
+> - Dropped incomplete WiFi node, will be provided in future
+>   contributions.
+> - Link to v3: https://lore.kernel.org/r/20250309-lg-nexus4-mako-v3-1-1dc2807df296@ixit.cz
+> 
+> Changes in v3:
+> - rebased against next-20250307
+> - dropped backlight until driver gets converted to DT
+> 
+> Changes in v2:
+> - lge vendor doesn't exist anymore, rename to lg
+> - sdcc@ to mmc@ to comply with dt-schema
+> ---
+>  arch/arm/boot/dts/qcom/Makefile                    |   1 +
+>  .../boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts  | 344 +++++++++++++++++++++
+>  2 files changed, 345 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
+> index f06c6d425e91dd73c2b453d15543d95bd32383b9..0c1d116f6e84f76994aa8c8286350bdcd1657a42 100644
+> --- a/arch/arm/boot/dts/qcom/Makefile
+> +++ b/arch/arm/boot/dts/qcom/Makefile
+> @@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+>  	qcom-apq8064-ifc6410.dtb \
+>  	qcom-apq8064-sony-xperia-lagan-yuga.dtb \
+>  	qcom-apq8064-asus-nexus7-flo.dtb \
+> +	qcom-apq8064-lg-nexus4-mako.dtb \
+>  	qcom-apq8074-dragonboard.dtb \
+>  	qcom-apq8084-ifc6540.dtb \
+>  	qcom-apq8084-mtp.dtb \
+> diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..51edd661e4bd903a32445d15955585a194574f30
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
+> @@ -0,0 +1,344 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/mfd/qcom-rpm.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> +
+> +#include "qcom-apq8064-v2.0.dtsi"
+> +#include "pm8821.dtsi"
+> +#include "pm8921.dtsi"
+> +
+> +/ {
+> +	model = "LG Nexus 4 (mako)";
+> +	compatible = "lg,nexus4-mako", "qcom,apq8064";
+> +	chassis-type = "handset";
+> +
+> +	aliases {
+> +		serial0 = &gsbi7_serial;
+> +		serial1 = &gsbi6_serial;
+> +		serial2 = &gsbi4_serial;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial2:115200n8";
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		ramoops@88d00000{
+> +			compatible = "ramoops";
+> +			reg = <0x88d00000 0x100000>;
+> +			record-size = <0x20000>;
+> +			console-size = <0x20000>;
+> +			ftrace-size = <0x20000>;
+> +		};
+> +	};
+> +
+> +	battery_cell: battery-cell {
+> +		compatible = "simple-battery";
+> +		constant-charge-current-max-microamp = <900000>;
+> +		operating-range-celsius = <0 45>;
+> +	};
 
-Mathieu
+Ideally this should also be sorted, although I don't feel like putting
+it before /chosen/.
 
-On Tue, Mar 11, 2025 at 10:58:03AM +0200, Daniel Baluta wrote:
-> This patch series adds support to control the Run/Stall DSP bits found on
-> i.MX8MP via the reset controller API instead of using the syscon API.
+> +};
+> +
+> +&rpm {
+
+Please sort nodes alphabetically. &rpm definitely comes after &gsbi1.
+
+> +	regulators {
+
+[...]
+
+> +};
+> +
+> +&gsbi1 {
+> +	qcom,mode = <GSBI_PROT_I2C>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&gsbi1_i2c {
+> +	clock-frequency = <200000>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&gsbi4 {
+> +	qcom,mode = <GSBI_PROT_I2C_UART>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&gsbi4_serial {
+> +	status = "okay";
+> +};
+> +
+> +&pm8821 {
+> +	interrupts-extended = <&tlmm_pinmux 76 IRQ_TYPE_LEVEL_LOW>;
+> +};
+> +
+> +&pm8921 {
+> +	interrupts-extended = <&tlmm_pinmux 74 IRQ_TYPE_LEVEL_LOW>;
+> +};
+> +
+> +&pm8921_keypad {
+> +	linux,keymap = <
+> +		MATRIX_KEY(0, 0, KEY_VOLUMEDOWN)
+> +		MATRIX_KEY(0, 1, KEY_VOLUMEUP)
+> +	>;
+> +
+> +	keypad,num-rows = <1>;
+> +	keypad,num-columns = <5>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +
+> +/* eMMC */
+> +&sdcc1 {
+> +	vmmc-supply = <&pm8921_l5>;
+> +	vqmmc-supply = <&pm8921_s4>;
+> +
+> +	status = "okay";
+> +};
 > 
-> DSP found on i.MX8MP doesn't have a direct reset line so according to hardware
-> design team in order to handle assert/deassert/reset functionality we
-> need to use a combination of control bits from two modules.
+> ---
+> base-commit: 0a2f889128969dab41861b6e40111aa03dc57014
+> change-id: 20250309-lg-nexus4-mako-da0833885b26
 > 
-> Audio block control module:
-> 	- for Run/Stall control bits of the DSP
-> 
-> Debug Access Port (DAP)
-> 	- for Software Reset via IMX8M_DAP_PWRCTL register
-> 
-> The current implementation for IMX DSP Remotproc driver and for Sound Open
-> Firmware driver (already upstream) uses the following approach:
-> 	- maps the Audio Block Control address via syscon API through
->           the fsl,dsp-ctrl property of the dsp node.
-> 	- maps the DAP address space using directly a call to ioremap
->           with IMX8M_DAP_DEBUG macro depicting the DAP base address.
-> 
-> The both approaches are problematic when comes to describing the address
-> spaces via the DT:
-> 	- for Audio Block Control, because it uses the syscon interface
-> 	- for DAP because it hardcodes de base address instead of using a dt node.
-> 
-> This patch series aims to fix the Audio Block control usage of the
-> syscon interface and replace it with Reset Controller interface.
-> 
-> Main advantages of using the Reset Controller API is that we stop
-> abusing the syscon interface, offer a better probe ordering, PM runtime
-> support. Main critique of using the Reset Controller API is that
-> Run/Stall bits are not reset bits (but according the hardware design
-> team they are part of the reset proccess since there is no real reset
-> line).
-> 
-> Initial discussion is here:
-> https://patchwork.kernel.org/project/imx/patch/20250212085222.107102-6-daniel.baluta@nxp.com/
-> 
-> Note that we can safely remove the fsl,dsp-ctrl property usage from IMX DSP
-> remoteproc driver because there is no Device Tree users.
-> 
-> Changes since v4:
-> https://lore.kernel.org/lkml/20250305100037.373782-3-daniel.baluta@nxp.com/T/
-> 	- picked-up R-b tags from Frank Li and Peng Fan
-> 	- reworded commit message of patch 8/8 as per Mathieu Poirier suggestion
-> 
-> Changes since v3:
-> https://lore.kernel.org/linux-arm-kernel/20250225102005.408773-5-daniel.baluta@nxp.com/T/
-> 	- renamed resets ids as per Philipp comments
-> 	- add boths resets (named them runstall and softreset) as per Philipp comments
-> 
-> Changes since v2:
-> (https://lore.kernel.org/lkml/Z7ZNngd3wtJ5MZgl@lizhi-Precision-Tower-5810/T/)
->         - picked R-b and A-b tags
->         - use run_stall instead of reset to refer to reset controller
->           instance
->         - remove 'resets' description as it is a common property
->         - add correct include in the yaml dts snippet example
-> Changes since v1:
-> (https://lore.kernel.org/imx/20250219030809.GD6537@nxa18884-linux/T/)
->         - addresed comments received on v1
->         - picked up R-b and A-b tags
-> 
-> Daniel Baluta (8):
->   dt-bindings: reset: audiomix: Add reset ids for EARC and DSP
->   dt-bindings: dsp: fsl,dsp: Add resets property
->   arm64: dts: imx8mp: Use resets property
->   reset: imx8mp-audiomix: Add prefix for internal macro
->   reset: imx8mp-audiomix: Prepare the code for more reset bits
->   reset: imx8mp-audiomix: Introduce active_low configuration option
->   reset: imx8mp-audiomix: Add support for DSP run/stall
->   imx_dsp_rproc: Use reset controller API to control the DSP
-> 
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 24 +++++-
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  3 +
->  drivers/remoteproc/imx_dsp_rproc.c            | 25 ++++--
->  drivers/remoteproc/imx_rproc.h                |  2 +
->  drivers/reset/reset-imx8mp-audiomix.c         | 78 +++++++++++++------
->  .../dt-bindings/reset/imx8mp-reset-audiomix.h | 13 ++++
->  6 files changed, 114 insertions(+), 31 deletions(-)
->  create mode 100644 include/dt-bindings/reset/imx8mp-reset-audiomix.h
-> 
+> Best regards,
 > -- 
-> 2.43.0
+> David Heidelberg <david@ixit.cz>
 > 
+> 
+
+-- 
+With best wishes
+Dmitry
 
