@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-156408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A363A5BA07
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:38:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8C0A5BA0F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:41:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFF491895B6A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:38:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7539016719B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B837222576;
-	Tue, 11 Mar 2025 07:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5282222B0;
+	Tue, 11 Mar 2025 07:41:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ldh5MXHm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qMVgE6z/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AEC5222569;
-	Tue, 11 Mar 2025 07:36:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E9E360
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 07:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741678606; cv=none; b=AFJET0bqZ7TCnEBNIcBMKjHvev4lauHpa5u7wi3MzIf/Tt2aNR6RNwk2+GKsJC6Z2kCQol6wv4xWdKiEr32TzUAIOEwKP1WibZpKWruAv0sVTox5OXif+fO/T5YDrVm9GXUXSAmDl3a3GIbI1eREeU6P1+PkNriYVSnFqycdeRs=
+	t=1741678865; cv=none; b=X651xcAeMpkcNXmlTCXPLlCAfpRtkQjFCqsrLR8SxYsXAmJ4NiWIrXqrO8AhTfgXAagnhTu9q/JNXP0TUwtMRhi2e5y4f38OWnd5XkHMNyJ7NZa00kr+SIu/8i7vPjTxzmifypOERaZEYKLO4Y9bm3ow4mEbCXTCmZVxURRDAgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741678606; c=relaxed/simple;
-	bh=NlSYeBHkuN4uuQXn3s5uTUiD1LIIuFvtgumzckXKVdY=;
+	s=arc-20240116; t=1741678865; c=relaxed/simple;
+	bh=kmrGTuoWcvZPvvfmAHgaJ+HoWUIHDbPQ5XUdK5MVEfE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pax15oUWvBb5AuRZIkPqX9nUIMN0R3j4v1pAe9/XzYSZ88sQFeSpRtwmNJVxw0PRULFGJCVyRAU+tTTwi9+0qysc5t85V5KVtEibugpgXaNmI+mNugzR4iRdDOu2HorlpE8ptKa4cPW4SoOZahVWnP/71SQXJX+GpiRwc8yt5sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ldh5MXHm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 030E2C4CEEE;
-	Tue, 11 Mar 2025 07:36:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pRLDWzVygm1XmJ8gXBXY+RwlhZLXL/mgZSD3Gk3kAapkhO4Mx2IaWzzsV3iZFxWUynpaHgITT+zmmdusJSgZnDwFHZWhRAT5vnyppbpAMpI8i+2TnANj3FcBP6XMYmGFmuWvBf/LtFa+zIhuAd8TxkxFUGGIGuacLCLuEnqNKds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qMVgE6z/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A976C4CEE9;
+	Tue, 11 Mar 2025 07:41:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741678605;
-	bh=NlSYeBHkuN4uuQXn3s5uTUiD1LIIuFvtgumzckXKVdY=;
+	s=k20201202; t=1741678864;
+	bh=kmrGTuoWcvZPvvfmAHgaJ+HoWUIHDbPQ5XUdK5MVEfE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ldh5MXHm6Dxk7oS7ong5Qz0RQq2Cy4yJ2zdwn/PpS135rFIWsSbfIJb0VP/ep3iH5
-	 osAEXdZlwKL+edebVSvniZuHMrEgIbM5k2taPWyNPVqc7NCc4Q0zAM0k8nWJsPbjr/
-	 D0NOiTuQC1FuzjpKYLZaCN5M6ZI1hk+z4h05MQRklmW45K0lAjC417+smGxBIyZZTn
-	 y2TuGEBzR160/XjDZL80EF/ZAm7VZbj46f9Zn0HymvhP3TvcGgQCsJhL2P14MbO8N/
-	 aRJ4suNLHsx0YhGTHJt1kfroNrNZzQ+SR86pHZQI0u1iuHi6CmrFTFsyICwJ7lwNIZ
-	 Cv1A24VEuc2MQ==
-Message-ID: <ed700b54-8599-4775-b07f-43c7d62ae722@kernel.org>
-Date: Tue, 11 Mar 2025 08:36:37 +0100
+	b=qMVgE6z/RdGEjBH5COLtvg1DT9eMxt0lwgUlyJR5OGQBj0+x9wdQLU+ora66XDTIu
+	 KSD9LB+TdTAMu4E29RN/xyV6CsDJxyRPKr7TfnO8GwrBl+m143BFEgzURhMrcz7Sos
+	 upUhtjzUxzDcLRyYY92sQDJM9C3Pghcz83aBkVtilhlWUHGjHJ+d2ehjwzC/TUA6XV
+	 sbKtD4qVdvRKQiMXP5zwGCrvxbo/6YKGw7AokcN3yVOw8Y0VrG+9P3AdIsRWTMlpbH
+	 t3HdNgRF+aBO5APMtU8XpYuHuILvASkhFs3k4UZRhunoAbzhHy2yeHZ+dN0hgFsRr3
+	 2iyvQj5VmlEgA==
+Message-ID: <88aa345b-92f0-4807-8694-7f3a2b548fff@kernel.org>
+Date: Tue, 11 Mar 2025 08:40:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/9] dt-bindings: clock: brcm,kona-ccu: Add BCM281xx
- bus clocks
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
- Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20250308-kona-bus-clock-v3-0-d6fb5bfc3b67@gmail.com>
- <20250308-kona-bus-clock-v3-4-d6fb5bfc3b67@gmail.com>
- <20250310-orange-frog-of-abundance-af80f3@krzk-bin>
- <2b120341-0026-4a9c-9ad1-b14adfac50c8@gmail.com>
+Subject: Re: [PATCH v2 4/6] dt-bindings: gpu: v3d: Add SMS to the registers'
+ list
+To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+ Jose Maria Casanova Crespo <jmcasanova@igalia.com>,
+ Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ kernel-dev@igalia.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, devicetree@vger.kernel.org
+References: <20250308-v3d-gpu-reset-fixes-v2-0-2939c30f0cc4@igalia.com>
+ <20250308-v3d-gpu-reset-fixes-v2-4-2939c30f0cc4@igalia.com>
+ <20250310-calculating-flat-cuttlefish-4c9fc2@krzk-bin>
+ <4d224fc2-d077-47aa-8b52-edba30c62d19@igalia.com>
+ <6f87918b-b4ca-4404-8f1e-e1100190c0f6@kernel.org>
+ <2bc573c6-e44f-441b-9b13-baa7df64a641@igalia.com>
+ <130b6c9e-9e11-433c-881f-1a7ea8b0f86e@kernel.org>
+ <4c658ba0-aa3b-4f8c-b1eb-fc7993a33ffa@igalia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,26 +112,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <2b120341-0026-4a9c-9ad1-b14adfac50c8@gmail.com>
+In-Reply-To: <4c658ba0-aa3b-4f8c-b1eb-fc7993a33ffa@igalia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/03/2025 21:20, Artur Weber wrote:
-> On 10.03.2025 10:43, Krzysztof Kozlowski wrote:
->> On Sat, Mar 08, 2025 at 08:50:42AM +0100, Artur Weber wrote:
->>> Add bus clocks corresponding to peripheral clocks currently supported
->>> by the BCM281xx clock driver and add the relevant clock IDs to the
->>> clock/bcm281xx.h dt-bindings header.
->>
->> Please squash the patch so we see complete change.
+On 10/03/2025 21:07, Maíra Canal wrote:
 > 
-> Squash which patch(-es)? Both CCU bindings and the dt-bindings header
-> are modified in this patch, as outlined in the commit message (though
-> now that I look at it, I could reword the first sentence to specifically
-> imply "add bus clocks *to the binding*"...). What is missing?
+>  From my understanding, I'm keeping the ABI preserved, as brcm,7268-v3d
+> needs to have a GCA register (otherwise, you won't be able to flush the
+> cache) and brcm,2711-v3d doesn't even have this piece of hardware.
+> 
+> I understand that now I'm imposing per-compatible restrictions that
+> didn't exist in the spec, but the new restrictions are compatible to the
+> hardware specification. I'd like to understand if I can:
+> 
+> 1. Use two register items (gca and sms) to preserve the semantics of the
+> register names.
 
-If I got it correctly, you are changing the same lines in bindings in
-two patches, so squash these two patches.
+Sure, that's fine.
+
+> 
+> 2. Can I add per-compatible restrictions to the DT even if the original
+> bindings didn't do it? If not, can I just add a new register to the
+> register list? Like:
+
+Yes, constraints are expected and it does not matter that original
+binding forgot them.
+
+> 
+>     reg-names:
+>       items:
+>         - const: hub
+>         - const: core0
+> -      - enum: [ bridge, gca ]
+> -      - enum: [ bridge, gca ]
+> +      - enum: [ bridge, gca, sms ]
+> +      - enum: [ bridge, gca, sms ]
+> +      - enum: [ bridge, gca, sms ]
+
+This does not look right, because there is no device from your
+description which has 5 items.
 
 
 Best regards,
