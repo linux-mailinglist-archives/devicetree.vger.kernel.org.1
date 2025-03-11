@@ -1,111 +1,151 @@
-Return-Path: <devicetree+bounces-156621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C60AFA5CD6E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:13:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C902A5CD89
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:14:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CDA17AC9D3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:12:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EB561889421
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 18:14:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49797263884;
-	Tue, 11 Mar 2025 18:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C64263C77;
+	Tue, 11 Mar 2025 18:14:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S7zWJ2ue"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="UTtd72TQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21BFA2627EC;
-	Tue, 11 Mar 2025 18:12:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 533AC25D8E8;
+	Tue, 11 Mar 2025 18:14:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741716765; cv=none; b=Y+Chv6JroXMVLpLX8LxN5+NIuu3OypmEEonQevtT34Ex/bl15oyKjnFcdAVwA0T5MfANH6yuSBtwBkM+eRV913IjNPxV7AbDGGZaFNvCyzB5YFcn1l/Ixa3RKi0GO5FRxzZLdfu9KNE+VX0MV9UqQIsse+6glAdVXG06YS1z+wA=
+	t=1741716872; cv=none; b=NlLk1ZKGMmvu+Z4WpIYVnu0wCeigxyRn1EvaApQ7vmIkdFG38s+ZimjwIDJG68xLO3JpefjirXDAgqWBmLtWb7ZCwNvFSZuMEPx0m6ELpGI/39Em0R7hDvIDWtOmHO5Sdp6SV+HC7OXoQ+5SkreIAncKv/TTIW1vR2RTFWM3ukk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741716765; c=relaxed/simple;
-	bh=wPq2NGfQNN84hMUqF0se/g6r/peCVY5UmFIk+kncgPI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pr7fOsco1zr0reBSmPhyLGw6kbXg0Ql8KsdrnUWa8y5KMBvOhpD1gOxhhB5SO2GGMEPcnOpKhR634omWcqbwW3kT8zstXhDH85l0zX5vRkZRP4ShDDoIpi1jf5xeU5SRdJR1MVQe+LYn2SAnx85cGt4jShbSlOBZJBHTNCtHuFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S7zWJ2ue; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15DE6C4CEE9;
-	Tue, 11 Mar 2025 18:12:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741716764;
-	bh=wPq2NGfQNN84hMUqF0se/g6r/peCVY5UmFIk+kncgPI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S7zWJ2uejTexWUdWX9K8TlIX+/aRCbORV6/OlKII+cI5KcahRs17fY0VTzA7dGTUy
-	 rHLmM/yMkRLNtJRH/MJiDCpd76w7Iivv3UO206j8DvgHRQ1xz+Wn6y4OEEvighIFCn
-	 C/1zt0LYTuouMqwhVISC+UB7akU0UzjSx9NbzB1oILXD/dbEOyiqsa2HNQrna6I1tY
-	 g9hil6+KL2MoAQrrwQiVizXwh2Wp4387MJgac9XozBkK/E7VT6uBsFB4fx6l9MQgGf
-	 VWzJuPHW6jzsG9kj8cp/lskJLYbV9uZGTbp1swp5ceAmE7EG5520JUw5V3ELlx5Zbc
-	 KD74n0F2J1n9A==
-Date: Tue, 11 Mar 2025 18:12:38 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Min Lin <linmin@eswincomputing.com>,
-	Pritesh Patel <pritesh.patel@einfochips.com>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Yu Chien Peter Lin <peterlin@andestech.com>,
-	Charlie Jenkins <charlie@rivosinc.com>,
-	Kanak Shilledar <kanakshilledar@gmail.com>,
-	Darshan Prajapati <darshan.prajapati@einfochips.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
-	rafal@milecki.pl, Anup Patel <anup@brainfault.org>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 08/10] dt-bindings: timer: Add ESWIN EIC7700 CLINT
-Message-ID: <20250311-clock-yearbook-d27a09466dfd@spud>
-References: <20250311073432.4068512-1-pinkesh.vaghela@einfochips.com>
- <20250311073432.4068512-9-pinkesh.vaghela@einfochips.com>
+	s=arc-20240116; t=1741716872; c=relaxed/simple;
+	bh=hMWF8zKKAHzWxlNZOG6AojB0SW5vtVKeB/kSm1RXJBQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AirOWn1wDmSnAN7slqEnMIkRtvHPn6ICyX1cTPBOnZvU+hxH8ke6o7E3YkzI3vhdX2cLUxF/m8tDzuWjT+JdnOtw+urS0Pf/ClUNFWYbs+pMNLeRzkSscD5fYnIa7VpBsqkq8fN41VgBj32BUAenxFWJr/122mqjcaKHT4jWFg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=UTtd72TQ; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=kFCH8u8gqei3C9HzLkQd8FkDTp/wkWzOvGSvNHUDtMU=; b=UTtd72TQQwb8/mx9eNv4tWX9E0
+	11pC53OXOvy3eWDgM5mDn2n3ENG7jYq67mT7IBvpV7x/h1vYQbJNh63m+4/1HFFL2i7N4xtYAxfcl
+	pGu6Pyt/XpcJcf2wIbV2QvZQJRZnxZoMlIqmx6a+cyX3KwACb5iu7r8tOrhBzj4ccYkT0FNGtBYaR
+	bDaIN6E8CRaacXtioIEiWt4vS710W3IQ7jGio6hxB/vTRmAfgqV9l5qWgced3dGx5npuJli2DXhf4
+	r/KbN81xPqcreQ0I5sB43+adtq6vf06WN5CkWf/sqh3mxHl3lnOc8sy3H1sgeOO0jCfkcIUJ8th/z
+	xAvbSLIg==;
+Received: from [189.7.87.170] (helo=janis.local)
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1ts47I-007Dal-O3; Tue, 11 Mar 2025 19:14:18 +0100
+From: =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Subject: [PATCH v3 0/7] drm/v3d: Fix GPU reset issues on the Raspberry Pi 5
+Date: Tue, 11 Mar 2025 15:13:42 -0300
+Message-Id: <20250311-v3d-gpu-reset-fixes-v3-0-64f7a4247ec0@igalia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yryHYQAuCVvglLLR"
-Content-Disposition: inline
-In-Reply-To: <20250311073432.4068512-9-pinkesh.vaghela@einfochips.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFd90GcC/23NTQqDMBAF4KtI1p2STKyarnqP0kXIjw60KokNL
+ eLdG4VSCi7fG943M4sukIvsXMwsuESRhj4HeSiY6XTfOiCbM0OOJ45YQpIW2vEJwUU3gaeXi4A
+ WhTc1r4WwLC/H4LZDHl5vOXcUpyG8tydJrO3Xq3a9JIBDI7WqlLdWGXGhVt9JH83wYCuY8IdI3
+ uwjmBFUUhnJPTem/EOWZfkAu8Y3cPwAAAA=
+X-Change-ID: 20250224-v3d-gpu-reset-fixes-2d21fc70711d
+To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>, 
+ Jose Maria Casanova Crespo <jmcasanova@igalia.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, kernel-dev@igalia.com, stable@vger.kernel.org, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
+ Emma Anholt <emma@anholt.net>, "Rob Herring (Arm)" <robh@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2999; i=mcanal@igalia.com;
+ h=from:subject:message-id; bh=hMWF8zKKAHzWxlNZOG6AojB0SW5vtVKeB/kSm1RXJBQ=;
+ b=owEBbQGS/pANAwAIAT/zDop2iPqqAcsmYgBn0H106U0gguzuVZSyJme+kJfLKsJedLNH4fVcB
+ 1JRRtoVIU2JATMEAAEIAB0WIQT45F19ARZ3Bymmd9E/8w6Kdoj6qgUCZ9B9dAAKCRA/8w6Kdoj6
+ qvSZCAC+F8R9aFT8L2oaT27i0oobToAT+U6ewrufIX7fDt3buiwjfWiodKvML0N8hziJ0H5f/hj
+ 5k4bcAfJYJbjYI+RzgdIAoLz5KwvaKXYonRvNq0VVrh4zvTZLnJkhuS7Je9iiNSNAnGoopFqSHY
+ ixVLX/Zc1mkNnYGIoZgp7RRT91HloLABVOYkZCho8egOO/H7Bvn6ShRfL2VsGUsX2ycDvb4lpvw
+ rPiIqIagqNzTnoGkrrFVXesOyR7FXZCHTbWIP2E+ICKeEn3LJ/a7FkqEonf6PMlqj/HtxCPCAz+
+ f3inZhnhtEC81DRgmcn4oSx9bwyLaznS9pDt8CS84HaSlYuk
+X-Developer-Key: i=mcanal@igalia.com; a=openpgp;
+ fpr=F8E45D7D0116770729A677D13FF30E8A7688FAAA
 
+This series addresses GPU reset issues reported in [1], where running a
+long compute job would trigger repeated GPU resets, leading to a UI
+freeze.
 
---yryHYQAuCVvglLLR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Patches #1 and #2 prevent the same faulty job from being resubmitted in a
+loop, mitigating the first cause of the issue.
 
-On Tue, Mar 11, 2025 at 01:04:30PM +0530, Pinkesh Vaghela wrote:
-> From: Darshan Prajapati <darshan.prajapati@einfochips.com>
->=20
-> Add compatible string for ESWIN EIC7700 CLINT.
->=20
-> Signed-off-by: Darshan Prajapati <darshan.prajapati@einfochips.com>
-> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-> Signed-off-by: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+However, the issue isn't entirely solved. Even with only a single GPU
+reset, the UI still freezes on the Raspberry Pi 5, indicating a GPU hang.
+Patches #3 to #6 address this by properly configuring the V3D_SMS
+registers, which are required for power management and resets in V3D 7.1.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Patch #7 updates the DT maintainership, replacing Emma with the current
+v3d driver maintainer.
 
---yryHYQAuCVvglLLR
-Content-Type: application/pgp-signature; name="signature.asc"
+[1] https://github.com/raspberrypi/linux/issues/6660
 
------BEGIN PGP SIGNATURE-----
+Best Regards,
+- Maíra
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ9B9FQAKCRB4tDGHoIJi
-0i0mAP9FcNgiTxknoxVyenYfVlubklsRHYU0VEz0MaqFMjHLWQEAq0zSSzCax/al
-dNyPFjnFMEb/jMbSfPJrc2hnYUM16gU=
-=6RSo
------END PGP SIGNATURE-----
+---
+v1 -> v2:
+- [1/6, 2/6, 5/6] Add Iago's R-b (Iago Toral)
+- [3/6] Use V3D_GEN_* macros consistently throughout the driver (Phil Elwell)
+- [3/6] Don't add Iago's R-b in 3/6 due to changes in the patch
+- [4/6] Add per-compatible restrictions to enforce per‐SoC register rules (Conor Dooley)
+- [6/6] Add Emma's A-b, collected through IRC (Emma Anholt)
+- [6/6] Add Rob's A-b (Rob Herring)
+- Link to v1: https://lore.kernel.org/r/20250226-v3d-gpu-reset-fixes-v1-0-83a969fdd9c1@igalia.com
 
---yryHYQAuCVvglLLR--
+v2 -> v3:
+- [3/7] Add Iago's R-b (Iago Toral)
+- [4/7, 5/7] Separate the patches to ease the reviewing process -> Now,
+  PATCH 4/7 only adds the per-compatible rules and PATCH 5/7 adds the
+  SMS registers
+- [4/7] `allOf` goes above `additionalProperties` (Krzysztof Kozlowski)
+- [4/7, 5/7] Sync `reg` and `reg-names` items (Krzysztof Kozlowski)
+- Link to v2: https://lore.kernel.org/r/20250308-v3d-gpu-reset-fixes-v2-0-2939c30f0cc4@igalia.com
+
+---
+Maíra Canal (7):
+      drm/v3d: Don't run jobs that have errors flagged in its fence
+      drm/v3d: Set job pointer to NULL when the job's fence has an error
+      drm/v3d: Associate a V3D tech revision to all supported devices
+      dt-bindings: gpu: v3d: Add per-compatible register restrictions
+      dt-bindings: gpu: v3d: Add SMS register to BCM2712 compatible
+      drm/v3d: Use V3D_SMS registers for power on/off and reset on V3D 7.x
+      dt-bindings: gpu: Add V3D driver maintainer as DT maintainer
+
+ .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      |  77 +++++++++++--
+ drivers/gpu/drm/v3d/v3d_debugfs.c                  | 126 ++++++++++-----------
+ drivers/gpu/drm/v3d/v3d_drv.c                      |  62 +++++++++-
+ drivers/gpu/drm/v3d/v3d_drv.h                      |  22 +++-
+ drivers/gpu/drm/v3d/v3d_gem.c                      |  27 ++++-
+ drivers/gpu/drm/v3d/v3d_irq.c                      |   6 +-
+ drivers/gpu/drm/v3d/v3d_perfmon.c                  |   4 +-
+ drivers/gpu/drm/v3d/v3d_regs.h                     |  26 +++++
+ drivers/gpu/drm/v3d/v3d_sched.c                    |  29 ++++-
+ 9 files changed, 281 insertions(+), 98 deletions(-)
+---
+base-commit: 9e75b6ef407fee5d4ed8021cd7ddd9d6a8f7b0e8
+change-id: 20250224-v3d-gpu-reset-fixes-2d21fc70711d
+
 
