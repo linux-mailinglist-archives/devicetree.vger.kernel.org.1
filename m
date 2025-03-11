@@ -1,109 +1,123 @@
-Return-Path: <devicetree+bounces-156392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A4E5A5B9C0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:27:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16AA2A5B9C6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:28:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A3D67A2C3B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:26:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B513C3AF1E0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53672221F11;
-	Tue, 11 Mar 2025 07:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C5022156F;
+	Tue, 11 Mar 2025 07:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="clqEGs7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5C92206B1;
-	Tue, 11 Mar 2025 07:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189A32222CA;
+	Tue, 11 Mar 2025 07:28:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741678060; cv=none; b=RcJHJTKankJ182Ds5MLOYcRmPxXHui9fnm3kApFE2mKtz5KVWmhvebUcNQb1w2a3d6qnIUe9dLv9XNFngQH27fUA5U0i75yc/7AHm0FyjCSn+Oo3d9I0YWSsiHXsP5BPwsk/TrV0LhgNQ/5Vnvt7Un2pD+t+oYi5/2YhPnkIhNg=
+	t=1741678131; cv=none; b=EUxKxtmclnhpU1nwGXDuk3DDuXOD4ZcXQSwPELXfF1rbNXGS7l5pgXn36CAU/zcqp1o45AKdvIG8yTcoBq7M7xCl51uVQXiMnT/5qM7sVCkARxyfOJWuTXEZcIDkNStK8CJJClbOBOzBf0HgP+gwZk8oa/5pDAUKqC15ppCu9K0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741678060; c=relaxed/simple;
-	bh=9lpj/SQtbcBYO7uyqYGorW8/ONntmoTjHBzPYBDq3ho=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SyfAtoKkGm4Dx8p7R71beMO2OoYfGShSIByksb2titTF3kLCc4DV0n0YN7NiLBoDrIG0zHsTiVihZVdqXYYFnTWioj9KafSXRueDpHh9JweBTJ9p7fd3383vxUn250VfzAEPUtfEg4d0KVD/OgpjgO80mDgLLHdgoBXNrtnlyAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-22398e09e39so93677805ad.3;
-        Tue, 11 Mar 2025 00:27:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741678058; x=1742282858;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9UdKkLSJGsV4gu9l5EP4VTB+jR8nNUuC37NW8oMZ9po=;
-        b=oVAJQLtrFejqZJMOBfgaXCvRO7/TBdjXeTBCbD0Lqmnflpw6e9fkobaYDSfTmIIKmO
-         3FplafqIcfB7K5r7kXYrA6ugjZX3tSCMFq+tJsue7LO+r0t2eFxvsU0L58xJvIB1ynV+
-         cqSUzfCnnVotiRGA7rnl97pnpLps7CKWolj9MzNdYjsjGSTFwdxRVr2BdwD10IVvR2aQ
-         su4dImlZ1QqoJ61Xkk24FlCvIFlIU4SwTd/GPV/ExY3yNO6Sz8pnKgCxkEZNRvY1w/V/
-         4en5/lau7Ab1J1YrMhimRK/ZZWwcbNPbKJGAYgSD9tXBBpO/GDAcCkrqZ6mImf+6rOPD
-         AoPg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPx6xg29UcENmEL/f1gqXAJ4XybgEr3JsypKdOPig6TR/eBIswq2YW73GzGRqS7nRz4ry/7iUDuYQ2Ueql@vger.kernel.org, AJvYcCWlw3DvLHKQUiIjEgaz0G6B3CEq/+9FHzBJFMOBo6H6kVUQEFXRl997DeKK9I08t/ukEk2v2JuAy69n@vger.kernel.org, AJvYcCXgKcHM7+ndZWgaBMxpqqpmFdmweESHZN1qUekvT4iIZTAD611qWW5Az7wt+Rorva10SP7bZ7jGxCLr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYLhF1PyR9LWRKOrK3RG+mEXWcFALbJCF9oP7c3wD/RcSNhmTt
-	jAJkzmUkujvrYSNjOzkLT28XUs6RhBBccYxa/36Lx1E/W8zWTYhs
-X-Gm-Gg: ASbGncuO0/BROirZueT0ZRhxfxlj491NHdgMlSxtTObETYSSgYDHTiunICUXr8Ucpu1
-	8Dx1q4A9DEzz0iAdlGpDil2uAOv+O3J8J1Rap5a1Zop6RFQRphFM4ANl+10TI2zQl/U/C+0BWZu
-	XySrm5Yi9Db6oiezOHg5ZtxzkEzvnCi9tE19dm8NFFrbz/js9ABzcIcrVAnrsy2sHSoRuPb+xFt
-	A3CuE5YdO8BVh6iCNTNON2aasFExKRFQviQGB7tv59vlZAn5TYZGA20wV43Q+cQEaowlCCvyocX
-	N0FXHNx+zRETrBJUuj99h9f2sad3kKJDecWhsXGHWYEtxQplhP2UKaWVZUST40troBEzUpzHBuB
-	Ork819OgSwrGGTg==
-X-Google-Smtp-Source: AGHT+IHR8e37F9xXihhPeMOp3ErI52oDmeUT+ASdWqncNF+UAMKGzfdyXK2pLP0Bl/OTKQ6uYNeKfg==
-X-Received: by 2002:a17:902:ccc9:b0:223:2aab:462c with SMTP id d9443c01a7336-22428899f43mr267466135ad.15.1741678058000;
-        Tue, 11 Mar 2025 00:27:38 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-22410a8ff3csm90699945ad.161.2025.03.11.00.27.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Mar 2025 00:27:37 -0700 (PDT)
-Date: Tue, 11 Mar 2025 16:27:36 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	michal.simek@amd.com, bharat.kumar.gogada@amd.com
-Subject: Re: [PATCH] PCI: xilinx-cpm: Fix incorrect version check in init_port
-Message-ID: <20250311072736.GB277060@rocinante>
-References: <20250311072402.1049990-1-thippeswamy.havalige@amd.com>
+	s=arc-20240116; t=1741678131; c=relaxed/simple;
+	bh=tS59wv2oRJS3ZEDR20fU+3B7NhAcIQZIUM+9nIVYeMA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BQykO7Y3WOB5H74eJd06caZ3UGWPEp+PnC1zEv4pE2TWaziGNBP1F7nhsLTszdpnLKeEWRnDegA/Fj38ORVFismq+spktbmYGpiqGdNPV8PhB9KZtwVlVzi/jbdxm95lw+dUQ9QaRvM5sD8CcPGxaQ1h130aCSvFypthiBZFv1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=clqEGs7D; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52B7S0Ds644784
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 11 Mar 2025 02:28:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1741678080;
+	bh=PbzRBzD4zy1+woI1kw2/XmxJI77CaWyhRb9Se95W7PI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=clqEGs7DEHEsKaeENmPF1f7pqFSp3QgVfxlDlCYu/oVNDolvtnCKDqdbHlSjPzb95
+	 2m1ZsLm7e+NylWm0dsInjHa0bGykRmvn14PvWYpEgJ3mVs6VfL2j/g63VPdbSrpOJh
+	 6LMluOUQDRQVTnJ8DlqkCR5Ah1rH4kg0/PugVLvM=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52B7S0kc061754
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 11 Mar 2025 02:28:00 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
+ Mar 2025 02:27:59 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 11 Mar 2025 02:28:00 -0500
+Received: from [10.24.68.192] (dhcp-10-24-68-192.dhcp.ti.com [10.24.68.192])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52B7RuHV002607;
+	Tue, 11 Mar 2025 02:27:56 -0500
+Message-ID: <8f03c097-e2c1-452a-85e2-90accbac7443@ti.com>
+Date: Tue, 11 Mar 2025 12:57:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250311072402.1049990-1-thippeswamy.havalige@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] Add J722S CSI support
+To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vaishnav Achath <vaishnav.a@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <jai.luthra@linux.dev>,
+        <y-abhilashchandra@ti.com>
+References: <20250218185452.600797-1-vaishnav.a@ti.com>
+ <174133309362.1072814.5440404016847301624.b4-ty@ti.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <174133309362.1072814.5440404016847301624.b4-ty@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello,
 
-> Fix an incorrect conditional check in xilinx_cpm_pcie_init_port().
+
+On 07/03/25 16:06, Vignesh Raghavendra wrote:
+> Hi Vaishnav Achath,
 > 
-> The previous condition mistakenly skipped initialization for all
-> versions except CPM5NC_HOST. This is now corrected to ensure that only
-> the CPM5NC_HOST is skipped while other versions proceed with
-> initialization.
+> On Wed, 19 Feb 2025 00:24:47 +0530, Vaishnav Achath wrote:
+>> This series adds support for CSI2RX capture on J722S EVM
+>> and enables IMX219 and OV5640 overlays to enables
+>> 4 sensors on EVM, this provides a reference for a user to
+>> enable a different sensor on any of the ports.
+>>
+>> Test logs:
+>> IMX219: https://gist.github.com/vaishnavachath/60cc2ef257601f27f28a315f8cf669c4
+>> OV5640: https://gist.github.com/vaishnavachath/648202286d4d34d4d25f7c8c9db8b8bd
+>>
+>> [...]
+> I have applied the following to branch ti-k3-dts-next on [1].
+> Thank you!
+> 
+> [1/5] arm64: dts: ti: k3-j722s-main: Add BCDMA CSI overrides
+>       commit: fb1b230bf9c45f5d6579dc329c2aafcd1263b70a
+> [2/5] arm64: dts: ti: k3-j722s-main: Add CSI2RX nodes
+>       commit: 8fea4519f625e6c1b05078f2ecea252b7b28b06e
+> [3/5] arm64: dts: ti: k3-j722s-evm: Add camera peripherals
+>       commit: ce553288ad2368f0d27e47b39a23121a825a2b33
 
-[...]
->  {
->  	const struct xilinx_cpm_variant *variant = port->variant;
->  
-> -	if (variant->version != CPM5NC_HOST)
-> +	if (variant->version == CPM5NC_HOST)
->  		return;
->  
->  	if (cpm_pcie_link_up(port))
+> [4/5] arm64: dts: ti: k3-j722s-evm: Add overlay for quad IMX219
+>       commit: c24ccb1cd77fb44087b2f7008d99626796b33ca4
+> [5/5] arm64: dts: ti: k3-j722s-evm: Add overlay for TEVI OV5640
+>       commit: 938806652b0a3c90d67e7137c91708d06940b03d
 
-Ouch!  Nice catch.
+I have dropped 4 and 5 due to issues Rob pointed out in the other thread.
 
-I will pull and squash this against the existing code directly on the branch.
+-- 
+Regards
+Vignesh
+https://ti.com/opensource
 
-Thank you!
-
-	Krzysztof
 
