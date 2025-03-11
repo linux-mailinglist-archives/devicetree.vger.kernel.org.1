@@ -1,59 +1,56 @@
-Return-Path: <devicetree+bounces-156356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD0F7A5B5F4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 02:41:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 732A5A5B653
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 02:53:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18BC5171B7A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 01:41:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9368A172786
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 01:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0258C1DF985;
-	Tue, 11 Mar 2025 01:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11AD81E25EB;
+	Tue, 11 Mar 2025 01:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="QyvimTas"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bb/WEbWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA611DEFE4;
-	Tue, 11 Mar 2025 01:41:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C8B1DF98B;
+	Tue, 11 Mar 2025 01:52:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741657271; cv=none; b=NzEXTgXTZjJxO1oRvDES4hbLPo0M2C17yqd9r32Q5D+vkJmVc0wJTB451jN70/Pi8ECdu1OMJQWXGFN2dVWLOngZGwSQnKslj2Se+r3UKAvrwueDd3OHY91y4KrnI0Rr3DUD0J5A7RD1QIEed/lBciDPIBXIYnkzFCkr98PBVrs=
+	t=1741657974; cv=none; b=ocYTyBd+oF1fUSgAtFr1z6EkAxhKWbG8UnDC7DpywDcMjdy2yM9qlaU+JVRR6jtTPyx2C+b5mN7Kk0x4beFwRjPNgp7A4X/IRgdSXFy62mArMFBPufHnYdM/CkVhcQZqMpKN2/5ibZlswsrKPSKwqkV6+QqJaSx7J4QdJmq2cFc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741657271; c=relaxed/simple;
-	bh=Uqg4BvoIFHOy8ZsafPUstg5rBCNgYL7IMM8j6pBom3U=;
+	s=arc-20240116; t=1741657974; c=relaxed/simple;
+	bh=BePCeOBZ4CRUJOn6ITYHMdMXC7Jdn4+7xT6rUAg2NZo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vCqKx3RSWrFcN4iFcscfy7ELjRCoX2JCg8RPU8DYFKEvjr/OWtHBXMhUWX2HftnX39/Pqrcq24Ua43S1qclVwSYLzIIHQ9swPM1mGB91Ossf54YZLjx+KOezH0Mv0huQDpknmtD46RfEpuYapAoM9J+zoz5TlXcDC2cZeVYLhYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=QyvimTas; arc=none smtp.client-ip=220.197.32.19
+	 Content-Type:Content-Disposition:In-Reply-To; b=XnyDQJgUGYpM8OEc8i5ptDJbPjHYUlfM8AtbjXXdzwsm7auymVqghfFivDFOHUO/YyER0kkzeIhA6FmdFzuO2qLQsv7NXld2bAes1TgHIaTdtEig4IrMy0OOo1WBKQxJSeh7jM4CM/iX9Ubwwa5inIpb4+mNyZKUyCfCaxydySg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bb/WEbWa; arc=none smtp.client-ip=1.95.21.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=aNXkJxcJ2zsVazXzVhb67vC/AWSm5E/sISjDwq9fejc=;
-	b=QyvimTasT15gCS/eL9gH7dR1XCjRIaHLmSGawEgiQNyCNQEbQqZUQBmpNu8ytM
-	W6ateqgBkQc1Y3b0eOALREUSlFp/7z0kKxudAbLp826Yz3bcmsfOjgcTlYFYxszk
-	NEoDQugL3Yo58BGWfkXKCydkgxL4XvH92CJnSgF+BWNSA=
+	Content-Type; bh=Y2j5IpfsHdKFIq/wwefRt4BQxdOS5Lzz8+3jguMQeEI=;
+	b=bb/WEbWaAcQBK5+/SWIhhJjQGY7QSw5WAcBBHbKVmjct4jdi2d60S4OI1j8Neg
+	i4e7C7VVShbb16g7RpTN8y86Mfc5t0NkrYHEYeh/47CUvXLQgkax895lamkfoh7h
+	kNQ7Ab3+rLlUtu3JY+H6kxNnS0Rnu5rdchdZBJPlZ6IO4=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgCHyeCWlM9nKL2zAA--.807S3;
-	Tue, 11 Mar 2025 09:40:40 +0800 (CST)
-Date: Tue, 11 Mar 2025 09:40:38 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAnJdRFl89nbBawAA--.715S3;
+	Tue, 11 Mar 2025 09:52:07 +0800 (CST)
+Date: Tue, 11 Mar 2025 09:52:05 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [PATCH v2 0/6] arm64: dts: imx8mp-skov: add new variants
-Message-ID: <Z8+Ultn2BDg+fSng@dragon>
-References: <20250218-skov-imx8mp-new-boards-v2-0-4040379742ea@pengutronix.de>
+	Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/9] ARM: dts: TQMa6/6UL/7: DT cleanup
+Message-ID: <Z8+XRalDiwot8Xsl@dragon>
+References: <20250219081748.1181507-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +59,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250218-skov-imx8mp-new-boards-v2-0-4040379742ea@pengutronix.de>
-X-CM-TRANSID:Ms8vCgCHyeCWlM9nKL2zAA--.807S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4IJmUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRANZWfPUEK8TAAAs7
+In-Reply-To: <20250219081748.1181507-1-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:Mc8vCgAnJdRFl89nbBawAA--.715S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUcb18DUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiERsNZWfPU+q+ZQAAso
 
-On Tue, Feb 18, 2025 at 07:38:12PM +0100, Ahmad Fatoum wrote:
-> Ahmad Fatoum (5):
->       dt-bindings: arm: fsl: add more compatibles for Skov i.MX8MP variants
->       arm64: dts: imx8mp-skov: move I2C2 pin control group into DTSI
->       arm64: dts: imx8mp-skov: describe I2C bus recovery for all controllers
->       arm64: dts: imx8mp-skov: add revC BD500 board
->       arm64: dts: imx8mp-skov: support new 7" panel board
+On Wed, Feb 19, 2025 at 09:17:35AM +0100, Alexander Stein wrote:
+> Alexander Stein (4):
+>   ARM: dts: imx6qdl-tqma6: Order DT properties
+>   ARM: dts: imx6ul-tqma6ul: Order DT properties
+>   ARM: dts: imx6ul-tqma6ul: Add vcc-supply for spi-nor
+>   ARM: dts: imx7-tqma7: Add vcc-supply for spi-nor
 > 
-> Oleksij Rempel (1):
->       arm64: dts: imx8mp-skov: add basic board as fallback
+> Markus Niebel (5):
+>   ARM: dts: imx6qdl-tqma6: limit PMIC SW4 to 3.3V
+>   ARM: dts: imx6qdl-tqma6: use sw4_reg as 3.3V supply
+>   ARM: dts: imx6qdl-tqma6: Add partitions subnode to spi-nor
+>   ARM: dts: tqma6ul: Add partitions subnode to spi-nor
+>   ARM: dts: tqma7: Add partitions subnode to spi-nor
 
 Applied all, thanks!
 
