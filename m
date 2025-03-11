@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-156421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AFB3A5BAAA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:18:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DCE8A5BAB5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:20:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC884170339
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:18:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E725170FB8
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:20:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87DB222569;
-	Tue, 11 Mar 2025 08:18:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81151225A59;
+	Tue, 11 Mar 2025 08:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AYQawrW+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxJHnjs0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C241E7C2B;
-	Tue, 11 Mar 2025 08:18:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547FF1E7C2B;
+	Tue, 11 Mar 2025 08:20:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741681128; cv=none; b=QqLrWYN5JS7oDRgZ9lKv6PBcsCj5rtOpCly1LxyjhMcWkUD/8j5TTONGH3mFsGdPI9nZlPD5CNvTcSLdw6Z2s5mrvFMsHj5GOVPp0UTNSze5+9Pynw/gtBPBac5S8G3zpXcY7WDAcaQ81PydUIo+8SWKKfeYLenzR9TCoWY0KAk=
+	t=1741681229; cv=none; b=t1x97OMY38ou7zpppIfPLW3m7oHs1QqqXC2YX71bgAZY8zVihsadbRsLcd5NVLoFKQDN0RGVX0mNFN995EhFiv1XED33BAN7hqbQZz1T2otFs6g59mvr0kWnNIsg8bF7/XY6gYaC23P1wwCBppmybBCv7HiRA/GCTDYEouFzch4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741681128; c=relaxed/simple;
-	bh=zXoRkiEUeNdaqaQv6jVMKKYWW/tCEPHxH66N+vuLs0k=;
+	s=arc-20240116; t=1741681229; c=relaxed/simple;
+	bh=Liygq0XgfhMoR0han+8fEYkAEuEyqeTxQkV/x/4uT+g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rn1mRlZ8o6ie5IAGr5gjGKcX5bq0ZHD5GgBZ6dm33bky2fBWa1A9W0KWCBv+mVTnA0c9O66Gsms5c+25n+reKFu+a6WG2oOhqn0NHSt+uBeMXsXbah0WC6CDZZngueLrflLReecYY0wWvEuasx4txG37/b4IVpcTzQFX3hD91+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AYQawrW+; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aaec61d0f65so1028700566b.1;
-        Tue, 11 Mar 2025 01:18:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741681125; x=1742285925; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r60VLRjOftkHGoBqvawtyRS1YyQH6tDVCblEoFcS268=;
-        b=AYQawrW+btDeLEZE3f3Teyt4V1iKnr4JwK+jUKk/7NGeTKv1Sc3rUUwQEM02FR5QXL
-         VZMWpu7ae6X6G7eo8ied2HWhqOE9+Vx2Vnq8YobgZfADmR3csyJ3RUTIO+aNKt5Xl1PX
-         TxXBxazNercinR3/LxF9AwGZ/fIqq0SSbVXhsXBoBcrE3IoCMc+MaGgAvO4r3g7tvXoi
-         0/q8h0HpgSO9gyof14I7QIA63pgSzxmGRvVrGPPtx0GIDPXAKCNIyLEDasmXUuEicwOg
-         4xpTX0+xpTpOrVgc8rRi132rESVzrSg5YsbOjxxjGMCam7s7j9zOmId7to4GjO9EyD17
-         mcuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741681125; x=1742285925;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r60VLRjOftkHGoBqvawtyRS1YyQH6tDVCblEoFcS268=;
-        b=Rm78se2WGR84t2OhujF9rz77v9kDJF4QFK0+QSISq5dqlxJnKo4jPWlvG4ldoLBpdh
-         LsvdEe49X7hZohV5RnzaPomxuMQxZBdAckcju7I53GXo70ur8lBTwKy7cDcYOfRiy48z
-         AEIEydJWLl9GlUKsWCdih1cw2Odrc5ihSq7WnMztlINKKFDlHwZ0XqRl0OsifNgKyIJw
-         WC8X+wNXfbmQU9QW4u137mZsD1AEovVODTSDHFQfS86sozNO1qht9t/xN4TRYEb9O+of
-         DcVzh/PNQfpxGothJ3cpUfTFbFsHmXYyBuiiXHmGMYIajVNn1h5XT+bDRD0WwHKuJvB+
-         1Xxg==
-X-Forwarded-Encrypted: i=1; AJvYcCWE0rSRVWFZLjxdJoK69skhGpMOGroB2bPHilXMpecL5qGq0xaHYkaLlsXQ2585UZzjgPXhdbBXoYgd36KR@vger.kernel.org, AJvYcCX0zql5NRqFynXUOtr7EuVDYJZZtaOITCpgWBykn4SOnpFMwMFZuxy5j6clWHWwdPk1wolpEB9Y/g00@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1tqGVqALTH5mOdNb0u64l2C33ZFU6t+ivNdjgpE0XMUkvH7dR
-	PYKFLIOaEdSu8HhkXXRgS/aRErj6mmxwsBmXHZBGjTVi8FIfjbgo5/ZYiFNT
-X-Gm-Gg: ASbGncuhQfRtwHR88euwA+Pcem1PT9Ioi2P2F5kR7P72I1AY0h/NJlAJDHApFYunFdm
-	8TZgCT40zivgNW1nUVxM27Lp4yTEaiUoxVf+2uV7dZvZZSL5AhT7jCkpuHnw6NY5Gd99NFnv6uy
-	NQTBV0wcLXdcKOMyqA3uHJvGQssk+eQbStpPBXcIuWhEx+84CFeDwfIowvgo1dq09AXnSs+LG/F
-	7hvpfMOMgXv8MdPzMZd2KDvrApMvIouAJTftEKT0QUzbex659FWWIeWV1M3xYW3WHLYaH8PEf6L
-	7PGSWm6v7n0Q1tqXdtL3GWmiCqV+JBDn8YcX8+61tm9nhEE7YVRK0Q==
-X-Google-Smtp-Source: AGHT+IFqwPmHHBuy1mII02V8OsP5GtPxQ3z1KRgPYgKJP4M5dDUYaG5S9PlaLTZ0q1EM60MgyhbgTA==
-X-Received: by 2002:a17:907:3f2a:b0:ac2:9a4:89a8 with SMTP id a640c23a62f3a-ac252ed4960mr1945973966b.47.1741681124678;
-        Tue, 11 Mar 2025 01:18:44 -0700 (PDT)
-Received: from [192.168.1.130] ([188.193.103.108])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac298412a9asm351669266b.156.2025.03.11.01.18.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Mar 2025 01:18:44 -0700 (PDT)
-Message-ID: <38293dea-3207-40e9-a29b-cd5b74904b8f@gmail.com>
-Date: Tue, 11 Mar 2025 09:18:42 +0100
+	 In-Reply-To:Content-Type; b=gL1apjNsHRxBlDdsIc/B0vDDW0Wl6WCBzMt76/wvilFpiWR8zYAthmNu9y+Pmr8rpCudI2GoQx8jjNmhHiPJXr6rXQ8WcTZfw4nL9/GvIdGMHK0CgNCJg9iVAxm/Pd7lOcszrs9KyNFK89ryWSX3SvXQP3mvlGq5YEYz6HtSa9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxJHnjs0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FE43C4CEED;
+	Tue, 11 Mar 2025 08:20:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741681228;
+	bh=Liygq0XgfhMoR0han+8fEYkAEuEyqeTxQkV/x/4uT+g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oxJHnjs0b3dO/j7O+4GF59p6nmbracwB+SwUGw9Ls5Nu67vMXePv5rZoFOaI8KOrT
+	 zYBX3hntsy0JrPQvDpbjd3l2k00aJsI1Zpxtaur/gL7ax5NUup/rYnVOvjpjKoF9KF
+	 XvXoE2h+VLmN+dwVQe7C5qYga1NvdDDGinTY3kTI0ceX9OUarVyz5xw3dKN6B8alVm
+	 9WU+WXHOfdnojIVWhg1QCwI6v4tOXyOc8SfBTGLdUii2ySec8LDFLRdtgjfaz32WpU
+	 kqccNaIMxiQuI5/W6kqHYz/5rHEwwPkMSk57Jgby4wU2TVoKAbcXStvEEgbCk4agOG
+	 PUvJmNoSKs/XA==
+Message-ID: <dc772e9e-632f-4c38-a654-833df0800ee1@kernel.org>
+Date: Tue, 11 Mar 2025 09:20:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,53 +50,81 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: vendor-prefixes: Add Ultratronik
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?B?R29yYW4gUmHEkWVub3ZpxIc=?= <gradenovic@ultratronik.de>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250310154804.326943-1-goran.radni@gmail.com>
- <20250310154804.326943-2-goran.radni@gmail.com>
- <3d0747b5-e73f-4212-893b-08f5a58b2cc4@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: thermal: generic-adc: Add optional
+ io-channel-cells property
+To: Svyatoslav Ryhel <clamor95@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250310075638.6979-1-clamor95@gmail.com>
+ <20250310075638.6979-2-clamor95@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Goran Radenovic <goran.radni@gmail.com>
-In-Reply-To: <3d0747b5-e73f-4212-893b-08f5a58b2cc4@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250310075638.6979-2-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Ok, thanks!
+On 10/03/2025 08:56, Svyatoslav Ryhel wrote:
+> This implements a mechanism to derive temperature values from an existing
+> ADC IIO channel, effectively creating a temperature IIO channel. This
+> approach avoids adding a new sensor and its associated conversion table,
+> while providing IIO-based temperature data for devices that may not utilize
+> hwmon.
+> 
 
-Best regards
-Goran
+You got comments from Rob few days ago to which you did not respond.
+Instead you decided to send next version, which hides the previous
+unresolved discussion.
 
-On 10.03.25 17:03, Krzysztof Kozlowski wrote:
-> On 10/03/2025 16:47, Goran Rađenović wrote:
->> From: Goran Rađenović <gradenovic@ultratronik.de>
->>
->> Ultratronik GmbH is a German electronics company:
->> https://www.ultratronik-ems.de/
->>
->> Signed-off-by: Goran Rađenović <gradenovic@ultratronik.de>
->> ---
->>   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> index 5079ca6ce1d1..563d319fb73e 100644
->> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> @@ -1599,6 +1599,8 @@ patternProperties:
->>       description: U.S. Robotics Corporation
->>     "^utoo,.*":
->>       description: Aigo Digital Technology Co., Ltd.
->> +  "^ux,.*":
-> Vendor prefixes shall match company name or domain, so: ultratronik
->
->> +    description: Ultratronik GmbH
->>     "^v3,.*":
->>       description: V3 Semiconductor
->>     "^vaisala,.*":
->
-> Best regards,
-> Krzysztof
+This patch does not look necessary based on earlier discussion.
+
+Best regards,
+Krzysztof
 
