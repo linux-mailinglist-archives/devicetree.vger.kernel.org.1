@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-156541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E74EA5C2E8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 14:41:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA24A5C2EE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 14:42:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70625176BE5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:41:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AAF0176B06
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9872D1CAA8F;
-	Tue, 11 Mar 2025 13:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68E701CAA8F;
+	Tue, 11 Mar 2025 13:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j+IL0ELQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CLkpjdpS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01ED01CAA87
-	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 13:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945431C5F39
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 13:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741700510; cv=none; b=BaKQtiIKLjtLfdYX0Vbmvv2OYWsJ+f38DgW6MGaHLGppfpvoEaav6oWJWsmQCLMkRboC7j6BIYy9cXpEr5yo2cQA8a1j8wWnfiVT1qjnTVdgkikG+ywYA5Fb68NCwX715VE5UUddUbZrdjd5fiMrbStbArRj+xK/bqhTV8Tatok=
+	t=1741700570; cv=none; b=Z7XV/Ft6GcG5AX1S2NEqORdkEGiadjbARnts5jDzxD9NEsxAD57wOu+yh8VDfUIIm1i9sT6nf6taCnYVpIqmgswXwqjIvMSojvnv2sSBO8buyMgVddyfbIUS4qPDe7I2R2Qm3eUMfsXQY9i5noAA32DzHh2mYvvyOXaF9Bv/n5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741700510; c=relaxed/simple;
-	bh=IBcbDWz+Jkvbt7LdP3cgmT2pR53Qjf6QGeKDZ6KkGtU=;
+	s=arc-20240116; t=1741700570; c=relaxed/simple;
+	bh=0GCrlN5KayRbpEQhJT2RkHo1RFpCIAplefLKyUYmVAw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oNMtCm/VLfTuPS3wBHUP16X0ryC61qM2U4cNPnCfM3bjCl/OSIoYvENgFBeicGIAWFi+dEwxjEhJUtw63lDxa5YjK3ecJ8dIGJ59r5hmZDyeXMvNUtK+0Cv3LS3XzB/m286Af1KEHs9jt2MBCfe8A38+g8J/67Mvv0MuMVjq1a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j+IL0ELQ; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:Content-Type; b=P9wMR9gxwN7FyXE6cIMXL5tK9nB8BRDRWjUdVF9JUEM2/2IKz8yY5QrCtCSPnwyvQY2w5RNXloDwMOWjOlm8/mY/YDctFgXo2AhM0XSAbM2ut6NUPTyuUuFqncpE5PA1Vnq5B0DQ62DaqKCmDxqVMcH+cOR28jZdt6uLPjf8qmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CLkpjdpS; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ac2c7a367d9so10069266b.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 06:41:47 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ac250d158a8so80375466b.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 06:42:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741700506; x=1742305306; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1741700567; x=1742305367; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=HdKPWEjQ9MubZzHzANAR1B1dJk3X5c8iz/F2XLpQWFQ=;
-        b=j+IL0ELQz+e6KdzCMOname0dW/+KXcH9VnXXF+ZBjzkmBy89cu2hFPqf5Vt2DSEiJQ
-         ggjN7rfwaTthFuEqFiwwNrr5Sd94BG/jVx0zZC3DT4WEempwvyUyH6weMlhsE+O2Tdvo
-         DzqOfKn5hRKXVbSaCfYlH0eMajNLRgZDlGUrniF2t5A0SERp6mtSt7pDym48RsnrWu7K
-         useBiPCUpYrRo/U3QTzgR7c8dUiK0zJ9SKRZFJw6T3Zfpmrpr7jzVMtWZVhs08JhU75Q
-         pdneuKlin5ie62iRxP1ai69G+2D5QJKnEo7kH1jE8iLj42BtErLlmIzqj9EIDSkgZk3z
-         t+kA==
+        bh=OK/mNeXOS3BnFUBUb28LMgXW4oDwAfaEiFXsceleu8s=;
+        b=CLkpjdpSN23fhc+4xAZIImy0Df2meoaScFZ59u1Q7PwLFzOR+7Y3hyJTDZpbLjbKZ0
+         hyoin1eibtEAXMce2hQxxCsah3GNlz063VlitnbWS3XX9Ermu3SQ0HSAo5hw1yeUg2L9
+         jh8/YQFjepjK01w/GdOQpsCjGhs5XKxRfI7y+4BTNigmtAqFyZDRD06uyHmamswg0tv3
+         i8REnoSvv40ie+VoLULb3n9Vkjb3s1erDcDfT7LzgOo3DdZJ8OuoI61IbxmseEb8bhKk
+         NfwHK9YYbAh9CVrDBCQ3gIk4zueh5FCgsMVzkGk/7edTsIuDEinq1OINBNn/4sI3IZo4
+         aMug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741700506; x=1742305306;
+        d=1e100.net; s=20230601; t=1741700567; x=1742305367;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HdKPWEjQ9MubZzHzANAR1B1dJk3X5c8iz/F2XLpQWFQ=;
-        b=uE/XOfzCobFVeN7NcaExFO2Rsh/pNnjMu5l9AlxKP3rjcxJKvFTIA2d1vzyrTayFeW
-         VXlO0SN4bGoVfBtjm3zdX4gEjUcVu8eVVabwtSfFWsvqiIDFKR2P7/xevI/5ZgovYq3p
-         ulyM+WblXUdyY0817tNWinXIW8eISke5eXMozOGr3fhGZ80OuVnEWP9q24IgoxUKSbJL
-         AwLbCbZlalrspHS5U/b4ubACgPkgzMkIUXyWxr6YJuVY+rEUjflNvUMAdNaJHY1qoQkL
-         iimLFrXLwLyZpsSJF6in4Y4SQaQix/ktw+Hnmjbae9H8kJKFsP7Pr3uvwDZp37vLrHMM
-         HIyw==
-X-Forwarded-Encrypted: i=1; AJvYcCUHRnj9/pOYkVLbI+3MIwJu3tV9tU1A2O7BAZwV0wJRVzDsyzESkH3l1WFDDA8wk3edfwYOe65sDVWy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+KRKjo5l5GC94HGUWdS+uy2TmI3xnyiZLas5vs5uLVecSkFFd
-	gPKQcwM8aPjYpQdirw/ruz8NmTmPX0qMvKWF9xzWVs3D7+fR3y8ivdIP9BAbjlY=
-X-Gm-Gg: ASbGncvmytP9AivwG4b53woKdweMUEqLdfavtRafMEw2MtwZpeLOX4zYwezAylg0utj
-	ya4jHPXbjqCV/LdKOdfcArQqxM2z7YUojlOOBrm1JEE7ZVZwIIlvhQAfOQARmHSNoaQU7+x0gyo
-	sXZGN43Opaa3HUORfDsOxwQpztbR//hzSJkbRvZlN+IGeSzVbdMpWLW8T76hY6QUZpljk6Qu8R4
-	IYoWoP9l3wybuSiH21LVKcz5YaD9WPwe1HHZbgDWSu2D5QFdFl5TjUfK7Idwy92QzmaGLrI10IU
-	k23xNePQ2GoElFNMkKKM1Mwz8Q1ue3ahjRyA1QJi3N9C+z/PoNsV2sg2sz1azVE=
-X-Google-Smtp-Source: AGHT+IEqEAGnHplIQlC9/HTd3OQLI+WAu1AQWvDUyhIkVSadRnO3CylrdWWKlM5lhSqAt8Davw0wjg==
-X-Received: by 2002:a17:906:7311:b0:abf:6f87:6730 with SMTP id a640c23a62f3a-ac2b9de959fmr168044566b.5.1741700506149;
-        Tue, 11 Mar 2025 06:41:46 -0700 (PDT)
+        bh=OK/mNeXOS3BnFUBUb28LMgXW4oDwAfaEiFXsceleu8s=;
+        b=ZTzO2anpDEfLy9Fv6+bmjULVwC27Ko5DCAPNUkeWNzt2A0s/hYJXsbU+iNRhV8JLJc
+         S+X5CNzyCXmhZfhNhiiW6MmKRjtklhmYxgm6cw036gM11b4Ej0Bg+Kk+I76qoa3C0u1T
+         IBNUrvNXRcB7EYaVOqM8rYOYHPXWUidydlOKU2FF0jzFuqYem/NlacAdz08XbvsKFHNr
+         TIPvnszLBpF4WhduTaFlKUhv6qnmkPOmfSfDs7BpPqBfGod9PeeRu0eGnPlqTvFuwM3/
+         uiFbuYyy70tSRnpqTLfv3pHeTb5l+UHHkvlvOMsJNN88PPdSzgeur+RZloxGaKQBkFPi
+         ZXYA==
+X-Forwarded-Encrypted: i=1; AJvYcCXEKo4uFuzJwUb0ZzIA5cGlxCzSXov0nikOr9RWd+yPBW2fKDCe4fj2vkmzzFjkD3knISBCzhnOEWfH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/o18ULGH/haZp/BnxRV7MIKzFhD5280xii/fuCZkHm+kVTnc2
+	0cxUQnr60UoV1a1j0SGDZxTMxiik39eyzNWd1+ZuVD7BhuHGkZQ9qhFLx4cGBQU=
+X-Gm-Gg: ASbGnct+FqdOJxnGhdVv7PJWB7yQxbm/Orp7uVcAmYsBfGLgxCQP1abdebNIjDhmiGw
+	NGEH3Pgd7UtjqOJgG6+JDqa7gx8fcNXEUzDL/fhQeNEkJo3jSSpwcZNyebxtBGh3+RaGKLy95Rk
+	XTICB1tzkLroQshWWbPK/DEqYyZB3eeSC66mTJOVDVV5qMuDQ5KKdckGk8PpHOo7vV0kknaE39R
+	WAdsRm3pyPEt7vgb+p/r7/TsTgiBXGfwviUoMBdRmuS8bsHzAuptBviJDt1c1Fn8i1f6T1y6KGC
+	hA9fw8KK/6UJ6ErTpkOMPWks10npzBzB9G+9VmOGNhdQjy5bidOsP+BBHE5yUAY=
+X-Google-Smtp-Source: AGHT+IHtY6iWQCXAHAWxWQCwXcAH70yQ6uYRmE6uUNf099ZZ+4osiFbnrB1uJPfMgJq80ObdnKhGcw==
+X-Received: by 2002:a17:906:f5aa:b0:ac1:4da:3edd with SMTP id a640c23a62f3a-ac2b9db47ddmr183374666b.1.1741700566810;
+        Tue, 11 Mar 2025 06:42:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.198.86])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac239517802sm915329766b.86.2025.03.11.06.41.44
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac256654fa6sm773804766b.93.2025.03.11.06.42.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Mar 2025 06:41:45 -0700 (PDT)
-Message-ID: <5a88dc9e-3952-478e-840c-5d6dac1cd81d@linaro.org>
-Date: Tue, 11 Mar 2025 14:41:42 +0100
+        Tue, 11 Mar 2025 06:42:46 -0700 (PDT)
+Message-ID: <c7c72397-c7d3-426d-b971-35b1cd213775@linaro.org>
+Date: Tue, 11 Mar 2025 14:42:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,8 +82,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 18/21] drm/msm/dpu: Implement 10-bit color alpha for
- v12.0 DPU
+Subject: Re: [PATCH v3 19/21] drm/msm/dpu: Implement CTL_PIPE_ACTIVE for v12.0
+ DPU
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
  <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
@@ -101,8 +101,8 @@ Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
  Srini Kandagatla <srinivas.kandagatla@linaro.org>,
  Rob Clark <robdclark@chromium.org>
 References: <20250221-b4-sm8750-display-v3-0-3ea95b1630ea@linaro.org>
- <20250221-b4-sm8750-display-v3-18-3ea95b1630ea@linaro.org>
- <4y2nj6qxbbp7etuweoyarcg7vpbyemparzclj7ulb46rxk7k3s@s6wjrjebuc3g>
+ <20250221-b4-sm8750-display-v3-19-3ea95b1630ea@linaro.org>
+ <5rlcxx7pcu32hz3r4qufqcq2jzk2z4g2ep7reecpm2kksttwyi@66p2u4nwfzx6>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -149,104 +149,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <4y2nj6qxbbp7etuweoyarcg7vpbyemparzclj7ulb46rxk7k3s@s6wjrjebuc3g>
+In-Reply-To: <5rlcxx7pcu32hz3r4qufqcq2jzk2z4g2ep7reecpm2kksttwyi@66p2u4nwfzx6>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/02/2025 17:25, Dmitry Baryshkov wrote:
->> -static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
->> -		struct dpu_plane_state *pstate, const struct msm_format *format)
->> +static void _dpu_crtc_setup_blend_cfg(const struct dpu_hw_ctl *ctl,
->> +				      struct dpu_crtc_mixer *mixer,
->> +				      struct dpu_plane_state *pstate,
->> +				      const struct msm_format *format)
->>  {
->>  	struct dpu_hw_mixer *lm = mixer->hw_lm;
->>  	uint32_t blend_op;
->> -	uint32_t fg_alpha, bg_alpha;
->> +	uint32_t fg_alpha, bg_alpha, max_alpha;
->>  
->>  	fg_alpha = pstate->base.alpha >> 8;
->> -	bg_alpha = 0xff - fg_alpha;
->> +	if (ctl->mdss_ver->core_major_ver < 12)
->> +		max_alpha = 0xff;
->> +	else
->> +		max_alpha = 0x3ff;
+On 21/02/2025 17:26, Dmitry Baryshkov wrote:
+> Minot nit below
 > 
-> So, CTL is passed only to get struct dpu_mdss_version? It can either be
-> passed directly or fetched via dpu_kms->catalog->mdss_ver
-
-Ack.
-
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+>> index 43a254cf57da571e2ec8aad38028477652f9283c..3e0bdd1100ebb0d302a852ceeaf8af86835e69a1 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+>> @@ -40,6 +40,7 @@
+>>  #define   CTL_INTF_FLUSH                0x110
+>>  #define   CTL_CDM_FLUSH                0x114
+>>  #define   CTL_PERIPH_FLUSH              0x128
+>> +#define   CTL_PIPE_ACTIVE               0x12C
 > 
->> +	bg_alpha = max_alpha - fg_alpha;
->>  
->>  	/* default to opaque blending */
->>  	if (pstate->base.pixel_blend_mode == DRM_MODE_BLEND_PIXEL_NONE ||
->> @@ -337,7 +343,7 @@ static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
->>  	} else if (pstate->base.pixel_blend_mode == DRM_MODE_BLEND_PREMULTI) {
->>  		blend_op = DPU_BLEND_FG_ALPHA_FG_CONST |
->>  			DPU_BLEND_BG_ALPHA_FG_PIXEL;
->> -		if (fg_alpha != 0xff) {
->> +		if (fg_alpha != max_alpha) {
->>  			bg_alpha = fg_alpha;
->>  			blend_op |= DPU_BLEND_BG_MOD_ALPHA |
->>  				    DPU_BLEND_BG_INV_MOD_ALPHA;
->> @@ -348,7 +354,7 @@ static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
->>  		/* coverage blending */
->>  		blend_op = DPU_BLEND_FG_ALPHA_FG_PIXEL |
->>  			DPU_BLEND_BG_ALPHA_FG_PIXEL;
->> -		if (fg_alpha != 0xff) {
->> +		if (fg_alpha != max_alpha) {
->>  			bg_alpha = fg_alpha;
->>  			blend_op |= DPU_BLEND_FG_MOD_ALPHA |
->>  				    DPU_BLEND_FG_INV_MOD_ALPHA |
->> @@ -482,7 +488,7 @@ static void _dpu_crtc_blend_setup_mixer(struct drm_crtc *crtc,
->>  
->>  		/* blend config update */
->>  		for (lm_idx = 0; lm_idx < cstate->num_mixers; lm_idx++) {
->> -			_dpu_crtc_setup_blend_cfg(mixer + lm_idx, pstate, format);
->> +			_dpu_crtc_setup_blend_cfg(ctl, mixer + lm_idx, pstate, format);
->>  
->>  			if (bg_alpha_enable && !format->alpha_enable)
->>  				mixer[lm_idx].mixer_op_mode = 0;
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c
->> index 3bfb61cb83672dca4236bdbbbfb1e442223576d2..75bf3521b03c8e243ccfe1fc226aa71f23b296df 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c
->> @@ -19,12 +19,20 @@
->>  
->>  /* These register are offset to mixer base + stage base */
->>  #define LM_BLEND0_OP                     0x00
->> +
->> +/* <v12 DPU with offset to mixer base + stage base */
->>  #define LM_BLEND0_CONST_ALPHA            0x04
->>  #define LM_FG_COLOR_FILL_COLOR_0         0x08
->>  #define LM_FG_COLOR_FILL_COLOR_1         0x0C
-> 
-> lowercase hex
-
+> lowercase hex, please.
 Ack
-
-> 
->>  #define LM_FG_COLOR_FILL_SIZE            0x10
->>  #define LM_FG_COLOR_FILL_XY              0x14
->>  
->> +/* >= v12 DPU */
->> +#define LM_BORDER_COLOR_0_V12		0x1C
-> 
-> lowercase hex
-> 
->> +#define LM_BORDER_COLOR_1_V12		0x20
->> +
->> +/* >= v12 DPU with offset to mixer base + stage base */
->> +#define LM_BLEND0_CONST_ALPHA_V12	0x08
-> 
-> This doesn't seem to be aligned properly
-
-That's only patch view... because I used tabs. I think existing code
-uses spaces, so I will switch to spaces.
-
 
 Best regards,
 Krzysztof
