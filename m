@@ -1,147 +1,156 @@
-Return-Path: <devicetree+bounces-156553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F207A5C549
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:13:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE146A5C5D3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 16:18:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B1A6167051
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 15:11:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C840C3B7EC6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 15:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94CC825E81A;
-	Tue, 11 Mar 2025 15:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9C0425E818;
+	Tue, 11 Mar 2025 15:15:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IDu6dlMi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LLe8AIPL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0262E25D8E8;
-	Tue, 11 Mar 2025 15:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E281E98FB;
+	Tue, 11 Mar 2025 15:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741705877; cv=none; b=CbPoUoL1AmNoJAt1mLq15/XiafRv2gk2QB12J3fwHf5eQbZ5b8yyW3RoMpae7ZMhOLeLjUWgFXQSk8kmL9NomQwU038fC9O1A8SlYYkTtJakWcziwb+U24E2pajAkO1PAFF0XJUpAGktgmZg8Ew7K+rqwNU3AS096VLjwN6jvBM=
+	t=1741706103; cv=none; b=MnmyT2NJqtPYrU+M8HJuy+4zvCErPe6Nnyki1GfDc/dy6t5XZeImV0ZzXNyoGMzO9huONZ9AStcgevXOfMtD3b4doJfmR5tQFQBD6BH3xc94dUdmWH95Q93Ed9TAAiNALDC8WJ5fOg6OLSp16Xne6h08gLY57sfdcJCakH+Xrm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741705877; c=relaxed/simple;
-	bh=/2JfqBfYxANVZwdS6FN2vkLC/ku+BK9lPPVgRVFC/x0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mhcOTrP33+laV2Zc2mwJyfOTWGE8BiJJ61Mzr8DYN5ITBjDUXO//WmyAcwyp/XyzY4N+6KIFIGmtKBlXCjSPryb1tswcsfxS126BYT5vzCSzDac2DXy+efP7POLzaE+bti23RIx9y4L9lsZu1q9+Y9eASi8WKRRODmnsq6uBsbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IDu6dlMi; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52B7oAR6024899;
-	Tue, 11 Mar 2025 15:11:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DUR/cWXH5NlTRsr2OBVhIWSYEd2H/cuBsfodsuw/YXg=; b=IDu6dlMiyvLb1UJf
-	KcQxmHCbn4yE9C5qZiXXhVaGPhhRN+dpJ+L7xWprYjZ82BmM2X7+OlVq1jgcrlSd
-	wtWBrPIP+sDkS+ijhRWeSC+D7ta1T0q32UrYj/jHZNLy+GVisXtAL+J7I0q6agUY
-	6mlFMLKHQ4vAHKEhcY1AKTLH+EmMJX1r+G/SfU5mVW6fucvVCuArvFRXeKO9Vgxq
-	sH3N/15rllbpriJLCY4aJ2NL/bIDos4oZdAeBgbVFUmJimjD5HfUsAW9mEy0zYT4
-	M+Jla7qx/HzAf7bX/FtLqqTkhLl3wY2MDxQR1rEho9pk2kgB2XtEDneqtHGlhC4e
-	Dkr85A==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ah4t1d0b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Mar 2025 15:11:09 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52BFB8CX008825
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Mar 2025 15:11:08 GMT
-Received: from [10.216.38.182] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 11 Mar
- 2025 08:11:04 -0700
-Message-ID: <c0430086-675d-b58c-4ef9-1bd9ee51d3db@quicinc.com>
-Date: Tue, 11 Mar 2025 20:41:01 +0530
+	s=arc-20240116; t=1741706103; c=relaxed/simple;
+	bh=1/1jP4bOvzaF/7PxxywwaioO02SmscSfTomG7fkckZo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WTwrmtI1s4sik9GkBZg1cbYTMKs7HSAqysCAOZS/Ds0WbQYm0h9u++1TP7dBMJ5PoxZjmp6FUtvLC5QN3QrQuzz3oBfJmtGC3S9x9Cna83gh9/ZL3b9Y2S6bwU5JcD316ATalffht67yhVR1vUZXMap0i/843y9RQ4nx0SB7IlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LLe8AIPL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08690C4CEEA;
+	Tue, 11 Mar 2025 15:14:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741706103;
+	bh=1/1jP4bOvzaF/7PxxywwaioO02SmscSfTomG7fkckZo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LLe8AIPLwFoitbv3b3VnX1Bd2TFoxKz76EHmRxYOPe1so01FfDN5g3DGx8yyJu4BV
+	 59eDWhvcTw27Aq9aePM2mPG5935tSXOHxSkKPmlUIl2wsQCQmM5saDdmd1CehFXWtP
+	 eEoy2rLq3GDI+nf68ODsZVL8QacV5U7YsW9EN+UEhzPX4stmaZVjE9HPDb4n8N3Tjq
+	 QZsHXlTKf9hp91InbT5B/XAEsEl9TeqW0UNrywIPnUWykyWUmxdNnh06EVvDhObM0V
+	 lTkpngFh3Ig2Gq3LFeScp3QGBmItt5QRnOk/VYZBh44evB6/0r+YHXxuLBRelv2Bu9
+	 yhPhZysIv5/tw==
+Message-ID: <23a5d017-06e5-4f4d-a522-1f4beb7a1f32@kernel.org>
+Date: Tue, 11 Mar 2025 16:14:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 1/4] dt-bindings: media: qcom,sm8550-iris: update power
- domain name
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML schema
+To: Purva Yeshi <purvayeshi550@gmail.com>, ukleinek@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vz@mleia.com,
+ piotr.wojtaszczyk@timesys.com
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250311125756.24064-1-purvayeshi550@gmail.com>
+ <af6ebce2-7256-48bd-94d4-dc81e2944966@kernel.org>
+ <47f6713b-b751-4791-9059-a128dd1fc71d@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Dmitry Baryshkov <lumag@kernel.org>
-CC: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250311-dtbinding-v1-0-5c807d33f7ae@quicinc.com>
- <20250311-dtbinding-v1-1-5c807d33f7ae@quicinc.com>
- <7yjj2eemvvvnsgv67d7tueid4h3n3onuou6ammx36am4qhfsal@xam3iamk4er3>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <7yjj2eemvvvnsgv67d7tueid4h3n3onuou6ammx36am4qhfsal@xam3iamk4er3>
-Content-Type: text/plain; charset="UTF-8"
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <47f6713b-b751-4791-9059-a128dd1fc71d@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Xy-gXHTNsqHwWFFly7DvqE3zpK5OtIeL
-X-Authority-Analysis: v=2.4 cv=fZ9Xy1QF c=1 sm=1 tr=0 ts=67d0528d cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=iFF1eBH5fexweo0nmsgA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: Xy-gXHTNsqHwWFFly7DvqE3zpK5OtIeL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-11_03,2025-03-11_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- phishscore=0 impostorscore=0 adultscore=0 spamscore=0 clxscore=1011
- malwarescore=0 mlxscore=0 lowpriorityscore=0 priorityscore=1501
- mlxlogscore=922 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503110095
+
+On 11/03/2025 15:55, Purva Yeshi wrote:
+>>>
+>>> Define properties:
+>>> Restrict `compatible` to `"nxp,lpc3220-pwm"` using `const`.
+>>> Limit `reg` to `maxItems: 1` to ensure a single register range.
+>>> Set `"#pwm-cells"` to `const: 3` for expected PWM cell properties.
+>>>
+>>> Mark `compatible` and `reg` as required properties.
+>>
+>> So it wasn't before? What are you implying here?
+> 
+> The compatible and reg properties were already present in the .txt file, 
+> but in a different format. I initially kept the commit message for them 
+> but have now removed it.
+
+What does it mean "different format"?
+
+...
+
+>>>
+>>>   create mode 100644 Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml b/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml
+>>> new file mode 100644
+>>> index 000000000..3e41cd291
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml
+>>> @@ -0,0 +1,45 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/pwm/nxp,lpc32xx-pwm.yaml#
+>>
+>> Filename matching compatible.
+> 
+> In the lpc32xx-pwm.txt file, the compatible property was defined as 
+> "nxp,lpc3220-pwm", so I have kept it the same. To ensure consistency 
+> between the filename and compatible, should I rename the file to 
+> nxp,lpc3220-pwm.yaml?
+
+Use whatever is there in the compatible property as the filename.
 
 
-On 3/11/2025 8:37 PM, Dmitry Baryshkov wrote:
-> On Tue, Mar 11, 2025 at 05:33:53PM +0530, Vikash Garodia wrote:
->> Not all platforms has a collapsible mx, so use the more generic naming
->> of mx in the binding.
-> 
-> I guess, it wasn't even tested...
-Not sure what made you guess so, let me check why my binding checker did not
-catch the bot reported warning.
-Regards,
-Vikash
-> 
->>
->> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
->> ---
->>  Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->> index e424ea84c211f473a799481fd5463a16580187ed..440a0d7cdfe19a1ccedefc207d96b26eed5d6630 100644
->> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
->> @@ -28,7 +28,7 @@ properties:
->>      items:
->>        - const: venus
->>        - const: vcodec0
->> -      - const: mxc
->> +      - const: mx
->>        - const: mmcx
->>  
->>    clocks:
->>
->> -- 
->> 2.34.1
->>
-> 
+Best regards,
+Krzysztof
 
