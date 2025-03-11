@@ -1,118 +1,84 @@
-Return-Path: <devicetree+bounces-156377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED121A5B718
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 04:08:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8BFEA5B72B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 04:18:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60AE516DB3F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:08:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 401D87A37A0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 03:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8941E9900;
-	Tue, 11 Mar 2025 03:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374551E5B87;
+	Tue, 11 Mar 2025 03:18:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OtjE3WsA"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="GG5GFchA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86CE1E7C1C;
-	Tue, 11 Mar 2025 03:08:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0755E79CD;
+	Tue, 11 Mar 2025 03:18:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741662510; cv=none; b=XVvLiT4H+B0kRM567VoeaprlLYOmCNPoEytxzaL3Rb7rahIb5sl1M1olEOWupF45xp8HWS48Ifb2SBAn+gZ17+JRMrBoKM8UcOkdTpaZoBoKAvL/sANOYkm/CW5K1G/F1JLgnZe2be97SU3HI/QD6/80EvKQdW54wz1G/9Ji2Zk=
+	t=1741663085; cv=none; b=nitaBBG2yLivF0xjh1kc+FFK3blFMN1Rraymh73rWo10y3EwG2kfEXHWIefg04WCXy9gmKDNkudu6jZzONMdeItDy4GMVaAZeAiCdZcqrP/AnD73A9aUWVhG3cNCaPW5y9vOlblHOYWQWE0pczTEX8GLkb4rgg9qeTm6TGL0Y2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741662510; c=relaxed/simple;
-	bh=qXZhNxUy9y5s5LhZ9M7FyoFK7Zgj7Uh6fOjZphxmzps=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mOIhGuxw6nVQzvA7JGCV3AHjmdKe3xwjaGQYD15AZPhgRFCIPf/vWuUIPtMYS4vpzmfQPVaxhMer58DYdqStF5YDI/fUsMF5QzyGAntpsBxLjrWZLBwJHBf0PnCTwid0/t/RsJtV4mIsCP9UyZYLW9roWfQkwn543DRwV2Z5O5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OtjE3WsA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8D2A0C4AF0B;
-	Tue, 11 Mar 2025 03:08:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741662510;
-	bh=qXZhNxUy9y5s5LhZ9M7FyoFK7Zgj7Uh6fOjZphxmzps=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=OtjE3WsAVX93Kfi+2HoCjHhOcJ27AmcZwt3ppnX7OdBdiKINw0kvkAWxX3hjiKQ80
-	 Rf6SydKIgqvgJykjLDe9wPNzruejDxMSR3HX3Byn8bzEUDX7qc2Q4tjUhTjcuMd3CC
-	 20cFVRBbXZINoWaN+CbOuVjtBo8sPd40iWWnS/EJ8wag4SV3yO5KMIDU+WZsGjRqsq
-	 ac+LuxbApCVBJI0j1uepMYZhlWPg+oljRRGX07Vlld9Sin7fxLuywK6nbYD36fMJlx
-	 C7IFeoKd90lAzTBIMDTJtMisZHKNXsX14hJxch/BXKtm9ouDu9TlqP7pyGIZdcwK8i
-	 i/UvkPb0bW9Cw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D99BC28B2E;
-	Tue, 11 Mar 2025 03:08:30 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 11 Mar 2025 11:08:30 +0800
-Subject: [PATCH v5 4/4] arm64: dts: Add gpio_intc node for Amlogic A5 SoCs
+	s=arc-20240116; t=1741663085; c=relaxed/simple;
+	bh=ZCiXBTN1s3AS+r3AOui8T9WHCHy18ApE6M8Au11Pvi8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YxE5n9PtjUjVRMZuGFCnhovR3mnvCO9NrxVvwwu0VrJI2N3whK4c0kp3Hc/qwAFHRi43D9iyGKQJxhoZOAGK+TGQ6boVUqhJzueBs0le7wg5/M9JGEv8Gq4Ot52or15ZFI51ZDVBePFel/ZIPYt0sDlxuxy7JzMcS04U7uhRR6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=GG5GFchA; arc=none smtp.client-ip=220.197.32.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=Aq8SV11ktNKPubNSIy42XayO8ZwBJ4qz7bkyi8r6F2Q=;
+	b=GG5GFchAxpAGPo82H5nUiF2ZbMql+rPtCfMG14RT6PpDA08JFfZvZ8YXfbX91T
+	SQcOsDkTcV0GT3KaFF0tBLdC1GEruSaWpfA8NtYG2yGJ9mn00zIenoqdX7j7OQjG
+	EMN1ggwZjC7VM/1o7BCBTqN+1Kv0Elzg7mDeoOJrrfNz0=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDXU9o_q89nCfS0AA--.943S3;
+	Tue, 11 Mar 2025 11:17:20 +0800 (CST)
+Date: Tue, 11 Mar 2025 11:17:18 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Stefan Agner <stefan@agner.ch>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/4] arm: fsl: drop usage of Toradex SOMs compatible
+ alone
+Message-ID: <Z8+rPvG177Csh2m1@dragon>
+References: <20250228151352.91768-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250311-irqchip-gpio-a4-a5-v5-4-ca4cc276c18c@amlogic.com>
-References: <20250311-irqchip-gpio-a4-a5-v5-0-ca4cc276c18c@amlogic.com>
-In-Reply-To: <20250311-irqchip-gpio-a4-a5-v5-0-ca4cc276c18c@amlogic.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741662508; l=835;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=+kt3Jevc/8KR/ZsMbFbD2TjHFreHkm3hzIePStnSOmI=;
- b=eLM/Fg5wgOWvIrSzv/pUKjogLQUlLKhAZf3PT9YVtWAK5FkKOLp0RACQSauS1ciE0UYl9a0Mz
- Ij0EYM0frGaBzdrNYdO1mOkwTSHZyLDePojzSAJbMs299zK8kH0EO2I
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250228151352.91768-1-francesco@dolcini.it>
+X-CM-TRANSID:Ms8vCgDXU9o_q89nCfS0AA--.943S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUcxpeUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxANZWfPo9QqJgAAsg
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Fri, Feb 28, 2025 at 04:13:48PM +0100, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> The Toradex SOMs cannot be used alone without a carrier board, so drop
+> the usage of its compatible alone.
+> 
+> Francesco Dolcini (4):
+>   dt-bindings: arm: fsl: drop usage of Toradex SOMs compatible alone
+>   ARM: dts: imx6qdl-apalis/colibri: Remove compatible from SoM dtsi
+>   arm64: dts: imx8qm-apalis: Remove compatible from SoM dtsi
+>   ARM: dts: vf610-colibri: Remove compatible from SoM dtsi
 
-Add GPIO interrupt controller device.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-index 17a6316de891..32ed1776891b 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -48,3 +48,15 @@ pwrc: power-controller {
- 		};
- 	};
- };
-+
-+&apb {
-+	gpio_intc: interrupt-controller@4080 {
-+		compatible = "amlogic,a5-gpio-intc",
-+			     "amlogic,meson-gpio-intc";
-+		reg = <0x0 0x4080 0x0 0x20>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		amlogic,channel-interrupts =
-+			<10 11 12 13 14 15 16 17 18 19 20 21>;
-+	};
-+};
-
--- 
-2.37.1
-
+Applied all, thanks!
 
 
