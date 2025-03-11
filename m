@@ -1,161 +1,226 @@
-Return-Path: <devicetree+bounces-156413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB765A5BA2D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:51:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F79A5BA3D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E17CD170DFA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:51:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 811807A5E44
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1DF02222B4;
-	Tue, 11 Mar 2025 07:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B955D223719;
+	Tue, 11 Mar 2025 07:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hBlgToLC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GlWn3Sq+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86C5146593;
-	Tue, 11 Mar 2025 07:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F19D223710;
+	Tue, 11 Mar 2025 07:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741679511; cv=none; b=XI5raFM0iSmJA0HIGUumFgOAn+Ua475xisOF8PGVuQy6Tgu1zvV8gOrQgC2UOmd1zLVecPY27xPvm+euF06uH5WVgc1HtC4HzCV9CF0lb/sz67+0ejm06f2QCwu14Rd/SeLzWAMYua6yvJYBohFFICebeXc8rlDfq8nZmzqXMeg=
+	t=1741679527; cv=none; b=tKmRN9E+XbNIcmaPkWIstSxflSTzw/kDPk7xeIYUAB3dN+DzO6XdbLSlvPrwbLwKMrsJ3kfz1MjJpfWwYXVVjYngjSn8rnMjf30BTiDothQMIHH9Vgpy9i4BB/V9k6ytLaQLqaHR+uMG4OEAxRNUrhPuubehMz6CGy/Da6J9olg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741679511; c=relaxed/simple;
-	bh=sgPc3Qvg0vgmi1gbRN19F9lZOqeVer1XVd9n2oDi5Nk=;
+	s=arc-20240116; t=1741679527; c=relaxed/simple;
+	bh=HfKcsZDJC2+EsMJOzdZg8I4d6CFSgODfRIZEeBSb+PE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q2FK899EcazCp62VWHZLjID8J1oBCYwSMjJytd8kYuugLJ7puPpfh2ghuH+ZpdEdbeb/cYar+Wkv5LfNyMMaxi+i7ovsqZpMJRWE6jA6WTto3BBZl9zJ81G/fVArkMSKYi/PdNYDN6/Et75s0c0rGwInr+5mZ+hvKHa9aRp7hKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hBlgToLC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B819EC4CEE9;
-	Tue, 11 Mar 2025 07:51:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cspk3g21zCUycujXGxVZ0gsiop4kAbEILgTaHeCmRM4H0/2yTwbUrodaKiGwK+jWc9hk3ZcVfQ4cBK9Votabv5yZUwOhbKG8S2KEedgIniqYoCpDikngRYNcXVUdoVB9rbf3Ws5slYY58tyzJBrq2d1eK4YK+0UdQNJ2bq5w8Qw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GlWn3Sq+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 881EAC4CEE9;
+	Tue, 11 Mar 2025 07:52:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741679511;
-	bh=sgPc3Qvg0vgmi1gbRN19F9lZOqeVer1XVd9n2oDi5Nk=;
+	s=k20201202; t=1741679527;
+	bh=HfKcsZDJC2+EsMJOzdZg8I4d6CFSgODfRIZEeBSb+PE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hBlgToLCWNhHLQM49b0jfSigvXzWgDtpL4wroyDom0phMXBTPN/44Iqyvdw1dr4He
-	 48/fKjrsIbLP82a0DaqlamJ6Nc/ZXp9W8dUS2g3AV2dD4ufXMyyed9zWq4jsaQ5R30
-	 wP+MyCVPxyX0eqD9FGpOiROcux4u3HxxeHRiw3KVuquuzbphqV62qdPjBs7AA/aCvX
-	 1uyVADxfKpDtjqwCXCqmYAr0F98W0y+XQbWI/ASI+Tyf+r0caRUDXQnCddp36vyFiy
-	 4C/huKSzMg593dmW4vrZJZRhvSIBf3utvIDxILeOHV0x68VWaTgjb6JEGjG7u40wJK
-	 Fix209mp90HcQ==
-Date: Tue, 11 Mar 2025 08:51:48 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Matt Coster <matt.coster@imgtec.com>
-Cc: Frank Binns <frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>, 
-	Alessio Belle <alessio.belle@imgtec.com>, Alexandru Dadu <alexandru.dadu@imgtec.com>
-Subject: Re: [PATCH v3 02/18] dt-bindings: gpu: img: Add BXS-4-64 devicetree
- bindings
-Message-ID: <20250311-bizarre-debonair-macaque-451c4f@krzk-bin>
-References: <20250310-sets-bxs-4-64-patch-v1-v3-0-143b3dbef02f@imgtec.com>
- <20250310-sets-bxs-4-64-patch-v1-v3-2-143b3dbef02f@imgtec.com>
+	b=GlWn3Sq+A9WiR36/4he/MFeWaEc/E2RmM+kO/AG+SyfsjUjY1tmjPS595tWaaRZSR
+	 jK7/n7ubXCUSDyx6YnlePq/k+gr1gcEDfQhSLmpAFcFIGLXepaec8ydoXIqW1d/udR
+	 20PX2G7QqjLsutGT5M+73NLnlTuUsnMy/b4g7dv20gJOsqLastLX6cy4SgR8b4xGuF
+	 hlq/2jcba+J6j/7aAhsVJNYnC2XYgdAGMbofu2RmwdKpsra1Wuk14bJDm23GdahIBw
+	 c717rawmdYpdB+syU9d1OHoTChHQJ5gzL4dgRjDevK5vAQx8BmWJRYi1pLHIZsGRox
+	 7Df+FiN2XetcA==
+Date: Tue, 11 Mar 2025 08:52:04 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, 
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
+ color encoder
+Message-ID: <20250311-thoughtful-fluffy-echidna-b37b7c@houat>
+References: <20250304101530.969920-1-victor.liu@nxp.com>
+ <20250304101530.969920-4-victor.liu@nxp.com>
+ <20250304152320.GA2630063-robh@kernel.org>
+ <1891036.atdPhlSkOF@steina-w>
+ <20250305163805.GA2071011-robh@kernel.org>
+ <7d98163d-10c8-457d-92e7-6a1d6e379beb@nxp.com>
+ <20250306-kangaroo-of-pastoral-typhoon-8aefb2@houat>
+ <0e82c4d6-8b93-4dd0-ae34-155e537ab344@nxp.com>
+ <20250310-hopeful-helpful-quoll-e0dee8@houat>
+ <77beb311-c836-4908-bfa6-fbeda69eee99@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vsisrz3i6oudetjw"
 Content-Disposition: inline
-In-Reply-To: <20250310-sets-bxs-4-64-patch-v1-v3-2-143b3dbef02f@imgtec.com>
+In-Reply-To: <77beb311-c836-4908-bfa6-fbeda69eee99@nxp.com>
 
-On Mon, Mar 10, 2025 at 01:10:26PM +0000, Matt Coster wrote:
-> Unlike AXE-1-16M, BXS-4-64 uses two power domains.
-> 
-> Like the existing AXE-1-16M integration, BXS-4-64 uses the single clock
-> integration in the TI k3-j721s2.
-> 
-> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> ---
-> Changes in v3:
-> - Include adding the second power domain so it's in context
-> - Remove unnecessary example
-> - Link to v2: https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-8-3fd45d9fb0cf@imgtec.com
-> Changes in v2:
-> - Use normal reg syntax for 64-bit values
-> - Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1-v1-8-4ed30e865892@imgtec.com
-> ---
->  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 34 +++++++++++++++++++++-
->  1 file changed, 33 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> index 5c16b2881447c9cda78e5bb46569e2f675d740c4..d9409d33154d429019776ddbf9d123b33f8c9740 100644
-> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> @@ -18,6 +18,11 @@ properties:
->                - ti,am62-gpu
->            - const: img,img-axe-1-16m
->            - const: img,img-rogue
-> +      - items:
-> +          - enum:
-> +              - ti,j721s2-gpu
-> +          - const: img,img-bxs-4-64
-> +          - const: img,img-rogue
->  
->        # This legacy combination of compatible strings was introduced early on
->        # before the more specific GPU identifiers were used.
-> @@ -49,6 +54,7 @@ properties:
->    power-domain-names:
->      items:
->        - const: a
-> +      - const: b
 
-No, you just affected old device claiming it has two items. What's more,
-it's not synced with power-domains. Both properties must have the same
-constraints, but above power domains have "anything".
+--vsisrz3i6oudetjw
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 3/5] dt-bindings: display: simple-bridge: Document DPI
+ color encoder
+MIME-Version: 1.0
 
->  
->    dma-coherent: true
->  
-> @@ -74,12 +80,38 @@ allOf:
->          - power-domains
->          - power-domain-names
->  
-> +  # Cores with one power domain
+On Tue, Mar 11, 2025 at 10:38:37AM +0800, Liu Ying wrote:
+> On 03/10/2025, Maxime Ripard wrote:
+> > On Fri, Mar 07, 2025 at 11:10:00AM +0800, Liu Ying wrote:
+> >> On 03/06/2025, Maxime Ripard wrote:
+> >>> On Thu, Mar 06, 2025 at 03:02:41PM +0800, Liu Ying wrote:
+> >>>> On 03/06/2025, Rob Herring wrote:
+> >>>>> On Wed, Mar 05, 2025 at 10:35:26AM +0100, Alexander Stein wrote:
+> >>>>>> Hi,
+> >>>>>>
+> >>>>>> Am Dienstag, 4. M=E4rz 2025, 16:23:20 CET schrieb Rob Herring:
+> >>>>>>> On Tue, Mar 04, 2025 at 06:15:28PM +0800, Liu Ying wrote:
+> >>>>>>>> A DPI color encoder, as a simple display bridge, converts input =
+DPI color
+> >>>>>>>> coding to output DPI color coding, like Adafruit Kippah DPI hat[=
+1] which
+> >>>>>>>> converts input 18-bit pixel data to 24-bit pixel data(with 2 low=
+ padding
+> >>>>>>>> bits in every color component though). Document the DPI color en=
+coder.
+> >>>>>>>
+> >>>>>>> Why do we need a node for this? Isn't this just wired how it is w=
+ired=20
+> >>>>>>> and there's nothing for s/w to see or do? I suppose if you are tr=
+ying to=20
+> >>>>>>> resolve the mode with 24-bit on one end and 18-bit on the other e=
+nd, you=20
+> >>>>>>> need to allow that and not require an exact match. You still migh=
+t need=20
+> >>>>>>> to figure out which pins the 18-bit data comes out on, but you ha=
+ve that=20
+> >>>>>>> problem with an 18-bit panel too. IOW, how is this any different =
+if you=20
+> >>>>>>> have an 18-bit panel versus 24-bit panel?
+> >>>>>>
+> >>>>>> Especially panel-simple.c has a fixed configuration for each displ=
+ay, such as:
+> >>>>>>> .bus_format =3D MEDIA_BUS_FMT_RGB666_1X18
+> >>>>>>
+> >>>>>> How would you allow or even know it should be addressed as
+> >>>>>> MEDIA_BUS_FMT_RGB888_1X24 instead? I see different ways:
+> >>>>>> 1. Create a new display setting/compatible
+> >>>>>> 2. Add an overwrite property to the displays
+> >>>>>> 3. Use a (transparent) bridge (this series)
+> >>>>>>
+> >>>>>> Number 1 is IMHO out of question.=20
+> >>>>>
+> >>>>> Agreed.
+> >>>>>
+> >>>>>> I personally don't like number 2 as this
+> >>>>>> feels like adding quirks to displays, which they don't have.
+> >>>>>
+> >>>>> This is what I would do except apply it to the controller side. We =
+know=20
+> >>>>> the panel side already. This is a board variation, so a property ma=
+kes=20
+> >>>>> sense. I don't think you need any more than knowing what's on each =
+end.=20
+> >>>>
+> >>>> With option 2, no matter putting a property in source side or sink s=
+ide,
+> >>>> impacted display drivers and DT bindings need to be changed, once a =
+board
+> >>>> manipulates the DPI color coding.  This adds burdens and introduces =
+new
+> >>>> versions of those DT bindings.  Is this what we want?
+> >>>
+> >>> There's an option 4: make it a property of the OF graph endpoints. In
+> >>> essence, it's similar to properties that are already there like
+> >>> lane-mapping, and it wouldn't affect the panel drivers, or create an
+> >>> intermediate bridge.
+> >>
+> >> I don't see lane-mapping anywhere. Do you mean data-mapping instead?
+> >> data-mapping is not defined in dtschema. Only lvds-codec.yaml defines
+> >> data-mapping in endpoint.
+> >=20
+> > I meant as a general concept. The properties are data-lanes and
+> > clock-lanes in
+> > Documentation/devicetree/bindings/media/video-interfaces.yaml
+>=20
+> This requires referenceing video-interfaces.yaml in existing DT binding d=
+ocs
+> and driver modifictions, which adds burdens.
 
-Drop
+If burden is an issue, any new driver also adds burden, thus we
+shouldn't merge anything anymore and we can stop there?
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: img,img-axe-1-16m
-> +    then:
-> +      properties:
-> +        power-domain-names:
-> +          minItems: 1
+It's not black and white, it should be managed, and here it's
+manageable and / or mitigated.
 
-Drop
+> >> With option 4, I guess you meant display sink drivers, i.e., panel and
+> >> bridge drivers, wouldn't be affected. Then, display source drivers, i.=
+e.,
+> >> display controller and bridge drivers, would be affected. This adds
+> >> burdens for driver developers/maintainers(though almost no effort from
+> >> DT's PoV), doesn't it?
+> >=20
+> > Not necessarily, panels have a phandle to the parent endpoint too so
+> > they can do that walk and configure their format if it's any easier.
+>=20
+> I'm sorry, I don't get your meaning here.  I have no idea how to support
+> this new property in endpoint-base(graph.yaml) or video-interfaces.yaml
+> _without_ changing existing display source drivers.
 
-> +          maxItems: 1
-> +
-> +  # Cores with two power domains
+Make a helper, and drivers can always call that helper. It will be a
+single function call, and panel-simple will cover most of the existing
+user-base already.
 
-Drop
+Otherwise, we have the option to use coccinelle if you want to mass
+convert it.
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: img,img-bxs-4-64
-> +    then:
-> +      properties:
-> +        power-domain-names:
-> +          minItems: 2
-> +          maxItems: 2
+> >> Moreover, why it has to be the display sink drivers which are not affe=
+cted?
+> >> DT writers might choose to set the format at the sink endpoint, e.g., =
+setting
+> >> RGB666 at the sink endpoint of a RGB888 DPI panel or bridge.
+> >=20
+> > Why wouldn't you run the panel at the highest bpc possible?
+>=20
+> Because hardware designers route less data signals than regular ones to t=
+he
+> DPI panel or bridge.
 
-Missing constraints for power-domains.
+Sure, and that's a hardware property, that's what your bridge or that
+property would cover. It wouldn't cover why someone would want to change
+*that*, or I didn't underdstand what you meant?
 
-Best regards,
-Krzysztof
+Maxime
 
+--vsisrz3i6oudetjw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZ8/rowAKCRDj7w1vZxhR
+xfLwAP0V+VJ1dKVKkgzDnIWlw6E9VjMsIYHGeoJxWA7n2WZf2QD/erk64+1gK+oQ
+aHQalpRgzmrf7lJaii1ZTnzvVEliyAg=
+=a9fj
+-----END PGP SIGNATURE-----
+
+--vsisrz3i6oudetjw--
 
