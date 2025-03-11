@@ -1,127 +1,117 @@
-Return-Path: <devicetree+bounces-156690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03399A5D06C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:07:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B499A5D070
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:08:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62A243A2730
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:07:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B0EE3A376F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:07:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372B0264615;
-	Tue, 11 Mar 2025 20:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06BB52641FE;
+	Tue, 11 Mar 2025 20:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPGRFmy0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tjeq6X04"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D85322F169;
-	Tue, 11 Mar 2025 20:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D098C2641C3;
+	Tue, 11 Mar 2025 20:07:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741723624; cv=none; b=EmnLz/YYS/0eJETueAD9GALrM4EhjPwT+w3N4i3mfPv2pV95KNWVhLqf4opgnuzccuRy1AnmuJ5Ct7+EtieS7ea3q1OpkXYBPhSL1i9aspH85/6/iSqasbeOYhmF28WgxWAXdJ3dihrHlOFzhplz3dwiEoL270Se/KoeYdWqnBc=
+	t=1741723668; cv=none; b=NXNDRoPNWQIPSv5yY0d9jx0r+GO0jcWjyJ0GgyyKNMvlmo7bIj5+WwF85fDarEvkVrln3qSOCIYskAaCiXY6PfJYVF3MlR77Jxwe4tdq+NHT3BuMGsJefFZSv32F3S2axsj1Ypr3nNtqQ01v8nvN2qfSVk3HEmT4FQMKYce8OcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741723624; c=relaxed/simple;
-	bh=vmaAEzFBzlwDTRy5wbpxrPDsyq9A9SymsOA8U2CimH0=;
+	s=arc-20240116; t=1741723668; c=relaxed/simple;
+	bh=kypsoT+y8Xwt8jAYhLNEnwar1djrWfc1JLO5IbchjC0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IHYlcdvDJ2uQaD9Y3TCQT8N98B6Hpclz/ffT8FWFe14P5YUiV98XZ2Ymd7F2pfu6du8bpC0xO7ILo7X7tRJbWVZQKBL7SEvhmGnGCgd+iq49E+rZrSzplaQpp43ywk8jhkSP7RMnvtH/5yvMrFEJmh7s9wmV9zL/4WTJQ3Fy2JE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPGRFmy0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42233C4CEE9;
-	Tue, 11 Mar 2025 20:07:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=B523K5qL4TWgucpbsXhFpGb807S/k44+ArhKBZwcy6cq/TcAfgo+VOhFR+rGKaS6M9mlVQS5SLG6YG0bVPQodXsHxFqLWEQaglYYpk0Ir6I6bSrKVaQ0aqKCcXQGlDCiAnpPHqNFzoLlLmW11dW1yitl6I9NZljIRcpYHOGeapA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tjeq6X04; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADF50C4CEE9;
+	Tue, 11 Mar 2025 20:07:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741723623;
-	bh=vmaAEzFBzlwDTRy5wbpxrPDsyq9A9SymsOA8U2CimH0=;
+	s=k20201202; t=1741723668;
+	bh=kypsoT+y8Xwt8jAYhLNEnwar1djrWfc1JLO5IbchjC0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CPGRFmy0YVDPHDZ7+K5ZTo4vlxXOfDmTaKHtwHWjkPwPsuD0S+rT853k4/cIXkN/Z
-	 SY3BYWAPve5Ok17t8mhicA4mhb7c0uBGGXA0ToN9E4WMR9cNXfgFElMzI3qWXI0XNp
-	 rhRJryEkB/c5tLMqPviYw8mea5GMaLjULNp9s6D4XEC9FHQdt6QI5eiEuHloahwB2j
-	 XA7lfhFwWnvSE9f2mkLHjSJaBm4klpwloKDLGhgKR60XEBmPwkTn4fDVl9P/Rhirda
-	 zN3OFgHa2bw1t+CFKFm2GKMnIeoNQjx2dZ+dBRMDHuPTSSYSj9gObLOB08K8iIVkvQ
-	 1/zGT3HdwoxNg==
-Date: Tue, 11 Mar 2025 15:07:02 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Friday Yang <friday.yang@mediatek.com>
-Cc: linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	Yong Wu <yong.wu@mediatek.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	b=Tjeq6X0429QkGYOfvtTSP68hCTEAk7tXifXZWYmaYPtIW1yT3Z41d3tlZ6tAEBjV6
+	 Nu5ijlgHQ8JR3KznPZcuksAkqMTzcrY0zIikKCMTg9syTFJy/7+Sd5RSy63wTFYru0
+	 4b87SAF4Ki23rjhuGrZV/ndPPHutoLSxxVBdiShjCDPfg01YMYUslYfTknrK/mqRyu
+	 kr2vBuysMCVssvx/2bGh2sClVnz81+Y36YPSlAuKj8angw/Kx9mARrh7Gxbbr5IJIg
+	 MoU+KZjksqaamOCy4qFUJF8+2Aia6G7AuovSHoL3JC1GLRErJqW0/4dtK7h4BXEOKB
+	 gysic/nHt3nUQ==
+Date: Tue, 11 Mar 2025 21:07:45 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: memory: mediatek: Add SMI reset and
- clamp for MT8188
-Message-ID: <174172361378.44650.15345202042780383326.robh@kernel.org>
-References: <20250311122327.20685-1-friday.yang@mediatek.com>
- <20250311122327.20685-2-friday.yang@mediatek.com>
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/2] Add gpio-ranges property for EN7581 gpio controller
+Message-ID: <Z9CYEZloamPhVdBS@lore-desk>
+References: <20250307-en7581-gpio-range-v1-0-de1262105428@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="icN7TOB+24o1XSzr"
+Content-Disposition: inline
+In-Reply-To: <20250307-en7581-gpio-range-v1-0-de1262105428@kernel.org>
+
+
+--icN7TOB+24o1XSzr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250311122327.20685-2-friday.yang@mediatek.com>
+Content-Transfer-Encoding: quoted-printable
 
+> Introduce missing gpio-ranges property for Airoha EN7581 evaluation
+> board
+>=20
 
-On Tue, 11 Mar 2025 20:23:21 +0800, Friday Yang wrote:
-> From: "Friday Yang" <friday.yang@mediatek.com>
-> 
-> On the MediaTek platform, some SMI LARBs are directly connected to
-> the SMI Common, while others are connected to the SMI Sub-Common,
-> which in turn is connected to the SMI Common. The hardware block
-> diagram can be described as follows.
-> 
->              SMI-Common(Smart Multimedia Interface Common)
->                  |
->          +----------------+------------------+
->          |                |                  |
->          |                |                  |
->          |                |                  |
->          |                |                  |
->          |                |                  |
->        larb0       SMI-Sub-Common0     SMI-Sub-Common1
->                    |      |     |      |             |
->                   larb1  larb2 larb3  larb7       larb9
-> 
-> For previous discussion on the direction of the code modifications,
-> please refer to:
-> https://lore.kernel.org/all/CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=wXpobDWU1CnvkA@mail.gmail.com/
-> https://lore.kernel.org/all/CAPDyKFpokXV2gJDgowbixTvOH_5VL3B5H8eyhP+KJ5Fasm2rFg@mail.gmail.com/
-> 
-> On the MediaTek MT8188 SoC platform, we encountered power-off failures
-> and SMI bus hang issues during camera stress tests. The issue arises
-> because bus glitches are sometimes produced when MTCMOS powers on or
-> off. While this is fairly normal, the software must handle these
-> glitches to avoid mistaking them for transaction signals. What's
-> more, this issue emerged only after the initial upstreaming of this
-> binding. Without these patches, the SMI becomes unstable during camera
-> stress tests.
-> 
-> The software solutions can be summarized as follows:
-> 
-> 1. Use CLAMP to disable the SMI sub-common port after turning off the
->    LARB CG and before turning off the LARB MTCMOS.
-> 2. Use CLAMP to disable/enable the SMI sub-common port.
-> 3. Implement an AXI reset for SMI LARBs.
-> 
-> This patch primarily add two changes:
-> 1. Add compatible for SMI sub-common on MT8188 SoC.
-> 2. Add 'resets' and 'reset-names' properties for SMI LARBs to
->    support SMI reset operations.
-> 
-> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+Hi Linus and Angelo,
+
+is it fine if this series goes via linux-mediatek tree?
+en7581_pinctrl node is only defined there for the moment.
+
+Regards,
+Lorenzo
+
 > ---
->  .../mediatek,smi-common.yaml                  |  2 ++
->  .../memory-controllers/mediatek,smi-larb.yaml | 19 +++++++++++++++++++
->  2 files changed, 21 insertions(+)
-> 
+> Lorenzo Bianconi (2):
+>       dt-bindings: pinctrl: airoha: Add missing gpio-ranges property
+>       arm64: dts: airoha: en7581: Add gpio-ranges property for gpio contr=
+oller
+>=20
+>  Documentation/devicetree/bindings/pinctrl/airoha,en7581-pinctrl.yaml | 3=
+ +++
+>  arch/arm64/boot/dts/airoha/en7581-evb.dts                            | 4=
+ ++++
+>  2 files changed, 7 insertions(+)
+> ---
+> base-commit: a8a297e8bb3dd304cac77f7c435a4983d885a657
+> change-id: 20250307-en7581-gpio-range-fceb30c7e2c9
+>=20
+> Best regards,
+> --=20
+> Lorenzo Bianconi <lorenzo@kernel.org>
+>=20
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+--icN7TOB+24o1XSzr
+Content-Type: application/pgp-signature; name=signature.asc
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ9CYEQAKCRA6cBh0uS2t
+rMEWAP46Y725zv4QZ2O/ml8GZ0JZ2mc8jhx0fJFGt3Hkmmo2AAD/aNhB7oE+OqvP
+7D82+qP5g/4Qg6+HtlRX/B6Gk78LYQg=
+=nXDU
+-----END PGP SIGNATURE-----
+
+--icN7TOB+24o1XSzr--
 
