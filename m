@@ -1,94 +1,63 @@
-Return-Path: <devicetree+bounces-156526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37ABDA5C14E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:35:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29FD5A5C19F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 035313AC674
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:34:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D3C3167D6B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DAFA256C6F;
-	Tue, 11 Mar 2025 12:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4352025485A;
+	Tue, 11 Mar 2025 12:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B+TNxXOU"
+	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="w6IeK/gp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com [95.215.58.187])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933A6253B6A;
-	Tue, 11 Mar 2025 12:34:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D3C250C11
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 12:47:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741696453; cv=none; b=RFucZxNul1tw010bNaP6c4bw9KIhdaZ590Vy+FAbuVLfIUgpIKar1ZPpfdLZuaVTgMD0MTvN1zKgpvGTTURPcQYtOx6+kIzhyb4F97lypBetJE1Fo/wKi5xU8ok4wBU680Eq2sj+73MLjulJ0VflbTff85RpG25UeJerROFrdUc=
+	t=1741697282; cv=none; b=lEzkzYXYx7mz8cZXR3U5a0zSC+8Lgug83qRi4qzI9vSJ+pB+zdA9YbXqKoQMGkU1Q3G1++fxA6yOUCAmbBbSwRzBTarLXyVUDqndHuWxWOCmMzyCwykMltsLaF/Sb1CdLwsm3GLPH8/k31BQsIXvhgfdoJnpNz+Msmt137uidrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741696453; c=relaxed/simple;
-	bh=addBakMJtFipeP5Dm9M+uBzjJaYdDmTB6XxVM3YiFNA=;
+	s=arc-20240116; t=1741697282; c=relaxed/simple;
+	bh=dKkrGLfsNWmwZpgLMtMYGU1kT8M07YSZYhTzAqh3Mdk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b29Poll4WUDMFTMg01mhRdDyN5eZU7ElC/fygNGs1umXJDRcXoao8jSZCVETJrXOjvQj5qkWwss6LUbTHXbhgaY11xjHuLyDmNDrRDXUlyneYlq1PbG7YGmrcA6Bd3Gf/VIiKOdUL8xRXJqoQXdyxJMxhm7c1WnQp2Y1et+aDoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B+TNxXOU; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7c3bf231660so558493685a.0;
-        Tue, 11 Mar 2025 05:34:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741696450; x=1742301250; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=m1ZxqjyMUd+isnYc/2JZqNQs5zU7eDZecHhSMewZT7k=;
-        b=B+TNxXOUESk9yQpQv+5qmeChu5CC8kSE1wwoCtyl7amr2MuqPf0dpirEQFUXrwvqth
-         avV7uVarGsNVyKyDVhslvfhOyC6/OIdM4cFArFnn95j3GrZv0y2rPAzfmweeFafHtLBP
-         B6GItnEejDvx01k4wVa95yXyEqeqdyyHPLtxC8Q5io8Wu0Pq3I77AyyXOtKhKGYZEpZp
-         FhEEKaO8ZUdL6ObWBX0DGfbw1XK/JvExo2tbnesMLFUIMrdFr7O/LSZADZV+acAJXfaF
-         +c4YLAV6fztuSn4SlNSwZHT7rOsr2QQY+xMeR1pEg4xyIyI5f2WSvwtP6AkcXxi5Ysyk
-         XAOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741696450; x=1742301250;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m1ZxqjyMUd+isnYc/2JZqNQs5zU7eDZecHhSMewZT7k=;
-        b=Pf91e8/+0zjlFzg+9IBbXFxixV3Jx+SIe1BMcwZcDmYJ35TXQ2h6Oscn0GPNKTnt7r
-         6UxcGerhu2wT1NiWLmpgsgKfxgRVsQ3iSww8h6Y5RsNReDGvrctRI71Kt8dGxv5DFXMi
-         EqOeiPqRtmR17Ebk5EufOMgxwb+ujN5DTlcuuQHCSOAROe61rI60AFttYe3G7FRnFwRD
-         P4BdXnJ7YojtYXo0Hph43xes+ynFSymPBuxblHEB9D5d502i6ka1FEpj51hNaR7g0RTO
-         Scb3OAmblvlhkAdJ0o0agD30WMyRP+N7RTP4j041D8qMwuO7vReFBxaq6c3MJ5Sc9gMA
-         OfiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUr2YUBsclp3xLz5JmWcoXC/iWBa1qschUBiXU9lfkopMsDQy+UWl3yt2+szyn7BX0R1GOtxI9fukLazNpA@vger.kernel.org, AJvYcCX2r1YrZSjmgooPwXlE4uAiEQjhOdpLmaa+CnSs3aO1tetDjrl/7+kYc24BWD6rklt028Mvb78DhMXs@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIEywC91YAEZtQMwPbvSv8TLD4VUuYd+QnljA9W9NhQTU+jpJZ
-	Wp2+zypB0p8N+uuQEtjrsdaljBBpZ2/LQAg7dhN0gaNUpGOGzCNa
-X-Gm-Gg: ASbGncusn9woB92xjaaBb62RwNvsQ/Kx/6HHRn1ZxW1o1agp6NsG8yHsrk/TPHs+s46
-	YQmYnYNBeJE7Dn7qRffeTsLz9w4ApI6B6OcUb3Uf1d3QzRIlAiCM9xqxlK82FKS/76Tn+FxWvCS
-	trxkMBFxf8r4iOpDp3DEnYnX4Bin4quB/utgNteb5bFp/zl0KSqwqqGgBzqwhqtHjEWtG+VEJ/p
-	n14hPmzvBdHaBxbq16sTbFF3xkLqNgUrmHFcMYyDp7Gkzf1HiiI3Ri5w7QTOJRphRSG9w78zsFY
-	0A/Q6OHNOzKVfIH6JSCo
-X-Google-Smtp-Source: AGHT+IFU2cAqaMeCXlZ0Hqy6Zv7mfjOYRy5JKPusGv2guBlnRHiq/LPliOv7yz6eaX2PsMQjmuIglQ==
-X-Received: by 2002:a05:620a:26a3:b0:7c5:55f9:4bc1 with SMTP id af79cd13be357-7c555f94e42mr850962085a.42.1741696450372;
-        Tue, 11 Mar 2025 05:34:10 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c56630e44dsm34135885a.86.2025.03.11.05.34.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Mar 2025 05:34:09 -0700 (PDT)
-Date: Tue, 11 Mar 2025 20:34:02 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Jonathan Corbet <corbet@lwn.net>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, Charlie Jenkins <charlie@rivosinc.com>, 
-	Evan Green <evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Jesse Taube <jesse@rivosinc.com>, Andy Chiu <andybnac@gmail.com>, 
-	Alexandre Ghiti <alexghiti@rivosinc.com>, Yong-Xuan Wang <yongxuan.wang@sifive.com>, 
-	Yu Chien Peter Lin <peterlin@andestech.com>, Samuel Holland <samuel.holland@sifive.com>
-Cc: linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, 
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH v4 0/3] riscv: Add bfloat16 instruction support
-Message-ID: <d6t25jmcf57sqpjqwykhdf3ju6v3wwpyaiumll4x6bjfhcohl5@oikmnpusjn6u>
-References: <20250213003849.147358-1-inochiama@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kI/92x4I8PGJUKjP3QZsrwkJzhkszkV5aZf6ALbiTyJTq4FQ1naw2v/bAxla4B6BJfIDJbI2eKz6k57njx1liSNoAoVeFztQBBvfC8fnlYdyczexX4pf2IpJvQjnUvQMCeFcn30OaPULK7xBtzrkg4XqbT7/BH77QMng5frLDGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=w6IeK/gp; arc=none smtp.client-ip=95.215.58.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rosenzweig.io
+Date: Tue, 11 Mar 2025 08:47:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosenzweig.io;
+	s=key1; t=1741697278;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tSDhGE/I73wVs8EWJhkzU0BZPvm+bkT9p0rnjhxFEjo=;
+	b=w6IeK/gpWjLIDUIay8CMOgyHu+3P8hX4rvUDV5+Lxo/iSNYjOn97H4Rl/odWkN97lNcHU9
+	yRtydCjmo3JedwXmgO11G2+psK1xry7xtLZjfQElXfVW+bIvZ7JzjrOgaJZx9HiwtiC92N
+	h/bp3j+1aIKeAmelrPxfvjGCHvEQpxm/ujGXd2mGzA8fcBwZp69Jquf5KRiV61FteGCF4F
+	Q9yoBJdwW9QNetgjsPXeFZLzU/CiZpO9Wrsz6xpBTWsHw9ttwr7RnDP8yWr/p2SCpGbrWX
+	XJSat2TQ/wBwRHTWU4PkP+6x0GjdULCcIycy+s+vqTxN6lo2m3MZoEW3Fla8xA==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To: fnkl.kernel@gmail.com
+Cc: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Jean-Francois Bortolotti <jeff@borto.fr>
+Subject: Re: [PATCH v3 2/3] spmi: add a spmi driver for Apple SoC
+Message-ID: <Z9Aw-MTUdldYRrP5@blossom>
+References: <20250310-spmi-v3-0-92a82e7d9f0d@gmail.com>
+ <20250310-spmi-v3-2-92a82e7d9f0d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,44 +67,249 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250213003849.147358-1-inochiama@gmail.com>
+In-Reply-To: <20250310-spmi-v3-2-92a82e7d9f0d@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Thu, Feb 13, 2025 at 08:38:44AM +0800, Inochi Amaoto wrote:
-> Add description for the BFloat16 precision Floating-Point ISA extension,
-> (Zfbfmin, Zvfbfmin, Zvfbfwma). which was ratified in commit 4dc23d62
-> ("Added Chapter title to BF16") of the riscv-isa-manual.
+Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+
+Le Mon , Mar 10, 2025 at 11:07:59PM +0100, Sasha Finkelstein via B4 Relay a écrit :
+> From: Jean-Francois Bortolotti <jeff@borto.fr>
 > 
-> Changed from v3:
-> 1. rebase for v6.14-rc1
-> 2. patch2: add validate for zfbfmin, zvfbfmin, zvfbfwma
-> 3. patch2: apply Clément's tag
+> The connected PMU contains several useful nvmem cells such as RTC offset,
+> boot failure counters, reboot/shutdown selector, and a few others.
+> In addition M3+ machines have their USB-PD controller connected via SPMI.
 > 
-> Changed from v2:
-> 1. rebase for v6.13-rc1
+> Signed-off-by: Jean-Francois Bortolotti <jeff@borto.fr>
+> Reviewed-by: Sven Peter <sven@svenpeter.dev>
+> Co-developed-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> ---
+>  MAINTAINERS                          |   1 +
+>  drivers/spmi/Kconfig                 |   8 ++
+>  drivers/spmi/Makefile                |   1 +
+>  drivers/spmi/spmi-apple-controller.c | 168 +++++++++++++++++++++++++++++++++++
+>  4 files changed, 178 insertions(+)
 > 
-> Changed from v1:
-> 1. patch3: add missing code in sys_hwprobe.c
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 271ff8110df83c2d4fe7fbbfffc0a72259460bc5..9006695261d29fbc1e15659c2b43d7afeee0b656 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2254,6 +2254,7 @@ F:	drivers/nvmem/apple-efuses.c
+>  F:	drivers/pinctrl/pinctrl-apple-gpio.c
+>  F:	drivers/pwm/pwm-apple.c
+>  F:	drivers/soc/apple/*
+> +F:	drivers/spmi/spmi-apple-controller.c
+>  F:	drivers/watchdog/apple_wdt.c
+>  F:	include/dt-bindings/interrupt-controller/apple-aic.h
+>  F:	include/dt-bindings/pinctrl/apple.h
+> diff --git a/drivers/spmi/Kconfig b/drivers/spmi/Kconfig
+> index 73780204631463631cabcbad5bf83e8dbbee94ce..9005fa91d9f4e541403ccc7bf84e0592402ac41e 100644
+> --- a/drivers/spmi/Kconfig
+> +++ b/drivers/spmi/Kconfig
+> @@ -11,6 +11,14 @@ menuconfig SPMI
+>  
+>  if SPMI
+>  
+> +config SPMI_APPLE
+> +	tristate "Apple SoC SPMI Controller platform driver"
+> +	depends on ARCH_APPLE || COMPILE_TEST
+> +	help
+> +	  If you say yes to this option, support will be included for the
+> +	  SPMI controller present on many Apple SoCs, including the
+> +	  t8103 (M1) and t600x (M1 Pro/Max).
+> +
+>  config SPMI_HISI3670
+>  	tristate "Hisilicon 3670 SPMI Controller"
+>  	select IRQ_DOMAIN_HIERARCHY
+> diff --git a/drivers/spmi/Makefile b/drivers/spmi/Makefile
+> index 7f152167bb05b2c24a0f9669f60278152898eebb..38ac635645ba65aa46cb5e8a50072ed9771e229b 100644
+> --- a/drivers/spmi/Makefile
+> +++ b/drivers/spmi/Makefile
+> @@ -4,6 +4,7 @@
+>  #
+>  obj-$(CONFIG_SPMI)	+= spmi.o spmi-devres.o
+>  
+> +obj-$(CONFIG_SPMI_APPLE)	+= spmi-apple-controller.o
+>  obj-$(CONFIG_SPMI_HISI3670)	+= hisi-spmi-controller.o
+>  obj-$(CONFIG_SPMI_MSM_PMIC_ARB)	+= spmi-pmic-arb.o
+>  obj-$(CONFIG_SPMI_MTK_PMIF)	+= spmi-mtk-pmif.o
+> diff --git a/drivers/spmi/spmi-apple-controller.c b/drivers/spmi/spmi-apple-controller.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..697b3e8bb023566f17911fc222666d84f5e14c91
+> --- /dev/null
+> +++ b/drivers/spmi/spmi-apple-controller.c
+> @@ -0,0 +1,168 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Apple SoC SPMI device driver
+> + *
+> + * Copyright The Asahi Linux Contributors
+> + *
+> + * Inspired by:
+> + *		OpenBSD support Copyright (c) 2021 Mark Kettenis <kettenis@openbsd.org>
+> + *		Correllium support Copyright (C) 2021 Corellium LLC
+> + *		hisi-spmi-controller.c
+> + *		spmi-pmic-arb.c Copyright (c) 2021, The Linux Foundation.
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/spmi.h>
+> +
+> +/* SPMI Controller Registers */
+> +#define SPMI_STATUS_REG 0
+> +#define SPMI_CMD_REG 0x4
+> +#define SPMI_RSP_REG 0x8
+> +
+> +#define SPMI_RX_FIFO_EMPTY BIT(24)
+> +
+> +#define REG_POLL_INTERVAL_US 10000
+> +#define REG_POLL_TIMEOUT_US (REG_POLL_INTERVAL_US * 5)
+> +
+> +struct apple_spmi {
+> +	void __iomem *regs;
+> +};
+> +
+> +#define poll_reg(spmi, reg, val, cond) \
+> +	readl_poll_timeout((spmi)->regs + (reg), (val), (cond), \
+> +			   REG_POLL_INTERVAL_US, REG_POLL_TIMEOUT_US)
+> +
+> +static inline u32 apple_spmi_pack_cmd(u8 opc, u8 sid, u16 saddr, size_t len)
+> +{
+> +	return opc | sid << 8 | saddr << 16 | (len - 1) | (1 << 15);
+> +}
+> +
+> +/* Wait for Rx FIFO to have something */
+> +static int apple_spmi_wait_rx_not_empty(struct spmi_controller *ctrl)
+> +{
+> +	struct apple_spmi *spmi = spmi_controller_get_drvdata(ctrl);
+> +	int ret;
+> +	u32 status;
+> +
+> +	ret = poll_reg(spmi, SPMI_STATUS_REG, status, !(status & SPMI_RX_FIFO_EMPTY));
+> +	if (ret) {
+> +		dev_err(&ctrl->dev,
+> +			"failed to wait for RX FIFO not empty\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int spmi_read_cmd(struct spmi_controller *ctrl, u8 opc, u8 sid,
+> +			 u16 saddr, u8 *buf, size_t len)
+> +{
+> +	struct apple_spmi *spmi = spmi_controller_get_drvdata(ctrl);
+> +	u32 spmi_cmd = apple_spmi_pack_cmd(opc, sid, saddr, len);
+> +	u32 rsp;
+> +	size_t len_read = 0;
+> +	u8 i;
+> +	int ret;
+> +
+> +	writel(spmi_cmd, spmi->regs + SPMI_CMD_REG);
+> +
+> +	ret = apple_spmi_wait_rx_not_empty(ctrl);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Discard SPMI reply status */
+> +	readl(spmi->regs + SPMI_RSP_REG);
+> +
+> +	/* Read SPMI data reply */
+> +	while (len_read < len) {
+> +		rsp = readl(spmi->regs + SPMI_RSP_REG);
+> +		i = 0;
+> +		while ((len_read < len) && (i < 4)) {
+> +			buf[len_read++] = ((0xff << (8 * i)) & rsp) >> (8 * i);
+> +			i += 1;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int spmi_write_cmd(struct spmi_controller *ctrl, u8 opc, u8 sid,
+> +			  u16 saddr, const u8 *buf, size_t len)
+> +{
+> +	struct apple_spmi *spmi = spmi_controller_get_drvdata(ctrl);
+> +	u32 spmi_cmd = apple_spmi_pack_cmd(opc, sid, saddr, len);
+> +	size_t i = 0, j;
+> +	int ret;
+> +
+> +	writel(spmi_cmd, spmi->regs + SPMI_CMD_REG);
+> +
+> +	while (i < len) {
+> +		j = 0;
+> +		spmi_cmd = 0;
+> +		while ((j < 4) & (i < len))
+> +			spmi_cmd |= buf[i++] << (j++ * 8);
+> +
+> +		writel(spmi_cmd, spmi->regs + SPMI_CMD_REG);
+> +	}
+> +
+> +	ret = apple_spmi_wait_rx_not_empty(ctrl);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Discard */
+> +	readl(spmi->regs + SPMI_RSP_REG);
+> +
+> +	return 0;
+> +}
+> +
+> +static int apple_spmi_probe(struct platform_device *pdev)
+> +{
+> +	struct apple_spmi *spmi;
+> +	struct spmi_controller *ctrl;
+> +	int ret;
+> +
+> +	ctrl = devm_spmi_controller_alloc(&pdev->dev, sizeof(*spmi));
+> +	if (IS_ERR(ctrl))
+> +		return -ENOMEM;
+> +
+> +	spmi = spmi_controller_get_drvdata(ctrl);
+> +
+> +	spmi->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(spmi->regs))
+> +		return PTR_ERR(spmi->regs);
+> +
+> +	ctrl->dev.of_node = pdev->dev.of_node;
+> +
+> +	ctrl->read_cmd = spmi_read_cmd;
+> +	ctrl->write_cmd = spmi_write_cmd;
+> +
+> +	ret = devm_spmi_controller_add(&pdev->dev, ctrl);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "spmi_controller_add failed\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id apple_spmi_match_table[] = {
+> +	{ .compatible = "apple,spmi", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, apple_spmi_match_table);
+> +
+> +static struct platform_driver apple_spmi_driver = {
+> +	.probe		= apple_spmi_probe,
+> +	.driver		= {
+> +		.name	= "apple-spmi",
+> +		.of_match_table = apple_spmi_match_table,
+> +	},
+> +};
+> +module_platform_driver(apple_spmi_driver);
+> +
+> +MODULE_AUTHOR("Jean-Francois Bortolotti <jeff@borto.fr>");
+> +MODULE_DESCRIPTION("Apple SoC SPMI driver");
+> +MODULE_LICENSE("GPL");
 > 
-> Inochi Amaoto (3):
->   dt-bindings: riscv: add bfloat16 ISA extension description
->   riscv: add ISA extension parsing for bfloat16 ISA extension
->   riscv: hwprobe: export bfloat16 ISA extension
-> 
->  Documentation/arch/riscv/hwprobe.rst          | 12 +++++
->  .../devicetree/bindings/riscv/extensions.yaml | 45 +++++++++++++++++++
->  arch/riscv/include/asm/hwcap.h                |  3 ++
->  arch/riscv/include/uapi/asm/hwprobe.h         |  3 ++
->  arch/riscv/kernel/cpufeature.c                | 35 +++++++++++++++
->  arch/riscv/kernel/sys_hwprobe.c               |  3 ++
->  6 files changed, 101 insertions(+)
-> 
-> --
+> -- 
 > 2.48.1
 > 
-
-I wonder whether this patch could get merged? So I can
-submit the SG2044 board dts without this as dependency.
-
-Regards,
-Inochi
+> 
 
