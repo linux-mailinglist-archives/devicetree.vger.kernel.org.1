@@ -1,111 +1,243 @@
-Return-Path: <devicetree+bounces-156698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C709CA5D142
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:57:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD16A5D20B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 22:54:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 633BA3B38BC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:57:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1F3A17B549
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 21:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF2E264615;
-	Tue, 11 Mar 2025 20:57:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE8A7264FB2;
+	Tue, 11 Mar 2025 21:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rUtrOvyY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f/yhf+Ow"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C091EF368;
-	Tue, 11 Mar 2025 20:57:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95EE9264F8F
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 21:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741726632; cv=none; b=Xz+GG5E9ytuFzL4smmgtC3/tzLNizDGxTelZsQN5ZefLzaO1NoltzOKkXUjRoqy5dmgFyBqyW7UjbK7Otr45hGqsEYHhAopXvDECo6xOWBDuc/x5bh7U8RnVfoviF5SqpmKJB5TF3hriT+d1ffuQTa9oNdK6K9mmwiETNOPc9Pg=
+	t=1741730041; cv=none; b=jNi1mj6FihQ/eI+05qJ+WzpdHkfROqIEKoNns06KA4frRVajQYCGRgQp/eVpuDxYkGDNAl/Nt6LD5HuYur1YD9t7GCg1nKYVwcXrYz+rD8Q8uQN4MEsX8msa6tUY9mbGlAAiGCE0wemQ3PUz+U0XGqNbgGjYfcUTRkVwtxmRw5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741726632; c=relaxed/simple;
-	bh=gBpUrcidbnHfQaEWdbVDXK2zU65oCxLuAp1amXO0y7Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=BEuP4dYorHI7nvT0nZtiZPDzGIpS0r6jRmysxzYUbLmU0wWVt9FsYRGvTvltDjppC/2HNyHEwigsnakihx49LYt/Z9gO0r0mH6iOQcvewi0FMGjQqoLqDhWCK3pSgKsIRiIqPqiRrw6ErHKwkS/OP0I0Dw/Yiay0dUP8MuCWuj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rUtrOvyY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C235C4CEE9;
-	Tue, 11 Mar 2025 20:57:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741726631;
-	bh=gBpUrcidbnHfQaEWdbVDXK2zU65oCxLuAp1amXO0y7Q=;
-	h=From:Date:Subject:To:Cc:From;
-	b=rUtrOvyYW+Gj1iZmchIJbovsyZT3h4CQuQMVGYsZ+VXVRQgCJ9qDsMrhwgR9bsX+g
-	 lqdKH18WBX/cPusJ/Ls463IXwYO4icck+4tKO5NzTmnG9L/r2pW0g9aOqdWngKXP6g
-	 PhCtB8xbH4khlrZPRxhZ7exd09hwIUvCcZOrfR6vfpIdBhnngq5qR/sCn+HRT0sPlE
-	 Q3EVQoVgU7jJjG2TdNnvH3DjTX1lBmXza9xyWlGsgWfjK6BvCawprLe7+1C1xeS/Pd
-	 BOG1Mo0+RQ/RXyM3NltPRLjMSk/k/P38Zfse0/yulB9a7mvedjF5vkkelZ8GWKG4N5
-	 qcfJyGi2QoOoQ==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Tue, 11 Mar 2025 21:56:48 +0100
-Subject: [PATCH v2] dt-bindings: soc: airoha: Add the pbus-csr node for
- EN7581 SoC
+	s=arc-20240116; t=1741730041; c=relaxed/simple;
+	bh=ZgzE4thBCoSTa+dcViXPcQn5/G3IUHp1o/3wzyNpJ6I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BwDT0Srli8yedhueEDaGwNmW3ZkXXax2pu9ZC30fZOmNLDj5uiNaWF757POu5RYsv/Inuj1XXiK74egHiRFUbNlcrqL6Btki3ysQTBosVq1/qCdxzaGFhBwLY0bibxNtKngEjqXh8zo3HHotjsC9gTKbDn14AZ6l+5h2Prvb+jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f/yhf+Ow; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-30bff515d07so3412861fa.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 14:53:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741730038; x=1742334838; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X5gsB+0yYh8xE9yPNlTczFYo/dqiaFhvnnAdkeUoWJg=;
+        b=f/yhf+Ow6qLnHeu7fpBARK6iQQyRmHWvFObl/a0hci1teamJW+UNUazoTQxxo7esNl
+         arQvnfnn6Eq+GUuglGzFjCRxlPy3bGNrmpA7ZWCmnuNPB9lsq6CTUuQn/n6i1o4XdJpZ
+         WYP7WVSZou2lt+5F8OHTinmJSjsNNe/IaaQ2XeS7BNvGbr4MUehdokjGbMjXFobxE1qL
+         cwTYeXwwdp9u+Kz/q5/1SuPIPxv3hIvJwvOTEHOTzO8tYdmtCoYFq/nw8w7PxTh9YWrg
+         R25eUG17re6Scd0jjMyQ6S5xoM6tAYGXlJn4JyxKoFswjSCyDehZf/Dg9nsICyE0UNn+
+         wQtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741730038; x=1742334838;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X5gsB+0yYh8xE9yPNlTczFYo/dqiaFhvnnAdkeUoWJg=;
+        b=GaojFjMSglip5STxQMchiwNuNIF4aNMkQhVoy5BFr/eYSN3ymsIhaOzj4nvGnavZnI
+         /j0nQvFE14ieGYv36A/0O5rz0HW6V73a2CqjBvJAP275R/dFh0BUVak+kFZyNee7AhbW
+         33NgYzeuLH7mNrxSqVlXkB72Bx7tNBeHL9bEu+fp5Jmy63d/Yb9tPPBTU6Bj9i/yBK10
+         boziGq5hdpBvIzLQptKuFs3xWZD7/czILzpR9Pn8KDOUo2tmJ1g6w35fMJmS0qyyHgjT
+         nmQcJn+g27GzNLGaNbhoubmWoIQ+oSixRutw7cCXKTqJd+PKBp7An21thAtbTs6Qq8tu
+         cDVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXaTfXazt/gUHOapyyLsgXA0u2Mtwhmj62cOo5WdDIx6ZeBOEjgcfXbleRA53ozINjpMYprbyS9WBK0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzw1CUyNucjWxcBQwC8GV4XUdx6ADe2oj2qJ7SP+HI2hB+CyVdG
+	hMEqjZYtxb2TwI1SzaN1mUEaWLzFsMU+WWPClxRHjlAZI0H+ZJ6/tGShi7csofI=
+X-Gm-Gg: ASbGncvdYmDLPm/oj0mYVxXpe5DpuZEHqqz1XImuIj4xeJvXk+n45OebuiUT045lumx
+	07iUQ2mDNQM03FvzK04YqlzIj+7kZRdueaE9KowSR2BSqDACu8oBbtSVACSAnvDHe8dsO1xn4DK
+	J/vDVteumw1ic2OTayyOlz0exZNmyPoz9sd9IAEkcMvPF2Y/IQgP9zPFA6jiZRt2SQfu1EIvCxK
+	SRc6woBOiO2OloJ2B+S3eAfJNiUipEBwgH2cIiQA2OC7VQoFddspe9wgNoNdaIKiRaCzMPM/ntW
+	WRjT5Jg/iSic9egoS7qUj1X7XNDBQjyJfSdMnRpyMXw/GqnWsv3ry9h+jzKKtDajYg7mnnhPSuL
+	T9dcQ4QXUGrIRItV3sexkk2vv0XV16F5btA==
+X-Google-Smtp-Source: AGHT+IFMqD7MP0QO68gqxLROvT5NFpnEwxTOzpskeLzkJrA9xPbwOTw4OmpOx0RaAr9lWptyIlaMyw==
+X-Received: by 2002:a05:6512:3b10:b0:545:6f1:948d with SMTP id 2adb3069b0e04-549abacc9e6mr613771e87.7.1741730037032;
+        Tue, 11 Mar 2025 14:53:57 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5498ae462c6sm1910515e87.4.2025.03.11.14.53.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Mar 2025 14:53:55 -0700 (PDT)
+Message-ID: <70d6acfc-739a-4c0a-9087-77e16c6ac989@linaro.org>
+Date: Tue, 11 Mar 2025 23:53:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindings: media: Add qcom,x1e80100-camss
+Content-Language: ru-RU
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-clk@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v4-0-c2964504131c@linaro.org>
+ <20250119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v4-1-c2964504131c@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v4-1-c2964504131c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250311-en7581-pbus_csr-binding-v2-1-1fc5b5e482e3@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAI+j0GcC/4WNWw6CMBBFt0Lm2zEtD6F8uQ9DjC0DTDSFTJVoS
- PduZQN+npPcczcIJEwB2mwDoZUDzz5BfsjATTc/EnKfGHKVV6pQDZKvq0bjYl/h6oKgZd+zH9H
- UJWlbqsEWJ0jrRWjg916+dIknDs9ZPvvRqn/2f3PVqNEYY3unSFFdnu8knh7HWUboYoxfFir8E
- b8AAAA=
-X-Change-ID: 20250308-en7581-pbus_csr-binding-974e1b40fb36
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-pci@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.2
 
-Introduce pbus-csr document bindings in syscon.yaml for EN7581 SoC.
-The airoha pbus-csr block provides a configuration interface for the PBUS
-controller used to detect if a given address is accessible on PCIe
-controller.
+Hi Bryan.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
-Changes in v2:
-- Move EN7581 pbus-csr binding in syscon.yaml
-- Link to v1: https://lore.kernel.org/r/20250308-en7581-pbus_csr-binding-v1-1-999bdc0e0e74@kernel.org
----
- Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On 1/19/25 02:54, Bryan O'Donoghue wrote:
+> Add bindings for qcom,x1e80100-camss in order to support the camera
+> subsystem for x1e80100 as found in various Co-Pilot laptops.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index 4d67ff26d445050cab2ca2fd8b49f734a93b8766..7639350e7ede40c8934f41f854ff219354fb3e5b 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -27,6 +27,7 @@ select:
-     compatible:
-       contains:
-         enum:
-+          - airoha,en7581-pbus-csr
-           - al,alpine-sysfabric-service
-           - allwinner,sun8i-a83t-system-controller
-           - allwinner,sun8i-h3-system-controller
-@@ -126,6 +127,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - airoha,en7581-pbus-csr
-           - al,alpine-sysfabric-service
-           - allwinner,sun8i-a83t-system-controller
-           - allwinner,sun8i-h3-system-controller
+<snip>
 
----
-base-commit: d71fc910c58ed85a2ad5143502030bff73fc2088
-change-id: 20250308-en7581-pbus_csr-binding-974e1b40fb36
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csid_wrapper
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite0
+> +      - const: csid_lite1
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy4
+> +      - const: csitpg0
+> +      - const: csitpg1
+> +      - const: csitpg2
+> +      - const: vfe_lite0
+> +      - const: vfe_lite1
+> +      - const: vfe0
+> +      - const: vfe1
 
-Best regards,
--- 
-Lorenzo Bianconi <lorenzo@kernel.org>
+Here I'm a bit lost about the selected ordering rule, I kindly
+ask for a clarification.
 
+In ASCII the underscore symbol '_' goes way after any 7-bit symbols
+including '0' and other digits, but this is violated in the sorting
+order above.
+
+The expected sorting order would rather be like this one:
+
+   - const: csid0
+   - const: csid1
+   - const: csid2
+   - const: csid_lite0
+   - const: csid_lite1
+   - const: csid_wrapper
+   - const: csiphy0
+   - const: csiphy1
+   - const: csiphy2
+   - const: csiphy4
+   - const: csitpg0
+   - const: csitpg1
+   - const: csitpg2
+   - const: vfe0
+   - const: vfe1
+   - const: vfe_lite0
+   - const: vfe_lite1
+
+> +
+> +  clocks:
+> +    maxItems: 29
+> +
+> +  clock-names:
+> +    items:
+> +      - const: camnoc_rt_axi
+> +      - const: camnoc_nrt_axi
+
+Okay, there might be some explanations about the underscore symbol,
+anyway I would appreciate to get them, but here it's definitely
+incorrect, it's very unlikely that the symbol 'r' precedes 'n'.
+
+> +      - const: core_ahb
+> +      - const: cpas_ahb
+> +      - const: cpas_fast_ahb
+> +      - const: cpas_vfe0
+> +      - const: cpas_vfe1
+> +      - const: cpas_vfe_lite
+> +      - const: cphy_rx_clk_src
+> +      - const: csid
+> +      - const: csid_csiphy_rx
+> +      - const: csiphy0
+> +      - const: csiphy0_timer
+> +      - const: csiphy1
+> +      - const: csiphy1_timer
+> +      - const: csiphy2
+> +      - const: csiphy2_timer
+> +      - const: csiphy4
+> +      - const: csiphy4_timer
+> +      - const: gcc_axi_hf
+> +      - const: gcc_axi_sf
+> +      - const: vfe0
+> +      - const: vfe0_fast_ahb
+> +      - const: vfe1
+> +      - const: vfe1_fast_ahb
+> +      - const: vfe_lite
+> +      - const: vfe_lite_ahb
+> +      - const: vfe_lite_cphy_rx
+> +      - const: vfe_lite_csid
+> +
+> +  interrupts:
+> +    maxItems: 13
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite0
+> +      - const: csid_lite1
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy4
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe_lite0
+> +      - const: vfe_lite1
+
+Same as above.
+
+> +  interconnects:
+> +    maxItems: 4
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: cam_ahb
+> +      - const: cam_hf_mnoc
+> +      - const: cam_sf_mnoc
+> +      - const: cam_sf_icp_mnoc
+> +
+
+--
+Best wishes,
+Vladimir
 
