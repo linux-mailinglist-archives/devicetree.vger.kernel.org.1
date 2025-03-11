@@ -1,96 +1,180 @@
-Return-Path: <devicetree+bounces-156528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B01A5C1A1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:48:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12051A5C1B3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:58:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EC463A9776
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:48:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8261188B685
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 12:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E31392222D0;
-	Tue, 11 Mar 2025 12:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA13E2505DF;
+	Tue, 11 Mar 2025 12:58:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cua/WpJm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D6921660F;
-	Tue, 11 Mar 2025 12:48:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E6A2222AB;
+	Tue, 11 Mar 2025 12:58:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741697317; cv=none; b=RCgFZ2SyDtfyqO4jzeghSp7fWgUIN4LBYRQUAFalXxHxZXWd3es9FTCuqRz9+YgIOpRIKuFelRnqO7+bf7aqldCdlFgtbVaH9CKfEV3ZP4buLK8ebydjDQe1d3/7Kkc7IIhR0/NXLVcpajeLVGV1ASibjhyhhzWSnBoVl6IVew4=
+	t=1741697908; cv=none; b=imsOY3n/FJwPiwPXvs0Mpms63HrTfhOBp6p/fZqRD5NwIKEXEi30U/eKfGyIXlhOeDIYZAtkRVHFVQi+KTpNot2LuONV9sPW8SGXl/kNZWN7/sU8ys6R/8tMVsdFKyYvy8Ekvx7VN3gdxxyOqZWrmdv6cMRpmfXvJWi9zcM30po=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741697317; c=relaxed/simple;
-	bh=fNfmtHdXf9BoyEH/qA20u3R7qett2R6u5Ubso+unVKM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LdkklfuYFJ4l9fgWgNFLGclCF9rIwkcj+GsnVAzLpOI25V4u3nLdQtv2j9tdbBzRZD09GnN7Zh5pLkVdOJPc28CZ6J+UHvdusPoPdW36jMQy+rYivEoRW3t/Uqdwj+OUs9w1U7aV37FLWoU1um2I7rQ69Xw4JQ1RBO5SvBjNa+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 98DE1152B;
-	Tue, 11 Mar 2025 05:48:45 -0700 (PDT)
-Received: from [10.57.37.142] (unknown [10.57.37.142])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ABE503F673;
-	Tue, 11 Mar 2025 05:48:33 -0700 (PDT)
-Message-ID: <072d1d3a-2aeb-4ab0-9db1-476835a1131e@arm.com>
-Date: Tue, 11 Mar 2025 12:48:32 +0000
+	s=arc-20240116; t=1741697908; c=relaxed/simple;
+	bh=89yiYRKikh+mG1mA0eKihs3nHmA67H+M/VwyHj7ih0E=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=VmgraK8ks/1YlKZr/kgHMeedVcJoPltlB0SBy3GgAMUVeNyAWMZ7PuUlXXTU7/Ov1hq581zc6G4bpA+suP5zB4Wp+IpSmLMJ3K8oYf+AxGxjLVuUJS2tciHVQBFZzzM+oRl8lQBAh2Zkc2Zzd1E0vF2UsLw5IO7jXuE7XeUbdTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cua/WpJm; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-22355618fd9so99605415ad.3;
+        Tue, 11 Mar 2025 05:58:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741697906; x=1742302706; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HybHSX/cYkHQKvO6mzXLR82O5IN46nB/6HHTSuvxJ9w=;
+        b=Cua/WpJmpR86TvnChD3vB+Na3werqGkqwM1/iXpzLYiMFEYnv+7ZFWmWALUxrpqkNf
+         Cmdg7FNkWFlLvDwWW7fEGUO3UN/nnILMemDpw5WmM77W31QERSFvdVz6C/tZj/3lP+aI
+         ZOX44cYLX0E0DR2foIefGuAdFiUlSj9yDo50GArzmckJySc2xRDbSWO8llV9rKWuPyWg
+         2R7ODDMj4cMlNKysf/qG5eEUQGilhXyZvrIxBD2TNV93qHh9Oufazs+wletemFvSowd8
+         KW2vnsN/5+CXS1O7HuZB9BCyIeTXTCe1LuMQH7JkEv7zdMkWbvXMbUu6smTBhYqwB8ho
+         DfCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741697906; x=1742302706;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HybHSX/cYkHQKvO6mzXLR82O5IN46nB/6HHTSuvxJ9w=;
+        b=nXBiF18ffWtqCSakKFng0f0bqZUcUo6veezQSlJgy3sKVVIGe9bsrs/i+y/svp3nyT
+         wBHrrD3hBpu9Np/wfnbQta91vJSUForlYpFNOFb5fC0zVbf8vcoziAecGSR9AOL2qVvF
+         YK/kR6SarZir5iS9xb0zQFtX8WiZ/CyWWQ/L9xwpqIDQTMUaxmTymIBwWrhfSO85GTq9
+         bSPlsnQYei1flWHazwAnmgZ4ceDMtejpEKNhvO+LEBbFD9PGCTnDtxYNh2ax6dg6Josq
+         GITlibk1fsrYXjP0clcRYImu7zjn4hpBVPRMY+aZCE12aID6pZ73ARHyoOSR50kHyhpZ
+         GAUw==
+X-Forwarded-Encrypted: i=1; AJvYcCUKKnvtfZgoA6aVO+Xyg3mLnOooI3BuGZdD5JR0RRhkQaORT6n9qhvPYaFGGYi1Gfo+QyoG2wvQyKnAnb62@vger.kernel.org, AJvYcCW+qfVgDIIrOxo5NdYfFKgip4SWz0ZwVrDMDsSotd+PA1aIx8g4cd3TGWLTGErH4wIiDQnNvmV4oaWM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzh+qL1OSnd6BA2cus9acaRobS+CUIkHwYmOrNMxzRxgwNM9s0T
+	BvTlwJSIbKEuvR+2vsZQeTRQxtENIwzpcTeG4iEcsLK9vpd0jm1E
+X-Gm-Gg: ASbGncvNM/iFVUCPOfV9ppALGeylYl02v5cLWOYj0txHaUWAQ1g/CoUFhZDl6CfnNvV
+	dS+Hn+VDaQL5coy+8v/vJiVE+NafUZUpOUyoF3gB9iNr0BA2nADpKOmpipHmHCCxcInU+IPMowv
+	iGzq0ZO44mDVZNxodEFJBlrWAs6hmQG2fvoeBytRHqQ1MSgNv7UjU3+AXmI70XGwYw7jjES8aFv
+	XMbdjomGLyAAGrGRrGeQA0OOsx3S0vZ5G1OkRgAf0aS0DckPaNsJ5o1VhhoQ6Zr+QdjzgVCyQZA
+	//a8mKAPQ9VbX5DKj3Rf4zHf4CfZ652LiQhxdJtFLZV9ab5nP+x0Alhsy4o0ifj5ZRzLXzkAvsR
+	FDrfh
+X-Google-Smtp-Source: AGHT+IEOf4e2cGRATnJTbW2bOROibHi2zYAh0ElgqYv/rjSNcReiFylmnMGtump4zwxMszEZz/Y4bQ==
+X-Received: by 2002:a17:903:440f:b0:223:7006:4db2 with SMTP id d9443c01a7336-22592e47c93mr62081545ad.31.1741697906379;
+        Tue, 11 Mar 2025 05:58:26 -0700 (PDT)
+Received: from purva-IdeaPad-Gaming-3-15IHU6.. ([2409:4080:1188:3708:7bc7:f5b5:1c3d:ad0f])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22410ab45bfsm96871375ad.250.2025.03.11.05.58.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Mar 2025 05:58:25 -0700 (PDT)
+From: Purva Yeshi <purvayeshi550@gmail.com>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	vz@mleia.com,
+	piotr.wojtaszczyk@timesys.com
+Cc: linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Purva Yeshi <purvayeshi550@gmail.com>
+Subject: [PATCH] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML schema
+Date: Tue, 11 Mar 2025 18:27:56 +0530
+Message-Id: <20250311125756.24064-1-purvayeshi550@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dmaengine: Add Arm DMA-350 driver
-To: Vinod Koul <vkoul@kernel.org>
-Cc: devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <cover.1740762136.git.robin.murphy@arm.com>
- <55e084dd2b5720bdddf503ffac560d111032aa96.1740762136.git.robin.murphy@arm.com>
- <Z89P461+Y6kQDOCX@vaman>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <Z89P461+Y6kQDOCX@vaman>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 
-On 2025-03-10 8:47 pm, Vinod Koul wrote:
-> On 28-02-25, 17:26, Robin Murphy wrote:
-> 
->> +static u32 d350_get_residue(struct d350_chan *dch)
->> +{
->> +	u32 res, xsize, xsizehi, hi_new;
->> +
->> +	hi_new = readl_relaxed(dch->base + CH_XSIZEHI);
->> +	do {
->> +		xsizehi = hi_new;
->> +		xsize = readl_relaxed(dch->base + CH_XSIZE);
->> +		hi_new = readl_relaxed(dch->base + CH_XSIZEHI);
->> +	} while (xsizehi != hi_new);
-> 
-> This can go forever, lets have some limits to this loop please
+Convert the existing `lpc32xx-pwm.txt` bindings documentation into a
+YAML schema (`lpc32xx-pwm.yaml`).
 
-Sure, in practice I doubt we're ever going to be continually preempted 
-faster than the controller can move another 64KB of data, but I concur 
-there's no harm in making the code easier to reason about at a glance 
-either.
+Changes:
 
->> +static int d350_alloc_chan_resources(struct dma_chan *chan)
->> +{
->> +	struct d350_chan *dch = to_d350_chan(chan);
->> +	int ret = request_irq(dch->irq, d350_irq, IRQF_SHARED,
->> +			      dev_name(&dch->vc.chan.dev->device), dch);
-> 
-> This is interesting, any reason why the irq is allocated here? Would it
-> be not better to do that in probe...
+Add SPDX license identifier `(GPL-2.0-only OR BSD-2-Clause)`.
+Define `$id` and `$schema` fields for proper schema validation.
+Set `title` to describe the LPC32XX PWM controller.
+Add maintainers as per `scripts/get_maintainer.pl` output.
+Reference `pwm.yaml#` in `allOf` to inherit common PWM properties.
 
-Well, I'd say technically the IRQ is a channel resource, and quite a few 
-other drivers do the same... Here it's mostly so I can get the channel 
-name - so the IRQs are nice and identifiable in /proc/interrupts - 
-easily without making a big mess in probe, since the names don't exist 
-until after the device is registered.
+Define properties:
+Restrict `compatible` to `"nxp,lpc3220-pwm"` using `const`.
+Limit `reg` to `maxItems: 1` to ensure a single register range.
+Set `"#pwm-cells"` to `const: 3` for expected PWM cell properties.
 
-Thanks,
-Robin.
+Mark `compatible` and `reg` as required properties.
+Set `unevaluatedProperties: false` to enforce strict validation.
+
+Validate the YAML schema using dt-validate and yamllint.
+
+Signed-off-by: Purva Yeshi <purvayeshi550@gmail.com>
+---
+ .../devicetree/bindings/pwm/lpc32xx-pwm.yaml  | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml
+
+diff --git a/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml b/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml
+new file mode 100644
+index 000000000..3e41cd291
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/nxp,lpc32xx-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LPC32XX PWM controller
++
++maintainers:
++  - "Uwe Kleine-König <ukleinek@kernel.org>"
++  - "Vladimir Zapolskiy <vz@mleia.com>"
++  - "Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>"
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    const: nxp,lpc3220-pwm
++
++  reg:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 3
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pwm@4005c000 {
++        compatible = "nxp,lpc3220-pwm";
++        reg = <0x4005c000 0x4>;
++        #pwm-cells = <3>;
++    };
++  - |
++    pwm@4005c004 {
++        compatible = "nxp,lpc3220-pwm";
++        reg = <0x4005c004 0x4>;
++        #pwm-cells = <3>;
++    };
+-- 
+2.34.1
+
 
