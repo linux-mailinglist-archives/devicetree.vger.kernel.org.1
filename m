@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-156535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E401DA5C27E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 14:24:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B27AA5C28E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 14:26:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF0151882511
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:23:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C371A18867DF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:26:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5171BD9DD;
-	Tue, 11 Mar 2025 13:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17AA1420DD;
+	Tue, 11 Mar 2025 13:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U0cOEBxV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iDvThAAx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB5E1ACEB0;
-	Tue, 11 Mar 2025 13:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77CBF5680;
+	Tue, 11 Mar 2025 13:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741699383; cv=none; b=i+8XaHeuFfYVJa/ZE66Ma+7VzQXxKxGu5+GBv1JgXYo3Itzpu2a8yOxJfyF4/icx5T+A76lQM53bzPltv7HK2mKoTzzUhycUVFUCf7luq0UDk3cE9K5nHy8bBeGWmCjWXMX58fOY55Ccl83YqLXEf/RU3hNh2vYAtUEOa9l5zw4=
+	t=1741699562; cv=none; b=V2+xcnJxbb/HoEPR9yQ/GDCIxwcFEigpZ0sixfgXG+8sS4QPkWv2Z14abervxE4ezl/rDRAkGvck/xH9Hc68qVuPH3bwyChcIGPftQCkP0x0raf9Ljv1/e18FaDMqWABMO40duvJeNNxwSpqG6uy6FL19F/otzbB9aAv7KixKo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741699383; c=relaxed/simple;
-	bh=i+BKXnNSu0U4NhBbJQA6jSH5xRp79OrcRQjZJgO6OG8=;
+	s=arc-20240116; t=1741699562; c=relaxed/simple;
+	bh=7taCYy0GzWbqsnJbUDHzsasZ27x+GWjvIkuximMnFcs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H9pKZwT8JwtPErs2Sq+mi+7NeBfa1sJHQDAi2L+B+O6u2t5SXjnJcWcLJzTTQgm0TS24mcm9vh3anLzhn1I3mvNBjbmSISmhCpoQOujaicU4wuzbaFzoF37kdM6NHutzyzcqTEueonrmjFHoFvfV/U07dvSyMsMa0Kt/6tHdgHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U0cOEBxV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B581DC4CEE9;
-	Tue, 11 Mar 2025 13:22:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OBTh/RGlkQ0rZ0Zk22EfSLAVK8lyr2x1A64W3j8J+w685XthvXPd++rVZCJ6a7xb01G383k3vmPkCJV5e1ditRe9x9fJQlSsDovXTRdcxsD2VEGqnefdoI4bjzlzRRUSPks+e0y6rf1H+tpmbOhdjp6Ah87VwKZTqoVJhQ8nyPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iDvThAAx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18C82C4CEE9;
+	Tue, 11 Mar 2025 13:25:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741699382;
-	bh=i+BKXnNSu0U4NhBbJQA6jSH5xRp79OrcRQjZJgO6OG8=;
+	s=k20201202; t=1741699561;
+	bh=7taCYy0GzWbqsnJbUDHzsasZ27x+GWjvIkuximMnFcs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U0cOEBxVXPj9IXB917QVtzUpCxA15Cn8oMgtrQq7H9jUUCyjZXOcpyMZ4h98Uh5Z/
-	 dr7Jdd0Jc4ai5w5Kjit5U9F+Mw/4MFwvbPlptsZC3ZWVNC+5aQisIkDtDCKZ3VqXkt
-	 oW8AiSLqWIaqrYR1Aa33rUKvEKzglTuqew3WNwqmJu/d9iOuVBiztCv1wTj1cgeYkP
-	 HZ8YBIB0Fnk0je+h7PlEOsQ5R5LqkpGv1e9bvytRLWQDRxb0ct1h6hh1baUdnonhEL
-	 M6K/NDkfgsgug66YjSbU3olmCdOZMNMLxXSxe0nT3qI3MHZHCUaTu2uN/Jnc9KVne9
-	 dPsGlhOtsQrRg==
-Message-ID: <af6ebce2-7256-48bd-94d4-dc81e2944966@kernel.org>
-Date: Tue, 11 Mar 2025 14:22:54 +0100
+	b=iDvThAAxzTanVqhD/cNh3tKPAKBSuUl5bb4NGTxrTH3edhtquOIU+f9hJLfm+9HJO
+	 yvObIpeHfc6UWfDm0iqEc9tlwm3ZWM4Mv33J8xU3tX0z83wDpoH+L1dOAu+2DKBReC
+	 BQItK+7gzQg6mLzSZfGiSJtwMl1dGsJcbjywGqut7DP2zDEQR5zTzX8wpB46ThHYK8
+	 4jd7EtzZ/pv3+n+Df6Oq/H/OOMq+rfdG1WbBgvHmrh5FxTnfMMwd+1lxjnQnt74KTH
+	 JrGevUwngDLZHgGU98tHdKNvLQi90pygqBHU6gkea4ZyOGG0SVIeGc/nT1ub4FmoCO
+	 iRt28K7dcw74Q==
+Message-ID: <c7de47e5-9a5d-455e-b293-b25b6f801b2b@kernel.org>
+Date: Tue, 11 Mar 2025 14:25:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML schema
-To: Purva Yeshi <purvayeshi550@gmail.com>, ukleinek@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vz@mleia.com,
- piotr.wojtaszczyk@timesys.com
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250311125756.24064-1-purvayeshi550@gmail.com>
+Subject: Re: [PATCH v3 01/18] dt-bindings: gpu: img: Future-proofing
+ enhancements
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: Frank Binns <Frank.Binns@imgtec.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, Randolph Sapp <rs@ti.com>,
+ Darren Etheridge <detheridge@ti.com>,
+ Alessio Belle <Alessio.Belle@imgtec.com>,
+ Alexandru Dadu <Alexandru.Dadu@imgtec.com>
+References: <20250310-sets-bxs-4-64-patch-v1-v3-0-143b3dbef02f@imgtec.com>
+ <20250310-sets-bxs-4-64-patch-v1-v3-1-143b3dbef02f@imgtec.com>
+ <20250311-flashy-rattlesnake-of-rain-dcc4f6@krzk-bin>
+ <cc6a19b3-ba35-465c-9fa6-a764df7c01c1@imgtec.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,116 +117,113 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250311125756.24064-1-purvayeshi550@gmail.com>
+In-Reply-To: <cc6a19b3-ba35-465c-9fa6-a764df7c01c1@imgtec.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 11/03/2025 13:57, Purva Yeshi wrote:
-> Convert the existing `lpc32xx-pwm.txt` bindings documentation into a
-> YAML schema (`lpc32xx-pwm.yaml`).
+On 11/03/2025 11:33, Matt Coster wrote:
+>>> The currently supported GPU (AXE-1-16M) only requires a single power
+>>> domain. Subsequent patches will add support for BXS-4-64 MC1, which has
+>>> two power domains. Add infrastructure now to allow for this.
+>>>
+>>> Also allow the dma-coherent property to be added to IMG Rogue GPUs, which
+>>> are DMA devices. The decision for coherency is made at integration time and
+>>> this property should be applied wherever it accurately describes the
+>>> vendor integration.
+>>>
+>>> Note that the new required properties for power domains are conditional on
+>>> the new base compatible string to avoid an ABI break.
+>>>
+>>> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
+>>> ---
+>>> Changes in v3:
+>>> - Remove unnecessary example
+>>> - Remove second power domain details, add these where they're used instead
+>>> - Avoid ABI breaks by limiting new required properties to new compatible
+>>>   strings and making all binding changes in a single patch.
+>>> - Links to v2:
+>>>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-1-3fd45d9fb0cf@imgtec.com
+>>>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-3-3fd45d9fb0cf@imgtec.com
+>>>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-4-3fd45d9fb0cf@imgtec.com
+>>> ---
+>>>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 43 ++++++++++++++++++----
+>>>  1 file changed, 36 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>>> index 256e252f8087fa0d6081f771a01601d34b66fe19..5c16b2881447c9cda78e5bb46569e2f675d740c4 100644
+>>> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>>> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+>>> @@ -12,10 +12,20 @@ maintainers:
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> -    items:
+>>> -      - enum:
+>>> -          - ti,am62-gpu
+>>> -      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - enum:
+>>> +              - ti,am62-gpu
+>>> +          - const: img,img-axe-1-16m
+>>> +          - const: img,img-rogue
+>>
+>> That's still ABI break. You got here NAK. You ust preserve img,img-axe.
+>> Your marketing troubles do not concern Linux.
 > 
-> Changes:
-> 
-> Add SPDX license identifier `(GPL-2.0-only OR BSD-2-Clause)`.
+> I think I'm misunderstanding something here. Is keeping the existing
+> compatible string around in the deprecated item below not sufficient to
+> maintain the existing ABI?
 
-That's not a change in the binding.
-
-> Define `$id` and `$schema` fields for proper schema validation.
-> Set `title` to describe the LPC32XX PWM controller.
-
-Neither these.
-
-> Add maintainers as per `scripts/get_maintainer.pl` output.
-
-These should not be subsystem maintainers.
-
-> Reference `pwm.yaml#` in `allOf` to inherit common PWM properties.
-
-Not a change to the binding.
+I was not precise/correct. This indeed is not an ABI break itself.
+However you will break the users of DTS when anyone applies such DTS.
 
 > 
-> Define properties:
-> Restrict `compatible` to `"nxp,lpc3220-pwm"` using `const`.
-> Limit `reg` to `maxItems: 1` to ensure a single register range.
-> Set `"#pwm-cells"` to `const: 3` for expected PWM cell properties.
-> 
-> Mark `compatible` and `reg` as required properties.
+> Would adding img,img-axe back into the updated list (bringing it to four
+> elements) be acceptable?
 
-So it wasn't before? What are you implying here?
-
-> Set `unevaluatedProperties: false` to enforce strict validation.
-> 
-> Validate the YAML schema using dt-validate and yamllint.
-
-None of above is suitable for commit msg.
+Yes, you must keep all the compatibles. Affecting users because of
+marketing choices is a no-go. No one here cares about marketing.
 
 > 
-> Signed-off-by: Purva Yeshi <purvayeshi550@gmail.com>
-> ---
->  .../devicetree/bindings/pwm/lpc32xx-pwm.yaml  | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
-
-Where is the conversion?
-
->  create mode 100644 Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml
+>>
+>>> +
+>>> +      # This legacy combination of compatible strings was introduced early on
+>>> +      # before the more specific GPU identifiers were used.
+>>> +      - items:
+>>> +          - enum:
+>>> +              - ti,am62-gpu
+>>> +          - const: img,img-axe
+>>> +        deprecated: true
+>>>  
+>>>    reg:
+>>>      maxItems: 1
+>>> @@ -34,8 +44,13 @@ properties:
+>>>    interrupts:
+>>>      maxItems: 1
+>>>  
+>>> -  power-domains:
+>>> -    maxItems: 1
+>>> +  power-domains: true
+>>
+>> No, widest constraints always stay here.
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml b/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml
-> new file mode 100644
-> index 000000000..3e41cd291
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/nxp,lpc32xx-pwm.yaml#
+> Ack
+> 
+>>
+>>> +
+>>> +  power-domain-names:
+>>> +    items:
+>>> +      - const: a
+>>
+>> That's not a useful name. Are you sure that datasheet calls it power
+>> domain A?
+> 
+> Sadly yes. With the Volcanic architecture the power domains get real
+> names, but until then we were stuck with abc. I shared a snipet from the
+> BXS-4-64 TRM with Conor in the replies to the V1 series in [1].
 
-Filename matching compatible.
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LPC32XX PWM controller
-> +
-> +maintainers:
-> +  - "Uwe Kleine-König <ukleinek@kernel.org>"
-> +  - "Vladimir Zapolskiy <vz@mleia.com>"
-> +  - "Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>"
-
-Look at other bindings - none of them use quotes.
-
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,lpc3220-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwm@4005c000 {
-> +        compatible = "nxp,lpc3220-pwm";
-> +        reg = <0x4005c000 0x4>;
-> +        #pwm-cells = <3>;
-> +    };
-> +  - |
-> +    pwm@4005c004 {
-> +        compatible = "nxp,lpc3220-pwm";
-
-One example is enough.
-
+OK, that's fine.
 
 
 Best regards,
