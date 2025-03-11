@@ -1,146 +1,136 @@
-Return-Path: <devicetree+bounces-156537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91C81A5C2B5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 14:30:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41CB9A5C2C0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 14:32:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 197763B2E31
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:30:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0D081894B84
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 13:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9EC1ADC94;
-	Tue, 11 Mar 2025 13:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0EB1C245C;
+	Tue, 11 Mar 2025 13:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zjy+XG8H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IjUGOna9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8601833E1;
-	Tue, 11 Mar 2025 13:30:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919551487E9;
+	Tue, 11 Mar 2025 13:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741699842; cv=none; b=NS6XLoD0qXWfXBHjDtMMMBbGpNB7IiNMo8g4akDOpOHX7yrPJzAhjj7SVNbyglKxSwKfZ3XRQgmtH4vjhFKcJ0tS/Nr2R6QwrCKVCUdjyGcIriWyF+ceek+oYLnu1zjGwf/GIe1KqMbjR4Fpao/uDr9p/wWu0/4YpVSZgouRIBg=
+	t=1741699964; cv=none; b=Wj64mCmbCbkKqDYPGc8ANA5TAQpx3vPvFDDMFGf7oOQzCbUt9fHEDoWeSUrtDE9iczlVQIhhiyw1zqYFDdQh5Q0WQrnZIKdeAY5Fwit2hqXcCRagH+bxWBBlMzuw2lrFXxuutv3zITRCfhabsu1OXmOy17ARO/qmISdrGfbyNIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741699842; c=relaxed/simple;
-	bh=DSIaqEYMgkyYCBJZ5KNBTAo4Vk3cJBXJ88bu6yBkm2U=;
+	s=arc-20240116; t=1741699964; c=relaxed/simple;
+	bh=foFBmGFbc+QCSONoZVpR+givHeN3h/c5aJuICUYGiE0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qKkuQEAVjQ7rLccbGOLATsvL26ioj6FvRmuY2KsRKrlChChq6H0sTlzTJVlD7/iXJKU6sEyyRnsdSIsCpPilJnEeSbqpC6VLEpDe9mMhJU+Gi0CwimkNNW3Q2glNs4GHQm39iGBsrmsiyZ2+S+W9xhwjfSGvtOO8+bvFatRkW3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zjy+XG8H; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-51eb1a6ca1bso2243373e0c.1;
-        Tue, 11 Mar 2025 06:30:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741699839; x=1742304639; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OS+kx1EYJx8zGVZAVZxDQft66T1VTJ/fMWqkBxUi750=;
-        b=Zjy+XG8HgQmUhiQ3CY7P/s/MGHR3AYob+n5mWBjJ2iMkuzRGfZ2Q9tif7UE6rI4B9K
-         vt8lX7xTGKgk8x3v5Dzj38PyWtgPR73s0IX2o4w7QUP+4zzl+AFgzogP+A7NJDaJCrzl
-         X9LqaZhAsMyH4ITpGAObm281k9pzT7cBrQrlB1efblOUh8wCxr6wrebzo9cJsc6DvVy+
-         kW2heRsa4xJ7DMc56RVD0DQbM9ENN07EXxLfHzQi6l3qBKZ41BG8hl4E+lKhMb5I3DFO
-         BYwGtekbe8A7VQDii7G+6jd9+YV0btZeMVwyG14lFnGrgbY904mNdSM+zVc2L/jHKi56
-         KurQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741699839; x=1742304639;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OS+kx1EYJx8zGVZAVZxDQft66T1VTJ/fMWqkBxUi750=;
-        b=s58Tpkf3H6NOVkE2iHLqzWSzkFEjxDGGl5vVHhv73/V7FhO8LJYwL1p+drYAOYudKb
-         QrAFQAc7Ytrd37qhKY8qJZF6eT8cfEz0P8baaE+beZX+j3pq/VhpWVMRO0mY75CjND26
-         YaesTkMaXNiWhLca1gAfm5bB6s9hf/JcRjRhmH6Ykr2gfOhkHaggdovk24Kl0TMGi93N
-         8d3GkquwbjlOSxg5bTBEOMrHwyuL6qxVciQAnTHrmiieE/CwHUvhb3NbCh7W/fcY6XqI
-         TqMloUOuRL0Zeeue+8MXFzewqc2U9zjtvdkhTxdIN2WLU6pg3p6pSyLbo/DayGlGoAAv
-         7icA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+eKHxgCz/mXnoj2LoJ8NiVRMyztnxgqnogvST9Q6SSj8Jwr7uKQ+j7LEGKi8bZKgcwnTpR7u3@vger.kernel.org, AJvYcCWefNikSYHS467zrzzUM+Qxmy/+9nGuHYabRRv5H7j0GoQpSNEggfUSNISWJvVZxzotmKop7ifNeB8T@vger.kernel.org
-X-Gm-Message-State: AOJu0YxN4rHQDG7L/b7IAPgoaTDMWKgOzRKRbRebuJE68QLV6V7mpR1w
-	LcLBvpYlEHoOWo4Glck5ueUFamjrRW0F4yZNbuIpAhM0u1NxVmwGPLzRqWN0m171mWHPNg7bRWr
-	AfHalfkxdBMs/kFxVkVqvH30YeZc=
-X-Gm-Gg: ASbGnctbZynmjyR+CVJTnD/Yhkw91xl6N7UViCnkKanjfR0rZe/BMT3MVx6FcNk2hws
-	3zy8NiIDUDaj0kYzKFi/lR4cMaBSLQRF2/a2QdC7HMnZOzTI7SDK7sDqQWE58LGLUeFdVRgYqKM
-	22ZpNEaUAJcntJVlCbJR4bxHyRyg==
-X-Google-Smtp-Source: AGHT+IFy2Sl8rkBIl4+/ZfojG+Lp511BkNoNkiebfxbXz25a/xXmKtCtJuK/D9U65TOMGgOaav+c8ESCttCkqV6X1J8=
-X-Received: by 2002:a05:6122:2011:b0:520:42d3:91aa with SMTP id
- 71dfb90a1353d-523e3ff118fmr11782712e0c.2.1741699839299; Tue, 11 Mar 2025
- 06:30:39 -0700 (PDT)
+	 To:Cc:Content-Type; b=DXNuSj4+ueC4+4VILS36C8qLSsy+Ke6mtZjwPpHczd70V4caUSDwjheL0xWSv8u0WWI3y5cqMQ2KmRajk7Sz/13SiM4nWk9C4i6/PYhu16jzIZ1WnGbk3w8gpv9qtGVsi3CQRaPB3FK4KDWC8Kk/+L9bKDhlQsL5XFEOHH9By2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IjUGOna9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B2A3C4CEF3;
+	Tue, 11 Mar 2025 13:32:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741699964;
+	bh=foFBmGFbc+QCSONoZVpR+givHeN3h/c5aJuICUYGiE0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=IjUGOna96P6PIijXA/JopSCd1d/VyKBBN+ce/Ed0nBiLhKysYuXMOO8ntjKoNJFoo
+	 KvvRKcBWnITLYLhGRnSUQitn+rIdSSRK2Cpm5n6Mn/118FAtbrimE5jYp/UXlZTfql
+	 gprF+LsaUajaD4mfZOL8d+MWXSTnEbYoMmCi0oUOd2lKGUmCmlD38v+i4Wiq5Pmpjr
+	 ayzyPa2JHPukyRerL2/P8O+UDUAqMM7QygXATRowtyikvNNz/2O+EBnThkGFsw2KTR
+	 mnRaXP7EryYvf+2VABTSHwEZzyziKQIuYIaobgi/ftZzS8lPgE5Ag3aYBUTqbdFhEr
+	 HnFlBeThaEv+w==
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e5c9662131so8324312a12.3;
+        Tue, 11 Mar 2025 06:32:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVE/etq7yYVR731//mLbIx6fuz4N3WBsp/taDv6DUAdjSAvEFKqUOOcbNyt/mjSFvGPbId9zBqo21EC1w==@vger.kernel.org, AJvYcCVFFxWXi1G8EDjZ5tpKHuBLeDYh4rjTO2HNngx05BKIuJGzRJWd0LGcG/kHH0ZIDsQJKt2BCiE2koKJ@vger.kernel.org, AJvYcCW8UgNm2ORV6uv3gidMyg8hIgmUN1Lt9mJoi+wO2yxk3H2Rn4pAsnqQt1dohVxqKOsczdONO8z4Tw5a@vger.kernel.org, AJvYcCXkMokhN/355TGe12OSjeljQvVcn00quRImZ2ljZ6tIYzQ4VTmMH7PvgM8LtAe7ue13DOn99RcbuXyV@vger.kernel.org, AJvYcCXsHpk+Kco0TOlhTmQxQXJOw/sJn9QgRvlPYy+FAXFETqK6kuxts8w7ztT6RQVlVCkfabZPUZ8p2Ny2wNuE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyvnou1cphY4sdaDF6XuvRYP/txe/G9yT/v+J9yb9bKE0VqXdDN
+	KvnBxlQ8CXvCoJnhV1poU82s4+iFqTkRNkkMVcKGumV5WsZTjOlXsmeX06w6v9K1ITKFtPLZnjO
+	2tXt6e1OYEiuildher/TYDvdidw==
+X-Google-Smtp-Source: AGHT+IEifrCmqJfikkidIDTYr2jS6o8iDBri/VlKwu/FWmzn0+fbwXWdCCMBLNQSNY6IZ7RZHzcbstx5Fj81dc05srU=
+X-Received: by 2002:a05:6402:2353:b0:5e5:c5f5:f82 with SMTP id
+ 4fb4d7f45d1cf-5e5e211e1f1mr21034407a12.0.1741699962525; Tue, 11 Mar 2025
+ 06:32:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <Z82tWYZulV12Pjir@shell.armlinux.org.uk> <E1trIAQ-005nto-3w@rmk-PC.armlinux.org.uk>
-In-Reply-To: <E1trIAQ-005nto-3w@rmk-PC.armlinux.org.uk>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 11 Mar 2025 13:30:13 +0000
-X-Gm-Features: AQ5f1Jp3UtuRRhR-96fKi5aM9eNN6ctPoGEYrjWhhbpHpPNGlFs33K9fIDMWwbw
-Message-ID: <CA+V-a8u34cKgccW=qEw=FC34HH+Q6pVmRqeMq7Q_btxqkqNtnQ@mail.gmail.com>
-Subject: Re: [PATCH net-next 6/7] dt-bindings: deprecate "snps,en-tx-lpi-clockgating"
- property
-To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org, 
-	Emil Renner Berthing <kernel@esmil.dk>, Eric Dumazet <edumazet@google.com>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Jose Abreu <joabreu@synopsys.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Minda Chen <minda.chen@starfivetech.com>, 
-	netdev@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paolo Abeni <pabeni@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Rob Herring <robh@kernel.org>
+References: <cover.1738963156.git.andrea.porta@suse.com> <c0acc51a7210fb30cae7b26f4ad1f0449beed95e.1738963156.git.andrea.porta@suse.com>
+ <20250310212125.GB2377483@rocinante>
+In-Reply-To: <20250310212125.GB2377483@rocinante>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 11 Mar 2025 08:32:28 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKPGOdS_8KDggO5tBHAnC-NTLAC5iS9GANm9BuxBfQUsw@mail.gmail.com>
+X-Gm-Features: AQ5f1JpFqtVYiSlkH0QD-dTfJ4bf9VAjFuYNndnQ1jy7PeA-IWSalDclsIDbfBA
+Message-ID: <CAL_JsqKPGOdS_8KDggO5tBHAnC-NTLAC5iS9GANm9BuxBfQUsw@mail.gmail.com>
+Subject: Re: [PATCH v7 03/11] dt-bindings: pci: Add common schema for devices
+ accessible through PCI BARs
+To: Krzysztof Wilczynski <kw@linux.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Derek Kiernan <derek.kiernan@amd.com>, 
+	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>, 
+	Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Mar 9, 2025 at 3:13=E2=80=AFPM Russell King (Oracle)
-<rmk+kernel@armlinux.org.uk> wrote:
+On Mon, Mar 10, 2025 at 4:21=E2=80=AFPM Krzysztof Wilczynski <kw@linux.com>=
+ wrote:
 >
-> Whether the MII transmit clock can be stopped is primarily a property
-> of the PHY (there is a capability bit that should be checked first.)
-> Whether the MAC is capable of stopping the transmit clock is a separate
-> issue, but this is already handled by the core DesignWare MAC code.
+> Hello,
 >
-> Therefore, snps,en-tx-lpi-clockgating is technically incorrect, so this
-> commit deprecates the property in the binding.
+> [...]
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index d45c88955072..af2e4652bf3b 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -19752,6 +19752,7 @@ RASPBERRY PI RP1 PCI DRIVER
+> >  M:   Andrea della Porta <andrea.porta@suse.com>
+> >  S:   Maintained
+> >  F:   Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.ya=
+ml
+> > +F:   Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> >  F:   Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.ya=
+ml
+> >  F:   include/dt-bindings/clock/rp1.h
+> >  F:   include/dt-bindings/misc/rp1.h
 >
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> I would be happy to pick this via the PCI tree as per the standard
+> operating procedure.  However, the MAINTAINERS changes do not exist
+> for us yet, and are added in the first patch of the series, which is
+> not ideal.
 >
+> I can add the missing dependency manually, but that would cause issues
+> for linux-next tree, which is also not ideal.
+>
+> I saw some review feedback, as such, when you are going to be sending
+> another version, can you make MAINTAINERS changes to be the last patch,
+> perhaps.  Basically, something standalone that perhaps whoever will pick
+> the misc patch could also pick and apply at the same time.
+>
+> Alternatively, someone else picking up the PCI dt-bindings would work, to=
+o.
+>
+> Your thoughts?
 
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+I guess I missed this in review, but why is a common schema buried in
+a device maintainer entry? Also, an entry in MAINTAINERS is redundant
+anyway because get_maintainers.pl can fetch maintainers from the
+schema file.
 
-Cheers,
-Prabhakar
-
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
-mentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 3f0aa46d798e..78b3030dc56d 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -494,6 +494,7 @@ title: Synopsys DesignWare MAC
->
->    snps,en-tx-lpi-clockgating:
->      $ref: /schemas/types.yaml#/definitions/flag
-> +    deprecated: true
->      description:
->        Enable gating of the MAC TX clock during TX low-power mode
->
-> --
-> 2.30.2
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Rob
 
