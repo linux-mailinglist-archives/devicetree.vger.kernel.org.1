@@ -1,63 +1,40 @@
-Return-Path: <devicetree+bounces-156479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91D6A5BE29
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:45:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA880A5BE43
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 11:53:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2203D16EA88
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 10:45:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 823843AAFDF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 10:53:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAF51F4CB6;
-	Tue, 11 Mar 2025 10:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P7hPtugr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9EAB2505DE;
+	Tue, 11 Mar 2025 10:53:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66661DE2BB;
-	Tue, 11 Mar 2025 10:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27CBB24EF8E;
+	Tue, 11 Mar 2025 10:53:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741689910; cv=none; b=tuxVwO809KjhvM8ccaDqoweH2byMFflsgNztUavxltmHdoBFpglmQGD8hA0eNBCJDzpFgmLK6A3RmqaEA4GRvn3iNKT1k2c5/jRfmZArDgPmY2ynnjEzP2WWqB5mkvmNejEwAmBEB6ZQBBH7TqTfauyASLHHrjpLhPAl9VTiI9o=
+	t=1741690390; cv=none; b=MTPASQFGkQPuKCsPraQZDZB/f0Hwc9A9n/ku5BLCQHc/kLyfzYXkA7EDXPFzuBFmC9PUrUtj1wjQte2NHJpVjXoj0oMGrgW6Slv2oC7TTFAFv4OJk8q6OHij2ojhuyS1HMclNTei0FJYnSnEkG8HasV5lSs46JjHZVT2D8ZoPNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741689910; c=relaxed/simple;
-	bh=2qtZx71hOP7XTKnjKVCGoxZv4RprBeHFFlw7SOTHDCM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UYiuBSefdq202vHzVbMphTxrihmHxupU2jsAZLWYDTa16tcil0kEXjVPZTlDIOyQxexeMsr7ZujXjDioHFdoPw6cR3tfz7g/umSLx7utyptCcasNasXa3ool/oyBuNRwhXgOtclwbNWp0WxdHjOGjWaJgXXXRUMZNmUmaY/GGOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=P7hPtugr; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52BA4P1Z015125;
-	Tue, 11 Mar 2025 10:44:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	S2i6mRK0jajy0u0bUB2Z9AQTcwRxDHV/B/HG8iEiju8=; b=P7hPtugr6omYfGnF
-	DqAmVqW5Ec8QzF4iWGD/4Og9HQB5DAx/IavD+obS5gb5CdS5ikvpibXWZIF2RUVg
-	ezwUl16GdE9am/hNnwpU02HFbxGistvoPJNuov/DqWMw3eZM6cZo+Yv+IUTCH7fh
-	K3NO0eaoFqkNAhglRxQZSMooooPlLCQjOZYqZqnscMHrpCpDYANy1uzMm1zHrM0i
-	CmBM42HYPXIvxe3u7vfSo871QPqEs2QnTlI9OVAhc8pE97Wefe8ZZJ7cgDtRuATQ
-	C+0xq7slbdU6VCbxS3qpzrMXpkrGIt0jaeLMutPVO9UizqYf+9Pi6pJacA5lms1G
-	Dlk5uQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ab8m1hhm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Mar 2025 10:44:50 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52BAinNJ018053
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Mar 2025 10:44:49 GMT
-Received: from [10.253.38.132] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 11 Mar
- 2025 03:44:42 -0700
-Message-ID: <4c24723a-1773-4034-95fb-47748f6e8982@quicinc.com>
-Date: Tue, 11 Mar 2025 18:44:40 +0800
+	s=arc-20240116; t=1741690390; c=relaxed/simple;
+	bh=RUjAfsKxlpnDn5k+IQNu6N7Ia574OxtzAeRXK9rEGak=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y96QaL+h8wts4kC2aNP/hug5WC76zLP7XyXA3BsrDsmOu6K5XuEHO6Pwr7RHRAsVfsbCsHawU4+yJYHpDlEQSkJ3iAm06gH2cWW2vBL2cbp/nfzzzCV2CIT4E1Hj7Exwp8cWKT3Zxsk7YHUJMxf/WP46kYLTqevUFku3ElgsZfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D4061762;
+	Tue, 11 Mar 2025 03:53:19 -0700 (PDT)
+Received: from [10.57.67.14] (unknown [10.57.67.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B2F743F673;
+	Tue, 11 Mar 2025 03:53:04 -0700 (PDT)
+Message-ID: <9b44d0ff-b28f-4d79-ad7b-b452db1db87a@arm.com>
+Date: Tue, 11 Mar 2025 10:53:02 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,151 +42,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 04/14] net: ethernet: qualcomm: Initialize PPE
- buffer management for IPQ9574
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
-        Suruchi Agarwal
-	<quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>,
-        "Simon
- Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <john@phrozen.org>
-References: <20250209-qcom_ipq_ppe-v3-0-453ea18d3271@quicinc.com>
- <20250209-qcom_ipq_ppe-v3-4-453ea18d3271@quicinc.com>
- <a79027ed-012c-4771-982c-b80b55ab0c8a@lunn.ch>
- <c592c262-5928-476f-ac2a-615c44d67277@quicinc.com>
- <33529292-00cd-4a0f-87e4-b8127ca722a4@lunn.ch>
- <cffdd8e8-76bc-4424-8cdb-d48f5010686d@quicinc.com>
- <74f89e1e-c440-42cb-9d8e-be213a3d83a4@lunn.ch>
+Subject: Re: [RFC PATCH 3/3] arm64: dts: renesas: r9a09g047: Add thermal
+ hotplug trip point
+To: John Madieu <john.madieu.xa@bp.renesas.com>, geert+renesas@glider.be,
+ niklas.soderlund+renesas@ragnatech.se, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, rafael@kernel.org,
+ daniel.lezcano@linaro.org
+Cc: magnus.damm@gmail.com, claudiu.beznea.uj@bp.renesas.com,
+ devicetree@vger.kernel.org, john.madieu@gmail.com, rui.zhang@intel.com,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ biju.das.jz@bp.renesas.com, linux-pm@vger.kernel.org
+References: <20250309121324.29633-1-john.madieu.xa@bp.renesas.com>
+ <20250309121324.29633-4-john.madieu.xa@bp.renesas.com>
 Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <74f89e1e-c440-42cb-9d8e-be213a3d83a4@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: txnyqolXEKgHcYx5KUazcWu3fq0FVdnZ
-X-Authority-Analysis: v=2.4 cv=K9nYHzWI c=1 sm=1 tr=0 ts=67d01422 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=IKtIH902HmA1w457l2kA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: txnyqolXEKgHcYx5KUazcWu3fq0FVdnZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-11_01,2025-03-11_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 spamscore=0 mlxlogscore=999 clxscore=1015
- priorityscore=1501 mlxscore=0 bulkscore=0 malwarescore=0 suspectscore=0
- adultscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
- definitions=main-2503110070
+From: Christian Loehle <christian.loehle@arm.com>
+In-Reply-To: <20250309121324.29633-4-john.madieu.xa@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-On 3/6/2025 11:29 PM, Andrew Lunn wrote:
->> Thanks for the suggestion. Just to clarify, we preferred
->> u32p_replace_bits() over FIELD_PREP() because the former does
->> a clear-and-set operation against a given mask, where as with
->> FIELD_PREP(), we need to clear the bits first before we use the
->> macro and then set it. Due to this, we preferred using
->> u32_replace_bits() since it made the macro definitions to modify
->> the registers simpler. Given this, would it be acceptable to
->> document u32p_replace_bits() better, as it is already being used
->> by other drivers as well?
+On 3/9/25 12:13, John Madieu wrote:
+> Add CPU hotplug trip point to shutdown CPU1 and CPU2 when exceeding 110°C.
 > 
-> I suggest you submit a patch to those who maintain that file and see
-> what they say.
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> ---
+>  arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> But maybe also look at how others are using u32p_replace_bits() and
-> should it be wrapped up in a macro? FIELD_MOD()? These macros do a lot
-> of build time checking that you are not overflowing the type. It would
-> be good to have that to catch bugs at build time, rather than years
-> later at runtime.
-> 
->        Andrew
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> index 93b57d7ad7b9..06bd394582e2 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> @@ -533,6 +533,13 @@ map0 {
+>  							 <&cpu2 0 3>, <&cpu3 0 3>;
+>  					contribution = <1024>;
+>  				};
+> +
+> +				map1 {
+> +					trip = <&trip_emergency>;
+> +					cooling-device = <&cpu1 0 1>, <&cpu2 0 1>;
+> +					contribution = <1024>;
+> +				};
+> +
+>  			};
+>  
+>  			trips {
+> @@ -542,6 +549,12 @@ target: trip-point {
+>  					type = "passive";
+>  				};
+>  
+> +				trip_emergency: emergency {
+> +					temperature = <110000>;
+> +					hysteresis = <1000>;
+> +					type = "plug";
+> +				};
+> +
+>  				sensor_crit: sensor-crit {
+>  					temperature = <120000>;
+>  					hysteresis = <1000>;
 
-OK, understand. I will submit the patch by adding the FIELD_MODIFY()
-with required build time checking included.
 
-Below is a draft of the macro, please take a look if possible before
-it is posted to maintainers. I will update the driver to use this macro
-if it can be accepted. Thanks.
+Are there no other cooling methods?
+How does it compare to idle inject?
 
-/** 
-  
-  
-
-  * FIELD_MODIFY() - modify a bitfield element 
-  
-  
-
-  * @_mask: shifted mask defining the field's length and position 
-  
-  
-
-  * @_reg_p: point to the memory that should be updated 
-  
-  
-
-  * @_val: value to store in the bitfield 
-  
-  
-
-  * 
-  
-  
-
-  * FIELD_MODIFY() modifies the set of bits in @_reg_p specified
-  * by @_mask, by replacing them with the bitfield value passed
-  * in as @_val. 
-  
-  
-  
-  
-
-  */ 
-  
-  
-
-#define FIELD_MODIFY(_mask, _reg_p, _val)              		      \ 
-  
-  
-
-         ({                                  			      \ 
-  
-  
-
-                 __BF_FIELD_CHECK(_mask, *_reg_p, _val, "FIELD_MODIFY: 
-"); \ 
-  
-
-                 *_reg_p &= ~(_mask);                                  \ 
-  
-  
-
-                 *_reg_p |= (_val) << __bf_shf(_mask) & (_mask);       \ 
-  
-  
-
-         })
-
+Furthermore, couldn't the offlining of some CPUs lead to the rest being
+operated at much higher OPPs therefore the overall power increase, too?
+(Without having looked at if this is a possibility for this particular
+SoC.)
+Some numbers would be helpful IMO.
 
