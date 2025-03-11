@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-156682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E479A5CF6B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:30:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57600A5CF70
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 20:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C245C189E0D0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:30:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22DFE189E4C6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 19:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9EE22155D;
-	Tue, 11 Mar 2025 19:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51AFC257434;
+	Tue, 11 Mar 2025 19:31:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CjXiFobV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bQVfBiRm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F46E1E47C9;
-	Tue, 11 Mar 2025 19:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2766F17591;
+	Tue, 11 Mar 2025 19:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741721419; cv=none; b=fiUuKrTGjfftOGvNvtMenvdGLiDboXDGm8udk6k+vzuBNpuZS+59+8XbsDmvDN/tMRSj6GgoR3FfvwDPvwEDhumCFrGJG4rd5rQl0QsuFblVXHnfcvNWgmkeCtkpV4xZFBS1+E6r6YNP+PA/2l92quAi396PSoKbSkDKOmyQ+Dw=
+	t=1741721498; cv=none; b=qyfNz0y4/0z12T8EQLdb+upfbob9qfa34jM4XMi7rfsb3+otlMt1F7EpaH81ozFCDx4EYqcCh7cEYb/PeJAwkdUDrArAAjr8zgu2Gi6IxgZ2vD/mL3IScBqU/AZksBPxiDi4Mj/V6kRpUHerOy9WzivGAcJn9eX9NGyXNHsDAys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741721419; c=relaxed/simple;
-	bh=3S+4LpN7e7b3uZJfj1/E1QA354tpygy85q1MowEoWK8=;
+	s=arc-20240116; t=1741721498; c=relaxed/simple;
+	bh=9vKWwaB9nvbKVoEN30+SqReCmCUlZ1KxsGwp8d3wTDg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EHPZIjcHinfuN92543IQCpkeQG/s4MAy+pW+QBI9RWq72vSEFNG50l89Jof7U8Oo/xfjoW6C0gTp/lHA5hxB6ZbItsNnE+YnhS7C52hPUGYDZ94TClDAJzp4dDIb/gvVvjlHrqZoyYuJZskKQNBvPIfxgepwdk6oyZz8s9eOfzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CjXiFobV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A6E0C4CEE9;
-	Tue, 11 Mar 2025 19:30:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=m/RRnU7R0iF8gCYe0Y2UH20gL9ps/PXiT0DDkqBMDJt7is82eGideg2zmBapf968idglHhAzh+nhe87HqSH/G3k/MgG5r06eSCdANErl24MV02zLqRsMssTiBRB7uGKghfvsJZtx002gdFUgKBD/Ln6pbXX6fdj0v3+vBQLIjGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bQVfBiRm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6029BC4CEE9;
+	Tue, 11 Mar 2025 19:31:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741721418;
-	bh=3S+4LpN7e7b3uZJfj1/E1QA354tpygy85q1MowEoWK8=;
+	s=k20201202; t=1741721497;
+	bh=9vKWwaB9nvbKVoEN30+SqReCmCUlZ1KxsGwp8d3wTDg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CjXiFobVMTTSDVt0smcHIZTaw5+NmUk0LtIwKkkcGwNOcWt+j8cogMEfFrCDGP7CH
-	 RcuAMniMwc37BgtVwZVMUfk5GVOceJ1VDa/aGNNiaNfU/Tsgj8hCJOwUzvcwgSOQak
-	 yvc7yY0rWnWGu9UYpZzY7tDo9wF+mtCUqaGEPOxy1U1+TPwPo7NTTZubzvkAoPoS7M
-	 8vWVS2iEGYyYzAe6BJZswI9tqVWKa7a+jFCvJt7l9PGxxUczQTrqWGw8LEu1bczfC7
-	 DNi5Z9HjesAw26IG/FEkiDODCJVBrHAEPHGyG+PD7HTcHDVDDrZ54IOZsqOOEAKO7T
-	 +DPzht/EdUv9Q==
-Date: Tue, 11 Mar 2025 14:30:17 -0500
+	b=bQVfBiRm+tK9ub7XWhRYH1fSA49LyxojZHcoZIEpA2/y4jhfdzeYaHh3wH8Fx9fCS
+	 FJO7D9rGCl5jwWWYHY8bJV7Eh+Bck5edTeD4AS6JQh+9tvcGzP8CzNhgM1odt8/Wc9
+	 VZTfjWf+Momec4SVf3GjKfFZ+KHuiXUiCFq8SIoAHw0YxoDmleV3dpAmZJw9eMyadV
+	 BzRcwnE4de5gCMjGdGVRdjrJ77katc+Lf9ggRuIWdYcjqrNBYioZL9/840QlBDdSe9
+	 u6LXsizYPXEVlmxNDWCPJB03oJAXuTY1tNLWRli9pq4rFlo52DRjd9tPOCE1RWdQWn
+	 ckSJ29Nhs5sww==
+Date: Tue, 11 Mar 2025 14:31:36 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: linux-amlogic@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-sound@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2 4/6] ASoC: dt-bindings: meson: axg-tdm-formatters:
- claim support of A1 SoC family
-Message-ID: <174172141671.4180325.1225905170416898844.robh@kernel.org>
-References: <20250309182127.1322890-1-jan.dakinevich@salutedevices.com>
- <20250309182127.1322890-5-jan.dakinevich@salutedevices.com>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Yao Zi <ziyao@disroot.org>, "David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	David Wu <david.wu@rock-chips.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, netdev@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: net: rockchip-dwmac: Add compatible
+ string for RK3528
+Message-ID: <174172149414.4181803.16963634632371171945.robh@kernel.org>
+References: <20250309232622.1498084-1-jonas@kwiboo.se>
+ <20250309232622.1498084-2-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +67,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250309182127.1322890-5-jan.dakinevich@salutedevices.com>
+In-Reply-To: <20250309232622.1498084-2-jonas@kwiboo.se>
 
 
-On Sun, 09 Mar 2025 21:21:25 +0300, Jan Dakinevich wrote:
-> Add "amlogic,a1-tdmout" and "amlogic,a1-tdmin" compatible string aliases
-> to "amlogic,sm1-tdmout" and "amlogic,sm1-tdmin" respectevely.
+On Sun, 09 Mar 2025 23:26:11 +0000, Jonas Karlman wrote:
+> Rockchip RK3528 has two Ethernet controllers based on Synopsys DWC
+> Ethernet QoS IP.
 > 
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> Add compatible string for the RK3528 variant.
+> 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 > ---
->  .../sound/amlogic,axg-tdm-formatters.yaml     | 22 ++++++++++++-------
->  1 file changed, 14 insertions(+), 8 deletions(-)
+> Changes in v2:
+> - Restrict the minItems: 4 change to rockchip,rk3528-gmac
+> 
+> The enum will be extended in a future patch, Pending RK3562 and a future
+> RK3506 variant also only have 4 clocks.
+> 
+> Because snps,dwmac-4.20a is already listed in snps,dwmac.yaml adding the
+> rockchip,rk3528-gmac compatible did not seem necessary.
+> ---
+>  .../devicetree/bindings/net/rockchip-dwmac.yaml  | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
