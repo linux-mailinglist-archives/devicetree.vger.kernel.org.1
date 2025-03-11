@@ -1,130 +1,146 @@
-Return-Path: <devicetree+bounces-156422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DCE8A5BAB5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:20:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82BEAA5BAC5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:24:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E725170FB8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:20:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C300E171266
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:24:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81151225A59;
-	Tue, 11 Mar 2025 08:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4626F2248AC;
+	Tue, 11 Mar 2025 08:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxJHnjs0"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="sRPUNWMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547FF1E7C2B;
-	Tue, 11 Mar 2025 08:20:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703A022257B
+	for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 08:24:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741681229; cv=none; b=t1x97OMY38ou7zpppIfPLW3m7oHs1QqqXC2YX71bgAZY8zVihsadbRsLcd5NVLoFKQDN0RGVX0mNFN995EhFiv1XED33BAN7hqbQZz1T2otFs6g59mvr0kWnNIsg8bF7/XY6gYaC23P1wwCBppmybBCv7HiRA/GCTDYEouFzch4=
+	t=1741681464; cv=none; b=jVgy4R+XtedjGJ+7qXwvaYhMnRO6NGtil0z41SObPm21YG/DSSDNyHWbUlV5s/4DiAHumCZW3jEa6KxZSD6pmzSUKWUyUCONBYxaCSp43O5UKbXAAicaqPEpTrG7pO9aA3tiPaYr+KECpP7jb91U+iCZ8FCid2+7W1sVd8vlJQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741681229; c=relaxed/simple;
-	bh=Liygq0XgfhMoR0han+8fEYkAEuEyqeTxQkV/x/4uT+g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gL1apjNsHRxBlDdsIc/B0vDDW0Wl6WCBzMt76/wvilFpiWR8zYAthmNu9y+Pmr8rpCudI2GoQx8jjNmhHiPJXr6rXQ8WcTZfw4nL9/GvIdGMHK0CgNCJg9iVAxm/Pd7lOcszrs9KyNFK89ryWSX3SvXQP3mvlGq5YEYz6HtSa9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxJHnjs0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FE43C4CEED;
-	Tue, 11 Mar 2025 08:20:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741681228;
-	bh=Liygq0XgfhMoR0han+8fEYkAEuEyqeTxQkV/x/4uT+g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oxJHnjs0b3dO/j7O+4GF59p6nmbracwB+SwUGw9Ls5Nu67vMXePv5rZoFOaI8KOrT
-	 zYBX3hntsy0JrPQvDpbjd3l2k00aJsI1Zpxtaur/gL7ax5NUup/rYnVOvjpjKoF9KF
-	 XvXoE2h+VLmN+dwVQe7C5qYga1NvdDDGinTY3kTI0ceX9OUarVyz5xw3dKN6B8alVm
-	 9WU+WXHOfdnojIVWhg1QCwI6v4tOXyOc8SfBTGLdUii2ySec8LDFLRdtgjfaz32WpU
-	 kqccNaIMxiQuI5/W6kqHYz/5rHEwwPkMSk57Jgby4wU2TVoKAbcXStvEEgbCk4agOG
-	 PUvJmNoSKs/XA==
-Message-ID: <dc772e9e-632f-4c38-a654-833df0800ee1@kernel.org>
-Date: Tue, 11 Mar 2025 09:20:21 +0100
+	s=arc-20240116; t=1741681464; c=relaxed/simple;
+	bh=xu3zP1HoofD6juWhjBldyocKjaXNqT0I+Ivbyr36UBk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=PTjWZ1UebH6d7ccD9ZbvI3UYhVs327+PDMEhxVtVXrzZ0Uibe1WJSYZkbHZasFCtBVphxr+zlNduT4SVSYscKCh//kwW04aTk5J0wHUpiGBUHcyXuNQVJxcPsXbq94DqkFcO862tLNJqncS5X33jtTre3XVUGPUMOWGDUp9CJtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=sRPUNWMS; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-39143200ddaso1298972f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Mar 2025 01:24:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1741681460; x=1742286260; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MkuwlZJMUyuJz7nY/CVS9mePyWOIvMtEr4YIIpcR7vI=;
+        b=sRPUNWMSVCVA33WWr3T+aN6HEboHPmysl8eDIiLjY71lRrzl9PhVLh6+yEtIYeejjR
+         nsSsuNDNFAiic1lg12XPDRxEzsjI79f0/Qjg8KdzFdTkWz1AdJ0Qs9pJbRQIIt37zYGP
+         +ns/gnuwHufskOB+rINsa/DtIijImFioQubkppvCV7FvWwKdAE71YwzlJr8d9PRs3yMw
+         I3IMrPrw/68wkDm1vNfBnlEAzsoizbePairK6aB8wxZcXXcI2D+UnZ9wQ4ks1k2qeWLP
+         XOkOWreaBfvSu6ZH1BhzGQ/B45LXbhh7BqGDse8Oyc93qRHIAKFA2IukarzhsRSMip/9
+         JnGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741681460; x=1742286260;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MkuwlZJMUyuJz7nY/CVS9mePyWOIvMtEr4YIIpcR7vI=;
+        b=jZTx8Z9uPnjZHC3jxsUjIX0gD8dn7Sp7oXbIATqESx9zQbU9Vf4NSaoEgF+syeo25v
+         uHmuL9w7J2IIrA97bVLt0YH9lH1xYqjmuujMuw4umOMGcetQHFLuoMkR10A710C7oqoC
+         MkBe9/GmTMJ02OqTwCDCSLXwXIpLaAEJrO9GckMrZSLZBqRsjcZbs92nURJUmqC2Ijvf
+         44IZC5gynVIfnNtO8QmdZOnLb1e01wsn2Thh/zRfs7kpuCkiwZFOSZT3oFm2qKvlYlDv
+         9XeUtDWeIaZaV//URMbU+Rtwj2SJbPndqUPskGmKWWXoywk0A7wLzqVUyn/HK+YDIW9H
+         ZyWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUc891kfCaTdguo55wO2ivGh0+Z1mxJBK4p4NMzikU488wEWbSdacb09aaWb8y7q2ewPwG8KaQKZkR1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbdvgHUNTvqSUWfDaD9Rnx4xATlRDff+nhCL7DfC5O3R8ecEbw
+	dX7cG6Dyw/5y63iTxIod/2wtlXz7uNe72iCyo7WWwkCB8GaDx3UwalfFBtUkFqF7R3dcc5hi7pG
+	A
+X-Gm-Gg: ASbGncs+bjugmsSRWmnMUbUhTGkHfDJZXcIZM60Qk+8FeHX+gVdUSxc7K280hD8iT8L
+	vYFks/q5jFRiNt26YibvwNuvV4UPgiN1CgLLw9UDy4q+QZn+9+ILzEJrfNwiIg+kEC96m4XqiYt
+	nKeZ9RvBBflfcl6Bm2olj0PnXjIJH+s7wFjGR+7a7zoF8Z9UYmo6po4y+455Nr2gCjovpmpD+l7
+	nNxc3uJ7A3EXfg3VzrlEbmzV5rPI3q/IXos3fGVgE13ohr0Dx8+xUxc3jQIg507Rvtj2k6BIY5U
+	5i+UnFoR6RkLu5e51NAm++TnSQG2vh6A+nz6/bjLkoz4Z9bUQwxhjSxNlw4H1r4oqgX7r/nqDvl
+	5sVdv0TjEtHYzPkIzkA==
+X-Google-Smtp-Source: AGHT+IGcMWouoW5czhBbn4yWMxCe7rFrkdK1wII/1naqJaluMq6AQhQYDYrv/8Bujg++Ac3Li9uWDQ==
+X-Received: by 2002:a05:6000:2a3:b0:390:efe7:20fa with SMTP id ffacd0b85a97d-3926c69b312mr3431264f8f.47.1741681460573;
+        Tue, 11 Mar 2025 01:24:20 -0700 (PDT)
+Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ceeb5995esm90826545e9.16.2025.03.11.01.24.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Mar 2025 01:24:20 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Date: Tue, 11 Mar 2025 09:23:39 +0100
+Subject: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Add touchscreen
+ node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: thermal: generic-adc: Add optional
- io-channel-cells property
-To: Svyatoslav Ryhel <clamor95@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250310075638.6979-1-clamor95@gmail.com>
- <20250310075638.6979-2-clamor95@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250310075638.6979-2-clamor95@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250311-fp5-touchscreen-v1-1-4d80ad3e4dfc@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAAvzz2cC/x3MQQqAIBBA0avErBNMK6irRAsbx5qNilYE4d2Tl
+ m/x/wuZElOGuXkh0c2Zg6/o2gbwMH4nwbYalFSDVFILFwdxhguPjInIC8RxGmWne2s2qFVM5Pj
+ 5j8taygcnJb1iYQAAAA==
+X-Change-ID: 20250203-fp5-touchscreen-cc6960134dab
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jens Reidel <adrian@mainlining.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.2
 
-On 10/03/2025 08:56, Svyatoslav Ryhel wrote:
-> This implements a mechanism to derive temperature values from an existing
-> ADC IIO channel, effectively creating a temperature IIO channel. This
-> approach avoids adding a new sensor and its associated conversion table,
-> while providing IIO-based temperature data for devices that may not utilize
-> hwmon.
-> 
+Add a node for the GT9897 touchscreen found on this smartphone connected
+via SPI.
 
-You got comments from Rob few days ago to which you did not respond.
-Instead you decided to send next version, which hides the previous
-unresolved discussion.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+The series adding support for this chip (incl. dt-bindings) has been
+applied on 2025-03-10 to the input tree:
+https://web.git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git/log/?h=next
+---
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-This patch does not look necessary based on earlier discussion.
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+index 356cee8aeba90e21c11f46df924ed180bfce3160..35ce9dfca6f092a88d8873673ff57b591e210b02 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+@@ -1069,7 +1069,18 @@ &sdhc_2 {
+ &spi13 {
+ 	status = "okay";
+ 
+-	/* Goodix touchscreen @ 0 */
++	touchscreen@0 {
++		compatible = "goodix,gt9897";
++		reg = <0>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <81 IRQ_TYPE_LEVEL_LOW>;
++		reset-gpios = <&tlmm 105 GPIO_ACTIVE_LOW>;
++		avdd-supply = <&vreg_l3c>;
++		vddio-supply = <&vreg_l2c>;
++		spi-max-frequency = <1000000>;
++		touchscreen-size-x = <1224>;
++		touchscreen-size-y = <2700>;
++	};
+ };
+ 
+ &tlmm {
+
+---
+base-commit: 93498f5ea4d0415cb5a95680224335651580cf08
+change-id: 20250203-fp5-touchscreen-cc6960134dab
 
 Best regards,
-Krzysztof
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
 
