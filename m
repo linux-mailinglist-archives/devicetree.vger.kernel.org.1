@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-156394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C35C7A5B9CB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15638A5B9D9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:33:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00DA216FD70
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:30:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 466C21713F5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 07:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8BA921A45D;
-	Tue, 11 Mar 2025 07:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A34221576;
+	Tue, 11 Mar 2025 07:32:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fSQkougT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oHEozVXL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5F3B1EB195;
-	Tue, 11 Mar 2025 07:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1EF01E9B34;
+	Tue, 11 Mar 2025 07:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741678246; cv=none; b=shcwUtpMsyoQJFZeEsGjBs8HheZtcUP72iP7mrqxlJzcNR0J5xV9W50dnp7X7zW7wybJW3SRltHbU3ByDsvrHjGaFNy3fNVNFXaVgLDL2de0MTRRDqxe3PNmVFwBUkmawcJG/zXUrbKgxys/0Ho04/1+BzZCILWWNlkWASAn8w4=
+	t=1741678376; cv=none; b=Bb3O1K7ODFg5yXF+fjNA6SLudxDk058sU1lq3g2t4RNIwPiw1sLbVkotW03H6c+/g0//7x77tGROquiNAzyGD/2faAbrTNKEhJqct2JyhkFe6SZka9JGX14JY5e9ZlYESPxWsuINDH6PUs2BkgfEXnH9WzJ7VRzAYFnvSJLpHhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741678246; c=relaxed/simple;
-	bh=NoGVWw/otYogFtApnw5uHgZvKY5tV6lPTEjKZTBVYFY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AJVRnpNn8/u5Ki4et1yP57LcXDbXKsrrKs8OVssHDjv/e15HrYI2fxLK6UoBeRyHd0ooRjqGhsccrAGSJWdV0vqmD0rv+cpvlI5y9FuPhOgDSm2tzFZjoHBVk8MHXtkVciojOfTC3mBLhXGwJXy0OEAq/S6YEerK6a0/dTtxjcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fSQkougT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33F0CC4CEEA;
-	Tue, 11 Mar 2025 07:30:39 +0000 (UTC)
+	s=arc-20240116; t=1741678376; c=relaxed/simple;
+	bh=eq1zDERNnHCEBXKhMKABIiOPB5489qmkacw1l2N8o+k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=qLBxfuejYPuaCbBy/3xtdY8qm2bLD+feswqIsMJq+iPDciJQU9p1F3iw79oO9+qRaL9viaDUO2XO/1yoph49DJrNEcwFUt8C3WWbJkui2jTLe3Y6pjfWPfbPtHgxOw214fE2IkrEMVWbEP39DCZCS9FbBbSVPXZ67F1XfQrgmDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oHEozVXL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66E5DC4CEE9;
+	Tue, 11 Mar 2025 07:32:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741678246;
-	bh=NoGVWw/otYogFtApnw5uHgZvKY5tV6lPTEjKZTBVYFY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fSQkougTsnyi5bU35qR+Zjtp9lL5mxbBhPLwMqg9ZVL3fKgHKGjqYj6oEPJoB465n
-	 vZKMh79KEuAAS5jeNNQI/2oBY//zWBEjMzQ3fiF116bvdykjmLoJh8+BpbX+66MkDD
-	 CAIfue5cFidcpc9dsDeahZY6L2H7baNZOAAOGdbOdCfDavMOUfSzOSw5DEIQXb44T3
-	 taNehDowiVrFLS6ZZ/dyfuOBiQgZLv1hnHEO/k9bNs9eVZc6ym8riTP6S0WdHERx/h
-	 Isr4ijGTjQ/azjRCSfZmJwux09Ht8rz0DF2RdHzut6x2siueXY951eHCuR6DUA82hm
-	 HIsi2XUFxTwxQ==
-Message-ID: <424c0acd-61c4-40d9-b39d-f3b6dce2b3f8@kernel.org>
-Date: Tue, 11 Mar 2025 08:30:37 +0100
+	s=k20201202; t=1741678375;
+	bh=eq1zDERNnHCEBXKhMKABIiOPB5489qmkacw1l2N8o+k=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=oHEozVXLIaIOh0FquEgNapuhQD4+gHPUCvtvrHfmgXV5dH1cmCakA2epJjRgmWsef
+	 /GOxWt+JjFIJ0uDAGahT7BzW459Ulwp33TkRwBJ8kj4dELnblWdVnHF4N0D+m2wVln
+	 Cz72loZzPS03pbmFweRGX/GXxzPu0Q1xrW2pdsrRQivwT5ce1y59Lq9sZIaqdytgGF
+	 xyVEqUMSecnXiTNnzkOwcatmyLdSHhRotA0lJxTqhyiwhT4uM9cqh7tEV8Wz5NOtDJ
+	 yBxeD/uOML3fBpzv19oBrIn12S1078QYLC6T2m3iKSoofl0hYHXZidyhPILNYb2wp8
+	 XqvD1/hZLiACA==
+Message-ID: <5d14e715-7940-4f1b-ab79-860ada066072@kernel.org>
+Date: Tue, 11 Mar 2025 08:32:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/3] thermal/cpuplog_cooling: Add CPU hotplug cooling
- driver
-To: John Madieu <john.madieu.xa@bp.renesas.com>, geert+renesas@glider.be,
- niklas.soderlund+renesas@ragnatech.se, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, rafael@kernel.org,
- daniel.lezcano@linaro.org
-Cc: magnus.damm@gmail.com, claudiu.beznea.uj@bp.renesas.com,
- devicetree@vger.kernel.org, john.madieu@gmail.com, rui.zhang@intel.com,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- biju.das.jz@bp.renesas.com, linux-pm@vger.kernel.org
-References: <20250309121324.29633-1-john.madieu.xa@bp.renesas.com>
- <20250309121324.29633-2-john.madieu.xa@bp.renesas.com>
+Subject: Re: [PATCH v3 1/3] dt-binding: aspeed: Add LPC PCC controller
+To: Kevin Chen <kevin_chen@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au, derek.kiernan@amd.com, dragan.cvetic@amd.com,
+ arnd@arndb.de, gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20250310114839.3098148-1-kevin_chen@aspeedtech.com>
+ <20250310114839.3098148-2-kevin_chen@aspeedtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,249 +104,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250309121324.29633-2-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250310114839.3098148-2-kevin_chen@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/03/2025 13:13, John Madieu wrote:
-> +
-> +/* Check if a trip point is of type "plug" */
-> +static bool is_plug_trip_point(struct device_node *trip_node)
-> +{
-> +	const char *trip_type_str;
-> +
-> +	if (!trip_node) {
-> +		pr_err("Trip node is NULL\n");
-> +		return false;
-> +	}
-> +
-> +	if (of_property_read_string(trip_node, "type", &trip_type_str)) {
-> +		pr_err("Trip node missing 'type' property\n");
-> +		return false;
-> +	}
-> +
-> +	pr_info("Trip type: '%s'\n", trip_type_str);
-> +
-> +	if (strcmp(trip_type_str, "plug") != 0) {
-
-type is object, not string. Where is ABI documented? For the type and
-its value?
+On 10/03/2025 12:48, Kevin Chen wrote:
+> Add dt-bindings for Aspeed for Aspeed LPC POST code capture controller.
 
 
-> +		pr_debug("Trip type is '%s', not 'plug' - skipping\n",
-> +			 trip_type_str);
-> +		return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +/* Init function */
-> +static int __init cpu_hotplug_cooling_init(void)
-> +{
-> +	struct device_node *thermal_zones, *thermal_zone;
-> +	int ret = 0;
-> +	int count = 0;
-> +
-> +	bitmap_zero(cpu_cooling_registered, NR_CPUS);
-> +
-> +	thermal_zones = of_find_node_by_name(NULL, "thermal-zones");
-> +	if (!thermal_zones) {
-> +		pr_err("Missing thermal-zones node\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Process each thermal zone */
-> +	for_each_child_of_node(thermal_zones, thermal_zone) {
-> +		struct device_node *trips, *trip;
-> +		struct device_node *maps, *map;
-> +		bool found_plug = false;
-> +
-> +		/* First find trips and get a specific plug trip */
-> +		trips = of_find_node_by_name(thermal_zone, "trips");
-> +		if (!trips)
-> +			continue;
-> +
-> +		/* Find the emergency trip with type="plug" */
-> +		for_each_child_of_node(trips, trip) {
-> +			if (is_plug_trip_point(trip)) {
-> +				found_plug = true;
-> +				break;
-> +			}
-> +		}
-> +
-> +		/* If we didn't find a plug trip, no need to process this zone */
-> +		if (!found_plug) {
-> +			of_node_put(trips);
-> +			continue;
-> +		}
-> +
-> +		maps = of_find_node_by_name(thermal_zone, "cooling-maps");
-> +		if (!maps) {
-> +			of_node_put(trip);
-> +			of_node_put(trips);
-> +			continue;
-> +		}
-> +
-> +		pr_info("Found 'plug' trip point, processing cooling devices\n");
+<form letter>
+This is a friendly reminder during the review process.
 
-dev_info, or just drop. You are not supposed to print successes of
-standard DT parsing.
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
-> +
-> +		/* Find the specific cooling map that references our plug trip */
-> +		for_each_child_of_node(maps, map) {
-> +			struct device_node *trip_ref;
-> +			struct of_phandle_args cooling_spec;
-> +			int idx = 0;
-> +
-> +			trip_ref = of_parse_phandle(map, "trip", 0);
-> +			if (!trip_ref || trip_ref != trip) {
-> +				if (trip_ref)
-> +					of_node_put(trip_ref);
-> +				continue;
-> +			}
-> +			of_node_put(trip_ref);
-> +
-> +			if (!of_find_property(map, "cooling-device", NULL)) {
-> +				pr_err("Missing cooling-device property\n");
-> +				continue;
-> +			}
-> +
-> +			/* Iterate through all cooling-device entries */
-> +			while (of_parse_phandle_with_args(
-> +				       map, "cooling-device",
-> +				       "#cooling-cells", idx++,
-> +				       &cooling_spec) == 0) {
-> +				struct device_node *cpu_node = cooling_spec.np;
-> +				int cpu;
-> +
-> +				if (!cpu_node) {
-> +					pr_err("CPU node at index %d is NULL\n",
-> +					       idx - 1);
-> +					continue;
-> +				}
-> +
-> +				cpu = of_cpu_node_to_id(cpu_node);
-> +				if (cpu < 0) {
-> +					pr_err("Failed to map CPU node %pOF to logical ID\n",
-> +					       cpu_node);
-> +					of_node_put(cpu_node);
-> +					continue;
-> +				}
-> +
-> +				if (cpu >= num_possible_cpus()) {
-> +					pr_err("Invalid CPU ID %d (max %d)\n",
-> +					       cpu, num_possible_cpus() - 1);
-> +					of_node_put(cpu_node);
-> +					continue;
-> +				}
-> +
-> +				pr_info("Processing cooling device for CPU%d\n", cpu);
-> +				ret = register_cpu_hotplug_cooling(cpu_node, cpu);
-> +				if (ret == 0)
-> +					count++;
-> +
-> +				of_node_put(cpu_node);
-> +			}
-> +			break; /* Only process the first map that references our trip */
-> +		}
-> +		of_node_put(maps);
-> +		of_node_put(trip);
-> +		of_node_put(trips);
-> +	}
-> +	of_node_put(thermal_zones);
-> +
-> +	if (count == 0) {
-> +		pr_err("No cooling devices registered\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	pr_info("CPU hotplug cooling driver initialized with %d devices\n", count);
+Thank you.
+</form letter>
 
-Drop. Why would you print this on MIPS machine which does not care about
-it, just because someone loaded a module?
-
-> +	return 0;
-> +}
-> +
-> +/* Exit function */
-> +static void __exit cpu_hotplug_cooling_exit(void)
-> +{
-> +	cleanup_cooling_devices();
-> +	pr_info("CPU hotplug cooling driver removed\n");
-
-No, drop
-
-
-> +}
-> +
-> +module_init(cpu_hotplug_cooling_init);
-> +module_exit(cpu_hotplug_cooling_exit);
-> +
-> +MODULE_AUTHOR("John Madieu <john.madieu.xa@bp.renesas.com>");
-> +MODULE_DESCRIPTION("CPU Hotplug Thermal Cooling Device");
-> +MODULE_LICENSE("GPL");
-> \ No newline at end of file
-
-Warning here
-
-> diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
-> index 0eb92d57a1e2..41655af1e419 100644
-> --- a/drivers/thermal/thermal_of.c
-> +++ b/drivers/thermal/thermal_of.c
-> @@ -28,6 +28,7 @@ static const char * const trip_types[] = {
->  	[THERMAL_TRIP_ACTIVE]	= "active",
->  	[THERMAL_TRIP_PASSIVE]	= "passive",
->  	[THERMAL_TRIP_HOT]	= "hot",
-> +	[THERMAL_TRIP_PLUG]	= "plug",
->  	[THERMAL_TRIP_CRITICAL]	= "critical",
->  };
+> 
+> Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
+> ---
+>  .../devicetree/bindings/mfd/aspeed-lpc.yaml   | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml b/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
+> index 5dfe77aca167..178c151a19ba 100644
+> --- a/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
+> @@ -149,6 +149,37 @@ patternProperties:
+>        - interrupts
+>        - snoop-ports
 >  
-> diff --git a/drivers/thermal/thermal_trace.h b/drivers/thermal/thermal_trace.h
-> index df8f4edd6068..c26a3aa7de5f 100644
-> --- a/drivers/thermal/thermal_trace.h
-> +++ b/drivers/thermal/thermal_trace.h
-> @@ -12,6 +12,7 @@
->  #include "thermal_core.h"
->  
->  TRACE_DEFINE_ENUM(THERMAL_TRIP_CRITICAL);
-> +TRACE_DEFINE_ENUM(THERMAL_TRIP_PLUG);
->  TRACE_DEFINE_ENUM(THERMAL_TRIP_HOT);
->  TRACE_DEFINE_ENUM(THERMAL_TRIP_PASSIVE);
->  TRACE_DEFINE_ENUM(THERMAL_TRIP_ACTIVE);
-> @@ -19,6 +20,7 @@ TRACE_DEFINE_ENUM(THERMAL_TRIP_ACTIVE);
->  #define show_tzt_type(type)					\
->  	__print_symbolic(type,					\
->  			 { THERMAL_TRIP_CRITICAL, "CRITICAL"},	\
-> +			 { THERMAL_TRIP_PLUG,     "PLUG"},	\
->  			 { THERMAL_TRIP_HOT,      "HOT"},	\
->  			 { THERMAL_TRIP_PASSIVE,  "PASSIVE"},	\
->  			 { THERMAL_TRIP_ACTIVE,   "ACTIVE"})
-> diff --git a/drivers/thermal/thermal_trip.c b/drivers/thermal/thermal_trip.c
-> index 4b8238468b53..373f6aaaf0da 100644
-> --- a/drivers/thermal/thermal_trip.c
-> +++ b/drivers/thermal/thermal_trip.c
-> @@ -13,6 +13,7 @@ static const char *trip_type_names[] = {
->  	[THERMAL_TRIP_ACTIVE] = "active",
->  	[THERMAL_TRIP_PASSIVE] = "passive",
->  	[THERMAL_TRIP_HOT] = "hot",
-> +	[THERMAL_TRIP_PLUG]	= "plug",
->  	[THERMAL_TRIP_CRITICAL] = "critical",
->  };
->  
-> diff --git a/include/uapi/linux/thermal.h b/include/uapi/linux/thermal.h
-> index 46a2633d33aa..5f76360c6f69 100644
-> --- a/include/uapi/linux/thermal.h
-> +++ b/include/uapi/linux/thermal.h
-> @@ -15,6 +15,7 @@ enum thermal_trip_type {
->  	THERMAL_TRIP_ACTIVE = 0,
->  	THERMAL_TRIP_PASSIVE,
->  	THERMAL_TRIP_HOT,
-> +	THERMAL_TRIP_PLUG,
->  	THERMAL_TRIP_CRITICAL,
->  };
->  
+> +  "^lpc-pcc@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    description:
+> +      The LPC pcc interface allows the BMC to listen on and record the data
+> +      bytes written by the Host to the targeted LPC I/O pots.
+> +
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - enum:
+> +              - aspeed,ast2600-lpc-pcc
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      interrupts:
+> +        maxItems: 1
+> +
+> +      pcc-ports:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        description:
+> +          As a device handshake with a host using the port-mmaped I/O in x86
+> +          architecture, need to handle specific which port I/O address for use.
+
+<form letter>
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+</form letter>
+
 
 
 Best regards,
