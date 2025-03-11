@@ -1,196 +1,194 @@
-Return-Path: <devicetree+bounces-156432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75183A5BB20
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:51:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6C2A5BB51
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 09:58:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1ACA23AEFC7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:50:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C28A1717C2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Mar 2025 08:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BCBF226865;
-	Tue, 11 Mar 2025 08:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33C8723237B;
+	Tue, 11 Mar 2025 08:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XHGK8/Ee"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hkxErCkd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF201EB184;
-	Tue, 11 Mar 2025 08:51:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A764422B59D;
+	Tue, 11 Mar 2025 08:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741683063; cv=none; b=lHVHMvH5rXaWlGyeiXlKsLHCDLtmHh+hn+J8AI2Kbf3WUck2wBP6+0vNdnhZ8W9oOWIfkA8lywG63SYDJeJDZQufZTULLiIaUHWAK9XAeVgPwJtXuFCT9mlpTDLm+v3KZxaH3dClv71eFoh0iHMDwA432+zNKi/orKLnA7fBmUc=
+	t=1741683418; cv=none; b=hdOCiZEdQ0vJcDnPzhHb185m0pTZPONpMBU3DeJDX20HMgyAGaukSpf+c+Vfaw+3Ao2i/4xCdAwxDbVlKLxBOxQxtgmS/FtJbHqWeahu3gGYKqOiS67Uv1KrHg/kZ2oyLknvN9/PdRgqVf4gsDVdtJwYAi9HFu/6rCtZcykbCQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741683063; c=relaxed/simple;
-	bh=HB3Zy1gU28m4kK/S0bB95ApFHZ/cYoMFfJxnYvIe3NY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UtUuXa/5VbJOLNgy/kzMHqZAesLF7lgG2t0oQI3U/GWvyjDIx/r29wkKecE3K3KzZ9dGgOsAfanH1f3dJLNEYchz4tYmtGtlnHMQDR3NlStr0yOpp9Hp3DdH8kqnPb4A1tedZa3Tg9D9E7idVK3o/c/T9Q2JN0ia18n/JnLBOlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XHGK8/Ee; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-523f670ca99so1193538e0c.1;
-        Tue, 11 Mar 2025 01:51:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741683061; x=1742287861; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YwlKUmCIxRBb8ELz2q2Z4eNbzAimAiIA1z1E81e3a6E=;
-        b=XHGK8/EeIvETJAIb6KP/+65N83+IAaSakmKL4AeeKLZGYA1sLmwL2cqOFNb8DwZFAP
-         tazwIE3Xybn02xCH+Abvzb/LU45seiH3v4SxOkTW0PU5y8rT7VFx4S3p1HG/B1Ydnm5k
-         WGktHu9fzWBeVED7mIdOUcoEJXX3roZZBM1PP4crZuJeVPW+qrGbPsC5L0BtYbGo1ypZ
-         cosjSXUhNjvxMfpaNWjie6qdaw+eLKjTkMuqccZHx+Cuv2mAvGMErry1hCyJJTcc9mEg
-         FRXu77KoUJ6QKKGuQPisclvF+tldvXqWcuzVmo5+phVbWZILGfpw8y9hnVb0FOCaxlpo
-         Wx+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741683061; x=1742287861;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YwlKUmCIxRBb8ELz2q2Z4eNbzAimAiIA1z1E81e3a6E=;
-        b=sF+El0iuCbWW+oULypla+UVfkRrHYaRGKBqHRcjT+gsbYnCfLbD+I2zVOZwpwUzDgQ
-         MoZSXEv7Z5yG0eSgoQ5ckBu3Eqp1B1RTtQ3+LpjkdcoMyBWcBazXv8j8avwG6+7+W1UO
-         zT5ZYEjzyM0JXYtwbNLdFWQV09WZn8emTtI8IARy3gu1wWjYyPXaXvWjO/AogiBKJPA7
-         gJhqNoySqNUiaBvYpTfW3FV0/d95y1hwMHmu9gmI2Y8JA6Qlv4LrVQ5BbIdZ5Lsz5MrU
-         gRxU640Zu/oilPw409ySCZql32seeRILcMj+35llrLCOMf2bWU7+/RwRdO3HYjxaGWZ9
-         /gxA==
-X-Forwarded-Encrypted: i=1; AJvYcCVB6libishqZbcCXLjT2U/ZBg9lLFRKBXCgK+EPDgVq7yYWGUYb/NluYPC97ikTqISYTrAeEaZE@vger.kernel.org, AJvYcCVmY4ZiuAkrB4DrG7V7y47ACHDawoP9JplwbnJDn1Ek5n4y7t5xVZLM6UFFffiOT4foBI+gUqW/J5EyLM0D@vger.kernel.org, AJvYcCWDmF/vcQRTiPGhxatiRPDKxsLa/s8nyHSyONDLllFfh9btmgfcjRVLxkvIPTVz+2XAeJ1zzQV4Z++e@vger.kernel.org, AJvYcCX2etKFNJQsPfrweNC24mx26y9Ekg+PM5olexlDHC29r12ipGGWHNtIB2b43znuyJlE+jtWSFmyJbyR6f0fCYO8V5U=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQVQb/V6ZQNaWKvIMUvwu0NqRJ7N0TxtsJDAYLs3onRPvxaMYv
-	oQw7TSkISb5sQnndqYyUsrSvfeicKTvyZoJ/ZFdId+AVWbdnl8IHeN1mVRE3VTSkqSg8+/umfSB
-	QuH9M+ovQLiNGHltmdaqR+//HWU0=
-X-Gm-Gg: ASbGncuU5uouqjNf1/j1jV0KcAInyv/ViQI9DGnCFbAikkRjVdY6aEEwv8JjxXx9rs1
-	04el+B3FnuxCYfONJJYS1hf7BIIh8JIPAwykxEEFx0LbLKWgPLMgLV/vnbgvNkwgXFvy6tYAvd0
-	GW55IOCFgToqzvho4KIXT3GH2N/XRQ5b8QMHTf
-X-Google-Smtp-Source: AGHT+IFGrKexk2feh/g4AfZm+74DwDdS0TYifRv6+ZHmhZYsDPNrr70+NaB9JFJj6JVsuEewgbKE9y58HXVcfK0UqmU=
-X-Received: by 2002:a05:6122:319b:b0:520:9b05:4cb6 with SMTP id
- 71dfb90a1353d-524195c60cbmr1473579e0c.0.1741683060635; Tue, 11 Mar 2025
- 01:51:00 -0700 (PDT)
+	s=arc-20240116; t=1741683418; c=relaxed/simple;
+	bh=Jo9gV2WeqEIzH0koZkOqg/dgypAdrFw4uW3AeHXDdQ4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=b9UUhj7cntnLj8s/NV3hIZkVf0dVncA8NgLnmjjpo1f+2pjQ6cBym4jteD2ZUNZeUIUAwzyV8WE1H9sSFw5n25DRuVGW3Gkf3Q85RqSbs3977fZnryPx8FtDhbvpxVw1TM0Am0bHq+puN5LCvGIDE5fdfbuDWyDIU2YCBVrNpSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hkxErCkd; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52B8ixTS013127;
+	Tue, 11 Mar 2025 08:56:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hVWsZ53cfg6ylOMg435wKEaqSOis9OxShBeuIA+hITk=; b=hkxErCkdIkFi0B5v
+	ADWsZPpNEXwRGmvyLMXrPhZ9ccqKlGe1oxBPQQAt4VqOFHF9EPuVYYVfrglH38aU
+	rsZH4c8XKPmZoM52nGkpNjBubFrcFeb9fAAlyGK8ZxFS/Oumj3N9HcSZHrdJv2dO
+	JeAGvbV3zY0AHgGYaQ8GLlyOIn2BuEVkxnOkFIY0chVzcQ3ZYur7dG2A+EmUfnfw
+	jhDQdzi2Wz2iY2Eyit093FDPsayvZD5tqRvVpAgmDXIL442meF24otaVP4rGO4KO
+	4qNkii9krWighGk1QeQ7nFD3lolIuxnuwXMbNWu1zTZOJoYxO+NzsEkw8tduTEju
+	K+eP3g==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 458f0w7tc8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Mar 2025 08:56:52 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52B8uqae022171
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Mar 2025 08:56:52 GMT
+Received: from [10.218.22.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 11 Mar
+ 2025 01:56:46 -0700
+Message-ID: <6a73a0d3-f5fb-46cf-b55b-9f8b4af9df4c@quicinc.com>
+Date: Tue, 11 Mar 2025 14:26:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250308200921.1089980-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250308200921.1089980-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250310213056.GA904881-robh@kernel.org> <CA+V-a8uinTxr8FheR5-Pbv37j9wFR1cfrFDX6gExA5dW8WWPSA@mail.gmail.com>
-In-Reply-To: <CA+V-a8uinTxr8FheR5-Pbv37j9wFR1cfrFDX6gExA5dW8WWPSA@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 11 Mar 2025 08:50:34 +0000
-X-Gm-Features: AQ5f1JqlUV-XTA6x64ZwVgrVHcqYL_lO68H10alDV6JE3jPjNjWM6p7bkmkYfY0
-Message-ID: <CA+V-a8v=q1aN_+4jQz3=StAXYP1-==OX5xZDrGXe8WWR4XbCKQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: dwmac: Increase
- 'maxItems' for 'interrupts' and 'interrupt-names'
-To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc: Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/8] clk: qcom: common: Add support to configure PLL
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya
+ Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250306-videocc-pll-multi-pd-voting-v2-0-0cd00612bc0e@quicinc.com>
+ <20250306-videocc-pll-multi-pd-voting-v2-2-0cd00612bc0e@quicinc.com>
+ <91561f37-5309-45f1-a1d7-20228ba68c2e@oss.qualcomm.com>
+Content-Language: en-US
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <91561f37-5309-45f1-a1d7-20228ba68c2e@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: hCqw_xvsas3181S8OkjThrqxvZO0LcqR
+X-Proofpoint-GUID: hCqw_xvsas3181S8OkjThrqxvZO0LcqR
+X-Authority-Analysis: v=2.4 cv=MICamNZl c=1 sm=1 tr=0 ts=67cffad4 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=KKJ9gdNFWaWt-nm7_UYA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-11_01,2025-03-11_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=820 lowpriorityscore=0 phishscore=0 spamscore=0 suspectscore=0
+ priorityscore=1501 malwarescore=0 mlxscore=0 adultscore=0 bulkscore=0
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502100000
+ definitions=main-2503110060
 
-Hi Russell,
 
-On Tue, Mar 11, 2025 at 7:16=E2=80=AFAM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Rob,
->
-> Thank you for the review.
->
-> On Mon, Mar 10, 2025 at 9:30=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > On Sat, Mar 08, 2025 at 08:09:19PM +0000, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Increase the `maxItems` value for the `interrupts` and `interrupt-nam=
-es`
-> > > properties to accommodate the Renesas RZ/V2H(P) SoC, which features t=
-he
-> > > `snps,dwmac-5.20` IP with 11 interrupts.
-> > >
-> > > Also add `additionalItems: true` to allow specifying extra interrupts
-> > > beyond the predefined ones. Update the `interrupt-names` property to
-> > > allow specifying extra `interrupt-names`.
-> > >
-> > > Also refactor the optional `interrupt-names` property by consolidatin=
-g
-> > > repeated enums into a single enum list.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> > > ---
-> > > Note, for this change I will be sending a sperate patch for vendor
-> > > bindings to add constraints.
-> > >
-> > > v1->v2
-> > > - No change
-> > > ---
-> > >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++--
-> > >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/=
-Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > > index 3f0aa46d798e..fad0d611a75c 100644
-> > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > > @@ -114,6 +114,8 @@ properties:
-> > >
-> > >    interrupts:
-> > >      minItems: 1
-> > > +    maxItems: 11
-> > > +    additionalItems: true
-> > >      items:
-> > >        - description: Combined signal for various interrupt events
-> > >        - description: The interrupt to manage the remote wake-up pack=
-et detection
-> > > @@ -122,11 +124,11 @@ properties:
-> > >
-> > >    interrupt-names:
-> > >      minItems: 1
-> > > +    maxItems: 11
-> > > +    additionalItems: true
-> > >      items:
-> > >        - const: macirq
-> > >        - enum: [eth_wake_irq, eth_lpi, sfty]
-> > > -      - enum: [eth_wake_irq, eth_lpi, sfty]
-> > > -      - enum: [eth_wake_irq, eth_lpi, sfty]
-> >
-> > I think this should be structured similar to the DWC PCIe binding where
-> > we define all possible names, but not the order:
-> >
-> > minItems: 1
-> > maxItems: 11
-> > items:
-> >   oneOf:
-> >     - const: macirq
-> >       description: ...
-> >     - const: eth_wake_irq
-> >       description: ...
-> >     - pattern: '^rx-queue-[0-3]$'
-> >       description: ...
-> >     - pattern: '^tx-queue-[0-3]$'
-> >       description: ...
-> >
-> > And so on. Move the descriptions from 'interrupts' and drop 'items' and
-> > 'additionalItems' from it.
-> >
-> Thanks for the pointer, I'll do as suggested above.
->
-> @Russel, are you OK from me to add rx-queue/tx-queue in this binding
-Apologies for the typo in your name.
 
-Cheers,
-Prabhakar
+On 3/6/2025 5:52 PM, Konrad Dybcio wrote:
+> On 6.03.2025 9:55 AM, Jagadeesh Kona wrote:
+>> From: Taniya Das <quic_tdas@quicinc.com>
+>>
+>> Integrate PLL configuration into clk_alpha_pll structure and add support
+>> for qcom_cc_clk_alpha_pll_configure() function which can be used to
+>> configure the clock controller PLLs from common core code.
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+>> +static void qcom_cc_clk_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap)
+>> +{
+>> +	if (!pll->config || !pll->regs)
+>> +		return;
+> 
+> This should probably throw some sort of a warning
+> 
+
+Yes, will add a warning here and for default case in next series.
+
+Thanks,
+Jagadeesh
+
+>> +
+>> +	switch (GET_PLL_TYPE(pll)) {
+>> +	case CLK_ALPHA_PLL_TYPE_LUCID_OLE:
+>> +		clk_lucid_ole_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_LUCID_EVO:
+>> +		clk_lucid_evo_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_TAYCAN_ELU:
+>> +		clk_taycan_elu_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_RIVIAN_EVO:
+>> +		clk_rivian_evo_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_TRION:
+>> +		clk_trion_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_HUAYRA_2290:
+>> +		clk_huayra_2290_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_FABIA:
+>> +		clk_fabia_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_AGERA:
+>> +		clk_agera_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_PONGO_ELU:
+>> +		clk_pongo_elu_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_ZONDA:
+>> +	case CLK_ALPHA_PLL_TYPE_ZONDA_OLE:
+>> +		clk_zonda_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_STROMER:
+>> +	case CLK_ALPHA_PLL_TYPE_STROMER_PLUS:
+>> +		clk_stromer_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	case CLK_ALPHA_PLL_TYPE_DEFAULT:
+>> +	case CLK_ALPHA_PLL_TYPE_DEFAULT_EVO:
+>> +	case CLK_ALPHA_PLL_TYPE_HUAYRA:
+>> +	case CLK_ALPHA_PLL_TYPE_HUAYRA_APSS:
+>> +	case CLK_ALPHA_PLL_TYPE_BRAMMO:
+>> +	case CLK_ALPHA_PLL_TYPE_BRAMMO_EVO:
+>> +		clk_alpha_pll_configure(pll, regmap, pll->config);
+>> +		break;
+>> +	default:
+>> +		break;
+> 
+> And so should the 'default' case
+> 
+> Konrad
 
