@@ -1,159 +1,185 @@
-Return-Path: <devicetree+bounces-156886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D47D6A5DC66
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 13:16:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2015EA5DC93
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 13:28:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 841D61897781
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:16:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7BBB1899D24
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:28:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2439242912;
-	Wed, 12 Mar 2025 12:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430BA241CA2;
+	Wed, 12 Mar 2025 12:28:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="KeYcb7yo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VF8Hbs57"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-14.pe-a.jellyfish.systems (out-14.pe-a.jellyfish.systems [198.54.127.78])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32B023F26B;
-	Wed, 12 Mar 2025 12:16:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE58924168E;
+	Wed, 12 Mar 2025 12:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741781783; cv=none; b=uTzLteoUfunCDiqXkC/keykBZlCQq88BKN92D1fA6ElEzvx3Wtwv4mmbK8hGEX8im/Uy8MkTLqiMZ0hEZMmwDhe+h0ScOaJUR5apAIoMQ8o44TK8761wS9jKnsZ71nUcsG+w2W95ztJFs4u2zkENshryj0QQVKAu2JnBIyjJrTg=
+	t=1741782488; cv=none; b=ZNyHFwUOOL1BdwbTy3k3VFrtde/NKOlykCiHdRaMfS8NSPxmiII5VtdLWAMVx+aqXcHjahyVjKmQA4uz2K63VEomDf20cFOucwjDyq7sM76WRTXgiqiuZ9DWtsV2AqXxdmlq/CC6BmX1hO2mfWnt11tvYdF7+AQP5SpU9wiEj60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741781783; c=relaxed/simple;
-	bh=+JhIv47YGBNM/qh6+n+ZIfJoHiVGRJYpu/WIb6UoC3Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j6ITPwHwW4JDTEWNXD1dRaKsokubdoLpxLP1vMIww57AelJ7PlZAFMsyuzZfmhbXKJRbD8zYjz3c2EJNkDW3prLAhfHD6284bqXVZqg6oCJSIM/spQEIQvR4XiZO5c4J4tRF5MIovn6ignyRtBrMT2GGxLZy8gf4dMZH4DUrmK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=KeYcb7yo; arc=none smtp.client-ip=198.54.127.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
-Received: from prod-lbout-phx.jellyfish.systems (new-01-3.privateemail.com [66.29.159.56])
-	by pe-a.jellyfish.systems (Postfix) with ESMTPA id 4ZCV3J4vrjz3xWG;
-	Wed, 12 Mar 2025 12:16:12 +0000 (UTC)
-Received: from MTA-12.privateemail.com (unknown [10.50.14.28])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by NEW-01-3.privateemail.com (Postfix) with ESMTPS id 4ZCV3J4Kf0z2Sd0R;
-	Wed, 12 Mar 2025 08:16:12 -0400 (EDT)
-Received: from mta-12.privateemail.com (localhost [127.0.0.1])
-	by mta-12.privateemail.com (Postfix) with ESMTP id 4ZCV3J30mmz3hhSW;
-	Wed, 12 Mar 2025 08:16:12 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
-	s=default; t=1741781772;
-	bh=+JhIv47YGBNM/qh6+n+ZIfJoHiVGRJYpu/WIb6UoC3Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KeYcb7yoMKJSUVon6V1Nl7i3KcmNjIN0p655tu1GCPueZfaHuYcTmHczIdWjlNlGo
-	 CzFCifYwHv1hdCxNHx1lG0KSRVv/ywTSBDy0yMosRuYWd2njwKwzGiJeLp98F5ZaM0
-	 cjlXbOlaul8cyphuBW93REyIUHnery17rJaZGf65jkak0Yh+JKuxvBoes++UECsYxs
-	 QuGPA88QoqIXBEK0FSPEgIpD1KnasEynnqquThZmpsfDimPQp5JtJ1i1vwT+XfSm9V
-	 n3uqr3QTdN8Gu+wA6dej1uuxi3vwQo0jsjcSkPe5zAM+wm93+5eZi1l7JiS0QDlHEH
-	 vgl5efv+tomuA==
-Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
-	by mta-12.privateemail.com (Postfix) with ESMTPA;
-	Wed, 12 Mar 2025 08:15:59 -0400 (EDT)
-Date: Wed, 12 Mar 2025 08:16:00 -0400
-From: Sam Winchenbach <sam.winchenbach@framepointer.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-kernel@vger.kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, antoniu.miclaus@analog.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	bpellegrino@arka.org
-Subject: Re: [PATCH v6 6/6] iio: filter: admv8818: Support frequencies >= 2^32
-Message-ID: <Z9F7AJTCtFRIPHpw@65YTFL3.secure.tethers.com>
-References: <20250307150216.374643-1-sam.winchenbach@framepointer.org>
- <20250307150216.374643-6-sam.winchenbach@framepointer.org>
- <20250308140143.411caf7b@jic23-huawei>
+	s=arc-20240116; t=1741782488; c=relaxed/simple;
+	bh=eLI8ZQpDeHJjUFJmDAEO+qwnlSA/Gq6OLz6UDxl1fsU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GJtL/AggcI3baguyAedlAQLHO5qVY6d83NXBzbpTLiF13QAQopB+CvsabqevJsb/1zrxB+EpiupA9TYSVqMkVPDGz5W1syOyNYHw+O2F1/LukPBt1S2hyNyK2VA2retsYh8us1SFnxobLlaXyQayad8Fi4X+iSjFcVMC74NAPng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VF8Hbs57; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-223f4c06e9fso13614475ad.1;
+        Wed, 12 Mar 2025 05:28:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741782486; x=1742387286; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IxUbYz05EixkTPFqKStUgtk6UPZfDa5JQwQa/HwWCZ0=;
+        b=VF8Hbs57zgutOPomxXSsVJMx/FUgDAPNv0wCpNmKel1OWdHO69qbZCsOywHSpl7f3k
+         C574BOZRLhb7Q3TyW0Dw+ol3Vy0Mu6t2GzTakOz9uYR+a6eNLYX7CYfGjAYh7vTe26Yp
+         r7X6Q752J/zQlIGBoQWn6NRZr3rc+ulpx9nDfEI8dt7x/9+k72QmXHCuGvoMzPoD3Jqr
+         +OlH9KcU9KUFWYRCljyMr8obl7sskFVBFUfVKqgq5BIJmwbHl55eNNymR46j+WhepNNy
+         nj7EGr7H/gO4bSxjCWNMgt1Zik/ApZEcwgTxVngUkt4pBfa/ezcFTtbcJH0qg3cfiNNh
+         AU1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741782486; x=1742387286;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IxUbYz05EixkTPFqKStUgtk6UPZfDa5JQwQa/HwWCZ0=;
+        b=tYHtYncIaXCil1lBLCgTtEyWl4+5cYTn/xRLVAvOA8w/UYLNR5K9D35zLKAvXXOg6B
+         cM27B2cxMtJImf3avV+dVTvOUB1W6ckSx1bushOjGQ9tQQsVPGmgqZRNbJwiukst0ij+
+         OTtTWKR1QqSLTBeOVoZVI6IMtsImuHLeY0dSGttUAUWTQ94JZiTHrHigD2xXNPlwzFU6
+         k3Exw0wqALijK/vbLAKVlGcxvuWsudaE0fjuLKIiAghdim64GxKMjDJxwfbnxN0+Sqlg
+         O4d88rM5Pjs8P7zjABq6WBdwACv5ERnoG95BrlGrhh7Z34uArcRGCikAWSQP9AlzZcT3
+         STow==
+X-Forwarded-Encrypted: i=1; AJvYcCW2PajoKHAS1bl1KzwArlWyDn5Y2LrEwJZTLBSfAfADDqj+aYponSSp/wk74sU5inA1azr0TXRVMGMwZU4b@vger.kernel.org, AJvYcCX5fxeRPcXmvRTnKuirpWKR10Vs8bcbhYqKpx4YgD92PKnedTTL3TtLQckzvutPxsexre7U5RRqKmsF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvETTj5hHRaqPlMEJ/RX5cs8sKYFlvwAJ+G2/aMiVIilPImhZq
+	7yUlsnQYSRruD5jx4I00sMZ3PSTaZlG1mM1RUJGDsveSGiyFXc5IDuicKphQzHs=
+X-Gm-Gg: ASbGncsk4lhoaGhhcJXE135eVZ/CoPR+Sr0BNppKOvlFIfIhYJA0XztxwQvqaVUFfGO
+	WfuzaxHNKwpj2ueb4ctJkd47YCVRp24ElMyM82/M9PtjNE+yJd15sQmx/WxsCXKqukGvV35aiPG
+	dIFSTceggGDOUXv6bkZhBPwuLUgzBcgi/INuQk+jmFz/e4L//CHKoGQEGQfg/ezSgzHChEthExl
+	uZVcKrsQbboZ2dMmbkwNi7jjvB5Z+11BgwfqbEd6vyhE4qoK3TM4wy1M/bl7YXRfX8cVszyIw7w
+	SWH88cg5Imh+G7fCjgNHQxkizl+j+EKtuSpencikmVOLQzqcDVMMdrdrgMl5RLNvF+BOvB7zOAM
+	=
+X-Google-Smtp-Source: AGHT+IGMRstxw7VlBWo5AclJnc80nudS0j2DV/XKis75x33MKdrmONuUAwxabjmT8wMAvLHS9LgnmA==
+X-Received: by 2002:a17:902:cf0d:b0:215:6c5f:d142 with SMTP id d9443c01a7336-22593d9e8dcmr90162505ad.20.1741782485826;
+        Wed, 12 Mar 2025 05:28:05 -0700 (PDT)
+Received: from purva-IdeaPad-Gaming-3-15IHU6.. ([14.139.108.62])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-224109e8532sm114691035ad.56.2025.03.12.05.28.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Mar 2025 05:28:05 -0700 (PDT)
+From: Purva Yeshi <purvayeshi550@gmail.com>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	vz@mleia.com,
+	piotr.wojtaszczyk@timesys.com
+Cc: linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Purva Yeshi <purvayeshi550@gmail.com>
+Subject: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
+Date: Wed, 12 Mar 2025 17:57:50 +0530
+Message-Id: <20250312122750.6391-1-purvayeshi550@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250308140143.411caf7b@jic23-huawei>
-X-Virus-Scanned: ClamAV using ClamSMTP
+Content-Transfer-Encoding: 8bit
 
-On Sat, Mar 08, 2025 at 02:01:43PM +0000, Jonathan Cameron wrote:
-> On Fri,  7 Mar 2025 10:02:16 -0500
-> Sam Winchenbach <sam.winchenbach@framepointer.org> wrote:
-> 
-> > From: Brian Pellegrino <bpellegrino@arka.org>
-> > 
-> > This patch allows writing u64 values to the ADMV8818's high and low-pass
-> > filter frequencies. It includes the following changes:
-> > 
-> > - Rejects negative frequencies in admv8818_write_raw.
-> > - Adds a write_raw_get_fmt function to admv8818's iio_info, returning
-> >   IIO_VAL_INT_64 for the high and low-pass filter 3dB frequency channels.
-> > 
-> > Fixes: f34fe888ad05 ("iio:filter:admv8818: add support for ADMV8818")
-> > Signed-off-by: Brian Pellegrino <bpellegrino@arka.org>
-> > Signed-off-by: Sam Winchenbach <sam.winchenbach@framepointer.org>
-> I only have that minor comment on patch 5.  If nothing else comes up
-> and the dt binding ack comes in I may just tidy that up whilst applying.
-> 
+Convert the existing `lpc32xx-pwm.txt` bindings documentation into a
+YAML schema (`nxp,lpc3220-pwm.yaml`).
 
-Sounds good. If given the opportunity I would like to submit
-the patchset once more; I would like to use my work email
-for author and signoff, and use the framepointer address
-as an envelope. If I do this, I can update patch 5 as noted.
-Would that be ok?
+Set `"#pwm-cells"` to `const: 3` for expected PWM cell properties.
 
-Thanks,
--Sam
+Signed-off-by: Purva Yeshi <purvayeshi550@gmail.com>
+---
+V1 - https://lore.kernel.org/all/20250311125756.24064-1-purvayeshi550@gmail.com/
+V2 - Correct filename to match the compatible string, remove unnecessary
+quotes in maintainers, and refine commit message.
 
-> > ---
-> >  drivers/iio/filter/admv8818.c | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> > 
-> > diff --git a/drivers/iio/filter/admv8818.c b/drivers/iio/filter/admv8818.c
-> > index e9602bfd4af7..9785533d0cdd 100644
-> > --- a/drivers/iio/filter/admv8818.c
-> > +++ b/drivers/iio/filter/admv8818.c
-> > @@ -402,6 +402,19 @@ static int admv8818_read_lpf_freq(struct admv8818_state *st, u64 *lpf_freq)
-> >  	return ret;
-> >  }
-> >  
-> > +static int admv8818_write_raw_get_fmt(struct iio_dev *indio_dev,
-> > +								struct iio_chan_spec const *chan,
-> > +								long mask)
-> > +{
-> > +	switch (mask) {
-> > +	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-> > +	case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
-> > +		return IIO_VAL_INT_64;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +}
-> > +
-> >  static int admv8818_write_raw(struct iio_dev *indio_dev,
-> >  			      struct iio_chan_spec const *chan,
-> >  			      int val, int val2, long info)
-> > @@ -410,6 +423,9 @@ static int admv8818_write_raw(struct iio_dev *indio_dev,
-> >  
-> >  	u64 freq = ((u64)val2 << 32 | (u32)val);
-> >  
-> > +	if ((s64)freq < 0)
-> > +		return -EINVAL;
-> > +
-> >  	switch (info) {
-> >  	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-> >  		return admv8818_lpf_select(st, freq);
-> > @@ -571,6 +587,7 @@ static int admv8818_set_mode(struct iio_dev *indio_dev,
-> >  
-> >  static const struct iio_info admv8818_info = {
-> >  	.write_raw = admv8818_write_raw,
-> > +	.write_raw_get_fmt = admv8818_write_raw_get_fmt,
-> >  	.read_raw = admv8818_read_raw,
-> >  	.debugfs_reg_access = &admv8818_reg_access,
-> >  };
-> 
+ .../devicetree/bindings/pwm/lpc32xx-pwm.txt   | 17 ---------
+ .../bindings/pwm/nxp,lpc3220-pwm.yaml         | 38 +++++++++++++++++++
+ 2 files changed, 38 insertions(+), 17 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/lpc32xx-pwm.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
+
+diff --git a/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.txt b/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.txt
+deleted file mode 100644
+index 74b5bc5dd..000000000
+--- a/Documentation/devicetree/bindings/pwm/lpc32xx-pwm.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-LPC32XX PWM controller
+-
+-Required properties:
+-- compatible: should be "nxp,lpc3220-pwm"
+-- reg: physical base address and length of the controller's registers
+-
+-Examples:
+-
+-pwm@4005c000 {
+-	compatible = "nxp,lpc3220-pwm";
+-	reg = <0x4005c000 0x4>;
+-};
+-
+-pwm@4005c004 {
+-	compatible = "nxp,lpc3220-pwm";
+-	reg = <0x4005c004 0x4>;
+-};
+diff --git a/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml b/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
+new file mode 100644
+index 000000000..432a5e9d4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/nxp,lpc3220-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LPC32XX PWM controller
++
++maintainers:
++  - Vladimir Zapolskiy <vz@mleia.com>
++  - Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    const: nxp,lpc3220-pwm
++
++  reg:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 3
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pwm@4005c000 {
++        compatible = "nxp,lpc3220-pwm";
++        reg = <0x4005c000 0x4>;
++        #pwm-cells = <3>;
++    };
+-- 
+2.34.1
+
 
