@@ -1,209 +1,95 @@
-Return-Path: <devicetree+bounces-156991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F0BA5E4A2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 20:41:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5007DA5E4AD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 20:43:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 964551898BF6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 19:41:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C756F3ACDD6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 19:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3CCF258CCD;
-	Wed, 12 Mar 2025 19:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BC24258CE1;
+	Wed, 12 Mar 2025 19:43:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="KtN+MmIK"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="DxXCHqgd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C95C51BD9DD;
-	Wed, 12 Mar 2025 19:40:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8822566DA;
+	Wed, 12 Mar 2025 19:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741808459; cv=none; b=PFeklE6elcICiRMDpLMOfEgTDdlQ7VGg123a/I4GgN0LsTBaiumyr/jRCVN0fmqyEnRkwV66YOAB6eq/VeTA2vpYWxuhCCstlQTgefMuSx6ohHnJHywKdRrW4H8iwfQyy1rN7ECrfrCE05v7AfK3CGtFZA60b0oejmsq5iYmwnE=
+	t=1741808611; cv=none; b=L8HyiIYSd5Pt/6ZqFf6FXGATtXwTtXM5KBxIJn1jM3hj4rbUixlbjrCAsO/T9PQWCcRr8oRE2QO0Bm6A2qNehtiqfPwWNOW0R6x7dD/8WcHadCjJ+sBCdO6RkW1S90jaPM0mxK84cCq4xCbBi6ePBDdBlm8frcLNQVj+Az8hfr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741808459; c=relaxed/simple;
-	bh=ln3H3jQdCuiVM92t2vEUQn4yuJC8lu3CZ5HIpkqTiC8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fBaBPN0QF6Jh5qnZqXQvHghfCyiTdmXOTbCyOHCoQfKiUR2woSmZZdFjWDLRneX2QKg8Nbg2Av4tPMKJR663UnhRFfdoeqjMX95/SBLr9Naw30cO7aV6PFwdQALkAvU1Xa1Agnttp6G3y/PlbyJwxroceXBZ6m2mGm7a3HqLKiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=KtN+MmIK; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=F33ePOWArlXRReOL+ROoU2zMPCNTE1WroPgaIoYuTZ4=; b=KtN+MmIK5oqH/DVENgXBtOHXPl
-	ltCNMiJ+zxb5qPcZ1udz+U4sLwA3Oa1S+wAb8vS1PLc4CdiW4lAJLqTkoszXIcYbi/eT/rS+uBM9a
-	fs0gCOztnapuKDeAejq8miFq3rReKS8hF9Wn2VWBHhes7gY+UUf5BhVsiXVgZ9HS9tjXnNpax3vht
-	QjlaqYF9CpL6Bl3HrJrkfRvIYz1/V6MM7c6pDuMVINuSjkDfawXFkE+uggePUgoIvQ1GDMQcyVx8L
-	coaQO3hQfyil1uyfkvotzqTmuyxtEPRXppQGvfBx0e0BaW1FENu06qrqUR4TlF/c0oFMDTIlL0rhF
-	RB3ba9Vg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40360)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tsRwZ-00063Y-1c;
-	Wed, 12 Mar 2025 19:40:43 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tsRwW-0004oj-3A;
-	Wed, 12 Mar 2025 19:40:41 +0000
-Date: Wed, 12 Mar 2025 19:40:40 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: "Gupta, Suraj" <Suraj.Gupta2@amd.com>
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	"Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"Simek, Michal" <michal.simek@amd.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"git (AMD-Xilinx)" <git@amd.com>,
-	"Katakam, Harini" <harini.katakam@amd.com>
-Subject: Re: [PATCH net-next V2 2/2] net: axienet: Add support for 2500base-X
- only configuration.
-Message-ID: <Z9HjOAnpNkmZcoeo@shell.armlinux.org.uk>
-References: <20250312095411.1392379-1-suraj.gupta2@amd.com>
- <20250312095411.1392379-3-suraj.gupta2@amd.com>
- <ad1e81b5-1596-4d94-a0fa-1828d667b7a2@lunn.ch>
- <Z9GWokRDzEYwJmBz@shell.armlinux.org.uk>
- <BL3PR12MB6571795DA783FD05189AD74BC9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
- <34ed11e7-b287-45c6-8ff4-4a5506b79d17@lunn.ch>
- <BL3PR12MB6571540090EE54AC9743E17EC9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
- <fd686050-e794-4b2f-bfb8-3a0769abb506@lunn.ch>
- <BL3PR12MB6571959081FC8DDC5D509560C9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
+	s=arc-20240116; t=1741808611; c=relaxed/simple;
+	bh=MQpsvFjJVmn++42KDeejIYF6zbqUpGV1N2HykXJ9TvA=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=olGqBlRP0h0UOEvd4DUfPxv1E8IoIsW/qa4Azz4+fWsSJASO16TMdIOCTpA/hiAyTMllPJjc0hFozICYz0j4Y4Oi1/7bzC1+zghE+liok4PzvZ716/1TitsaqpGKoE+AejK/qpcuyyK1FNx/Bt3WCp3gIGHVB8kZTeyOs+1cLHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=DxXCHqgd; arc=none smtp.client-ip=185.70.43.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail; t=1741808605; x=1742067805;
+	bh=k2L8+T93x3C/emjGMuwyW/R5I8BeyS+0TxpevstosCY=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=DxXCHqgd37hI1t1+mSl0RVRBwA13vQ/XVaB09BZ/O0VCttgrhLU0EjhZZiQkCK+I/
+	 xirIOJ/C5+SaHokD1EEAq/798EGmTZaCDP/VR1350NPEJyWWqg2agQGAFYNisnikAK
+	 pM9X/nXhCDpQzQLkpQKvirBihIDT0xyDlbu3pMqI9N59zX67RsIrN1lLmVuQ2JhfD5
+	 tttJlaqwfmONRscNeiyAYqg3X1dlR/mn1+fT8HAYPfdkmzf8BEuLcsIshVhhMOvVoK
+	 daXB5Xif7XB4RWcKuUs9smRkdiuD3NrsMernT3k90UVinCE/TWl7PwwxHM3UYlCPvY
+	 l68ZcyT+sgJ4w==
+Date: Wed, 12 Mar 2025 19:43:19 +0000
+To: Tamir Duberstein <tamird@gmail.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] rust: enable `clippy::as_underscore` lint
+Message-ID: <D8EJM4CJ4HAN.1PB2YV8DB77V7@proton.me>
+In-Reply-To: <CAJ-ks9=zWAuPUM_61EA6i5QkUpwtNtsN8oF_MUerWGn39MRHhw@mail.gmail.com>
+References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com> <20250309-ptr-as-ptr-v2-5-25d60ad922b7@gmail.com> <D8EDP4SMQG2M.3HUNZGX8X0IL7@proton.me> <CAJ-ks9=K06OT6cutUABj2QDHJHJ70719c-eJ=F3n-_bhkYbZ3w@mail.gmail.com> <D8EG9EM9UU0B.2GLHXRU2XROZ3@proton.me> <CAJ-ks9=+3MQb-tp8TAwYvVj=GOFFFVKJxRMprc8YXZHKhqnDrg@mail.gmail.com> <D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.me> <CAJ-ks9=zWAuPUM_61EA6i5QkUpwtNtsN8oF_MUerWGn39MRHhw@mail.gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: bbd40c62717ae5f9397b8b9c9ae87ff25634c232
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BL3PR12MB6571959081FC8DDC5D509560C9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 12, 2025 at 04:08:02PM +0000, Gupta, Suraj wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
-> 
-> > -----Original Message-----
-> > From: Andrew Lunn <andrew@lunn.ch>
-> > Sent: Wednesday, March 12, 2025 9:03 PM
-> > To: Gupta, Suraj <Suraj.Gupta2@amd.com>
-> > Cc: Russell King <linux@armlinux.org.uk>; Pandey, Radhey Shyam
-> > <radhey.shyam.pandey@amd.com>; andrew+netdev@lunn.ch;
-> > davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
-> > pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> > Simek, Michal <michal.simek@amd.com>; netdev@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; git (AMD-Xilinx) <git@amd.com>; Katakam, Harini
-> > <harini.katakam@amd.com>
-> > Subject: Re: [PATCH net-next V2 2/2] net: axienet: Add support for 2500base-X only
-> > configuration.
-> >
-> > Caution: This message originated from an External Source. Use proper caution
-> > when opening attachments, clicking links, or responding.
-> >
-> >
-> > On Wed, Mar 12, 2025 at 03:06:32PM +0000, Gupta, Suraj wrote:
-> > > [AMD Official Use Only - AMD Internal Distribution Only]
-> > >
-> > > > -----Original Message-----
-> > > > From: Andrew Lunn <andrew@lunn.ch>
-> > > > Sent: Wednesday, March 12, 2025 8:29 PM
-> > > > To: Gupta, Suraj <Suraj.Gupta2@amd.com>
-> > > > Cc: Russell King <linux@armlinux.org.uk>; Pandey, Radhey Shyam
-> > > > <radhey.shyam.pandey@amd.com>; andrew+netdev@lunn.ch;
-> > > > davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
-> > > > pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org;
-> > > > conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>;
-> > > > netdev@vger.kernel.org; devicetree@vger.kernel.org;
-> > > > linux-kernel@vger.kernel.org; linux-arm- kernel@lists.infradead.org;
-> > > > git (AMD-Xilinx) <git@amd.com>; Katakam, Harini
-> > > > <harini.katakam@amd.com>
-> > > > Subject: Re: [PATCH net-next V2 2/2] net: axienet: Add support for
-> > > > 2500base-X only configuration.
-> > > >
-> > > > Caution: This message originated from an External Source. Use proper
-> > > > caution when opening attachments, clicking links, or responding.
-> > > >
-> > > >
-> > > > > > On Wed, Mar 12, 2025 at 02:25:27PM +0100, Andrew Lunn wrote:
-> > > > > > > > +   /* AXI 1G/2.5G ethernet IP has following synthesis options:
-> > > > > > > > +    * 1) SGMII/1000base-X only.
-> > > > > > > > +    * 2) 2500base-X only.
-> > > > > > > > +    * 3) Dynamically switching between (1) and (2), and is not
-> > > > > > > > +    * implemented in driver.
-> > > > > > > > +    */
-> > > >
-> > > > > - Keeping previous discussion short, identification of (3) depends
-> > > > > on how user implements switching logic in FPGA (external GT or RTL
-> > > > > logic). AXI 1G/2.5G IP provides only static speed selections and
-> > > > > there is no standard register to communicate that to software.
-> > > >
-> > > > So if anybody has synthesised it as 3) this change will break their system?
-> > > >
-> > > >         Andrew
-> > >
-> > > It will just restrict their system to (2)
-> >
-> > Where as before, it was doing SGMII/1000base-X only. So such systems break?
-> >
-> >         Andrew
-> 
-> If the user wants (3), they need to add their custom FPGA logic which anyway will require additional driver changes. (3) was not completely supported by existing driver.
+On Wed Mar 12, 2025 at 8:19 PM CET, Tamir Duberstein wrote:
+> I tried using the strict provenance lints locally and I think we can't
+> until we properly bump MSRV due to `clippy::incompatible_msrv`:
+>
+> warning: current MSRV (Minimum Supported Rust Version) is `1.78.0` but
+> this item is stable since `1.84.0`
+>    --> ../rust/kernel/str.rs:696:22
+>     |
+> 696 |             pos: pos.expose_provenance(),
+>     |                      ^^^^^^^^^^^^^^^^^^^
+>     |
+>     =3D help: for further information visit
+> https://rust-lang.github.io/rust-clippy/master/index.html#incompatible_ms=
+rv
 
-This is not an approach that works with the Linux kernel, sorry.
+Oh this is annoying...
 
-What we have today is a driver that works for people's hardware - and
-we don't know what the capabilities of that hardware is.
+> This is with `#![feature(strict_provenance)]`. I can file the issue
+> but I think it's blocked on MSRV >=3D 1.84.0. But maybe you know of a
+> path forward :)
 
-If there's hardware out there today which has XAE_ABILITY_2_5G set, but
-defaults to <=1G mode, this will work with the current driver. However,
-with your patch applied, it stops working because instead of the driver
-indicating MAC_10FD | MAC_100FD | MAC_1000FD, it only indicates
-MAC_2500FD. If this happens, it will regress users setups, and that is
-something we try not to do.
+I think we should be able to just `allow(clippy::incompatible_msrv)`,
+since Miguel & other maintainers will test with 1.78 (or at least are
+supposed to :).
 
-Saying "someone else needs to add the code for their FPGA logic" misses
-the point - there may not be "someone else" to do that, which means
-the only option is to revert your change if it were merged. That in
-itself can cause its own user regressions because obviously stuff that
-works with this patch stops working.
+---
+Cheers,
+Benno
 
-This is why we're being cautious, and given your responses, it's not
-making Andrew or myself feel that there's a reasonable approach being
-taken here.
-
-From everything you have said, I am getting the feeling that using
-XAE_ABILITY_2_5G to decide which of (1) or (2) is supported is just
-wrong. Given that we're talking about an implementation that has been
-synthesized at 2.5G and can't operate slower, maybe there's some way
-that could be created to specify that in DT?
-
-e.g. (and I'm sure the DT folk aren't going to like it)...
-
-	xlnx,axi-ethernet-X.YY.Z-2.5G
-
-(where X.YY.Z is the version) for implementations that can _only_ do
-2.5G, and leave all other implementations only doing 1G and below.
-
-Or maybe some DT property. Or something else.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
