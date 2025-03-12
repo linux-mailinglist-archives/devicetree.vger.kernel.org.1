@@ -1,145 +1,170 @@
-Return-Path: <devicetree+bounces-156944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5726FA5DF9E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 16:00:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF22A5DFA9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 16:04:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D25D173700
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:00:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44C343A340C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92A0018DB0B;
-	Wed, 12 Mar 2025 15:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B7F24DFF9;
+	Wed, 12 Mar 2025 15:04:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="OmXS0mYB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I216Xd/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFD8F139CE3
-	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 15:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2725A22DF9D;
+	Wed, 12 Mar 2025 15:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741791614; cv=none; b=JburuANFggdX1S/K08Ppproo3q+Xjq+2MRDRbrnJ6y8B8P1B2ce0gHNsCZfVMbNjLv6CBDAQwYAxhZYvBUnc+P1EOldAN6Wk6hyySmDprjaxDjtdysOIHL3XxiCoXPkq539PaQwh2Vw6rSY7GEfMPQM+98/ZO2OEqSg6BHPp8p4=
+	t=1741791869; cv=none; b=DVZ7l4M60koFb8aIg7iAyKEChJ+Kj3lOfczf++BHWUAffF4AFC5kgYKZPMd8oU0ipr33+MhY95fyzZ5jmETjMDBuJXG6XNDGx6Omy/QrkGJV5DdroInSTlF2ohE+QBsZkfL/90sg1gsyNIzX4UoLh5f31RP+MlXTACL+8tnuAB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741791614; c=relaxed/simple;
-	bh=0TDjfpWLM0KOf/+ikJ3p43z3rnLgL6wjBL/u1rSaBcs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rwxpww5yf+p7nB2V8+QCA3UO3pxwhHMqFAx7YKwrO6xn9Pvbh5HR1gL0zWcnSzTeJ2JUIGS/tjyMgDdwsf/4fLkQKQp73yT/OGOimwvvfElcW829W6F6HCe6jCwy7LMBxmaZdTwCH8ZFiawkaulHN3MtAU1fleGuvLsBY/6fEy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=OmXS0mYB; arc=none smtp.client-ip=121.127.44.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1741791606;
- bh=wS+iW3PEgK6vQzywICkq9SarBtHISre1FPGbp4FqxEg=;
- b=OmXS0mYBt14pXFm2+nFXpFk14Gn5nyHGZFdN9gpWdSf1VtVx6G+wwfQ5qAzRfZ+xSQyE1KlAl
- fYhED4lakq0Cxin1TjwS/gf42Jx98ZqbV7HTODkLl+SD7y7jhPUHQPcSaDTP9Md4hylmhG05w0/
- Z9ROJDk7dE1V068X975Ce1uWMl9hg/ha+8Cw1+6RieQThpkgud2JCqKJrxNxi35eG1a6KDFB1LC
- NGccoHTPsoREHlRrCahfYVGbH7zV6M7zwey7nelzRicYzEo9tOxhSLzkeMsWf3oa23ggE39/Jk2
- ZqjqmpCZGR29+WRAUtjCJ4ubwz8seQIO3BcKYwzssHSw==
-X-Forward-Email-ID: 67d1a174a3842b4a6f18d3d1
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.59
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <b7d8d385-81ee-4947-ab8f-1da43843464b@kwiboo.se>
-Date: Wed, 12 Mar 2025 16:00:00 +0100
+	s=arc-20240116; t=1741791869; c=relaxed/simple;
+	bh=0LPk8+MvfGynbwPGt0NyOytayCc66T5wfAVNQKAjUrY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=ASaR6XEdIYB9bibKRET8fF/Oz1MeydVcH6zRakvKhTwOSoI4RojsyD0AhL1oCwV5ew/HnMuXw9GFMi/QIG8JYSPEWdQ3RsbUXa6qWHpdUFczlqd7JhUF1HtGFdNn7D1EeDZTp1narjJ1L8NGrDnSEamXowqSRysvHwMUwuFqKKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I216Xd/e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6940BC4CEDD;
+	Wed, 12 Mar 2025 15:04:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741791868;
+	bh=0LPk8+MvfGynbwPGt0NyOytayCc66T5wfAVNQKAjUrY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=I216Xd/eU3neOxcuswv7lF+WIHdCJHXoZollljYS9f5Sg3tH1cpxwS6+GmLSaHZn5
+	 OckHLmef0JjB9F/50Ks/GVtqOQsh1YxNfGc2tBFgovF9H/lNV3QgC8bLD6o+3pZQpI
+	 hTV/xrbPwP1m0p5ysSBZ+nzGcPuvNx1KAvA0LAszJqGHrwCivPCwcDiTdDXQpqTJPw
+	 I7x79FU3hWDQfscuGsp17s5E067AhXp++KBfhbfZ4uUIgQHG3skB8zkiWGm4y5/p5O
+	 Fyeo0kuJkdL7ZD0mYuuwFZ/vr6W3zRW0Un9ilz+8pt2G5BlYMSZepkODtztnP9VRs2
+	 S0STqRqv1Ah9Q==
+Date: Wed, 12 Mar 2025 10:04:26 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lucas Stach <l.stach@pengutronix.de>
+Cc: Hongxing Zhu <hongxing.zhu@nxp.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>,
+	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 2/2] PCI: imx6: Use domain number replace the hardcodes
+Message-ID: <20250312150426.GA674002@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] arm64: dts: rockchip: Add pwm nodes for RK3528
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <a5ec9062-ca57-4748-8c0f-fb5b9c75fa28@kwiboo.se>
- <20250312143515.1225171-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250312143515.1225171-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fcb5f09f8e4311c7a6ef60aaf3cb4e3f05a8f05e.camel@pengutronix.de>
 
-Hi Chukun,
+On Wed, Mar 12, 2025 at 09:28:02AM +0100, Lucas Stach wrote:
+> Am Mittwoch, dem 12.03.2025 um 04:05 +0000 schrieb Hongxing Zhu:
+> > > -----Original Message-----
+> > > From: Bjorn Helgaas <helgaas@kernel.org>
+> > > Sent: 2025年3月11日 23:55
+> > > On Tue, Mar 11, 2025 at 01:11:04AM +0000, Hongxing Zhu wrote:
+> > > > > -----Original Message-----
+> > > > > From: Bjorn Helgaas <helgaas@kernel.org>
+> > > > > Sent: 2025年3月10日 23:11
+> > > > > On Wed, Feb 26, 2025 at 10:42:56AM +0800, Richard Zhu wrote:
+> > > > > > Use the domain number replace the hardcodes to uniquely identify
+> > > > > > different controller on i.MX8MQ platforms. No function changes.
+> > > > > > 
+> > > > > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > > > > ---
+> > > > > >  drivers/pci/controller/dwc/pci-imx6.c | 14 ++++++--------
+> > > > > >  1 file changed, 6 insertions(+), 8 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/pci/controller/dwc/pci-imx6.c
+> > > > > > b/drivers/pci/controller/dwc/pci-imx6.c
+> > > > > > index 90ace941090f..ab9ebb783593 100644
+> > > > > > --- a/drivers/pci/controller/dwc/pci-imx6.c
+> > > > > > +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> > > > > > @@ -41,7 +41,6 @@
+> > > > > >  #define IMX8MQ_GPR_PCIE_CLK_REQ_OVERRIDE	BIT(11)
+> > > > > >  #define IMX8MQ_GPR_PCIE_VREG_BYPASS		BIT(12)
+> > > > > >  #define IMX8MQ_GPR12_PCIE2_CTRL_DEVICE_TYPE	GENMASK(11,
+> > > 8)
+> > > > > > -#define IMX8MQ_PCIE2_BASE_ADDR			0x33c00000
+> > > > > > 
+> > > > > >  #define IMX95_PCIE_PHY_GEN_CTRL			0x0
+> > > > > >  #define IMX95_PCIE_REF_USE_PAD			BIT(17)
+> > > > > > @@ -1474,7 +1473,6 @@ static int imx_pcie_probe(struct
+> > > > > > platform_device
+> > > > > *pdev)
+> > > > > >  	struct dw_pcie *pci;
+> > > > > >  	struct imx_pcie *imx_pcie;
+> > > > > >  	struct device_node *np;
+> > > > > > -	struct resource *dbi_base;
+> > > > > >  	struct device_node *node = dev->of_node;
+> > > > > >  	int i, ret, req_cnt;
+> > > > > >  	u16 val;
+> > > > > > @@ -1515,10 +1513,6 @@ static int imx_pcie_probe(struct
+> > > > > platform_device *pdev)
+> > > > > >  			return PTR_ERR(imx_pcie->phy_base);
+> > > > > >  	}
+> > > > > > 
+> > > > > > -	pci->dbi_base = devm_platform_get_and_ioremap_resource(pdev,
+> > > 0,
+> > > > > &dbi_base);
+> > > > > > -	if (IS_ERR(pci->dbi_base))
+> > > > > > -		return PTR_ERR(pci->dbi_base);
 
-On 2025-03-12 15:35, Chukun Pan wrote:
-> Hi,
+> > Use the domain number replace the hardcodes to uniquely identify
+> > different controller on i.MX8MQ platforms. No function changes.
+> > Please make sure the " linux,pci-domain" is set for i.MX8MQ correctly, since
+> >  the controller id is relied on it totally.
+> > 
+> This breaks running a new kernel on an old DT without the
+> linux,pci-domain property, which I'm absolutely no fan of. We tried
+> really hard to keep this way around working in the i.MX world.
 > 
->> The pinctrl-names should be changed to "default" and not "active",
->> something you can fixup or do you want a patch?
-> 
-> Sorry I've been a bit busy this week and forgot to send the v2 patch.
-> In rk3528.dtsi, the uart and upcoming i2c nodes do not have pinctrl,
-> so I prefer to remove them.
-> 
->>> Unlike other SoCs, pinctrl-names need to be in "active" state,
->>> I'm not sure about this, but otherwise the pwm-regulator will
->>> not work properly.
-> 
-> BTW, setting the pinctrl of pwm corresponding to pwm-regulator
-> to "default" will cause kernel boot suspended.
-> Sorry but do you know why?
+> I'm fine with using the property if present and even mandating it for
+> new platforms, but getting rid of the existing code for the i.MX8MQ
+> platform is only a marginal cleanup of the driver code with the obvious
+> downside of the above breakage.
 
-Not an issue I have seen, do you have any more logs or details? E.g.
-what board you use, full regulator node, do you have operating points
-defined etc.
+I don't know the history of these DTs, but if there are any old DTs
+for platforms that use controller 1 but lack 'linux,pci-domain', I
+agree that we should not break them.
 
-I have runtime tested a branch at [1], that use pinctrl-names = default,
-have vdd_arm and vdd_logic defined, also an opp table for cpu and gpu.
+If we need to retain the dbi_base check so that old DTs continue to
+work, I think it should look something like this:
 
-For E20C there is a commit to enable the vdd_logic, however without gpu
-enabled and a mali-supply the pwm-regulator is initialized to
-max-microvolt by Linux. Have instead updated U-Boot to initialize the
-pwm-regulator's:
+  domain = of_get_pci_domain_nr(node);
+  if (domain >= 0) {
+      if (domain > 1)
+          return dev_err_probe(..., "invalid domain %d\n", domain);
+      imx_pcie->controller_id = domain;
+  } else {
+      dev_warn(..., "DT lacks linux,pci-domain, falling back to DBI addr\n");
+      dbi_res = platform_get_resource(pdev, IORESOURCE_MEM, index);
+      if (dbi_res->start == IMX8MQ_PCIE2_BASE_ADDR)
+          imx_pcie->controller_id = 1;
+  }
 
-```
-&vdd_arm {
-	regulator-init-microvolt = <953000>;
-};
+The previous code used devm_platform_get_and_ioremap_resource() and
+set pci->dbi_base, but (1) there's no need to set pci->dbi_base since
+the DWC core does that anyway, and (2) I think using ioremap() means
+we depend on CPU virt == CPU phys, and I don't think we need to depend
+on that.
 
-&vdd_logic {
-	regulator-init-microvolt = <900000>;
-};
-```
-
-[1] https://github.com/Kwiboo/linux-rockchip/commits/next-20250311-rk3528/
-
-Regards,
-Jonas
-
-> 
-> e.g.
-> ```
-> vdd_arm: regulator-vdd-arm {
-> 	compatible = "pwm-regulator";
-> 	pwms = <&pwm1 0 5000 1>;
-> 	...
-> };
-> 
-> &pwm1 {
-> 	pinctrl-0 = <&pwm1m0_pins>;
-> 	pinctrl-names = "default";
-> 	status = "okay";
-> };
-> ```
-> 
-> Thanks,
-> Chukun
-> 
-> --
-> 2.25.1
-> 
-
+Bjorn
 
