@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-156853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADC89A5DB0F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:06:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A72EDA5DB11
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:09:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE30317630B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:06:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C53F4174C6E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:09:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC6023E351;
-	Wed, 12 Mar 2025 11:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E69C23E354;
+	Wed, 12 Mar 2025 11:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Fgl/kPnY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="El9+EmJE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C7123C8AB;
-	Wed, 12 Mar 2025 11:06:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5086423E23D;
+	Wed, 12 Mar 2025 11:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741777589; cv=none; b=SFBHwiS8FjGyrwQ/u/MHF3TPFwhQ2yOX7g/CGZ9+2/eQuKKt1EUq6WXs41QDhUcxVJVBibZTL60FX+NPR5nXpHxkwKTaJzUU8TJdRveHQvsJXoqoZtghb99QHyueG7Du73+dyBYmzL/ifvWv9fQBaiR+CyLZnwI0WDvdECkBqiY=
+	t=1741777741; cv=none; b=LmmOXRMZQr6eUywJ90NyDU0yw0pFJRPgTGwiUIQHOl4ZHe4UPuP9PL0Xfoksdv3w0jLVSWIR5/TKrgZAStuGMfhJFS+wzDY+lxwUMiOTQilqlYo0J03zEgNXiFWCB0O2b6Sq1z4/4a7lfLGk4HmMxDLfWfK9KilKCLBxZZHWZ/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741777589; c=relaxed/simple;
-	bh=zpVEj/Z0/zd3i/AJFV7MDl6B+Q7yGagVxm2zpHnOD3w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KNweDHr9t1eVNYkYdhGJcRzzbnhmEpArQ0UFxV3EZZBBJmVBVFE/88pJGiNIgtjiwXvXIS+Dl7Z6kELeKdUV1HPaiDDpScWwic0o0mXgcB8Kef4a27FJ2mZhOXACzT/CHmYE05WEM1/sDx09rKJKh9ZklkXq+NlBzErtkl0m5HE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Fgl/kPnY; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741777589; x=1773313589;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=zpVEj/Z0/zd3i/AJFV7MDl6B+Q7yGagVxm2zpHnOD3w=;
-  b=Fgl/kPnYI8LjyhQ4d8i69DtKwOGusz3J+Ae/BZ5D4nafZpfHMsU7UnxX
-   9B2Pcri1JyDcwlFfrPCL/xl/zIbia2+gMoGHqYPIBbmpso3y5JbeeVnxP
-   Pu6JnLTy4eHlDwF+QwasiNO0WVHQza4X98ksSW2/XaCOC3fvuryr6LOKs
-   y1AdLp2sCEUPIveoKSsacdGsDtiYNgDTsGqx06ojgUB4uqFL2kP+TVANp
-   i6/wMjNcs4PO6yogUrJsz4CGjjlU6EHyKCAdZNpkvDI4ZntREwmDwoH5q
-   lsslixtcQFdyOJqn/dQ2/1L5xt8JoViobBJCHs28MH0qgsawbD0XHHl4m
-   w==;
-X-CSE-ConnectionGUID: 3PfZszVJQYqFMZ2t5DQgYA==
-X-CSE-MsgGUID: d4bl0TsLQliYguTfdWd7yw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="53841909"
-X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; 
-   d="scan'208";a="53841909"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2025 04:06:28 -0700
-X-CSE-ConnectionGUID: FTcHnpSoR1On2p12HpUfcQ==
-X-CSE-MsgGUID: 1vDNffJDSfyoLH+Tbkug3Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; 
-   d="scan'208";a="125669067"
-Received: from soc-5cg4396xfb.clients.intel.com (HELO [172.28.180.56]) ([172.28.180.56])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2025 04:06:25 -0700
-Message-ID: <93f1c6d0-a1fe-4154-a31d-20cc878476d9@linux.intel.com>
-Date: Wed, 12 Mar 2025 12:06:21 +0100
+	s=arc-20240116; t=1741777741; c=relaxed/simple;
+	bh=Ol88tGjQk2fHY5OIHsfsrf/9VqBV/CmCkQ8iDSCl8Vg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=Q8+K4xkG9GsRs4ZnvKV/k395MG8Rgd4vNyLb7Cnpr3qj0Uvo/9lFhDHBpeGwpwVqmPOHClaiN+mWZvc17jQtkxkCnaA6O+uuxcne/H2YOT1b/JWWNFcN88T+GXVR3Ud8Xl5Z9KBZ4PFsg75odsMsgaX984CvKQpRXdXV1diWzW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=El9+EmJE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52CAAf9h018494;
+	Wed, 12 Mar 2025 11:08:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YfTTSFIhmiy4elkuZVQ+KVYofiIlI+u5oaVMrWj83uw=; b=El9+EmJEsmFCtpSV
+	lg4AAnFmzxsglScqtUPOZFCtmGIHHgCyLuXlkWE8ua6zQzcR6dbBZnP7N13V1sPC
+	CVs+ryxH++sABCLyTFZj7TX6oLfg2h/x38KjGEDxrtCTxFoxNa4lwGFGDeLrzFZF
+	p582BqK30ZuHgbw2PsCKYUoTXHnM9kbpc2W14MDnpXqg7uMn4JYSz3h3Dpeh6U0k
+	el7Z8VxxBBJBPLB6EPcMR4VBtKCx9IxSH1GT7CtSxxHszBI9lZHIUV42eY3gK7lL
+	yKcDs4okP1PeyvKUeA35o26Xh30Xblo6ScBHZcx4KJceYh7EOQGC8Y7iBaa7Ks3i
+	7Ima9Q==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au50a4s7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Mar 2025 11:08:54 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52CB8rfD032440
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Mar 2025 11:08:53 GMT
+Received: from [10.216.15.23] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Mar
+ 2025 04:08:46 -0700
+Message-ID: <18c65add-2d98-4b4d-a098-2a257bd1856b@quicinc.com>
+Date: Wed, 12 Mar 2025 16:38:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,48 +65,164 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next V2 2/2] net: axienet: Add support for 2500base-X
- only configuration.
-To: Suraj Gupta <suraj.gupta2@amd.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- git@amd.com, harini.katakam@amd.com
-References: <20250312095411.1392379-1-suraj.gupta2@amd.com>
- <20250312095411.1392379-3-suraj.gupta2@amd.com>
-Content-Language: pl, en-US
-From: Dawid Osuchowski <dawid.osuchowski@linux.intel.com>
-In-Reply-To: <20250312095411.1392379-3-suraj.gupta2@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Nirmesh Kumar Singh (Temp)" <quic_nkumarsi@quicinc.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: Add industrial mezzanine support for
+ qcs6490-rb3gen2
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <kernel@quicinc.com>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_akdwived@quicinc.com>, <quic_uchheda@quicinc.com>
+References: <20250122101424.1810844-1-quic_nkumarsi@quicinc.com>
+ <f4xffmfwkwrenulklmwzjjmdfdhcf5cwundyfen54e2codrmlj@htzjpvk5vopp>
+ <2acb758f-c1ff-426d-a363-befb8f97323f@quicinc.com>
+ <q4fyimr2wydbwb7x6mhzip2wsixifhd4okxe3noqxzn366oq7i@nkecmifs2y4f>
+Content-Language: en-US
+In-Reply-To: <q4fyimr2wydbwb7x6mhzip2wsixifhd4okxe3noqxzn366oq7i@nkecmifs2y4f>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WDGCpRszho-scuM6suC5D_WRbnM1IMQP
+X-Proofpoint-ORIG-GUID: WDGCpRszho-scuM6suC5D_WRbnM1IMQP
+X-Authority-Analysis: v=2.4 cv=a4ow9VSF c=1 sm=1 tr=0 ts=67d16b46 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=pdpMw43Hk2bYUvsZUcoA:9
+ a=QEXdDO2ut3YA:10 a=RVmHIydaz68A:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-12_04,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ clxscore=1015 spamscore=0 malwarescore=0 impostorscore=0 phishscore=0
+ priorityscore=1501 mlxscore=0 lowpriorityscore=0 bulkscore=0
+ suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503120077
 
-On 2025-03-12 10:54 AM, Suraj Gupta wrote:
-> AXI 1G/2.5G ethernet IP has following synthesis options:
-> 1) SGMII/1000base-X only.
-> 2) 2500base-X only.
-> 3) dynamically switching between (1) and (2).
-> Add support for 2500base-X only configuration.
 
-Hi, thanks for the patch.
+On 1/23/2025 4:48 PM, Dmitry Baryshkov wrote:
+> On Thu, Jan 23, 2025 at 04:35:34PM +0530, Nirmesh Kumar Singh (Temp) wrote:
+>> On 1/23/2025 12:16 AM, Dmitry Baryshkov wrote:
+>>> On Wed, Jan 22, 2025 at 03:44:24PM +0530, Nirmesh Kumar Singh wrote:
+>>>> Add DTS support for Qualcomm qcs6490-rb3gen2 industrial mezzanine board.
+>>>>
+>>>> Signed-off-by: Sahil Chandna <quic_chandna@quicinc.com>
+>>>> Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+>>>>
+>>>> ---
+>>>> Changes in v3:
+>>>> - Fixed tpm pinctrl node label.
+>>>> - Addressed comments by Dmitry.
+>>> Which ones? Pleas be more specific in changelogs.
+>> Ack
+>>>> - Improved indentation/formatting.
+>>>> - Link to V2: https://lore.kernel.org/all/20250102190155.2593453-1-quic_nkumarsi@quicinc.com/
+>>>>
+>>>> Changes in V2:
+>>>> - Addressed comment by Konrad.
+>>>> - Validated dts bindings with dtb_checks suggested by Krzysztof.
+>>>> - Improved indentation/formatting.
+>>>> - Fixed bug encountered during testing.
+>>>> - Added dtb entry in makefile.
+>>>> - Link to V1: https://lore.kernel.org/all/20241206065156.2573-1-quic_chandna@quicinc.com/
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/Makefile             |  4 +++
+>>>>    .../qcs6490-rb3gen2-industrial-mezzanine.dtso | 35 +++++++++++++++++++
+>>>>    2 files changed, 39 insertions(+)
+>>>>    create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>>> index 6ca8db4b8afe..16ac008c58d2 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>>> @@ -111,6 +111,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
+>>>>    dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>>>>    dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>>>>    dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
+>>>> +
+>>>> +qcs6490-rb3gen2-industrial-mezzanine-dtbs	:= qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
+>>>> +
+>>>> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
+>>>>    dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+>>>>    dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+>>>>    dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
+>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+>>>> new file mode 100644
+>>>> index 000000000000..1498f32bd069
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+>>>> @@ -0,0 +1,35 @@
+>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>> +/*
+>>>> + * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
+>>>> +*/
+>>>> +
+>>>> +/dts-v1/;
+>>>> +/plugin/;
+>>>> +#include <dt-bindings/clock/qcom,gcc-sc7280.h>
+>>>> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>>>> +
+>>>> +&pm7250b_gpios {
+>>>> +	tpm_spi_reset: tpm-spi-reset-state {
+>>>> +		pins = "gpio5";
+>>>> +		function = "normal";
+>>>> +		power-source = <1>;
+>>>> +		output-high;
+>>>> +		input-disable;
+>>>> +		bias-pull-up;
+>>>> +		qcom,drive-strength = <3>;
+>>>> +	};
+>>>> +};
+>>>> +
+>>>> +&spi11 {
+>>>> +	#address-cells = <1>;
+>>>> +	#size-cells = <0>;
+>>>> +	status = "okay";
+>>>> +
+>>>> +	st33htpm0: tpm@0 {
+>>>> +		compatible = "st,st33htpm-spi", "tcg,tpm_tis-spi";
+>>>> +		reg = <0>;
+>>>> +		spi-max-frequency = <20000000>;
+>>>> +		pinctrl-names = "default";
+>>>> +		pinctrl-0 = <&tpm_spi_reset>;
+>>> Missing reset-gpios property. Otherwise there is no point in specifying
+>>> the pinctrl.
+>> The community previously rejected the GPIO reset function in the TPM driver
+>> (tpm_tis_core.c). You can refer to the discussion [1].
+>>
+>>  From what I understand from the discussion in the patch, this decision was
+>> made to prevent software from executing an incorrect reset sequence, which
+>> could potentially reset the PCR banks of TPM chip.
+>>
+>> However, a pinctrl node is necessary to ensure the PMIC GPIO is in the
+>> correct state as required by the TPM chip.
+> No, pinctrl is not a replacement for GPIO calls. Please don't force GPIO
+> levels using pinctrl.
+>
+> Also, at least tpm-common.yaml defines reset-gpios. So declaring a GPIO
+> using that property is a proper course of actions.
+>
+> The discussion clearly stated: if the GPIO is under software control,
+> then it should be clear that PCRs do not work in such a system. Please
+> consider implementing that suggestion.
 
-nit: a discrepancy between the commit description for and the comments 
-in the code for 3)
+Thanks for the inputs! We re-worked our H/W to make the default GPIO 
+state to high
 
-Maybe adding that information here in the commit description would make 
-sense as well? Or giving a bit of a background that SGMII/1000base-X is 
-already implemented in the driver and you are adding 2500base-X only 
-support.
+which is required for this chip to work properly. I will re-send patch 
+removing the pinctrl
 
-> +	/* AXI 1G/2.5G ethernet IP has following synthesis options:
-> +	 * 1) SGMII/1000base-X only.
-> +	 * 2) 2500base-X only.
-> +	 * 3) Dynamically switching between (1) and (2), and is not
-> +	 * implemented in driver.
-> +	 */
+nodes, as it is not required with the re-worked H/W.
 
-For the rest of the patch, it looks good to me but I'd rather have 
-someone more experienced provide the Reviewed-By tag if they find the 
-patch appropriate.
-
-Best regards,
-Dawid
+>> [1] https://lore.kernel.org/lkml/20220407111849.5676-1-LinoSanfilippo@gmx.de/T/#m726d477dbce48c9e345e245f93d60f0aaa6f0994
+>>
+>> Thanks,
+>>
+>> Nirmesh
+>>
+>>>> +	};
+>>>> +};
+>>>> -- 
+>>>> 2.34.1
+>>>>
 
