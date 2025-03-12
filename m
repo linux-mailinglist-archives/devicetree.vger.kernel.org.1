@@ -1,142 +1,235 @@
-Return-Path: <devicetree+bounces-156829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F5BFA5DA5C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:20:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E8B5A5DA81
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0B3A3B5613
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:20:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22FDA18837D6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B20123E323;
-	Wed, 12 Mar 2025 10:20:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE7F23C8AB;
+	Wed, 12 Mar 2025 10:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="fdhyS6by"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="WNMOmc6v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD3E21D59F
-	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 10:20:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE90423496B;
+	Wed, 12 Mar 2025 10:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741774832; cv=none; b=rJDeQGdYmWvxYtxDaKl+afhFYc4WohElWmxB6Vlg1b7PcmzqRAGdibdaGfu2s9Kv8/nTLqv16dh/W7GoP+IE26ZPcZPnPSSlUmOYeSsl1sCYT0CS5kHG7QdvLkzfPNyr64RbDtk6fmOfBHPU7fKc9wXJS3Aw18O4ZCh8GzZ4PXg=
+	t=1741775675; cv=none; b=Exf5/CYAJyR52+nptW5w07+gByDKSrlq8vs1RULtXhey2j2cVPFXOiVgzz1bWoAmWy6h2FmTHyzoJvefEHLp1ptJa0hsXwoqxov89cqqsIJALxIp3mCMVpPAiqF9XBEj03kiTmucZFeK0V3Bj8fzzRj949jolRKQrJ8yGvX1igo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741774832; c=relaxed/simple;
-	bh=kVD1cBOvbcjfuLGnWQGwAsJLPrywxdLU+w4aBmi2vMo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oCWf2HddfxtBhpuN5anhJGptRK7XlDfgWozseiNVJgM+jL9IQ/3q5Vr+3uwK2e5R+/InaRq95KXF4Lhfx0cC/og6pfCkaK1syVSng5F+uIqUOzWW/QxtOxF1mtwKgONZekw6HDDg6WxEboKMzpXV1D+NeOpTJZ9xoHoEE6MP0l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=fdhyS6by; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1741774829;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=h0Yr5Vgm7RUBCb/M+U5Z8BVsZiNBVB+EPPiJ4rqIWDA=;
-	b=fdhyS6by15tZnEiIss0zjnherR7EKzyJ8RO2EVOGvlAREz1j/6L9iNPkC96siIqld2+bme
-	nodkwvdTPz6c1mSQcxRCOvf3G1ectoEQ2um01P2ktTAb3sO//Kvh1RGYkNVZxsgcWgozB4
-	YkWrPZKjBICaKBiBZ23CqUwH9iVmb5A=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-526-9inSblshOf2o9Kb5-mVZQw-1; Wed, 12 Mar 2025 06:20:28 -0400
-X-MC-Unique: 9inSblshOf2o9Kb5-mVZQw-1
-X-Mimecast-MFC-AGG-ID: 9inSblshOf2o9Kb5-mVZQw_1741774827
-Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-3912539665cso318182f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 03:20:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741774827; x=1742379627;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=h0Yr5Vgm7RUBCb/M+U5Z8BVsZiNBVB+EPPiJ4rqIWDA=;
-        b=ox7FukN0GpOeBZVyE+7hIa3lC6PXC4iHzyGc4JDDDXGWlUMKCSJy2JBgG6sw3tOcU1
-         SExYIyKTj6HbYNUWhsFudHUHMtTPwlQsNl8rDFWq9UGe9uwFTlv1Xd/+DqDHa4SmD0/h
-         EOi/veW/PWBKdzUHLzygSigUg/ECKkACN/873ztXjP5ap7IBwgdWuSgRNg04KoBmV8Ca
-         SGnowOojJkDiIFiXYsfFpLyu5MVzcXf4DsXyI+tlVNwa8CPFvSpwaAmKlFumvJb2I6KC
-         AN9JaACGqPo5mNAhqVwRfyOVpRDiPs0MfIoaCG4ulou11OyHenbK2A3d4XmCqlEcGoAk
-         3Jtw==
-X-Forwarded-Encrypted: i=1; AJvYcCWc3Knl9k/+DPeuNV4Tb0WPmxYfaajHaT+LAAZLRnFYwJtshIuu40UN9PPNTcUyCIyrgXCcHf7S/qvz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3dfdICAJxQWqiGQr58mqCrJy6RgYrszRi3Y6tdp0Vs9Jwm0C6
-	IHXPEvpMIVpN30A9a1FHmcLvyE7KCJHKCZ6paC5UrxpB4QlkNcMD5TzWKtMCJszZiKOrPo0XIib
-	RyZQwq5wRZachU0RDWWK6gmA0hB6qWOdtstVh9xke9/GEqPOtO/EJZy9ZDYQ=
-X-Gm-Gg: ASbGncu9fdh9dZEvNFnoGAT5MlhpWSgXgKP/0lO0+k8BiAq5geNh/thVq99rZqNOH4Q
-	FCMGDqObxfEVYzcqJLPo13CnuBiwvKL6JvacDIbpkSF/qVrWakW3QDLH0uJzAci2oCWY131O40+
-	PYdoV1ksAfcYFCask2DXpjYK3rBJr87/G6ESllwJ82oUP1m1reiMRoHEwam2uLcoW5SZ6NxcrrG
-	ahwdi8ra1MWMJpUQuebGuHScL32BwLq20R3kJ4cHXRB7pAwoszgl/+F4r7YCn29TQvXPp05ezWC
-	hXAfdMX54EufaZIrXE2n8OtEzF6gO+bGWL3u9JfPuKbwi1IcIz6/d39FxA926A4=
-X-Received: by 2002:a5d:6c65:0:b0:391:98b:e5b3 with SMTP id ffacd0b85a97d-3926cb6442fmr6821010f8f.14.1741774827296;
-        Wed, 12 Mar 2025 03:20:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFy2Q1sDAMgAbiGTwr0193U6ouUjNnUZZOSZ5Aaw1xNFil+VycgOfWKIaXwNWW/V12c4oR4JQ==
-X-Received: by 2002:a5d:6c65:0:b0:391:98b:e5b3 with SMTP id ffacd0b85a97d-3926cb6442fmr6820992f8f.14.1741774826959;
-        Wed, 12 Mar 2025 03:20:26 -0700 (PDT)
-Received: from lbulwahn-thinkpadx1carbongen9.rmtde.csb ([2a02:810d:7e40:14b0:4ce1:e394:7ac0:6905])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912c0e2eecsm20457196f8f.79.2025.03.12.03.20.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Mar 2025 03:20:26 -0700 (PDT)
-From: Lukas Bulwahn <lbulwahn@redhat.com>
-X-Google-Original-From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Cc: Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Lukas Bulwahn <lukas.bulwahn@redhat.com>
-Subject: [PATCH RESEND] MAINTAINERS: adjust file entry in QORIQ DPAA2 FSL-MC BUS DRIVER
-Date: Wed, 12 Mar 2025 11:20:18 +0100
-Message-ID: <20250312102018.215018-1-lukas.bulwahn@redhat.com>
-X-Mailer: git-send-email 2.48.1
+	s=arc-20240116; t=1741775675; c=relaxed/simple;
+	bh=vtEgiFiNKz4mOrS9h4JjnDKiS+PYUsjqaZRsDlaZ44Q=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=fGZVE7zyeyoFdGjYM/+atdKlONmuT5ZFGawIODGqY2ZLQmb+Ex3ldufoCxlfImDJICgJn0QHQ6e/0qSIO48x2QW9E+mW2rCN03p3792LLztkoRFE1jCnatcGNIHuUFu1tG93qZeBRlEEw+mORkzMH1sYcihZQsXwBCseN+XtGZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=WNMOmc6v; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1741775664;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RCx5YAH/sAsaL16jy2DXOMRm0Fr1aAKlpBDGrdma5Zw=;
+	b=WNMOmc6vboNRAgv8JLDAr228Cs7eNkjbwkz0CNj6JfukEymA5BgjrT1MlN9++KpY3Lyo4F
+	PpA1H5ibX3N6R1qU0aU+JVGJesw70AXKUC2rurEwEsMedGq4zpaTxPmTsgT26JhSpP+rj2
+	c8VRPMruMYnyJdPceQhktYHaYO98OP2UxTtbsnsTbAhzzFUVJgrQPW4UVxqzWwrpf/GuHU
+	KQiriIKlpSJcjTFbkM5yblTCRpxPTKod5q4zUV4bHk0ujc5I4Ryrv25y9MBe4KFar+LxXH
+	VW9hn4uNwUf3GHlzdLON+fT9DIwEL4DsI1GSkn/T28XeywhBQlvsokD/GDUWeQ==
+Date: Wed, 12 Mar 2025 11:34:21 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Alexey Charkov <alchark@gmail.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Viresh Kumar
+ <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, Diederik de Haas
+ <didi.debian@cknow.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Kever Yang <kever.yang@rock-chips.com>
+Subject: Re: [PATCH v5 7/8] arm64: dts: rockchip: Add OPP data for CPU cores
+ on RK3588j
+In-Reply-To: <e55125ed-64fb-455e-b1e4-cebe2cf006e4@cherry.de>
+References: <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com>
+ <d8ce8db2-1717-40f8-b53e-24cc71a758c9@cherry.de>
+ <CABjd4Yw-r-ogfwcrph4K1wbkybS25gk6LFg8wpqLG27uWdybNA@mail.gmail.com>
+ <2914631.KiezcSG77Q@diego>
+ <CABjd4YxF4N1tAgGUZk-oKkMUO+Q9rWHZsas9gMQdJ+TF4A1=NA@mail.gmail.com>
+ <e55125ed-64fb-455e-b1e4-cebe2cf006e4@cherry.de>
+Message-ID: <a56b59a21dc3c21192fe45197eee4865@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
+Hello Quentin,
 
-Commit 78fa0d19a50a ("dt-bindings: misc: fsl,qoriq-mc: convert to yaml
-format") converts fsl,qoriq-mc.txt to yaml format, but misses to adjust the
-file entry in QORIQ DPAA2 FSL-MC BUS DRIVER.
+On 2025-03-12 11:15, Quentin Schulz wrote:
+> On 2/16/25 1:32 PM, Alexey Charkov wrote:
+>> On Sat, Feb 15, 2025 at 11:30 PM Heiko Stübner <heiko@sntech.de> 
+>> wrote:
+>>> Am Samstag, 15. Februar 2025, 19:59:44 MEZ schrieb Alexey Charkov:
+>>>> On Tue, Feb 11, 2025 at 7:32 PM Quentin Schulz 
+>>>> <quentin.schulz@cherry.de> wrote:
+>>>>> On 6/17/24 8:28 PM, Alexey Charkov wrote:
+> [...]
+>>>>>> +     };
+>>>>>> +
+>>>>>> +     cluster2_opp_table: opp-table-cluster2 {
+>>>>>> +             compatible = "operating-points-v2";
+>>>>>> +             opp-shared;
+>>>>>> +
+>>>>>> +             opp-1416000000 {
+>>>>>> +                     opp-hz = /bits/ 64 <1416000000>;
+>>>>>> +                     opp-microvolt = <750000 750000 950000>;
+>>>>>> +                     clock-latency-ns = <40000>;
+>>>>>> +             };
+>>>>>> +             opp-1608000000 {
+>>>>>> +                     opp-hz = /bits/ 64 <1608000000>;
+>>>>>> +                     opp-microvolt = <787500 787500 950000>;
+>>>>>> +                     clock-latency-ns = <40000>;
+>>>>>> +             };
+>>>>>> +             opp-1800000000 {
+>>>>>> +                     opp-hz = /bits/ 64 <1800000000>;
+>>>>>> +                     opp-microvolt = <875000 875000 950000>;
+>>>>>> +                     clock-latency-ns = <40000>;
+>>>>>> +             };
+>>>>>> +             opp-2016000000 {
+>>>>>> +                     opp-hz = /bits/ 64 <2016000000>;
+>>>>>> +                     opp-microvolt = <950000 950000 950000>;
+>>>>>> +                     clock-latency-ns = <40000>;
+>>>>>> +             };
+>>>>> 
+>>>>> opp-1800000000 and opp-2016000000 should be removed as well.
+>>>>> 
+>>>>> Did I misunderstand what Rockchip did here? Adding Kever in Cc at 
+>>>>> least
+>>>>> for awareness on Rockchip side :)
+>>>>> 
+>>>>> I guess another option could be to mark those above as
+>>>>> 
+>>>>> turbo-mode;
+>>>>> 
+>>>>> though no clue what this would entail. From a glance at cpufreq, it
+>>>>> seems that for Rockchip since we use the default cpufreq-dt, it 
+>>>>> would
+>>>>> mark those as unusable, so essentially a no-op, so better remove 
+>>>>> them
+>>>>> entirely?
+>>>> 
+>>>> I believe the opp core just marks 'turbo-mode' opps as
+>>>> CPUFREQ_BOOST_FREQ, and cpufreq-dt only passes that flag along to 
+>>>> the
+>>>> cpufreq core. But then to actually use those boost frequencies I 
+>>>> would
+>>>> guess the governor needs to somehow know the power/thermal 
+>>>> constraints
+>>>> of the chip?.. Don't know where that is defined.
+>>> 
+>>> personally I don't believe in "boost" frequencies - except when they 
+>>> are
+>>> declared officially.
+>>> 
+>>> Rockchip for the longest time maintains that running the chip outside
+>>> the declared power/rate envelope can reduce its overall lifetime.
+>>> 
+>>> So for Rockchip in mainline a "it runs stable for me" has never been 
+>>> a
+>>> suitable reasoning ;-) .
+>> 
+>> My key concern here was perhaps that we are looking at a file inside
+>> the Rockchip source tree which looks relevant by the name of it, but
+>> doesn't actually get included anywhere for any of the boards. This may
+>> or may not constitute an endorsement by Rockchip of any OPPs listed
+>> there :-D
+> 
+> Rockchip support stated:
+> 
+> """
+> If you run overdrive mode, you do not need to include rk3588j.dtsi,
+> and you can change it to #incldue rk3588.dtsi to ensure that the
+> maximum frequency can reach 2GHz
+> 
+> below picture from datasheet.
+> """
+> 
+> The picture is the table 3-2 Recommended operating conditions, page 30
+> from the RK3588J datasheet, e.g.
+> https://www.lcsc.com/datasheet/lcsc_datasheet_2403201054_Rockchip-RK3588J_C22364189.pdf
+> 
+> What is overdrive?
+> 
+> """
+> Overdrive mode brings higher frequency, and the voltage will increase
+> accordingly. Under
+> the overdrive mode for a long time, the chipset may shorten the
+> lifetime, especially in high temperature condition
+> """
+> 
+> according to the same datasheet, end of the same table, page 31.
+> 
+> so this seems like a turbo-mode frequency to me.
+> 
+> Additionally, the note for the "normal mode" (the one with the lower
+> freqs) states:
+> 
+> """
+> Normal mode means the chipset works under safety voltage and frequency. 
+> For the
+> industrial environment, highly recommend to keep in normal mode, the 
+> lifetime is
+> reasonably guaranteed.
+> """
+> 
+> I believe "industrial environment" means RK3588J used in the
+> temperatures that aren't OK for the standard RK3588 variant?
 
-Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about a
-broken reference.
+Thanks a lot for obtaining these clarifications!
 
-Adjust the file entry in QORIQ DPAA2 FSL-MC BUS DRIVER.
+Yes, I'd say that in this case "industrial environment" boils down
+to the extended temperature range for the RK3588J variant.
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@redhat.com>
----
-Original patch was sent 8 months ago:
-https://lore.kernel.org/lkml/20240708075124.73522-1-lukas.bulwahn@redhat.com/
+>> I haven't seen a TRM for the J variant, nor do I have a board with
+>> RK3588J to run tests, so it would be great if Kever could chime in
+>> with how these OPPs are different from the others (or not).
+>> 
+>>> So while the situation might be strange for the rk3588j, I really 
+>>> only want
+>>> correct frequencies here please - not any pseudo "turbo freqs".
+>>> 
+>>> I don't care that much what people do on their own device{s/trees}, 
+>>> but
+>>> the devicetrees we supply centrally (and to u-boot, etc) should only
+>>> contain frequencies vetted by the manufacturer.
+>> 
+>> Fair enough. Let's just try and get another data point on whether
+>> these frequencies are vetted or not.
+> 
+> So the higher freqs seems to be vetted (and used by default on
+> Rockchip's BSP kernel), it just feels like you aren't really supposed
+> to run those higher frequencies all the time? And especially not in
+> "industrial environment"?
+> 
+> I would assume we want to stay on the safer side and remove those
+> higher frequencies? Heiko?
 
-Patch was not applied yet. No modifications in this RESEND patch other than
-rebasing it to the current linux-next tree.
-
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 67bfd9109535..e6609b78998d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19578,7 +19578,7 @@ M:	Laurentiu Tudor <laurentiu.tudor@nxp.com>
- L:	linux-kernel@vger.kernel.org
- S:	Maintained
- F:	Documentation/ABI/stable/sysfs-bus-fsl-mc
--F:	Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
-+F:	Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml
- F:	Documentation/networking/device_drivers/ethernet/freescale/dpaa2/overview.rst
- F:	drivers/bus/fsl-mc/
- F:	include/uapi/linux/fsl_mc.h
--- 
-2.48.1
-
+I agree, we should remove the higher-frequency OPPs.  I'd like
+to go through everything once again in detail and prepare a patch
+that removes the unsafe OPPs, and you could review it once it's
+on the ML, to make sure it's fine.
 
