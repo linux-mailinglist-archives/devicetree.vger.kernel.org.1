@@ -1,137 +1,156 @@
-Return-Path: <devicetree+bounces-156998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80F73A5E504
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 21:08:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9103A5E52D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 21:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14A2D3BA082
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 20:08:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93A9F1896C09
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 20:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DD701EBFF0;
-	Wed, 12 Mar 2025 20:08:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABD41E98E0;
+	Wed, 12 Mar 2025 20:17:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NdvYePad"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cPp6tt1W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3814E1ADC6C;
-	Wed, 12 Mar 2025 20:08:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E111E5B9B;
+	Wed, 12 Mar 2025 20:17:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741810111; cv=none; b=qaDZn6H35dKdbV4Kk1NvYMxsFCm/lb7UjL4NiqIHxbsd/NjkcUFPgrfuo8JzHqfjJQGKZUeqZtALqczpnpM6ZVD91XejhYBIKSaOIWzZJfWOpehYM1SlCw9+wh/j3IlTcYeOSmnX9IHwOFxBaBWKpomNg6sLiYXct2SZbsMPg40=
+	t=1741810666; cv=none; b=KjRzpRDGptzkbTD+DoUNUPDonrwdCGz24BhUSorJWBqHtFdXnSAWU5+tYN2Pfy2zbliTFHyGiGfG50G82ynQneD9cOGet/ZltOQc0qRI8BlcDd7miFdZRhUG1HUxkLUjbM74eGrrDmzsdUqC6n0NxKN2tKgwvuG78oQYX37KXfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741810111; c=relaxed/simple;
-	bh=lsSBdLdQ4s0iCWd7bcBOXIm07tS0egm9zlqlZry3PRM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IDw63KxLrS0hTzFBQczgIX5mR5qRicQmrkF1HUW2RI6oIUuMxzm0ocFoP5rvX9n3HV0+StvxQQTX79cB9Ei/MUg49JZZVgfdzgOTKBNf3ScDYqtJUxH34KRIsF0hAWVqPlmTWVnMSZmZK4Yr/CWdL2mkcrojMONlLLP2WeoINBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NdvYePad; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-307d1ab59c6so2252531fa.1;
-        Wed, 12 Mar 2025 13:08:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741810108; x=1742414908; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WvWdxAReWH9rJxfH10m5q08BJW+spweZYCe1Q8vBq2o=;
-        b=NdvYePadAx7nACoq9+DTtrzkJALJKuKwsIwjYIEjTguMkJq/pwM/igKOw/GpG8lk69
-         G77Usu8ruXa0Tzkdn3QT2nmS2w4JJabGyzpEGy/RSKB81j5A/gbQAbEGSjh+1zKKdctE
-         L3GslfMieoznRgNkaoFXE5m1/GkiDBgUnEhvykF7uuHHGVmtwjbw/NQ3u8RCZHtnRC7k
-         7k3eEp+Plz/ISWzCJi5G58pY1Mk/9w5t8MwLAfVe2foQ6eKm3E9892AyTisxX4xyWr42
-         7BHfWM3QuwzfIfdorynUtvilpp0ojWrUIBr/RVIYy7WQGcYwQ2PJ9oYaORDQCDR/Lwbk
-         H+kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741810108; x=1742414908;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WvWdxAReWH9rJxfH10m5q08BJW+spweZYCe1Q8vBq2o=;
-        b=SfOwuwp8NQj3d9qG6T99WxGjYBQA/lX9KDSY3UQVmGEyBo7p2VGSx5+H1znKkQXKf1
-         wGt+fVLmn96Qp0hqjbYUyQAH04QwiCCBLrVkkn5vW1sMlyRZvY75QtNFpFKXp5+BLlyu
-         0GnAY5m4nZehdRRmoX+mQdGq28HcTCkCZm0B+7NZaNoSGXSqGmlTbXVg6S6gfj2ecxER
-         W5m89eoQeLLlJXZJJp0aNUb7NSDKtQ2oR+/CDlHuAHqeObzBJLwE4yPFwbbrqzD9ee/+
-         iEboJ7OztMQHlBpgb3kuK6TJSS0ThuaqBLv56BgU2gHTkp7ZFpkbXWDo25+7nBbTeN3E
-         26AQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQYX9dTLzSX3+iCJK17IdDFw84haSZbGlL7wyENXg653DdRLO3EMz1uUi0T9n4NbjSMkPd0YFNN+S6@vger.kernel.org, AJvYcCW+ElhV827NgFsZ0JTiv4Zbs2fMYjGqmeEZYAnr14ikx/aJsET4VxMuGZMdbR7uRLFmP4tEN8WECXya@vger.kernel.org, AJvYcCWCzxeiKcQlQHpYI8YNCbjZ7Klf9hTlV+1Oy7HHhp/bKO3vSJB5Ir2LNFGCZSeOqV6kERx+uIs3qtEDv7Ya@vger.kernel.org, AJvYcCX+RmaL852E9Q/J3WRwP1qIc4TYN8YBdFhOGOXsza2TdmTHnCAiSZQTwnSdjWBqOL1O9lVjhOrVOwgjxIk=@vger.kernel.org, AJvYcCXMkzVEV9oXfxyPvY10yb7EZaFVVqHgOSErf2o8l1kT4ttHjo84KkzKIPLnDr5tfkOzkbU805fbMVCqx/AlexM=@vger.kernel.org, AJvYcCXYvfBsrlxCwo50P6i+ENlLcRrNhKJe0l9RecwgAvRoPehOrqw9nKYJbBwNYBEhjiOhkjPtUZz/XYZU8uqu@vger.kernel.org, AJvYcCXi9KHhqjSmiA7FzPWMHMV94Vuo2L2Y3NW8Mn7XdevSyobAveCjaixjAYtGgZEdUwfDymVwyWa7NR2SwJtNdOON@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzbfxa5za/Ygu/wD+A1kMG/S/EMqWcM6Mfkif2t0bqx3fAANWA5
-	NeRZAfpQ3HCQD6mh1UIlLdlBbZzKnbISjDwpihC+qZtoHyNemqZ0yRjQ9QUeuXMSy/b7b6IV8e1
-	EJbqXgdMussi0j3wzNNXlnTjrVwc=
-X-Gm-Gg: ASbGnctfMKUOtLy9S4ZOuHnS3GYA9CAirbORI9rnUHBNhgZQ+11Cvv/FdtJI1CxqKNF
-	gSVZCBHSy9GpYU2FCRNOlnHio4uvWVLnSLMzG7yUOo2CsGbkn6ty9+cq5WPzqluikFQii4MsZT4
-	pIrY7+M285XdLoTR593fkrl3VqqRAQB5Z91cEgAkkAKw==
-X-Google-Smtp-Source: AGHT+IGKy6zn5xgfn8CeCs2iWvvIbfhtT8G8n3Qui6VQS2rPHMF6seq5pQ1f4HajsIodpexn4xjqHKMhzcX7k07A68U=
-X-Received: by 2002:a2e:3517:0:b0:30b:edd8:886 with SMTP id
- 38308e7fff4ca-30bf451713dmr75313571fa.9.1741810108139; Wed, 12 Mar 2025
- 13:08:28 -0700 (PDT)
+	s=arc-20240116; t=1741810666; c=relaxed/simple;
+	bh=v+BY+g55F6T5NMcwLkcGpN4Z2yA59ha5GDHqdirKEVw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HWnqWRxOL3QLxD3uYYhkmCvPYBvGcYYiB6g/ttMJyAccjDnSBK3AcqWUvM4/3pXKby+63MXONGPanIVGhuqZxF8JGQHkh+VRq5nmeQKVX+yvYuZTDowsGF250+7/keQVYaH8z1vaD/S5COOAobaqfvvr72nEmNOw1lSfF7daJuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cPp6tt1W; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741810664; x=1773346664;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=v+BY+g55F6T5NMcwLkcGpN4Z2yA59ha5GDHqdirKEVw=;
+  b=cPp6tt1WzSKd2MCxN8MlUTjxEmjZxzSx6uz48v1Kb0UEU0iykDHbERNn
+   TYYCqjInHnt2nu+miZrVaG28AVPR7lbhwzW7O9HeDjpEGN1CTlDwZks5z
+   kczy4suBh7LNtqIJCgfsW40VwkHfw2fmvLgZjnmCSAgRccG1OjcWEl+pk
+   qUX4wBZBmeGnMXtZwZDrJFEkY0IjcXBi2Z5m3T5QA0g3rGlD49EL0dDPy
+   fz+w5UMiTs5EjDA7FpSF+zuQnyuNXcDHYa2LFfZ1iWgtx8LtUW8jQCe+7
+   AVty6TF3NJxlsqLmzt1+BKdSc8JLFUVJPYA+M2Ypa7GYkeE/USn4n9QYT
+   g==;
+X-CSE-ConnectionGUID: Po8MfTCDTvuULi84s/lPsg==
+X-CSE-MsgGUID: iTwIkpkdSq66z/KksrHpCg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="53117508"
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; 
+   d="scan'208";a="53117508"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2025 13:17:43 -0700
+X-CSE-ConnectionGUID: JTTkifBISISmGQpCwqs/oQ==
+X-CSE-MsgGUID: WlY3h+hsT3OFna6ZjLLUfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; 
+   d="scan'208";a="120698425"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 12 Mar 2025 13:17:39 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tsSWG-0008rs-2S;
+	Wed, 12 Mar 2025 20:17:36 +0000
+Date: Thu, 13 Mar 2025 04:17:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Haylen Chu <heylenay@4d2.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>, Yixun Lan <dlan@gentoo.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
+Subject: Re: [PATCH v5 3/5] clk: spacemit: Add clock support for Spacemit K1
+ SoC
+Message-ID: <202503130314.Y8KFKZWW-lkp@intel.com>
+References: <20250306175750.22480-5-heylenay@4d2.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com>
- <20250309-ptr-as-ptr-v2-5-25d60ad922b7@gmail.com> <D8EDP4SMQG2M.3HUNZGX8X0IL7@proton.me>
- <CAJ-ks9=K06OT6cutUABj2QDHJHJ70719c-eJ=F3n-_bhkYbZ3w@mail.gmail.com>
- <D8EG9EM9UU0B.2GLHXRU2XROZ3@proton.me> <CAJ-ks9=+3MQb-tp8TAwYvVj=GOFFFVKJxRMprc8YXZHKhqnDrg@mail.gmail.com>
- <D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.me> <CAJ-ks9=zWAuPUM_61EA6i5QkUpwtNtsN8oF_MUerWGn39MRHhw@mail.gmail.com>
- <D8EJM4CJ4HAN.1PB2YV8DB77V7@proton.me>
-In-Reply-To: <D8EJM4CJ4HAN.1PB2YV8DB77V7@proton.me>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 12 Mar 2025 16:07:52 -0400
-X-Gm-Features: AQ5f1JrUv6wKNk7y3ewcr0wVyePELpSL2pI1z4NH7DNLDz50gsWeKT8qdmo6mKQ
-Message-ID: <CAJ-ks9mo-H46Wwcu_LOvDy0ncwMR9ii74Fyf3OX-aWNnrZ397g@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] rust: enable `clippy::as_underscore` lint
-To: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250306175750.22480-5-heylenay@4d2.org>
 
-On Wed, Mar 12, 2025 at 3:43=E2=80=AFPM Benno Lossin <benno.lossin@proton.m=
-e> wrote:
->
-> On Wed Mar 12, 2025 at 8:19 PM CET, Tamir Duberstein wrote:
-> > I tried using the strict provenance lints locally and I think we can't
-> > until we properly bump MSRV due to `clippy::incompatible_msrv`:
-> >
-> > warning: current MSRV (Minimum Supported Rust Version) is `1.78.0` but
-> > this item is stable since `1.84.0`
-> >    --> ../rust/kernel/str.rs:696:22
-> >     |
-> > 696 |             pos: pos.expose_provenance(),
-> >     |                      ^^^^^^^^^^^^^^^^^^^
-> >     |
-> >     =3D help: for further information visit
-> > https://rust-lang.github.io/rust-clippy/master/index.html#incompatible_=
-msrv
->
-> Oh this is annoying...
->
-> > This is with `#![feature(strict_provenance)]`. I can file the issue
-> > but I think it's blocked on MSRV >=3D 1.84.0. But maybe you know of a
-> > path forward :)
->
-> I think we should be able to just `allow(clippy::incompatible_msrv)`,
-> since Miguel & other maintainers will test with 1.78 (or at least are
-> supposed to :).
+Hi Haylen,
 
-Alright, you've sniped me. This is coming in v3.
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on spacemit/for-next]
+[also build test WARNING on spacemit/fixes clk/clk-next robh/for-next linus/master v6.14-rc6 next-20250312]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Haylen-Chu/dt-bindings-soc-spacemit-Add-spacemit-k1-syscon/20250307-020635
+base:   https://github.com/spacemit-com/linux for-next
+patch link:    https://lore.kernel.org/r/20250306175750.22480-5-heylenay%404d2.org
+patch subject: [PATCH v5 3/5] clk: spacemit: Add clock support for Spacemit K1 SoC
+config: powerpc64-randconfig-r131-20250312 (https://download.01.org/0day-ci/archive/20250313/202503130314.Y8KFKZWW-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce: (https://download.01.org/0day-ci/archive/20250313/202503130314.Y8KFKZWW-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503130314.Y8KFKZWW-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/clk/spacemit/ccu_pll.c:110:9: sparse: sparse: cast truncates bits from constant value (ffffffff7fffffff becomes 7fffffff)
+
+vim +110 drivers/clk/spacemit/ccu_pll.c
+
+    85	
+    86	/*
+    87	 * PLLs must be gated before changing rate, which is ensured by
+    88	 * flag CLK_SET_RATE_GATE.
+    89	 */
+    90	static int ccu_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+    91				    unsigned long parent_rate)
+    92	{
+    93		struct ccu_pll *p = hw_to_ccu_pll(hw);
+    94		struct ccu_common *common = &p->common;
+    95		struct ccu_pll_config *params = &p->pll;
+    96		const struct ccu_pll_rate_tbl *entry = NULL;
+    97		int i;
+    98	
+    99		for (i = 0; i < params->tbl_size; i++) {
+   100			if (rate == params->rate_tbl[i].rate) {
+   101				entry = &params->rate_tbl[i];
+   102				break;
+   103			}
+   104		}
+   105	
+   106		if (WARN_ON_ONCE(!entry))
+   107			return -EINVAL;
+   108	
+   109		ccu_update(swcr1, common, entry->swcr1, entry->swcr1);
+ > 110		ccu_update(swcr3, common, (u32)~PLL_SWCR3_EN, entry->swcr3);
+   111	
+   112		return 0;
+   113	}
+   114	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
