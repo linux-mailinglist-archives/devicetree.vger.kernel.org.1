@@ -1,107 +1,123 @@
-Return-Path: <devicetree+bounces-156939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3DF3A5DF12
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:35:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01FB3A5DF3E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:42:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA22E7A7D21
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 14:34:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 246A817C368
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 14:41:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6878187554;
-	Wed, 12 Mar 2025 14:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0B52505B7;
+	Wed, 12 Mar 2025 14:40:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="igs2XxEz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 986B61CF8B;
-	Wed, 12 Mar 2025 14:35:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853DF242927;
+	Wed, 12 Mar 2025 14:40:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741790135; cv=none; b=ZDH123bkEBicYZ9EMnOLghODLI2C9l4Kcw24h1q5my7iIkHZ8XZS7apFa5LCMIUF3cJHKEmifUhjQ49F+QfOOQ7I6cgvzjOO1dJNoCHklaxv8GBWNZF3QTQhnUxeuYVodMb/14/gvHKk4aisawdH95e+5oy0g5qRyiESoVrWjGc=
+	t=1741790411; cv=none; b=Wlms2/3Av3pKTtalxry4a5d64ap6SBnvk3ZkMTfv65qpykAH5PhPB84RMTeJoVKqZj5Aul9WtgSb8jsrvK5oluRHE6cRgC1XPhOJK9WEC3end/wbWZ8kE983IQWM6G/PbiSm6rhsIdjfxA1LzzkULlEcQBMmSjSyaFKW8k1b+rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741790135; c=relaxed/simple;
-	bh=RWbG931LWc2SlSpfOK8RCgqBk2r4EvYGccw325dvqx0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mlcMFgoowvaR6IG//yDpgQDpRChD7l+GFA520lo91hWbcT6E3v0LLSCugI3wHPsXTdGBHftaOsSpZxlu/i4ykeDcxbCs+HG1Py2pXT4eLG/gDYP+P4FhRe6g31tui6FGMfjwZArQ2f+lbWXlpkorHPmtWAVIYkzE+XFxDcWR/T8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.215.89])
-	by smtp.qiye.163.com (Hmail) with ESMTP id e0ccc294;
-	Wed, 12 Mar 2025 22:35:20 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 0/2] arm64: dts: rockchip: Add pwm nodes for RK3528
-Date: Wed, 12 Mar 2025 22:35:15 +0800
-Message-Id: <20250312143515.1225171-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <a5ec9062-ca57-4748-8c0f-fb5b9c75fa28@kwiboo.se>
-References: <a5ec9062-ca57-4748-8c0f-fb5b9c75fa28@kwiboo.se>
+	s=arc-20240116; t=1741790411; c=relaxed/simple;
+	bh=Fi/xls1kSt18tedNUCc6ZZh7/Q3+KsdT4mWnx7Ose1s=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nLR4oW8tAqM9V1+zvaXOzg0Rb1Kit1QD+JpJ2WV0+qViBi99N5FsHJd6+koGtbUgHPTE3jXEqUUqrUfBsJJYatC6jPNAC5JZqXtbzLIKcq1RCyvwZcJbKlEvK0UM6K/Ncnd1aohIg4TMPAP1f0LJ1Op4bfPFZGBoE0w4TLK+KsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=igs2XxEz; arc=none smtp.client-ip=185.70.43.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail; t=1741790406; x=1742049606;
+	bh=ln7+3zkl6JCWdcMdIgyVOnjSeIR+wlhx+5g0dVF9NAs=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=igs2XxEzdhhAm6M2XBHYRc+ZpZhhqIJ8cnmEd9XPVyUS6FPIBc0clFccpxH1jnbjB
+	 Zvgd0MqYs+Vatdh9rW5h0bdJBJZLiz4NQYRnbYHQOR2QKnnVIB29kohar1RmRFshCN
+	 Wgnmm2Tdz08mHYdI0hLq7B1CDFt82uNlE76P51c3qeb/2e5trtutknGowYz+uIyAvL
+	 2xgwfyMPNgGu0hljClBe2qdCMKqmpiew5GX1T2uocwd/+KJ1LVnm86GLYm4RQRU1aW
+	 LxSl+DhoPfxI4XJgp7Yz8vZEVR47xLCAeeR+MGxVAaW+c49n8eqo04Sti1OimU3Fa9
+	 AbU5MaXucOkQQ==
+Date: Wed, 12 Mar 2025 14:39:59 +0000
+To: Tamir Duberstein <tamird@gmail.com>, Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] rust: enable `clippy::ptr_as_ptr` lint
+Message-ID: <D8ED5UWKL2N1.2JPWVV0297BJ0@proton.me>
+In-Reply-To: <20250309-ptr-as-ptr-v2-2-25d60ad922b7@gmail.com>
+References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com> <20250309-ptr-as-ptr-v2-2-25d60ad922b7@gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: cfdcac70a4dffef0ce337ad830841016c81e6356
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZQ0lKVh1LTRpCTU5OSEkeTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVDQllXWRYaDxIVHRRZQVlPS0hVSktJT09PS1VKS0tVS1
-	kG
-X-HM-Tid: 0a958ac80af803a2kunme0ccc294
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MSI6Vio5EzIDMhwtHU0cTTcD
-	HkkaCzdVSlVKTE9KTEJLSklKTk9OVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpOVUNCWVdZCAFZQUNPTjcG
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Sun Mar 9, 2025 at 5:00 PM CET, Tamir Duberstein wrote:
+> In Rust 1.51.0, Clippy introduced the `ptr_as_ptr` lint [1]:
+>
+>> Though `as` casts between raw pointers are not terrible,
+>> `pointer::cast` is safer because it cannot accidentally change the
+>> pointer's mutability, nor cast the pointer to other types like `usize`.
+>
+> There are a few classes of changes required:
+> - Modules generated by bindgen are marked
+>   `#[allow(clippy::ptr_as_ptr)]`.
+> - Inferred casts (` as _`) are replaced with `.cast()`.
+> - Ascribed casts (` as *... T`) are replaced with `.cast::<T>()`.
+> - Multistep casts from references (` as *const _ as *const T`) are
+>   replaced with `let x: *const _ =3D &x;` and `.cast()` or `.cast::<T>()`
 
-> The pinctrl-names should be changed to "default" and not "active",
-> something you can fixup or do you want a patch?
+Similarly to the other patch, this could be `let x =3D &raw x;`. (but it's
+fine to leave it as-is for now, we can also make that a
+good-first-issue.)
 
-Sorry I've been a bit busy this week and forgot to send the v2 patch.
-In rk3528.dtsi, the uart and upcoming i2c nodes do not have pinctrl,
-so I prefer to remove them.
+>   according to the previous rules. The intermediate `let` binding is
+>   required because `(x as *const _).cast::<T>()` results in inference
+>   failure.
+> - Native literal C strings are replaced with `c_str!().as_char_ptr()`.
+>
+> Apply these changes and enable the lint -- no functional change
+> intended.
+>
+> Link: https://rust-lang.github.io/rust-clippy/master/index.html#ptr_as_pt=
+r [1]
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 
->> Unlike other SoCs, pinctrl-names need to be in "active" state,
->> I'm not sure about this, but otherwise the pwm-regulator will
->> not work properly.
+Reviewed-by: Benno Lossin <benno.lossin@proton.me>
 
-BTW, setting the pinctrl of pwm corresponding to pwm-regulator
-to "default" will cause kernel boot suspended.
-Sorry but do you know why?
+---
+Cheers,
+Benno
 
-e.g.
-```
-vdd_arm: regulator-vdd-arm {
-	compatible = "pwm-regulator";
-	pwms = <&pwm1 0 5000 1>;
-	...
-};
-
-&pwm1 {
-	pinctrl-0 = <&pwm1m0_pins>;
-	pinctrl-names = "default";
-	status = "okay";
-};
-```
-
-Thanks,
-Chukun
-
---
-2.25.1
+> ---
+>  Makefile                               |  1 +
+>  rust/bindings/lib.rs                   |  1 +
+>  rust/kernel/alloc/allocator_test.rs    |  2 +-
+>  rust/kernel/alloc/kvec.rs              |  4 ++--
+>  rust/kernel/device.rs                  |  5 +++--
+>  rust/kernel/devres.rs                  |  2 +-
+>  rust/kernel/error.rs                   |  2 +-
+>  rust/kernel/fs/file.rs                 |  2 +-
+>  rust/kernel/kunit.rs                   | 15 +++++++--------
+>  rust/kernel/list/impl_list_item_mod.rs |  2 +-
+>  rust/kernel/pci.rs                     |  2 +-
+>  rust/kernel/platform.rs                |  4 +++-
+>  rust/kernel/print.rs                   | 11 +++++------
+>  rust/kernel/seq_file.rs                |  3 ++-
+>  rust/kernel/str.rs                     |  2 +-
+>  rust/kernel/sync/poll.rs               |  2 +-
+>  rust/kernel/workqueue.rs               | 10 +++++-----
+>  rust/uapi/lib.rs                       |  1 +
+>  18 files changed, 38 insertions(+), 33 deletions(-)
 
 
