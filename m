@@ -1,149 +1,135 @@
-Return-Path: <devicetree+bounces-156855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93A7A5DB3B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:15:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5B50A5DB55
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:25:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89D2D179090
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:15:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22B9E1771A7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753101CAA87;
-	Wed, 12 Mar 2025 11:15:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6001523F385;
+	Wed, 12 Mar 2025 11:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="gab5QYhm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EV6GD8r8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94B6123F362
-	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 11:15:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2DBB23F382
+	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 11:24:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741778108; cv=none; b=lMxKFFtesCQzeGP/WuK1+uRyttau3bSO91oCgr4sCixHdbUTyg026NSLloUumdvam2x+3MJZBdA1/MAcQxpEz1Kj3c0NBD9Y0Vmwa18pOk02juWA+z4zCEOVdXp9rVjxfcB5UDSlvDS5NdzV330FTnCSszC5N2y8zfPhIa8+4ow=
+	t=1741778695; cv=none; b=Gxn4JHC+70y5cldwW0z+nPShg/pu732pl+fB3eRiZnvh6/l7xfUsBKpgSsWgh5T5LksJ7CvAFFJ+6C/m/rbo+GaKseD4l8v4yiN0pR2O9ISxGD4vXf1mjrG01hLO/swJYwCqBxIt+/QwDy3+x88o6+Ii9E8tC+4ETOGRUSOnVwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741778108; c=relaxed/simple;
-	bh=hzIkYqCNiMo80kaSTJ9vM3Dwk3kxjnW9SITUVTmj8p8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ZK7oPmpRQ7O5fyIvrh5jlO8G04xtGU9rcKdRSO9J4N+rzweEQmr8RFXP8ak63+etoOUnbngb/pANr26dT68MIy3SxFApVy8HNhBUqpJstlbxwoyN0ESqJgAE2MpgKLBy2UtyMh5XfpabXKQNY0UIqovNAJbQISWv3jWV4GmKWQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=gab5QYhm; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ab771575040so144054266b.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 04:15:06 -0700 (PDT)
+	s=arc-20240116; t=1741778695; c=relaxed/simple;
+	bh=UcXaR+GDawWoQaNRuFtyapQxtDjf/bEMrcOSC2FkQ1I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kMElBVcOZg1o53hMg0cAGHaqkoasNJVz8KsUpTE9Tzaxgt0F1h2NItK+6A+NfSfezGspf8ggxZZ1FGY4XBD+Wc8rIzHEOZEW2keoG6K2KxlDQBZuy/v/BVFK8yiYce+GbsPmOhmEnzRFH+nKxuUVFtc6aWU7LDOarjTKwLZcnAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EV6GD8r8; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6f6c90b51c3so64435207b3.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 04:24:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1741778105; x=1742382905; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lrye5RapocrcbRYwFATS9q/NOK1mFM++X2eM3TdS8l4=;
-        b=gab5QYhmj5E6mXJWr6tomW+oQwDECS3Hvb2RRVP6BuILFrh86W76eM4HuYEmwr/VSk
-         M78v3ap6W0ZroEbU2K7mFOYg10oYoSKkc9Jl9ASYa0+9NzGDF6x9F9/Dex/PwyOV/PAD
-         BJSnyr+ppkgO466FaFyW481xoeJvE340w69yCNznNbNcsSHq9rSeh3MJxYZ7I2+r5Cl7
-         Ixs+miYaXBP03jChomiYu74RBLPy5T/qda34b73OrLQRcYNnV4ikdQeiB6+r4ldZrIKO
-         d6iLld4i1L2kQTW3Eh9dXffh4Qe4EZh9JpQxWfQC7cJiGFoC3FF3KM+/mcWfo0ITqqi1
-         QK3w==
+        d=linaro.org; s=google; t=1741778693; x=1742383493; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7OnDqzR6YtSLwONQoTdDT31SC3+7fyj7xPsRU2pi+G4=;
+        b=EV6GD8r8zWgHufoxYZ+QpSkBrjjETQbjKZbtbg1/XRRs/CQxraYa/5QiZA6ALJ32ap
+         d76NiAu1xvHZlhEoRvliWzkoNx8WutESFw00br4RUBbNCCvEThVl7XgYMU6Wij1baTnC
+         Cbi222c/12b5zE0kgwsbcwxI325PfDKUpQCKkGCzv9IkGUZ34QmpI/Kn2dtZ8fry1tEA
+         ODWYjs8OzpE8ND+BOz0OpKjUc0GgxRINTtuMB8Bc9Z+Lj9Akgo2maSNMbFdaxfvS3eyb
+         FbCk+x9EN7cCEqgsi8FV3cg8smFobPUJiLfjj80wNNckyjiVCPddiR8lnvZ/9qyXX0VC
+         jFZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741778105; x=1742382905;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1741778693; x=1742383493;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Lrye5RapocrcbRYwFATS9q/NOK1mFM++X2eM3TdS8l4=;
-        b=t8qSoK5TUZQAZAY8Cp6uoXkeeTITBcpcd8Yh97rLb535DKL4UJaSJ6NuimSlhTI/AO
-         QddZuPOFLvD2/TIMwo3QyQygR2eJKeyK5FCJZjHzBzhqr2H1wccj2pqepu+fDbzm2mmh
-         tdM/ddcCicDxaLDD5TvDOo6Ju4D966U+0rofbLoLGongmuKHdiuxlFdLpBZ5UsxINZuI
-         IMrbNv9CnTMCVMVcUdiPnJsLtHSV7D3pSElVHPqUQQ8pTgPTBXExSWfc9AEHSjTowtTY
-         srIf0ao+KE18SKOnvxebHjy5rsZsib0/+JG9vNaQXgZs3hyR1Mf+hKn5ih0MUTK2saAf
-         DxjA==
-X-Forwarded-Encrypted: i=1; AJvYcCWvF66vErvMLSHkOY5FuGXMXZ4zx09oF179DTjx1TlBAIUV4ZN9ojYfc9W+0I/oRiFzXWlPc8pZjGAb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOL4NxIQzj47TGb+3vJGmyNbLcLZEwyMriRyIriANlgJu9jYBp
-	bmO7u+q6Lm8SOg7Fd3B8gwIDTpQPf15Fnl5clTdtEWi7pSUIWyBbSNtyKrU1ZKM=
-X-Gm-Gg: ASbGncvq4wG4QnwMFaLWGSJIJpC28NSg5wCBBcAsrWlpOdf2Vsu0iPkx3A3hF9UZ9hF
-	fwlOu/NA43NUAJg+fkpjjI9Rn2cjLuw18pFODTTEv9IW/vWm+XASVjKGOkEYSiuz/laKPySVNkk
-	+tZNBJb1CjQPtKKE0SQX0KIewS1NmzRxIRY3ylPHZq3a2gAxRFLXFaa+rubaDIwPb7F6Paq5K/z
-	hf2ajmvTVJ9HtAwTQhZiIyQWqrRaVf7AXUwao2uqZXL8F/6vCh506VuFRC7n+fhbdfPbkUh86Q9
-	EdK2AtxVtdb4/bu0uEiE/3wB4MaqAXa7p+LJiizcfUKJ9d8pz5nMHn+D9aUJItSJNzhSK4wNNl5
-	7dX1xImGbgh2srUCK6w==
-X-Google-Smtp-Source: AGHT+IHnclcokenSW0BD2xU3JDOUI3YTaP87OCmSR72jOip2Alz/yxNoSA2D0hIW7QuWvkEWzMqRrQ==
-X-Received: by 2002:a17:907:82a0:b0:ac2:3a1:5a81 with SMTP id a640c23a62f3a-ac2ba53c9a5mr744096066b.26.1741778104396;
-        Wed, 12 Mar 2025 04:15:04 -0700 (PDT)
-Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2a89f381fsm414129666b.169.2025.03.12.04.15.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Mar 2025 04:15:04 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Wed, 12 Mar 2025 12:14:59 +0100
-Subject: [PATCH v2] arm64: dts: qcom: qcm6490-fairphone-fp5: Add
- touchscreen node
+        bh=7OnDqzR6YtSLwONQoTdDT31SC3+7fyj7xPsRU2pi+G4=;
+        b=d8j1e3rpEUSlf7R404hx48Y/k3XLJB1Cn6XeNeaKMtEUWILbNXloDnhpSjHtFhUZpA
+         USeuj9FFnyaJhcsRArZexz+C5eDdmr3DN8x5VWr6soXTrpuctaeaOKVb8xiQH6GKDKoV
+         1w51Nv7bjbJZtlYiuvp7LoW+Y8Pe3jcO4c3bkhxrcBYh1DLYZI6fXPtjYcG3jeUcFqlC
+         jWY1d/coCE/qtdsRvA85FXIUzBtZ0o6UueDAprEmbK7W7mmntgMEDZX9DMrhwTA3P5oL
+         vPonfGAj/x8sZFVVZzAw4ECWRi6DUue4UbJ7SWswdg2IFWwN1xCzWkWsS56iHWZPA9XJ
+         BAOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVFW0aTS6PZNrC5bqtQuYx42XMaHULYpl8heZSq2fFHbRKf5X4FpYvFdRTZgTjMpYHnaRbG9DUCc+WS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeeMQ0RnBgCEvIMcxeIzg2gdqLU35dMNyHGSh/xX7bbMPpNfiQ
+	Uu1upoNEHW8yaCPuEJwsLiBAviXBCZz3hRFbJpp+3hbX+nYkUbv0Q2UjnLXvKKyDnNTEoc+ZOfz
+	oQyMw/9RtFeEf77pWZU0XsDkcfdDJK4zJ1Kuv+w==
+X-Gm-Gg: ASbGnct9kRvpYzQFZpi4kO8yVD7sGhfeyuHAGRKAPTL2M+Zx20OZe1xECJChxdCN991
+	3EexMqXypma1OurVvQFRy31a0Ixbd5DH03LnFzN4JwNVVZCxE7CfRbGnV2qfyWcffPzUGqlzQVI
+	3Mtgv+veqhNgxfQsTqnyU+DFPg7vQ=
+X-Google-Smtp-Source: AGHT+IHIrYfmo2j3yVIIaYFZE5oDvK+hQZ8/RGWocwnTto9a3k4qtBGozDsAeCNABMZLWFLC8+SYFjOJXfUQHYTuZMU=
+X-Received: by 2002:a05:690c:3612:b0:6ee:8363:96d3 with SMTP id
+ 00721157ae682-6febf3ade28mr290798997b3.27.1741778692704; Wed, 12 Mar 2025
+ 04:24:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250312-fp5-touchscreen-v2-1-4bed270e0065@fairphone.com>
-X-B4-Tracking: v=1; b=H4sIALJs0WcC/2WNOw7CMBAFrxJtjZE/SQRUuQdKYdZrvAV2ZIcIF
- OXumFBSzkhv3gqFMlOBS7NCpoULp1hBHxrAYOOdBLvKoKXupJZG+KkTc3piKJiJokDsz71UpnX
- 2BnU1ZfL82ovXsXLgMqf83g8W9bW/llHqr7UooUTrTtI6Q63zOHjLeQop0hHTA8Zt2z6Cr18gs
- gAAAA==
-X-Change-ID: 20250203-fp5-touchscreen-cc6960134dab
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jens Reidel <adrian@mainlining.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.2
+References: <20250219-exynos7870-mmc-v2-0-b4255a3e39ed@disroot.org>
+In-Reply-To: <20250219-exynos7870-mmc-v2-0-b4255a3e39ed@disroot.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 12 Mar 2025 12:24:16 +0100
+X-Gm-Features: AQ5f1JruelnoNSp1FLqFV_ATP8uAM2_7A2P1q-OWLObav93kN6mUQJG3IRna_fc
+Message-ID: <CAPDyKFrmn21xksS6Co9AjLQbtq_EWC8WF=r3RSAc6nfWTT9-zA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Introduce DW MMC support for Exynos7870
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Jaehoon Chung <jh80.chung@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Add a node for the GT9897 touchscreen found on this smartphone connected
-via SPI.
+On Tue, 18 Feb 2025 at 19:48, Kaustabh Chakraborty
+<kauschluss@disroot.org> wrote:
+>
+> This series adds support for SMU and non-SMU variants of Exynos7870 DW
+> MMC controllers.
+>
+> Some DW MMC controllers require two 32-bit r/w from a 64-bit FIFO,
+> the series implements that feature as well.
+>
+> This patch series is a part of Exynos7870 upstreaming.
+>
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
-Changes in v2:
-- Use interrupts-extended for irq (Konrad)
-- Pick up tags
-- Link to v1: https://lore.kernel.org/r/20250311-fp5-touchscreen-v1-1-4d80ad3e4dfc@fairphone.com
----
- arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+The series applied for next, thanks!
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-index 356cee8aeba90e21c11f46df924ed180bfce3160..0f1c83822f66f95b05d851a5d28b418ff048b09d 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-@@ -1069,7 +1069,17 @@ &sdhc_2 {
- &spi13 {
- 	status = "okay";
- 
--	/* Goodix touchscreen @ 0 */
-+	touchscreen@0 {
-+		compatible = "goodix,gt9897";
-+		reg = <0>;
-+		interrupts-extended = <&tlmm 81 IRQ_TYPE_LEVEL_LOW>;
-+		reset-gpios = <&tlmm 105 GPIO_ACTIVE_LOW>;
-+		avdd-supply = <&vreg_l3c>;
-+		vddio-supply = <&vreg_l2c>;
-+		spi-max-frequency = <1000000>;
-+		touchscreen-size-x = <1224>;
-+		touchscreen-size-y = <2700>;
-+	};
- };
- 
- &tlmm {
+Kind regards
+Uffe
 
----
-base-commit: 3910363993da7c2a1d31dc247de59e8ca1cf25fa
-change-id: 20250203-fp5-touchscreen-cc6960134dab
 
-Best regards,
--- 
-Luca Weiss <luca.weiss@fairphone.com>
-
+> ---
+> Changes in v2:
+> - Take over ownership of patches by the co-author, upon their request.
+> - Link to v1: https://lore.kernel.org/r/20250204-exynos7870-mmc-v1-0-c87cfc72be4a@disroot.org
+>
+> ---
+> Kaustabh Chakraborty (3):
+>       dt-bindings: mmc: samsung,exynos-dw-mshc: add exynos7870 support
+>       mmc: dw_mmc: add a quirk for accessing 64-bit FIFOs in two halves
+>       mmc: dw_mmc: add exynos7870 DW MMC support
+>
+>  .../bindings/mmc/samsung,exynos-dw-mshc.yaml       |  2 +
+>  drivers/mmc/host/dw_mmc-exynos.c                   | 41 +++++++++-
+>  drivers/mmc/host/dw_mmc.c                          | 94 +++++++++++++++++++++-
+>  drivers/mmc/host/dw_mmc.h                          | 27 +++++++
+>  4 files changed, 161 insertions(+), 3 deletions(-)
+> ---
+> base-commit: e5d3fd687aac5eceb1721fa92b9f49afcf4c3717
+> change-id: 20250203-exynos7870-mmc-75bac583c864
+>
+> Best regards,
+> --
+> Kaustabh Chakraborty <kauschluss@disroot.org>
+>
 
