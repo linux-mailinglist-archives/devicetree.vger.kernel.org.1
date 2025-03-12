@@ -1,121 +1,130 @@
-Return-Path: <devicetree+bounces-156904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27390A5DD33
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 13:58:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41A78A5DD7B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 14:11:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48E177A3E13
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:57:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFF713B5122
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 13:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66627243951;
-	Wed, 12 Mar 2025 12:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFFA523A9AE;
+	Wed, 12 Mar 2025 13:11:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iUFClxaC"
+	dkim=pass (1024-bit key) header.d=linux-watchdog.org header.i=@linux-watchdog.org header.b="QU6bbSSi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F5324292B;
-	Wed, 12 Mar 2025 12:58:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from www.linux-watchdog.org (www.linux-watchdog.org [185.87.125.42])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B241512E7F;
+	Wed, 12 Mar 2025 13:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.87.125.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741784314; cv=none; b=YsW58+OJghSDkBUWE/s9zmvIfADfSkvTRbK5wknCSCrAiTHbKzfkJesh86WHkB5Ii6D/T0W4pAg+TDW4TvvM0ZxkX/UL5mU0JGY1kE6sk0dyUKRR77QH+PfUHjfvmSjVerSHd7/bs2QDKtWr/6EfbXYTx5038YAv8WHEGTHH9EI=
+	t=1741785086; cv=none; b=CmFCBTvLVk0rHy4LOFvwMEXAEfSHTk2JoRtzsm7TyT1feb3tUWlY6nbWWfx/cX2yDXPkJXDCUbyMS5T1TVyH7Pi2MN0HpWM6xjWGbdMnOPkrIV1VVjYfWv0aSW++pbwddRLEusjRx1BgpMG5kX5dmYU0k6mrsMv/kymlWDSVaUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741784314; c=relaxed/simple;
-	bh=wKnXEfj46C5JCUUeX24Q1CC3iBZKwBrzqxVRa0EWDNA=;
+	s=arc-20240116; t=1741785086; c=relaxed/simple;
+	bh=EkupLqvzW0cgLU4nH3LB/G7ZcQwzLaS+8sNqJWkTuxw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=noyRqW1Fpe43VOQUFVz2AkoiiUPDDYSMa7cmyl12ou/AgIxfW+DOTtyFmHOdV4ka8f/f7SQhGJUV+tnBIwOmzuX45hk/oiyw0by9Nsy3/F8d1HkQ8l166UaNrbl+v4XO5erh9PTjmRFsoMYFW0Tv+/4olWuVtbfqrgUJ93C4Yxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iUFClxaC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F1F1C4CEE3;
-	Wed, 12 Mar 2025 12:58:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741784313;
-	bh=wKnXEfj46C5JCUUeX24Q1CC3iBZKwBrzqxVRa0EWDNA=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=aHSqJkRwL1NMcNqrSbLEz4NhH0gVIKuC/qxVxHWPQaj5D7/ZYvWxJQw1SKzMq/os96CSE7qqnSdXX1IALY6FiLzhZnrQHu3DcDyFUEHwZzzc0ogGwXqKmwATX14FGeWdYb8khetKjf/qq+bf/62AzTZniKXpDfp4kHUSCMPYdsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=linux-watchdog.org; spf=pass smtp.mailfrom=linux-watchdog.org; dkim=pass (1024-bit key) header.d=linux-watchdog.org header.i=@linux-watchdog.org header.b=QU6bbSSi; arc=none smtp.client-ip=185.87.125.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=linux-watchdog.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux-watchdog.org
+Received: by www.linux-watchdog.org (Postfix, from userid 500)
+	id A8C30409FE; Wed, 12 Mar 2025 13:29:13 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 www.linux-watchdog.org A8C30409FE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-watchdog.org;
+	s=odk20180602; t=1741782553;
+	bh=EkupLqvzW0cgLU4nH3LB/G7ZcQwzLaS+8sNqJWkTuxw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iUFClxaC9gCg4LEeM1MRRO6F5PHlrsBIZOoWiN5hbwK6rKr1wKPB9KcKai2iqWdQ5
-	 /WXW/ZGPO64SVFiZwg6NUQBJoVVUyHMBArTXQOORlLOuRhTLuWQfXdCLBsLlvSdZx7
-	 kFADtJkPStuW0RCdP8ENLg0xkQUzUV1Qs35XhX+SL2EtfDhZZoZMnXIjPKWyQNFjst
-	 jB5UFrSwfZwjHo6jXW31QBBc7IbbsFnfdlCrma9mfADz3HPqxcomlO9keYgYl5o5Oi
-	 8ZvcdhC+5GOrXMPIFHIWDNgsQLb/JM/1Jrz2IdVgHK+9aQXfkYmKV3F1feviJmuEfT
-	 kgwB4lSt4rENw==
-Date: Wed, 12 Mar 2025 07:58:32 -0500
-From: Rob Herring <robh@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
-	Baojun Xu <baojun.xu@ti.com>, Dan Murphy <dmurphy@ti.com>,
+	b=QU6bbSSi0kjXT24Fbj+3sY25Ww44u5Hzws/0uCnIDXBWSLl0Z/JiQrbdzEoPpuP0o
+	 nBybLEYkz5mqLNvDlrQmG3uuTJNS32i8Re/BdvOMv2NqsL+ELOGkR74aQ7Eh57MUPq
+	 xwp0Fdsq4xHHdTaAnZ52mzRdlj1PXoP/OojTIvsU=
+Date: Wed, 12 Mar 2025 13:29:13 +0100
+From: Wim Van Sebroeck <wim@linux-watchdog.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shi Fu <shifu0704@thundersoft.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	asahi@lists.linux.dev, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v3 17/20] ASoC: dt-bindings: tas2770: add flags for SDOUT
- pulldown and zero-fill
-Message-ID: <20250312125832.GA359842-robh@kernel.org>
-References: <20250227-apple-codec-changes-v3-0-cbb130030acf@gmail.com>
- <CAHgNfTxS1Q4PPsw520-J4Yn6xg+QZOYFkYhg5yv-uZFu5waN_g@mail.gmail.com>
- <20250307205156.GA583954-robh@kernel.org>
- <5996925.DvuYhMxLoT@setsuna>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"biju.das.au" <biju.das.au@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: renesas,wdt: Document
+ RZ/G3E support
+Message-ID: <20250312122913.GA27338@www.linux-watchdog.org>
+References: <20250126132633.31956-1-biju.das.jz@bp.renesas.com>
+ <20250126132633.31956-2-biju.das.jz@bp.renesas.com>
+ <TYCPR01MB1133249AA08160DABC40A31CD86D02@TYCPR01MB11332.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5996925.DvuYhMxLoT@setsuna>
+In-Reply-To: <TYCPR01MB1133249AA08160DABC40A31CD86D02@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+User-Agent: Mutt/1.5.20 (2009-12-10)
 
-On Mon, Mar 10, 2025 at 07:30:07PM +1000, James Calligeros wrote:
-> On Sat, Mar 8, 2025 at 6:51 AM Rob Herring <robh@kernel.org> wrote:
-> > How would it work when you need a mask? "dai-tdm-slot-tx-mask" is
-> > enough?
+Hi Biju
+
+> Hi Wim Van Sebroeck,
 > 
-> The existing TX/RX slot masks are used to control which slots the codec
-> is operating on, AIUI. I don't know if it makes sense to alter how codecs
-> deal with this. Could we combine the suggested dai-tdm-slot-tx-idle
-> with an optional dai-tdm-slot-tx-idle-mask property? From the machine
-> driver's perspective, the API would then be similar to the existing
-> set_tdm_slot ops. The current downstream macaudio machine driver builds
-> its links by allowing multiple codecs and CPUs to be linked to a DAI,
-> like so:
-
-Wouldn't the NOT of dai-tdm-slot-tx-mask be the idle mask?
-
-Don't think about the Linux APIs here. The DT is separate. So think in 
-terms of what you need to describe the TDM timing/waveform.
-
 > 
-> dai-link@0 {
-> 	cpu {
-> 		sound-dai = <&cpu0>, <&cpu1>;
-> 	};
-> 	codec {
-> 		sound-dai = <&speaker0>,
-> 			  ...,
-> 			  <&speaker6>;
-> 	};
-> };
+> > -----Original Message-----
+> > From: Biju Das <biju.das.jz@bp.renesas.com>
+> > Sent: 26 January 2025 13:27
+> > Subject: [PATCH v2 1/2] dt-bindings: watchdog: renesas,wdt: Document RZ/G3E support
+> > 
+> > Document the support for the watchdog IP available on RZ/G3E SoC. The watchdog IP available on RZ/G3E
+> > SoC is identical to the one found on RZ/V2H SoC.
+> > 
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reviewed-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > ---
+> > v1->v2:
+> >  * Collected tags.
+> > ---
+> >  Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> > b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> > index 29ada89fdcdc..3e0a8747a357 100644
+> > --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> > +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> > @@ -75,6 +75,10 @@ properties:
+> >                - renesas,r8a779h0-wdt     # R-Car V4M
+> >            - const: renesas,rcar-gen4-wdt # R-Car Gen4
+> > 
+> > +      - items:
+> > +          - const: renesas,r9a09g047-wdt # RZ/G3E
+> > +          - const: renesas,r9a09g057-wdt # RZ/V2H(P)
+> > +
+> >        - const: renesas,r9a09g057-wdt       # RZ/V2H(P)
+> > 
+> >    reg:
 > 
-> In this case, the codec-specific mask property was added so that a mask
-> could be applied to a specific codec rather than the whole dai, however
-> from upstream drivers tt looks like the way this should be handled is to
-> have "dai-tdm-slot-tx-idle-mask-n" properties at the dai level, then have
-> the machine driver set the mask for the appropriate codec during setup. So
-> for macaudio, assuming speaker5 requires this zerofill mask, we would
-> have something like this:
+> Looks like you missed this patch from the series as [1]
+> hits in next or you expect it to go through DT tree?
+> 
+> [1] https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20250311&id=331c8349605c8fa2f9040c39fe8c40afe3fdc3c3
+> 
+> Cheers,
+> Biju
 
-I'm now confused why you need n masks and what does n represent?
+Added.
 
-Rob
+Kind regards,
+Wim.
+
 
