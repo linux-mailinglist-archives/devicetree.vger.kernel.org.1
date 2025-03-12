@@ -1,150 +1,156 @@
-Return-Path: <devicetree+bounces-156919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50920A5DDB4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 14:16:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 257F0A5DDC5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 14:18:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42DCE1742CF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 13:16:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43104189EE77
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 13:17:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 737F124EF97;
-	Wed, 12 Mar 2025 13:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BE2224503F;
+	Wed, 12 Mar 2025 13:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JyeQ9ipD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ecI2m8LU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC15724A06C
-	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 13:14:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C550E2405FD;
+	Wed, 12 Mar 2025 13:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741785275; cv=none; b=qUZbbZ0MCJiVHfbQkzzx74rEi9xqlRUoCFDUOCr4aS3ql69oMcNMohQwpBG0zEDWy6zgOCpGoQSUJ+N4BT/4Np39YmoUx6NZivfCxF0HKlVg+W+AZP4V6+KNzxDlbZrlM8vmQUgQuZR9iC754K49E9RGblwkChWs5DUU+VnvEIk=
+	t=1741785384; cv=none; b=Y19TpH8eOvNqFy+2Qn2bUYeA1doi4XQGX1APUpP+Q7e+FAufCtbTXSzUNJhy/VawgwrcZBUFpii8DABUGhYI1AReUolHyNPVwqL+rnDnzeYTEP3lJul4jobKOCSfUqHjEp8CEMfBBnX1pSqUyZqSM4jynupuBiH/bPRTkAkLu5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741785275; c=relaxed/simple;
-	bh=nVhLu0AiCCxQH/soBCHuVFIETyl7UMc6C9vhLI8S8To=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uZTKQvbPEwpgUTYPeSOwISFGa9k2NX59LwHMnU2+IVv1lc7GYi3aYgRYttkV+tjcFU8SXXIPRQF7gMzXizMnOO3apubHG94VHD75GWMB6BwBPdGA1huV2LHoXc0Afsl9C/gwE6VnCsjpdWU3NNtj7hjF93NgFMy9DLgq3ew65Bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JyeQ9ipD; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4394944f161so7337205e9.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 06:14:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741785271; x=1742390071; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DjLNng74rhxdSjD2x2QVGFVe11P7mYgAEe28w7w2n8s=;
-        b=JyeQ9ipD/n6d0mbr+URAaqyLKLaN0x0XiEE5JF4/crS90y49JlhjVayJsx23mJuNN/
-         YfZFBq7tSNRY/2hp4b+sXoQKmsuyAkG4gX/d3x2CxIumuzJtZ4KPrP43/5BgZD/pgji2
-         +azQ+AmbriK2cWxoEW0zECuKkzWVSA9dLNmnRPzleGVs7cIsx1Cgw6UzrE6bu/feoMhw
-         0FJtK7xD5aEmvyMngS7CptnFkSsdNJ5U/CAzwOi8BGA2rH42O75tRmiiV4010bO68M+1
-         8YlI+S4NWZqWwE2gSw4DE1md7ppzWluSfdIY0DmSbFgMleLQOQe4mdpmg712MoCxu0Hm
-         8YvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741785271; x=1742390071;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DjLNng74rhxdSjD2x2QVGFVe11P7mYgAEe28w7w2n8s=;
-        b=u9JSxgbDokI9f+gXoVUafHv7PIGUHjcnswyjQWKBvcCLKUvAX2HXxQsvCdYR51ppai
-         lXzJKEGG7VQ1GwodEclW5p7oeoDge9L3h+8il64Xm/ukD/3NmWomXeQAGKa/XVbrh1r2
-         PoWPSzGogp4IyobkCnGA8EV1wP8ap8FCJtr+zG6qy7RNnnOVhAuzAKpnQdRRiXDb7eO/
-         qGxQvQ9ca4cWBBjqGvopw4AYzZIFrz37jxJ5dU5JtdzSEotV9w0Yh8otWH+ZhWDQI4yZ
-         HSaJBSmn02zaTLtmCMroYImTMjGztiHR/pFHhAxT+zYGfo9xuvk3hpVIZMawPBtn7NBX
-         SvVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWYG3QkL3W/AFXmk/1yafmeLrhuUEG38xID2jM1NCh6E/huvXP/fhUZJp2veqhV1dEFuo/GHmoEdNR2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwNLrAabAhDzrWu26JpN7pqb/QF0DDqeu5dUDKINIX3rOg0BOX
-	o2BxSTE6/A3TReOT9rHBhipCbnn+y3qV1pmGdS38qeSFr9ZtZABUYlelDjXoLZGuLMGuWWmPvVp
-	7
-X-Gm-Gg: ASbGncvmxVQJ4HjLlhXttP2Z8WOT3UVAryIjtaG8HcPxGJljCVnUekTtpknZcX38Yp7
-	eJHO5qs1jPBaBkxi6xw2wcLdteMla+hLXqRHaGfvR8/SbrmC8AFns1uRrbv1YBjHK1OfqHbCRG0
-	8dxKQxlt7YvX8Ips5/aPKTQASB90uT3Er3S714IIfai0YPLYJ0HCInjFYvAa/IP/5+BNSkk1j6C
-	PhuhkuEzD9Z3pAJJ03fPDQ/4v9e/2QZ9TmXvfrwQaIe/4A9Rus+FTb/fv24IRyoscQkA7yhl6Rg
-	EY3t5yy94+89B7iPIZS0+Af8dC/S/3z9OlZvcpRl09rdmK4aRhK5CA7aLiVmkB3uDAfUZQ==
-X-Google-Smtp-Source: AGHT+IFcSsyLGNx3jAp/L9UhztSEsOPv+d8/sK/Tt11tO+NPvboilTmw+z2ZYcBHFz91ri7g18BT2Q==
-X-Received: by 2002:a05:600c:3b13:b0:439:9595:c8f4 with SMTP id 5b1f17b1804b1-43d01b8532bmr32868255e9.0.1741785270948;
-        Wed, 12 Mar 2025 06:14:30 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.198.86])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d0a8c5cb4sm20966745e9.25.2025.03.12.06.14.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Mar 2025 06:14:30 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Wed, 12 Mar 2025 14:13:59 +0100
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sm8750-qrd: Enable CDSP
+	s=arc-20240116; t=1741785384; c=relaxed/simple;
+	bh=MhxEnjdAm4dk8eMX5PMe1gYm0TCJYLy21bFBF2bTcK8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mYTwzIsFx6qhGdirouprNLO5q2aNWbPynZrBto5InPVO2lDpBNjoKlWqy3+ON9Xi8NNrlf05IzahMtJ2MpHVoYpcgqwXFNPWZigIeMpOo48SG3s20it/gK1uHS8rOJdpnb75eQNISZEyGLLQYeuWxV/gWtSzQWsaHykUyEKyW+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ecI2m8LU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01FF2C4CEE3;
+	Wed, 12 Mar 2025 13:16:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741785384;
+	bh=MhxEnjdAm4dk8eMX5PMe1gYm0TCJYLy21bFBF2bTcK8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ecI2m8LUtOeISoz79LApWF1n7b7x2jrl/Y8tbGEWJn//ZD9Bi8KZLLv0rO5OPQ3b6
+	 G/4/bLYRahlhrOKlmsyMF7/s1oCwOPGf12/esHve1H0hNE5WxvqWv57gFVn/YtFOjY
+	 HPt4r020u/e1vCoZnZdG0ZebBnsAj+wswPiTeVVL52NUCinFPpcK8Q2VaqCx919A2Y
+	 HX9AOpoeF9EIjU8Ivn1n+JRwcFm//c/IvHU7N0j9+ENEx4NU1v8xxUzqaChDtjWBJo
+	 bLHJT0HN4R4qTr8Hr8pB/OtRtHwEmgiH/L0EBmOmnkSlUdJ2zlASHEg7qfP0w8rgiM
+	 BsdmUimU4RRMQ==
+Date: Wed, 12 Mar 2025 08:16:23 -0500
+From: Rob Herring <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH net-next v3 1/3] dt-bindings: net: dwmac: Increase
+ 'maxItems' for 'interrupts' and 'interrupt-names'
+Message-ID: <20250312131623.GA489176-robh@kernel.org>
+References: <20250311221730.40720-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250311221730.40720-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250312-b4-sm8750-cdsp-v4-3-4925d607cea6@linaro.org>
-References: <20250312-b4-sm8750-cdsp-v4-0-4925d607cea6@linaro.org>
-In-Reply-To: <20250312-b4-sm8750-cdsp-v4-0-4925d607cea6@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Dmitry Baryshkov <lumag@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=884;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=nVhLu0AiCCxQH/soBCHuVFIETyl7UMc6C9vhLI8S8To=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBn0YilSFV4+rZ5EaoK/opYGJVAgzDMv7iJQ7lLG
- jidQ3zCxSyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ9GIpQAKCRDBN2bmhouD
- 1+x7D/9jN0Ca6DwYjWyH0D5qLQb8Tkj7YuS6mOCPfgVelRiCelTICvyk1vJ7ytQ375n/ORFovgk
- rs7aEcTk7xOWiJyQmtapXkm1I8xvBjJHImz1YVbDa6RTte/713sk+2fRpC2IIgkX+OTgX2BZqGc
- yKztVdQNrkdo27pf2tpI7U+JWQAxlnu8003du56bdP8OSLKvruKQGcXH+AW0wWJwFYhUgMEuGnd
- u4keliH3NlL9RRGBVpywU2zYJ4oVkcT5KObo+PPOUQjrz5B7hoayGMhxVczhzEvwFQT94vb4BXc
- 5QK0OujZLE2u1F78bSn3eLvC27D5xh7VB41P3u5oXMo3QiF8OZW5oqH48TZ5Iw97o4QDORezVSq
- Fi1QMl3CCLLNXAk1PQbWI/Xd7JwpE7RfKqqsEZfe+4OGCfRF1QBACYt3cj7jiLEgFDjVvDIoTbj
- NWHKqYCL0yrl9xYTxCDlsIshQmEsi7KgfF7RNHYoT0Bju4a3e7VUdC1tFFLOJOaE+dmOYjPGH20
- JgFPzjG8hrFPTA63tV6+Btl+Pd9xMfNnkYFVxNmoICErcNdnXdHLO8XiIqXyLJjS+Ff/C+UZXMs
- nzqI/cpnJZdV/sikSY9qHqIHRpgzWMDbrMh3jvpTMdy1NlMuBb02ay5Emix8nrwQF0DAey9mwIm
- EsMa1tFPkTmRN/A==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250311221730.40720-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Enable the CDSP on QRD8750 board.
+On Tue, Mar 11, 2025 at 10:17:28PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Increase the `maxItems` value for the `interrupts` and `interrupt-names`
+> properties to 11 to support additional per-channel Tx/Rx completion
+> interrupts on the Renesas RZ/V2H(P) SoC, which features the
+> `snps,dwmac-5.20` IP.
+> 
+> Refactor the `interrupt-names` property by replacing repeated `enum`
+> entries with a `oneOf` list. Add support for per-channel receive and
+> transmit completion interrupts using regex patterns.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> Note, for adding constraints to vendor bindings patch [0] has been sent
+> out seprately.
+> 
+> [0] https://lore.kernel.org/all/20250309003301.1152228-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> 
+> v2->v3
+> - Dropped adding `additionalItems`
+> - Moved interrupts description into interrupt-names
+> - Replaced enum with a oneOf and added Rx/Tx regex patterns
+> 
+> v1->v2
+> - No change
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 24 ++++++++++++-------
+>  1 file changed, 15 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 78b3030dc56d..bacec6e6514b 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -114,19 +114,25 @@ properties:
+>  
+>    interrupts:
+>      minItems: 1
+> -    items:
+> -      - description: Combined signal for various interrupt events
+> -      - description: The interrupt to manage the remote wake-up packet detection
+> -      - description: The interrupt that occurs when Rx exits the LPI state
+> -      - description: The interrupt that occurs when HW safety error triggered
+> +    maxItems: 11
+>  
+>    interrupt-names:
+>      minItems: 1
+> +    maxItems: 26
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+Oops! I assume you meant 11. With that fixed:
 
-Not tested on QRD hardware.
----
- arch/arm64/boot/dts/qcom/sm8750-qrd.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-index 341774bb042ff88af8acf49c2f0ef14f9994dfc9..7f1d5d4e5b2813c59ea9dba2c57bee824f967481 100644
---- a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-@@ -789,6 +789,13 @@ &remoteproc_adsp {
- 	status = "okay";
- };
- 
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/sm8750/cdsp.mbn",
-+			"qcom/sm8750/cdsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
- &tlmm {
- 	/* reserved for secure world */
- 	gpio-reserved-ranges = <36 4>, <74 1>;
-
--- 
-2.43.0
-
+>      items:
+> -      - const: macirq
+> -      - enum: [eth_wake_irq, eth_lpi, sfty]
+> -      - enum: [eth_wake_irq, eth_lpi, sfty]
+> -      - enum: [eth_wake_irq, eth_lpi, sfty]
+> +      oneOf:
+> +        - description: Combined signal for various interrupt events
+> +          const: macirq
+> +        - description: The interrupt to manage the remote wake-up packet detection
+> +          const: eth_wake_irq
+> +        - description: The interrupt that occurs when Rx exits the LPI state
+> +          const: eth_lpi
+> +        - description: The interrupt that occurs when HW safety error triggered
+> +          const: sfty
+> +        - description: Per channel receive completion interrupt
+> +          pattern: '^rx-queue-[0-3]$'
+> +        - description: Per channel transmit completion interrupt
+> +          pattern: '^tx-queue-[0-3]$'
+>  
+>    clocks:
+>      minItems: 1
+> -- 
+> 2.43.0
+> 
 
