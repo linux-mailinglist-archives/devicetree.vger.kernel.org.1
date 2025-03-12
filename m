@@ -1,103 +1,130 @@
-Return-Path: <devicetree+bounces-156955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A690A5E048
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 16:25:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC745A5E06B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 16:33:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99490189693E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:25:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8C9F3B5F06
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:33:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AFA9255E23;
-	Wed, 12 Mar 2025 15:25:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0CD2512E4;
+	Wed, 12 Mar 2025 15:33:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="frPan1h6"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ArIpD8Pk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch [185.70.40.133])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE631253355;
-	Wed, 12 Mar 2025 15:25:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8B2156237;
+	Wed, 12 Mar 2025 15:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741793109; cv=none; b=iLoHID9thPfK3w9xaAp3xgX/tbenb1BUELsdYfjKtdaDNfPeTEzXZAE16e/+r1IBqXqk5EFmeKLqjCuMhJ5+s7hFB7o+paO9B7yY0Dy2Hk3Byppw/YihPeoUMgnbSS2I/9FaELCUhXVciJ+extwq5YkCLLOyLVJWHNEHv2SIfmA=
+	t=1741793592; cv=none; b=T4/glvNm1eP2p7oikZJM7Sa6S+E/Y37D1vrA+gI5ysklmlGfNm9pNAwRJr5G2Kmr3N4z9FkYcym/imTWiEzM2ZpmUuUYFwkZpuKAjCngHJGcR95R/c7tCKRMucSCQEUpGx8+TkENOWjzf7KVcNZWsCehoFXcSsZnP6PuzCC4jxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741793109; c=relaxed/simple;
-	bh=DfBHEd0SO4r7NiVGfilpd306yK11/eGsLe574+AnTFE=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iompNPW+EX/sECr5CDvEQh34dqaUw+VIEofdzoVY5IPW8cQrehAlr9t1E8yV6KizkL4RIc6EajOWuRvFhmxj9OO1jjPpK6VOdJgGiHZJlosg1lgs0QpJMEj4I605Pu0l6BU6Iq/kmBejevNRgmVk0543KKp6Mz6z5CIam1CVGpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=frPan1h6; arc=none smtp.client-ip=185.70.40.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1741793105; x=1742052305;
-	bh=uVoMgsncNZ81Qs244XhiNiFSVWapFutHM21B/73cujs=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=frPan1h6YKzC0bqmU90vrOcukl566AIP3m89ASwWziUTdMAfARywXB6xoIg5UvfEN
-	 uTRXcdJ+e39oceAAQXFwT1toqQCsPCa0lu5tXgylrivtsfeTW/uBausk1BNWN8xE7e
-	 LxGN+w83PewYzTnX++QkpWrxHTv/niZTJQo7rmXUozJejyjRjD6E4jJak6YD/8TkGu
-	 Hmb9Y+cRH+osorMUMDEMxGIZ16PyvudJ7XX9ubJzWd+818lcGjffTJk8218pDZ3GRU
-	 CXgzzIGbAEuahl8+tyGyQkG0XGwt13MItmEPxE1lg82Ev7wPTS/uvZX1mIjlz3SPqx
-	 2121b88MfPw2g==
-Date: Wed, 12 Mar 2025 15:25:00 +0000
-To: Tamir Duberstein <tamird@gmail.com>
-From: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] rust: enable `clippy::ptr_as_ptr` lint
-Message-ID: <D8EE4BXJ5NLB.8BBCUV0UXWY5@proton.me>
-In-Reply-To: <CAJ-ks9kOLgXrOHucFXHB+DwZEZpZEKhBNmXKh_hB_agrq=2n6g@mail.gmail.com>
-References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com> <20250309-ptr-as-ptr-v2-2-25d60ad922b7@gmail.com> <D8ED5UWKL2N1.2JPWVV0297BJ0@proton.me> <CAJ-ks9kOLgXrOHucFXHB+DwZEZpZEKhBNmXKh_hB_agrq=2n6g@mail.gmail.com>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: 6dd0142bc1b95eaf185630e5f364e5053d7fe2a5
+	s=arc-20240116; t=1741793592; c=relaxed/simple;
+	bh=wvjZs6Ho1imdevToYORMmFUS+fOEcLE9ZMd7vfDXyMc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B2S8dkIMOo2obG9SDVeWwyWS7f3d66YvoGB4r4rI68PFxx9hkNp5no0H/rpIHRE5WzXpBeErhyMVJ/kk6J8XtORkqDXI/CD0Kz1AOSDlL0s9qp6Uzz2Wol5qzVViw5FkFHCihHaMImbFSrDwaMf7qvyN7LJCdu4V/iVuhrCm6xA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ArIpD8Pk; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=iH9GHclLADxHaK7lGmwG60TMy/tMBW1Zzi6F7hap/Yg=; b=ArIpD8PkcXyPglBLUs0D4cNd6j
+	5eeOs7YBGX8A63fnnpdRkt8C1TR29b8uSR7GDvR1N4MR11R+lDJMYhOvoz9ZjHJeXgLdl/AW5N982
+	qtaO8XKx3nkPfNng4WAUcTWZGPK76teiIDpbBuyEMHSvas6vUIzYwsBBzqTSowVgSqkE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tsO4q-004hkE-KU; Wed, 12 Mar 2025 16:33:00 +0100
+Date: Wed, 12 Mar 2025 16:33:00 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Gupta, Suraj" <Suraj.Gupta2@amd.com>
+Cc: Russell King <linux@armlinux.org.uk>,
+	"Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"Simek, Michal" <michal.simek@amd.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"git (AMD-Xilinx)" <git@amd.com>,
+	"Katakam, Harini" <harini.katakam@amd.com>
+Subject: Re: [PATCH net-next V2 2/2] net: axienet: Add support for 2500base-X
+ only configuration.
+Message-ID: <fd686050-e794-4b2f-bfb8-3a0769abb506@lunn.ch>
+References: <20250312095411.1392379-1-suraj.gupta2@amd.com>
+ <20250312095411.1392379-3-suraj.gupta2@amd.com>
+ <ad1e81b5-1596-4d94-a0fa-1828d667b7a2@lunn.ch>
+ <Z9GWokRDzEYwJmBz@shell.armlinux.org.uk>
+ <BL3PR12MB6571795DA783FD05189AD74BC9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
+ <34ed11e7-b287-45c6-8ff4-4a5506b79d17@lunn.ch>
+ <BL3PR12MB6571540090EE54AC9743E17EC9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BL3PR12MB6571540090EE54AC9743E17EC9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
 
-On Wed Mar 12, 2025 at 4:18 PM CET, Tamir Duberstein wrote:
-> On Wed, Mar 12, 2025 at 10:40=E2=80=AFAM Benno Lossin <benno.lossin@proto=
-n.me> wrote:
->>
->> On Sun Mar 9, 2025 at 5:00 PM CET, Tamir Duberstein wrote:
->> > In Rust 1.51.0, Clippy introduced the `ptr_as_ptr` lint [1]:
->> >
->> >> Though `as` casts between raw pointers are not terrible,
->> >> `pointer::cast` is safer because it cannot accidentally change the
->> >> pointer's mutability, nor cast the pointer to other types like `usize=
-`.
->> >
->> > There are a few classes of changes required:
->> > - Modules generated by bindgen are marked
->> >   `#[allow(clippy::ptr_as_ptr)]`.
->> > - Inferred casts (` as _`) are replaced with `.cast()`.
->> > - Ascribed casts (` as *... T`) are replaced with `.cast::<T>()`.
->> > - Multistep casts from references (` as *const _ as *const T`) are
->> >   replaced with `let x: *const _ =3D &x;` and `.cast()` or `.cast::<T>=
-()`
->>
->> Similarly to the other patch, this could be `let x =3D &raw x;`. (but it=
-'s
->> fine to leave it as-is for now, we can also make that a
->> good-first-issue.)
->
-> Yeah, same as the other patch; we can't directly do that here without
-> introducing some compiler infra or bumping MSRV.
+On Wed, Mar 12, 2025 at 03:06:32PM +0000, Gupta, Suraj wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
+> 
+> > -----Original Message-----
+> > From: Andrew Lunn <andrew@lunn.ch>
+> > Sent: Wednesday, March 12, 2025 8:29 PM
+> > To: Gupta, Suraj <Suraj.Gupta2@amd.com>
+> > Cc: Russell King <linux@armlinux.org.uk>; Pandey, Radhey Shyam
+> > <radhey.shyam.pandey@amd.com>; andrew+netdev@lunn.ch;
+> > davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
+> > pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
+> > Simek, Michal <michal.simek@amd.com>; netdev@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org; git (AMD-Xilinx) <git@amd.com>; Katakam, Harini
+> > <harini.katakam@amd.com>
+> > Subject: Re: [PATCH net-next V2 2/2] net: axienet: Add support for 2500base-X only
+> > configuration.
+> >
+> > Caution: This message originated from an External Source. Use proper caution
+> > when opening attachments, clicking links, or responding.
+> >
+> >
+> > > > On Wed, Mar 12, 2025 at 02:25:27PM +0100, Andrew Lunn wrote:
+> > > > > > +   /* AXI 1G/2.5G ethernet IP has following synthesis options:
+> > > > > > +    * 1) SGMII/1000base-X only.
+> > > > > > +    * 2) 2500base-X only.
+> > > > > > +    * 3) Dynamically switching between (1) and (2), and is not
+> > > > > > +    * implemented in driver.
+> > > > > > +    */
+> >
+> > > - Keeping previous discussion short, identification of (3) depends on
+> > > how user implements switching logic in FPGA (external GT or RTL
+> > > logic). AXI 1G/2.5G IP provides only static speed selections and there
+> > > is no standard register to communicate that to software.
+> >
+> > So if anybody has synthesised it as 3) this change will break their system?
+> >
+> >         Andrew
+> 
+> It will just restrict their system to (2)
 
-I think it's fine enabling the feature for this patch (or in a prior
-one) if you want to do the work. But someone already took up the issue I
-created, so maybe it's best to let them handle it.
+Where as before, it was doing SGMII/1000base-X only. So such systems
+break?
 
----
-Cheers,
-Benno
-
+	Andrew
 
