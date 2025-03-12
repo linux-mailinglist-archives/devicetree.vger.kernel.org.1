@@ -1,79 +1,58 @@
-Return-Path: <devicetree+bounces-156984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F117A5E40E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 20:02:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C51D3A5E41B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 20:06:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 189EC7A25BD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 19:01:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 794413A9EB3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 19:06:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B701E5B7D;
-	Wed, 12 Mar 2025 19:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E49256C6A;
+	Wed, 12 Mar 2025 19:06:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nOolVWXO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="byrug321"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007D61E5B76;
-	Wed, 12 Mar 2025 19:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF57250BFC;
+	Wed, 12 Mar 2025 19:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741806154; cv=none; b=fB60eWGA0Jj3ZI7QZfwOClpRBbf4HyjrtdGOxdcXNnpey/ljt3vou/OXRcc32FaH1JefGMWnucVgOydmN/yWM55XrQ7EyHDEvMsxgqxKnsNBHmIKJdg770h/mXodzBOTdxd1O9/lESN1bThWijIRwzygnHNkDDiaJgSON9OsS+Y=
+	t=1741806384; cv=none; b=cKJ8cD8zF2Hjh2ZvZxw7EgfxzgxwnKrHdI19dQwb8BPH2L41K4M+djBzzefUdY3JQkknsxOcVLRmSHChap2eMpscBLhxVsD+GHmgCFIFtWxsUNDbrG3uTy7jsu+k+q8d6CU9FNg1AjlrmQAtHMSFcohFbu146lTxo+k5yv5Kcu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741806154; c=relaxed/simple;
-	bh=idOmWFvNR/hkrHv8K6P5ExxPfuEgX7xMqzYEmJvI81Y=;
+	s=arc-20240116; t=1741806384; c=relaxed/simple;
+	bh=59hxJxczmtJRD9AjP9dImrpiPr5PKifeoERgMGmkCUQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GKgOtOrkrEtlxbfG4z/AJQSQ0h4ZwtJ5FkW4s4U1u/iDXa5gfe8HL6AAJwe1rsnRVVk7+FqvjmmKiQYn72/EGWeee1qzIpaIrZohgmtkYNSn0lfrFwnYxmWK1IVprelbpWEn2k8FAQ2O8NoKPjV9Fn3x+adtuk6w435rJLF+NsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=nOolVWXO; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=6yolepTUWycUYSP0NNLMuaVmz6Sw1ofQLTuAXR+lN7k=; b=nOolVWXOwrwm+h38j0+1o0NTme
-	Vm2e2oT75glTXLaSsbcjFtGNrDxqQd/zSwatCVx1BTRKCZEehp2GexcuwjMiFozWB2Phvev30ThWa
-	qeIXkDD0+XN90q+HCVz3qKY2rarAsVjPHaMz1eNHCu1EJlCqatHjd+S3nJFn4BYrUbz4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tsRLL-004kgf-JU; Wed, 12 Mar 2025 20:02:15 +0100
-Date: Wed, 12 Mar 2025 20:02:15 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Gupta, Suraj" <Suraj.Gupta2@amd.com>
-Cc: Russell King <linux@armlinux.org.uk>,
-	"Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"Simek, Michal" <michal.simek@amd.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"git (AMD-Xilinx)" <git@amd.com>,
-	"Katakam, Harini" <harini.katakam@amd.com>
-Subject: Re: [PATCH net-next V2 2/2] net: axienet: Add support for 2500base-X
- only configuration.
-Message-ID: <ce0796f4-cf2e-4a3d-ae79-1f9b9966773e@lunn.ch>
-References: <20250312095411.1392379-1-suraj.gupta2@amd.com>
- <20250312095411.1392379-3-suraj.gupta2@amd.com>
- <ad1e81b5-1596-4d94-a0fa-1828d667b7a2@lunn.ch>
- <Z9GWokRDzEYwJmBz@shell.armlinux.org.uk>
- <BL3PR12MB6571795DA783FD05189AD74BC9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
- <34ed11e7-b287-45c6-8ff4-4a5506b79d17@lunn.ch>
- <BL3PR12MB6571540090EE54AC9743E17EC9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
- <fd686050-e794-4b2f-bfb8-3a0769abb506@lunn.ch>
- <BL3PR12MB6571959081FC8DDC5D509560C9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ii8KG2Dvk0U+dbRnEklbwW/qeZkhwzMegQUcfYYV4tQRh3sXMdR1ww/++gpUFUkFDEiibFpgx61bwPy9dRNJWVKUUHawTTyylEy49GzgGhn476vY4nycxHjxtN0ha4xO2JbeH1JhHlPlakzZraPLWPhf3XFZJemeF44Nu1TwkQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=byrug321; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AED28C4CEDD;
+	Wed, 12 Mar 2025 19:06:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741806383;
+	bh=59hxJxczmtJRD9AjP9dImrpiPr5PKifeoERgMGmkCUQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=byrug321pPE95aUOrnvb48tmdWaZUxUkYcHtY6LmOiFMkfQ27+xqSQ2cNX+jN12TJ
+	 VnRrvMrShqavvQ8oXEIZdDnlYVKU2L65yInzOqs9/H6hAPIvHDdXBFKpZvFCzduABX
+	 4M8CbQwdmLlvkdve0N5etUfLwNNbxePJnsNzAM4bmjC17HOfA0ySypa6nbs0wpI6q7
+	 oUdWn4hQTS0OJWAkozP90xI/B0mwfYlo4cn7t3K7wFvwCvfXTTJlnnqAsQ6HSxDM+w
+	 MHKcmlKT/BzDnPuG+To2MwZPqdo6sP3q19hVr4oDzWNuwt2HfxmfsmbRrEa3Z7cVts
+	 b5vjrz0pOtysA==
+Date: Wed, 12 Mar 2025 21:06:18 +0200
+From: Dmitry Baryshkov <lumag@kernel.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 0/3] Fairphone 5 DisplayPort over USB-C support
+Message-ID: <y7dfv4mmtzkv2umvverkn6qvjt3tg7cz4jj4zsb4t6vu4heh4d@64zpkjihjc23>
+References: <20250312-fp5-pmic-glink-dp-v2-0-a55927749d77@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,94 +61,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <BL3PR12MB6571959081FC8DDC5D509560C9D02@BL3PR12MB6571.namprd12.prod.outlook.com>
+In-Reply-To: <20250312-fp5-pmic-glink-dp-v2-0-a55927749d77@fairphone.com>
 
-On Wed, Mar 12, 2025 at 04:08:02PM +0000, Gupta, Suraj wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
+On Wed, Mar 12, 2025 at 01:05:07PM +0100, Luca Weiss wrote:
+> This series adds all the necessary bits to enable DisplayPort-out over
+> USB-C on Fairphone 5.
 > 
-> > -----Original Message-----
-> > From: Andrew Lunn <andrew@lunn.ch>
-> > Sent: Wednesday, March 12, 2025 9:03 PM
-> > To: Gupta, Suraj <Suraj.Gupta2@amd.com>
-> > Cc: Russell King <linux@armlinux.org.uk>; Pandey, Radhey Shyam
-> > <radhey.shyam.pandey@amd.com>; andrew+netdev@lunn.ch;
-> > davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
-> > pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> > Simek, Michal <michal.simek@amd.com>; netdev@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; git (AMD-Xilinx) <git@amd.com>; Katakam, Harini
-> > <harini.katakam@amd.com>
-> > Subject: Re: [PATCH net-next V2 2/2] net: axienet: Add support for 2500base-X only
-> > configuration.
-> >
-> > Caution: This message originated from an External Source. Use proper caution
-> > when opening attachments, clicking links, or responding.
-> >
-> >
-> > On Wed, Mar 12, 2025 at 03:06:32PM +0000, Gupta, Suraj wrote:
-> > > [AMD Official Use Only - AMD Internal Distribution Only]
-> > >
-> > > > -----Original Message-----
-> > > > From: Andrew Lunn <andrew@lunn.ch>
-> > > > Sent: Wednesday, March 12, 2025 8:29 PM
-> > > > To: Gupta, Suraj <Suraj.Gupta2@amd.com>
-> > > > Cc: Russell King <linux@armlinux.org.uk>; Pandey, Radhey Shyam
-> > > > <radhey.shyam.pandey@amd.com>; andrew+netdev@lunn.ch;
-> > > > davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
-> > > > pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org;
-> > > > conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>;
-> > > > netdev@vger.kernel.org; devicetree@vger.kernel.org;
-> > > > linux-kernel@vger.kernel.org; linux-arm- kernel@lists.infradead.org;
-> > > > git (AMD-Xilinx) <git@amd.com>; Katakam, Harini
-> > > > <harini.katakam@amd.com>
-> > > > Subject: Re: [PATCH net-next V2 2/2] net: axienet: Add support for
-> > > > 2500base-X only configuration.
-> > > >
-> > > > Caution: This message originated from an External Source. Use proper
-> > > > caution when opening attachments, clicking links, or responding.
-> > > >
-> > > >
-> > > > > > On Wed, Mar 12, 2025 at 02:25:27PM +0100, Andrew Lunn wrote:
-> > > > > > > > +   /* AXI 1G/2.5G ethernet IP has following synthesis options:
-> > > > > > > > +    * 1) SGMII/1000base-X only.
-> > > > > > > > +    * 2) 2500base-X only.
-> > > > > > > > +    * 3) Dynamically switching between (1) and (2), and is not
-> > > > > > > > +    * implemented in driver.
-> > > > > > > > +    */
-> > > >
-> > > > > - Keeping previous discussion short, identification of (3) depends
-> > > > > on how user implements switching logic in FPGA (external GT or RTL
-> > > > > logic). AXI 1G/2.5G IP provides only static speed selections and
-> > > > > there is no standard register to communicate that to software.
-> > > >
-> > > > So if anybody has synthesised it as 3) this change will break their system?
-> > > >
-> > > >         Andrew
-> > >
-> > > It will just restrict their system to (2)
-> >
-> > Where as before, it was doing SGMII/1000base-X only. So such systems break?
-> >
-> >         Andrew
+> There's currently a dt validation error with this, not quite sure how to
+> resolve this:
+> 
+>   arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dtb: typec-mux@42: port:endpoint: Unevaluated properties are not allowed ('data-lanes' was unexpected)
+>           from schema $id: http://devicetree.org/schemas/usb/fcs,fsa4480.yaml#
+
+This comes from usb-switch.yaml, it requires that 'port' adheres to the
+/schemas/graph.yaml#/properties/port (which forbids extra properties).
+The usb-switch.yaml needs to be fixed to use port-base for that node.
+
+> 
+> See also this mail plus replies:
+> * https://lore.kernel.org/linux-arm-msm/D0H3VE6RLM2I.MK2NT1P9N02O@fairphone.com/
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+> Changes in v2:
+> - Move adding "*-switch;" properties already in earlier patches
+> - Move wiring up SS USB & DP to SoC instead of being done in device
+> - Pick up tags
+> - Link to v1: https://lore.kernel.org/r/20250226-fp5-pmic-glink-dp-v1-0-e6661d38652c@fairphone.com
+> 
+> ---
+> Luca Weiss (3):
+>       arm64: dts: qcom: qcm6490-fairphone-fp5: Add PTN36502 redriver
+>       arm64: dts: qcom: qcm6490-fairphone-fp5: Add OCP96011 audio switch
+>       arm64: dts: qcom: qcm6490-fairphone-fp5: Hook up DisplayPort over USB-C
+> 
+>  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 103 +++++++++++++++++++--
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi               |   9 +-
+>  2 files changed, 104 insertions(+), 8 deletions(-)
+> ---
+> base-commit: dcb11dc4740372cd4cce0b763a4a8ec4e9f347a6
+> change-id: 20231208-fp5-pmic-glink-dp-216b76084bee
+> 
+> Best regards,
+> -- 
+> Luca Weiss <luca.weiss@fairphone.com>
 > 
 
-> If the user wants (3), they need to add their custom FPGA logic
-> which anyway will require additional driver changes. (3) was not
-> completely supported by existing driver.
-
-You say 3) is a synthesis option. Say somebody synthesised it that
-way, and found it works for what they need with SGMII/1000base-X.
-Because the driver took no notice of the capability bit, that is what
-it would do. Since it worked for them, they might not of gone back and
-optimised the options. "If it is not broken, don't fix it". So we
-could have systems out in the wild, synthesised as 3) happily doing 
-SGMII/1000base-X ?
-
-With this change, won't you break those systems?
-
-I'm just trying to get to a definitive answer, is this change actually
-safe to all todays possible systems?
-
-	Andrew
-
+-- 
+With best wishes
+Dmitry
 
