@@ -1,265 +1,771 @@
-Return-Path: <devicetree+bounces-156879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CEDBA5DC37
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 13:05:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0189A5DC43
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 13:06:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 336221886BE3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:05:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE3C316A602
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:06:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56519242908;
-	Wed, 12 Mar 2025 12:05:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="QovM9UDQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535D0242909;
+	Wed, 12 Mar 2025 12:05:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62AC024168A
-	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 12:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AAF31DB124;
+	Wed, 12 Mar 2025 12:05:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741781118; cv=none; b=G0ZKqDJKP5V7owTAOxbEeF7S3WuB1gaExDLyoDhZKkircNWIl5i7dSvt59+jJjsYBLUn1ppwS5iH1yoh7tecoqyGwrRZVBguT1JKVxfxTbcgU9olJemDZzaBdbLdOHaNfsm9cXbqiIFZbHwvD5w4hzS8pltg36LL/vigvvYH5Os=
+	t=1741781156; cv=none; b=uya9/KIp1Drow2JuhO8Go4Xam5mKCGs+Itm24Hdq41PsutUpAG49p01ANXPg1SIwVRS2DiNNle2s9gkqkWXNtYm/b93pB/gTYaN+lTwO11vIk49OvBSBN393CwX6ALvAyzWcyUQ56zCXsaCGHEy++fUbeD23HHiFoDG0seSqEw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741781118; c=relaxed/simple;
-	bh=+RdyBIwxd6mquveTbaq2IR0uSqOPWfpJivqQDnRoaZ4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OI1Ony/909qfxETKwqS9dIZfIxwI6HKD+vKugHjdh1jl9ha6opyB/7GUu0+R/qJvHeWA63HHLMqFOMcz/vjMouK6Bk6c7IV0xnyzmTm3xyH0OG9lgpTYpYNKgK6U7E4jUNZhVxj31wAeGYyJf/KcJdg0I9SpGbf8J/hZGCsIgqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=QovM9UDQ; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43bb6b0b898so56513025e9.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 05:05:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1741781114; x=1742385914; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YkMjxLDjnh1hw80WvyyD7v+50HISC6qgR19rphkV2/g=;
-        b=QovM9UDQ/gSKcsC5VJpoQZReOd8+8vfS7x1xxvKET6IakH3wzvnHcOLEbNXBypEJeS
-         yNfY5rM0U707e/N8GWUEOIfce7VCHBwm8JqYNUCdSbks3HAyThNVnp35uwpuzC81XL+f
-         BxQZRyM8X7bkFHPZmFo9oJ0cfXmDFzduOPV9KsuveCgu56ok2GPOjT+Rgumio8dneE5b
-         BnlDq5/RoxiIjjKE8+vPnDfn1NlPUt2TgaPMzQktQumMvUJcVqWFmIOfEavpE4cAAnNR
-         Su1pJpaW+BQWk3a085z9fVx/wJ8C38LoV1tJtclx3euZbl8SnjeSigUn3+JrE9vJqGM+
-         NpnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741781114; x=1742385914;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YkMjxLDjnh1hw80WvyyD7v+50HISC6qgR19rphkV2/g=;
-        b=BOFOml4v4nCQvrbwi3tLSNmftA4iwtKTq9DrBNIhb0vYacoMfP4p97N/zB91P4f3cw
-         KOVKjkawOG/SjTSJC1dHJSjKe6QBcUgDx45asv9l+oPK4PeVMXY1xZtpJtW5iqL3DL3+
-         eVlj1vimdM2JEBTuTQGdxa/9aaVFwc7p7CNmpr+vEsxX43+BlqTxlPMMB3DZVBQtVzPy
-         SGlzIACJSEgq/K1WWcfQ3RyHw6fYlCfvPuwYEA28rOZXmtzormxn2XyqAhvt/7NMc5rG
-         rAh2sOTyMwMHd9aD29WDLQ2DpjL4QdccKDFYeh/8FyY0US2+IVyTdqOhwBYIIlVNTGbS
-         3WnA==
-X-Forwarded-Encrypted: i=1; AJvYcCW3fY6N6kfhprHCef52OhlzI9xy19skfcxHjbIxJ6393wlEZXvisig7ipcoVhCAZ5HLwkwP16z+rk+O@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcyDITa56WU7SVvJok4YF15f/N61rG2o0vsjt8Iop8Imo49dEO
-	K0teQNmoEjcII+USLGCHTgm2MhHbMq+s90BEzPjJGEYnTTlcpBTM1B07IsPSNv0=
-X-Gm-Gg: ASbGncudr2yROftisccqw/x5lYYZb6DWarFhjDY2NuVDCkqkBoP8aV1mpCZmPOSul6N
-	tOSfRDOp/R5aL5E0vQC0O+BMWN8hD24CX6fR0bSTV2gabyxRhFGJHYUtww2kDxmgNwgIxjvFG7B
-	iqCrDP9iN83RDshP/K/zdRVBVEbdiFiB98w6mz3LGvBlCwDcFZrL4D9gHkYg2IAKhqVKisL9JHc
-	QqcNBOrZm172PB/vAf2O1gAJ9Tv21xGQQAuZuUS1bS25W4qXTUh6T9EGcznCz3b/02sBfyLqh1h
-	7k/aX3mj67urBKQbhGMfrARaE33L6FoZzXXjiSrwSJ7VvEVIUd41+vL00U4821fGNWNb4JPgxi2
-	KmGljSk4gzZJxVfNjrQ==
-X-Google-Smtp-Source: AGHT+IHbpprc/stqmYEX3tnPU/ZmItrK6xJD8r0+wEddtT9FgyChhU1SApLwR6TYweT37ILVW9W9Bw==
-X-Received: by 2002:a5d:47a3:0:b0:391:329b:893e with SMTP id ffacd0b85a97d-39263cebb08mr7537227f8f.5.1741781114430;
-        Wed, 12 Mar 2025 05:05:14 -0700 (PDT)
-Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3912bfb799fsm20810608f8f.2.2025.03.12.05.05.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Mar 2025 05:05:13 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Wed, 12 Mar 2025 13:05:10 +0100
-Subject: [PATCH v2 3/3] arm64: dts: qcom: qcm6490-fairphone-fp5: Hook up
- DisplayPort over USB-C
+	s=arc-20240116; t=1741781156; c=relaxed/simple;
+	bh=96BY7msINlD1914lgVQ00is2MTt8UreIfoMiJYy4s60=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=t+BIOmHvxYGVZu9lQtb7QW/wWPmHMnZYz2hQFrg3MeJWpyazwS9cbf0TZVLAW9j8jN91Yl7gflXB/azWGIIRr5aUwHBDj3bDxiU4nec/Te3/iLe0vNdR38W4NcGGYBcCedeFgQK812mpFNqjkPkxn7hwKbJjGyWbI+ux8PBeyWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 04E121515;
+	Wed, 12 Mar 2025 05:06:04 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 9B8C03F694;
+	Wed, 12 Mar 2025 05:05:52 -0700 (PDT)
+From: Robin Murphy <robin.murphy@arm.com>
+To: vkoul@kernel.org
+Cc: devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 2/2] dmaengine: Add Arm DMA-350 driver
+Date: Wed, 12 Mar 2025 12:05:10 +0000
+Message-Id: <6d7d8efefa935d34977b59a74797ab377528db94.1741780808.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
+In-Reply-To: <cover.1741780808.git.robin.murphy@arm.com>
+References: <cover.1741780808.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250312-fp5-pmic-glink-dp-v2-3-a55927749d77@fairphone.com>
-References: <20250312-fp5-pmic-glink-dp-v2-0-a55927749d77@fairphone.com>
-In-Reply-To: <20250312-fp5-pmic-glink-dp-v2-0-a55927749d77@fairphone.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
-Extend the USB graph to connect the OCP96011 switch, the PTN36502
-redriver, the USB controllers and the MDSS, so that DisplayPort over
-USB-C is working.
+Add an initial driver for the Arm Corelink DMA-350 controller, to
+support basic mem-to-mem async_tx. The design here leaves room for more
+fun things like peripheral support and scatter-gather chaining to come
+in future.
 
-Connect some parts of the graph directly in the SoC dtsi since those
-parts are wired up like this in the SoC directly.
-
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 ---
- arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 54 ++++++++++++++++++++--
- arch/arm64/boot/dts/qcom/sc7280.dtsi               |  9 +++-
- 2 files changed, 57 insertions(+), 6 deletions(-)
+v2:
+ - Fix build warnings
+ - Limit retries for reading live residue
+---
+ drivers/dma/Kconfig      |   7 +
+ drivers/dma/Makefile     |   1 +
+ drivers/dma/arm-dma350.c | 660 +++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 668 insertions(+)
+ create mode 100644 drivers/dma/arm-dma350.c
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-index e0470be9142caa4bac4285a191725bbd60e706fa..9e8f9fb57c4723a24704a8239a86c6081910916b 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-@@ -101,7 +101,15 @@ port@1 {
- 					reg = <1>;
+diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+index 8afea2e23360..fa7d7f98e50f 100644
+--- a/drivers/dma/Kconfig
++++ b/drivers/dma/Kconfig
+@@ -93,6 +93,13 @@ config APPLE_ADMAC
+ 	help
+ 	  Enable support for Audio DMA Controller found on Apple Silicon SoCs.
  
- 					pmic_glink_ss_in: endpoint {
--						remote-endpoint = <&usb_1_dwc3_ss>;
-+						remote-endpoint = <&redriver_ss_out>;
-+					};
-+				};
++config ARM_DMA350
++	tristate "Arm DMA-350 support"
++	select DMA_ENGINE
++	select DMA_VIRTUAL_CHANNELS
++	help
++	  Enable support for the Arm DMA-350 controller.
 +
-+				port@2 {
-+					reg = <2>;
+ config AT_HDMAC
+ 	tristate "Atmel AHB DMA support"
+ 	depends on ARCH_AT91
+diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
+index 19ba465011a6..ba9732644752 100644
+--- a/drivers/dma/Makefile
++++ b/drivers/dma/Makefile
+@@ -17,6 +17,7 @@ obj-$(CONFIG_ALTERA_MSGDMA) += altera-msgdma.o
+ obj-$(CONFIG_AMBA_PL08X) += amba-pl08x.o
+ obj-$(CONFIG_AMCC_PPC440SPE_ADMA) += ppc4xx/
+ obj-$(CONFIG_APPLE_ADMAC) += apple-admac.o
++obj-$(CONFIG_ARM_DMA350) += arm-dma350.o
+ obj-$(CONFIG_AT_HDMAC) += at_hdmac.o
+ obj-$(CONFIG_AT_XDMAC) += at_xdmac.o
+ obj-$(CONFIG_AXI_DMAC) += dma-axi-dmac.o
+diff --git a/drivers/dma/arm-dma350.c b/drivers/dma/arm-dma350.c
+new file mode 100644
+index 000000000000..9efe2ca7d5ec
+--- /dev/null
++++ b/drivers/dma/arm-dma350.c
+@@ -0,0 +1,660 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright (C) 2024-2025 Arm Limited
++// Arm DMA-350 driver
 +
-+					pmic_glink_sbu: endpoint {
-+						remote-endpoint = <&ocp96011_sbu_mux>;
- 					};
- 				};
- 			};
-@@ -761,6 +769,13 @@ typec-mux@42 {
- 
- 		mode-switch;
- 		orientation-switch;
++#include <linux/bitfield.h>
++#include <linux/dmaengine.h>
++#include <linux/dma-mapping.h>
++#include <linux/io.h>
++#include <linux/of.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
 +
-+		port {
-+			ocp96011_sbu_mux: endpoint {
-+				remote-endpoint = <&pmic_glink_sbu>;
-+				data-lanes = <1 0>;
-+			};
-+		};
- 	};
- 
- 	/* AW86927FCR haptics @ 5a */
-@@ -784,6 +799,27 @@ typec-mux@1a {
- 
- 		retimer-switch;
- 		orientation-switch;
++#include "dmaengine.h"
++#include "virt-dma.h"
 +
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++#define DMAINFO			0x0f00
 +
-+			port@0 {
-+				reg = <0>;
++#define DMA_BUILDCFG0		0xb0
++#define DMA_CFG_DATA_WIDTH	GENMASK(18, 16)
++#define DMA_CFG_ADDR_WIDTH	GENMASK(15, 10)
++#define DMA_CFG_NUM_CHANNELS	GENMASK(9, 4)
 +
-+				redriver_ss_out: endpoint {
-+					remote-endpoint = <&pmic_glink_ss_in>;
-+				};
-+			};
++#define DMA_BUILDCFG1		0xb4
++#define DMA_CFG_NUM_TRIGGER_IN	GENMASK(8, 0)
 +
-+			port@1 {
-+				reg = <1>;
++#define IIDR			0xc8
++#define IIDR_PRODUCTID		GENMASK(31, 20)
++#define IIDR_VARIANT		GENMASK(19, 16)
++#define IIDR_REVISION		GENMASK(15, 12)
++#define IIDR_IMPLEMENTER	GENMASK(11, 0)
 +
-+				redriver_ss_in: endpoint {
-+					remote-endpoint = <&usb_dp_qmpphy_out>;
-+				};
-+			};
-+		};
- 	};
- };
- 
-@@ -805,6 +841,14 @@ &mdss {
- 	status = "okay";
- };
- 
-+&mdss_dp {
-+	status = "okay";
++#define PRODUCTID_DMA350	0x3a0
++#define IMPLEMENTER_ARM		0x43b
++
++#define DMACH(n)		(0x1000 + 0x0100 * (n))
++
++#define CH_CMD			0x00
++#define CH_CMD_RESUME		BIT(5)
++#define CH_CMD_PAUSE		BIT(4)
++#define CH_CMD_STOP		BIT(3)
++#define CH_CMD_DISABLE		BIT(2)
++#define CH_CMD_CLEAR		BIT(1)
++#define CH_CMD_ENABLE		BIT(0)
++
++#define CH_STATUS		0x04
++#define CH_STAT_RESUMEWAIT	BIT(21)
++#define CH_STAT_PAUSED		BIT(20)
++#define CH_STAT_STOPPED		BIT(19)
++#define CH_STAT_DISABLED	BIT(18)
++#define CH_STAT_ERR		BIT(17)
++#define CH_STAT_DONE		BIT(16)
++#define CH_STAT_INTR_ERR	BIT(1)
++#define CH_STAT_INTR_DONE	BIT(0)
++
++#define CH_INTREN		0x08
++#define CH_INTREN_ERR		BIT(1)
++#define CH_INTREN_DONE		BIT(0)
++
++#define CH_CTRL			0x0c
++#define CH_CTRL_USEDESTRIGIN	BIT(26)
++#define CH_CTRL_USESRCTRIGIN	BIT(26)
++#define CH_CTRL_DONETYPE	GENMASK(23, 21)
++#define CH_CTRL_REGRELOADTYPE	GENMASK(20, 18)
++#define CH_CTRL_XTYPE		GENMASK(11, 9)
++#define CH_CTRL_TRANSIZE	GENMASK(2, 0)
++
++#define CH_SRCADDR		0x10
++#define CH_SRCADDRHI		0x14
++#define CH_DESADDR		0x18
++#define CH_DESADDRHI		0x1c
++#define CH_XSIZE		0x20
++#define CH_XSIZEHI		0x24
++#define CH_SRCTRANSCFG		0x28
++#define CH_DESTRANSCFG		0x2c
++#define CH_CFG_MAXBURSTLEN	GENMASK(19, 16)
++#define CH_CFG_PRIVATTR		BIT(11)
++#define CH_CFG_SHAREATTR	GENMASK(9, 8)
++#define CH_CFG_MEMATTR		GENMASK(7, 0)
++
++#define TRANSCFG_DEVICE					\
++	FIELD_PREP(CH_CFG_MAXBURSTLEN, 0xf) |		\
++	FIELD_PREP(CH_CFG_SHAREATTR, SHAREATTR_OSH) |	\
++	FIELD_PREP(CH_CFG_MEMATTR, MEMATTR_DEVICE)
++#define TRANSCFG_NC					\
++	FIELD_PREP(CH_CFG_MAXBURSTLEN, 0xf) |		\
++	FIELD_PREP(CH_CFG_SHAREATTR, SHAREATTR_OSH) |	\
++	FIELD_PREP(CH_CFG_MEMATTR, MEMATTR_NC)
++#define TRANSCFG_WB					\
++	FIELD_PREP(CH_CFG_MAXBURSTLEN, 0xf) |		\
++	FIELD_PREP(CH_CFG_SHAREATTR, SHAREATTR_ISH) |	\
++	FIELD_PREP(CH_CFG_MEMATTR, MEMATTR_WB)
++
++#define CH_XADDRINC		0x30
++#define CH_XY_DES		GENMASK(31, 16)
++#define CH_XY_SRC		GENMASK(15, 0)
++
++#define CH_FILLVAL		0x38
++#define CH_SRCTRIGINCFG		0x4c
++#define CH_DESTRIGINCFG		0x50
++#define CH_LINKATTR		0x70
++#define CH_LINK_SHAREATTR	GENMASK(9, 8)
++#define CH_LINK_MEMATTR		GENMASK(7, 0)
++
++#define CH_AUTOCFG		0x74
++#define CH_LINKADDR		0x78
++#define CH_LINKADDR_EN		BIT(0)
++
++#define CH_LINKADDRHI		0x7c
++#define CH_ERRINFO		0x90
++#define CH_ERRINFO_AXIRDPOISERR BIT(18)
++#define CH_ERRINFO_AXIWRRESPERR BIT(17)
++#define CH_ERRINFO_AXIRDRESPERR BIT(16)
++
++#define CH_BUILDCFG0		0xf8
++#define CH_CFG_INC_WIDTH	GENMASK(29, 26)
++#define CH_CFG_DATA_WIDTH	GENMASK(24, 22)
++#define CH_CFG_DATA_BUF_SIZE	GENMASK(7, 0)
++
++#define CH_BUILDCFG1		0xfc
++#define CH_CFG_HAS_CMDLINK	BIT(8)
++#define CH_CFG_HAS_TRIGSEL	BIT(7)
++#define CH_CFG_HAS_TRIGIN	BIT(5)
++#define CH_CFG_HAS_WRAP		BIT(1)
++
++
++#define LINK_REGCLEAR		BIT(0)
++#define LINK_INTREN		BIT(2)
++#define LINK_CTRL		BIT(3)
++#define LINK_SRCADDR		BIT(4)
++#define LINK_SRCADDRHI		BIT(5)
++#define LINK_DESADDR		BIT(6)
++#define LINK_DESADDRHI		BIT(7)
++#define LINK_XSIZE		BIT(8)
++#define LINK_XSIZEHI		BIT(9)
++#define LINK_SRCTRANSCFG	BIT(10)
++#define LINK_DESTRANSCFG	BIT(11)
++#define LINK_XADDRINC		BIT(12)
++#define LINK_FILLVAL		BIT(14)
++#define LINK_SRCTRIGINCFG	BIT(19)
++#define LINK_DESTRIGINCFG	BIT(20)
++#define LINK_AUTOCFG		BIT(29)
++#define LINK_LINKADDR		BIT(30)
++#define LINK_LINKADDRHI		BIT(31)
++
++
++enum ch_ctrl_donetype {
++	CH_CTRL_DONETYPE_NONE = 0,
++	CH_CTRL_DONETYPE_CMD = 1,
++	CH_CTRL_DONETYPE_CYCLE = 3
 +};
 +
-+&mdss_dp_out {
-+	data-lanes = <0 1>;
++enum ch_ctrl_xtype {
++	CH_CTRL_XTYPE_DISABLE = 0,
++	CH_CTRL_XTYPE_CONTINUE = 1,
++	CH_CTRL_XTYPE_WRAP = 2,
++	CH_CTRL_XTYPE_FILL = 3
 +};
 +
- &mdss_dsi {
- 	vdda-supply = <&vreg_l6b>;
- 	status = "okay";
-@@ -1301,10 +1345,6 @@ &usb_1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_hs_in>;
- };
- 
--&usb_1_dwc3_ss {
--	remote-endpoint = <&pmic_glink_ss_in>;
--};
--
- &usb_1_hsphy {
- 	vdda-pll-supply = <&vreg_l10c>;
- 	vdda18-supply = <&vreg_l1c>;
-@@ -1331,6 +1371,10 @@ &usb_1_qmpphy {
- 	status = "okay";
- };
- 
-+&usb_dp_qmpphy_out {
-+	remote-endpoint = <&redriver_ss_in>;
++enum ch_cfg_shareattr {
++	SHAREATTR_NSH = 0,
++	SHAREATTR_OSH = 2,
++	SHAREATTR_ISH = 3
 +};
 +
- &venus {
- 	firmware-name = "qcom/qcm6490/fairphone5/venus.mbn";
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 0f2caf36910b65c398c9e03800a8ce0a8a1f8fc7..f008694a5bebf6af1797a961e56ba0c355ceace3 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -3639,6 +3639,8 @@ usb_1_qmpphy: phy@88e8000 {
- 			#clock-cells = <1>;
- 			#phy-cells = <1>;
- 
-+			orientation-switch;
++enum ch_cfg_memattr {
++	MEMATTR_DEVICE = 0x00,
++	MEMATTR_NC = 0x44,
++	MEMATTR_WB = 0xff
++};
 +
- 			ports {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -3654,6 +3656,7 @@ port@1 {
- 					reg = <1>;
- 
- 					usb_dp_qmpphy_usb_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_ss>;
- 					};
- 				};
- 
-@@ -3661,6 +3664,7 @@ port@2 {
- 					reg = <2>;
- 
- 					usb_dp_qmpphy_dp_in: endpoint {
-+						remote-endpoint = <&mdss_dp_out>;
- 					};
- 				};
- 			};
-@@ -4267,6 +4271,7 @@ port@1 {
- 						reg = <1>;
- 
- 						usb_1_dwc3_ss: endpoint {
-+							remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
- 						};
- 					};
- 				};
-@@ -4820,7 +4825,9 @@ dp_in: endpoint {
- 
- 					port@1 {
- 						reg = <1>;
--						mdss_dp_out: endpoint { };
-+						mdss_dp_out: endpoint {
-+							remote-endpoint = <&usb_dp_qmpphy_dp_in>;
-+						};
- 					};
- 				};
- 
-
++struct d350_desc {
++	struct virt_dma_desc vd;
++	u32 command[16];
++	u16 xsize;
++	u16 xsizehi;
++	u8 tsz;
++};
++
++struct d350_chan {
++	struct virt_dma_chan vc;
++	struct d350_desc *desc;
++	void __iomem *base;
++	int irq;
++	enum dma_status status;
++	dma_cookie_t cookie;
++	u32 residue;
++	u8 tsz;
++	bool has_trig;
++	bool has_wrap;
++	bool coherent;
++};
++
++struct d350 {
++	struct dma_device dma;
++	int nchan;
++	int nreq;
++	struct d350_chan channels[] __counted_by(nchan);
++};
++
++static inline struct d350_chan *to_d350_chan(struct dma_chan *chan)
++{
++	return container_of(chan, struct d350_chan, vc.chan);
++}
++
++static inline struct d350_desc *to_d350_desc(struct virt_dma_desc *vd)
++{
++	return container_of(vd, struct d350_desc, vd);
++}
++
++static void d350_desc_free(struct virt_dma_desc *vd)
++{
++	kfree(to_d350_desc(vd));
++}
++
++static struct dma_async_tx_descriptor *d350_prep_memcpy(struct dma_chan *chan,
++		dma_addr_t dest, dma_addr_t src, size_t len, unsigned long flags)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++	struct d350_desc *desc;
++	u32 *cmd;
++
++	desc = kzalloc(sizeof(*desc), GFP_NOWAIT);
++	if (!desc)
++		return NULL;
++
++	desc->tsz = __ffs(len | dest | src | (1 << dch->tsz));
++	desc->xsize = lower_16_bits(len >> desc->tsz);
++	desc->xsizehi = upper_16_bits(len >> desc->tsz);
++
++	cmd = desc->command;
++	cmd[0] = LINK_CTRL | LINK_SRCADDR | LINK_SRCADDRHI | LINK_DESADDR |
++		 LINK_DESADDRHI | LINK_XSIZE | LINK_XSIZEHI | LINK_SRCTRANSCFG |
++		 LINK_DESTRANSCFG | LINK_XADDRINC | LINK_LINKADDR;
++
++	cmd[1] = FIELD_PREP(CH_CTRL_TRANSIZE, desc->tsz) |
++		 FIELD_PREP(CH_CTRL_XTYPE, CH_CTRL_XTYPE_CONTINUE) |
++		 FIELD_PREP(CH_CTRL_DONETYPE, CH_CTRL_DONETYPE_CMD);
++
++	cmd[2] = lower_32_bits(src);
++	cmd[3] = upper_32_bits(src);
++	cmd[4] = lower_32_bits(dest);
++	cmd[5] = upper_32_bits(dest);
++	cmd[6] = FIELD_PREP(CH_XY_SRC, desc->xsize) | FIELD_PREP(CH_XY_DES, desc->xsize);
++	cmd[7] = FIELD_PREP(CH_XY_SRC, desc->xsizehi) | FIELD_PREP(CH_XY_DES, desc->xsizehi);
++	cmd[8] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
++	cmd[9] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
++	cmd[10] = FIELD_PREP(CH_XY_SRC, 1) | FIELD_PREP(CH_XY_DES, 1);
++	cmd[11] = 0;
++
++	return vchan_tx_prep(&dch->vc, &desc->vd, flags);
++}
++
++static struct dma_async_tx_descriptor *d350_prep_memset(struct dma_chan *chan,
++		dma_addr_t dest, int value, size_t len, unsigned long flags)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++	struct d350_desc *desc;
++	u32 *cmd;
++
++	desc = kzalloc(sizeof(*desc), GFP_NOWAIT);
++	if (!desc)
++		return NULL;
++
++	desc->tsz = __ffs(len | dest | (1 << dch->tsz));
++	desc->xsize = lower_16_bits(len >> desc->tsz);
++	desc->xsizehi = upper_16_bits(len >> desc->tsz);
++
++	cmd = desc->command;
++	cmd[0] = LINK_CTRL | LINK_DESADDR | LINK_DESADDRHI |
++		 LINK_XSIZE | LINK_XSIZEHI | LINK_DESTRANSCFG |
++		 LINK_XADDRINC | LINK_FILLVAL | LINK_LINKADDR;
++
++	cmd[1] = FIELD_PREP(CH_CTRL_TRANSIZE, desc->tsz) |
++		 FIELD_PREP(CH_CTRL_XTYPE, CH_CTRL_XTYPE_FILL) |
++		 FIELD_PREP(CH_CTRL_DONETYPE, CH_CTRL_DONETYPE_CMD);
++
++	cmd[2] = lower_32_bits(dest);
++	cmd[3] = upper_32_bits(dest);
++	cmd[4] = FIELD_PREP(CH_XY_DES, desc->xsize);
++	cmd[5] = FIELD_PREP(CH_XY_DES, desc->xsizehi);
++	cmd[6] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
++	cmd[7] = FIELD_PREP(CH_XY_DES, 1);
++	cmd[8] = (u8)value * 0x01010101;
++	cmd[9] = 0;
++
++	return vchan_tx_prep(&dch->vc, &desc->vd, flags);
++}
++
++static int d350_pause(struct dma_chan *chan)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++	unsigned long flags;
++
++	spin_lock_irqsave(&dch->vc.lock, flags);
++	if (dch->status == DMA_IN_PROGRESS) {
++		writel_relaxed(CH_CMD_PAUSE, dch->base + CH_CMD);
++		dch->status = DMA_PAUSED;
++	}
++	spin_unlock_irqrestore(&dch->vc.lock, flags);
++
++	return 0;
++}
++
++static int d350_resume(struct dma_chan *chan)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++	unsigned long flags;
++
++	spin_lock_irqsave(&dch->vc.lock, flags);
++	if (dch->status == DMA_PAUSED) {
++		writel_relaxed(CH_CMD_RESUME, dch->base + CH_CMD);
++		dch->status = DMA_IN_PROGRESS;
++	}
++	spin_unlock_irqrestore(&dch->vc.lock, flags);
++
++	return 0;
++}
++
++static u32 d350_get_residue(struct d350_chan *dch)
++{
++	u32 res, xsize, xsizehi, hi_new;
++	int retries = 3; /* 1st time unlucky, 2nd improbable, 3rd just broken */
++
++	hi_new = readl_relaxed(dch->base + CH_XSIZEHI);
++	do {
++		xsizehi = hi_new;
++		xsize = readl_relaxed(dch->base + CH_XSIZE);
++		hi_new = readl_relaxed(dch->base + CH_XSIZEHI);
++	} while (xsizehi != hi_new && --retries);
++
++	res = FIELD_GET(CH_XY_DES, xsize);
++	res |= FIELD_GET(CH_XY_DES, xsizehi) << 16;
++
++	return res << dch->desc->tsz;
++}
++
++static int d350_terminate_all(struct dma_chan *chan)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++	unsigned long flags;
++	LIST_HEAD(list);
++
++	spin_lock_irqsave(&dch->vc.lock, flags);
++	writel_relaxed(CH_CMD_STOP, dch->base + CH_CMD);
++	if (dch->desc) {
++		if (dch->status != DMA_ERROR)
++			vchan_terminate_vdesc(&dch->desc->vd);
++		dch->desc = NULL;
++		dch->status = DMA_COMPLETE;
++	}
++	vchan_get_all_descriptors(&dch->vc, &list);
++	list_splice_tail(&list, &dch->vc.desc_terminated);
++	spin_unlock_irqrestore(&dch->vc.lock, flags);
++
++	return 0;
++}
++
++static void d350_synchronize(struct dma_chan *chan)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++
++	vchan_synchronize(&dch->vc);
++}
++
++static u32 d350_desc_bytes(struct d350_desc *desc)
++{
++	return ((u32)desc->xsizehi << 16 | desc->xsize) << desc->tsz;
++}
++
++static enum dma_status d350_tx_status(struct dma_chan *chan, dma_cookie_t cookie,
++				      struct dma_tx_state *state)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++	struct virt_dma_desc *vd;
++	enum dma_status status;
++	unsigned long flags;
++	u32 residue = 0;
++
++	status = dma_cookie_status(chan, cookie, state);
++
++	spin_lock_irqsave(&dch->vc.lock, flags);
++	if (cookie == dch->cookie) {
++		status = dch->status;
++		if (status == DMA_IN_PROGRESS || status == DMA_PAUSED)
++			dch->residue = d350_get_residue(dch);
++		residue = dch->residue;
++	} else if ((vd = vchan_find_desc(&dch->vc, cookie))) {
++		residue = d350_desc_bytes(to_d350_desc(vd));
++	} else if (status == DMA_IN_PROGRESS) {
++		/* Somebody else terminated it? */
++		status = DMA_ERROR;
++	}
++	spin_unlock_irqrestore(&dch->vc.lock, flags);
++
++	dma_set_residue(state, residue);
++	return status;
++}
++
++static void d350_start_next(struct d350_chan *dch)
++{
++	u32 hdr, *reg;
++
++	dch->desc = to_d350_desc(vchan_next_desc(&dch->vc));
++	if (!dch->desc)
++		return;
++
++	list_del(&dch->desc->vd.node);
++	dch->status = DMA_IN_PROGRESS;
++	dch->cookie = dch->desc->vd.tx.cookie;
++	dch->residue = d350_desc_bytes(dch->desc);
++
++	hdr = dch->desc->command[0];
++	reg = &dch->desc->command[1];
++
++	if (hdr & LINK_INTREN)
++		writel_relaxed(*reg++, dch->base + CH_INTREN);
++	if (hdr & LINK_CTRL)
++		writel_relaxed(*reg++, dch->base + CH_CTRL);
++	if (hdr & LINK_SRCADDR)
++		writel_relaxed(*reg++, dch->base + CH_SRCADDR);
++	if (hdr & LINK_SRCADDRHI)
++		writel_relaxed(*reg++, dch->base + CH_SRCADDRHI);
++	if (hdr & LINK_DESADDR)
++		writel_relaxed(*reg++, dch->base + CH_DESADDR);
++	if (hdr & LINK_DESADDRHI)
++		writel_relaxed(*reg++, dch->base + CH_DESADDRHI);
++	if (hdr & LINK_XSIZE)
++		writel_relaxed(*reg++, dch->base + CH_XSIZE);
++	if (hdr & LINK_XSIZEHI)
++		writel_relaxed(*reg++, dch->base + CH_XSIZEHI);
++	if (hdr & LINK_SRCTRANSCFG)
++		writel_relaxed(*reg++, dch->base + CH_SRCTRANSCFG);
++	if (hdr & LINK_DESTRANSCFG)
++		writel_relaxed(*reg++, dch->base + CH_DESTRANSCFG);
++	if (hdr & LINK_XADDRINC)
++		writel_relaxed(*reg++, dch->base + CH_XADDRINC);
++	if (hdr & LINK_FILLVAL)
++		writel_relaxed(*reg++, dch->base + CH_FILLVAL);
++	if (hdr & LINK_SRCTRIGINCFG)
++		writel_relaxed(*reg++, dch->base + CH_SRCTRIGINCFG);
++	if (hdr & LINK_DESTRIGINCFG)
++		writel_relaxed(*reg++, dch->base + CH_DESTRIGINCFG);
++	if (hdr & LINK_AUTOCFG)
++		writel_relaxed(*reg++, dch->base + CH_AUTOCFG);
++	if (hdr & LINK_LINKADDR)
++		writel_relaxed(*reg++, dch->base + CH_LINKADDR);
++	if (hdr & LINK_LINKADDRHI)
++		writel_relaxed(*reg++, dch->base + CH_LINKADDRHI);
++
++	writel(CH_CMD_ENABLE, dch->base + CH_CMD);
++}
++
++static void d350_issue_pending(struct dma_chan *chan)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++	unsigned long flags;
++
++	spin_lock_irqsave(&dch->vc.lock, flags);
++	if (vchan_issue_pending(&dch->vc) && !dch->desc)
++		d350_start_next(dch);
++	spin_unlock_irqrestore(&dch->vc.lock, flags);
++}
++
++static irqreturn_t d350_irq(int irq, void *data)
++{
++	struct d350_chan *dch = data;
++	struct device *dev = dch->vc.chan.device->dev;
++	struct virt_dma_desc *vd = &dch->desc->vd;
++	u32 ch_status;
++
++	ch_status = readl(dch->base + CH_STATUS);
++	if (!ch_status)
++		return IRQ_NONE;
++
++	if (ch_status & CH_STAT_INTR_ERR) {
++		u32 errinfo = readl_relaxed(dch->base + CH_ERRINFO);
++
++		if (errinfo & (CH_ERRINFO_AXIRDPOISERR | CH_ERRINFO_AXIRDRESPERR))
++			vd->tx_result.result = DMA_TRANS_READ_FAILED;
++		else if (errinfo & CH_ERRINFO_AXIWRRESPERR)
++			vd->tx_result.result = DMA_TRANS_WRITE_FAILED;
++		else
++			vd->tx_result.result = DMA_TRANS_ABORTED;
++
++		vd->tx_result.residue = d350_get_residue(dch);
++	} else if (!(ch_status & CH_STAT_INTR_DONE)) {
++		dev_warn(dev, "Unexpected IRQ source? 0x%08x\n", ch_status);
++	}
++	writel_relaxed(ch_status, dch->base + CH_STATUS);
++
++	spin_lock(&dch->vc.lock);
++	vchan_cookie_complete(vd);
++	if (ch_status & CH_STAT_INTR_DONE) {
++		dch->status = DMA_COMPLETE;
++		dch->residue = 0;
++		d350_start_next(dch);
++	} else {
++		dch->status = DMA_ERROR;
++		dch->residue = vd->tx_result.residue;
++	}
++	spin_unlock(&dch->vc.lock);
++
++	return IRQ_HANDLED;
++}
++
++static int d350_alloc_chan_resources(struct dma_chan *chan)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++	int ret = request_irq(dch->irq, d350_irq, IRQF_SHARED,
++			      dev_name(&dch->vc.chan.dev->device), dch);
++	if (!ret)
++		writel_relaxed(CH_INTREN_DONE | CH_INTREN_ERR, dch->base + CH_INTREN);
++
++	return ret;
++}
++
++static void d350_free_chan_resources(struct dma_chan *chan)
++{
++	struct d350_chan *dch = to_d350_chan(chan);
++
++	writel_relaxed(0, dch->base + CH_INTREN);
++	free_irq(dch->irq, dch);
++	vchan_free_chan_resources(&dch->vc);
++}
++
++static int d350_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct d350 *dmac;
++	void __iomem *base;
++	u32 reg;
++	int ret, nchan, dw, aw, r, p;
++	bool coherent, memset;
++
++	base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(base))
++		return PTR_ERR(base);
++
++	reg = readl_relaxed(base + DMAINFO + IIDR);
++	r = FIELD_GET(IIDR_VARIANT, reg);
++	p = FIELD_GET(IIDR_REVISION, reg);
++	if (FIELD_GET(IIDR_IMPLEMENTER, reg) != IMPLEMENTER_ARM ||
++	    FIELD_GET(IIDR_PRODUCTID, reg) != PRODUCTID_DMA350)
++		return dev_err_probe(dev, -ENODEV, "Not a DMA-350!");
++
++	reg = readl_relaxed(base + DMAINFO + DMA_BUILDCFG0);
++	nchan = FIELD_GET(DMA_CFG_NUM_CHANNELS, reg) + 1;
++	dw = 1 << FIELD_GET(DMA_CFG_DATA_WIDTH, reg);
++	aw = FIELD_GET(DMA_CFG_ADDR_WIDTH, reg) + 1;
++
++	dma_set_mask_and_coherent(dev, DMA_BIT_MASK(aw));
++	coherent = device_get_dma_attr(dev) == DEV_DMA_COHERENT;
++
++	dmac = devm_kzalloc(dev, struct_size(dmac, channels, nchan), GFP_KERNEL);
++	if (!dmac)
++		return -ENOMEM;
++
++	dmac->nchan = nchan;
++
++	reg = readl_relaxed(base + DMAINFO + DMA_BUILDCFG1);
++	dmac->nreq = FIELD_GET(DMA_CFG_NUM_TRIGGER_IN, reg);
++
++	dev_dbg(dev, "DMA-350 r%dp%d with %d channels, %d requests\n", r, p, dmac->nchan, dmac->nreq);
++
++	dmac->dma.dev = dev;
++	for (int i = min(dw, 16); i > 0; i /= 2) {
++		dmac->dma.src_addr_widths |= BIT(i);
++		dmac->dma.dst_addr_widths |= BIT(i);
++	}
++	dmac->dma.directions = BIT(DMA_MEM_TO_MEM);
++	dmac->dma.descriptor_reuse = true;
++	dmac->dma.residue_granularity = DMA_RESIDUE_GRANULARITY_BURST;
++	dmac->dma.device_alloc_chan_resources = d350_alloc_chan_resources;
++	dmac->dma.device_free_chan_resources = d350_free_chan_resources;
++	dma_cap_set(DMA_MEMCPY, dmac->dma.cap_mask);
++	dmac->dma.device_prep_dma_memcpy = d350_prep_memcpy;
++	dmac->dma.device_pause = d350_pause;
++	dmac->dma.device_resume = d350_resume;
++	dmac->dma.device_terminate_all = d350_terminate_all;
++	dmac->dma.device_synchronize = d350_synchronize;
++	dmac->dma.device_tx_status = d350_tx_status;
++	dmac->dma.device_issue_pending = d350_issue_pending;
++	INIT_LIST_HEAD(&dmac->dma.channels);
++
++	/* Would be nice to have per-channel caps for this... */
++	memset = true;
++	for (int i = 0; i < nchan; i++) {
++		struct d350_chan *dch = &dmac->channels[i];
++
++		dch->base = base + DMACH(i);
++		writel_relaxed(CH_CMD_CLEAR, dch->base + CH_CMD);
++
++		reg = readl_relaxed(dch->base + CH_BUILDCFG1);
++		if (!(FIELD_GET(CH_CFG_HAS_CMDLINK, reg))) {
++			dev_warn(dev, "No command link support on channel %d\n", i);
++			continue;
++		}
++		dch->irq = platform_get_irq(pdev, i);
++		if (dch->irq < 0)
++			return dev_err_probe(dev, dch->irq,
++					     "Failed to get IRQ for channel %d\n", i);
++
++		dch->has_wrap = FIELD_GET(CH_CFG_HAS_WRAP, reg);
++		dch->has_trig = FIELD_GET(CH_CFG_HAS_TRIGIN, reg) &
++				FIELD_GET(CH_CFG_HAS_TRIGSEL, reg);
++
++		/* Fill is a special case of Wrap */
++		memset &= dch->has_wrap;
++
++		reg = readl_relaxed(dch->base + CH_BUILDCFG0);
++		dch->tsz = FIELD_GET(CH_CFG_DATA_WIDTH, reg);
++
++		reg = FIELD_PREP(CH_LINK_SHAREATTR, coherent ? SHAREATTR_ISH : SHAREATTR_OSH);
++		reg |= FIELD_PREP(CH_LINK_MEMATTR, coherent ? MEMATTR_WB : MEMATTR_NC);
++		writel_relaxed(reg, dch->base + CH_LINKATTR);
++
++		dch->vc.desc_free = d350_desc_free;
++		vchan_init(&dch->vc, &dmac->dma);
++	}
++
++	if (memset) {
++		dma_cap_set(DMA_MEMSET, dmac->dma.cap_mask);
++		dmac->dma.device_prep_dma_memset = d350_prep_memset;
++	}
++
++	platform_set_drvdata(pdev, dmac);
++
++	ret = dma_async_device_register(&dmac->dma);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to register DMA device\n");
++
++	return 0;
++}
++
++static void d350_remove(struct platform_device *pdev)
++{
++	struct d350 *dmac = platform_get_drvdata(pdev);
++
++	dma_async_device_unregister(&dmac->dma);
++}
++
++static const struct of_device_id d350_of_match[] __maybe_unused = {
++	{ .compatible = "arm,dma-350" },
++	{}
++};
++MODULE_DEVICE_TABLE(of, d350_of_match);
++
++static struct platform_driver d350_driver = {
++	.driver = {
++		.name = "arm-dma350",
++		.of_match_table = of_match_ptr(d350_of_match),
++	},
++	.probe = d350_probe,
++	.remove = d350_remove,
++};
++module_platform_driver(d350_driver);
++
++MODULE_AUTHOR("Robin Murphy <robin.murphy@arm.com>");
++MODULE_DESCRIPTION("Arm DMA-350 driver");
++MODULE_LICENSE("GPL v2");
 -- 
-2.48.1
+2.39.2.101.g768bb238c484.dirty
 
 
