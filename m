@@ -1,121 +1,186 @@
-Return-Path: <devicetree+bounces-156959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3799DA5E102
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 16:50:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE82EA5E118
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 16:52:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 246E7167A45
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:49:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E121166BC3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FBD4241695;
-	Wed, 12 Mar 2025 15:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48603256C9B;
+	Wed, 12 Mar 2025 15:51:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JeWcKroP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mwQIkEMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113AF24E4B1;
-	Wed, 12 Mar 2025 15:49:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F33423ED60;
+	Wed, 12 Mar 2025 15:51:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741794577; cv=none; b=OJeN46Cr2apmp/1vmcbSSKo63anCeCc0/h07t7FGyb5/lZO9qoaulsAnXK1EoiDmsrotQGiFNbxMkrkofeB0e4VeGCwbPNZHB6qVbSB/jqhyg8I2BabYjr+rZ19m4MhdMeA4H5nQNd1qAJArW1tXwlxj6IDnp7r7og/OY7xEDJw=
+	t=1741794714; cv=none; b=lHdgpqLiiIXrZ7vGMYTFtehw+R7iktcLmATNra8kbuLgn0wRFulxrWdGrW17dSsdMpoaOAyC7qW7OWX7tPJKMIEIOfmaJ6sDoWZIzWHlhQx7oTlk+0OGVAwAj1yYIzArC1yPwXf2OogeJTzI3bneSa3EeKg0HQf0IQs+aNvklgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741794577; c=relaxed/simple;
-	bh=qO0bVVRsexfHs9ID5KYNSlTNf4wVGRYGPnAWO1TSDys=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UyKBtjd7sD9tyMiV7wO/p9q1Zas3I3bptBLoMcJqYCatbhVpEaZRFkSxhxIzKDE1UNBG1ZIDR89BLU15iElyu6NJfpNH4WMdlsG2iMvpLdD19F0ExeZ2YL9cy+FoFjjUJsI8sBZGONKzxTK7BnciWKaxIWhIG2S5VvIMFBPDMo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JeWcKroP; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2ff6ce72844so5725a91.2;
-        Wed, 12 Mar 2025 08:49:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741794575; x=1742399375; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qO0bVVRsexfHs9ID5KYNSlTNf4wVGRYGPnAWO1TSDys=;
-        b=JeWcKroPHXglf+UM/h+h0Z+lQtJM5P+my4Ic4T0EPCy66ZNF+xzroJaUTRXiX+yrgf
-         XIYmL+hvmGLmHRwFvIvYX+is9CUefGs6hDKM8VulUfVzzRAlrHuyooRsGYP5CR8QCEbg
-         Oh7bWnKCHYu1filfWg+w20HhrmgNyF9uswrIURv8Skb7GAmKK8Iy7U3u1yKMJq+FQQRt
-         ZnaC/7H3sQWe5lwhVX4oUt5ZenTQJ0mfkon271Xs4QMCKUruhYC2T8Nx8JR5Wt/WD5mX
-         JQV0zuwAezDDBzsu171lV5GfWmESVmgbb6RRRuDGymBTOKh38gDknyup0S6yh8J7nmz4
-         xUiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741794575; x=1742399375;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qO0bVVRsexfHs9ID5KYNSlTNf4wVGRYGPnAWO1TSDys=;
-        b=HqdOUWxHfE/rr5iTAy8IPNHuVMsQQKdDW3Pjus9/9feqr46fQvOPoa+LIE2au5UpLg
-         3hR/usyhwaBTSrvt/NcCQF787U1rb9+QQzISg6eTSiCYTJe6lT+Bmo0HtEKFTosHjnzF
-         gXz3DEns4/8G2iGbHwERVlYZ/sfsPZpuESTeSaZWSVtwDOQgN8GjSFtnOuaUCK0yp22M
-         ZtR1G3Nb/2bYr0kbvU97hvTlz93hjd++ViX+UIcUl7YBPI+TZOxFJI49ukBIFnInFTg9
-         JCsYvIKtqeMnhm8Obzrw3hgXIuVOa5F8qAyA6wwJXoYg88i51YPmbkUilWsVaPaJ96Dv
-         eThQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUy/9I3t7wJg79ytUxdJyiLEbOusWnWPAlbszwvZ3Sc/IyyPczkY40qEHq094qOK7IS1KX9Q/BvRqmy8mFJrM8=@vger.kernel.org, AJvYcCV+NBioyLzMl/dFfFhElZsElULntOY4JeEnxpzyvre1SlpOThZydpa5btbqNjQXzO7e0AaC22MlwX/vsA2n@vger.kernel.org, AJvYcCWUlEGqN8CcB9KE/GQPE8OL4h8jSaFnKpE5Z4FFuTSuTAUohr3RvbKA0lXphxkJsZRl8j1fZATOWSVY/7g=@vger.kernel.org, AJvYcCWdYjiKwr3P+8XxQ7YYG+JHZg91wQ4W7fV9gzf151YAHVQI05/Ck06wazMRAc6+dTizRKBVVB2ZmFigY0BlwrMj@vger.kernel.org, AJvYcCWouRPfAKiAdybrccFcoMErIFPwg1o/19loh9AFdrM38eZW6j850jvM/dd1w0Y+WcPPL+cSABqdDykVChnx@vger.kernel.org, AJvYcCXdk00UcqKekk+pbIa9i+LHYwh+JL7E5BPsF8l945OAQL1R467Z8707nvCrQi48ag/91AgcfyzgD4jN@vger.kernel.org, AJvYcCXkGLO7djdWInS9sDiXJ5Z1IG8pODrFiAY7Fvw9UyCCIyQWHfnnmy9mvzbXpjPaBH/mrfMmOZDFv5jy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5mDgg6mmKPHXnJ5nycVyqlP9MEmojPNlQ7dVvRWWDAIS+o6dU
-	suRUehLTQjkj76b52S+4A9M/Tsu9zj+OGKVBae5lk5wQkCh7pkvLJenp3ONVu+to1XsbDALTjjI
-	npXeoS0xjvkzIqLzFggbNGCvkT2I=
-X-Gm-Gg: ASbGncsqP43kWkEQyOIAMbi+hlFDAvob19qPBXCe2qB7iS9P0fYWB8M/O1Hcd8k/B7G
-	OOdM+iVvBN/z4406bay3MpkZN1gcvevgI9IN/XVxZoUrtEJnPdwk8mkQVoGbtbgIZSv6+GkWBYY
-	+19BTwTw9d2eb9cNXt+musn2DebA==
-X-Google-Smtp-Source: AGHT+IFe+OpuO99XWupXs4of2kQ2UK3ZQjUDx1ynodylSC86EHTfBlh7n2S/1c35NKi3CjXlMbYTtDOXmh3xmNx65n8=
-X-Received: by 2002:a17:90b:3ec8:b0:2ff:6bcf:540a with SMTP id
- 98e67ed59e1d1-300a578d62cmr9754852a91.6.1741794575223; Wed, 12 Mar 2025
- 08:49:35 -0700 (PDT)
+	s=arc-20240116; t=1741794714; c=relaxed/simple;
+	bh=3rzunnVX6hlrPNBilZi0C8BivrdvDP3q03Wwh9Wyt7k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cw3jZAu2C9w+FX03/Ake8tRJqGT6KB0GGOh37xR+CxEfGg+mtx1AelO/2kSHSpFRXgo55c5t6JcnJD7X4lBJdteogidzIwF05Spy3GZOH8Ax3V7Y/1YMGAGY4Ec6SdMCIhc34EBxeQZbGCPceTnZH2oFDmnCzgbrIcIgUFhDzwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mwQIkEMS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD4DFC4CEDD;
+	Wed, 12 Mar 2025 15:51:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741794713;
+	bh=3rzunnVX6hlrPNBilZi0C8BivrdvDP3q03Wwh9Wyt7k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mwQIkEMSlYC8zaL+gV01SAJnS+lHGlbW96iDEHbJUB/4qygwLl2axB/WxqVgnEX5D
+	 7AsNbJit+fpLMBpCf/vC5y+Z6R26OMKSTXd1vGrKr8DCpRfcZ611T8gbDCZG7NKiRv
+	 A8E9HC1Sm9GKWlT5WCcIlbTzIsnjAOtqnIoqxx4iiaz9FKNeGP3W4vF3LCx8Z4GfVf
+	 /E+CKw0f9ezIED3ffRUPab6p7WzTbiaHI+/9KrE/dxRlb4kCWgR4M/Al+/SkZsWR4Z
+	 1KWLRV2T9SyNd9yVceJPt7v+M2/hPj6kf/st8D/ZNkFy0wZOqz0MNg3JQG4Wm/ZFb1
+	 Cpe1iIKsqgXWQ==
+Date: Wed, 12 Mar 2025 16:51:50 +0100
+From: Vinod Koul <vkoul@kernel.org>
+To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, quentin.schulz@cherry.de,
+	sebastian.reichel@collabora.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH v6 2/2] phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+Message-ID: <Z9GtlvHwd8/blVKl@vaman>
+References: <20250213210554.1645755-1-heiko@sntech.de>
+ <20250213210554.1645755-3-heiko@sntech.de>
+ <Z68zdiIl75k2Vv9i@vaman>
+ <2030933.8hb0ThOEGa@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com>
- <20250309-ptr-as-ptr-v2-5-25d60ad922b7@gmail.com> <D8EDP4SMQG2M.3HUNZGX8X0IL7@proton.me>
- <CAJ-ks9=K06OT6cutUABj2QDHJHJ70719c-eJ=F3n-_bhkYbZ3w@mail.gmail.com>
-In-Reply-To: <CAJ-ks9=K06OT6cutUABj2QDHJHJ70719c-eJ=F3n-_bhkYbZ3w@mail.gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 12 Mar 2025 16:49:22 +0100
-X-Gm-Features: AQ5f1JpDZ3MfaqLw9tP1SvKaWd4DrWDIczoaJSjDTCrETi3uYKBvX_O58mzb7EY
-Message-ID: <CANiq72kH0AUxeMPE5qcUiMQiCCTGZvORCtnm6CA1mgksze_s8A@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] rust: enable `clippy::as_underscore` lint
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: Benno Lossin <benno.lossin@proton.me>, Masahiro Yamada <masahiroy@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2030933.8hb0ThOEGa@diego>
 
-On Wed, Mar 12, 2025 at 4:36=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
- wrote:
->
-> Yeah, we don't have strict provenance APIs (and we can't introduce
-> them without compiler tooling or bumping MSRV). I'm not sure if we are
 
-The strict provenance APIs were added a long time ago (1.61) -- in
-fact we briefly discussed doing so back then (we started before that,
-with 1.58).
+Sorry this slipped thru...
 
-So unless we need some detail that changed recently (i.e. since 1.78),
-we should be able to use them, and it should be fairly safe since they
-are stable now (1.84).
+On 19-02-25, 23:51, Heiko Stübner wrote:
+> Hi Vinod,
+> 
+> thanks for the review.
+> I've dropped all the parts that would've just gotten a "ok, changed" ;-)
+> 
+> Am Freitag, 14. Februar 2025, 13:13:42 MEZ schrieb Vinod Koul:
+> > On 13-02-25, 22:05, Heiko Stuebner wrote:
+> 
+> > > +	{ 200,  7,   1,  0, 33,  9,  0, 26,  5,  0, 11},
+> > > +	{ 190,  7,   1,  0, 32,  9,  0, 25,  5,  0, 11},
+> > > +	{ 180,  6,   1,  0, 32,  8,  0, 25,  5,  0, 10},
+> > > +	{ 170,  6,   0,  0, 32,  8,  0, 25,  5,  0, 10},
+> > > +	{ 160,  5,   0,  0, 31,  8,  0, 24,  4,  0,  9},
+> > > +	{ 150,  5,   0,  0, 31,  8,  0, 24,  5,  0,  9},
+> > > +	{ 140,  5,   0,  0, 31,  8,  0, 24,  5,  0,  8},
+> > > +	{ 130,  4,   0,  0, 30,  6,  0, 23,  3,  0,  8},
+> > > +	{ 120,  4,   0,  0, 30,  6,  0, 23,  3,  0,  7},
+> > > +	{ 110,  3,   0,  0, 30,  6,  0, 23,  3,  0,  7},
+> > > +	{ 100,  3,   0,  0, 29,  5,  0, 22,  2,  0,  6},
+> > > +	{  90,  3,   0,  0, 29,  5,  0, 22,  2,  0,  6},
+> > > +	{  80,  2,   0,  0, 28,  5,  0, 22,  2,  0,  5},
+> > > +};
+> > 
+> > any word on where this table came from, maybe worth documenting that
+> > part
+> 
+> sadly not.
+> 
+> The table itself came from the vendor-kernel, and I would assume there
 
-Cheers,
-Miguel
+Maybe make a note that this is from vendor kernel
+
+> it came from some super-secret additional documentation Rockchip
+> got with the IP documentation.
+> 
+> It is sadly not part of the RK3588 manual.
+> 
+> 
+> > > +
+> > > +static void samsung_mipi_dcphy_bias_block_enable(struct samsung_mipi_dcphy *samsung)
+> > > +{
+> > > +	u32 bias_con2 = 0x3223;
+> > 
+> > magic value?
+> 
+> Converted over to some more meaningful constants.
+> Did the same to bias_con0+1 below that one too.
+> 
+> 
+> > > +static void samsung_mipi_dphy_lane_disable(struct samsung_mipi_dcphy *samsung)
+> > > +{
+> > > +	regmap_update_bits(samsung->regmap, DPHY_MC_GNR_CON0, PHY_ENABLE, 0);
+> > > +	regmap_update_bits(samsung->regmap, COMBO_MD0_GNR_CON0, PHY_ENABLE, 0);
+> > > +	regmap_update_bits(samsung->regmap, COMBO_MD1_GNR_CON0, PHY_ENABLE, 0);
+> > > +	regmap_update_bits(samsung->regmap, COMBO_MD2_GNR_CON0, PHY_ENABLE, 0);
+> > > +	regmap_update_bits(samsung->regmap, DPHY_MD3_GNR_CON0, PHY_ENABLE, 0);
+> > 
+> > Is writing to a register (mmio) faster than a switch case for checking
+> > lane count and disabling specific lanes?
+> 
+> It might make sense to mimic the lane_enable way of doing things, even if
+> just for things looking the same in both functions.
+> 
+> I guess disabling lanes does not really care about minimal speed differences
+> a switch/case would cause :-)
+
+ok
+
+> 
+> > 
+> > > +static void samsung_mipi_dcphy_pll_configure(struct samsung_mipi_dcphy *samsung)
+> > > +{
+> > > +	regmap_update_bits(samsung->regmap, PLL_CON0, S_MASK | P_MASK,
+> > > +			   S(samsung->pll.scaler) | P(samsung->pll.prediv));
+> > > +
+> > > +	if (samsung->pll.dsm < 0) {
+> > > +		u16 dsm_tmp;
+> > > +
+> > > +		/* Using opposite number subtraction to find complement */
+> > > +		dsm_tmp = abs(samsung->pll.dsm);
+> > > +		dsm_tmp = dsm_tmp - 1;
+> > > +		dsm_tmp ^= 0xffff;
+> > > +		regmap_write(samsung->regmap, PLL_CON1, dsm_tmp);
+> > > +	} else {
+> > > +		regmap_write(samsung->regmap, PLL_CON1, samsung->pll.dsm);
+> > > +	}
+> > > +
+> > > +	regmap_update_bits(samsung->regmap, PLL_CON2,
+> > > +			   M_MASK, M(samsung->pll.fbdiv));
+> > > +
+> > > +	if (samsung->pll.ssc_en) {
+> > > +		regmap_write(samsung->regmap, PLL_CON3,
+> > > +			     MRR(samsung->pll.mrr) | MFR(samsung->pll.mfr));
+> > > +		regmap_update_bits(samsung->regmap, PLL_CON4, SSCG_EN, SSCG_EN);
+> > > +	}
+> > > +
+> > > +	regmap_write(samsung->regmap, PLL_CON5, RESET_N_SEL | PLL_ENABLE_SEL);
+> > > +	regmap_write(samsung->regmap, PLL_CON7, PLL_LOCK_CNT(0xf000));
+> > > +	regmap_write(samsung->regmap, PLL_CON8, PLL_STB_CNT(0xf000));
+> > 
+> > I guess you are writing to upper nibble, maybe define that, if we can
+> 
+> Nope ... the value is defined as bits [15:0] and both being pll lock and
+> stabilization timing control registers. Sadly yet again, their usage detail
+> is not documented, the manual even does not supply a unit for the 
+> register value :-(
+
+:-(
+
+
+-- 
+~Vinod
 
