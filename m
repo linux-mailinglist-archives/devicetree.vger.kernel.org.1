@@ -1,103 +1,125 @@
-Return-Path: <devicetree+bounces-157026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556E4A5E7B9
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 23:56:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AED4A5E81F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:14:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 295FE1899E5E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 22:56:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E187168EA0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 23:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C011F0E5D;
-	Wed, 12 Mar 2025 22:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 903791F130D;
+	Wed, 12 Mar 2025 23:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EdW41dJK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eAfLgmNJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8992C1D5CC6;
-	Wed, 12 Mar 2025 22:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CCF4685;
+	Wed, 12 Mar 2025 23:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741820179; cv=none; b=PD/7CAhzeNuuQzFsblTV55wLdNR1ColnPmQedODTyp7mBD9wWeQftp+Ikhmiua7IIOGVxxwlp+pOCrEY5T9lAcFWoWNdRvCR6x5FUJhZepKwYXXSHSENk3yPOTOsBVSlhJxi7u9X39LO8PYL1zYYOPQ8doPUvaRJwJJDWq3aiOk=
+	t=1741821280; cv=none; b=fGlRsSwEZGwfLCL4bKsA5mYgXdyEPwqrNkK2G/YP/AwKB/qz0gOzkPjORK5hnV8i0RwKz+XiCQBCzywTYUo4NEUyoCkuYX/LyT3PxUA+BDdqr/ngkgxJJhRAPO8Zaeqy8FAUzHKzDH6UmYrYS9d0GqM15vtPFPlb04sNkMZYJDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741820179; c=relaxed/simple;
-	bh=C2dVQHeQfpncIDsa2OOeet8ETBUJqNFX8r3zQxrGOsU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ouw9SHDXw75KGBQuIuHQTVwi8T3ZGJ67DILVutEVk191KC7PHc1pu8YTpPgxfMOk2clnU5cJlMpwcLsK+STJrNuDgEIWgoRt/RCe/nzyrxanFu0kIu/gltIE7ESmZJDT4Su0ZKfjzjg65fKobM24w1lw6w5IIpOpum81DbniUoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EdW41dJK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 297B1C4CEDD;
-	Wed, 12 Mar 2025 22:56:17 +0000 (UTC)
+	s=arc-20240116; t=1741821280; c=relaxed/simple;
+	bh=TKgowIo1WaTZUviCcRMak32azD2cFfVNTUXSGH8c1O0=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=syAnCL/iz5wvSZZFV6mtoXpmr7L1Nz/mtTWsRxJkE4C3ckwR3ew7KuOPmppu845lLu73UDBdTyxizsc/56OGhrNvDfl2P2V6h0V/QzZkYEFzEPbyawmGvLMgCU5vjrirhFn2shZfiID8cnrM74qgMIADGZFB5p3xNR12EcfWfgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eAfLgmNJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F59DC4CEDD;
+	Wed, 12 Mar 2025 23:14:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741820179;
-	bh=C2dVQHeQfpncIDsa2OOeet8ETBUJqNFX8r3zQxrGOsU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EdW41dJK5Ki4IRn7PulnBUlIvvFljDLIwvK+k1bdRF4zK2qTCqH2qou05o1nweoP/
-	 9pmtgVbhPwhNBd5IJjyq1jabLoKsLNvoachJBoGKVrwFYf0z59apOTzCgFjQDxpYG2
-	 HrHeAeVOzEX6aTYNCVcLxG0rVle9gOWEUFcJkT2FoZakc5iCAulKq26K1J/oO1xDuU
-	 /wwRrLXIOTYhLUW2kLjzb2da1drOzrRBaR+e1c9YpusGxSU1veGqs7qFbT7kwB/G4j
-	 2R2/kiojjpeY74sGWe+6bZtaukzASvexI+4xdoRoz3WtYZbkLgWU3Jme42Ljo7WaK7
-	 gvF8DRqjd5sLQ==
-Date: Wed, 12 Mar 2025 23:56:14 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Vladimir Zapolskiy <vz@mleia.com>
-Cc: Purva Yeshi <purvayeshi550@gmail.com>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, piotr.wojtaszczyk@timesys.com, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
-Message-ID: <yvljnqnlka3ecw2n3hw2zgfszlldvbww3k7gq72dczmf6jwzfo@4vqnygxuzvk5>
-References: <20250312122750.6391-1-purvayeshi550@gmail.com>
- <57ae63a2-544b-4241-a54d-8fa9917c1e44@mleia.com>
+	s=k20201202; t=1741821280;
+	bh=TKgowIo1WaTZUviCcRMak32azD2cFfVNTUXSGH8c1O0=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=eAfLgmNJBIhrzfTbBz15W2qXyisRuA+s0m0sbZ0DR4p5Yn/gYR7lffHji1Pi6aEKz
+	 iEYjHrI0Tt4Cjp8pteJK78+OVFmkwbGZq6yWcr6QMo8exhqx3K9GefpIMExXacDNRh
+	 KURQmUBu26eABgR5+fE6nmnvffrHsyK4SWEmBdjwmGVFmfDO2zE06KJnS0vqNXK2YH
+	 VrGqoDKtTRm4MkgZrY7LhY7SgtxAK9qMGNNgHvHYQJcDqrUXQJjf9Ce2rJDiEEY4+j
+	 ZNY/I0f84t/Yi407KIEBS2V77DWKo7zqJ8QXMrTL5tL3NSHZlSvQSL0tFB8WF2pqeO
+	 KNWFA5iJpPFMQ==
+Message-ID: <f1d5dc9b8f59b00fa21e8f9f2ac3794b.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="iy7a5myo3gppi3xw"
-Content-Disposition: inline
-In-Reply-To: <57ae63a2-544b-4241-a54d-8fa9917c1e44@mleia.com>
-
-
---iy7a5myo3gppi3xw
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
-MIME-Version: 1.0
+In-Reply-To: <epnv7fp3s3osyxbqa6tpgbuxdcowahda6wwvflnip65tjysjig@3at3yqp2o3vp>
+References: <20250226232320.93791-1-inochiama@gmail.com> <20250226232320.93791-2-inochiama@gmail.com> <2c00c1fba1cd8115205efe265b7f1926.sboyd@kernel.org> <epnv7fp3s3osyxbqa6tpgbuxdcowahda6wwvflnip65tjysjig@3at3yqp2o3vp>
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: sophgo: add clock controller for SG2044
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Chen Wang <unicorn_wang@outlook.com>, Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>
+Date: Wed, 12 Mar 2025 16:14:37 -0700
+User-Agent: alot/0.12.dev8+g17a99a841c4b
 
-Hello,
-
-On Wed, Mar 12, 2025 at 07:59:21PM +0200, Vladimir Zapolskiy wrote:
-> > +  "#pwm-cells":
-> > +    const: 3
+Quoting Inochi Amaoto (2025-03-11 16:31:29)
+> On Tue, Mar 11, 2025 at 12:26:21PM -0700, Stephen Boyd wrote:
+> > Quoting Inochi Amaoto (2025-02-26 15:23:18)
+> > > diff --git a/Documentation/devicetree/bindings/clock/sophgo,sg2044-cl=
+k.yaml b/Documentation/devicetree/bindings/clock/sophgo,sg2044-clk.yaml
+> > > new file mode 100644
+> > > index 000000000000..d55c5d32e206
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/clock/sophgo,sg2044-clk.yaml
+> > > @@ -0,0 +1,40 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/clock/sophgo,sg2044-clk.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Sophgo SG2044 Clock Controller
+> > > +
+> > > +maintainers:
+> > > +  - Inochi Amaoto <inochiama@gmail.com>
+> >=20
+> > No description?
+> >=20
 >=20
-> It shall be 1.
+> I am not sure the things to be described. Maybe just tell the
+> clock required and providing?
 
-No, 3 is the right choice.
+Sure and point to the header file with the binding numbers?
 
-Best regards
-Uwe
+> > > +  - |
+> > > +    clock-controller@50002000 {
+> > > +      compatible =3D "sophgo,sg2044-clk";
+> > > +      reg =3D <0x50002000 0x1000>;
+> > > +      #clock-cells =3D <1>;
+> > > +      clocks =3D <&osc>;
+> >=20
+> > I think you want the syscon phandle here as another property. Doing that
+> > will cause the DT parsing logic to wait for the syscon to be probed
+> > before trying to probe this driver. It's also useful so we can see if
+> > the clock controller is overlapping withe whatever the syscon node is,
+>=20
+> It sounds like a good idea. At now, it does not seem like a good idea
+> to hidden the device dependency detail. I will add a syscon property
+> like "sophgo,pll-syscon" to identify its pll needs a syscon handle.
 
---iy7a5myo3gppi3xw
-Content-Type: application/pgp-signature; name="signature.asc"
+Cool.
 
------BEGIN PGP SIGNATURE-----
+>=20
+> > or if that syscon node should just have the #clock-cells property as
+> > part of the node instead.
+>=20
+> This is not match the hardware I think. The pll area is on the middle
+> of the syscon and is hard to be separated as a subdevice of the syscon
+> or just add  "#clock-cells" to the syscon device. It is better to handle
+> them in one device/driver. So let the clock device reference it.
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfSEQsACgkQj4D7WH0S
-/k5lVQgArXoPIgUnIlPyk8q9Bcn7jLJRpgGwO+O5sTvf38V4qPY9FLas1+z8dtZ1
-DD9UQk18kX7sxyYTLpttv0dZIzSmDyp6SRLtX5Od+EglVN1Qot7XBGfVJpDXcUS0
-LPsaEkW+fFGfo6akWOIhD59gmZ5tw6otczN9MhA5ADsqtlGQHDJr60gv0MKFiQwk
-Oe+6CRMt74IXOTXvvmGLaP5dmTDY2ili1/jd8SApSUuOycSr2RKRgUmXyUmnuGlp
-4c8ZS4Cc5FwhkvLb5bDSKfq2+V6LV1U+0GHpXjZeLxt0HMhac7OJfMrR3k/tDfv+
-mMyHg2ZcC58v/HLLzlKGt+w/Wka6CA==
-=Nzf2
------END PGP SIGNATURE-----
-
---iy7a5myo3gppi3xw--
+This happens all the time. We don't need a syscon for that unless the
+registers for the pll are both inside the syscon and in the register
+space 0x50002000. Is that the case? This looks like you want there to be
+one node for clks on the system because logically that is clean, when
+the reality is that there is a PLL block exposed in the syscon (someone
+forgot to put it in the clk controller?) and a non-PLL block for the
+other clks.
 
