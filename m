@@ -1,164 +1,158 @@
-Return-Path: <devicetree+bounces-156988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6C80A5E48C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 20:36:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E8CA5E495
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 20:38:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D644616B99F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 19:36:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB67E7A3CF8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 19:37:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D9642500BE;
-	Wed, 12 Mar 2025 19:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72AC42500BE;
+	Wed, 12 Mar 2025 19:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fossekall.de header.i=@fossekall.de header.b="gt7FamQ2";
-	dkim=permerror (0-bit key) header.d=fossekall.de header.i=@fossekall.de header.b="QXCgkYUd"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0w6DVHcP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DEF11F461D;
-	Wed, 12 Mar 2025 19:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741808212; cv=pass; b=NhnBFaGBz2sbEcQYidWfxyczwGlPQegb+em7vZ/jf3MyLgQSaQWZzU26JaJ8qCxuPC33UOH/L1Ky/FBKv9+U5zZYFNEZSFZw3YCY/gWU2tzHwJ/4qU9SK3nk8m1fxtHD+TTmjF+gN84RQGgIThQYTDJqMe2BziUNO1lfQVQf2IA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741808212; c=relaxed/simple;
-	bh=JGvc9t6eH0Disvyp4YztNchToLyen6Ed5SE8DsNC68M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iHWotVAVTEeNuTNBKfYSoHYXTdwVucMRSptv5WSgVXW/PkWjOFF5NBn4NQcBfBsgB5r6vsu2VE5GFTu7bPcTiQadJ9+dt+MExfUgIgfy8GYNItdBpte/AU0zNKOefjx6j84MfBUr1kaGU2a7Z8HJdyNJ04Sl67QsNpx8vlW6to4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fossekall.de; spf=pass smtp.mailfrom=a98shuttle.de; dkim=pass (2048-bit key) header.d=fossekall.de header.i=@fossekall.de header.b=gt7FamQ2; dkim=permerror (0-bit key) header.d=fossekall.de header.i=@fossekall.de header.b=QXCgkYUd; arc=pass smtp.client-ip=85.215.255.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fossekall.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=a98shuttle.de
-ARC-Seal: i=1; a=rsa-sha256; t=1741808199; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=bZTM+TpNLvX2TTB1x5D6nVm6z3UwFgMWiNrpQs3N9yxuoKqt+C2OsafUxoMUxcNvv+
-    6S7vy+rlJ4cLs9mgc9X2cKmG4MFPLfnemMypjdrmy1zzV0dtVo1KS0ggGdswLcV4dZjm
-    Pm/34Xw5+//hUhdMINtRAkHLoRcN6YS2mWbIxUo7IP3wnTYVYhAG1//WC5jFDGej76Ea
-    rE0Ti/CQDgYtgMDE5YOq/C9DPvBHfVrZEBG5nW65zRiNE7Qd5W7ioQQYBWFHU7ryqaPl
-    WhtGczY05021riCyXNXTJrlzEGb9x3bVGUl4XrwBQnb3yAh4zQF3LdG1CMMcUDtCVZga
-    h28A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1741808199;
-    s=strato-dkim-0002; d=strato.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=lxcMHEKMN0k1o6vOkcWOO4z96etmbwK9XpxIauqtEzg=;
-    b=P1GfOOwvi1B3JVUQyFFdHAYDNy9n41E4PEttx23NEaO9+OU3aA0HO+GrIxi9IF9cDP
-    OVkvp8Y59XpGnDMvgVEgdNtWeDIsO5rhQ+XuhG77rM5PQOcmJJS8OLFKVCbAU8eHdOkO
-    RaSASdQAyj2YcqwKb402KS3agLPFlgrO405H4Q59pZI6kwwUo4h42AsoewzIeKnXonLv
-    Cj8xCAXiCPsjJP12JdrHbyy3eRjBZRo2m/2dfnlDIxtr9eSyQWGWezGPMCvm1DcQF8wt
-    wskJYhnn2psGKiDRye0oCg/MqdmsGhaW+BU0NnTeWwMuJkK17EoXNlN84IPduhdOi/I0
-    1C4g==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1741808199;
-    s=strato-dkim-0002; d=fossekall.de;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=lxcMHEKMN0k1o6vOkcWOO4z96etmbwK9XpxIauqtEzg=;
-    b=gt7FamQ25ZzxZ9sFrcg90bxaAuhAk3yFKTmHvQpXB7PGw0AWpXTRaG+VsrWAqE4N8T
-    IiXeuHlnfLQ0pIakXdNHDK/Wlv3NNFhUlL07lSENxJFHEa16TTTIy7g4RYF55gAwOXyL
-    Wmkt0I0aWVFw7TuQP9wkE9w6oNSswAwRrufUefDM3RRA2c1oDP3nOotH0j+nYHNMhHGq
-    qFoXTJ/+gCMvpu5xoWqc76bEaNVryl0G8XX+X6y3zAzPmbTaUPCFj3TEEt/hlj2dUYqR
-    x3UXFdl2AhKHz96xTvLqhDPHrx8xQwUTBC0zy+hHkF9Ol4NFCKKgQi4tsWf3SXxq9HtN
-    Pmgw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1741808199;
-    s=strato-dkim-0003; d=fossekall.de;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=lxcMHEKMN0k1o6vOkcWOO4z96etmbwK9XpxIauqtEzg=;
-    b=QXCgkYUdfs/CwX/mn9IEzU6DJkDIHTl1S+jLKvYoa9PAtq9eHaOt99/9NnnAVjfTVR
-    P1TuhcYisDn2Thgo0WAQ==
-X-RZG-AUTH: ":O2kGeEG7b/pS1EzgE2y7nF0STYsSLflpbjNKxx7cGrBdao6FTL4AJcMdm+lap4JEHkzok9eyEg=="
-Received: from aerfugl
-    by smtp.strato.de (RZmta 51.3.0 AUTH)
-    with ESMTPSA id f28b3512CJackg5
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Wed, 12 Mar 2025 20:36:38 +0100 (CET)
-Received: from koltrast.home ([192.168.1.27] helo=a98shuttle.de)
-	by aerfugl with smtp (Exim 4.96)
-	(envelope-from <michael@a98shuttle.de>)
-	id 1tsRsb-00058E-1Q;
-	Wed, 12 Mar 2025 20:36:37 +0100
-Received: (nullmailer pid 85457 invoked by uid 502);
-	Wed, 12 Mar 2025 19:36:37 -0000
-From: Michael Klein <michael@fossekall.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Cc: Michael Klein <michael@fossekall.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: bananapi: add support for PHY LEDs
-Date: Wed, 12 Mar 2025 20:36:28 +0100
-Message-Id: <20250312193629.85417-2-michael@fossekall.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250312193629.85417-1-michael@fossekall.de>
-References: <20250312193629.85417-1-michael@fossekall.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9144770809;
+	Wed, 12 Mar 2025 19:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741808326; cv=none; b=MnOCbwy6vZHqoUF2VWgFD08XtkLk3ki8fpL2DsedvWCANEE/EHDPRN7D0lMUPE2r2Vk1nr4oycHJboJalExeBXbR0Vz2/MU99gMgh5VBgAwPYhh65e1yipGRGKOuKHrvxirYzzmOu6ReKdIy7RP3lZu0NLSBb2BW2yvQfDJ6bHs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741808326; c=relaxed/simple;
+	bh=C9INF1sRuTRBiE4I1IZ7b5gSF2dewfFG5yTbHzD+y0o=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LlBHLnt+JHt6974i8ao5usGZ8epiTk5zubewQzF858OKL+RLxIns6lLYAweTvIvaZe9VCvy9odPYbtSlrL8ew0jsHfBCJqH8bM+khIZJYSf/8dmESYjVV7Hbx71WIl49dx4ix8UPPZmNuRZX7ClJeY1ixTkQeDaj9YMSnF1vYdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0w6DVHcP; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=9G2KX65Ab+9QthP7hU+dGSKLgGHDZbANHAkXoqK6ZJ8=; b=0w6DVHcP8Ff1NsM8gB7G2O7rSU
+	nQacEOXrojn9wRema8yOaO0egRFn0zuygBNIDCIswibMncUt/Ng/CbZMssdRIr0SUNRuaCzpzM29q
+	XeddB38hzG7sGIPAS8eRvmEe2nFPKCSKh+CZkRnxyCfEeyUnQGDdWBevdPv5EEQiJhvEIWMxqpWRN
+	E4mna9N2wg8wb9UFCaFND4cWatp12Cb8WBQYbPile+C6rOoG+m3IbpoQ7FZBxXIe97x0zpGZhUNnk
+	UrxT6va3aKF91llsyjHRTr6XNcOtEqmJH4spBOnz37Z2PfTSzzp38OZPb5XHW+9pUfJf7BRcCdlZj
+	eXLPSZVg==;
+Received: from p3ee2c254.dip0.t-ipconnect.de ([62.226.194.84] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tsRuS-0001ql-MV; Wed, 12 Mar 2025 20:38:32 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>, Jonas Karlman <jonas@kwiboo.se>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 0/2] arm64: dts: rockchip: Add pwm nodes for RK3528
+Date: Wed, 12 Mar 2025 20:38:31 +0100
+Message-ID: <7779050.EvYhyI6sBW@phil>
+In-Reply-To: <b7d8d385-81ee-4947-ab8f-1da43843464b@kwiboo.se>
+References:
+ <a5ec9062-ca57-4748-8c0f-fb5b9c75fa28@kwiboo.se>
+ <20250312143515.1225171-1-amadeus@jmu.edu.cn>
+ <b7d8d385-81ee-4947-ab8f-1da43843464b@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-The Bananapi M1 has three LEDs connected to the RTL8211E ethernet PHY.
-Add the corresponding nodes to the device tree.
+Am Mittwoch, 12. M=C3=A4rz 2025, 16:00:00 MEZ schrieb Jonas Karlman:
+> Hi Chukun,
+>=20
+> On 2025-03-12 15:35, Chukun Pan wrote:
+> > Hi,
+> >=20
+> >> The pinctrl-names should be changed to "default" and not "active",
+> >> something you can fixup or do you want a patch?
 
-Signed-off-by: Michael Klein <michael@fossekall.de>
----
- .../boot/dts/allwinner/sun7i-a20-bananapi.dts | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+so yes of course the pinctrl needs to be default - simply because
+that's the only pinctrl state mainline supports.
 
-diff --git a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts b/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
-index 46ecf9db2324..4976453ed192 100644
---- a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
-+++ b/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
-@@ -48,6 +48,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	model = "LeMaker Banana Pi";
-@@ -169,6 +170,32 @@ &ir0 {
- &gmac_mdio {
- 	phy1: ethernet-phy@1 {
- 		reg = <1>;
-+
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_GREEN>;
-+				default-state = "keep";
-+				linux,default-trigger = "netdev";
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_AMBER>;
-+				default-state = "keep";
-+				linux,default-trigger = "netdev";
-+			};
-+
-+			led@2 {
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+				default-state = "keep";
-+				linux,default-trigger = "netdev";
-+			};
-+		};
- 	};
- };
- 
--- 
-2.39.5
+But judging by the fact that you're discussing working vs. non-working
+below, can you please check if we should drop the patch for 6.15 till
+that is solved?
+
+Thanks a lot
+Heiko
+
+> > Sorry I've been a bit busy this week and forgot to send the v2 patch.
+> > In rk3528.dtsi, the uart and upcoming i2c nodes do not have pinctrl,
+> > so I prefer to remove them.
+> >=20
+> >>> Unlike other SoCs, pinctrl-names need to be in "active" state,
+> >>> I'm not sure about this, but otherwise the pwm-regulator will
+> >>> not work properly.
+> >=20
+> > BTW, setting the pinctrl of pwm corresponding to pwm-regulator
+> > to "default" will cause kernel boot suspended.
+> > Sorry but do you know why?
+>=20
+> Not an issue I have seen, do you have any more logs or details? E.g.
+> what board you use, full regulator node, do you have operating points
+> defined etc.
+>=20
+> I have runtime tested a branch at [1], that use pinctrl-names =3D default,
+> have vdd_arm and vdd_logic defined, also an opp table for cpu and gpu.
+>=20
+> For E20C there is a commit to enable the vdd_logic, however without gpu
+> enabled and a mali-supply the pwm-regulator is initialized to
+> max-microvolt by Linux. Have instead updated U-Boot to initialize the
+> pwm-regulator's:
+>=20
+> ```
+> &vdd_arm {
+> 	regulator-init-microvolt =3D <953000>;
+> };
+>=20
+> &vdd_logic {
+> 	regulator-init-microvolt =3D <900000>;
+> };
+> ```
+>=20
+> [1] https://github.com/Kwiboo/linux-rockchip/commits/next-20250311-rk3528/
+>=20
+> Regards,
+> Jonas
+>=20
+> >=20
+> > e.g.
+> > ```
+> > vdd_arm: regulator-vdd-arm {
+> > 	compatible =3D "pwm-regulator";
+> > 	pwms =3D <&pwm1 0 5000 1>;
+> > 	...
+> > };
+> >=20
+> > &pwm1 {
+> > 	pinctrl-0 =3D <&pwm1m0_pins>;
+> > 	pinctrl-names =3D "default";
+> > 	status =3D "okay";
+> > };
+> > ```
+> >=20
+> > Thanks,
+> > Chukun
+> >=20
+> > --
+> > 2.25.1
+> >=20
+>=20
+>=20
+
+
+
 
 
