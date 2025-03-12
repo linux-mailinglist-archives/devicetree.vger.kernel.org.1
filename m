@@ -1,178 +1,150 @@
-Return-Path: <devicetree+bounces-156950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52933A5DFE2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 16:12:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F30D4A5DFEA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 16:14:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECDBB1891704
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:12:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33DF316DA05
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:14:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07DC1250BF5;
-	Wed, 12 Mar 2025 15:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8802D250BE9;
+	Wed, 12 Mar 2025 15:14:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DpSuZWv9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jiWJvCv/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C23924E00B
-	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 15:12:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B4C183CD9;
+	Wed, 12 Mar 2025 15:14:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741792342; cv=none; b=JqIZggoabdL7F5XXYB5gObrzS5znuru3oTKVAiKeTzoSG74OFm2NWWIZOkS0M9EE1CrHGlw1lWvOEQRV7M1R7y0qB6EMOfEtBpnJEbNCdaIUT4QH4XNg3LVMNHTybNzTtBV+ovcxn9uMhC4i9WERHi+aC/xb3oSBKZ1FvSOtAiA=
+	t=1741792460; cv=none; b=J2d/65eHiHXkYkU4++WGFLyO93RriT2fRJNR+FUivxLVt3kEaAxiSKuzgFr/u8MaAi9Usq9zjBiTiy/4wH7eYYYtuOZuzpbNpBk/PyZrg2i+3i9srbEOt6GUbvzdpDRUDLz0mYoyL+IsELQab4+fmA6xsvg0gr5AO1wY3YQ8OJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741792342; c=relaxed/simple;
-	bh=Fwnafj2/JsX+dgniOXtloZvo05Wbw+uLmathEsHRqvE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GmMcJoSasnvmJuUXGHCFrNV8TMHfv9X8b6tINS44LNggIxeBZI/6nCAhjxFdpY9mZd4974m+nlWw+GR2rGNPmxepHwegqhwdtzUNH5OPU+SyBC+XhqdgT5raSP2W/rtl5mnqRU6Bcqw2BDRC4z/om6FgtUK3anPME4CicpSs7ms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DpSuZWv9; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ac2c7a367d9so26903666b.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 08:12:20 -0700 (PDT)
+	s=arc-20240116; t=1741792460; c=relaxed/simple;
+	bh=ZUrIFY2RmqH5+5+XoOd4Ss8z8BQkL0er2jTcsOooub8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kCvM7S4dtOYJQ4+0kzXEJ0ucg+D5WyXgM+UIi3P0GWb6Mrh7P+AeN8oRi2pq0qGjrpQLorqgkQwjEbSLEik5ttb2FCoaNEPFAQZ8ZhZ5YAXElgx1dogJMpRO9P2QJMby7eMhfbwXL59LADHQchXMpqEih582Dg/Ot8O06nHrOUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jiWJvCv/; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e5e0caa151so10264332a12.0;
+        Wed, 12 Mar 2025 08:14:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741792339; x=1742397139; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ai224AG0UWnAUrmxyCW54tQ4sjFdyvGoEQaTEjPSL6c=;
-        b=DpSuZWv9YzXCJIcGZbpJDIbQj2rsFVNwFIOrIOVgsI3sWHDPO56WSWEjz+Gqi3Nufw
-         ENzQkCShyJERhffnlmBu5WfYopKJIp0BS/apanL11TbMwDvh4UD8i51HqZYRykom8LXB
-         mvy/0LRBIxe1N+cQusjPeQCvBvplJxDkDHVyf1xJF+TJ8sA7iUPlGHTovYnLj9JaqIZp
-         4/zsh31nEMGCvmH3fRoZ43hYxDdISecfqJ5gUKu0PqIQlIcBqXH0zSq8UcWEHzPUjjwj
-         yp0XY5XSn+qXpWpTgX20pSEm3HjJIkUoe6yrlqg/CpE3AsXdlfhisneWY8QXVDdeQtd/
-         1+xw==
+        d=gmail.com; s=20230601; t=1741792456; x=1742397256; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rxrIqqxfx2bgrYEWWHXdn+PPitQZRqnM1FbC7V9vc4Y=;
+        b=jiWJvCv/hQ5aBgcN0WZ45pmlMpc87PEhvfoa4BAPOSgH+uJJK02oS/cmvb23ZEqPpk
+         J/9nA8pKiu5Qb+1RwUBKU+MJSapQwjYTEykLzXbVg44tr6KWknyLIs1XfvYSOeN8fT98
+         wB/9smFn08wWF/2hqW+UTFEu7CWtl0q38tJFtKCxcoezmyBCWVAGH8+8bFv0aeCQozLF
+         8dZ7LDqGBMHi4SlHLwq0UVc/kAuS6vBtC+HSjI6MWl40jMxyoQ+D8fpGkS6pQEyzXIAu
+         qst74ghr9SG0/kmxEcp5xSdPKAqG8EmT1ThRuqpmOcBdGJKMypdyN7d6ANKXzsn9KvD+
+         cmlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741792339; x=1742397139;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ai224AG0UWnAUrmxyCW54tQ4sjFdyvGoEQaTEjPSL6c=;
-        b=IySOInXoBgSpBdkBx+Qh8IsHUUxvHb04xjBTlpZueWwThW3CPfQODe66H+xEke0nLF
-         JwuuDwvQKgw2KzyR01suaqZoqa1Oa7UFjfe55Unw/Xko5Y5uAEsnSrszivYAy71N94Ib
-         hq74oGWrUL/TscbpT9LAuGNT7HELClpNoEgvB96CRvHCRfsTK5jbr8WIlGxMHxo7qYxq
-         dyYNdNRHA3Z6+OVZL2DEEOEdiRpliswgDS9thRwKzCaBrRHs8bnecFjtt5RNZSuHuGIL
-         MkPHEEI3MSewGMwvDj+/cAXmiaipMsKA3NKHSqgrhphhUa4rUjbuFFkM6XsLGL67YirR
-         5IOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVP+ucz92crjPFsid6m4sP8aT6jDsso0+0wVu2l63mHd6XSsDOwMeN7an5dbp+2zKmBr2PkAMs9+GBa@vger.kernel.org
-X-Gm-Message-State: AOJu0YymuoGxkaDtG0AdaVtRN9mQwYnzhy0cS1p7dXQZYzRTXgVVqjJs
-	27kISmV0Xs3d8Yb0RpX3e/uczKRRIsv28CvALAwoyU88qdheBKa4G9xjk8OTdp8=
-X-Gm-Gg: ASbGncs9MjoBC8Xps3yiNMxPhPoMMbokfYVUSt/9uOptUcLfBPtyjaeiOWpWL6rh+hM
-	kVglRTVz1bOKza0OTu7SmjGBFZRCPsSscPDgw5iZkP90KvIZ40seviiILEPLLf8mRuAyyhRvOAe
-	90DShrPFwFLgbHXLaMxPqUp9OBxhgvXdxK3bR76fIMWhDlFlTAdcRwQYBZdmSQgQdG4FbzWXZSF
-	RaXJn0iK8jYnA+PvhBjKpI7/vgtLOZ0v5OmZvzUm27AO4lNGI65VIyy+ip/j+cK9jEC6TjRWHQg
-	n9yAAlVm8nXj0N2Ad5kn2wbAfdoVtRwvI7MymLRoigrixesOFtKUXl99QWWF2Rs=
-X-Google-Smtp-Source: AGHT+IF54dA0AaE+1TsfB95PBH+EtOz2rUbp5Hoeon5QLKSTuYGIM+dQ6kw1krKJv5MNokJbEGeDZA==
-X-Received: by 2002:a17:907:3e8f:b0:abf:7a26:c489 with SMTP id a640c23a62f3a-ac2b9ea164cmr315941266b.9.1741792338638;
-        Wed, 12 Mar 2025 08:12:18 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.198.86])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2ab8298b0sm420361066b.89.2025.03.12.08.12.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Mar 2025 08:12:17 -0700 (PDT)
-Message-ID: <a7d76aff-0dc2-4b0e-9ee8-f433d8e745f6@linaro.org>
-Date: Wed, 12 Mar 2025 16:12:14 +0100
+        d=1e100.net; s=20230601; t=1741792456; x=1742397256;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rxrIqqxfx2bgrYEWWHXdn+PPitQZRqnM1FbC7V9vc4Y=;
+        b=UozuvEJUpdmANwdobpV0MOre6guj8QDO/vl49vh60DCkZyiOTnFRdUOmGdJVtQOQXq
+         VUE4gbfh08S8Z194kGwLF7p3941W/WdzEGhJqS0DXjlI0j+CwVmbdfPvnlnpoEfoz2Bd
+         zfnrB1zMpiIBl0mING3kskxNJYeylspRGSUJ3eL9KxOSvzxus2dCH1AkBUfMvZwuNFYZ
+         BQKnw43PBkGgpoONwFXHQDtaUvnsR/bgA2yB/KKt/vgRhg+v7oAn6fi1ynL3lAd7ixwo
+         hd2a0lOrsFEENFkQyCnA2jMMU9hkT5FZEfhNA1hm7TD0qr4xiAxsRxRbggCAAieA7dZd
+         ViVw==
+X-Forwarded-Encrypted: i=1; AJvYcCUdfnklDhZlL5kaVk42J2nDOIpaoTiwjPAyBaobknPBaQJyIqIt/j3BCoNNQ8/6eLIJKAz7mkNbN6p5Kwc+@vger.kernel.org, AJvYcCUi6W0UBP1Vds2dV85NPChDNuUgvhBIwfWTE84brKAKOffVhmfjLaieACuq5JBcBNsi+aD2uebY1JMA@vger.kernel.org, AJvYcCVEOAQRjlnEUfXMJRUsH8JjtZsQV3MYihKD4x5ZbVJgKO+PZBhc0e3cm7uWBocZi8/H7ruTiV6ejNBgb7+52BNJ@vger.kernel.org, AJvYcCWdzjHRpYHIbSrKmGGBdWuU5AFl6VJbi3nIdW0WTwlRAdicze/RXbNxacVk/IJhrbOkKz4AbGof/eNO5zV0ERg=@vger.kernel.org, AJvYcCX9YA4rnR5FwEani87SwaCnYXL5uTeTjf8T70MdwN/zLFPY+cG73AihxrpPBD120nYb/btqzBR+dyhq@vger.kernel.org, AJvYcCXVqcpe6uuf0YignIgzWrYUjvyErwTzg6haCCbrvAdSMVEJDWOyAmN8zKqLqRFbAOeXb/ik+6txJ6TFflc=@vger.kernel.org, AJvYcCXtk+hE5By1d1+NQIiUpX++5Rxr+q0+cPqUXQftfhoHxUlCXYzQfV8H9Gc3AJdy4BqMsbiQQoZF/EXFfi/Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6fe7CAErHgHAKeVJDv+xkZEfy5NICHhlQAqnJNjDwn32FY4JC
+	D/l6MyCyVPcaqdkf3bUPaC7fRB49Qwlx9ekR0QqRXpozE2o/BTtsQshakErSkWV6vln3PDR5iqQ
+	Txk8m8psSDKYDW3qjTkuUzA3lhCY=
+X-Gm-Gg: ASbGncskTj0dS6OwYiDfkOpa3ddx0k2fpsF0032BkjhQgpbbhsbnj4tgVvsMfKETvdb
+	4L9IH+XwPWBTfzZ+S5ZjPkfJzIijQB0pXr0+xACQFgLFtsq7FuKotNBSn0EWBz4ZmBiID26F/+y
+	eRe7OnoHJaZ7CIG7VfOaJA0XSjiNpEOvtgvFPi5w/5sw==
+X-Google-Smtp-Source: AGHT+IH2DiJwy3ZvuXECEd4LF5f8Tg4iFRwMcRUoSF/ffcGW5c4Fh1bf/0ekZaD7abOlDe7Vm5+u0myH7PuuT0AgCYU=
+X-Received: by 2002:a17:907:3d9e:b0:ac2:d2dd:87f4 with SMTP id
+ a640c23a62f3a-ac2d2dd95edmr616943066b.44.1741792456095; Wed, 12 Mar 2025
+ 08:14:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/11] dt-bindings: power: qcom,kpss-acc-v2: Add MSM8916
- compatible
-To: Konrad Dybcio <konradybcio@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Robert Foss <rfoss@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Wesley Cheng <quic_wcheng@quicinc.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Rohit Agarwal <quic_rohiagar@quicinc.com>,
- Kyle Deng <quic_chunkaid@quicinc.com>, Vinod Koul <vkoul@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- linux-usb@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250306-topic-dt_bindings_fixups-v1-0-0c84aceb0ef9@oss.qualcomm.com>
- <20250306-topic-dt_bindings_fixups-v1-3-0c84aceb0ef9@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20250306-topic-dt_bindings_fixups-v1-3-0c84aceb0ef9@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com>
+ <20250309-ptr-as-ptr-v2-1-25d60ad922b7@gmail.com> <D8ECSHQTFGM5.E4N1XJBDTJUY@proton.me>
+In-Reply-To: <D8ECSHQTFGM5.E4N1XJBDTJUY@proton.me>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Wed, 12 Mar 2025 11:13:39 -0400
+X-Gm-Features: AQ5f1JqDciD88026nhyTgaQr2HJFyD0HlPPeqLw4m_GUEXVJmf1ZKY6IODNWsLA
+Message-ID: <CAJ-ks9k_sq8CGxij6zFTkR9c75pDAGsHZ1B=aDew7FnbUz0uCg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] rust: retain pointer mut-ness in `container_of!`
+To: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/03/2025 19:11, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> MSM8916 seems to reuse the same hardware as MSM8974 and friends (for
-> whom this binding document was created). Add a new compatible for it.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml | 4 +
+On Wed, Mar 12, 2025 at 10:22=E2=80=AFAM Benno Lossin <benno.lossin@proton.=
+me> wrote:
+>
+> On Sun Mar 9, 2025 at 5:00 PM CET, Tamir Duberstein wrote:
+> > Avoid casting the input pointer to `*const _`, allowing the output
+> > pointer to be `*mut` if the input is `*mut`. This allows a number of
+> > `*const` to `*mut` conversions to be removed at the cost of slightly
+> > worse ergonomics when the macro is used with a reference rather than a
+> > pointer; the only example of this was in the macro's own doctest.
+> >
+> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+>
+> One tiny nit below, but even without that:
+>
+> Reviewed-by: Benno Lossin <benno.lossin@proton.me>
+>
+> > ---
+> >  rust/kernel/lib.rs      |  5 ++---
+> >  rust/kernel/pci.rs      |  2 +-
+> >  rust/kernel/platform.rs |  2 +-
+> >  rust/kernel/rbtree.rs   | 23 ++++++++++-------------
+> >  4 files changed, 14 insertions(+), 18 deletions(-)
+> >
+> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> > index 7697c60b2d1a..9cd6b6864739 100644
+> > --- a/rust/kernel/lib.rs
+> > +++ b/rust/kernel/lib.rs
+> > @@ -187,7 +187,7 @@ fn panic(info: &core::panic::PanicInfo<'_>) -> ! {
+> >  /// }
+> >  ///
+> >  /// let test =3D Test { a: 10, b: 20 };
+> > -/// let b_ptr =3D &test.b;
+> > +/// let b_ptr: *const _ =3D &test.b;
+>
+> You could also use `&raw test.b` to get a pointer instead of relying on
+> the pointer coercion. That syntax is stable since 1.82.0, so older
+> compilers would need to enable the `raw_ref_op` feature.
+>
+> I created an orthogonal good-first-issue for changing uses of
+> `addr_of[_mut]!` to `&raw [mut]`, so maybe that can also be done there:
+>
+>     https://github.com/Rust-for-Linux/linux/issues/1148
 
-
-Folks, please merge Ryan work instead... I keep carrying this patch for
-half a year:
-
-https://lore.kernel.org/all/20240710155226.130086-1-rayyan.ansari@linaro.org/
-
-Best regards,
-Krzysztof
+Thanks for doing that! Yeah, I think moving to that syntax would be
+good but as you say requires enabling the feature and/or bumping the
+rust version, so it can't be done here directly.
 
