@@ -1,149 +1,133 @@
-Return-Path: <devicetree+bounces-156975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E84B7A5E330
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 18:57:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7B41A5E339
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 18:58:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 363EF178419
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 17:57:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E35D3BAF45
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 17:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA18253B47;
-	Wed, 12 Mar 2025 17:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A26C254AF8;
+	Wed, 12 Mar 2025 17:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="q8FeuJsN"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZHSpzQGT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB1C1C1F07;
-	Wed, 12 Mar 2025 17:57:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 967BE1E8325
+	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 17:58:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741802224; cv=none; b=Txg6qZ1QgVqsKZWuMkl82wfc/7rHTWhakgne6UtQW5nfiixfjtEboP7bJivmJsssDuTOcPTy0CdGCeYfdGWFUj2OoPtjxuYxO3CkqpEkwwFFSs+moDs2rLiC1oyF1gANnOkBqHKV1aO1yKNiiQoBiOJ27X55twRupdZuUJe4RQQ=
+	t=1741802308; cv=none; b=gpHppWl2aiySG783tUVOQ+dYleNBuI9MpbZqmISq6J8e5OzI5cLq3ewEG6kTvoRN2bEZOdx8MCsEd8xIFoMunR/8dLtZdNZ+1kv2U7Sllm5Q4ZOrMslTiDrdB+S3a46Ug4x7iddGtMQy5zadFdGC5ucYSHiY1aOMh/7nJsB1ve0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741802224; c=relaxed/simple;
-	bh=A53JHJ6i0N6mdiiXXjZ1oUOsWfNiO2uLc8zv4NAzeLU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SJWF6Ini7YwEgNBDGglqb16ghUhLi5V8ceLv+60rLVaa8eElqyc1HtZLY8qQTuNmPb6Ie679Hb63/l2xkNzHtsN8dy+tIPoBbM1ih4fk+hJ8fcH160HYRI+XdYVyGPtfQq/KU8D67OR5nSpW+0GZBqKcLDG0VRmwURI0EP6rrqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=q8FeuJsN; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ELtPug0i9sYUL+KNurYXq5o8o8QrKvtedx3uFu2ZYk4=; b=q8FeuJsN7tk0jIYeKrRIbI3M4L
-	qdS+KCCiGpBGH6aXAxkRQ0VbZl3VYoBD40R3DRTmbZgmSlol7/PO3rJHy8+lyGQHlmTb+Ty9psR4V
-	XlvtlC3f5rPcm8rtkOuSdgZFs7G3VZHgOvgCQbN95hhP2f3NNk31G0o/xvVPc+AcfSX9ax0hpWEZA
-	vVa8FZBWONTVb7WoNPki6EaeWQI3EyJRU6ogVKIMhY2m+dRgjOAxkIEDO2W3dwJMoVhFavh/4gLf/
-	Hw1PerJFMIqxaxlcwkYjQFMFyLgOXUbpPmutNNpVM4pCkR5kpcE1Q00uBd371DejM7cndyLZiWE6z
-	8x8SIfPw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56474)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tsQJz-0005yq-08;
-	Wed, 12 Mar 2025 17:56:47 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tsQJt-0004kK-3A;
-	Wed, 12 Mar 2025 17:56:42 +0000
-Date: Wed, 12 Mar 2025 17:56:41 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Swathi K S <swathi.ks@samsung.com>
-Cc: krzk+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	pankaj.dubey@samsung.com, ravi.patel@samsung.com,
-	gost.dev@samsung.com
-Subject: Re: [PATCH v8 2/2] net: stmmac: dwc-qos: Add FSD EQoS support
-Message-ID: <Z9HK2de5Ba_Vbeo7@shell.armlinux.org.uk>
-References: <20250305091246.106626-1-swathi.ks@samsung.com>
- <CGME20250305091856epcas5p4228c09989c7acfe45a99541eef01fbcd@epcas5p4.samsung.com>
- <20250305091246.106626-3-swathi.ks@samsung.com>
- <Z8hjKI1ZqU19nrTP@shell.armlinux.org.uk>
+	s=arc-20240116; t=1741802308; c=relaxed/simple;
+	bh=uvYktSUDIlgIfm1VyG/fJfFUevPD/r1/YdI4XOAcXWs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=um55Z0QcXxS9J6o5vCCo9khfMsY6Ql1bnSqqwpaL1cM/l4p2gNznTSgVXH1wHV4qlKLcYsZ/y8cAz3i5pJ9HOppYef7TyvqWHK+JW2/zAWyWSCrDjgiwBUI2Kw2zSfNIu18yxz3aWYr+EGGTg63vDSUlSqNpqIxuVvRkVJhznjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZHSpzQGT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52CAAoV2008482
+	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 17:58:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	bcTeTYG1dmdjENwEPbzmb3bLZjrAYqSsiRBNKAV389s=; b=ZHSpzQGTqka+BmGZ
+	vT2pl60wzbrgSxjVyOXc65gNtrirPJolQOO7cBxM4R8fPuLQDUj8t3B2gjVj//DW
+	UWoOZTgcrNQzxlNmToRXkJ33wdCUM5lpc0wjKtqxyj/WLZQKfvCuMInHTXG2Bdf0
+	o7IJcoZduY/l17xV0QHw7g3F4l6ObO09EsF5iRFODk13sc2eTSgj86Lok5xAM4fL
+	xrx1BPVAXnlMkSWKnuLnbFc+f8GtyLc0pqfjqHbAHqr09l9j2yyxXScJAx+i3AVm
+	8TO5UhLnosEGtWsiqtU0+WekGH1J9ut2dFeNfmplvHmI9nqYrwucX/+S1ZiU+Uuy
+	pocRcA==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2qk84n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 17:58:26 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-476786e50d9so117791cf.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 10:58:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741802305; x=1742407105;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bcTeTYG1dmdjENwEPbzmb3bLZjrAYqSsiRBNKAV389s=;
+        b=Frfv2B/GofC1xdqCXzxdcu1+k3fZpqF1WrVLZqo2oMSMa5dm95KIhheqdm/YKl0ek4
+         7OdEmRA0TBkgmEuMKmgCI6UUvou8CGqz1h/Z6DrrPqexwanwqwqPnoryRxrQ0YVw6rwF
+         1kIzO7TtuBgRT6wuMB+V2PrkcDcasecjNAsmhHldthWpKzrWexoo85HcCmi+2Rw3SyVh
+         8MwUgKMml11HoAaCv9/PcaARPbJvz/EsUIGUnpGO3m37i8RQNI+ByBzTpI9CSa8YU6jD
+         smwE73X5RJ8kCD8vRCBe9z1fEx4ekjc2js0FtNAq+eL8J/huwWGqfVZNe1cxvc1PsAdE
+         8lNg==
+X-Forwarded-Encrypted: i=1; AJvYcCW8q7yl9vYqAY111RbDgC4BrgkT+oEE5YLh5T1RVAE+5b3QGAwqU4aNDb5/R25vfESmFRgGp+e0ri/W@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoUBO9RnfbEgqp8BZkSfmrIPzlHoqQt6bJhv3zNtHZaJzyHENB
+	VDn1eF9ImBW7u+iKo/7RvLmf+aFwUqREbt56GQ+Z31oE5LOwU9wDMrW8puSLMoYcgUdagzsbO2T
+	NAdrB6QCY0EKDKjPmKdXxuPUpbdOIikdt497dv2NIPaoh9V26z77s3rrFyO8r
+X-Gm-Gg: ASbGncvTma19BjI12xADF0GdN1W+ldYKF2FOi+6aXr5Lv2O1upYqPPObYRU+IBvSoLd
+	K3SVbP2XqZE2cwLaTuNX+40aD1hRtnb47jF0SYqc8eoJbXDfgEq47OvuYrDkHCG1oILJhvyH9XQ
+	PcHI8b92T0senIpEvW6Ki/4632wz0gIasWsTkHIL1n1pP1ilpyogSF2Zk+7y90HCD2EG+7+ln1s
+	MZNDXrxoLYOGpqIF1gLjrlW79sF9RNpo+7PY7zoRgOLFqqnMPeGkc8WsxANBgngWIhg1EabSQBG
+	dOeGiZw4GmlzYWn6elKZHw3hDVVnaynMEJK6HtzYXeX1th5uvDh0ctVo3FsR9TavxWGhtg==
+X-Received: by 2002:a05:622a:188f:b0:471:ea1a:d9e with SMTP id d75a77b69052e-476996165cdmr49257231cf.12.1741802305136;
+        Wed, 12 Mar 2025 10:58:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGf+FgkDZ8oIXLKhFtYSMaoeFm9wkNACMQAgHhTtOGru/FQSONXO2zQ9boY9KqzBJU1UuHtiQ==
+X-Received: by 2002:a05:622a:188f:b0:471:ea1a:d9e with SMTP id d75a77b69052e-476996165cdmr49257041cf.12.1741802304743;
+        Wed, 12 Mar 2025 10:58:24 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac288ffe157sm656739966b.132.2025.03.12.10.58.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Mar 2025 10:58:24 -0700 (PDT)
+Message-ID: <59de5023-acf4-4f2d-b011-62ca96c597ed@oss.qualcomm.com>
+Date: Wed, 12 Mar 2025 18:58:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="KgFmUEDr5J23NjRy"
-Content-Disposition: inline
-In-Reply-To: <Z8hjKI1ZqU19nrTP@shell.armlinux.org.uk>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: qcom: ipq5424: add reserved memory region
+ for bootloader
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_varada@quicinc.com, quic_srichara@quicinc.com
+References: <20250312094948.3376126-1-quic_mmanikan@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250312094948.3376126-1-quic_mmanikan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: YJoHgOev5VChUr4VEfiqltX28nx1GYtv
+X-Authority-Analysis: v=2.4 cv=G5ccE8k5 c=1 sm=1 tr=0 ts=67d1cb42 cx=c_pps a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=9vFMFxKz7TJhonvdC4kA:9 a=QEXdDO2ut3YA:10
+ a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: YJoHgOev5VChUr4VEfiqltX28nx1GYtv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-12_06,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 priorityscore=1501 mlxscore=0 bulkscore=0 impostorscore=0
+ phishscore=0 clxscore=1015 adultscore=0 suspectscore=0 spamscore=0
+ mlxlogscore=597 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503120124
 
-
---KgFmUEDr5J23NjRy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Mar 05, 2025 at 02:43:52PM +0000, Russell King (Oracle) wrote:
-> On Wed, Mar 05, 2025 at 02:42:46PM +0530, Swathi K S wrote:
-> > The FSD SoC contains two instance of the Synopsys DWC ethernet QOS IP core.
-> > The binding that it uses is slightly different from existing ones because
-> > of the integration (clocks, resets).
-> > 
-> > Signed-off-by: Swathi K S <swathi.ks@samsung.com>
+On 3/12/25 10:49 AM, Manikanta Mylavarapu wrote:
+> In IPQ5424, the bootloader collects the system RAM contents upon a crash
+> for post-morterm analysis. If we don't reserve the memory region used by
+> the bootloader, linux will consume it. Upon the next boot after a crash,
+> the bootloader will be loaded in the same region, which could lead to the
+> loss of some data. sometimes, we may miss out critical information.
+> Therefore, let's reserve the region used by the bootloader.
 > 
-> This looks much better!
-> 
-> Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> 
-> Thanks!
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
 
-Hi Swathi,
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Please can you test with my TX clock gating series applied
-( https://lore.kernel.org/r/Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk )
-with STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP set as per the attached diff.
-Please let me know whether this passes your testing, so I know whether
-this platform supports it - please check that this results in a
-message in the kernel log indicating "tx_clk_stop = 1". Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
-
---KgFmUEDr5J23NjRy
-Content-Type: text/x-diff; charset=us-ascii
-Content-Disposition: attachment;
-	filename="stmmac-dwc-qos-eth-tx-clk-stop.diff"
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-index a94088b32c11..64867a65e875 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c
-@@ -363,6 +363,7 @@ static int dwc_eth_dwmac_probe(struct platform_device *pdev)
- 
- 	plat_dat->stmmac_clk = dwc_eth_find_clk(plat_dat,
- 						data->stmmac_clk_name);
-+	plat_dat->flags |= STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP;
- 
- 	if (data->probe)
- 		ret = data->probe(pdev, plat_dat, &stmmac_res);
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index 6f29804148b6..b015240e4121 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -1109,6 +1109,8 @@ static int stmmac_mac_enable_tx_lpi(struct phylink_config *config, u32 timer,
- 	if (priv->plat->flags & STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP)
- 		priv->tx_lpi_clk_stop = tx_clk_stop;
- 
-+	netdev_info(priv->dev, "tx_clk_stop = %u\n", priv->tx_lpi_clk_stop);
-+
- 	stmmac_set_eee_timer(priv, priv->hw, STMMAC_DEFAULT_LIT_LS,
- 			     STMMAC_DEFAULT_TWT_LS);
- 
-
---KgFmUEDr5J23NjRy--
+Konrad
 
