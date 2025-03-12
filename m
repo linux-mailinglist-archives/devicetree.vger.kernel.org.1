@@ -1,247 +1,180 @@
-Return-Path: <devicetree+bounces-156822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A8BA5D9F7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:54:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EABF0A5DA0A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:57:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B423D17630C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:54:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E554189D1B1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:57:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A954123E339;
-	Wed, 12 Mar 2025 09:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1584823C8CE;
+	Wed, 12 Mar 2025 09:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="aklJtmhK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X45fVYL8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2078.outbound.protection.outlook.com [40.107.94.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC21A23C376;
-	Wed, 12 Mar 2025 09:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.78
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741773271; cv=fail; b=BdPXRugBwBbpWrydsJQZEfwKYCQDzSOfLKYadkRP8WCpmXswxJNsuF3xxjMhcQafTQJ0a4kl96Zyxz76yb6bb9wmrz5pmRS1ZuU/qoqWjEX3Pubn8KmCkcyOnfTRWj4CQnzEUHjTHREmsqSD4USfVgYGxEnLxil2sd7wEGjYfHs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741773271; c=relaxed/simple;
-	bh=Ix1Gr03qVFMj4nEkFPOhnzcifPNqoVN9v3qXzmk7rXU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=m4vMLlLaz1oNAjOt0Tfhe3VgQPZhQ/nvjm2kRXtBGZIfdkNTdK6cSgswF/tHbQFQ/x4iPIuXpHMpUO5s4YSOyTCm0Z7YvBo89kjASKy7pUlObeIx2CuByp01TfMtlkp72o/rqTZ7WtzOQnqOsiadaSNkFFGOsW2hL5B17Wom08k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=aklJtmhK; arc=fail smtp.client-ip=40.107.94.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=J35rd2FTXOxtaTMsa7U7d+VzxjFE0JZkljKfq6kXfUJG93IDl4hdakxOjzCGBNDCi1lkW+SjzLSv03fohWyOI951zklIC1FgjhSSORakZdea24QMA9mUL3tDlpLMAvgTCs4KThqDVY7iIHwYAZ0+Yzdh9OjoQcu0YumZ+LlA5KaH2nIEnDimYmKyc3wONJWRsd5p9HQ3XE9UeEdgzN7Ky6MWDa8i1FcBFvuJxx/7toAQh/pJGtiZdNJZVLJyuKRGK0SdOxa3GhuPqRMujezzLzkGTXIhJhIFX7tEJ5oxmrX1y5FcFMUJLvvL8J1tsPa/VK98Rs9kXeRhyx5PVkwtFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mjlfXpuVTk699j/mSf1lWyI+T5lVEqAAlzV3tMAFGpM=;
- b=fhNAoR7EOAs7Nn8Pq23YiJMDbL5Mxuonkupnpo3gh/Qm3j8hfqEdepTm/TRmPQ8UsBuBjdQAEdCiGDikDSpPB0uDsLc2dp3YOU0EVl8imuO05ywjqz+KF7hqgzAB0eFfVXxF+LQeNNXgatOB6JwvDmFGbUuBb4cDFhM5q7Qmn5e3PtXyNbpcGgz4pumfQQ/oRVfTRw2aepXwHYISXia5NK1scxeAJmef87IwdmbsvPhEN4AqCzs3hdbTO4E6dNQoRXfPlcfCR2wVampy2VzYiNWzylMOOLj+rzQUHS7s/k5gsYcLKidfwayPyDv+tMJ+ItjdGCKbFpDKsyrUm/S5Ug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lunn.ch smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mjlfXpuVTk699j/mSf1lWyI+T5lVEqAAlzV3tMAFGpM=;
- b=aklJtmhKMnzCYNCgIVzKKrp1A2nQaxbaHJLeoJXI5JAG4fA0qzaxS4CDG0zIs41fhN4r2aS2gH4POYYeTvG0EMtaa1DdBicCkovr1FyuATxPS8stVA5eKtHUjfdhpua9i3RGbjWhBE+a5M38JlC3Noy8siatv3lPg+M0x5YM0NQ=
-Received: from CH0PR03CA0381.namprd03.prod.outlook.com (2603:10b6:610:119::16)
- by SA3PR12MB8440.namprd12.prod.outlook.com (2603:10b6:806:2f8::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Wed, 12 Mar
- 2025 09:54:26 +0000
-Received: from CH3PEPF00000016.namprd21.prod.outlook.com
- (2603:10b6:610:119:cafe::85) by CH0PR03CA0381.outlook.office365.com
- (2603:10b6:610:119::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.21 via Frontend Transport; Wed,
- 12 Mar 2025 09:54:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH3PEPF00000016.mail.protection.outlook.com (10.167.244.121) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8558.0 via Frontend Transport; Wed, 12 Mar 2025 09:54:26 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 12 Mar
- 2025 04:54:26 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 12 Mar
- 2025 04:54:24 -0500
-Received: from xhdsuragupt40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Wed, 12 Mar 2025 04:54:21 -0500
-From: Suraj Gupta <suraj.gupta2@amd.com>
-To: <radhey.shyam.pandey@amd.com>, <andrew+netdev@lunn.ch>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <michal.simek@amd.com>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<git@amd.com>, <harini.katakam@amd.com>
-Subject: [PATCH net-next V2 2/2] net: axienet: Add support for 2500base-X only configuration.
-Date: Wed, 12 Mar 2025 15:24:11 +0530
-Message-ID: <20250312095411.1392379-3-suraj.gupta2@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250312095411.1392379-1-suraj.gupta2@amd.com>
-References: <20250312095411.1392379-1-suraj.gupta2@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB9423C8AE;
+	Wed, 12 Mar 2025 09:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741773440; cv=none; b=Prm0PWPTCR8/Z4TYn2mM6MTuBAvl6yp1feAaVT8EmLOlV+OjUK4VVBE6W1H8jSlzfH+ooz8qjf0p5ZoEi3eXTcnBMIEKyhoumwHPicEqxPSEnUSFAiJhG76PCikETkjHBYQGTQaQWOi/kqqflUzJqao513ajf29vvU3MRr5lB3E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741773440; c=relaxed/simple;
+	bh=MRFFW5+5MiGjJoDsl30p/S9DIYlDXxeob2SpJmgOj20=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F/fPiaVJj7fn2bUE5lPZFHAMxTFVQuJ++sYzHKUdilZETCZ+Jrl6vZ+q6ympEHlzo48Rttvjr1rjLuwimo78xKsm06n+OipHP2EacZFXM0w7JuvYJ+UjT3d+6vuxf71n0V8szokVVNCCp4dzq2s8GSKUBFwmTvcOfL/Tri+xM14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X45fVYL8; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-388cae9eb9fso3137961f8f.3;
+        Wed, 12 Mar 2025 02:57:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741773436; x=1742378236; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4Bk0+6TyveDnhFSN4ubd8Ki6PyJoMe7ilhOG2b+TwmQ=;
+        b=X45fVYL8XICL1l6ywaSE1eqgfpdcam5LDM7s68g8pWjQqLO8RuoezvG0YxjBhlokVh
+         zmmi6KKi+/VxkqoyV5WNoaV57zhlJhyZbDKk3k4X/IHh1ud9qqk9KX/c3R3Eklay8+8+
+         jTBcvA78NUYnEAoobiOqvrIHcxfLs5IeA8K1olnHqebwcNv/Ml2ltkWkLDNaaJd1hh6e
+         GETl/xyK4gKbso282Wq+gzpT+qG77M5CkKp6AkCcuSZvomTZz7nVYhSPtuFS93QEAlJf
+         qkpcE9w3G1BCNTQXYcoKR3DpBY9vTMTUkJDzwIZbsmvRTQSDostTGWFCNSfyBb/7ktjL
+         PAnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741773436; x=1742378236;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4Bk0+6TyveDnhFSN4ubd8Ki6PyJoMe7ilhOG2b+TwmQ=;
+        b=BJ6Ha3SdH7i7Cf/oLOimmDhGQdBTyusUNea996JZ7h+VOig80EEW7lk3YiaLgQhCJ/
+         DkNawpxgOn5d2qiYuUEcP3NCjmRt+dc/Qt6aUf8wGd34Y7QfecX8FjQYc385kJIub9I6
+         vGj3d44FHXAlGY0xsJhBBscrzrSgWOrg/KWqrTFDTQcwcDDteEHF2isYx/sbrtAY8A2D
+         Guczj2ZKG4CHy6NK4kSf2QDQ2QsUoHPS6ffJklhsC8GwIVslCbByy9qAMYhLA7QWvr+m
+         UBxU3IgAk68qvDd+PkRv/OqJuqWBcqjTrXqRa47X6nT74WOFdw1H+XVOlt2HiBoRLUx3
+         xJGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjdIRt9LwRLJVy2B0N2ooDzXua+fopIwKQnMIC3XHYuOpL6yCYmwny5pmq1qKQy5WALhmSKoy+RNGD@vger.kernel.org, AJvYcCWLqQVTxInTLcS/DlBhxF6kpB/fDWHIiuWlnFdE7DypBatQFIekpmSyARMtrC4VS+CilD4ViadMj44=@vger.kernel.org, AJvYcCWtbTHWZrf2xBBfNQ++l/oXSa9lQ/higtrKnvHGD3uYQzCmZ7aO6uI4oyZrFzJYtReFC7kF4rZcHnOmnvnW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9JisPx9XBjxnYIxUc0HknTCRa7wS4GVlx/7m0sAUNItpO32oM
+	Dh9mOmnscSlTfTeczpVRHieUi1waY/Uo2M86B0Z3slxNFuFqGCxurV7mf6DxTRgNdQN+xJ3/EFv
+	kZ54z7I5+sKpI43NdAK+pX9mX0Z0=
+X-Gm-Gg: ASbGncs8LypCNKmcj9nUtLGDYHK3ezZdcVi90RBUxASe7W33m3aADLIH+eHFuruin34
+	hXeBmPkaOR6jXa3w2f+dZFgCHHzxfXD06Rl2s/oMcIEuwYK9wcg9c7AwGMPDAulmHRHQIl6g08G
+	xJWcwDJ4p0hrL3XBb9MCRjsaI4IN0=
+X-Google-Smtp-Source: AGHT+IGRG52MpBzZ4/Ng/tlPI9MLq485xsY5jmMJ52FzXP3WMdFQYzendKxMCVxYqZZI46lbWuSnkeYAQUzI9fNbrlk=
+X-Received: by 2002:a05:6000:1a8e:b0:390:d6ab:6c49 with SMTP id
+ ffacd0b85a97d-39132da9221mr16952047f8f.35.1741773436350; Wed, 12 Mar 2025
+ 02:57:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: suraj.gupta2@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000016:EE_|SA3PR12MB8440:EE_
-X-MS-Office365-Filtering-Correlation-Id: a1bb9890-0202-45f9-8983-08dd614be012
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|376014|82310400026|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?PxFAfzCSvrmwLJOAcse0GU1a/YTmP/X7iE8ub/oWNouMMxOvmkFsNXsyCxxT?=
- =?us-ascii?Q?pYpyLVh1riJ7AhMfKqXbbz7grw9dXKJNizPwi9MSV/5xc3mUVYeTKD6DPuoJ?=
- =?us-ascii?Q?tIN0sBGijwMC3XZitWXgZg1TdyKwggzUf/dgYaEcfxEyIBCyqLIrzqsqYzJn?=
- =?us-ascii?Q?fsTlAxVx4/W2jX+NbJA/nJWMnPc1xQ9t67NnNyJNsnGJu7VNVEAKeBY43ngd?=
- =?us-ascii?Q?vc93KWawYcpRXjCM3AtpfQFfHsh/n82SJPFarWb7SB0ENrNWcKS4w0wjhU22?=
- =?us-ascii?Q?4G/qFZ0t3LDGrk9IvPBtkoKF/tiZ0DuEcRS9UTsF0F0VpHiyKDxYt7DNtunO?=
- =?us-ascii?Q?5XMoc9YjauwG/STkaObMRpltEPRKOcJLtgcPr8lkK/cBn8g2F/3SntJgGEHb?=
- =?us-ascii?Q?TXo0cmr5W4nyyb+hNBWZ1F7CXoSIfVPIO2hEf8NDHxOHUStyjnMYAdPYx7ez?=
- =?us-ascii?Q?4MMNDR7Z9jiw10b0llfRtyOOZ0H7J/lvg9n0e2T590RxT1IRkpNOimFVyEsG?=
- =?us-ascii?Q?HaHTzYpjCwE4u+gr+MA+idH9d6l/uNlW/+Zw8RnYS2xR3jldaqM3+PetP+EP?=
- =?us-ascii?Q?EZdwKB0mb5ilFxY3nFJ2G+9uhqOgeqRlRAED46JGAiTzOb/mEWtso+dIAUUM?=
- =?us-ascii?Q?GyxfczKsYWMIZ4FXgb9+GhyDl6nt0I5FfekHcVFr0rS0NP4ynbT3fwutqIcD?=
- =?us-ascii?Q?BbYLIYcpA5/W3PG44/SV2JYfQT2p62UiQiZ81EJHmDdjVL7nyiE/u1CLQ5LO?=
- =?us-ascii?Q?v2zOYOzVdQsp3dB7fS+r+yHU1RZM+9eGi7/65phgSRRoXnlGi+aZnFQhLr9z?=
- =?us-ascii?Q?+1BSh6gBDxqbthjUYDwWWpwEmM1GF9PbHvhMoZXYuZPseFvTiYAGlZmPSvXZ?=
- =?us-ascii?Q?iTXh8qJWsjFjW03SFonQSOZQ2cDmqCkIIu9n3p/6EJuAVY3vuti6jvfiL9O1?=
- =?us-ascii?Q?zSuIjb2mlzIPpx3UxN6ehYOWgROu257kuOeQjOe4OphoCd4fYfuVPouAgF3i?=
- =?us-ascii?Q?SwtLD0WwLa4vaBzYn55lT34ytKIVqQ6On9UE9yu43vBgiircMmEfkf7rZjWF?=
- =?us-ascii?Q?nTQMyMSvCex90BaKE8QBjtg3mSF3EfQ/Saq7Bo+heLPBZg9mvkuIoNKW7j0R?=
- =?us-ascii?Q?fOU0ru6a5UrLKpYRzXU2BalrgeFUQpaUXWroAAGYTc8rBrlajDsQrfPIJ52y?=
- =?us-ascii?Q?kncqjRSAKk9JHRgpuBCOf/z2bHbNb8RhiGAX/PZlG6bo83sSe6hqg/Z2i5Yf?=
- =?us-ascii?Q?1qQJKcUWSekrI3myT7J+37Lb7kfStH8cKZQv5NsGpHVg0eyvOF1V5q9DK0pA?=
- =?us-ascii?Q?KPe0pHM/pDYhDd038R7PsmUBhbSoC0wFDN087xYkvro5eNx8U5HirIQ+MV6N?=
- =?us-ascii?Q?8vVgkFNh1k6ZfKI3eBdk3e7eISq57YMyptOjzpYpwzo7kTHksmnd8sujy6uG?=
- =?us-ascii?Q?ty99ODDGzCSWh70BuCs0NPBFt9v7dDwM/9pMLtfV1jrbnE1Log2gW6+a1siK?=
- =?us-ascii?Q?M+WVkkh4AqYjzF0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026)(7416014)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2025 09:54:26.5449
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1bb9890-0202-45f9-8983-08dd614be012
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH3PEPF00000016.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8440
+References: <20250310080237.7400-1-clamor95@gmail.com> <20250310080237.7400-2-clamor95@gmail.com>
+ <20250311193732.GA4183071-robh@kernel.org> <CAPVz0n09ZP1i2tasdTvnt8RvjhALvUYjv9u_EGRtnXPOYQtuqQ@mail.gmail.com>
+ <4d1c3eb1-5c42-490f-83e5-60de05ffad06@kernel.org>
+In-Reply-To: <4d1c3eb1-5c42-490f-83e5-60de05ffad06@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Wed, 12 Mar 2025 11:57:05 +0200
+X-Gm-Features: AQ5f1Jqlx7t3_cSR4R8CS335M--auL7SEwcqufZDylqnzlIg_zB0GKJZ2cFtMKg
+Message-ID: <CAPVz0n2rxpk=KrsC2GOkBD=WZQSdVbd0tOYgow4miPz+3owsCA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: power: supply: Document Maxim MAX8971 charger
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-AXI 1G/2.5G ethernet IP has following synthesis options:
-1) SGMII/1000base-X only.
-2) 2500base-X only.
-3) dynamically switching between (1) and (2).
-Add support for 2500base-X only configuration.
+=D1=81=D1=80, 12 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 11:49 Krzy=
+sztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On 12/03/2025 07:02, Svyatoslav Ryhel wrote:
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  interrupts:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  monitored-battery: true
+> >>> +
+> >>> +  maxim,usb-connector:
+> >>
+> >> Just 'connector', so when we have a 3rd case, we don't have a 3rd
+> >> vendor.
+> >>
+> >
+> > Please, please be explicit and specific, you could not tell me this in
+>
+> git grep -C 3 connector:
+>
+> > v3, you could but you decided to fuck up v4 as well. So wise.
+>
+> We got a lot to review thus we make reviews concise. I understand that
+> it might lead to insufficient guidance, so more help in removing
+> workload from maintainers is always appreciated.
+>
+> Instead of using vulgar words towards us, please put a bit more effort
+> and look at other recent bindings how they do it.
+>
+> Review is provided in good faith and if it is by any chance incorrect,
+> it is enough to disagree instead of throwing things like above. That's
+> not acceptable.
+>
+> > Additionally, if you want a generic 'connector' which can be
+> > referenced as 'connector: true' then add one, ATM this is classified
+> > under your own terms as 'vendor property' and needs a vendor prefix.
+>
+> richtek,usb-connector is not the good example here. Your previous code he=
+re:
 
-Co-developed-by: Harini Katakam <harini.katakam@amd.com>
-Signed-off-by: Harini Katakam <harini.katakam@amd.com>
-Signed-off-by: Suraj Gupta <suraj.gupta2@amd.com>
----
- drivers/net/ethernet/xilinx/xilinx_axienet.h  |  2 +-
- .../net/ethernet/xilinx/xilinx_axienet_main.c | 24 +++++++++++++++----
- 2 files changed, 20 insertions(+), 6 deletions(-)
+Then what is a good example? This is the only example with binding Rob
+requested,
 
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet.h b/drivers/net/ethernet/xilinx/xilinx_axienet.h
-index 5ff742103beb..ded3e32999d5 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet.h
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet.h
-@@ -274,7 +274,7 @@
- #define XAE_EMMC_RX16BIT	0x01000000 /* 16 bit Rx client enable */
- #define XAE_EMMC_LINKSPD_10	0x00000000 /* Link Speed mask for 10 Mbit */
- #define XAE_EMMC_LINKSPD_100	0x40000000 /* Link Speed mask for 100 Mbit */
--#define XAE_EMMC_LINKSPD_1000	0x80000000 /* Link Speed mask for 1000 Mbit */
-+#define XAE_EMMC_LINKSPD_1000_2500	0x80000000 /* Link Speed mask for 1000 or 2500 Mbit */
- 
- /* Bit masks for Axi Ethernet PHYC register */
- #define XAE_PHYC_SGMIILINKSPEED_MASK	0xC0000000 /* SGMII link speed mask*/
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-index 054abf283ab3..0885ce201b0a 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-@@ -2583,6 +2583,7 @@ static struct phylink_pcs *axienet_mac_select_pcs(struct phylink_config *config,
- 	struct axienet_local *lp = netdev_priv(ndev);
- 
- 	if (interface == PHY_INTERFACE_MODE_1000BASEX ||
-+	    interface == PHY_INTERFACE_MODE_2500BASEX ||
- 	    interface ==  PHY_INTERFACE_MODE_SGMII)
- 		return &lp->pcs;
- 
-@@ -2616,8 +2617,9 @@ static void axienet_mac_link_up(struct phylink_config *config,
- 	emmc_reg &= ~XAE_EMMC_LINKSPEED_MASK;
- 
- 	switch (speed) {
-+	case SPEED_2500:
- 	case SPEED_1000:
--		emmc_reg |= XAE_EMMC_LINKSPD_1000;
-+		emmc_reg |= XAE_EMMC_LINKSPD_1000_2500;
- 		break;
- 	case SPEED_100:
- 		emmc_reg |= XAE_EMMC_LINKSPD_100;
-@@ -2627,7 +2629,7 @@ static void axienet_mac_link_up(struct phylink_config *config,
- 		break;
- 	default:
- 		dev_err(&ndev->dev,
--			"Speed other than 10, 100 or 1Gbps is not supported\n");
-+			"Speed other than 10, 100, 1Gbps or 2.5Gbps is not supported\n");
- 		break;
- 	}
- 
-@@ -3055,7 +3057,8 @@ static int axienet_probe(struct platform_device *pdev)
- 			 "error registering MDIO bus: %d\n", ret);
- 
- 	if (lp->phy_mode == PHY_INTERFACE_MODE_SGMII ||
--	    lp->phy_mode == PHY_INTERFACE_MODE_1000BASEX) {
-+	    lp->phy_mode == PHY_INTERFACE_MODE_1000BASEX ||
-+	    lp->phy_mode == PHY_INTERFACE_MODE_2500BASEX) {
- 		np = of_parse_phandle(pdev->dev.of_node, "pcs-handle", 0);
- 		if (!np) {
- 			/* Deprecated: Always use "pcs-handle" for pcs_phy.
-@@ -3083,8 +3086,19 @@ static int axienet_probe(struct platform_device *pdev)
- 	lp->phylink_config.dev = &ndev->dev;
- 	lp->phylink_config.type = PHYLINK_NETDEV;
- 	lp->phylink_config.mac_managed_pm = true;
--	lp->phylink_config.mac_capabilities = MAC_SYM_PAUSE | MAC_ASYM_PAUSE |
--		MAC_10FD | MAC_100FD | MAC_1000FD;
-+	lp->phylink_config.mac_capabilities = MAC_SYM_PAUSE | MAC_ASYM_PAUSE;
-+
-+	/* AXI 1G/2.5G ethernet IP has following synthesis options:
-+	 * 1) SGMII/1000base-X only.
-+	 * 2) 2500base-X only.
-+	 * 3) Dynamically switching between (1) and (2), and is not
-+	 * implemented in driver.
-+	 */
-+
-+	if (axienet_ior(lp, XAE_ABILITY_OFFSET) & XAE_ABILITY_2_5G)
-+		lp->phylink_config.mac_capabilities |= MAC_2500FD;
-+	else
-+		lp->phylink_config.mac_capabilities |= MAC_10FD | MAC_100FD | MAC_1000FD;
- 
- 	__set_bit(lp->phy_mode, lp->phylink_config.supported_interfaces);
- 	if (lp->switch_x_sgmii) {
--- 
-2.25.1
+> https://lore.kernel.org/all/20250225090014.59067-2-clamor95@gmail.com/
+>
+> looks correct - you have there port. So where does charger_input point?
+>
 
+It pointed to the port I have removed because Rob in v3 said it was
+overkill and connector phandle was enough. May you resolve this inside
+and not to contradict one another. Thank you.
+
+>
+> >
+> >>> +    description:
+> >>> +      Phandle to a USB connector according to usb-connector.yaml. Th=
+e connector
+> >>> +      should be a child of the extcon device.
+> >>
+> >> 'extcon' is a Linuxism. Is there an actual requirement here that's not
+> >> *current* Linux requirements (which could change)? I assume the
+> >> requirement is to have vbus or some supply?
+> >>
+> >
+> > Pardon me, this schema is part of Linux kernel, no? I have no clue why
+>
+> Bindings are used by other projects as well and they live here because
+> of possibility of review by skilled people and due to size of the
+> community. It does not make them, in general, Linux specific.
+>
+> > you collectively decided to just ignore external connector detection
+> > devices. Ignorance does not affect the fact that such devices exist.
+>
+> We didn't. They are described.
+>
+> >
+> > And no, it does not need vbus not supply, it needs EXTCON
+>
+> There is no such thing as "extcon" from hardware point of view. Point us
+> to any standard or even wikipedia article describing it.
+>
+>
+> Best regards,
+> Krzysztof
 
