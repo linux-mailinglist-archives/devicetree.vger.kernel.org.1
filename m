@@ -1,161 +1,183 @@
-Return-Path: <devicetree+bounces-156788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49DEEA5D8A1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:51:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16E1CA5D8E2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:11:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF9E2189DF89
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 08:51:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0115189BCE2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B58023644A;
-	Wed, 12 Mar 2025 08:51:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13908238172;
+	Wed, 12 Mar 2025 09:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bKysH/zP"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="VHiitqKh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936232F43;
-	Wed, 12 Mar 2025 08:51:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D52723816E
+	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 09:11:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741769490; cv=none; b=XynmTUJYz5+7JegGX8E1sfMhYB7zNVvTYYuL5V/6IP9e0JYX7Uq0SKR4XAj+7C6fndmj+e0d/vdlUXehD5HYdGQy5a4v7MqXXkk7moWmrdr4ml4x6gn9p5ujltbsfC+Jj74FkuZI0gA/MnRpWdJjTbyEWVk4U596L6pwyOE2KOQ=
+	t=1741770663; cv=none; b=EN8lSIeVfLs1+r1zg97+4im3YPVv0eZTywapwbOXpXHClhN9RLzzom82bgNF1wF/XgeWFUXgcaZvefH5qgLHpEpoHvDxTsIwP0F3X0BRNbdwS3R2Mu8Ryj22PV530yjV5GoJ6W+3TsmZ8tiFm5lEXMNd4UHgPJIKJAFnErWn9to=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741769490; c=relaxed/simple;
-	bh=0WusSgF6UoqNfncLGyqKa+GtRSZUqJNmN16FJPHLGT4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aitVYVatyYlxZs/XeaooKZAB3s9jArKcvx7tq0yvvZmdfQ57Uwuw23Dg7jfc50wZuBnLFZX4enDqcvMs/vc9k3AzNl3SKqc4kbM/cnLZrWAmUy2jgVskWpZAkHp0fChpktzRedcRUe4US2rVNUzj/ifsVn26WewGC2/jBwFXUwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bKysH/zP; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e64700a38cso6021065a12.1;
-        Wed, 12 Mar 2025 01:51:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741769487; x=1742374287; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KkefSmKAZpDVmv4h4B/Mr4vzOBIOtFod54B0n69vXSA=;
-        b=bKysH/zP4tyOvp+sNEprUfpn+LIFj1af33OhKZUUkaMuN1XSoIC3hxwnBRL8uB+r5h
-         6GOVKoiKy9a2zK2LfTjfd/7fi/vhT5bmMtRB/ERy+p/irgcOuANSBjhqHu6FsjDI5P47
-         X8dqhyPIhnsAeCZa4Z6mhYigM/tsh+gYqI7UmMNzmhs9LdXDh87onuSddYRicoVfBZeA
-         hlBGkdVswtSiIlA6kwT5CzAw4GusTzN59OmOyesYO5M8ayphP72udZMdiYN9qcjn6sc7
-         druS9oo02aIXMWbzxIrxKl885Uls3p192lri46988H8RZCIs4GRSe6J9zG/JQaeS+LA8
-         aeew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741769487; x=1742374287;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KkefSmKAZpDVmv4h4B/Mr4vzOBIOtFod54B0n69vXSA=;
-        b=Nw4lN3MbDfd1C/BlhSyeurfovYV2ZqZJlea67vuBACdlsX9uIechwNfX4THo3uIqlw
-         SQDvkOyDXfbsGV6cubxBF7Y9Am/ivsubiTQRgpuVA6w+1Wv0yVpdhisixn3aXW2oxtcX
-         QTBIRsSm97TST8GPwaPORQV7DokaJtmmzmoD2NcrdQzUtWGXYrWPEMoL6D4GBuIg5JGZ
-         uIIJ/DiYoU0YqjmJSPV2mo+xwgHEKjs/6mV7fthWidQNba6KrAQ9m4Hv0IpAv/4IUIgO
-         gNNv19AM9rRLNT0ysvDg3tZ3NfwK9ytx/DkhmbsWjfT4nkLaCGh/tXyDfQ54pcAIbb7C
-         S4vg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPDCShBgWYq+u6qHlKObnk0UR3WCFyZt51GgPw4/EhmpqFCFzpJQbWPuzsSbWJBhm8fBvtoUVh/ZcRjjVL@vger.kernel.org, AJvYcCWB6+gG2Ri44G/+76Hcn8GW4w/of1VG7tsXJFsXTXEOpezcurvpdAd4UNuindzo8ec0kpNDfBiOuRrwehM=@vger.kernel.org, AJvYcCX9LhDJDEOhteelqz1dSx5+gL5eTkKsTgrbwgugq9Eu+5ETrQ7OV8yFtGBsN8EsVS9dS1xrAP2Dup2z@vger.kernel.org, AJvYcCXhYfYTR6eL8aipy9hNyDKRCtWg/dgxFOX8+kMZd6Nd6QIOlFwt6i3cuo9ofSy569lU9wlslDz0OGbOl10dNg==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8y1L5kCsQOVWjaac4xqTML4qcgVsxTA13N5hyTpOnIWzrp5AY
-	huP8ds1SLAmshIgeLG1AjLJsGf4vPWWXAA4J1he8u3JIWaNMri9tzoV0oukcgOgfNWZW6fXDZPH
-	iXXmHCB9wUs9zGdgtORYDQJici2o=
-X-Gm-Gg: ASbGncuf+GD6k1fSM3/uvYW0W1NIy+6uQhznD1cbA2U9tX/DzFxrBpQ4FNNHJK1kH1h
-	/H+G+IBTcXwWivFV3yJU9lmpCEGj0S3PeN94ZnepYpm0IRZigz+zDmrTxaNYeeGTMI0NFFMxf4g
-	rVC5ThXpu1G+r+3SPsUx3SGI3eDYweR3ohJcC8kmkd3NfzXbd43Y+nrZSU
-X-Google-Smtp-Source: AGHT+IEJQ8fdeQ9d70lO4G/UxvcFqQHQIPNvhviIhjFhYj6qjJv/LiKn+PbE8+0BLQx+rkv0M714ORuEsQJ2Pb2LzKA=
-X-Received: by 2002:a17:907:6094:b0:ac2:fa32:f3 with SMTP id
- a640c23a62f3a-ac2fa320448mr91399966b.52.1741769486501; Wed, 12 Mar 2025
- 01:51:26 -0700 (PDT)
+	s=arc-20240116; t=1741770663; c=relaxed/simple;
+	bh=ibaXYPJKAhgwDwiXhVw8vdLoNbsbT6IikHyYR6E5xn8=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=C3G+/dJr5sqsFwC6hv+yPU0p1Y5Vg3XTZgDrYGmQz3+Gy4x3+BW730+JThwLEdc4tSRvlFOGCEqxbnZUz4E+NyNOC7J2cRsZdfleEAhmrgFrNll6Di4HtIz/EiXZn5BaAgBlEh98jPn2IfQy3/c+J/1SRx9JhwroArC05zwmv8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=VHiitqKh; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250312091058epoutp042d753fcea0ae91769522093cd22b3aa4~sAy91itYn0464504645epoutp04S
+	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 09:10:58 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250312091058epoutp042d753fcea0ae91769522093cd22b3aa4~sAy91itYn0464504645epoutp04S
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1741770658;
+	bh=JBa3dWFTD4SwgzxaWlFjlLz2e9bTlCRMLs4NNSBs44c=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=VHiitqKhcd32mvFwCzLdP4ddK2SIxAnZdOm6NnHNUsUkOtULZHhA4Y9QefflzqnVs
+	 6HphhN5PC/xlUsZjL48+mTr1niocEB35xsS/Ngdn7fbsNzyow4lylDxwrwjvGWeST8
+	 PkfGdRiTK5RW4Gr9KUa+QUWIPH7k88nh8Kf2qoKg=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+	20250312091057epcas5p1de3ff8e28c0a711a6b79cfc56a535319~sAy9bP8Ru1919219192epcas5p1U;
+	Wed, 12 Mar 2025 09:10:57 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.181]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4ZCPxX098Tz4x9Pv; Wed, 12 Mar
+	2025 09:10:56 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+	epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	A8.D9.20052.F9F41D76; Wed, 12 Mar 2025 18:10:55 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250312080817epcas5p1dcbafc369e65dbc9d0650dd2130f56e8~r-8PCtO980056700567epcas5p19;
+	Wed, 12 Mar 2025 08:08:17 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250312080817epsmtrp172c94cadcd06d4a364afd8fef20551c8~r-8PBx_m92458424584epsmtrp1g;
+	Wed, 12 Mar 2025 08:08:17 +0000 (GMT)
+X-AuditID: b6c32a49-3d20270000004e54-e4-67d14f9fdbd2
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	72.CC.33707.0F041D76; Wed, 12 Mar 2025 17:08:16 +0900 (KST)
+Received: from INBRO000519 (unknown [107.122.1.150]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250312080815epsmtip1851e3f39ebbf9dc070a9380d37eca7f4~r-8NKkUMq0762707627epsmtip15;
+	Wed, 12 Mar 2025 08:08:15 +0000 (GMT)
+From: "Faraz Ata" <faraz.ata@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <alim.akhtar@samsung.com>,
+	<dev.tailor@samsung.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <suyash.bitti@samsung.com>,
+	<abhijeet.s23@samsung.com>
+In-Reply-To: <5b68a9c2-9145-4131-9fa3-10810c51691f@kernel.org>
+Subject: RE: [PATCH 2/2] arm64: dts: exynos: Add DT node for all UART ports
+Date: Wed, 12 Mar 2025 13:37:57 +0530
+Message-ID: <2aa201db9325$e8ef6e00$bace4a00$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250311-dtbinding-v1-0-5c807d33f7ae@quicinc.com>
- <20250311-dtbinding-v1-2-5c807d33f7ae@quicinc.com> <ngzl7q3fli3bpuo5gjvppfrsnmlw6viy26ieqwhpfokgue2uxm@whomn2h6h3a7>
- <5e4838e5-b5f1-7107-78b8-cfd9d5620e2e@quicinc.com>
-In-Reply-To: <5e4838e5-b5f1-7107-78b8-cfd9d5620e2e@quicinc.com>
-From: Dmitry Baryshkov <dbaryshkov@gmail.com>
-Date: Wed, 12 Mar 2025 10:51:15 +0200
-X-Gm-Features: AQ5f1JqD-q2In0Z0Gelh-qkf9mGFnL61QwXY0ttZ9xE-w2UVrnfiNP36gq7RGmw
-Message-ID: <CALT56yN-UsUGTT2BTXNg3n_-LHJqksueJmPtZJ-uYpQj03sG4A@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: media: qcom,sm8550-iris: document
- SA8775p IRIS accelerator
-To: Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: Dmitry Baryshkov <lumag@kernel.org>, Dikshita Agarwal <quic_dikshita@quicinc.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQG4o3GQyN7Zi1+oRuvV8B0XiEe7kQMf9tKjAMPydvECHTlbErOE+bag
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrIJsWRmVeSWpSXmKPExsWy7bCmpu58/4vpBjt6LS2+djhbPJi3jc1i
+	zd5zTBb3dixjt5h/5ByrxctZ99gszp/fwG6x6fE1VovLu+awWcw4v4/J4v+eHewWX34+YLaY
+	Pb/Ggddj06pONo/NS+o9+rasYvT4vEkugCUq2yYjNTEltUghNS85PyUzL91WyTs43jne1MzA
+	UNfQ0sJcSSEvMTfVVsnFJ0DXLTMH6DglhbLEnFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFK
+	ToFJgV5xYm5xaV66Xl5qiZWhgYGRKVBhQnbG3V+T2ApaOCqOPJrP3MA4n62LkZNDQsBEYuqt
+	NiCbi0NIYDejxIa386CcT4wSd3u+MME5izetZ4Fpmbv2EzNEYiejxLTuc1AtLxklNs/8xwxS
+	xSagKXHn81OwdhGBZYwSXSePgbUwCzxhlGj7Np0dpIpTwE6i6ccGVhBbWMBbYv6KHiYQm0VA
+	VeLx9AlANgcHr4ClxPfFaiBhXgFBiZMzn4CdwSygLbFs4WtmiJMUJH4+XcYKUi4i4Caxawo3
+	RIm4xMujR9hB1koIbOGQ+LnqKhNEvYvEi/tLoHqFJV4d38IOYUtJvOxvg7J9JCYf/cYIMlNC
+	IEPizloRiLC9xOoFZ8BWMQP9uH6XPkRYVmLqqXVMEGv5JHp/P4HaxCuxYx6MrSxxcs8eVghb
+	UuLQ7ResExiVZiF5bBaSx2Yh+WAWwrYFjCyrGCVTC4pz01OLTQsM81LL4RGenJ+7iRGcdrU8
+	dzDeffBB7xAjEwfjIUYJDmYlEd7VthfShXhTEiurUovy44tKc1KLDzGaAgN7IrOUaHI+MPHn
+	lcQbmlgamJiZmZlYGpsZKonzNu9sSRcSSE8sSc1OTS1ILYLpY+LglGpgilkRxWMzpYVfO8WJ
+	n8VludkrpQczvyxadMF2aSen5oLPn2bnVn9Wn5StWOy/Xi6mx/l1GifP1U3LpSt79WTmbr8e
+	YLQ8Q/eWfoj5meue9W3s227dDFiVJ9n1YOV8o22Gv8OXJP6uW3Z8V3zw/62vOdwDPRY8VXHd
+	G+7z3bLVzOmgsTnfZqaZZtUcHHO2KSqsl/mul58R+ux9Tu/XrIeMs0I3TCu7olZ4+0b4xjf+
+	zg92Fnsf///+X9u+stqSs9MPSy1LKO78I5HHLPhq7Zdz17fomz07JSzpdWiHLYPj0iOTbZxX
+	r/g1+YheqcTFpowIu5z3uw0ndHxw+DJR/96DYnY5w0fyK+qP+88/UfNhvxJLcUaioRZzUXEi
+	ALwnMEtEBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKIsWRmVeSWpSXmKPExsWy7bCSnO5Hh4vpBv2iFl87nC0ezNvGZrFm
+	7zkmi3s7lrFbzD9yjtXi5ax7bBbnz29gt9j0+BqrxeVdc9gsZpzfx2Txf88OdosvPx8wW8ye
+	X+PA67FpVSebx+Yl9R59W1YxenzeJBfAEsVlk5Kak1mWWqRvl8CVcXPPQtaCd+wVO369ZWtg
+	7GTrYuTkkBAwkZi79hNzFyMXh5DAdkaJE2efMEEkJCUOP73LCmELS6z895wdoug5o8Tezk9g
+	RWwCmhJ3Pj9lAkmICKwBSqyaCjaKWeAVo8TNA3tYIFo+Mko0XJ7JCNLCKWAn0fRjA9hcYQFv
+	ifkresBGsQioSjyePgHI5uDgFbCU+L5YDSTMKyAocXLmExYQm1lAW6L3YSsjjL1s4WtmiPMU
+	JH4+XcYK0ioi4Caxawo3RIm4xMujR9gnMArPQjJpFpJJs5BMmoWkZQEjyypG0dSC4tz03OQC
+	Q73ixNzi0rx0veT83E2M4JjTCtrBuGz9X71DjEwcjIcYJTiYlUR4V9teSBfiTUmsrEotyo8v
+	Ks1JLT7EKM3BoiTOq5zTmSIkkJ5YkpqdmlqQWgSTZeLglGpgmqjT9/LBl63X3n1oCXkh9UxO
+	zVvg7d2kvSFT3oY/EOtN1j8WuVm//vbG8BuiYk6eF9gu6+v+PrK/JPOov9aFCQ1bMmpMlzD1
+	zWTb0sg4ZcW5vhO90krN+dX3unpdJJafNxVRviq1aGmT7ZTvQQESm6rk5uxJKnrMHVIsy/I9
+	vefgBeWmiCd/Vy+L32HvsHPdFYO3vE+9JqsGNDC+KZ+6sypltWuGY4T922R2tpVXxaI3u+lY
+	TDQUrFgqZtgeMv/1h10HCxhF2g/HT56YV2YnmPRLwYDlH8uVtjlnhDbbc1xyD7p4/7umunSz
+	gtjcrujKN+LzWXZXG5mGbXY9td5txs4DL+bob6kRPrDnmZK+EktxRqKhFnNRcSIAau0YtygD
+	AAA=
+X-CMS-MailID: 20250312080817epcas5p1dcbafc369e65dbc9d0650dd2130f56e8
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250312061058epcas5p3ccf293213fe883129358833572b17d92
+References: <20250312061932.1797993-1-faraz.ata@samsung.com>
+	<CGME20250312061058epcas5p3ccf293213fe883129358833572b17d92@epcas5p3.samsung.com>
+	<20250312061932.1797993-2-faraz.ata@samsung.com>
+	<5b68a9c2-9145-4131-9fa3-10810c51691f@kernel.org>
 
-On Wed, 12 Mar 2025 at 10:07, Vikash Garodia <quic_vgarodia@quicinc.com> wrote:
->
->
-> On 3/11/2025 9:01 PM, Dmitry Baryshkov wrote:
-> > On Tue, Mar 11, 2025 at 05:33:54PM +0530, Vikash Garodia wrote:
-> >> Document the IRIS video decoder and encoder accelerator found in the
-> >> SA8775P platform. SA8775P has collapsible MX compared to SM8550.
+Hello Krzysztof
+
+> -----Original Message-----
+> On 12/03/2025 07:19, Faraz Ata wrote:
+> > Universal Serial Interface (USI) supports three serial protocol like
+> > uart, i2c and spi. ExynosAutov920 has 18 instances of USI.
+> > Add all the USI DT node and subsequent uart nodes for all the instances=
+.
 > >
-> > How compatible is SA8775P to SM8550? Should it be using a fallback
-> > compatible?
-> They are quite compatible. At the moment i do not see any reason for not using
-> fallback compatible. Later, if we want to distinguish the associated platform
-> data for SA8775P and SM8550, the compatible can be made independent and use it
-> in driver to associate with its own platform data ?
+> > Signed-off-by: Faraz Ata <faraz.ata=40samsung.com>
+> > ---
+> >  .../arm64/boot/dts/exynos/exynosautov920.dtsi =7C 494
+> > ++++++++++++++++++
+> >  1 file changed, 494 insertions(+)
+>=20
+>=20
+> Please do not combine DTS changes with serial patches, ever. DTS has to g=
+o
+> via separate tree.
+>=20
+Sure, while sending v2, I will send DT separately and serial driver change =
+separately.
+Thanks for your review.
+> ...
+>=20
+=2E
+=2E
+=2E
+> > +
+> > +
+>=20
+> Just one blank line.
+Sure will correct in v2.=20
 
-It is already independent, even if you have a fallback. Nothing stops
-you from using platform-specific compat at any point in the future,
-you don't even have to change schema for that.
+>=20
+> >  		pwm: pwm=40109b0000 =7B
+> >  			compatible =3D =22samsung,exynosautov920-pwm=22,
+> >  				     =22samsung,exynos4210-pwm=22;
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
-> >
-> > This kind of comes as a more generic question: is there anything like
-> > 'IP version' or 'core version'? It would be really nice to determine the
-> > 'baseline' SoCs and make other instances compatible with the baseline.
-> It would be helpful if you can elaborate more on this with some drivers
-> following it (if any) ?
-
-iMX platforms have a lot of examples, see any of the device trees.
-Another perfect example is the Qualcomm SMMU, where we stopped adding
-new compats to the driver, because all implementations are declared
-compatible with "qcom,smmu-500' and "arm,smmu-500".
-
->
-> Regards,
-> Vikash
-> >>
-> >> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml | 4 +++-
-> >>  1 file changed, 3 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> >> index 440a0d7cdfe19a1ccedefc207d96b26eed5d6630..20ac596638ba33f49cce9e42d70d31a8aaa7c36e 100644
-> >> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> >> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> >> @@ -19,7 +19,9 @@ allOf:
-> >>
-> >>  properties:
-> >>    compatible:
-> >> -    const: qcom,sm8550-iris
-> >> +    enum:
-> >> +      - qcom,sm8550-iris
-> >> +      - qcom,sa8775p-iris
-> >>
-> >>    power-domains:
-> >>      maxItems: 4
-> >>
-> >> --
-> >> 2.34.1
-> >>
-> >
-
-
-
--- 
-With best wishes
-Dmitry
 
