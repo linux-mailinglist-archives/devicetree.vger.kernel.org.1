@@ -1,115 +1,159 @@
-Return-Path: <devicetree+bounces-156929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F6DA5DE98
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:05:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F0CA5DEA0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 15:08:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A69613A49F4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 14:04:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BB2E189BE8C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 14:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482E924BBFD;
-	Wed, 12 Mar 2025 14:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1149724BD14;
+	Wed, 12 Mar 2025 14:08:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mW13RbkE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ARls7idO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ABD723A996;
-	Wed, 12 Mar 2025 14:04:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464A71E48A
+	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 14:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741788297; cv=none; b=F0sQlbMIxOG20rCadR3BCeg1Yc6vgM66QNMy9oEjXPNCqw6BXsPGNXw/GB3YAkw2LRGfvCGXWr4TpBG2EPJ2CrQaRXTJrBre83Mmn6tzi3h1oWufj8d2aTnjD7UODHSrql5HtcPCP7wsyFZkdsMzGiUoyO61K6sKjm2VceVhbMM=
+	t=1741788511; cv=none; b=rWbTH4s7l50Z28hoFPscy+UyPcEzkS/VwhfGExRfbM/jQCMILXswadUBuA/IaPrGSkwUhA674QOkTd+qU0/5LIn/VG13cX7xB7k0JJqgPpMbV3Z0pyS4/awvpke7yZXjNEf/src5s5U+mZ/XA80RSkWVtDjbr2N/eP32Ndstc/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741788297; c=relaxed/simple;
-	bh=LupScz4CaJ9kGRzq8mkFgRBPCXt1vQNREcsiJZUoVuE=;
+	s=arc-20240116; t=1741788511; c=relaxed/simple;
+	bh=nPru4QrnmaYN1sJ2YcIMaUd6EP+y9ovxrlluxJxdhsQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d0X7LCv23FyiCaor4+raU5MnkFSC5w+dOtvLdhO7/FoTt/+m0k5gogVu1iKmJv9YNE6JHkug1Zfm5ThwT2PsP1OMguwcNujvRgsT6YxjKT9ZkYDbZdU1AUypNl5NxPkX09w8oY1+jmTb28KXTdiAd/wvhsya+sqkQrxRKE2dEKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mW13RbkE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B798C4CEDD;
-	Wed, 12 Mar 2025 14:04:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741788296;
-	bh=LupScz4CaJ9kGRzq8mkFgRBPCXt1vQNREcsiJZUoVuE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mW13RbkElYKwMFLrD6fuz0i53FhQZBKWjleOARIpRFHLwGj1wc2NOPNc/ewieoxAv
-	 V4aGQH6IyzKxHr8x/1sJNF0oU2AfXLWZpEnYTkzkqPqPw6gMXHuhRVXpO87/bvMwap
-	 5+P9TEpSpdBOy3+62A7LN4f1CHTme1/6r5VwtRotQRlPXuiWfdBOfy7A1vgb3F97IQ
-	 g8fHn0fLPAMPXqI6T2xbFr6o0dyfRvtnYevIp48bQ+emsAi6fAKVPAJrcqoncWQS9O
-	 RnK7zkWVbo5vw4R9BwJIZqItNs7Lq+twvnYSAVd3aDra12b6GL/wiGMZUoVgf5c1Ln
-	 Tv1ELCr+4tXJQ==
-Date: Wed, 12 Mar 2025 14:04:49 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: Weidong Wang <wangweidong.a@awinic.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-	anish kumar <yesanishhere@gmail.com>,
-	Ben Yi <yijiangtao@awinic.com>,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Igor Prusov <ivprusov@salutedevices.com>,
-	Jack Yu <jack.yu@realtek.com>, Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>
-Subject: Re: [PATCH V3 2/2] ASoC: codecs: Add aw88166 amplifier driver
-Message-ID: <cb3df868-1131-4bf8-a976-66d376a87c88@sirena.org.uk>
-References: <20250312120100.9730-3-wangweidong.a@awinic.com>
- <85859be0-95f7-48f2-bc51-488531529075@web.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=aaKj68OY/zbAzBNEXJ7H+JcMq0h0wBof/Be35ysT3S0Dz/lXYuBtFBiHPfYH7iUeCqGcrfvgG4BJ8ywE3yqSsmf4rhEebRNIUeR1bLskqSha2LFLA+aG3WsWxcuXLYFqNuQ7uyifgiyh+mgoqQrYRmfZ9u48gYSIfoTSbb6tOoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ARls7idO; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741788508; x=1773324508;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nPru4QrnmaYN1sJ2YcIMaUd6EP+y9ovxrlluxJxdhsQ=;
+  b=ARls7idO1VZrQsimkdiPLIZ7Hidm2qvBJ66NnPSObuHPz+vXxREg3IhU
+   xKCDRkWI9e6Z0sOpr8hsOpGgMw1f0+I6FEPWctg3h17tzGbP3CITNyp03
+   c+6T8aM7CwJwV1YwCfAmdoMfGdnikXpWAtCJyJorM3A7jzsh5kkojm4Ox
+   pLjHfVBYUyP/XhLahMSJrqsiFCA+prWG/GBL+bqHF5iv0ub/aFowWlR4A
+   z69ZwFX/kSLNAfVJL8pwSWqNc5xg0+UDc5sZJru2oj4KFXA5OLkPUAaH1
+   tzStFMUYUD3vAU8PNdzCwJjLP5VrCAbx9aFlp5ABoszipSsGWoKsYZfLv
+   g==;
+X-CSE-ConnectionGUID: 7DfHVFVuSDG93ebpo3N1YA==
+X-CSE-MsgGUID: QK0/XJ1HQLqMpBxaRBP1Ig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="42726591"
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; 
+   d="scan'208";a="42726591"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2025 07:08:28 -0700
+X-CSE-ConnectionGUID: Cj8KSxffRoywGcljWx1K5w==
+X-CSE-MsgGUID: No9uvvM5Qf+dtRseybNkJA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; 
+   d="scan'208";a="120879356"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa008.fm.intel.com with ESMTP; 12 Mar 2025 07:08:22 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tsMkt-0008bY-2K;
+	Wed, 12 Mar 2025 14:08:19 +0000
+Date: Wed, 12 Mar 2025 22:07:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Roman Kisel <romank@linux.microsoft.com>, arnd@arndb.de,
+	bhelgaas@google.com, bp@alien8.de, catalin.marinas@arm.com,
+	conor+dt@kernel.org, dave.hansen@linux.intel.com,
+	decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
+	joey.gouly@arm.com, krzk+dt@kernel.org, kw@linux.com,
+	kys@microsoft.com, lenb@kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, mark.rutland@arm.com,
+	maz@kernel.org, mingo@redhat.com, oliver.upton@linux.dev,
+	rafael@kernel.org, robh@kernel.org, ssengar@linux.microsoft.com,
+	sudeep.holla@arm.com, suzuki.poulose@arm.com, tglx@linutronix.de,
+	wei.liu@kernel.org, will@kernel.org, yuzenghui@huawei.com,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH hyperv-next v5 01/11] arm64: kvm, smccc: Introduce and
+ use API for detectting hypervisor presence
+Message-ID: <202503122113.trcjnau3-lkp@intel.com>
+References: <20250307220304.247725-2-romank@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/sb7EUmXh8ErV6ui"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <85859be0-95f7-48f2-bc51-488531529075@web.de>
-X-Cookie: You will outgrow your usefulness.
+In-Reply-To: <20250307220304.247725-2-romank@linux.microsoft.com>
 
+Hi Roman,
 
---/sb7EUmXh8ErV6ui
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+kernel test robot noticed the following build warnings:
 
-On Wed, Mar 12, 2025 at 03:00:36PM +0100, Markus Elfring wrote:
-> =E2=80=A6
-> > The driver is for amplifiers aw88166 of Awinic Technology
-> =E2=80=A6
->=20
-> You may occasionally put more than 57 characters into text lines
-> of such a change description.
+[auto build test WARNING on 3a7f7785eae7cf012af128ca9e383c91e4955354]
 
-Feel free to ignore Markus, he has a long history of sending
-unhelpful review comments and continues to ignore repeated requests
-to stop.
+url:    https://github.com/intel-lab-lkp/linux/commits/Roman-Kisel/arm64-kvm-smccc-Introduce-and-use-API-for-detectting-hypervisor-presence/20250308-060639
+base:   3a7f7785eae7cf012af128ca9e383c91e4955354
+patch link:    https://lore.kernel.org/r/20250307220304.247725-2-romank%40linux.microsoft.com
+patch subject: [PATCH hyperv-next v5 01/11] arm64: kvm, smccc: Introduce and use API for detectting hypervisor presence
+config: arm64-randconfig-r131-20250312 (https://download.01.org/0day-ci/archive/20250312/202503122113.trcjnau3-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20250312/202503122113.trcjnau3-lkp@intel.com/reproduce)
 
---/sb7EUmXh8ErV6ui
-Content-Type: application/pgp-signature; name="signature.asc"
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503122113.trcjnau3-lkp@intel.com/
 
------BEGIN PGP SIGNATURE-----
+sparse warnings: (new ones prefixed by >>)
+   drivers/firmware/smccc/smccc.c:19:21: sparse: sparse: symbol 'smccc_soc_id_version' was not declared. Should it be static?
+   drivers/firmware/smccc/smccc.c:20:21: sparse: sparse: symbol 'smccc_soc_id_revision' was not declared. Should it be static?
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
+>> drivers/firmware/smccc/smccc.c:81:37: sparse: sparse: restricted __le32 degrades to integer
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfRlIAACgkQJNaLcl1U
-h9A8SAf/WseTvtO540IJYcvZPWjBX+2pMESToqUJmaj5zObc4R4Gbm4IFIVuiTOv
-sV7v/9cuTNHn6rJ8Zd+dlWiCwCTC9imk4A3NdZFWhZRg8M8aaMmBm+RYEntnh0yt
-Sq8Odm8N8w/MGI41/JEPPkOIJObPPVVJ4mXWvLZqxyp7hvkWJizsNac37b+LAWHQ
-q/URQb8tgQCWd9g9xo0ghhNPDHKDhCu+YMTZuLfty6etjunhBGj3rGeZoSc01INM
-BxcvFShEprcHPQ7FII1x8teoETdFNBOfZGkPA9L/y4LDKbFbAar0NclRCifh5W8l
-0XsrR1SMjXBhq0NUezY+9dXsLY1z1w==
-=eGPI
------END PGP SIGNATURE-----
+vim +81 drivers/firmware/smccc/smccc.c
 
---/sb7EUmXh8ErV6ui--
+    69	
+    70	bool arm_smccc_hyp_present(const uuid_t *hyp_uuid)
+    71	{
+    72		struct arm_smccc_res res = {};
+    73	
+    74		if (arm_smccc_1_1_get_conduit() != SMCCC_CONDUIT_HVC)
+    75			return false;
+    76		arm_smccc_1_1_hvc(ARM_SMCCC_VENDOR_HYP_CALL_UID_FUNC_ID, &res);
+    77		if (res.a0 == SMCCC_RET_NOT_SUPPORTED)
+    78			return false;
+    79	
+    80		return ({
+  > 81			const uuid_t uuid = SMCCC_RES_TO_UUID(res.a0, res.a1, res.a2, res.a3);
+    82			const bool present = uuid_equal(&uuid, hyp_uuid);
+    83	
+    84			present;
+    85		});
+    86	}
+    87	EXPORT_SYMBOL_GPL(arm_smccc_hyp_present);
+    88	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
