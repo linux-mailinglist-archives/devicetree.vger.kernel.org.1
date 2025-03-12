@@ -1,228 +1,317 @@
-Return-Path: <devicetree+bounces-157008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FADBA5E639
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 22:08:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D482AA5E642
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 22:09:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 641CB17D51E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 21:06:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED8381632B9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 21:08:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC4D31EFFA6;
-	Wed, 12 Mar 2025 21:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF70D1E9B32;
+	Wed, 12 Mar 2025 21:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gwYIHqoG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fOh+ayNS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C3D1EF38E;
-	Wed, 12 Mar 2025 21:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCCDE1ADC6C
+	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 21:08:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741813492; cv=none; b=R4wZHN2zaHFkiSPbXKBPjqL9Mi6azWcMOfy5qYNlfHFGFp92Tq4gOdonQRakUZkayjFwC4DwWhEOaEP4oQkAkivppv/07xzBCGssae8zDTG7XWTCT3FuPJpoSYxSMQMT570PqwfCr6Urxmp97YM2vCUg0IfY7T6e9d0JYgfqv8k=
+	t=1741813735; cv=none; b=X0CZ1u54HE/AGLCAJSGCUUzWD2FXlxhQ0UOhwT66iLNewuez7s5sTz0qRvBmvOb12b58DESwXoSUbr9uZ1kvnhn8mfYbX032yCD8AzJxkMZ62v+mCCNcmiJOrNA+YMri8KJmdTJWiDfg1VhDtlqDKDlh78jO+0SzAtfa0LKKHaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741813492; c=relaxed/simple;
-	bh=+LGUaVivceWptpxAIWBUUKprgy/a0XLvVKd+sJ6qOOc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fA/wRZMA0jcw0ZZHAZnqnJoMLCcPzzY7es806h4y5mE/TsARKib6cQ63M3q23HiVBP8/EU+do0FlJPByH7/wdpZqG//6ZUSs+IzaKjOD9N+yXALQEaBxsOQRy2UXTpZ7Kyox7faRUxfcfyfwHU9VVl78MAoqH8nkBXuW5MbD8a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gwYIHqoG; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-30bfed67e08so3221361fa.2;
-        Wed, 12 Mar 2025 14:04:50 -0700 (PDT)
+	s=arc-20240116; t=1741813735; c=relaxed/simple;
+	bh=2SADhtRscCayEWIilVsOvVg+MYIKsQ1fFuXlAmHgLmo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lH8baXZMKHI+g33H3ChggApi7UMG8rBZDvf6eFw9MPLm4pj7KMnAMcaYIbF6ZhuZRJBPir1PwYlG5lKJL8Hac23z0prBC/9ON4xb79yWUQLzcy7ycfHlXH1abwAtLKj8Vh+mhGt854QEkQisN8XTJgzwv9M/2AfHp4l/haWOjqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fOh+ayNS; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5dccaaca646so575885a12.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 14:08:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741813489; x=1742418289; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9kZxK/2Q5hehdq6vdu9VftqHSqPJSU1J/P2JUB6zgGk=;
-        b=gwYIHqoGCNZTQ3ySiUpmlkDGm5v3Bo72Ya6/Rd3u1QBorCkX2IWzKnYlp4dj47RvGP
-         aB7rOinDtkkV62F7ytA9Lk80zVrmUfsimJ69dA026UMl596Mjt9u0lJpZHYItojR3+WL
-         w5gR8GjlJ+4zHiuCAsB92YoIXrFXqB/gOMjOJ9NPPmu5NElWf6qSVhVqLMhJ890VrcIV
-         iSXHbjasrLqdxpy/C6l6uRcancWSlnXIwaJAeuyWSR/ZucGx2/5wzTkEj/M94ErucKgV
-         bzQWiZOVtJzpC4s/LC9GP4Bi2+vvGYmxWfBlTWbPjGPf4WsMQagjB13pq53fEGPZaogQ
-         wrZw==
+        d=linaro.org; s=google; t=1741813732; x=1742418532; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IsN0yxxswAlGhNym0IDJR3BHiKwcdQHi9QIjjoxz35M=;
+        b=fOh+ayNS2cpEo069ObI+/hJLmsJBvzIAhU6ObbZbqvB6dNcunNkKoSkhqEPfkDi1Lg
+         8iGczDQIUx91PZb6zbTypn95XEeWdAJR0KrTYEY2uquxI5vJmAUKj1e10UvkPJPoM4Xy
+         Azfl/JPju/u5lVADhcdV+nQhBstu0xNQ7uKCQMvDSGkSGhFrJciH0bIucPW/rdOmVDxc
+         qWqth3F5fukMfAaenZLbIi7zCBKImvmyuhmUwnVKNUkKwfUQzYdvwpg72h58RVxayib3
+         Yt80g0P963VUEabCQqDkqgiHsRYwiA+F+ltyc3l9vyUo9gRSVYKIfiIBtGc3AzoYt8iJ
+         Et0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741813489; x=1742418289;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9kZxK/2Q5hehdq6vdu9VftqHSqPJSU1J/P2JUB6zgGk=;
-        b=mHu873MOhqThNcRCkvyWGC1FhPHqFM+y8k9+r26wDE1h7yNLEFFBzvVGdKGU7EJ/vu
-         Uszl5AsS+83jlctj4gTRU0Gg3LnrYJrzPC6wu9XIDmsN5f1IlFs/efqPGhxBps4dtRXt
-         DSDSx5SCMeBEHwR3mx31zYzcveu+4L2w9PZAvTIfI68OKPRJULZIkjn2wxhmyctQ5U9V
-         A9C8DxDv9pYuHqOVPeux2tXB/HUv3ESIDwU8YQwCh6jCMVdiB2L/QhAUNJeClLGpLyV2
-         pZYZJNmRsVtaQfkB0njRX63fgybfFcu3GPeh72piDGV5ANKGU6LycFQRWt0IVr774N0t
-         X89g==
-X-Forwarded-Encrypted: i=1; AJvYcCUGUfxqWuG+fqklSWn0JDsDTP0Gegd4kjvEopBeSYQVBtBmCUg4ngU1OgGTlheQzLzh6kP19uucTgYAFExg@vger.kernel.org, AJvYcCUss6GCPnWZVNZphHW7EI3uBYmRpqkXmJX7BTIwYy7T3MTsngPIIe0F8WKcUg/MQAwzIQbBwLZvdSgw@vger.kernel.org, AJvYcCVWKMGfa3xeBG7SkrJKaTqOwdc77kkssbP8L/CGmDG9gEp7IiwfuZWTFHVbftQ74qCKUlAjDO7n8s5F2yPTun5F@vger.kernel.org, AJvYcCW2LpMGEPjwNRkpZNJzYeGJysOEmMwko+xXaU5gutUrZX5VdmcHJHvcMsZfioNq/mNzVnDV3KXkpRzpV2cI@vger.kernel.org, AJvYcCXQLn1gcZUnQaIkLv0hCTxpuqqHWncBIyZVejW3zE5WtUC3rPlaofOAHqSUYgU22W464fbD+mScuu18@vger.kernel.org, AJvYcCXVsiuCWL03QaxapTbeNKJWph3uNTJ7jJmtMPus57/2ezpSrKTll3JxdF/hBuCLPr8GiFbsAZMDlj5+sZE=@vger.kernel.org, AJvYcCXmvohTbj7CLXUNAESuY2LEmnmaNcA7BOA9epM3WMCEzgJt9t4bYgy/cTgFR/abbX+udqaJX2pzM9tHjgWHkeI=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyb0Um29IRCcRoPXxikEgP0rNFIhlK3GzGM+cpiZBMZ0FPGHaLJ
-	eA195Aa+zQFWVUMcQp+4GlJLPnC5/tEx3fqsGOoUqq/15qPa4ZgV9WZcACZk+QlX1kYD6RHbdC5
-	42u/iWlB52b0v91lMaDeCq2C9PgA=
-X-Gm-Gg: ASbGncuYvB22BMXbLhhimtkNsJofKKdgqP2DRWCE7NNnMk2rASLJHotB5t/ginuXFFM
-	ZZw+bLIlBXKGhO5CHXoXgUWzm+M7F+HNVopXA5i3IIs6mlEyRaycLBiWYqtjb9yhVPxXVmiRdq9
-	LzNHCNjQyCI70W9jk7ZbbiFZ87jmMOQG0/3rw8TZyz/g==
-X-Google-Smtp-Source: AGHT+IHa+R1rvAMaQooEb8PCVQbXlUkUJjsQQodlQM3HWgy+TunL6fhJjqkj5E6QZhONq/5o1zkY/uhUY13Bk/SqCNg=
-X-Received: by 2002:a2e:7015:0:b0:30b:ee81:9622 with SMTP id
- 38308e7fff4ca-30bf466ce80mr71528251fa.31.1741813488633; Wed, 12 Mar 2025
- 14:04:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1741813732; x=1742418532;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IsN0yxxswAlGhNym0IDJR3BHiKwcdQHi9QIjjoxz35M=;
+        b=MgLvgU8HNqHqOiY3DacdNgsTJVA+GVqDfNkAYSIEhzH5RJf5zEbZJV/nyyVZi8jqiS
+         XitTSqq6SjOoQ6be1pV/BZXBR15DujKXiA7KORoQ9oFOM0SS7Kvx/iuBMxJwLdZ5nA3k
+         eW6iE9P+eP8jolNJ9/csWNhD8eyBKufKAWrQOdf1i9u6R+ppfHAtq4w3RjpIphLd1EKy
+         aa8CEXs4hE61nBOnDJoAThcRbWqhqEGwvMWz8Q467VKe/1G2u3spOctQitOPpTGZ9bXp
+         N2rtgYCYru84mzot6/rrf4XcD36nqZd3mx9RP0iAjQ46qzQmuxb81xWOyMwxgsbUdX20
+         qvUw==
+X-Forwarded-Encrypted: i=1; AJvYcCU30S4s0n1Lj6+Ivfd4qsQH5v0+pkQkeeOHdDSNkT1JsgHaX6U7aKeBnU2XPtQsKevFmBZLGqAPecbM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHglUTWvxxuxJlzJ9iyvu68WWqGuIFBOMrPu8j8Cnwk2rb26RL
+	V79AnQpSZgUqAxhpTnSw4Se+QNA5WKAKipfupd9Ko+xSVLcmHKtvUhcgZ3ZFGK8=
+X-Gm-Gg: ASbGncu5GLTtyNsRop1Virxav6uk8lQidzDHecsNGWr9NSbuN2vvGpQCruXTfISbXIW
+	kB9orxq5PeSP9c3McW8kDEqYDiJmMF67sFiQ7Nl2jXT1RUMGnoq0aDjLas+2UflXLk965cD0mgh
+	1bc1iYUVm2to9Hb1wRF3AFEPZr1fHq9TXaMxuPu9s/mqtCXx5VysFYhIOW30PVx6u1XXPdTb9j5
+	mf8J1MKTuustlZPxeiYm2slo76l6G11Ac7A5/YR/Fc62RmwyeTsY1G4JZC8g1JLwkTyE0/47WYg
+	FcI5Vb5vgCREKDYvrsBNvhte9D8Jsrr+OfZQckk/+Dr0SyIX1PRbjrZfoLLjj4aG34VLzHSc84f
+	HMe751FYvtmRW3FyOzGoAX9G1nROOZbjL7PfUWWYG9T2ZNmNWK99pwAnTpW9Ufe/srALwFnao5c
+	43j6J2JsUUzu1TXRBrKTYLORc803MoqDk=
+X-Google-Smtp-Source: AGHT+IGu9QSi3oHsmEZcocabYYmsMoC3bELw0Bk9y7r00YGcGUiF1uhL8B16Ug87tfivCjf/Yx1FNQ==
+X-Received: by 2002:a05:6402:278f:b0:5e7:87cd:2479 with SMTP id 4fb4d7f45d1cf-5e814e26e0bmr40071a12.8.1741813732063;
+        Wed, 12 Mar 2025 14:08:52 -0700 (PDT)
+Received: from ?IPV6:2001:1c06:2302:5600:7555:cca3:bbc4:648b? (2001-1c06-2302-5600-7555-cca3-bbc4-648b.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:7555:cca3:bbc4:648b])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e5c74a8f3bsm10361448a12.44.2025.03.12.14.08.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Mar 2025 14:08:51 -0700 (PDT)
+Message-ID: <2ac587e5-374b-4486-b6f5-6b23f37da973@linaro.org>
+Date: Wed, 12 Mar 2025 21:08:50 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com>
- <CAJ-ks9=K06OT6cutUABj2QDHJHJ70719c-eJ=F3n-_bhkYbZ3w@mail.gmail.com>
- <D8EG9EM9UU0B.2GLHXRU2XROZ3@proton.me> <CAJ-ks9=+3MQb-tp8TAwYvVj=GOFFFVKJxRMprc8YXZHKhqnDrg@mail.gmail.com>
- <D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.me> <CAJ-ks9=zWAuPUM_61EA6i5QkUpwtNtsN8oF_MUerWGn39MRHhw@mail.gmail.com>
- <D8EJM4CJ4HAN.1PB2YV8DB77V7@proton.me> <CAJ-ks9mo-H46Wwcu_LOvDy0ncwMR9ii74Fyf3OX-aWNnrZ397g@mail.gmail.com>
- <CAJ-ks9kCgATKDE2qAuO3XpQfjVO2jGyq3D4sbUcVKyW6G1vuuQ@mail.gmail.com> <D8EL9QFS1XNT.JBSMRXD4D7GT@proton.me>
-In-Reply-To: <D8EL9QFS1XNT.JBSMRXD4D7GT@proton.me>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 12 Mar 2025 17:04:12 -0400
-X-Gm-Features: AQ5f1JqqQd3v2xiRI6ykASVSL1cdIxLsCz3uQjlsEDwmvIguhgD94ZHee5gDvtY
-Message-ID: <CAJ-ks9=TRDg3g=NG7k97P_5jXpZ4K4v0DxrmJFR+uF0-3zJkXw@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] rust: enable `clippy::as_underscore` lint
-To: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8650: Add CAMSS block definition
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250312001132.1832655-1-vladimir.zapolskiy@linaro.org>
+ <20250312001132.1832655-3-vladimir.zapolskiy@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250312001132.1832655-3-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 12, 2025 at 5:01=E2=80=AFPM Benno Lossin <benno.lossin@proton.m=
-e> wrote:
->
-> On Wed Mar 12, 2025 at 9:41 PM CET, Tamir Duberstein wrote:
-> > On Wed, Mar 12, 2025 at 4:07=E2=80=AFPM Tamir Duberstein <tamird@gmail.=
-com> wrote:
-> >>
-> >> On Wed, Mar 12, 2025 at 3:43=E2=80=AFPM Benno Lossin <benno.lossin@pro=
-ton.me> wrote:
-> >> >
-> >> > On Wed Mar 12, 2025 at 8:19 PM CET, Tamir Duberstein wrote:
-> >> > > I tried using the strict provenance lints locally and I think we c=
-an't
-> >> > > until we properly bump MSRV due to `clippy::incompatible_msrv`:
-> >> > >
-> >> > > warning: current MSRV (Minimum Supported Rust Version) is `1.78.0`=
- but
-> >> > > this item is stable since `1.84.0`
-> >> > >    --> ../rust/kernel/str.rs:696:22
-> >> > >     |
-> >> > > 696 |             pos: pos.expose_provenance(),
-> >> > >     |                      ^^^^^^^^^^^^^^^^^^^
-> >> > >     |
-> >> > >     =3D help: for further information visit
-> >> > > https://rust-lang.github.io/rust-clippy/master/index.html#incompat=
-ible_msrv
-> >> >
-> >> > Oh this is annoying...
-> >> >
-> >> > > This is with `#![feature(strict_provenance)]`. I can file the issu=
-e
-> >> > > but I think it's blocked on MSRV >=3D 1.84.0. But maybe you know o=
-f a
-> >> > > path forward :)
-> >> >
-> >> > I think we should be able to just `allow(clippy::incompatible_msrv)`=
-,
-> >> > since Miguel & other maintainers will test with 1.78 (or at least ar=
-e
-> >> > supposed to :).
-> >>
-> >> Alright, you've sniped me. This is coming in v3.
-> >
-> > I just realized I only covered the kernel crate. In order to cover all
-> > Rust code, I need to move the lints and the features out to the root
-> > Makefile. I tried something like this:
-> >
-> >> diff --git a/Makefile b/Makefile
-> >> index 2af40bfed9ce..10af1e44370b 100644
-> >> --- a/Makefile
-> >> +++ b/Makefile
-> >> @@ -466,13 +466,21 @@ KBUILD_USERHOSTCFLAGS :=3D -Wall -Wmissing-proto=
-types -Wstrict-prototypes \
-> >>  KBUILD_USERCFLAGS  :=3D $(KBUILD_USERHOSTCFLAGS) $(USERCFLAGS)
-> >>  KBUILD_USERLDFLAGS :=3D $(USERLDFLAGS)
-> >>
-> >> +# Lints were moved to `strict_provenance_lints` when `strict_provenan=
-ce` was stabilized.
-> >> +#
-> >> +# See https://github.com/rust-lang/rust/commit/56ee492a6e7a917b2b3f88=
-8e33dd52a13d3ecb64.
-> >> +KBUILD_RUST_STRICT_PROVENANCE_FEATURE =3D $(if $(CONFIG_RUSTC_HAS_STA=
-BLE_STRICT_PROVENANCE),strict_provenance_lints,strict_provenance)
-> >> +
-> >>  # These flags apply to all Rust code in the tree, including the kerne=
-l and
-> >>  # host programs.
-> >>  export rust_common_flags :=3D --edition=3D2021 \
-> >>      -Zbinary_dep_depinfo=3Dy \
-> >> +     -Zcrate-attr=3D"feature($(KBUILD_RUST_STRICT_PROVENANCE_FEATURE)=
-)" \
-> >>      -Astable_features \
-> >>      -Dnon_ascii_idents \
-> >>      -Dunsafe_op_in_unsafe_fn \
-> >> +     -Wfuzzy_provenance_casts \
-> >> +     -Wlossy_provenance_casts \
-> >>      -Wmissing_docs \
-> >>      -Wrust_2018_idioms \
-> >>      -Wunreachable_pub \
-> >> diff --git a/rust/Makefile b/rust/Makefile
-> >> index ea3849eb78f6..d7d5be741245 100644
-> >> --- a/rust/Makefile
-> >> +++ b/rust/Makefile
-> >> @@ -435,8 +435,10 @@ $(obj)/helpers/helpers.o: $(src)/helpers/helpers.=
-c $(recordmcount_source) FORCE
-> >>  # symbol versions generated from Rust objects.
-> >>  $(obj)/exports.o: private skip_gendwarfksyms =3D 1
-> >>
-> >> +KBUILD_RUST_STRICT_PROVENANCE_FEATURE :=3D $(if $(CONFIG_RUSTC_HAS_ST=
-ABLE_STRICT_PROVENANCE),strict_provenance_lints,strict_provenance)
-> >> +
-> >>  $(obj)/core.o: private skip_clippy =3D 1
-> >> -$(obj)/core.o: private skip_flags =3D -Wunreachable_pub
-> >> +$(obj)/core.o: private skip_flags =3D -Zcrate-attr=3D"feature($(KBUIL=
-D_RUST_STRICT_PROVENANCE_FEATURE))" -Wunreachable_pub -Wfuzzy_provenance_ca=
-sts -Wlossy_provenance_casts
-> >>  $(obj)/core.o: private rustc_objcopy =3D $(foreach sym,$(redirect-int=
-rinsics),--redefine-sym $(sym)=3D__rust$(sym))
-> >>  $(obj)/core.o: private rustc_target_flags =3D $(core-cfgs)
-> >>  $(obj)/core.o: $(RUST_LIB_SRC)/core/src/lib.rs \
-> >
-> > but this doesn't work because
-> > `CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE` is not yet defined when I
-> > read it in the root Makefile. I can read it lower down and then append
-> > the feature flag to `KBUILD_RUSTFLAGS` but by then the rustdoc flags
-> > have been copied from `rust_common_flags` and so rustdoc doesn't get
-> > the feature flag, resulting in unknown lint warnings in rustdoc and
-> > kunit tests.
-> >
-> > Any ideas?
->
-> Always enable the features, we have `allow(stable_features)` for this
-> reason (then you don't have to do this dance with checking if it's
-> already stable or not :)
+On 12/03/2025 00:11, Vladimir Zapolskiy wrote:
+> Add SM8650 CAMSS device tree node to the platform dtsi file,
+> it contains of
+> * 6 x CSIPHY
+> * 3 x CSID
+> * 2 x CSID Lite
+> * 3 x IFE
+> * 2 x IFE Lite
+> 
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 184 +++++++++++++++++++++++++++
+>   1 file changed, 184 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 719ad437756a..bf5e238a93c3 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -4903,6 +4903,190 @@ cci2_i2c1: i2c-bus@1 {
+>   			};
+>   		};
+>   
+> +		camss: isp@acb8000 {
+> +			compatible = "qcom,sm8650-camss";
+> +			reg = <0 0x0acb8000 0 0x1000>,
+> +			      <0 0x0acba000 0 0x1000>,
+> +			      <0 0x0acbc000 0 0x1000>,
+> +			      <0 0x0accb000 0 0x1000>,
+> +			      <0 0x0acd0000 0 0x1000>,
+> +			      <0 0x0acb6000 0 0x1000>,
+> +			      <0 0x0ace4000 0 0x2000>,
+> +			      <0 0x0ace6000 0 0x2000>,
+> +			      <0 0x0ace8000 0 0x2000>,
+> +			      <0 0x0acea000 0 0x2000>,
+> +			      <0 0x0acec000 0 0x2000>,
+> +			      <0 0x0acee000 0 0x2000>,
+> +			      <0 0x0ac62000 0 0xf000>,
+> +			      <0 0x0ac71000 0 0xf000>,
+> +			      <0 0x0ac80000 0 0xf000>,
+> +			      <0 0x0accc000 0 0x2000>,
+> +			      <0 0x0acd1000 0 0x2000>;
+> +			reg-names = "csid0",
+> +				    "csid1",
+> +				    "csid2",
+> +				    "csid_lite0",
+> +				    "csid_lite1",
+> +				    "csid_wrapper",
+> +				    "csiphy0",
+> +				    "csiphy1",
+> +				    "csiphy2",
+> +				    "csiphy3",
+> +				    "csiphy4",
+> +				    "csiphy5",
+> +				    "vfe0",
+> +				    "vfe1",
+> +				    "vfe2",
+> +				    "vfe_lite0",
+> +				    "vfe_lite1";
+> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
+> +				 <&camcc CAM_CC_CAMNOC_AXI_RT_CLK>,
+> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_2_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_CSID_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY0_CLK>,
+> +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY1_CLK>,
+> +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY2_CLK>,
+> +				 <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY3_CLK>,
+> +				 <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY4_CLK>,
+> +				 <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY5_CLK>,
+> +				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
+> +				 <&gcc GCC_CAMERA_AHB_CLK>,
+> +				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
+> +				 <&gcc GCC_CAMERA_SF_AXI_CLK>,
+> +				 <&camcc CAM_CC_QDSS_DEBUG_XO_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_2_CLK>,
+> +				 <&camcc CAM_CC_IFE_2_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
+> +			clock-names = "camnoc_axi_nrt",
+> +				      "camnoc_axi_rt",
+> +				      "cpas_ahb",
+> +				      "cpas_fast_ahb",
+> +				      "cpas_vfe0",
+> +				      "cpas_vfe1",
+> +				      "cpas_vfe2",
+> +				      "cpas_vfe_lite",
+> +				      "csid",
+> +				      "csiphy0",
+> +				      "csiphy0_timer",
+> +				      "csiphy1",
+> +				      "csiphy1_timer",
+> +				      "csiphy2",
+> +				      "csiphy2_timer",
+> +				      "csiphy3",
+> +				      "csiphy3_timer",
+> +				      "csiphy4",
+> +				      "csiphy4_timer",
+> +				      "csiphy5",
+> +				      "csiphy5_timer",
+> +				      "csiphy_rx",
+> +				      "gcc_ahb_clk",
+> +				      "gcc_axi_hf",
+> +				      "gcc_axi_sf",
+> +				      "qdss_debug_xo",
+> +				      "vfe0",
+> +				      "vfe0_fast_ahb",
+> +				      "vfe1",
+> +				      "vfe1_fast_ahb",
+> +				      "vfe2",
+> +				      "vfe2_fast_ahb",
+> +				      "vfe_lite",
+> +				      "vfe_lite_ahb",
+> +				      "vfe_lite_cphy_rx",
+> +				      "vfe_lite_csid";
+> +			interrupts = <GIC_SPI 601 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 603 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 431 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 605 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 376 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 122 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 602 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 604 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 688 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 606 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 377 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "csid0",
+> +					  "csid1",
+> +					  "csid2",
+> +					  "csid_lite0",
+> +					  "csid_lite1",
+> +					  "csiphy0",
+> +					  "csiphy1",
+> +					  "csiphy2",
+> +					  "csiphy3",
+> +					  "csiphy4",
+> +					  "csiphy5",
+> +					  "vfe0",
+> +					  "vfe1",
+> +					  "vfe2",
+> +					  "vfe_lite0",
+> +					  "vfe_lite1";
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_CAMERA_CFG 0>,
+> +					<&mmss_noc MASTER_CAMNOC_HF 0 &mc_virt SLAVE_EBI1 0>;
+> +			interconnect-names = "ahb",
+> +					     "hf_0_mnoc";
+> +			iommus = <&apps_smmu 0x800 0x20>,
+> +				 <&apps_smmu 0x18a0 0x40>,
+> +				 <&apps_smmu 0x1860 0x00>;
+> +			power-domains = <&camcc CAM_CC_IFE_0_GDSC>,
+> +					<&camcc CAM_CC_IFE_1_GDSC>,
+> +					<&camcc CAM_CC_IFE_2_GDSC>,
+> +					<&camcc CAM_CC_TITAN_TOP_GDSC>;
+> +			power-domain-names = "ife0", "ife1", "ife2", "top";
+> +			status = "disabled";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +				};
+> +
+> +				port@3 {
+> +					reg = <3>;
+> +				};
+> +
+> +				port@4 {
+> +					reg = <4>;
+> +				};
+> +
+> +				port@5 {
+> +					reg = <5>;
+> +				};
+> +			};
+> +		};
+> +
+>   		camcc: clock-controller@ade0000 {
+>   			compatible = "qcom,sm8650-camcc";
+>   			reg = <0 0x0ade0000 0 0x20000>;
 
-It's not so simple. In rustc < 1.84.0 the lints *and* the strict
-provenance APIs are behind `feature(strict_provenance)`. In rustc >=3D
-1.84.0 the lints are behind `feature(strict_provenance_lints)`. So you
-need to read the config to learn that you need to enable
-`feature(strict_provenance_lints)`.
+Missing some \n between reg/reg-name and the next logical group.
+
+---
+bod
 
