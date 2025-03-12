@@ -1,183 +1,123 @@
-Return-Path: <devicetree+bounces-156969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6AC1A5E2EF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 18:45:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 639A1A5E317
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 18:48:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 064E63B67DE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 17:45:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95F4D16E211
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 17:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102DF1DD0F2;
-	Wed, 12 Mar 2025 17:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2C691DDC3F;
+	Wed, 12 Mar 2025 17:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ntj7boR7"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="GizcMUGG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D896D200CB;
-	Wed, 12 Mar 2025 17:45:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F12020EB
+	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 17:48:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741801525; cv=none; b=kFT+pwnqIOdqqnusXU26smRy/0bXwPBhJgMGLsW8fB1Ukq9XMUaHX4C3mURf4lbpJsAduHTTuuxaD76PomPHPyUBtauutocR5tZ0wZhemN0K1p4EJxYk8iWMrGcJbdnl7xdPP0rsBsEQETS+xtKXBuBH+8lZUGrYE0G77nxID40=
+	t=1741801702; cv=none; b=fLfBIGUGUgqBsMgLzqjoavYMPp4NtziiWoVJkFmTjf/6bg892EZdYqgMQnizT38MEUzeBefsoEOmAT/FGWeb0uUeMPNvw9HMhEOhN+wvGFMxpslQK+Wt42twTsux9fcfp+2hIraClDJppnYxgnREFm7AerFoBUVOr9XqqVPZgPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741801525; c=relaxed/simple;
-	bh=BtOhGRVLO/4z5tXwtnomJn5XJEhbKXaC1bZE6yJRkys=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ntRCkmTa1f/BY2HhbTCey9rJHy9cZiJ3wq4/qkzlbeGK861RvJEdF+d/muapT57V6wjlCwVzhh7hhrIeRKMqMHQgmjw8NB0/rj3G0GEaTlri2juu4dfz9NxbUH2mkt2ycKEKuTsNY0qN8XHlOhdIZzgsTEh41W/MYXkhgZ3GXeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ntj7boR7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6BEA4C4CEEB;
-	Wed, 12 Mar 2025 17:45:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741801524;
-	bh=BtOhGRVLO/4z5tXwtnomJn5XJEhbKXaC1bZE6yJRkys=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Ntj7boR7aNijqOwkm7tVBWyJ7pTKcmoMJFSX0Vi1De5xsSZzEnbRMujiFSiLoTCug
-	 c8ZmN64aTwni4zjkt8rZlgEIq21Ly68tEUXYFy3UuSsmYSMg94brR0uq1oFtci2d3n
-	 290x3XW6k1Wm/deRdL6oLmwavEXB2+zdalC+NdkwTq5tPTumh0yV4v6nCJ9q7s3Yd8
-	 0cAShO2b44hFn8UR0SB0SGIKVXoT89w36CbYSY/1KMkgvHoaEv8GnoLgptMvyWDdIX
-	 RM8RiOSvA8/7H5DCO0JYjS8EF/a1U2DD0PJsIRv636736CPi6WH0UmfiJUnSQKiszd
-	 oSqEOkRy20bqA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 559A8C35FF1;
-	Wed, 12 Mar 2025 17:45:24 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Wed, 12 Mar 2025 18:45:23 +0100
-Subject: [PATCH RESEND v4 2/2] can: flexcan: add transceiver capabilities
+	s=arc-20240116; t=1741801702; c=relaxed/simple;
+	bh=19UcjVXl1ek5qr8sw5NiGESLlHdNHhKE/PJxA3b739M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jEiWDitR7BghKDeg8yOvjQdah3rS5++BXDJ0NUDaCyn1jNccpQAHtta/BBOu7HiF575mptnUBlBA1JrqX5Ya0qhzVM/h8z/vJMxtPQ+Oh1wFXx/xrwBZAJkDjpR1JoS7/uZCw7IsLkA22H1XwMidkUuedNO4DpfqjmbJuPfxnQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=GizcMUGG; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Xp3gLFgNbMZ/DreQvGm1DbEMJH62eUysT4tsMiWqaik=; b=GizcMUGGEbFfEyiCsnNUwGGL/7
+	EZoK23Zfk4OThPq4DsPD3IAkcouBIdJ8XnSeC9DqBjs/CME7VBgQJZ+Ui4jXnNDaF67OGcglnTaP2
+	UgplFcVsMb/AbehtSts0QwXFpuwA7x5xfjHy7H6guweefqL9QwielWT9SHWbGaEOUYdp+F7QoTEL/
+	7zTwwbfVJsxiZCCBKuf+RgDWIZB5qR9Zbqv/yoA9dJpiWnVfJZjrQpqH2OTM2BW+qdM0mYktMc6ic
+	iuO0AeyExlpUnNEza3s6FPjhA8Erw1CNAWjt3fnCkyxfh6asUVNsGcbgprk1dnhib83iutmuaysT2
+	dzTCqxQg==;
+Received: from [189.7.87.170] (helo=[192.168.0.224])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+	id 1tsQBT-007iUn-Uf; Wed, 12 Mar 2025 18:48:06 +0100
+Message-ID: <9ce9cfb0-d1cc-4178-b7c6-468240014540@igalia.com>
+Date: Wed, 12 Mar 2025 14:47:56 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250312-flexcan-add-transceiver-caps-v4-2-29e89ae0225a@liebherr.com>
-References: <20250312-flexcan-add-transceiver-caps-v4-0-29e89ae0225a@liebherr.com>
-In-Reply-To: <20250312-flexcan-add-transceiver-caps-v4-0-29e89ae0225a@liebherr.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, 
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-can@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741801523; l=3555;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=kSxxiQHxl//wCevFJfiq2EaHcqBYYuWBjHktSM+Fwds=;
- b=AyaNOZsIKwCr/iDwY2md+sZf0aTIm3EaIUXHX7cY4JKTqFM9nvuYvL0r9TSbYDJSrqWDj64sA
- /klYUbJb9PwCwOMH+b/ZXl54OvwSn3huH7mu48di2Ugu7AYfH4mqHKY
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/7] dt-bindings: gpu: v3d: Add SMS register to BCM2712
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Melissa Wen <mwen@igalia.com>,
+ Iago Toral <itoral@igalia.com>,
+ Jose Maria Casanova Crespo <jmcasanova@igalia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com
+References: <20250311-v3d-gpu-reset-fixes-v3-0-64f7a4247ec0@igalia.com>
+ <20250311-v3d-gpu-reset-fixes-v3-5-64f7a4247ec0@igalia.com>
+ <20250311202359.GA54828-robh@kernel.org>
+ <7324785d-8af9-48b4-b9c6-55ac22c82426@igalia.com>
+ <20250312-independent-beaver-of-swiftness-1851c5@krzk-bin>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <20250312-independent-beaver-of-swiftness-1851c5@krzk-bin>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Hi Krzysztof,
 
-Currently the flexcan driver does only support adding PHYs by using the
-"old" regulator bindings. Add support for CAN transceivers as a PHY. Add
-the capability to ensure that the PHY is in operational state when the link
-is set to an "up" state.
+On 12/03/25 06:06, Krzysztof Kozlowski wrote:
+> On Tue, Mar 11, 2025 at 07:05:31PM -0300, Maíra Canal wrote:
+>>>> +        reg-names:
+>>>> +          items:
+>>>> +            - const: hub
+>>>> +            - const: core0
+>>>> +            - const: sms
+>>>> +            - const: bridge
+>>>
+>>> This is an ABI change because previously the 3rd entry was bridge and
+>>> you moved it. Put new entries on the end to keep compatibility. If
+>>> there's no users yet, then that's fine, but the commit message needs to
+>>> say that.
+>>>
+>>
+>> Again, I'm sorry about the naive question, but "bridge" is an optional
+>> register. AFAIU if I add "sms" in the end, I won't be able to make
+>> "bridge" optional. Am I missing something?
+> 
+> What do you mean by "optional"? You claim the same SoC has this
+> registers on some boards and also does not have it on others, so is
+> firmware locking the region? How does this register disappear on some
+> boards?
 
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/net/can/flexcan/flexcan-core.c | 27 +++++++++++++++++++++------
- drivers/net/can/flexcan/flexcan.h      |  1 +
- 2 files changed, 22 insertions(+), 6 deletions(-)
+I believe I was confusing SoCs with the V3D GPU generations. I'm sorry
+about that and I'll address this issue.
 
-diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/flexcan/flexcan-core.c
-index b347a1c93536d54efaa5f7d3347bd47c20860b3e..7588cb54a909af065522ddbcb06cc3acb9669893 100644
---- a/drivers/net/can/flexcan/flexcan-core.c
-+++ b/drivers/net/can/flexcan/flexcan-core.c
-@@ -26,6 +26,7 @@
- #include <linux/pinctrl/consumer.h>
- #include <linux/platform_device.h>
- #include <linux/can/platform/flexcan.h>
-+#include <linux/phy/phy.h>
- #include <linux/pm_runtime.h>
- #include <linux/property.h>
- #include <linux/regmap.h>
-@@ -644,18 +645,22 @@ static void flexcan_clks_disable(const struct flexcan_priv *priv)
- 
- static inline int flexcan_transceiver_enable(const struct flexcan_priv *priv)
- {
--	if (!priv->reg_xceiver)
--		return 0;
-+	if (priv->reg_xceiver)
-+		return regulator_enable(priv->reg_xceiver);
-+	else if (priv->transceiver)
-+		return phy_power_on(priv->transceiver);
- 
--	return regulator_enable(priv->reg_xceiver);
-+	return 0;
- }
- 
- static inline int flexcan_transceiver_disable(const struct flexcan_priv *priv)
- {
--	if (!priv->reg_xceiver)
--		return 0;
-+	if (priv->reg_xceiver)
-+		return regulator_disable(priv->reg_xceiver);
-+	else if (priv->transceiver)
-+		return phy_power_off(priv->transceiver);
- 
--	return regulator_disable(priv->reg_xceiver);
-+	return 0;
- }
- 
- static int flexcan_chip_enable(struct flexcan_priv *priv)
-@@ -2086,6 +2091,7 @@ static int flexcan_probe(struct platform_device *pdev)
- 	struct net_device *dev;
- 	struct flexcan_priv *priv;
- 	struct regulator *reg_xceiver;
-+	struct phy *transceiver;
- 	struct clk *clk_ipg = NULL, *clk_per = NULL;
- 	struct flexcan_regs __iomem *regs;
- 	struct flexcan_platform_data *pdata;
-@@ -2101,6 +2107,11 @@ static int flexcan_probe(struct platform_device *pdev)
- 	else if (IS_ERR(reg_xceiver))
- 		return PTR_ERR(reg_xceiver);
- 
-+	transceiver = devm_phy_optional_get(&pdev->dev, NULL);
-+	if (IS_ERR(transceiver))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(transceiver),
-+				     "failed to get phy\n");
-+
- 	if (pdev->dev.of_node) {
- 		of_property_read_u32(pdev->dev.of_node,
- 				     "clock-frequency", &clock_freq);
-@@ -2198,6 +2209,10 @@ static int flexcan_probe(struct platform_device *pdev)
- 	priv->clk_per = clk_per;
- 	priv->clk_src = clk_src;
- 	priv->reg_xceiver = reg_xceiver;
-+	priv->transceiver = transceiver;
-+
-+	if (transceiver)
-+		priv->can.bitrate_max = transceiver->attrs.max_link_rate;
- 
- 	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
- 		priv->irq_boff = platform_get_irq(pdev, 1);
-diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/flexcan.h
-index 2cf886618c9621166173b865f266830b3f6c1fb0..16692a2502eba26575eeeec83dfffdf35f07b034 100644
---- a/drivers/net/can/flexcan/flexcan.h
-+++ b/drivers/net/can/flexcan/flexcan.h
-@@ -107,6 +107,7 @@ struct flexcan_priv {
- 	struct clk *clk_per;
- 	struct flexcan_devtype_data devtype_data;
- 	struct regulator *reg_xceiver;
-+	struct phy *transceiver;
- 	struct flexcan_stop_mode stm;
- 
- 	int irq_boff;
+Thanks for your patience through this reviewing process!
 
--- 
-2.39.5
+Best Regards,
+- Maíra
 
+> 
+>>
+>> Initially, I thought about using "enum: [ bridge, sms ]", but from
+>> Krzysztof’s feedback on v2, I'm not sure if it is the correct approach.
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
