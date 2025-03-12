@@ -1,249 +1,204 @@
-Return-Path: <devicetree+bounces-156737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C609A5D5AC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 06:45:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED0CA5D5D7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 07:03:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B8EF178685
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 05:45:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76E22169868
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 06:03:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197DD1D63FF;
-	Wed, 12 Mar 2025 05:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA1C31DFD86;
+	Wed, 12 Mar 2025 06:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Rx1kirUi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dvIF7ate"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DC733F6;
-	Wed, 12 Mar 2025 05:45:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07B4D1487ED;
+	Wed, 12 Mar 2025 06:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741758328; cv=none; b=lS/l9X8G2jq4jdRKCEtDJ8ByZla4B1GyfK1y62UkHO4G1ysZLdHlxG4Z933uhB4hMcYEemKDC2sWes/8y0ODOnx/wxPvhkvNm3GQ1w+RiLQoguP6wEyJnaulajxfFp6spQRH+aNxHXob8lzwPw40wyoA4vkODAQm0PPa/VH2ccU=
+	t=1741759394; cv=none; b=sPc8w433SXfO1I+N+4jUGVUHGpuHg/q5q2VAQTPUKQ74dfuKCKSDIGN00rym2GVqdZhHQ92rA+TqIHbGv+1dxgbEU9gMbm+WfMRPypZ5f+K/1mcx5nPz5oW534OMiqsAMzVrWn+62f91Li3FtGi49JI7dKUAWWDeQM1vPSxlNno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741758328; c=relaxed/simple;
-	bh=2lNkWU7neUbJh5KmbEw6o4WwEOl2tG4Taxsira8ZcTU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N3GZWG0EktLcv5J0tEBcO5eH1ogwJEx+HxtrV/E9NADRPMA9+rX5PdWq/j+UoMcsKFuNAShXKPy5wn802Oh6JZPpOPB8EHaU0U/PY1vrmXcmNcdeqdUKHbgH+Hlw/M7/8oUnudBgva98TW56reWN3v9El67P7cZPyeLkYQ2EdHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Rx1kirUi; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741758326; x=1773294326;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2lNkWU7neUbJh5KmbEw6o4WwEOl2tG4Taxsira8ZcTU=;
-  b=Rx1kirUi44u7M/TXPs+/y25z8mFv+6DEO/EJu/DgjUSPJt8LI0s8Ze3A
-   z22qqjSFXjckyga3jpg1fEq4zfFyXhuvFbspzpfuaH44WqlT4TENE67gc
-   8+BOGKNIBfrOdCEZm9RCN3SdrJG+M6mmhzfDPBq6q2UAtI3CkbO7sDbVo
-   A44cXAMFMZytKj2Erfmi+qLC6Wt1KsIQrD8Z7/dSZSnGgImk1RU0RYWQu
-   HsqrYuVAUDy8sfqk3Hlbb+WMC4J7XPRsuHCBosYStwtfCmZ/0092/RBz7
-   PtZLrO/ksyW4PnHcv6TZnBoUquWw7F4McJSXEMpG/ZQ0WacsSD2vdMMh0
-   g==;
-X-CSE-ConnectionGUID: VqP7gBv3QkW5Eqqww8jwgQ==
-X-CSE-MsgGUID: 93YgMprTRG+fGuoN4NERHA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="43002644"
-X-IronPort-AV: E=Sophos;i="6.14,240,1736841600"; 
-   d="scan'208";a="43002644"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2025 22:45:24 -0700
-X-CSE-ConnectionGUID: v7DTkxGPSDK1/jw399Duwg==
-X-CSE-MsgGUID: f+/ufX8JRXGIlRtlydF+gA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,240,1736841600"; 
-   d="scan'208";a="125593952"
-Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2025 22:45:24 -0700
-Date: Tue, 11 Mar 2025 22:51:18 -0700
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Yunhong Jiang <yunhong.jiang@linux.intel.com>, tglx@linutronix.de,
-	mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
-	x86@kernel.org, hpa@zytor.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, kys@microsoft.com, haiyangz@microsoft.com,
-	wei.liu@kernel.org, decui@microsoft.com, rafael@kernel.org,
-	lenb@kernel.org, kirill.shutemov@linux.intel.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org,
-	ricardo.neri@intel.com, ravi.v.shankar@intel.com
-Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
- mailbox
-Message-ID: <20250312055118.GA29492@ranerica-svr.sc.intel.com>
-References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
- <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
- <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
- <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
- <20240910061227.GA76@yjiang5-mobl.amr.corp.intel.com>
- <1d0ba3fc-1504-4af3-a0bc-fba86abe41e8@kernel.org>
- <20240919191725.GA11928@yjiang5-mobl.amr.corp.intel.com>
- <874d5908-f1db-412f-96a2-83fcebe8dd98@kernel.org>
- <20250303222102.GA16733@ranerica-svr.sc.intel.com>
- <acb5fa11-9dce-44d0-85e3-e67a6a10c48f@kernel.org>
+	s=arc-20240116; t=1741759394; c=relaxed/simple;
+	bh=mFfg66gviZajD4Q1ws4MjdZwN34o3ioAoOTCBaDRiQA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=raxe+q17D2EdIdVCnXGiR2DsXH4xtPHzYMNOtZcpVVI2kb5DX9IT39t9WRryJRLa5veuBjMMLlzHTFwvRIou5KeWngcN+R3TihVW5v9lnATcyek3WfpZ56z1Rgc0tcBFY//t5Er9FmXEIscAtY7AotwSt+H7SfkjQL6IXCIK5rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dvIF7ate; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43ce70f9afbso34767955e9.0;
+        Tue, 11 Mar 2025 23:03:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741759391; x=1742364191; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vhZ2CoPd7uOnW/0f/tXunvBKPKyWXuFKYoLFAcHNHms=;
+        b=dvIF7ategN3J0K9XUEVoZTeEKf0ykNwF1uo9CkE0zlTrxr9tis8kamekzNY3SxU0BJ
+         M9NhcOhAMHszFyt6qsOIaV8tfIlBBei016MzE2sJr4UEKpm7Z/xBMlqGzkdhACuJccjk
+         JWJ/eVVGgpH+PlqMMvc6DiLwqneKwseswERvZ4iUI/7YAMgu0ZQCooq5nceTRH+HFM55
+         ujjmQU7GR4bjZ8owSP0QCee667rs3F5VAVyJ+CW9jENe4pB91gy3Plcae7d0MYXx7Sep
+         qOyZ9WJuiVc9BB38qSVGD9c+HLBDkxl8nF5MV4qSDAz9RBVdvXZDXUdbyFFd2vz+iNSm
+         k4Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741759391; x=1742364191;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vhZ2CoPd7uOnW/0f/tXunvBKPKyWXuFKYoLFAcHNHms=;
+        b=F1HwZfVgtliNtapGR+bXZ6o51L9oSwR61I0NnnsknJm5b0+jOesDtVZBoYHE7JAyLU
+         0yH6AXgPiXeftixgQ/evne8CoZpKylSd1jSNJ5lS0eFC3spiwr5U92PZLv3sWgRfAfSx
+         aYt5QjsZmKB+gjOqebEgg2uXL/MqFkmCoxUxGVirbjE1LFvbmQlTC2X8updVaAl0cuND
+         i200VHCcKIgWk4D5xuWixnavJwBfKpQPKbKi9PmFMbJwkcCsyW3n07DMhOcMsC+kwQ+C
+         3alJd1/oNMrJxB0/pnUyZvw522myq+tl3y9O863oZhKwrfvQ/cBgPo4DyNRRAWov9xFA
+         he3g==
+X-Forwarded-Encrypted: i=1; AJvYcCU9YL+FV+wl7fgzan6hfhdpaQG648qdYcxj6N5VteGmM5NnBiP8H4HcRHVcqUJDrk1PJSYkORW1Zo/z@vger.kernel.org, AJvYcCUvyidfjI53y+C9LRrELalkbeUNwRZLSskpxf0zwnJnjumnLLYe5vzPnElBGvwi9FpD/C9b17IuJmk=@vger.kernel.org, AJvYcCVEUAmgjVIqO2nkOa1l4pEb8Izfg0yA6RN97r629qPpHkuGzbjodu2zd4kIjkx1kQJPhaXKmZBcUIPbApkr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5cyBRaOqrJ4jdScbF7Kt4Jnkbf/1ioqI2cQahjgaQ/gJWNHKC
+	MLAo4PFL5VRsW6RCnyeQLzhaWfHzyZUg1Nw5sGSMKrSQUg75SvcKlVbTn4JTNaHAiAG+I+xKq4N
+	MkmPo3KUvfMMQkdnDbkKPYjY2+0I=
+X-Gm-Gg: ASbGncsDXU44Towh1cYW9FAdik7BnCe5oQYvUga151ovk0dT+WyNp+IwqykvZ2es5ct
+	FXmdllibeP4ktGK8xE+PtpTw4jsvndsvnlTR9oC5cHj28WY6AUT+e3D4xZhIZD/6WA6vingO38s
+	SpZNoBDbomlfwE8QQPsuVMv3F/2ejUmPm2WUnaTQ==
+X-Google-Smtp-Source: AGHT+IGFacyRluW++PzGE9TWO9sc3w7FuFcdHB+OsQjorkm9i7HRtW4JOS/V14B8J2AgwovvfT5Ll+F6R6C4a2aAJlQ=
+X-Received: by 2002:a05:6000:1fa9:b0:391:253b:404a with SMTP id
+ ffacd0b85a97d-39132d30c5bmr14787515f8f.8.1741759391111; Tue, 11 Mar 2025
+ 23:03:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <acb5fa11-9dce-44d0-85e3-e67a6a10c48f@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20250310080237.7400-1-clamor95@gmail.com> <20250310080237.7400-2-clamor95@gmail.com>
+ <20250311193732.GA4183071-robh@kernel.org>
+In-Reply-To: <20250311193732.GA4183071-robh@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Wed, 12 Mar 2025 08:02:59 +0200
+X-Gm-Features: AQ5f1JrTY6sQtO0jSmZm7bBRkqQ2y-Jrr7Sqsw4oOyLF0-6lpmkV9smnWOdfZBM
+Message-ID: <CAPVz0n09ZP1i2tasdTvnt8RvjhALvUYjv9u_EGRtnXPOYQtuqQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: power: supply: Document Maxim MAX8971 charger
+To: Rob Herring <robh@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 11, 2025 at 11:01:28AM +0100, Krzysztof Kozlowski wrote:
-> On 03/03/2025 23:21, Ricardo Neri wrote:
-> > On Fri, Sep 20, 2024 at 01:15:41PM +0200, Krzysztof Kozlowski wrote:
-> > 
-> > [...]
-> >  
-> >> enable-method is part of CPUs, so you probably should match the CPUs...
-> >> I am not sure, I don't have the big picture here.
-> >>
-> >> Maybe if companies want to push more of bindings for purely virtual
-> >> systems, then they should first get involved more, instead of relying on
-> >> us. Provide reviews for your virtual stuff, provide guidance. There is
-> >> resistance in accepting bindings for such cases for a reason - I don't
-> >> even know what exactly is this and judging/reviewing based on my
-> >> practices will no be accurate.
-> > 
-> > Hi Krzysztof,
-> > 
-> > I am taking over this work from Yunhong.
-> > 
-> > First of all, I apologize for the late reply. I will make sure
-> > communications are timely in the future.
-> > 
-> > Our goal is to describe in the device tree a mechanism or artifact to boot
-> > secondary CPUs.
-> > 
-> > In our setup, the firmware puts secondary CPUs to monitor a memory location
-> > (i.e., the wakeup mailbox) while spinning. From the boot CPU, the OS writes
-> > in the mailbox the wakeup vector and the ID of the secondary CPU it wants
-> > to boot. When a secondary CPU sees its own ID it will jump to the wakeup
-> > vector.
-> > 
-> > This is similar to the spin-table described in the Device Tree
-> > specification. The key difference is that with the spin-table CPUs spin
-> > until a non-zero value is written in `cpu-release-addr`. The wakeup mailbox
-> > uses CPU IDs.
-> > 
-> > You raised the issue of the lack of a `compatible` property, and the fact
-> > that we are not describing an actual device.
-> > 
-> > I took your suggestion of matching by node and I came up with the binding
-> > below. I see these advantages in this approach:
-> > 
-> >   * I define a new node with a `compatible` property.
-> >   * There is precedent: the psci node. In the `cpus` node, each cpu@n has
-> 
+=D0=B2=D1=82, 11 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 21:37 Rob =
+Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Mon, Mar 10, 2025 at 10:02:36AM +0200, Svyatoslav Ryhel wrote:
+> > Add bindings for Maxim MAX8971 charger.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../bindings/power/supply/maxim,max8971.yaml  | 64 +++++++++++++++++++
+> >  1 file changed, 64 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/power/supply/maxi=
+m,max8971.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max89=
+71.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max8971.yaml
+> > new file mode 100644
+> > index 000000000000..d7b3e6ff6906
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/power/supply/maxim,max8971.yaml
+> > @@ -0,0 +1,64 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/power/supply/maxim,max8971.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Maxim MAX8971 IC charger
+> > +
+> > +maintainers:
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +
+> > +description:
+> > +  The MAX8971 is a compact, high-frequency, high-efficiency switch-mod=
+e charger
+> > +  for a one-cell lithium-ion (Li+) battery.
+> > +
+> > +allOf:
+> > +  - $ref: power-supply.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: maxim,max8971
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  monitored-battery: true
+> > +
+> > +  maxim,usb-connector:
+>
+> Just 'connector', so when we have a 3rd case, we don't have a 3rd
+> vendor.
+>
 
-Thanks for your feedback!
+Please, please be explicit and specific, you could not tell me this in
+v3, you could but you decided to fuck up v4 as well. So wise.
+Additionally, if you want a generic 'connector' which can be
+referenced as 'connector: true' then add one, ATM this is classified
+under your own terms as 'vendor property' and needs a vendor prefix.
 
-> psci is a standard. If you are documenting here a standard, clearly
-> express it and provide reference to the specification.
+> > +    description:
+> > +      Phandle to a USB connector according to usb-connector.yaml. The =
+connector
+> > +      should be a child of the extcon device.
+>
+> 'extcon' is a Linuxism. Is there an actual requirement here that's not
+> *current* Linux requirements (which could change)? I assume the
+> requirement is to have vbus or some supply?
+>
 
-It is not really a standard, but this mailbox behaves indentically to the
-wakeup mailbox described in the ACPI spec [1]. I am happy reference the
-spec in the documentation of the binding... or describe in full the
-mechanism of mailbox without referring to ACPI. You had indicated you don't
-care about what ACPI does [2].
+Pardon me, this schema is part of Linux kernel, no? I have no clue why
+you collectively decided to just ignore external connector detection
+devices. Ignorance does not affect the fact that such devices exist.
 
-In a nutshell, the wakeup mailbox is similar to the spin table used in ARM
-boards: it is reserved memory region that secondary CPUs monitor while
-spinning.
+And no, it does not need vbus not supply, it needs EXTCON
 
-> 
-> 
-> >     an `enable-method` property that specify `psci`.
-> >   * The mailbox is a device as it is located in a reserved memory region.
-> >     This true regardless of the device tree describing bare-metal or
-> >     virtualized machines.
-> > 
-> > Thanks in advance for your feedback!
-> > 
-> > Best,
-> > Ricardo
-> > 
-> > (only the relevant sections of the binding are shown for brevity)
-> > 
-> > properties:
-> >   $nodename:
-> >     const: wakeup-mailbox
-> > 
-> >   compatible:
-> >     const: x86,wakeup-mailbox
-> 
-> You need vendor prefix for this particular device. If I pointed out lack
-> of device and specific compatible, then adding random compatible does
-> not solve it. I understand it solves for you, but not from the bindings
-> point of view.
-
-I see. Platform firmware will implement the mailbox. It would not be any
-specific hardware from Intel. Perhaps `intel,wakeup-mailbox`?
-
-> 
-> > 
-> >   mailbox-addr:
-> >     $ref: /schemas/types.yaml#/definitions/uint64
-> 
-> So is this some sort of reserved memory?
-
-Yes, the mailbox is located in reserved memory.
-
-> Mailbox needs mbox-cells, so
-> maybe that's not mailbox.
-
-Your comment got me to look under Documentation/devicetree/bindings/mailbox.
-Maybe I am ovethinking this and I can describe the mailbox as others
-vendors do (see below).
-
-Thanks and BR,
-Ricardo
-
-[1]. https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/05_ACPI_Software_Programming_Model/ACPI_Software_Programming_Model.html#multiprocessor-wakeup-structure
-if that is OK.
-[2]. https://lore.kernel.org/lkml/624e1985-7dd2-4abe-a918-78cb43556967@kernel.oirg
-
-description: |
-  [Removed for brevity]
-
-properties:
-  compatible:
-    const: intel,wakeup-mailbox
-
-  reg:
-    maxItems: 1
-
-  '#mbox-cells':
-    const: 1
-
-required:
-  - compatible
-  - reg
-
-additionalProperties: false
-
-examples:
-  - |
-    wakeupmailbox: mailbox@1c000500 {
-      compatible = "intel,wakeup-mailbox";
-      reg = <0x1c000500 0x100>;
-      #mbox-cells = <1>;
-    };
-
-    cpus {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        cpu@0 {
-            device_type = "cpu";
-            reg = <0x00>;
-            enable-method = "wakeup-mailbox";
-        };
-    };
-...
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +    i2c {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        charger@35 {
+> > +            compatible =3D "maxim,max8971";
+> > +            reg =3D <0x35>;
+> > +
+> > +            interrupt-parent =3D <&gpio>;
+> > +            interrupts =3D <74 IRQ_TYPE_LEVEL_LOW>;
+> > +
+> > +            monitored-battery =3D <&battery>;
+> > +            maxim,usb-connector =3D <&usb_con>;
+> > +        };
+> > +    };
+> > +...
+> > --
+> > 2.43.0
+> >
 
