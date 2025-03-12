@@ -1,181 +1,122 @@
-Return-Path: <devicetree+bounces-157030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901A0A5E867
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:30:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 505B8A5E885
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:43:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48F4A1896AEA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 23:30:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D38516D70D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 23:43:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A721F153D;
-	Wed, 12 Mar 2025 23:29:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839B81F1507;
+	Wed, 12 Mar 2025 23:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i4FXY7du"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mI/+Y0Rm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9BAB1EB5D5;
-	Wed, 12 Mar 2025 23:29:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554C216FF44;
+	Wed, 12 Mar 2025 23:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741822195; cv=none; b=QBKhlJwEUlHrqw/8ZrZwNoPHmvZ4I0uzNpOjt4/JxRwQCa4sqPdjDJmuFPMn1/F1p8v5cMiFMuhsDJ5HexXQcV9seeMFAEqiN0hadlJuRIhaxwdKE1lMqdJTvrI8h5PBzsaFKvr+4JYJ4hkgHk+s5QJQRP4aiLPWMFZnm70/X4M=
+	t=1741823000; cv=none; b=b+FKpwsPtk8RchsZtq+14RauSHlxtRsBR9G0srYjg9bRQJDGYNDyEJZFbb33ggps6A7PexUHQKfxKO0ee9IyeHncbKiKxgvd1KPIOE7EVErztrfPpeZfIYckNlBC6BW2OcNVVuXA7/99/d8cqUtAC90GwNkqyaTO5QMh0jx2rCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741822195; c=relaxed/simple;
-	bh=fspsdGz14WdzOajPJOMQzjs2D+NwwiVnmRowuuxUM58=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HkVFywtgFj7NpXzG9yeAHu4eocrmn6jP8C3TbXCLscTXuIjB74ApQpR6THqvXQs8+I975nsl0I9Zgw8xW2cctnGeQsDYtyVZW5tVun/gQy8XHELVFg74+lp+A8/2NV8JC2dKaPU5mxuiPYxq/YMtoBnYLsmWwKr81m3cCX5Osrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i4FXY7du; arc=none smtp.client-ip=209.85.222.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7be6fdeee35so58181785a.1;
-        Wed, 12 Mar 2025 16:29:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741822193; x=1742426993; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xLfGaIgvY5ZVl4JrSGdwM0o3tslIHB1ct9yF4dQRXlI=;
-        b=i4FXY7duuyX6pN5ovYLEdff5ApcFG+PFEDiCJ/cRpAXfqaYfEN2GOagk4JYTqtt+wO
-         UL/9Dqj+3eAFlk6hAwZGloUvp2pP32JYaUqdxfDVnWVpJrR4YlXqyJTYfWQ92PiiRrrX
-         h+SbB2UYt0uStmCd2nNceKqMrdTw07/CPEdpkyFdoIG2BZEDc3fuTRJlEVUb5W+MJDkQ
-         CeWDrNyreqQfUkGXj0ALIW971k1tsPI0SMDN0Os/lKwvMYU3W/iUp7xZCZFs6W101sAd
-         Vs/v/psDntGEsYKMVhEPMRQS3pbP6ApZ2kAQgzat+0Cb0Z4CV9BDX2axA4qv8vWq/K2L
-         r0vA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741822193; x=1742426993;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xLfGaIgvY5ZVl4JrSGdwM0o3tslIHB1ct9yF4dQRXlI=;
-        b=I57ow0qLiliXbd9HiluUYhgAzNgdgMx509TdNWMx7hohk0J0z3ZJ98S25IhSig86zJ
-         g7pXXk81vde9F+fUIdDtZmaWLEmY4vWJ0V1D7gMumEcOgTFg2e3VyP8fmuwU/Nr/e5cq
-         xxb+wGKQdaZExf5cbvktsEsU7CXFhqCPIIcrC7tMax5I6XvA3ydHVJILY+pg9BeOZoxO
-         GVDlTqjIt8fCoi9ZBI57YMengCTdlVUThtOLo1xzLmrW1sslIc6UzBGngCPPMJtVFrjU
-         3xFAFgCD+tR+3bJVw00Onz8Wtzg0zSfVwx4FxHj+NiL0/M/jBSYWS/AYdWy1SF5nobGw
-         a9iA==
-X-Forwarded-Encrypted: i=1; AJvYcCU5uYYh098Rg6N9A2gP1v5aO0BZ/TWcquwZD02f7/VUGUXPohzHqynWN26l+HjUupSEsij7GVbVAAQQV2mG@vger.kernel.org, AJvYcCU7WRiE+IogFm3NwqEFAXH3jXariUaJm97eAhLRsIvz5bB6uOxIc7DOUV/oKCsJJzcp9odR/LlF@vger.kernel.org, AJvYcCVVgHdWzhl1WkTLYTT5bDUBMkM+MPX6HCpdXRcchcXPjbiNr0sRE27/InKOMhbJKRFk8YNbaYlVH5nY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCRDakfWpFcs+074F5pcDNwmAf1PYW9VtYNE92JcF4bHvo/SER
-	VUVzmZIp7CphnuGgLWmrlWsexOrT8mxYTzydCJ1seabr8a+0h9Ch
-X-Gm-Gg: ASbGncsgnSt05UccCJHSL5gJkWE8aKknyWcqHIH20L/eBZR5+EE7tprRBkEKaPR0qSA
-	Y9/ydAefGCHD5klVqO6Czd0/XkjHiRo/d0yXMp3rc4X8FhyFGXMIeg8xbpLfCuDfZMkmNZR8ZeB
-	s6FaY9ny/HRXKgWpmbrypc0xpVkf8Homd3keeQz9SdhvWWb68BZUAylPeyFs4VHMtnG8ALi+1Qq
-	cH8e1w1h4g7v/vvnRuB7YF4Sgf54tL98lxdVZak1Atz9o7aBSXgyUGKjhaeSDWM5JKHdnNJIqtn
-	h//8hL97C/8grPqBfcSP
-X-Google-Smtp-Source: AGHT+IG2pfcqk2sk8gdrKSI0hu3y9BsjzCHFtgLXjVkzz57vH+f9YiHwGclAKa4AV4l6e21yRYMqxQ==
-X-Received: by 2002:a05:620a:2581:b0:7c3:d5a4:3df3 with SMTP id af79cd13be357-7c4e6112241mr2951625485a.34.1741822192828;
-        Wed, 12 Mar 2025 16:29:52 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c573d8aeebsm14867685a.103.2025.03.12.16.29.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Mar 2025 16:29:52 -0700 (PDT)
-Date: Thu, 13 Mar 2025 07:29:43 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Stephen Boyd <sboyd@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: sophgo: add clock controller
- for SG2044
-Message-ID: <x43v3wn5rp2mkhmmmyjvdo7aov4l7hnus34wjw7snd2zbtzrbh@r5wrvn3kxxwv>
-References: <20250226232320.93791-1-inochiama@gmail.com>
- <20250226232320.93791-2-inochiama@gmail.com>
- <2c00c1fba1cd8115205efe265b7f1926.sboyd@kernel.org>
- <epnv7fp3s3osyxbqa6tpgbuxdcowahda6wwvflnip65tjysjig@3at3yqp2o3vp>
- <f1d5dc9b8f59b00fa21e8f9f2ac3794b.sboyd@kernel.org>
+	s=arc-20240116; t=1741823000; c=relaxed/simple;
+	bh=90OuS2yk7g7bxyQlFmmSVP8LGE/eGIxU1ogAteq6FsQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nxAcf3IJw4luKgJH5iWdD84B6ZnMRRSU1+Un0GzwcgHTGYB3gcVU1g/iNSPyEaAjJqN42ASXPpb0iobGp1eqJ2xj6eAnYPLQ0Z+K6W/OiqIGAxmHEXl0db1WA1P+KETnqdrtOhYY9ftS0zcVNo4aqjfyeLhnvugBUgrlZ8bUt5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mI/+Y0Rm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B2C84C4CEDD;
+	Wed, 12 Mar 2025 23:43:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741822999;
+	bh=90OuS2yk7g7bxyQlFmmSVP8LGE/eGIxU1ogAteq6FsQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=mI/+Y0RmOaATux9zeDo++JTMjWuaeRloH5h2gCsaolGdo1Z15JAi0c8/eXiVt6du4
+	 ZEAsEKKJqX/o3+DXqkmRtwul5TWZoxXY/vFoHHf4+CjHgli/AgUt1RmrNkA3BXAZxH
+	 nM+iM7Be60fa0grJQav3bvRrVAg9flHTvZN0qFlvVQjuYNMDy7ZCX1HjmNPfMYgmrk
+	 DM/gqN4a/7+Kqo0Ms2n7CB/5ssaIeaWm95Y35aV+W73mm5NGQcrWkZkqOZmfeeIXOH
+	 Xr0EM24l1VX29vUNfYtGVLX9b+sTlhIAjzoFxbXHzopbAuFKzUcOOmEtAyY1Viwq6f
+	 cE+ZvO72K4sng==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97E5AC28B2E;
+	Wed, 12 Mar 2025 23:43:19 +0000 (UTC)
+From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
+Subject: [PATCH 0/5] Add support for Battery Status & Battery Caps AMS in
+ TCPM
+Date: Wed, 12 Mar 2025 16:42:00 -0700
+Message-Id: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f1d5dc9b8f59b00fa21e8f9f2ac3794b.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMkb0mcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDY0ND3aTEkpL4/IJi3aRUw6QUc8PkRCNTEyWg8oKi1LTMCrBR0bG1tQD
+ JEMecWgAAAA==
+X-Change-ID: 20250311-batt_ops-be1bd71ca254
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Badhri Jagan Sridharan <badhri@google.com>, 
+ Sebastian Reichel <sre@kernel.org>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>, 
+ Pavel Machek <pavel@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-usb@vger.kernel.org, linux-pm@vger.kernel.org, 
+ RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>, 
+ Amit Sunil Dhamne <amitsd@google.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741822998; l=1546;
+ i=amitsd@google.com; s=20241031; h=from:subject:message-id;
+ bh=90OuS2yk7g7bxyQlFmmSVP8LGE/eGIxU1ogAteq6FsQ=;
+ b=zsL7hGB9X2//AJOcUw5HcZ2DY008IsSVM3aNDnOjpwzKN60kqxUEfHb8ORIW8KJMzcJ3L8fXH
+ vDkHVUwomUuBDN/ZOODp4w5hu8fKuyQuPPptydVvvtFxZjCiyYDtYO5
+X-Developer-Key: i=amitsd@google.com; a=ed25519;
+ pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
+X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
+ auth_id=262
+X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
+Reply-To: amitsd@google.com
 
-On Wed, Mar 12, 2025 at 04:14:37PM -0700, Stephen Boyd wrote:
-> Quoting Inochi Amaoto (2025-03-11 16:31:29)
-> > On Tue, Mar 11, 2025 at 12:26:21PM -0700, Stephen Boyd wrote:
-> > > Quoting Inochi Amaoto (2025-02-26 15:23:18)
-> > > > diff --git a/Documentation/devicetree/bindings/clock/sophgo,sg2044-clk.yaml b/Documentation/devicetree/bindings/clock/sophgo,sg2044-clk.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..d55c5d32e206
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/clock/sophgo,sg2044-clk.yaml
-> > > > @@ -0,0 +1,40 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/clock/sophgo,sg2044-clk.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Sophgo SG2044 Clock Controller
-> > > > +
-> > > > +maintainers:
-> > > > +  - Inochi Amaoto <inochiama@gmail.com>
-> > > 
-> > > No description?
-> > > 
-> > 
-> > I am not sure the things to be described. Maybe just tell the
-> > clock required and providing?
-> 
-> Sure and point to the header file with the binding numbers?
-> 
+Support for Battery Status & Battery Caps messages in response to
+Get_Battery_Status & Get_Battery_Cap request is required by USB PD devices
+powered by battery, as per "USB PD R3.1 V1.8 Spec", "6.13 Message
+Applicability" section. This patchset adds support for these AMSes
+to achieve greater compliance with the spec.
 
-Good, I will add it.
+Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+---
+Amit Sunil Dhamne (5):
+      dt-bindings: connector: add fixed-batteries property
+      power: supply: core: add function to get supplies from fwnode
+      usb: typec: tcpm: Add support for Battery Status response message
+      power: supply: core: add vendor and product id properties
+      usb: typec: tcpm: Add support for Battery Cap response message
 
-> > > > +  - |
-> > > > +    clock-controller@50002000 {
-> > > > +      compatible = "sophgo,sg2044-clk";
-> > > > +      reg = <0x50002000 0x1000>;
-> > > > +      #clock-cells = <1>;
-> > > > +      clocks = <&osc>;
-> > > 
-> > > I think you want the syscon phandle here as another property. Doing that
-> > > will cause the DT parsing logic to wait for the syscon to be probed
-> > > before trying to probe this driver. It's also useful so we can see if
-> > > the clock controller is overlapping withe whatever the syscon node is,
-> > 
-> > It sounds like a good idea. At now, it does not seem like a good idea
-> > to hidden the device dependency detail. I will add a syscon property
-> > like "sophgo,pll-syscon" to identify its pll needs a syscon handle.
-> 
-> Cool.
-> 
-> > 
-> > > or if that syscon node should just have the #clock-cells property as
-> > > part of the node instead.
-> > 
-> > This is not match the hardware I think. The pll area is on the middle
-> > of the syscon and is hard to be separated as a subdevice of the syscon
-> > or just add  "#clock-cells" to the syscon device. It is better to handle
-> > them in one device/driver. So let the clock device reference it.
-> 
-> This happens all the time. We don't need a syscon for that unless the
-> registers for the pll are both inside the syscon and in the register
-> space 0x50002000. Is that the case? 
+ Documentation/ABI/testing/sysfs-class-power        |  20 ++
+ .../bindings/connector/usb-connector.yaml          |   8 +
+ .../devicetree/bindings/usb/maxim,max33359.yaml    |   1 +
+ Documentation/power/power_supply_class.rst         |  11 ++
+ drivers/power/supply/power_supply_core.c           |  60 ++++++
+ drivers/power/supply/power_supply_sysfs.c          |   2 +
+ drivers/usb/typec/tcpm/tcpm.c                      | 217 ++++++++++++++++++++-
+ include/linux/power_supply.h                       |   7 +
+ include/linux/usb/pd.h                             |  65 ++++++
+ 9 files changed, 388 insertions(+), 3 deletions(-)
+---
+base-commit: 80e54e84911a923c40d7bee33a34c1b4be148d7a
+change-id: 20250311-batt_ops-be1bd71ca254
 
-Yes, the clock has two areas, one in the clk controller and one in
-the syscon, the vendor said this design is a heritage from other SoC.
+Best regards,
+-- 
+Amit Sunil Dhamne <amitsd@google.com>
 
-> This looks like you want there to be  one node for clks on the system
-> because logically that is clean, when the reality is that there is a
-> PLL block exposed in the syscon (someone forgot to put it in the clk
-> controller?) and a non-PLL block for the other clks.
 
-That is true, I prefer to keep clean and make less mistakes. Although
-the PLL is exposed in the syscon, the pll need to be tight with other
-clocks in the space 0x50002000 (especially between the PLL and mux).
-In this view, it is more like a mistake made by the hardware design.
-And I prefer not to add a subnode for the syscon.
-
-Regards,
-Inochi
 
