@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-156742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C37A5D6D0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 08:07:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D0DDA5D6DD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 08:11:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89DF83B523E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 07:07:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55914189AAFB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 07:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C411E98FF;
-	Wed, 12 Mar 2025 07:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B321E991D;
+	Wed, 12 Mar 2025 07:11:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="D2C+OsRe"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Yrex1V9P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15CC91E834B;
-	Wed, 12 Mar 2025 07:07:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83E91E5B89;
+	Wed, 12 Mar 2025 07:11:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741763269; cv=none; b=hFTpwDIZDTV4jsKY348ib+uWSY3g5cOFwA0JF2j5pVXf3g9hCxzlw6Wt7Ho2bhNei1vdrvD0Ao5CwMiZ4esOy/mh1fDf2xpMwi1ZNOMB42q2qijDF+Iut6I8u3nDHKtOBon0wYJ+WdaL/8D37EAUGiLIU3tKU+ttsGz0oe+7Waw=
+	t=1741763505; cv=none; b=smvhNcokBgpnL+euOIKP4RRBy/Sw3gA4gXkHgSJVG26bhyg99eSy84BMchubV0fNM+qO2oQ3skJU63bRd59qeCAhg/0C/c2d+P2oXvL3YGbZDa7+lNOry8Rms55SR3OUPxMHyFGwzH20rUfBmobQt8aJQ9aOCN76XgkSrslMmfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741763269; c=relaxed/simple;
-	bh=xkX5hO3+T5vZpdAsfoZaLQBkb+ij52X34+ckdVAMjzQ=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mU1YRdUTiOjVI9rKiqEFGFi38TKos5ApyacOfUlurWw2XXgDnGW3xeFFjLlOeoF4eIlAAZLOwL6SXzWzyKJKyXZrJp2I4RjYhOL2R7HFVXPEYjiz1IahaYpLDYjROYZEMpRTp+N4rFWTQIwM6vxZkINr5qjmUnGTTB/pzSgvfBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=D2C+OsRe; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741763268; x=1773299268;
-  h=message-id:date:mime-version:cc:subject:to:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=xkX5hO3+T5vZpdAsfoZaLQBkb+ij52X34+ckdVAMjzQ=;
-  b=D2C+OsRei3bPFm195Fe5/jqsFQMrYDhCTuRhz/dUDWme1T2Xz6aboCha
-   EdSBco4v29lYhiX4frzRHmrbaRvp8xhpA0/6DDE+caGbs/JlEm7UJJcXw
-   8XTk9mi3hHnUnRXwiDKZHhJiOCd4HVxrY32Gragz28Gt5ZXiylsH8oWCD
-   v0rZWCAeAN5s+SZziPx5yhFGeMvWivp51SPR+lN19dYpiWgCEAVeiaidW
-   xFI3iY8F7KjQQuQ9i8lZ0aaDyEc10wbiMVr289BSRJSIjs0SM0O+u7Hlv
-   2JAnjt1Skt3UZUoKa/GmHV73t3vZGvrPcabBPL13PgpCjq0T59Q1Cqxto
-   Q==;
-X-CSE-ConnectionGUID: ii/Fqg6cTfyfS8i0sj368w==
-X-CSE-MsgGUID: xx5kjXguRf+zZ9JDrLTRhg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="43008859"
-X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; 
-   d="scan'208";a="43008859"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2025 00:07:47 -0700
-X-CSE-ConnectionGUID: 8ncVAMK5TiK/y6V+rgmE6A==
-X-CSE-MsgGUID: gi9Y5KxmQra4GmzB21WXbQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; 
-   d="scan'208";a="125179288"
-Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.124.240.153]) ([10.124.240.153])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2025 00:07:41 -0700
-Message-ID: <57dab191-6383-4d51-ba77-4d2cd62cc1da@linux.intel.com>
-Date: Wed, 12 Mar 2025 15:07:36 +0800
+	s=arc-20240116; t=1741763505; c=relaxed/simple;
+	bh=cV5x2phB6io5A1hcWRos+71eq2NS/nw+eOi9/yJjQLc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=VfKR8ZNOzoZ84ecdqZ709MYP35RGIJULLkVrV+6CLH5DjdUsQaZTjgCVTSf6fMi70/8MlZJ4thkA+5SpT+z4/s3uT7tntA0SFDMN7UHArfplBVJeVha922j2euX2Jo+NowPyoa7wPrfY+y0pN39AEWJ7VTrpa3CXCeUoPjXNxQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Yrex1V9P; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52BMHrsZ020069;
+	Wed, 12 Mar 2025 07:11:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PPXp+P7KdxayDRrDGIguU4QpwVn6HFUUreh4LJiEppw=; b=Yrex1V9PQqzf5Nwk
+	hMn/EiHqrLrkhsA4w/hTZ04jCu3nFKQKynMUR3J+JdXCRsg7p8+7pEB1ozFpoEke
+	Aa1JndyMCv95ApBI8B7+Rd2SNkoUfl9BY5qEX17gvQjWYZ3EtGzt91CLP+STbHqp
+	Sa08Oq/OAJYFh/7OnKw7egsos9o0r1JCBJRCkc823C/uV6Oxsd6DOmE//qyFfIIq
+	nQNW2gnfKfRT7q3MIVrZVQOAGQv6B26Q8fEWBBwYmQdg4vVLBHXXLS3XoghS4zV7
+	Kv2L3WtFRGwjqTj4y8/1sTMe/NcMqARrhqSJh7Pnl9t9L1WFKNOT/rdmoUW8bNFe
+	dNxG/w==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2p1f2t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Mar 2025 07:11:38 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52C7BbIf008513
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Mar 2025 07:11:37 GMT
+Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Mar
+ 2025 00:11:31 -0700
+Message-ID: <cd092022-cf6d-421a-a29d-69f7f4f068b6@quicinc.com>
+Date: Wed, 12 Mar 2025 12:41:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,95 +65,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Cc: baolu.lu@linux.intel.com, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>,
- Laurentiu Tudor <laurentiu.tudor@nxp.com>, Nipun Gupta
- <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- Charan Teja Kalla <quic_charante@quicinc.com>
-Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
- path
-To: Joerg Roedel <joro@8bytes.org>, Robin Murphy <robin.murphy@arm.com>
-References: <cover.1740753261.git.robin.murphy@arm.com>
- <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
- <Z9CEIlXoQJ-A0t-d@8bytes.org>
+Subject: Re: [PATCH v2 0/8] clk: qcom: Add support to attach multiple power
+ domains in cc probe
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vladimir Zapolskiy
+	<vladimir.zapolskiy@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya
+ Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+References: <CMTYKKilQJYeHUYYKvlqnwv4Q2P-58Ic1v1ndS9HQ8Yhq2xpHuNThibFDjXDEQ1PyNbx__f9BVBr0peoTUdvPg==@protonmail.internalid>
+ <20250306-videocc-pll-multi-pd-voting-v2-0-0cd00612bc0e@quicinc.com>
+ <5a45fd25-74ed-46e3-b0e3-5adf92b5e9f7@linaro.org>
+ <46d4f090-3e31-414f-abfc-3d1018913c56@linaro.org>
+ <9e6fdcfe-3c6d-44c7-95a3-7652c0650bf4@linaro.org>
+ <caa00d62-b24d-4db7-9e12-170a10c073e3@linaro.org>
+ <b21b5f03-e328-4708-a854-1b3fa9c3dfa3@linaro.org>
 Content-Language: en-US
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <Z9CEIlXoQJ-A0t-d@8bytes.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <b21b5f03-e328-4708-a854-1b3fa9c3dfa3@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=HP/DFptv c=1 sm=1 tr=0 ts=67d133aa cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=bU-rbE2s8JpbpfxL7skA:9
+ a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: akoicu-BERqGVOUIAtrrDukoc-ibhcGu
+X-Proofpoint-GUID: akoicu-BERqGVOUIAtrrDukoc-ibhcGu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-12_02,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=850
+ clxscore=1011 priorityscore=1501 adultscore=0 impostorscore=0
+ malwarescore=0 spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
+ mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503120046
 
-On 2025/3/12 2:42, Joerg Roedel wrote:
-> On Fri, Feb 28, 2025 at 03:46:33PM +0000, Robin Murphy wrote:
->> +	/*
->> +	 * And if we do now see any replay calls, they would indicate someone
->> +	 * misusing the dma_configure path outside bus code.
->> +	 */
->> +	if (dev->driver)
->> +		dev_WARN(dev, "late IOMMU probe at driver bind, something fishy here!\n");
-> This warning triggers on my workstation (with an AMD IOMMU), any ideas?
-> 
->   ------------[ cut here ]------------
->   reg-dummy reg-dummy: late IOMMU probe at driver bind, something fishy here!
->   WARNING: CPU: 0 PID: 1 at drivers/iommu/iommu.c:449 __iommu_probe_device+0x10b/0x510
->   Modules linked in:
-> 
->   CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.14.0-rc6-iommu-next+ #1 1d691d7aebf343bde741cf4c8610d78a2ea2d2d9
->   Hardware name: System manufacturer System Product Name/PRIME X470-PRO, BIOS 5406 11/13/2019
->   RIP: 0010:__iommu_probe_device+0x10b/0x510
->   Code: 68 00 74 28 48 8b 6b 50 48 85 ed 75 03 48 8b 2b 48 89 df e8 87 71 06 00 48 89 ea 48 c7 c7 90 dd 2c 8b 48 89 c6 e8 35 83 77 ff <0f> 0b 49 8b bd a8 00 00 00 e8 77 ab 85 ff 84 c0 0f 84 ad 01 00 00
->   RSP: 0018:ffffafba00047c58 EFLAGS: 00010282
->   RAX: 0000000000000000 RBX: ffffa00481301c10 RCX: 0000000000000003
->   RDX: 0000000000000000 RSI: 0000000000000003 RDI: 0000000000000001
->   RBP: ffffa00480ffaee0 R08: 0000000000000000 R09: ffffafba00047ae8
->   R10: ffffa0135e93ffa8 R11: 0000000000000003 R12: ffffafba00047d18
->   R13: ffffffff8adac1a0 R14: 0000000000000000 R15: ffffa004802c5800
->   FS:  0000000000000000(0000) GS:ffffa0135ea00000(0000) knlGS:0000000000000000
->   CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->   CR2: ffffa00baca01000 CR3: 000000082b838000 CR4: 00000000003506f0
->   Call Trace:
->    <TASK>
->    ? __iommu_probe_device+0x10b/0x510
->    ? __warn.cold+0x93/0xf7
->    ? __iommu_probe_device+0x10b/0x510
->    ? report_bug+0xff/0x140
->    ? prb_read_valid+0x1b/0x30
->    ? handle_bug+0x58/0x90
->    ? exc_invalid_op+0x17/0x70
->    ? asm_exc_invalid_op+0x1a/0x20
->    ? __iommu_probe_device+0x10b/0x510
->    ? __iommu_probe_device+0x10b/0x510
->    ? __pfx_probe_iommu_group+0x10/0x10
->    probe_iommu_group+0x28/0x50
->    bus_for_each_dev+0x7e/0xd0
->    iommu_device_register+0xee/0x260
->    iommu_go_to_state+0xa2a/0x1970
->    ? srso_return_thunk+0x5/0x5f
->    ? blake2s_update+0x68/0x160
->    ? __pfx_pci_iommu_init+0x10/0x10
->    amd_iommu_init+0x14/0x50
->    ? __pfx_pci_iommu_init+0x10/0x10
->    pci_iommu_init+0x12/0x40
->    do_one_initcall+0x46/0x300
->    kernel_init_freeable+0x23d/0x2a0
->    ? __pfx_kernel_init+0x10/0x10
->    kernel_init+0x1a/0x140
->    ret_from_fork+0x34/0x50
->    ? __pfx_kernel_init+0x10/0x10
->    ret_from_fork_asm+0x1a/0x30
->    </TASK>
->   ---[ end trace 0000000000000000 ]---
 
-I saw the same issue on Intel platforms.
+
+On 3/11/2025 11:41 PM, Bryan O'Donoghue wrote:
+> On 11/03/2025 17:55, Vladimir Zapolskiy wrote:
+>>
+>> I kindly ask to elaborate here.
+>>
+>> This series does not touch CAMCC at all, and if the series touches CAMCC,
+>> then it changes DT ABI, which is objected. Or is it for some reason
+>> objected only for SM8550 and not for the other platforms? More information
+>> is needed.
+> 
+> No but it _should_ Vlad, that's the ask.
+> 
+> Both of these clock controllers will require this same change to be implemented, that's what I'm asking Jagadeesh to do.
+> 
+> Certainly that's the case for x1e and asking Jagadeesh to also check that for sm8650.
+> 
+
+Yes, similar changes are required for camcc on SM8450, SM8550, SM8650 and X1E80100. I will add them in the v3 series.
+For X1E80100 camcc, I see changes are already raised in dt-bindings[1] and DT[2] to add multi PD support, so I will just
+include the camcc driver change in v3 for X1E80100.
+
+[1]: https://lore.kernel.org/all/20250304143152.1799966-1-vladimir.zapolskiy@linaro.org/
+[2]: https://lore.kernel.org/all/20250119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v4-2-c2964504131c@linaro.org/
 
 Thanks,
-baolu
+Jagadeesh
+
+> ---
+> bod
 
