@@ -1,69 +1,89 @@
-Return-Path: <devicetree+bounces-156819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD67AA5D9DD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:50:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78847A5D9EF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:54:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 083D1171AF5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:50:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AA4E1882AAC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CABC23BFA9;
-	Wed, 12 Mar 2025 09:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E8A23C384;
+	Wed, 12 Mar 2025 09:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W9dF3Z/2"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="lvGw2fmT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2056.outbound.protection.outlook.com [40.107.236.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9989222E402;
-	Wed, 12 Mar 2025 09:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741773005; cv=none; b=WdekgeFO97mAMj888twyho65yzyVvDHK04jLcZ3b5oNeN4cinPU27MurkDmToQmzqwSynxbgWl5fuZRhCFKdA1CIA5fojELNd74xoFCGZmni/XCV56nkXWcLpATqZtlVUZOHR8/ESVugaIWSKfA+/9PnN8T0UMhbnsx7BlEf72Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741773005; c=relaxed/simple;
-	bh=MI8AoERqihUYmL4TjIkwjFUKRnq/VTLzWRTXWKupLf0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lR7gJ4fbxJC732w1w+bt3dW73HvuduxUQROZ63pUqSJ4OkboJiqesSsMuaSsOZPiBk3KvMNeEgcD5Za2saSDkEhoiBudn4tAsOUKF9WxCoNwUwHrgn9DwmcqCuG+/oxaRW8TzDZ/1HIMdP41BwToRJQ0qjxInjz7XJt6SMbOi+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W9dF3Z/2; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52BMHA0R013950;
-	Wed, 12 Mar 2025 09:50:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=kgideWmWyJcC3sljKVJ0uN
-	4O1r1uSFuIk7vp+zHSawA=; b=W9dF3Z/2CoMGkkmK6GZHztRN6Gv+0Im67Flox2
-	Va25gqsMipJOkmP8HyVGNdgvTcnCXNZo4WnbEH7Ca5RkTh555gc2n5zNtxcOOuFd
-	ADmIxMbkzVZm7MzSzyYA7naMA71JTwjtMHwl+iVdOAHLxXHNSB2s4xsqvCnpXXR8
-	62Hjljp5zTSoQICgA8F7grgDEiYuW+DHUh1foB3kTd8cU7NGcuvXlKj+QlXrnR3h
-	frqj8RuTVubwkUI9do8/qy845oyeIQg70pCkAueL0P9DaCOz0t+VXraIRLjc9zRM
-	aqCqybJdIBE6sO5cW5zcOxfKlj0P7P+eQQX/Vr/61OHdxomw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2p1wry-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Mar 2025 09:50:01 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52C9o1Nc009451
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 12 Mar 2025 09:50:01 GMT
-Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 12 Mar 2025 02:49:57 -0700
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
-Subject: [PATCH v1] arm64: dts: qcom: ipq5424: add reserved memory region for bootloader
-Date: Wed, 12 Mar 2025 15:19:48 +0530
-Message-ID: <20250312094948.3376126-1-quic_mmanikan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42BE21E3DFC;
+	Wed, 12 Mar 2025 09:54:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741773264; cv=fail; b=Lq0/IkGDPq/Sk8Z0T05E1fo5DdWA83r+NKa23I5RAtPpUt+1guug8+vEWIdvWabLrYbPoSFicBMucHfHm9QzvsRXgEsa06wu5pytK6uDaeX+WEwUksnb0ugaAcd+T5PFJ5qWypl0wb4Jca9T9ABwHftnxUaXOdqnC6DdnIWyfOM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741773264; c=relaxed/simple;
+	bh=cIqikaqUF0Zq/+1WhBa1YOVM/PINA+S34YdCCbNNmLI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=S1BS6tiqmMa91EDmwkxKEHmkAc2DSXCXHm5Q/G7urYPngC9I2l/YlGfzCGvTZN9jeSA4GAzjCXTXGV4sCfcLB6thwTNbjook1dA2XU1SRCwJK+i9a7oj4LweqS/dJO3WFECQmXSwhdQpzs4ToWoT5tz72kVoyiOUkH4o4Orwpf4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=lvGw2fmT; arc=fail smtp.client-ip=40.107.236.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=g7CzbapKDHHCpiddP+2KPpnhqpt94KpXQQXcXRFFX6/90ugVwU78Ey+2t/ChvohKELLa40XmwsMw5PAkfPuV+VHTdFzwN4Jq8HoNCbs1dzVCXPs2n9C4SQC7WhlrFE+Anekobc1jRxgp9GQeKxP/FE5Zk+pNUxIQzJocRL0AZrUcZrb9jesEBoFORiLIt9R9V857l8EEF93A10cInAA+goGqu8ROvOWTl2RZBqPnaC+nJP0VYHOkCKptz/bZsmYfWIlFWQOXaSAAoNxHRjLLCSd+dGiusQqQKsaHk4zGjCuW8PMN7vNlfkxl+V2Q3OO37qvBzy2Rd5lGRIKTdtVgYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kI/enS/gSnthKs4EEBRXflgdsBsnnOZvJqwo6z0T2ko=;
+ b=TXJBKKyxuom4fXmOXWcG4MzHnAZ3dyWK+kSoLyp0+YqzI5DnTu+//bBQIP1C5C5jPjic5ppmR6500kgMgCJlcOOp8W6VkRQaNKjNKgwDZajGJSWPnM09PMQ+dz7ytDi41NTiPZQ4eRPZjyqZpP2P2f40bUMOTvkuUFA/5vaFlz/p4lVDvanNv/fhJOpm6enTgZSb3VYgYtc+BuE/DV62OoPTIc/79E760NbUO2kKwu9h+9LIwh7ljWuPL+Iyhrh0gZ8ti3k44fHB2mKIvjt/NYpWpd2vWR1g+KxPx1E0/KHXTLRAmtx71ZVatUdNo8yzuR62MBBPshnUbKMg7UwXsg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lunn.ch smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kI/enS/gSnthKs4EEBRXflgdsBsnnOZvJqwo6z0T2ko=;
+ b=lvGw2fmTMCIlWy3eO60UbLCFN3yiDNZBZRBf823Va7MEjzgDT5jM8BOTpWlHuyZu+rW0R+GY8onNlNTiNnPzR38DLiitF7wDy6Qzoh1cVzNmuw4oIPOOawHwovUw7BRI5jjozJDP1ucQrljYeOUGcuQjg6IJiSbSk/lmyBNcYn0=
+Received: from PH7P220CA0175.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:33b::16)
+ by CH0PR12MB8485.namprd12.prod.outlook.com (2603:10b6:610:193::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Wed, 12 Mar
+ 2025 09:54:19 +0000
+Received: from SN1PEPF00036F3C.namprd05.prod.outlook.com
+ (2603:10b6:510:33b:cafe::b3) by PH7P220CA0175.outlook.office365.com
+ (2603:10b6:510:33b::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8511.24 via Frontend Transport; Wed,
+ 12 Mar 2025 09:54:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF00036F3C.mail.protection.outlook.com (10.167.248.20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8534.20 via Frontend Transport; Wed, 12 Mar 2025 09:54:18 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 12 Mar
+ 2025 04:54:16 -0500
+Received: from xhdsuragupt40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Wed, 12 Mar 2025 04:54:12 -0500
+From: Suraj Gupta <suraj.gupta2@amd.com>
+To: <radhey.shyam.pandey@amd.com>, <andrew+netdev@lunn.ch>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <michal.simek@amd.com>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<git@amd.com>, <harini.katakam@amd.com>
+Subject: [PATCH net-next V2 0/2] Add support for 2500Base-X only configuration
+Date: Wed, 12 Mar 2025 15:24:09 +0530
+Message-ID: <20250312095411.1392379-1-suraj.gupta2@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,55 +92,77 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=ePkTjGp1 c=1 sm=1 tr=0 ts=67d158c9 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=XM-gT74EAUeGg6Fp4qoA:9 a=JrUbwKUKoRM7SNILlDhP:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: Gw2olqtuWYpcGzeNARle7bQZYszV-az8
-X-Proofpoint-GUID: Gw2olqtuWYpcGzeNARle7bQZYszV-az8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-12_03,2025-03-11_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=544 phishscore=0
- mlxscore=0 malwarescore=0 suspectscore=0 impostorscore=0 bulkscore=0
- clxscore=1015 lowpriorityscore=0 spamscore=0 priorityscore=1501
- adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503120066
+Received-SPF: None (SATLEXMB03.amd.com: suraj.gupta2@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F3C:EE_|CH0PR12MB8485:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c8d8906-9cb8-48c2-dbfa-08dd614bdb15
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|7416014|36860700013|1800799024|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?PVkKtbJQSsOBOWQMtvBDeiPNI8LJXl5ix5nSYaSkUsgfzAa/k5QOhcNIpfxS?=
+ =?us-ascii?Q?EsaGZlt9S7uhJoSJsJvwZSsDKwcWD1KM99GfEXBt/vruvqbZ83nvzJ9BBC5m?=
+ =?us-ascii?Q?Q521WC84qvJeRzFkEljoyQLkf+HJJoDjiMPIkkzOHyPIpz16ySS9o9Tf+1Hj?=
+ =?us-ascii?Q?jAQvtjJu71FdWzSouvgDeDaw3t2jznIuWUaMNya3ovTlc6JdlGNIzz+tD2dW?=
+ =?us-ascii?Q?JHZ2xnSJ4Oee8ny+bi/jMRvpzijBdaCEp6v9U86shlY5O1n2EZ20pjBSp3qV?=
+ =?us-ascii?Q?l10BVW9UV3yLVTOvBpOeIhrRmPQpYxZ0ZRXLNbiTZlSC0nb0JB1PuTg+7rsp?=
+ =?us-ascii?Q?s/Nqr8GiQQOOuoh38pLhdRe+sQAdxn4w4lybn5HSwFKgulBLMogRyYp+Kl4W?=
+ =?us-ascii?Q?bpvN1KgAcEqhGMwIZIsRdQOxRea2IlbUH4g8eHSigJpwD2oZwu5IHL+JdAY9?=
+ =?us-ascii?Q?mOPR866ECcJvU2AYiyNfciIhHkBRbhZZBIANIRdOtnzCrTbm0lW1+SBduy50?=
+ =?us-ascii?Q?zi5i/E25M/xFrchcikNujwBY4OWQnDbcSzyv9Bm4BnN2zrAGtKsyxMaGZySy?=
+ =?us-ascii?Q?YrJKuTwwZeKA04jh5p/zAD7a2v4lmU530gCzy1m4tMGiBgFd5lllOWGfHTyM?=
+ =?us-ascii?Q?zIR0m2o6LOi9P1FM5RKaFpnpTZT8XzUWfwSiHoknvtEVQCqprOWPyD5u9+pg?=
+ =?us-ascii?Q?OUbN8jB0uY14Wvi3NJkyO+P48I9UTcrOpJl5d53q9Fj1Pa4VbB8K75w3Rgrr?=
+ =?us-ascii?Q?xsf+5IrVuo7XL+ADMk3EUzNNo05vzxeWq6QoDn/SJf14Gqe1VkaWL0Jpzw3P?=
+ =?us-ascii?Q?LBW0biKTb7Giu+J5w4hRanzJM0BkTwOEi70O9x5n9bX7mxaKvtMpG3x4IL58?=
+ =?us-ascii?Q?zQAw5xj6E34kVA3cusLwWL7ku7Xp3wvTr1kTs6aC/vi4dJiDgR3h9LP9SUT0?=
+ =?us-ascii?Q?I52CMJyi8xmxNTf8jSj4uaayfYGWtWSaweA6k8JamKFnQqgJRnwTmMalAN7C?=
+ =?us-ascii?Q?/35VNLOVwHYYQ1lpi8fhp94lTE0zEpenhDofEUTfDgCE3FHsH7zC0OeW3skq?=
+ =?us-ascii?Q?wbZ8zJcCnws0Tlh+logSGqTt/lV1qJTOOIG24l9zjelee//Don0xqjl7h+5v?=
+ =?us-ascii?Q?gJy0WU78I36nKGONkylmDPDIPmTSZGzI+5uwCSrWSUJ2kzcpSSqMP9gTWEwx?=
+ =?us-ascii?Q?ezYnq9nGVzJw9f7UxAhYcF0VD9To2HMyvGh106S1Fdg8R8chtj8CMUDl9lxe?=
+ =?us-ascii?Q?6gAK+9vDucBDf4EFIEL3dQTRWnyxw6/wILYetc12ApUxFKnEX61xgBv77n/t?=
+ =?us-ascii?Q?cuY8QgV7BKSt98GuTCdD/WzDJ6TZNXyzfg184JXE/AGWGkKDRjxiNYzvftAC?=
+ =?us-ascii?Q?V5L9MipIJfKlYMaUS5Jxy2r2aWO7ZXAxAlAyw1WOkFXywWkuKIOiBcNG3XAp?=
+ =?us-ascii?Q?/TVKsrveg2EHMX6mvd8ue5vMduQNO5fgou45XewNIWbKCRVxJ0wA8pTQ7ZVo?=
+ =?us-ascii?Q?oPJKkkIW+/MZUeNTH+bIO9h562OAx7+1nDde?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(7416014)(36860700013)(1800799024)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2025 09:54:18.1625
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c8d8906-9cb8-48c2-dbfa-08dd614bdb15
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF00036F3C.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB8485
 
-In IPQ5424, the bootloader collects the system RAM contents upon a crash
-for post-morterm analysis. If we don't reserve the memory region used by
-the bootloader, linux will consume it. Upon the next boot after a crash,
-the bootloader will be loaded in the same region, which could lead to the
-loss of some data. sometimes, we may miss out critical information.
-Therefore, let's reserve the region used by the bootloader.
+Add support for 2500Base-X only configuration, which is a
+synthesis option of AXI 1G/2.5G IP.
 
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5424.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Changes in V2:
+- Read 2.5G ability from Temac ability register and remove
+max-speed DT property.
+- Mentioned all 3 IP configurations in comment and commit description.
+- Mention this series is for 2.5G only configuration.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-index 7a7ad700a382..cd1acf3898ac 100644
---- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-@@ -132,6 +132,11 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
- 
-+		bootloader@8a200000 {
-+			reg = <0x0 0x8a200000 0x0 0x400000>;
-+			no-map;
-+		};
-+
- 		tz@8a600000 {
- 			reg = <0x0 0x8a600000 0x0 0x200000>;
- 			no-map;
+Suraj Gupta (2):
+  dt-bindings: net: xlnx,axi-ethernet: Modify descriptions and phy-mode
+    value to support 2500base-X only configuration
+  net: axienet: Add support for 2500base-X only configuration.
 
-base-commit: 0a2f889128969dab41861b6e40111aa03dc57014
+ .../bindings/net/xlnx,axi-ethernet.yaml       |  9 ++++---
+ drivers/net/ethernet/xilinx/xilinx_axienet.h  |  2 +-
+ .../net/ethernet/xilinx/xilinx_axienet_main.c | 24 +++++++++++++++----
+ 3 files changed, 26 insertions(+), 9 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
 
