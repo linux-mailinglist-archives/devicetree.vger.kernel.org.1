@@ -1,107 +1,84 @@
-Return-Path: <devicetree+bounces-156867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E9DEA5DB9E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:33:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4463A5DBCD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 12:44:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB00E189A692
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:33:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0108189A87D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8309623E335;
-	Wed, 12 Mar 2025 11:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDAF23ED58;
+	Wed, 12 Mar 2025 11:44:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QVsOBf+h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="js4LyqX0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5989623BD13;
-	Wed, 12 Mar 2025 11:33:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E403125B9;
+	Wed, 12 Mar 2025 11:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741779194; cv=none; b=ZAo9hGc+Xml4Hwn10lUmKVTkhHp0WLJLSbSz07C4cUxSnMcaCpbL6/btcyGbm1GvUJToIz3vxczwvmvG2F6FukD4m+OOGqSjHk2vftnYfXfez4Imz6OnYhcamY/6fRovkU8zFmHD2ghFMmptFOxJ9ial4+I8c+2v/UKMd1XOWdc=
+	t=1741779849; cv=none; b=IM7u/jwjTmyPQlYOL78iAKU+ehwPjhtdLQDK0k2zhfTF59cR+Gg5F47KnZwIIK/ixV2bhB87G7VN59gvuFkfPwR2XF6tFQ3K0cOfYeZVILG451J1aT7vTUKlsVBa02pIPLdxRZr5X7ftbskJT5xF78a1BYiKpI61a5ceMAQJ1k4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741779194; c=relaxed/simple;
-	bh=E/aiie6JpPwOoULZENAwypugxM9ePI9OiT+4riVd96I=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=kgbbkxcWH/0FBRaXhjGMuG9ShiEYeIkgQfLluX0Kj84F5ehdsLVw7EOV4N1qDngmP//8DKAl4LJ+WTLnhD8VDBsyMrNG7M9D2Hi/8BLd6CNMnDJ/BuUR4+5AQWHg3CVfAg1PKaliEsh9coFzj+0WC7YdCxnXvDatKa4+QLttB3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QVsOBf+h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65BF0C4CEE3;
-	Wed, 12 Mar 2025 11:33:13 +0000 (UTC)
+	s=arc-20240116; t=1741779849; c=relaxed/simple;
+	bh=B18CTvQcu21pnDR6n1C3QEbb6mim38vwVC0D3qW5SIg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gumRr5KYokSQ0BT/te9MIACuf/zCWxRzrVvtoajkmwqzPifYiVm3pcFy/HpIKQ0axf7J+Ivw7AaV8imcSef6laxBp3mZoj5cEgp38YqQEROzGa17JnAcTiyXvXmlgYn1PtyPNK97iWtCIYk3YbJnzZtn53GIh1e2WuiWOyfc0zA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=js4LyqX0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 734A3C4CEE3;
+	Wed, 12 Mar 2025 11:44:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741779193;
-	bh=E/aiie6JpPwOoULZENAwypugxM9ePI9OiT+4riVd96I=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=QVsOBf+hGXDuQi4Jh9IdImcG+z3rvAvsfHFbflbK1R2PlcYTzaIGLOHbeRSA4ep/K
-	 LYej0d9sMCFAsowl5gHUaFsbscu50j3ezojudo6G75P02ERPTj3q0wP5U1MoJtKTD5
-	 /XNbRwa9xA1nddJuKrPdx+CcJv4brPkmwEhbpFamcIH5ZC0Cz76BzK3JQlAcWaD06j
-	 +TjDJ66bRRs5Y4QAtV0OSkpDFFm4F2y0wrilm8hgta0rmgoZaMQE3n3KN4mpIVUgRP
-	 bIuMfTi7kplhzCi9c36zm3hNrN9cf9mbLUkrcTuPxB2cLTKbQtz0PBA+ejqkqAjCpU
-	 ET4bJWcGXZZiQ==
-Date: Wed, 12 Mar 2025 06:33:11 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1741779848;
+	bh=B18CTvQcu21pnDR6n1C3QEbb6mim38vwVC0D3qW5SIg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=js4LyqX0c4zGgiDIyD04joWIuoW0Jr10byBvUWdFkfwjiFoKECWGef4oeGLm0zwHT
+	 A/xkZ0wYp6JOgtcLRmc6gs0WuIFK3B4w/XdgJSbiOfmEH+tBqk/jHAOQWL14/oumcN
+	 BDsbmoput5gNSii4QRJ2KaC8Qd7DFbQNeg0lLft1gt1Ag9XpJY/2hDpDAEWlKqlhzD
+	 0+BzZcCgh76nyEthdmfUmW1ruv80dHAWFtokp2x1vt0tinBgmTta3x1l03fi3lFcvC
+	 3c05nosXUdEividUj+nnIOleNwNCYZWUJ5Y/gLPP1r05HhON60zJ8ljgrHRmSbA1tC
+	 GRTRvNEBi0C4Q==
+Date: Wed, 12 Mar 2025 12:44:04 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	robdclark@gmail.com, dmitry.baryshkov@linaro.org, sean@poorly.run, 
+	marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org, robh+dt@kernel.org, 
+	krzk+dt@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	quic_abhinavk@quicinc.com, quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com, 
+	quic_jesszhan@quicinc.com
+Subject: Re: [PATCH v2 01/10] dt-bindings: display: msm-dsi-phy-7nm: document
+ the SA8775P DSI PHY
+Message-ID: <20250312-debonair-unbiased-mouflon-7e3ba4@krzk-bin>
+References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
+ <20250311122445.3597100-2-quic_amakhija@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-media@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- linux-arm-msm@vger.kernel.org, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss <rfoss@kernel.org>, 
- Todor Tomov <todor.too@gmail.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20250312001132.1832655-2-vladimir.zapolskiy@linaro.org>
-References: <20250312001132.1832655-1-vladimir.zapolskiy@linaro.org>
- <20250312001132.1832655-2-vladimir.zapolskiy@linaro.org>
-Message-Id: <174177914766.189343.17822607487336311201.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: media: Describe Qualcomm SM8650 CAMSS
- IP
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250311122445.3597100-2-quic_amakhija@quicinc.com>
 
-
-On Wed, 12 Mar 2025 02:11:30 +0200, Vladimir Zapolskiy wrote:
-> Add device tree bindings for Qualcomm SM8650 camera subsystem.
+On Tue, Mar 11, 2025 at 05:54:36PM +0530, Ayushi Makhija wrote:
+> Document the DSI PHY on the SA8775P Platform.
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
 > ---
->  .../bindings/media/qcom,sm8650-camss.yaml     | 389 ++++++++++++++++++
->  1 file changed, 389 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8650-camss.yaml
-> 
+>  Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/qcom,sm8650-camss.yaml: properties:ports:properties: '^port@[0-5]$' does not match '^[#$a-zA-Z][a-zA-Z0-9#,+\\-._@]{0,63}$'
-	hint: Expected a valid DT property name
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250312001132.1832655-2-vladimir.zapolskiy@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
