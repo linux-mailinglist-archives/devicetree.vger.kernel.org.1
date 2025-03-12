@@ -1,136 +1,156 @@
-Return-Path: <devicetree+bounces-156814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A3B1A5D9A3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:36:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7463CA5D9B0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:39:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90C103B6B4F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:35:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 030403A81BB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B76D23BD18;
-	Wed, 12 Mar 2025 09:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27FE23A99A;
+	Wed, 12 Mar 2025 09:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="l38TbMDT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cJTCQbsz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBCE23BF80;
-	Wed, 12 Mar 2025 09:35:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6078715820C;
+	Wed, 12 Mar 2025 09:39:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741772135; cv=none; b=rd5xcsyeLbHh4EeiazNuxqBXSxJ7KaTzBlGgRttlCOi/GgIFgZ6zibRQINmbKcrgPr3G10HCMCmTCUSqGoaOUKpvSU++M+WwYJwm2BNt+dYyG9TaJeQS89A9RYf30Htvre2WFhoo4h+eb80Tln5O1J0lLY6jtEwtoX8qhZYkdss=
+	t=1741772392; cv=none; b=Sqaj/JzH9ournj+2viVHkI5y3OswCcgkg2FwtDosuDZXH3kh/RvbXObfChghCGgHpb4ybOYtIPtCEwmEf23RrMseE7RPVVzDnHdnrlesp3Q0dD/ris/Riq7NHpjK7KujALOCKEuLvILPLXni0ao12wf7U6Jc4lnz/d3OB49wGEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741772135; c=relaxed/simple;
-	bh=1kwvq2NYsuuJrxWJlRvbnJSoaTQgLxL3w17Tfmkb7ic=;
-	h=In-Reply-To:References:From:To:Cc:Subject:MIME-Version:
-	 Content-Disposition:Content-Type:Message-Id:Date; b=rqeTpOOFj066tbll6q/rizrCDi0QwXaCJSh3z2JcfLA4sFNPou6vgBCnCZ5SeauXKtC7wIM/uwAAE/TB4cZLzKFukyvYBIu0kgPqdvWZWeHCW9kx2MSFXyINU6MPIc0reK1Q39xl3mUdfuKOQNJIAc//vVKlyGjFoiby/MuT3Y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=l38TbMDT; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
-	In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=coDruLhzUwUWr9PQ9J/pkDgkm+WduLU7r2hwaAyS0V4=; b=l38TbMDTtPijQLznVdXj9eUSID
-	TXt78Gu7RakE9elMNI1mHpUmrCgm5/3bcl5H24UbxTmu1TLZ6m3qY5r2KpyIKdkNfpkB0whgy3InQ
-	OVOGqdKoQQpfFJNy6wXOtGshaQgfPEJgIUBxCii7pdLlQ9v/IoICsNead6z3Co52C+rNPx7ix8/cU
-	efEWjXjWPyiBVn9LCkCjZ9Zqr4rjEjNHAr96iAomHz8qTf1Ar1w0KHwCEA/BnRCEAEMFOCP+kRmiH
-	7H7NQmceeb1piiH4O4S5WTs53KwPr9P2azvAfEzgoXOVx8zHtlcRbDeCh1BRd9zNX9yuJdfytPWVq
-	52ML+odA==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:42846 helo=rmk-PC.armlinux.org.uk)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <rmk@armlinux.org.uk>)
-	id 1tsIUi-0005Ie-08;
-	Wed, 12 Mar 2025 09:35:20 +0000
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1tsIUK-005vGk-H7; Wed, 12 Mar 2025 09:34:56 +0000
-In-Reply-To: <Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk>
-References: <Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk>
-From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Conor Dooley <conor@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	devicetree@vger.kernel.org,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Eric Dumazet <edumazet@google.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	netdev@vger.kernel.org,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH net-next v2 7/7] net: stmmac: deprecate
- "snps,en-tx-lpi-clockgating" property
+	s=arc-20240116; t=1741772392; c=relaxed/simple;
+	bh=Zl07tU7+p0PpzqbFzUpsduh+7Da4qFqCRGZ9W6ReZ3c=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XAca6+Hz87Wn5HWCqUDOR4qvg9vkFEj+vmstQJTD6SKdYf61OTYM9F87UfDt4bKHZuLtS2Z2z0yhTk4GqtROyzjzchiqNjiNEGmM8lxZVXy/pFYCMz8GSEFpLetFdn2/dD1LfUxJ8iDEtnv6QZPPQz4lNdHcqLGgKAs2OyB+SSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cJTCQbsz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52BMHCTq030286;
+	Wed, 12 Mar 2025 09:39:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Bs/d2yOM5HvoJ3Fs/iubFgUi
+	IpZVkkeRuPDobV4RML8=; b=cJTCQbszIqE+5ZPqvW7Rrr12sRHj8DY2cnE45VKh
+	RrGIZ/yUNYsGX69iIatS7laqc67K9qBKLGNZGhshJPBdC4DbVFCtRcBGHF4eFzQJ
+	8FiprT0AZH06+TnvJyJ7eTW59XUZur1EKKIcU0KOfP28EOLJJ3iqdwBCe1uDf7BJ
+	U00K5pu9rMBxcd7/wwLYr4dMNCxaQmHajLrvMXqe271Eh7iHbeFwXaEC3+bkXIt+
+	dRPICHETXUJPektCMRcQvuE4+RSDdM+PLTPUHpyVo5LY1U3hGZYkRmfaSWTMznWg
+	Gx0SUSEEJbRur3+HNh0SuGxdlVezmgP2kgP0A1ypcrbK/w==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2qhw07-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Mar 2025 09:39:44 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52C9dgkR020391
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Mar 2025 09:39:43 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 12 Mar 2025 02:39:38 -0700
+Date: Wed, 12 Mar 2025 15:09:34 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <quic_srichara@quicinc.com>,
+        <quic_devipriy@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v12 1/4] dt-bindings: PCI: qcom: Add MHI registers for
+ IPQ9574
+Message-ID: <Z9FWVh1NinKOsRNq@hu-varada-blr.qualcomm.com>
+References: <20250312084330.873994-1-quic_varada@quicinc.com>
+ <20250312084330.873994-2-quic_varada@quicinc.com>
+ <7b2d7f14-4274-4ff0-87a6-ac3dd649df4e@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1tsIUK-005vGk-H7@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date: Wed, 12 Mar 2025 09:34:56 +0000
+In-Reply-To: <7b2d7f14-4274-4ff0-87a6-ac3dd649df4e@kernel.org>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: VLZnR-Gwgi09wzAZYhOChL3XibPlTXpM
+X-Proofpoint-GUID: VLZnR-Gwgi09wzAZYhOChL3XibPlTXpM
+X-Authority-Analysis: v=2.4 cv=TIhFS0la c=1 sm=1 tr=0 ts=67d15660 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=FAg4eJUAi5izC7YpO0UA:9 a=CjuIK1q_8ugA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-12_03,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 mlxlogscore=970 mlxscore=0 clxscore=1015 bulkscore=0
+ malwarescore=0 suspectscore=0 spamscore=0 phishscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503120065
 
-Whether the MII transmit clock can be stopped is primarily a property
-of the PHY (there is a capability bit that should be checked first.)
-Whether the MAC is capable of stopping the transmit clock is a separate
-issue, but this is already handled by the core DesignWare MAC code.
+On Wed, Mar 12, 2025 at 09:46:41AM +0100, Krzysztof Kozlowski wrote:
+> On 12/03/2025 09:43, Varadarajan Narayanan wrote:
+> > Append the MHI register range to IPQ9574.
+>
+> Why?
 
-Therefore, snps,en-tx-lpi-clockgating is technically incorrect, and
-this commit adds a warning should a DT be encountered with the property
-present.
+This is needed for ipq5332 to use ipq9574 as fallback compatible.
 
-However, we keep backwards compatibility.
+> > Fixes: e0662dae178d ("dt-bindings: PCI: qcom: Document the IPQ9574 PCIe controller")
+>
+> What is being fixed here?
 
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Ok, will remove this.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 8dc3bd6946c6..c73eff6a56b8 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -497,8 +497,11 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
- 	plat->force_sf_dma_mode =
- 		of_property_read_bool(np, "snps,force_sf_dma_mode");
- 
--	if (of_property_read_bool(np, "snps,en-tx-lpi-clockgating"))
-+	if (of_property_read_bool(np, "snps,en-tx-lpi-clockgating")) {
-+		dev_warn(&pdev->dev,
-+			 "OF property snps,en-tx-lpi-clockgating is deprecated, please convert driver to use STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP\n");
- 		plat->flags |= STMMAC_FLAG_EN_TX_LPI_CLOCKGATING;
-+	}
- 
- 	/* Set the maxmtu to a default of JUMBO_LEN in case the
- 	 * parameter is not present in the device tree.
--- 
-2.30.2
+> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > ---
+> > New patch introduced in this patchset. MHI range was missed in the
+> > initial post
+> > ---
+> >  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > index 8f628939209e..77e66ab8764f 100644
+> > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > @@ -175,7 +175,7 @@ allOf:
+> >        properties:
+> >          reg:
+> >            minItems: 5
+> > -          maxItems: 5
+> > +          maxItems: 6
+>
+> Why qcom,pcie-ipq6018 gets mhi? Nothing in commit msg mentions ipq6018.
 
+Didn't mention ipq6018 as I was under the impression that 'minItems: 5' would
+apply for ipq6018.
+
+> >          reg-names:
+> >            items:
+> >              - const: dbi # DesignWare PCIe registers
+> > @@ -183,6 +183,7 @@ allOf:
+> >              - const: atu # ATU address space
+> >              - const: parf # Qualcomm specific registers
+> >              - const: config # PCIe configuration space
+> > +            - const: mhi # MHI registers
+>
+> Never tested - you introduce new warnings. AGAIN.
+>
+> Properties xxx and xxx-names must have always the same constraints.
+
+Ok, will add 'minItems: 5' here.
+
+Thanks
+Varada
 
