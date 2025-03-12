@@ -1,57 +1,81 @@
-Return-Path: <devicetree+bounces-156794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65021A5D91A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:18:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9C67A5D921
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:18:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA7F57A5FE4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:17:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AA5117392C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 09:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D33236436;
-	Wed, 12 Mar 2025 09:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3A123A98E;
+	Wed, 12 Mar 2025 09:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5NkTz2T"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cQDoVRAs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6C2A2F43;
-	Wed, 12 Mar 2025 09:18:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8791C23A98A;
+	Wed, 12 Mar 2025 09:18:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741771091; cv=none; b=n90zRJqHaGwFp84dsyyKfTAwKVKc57qLX3FZOzH/AcZn0cHI3lnQ96EtVB8B9vO6D7D62vQB0eP4M8acA9oExNRfzzLeg6yL2ph6Ft3D8GfKoCcoCrrzCo6TOKnAGBxhx8K5iUmhL9NFdzaYt7m9+cu7W2pMKxpmdci976WwPpY=
+	t=1741771134; cv=none; b=qMcJw/55GFSTuuOEKy0sC1V/J9UsbJ+6q7y4l4Wo4fwiSv9+HgE3fv7HZOCYFh7/Mcdxw3ufERXbjH61BR6hijTuRPVBfZK8hwDBHOJqz6F3VLCeplbPznzVXijJ92jaw9emOjvja6T5smVOU1Enhi5bC/R22PiFhBkQWVXO1UQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741771091; c=relaxed/simple;
-	bh=MPhbOAlRmSQDrymRu11c022uCrA5qLlPMbyZ8sUlGQ8=;
+	s=arc-20240116; t=1741771134; c=relaxed/simple;
+	bh=QohO+qEryyUZNc5IxQGS+tP4cDEv1oyEh3/RIOphmwo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hp+/gOgYXRu1i/+Fx5FD0LIFhlXkhF8Q+wyvShYaH1vxHuNlC01BP0y2dU2EDJIk4DUOTagRPGgjfbabxlRjFCOhYwQAnh1qlJy4eAcyYJerULrZyj9vAu1TfDTrVveagEisRBRuuRuidTGlRAFvSQNKKUcZmAnjknbaH4A+ugE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5NkTz2T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FCBBC4CEE3;
-	Wed, 12 Mar 2025 09:18:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741771091;
-	bh=MPhbOAlRmSQDrymRu11c022uCrA5qLlPMbyZ8sUlGQ8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M5NkTz2TDhcxfgtafUw6PxH30PcDT+AUdcSrithUjNh2vzRiKPw3fAKP600UNrOmU
-	 8fk3QTrgo4wd/xjqfOxC5QxpRyuhgo6g3cM984yceTTWvAS0LSfKlA5pWb+7R0BjQR
-	 pl1wGI6hMKXP4VLHeWxTEe9elcSEUH44N+bpej1Y/9VwhgIhhe4y6kV6ecjABRkhKm
-	 DDHnHK6rY/YMOXnJUJeKxQFx5fKNtCjXW0pi1W6vrfJ7wlcR1YM6Xdyt8yOygIbUmB
-	 X7gSmCNfIL+vtxLK8sqfOVloneJrhx7ha7Nsvzv9qCvh0xYO3IFZ7tacOMdIB5yn8s
-	 CKfN3x5W1o2sg==
-Date: Wed, 12 Mar 2025 10:18:06 +0100
-From: Vinod Koul <vkoul@kernel.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] dmaengine: Add Arm DMA-350 driver
-Message-ID: <Z9FRTtcfQK9m6NE7@vaman>
-References: <cover.1740762136.git.robin.murphy@arm.com>
- <55e084dd2b5720bdddf503ffac560d111032aa96.1740762136.git.robin.murphy@arm.com>
- <Z89P461+Y6kQDOCX@vaman>
- <072d1d3a-2aeb-4ab0-9db1-476835a1131e@arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=gf/dcxWEulwaudL25Rqu3vFiHbLDd8yyQYslOK7dyi3hwCZTU8wDwWlu8tI/JxmC3AQoYzvPpNQ8A0CHBcjFeLAbtQ4Q8KdUhDGNADXOPNhgLVisfliLLrIDGVeyPZSnsA+lxGDDGnWiAqTmO2yPGnHh37dmMpaQnpW/Wr/s1zQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cQDoVRAs; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741771132; x=1773307132;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QohO+qEryyUZNc5IxQGS+tP4cDEv1oyEh3/RIOphmwo=;
+  b=cQDoVRAsBVY1DyYdhZ/2n21fZRG4/kbOAAEGYnmmFL3v0RupJSHCOmAT
+   miPzmdmu6T26d3BanvBOjLkZxAS34vCf3+iAW1NvQk2CAWO4L7qjCQzHe
+   oa1rSlQGUjVPHNe9NYS4D1twjn7UCQ2hil3ZkIAS82zQD6VtQQq64ZiqE
+   Mz517w1ekLX0tyOtdEKeN5Yh3G8U5gbusZaKkP1l9dwIMUPeIabhQACAQ
+   9rLlt6A5fSnOVLZ5BnM4TJVjRed9Qrn3FcxGdCPOUIdgpDxjZ4tBY529z
+   LgH38eHPZhiAfr0NPXg0YVwdMl7Bk1I7IUTBPbD3dbJXofSBHsJgLj3Uk
+   Q==;
+X-CSE-ConnectionGUID: Lh1ch9UhTCWrY+LserYm+g==
+X-CSE-MsgGUID: 2uy+p5LbQTmkM/EXoACa8g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="46486840"
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; 
+   d="scan'208";a="46486840"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2025 02:18:52 -0700
+X-CSE-ConnectionGUID: +8CO2PixQYSWJ8ZXPX6LEA==
+X-CSE-MsgGUID: xnJrE98fRg6nZ98zAVfUFg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,241,1736841600"; 
+   d="scan'208";a="120801269"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa008.fm.intel.com with ESMTP; 12 Mar 2025 02:18:48 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tsIEg-0008Jk-00;
+	Wed, 12 Mar 2025 09:18:46 +0000
+Date: Wed, 12 Mar 2025 17:18:09 +0800
+From: kernel test robot <lkp@intel.com>
+To: Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>,
+	miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, krzysztof.kozlowski+dt@linaro.org
+Cc: oe-kbuild-all@lists.linux.dev, balamanikandan.gunasundar@microchip.com,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: mtd: atmel-nand: add legacy nand
+ controllers
+Message-ID: <202503121629.f5Hsa5Zy-lkp@intel.com>
+References: <20250311122847.90081-4-balamanikandan.gunasundar@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,50 +84,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <072d1d3a-2aeb-4ab0-9db1-476835a1131e@arm.com>
+In-Reply-To: <20250311122847.90081-4-balamanikandan.gunasundar@microchip.com>
 
-On 11-03-25, 12:48, Robin Murphy wrote:
-> On 2025-03-10 8:47 pm, Vinod Koul wrote:
-> > On 28-02-25, 17:26, Robin Murphy wrote:
-> > 
-> > > +static u32 d350_get_residue(struct d350_chan *dch)
-> > > +{
-> > > +	u32 res, xsize, xsizehi, hi_new;
-> > > +
-> > > +	hi_new = readl_relaxed(dch->base + CH_XSIZEHI);
-> > > +	do {
-> > > +		xsizehi = hi_new;
-> > > +		xsize = readl_relaxed(dch->base + CH_XSIZE);
-> > > +		hi_new = readl_relaxed(dch->base + CH_XSIZEHI);
-> > > +	} while (xsizehi != hi_new);
-> > 
-> > This can go forever, lets have some limits to this loop please
-> 
-> Sure, in practice I doubt we're ever going to be continually preempted
-> faster than the controller can move another 64KB of data, but I concur
-> there's no harm in making the code easier to reason about at a glance
-> either.
+Hi Balamanikandan,
 
-Yes you are coreect but when things go bad, a bug in h/w or something, I
-would like to see a fail safe
+kernel test robot noticed the following build warnings:
 
-> > > +static int d350_alloc_chan_resources(struct dma_chan *chan)
-> > > +{
-> > > +	struct d350_chan *dch = to_d350_chan(chan);
-> > > +	int ret = request_irq(dch->irq, d350_irq, IRQF_SHARED,
-> > > +			      dev_name(&dch->vc.chan.dev->device), dch);
-> > 
-> > This is interesting, any reason why the irq is allocated here? Would it
-> > be not better to do that in probe...
-> 
-> Well, I'd say technically the IRQ is a channel resource, and quite a few
-> other drivers do the same... Here it's mostly so I can get the channel name
-> - so the IRQs are nice and identifiable in /proc/interrupts - easily without
-> making a big mess in probe, since the names don't exist until after the
-> device is registered.
+[auto build test WARNING on mtd/mtd/next]
+[also build test WARNING on mtd/mtd/fixes robh/for-next linus/master v6.14-rc6 next-20250311]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Ok
+url:    https://github.com/intel-lab-lkp/linux/commits/Balamanikandan-Gunasundar/dt-bindings-mtd-microchip-nand-convert-txt-to-yaml/20250311-203706
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next
+patch link:    https://lore.kernel.org/r/20250311122847.90081-4-balamanikandan.gunasundar%40microchip.com
+patch subject: [PATCH v2 3/3] dt-bindings: mtd: atmel-nand: add legacy nand controllers
+reproduce: (https://download.01.org/0day-ci/archive/20250312/202503121629.f5Hsa5Zy-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503121629.f5Hsa5Zy-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   Warning: Documentation/translations/ja_JP/SubmittingPatches references a file that doesn't exist: linux-2.6.12-vanilla/Documentation/dontdiff
+   Warning: Documentation/translations/zh_CN/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
+   Warning: Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
+   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
+   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/mtd/atmel-nand.txt
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+   Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
+   Using alabaster theme
 
 -- 
-~Vinod
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
