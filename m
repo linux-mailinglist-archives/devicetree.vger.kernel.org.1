@@ -1,171 +1,163 @@
-Return-Path: <devicetree+bounces-156833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-156835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00440A5DA8A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:38:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC0CA5DAA2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 11:43:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 979C1188D88E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:38:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B95E3B287B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 10:43:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D9723E327;
-	Wed, 12 Mar 2025 10:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2DA23ED53;
+	Wed, 12 Mar 2025 10:43:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vATPkzFD"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ANNYtaSf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4A8233D85;
-	Wed, 12 Mar 2025 10:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA2F23E343;
+	Wed, 12 Mar 2025 10:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741775899; cv=none; b=tKZ5zRTS/fRbzU1N7tSjvRDaLHLKG2eXYBxOT7x/DgmYOhWLreqYQwEno0qkhSuiGnGjEcdKKNUkoYXqLIgZzo+IKiYEANmzqL8XqgmLrNeaMaancT+gev1PbWEgxDh764lSxH6b4kpWNugi1e4CmKFKtAkOQ9wbv3ocu8mylyM=
+	t=1741776186; cv=none; b=n1l8ckkarVwhig7cwQauSIo1vULbFQdkz15ehCW8dtE/6uI3+fKJ4iv93S66kDI1daHyX64qO/qdnaokUg9RhfQu4b3dS8aMuKh4SPKHHbh0tFWX7V7Az+7DJ8f5rTrMF1v2N0aUYXYtLWyBASpxdDpcn88hyxZA9pPCA4jwyN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741775899; c=relaxed/simple;
-	bh=bCeCT0ekEY01oH6fjXfZhEActp17j78VQ1OXq1k5gNA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gp1LC71s0wtdx10ICR/6FDmgZ3U0iWGlbL7jzJeqg0JY+xsIRhbzh59Bg3CrAqi5lukz4MBKV9UHMYB7A/+9lAIlDLisXGukV637sc+PdBgON6RdDLu3+zZ2AWNKTYcDjTiKPohId+7WzrSLDs4DH4Clcmp9Wus6dSYgHX62zWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vATPkzFD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF095C4CEE3;
-	Wed, 12 Mar 2025 10:38:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741775897;
-	bh=bCeCT0ekEY01oH6fjXfZhEActp17j78VQ1OXq1k5gNA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vATPkzFDEDNpKHPD82kpz4lxsP5oMtOY1IyZLAneSgx48OxT9R88c3YPoBqB9TzX+
-	 mAYEGb9p4eVFKOhV/yCtOSyyx2QCQ7wV5ad25YKAdLmGdnY8NPCl/jleoiwgDOIsCl
-	 FbVjF/80WNhCmaZAXAg38718NLVbi3ftM+yFkKin2y2/D+0eYunS6m3I7z2XadWbit
-	 LLow3VPRaIhj2P2lOBxA67dDe7/VwnA52PUtQbPjCGpYVcUzefq5enqRuZ06JpUl6M
-	 4BQuaOVybanzEnlKPL6GvnurY5JUUZut+OlCcaLi4PcUiwPuGOryxGTjndlKjGnhO3
-	 roUQi4DHkM4DA==
-Message-ID: <243b62df-7a0a-4197-9cf4-10ad73a9f421@kernel.org>
-Date: Wed, 12 Mar 2025 11:38:04 +0100
+	s=arc-20240116; t=1741776186; c=relaxed/simple;
+	bh=TvglePTGsIoZWdGjf3wZYBBHfYnDrjQP8pnHy6AjG2s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bR5ku2MZ8CkNfPSajpDt38cyWv4tuoOhYR6aYJtCdnAeZFRWSa+7zdaEooGEgLGVhnyI26/eA0E7bTqOD09XjMT2+rR350uRVpOQE6LanSSZkrctJ97PlGtMBGPjN+ielJzuWimpI587lfCmgyA1DabvutdvEktmEGMKZVNDt4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ANNYtaSf; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=GQ4IV
+	qd5vthdWR02fI9OyUNtDn4aPkc2JVI2vLesiR0=; b=ANNYtaSf1E+HNkgWNmblD
+	sN/JzKkrCvR/x+aj6ww/i3Es/DN7RQ33c/W02J+Feh1WVcAPveoFwZUAm9yrTL/3
+	ai9/3afvJwHLTKTVckkyRQetOicmV61u3k3/CBsfMw6xaBaF4sXEhvuVf/dO/tGP
+	ewJ/up5SIgy+cZyWz2jwto=
+Received: from ProDesk.. (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id PSgvCgAHUvcHZdFnEN_+Kg--.14177S2;
+	Wed, 12 Mar 2025 18:42:19 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: hjc@rock-chips.com,
+	mripard@kernel.org,
+	cristian.ciocaltea@collabora.com,
+	neil.armstrong@linaro.org,
+	yubing.zhang@rock-chips.com,
+	krzk+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	lumag@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v2 0/7] Add support for RK3588 DisplayPort Controller
+Date: Wed, 12 Mar 2025 18:42:01 +0800
+Message-ID: <20250312104214.525242-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 1/4] dt-bindings: PCI: qcom: Add MHI registers for
- IPQ9574
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- quic_srichara@quicinc.com, quic_devipriy@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250312084330.873994-1-quic_varada@quicinc.com>
- <20250312084330.873994-2-quic_varada@quicinc.com>
- <7b2d7f14-4274-4ff0-87a6-ac3dd649df4e@kernel.org>
- <Z9FWVh1NinKOsRNq@hu-varada-blr.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <Z9FWVh1NinKOsRNq@hu-varada-blr.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PSgvCgAHUvcHZdFnEN_+Kg--.14177S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZrWUZrWfWry5CFW7Gr1rJFb_yoWrGryDpa
+	1jyry5try8uFW2qFs2k3WDCrZ3Z3ZFyrWrGwn7Ja42vFy2kFyUArna9FsxXr9rJFnrAFy2
+	krsxXryxGrW2qF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UWrWwUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gsOXmfRXiailwABsz
 
-On 12/03/2025 10:39, Varadarajan Narayanan wrote:
-> On Wed, Mar 12, 2025 at 09:46:41AM +0100, Krzysztof Kozlowski wrote:
->> On 12/03/2025 09:43, Varadarajan Narayanan wrote:
->>> Append the MHI register range to IPQ9574.
->>
->> Why?
-> 
-> This is needed for ipq5332 to use ipq9574 as fallback compatible.
-
-This sounds like you incorrect hardware description, because some other
-device needs this.
-
-Your commit msg must explain why you do things, not me keep asking the
-same question over and over.
-
-In the same time reason "ipq5332 needs it" is not correct reason.
-ipq5332 is not related anyhow to this hardware. Write bindings matching
-the hardware, not some other patches.
+From: Andy Yan <andy.yan@rock-chips.com>
 
 
-> 
->>> Fixes: e0662dae178d ("dt-bindings: PCI: qcom: Document the IPQ9574 PCIe controller")
->>
->> What is being fixed here?
-> 
-> Ok, will remove this.
-> 
->>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>> ---
->>> New patch introduced in this patchset. MHI range was missed in the
->>> initial post
->>> ---
->>>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 3 ++-
->>>  1 file changed, 2 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> index 8f628939209e..77e66ab8764f 100644
->>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->>> @@ -175,7 +175,7 @@ allOf:
->>>        properties:
->>>          reg:
->>>            minItems: 5
->>> -          maxItems: 5
->>> +          maxItems: 6
->>
->> Why qcom,pcie-ipq6018 gets mhi? Nothing in commit msg mentions ipq6018.
-> 
-> Didn't mention ipq6018 as I was under the impression that 'minItems: 5' would
-> apply for ipq6018.
+There are two DW DPTX based DisplayPort Controller on rk3588 which
+are compliant with the DisplayPort Specification Version 1.4 with
+the following features:
 
-items=5 applies to all of them and there is nothing here claiming that
-items=6 does not apply...
+* DisplayPort 1.4a
+* Main Link: 1/2/4 lanes
+* Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
+* AUX channel 1Mbps
+* Single Stream Transport(SST)
+* Multistream Transport (MST)
+* Type-C support (alternate mode)
+* HDCP 2.2, HDCP 1.3
+* Supports up to 8/10 bits per color component
+* Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
+* Pixel clock up to 594MHz
+* I2S, SPDIF audio interface
 
-Best regards,
-Krzysztof
+The current version of this patch series only supports basic display outputs.
+I conducted tests with DP0 in 1080p and 4K@60 YCbCr4:2:0 modes; the ALT/Type-C
+mode was tested on Rock 5B, DP1 was tested on Rock 5 ITX by Stephen and Piotr.
+HDCP and audio features remain unimplemented.
+For RK3588, it's only support SST, while in the upcoming RK3576, it can support
+MST output.
+
+This version still has unresolved issues highlighted by Dmitry during
+the last code review(I add TODO for them), specifically those depending
+on PHY/drm bridge framework changes. My plan is to tackle them sequentially.
+Let's make the driver itself to a usable and good shape first.
+
+Currently, there are three dependencies PATCH pending review, take care
+if there are someone want to here a try with this series[0][1][2]:
+
+[0]https://lore.kernel.org/linux-rockchip/20250302115257.188774-1-andyshrk@163.com/
+[1]https://lore.kernel.org/linux-rockchip/20250312064218.524143-1-andyshrk@163.com/T/#u
+[2]https://lore.kernel.org/linux-rockchip/20250312080041.524546-1-andyshrk@163.com/T/#u
+
+
+Changes in v2:
+- Link to V1: https://lore.kernel.org/linux-rockchip/20250223113036.74252-1-andyshrk@163.com/
+- Fix a character encoding issue
+- Fix compile error when build as module
+- Add phy init
+- Only use one dw_dp_link_train_set
+- inline dw_dp_phy_update_vs_emph
+- Use dp_sdp
+- Check return value of drm_modeset_lock
+- Merge code in atomic_pre_enable/mode_fixup to atomic_check
+- Return NULL if can't find a supported output format
+- Fix max_link_rate from plat_data
+- no include uapi path
+- switch to drmm_encoder_init
+- Sort in alphabetical order
+
+Andy Yan (7):
+  dt-bindings: display: rockchip: Add schema for RK3588 DPTX Controller
+  drm/bridge: synopsys: Add DW DPTX Controller support library
+  drm/rockchip: Add RK3588 DPTX output support
+  arm64: dts: rockchip: Add DP0 for rk3588
+  arm64: dts: rockchip: Add DP1 for rk3588
+  arm64: dts: rockchip: Enable DisplayPort for rk3588s Cool Pi 4B
+  arm64: dts: rockchip: Enable DP2HDMI for ROCK 5 ITX
+
+ .../display/rockchip/rockchip,dw-dp.yaml      |  150 ++
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |   30 +
+ .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |   30 +
+ .../boot/dts/rockchip/rk3588-rock-5-itx.dts   |   37 +
+ .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   |   37 +
+ drivers/gpu/drm/bridge/synopsys/Kconfig       |    7 +
+ drivers/gpu/drm/bridge/synopsys/Makefile      |    1 +
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c       | 2106 +++++++++++++++++
+ drivers/gpu/drm/rockchip/Kconfig              |    7 +
+ drivers/gpu/drm/rockchip/Makefile             |    1 +
+ drivers/gpu/drm/rockchip/dw_dp-rockchip.c     |  154 ++
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    1 +
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |    1 +
+ include/drm/bridge/dw_dp.h                    |   19 +
+ 14 files changed, 2581 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
+ create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-dp.c
+ create mode 100644 drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+ create mode 100644 include/drm/bridge/dw_dp.h
+
+-- 
+2.34.1
+
 
