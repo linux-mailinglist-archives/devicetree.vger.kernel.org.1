@@ -1,125 +1,219 @@
-Return-Path: <devicetree+bounces-157027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AED4A5E81F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:14:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 568E9A5E83A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:17:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E187168EA0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 23:14:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 859167AA5DF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 23:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 903791F130D;
-	Wed, 12 Mar 2025 23:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0841F1524;
+	Wed, 12 Mar 2025 23:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eAfLgmNJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ChrNTiDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CCF4685;
-	Wed, 12 Mar 2025 23:14:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17CA1EE7A5;
+	Wed, 12 Mar 2025 23:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741821280; cv=none; b=fGlRsSwEZGwfLCL4bKsA5mYgXdyEPwqrNkK2G/YP/AwKB/qz0gOzkPjORK5hnV8i0RwKz+XiCQBCzywTYUo4NEUyoCkuYX/LyT3PxUA+BDdqr/ngkgxJJhRAPO8Zaeqy8FAUzHKzDH6UmYrYS9d0GqM15vtPFPlb04sNkMZYJDA=
+	t=1741821453; cv=none; b=anWoRJuHgb/HgFeuJiF6hVCD1q1W4cr/ukCQVSWEzrYZym9vegQiEIRL7MnLm2HadlGBCX9NyDaEL3Ysf84t3qUOhEpx8EwHtOyO4hiGWHyABUhUjqytEFTgmVkcMODaIGeUKoAkyFfWq5ig7dfz4IVHOL/z0vP0zsBZdGJxolY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741821280; c=relaxed/simple;
-	bh=TKgowIo1WaTZUviCcRMak32azD2cFfVNTUXSGH8c1O0=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=syAnCL/iz5wvSZZFV6mtoXpmr7L1Nz/mtTWsRxJkE4C3ckwR3ew7KuOPmppu845lLu73UDBdTyxizsc/56OGhrNvDfl2P2V6h0V/QzZkYEFzEPbyawmGvLMgCU5vjrirhFn2shZfiID8cnrM74qgMIADGZFB5p3xNR12EcfWfgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eAfLgmNJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F59DC4CEDD;
-	Wed, 12 Mar 2025 23:14:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741821280;
-	bh=TKgowIo1WaTZUviCcRMak32azD2cFfVNTUXSGH8c1O0=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=eAfLgmNJBIhrzfTbBz15W2qXyisRuA+s0m0sbZ0DR4p5Yn/gYR7lffHji1Pi6aEKz
-	 iEYjHrI0Tt4Cjp8pteJK78+OVFmkwbGZq6yWcr6QMo8exhqx3K9GefpIMExXacDNRh
-	 KURQmUBu26eABgR5+fE6nmnvffrHsyK4SWEmBdjwmGVFmfDO2zE06KJnS0vqNXK2YH
-	 VrGqoDKtTRm4MkgZrY7LhY7SgtxAK9qMGNNgHvHYQJcDqrUXQJjf9Ce2rJDiEEY4+j
-	 ZNY/I0f84t/Yi407KIEBS2V77DWKo7zqJ8QXMrTL5tL3NSHZlSvQSL0tFB8WF2pqeO
-	 KNWFA5iJpPFMQ==
-Message-ID: <f1d5dc9b8f59b00fa21e8f9f2ac3794b.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1741821453; c=relaxed/simple;
+	bh=02EX/DMIDDWf9CWuaXFpleHjT8LOS9O+SlqdOnu+alw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HR3iW8kFuQE2VlP9VE+s09qsXHwjKaNyDuzBKiUEqEq7qjA4ndBYlJjRTZemJmThb+4z+EC/7m9uGMU89KRM5vt9sfDPFiwTmC2JJpxbhiNdn++BCQoWR6HnZHKjlBPTyJUs9JRNzprQwHXkngIV102tKpWEHf/OkObd/siuYCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ChrNTiDY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52CAKruW008924;
+	Wed, 12 Mar 2025 23:17:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YxUIuMuJ8heLhO7n/roAvP6nMwwqgMTF3z65WOJS+lE=; b=ChrNTiDYUmKKJ9k9
+	hCg7bnLOrdkfpkLnzpcBOu5c23KEXV6ZtlDTPJAm7VBVXmSXfYrlOeP5axy78QEK
+	z4FvrlFZavYX+cN4j3T8v4LrGZv9t2aWdVRLgbxYubwM5gayeIWfAd7HMX03KLin
+	REYq3AiPN53E1FXrJL11U1ItwJPIpjTPiSYGob/+tME0y2tDcs7QWYjcKeYt6dLv
+	TywjcyDAAusMShc/0n483ZSLr0tBbYT/DelahZ/MGmUcw6MR3nWCiE5qWIpBMp6k
+	/Ek4EmNQZlompprZgCIgKAIsua9bB2+8KVfSoH9aFgQfVImby64n4/SLxJ3TP0lM
+	8YZIfA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2rbvkv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Mar 2025 23:17:13 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52CNHC01030751
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Mar 2025 23:17:12 GMT
+Received: from [10.110.30.156] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 12 Mar
+ 2025 16:17:11 -0700
+Message-ID: <9d30efc3-3315-4ff5-8eb0-c50bccc0a725@quicinc.com>
+Date: Wed, 12 Mar 2025 16:17:07 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <epnv7fp3s3osyxbqa6tpgbuxdcowahda6wwvflnip65tjysjig@3at3yqp2o3vp>
-References: <20250226232320.93791-1-inochiama@gmail.com> <20250226232320.93791-2-inochiama@gmail.com> <2c00c1fba1cd8115205efe265b7f1926.sboyd@kernel.org> <epnv7fp3s3osyxbqa6tpgbuxdcowahda6wwvflnip65tjysjig@3at3yqp2o3vp>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: sophgo: add clock controller for SG2044
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Chen Wang <unicorn_wang@outlook.com>, Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>
-Date: Wed, 12 Mar 2025 16:14:37 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v35 00/31] Introduce QC USB SND audio offloading support
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+CC: Greg KH <gregkh@linuxfoundation.org>, <srinivas.kandagatla@linaro.org>,
+        <mathias.nyman@intel.com>, <perex@perex.cz>, <conor+dt@kernel.org>,
+        <dmitry.torokhov@gmail.com>, <corbet@lwn.net>, <broonie@kernel.org>,
+        <lgirdwood@gmail.com>, <tiwai@suse.com>, <krzk+dt@kernel.org>,
+        <pierre-louis.bossart@linux.intel.com>, <Thinh.Nguyen@synopsys.com>,
+        <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20250219004754.497985-1-quic_wcheng@quicinc.com>
+ <Z7W_Vz_kVDjIcp5N@linaro.org>
+ <82ce69a3-d248-494f-6ddb-098f392c78a0@quicinc.com>
+ <Z8a4WYq4GqWBVNyX@linaro.org>
+ <ee5cb6bc-963a-4e31-8ac4-07120fb9ff70@quicinc.com>
+ <Z8ikt2K0uekU2dVZ@linaro.org>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <Z8ikt2K0uekU2dVZ@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=D6NHKuRj c=1 sm=1 tr=0 ts=67d215f9 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=qC_FGOx9AAAA:8 a=HTecfl5s7U67J0CcF8QA:9 a=QEXdDO2ut3YA:10
+ a=fsdK_YakeE02zTmptMdW:22
+X-Proofpoint-GUID: SH3MPeN7uBXWUDXli7heUJQlcykyMSVV
+X-Proofpoint-ORIG-GUID: SH3MPeN7uBXWUDXli7heUJQlcykyMSVV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-12_06,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 spamscore=0 lowpriorityscore=0 phishscore=0
+ adultscore=0 malwarescore=0 mlxlogscore=999 clxscore=1015 impostorscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503120166
 
-Quoting Inochi Amaoto (2025-03-11 16:31:29)
-> On Tue, Mar 11, 2025 at 12:26:21PM -0700, Stephen Boyd wrote:
-> > Quoting Inochi Amaoto (2025-02-26 15:23:18)
-> > > diff --git a/Documentation/devicetree/bindings/clock/sophgo,sg2044-cl=
-k.yaml b/Documentation/devicetree/bindings/clock/sophgo,sg2044-clk.yaml
-> > > new file mode 100644
-> > > index 000000000000..d55c5d32e206
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/sophgo,sg2044-clk.yaml
-> > > @@ -0,0 +1,40 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/clock/sophgo,sg2044-clk.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Sophgo SG2044 Clock Controller
-> > > +
-> > > +maintainers:
-> > > +  - Inochi Amaoto <inochiama@gmail.com>
-> >=20
-> > No description?
-> >=20
->=20
-> I am not sure the things to be described. Maybe just tell the
-> clock required and providing?
+Hi Stephan,
 
-Sure and point to the header file with the binding numbers?
+On 3/5/2025 11:23 AM, Stephan Gerhold wrote:
+> On Tue, Mar 04, 2025 at 02:46:28PM -0800, Wesley Cheng wrote:
+>> On 3/4/2025 12:22 AM, Stephan Gerhold wrote:
+>>> On Mon, Mar 03, 2025 at 06:39:52PM -0800, Wesley Cheng wrote:
+>>>> On 2/19/2025 3:24 AM, Stephan Gerhold wrote:
+>>>>> On Tue, Feb 18, 2025 at 04:47:23PM -0800, Wesley Cheng wrote:
+>>>>>> Requesting to see if we can get some Acked-By tags, and merge on usb-next.
+>>>>>>
+>>>>>> Several Qualcomm based chipsets can support USB audio offloading to a
+>>>>>> dedicated audio DSP, which can take over issuing transfers to the USB
+>>>>>> host controller.  The intention is to reduce the load on the main
+>>>>>> processors in the SoC, and allow them to be placed into lower power modes.
+>>>>>> There are several parts to this design:
+>>>>>>   1. Adding ASoC binding layer
+>>>>>>   2. Create a USB backend for Q6DSP
+>>>>>>   3. Introduce XHCI interrupter support
+>>>>>>   4. Create vendor ops for the USB SND driver
+>>>>>>
+>>>>>>       USB                          |            ASoC
+>>>>>> --------------------------------------------------------------------
+>>>>>>                                    |  _________________________
+>>>>>>                                    | |sm8250 platform card     |
+>>>>>>                                    | |_________________________|
+>>>>>>                                    |         |           |
+>>>>>>                                    |      ___V____   ____V____
+>>>>>>                                    |     |Q6USB   | |Q6AFE    |
+>>>>>> |     |"codec" | |"cpu"    |
+>>>>>>                                    |     |________| |_________|
+>>>>>>                                    |         ^  ^        ^
+>>>>>>                                    |         |  |________|
+>>>>>>                                    |      ___V____    |
+>>>>>>                                    |     |SOC-USB |   |
+>>>>>>    ________       ________               |        |   |
+>>>>>>   |USB SND |<--->|QC offld|<------------>|________|   |
+>>>>>>   |(card.c)|     |        |<----------                |
+>>>>>>   |________|     |________|___     | |                |
+>>>>>>       ^               ^       |    | |    ____________V_________
+>>>>>>       |               |       |    | |   |APR/GLINK             |
+>>>>>>    __ V_______________V_____  |    | |   |______________________|
+>>>>>>   |USB SND (endpoint.c)     | |    | |              ^
+>>>>>>   |_________________________| |    | |              |
+>>>>>>               ^               |    | |   ___________V___________
+>>>>>>               |               |    | |->|audio DSP              |
+>>>>>>    ___________V_____________  |    |    |_______________________|
+>>>>>>   |XHCI HCD                 |<-    |
+>>>>>>   |_________________________|      |
+>>>>>>
+>>>>>
+>>>>> As I noted on v34 [1], this version is still missing instructions and
+>>>>> changes needed for testing this series. The device tree changes don't
+>>>>> need to be part of the same series, but there should be at least a link
+>>>>> provided to give other people the chance to provide Tested-by tags.
+>>>>>
+>>>>> IMO we shouldn't merge this series without those instructions, otherwise
+>>>>> we risk that this just ends up being dead code that no one can use.
+>>>>>
+>>>>> Can you please share the device tree changes for a board upstream and
+>>>>> any other changes needed to be able to test this series? E.g. for
+>>>>> sm8250-mtp.dts, based on the examples in your cover letter.
+>>>>>
+>>>>
+>>>> To clarify I'm testing this on sm8350 in recent times, but utilizing sm8250
+>>>> definitions for the ASoC platform card, as the platform sound card is more
+>>>> or less the same between the two SoCs.  Back
+>>>> when I started this series, sm8350 was missing a bunch of dependent
+>>>> components, such as aDSP not being loaded, and missing platform sound card
+>>>> definition, so I had to define and enable those on my own, which required a
+>>>> slew of new DT nodes, hence why it wasn't as straight forward to include
+>>>> the DT definitions yet for sm8350.  Not thinking that this series would
+>>>> take as long as it did, I was planning on separating out the DT changes in
+>>>> a different series to enable offloading for the devices I have tested with.
+>>>> (sm8150, sm8250 and sm8350)
+>>>>
+>>>> There's still a pretty big chunk of dependencies missing from sm8350, so
+>>>> those would also be handled in the follow up DT submission.  For now, its a
+>>>> much bigger hurdle to get the main/functional changes in, and that was
+>>>> taking a significant amount of time from my end to manage.
+>>>>
+>>>> If you want, I can give you the changes I have offline to enable this for
+>>>> sm8350, since I haven't spent time formatting/prepping the changes for
+>>>> submission yet.
+>>>>
+>>>
+>>> Can you push it to a public branch somewhere (e.g. on CodeLinaro)? I was
+>>> talking to some people from the community about testing this on some of
+>>> the smartphones we have in upstream, so it wouldn't help if I just have
+>>> the changes privately.
+>>
+>> Which CLO project/branch did you want me to push it to?  Sorry, I haven't
+>> worked too much with the CLO open branches.  I have an account though.
+>>
+> 
+> Any project/branch is fine for me, I suggested CLO only because I
+> assumed you already have an account there.
+> 
+> You should be able to create a personal project and push it there. You
+> could also use the fork button on
+> https://git.codelinaro.org/linaro/linux/kernel/torvalds/linux to avoid
+> having to push the full history yourself. It should result in a project
+> similar to mine: https://git.codelinaro.org/stephan.gerhold/linux
+> 
 
-> > > +  - |
-> > > +    clock-controller@50002000 {
-> > > +      compatible =3D "sophgo,sg2044-clk";
-> > > +      reg =3D <0x50002000 0x1000>;
-> > > +      #clock-cells =3D <1>;
-> > > +      clocks =3D <&osc>;
-> >=20
-> > I think you want the syscon phandle here as another property. Doing that
-> > will cause the DT parsing logic to wait for the syscon to be probed
-> > before trying to probe this driver. It's also useful so we can see if
-> > the clock controller is overlapping withe whatever the syscon node is,
->=20
-> It sounds like a good idea. At now, it does not seem like a good idea
-> to hidden the device dependency detail. I will add a syscon property
-> like "sophgo,pll-syscon" to identify its pll needs a syscon handle.
+Can you access the following branch?
+https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/commits/usb_audio_offload/?ref_type=heads
 
-Cool.
+Should have the DT change I'm using to verify.
 
->=20
-> > or if that syscon node should just have the #clock-cells property as
-> > part of the node instead.
->=20
-> This is not match the hardware I think. The pll area is on the middle
-> of the syscon and is hard to be separated as a subdevice of the syscon
-> or just add  "#clock-cells" to the syscon device. It is better to handle
-> them in one device/driver. So let the clock device reference it.
-
-This happens all the time. We don't need a syscon for that unless the
-registers for the pll are both inside the syscon and in the register
-space 0x50002000. Is that the case? This looks like you want there to be
-one node for clks on the system because logically that is clean, when
-the reality is that there is a PLL block exposed in the syscon (someone
-forgot to put it in the clk controller?) and a non-PLL block for the
-other clks.
+Thanks
+Wesley Cheng
 
