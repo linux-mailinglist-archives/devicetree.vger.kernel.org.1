@@ -1,149 +1,179 @@
-Return-Path: <devicetree+bounces-157006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D7C7A5E617
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 22:05:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D68A5E633
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 22:07:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CD3A1889C0A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 21:04:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F3893B2BAF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 21:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D2291F4C8E;
-	Wed, 12 Mar 2025 21:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EB7A1FBCAE;
+	Wed, 12 Mar 2025 21:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E9m+/Ne5"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="AgsmBmqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-10631.protonmail.ch (mail-10631.protonmail.ch [79.135.106.31])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27831EFF85
-	for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 21:00:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE97F1F8691;
+	Wed, 12 Mar 2025 21:01:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.31
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741813225; cv=none; b=Tw+dL7eODAqNep9y3F+C/bb7qUsFySdjs8XydyJ5447NeWbBD2AUxVkKXKzfGGeQUNVO1lIQc6SXLWReIqZYX8nwG3A6kB7uHn/IwBhZD883gFCDiZYtIvp3/nNeYx7PJhl7ZWboaPP9g4quwJhaiibq2DCu34/n+lPRq2mn2/4=
+	t=1741813281; cv=none; b=GxTKdqtTPZm0TizzN5yKP1BbLy77xO1WA0U0DFNu9JG2wz+UYgBHhYlHJx2cdkgnRCgfigMKYYalypxp64SX0ACecwGYnpD7CQ/Vh27/995dXl3Xe8wNU4ZvhnJCuJ2Pbai9uDLUkT/E8eJ+YFKTyKdUrLBTWucuhFVAjk4/rDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741813225; c=relaxed/simple;
-	bh=ScuDkmShn2D0Kq8ggB9Erkj9flGtVscDeBuMOCChZIY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kc4ogLM8O4uwmxulM84eHorXQf5rkEl4dD7YsdWQ+SPuTcP9FEO1AjlncGtWlzbsAu4IedWMJcYamF4k1n+ZuV6YVGbLjQWij3QDPz4SnrO5r8v6z9KCMcXDsQiQWtx+RpRHaIO2Ap4OpD+wuPWQ1FDdb9Udsat9L4ZuCwAi/DI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E9m+/Ne5; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aaf0f1adef8so49942166b.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 14:00:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741813222; x=1742418022; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IOnA+cmYlRAwYleIWz9JDxBsHfen78RX1YLWTTlffOk=;
-        b=E9m+/Ne599eetBB3EUwzPne+s2W3qRTHEnv9+eKJoXmRepUJXndsUg2h7/p/fZw8zF
-         fX9Ex11yrqrwJjLQFaHE20gHPtN5SzdvHtDs3LM/y9LstCH/RgV5iPjiOyJuyKjRaTv5
-         cADtM9rltKYd6FsfQsSvBtytvkaO6T9AX8EF4J2LPix8MB1Rv14YNGFZ4ZdzUkJgCdVR
-         lapH6k0n+8LM8TMMwO1+VUzfvnq6XiRg+fOksCK83FVgp5DUpDhGB4QR6ycedV/v96wo
-         Q+OeE9/hQghVTohcBszFg3+dYDZhS07rUw8xlNd7l79T+E8r7jRmPwWoQsx9IHtwjQ8r
-         Qplw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741813222; x=1742418022;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IOnA+cmYlRAwYleIWz9JDxBsHfen78RX1YLWTTlffOk=;
-        b=mOfo86qs9slFAjNHwj/Ibr7Q5pRYXQ+dDskGGsfhj9O5bo5mVX6bwrh29KSXpoqi2f
-         RvAbWQbi4+AlUOzB3GdjSi/DpaMC5BKhiZygoCR0qZxGOABMYo+x0TR1u7eV3XsbO4PQ
-         qw1Vro/MCB5g0PKZ8wSPoOdW0Q6XL3xok7W49+RxGBtmOYcDy6GpUIRc0S/PLDFACETE
-         8YKQryuYokqTHbB1/i6pOnEYkO2/VhAWzm9/t16EgXOJZpabwNmLgB/7XpZs/n5uTvm1
-         Gd/DVRKeD8rOndFmQZbroVjd0E5j7sNKaV+5DRXz4BuJ1mW4iQbsGDe0IsuC6MiDnBFP
-         Yqww==
-X-Forwarded-Encrypted: i=1; AJvYcCWzWIHZGcnX8uDABUvpK5Joy7rCbt/JLkJqvACCAxHsIhz3aQmG8jONoP62qTWdGVZ5MAfxK1ol+gxr@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkmbTx9Kqq7GTLa+GBqeTJKi+kKKOmOdCiA6Cqag1d8hGUdCpS
-	QL7wT4z3INE8X2dmmJTRwXlxNZZdlo76UErMLQ0TXLaU7w0xt9e0VsMdADnB36U=
-X-Gm-Gg: ASbGncu62NLMi1PMoMANLy2KnXPJOrjJB2lHHsR7kfWVJ46g+KOJNp8MaluUalRRxDu
-	g3C6bLUHeohjgdN4sy8pGT1zVt9FaKS7YdrDR37iTrb34XjMIlk4t3z8+KhYDLc8YOkVHsr+8Wq
-	h71J7oEID2/RIenzvKgr5zRfmzFmDtbfvWlhb6+Kn9X5/dOYS/jbT6mrXSFgu2M5FSebvsVsBZL
-	vLVQbof5e3udUXhAFtvYJi8AI/eAccNqMco3als+Csk8ScVOIkxnkj0dKEvc1yHeA4IcbfjwQx8
-	bca+QmkRRZ/Jmwd59q9hUQRO4n4QcdrxB/5YH4HY5PjFXA5owUZEATztf1quSpYREgngBwHWhMS
-	D5DIwNwjWIbiYnVIZanQw6IIipiB+7t+cxc6NLN5NceDmhexQb6Z2hPc5p2ND6sIoqcbmqh6W+I
-	vAUIZ1p5R8A2AoALDkpzAV4HKezXT6SOzgTuJmoEN2hA==
-X-Google-Smtp-Source: AGHT+IHh0iXxxs/GZwfYJs2dwZU3bN+0fVe/CVUJtTxBagoFSg/eGO0RYs1ORkUa/uu+I4VnRXWFhw==
-X-Received: by 2002:a17:907:9691:b0:abf:6a53:2cd5 with SMTP id a640c23a62f3a-ac253035876mr2957964566b.48.1741813222026;
-        Wed, 12 Mar 2025 14:00:22 -0700 (PDT)
-Received: from ?IPV6:2001:1c06:2302:5600:7555:cca3:bbc4:648b? (2001-1c06-2302-5600-7555-cca3-bbc4-648b.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:7555:cca3:bbc4:648b])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac2773e8641sm779855866b.165.2025.03.12.14.00.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Mar 2025 14:00:21 -0700 (PDT)
-Message-ID: <8ba6a6f6-2e6a-4945-b7c8-89f9ea7792a6@linaro.org>
-Date: Wed, 12 Mar 2025 21:00:20 +0000
+	s=arc-20240116; t=1741813281; c=relaxed/simple;
+	bh=EUV+7ueFa4wuC2yYXN5Qxx8JPkLuf5A/I+HBCJ2HIVI=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rxwtpmOLununQFl3yHyvXDwFPBVkxPgorzN9fVAg6o9h5sOGLH70jkYZWF415tiCrGjvMPH53Vih3D+gNtqnpKekidveaYqYCdpCPKJv1/iXdvCd1RyhzHdzfx6n6U9dtxe2x6fTMTJn8wKz4t8slMUXRaiezadbxFyxQ2rUed8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=AgsmBmqt; arc=none smtp.client-ip=79.135.106.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=2r56xdogl5dwrazvon4xbvu2zu.protonmail; t=1741813277; x=1742072477;
+	bh=e/HeNz8Swq56+LxdIGu4AcrscDU2ITHyNAwvMErqWQ0=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=AgsmBmqtPtEBMtZCUR9m3W5Qa924plNy2S/omSFiwwggDCgLWjLDL5b59jUf4Ym+Y
+	 4HmornF6q0oKShU3PWvl+jO+yl16fZFfF01o2dxAQs3yST5ZFvAbvkUp99QrwmVxfe
+	 QgY3e5QHChwoZiNuBnAfMK2IbnX0R4gFXUxpKJ52/Wex8tCqUcXMaasi7sMj68m9yW
+	 LZLCVEJM5aLvMG597vBZbfo8oQDVugFbiExu+OtshCy2HeHJ4+uv2a87e1mohgjARe
+	 IClgABETHHwXtr/mfE7tdJvKtSHaghlRZdfVMjdLMOQ7e+wEhSJlDFwV+RlA1iaGPv
+	 eWD63TtHW3AKw==
+Date: Wed, 12 Mar 2025 21:01:11 +0000
+To: Tamir Duberstein <tamird@gmail.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] rust: enable `clippy::as_underscore` lint
+Message-ID: <D8EL9QFS1XNT.JBSMRXD4D7GT@proton.me>
+In-Reply-To: <CAJ-ks9kCgATKDE2qAuO3XpQfjVO2jGyq3D4sbUcVKyW6G1vuuQ@mail.gmail.com>
+References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com> <CAJ-ks9=K06OT6cutUABj2QDHJHJ70719c-eJ=F3n-_bhkYbZ3w@mail.gmail.com> <D8EG9EM9UU0B.2GLHXRU2XROZ3@proton.me> <CAJ-ks9=+3MQb-tp8TAwYvVj=GOFFFVKJxRMprc8YXZHKhqnDrg@mail.gmail.com> <D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.me> <CAJ-ks9=zWAuPUM_61EA6i5QkUpwtNtsN8oF_MUerWGn39MRHhw@mail.gmail.com> <D8EJM4CJ4HAN.1PB2YV8DB77V7@proton.me> <CAJ-ks9mo-H46Wwcu_LOvDy0ncwMR9ii74Fyf3OX-aWNnrZ397g@mail.gmail.com> <CAJ-ks9kCgATKDE2qAuO3XpQfjVO2jGyq3D4sbUcVKyW6G1vuuQ@mail.gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: 179dfb60e06f78a42b6b24975cc212ea1bfde903
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
- power domain in camcc
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Jagadeesh Kona <quic_jkona@quicinc.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
- <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
- <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 03/03/2025 23:53, Dmitry Baryshkov wrote:
-> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrote:
->> SM8550 Camera Clock Controller shall enable both MXC and MMCX power
->> domains.
-> 
-> Are those really required to access the registers of the cammcc? Or is
-> one of those (MXC?) required to setup PLLs? Also, is this applicable
-> only to sm8550 or to other similar clock controllers?
-> 
+On Wed Mar 12, 2025 at 9:41 PM CET, Tamir Duberstein wrote:
+> On Wed, Mar 12, 2025 at 4:07=E2=80=AFPM Tamir Duberstein <tamird@gmail.co=
+m> wrote:
 >>
->> Fixes: e271b59e39a6f ("arm64: dts: qcom: sm8550: Add camera clock controller")
->> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
+>> On Wed, Mar 12, 2025 at 3:43=E2=80=AFPM Benno Lossin <benno.lossin@proto=
+n.me> wrote:
+>> >
+>> > On Wed Mar 12, 2025 at 8:19 PM CET, Tamir Duberstein wrote:
+>> > > I tried using the strict provenance lints locally and I think we can=
+'t
+>> > > until we properly bump MSRV due to `clippy::incompatible_msrv`:
+>> > >
+>> > > warning: current MSRV (Minimum Supported Rust Version) is `1.78.0` b=
+ut
+>> > > this item is stable since `1.84.0`
+>> > >    --> ../rust/kernel/str.rs:696:22
+>> > >     |
+>> > > 696 |             pos: pos.expose_provenance(),
+>> > >     |                      ^^^^^^^^^^^^^^^^^^^
+>> > >     |
+>> > >     =3D help: for further information visit
+>> > > https://rust-lang.github.io/rust-clippy/master/index.html#incompatib=
+le_msrv
+>> >
+>> > Oh this is annoying...
+>> >
+>> > > This is with `#![feature(strict_provenance)]`. I can file the issue
+>> > > but I think it's blocked on MSRV >=3D 1.84.0. But maybe you know of =
+a
+>> > > path forward :)
+>> >
+>> > I think we should be able to just `allow(clippy::incompatible_msrv)`,
+>> > since Miguel & other maintainers will test with 1.78 (or at least are
+>> > supposed to :).
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> index d02d80d731b9..d22b1753d521 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> @@ -3329,7 +3329,8 @@ camcc: clock-controller@ade0000 {
->>   				 <&bi_tcxo_div2>,
->>   				 <&bi_tcxo_ao_div2>,
->>   				 <&sleep_clk>;
->> -			power-domains = <&rpmhpd SM8550_MMCX>;
->> +			power-domains = <&rpmhpd SM8550_MXC>,
->> +					<&rpmhpd SM8550_MMCX>;
->>   			required-opps = <&rpmhpd_opp_low_svs>;
->>   			#clock-cells = <1>;
->>   			#reset-cells = <1>;
->> -- 
->> 2.43.0
+>> Alright, you've sniped me. This is coming in v3.
+>
+> I just realized I only covered the kernel crate. In order to cover all
+> Rust code, I need to move the lints and the features out to the root
+> Makefile. I tried something like this:
+>
+>> diff --git a/Makefile b/Makefile
+>> index 2af40bfed9ce..10af1e44370b 100644
+>> --- a/Makefile
+>> +++ b/Makefile
+>> @@ -466,13 +466,21 @@ KBUILD_USERHOSTCFLAGS :=3D -Wall -Wmissing-prototy=
+pes -Wstrict-prototypes \
+>>  KBUILD_USERCFLAGS  :=3D $(KBUILD_USERHOSTCFLAGS) $(USERCFLAGS)
+>>  KBUILD_USERLDFLAGS :=3D $(USERLDFLAGS)
 >>
-> 
+>> +# Lints were moved to `strict_provenance_lints` when `strict_provenance=
+` was stabilized.
+>> +#
+>> +# See https://github.com/rust-lang/rust/commit/56ee492a6e7a917b2b3f888e=
+33dd52a13d3ecb64.
+>> +KBUILD_RUST_STRICT_PROVENANCE_FEATURE =3D $(if $(CONFIG_RUSTC_HAS_STABL=
+E_STRICT_PROVENANCE),strict_provenance_lints,strict_provenance)
+>> +
+>>  # These flags apply to all Rust code in the tree, including the kernel =
+and
+>>  # host programs.
+>>  export rust_common_flags :=3D --edition=3D2021 \
+>>      -Zbinary_dep_depinfo=3Dy \
+>> +     -Zcrate-attr=3D"feature($(KBUILD_RUST_STRICT_PROVENANCE_FEATURE))"=
+ \
+>>      -Astable_features \
+>>      -Dnon_ascii_idents \
+>>      -Dunsafe_op_in_unsafe_fn \
+>> +     -Wfuzzy_provenance_casts \
+>> +     -Wlossy_provenance_casts \
+>>      -Wmissing_docs \
+>>      -Wrust_2018_idioms \
+>>      -Wunreachable_pub \
+>> diff --git a/rust/Makefile b/rust/Makefile
+>> index ea3849eb78f6..d7d5be741245 100644
+>> --- a/rust/Makefile
+>> +++ b/rust/Makefile
+>> @@ -435,8 +435,10 @@ $(obj)/helpers/helpers.o: $(src)/helpers/helpers.c =
+$(recordmcount_source) FORCE
+>>  # symbol versions generated from Rust objects.
+>>  $(obj)/exports.o: private skip_gendwarfksyms =3D 1
+>>
+>> +KBUILD_RUST_STRICT_PROVENANCE_FEATURE :=3D $(if $(CONFIG_RUSTC_HAS_STAB=
+LE_STRICT_PROVENANCE),strict_provenance_lints,strict_provenance)
+>> +
+>>  $(obj)/core.o: private skip_clippy =3D 1
+>> -$(obj)/core.o: private skip_flags =3D -Wunreachable_pub
+>> +$(obj)/core.o: private skip_flags =3D -Zcrate-attr=3D"feature($(KBUILD_=
+RUST_STRICT_PROVENANCE_FEATURE))" -Wunreachable_pub -Wfuzzy_provenance_cast=
+s -Wlossy_provenance_casts
+>>  $(obj)/core.o: private rustc_objcopy =3D $(foreach sym,$(redirect-intri=
+nsics),--redefine-sym $(sym)=3D__rust$(sym))
+>>  $(obj)/core.o: private rustc_target_flags =3D $(core-cfgs)
+>>  $(obj)/core.o: $(RUST_LIB_SRC)/core/src/lib.rs \
+>
+> but this doesn't work because
+> `CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE` is not yet defined when I
+> read it in the root Makefile. I can read it lower down and then append
+> the feature flag to `KBUILD_RUSTFLAGS` but by then the rustdoc flags
+> have been copied from `rust_common_flags` and so rustdoc doesn't get
+> the feature flag, resulting in unknown lint warnings in rustdoc and
+> kunit tests.
+>
+> Any ideas?
 
-I think both of these are required.
-
-Its a pattern we see again and again with videocc and camcc controllers. 
-The GDSCs and => the hard-coded always on PLLs need to ensure these 
-rails are on.
+Always enable the features, we have `allow(stable_features)` for this
+reason (then you don't have to do this dance with checking if it's
+already stable or not :)
 
 ---
-bod
+Cheers,
+Benno
+
 
