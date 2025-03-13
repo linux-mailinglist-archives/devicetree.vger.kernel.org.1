@@ -1,165 +1,170 @@
-Return-Path: <devicetree+bounces-157097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D29DDA5ED39
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:46:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99379A5ED58
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:52:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 860771899973
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 07:46:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6ECF3A8F4E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 07:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1FC525F97C;
-	Thu, 13 Mar 2025 07:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240DE260A4B;
+	Thu, 13 Mar 2025 07:52:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uwxF+gfp"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="aTbTcFc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822191C84AA
-	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 07:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB0525FA39
+	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 07:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741851981; cv=none; b=FnpVdK3CyKNzv7VgSjU43yREuL/Wp4baNfOffbvz7525W5nnizwHrXfRxVL734RLfbAcbcsxRKRLlyin8+bI5w0qoAa9DQCDkX5ywcESY5gS59EA25aC1rt5HQyK8/7YS97HPD+M2UcqM4npJUFyYD2Wf5LBM5Evl2e28tDQgxo=
+	t=1741852333; cv=none; b=OVIB25p2hpoLHOX6YGQhQWSFHcbk7B/bJsBAwm5g5kveUgsj8UbaiC53Tq9s6w+LWdVHVVTs+iLgNBxOHBHbcAgrn9iL7Ql9ZFC8aeTm4sFDMS8mFv/avYvr4QiDZo+4Sq+KaRBajuAQRMvn+pQNSXxxPR+do5jtJ/aujpYgVLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741851981; c=relaxed/simple;
-	bh=+9lQweextTTn/IhcDeZqVgy0G3YUsnxGCvjs4Fxg5ho=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ga5yfhhoxk3tfG2HDuiB1PRiidX7Iott1HjwfjOIg2DAGVoQN3Ka+waZJ5zYH3lYC4qJKtKR5HCutcCaI8B4BR1Zqf0qjau/Dh1/iiajglLQ6UBRSbPM59bGhYndgbr+fnNdtJbcmJP6KHzim3x/8H+PGkVbFZrCtyBTPz+PfnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uwxF+gfp; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-38c62ef85daso34691f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 00:46:19 -0700 (PDT)
+	s=arc-20240116; t=1741852333; c=relaxed/simple;
+	bh=Fsrf7QgC862sGCWItFW6TJdYnI/pP94I9U5QzB4uQZE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=oWAaVoQnhxLXtbKrHA7qqpUhWyFaleN+iouIA3T6ybiECB4JKA8CWLhxKWDYxJK9J5LJJwDIWRo62tZyanEf9fusjoamTLmvdVxasHMlJ21jhWg3j2+8eseC3s5BxdZHxnTsdZxq0LSxTEeqC9Dw4/HkZt5woT3bvcR26+75/bE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=aTbTcFc8; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aaecf50578eso114111766b.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 00:52:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741851978; x=1742456778; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=WKBV0HOV9H2moWhOQYnoY7FaAphKEGthliLfv79nizM=;
-        b=uwxF+gfp44o5x9PLGn6C1tgJrAucGcgFdI6I3jUeS4zOYMQY4kxtS624kRsMkYpc5l
-         fwniT+vyClTiMgGOY4DcW9xjfESNeiN3pnHGIqGBFP9AU/BGcmhYqCYffT8kJuN142lJ
-         1IhuSgwgjDuco28B/FaMTUf2xYMhLN7QCnVc3Y3Rt1/rNrVQvTGQQFtsj3Di6LyviZAf
-         so9/haR+MIukWG+pNo78+tbygaBzHNySfcMlgnuYBO/cCra1SEXqq7awlNiItBJ9RWzC
-         z6Aa9fTTGZcIF3+A7ucSOIkcyGVhNmP27FNt08lUOzJbyEXIjBHJYTsw1k9G6JpWND/c
-         NiWw==
+        d=fairphone.com; s=fair; t=1741852328; x=1742457128; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Fsrf7QgC862sGCWItFW6TJdYnI/pP94I9U5QzB4uQZE=;
+        b=aTbTcFc816ZG97krLmM4SvJkPtrastjW5YjyPQHTKPgnObvH6eRqsK6eEIZYnDrblQ
+         q7RPGZ/kUECU56A2I1Ty1pmpPVMMeDf8wOvvkdFBGC8PtWvuhB5zPtFgGjMtOdPtT2Kf
+         k//c/gFAmsOFTeDDYPfa84ohq1BbO4CxEN0EWvsfCL4ruOUuTWP7HHtu/b2h4saC29Ez
+         MxnVtz9eLjBhGGR11fYmLmtY2gLJM5DLxNDg1VLGkKL+YTSZVKH5pffPkJ+2jtWJgmGT
+         w4Ope8JK4WCw1e48OeNss/fPrviWjwsErKw1+nqi1q7CMzBQFk1BWepdqi9ytig+eSSd
+         krdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741851978; x=1742456778;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WKBV0HOV9H2moWhOQYnoY7FaAphKEGthliLfv79nizM=;
-        b=fXlJuHZmcYipXeDbxZ/ZxaLGP0kme6fkl6MOBrCNhIzZteKe24vGYWRg2mIR2YCzcI
-         SEKM3sZXAMZPFvdBPVnxc/Rdj5lxrvIX0JKGT/1uX1uahD2kJW/vLJF2B4jWDPLosRDz
-         PBCNQ01CI28XOiAcvm6rmiL7pK9crYrb6wp9z3S6Hnj+qrNmCQhWWiE47LihN4b7SMiS
-         TTVpV7tmhn4jaKkh5tty/p6NisuUiESOmC0UlTJOPkcmc8PHHxz3/fzC3w54+zp8fKrD
-         D0X34dje/vaIoKfJzFTkbeOd6zx0id5A75UaHJpCqUOmWjzPK0pjrMb4llabzMLpmph3
-         6TMg==
-X-Gm-Message-State: AOJu0Yxdj3kufGW3a7bQgKflteRVNDVZBMm0FsEIIe1fDQW+bLM0qScg
-	TLL3TKiqLFXzfYoxcBKWPy9j38RLwEhkmVhKkTq1a3Sz1nnNo6Li8g55FiKpDWI=
-X-Gm-Gg: ASbGncskC9UEiuGF8S1CtXiMleDqu1f4xTB4XmKv9ZlYgIrTqObbI1p3u/bknl//nNw
-	pHExaRkzOD++xgrsxGPCW5TlZaiG9B7JqXL57N8E1lej4jcgjdGn0k4us+lmkIVV63wwgyLSV87
-	YyE4U9JUroEQzbyBOx3kRf6Mp5c6aV3JO+LsypE3TdZOAjB9gQojquPl+1/fjJY6Hw0vgZAMxeE
-	Nq+Mj1BgmoNdwVObf1IyXiwPzJ0BrzJ7l7IOLnbUB6RI9AU/yjIJfI46lUq06JrgwETXBmqiWSH
-	KUgeOt07587qMQebtDawA0mV2W/81xk1oVgzYCyAvSoq4mSdV8mmpmx47PCwTIM=
-X-Google-Smtp-Source: AGHT+IExUdfs3Abfb/hUFEpHaJ3AXE8m+poE/fDH3i06TyTjBm/cDzQkU9CL+6pHvKT6Kk24cwEL4g==
-X-Received: by 2002:a05:600c:1da2:b0:43b:c0fa:f9bf with SMTP id 5b1f17b1804b1-43ce6d2d117mr62307535e9.3.1741851977693;
-        Thu, 13 Mar 2025 00:46:17 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.198.86])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d19541339sm8051115e9.21.2025.03.13.00.46.16
+        d=1e100.net; s=20230601; t=1741852328; x=1742457128;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Fsrf7QgC862sGCWItFW6TJdYnI/pP94I9U5QzB4uQZE=;
+        b=r9QU9rIM4EFqVDnFTMkjwzUJW9ijT7dZWokRBkwBxHefiH8ScFCp7pis8WYAXE9sP8
+         gVwWppKYnI5zcYK8jVtKjxCZcxHwWc2p6acsnxEh3N++ouJp5LcyXzEXyeiliXw6O2tY
+         5z0VUaFYlSxPhHkI9l9i5RnBm5PnaNkrVJdLYkkRLXG0wTY1lUTtLLBBBUzZSh0bT6Th
+         g1Aog/iLcCZkK5+bXqit3XmVdEw2lEeDcUD7BqqtTaS06YJIkEmx1l236YkAdO6qb4YC
+         L6A/wGYi4L3bEk1vnE3d/Vfsn/CpjLJKDmEQlkH5iBq5U/sHqcii8eabFOjNHo40+3G3
+         nQ0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWAD0/CHbOtVPwhiUYSO7AdBmNfyIQhNoiqI7M/dup4vG2Sw2kikK4seM9IZZvwlW5Tyd6UpHQMQ0jj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmNoHJYDM6xb0rYPN6TArJuDqrsmNU1oEyXgu+biG5euitmyOX
+	uoQqCsm6MAyrLYpChUzjeoZEsFuYLWPsjomIKXYo4DSGHnMdve9I5Uvi9sYIZgY=
+X-Gm-Gg: ASbGnctZZ/ARfm599Lfpszu9NvnA0H+3dSCQhwXMrBPCydBSlEcRf8LK4HNwXpUf1zg
+	QtgVWFPeGuhDb192QXb13qxaOYts5tsHnsjYpynrOryDB2SIBIYFYwJfkMkl0RHPrx49GIXfAmq
+	kvXBKfDx65HRyMDC5Ujk+zrFW2m/8ti6hlnPJfzIU5sl1mt6A8Rx8X3jAIXX9/fPc13+2kglE7g
+	4B5U6vPRERooBMr4RiJplSLnyh95z3Y0ppO3E6QzfKF1WKKoG5AKXhuJG2uGUvTmvN+Md0T+JWg
+	K/D/v5yqwjIZdAmr9+MiFxL7rFY8B5FgbY6igs3xnPoam+NDpMLRA09oxjcHhebsgM+hUE+K01I
+	HVfjrgcbPZFlbGA==
+X-Google-Smtp-Source: AGHT+IHP8wNISZ67+M/6826xmvZWrQscMDK+8//hmYHwzIUECiMDJMX5zRuB3mlpe6FMpvHer7zRWg==
+X-Received: by 2002:a17:907:2ce5:b0:ac2:b87f:2859 with SMTP id a640c23a62f3a-ac2b87f2a72mr1415546866b.55.1741852327837;
+        Thu, 13 Mar 2025 00:52:07 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3149ce8efsm49276366b.102.2025.03.13.00.52.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Mar 2025 00:46:17 -0700 (PDT)
-Message-ID: <090bbaee-88e0-42fa-b43d-db80ec065d35@linaro.org>
-Date: Thu, 13 Mar 2025 08:46:15 +0100
+        Thu, 13 Mar 2025 00:52:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] mfd: cros_ec: Don't add cros_ec_ucsi if it is
- defined in OF or ACPI
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Jameson Thies <jthies@google.com>, tzungbi@kernel.org,
- ukaszb@chromium.org, bleung@chromium.org, heikki.krogerus@linux.intel.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, groeck@chromium.org,
- swboyd@chromium.org, akuchynski@chromium.org
-Cc: devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20250312195951.1579682-1-jthies@google.com>
- <20250312195951.1579682-4-jthies@google.com>
- <52e592c5-7f97-4b7b-bcf1-1bca34c716e1@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <52e592c5-7f97-4b7b-bcf1-1bca34c716e1@linaro.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Thu, 13 Mar 2025 08:52:06 +0100
+Message-Id: <D8EZ47Z557OX.37FDVYA5AHET0@fairphone.com>
+Cc: "Bjorn Andersson" <andersson@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Jagadeesh
+ Kona" <quic_jkona@quicinc.com>, "Bryan O'Donoghue"
+ <bryan.odonoghue@linaro.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
+ power domain in camcc
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Taniya Das" <quic_tdas@quicinc.com>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@linaro.org>, "Vladimir Zapolskiy"
+ <vladimir.zapolskiy@linaro.org>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
+ <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
+ <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
+ <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
+ <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
+ <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
+In-Reply-To: <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
 
-On 13/03/2025 08:11, Krzysztof Kozlowski wrote:
-> On 12/03/2025 20:59, Jameson Thies wrote:
->> Check for cros_ec_ucsi to be defined in the OF device tree or an ACPI
->> node. If it is defined by either OF or ACPI, it does not need to be
->> added as a subdevice of cros_ec_dev.
-> 
-> No, it does not have to. You just populate the children and appropriate
+Hi Taniya,
 
-Uh, I did not notice that it is !of_find_compatible_node(), so this
-comment should be rephrased - you just add MFD children anyway and if
-there is no node, they won't be created.
+On Thu Mar 13, 2025 at 5:39 AM CET, Taniya Das wrote:
+>
+>
+> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
+>> On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
+>> <vladimir.zapolskiy@linaro.org> wrote:
+>>>
+>>> On 3/4/25 01:53, Dmitry Baryshkov wrote:
+>>>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrote:
+>>>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX power
+>>>>> domains.
+>>>>
+>>>> Are those really required to access the registers of the cammcc? Or is
+>>>> one of those (MXC?) required to setup PLLs? Also, is this applicable
+>>>> only to sm8550 or to other similar clock controllers?
+>>>
+>>> Due to the described problem I experience a fatal CPU stall on SM8550-Q=
+RD,
+>>> not on any SM8450 or SM8650 powered board for instance, however it does
+>>> not exclude an option that the problem has to be fixed for other clock
+>>> controllers, but it's Qualcomm to confirm any other touched platforms,
+>>=20
+>> Please work with Taniya to identify used power domains.
+>>=20
+>
+> CAMCC requires both MMCX and MXC to be functional.
 
-> devices will be created automatically. None of parent devices should
-> ever check if the child exist to create a child - it makes no sense.
+Could you check whether any clock controllers on SM6350/SM7225 (Bitra)
+need multiple power domains, or in general which clock controller uses
+which power domain.
 
-This is still valid - none of parents should be poking around to see if
-there is a child or not. The core handles it, DT handles it etc.
+That SoC has camcc, dispcc, gcc, gpucc, npucc and videocc.
 
-Best regards,
-Krzysztof
+That'd be highly appreciated since I've been hitting weird issues there
+that could be explained by some missing power domains.
+
+Regards
+Luca
+
+>
+>>> for instance x1e80100-camcc has it resolved right at the beginning.
+>>>
+>>> To my understanding here 'required-opps' shall also be generalized, so
+>>> the done copy from x1e80100-camcc was improper, and the latter dt-bindi=
+ng
+>>> should be fixed.
+>>=20
+>> Yes
+>>=20
+>
+> required-opps is not mandatory for MXC as we ensure that MxC would never
+> hit retention.
+>
+> https://lore.kernel.org/r/20240625-avoid_mxc_retention-v2-1-af9c2f549a5f@=
+quicinc.com
+>
+>
+>>=20
+>>=20
+
 
