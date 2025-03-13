@@ -1,141 +1,103 @@
-Return-Path: <devicetree+bounces-157344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA26A60272
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 21:21:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96721A60274
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 21:22:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57C9D189B18F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 20:21:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D978316F9C8
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 20:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B0EA1F3D50;
-	Thu, 13 Mar 2025 20:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C5C1F3D50;
+	Thu, 13 Mar 2025 20:22:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="o6BS8g21"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJjow640"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0535942AA9;
-	Thu, 13 Mar 2025 20:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5093F42AA9;
+	Thu, 13 Mar 2025 20:22:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741897271; cv=none; b=DT2jzhg8E8P8zSsH8vmK97a3enr02N/HYtV5t9OcT0r9YeoG/MPXcX3uZbM/eB1n5IdKKlhgsjizE/3UZNKFHpq9Rqp9mocxJCtzQZOVkB+2UQFdC/yHwmM11Wym0BdJtVr+Tqf7sG4SMvs0RKhB/tF8WJd5s6C85mgTqHnpPLE=
+	t=1741897351; cv=none; b=IqTf0H2OtCfpfES6pDZMu1oJS5gboVIejCfAGg17cmdWQJrlKkjus/UMyKoOVNwheNNR/KPlqyULBXENIBl5mB+zsm60OIh2TOvvQwAO3Ael24wjelgnPKg3v+LUXtpUzDL5eCS4gPENadaUcyKOcdHZtp7BAgZsVb510p6rasI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741897271; c=relaxed/simple;
-	bh=e0sMe86o15BZdKUXIKOi8ztJKut/AcxoATiLsOSAF80=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n0GAMRCyzaGDXT7ldZ7D6W99CofMuFi1ES4valNgXNiWm2diAabf3vybj97/VBHLcYkomxLJXcBUVrZw/vP7k8eH8uOix7qTNuhKMa05J1PaGCpKsDpVlsnroVWr611wObE+RIuq7jFwmL/jPTwxkdar7PejnFerDQILXY/sLyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=o6BS8g21; arc=none smtp.client-ip=178.60.130.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=p3csgnhFEzwaOuJh37jg6K7sqTieaPk1JraZ2D+RP4Y=; b=o6BS8g21ylJampQeHlSm8ga+RO
-	7J8leguurGoEFYjdWpNFpqchlWE1yX5yUzaM6hncjbrFuDwcLRLIVzZyop123QqzQULjodZJlNIPZ
-	5DmFMkhjHqSiKKNEbd7AiVnRhDI6me46dmzNr1wzOgGTkJTMMcwa3oAH8MiOlgybju8ENfojXjKtS
-	Dmc1Pn5pgXb+dhaXQX6GbxHbvunqWhvhxp6V9pZOtnjE/Ts+Hd1uQTfTXFTvMMDfwU6n1GYPlpn/a
-	1luwpS3vXT5vSDYKftgtVl/ovoFb70dAX1Zm73iZYXqrtUUaq97T4ltCFn2M+Vm4VFcQytguwgA0M
-	D2QqM1EA==;
-Received: from [189.7.87.170] (helo=[192.168.0.224])
-	by fanzine2.igalia.com with esmtpsa 
-	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
-	id 1tsp2u-008K8s-M5; Thu, 13 Mar 2025 21:20:54 +0100
-Message-ID: <0d0addae-c83c-408f-9094-e9c734855438@igalia.com>
-Date: Thu, 13 Mar 2025 17:20:47 -0300
+	s=arc-20240116; t=1741897351; c=relaxed/simple;
+	bh=2Ubrn3vw5OoeA0jFCkzjYo3i5zUpGJxfx7CRuIQHoUM=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=YyNserH5XL3MXocTA6QROOf6u2eTb0JniCCG+j6FwdBIjVLUAJuJ+Mk4Bs2D3KxNvQLquQEPW89WmRVWUrH/+kwInweC3y0FrtuIMSwl5BzHuHrEUT53eVyM6MEx+7u34DSEd8DEGtIAfCWTeTp9NHKvGjBdcrWjMqA/Bq8lkys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJjow640; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A611EC4CEDD;
+	Thu, 13 Mar 2025 20:22:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741897350;
+	bh=2Ubrn3vw5OoeA0jFCkzjYo3i5zUpGJxfx7CRuIQHoUM=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=XJjow640+p8SFFIt3qd7pSc55KNUf2aPDnh5lFC7h7Tp/OGU02NUQ1KgmtGdblwd+
+	 XODsUZgTqEDlAwzaU8b8+x1cmywLuVsahRSiN80au+vheAXHAtC+s3fIolSgpUJBBC
+	 umINKQgxcqUjIw5pZW3KY07cGjnsG1otzBZcML2xd3FWe7GBhQMheq1sduVTtcL3eC
+	 h/f8JkJ2xUHaTaqVXBcdQGJbty+398gIzl8diIEj122H6uZdQxsVjoxD6u+KECMHG/
+	 b4d4OTBnYSxeG3mZcWeiImnh+vDak8EcKliw34XpTbpQBXNLzYDm4wiIlZ/7ZnyGCO
+	 kOwsRl6ln0DEw==
+Message-ID: <f5228d559599f0670e6cbf26352bd1f1.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/7] drm/v3d: Don't run jobs that have errors flagged
- in its fence
-To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, kernel-dev@igalia.com, stable@vger.kernel.org
-References: <20250313-v3d-gpu-reset-fixes-v4-0-c1e780d8e096@igalia.com>
- <20250313-v3d-gpu-reset-fixes-v4-1-c1e780d8e096@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-In-Reply-To: <20250313-v3d-gpu-reset-fixes-v4-1-c1e780d8e096@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <nxvuxo7lsljsir24brvghblk2xlssxkb3mfgx6lbjahmgr4kep@fvpmciimfikg>
+References: <20250226232320.93791-1-inochiama@gmail.com> <20250226232320.93791-2-inochiama@gmail.com> <2c00c1fba1cd8115205efe265b7f1926.sboyd@kernel.org> <epnv7fp3s3osyxbqa6tpgbuxdcowahda6wwvflnip65tjysjig@3at3yqp2o3vp> <f1d5dc9b8f59b00fa21e8f9f2ac3794b.sboyd@kernel.org> <x43v3wn5rp2mkhmmmyjvdo7aov4l7hnus34wjw7snd2zbtzrbh@r5wrvn3kxxwv> <b816b3d1f11b4cc2ac3fa563fe5f4784.sboyd@kernel.org> <nxvuxo7lsljsir24brvghblk2xlssxkb3mfgx6lbjahmgr4kep@fvpmciimfikg>
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: sophgo: add clock controller for SG2044
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Chen Wang <unicorn_wang@outlook.com>, Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>
+Date: Thu, 13 Mar 2025 13:22:28 -0700
+User-Agent: alot/0.12.dev8+g17a99a841c4b
 
-On 13/03/25 11:43, Maíra Canal wrote:
-> The V3D driver still relies on `drm_sched_increase_karma()` and
-> `drm_sched_resubmit_jobs()` for resubmissions when a timeout occurs.
-> The function `drm_sched_increase_karma()` marks the job as guilty, while
-> `drm_sched_resubmit_jobs()` sets an error (-ECANCELED) in the DMA fence of
-> that guilty job.
-> 
-> Because of this, we must check whether the job’s DMA fence has been
-> flagged with an error before executing the job. Otherwise, the same guilty
-> job may be resubmitted indefinitely, causing repeated GPU resets.
-> 
-> This patch adds a check for an error on the job's fence to prevent running
-> a guilty job that was previously flagged when the GPU timed out.
-> 
-> Note that the CPU and CACHE_CLEAN queues do not require this check, as
-> their jobs are executed synchronously once the DRM scheduler starts them.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: d223f98f0209 ("drm/v3d: Add support for compute shader dispatch.")
-> Fixes: 1584f16ca96e ("drm/v3d: Add support for submitting jobs to the TFU.")
-> Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
-> Signed-off-by: Maíra Canal <mcanal@igalia.com>
+Quoting Inochi Amaoto (2025-03-12 18:08:11)
+> On Wed, Mar 12, 2025 at 04:43:51PM -0700, Stephen Boyd wrote:
+> > Quoting Inochi Amaoto (2025-03-12 16:29:43)
+> > > On Wed, Mar 12, 2025 at 04:14:37PM -0700, Stephen Boyd wrote:
+> > > > Quoting Inochi Amaoto (2025-03-11 16:31:29)
+> > > > >=20
+> > > > > > or if that syscon node should just have the #clock-cells proper=
+ty as
+> > > > > > part of the node instead.
+> > > > >=20
+> > > > > This is not match the hardware I think. The pll area is on the mi=
+ddle
+> > > > > of the syscon and is hard to be separated as a subdevice of the s=
+yscon
+> > > > > or just add  "#clock-cells" to the syscon device. It is better to=
+ handle
+> > > > > them in one device/driver. So let the clock device reference it.
+> > > >=20
+> > > > This happens all the time. We don't need a syscon for that unless t=
+he
+> > > > registers for the pll are both inside the syscon and in the register
+> > > > space 0x50002000. Is that the case?=20
+> > >=20
+> > > Yes, the clock has two areas, one in the clk controller and one in
+> > > the syscon, the vendor said this design is a heritage from other SoC.
+> >=20
+> > My question is more if the PLL clk_ops need to access both the syscon
+> > register range and the clk controller register range. What part of the
+> > PLL clk_ops needs to access the clk controller at 0x50002000?
+> >=20
+>=20
+> The PLL clk_ops does nothing, but there is an implicit dependency:
+> When the PLL change rate, the mux attached to it must switch to=20
+> another source to keep the output clock stable. This is the only
+> thing it needed.
 
-As patches 1/7 and 2/7 prevent the same faulty job from being
-resubmitted in a loop, I just applied them to misc/kernel.git (drm-misc-
-fixes).
-
-Best Regards,
-- Maíra
-
-> ---
->   drivers/gpu/drm/v3d/v3d_sched.c | 9 ++++++++-
->   1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
-> index 80466ce8c7df669280e556c0793490b79e75d2c7..c2010ecdb08f4ba3b54f7783ed33901552d0eba1 100644
-> --- a/drivers/gpu/drm/v3d/v3d_sched.c
-> +++ b/drivers/gpu/drm/v3d/v3d_sched.c
-> @@ -327,11 +327,15 @@ v3d_tfu_job_run(struct drm_sched_job *sched_job)
->   	struct drm_device *dev = &v3d->drm;
->   	struct dma_fence *fence;
->   
-> +	if (unlikely(job->base.base.s_fence->finished.error))
-> +		return NULL;
-> +
-> +	v3d->tfu_job = job;
-> +
->   	fence = v3d_fence_create(v3d, V3D_TFU);
->   	if (IS_ERR(fence))
->   		return NULL;
->   
-> -	v3d->tfu_job = job;
->   	if (job->base.irq_fence)
->   		dma_fence_put(job->base.irq_fence);
->   	job->base.irq_fence = dma_fence_get(fence);
-> @@ -369,6 +373,9 @@ v3d_csd_job_run(struct drm_sched_job *sched_job)
->   	struct dma_fence *fence;
->   	int i, csd_cfg0_reg;
->   
-> +	if (unlikely(job->base.base.s_fence->finished.error))
-> +		return NULL;
-> +
->   	v3d->csd_job = job;
->   
->   	v3d_invalidate_caches(v3d);
-> 
-
+I haven't looked at the clk_ops in detail (surprise! :) but that sounds
+a lot like the parent of the mux is the PLL and there's some "safe"
+source that is needed temporarily while the PLL is reprogrammed for a
+new rate. Is that right? I recall the notifier is in the driver so this
+sounds like that sort of design.
 
