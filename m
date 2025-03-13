@@ -1,103 +1,126 @@
-Return-Path: <devicetree+bounces-157345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96721A60274
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 21:22:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 054A0A602D0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 21:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D978316F9C8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 20:22:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDFE9189C694
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 20:39:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C5C1F3D50;
-	Thu, 13 Mar 2025 20:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF221F3FE3;
+	Thu, 13 Mar 2025 20:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJjow640"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EOlMPu7Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5093F42AA9;
-	Thu, 13 Mar 2025 20:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C7E6F2F2;
+	Thu, 13 Mar 2025 20:39:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741897351; cv=none; b=IqTf0H2OtCfpfES6pDZMu1oJS5gboVIejCfAGg17cmdWQJrlKkjus/UMyKoOVNwheNNR/KPlqyULBXENIBl5mB+zsm60OIh2TOvvQwAO3Ael24wjelgnPKg3v+LUXtpUzDL5eCS4gPENadaUcyKOcdHZtp7BAgZsVb510p6rasI=
+	t=1741898352; cv=none; b=XEIOb59DLjmm5LjO1ZQAPvhT/t2fgQDNscpFvzS/Dav38jQ45fzcnVLk7iB76CRMDNoe9mlY1ptoNCPn96j4Macs6zbVnjEYT3FGjuR0UI7G3arpZpu+phUcxfpGN9xPQMxirTnN4rmY4drB28gsg9VrGTO5ziLjVhYPWGup5t8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741897351; c=relaxed/simple;
-	bh=2Ubrn3vw5OoeA0jFCkzjYo3i5zUpGJxfx7CRuIQHoUM=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=YyNserH5XL3MXocTA6QROOf6u2eTb0JniCCG+j6FwdBIjVLUAJuJ+Mk4Bs2D3KxNvQLquQEPW89WmRVWUrH/+kwInweC3y0FrtuIMSwl5BzHuHrEUT53eVyM6MEx+7u34DSEd8DEGtIAfCWTeTp9NHKvGjBdcrWjMqA/Bq8lkys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJjow640; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A611EC4CEDD;
-	Thu, 13 Mar 2025 20:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741897350;
-	bh=2Ubrn3vw5OoeA0jFCkzjYo3i5zUpGJxfx7CRuIQHoUM=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=XJjow640+p8SFFIt3qd7pSc55KNUf2aPDnh5lFC7h7Tp/OGU02NUQ1KgmtGdblwd+
-	 XODsUZgTqEDlAwzaU8b8+x1cmywLuVsahRSiN80au+vheAXHAtC+s3fIolSgpUJBBC
-	 umINKQgxcqUjIw5pZW3KY07cGjnsG1otzBZcML2xd3FWe7GBhQMheq1sduVTtcL3eC
-	 h/f8JkJ2xUHaTaqVXBcdQGJbty+398gIzl8diIEj122H6uZdQxsVjoxD6u+KECMHG/
-	 b4d4OTBnYSxeG3mZcWeiImnh+vDak8EcKliw34XpTbpQBXNLzYDm4wiIlZ/7ZnyGCO
-	 kOwsRl6ln0DEw==
-Message-ID: <f5228d559599f0670e6cbf26352bd1f1.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1741898352; c=relaxed/simple;
+	bh=oHVA6a2AKNa2vHiRWvGEv+uMrhVRRyUqCTD1yNo12m8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WJrL/SQBGVK7x7BCJoajoBiMZeQb9T+/rVuKyfZbsgFQCmalXIJi/M8lx/BTO7bDO7rPqcyjCF4K4mLmb6nsDvXLZ6vPDw/7PaoAW3gw6JEXYJa4kI4VaZ+i1+gsCJS1UopmFYE5NlXAq3JB64x4BSv3s5BHz1/8I6b2GePz10o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EOlMPu7Q; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ac2aeada833so270735466b.0;
+        Thu, 13 Mar 2025 13:39:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741898349; x=1742503149; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y80nSXH6gqqrmRGM3IsXoDQwjoa1+dDg8jnx+cu1UCA=;
+        b=EOlMPu7QGW9gZ4j4cdHb2pU02+X8Uv7Q3WPVOQ5jZq4uHK/t2naEtgma4d/nI0Q0o8
+         EtbLbZSpsJoYxqwMhkde+AY5QdKpwwKuseLUzLZzi7yhjKbdviJLIWqllcTbAhrKjhqP
+         EZfWhKXiuwMTkj0Sehha65qO54gJKebNt/J3wHFNOiTen+F/7XzVMTfNwMXi+urMfakM
+         ncE7CwH1lwnsnZhKLS0s2yEyrOGICAPKHBqt4j6/pyXMQ6223xROtI7XmdTBMFAvXXiA
+         2q7KS7/TY5s7AnC5ljp0qfcOv0FNf7O0quwzELsBbjP/DbbgaLDVMd3O1nEp+rGI//JL
+         cT1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741898349; x=1742503149;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y80nSXH6gqqrmRGM3IsXoDQwjoa1+dDg8jnx+cu1UCA=;
+        b=tSOfa+z3bIYoJlI8OEqwpzKJXwfYUP2Y+185TcnLT40qTHjL1JkOZycQCfXilInmUG
+         3cT79/afKhasYMcXm14CBUhOXtTdK5Pyxh8MYox9L4n5OlKIumsIfjqi16gUz+U153U1
+         okmbs8N8Vi6D9h+sjITaiNz99qQXMSuM1oky4Nt1BshOoukZ1C4BY1GWenU4UWuJzebU
+         OhvZWxT4HkDZtQk/7CE9aYCd1hOcexSsaJjuzI4+ePDvJF8PjYi+jBg6oWmruABmxnd1
+         QTurzTZxaAMKsNKCcc5DUfTwBjyiRvE1ugIU55pN+n0wcQ28qUhaLehgw2Z4UgAjONsm
+         jQ6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUwYMif/Xer0pNiEsL25do4d1yMWSSBGPlByvR+INEkij/rK3JY+RAdTL+d1Eh6DZfFhESkkDGu2D3u@vger.kernel.org, AJvYcCWrNvR2CuhykrdYfeNnHF/EtBuqtRRq2KQSkehjK48xYLPLsSKX0mkcUAaEJ8rzjmthBesw9eE8RUsCx1pp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSD87OS4BDtb1Q3uM4yKeEH11mz1UeP/pGNGo74GhIuJPL4qbD
+	b5z6A2eVF1nTKA2HjzhkAAuBbZopDTkXNovgT9M1VcFRWPAn9N+j
+X-Gm-Gg: ASbGncvLYteYpQdwZ9l9nODMPmoD2VMfhdXcku2qlHhHLb2Gqu0U3nN7muKkER9KAf9
+	ZLwlZR+K2IKwq/H76mKteoA8gOxmO1iPcGjtc+tbr6HLI/aarHSlDthHYWu1cAkIv+CNRbq2pJl
+	+sw4AcNsXB0BIwfLG8ibXzZ690loABoE2ZcLH7P4+nlmpyMz5aTW8HltTvCpkmp7r6G7jKnRdea
+	rV8X0tGaN538zRctyqauRhU38SGtrZOcxir8mpZqTtdw0pTiCO4MnY5Ld4w4jda8/S8Q3tO+31w
+	zsLcTMNsTCTws87IsCZWHvoV6HDNNF7GycEYW/PCqTpdGHaywvF2Og1RGABECreJEHtqJwF1UGb
+	Wt2gpBjpvuxATDPJeJpFI9w==
+X-Google-Smtp-Source: AGHT+IGgXzCvFKIwuNzp9fqTkDSNxicFmg1nWVCw8cSfyB1nRxtqRIguRpztRQZovtRqtEoojZxR6A==
+X-Received: by 2002:a17:906:a297:b0:ac3:14e1:27a5 with SMTP id a640c23a62f3a-ac314e128d6mr343436266b.1.1741898349044;
+        Thu, 13 Mar 2025 13:39:09 -0700 (PDT)
+Received: from [192.168.50.244] (83.11.221.132.ipv4.supernova.orange.pl. [83.11.221.132])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac314a489c9sm122016566b.152.2025.03.13.13.39.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Mar 2025 13:39:08 -0700 (PDT)
+Message-ID: <f363c1ce-8612-476e-a5d5-c3cb358bf50a@gmail.com>
+Date: Thu, 13 Mar 2025 21:39:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <nxvuxo7lsljsir24brvghblk2xlssxkb3mfgx6lbjahmgr4kep@fvpmciimfikg>
-References: <20250226232320.93791-1-inochiama@gmail.com> <20250226232320.93791-2-inochiama@gmail.com> <2c00c1fba1cd8115205efe265b7f1926.sboyd@kernel.org> <epnv7fp3s3osyxbqa6tpgbuxdcowahda6wwvflnip65tjysjig@3at3yqp2o3vp> <f1d5dc9b8f59b00fa21e8f9f2ac3794b.sboyd@kernel.org> <x43v3wn5rp2mkhmmmyjvdo7aov4l7hnus34wjw7snd2zbtzrbh@r5wrvn3kxxwv> <b816b3d1f11b4cc2ac3fa563fe5f4784.sboyd@kernel.org> <nxvuxo7lsljsir24brvghblk2xlssxkb3mfgx6lbjahmgr4kep@fvpmciimfikg>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: sophgo: add clock controller for SG2044
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Chen Wang <unicorn_wang@outlook.com>, Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>
-Date: Thu, 13 Mar 2025 13:22:28 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 06/10] mfd: bcm590xx: Add PMU ID/revision parsing
+ function
+To: Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250304-bcm59054-v6-0-ae8302358443@gmail.com>
+ <20250304-bcm59054-v6-6-ae8302358443@gmail.com>
+ <20250313132036.GB3616286@google.com>
+ <ef190ba8-a5c7-4a1a-90e6-2610de00e4ed@sirena.org.uk>
+From: Artur Weber <aweber.kernel@gmail.com>
+Content-Language: en-US
+In-Reply-To: <ef190ba8-a5c7-4a1a-90e6-2610de00e4ed@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Quoting Inochi Amaoto (2025-03-12 18:08:11)
-> On Wed, Mar 12, 2025 at 04:43:51PM -0700, Stephen Boyd wrote:
-> > Quoting Inochi Amaoto (2025-03-12 16:29:43)
-> > > On Wed, Mar 12, 2025 at 04:14:37PM -0700, Stephen Boyd wrote:
-> > > > Quoting Inochi Amaoto (2025-03-11 16:31:29)
-> > > > >=20
-> > > > > > or if that syscon node should just have the #clock-cells proper=
-ty as
-> > > > > > part of the node instead.
-> > > > >=20
-> > > > > This is not match the hardware I think. The pll area is on the mi=
-ddle
-> > > > > of the syscon and is hard to be separated as a subdevice of the s=
-yscon
-> > > > > or just add  "#clock-cells" to the syscon device. It is better to=
- handle
-> > > > > them in one device/driver. So let the clock device reference it.
-> > > >=20
-> > > > This happens all the time. We don't need a syscon for that unless t=
-he
-> > > > registers for the pll are both inside the syscon and in the register
-> > > > space 0x50002000. Is that the case?=20
-> > >=20
-> > > Yes, the clock has two areas, one in the clk controller and one in
-> > > the syscon, the vendor said this design is a heritage from other SoC.
-> >=20
-> > My question is more if the PLL clk_ops need to access both the syscon
-> > register range and the clk controller register range. What part of the
-> > PLL clk_ops needs to access the clk controller at 0x50002000?
-> >=20
->=20
-> The PLL clk_ops does nothing, but there is an implicit dependency:
-> When the PLL change rate, the mux attached to it must switch to=20
-> another source to keep the output clock stable. This is the only
-> thing it needed.
+On 13.03.2025 14:25, Mark Brown wrote:
+> On Thu, Mar 13, 2025 at 01:20:36PM +0000, Lee Jones wrote:
+>> On Tue, 04 Mar 2025, Artur Weber wrote:
+> 
+>>> +	if (id != bcm590xx->pmu_id) {
+>>> +		dev_err(bcm590xx->dev,
+>>> +			"Incorrect ID for %s: expected %x, got %x. Check your DT compatible.\n",
+>>
+>> Isn't it more likely that the H/W this is being executed on is
+>> unsupported?  If so, say that instead.
+> 
+> Given that the compatibles are device specific the driver shouldn't be
+> binding if the device is unsupported.
 
-I haven't looked at the clk_ops in detail (surprise! :) but that sounds
-a lot like the parent of the mux is the PLL and there's some "safe"
-source that is needed temporarily while the PLL is reprogrammed for a
-new rate. Is that right? I recall the notifier is in the driver so this
-sounds like that sort of design.
+Yes, the intention here is just to make sure that the DT compatible and
+hardware ID match. Unsupported hardware would not have a DT compatible.
+
+Best regards
+Artur
 
