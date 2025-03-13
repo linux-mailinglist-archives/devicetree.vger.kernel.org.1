@@ -1,92 +1,103 @@
-Return-Path: <devicetree+bounces-157363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E013A60415
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 23:14:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1B55A60426
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 23:18:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 532797ACEC0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 22:13:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18B1488012C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 22:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF911F7095;
-	Thu, 13 Mar 2025 22:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CECF1F540C;
+	Thu, 13 Mar 2025 22:18:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="hbr+6sOM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hx2eAp6N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80511F791A;
-	Thu, 13 Mar 2025 22:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87731547F5;
+	Thu, 13 Mar 2025 22:18:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741904067; cv=none; b=py8/DLcEn0byZyxQcf0faGUZ23IfRdfsuhmGQPZMOSIv7zmXt2Y3Ikzp5atEyy4nA6BNY7eXjePCQ93GJ2XzjX1weQEK/sLaEINCjsz4NVTJTjHQMpuwhJa5+14ShtWk8o0KTPUzvQy3O8GgMoZWTITl9aDwbuuLk2n9CtMQL0E=
+	t=1741904284; cv=none; b=Mimmq+EZ+BvVTN5sy6K0uRKvHS1waEtWcIibAfc+/BihOBq4Ml1q94S1vudS6/AxiDEOXoMZ5rYpdxq99nOWaQim7e3ap1+WA1AT4aQvOOi0pbKHNV8BgnyY17EF6Vx3rtHBZeWtvHBBoLm89CrAO0JZzSzizJA9B2eJ9JStltU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741904067; c=relaxed/simple;
-	bh=ayENqWRYykqKMSaDdgouWzzeeWpkub6h14X1CWsUIWY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qkBNWutfheXAIS0GaNxFUpnSL9BlbFH5Eiy95jzmfLCWzADuPbqCiYPjH1ZUkMMB53RFQTxqNmX3ApK7ETV2QpQTExWYXAkDAMOzf9EyXh57iZgriWzTwOib3IHo/hW4PD82lWhewQIZoW3M/cXsxE0Q3SppmQbYpRKBKaaOJxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=hbr+6sOM; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=ayENqWRYykqKMSaDdgouWzzeeWpkub6h14X1CWsUIWY=; b=hbr+6sOMUOohmJsjF5BXVys2lg
-	oAuBs8vSReUdYyq0GZhOT2JLtY1OqxHtEr/x+5UWWm6gv1s8mp0pJfTALrWhkrSglwOhiN4MDu9P3
-	HMyRbLQvdy6BndmlF15t7lsziwXrqLiUQ3qeUAAtlpIuOVtrsIj1yvX76MNcduysfwTtMclHwZDE9
-	o95TkLbPWNQxgDpskFxwkFzncrMHnoyj8lwD6RpWXqcb9uD+M0q0BwGv2yUGug5/kRC4CR2zXRRJD
-	g3jFunuwzDFkcbuBmkkcy3NNdf8e1y0KelHXl5i4xSLU9AH6aydSqNfZGmJ5YcpUFh8RNOfXmktkJ
-	0UnKXYaA==;
-Received: from i53875bc6.versanet.de ([83.135.91.198] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tsqoi-0002tC-Ns; Thu, 13 Mar 2025 23:14:16 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: amadeus@jmu.edu.cn, conor+dt@kernel.org, devicetree@vger.kernel.org,
- jonas@kwiboo.se, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 0/2] arm64: dts: rockchip: Add pwm nodes for RK3528
-Date: Thu, 13 Mar 2025 23:14:15 +0100
-Message-ID: <1819496.VLH7GnMWUR@phil>
-In-Reply-To: <20250313071031.1840032-1-amadeus@jmu.edu.cn>
-References:
- <7779050.EvYhyI6sBW@phil> <20250313071031.1840032-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1741904284; c=relaxed/simple;
+	bh=G+k8W9zHeHYSSW0OTIii1tmsp+qGg3JGhVpRtDetg3o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SSsN8vFUJ+Kseee4fWpQtSBVYXveYYj3a/siYlF7fRGOkppsQHOr7gkhn7l5MYJvtj8wqvhLr7CKDAeUhavTqJqExhLNTP0+IAYO9/zWuiwjGopgB7Uoh7m5ef9KO2kbjnQ7MnC4uPXQLUbOqeTZCgNdf6kdiU3EoX9Xxt/b7L0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hx2eAp6N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CA32C4CEDD;
+	Thu, 13 Mar 2025 22:18:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741904283;
+	bh=G+k8W9zHeHYSSW0OTIii1tmsp+qGg3JGhVpRtDetg3o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hx2eAp6NNP9d3ITlUGVdDDOc+WumwlIBAQIQpQJ5Ym3WjjAfE0BfmK24E06yD6twA
+	 pNZUu/5TZA1YWj+dpabluNYTmaLndzDH1H+0IZUxlONIlKBrxcEUMQ8+1xBnNfl49m
+	 bA84F00SJC5gd7dafCpkbHeyKDmb0tls2Kf82Eq8aTrLgJKpFdZXKzVFHINUBucJGP
+	 E0qxRYNaC4gOOFTHK1gJRWcf6C93Q9Ag9XIrQGpaYVfhcYbkPx7PqcixrrcV36eoFM
+	 lP3TR2+2UeVT8annfLAJEg1qbSxHbWhJ+Tg1VhyBeKsKhyGYyZ5fwqSK+m/AvvxEz7
+	 WlZMhLT0LSGCw==
+Date: Thu, 13 Mar 2025 17:18:00 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: foss@joelselvaraj.com, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: input: touchscreen: edt-ft5x06: use
+ unevaluatedProperties
+Message-ID: <lrgjgfupvtceac54tag7rn2hgglgaogic2n33q6vshbvv5exgq@eqefsbvvdkdz>
+References: <20250303-pocof1-touchscreen-support-v4-0-cdc3bebc3942@joelselvaraj.com>
+ <20250303-pocof1-touchscreen-support-v4-1-cdc3bebc3942@joelselvaraj.com>
+ <Z8fzD-aF-hN0PeyD@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z8fzD-aF-hN0PeyD@google.com>
 
-Hi,
+On Tue, Mar 04, 2025 at 10:45:35PM -0800, Dmitry Torokhov wrote:
+> On Mon, Mar 03, 2025 at 04:36:55PM -0600, Joel Selvaraj via B4 Relay wrote:
+> > From: Joel Selvaraj <foss@joelselvaraj.com>
+> > 
+> > In Xiaomi Poco F1 (qcom/sdm845-xiaomi-beryllium-ebbg.dts), the FocalTech
+> > FT8719 touchscreen is integrally connected to the display panel
+> > (EBBG FT8719) and thus should be power sequenced together with display
+> > panel using the panel property. Since the edt-ft5x06 touchscreen binding
+> > uses almost all the properties present in touchscreen.yaml, let's remove
+> > additionalProperties: false and use unevaluatedProperties to include all
+> > the properties, including the needed panel property.
+> > 
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
+> 
+> I believe this is better be merged through the arch tree together with
+> the dts changes.
+> 
 
-Am Donnerstag, 13. M=C3=A4rz 2025, 08:10:31 MEZ schrieb Chukun Pan:
-> Hi,
->=20
-> > so yes of course the pinctrl needs to be default - simply because
-> > that's the only pinctrl state mainline supports.
->=20
-> > But judging by the fact that you're discussing working vs. non-working
-> > below, can you please check if we should drop the patch for 6.15 till
-> > that is solved?
->=20
-> I suggest dropping this patch first, I will send v2
-> when this issue is solved.
+Then I will have to come up with a motivation to why it needed to go
+together with the dts change ;)
 
-I've dropped the patch now.
+Please pick the binding change through the input tree and I'll pick the
+dts changes once the binding has landed in linux-next.
 
+> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> 
 
-Heiko
+Thank you,
+Bjorn
 
-
+> Thanks.
+> 
+> -- 
+> Dmitry
 
