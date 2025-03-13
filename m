@@ -1,212 +1,183 @@
-Return-Path: <devicetree+bounces-157107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6C98A5ED9B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:07:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBEE7A5EDAF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:10:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D1DE7A2979
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:06:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AF4217B45E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:10:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35FC4260A25;
-	Thu, 13 Mar 2025 08:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197F925FA37;
+	Thu, 13 Mar 2025 08:10:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KuB0zno4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BpXfG2Hh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412C9260390;
-	Thu, 13 Mar 2025 08:06:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1D52E3391;
+	Thu, 13 Mar 2025 08:10:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741853208; cv=none; b=q7FY222U0MHOiMW/4J2wtf14f2c8CtDY9OfOmG3v8oRG8xHIgbStoy8xB0C7Flai/3lejgFQ55kJRkVX7+Ar/fVKlmdvp2fN3BuggjKAJ0eU5ZVjP3N+oMYGT73/Y/jj0Ku6F53m0rNsn6qagFSZvI+djRVUnyAak6rK2qgilx8=
+	t=1741853447; cv=none; b=tIHpPEvQDE2h0QE0cLQ/E7GNugZ52dFs8ylnPdOZ0Z2CDf23+WaHz9FMGfllTVQ1KQFiIJagAadqOI/S2ho9/xoA2rlGxjJUKtrDGOLHVwKyIRh+RnyWfAY6AKg/BUnCB9rjn56gbdq+HCktGaL4joWtFtmwhG7W8OwACIWjMeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741853208; c=relaxed/simple;
-	bh=bR9JTHQ6TPxSLmWg0pU6f/wQvuPkKUdbi2FXj8T2sUk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f0CgUKt4Flh2P4tgC42BlqYKUk6vxKuwQeiIdW6HzPPdJS9IyHJan0I+gueGdLDpS8c/EqPJ1vYK+Dzcy0uNQiWb+EfN20eGbj0R48je1yliA89PNW8JRA8MoJw58JKn3mYWRpN+Sm6QLEL0/3IVex8yyNH2eN5eGLMFBqm8uY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KuB0zno4; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52D7RUpd022536;
-	Thu, 13 Mar 2025 08:06:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	U3d4rtPbAvYi3k2CRRFl+IrbVJFOaPAb+Wt2WZKaqoc=; b=KuB0zno4r9dwQ0KZ
-	EQQWQgtxhNpwnZFC41uRcj/76XFzhcLNDW+I/sCh31MQUsxY+k3LzP1VEdBnwmfD
-	6xrArfEej5WkVm0NSn87Me2b9YH+5U/VRMZp6NAz9Ez6mj1JeF0FjFY/jIeTJQPQ
-	/JhtWfMnRxmI+2JxoNHHel0cGECyltyrJvMNA3dMccHayIPM+Xu80CO9x235MVZu
-	BTDABAw/5UtERlqLu+2fPMRgY46JkPowFrlljpgu15vsrD7y7j2kWNyhtY7b+8fs
-	Anc1+LquBMeoGMUzxyc0wWB7AMFHiRztZn3WneL6DuCZm+u0hOAe0I9u7E0iOsN6
-	MCWwrA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45bu07g3bv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Mar 2025 08:06:36 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52D86Z4B009459
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Mar 2025 08:06:35 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 13 Mar 2025 01:06:30 -0700
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Praveenkumar I <quic_ipkumar@quicinc.com>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>,
-        Varadarajan Narayanan
-	<quic_varada@quicinc.com>
-Subject: [PATCH v13 4/4] arm64: dts: qcom: ipq5332-rdp441: Enable PCIe phys and controllers
-Date: Thu, 13 Mar 2025 13:36:00 +0530
-Message-ID: <20250313080600.1719505-5-quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250313080600.1719505-1-quic_varada@quicinc.com>
-References: <20250313080600.1719505-1-quic_varada@quicinc.com>
+	s=arc-20240116; t=1741853447; c=relaxed/simple;
+	bh=Zp1VrZoXU/0dSvEI86TANfaHnZV5iTRbrfgotlEDFRI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bJL2VDAF5kHq0Do1ccfnLCU4mdHiSAXuXiFioyRdZ6NtQ/ir0d8KK6bOoRa+1aC9W5dJ50IGrKswyMTWAWkYkagGKIxQahP1xeY0KoxozX0a6f8tNSlnWrNPX8Y5a2jfYCmNqLb5oBOx8yiEflpvf8HogBwx6/WJqMEyH9+DFeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BpXfG2Hh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 192C1C4CEE9;
+	Thu, 13 Mar 2025 08:10:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741853446;
+	bh=Zp1VrZoXU/0dSvEI86TANfaHnZV5iTRbrfgotlEDFRI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BpXfG2HhBD0lvTWWhRZA+1T8htRe+xTYjak3WeCBc7WDn9XNvGVXbCye4eQHWGXQx
+	 tDbB1ms2wNbC4aEE3MROlHrWhcxKkySOS7TESW0MK8akdtqAYX8xdfbUGc0S7l3Ieo
+	 bvMrAGxYbhEv0F405l+dTAhBKbRrUI5WgeKlc1OYbxkQoD2AiuvrnBtsFFh7yHmSjg
+	 VSIflVkoxTCLnojftgiyh96Dk22WoaGJ0B6JXAGJACTduRHPzr1c6Fqh0CS2dE28N2
+	 iWOZfLVkFcRXWfUISQzeA+efY0As4cm82VNBDuhZi5FmIm7v2hrA1Qesz3PKfbSrrp
+	 jw/RBgrYdOfVA==
+Date: Thu, 13 Mar 2025 10:10:40 +0200
+From: Dmitry Baryshkov <lumag@kernel.org>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org, 
+	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org, yubing.zhang@rock-chips.com, 
+	krzk+dt@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	robh@kernel.org, sebastian.reichel@collabora.com, 
+	Andy Yan <andy.yan@rock-chips.com>, "stephen@radxa.com" <stephen@radxa.com>
+Subject: Re: [PATCH v2 7/7] arm64: dts: rockchip: Enable DP2HDMI for ROCK 5
+ ITX
+Message-ID: <y7ouhmfbls3vcumrgudcvhlahxx7iqliimeq4cljko4xfwgzcb@45iozv6spswb>
+References: <20250312104214.525242-1-andyshrk@163.com>
+ <20250312104214.525242-8-andyshrk@163.com>
+ <q3y36jgswj4xa2g3hnptc6kgzphbqfg675r5paa2lwvdseytio@jysj4f2i6osu>
+ <5858d492.44b.1958ceb23dd.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: k0xUxxI_b8SNfpMhRNq8wLEiqp_hz12p
-X-Authority-Analysis: v=2.4 cv=V+F90fni c=1 sm=1 tr=0 ts=67d2920c cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=A71FK_BBuJjt25o-iSMA:9
- a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: k0xUxxI_b8SNfpMhRNq8wLEiqp_hz12p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-13_04,2025-03-11_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=838
- impostorscore=0 spamscore=0 priorityscore=1501 phishscore=0 mlxscore=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 adultscore=0 bulkscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503130063
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5858d492.44b.1958ceb23dd.Coremail.andyshrk@163.com>
 
-From: Praveenkumar I <quic_ipkumar@quicinc.com>
+On Thu, Mar 13, 2025 at 08:32:55AM +0800, Andy Yan wrote:
+> 
+> Hi Dmitry,
+> 
+> At 2025-03-12 20:39:17, "Dmitry Baryshkov" <lumag@kernel.org> wrote:
+> >On Wed, Mar 12, 2025 at 06:42:08PM +0800, Andy Yan wrote:
+> >> From: Andy Yan <andy.yan@rock-chips.com>
+> >> 
+> >> The HDMI Port next to Headphone Jack is drived by
+> >> DP1 on rk3588 via a dp2hdmi converter.
+> >> 
+> >> Add related dt nodes to enable it.
+> >> 
+> >> Note: ROCKCHIP_VOP2_EP_DP1 is defined as 11 in dt-binding header,
+> >> but it will trigger a dtc warning like "graph node unit address
+> >> error, expected "b"" if we use it directly after endpoint, so we
+> >> use "b" instead here.
+> >> 
+> >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> >> ---
+> >> 
+> >> (no changes since v1)
+> >> 
+> >>  .../boot/dts/rockchip/rk3588-rock-5-itx.dts   | 37 +++++++++++++++++++
+> >>  1 file changed, 37 insertions(+)
+> >> 
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> >> index 67b886329248..29f10ec9f0c1 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> >> @@ -57,6 +57,18 @@ analog-sound {
+> >>  			  "Headphone", "Headphones";
+> >>  	};
+> >>  
+> >> +	dp-con {
+> >> +		compatible = "dp-connector";
+> >
+> >You've written that it is an HDMI connector. Could you possibly clarify,
+> >why is it being registered as a DP connector? Is there any kind of
+> >a bridge between the DP controller and the HDMI connector?
+> 
+> When I was preparing this patch at that time, I also had some doubts. 
+> Whether it should be registered as a DP connector or an HDMI connector. 
+> There is a DP2HDMI conversion chip between the DP of RK3588 and this hdmi 
+> interface, but this conversion chip does not require a software driver. 
+> If the current writing is incorrect, I will change it to hdmi-connector in the next version.
 
-Enable the PCIe controller and PHY nodes for RDP 441.
+Yes. Please add the RA620 chip to simple-bridge.c and simple-bridge.yaml
+and use HDMI connector here.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts | 76 +++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+> 
+> Thanks
+> >
+> >> +		label = "DP OUT";
+> >> +		type = "full-size";
+> >> +
+> >> +		port {
+> >> +			dp_con_in: endpoint {
+> >> +				remote-endpoint = <&dp1_out_con>;
+> >> +			};
+> >> +		};
+> >> +	};
+> >> +
+> >>  	gpio-leds {
+> >>  		compatible = "gpio-leds";
+> >>  		pinctrl-names = "default";
+> >> @@ -268,6 +280,24 @@ &cpu_l3 {
+> >>  	cpu-supply = <&vdd_cpu_lit_s0>;
+> >>  };
+> >>  
+> >> +&dp1 {
+> >> +	status = "okay";
+> >> +	pinctrl-names = "default";
+> >> +	pinctrl-0 = <&dp1m0_pins>;
+> >> +};
+> >> +
+> >> +&dp1_in {
+> >> +	dp1_in_vp2: endpoint {
+> >> +		remote-endpoint = <&vp2_out_dp1>;
+> >> +	};
+> >> +};
+> >> +
+> >> +&dp1_out {
+> >> +	dp1_out_con: endpoint {
+> >> +		remote-endpoint = <&dp_con_in>;
+> >> +	};
+> >> +};
+> >> +
+> >>  &gpu {
+> >>  	mali-supply = <&vdd_gpu_s0>;
+> >>  	status = "okay";
+> >> @@ -1262,3 +1292,10 @@ vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
+> >>  		remote-endpoint = <&hdmi1_in_vp1>;
+> >>  	};
+> >>  };
+> >> +
+> >> +&vp2 {
+> >> +	vp2_out_dp1: endpoint@b {
+> >> +		reg = <ROCKCHIP_VOP2_EP_DP1>;
+> >> +		remote-endpoint = <&dp1_in_vp2>;
+> >> +	};
+> >> +};
+> >> -- 
+> >> 2.34.1
+> >> 
+> >
+> >-- 
+> >With best wishes
+> >Dmitry
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
-index 846413817e9a..79ec77cfe552 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
-@@ -32,6 +32,34 @@ &sdhc {
- 	status = "okay";
- };
- 
-+&pcie0 {
-+	pinctrl-0 = <&pcie0_default>;
-+	pinctrl-names = "default";
-+
-+	perst-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	pinctrl-0 = <&pcie1_default>;
-+	pinctrl-names = "default";
-+
-+	perst-gpios = <&tlmm 47 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 48 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+};
-+
-+&pcie1_phy {
-+	status = "okay";
-+};
-+
- &tlmm {
- 	i2c_1_pins: i2c-1-state {
- 		pins = "gpio29", "gpio30";
-@@ -40,6 +68,54 @@ i2c_1_pins: i2c-1-state {
- 		bias-pull-up;
- 	};
- 
-+	pcie0_default: pcie0-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio37";
-+			function = "pcie0_clk";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio38";
-+			function = "gpio";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+			output-low;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio39";
-+			function = "pcie0_wake";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	pcie1_default: pcie1-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio46";
-+			function = "pcie1_clk";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio47";
-+			function = "gpio";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+			output-low;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio48";
-+			function = "pcie1_wake";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	sdc_default_state: sdc-default-state {
- 		clk-pins {
- 			pins = "gpio13";
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
