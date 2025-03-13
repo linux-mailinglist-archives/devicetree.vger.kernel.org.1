@@ -1,127 +1,150 @@
-Return-Path: <devicetree+bounces-157232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E84A5F618
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:38:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B07CAA5F61B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:41:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19C6317EBBB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:38:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21D143BA36C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CA1267735;
-	Thu, 13 Mar 2025 13:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4572267AEA;
+	Thu, 13 Mar 2025 13:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U7bEIH2F"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="gyJyVrD1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D212B2673A4;
-	Thu, 13 Mar 2025 13:38:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9E77267731;
+	Thu, 13 Mar 2025 13:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741873122; cv=none; b=R92+D/BgGYI/BqgH10hojdQE6KLRiM/dkZZiOnxMFtqIuB34H7UK5bijaefOjzmiUnBQ/yw93LpZCW4R2EJpMzD1C8opoiGd6qNEufnOntE14xjjzTEuOY+tP/FIviecwXHGa0bc5ZsOM0muUiZ4UsAn0RnKB2WOVIbeA71Ih8c=
+	t=1741873257; cv=none; b=eKLNfNzODX/tk/vVIltnQcS8dVUfFB7wh7uiofgeqzwI4j5T9K5SNdU2WV14yi0xUUqpqS7ubQZlIsGrFtmd3tpZPU/5LSJtlJdTb8AQW3E352hIMsROyT2UOLqs475+nbIkE491JtQgfkr+WAzJy575z9ERHbGXBY+7S2vXr6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741873122; c=relaxed/simple;
-	bh=bHpxg3FxsEpGxOxCi9WYoHqnBy4pwRNyqrvZtjCjr5o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oOE24TL6egAJsBKTawtSmLMzZXLqL7fZ0w0ZSAcn8uFdIZdtqFFK4um1vuc8qotWUM4IBvAcnFyGEoCf2TPLle31iK73x3ZxdZOxZOGbrXKciDF9/EW0JOUNhN6wLEn/jtAeS5qmg6+8jDE+AWv1vzJ0PfMELRhEcY5T6yMFnNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U7bEIH2F; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-51eb1a6ca1bso433708e0c.1;
-        Thu, 13 Mar 2025 06:38:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741873119; x=1742477919; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sIpqoek4eGSOylKbMTSFOVbyM/qGLYGplSwODZFoBwg=;
-        b=U7bEIH2FKTRC+qkDQFz4AFaQI1VUij66rlLJ8rO1nwLNC7YETKEF1jhVHCshqP5LAf
-         2uoIxI7muC8zSu+ti/wMYNhs/txi8JCo4WkN97KLbGmVAD9O3Zrlu8OUlHb/SXrfYYex
-         jN/ZyHoZgvIqtZfUhWOm/A9NeBUhYE+LoAtblRK+adZ3fXwt6kv3BIirXsC2Oh7Aogqh
-         DK1rsVDcmyQbdRqW97Oy1vog9RzWRe/4XoRuqRgrrWTBygGr5s9i2KGPEPrHKqsuqSC1
-         lmWOCij69s6JI0q1ZMW0LhwkpvLGczMZdypsvZRHtIhBeIV9hgCMWw4NXXenYK5pReOD
-         qAcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741873119; x=1742477919;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sIpqoek4eGSOylKbMTSFOVbyM/qGLYGplSwODZFoBwg=;
-        b=OMOUbJZLwEvVqk5v+a/xYthRDC1dXZU+NJNHA8DXw8sqIiAUJvWcB1nMyf6P4fFxts
-         jTerFTUjtSrRfT19x4dc1jNIjy5G4dWCPC3DM1bzgonr7UXns8S9iwIqK+F0cpmNvkQh
-         Sh5jdC8E5Y6eToLt17Xl+pQQNbWxDHujzlbrffStTJfU0eC0xawWbOCNiHTNcv6P6/Yh
-         +YfW83WVLh8TQIJvWLOJY9nPsBfoaziehoCXCGfLpBY//wOHfon+t9H6Qo6uPF+jVKv+
-         gc6txbrVIsY2z1nq0/Cirr3qwcaebt+JZbjBSOfOM1W051rnMxCVVoQNijUBh0dALEWc
-         Pzfg==
-X-Forwarded-Encrypted: i=1; AJvYcCUP72ZFxv1QooPXcanj7INHJ8duMnT1nvfy5sSGDDiYfyOlyxeXEuGAOSwQAwZjioheTGNY9yLF@vger.kernel.org, AJvYcCXJsOQzbDQ3e5YYGMHXGRwk1kz30cSjyoSTK0UovejYf+njm6ddqg7znFwyOjwv4DPoq1nauex2/ymn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/jyfRTJkfys1OCwvgZsWHyCvl7Zn4ZcYIj+q5y1sS2R8mjW1c
-	sSdTB3GL7ONQ4UgJTGbZHucn3ximD9pd02XwQ9zqfW52YZQ3dRh3C/cFMDGfH1izYywImf4Qwe+
-	0Wt76JB0cLZ3BxCTUyXK6q1RUlp4=
-X-Gm-Gg: ASbGncvhcBaeI1U2FQojKaUhBn+sj8kG7Kmcrvy1sVfZxikP0si9ZCj+N8BUirNrNcK
-	TzIWUsj2/JHjRbfcJWXrw2ZWtYJq5AZhVkxcc+TYp/vpgZOQJ8HleSJ8vHau76qswRlM8cKaFC3
-	U0oaGBI1Px1K1Q+YbuAgYwyxvGrESluezjPMrX2nyfJsiHLHXR7kG5Bz4xi5M=
-X-Google-Smtp-Source: AGHT+IEcryLwmYP3TdsvEC/+UeCHlR3N+sWjCLCU1sbSkHGz1fjASLBhtHx+j6tuN07I1St0YxBKUyaqA22JoKt2WYU=
-X-Received: by 2002:a05:6122:1d9f:b0:516:230b:eec with SMTP id
- 71dfb90a1353d-523e4076cf3mr19762024e0c.5.1741873119552; Thu, 13 Mar 2025
- 06:38:39 -0700 (PDT)
+	s=arc-20240116; t=1741873257; c=relaxed/simple;
+	bh=fDrllgJwbtF5U+EFRF19R7vCBQLB8dfEURQCxyc9ok0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SscldYA0yr9hyC8YjUOiX5a/gNhv8/BLseTC5i7etbn6OY3+oN0VipNVMY6ebPSLpVCNcDODoFqKGuMhApcnY8UigA/ISO5p9LbYqiWCvhMCGEDsBHH7KVA3vL3f655jQ6nbdKTrHp3YOn/IezuKpm85iBTNjva9f3B4RKyourA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=gyJyVrD1; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=4CWs8MteW/WaidbFLCARB0U29Fg/zJsP3Gsrar0C4Ew=; b=gyJyVrD1SJUsXkw6uxZS3GyW3g
+	yN5gt3IJJom2RAdV08DWMh0KkFwfK18ljaOcqm4qZWt1izix6OXX2Auikxa04YcUR6+zDUNjglmYE
+	VyOyTWb74IUejLowq3DWuBg8J4yF3Iu7EnWN+HGsPGnGEs6RkPFdzXj1ywrAuRwF+vuqlXPKwPckJ
+	VBGZmJMpsIutJjLqs9/Hajm7p8B4mCeJsI/tZ562ePWcQKI9BuQg7GOnAPmGTC2vcj18QIkJMHBtl
+	ubbZMr45dsNr4lewH6/APGmfJ8/G8A3TmiASAJWn+Pzdy/iNaFtiD6URQDxbv8hL3CjX1Xkhsszis
+	iVHssZHQ==;
+Received: from [62.91.42.92] (helo=phil..)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tsine-0008Rg-Vf; Thu, 13 Mar 2025 14:40:39 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: vkoul@kernel.org,
+	kishon@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	quentin.schulz@cherry.de,
+	sebastian.reichel@collabora.com,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	dse@thaumatec.com,
+	heiko@sntech.de
+Subject: [PATCH v8 0/2] MIPI DSI phy for rk3588
+Date: Thu, 13 Mar 2025 14:40:30 +0100
+Message-ID: <20250313134035.278133-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk> <E1tsIUK-005vGk-H7@rmk-PC.armlinux.org.uk>
-In-Reply-To: <E1tsIUK-005vGk-H7@rmk-PC.armlinux.org.uk>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 13 Mar 2025 13:38:12 +0000
-X-Gm-Features: AQ5f1JqlA8hzG437O530Oq2Xdo4TAVMjVgaona5iqv0GCiHktSEod7myZxpXhN4
-Message-ID: <CA+V-a8sasAGkwCWGnbBEjeMRVM79xVVzTq15uJQ_7Q+YwB1QpA@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 7/7] net: stmmac: deprecate
- "snps,en-tx-lpi-clockgating" property
-To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org, 
-	Emil Renner Berthing <kernel@esmil.dk>, Eric Dumazet <edumazet@google.com>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Jose Abreu <joabreu@synopsys.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Minda Chen <minda.chen@starfivetech.com>, 
-	netdev@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paolo Abeni <pabeni@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Mar 12, 2025 at 9:58=E2=80=AFAM Russell King (Oracle)
-<rmk+kernel@armlinux.org.uk> wrote:
->
-> Whether the MII transmit clock can be stopped is primarily a property
-> of the PHY (there is a capability bit that should be checked first.)
-> Whether the MAC is capable of stopping the transmit clock is a separate
-> issue, but this is already handled by the core DesignWare MAC code.
->
-> Therefore, snps,en-tx-lpi-clockgating is technically incorrect, and
-> this commit adds a warning should a DT be encountered with the property
-> present.
->
-> However, we keep backwards compatibility.
->
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This adds the phy driver need for DSI output on rk3588.
 
-Cheers,
-Prabhakar
+The phy itself is used for both DSI output and CSI input, though the
+CSI part for the whole chain needs a lot more work, so is left out for
+now and only the DSI part implemented.
+
+This allows the rk3588 with its current VOP support to drive a DSI display
+using the DSI2 controller driver I'll submit in a next step.
+
+Only generic phy interfaces are used, so the DSI part is pretty straight
+forward.
+
+changes in v8:
+- add comment that the timing values comes from the vendor kernel (Vinod)
+
+changes in v7:
+- missing pclk-disable in resume error path
+- replace remaining magic values with actual constants
+- lower-case hex values
+- made lane_disable behave similar to lane_enable wrt. lane count
+
+changes in v6:
+- rebase onto 6.14-rc1
+- add Krzysztof binding review
+- v5 was sent at the beginning of december '24, so probably has been lost
+
+changes in v5:
+- add bitfield.h for the FIELD_PROP definition
+  (reported by kernel-test-robot)
+- add Sebastian's Reviewed-by
+- add Conor's Ack to the dt-binding
+
+changes in v4:
+- moved to #phy-cells = 1 as suggested by Sebastian, with the argument
+  denoting the requested phy-type (C-PHY, D-PHY). This works similarly
+  how the Mediatek C/D-PHY already implements this, see mails around:
+  https://lore.kernel.org/all/20230608200552.GA3303349-robh@kernel.org/
+- dropped Krzysztof's review tag from the binding because of this
+- dropped custom UPDATE macro and use FIELD_PREP instead
+- build a FIELD_PREP_HIWORD macro for the GRF settings
+- add received Tested-by tags
+
+changes in v3:
+- add Krzysztof review tag to the binding
+- address Sebastian's review comments
+  - better error handling
+  - dropping empty function
+  - headers
+  - not using of_match_ptr - this should also make the
+    test-robot happier
+
+changes in v2:
+- fix error in dt-binding example
+- drop unused frequency table
+- pull in some more recent improvements from the vendor-kernel
+  which includes a lot less magic values
+- already include the support for rk3576
+- use dev_err_probe
+
+Heiko Stuebner (2):
+  dt-bindings: phy: Add Rockchip MIPI C-/D-PHY schema
+  phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+
+ .../phy/rockchip,rk3588-mipi-dcphy.yaml       |   87 +
+ drivers/phy/rockchip/Kconfig                  |   12 +
+ drivers/phy/rockchip/Makefile                 |    1 +
+ .../phy/rockchip/phy-rockchip-samsung-dcphy.c | 1719 +++++++++++++++++
+ 4 files changed, 1819 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+
+-- 
+2.47.2
+
 
