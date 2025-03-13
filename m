@@ -1,130 +1,121 @@
-Return-Path: <devicetree+bounces-157091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A231DA5ECF3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:25:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B24E7A5ECF6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:26:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E76793BB70E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 07:24:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D7931886F8E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 07:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044861FF1D6;
-	Thu, 13 Mar 2025 07:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA4AA224AE1;
+	Thu, 13 Mar 2025 07:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BZZIQ0Zf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7bJrknu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86D01FF1C8;
-	Thu, 13 Mar 2025 07:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD5622422E;
+	Thu, 13 Mar 2025 07:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741850576; cv=none; b=r5XviWtap9hY0rv/GimEB3/Y+FJYGorKn+63AO2FVg5QDYx+mVhHZIVUM4BSBC68onxovcDAA6f48NjNXkcIWqm3RSMjsZaMQIzKw2cFXLUN9deMf1N0Pc2hyKRyJyaukhMRQIhFG64pXuwrDaazfod6vBomq4sBXNUWOGz/Xpo=
+	t=1741850775; cv=none; b=sEsXhviiNWWdCyRSnVVvrCEqAC53WPqXxD0llew/tWQ085FKv6UQFJCOBnRKMjEmf+6wyqmOg2T1cSs3ClhdNJIwEshGALAiA4fC2VqBksCuk046p6rxxP0AIXQgnewR29ZGoijVa7OyyKrHugFv9A87l1k8PNrwVxurfWOiDiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741850576; c=relaxed/simple;
-	bh=aFeZ0mb9JxHxNrB2IY5dAI8W9F+KCqBlNLKvYHsoUrk=;
+	s=arc-20240116; t=1741850775; c=relaxed/simple;
+	bh=sZaq7o/FrpqVjIEe2is9ecGfi7yAHQfNu4BMeutjnUA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MmWXsKLkQNgM5cWGmnT6V7MhRxbMtnfyg2C0+ShnzDPWHxihsULwF9bFDxOU4bziC7u8p2/1hUd+OburF3vYHFs5UlmpMv/MpiPwZKKwoHK7EyabB93o/YeAjwPva8VmLkuEE5qYfh4FHPt2qYKvxx8mLkh22gQId5hDEuYCYbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BZZIQ0Zf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 989D6C4CEDD;
-	Thu, 13 Mar 2025 07:22:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZK29GIXIBG+oOjqLp5t+phVsJMo9AbMaXm7Ebwkba7bY9PDtLrvPEtvjf8t5oFYBW7OoIm9/x1VClbSuft8pKoD9qyWtBi4GeRkbH51qYEJ+x3NE2g3TyYV6MPUejigjBJa7FXIIFKZkEU3AzDBD3jFeA5IRM4MKdZ64sQ4lPXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7bJrknu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E000FC4CEDD;
+	Thu, 13 Mar 2025 07:26:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741850576;
-	bh=aFeZ0mb9JxHxNrB2IY5dAI8W9F+KCqBlNLKvYHsoUrk=;
+	s=k20201202; t=1741850775;
+	bh=sZaq7o/FrpqVjIEe2is9ecGfi7yAHQfNu4BMeutjnUA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BZZIQ0Zf+Wn/FHwFCF0brh5DPmkCHW1BS1cd1iNC0PhnojOpCR/hvAjs0T6TxsxIO
-	 iYSZC7Udi+50z/MBOeevkqK7QJp4VeX+v3NUceNdYMHz33m13zbCIeMq2qaKOqyqwG
-	 wDmbuyZTBgLUcuwr/H628jKCmOxqY6hbVEoYz2NCKWpYsqaEunNpOro4cnoMnE11iB
-	 jwEM+kVFyyPhZ1nKZVDURvDd23e+APOdGjr/9AEwv8r1i96E94z2dIgxgFgCeJ47SK
-	 jqpDIoc2pPRFxF/6LAys8KcKhhtbUfPTDjUnCx0+sD73qovvh5eXxlwXL+EiQqYXwq
-	 lHyfdJQqgS0NQ==
-Date: Thu, 13 Mar 2025 08:22:53 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Vladimir Zapolskiy <vz@mleia.com>
-Cc: Purva Yeshi <purvayeshi550@gmail.com>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, piotr.wojtaszczyk@timesys.com, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
-Message-ID: <b2nlqt3gp4sk7cax722n7t7xonnrjzi6amsfrhylxmurctytiy@yqp7qpttyc5h>
-References: <20250312122750.6391-1-purvayeshi550@gmail.com>
- <57ae63a2-544b-4241-a54d-8fa9917c1e44@mleia.com>
- <yvljnqnlka3ecw2n3hw2zgfszlldvbww3k7gq72dczmf6jwzfo@4vqnygxuzvk5>
- <5b62671c-719a-44f2-b28e-878159859a01@mleia.com>
+	b=L7bJrknuOulkADbDANAb1ME695KpQChnFbM7j9iQgSv0EEag5Z6kv81WC6aIzmaeL
+	 wCSQxy0J18O1ZKQwc75e+MI0qVDZK3QPPXk3yqwb4tdl5ftTMeBuoB6g2h2JSuYh1j
+	 sox9yBpJ3tqgXGwzqarl84Nwvb7mdfTfCo2vPralbrNmvNMvFYq3nzB2mi9pd4j7Kh
+	 YDlZH+NqZ5/betd1xN3Xl4Cm0MGA2xSYclMvE9fP4lxS3SCT0xKD8fbCvQ8nOzXwF5
+	 H5eCnJ+y/OFJohYQPhNeheGrJJyvsm7yBSHYMMN27pwL/tEo3AlHg+cSxPXBY/h571
+	 avmc5ecpmx2mA==
+Date: Thu, 13 Mar 2025 09:26:09 +0200
+From: Dmitry Baryshkov <lumag@kernel.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
+ power domain in camcc
+Message-ID: <eoqqz5hyyq6ej5uo6phijbeu5qafbpfxlnreyzzcyfw23pl2yq@ftxnasc6sr2t>
+References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
+ <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
+ <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
+ <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
+ <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
+ <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fbj5kzio535yua6p"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5b62671c-719a-44f2-b28e-878159859a01@mleia.com>
+In-Reply-To: <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
 
+On Thu, Mar 13, 2025 at 10:09:05AM +0530, Taniya Das wrote:
+> 
+> 
+> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
+> > On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
+> > <vladimir.zapolskiy@linaro.org> wrote:
+> >>
+> >> On 3/4/25 01:53, Dmitry Baryshkov wrote:
+> >>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrote:
+> >>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX power
+> >>>> domains.
+> >>>
+> >>> Are those really required to access the registers of the cammcc? Or is
+> >>> one of those (MXC?) required to setup PLLs? Also, is this applicable
+> >>> only to sm8550 or to other similar clock controllers?
+> >>
+> >> Due to the described problem I experience a fatal CPU stall on SM8550-QRD,
+> >> not on any SM8450 or SM8650 powered board for instance, however it does
+> >> not exclude an option that the problem has to be fixed for other clock
+> >> controllers, but it's Qualcomm to confirm any other touched platforms,
+> > 
+> > Please work with Taniya to identify used power domains.
+> > 
+> 
+> CAMCC requires both MMCX and MXC to be functional.
+> 
+> >> for instance x1e80100-camcc has it resolved right at the beginning.
+> >>
+> >> To my understanding here 'required-opps' shall also be generalized, so
+> >> the done copy from x1e80100-camcc was improper, and the latter dt-binding
+> >> should be fixed.
+> > 
+> > Yes
+> > 
+> 
+> required-opps is not mandatory for MXC as we ensure that MxC would never
+> hit retention.
+> 
+> https://lore.kernel.org/r/20240625-avoid_mxc_retention-v2-1-af9c2f549a5f@quicinc.com
 
---fbj5kzio535yua6p
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
-MIME-Version: 1.0
+Yes. And the code in genpd_set_required_opp() tolerates not seting the
+extra opps. However I'd certainly suggest not doing that (I think
+passing <0> should work). Having different number of items in
+power-domains and required-opps makes it harder to read the DT.
 
-Hello Vladimir,
-
-On Thu, Mar 13, 2025 at 05:37:44AM +0200, Vladimir Zapolskiy wrote:
-> On 3/13/25 00:56, Uwe Kleine-K=F6nig wrote:
-> > Hello,
-> >=20
-> > On Wed, Mar 12, 2025 at 07:59:21PM +0200, Vladimir Zapolskiy wrote:
-> > > > +  "#pwm-cells":
-> > > > +    const: 3
-> > >=20
-> > > It shall be 1.
-> >=20
-> > No, 3 is the right choice.
-> >=20
->=20
-> could you please elaborate?
->=20
-> I find that here the only configurable parameter is PWM period, so it
-> should be sufficient to have one cell only like in marvell,pxa-pwm.yaml
-> or google,cros-ec-pwm.yaml.
-
-These two bindings are special snow-flakes and the only drivers that
-have #pwm-cells =3D <1>. Most other bindings use 3 and since commit
-895fe4537cc8 ("pwm: Add upgrade path to #pwm-cells =3D <3> for users of
-of_pwm_single_xlate()") (which was created for the pxa driver) the pxa
-driver also supports 3 cells. The cros-ec driver even has comment about
-that being ugly.=20
-
-I intend to convert all bindings to use 3 soon.
-
-While that isn't necessary for each individual piece of hardware to
-provide 3 values, having a uniform binding for PWMs provides a nice user
-experience and also simplifies matters with nexus nodes (see
-e71e46a6f19c ("pwm: Add support for pwm nexus dt bindings")).
-
-Best regards
-Uwe
-
---fbj5kzio535yua6p
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfSh8oACgkQj4D7WH0S
-/k4vDgf/ehubFXBJkC/7G707LTPd9SMCRiU7yo8xzDN/MgRlnqjDQxNaFFrE8xN5
-7MIZqJNGy4dCdHGnGsbN6Nk7bpY/gNm/vXJhQepGVo2gBnpNyHrHVHoDsTNVz/Ka
-61FazZfuGm6K6sHgwu1RploF6vajrJUYnxf4/+fRJWjLYWbwquaVC0sRrM1k7BXM
-97aF6PQYAGMxDLQI4j5CS5Bmn3k4MtOgbgXu2GaPyIIkLP7f9AWy4ZQDmOR96MxN
-10z2K223iXO02U8fyRVWwSbu5ya0KZ/q8IANcX/LEmh1gAuaJg56TFQCEDkxkuX4
-6RESqFawU5aKcNqipOGIYitK3rzR3g==
-=5IFd
------END PGP SIGNATURE-----
-
---fbj5kzio535yua6p--
+-- 
+With best wishes
+Dmitry
 
