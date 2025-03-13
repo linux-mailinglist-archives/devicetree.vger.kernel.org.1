@@ -1,124 +1,141 @@
-Return-Path: <devicetree+bounces-157342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EDC7A6026C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 21:21:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA26A60272
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 21:21:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B6773A86BD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 20:21:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57C9D189B18F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 20:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169311F4604;
-	Thu, 13 Mar 2025 20:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B0EA1F3D50;
+	Thu, 13 Mar 2025 20:21:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="GZtqBCoi"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="o6BS8g21"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756BD157E88;
-	Thu, 13 Mar 2025 20:21:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0535942AA9;
+	Thu, 13 Mar 2025 20:21:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741897262; cv=none; b=uLB0nU2FYizlOXKrCQHHubIJL2a0gYoUX7+mck8glmeVYiBSUVfixEVTbBN0GYSAALhwNqn9NkOaXFEGXmtApHEPsCeJiK9QtNlPLBRQ2B8JoSr73IET+j0FOdXUZ66lsc7fAW5I4Oi95qsztBq9hqNfnhiProbhssosyYKO/xc=
+	t=1741897271; cv=none; b=DT2jzhg8E8P8zSsH8vmK97a3enr02N/HYtV5t9OcT0r9YeoG/MPXcX3uZbM/eB1n5IdKKlhgsjizE/3UZNKFHpq9Rqp9mocxJCtzQZOVkB+2UQFdC/yHwmM11Wym0BdJtVr+Tqf7sG4SMvs0RKhB/tF8WJd5s6C85mgTqHnpPLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741897262; c=relaxed/simple;
-	bh=0hfKKWZv/FcHZqqPDnqa14jFsuwm6n1QhnUQWChMX1A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Gep8M/W+/ONghXoiENAXR1H7tdk7jdc/P4nI6awqkxcQ+VON+eXNdnh3rtpjIls5+8B8JSIPsb86w8iOY4RmwhVS7nNyS5U+XoEYN6fcnLcDc5IQH5Ri5BSkpaZRkCo27HlUGwnRCPdePYwDMXHBnhwpv0AZReqSC4ti3Ipv9/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=GZtqBCoi; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from karma.space.aachen.ccc.de (xdsl-78-35-81-182.nc.de [78.35.81.182])
-	by mail.mainlining.org (Postfix) with ESMTPSA id 84443BBAF1;
-	Thu, 13 Mar 2025 20:20:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1741897252;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=14lXViSyZsu+UJhIhBFy9/ZtBirlVhv1t4LI5ewActs=;
-	b=GZtqBCoiEChhMX7Yhqjbrcty26U9NU8jJlnhnW4Y29TPtVgFo7fSL4+aTFzJSZ9NNJh5S8
-	JSzdsFjEyQ1nDJV4oZRGkTxVtir/74S5mzDX+WYcBtNMNz6YQtshUW/0a0iNlaJnSAZ1UI
-	85eiTwvPexkg7WDOcKbWdMMBdUAqWEzxJabl03gXGiH2iYFUf8HxxcUtYXNV+a6Nu6iriA
-	Yy7ZptsIaywH5USng+UwwowDxerZ0I+/Kd3Hv8KeSomygvMAqEwjRn/dc2rP3O4kVuv9N+
-	Kh/dAe8hggMTbf2MTXRjFITrWWi7l7E9p2DoQCCL/KMKSvj3oFhL7aLYXuGv6w==
-From: Jens Reidel <adrian@mainlining.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Selvaraj <joelselvaraj.oss@gmail.com>,
-	Oliver Graute <oliver.graute@kococonnector.com>,
-	Felix Kaechele <felix@kaechele.ca>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Fabio Estevam <festevam@denx.de>,
-	Al Viro <viro@zeniv.linux.org.uk>,
-	Yu Jiaoliang <yujiaoliang@vivo.com>
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	phone-devel@vger.kernel.org,
-	linux@mainlining.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Jens Reidel <adrian@mainlining.org>
-Subject: [PATCH 2/2] Input: edt-ft5x06 - add support for FocalTech FT8716
-Date: Thu, 13 Mar 2025 21:20:17 +0100
-Message-ID: <20250313202017.19621-3-adrian@mainlining.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250313202017.19621-1-adrian@mainlining.org>
-References: <20250313202017.19621-1-adrian@mainlining.org>
+	s=arc-20240116; t=1741897271; c=relaxed/simple;
+	bh=e0sMe86o15BZdKUXIKOi8ztJKut/AcxoATiLsOSAF80=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n0GAMRCyzaGDXT7ldZ7D6W99CofMuFi1ES4valNgXNiWm2diAabf3vybj97/VBHLcYkomxLJXcBUVrZw/vP7k8eH8uOix7qTNuhKMa05J1PaGCpKsDpVlsnroVWr611wObE+RIuq7jFwmL/jPTwxkdar7PejnFerDQILXY/sLyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=o6BS8g21; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=p3csgnhFEzwaOuJh37jg6K7sqTieaPk1JraZ2D+RP4Y=; b=o6BS8g21ylJampQeHlSm8ga+RO
+	7J8leguurGoEFYjdWpNFpqchlWE1yX5yUzaM6hncjbrFuDwcLRLIVzZyop123QqzQULjodZJlNIPZ
+	5DmFMkhjHqSiKKNEbd7AiVnRhDI6me46dmzNr1wzOgGTkJTMMcwa3oAH8MiOlgybju8ENfojXjKtS
+	Dmc1Pn5pgXb+dhaXQX6GbxHbvunqWhvhxp6V9pZOtnjE/Ts+Hd1uQTfTXFTvMMDfwU6n1GYPlpn/a
+	1luwpS3vXT5vSDYKftgtVl/ovoFb70dAX1Zm73iZYXqrtUUaq97T4ltCFn2M+Vm4VFcQytguwgA0M
+	D2QqM1EA==;
+Received: from [189.7.87.170] (helo=[192.168.0.224])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+	id 1tsp2u-008K8s-M5; Thu, 13 Mar 2025 21:20:54 +0100
+Message-ID: <0d0addae-c83c-408f-9094-e9c734855438@igalia.com>
+Date: Thu, 13 Mar 2025 17:20:47 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/7] drm/v3d: Don't run jobs that have errors flagged
+ in its fence
+To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com, stable@vger.kernel.org
+References: <20250313-v3d-gpu-reset-fixes-v4-0-c1e780d8e096@igalia.com>
+ <20250313-v3d-gpu-reset-fixes-v4-1-c1e780d8e096@igalia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <20250313-v3d-gpu-reset-fixes-v4-1-c1e780d8e096@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-This driver is compatible with the FocalTech FT8716 touchscreen, which
-supports up to 10 concurrent touch points. Add a compatible for it.
+On 13/03/25 11:43, Maíra Canal wrote:
+> The V3D driver still relies on `drm_sched_increase_karma()` and
+> `drm_sched_resubmit_jobs()` for resubmissions when a timeout occurs.
+> The function `drm_sched_increase_karma()` marks the job as guilty, while
+> `drm_sched_resubmit_jobs()` sets an error (-ECANCELED) in the DMA fence of
+> that guilty job.
+> 
+> Because of this, we must check whether the job’s DMA fence has been
+> flagged with an error before executing the job. Otherwise, the same guilty
+> job may be resubmitted indefinitely, causing repeated GPU resets.
+> 
+> This patch adds a check for an error on the job's fence to prevent running
+> a guilty job that was previously flagged when the GPU timed out.
+> 
+> Note that the CPU and CACHE_CLEAN queues do not require this check, as
+> their jobs are executed synchronously once the DRM scheduler starts them.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: d223f98f0209 ("drm/v3d: Add support for compute shader dispatch.")
+> Fixes: 1584f16ca96e ("drm/v3d: Add support for submitting jobs to the TFU.")
+> Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
+> Signed-off-by: Maíra Canal <mcanal@igalia.com>
 
-Signed-off-by: Jens Reidel <adrian@mainlining.org>
----
- drivers/input/touchscreen/edt-ft5x06.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+As patches 1/7 and 2/7 prevent the same faulty job from being
+resubmitted in a loop, I just applied them to misc/kernel.git (drm-misc-
+fixes).
 
-diff --git a/drivers/input/touchscreen/edt-ft5x06.c b/drivers/input/touchscreen/edt-ft5x06.c
-index 0d7bf18e2508..c72ae6535114 100644
---- a/drivers/input/touchscreen/edt-ft5x06.c
-+++ b/drivers/input/touchscreen/edt-ft5x06.c
-@@ -1495,6 +1495,10 @@ static const struct edt_i2c_chip_data edt_ft8201_data = {
- 	.max_support_points = 10,
- };
- 
-+static const struct edt_i2c_chip_data edt_ft8716_data = {
-+	.max_support_points = 10,
-+};
-+
- static const struct edt_i2c_chip_data edt_ft8719_data = {
- 	.max_support_points = 10,
- };
-@@ -1507,6 +1511,7 @@ static const struct i2c_device_id edt_ft5x06_ts_id[] = {
- 	/* Note no edt- prefix for compatibility with the ft6236.c driver */
- 	{ .name = "ft6236", .driver_data = (long)&edt_ft6236_data },
- 	{ .name = "ft8201", .driver_data = (long)&edt_ft8201_data },
-+	{ .name = "ft8716", .driver_data = (long)&edt_ft8716_data },
- 	{ .name = "ft8719", .driver_data = (long)&edt_ft8719_data },
- 	{ /* sentinel */ }
- };
-@@ -1523,6 +1528,7 @@ static const struct of_device_id edt_ft5x06_of_match[] = {
- 	/* Note focaltech vendor prefix for compatibility with ft6236.c */
- 	{ .compatible = "focaltech,ft6236", .data = &edt_ft6236_data },
- 	{ .compatible = "focaltech,ft8201", .data = &edt_ft8201_data },
-+	{ .compatible = "focaltech,ft8716", .data = &edt_ft8716_data },
- 	{ .compatible = "focaltech,ft8719", .data = &edt_ft8719_data },
- 	{ /* sentinel */ }
- };
--- 
-2.48.1
+Best Regards,
+- Maíra
+
+> ---
+>   drivers/gpu/drm/v3d/v3d_sched.c | 9 ++++++++-
+>   1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
+> index 80466ce8c7df669280e556c0793490b79e75d2c7..c2010ecdb08f4ba3b54f7783ed33901552d0eba1 100644
+> --- a/drivers/gpu/drm/v3d/v3d_sched.c
+> +++ b/drivers/gpu/drm/v3d/v3d_sched.c
+> @@ -327,11 +327,15 @@ v3d_tfu_job_run(struct drm_sched_job *sched_job)
+>   	struct drm_device *dev = &v3d->drm;
+>   	struct dma_fence *fence;
+>   
+> +	if (unlikely(job->base.base.s_fence->finished.error))
+> +		return NULL;
+> +
+> +	v3d->tfu_job = job;
+> +
+>   	fence = v3d_fence_create(v3d, V3D_TFU);
+>   	if (IS_ERR(fence))
+>   		return NULL;
+>   
+> -	v3d->tfu_job = job;
+>   	if (job->base.irq_fence)
+>   		dma_fence_put(job->base.irq_fence);
+>   	job->base.irq_fence = dma_fence_get(fence);
+> @@ -369,6 +373,9 @@ v3d_csd_job_run(struct drm_sched_job *sched_job)
+>   	struct dma_fence *fence;
+>   	int i, csd_cfg0_reg;
+>   
+> +	if (unlikely(job->base.base.s_fence->finished.error))
+> +		return NULL;
+> +
+>   	v3d->csd_job = job;
+>   
+>   	v3d_invalidate_caches(v3d);
+> 
 
 
