@@ -1,122 +1,168 @@
-Return-Path: <devicetree+bounces-157060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B278A5EB79
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 07:05:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 271EDA5EB7F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 07:07:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 137013B4C8D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 06:05:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69ED816AADB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 06:07:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFB21FAC51;
-	Thu, 13 Mar 2025 06:05:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1DD1FAC51;
+	Thu, 13 Mar 2025 06:07:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kED28Sjn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ae3th+hd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54BD41FAC42
-	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 06:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28E01F4C82;
+	Thu, 13 Mar 2025 06:07:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741845928; cv=none; b=IrxPnPkvlnzZDp5XiOzUGf2jjQmrXTqHGI3KoEI/kU1WWNSDUWBkN+0rEEt+xuAQJ9Op+lbTHQ6hhwzyYjNwTYdtZYB86if5LjGp278FWB8tlM9p6IFzZXuYqY/BHzF771JH92WtA8rj+4Me5rvNs58pDXFjyfQlARv/u8NB9As=
+	t=1741846051; cv=none; b=AL4+zpTMPs85Eh3rO2BXJavs9BvR2m6uMEp6oa8IHmpdybHPTpJJ6148j3q5u4uC89yLHbqzrdneNKUoA3hzLzFn3hm+EZAbAsmGnoVOmiHxZKX8P6oSkztXbUha46zZs6f1owdM8H/CSCmLHiPe+QbC2N7lYYO7Q/jIqxm/p18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741845928; c=relaxed/simple;
-	bh=xnjEUUt219szQVqS0FUbXn7jZKDT0VQ883gSiPYS0ZY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ljgS+mTXq5wOBe8hdCUpJqN2ORAG66+VW7nLdmQOHrSXPYbe52YMIh0c+NpVIJHPXMDP2xVHC7OGQUJOely5puXaQSsR69P7stIJCqxMfoA+28YdIFRKUBKtX7TllfEUh5Z3r/DHah/aLi/SBveqWVU+Za7TXQFL7tEAwALDEjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kED28Sjn; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-22423adf751so8434485ad.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Mar 2025 23:05:27 -0700 (PDT)
+	s=arc-20240116; t=1741846051; c=relaxed/simple;
+	bh=oY6o8II9iLNtAxXs2X/GMZFzCo3ZF6DKGHBUDkbm90U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=THdoKcWiduw8Yru4UhAAaWe1VdEHlfJz2YMq0mVyKHrte4PNNumQOG49RJVzPKdCBfvnsJPe72DkhpNNHyEL/C6yXhdYnim81Uelv7iLRz0yTlLO+aPF01mG9oey+t5L1UQ0+Iu0ZVzAjV0Pdf5j5rc9uPce5w/sDVuMWEVwPQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ae3th+hd; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aaeec07b705so93608366b.2;
+        Wed, 12 Mar 2025 23:07:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741845926; x=1742450726; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ECQXFTKYOwgoxNWOGHysFhcD6t84a8REZICN/4jtZ5M=;
-        b=kED28SjnwcZto2IkTRX7p74kNmvwWpgjG6u07C0SY5sCiPVDpwLSPgdVl90OutwA3e
-         tA1Fm8OwFXs7In07wqf3aVAAfdZOmvAS9CUsa+0U/kUm6sUgDJWg4tSrwKl65vpZ2x/D
-         z6Ok6f08iTefTmi5gyABqQNlvNhLVUFR/1n5BaPd2CZH3Ba4GO/VNmBTSAi63e6ddx2L
-         Zlkm6OUKq2fSOUtQZedR14BwP/toHrhOEmYl+OyIRTsdb9JLhWqq+XZ8pEWH9JCD3sk7
-         fzpNITsP9Wy71Go1ygTpeVV+/4kftKFS4mkB4TGusdxDVnkFMpINqZHpJP1WisrNeehs
-         BZKA==
+        d=gmail.com; s=20230601; t=1741846048; x=1742450848; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fna2H3vwjdEZcl/b/bY1yvDSI46yeeVTssxA2eJJMgo=;
+        b=Ae3th+hdARA643YJcFr1fq9esNJ+vH0UvbX9J1yYsYgA3odzRYk1fBRLjCcWHw3EMK
+         Ma/AfBbEc/UVCHmtx0FYOF6B+DszxhhB8XDygEDPPc5gG32FLlx4DikN+4ot0Fb95v33
+         kCTGcJJXVOCBplyMpVHR6JRAb7Xk5nR7LgskC3CqBAEgKEVk5R0TeU0wWdcvT3oU/MkE
+         OknrQHKuiwOb80pXw0Vx54z+xX3DiftVg4mHUCA7HqQg23KZE+visKWo+pYEUySV7LSK
+         1IwsY+1VRDs/PcYF5M1uLw7QwB5HOMV7pYtaa1+Qbbyr/KyN/q7Ewpv7TBK5NogGaFfP
+         jMOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741845926; x=1742450726;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ECQXFTKYOwgoxNWOGHysFhcD6t84a8REZICN/4jtZ5M=;
-        b=RxjTHzepjeIjfGoDFNFc/CH0+UR26JXbkY2YT+6Zx4e4EHSO0LApnoSMVo1m+FHBSO
-         zxl52OMSVgFkGE7/eeMbg4pFt3jzHwe3nYu4tLVppnFbsyfSby3eIHB31xq7+YY3vHgb
-         dZYHwXMBkpQfCzfM3qtwexFU45lyAZsolHpxWX6kiNp7tIE5vbu0PffNeXLxSLG2UX6l
-         dMVC3u/k9ySMgU43EI8YShJZUYcTGDP+p6WpFuhN5E30jTQqVnPbwrg/WjUgpJT7W+iQ
-         Rqt2C/vQRnvVp8hTrcERLMEn76RjtHHrDCyF7oIhwAuoxqFnVpKVcm5bPDWbk4tC3Q6u
-         WMbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU6XMfH0Y63LJYlYLneu1RjSwpfUY2/oCFMaZ7WIVN/ObE6euIBN0Fj5So5PZMIMDxVEaZyrs8cdYH6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbLEEMuSAV/84NB5Pi6AD92GFeWkn/ZstGFz5q2PBDrmTvC+TY
-	S85Z4YU8oGeHHDN+Y/NLOA/60EfRAXfKVCAOZPOZmnZN6CL0j70wjmymIHLBTA==
-X-Gm-Gg: ASbGncuQaJ+tczWbTn9a0ieMQw6d9XfpjfArl4/afzvouFrrhOxhhqPHfXNB3ThZZR3
-	1PVIUSjqBDw5S2TE38oj5lufZZSIBiFRG/DTLQ3gB1/Bie1Ty5b+onIR5eIw8kpqvNZ6JZHKqNb
-	mi9RHG6IeYtFjggiz3aiHLiXXHkDK2iW9IBxTSNvD4fJaQSlyG3p7Fa5FuumvteHGZD3tVFL3Hd
-	bG9egLMte92hRhPpWk1QJkUh5hDbwH2CX5I40OLktGZCbMx0dmuUg9TJ7Le1HVWRQWBuc00RMUV
-	hbb41487PSHCaNc4npaa6Fz+Fw2qCfBk+2Eoh7C7oG6WBn6CDwX3jQ==
-X-Google-Smtp-Source: AGHT+IHNYbI7b2RsxEIqYIkLTAuLCtKd3n8R178hhBoO3FhGxq8OJi1CT08xESSMe4ltVJpCSclHjw==
-X-Received: by 2002:a17:902:ec92:b0:220:fce7:d3a6 with SMTP id d9443c01a7336-22592e44a09mr126226875ad.23.1741845926623;
-        Wed, 12 Mar 2025 23:05:26 -0700 (PDT)
-Received: from thinkpad ([120.60.60.84])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-737115781f3sm534483b3a.76.2025.03.12.23.05.22
+        d=1e100.net; s=20230601; t=1741846048; x=1742450848;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fna2H3vwjdEZcl/b/bY1yvDSI46yeeVTssxA2eJJMgo=;
+        b=V5MtN6eGfp3YiWwhCIyEXCX8d9Ev3fmqg7a9izYNEFk8/Tmhx+Y5Ki7VKRBRGl+t3j
+         DouHfgt1uisGyRa8vmBaTuGQZJapxJt2/wstxMNmS6Q6oPPqWZjq8vPLkZbspic7Cjjo
+         lwUxwufF+fEDAe6TXmc/OEzJxrrCYL3byWFtaXaJpR9B03xJanqKmQk135FiqM+VDp/I
+         5u6WFs27lCgUJEMzazZsCze1PESkxsJdkNcpfsi9SgW7+nVncRuh60nZlZBLnhAKCGce
+         MgcZxkbSODtyFj72LOGQFY8Xkh6Y4FZdtNPbGkxwvb62Hx5jFjHVZBOTbCs16+K2xQFG
+         /hug==
+X-Forwarded-Encrypted: i=1; AJvYcCV0bTk7XLK005D88JkkuOalv53NL003062fQVHT9EoCIaM+UAqyEoSngE9hR7XjZgajkjrW/PFw+hwf@vger.kernel.org, AJvYcCWej5YmPzJ1RclZS5ggb11Ht7QXtJx0UD+Cln0Vv4QBhK9vfNzgBRH9GlC67iMpC7bjTXwOvxsOAvThDswY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCnPNwJH+HPnf734rsJXzSEoa3npujQLbk1WdRHYXBQpCiOEfX
+	e5Svor4aeMwM1LKuPK5bY9UMtTopA0390NIsqQHgoUI3XDlT06r7
+X-Gm-Gg: ASbGncvVYrOGheikTY5HhLhZiqwuw1HKyRqH4aSioFttLvhFWTflMmOdE3qlPfJnoVE
+	CozVlA3p6QasV3ZTZTYNxpEaZmCEvY+kdlYqmacc8ja25pzz4rMpYTrqy9L8+GCkkoma0828U9f
+	1KybA52Wqr71erQARqxUKLDHOzV1/lveL2wZSgKBLyRuUOOTFbOZ09fN3Zz0YM2Ve7OWoAbj8TC
+	PkrYtUuPoIU09cPwfgk5BxQRPq7SXurP9vsJXhz003oqgZs5KSQBWwQ+11Zbdn1Sh71quc/NE2n
+	nOCIXWBKhN9KiyOXgG9xCqUr2PS/Fs3QnFjiPT8Fw2CXJxZqaph1iWuLJ3aGuBchC5cm2L1qrtd
+	5U1z/qEhoe5r4GW/MwDMKXaVfrHklYoA=
+X-Google-Smtp-Source: AGHT+IHhGz8J8Life4SG/qgqJ0ye1c0G+Al3baprNQ+dcPxYYmPbWk9QrWHvq7NPTGPL3KzA3Wv0eQ==
+X-Received: by 2002:a17:907:c10:b0:ac2:7cf9:71a1 with SMTP id a640c23a62f3a-ac2b9ea16d2mr1529284566b.41.1741846047859;
+        Wed, 12 Mar 2025 23:07:27 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3146aef85sm39791166b.20.2025.03.12.23.07.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Mar 2025 23:05:26 -0700 (PDT)
-Date: Thu, 13 Mar 2025 11:35:21 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: dra7xx: Try to clean up
- dra7xx_pcie_cpu_addr_fixup()
-Message-ID: <20250313060521.kjue4la47xd7g4te@thinkpad>
-References: <20250305-dra-v1-0-8dc6d9a0e1c0@nxp.com>
+        Wed, 12 Mar 2025 23:07:27 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Michael Klein <michael@fossekall.de>
+Cc: Michael Klein <michael@fossekall.de>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: bananapi: add support for PHY LEDs
+Date: Thu, 13 Mar 2025 07:07:24 +0100
+Message-ID: <4637912.LvFx2qVVIh@jernej-laptop>
+In-Reply-To: <20250312193629.85417-2-michael@fossekall.de>
+References:
+ <20250312193629.85417-1-michael@fossekall.de>
+ <20250312193629.85417-2-michael@fossekall.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250305-dra-v1-0-8dc6d9a0e1c0@nxp.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Wed, Mar 05, 2025 at 11:20:21AM -0500, Frank Li wrote:
-> This patches basic on
-> https://lore.kernel.org/imx/20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com/
-> 
-> I have not hardware to test.
-> 
-> Look for driver owner, who help test this and start move forward to remove
-> cpu_addr_fixup() work.
-> 
+Hi,
 
-If you remove cpu_addr_fixup() callback, it will break backwards compatibility
-with old DTs.
+Dne sreda, 12. marec 2025 ob 20:36:28 Srednjeevropski standardni =C4=8Das j=
+e Michael Klein napisal(a):
+> The Bananapi M1 has three LEDs connected to the RTL8211E ethernet PHY.
+> Add the corresponding nodes to the device tree.
+>=20
+> Signed-off-by: Michael Klein <michael@fossekall.de>
 
-You should fix the existing DTs and continue carrying the callback for a while.
+This is patch 2/2. Which one is patch 1/2? I got only one.
 
-- Mani
+Best regards,
+Jernej
 
--- 
-மணிவண்ணன் சதாசிவம்
+> ---
+>  .../boot/dts/allwinner/sun7i-a20-bananapi.dts | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts b/arch/ar=
+m/boot/dts/allwinner/sun7i-a20-bananapi.dts
+> index 46ecf9db2324..4976453ed192 100644
+> --- a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
+> +++ b/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
+> @@ -48,6 +48,7 @@
+> =20
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/leds/common.h>
+> =20
+>  / {
+>  	model =3D "LeMaker Banana Pi";
+> @@ -169,6 +170,32 @@ &ir0 {
+>  &gmac_mdio {
+>  	phy1: ethernet-phy@1 {
+>  		reg =3D <1>;
+> +
+> +		leds {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +
+> +			led@0 {
+> +				reg =3D <0>;
+> +				color =3D <LED_COLOR_ID_GREEN>;
+> +				default-state =3D "keep";
+> +				linux,default-trigger =3D "netdev";
+> +			};
+> +
+> +			led@1 {
+> +				reg =3D <1>;
+> +				color =3D <LED_COLOR_ID_AMBER>;
+> +				default-state =3D "keep";
+> +				linux,default-trigger =3D "netdev";
+> +			};
+> +
+> +			led@2 {
+> +				reg =3D <2>;
+> +				color =3D <LED_COLOR_ID_BLUE>;
+> +				default-state =3D "keep";
+> +				linux,default-trigger =3D "netdev";
+> +			};
+> +		};
+>  	};
+>  };
+> =20
+>=20
+
+
+
+
 
