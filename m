@@ -1,113 +1,300 @@
-Return-Path: <devicetree+bounces-157379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECBCBA6054D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 00:29:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB26A6061C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 00:47:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E5BD19C4D20
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 23:29:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCABB7A2F81
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 23:46:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B281F9EC1;
-	Thu, 13 Mar 2025 23:29:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620EC1FC7C8;
+	Thu, 13 Mar 2025 23:39:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="lfsOlFpb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gehplF6K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C08BF1F8BC9
-	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 23:29:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 235B21F91C7;
+	Thu, 13 Mar 2025 23:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741908556; cv=none; b=LJAKi4f90gycRYxykZboK1Id9MjuTBwy3Z7ufN0sV7d3GiFfLHxEuzZ7/ZCb5lQXy5loj4aIwOc7dSs7NBD/Z3kJUo4jMXpFtrtQ/aZOxlV+pcLjheLBC8EjM+azi1EEZopCNv9dwe7EEyvtddV3fXvenc10PixFNt83dbgA7kc=
+	t=1741909194; cv=none; b=mcljoPeuz3jBrIeOIXUWj8JS6DrtKlck83xxF8c8Sp+89kljCYsv4xgjMlsZ4LGZ67Jt5vHVFMrEErVyVWAt4C628AB2FNq4wsQnER17BMe2In9vlYbCFa2fzgcagxl+dppeOqWaU8MH3GQRLGNix5zFeEeofQVcGmQcOnfynNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741908556; c=relaxed/simple;
-	bh=fLmgjAemiovWofaWjxUzmEbQJocXHzEtlxZq33BB5yw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VhUuAkyQJV69KyINboULBBe88iVV8q28NGnDzxix1Q2x8MYqXtVGs8Ke9azGvo2JEoEG7n6ibE/gePJExDzcOZZ1WczmBPE7DpBSEPdUvPGkfCogRa1ZbuYCtQmMMo/CnyGbtQ21opdxtRoQHLQcZObHUyEV+y70HCEeT+Nyogc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=lfsOlFpb; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e5deb6482cso4679561a12.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 16:29:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1741908553; x=1742513353; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fLmgjAemiovWofaWjxUzmEbQJocXHzEtlxZq33BB5yw=;
-        b=lfsOlFpbTPBRbIvsQsXstONyoujQ9WYBfAVAZDm8fj5yVu302FMqndYW63WGKRacz8
-         Wob56WUv7RiopHEgwubaiTQNz7LGH60lnhU5zQojeTU5bZkxrwnBzY8sV8YkOYKJnujS
-         Vo9NS93Y2QEvc9w+xlXp/LPpEicdxWIwSvVqg0/SUx9TJ8YyuoQewMhnTvUiAIB1OKqH
-         28U7fr59mMsddTJpya9PXaQNpmyylQwTAxeSjmTcfBXc2Q5ZF21OD3qYH+f9j7tHG8F5
-         ZmggM9cUgqkSSDuKqVWK5kGTvua7OX2uHf5lm/gvdrHExalE0kAWJzwIL5jcWFYXog6Y
-         8Kfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741908553; x=1742513353;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fLmgjAemiovWofaWjxUzmEbQJocXHzEtlxZq33BB5yw=;
-        b=h1lHRUOqxJhGr3dh1XYlCjf3YDdBYH9mvAIbyCfzR03u9Y0RXRzCx+kNTi8gr+bLbz
-         qeat3BAIgEVlKty5W63ZJE4cP8DnqmCuicPnNSoFUIUXaagKZAGZFfvNBuUh6lN7Lupa
-         V0hgIzXudyTWJO83otd9lRP1RQvsA7lYHMQSD4ModVWhyrDa5lXBYVibns2Wre402l0e
-         ddjsd/lEM1PPtDQIcrsrgNd9XiiiGTl1NxI/nFb6T2wPH6HeuzatCGGyu8VfrAkMnqsS
-         5MgMQDdvJ1MGyyS9fYk1rO61jW4ar4JlrgYYv4Jt6IPAUrBQ+NijfD38oRfqHKiIsnnF
-         ddQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVrBkrqaoD6k1LdaznLWu0w93mg7r9PbPN6uxZaBDoN4BtfQItqruhKh6owvylm6iE5cYtVocIuwf5n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6h5RsXqCxIXNdn2Tb9dnxCWbfrPUb8VGwMnuVm1yvs0aArBAI
-	BT/1Vn/S47vXXptas3PEfbkvN0NBW+cbL+/pDVF+/LjD0xKWhTRr9CmguwOByY3BFpmX5JHZo7g
-	BZrxtkd4TWx9RIFhB0eZrDj67FAVYaKytU9YJ
-X-Gm-Gg: ASbGncsO+TeVrEFJkbD6ujopJNLZRMvJ7iAxwD5PB8E3UdBJ1bxllB9AkSHsouNg3P9
-	33hY7qNEFenqt9InPABU8G5fg5BqxpyGFEWToWzXaXAr9IrJPSWUeuvoaWMvR49TpZZQoNzX/VM
-	UGJofX6twtNOMOasxwVnH4xklwtHdiPqPbNz9DukOOrMY6SLJgT3dA91wrcnY9ncDWvw==
-X-Google-Smtp-Source: AGHT+IEhG6Uj2ZgXODFDQkPgzEVnFaKEkMeOMCOgSAKxsS7ffAl3Oika6RfeExnwIHlB01YBUlfrm+cZgMXZ8GfGSBI=
-X-Received: by 2002:a17:907:6ea9:b0:ac0:4364:4083 with SMTP id
- a640c23a62f3a-ac330de660fmr24794366b.0.1741908552998; Thu, 13 Mar 2025
- 16:29:12 -0700 (PDT)
+	s=arc-20240116; t=1741909194; c=relaxed/simple;
+	bh=2z6ezAeNvjahNZFYCeyRYH8PF3ZV80Mda54e9RYJ4lc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sgyWZH09/H8Uoy2NMi03o9dz1YHPqg+zoRMgeKRTpIAnbd/yfm3u9HpBTv7A1qU332KbzfOLP8dOSB5wYVNhBKeADhzLFGvKBdJsay/e7URrUbNlVHHp/LFVeqPl6+ksmZdjZ2oJS3JztpPaQ+LUVBJKo3CdPczIVGWVlG6T83g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gehplF6K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A954C4CEDD;
+	Thu, 13 Mar 2025 23:39:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741909192;
+	bh=2z6ezAeNvjahNZFYCeyRYH8PF3ZV80Mda54e9RYJ4lc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gehplF6Kr094W2laWojCAjVVZde9HUHvIjfCgZvzyJngfZhs4l0uAUXg29wXsV+ZN
+	 ig/371z3sEYSRRq342+7qbQfCdakmwa3MXV+SdmWzp5zCPbsrY7SH1B8Gb7e33cgss
+	 Xu/yLTASQ3MDuNQSojFg/rPHSHSQYw7ViNbTBNlM5i18EvPS6TjWCDLF613o7aN4mr
+	 Mvzxnwp8hmbseP8GifmaXZKh9kyo9b08QX/t4ff0/c3BEiJBiuMuLDRD1sSxxMFArp
+	 nJq9gTceI94W+5og0J5plRjU4nPNydm5TB93O9j0nQFhPIbyExS7JmN8nT+g2BAw2Y
+	 BeX+y0Li4e4/Q==
+Date: Thu, 13 Mar 2025 18:39:49 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 01/10] clk: qcom: clk-alpha-pll: Add support for
+ dynamic update for slewing PLLs
+Message-ID: <r6xikx2idlzwc4xl7doap3v5ug3a6qtg65jwqjuekiv7tvbwzn@5nk4c7nl2zws>
+References: <20250313-qcs615-v5-mm-cc-v6-0-ebf4b9a5e916@quicinc.com>
+ <20250313-qcs615-v5-mm-cc-v6-1-ebf4b9a5e916@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250312195951.1579682-4-jthies@google.com> <202503132357.RnlF5A0E-lkp@intel.com>
-In-Reply-To: <202503132357.RnlF5A0E-lkp@intel.com>
-From: Jameson Thies <jthies@google.com>
-Date: Thu, 13 Mar 2025 16:29:01 -0700
-X-Gm-Features: AQ5f1JrveV3I6ofpSQly6Maa1d3lFcNQ3Xq7VBo9SbjQm6kMIPtOwMRmVpnj6fw
-Message-ID: <CAMFSARdJgVQitDWmszbhSiVfu4hCoyyNVj3LPHb+7wq64C1BiA@mail.gmail.com>
-Subject: Re: [PATCH v1 3/3] mfd: cros_ec: Don't add cros_ec_ucsi if it is
- defined in OF or ACPI
-To: kernel test robot <lkp@intel.com>
-Cc: tzungbi@kernel.org, ukaszb@chromium.org, bleung@chromium.org, 
-	heikki.krogerus@linux.intel.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, groeck@chromium.org, swboyd@chromium.org, 
-	akuchynski@chromium.org, llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, 
-	devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250313-qcs615-v5-mm-cc-v6-1-ebf4b9a5e916@quicinc.com>
 
-Echoing my response on patch 1/3, thank you for taking a look at this.
-I=E2=80=99ll follow up with a v2 series to address your comments and resolv=
-e
-the build issues. Additional responses below.
+On Thu, Mar 13, 2025 at 12:29:38PM +0530, Taniya Das wrote:
+> The alpha PLLs which slew to a new frequency at runtime would require
+> the PLL to calibrate at the mid point of the VCO. Add the new PLL ops
+> which can support the slewing of the PLL to a new frequency.
+> 
+> Reviewed-by: Imran Shaik <quic_imrashai@quicinc.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  drivers/clk/qcom/clk-alpha-pll.c | 170 +++++++++++++++++++++++++++++++++++++++
+>  drivers/clk/qcom/clk-alpha-pll.h |   1 +
+>  2 files changed, 171 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> index cec0afea8e446010f0d4140d4ef63121706dde47..7d784db8b7441e886d94ded1d3e3258dda46674c 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.c
+> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> @@ -2960,3 +2960,173 @@ const struct clk_ops clk_alpha_pll_regera_ops = {
+>  	.set_rate = clk_zonda_pll_set_rate,
+>  };
+>  EXPORT_SYMBOL_GPL(clk_alpha_pll_regera_ops);
+> +
+> +static int clk_alpha_pll_slew_update(struct clk_alpha_pll *pll)
+> +{
+> +	int ret;
+> +	u32 val;
+> +
+> +	regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_UPDATE, PLL_UPDATE);
+> +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
+> +
+> +	ret = wait_for_pll_update(pll);
+> +	if (ret)
+> +		return ret;
+> +	/*
+> +	 * Hardware programming mandates a wait of at least 570ns before polling the LOCK
+> +	 * detect bit. Have a delay of 1us just to be safe.
+> +	 */
+> +	mb();
+> +	udelay(1);
+> +
+> +	return wait_for_pll_enable_lock(pll);
+> +}
+> +
+> +static int clk_alpha_pll_slew_set_rate(struct clk_hw *hw, unsigned long rate,
+> +					unsigned long parent_rate)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	unsigned long freq_hz;
+> +	const struct pll_vco *curr_vco, *vco;
+> +	u32 l, alpha_width = pll_alpha_width(pll);
+> +	u64 a;
+> +
+> +	freq_hz =  alpha_pll_round_rate(rate, parent_rate, &l, &a, alpha_width);
 
-> > devices will be created automatically. None of parent devices should
-> > ever check if the child exist to create a child - it makes no sense.
->
-> This is still valid - none of parents should be poking around to see if
-> there is a child or not. The core handles it, DT handles it etc.
->
+Double space here.
 
-Understood, we can remove this for DT. We need to keep part of this
-check for ACPI because there are platforms which need this driver and
-haven't defined proper ACPI nodes in their FW to load cros_ec_ucsi.
+> +	if (freq_hz != rate) {
+> +		pr_err("alpha_pll: Call clk_set_rate with rounded rates!\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	curr_vco = alpha_pll_find_vco(pll, clk_hw_get_rate(hw));
+> +	if (!curr_vco) {
+> +		pr_err("alpha pll: not in a valid vco range\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	vco = alpha_pll_find_vco(pll, freq_hz);
+> +	if (!vco) {
+> +		pr_err("alpha pll: not in a valid vco range\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * Dynamic pll update will not support switching frequencies across
+> +	 * vco ranges. In those cases fall back to normal alpha set rate.
+> +	 */
+> +	if (curr_vco->val != vco->val)
+> +		return clk_alpha_pll_set_rate(hw, rate, parent_rate);
+> +
+> +	a = a << (ALPHA_REG_BITWIDTH - ALPHA_BITWIDTH);
 
-Thanks,
-Jameson
+Above this function is written to deal with both alpha bitwidths, but
+here it's assumed to only be one of the cases.
+
+It would be nice to get this cleaned up somehow, because we now have
+this shift 6 times in slightly different forms.
+
+> +
+> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
+> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), a);
+> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), a >> 32);
+
+In a number of places in the driver alpha_width is compared to 32 bits
+to see if this should be written or not. Perhaps that's not applicable
+here, but again, if so then why is it dynamic above?
+
+
+Also, how about upper_32_bits() and lower_32_bits() to make it clear
+what's going on here?
+
+> +
+> +	/* Ensure that the write above goes through before proceeding. */
+
+That's not what mb() does.
+
+Regards,
+Bjorn
+
+> +	mb();
+> +
+> +	if (clk_hw_is_enabled(hw))
+> +		return clk_alpha_pll_slew_update(pll);
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Slewing plls should be bought up at frequency which is in the middle of the
+> + * desired VCO range. So after bringing up the pll at calibration freq, set it
+> + * back to desired frequency(that was set by previous clk_set_rate).
+> + */
+> +static int clk_alpha_pll_calibrate(struct clk_hw *hw)
+> +{
+> +	unsigned long calibration_freq, freq_hz;
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	struct clk_hw *parent;
+> +	const struct pll_vco *vco;
+> +	u32 l, alpha_width = pll_alpha_width(pll);
+> +	int rc;
+> +	u64 a;
+> +
+> +	parent = clk_hw_get_parent(hw);
+> +	if (!parent) {
+> +		pr_err("alpha pll: no valid parent found\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	vco = alpha_pll_find_vco(pll, clk_hw_get_rate(hw));
+> +	if (!vco) {
+> +		pr_err("alpha pll: not in a valid vco range\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * As during slewing plls vco_sel won't be allowed to change, vco table
+> +	 * should have only one entry table, i.e. index = 0, find the
+> +	 * calibration frequency.
+> +	 */
+> +	calibration_freq = (pll->vco_table[0].min_freq + pll->vco_table[0].max_freq) / 2;
+> +
+> +	freq_hz = alpha_pll_round_rate(calibration_freq, clk_hw_get_rate(parent),
+> +					&l, &a, alpha_width);
+> +	if (freq_hz != calibration_freq) {
+> +		pr_err("alpha_pll: call clk_set_rate with rounded rates!\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Setup PLL for calibration frequency */
+> +	a <<= (ALPHA_REG_BITWIDTH - ALPHA_BITWIDTH);
+> +
+> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
+> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), a);
+> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), a >> 32);
+> +
+> +	regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_VCO_MASK << PLL_VCO_SHIFT,
+> +				vco->val << PLL_VCO_SHIFT);
+> +
+> +	/* Bringup the pll at calibration frequency */
+> +	rc = clk_alpha_pll_enable(hw);
+> +	if (rc) {
+> +		pr_err("alpha pll calibration failed\n");
+> +		return rc;
+> +	}
+> +
+> +	/*
+> +	 * PLL is already running at calibration frequency.
+> +	 * So slew pll to the previously set frequency.
+> +	 */
+> +	freq_hz = alpha_pll_round_rate(clk_hw_get_rate(hw),
+> +			clk_hw_get_rate(parent), &l, &a, alpha_width);
+> +
+> +	pr_debug("pll %s: setting back to required rate %lu, freq_hz %ld\n",
+> +		clk_hw_get_name(hw), clk_hw_get_rate(hw), freq_hz);
+> +
+> +	/* Setup the PLL for the new frequency */
+> +	a <<= (ALPHA_REG_BITWIDTH - ALPHA_BITWIDTH);
+> +
+> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
+> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), a);
+> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL_U(pll), a >> 32);
+> +
+> +	regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_ALPHA_EN, PLL_ALPHA_EN);
+> +
+> +	return clk_alpha_pll_slew_update(pll);
+> +}
+> +
+> +static int clk_alpha_pll_slew_enable(struct clk_hw *hw)
+> +{
+> +	int rc;
+> +
+> +	rc = clk_alpha_pll_calibrate(hw);
+> +	if (rc)
+> +		return rc;
+> +
+> +	return clk_alpha_pll_enable(hw);
+> +}
+> +
+> +const struct clk_ops clk_alpha_pll_slew_ops = {
+> +	.enable = clk_alpha_pll_slew_enable,
+> +	.disable = clk_alpha_pll_disable,
+> +	.recalc_rate = clk_alpha_pll_recalc_rate,
+> +	.round_rate = clk_alpha_pll_round_rate,
+> +	.set_rate = clk_alpha_pll_slew_set_rate,
+> +};
+> +EXPORT_SYMBOL(clk_alpha_pll_slew_ops);
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+> index 79aca8525262211ae5295245427d4540abf1e09a..1d19001605eb10fd8ae8041c56d951e928cbbe9f 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.h
+> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+> @@ -204,6 +204,7 @@ extern const struct clk_ops clk_alpha_pll_rivian_evo_ops;
+>  #define clk_alpha_pll_postdiv_rivian_evo_ops clk_alpha_pll_postdiv_fabia_ops
+>  
+>  extern const struct clk_ops clk_alpha_pll_regera_ops;
+> +extern const struct clk_ops clk_alpha_pll_slew_ops;
+>  
+>  void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>  			     const struct alpha_pll_config *config);
+> 
+> -- 
+> 2.48.1
+> 
 
