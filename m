@@ -1,124 +1,114 @@
-Return-Path: <devicetree+bounces-157373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58BC8A6050D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 00:06:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85DE0A6051C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 00:11:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09A1E19C2BCF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 23:07:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF11D3BFE7A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 23:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F931F76B3;
-	Thu, 13 Mar 2025 23:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 713A51F8BAA;
+	Thu, 13 Mar 2025 23:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JsAZIMeS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b3PDUsXS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52C018DB0B;
-	Thu, 13 Mar 2025 23:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F3D1F8ADF;
+	Thu, 13 Mar 2025 23:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741907208; cv=none; b=o7RvKkVMOpkH0OD1TuvL6cvJIf3IPlcbDTo7ovdywxauyTgzpq4/Dcqa/Ttbr2HUvIVb/OJ3GEQAJIZ4i6ZxHwAkOWGq+qwHRzDkiaEyttM4i6n2CKmmj9OX/9YFPvS008/rtAZpGeWRhIzDn+PFKbN70oKLUOgu1alpE0AsB9A=
+	t=1741907461; cv=none; b=NSgBYxzGN8UmpfZtTdeOiC5OKaXgCf5ByCWqV/naN/ZcjAk3qrdWX1Uq/PJdufH11px4HlzBjSqoTx45Jja8/UGqFWji8SXHT7kxd+Y+5wYQ+CIve6QjtxnppASVhTIpd3ftbQincdJ78KT+ra40YAtQpsDGxDX3j9NjPV1PR2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741907208; c=relaxed/simple;
-	bh=0UAgLw6E5fMxghBPUcUr1YC5wDKAXkzRKCvdfBrEOek=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=duOAElX2MTIXLeDUPdTICukBjDHJNy3WE0LRbg2KewdQheX+Sb/pBilUSrpvoLLGmD8UPFij0oWeGsAclXGM2rR6AxGWcun4q9vC+A1om/rJBfxM7NjD9ZAfaa9Y7767z2UI83Q7wmX57anZD/xDb0Pf9Q8dW8LxoqO1i6rIyjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JsAZIMeS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C70AC4CEDD;
-	Thu, 13 Mar 2025 23:06:47 +0000 (UTC)
+	s=arc-20240116; t=1741907461; c=relaxed/simple;
+	bh=cXVyoRypaze7f+Lz1yx3qPNU5d4wDrkDtX8Re+XtxgY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KxTfybOAAhz8jJNp0cHL7S38xq3ZnKqOTvKqwkUQiAcTQyMwuql3vfxBkWvyRtKpdwN0PfD3TNxTAZjBY3DtCpoTHEem3KCzMMwu/Ki9J1G5Kz1YaXuJy7mbygX/FKo6gxoTZkoAoyNnM2AVsBogwKcIWUaUjqGCOVaXtP1kT2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b3PDUsXS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 16169C4CEDD;
+	Thu, 13 Mar 2025 23:11:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741907208;
-	bh=0UAgLw6E5fMxghBPUcUr1YC5wDKAXkzRKCvdfBrEOek=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JsAZIMeSVGH0xxnfm6a7NU3amHURgBKewUUqNu1qMyXa446UZnn/Vzg7IZdXEX76u
-	 b/pDggX2dzAk3Gzr7actRGVnbUC/eqpy9M6toa1fA2nSiODlwxVxB+Mvv1sP8UZ//X
-	 +5QIIiMJ/8kVL4cZBqXdPobuafnVQoQlY4cQrpiYcy4H9eJJups5TzGPhoxvMuaNnm
-	 kl5O1TKLdmkY3SqHergV/5svibmF1fcVKjGKM4xoOpfy6bQAWczQotzzRoN2blbwjH
-	 gIqRDj1shL8Tjc/NUbENFCdrp3bJKf9pap2y9YHLvMNTcrDj7SgAgJPEM9dUGYpzfo
-	 Xd1hAyU5HFXjg==
-Date: Thu, 13 Mar 2025 18:06:45 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hovold <johan@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Sebastian Reichel <sre@kernel.org>
-Subject: Re: [PATCH v2 0/3] arm64: dts: qcom: x1e78100-t14s: Rework
- devicetree for LCD and OLED SKUs
-Message-ID: <t7jqjgkvnu2lynwchyermonuhcrh7ixgw6g65o6ag2lkgi6dwi@rd3vv3j5paws>
-References: <20250310141504.3008517-1-abel.vesa@linaro.org>
+	s=k20201202; t=1741907461;
+	bh=cXVyoRypaze7f+Lz1yx3qPNU5d4wDrkDtX8Re+XtxgY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=b3PDUsXSUn4yAJcNWG/UXUc0yTU2grWPne5L7CY4r0ziVQNimoEZalJ2v2D1Cnt+N
+	 bhKxgn+aVCQC5eOV7Uf3JwFlm/FciXA2d2l6+pUxPGVmXGYzDh1l55RBi5m8CDSfqE
+	 DCUgxvG26/YLBE/zb5B5wpt6LtjKQCabjMzo0AbxwoeH6xwc0zuummcpKf0oZ+MgVo
+	 5Uyt3g8FLu4pX2d9g8yZcffGUWw5r9s/SXpSyPXasQVnKKaGqpPBAnqDGcEuQw6Ph8
+	 KH4+eCerg5HuLf/l1KbNtF7iGJfDsQgz4Vsc+ulpURv6/gb/KUDc2id/+MHRLEOHKS
+	 EtFQ5F/A+oJlA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 067F0C282DE;
+	Thu, 13 Mar 2025 23:11:01 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH v2 0/2] arm64: Device Tree for Ugoos AM3 board
+Date: Fri, 14 Mar 2025 00:10:58 +0100
+Message-Id: <20250314-ugoos-am3-v2-0-422104b0cec5@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250310141504.3008517-1-abel.vesa@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAJm02cC/03MQQ6DIBCF4auYWZcGBlDrqvdoXKAdlUXBADVtD
+ HcvtZsu/5eXb4dIwVKErtoh0Gaj9a4EnioYF+NmYvZeGpCj5ojInrP3kZmHZFPdKCHbmiupoPz
+ XQJN9HdatL73YmHx4H/QmvutPkfzyp2yCcSbb0QzaqAb1cF19TOTPjhL0OecPNrVgyKMAAAA=
+X-Change-ID: 20250222-ugoos-am3-f67413860434
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741907460; l=1015;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=cXVyoRypaze7f+Lz1yx3qPNU5d4wDrkDtX8Re+XtxgY=;
+ b=EMJcVnU8xlRkgiTfuaF1TgDC/Cipw+ftS76kCrZ0lMvFf5GpTyGf5oOolGy6r7AhJM4pXhZCI
+ yQvY8GnkHuzBGf7CLT58q9JRTOPS6BKhzJVs76y6QepwJkvBXX3UV/L
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-On Mon, Mar 10, 2025 at 04:15:01PM +0200, Abel Vesa wrote:
-> The Lenovo Thinkpad T14s Gen6 comes in different SKUs when it comes to
-> panels. The only difference that is important is whether it is an OLED
-> or an LCD. The way that backlight is handled in devicetree between OLED
-> and LCD forces the need of two separate DTBs.
-> 
-> So create a common T14s dtsi that describes everything except the
-> backlight handling, by renaming the existent dts to dtsi. Then make the
-> legacy dts the LCD version, while adding a prepended oled dts. Both
-> include the generic T14s dtsi.
-> 
-> For the OLED version, I do not have HW to test it on, so OLED specific
-> bits will come at a later stage. Still, add the OLED dts in order to set
-> the stage for it.
-> 
-> Had to format it using "git format-patch" since b4 doesn't currently
-> support -B when formatting the patch, and the renaming of the dts into
-> dtsi (plus the panel properties being dropped) would've not been visible
-> enough for reviewers.
-> 
-> Changes in v2:
->  - rebased on next-20250307
+This patchset adds a device tree for Ugoos AM3, an Android TV box from
+2018. Most hardware functionality has been tested, as noted in patch 2/2.
 
-Sorry, but as requested I seem to have picked the DP enablement (at
-least) since then. Can you please have another rebase?
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+Changes in v2:
+- fix vendor name in patch subjects
+- fix mistake that made wifi not work
+- apply Krzysztof's ACK to patch 1/2
+- Link to v1: https://lore.kernel.org/r/20250309-ugoos-am3-v1-0-38cab5a4725b@posteo.net
 
-Regards,
-Bjorn
+---
+J. Neuschäfer (2):
+      dt-bindings: arm: amlogic: Add Ugoos AM3
+      arm64: dts: amlogic: Add Ugoos AM3
 
->  - Dropped the RFC, as it seems to be agreed upon already
->  - Added dt-bindings patch to document the new oled and lcd compatibles
->  - Added panel variant compatible strings to each dts and included the
->    the panel type into model string as well
->  - Changed backlight PWM period to 4266537 to match exact period the
->    PMIC can do.
->  - Link to v1 (RFC):
->    https://lore.kernel.org/r/20250306090503.724390-1-abel.vesa@linaro.org/
-> 
-> Abel Vesa (3):
->   dt-bindings: arm: qcom: Document Lenovo ThinkPad T14s Gen 6 LCD and
->     OLED
->   arm64: dts: qcom: x1e78100-t14s: Add LCD variant with backlight
->     support
->   arm64: dts: qcom: x1e78100-t14s: Add OLED variant
-> 
->  .../devicetree/bindings/arm/qcom.yaml         |    4 +-
->  arch/arm64/boot/dts/qcom/Makefile             |    1 +
->  .../x1e78100-lenovo-thinkpad-t14s-oled.dts    |   12 +
->  .../qcom/x1e78100-lenovo-thinkpad-t14s.dts    | 1194 +----------------
->  ...dts => x1e78100-lenovo-thinkpad-t14s.dtsi} |    6 +-
->  5 files changed, 77 insertions(+), 1140 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts
->  rewrite arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts (98%)
->  copy arch/arm64/boot/dts/qcom/{x1e78100-lenovo-thinkpad-t14s.dts => x1e78100-lenovo-thinkpad-t14s.dtsi} (99%)
-> 
-> -- 
-> 2.34.1
-> 
+ Documentation/devicetree/bindings/arm/amlogic.yaml |  1 +
+ arch/arm64/boot/dts/amlogic/Makefile               |  1 +
+ .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  2 +-
+ .../arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts | 91 ++++++++++++++++++++++
+ 4 files changed, 94 insertions(+), 1 deletion(-)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250222-ugoos-am3-f67413860434
+
+Best regards,
+-- 
+J. Neuschäfer <j.ne@posteo.net>
+
+
 
