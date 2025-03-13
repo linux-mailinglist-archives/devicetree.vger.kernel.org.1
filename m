@@ -1,192 +1,160 @@
-Return-Path: <devicetree+bounces-157156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33EA0A5F16E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 11:52:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34568A5F1BB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 12:01:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ADCF3B40EB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 10:51:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BBB83B1813
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 11:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E203267B93;
-	Thu, 13 Mar 2025 10:48:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h4B8bsFU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E6C824EF69;
+	Thu, 13 Mar 2025 11:01:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D230E13C689;
-	Thu, 13 Mar 2025 10:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F661EDA17;
+	Thu, 13 Mar 2025 11:01:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741862905; cv=none; b=Lr3ZisLECGo7wdK14ptl/VDG7brBqcpPh7S08vnVOO0BAYs8l3Wj9AC0J4aQa7TLdSlDIlDSIBkTJtWKQgbK8ZRE9+uQgR7Qj7FifMR1Si1wVwNRcXN22GgxtmHjq7jbgSjmlyun4NkkCNW5PQ+20BlnDuL6Uf22/GH75oJSvwQ=
+	t=1741863702; cv=none; b=nu0w+C1zMK4Av52TTrCN+All5roBil9U6UaphAKv1zzyCqJAcTL6t8Di606B62myCxfj0uIjI44hPlFd5fm/P1Z16ZL3XRDZ3rKXxtbdD7Vs5dkM2yqZ5Jo5mXeU0DdF6PXHCk7fjFzi6nLLce98Jj3IS67DQimqW6DUb7nq9GE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741862905; c=relaxed/simple;
-	bh=NTvv7eK4pWA0tU7itqQwNc79CFE8kY/nvAPtwxhpCN8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aZp/RaZL4ELDFD5FiIgPskolbzhvF0gQN5upzD8DtalijM4kgNesaTbByggA7Up14JNS2RJ1nQQYqEdT+ERsz5441Cn1181xcsvICysg4bBUcTE3rKRiWPMAlj6A3spDth6XX/hQfqtjGuJKh7W15MRR5l98/IVrNiVX0l5GeOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h4B8bsFU; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30bf1d48843so7199451fa.2;
-        Thu, 13 Mar 2025 03:48:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741862901; x=1742467701; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IU4PHlrJ+sa0If2/fuT4pY69xSIqLjUfkdogKvImc9o=;
-        b=h4B8bsFUH1HdLVPKmLXUfYkJEjpFHpsaGPQ+33ZhIJNnLo4eDtkqFSkLVPEz8b9EoL
-         qNOAJb4pxcf87xlLgyEG+ygIThQi6ogQS2ksGD3l2k40csaGV5xlnYbUgNldAz0PROuB
-         ngmPFbt4bM/sJXWfDm/+YrNhM42oUuWN4MqHa0EYIyykhnuXyHzAgpskQG/8PBabqMWD
-         NtrsNubPvd6FhJNVXADyCnlIE4tVCDxrpnZudFotlyCnxQJUGpWwgtyHoDoJigdYrWcY
-         Dh5mp4DIccZrxwZEP2VXamE8vQYgOH+6vqAUce8h+uAsJchZJknvvjzmsGixBEsh172q
-         z/NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741862901; x=1742467701;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IU4PHlrJ+sa0If2/fuT4pY69xSIqLjUfkdogKvImc9o=;
-        b=g2J3zzt+9RgO5hxHNKklt2vXpelt4/53h6BhwVTtqZyB/xWVWjrHoMg2Z9W8O3fs+g
-         TVNBvzzeSuw5bpfiwl5M3Y+2Dw3Ba77hH9C3P++/bID1QzfxyUbBp7XcO70oFwkW/cX1
-         UVvssiQEoabYoYhVw3fmqxAj0UsoDKSA3moVa7BtlCBE57vJM2WGvTN3V/S8Sxtvr7VG
-         Oq8XiZ3yAsQyzNhe0Ax3EQLpXIk9gSzWbY2+Qls7MmoFBXc1c4npeAN+wp7nMzsPD8X+
-         yVmhHiEPIEQH8/edHUSLLQz3NkTbXHJ0LSuVPIIS4tmvfH+1ROOp1x+1C+UvL8PuxbEo
-         il1w==
-X-Forwarded-Encrypted: i=1; AJvYcCURfAwDLehj0CXNB+Zk4vpnbcGTlXijz8ZwlJqrpHV4ei9mEkkPzKiyivtTxG9pJMPBceCTjav7/UdD@vger.kernel.org, AJvYcCUbuoyDgEl5iBNcT3yCkbCCRF8ft7mlNGbiaV1yREFY9HTH6S31ockINFkfnY7Sbef8KJfEV85YeqlDAI4=@vger.kernel.org, AJvYcCUslkPs/gKM/lboKd6jmVol2OIGHG68c5yaPaHxp84in3x+q+ii3vs8S/sglhQXXvp3Z1+8OlPYdLzt7LDSUT0z@vger.kernel.org, AJvYcCVZkuIrA3lecUbvxzqFSWDj+32+ghV7OnWv7j+eUukvHGHwUUHWyc3ygVGeyZFIW25XhAjEf1ap3O+HX3+Ao2M=@vger.kernel.org, AJvYcCVxo5hb1numaXp/a9SldgHcAHGH4OOq+clHfTUj9LRwN0cOci/hohIkdDIbyI3ZYe3rAa5tIwWZxpQ1Ktx5@vger.kernel.org, AJvYcCWLVxTqLYxL/kylYzcHuuTIEoi8P3rB1i+dsTo5DfCiaHr+XEpVM73CCQyoeiUBdc44378h/css/7ORs/Dg@vger.kernel.org, AJvYcCWb2IQ9c7cSMsvg0rK6RG++H2pigxJm1q6OMkuO50gTr8uWtD9TabAiVXiSiUhtH9Y/LRtrs/woWmP3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUdroeewBK+lzWBPjGLZQtvoze05GwIWimAbE3KE+BvPp/JfGi
-	aCPNvu0RVMQcx6HO5+z1WX5FbTsLg8DgTby4qsRo1usmf+GEHakMdtH5sOH0vrEe2wtccUHnYpx
-	hYod0Wx6ls+EKZlbUUcJhUZqecrQ=
-X-Gm-Gg: ASbGnct4I8y7HS1/oxIfuAA0xCIBpRhC5wDDE05SSykOxbQhPxGDIcx0fT+H9i1BB1u
-	lhreQ0mikg1ani2kMSYeAFyJ8Ui/O5XHmUnEoluNgQfXuZtXOHoqERNvYkNICuooYIhtc2zCmvB
-	6nSI77SQg2wuK6se+EMrgXHkXruziHV+Ba25FidL2/z4ES4TpkGpRwCaj2y4yl
-X-Google-Smtp-Source: AGHT+IGowr6w1dXmTWQTcCHSJ8F0Lzgjpfr6l5SxosTwGeAYfAxqaTTaJIQl2YIbjX0BGAMKbRP0NSO2ddhYR2C1llk=
-X-Received: by 2002:a2e:3517:0:b0:30b:edd8:886 with SMTP id
- 38308e7fff4ca-30bf451713dmr84066751fa.9.1741862900515; Thu, 13 Mar 2025
- 03:48:20 -0700 (PDT)
+	s=arc-20240116; t=1741863702; c=relaxed/simple;
+	bh=XefTSzn/nQqjD6JMR5JYpIY4KIl/yqcRheoDY2b+ilE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SWJggU+BI5x5FzF8dySMseJiNiSdVvnBDWWisLiGCKxzdIh5wZEut4gIvHGD2eRo5qsqHDSpr0RT60EO/iecNHSQdZ3G78lxBtAzFissZYg6aqnraswrels4schCNLx664w/WD3DUpZcFw7QSCS14hJOZxg7TGaXsARMLWeJlr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 21D5E1516;
+	Thu, 13 Mar 2025 04:01:50 -0700 (PDT)
+Received: from [10.57.40.246] (unknown [10.57.40.246])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C60353F673;
+	Thu, 13 Mar 2025 04:01:35 -0700 (PDT)
+Message-ID: <417d6f59-0d78-4e81-ad0b-e06846f786b0@arm.com>
+Date: Thu, 13 Mar 2025 11:01:33 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com>
- <D8EJM4CJ4HAN.1PB2YV8DB77V7@proton.me> <CAJ-ks9mo-H46Wwcu_LOvDy0ncwMR9ii74Fyf3OX-aWNnrZ397g@mail.gmail.com>
- <CAJ-ks9kCgATKDE2qAuO3XpQfjVO2jGyq3D4sbUcVKyW6G1vuuQ@mail.gmail.com>
- <D8EL9QFS1XNT.JBSMRXD4D7GT@proton.me> <CAJ-ks9=TRDg3g=NG7k97P_5jXpZ4K4v0DxrmJFR+uF0-3zJkXw@mail.gmail.com>
- <CAJ-ks9=hAwOGtVv0zh9CcH7XOxjGnizvK1QOMAi8nKStocKr2Q@mail.gmail.com>
- <D8ELW7X9796K.2ZGJS34LDTHOP@proton.me> <CAJ-ks9k1gZ=tLSe6OjuKFgg6=QE5R_Ajo0ZJwZJp08_1LMiODw@mail.gmail.com>
- <D8ENBWTC8UPH.LLEGZ2D4U7KQ@proton.me>
-In-Reply-To: <D8ENBWTC8UPH.LLEGZ2D4U7KQ@proton.me>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 13 Mar 2025 06:47:43 -0400
-X-Gm-Features: AQ5f1JpvT0pCHkZRvibXqm2vlfPfrKbPxFhR2eEtWGWUHW0BSrI5KdQ4s_SfHLQ
-Message-ID: <CAJ-ks9mJ=2hFxfWEkq+9b=atE89sHXa5NBcdVNRd3az6MSv0pA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] rust: enable `clippy::as_underscore` lint
-To: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
+ path
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Russell King <linux@armlinux.org.uk>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>,
+ Laurentiu Tudor <laurentiu.tudor@nxp.com>, Nipun Gupta
+ <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Bjorn Helgaas <bhelgaas@google.com>
+Cc: linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+ Charan Teja Kalla <quic_charante@quicinc.com>
+References: <cover.1740753261.git.robin.murphy@arm.com>
+ <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
+ <CGME20250313095633eucas1p29cb55f2504b4bcf67c16b3bd3fa9b8cd@eucas1p2.samsung.com>
+ <9b358d68-332e-404e-9a75-740297f7b28d@samsung.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <9b358d68-332e-404e-9a75-740297f7b28d@samsung.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Mar 12, 2025 at 6:38=E2=80=AFPM Benno Lossin <benno.lossin@proton.m=
-e> wrote:
->
-> On Wed Mar 12, 2025 at 11:24 PM CET, Tamir Duberstein wrote:
-> > On Wed, Mar 12, 2025 at 5:30=E2=80=AFPM Benno Lossin <benno.lossin@prot=
-on.me> wrote:
-> >>
-> >> On Wed Mar 12, 2025 at 10:10 PM CET, Tamir Duberstein wrote:
-> >> > On Wed, Mar 12, 2025 at 5:04=E2=80=AFPM Tamir Duberstein <tamird@gma=
-il.com> wrote:
-> >> >>
-> >> >> On Wed, Mar 12, 2025 at 5:01=E2=80=AFPM Benno Lossin <benno.lossin@=
-proton.me> wrote:
-> >> >> > Always enable the features, we have `allow(stable_features)` for =
-this
-> >> >> > reason (then you don't have to do this dance with checking if it'=
-s
-> >> >> > already stable or not :)
-> >> >>
-> >> >> It's not so simple. In rustc < 1.84.0 the lints *and* the strict
-> >> >> provenance APIs are behind `feature(strict_provenance)`. In rustc >=
-=3D
-> >> >> 1.84.0 the lints are behind `feature(strict_provenance_lints)`. So =
-you
-> >> >> need to read the config to learn that you need to enable
-> >> >> `feature(strict_provenance_lints)`.
-> >>
-> >> I see... And `strict_provenance_lints` doesn't exist in <1.84? That's =
-a
-> >> bit of a bummer...
-> >>
-> >> But I guess we could have this config option (in `init/Kconfig`):
-> >>
-> >>     config RUSTC_HAS_STRICT_PROVENANCE
-> >>             def_bool RUSTC_VERSION >=3D 108400
-> >>
-> >> and then do this in `lib.rs`:
-> >>
-> >>     #![cfg_attr(CONFIG_RUSTC_HAS_STRICT_PROVENANCE, feature(strict_pro=
-venance_lints))]
-> >
-> > Yep! That's exactly what I did, but as I mentioned up-thread, the
-> > result is that we only cover the `kernel` crate.
->
-> Ah I see, can't we just have the above line in the other crate roots?
+On 2025-03-13 9:56 am, Marek Szyprowski wrote:
+[...]
+> This patch landed in yesterday's linux-next as commit bcb81ac6ae3c
+> ("iommu: Get DT/ACPI parsing into the proper probe path"). In my tests I
+> found it breaks booting of ARM64 RK3568-based Odroid-M1 board
+> (arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts). Here is the
+> relevant kernel log:
 
-The most difficult case is doctests. You'd have to add this to every
-example AFAICT.
+...and the bug-flushing-out begins!
 
-> >> > Actually this isn't even the only problem. It seems that
-> >> > `-Astable_features` doesn't affect features enabled on the command
-> >> > line at all:
-> >> >
-> >> > error[E0725]: the feature `strict_provenance` is not in the list of
-> >> > allowed features
-> >> >  --> <crate attribute>:1:9
-> >> >   |
-> >> > 1 | feature(strict_provenance)
-> >> >   |         ^^^^^^^^^^^^^^^^^
-> >>
-> >> That's because you need to append the feature to `rust_allowed_feature=
-s`
-> >> in `scripts/Makefile.build` (AFAIK).
-> >
-> > Thanks, that's a helpful pointer, and it solves some problems but not
-> > all. The root Makefile contains this bit:
-> >
-> >> KBUILD_HOSTRUSTFLAGS :=3D $(rust_common_flags) -O -Cstrip=3Ddebuginfo =
-\
-> >> -Zallow-features=3D $(HOSTRUSTFLAGS)
-> >
-> > which means we can't use the provenance lints against these host
-> > targets (including e.g. `rustdoc_test_gen`). We can't remove this
-> > -Zallow-features=3D either because then core fails to compile.
-> >
-> > I'm at the point where I think I need more involved help. Want to take
-> > a look at my attempt? It's here:
-> > https://github.com/tamird/linux/tree/b4/ptr-as-ptr.
->
-> I'll take a look tomorrow, you're testing my knowledge of the build
-> system a lot here :)
+> Unable to handle kernel NULL pointer dereference at virtual address
+> 00000000000003e8
+> Mem abort info:
+>     ESR = 0x0000000096000004
+>     EC = 0x25: DABT (current EL), IL = 32 bits
+>     SET = 0, FnV = 0
+>     EA = 0, S1PTW = 0
+>     FSC = 0x04: level 0 translation fault
+> Data abort info:
+>     ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
+>     CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+>     GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+> [00000000000003e8] user address but active_mm is swapper
+> Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
+> Modules linked in:
+> CPU: 3 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.14.0-rc3+ #15533
+> Hardware name: Hardkernel ODROID-M1 (DT)
+> pstate: 00400009 (nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> pc : devm_kmalloc+0x2c/0x114
+> lr : rk_iommu_of_xlate+0x30/0x90
+> ...
+> Call trace:
+>    devm_kmalloc+0x2c/0x114 (P)
+>    rk_iommu_of_xlate+0x30/0x90
 
-We're guaranteed to learn something :)
+Yeah, looks like this is doing something a bit questionable which can't
+work properly. TBH the whole dma_dev thing could probably be cleaned up
+now that we have proper instances, but for now does this work?
+
+(annoyingly none of my Rockchip boards are set up for testing right now, 
+but I might have time to dig one out later)
+
+Thanks,
+Robin.
+
+----->8-----
+
+Subject: [PATCH] iommu/rockchip: Allocate per-device data sensibly
+
+Now that DT-based probing is finally happening in the right order again,
+it reveals an issue in Rockchip's of_xlate, which can now be called
+during registration, but is using the global dma_dev which is only
+assigned later. However, this makes little sense when we're already
+looking up the correct IOMMU device, who should logically be the owner
+of the devm allocation anyway.
+
+Fixes: bcb81ac6ae3c ("iommu: Get DT/ACPI parsing into the proper probe 
+path")
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
+  drivers/iommu/rockchip-iommu.c | 6 +++---
+  1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
+index 323cc665c357..48826d1ccfd8 100644
+--- a/drivers/iommu/rockchip-iommu.c
++++ b/drivers/iommu/rockchip-iommu.c
+@@ -1148,12 +1148,12 @@ static int rk_iommu_of_xlate(struct device *dev,
+  	struct platform_device *iommu_dev;
+  	struct rk_iommudata *data;
+
+-	data = devm_kzalloc(dma_dev, sizeof(*data), GFP_KERNEL);
++	iommu_dev = of_find_device_by_node(args->np);
++
++	data = devm_kzalloc(&iommu_dev->dev, sizeof(*data), GFP_KERNEL);
+  	if (!data)
+  		return -ENOMEM;
+
+-	iommu_dev = of_find_device_by_node(args->np);
+-
+  	data->iommu = platform_get_drvdata(iommu_dev);
+  	data->iommu->domain = &rk_identity_domain;
+  	dev_iommu_priv_set(dev, data);
+-- 
+2.39.2.101.g768bb238c484.dirty
+
+
 
