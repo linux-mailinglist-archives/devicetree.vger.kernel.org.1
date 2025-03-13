@@ -1,106 +1,98 @@
-Return-Path: <devicetree+bounces-157037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE84A5E8A0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:45:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A29A5E8E6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 01:10:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63AFE188C5BA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Mar 2025 23:45:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3530B1764D5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC9A1F2369;
-	Wed, 12 Mar 2025 23:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1199B10E3;
+	Thu, 13 Mar 2025 00:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UgldZZBx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8YYd/W1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA3F41EF088;
-	Wed, 12 Mar 2025 23:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C4417E;
+	Thu, 13 Mar 2025 00:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741823034; cv=none; b=mymO6dv5g0Lp2z2pu8+hnGyNPCXalYJRnJUJuTtEwc1Hx1SDf7ccq7h0AyP4Yy/6WIlaR7N72XfvQq9pL8yTWuB+30m4er+2OPlUFCqDuuz5D84aUlMfQ4Ek0bn19w3k9JM+X+TBez3lz/GO1hi3FGvm3/zD3rdoOAkt9xmr7VU=
+	t=1741824627; cv=none; b=Taz5P67+3cmwxehino1nJqcNyO3ApepKLmu3zlBiuSkZl0hoNtL0gXe2ENhAOb2xVzOMOATSY8l+Q4uikGTW8MQTHzosxiaCdduQU8jIRXqW22XZgFOhtgEgkDs822U/bZn3xwsqNF7oYCCCBiWrK3O+NyvpSZ9XNtFHmkhLZc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741823034; c=relaxed/simple;
-	bh=7qeO9k35Hmf3unT9bk7nXpFsKvN3ZjCrLqN94ZDy/xY=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=tIK51lhHmgLzOnYpZF7XlDZXMD4ZUYgKZ7HzsNeCAXu3CNK+rznJFlxkcoFQBBgOvrm60PycVIlS+Xet/+ZGEHxIG5/0yt1gei5PqYGHJWaQ2/McY8JKhPe7gYyeJbluRE2fs3mwOUFtxeyrUGRH2pR9GDlTcHmJEr1kNa2e60M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UgldZZBx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 314AAC4CEE3;
-	Wed, 12 Mar 2025 23:43:54 +0000 (UTC)
+	s=arc-20240116; t=1741824627; c=relaxed/simple;
+	bh=8soeqXNN5au4hvLPUpIInyAV09m1jrjYWHYC7wip3jI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RIC36/G081J+qcaWhJuzBQvRKcGGSYt83fKei33hhH4y/ek6OIVPa3Plql8DY01+ikCEnOpdh1dfD6xki+E61NEqcnISmxM7AzHyBxolCC1VmdpgwvR31oSD6bUZCjq+qWqguqtYJtjrfRev/wNZs2mdnjQUcTcQcs/0MlNJogI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8YYd/W1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC902C4CEDD;
+	Thu, 13 Mar 2025 00:10:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741823034;
-	bh=7qeO9k35Hmf3unT9bk7nXpFsKvN3ZjCrLqN94ZDy/xY=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=UgldZZBxs1jNGFAfoJSWFhK8fC/bThJDwdWIo7KwuPexnp1DzwW/y41+LVwnYc7jA
-	 KK1BXvPs5GSCJufl/Ea3cQ+G6Is1+WFv1wAz3janhGUOXjICdx1VahCtUoHl5WxBQb
-	 emj3um5Lyr8RXoYPJCPrXbGEoarTQGyfhIU5tQIAg4vfY126YfahutY4zIuuKENeLD
-	 qWC60FZ8KlCBUjNc2k3KZwCqp9m1eyjgarkxrYRpECLUn+0rU+ERq3U/3CJx1S0ALX
-	 RcMp7oFYa+DqFrWnwbxKNt1UuwCLBWeOFM5gzZzieqa+8T5vQ28oHUkz7T+AIxB37t
-	 EA46xrLB2FfKQ==
-Message-ID: <b816b3d1f11b4cc2ac3fa563fe5f4784.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1741824626;
+	bh=8soeqXNN5au4hvLPUpIInyAV09m1jrjYWHYC7wip3jI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j8YYd/W1Va4DqX+vWN/hqTBRjVKF52OQw9S5xTtXKNEZEaKCZKKvvpARrh7h4KA37
+	 NdGwZajanvod9BZutuW0zg316W5OPu8BLBYfMIv7Al3se+N/DZz8E+aHXldMkdViXA
+	 dC9SjaKMbmCPHdlEoRGQEVM9RJ/M4ajF27khsvyzXlUYikoFPBfL3CHLsenxxQdlzG
+	 DVMHdVSBT4kBJnNgzRb+GG6O4n34K0EcgF3oflK3Pw9HQpTydjHL0eY+g8CPNOjI1X
+	 QwNIevz66YQRxs9YN761dVFpdo6raXh+t+9q1Y7gurd3sd7F7zOYppaGe8O0S52gI8
+	 5EQZGS3NJ8cJA==
+Date: Thu, 13 Mar 2025 01:10:11 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: Troy Mitchell <troymitchell988@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, linux-riscv@lists.infradead.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	spacemit@lists.linux.dev, Guodong Xu <guodong@riscstar.com>
+Subject: Re: [PATCH v6 2/2] i2c: spacemit: add support for SpacemiT K1 SoC
+Message-ID: <nrmoj7gookedlz2e3fgu3hvn3s5fc6vrxgjueynyp5orj63k4b@cqlhflioxv7h>
+References: <20250307-k1-i2c-master-v6-0-34f17d2dae1c@gmail.com>
+ <20250307-k1-i2c-master-v6-2-34f17d2dae1c@gmail.com>
+ <7d9e90ba-8c23-44dc-b64f-80213216faf7@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <x43v3wn5rp2mkhmmmyjvdo7aov4l7hnus34wjw7snd2zbtzrbh@r5wrvn3kxxwv>
-References: <20250226232320.93791-1-inochiama@gmail.com> <20250226232320.93791-2-inochiama@gmail.com> <2c00c1fba1cd8115205efe265b7f1926.sboyd@kernel.org> <epnv7fp3s3osyxbqa6tpgbuxdcowahda6wwvflnip65tjysjig@3at3yqp2o3vp> <f1d5dc9b8f59b00fa21e8f9f2ac3794b.sboyd@kernel.org> <x43v3wn5rp2mkhmmmyjvdo7aov4l7hnus34wjw7snd2zbtzrbh@r5wrvn3kxxwv>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: sophgo: add clock controller for SG2044
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Chen Wang <unicorn_wang@outlook.com>, Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>
-Date: Wed, 12 Mar 2025 16:43:51 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7d9e90ba-8c23-44dc-b64f-80213216faf7@riscstar.com>
 
-Quoting Inochi Amaoto (2025-03-12 16:29:43)
-> On Wed, Mar 12, 2025 at 04:14:37PM -0700, Stephen Boyd wrote:
-> > Quoting Inochi Amaoto (2025-03-11 16:31:29)
-> > >=20
-> > > > or if that syscon node should just have the #clock-cells property as
-> > > > part of the node instead.
-> > >=20
-> > > This is not match the hardware I think. The pll area is on the middle
-> > > of the syscon and is hard to be separated as a subdevice of the syscon
-> > > or just add  "#clock-cells" to the syscon device. It is better to han=
-dle
-> > > them in one device/driver. So let the clock device reference it.
-> >=20
-> > This happens all the time. We don't need a syscon for that unless the
-> > registers for the pll are both inside the syscon and in the register
-> > space 0x50002000. Is that the case?=20
->=20
-> Yes, the clock has two areas, one in the clk controller and one in
-> the syscon, the vendor said this design is a heritage from other SoC.
+Hi,
 
-My question is more if the PLL clk_ops need to access both the syscon
-register range and the clk controller register range. What part of the
-PLL clk_ops needs to access the clk controller at 0x50002000?
+On Tue, Mar 11, 2025 at 08:46:31PM -0500, Alex Elder wrote:
+> On 3/7/25 7:13 AM, Troy Mitchell wrote:
+> > This patch introduces basic I2C support for the SpacemiT K1 SoC,
+> > utilizing interrupts for transfers.
+> > 
+> > The driver has been tested using i2c-tools on a Bananapi-F3 board,
+> > and basic I2C read/write operations have been confirmed to work.
+> > 
+> > Signed-off-by: Troy Mitchell <troymitchell988@gmail.com>
+> 
+> I have a bunch of really small suggestions.  Please consider
+> them, but whatever you choose to do this looks good to me.
+> 
+> Reviewed-by: Alex Elder <elder@riscstar.com>
 
->=20
-> > This looks like you want there to be  one node for clks on the system
-> > because logically that is clean, when the reality is that there is a
-> > PLL block exposed in the syscon (someone forgot to put it in the clk
-> > controller?) and a non-PLL block for the other clks.
->=20
-> That is true, I prefer to keep clean and make less mistakes. Although
-> the PLL is exposed in the syscon, the pll need to be tight with other
-> clocks in the space 0x50002000 (especially between the PLL and mux).
-> In this view, it is more like a mistake made by the hardware design.
-> And I prefer not to add a subnode for the syscon.
+thanks Alex for reviewing, I will wait for a v7 with your
+suggestions.
 
-Ok. You wouldn't add a subnode for the syscon. You would just have
-#clock-cells in that syscon node and register an auxiliary device to
-provide the PLL(s) from there. Then in drivers/clk we would have an
-auxiliary driver that uses a regmap or gets an iomem pointer from the
-parent device somehow so that we can logically put the PLL code in
-drivers/clk while having one node in DT for the "miscellaneous register
-area" where the hardware engineer had to expose the PLL control to
-software.
+Overall the patch looks good to me, as well, even though I have
+to give some credit to Wolfram's previous comments about the
+i2c-pxa similarities.
+
+I checked the two drivers last night and I can see some
+similarities, on the other hand I also understand that it might
+require some extra effort.
+
+I want to check it again, though, before applying.
+
+Andi
 
