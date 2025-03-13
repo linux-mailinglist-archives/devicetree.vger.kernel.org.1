@@ -1,121 +1,94 @@
-Return-Path: <devicetree+bounces-157112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE831A5EDDF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:22:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22C76A5EDED
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:24:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A743C189F584
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:22:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C60817B1BE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:24:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4456E22FF31;
-	Thu, 13 Mar 2025 08:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822D8260A27;
+	Thu, 13 Mar 2025 08:24:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="UA4p/fAI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bnlCx8r5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.59])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F41078F34
-	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 08:22:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE001EA7FC;
+	Thu, 13 Mar 2025 08:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741854141; cv=none; b=YMuXCupzq0jMSFfHzTetOJTCQ4+c41444v6ZDxOSNRI/nJJIy7jMgcORm8MldRtJheHitExn1SpaqxOLrzg1ItI5BEq5mYJPpgTc3fqKo0C4UHpz88b0wPQFQqDE53CrixLCtm2+Dkww/gXCXzN5qa41IQUZbY0EfRLK6a1LyLg=
+	t=1741854258; cv=none; b=hAzb/6fYNqacsp0BCngCSg4ZL29t3AuJSafsamqE3iA92iIQJhR+qDCPgcYpOS4v1FuVL1SgUMHU20bbLUSvA1LuqiyBReW5U15QB5PP/gcZw73BMMYd1q8HlDtYQ1F7htn/Q2DCTyjTy4kEzcSMvn7BrNnaRNkkhfyP3xZKxP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741854141; c=relaxed/simple;
-	bh=lpexoIwlDAaOjLTBnIEGgWkXlf+ZNRKe4g36xBvm0TA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UF/NH5wkCDteMCHPG6K8fruYs4yNpAxBAmXosx5GdCbbFsU/ryVM8cQpXWloQaHb9TdXAndZ0cvWse2Gs2/HE8FaSjj5q6elvUIqE4qEzLSDEvgjyhFRwlw1mQqo3CN5hc5GENGihnsU7tsEa6V5Grsz55ZhiJdJ7gN44wwtYlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=UA4p/fAI; arc=none smtp.client-ip=121.127.44.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1741854137;
- bh=+6TtqnWRHap1+zGPihePGn3UrV1PoskvkH+xAMooAk4=;
- b=UA4p/fAIAIjf15CT406GFI7+0LhZOyfCtKnvZ5sQsV8fc4J33Swa6ZTMYWY7BfKEY4DrG6ghn
- 8dhWqDYg07jhbAbSsvyxB+u8Ktv4Cf39QxorkrVEfkLdzBWJAfQd1ON+m39fV9jgaj1TlFzd8av
- DlExNS4kUhPYi5Mut3O34bj7nPQ1kWyPBZFS0z6Zx9wn2kpVuFGXakQfn4sPBAUy//asCCGLYE7
- SkgUl+MsfXH+zKiUAL2Z7mGoCLe9H/DusF9GhVJOFo4dBqNYMlfvZEZZNEwkvOd34OEYOsBpBhL
- X757X8SI3Z4QRyrgyTS9ucxBu9z+O5YVetmmN7rAEQyQ==
-X-Forward-Email-ID: 67d295b469c9ba463efbea93
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.59
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <60065c0b-4597-4976-b74b-172556c4e156@kwiboo.se>
-Date: Thu, 13 Mar 2025 09:22:08 +0100
+	s=arc-20240116; t=1741854258; c=relaxed/simple;
+	bh=nzEoy2Dm6WdPm0bsSQMi/Pi0gl+x9sAMvCNvyjcf8w0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n/6TvF7Prvx7SLz45keBxNpyUoBpY+WTsYjPseaMGrimpr/Ee9hHvDx9P0kpb5MLYiJqoeT1aauXdXvb5/JW/Z93zDRqt0EfWoYumiTh0+8gGm9Mpuq+nDKa4E832J2ohj9SwGS0T83snZzIV5p5hsvCO+8xTWD1A98bXZDZJas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bnlCx8r5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B9AEC4CEE9;
+	Thu, 13 Mar 2025 08:24:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741854257;
+	bh=nzEoy2Dm6WdPm0bsSQMi/Pi0gl+x9sAMvCNvyjcf8w0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bnlCx8r5QwZudVcnRFXkQ1/mShMlI7S9sNXIJ4mIckmfuhk7xAEPAFGfSKILwYrJR
+	 q2H3UNAsxYwuDi8A0LOMPV0du9lLjSGcePOm5ghr2wkIHFiOL/7zVi2p4L7Esi7/lY
+	 kq5DF0j/MpU5EUsSEUN/hknlvSWobgVt7qaPJgvLWWWBQ9v1x8dBioVK5p8ezZJ6A7
+	 k70YQOXiIsL4Z8ERTGw78t+MIFzSfp/DJsHBZCj+vHfZMOcyYTGgG8xIs7UOxWYdvE
+	 SPUIMMHvzqwIJ8PRGZYN7NOb/sI11IjH/oykGoVY4w1JAU+NavEA/zxKhQqYQZh3vb
+	 NbfeAfr+L8JUQ==
+Date: Thu, 13 Mar 2025 09:24:12 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 06/10] dt-bindings: clock: Add Qualcomm QCS615
+ Graphics clock controller
+Message-ID: <20250313-graceful-jackdaw-of-opportunity-62996d@krzk-bin>
+References: <20250313-qcs615-v5-mm-cc-v6-0-ebf4b9a5e916@quicinc.com>
+ <20250313-qcs615-v5-mm-cc-v6-6-ebf4b9a5e916@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] arm64: dts: rockchip: Add pwm nodes for RK3528
-To: heiko@sntech.de, Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <7779050.EvYhyI6sBW@phil>
- <20250313071031.1840032-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250313071031.1840032-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250313-qcs615-v5-mm-cc-v6-6-ebf4b9a5e916@quicinc.com>
 
-Hi,
+On Thu, Mar 13, 2025 at 12:29:43PM +0530, Taniya Das wrote:
+ +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  '#power-domain-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +  - '#power-domain-cells'
+> +
 
-On 2025-03-13 08:10, Chukun Pan wrote:
-> Hi,
-> 
->> so yes of course the pinctrl needs to be default - simply because
->> that's the only pinctrl state mainline supports.
-> 
->> But judging by the fact that you're discussing working vs. non-working
->> below, can you please check if we should drop the patch for 6.15 till
->> that is solved?
-> 
-> I suggest dropping this patch first, I will send v2
-> when this issue is solved.
+I don't get why this binding is different than others and you do not
+reference qcom,gcc.yaml? Is it not applicable here? Other gpucc do
+reference.
 
-I noticed that the pwm nodes and saradc node ended up in wrong mmio
-address order, so yes please drop the patch (or reorder nodes) ;-)
 
-Chukun, please get back with more details about the issue you are having.
-E.g. a stack trace, what board, DT and U-Boot you are using etc.
-
-I have not seen any issue with PWM using the merged patch having
-pinctrl-names=default.
-
-Please see my Linux tree [1] and U-Boot tree [2], those are little ahead
-of what has been posted on ML, e.g. it has working USB2.0 host, CPU opp,
-Hantro VPU, GPU + opp, arm and logic pwm regulators for E20C, ROCK 2A/2F
-and Sige1.
-
-Will try to post USB2.0 host and Hantro VPU patches later today.
-CPU opp and GPU + opp depend on PWM and I was planning to post that
-together with initial thermal support.
-
-[1] https://github.com/Kwiboo/linux-rockchip/commits/next-20250311-rk3528/
-[2] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3528
-
-Regards,
-Jonas
-
-> 
-> Thanks,
-> Chukun
-> 
-> --
-> 2.25.1
-> 
+Best regards,
+Krzysztof
 
 
