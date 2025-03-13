@@ -1,246 +1,129 @@
-Return-Path: <devicetree+bounces-157197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 589BBA5F3EE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:12:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97521A5F405
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:16:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5196119C372E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 12:12:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 097A33A2054
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 12:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C772D267710;
-	Thu, 13 Mar 2025 12:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1454F26739D;
+	Thu, 13 Mar 2025 12:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KjZHgtMQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BGKGsC+a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B26252676E4;
-	Thu, 13 Mar 2025 12:10:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5CC1EE7A8;
+	Thu, 13 Mar 2025 12:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741867844; cv=none; b=WnS9h5bnL9iPvgarxVwU5DGbPc0o8mz10U51CvuA6Ot8HpmmBKeocGxE3pAqUqbbhoA4i/7JxB/BmCQwpht4M2yGa7PaL0LrYV3VhkXTHIkvAWIDZX/ueSGcDkn8gtAE7awm/h58hNnZMmisUES0+Hedfq1R09kpeQEnUMQcM5k=
+	t=1741868160; cv=none; b=e4j4w08C/KP7SJUR9Y5M/ngK+7DhxfO4aOCIM00UvxEkjH4PP6xC9MayT9mb7sRfDBwdxl+vncE+y+uWSzusKXWeU0x6S1nHjn1L+ZEufXV4Abhj+l7p/fMwYsjzkZWK2mgy8ep8oe1mreiEwnCLrp49ssKyN5e64YdfehGoJkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741867844; c=relaxed/simple;
-	bh=9egwuzH1xL76Hz6x87GbA/aHFSCxZ6dXs4aookVRQdw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=P2z+wKmW2yYCNOMf6xBT7whBv1GhoGIHXHgayuoishc9Cu9ZXkEBYwJi+MhIsSrGWkK36+v4Yna5FR48Q9RBmfUbaw30d75q6do+fDuKyxK+9Qukz8kIfYe3O1Tdzux0YhDIjlOtlY/r6bU7/Cx1BtruNAMoxoZLqZpW5lsZj+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KjZHgtMQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52D7CAmG019811;
-	Thu, 13 Mar 2025 12:10:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c7UkRMW05zKg8RDl3mwjjPVBN91r1eiT1QbA7lGZtpA=; b=KjZHgtMQ4FccHN6q
-	cMJ3mkAz/0+eZDAqqFbNquykWNWZuzhDQizsUJPq8sYxzG491d8EBzV0ERnLi+su
-	NZmYf7bDVGjmZGEuZJDP1zathfnmDkP8rcZKXd7Dhd2XVjf2ae2XcH6ApMpT3WG6
-	4vsJUHnK9SKQMQM6FNFTOT3Eruu5bkZWT57lNprYHUPYKHweH5xzVrot+5ayFw6X
-	YYMpRra51u4o5iMe9hpHVPPXlCCjw9zHoKuuvuOTLXNrKYmJ8YbKD9qfqNb+nipL
-	JJ7Gno+rBp66gmXmomgyZrV9lVpo9QbWnPIIFbLi8gFLRN41gERlIsSrEPqVNQ92
-	0wvrzg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45bts0gu45-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Mar 2025 12:10:18 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52DCAHEO015684
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Mar 2025 12:10:17 GMT
-Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Mar
- 2025 05:10:10 -0700
-Message-ID: <d64bf3b3-7c4d-490e-8bd7-1ad889aa7472@quicinc.com>
-Date: Thu, 13 Mar 2025 17:40:07 +0530
+	s=arc-20240116; t=1741868160; c=relaxed/simple;
+	bh=kaAou0aCgzlU0oUfOlYrlysp520v5XX91y8STuDaS4w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sO7RDuTMre2vKkuLmHiUM0djQ+qHw16K3l7vDPqodzKxgJugD3LPTvcgxDIUg9xWx+GzYq1LflsRYZQHV5NPyzBsKH54YOJgNfqv6tPNg70ppb4UllTmXA3cjNdnT5rLEaM4v6f0G7w6hxfpelCMZnNMv90mjH7gmfd3I0nc2vM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BGKGsC+a; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1741868158; x=1773404158;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kaAou0aCgzlU0oUfOlYrlysp520v5XX91y8STuDaS4w=;
+  b=BGKGsC+aTNDz8s3H7Uatw7AzNydq7Q/eBHRKMXyFcag8Kv7lvJL8bNbd
+   7Jfl2CAh7e+ZSyT/cnJx3zaKIeUTXilVjFQDy4QPD8HayPlv1TwQ77qeu
+   8CHLZHIBQpSzxOQAox0A/enhzEcvRLZebT63wIhySPzw6phyoIf7Y0R9z
+   zAj23/JIrq1DymzpbqgKoYAsXtutYiI0LKcETbYMxZjAYvEpVzo04/dHU
+   7Rrd3eMhu86qowhmSUAYjXt2hc9DUVtYsylh5d8y+wNLxQ86Ij+roqdbh
+   uTOzAGGTeAo5i+khJAAbxjQrchISVOe1RwRaCwZaXohg7WuqpHPnQyfo1
+   Q==;
+X-CSE-ConnectionGUID: ICs70ZJwTE6V10V5OJ6tzQ==
+X-CSE-MsgGUID: OJEVOFguS0mjzVWjK6j0mQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="43181045"
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; 
+   d="scan'208";a="43181045"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2025 05:15:57 -0700
+X-CSE-ConnectionGUID: RNQkYJ4BQiWZX4u2f7QQFA==
+X-CSE-MsgGUID: MbZIX0BrROucfQ4ERBpTHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; 
+   d="scan'208";a="120655368"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2025 05:15:52 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tshTY-00000002AQF-3GON;
+	Thu, 13 Mar 2025 14:15:48 +0200
+Date: Thu, 13 Mar 2025 14:15:48 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH v7 02/10] property: Add functions to iterate named child
+Message-ID: <Z9LMdDKNLT57RdIL@smile.fi.intel.com>
+References: <cover.1741849323.git.mazziesaccount@gmail.com>
+ <f613b5f120a4dde63d28b0a2e0186dcb8dbf57ae.1741849323.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/10] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI
- to DP bridge nodes
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
-        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
-        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
-        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
-        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
-        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
-        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
-References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
- <20250311122445.3597100-8-quic_amakhija@quicinc.com>
- <20250312-athletic-cockle-of-happiness-e88a3a@krzk-bin>
-Content-Language: en-US
-From: Ayushi Makhija <quic_amakhija@quicinc.com>
-In-Reply-To: <20250312-athletic-cockle-of-happiness-e88a3a@krzk-bin>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6BtJ98pGmkmWzLj0xA-sndcThuicNPoa
-X-Authority-Analysis: v=2.4 cv=DNSP4zNb c=1 sm=1 tr=0 ts=67d2cb2a cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=UXIAUNObAAAA:8 a=COk6AnOGAAAA:8 a=2y1opo3hKBB_uxp-C3oA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=bFq2RbqkfqsA:10 a=a1s67YnXd6TbAZZNj1wK:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 6BtJ98pGmkmWzLj0xA-sndcThuicNPoa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-13_06,2025-03-11_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1015 phishscore=0 malwarescore=0 mlxlogscore=999
- priorityscore=1501 mlxscore=0 spamscore=0 bulkscore=0 impostorscore=0
- suspectscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503130095
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f613b5f120a4dde63d28b0a2e0186dcb8dbf57ae.1741849323.git.mazziesaccount@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 3/12/2025 5:18 PM, Krzysztof Kozlowski wrote:
-> On Tue, Mar 11, 2025 at 05:54:42PM +0530, Ayushi Makhija wrote:
->> Add anx7625 DSI to DP bridge device nodes.
->>
->> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 208 ++++++++++++++++++++-
->>  1 file changed, 207 insertions(+), 1 deletion(-)
->>
+On Thu, Mar 13, 2025 at 09:18:00AM +0200, Matti Vaittinen wrote:
+> There are a few use-cases where child nodes with a specific name need to
+> be parsed. Code like:
 > 
-> So you just gave up after one comment? Context of every email should be
-> trimmed, so if it is not trimmed means something is still there. I know
-> there are reviewers who respond with huge unrelated context, but that's
-> just disrespectful to our time and don't take it as normal.
+> fwnode_for_each_child_node()
+> 	if (fwnode_name_eq())
+> 		...
 > 
-> <form letter>
-> This is a friendly reminder during the review process.
+> can be found from a various drivers/subsystems. Adding a macro for this
+> can simplify things a bit.
 > 
-> It seems my or other reviewer's previous comments were not fully
-> addressed. Maybe the feedback got lost between the quotes, maybe you
-> just forgot to apply it. Please go back to the previous discussion and
-> either implement all requested changes or keep discussing them.
+> In a few cases the data from the found nodes is later added to an array,
+> which is allocated based on the number of found nodes. One example of
+> such use is the IIO subsystem's ADC channel nodes, where the relevant
+> nodes are named as channel[@N].
 > 
-> Thank you.
-> </form letter>
-> 
+> Add helpers for iterating and counting device's sub-nodes with certain
+> name instead of open-coding this in every user.
 
-Hi Krzysztof,
+LGTM,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+I haven't checked the rendered kernel-doc, though.
 
-Thanks, for the review.
-
-I apologize for any confusion or oversight regarding the recent review comments.
-Thank you for your patience and understanding. I value your time and feedback and will work to improve the review process.
-
-Below are the comments on the patch 7 and patch 8 of the version 1 of the series, that I have addressed in version 2 of patch 7 of the series.
-Let me know, If I did some mistake or if you have any other suggestions.
-
-Comments from Konard:
-
-comment 1
-
-> -	pinctrl-0 = <&qup_i2c18_default>;
-> +	pinctrl-0 = <&qup_i2c18_default>,
-> +			<&io_expander_intr_active>,
-> +			<&io_expander_reset_active>;
-
-Please align the '<'s
-
-comment 2
-
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <98 IRQ_TYPE_EDGE_BOTH>;
-
-use interrupts-extended, here and below
-
-These above two comments were from the konard in patch 7 in version 1 of the series.
-I have addressed both the above comments in the version 2 of patch 7 of the series.
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-
-Comments from Krzysztof:
-
-comment 1
-
-> +
-> +		dsi0_int_pin: gpio2_cfg {
-No underscores, see DTS coding style.
-
-I have corrected the above comment in the version 2 of patch 7 of the series.
-
-comment 2
-
-> +
-> +			anx_bridge_1: anx7625@58 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-In this I have changed the node name as anx_bridge1 : anx7625@58.
-Let me know, if I did some mistake or you have any other suggestion over the node name.
-
-I have took the reference from below:
-linux/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi at 629c635eafbaf18260c8083360745c71674640d2 · torvalds/linux · GitHub
-
-comment 3
-
-> +				enable-gpios = <&io_expander 1 0>;
-> +				reset-gpios = <&io_expander 0 0>;
-Use proper defines.
-
-For this above comment,  I have changed above lines into below lines in patch 7 of version 2 of the series.
-
-> +				enable-gpios = <&io_expander 1 GPIO_ACTIVE_HIGH>;
-> +				reset-gpios = <&io_expander 0 GPIO_ACTIVE_HIGH>;
-
-comment 4
-
-> +
-> +			anx_bridge_2: anx7625@58 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-In this I have changed the node name as anx_bridge2 : anx7625@58.
-Let me know, if I did some mistake or you have any other suggestion over the node name.
-
-I have took the reference from below:
-linux/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi at 629c635eafbaf18260c8083360745c71674640d2 · torvalds/linux · GitHub
-
-comment 5
-
-And as Rob's bot pointed out: insufficient testing. :(
-Please be 100% sure everything is tested before you post new version.
-You shouldn't use reviewers for the job of tools, that's quite waste of
-our time.
-
-Fixed the  above warning from DT checker against DT binding in patch 7 of version 2 of the series.
-
-
-Comments from Dmitry:
-
-comment 1
-
-Missing dp-connector devices. Please add them together with the bridges. 
-
-comment 2
-
-Please squash into the previous patch. It doesn't make a lot of sense separately.
-
-These both above commented from Dmitry I have addressed in the version 2 of patch 7 of the series.
-I have squash patch 8 into patch 7 of version 1 into patch 7 of version 2 of the series.
-
-
-Thanks,
-Ayushi
 
