@@ -1,138 +1,203 @@
-Return-Path: <devicetree+bounces-157173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D85DCA5F28E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 12:38:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F4BA5F29A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 12:41:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4148E3B5492
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 11:38:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 157873B9B08
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 11:40:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08AF31F151E;
-	Thu, 13 Mar 2025 11:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777D4266B57;
+	Thu, 13 Mar 2025 11:40:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jF3NW0hy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jsq/XEy9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637AA1EF09A;
-	Thu, 13 Mar 2025 11:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDD11EF09A;
+	Thu, 13 Mar 2025 11:40:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741865931; cv=none; b=F/y4yFJIA3ZGifjLUQnZ/l3mNeogaK2I6V7dCr2B/nDi8kQdQ0zx+8TPGGt+q8jLPoDA1VSycYOMMoZ2e1rgANtLsbNwQOOLpK244ZI+HM8xq3B9hI5gIXj70bKnyv9vweGlZTQoEH0Rd2q0+6m0VGGJfrnxDKoiQygwYsb12mI=
+	t=1741866049; cv=none; b=UfecI9WnyjJ3UTNU1G01Tuut4JXVOJMhXSpAtI0REc73UkZEi+pww+gRhYUD3CquxWTFUdJ1puydYElpp/G8byjnSDv3URCWaDE/v8vMdHKl0NUkfGtTy9lTQmAO6X5oQzFFl7U0mMZJRAfR+P+g/INvedEDIr3qlB1nOtt8loA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741865931; c=relaxed/simple;
-	bh=6oTKfy/J+J6IzkSpIwcPZtbAX5OC7IG3aP//uqOWEl8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UZulMP7cgCLZQhOmyqwNoXQPvjexoMRWE+zNTa1OvpBWW4FUYaJMDDzniu094C4BVEoOrnU/k501ib9hl1x7vWDyy4nmjJNYYowunYkZTYPhpxN77L/AwQSSlv9gjiuEzhYNj3bTE5p02a3nq4uozh9piobfMpx4r59a7brS5c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jF3NW0hy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52DAviKr017140;
-	Thu, 13 Mar 2025 11:38:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tpZHtsTIaIyGZpKJey1xVLdsGwoO7lR4gGew4KcOl3M=; b=jF3NW0hyXF8Gg3b1
-	d1TPHFuSyU8xw7GqVG/hFjQVn3Ykjp0zDoMf+4vcIm4/Ya9iVm4DH/H1e5Q86EeJ
-	q9TC0pQsiSnf/RlBExwQkSwxTmRuCnYAE11zq/L2h/n+nB0aGqvw7sw8XgJZ5Ami
-	KyYnEvQ0JdnzEyu3635+OyUaVWdCLOw86yHRK9UEY+I4BKWHWfd1RY23+FjI/eLJ
-	PPI0zfYS+jPSg8Ai1Yd3UpfPRLXCAz2a9x+M5wEHN9+4dTh29AX/66o8jK45INsB
-	KlF9TN+btHXWoq0tqzh4jDGBmiHeWvHroHZDUkYhGyFZDtQBbD3PquO2qO+k3Zak
-	I69fZQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2nwqyp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Mar 2025 11:38:45 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52DBcifs007648
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Mar 2025 11:38:44 GMT
-Received: from [10.217.216.178] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Mar
- 2025 04:38:40 -0700
-Message-ID: <da67d3a1-e3df-4d01-a052-8c906172c51c@quicinc.com>
-Date: Thu, 13 Mar 2025 17:08:38 +0530
+	s=arc-20240116; t=1741866049; c=relaxed/simple;
+	bh=q7TtbufYe4DY8Qdh09Vs3wNFHZmInyzpvykuaGqfM7M=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=ie5k3vWIEKe4toA5rXD7bvBTItVZmqeGwtZoRtGDf6LQOZE6KVwuSmB8yxoBdfGdh55QLYlq6pbMGKPrN6Fy1+nC5c9/qzoKeMMatWepfcd4waz0Jyguz0JfqOD+LxC5Ao+ZyFhDImdWgPgo9c+ZaTVUe02/lvqrvPnaBicgFW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jsq/XEy9; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5499d2134e8so1056384e87.0;
+        Thu, 13 Mar 2025 04:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741866045; x=1742470845; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UYzITn99FYNV7TM20mtLBPXFKmeuxgoI/hlAaZHsv3k=;
+        b=Jsq/XEy9qTCW6HPLcxYAfb9csqKiD4XPpFX5zNmYTBRrHLtN+0EgeToCl5KlavnPlY
+         DEyueS8xbicRT3HqFbhQNg/RUFgBqZ9PMuRfNkNa82Q5l0/4JsFFdr3EvpdCRfiCOF/E
+         2RWNjMC484ZgIKypntNw/0MWC1sFcOXcTd5W62epBE4O9YuSB87C39/6wwgfci4lLThd
+         ZOvE/bd0Sv8AsDLB++vertMdKs1KIiMiNflzO9MWXaTToAhyKsD5yNtwiPMwud1/glHO
+         ba+gcpZGUtJ7rDQ9o9YgKh/41g9MGx+RmMAITnwtTP/FjgRP6uXmn5lesxgqIIKjcEhs
+         Fv2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741866045; x=1742470845;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UYzITn99FYNV7TM20mtLBPXFKmeuxgoI/hlAaZHsv3k=;
+        b=IW4wc49GIka+iGjnop7Ao8T1KmBHHnVbGdLj42oVLQJ7tPDvXB2FQPmsmjHTCh30uT
+         kz7gWyujjDidDUoZrWqsKLiwVsNpuHY2vFAko/wWyVW6YddqnK6IZI4uQt/vKm4CSjFY
+         PlPEDKPOsiOc7KHjJl96/P8RAwMz1VOl8EOshsbCqjHwL6HexbpX1IbDEcmDMMzQFWAl
+         Lb5LqIhMjjuhBbli4oVca8VREL7ds/yB1zv+2HZevJSWoWSUE3Sb62NPuTdnzQ91qb/6
+         jeHuT5HemX1dhdwJTsr+bSAMmqSIdlTJ/mu1SHbcxx3eYsODUiCPUmqt6PxfhHIlhCcU
+         1MLA==
+X-Forwarded-Encrypted: i=1; AJvYcCUeoN1UAuEsx7DVGz1BBoc1bucsLf+3t7rDGCs0TZ7ChnAQxhNGiHqFgi3IHOyRQ+fQeOfHoDsMdJnX@vger.kernel.org, AJvYcCWYXd0ZDk+oHzaDxDXuwaOv1DdGwKS9hx1UEVDotUyKCWrZxrOFfZtws9KK8feUJM9I47D/OGAS5SrBi5zB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/MTMxSgCPMlcgE3Uyqju5EXuUdMToR8dK/OpYrsmdOcOjjnYv
+	/d0QZgGPAfFqvnbCbQwUSHpBKQ8a+uptUGSdXSk/JizS53SCsqs2
+X-Gm-Gg: ASbGncvSXiXJtPaThsUGJbKBOcx9FJ+2G2yvnN9eTkoTS/tqCsZbX/q9yK3FTvq7Qi0
+	BXR/r7ZnHdqRxNqfLy103yIOJWI/4iuBCUqucqdXu7fo8utYuC6VZp1kjDmrBlTOnCXyYBIeh6Y
+	txH/kvKtiERQc5pNCSg7sYXBvWevKdHa3/e4IcJot3lh8MddYM8tAbSoAjBdKF5xbhhLmjYkvt+
+	I0UYAs4oLWyG6uHp2ZpjJ4SUPPWf3cU/5szf/WflM9/ZT8u1VOLop9QNw0dspeKuusd7JNJzUuZ
+	mxjdAxnIhIqREPmC/ozGiay+oqKpYFzQBqC+qATDPoX8COKr2L0=
+X-Google-Smtp-Source: AGHT+IHskF1RABXC1t3A3GJ0pYP3k9gCjDQL0O3SzmXfqcJulGUDCvuu9Lx5zuiYx6QH/HSR7x+b/A==
+X-Received: by 2002:a05:6512:2396:b0:549:5769:6adb with SMTP id 2adb3069b0e04-54990e2bfafmr8423957e87.5.1741866045150;
+        Thu, 13 Mar 2025 04:40:45 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba8a73ffsm181324e87.216.2025.03.13.04.40.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Mar 2025 04:40:44 -0700 (PDT)
+Date: Thu, 13 Mar 2025 13:40:32 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 00/14] Support ROHM Scalable PMIC family
+Message-ID: <cover.1741864404.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] arm64: dts: qcom: sm8550: camcc: Manage MMCX and MXC
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-CC: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 5qIQE2Tk5-s1TETCF_of3rF44pNV0l16
-X-Authority-Analysis: v=2.4 cv=Q4XS452a c=1 sm=1 tr=0 ts=67d2c3c5 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=CqDDRk0MYutMoWn3TPMA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 5qIQE2Tk5-s1TETCF_of3rF44pNV0l16
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-13_05,2025-03-11_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=947 adultscore=0
- lowpriorityscore=0 mlxscore=0 clxscore=1015 phishscore=0 malwarescore=0
- spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503130092
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Xu+pkgG4tCokwqcd"
+Content-Disposition: inline
 
 
+--Xu+pkgG4tCokwqcd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 3/4/2025 4:25 AM, Vladimir Zapolskiy wrote:
-> It was discovered that on SM8550 platform Camera Clock controller shall
-> manage MMCX and MXC power domains, otherwise MMIO access to CCI or CAMSS
-> breaks the execution, the problem has been discussed with Jagadeesh at
-> https://lore.kernel.org/all/a5540676-9402-45c4-b647-02fdc2b92233@quicinc.com/
-> 
-> Since 'power-domains' property becomes generalized, Rob asked to remove
-> its description, which is done in the first patch of the series, see
-> https://lore.kernel.org/all/20240927224833.GA159707-robh@kernel.org/
-> 
-> Vladimir Zapolskiy (2):
->   dt-bindings: clock: qcom: sm8450-camcc: Allow to specify two power domains
->   arm64: dts: qcom: sm8550: Additionally manage MXC power domain in camcc
-> 
+Support ROHM BD96802, BD96805 and BD96806 PMICs
 
-Hi Vladimir, as we are preparing to submit the code for multi-power
-domain support for the clock controller in our series
-(https://lore.kernel.org/all/20250306-videocc-pll-multi-pd-voting-v2-0-0cd00612bc0e@quicinc.com),
-there has been a request to incorporate the CAMCC-related changes as
-well. If you are okay with us including this series changes(maintaining
-your authorship) in our series, then we can integrate them and address
-any comments in our next submission.
+The ROHM BD96801 [1] and BD96805 [2] are almost identical PMICs what comes
+to the digital interface. Main difference is voltage tuning range.
+Supporting BD96805 with BD96801 drivers is mostly just a matter of being
+able to differentiate the PMICs (done based on the devicetree
+compatible) and then providing separate voltage tables.
 
->  .../devicetree/bindings/clock/qcom,sm8450-camcc.yaml          | 4 +---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi                          | 3 ++-
->  2 files changed, 3 insertions(+), 4 deletions(-)
-> 
+The ROHM BD96802 [3] is a companion PMIC which is intended to be used to
+provide more capacity on systems where the BD96801 alone is not
+sufficient. Startup sequence of these PMICs can be synchronized in
+hardware level, and there seems to be some mechanisms which allow
+delivering the companion PMIC (BD96802) status to the main PMIC
+(BD96801/BD96805). This patch series does treat the companion PMIC(s) as
+individual PMICs and allows using them from software point of view as a
+stand alone ICs. From the digital point of view, the BD96802 is a subset
+of BD96801, providing only buck1 and buck2 regulators. Please see the
+data sheet
+
+The ROHM BD96806 [4] is similar to the BD96802, except that it does also
+provide different voltage tuning ranges.
+
+This series adds basic voltage monitoring and control as well as a
+watchdog support for these PMICs using the BD96801 drivers.
+
+Similarly to the BD96801, these PMICs too have a few configurations
+which can only be done when the PMIC is in STBY state. Similarly to the
+BD96801, doing these configurations isn't supported by the driver. The
+original BD96801 RFC [5] driver should be able to cover those
+configurations, if modified to support these models.
+
+[1]: ROHM BD96801 data sheet:
+https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_re=
+gulator_system/product_brief_bd96801qxx-c-e.pdf
+[2]: ROHM BD96805 data sheet:
+https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_re=
+gulator_system/product_brief_bd96805qxx-c-e.pdf
+[3]: ROHM BD96802 data sheet:
+https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_re=
+gulator_system/product_brief_bd96802qxx-c-e.pdf
+[4]: ROHM BD96806 data sheet:
+https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_re=
+gulator_system/product_brief_bd96806qxx-c-e.pdf
+[5]: Original BD96801 RFC:
+https://lore.kernel.org/all/cover.1712058690.git.mazziesaccount@gmail.com/
+
+---
+
+Matti Vaittinen (14):
+  dt-bindings: regulator: Add ROHM BD96802 PMIC
+  dt-bindings: mfd: Add ROHM BD96802 PMIC
+  dt-bindings: mfd: bd96801: Add ROHM BD96805
+  dt-bindings: mfd: bd96802: Add ROHM BD96806
+  mfd: rohm-bd96801: Add chip info
+  mfd: bd96801: Drop IC name from the regulator IRQ resources
+  regulator: bd96801: Drop IC name from the IRQ resources
+  mfd: rohm-bd96801: Support ROHM BD96802
+  regulator: bd96801: Support ROHM BD96802
+  mfd: bd96801: Support ROHM BD96805
+  regulator: bd96801: Support ROHM BD96805 PMIC
+  mfd: bd96801: Support ROHM BD96806
+  regulator: bd96801: Support ROHM BD96806 PMIC
+  MAINTAINERS: Add BD96802 specific header
+
+ .../bindings/mfd/rohm,bd96801-pmic.yaml       |  10 +-
+ .../bindings/mfd/rohm,bd96802-pmic.yaml       | 101 ++++
+ .../regulator/rohm,bd96802-regulator.yaml     |  44 ++
+ MAINTAINERS                                   |   1 +
+ drivers/mfd/rohm-bd96801.c                    | 549 ++++++++++++++----
+ drivers/regulator/bd96801-regulator.c         | 447 ++++++++++++--
+ include/linux/mfd/rohm-bd96801.h              |   2 +
+ include/linux/mfd/rohm-bd96802.h              |  74 +++
+ 8 files changed, 1047 insertions(+), 181 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic=
+=2Eyaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd9680=
+2-regulator.yaml
+ create mode 100644 include/linux/mfd/rohm-bd96802.h
 
 
+base-commit: 7eb172143d5508b4da468ed59ee857c6e5e01da6
+--=20
+2.48.1
+
+
+--Xu+pkgG4tCokwqcd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfSxC0ACgkQeFA3/03a
+ocWaLggAkBdvhGSQ9McZHGZP8IzxA2sVUFBJcBXqPuYi/7WXlf/Uj2xR6qvN168f
+2naHNEmM3LmCHtUXJxvdfJPsMt/Aa2/mF+6VEYKRwTolQBhKp9aNK7POuDA+pNNp
+qsJC1etHjBB5850Vbv6hTu97vVItMF3GwF9Qdc42ocUNj/mldVDhm3kam6esAgy/
+PphspALZxY5yNJN6FuvdFTTfQNZm4EbTnnvwjMhusOC5Usdkuyv9CsetcCO/FPGq
+uk8QirRAV7YBhB39EZgD+5g6eE1NjffdcGdpT7EULR9eLgGCkbvMY7WBBIAx00OU
+zj/xXKHR3atBE42bDCmBj0WkGQQLwQ==
+=AZgR
+-----END PGP SIGNATURE-----
+
+--Xu+pkgG4tCokwqcd--
 
