@@ -1,151 +1,112 @@
-Return-Path: <devicetree+bounces-157370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D11AA604BB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 23:51:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1ADA604C0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 23:53:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1C2F7A3E95
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 22:50:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0407D1753F7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 22:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4994E1F8755;
-	Thu, 13 Mar 2025 22:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC391F892D;
+	Thu, 13 Mar 2025 22:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uo+ZoH8D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OR4lUDqG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222F11F791E;
-	Thu, 13 Mar 2025 22:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90FD1F585F;
+	Thu, 13 Mar 2025 22:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741906271; cv=none; b=FY3hyE5ndV6W419sMuDDtHqTE8BVjIStkRD8USFonBltm33GmSDIhqKnTgTiOdBWDR52wO3q3vA39cHffM/ySqSrPFmZIqa6S76NMz7W2uh5nq8fjVjKH4VV7iXwk2tEcifKxIj93e4//27GeJ9+ln9eIwze5wsgcZZCXbS/+3U=
+	t=1741906428; cv=none; b=YeXfXfXgsddTI/FeOU6QuglUSDUXXFrSDgPd06YaHvhucAUIfFtRU/IGnmduUGtEhS3+/2Qt50k8n1bo0GGh6OEcXbxddrJUmq1tXSnS87OpqLNCgLChIM0el1IS9vZ7/LKRpF2Cm+SSG4J3JRu0xuM6fuCr8Qu378PLx1Z6TsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741906271; c=relaxed/simple;
-	bh=k+D1DYsJJtPHtdNWmrJpXnR7aYZC7cxXGtQBxIHdhTc=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=q90uFngvOKvMbxRR9RW5SQDB32DaX0sDLQ6ahrgsCA0x8TUrzvHO3wID5GKLxMNSlZd6e+Vgfgje8hICucj9QguKabVpAAdZG6Mw4IoJXx8kZN7kkqGbVM9PHxPKdKE7nMQ5u5U3dN7Q/KLY/o4FLpEEPs6FGm/V+ahujZP1Wxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uo+ZoH8D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B44AC4CEDD;
-	Thu, 13 Mar 2025 22:51:09 +0000 (UTC)
+	s=arc-20240116; t=1741906428; c=relaxed/simple;
+	bh=0Pf79xoJpzsJKbZvjRgGpD+kGcnppedrNyCyTFyrZ+4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RauABJMuiuCPJdT9QzRWJtd+M5lL9rnaGEv+4Te6Ex9AfY7wmZu4w/1id418dtgC9U/1HSgdtuw7LUTJq8IWim2A5CkGdeOaHAw7QuxN4AxiouQiczr0nMhUAOCzrrvW40KaC4/79Y8VzPlxV4MdrWKmWJ77vx9cS/9JvZpCaJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OR4lUDqG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF321C4CEDD;
+	Thu, 13 Mar 2025 22:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741906269;
-	bh=k+D1DYsJJtPHtdNWmrJpXnR7aYZC7cxXGtQBxIHdhTc=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Uo+ZoH8D60bULMR/Z7T4I8xA3fsPkSjE5yfqOon/YjEcGXxMvg7YZb06xfS22P2Gt
-	 cLUOdfmMfbFprxJw3OQVHZw9qNX9TyjM5ar7vOJmvWE8QXKqRVcFN9DXnhMn0fZCby
-	 9LrWxJTFtMl90r4z2tcD5QX7wNpCFjZDRG0KGYLqnT56LJGqH+BQDqXArzCp2D6RlN
-	 HYwKa77PcuqPXFopfYW9pjtBvQkpMoK+GBmriMVnC9MJOOAudxtawlUXYQU5xPYp6A
-	 iKed2qW1JaTbayoeuKvba2liRmwE2dBV9Xp/MGwkmytGzpGwn7aWht1DKAyxZolXFU
-	 d6t1jctx8+5CA==
-Date: Thu, 13 Mar 2025 17:51:08 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1741906428;
+	bh=0Pf79xoJpzsJKbZvjRgGpD+kGcnppedrNyCyTFyrZ+4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OR4lUDqGKa8K11KB9m04s8Fltfpsuu/T7KPfj6The4utms9vZKgeAaZOrZcPRyJgO
+	 IDix8/iIo8LVI6euP+cKYxMiGyI9Ygwe46YdK90uIao5U9+ZW1Ey32A4q3/1wIpZ0b
+	 8HGjfwW5hWsAC6fbUMxfZ1mByvJ7y91UwwbJ8pDPd8qDxCj7HqY/yl6y0MG0AI3nu6
+	 a2Vn93UlvMjpV5++L1cucgJIZxb5KFINYniX+9HalRFdFiyGOSi5ewERbFoCCejx8O
+	 vKQTe6l0gz74E+BRUkQsY8S2sclChItyN+BA0MpbADrXjGTa/1sD4QKRm0A5ifS3ng
+	 EX0rET3Q++fkw==
+Date: Thu, 13 Mar 2025 17:53:44 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Joerg Roedel <joro@8bytes.org>, 
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Robert Foss <rfoss@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Wesley Cheng <quic_wcheng@quicinc.com>, Christian Marangi <ansuelsmth@gmail.com>, 
+	Rohit Agarwal <quic_rohiagar@quicinc.com>, Kyle Deng <quic_chunkaid@quicinc.com>, 
+	Vinod Koul <vkoul@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	linux-usb@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 03/11] dt-bindings: power: qcom,kpss-acc-v2: Add MSM8916
+ compatible
+Message-ID: <wccjda6emgvsgn3t5qj7kfsih2stcelnvwu45qok4bbln5kk74@drqp7wrrges4>
+References: <20250306-topic-dt_bindings_fixups-v1-0-0c84aceb0ef9@oss.qualcomm.com>
+ <20250306-topic-dt_bindings_fixups-v1-3-0c84aceb0ef9@oss.qualcomm.com>
+ <a7d76aff-0dc2-4b0e-9ee8-f433d8e745f6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Nicholas Piggin <npiggin@gmail.com>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Richard Weinberger <richard@nod.at>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Crystal Wood <oss@buserror.net>, 
- Naveen N Rao <naveen@kernel.org>, devicetree@vger.kernel.org, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- linuxppc-dev@lists.ozlabs.org, Frank Li <Frank.Li@nxp.com>, 
- linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Conor Dooley <conor+dt@kernel.org>
-To: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-In-Reply-To: <20250313-ppcyaml-elbc-v4-4-55903722d9ea@posteo.net>
-References: <20250313-ppcyaml-elbc-v4-0-55903722d9ea@posteo.net>
- <20250313-ppcyaml-elbc-v4-4-55903722d9ea@posteo.net>
-Message-Id: <174190626852.565.9247018798608897062.robh@kernel.org>
-Subject: Re: [PATCH v4 4/4] dt-bindings: memory-controllers: Convert
- fsl,elbc to YAML
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a7d76aff-0dc2-4b0e-9ee8-f433d8e745f6@linaro.org>
 
+On Wed, Mar 12, 2025 at 04:12:14PM +0100, Krzysztof Kozlowski wrote:
+> On 06/03/2025 19:11, Konrad Dybcio wrote:
+> > From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > 
+> > MSM8916 seems to reuse the same hardware as MSM8974 and friends (for
+> > whom this binding document was created). Add a new compatible for it.
+> > 
+> > Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > ---
+> >  Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml | 4 +
+> 
+> 
+> Folks, please merge Ryan work instead...
 
-On Thu, 13 Mar 2025 22:35:47 +0100, J. Neuschäfer wrote:
-> Convert the Freescale localbus controller bindings from text form to
-> YAML. Compared to the .txt version, the YAML binding contains a new
-> usage example with FCM NAND flash, and a full list of compatible strings
-> based on current usage in arch/powerpc/boot/dts/.
-> 
-> Note that the both the compatible strings and the unit address format
-> are kept as-is, for compatibility with existing kernels and device
-> trees, as well as unit address readability. This results in dts
-> validation warnings:
-> 
->   Warning (simple_bus_reg): /example-0/localbus@f0010100/board-control@1,0:
->   simple-bus unit address format error, expected "100000000"
-> 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> ---
-> 
-> V4:
-> - no changes
-> 
-> V3:
-> - move this patch after the GPCM/FCM patches to dtschema/dtc warnings
->   due to missing bindings for fsl,elbc-gpcm-uio and fsl,elbc-fcm-nand
-> - add "simple-bus" again, for compatibility with existing DTs/drivers
->   based on discussion with Crystal Wood and Rob Herring
-> - fix fsl,pq2-localbus compatible properties based on mgcoge.dts / ep8248e.dts
->   (was missing "simple-bus")
-> - add board-control (bcsr) example again, now using the compatible
->   string listed in Documentation/devicetree/bindings/board/fsl,bcsr.yaml
-> - remove interrupt-parent property from example
-> - rework the commit message
-> 
-> V2:
-> - fix order of properties in examples, according to dts coding style
-> - move to Documentation/devicetree/bindings/memory-controllers
-> - clarify the commit message a tiny bit
-> - remove unnecessary multiline markers (|)
-> - define address format in patternProperties
-> - trim subject line (remove "binding")
-> - remove use of "simple-bus", because it's technically incorrect
-> ---
->  .../bindings/memory-controllers/fsl,elbc.yaml      | 158 +++++++++++++++++++++
->  .../devicetree/bindings/powerpc/fsl/lbc.txt        |  43 ------
->  2 files changed, 158 insertions(+), 43 deletions(-)
+I'm not sure which "folks" you're referring to and neither is
+get_maintainer (well it points to Rob and yourself).
+
+> I keep carrying this patch for
+> half a year:
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Where are you carrying these? Are there any other patches on your list
+that have fallen through the cracks?
 
-yamllint warnings/errors:
+> https://lore.kernel.org/all/20240710155226.130086-1-rayyan.ansari@linaro.org/
+> 
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:29.23-34.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/flash@0,0: simple-bus unit address format error, expected "0"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:36.31-39.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/board-control@1,0: simple-bus unit address format error, expected "100000000"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:41.31-46.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/simple-periph@2,0: simple-bus unit address format error, expected "200000000"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:82.23-89.15: Warning (simple_bus_reg): /example-1/localbus@e0005000/flash@0,0: simple-bus unit address format error, expected "0"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:91.22-97.15: Warning (simple_bus_reg): /example-1/localbus@e0005000/nand@1,0: simple-bus unit address format error, expected "100000000"
+I'm picking Ryan's patch through the Qualcomm tree...
 
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/display/ssd1289fb.txt references a file that doesn't exist: Documentation/devicetree/bindings/powerpc/fsl/lbc.txt
-Documentation/devicetree/bindings/display/ssd1289fb.txt: Documentation/devicetree/bindings/powerpc/fsl/lbc.txt
+Regards,
+Bjorn
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250313-ppcyaml-elbc-v4-4-55903722d9ea@posteo.net
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> Best regards,
+> Krzysztof
 
