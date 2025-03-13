@@ -1,52 +1,80 @@
-Return-Path: <devicetree+bounces-157136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2282CA5EF00
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 10:07:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF7A6A5EF12
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 10:09:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C311F17D328
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:07:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47357168648
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C83B264A60;
-	Thu, 13 Mar 2025 09:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA20264623;
+	Thu, 13 Mar 2025 09:08:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HenPTuLb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wgzPQA3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A066263F52;
-	Thu, 13 Mar 2025 09:06:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3802A2641FD
+	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 09:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741856789; cv=none; b=Z5Hq3iY0sSqVyUPxKwb8/21G4Cr2a1VB0V/fSyFho9AIDaPUEH7OyOqLwkpZHpckwiHpmKAxqsJXZUTZLCce32syvZORiAmJyeH2oL6Lqxs4gECPTbKNE98rIG44t2Scs1L6NmBf1AiB2N1kg22ikh/dBfVkJI8a1CMLuZnOODE=
+	t=1741856914; cv=none; b=W22KBK+/QCTG23IQ64xM07CbViWXUnnXrVk2qq6wF7ocTb80QRueqIR6tEJQFtj2q0wC491XX/VPRcFSuFEqEd0MyYwGNVZA2EH3UJ5qS/+ZYpZSAVveOu/Z02FvbMsLhdKCSqu/ErthHAbgy9WTW8jVTD353qVhvL7xh2oTYm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741856789; c=relaxed/simple;
-	bh=YXiUli/WnPSiXJRM/EVl/O2uwm9SmmG+SyqZj8ttVLw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DLZ3aBL8iivbvpuvXXhEyOxV4ell7jmx1kN2/167/d9oVPKrVNpJ1D05ryAzT4TDWFZ8fnosE8/41Dta9ybh6dLNbzB8NJxi2CwyVsVEcup5Yvg8I/hLVs5hWlZKs/CrJ58NtCNt6r907is8MOY4jnkMkjb80U/KQna4dI9eehg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HenPTuLb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 63062C4CEF0;
-	Thu, 13 Mar 2025 09:06:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741856788;
-	bh=YXiUli/WnPSiXJRM/EVl/O2uwm9SmmG+SyqZj8ttVLw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=HenPTuLbM1iACB9VGTK+amOxvGeph8CSVO7GVyZudDFpdzp8Q2pYFXDxbr2yBJ92c
-	 cMfNOP6mCi52+ii9BtvrfjBnRDA6CMWgY7kI0un+8/nL6JbsU4oDBG4stL/9MO1jpb
-	 rXHilE+bRaC5Q2yOg6kE5Bg+AO8wWm5r82V67dw7sktcu1vMrCEy3rPWdm7+lyMg26
-	 1Qpu9oXvlVTC8DewKcp/Dnvrf1tO0dCtvz63gqMFBCfE1cdBu0Xij8RAPGFB58e5+u
-	 bjAE0MTXCDB03X3jsTJVb032vD6FfNcgd2tP7S5nuDK4iMty7SQ72UjrddLTJGSXaX
-	 iRyK6rLpSb79A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E23AC28B2E;
-	Thu, 13 Mar 2025 09:06:28 +0000 (UTC)
-From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Date: Thu, 13 Mar 2025 17:05:36 +0800
-Subject: [PATCH v4 3/3] arm64: dts: amlogic: Add A5 Reset Controller
+	s=arc-20240116; t=1741856914; c=relaxed/simple;
+	bh=PbxNz4j52RrqJPz3GT+LV4bF8qpe/4u+tr9NI95kvIA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bZ0xXLgYdV871b7SMkQL1RPYGvugOvKyguYi1/v9mUWRGg0RlsJmbszcsnlmNGaX5dyoVp4IDaQXRUG3S0XRojp9SeceJYb75vcGfzvEj/lgchV7FAaixIcayY0ssh2Mju8M8b7bV4kB7iAyv3ej3IEdkJHx4mWg+d/CMjqAEM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wgzPQA3h; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-391295490c8so33567f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 02:08:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741856909; x=1742461709; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zn1R+ATmllHTaRGwoGw1k9ifxjjFI13zCAnW3ZbN+Lc=;
+        b=wgzPQA3hc7pjyxw1zYkpD0WCSoapMWYjrJBI+Y6WI/k9X5V1VJStS7kv7NaI9W8Ekv
+         fURVQiK2LWNI/OKQOs9fi1B3iUDP8udB1oJvnWbfdta+5h3upi4nWt2t4Kz7WMDaOGJu
+         S8LF3IGdS+84C7zU5QREFduh2DU5cjgDa9NEVYRNBypnUEspBndLe/jMm53DZdZDFZCu
+         UvE4Q9GujOjFOTZjiZpjzPtOVEAzqzZ6dD5vPJVNnVN0a81JQRHGwagMOtCzLJbVar1/
+         41qaa8aUB37TspDzOaQAUgb5R6v4fE4r/1rUoBwtL6yM3lGN6NCh8JYnDc4kLMmSic/X
+         oFVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741856909; x=1742461709;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Zn1R+ATmllHTaRGwoGw1k9ifxjjFI13zCAnW3ZbN+Lc=;
+        b=cbkjhbPO9i2kRCLEPwst3qt+sWP9M5xYQOBWw1STBPKAkilDC5V5p0K8K/dX4r+QV6
+         znc88HovfMegpOx4/FhqHVipNP49eQkGT/plT523kuU31cSpCiH2roOkUMITZvCELVnK
+         yjkt4X4iBBBY5Er/OpynIO4oNoyzE9DI0fUCh1hMwKnRDHGGtD/soqlwugyDBs+27E4k
+         zrumT40rSJdjEU5wt6l4uKJWEkq0zZrx8RhvbsO+zc0QfuHGpH4prsmMvqXSX2BTsyP2
+         f4ehW5pnOX8YfkZjuf9HC+L/8FRmDtpk/xI8pGcpjEW5tK+QYTsI/TQDIcoPmDCkjlc8
+         2iuw==
+X-Forwarded-Encrypted: i=1; AJvYcCXk2EbdSb+1/Vpw1YygUzdt2eyMAw0SvAEeKgEIV2GdeXJfHkn99MSJpiMk2DTdKEvR+N2xcsNru9HH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvxB3cUWhJax1nrFMBHL2bVFTOaqXF/0izcmRL6VcajXyWsYIb
+	G+1jpvpVMha1ymoFS0+apHZqT/BBwuythti2riA6uiwk3CPvcxWxnwYJSah5gts=
+X-Gm-Gg: ASbGncvpfp+CvkzAIaHWuKxN4k5FQvwlOLaErsK3NtudGVUtkGLAs5jYknv8DmyWvRk
+	RkHwFhA5QZbgFdbXUsCtfnIsJkyZY4khJLgHTa8vd+REfa34hFdnE4/sDNONv92oQLZLDtKs2Pk
+	kAHpPdwDJsUjg0AZGHFdKX0nRsoPtmBNULwty5/KdmUamtqR4EuJ9EdZFIqMGqhJSXUwq5m4smJ
+	HwmsD1SS5kN0uKpT2NiXP135uXY2MNxqky1EpAb2zNVEZuojuTjtsDKuzBVfPtCyyKvWvMiRAzp
+	9E2Oe02nb5LI5kMRwrYCCmO9BdIRIxAYMgZGlXYTo0wYjCmRASmzFsNhWcraVn/aSZcoWg==
+X-Google-Smtp-Source: AGHT+IFoNWWC1jaAyf8PqpUOd5VBK1Mdfej/CVTPRp+XRscWnB9HJyYphIssmDKBjrAxKD2HrwinzA==
+X-Received: by 2002:a05:6000:1b92:b0:394:d0c3:da7a with SMTP id ffacd0b85a97d-394d0c3dbb3mr897240f8f.3.1741856909510;
+        Thu, 13 Mar 2025 02:08:29 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.198.86])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395cb40cd78sm1414706f8f.78.2025.03.13.02.08.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Mar 2025 02:08:28 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/3] dt-bindings: cpufreq: cpufreq-qcom-hw: Few
+ improvements
+Date: Thu, 13 Mar 2025 10:08:19 +0100
+Message-Id: <20250313-dt-bindings-cpufreq-qcom-epss-v1-0-62b0f96ba888@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,174 +83,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250313-a4-a5-reset-v4-3-8076f684d6cf@amlogic.com>
-References: <20250313-a4-a5-reset-v4-0-8076f684d6cf@amlogic.com>
-In-Reply-To: <20250313-a4-a5-reset-v4-0-8076f684d6cf@amlogic.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAIOg0mcC/x3MwQ5EMBAA0F+ROZuEsg1+Rfag7ZQ5qOpYkYh/1
+ +zxXd4NQolJYChuSHSy8BYy6rIAu0xhJmSXDapSn6qpG3QHGg6Owyxo488n2nG324oURbCfjG5
+ 75zutNOQjJvJ8/f/x+zwvNdUxpW8AAAA=
+X-Change-ID: 20250313-dt-bindings-cpufreq-qcom-epss-9ab649df8626
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Zelong Dong <zelong.dong@amlogic.com>, 
- Kelvin Zhang <kelvin.zhang@amlogic.com>
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741856786; l=3877;
- i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=ZFu/iq6Br16B1GmXZXg+n7u5XDIS+7iiJRB1TMYOhs4=;
- b=8WsA+Mm77eVUAT3YgjZQzAi9J3yuCVLHAYgwmSKS8l6fcCTikKBtv+PoxXMtrweg0qyrUt9n4
- 19h7CXmFbd3DXsUYHDxicwR7642QUCitxBuP0WfbwV/EQKeIIjb976U
-X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
- pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
-X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
- auth_id=148
-X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
-Reply-To: kelvin.zhang@amlogic.com
+X-Developer-Signature: v=1; a=openpgp-sha256; l=715;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=PbxNz4j52RrqJPz3GT+LV4bF8qpe/4u+tr9NI95kvIA=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBn0qCFReYcPk/t6a0zPxCQJuEofxDw8vS8HVb04
+ QGJW9zcSYqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ9KghQAKCRDBN2bmhouD
+ 17erD/wOx59i1A3edFPIxjPPHYLwR/Vtp9fBve6w0yseMAocRe42ct5wCLh1k4HtdrULcR3xdEi
+ uqGSa02il4AVPSxVi/WxvCMdWZW2UIiRCuH6XYcuvnZZM1udPnjj91QAuha0bFauMmDOhGQJVm3
+ Ral9PO/KYPjVZStmnPnI49VMe2kps5IT7OiPNly5kNSAepnqICdj9EWbXnsQi+kD3O4jBYUddhq
+ dYKp22qs12FdwG9TuwCq3dg7UTkfbrCQ5W0/ihIJxt9uay2xMsuiwjXAsWMrmvIcduTL7qb5Qlq
+ fTz02MaujkQ5hNSUQwQ4yUELRlal6G1NUAZZFZnRUJEPWCCpRd6JTfWb31TIzHzThGSsoZdf0Mu
+ K5F4Jop2GxaNis2Zgq0bn6DNr8mUyCN0dQRlsoN9yxVfHcOtF5DfyZUfOifszYM6/XwDlOOn1Oz
+ +4+JFZk3DfzqRzdssywzs1M7GvrkEQCW7dBwgOzhD9BZb/BEtvwKdqSDwOkiFhhcqwXz62xYVkj
+ CCS8JgGJhZlT67Vx1wpE6z5xfIX+laI22v2ZJZDol49PhC0h4/QqfMTVpSxR2dD0AVniMUgbPLr
+ BxKVrKHeGoXMxwO3dHktPn3OJkIFRe1jXVP5K0m5pLrCFKq76m5wS9cmDHKqDMW3CVbXs+oJrTF
+ 1M2nQ5tKlgFk3XA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+Make the cpufreq-epss/hw schema a bit stricter for each variant.
 
-Add the device node and related header file for Amlogic
-A5 reset controller.
+Best regards,
+Krzysztof
 
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-Link: https://lore.kernel.org/r/20240918074211.8067-4-zelong.dong@amlogic.com
-Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h | 95 ++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi    | 10 +++
- 2 files changed, 105 insertions(+)
+Krzysztof Kozlowski (3):
+      dt-bindings: cpufreq: cpufreq-qcom-hw: Add missing constraint for interrupt-names
+      dt-bindings: cpufreq: cpufreq-qcom-hw: Drop redundant minItems:1
+      dt-bindings: cpufreq: cpufreq-qcom-hw: Narrow properties on SDX75, SA8775p and SM8650
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..cdf0f515962097c606e4c53badb19df7d21606ec
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-@@ -0,0 +1,95 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#ifndef __DTS_AMLOGIC_A5_RESET_H
-+#define __DTS_AMLOGIC_A5_RESET_H
-+
-+/* RESET0 */
-+/*						0-3 */
-+#define RESET_USB				4
-+/*						5-7 */
-+#define RESET_USBPHY20				8
-+/*						9 */
-+#define RESET_USB2DRD				10
-+/*						11-31 */
-+
-+/* RESET1 */
-+#define RESET_AUDIO				32
-+#define RESET_AUDIO_VAD				33
-+/*                                              34 */
-+#define RESET_DDR_APB				35
-+#define RESET_DDR				36
-+/*						37-40 */
-+#define RESET_DSPA_DEBUG			41
-+/*                                              42 */
-+#define RESET_DSPA				43
-+/*						44-46 */
-+#define RESET_NNA				47
-+#define RESET_ETHERNET				48
-+/*						49-63 */
-+
-+/* RESET2 */
-+#define RESET_ABUS_ARB				64
-+#define RESET_IRCTRL				65
-+/*						66 */
-+#define RESET_TS_PLL				67
-+/*						68-72 */
-+#define RESET_SPICC_0				73
-+#define RESET_SPICC_1				74
-+#define RESET_RSA				75
-+
-+/*						76-79 */
-+#define RESET_MSR_CLK				80
-+#define RESET_SPIFC				81
-+#define RESET_SAR_ADC				82
-+/*						83-90 */
-+#define RESET_WATCHDOG				91
-+/*						92-95 */
-+
-+/* RESET3 */
-+/*						96-127 */
-+
-+/* RESET4 */
-+#define RESET_RTC				128
-+/*						129-131 */
-+#define RESET_PWM_AB				132
-+#define RESET_PWM_CD				133
-+#define RESET_PWM_EF				134
-+#define RESET_PWM_GH				135
-+/*						104-105 */
-+#define RESET_UART_A				138
-+#define RESET_UART_B				139
-+#define RESET_UART_C				140
-+#define RESET_UART_D				141
-+#define RESET_UART_E				142
-+/*						143*/
-+#define RESET_I2C_S_A				144
-+#define RESET_I2C_M_A				145
-+#define RESET_I2C_M_B				146
-+#define RESET_I2C_M_C				147
-+#define RESET_I2C_M_D				148
-+/*						149-151 */
-+#define RESET_SDEMMC_A				152
-+/*						153 */
-+#define RESET_SDEMMC_C				154
-+/*						155-159*/
-+
-+/* RESET5 */
-+/*						160-175 */
-+#define RESET_BRG_AO_NIC_SYS			176
-+#define RESET_BRG_AO_NIC_DSPA			177
-+#define RESET_BRG_AO_NIC_MAIN			178
-+#define RESET_BRG_AO_NIC_AUDIO			179
-+/*						180-183 */
-+#define RESET_BRG_AO_NIC_ALL			184
-+#define RESET_BRG_NIC_NNA			185
-+#define RESET_BRG_NIC_SDIO			186
-+#define RESET_BRG_NIC_EMMC			187
-+#define RESET_BRG_NIC_DSU			188
-+#define RESET_BRG_NIC_SYSCLK			189
-+#define RESET_BRG_NIC_MAIN			190
-+#define RESET_BRG_NIC_ALL			191
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-index 17a6316de8918f31f3f7625f2eda06a60664139a..b97e2f3091bf62f4bdaaebeaf5d1dfe695cfc6d5 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include "amlogic-a4-common.dtsi"
-+#include "amlogic-a5-reset.h"
- #include <dt-bindings/power/amlogic,a5-pwrc.h>
- / {
- 	cpus {
-@@ -48,3 +49,12 @@ pwrc: power-controller {
- 		};
- 	};
- };
-+
-+&apb {
-+	reset: reset-controller@2000 {
-+		compatible = "amlogic,a5-reset",
-+			     "amlogic,meson-s4-reset";
-+		reg = <0x0 0x2000 0x0 0x98>;
-+		#reset-cells = <1>;
-+	};
-+};
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml          | 33 +++++++++++++++++++---
+ 1 file changed, 29 insertions(+), 4 deletions(-)
+---
+base-commit: eea255893718268e1ab852fb52f70c613d109b99
+change-id: 20250313-dt-bindings-cpufreq-qcom-epss-9ab649df8626
 
+Best regards,
 -- 
-2.37.1
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
