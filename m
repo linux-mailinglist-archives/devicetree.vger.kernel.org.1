@@ -1,198 +1,200 @@
-Return-Path: <devicetree+bounces-157313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6426EA5FBC3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 17:32:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8E1A5FBD2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 17:33:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 915381886B14
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 16:30:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55E427A5E01
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 16:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3359514658C;
-	Thu, 13 Mar 2025 16:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA36269AE6;
+	Thu, 13 Mar 2025 16:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BdSHNCwS"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RAKjGYPQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2054.outbound.protection.outlook.com [40.107.20.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0804513B58D
-	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 16:30:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741883424; cv=none; b=KZDiOdcpfDcApiBrEnzxMENbh0TsA/oaKk0KZzE3vzBtDtLi8msrNVOJC/oEs2L6UqISc75iwzL0ksQ5tb3fVNl8RHzJjtBPRYR0gN/Kh6Jby4k2xMP991YSzzD0lS7uh9UWNWJ/kG7koVVVIDeWYQM+7PqNkuuF1711ioIt3t0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741883424; c=relaxed/simple;
-	bh=4hhdqF3Rp1vH31nmCsGM4U9PNPxQFzWtChioTmpUmgE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=u4azSGd9qlx1MKjlyaCfcnTpvuBUi4Ois4eaefwJ2sVUc/z28BuVyw9TMJNTJqc4IMbzz7vxAANxFl1WcPanfKyCEL84y4jCvTE7WsxDmIxUfovlTZQO+tHlkBz2VYKFiSA4E8SilNyzLXvpSc7M0UgtYeOecnv8FjsHqoGMuXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BdSHNCwS; arc=none smtp.client-ip=217.140.110.172; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5499af0cecdso116366e87.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 09:30:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741883420; x=1742488220; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:user-agent:mime-version
-         :list-unsubscribe:list-subscribe:list-id:precedence:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=aFrAK725pGLGAzrUp2Rsi/GlBUn5vFqjGk9jd1UKZys=;
-        b=BdSHNCwSAeeL5Y3xTG/X+vUoIFihijZZoWuYcRRMTHFIRnsBz4De3p6QtmdcHbrb3Y
-         16F1R4C+ZCbk4YBFzW3fXK0CV5BR5BpPaUfnTf615Lflxjhcup3I9ZQqhc+TCDRxbGEq
-         RtVJnuC3ZKo4tDm5GL76ZfoPvN4MJrn3WVaujV50V5L9sfjEfFKirOx1AZ86PJqDFT/v
-         /PsMoNS+jNceKIuS4QmqRoFqYYNSDhw0Vf8NTF6ypP6ZtP3DQuJK7d4YrFMJz11EBsXl
-         mzP81WvgtvLLUYJxKUX6Oyk5o/nXoo9wksUJaImn7aG3/KZmRKly2eCYKXfnWpAW92KG
-         3V/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741883420; x=1742488220;
-        h=content-transfer-encoding:content-language:user-agent:mime-version
-         :list-unsubscribe:list-subscribe:list-id:precedence:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aFrAK725pGLGAzrUp2Rsi/GlBUn5vFqjGk9jd1UKZys=;
-        b=Zm0p4MrtiC/xWk6+DFt/wZ1NqcB25RzX7fsdfmav8PEFRIdUPbN1iEVdZRIfbnAVJh
-         Kke3WDFObVCtuow5vC70+1CkN3ZbeEuElcM7wLU40ij7iNa26/lIqMUVKGrKfveAJsv3
-         jXr137hTOOmxyrj4SM+OeTPaw4CIpfBk3WXwHaGXTfsEmu8m6ksP3/h7BF8mw7XI1fKX
-         SZ+cye/RIN3/2JZMj84XT9fMZsfqx8EREu1osVuyhNT5qwOXvsTmCgvuLhdzLPZWg7Sb
-         wGx/jAMqjEPnr9UKZ9qnz/tdd+Qw4h687pMhTPkAyB1k00X7ccqj8F0iR6KegnE0qYs5
-         dvLQ==
-X-Gm-Message-State: AOJu0Yx3cU3ZdZ/emXFvENcBFKL0FNNjzhlPVOuzNt81310wgfSx2u+1
-	VjJpWzjbgR6HkJacZRUjnwb4hxpTNubARmVxBFFRQ/nQWV34a7Ws0F7JxhjvXDE=
-X-Gm-Gg: ASbGnct/n17634IARtnpIm1RLX+EaymtsrOJbnaGrmJ16wKvK3IGkGIJgmgZM/2HmMM
-	SEaymgrsbmZtsmJ7GEWIpXpgIk7WpguFe7CyWbeNFr6CDeu1QzrMmBvuYeiVYkYzUlajR59e/On
-	AMqB3b/51HrewmTpqve7eArDTrFMACcI4ephhT7JLLhVZknpwZy9k4gyzSnZYC0ThsvhlkW+7X8
-	+TMp9+4jngo8lJ5Rm0vls4UWnAex+y9RJ7vV+oFUPAg2YHIL7Rb7ScTgN0YwHlb5BWbtKCpZh/Z
-	rprypswBpMASFr0pR44DHynelkB63OVFQpjhM60rqef8LSDDXvb5va2NHCmrWNgBTmclwd6BjwF
-	tOA7poDdKQNEyOeh3kQ==
-X-Google-Smtp-Source: AGHT+IGtn9WumNOaMuo9cAzRTdloUKB5tTLRLe9/61uA56u97uNJuHXYLD/mRuofS9RqJFSJqixgYg==
-X-Received: by 2002:a05:6512:b0a:b0:549:8f39:3e63 with SMTP id 2adb3069b0e04-549abaea8b6mr1524832e87.9.1741883419995;
-        Thu, 13 Mar 2025 09:30:19 -0700 (PDT)
-Received: from localhost (c-85-229-14-155.bbcust.telenor.se. [85.229.14.155])
-        by smtp.gmail.com with UTF8SMTPSA id 2adb3069b0e04-549ba8851e1sm256528e87.201.2025.03.13.09.30.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Mar 2025 09:30:18 -0700 (PDT)
-From: Anders Roxell <anders.roxell@linaro.org>
-To: robin.murphy@arm.com,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Stuart Yoder <stuyoder@gmail.com>,
-	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A836A268C5A;
+	Thu, 13 Mar 2025 16:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741883605; cv=fail; b=VH3HcxclI9O5L8I/3EzEY5aekqALJZ7KN3c/6UqPWEUQ1/zeUcnvAey1O7JAqYkXNzGnwJgbyOxq5KmT/CzPNDuu2CNjGh7UYUsLdGrW3M5LCMN5kDek06NordKFzgRqW4gFHgNVBNu7qlD9RTFghTBiw6wlahTHbu8YTafBkPg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741883605; c=relaxed/simple;
+	bh=ZnjvFZoi+JqytVIG/9wqjaR0HT3blX4BfcqG/U66IXw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=lRVnIpWJGqyfLnSoslgKYq8CtdkvK7wf9g9YovwAfq6Cj7DicJl4JhLe3TwS+gEYb/NJ8xPF+GwDklde4bu1Q8IoO7tJ6/Ka6bdkzSTASHa5gMEAVupGFTiMh8mDZINWqAjAptiEIS8CuZXrhQUmZPPUYyoNKESg7eWJtU7pI+A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RAKjGYPQ; arc=fail smtp.client-ip=40.107.20.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lJqacpm8LBRVdoXXDs3cUDD/voj0as8WnIoHWZcDSoCcHGO9CHH6sCVbyCFQEMwR7blcu2nHNe0IdYXXswf/vPuIoUNSC6yvRrdM2OCREN7ZAmMWzr9n/n5sXw8L5iuM/EPA8FwwMEs36DXm0C1KbSe8asgE+6GXIwRhX9qwN4OPHc9OicLdT2ik8qCwMJDnh+uDkr50bZodSc4Pq5Gj06BwMSaSeXBVorvOSENf0hgZlvgZ3H+gEPe6zq5tNirhAFLW+K2uhxQTov/vsMk8A8W/JE7tYxZdLhHqKLsUcx8UmkobHrWay7cO6k/AbUjcGEoiIjyJ+vF4Q5sbs+pdbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3Uqkg6lNyGKStWD9xo9TPLY5bucNCSOSZeWhHSvU1PQ=;
+ b=Jmc9MQoYzmP2o8xZuM7XqPOzuwim1LhYtStu/1fQ99h6QHcd+x7yQrNQ+jjEV+4Gr20eALvxD8XdjZLNznFnciMRX5Ife4PvPbHu9iazJU/QDufSL8LW6eY5qOIifjmnqZwmnj1E10V+bZvhspHInKA4/3MEB/iH8mI6Wte0mI1JX/oeCr253MoZj883712LsKvC9G9YPMenpV/uXD8MXMCI5w6kuL9iil7kX5E4CePefyAMi3dbrCQo9svCS92OKn2zucjOxMX0I5gMy8MAobV7keRovyIQInlOi4veufpmZqSxbZu9w503tyg2X8wCVjIHorZwPy6hGXDGI/D3hA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3Uqkg6lNyGKStWD9xo9TPLY5bucNCSOSZeWhHSvU1PQ=;
+ b=RAKjGYPQ9N4MNphozaCFcwQ6X/r9MrJE+dR+Gt6vpDngjAsV8PN9/uXEFV7iTT0NH4DR2BPAXQ2xPnIGL132AMq0tN9RI86Jw7iyj6jxSl0h8bNH/BKW0rXO1YfQQ1zBktRupbvwA4ohUbgBgppJQYK4F+YcoFlSbcn+ZJeJ38MvD/KEAb2f3tXVe6SZSAobQ2i/VMWXaZq8aoQ8rP+qFu8f2P3JS1jnGgxBkdi1nWjUAVdERg2VmDKIzHeSbM+Gu81WwhFR7VAcXgR52nDjv7sIBAktWLBkoKkE42J3H6bqDYeaHHw0hL2QOY+G1+YUwMitfZI8yDpt8+wyzieS4w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI0PR04MB10759.eurprd04.prod.outlook.com (2603:10a6:800:260::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.28; Thu, 13 Mar
+ 2025 16:33:19 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.8511.026; Thu, 13 Mar 2025
+ 16:33:19 +0000
+Date: Thu, 13 Mar 2025 12:33:10 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: florin.leotescu@oss.nxp.com
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
 	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>
-Cc: devicetree@vger.kernel.org,
-	iommu@lists.linux.dev,
-	linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	quic_charante@quicinc.com,
-	Anders Roxell <anders.roxell@linaro.org>
-Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe path
-Date: Thu, 13 Mar 2025 17:30:11 +0100
-Message-ID: <417d6f59-0d78-4e81-ad0b-e06846f786b0@arm.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <9b358d68-332e-404e-9a75-740297f7b28d@samsung.com>
-References: <cover.1740753261.git.robin.murphy@arm.com> <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com> <CGME20250313095633eucas1p29cb55f2504b4bcf67c16b3bd3fa9b8cd@eucas1p2.samsung.com> <9b358d68-332e-404e-9a75-740297f7b28d@samsung.com>
-Received: from foss.arm.com (foss.arm.com [217.140.110.172]) by smtp.subspace.kernel.org (Postfix) with ESMTP id 65FBD1EE7A7 for <iommu@lists.linux.dev>; Thu, 13 Mar 2025 11:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14]) by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 21D5E1516; Thu, 13 Mar 2025 04:01:50 -0700 (PDT)
-Received: from [10.57.40.246] (unknown [10.57.40.246]) by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C60353F673; Thu, 13 Mar 2025 04:01:35 -0700 (PDT)
-Precedence: bulk
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Shych <michaelsh@nvidia.com>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	viorel.suman@nxp.com, carlos.song@nxp.com,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	festevam@gmail.com, Florin Leotescu <florin.leotescu@nxp.com>
+Subject: Re: [PATCH v4 2/3] hwmon: emc2305: Add OF support
+Message-ID: <Z9MIxuelKSdT0rUK@lizhi-Precision-Tower-5810>
+References: <20250313125746.2901904-1-florin.leotescu@oss.nxp.com>
+ <20250313125746.2901904-3-florin.leotescu@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250313125746.2901904-3-florin.leotescu@oss.nxp.com>
+X-ClientProxiedBy: SJ0PR13CA0141.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::26) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-GB
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10759:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ba82905-7247-40be-a414-08dd624cc386
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?58a0ZcmyYbjceKeTCx31o++NKCLy3p+jrBT+VUUfGuVg2TcBvVWq8I4BnFZf?=
+ =?us-ascii?Q?ivwMALQilEynaroravbVhglvUbq1GGwdjVqsfcdphDcu5cITGYsmqFKsAgcL?=
+ =?us-ascii?Q?KmyF16UeL+4UvYiUzR8z78NbZmFrUNd6MsMepZrijlJ6AANnH56MfAgwGiCH?=
+ =?us-ascii?Q?iYPQ6Fd8C/MZ3xHzDju0pUQJNh0uAHKcrnpUpEuvjvkfpRtahKxQbGxGCTf3?=
+ =?us-ascii?Q?tIo6zA4z3iMpB1tHJbmlDZI2w9oj6JzJjtDybYd5a1UrMe6vpcrZTzwZOMa7?=
+ =?us-ascii?Q?yTiHH4kfY/L6nZ8/DmgYrQo/xzyXNJBiAnkPmQ84HPwdyPxxfovI+ulSi1A9?=
+ =?us-ascii?Q?dXvV2CFZ0lLg5gdf3E4mENo3vT2i+Ph6nCKXnyTGzzmNivXDrtklMEGkcWx6?=
+ =?us-ascii?Q?b8E5rU/CXDuKrQW1wnVPp4da/2mdXCgVQbjCUEn7iRvcJ5K8SywCZDCRkCOm?=
+ =?us-ascii?Q?Pts75n3babFSgvl1NTCenBRlmwj7JC576PYg6AXqDrshSwGBwG93sXKriIsk?=
+ =?us-ascii?Q?FEIpuYyoEfSbQZnSfnYkJPlNt9e15JReMU/GQceDHxgtyY3bZoOooew/L6ZX?=
+ =?us-ascii?Q?/Hj0SIh0ZHkQyERGmCSkJ9H4olo+0FUT7o85+tHtrOk3I9axUqsEx2FEPvaG?=
+ =?us-ascii?Q?TzJXn79Id06JekvVZ9z9/12pCCZFRqpF18YLTF6reQFSsUA0xcbtoyAb3LCx?=
+ =?us-ascii?Q?2Iz+5h0N2M7cdCS+hk2x8hIAD+c6s57i4hi6f6oiFgcTXXAseK7iPXJm4UEW?=
+ =?us-ascii?Q?G/W6Yqv+W6C4Ly3MTSIs/RmN8ovYDj6hp7stqGZvXZ3m7nWzHbrVCKAT0Dvk?=
+ =?us-ascii?Q?5E72S8vEjBsI+KVjML2EiYDIBk6br6TwN7PYUt/jb9ppiNViB/hvmKthJRAG?=
+ =?us-ascii?Q?58jdafKiE5Q/5TcGiHrYJv6a+tAcbJ8Th7UaxK36FRLwDzuUNhOFsOBHaFuU?=
+ =?us-ascii?Q?nrkmvfIat9/OceDcMx1D0xR2LVCcFtny7z1lolwRTZy7NZ+i3wjoe2zcleZa?=
+ =?us-ascii?Q?Q/IdQ7T9KX1LVA1HLWWh5Zce3lKdM92gLZvQr8HlieTdnQLjEH3TUfGDrHr3?=
+ =?us-ascii?Q?HSYwxyx+Eug+QIyaR1EjIfkuaaRDc7jsFwMknEYJmnF/hQOk5h8B/FP5gCCs?=
+ =?us-ascii?Q?W00GQjCbGK8F177VfmnAHWRZB0gBv54HVlWl11PUsnmb0N1bvEAPRnO0YsMq?=
+ =?us-ascii?Q?sB7iTbOrGtPgRL+J1dDI4rvD7Wo8A9MxBHLeHcg6mtvm2WLSoGS7+C34HcPa?=
+ =?us-ascii?Q?lo9E7dNICLTrJsQEyde4s6eJAqRu/PchwxCluNaIh8F1h06wqOpsbVfA6v8H?=
+ =?us-ascii?Q?EYYPyS2eXmbV2bGSngLVwG2U+MQmDbCZoZwK2ygCNCakeZ7+hNIrVfYtw+Ot?=
+ =?us-ascii?Q?KFX7/WnNSSX8ASu38k6LrLDY4zD8zcJCe+lUlUmGsasZR5rgs5Z7QjPvEXW9?=
+ =?us-ascii?Q?NrgvYag2h9mMXcTokQzN+KwLtj76qMNn?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?9sC9cUC9XDcq5onZqqwZx0Ji65CF2fV3L8mGmkkzT8srwHaFX/7CcvCvuV3G?=
+ =?us-ascii?Q?DGugE0EYpXVTuWvzHIsoyvzECQzqfS0RpE7cKDmVBezDROJgxbx6vQL/1mA7?=
+ =?us-ascii?Q?7vrcooH36agKsFAhr1kPdNBfkPOyuE1B9qhmcxHu/LyIovENSwSHuL/Eff2p?=
+ =?us-ascii?Q?vP9MNKuiglDyU3+pWioYjXE11U53IcLR+FtWoHrkQG4jZr5ZFA9stL9O1BdT?=
+ =?us-ascii?Q?ikKx6rjl0fDTNzk+wW/2b8zOqkoHsJN1N9uSU4eauewOU5shQv79BRfprHme?=
+ =?us-ascii?Q?oPRwSHfLM2ENGbvj+TezC8lX8qIN0gvPHD7AuECI1nB0inoaMEvdXEj7WOIk?=
+ =?us-ascii?Q?uAShWbaz+TUCiJ6FKKLjuKZrv+88OIlXiX6rE7hthRAjlhPDLKRaMa82R3gk?=
+ =?us-ascii?Q?wIxNn6J0fxuD1OpNruPNsuXKKPXuXTR8+1w8/r3O5p4u9WMHABp+sXKOOfWv?=
+ =?us-ascii?Q?eJDkUHdWEBLY7h7PX7LN1LvW79tUK2RLrIrRuji0ubwngohPsQ5VTH6AiPHG?=
+ =?us-ascii?Q?vL1WVdzG+psLPkmRbHhL45Po75rgSpUhveruDgWeCwOxCt0ZRQvrEQX1UZDK?=
+ =?us-ascii?Q?1QOLEWmPpRbm3pzh0VA//PzGkeCkH0sljxAIAdWaV5eZQGstqzttYPS+kW4z?=
+ =?us-ascii?Q?1FxNDd1B3Yba2w6OGlA6J7y3TV8Y6jVLzbcYh/DViFwxiAtUvMoMbAzxcwf0?=
+ =?us-ascii?Q?FnRFSQuD74TIWJp3HxDYoH/4ZpAiDfmMWdInbNIKeDF4tkWrNxE4+3glTGek?=
+ =?us-ascii?Q?By9FUBKawwixz4FkMa0ul/yU7agUqKJeHp5N91P66fQGu/tz0lws8Fuomaln?=
+ =?us-ascii?Q?A2G3obdE+gszCFPjfLodeZclWCQ7pEpyDCsJwnPzsWTW6m7yDqNHMzE7Axn9?=
+ =?us-ascii?Q?seZZSa+q6+YXd6JgMf+rbxZCIOiJnpi/ql0BkTzFI8FNWxEnqddAjloT4UTe?=
+ =?us-ascii?Q?E2I8EBev/+5l0wez398auK28D7On0pGZ55XvHmag+X0lLI8wn4EVe9e3wimK?=
+ =?us-ascii?Q?bOK1Pa1DjUB3ANnItlE4T5BDzc8iklGuElb7RQVHjWCeRkilc4YeWFGtCyLL?=
+ =?us-ascii?Q?LGMzQ2GYI7zTewdCf1CqRr6pKbsWYy20oyqUMsnlE7txQ9qwdKsQ/t4EIG4D?=
+ =?us-ascii?Q?JxnqH/+LmnVhDyIDlv9lhtDyqtQ9SqSYsU42pX5K/jCHzQf8qupduk1aW9il?=
+ =?us-ascii?Q?3JExlX3ja49FqSnuR6PR57idKRlbipCh9nwPABXmRdzEk+1oiqQv6y2VZNyS?=
+ =?us-ascii?Q?KWraofLTvjzNAS5ARf6rqjBT1Q++JfZNB63tAZs/odCnx+IaO/LZRTvCrhPt?=
+ =?us-ascii?Q?Bk2dKLAShf7wAA0i556DOyOWO2KOyWQNfZX3QfhZRjhImBNpAM9rDmMBGJSD?=
+ =?us-ascii?Q?YGMY7fztYgCqDfL7ue9CjMCNAaLJvEjnuyJjzGq8kECtdCYXqLe8NnHeHec/?=
+ =?us-ascii?Q?nXid3ZsjJ4xHHPDOGbCABlWEHhh3CVRMp1loG4YB/eC8YKKoEnUJvInp30CO?=
+ =?us-ascii?Q?Fj1c2J8cGJn/1ZCrj5kS/I7iAFB7KhChu/KZ8pUKAZELg8dSQ4FlDHGLsnjR?=
+ =?us-ascii?Q?dRg/93pcd7qAUmFLvGzVGbO2QnyhN0A2jqhXKKLe?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ba82905-7247-40be-a414-08dd624cc386
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2025 16:33:19.5793
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tP4cGNhkLKfcOOKWRB3AJr83pXgeAiMGCmG4ei4krWWJMyxlA4GWIQ/ExOtW/rwM8lu+loH4swcxcCcARQmnBA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10759
 
-From: Robin Murphy <robin.murphy@arm.com>
+On Thu, Mar 13, 2025 at 02:57:45PM +0200, florin.leotescu@oss.nxp.com wrote:
+> From: Florin Leotescu <florin.leotescu@nxp.com>
+>
+> Introduce OF support for Microchip emc2305 pwm fan controller.
+>
+> Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
 
-> On 2025-03-13 9:56 am, Marek Szyprowski wrote:
-> [...]
-> > This patch landed in yesterday's linux-next as commit bcb81ac6ae3c
-> > ("iommu: Get DT/ACPI parsing into the proper probe path"). In my tests I
-> > found it breaks booting of ARM64 RK3568-based Odroid-M1 board
-> > (arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts). Here is the
-> > relevant kernel log:
-> 
-> ...and the bug-flushing-out begins!
-> 
-> > Unable to handle kernel NULL pointer dereference at virtual address
-> > 00000000000003e8
-> > Mem abort info:
-> >     ESR = 0x0000000096000004
-> >     EC = 0x25: DABT (current EL), IL = 32 bits
-> >     SET = 0, FnV = 0
-> >     EA = 0, S1PTW = 0
-> >     FSC = 0x04: level 0 translation fault
-> > Data abort info:
-> >     ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
-> >     CM = 0, WnR = 0, TnD = 0, TagAccess = 0
-> >     GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
-> > [00000000000003e8] user address but active_mm is swapper
-> > Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
-> > Modules linked in:
-> > CPU: 3 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.14.0-rc3+ #15533
-> > Hardware name: Hardkernel ODROID-M1 (DT)
-> > pstate: 00400009 (nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> > pc : devm_kmalloc+0x2c/0x114
-> > lr : rk_iommu_of_xlate+0x30/0x90
-> > ...
-> > Call trace:
-> >    devm_kmalloc+0x2c/0x114 (P)
-> >    rk_iommu_of_xlate+0x30/0x90
-> 
-> Yeah, looks like this is doing something a bit questionable which can't
-> work properly. TBH the whole dma_dev thing could probably be cleaned up
-> now that we have proper instances, but for now does this work?
-> 
-> (annoyingly none of my Rockchip boards are set up for testing right now, 
-> but I might have time to dig one out later)
-> 
-> Thanks,
-> Robin.
-> 
-> ----->8-----
-> 
-> Subject: [PATCH] iommu/rockchip: Allocate per-device data sensibly
-> 
-> Now that DT-based probing is finally happening in the right order again,
-> it reveals an issue in Rockchip's of_xlate, which can now be called
-> during registration, but is using the global dma_dev which is only
-> assigned later. However, this makes little sense when we're already
-> looking up the correct IOMMU device, who should logically be the owner
-> of the devm allocation anyway.
-> 
-> Fixes: bcb81ac6ae3c ("iommu: Get DT/ACPI parsing into the proper probe 
-> path")
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-This patch fixed the boot on rockpi4.
-Applied it ontop of next-20250313
-
-Tested-by: Anders Roxell <anders.roxell@linaro.org>
-
-Cheers,
-Anders
+> ---
+>  drivers/hwmon/emc2305.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/hwmon/emc2305.c b/drivers/hwmon/emc2305.c
+> index 4d39fbd83769..f8a4c76fcadd 100644
+> --- a/drivers/hwmon/emc2305.c
+> +++ b/drivers/hwmon/emc2305.c
+> @@ -607,9 +607,16 @@ static void emc2305_remove(struct i2c_client *client)
+>  		emc2305_unset_tz(dev);
+>  }
+>
+> +static const struct of_device_id of_emc2305_match_table[] = {
+> +	{ .compatible = "microchip,emc2305", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, of_emc2305_match_table);
+> +
+>  static struct i2c_driver emc2305_driver = {
+>  	.driver = {
+>  		.name = "emc2305",
+> +		.of_match_table = of_emc2305_match_table,
+>  	},
+>  	.probe = emc2305_probe,
+>  	.remove	  = emc2305_remove,
+> --
+> 2.34.1
+>
 
