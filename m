@@ -1,140 +1,185 @@
-Return-Path: <devicetree+bounces-157237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2419CA5F637
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:44:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C19A5F63F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:46:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3370C3A3F79
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:43:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9426188A885
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAD80267B0B;
-	Thu, 13 Mar 2025 13:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A9C267AED;
+	Thu, 13 Mar 2025 13:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BxieW2h6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n2AgJNyB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F10C2641FD;
-	Thu, 13 Mar 2025 13:43:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F5323BD13
+	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 13:46:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741873439; cv=none; b=SikeZ37ItkQucKsWYQ4UH5a7tw6QWLVFDah5ZWqGKmNFzFO4In43G9+vbxuh8QKPiyQeWGBsqRut+5KNtChUZUK+nLgKv5wJk35c4THuNyFyzoR3eZ9+qyYRNl7bJjTeCQrtuf35UaLq3m+7jwfUKmRNKgbPKBSwCqceEMo9ojg=
+	t=1741873599; cv=none; b=AEnkfi9zXaQDeMiXJDtedk4OgKlIQd72jBF+WGrEnQwdn+5kwy9+aEjsLa10iWA4wGxFUgP++mt9+pZzFBAIbiIABmQZLdaR/0e1VFjwEf/CfggieYP9Y9ZnESdHbQk0/kCpmjF0av+6IEmnXtnoxx1f5Ttnd8QJ80epQIktJds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741873439; c=relaxed/simple;
-	bh=XnfzLvPWLAssRS90aQXqy6BPWCvs9KKiuSagZ8ODCZE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mSekfKNTOLe1EUfIAij24Khxbr0U7avhiMoYUpqMTljInxpmgPnh422pTvfS5LTNb22LSG+wI0tMIAd+eCvqI08melmDX/2BxHEOYYA1iQB0nM+KJKw/bNJirPWvbaCK46mDov3naCS10rLJVw+sjYl50YjdtoC1o6uCe+crJU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BxieW2h6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D78D6C4CEDD;
-	Thu, 13 Mar 2025 13:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741873439;
-	bh=XnfzLvPWLAssRS90aQXqy6BPWCvs9KKiuSagZ8ODCZE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BxieW2h6rFT5GjUIhCyE3lJAo+c8bdnBN8vqsXAJrIRa1fPuSnMscKcFotdhVq5lZ
-	 zk74jPwDdFPWfSbkvnzwzFijjw4+dRdwfd3u1UO5rUbq0+0ajHWoKUes9bSzgbxUsh
-	 dITMTo4m6NN6lJdDWB9+AJSQmNBSuCLgxFHQwNpgpaOIN9cIXtqkzoWaK4ut1sGeY6
-	 gMXLTUDled8FH4p/Dl0ZODuI8MpWycA/EsZchonZezMtIO2tYoI4wFShR0xQCfP1uJ
-	 yv9xMgqURPOYMxpSFpGEC+hpdD5nrE5h+bAikXbXSzt5RRxXVyWjVSws51BCW+Ud8a
-	 qxtOLbMO/twNA==
-Message-ID: <6262dfd2-9e0b-402e-bb03-a2174d544923@kernel.org>
-Date: Thu, 13 Mar 2025 14:43:50 +0100
+	s=arc-20240116; t=1741873599; c=relaxed/simple;
+	bh=ujEBQPB0scKMY7JC/wQHlyV+8N9T4tQgeMBzcI+87rE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PJFDw9c6QzOp2c3UXQUtycAK2JPIWQe1sDXb+j3Gb3ZZEi/3ZWk2lfwXevXj2aCWVw78C6qefgNGdYZblbkPhNfsxGFjFzRO7isx9gwMNRxg9N0i5iFM9VJKyWlWs4Ah1qD0bDH+nMwavck+jtPqeQA8Nlqa7vjBMh2GAHK1als=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n2AgJNyB; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6fece18b3c8so8905637b3.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 06:46:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741873597; x=1742478397; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3pruppk4STwGuRQ4gOsQ41gA9jN4GcpyPa2+9qAli4c=;
+        b=n2AgJNyBVwyOuZoofwzLpO4Vj+DoBCE6dhY4hwSivLC7kT5aEE5XhIFNZqh1ZI/OwK
+         FDoTQYtPq+OxQ730rr90Plyu+/7e6e6BPhlG9xjkT4kjjYr2BTYIACzppWrzwvODO6ig
+         qCgHKaHPbALQrjn6Pnp2nJBZA3+xq/p2vu/Bg0aOGtFVqQxIwyaBVWDcUFaAt0Qu/cqF
+         6KoOEqMW+NJ+GvehsUGCz0OKvDD8OK5V615TrlaYaMwKygRJupoCuZJVdNpkzTbH/O8+
+         yctT5UyhpHS+Dnb8egHP34q2kW8PvtfmuFppCmog3xXJk0IYE1fWHiYfRi8zem5CEP5E
+         cpQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741873597; x=1742478397;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3pruppk4STwGuRQ4gOsQ41gA9jN4GcpyPa2+9qAli4c=;
+        b=e4qsmtOf02yNSIPWs0wWuNGz7/1pJbgisYAnc+GQ7WgIi+XwqjBmbffH8fGVGRd3Cp
+         ti//p05r4+A2u+ftm1WSOAJzMEfJ13CAv4YZHGo80lPZXXsMzXnGY/6eRJgkL4zsls0b
+         6Ey7ioYSP//KSJ8bdk33066FSFpZb9/dUyRsC2SDbteInhcmhzvepd1k6/pwEySYay6L
+         kaEahHiUE+hf+8zqsqjH3q5eNdRqxGmscTY3t3VoPWOy9UHVgyZyYPbyrQCVIt5Z8mOX
+         WhGWtOdKwcVs6Ouo3sR2eEZLLPSkbawiHIdb1wR5iXSxzFt0MTIX6ZKd7OyalPLmysFB
+         Zudg==
+X-Forwarded-Encrypted: i=1; AJvYcCVlX0MGoWgbmPthFWTCnabLIGYIugkHsjhXaa2VgIeOVuPgk9b0QHk2XHmfoBUgXFl/QQ9KQgdIEOsK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6kv6TkrgcSdBgOaMFno23pn9MBDO7ENeQEGd2U/tJvv+BvktB
+	oY76y3lZpdKiFjuHXYxq6ijUnYxf061lP7hz+XUpCSRe9rgi3UuSPrto2SVgXVhgK8u7yCUsHX2
+	XHp8AwKHysbeyRAgG3d0p0C1Gf/oRzW598LQm1g==
+X-Gm-Gg: ASbGncu/WEqi54KAmB0obgCmxXPp1jVDqK4+WGfiIbO86hqswIEIzmqB1hPxrggGDZm
+	/6YRUhZqAl12+W7q4nt1mR5xwLHWhD2NgBoex2zxpC7ZD/Dgk3DhruWB0UpVXfVldrmJjY+9ueK
+	fGQIZHMZ51D/txVi1TEy5GvPeLaBM=
+X-Google-Smtp-Source: AGHT+IG7vBn4URXM8J2dFID1L7Pg4fVMsep6yAv6gvLGLKB/Q06ncJU71pTeAeJFVFPXcY3eqoO5qEZ7cJRZ/u07cAs=
+X-Received: by 2002:a81:fe0a:0:b0:6fe:bf9c:8e7a with SMTP id
+ 00721157ae682-6febf9c9506mr280796267b3.0.1741873596783; Thu, 13 Mar 2025
+ 06:46:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] riscv: sophgo: dts: Add spi controller for SG2042
-To: Zixian Zeng <sycamoremoon376@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, sophgo@lists.linux.dev, chao.wei@sophgo.com,
- xiaoguang.xing@sophgo.com, dlan@gentoo.org
-References: <20250313-sfg-spi-v3-0-e686427314b2@gmail.com>
- <20250313-sfg-spi-v3-2-e686427314b2@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250313-sfg-spi-v3-2-e686427314b2@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <CGME20250311172030eucas1p12dda42760f751174e774b8d1a3d3f4cd@eucas1p1.samsung.com>
+ <20250311171900.1549916-1-m.wilczynski@samsung.com> <Z9KPvig0dPRO0cX1@x1>
+In-Reply-To: <Z9KPvig0dPRO0cX1@x1>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 13 Mar 2025 14:46:01 +0100
+X-Gm-Features: AQ5f1Jr2C0RzgSrdaklEVa_RV8h0CZizF651FuL4N37mJLMsiwagGMmTnahMvkg
+Message-ID: <CAPDyKFrCFURcTpwZnx4bs71Kw_JrRKLiuDh7954xD2k+rCDN_A@mail.gmail.com>
+Subject: Re: [PATCH v8 0/5] TH1520 SoC: Add AON firmware & power-domain support
+To: Michal Wilczynski <m.wilczynski@samsung.com>, Drew Fustini <drew@pdp7.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org, 
+	m.szyprowski@samsung.com, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 13/03/2025 14:11, Zixian Zeng wrote:
-> Add spi controllers for SG2042.
-> 
-> SG2042 uses the upstreamed Synopsys DW SPI IP.
-> 
-> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
-> ---
->  arch/riscv/boot/dts/sophgo/sg2042.dtsi | 26 ++++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> index e62ac51ac55abd922b5ef796ba8c2196383850c4..9e0ec64e91a2330698aea202c8f0a2ca1f7e0919 100644
-> --- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> @@ -545,5 +545,31 @@ sd: mmc@704002b000 {
->  				      "timer";
->  			status = "disabled";
->  		};
-> +
-> +		spi0: spi@7040004000 {
+On Thu, 13 Mar 2025 at 08:56, Drew Fustini <drew@pdp7.com> wrote:
+>
+> On Tue, Mar 11, 2025 at 06:18:55PM +0100, Michal Wilczynski wrote:
+> > This patch series introduces and documents power management (PM) support and
+> > the AON firmware driver for the T-Head TH1520 SoC, as used on the LicheePi 4A
+> > board. While part of a larger effort to enable the Imagination BXM-4-64 GPU
+> > upstream, these patches can merge independently.
+> >
+> > Bigger series cover letter:
+> > https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
+> >
+> > This series is versioned to maintain continuity with the bigger patchset it is
+> > a subseries of. Please find below a changelog for the AON & power-domain:
+> >
+> > v8:
+> > - add proper cleanup in the th1520_pd_probe()
+> > - add "suppress_bind_attrs = true", since there is no need to unbound the driver
+> >   during runtime. This simplifies the code by eliminating the remove function
+> >
+> > v7:
+> > - add '#include <linux/slab.h", due to kernel robot issue
+> >
+> > v6:
+> > - split the firmware & power-domain patches into a separate series
+> >
+> > v5:
+> > - changed the AON driver to be a set of library functions rather than a
+> >   standalone driver
+> >
+> > v4:
+> > - added workaround to disable AUDIO power domain to prevent firmware crashes
+> >
+> > v3:
+> >  - consolidated device tree representation by merging aon and power-domain nodes
+> >    while maintaining separate drivers internally
+> >  - power-domain driver is now instantiated from within the aon driver
+> >  - fixed optional module dependencies in Kconfig
+> >  - added kernel-doc comments for all exported functions
+> >  - implemented th1520_aon_remove() to properly clean up mailbox channel
+> >    resources
+> >
+> > v2:
+> >  - introduced a new firmware driver to manage power-related operations.
+> >  - rewrote the power-domain driver to function alongside the firmware driver.
+> >    These nodes in the device tree lack direct address spaces, despite
+> >    representing HW blocks. Control is achieved via firmware protocol messages
+> >    transmitted through a mailbox to the E902 core.
+> >  - added new dt-bindings for power and firmware nodes.
+> >  - ran dtbs_check and dt_binding_check to ensure compliance.
+> >
+> > Michal Wilczynski (5):
+> >   dt-bindings: firmware: thead,th1520: Add support for firmware node
+> >   firmware: thead: Add AON firmware protocol driver
+> >   dt-bindings: power: Add TH1520 SoC power domains
+> >   pmdomain: thead: Add power-domain driver for TH1520
+> >   riscv: Enable PM_GENERIC_DOMAINS for T-Head SoCs
+> >
+> >  .../bindings/firmware/thead,th1520-aon.yaml   |  53 ++++
+> >  MAINTAINERS                                   |   5 +
+> >  arch/riscv/Kconfig.socs                       |   1 +
+> >  drivers/firmware/Kconfig                      |   9 +
+> >  drivers/firmware/Makefile                     |   1 +
+> >  drivers/firmware/thead,th1520-aon.c           | 248 ++++++++++++++++++
+> >  drivers/pmdomain/Kconfig                      |   1 +
+> >  drivers/pmdomain/Makefile                     |   1 +
+> >  drivers/pmdomain/thead/Kconfig                |  12 +
+> >  drivers/pmdomain/thead/Makefile               |   2 +
+> >  drivers/pmdomain/thead/th1520-pm-domains.c    | 218 +++++++++++++++
+> >  .../dt-bindings/power/thead,th1520-power.h    |  19 ++
+> >  .../linux/firmware/thead/thead,th1520-aon.h   | 200 ++++++++++++++
+> >  13 files changed, 770 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+> >  create mode 100644 drivers/firmware/thead,th1520-aon.c
+> >  create mode 100644 drivers/pmdomain/thead/Kconfig
+> >  create mode 100644 drivers/pmdomain/thead/Makefile
+> >  create mode 100644 drivers/pmdomain/thead/th1520-pm-domains.c
+> >  create mode 100644 include/dt-bindings/power/thead,th1520-power.h
+> >  create mode 100644 include/linux/firmware/thead/thead,th1520-aon.h
+> >
+> > --
+> > 2.34.1
+>
+> For the series:
+>
+> Acked-by: Drew Fustini <drew@pdp7.com>
 
-Does not look like you keep order by unit address (see DTS coding style).
+Okay, patch 1 -> patch 4 applied for next, thanks!
 
+I am leaving patch5 for now.
 
-Best regards,
-Krzysztof
+Kind regards
+Uffe
 
