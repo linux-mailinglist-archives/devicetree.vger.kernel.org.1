@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-157158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5461A5F1C0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 12:02:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 538FAA5F1D2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 12:04:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B466169FAD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 11:02:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31060188BA1C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 11:04:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B7C5265CB3;
-	Thu, 13 Mar 2025 11:02:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EEC12638AF;
+	Thu, 13 Mar 2025 11:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dMua3U26"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ci6GSYdK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01D051EDA17;
-	Thu, 13 Mar 2025 11:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 614E21EE028;
+	Thu, 13 Mar 2025 11:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741863722; cv=none; b=SckAuFiMjIPKNO2DTg9YkGL79OYS7afpdGSfwMuHl5cP8Zo3Ri1irQvDGczc05BDcH7Nax+RoRQEtL2kPD8nsbAekRXWXgeMKjQpyylftuaMeTvk8trk7XzSG76B5wYRLQ9Y1jT6UVSwlnvgjhDPeFKWV4C0HhVxyVanVEC6tnA=
+	t=1741863867; cv=none; b=gfNBVnwyYtMZO3o4uZhDMn8qoXNbojvmRqzrdcdIytfW49diM95J2VoNZIKxbidM1GxczXxrce5Yawr3Sq0vzP9tlCrfKgJUFHbJrYmW6dmrpIo5XJcYhmZS+rUg1DZcSQBipUkpLK7tfSfPPvG2FLkDHVY0niN9J5radjhdoS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741863722; c=relaxed/simple;
-	bh=6fXXt/3cDZHVxJFNL/uvCTgJsMXqszNu+UtcajQ7TuY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mBDdoMTkPmymNMHyZv9gjiLMFrnbn5GTbIBnpdWMaUc844zP2g+Iti8G/YDieX/DGMDak8vg2JTDLBmVKO57pY8hXm3AZAq5d8baRFT6IvCb3Z1ELgzk+SDRmAieyLcx66MGvi2BGZWbuQ+haRopWr9UBqE/5s3RA7DnTSMx1bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dMua3U26; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8C30C4CEDD;
-	Thu, 13 Mar 2025 11:01:56 +0000 (UTC)
+	s=arc-20240116; t=1741863867; c=relaxed/simple;
+	bh=Dn/c8VmE1oX2i+/300L2/hJI+Z2XWSLaocWxzcn61Gw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gfkdgd5GR395aVgPBkIBBSQmD3RWREh/XwIxWokKkAMbGBC7rpISWYgWgOdJasi3tgOrzGzSgQcB2bShtryCMwS4Q/xRRzMouMt12Vz8+wVIIlc0XMJGU85GPv2bTWq/AEjHecd49p1Xy8pn+jPHvDhlFereDAUMnxK4wsitnR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ci6GSYdK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F6FBC4CEDD;
+	Thu, 13 Mar 2025 11:04:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741863721;
-	bh=6fXXt/3cDZHVxJFNL/uvCTgJsMXqszNu+UtcajQ7TuY=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=dMua3U26ci96bicnYHnC2RuBdO1MvULUUplJI9p8CTuMNivno0WGArxt2UwKxJHLN
-	 K+1zygXfe4BA1oAUemXR7eAgKsyfxM1fH1/4zknKt6UglK0Ha79cYuElNDJOWeADHf
-	 nNAqJ0i4oz8b3cHnR1bnjrOfQyX17YQC2bL2xoLdA4Qkumi7f3aPBzP4ziePWMbu/t
-	 cehS5bnS2w4JJ8HJpo/TpogrsYBaj3ZfGmz6tXvszCFNUpaSvJrBjtkSo6YIpkLa7Z
-	 cvlVbLWK7xs87eKzsXIUJCT6XITIiq9FULbIPiybxuTLtKEH0ZsUQ9nHCJXqul+JJ3
-	 b0h+23l8pp0DA==
-Message-ID: <1c88f01b-4414-4f02-91ed-572a9261543a@kernel.org>
-Date: Thu, 13 Mar 2025 12:01:54 +0100
+	s=k20201202; t=1741863866;
+	bh=Dn/c8VmE1oX2i+/300L2/hJI+Z2XWSLaocWxzcn61Gw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ci6GSYdKWJdTyQ9RwXufcNrSfq0vW8tkOcPFSj7UKJONuuRctzOX0gokzV0KKPibe
+	 kbSdeeJhHPg33ApW8ItWRnG8CFryui4MS/B9Xd5TxdJpbEqkwQcbhVB8UIZdAppLA4
+	 rEWi5fkCWxKxwOHYxsF1S+rGVVmGz0mVW8GVfkriIZXMzBLF8h2uQMIn0rU9AUbOW1
+	 DUz9l/ztlC3HPJfc+GR1MeUtukeIhZxShB+CSq2rBWtrCQsPbavJDQ0fSKQUG5rrWk
+	 eIKWZK0txQPiAV7ORv3AQPzOaasmpxg1C7skkAtB8sKTCde8PSxk4YbVLrko1aWtt8
+	 YAnZtZQkzdHxA==
+Message-ID: <b2f6a357-a468-4526-a1b6-69ab2c643b2c@kernel.org>
+Date: Thu, 13 Mar 2025 12:04:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 1/4] dt-bindings: PCI: qcom: Add MHI registers for
- IPQ9574
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, bhelgaas@google.com,
- lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250313080600.1719505-1-quic_varada@quicinc.com>
- <20250313080600.1719505-2-quic_varada@quicinc.com>
+Subject: Re: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
+To: Purva Yeshi <purvayeshi550@gmail.com>, ukleinek@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vz@mleia.com,
+ piotr.wojtaszczyk@timesys.com
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250312122750.6391-1-purvayeshi550@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,21 +102,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250313080600.1719505-2-quic_varada@quicinc.com>
+In-Reply-To: <20250312122750.6391-1-purvayeshi550@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/03/2025 09:05, Varadarajan Narayanan wrote:
-> Append the MHI register range to IPQ9574. This is an optional range used
+On 12/03/2025 13:27, Purva Yeshi wrote:
+> Convert the existing `lpc32xx-pwm.txt` bindings documentation into a
+> YAML schema (`nxp,lpc3220-pwm.yaml`).
+> 
+> Set `"#pwm-cells"` to `const: 3` for expected PWM cell properties.
+> 
+> Signed-off-by: Purva Yeshi <purvayeshi550@gmail.com>
+> ---
 
-Same question, you still did not answer - does hardware have this range?
-Which hardware has it?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I pointed out that you affect at least two other variants. Your commit
-msg must explain that. For example what if they do not have this range?
-Then this change is just wrong.
 
-Start documenting the hardware, not your drivers.
+---
+
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
+
+Full context and explanation:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
 
 Best regards,
 Krzysztof
