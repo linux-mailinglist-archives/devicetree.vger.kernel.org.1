@@ -1,100 +1,181 @@
-Return-Path: <devicetree+bounces-157130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9340A5EECA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 10:02:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A411A5EEE6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 10:05:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CF687AD0D7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:01:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEB26168917
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:05:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B4F264F87;
-	Thu, 13 Mar 2025 09:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF8E3260A3C;
+	Thu, 13 Mar 2025 09:05:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Oi5dNurE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173662641DE;
-	Thu, 13 Mar 2025 09:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08CC61FA14E;
+	Thu, 13 Mar 2025 09:04:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741856489; cv=none; b=luzUGXEaXgL3TOf8Z+50F9145mAcID95zUJpPLsLs+V0O3Paz4pS0hVc3JFGVC56qGBNA9+3F+GqQS9KVAwisjk29IUFqUDOKR3G+npo0DFaKcEJuaREwX67C5tCEtsFnRipckqMIgNgZYawhu4VXacTYqeSpBo+SGfWCYL4aUA=
+	t=1741856700; cv=none; b=Aa0wgFNouf648G72bYkdGArPCwvtt8LwJjsKUvmPWNV4Wj9v79wNMFXzKkrc/fe6X7dIfVj3OeSb1KY3JUo63fH5cbmmSlQNj1PWVHjHEddHNU8AbodWTvB+l1j228yeJv+GHnmbZlhfhsZpCijDDb5Sd2bj9+mE0G9zgwUItHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741856489; c=relaxed/simple;
-	bh=pzlGOpGQzeCXZtQkQGt/enf4g4Md7xr7WSnEf7vTN7c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=tjQqZIMZ2S9QivV5SxOqaw+v4cGqAjR5VBXQbHb2H86mxFLR7rKsiBYKlDXurZuiOXaJt2B7O88Fb0kT7B9cwKmBWrc5G3G277Q77Uaeu8vNeajLpaR+q40rcc3Wq76aMRxDucVXUPWZF7wRiTUFKsgB2w35S5hWeBB9MA3+/50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.215.89])
-	by smtp.qiye.163.com (Hmail) with ESMTP id e266ff78;
-	Thu, 13 Mar 2025 17:01:14 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 0/2] arm64: dts: rockchip: Add pwm nodes for RK3528
-Date: Thu, 13 Mar 2025 17:01:09 +0800
-Message-Id: <20250313090109.1910997-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <60065c0b-4597-4976-b74b-172556c4e156@kwiboo.se>
-References: <60065c0b-4597-4976-b74b-172556c4e156@kwiboo.se>
+	s=arc-20240116; t=1741856700; c=relaxed/simple;
+	bh=IQTJYZcVw5+7o+VKKXg4/rKyXDfRtDS5b8VRdnjkb0I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fikGbXLQAQ6Jq4e1qUfQiURztZ5QZQrDnKZ3ZORNu2E15OMe6XeNH+2ymyoKI43tP9iF6I0OmAzdEhbdJVNXlCadI832XN/DqEmSFd/wLMHIKggb+wxInD/GYSCWubyEQ/Nnqu04sm2xgd4oyCVQNMkAfv0OVwUAieCBpIsuN+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Oi5dNurE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52D7RYbJ022547;
+	Thu, 13 Mar 2025 09:04:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	JCsnxEwcfRn2/0Gy0Ea9NtUv3ocEWEmPn1CYcxAIdIs=; b=Oi5dNurEtu3IK7y6
+	psHdi7b1YnybXOy75O5farQ/HgL4jaehdala+gbblA+IWl4srqn/gxkWWaE4Qtsj
+	ZARYCqngj/eUpCcIEDk8bO10ffM3Xo54mimD1nLk+3PcYnhzNH44YAj9yoKHyCb6
+	Q2HNX8dxH8+VzvyBRnV1B1SDrUwZ7cFKeavrwaodODyEJWejwog/D+l3K4WGahJb
+	X16oEg/RMIhh4dVzp0lcz94vKmQCVCUtXY7ULYW+uI9msIwm4P2rJxEEvwcJ3jN3
+	B+CigHWDjQnvZE8c5h75oJh3Xyj5gjWaQbAIxdlDHELnBJ9tJ6dFAtolqs4fQUM1
+	D5ixTg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45bu07g8pp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Mar 2025 09:04:32 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52D94UvU015982
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Mar 2025 09:04:30 GMT
+Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Mar
+ 2025 02:04:23 -0700
+Message-ID: <80439584-c39d-46f7-a62a-82514aa756a8@quicinc.com>
+Date: Thu, 13 Mar 2025 14:34:20 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZTElIVktNTkpOTkkfQxhCGlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVDQllXWRYaDxIVHRRZQVlPS0hVSktJQk1KSlVKS0tVS1
-	kG
-X-HM-Tid: 0a958ebc86e603a2kunme266ff78
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ky46EAw*MjJJNhBKTiwNQw4Q
-	TxNPCThVSlVKTE9KQ05NT0xNSUlKVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpOVUNCWVdZCAFZQUpKTUw3Bg++
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 03/10] dt-bindings: display: msm: document DSI
+ controller and phy on SA8775P
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
+        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
+        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
+References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
+ <20250311122445.3597100-4-quic_amakhija@quicinc.com>
+ <20250312-calm-steadfast-cricket-fe9dd8@krzk-bin>
+Content-Language: en-US
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <20250312-calm-steadfast-cricket-fe9dd8@krzk-bin>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: SPoiqIhZt7yk4fFulWD81Vhsz2vC7X2t
+X-Authority-Analysis: v=2.4 cv=V+F90fni c=1 sm=1 tr=0 ts=67d29fa0 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=jBDEQfmX5vGpiVlta2QA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: SPoiqIhZt7yk4fFulWD81Vhsz2vC7X2t
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-13_04,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
+ impostorscore=0 spamscore=0 priorityscore=1501 phishscore=0 mlxscore=0
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 adultscore=0 bulkscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503130071
 
-Hi,
 
-> I have not seen any issue with PWM using the merged patch having
-> pinctrl-names=default.
->
-> Please see my Linux tree [1] and U-Boot tree [2], those are little ahead
-> of what has been posted on ML, e.g. it has working USB2.0 host, CPU opp,
-> Hantro VPU, GPU + opp, arm and logic pwm regulators for E20C, ROCK 2A/2F
-> and Sige1.
->
-> Please see my Linux tree [1] and U-Boot tree [2], those are little ahead
-> of what has been posted on ML, e.g. it has working USB2.0 host, CPU opp,
-> Hantro VPU, GPU + opp, arm and logic pwm regulators for E20C, ROCK 2A/2F
-> and Sige1.
-> ...
-> [1] https://github.com/Kwiboo/linux-rockchip/commits/next-20250311-rk3528/
-> [2] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3528
 
-I tested your kernel device tree on E20C earlier today and still have
-the same issue. But if I replace u-boot with the link [2] you provided,
-it will work fine. For reference, I was using v2025.01 plus this series
-of patches [3]. So it looks like u-boot does something and kernel doesn't?
+On 3/12/2025 5:15 PM, Krzysztof Kozlowski wrote:
+> On Tue, Mar 11, 2025 at 05:54:38PM +0530, Ayushi Makhija wrote:
+>> Document DSI controller and phy on SA8775P platform.
+>>
+>> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+>> ---
+>>  .../display/msm/qcom,sa8775p-mdss.yaml        | 188 ++++++++++++++++++
+>>  1 file changed, 188 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+>> index a90a8b3f1a9e..628ca68871f4 100644
+>> --- a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+>> @@ -52,6 +52,26 @@ patternProperties:
+>>          items:
+>>            - const: qcom,sa8775p-dp
+>>  
+>> +  "^dsi@[0-9a-f]+$":
+>> +    type: object
+>> +    additionalProperties: true
+>> +
+> 
+> Drop blank line
+> 
+>> +    properties:
+>> +      compatible:
+>> +        items:
+> 
+> contains
+> 
+>> +          - const: qcom,sa8775p-dsi-ctrl
+>> +          - const: qcom,mdss-dsi-ctrl
+> 
+> Drop fallback
+> 
+> Same comments further
+> 
+> Best regards,
+> Krzysztof
+> 
 
-[3] https://lore.kernel.org/u-boot/20250123224844.3104592-1-jonas@kwiboo.se/
+Hi Krzysztof,
+
+Thanks, for the review.
+
+Will address the above comments in the next patch.
+
++  "^dsi@[0-9a-f]+$":
++    type: object
++    additionalProperties: true
++    properties:
++      compatible:
++        contains:
++          enum:
++            - qcom,sa8775p-dsi-ctrl
++            - qcom,mdss-dsi-ctrl
++
++  "^phy@[0-9a-f]+$":
++    type: object
++    additionalProperties: true
++    properties:
++      compatible:
++        contains:
++          enum:
++            - qcom,sa8775p-dsi-phy-5nm
++            - qcom,sa8775p-edp-phy
 
 Thanks,
-Chukun
-
---
-2.25.1
+Ayushi
 
 
