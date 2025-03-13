@@ -1,91 +1,186 @@
-Return-Path: <devicetree+bounces-157334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D48FCA60074
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 20:05:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B6D4A6007E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 20:06:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E270819C50C8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 19:05:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C817519C5C45
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 19:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003451F1911;
-	Thu, 13 Mar 2025 19:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0E61F130D;
+	Thu, 13 Mar 2025 19:04:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zjw9b1/W"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="Htxt1zX6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D961F462C;
-	Thu, 13 Mar 2025 19:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE451F0E40
+	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 19:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741892617; cv=none; b=cnLBLkmJZMPd7B/blQEfBD1vN4jfAPUIJb8RMjiu1odvGbOaCfzJMzbUHs24mVGGEDLMj9QFhdDc0aOJ76yMTm9vvenlwCyjn8iurhTTMlEMjin94B07nQy0AC+1gpWkiRSjwdlQ2fYCroYiRoh6aiPjPCI1JRsa/5+HZdenpl8=
+	t=1741892674; cv=none; b=R48O58iGPz04YE9Hz+sMH7FZVMQCGvpDXQpfxNILVsuN/6vi5IU/M98Ipl1pRl9AYMHYcP3X8ciSyjCM+FwjCTCrdAToAP4jvvXPSmfy1jt+uoadeQGS8uaC8rqkySE/xuZkZh/MSYghoPGM0a6DKQniCdXZBqQ86yOik7nnrrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741892617; c=relaxed/simple;
-	bh=zbiRm6nvzjjJNmZae/fA2d/LFL/98Z98f2fhvHp8QAg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ow8ybgo6xVlNu/3NKP7o7+ha+Cr0S1e0C5b5BQni1hmSet+kj54m6x7pxQAAXxgLu5V/AU/RBYm975oNE+cZkp61ALgEoqK2+DmwbVsf0hfstw15ndHPnsQ3Vta9+D8qfAiJjav4xh4mONpRAGPoI7kK9lqq0V6Z6GBYLC95/X4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zjw9b1/W; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	s=arc-20240116; t=1741892674; c=relaxed/simple;
+	bh=yU2gqjHIXddQduHofZdDOdKL+eHKKker1etKWae4vek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d2RSDwDY6FJjB3eU/u2W0VXR6ijDI4KdmYvbcvpZ7wsCmNEENSTivubLywMt1k5I1ESInUbXo6E5GIOydlREQ6tGOeJA+j1mHKD0pLR4ji7atTC4hrf/qIISrQFIVAKKUuQAYTQnQXasD65rr1ZrKjvZ2W3d+jGeY+3FPnQLTVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=Htxt1zX6; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=H5mdS2EnE4cpGSwW2dj+33eKcmSk0c9tKXjXQcM25/Y=; b=zjw9b1/WQHf2OAGZlzSVLoknvh
-	L1RzSpSTzDaBy2/7e0enIt/0atwWM1R3t4p6z7c+Lnp9Kqve3jzidGIU2liFppchMDCJ/55q3o81w
-	wBmcrUYreJ14Nl+B7ENvo7tK0OH1ZmtsY8/c0UnHNNz+gu04WenM0+w7HgetKI5XlUgGYuG8mkSh8
-	lEllzjETEAnNXmGdbyWXjj8MMiE5V/9s4fo/aMhSSXgEKAcJ+5X+VSiqLyqWVn4FiuW1RLhqOw8vz
-	LcCcK+pI1jy9CJy2gEJbZyAZvLAOZ/0xnSZkRtjgcKlUAZG/vq038NnSC1FWFqmSfZQZvM8XjDBvC
-	fwApDVeg==;
-Received: from ip-185-104-138-79.ptr.icomera.net ([185.104.138.79] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tsnq2-0001sH-Jr; Thu, 13 Mar 2025 20:03:26 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
-	Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Rothwell <sfr@canb.auug.org.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable HDMI audio output for ArmSoM Sige7
-Date: Thu, 13 Mar 2025 20:03:13 +0100
-Message-ID: <174189257844.294070.2578524540715601524.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250312164056.3998224-1-liujianfeng1994@gmail.com>
-References: <20250312164056.3998224-1-liujianfeng1994@gmail.com>
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=2fLniOSY2zCra/pu7rqU9zlOAdGKZAl7RLky/QUsxQM=; b=Htxt1zX6GNYGasRq4piuMwdLZp
+	4IaI70XSw0wUOS78kkdXZcT4bPJeRUkRbXb/tOcsYEBd0R5mRPqixEgbcmilXGlBgRBBUr2v4s6dJ
+	D/au9ntrdb2cSsCLwEvvcGGF6G8xPBmOaUel/3VR7dzBuTJLu6I2jgRC4Qk9ndyUeQs3mUfVWTgtr
+	rF+dhcRDWs6JTHSdYiVJIF8lFL3Y2RgEmQeYDfWXo2+E/pijNepesVygkchPaQA+mckeVmV00maKW
+	6GU90Moe+qkYkXjN3epdvchTi/8TOva3N2TjbK3EqCJ15yG/avAzq/x5pQFsN7dVMcSKI/pLHzjNV
+	iiD+IWrw==;
+Received: from [189.7.87.170] (helo=[192.168.0.224])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+	id 1tsnqc-008IpU-Ci; Thu, 13 Mar 2025 20:04:08 +0100
+Message-ID: <701c71cb-47a6-4970-bd21-ae61cf971f7c@igalia.com>
+Date: Thu, 13 Mar 2025 16:04:01 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/7] dt-bindings: gpu: v3d: Add per-compatible register
+ restrictions
+To: Krzysztof Kozlowski <krzk@kernel.org>, Melissa Wen <mwen@igalia.com>,
+ Iago Toral <itoral@igalia.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, Stefan Wahren <wahrenst@gmx.net>
+Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com
+References: <20250313-v3d-gpu-reset-fixes-v4-0-c1e780d8e096@igalia.com>
+ <20250313-v3d-gpu-reset-fixes-v4-4-c1e780d8e096@igalia.com>
+ <3fbaa5ed-e70f-4293-99d0-faf22f3c4adf@kernel.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <3fbaa5ed-e70f-4293-99d0-faf22f3c4adf@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
++Cc Stefan
 
-On Thu, 13 Mar 2025 00:40:49 +0800, Jianfeng Liu wrote:
-> HDMI audio is available on the ArmSoM Sige7 HDMI TX port.
-> Enable it for HDMI0 port.
+Hi Krzysztof,
+
+On 13/03/25 12:03, Krzysztof Kozlowski wrote:
+> On 13/03/2025 15:43, Maíra Canal wrote:
+>> In order to enforce per-SoC register rules, add per-compatible
+>> restrictions. V3D 3.3 (represented by brcm,7268-v3d) has a cache
+>> controller (GCA), which is not present in other V3D generations.
+>> Declaring these differences helps ensure the DTB accurately reflect
+>> the hardware design.
+>>
+>> While not ideal, this commit keeps the register order flexible for
+>> brcm,7268-v3d with the goal to keep the ABI backwards compatible.
+>>
+>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
+>> ---
+>>   .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 73 ++++++++++++++++++----
+>>   1 file changed, 61 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>> index dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..9867b617c60c6fe34a0f88a3ee2f581a94b69a5c 100644
+>> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>> @@ -22,20 +22,10 @@ properties:
+>>         - brcm,7278-v3d
+>>   
+>>     reg:
+>> -    items:
+>> -      - description: hub register (required)
+>> -      - description: core0 register (required)
+>> -      - description: GCA cache controller register (if GCA controller present)
+>> -      - description: bridge register (if no external reset controller)
+>> -    minItems: 2
 > 
+> Widest constraints always stay here, so you cannot remove minItems.
 > 
+>> +    maxItems: 4
+> 
+>>   
+>>     reg-names:
+>> -    items:
+>> -      - const: hub
+>> -      - const: core0
+>> -      - enum: [ bridge, gca ]
+>> -      - enum: [ bridge, gca ]
+>> -    minItems: 2
+> 
+> Same problem.
+> 
+>> +    maxItems: 4
+>>   
+>>     interrupts:
+>>       items:
+>> @@ -58,6 +48,65 @@ required:
+>>     - reg-names
+>>     - interrupts
+> 
+> ...
+> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: brcm,7268-v3d
+>> +    then:
+>> +      properties:
+>> +        reg:
+>> +          items:
+>> +            - description: hub register
+>> +            - description: core0 register
+>> +            - description: GCA cache controller register
+>> +            - description: bridge register (if no external reset controller)
+>> +          minItems: 3
+>> +        reg-names:
+>> +          items:
+>> +            - const: hub
+>> +            - const: core0
+>> +            - enum: [ bridge, gca ]
+> 
+ > So GCA is always there? Then this should be just 'gca'. Your list for
 
-Applied, thanks!
+GCA is always there for V3D 3.3, therefore it is always there for
+brcm,7268-v3d.
 
-[1/1] arm64: dts: rockchip: Enable HDMI audio output for ArmSoM Sige7
-      commit: e2759a8d452bcc1b64ecd4e819411fa26b6ed72e
+> 'reg' already says that third item must be GCA. I understand that you do
+> not want to affect the ABI, but it already kind of is with enforcing GCA
+> in 'reg'.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+I'm adding Stefan to the loop as he was the one that converted this DT
+binding to YAML. Stefan, could you share your thoughts about breaking
+the ABI for BCM7268? We would enforce the following order: hub, core0,
+bridge, and gca.
+
+> 
+> I anyway do not understand why 'gca' or 'bridge' are supposed to be
+> optional. Does the given SoC differ between boards? What is the external
+> reset controller here? External like outside of SoC?
+
+TBH I never saw BCM7268 or BCM7278 in the wild, but you are correct,
+"bridge" shouldn't change for the same SoC. I'll do my diligence and
+research more about those SoCs.
+
+Best Regards,
+- Maíra
+
+> 
+> Best regards,
+> Krzysztof
+
 
