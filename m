@@ -1,93 +1,147 @@
-Return-Path: <devicetree+bounces-157211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7681A5F51A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:02:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9E7EA5F571
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:08:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E020189E1B2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:02:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60F443A77DB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:07:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C2E22676EA;
-	Thu, 13 Mar 2025 13:01:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hPA9NA4L"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4175E267B1D;
+	Thu, 13 Mar 2025 13:06:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01090266EF5;
-	Thu, 13 Mar 2025 13:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0216267B1F
+	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 13:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741870918; cv=none; b=m0ls53IFcHlXg/IPw3+XWUZV5+m5R4zb6hMirepbQ5G5VU9vXUU9uIKTQ8e2b2la7sujMJ4FUca4hPPpI49mlaYX8R41oHXCFBNAG3FS1xIMetZeSdtCvWxFCUQs0M2MvW7gqtOzWWxQfQj1CAfhmzGltEtg+qezUFnTDixyyA0=
+	t=1741871188; cv=none; b=iLPrzXXhApHYF9P/wovLtoIj0FPEvK6BM5Ksg9+iEXf5PRRB3iMG6PD/2al0ntOMziFsSCotq/WMgrG1VeHvpj3Ry6I7mXXqUCsaxYQqZugK+SO8Nn7PpuikB1O2Z2ZwojWltLKw3kD+w65aPRe/WkYfhR4FDoF6dsTPDPN30Tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741870918; c=relaxed/simple;
-	bh=c0FvekInO8FCbcUc49J6tuRqYWdLPdnPlSLNVOhYGqo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=NN+hCdRJFFS+3Z1fHP3Qpuego6HNd28jOwyXD/XLBFs/KdzFD1dxtwcnFxYk+75QaqDugNyfeXQmEjWJkr3SxgelO+834v4eN+wZUakIUdm4YcGgi+Ahc03RmRshm9IffD0GmUOByoOna4F7rOH4KgAIeS3i8zlJygR2isQLxI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hPA9NA4L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8A16C4CEDD;
-	Thu, 13 Mar 2025 13:01:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741870917;
-	bh=c0FvekInO8FCbcUc49J6tuRqYWdLPdnPlSLNVOhYGqo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=hPA9NA4LYBE3/gCT92Hq7Gtb66zpjMlnCbwmviYI9QOPeSmmvcD8b2MZMvklHKCDZ
-	 c8tTKEP4GS7fHzzkbAi70YWJZsDtWRRGF6DUpsm1NdohBxchT9A1NsPHlAwFXeEpef
-	 cKmg61RLeShIyl2D0S8jN+yJ20Bp1bhnvIxhuwg08eKYl8Jgj6gvPKqhFwF/ZW6rcr
-	 6dy+OlDC5DIrzYqIceQIHfBQDx6Bvl6bM4bmTovDYhXOLm0IsKvVXVR1RZNuncu4zC
-	 t0cDDlWX24LFj9eAmrBB8L11U8XHj7hPfn629x2fVmYr2wbGPlAquu24+9buAFuAF7
-	 3AVctEybAaWgg==
-From: Lee Jones <lee@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Lee Jones <lee@kernel.org>, Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20250301-exynos7870-pmic-regulators-v3-0-808d0b47a564@disroot.org>
-References: <20250301-exynos7870-pmic-regulators-v3-0-808d0b47a564@disroot.org>
-Subject: Re: [PATCH v3 0/3] Introduce support for Exynos7870's S2MPU05 PMIC
- and its regulators
-Message-Id: <174187091537.3628407.1952858339919432293.b4-ty@kernel.org>
-Date: Thu, 13 Mar 2025 13:01:55 +0000
+	s=arc-20240116; t=1741871188; c=relaxed/simple;
+	bh=6zXjh1h2grdtWlh32q/xSiG2WPMUoNGZUBzmL6hMRUM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CH9NkgUgr9T3nsQ8mePJCYTtUFY06OgifyTjsAwqcwpa+9qmjT/lTiiVGI7BptgnVc+D/V/vIIA+L911lpvioliSoDpBQ1TFQVeH2MSPEwL3nKKiO/lLC8+F1eML5R8VkrxkbEJwftIkMvYDUCusqANLpcx9r4p2J1N4gDvOo84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tsiGM-0001HM-Ri; Thu, 13 Mar 2025 14:06:14 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tsiGL-005XTg-2Z;
+	Thu, 13 Mar 2025 14:06:13 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tsiGL-0009sV-2J;
+	Thu, 13 Mar 2025 14:06:13 +0100
+Message-ID: <c27ab4ca4563d20a73ffc8a577f960fe59ffa88f.camel@pengutronix.de>
+Subject: Re: [PATCH v2 2/2] reset: Add USB2PHY control driver for Renesas
+ RZ/V2H(P)
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Prabhakar
+ <prabhakar.csengg@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
+  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Magnus Damm <magnus.damm@gmail.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>,  Prabhakar Mahadev Lad
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chris Paterson
+ <Chris.Paterson2@renesas.com>
+Date: Thu, 13 Mar 2025 14:06:13 +0100
+In-Reply-To: <TY3PR01MB12089B78E1DE163B740A51134C2D32@TY3PR01MB12089.jpnprd01.prod.outlook.com>
+References: 
+	<20250305123915.341589-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	 <20250305123915.341589-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	 <30b6841b3ce199488698ab272f103a0364adb000.camel@pengutronix.de>
+	 <TY3PR01MB12089B78E1DE163B740A51134C2D32@TY3PR01MB12089.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-510f9
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Sat, 01 Mar 2025 01:07:11 +0530, Kaustabh Chakraborty wrote:
-> Exynos7870 devices use Samsung S2MPU05 as its primary PMIC. Add support
-> for it in the existing PMIC driver. Additionally, also add support for
-> voltage regulators which can be accessed and controlled from the PMIC
-> itself.
-> 
-> Patches from mfd and regulator subsystems have been placed together in
-> this series. Here, both patches from both subsystems depend on the other:
-> 1. The regulator driver patch includes a header file which describes the
->    PMIC registers. This header is introduced in a PMIC patch.
-> 2. The PMIC dt-binding patch references the regulator documentation.
-> 
-> [...]
+Hi Fabrizio,
 
-Applied, thanks!
+On Do, 2025-03-13 at 10:14 +0000, Fabrizio Castro wrote:
+> Hi Philipp,
+>=20
+> Thanks for your feedback!
+>=20
+> > From: Philipp Zabel <p.zabel@pengutronix.de>
+> > Sent: 13 March 2025 08:37
+> > Subject: Re: [PATCH v2 2/2] reset: Add USB2PHY control driver for Renes=
+as RZ/V2H(P)
+> >=20
+> > On Mi, 2025-03-05 at 12:39 +0000, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >=20
+> > > Add support for the USB2PHY control driver on the Renesas RZ/V2H(P) S=
+oC.
+> > > Make the driver handle reset and power-down operations for the USB2PH=
+Y.
+> > >=20
+> > > Pass OF data to support future SoCs with similar USB2PHY hardware but
+> > > different register configurations. Define device-specific initializat=
+ion
+> > > values and control register settings in OF data to ensure flexibility
+> > > for upcoming SoCs.
+> > >=20
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> > > ---
+> > >  drivers/reset/Kconfig                    |   7 +
+> > >  drivers/reset/Makefile                   |   1 +
+> > >  drivers/reset/reset-rzv2h-usb2phy-ctrl.c | 223 +++++++++++++++++++++=
+++
+> > >  3 files changed, 231 insertions(+)
+> > >  create mode 100644 drivers/reset/reset-rzv2h-usb2phy-ctrl.c
+> > >=20
+[...]
+> > > diff --git a/drivers/reset/reset-rzv2h-usb2phy-ctrl.c b/drivers/reset=
+/reset-rzv2h-usb2phy-ctrl.c
+> > > new file mode 100644
+> > > index 000000000000..a6daeaf37e1c
+> > > --- /dev/null
+> > > +++ b/drivers/reset/reset-rzv2h-usb2phy-ctrl.c
+> > > @@ -0,0 +1,223 @@
+[...]
+> > > +static const struct rzv2h_usb2phy_regval rzv2h_init_vals[] =3D {
+> > > +	{ .reg =3D 0xc10, .val =3D 0x67c },
+> > > +	{ .reg =3D 0xc14, .val =3D 0x1f },
+> > > +	{ .reg =3D 0x600, .val =3D 0x909 },
+> >=20
+> > What are these registers and what are those values doing?
+>=20
+> Unfortunately, there are some licensing restrictions on this IP, this is
+> the best that we can do, as per the license agreement.
 
-[1/3] regulator: dt-bindings: add documentation for s2mpu05-pmic regulators
-      commit: 07ef6dc942741b918dd0dcbb951e0ae3dd6b53b9
-[2/3] mfd: sec: add support for S2MPU05 PMIC
-      commit: ed33479b7beb2b2dc9649a4e7474b47253d554f9
-[3/3] regulator: s2mps11: Add support for S2MPU05 regulators
-      commit: 169cd52fd9445b30379ea6deafa28a260d489699
+How am I expected to review this?
 
---
-Lee Jones [李琼斯]
+For now, I'll assume that these registers are not related to reset
+functionality at all, and that this driver should be a phy controller
+driver instead of a reset controller driver.
 
+Can you convince me otherwise without breaking license agreements?
+
+regards
+Philipp
 
