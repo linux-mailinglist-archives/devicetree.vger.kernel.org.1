@@ -1,127 +1,164 @@
-Return-Path: <devicetree+bounces-157041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9FFA5E901
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 01:33:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D45A5E914
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 01:50:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5127A3BB388
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:33:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEC943B78A3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:49:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90AA2E3395;
-	Thu, 13 Mar 2025 00:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89015FC08;
+	Thu, 13 Mar 2025 00:49:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="O0WDE/Mk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="asP0KWc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7AD10E3;
-	Thu, 13 Mar 2025 00:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBAA376F1;
+	Thu, 13 Mar 2025 00:49:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741826035; cv=none; b=ObJNNWXNS9qY8n4uHThC8QsRj9TBnEjHvSAEyTmbJk/TyPJc9w66hEVp4T72UaN4+5kPhGtvDUTVdplcfYBIYtyopw08bdW+tf98OQfFVw4D6JC9yXfdKutwr4b+mybhWMkKGkUgLiFqo6xrVZV/RXgKOJa6tr2RtJqvMdEgk+I=
+	t=1741826999; cv=none; b=XypMtVS6u4a4AOLamXcQr6VrC69QIuYgtF8yeL03pyuIcrbwOQEF2xY+TEd8NmyeALiGPN7BD+yaIlkckdOmhp1vkL+Newyp7gyYSut9b+zEO0WFIwLJDarlAcfOIst5yQxS0w8ejBKF3iXKEK/qpF570GxT5ARIkL6UXt+sMnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741826035; c=relaxed/simple;
-	bh=6CkxKqdAjN/Cx3aZZ+ReIjRKn2TmSXeTFO6XNU+m+lU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=Vv7g/qXB3yU80UxF5+2FsHmElzVQUXtVXezofh9SSjyqAqz7HyhHnrGIu4pxtt+eRUff2TPYCmz3Eent1JoYtf+zZGd1i9LTUL8Ue8dfKkVzGLjk50h3a2JFolA3AVg5YInVEkavrE5Ol8DqV23/pMIu4NrIq7doYUsf5MdScvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=O0WDE/Mk reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=AB2GUHSL2k8vU974ZJtogILKP8rhMHvKGHGeZ+pVxWQ=; b=O
-	0WDE/MkX+VL2kULTxRHxI8f5O4zX5KcccF9Pc75nJE9dAr7HoUTj3oFSdOD0ipfV
-	4mdv68a85oNF7bxNT+HMz5mO+Lu3lOrxPRloYrptfdCaX8JY9J90WwXlAi+rj5eI
-	Sof4FTDtSOcod0qqa92c9KE1osByLNkUtqztGxcNi8=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-123 (Coremail) ; Thu, 13 Mar 2025 08:32:55 +0800
- (CST)
-Date: Thu, 13 Mar 2025 08:32:55 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Dmitry Baryshkov" <lumag@kernel.org>
-Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org,
-	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org,
-	yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, robh@kernel.org,
-	sebastian.reichel@collabora.com,
-	"Andy Yan" <andy.yan@rock-chips.com>,
-	"stephen@radxa.com" <stephen@radxa.com>
-Subject: Re:Re: [PATCH v2 7/7] arm64: dts: rockchip: Enable DP2HDMI for ROCK
- 5 ITX
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2025 www.mailtech.cn 163com
-In-Reply-To: <q3y36jgswj4xa2g3hnptc6kgzphbqfg675r5paa2lwvdseytio@jysj4f2i6osu>
-References: <20250312104214.525242-1-andyshrk@163.com>
- <20250312104214.525242-8-andyshrk@163.com>
- <q3y36jgswj4xa2g3hnptc6kgzphbqfg675r5paa2lwvdseytio@jysj4f2i6osu>
-X-NTES-SC: AL_Qu2fA/SZukEs4yKdYOlSyjNW+7xfHKv6+qRChMQvQtsqqTHr9T0KcVtuP1XR3//r4kRAiu7dpbs5Jch8KvJm
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1741826999; c=relaxed/simple;
+	bh=Z49HXwaxexdDXy7kOpCh40mnlaoCuxB1V0yAtiPZZAo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WpM3gDIR0jtSEzApwqavOEN/civjuXGMCCXNZgBI1D6t8CxOLGIm0cvJ227Jp0EyLu6wZr8kApu+x3kT/MhwgLarWgCrTdl4S4kxyUqLpjew/sg29IR5Hr8rF+wLRJIR3f9/WK5rEBnu8QVsbgEk8Vyp3TXiPotrugqwEG138Ao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=asP0KWc8; arc=none smtp.client-ip=209.85.160.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-476775df2f0so14940201cf.1;
+        Wed, 12 Mar 2025 17:49:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741826997; x=1742431797; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HkeNyflx08eBwoXdOrj+id9tFS6hOSl0Scgwwso0Pdc=;
+        b=asP0KWc85RzWtO8Zf0I6uVwSD26cE0WIeas47M6A/nACTMwyyMP8DZ+K3hqkHvwmq0
+         FW28EQsRHDXsChnAhoKFc31/YP16OKL3IK4DBdKnZUO0NhXjgjNDCIrqXrZtff94BEoJ
+         vvL5rGlsaF0gvhlL4lVl0pUUfUD+HcDYZuc2NIlPDUg3LHhYaTjPRvxi8UuzAaE7y9pz
+         bRHL2FpjTGYyBYHAQT/D/Hb+6IyknrCCcFPYWdn2IEkwRhYgOHjOstL93WXS/0+jWLgd
+         2KdJGG/q1uRvdchZpOdMdXUmWZm923uUuMxm8fe/UMK2XuSzPuDtgepMZ0UpBAteQR92
+         w2eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741826997; x=1742431797;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HkeNyflx08eBwoXdOrj+id9tFS6hOSl0Scgwwso0Pdc=;
+        b=Qvsmv1cmAjzfqqUgxKm1eXKdnZ/InXmSxVlzmU/5cnhcrM3CnSbEUG2E7+xTllnFXS
+         L8TaHLa1r5CmHOJtUPB6tWhCjSdngKKV7hikAr9znlTyvGF48rLcDVmPJ+Di1ZaItoxC
+         9AfZjiB7WXegkeCBfICTU6Y4b+5aBrc1vXka6MEMwEF3mq7+JeOlb9D5k0ZwMUaRWeQc
+         WMHBsoY3RJ5qzZ6NKd3uPBMPrER0nglKC7drjUYfVaVgCpzdvvfsy4aHGeVdlfXXb1h4
+         ujbsG+8OUs5JTPPFvqGYlVzKvx4WvIfOCYgJRybi6t5eZHsdcFrlVM3B7R3U4t7HQjlS
+         aTZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUqC1nwCQKUT1T5fkR4NfDZZQJJuEfQv4HpcY8HKwnNqcb1O6waWdluIotrwlv2wPxWujGMr45NtCM0JmY=@vger.kernel.org, AJvYcCVKaMhrVPevGMycfLZO+BxLybp8CL0WYELLHzF/ebhRNsIdeMfIfJD/ulBXnmj0b+vmIOYMKfGNeBPfeFw=@vger.kernel.org, AJvYcCWbTlJVQiMruj8UVmeJ40D5nx9qpomr9sGNeBxFy/e8IJq1NY/pIyAcyTv/0YFKOR5FZ6sMts0xBTYcAKWa@vger.kernel.org, AJvYcCWuqFeYKQczKuGyzf7dmDuxKE0AprTUqtGXMP2MmoTZIzhb18aq3f5mxboZoyDjxtGahOaxJvUN6ynS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/S4HcFCXfjW+uhjX9yxFkyWT28TjKuobedg4c+uvab3l14HCP
+	Nco9X/WVqosyIWzNThFSrgaBwN5TtNotxlWKmbtYDkUtdPa/J1+oQZHDBnerb7svf07+1YT6t1o
+	LTjE161YSGiGEoJfUowhEN1QPLOA=
+X-Gm-Gg: ASbGncsJfq49Kb0zUk1rvNMAt12uZXnXTUaAk81ETWP0Dwg5UyIQ4n6kQuyhJyMpcQl
+	227JFHD9iJPI0FbdkbEKUTLvcIsbBoxcirX5j3Y8ePy2P1LGa3QjABM4QQTeqB34/SEV2ORuI2V
+	mS86I2SG7xTh7H+m1lC5XglEm5OP7CQYJFJII=
+X-Google-Smtp-Source: AGHT+IE4UMHREzgkQUDlb9f76ML3et+Bb02b5+av1fLvRw1YGIeJDBdw7dFMjSxPahafRrC3GwwrWULZTUZ927Q/Ez0=
+X-Received: by 2002:a05:622a:438a:b0:476:652f:4db4 with SMTP id
+ d75a77b69052e-476ba8b2f27mr8949481cf.5.1741826996633; Wed, 12 Mar 2025
+ 17:49:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <5858d492.44b.1958ceb23dd.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:eygvCgD3H4e3J9JnFCt9AA--.21925W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBkAMPXmfSI2pHYgACsZ
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+References: <20250227-apple-codec-changes-v3-0-cbb130030acf@gmail.com>
+ <CAHgNfTxS1Q4PPsw520-J4Yn6xg+QZOYFkYhg5yv-uZFu5waN_g@mail.gmail.com>
+ <20250307205156.GA583954-robh@kernel.org> <5996925.DvuYhMxLoT@setsuna> <20250312125832.GA359842-robh@kernel.org>
+In-Reply-To: <20250312125832.GA359842-robh@kernel.org>
+From: James Calligeros <jcalligeros99@gmail.com>
+Date: Thu, 13 Mar 2025 10:49:40 +1000
+X-Gm-Features: AQ5f1JpviH4ysHbqATC6ly_Fa9fyvcQzoJXH7f6pMF6qeXNeHE906TPegzKdRB0
+Message-ID: <CAHgNfTwLfqCP-TL_pdqxs0AC+1z845Ca1zU6dUS=xwNMgaz+5Q@mail.gmail.com>
+Subject: Re: [PATCH v3 17/20] ASoC: dt-bindings: tas2770: add flags for SDOUT
+ pulldown and zero-fill
+To: Rob Herring <robh@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>, 
+	Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>, Dan Murphy <dmurphy@ti.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shi Fu <shifu0704@thundersoft.com>, Jean Delvare <jdelvare@suse.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	=?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
+	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	asahi@lists.linux.dev, linux-hwmon@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-CkhpIERtaXRyeSwKCkF0IDIwMjUtMDMtMTIgMjA6Mzk6MTcsICJEbWl0cnkgQmFyeXNoa292IiA8
-bHVtYWdAa2VybmVsLm9yZz4gd3JvdGU6Cj5PbiBXZWQsIE1hciAxMiwgMjAyNSBhdCAwNjo0Mjow
-OFBNICswODAwLCBBbmR5IFlhbiB3cm90ZToKPj4gRnJvbTogQW5keSBZYW4gPGFuZHkueWFuQHJv
-Y2stY2hpcHMuY29tPgo+PiAKPj4gVGhlIEhETUkgUG9ydCBuZXh0IHRvIEhlYWRwaG9uZSBKYWNr
-IGlzIGRyaXZlZCBieQo+PiBEUDEgb24gcmszNTg4IHZpYSBhIGRwMmhkbWkgY29udmVydGVyLgo+
-PiAKPj4gQWRkIHJlbGF0ZWQgZHQgbm9kZXMgdG8gZW5hYmxlIGl0Lgo+PiAKPj4gTm90ZTogUk9D
-S0NISVBfVk9QMl9FUF9EUDEgaXMgZGVmaW5lZCBhcyAxMSBpbiBkdC1iaW5kaW5nIGhlYWRlciwK
-Pj4gYnV0IGl0IHdpbGwgdHJpZ2dlciBhIGR0YyB3YXJuaW5nIGxpa2UgImdyYXBoIG5vZGUgdW5p
-dCBhZGRyZXNzCj4+IGVycm9yLCBleHBlY3RlZCAiYiIiIGlmIHdlIHVzZSBpdCBkaXJlY3RseSBh
-ZnRlciBlbmRwb2ludCwgc28gd2UKPj4gdXNlICJiIiBpbnN0ZWFkIGhlcmUuCj4+IAo+PiBTaWdu
-ZWQtb2ZmLWJ5OiBBbmR5IFlhbiA8YW5keS55YW5Acm9jay1jaGlwcy5jb20+Cj4+IC0tLQo+PiAK
-Pj4gKG5vIGNoYW5nZXMgc2luY2UgdjEpCj4+IAo+PiAgLi4uL2Jvb3QvZHRzL3JvY2tjaGlwL3Jr
-MzU4OC1yb2NrLTUtaXR4LmR0cyAgIHwgMzcgKysrKysrKysrKysrKysrKysrKwo+PiAgMSBmaWxl
-IGNoYW5nZWQsIDM3IGluc2VydGlvbnMoKykKPj4gCj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0
-L2Jvb3QvZHRzL3JvY2tjaGlwL3JrMzU4OC1yb2NrLTUtaXR4LmR0cyBiL2FyY2gvYXJtNjQvYm9v
-dC9kdHMvcm9ja2NoaXAvcmszNTg4LXJvY2stNS1pdHguZHRzCj4+IGluZGV4IDY3Yjg4NjMyOTI0
-OC4uMjlmMTBlYzlmMGMxIDEwMDY0NAo+PiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3JvY2tj
-aGlwL3JrMzU4OC1yb2NrLTUtaXR4LmR0cwo+PiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL3Jv
-Y2tjaGlwL3JrMzU4OC1yb2NrLTUtaXR4LmR0cwo+PiBAQCAtNTcsNiArNTcsMTggQEAgYW5hbG9n
-LXNvdW5kIHsKPj4gIAkJCSAgIkhlYWRwaG9uZSIsICJIZWFkcGhvbmVzIjsKPj4gIAl9Owo+PiAg
-Cj4+ICsJZHAtY29uIHsKPj4gKwkJY29tcGF0aWJsZSA9ICJkcC1jb25uZWN0b3IiOwo+Cj5Zb3Un
-dmUgd3JpdHRlbiB0aGF0IGl0IGlzIGFuIEhETUkgY29ubmVjdG9yLiBDb3VsZCB5b3UgcG9zc2li
-bHkgY2xhcmlmeSwKPndoeSBpcyBpdCBiZWluZyByZWdpc3RlcmVkIGFzIGEgRFAgY29ubmVjdG9y
-PyBJcyB0aGVyZSBhbnkga2luZCBvZgo+YSBicmlkZ2UgYmV0d2VlbiB0aGUgRFAgY29udHJvbGxl
-ciBhbmQgdGhlIEhETUkgY29ubmVjdG9yPwoKV2hlbiBJIHdhcyBwcmVwYXJpbmcgdGhpcyBwYXRj
-aCBhdCB0aGF0IHRpbWUsIEkgYWxzbyBoYWQgc29tZSBkb3VidHMuIApXaGV0aGVyIGl0IHNob3Vs
-ZCBiZSByZWdpc3RlcmVkIGFzIGEgRFAgY29ubmVjdG9yIG9yIGFuIEhETUkgY29ubmVjdG9yLiAK
-VGhlcmUgaXMgYSBEUDJIRE1JIGNvbnZlcnNpb24gY2hpcCBiZXR3ZWVuIHRoZSBEUCBvZiBSSzM1
-ODggYW5kIHRoaXMgaGRtaSAKaW50ZXJmYWNlLCBidXQgdGhpcyBjb252ZXJzaW9uIGNoaXAgZG9l
-cyBub3QgcmVxdWlyZSBhIHNvZnR3YXJlIGRyaXZlci4gCklmIHRoZSBjdXJyZW50IHdyaXRpbmcg
-aXMgaW5jb3JyZWN0LCBJIHdpbGwgY2hhbmdlIGl0IHRvIGhkbWktY29ubmVjdG9yIGluIHRoZSBu
-ZXh0IHZlcnNpb24uCgpUaGFua3MKPgo+PiArCQlsYWJlbCA9ICJEUCBPVVQiOwo+PiArCQl0eXBl
-ID0gImZ1bGwtc2l6ZSI7Cj4+ICsKPj4gKwkJcG9ydCB7Cj4+ICsJCQlkcF9jb25faW46IGVuZHBv
-aW50IHsKPj4gKwkJCQlyZW1vdGUtZW5kcG9pbnQgPSA8JmRwMV9vdXRfY29uPjsKPj4gKwkJCX07
-Cj4+ICsJCX07Cj4+ICsJfTsKPj4gKwo+PiAgCWdwaW8tbGVkcyB7Cj4+ICAJCWNvbXBhdGlibGUg
-PSAiZ3Bpby1sZWRzIjsKPj4gIAkJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPj4gQEAgLTI2
-OCw2ICsyODAsMjQgQEAgJmNwdV9sMyB7Cj4+ICAJY3B1LXN1cHBseSA9IDwmdmRkX2NwdV9saXRf
-czA+Owo+PiAgfTsKPj4gIAo+PiArJmRwMSB7Cj4+ICsJc3RhdHVzID0gIm9rYXkiOwo+PiArCXBp
-bmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4+ICsJcGluY3RybC0wID0gPCZkcDFtMF9waW5zPjsK
-Pj4gK307Cj4+ICsKPj4gKyZkcDFfaW4gewo+PiArCWRwMV9pbl92cDI6IGVuZHBvaW50IHsKPj4g
-KwkJcmVtb3RlLWVuZHBvaW50ID0gPCZ2cDJfb3V0X2RwMT47Cj4+ICsJfTsKPj4gK307Cj4+ICsK
-Pj4gKyZkcDFfb3V0IHsKPj4gKwlkcDFfb3V0X2NvbjogZW5kcG9pbnQgewo+PiArCQlyZW1vdGUt
-ZW5kcG9pbnQgPSA8JmRwX2Nvbl9pbj47Cj4+ICsJfTsKPj4gK307Cj4+ICsKPj4gICZncHUgewo+
-PiAgCW1hbGktc3VwcGx5ID0gPCZ2ZGRfZ3B1X3MwPjsKPj4gIAlzdGF0dXMgPSAib2theSI7Cj4+
-IEBAIC0xMjYyLDMgKzEyOTIsMTAgQEAgdnAxX291dF9oZG1pMTogZW5kcG9pbnRAUk9DS0NISVBf
-Vk9QMl9FUF9IRE1JMSB7Cj4+ICAJCXJlbW90ZS1lbmRwb2ludCA9IDwmaGRtaTFfaW5fdnAxPjsK
-Pj4gIAl9Owo+PiAgfTsKPj4gKwo+PiArJnZwMiB7Cj4+ICsJdnAyX291dF9kcDE6IGVuZHBvaW50
-QGIgewo+PiArCQlyZWcgPSA8Uk9DS0NISVBfVk9QMl9FUF9EUDE+Owo+PiArCQlyZW1vdGUtZW5k
-cG9pbnQgPSA8JmRwMV9pbl92cDI+Owo+PiArCX07Cj4+ICt9Owo+PiAtLSAKPj4gMi4zNC4xCj4+
-IAo+Cj4tLSAKPldpdGggYmVzdCB3aXNoZXMKPkRtaXRyeQo=
+On Wed, Mar 12, 2025 at 10:58=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Mon, Mar 10, 2025 at 07:30:07PM +1000, James Calligeros wrote:
+> > On Sat, Mar 8, 2025 at 6:51=E2=80=AFAM Rob Herring <robh@kernel.org> wr=
+ote:
+> > > How would it work when you need a mask? "dai-tdm-slot-tx-mask" is
+> > > enough?
+> >
+> > The existing TX/RX slot masks are used to control which slots the codec
+> > is operating on, AIUI. I don't know if it makes sense to alter how code=
+cs
+> > deal with this. Could we combine the suggested dai-tdm-slot-tx-idle
+> > with an optional dai-tdm-slot-tx-idle-mask property? From the machine
+> > driver's perspective, the API would then be similar to the existing
+> > set_tdm_slot ops. The current downstream macaudio machine driver builds
+> > its links by allowing multiple codecs and CPUs to be linked to a DAI,
+> > like so:
+>
+> Wouldn't the NOT of dai-tdm-slot-tx-mask be the idle mask?
+
+Theoretically it should be, and that's probably just what we should do.
+We would then just have the dai-tdm-slot-tx-idle-mode property to worry
+about. There may be a reason a unique property was added however, as only
+some codecs have it set in our downstream DTs. Perhaps Martin can shed
+some light on this?
+
+> >
+> > dai-link@0 {
+> >       cpu {
+> >               sound-dai =3D <&cpu0>, <&cpu1>;
+> >       };
+> >       codec {
+> >               sound-dai =3D <&speaker0>,
+> >                         ...,
+> >                         <&speaker6>;
+> >       };
+> > };
+> >
+> > In this case, the codec-specific mask property was added so that a mask
+> > could be applied to a specific codec rather than the whole dai, however
+> > from upstream drivers tt looks like the way this should be handled is t=
+o
+> > have "dai-tdm-slot-tx-idle-mask-n" properties at the dai level, then ha=
+ve
+> > the machine driver set the mask for the appropriate codec during setup.=
+ So
+> > for macaudio, assuming speaker5 requires this zerofill mask, we would
+> > have something like this:
+>
+> I'm now confused why you need n masks and what does n represent?
+
+We can have n cpus linked to m codecs in macaudio, and we need to specify
+the TDM properties for each codec individually . There seem to be a couple
+of ways upstream drivers deal with this, but the "nicest" way I've seen is
+what amlogic[1] does, which is extend the dai-tdm-slot-* properties with
+an index (-n) representing the specific codec it's for.
+
+Regards,
+James
+
+[1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
+bindings/sound/amlogic%2Caxg-sound-card.yaml
 
