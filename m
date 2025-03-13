@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-157290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604EBA5F930
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 16:03:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 178E3A5F933
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 16:04:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D9711659E7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 15:03:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78BC93BE526
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 15:03:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D5BA267F77;
-	Thu, 13 Mar 2025 15:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82925265610;
+	Thu, 13 Mar 2025 15:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VCUGGLGN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lsE2wP3+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66C221F03F1
-	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 15:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B90C22612
+	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 15:04:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741878204; cv=none; b=jT0/yy3AEeH/M72q17UkMj2rqIDuemr7w+3td3a8JhFez8i5Rd/Ku6iPq9E+7+FKGnMQYTZbGW8HCDj2tvtd0w9mkJGGT8Uuy9O5CZvnQ2H2UqtMDA8Ap/aT6/gS3/MVw9Pl9fxocTofehgqKIutXbozaWcEjm7tUOl2UuTPoME=
+	t=1741878241; cv=none; b=FzPGCtkhvS3eVkNqpoEjRTGY2D/uWLOi6JdmAGJYQhTjq+mlRxt9zqJI3UDhSIsZroCSoG5vHqXZijjOTwHgLPS93ATwXy7fCc4sTc+e2L2pCiJ6djk7ZttsD2Plchn5cdbol2e+QCMI2T2O9kbRczWb7Na7DO5NlXU05Ou0jEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741878204; c=relaxed/simple;
-	bh=jAiX/IewbFJUMg6gicn9sFxcOpbi66wODHk9b2mdIJQ=;
+	s=arc-20240116; t=1741878241; c=relaxed/simple;
+	bh=arDBQb+rtB0BnC8qp868jqxpGZznhH/1h35SbIcXZu8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DqAUfjAItVYQmss0jdbnvh2pl9UPzmmHxAKRALJfnYPvF4EySnKjpX2l5FDama4P8XIAlAs6NzqSiHn//e2DWRQbNCeQCgTUWTVOw85F5ZLMKAlRKExxQltpOhacekW3RT7xdaYiejRBxj1E3QSHsduFFB31R3Ervb9Hzs68QZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VCUGGLGN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E95CBC4CEDD;
-	Thu, 13 Mar 2025 15:03:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oTZaeoCJuwIRwsIh6kdUUOrS8KBUtvFlbza7PtMER6imPtFj36M2W0aX1e+WRGJJpHupZQYP7ryJEI1uUXC2NJ74nD7LYGVEJWWxkGJCVMqxea1UG9A1jH7xyQuPKuoNgST2cCTE3uUToF3cDnr2Gg+3deCG0sB2+NAX7yzlcoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lsE2wP3+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2458C4CEDD;
+	Thu, 13 Mar 2025 15:03:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741878203;
-	bh=jAiX/IewbFJUMg6gicn9sFxcOpbi66wODHk9b2mdIJQ=;
+	s=k20201202; t=1741878240;
+	bh=arDBQb+rtB0BnC8qp868jqxpGZznhH/1h35SbIcXZu8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VCUGGLGNq7wWlOZdzp567EAClSzkSTWzUoEaLsz/sSpWk2lehhcRTL/84VKiMaZ4b
-	 PqIa2ZQ/s7MhZtVNjvlj/ARR1vFOluTCiuhdduqj/5k6YXnbpC/pj5JsOkk03aVe4+
-	 UfKhD1VB8DJtvEKgg2ZXmzUmtZyFBHjjmfIj+5N2WIO00zwC4E0hNtbOObbZU/adM/
-	 EvUcRPhu2YlDJ4iOwvtJUUeQcUB8gaUOnl2ju2y/d6wI1uHy5i3CsTbehT36iFkMGL
-	 gIir+NZ/+pHJY5KFuq+bRf2xOIQhjoMH3A72blLEMXveh2QTTFIECRQDVEpZ4Ic5yt
-	 O12GTT6Dl3uoQ==
-Message-ID: <3fbaa5ed-e70f-4293-99d0-faf22f3c4adf@kernel.org>
-Date: Thu, 13 Mar 2025 16:03:17 +0100
+	b=lsE2wP3+IGHHAUeA+vSOFv2WfhzpgAbsesOTUnwvYSkF54oVQDvBleZe6Ii8hh97T
+	 k3P51hjqJnxyY4XGOSe+8+WNu3TFZdBGUexiJhcocmoniQGWINdzaLdJ1DzIaVWZ9e
+	 RdseQ5kl8SJSggUHt2dDFppqeCULB60/cMT4gi4DqrGRhld1lRGfVEo87ee5wc8khf
+	 BhlVI+imdLrtp+uxL5k8/5s1zg1m6bTl6zUL1Yr/KQD6hsZAwDAx5V+Qixnnz+8JTJ
+	 ZuJLGH0hKuovz80YyJgI0RHPrVzOF//FKoNnZEv2DOC7Xw31+/EtR7Wqt0EAGO31Rr
+	 OXJIZLJskP/aA==
+Message-ID: <e3b81213-e83c-453c-adad-654d6d801238@kernel.org>
+Date: Thu, 13 Mar 2025 16:03:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/7] dt-bindings: gpu: v3d: Add per-compatible register
- restrictions
+Subject: Re: [PATCH v4 5/7] dt-bindings: gpu: v3d: Add SMS register to BCM2712
+ compatible
 To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
  Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -59,7 +59,7 @@ To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
 Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, kernel-dev@igalia.com
 References: <20250313-v3d-gpu-reset-fixes-v4-0-c1e780d8e096@igalia.com>
- <20250313-v3d-gpu-reset-fixes-v4-4-c1e780d8e096@igalia.com>
+ <20250313-v3d-gpu-reset-fixes-v4-5-c1e780d8e096@igalia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,93 +105,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250313-v3d-gpu-reset-fixes-v4-4-c1e780d8e096@igalia.com>
+In-Reply-To: <20250313-v3d-gpu-reset-fixes-v4-5-c1e780d8e096@igalia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 On 13/03/2025 15:43, Maíra Canal wrote:
-> In order to enforce per-SoC register rules, add per-compatible
-> restrictions. V3D 3.3 (represented by brcm,7268-v3d) has a cache
-> controller (GCA), which is not present in other V3D generations.
-> Declaring these differences helps ensure the DTB accurately reflect
-> the hardware design.
-> 
-> While not ideal, this commit keeps the register order flexible for
-> brcm,7268-v3d with the goal to keep the ABI backwards compatible.
+> V3D 7.1 exposes a new register block, called V3D_SMS. As BCM2712 has a
+> V3D 7.1 core, add a new register item to its compatible. Similar to the
+> GCA, which is specific for V3D 3.3, SMS should only be added for V3D 7.1
+> variants (such as brcm,2712-v3d).
 > 
 > Signed-off-by: Maíra Canal <mcanal@igalia.com>
 > ---
->  .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 73 ++++++++++++++++++----
->  1 file changed, 61 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> index dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..9867b617c60c6fe34a0f88a3ee2f581a94b69a5c 100644
-> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> @@ -22,20 +22,10 @@ properties:
->        - brcm,7278-v3d
->  
->    reg:
-> -    items:
-> -      - description: hub register (required)
-> -      - description: core0 register (required)
-> -      - description: GCA cache controller register (if GCA controller present)
-> -      - description: bridge register (if no external reset controller)
-> -    minItems: 2
 
-Widest constraints always stay here, so you cannot remove minItems.
-
-> +    maxItems: 4
-
->  
->    reg-names:
-> -    items:
-> -      - const: hub
-> -      - const: core0
-> -      - enum: [ bridge, gca ]
-> -      - enum: [ bridge, gca ]
-> -    minItems: 2
-
-Same problem.
-
-> +    maxItems: 4
->  
->    interrupts:
->      items:
-> @@ -58,6 +48,65 @@ required:
->    - reg-names
->    - interrupts
-
-...
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,7268-v3d
-> +    then:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: hub register
-> +            - description: core0 register
-> +            - description: GCA cache controller register
-> +            - description: bridge register (if no external reset controller)
-> +          minItems: 3
-> +        reg-names:
-> +          items:
-> +            - const: hub
-> +            - const: core0
-> +            - enum: [ bridge, gca ]
-
-So GCA is always there? Then this should be just 'gca'. Your list for
-'reg' already says that third item must be GCA. I understand that you do
-not want to affect the ABI, but it already kind of is with enforcing GCA
-in 'reg'.
-
-I anyway do not understand why 'gca' or 'bridge' are supposed to be
-optional. Does the given SoC differ between boards? What is the external
-reset controller here? External like outside of SoC?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
