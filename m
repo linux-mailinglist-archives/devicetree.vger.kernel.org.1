@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-157124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24630A5EE6A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:50:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9C4A5EE6C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:50:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAB933BC85D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:50:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9ED1417D06F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2134263C77;
-	Thu, 13 Mar 2025 08:50:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5370263F45;
+	Thu, 13 Mar 2025 08:50:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E36CE263C9B
-	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 08:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1454263C8B
+	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 08:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741855803; cv=none; b=ERha6xx0a17vvT8mZFm3K4Tl2W8yc/Qw43+IM2hMOR6SN9wGHUcu2pg16Gw3qD3b0P79S1AOv1lu4CK0qHsklPbrNcKbO98EWy755jTRcU8zBPmdFqXhF0a7Dgu5xOyoGlSeb5w9pG2LNjlIsU21mse15D4ITD2NkXpfpQXFZJk=
+	t=1741855805; cv=none; b=YLbsux5HPSaHs422DHKOmEOWA/pMJT23HrYPG3UDd1telH7nNNFtNi0HPp3bjthv5W5v9CoNwXd5L5wQSSmPkPBUQF8I3fFGBGw7F+S/5W2jv6+/USxstAhQXKUBXbDQj97uSV9sIzWfJ2il7/sNRdLis+4vYt0urXaQRgtcdII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741855803; c=relaxed/simple;
-	bh=QlLHZIgUEXLJ1A4VhDTFiqfve7pfF8vpaw5UvbfUxiE=;
+	s=arc-20240116; t=1741855805; c=relaxed/simple;
+	bh=FdXXR1xQ4bVnuZPsFcJ26VAmRweYc/ljX9b9eYfnA4g=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mb1xvJ4I97u4KhS4lS0qq1k2fLuiGV8Zonr/2DUZ7KIOgEJ/eYBkFVgbWZrtnuvXi8ZTlWwmyLtP5CGUzWgDvloZcICqDWU0kufWBV3eqKXLXmY4h1H8vNNqaC4glSbIh2B7Hz60DIqsKYgbG73NuALtrjGqmkIjS32AEngcA9U=
+	 Content-Type:MIME-Version; b=OYFCUbFuORyQa/YoZ9m90a902gN1RmVl/aXMkkvyY46sW85u2Gl/TJ1LCAPzHnQGE63vAV21riEVs+IU8Mjj541lX20rFQd2hinH6h6l6tVOUYXheiNYZyW7eDWKpc1pbPqf0WabeL+O99GGRw6oyUInPD/0GD+nwcpRDa1KY0M=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,20 +33,20 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tseGN-0001Gu-AA; Thu, 13 Mar 2025 09:49:59 +0100
+	id 1tseGP-0001HU-D8; Thu, 13 Mar 2025 09:50:01 +0100
 Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tseGM-005VRT-2g;
-	Thu, 13 Mar 2025 09:49:58 +0100
+	id 1tseGP-005VRX-0Z;
+	Thu, 13 Mar 2025 09:50:01 +0100
 Received: from pza by lupine with local (Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tseGM-0003wf-2R;
-	Thu, 13 Mar 2025 09:49:58 +0100
-Message-ID: <d138f147c5df4091418ba8131cdc02c349c7d0ef.camel@pengutronix.de>
-Subject: Re: [PATCH v5 7/8] reset: imx8mp-audiomix: Add support for DSP
- run/stall
+	id 1tseGP-0003wz-0J;
+	Thu, 13 Mar 2025 09:50:01 +0100
+Message-ID: <fa934fa74bf78cccf6a51cef20c294576e425810.camel@pengutronix.de>
+Subject: Re: [PATCH v5 5/8] reset: imx8mp-audiomix: Prepare the code for
+ more reset bits
 From: Philipp Zabel <p.zabel@pengutronix.de>
 To: Daniel Baluta <daniel.baluta@nxp.com>, robh@kernel.org,
  krzk+dt@kernel.org,  shawnguo@kernel.org, mathieu.poirier@linaro.org,
@@ -56,10 +56,10 @@ Cc: conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
  linux-arm-kernel@lists.infradead.org, andersson@kernel.org,
  Frank.Li@nxp.com,  peng.fan@nxp.com, laurentiu.mihalcea@nxp.com,
  iuliana.prodan@nxp.com,  shengjiu.wang@nxp.com
-Date: Thu, 13 Mar 2025 09:49:58 +0100
-In-Reply-To: <20250311085812.1296243-8-daniel.baluta@nxp.com>
+Date: Thu, 13 Mar 2025 09:50:01 +0100
+In-Reply-To: <20250311085812.1296243-6-daniel.baluta@nxp.com>
 References: <20250311085812.1296243-1-daniel.baluta@nxp.com>
-	 <20250311085812.1296243-8-daniel.baluta@nxp.com>
+	 <20250311085812.1296243-6-daniel.baluta@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -75,9 +75,11 @@ X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expand
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 On Di, 2025-03-11 at 10:58 +0200, Daniel Baluta wrote:
-> We can Run/Stall the DSP via audio block control bits found in audiomix.
-> Implement this functionality using the reset controller and use assert
-> for Stall and deassert for Run.
+> Current code supports EARC PHY Software Reset and EARC Software Reset
+> but it is not easily extensible to more reset bits.
+>=20
+> So, refactor the code in order to easily allow more reset bits in the
+> future.
 >=20
 > Reviewed-by: Peng Fan <peng.fan@nxp.com>
 > Reviewed-by: Frank Li <Frank.Li@nxp.com>
