@@ -1,325 +1,287 @@
-Return-Path: <devicetree+bounces-157283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EA08A5F8FE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 15:50:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D80CBA5F8EB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 15:47:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6877E188C457
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:50:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C81BD3ACB59
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D122686B0;
-	Thu, 13 Mar 2025 14:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC35C1F130F;
+	Thu, 13 Mar 2025 14:47:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="uAVbXm9K"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="ruy+5Rsq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D4F9267F4E;
-	Thu, 13 Mar 2025 14:50:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC9E22092
+	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 14:47:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741877437; cv=none; b=rttXvGSIuT9a5UgcWuU/sy+Zi4PGdMavTFnDz385/FIbFyH+pHXgpvrsPghZL6BV4kexjQDi31WbNbi00DzkMBTA+FXv/UtWjV+QcQNdsrta57LhiQd7+8DTl1lCQV6gxNnjSolbtlPtsY5dBB4MOhxmq4RmGBTY5v8bpsZVWJ8=
+	t=1741877225; cv=none; b=tGK1L1IRxe3+VmRE97JJwrm7YROnd5Dg+KOSefYsuStLl+sMYuAMVYBo/87+7vrhBsxyVMjcCsXsPnmidEecpcQ2CQyuH2usx9vS4ZYrK320b+CfhEc1M14JLb4oDprwM9X1bK2IRIaJMuwoFqhIWGTK+i27y1kisR0fUdCErlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741877437; c=relaxed/simple;
-	bh=DYH8mWP/uN3km4ih67jjOC5+KKiOCx4dt/AnPwkGK2o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=OSriR+mSIhQXSYC8yXdK+ECjTYPg8hSxpDX4ea7qIlPptqAznbGSSkhS0aKl9jGBtV8G0BQzF7O9l/MDmKAKSmvnoxSGx6SI4XUKtDwlFqE3lIh7oUOsrc96n9+CGlCLTOhDuVV6lVCztPAizRp8As74cGj5f52UE0w4QJrt6cE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=uAVbXm9K; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id A05251FDF5;
-	Thu, 13 Mar 2025 15:43:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1741877017;
-	bh=QIeoyNI/Bl3f0J8dwVu4JRPZtINHSBcSBhcO5FHDDoc=; h=From:To:Subject;
-	b=uAVbXm9KIB4cNxKmrxWPEPRtFwrn8//o56yDJXm0yjKWXpc8A32TqgM49g1jLK0f4
-	 QiXkktqwnMEwcM4Wng93EkmFcZh0rlqL1lnW7J+WIYnCShAUmL6Qd4/FGpI121LUX2
-	 mE33VGp5saBkA6E0R9JRESJxCns1Mr4D/6bZY7HuyspOSRt1abUl5Gbeo1gkI82mnq
-	 PUlpCXbCe99sTMysRQCpOT4NhwFiGvxk6Y8MXBjONVNjxkSi65v0YevazieS9iTqkU
-	 j+30HKJM6fADr4NlLI0KHUJyWQKJ9+S0zF5IJfOw+JuNKhpLXS6dg2AG3aBMqQL5nv
-	 pXjxG6C22Aybw==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [RFC PATCH v1 2/2] platform: toradex: add preliminary support for Embedded Controller
-Date: Thu, 13 Mar 2025 15:43:31 +0100
-Message-Id: <20250313144331.70591-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250313144331.70591-1-francesco@dolcini.it>
-References: <20250313144331.70591-1-francesco@dolcini.it>
+	s=arc-20240116; t=1741877225; c=relaxed/simple;
+	bh=g57RTjAHqcLmtmKjxuWc7XiSHGgWLzj6GPyFU2FAEaM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=calHx7a0tWlaOP8IFoo8+MSuu0r0QCQzpx6LAEaBoLFFybQeEI1Y2Zur0X9KFPrOSjZ6nHdO45BLnSi2VbZI1sARClfAAYDjiJoAVZcvqIxJQ77WGDVIZGRyJHlbHcuZUqn9zym9N/aWFYykuKeXVzdla5rtJSEgfOClLBYkPdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=ruy+5Rsq; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Cc:To:In-Reply-To:References:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=dMAHjyrQRw/qQ6f/gvOeBlalmR7zv7Z86weqDbNizCg=; b=ruy+5Rsq35QoaN0KLfxJF9kmsx
+	XU3aylzS+/WwDyK16B6Wkpi81Fazq7Zlck24iQOJhYIlGHC71GuCOTW7Vz0oq/u1EkazxET25JbUN
+	vWsP+y6Mwj0rTvHt5JmhmE85HMEdXIlFY1C2IvMNCELEPdxegWbm5QI0GTiB7t23JwjavbPPgQaPU
+	FluFUTs1RlUczs5pajj406lNjZxP7lAIRPfu5eby1hvQ9DSrj64Q1HGraiLgd+C2U5/gOclzMD7+j
+	ylTeCu3AiTArkMshm3hFL7P3Clg8lItfKCJZq4igU10tw5Qwb0BjSvqxIDPmd8EZH0i/S9FZ9AgUl
+	b2gdnWoA==;
+Received: from [189.7.87.170] (helo=janis.local)
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1tsjpl-008Cju-QJ; Thu, 13 Mar 2025 15:46:59 +0100
+From: =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Date: Thu, 13 Mar 2025 11:43:31 -0300
+Subject: [PATCH v4 6/7] drm/v3d: Use V3D_SMS registers for power on/off and
+ reset on V3D 7.x
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Message-Id: <20250313-v3d-gpu-reset-fixes-v4-6-c1e780d8e096@igalia.com>
+References: <20250313-v3d-gpu-reset-fixes-v4-0-c1e780d8e096@igalia.com>
+In-Reply-To: <20250313-v3d-gpu-reset-fixes-v4-0-c1e780d8e096@igalia.com>
+To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, kernel-dev@igalia.com, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7723; i=mcanal@igalia.com;
+ h=from:subject:message-id; bh=g57RTjAHqcLmtmKjxuWc7XiSHGgWLzj6GPyFU2FAEaM=;
+ b=owEBbQGS/pANAwAIAT/zDop2iPqqAcsmYgBn0u/JuPICQgXIPEOcB/qnbmB/Fg7pVh9R8ylNY
+ vzbUS4N1ueJATMEAAEIAB0WIQT45F19ARZ3Bymmd9E/8w6Kdoj6qgUCZ9LvyQAKCRA/8w6Kdoj6
+ qvH0CACwcRW9pg1gk4Ey9VJgXBpN67/pO7DpNzgy48gl7NGTZQopKNFUfI1aNVCxI55XOnudgSr
+ Exb5hK2QNSeAByiI6IYMq5Ariq6Ul6Vx9u0w6rH2n0s3hKCBuevTRnaIrgtGnsl4FJiAcMUQ6n6
+ /O0TGMVXVmNvqhua9a0MIQJOUyg/H4Vqa6Eo88asX7rjx7hxhT3KrBIjwPR4koTZJrq0tpkAPVQ
+ w2CLzRUvNkWVaDdG1PLFBDXFB4ObvapWt9gXMEjvmeJfC6JaLpyxY0YyANNVQWBTxicopUchFVs
+ 0wV1sXRD1nJk8qFDT9V+qwoCtNwkuCtgrY7Lfaq8zbXU/Y2i
+X-Developer-Key: i=mcanal@igalia.com; a=openpgp;
+ fpr=F8E45D7D0116770729A677D13FF30E8A7688FAAA
 
-From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+In addition to the standard reset controller, V3D 7.x requires configuring
+the V3D_SMS registers for proper power on/off and reset. Add the new
+registers to `v3d_regs.h` and ensure they are properly configured during
+device probing, removal, and reset.
 
-Add new platform driver for the Embedded Controller currently used
-in Toradex SMARC iMX8MP and SMARC iMX95.
-It currently provides power-off and restart (reset) handlers.
+This change fixes GPU reset issues on the Raspberry Pi 5 (BCM2712).
+Without exposing these registers, a GPU reset causes the GPU to hang,
+stopping any further job execution and freezing the desktop GUI. The same
+issue occurs when unloading and loading the v3d driver.
 
-Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Link: https://github.com/raspberrypi/linux/issues/6660
+Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
+Signed-off-by: Maíra Canal <mcanal@igalia.com>
 ---
- MAINTAINERS                           |   1 +
- drivers/platform/Kconfig              |   2 +
- drivers/platform/Makefile             |   1 +
- drivers/platform/toradex/Kconfig      |  18 +++
- drivers/platform/toradex/Makefile     |   1 +
- drivers/platform/toradex/toradex-ec.c | 155 ++++++++++++++++++++++++++
- 6 files changed, 178 insertions(+)
- create mode 100644 drivers/platform/toradex/Kconfig
- create mode 100644 drivers/platform/toradex/Makefile
- create mode 100644 drivers/platform/toradex/toradex-ec.c
+ drivers/gpu/drm/v3d/v3d_drv.c  | 40 ++++++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/v3d/v3d_drv.h  | 11 +++++++++++
+ drivers/gpu/drm/v3d/v3d_gem.c  | 17 +++++++++++++++++
+ drivers/gpu/drm/v3d/v3d_regs.h | 26 ++++++++++++++++++++++++++
+ 4 files changed, 94 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 19d7c17c0115..fa1630f0f725 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23977,6 +23977,7 @@ M:	Emanuele Ghidoli <ghidoliemanuele@gmail.com>
- M:	Francesco Dolcini <francesco@dolcini.it>
- S:	Maintained
- F:	Documentation/devicetree/bindings/firmware/toradex,embedded-controller.yaml
-+F:	drivers/platform/toradex/toradex-ec.c
+diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
+index c63f0ed1bd8a3d5511085e76ed2fbd6ee7df6f80..122848cdccc4a02039d9ea2e77aa2f377886b5d6 100644
+--- a/drivers/gpu/drm/v3d/v3d_drv.c
++++ b/drivers/gpu/drm/v3d/v3d_drv.c
+@@ -263,6 +263,36 @@ static const struct of_device_id v3d_of_match[] = {
+ };
+ MODULE_DEVICE_TABLE(of, v3d_of_match);
  
- TORTURE-TEST MODULES
- M:	Davidlohr Bueso <dave@stgolabs.net>
-diff --git a/drivers/platform/Kconfig b/drivers/platform/Kconfig
-index 960fd6a82450..84aabb88fb4a 100644
---- a/drivers/platform/Kconfig
-+++ b/drivers/platform/Kconfig
-@@ -15,6 +15,8 @@ source "drivers/platform/olpc/Kconfig"
++static void
++v3d_idle_sms(struct v3d_dev *v3d)
++{
++	if (v3d->ver < V3D_GEN_71)
++		return;
++
++	V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_CLEAR_POWER_OFF);
++
++	if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_TEE_CS),
++				    V3D_SMS_STATE) == V3D_SMS_IDLE), 100)) {
++		DRM_ERROR("Failed to power up SMS\n");
++	}
++
++	v3d_reset_sms(v3d);
++}
++
++static void
++v3d_power_off_sms(struct v3d_dev *v3d)
++{
++	if (v3d->ver < V3D_GEN_71)
++		return;
++
++	V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_POWER_OFF);
++
++	if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_TEE_CS),
++				    V3D_SMS_STATE) == V3D_SMS_POWER_OFF_STATE), 100)) {
++		DRM_ERROR("Failed to power off SMS\n");
++	}
++}
++
+ static int
+ map_regs(struct v3d_dev *v3d, void __iomem **regs, const char *name)
+ {
+@@ -300,6 +330,12 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
  
- source "drivers/platform/surface/Kconfig"
++	if (v3d->ver >= V3D_GEN_71) {
++		ret = map_regs(v3d, &v3d->sms_regs, "sms");
++		if (ret)
++			return ret;
++	}
++
+ 	v3d->clk = devm_clk_get_optional(dev, NULL);
+ 	if (IS_ERR(v3d->clk))
+ 		return dev_err_probe(dev, PTR_ERR(v3d->clk), "Failed to get V3D clock\n");
+@@ -310,6 +346,8 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
  
-+source "drivers/platform/toradex/Kconfig"
++	v3d_idle_sms(v3d);
 +
- source "drivers/platform/x86/Kconfig"
+ 	mmu_debug = V3D_READ(V3D_MMU_DEBUG_INFO);
+ 	mask = DMA_BIT_MASK(30 + V3D_GET_FIELD(mmu_debug, V3D_MMU_PA_WIDTH));
+ 	ret = dma_set_mask_and_coherent(dev, mask);
+@@ -410,6 +448,8 @@ static void v3d_platform_drm_remove(struct platform_device *pdev)
+ 	dma_free_wc(v3d->drm.dev, 4096, v3d->mmu_scratch,
+ 		    v3d->mmu_scratch_paddr);
  
- source "drivers/platform/arm64/Kconfig"
-diff --git a/drivers/platform/Makefile b/drivers/platform/Makefile
-index 19ac54648586..2d849a8f3ccf 100644
---- a/drivers/platform/Makefile
-+++ b/drivers/platform/Makefile
-@@ -13,3 +13,4 @@ obj-$(CONFIG_CHROME_PLATFORMS)	+= chrome/
- obj-$(CONFIG_CZNIC_PLATFORMS)	+= cznic/
- obj-$(CONFIG_SURFACE_PLATFORMS)	+= surface/
- obj-$(CONFIG_ARM64_PLATFORM_DEVICES)	+= arm64/
-+obj-$(CONFIG_TORADEX_PLATFORMS)	+= toradex/
-diff --git a/drivers/platform/toradex/Kconfig b/drivers/platform/toradex/Kconfig
-new file mode 100644
-index 000000000000..635d955df79d
---- /dev/null
-+++ b/drivers/platform/toradex/Kconfig
-@@ -0,0 +1,18 @@
-+menuconfig TORADEX_PLATFORMS
-+	bool "Platform support for Toradex hardware"
-+	help
-+	  Say Y here to be able to choose driver support for Toradex
-+	  devices. This option alone does not add any kernel code.
++	v3d_power_off_sms(v3d);
 +
-+if TORADEX_PLATFORMS
-+config TORADEX_EC
-+	tristate "Toradex Embedded Controller driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Say Y here to add support for the features implemented by the
-+	  Embedded Controller on the Toradex Modules.
-+	  To compile this driver as a module, choose M here; the module will be
-+	  called toradex-ec.
+ 	clk_disable_unprepare(v3d->clk);
+ }
+ 
+diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
+index de4a9e18f6a9039edf57f406ab1cee9dad4c0a49..b51f0b648a08011f737317ec1841d5ab316355b2 100644
+--- a/drivers/gpu/drm/v3d/v3d_drv.h
++++ b/drivers/gpu/drm/v3d/v3d_drv.h
+@@ -118,6 +118,7 @@ struct v3d_dev {
+ 	void __iomem *core_regs[3];
+ 	void __iomem *bridge_regs;
+ 	void __iomem *gca_regs;
++	void __iomem *sms_regs;
+ 	struct clk *clk;
+ 	struct reset_control *reset;
+ 
+@@ -268,6 +269,15 @@ to_v3d_fence(struct dma_fence *fence)
+ #define V3D_GCA_READ(offset) readl(v3d->gca_regs + offset)
+ #define V3D_GCA_WRITE(offset, val) writel(val, v3d->gca_regs + offset)
+ 
++#define V3D_SMS_IDLE				0x0
++#define V3D_SMS_ISOLATING_FOR_RESET		0xa
++#define V3D_SMS_RESETTING			0xb
++#define V3D_SMS_ISOLATING_FOR_POWER_OFF	0xc
++#define V3D_SMS_POWER_OFF_STATE		0xd
 +
-+endif # TORADEX_PLATFORMS
-diff --git a/drivers/platform/toradex/Makefile b/drivers/platform/toradex/Makefile
-new file mode 100644
-index 000000000000..eb918819ad35
---- /dev/null
-+++ b/drivers/platform/toradex/Makefile
-@@ -0,0 +1 @@
-+obj-$(CONFIG_TORADEX_EC)			+= toradex-ec.o
-diff --git a/drivers/platform/toradex/toradex-ec.c b/drivers/platform/toradex/toradex-ec.c
-new file mode 100644
-index 000000000000..f01addf2a0a6
---- /dev/null
-+++ b/drivers/platform/toradex/toradex-ec.c
-@@ -0,0 +1,155 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Toradex Embedded Controller driver
-+ *
-+ * Copyright (C) 2025 Toradex
-+ *
-+ * Author: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-+ */
++#define V3D_SMS_READ(offset) readl(v3d->sms_regs + (offset))
++#define V3D_SMS_WRITE(offset, val) writel(val, v3d->sms_regs + (offset))
 +
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/reboot.h>
-+#include <linux/regmap.h>
-+
-+#define EC_CHIP_ID_REG                  0x00
-+#define EC_VERSION_REG_MAJOR            0x01
-+#define EC_VERSION_REG_MINOR            0x02
-+#define EC_CMD_REG                      0xD0
-+#define EC_REG_MAX                      0xD0
-+
-+#define EC_CHIP_ID_SMARC_IMX95          0x11
-+#define EC_CHIP_ID_SMARC_IMX8MP         0x12
-+
-+#define EC_POWEROFF_CMD                 0x01
-+#define EC_RESET_CMD                    0x02
-+
-+#define EC_ID_VERSION_LEN               3
-+
-+struct tdx_ec {
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+};
-+
-+static const struct regmap_range volatile_ranges[] = {
-+	regmap_reg_range(EC_CMD_REG, EC_CMD_REG),
-+};
-+
-+static const struct regmap_access_table volatile_table = {
-+	.yes_ranges	= volatile_ranges,
-+	.n_yes_ranges	= ARRAY_SIZE(volatile_ranges),
-+};
-+
-+static const struct regmap_range read_ranges[] = {
-+	regmap_reg_range(EC_CHIP_ID_REG, EC_VERSION_REG_MINOR),
-+};
-+
-+static const struct regmap_access_table read_table = {
-+	.yes_ranges	= read_ranges,
-+	.n_yes_ranges	= ARRAY_SIZE(read_ranges),
-+};
-+
-+static const struct regmap_config regmap_config = {
-+	.reg_bits	= 8,
-+	.val_bits	= 8,
-+	.max_register	= EC_REG_MAX,
-+	.cache_type	= REGCACHE_RBTREE,
-+	.rd_table	= &read_table,
-+	.volatile_table = &volatile_table,
-+};
-+
-+static int tdx_ec_cmd(struct tdx_ec *ec, u8 cmd)
+ #define V3D_CORE_READ(core, offset) readl(v3d->core_regs[core] + offset)
+ #define V3D_CORE_WRITE(core, offset, val) writel(val, v3d->core_regs[core] + offset)
+ 
+@@ -546,6 +556,7 @@ struct dma_fence *v3d_fence_create(struct v3d_dev *v3d, enum v3d_queue queue);
+ /* v3d_gem.c */
+ int v3d_gem_init(struct drm_device *dev);
+ void v3d_gem_destroy(struct drm_device *dev);
++void v3d_reset_sms(struct v3d_dev *v3d);
+ void v3d_reset(struct v3d_dev *v3d);
+ void v3d_invalidate_caches(struct v3d_dev *v3d);
+ void v3d_clean_caches(struct v3d_dev *v3d);
+diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c
+index 1ea6d3832c2212d9cbbd90236478d18491f0ff14..d7d16da78db328f004d1d702731d1a1b5437a394 100644
+--- a/drivers/gpu/drm/v3d/v3d_gem.c
++++ b/drivers/gpu/drm/v3d/v3d_gem.c
+@@ -104,6 +104,22 @@ v3d_reset_v3d(struct v3d_dev *v3d)
+ 	v3d_init_hw_state(v3d);
+ }
+ 
++void
++v3d_reset_sms(struct v3d_dev *v3d)
 +{
-+	int err = regmap_write(ec->regmap, EC_CMD_REG, cmd);
++	if (v3d->ver < V3D_GEN_71)
++		return;
 +
-+	if (err)
-+		dev_err(&ec->client->dev, "Failed to send command 0x%02X: %d\n", cmd, err);
-+	return err;
++	V3D_SMS_WRITE(V3D_SMS_REE_CS, V3D_SET_FIELD(0x4, V3D_SMS_STATE));
++
++	if (wait_for(!(V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_REE_CS),
++				     V3D_SMS_STATE) == V3D_SMS_ISOLATING_FOR_RESET) &&
++		     !(V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_REE_CS),
++				     V3D_SMS_STATE) == V3D_SMS_RESETTING), 100)) {
++		DRM_ERROR("Failed to wait for SMS reset\n");
++	}
 +}
 +
-+static int tdx_ec_power_off(struct sys_off_data *data)
-+{
-+	struct tdx_ec *ec = data->cb_data;
-+	int err;
+ void
+ v3d_reset(struct v3d_dev *v3d)
+ {
+@@ -119,6 +135,7 @@ v3d_reset(struct v3d_dev *v3d)
+ 		v3d_idle_axi(v3d, 0);
+ 
+ 	v3d_idle_gca(v3d);
++	v3d_reset_sms(v3d);
+ 	v3d_reset_v3d(v3d);
+ 
+ 	v3d_mmu_set_page_table(v3d);
+diff --git a/drivers/gpu/drm/v3d/v3d_regs.h b/drivers/gpu/drm/v3d/v3d_regs.h
+index 6da3c69082bd6d5954bf88bd9ff2543a5e4e04c4..c1870265eaeecc188afc4f09cf13a5201d3aa1c6 100644
+--- a/drivers/gpu/drm/v3d/v3d_regs.h
++++ b/drivers/gpu/drm/v3d/v3d_regs.h
+@@ -515,4 +515,30 @@
+ # define V3D_ERR_VPAERGS                               BIT(1)
+ # define V3D_ERR_VPAEABB                               BIT(0)
+ 
++#define V3D_SMS_REE_CS                                 0x00000
++#define V3D_SMS_TEE_CS                                 0x00400
++# define V3D_SMS_INTERRUPT                             BIT(31)
++# define V3D_SMS_POWER_OFF                             BIT(30)
++# define V3D_SMS_CLEAR_POWER_OFF                       BIT(29)
++# define V3D_SMS_LOCK                                  BIT(28)
++# define V3D_SMS_CLEAR_LOCK                            BIT(27)
++# define V3D_SMS_SVP_MODE_EXIT                         BIT(26)
++# define V3D_SMS_CLEAR_SVP_MODE_EXIT                   BIT(25)
++# define V3D_SMS_SVP_MODE_ENTER                        BIT(24)
++# define V3D_SMS_CLEAR_SVP_MODE_ENTER                  BIT(23)
++# define V3D_SMS_THEIR_MODE_EXIT                       BIT(22)
++# define V3D_SMS_THEIR_MODE_ENTER                      BIT(21)
++# define V3D_SMS_OUR_MODE_EXIT                         BIT(20)
++# define V3D_SMS_CLEAR_OUR_MODE_EXIT                   BIT(19)
++# define V3D_SMS_SEQ_PC_MASK                           V3D_MASK(16, 10)
++# define V3D_SMS_SEQ_PC_SHIFT                          10
++# define V3D_SMS_HUBCORE_STATUS_MASK                   V3D_MASK(9, 8)
++# define V3D_SMS_HUBCORE_STATUS_SHIFT                  8
++# define V3D_SMS_NEW_MODE_MASK                         V3D_MASK(7, 6)
++# define V3D_SMS_NEW_MODE_SHIFT                        6
++# define V3D_SMS_OLD_MODE_MASK                         V3D_MASK(5, 4)
++# define V3D_SMS_OLD_MODE_SHIFT                        4
++# define V3D_SMS_STATE_MASK                            V3D_MASK(3, 0)
++# define V3D_SMS_STATE_SHIFT                           0
 +
-+	err = tdx_ec_cmd(ec, EC_POWEROFF_CMD);
-+	return err ? NOTIFY_BAD : NOTIFY_DONE;
-+}
-+
-+static int tdx_ec_restart(struct sys_off_data *data)
-+{
-+	struct tdx_ec *ec = data->cb_data;
-+	int err;
-+
-+	err = tdx_ec_cmd(ec, EC_RESET_CMD);
-+	return err ? NOTIFY_BAD : NOTIFY_DONE;
-+}
-+
-+static int tdx_ec_register_power_off_restart(struct device *dev, struct tdx_ec *ec)
-+{
-+	int err;
-+
-+	err = devm_register_sys_off_handler(dev, SYS_OFF_MODE_RESTART,
-+					    SYS_OFF_PRIO_FIRMWARE,
-+					    tdx_ec_restart, ec);
-+	if (err)
-+		return err;
-+
-+	err = devm_register_sys_off_handler(dev, SYS_OFF_MODE_POWER_OFF,
-+					    SYS_OFF_PRIO_FIRMWARE,
-+					    tdx_ec_power_off, ec);
-+	return err;
-+}
-+
-+static int tdx_ec_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	u8 reg_val[EC_ID_VERSION_LEN];
-+	struct tdx_ec *ec;
-+	int err;
-+
-+	ec = devm_kzalloc(dev, sizeof(*ec), GFP_KERNEL);
-+	if (!ec)
-+		return -ENOMEM;
-+
-+	ec->client = client;
-+	i2c_set_clientdata(client, ec);
-+
-+	ec->regmap = devm_regmap_init_i2c(client, &regmap_config);
-+	if (IS_ERR(ec->regmap))
-+		return PTR_ERR(ec->regmap);
-+
-+	err = regmap_bulk_read(ec->regmap, EC_CHIP_ID_REG, &reg_val, EC_ID_VERSION_LEN);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "Cannot read id and version registers\n");
-+
-+	dev_info(dev, "Toradex Embedded Controller id %x - Firmware %d.%d\n",
-+		 reg_val[0], reg_val[1], reg_val[2]);
-+
-+	err = tdx_ec_register_power_off_restart(dev, ec);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "Cannot register system restart handler\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id __maybe_unused of_tdx_ec_match[] = {
-+	{ .compatible = "toradex,embedded-controller" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_tdx_ec_match);
-+
-+static struct i2c_driver toradex_ec_driver = {
-+	.probe			= tdx_ec_probe,
-+	.driver			= {
-+		.name		= "toradex-ec",
-+		.of_match_table = of_tdx_ec_match,
-+	},
-+};
-+module_i2c_driver(toradex_ec_driver);
-+
-+MODULE_AUTHOR("Emanuele Ghidoli <emanuele.ghidoli@toradex.com>");
-+MODULE_DESCRIPTION("Toradex Embedded Controller driver");
-+MODULE_LICENSE("GPL");
+ #endif /* V3D_REGS_H */
+
 -- 
-2.39.5
+Git-154)
 
 
