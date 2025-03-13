@@ -1,111 +1,129 @@
-Return-Path: <devicetree+bounces-157331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B10F2A5FFE1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 19:47:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0815A60034
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 19:57:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C0D388097E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 18:46:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 039513AB75E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 18:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBE41F03C2;
-	Thu, 13 Mar 2025 18:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F370B1F03C2;
+	Thu, 13 Mar 2025 18:57:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="c029q20h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XbUJ/Vgt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C968D1DDC23;
-	Thu, 13 Mar 2025 18:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68F7143895;
+	Thu, 13 Mar 2025 18:57:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741891621; cv=none; b=oMmTayKdTDJdHloUjobSKFk7h5cVSUhTHL8K6fAWrL6vcJZfWSRJLS9xxXLHeKeQb2EXIBKh7VbhVMdGiRxzZlzurmIlH33KK81zh5u7AMRq09pCQgV7abrnbl/wZsLtoOdyLz39xdyIOAcIobZm0lDeOng3FJWrC5GcERh5SDE=
+	t=1741892263; cv=none; b=BnDV23aiFwIg98MkrdaEjFNE3FiENw7E0b34E3+rxGZw822GxpXZdGz/JFPqTLe7GrErn1D2djkbMno0Y8OL/JCpuIjy0fuuJvzoYVUuzlEIib+IniIZQcBZ2+lwUCv1Yg9QS08AEmZDFJwEY2DnsqoGP68lUEjGcsLpvVqaghM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741891621; c=relaxed/simple;
-	bh=0pcwQ9vLas23Kk5/y+wVBp5txvPs/bUozChqyYxLVOY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q6pReY6t3Bp8Rctmf6xFrD2hI9Xniki3bTvcYbb9Oj1c0ztKzzfI+6l2wol+nCJCIlbkBQ2aEcik1sQFwt75DhDG5wbqwtSizM2ue0Ht680MNevAMip+Z5jiSZ8w0XpGPtx9NmdWFxFCoVeyzdxmILTftCcka4Kgq8JtSweWrQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=c029q20h; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id EE024203342A;
-	Thu, 13 Mar 2025 11:46:58 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com EE024203342A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1741891619;
-	bh=nt8jkVfaRzuUqauG7agUplFqSQ7P9hL/iQtfhXt7daM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c029q20hO7p9pMytBoFbb4lvO9ZDTqP8ojMLWrK9hbwLYNc57V4N0Aa6gWzzJFcHr
-	 esb6o3L0vE8YHyp+7RG+sJdxsuqky6Zy4qUPq4udmjKBOq899yOQu3eWe+Mhi7Jmax
-	 CS5/4KC7mWI6F/acsg68bV6b8QdxWShafCvHoxSA=
-Message-ID: <81612b52-a47b-4d9c-9d50-c74ad66286d9@linux.microsoft.com>
-Date: Thu, 13 Mar 2025 11:46:58 -0700
+	s=arc-20240116; t=1741892263; c=relaxed/simple;
+	bh=pnM3/eXJlQYbAOmQMatwU3RDryh3qaaZieUTqjGuzcY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UlhO1dA46LkX47DckEfQxlKAvJqiI6PhiVeyBkMZ55AF2f8xwNbtjypYS/13UZAF45fzILiHlZa5nYl40ZNOmDyIWrksPFy4WIsfK5S2ILqr9W55lkgpYlrzXwhY6Docdrbkk+zZto+xyC2HmDBDFO/8rbe2WNYkRyK1AYdUTeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XbUJ/Vgt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45F48C4CEEE;
+	Thu, 13 Mar 2025 18:57:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741892263;
+	bh=pnM3/eXJlQYbAOmQMatwU3RDryh3qaaZieUTqjGuzcY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=XbUJ/Vgt4NSdO9qOguXWJRHolBFAbh0mqx2ScE7onbocPyUmW+Y1RZs2bIFR9jOz6
+	 KEp8O/6V58UaOAVIJeYcAh5ryZ+wKk4apH3HPcE4qBJsS2VgF5DHOVwuoVLEAVgqva
+	 jnbveei5ls+7kt/xGLgtFVMsTqYSql/2QUMgsmv/gxL22bKMJOGAEiMdtWmXqQ2Ucg
+	 +bdROyxh/Hrjznj7MJPNTBkcY1MjMm91iv+bp4Cl+7aoV9Quwgwh9t+9ZBT4eOtbS4
+	 juQFIg47kMGZ3ZPIQnUi/Jx/kL27K4ptr5LgfVK851e5MgYpmLWzu8z3N4KzhDCzrN
+	 dGzlaqzqndrPw==
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ac25d2b2354so229483766b.1;
+        Thu, 13 Mar 2025 11:57:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUaQ+w6vC9hGN3xCdplWaPofY4dbnY6OLw5YyWiqca722hAi52SXv5BcLJhywnQdKiSEe/aT7CQYtQTFqBoVQ/2@vger.kernel.org, AJvYcCUqCF8QYKMUFOt5PmoTBaOV8NJoY/O6ueQeJB/nA+iSq6u4Zn1tWgkLyMFz9O/fOlv/2x/gYVPu3jY97KEU@vger.kernel.org, AJvYcCWdo4SwihzGwzxCUnnT2ZamebFKYlfGlgc9baD5UmDV19pTHze+L1UqWGRkHBvTn8TLkNhIlFxoBvGC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlWc9yFx6UKU5C9yXj71CrDHxi6sUdXYu3n5wn/Iicw7SJ85ix
+	e5+yK8qf/U3aQVsJelKmf9R90tHJbhQqEG762XSspY273GIqgxsBuTDIrq5yJBx7svXES9d4x99
+	Sp13co1bD+veHG+Ms//GjYmnQNw==
+X-Google-Smtp-Source: AGHT+IGxvyDPIkZ3HfnSzL4kE9l/WHzwDQwashvlehk6CqU5kYwwwa++MhzGCLauTSyn3LtQmieTQa9VDQRaakTmrE0=
+X-Received: by 2002:a17:907:1ca7:b0:ac1:fa91:2b98 with SMTP id
+ a640c23a62f3a-ac3290b5b89mr57840666b.14.1741892261803; Thu, 13 Mar 2025
+ 11:57:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v5 08/11] Drivers: hv: vmbus: Get the IRQ
- number from DeviceTree
-To: Rob Herring <robh@kernel.org>
-Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
- catalin.marinas@arm.com, conor+dt@kernel.org, dave.hansen@linux.intel.com,
- decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
- joey.gouly@arm.com, krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com,
- lenb@kernel.org, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org,
- mark.rutland@arm.com, maz@kernel.org, mingo@redhat.com,
- oliver.upton@linux.dev, rafael@kernel.org, ssengar@linux.microsoft.com,
- sudeep.holla@arm.com, suzuki.poulose@arm.com, tglx@linutronix.de,
- wei.liu@kernel.org, will@kernel.org, yuzenghui@huawei.com,
- devicetree@vger.kernel.org, kvmarm@lists.linux.dev,
- linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
- apais@microsoft.com, benhill@microsoft.com, bperkins@microsoft.com,
- sunilmut@microsoft.com
-References: <20250307220304.247725-1-romank@linux.microsoft.com>
- <20250307220304.247725-9-romank@linux.microsoft.com>
- <CAL_JsqLmS4EEoPkOmaH6F_0XtQu5wkM-WEfxFvjLA=bJroEUVw@mail.gmail.com>
-Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <CAL_JsqLmS4EEoPkOmaH6F_0XtQu5wkM-WEfxFvjLA=bJroEUVw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <1741874545-19091-1-git-send-email-abhitiwari@linux.microsoft.com>
+In-Reply-To: <1741874545-19091-1-git-send-email-abhitiwari@linux.microsoft.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 13 Mar 2025 13:57:30 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKU8hE=dXdQ+hO0WvU-GuXAjEBgCPJ4rnxef9851zyKMw@mail.gmail.com>
+X-Gm-Features: AQ5f1Jq_oFazuB_slJkD16lfmh_exdSsFXOeEWw1Ss12ha7__KdFDzrMJ1oGPx4
+Message-ID: <CAL_JsqKU8hE=dXdQ+hO0WvU-GuXAjEBgCPJ4rnxef9851zyKMw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: memory: Document linux,usable-memory property
+To: Abhishek Tiwari <abhitiwari@linux.microsoft.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, kees@kernel.org, 
+	tony.luck@intel.com, gpiccoli@igalia.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	abhitiwari@microsoft.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Mar 13, 2025 at 9:03=E2=80=AFAM Abhishek Tiwari
+<abhitiwari@linux.microsoft.com> wrote:
+>
+> Add Documentation for linux,usable-memory
+>
+> Signed-off-by: Abhishek Tiwari <abhitiwari@linux.microsoft.com>
+> ---
+>  .../bindings/linux,usable-memory.txt          | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/linux,usable-memory=
+.txt
+>
+> diff --git a/Documentation/devicetree/bindings/linux,usable-memory.txt b/=
+Documentation/devicetree/bindings/linux,usable-memory.txt
+> new file mode 100644
+> index 000000000000..167054d2e9a2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/linux,usable-memory.txt
+> @@ -0,0 +1,32 @@
+> +linux,usable-memory
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
+This belongs here:
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/memo=
+ry.yaml
 
-On 3/13/2025 11:44 AM, Rob Herring wrote:
-> On Fri, Mar 7, 2025 at 4:03 PM Roman Kisel <romank@linux.microsoft.com> wrote:
+> +
+> +Description
+> +-----------
+> +The ``linux,usable-memory`` property can be used to restrict usable memo=
+ry
+> +region. This property holds a base address and size, Memory outside of t=
+his
+> +range is not accessible by the kernel. This property is particularly use=
+ful
+> +in specialized hardware platforms where certain memory regions must be
+> +reserved for specific use.
+> +
+> +Common use cases include:
+> +- Allocating ``ramoops`` region
+> +- Reserving memory for hardware-specific needs
+> +- Fake Protecting persistent memory (PMEM)
 
-[...]
+All these examples belong in /reserved-memory nodes, not
+linux,usable-memory. Go see the ramoops binding for example.
 
->> +       irq = platform_get_irq(pdev, 0);
->> +       if (irq == 0) {
->> +               pr_err("VMBus interrupt mapping failure\n");
->> +               return -EINVAL;
->> +       }
->> +       if (irq < 0) {
->> +               pr_err("VMBus interrupt data can't be read from DeviceTree, error %d\n", irq);
->> +               return irq;
->> +       }
-> 
-> I don't think why you couldn't get the interrupt is important. Just
-> check for (irq <= 0) and be done with it. I'm not even sure if
-> returning 0 is possible now. There's a long history to that and
-> NO_IRQ.
-> 
+This was really for the case where you already have 'reg' (in the
+memory node), but need to limit memory while at the same time not
+overwriting 'reg'. Basically, for kexec where you can keep booting
+another kernel forever. If that's not your usecase, you shouldn't be
+using this.
 
-That will certainly make the code look much better!
-Thank you very much for the idea!
-
-> Rob
-
--- 
-Thank you,
-Roman
-
+Rob
 
