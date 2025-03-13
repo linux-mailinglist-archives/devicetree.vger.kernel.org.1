@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-157229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6504EA5F5DC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:23:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D98AA5F5ED
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:25:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CAE5189B6C5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:21:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5074817DF32
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:25:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14AAC2676F9;
-	Thu, 13 Mar 2025 13:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A36267B10;
+	Thu, 13 Mar 2025 13:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hs5puAaa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Th+xPZde"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE273265610;
-	Thu, 13 Mar 2025 13:21:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B979266B73;
+	Thu, 13 Mar 2025 13:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741872103; cv=none; b=Amp0eSoQgiI3c03pEHY6xNX2YQCJlwg7O7RRoEjA/1dnkbO2ZVhOPSNJDsE25tyOlAWsa5m4nkaW7doALiMRDiBEAcc7na6azpIf1qxaagtjKIU2MvxByFo2aXDknRsmRWDcBtLe8hNbKqsrmWKSdP4vIjwOC3zTXUul/Vxwjpc=
+	t=1741872324; cv=none; b=H7yuwqI9GX7pzB9zhmonnp7Mvb8NnjgmQGP4cspnU7K1XfSzmDjoSVyelYbbGBric0mMip3iZqb9XixXsLXxVxH+8arsac0c9Nu3UaKhyYAbbLs89zUImL55I+Gh1OKfd+XDgHzBZSp3ctrEo/gv4mUxQ6V15XA8G7We+H/OrWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741872103; c=relaxed/simple;
-	bh=fF2QQTE+2YlxG3sB1lZ42t5C418bXvGhFBRVwKr1Kpg=;
+	s=arc-20240116; t=1741872324; c=relaxed/simple;
+	bh=al2zcQDmwtKUWbmclpq3ELoeYemHTEjlcFVNlGyz3yA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mf1z9+H5ZmZ9Kky2hp/aXbvBdoOWt8WdG5U8oqWdi11dX6Ve1gFy7hsKYV00sMmmAes/DBoDd3gFuhLKhgqrWGdQKqXTLYgtdIA/QUZo/kTUd5ycl4yzipVtp5FHibSSZS7ouloyWuRJ7lzNrDBTW5oTDmsft7KFBS1CpyAlcmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hs5puAaa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14E84C4CEE5;
-	Thu, 13 Mar 2025 13:21:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cHqnimLYgxAwN/yWc7QQSOIpYDO7fdTlSz343H7x+ilJl1KGIlfsEUZFP/VAoV1z7FFY5/FEAfEV/Zz11AB/Xq8s8jc/8cQbe0UOtIagJpUb08uaesADnoTuNaNhZj8uqG7G/c4eKv49ZBwg/l/s1G9Z7b75k8Aik9LAnZTZ10I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Th+xPZde; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2959FC4CEEF;
+	Thu, 13 Mar 2025 13:25:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741872102;
-	bh=fF2QQTE+2YlxG3sB1lZ42t5C418bXvGhFBRVwKr1Kpg=;
+	s=k20201202; t=1741872324;
+	bh=al2zcQDmwtKUWbmclpq3ELoeYemHTEjlcFVNlGyz3yA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hs5puAaaFMdqwgfIqkKwLHW6ZeRgfcbUzR8YNU2CaYJ3WLY9ZVVODoiotmphYWUj9
-	 zE+qKbmvtmdAUMM1ujxlvrtLaa74rV+r7IoDOvoj9TSZ2bZjLpZc1OSXP8ffRrY68/
-	 jlLrLDxKwlL48GKa6lnMvNmZuuJZUTYgLcEiWIzNvbNCyaePBZ8yT5qzQPp4ByZdqq
-	 i9Eflcvo1pUQUmOHh5Wtve8cU2BjKVfl1xn4GxNWl1edLCPtyte7lpL1r6Ky9/9A2W
-	 qMHSbZ08UEwQOXFptifHfzCQk1aB45s9mj+T5t4n/93/2EXTxFAAUXTxSQR+qQEMeB
-	 TDndXATAWJ41g==
-Date: Thu, 13 Mar 2025 13:21:36 +0000
-From: Lee Jones <lee@kernel.org>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=Th+xPZdeERxaC2wiFVmF/PRtyPEI02iC+2EV4o3jA2yQ4WPBlX2ftcOTommSecJxE
+	 4sUieqZYIoyTRmbEzPvifAwo4RWsoVeVzBMxJoeX6OWGHcU7UspXJQoYNMxh10HQ1V
+	 1cn5rTh+zW9Gle94nMlNbkh0i6iY+bw3/INw0TcOhNqKEoFDdlYkuTyApOptB/e3oW
+	 LfE2vkPqTl2M/g57nyg2+UTn5aKH/Y0y1xbTZqW8rPzVxhoU/YbV1CM2kSArlu59bz
+	 7OwyMk91/tK3vGf6peK82IV/0NZH8UbOaJqvWAy0TIuSE2SFVHNVOw/hQ1+YYOoeH5
+	 kPrW1pyOhQMIQ==
+Date: Thu, 13 Mar 2025 13:25:18 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
 	Florian Fainelli <florian.fainelli@broadcom.com>,
 	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
 	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
@@ -55,108 +55,58 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v6 00/10] mfd: bcm590xx: Add support for BCM59054
-Message-ID: <20250313132136.GC3616286@google.com>
+Subject: Re: [PATCH v6 06/10] mfd: bcm590xx: Add PMU ID/revision parsing
+ function
+Message-ID: <ef190ba8-a5c7-4a1a-90e6-2610de00e4ed@sirena.org.uk>
 References: <20250304-bcm59054-v6-0-ae8302358443@gmail.com>
+ <20250304-bcm59054-v6-6-ae8302358443@gmail.com>
+ <20250313132036.GB3616286@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zA5H0OQ8I+S+JApb"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250304-bcm59054-v6-0-ae8302358443@gmail.com>
+In-Reply-To: <20250313132036.GB3616286@google.com>
+X-Cookie: A beer delayed is a beer denied.
 
-On Tue, 04 Mar 2025, Artur Weber wrote:
 
-> Add support for the BCM59054 MFD to the bcm590xx driver and fix a
-> couple of small bugs in it that also affected the already supported
-> BCM59056.
-> 
-> While we're at it - convert the devicetree bindings to YAML format
-> and drop the bcm59056 DTS in favor of describing the PMU in users'
-> DTS files, as is done for most other MFDs.
-> 
-> The BCM59054 is fairly similar to the BCM59056, with the primary
-> difference being the different number and layout of regulators.
-> It is primarily used in devices using the BCM21664 and BCM23550
-> chipsets.
-> 
-> This patchset has been tested on a Samsung Galaxy Grand Neo
-> (baffinlite rev02; DTS not in mainline yet) with a BCM59054 PMIC.
-> Testing on a BCM59056 would be appreciated.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> Changes in v6:
-> - Rename mfd/brcm,bcm590xx.yaml to mfd/brcm,bcm59056.yaml again
-> - Use PMU ID value as device type
-> - Rename rev_dig and rev_ana to rev_digital and rev_analog
-> - Link to v5: https://lore.kernel.org/r/20250221-bcm59054-v5-0-065f516a9042@gmail.com
-> 
-> Changes in v5:
-> - Make regulator binding descriptions reference mfd/brcm,bcm590xx.yaml
->   instead of mfd/brcm,bcm59056.yaml
-> - Move regmap type enum to common MFD header
-> - Link to v4: https://lore.kernel.org/r/20250215-bcm59054-v4-0-dbfb2d76a855@gmail.com
-> 
-> Changes in v4:
-> - Fix yamllint warnings in DT bindings
-> - Address miscelaneous review comments related to DT bindings
->   - Note that I did not end up moving the regulator refs from
->     allOf compatible matches; I explained my reasoning in [1].
->     [1] https://lore.kernel.org/lkml/ab853605-859d-44c6-8cbd-44391cd677e6@gmail.com/
-> - Add PMU ID/revision parsing to MFD driver
-> - Fix instances of regulator data not matching vendor kernel for
->   BCM59054
-> - Use different voltage table for BCM59054 VSR reg based on PMU
->   revision
-> - Link to v3: https://lore.kernel.org/r/20250131-bcm59054-v3-0-bbac52a84787@gmail.com
-> 
-> Changes in v3:
-> - Split out regulator DT bindings into separate YAML
-> - Use tables of regulator info instead of get_XXX_register, reg_is_XXX
->   functions
-> - Drop "regulator: bcm590xx: Add proper handling for PMMODE registers";
->   it adds unnecessary noise to the series and will be submitted separately
-> - Link to v2: https://lore.kernel.org/r/20231030-bcm59054-v2-0-5fa4011aa5ba@gmail.com
-> 
-> Changes in v2:
-> - Fixed BCM59054 ID being passed to BCM59056 function in the
->   regulator driver
-> - Dropped linux-rpi-kernel from the CC list
-> - Link to v1: https://lore.kernel.org/r/20231030-bcm59054-v1-0-3517f980c1e3@gmail.com
-> 
-> ---
-> Artur Weber (10):
->       dt-bindings: mfd: brcm,bcm59056: Convert to YAML
->       dt-bindings: mfd: brcm,bcm59056: Add compatible for BCM59054
->       ARM: dts: Drop DTS for BCM59056 PMU
->       mfd: bcm590xx: Drop unused "id" member of bcm590xx MFD struct
->       mfd: bcm590xx: Add support for multiple device types + BCM59054 compatible
->       mfd: bcm590xx: Add PMU ID/revision parsing function
->       regulator: bcm590xx: Use dev_err_probe for regulator register error
->       regulator: bcm590xx: Store regulator descriptions in table
->       regulator: bcm590xx: Rename BCM59056-specific data as such
->       regulator: bcm590xx: Add support for BCM59054 regulators
-> 
->  .../devicetree/bindings/mfd/brcm,bcm59056.txt      |   39 -
->  .../devicetree/bindings/mfd/brcm,bcm59056.yaml     |   76 ++
->  .../bindings/regulator/brcm,bcm59054.yaml          |   56 +
->  .../bindings/regulator/brcm,bcm59056.yaml          |   51 +
->  arch/arm/boot/dts/broadcom/bcm28155-ap.dts         |   68 +-
->  arch/arm/boot/dts/broadcom/bcm59056.dtsi           |   91 --
->  drivers/mfd/bcm590xx.c                             |   75 +-
->  drivers/regulator/bcm590xx-regulator.c             | 1289 ++++++++++++++++----
->  include/linux/mfd/bcm590xx.h                       |   28 +-
->  9 files changed, 1366 insertions(+), 407 deletions(-)
+--zA5H0OQ8I+S+JApb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Besides my one comment, the MFD side looks okay.
+On Thu, Mar 13, 2025 at 01:20:36PM +0000, Lee Jones wrote:
+> On Tue, 04 Mar 2025, Artur Weber wrote:
 
-So you still need ACKs from Mark and to rework Rob's suggestion.
+> > +	if (id !=3D bcm590xx->pmu_id) {
+> > +		dev_err(bcm590xx->dev,
+> > +			"Incorrect ID for %s: expected %x, got %x. Check your DT compatible=
+=2E\n",
+>=20
+> Isn't it more likely that the H/W this is being executed on is
+> unsupported?  If so, say that instead.
 
--- 
-Lee Jones [李琼斯]
+Given that the compatibles are device specific the driver shouldn't be
+binding if the device is unsupported.
+
+--zA5H0OQ8I+S+JApb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfS3L0ACgkQJNaLcl1U
+h9D2Jwf+LJ9CptsQQnbZJuRjlklwPrVqGyiDX99suQr9q9YFQWF4U2tTi8mAAQd4
+c12oshx+70ZwrEMiSS80yLHI3hLqDw1fpVK1vCsV/57kNpnT+l+vNdSd4fV73UG2
+0vjsnuhC6LDgJQZdBM6rnbUp2hruF/NUgHoFSyZzokDLgf8+DVNHGo5I1LS9kvOF
+oygai/ITH7qOfgnRbyTfsMvdo9Afo69kwsakgJi1RJZQyr1hpMm9qTnhg9EBLpRZ
+/4dCZK3tmBlT2J0nNIUzQey6ivAd10SfaFk8tPFNV6NW2BYNN0TfYtX2hWwvV+o7
+UyoyLAM/HCEeeuvXHlvqY6dIxTr6uw==
+=vJeh
+-----END PGP SIGNATURE-----
+
+--zA5H0OQ8I+S+JApb--
 
