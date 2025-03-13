@@ -1,145 +1,226 @@
-Return-Path: <devicetree+bounces-157324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E856A5FD1A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 18:09:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ACBCA5FE90
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 18:51:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A7C37A194D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 17:08:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 489CC1894577
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 17:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEACE269AE6;
-	Thu, 13 Mar 2025 17:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB021E3762;
+	Thu, 13 Mar 2025 17:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="B4CqnQjr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bOLJq327"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90AB13AA2F;
-	Thu, 13 Mar 2025 17:09:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FAC61E51EE;
+	Thu, 13 Mar 2025 17:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741885789; cv=none; b=u1cbId0h0F+NOBX2TxcB8vQGwouTz+ACJYRb+EyP6e4sEm2XDO1bvoEIoINIUG0Vz94Fj7ZH2KNrwCBEL5dx3XsfN1TlR3cgh/x5AjdTyLn7IuoagnrPn/gomQNFNj5x5lvbgm/EEMeRvdTSDAQSRbxm7GqSSWPw8lARLM/hR58=
+	t=1741888249; cv=none; b=YwYMAFGjqkH0RMb62XFDe+U2DMqdwD4f68rtOt6bd1PfYu1DEyZ3Jo7RFwAX50/xp0gtrhPOmfpck1wrSUwPCgURics+0OnxvVA+kW1CNSh/koG2x8rdyRuF5jmzKQa7M1M+z5LFFDE/ACKmJHEirYlpjTVvRnxHM5wI5al9SYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741885789; c=relaxed/simple;
-	bh=tu+hrOb5T8ZjFtDOYK4B51yn76Cxq1wcFPtSB9zCbHw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TIQ7z06o/fxs5Fdnmadt+ornXe1ClF53G4V/tCk13z+M+d5+JD5zuEV3eM/jVkryvhiQwyxWKc5LwC/IvRow2ydovjDMyu17t0cDjHTL4IeCxTxiW2leZ9qUeFdWgHDf1lyfQw99bBXOvW2HIrMIE3oFdlzwoul/jb82Ss459Co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=B4CqnQjr; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52DGD7D6003932;
-	Thu, 13 Mar 2025 18:09:36 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	/UACylWACYq+MaYXZcL2+yGVsndWAy/wz/DmvGJrXiA=; b=B4CqnQjrifjsld/Y
-	DaUYXKtWR6i45Ame6DKDoXrNii3EePe8ZddE1Ysiu37Upj0VTc+sEY+4E38WsO4X
-	KJz/PxvRy8AKzWj+egbTF8nZjfWRfcrPS7Kk3O5iJOkgk7x4EPp72BGZ+I+G7A4d
-	HQrZqxTbLhFKQY/GZBfqYYo0uF3VksBpXuALvM5SzIEsXsKaOGi/yoZkKTZsrUmq
-	7nBaB+hbMpnAn2LPUpupn+V3qwG505VaUB/cHqRsmuW/jnjOnbpkM2nOk/vDv8QJ
-	WOXT8xErxt7gNcXWCT1P+ia3f3yUzaAQw4TwcRWv+koTDEBsp4NFZu4BUghZPADQ
-	ggjDsg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45c2pf07mp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Mar 2025 18:09:36 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1780B4004D;
-	Thu, 13 Mar 2025 18:08:27 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B3E4E589337;
-	Thu, 13 Mar 2025 18:07:18 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
- (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 13 Mar
- 2025 18:07:18 +0100
-Received: from [10.48.86.222] (10.48.86.222) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 13 Mar
- 2025 18:07:17 +0100
-Message-ID: <c1cb926f-33b0-4433-b54d-954451ed32a8@foss.st.com>
-Date: Thu, 13 Mar 2025 18:07:16 +0100
+	s=arc-20240116; t=1741888249; c=relaxed/simple;
+	bh=Sn4jBdPuMSBTZTRkdxMXVnCXjlwAwsRkCucu9R2NrfY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZEyvHXnPmlE/OGIdI8MGugdR6NuiSxTWpvRj985DQxYLGjo40Zb/EGR5Gg2i1w+4hYzhZI6NS4LUDEJLEO87cj5qMcCskgvVsFE8j0O1c1aneGBUz/syI6YM4vJPt2Ho0/svbqZAEsf/dJWmmPi4tuWi6jFZvWS84VEFg/2mmkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bOLJq327; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-30bfca745c7so11602671fa.0;
+        Thu, 13 Mar 2025 10:50:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741888246; x=1742493046; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zKFpAn86ZKK0Tcm/VY5RgvZM4eSEDC/dgaX7ueRRzeU=;
+        b=bOLJq327yzjcYNOH5rYbTnM6xssHxMlX51y1wzcyDViRxxnAjnaxGN27dPuzdNtHif
+         Eyz3Dt7ABAiqqf5ZpIlF5ybf2bzwX4zm/pQ9oUStiuEwFerRKS9X5KYjmrCHa+0xGb8J
+         A2Qmwibv5NIu9ox82qTcrovoTlxhe9tcuwAhDfy4WdkgniTTSEzZPah2lY0qhdkXIDXZ
+         iJVQcGSXr0Gj+3Q1r22sBkBrnzEmBELUnFJ8o8WQ43zNQTQLZz3Yc+np7uohBUK2q4v1
+         ubw4X1USd1HSyE+2iWxnfs91B4roRKv+1oegj6aP77Mhg4ZFmJjJnUZ0JyzNXjNBNnIx
+         /chQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741888246; x=1742493046;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zKFpAn86ZKK0Tcm/VY5RgvZM4eSEDC/dgaX7ueRRzeU=;
+        b=ubVsLtrcytDOKc6zI5kbExYAEoWjhb6nFW07DMnKMd0U8s9iDpz4h3Fs9h70P7xxYh
+         sYk4LqyTH1nBQK11ZV56D5M0FOsGEjEJVTtLdZDwoiX6Zio85fDqGklOhmpzzlIrA8jB
+         /yOIuJwK+XzJahRx7+bFAgWM8eI+zwMz0+ND8SIEwDNu28ZcWbG8S5EFUme7Vk3N2zrx
+         2r/a39rKL3ihgIZqtJ3F+mfP7b35TTAyYTOk8nCg9XVICxSicM7vAb9CKZRWvHIcNE60
+         /wrg2Go0L645NVLj67cY+P9yN0XAsS4iElM3Pp4M3JpKK1HfvOzRWbg5NvFbCafFQisl
+         jDbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUObPY/oUYiqG898qWCujH6hotAupTrU4LD6q6cRKeW2Lq10LITqDJdlAWcnVMqzvBxmdAWw/3hOZ7k@vger.kernel.org, AJvYcCVGZna7sZANdlgPDT9Th8Wy77zcQ9B7mMudlUWdDMwNZjE6oExoJ9W+1MzgJfcPya34OPyfMs+UN9OXOTMh@vger.kernel.org, AJvYcCVKbHfmD3n/5OK6J0knWLTcsfl6BaLqR9wxI2S9aVFMUAKesf6bJ847ES5+VfexrZm3VIrTPWtT1QHW@vger.kernel.org, AJvYcCVeJ7X2nHdvZSxFw5uRt9TxJgNKU4QwDuLwMNoArVyvqYF5D8xQNdvDM2YX0gSfDLSERSU98/CNr7RmcTTTaus=@vger.kernel.org, AJvYcCWIUxGvsnNwWL3KWFPam9M9uLYUrhNLljdtXSEl8DYinmAA67fI5xs/BXp+yNWVy/K1mlGlANsMxFCgMKDIcu3D@vger.kernel.org, AJvYcCX1GB0OpE2cvWR7rME/odIrvFYCtzZN2C+TT0U1P3LJkLbZ+ecOOP03Hn0xfhNsdh4QIaZnnAVNvPP70a4=@vger.kernel.org, AJvYcCXP8Z7pWpEZBLa3XuqdnkinmhBjWVHENXBgcmkxw7VlN7+zCQR2J0Pck2BvtN7mFs88Af//KE4wqy+dE6pV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzamTYQrKkSnC8eNF50ZWTG5KUwKK/OOEd0rYFK5hneE2IybszZ
+	H1uVdQeYlWci5x07trv1LshX3rEqp3IuZ8dzjL5lOoa/JhVMFSx7x116s/w0c2rwAIY0fi/Jhsr
+	Mu4//njcR3Fdf8c7rvhMUxA3c668=
+X-Gm-Gg: ASbGncvjjma85h5eD1gv0iTUikQ0gMIfCgI2N+QhGwlU/eXtgI0rZ/w+lwoxEaPocqY
+	wWCdM97cmealdxIihWJ0OxAnn9BzXaDF3nIxq/EqNKbqv++WX1/J0D/3JIifSaPvjkkpBkMtJah
+	n5i1IvxdHiiGk3CSiMNi/XQuKjcq0ux4i2Aw5ZwS4h2Q==
+X-Google-Smtp-Source: AGHT+IFSCHPEFcd03p5HDh9sP6FYCsfZFC/DkMEfdC+Yt81z67oc/lXycRAIL+nUauhtNQVUeMxDtmcjr2PbVMhFYso=
+X-Received: by 2002:a2e:bc08:0:b0:30b:b987:b6a7 with SMTP id
+ 38308e7fff4ca-30c46a49b18mr3205021fa.0.1741888245386; Thu, 13 Mar 2025
+ 10:50:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] mfd: stm32-lptimer: add support for stm32mp25
-To: Lee Jones <lee@kernel.org>
-CC: <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <jic23@kernel.org>,
-        <daniel.lezcano@linaro.org>, <tglx@linutronix.de>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <devicetree@vger.kernel.org>, <wbg@kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <olivier.moysan@foss.st.com>
-References: <20250305094935.595667-1-fabrice.gasnier@foss.st.com>
- <20250305094935.595667-3-fabrice.gasnier@foss.st.com>
- <20250313164008.GC3645863@google.com>
-Content-Language: en-US
-From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <20250313164008.GC3645863@google.com>
+References: <20250309-ptr-as-ptr-v2-0-25d60ad922b7@gmail.com>
+ <CAJ-ks9kCgATKDE2qAuO3XpQfjVO2jGyq3D4sbUcVKyW6G1vuuQ@mail.gmail.com>
+ <D8EL9QFS1XNT.JBSMRXD4D7GT@proton.me> <CAJ-ks9=TRDg3g=NG7k97P_5jXpZ4K4v0DxrmJFR+uF0-3zJkXw@mail.gmail.com>
+ <CAJ-ks9=hAwOGtVv0zh9CcH7XOxjGnizvK1QOMAi8nKStocKr2Q@mail.gmail.com>
+ <D8ELW7X9796K.2ZGJS34LDTHOP@proton.me> <CAJ-ks9k1gZ=tLSe6OjuKFgg6=QE5R_Ajo0ZJwZJp08_1LMiODw@mail.gmail.com>
+ <D8ENBWTC8UPH.LLEGZ2D4U7KQ@proton.me> <CAJ-ks9mJ=2hFxfWEkq+9b=atE89sHXa5NBcdVNRd3az6MSv0pA@mail.gmail.com>
+ <D8F76A4JSEXO.2OKKJLAU5OZN@proton.me>
+In-Reply-To: <D8F76A4JSEXO.2OKKJLAU5OZN@proton.me>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Thu, 13 Mar 2025 13:50:06 -0400
+X-Gm-Features: AQ5f1JrNIpV1nyfNQKmWtrjHu1S5LHEkKspW_ObMJhGTNdWLSLayQ_veUoqdoQU
+Message-ID: <CAJ-ks9n1oGAGSrXYWjvR+_raw8h+skkdfSYpeSuQZ9jEs5q-6Q@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] rust: enable `clippy::as_underscore` lint
+To: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-13_08,2025-03-11_02,2024-11-22_01
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Mar 13, 2025 at 10:11=E2=80=AFAM Benno Lossin <benno.lossin@proton.=
+me> wrote:
+>
+> On Thu Mar 13, 2025 at 11:47 AM CET, Tamir Duberstein wrote:
+> > On Wed, Mar 12, 2025 at 6:38=E2=80=AFPM Benno Lossin <benno.lossin@prot=
+on.me> wrote:
+> >>
+> >> On Wed Mar 12, 2025 at 11:24 PM CET, Tamir Duberstein wrote:
+> >> > On Wed, Mar 12, 2025 at 5:30=E2=80=AFPM Benno Lossin <benno.lossin@p=
+roton.me> wrote:
+> >> >>
+> >> >> On Wed Mar 12, 2025 at 10:10 PM CET, Tamir Duberstein wrote:
+> >> >> > On Wed, Mar 12, 2025 at 5:04=E2=80=AFPM Tamir Duberstein <tamird@=
+gmail.com> wrote:
+> >> >> >>
+> >> >> >> On Wed, Mar 12, 2025 at 5:01=E2=80=AFPM Benno Lossin <benno.loss=
+in@proton.me> wrote:
+> >> >> >> > Always enable the features, we have `allow(stable_features)` f=
+or this
+> >> >> >> > reason (then you don't have to do this dance with checking if =
+it's
+> >> >> >> > already stable or not :)
+> >> >> >>
+> >> >> >> It's not so simple. In rustc < 1.84.0 the lints *and* the strict
+> >> >> >> provenance APIs are behind `feature(strict_provenance)`. In rust=
+c >=3D
+> >> >> >> 1.84.0 the lints are behind `feature(strict_provenance_lints)`. =
+So you
+> >> >> >> need to read the config to learn that you need to enable
+> >> >> >> `feature(strict_provenance_lints)`.
+> >> >>
+> >> >> I see... And `strict_provenance_lints` doesn't exist in <1.84? That=
+'s a
+> >> >> bit of a bummer...
+> >> >>
+> >> >> But I guess we could have this config option (in `init/Kconfig`):
+> >> >>
+> >> >>     config RUSTC_HAS_STRICT_PROVENANCE
+> >> >>             def_bool RUSTC_VERSION >=3D 108400
+> >> >>
+> >> >> and then do this in `lib.rs`:
+> >> >>
+> >> >>     #![cfg_attr(CONFIG_RUSTC_HAS_STRICT_PROVENANCE, feature(strict_=
+provenance_lints))]
+> >> >
+> >> > Yep! That's exactly what I did, but as I mentioned up-thread, the
+> >> > result is that we only cover the `kernel` crate.
+> >>
+> >> Ah I see, can't we just have the above line in the other crate roots?
+> >
+> > The most difficult case is doctests. You'd have to add this to every
+> > example AFAICT.
+> >
+> >> >> > Actually this isn't even the only problem. It seems that
+> >> >> > `-Astable_features` doesn't affect features enabled on the comman=
+d
+> >> >> > line at all:
+> >> >> >
+> >> >> > error[E0725]: the feature `strict_provenance` is not in the list =
+of
+> >> >> > allowed features
+> >> >> >  --> <crate attribute>:1:9
+> >> >> >   |
+> >> >> > 1 | feature(strict_provenance)
+> >> >> >   |         ^^^^^^^^^^^^^^^^^
+> >> >>
+> >> >> That's because you need to append the feature to `rust_allowed_feat=
+ures`
+> >> >> in `scripts/Makefile.build` (AFAIK).
+> >> >
+> >> > Thanks, that's a helpful pointer, and it solves some problems but no=
+t
+> >> > all. The root Makefile contains this bit:
+> >> >
+> >> >> KBUILD_HOSTRUSTFLAGS :=3D $(rust_common_flags) -O -Cstrip=3Ddebugin=
+fo \
+> >> >> -Zallow-features=3D $(HOSTRUSTFLAGS)
+> >> >
+> >> > which means we can't use the provenance lints against these host
+> >> > targets (including e.g. `rustdoc_test_gen`). We can't remove this
+> >> > -Zallow-features=3D either because then core fails to compile.
+> >> >
+> >> > I'm at the point where I think I need more involved help. Want to ta=
+ke
+> >> > a look at my attempt? It's here:
+> >> > https://github.com/tamird/linux/tree/b4/ptr-as-ptr.
+>
+> With doing `allow(clippy::incompatible_msrv)`, I meant doing that
+> globally, not having a module to re-export the functions :)
 
+Yeah, but I think that's too big a hammer. It's a useful warning, and
+it doesn't accept per-item configuration.
 
-On 3/13/25 17:40, Lee Jones wrote:
-> On Wed, 05 Mar 2025, Fabrice Gasnier wrote:
-> 
->> Add support for STM32MP25 SoC.
->> A new hardware configuration register (HWCFGR2) has been added, to gather
->> number of capture/compare channels, autonomous mode and input capture
->> capability. The full feature set is implemented in LPTIM1/2/3/4. LPTIM5
->> supports a smaller set of features. This can now be read from HWCFGR
->> registers.
->>
->> Add new registers to the stm32-lptimer.h: CCMR1, CCR2, HWCFGR1/2 and VERR.
->> Update the stm32_lptimer data struct so signal the number of
->> capture/compare channels to the child devices.
->> Also Remove some unused bit masks (CMPOK_ARROK / CMPOKCF_ARROKCF).
->>
->> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
->> ---
->> Changes in V2:
->> - rely on fallback compatible as no specific .data is associated to the
->>   driver. Compatibility is added by reading hardware configuration
->>   registers.
->> - read version register, to be used by clockevent child driver
->> - rename register/bits definitions
->> ---
->>  drivers/mfd/stm32-lptimer.c       | 33 ++++++++++++++++++++++++++++-
-> 
-> Looks okay.
+> >> I'll take a look tomorrow, you're testing my knowledge of the build
+> >> system a lot here :)
+> >
+> > We're guaranteed to learn something :)
+>
+> Yep! I managed to get it working, but it is rather janky and
+> experimental. I don't think you should use this in your patch series
+> unless Miguel has commented on it.
+>
+> Notable things in the diff below:
+> * the hostrustflags don't get the *provenance_casts lints (which is
+>   correct, I think, but probably not the way I did it with filter-out)
+> * the crates compiler_builtins, bindings, uapi, build_error, libmacros,
+>   ffi, etc do get them, but probably shouldn't?
 
-Hi Lee,
+Why don't we want host programs to have the same warnings applied? Why
+don't we want it for all those other crates?
 
-Thanks for reviewing,
+I'd expect we want uniform diagnostics settings throughout which is
+why these things are in the Makefile rather than in individual crates
+in the first place.
 
-> 
->>  include/linux/mfd/stm32-lptimer.h | 35 ++++++++++++++++++++++++++++---
-> 
-> Assumingly this patch is not independent of the others?
-
-Please hold on, I'll submit a V4, with some additional bit definition
-for the clocksource driver (see my last reply to Daniel).
-
-Best Regards,
-Fabrice
-
-> 
+Your patch sidesteps the problems I'm having by not applying these
+lints to host crates, but I think we should.
 
