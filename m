@@ -1,252 +1,115 @@
-Return-Path: <devicetree+bounces-157349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D655FA60326
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 22:03:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 394E6A60363
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 22:26:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A5757A88EE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 21:02:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 885523ABD14
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 21:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38FCD1F4701;
-	Thu, 13 Mar 2025 21:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6391F4CA3;
+	Thu, 13 Mar 2025 21:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aJ9RsEmp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MnPUcGWQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F252945948;
-	Thu, 13 Mar 2025 21:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CAD2126C1E;
+	Thu, 13 Mar 2025 21:25:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741899813; cv=none; b=ZtFPev2252PkrKyXLfLNNja9XsBGOe+bINklevPHwlLQ4A9X+0SwVsRL+T68vNnX8KKuFKgKvfeHhezYSIpijjm6OGfHUgzwANhU/87+bSaJ7wbiyaPc+1QBlRexFFElyxcYDVTjaTmuHothTmIqMTAg1mXOk0YUCMVTN1ETveA=
+	t=1741901158; cv=none; b=GG6sErMHPiTaoHj8GtUE8bSFBczJK0lzm+T2vKIm3Hf9hTWS3yvBVr6LhQs/N+zj+orwP7HTmo8JRHbh+pItUE9KN8LTeTxXLFGhcrAePwb/W+0wYRLqGtN41WVnwnMq/VfA6cgc97aKUuvj4NxY8RmIZvXPH5ujZcwROrMe8hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741899813; c=relaxed/simple;
-	bh=FMKfqv6jRr1fYhjht5XVCh7cRsPq1e2AMVhPlkaHSLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d1/1XZAjGFJr5aP+pF3n3P9FEarp3VntsLpaof2vxiIPTm7eJ3kQwNJgPS4nrdRr/DVDoJgTGWRVdzbOvVBed4+XMSWhb8L48VmkNPb2o7bO4GLaYCxnfxkLdbSro7yQdHOSxFVkdYJZHXM1eS+wwtcaHRm6/oaT+ylq6SLklqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aJ9RsEmp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4E80C4CEDD;
-	Thu, 13 Mar 2025 21:03:29 +0000 (UTC)
+	s=arc-20240116; t=1741901158; c=relaxed/simple;
+	bh=qYeT6sg3o0N3LisLXr2XhjHV7IFvBdDp00R762l5BHM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=NsnxfwKsPsgaK3qYKkyozwVBXmAd6VzRNwOHkBxTn1jyJmuPTKqoxM426C5aaWGo+ZyJQE+JMF77WBmEIajKQWpGogzkSw7LKqCCl6nrIPZNWXrFtHy1lBKVQlqsRU2hrvjWPSRqe4vDqM6m/gSdMnywUw5yFnStBdcICQ7j0BI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MnPUcGWQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69A88C4CEDD;
+	Thu, 13 Mar 2025 21:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741899810;
-	bh=FMKfqv6jRr1fYhjht5XVCh7cRsPq1e2AMVhPlkaHSLM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aJ9RsEmp+F4rW4SSK+hS9s9FtOwkooxWCR8/i4oRD7XqDdTV0RMispdtOSNpRDrAw
-	 30FKwvR4bAQagYjbkE8n04WPJszMweTJDQabrL4rZbGS4JK2t0aWKaB+gVk8rF6hBR
-	 DPQvCGH5LdU7uw//IqdBYwab9jv3aL/OWv90NDuLqwQY8ufoyhcmv2MekOL0Fl1jCo
-	 o1PqB+6AWO5KvH/YJfkMjyaayUcAEBqZ0tmdEFxS0IzI3mAY5s7N8yVYvggmSX+eb1
-	 u7gZID03OU4jF+lQLJf0aaI/OrKCk/iOjIZ0/pdW/CZC9LlcUdKGg8slxlvhc655m3
-	 1h8Je48uMSPCQ==
-Date: Thu, 13 Mar 2025 22:03:27 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: mathieu.dubois-briand@bootlin.com, 
-	Linus Walleij <linus.walleij@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Michael Walle <mwalle@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
-	=?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 03/10] pwm: max7360: Add MAX7360 PWM support
-Message-ID: <e7epeegrp6cz27s63gnqe7b6me7h3rn5d6mo7mbd6rwgnwyys6@j7f6cy4uy3wq>
-References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
- <20250214-mdb-max7360-support-v4-3-8a35c6dbb966@bootlin.com>
+	s=k20201202; t=1741901157;
+	bh=qYeT6sg3o0N3LisLXr2XhjHV7IFvBdDp00R762l5BHM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=MnPUcGWQoUM9IkqxucI7SH1sBbRubpnGpPw1lssb/UUk3lwzq4rmlkc0xPyPCj5rd
+	 JlMyh/PHDy1W1CuPonbH/Pll68nI+tTwx94KvYM9+7AMUmCGiA93ztgdHm4VZ64E8h
+	 AoK1FqzJmulAoLfr78IUWxAbSSzA2HT56EliMAXTMHKtOwUBZp2iTwrQcoP0bZ66x0
+	 y3DRfvijKNyhLHSoGbpoyqOd9XhhQ9gX32rUWtf+COpyZhMKi/L8YscXr82JNP2BBM
+	 gmAjwny/5OjZEiCi+8y/6R88KqK3zWru5ROzfxer2M5JwoVVuYNBZ4WgSfiCcdj5gk
+	 4MCYTN30/B+HQ==
+Date: Thu, 13 Mar 2025 16:25:55 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v11 04/11] PCI: dwc: Move devm_pci_alloc_host_bridge() to
+ the beginning of dw_pcie_host_init()
+Message-ID: <20250313212555.GA755531@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rbw3oslor4q675uu"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250214-mdb-max7360-support-v4-3-8a35c6dbb966@bootlin.com>
+In-Reply-To: <Z9ND5vARXpL8g1t/@lizhi-Precision-Tower-5810>
 
+On Thu, Mar 13, 2025 at 04:45:26PM -0400, Frank Li wrote:
+> On Thu, Mar 13, 2025 at 02:22:54PM -0500, Bjorn Helgaas wrote:
+> > On Thu, Mar 13, 2025 at 11:38:40AM -0400, Frank Li wrote:
+> > > Move devm_pci_alloc_host_bridge() to the beginning of dw_pcie_host_init().
+> > > Since devm_pci_alloc_host_bridge() is common code that doesn't depend on
+> > > any DWC resource, moving it earlier improves code logic and readability.
+> > >
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  drivers/pci/controller/dwc/pcie-designware-host.c | 12 ++++++------
+> > >  1 file changed, 6 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > index c57831902686e..52a441662cabe 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > @@ -452,6 +452,12 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+> > >
+> > >  	raw_spin_lock_init(&pp->lock);
+> > >
+> > > +	bridge = devm_pci_alloc_host_bridge(dev, 0);
+> > > +	if (!bridge)
+> > > +		return bridge;
+> >
+> > This returns NULL (0) where it previously returned -ENOMEM.  Callers
+> > interpret zero as "success", so I think it should stil return -ENOMEM.
+> 
+> It should be -ENOMEM. Sorry for that. Strange, not sure what happen when
+> I copy/past code.
+> 
+> Do you need respin it or you can fix it?
 
---rbw3oslor4q675uu
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v4 03/10] pwm: max7360: Add MAX7360 PWM support
-MIME-Version: 1.0
+I fixed it locally.  But you should fix it, too, in case we do another
+spin for other reasons.
 
-Hello Mathieu,
-
-On Fri, Feb 14, 2025 at 12:49:53PM +0100, mathieu.dubois-briand@bootlin.com wrote:
-> diff --git a/drivers/pwm/pwm-max7360.c b/drivers/pwm/pwm-max7360.c
-> new file mode 100644
-> index 000000000000..f1257c20add2
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-max7360.c
-> @@ -0,0 +1,213 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright 2024 Bootlin
-> + *
-> + * Author: Kamel BOUHARA <kamel.bouhara@bootlin.com>
-> + * Author: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-> + *
-> + * Limitations:
-> + * - Only supports normal polarity.
-> + * - The period is fixed to 2 ms.
-> + * - Only the duty cycle can be changed, new values are applied at the beginning
-> + *   of the next cycle.
-> + * - When disabled, the output is put in Hi-Z.
-> + */
-> +#include <linux/err.h>
-> +#include <linux/math.h>
-> +#include <linux/mfd/max7360.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +
-> +#define MAX7360_NUM_PWMS			8
-> +#define MAX7360_PWM_MAX_RES			255
-> +#define MAX7360_PWM_PERIOD_NS			2000000 /* 500 Hz */
-> +#define MAX7360_PWM_COMMON_PWN			BIT(5)
-> +#define MAX7360_PWM_CTRL_ENABLE(n)		BIT(n)
-> +#define MAX7360_PWM_PORT(n)			BIT(n)
-> +
-> +struct max7360_pwm {
-> +	struct device *parent;
-> +	struct regmap *regmap;
-> +};
-> +
-> +struct max7360_pwm_waveform {
-> +	u8 duty_steps;
-> +};
-> +
-> +static inline struct max7360_pwm *max7360_pwm_from_chip(struct pwm_chip *chip)
-> +{
-> +	return pwmchip_get_drvdata(chip);
-> +}
-> +
-> +static int max7360_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
-> +{
-> +	struct max7360_pwm *max7360_pwm;
-> +	int ret;
-> +
-> +	max7360_pwm = max7360_pwm_from_chip(chip);
-> +	ret = max7360_port_pin_request(max7360_pwm->parent, pwm->hwpwm, true);
-> +	if (ret) {
-> +		dev_warn(&chip->dev, "failed to request pwm-%d\n", pwm->hwpwm);
-
-Please drop this warning, just returning ret here is fine. (The rule of
-thumb is: Emit runtime messages only in probe, not during usage.)
-
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_write_bits(max7360_pwm->regmap,
-> +				MAX7360_REG_PWMCFG(pwm->hwpwm),
-> +				MAX7360_PWM_COMMON_PWN,
-> +				0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_write_bits(max7360_pwm->regmap, MAX7360_REG_PORTS,
-> +				 MAX7360_PWM_PORT(pwm->hwpwm),
-> +				 MAX7360_PWM_PORT(pwm->hwpwm));
-> +}
-> +
-> +static void max7360_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
-> +{
-> +	struct max7360_pwm *max7360_pwm;
-> +
-> +	max7360_pwm = max7360_pwm_from_chip(chip);
-> +	max7360_port_pin_request(max7360_pwm->parent, pwm->hwpwm, false);
-
-Would be nice if pinmuxing would be abstracted as a pinctrl driver. Not
-sure how much effort that is. Maybe Linus has an idea?
-
-> +}
-> +
-> [...]
-> +
-> +static int max7360_pwm_write_waveform(struct pwm_chip *chip,
-> +				      struct pwm_device *pwm,
-> +				      const void *_wfhw)
-> +{
-> +	const struct max7360_pwm_waveform *wfhw = _wfhw;
-> +	struct max7360_pwm *max7360_pwm;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	max7360_pwm = max7360_pwm_from_chip(chip);
-> +
-> +	val = (wfhw->duty_steps == 0) ? 0 : MAX7360_PWM_CTRL_ENABLE(pwm->hwpwm);
-
-Does not setting MAX7360_PWM_CTRL_ENABLE result in the pin going to
-Hi-Z? If yes: That's wrong. You're only supposed to do that if
-period_length_ns = 0 was requested. If no: This needs a comment why
-duty_steps = 0 is special here.
-
-> +	ret = regmap_write_bits(max7360_pwm->regmap, MAX7360_REG_GPIOCTRL,
-> +				MAX7360_PWM_CTRL_ENABLE(pwm->hwpwm), val);
-> +
-> +	if (!ret && wfhw->duty_steps != 0) {
-> +		ret = regmap_write(max7360_pwm->regmap, MAX7360_REG_PWM(pwm->hwpwm),
-> +				   wfhw->duty_steps);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int max7360_pwm_read_waveform(struct pwm_chip *chip,
-> +				     struct pwm_device *pwm,
-> +				     void *_wfhw)
-> +{
-> +	struct max7360_pwm_waveform *wfhw = _wfhw;
-> +	struct max7360_pwm *max7360_pwm;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	max7360_pwm = max7360_pwm_from_chip(chip);
-> +
-> +	ret = regmap_read(max7360_pwm->regmap, MAX7360_REG_GPIOCTRL, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (val & MAX7360_PWM_CTRL_ENABLE(pwm->hwpwm)) {
-> +		ret = regmap_read(max7360_pwm->regmap, MAX7360_REG_PWM(pwm->hwpwm),
-> +				  &val);
-> +		val = wfhw->duty_steps;
-
-wfhw->duty_steps = val;
-
-> +	} else {
-> +		wfhw->duty_steps = 0;
-> +	}
-> +
-> +	return ret;
-> +}
-
-Best regards
-Uwe
-
---rbw3oslor4q675uu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfTSBwACgkQj4D7WH0S
-/k6Q6gf/XjsQoHf9RBzxgyUlezFotMDPpH1zwZOGLGbyQ1EN58ltZOo2a44SokYF
-R7TtXX47mBqKHhdlCgShc8153LM8sBwcDS+9HqaaHS/rR+5URMszklQSdAIh+nqW
-bZHXKmLGWNrHvdLZlb0NFK+fKNs+AJmABFVrYH0dLXRc5OPlD4/GrrtGFXbkPjha
-1KWUVnceG6eZn+WsgYRN8ki+Gv4AwpxyvCovuKHpur3e2dXpF0rXBeMKRLSDX2Ox
-Hi6YnfKxukcqf6JRljStl29d1xOBrMy6FZpcMEYBnMCAM9pVYLFFo+Wbnki2qt1O
-890RD9gfXgLYaeC7AlejZxp1dkkarg==
-=NVYJ
------END PGP SIGNATURE-----
-
---rbw3oslor4q675uu--
+> > I tentatively changed it back to -ENOMEM locally, let me know if
+> > that's wrong.
+> >
+> > > +	pp->bridge = bridge;
+> > > +
 
