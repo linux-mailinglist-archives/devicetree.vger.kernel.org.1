@@ -1,183 +1,202 @@
-Return-Path: <devicetree+bounces-157100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06912A5ED6C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:57:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8898AA5ED70
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:58:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DACEC7A6F0A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 07:55:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDAE016B7FC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 07:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE27260360;
-	Thu, 13 Mar 2025 07:56:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7064C25FA1A;
+	Thu, 13 Mar 2025 07:58:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="SV5JAfNU"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="bKf/X3bY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A0225F992
-	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 07:56:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4921F755B
+	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 07:58:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741852612; cv=none; b=QkpeXwhQf4I+42z5ja3Upkxj7W8q0Bb/sAgscqoEO5ncPypZITPay3/1KqHtCfb20HwXfoiPfp2FBuTXE0G/hKOnBOVhhqcLxaMFEXVlWWqJ01ANWXhge42lnP6B4N5eC1uikX3/xpYAEy3x11YElzqZuWADFCcjv1hEFHKQeyI=
+	t=1741852699; cv=none; b=G+FaKBZR5qdq0u8Vd4PbQ45VsomZbY5C1eMIpkg1hlKQ8ouc82s6eRdl8XPlgMYJpxXH3DWxFeOag9cquPoOz7ltq5gfaEiASYjFbY6WAoT3H4eJLZj/lQ2F7E6o2MHtzIWWiAlSk1VJBSXj1X7R72mAsrTuA/ALxfyEVPybdzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741852612; c=relaxed/simple;
-	bh=csSoVqhz5tUPJ7KgffmWDeAVmThuBZdB/krQumO/yU4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H2esIQvQB33VYKFJE/c6tumpaTbYtNGoOXD9IR8+uoWkr7DrSj+uBucNTaKwItKYhqYBLwQPuD85UsWefhtMygPB3Nc6y5tKkpwkI+7vbNa14GMaURp/4wukLU+fuUsx4hqkiAmBXGT88Lt7Yy5WQVTNz7MdwcIXidjX/PQVUfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=SV5JAfNU; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ff65d88103so1166469a91.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 00:56:49 -0700 (PDT)
+	s=arc-20240116; t=1741852699; c=relaxed/simple;
+	bh=upe+9WxKZinmpC3grjMLBliDqkaOdmUiq5sSYDHVSoQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rR7jHWTYj8uom2zJRTda5sbWl6P2IM7oGZMrmS2aXJEL741/ZOvYWzPIfVWOj+LxeWWNMcpP78C8EcNIg+tKjpV/hetuydsh0pftJNL+8HpSbKxF2EZ37ETFFUSKqMV0Rug9FsAP+wCivDXyT6yBXeK+HMFL12RPMAWGBRvjWTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=bKf/X3bY; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6f6ca9a3425so6570817b3.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 00:58:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1741852609; x=1742457409; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=38L2hz1chNfviXDy2tP0Lz340mHS97KT0hvfgoNEhj0=;
-        b=SV5JAfNU+Q4S6QpLU0AE6qVgWm7ZzU52+F0R1HG61LM2U2Gdg4U5+S/a8qLWGWBIjG
-         gRZ33vf5EXcrv8qz14hggCHavda+zo8TZL7yrncnQBxjaFiWOFYSllCu/0mGw903C0wZ
-         SScvXeEXzcRE5qjwVGG6UPeg3rHqYTAv5midv1Den0SoG/pV6cA4pHEXPtfBnUzja7fb
-         jTAqEl6J/NfOlDAKozcudab24QS4sR5Mw7e+Cyg73dufxRTyYB2NsA+JG/SNoEloQOsk
-         HczfjB/dtPuTB+OjEYvii9keiZaooxL6aJfLyE6Tk1pgMTa890qn0EC602/XfbUqkTqy
-         O1qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741852609; x=1742457409;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=sifive.com; s=google; t=1741852696; x=1742457496; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=38L2hz1chNfviXDy2tP0Lz340mHS97KT0hvfgoNEhj0=;
-        b=hsdluy2iMKFHlZ8ia4becjqNDo/KVCtNm8dKVy10WI4zrRsyERRyNlmIIffMbbJcY9
-         8EeRf70C64aTRtBg2NYaxBk26nFW3Wsa3fLBJC6w0Wao84qwND6iNXpTXu3UxwcNtmip
-         8AdhpnawxITv5cH+K6F19wQzI0kaPou6sDefhxPo1D8lRlQFDxBBcqif7M/53/ZXiGU8
-         EER+q/0gcDTtNvbJpVfLRkGAROw/VCqAMDZdlA2iBHGDLRYSNnZXROW5mwQI6WEgCQTg
-         LmwbHW4pCCnI+QN4cJZlvZrfBsfjqWlFXlnqJOboeJMsWfnpX2408/+t6H+dKFD1YEVE
-         u35w==
-X-Forwarded-Encrypted: i=1; AJvYcCXfvsrEyybZCmEcNIRC9DkhrbmfCtyt2kQLmRywfhtWrGxB99A6nu8Jz29+iZw1beya6la9fasVIBG3@vger.kernel.org
-X-Gm-Message-State: AOJu0YztEJ3l3LTz8PN5gbCDgo+OKRMCbolJQAyU0hwTLRa3wuIpDlFB
-	nBxQtB0jukiQAy1vSvnfcN0/msXDdQrO7OGFJsxVduxDAhXDmuTq1ZbkIH0T1t8ec3rjZS6DAw4
-	X
-X-Gm-Gg: ASbGncvl9B66va8g+/uhaTFH/+kvn7zNoaCSRKELOqIgrYsQ5H91njGAh5U33d9sZsi
-	QHgOa3cnpHRR9g9FLpj47tUz6IqghLG0CSrCHJpb8ge27m7Mf4KVzGyk8OWrfXhkBfBCM3xv4Du
-	5deZiW3CQ7gnB3iTRm7s9MENzzm/L6KTe4Xr8PPLRA2/gnK1mXvi9Ruz9jKJ7KpyrUnmGcPOGTo
-	YYTFdjUvxK9UfH8p0UTCdyCXesO/+PreQf3bOdNx0vAdy23eqVBmxFfqvQ5KVyy6e3hswwg6GzD
-	xGmlIztwrAyMhBuNcsgoEutV1w==
-X-Google-Smtp-Source: AGHT+IExdVBJ3/gcWBXodBlgc0t0CtGEm8NtDZGsZZGRgntPtjMcoKU8fMdl0fX1ZXY61aguSYRxkA==
-X-Received: by 2002:a17:90b:4f8d:b0:2f8:b2c:5ef3 with SMTP id 98e67ed59e1d1-2ff7ce8a02fmr39178985a91.14.1741852608708;
-        Thu, 13 Mar 2025 00:56:48 -0700 (PDT)
-Received: from x1 ([97.115.231.194])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30138f89db9sm796672a91.34.2025.03.13.00.56.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Mar 2025 00:56:48 -0700 (PDT)
-Date: Thu, 13 Mar 2025 00:56:46 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	jszhang@kernel.org, ulf.hansson@linaro.org,
-	m.szyprowski@samsung.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v8 0/5] TH1520 SoC: Add AON firmware & power-domain
- support
-Message-ID: <Z9KPvig0dPRO0cX1@x1>
-References: <CGME20250311172030eucas1p12dda42760f751174e774b8d1a3d3f4cd@eucas1p1.samsung.com>
- <20250311171900.1549916-1-m.wilczynski@samsung.com>
+        bh=SMNUjuT0sEsFCRID3lsOG1TNPZy1x50YvG+37FVE2ig=;
+        b=bKf/X3bYE5+ikvRwopepcXVxxeFt215CHSg4PzSrw/605sFEugQHSscAaqLCpOExqO
+         Qc9I6VIK+9f1V0dneFWXoDk5DvSaHGqcnoIugUvSnaBDBjjqOTvp258tAYXXdgXk13j0
+         FoxaNWtFIfZFuNU5SeIbkfYYEcqImiaqeb6+qe1JTxnzrlcb1Ay9gVo7ywgOpfA5Cgjd
+         8hlD/zfMRlmCGHVcAgeiGoVYHpWY0wanxUjUdeYOngFGwfRGVdCAgPbSNCJ+lPJM1T9D
+         Etos0IirTOH3+I+Ciu9USiqZ2Bbsyy6smxojDaoURLp0cDTRrDBRNz+YytNu9jj0SMUQ
+         TmDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741852696; x=1742457496;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SMNUjuT0sEsFCRID3lsOG1TNPZy1x50YvG+37FVE2ig=;
+        b=Ge5J57Xq4ndUj0s9B0l2v+KM+Yo5E1jHTXsYELWhfoKMSM0gQh4X/xC5MLy5E0VEW4
+         Zhr+s11GHmmDEG0xa2Uv2i4xCcTzuPlvkyWgbMRIidZoJBpC4/CCtu47yo9WHKgfmrRV
+         m4Tn3l/TI2A5cQUaRuy80RdiXoMkSBYDAOAaCm9gRQzZmsvM7SyEuoD0C5Ujm1tqPblI
+         /IcyW8I6o28eLke7BpDoGznu8ZT3D769Ka7QYQOH4V9JGl+8LYDAWBZz8i5HI2gK03TT
+         DAjEbeDfC7TlBvASyGKBtmAilCct439XOi+/ku5EurqeHN3CufaRgcc3J7Wq8hk5FFEl
+         h/wA==
+X-Forwarded-Encrypted: i=1; AJvYcCVsUDVMAYhw7+zZsAJcvRyEHKrhXhgkgILg+fzAOh6x19rXA53tD1LmI9dVRyG37eh4oSa2qlHAftsD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwI67+8uBjZnvFKMrq4ujMuFwJs/BCiGtI33NNYjCG0dqVSSWw6
+	w6YbdCOW2JSNmEZMP42etT+x6wLbUt3vwKP/NygrXRB3oFD4SdE2dc2fLjPFJQxT92exxuX1rQL
+	qfndkCOaSAiFFjJVJIcFrDIMnE9MzJM6ofdG90w==
+X-Gm-Gg: ASbGncuWvVQGm28cMtGJbRGYBY4LkmEfz4NmvgZ/LV0E62uIyGaCIRZzoKS2WpcLV0J
+	GQxkv//2wnksBoT6FMVLR10aCkuZQPIPwvqyGir7LNtFj481VAtnHZgSn0+fQNAFydtRKqUE4bM
+	w6BUw/zKNPX5fxkhaNNIErmSJEHxrC
+X-Google-Smtp-Source: AGHT+IGp6MvYk8pn8cuSFH/tJh1fjFagxxuHGQs84LN+E9bj1UCyjQ4i+yvES1TFbTwOnp2qVaqV1mIETgiHMesQ98o=
+X-Received: by 2002:a05:690c:6412:b0:6fb:9450:b0d1 with SMTP id
+ 00721157ae682-6ff091ac15amr152290817b3.2.1741852695922; Thu, 13 Mar 2025
+ 00:58:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250311171900.1549916-1-m.wilczynski@samsung.com>
+References: <20250311051903.3825-1-nick.hu@sifive.com> <20250311195953.GA14239-robh@kernel.org>
+ <20250311-erasure-rival-f68525c21742@spud>
+In-Reply-To: <20250311-erasure-rival-f68525c21742@spud>
+From: Nick Hu <nick.hu@sifive.com>
+Date: Thu, 13 Mar 2025 15:58:05 +0800
+X-Gm-Features: AQ5f1JoArwz67rimlbvntQFgrzGWz_0QdYrn-hsKZwEE72YS-5NkcDfMe2HMQIE
+Message-ID: <CAKddAkBwkVQS7UtVvXCdLxEz6bz1=_X1u1CGUPm-OHiyAD4Dsw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: timer: Add SiFive CLINT2
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 11, 2025 at 06:18:55PM +0100, Michal Wilczynski wrote:
-> This patch series introduces and documents power management (PM) support and
-> the AON firmware driver for the T-Head TH1520 SoC, as used on the LicheePi 4A
-> board. While part of a larger effort to enable the Imagination BXM-4-64 GPU
-> upstream, these patches can merge independently.
-> 
-> Bigger series cover letter:
-> https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
-> 
-> This series is versioned to maintain continuity with the bigger patchset it is
-> a subseries of. Please find below a changelog for the AON & power-domain:
-> 
-> v8:
-> - add proper cleanup in the th1520_pd_probe()
-> - add "suppress_bind_attrs = true", since there is no need to unbound the driver
->   during runtime. This simplifies the code by eliminating the remove function
-> 
-> v7:
-> - add '#include <linux/slab.h", due to kernel robot issue
-> 
-> v6:
-> - split the firmware & power-domain patches into a separate series
-> 
-> v5:
-> - changed the AON driver to be a set of library functions rather than a
->   standalone driver
-> 
-> v4:
-> - added workaround to disable AUDIO power domain to prevent firmware crashes
-> 
-> v3:
->  - consolidated device tree representation by merging aon and power-domain nodes
->    while maintaining separate drivers internally
->  - power-domain driver is now instantiated from within the aon driver
->  - fixed optional module dependencies in Kconfig
->  - added kernel-doc comments for all exported functions
->  - implemented th1520_aon_remove() to properly clean up mailbox channel
->    resources
-> 
-> v2:
->  - introduced a new firmware driver to manage power-related operations.
->  - rewrote the power-domain driver to function alongside the firmware driver.
->    These nodes in the device tree lack direct address spaces, despite
->    representing HW blocks. Control is achieved via firmware protocol messages
->    transmitted through a mailbox to the E902 core.
->  - added new dt-bindings for power and firmware nodes.
->  - ran dtbs_check and dt_binding_check to ensure compliance.
-> 
-> Michal Wilczynski (5):
->   dt-bindings: firmware: thead,th1520: Add support for firmware node
->   firmware: thead: Add AON firmware protocol driver
->   dt-bindings: power: Add TH1520 SoC power domains
->   pmdomain: thead: Add power-domain driver for TH1520
->   riscv: Enable PM_GENERIC_DOMAINS for T-Head SoCs
-> 
->  .../bindings/firmware/thead,th1520-aon.yaml   |  53 ++++
->  MAINTAINERS                                   |   5 +
->  arch/riscv/Kconfig.socs                       |   1 +
->  drivers/firmware/Kconfig                      |   9 +
->  drivers/firmware/Makefile                     |   1 +
->  drivers/firmware/thead,th1520-aon.c           | 248 ++++++++++++++++++
->  drivers/pmdomain/Kconfig                      |   1 +
->  drivers/pmdomain/Makefile                     |   1 +
->  drivers/pmdomain/thead/Kconfig                |  12 +
->  drivers/pmdomain/thead/Makefile               |   2 +
->  drivers/pmdomain/thead/th1520-pm-domains.c    | 218 +++++++++++++++
->  .../dt-bindings/power/thead,th1520-power.h    |  19 ++
->  .../linux/firmware/thead/thead,th1520-aon.h   | 200 ++++++++++++++
->  13 files changed, 770 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
->  create mode 100644 drivers/firmware/thead,th1520-aon.c
->  create mode 100644 drivers/pmdomain/thead/Kconfig
->  create mode 100644 drivers/pmdomain/thead/Makefile
->  create mode 100644 drivers/pmdomain/thead/th1520-pm-domains.c
->  create mode 100644 include/dt-bindings/power/thead,th1520-power.h
->  create mode 100644 include/linux/firmware/thead/thead,th1520-aon.h
-> 
-> -- 
-> 2.34.1
+Hi Rob and Conor
 
-For the series:
+Thanks to all your feedback.
 
-Acked-by: Drew Fustini <drew@pdp7.com>
+On Wed, Mar 12, 2025 at 4:46=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Tue, Mar 11, 2025 at 02:59:53PM -0500, Rob Herring wrote:
+> > On Tue, Mar 11, 2025 at 01:19:03PM +0800, Nick Hu wrote:
+> > > Add compatible string and property for the SiFive CLINT v2.
+> > >
+> > > Signed-off-by: Nick Hu <nick.hu@sifive.com>
+> > > Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+> > > ---
+> > >  .../bindings/timer/sifive,clint.yaml          | 19 +++++++++++++++++=
+++
+> > >  1 file changed, 19 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yam=
+l b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > > index 76d83aea4e2b..93d74c504b5f 100644
+> > > --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > > +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > > @@ -36,6 +36,9 @@ properties:
+> > >                - starfive,jh7110-clint   # StarFive JH7110
+> > >                - starfive,jh8100-clint   # StarFive JH8100
+> > >            - const: sifive,clint0        # SiFive CLINT v0 IP block
+> >
+> > Notice that we don't allow clint0 by itself. We shouldn't start now.
+> >
+> > > +      - items:
+> >
+> > If you don't have a specific one yet, then add '- {}' for the first
+> > entry.
+> >
+Do you suggest something like the following?
+     - items:
+          - {}
+          - const: sifive,clint2        # SiFive CLINT v2 IP block
+        description: SiFive CLINT v2 is the HRT that supports the Zicntr
+
+> > > +          - const: sifive,clint2        # SiFive CLINT v2 IP block
+> > > +        description: SiFive CLINT v2 is the HRT that supports the Zi=
+cntr
+> > >        - items:
+> > >            - enum:
+> > >                - allwinner,sun20i-d1-clint
+> > > @@ -62,6 +65,22 @@ properties:
+> > >      minItems: 1
+> > >      maxItems: 4095
+> > >
+> > > +  sifive,fine-ctr-bits:
+> > > +    description: The width in bits of the fine counter.
+> >
+> > maximum: 15
+> >
+> > Unless you know of a different maximum in which case why aren't you
+> > documenting that too?
+>
+You are right. It's my bad. The maximum width should always be 15 in
+sifive,clint2.
+I should update to:
+ sifive,fine-ctr-bits:
+    maximum: 15
+    description: The width in bits of the fine counter.
+
+if:
+  not:
+    properties:
+      compatible:
+        contains:
+          const: sifive,clint2
+then:
+  properties:
+    sifive,fine-ctr-bits: false
+
+> I'm curious why this is not something that can be discerned from the
+> compatible. It's max 15, but are there actually versions of this with a
+> less-than-15-bit width?
+>
+The width may be various on different platforms so it is possible to
+have a less-than-15-bit width.
+
+> >
+> > > +
+> > > +if:
+> > > +  properties:
+> > > +    compatible:
+> > > +      contains:
+> > > +        const: sifive,clint2
+> > > +then:
+> > > +  properties:
+> > > +    sifive,fine-ctr-bits:
+> > > +      maximum: 15
+> > > +else:
+> > > +  properties:
+> > > +    sifive,fine-ctr-bits: false
+> > > +
+> > >  additionalProperties: false
+> > >
+> > >  required:
+> > > --
+> > > 2.17.1
+> > >
+
+Best Regards,
+Nick
 
