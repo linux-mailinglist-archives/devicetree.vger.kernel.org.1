@@ -1,157 +1,117 @@
-Return-Path: <devicetree+bounces-157224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C80CA5F5A2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:14:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCB3CA5F5BD
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:18:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF933164A4E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:13:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F4963B3D67
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E101C267F4E;
-	Thu, 13 Mar 2025 13:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E0AB26772D;
+	Thu, 13 Mar 2025 13:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HB9Wajep"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="CbxcRkr5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B05267B16;
-	Thu, 13 Mar 2025 13:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F65267735;
+	Thu, 13 Mar 2025 13:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741871533; cv=none; b=gVK7WjiL/uqUOcwTiKrfUJMRIlSmyTYZleFvEIGUupucBvjtatF0ATx0HQVVZTBgHl3f8swVA+nejm6Lmf8nuIqlcDWIe6UCmBKCtTwwmKVYgrEP9OYHMakNqgptPJU+LFG23x3r3423oSN2XbgYdWVtb+Kzl0YN6OuuDJWpzJU=
+	t=1741871869; cv=none; b=GhHMS+rCa+HGrcZh64+LbX9rvu8CkTqMdFlGM7FYU1ahlPlrJVnLxpXmCaS48yAxaSbaV42b1W2xRyj3tVF5RwFCqPzxa9ji/vk9BRatoJOlhSv5qEzG2ey96S3p/2QUYKkKe+2o8U7WpABno4YDcXnEjYcVdLwKzI/Uu9KGRBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741871533; c=relaxed/simple;
-	bh=9w1ScaeSlWhq6L0g6c/1U2BXB6YORXYaIQ7F9hz9/qY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OjnuUEsEYjBSw2eQUyYokU6DmYPQ37F8EfGPb0rWJrzCmiIaGYP+kOtnkS4Cb4WpYYjmSkfmH5enZUP5n7ptEJaPAu+Kg/uDD7eD3pp1Cjnc7dYLA3pUCkWlLmnBql407JI85XXWFLI7QQqjvZjGjM8uxw4rSl2ZR9+cqPPjACM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HB9Wajep; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2ff85fec403so3683198a91.1;
-        Thu, 13 Mar 2025 06:12:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741871531; x=1742476331; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VwYK1vtIGu8AKr7d5DZZujGnya4yaossipP8/xTscq4=;
-        b=HB9WajepFATDdmUJw8koTd6cHjVTCR/yBl7vdrLrfWZMaSqi0MTQL2GRfJoCELGuFA
-         6bskLXCWdwI3GjOTaPG2US9ykhLiUXlFj6CErvkEr3zxdZ+U+xeYV5WzqZufvWP43eQT
-         JqNyUgR7Fp0lPB64LYRKRwKD0zUETDeKiB/eZUdexSGYvQaulMHRuCiIGkexugTWGJpk
-         i7Y9N0P3aoSJ0abSpN2SZMftJr/2w9S9WiVU7dJrI31h6vSE7wyzAjBuamhMau//rik9
-         GpItUg4HuvM4CZdcdSdZoKsBfoclqJCmb54uFoGaTfpdeC9WOhXncIVF8WH70Y4UNUd8
-         KAWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741871531; x=1742476331;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VwYK1vtIGu8AKr7d5DZZujGnya4yaossipP8/xTscq4=;
-        b=A8sSGLJhKMJiBbXWHng4/6A04NfAk8qACJ+25B0h4RaucOx71ATn/zS9GD8Bx5IOIC
-         2fX0RQEI/GW0Gcd7FQZ0JLlaz0kvdSVIaNDWKjyqqTZKfT2ASEMW2kmtDCPQGbtqpihH
-         M7oY0kdeqEKLSN5DkK2jd/Es5RdwO7MJrwF3eDTwOmGRLXEE3rVVudvkB11y4P//50v4
-         ZwmVFZ9CsH3UU1PorXYd/40MrHBX7h/1teLIRWv7MqQexyGKuXdc1TwZFUIXE6PC2FsA
-         RPDkjZUiWko8QMHW0yOpDbnW3M0rEuaQV+lq+fKGgaJHsPQA0nlv6p74+rzuWZPWIpYL
-         tA4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW3g0YzBM17xTWN1YClQ+FR1uc7/oXKyyIeuA/VVLW0nEZhVIUdbbb+CX8oCghTzwjU7m5jB0MI2/lMvxk=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6IsbgQZtMOeraA6/fbCvu4NM9nfVBgV3Yo0Hpgpyb6kXcEcaE
-	FX6zh0EHCmT9nnLoorJr/B6uDKUIyA/YEK5F6Zm4p6AS6OWdjxAq
-X-Gm-Gg: ASbGncuG4j5lGqTrp2BkjNqxCag1aVUTaorDmjU3YXjy6wlaDpGYzLISZqCs9Fw2bia
-	qsaCh3ywQCQNWc+rirkICyHM28vnvqLamwkoUfq6UxENKdvyEZWcd+uioseDNM4t+31e0DvA9Um
-	4rRq3Wt4FpZleLEmdbE/ZD49FZL/NhvOcNAnVhsbtfAhPATi7KoGgb74FCp5Ak/BvTDqrK0BU9L
-	Nk9vs8uXp4yPCIJaG/ahwaU508v6nLbY2SfXVFCd47H0mTHVMoMu/UPIvYznpvvBHWpctfQACZq
-	O7DZfH9z/jC4M8CpUzmt7qloBNs790qAiC8=
-X-Google-Smtp-Source: AGHT+IEgH0CG5aSgef06SzCJvmgMptc8klfdSuHRJlwjKBRgnlA8cLsLiRUzsG4uJ77t6uFQlEZL9Q==
-X-Received: by 2002:a17:90b:4c48:b0:2fa:603e:905c with SMTP id 98e67ed59e1d1-30135e7dd3bmr3491447a91.2.1741871530193;
-        Thu, 13 Mar 2025 06:12:10 -0700 (PDT)
-Received: from [198.18.0.9] ([2a0f:7803:fac5:a7b6::1])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c6ba6d52sm12539615ad.116.2025.03.13.06.12.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Mar 2025 06:12:09 -0700 (PDT)
-From: Zixian Zeng <sycamoremoon376@gmail.com>
-Date: Thu, 13 Mar 2025 21:11:50 +0800
-Subject: [PATCH v3 2/2] riscv: sophgo: dts: Add spi controller for SG2042
+	s=arc-20240116; t=1741871869; c=relaxed/simple;
+	bh=yDGWynoa4NHLG+/FL8La2c2pXIbj5JLF9ZRJKihaX0M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JXeoA3aMiAKgz/9mdvWRAufys9FPB39eL60zrK71s1Y0i66f0kDJkhnDrGgMHQ/v+zQNRLhPBPOTPjQcONX7LRz7pEjWU4xy1NWOt+Qj5ug+1a3Gg75m73VZGXBvqFB2HTHZ01Vcbf0y/rcEbKvvk2U5gKBiTj3f7bYxL4syv0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=CbxcRkr5; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=4EvY1LEFvjjHJU3jZAtzphl1AzmykKRYyWCA/SvfCK4=; b=Cb
+	xcRkr5Js6+IwxGpOdQ1oKGkQeF2cq/TMzpc3U5FT2lIMY76EHMFIggsHj8bcQ651yDwsQnnj+ykg/
+	VVeS7E5Fzb19hUdFqt2smal5gYticNcoGaqM1qybqC23066JPaLgcwYgNZK7XSU5DFkTI5Si9hhIM
+	sbyH5zQuUwYlRao=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tsiRD-004zrS-Is; Thu, 13 Mar 2025 14:17:27 +0100
+Date: Thu, 13 Mar 2025 14:17:27 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Michael Klein <michael@fossekall.de>,
+	Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: bananapi: add support for PHY LEDs
+Message-ID: <7cf91323-d550-496a-a8ec-ae104c77224d@lunn.ch>
+References: <20250312193629.85417-1-michael@fossekall.de>
+ <20250312193629.85417-2-michael@fossekall.de>
+ <4637912.LvFx2qVVIh@jernej-laptop>
+ <Z9KYqlfUYxRaWnGQ@a98shuttle.de>
+ <20250313104042.694c1856@donnerap.manchester.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250313-sfg-spi-v3-2-e686427314b2@gmail.com>
-References: <20250313-sfg-spi-v3-0-e686427314b2@gmail.com>
-In-Reply-To: <20250313-sfg-spi-v3-0-e686427314b2@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, sophgo@lists.linux.dev, chao.wei@sophgo.com, 
- xiaoguang.xing@sophgo.com, dlan@gentoo.org, 
- Zixian Zeng <sycamoremoon376@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741871512; l=1436;
- i=sycamoremoon376@gmail.com; s=20250113; h=from:subject:message-id;
- bh=9w1ScaeSlWhq6L0g6c/1U2BXB6YORXYaIQ7F9hz9/qY=;
- b=y6IxyvvuwFXWUchI1WelHOu7+mju3xNDsy3WvdI9VAq511ux6fzKK48wfDsf6hrr+pVYC/vJ3
- fD4fM4zDZdgAqOqp0ypkHLmYA1Iz+IPORpPRGe7/8lHkv6KavaPjD+5
-X-Developer-Key: i=sycamoremoon376@gmail.com; a=ed25519;
- pk=OYfH6Z2Nx3aU1r0UZdvhskmddV6KC6V1nyFjsQQt4J8=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250313104042.694c1856@donnerap.manchester.arm.com>
 
-Add spi controllers for SG2042.
+On Thu, Mar 13, 2025 at 10:40:42AM +0000, Andre Przywara wrote:
+> On Thu, 13 Mar 2025 09:34:50 +0100
+> Michael Klein <michael@fossekall.de> wrote:
+> 
+> Hi,
+> 
+> > On Thu, Mar 13, 2025 at 07:07:24AM +0100, Jernej Škrabec wrote:
+> > >Dne sreda, 12. marec 2025 ob 20:36:28 Srednjeevropski standardni čas je Michael Klein napisal(a):  
+> > >> The Bananapi M1 has three LEDs connected to the RTL8211E ethernet PHY.
+> > >> Add the corresponding nodes to the device tree.
+> > >>
+> > >> Signed-off-by: Michael Klein <michael@fossekall.de>  
+> > >
+> > >This is patch 2/2. Which one is patch 1/2? I got only one.  
+> > 
+> > https://patchwork.kernel.org/project/netdevbpf/patch/20250312193629.85417-1-michael@fossekall.de/
+> > 
+> > Sorry for any inconvenience in case I messed up the patch submission.
+> > 
+> > I made two commits for this change and submitted them via `git send-email 
+> > HEAD^^`. The first patch went to netdev@vger.kernel.org, the second 
+> > to linux-arm-kernel@lists.infradead.org, which seems logical. Have I 
+> > done something wrong?
+> 
+> Well, for those really small "series" it's probably better to send all
+> patches to everyone, especially if the first patch gives some context,
+> without which the second leaves people (like me) scratching their head.
 
-SG2042 uses the upstreamed Synopsys DW SPI IP.
+However, netdev does not like pathchsets which contain patches which
+should not be applied to the netdev tree. DT patches generally go
+through a different Maintainer to driver changes implementing the
+binding.
 
-Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
----
- arch/riscv/boot/dts/sophgo/sg2042.dtsi | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+So for your DT patch, you could add to the commit message something
+like:
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index e62ac51ac55abd922b5ef796ba8c2196383850c4..9e0ec64e91a2330698aea202c8f0a2ca1f7e0919 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -545,5 +545,31 @@ sd: mmc@704002b000 {
- 				      "timer";
- 			status = "disabled";
- 		};
-+
-+		spi0: spi@7040004000 {
-+			compatible = "sophgo,sg2042-spi", "snps,dw-apb-ssi";
-+			reg = <0x70 0x40004000 0x00 0x1000>;
-+			clocks = <&clkgen GATE_CLK_APB_SPI>;
-+			interrupt-parent = <&intc>;
-+			interrupts = <110 IRQ_TYPE_LEVEL_HIGH>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			num-cs = <2>;
-+			resets = <&rstgen RST_SPI0>;
-+			status = "disabled";
-+		};
-+
-+		spi1: spi@7040005000 {
-+			compatible = "sophgo,sg2042-spi", "snps,dw-apb-ssi";
-+			reg = <0x70 0x40005000 0x00 0x1000>;
-+			clocks = <&clkgen GATE_CLK_APB_SPI>;
-+			interrupt-parent = <&intc>;
-+			interrupts = <111 IRQ_TYPE_LEVEL_HIGH>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			num-cs = <2>;
-+			resets = <&rstgen RST_SPI1>;
-+			status = "disabled";
-+		};
- 	};
- };
+The RTL8211E ethernet PHY driver has recently gained support for
+controlling PHY LEDs via /sys/class/leds. The Bananapi M1 has three
+LEDs connected to the RTL8211E PHY.  Add the corresponding nodes to
+the device tree.
 
--- 
-2.48.1
-
+	Andrew
 
