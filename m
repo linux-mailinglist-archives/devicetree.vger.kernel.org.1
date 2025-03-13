@@ -1,166 +1,127 @@
-Return-Path: <devicetree+bounces-157231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE94A5F5F3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:29:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8E84A5F618
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 14:38:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D46D1887DB1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:30:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19C6317EBBB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 13:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA14267AEC;
-	Thu, 13 Mar 2025 13:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CA1267735;
+	Thu, 13 Mar 2025 13:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LUOQWDVp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U7bEIH2F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6463B267721;
-	Thu, 13 Mar 2025 13:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D212B2673A4;
+	Thu, 13 Mar 2025 13:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741872590; cv=none; b=buS6rXhtfyorUufdFA9R1AAsEgzUeczMGhUkc/x/rscN9k9g/HUhimL6xRzBWz2i9C7Oe+uT2dhZ6XQlW4+98Cf5aYTsQTK41mqyO23mEWUXn9MZ4v/V8DZOR4Bx+uJmDFmj4U/2d2BVSx8CgNLIFXstajIdMIfoAczJ0rDLyok=
+	t=1741873122; cv=none; b=R92+D/BgGYI/BqgH10hojdQE6KLRiM/dkZZiOnxMFtqIuB34H7UK5bijaefOjzmiUnBQ/yw93LpZCW4R2EJpMzD1C8opoiGd6qNEufnOntE14xjjzTEuOY+tP/FIviecwXHGa0bc5ZsOM0muUiZ4UsAn0RnKB2WOVIbeA71Ih8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741872590; c=relaxed/simple;
-	bh=3R5NqPG75eCifry1xE8jCo+Ba/RPNsND3Th6ewF0DW8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mbJBe+/PMZmtXxKsJhn18ZUxwtkuvjw6WbOJVK15ot0cM6E8aRcpx8cvDpAXWdoLqojrWFy+QexSMiL2HEx4Fd9h4XW+FA8tbPNPiATRpf6fVFsB00c5giWV6Ql4ehLdZLW2mFKIe+CRNE+CN70NxFgEb6xGRopk+tre5M+qo/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LUOQWDVp; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741872588; x=1773408588;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3R5NqPG75eCifry1xE8jCo+Ba/RPNsND3Th6ewF0DW8=;
-  b=LUOQWDVpcOi8PI2qbyByY+2qScKBOOZtthpREA7utobv+e4OSJ9vhNSy
-   pYTVOP2t+jxFIuYYwDYJ8rF7EujzPCkqTyjUwbwv1AALqiB5O5vO5InMp
-   Sr1Ij9n8iQoe1rHbCS7orbAiFaCcnpPdld8YplDbk/ZSiYbedVwldkH13
-   4K756Ohf1jMeQ+rx7Zu9U+QMd9Tw+jcy0O8o/W5u58Nsn/Y0W7RoN7/aB
-   Mlvpqqtr9Isa/ebhOt5eQ5EddubBZhhN6WQhY1KNoEdz4MOca5RO4sax0
-   BNvSwae4hDe49XBZEqxYoHT9vpTgpuCvIMZop4JjI8IpDZrT82sPKe0PZ
-   Q==;
-X-CSE-ConnectionGUID: AmIDVn6mT9Sd1lrJ62tyPQ==
-X-CSE-MsgGUID: v/kLCct7RkyfoMQuyGhNrg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="43119151"
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; 
-   d="scan'208";a="43119151"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2025 06:29:47 -0700
-X-CSE-ConnectionGUID: 04qS8wQPRn6wZVe4oTPTzg==
-X-CSE-MsgGUID: 4xEfR6NSTcGJ84TSNnC6hg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; 
-   d="scan'208";a="120669500"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2025 06:29:42 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tsid0-00000002BNc-0muS;
-	Thu, 13 Mar 2025 15:29:38 +0200
-Date: Thu, 13 Mar 2025 15:29:37 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Guillaume Stols <gstols@baylibre.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v7 03/10] iio: adc: add helpers for parsing ADC nodes
-Message-ID: <Z9LdwUVBOEx-Tbvr@smile.fi.intel.com>
-References: <cover.1741849323.git.mazziesaccount@gmail.com>
- <c8899e8c535a1d93cd7588b7c160eb0fae5d26d2.1741849323.git.mazziesaccount@gmail.com>
- <Z9LQFqSweiV-zT3b@smile.fi.intel.com>
- <bca95d63-fb6e-4d6c-8ab6-df67f0e697e6@gmail.com>
+	s=arc-20240116; t=1741873122; c=relaxed/simple;
+	bh=bHpxg3FxsEpGxOxCi9WYoHqnBy4pwRNyqrvZtjCjr5o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oOE24TL6egAJsBKTawtSmLMzZXLqL7fZ0w0ZSAcn8uFdIZdtqFFK4um1vuc8qotWUM4IBvAcnFyGEoCf2TPLle31iK73x3ZxdZOxZOGbrXKciDF9/EW0JOUNhN6wLEn/jtAeS5qmg6+8jDE+AWv1vzJ0PfMELRhEcY5T6yMFnNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U7bEIH2F; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-51eb1a6ca1bso433708e0c.1;
+        Thu, 13 Mar 2025 06:38:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741873119; x=1742477919; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sIpqoek4eGSOylKbMTSFOVbyM/qGLYGplSwODZFoBwg=;
+        b=U7bEIH2FKTRC+qkDQFz4AFaQI1VUij66rlLJ8rO1nwLNC7YETKEF1jhVHCshqP5LAf
+         2uoIxI7muC8zSu+ti/wMYNhs/txi8JCo4WkN97KLbGmVAD9O3Zrlu8OUlHb/SXrfYYex
+         jN/ZyHoZgvIqtZfUhWOm/A9NeBUhYE+LoAtblRK+adZ3fXwt6kv3BIirXsC2Oh7Aogqh
+         DK1rsVDcmyQbdRqW97Oy1vog9RzWRe/4XoRuqRgrrWTBygGr5s9i2KGPEPrHKqsuqSC1
+         lmWOCij69s6JI0q1ZMW0LhwkpvLGczMZdypsvZRHtIhBeIV9hgCMWw4NXXenYK5pReOD
+         qAcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741873119; x=1742477919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sIpqoek4eGSOylKbMTSFOVbyM/qGLYGplSwODZFoBwg=;
+        b=OMOUbJZLwEvVqk5v+a/xYthRDC1dXZU+NJNHA8DXw8sqIiAUJvWcB1nMyf6P4fFxts
+         jTerFTUjtSrRfT19x4dc1jNIjy5G4dWCPC3DM1bzgonr7UXns8S9iwIqK+F0cpmNvkQh
+         Sh5jdC8E5Y6eToLt17Xl+pQQNbWxDHujzlbrffStTJfU0eC0xawWbOCNiHTNcv6P6/Yh
+         +YfW83WVLh8TQIJvWLOJY9nPsBfoaziehoCXCGfLpBY//wOHfon+t9H6Qo6uPF+jVKv+
+         gc6txbrVIsY2z1nq0/Cirr3qwcaebt+JZbjBSOfOM1W051rnMxCVVoQNijUBh0dALEWc
+         Pzfg==
+X-Forwarded-Encrypted: i=1; AJvYcCUP72ZFxv1QooPXcanj7INHJ8duMnT1nvfy5sSGDDiYfyOlyxeXEuGAOSwQAwZjioheTGNY9yLF@vger.kernel.org, AJvYcCXJsOQzbDQ3e5YYGMHXGRwk1kz30cSjyoSTK0UovejYf+njm6ddqg7znFwyOjwv4DPoq1nauex2/ymn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/jyfRTJkfys1OCwvgZsWHyCvl7Zn4ZcYIj+q5y1sS2R8mjW1c
+	sSdTB3GL7ONQ4UgJTGbZHucn3ximD9pd02XwQ9zqfW52YZQ3dRh3C/cFMDGfH1izYywImf4Qwe+
+	0Wt76JB0cLZ3BxCTUyXK6q1RUlp4=
+X-Gm-Gg: ASbGncvhcBaeI1U2FQojKaUhBn+sj8kG7Kmcrvy1sVfZxikP0si9ZCj+N8BUirNrNcK
+	TzIWUsj2/JHjRbfcJWXrw2ZWtYJq5AZhVkxcc+TYp/vpgZOQJ8HleSJ8vHau76qswRlM8cKaFC3
+	U0oaGBI1Px1K1Q+YbuAgYwyxvGrESluezjPMrX2nyfJsiHLHXR7kG5Bz4xi5M=
+X-Google-Smtp-Source: AGHT+IEcryLwmYP3TdsvEC/+UeCHlR3N+sWjCLCU1sbSkHGz1fjASLBhtHx+j6tuN07I1St0YxBKUyaqA22JoKt2WYU=
+X-Received: by 2002:a05:6122:1d9f:b0:516:230b:eec with SMTP id
+ 71dfb90a1353d-523e4076cf3mr19762024e0c.5.1741873119552; Thu, 13 Mar 2025
+ 06:38:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bca95d63-fb6e-4d6c-8ab6-df67f0e697e6@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk> <E1tsIUK-005vGk-H7@rmk-PC.armlinux.org.uk>
+In-Reply-To: <E1tsIUK-005vGk-H7@rmk-PC.armlinux.org.uk>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 13 Mar 2025 13:38:12 +0000
+X-Gm-Features: AQ5f1JqlA8hzG437O530Oq2Xdo4TAVMjVgaona5iqv0GCiHktSEod7myZxpXhN4
+Message-ID: <CA+V-a8sasAGkwCWGnbBEjeMRVM79xVVzTq15uJQ_7Q+YwB1QpA@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 7/7] net: stmmac: deprecate
+ "snps,en-tx-lpi-clockgating" property
+To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org, 
+	Emil Renner Berthing <kernel@esmil.dk>, Eric Dumazet <edumazet@google.com>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Jose Abreu <joabreu@synopsys.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Minda Chen <minda.chen@starfivetech.com>, 
+	netdev@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paolo Abeni <pabeni@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 13, 2025 at 03:17:27PM +0200, Matti Vaittinen wrote:
-> On 13/03/2025 14:31, Andy Shevchenko wrote:
-> > On Thu, Mar 13, 2025 at 09:18:18AM +0200, Matti Vaittinen wrote:
+On Wed, Mar 12, 2025 at 9:58=E2=80=AFAM Russell King (Oracle)
+<rmk+kernel@armlinux.org.uk> wrote:
+>
+> Whether the MII transmit clock can be stopped is primarily a property
+> of the PHY (there is a capability bit that should be checked first.)
+> Whether the MAC is capable of stopping the transmit clock is a separate
+> issue, but this is already handled by the core DesignWare MAC code.
+>
+> Therefore, snps,en-tx-lpi-clockgating is technically incorrect, and
+> this commit adds a warning should a DT be encountered with the property
+> present.
+>
+> However, we keep backwards compatibility.
+>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-...
-
-> > > +	num_chan = iio_adc_device_num_channels(dev);
-> > > +	if (num_chan < 1)
-> > > +		return num_chan;
-> > 
-> > This is really interesting code. So, if the above returns negative error code,
-> > we return it, if it returns 0, we return success (but 0 channels)?
-> 
-> Yes. I don't think it's that interesting though. Checking the devicetree
-> succeeded while no channels were found. I think returning 0 is very much
-> aligned with this.
-
-Right, but as I suggested, let's follow already established APIs that return
--ENOENT and never 0 in similar cases.
-
-> > Shouldn't we do *cs = NULL; at the case of 0 channels if it's a success?
-> 
-> I suppose you're right.
-> 
-> But, as you pointed out in review of the 05/10:
-> > Usually in other similar APIs we return -ENOENT. And user won't need
-> > to have an additional check in case of 0 being considered as an error
-> > case too.
-> 
-> I don't know whether to agree with you here. For majority of the ADC
-> drivers, having no channels in devicetree is indeed just another error,
-> which I think is not in any ways special.
-
-So...? (I see below your answer :-)
-
-> However, for 33,3333% of the users added in this patch, the "no channels
-> found" is not really an error condition ;) The BD79124 could have all
-> channels used for GPO - although this would probably be very very unusual.
-> (Why buying an ADC chip if you need just a GPO?). Still, this wouldn't be an
-> error. (And I need to handle this better in BD79124 probe - so thanks).
-
-ENOENT check is again established for optional/not_found cases.
-
-> > (Under success I assume that returned values are okay to go with, and cs in
-> > your case will be left uninitialised or contain something we don't control.
-> 
-> I see your point although I wouldn't be concerned with cs not being NULL for
-> as long as number of channels is zero.
-> 
-> Anyway, I think it makes sense to simplify ~67% of callers by returning
-> -ENODEV if there is no channels. The remaining ~33% can then check for the
-> -ENODEV and handle it separately from other returned errors. So, thanks.
-
-Not at all!
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Cheers,
+Prabhakar
 
