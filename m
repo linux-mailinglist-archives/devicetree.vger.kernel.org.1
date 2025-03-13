@@ -1,116 +1,164 @@
-Return-Path: <devicetree+bounces-157151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D780A5F0CD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 11:26:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 090C6A5F10E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 11:41:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 712EA18920E7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 10:26:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54B3417D5F7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 10:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1ACB266189;
-	Thu, 13 Mar 2025 10:25:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="C1Wyb51g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5EE264FBD;
+	Thu, 13 Mar 2025 10:40:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FB91EE028
-	for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 10:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6905D1FBC87;
+	Thu, 13 Mar 2025 10:40:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741861558; cv=none; b=bnyEHv8zZqGgagfvW2wM6o6jeWPYlZbxEGsh4OUvepYZRxe74fimNBHF0Ck3cG5dI1UbvFikbtCtaojp8H4+gI4JQTJ/kogzFJxynLihhWmM+GcpKCpQecZDJD52jlTuy8ytvjsOOIN1paWrTvZvD9eMulL8avFOmCpmN3U89P8=
+	t=1741862452; cv=none; b=J7K/B41EugYbVb5U8WeG12uGzYQdMSGXEyKIMc9MqcyfaaenLiN1rUyM82TBt6lGIQvKTpUD3+aSKpXYo5g9hzopTzRhhkNSZ+TdziY3cRdwxenwQaKswAMZSR4KqpAPW7KYxeoYOF8QMvjzoRATCh6h5++yvwyumBXkRXOIyac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741861558; c=relaxed/simple;
-	bh=mYE2kT0XkHd2rmDsncyMeiZ81XSx4xAhlMJSHn7Vzlo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UDefxBnsGwrAYtLM95KCPATU35GkTNn0h+jYmhnvTZqgOXGze65ww6PfaHum46LwUa2ahYDc12Ux76gPs2feyka0Z22NySUvmrSty7lmjTPI+8RLnJ276AwY0NOHE9x4HvIPK6ULNhJnOTTEdNXD7Kc7s8T/QJLrisIbrPvUPx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=C1Wyb51g; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=xAzBmntGcUXn8ZbzzMjoYJF/sw7Y4CRXS0NjslYSCvE=; b=C1Wyb5
-	1gM8JPvgzE57REU5bz8PwgB+lAZxNjyi1jJms8LE2DjlHtpOIevWK3tFYyGYGj+u
-	WtogRwq2YvalClgq+IYOV33exORek++rcK/dEQ2p7ACB6ZetjLGfjjt/r7s2Rvzg
-	JyvL994qXSYeS0Ozm6uU1NvH0NfW2pwC3puEBFBYBIRYIxSc1zyUBJvm2vixmEXP
-	rwfxZvliN/qphHQHTZskWxS1VZNRYLJFaQELDGDSIKTLMKyuscKNqopLBnIqKyvm
-	nhWAdDnjc5b+r9mPtQPdDZ3aPm9YFzxVFrAQTg/I1ycHBAD3KlUrLNRSy+F7cmfi
-	tHngaNC2KvBjvNdg==
-Received: (qmail 1574747 invoked from network); 13 Mar 2025 11:25:53 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Mar 2025 11:25:53 +0100
-X-UD-Smtp-Session: l3s3148p1@ZaUevzYwNr0gAwDPXyTHAJp038nK7dx+
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [RFC PATCH 2/4] ARM: dts: renesas: r9a06g032: add second clock input to RTC
-Date: Thu, 13 Mar 2025 11:25:43 +0100
-Message-ID: <20250313102546.27335-3-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250313102546.27335-1-wsa+renesas@sang-engineering.com>
-References: <20250313102546.27335-1-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1741862452; c=relaxed/simple;
+	bh=4o3UedLCe/DgFbR3RKmsogTND36AT5FRXO4VwEfXLRQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ewCmdmxZCUGcqAtYM8DZXvK1ejTF7UZ072vB66Gwa/8us9GtY1wqDeYmgZyMOLqTyW/h1OA/bcH1yugt81e/waHpKkdcYkU2hMKYiCkqAs0u3lD5NQZKWKX2ziH8cREt1eut7YI2q+Tzy+JI406rpOO6sSrs4FaaXggLT8txoJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0763C12FC;
+	Thu, 13 Mar 2025 03:40:59 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D83F23F694;
+	Thu, 13 Mar 2025 03:40:46 -0700 (PDT)
+Date: Thu, 13 Mar 2025 10:40:42 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Michael Klein <michael@fossekall.de>
+Cc: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Samuel Holland
+ <samuel@sholland.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: bananapi: add support for PHY LEDs
+Message-ID: <20250313104042.694c1856@donnerap.manchester.arm.com>
+In-Reply-To: <Z9KYqlfUYxRaWnGQ@a98shuttle.de>
+References: <20250312193629.85417-1-michael@fossekall.de>
+	<20250312193629.85417-2-michael@fossekall.de>
+	<4637912.LvFx2qVVIh@jernej-laptop>
+	<Z9KYqlfUYxRaWnGQ@a98shuttle.de>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-The external rtc clock is populated on the RZ/N1D module, so describe it
-and add a reference to the RTC node.
+On Thu, 13 Mar 2025 09:34:50 +0100
+Michael Klein <michael@fossekall.de> wrote:
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+Hi,
 
-For the non-RFC series, it makes probably sense to split this patch into
-two.
+> On Thu, Mar 13, 2025 at 07:07:24AM +0100, Jernej =C5=A0krabec wrote:
+> >Dne sreda, 12. marec 2025 ob 20:36:28 Srednjeevropski standardni =C4=8Da=
+s je Michael Klein napisal(a): =20
+> >> The Bananapi M1 has three LEDs connected to the RTL8211E ethernet PHY.
+> >> Add the corresponding nodes to the device tree.
+> >>
+> >> Signed-off-by: Michael Klein <michael@fossekall.de> =20
+> >
+> >This is patch 2/2. Which one is patch 1/2? I got only one. =20
+>=20
+> https://patchwork.kernel.org/project/netdevbpf/patch/20250312193629.85417=
+-1-michael@fossekall.de/
+>=20
+> Sorry for any inconvenience in case I messed up the patch submission.
+>=20
+> I made two commits for this change and submitted them via `git send-email=
+=20
+> HEAD^^`. The first patch went to netdev@vger.kernel.org, the second=20
+> to linux-arm-kernel@lists.infradead.org, which seems logical. Have I=20
+> done something wrong?
 
- arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts | 4 ++++
- arch/arm/boot/dts/renesas/r9a06g032.dtsi            | 4 ++--
- 2 files changed, 6 insertions(+), 2 deletions(-)
+Well, for those really small "series" it's probably better to send all
+patches to everyone, especially if the first patch gives some context,
+without which the second leaves people (like me) scratching their head.
+Also in this case a cover letter would help
+(git format-patch --cover-letter), to give some idea of what you are after.
 
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-index 31cdca3e623c..c2311f761381 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-+++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-@@ -47,6 +47,10 @@ &eth_miic {
- 	renesas,miic-switch-portin = <MIIC_GMAC2_PORT>;
- };
- 
-+&ext_rtc_clk {
-+	clock-frequency = <32768>;
-+};
-+
- &gmac2 {
- 	status = "okay";
- 	phy-mode = "gmii";
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-index 7548291c8d7e..458dab9d3b7f 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-+++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-@@ -73,8 +73,8 @@ rtc0: rtc@40006000 {
- 				     <GIC_SPI 67 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
- 			interrupt-names = "alarm", "timer", "pps";
--			clocks = <&sysctrl R9A06G032_HCLK_RTC>;
--			clock-names = "hclk";
-+			clocks = <&sysctrl R9A06G032_HCLK_RTC>, <&ext_rtc_clk>;
-+			clock-names = "hclk", "xtal";
- 			power-domains = <&sysctrl>;
- 			status = "disabled";
- 		};
--- 
-2.47.2
+Cheers,
+Andre
+
+
+>=20
+> >Best regards,
+> >Jernej =20
+>=20
+> Michael
+>=20
+> > =20
+> >> ---
+> >>  .../boot/dts/allwinner/sun7i-a20-bananapi.dts | 27 +++++++++++++++++++
+> >>  1 file changed, 27 insertions(+)
+> >>
+> >> diff --git a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts b/arch=
+/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
+> >> index 46ecf9db2324..4976453ed192 100644
+> >> --- a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
+> >> +++ b/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
+> >> @@ -48,6 +48,7 @@
+> >>
+> >>  #include <dt-bindings/gpio/gpio.h>
+> >>  #include <dt-bindings/interrupt-controller/irq.h>
+> >> +#include <dt-bindings/leds/common.h>
+> >>
+> >>  / {
+> >>  	model =3D "LeMaker Banana Pi";
+> >> @@ -169,6 +170,32 @@ &ir0 {
+> >>  &gmac_mdio {
+> >>  	phy1: ethernet-phy@1 {
+> >>  		reg =3D <1>;
+> >> +
+> >> +		leds {
+> >> +			#address-cells =3D <1>;
+> >> +			#size-cells =3D <0>;
+> >> +
+> >> +			led@0 {
+> >> +				reg =3D <0>;
+> >> +				color =3D <LED_COLOR_ID_GREEN>;
+> >> +				default-state =3D "keep";
+> >> +				linux,default-trigger =3D "netdev";
+> >> +			};
+> >> +
+> >> +			led@1 {
+> >> +				reg =3D <1>;
+> >> +				color =3D <LED_COLOR_ID_AMBER>;
+> >> +				default-state =3D "keep";
+> >> +				linux,default-trigger =3D "netdev";
+> >> +			};
+> >> +
+> >> +			led@2 {
+> >> +				reg =3D <2>;
+> >> +				color =3D <LED_COLOR_ID_BLUE>;
+> >> +				default-state =3D "keep";
+> >> +				linux,default-trigger =3D "netdev";
+> >> +			};
+> >> +		};
+> >>  	};
+> >>  };
+> >>
+> >> =20
+> >
+> >
+> >
+> >
+> > =20
+>=20
 
 
