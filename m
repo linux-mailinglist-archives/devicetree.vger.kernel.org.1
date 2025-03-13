@@ -1,164 +1,160 @@
-Return-Path: <devicetree+bounces-157042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56D45A5E914
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 01:50:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2ECA5E934
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 02:08:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEC943B78A3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 00:49:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85B677A5E14
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 01:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89015FC08;
-	Thu, 13 Mar 2025 00:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74C271C695;
+	Thu, 13 Mar 2025 01:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="asP0KWc8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CEkj/tol"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBAA376F1;
-	Thu, 13 Mar 2025 00:49:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0756610C;
+	Thu, 13 Mar 2025 01:08:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741826999; cv=none; b=XypMtVS6u4a4AOLamXcQr6VrC69QIuYgtF8yeL03pyuIcrbwOQEF2xY+TEd8NmyeALiGPN7BD+yaIlkckdOmhp1vkL+Newyp7gyYSut9b+zEO0WFIwLJDarlAcfOIst5yQxS0w8ejBKF3iXKEK/qpF570GxT5ARIkL6UXt+sMnQ=
+	t=1741828105; cv=none; b=kCQdHZL7i4uglo9rhvZj+Z/ttRnCjIXdIIirWK2dFB/jD7t7AbiwVuD1f0hODlWmSarhMXQh6gY/EONZm/OqkSJswNO8UI29+5G2FZEUq1hOy+9ulbii6m5SYCuvH6Ar5imAkCPSeb+2TK52U3pEwUFBtrkmRmdP57EeUY6fpCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741826999; c=relaxed/simple;
-	bh=Z49HXwaxexdDXy7kOpCh40mnlaoCuxB1V0yAtiPZZAo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WpM3gDIR0jtSEzApwqavOEN/civjuXGMCCXNZgBI1D6t8CxOLGIm0cvJ227Jp0EyLu6wZr8kApu+x3kT/MhwgLarWgCrTdl4S4kxyUqLpjew/sg29IR5Hr8rF+wLRJIR3f9/WK5rEBnu8QVsbgEk8Vyp3TXiPotrugqwEG138Ao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=asP0KWc8; arc=none smtp.client-ip=209.85.160.171
+	s=arc-20240116; t=1741828105; c=relaxed/simple;
+	bh=L1B1sJ7YjsET1pMUISc3uxnEi8mM0HBOJ1+5dS36kws=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ewA6ch/bDaWzgzdUGmU/Gq9rsmgibik6JXqmaJbAi6Y508BLyLleqUSwYkOBl8XmXIy9JcZ9lWRtvW7nN8yfEVUqENdrfYy1uSuK9iYkrXKE8nHrA9YHGLMf8GLpm1PdQ6Sn7APcPIe6XJFOLFEn/sTZIyKAPyWzOICl3wwpv24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CEkj/tol; arc=none smtp.client-ip=209.85.219.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-476775df2f0so14940201cf.1;
-        Wed, 12 Mar 2025 17:49:57 -0700 (PDT)
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6e8f06e13a4so13941826d6.0;
+        Wed, 12 Mar 2025 18:08:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741826997; x=1742431797; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HkeNyflx08eBwoXdOrj+id9tFS6hOSl0Scgwwso0Pdc=;
-        b=asP0KWc85RzWtO8Zf0I6uVwSD26cE0WIeas47M6A/nACTMwyyMP8DZ+K3hqkHvwmq0
-         FW28EQsRHDXsChnAhoKFc31/YP16OKL3IK4DBdKnZUO0NhXjgjNDCIrqXrZtff94BEoJ
-         vvL5rGlsaF0gvhlL4lVl0pUUfUD+HcDYZuc2NIlPDUg3LHhYaTjPRvxi8UuzAaE7y9pz
-         bRHL2FpjTGYyBYHAQT/D/Hb+6IyknrCCcFPYWdn2IEkwRhYgOHjOstL93WXS/0+jWLgd
-         2KdJGG/q1uRvdchZpOdMdXUmWZm923uUuMxm8fe/UMK2XuSzPuDtgepMZ0UpBAteQR92
-         w2eg==
+        d=gmail.com; s=20230601; t=1741828102; x=1742432902; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yB3aa4DZXOqG8FkpT/yFPtGsJ00G9GKgyRtQ/0BrqTg=;
+        b=CEkj/tolOH87SB9A6lBvONehnZ2RdeghXNP2ndY2+Xpwl4wySkcyvST2LBuv1/UXsJ
+         GvFjmXIre6aB0E3boblxCbAazgHFigQhdrS08AO7xlF0vQ0tV7jfm6HKJeRpODNFRaoE
+         F+ioCv3Xj2lzek4h60W5QzA27KHHimZxulZ6y4eeiQw3xcGB+doEAV9wvJkmRcjUXbAp
+         TUyz6CnHgFtCmsBqqQ2+q7KaOK/HRDMBcVQ+/HEgn+F6zYlFD8xC3c8d3AsXC7jdcq5a
+         oWPDh7v/44lyTK6Rv/ISHGCzrxdLg6eXLSby7eavnEslyuwz8mYHMAyk0Bd9BUVEIDdV
+         G+Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741826997; x=1742431797;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HkeNyflx08eBwoXdOrj+id9tFS6hOSl0Scgwwso0Pdc=;
-        b=Qvsmv1cmAjzfqqUgxKm1eXKdnZ/InXmSxVlzmU/5cnhcrM3CnSbEUG2E7+xTllnFXS
-         L8TaHLa1r5CmHOJtUPB6tWhCjSdngKKV7hikAr9znlTyvGF48rLcDVmPJ+Di1ZaItoxC
-         9AfZjiB7WXegkeCBfICTU6Y4b+5aBrc1vXka6MEMwEF3mq7+JeOlb9D5k0ZwMUaRWeQc
-         WMHBsoY3RJ5qzZ6NKd3uPBMPrER0nglKC7drjUYfVaVgCpzdvvfsy4aHGeVdlfXXb1h4
-         ujbsG+8OUs5JTPPFvqGYlVzKvx4WvIfOCYgJRybi6t5eZHsdcFrlVM3B7R3U4t7HQjlS
-         aTZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUqC1nwCQKUT1T5fkR4NfDZZQJJuEfQv4HpcY8HKwnNqcb1O6waWdluIotrwlv2wPxWujGMr45NtCM0JmY=@vger.kernel.org, AJvYcCVKaMhrVPevGMycfLZO+BxLybp8CL0WYELLHzF/ebhRNsIdeMfIfJD/ulBXnmj0b+vmIOYMKfGNeBPfeFw=@vger.kernel.org, AJvYcCWbTlJVQiMruj8UVmeJ40D5nx9qpomr9sGNeBxFy/e8IJq1NY/pIyAcyTv/0YFKOR5FZ6sMts0xBTYcAKWa@vger.kernel.org, AJvYcCWuqFeYKQczKuGyzf7dmDuxKE0AprTUqtGXMP2MmoTZIzhb18aq3f5mxboZoyDjxtGahOaxJvUN6ynS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/S4HcFCXfjW+uhjX9yxFkyWT28TjKuobedg4c+uvab3l14HCP
-	Nco9X/WVqosyIWzNThFSrgaBwN5TtNotxlWKmbtYDkUtdPa/J1+oQZHDBnerb7svf07+1YT6t1o
-	LTjE161YSGiGEoJfUowhEN1QPLOA=
-X-Gm-Gg: ASbGncsJfq49Kb0zUk1rvNMAt12uZXnXTUaAk81ETWP0Dwg5UyIQ4n6kQuyhJyMpcQl
-	227JFHD9iJPI0FbdkbEKUTLvcIsbBoxcirX5j3Y8ePy2P1LGa3QjABM4QQTeqB34/SEV2ORuI2V
-	mS86I2SG7xTh7H+m1lC5XglEm5OP7CQYJFJII=
-X-Google-Smtp-Source: AGHT+IE4UMHREzgkQUDlb9f76ML3et+Bb02b5+av1fLvRw1YGIeJDBdw7dFMjSxPahafRrC3GwwrWULZTUZ927Q/Ez0=
-X-Received: by 2002:a05:622a:438a:b0:476:652f:4db4 with SMTP id
- d75a77b69052e-476ba8b2f27mr8949481cf.5.1741826996633; Wed, 12 Mar 2025
- 17:49:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1741828102; x=1742432902;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yB3aa4DZXOqG8FkpT/yFPtGsJ00G9GKgyRtQ/0BrqTg=;
+        b=u3BIqDO5vyt7oPHCTwTZcNiAL5zS+0E71cAV35Sy5uTuBNT910jKum1/D+Ee8Dnx4X
+         bAn/WJPbrpLgmIH5wzUym8uv+FeUqpuLwI1KpaCeGdm+jW6f1W41FO5yAbwvXg9tf+zL
+         wu+o+c+ScEhsfIWYtmKqMsEjjgb+58Egc6U6DwMLztuLMspLbMW1zyWcfb/mcjhvOzOT
+         /CmPhufgFmoAy92Wkgf4jvMBIa3kk03LoZFdMO1xOIetMzffBp/ndUsG4Nx3/WZ56pai
+         ATZ+PSCNXTkKJF842whj3t/PUUJgGG+CxipH9l51y63toh5iBxOerffdzoqlaZI7Rexd
+         zBvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0fO28+5PDfyWwkmUJaCDDR+2no4K6/LVsWIabigNlZDhY6X/C/wLoue9djhv7xWbkX4xMiR+8t2d9TC4M@vger.kernel.org, AJvYcCVW5y0fs7m7d0CultXhraa2d65ZH9gr5uNE2GjOyI2gXHKByEESAsNFWpmGYLAw4u609L96xvUL9FUg@vger.kernel.org, AJvYcCWvbyWJ/CTv4ktZT/SGb/11w00k+xT+e5lJIPRZLrgeZ8TyY5dFiZigVV+3Y07mPwpNXLKayIsQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXsJ1nvbqTvjmjdFiHEL1i4rj6axomFveFn3U0FrtdWsxpwVFM
+	vJMjseYfwrwBZch6sCM3vgeBlH89u+KY4ea1X46SvEaxRs2glezJ
+X-Gm-Gg: ASbGncs/v+x9PE6FxEbYYDNQ0dit5hSyLTfXifjMfqT12GEMnGLCijEi8vkW5jOAsJ/
+	+dO1pG6uAbDNpxqHRV/PfMHlhue4xVhbM3O4GzeU+Se6erYLDyAZym70o/OMFr8aFi4JX3myrit
+	hF2OPtj5DzyTKtfnRDd2cgtrCoP1rku315eCTqRcstgflwP+UI7IPf7ris1rwZYUGYAbJyis7ba
+	KfIGMYhDcsd3+KXhnHm33TZDOVfwwzltk1dXzBTLZWMDDXfPsFFIc0RIdqGBZ6HcFGXG81waEs5
+	g2CuupFidNcqJvQa7mKtus8MWGPJ0y4=
+X-Google-Smtp-Source: AGHT+IErHgyMMC0gxpFbF0+ltzHlALBkq84d33gqNkyZ9Lj204hZXdZSKp7DGFvJyo8iPJlxvm7WCw==
+X-Received: by 2002:a05:6214:5c47:b0:6e6:5c26:afe3 with SMTP id 6a1803df08f44-6eaddfbb91cmr8764046d6.17.1741828102495;
+        Wed, 12 Mar 2025 18:08:22 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6eade34beb0sm2540506d6.105.2025.03.12.18.08.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Mar 2025 18:08:21 -0700 (PDT)
+Date: Thu, 13 Mar 2025 09:08:11 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Stephen Boyd <sboyd@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: sophgo: add clock controller
+ for SG2044
+Message-ID: <nxvuxo7lsljsir24brvghblk2xlssxkb3mfgx6lbjahmgr4kep@fvpmciimfikg>
+References: <20250226232320.93791-1-inochiama@gmail.com>
+ <20250226232320.93791-2-inochiama@gmail.com>
+ <2c00c1fba1cd8115205efe265b7f1926.sboyd@kernel.org>
+ <epnv7fp3s3osyxbqa6tpgbuxdcowahda6wwvflnip65tjysjig@3at3yqp2o3vp>
+ <f1d5dc9b8f59b00fa21e8f9f2ac3794b.sboyd@kernel.org>
+ <x43v3wn5rp2mkhmmmyjvdo7aov4l7hnus34wjw7snd2zbtzrbh@r5wrvn3kxxwv>
+ <b816b3d1f11b4cc2ac3fa563fe5f4784.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250227-apple-codec-changes-v3-0-cbb130030acf@gmail.com>
- <CAHgNfTxS1Q4PPsw520-J4Yn6xg+QZOYFkYhg5yv-uZFu5waN_g@mail.gmail.com>
- <20250307205156.GA583954-robh@kernel.org> <5996925.DvuYhMxLoT@setsuna> <20250312125832.GA359842-robh@kernel.org>
-In-Reply-To: <20250312125832.GA359842-robh@kernel.org>
-From: James Calligeros <jcalligeros99@gmail.com>
-Date: Thu, 13 Mar 2025 10:49:40 +1000
-X-Gm-Features: AQ5f1JpviH4ysHbqATC6ly_Fa9fyvcQzoJXH7f6pMF6qeXNeHE906TPegzKdRB0
-Message-ID: <CAHgNfTwLfqCP-TL_pdqxs0AC+1z845Ca1zU6dUS=xwNMgaz+5Q@mail.gmail.com>
-Subject: Re: [PATCH v3 17/20] ASoC: dt-bindings: tas2770: add flags for SDOUT
- pulldown and zero-fill
-To: Rob Herring <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>, 
-	Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>, Dan Murphy <dmurphy@ti.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shi Fu <shifu0704@thundersoft.com>, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	=?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
-	Hector Martin <marcan@marcan.st>, linux-sound@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	asahi@lists.linux.dev, linux-hwmon@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b816b3d1f11b4cc2ac3fa563fe5f4784.sboyd@kernel.org>
 
-On Wed, Mar 12, 2025 at 10:58=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Mon, Mar 10, 2025 at 07:30:07PM +1000, James Calligeros wrote:
-> > On Sat, Mar 8, 2025 at 6:51=E2=80=AFAM Rob Herring <robh@kernel.org> wr=
-ote:
-> > > How would it work when you need a mask? "dai-tdm-slot-tx-mask" is
-> > > enough?
-> >
-> > The existing TX/RX slot masks are used to control which slots the codec
-> > is operating on, AIUI. I don't know if it makes sense to alter how code=
-cs
-> > deal with this. Could we combine the suggested dai-tdm-slot-tx-idle
-> > with an optional dai-tdm-slot-tx-idle-mask property? From the machine
-> > driver's perspective, the API would then be similar to the existing
-> > set_tdm_slot ops. The current downstream macaudio machine driver builds
-> > its links by allowing multiple codecs and CPUs to be linked to a DAI,
-> > like so:
->
-> Wouldn't the NOT of dai-tdm-slot-tx-mask be the idle mask?
+On Wed, Mar 12, 2025 at 04:43:51PM -0700, Stephen Boyd wrote:
+> Quoting Inochi Amaoto (2025-03-12 16:29:43)
+> > On Wed, Mar 12, 2025 at 04:14:37PM -0700, Stephen Boyd wrote:
+> > > Quoting Inochi Amaoto (2025-03-11 16:31:29)
+> > > > 
+> > > > > or if that syscon node should just have the #clock-cells property as
+> > > > > part of the node instead.
+> > > > 
+> > > > This is not match the hardware I think. The pll area is on the middle
+> > > > of the syscon and is hard to be separated as a subdevice of the syscon
+> > > > or just add  "#clock-cells" to the syscon device. It is better to handle
+> > > > them in one device/driver. So let the clock device reference it.
+> > > 
+> > > This happens all the time. We don't need a syscon for that unless the
+> > > registers for the pll are both inside the syscon and in the register
+> > > space 0x50002000. Is that the case? 
+> > 
+> > Yes, the clock has two areas, one in the clk controller and one in
+> > the syscon, the vendor said this design is a heritage from other SoC.
+> 
+> My question is more if the PLL clk_ops need to access both the syscon
+> register range and the clk controller register range. What part of the
+> PLL clk_ops needs to access the clk controller at 0x50002000?
+> 
 
-Theoretically it should be, and that's probably just what we should do.
-We would then just have the dai-tdm-slot-tx-idle-mode property to worry
-about. There may be a reason a unique property was added however, as only
-some codecs have it set in our downstream DTs. Perhaps Martin can shed
-some light on this?
+The PLL clk_ops does nothing, but there is an implicit dependency:
+When the PLL change rate, the mux attached to it must switch to 
+another source to keep the output clock stable. This is the only
+thing it needed.
 
-> >
-> > dai-link@0 {
-> >       cpu {
-> >               sound-dai =3D <&cpu0>, <&cpu1>;
-> >       };
-> >       codec {
-> >               sound-dai =3D <&speaker0>,
-> >                         ...,
-> >                         <&speaker6>;
-> >       };
-> > };
-> >
-> > In this case, the codec-specific mask property was added so that a mask
-> > could be applied to a specific codec rather than the whole dai, however
-> > from upstream drivers tt looks like the way this should be handled is t=
-o
-> > have "dai-tdm-slot-tx-idle-mask-n" properties at the dai level, then ha=
-ve
-> > the machine driver set the mask for the appropriate codec during setup.=
- So
-> > for macaudio, assuming speaker5 requires this zerofill mask, we would
-> > have something like this:
->
-> I'm now confused why you need n masks and what does n represent?
+> > 
+> > > This looks like you want there to be  one node for clks on the system
+> > > because logically that is clean, when the reality is that there is a
+> > > PLL block exposed in the syscon (someone forgot to put it in the clk
+> > > controller?) and a non-PLL block for the other clks.
+> > 
+> > That is true, I prefer to keep clean and make less mistakes. Although
+> > the PLL is exposed in the syscon, the pll need to be tight with other
+> > clocks in the space 0x50002000 (especially between the PLL and mux).
+> > In this view, it is more like a mistake made by the hardware design.
+> > And I prefer not to add a subnode for the syscon.
+> 
+> Ok. You wouldn't add a subnode for the syscon. You would just have
+> #clock-cells in that syscon node and register an auxiliary device to
+> provide the PLL(s) from there. Then in drivers/clk we would have an
+> auxiliary driver that uses a regmap or gets an iomem pointer from the
+> parent device somehow so that we can logically put the PLL code in
+> drivers/clk while having one node in DT for the "miscellaneous register
+> area" where the hardware engineer had to expose the PLL control to
+> software.
 
-We can have n cpus linked to m codecs in macaudio, and we need to specify
-the TDM properties for each codec individually . There seem to be a couple
-of ways upstream drivers deal with this, but the "nicest" way I've seen is
-what amlogic[1] does, which is extend the dai-tdm-slot-* properties with
-an index (-n) representing the specific codec it's for.
+Cool, I understand what you mean. It is a good idea,
+I will have a try.
 
 Regards,
-James
-
-[1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
-bindings/sound/amlogic%2Caxg-sound-card.yaml
+Inochi
 
