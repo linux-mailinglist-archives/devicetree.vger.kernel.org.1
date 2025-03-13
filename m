@@ -1,134 +1,126 @@
-Return-Path: <devicetree+bounces-157121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E64A5EE49
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:45:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7364DA5EE54
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:48:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCE613ACAF1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:45:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D74AF3B3743
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 08:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A4BA1EFF98;
-	Thu, 13 Mar 2025 08:45:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6E6261591;
+	Thu, 13 Mar 2025 08:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Gomj9xJP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VPQY6xqo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5494B20EB;
-	Thu, 13 Mar 2025 08:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF233A8D2;
+	Thu, 13 Mar 2025 08:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741855535; cv=none; b=B6+MdOeWr1zwWIIxkysNl8vRPuO4oemcEWx3mTL6RA+iKE9c7t27gzQqhbpLie4KkAgAlekr/juZ3N1zojGHldvIrlxcDjFW6Hnd2VhNkLyQmXKfr0cTWHRPgylQMP2zf5E7GnWqZ2Wkb2bbsTAEgIWzPeFGo2jVKTek6dlkvtY=
+	t=1741855692; cv=none; b=aHeakW1v+MBEudsU5GPVXuuNqc+EqFvqCfo2mx6Ox7WQzSgpolfckdw8hUBlP8NDRH2WkEhlOYjyM89Cam8eOqnJ5zbWnhIIM5b68KlxaYlm5OVkk/R1FIU9yE1CeptZMDllhxbCmY2VdGcgJKYUUFygxL7CPdduZOOYZcUupaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741855535; c=relaxed/simple;
-	bh=dDUCrjfcCkHy+Qdllu2qarusbsI9b0jhw5izoFx1sdg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AgOneh/47EOVoUo52zohzpPD8ESwDPK/aOgyY/VPjrWt6S+rCEU+Tcj6O1DHD+nWVwlY7WlUdXud468lOa301OPTe4PSNDzEDKdEjQKRJ8NMnFF1JRpf7MeWWhA2HqxGkt6vq0xLcejjOi0pKJZzXvjNQ9NUelkYkGUgpfPAk+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Gomj9xJP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52CLTIoO023249;
-	Thu, 13 Mar 2025 08:45:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	weOhNTocqMWkV4mh4HfuZvoaWYclgVYAQAFMBUCSfGw=; b=Gomj9xJPCHYtMKiJ
-	kvRw7zKf3tLe9ypJTI9T/QdNyDKCkKrNNgKPbVuX3RwQMbBl2h9cDzbUewg9VkRC
-	SG8Gw3Buoc1BFOLOPSpznCVCl7G/chmDz9ggwbkMtc6fxqeMWQswkvRwwflWFt/s
-	1mR9mvt3fJ5uIBq+utxlZuzjyTsMVXXPgrTv5/qzOf+5uY40NFORn+jlVT79dbP4
-	PRPOpZZrNhIOe0lDUDT6H4dYUfb+pFRk4+4YnlIQSv9d5vmJsM4SUQu3DWNBy6O+
-	2UT4E5srxbSnbHdfFG3giApthSu+n9gd9u1kq3fAJeW4YkAD7ZOUfkaKQH55PCd4
-	2nvCrA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45au2mn5ws-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Mar 2025 08:45:19 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52D8jIpD024973
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Mar 2025 08:45:18 GMT
-Received: from [10.217.216.178] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Mar
- 2025 01:45:13 -0700
-Message-ID: <4f3161da-a11b-464f-bf78-45c830b2ea82@quicinc.com>
-Date: Thu, 13 Mar 2025 14:15:10 +0530
+	s=arc-20240116; t=1741855692; c=relaxed/simple;
+	bh=Hk3K9FqTOGbUtdb1NPCducwlxxGW7aeLrXgBAKioQXo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tXd7eyNLSRkjBf2jYqFQMuYxMesromiYxI2RzJ953fYmJWa2lNeIQK/yU1u66kObmweMM1QxJIOFn9uYQo9BKNak5mPF5+fDwZCHjej9S8ixwASL8g2Spxi+16KxCYFAp03TdCXjzqwQcwsa/Dz5U5qj66rm3vMBpaqWnYAT3Yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VPQY6xqo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40ED5C4CEDD;
+	Thu, 13 Mar 2025 08:48:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741855691;
+	bh=Hk3K9FqTOGbUtdb1NPCducwlxxGW7aeLrXgBAKioQXo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VPQY6xqoIH5MlTjU2hWK+0T9qaC3UNqSTJRdEFJojusBnEsK6UnQA7BdnYibAf1TU
+	 QLKNLsZ5cBF/KlQiWzJYl/QzHHd8K6wZthcZRm17DM8eVSl36R4rbzngAnBix/l+B5
+	 LJaJxV+aOIu/k7I4FNU+984WncZikIgG3A550VYRNYgzkPs8AbGebZXKyz/3BnfVkn
+	 mZ4A7SMe6Wpi2H0yxsgRelCrqsoVTKfTq/jmApiNzpouHy6aS3vjJ2IJXoLIO7N/80
+	 vmtPDwb7p0CYyeOxn6PD2WktU7llh1Y0EE83KVENFcHR7vhUcMKFI18IQ8NiSCXtB8
+	 Oh2tTt1Ejtf5Q==
+Date: Thu, 13 Mar 2025 09:48:07 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
+	Sebastian Reichel <sre@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>, Pavel Machek <pavel@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-pm@vger.kernel.org, RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Subject: Re: [PATCH 1/5] dt-bindings: connector: add fixed-batteries property
+Message-ID: <20250313-tidy-kakapo-of-abundance-eebf91@krzk-bin>
+References: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
+ <20250312-batt_ops-v1-1-88e0bb3129fd@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 04/10] dt-bindings: clock: Add Qualcomm QCS615 Display
- clock controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250313-qcs615-v5-mm-cc-v6-0-ebf4b9a5e916@quicinc.com>
- <20250313-qcs615-v5-mm-cc-v6-4-ebf4b9a5e916@quicinc.com>
- <20250313-mottled-quoll-of-vastness-3f3c6b@krzk-bin>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <20250313-mottled-quoll-of-vastness-3f3c6b@krzk-bin>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: cgUiPEMaa_Ew-ApOw3iL_h4kRXSyDY0B
-X-Authority-Analysis: v=2.4 cv=aKnwqa9m c=1 sm=1 tr=0 ts=67d29b1f cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=nJrBSJ152xCAXF4FcqMA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: cgUiPEMaa_Ew-ApOw3iL_h4kRXSyDY0B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-13_04,2025-03-11_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 clxscore=1015
- adultscore=0 malwarescore=0 priorityscore=1501 phishscore=0 spamscore=0
- bulkscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0 suspectscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503130068
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250312-batt_ops-v1-1-88e0bb3129fd@google.com>
 
+On Wed, Mar 12, 2025 at 04:42:01PM -0700, Amit Sunil Dhamne wrote:
+> Add a new "fixed-batteries" DT property to connector class. This
+> property is populated with nodes associated with battery type power
+> supplies powering the USB PD connector. This is needed by the Type-C
+> Port Manager (TCPM) to query psy properties which are used to feed
 
+What is "psy" in terms of bindings?
 
-On 3/13/2025 1:55 PM, Krzysztof Kozlowski wrote:
-> On Thu, Mar 13, 2025 at 12:29:41PM +0530, Taniya Das wrote:
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - '#clock-cells'
->> +  - '#reset-cells'
->> +  - '#power-domain-cells'
+> Battery_Status & Battery_Capacity AMS.
 > 
-> Also no qcom,gcc.yaml. Why?
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> ---
+>  Documentation/devicetree/bindings/connector/usb-connector.yaml | 8 ++++++++
+>  Documentation/devicetree/bindings/usb/maxim,max33359.yaml      | 1 +
+>  2 files changed, 9 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> index 11e40d225b9f3a0d0aeea7bf764f1c00a719d615..5e15bc060f5a2cfce842f83de738f1e8bae3ce2d 100644
+> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> @@ -300,6 +300,14 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint8-array
+>      maxItems: 4
+>  
+> +  fixed-batteries:
+> +    description: Contains references to nodes associated with battery type power
+> +      supplies powering the USB PD device. These batteries are fixed type and
 
-Sure, will fix the bindings across and resend the patches.
+What is a "battery type power supply"? If you just link here batteries,
+then we have type for it - monitored-battery - but I doubt connector has
+direct connection to the battery.
 
-> Best regards,
-> Krzysztof
-> 
+If you mean chargers, the OF graph is already there for this and no need
+for this patch.
+
+> +      not hot swappable.
+> +    minItems: 1
+> +    maxItems: 4
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +
+>  dependencies:
+>    sink-vdos-v1: [ sink-vdos ]
+>    sink-vdos: [ sink-vdos-v1 ]
+> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> index 3de4dc40b79192b60443421b557bd2fb18683bf7..66c99f0131f074f1c08e31d7481f555647e3b2f8 100644
+> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> @@ -75,6 +75,7 @@ examples:
+>                                         PDO_FIXED(9000, 2000, 0)>;
+>                  sink-bc12-completion-time-ms = <500>;
+>                  pd-revision = /bits/ 8 <0x03 0x01 0x01 0x08>;
+> +                fixed-batteries = <&batt1 &batt2>;
+
+Two phandles, so two <>.
+
+Best regards,
+Krzysztof
 
 
