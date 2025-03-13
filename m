@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-157145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBEC5A5EFC8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 10:41:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DB38A5EFE7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 10:49:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD65617CB5C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:41:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C190F3A2993
+	for <lists+devicetree@lfdr.de>; Thu, 13 Mar 2025 09:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7086B264F93;
-	Thu, 13 Mar 2025 09:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1354826158B;
+	Thu, 13 Mar 2025 09:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="aOpurYN4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Q4GgRiU+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D596264626;
-	Thu, 13 Mar 2025 09:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4291FBCAE;
+	Thu, 13 Mar 2025 09:49:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741858890; cv=none; b=snhs+1hWBOnchlcFuYwHJV2Srhu9NqUqTAEzkjPTJcz0ODffnfucOFz5g7tqKXalLMjz5j//jbuLQUtXvzSjqIJJAviyMnXx/1LQWWGI3DRB8dYfeQmUtSE0J7qd0topXLNozQdOJtspllL0j52kEbluoFoYvynu8C9CzghPcRY=
+	t=1741859344; cv=none; b=CNdV0nSv/DynGxaLWPTZplj1lIwyVUMpj6sgICkZqE/OHynoOleFqstjqvZ7EzAaEQqOie39X7SwwC25p7FNnMuXQaQ87GO+VSDdXWI+2shtdeHml/kmxq3nPMQBqNJ9W811TWMTNP1vjCe8wM1JXtVF1BHgjWHRAZn30ttcBvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741858890; c=relaxed/simple;
-	bh=9bUUyrlL1ue21at6c7tquhKhPsepd9e7Z13RAc1hu3E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DzhlPVnL3+KXsdOMRh7gPtrpU47MhGy815H1UA67BCpAps6wikpAD6a0qRGJ7M/rWCFtdxTGpZlXmbFsFZWBnBcIzZ1Mv5z3l1cywvvVOt1b7iDqK0UFl/fsSomxLhDdyA5zAP2AiN9Fgi+zqSuV9Q2UwlLS9AAbMfvTm/iBFK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=aOpurYN4; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF8164AD;
-	Thu, 13 Mar 2025 10:39:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1741858787;
-	bh=9bUUyrlL1ue21at6c7tquhKhPsepd9e7Z13RAc1hu3E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aOpurYN4UlhWL6hR4pJd6esKr1xOkkHOk1e2kq34iBnk2Y7E5G6+zP/5cFtaG87HG
-	 uzZlZBItIQLtdW0r7RjDfbpMRe5QicGYZXrDIhM3jyr0GkvAVMmlybak9+bzRXpl/Q
-	 A1CDDuxVCWTSodZ/WpmiEaLX93FXFpIDl06aD5FE=
-Message-ID: <74ffed53-d6df-437a-b997-62fef3ee4d00@ideasonboard.com>
-Date: Thu, 13 Mar 2025 11:41:22 +0200
+	s=arc-20240116; t=1741859344; c=relaxed/simple;
+	bh=2mwOsBgHwVZsH4BlvuNy5aRO2iLfNreiH0VhMivhBOQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=S062x4yb4iSH7mkexfCOdorN5OyPW/K177bCFDpoe5KZyNJG1mhx4aOTE44I8c2KA/84W2gVkgGvvhpj9SFAOrV40RuY3/x8WRkLkFNVUQzl8gBNVXWlxgudnOV31nMucN1DgYB69kBAocg3uZt2aGATdxk//HWZuli6cV5KH8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Q4GgRiU+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52D0m9jE003543;
+	Thu, 13 Mar 2025 09:48:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MGP/KB4+n9JDWeVs1CYtyV9lE8klH1kKAMutxhxApOg=; b=Q4GgRiU+chBTmf4L
+	em1koVP0cFXxgZSUaqTBvyAWROIBRZ9T0ye/0jXXVL8jeLBBJP5m3+ZgusQ6v85F
+	pfr5M+nVhBQDAjGLcaNKB0S5CgbqIhZzImbVZNJgVswWA3motA40VJQ5Ml/pVoIM
+	E5VRjbw9S0YjhVs7omP5kl7e7Outm+UK1Au16O4339CpPoYItzTQUz9G3ubs63TV
+	LwGIzgaD4kbuV/4AoasliuoDdjWxQx4HDPSipErmkfgmeesZAKRuBuhD12wFw1Qz
+	dRFn/hKkOkrmtybWYt7O8jvr8fHpwzvjqedGP1nAA0fmRm6CVFfG8KflAT6i2mFc
+	0ocoMw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45b96yb8vr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Mar 2025 09:48:39 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52D9mcO7022527
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Mar 2025 09:48:38 GMT
+Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Mar
+ 2025 02:48:31 -0700
+Message-ID: <c1e554f3-cf4f-42ba-aa75-94c8b0a13ff3@quicinc.com>
+Date: Thu, 13 Mar 2025 15:18:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,174 +65,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] drm/tidss: Add support for AM62L display subsystem
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: praneeth@ti.com, vigneshr@ti.com, aradhya.bhatia@linux.dev,
- s-jain1@ti.com, r-donadkar@ti.com, j-choudhary@ti.com, h-shenoy@ti.com,
- jyri.sarha@iki.fi, airlied@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
- simona@ffwll.ch, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-References: <20250306132914.1469387-1-devarsht@ti.com>
- <20250306132914.1469387-4-devarsht@ti.com>
+Subject: Re: [PATCH v2 02/10] dt-bindings: msm: dsi-controller-main: document
+ the SA8775P DSI CTRL
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
+        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
+        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
+References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
+ <20250311122445.3597100-3-quic_amakhija@quicinc.com>
+ <20250312-fine-vermilion-grebe-bdd5c9@krzk-bin>
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20250306132914.1469387-4-devarsht@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <20250312-fine-vermilion-grebe-bdd5c9@krzk-bin>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: QBVGklf5M8TFsG4hVHR9MLeJ8aXV5AWU
+X-Authority-Analysis: v=2.4 cv=I+llRMgg c=1 sm=1 tr=0 ts=67d2a9f7 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EkG_hp2kC7S3OihkgwwA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: QBVGklf5M8TFsG4hVHR9MLeJ8aXV5AWU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-13_04,2025-03-11_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ lowpriorityscore=0 adultscore=0 clxscore=1015 impostorscore=0
+ priorityscore=1501 spamscore=0 malwarescore=0 mlxscore=0 suspectscore=0
+ phishscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503130077
 
-Hi,
 
-On 06/03/2025 15:29, Devarsh Thakkar wrote:
-> Enable display for AM62L DSS [1] which supports only a single display
-> pipeline using a single overlay manager, single video port and a single
-> video lite pipeline which does not support scaling.
+
+On 3/12/2025 5:14 PM, Krzysztof Kozlowski wrote:
+> On Tue, Mar 11, 2025 at 05:54:37PM +0530, Ayushi Makhija wrote:
+>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>> index ffbd1dc9470e..3621e3f12b65 100644
+>> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>> @@ -23,6 +23,7 @@ properties:
+>>                - qcom,msm8996-dsi-ctrl
+>>                - qcom,msm8998-dsi-ctrl
+>>                - qcom,qcm2290-dsi-ctrl
+>> +              - qcom,sa8775p-dsi-ctrl
 > 
-> The output of video port is routed to SoC boundary via DPI interface and
-> the DPI signals from the video port are also routed to DSI Tx controller
-> present within the SoC.
+> That's incomplete, where is the rest of updates in the file? Not
+> needed?
 > 
-> [1]: Section 11.7 (Display Subsystem and Peripherals)
-> Link : https://www.ti.com/lit/pdf/sprujb4
+> Best regards,
+> Krzysztof
 > 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> ---
-> V3:
-> - Rebase on top of
->    0002-drm-tidss-Update-infra-to-support-DSS7-cut-down-vers.patch
-> - Use the generic "tidss_am65x_common_regs" as common reg space
->    instead of creating a new one.
-> 
-> V2:
-> - Add separate common reg space for AM62L
-> - Add separate irq enable/disable/read/clear helpers for AM62L
-> - Use separate helper function for setting overlay attributes
-> - Drop Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->    due to additional changes made in V2.
-> 
->   drivers/gpu/drm/tidss/tidss_dispc.c | 46 +++++++++++++++++++++++++++++
->   drivers/gpu/drm/tidss/tidss_dispc.h |  2 ++
->   drivers/gpu/drm/tidss/tidss_drv.c   |  1 +
->   3 files changed, 49 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-> index 9b46403dbb0c..0ca0c2106715 100644
-> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
-> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-> @@ -440,6 +440,47 @@ const struct dispc_features dispc_am62a7_feats = {
->   	.vid_order = {1, 0},
->   };
->   
-> +const struct dispc_features dispc_am62l_feats = {
-> +	.max_pclk_khz = {
-> +		[DISPC_VP_DPI] = 165000,
-> +	},
-> +
-> +	.subrev = DISPC_AM62L,
-> +
-> +	.common = "common",
-> +	.common_regs = tidss_am65x_common_regs,
-> +
-> +	.num_vps = 1,
-> +	.vp_name = { "vp1" },
-> +	.ovr_name = { "ovr1" },
-> +	.vpclk_name =  { "vp1" },
-> +	.vp_bus_type = { DISPC_VP_DPI },
-> +
-> +	.vp_feat = { .color = {
-> +			.has_ctm = true,
-> +			.gamma_size = 256,
-> +			.gamma_type = TIDSS_GAMMA_8BIT,
-> +		},
-> +	},
-> +
-> +	.num_planes = 2,
-> +
-> +	.vid_info = {
-> +		{
-> +			.vid_name = "vid",
-> +			.vid_lite = false,
-> +			.is_present = false,
-> +		},
-> +		{
-> +			.vid_name = "vidl1",
-> +			.vid_lite = true,
-> +			.is_present = true,
-> +		}
-> +	},
 
-I don't think this is a good idea. Now you have tidss->num_planes 1, and 
-feat->num_planes 2. It get's very confusing.
+Hi Krzysztof,
 
-The naming is also mixed up. You have "vid_info" field, which has 
-"plane_info" entries...
+Thanks, for the review.
 
-My suggestion is to have entries in vid_info only for the instantiated 
-vids, like this:
+Each compatible string has a different set of clocks which are associated with it.
 
-struct vid_info {
-	u32 hw_id;
-	const char *name; /* Should match dt reg names */
-	bool is_lite;
-};
+Sorry, I forget to add qcom,sa8775p-dsi-ctrl compatible based on the set of clocks which are associated with it.
+Will add it in next patch.
 
-While at it, let's change the num_planes name in the feat struct too, to 
-num_vids. This will also highlight all the places in the code that use 
-the vid structs.
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -349,6 +349,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - qcom,sa8775p-dsi-ctrl
+               - qcom,sc7180-dsi-ctrl
+               - qcom,sc7280-dsi-ctrl
+               - qcom,sm6150-dsi-ctrl
 
-For AM62L it would be:
+The remaining content in the file will stay the same, no other changes are needed.
 
-.num_vids = 1,
+Thanks,
+Ayushi
 
-{
-	.hw_id = 1,
-	.name = "vidl1",
-	.is_lite = true,
-}
-
-  Tomi
 
 
