@@ -1,58 +1,69 @@
-Return-Path: <devicetree+bounces-157475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51E58A60BF0
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:41:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F08B9A60BF3
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:42:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A07D4880646
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:41:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5D377A2A05
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D4091C84BA;
-	Fri, 14 Mar 2025 08:41:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9961ACEC6;
+	Fri, 14 Mar 2025 08:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ppII+Vh3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aroWDp12"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3FB1953A2;
-	Fri, 14 Mar 2025 08:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D49F6176AA1;
+	Fri, 14 Mar 2025 08:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741941670; cv=none; b=DoyRcVFbnQ4A/jN/TL4a6MR6IIwfF06RB09q9nP1VmxMgU+PzbZpXlJB5N4FaWBx/ilH5nyQGcjdWN4++DMdyzeHhYtPl5skMvtitzeeAGRoGWYZrVJQx6is76yv1Yq1cgX68MJujHfjTFSGY91yb07WQXrJAN5A/zeiTaXWfco=
+	t=1741941753; cv=none; b=qyBQ11QNdMVQLTW70S7gUFQ2PqWL7Zhw3ZxUoVYbrHVFWIvTsNYpLf+YLVvmGIrZ74PYQptkKbcJ3/cHA/D+tElwL4hkRDV3CEOkU7cTWXCNnFIiQ8f5PSOE7s7B48GBsI/6km9y67M+XPA4ibmz4Sx10KxfAB59q3PftTs4XFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741941670; c=relaxed/simple;
-	bh=mA2n2r88FjBXxm6Nj4z+GrSjmJVmL/AW/BggpOMvC30=;
+	s=arc-20240116; t=1741941753; c=relaxed/simple;
+	bh=VQS1Yr4tAB+kjagZmPvDSgv3gMXHVfCnmPEGOBTodA8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SjO0AqkDWRfiCaroaSVIDm3/No237UZUB/DYI3RoKBfL4J3HpRa7PgQlOg+YmdaFDoO4Er/XHpIfgAyf9x27miwm2s2eAMmHbeutYk0icisTTso+IH3IQZXPfELv0WtmpM+t2HdNJUeIeqRBeSpBizXvF5GHw5ZpHIJFt8itXio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ppII+Vh3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFE6CC4CEE3;
-	Fri, 14 Mar 2025 08:41:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BY/I5Z1Dyl12D1ij4n7rlkfRX0xsmnZdpva470vmUY86vfN8G0NPcQH5xaD1rHnPEDvdjr2wSt7bbwvwO3bRTmjCQWtqoXLCqe2ZwSc7ogM/WOx+un+eR82wSjSwoNMoiv1nV69k2EioLj8siKkbopwD7QBiZhxeCXVvP6TMhJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aroWDp12; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CCB3C4CEE3;
+	Fri, 14 Mar 2025 08:42:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741941669;
-	bh=mA2n2r88FjBXxm6Nj4z+GrSjmJVmL/AW/BggpOMvC30=;
+	s=k20201202; t=1741941753;
+	bh=VQS1Yr4tAB+kjagZmPvDSgv3gMXHVfCnmPEGOBTodA8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ppII+Vh3YT5m5l2d0pCDeXAi5aNCRjPCPdC/HZKCn73+tC3JquGWwETN0+38UXMdp
-	 OSvU9xAQSAo5ZjfanLabvTK/NAzEemkCTeyBxkdjNE/tsp3U9Hswq/HtFGB7PLCDha
-	 S3D/Fo49vvcYrqITjtyOI6HuYL5h7tpO33kNF5p+JnnI34Vz2Z27oKSpOUWT7KeQ8r
-	 3oK8PVMxVE+BAxdqEbdCB1fp9w7GZg03JRm1kO0rDpvD7pA0BtB5ApFxhdr5noJEoK
-	 hTmC5QM0NrFn6CKG7Vo0IaYLpQ1sBbX7CseUR8JEVUt3jaMgusn47biIbV/S93Ng2Z
-	 CzmzVlT7pfUxQ==
-Date: Fri, 14 Mar 2025 09:41:06 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 1/4] dt-bindings: rtc: rzn1: add optional second clock
-Message-ID: <20250314-sexy-impartial-raccoon-7e8dca@krzk-bin>
-References: <20250313102546.27335-1-wsa+renesas@sang-engineering.com>
- <20250313102546.27335-2-wsa+renesas@sang-engineering.com>
+	b=aroWDp12uCjQCvTYtVLocTJeFM5M5VgtVNoNyOVNxs2UzKYMNijJ8Kh7AoXiHm0fm
+	 JImb3CaJ94LBildurK4O+I8fgZZduBY26IBJJtbrzWKConLJUJHb+SOQL4TKEfs6U6
+	 W6CakZRT9d4ootX3Z5IDjJrK++GuLL1ZExp0VgzK1g6qDMGfNa3Lo+Icy2+OHRNInB
+	 Y0/tEyw/yfU0VUzvO9jQikWmv24uK8U52DNjnllVLel6jZ39DVEkLROngw66uUYfQz
+	 TRjemEdizSl30kWlOrNBZ6jJill4vzcv9qIKviCYIW/tEm7bI6gL936PODFY99wd9G
+	 tCDv94y8VsYEg==
+Date: Fri, 14 Mar 2025 08:42:27 +0000
+From: Lee Jones <lee@kernel.org>
+To: Artur Weber <aweber.kernel@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v6 06/10] mfd: bcm590xx: Add PMU ID/revision parsing
+ function
+Message-ID: <20250314084227.GJ3645863@google.com>
+References: <20250304-bcm59054-v6-0-ae8302358443@gmail.com>
+ <20250304-bcm59054-v6-6-ae8302358443@gmail.com>
+ <20250313132036.GB3616286@google.com>
+ <ef190ba8-a5c7-4a1a-90e6-2610de00e4ed@sirena.org.uk>
+ <f363c1ce-8612-476e-a5d5-c3cb358bf50a@gmail.com>
+ <20250314080022.GH3645863@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,21 +72,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250313102546.27335-2-wsa+renesas@sang-engineering.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250314080022.GH3645863@google.com>
 
-On Thu, Mar 13, 2025 at 11:25:42AM +0100, Wolfram Sang wrote:
-> The external crystal can be a second clock input. It is needed for the
-> SCMP counting method which allows using crystals different than 32768Hz.
-> It is also needed for an upcoming SoC which only supports the SCMP
-> method.
->
+On Fri, 14 Mar 2025, Lee Jones wrote:
 
-Probably the binding was incomplete and you always had external crystal
-connected. I assume you want to keep old DTS, so it is fine for me:
+> On Thu, 13 Mar 2025, Artur Weber wrote:
+> 
+> > On 13.03.2025 14:25, Mark Brown wrote:
+> > > On Thu, Mar 13, 2025 at 01:20:36PM +0000, Lee Jones wrote:
+> > > > On Tue, 04 Mar 2025, Artur Weber wrote:
+> > > 
+> > > > > +	if (id != bcm590xx->pmu_id) {
+> > > > > +		dev_err(bcm590xx->dev,
+> > > > > +			"Incorrect ID for %s: expected %x, got %x. Check your DT compatible.\n",
+> > > > 
+> > > > Isn't it more likely that the H/W this is being executed on is
+> > > > unsupported?  If so, say that instead.
+> > > 
+> > > Given that the compatibles are device specific the driver shouldn't be
+> > > binding if the device is unsupported.
+> > 
+> > Yes, the intention here is just to make sure that the DT compatible and
+> > hardware ID match. Unsupported hardware would not have a DT compatible.
+> 
+> Right, so the user is utilising the correct compatible on the incorrect
+> (most likely unsupported) platform.  When using a supported DTB on
+> unknown hardware, the driver will bind but fail here.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If you simply drop the unnecessary "Check your DT compatible." part, not
+only does it tidy up the print / line, it also covers more bases.
 
-Best regards,
-Krzysztof
-
+-- 
+Lee Jones [李琼斯]
 
