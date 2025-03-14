@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-157643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF6C6A61B53
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 21:01:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC7AAA61B5A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 21:02:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C1FD881EFB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 20:01:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D009288226D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 20:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071BE205503;
-	Fri, 14 Mar 2025 20:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5663205E17;
+	Fri, 14 Mar 2025 20:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KTtIvoPn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AXZZuGAV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC522054FC;
-	Fri, 14 Mar 2025 20:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97382205E0D;
+	Fri, 14 Mar 2025 20:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741982487; cv=none; b=JwdKdw7E+8eY3p/KHilIduBuYzJAy+bEKySw7jY5hHLXsF/r1RYFEI07e0VlblAUYPjFt69U/npL7PqezRZBGUEkdZqbIjshcaFZzAZZIhTNOSVCOM8kpzoJZIy0yeRifMO5NJWKneZtqI48+YeeIljkpOw3t7UiEIb7VnhToAs=
+	t=1741982489; cv=none; b=USleHlwrV3BbUHGeW5zVzU30tJa3F5jjEJ7Xi3ca8o/JdtHzhzNUi7ZAObRn/VzLzA4wVt4SEa0NMpmHizSeWVxcxNVXh9PVzIe0Dom8lgV64H1yy3Ps66kuoDT6RdLnsPr+2alwrlvEkiT4gnzQACYbjAJBjmWsKk5DlpI1vvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741982487; c=relaxed/simple;
-	bh=7QGZ7xaTf/3SlpzVut2WZXHGuqSjQkoHapFcv4678CY=;
+	s=arc-20240116; t=1741982489; c=relaxed/simple;
+	bh=uI7supORXJIUgf0wIYyGk/4SAOuPMkmRVUwHoI62pPY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z2A3LnzYBIy7jCRzympzdLxjW4SelbQXsXcLuq7N05uReoe2A5PtLKcXQjI6tv21tTh93QVdgyC9E000XAyW5kwfAWEx/Otgxx+ReC6Hla791dwvf2z4IPltqO9JK6OGfqFJg5mvaP+Sg4I8cAQsuS8lGIRB3zEiG3A2Gu7X2YA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KTtIvoPn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49485C4AF0D;
-	Fri, 14 Mar 2025 20:01:26 +0000 (UTC)
+	 MIME-Version:Content-Type; b=RtOaHDwz9HIKWhlXpxSvh5fKlosnDvKsRXGOcKKAn+3bBc23ydcFJvbK91SgO7i4nTwhJeOpRaF//QwviD+tqsUa48SbrzAwBmozjx7WVm8VeaHmKmEGDhWsanvAkqGvi2gb+op9R3LOoPch+tDsyEBxzrHGYoJJcC089WgutBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AXZZuGAV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EE30C4CEEF;
+	Fri, 14 Mar 2025 20:01:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741982487;
-	bh=7QGZ7xaTf/3SlpzVut2WZXHGuqSjQkoHapFcv4678CY=;
+	s=k20201202; t=1741982489;
+	bh=uI7supORXJIUgf0wIYyGk/4SAOuPMkmRVUwHoI62pPY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KTtIvoPn1yIgjBUa0Axhr94P7Y4aUqbPoPyYBb+E2U9v1uGTzq4qsBrUV0d53N29l
-	 AAJ6SOYmrfCXFZjM/7TWekM0iNIxQJKJqsuFEItE8fJlJqYG3ouZyxWpt6JiRDGcoR
-	 /A+eiyVOOyNjgq6i1GBCNIEXWsjxOBQM7tv4eZps98AP+Ogv3E6fZBmLj3XtNd9IEv
-	 lDQ5TZG5P6GGlq8UkMuzOYR1CzA2v1csVOQ2l42cHARa+IU0UCO2L0EGyttPDC3WwF
-	 JSS8HdyKhQD3DxJwahYGyFaetmMerCQu24UylSO7QT3+5Mk5aIXYwKJ6WnI63Wek0p
-	 3X4UvyhGMlwEA==
+	b=AXZZuGAV+63TnyvMLKqbBkxR7QFHcIMCKzDxMvheN25H1SvOD3ZkEMlTfe8zt856U
+	 5RCmk6f9wcJLyLtQlgyHMdcMoMQ8L5nISx2mUbClI6D8JaDaqnVdfAKG2hbSznpt/P
+	 C4PN5z/xsyrbiO6kS4RGqIDF3KysrZ7WbtzPGIpPuYlpZR7bVsQa851HA9F40dHRGO
+	 M7Tognac9Tj50+OL7mSpf7BxDIecwkZoPpZfeAseiwn9wOT04qOJ4RFafD+sV7dGl/
+	 uWbJRs6OqxpQ+EnzQoEXrFUS+eYUiiADdgqkpxH66O5/LfMN5GKgiwsjd8lpRoXwNX
+	 U3eDSumtrhzDg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: konradybcio@kernel.org,
-	Alexey Klimov <alexey.klimov@linaro.org>
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	srinivas.kandagatla@linaro.org,
-	linux-arm-msm@vger.kernel.org,
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	=?UTF-8?q?Barnab=C3=A1s=20Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qrb5165-rb5: add compressed playback support
-Date: Fri, 14 Mar 2025 15:00:43 -0500
-Message-ID: <174198247883.1604753.17086131825024158633.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	Daniil Titov <daniilt971@gmail.com>
+Subject: Re: (subset) [PATCH v2 0/3] Add PM8937 PWM and display backlight for Redmi 5A
+Date: Fri, 14 Mar 2025 15:00:45 -0500
+Message-ID: <174198247871.1604753.9818860093094603350.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250228162308.388818-1-alexey.klimov@linaro.org>
-References: <20250228162308.388818-1-alexey.klimov@linaro.org>
+In-Reply-To: <20250213-pm8937-pwm-v2-0-49ea59801a33@mainlining.org>
+References: <20250213-pm8937-pwm-v2-0-49ea59801a33@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,20 +70,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 28 Feb 2025 16:23:08 +0000, Alexey Klimov wrote:
-> Audio DSP supports compressed playback on this SoC. It is required
-> to add compressed DAI and separate MultimeMedia DAI link to enable this.
-> 
-> Fcplay or cplay tools from tinycompress can playback, say, mp3 files:
-> fcplay -c 0 -d 3 test.mp3
+On Thu, 13 Feb 2025 20:54:46 +0100, Barnabás Czémán wrote:
+> This patch series add pwm node for pm8937 and enables
+> pwm backlight for Redmi 5A.
 > 
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: qrb5165-rb5: add compressed playback support
-      commit: e03ed4ee41c054dcfc3fe8d045e016cc0aa3a22a
+[2/3] arm64: dts: qcom: pm8937: Add LPG PWM driver
+      commit: b18c1aa6404303888ab924f149135835d223f4e8
+[3/3] arm64: dts: qcom: msm8917-xiaomi-riva: Add display backlight
+      commit: 5b74065e6c2482507435cdf7c4d0aab1830b9676
 
 Best regards,
 -- 
