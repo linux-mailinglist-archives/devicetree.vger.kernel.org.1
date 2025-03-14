@@ -1,134 +1,99 @@
-Return-Path: <devicetree+bounces-157449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE89A60B3A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:23:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0338A60B42
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:24:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAE538804B3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:23:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81A2916A5E5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:24:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF531C860D;
-	Fri, 14 Mar 2025 08:21:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5231AAA0D;
+	Fri, 14 Mar 2025 08:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="ABVU3d7P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jhPbW3bA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C7E1C6FFB
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:21:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1EEC1957E4;
+	Fri, 14 Mar 2025 08:23:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741940491; cv=none; b=gh/xhWvqCIWbh7BMhGMn0kISvx+NqAzJR1D4Wg+3sfewMFiHCvqfBa0K4w7CB8igRK08iYMrBpyUa1oZdKewRGt1Zhegtp9796z6gC69wSPoK8yyuLI5S5zCmJzDuEoee/B5WkFcnTZZe6CWsdFzkU1zLZd006Y3dZdH7hjJo7Q=
+	t=1741940610; cv=none; b=OPtV02PU/lp3G8o+UNFN1IOHxnX5PUtprPElWw8u6vBoXLjRYU/6G46a7unnmxZ05PjNMoALUgpplaZV9cHJK3X0w3kSCa2fyZjucv9a4BpfJD/VDzcyLmIGVNPSGqBOiPQUyrV8lLPpadPGgd8v42G24HATV3VCrcsYOXYGqik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741940491; c=relaxed/simple;
-	bh=mppd4LmheDALrusB9T4PJj9qjgXGvLPRSBiVOVkjTwg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=c+Z/zpB5xi6NIQPYFSajZvONUO0ZA6jsOXTckrGkn5l9jRN6EKrpTWpo84Xxl4WRavbWo10NazKZghvwwVyXB3EP7gMgjLkVoiZGBVoHAIatdr6pgbgSHxN/9/OqxozAIPWO46DKj0nczUUhDNnLO9KNirl2IiB9KNnN64BAmPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=ABVU3d7P; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e61375c108so2395632a12.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 01:21:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1741940487; x=1742545287; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=c+NVtuVU2ISJtStqxHLi/aMeg5kRvIk3MtAqB/jXcng=;
-        b=ABVU3d7P8JpvvrdxbtwdJZqVgs18QiWje9f/moFUNBBMp8qXej9XFyb+bJIfhWcRuV
-         Ni4LyhVUYt6O062qf3Wa+d3iDLh3AAsGhBSb9hEJHi8GtykfW2MzuRREe3t86+PzwrSF
-         sBdQl+5p/E/owPbn9ds+F8JMpbqS0vG1C4SzfB/ppDB0+wqro8hJ1I6PuFYG7Ib2DLWB
-         xbuT4w4C5XXhobcT4jTpNaZ/MdCa6cf1XgK/V1gxCHKddIldcJU2tyFFywKR21PLADyG
-         U72WgOxx8q7cziSLU3R/LL/pQmf6H36fUy67Ajw9m7nA8yUwHGgbnh+t78AuY8S/wEAi
-         PeUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741940487; x=1742545287;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c+NVtuVU2ISJtStqxHLi/aMeg5kRvIk3MtAqB/jXcng=;
-        b=Au5bWZJwUxieEKEN6i/gk+vd2R5Qs009D2hEt//SgtAwCzCS+G6ak3YHweSHPTodKH
-         sGzzxaRIMlUyHXoCxKsgzc7qMhTp0RUW6oYPu/NtTOeab0b79flbtngO/G5lsQ9W5+Ev
-         HhEymr8yUgCzdrWbMbxeR5TzRtPGv0FcNfwn0N/mYYT8uSOPApJDD9Eah5npuEft34UF
-         EQBzGpsb7Y21OqHznp2QpUtElPrvlcjTsrGNDKcuP7s3i0Leh/IJklD1ooUWDHjHQ+EN
-         EqCfvdt7bnVLSP806GjPGVmhimWS9IwWU/EbWqvf9TS+x0YRddV65TM6iGGob72N8KTb
-         oelw==
-X-Forwarded-Encrypted: i=1; AJvYcCUiYn9niFcr14+A+xX78RqsQdomOEb4oOSFg90yG1QLYiZTpO/IBz6iLLMmNzHANMEuvH+GpPuzJMzz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeAg/s+zsKE6tNQkOgLKLnw843Xo1PpTkjmqaVDKldA2qx7ukQ
-	Vny7nxqjfihPHXJZo6OzRdVa+z/j7If1yQ3f+rYEjDTyWiP7igDsC+2yKc7g84E+nKevebxo1Ek
-	i
-X-Gm-Gg: ASbGncvT2ppTTC+q8HTSCd7Wi5GjNStkQpkkEUyV0SIKCTyRqsy/1Rr3sOPY6PyYx2n
-	a+WWvO1C/REg0swHbNMUUVS589F+VsyYhfEjQfpQY5mbFHllFj+xxik1/NgY/cWjEcFe3OtFMmC
-	Ar9ujuBOvIGGEISBNwk2JYXuMUYyOOJ+m+uPPf6l4tJbSPq9uyso7n1DCwhNjJupeBlG+0JaWEm
-	fyOM6WpC2eeUeGmXukhQ4CTCpPUSTarXNgZLF4hx0KLGbPI9WH5LvyspL/8ZL84c40TFwYbgKgU
-	RKk2tGFX8+4dC/HiZ+Nm/WEe1z897ztABxmy/izjWSkZTXBGqp/ldwzDI2+kphhofG3ITRuNshp
-	CrJ++1klVvinJ1DBYgA==
-X-Google-Smtp-Source: AGHT+IE6U7GmQ58fz7zI6ECFfeW+9X4eiOa30l8vgfN5EOFVNew13LY0sJrmHqQgR2MvZBZ6zRu3qg==
-X-Received: by 2002:a05:6402:1d53:b0:5e6:6407:3b23 with SMTP id 4fb4d7f45d1cf-5e8a0422028mr1472473a12.21.1741940486720;
-        Fri, 14 Mar 2025 01:21:26 -0700 (PDT)
-Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e816ad38fesm1643387a12.57.2025.03.14.01.21.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Mar 2025 01:21:26 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 14 Mar 2025 09:21:16 +0100
-Subject: [PATCH] arm64: dts: qcom: sm8650: Fix domain-idle-state for CPU2
+	s=arc-20240116; t=1741940610; c=relaxed/simple;
+	bh=p3W9L9eQEmfvgQjAeaqE5U5MwnuqJ84k6yF4D1vFkXU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PHVga5E+nVJUXdIK5duSk9dUiI4RVOwHIf0YsXnzIMiswo+oplfu0QXyvzmss3BuXdjXvmC4Ll6SuBdUYDbsSrz6cg68i9G2cnMyEYRPdGBdWCqJyWUZePRfUi4AF6ywSWMkLkPLejH6pHi3/qhSeagjxSmntNhDFQ206/+Ern4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jhPbW3bA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DE41C4CEE3;
+	Fri, 14 Mar 2025 08:23:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741940610;
+	bh=p3W9L9eQEmfvgQjAeaqE5U5MwnuqJ84k6yF4D1vFkXU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jhPbW3bAUHpzxrOImQwFd0W8TpimXhBKo5pT5v3OtF6Xp2xz/W90dFsAtMtvoQHXF
+	 51e/M8pYTkrv/ewLRJE+CzckeocmCPiF4zhSjOFYgFFPyrU7kkG7BKH/beQGcgUpU3
+	 1R3Uwo+ott49smSNQ+LSySuNNlgAxMw0sPM9J2hpi3q2x/lrFIV6Jowu8KdVid4uE7
+	 KgIWffepZPcrIqNi+G5fEgaWJXQ/y7+y652T6QyzPVUu5HFUEUh+IkElgpduSEqTXC
+	 svkt4pRWez8JcZQLZTmzXqSEKu80wRIbmN/yjVZIpOk2nXOSOYY0keS+1kta7Or0Nw
+	 swnunEAGCFOsw==
+Date: Fri, 14 Mar 2025 09:23:26 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, andersson@kernel.org, 
+	bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	lumag@kernel.org, kishon@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, 
+	kw@linux.com, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, 
+	p.zabel@pengutronix.de, quic_nsekar@quicinc.com, robh@kernel.org, robimarko@gmail.com, 
+	vkoul@kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH v4 5/6] arm64: dts: qcom: ipq5018: Add PCIe related nodes
+Message-ID: <20250314-perfect-free-oarfish-b153be@krzk-bin>
+References: <DS7PR19MB8883F2538AA7D047E13C102B9DD22@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <20250314055644.32705-1-george.moussalem@outlook.com>
+ <DS7PR19MB888366F3BFE6262375217FA69DD22@DS7PR19MB8883.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250314-sm8650-cpu2-sleep-v1-1-31d5c7c87a5d@fairphone.com>
-X-B4-Tracking: v=1; b=H4sIAPvm02cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDY0MT3eJcCzNTA93kglIj3eKc1NQCXQNTi+SkVGMLkzTzVCWgvoKi1LT
- MCrCZ0bG1tQABYppDYwAAAA==
-X-Change-ID: 20250314-sm8650-cpu2-sleep-058cbe384f7e
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <DS7PR19MB888366F3BFE6262375217FA69DD22@DS7PR19MB8883.namprd19.prod.outlook.com>
 
-On SM8650 the CPUs 0-1 are "silver" (Cortex-A520), CPU 2-6 are "gold"
-(Cortex-A720) and CPU 7 is "gold-plus" (Cortex-X4).
+On Fri, Mar 14, 2025 at 09:56:43AM +0400, George Moussalem wrote:
+> +			msi-map = <0x0 &v2m0 0x0 0xff8>;
+> +
+> +			interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
 
-So reference the correct "gold" idle-state for CPU core 2.
+Was this tested?
 
-Fixes: d2350377997f ("arm64: dts: qcom: add initial SM8650 dtsi")
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Anyway, your patchset cannot be even applied due to broken threading.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 719ad437756a499cee4170abccc83f2047f0f747..5844d7d0d0e6b31c08de3391f5cae3f8d823b2cd 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -1449,7 +1449,7 @@ cpu_pd1: power-domain-cpu1 {
- 		cpu_pd2: power-domain-cpu2 {
- 			#power-domain-cells = <0>;
- 			power-domains = <&cluster_pd>;
--			domain-idle-states = <&silver_cpu_sleep_0>;
-+			domain-idle-states = <&gold_cpu_sleep_0>;
- 		};
- 
- 		cpu_pd3: power-domain-cpu3 {
+We keep pointing to issues in your toolset since more than a week.
+Sending is so trivial that I do not understand why you keep it having
+broken:
 
----
-base-commit: eea255893718268e1ab852fb52f70c613d109b99
-change-id: 20250314-sm8650-cpu2-sleep-058cbe384f7e
+`b4 send`
+or
+`git format-patch -v4 --cover-letter -6 && git send-email ./v4-*`
+
+NAK
 
 Best regards,
--- 
-Luca Weiss <luca.weiss@fairphone.com>
+Krzysztof
 
 
