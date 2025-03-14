@@ -1,68 +1,60 @@
-Return-Path: <devicetree+bounces-157435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12B69A60AA6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:00:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16420A60AAB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:01:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 616443AD22B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:00:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A79846042D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB6A13E02D;
-	Fri, 14 Mar 2025 08:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C59D1624D5;
+	Fri, 14 Mar 2025 08:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ip2N1VrF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxKlMpaY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889CD2AD25;
-	Fri, 14 Mar 2025 08:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F381531C4;
+	Fri, 14 Mar 2025 08:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741939228; cv=none; b=aZedHSsmFdf9gzMvwlP6P0EsZX6tbdaJzR9232XOFUQH+Pf3C7Q+9UW04kBglPi0qoRbuH6D6X0WZ/E2p5i/sHURFImkxiHi8gLohpoJTrEVIqCZSRB9q7X2hX74vGB3LXz7M4IYsT6rzOVPK+GnzDFaNFwDdf9TRnN1stu3k7Q=
+	t=1741939296; cv=none; b=eurB7PBcJrvcYt3wakgtR6aEJJeekjt82Y0tn2X14rew4oKv8UtIa1Qq0xSCZIyZqrWBX6oJbUFq4s0krtvxZgINkKtRq6EU+z5WP72kCSL7ZdNjXXtwiwLPbcfmq8NKo0ZMXIKEDYZT6jb1wE9Wpw6b1BuwBpVw8ST6YCIoR/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741939228; c=relaxed/simple;
-	bh=7U8GExGUpIrRj21vxo50VT57HSCBjO9buljApi9E9Pg=;
+	s=arc-20240116; t=1741939296; c=relaxed/simple;
+	bh=70wuHHsetHGL0OD/EkgwP5SjrI60aviLDRUiNp6RteI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hwpsqYT1N85Ybhrl7BH+xYd+ZV0ckG+ngwUPTsVnWA8ZsP9T1k/dMxtrpTrahB0ipyZo/8ny0+egLD/GvUVDOMYV4gHp8diQKOXO2EMyjXK5lVtkci77jrqY8zm/Fslhz/EIFuSRWnJKXYl7ptwVuZdo6EaLNDTuoENZOr9+z9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ip2N1VrF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 233A8C4CEE5;
-	Fri, 14 Mar 2025 08:00:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aGhNWF4umYUJ3KxPhAXyErje92Nh6VvykwTYXZiqQ9X1dUjGlbIMHEmsYxrk8IEehBk7xfsXwLptBkJVHTqLxocmgzYC5kBmhuur6Dlc+8kTFLcLy1TntwSaavR1TyphRp+V2HmEEndnIdnKKP294FBaEzDQl0KWDoyVBsAjpsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GxKlMpaY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF472C4CEE3;
+	Fri, 14 Mar 2025 08:01:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741939228;
-	bh=7U8GExGUpIrRj21vxo50VT57HSCBjO9buljApi9E9Pg=;
+	s=k20201202; t=1741939295;
+	bh=70wuHHsetHGL0OD/EkgwP5SjrI60aviLDRUiNp6RteI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ip2N1VrFv07pJUN826d9NhByxmZDPrULXITjASJ0+CdknlGXT8HPiuJYW5W5mhFjW
-	 8DXTYNA8XDKNPHhZNPMTkkE0OxZUvRg7+maUvfhffmOtxKhEYZUu62RqORGVw78zjz
-	 tMKrODkyUaf2MtiMqJXC6G0gV21xjC0VXhLwZConcNmX3V4IZtYhd6QnVc9ty/re4+
-	 1MCX5njrIslpGQJQMTxEXLS8wlQvg83vCznIa/XoJXsuPIqUxKuXW5bvwMqGr+AdXN
-	 rIf5xtkEgwwHw19Zqq6KfjyIvtwy2vtYNvjx1jAuC8ghCvsZA3mjpFNvdrsA/lAaax
-	 FIlOLUOKscRrA==
-Date: Fri, 14 Mar 2025 08:00:22 +0000
-From: Lee Jones <lee@kernel.org>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v6 06/10] mfd: bcm590xx: Add PMU ID/revision parsing
- function
-Message-ID: <20250314080022.GH3645863@google.com>
-References: <20250304-bcm59054-v6-0-ae8302358443@gmail.com>
- <20250304-bcm59054-v6-6-ae8302358443@gmail.com>
- <20250313132036.GB3616286@google.com>
- <ef190ba8-a5c7-4a1a-90e6-2610de00e4ed@sirena.org.uk>
- <f363c1ce-8612-476e-a5d5-c3cb358bf50a@gmail.com>
+	b=GxKlMpaYsSSO8B8lDQwLdpB4UzGrdvlyZaNxFnwda2QCfDMT/4INPK/1RBo3AuILi
+	 zeC5XMIn3MnQPZ9hSulmieLPcg06jW5EG8sjcLJh0j4ffqf/o9bSoTR6mYc5p4GwH9
+	 PVL/8Nmnm1rThXv3QxLDu/DmTbj54dAaVkrSslfex/4P/+q3bkjDgXfte9LQQREz0Q
+	 wHOsUBtRK9ibP5gIzfxDYyd3X6Q/h7cBxPBi72NEn5oQSxYEEaNo8idK6kJu3UrZKH
+	 Ioxw5voPBI0qaCa3gzwq4bVcWHkHkmBCKZhx9xs1l0a2FAcuzONsQ6av0YDlzDMZ+a
+	 m4L3h6YbwIZ3w==
+Date: Fri, 14 Mar 2025 09:01:32 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Zelong Dong <zelong.dong@amlogic.com>
+Subject: Re: [PATCH v4 2/3] arm64: dts: amlogic: Add A4 Reset Controller
+Message-ID: <20250314-tested-husky-of-force-1ccdca@krzk-bin>
+References: <20250313-a4-a5-reset-v4-0-8076f684d6cf@amlogic.com>
+ <20250313-a4-a5-reset-v4-2-8076f684d6cf@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,32 +63,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f363c1ce-8612-476e-a5d5-c3cb358bf50a@gmail.com>
+In-Reply-To: <20250313-a4-a5-reset-v4-2-8076f684d6cf@amlogic.com>
 
-On Thu, 13 Mar 2025, Artur Weber wrote:
+On Thu, Mar 13, 2025 at 05:05:35PM +0800, Kelvin Zhang wrote:
+>  &apb {
+> +	reset: reset-controller@2000 {
+> +		compatible = "amlogic,a4-reset",
+> +			     "amlogic,meson-s4-reset";
+> +		reg = <0x0 0x2000 0x0 0x98>;
+> +		#reset-cells = <1>;
+> +	};
+> +
 
-> On 13.03.2025 14:25, Mark Brown wrote:
-> > On Thu, Mar 13, 2025 at 01:20:36PM +0000, Lee Jones wrote:
-> > > On Tue, 04 Mar 2025, Artur Weber wrote:
-> > 
-> > > > +	if (id != bcm590xx->pmu_id) {
-> > > > +		dev_err(bcm590xx->dev,
-> > > > +			"Incorrect ID for %s: expected %x, got %x. Check your DT compatible.\n",
-> > > 
-> > > Isn't it more likely that the H/W this is being executed on is
-> > > unsupported?  If so, say that instead.
-> > 
-> > Given that the compatibles are device specific the driver shouldn't be
-> > binding if the device is unsupported.
-> 
-> Yes, the intention here is just to make sure that the DT compatible and
-> hardware ID match. Unsupported hardware would not have a DT compatible.
+Why do you have on the bus devices with bus addressing and without it?
+What sort of bus is it?
 
-Right, so the user is utilising the correct compatible on the incorrect
-(most likely unsupported) platform.  When using a supported DTB on
-unknown hardware, the driver will bind but fail here.
+>  	periphs_pinctrl: pinctrl {
+>  		compatible = "amlogic,pinctrl-a4";
+>  		#address-cells = <2>;
 
--- 
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
+
 
