@@ -1,115 +1,151 @@
-Return-Path: <devicetree+bounces-157618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8149DA61727
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 18:12:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38C9DA61732
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 18:14:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D3353B6D8A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 17:12:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C7FC17CD55
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 17:14:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A573220409A;
-	Fri, 14 Mar 2025 17:12:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4739204595;
+	Fri, 14 Mar 2025 17:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="UOfIrw7o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1FB1FDA7A;
-	Fri, 14 Mar 2025 17:12:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 179EC2040B0
+	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 17:14:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741972364; cv=none; b=JL/b0z8xN1ASncv39sv4dczRPxO14qNb+pCi97fkfMJOerpUFJsqyBx4dgs++PqICKh6j/uAtmUTXZtTM6h9UhkHk3LP9lyrB9VWUCQ80106dijkgdcqNrAJYeINSJcD80yC2Uk1O/UhqQc4bh9+MRdB5hEExv6qPZzV3yEH/n8=
+	t=1741972460; cv=none; b=lT4OuNKb9f+rqdZuo0R370ZYFihtvdU6qoJtpv01YTMEX6Dun1PyjRKJ7K8yBXb/Fij0WJIQ4SDHJQqDEF1X7xZqHt8v4BcMcfZ6hJcrPPWmfAzhYXMw7492n5V8LplPjnTomH7I3LkWbvtn9rzwi60+1IM77cpgf0WGKo+wfaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741972364; c=relaxed/simple;
-	bh=oMRf5D9xED76AloBmylBsBKYgSUDihyoTcfIWxoaKyc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mOprRF10kA9YpQSy6UxB6FlWPpEf+t8HxDuwatjj99yL6+7HACq+m//Py425lni87jeNilCxRT0HFID1KV//cRYKytj5O7Z2Nn3Q7TCJnrWmZ1ZX5fVvoxwWS6hRM4rDyDvLVBoFvSE0RrpoTk2swRKwdWLvHmd7JTipURqqqtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3B18E1424;
-	Fri, 14 Mar 2025 10:12:52 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 251433F673;
-	Fri, 14 Mar 2025 10:12:40 -0700 (PDT)
-Date: Fri, 14 Mar 2025 17:12:35 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>
-Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
- <linux-watchdog@vger.kernel.org>, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 03/15] dt-bindings: watchdog: sunxi: add Allwinner
- A523 compatible string
-Message-ID: <20250314171235.25db7044@donnerap.manchester.arm.com>
-In-Reply-To: <20250307005712.16828-4-andre.przywara@arm.com>
-References: <20250307005712.16828-1-andre.przywara@arm.com>
-	<20250307005712.16828-4-andre.przywara@arm.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1741972460; c=relaxed/simple;
+	bh=5p0iC2SItNuF6AwjE1Hf3HgmLAJx6GZW09MUMx1WDn4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tYU8os3s6ibEezzrHH5iCtcuQxW7Z042N8emyRLsJBT2Bm2Eh+b6On7jN2AEBIejy9Z0wSNvOrs/3WomVpLzuE2ERh9FUQdvE7KMq96RixXUIElnDVJz7QkBME4FPIuO+mTZe3I8VC7rVmHxx7uHjgIjnL8iuz9aAuvfsSq2o8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=UOfIrw7o; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2235189adaeso42440725ad.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 10:14:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1741972458; x=1742577258; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yix95Y58aFVDLktEp8lmDmKYUrlcv0lyEDYQZgOfJW0=;
+        b=UOfIrw7oT+4b8yEPf7Mh2zudvDHT7LjYjk4PRUR6nDtvJF0TAUvoBvgiK0Wtqpefy3
+         K2DeSrNEw5yqYkY/8/Gskgg1juSt3h4RKFgqvxywGTIK3cXUCqeytxE2fwAEq0w+QQZ0
+         K7UEssTLnlSZeVpuYoIhv/EJnJAs48MpjhUcwjDqxDj4f2uy2qYLPmGIrU3zYlyka04a
+         sj3RPl9mZ5IDgN31WaOCkDmyFBk4mXyDwhyWV0SZyjOgl6k0mpDJ6nAKkVV7f3Zi+Yzh
+         bydkQrtjV6L5+s6tfjUE8X3hr7Os0yPQ12lC9+adIWz1kIFTRqv32C7MPbkjpv+lR8P6
+         /vNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741972458; x=1742577258;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yix95Y58aFVDLktEp8lmDmKYUrlcv0lyEDYQZgOfJW0=;
+        b=ecXf+0bRJ4QaYfzL0BmhWn13WYLl9vJWjASim/rhGugLF9RkR52FQ3iz5fIfDEUutG
+         cY1GXaPVv7jzM9mvuUpvU4vSKfaXOsfZwoBKvCbVtTbm0W8rfC+ai31ieO6y6obIFbrw
+         b5CPOeJBk044hMDaIwUMs14v+rWw6q51Lg+gXXkU2CUioXgJt1aWp7hrL043nGjGwmV0
+         YoSSyUbAXcbJxx7ahK5ic3w/oziLR5WvFYxwGWPt1pAvnpRBmd9DZfCF2m8LKkMweA9/
+         R1ELCgdR/cz4qu/PkM3f4MKPSUULiAod78HKwDUd8j5RbwymVigUGfh868rzMbzPdM5m
+         TyJw==
+X-Forwarded-Encrypted: i=1; AJvYcCVtHjl2QtbyX7IGePZRKxoy77yop65OOjAuZ/dEe7exiBqJrmTjbOGcl73iYrbauAXESUpX2RqhuOYj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/UR9tKma3duRTDj7jWeANxCZVVjPaKQQXPcN2C8tohXtb8PM3
+	BFyqXW5QQWXelJziOTA59iO4v1lmOBXmHOgHPsYG9nxR3nbWBFJSV3c2gIDZPQ==
+X-Gm-Gg: ASbGnctd/XJU6oXJwaPfj38EN+qeaTRmW9y30oLhSBLiTQmdQs37eU5Mw5L8jd4qA0U
+	8asr14u9sXJmC4mlEFoKdVp2lpBhtCWp+RA4okL/rLdZaNmXAis1wHT5RFLEwMvMegRWLMPITEI
+	N7nRHFrg0psaMCkKPppWrubZwbyI9YFf7r54HBNsE+7d2dqD5u6piHhNaNMiVaYxsSdZ8tUSZi4
+	2l52ZZ03a6Pkg7vIXJnmtJWwyT1M1Tp7eRIlg1D/WAhGRaoFMBdZJVqtHs61jRf4LuItCja1XKp
+	f3dB+wB2MFPKkTQSPgs+oZCxXj2YBTNYmxIT1Zp9+uh3q9KCeOGx5mh8V8Q7s40PUoJOw+qXtig
+	0KOERGaRjyjiX5T8=
+X-Google-Smtp-Source: AGHT+IGy7HWrkPvjUpMMYhRQbw/am4ugxDMqJdGJdWH8dd6X/1N9h09zGNW9ExGPYF3hEaJz1QwaUQ==
+X-Received: by 2002:a17:902:d4cd:b0:224:3994:8a8c with SMTP id d9443c01a7336-225c6613932mr89268175ad.8.1741972457947;
+        Fri, 14 Mar 2025 10:14:17 -0700 (PDT)
+Received: from google.com (198.103.247.35.bc.googleusercontent.com. [35.247.103.198])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c6bd4d61sm30841415ad.242.2025.03.14.10.14.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Mar 2025 10:14:17 -0700 (PDT)
+Date: Fri, 14 Mar 2025 10:14:13 -0700
+From: William McVicker <willmcvicker@google.com>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+	kernel-team@android.com, stable@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: exynos: gs101: ufs: add dma-coherent
+ property
+Message-ID: <Z9Rj5T8il4rZAsoq@google.com>
+References: <20250314-ufs-dma-coherent-v1-0-bdf9f9be2919@linaro.org>
+ <20250314-ufs-dma-coherent-v1-1-bdf9f9be2919@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250314-ufs-dma-coherent-v1-1-bdf9f9be2919@linaro.org>
 
-On Fri, 7 Mar 2025 00:57:00 +0000
-Andre Przywara <andre.przywara@arm.com> wrote:
-
-Hi Wim, Guenter,
-
-> The Allwinner A523 SoC features a watchdog similar to the one used in
-> previous SoCs, but moves some registers around (by just one word), making
-> it incompatible to existing IPs.
+On 03/14/2025, Peter Griffin wrote:
+> ufs-exynos driver configures the sysreg shareability as
+> cacheable for gs101 so we need to set the dma-coherent
+> property so the descriptors are also allocated cacheable.
 > 
-> Add the new name to the list of compatible string, and also to the list
-> of IP requiring two clock inputs.
+> This fixes the UFS stability issues we have seen with
+> the upstream UFS driver on gs101.
 > 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Fixes: 4c65d7054b4c ("arm64: dts: exynos: gs101: Add ufs and ufs-phy dt nodes")
+> Cc: stable@vger.kernel.org
+> Suggested-by: Will McVicker <willmcvicker@google.com>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 
-is there any chance that this DT binding patch (and patch 04/15, touching
-the actual driver) would make it into -next any time soon, and hopefully
-into v6.15? From what I can see it's the only binding left before the
-sunxi maintainers can merge the devicetree patches for this new SoC (most
-others are in, pinctrl and NMI should show up in the next days).
+Tested-by: Will McVicker <willmcvicker@google.com>
 
-Let me know if I can help with anything or if you need more information!
+Verified I can properly boot to Android recovery with UFS probing and mounting
+the partitions in the fstab.
+
+Can you send this to 6.12 stable as well since this is fixing booting issues
+with Android?
 
 Thanks,
-Andre
+Will
 
 > ---
->  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> index 64c8f73938099..b35ac03d51727 100644
-> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> @@ -32,6 +32,7 @@ properties:
->        - items:
->            - const: allwinner,sun20i-d1-wdt-reset
->            - const: allwinner,sun20i-d1-wdt
-> +      - const: allwinner,sun55i-a523-wdt
->  
->    reg:
->      maxItems: 1
-> @@ -60,6 +61,7 @@ if:
->            - allwinner,sun20i-d1-wdt-reset
->            - allwinner,sun50i-r329-wdt
->            - allwinner,sun50i-r329-wdt-reset
-> +          - allwinner,sun55i-a523-wdt
->  
->  then:
->    properties:
-
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> index c5335dd59dfe9fcf8c64d66a466799600f8447b0..cf30128ef004568f01b1c7150c5585ba267d64bc 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> @@ -1360,6 +1360,7 @@ ufs_0: ufs@14700000 {
+>  				 <&cmu_hsi2 CLK_GOUT_HSI2_SYSREG_HSI2_PCLK>;
+>  			clock-names = "core_clk", "sclk_unipro_main", "fmp",
+>  				      "aclk", "pclk", "sysreg";
+> +			dma-coherent;
+>  			freq-table-hz = <0 0>, <0 0>, <0 0>, <0 0>, <0 0>, <0 0>;
+>  			pinctrl-0 = <&ufs_rst_n &ufs_refclk_out>;
+>  			pinctrl-names = "default";
+> 
+> -- 
+> 2.49.0.rc1.451.g8f38331e32-goog
+> 
 
