@@ -1,116 +1,120 @@
-Return-Path: <devicetree+bounces-157393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F035A607C9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 04:36:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67098A607EB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 04:48:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DED9019C3407
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 03:36:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA48D19C4103
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 03:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B4112CDBE;
-	Fri, 14 Mar 2025 03:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78FD515CD4A;
+	Fri, 14 Mar 2025 03:47:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b="WdHMJ4Jt"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="bwNI0XW3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5CECBA38
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 03:36:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F278E15667B;
+	Fri, 14 Mar 2025 03:47:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741923381; cv=none; b=QkZnCwPncy3D/KphMctKYIV94ReATwEk/fq5BJGuiZsOdaJO/CHwXTkaZz5Sdp+ibJum1vAMyHOqrdiPshYwZazNt+3nAjibplpBUrEg10G1xrmLCFoEH77ebk6JnJo/rxenageqR4CkKKvPADKcUVG36UOm1RE+imCD586SSro=
+	t=1741924041; cv=none; b=No039MLnUUjKAHwzGe+upYS10r65a+LKU0cLObPP58Vc0vJtloPMZXa7VGP+MLzuQrplJq/o+oISqGQJQEUSY6TBrjC4pyfPSN55Y6LxeEWeBO0EnlEm3Ooup9ARRDn0BALI5r0IW+ZIoOPSG0Mb7q2qEbd/TfmHt2eXuMMnIC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741923381; c=relaxed/simple;
-	bh=VG6guJY7C2RS+MEts0vMCLpbug3/g08c4TFm3dc652k=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WUJsL6F+UearZV+TE+h5UYsZh9ZPyUfbbEBZBAf6BHCiRsdHvmgc8Baw0BMjwBPcp35i5uypeNkmemmxOcmaWeMByV4+G5+f0Y+g7LXQ7Ox5RmQQVNViS5isC+xB+3yu/pfC3G8O9ZOjN2MemBJqFlLVT18f0NZTOhdGE1ERVfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com; spf=pass smtp.mailfrom=inventec.com; dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b=WdHMJ4Jt; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inventec.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-223594b3c6dso33202535ad.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Mar 2025 20:36:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=inventec.com; s=google; t=1741923378; x=1742528178; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2CKZ17Q4D67al7wDQAN94cc3LiLuJKQZdY3HIsX08mM=;
-        b=WdHMJ4Jth2Q40uYNwj4cqXioVeA9/BQH2INU/GsdYcj+2KAkssHrjb6Ou8+cSwIuuZ
-         DhbvwqA+ZZeY3yHYBKWxV8ZEc9zuZ4Q4jffeYRn1BuVUfY4hYzmc+GpM57bU+KZ8Ot/2
-         opZ+qjC7IqHEGVBwCQaoZ6oa12nLf0CJ/3y6MWw+OYCzQpuSyoNWObkPPEV7GpfjF44l
-         T+bVaQuK/vOEYMUejA5+RtQRbHQryQYXr+W3MJtIrXAMam24B738kHaoLWWnRZS8NIeb
-         eRfMVBS4xe5FurgjHmc+/oP/HTb7KU86PApU3YZ+BskNaSNT++R1eiU/eF4P3XcBsad7
-         Rn1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741923378; x=1742528178;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2CKZ17Q4D67al7wDQAN94cc3LiLuJKQZdY3HIsX08mM=;
-        b=Ci91+FaNBp0MGUbOuFILqt7e1RnPNgYmDFNklpVcwOtsF+v/pSjsz7j9BKogCdxEkj
-         VXNOFbZHijNm9jLVCoNjT9xFINjDpvcGzVG3+xEQGpsDhSejbuoBTCfGdnLH4ZWaAVwE
-         0ruchBlBeGhBijs4BZZ0xVKZLYB5VMVw79aLubsM4p+Njo+aE9iv1+4m2VMqMqgAAIai
-         7wmCK/iZ89F13tbti/8RKZSZOY9rzXa2Oi/9otI/nCjUz9yV+DpQLnUo5r24qoUj86sm
-         I7c3db55Z41pPv28a0bWRwjP0xetQDyDyGQ2IzxW0NSWgIQou4uzZ5Vb6C7qwkMp10HC
-         C70g==
-X-Forwarded-Encrypted: i=1; AJvYcCUIBU+oadAdZQzJDtiVhOzo9inmgbjHNiNJ96sCGDOyzkrhGcyCGdrydqmATx1Mg7c2x8BccntBSPva@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhAkfZLhpxSBxrUV5F4tWsEZPC6K+ANJ5NnJCjOO4g7mtyB1zx
-	+3TUfo94o5qY6ZpBaEAAzH8k84ZG+XFK7SjvPMvRXcrvpQrn2C3++zY6VJPkzCs=
-X-Gm-Gg: ASbGncvig/qzOhwPifXBJfV5K+VWmh8oEGs7bljNiUJR2UlqID7TuGAgLBbXkb/MArG
-	dzC/4b+NzZdt3NoyST7Hr28X8hWJ5Kz+toG4WFDSPzA4TTyzsFqEWlvt8BarpiaZ06bjJuWP9x0
-	MB1xrKS7eRs/9tF6CrpPbD/x/BIGKFMwGuTcBWFgk8FGc90Cibhs/rJu/Awjs89TIlSHaQdNI0d
-	2Y5jSU3Pi+jmnMvzTOiBN67Gx3FC9Mp6C3dEsT4W8b+E5031NDoYGeDWVJjHJ+CtY0QGgAxPHWi
-	in0p1tnZVuZv3jGNio5b2UmSUwWoZCLtILUbgb5+/qyahQZ+64HBEKAs0iFnpZVmkZHN6C5blE4
-	5TuLklo/uBIxc1n4TuH6vERj1kQ==
-X-Google-Smtp-Source: AGHT+IF7o+fIRDqv9z47H1qL2o4yIcJDSVooZphsAXczLb9NaTSymeNDBDBJ4uhStmyxIiBcFqgjWQ==
-X-Received: by 2002:a05:6a00:c92:b0:732:5276:4ac9 with SMTP id d2e1a72fcca58-73722357b4dmr1139599b3a.9.1741923378125;
-        Thu, 13 Mar 2025 20:36:18 -0700 (PDT)
-Received: from localhost.localdomain (60-250-242-163.hinet-ip.hinet.net. [60.250.242.163])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7371152938csm2210418b3a.12.2025.03.13.20.36.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Mar 2025 20:36:17 -0700 (PDT)
-From: Chiang Brian <chiang.brian@inventec.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chiang Brian <chiang.brian@inventec.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: trivial: Document TPS53685
-Date: Fri, 14 Mar 2025 11:28:01 +0800
-Message-Id: <20250314032802.3187097-1-chiang.brian@inventec.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1741924041; c=relaxed/simple;
+	bh=VgynmPp8o8Kly1ovbL5L6pygpdyjHB221aCZlk+6jb8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WczCINHAX6HpX6Ll79u8cmklNOOPiSEGbE+MNIkebqVVq+Iosesg46q+2gLktQ147e0AWFWW3zRB/QiH19Jp3SHllHtck6W5c/I0/xNFy5X2ZGSDV3qL0JXy+sy9PzAL9Fukhe2leFZGzHY2jvGJnBXENSxL1JhxBoDvOyFOUeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=bwNI0XW3; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52DNOwXX018106;
+	Fri, 14 Mar 2025 03:47:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=/qvyeY
+	YYxIm9T87HGra/YtOB/c7AxJJYhqzkfAbhCfo=; b=bwNI0XW3UoxChqJEpLS3B/
+	35k2rIieWnCo02ba1H290RUsvTEVxdeaAth6is9yBRnUcaBH8uSMpqJN0GTOhhcP
+	9/JjcngT0rCZqKpME3cBJ5Fz6iibKyXq9R7ivmeRVaq7KwrEldAaaJNAQ3RYYvaO
+	WJuyfQUEPVQCmWUEZ3R3YHIrPQGzUL5kaSGg3OrPtAZFZkn3Gvg2BGCzy9zq8vnb
+	fQrq1iwmh9+wNC5eIPxsKsidpY8Kionr+YWRW4PsahQZ1XbkLKzcw/ah/saQr7BJ
+	O+MVfcEulw+VoXF2pN4FdVVO0UnEu8/fdsY6LaZdQb/8C9T3Rszm8u3LDmziIaOQ
+	==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 45c0srbfuy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Mar 2025 03:47:06 +0000 (GMT)
+Received: from m0356517.ppops.net (m0356517.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 52E3iIi9030125;
+	Fri, 14 Mar 2025 03:47:05 GMT
+Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 45c0srbfuv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Mar 2025 03:47:05 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 52E04Np0007490;
+	Fri, 14 Mar 2025 03:47:04 GMT
+Received: from smtprelay04.fra02v.mail.ibm.com ([9.218.2.228])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 45atsrd1wa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Mar 2025 03:47:04 +0000
+Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com [10.20.54.106])
+	by smtprelay04.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 52E3l2BT18022904
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 14 Mar 2025 03:47:02 GMT
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 5B66520040;
+	Fri, 14 Mar 2025 03:47:02 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 80D3B20043;
+	Fri, 14 Mar 2025 03:47:00 +0000 (GMT)
+Received: from li-c439904c-24ed-11b2-a85c-b284a6847472.in.ibm.com (unknown [9.204.206.207])
+	by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTP;
+	Fri, 14 Mar 2025 03:47:00 +0000 (GMT)
+From: Madhavan Srinivasan <maddy@linux.ibm.com>
+To: linuxppc-dev@lists.ozlabs.org, Andreas Schwab <schwab@linux-m68k.org>
+Cc: robh@kernel.org, saravanak@google.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>
+Subject: Re: [PATCH] powerpc/prom_init: Fixup missing #size-cells on PowerBook6,7
+Date: Fri, 14 Mar 2025 09:16:59 +0530
+Message-ID: <174192385434.14370.13614517118508707143.b4-ty@linux.ibm.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <875xmizl6a.fsf@igel.home>
+References: <875xmizl6a.fsf@igel.home>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: F4a78_1Bf75BdXRZPmX8d6tNl8qAogCC
+X-Proofpoint-GUID: JtZRzv744qTWLYqtAJmCWHTS9f7OHq-5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-14_01,2025-03-13_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ priorityscore=1501 lowpriorityscore=0 clxscore=1011 bulkscore=0
+ malwarescore=0 phishscore=0 mlxlogscore=730 mlxscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2503140026
 
-Add undocumented tps53685 into compatible in dt-bindings
+On Mon, 13 Jan 2025 18:19:09 +0100, Andreas Schwab wrote:
+> Similar to the PowerMac3,1, the PowerBook6,7 is missing the #size-cells
+> property on the i2s node.
+> 
+> 
 
-Signed-off-by: Chiang Brian <chiang.brian@inventec.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Applied to powerpc/next.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index fadbd3c041c8..c98d69facb48 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -380,6 +380,8 @@ properties:
-           - ti,tps53676
-             # TI Dual channel DCAP+ multiphase controller TPS53679
-           - ti,tps53679
-+            # TI Dual channel DCAP+ multiphase controller TPS53685 with AMD-SVI3
-+          - ti,tps53685
-             # TI Dual channel DCAP+ multiphase controller TPS53688
-           - ti,tps53688
-             # TI DC-DC converters on PMBus
--- 
-2.25.1
+[1/1] powerpc/prom_init: Fixup missing #size-cells on PowerBook6,7
+      https://git.kernel.org/powerpc/c/7e67ef889c9ab7246547db73d524459f47403a77
 
+Thanks
 
