@@ -1,551 +1,324 @@
-Return-Path: <devicetree+bounces-157537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CCFBA60FDC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 12:22:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F691A60FF2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 12:27:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02306461946
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 11:22:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76061461D44
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 11:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FA21FECAE;
-	Fri, 14 Mar 2025 11:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57F61FDA66;
+	Fri, 14 Mar 2025 11:27:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="XiQZMOOT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2611B1FE467;
-	Fri, 14 Mar 2025 11:21:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39FBF15D1;
+	Fri, 14 Mar 2025 11:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741951290; cv=none; b=fGseb+OdrOiEYhHvm1L7pbrvZ5QCgnBl4qpl4cPP/qNm1yc10f5d2S3zcrDPl0FOStQcdtly3HXJ7AZn/a+pCajOPqz0EHi5hfXLXkhSn2/+UM1uP26B202uYmkPiv/3ZGL+uQbUipM6oVrHQO1VsJh1kQ8g894t/LIIQb939pE=
+	t=1741951662; cv=none; b=Ex0EB/lHFPdTTmQbA+bfIuxo1/xX866KoUU2AQ3nNYcxx5eoSzwr2Q/DzjB/VZVHiLpXml96Hkhi9tZXsPjn7Ovrxy7kdYE0Dprp6u1tq/lmw+4Cs4X3JUY+jCqgjm+xtlquU6JZBUoaZoOfy7R5W3V/E2k3r047JS+woA3QB38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741951290; c=relaxed/simple;
-	bh=k53ec9B0a9McaaRAWmhtmQgtdVim1GMb5OGjvj/rYak=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tpyyNez5Nn7pvSUMhI3q7jNMZxFqti8xEbyDVuaG+gjko+GDtO7AOQsMgIu+vZ5konUcphngwTM4ywNvN9/OpzuHPcIrgk62/XF2rL3XnPKPMpMxof+4xpugxRH0XHh7aG18B5qIKKQ4ZCudu6I/6Gizs0i2NM03yi1LxRfFMOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Fri, 14 Mar
- 2025 19:21:14 +0800
-Received: from aspeed-fw03.aspeedtech.com (192.168.10.13) by
- TWMBX01.aspeed.com (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12
- via Frontend Transport; Fri, 14 Mar 2025 19:21:14 +0800
-From: Kevin Chen <kevin_chen@aspeedtech.com>
-To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
-	<derek.kiernan@amd.com>, <dragan.cvetic@amd.com>, <arnd@arndb.de>,
-	<gregkh@linuxfoundation.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>
-CC: Kevin Chen <kevin_chen@aspeedtech.com>
-Subject: [PATCH v4 3/3] soc: aspeed: lpc-pcc: Add PCC controller support
-Date: Fri, 14 Mar 2025 19:21:13 +0800
-Message-ID: <20250314112113.953238-4-kevin_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250314112113.953238-1-kevin_chen@aspeedtech.com>
-References: <20250314112113.953238-1-kevin_chen@aspeedtech.com>
+	s=arc-20240116; t=1741951662; c=relaxed/simple;
+	bh=L7Um1I8Msluzb0uZkx3750FoiHAtd1SDuJ+0Nic5UrQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YwAKPYTBGwL2NHUaTthghB1MZIwpMI6ZVuHghPtFdzjCZZsOOzIsDWtJ51CBjeBauL6pXoKtefRYQtho27WQMSxxH8GLMyTStMbJoLJYzo1qluJmTqO4CMBQ/Jl8MDMRdTzl0pdXQ1ybshztxUDEzGLcIxCVRDCIDmLQn/PpZfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=XiQZMOOT; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References
+	:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=IzErEEXjP9wHDpuXG5T9fNqwqhH1Bc4+cjGjLWkR/5M=; b=XiQZMOOTTiM21XqiQ85KdjwEgF
+	g3KBB6kgSn0pDnHJDLRJ+fOg7n47rdilwlOGcYP/mMMod7bgoTQzt+vzVGRykyBlrIfMf3YHpkzkX
+	Q7mme0qTvaS3Kd/3bjGLyYbOFfo9RyzPbZ4C5s87u1MFNpy4mE3EayZ9vWGcmsJwk0/k=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:65415 helo=[192.168.0.218])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1tt3CR-00Dg0Y-OG; Fri, 14 Mar 2025 12:27:36 +0100
+Message-ID: <8a16c018-8466-4dea-8f1e-e8a65e3ed950@emfend.at>
+Date: Fri, 14 Mar 2025 12:27:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] leds: tps6131x: add support for Texas Instruments
+ TPS6131X flash LED driver
+To: Lee Jones <lee@kernel.org>
+Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ bsp-development.geo@leica-geosystems.com
+References: <20250228-leds-tps6131x-v1-0-d1071d90f9ea@emfend.at>
+ <20250228-leds-tps6131x-v1-2-d1071d90f9ea@emfend.at>
+ <20250310144946.GH8350@google.com>
+ <def0351b-c037-47c8-b395-d64cfca7ae25@emfend.at>
+ <20250314105257.GD3890718@google.com>
+Content-Language: de-DE
+From: Matthias Fend <matthias.fend@emfend.at>
+In-Reply-To: <20250314105257.GD3890718@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
-Add LPC PCC controller driver to support POST code capture.
+Hi Lee,
 
-Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
----
- drivers/misc/Kconfig          |  10 +
- drivers/misc/Makefile         |   1 +
- drivers/misc/aspeed-lpc-pcc.c | 437 ++++++++++++++++++++++++++++++++++
- 3 files changed, 448 insertions(+)
- create mode 100644 drivers/misc/aspeed-lpc-pcc.c
+Am 14.03.2025 um 11:52 schrieb Lee Jones:
+> On Fri, 14 Mar 2025, Matthias Fend wrote:
+> 
+>> Hi Lee,
+>>
+>> thanks a lot for your feedback!
+>>
+>> Am 10.03.2025 um 15:49 schrieb Lee Jones:
+>>> On Fri, 28 Feb 2025, Matthias Fend wrote:
+>>>
+>>>> The TPS61310/TPS61311 is a flash LED driver with I2C interface. Its power
+>>>> stage is capable of supplying a maximum total current of roughly 1500mA.
+>>>> The TPS6131x provides three constant-current sinks, capable of sinking up
+>>>> to 2 × 400mA (LED1 and LED3) and 800mA (LED2) in flash mode. In torch mode
+>>>> each sink (LED1, LED2, LED3) supports currents up to 175mA.
+>>>>
+>>>> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+>>>> ---
+>>>>    MAINTAINERS                        |   7 +
+>>>>    drivers/leds/flash/Kconfig         |  11 +
+>>>>    drivers/leds/flash/Makefile        |   1 +
+>>>>    drivers/leds/flash/leds-tps6131x.c | 798 +++++++++++++++++++++++++++++++++++++
+>>>>    4 files changed, 817 insertions(+)
+> 
+> [...]
+> 
+>>>> +static int tps6131x_led_class_setup(struct tps6131x *tps6131x)
+>>>> +{
+>>>> +	struct led_classdev *led_cdev;
+>>>> +	struct led_flash_setting *setting;
+>>>> +	struct led_init_data init_data = {};
+>>>> +	static const struct tps6131x_timer_config *timer_config;
+>>>> +	int ret;
+>>>> +
+>>>> +	tps6131x->fled_cdev.ops = &flash_ops;
+>>>> +
+>>>> +	setting = &tps6131x->fled_cdev.timeout;
+>>>> +	timer_config = tps6131x_find_closest_timer_config(0);
+>>>> +	setting->min = timer_config->time_us;
+>>>> +	setting->max = tps6131x->max_timeout_us;
+>>>> +	setting->step = 1; /* Only some specific time periods are supported. No fixed step size. */
+>>>> +	setting->val = setting->min;
+>>>> +
+>>>> +	setting = &tps6131x->fled_cdev.brightness;
+>>>> +	setting->min = tps6131x->step_flash_current_ma;
+>>>> +	setting->max = tps6131x->max_flash_current_ma;
+>>>> +	setting->step = tps6131x->step_flash_current_ma;
+>>>> +	setting->val = setting->min;
+>>>> +
+>>>> +	led_cdev = &tps6131x->fled_cdev.led_cdev;
+>>>> +	led_cdev->brightness_set_blocking = tps6131x_brightness_set;
+>>>> +	led_cdev->max_brightness = tps6131x->max_torch_current_ma;
+>>>> +	led_cdev->flags |= LED_DEV_CAP_FLASH;
+>>>> +
+>>>> +	init_data.fwnode = tps6131x->led_node;
+>>>> +	init_data.devicename = NULL;
+>>>> +	init_data.default_label = NULL;
+>>>> +	init_data.devname_mandatory = false;
+>>>> +
+>>>> +	ret = devm_led_classdev_flash_register_ext(&tps6131x->client->dev, &tps6131x->fled_cdev,
+>>>> +						   &init_data);
+>>>> +	if (ret)
+>>>> +		return ret;
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +#if IS_ENABLED(CONFIG_V4L2_FLASH_LED_CLASS)
+>>>
+>>> Not keen on #ifery in C files.
+>>>
+>>> Can you use is_defined() and return early instead?
+>>>
+>>> I see that there is a precedent for this already. :(
+>>
+>> Me neither, but since it is done this way in about 9 out of 10 flash
+>> controllers, I wanted to continue doing it consistently.
+>> But since the required v4l2_flash_* functions are also available as dummies
+>> if this option is not activated, I could do it like this:
+>>
+>> if (!IS_BUILTIN(CONFIG_V4L2_FLASH_LED_CLASS))
+>>    return 0;
+>>
+>> Would you prefer this solution?
+> 
+> I would, yes.  Thank you.
 
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 56bc72c7ce4a..35c1d2e0c271 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -50,6 +50,16 @@ config AD525X_DPOT_SPI
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called ad525x_dpot-spi.
- 
-+config ASPEED_LPC_PCC
-+	tristate "Aspeed Post Code Capture support"
-+	select REGMAP
-+	select MFD_SYSCON
-+	default ARCH_ASPEED
-+	help
-+	  Provides a driver to control the LPC PCC interface,
-+	  allowing the BMC to capture post code written by the
-+	  the host to an arbitrary LPC I/O port.
-+
- config DUMMY_IRQ
- 	tristate "Dummy IRQ handler"
- 	help
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 545aad06d088..4762da7804bf 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -8,6 +8,7 @@ obj-$(CONFIG_IBMVMC)		+= ibmvmc.o
- obj-$(CONFIG_AD525X_DPOT)	+= ad525x_dpot.o
- obj-$(CONFIG_AD525X_DPOT_I2C)	+= ad525x_dpot-i2c.o
- obj-$(CONFIG_AD525X_DPOT_SPI)	+= ad525x_dpot-spi.o
-+obj-$(CONFIG_ASPEED_LPC_PCC)	+= aspeed-lpc-pcc.o
- obj-$(CONFIG_ATMEL_SSC)		+= atmel-ssc.o
- obj-$(CONFIG_DUMMY_IRQ)		+= dummy-irq.o
- obj-$(CONFIG_ICS932S401)	+= ics932s401.o
-diff --git a/drivers/misc/aspeed-lpc-pcc.c b/drivers/misc/aspeed-lpc-pcc.c
-new file mode 100644
-index 000000000000..61c76cb176bc
---- /dev/null
-+++ b/drivers/misc/aspeed-lpc-pcc.c
-@@ -0,0 +1,437 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) ASPEED Technology Inc.
-+ */
-+#include <linux/bitops.h>
-+#include <linux/bitfield.h>
-+#include <linux/interrupt.h>
-+#include <linux/fs.h>
-+#include <linux/kfifo.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/miscdevice.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/of_address.h>
-+#include <linux/platform_device.h>
-+#include <linux/poll.h>
-+#include <linux/regmap.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/sizes.h>
-+
-+#define DEVICE_NAME "aspeed-lpc-pcc"
-+
-+static DEFINE_IDA(aspeed_pcc_ida);
-+
-+#define HICR5	0x80
-+#define HICR5_EN_SNP0W			BIT(0)
-+#define HICR5_EN_SNP1W			BIT(2)
-+#define HICR6	0x084
-+#define   HICR6_EN2BMODE		BIT(19)
-+#define SNPWADR	0x090
-+#define PCCR6	0x0c4
-+#define   PCCR6_DMA_CUR_ADDR		GENMASK(27, 0)
-+#define PCCR4	0x0d0
-+#define   PCCR4_DMA_ADDRL_MASK		GENMASK(31, 0)
-+#define   PCCR4_DMA_ADDRL_SHIFT		0
-+#define PCCR5	0x0d4
-+#define   PCCR5_DMA_ADDRH_MASK		GENMASK(27, 24)
-+#define   PCCR5_DMA_ADDRH_SHIFT		24
-+#define   PCCR5_DMA_LEN_MASK		GENMASK(23, 0)
-+#define   PCCR5_DMA_LEN_SHIFT		0
-+#define HICRB	0x100
-+#define   HICRB_ENSNP0D			BIT(14)
-+#define   HICRB_ENSNP1D			BIT(15)
-+#define PCCR0	0x130
-+#define   PCCR0_EN_DMA_INT		BIT(31)
-+#define   PCCR0_EN_DMA_MODE		BIT(14)
-+#define   PCCR0_ADDR_SEL_MASK		GENMASK(13, 12)
-+#define   PCCR0_ADDR_SEL_SHIFT		12
-+#define   PCCR0_RX_TRIG_LVL_MASK	GENMASK(10, 8)
-+#define   PCCR0_RX_TRIG_LVL_SHIFT	8
-+#define   PCCR0_CLR_RX_FIFO		BIT(7)
-+#define   PCCR0_MODE_SEL_MASK		GENMASK(5, 4)
-+#define   PCCR0_MODE_SEL_SHIFT		4
-+#define   PCCR0_EN_RX_TMOUT_INT		BIT(2)
-+#define   PCCR0_EN_RX_AVAIL_INT		BIT(1)
-+#define   PCCR0_EN			BIT(0)
-+#define PCCR1	0x134
-+#define   PCCR1_BASE_ADDR_MASK		GENMASK(15, 0)
-+#define   PCCR1_BASE_ADDR_SHIFT		0
-+#define   PCCR1_DONT_CARE_BITS_MASK	GENMASK(21, 16)
-+#define   PCCR1_DONT_CARE_BITS_SHIFT	16
-+#define PCCR2	0x138
-+#define   PCCR2_INT_STATUS_PATTERN_B	BIT(16)
-+#define   PCCR2_INT_STATUS_PATTERN_A	BIT(8)
-+#define   PCCR2_INT_STATUS_DMA_DONE	BIT(4)
-+#define   PCCR2_INT_STATUS_DATA_RDY	PCCR2_INT_STATUS_DMA_DONE
-+#define   PCCR2_INT_STATUS_RX_OVER	BIT(3)
-+#define   PCCR2_INT_STATUS_RX_TMOUT	BIT(2)
-+#define   PCCR2_INT_STATUS_RX_AVAIL	BIT(1)
-+#define PCCR3	0x13c
-+#define   PCCR3_FIFO_DATA_MASK		GENMASK(7, 0)
-+
-+#define PCC_DMA_BUFSZ	(256 * SZ_1K)
-+
-+enum pcc_fifo_threshold {
-+	PCC_FIFO_THR_1_BYTE,
-+	PCC_FIFO_THR_1_EIGHTH,
-+	PCC_FIFO_THR_2_EIGHTH,
-+	PCC_FIFO_THR_3_EIGHTH,
-+	PCC_FIFO_THR_4_EIGHTH,
-+	PCC_FIFO_THR_5_EIGHTH,
-+	PCC_FIFO_THR_6_EIGHTH,
-+	PCC_FIFO_THR_7_EIGHTH,
-+	PCC_FIFO_THR_8_EIGHTH,
-+};
-+
-+enum pcc_record_mode {
-+	PCC_REC_1B,
-+	PCC_REC_2B,
-+	PCC_REC_4B,
-+	PCC_REC_FULL,
-+};
-+
-+enum pcc_port_hbits_select {
-+	PCC_PORT_HBITS_SEL_NONE,
-+	PCC_PORT_HBITS_SEL_45,
-+	PCC_PORT_HBITS_SEL_67,
-+	PCC_PORT_HBITS_SEL_89,
-+};
-+
-+struct aspeed_pcc_dma {
-+	uint32_t rptr;
-+	uint8_t *virt;
-+	dma_addr_t addr;
-+	uint32_t size;
-+};
-+
-+struct aspeed_pcc_ctrl {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	int irq;
-+	uint32_t port;
-+	struct aspeed_pcc_dma dma;
-+	struct kfifo fifo;
-+	wait_queue_head_t wq;
-+	struct miscdevice mdev;
-+	int mdev_id;
-+};
-+
-+static inline bool is_valid_rec_mode(uint32_t mode)
-+{
-+	return (mode > PCC_REC_FULL) ? false : true;
-+}
-+
-+static inline bool is_valid_high_bits_select(uint32_t sel)
-+{
-+	return (sel > PCC_PORT_HBITS_SEL_89) ? false : true;
-+}
-+
-+static ssize_t aspeed_pcc_file_read(struct file *file, char __user *buffer,
-+				    size_t count, loff_t *ppos)
-+{
-+	int rc;
-+	unsigned int copied;
-+	struct aspeed_pcc_ctrl *pcc = container_of(file->private_data,
-+					      struct aspeed_pcc_ctrl,
-+					      mdev);
-+
-+	if (kfifo_is_empty(&pcc->fifo)) {
-+		if (file->f_flags & O_NONBLOCK)
-+			return -EAGAIN;
-+
-+		rc = wait_event_interruptible(pcc->wq,
-+					      !kfifo_is_empty(&pcc->fifo));
-+		if (rc == -ERESTARTSYS)
-+			return -EINTR;
-+	}
-+
-+	rc = kfifo_to_user(&pcc->fifo, buffer, count, &copied);
-+
-+	return rc ? rc : copied;
-+}
-+
-+static __poll_t aspeed_pcc_file_poll(struct file *file,
-+				     struct poll_table_struct *pt)
-+{
-+	struct aspeed_pcc_ctrl *pcc = container_of(file->private_data,
-+					      struct aspeed_pcc_ctrl,
-+					      mdev);
-+
-+	poll_wait(file, &pcc->wq, pt);
-+
-+	return !kfifo_is_empty(&pcc->fifo) ? POLLIN : 0;
-+}
-+
-+static const struct file_operations pcc_fops = {
-+	.owner = THIS_MODULE,
-+	.read = aspeed_pcc_file_read,
-+	.poll = aspeed_pcc_file_poll,
-+};
-+
-+static irqreturn_t aspeed_pcc_dma_isr(int irq, void *arg)
-+{
-+	uint32_t reg, rptr, wptr;
-+	struct aspeed_pcc_ctrl *pcc = (struct aspeed_pcc_ctrl *)arg;
-+	struct kfifo *fifo = &pcc->fifo;
-+
-+	regmap_write_bits(pcc->regmap, PCCR2, PCCR2_INT_STATUS_DMA_DONE, PCCR2_INT_STATUS_DMA_DONE);
-+
-+	regmap_read(pcc->regmap, PCCR6, &reg);
-+	wptr = (reg & PCCR6_DMA_CUR_ADDR) - (pcc->dma.addr & PCCR6_DMA_CUR_ADDR);
-+	rptr = pcc->dma.rptr;
-+
-+	do {
-+		if (kfifo_is_full(fifo))
-+			kfifo_skip(fifo);
-+
-+		kfifo_put(fifo, pcc->dma.virt[rptr]);
-+
-+		rptr = (rptr + 1) % pcc->dma.size;
-+	} while (rptr != wptr);
-+
-+	pcc->dma.rptr = rptr;
-+
-+	wake_up_interruptible(&pcc->wq);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t aspeed_pcc_isr(int irq, void *arg)
-+{
-+	uint32_t sts;
-+	struct aspeed_pcc_ctrl *pcc = (struct aspeed_pcc_ctrl *)arg;
-+
-+	regmap_read(pcc->regmap, PCCR2, &sts);
-+
-+	if (!(sts & (PCCR2_INT_STATUS_RX_TMOUT |
-+		     PCCR2_INT_STATUS_RX_AVAIL |
-+		     PCCR2_INT_STATUS_DMA_DONE)))
-+		return IRQ_NONE;
-+
-+	return aspeed_pcc_dma_isr(irq, arg);
-+}
-+
-+/*
-+ * A2600-15 AP note
-+ *
-+ * SW workaround to prevent generating Non-Fatal-Error (NFE)
-+ * eSPI response when PCC is used for port I/O byte snooping
-+ * over eSPI.
-+ */
-+static int aspeed_a2600_15(struct aspeed_pcc_ctrl *pcc, struct device *dev)
-+{
-+	u32 hicr5_en, hicrb_en;
-+
-+	/* abort if snoop is enabled */
-+	regmap_read(pcc->regmap, HICR5, &hicr5_en);
-+	if (hicr5_en & (HICR5_EN_SNP0W | HICR5_EN_SNP1W)) {
-+		dev_err(dev, "A2600-15 should be applied with snoop disabled\n");
-+		return -EPERM;
-+	}
-+
-+	/* set SNPWADR of snoop device */
-+	regmap_write(pcc->regmap, SNPWADR, pcc->port | ((pcc->port + 2) << 16));
-+
-+	/* set HICRB[15:14]=11b to enable ACCEPT response for SNPWADR */
-+	hicrb_en = HICRB_ENSNP0D | HICRB_ENSNP1D;
-+	regmap_update_bits(pcc->regmap, HICRB, hicrb_en, hicrb_en);
-+
-+	/* set HICR6[19] to extend SNPWADR to 2x range */
-+	regmap_update_bits(pcc->regmap, HICR6, HICR6_EN2BMODE, HICR6_EN2BMODE);
-+
-+	return 0;
-+}
-+
-+static int aspeed_pcc_enable(struct aspeed_pcc_ctrl *pcc, struct device *dev)
-+{
-+	int rc;
-+
-+	rc = aspeed_a2600_15(pcc, dev);
-+	if (rc)
-+		return rc;
-+
-+	/* record mode: Set 2-Byte mode. */
-+	regmap_update_bits(pcc->regmap, PCCR0,
-+			   PCCR0_MODE_SEL_MASK,
-+			   PCC_REC_2B << PCCR0_MODE_SEL_SHIFT);
-+
-+	/* port address */
-+	regmap_update_bits(pcc->regmap, PCCR1,
-+			   PCCR1_BASE_ADDR_MASK,
-+			   pcc->port << PCCR1_BASE_ADDR_SHIFT);
-+
-+	/* Set address high bits selection to 0b01 for address bit[5:4] */
-+	regmap_update_bits(pcc->regmap, PCCR0,
-+			   PCCR0_ADDR_SEL_MASK,
-+			   PCC_PORT_HBITS_SEL_45 << PCCR0_ADDR_SEL_SHIFT);
-+
-+	/* Set LPC don't care address to 0x3 for port 80~83h */
-+	regmap_update_bits(pcc->regmap, PCCR1,
-+			   PCCR1_DONT_CARE_BITS_MASK,
-+			   0x3 << PCCR1_DONT_CARE_BITS_SHIFT);
-+
-+	/* set DMA ring buffer size and enable interrupts */
-+	regmap_write(pcc->regmap, PCCR4, pcc->dma.addr & 0xffffffff);
-+#ifdef CONFIG_ARM64
-+	regmap_update_bits(pcc->regmap, PCCR5, PCCR5_DMA_ADDRH_MASK,
-+			   (pcc->dma.addr >> 32) << PCCR5_DMA_ADDRH_SHIFT);
-+#endif
-+	regmap_update_bits(pcc->regmap, PCCR5, PCCR5_DMA_LEN_MASK,
-+			   (pcc->dma.size / 4) << PCCR5_DMA_LEN_SHIFT);
-+	regmap_update_bits(pcc->regmap, PCCR0,
-+			   PCCR0_EN_DMA_INT | PCCR0_EN_DMA_MODE,
-+			   PCCR0_EN_DMA_INT | PCCR0_EN_DMA_MODE);
-+
-+	regmap_update_bits(pcc->regmap, PCCR0, PCCR0_EN, PCCR0_EN);
-+
-+	return 0;
-+}
-+
-+static int aspeed_pcc_disable(struct aspeed_pcc_ctrl *pcc)
-+{
-+	/* Disable PCC and DMA Mode for safety */
-+	regmap_update_bits(pcc->regmap, PCCR0, PCCR0_EN |  PCCR0_EN_DMA_MODE, 0);
-+
-+	/* Clear Rx FIFO. */
-+	regmap_update_bits(pcc->regmap, PCCR0, PCCR0_CLR_RX_FIFO, 1);
-+
-+	/* Clear All interrupts status. */
-+	regmap_write(pcc->regmap, PCCR2,
-+		     PCCR2_INT_STATUS_RX_OVER | PCCR2_INT_STATUS_DMA_DONE |
-+		     PCCR2_INT_STATUS_PATTERN_A | PCCR2_INT_STATUS_PATTERN_B);
-+
-+	return 0;
-+}
-+
-+static int aspeed_pcc_probe(struct platform_device *pdev)
-+{
-+	int rc;
-+	struct aspeed_pcc_ctrl *pcc;
-+	struct device *dev = &pdev->dev;
-+	uint32_t fifo_size = PAGE_SIZE;
-+
-+	pcc = devm_kzalloc(dev, sizeof(*pcc), GFP_KERNEL);
-+	if (!pcc)
-+		return -ENOMEM;
-+
-+	pcc->regmap = syscon_node_to_regmap(dev->parent->of_node);
-+	if (IS_ERR(pcc->regmap))
-+		return dev_err_probe(dev, PTR_ERR(pcc->regmap), "Couldn't get regmap\n");
-+
-+	rc = of_property_read_u32(dev->of_node, "pcc-ports", &pcc->port);
-+	if (rc) {
-+		dev_err(dev, "no pcc ports configured\n");
-+		return rc;
-+	}
-+
-+	rc = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-+	if (rc) {
-+		dev_err(dev, "cannot set 64-bits DMA mask\n");
-+		return rc;
-+	}
-+
-+	pcc->dma.size = PCC_DMA_BUFSZ;
-+	pcc->dma.virt = dmam_alloc_coherent(dev,
-+					    pcc->dma.size,
-+					    &pcc->dma.addr,
-+					    GFP_KERNEL);
-+	if (!pcc->dma.virt) {
-+		dev_err(dev, "cannot allocate DMA buffer\n");
-+		return -ENOMEM;
-+	}
-+
-+	fifo_size = roundup(pcc->dma.size, PAGE_SIZE);
-+	rc = kfifo_alloc(&pcc->fifo, fifo_size, GFP_KERNEL);
-+	if (rc)
-+		return rc;
-+
-+	/* Disable PCC to clean up DMA buffer before request IRQ. */
-+	rc = aspeed_pcc_disable(pcc);
-+	if (rc) {
-+		dev_err(dev, "Couldn't disable PCC\n");
-+		goto err_free_kfifo;
-+	}
-+
-+	pcc->irq = platform_get_irq(pdev, 0);
-+	if (pcc->irq < 0) {
-+		rc = pcc->irq;
-+		goto err_free_kfifo;
-+	}
-+
-+	rc = devm_request_irq(dev, pcc->irq, aspeed_pcc_isr, 0, DEVICE_NAME, pcc);
-+	if (rc < 0) {
-+		dev_err(dev, "Couldn't request IRQ %d\n", pcc->irq);
-+		goto err_free_kfifo;
-+	}
-+
-+	init_waitqueue_head(&pcc->wq);
-+
-+	pcc->mdev_id = ida_alloc(&aspeed_pcc_ida, GFP_KERNEL);
-+	if (pcc->mdev_id < 0) {
-+		dev_err(dev, "Couldn't allocate ID\n");
-+		goto err_free_kfifo;
-+	}
-+
-+	pcc->mdev.parent = dev;
-+	pcc->mdev.minor = MISC_DYNAMIC_MINOR;
-+	pcc->mdev.name = devm_kasprintf(dev, GFP_KERNEL, "%s%d", DEVICE_NAME,
-+					pcc->mdev_id);
-+	pcc->mdev.fops = &pcc_fops;
-+	rc = misc_register(&pcc->mdev);
-+	if (rc) {
-+		dev_err(dev, "Couldn't register misc device\n");
-+		goto err_free_ida;
-+	}
-+
-+	rc = aspeed_pcc_enable(pcc, dev);
-+	if (rc) {
-+		dev_err(dev, "Couldn't enable PCC\n");
-+		goto err_dereg_mdev;
-+	}
-+
-+	dev_set_drvdata(dev, pcc);
-+
-+	return 0;
-+
-+err_dereg_mdev:
-+	misc_deregister(&pcc->mdev);
-+
-+err_free_ida:
-+	ida_free(&aspeed_pcc_ida, pcc->mdev_id);
-+
-+err_free_kfifo:
-+	kfifo_free(&pcc->fifo);
-+
-+	return rc;
-+}
-+
-+static void aspeed_pcc_remove(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct aspeed_pcc_ctrl *pcc = dev_get_drvdata(dev);
-+
-+	kfifo_free(&pcc->fifo);
-+	ida_free(&aspeed_pcc_ida, pcc->mdev_id);
-+	misc_deregister(&pcc->mdev);
-+}
-+
-+static const struct of_device_id aspeed_pcc_table[] = {
-+	{ .compatible = "aspeed,ast2600-lpc-pcc" },
-+};
-+
-+static struct platform_driver aspeed_pcc_driver = {
-+	.driver = {
-+		.name = "aspeed-pcc",
-+		.of_match_table = aspeed_pcc_table,
-+	},
-+	.probe = aspeed_pcc_probe,
-+	.remove = aspeed_pcc_remove,
-+};
-+
-+module_platform_driver(aspeed_pcc_driver);
-+
-+MODULE_AUTHOR("Chia-Wei Wang <chiawei_wang@aspeedtech.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Driver for Aspeed Post Code Capture");
--- 
-2.34.1
+Sure, then I'll change that.
+
+> 
+>>>> +static int tps6131x_flash_external_strobe_set(struct v4l2_flash *v4l2_flash, bool enable)
+>>>> +{
+>>>> +	struct led_classdev_flash *fled_cdev = v4l2_flash->fled_cdev;
+>>>> +	struct tps6131x *tps6131x = fled_cdev_to_tps6131x(fled_cdev);
+>>>> +
+>>>> +	guard(mutex)(&tps6131x->lock);
+>>>> +
+>>> /> +	return tps6131x_set_mode(tps6131x, enable ? TPS6131X_MODE_FLASH : TPS6131X_MODE_SHUTDOWN,
+>>>> +				 false);
+>>>> +}
+>>>> +
+>>>> +static const struct v4l2_flash_ops tps6131x_v4l2_flash_ops = {
+>>>> +	.external_strobe_set = tps6131x_flash_external_strobe_set,
+>>>> +};
+>>>> +
+>>>> +static int tps6131x_v4l2_setup(struct tps6131x *tps6131x)
+>>>> +{
+>>>> +	struct v4l2_flash_config v4l2_cfg = { 0 };
+>>>> +	struct led_flash_setting *intensity = &v4l2_cfg.intensity;
+>>>> +
+>>>> +	intensity->min = tps6131x->step_torch_current_ma;
+>>>> +	intensity->max = tps6131x->max_torch_current_ma;
+>>>> +	intensity->step = tps6131x->step_torch_current_ma;
+>>>> +	intensity->val = intensity->min;
+>>>> +
+>>>> +	strscpy(v4l2_cfg.dev_name, tps6131x->fled_cdev.led_cdev.dev->kobj.name,
+>>>
+>>> tps6131x->client->dev?
+>>
+>> Do you mean the name should be taken from the I2C device?
+>> The current name, for example, is 'white:flash-0', while the I2C device name
+>> would be '4-0033'. So I think the current version is appropriate, don't you
+>> think?
+> 
+> No, I'm implying that:
+> 
+>    tps6131x->client->dev == tps6131x->fled_cdev.led_cdev.dev
+> 
+> ... and that the former is shorter / neater.
+
+Hmm. That's interesting. I thought these were two different devices, 
+which seems to be actually the case for me. Hence the different names in 
+the kobj.
+Are the devices really supposed to be identical?
+
+> 
+>>>> +		sizeof(v4l2_cfg.dev_name));
+>>>> +
+>>>> +	v4l2_cfg.has_external_strobe = true;
+>>>> +	v4l2_cfg.flash_faults = LED_FAULT_TIMEOUT | LED_FAULT_OVER_TEMPERATURE |
+>>>> +				LED_FAULT_SHORT_CIRCUIT | LED_FAULT_UNDER_VOLTAGE |
+>>>> +				LED_FAULT_LED_OVER_TEMPERATURE;
+>>>> +
+>>>> +	tps6131x->v4l2_flash = v4l2_flash_init(&tps6131x->client->dev, tps6131x->led_node,
+>>>> +					       &tps6131x->fled_cdev, &tps6131x_v4l2_flash_ops,
+>>>> +					       &v4l2_cfg);
+>>>> +	if (IS_ERR(tps6131x->v4l2_flash)) {
+>>>> +		dev_err(&tps6131x->client->dev, "v4l2_flash_init failed\n");
+>>>
+>>> "Failed to initialise V4L2 flash LED" ?
+>>
+>> ACK
+>>
+>>>
+>>>> +		return PTR_ERR(tps6131x->v4l2_flash);
+>>>> +	}
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +#else
+>>>> +
+>>>> +static int tps6131x_v4l2_setup(struct tps6131x *tps6131x)
+>>>> +{
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +#endif
+>>>> +
+>>>> +static int tps6131x_probe(struct i2c_client *client)
+>>>> +{
+>>>> +	struct tps6131x *tps6131x;
+>>>> +	int ret;
+>>>> +
+>>>> +	tps6131x = devm_kzalloc(&client->dev, sizeof(*tps6131x), GFP_KERNEL);
+>>>> +	if (!tps6131x)
+>>>> +		return -ENOMEM;
+>>>> +
+>>>> +	tps6131x->client = client;
+>>>
+>>> What are you planning on using client for?
+>>>
+>>>> +	i2c_set_clientdata(client, tps6131x);
+>>>
+>>> How are you going to _get_ this without client?
+>>
+>> Maybe I didn't understand the question correctly, but in tps6131x_remove() I
+>> get the device data via the client.
+> 
+> Right, which uses 'client' to obtain it, so you don't need to save 'client'.
+
+Okay, now I understand. Since I'm now saving 'dev' instead of 'client,' 
+as you suggested, that's no longer an issue.
+
+> 
+>>> Why not save dev and reduce the amount of dereferencing levels required.
+>>
+>> Absolutely. Good idea.
+>>
+>>>
+>>>> +	mutex_init(&tps6131x->lock);
+>>>> +	INIT_DELAYED_WORK(&tps6131x->torch_refresh_work, tps6131x_torch_refresh_handler);
+>>>> +
+>>>> +	ret = tps6131x_parse_node(tps6131x);
+>>>> +	if (ret)
+>>>> +		return -ENODEV;
+>>>> +
+>>>> +	tps6131x->regmap = devm_regmap_init_i2c(client, &tps6131x_regmap);
+>>>> +	if (IS_ERR(tps6131x->regmap)) {
+>>>> +		ret = PTR_ERR(tps6131x->regmap);
+>>>> +		dev_err(&client->dev, "Failed to allocate register map\n");
+>>>> +		return ret;
+>>>> +	}
+>>>> +
+>>>> +	tps6131x->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
+>>>> +	ret = tps6131x_reset_chip(tps6131x);
+>>>> +	if (ret)
+>>>> +		return dev_err_probe(&client->dev, ret, "Failed to reset LED controller\n");
+>>>
+>>> How do you manage the optional part?
+>>
+>> If there is a reset line, then tps6131x_reset_chip() uses it to reset the
+>> chip. If there is none, the software reset (via an I2C register) is used.
+>> Therefore the reset pin can be optional.
+> 
+> Right, but didn't you just fail if one is not provided, or is that
+> accounted for in tps6131x_reset_chip()?
+
+Yes, tps6131x_reset_chip() selects the appropriate reset method 
+depending on the circumstances. Something like this:
+
+if (IS_ERR_OR_NULL(tps6131x->reset_gpio))
+   sofware reset via i2c
+else
+   hardware reset via gpio
+
+So there's no error just because the reset GPIO isn't present.
+
+Thanks
+  ~Matthias
+
+> 
 
 
