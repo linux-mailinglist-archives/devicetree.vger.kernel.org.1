@@ -1,112 +1,110 @@
-Return-Path: <devicetree+bounces-157526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB2AA60F5B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 11:54:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DAC2A60F60
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 11:54:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63EAD7ADE1F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 10:53:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51D6E16872A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 10:54:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729CF1FCFC0;
-	Fri, 14 Mar 2025 10:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ts5UoW2Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083051FCFC5;
+	Fri, 14 Mar 2025 10:54:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 096061FCFC2
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 10:53:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501811FCFDC;
+	Fri, 14 Mar 2025 10:54:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741949638; cv=none; b=eoIR+O0hQ5Kdk0zWDFEbBh2WyAecUf9XvX900NlaVvIT2iGfZDaVh3SiY3h58KSXhMKeJrkhePCuOeI6kDG5mfbd3aEB2cz4Gy/1zNqlfiE/J5LKWlma0NOc0s5y6RkpHxM927/mS7gDLRQGoNSozeSn5e/gOQwPVLmRVmhsUmw=
+	t=1741949670; cv=none; b=LCZftjNyMoEYJpzXU7O9M6WeaRRERoTjrbd1Ou5/Sq5zRbgoL1i6vUEkCZm3/PIa96H6aZWtbungwpUM8vBEdBqynCZXaUjZCMm3V7F3E3S2Fx11Ls8XbMijXO/b3p6mbaitsmhonJdFv+jBPXbYEDMOa/OSJAKPnqdMpyxkI8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741949638; c=relaxed/simple;
-	bh=TdjrUj2ENKDpO8QMmgpWcHwmqWwffwTY4fDD4PrBuM8=;
+	s=arc-20240116; t=1741949670; c=relaxed/simple;
+	bh=U7hbrn9XaN0PGMYxrHmvqv5/+Hu7RKBywzmpPmXY+0c=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CLJJEvCOes3matzO2ESBOrRZ6Rf44n23bGrk6VEvVlbkFdcZm9J3zAwLktyp+dalWSk3XBo9HjV4LKPYrUefLzZ6QMafbtCnQeMbE62ZWEjrAyHUKAZxf4ZIOlMeCK1E0nXQL9AbIwdBr7Xvc2+M8mMYxu647jO7YbjJ1BF8Gv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ts5UoW2Q; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-549b159c84cso1943996e87.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 03:53:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741949634; x=1742554434; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TdjrUj2ENKDpO8QMmgpWcHwmqWwffwTY4fDD4PrBuM8=;
-        b=ts5UoW2QyXh5vBfN5rcptPygxva1UOMQcvJJl3YF7SN3js9KkNVcC5CSs2I4yR5WEC
-         nkWFW6y354+sOI5aep1y+kapzuDq1dPCA3Vp/Rt1kd9ckl62vom5aWk8c1J9yvxHvPo6
-         /+6M1EgwyUiDAQhDFGBW7tDzrrJVPmuky6/4T1ecyG9tmk4MGyzuUgYr6S+urcCBLny5
-         Umh60qOF0XoRFlEtUjaMY1MFLsaT5BEbeuuQlF4zmzpkCaSNKFKFdUENhS/woA27wdPb
-         zKyquqR4IZwQh2Xwglpa8p3SX52ZHbk5x9+nz3JIpRtmL9TDVo/JU8hIPpkEsoRmtHsb
-         r6ng==
+	 To:Cc:Content-Type; b=hZx0F1jPqDDjdcSJBjEvf2Ub4zHpf2wyODFinhzRcHwAdEEuFUKm5sh5LZBQNkHcfOXUPH6/LQn31HUzQOpNoNDATl/9/zzjPbE0LNSKf6GPUikd6N9niTJE+9SsaYCIkIv37Ia8rLu/HXa6zwvsA5H1x4aMdnfmWyn8p2xhN+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-521b84da5e9so826527e0c.0;
+        Fri, 14 Mar 2025 03:54:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741949634; x=1742554434;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TdjrUj2ENKDpO8QMmgpWcHwmqWwffwTY4fDD4PrBuM8=;
-        b=qmqBiswjOztdN6KD9Itshuur+hsTRuUkEE6U2Ft92LcGG3YKSmXVNezOgI6qXhrIuA
-         z6o2q70TtfJ4FmI5Bvjk3O6JNJUeF+twshXD4AOzUtWdPHaGPAD/prkCDrxo3ekMyqjP
-         JNzXzIkQ+feomanmJQvuPdCjsdyO++NK4UTlmJtXN3Qtqpv5YmPHkyrYDWZn+L2Dtbev
-         fYwTPBFht+/rFqKXcY8e3LIWUy3OMjLSlBtEZ4XVB3ErGZqNDOpjfX6tbMWQGAV38mh0
-         tzqycHTzffzsfCPHpsCFlra1mRnM8Eecd2F2hcUEuw7g0PcdZc+iT9qeCEcMkP/yQFPt
-         D6jQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUW/4QnejNO984EwlcdPoQaPl4sgnLHj7T1srt3oTJ8bXmB1GDA9Jwzr2ee31kB/pE7QCGrRAJ/cCk4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw17YnsveFqprG+f+yhC/Qs36P35ZshtRv0v277J8Zx9QgHiUOi
-	YEH3mornoD27pIWvLZjSPLZn8QW2GuA7rrDCyMbiPy7np2BNMy2U6YCw35C5hYNuQiOqQQUFEkV
-	HAX20qtShEZ+HRjfqU1VspMLuJxJZfxsDqQUIIA==
-X-Gm-Gg: ASbGncs/fFRxUimNicPHDttoLVa9DQci6n5Ll78CrA4a30ZbSJ2YPZ01ssl+ywIKaZy
-	6qLg4qRklA2krVwBKoTdbxRCkR7Km3Dp8lW2ZsCR5fsYfrtFCANYJzQ3FcMsJyASmKAFuorKwGH
-	5UuBYcIqngaDrtcZx2T5Z7rNDi6y5DOescnw==
-X-Google-Smtp-Source: AGHT+IGyZcjGQVRXdmPf+HFRkYlkCyfk9cxA0ikymLJVaBdq4csHhKzWdrWNXA3EtIAdbabIZKVRbXn3G++rpQeYfIs=
-X-Received: by 2002:a05:6512:2350:b0:545:2b24:c714 with SMTP id
- 2adb3069b0e04-549c3911e6bmr776230e87.18.1741949634058; Fri, 14 Mar 2025
- 03:53:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1741949666; x=1742554466;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MwCjo8jeP1quTpwRHbPfKkc0tX1nODWz/OO30aMzMGI=;
+        b=sJMNqp4O/+/hU+bdvSEHcuq57LwlVvBIP94jck2/q0/BeZ5K6bjCjI9XpIfr9Gx3by
+         i5x4aDCbr8snvTXLNK+ZaMmFlUepLIcFhlqvEhj51OD0rg4QnqGrC7DLjYoipL1oVZ/p
+         DUW+yqTHclwvb9KpuNgECMbmn3A+XwNa40vk6iRNJU45P1bC9Ag5iiiGg/89stoGD50E
+         lfX29I6S8K+X+Ssczb3n4FQZPug7XtGGSh0UK5jG4QvzSm/LuXS1R7IdH2WjGCxtwVla
+         e1H32FYz3N3gd38iX/+h23+MWhN5XDysM9If1xUJTFQ+NepMr8JE/YDaCaTXZW+gcumk
+         o8Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCUoWFYhGCEjC8DRHz5tXJG/3BexFgtzWbz4XMG8y8GGL3Hp558YIRQbSgsqInze6McqBop8SW4rF8eD@vger.kernel.org, AJvYcCW1bj9tQJNdPNew9j2Sv2Qf9fuVePOSotaRDHw3shfPQkERe82uHRE100Omn98cmH7R+hI0CN25gg19wul0R6exJLI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjaNohmpETAsfI4JIHquKFYxg/y4IeRPnq0SScV886Sjxgd6MY
+	l5qNaPZ7MgTKzihYKHzPjzEqfEs8qZaFSjVFe52QB4KdnSLIib/SXLFBRBknLl0=
+X-Gm-Gg: ASbGnculMhPW+z8b6jCgVt1vnV/08xqcSfEqLPPBGPSL6o6DyPZcSBydum3pQyNgb8d
+	S1uHvjHToqmDRg92W3uLH6+BQwnzZdyOrrZdPzzLn5H64Gbb7AWwCfxI0yDpGLpQ8OMirH2bwy0
+	McS8xRpZk4/Oo25lq1QkdNNKXfGvHy6JcI+/e0vCvbqy2KAFrhEg9gJLWljJ4nONBKcVu+hqBH4
+	isiW5uTzqf92yRYo6FQqTj6wsh9vwJQ8d9V2ll9C0XOYOnLZHMjJVzEhg+Qgc1U5nNsr36kvyHV
+	vKRLd9b0MKpKU2ro6GgYRDgtFHVCh9KjdkFtiECe5znE+dzmTQuXrHuQl/cXNkWq+R7tdYdNa2J
+	mAhg5s0A=
+X-Google-Smtp-Source: AGHT+IEXYPtEjWnszTKKYYF3BxOuhlLMQOjoW7Uq1O4vlKsfE/HKT4C6ZtsVomDWBHd292pTY2/WAQ==
+X-Received: by 2002:a05:6122:659b:b0:520:420a:a07a with SMTP id 71dfb90a1353d-524499f5a44mr855536e0c.8.1741949666373;
+        Fri, 14 Mar 2025 03:54:26 -0700 (PDT)
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5243a5d23f5sm569235e0c.27.2025.03.14.03.54.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Mar 2025 03:54:26 -0700 (PDT)
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-86cce5dac90so861968241.0;
+        Fri, 14 Mar 2025 03:54:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUXGHRvPzu8DphFzDU6iUMCkEYTPY9zcsQSe1S+zgbOkbV/WZ3C/qqYJepx4SluUKXyUqJ0/fByCx19Y+E3pfqcv0w=@vger.kernel.org, AJvYcCWENdacYOhuoNeGV2+y+8lldBCZt+8SGoqae8uWELZPEj02ZXzU4gbOQwyfKYyr1FUXXittFDdPD8Z+@vger.kernel.org
+X-Received: by 2002:a05:6102:5122:b0:4c1:a2b4:aa0c with SMTP id
+ ada2fe7eead31-4c3831470d6mr839350137.10.1741949665825; Fri, 14 Mar 2025
+ 03:54:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250313-dev-adp5589-fw-v1-0-20e80d4bd4ea@analog.com> <20250313-dev-adp5589-fw-v1-7-20e80d4bd4ea@analog.com>
-In-Reply-To: <20250313-dev-adp5589-fw-v1-7-20e80d4bd4ea@analog.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 14 Mar 2025 11:53:42 +0100
-X-Gm-Features: AQ5f1Jos35lQGGapvP68CdJghmgF62TRmPj48uDq9_6LrGBWABanTI3P7iIbNwU
-Message-ID: <CACRpkdZd1b-D76n2oYMwg79BewV70FGaNcxbYfq1GDGOHm_BDQ@mail.gmail.com>
-Subject: Re: [PATCH 07/18] gpio: adp5585: add support for the ad5589 expander
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+References: <20250309184326.75452-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250309184326.75452-1-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 14 Mar 2025 11:54:14 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVnGgHXykkiR125EjpE5jPar7HfJWQbtWsAaWdBQPRqxQ@mail.gmail.com>
+X-Gm-Features: AQ5f1JoFE8Mog7HjKPJ0tSH5i4f_9Cw6r0mpj-YuUh4RZB_uPbKhlc91k-taRzs
+Message-ID: <CAMuHMdVnGgHXykkiR125EjpE5jPar7HfJWQbtWsAaWdBQPRqxQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Remove undocumented compatible micron,mt25qu512a
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Liu Ying <victor.liu@nxp.com>
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 13, 2025 at 3:19=E2=80=AFPM Nuno S=C3=A1 via B4 Relay
-<devnull+nuno.sa.analog.com@kernel.org> wrote:
-
-> From: Nuno S=C3=A1 <nuno.sa@analog.com>
+On Sun, 9 Mar 2025 at 19:43, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Remove undocumented compatible micron,mt25qu512a.
 >
-> Support the adp5589 I/O expander which supports up to 19 pins. We need
-> to add a chip_info based struct since accessing register "banks"
-> and "bits" differs between devices.
+> This fixes the dtbs warning: failed to match any schema with compatible:
+> ['micron,mt25qu512a', 'jedec,spi-nor']
 >
-> Also some register addresses are different.
->
-> Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.16.
 
-Yours,
-Linus Walleij
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
