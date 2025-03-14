@@ -1,206 +1,109 @@
-Return-Path: <devicetree+bounces-157610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E258A615C2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 17:07:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 767AEA61604
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 17:16:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5365D175928
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 16:07:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 332AB7AA7AD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 16:14:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAFF1202970;
-	Fri, 14 Mar 2025 16:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FFAF201032;
+	Fri, 14 Mar 2025 16:15:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YRd5c9m5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC8D1339A4;
-	Fri, 14 Mar 2025 16:07:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1F712B63;
+	Fri, 14 Mar 2025 16:15:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741968459; cv=none; b=A4x2EJjUDdwui+0sVn3W8w/xZNMUBqmP0Nqx6OsaFGhqSLzLgi75o5OYqn++4g42vUCC27m1iSUXVQ429iFvKVUq3p9H5hryXjPHxmhRIcNYjdS5DAusvYADRO3JkW3Jaw2k8sEehvpPPHduSsc3EwKZPJiVxO1eghgAp1/5KGk=
+	t=1741968953; cv=none; b=kCiPxG3fto8w+jZtBm+vwZJ+3X6s9c35wQlSo8bJ3feEz9Iu5mRYoe0Jb6VsFr9tNlsBz3FudQ48C2YHMC8Uu3QHV4qoCJCRY0ETcRl81UshjWk/NFY8W+2nOVhvxVR+ELKgA7a5IjWgir7UT1e082W3U2Hg8eBjJIX864BDXL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741968459; c=relaxed/simple;
-	bh=m8K2glnEbYKUqB49ZcnEwTQfSCLn6mYHZth6Npsn9RA=;
+	s=arc-20240116; t=1741968953; c=relaxed/simple;
+	bh=nqtk7IJNV0Jlogzo2grgXmBklKukxwQuYjeZqgeesfY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Nw8s1avQ5qmoUASApOk3QguGPFXafmNygCwZxpWEhuSx54vWZhaWsPyr205hntZi26ZXEjsnTmksifd4x10aFYr1tB1L5W6F2lsBimI75PMW7YBqLn/Ph34+DLaRq/LCmgS/wt/K0pPXGclDBo3RgI2eCm4broXTXHjIou8tNcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=TVhPuqZlxMe0A7Jgs7irkyA+S6YrHThcYDqhE0EN38OpDZ+YrQuiV7akY7sfdM3d9zLgntF4Hmkjx+1KkJza/oNSOI5tLG887tbSC41QZ+8FPNH8fajh74JpxI11ktFNlfPAN19sKctlFLTw7vpeFW9YbBpWNiNbjjeI+nCWIIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YRd5c9m5; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6e8fca43972so21287666d6.1;
-        Fri, 14 Mar 2025 09:07:37 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-548430564d9so2579052e87.2;
+        Fri, 14 Mar 2025 09:15:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741968949; x=1742573749; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nqtk7IJNV0Jlogzo2grgXmBklKukxwQuYjeZqgeesfY=;
+        b=YRd5c9m5+Tz8MacuG+M4wwqDbTdJoNXXAyLlr2Ff67j46VP9zUILQjtDcRyMykAV1d
+         251kwe7ijokAzMDdmqKoiK/h3dkNCkJGO/2OdkcAwXuyPHOZxZxqFRI1k04isB0IwTIm
+         3VTO5o431rj60W0FsVU2CU05QU18DVyIYVcyBgAVVlcdkDoY6PawAE6d/Ht6PGCqs0Cf
+         BadmwgEAdUVGo38+PPmC0AJH+RejVzvNMEKWDhp5AMVEeceqVy8GPChFacCXAdAsbt1c
+         NRsadH0YDBpYnTf6uO64OwLiiwyfc8LstkkM7jKNOmiH8jaTgOWeOd4hG83yVsZBdstN
+         9bGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741968456; x=1742573256;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U9loGD6SL189zSH+7x26HKnYJV2hwzNv8l/KV9wrulo=;
-        b=X/isXbUH9ZnYm2VyaElNJIz69k0/yM9NDLEojVxIsjiEWjtTURlInqg+rxdZqhSRsy
-         xnbWN6xlCf1bSdXMCmDY0Lisa1RirEmLfO3S6brAOjl+OBTtHNKcsneztwIuU2fprTpw
-         Xbt/8etFmaxSgJ5XZ3bvongxgNcr3HaeZjUZ+kdE1H7z2INiF7rrRmWQctcRgAMI/seW
-         jRx0qwq4062dPxI4bbnTunuFx551uSwzr3lCVvJUXZJ5RIY8geUDfTLq3uyPpcCPLNGY
-         qEw8h39zzb1S26lgjLfJ16/KjmgyLM4rnrLSnjSvJVNMY/Wp/P88pZKEnEMJvYUGAaBL
-         AFtg==
-X-Forwarded-Encrypted: i=1; AJvYcCVNEVpXyEAWiY1SixRUDQBfwaG/tWRBxCpTEIBChHv1Pngf+ff9mCgoCekxR57DeZX8qfpwlGPWRaYX@vger.kernel.org, AJvYcCWRvabRKQ5pJCBeb+FvNZ7jvW4EzyVYrU5q1eOifDHyBMbwC9VcdPxYVN1cIs1g44v1MB+gmCqYfq9iI6JFmY2NQeM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHaBwm5xbyRV3LnkjTq32wVsgaNNa7xHjKcBcgUwrEHJbdw8Y+
-	ScZFidYv6jrUu19ZXy2NwwxklCpyNG5c7fw7woUgSVlJ2RCiVIetZ2LbADpt
-X-Gm-Gg: ASbGncsN5z/5KiwRJ7UrWanJNUjDDgb+sNTOfft7hjWaEDTPba3G9HJuGTHaI8/SuRC
-	RFly1SxAHfKrifs5e4Tp3xUXZzdggYODsUNtkyRLQX2giFCXzzK5ExRE9M37L+VezPD1mRMdgfY
-	kMKx2hABzeM08KX8mQFphndmY1sgUKvr0oF9fGKPET4r3OaH2jCMPuvfO+5gcYq87OcJ9or7HKA
-	nfioTFDBt9cV/0XhF8i/Vv4eHbVleG7Vx10xw8In42uuBaB91UrUkbvRx2ZMC5rTXYX1075BjqW
-	NonWQUNAmOnRhpb9x+NJ6VEn3Dtb7Jp67xcBHpyULWD641ovkviKJ4q+JEauecNYg3QkdXZiX7/
-	4Lk5a7xs=
-X-Google-Smtp-Source: AGHT+IHtxqg75us93QWe1JDLo+d2Vn87owkOxU47OnluxvT9exsoUHgNMPnkfFyubDGdlPT5KKEIiA==
-X-Received: by 2002:a05:6214:e8c:b0:6e8:9fcb:5f7d with SMTP id 6a1803df08f44-6eaeaaaa503mr55242756d6.36.1741968455684;
-        Fri, 14 Mar 2025 09:07:35 -0700 (PDT)
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com. [209.85.219.53])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6eade209be3sm25805576d6.8.2025.03.14.09.07.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Mar 2025 09:07:35 -0700 (PDT)
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6dd01781b56so28866956d6.0;
-        Fri, 14 Mar 2025 09:07:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW3yBYNg/9qDIvV5s7B8y3wSb8kBBQfU683pveSm8D9s8s/HORfQZlEU1OD4qo/ApUsKV1wQHlU31+AukaYUx43qtQ=@vger.kernel.org, AJvYcCXzme8TolaucaeQKKz3j5W7+rYpVHNu197VhVRuWgmMuNuh1/wZr0ijVgItc3rEIppGMOWCnskiTL9X@vger.kernel.org
-X-Received: by 2002:ad4:5c68:0:b0:6d8:aba8:837b with SMTP id
- 6a1803df08f44-6eaeaabd707mr49340716d6.41.1741968455004; Fri, 14 Mar 2025
- 09:07:35 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1741968949; x=1742573749;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nqtk7IJNV0Jlogzo2grgXmBklKukxwQuYjeZqgeesfY=;
+        b=ItWZIC50SFdeHc+eJxrW0NjqRMrF5khkEbo+y4kGw7qFTD5+aYaAsEgKEw6sCm83mg
+         VRQNoLOZHhm0FypESg6K7d2VnBPgfQyz93Z1LU1lg+NU0X/8skvwxh8a4VKxNQk1y/Sq
+         rCOiA9d6WvR7yZrc+oL31e7xyFYnprEHpdvqDwLPfi/eXvBbwyIYOmkcduHr/SAZn1m+
+         esiOt0x7kVcB/F1ArPQsZY5HBjjMnZ5I1Xm3Kk8/EFLd71Tnx0nJVi0eyTQeTalbW8Uc
+         x4LRtoPQls8VwcKqPEfMHn5wBh8jEQiGAALDYLgbj8kILbbbaQzukAjay1NJQ7WEKiIO
+         aMrg==
+X-Forwarded-Encrypted: i=1; AJvYcCWG54/jDcze6PRa+Aeu0/rs0CppUTK5/wVleqed3cgt0cSo1cT6HcoJpum66bw3ma6ymZUZ7YIgbAaPBZwB@vger.kernel.org, AJvYcCXFdLyvxeHd8nX30p4QWmUruobmRhPhJAMCnmf/F6H23+YumTQcZd8JlEuCnW37kuXPT74PTQBM93L+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyr1cXz6QDp7jBuu8rcqY0oSy0rxuQ6JA6NknZoGmxQ9eJjx6ez
+	nKdfMZj2RL3UTxlhuB4EGYxDIBbRwGEN7ikBnGlqYa9VZ9c+lj1hMC/bhoqe62gwaqUIJdcJrdQ
+	cgMEwmrpoGbA4PCeQkpc+6KTDaWhWZIrL
+X-Gm-Gg: ASbGncuK/EIYDfntPHHJ++cY3tLAZ1Om8jg+JLNWIv38AKprVK1rC0vc5t4g/wQz41o
+	byZY6cDak48S75W5aDtShLCeoyvJONLGyzUC/wOaJ8t1cDzEMzK8uy5FIe02cxqK5shWSzkdY8c
+	uVcjWTUjVU6W7I2kbsrAzJz4jpAuVHOpBq8TSjVKniLUWileOQWchA0qPMnw==
+X-Google-Smtp-Source: AGHT+IHs4vHG3o/VoTCk8BvZAkaA4ZWrJ6VUBnc+4V5f4RD13xhlVAn9aENqaNp9snNvosmgj0yTWM/vq8qkdSSAfs8=
+X-Received: by 2002:a05:6512:12c2:b0:549:9078:dd46 with SMTP id
+ 2adb3069b0e04-549c398613emr1113102e87.43.1741968949238; Fri, 14 Mar 2025
+ 09:15:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250218105007.66358-1-biju.das.jz@bp.renesas.com> <20250218105007.66358-12-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250218105007.66358-12-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 14 Mar 2025 17:07:22 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVL1nbyQj-WGKXgkV4jCb-d=EezpFV=uzc3KbbwuxbHPA@mail.gmail.com>
-X-Gm-Features: AQ5f1JpujQBNz1iqx_CnPM_wC9CzDPoPDpSuxQCOIifJBylRnrW7RV_SdIBv6RM
-Message-ID: <CAMuHMdVL1nbyQj-WGKXgkV4jCb-d=EezpFV=uzc3KbbwuxbHPA@mail.gmail.com>
-Subject: Re: [PATCH 11/11] arm64: dts: renesas: r9a09g047e57-smarc: Enable CANFD
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+References: <20250306222359.797855-1-Frank.Li@nxp.com> <CAOMZO5CL-qQSHuSoCtb+f_mqNG8vu4tTVDi-ThoHq+m9SeagxA@mail.gmail.com>
+ <Z8oqhGmVOBCPlJUI@lizhi-Precision-Tower-5810>
+In-Reply-To: <Z8oqhGmVOBCPlJUI@lizhi-Precision-Tower-5810>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Fri, 14 Mar 2025 13:15:37 -0300
+X-Gm-Features: AQ5f1JpU2myyIHkRjTA1o08t3hT9TDTNqBiNNH7ei9kP-eOpdOt4OgxaTqhZts4
+Message-ID: <CAOMZO5A9ggneYjfR=R4kY7DY-BC2pMh+ayiPEtOTOipCdtBWvg@mail.gmail.com>
+Subject: Re: [PATCH] ARM64: dts: imx8mp-evk: add ecspi2 support
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Biju,
+On Thu, Mar 6, 2025 at 8:06=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
 
-On Tue, 18 Feb 2025 at 11:50, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable CANFD on the RZ/G3E SMARC EVK platform.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Thanks! It is actually to get spidev. From commit message, I don't know
+> what next steps should be did, use "rohm,bh2228fv" or other method to
+> support spidev?
 
-Thanks for your patch!
+You can add a specific spidev entry. Take a look at:
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> @@ -10,6 +10,8 @@
->  /* Switch selection settings */
->  #define SW_SD0_DEV_SEL         0
->  #define SW_SDIO_M2E            0
-> +#define SW_GPIO8_CAN0_STB      0
-> +#define SW_GPIO9_CAN1_STB      0
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
-> @@ -33,7 +35,50 @@ vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
->         };
->  };
->
-> +&canfd {
-> +       pinctrl-0 = <&canfd_pins>;
-> +       pinctrl-names = "default";
-> +
-> +       channel1 {
-> +               status = "okay";
-> +       };
-> +
-> +       channel4 {
-> +               status = "okay";
-> +       };
-> +};
-> +
->  &pinctrl {
-> +#if SW_GPIO8_CAN0_STB
-> +       can0-stb-hog {
-> +               gpio-hog;
-> +               gpios = <RZG3E_GPIO(5, 4) GPIO_ACTIVE_HIGH>;
-> +               output-low;
-> +               line-name = "can0_stb";
-> +       };
-> +#endif
-> +
-> +#if SW_GPIO9_CAN1_STB
-> +       can1-stb-hog {
-> +               gpio-hog;
-> +               gpios = <RZG3E_GPIO(5, 5) GPIO_ACTIVE_HIGH>;
-> +               output-low;
-> +               line-name = "can1_stb";
-> +       };
-> +#endif
-
-Please model this as proper CAN transceivers instead of GPIO hogs.
-The two CANFD channels share a dual TCAN1046V transceiver, which I
-believe is just a single chip with two TCAN1042 instances.  The TI
-AM68 SK DTS[1] can serve as an example, as it also models each TCAN1046V
-as two TCAN1042 instances, but lacks standby-gpios.
-The White Hawk DTS[2] lacks standby-gpios, but does have enable-gpios.
-
-[1] arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-[2] arch/arm64/boot/dts/renesas/white-hawk-common.dtsi
-
-> --- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> @@ -12,6 +12,17 @@
->   * SW_SDIO_M2E:
->   *     0 - SMARC SDIO signal is connected to uSD1
->   *     1 - SMARC SDIO signal is connected to M.2 Key E connector
-> + *
-> + * Please set the switch position SW_GPIO_CAN_PMOD on the carrier board and the
-> + * corresponding macro SW_GPIO8_CAN0_STB/SW_GPIO8_CAN0_STB on the board DTS:
-> + *
-> + * SW_GPIO8_CAN0_STB:
-> + *     0 - Connect to GPIO8 PMOD (default)
-> + *     1 - Connect to CAN0 transceiver STB pin
-
-Doesn't this channel also need correct positioning of the SW_LCD_EN#
-switch on the SMARC module?
-
-> + *
-> + * SW_GPIO9_CAN1_STB:
-> + *     0 - Connect to GPIO9 PMOD (default)
-> + *     1 - Connect to CAN1 transceiver STB pin
->   */
-
-Doesn't this channel also need correct positioning of the SW_PDM_EN#
-and SW_LCD_EN# (for GPIO9!) switches on the SMARC module?
-
->
->  / {
-> @@ -29,6 +40,10 @@ aliases {
->         };
->  };
->
-> +&canfd {
-> +       status = "okay";
-> +};
-> +
->  &scif0 {
->         status = "okay";
->  };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+https://web.git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/=
+?id=3D10254a6c6073b0be171d434a3aeeff0256e59443
+or
+https://web.git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/commit/=
+?id=3D9783da2384c5623d376e4641bbce9339be1001eb
 
