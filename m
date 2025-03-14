@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-157598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A292A61517
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 16:38:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F0BA6151A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 16:38:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E6FD16674A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 15:38:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6E883B8385
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 15:38:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18143201261;
-	Fri, 14 Mar 2025 15:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3359820298D;
+	Fri, 14 Mar 2025 15:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sU+XJX8y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tvG5pOgc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E01EF1EEA5D
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 15:38:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9801FCFF4
+	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 15:38:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741966699; cv=none; b=e9/xXezPkvzgD4VR7amLMI5nE9ScHnDfrLj2mQwRq9pKenAB+zqUh0HIZtrblILYonD/tSdxOzU4ORDndH1WVR4aMkxichm7vqqlMD5YP6U2mkfeXDju0enTMHRI75cIPGDOqi0ZGeEN+drZJPiF+p5RgzWk4iSwG7CCj99Ehj4=
+	t=1741966700; cv=none; b=BNHLZf65Jw6Ss38Wd918XTmLpNgzD7LC3hUxzVM6JYE3YSDA9f6rMKRGJ9k/0f5DBT1efKbr9czqY+oZbdFANujlTpcpc2R62zU/+Mnfxi4i0vBlz86AZjZMoT+E+ylBp6urJ4eUjm/JbnTexUpRvR3sGQu+ZGVG23KYn2NM1Yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741966699; c=relaxed/simple;
-	bh=o5lWvEifxc0qjQ0Mf/yS+nQ6Yi9AnPndoKFhVA2M9Yw=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MihnVEi8TxEneMIpWaAgD0OaI/RUxmVbT3gPClgx75RjhfqOz7QuGpwfn6SKx1UI4YPDmsyrZOQWYKlxFVEX44NbfuPy9ynNt61ArM3I+Irghs82O54wdltg8GVPucL2Ekvr4WET93R+C8vQ45R+LNhc4205lUWP9pWdYHChnhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sU+XJX8y; arc=none smtp.client-ip=209.85.221.46
+	s=arc-20240116; t=1741966700; c=relaxed/simple;
+	bh=HSyPEmJtBsHxDhCUULm5Dya2418jRqfFk0guvCilkbQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=IqWtoui9bl0ajSaHTuuudKAws7RApH0JtvBKWZNrPfaqcxMvV3MNH/FyC2Kx+MXFk4LHommc+9zBHDok1mcFDFXoY+8YJ1FKi4FfCf97NGFt9Xf8wK7Z6zm4w1Rl62PKB4lqpTzGwqmlYnx2YP3M+K3KTmEyjWKoHTL3Q+ksLac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tvG5pOgc; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3913958ebf2so1773609f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:38:16 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43bb6b0b898so21504225e9.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:38:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741966695; x=1742571495; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rRs3uWiyY/mmy9tnZPMQQhl+KBtI48hCPbm64UgfZtU=;
-        b=sU+XJX8y1OoRuisxvMZTDkl32849hc4q4EoUDxJZUcI0X3Q+EvJCN1cRjRushyEI7i
-         sL+c6ZGrM0E1QWHIzqPvIYa3+Fa4TsxEfjbkDiDEfK+fVaFSyoNbZh74vb145KaEfmCP
-         VzSjcUJaOWWURnMrg7QY20xdgnf0ARCMuc4xEXq+EssuQYyGpkNoBcOlQxFY6sbHIsie
-         8auNDZF08eNULAcqj08hPfCXuAIp7o/jVz4bgMdi1k+1Ioi6LbQ6eT8CZvM/HNFWuDGl
-         GmynQa9Va8V2R8yTjYXhf8AjlVK76L212Gv2lyFn1zztgBNWDV+TeMkXjjfh28S/Pm1e
-         knZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741966695; x=1742571495;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1741966696; x=1742571496; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=rRs3uWiyY/mmy9tnZPMQQhl+KBtI48hCPbm64UgfZtU=;
-        b=uUuaKfqcCsTU2GXNkPImBR2drZtukSJEqtVqF31nFAduulsRXv8M/ty/G40WG3STC+
-         hSue5nC6GNk2jPBSWCyazQto3u+kJ7gCfX7PdmpNZa4y69S1cMzdAp2JhO75gjU6bbEA
-         u5SrsdvZh/po9iqu8iUTtzJ086hNGM5HHQdEVBwiKzWCUA7tYFNFpOmGYnSugs59kw1B
-         OepMr4fh/nR6WlMVbkeJssLTaS5A6GTON0sgDcloE9p5wJ4vaTiUNslgXZaZ6BOHlbwx
-         dsP1qN6x/pq4NypxS5NCC9pR+N2FAlCIWj6NDsNTwaOovO6UAiPnUQpF+OgYtTvI6bLS
-         PlvA==
-X-Forwarded-Encrypted: i=1; AJvYcCXVsTTiI/8kfA88HX9wHPhlXr8JIlG8tnesaq6UBLC0fpnhVAtc0xWs5pD/CXKThSpU/cc7hu5qhsse@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVR4LzIsEjXbZsdcDaiEM/FdGFGcbj/pzNBV/kBrMdku15wOZB
-	y0m2rVsboN3RmMdUJQQ+cOYb4ujRaf+uiefbsAAVfwFIKOoOXV0Qbe3XrUXUtUE=
-X-Gm-Gg: ASbGncuwJIZXsaYatmlNujgj4Pe6O48gTeKXJtWTLvaKLi2PdbzgKiI4YTSoQ7AywRe
-	HC6T5UKUcGQwPexzbl4RbcuORFjTcQZD9T+0hPzVYP/8wa7ASuhZkH+sSLvJGMpk0taTb4XMghq
-	deNbRuvRsn4I6r17T2bQTlg6JhKj4ZVsXc2cziSQ0OQmXQzCLqBhG2uhxzmNy/WbLtaqkt4+0kB
-	ZOdpr/+88VCYUOvJMGiA7SRu89dQcyKOLUpMLIvXPlWuqA5lnWou+MJVzPcaxJ7Lpcvt5cpOzdf
-	eSJlLEDde1xqcgWoYmzj+Kvwdwg8RqHIjCIn/BAkESEh/V05xqR7zPN6vpE44/mA1IUrorLw8At
-	wEDTWuuoBGtg=
-X-Google-Smtp-Source: AGHT+IFwuWplOyRsVTnwWP9hDzjpPB2Fz832AbMy5akm4Qo/B37yxprGTMiWIsI8eBrUb37930ldcw==
-X-Received: by 2002:a05:6000:1a85:b0:390:f902:f961 with SMTP id ffacd0b85a97d-3971ef3a523mr3576489f8f.45.1741966695091;
-        Fri, 14 Mar 2025 08:38:15 -0700 (PDT)
+        bh=nQ99iJ98td/B0zL57VABB7szu0CnieeOt84tDi+jGkE=;
+        b=tvG5pOgcfe/r81tAPiVpE3WQr/uxysUpkxoK1ur9TDqCCCMR3nX+Jf0GVQkLb3UAG1
+         eKHPtLkOHF50nhWOZ9HFaFTvJnt2qL9DRTY2bVsPZM0/HrWOdFuerkS+70Ph/R2QRwV5
+         LprPQQX8ddlYNXtlIGAOl5ypU8keNWmYrVpQI1/58UhTlLCQmnjeIe9E7ocGbNRjynDL
+         RTVJskTUxKzaBWO0SRKZllPH0+9DhFBgiCK0bYUZfelh90+iCVjE6aw0uMej7E32z6Pw
+         k1h3q7PUqSiEETD3c/hKax6BcUec0dKg0RTWDxpRrpmivf5vB8vZPWuKbxG/A7i9jHX/
+         7qiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741966696; x=1742571496;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nQ99iJ98td/B0zL57VABB7szu0CnieeOt84tDi+jGkE=;
+        b=EhmfzlLqKWeRPw6Dvw+CmPUqVWNy8Ru1Nw+YPX7EJCV/p+8kWJkxJJfxy6qiREedfc
+         KjWiGcWS3hZ/ElMeJoc0xY04UjtW+NsOBJpMfVeWTHZ5qVDpL2uMim0CD0Ncl047oI4m
+         j18X7R4E6P3edvFj3eZjGmsKZ0OEP9AiMDwZyFGGbHDGN3+OkDASUIbCaOrTImBpah3E
+         N7jwhqVZmr7zjc/MwJ4lY4iNwVVFXfjWCrH0ox5sKzQkjJkMbkhRBbz8kje0x1y00GGT
+         B/8sMNyL0XoP5IQUMoHAMCfKr0lJK7wpC5FtxM/g8FM1ehyTE7a/W/Pz2LFQufmBtm7s
+         BijQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWeIcNsT8/RhnkOZdXfQ7VZmk4pDEP2Drzofp4LSxkagRP3HK0MPg4dFBirF6SWpig5tF1yVJ6vy8Kh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8phoeSkpmy02BW11JVGxMxXJ0r12d7tPxwV1rNykAyYiDxI2E
+	w4xiPEJqI3njhTqW1ALUQGVTt4Z+nTsL10KZTP7+T8EufurNh9I4znmk/6cNqoM=
+X-Gm-Gg: ASbGncuUNrI1e8kFLqhA9/i9JNKYCrlnePfBFCkvr650CqYU3a7yfCHytRo3q0j0+5R
+	cj6JKLdzJmzNiay7xm1+qRBeU7Ff1iongFYq4jZW6b5BwRi17zo0GjHIukMxfJJ1MAfAQoW9wfC
+	GgrzA5otnfaDrOhOq4biBmQZazi9a7Nc4IH92oSEAz7qXjLtOnkqi7Jk4jDUUyyldD/Sb2JMlzr
+	Zv0QzuJ7LsAEy95L61oxxjwM8q/b7Hd5l+Kf4X0QRhUMQ8IMsXq3BCKNiqyC/f8wixuzviztnY5
+	cOBx4fBtGXy1NYb+CJs+gCAl2mWXxGbYOPf/U9kBEz7PlM/EFyGqwy+IoQ/L66/CSa5xz+DJEff
+	o6uXcJtibgM8=
+X-Google-Smtp-Source: AGHT+IH7++KO6U3/Ls5QrCBpzBE8hSy6ZKSBdIjCMesbwEWDqmyH8LmW+4NNaM1O/LoeImomGS20uw==
+X-Received: by 2002:a5d:47a1:0:b0:391:2a9a:478c with SMTP id ffacd0b85a97d-3971d70c23bmr4277553f8f.23.1741966696382;
+        Fri, 14 Mar 2025 08:38:16 -0700 (PDT)
 Received: from gpeter-l.roam.corp.google.com ([209.198.129.214])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395cb40cdafsm5944388f8f.62.2025.03.14.08.38.13
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395cb40cdafsm5944388f8f.62.2025.03.14.08.38.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Mar 2025 08:38:14 -0700 (PDT)
+        Fri, 14 Mar 2025 08:38:16 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
-Subject: [PATCH 0/2] Add dma-coherent for gs101 UFS dt node
-Date: Fri, 14 Mar 2025 15:38:01 +0000
-Message-Id: <20250314-ufs-dma-coherent-v1-0-bdf9f9be2919@linaro.org>
+Date: Fri, 14 Mar 2025 15:38:02 +0000
+Subject: [PATCH 1/2] arm64: dts: exynos: gs101: ufs: add dma-coherent
+ property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,11 +84,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAFlN1GcC/x3MTQqAIBBA4avErBsws9+rRAvRsWaRhVYE0t2Tl
- t/ivQSRAlOEsUgQ6ObIu8+oygLMqv1CyDYbpJCNqCuFl4toN41mXymQP3HohZOq7dpBWMjZEcj
- x8y+n+X0/4DkMHmIAAAA=
-X-Change-ID: 20250314-ufs-dma-coherent-980f2467690d
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250314-ufs-dma-coherent-v1-1-bdf9f9be2919@linaro.org>
+References: <20250314-ufs-dma-coherent-v1-0-bdf9f9be2919@linaro.org>
+In-Reply-To: <20250314-ufs-dma-coherent-v1-0-bdf9f9be2919@linaro.org>
 To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
  Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -100,75 +101,53 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  willmcvicker@google.com, Peter Griffin <peter.griffin@linaro.org>, 
  stable@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1819;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1280;
  i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=o5lWvEifxc0qjQ0Mf/yS+nQ6Yi9AnPndoKFhVA2M9Yw=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBn1E1kE5cKvQLvj5p+5qVAv9trKYfZ8ei16ff+B
- z9YeJd+wl+JAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCZ9RNZAAKCRDO6LjWAjRy
- uq9UD/47wDnkd+uHDPcz0khALhZQzKJVJn2IE2m2IexznRG9WHqTq0nvONALdAhgP6iOR95GzTk
- buhR+wkbwEMJCLy4Xu21/WQFe08H40eZtljBwKUa6pKYaMUyLWqk2D+J5tEE5Z5qeaHSFvgfl0I
- /VXX1NW+3uOnew10YZk1QuVJ7UtmIdESlUCL3VhcrMgi1IZR8BWB6e6MZ/ekOnsIwCX9nMUD5wk
- t6lBCkuDGVaXdkIbsQDsu541pAokWIm+96oMohVbZ3EU0BtGZk4CbKfauP73p3POtRatLI8qbUN
- vuKpMwVWaAZ2vtA07o9GDE9XnhBqsR9Aj2KeHcLapVHRZEAQW+FCEu1zbtDzN/l2YJ1UM1avBGp
- ANxs0cjpKjmpJXStyNKEOODbUwJgvHqrzIEAxGZz/nPP4+KqHcYutR4b3nkRgmv2Cr7BoZk1xF1
- XDyOJ3URvPRl66sqSx3fgQ8bMsH+gfSipoq2O09wr1ePpX+xU2aKTRkTh4TralInxmN0xDOyPUy
- M3sTmxXKXmvLZSkWGgC1+t9YmrGE0BhwlLRP7ZFZHYRT4FDGgeaPn4/N32S5YfddBHVxsHZHx+B
- lF84ISrushp9Fktak/z0TwJ6y//hZwsKDARvxSYb8LkhQ6VKF44q7NTSlMwJegIs9ZxjVHwKF1M
- hDyrOsEFbKuKWjw==
+ bh=HSyPEmJtBsHxDhCUULm5Dya2418jRqfFk0guvCilkbQ=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBn1E1kYCQBmCyj5ZPX4kgCPL0qUhJeVs8SYMUGs
+ jG0pHfrOVeJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCZ9RNZAAKCRDO6LjWAjRy
+ ukfOD/9qIbmRkrjri21mRCY4ydKJb92uYxQTmLzBqS9EoQqKw3ypCrcUPmvcJfpaXhH+DpWLSSy
+ a2IioXKB+tQuqZRLgTsSzAmFr8d1n3q67OAnvPh1Lbf81/vs1hKRH8pfjjl6cuRfZLpo7J98uwD
+ rXzds9tzH/JHEJMWfqNXb5PL0x8yDubYQPlrg7FM74C9YYnE9gVYi8CPuXyYuPIeq7wzPaZfcYk
+ NC4fLOfTgMXIscvqeUd+ybPUSz4iJQTqn9r1yKZikyXqyr7zdY3vHR5jhgV1TkvyKA56I6wA7Cg
+ 9mvSJgXSeglXhnLEnf7QqASjQxHkzcXPgQcsCmkfUsPWYuzil2U55RH2SI1Q33PhdjKsK4Vi9P+
+ leUhppTQRotRB3f38/g8gyh45DP3VdfDFAL4y0Hm0hZWnRFmSBzPBgjhLoayKeln75j7B1vgRgH
+ /8znc1PSTMKIe9EcT7LNnGe8+kSwHMOSuKyawIBFRQI/gGgiFOYvnWMZej9B2ZTa3uQp0WSbV+3
+ /mxOVssXI9mS1r2sfTuMeV4BXfo8wPxsE7Bf10tVpbljxq17THjVCyjaD4qYpjWYBAYJ+NI6IZV
+ vRqX3vpHKVMoL6e1KTNUEVHCDqmvnUCLNqOjia0oLpF/tAfqujQFEoig5Ck2h2ULDvvIB3trQ9k
+ W+zbPT/ONn7vy5g==
 X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
  fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-ufs-exynos driver enables the shareability option for gs101 which
-means the descriptors need to be allocated as cacheable.
+ufs-exynos driver configures the sysreg shareability as
+cacheable for gs101 so we need to set the dma-coherent
+property so the descriptors are also allocated cacheable.
 
-Fix the DT node and update bindings to add the dma-coherent property.
+This fixes the UFS stability issues we have seen with
+the upstream UFS driver on gs101.
 
-This fixes the UFS stability issues we have seen with the upstream
-UFS driver.
-
-Note this DT fix can go in independently of the other UFS fixes series
-I sent recently [1], as the bootloader already leaves the sharability
-bits enabled.
-
-regards,
-
-Peter
-
-[1] https://lore.kernel.org/linux-scsi/20250226220414.343659-1-peter.griffin@linaro.org/
-
-To: André Draszik <andre.draszik@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Alim Akhtar <alim.akhtar@samsung.com>
-To: Avri Altman <avri.altman@wdc.com>
-To: Bart Van Assche <bvanassche@acm.org>
-To: Martin K. Petersen <martin.petersen@oracle.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-samsung-soc@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-scsi@vger.kernel.org
-Cc: kernel-team@android.com
-Cc: willmcvicker@google.com
-
+Fixes: 4c65d7054b4c ("arm64: dts: exynos: gs101: Add ufs and ufs-phy dt nodes")
+Cc: stable@vger.kernel.org
+Suggested-by: Will McVicker <willmcvicker@google.com>
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
-Peter Griffin (2):
-      arm64: dts: exynos: gs101: ufs: add dma-coherent property
-      scsi: ufs: dt-bindings: exynos: add dma-coherent property for gs101
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
- Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml | 2 ++
- arch/arm64/boot/dts/exynos/google/gs101.dtsi                  | 1 +
- 2 files changed, 3 insertions(+)
----
-base-commit: b323d8e7bc03d27dec646bfdccb7d1a92411f189
-change-id: 20250314-ufs-dma-coherent-980f2467690d
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index c5335dd59dfe9fcf8c64d66a466799600f8447b0..cf30128ef004568f01b1c7150c5585ba267d64bc 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -1360,6 +1360,7 @@ ufs_0: ufs@14700000 {
+ 				 <&cmu_hsi2 CLK_GOUT_HSI2_SYSREG_HSI2_PCLK>;
+ 			clock-names = "core_clk", "sclk_unipro_main", "fmp",
+ 				      "aclk", "pclk", "sysreg";
++			dma-coherent;
+ 			freq-table-hz = <0 0>, <0 0>, <0 0>, <0 0>, <0 0>, <0 0>;
+ 			pinctrl-0 = <&ufs_rst_n &ufs_refclk_out>;
+ 			pinctrl-names = "default";
 
-Best regards,
 -- 
-Peter Griffin <peter.griffin@linaro.org>
+2.49.0.rc1.451.g8f38331e32-goog
 
 
