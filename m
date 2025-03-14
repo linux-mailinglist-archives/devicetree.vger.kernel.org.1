@@ -1,149 +1,150 @@
-Return-Path: <devicetree+bounces-157442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 324FCA60AD9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:11:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12787A60AEF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:13:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B206189FF16
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:11:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FFEE3BB6F2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFB5194137;
-	Fri, 14 Mar 2025 08:11:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126B5194A75;
+	Fri, 14 Mar 2025 08:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VHQI3O7k"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="JgJckKZm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3642189BB3;
-	Fri, 14 Mar 2025 08:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB16194137
+	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741939868; cv=none; b=QrKwWAJLkyqAt48Z47soPK4Lg2MSQMnVqaFCvlv38RK/h4t5mkgzJGUZwf1GJK7nk/RsDNszPu2ISYRpTArAyqugQKmpYES8FK2wk4uBCsJ00UJomMvhTbC8CFINB1PefAowYf3mbe0NggU1GWRCVVhvhQBUc19fqnF6SJ32rYs=
+	t=1741939994; cv=none; b=LpXEqeJlcpUHsyV+4coAxTeE8PGFV4iM7r10DJRjGBJQ7z7rfWbed6d970DgnfWLJkpxEFLkuToEqlPfC6kuxWEmLmanhb29NwB4ZREf40q0pTgNhdNJ/O+4DLuZlfbTjWy6O+HogzfgcHX7tf4/l+vnKzCwTR5qqMfXFE+O6GQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741939868; c=relaxed/simple;
-	bh=IR1KZBTp/MJ7U2Qtx8GPmluyIMcrhMyk3KByBeXpRDM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aFRkxDHqC1Hk3vcWlKRwey8Sj2pdd8f9Ob7FzCqnHLCtBRsnvvBU5u61WEr4Y9CgBFKLUmA0eEU6cv0e0W0F54SWh2BAb6iDhRWDeifP8dknJjRPr79zF4U2HB89jpUR5TCnTAAYZilkaUcYxQ7xBw4AIdwklK8fHyuufqZFDuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VHQI3O7k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB290C4CEE5;
-	Fri, 14 Mar 2025 08:11:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741939868;
-	bh=IR1KZBTp/MJ7U2Qtx8GPmluyIMcrhMyk3KByBeXpRDM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VHQI3O7ky7flSCCCnZyH4t+0SeTZZVuNT9koKZqvkv7psYOW+kgIK7OFQBpXr/RsP
-	 TY7V21qZjemcUf+Ue4DDFVzEp3PxOEZ0S8fTy7uZejOYxp+eOUMl+8I3kai9tdhp17
-	 sYy4azHSheOZJsTu9Fe1PV3fLKrROwGLOQr9dWn7wdsh1lUrqGrJhUdeQmIWYKP8Vr
-	 XIY7a49WuoQUUzybPj6AnllzxhtGsikZtVzypHgI+6ZJtn0wctmrqVIt7FYmpTHDvM
-	 FIQDAl8ANunT43KOtIuM2SoJPZLEXNGTwNIsGCHDWuook8TDV5W7ch3Clb/gl+o7R6
-	 KDHG048aR7/GA==
-Message-ID: <09089b80-ac68-4113-ab6a-3ff94c85e895@kernel.org>
-Date: Fri, 14 Mar 2025 09:11:02 +0100
+	s=arc-20240116; t=1741939994; c=relaxed/simple;
+	bh=aBoaIA8pL5dPRNJ/NbTzYxXHLL9HdGISKk2JuLHQGXI=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Nuq+ZRrM92iIgvxw8k74Fte4OxOHiAYMjczQ2QKT+z6lTNNHwJ/rD6Xj4IOS0vpNm2Kqvune3K5+H9tOwZGTDeaviLOLY1DzjyvXPO845KjlCQC5KgcwPYPdEeliN7Z3VQrgOeEPaxc/kNjde70M1uNmfbiNPQFbXcoz6gyOdv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=JgJckKZm; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ff187f027fso3378415a91.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 01:13:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1741939992; x=1742544792; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mIaypJwWB+9Cndggia9exzQ6t2dGjEXmye283vVYlI0=;
+        b=JgJckKZmSp2AP6KqwvTSkWxomm/g8Ffk/KsLG27YD+8UwrApDIo0lX6Q6dFNRdNOXf
+         2Jk4tlGPaBqeJlamdzvvAdYDXjQobXRBQojHAcet0whmJd+IdOwXInPjMO11CFveN6Ub
+         md54E/rPe884+II3J9ZI47FIqFXYUHT9KA5vhMQn7btqE/UN5P+bRgtrv+7Gm4JfNgjE
+         3V0sTIUA0sPKFsmWSUV4LvROY/4btpX/s6S0W7S8BLBCTLjdFyP9rdn7QCAjcrTPMj+l
+         bu6WTG/YUXCdGTa/WceijqlxcfN4mk+5lKLCzuRz3m8sTVMW8UbiEKuYatIKWv5lXF28
+         QDvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741939992; x=1742544792;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mIaypJwWB+9Cndggia9exzQ6t2dGjEXmye283vVYlI0=;
+        b=IwzFCJknA8BengI97NRmXCTnCzP0ndp1Bu4kTjrENRMGO/belIZCrptb2XDdV2T5KH
+         hoXoyo55W8eqp7yRgfWqHguqnf1wgQngfJ+mLy9YdArzStSawFU28haTc8Hj0iWn0BtY
+         esYXfyKcxKzNmdROCmKmOH7em4XgK6n3XzbaiWk4xmJWTq8EvL0o1i5CD4Sy+Y4TznYR
+         ya27f1k/DDDDZB7p9+TCHzWN6QCl5XpXZMc1Qgn3UkyK/O2A5SZPci6CpnyJbY0fj06L
+         hL7NynHQC/Enkkuuw1chxl8TQ2z2WChE9otcsBFlyYYsza2Wxz7mvM5lQVuY9VGcDAXH
+         4v0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWSIizwNo4hU+DseeozICizxM1EHi4+RjK3A1djp2P+wwp0bYj5tEIGq/tCIWdAiIBQBH36qttcw9vn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzX1VQSQUZAi6FdVHpO3KWTCyJeLaiYWcQfE6sMBeusy2EwPvjr
+	kG2asgkS7yN1ZTaVW3FQ9BCtvBRKYCKoFY50xxjlSM2xIcen0J5yd0kuupyL4pA=
+X-Gm-Gg: ASbGncuTLiHBJQZIJQ43OO71FjuIFsTQ0wOEGZnpXaiJT9DHcISDhQHnLJHuKV07P3w
+	lJO4IJb4OzaEoVYac7SXfNoCZU1tuEULMM0LdPqo12uun64HW1uG+LGZq2/0xlhqB9FaWbczf1Z
+	/gsp/DHNv7DBsBqBUVZlX6GIIbwh6nC8Sz8p0IZWl1Fsc1AANw0WzfTvotDELDyEGqmtfuXI3Or
+	RBWAzzraEZToE+Mn+2YrRhFa7eBRaEH+G+CGerJORpgnyK2hMFWagDluIZcY8CRQK6lqHRs8qqM
+	k0S1fWejVzY63gDx2cK8+AtikiJb30mn9Is15aRejhJ/pz0i/oqt6uYySJujuNv3aFg=
+X-Google-Smtp-Source: AGHT+IEU8f9gJD9fpGi0dkqDON/MFDwlzwvX7/+G8p0jqw7GozR3XpJHe76R/qoNe2N8VD05r7VjlQ==
+X-Received: by 2002:a17:90a:d003:b0:2ff:53d6:2b82 with SMTP id 98e67ed59e1d1-30135f4e5f5mr7721021a91.11.1741939991712;
+        Fri, 14 Mar 2025 01:13:11 -0700 (PDT)
+Received: from hsinchu26.internal.sifive.com ([210.176.154.34])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3015364ec2bsm611920a91.46.2025.03.14.01.13.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Mar 2025 01:13:11 -0700 (PDT)
+From: Nick Hu <nick.hu@sifive.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Anup Patel <anup@brainfault.org>
+Cc: Nick Hu <nick.hu@sifive.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v2] dt-bindings: timer: Add SiFive CLINT2
+Date: Fri, 14 Mar 2025 16:12:54 +0800
+Message-Id: <20250314081255.3718-1-nick.hu@sifive.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: display: tegra: document EPP, ISP,
- MPE and TSEC for Tegra114 and Tegra124
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding <treding@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250314074557.16367-1-clamor95@gmail.com>
- <20250314074557.16367-2-clamor95@gmail.com>
- <d2c41dbd-ca11-4e06-9081-db772f8cdd2c@kernel.org>
- <CAPVz0n1fNnkbfCc7-kB2RAJjDVQZU=zUBuBzqyynO54np4Wi5g@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CAPVz0n1fNnkbfCc7-kB2RAJjDVQZU=zUBuBzqyynO54np4Wi5g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-On 14/03/2025 08:59, Svyatoslav Ryhel wrote:
-> пт, 14 бер. 2025 р. о 09:56 Krzysztof Kozlowski <krzk@kernel.org> пише:
->>
->> On 14/03/2025 08:45, Svyatoslav Ryhel wrote:
->>> The current EPP, ISP and MPE schemas are largely compatible with Tegra114
->>> and Tegra124, requiring only minor adjustments. Additionally, the TSEC
->>> schema for the Security engine, which is available from Tegra114 onwards,
->>> is included.
->>>
->>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It seems my or other reviewer's previous comments were not fully
->> addressed. Maybe the feedback got lost between the quotes, maybe you
->> just forgot to apply it. Please go back to the previous discussion and
->> either implement all requested changes or keep discussing them.
->>
->> Thank you.
->> </form letter>
->>
-> 
-> I kept reset-names for TSEC since it seems that it is needed, ask
+Add compatible string and property for the SiFive CLINT v2.
 
+Signed-off-by: Nick Hu <nick.hu@sifive.com>
+Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+---
+- v2 changes:
+  - Don't allow sifive,clint2 by itself. Add '-{}' to the first entry
+  - Mark the sifive,fine-ctr-bits as the required property when
+    the compatible includes the sifive,clint2
 
-reset-names are not needed and the rest is not applied. I don't see
-opp-table either.
+ .../bindings/timer/sifive,clint.yaml          | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-You didn't bother to acknowledge nor respond to comments, so it is
-expected you will implement it fully. Not me to keep checking if you
-read each comment and decided to silently ignore it.
+diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+index 76d83aea4e2b..4b9dad11c1e9 100644
+--- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
++++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+@@ -36,6 +36,10 @@ properties:
+               - starfive,jh7110-clint   # StarFive JH7110
+               - starfive,jh8100-clint   # StarFive JH8100
+           - const: sifive,clint0        # SiFive CLINT v0 IP block
++      - items:
++          - {}
++          - const: sifive,clint2        # SiFive CLINT v2 IP block
++        description: SiFive CLINT v2 is the HRT that supports the Zicntr
+       - items:
+           - enum:
+               - allwinner,sun20i-d1-clint
+@@ -62,6 +66,22 @@ properties:
+     minItems: 1
+     maxItems: 4095
+ 
++  sifive,fine-ctr-bits:
++    maximum: 15
++    description: The width in bits of the fine counter.
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: sifive,clint2
++then:
++  required:
++    - sifive,fine-ctr-bits
++else:
++  properties:
++    sifive,fine-ctr-bits: false
++
+ additionalProperties: false
+ 
+ required:
+-- 
+2.17.1
 
-
-Best regards,
-Krzysztof
 
