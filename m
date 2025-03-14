@@ -1,136 +1,95 @@
-Return-Path: <devicetree+bounces-157484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA3F9A60C43
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:53:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED7CFA60C46
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:53:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 004D5880FDC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:53:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAB1C8813C8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 606EA1953A9;
-	Fri, 14 Mar 2025 08:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D30371DB34C;
+	Fri, 14 Mar 2025 08:53:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Kql8FUDU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66C51D5159
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B24941D7995;
+	Fri, 14 Mar 2025 08:53:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741942414; cv=none; b=hWYiBdGbyRPLFBAFt4mc5WNoTlkibG3C2qqGcULtroXXGeAgQOU0kCw3Jil/i8HGc5XcrDHfDf1GStX1tqgNtKbdBw/Fjpot8/a4iZNW0sObDQZgv6kOFi2MyG2qy+LE0f3X53E693HAUbjHWsS3KgOkQ02neOS0d/Pah6g/KnM=
+	t=1741942417; cv=none; b=S+vsooR5zmjfkaqMye3AwywsDUCkF1y7O1/pjalI08CE/r3Sz2mSw1zhtcCGD5JWAATe6WQIDP1bvFPPX/FFVrhZe0/06dLHSia0Q6JxF4J8uvPfhpiH7hGnelxJfl9vmNHF9Zy8mj0yzK7XLTMhMiqe0oEI6MKmW1CiDlbGTo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741942414; c=relaxed/simple;
-	bh=LG+zWUiU+YDS4u7udi6xwwIRvt4cLa8ZSYa7+ZaV17I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UfdXhJ42bBnx64F2Yj3LtXSGYDJKxPBq/5ELkVKNpNq0Vst/9KLs6wy0Grefb3bkZLofsqQJB5j7x/cGOHVzDolqo61jRDIImYEfZxRcDQSydG/5fSSE5cMKs7ZEiTOhV7B9N8BfS3aYPiCdlal74Sd0PSJU851Hw7YkuawbPTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tt0n5-0007tf-7y; Fri, 14 Mar 2025 09:53:15 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tt0n3-005fmP-13;
-	Fri, 14 Mar 2025 09:53:13 +0100
-Received: from pengutronix.de (p5b1645f7.dip0.t-ipconnect.de [91.22.69.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id EB3603DB854;
-	Fri, 14 Mar 2025 08:53:12 +0000 (UTC)
-Date: Fri, 14 Mar 2025 09:53:12 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Duy Nguyen <duy.nguyen.rh@renesas.com>, Simon Horman <horms@kernel.org>, stable@vger.kernel.org, 
-	linux-can@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Subject: Re: [PATCH v3 0/2] R-Car CANFD fixes
-Message-ID: <20250314-coyote-of-inspiring-perception-9f5089-mkl@pengutronix.de>
-References: <20250307170330.173425-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1741942417; c=relaxed/simple;
+	bh=Lb2brasLmXxFUZ5PYKeX8+kW9/EYKz5KnLrvoiEwS3s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YyanmBsiSmyPS1s0LtJXYhs1l6PGRXO7lk96F/xAJl585qS6rXGfxwudGoaD4atKVbRSeClV6jqpvWMCcRl8lWV6BYzFtruM+063YAkHJIsuEnjPj795ZtsPsD6XqsNov4Br4QTMcnqyl6Bc4UIq6JhuSsW+fkOw+5C20QqtTzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Kql8FUDU; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1741942407;
+	bh=Lb2brasLmXxFUZ5PYKeX8+kW9/EYKz5KnLrvoiEwS3s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Kql8FUDUwJOtf2ngUAwFIngGhnqhy/Ot5/oclRLWrlyj5I0foexVQfTV0Q/nUGT4q
+	 txV1CBScjOXIZa6poTuapxE9mvBGaeq5ZaP/KNI9qGj0cX9pyU0HIS0YRS1eg42J/j
+	 Gzxf3qcXryNFqhRj4EVeOuhidiAvfozxc5OuXlgRpOhqrokC9jMzirPmjiOnUSS1rw
+	 XCqOSEu+u0n0VkgJAGKRNlJnVgo7NEU1R4pXk2GpqPESO/A4c+mRJU8I/3u3GBaNgF
+	 gPWfxNw4YLv0stIERWEDgxc0XoBV8vX6/ZR+17/3NPqUegG8oUPCf4lg/wy0HTo8IV
+	 4S6+O7Thue6uA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9586A17E0E37;
+	Fri, 14 Mar 2025 09:53:26 +0100 (CET)
+Message-ID: <90d1c0f2-b037-482e-a569-f75b713e3a71@collabora.com>
+Date: Fri, 14 Mar 2025 09:53:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sfhcrqzzuf5ym3x3"
-Content-Disposition: inline
-In-Reply-To: <20250307170330.173425-1-biju.das.jz@bp.renesas.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] pmic: mediatek: Add pmic auxadc driver
+To: "Lu.Tang" <Lu.Tang@mediatek.com>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Sean Wang <sean.wang@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Chen Zhong <chen.zhong@mediatek.com>,
+ Sen Chu <shen.chu@mediatek.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-gpio@vger.kernel.org, Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250314073307.25092-1-Lu.Tang@mediatek.com>
+ <20250314073307.25092-2-Lu.Tang@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250314073307.25092-2-Lu.Tang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Il 14/03/25 08:32, Lu.Tang ha scritto:
+> From: "Lu.Tang" <lu.tang@mediatek.com>
+> 
+> Add pmic mt6363 and mt6373 auxadc driver
+> 
+
+Can't you just add MT6363 and MT6373 support to the already present
+mt6359-auxadc driver?!
+
+Regards,
+Angelo
 
 
---sfhcrqzzuf5ym3x3
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 0/2] R-Car CANFD fixes
-MIME-Version: 1.0
-
-On 07.03.2025 17:03:25, Biju Das wrote:
-> This patch series addresses 2 issues
->  1) Fix typo in pattern properties for R-Car V4M.
->  2) Fix page entries in the AFL list.
->=20
-> v2->v3:
->  * Collected tags.
->  * Dropped unused variables cfg and start from
->    rcar_canfd_configure_afl_rules().
-> v1->v2:
->  * Split fixes patches as separate series.
->  * Added Rb tag from Geert for binding patch.
->  * Added the tag Cc:stable@vger.kernel.org
->=20
-> Biju Das (2):
->   dt-bindings: can: renesas,rcar-canfd: Fix typo in pattern properties
->     for R-Car V4M
->   can: rcar_canfd: Fix page entries in the AFL list
->=20
->  .../bindings/net/can/renesas,rcar-canfd.yaml  |  2 +-
->  drivers/net/can/rcar/rcar_canfd.c             | 28 ++++++++-----------
->  2 files changed, 12 insertions(+), 18 deletions(-)
-
-Applied to linux-can.
-
-Thanks,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---sfhcrqzzuf5ym3x3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmfT7nYACgkQDHRl3/mQ
-kZyQcQf9GCCP/HKTjBxyq7lVtcXFI0SYyIzqN2BocqvkOk+LX8jiBhabI2Dj3LLi
-Kxuv4HZRFDTf9zQXa690wOcWtBnRBKxDb+jXFBZY7lEnH59WhJlH1FVX7GkFOtmx
-cbDqwS/nrzW2VH2w7+wLlgsyQvcKycB9VvxO6lQvbgqSltageE/Jl45e9aquCY7l
-GhZjcVMltZhy0jA6IVqGpjicXYESfrZYYD+H7fJ3xo7tDIVdG/LdvSx3x71/+/Ct
-dALlcctsLVAEqh26BrpbIMv0hed5QZUFXbDRla5D5z/rRswkPsioqJMkPGfhGMB5
-e1V95RJmMYEelyf3EsO1mxs25dtC/Q==
-=SXcH
------END PGP SIGNATURE-----
-
---sfhcrqzzuf5ym3x3--
 
