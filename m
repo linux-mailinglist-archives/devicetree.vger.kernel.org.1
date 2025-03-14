@@ -1,406 +1,368 @@
-Return-Path: <devicetree+bounces-157431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F81A60A8B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:56:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BACACA60A26
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:38:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7F4217FC0E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 07:56:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BFF21891085
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 07:38:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E7A19D8BE;
-	Fri, 14 Mar 2025 07:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2329618A6C5;
+	Fri, 14 Mar 2025 07:38:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="uYFtcfRw"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="JAfWBBAP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A389C192B65;
-	Fri, 14 Mar 2025 07:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095BD13D279
+	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 07:38:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741938938; cv=none; b=EphBtqOqcbnigUIHjUsHWlKA2bhG9nyiVn6AMuDAUu1IX/8m3/SLnWQDVMwVwKCxoAJ2tviW34p6X/cpZ6k4jNqjG9WNVs34vGpKCdrCGTO3CsIZAwEwc1ck1VoJ7NI/YVuD1LjrRgzwUWFf0vIEAwgv+RTFGV7SIUva8UA7E0c=
+	t=1741937896; cv=none; b=c59/3+vvUhxZoXdz+aaBIybxOJK0Ncsf623ywGDstMvBMYU6ALGd1Z7kCq/8R3LmXJ2ofY5253GCVQLszt3n1k43IDtnmxWDVCZhBT4CpWhCTzV2Kw0o389ts/F2Yv4MKjBJ3GdyrXMImdD5BjUx8JeCGzCOPRUshMteH8N+Ips=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741938938; c=relaxed/simple;
-	bh=HY0j+wYPJHp8dngZrnVwVVFsqEwJCPfDrPhdDj4GMec=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LTPm4AIX8Q0KWuaH5+EHRMxh1+/kyw7Gqvd3DMDGP7Q3ZD4DGGVAhLeaMGJoXbOLTD6ODvbEly07aijE9eYSUDb2DTJfceKvLxMYcXtgBXbtprql83qZRAKQ7wRKwdbNco+zXxBZW6DGcSEKdGFfEaMQ+ufrU9vLxz93Z1huyTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=uYFtcfRw; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: b381703c00a911f0aae1fd9735fae912-20250314
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=YeVPzS50yaHINy2hyaHmo427d2ZmemrCtOQyBXxOGLc=;
-	b=uYFtcfRwdxaj2iS21RarYs0NybjH/gJXTkpxGu7gB+bb9CZNKKaFzHVB+8Ok+F2h+55CFTT7AW0ctkB2bYbOhY37wEBhkDtuo6Oq5F4sZ9DbNz95V1gqOobphRk+sfFGgEjR2I/cy7ImCGuGIK3Y+e5odC+iDryIioBdNywiC+M=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:bb84586e-4306-4851-bc17-525bc5161ce1,IP:0,UR
-	L:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:25
-X-CID-META: VersionHash:0ef645f,CLOUDID:f35927e1-3561-4519-9a12-e2c881788b70,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:11|83|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: b381703c00a911f0aae1fd9735fae912-20250314
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <lu.tang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 377927494; Fri, 14 Mar 2025 15:55:30 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Fri, 14 Mar 2025 15:55:30 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Fri, 14 Mar 2025 15:55:29 +0800
-From: Lu.Tang <Lu.Tang@mediatek.com>
-To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov
-	<dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Stephen Boyd
-	<sboyd@kernel.org>, Chen Zhong <chen.zhong@mediatek.com>, Sen Chu
-	<shen.chu@mediatek.com>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-gpio@vger.kernel.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Lu.Tang
-	<Lu.Tang@mediatek.com>
-Subject: [PATCH 5/5] dt-bindings: pmic: mediatek: Add pmic documents
-Date: Fri, 14 Mar 2025 15:32:31 +0800
-Message-ID: <20250314073307.25092-6-Lu.Tang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250314073307.25092-1-Lu.Tang@mediatek.com>
-References: <20250314073307.25092-1-Lu.Tang@mediatek.com>
+	s=arc-20240116; t=1741937896; c=relaxed/simple;
+	bh=06qpn+VXc/7DV39BF58QleNxqzv6HoU8lFClzZLzhPU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VAI0mTC+u8oSQDtXEUlQ5D74tiQ2P3Fd6UbzguxSxH6C+KE6zQVCaat2tHBn9GJFCOnGIaGPYgeDGCKszQg79qhUeLCewCvGZC8ubycbddwYZju9OIVrO5bVQcbGpF8RP8+RhDOsvTCtxDRvMUcl5LCholHEBpelnUiviGWYyzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=JAfWBBAP; arc=none smtp.client-ip=209.85.166.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3d4436ba324so13385675ab.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 00:38:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1741937892; x=1742542692; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6P83z22nVsy0TdwN/y1tzBRhznwCiNekdo216cawsLo=;
+        b=JAfWBBAPHQnjjILhVo7wiOsqh3MCrHPzfCRfQbgbne8adWijl+qt5Rgz361PzYOA07
+         ls0ntB5kDP5ZFUwlQLlr0Zs9KCXWVNhksSDky5X2uHwvYi584+/7fK72FXMRL085qPEV
+         A+javSvC6b2QQmO9gGuqZb3nnpwckT+qJBfmvHErjFX/GSjzvxV1lB28uw5DqytkXKC3
+         vSk7fJwy7kt20upFk5saWzAQwTfyyeJF9ImNkKSPNzIy1lx0QMSRbX5DzZhiDk6AAYPD
+         9/mkjJnBdSvcSrec7Wqfa09ChUu19xen16Obr4U9hNNWYNme9ZdDAB1cSIkmKj3sGtfD
+         mXog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741937892; x=1742542692;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6P83z22nVsy0TdwN/y1tzBRhznwCiNekdo216cawsLo=;
+        b=jHcFYdQY88bs4vLkFLokFm9gTLr8OOfqTct3ibEc0Q1y5S3VgLqmdw2+X8a98IWFPT
+         PKMOFXlCjJ3DHuFcraiRE632iJViKdeVgA/uHkw6PG2FTI8V2h4c6gqbW+1EHTAnVuqg
+         hODT/iixR7uecSO7WLJdtOlE2RXYMLDPWm7nTPlctoNoPKd4JFWall0Y2BNwwOO0M6F8
+         9H7HapERwKEJovPi0edZ1QqST9vgVhjtfbcHJHOkOD+JyuMTidlYhTmQaloACLdh1jat
+         wynFIxgTpi4TC8ClNkWbW1s99Dna+gfo989CKVsKkRI7dAOjMYdiYwjNAJygxvAR8613
+         26/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUvKHvL92lB1lbengIrq0xBtxbCwM8jWlUcA7kSEn/W7DpvCplco/EZGGTlZlFcvNrNxVyCCnV4xmuE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBSm28HKC+zWS185CEdGFfJ0fbvfig9vXHlvnj2k7+lfaeF3qD
+	nP00UPRfeygJ547O/uJk8PHRlIQfC0mdTFUwpmBhBb8rvDdsZqWLqwZQJhjrNPXJuismMERYT/T
+	1n7FOutcacW0l8/7Ora05McN8aQ9SO95WT1mpiw==
+X-Gm-Gg: ASbGncsg0xvsCxz2Ghkp2FiWawtMMmR3XLOZxu5L86tg858fOBzKGxnulnSQ/+/mqGI
+	wYHKYG0uk7+SIRUlR75d2CtDjWtSuxv4IjYlpLPXTycgVUti/LnCBsATRBLTAPr3i+KHTueKlXv
+	U6DFvoPU8DCsxXEES2aqYmYobiH0YxAIIM1p/w9EY=
+X-Google-Smtp-Source: AGHT+IFyvkT12+i013M0vxzjGYoHvGKmiPNTdSQO7eiKOWYYyKKOPLHni3BWX5f++FKmCcCNeYHl2rGHeIQykLNckAU=
+X-Received: by 2002:a05:6e02:1aa8:b0:3d3:f4fc:a291 with SMTP id
+ e9e14a558f8ab-3d483a8dc2amr13220485ab.19.1741937892021; Fri, 14 Mar 2025
+ 00:38:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20250310-v5_user_cfi_series-v11-0-86b36cbfb910@rivosinc.com> <20250310-v5_user_cfi_series-v11-23-86b36cbfb910@rivosinc.com>
+In-Reply-To: <20250310-v5_user_cfi_series-v11-23-86b36cbfb910@rivosinc.com>
+From: Zong Li <zong.li@sifive.com>
+Date: Fri, 14 Mar 2025 15:37:58 +0800
+X-Gm-Features: AQ5f1JrlSOfjsucljdPYnudPUFm9fomUfZIh4MbxfMyusAcNQh-nryqNstYXxqM
+Message-ID: <CANXhq0rsMGx_MXfss+RROHip0VLxmsWevvY0ukpRqyqscEthdw@mail.gmail.com>
+Subject: Re: [PATCH v11 23/27] arch/riscv: compile vdso with landing pad
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
+	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
+	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
+	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add new pmic mfd and adc documents for mt8196
+On Mon, Mar 10, 2025 at 11:44=E2=80=AFPM Deepak Gupta <debug@rivosinc.com> =
+wrote:
+>
+> From: Jim Shu <jim.shu@sifive.com>
+>
+> user mode tasks compiled with zicfilp may call indirectly into vdso (like
+> hwprobe indirect calls). Add landing pad compile support in vdso. vdso
+> with landing pad in it will be nop for tasks which have not enabled
+> landing pad.
+> This patch allows to run user mode tasks with cfi eanbled and do no harm.
+>
+> Future work can be done on this to do below
+>  - labeled landing pad on vdso functions (whenever labeling support shows
+>    up in gnu-toolchain)
+>  - emit shadow stack instructions only in vdso compiled objects as part o=
+f
+>    kernel compile.
+>
+> Signed-off-by: Jim Shu <jim.shu@sifive.com>
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> ---
+>  arch/riscv/Makefile                   |  7 +++++-
+>  arch/riscv/include/asm/assembler.h    | 44 +++++++++++++++++++++++++++++=
+++++++
+>  arch/riscv/kernel/vdso/Makefile       | 12 ++++++++++
+>  arch/riscv/kernel/vdso/flush_icache.S |  4 ++++
+>  arch/riscv/kernel/vdso/getcpu.S       |  4 ++++
+>  arch/riscv/kernel/vdso/rt_sigreturn.S |  4 ++++
+>  arch/riscv/kernel/vdso/sys_hwprobe.S  |  4 ++++
+>  7 files changed, 78 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
+> index 13fbc0f94238..ea9468af2cb4 100644
+> --- a/arch/riscv/Makefile
+> +++ b/arch/riscv/Makefile
+> @@ -87,10 +87,15 @@ riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZACAS) :=3D $(risc=
+v-march-y)_zacas
+>
+>  # Check if the toolchain supports Zabha
+>  riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZABHA) :=3D $(riscv-march-y)_zabha
+> +# Check if the toolchain supports Zihintpause extension
+> +riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE) :=3D $(riscv-march-y)_zi=
+hintpause
 
-Signed-off-by: Lu.Tang <Lu.Tang@mediatek.com>
----
- .../iio/adc/mediatek,spmi-pmic-auxadc.yaml    |  31 ++++
- .../bindings/input/mediatek,pmic-keys.yaml    |   1 +
- .../bindings/mfd/mediatek,mt6685.yaml         |  50 +++++
- .../bindings/mfd/mediatek,spmi-pmic.yaml      | 173 ++++++++++++++++++
- .../pinctrl/mediatek,mt65xx-pinctrl.yaml      |   1 +
- 5 files changed, 256 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,spmi-pmic-auxadc.yaml
- create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6685.yaml
- create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,spmi-pmic.yaml
+I think we don't need this, it has removed by the '6da111574baf
+("riscv: Provide a definition for 'pause'")'. Apart from that, this
+patch looks good to me.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,spmi-pmic-auxadc.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,spmi-pmic-auxadc.yaml
-new file mode 100644
-index 000000000000..250782ad7d01
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/mediatek,spmi-pmic-auxadc.yaml
-@@ -0,0 +1,31 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/mediatek,spmi-pmic-auxadc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek SPMI PMIC AUXADC
-+
-+maintainers:
-+  - Lu Tang <lu.tang@mediatek.com>
-+
-+description:
-+  The Auxiliary Analog/Digital Converter (AUXADC) is an ADC found
-+  in some MediaTek PMICs, performing various PMIC related measurements
-+  such as battery and PMIC internal voltage regulators temperatures,
-+  other than voltages for various PMIC internal components.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt6363-auxadc
-+      - mediatek,mt6373-auxadc
-+
-+  "#io-channel-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - "#io-channel-cells"
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-index b95435bd6a9b..ce760039d4c2 100644
---- a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-+++ b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-@@ -31,6 +31,7 @@ properties:
-       - mediatek,mt6358-keys
-       - mediatek,mt6359-keys
-       - mediatek,mt6397-keys
-+      - mediatek,mt6363-keys
- 
-   power-off-time-sec: true
- 
-diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6685.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6685.yaml
-new file mode 100644
-index 000000000000..d3276df8952b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6685.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/mediatek,mt6685.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek MT6685 Clock IC
-+
-+maintainers:
-+  - Lu Tang <lu.tang@mediatek.com>
-+
-+description: |
-+  MT6685 is a clock IC.
-+  Please see the sub-modules below for supported features.
-+
-+  MT6685 is a multifunction device with the following sub modules:
-+  - RTC
-+  - Clock
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt6685
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/spmi/spmi.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    spmi {
-+        mfd@9 {
-+            compatible = "mediatek,mt6685";
-+            reg = <0x9 SPMI_USID>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/mfd/mediatek,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/mediatek,spmi-pmic.yaml
-new file mode 100644
-index 000000000000..a8f1231623cf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/mediatek,spmi-pmic.yaml
-@@ -0,0 +1,173 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/mediatek,spmi-pmic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek SPMI PMICs multi-function device
-+
-+maintainers:
-+  - Lu Tang <lu.tang@mediatek.com>
-+
-+description: |
-+  Some Mediatek PMICs are interfaced to the chip via the SPMI (System Power
-+  Management Interface) bus.
-+
-+  The Mediatek SPMI series includes the MT6363, MT6373, MT6316 and other
-+  PMICs.Please see the sub-modules below for supported features.
-+
-+   MT6363/MT6373 is a multifunction device with the following sub modules:
-+  - Regulators
-+  - ADC
-+  - GPIO
-+  - Keys
-+   MT6316 is a multifunction device with the following sub modules:
-+  - Regulators
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - mediatek,mt6363
-+          - mediatek,mt6373
-+          - mediatek,mt6316
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+  regulators:
-+    type: object
-+    description:
-+      List of child nodes that specify the regulators.
-+    additionalProperties: true
-+
-+    properties:
-+      compatible:
-+        oneOf:
-+          - enum:
-+              - mediatek,mt6363-regulator
-+              - mediatek,mt6373-regulator
-+              - mediatek,mt6316-regulator
-+
-+    required:
-+      - compatible
-+
-+  adc:
-+    type: object
-+    $ref: /schemas/iio/adc/mediatek,spmi-pmic-auxadc.yaml#
-+    unevaluatedProperties: false
-+
-+  keys:
-+    type: object
-+    $ref: /schemas/input/mediatek,pmic-keys.yaml
-+    unevaluatedProperties: false
-+    description:
-+      Power and Home keys.
-+
-+  pinctrl:
-+    type: object
-+    $ref: /schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml
-+    unevaluatedProperties: false
-+    description:
-+      Pin controller
-+
-+required:
-+  - compatible
-+  - regulators
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/spmi/spmi.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    spmi {
-+        main_pmic: pmic@4 {
-+            compatible = "mediatek,mt6363";
-+            reg = <0x4 SPMI_USID>;
-+            interrupts = <0x4 IRQ_TYPE_NONE>;
-+            #address-cells = <0>;
-+            interrupt-controller;
-+            #interrupt-cells = <2>;
-+
-+            mt6363keys: keys {
-+                compatible = "mediatek,mt6363-keys";
-+                mediatek,long-press-mode = <1>;
-+                power-off-time-sec = <0>;
-+
-+                power {
-+                    linux,keycodes = <116>;
-+                    wakeup-source;
-+                };
-+
-+                home {
-+                    linux,keycodes = <115>;
-+                };
-+            };
-+
-+            mt6363_pio: pinctrl {
-+                compatible = "mediatek,mt6363-pinctrl";
-+                gpio-controller;
-+                #gpio-cells = <2>;
-+            };
-+
-+            mt6363regulator: regulators {
-+                compatible = "mediatek,mt6363-regulator";
-+
-+                mt6363_vs2: vs2 {
-+                    regulator-name = "mt6363_vs2";
-+                    regulator-allowed-modes = <0 1 2>;
-+                    regulator-always-on;
-+                    regulator-allow-set-load;
-+                };
-+
-+                mt6363_vbuck1: vbuck1 {
-+                    regulator-name = "mt6363_vbuck1";
-+                    regulator-allowed-modes = <0 1 2>;
-+                };
-+
-+                mt6363_vbuck2: vbuck2 {
-+                    regulator-name = "mt6363_vbuck2";
-+                    regulator-allowed-modes = <0 1 2>;
-+                };
-+
-+                mt6363_vbuck3: vbuck3 {
-+                    regulator-name = "mt6363_vbuck3";
-+                    regulator-allowed-modes = <0 1 2>;
-+                };
-+
-+                mt6363_vbuck4: vbuck4 {
-+                    regulator-name = "mt6363_vbuck4";
-+                    regulator-allowed-modes = <0 1 2>;
-+                };
-+
-+                mt6363_vbuck5: vbuck5 {
-+                    regulator-name = "mt6363_vbuck5";
-+                    regulator-allowed-modes = <0 1 2>;
-+                };
-+
-+                mt6363_vbuck6: vbuck6 {
-+                    regulator-name = "mt6363_vbuck6";
-+                    regulator-allowed-modes = <0 1 2>;
-+                };
-+
-+                mt6363_vbuck7: vbuck7 {
-+                    regulator-name = "mt6363_vbuck7";
-+                    regulator-allowed-modes = <0 1 2>;
-+                };
-+
-+                // ...
-+
-+                mt6363_isink_load: isink-load {
-+                    regulator-name = "mt6363_isink_load";
-+                };
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-index bccff08a5ba3..bf3ba58a7705 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-@@ -17,6 +17,7 @@ properties:
-     enum:
-       - mediatek,mt2701-pinctrl
-       - mediatek,mt2712-pinctrl
-+      - mediatek,mt6363-pinctrl
-       - mediatek,mt6397-pinctrl
-       - mediatek,mt7623-pinctrl
-       - mediatek,mt8127-pinctrl
--- 
-2.46.0
+Reviewed-by: Zong Li <zong.li@sifive.com>
 
+> +
+> +KBUILD_BASE_ISA =3D -march=3D$(shell echo $(riscv-march-y) | sed -E 's/(=
+rv32ima|rv64ima)fd([^v_]*)v?/\1\2/')
+> +export KBUILD_BASE_ISA
+>
+>  # Remove F,D,V from isa string for all. Keep extensions between "fd" and=
+ "v" by
+>  # matching non-v and non-multi-letter extensions out with the filter ([^=
+v_]*)
+> -KBUILD_CFLAGS +=3D -march=3D$(shell echo $(riscv-march-y) | sed -E 's/(r=
+v32ima|rv64ima)fd([^v_]*)v?/\1\2/')
+> +KBUILD_CFLAGS +=3D $(KBUILD_BASE_ISA)
+>
+>  KBUILD_AFLAGS +=3D -march=3D$(riscv-march-y)
+>
+> diff --git a/arch/riscv/include/asm/assembler.h b/arch/riscv/include/asm/=
+assembler.h
+> index 44b1457d3e95..a058ea5e9c58 100644
+> --- a/arch/riscv/include/asm/assembler.h
+> +++ b/arch/riscv/include/asm/assembler.h
+> @@ -80,3 +80,47 @@
+>         .endm
+>
+>  #endif /* __ASM_ASSEMBLER_H */
+> +
+> +#if defined(CONFIG_RISCV_USER_CFI) && (__riscv_xlen =3D=3D 64)
+> +.macro vdso_lpad
+> +lpad 0
+> +.endm
+> +#else
+> +.macro vdso_lpad
+> +.endm
+> +#endif
+> +
+> +/*
+> + * This macro emits a program property note section identifying
+> + * architecture features which require special handling, mainly for
+> + * use in assembly files included in the VDSO.
+> + */
+> +#define NT_GNU_PROPERTY_TYPE_0  5
+> +#define GNU_PROPERTY_RISCV_FEATURE_1_AND 0xc0000000
+> +
+> +#define GNU_PROPERTY_RISCV_FEATURE_1_ZICFILP      (1U << 0)
+> +#define GNU_PROPERTY_RISCV_FEATURE_1_ZICFISS      (1U << 1)
+> +
+> +#if defined(CONFIG_RISCV_USER_CFI) && (__riscv_xlen =3D=3D 64)
+> +#define GNU_PROPERTY_RISCV_FEATURE_1_DEFAULT \
+> +       (GNU_PROPERTY_RISCV_FEATURE_1_ZICFILP)
+> +#endif
+> +
+> +#ifdef GNU_PROPERTY_RISCV_FEATURE_1_DEFAULT
+> +.macro emit_riscv_feature_1_and, feat =3D GNU_PROPERTY_RISCV_FEATURE_1_D=
+EFAULT
+> +       .pushsection .note.gnu.property, "a"
+> +       .p2align        3
+> +       .word           4
+> +       .word           16
+> +       .word           NT_GNU_PROPERTY_TYPE_0
+> +       .asciz          "GNU"
+> +       .word           GNU_PROPERTY_RISCV_FEATURE_1_AND
+> +       .word           4
+> +       .word           \feat
+> +       .word           0
+> +       .popsection
+> +.endm
+> +#else
+> +.macro emit_riscv_feature_1_and, feat =3D 0
+> +.endm
+> +#endif
+> diff --git a/arch/riscv/kernel/vdso/Makefile b/arch/riscv/kernel/vdso/Mak=
+efile
+> index 9a1b555e8733..daa10c2b0dd1 100644
+> --- a/arch/riscv/kernel/vdso/Makefile
+> +++ b/arch/riscv/kernel/vdso/Makefile
+> @@ -13,12 +13,18 @@ vdso-syms +=3D flush_icache
+>  vdso-syms +=3D hwprobe
+>  vdso-syms +=3D sys_hwprobe
+>
+> +ifdef CONFIG_RISCV_USER_CFI
+> +LPAD_MARCH =3D _zicfilp
+> +endif
+> +
+>  # Files to link into the vdso
+>  obj-vdso =3D $(patsubst %, %.o, $(vdso-syms)) note.o
+>
+>  ccflags-y :=3D -fno-stack-protector
+>  ccflags-y +=3D -DDISABLE_BRANCH_PROFILING
+>  ccflags-y +=3D -fno-builtin
+> +ccflags-y +=3D $(KBUILD_BASE_ISA)$(LPAD_MARCH)
+> +asflags-y +=3D $(KBUILD_BASE_ISA)$(LPAD_MARCH)
+>
+>  ifneq ($(c-gettimeofday-y),)
+>    CFLAGS_vgettimeofday.o +=3D -fPIC -include $(c-gettimeofday-y)
+> @@ -40,6 +46,12 @@ endif
+>  CFLAGS_REMOVE_vgettimeofday.o =3D $(CC_FLAGS_FTRACE) $(CC_FLAGS_SCS)
+>  CFLAGS_REMOVE_hwprobe.o =3D $(CC_FLAGS_FTRACE) $(CC_FLAGS_SCS)
+>
+> +# Disable profiling and instrumentation for VDSO code
+> +GCOV_PROFILE :=3D n
+> +KCOV_INSTRUMENT :=3D n
+> +KASAN_SANITIZE :=3D n
+> +UBSAN_SANITIZE :=3D n
+> +
+>  # Force dependency
+>  $(obj)/vdso.o: $(obj)/vdso.so
+>
+> diff --git a/arch/riscv/kernel/vdso/flush_icache.S b/arch/riscv/kernel/vd=
+so/flush_icache.S
+> index 8f884227e8bc..e4c56970905e 100644
+> --- a/arch/riscv/kernel/vdso/flush_icache.S
+> +++ b/arch/riscv/kernel/vdso/flush_icache.S
+> @@ -5,11 +5,13 @@
+>
+>  #include <linux/linkage.h>
+>  #include <asm/unistd.h>
+> +#include <asm/assembler.h>
+>
+>         .text
+>  /* int __vdso_flush_icache(void *start, void *end, unsigned long flags);=
+ */
+>  SYM_FUNC_START(__vdso_flush_icache)
+>         .cfi_startproc
+> +       vdso_lpad
+>  #ifdef CONFIG_SMP
+>         li a7, __NR_riscv_flush_icache
+>         ecall
+> @@ -20,3 +22,5 @@ SYM_FUNC_START(__vdso_flush_icache)
+>         ret
+>         .cfi_endproc
+>  SYM_FUNC_END(__vdso_flush_icache)
+> +
+> +emit_riscv_feature_1_and
+> diff --git a/arch/riscv/kernel/vdso/getcpu.S b/arch/riscv/kernel/vdso/get=
+cpu.S
+> index 9c1bd531907f..5c1ecc4e1465 100644
+> --- a/arch/riscv/kernel/vdso/getcpu.S
+> +++ b/arch/riscv/kernel/vdso/getcpu.S
+> @@ -5,14 +5,18 @@
+>
+>  #include <linux/linkage.h>
+>  #include <asm/unistd.h>
+> +#include <asm/assembler.h>
+>
+>         .text
+>  /* int __vdso_getcpu(unsigned *cpu, unsigned *node, void *unused); */
+>  SYM_FUNC_START(__vdso_getcpu)
+>         .cfi_startproc
+> +       vdso_lpad
+>         /* For now, just do the syscall. */
+>         li a7, __NR_getcpu
+>         ecall
+>         ret
+>         .cfi_endproc
+>  SYM_FUNC_END(__vdso_getcpu)
+> +
+> +emit_riscv_feature_1_and
+> diff --git a/arch/riscv/kernel/vdso/rt_sigreturn.S b/arch/riscv/kernel/vd=
+so/rt_sigreturn.S
+> index 3dc022aa8931..e82987dc3739 100644
+> --- a/arch/riscv/kernel/vdso/rt_sigreturn.S
+> +++ b/arch/riscv/kernel/vdso/rt_sigreturn.S
+> @@ -5,12 +5,16 @@
+>
+>  #include <linux/linkage.h>
+>  #include <asm/unistd.h>
+> +#include <asm/assembler.h>
+>
+>         .text
+>  SYM_FUNC_START(__vdso_rt_sigreturn)
+>         .cfi_startproc
+>         .cfi_signal_frame
+> +       vdso_lpad
+>         li a7, __NR_rt_sigreturn
+>         ecall
+>         .cfi_endproc
+>  SYM_FUNC_END(__vdso_rt_sigreturn)
+> +
+> +emit_riscv_feature_1_and
+> diff --git a/arch/riscv/kernel/vdso/sys_hwprobe.S b/arch/riscv/kernel/vds=
+o/sys_hwprobe.S
+> index 77e57f830521..f1694451a60c 100644
+> --- a/arch/riscv/kernel/vdso/sys_hwprobe.S
+> +++ b/arch/riscv/kernel/vdso/sys_hwprobe.S
+> @@ -3,13 +3,17 @@
+>
+>  #include <linux/linkage.h>
+>  #include <asm/unistd.h>
+> +#include <asm/assembler.h>
+>
+>  .text
+>  SYM_FUNC_START(riscv_hwprobe)
+>         .cfi_startproc
+> +       vdso_lpad
+>         li a7, __NR_riscv_hwprobe
+>         ecall
+>         ret
+>
+>         .cfi_endproc
+>  SYM_FUNC_END(riscv_hwprobe)
+> +
+> +emit_riscv_feature_1_and
+>
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
