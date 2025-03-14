@@ -1,130 +1,105 @@
-Return-Path: <devicetree+bounces-157636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71687A61A03
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 20:02:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64B2FA61A40
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 20:17:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 633DB19C6B99
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 19:02:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A592B46375F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 19:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF4D204875;
-	Fri, 14 Mar 2025 19:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6378C20459A;
+	Fri, 14 Mar 2025 19:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="YLpwZDBg"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Axg7LZJg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE5C202968
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 19:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F07D530;
+	Fri, 14 Mar 2025 19:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741978919; cv=none; b=oAsKJDmqD3zMTyP1MWDis4TxAPZIu141MlLNMs4RHVGAg7pefbdXwozrNjePuXXpezYXF6rSy4iLASbAAEJq3A0VqigoSfg5+8sXds5yJr1Rs3r9QNMzTo7LIJa62XuKCqIMpzc8MYUmnyUDlJEOkmA0dXt4y4lG0w04YkReq0M=
+	t=1741979840; cv=none; b=OouUDtYFhUEdAXA9TP5XP3riknvRcZmnM5JkUGTPoHAkvo0d9qdAatZ9oVVr7CkO07tQTBRhdYtdXU+399qof5CUBuEGGgcVAcIdwrwmr8c/eHqQcZ9r6UhM4dSPQbm+EHZJ/zPaQHjc5mnJ6YwPZ+kayrpZfwbCNpn4bXfX5Wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741978919; c=relaxed/simple;
-	bh=zS+VIJjPhOlqAPHbDVyzgjWl85m3r5eFV1c/Tnbug5k=;
+	s=arc-20240116; t=1741979840; c=relaxed/simple;
+	bh=YjhN7yGHAgYFDdU+fi3f2nNPpZZ9ftpnKhdoH/fMKYI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j5vIemBxwhMDjTpIFIcs+a1YMVRfaJpPtbI6cCCGB864njzwhMi9YvjRwsV53tsxLZkNb1snjNmP8wKtoNV0hiK33HIo/Ve3dmKfgP88t/Ka2r0xuu88licLZYT8TEFcmLF7bYNJ2TvCyUgCpoSX7EeKFQhLdyPxKlQn7Xl9CH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=YLpwZDBg; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=zS+V
-	IJjPhOlqAPHbDVyzgjWl85m3r5eFV1c/Tnbug5k=; b=YLpwZDBgF/VSqDMynIRm
-	LJDJQiJypZ+nVqjD3C61y0f/+/7m9iRFAGS1FSY0kQcHLSps4z5NjG4D25ZI3/MK
-	hTMTeNuP4JOGaE4IcjUiAnaeyqkuJUU6ap/LTXfocrOrcg1gmDLx+W1KWshnBmT2
-	ULz4ztm95hEx5EqyZJNIB35NE8U3S2eXqqCeBczc+nlJGRJHuqsdjlhMgi5j3Hfg
-	qEBa5L6WbKMhQ4l0r+/DD4JouZfW2ecHQLm/a60r2vWjfYuCjFTdnsR9vGHe5OQl
-	bMIjbs7JUZQqZ5rXhPHA0Hup2MHuqt/XfI6d+HYZumjOPA3Xnj8ujWCXno5jk+gT
-	Pw==
-Received: (qmail 2137754 invoked from network); 14 Mar 2025 20:01:52 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Mar 2025 20:01:52 +0100
-X-UD-Smtp-Session: l3s3148p1@FGpDElIwgI0ujnuL
-Date: Fri, 14 Mar 2025 20:01:52 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jO64lA2w4CMxZyf+Fjh7SzmeXdNcTtuNZ+z12sp9FMW783r5eju1IRDhqBx2bZJIZ32h0CsTSysMIUGa9ZXkwWNBawXzuquNRHQeVMHI0ImACZrKUICWgXsHsBBA9z9dTvjhQA0WdJpko6uoet0MAE3un4mKtREquAWt7xzzBxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Axg7LZJg; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=14q1zuoC/RYgpg42ycjqCS4ie1FHZTJiWO21vFg6qTk=; b=Axg7LZJgdNjewBL3JmJdJjRst/
+	x+jKPP3zJ0C+xYYh9xUgnBH1pROTkSJ0lR28U4q6kclRSU7gfyGVxoJEzNWkYluenQIkMYN/tHsEs
+	jwlKbjzT8MOPsstAZgrAr7deVqqDqD2BHYSVuejuSKEG/zgHZE3gFV9+gIuUwKuX9gtA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ttAWg-005Nnw-Nm; Fri, 14 Mar 2025 20:16:58 +0100
+Date: Fri, 14 Mar 2025 20:16:58 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Subject: Re: [PATCH v3] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb board
- device-tree
-Message-ID: <Z9R9IHyXK0TBcPZa@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-References: <20250314-rzn1d400-eb-v3-1-45c4fd3f6e01@bootlin.com>
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v12 09/13] mfd: an8855: Add support for Airoha
+ AN8855 Switch MFD
+Message-ID: <2253e19b-2115-441e-b78a-3c10d61f2fad@lunn.ch>
+References: <20250309172717.9067-1-ansuelsmth@gmail.com>
+ <20250309172717.9067-10-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Txifhr+AlaUgRoBc"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250314-rzn1d400-eb-v3-1-45c4fd3f6e01@bootlin.com>
+In-Reply-To: <20250309172717.9067-10-ansuelsmth@gmail.com>
 
+> +static int an8855_mii_set_page(struct an8855_mfd_priv *priv, u8 phy_id,
 
---Txifhr+AlaUgRoBc
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+phy_id is a bit of an odd name. __mdiobus_write() expects addr, since
+at this level, it is just a device on a bus. We have no idea if it is
+a PHY, or an Ethernet switch, or anything else.
 
-On Fri, Mar 14, 2025 at 07:56:29PM +0100, Thomas Bonnefille wrote:
-> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
->=20
-> The EB board (Expansion board) supports both RZ/N1D and RZ-N1S. Since this
-> configuration targets only the RZ/N1D, it is named r9a06g032-rzn1d400-eb.
-> It adds support for the 2 additional switch ports (port C and D) that are
-> available on that board.
->=20
-> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
->=20
-> [Thomas moved the dts to the renesas directory and declared the leds in
-> each phy]
->=20
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> +			       u8 page) __must_hold(&priv->bus->mdio_lock)
+> +{
+> +	struct mii_bus *bus = priv->bus;
+> +	int ret;
+> +
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PHY_SELECT_PAGE, page);
+> +	if (ret < 0)
+> +		dev_err_ratelimited(&bus->dev,
+> +				    "failed to set an8855 mii page\n");
+> +
+> +	/* Cache current page if next mii read/write is for switch */
+> +	priv->current_page = page;
+> +	return ret < 0 ? ret : 0;
 
-Oh, cool! I will definitely test it next week. Thanks a lot!
+__mdiobus_write() should only return -ve error code, or 0. So you
+don't need this.
 
-
---Txifhr+AlaUgRoBc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmfUfRoACgkQFA3kzBSg
-KbbnTA//UVMxsSokBVUsoucOsPcgopRUy4JIr/IfHjKqhD1z0GrjT6QVBeUhKV41
-ddKB8oFb0voidl15RNyFgF2sfl2rGVmvz7QWob5FZeGYLoPrCJJ9BF2YxBachGYV
-qxTtljqsYpmduFOV3U3xH9vZbSPbQNVS09aMHMMXUeKNArjwQG6HEnB0sA2N3nwp
-8fMPL9yzrtXBOhmE+lNxCNn+Fq18Mw2r4H8VB3o2YlaHXFBp7l0cN/fG/NNe+eg+
-st+VxbYtOo1u3U4NH923nCiXshz7VthEI5DPgCnB7dmY5zk5fX7rx3b13vRUyVzM
-OkAtQv/383aoi6Imh6qibj8s8IAn2nbjmrRUOGBDAuSCUxed1YpeibOLx53fLnLm
-UKlWpaeG4W8aOvBl9p6hyCF4inkShXxE996LK6fP1i9HNhhGfgXv8WHgNLE7/dcx
-rXSY7xALjEBze8InOFA+9d/SqYlfdmnPMCGXMLufKLN76A601widsRNVNGuQbEPN
-2TE8vOPy9B8A6OVjL3C6t2E1Ou1uIUIal1tZwCl6a20hq3zdfe17bxRzXvcjjAMz
-6X0aDO9eMA5+WfQdIiNkwdZSkh3mN1BdveIz4pkm+JCLdAikvni75ngyOwuAaY1E
-l+M7bV5ePvYFGoH0Ybtt3c6Q9das7shYbVzfHZ8B1zrYB+RWKME=
-=bZxX
------END PGP SIGNATURE-----
-
---Txifhr+AlaUgRoBc--
+	Andrew
 
