@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-157666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A59A61BB8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 21:07:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E7B6A61BC1
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 21:07:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CBE219C46F1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 20:07:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AC214601A2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 20:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27BA2144DF;
-	Fri, 14 Mar 2025 20:01:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D150214A90;
+	Fri, 14 Mar 2025 20:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rs5eiSgz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H4I5x32D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69AF2144D4;
-	Fri, 14 Mar 2025 20:01:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53442205AB7;
+	Fri, 14 Mar 2025 20:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741982515; cv=none; b=Us9SogqCS+wCIR2WQ70Sx3E2WOxpSUtX38YPMpUUMofQFFtbP5M3ndhE5YgojMcPxK9FDBW+4w5IGq7AMKAxJcAuWlu0eOtpZlplV799px8P5xs9S+eBijf68wmbPsd3NzpvPT5QB3P5Nd+U3hWpNE7xurA47LzZNTBodzNDUBo=
+	t=1741982517; cv=none; b=n7xQD18GMXNbjcA4swEr9NxaStq2s08ajpIJBketpUgGMJwG/TT8SlAHoPwJJiEzPbHsB/Hb2NuFM63BIXROOvXgqtiaAdv8vzFqhgBe04N4AXgFEVZmd0r2vgWEz5oxqL8Q9JrpjCjkQsRY3h9csDhItDlnPj9lgRXLK7jwJVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741982515; c=relaxed/simple;
-	bh=88f7Ma4D1tI08SR+/sJODP9RMMmek9rQUGeeJmk5KjA=;
+	s=arc-20240116; t=1741982517; c=relaxed/simple;
+	bh=NLw3Zn0lcvoa9dN3+/Tshr6K0OnuCUML/T3BRrtCbxE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M9HPyDDf7bNQaRbVTyIJ3Sk46gKqSBynDqj+9WOg0usICgPaQKulVrUlNNU2StPr/zL7qWCp+CuEAovo1J3Sft3GtGgmOroNY7viAuY43Ofkg8MhRTxfYy55Ie6bc8JNf3uIFTrSTMF10xOIPtqbzeMciZHY0zpM8TRMj3xKBzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rs5eiSgz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70983C4CEED;
-	Fri, 14 Mar 2025 20:01:54 +0000 (UTC)
+	 MIME-Version:Content-Type; b=oQnAfHDaUlG+zAJ3/TyjmFnXhTIkQGnigwxTA7pWYXlnXrAiUHG1JeTssjY7Umzm153KAcZHZx7AMSr5D/Mtp6v7QaBbJ4MOflMX1O9yHQf3IiFlxJnhMTkfPQnL2XwGDjtrZEmRW6k1sMlv82QfONB/rIiG12voTcjTBklmiz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H4I5x32D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76238C4CEE9;
+	Fri, 14 Mar 2025 20:01:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741982515;
-	bh=88f7Ma4D1tI08SR+/sJODP9RMMmek9rQUGeeJmk5KjA=;
+	s=k20201202; t=1741982517;
+	bh=NLw3Zn0lcvoa9dN3+/Tshr6K0OnuCUML/T3BRrtCbxE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rs5eiSgzeWEpXUsB5rezj6c412befpbq9QP6qG82WJJpEHoix3nAWdIDelXcIl9f3
-	 bZlSPKsd72r8vU6fwWlqBOiztktNVy8FYz4QA1r+w7yY/UoPTdik2CgianYswLGIHj
-	 SUmSuAboN9JEedcIqaLDmGHQflmKlAAyMhjcYL4/+hTcmlcjP96cQSHQQGAw5hL7mX
-	 HDuYjhHjh5LJt71hRn6DXLHx/Sd/SdysIUHmdJEsGVqopjbNmrgOXsCSc0SDvLAVLb
-	 28EmLVVQuRNLb7QhCfGAefqCsYs6AIB7S+KCjm/yfsS5qx7IN5ziURa3t6WVl1D+DY
-	 pnPq7+7aFSQWw==
+	b=H4I5x32DkYfXUoCqlJgVElsbexW8up2dtNe73o6vnLCD8ey0XJibrLcpZq9xd9d+8
+	 oCrgSryxBD5Nkxtfcuidwheuz4GcDzvX8xyB8tvh7fMahnRsgFOcbUUHImYCIrM6U4
+	 X0QVPDsme5J72/m7R0ZmRNW6lNc7KJMFr2sGiI7yMMP22zJqHLndrUQT/xhdfP4ZHm
+	 LLSvO/9Ke/qdqLxUmsuyS0XgzIhu4wPlk/tfwEe+nIA5whilfiWm8FnXGrDHs82/mD
+	 zZ5LgIzJ8kX0Nly3/CBEQt5LJDb6jpP4Dk94eflqCbdKOWNxOQIiKy8B2xXLnoNO6+
+	 xDof17v19CBYA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	quic_srichara@quicinc.com,
-	quic_devipriy@quicinc.com,
-	linux-arm-msm@vger.kernel.org,
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Manish Nagar <quic_mnagar@quicinc.com>
+Cc: linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-Cc: quic_varada@quicinc.com
-Subject: Re: [PATCH v1] arm64: dts: qcom: ipq9574: fix the msi interrupt numbers of pcie3
-Date: Fri, 14 Mar 2025 15:01:08 -0500
-Message-ID: <174198247870.1604753.16869100845723436708.b4-ty@kernel.org>
+	linux-arm-msm@vger.kernel.org,
+	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Subject: Re: [PATCH] arm64: dts: qcom: qcs8300-ride: Enable second USB controller on QCS8300 Ride
+Date: Fri, 14 Mar 2025 15:01:10 -0500
+Message-ID: <174198247897.1604753.4791864107731175321.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250313071422.510-1-quic_mmanikan@quicinc.com>
-References: <20250313071422.510-1-quic_mmanikan@quicinc.com>
+In-Reply-To: <20250310104743.976265-1-quic_mnagar@quicinc.com>
+References: <20250310104743.976265-1-quic_mnagar@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,18 +67,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 13 Mar 2025 12:44:22 +0530, Manikanta Mylavarapu wrote:
-> The MSI interrupt numbers of the PCIe3 controller are incorrect. Due
-> to this, the functional bring up of the QDSP6 processor on the PCIe
-> endpoint has failed. Correct the MSI interrupt numbers to properly
-> bring up the QDSP6 processor on the PCIe endpoint.
+On Mon, 10 Mar 2025 16:17:43 +0530, Manish Nagar wrote:
+> Enable secondary USB controller on QCS8300 Ride platform. Since it is a
+> Type-A port, the dr_mode has been set to "host". The VBUS to connected
+> peripherals is provided by TPS2559QWDRCTQ1 regulator connected to the
+> port. The regulator has an enable pin controlled by PMM8650. Model it as
+> fixed regulator and keep it Always-On at boot, since the regulator is
+> GPIO controlled regulator.
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: ipq9574: fix the msi interrupt numbers of pcie3
-      commit: c87d58bc7f831bf3d887e6ec846246cb673c2e50
+[1/1] arm64: dts: qcom: qcs8300-ride: Enable second USB controller on QCS8300 Ride
+      commit: 64f8541e7a2c5e91498f297bce89a88ab9a34fd3
 
 Best regards,
 -- 
