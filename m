@@ -1,85 +1,103 @@
-Return-Path: <devicetree+bounces-157679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25372A61D16
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 21:47:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83C11A61D1B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 21:48:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68C0C422443
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 20:47:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C829017057C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 20:48:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BED9215575B;
-	Fri, 14 Mar 2025 20:47:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A7E192D66;
+	Fri, 14 Mar 2025 20:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/98iReX"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="p/o5pkzq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BC9A32;
-	Fri, 14 Mar 2025 20:47:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3315716DED2;
+	Fri, 14 Mar 2025 20:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741985223; cv=none; b=CJXZf0IUS4Zrwz6QipJhq66Z3jQwgJJr6yr4MrP1RCOj+Oohft+AkKG181TiU5KcM9yXg0re7JoUdiDF0LdFSkv1yGksTdbOMNx74k5EGenOAehXNuYGHpY03hUCa1ipp4vrpdzdwhj3mgXJIgIzcMlX7uHDxZgkIx/ad/5ksiM=
+	t=1741985328; cv=none; b=rmtj5pEgEt6hELCPbLCKV3B+YDKVNSrv9NHXtTb0VAU+AzZu+SSgYFupkOdi2cQkPsYMYQFoLJ5xsKluLObOVAS6BpvTd0mQ6NRdWtDMVl45uvNb0IR0c07pX65OAbCORjPouhjmuJ+Fy/+Z8BAklaIGzE0YyvxK4UKalEDWWmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741985223; c=relaxed/simple;
-	bh=uHSV6oY5quPamows8Y184bxeGipJYh6CjEiQx+OX2Ag=;
+	s=arc-20240116; t=1741985328; c=relaxed/simple;
+	bh=hb+j22OLJfbyikJ7HtNDHq4frjzAGP3W5g1S+Tq6vBY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pb16+3BBtyF7EdbMBaxs4z/plIZaYXXjnEv4yWKsAu7s89P0M+Qgh0YhBdb8+/M9rrejWT1T3ZcRsk/ur6dJDkR1iFeji/UG+0xycKoaGGoSY/EL3Ilo0DnF3Y9gWoCLa8JW1FYTEK8VtlIHZpEv2YuPgc2M84RO+HBjo0j2ax0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p/98iReX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDE63C4CEE3;
-	Fri, 14 Mar 2025 20:47:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741985223;
-	bh=uHSV6oY5quPamows8Y184bxeGipJYh6CjEiQx+OX2Ag=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p/98iReXXOLjYrepz3vviDIrzCZLl/CP0pj1030dfRTdu1sSiZahBAFxCrMnxT5gq
-	 rKlz8eMfLgWTLcUC6z5luotArVLP91A5XX+UXB1g8MF7V+lJfhBumzAtllMmkw6SFO
-	 177D9nJ1C+lM6Leb8ChkE32UZPmlde/UmSioi7yiU7q8e7AWHiZ9JYtSMAlB4qB8Q4
-	 pkvHb00vfzguhKiKYtm0HwywDNkSXs3Lb3z9sXiOYmHcE2B1H3Iv4TjaMlkGX4Zp3k
-	 SdhmjoHifg8Z+9VokMTG9Aj2KMENVj4I6ivbnWqqppFuvWXMYDEKF/UIWyMRJdMVlI
-	 HAdDQY+jLcuAQ==
-Date: Fri, 14 Mar 2025 15:47:01 -0500
-From: Rob Herring <robh@kernel.org>
-To: Thomas Huth <thuth@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-	linux-arch@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 40/41] scripts/dtc: Update fdt.h to the latest version
-Message-ID: <20250314204701.GA2210106-robh@kernel.org>
-References: <20250314071013.1575167-1-thuth@redhat.com>
- <20250314071013.1575167-41-thuth@redhat.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dpI8YNL5ofDuhmk99vy6p3npBpSfXB3unXg4gpm+dfu4XA0DD2/+jriJiD1LtsBfntNvn4lGc6G/QdieO8TvEV9emUqmmfxh3SuJ6LGPugT+tqMxLwVr82yWq8PrE9PnfZp4/dCpXfiWwrGNYgHBd0sN2kIOqfrmbWVyngYgoWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=p/o5pkzq; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 01CDC1C013F; Fri, 14 Mar 2025 21:48:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1741985323;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=agBWb0L435hF7qWd2hGkcc2Wd0nw5fdjW1N6ZFvPe6U=;
+	b=p/o5pkzqywPXrLEnMTzoV+i6h8NrUkt+Nju/phgeIqnSJm7za2R/gzQokAiUgEWz1Ltthc
+	ADXZ86xwQSjxAjGIYQo3u9nr5WDN3JmHAQYys1D/kKs2GRSZxaMR8aeOPVt95kyqAvbYN+
+	QOdO3QMzcMMC6OCR74JF5c9wPqQzN8w=
+Date: Fri, 14 Mar 2025 21:48:42 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: david@ixit.cz
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] media: dt-bindings: Convert Analog Devices ad5820 to
+ DT schema
+Message-ID: <Z9SWKqtnpBGZokJl@duo.ucw.cz>
+References: <20250314-b4-ad5820-dt-yaml-v2-1-287958c3c07c@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="+rF7RP1KY17rheuH"
+Content-Disposition: inline
+In-Reply-To: <20250314-b4-ad5820-dt-yaml-v2-1-287958c3c07c@ixit.cz>
+
+
+--+rF7RP1KY17rheuH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250314071013.1575167-41-thuth@redhat.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 14, 2025 at 08:10:11AM +0100, Thomas Huth wrote:
-> Update the header to this upstream version to change the
-> __ASSEMBLY__ macro into __ASSEMBLER__ :
-> 
-> https://web.git.kernel.org/pub/scm/utils/dtc/dtc.git/commit/?id=f4c53f4ebf78
-> 
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Saravana Kannan <saravanak@google.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Thomas Huth <thuth@redhat.com>
-> ---
->  scripts/dtc/libfdt/fdt.h | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+On Fri 2025-03-14 20:58:27, David Heidelberg via B4 Relay wrote:
+> From: David Heidelberg <david@ixit.cz>
+>=20
+> Convert the Analog Devices ad5820 to DT schema format.
+>=20
+> Add the previously undocumented io-channel-cells property,
+> which can be omitted. If present, it must be set to 0,
+> as the device provides only one channel.
+>=20
+Acked-by: Pavel Machek <pavel@ucw.cz>
 
-Are you wanting me to apply this or ack it? Normally we only change dtc 
-with the sync with upstream script.
+Thanks,
+							Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
 
-Or maybe it doesn't matter? Do we use this header in any assembly in the 
-kernel? Offhand, I don't think so.
+--+rF7RP1KY17rheuH
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Rob
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZ9SWKgAKCRAw5/Bqldv6
+8kkXAJ0Y2ueeFfa0qnTi36Afpe2clLTImQCfYo1CfahtRdBI8z0KG6jM2o+DQio=
+=8ghC
+-----END PGP SIGNATURE-----
+
+--+rF7RP1KY17rheuH--
 
