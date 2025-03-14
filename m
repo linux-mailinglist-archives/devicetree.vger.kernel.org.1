@@ -1,150 +1,196 @@
-Return-Path: <devicetree+bounces-157443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12787A60AEF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:13:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A77A60AF5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:14:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FFEE3BB6F2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:13:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D87816D4A1
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:14:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126B5194A75;
-	Fri, 14 Mar 2025 08:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="JgJckKZm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8157119E96A;
+	Fri, 14 Mar 2025 08:14:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB16194137
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:13:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A52C19CC24
+	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.83
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741939994; cv=none; b=LpXEqeJlcpUHsyV+4coAxTeE8PGFV4iM7r10DJRjGBJQ7z7rfWbed6d970DgnfWLJkpxEFLkuToEqlPfC6kuxWEmLmanhb29NwB4ZREf40q0pTgNhdNJ/O+4DLuZlfbTjWy6O+HogzfgcHX7tf4/l+vnKzCwTR5qqMfXFE+O6GQ=
+	t=1741940086; cv=none; b=cFapYIYgUS76YQVH5m7+sUZ8o58U8d6iM3ngOa6+5P3AsWBvWHa/SYzewhhLwl+uYaGutKy+ynUIJai4x7L5ozY22ff7xCAw7LXHgFvbsgp10u79UPnX5kzd5WtvKRNatHqgD7MgJ3mNTOmidRkEP810z24pYiNZ7t1ngRALE80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741939994; c=relaxed/simple;
-	bh=aBoaIA8pL5dPRNJ/NbTzYxXHLL9HdGISKk2JuLHQGXI=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=Nuq+ZRrM92iIgvxw8k74Fte4OxOHiAYMjczQ2QKT+z6lTNNHwJ/rD6Xj4IOS0vpNm2Kqvune3K5+H9tOwZGTDeaviLOLY1DzjyvXPO845KjlCQC5KgcwPYPdEeliN7Z3VQrgOeEPaxc/kNjde70M1uNmfbiNPQFbXcoz6gyOdv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=JgJckKZm; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ff187f027fso3378415a91.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 01:13:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1741939992; x=1742544792; darn=vger.kernel.org;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mIaypJwWB+9Cndggia9exzQ6t2dGjEXmye283vVYlI0=;
-        b=JgJckKZmSp2AP6KqwvTSkWxomm/g8Ffk/KsLG27YD+8UwrApDIo0lX6Q6dFNRdNOXf
-         2Jk4tlGPaBqeJlamdzvvAdYDXjQobXRBQojHAcet0whmJd+IdOwXInPjMO11CFveN6Ub
-         md54E/rPe884+II3J9ZI47FIqFXYUHT9KA5vhMQn7btqE/UN5P+bRgtrv+7Gm4JfNgjE
-         3V0sTIUA0sPKFsmWSUV4LvROY/4btpX/s6S0W7S8BLBCTLjdFyP9rdn7QCAjcrTPMj+l
-         bu6WTG/YUXCdGTa/WceijqlxcfN4mk+5lKLCzuRz3m8sTVMW8UbiEKuYatIKWv5lXF28
-         QDvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741939992; x=1742544792;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mIaypJwWB+9Cndggia9exzQ6t2dGjEXmye283vVYlI0=;
-        b=IwzFCJknA8BengI97NRmXCTnCzP0ndp1Bu4kTjrENRMGO/belIZCrptb2XDdV2T5KH
-         hoXoyo55W8eqp7yRgfWqHguqnf1wgQngfJ+mLy9YdArzStSawFU28haTc8Hj0iWn0BtY
-         esYXfyKcxKzNmdROCmKmOH7em4XgK6n3XzbaiWk4xmJWTq8EvL0o1i5CD4Sy+Y4TznYR
-         ya27f1k/DDDDZB7p9+TCHzWN6QCl5XpXZMc1Qgn3UkyK/O2A5SZPci6CpnyJbY0fj06L
-         hL7NynHQC/Enkkuuw1chxl8TQ2z2WChE9otcsBFlyYYsza2Wxz7mvM5lQVuY9VGcDAXH
-         4v0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWSIizwNo4hU+DseeozICizxM1EHi4+RjK3A1djp2P+wwp0bYj5tEIGq/tCIWdAiIBQBH36qttcw9vn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzX1VQSQUZAi6FdVHpO3KWTCyJeLaiYWcQfE6sMBeusy2EwPvjr
-	kG2asgkS7yN1ZTaVW3FQ9BCtvBRKYCKoFY50xxjlSM2xIcen0J5yd0kuupyL4pA=
-X-Gm-Gg: ASbGncuTLiHBJQZIJQ43OO71FjuIFsTQ0wOEGZnpXaiJT9DHcISDhQHnLJHuKV07P3w
-	lJO4IJb4OzaEoVYac7SXfNoCZU1tuEULMM0LdPqo12uun64HW1uG+LGZq2/0xlhqB9FaWbczf1Z
-	/gsp/DHNv7DBsBqBUVZlX6GIIbwh6nC8Sz8p0IZWl1Fsc1AANw0WzfTvotDELDyEGqmtfuXI3Or
-	RBWAzzraEZToE+Mn+2YrRhFa7eBRaEH+G+CGerJORpgnyK2hMFWagDluIZcY8CRQK6lqHRs8qqM
-	k0S1fWejVzY63gDx2cK8+AtikiJb30mn9Is15aRejhJ/pz0i/oqt6uYySJujuNv3aFg=
-X-Google-Smtp-Source: AGHT+IEU8f9gJD9fpGi0dkqDON/MFDwlzwvX7/+G8p0jqw7GozR3XpJHe76R/qoNe2N8VD05r7VjlQ==
-X-Received: by 2002:a17:90a:d003:b0:2ff:53d6:2b82 with SMTP id 98e67ed59e1d1-30135f4e5f5mr7721021a91.11.1741939991712;
-        Fri, 14 Mar 2025 01:13:11 -0700 (PDT)
-Received: from hsinchu26.internal.sifive.com ([210.176.154.34])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3015364ec2bsm611920a91.46.2025.03.14.01.13.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Mar 2025 01:13:11 -0700 (PDT)
-From: Nick Hu <nick.hu@sifive.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741940086; c=relaxed/simple;
+	bh=Phim3QMX2arQqUJumjGiDsAj5I+AJWKE1SRlMfzlBYE=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xa/3a5Kh+6v1Q+34UY/tmOYrpMI46bc5g7TjYzDYnMV+cwmJPemai4aq//YyArGIYNSpwdIQBDX8PyTTyxhAYsBqGvaFJVKLn1ySnpCaCaKFXwbBO+9E4Bw9dT9qobwMfiDJsCQZcof0yS1zr/ianAgPnvQOu5B2+aW8ErYEBTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.83
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+Received: from localhost (88-113-26-232.elisa-laajakaista.fi [88.113.26.232])
+	by fgw23.mail.saunalahti.fi (Halon) with ESMTP
+	id 57970cea-00ac-11f0-8da8-005056bdfda7;
+	Fri, 14 Mar 2025 10:14:25 +0200 (EET)
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 14 Mar 2025 10:14:25 +0200
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Anup Patel <anup@brainfault.org>
-Cc: Nick Hu <nick.hu@sifive.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: timer: Add SiFive CLINT2
-Date: Fri, 14 Mar 2025 16:12:54 +0800
-Message-Id: <20250314081255.3718-1-nick.hu@sifive.com>
-X-Mailer: git-send-email 2.17.1
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 07/10] gpio: max7360: Add MAX7360 gpio support
+Message-ID: <Z9PlYSZDviGOCV7X@surfacebook.localdomain>
+References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
+ <20250214-mdb-max7360-support-v4-7-8a35c6dbb966@bootlin.com>
+ <Z69oa8_LKFxUacbj@smile.fi.intel.com>
+ <D8FAX4E29LZK.3VUK90WB04MV2@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <D8FAX4E29LZK.3VUK90WB04MV2@bootlin.com>
 
-Add compatible string and property for the SiFive CLINT v2.
+Thu, Mar 13, 2025 at 06:07:03PM +0100, Mathieu Dubois-Briand kirjoitti:
+> On Fri Feb 14, 2025 at 4:59 PM CET, Andy Shevchenko wrote:
+> > On Fri, Feb 14, 2025 at 12:49:57PM +0100, Mathieu Dubois-Briand wrote:
+> > > Add driver for Maxim Integrated MAX7360 GPIO/GPO controller.
 
-Signed-off-by: Nick Hu <nick.hu@sifive.com>
-Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
----
-- v2 changes:
-  - Don't allow sifive,clint2 by itself. Add '-{}' to the first entry
-  - Mark the sifive,fine-ctr-bits as the required property when
-    the compatible includes the sifive,clint2
+...
 
- .../bindings/timer/sifive,clint.yaml          | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+> > > +	/*
+> > > +	 * MAX7360_REG_DEBOUNCE contains configuration both for keypad debounce
+> > > +	 * timings and gpos/keypad columns repartition. Only the later is
+> > > +	 * modified here.
+> > > +	 */
+> > > +	val = FIELD_PREP(MAX7360_PORTS, ngpios);
+> > > +	ret = regmap_write_bits(regmap, MAX7360_REG_DEBOUNCE, MAX7360_PORTS, val);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "Failed to write max7360 columns/gpos configuration");
+> > > +		return ret;
+> > > +	}
+> >
+> > Shouldn't this be configured via ->set_config() callback?
+> 
+> I believe this comment has been a bit outdated by our discussion on
+> using GPIO valid mask, but I believe we could not use the ->set_config()
+> callback here: this callback is made to configure a single pin while the
+> gpos/keypad columns repartition is global.
 
-diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-index 76d83aea4e2b..4b9dad11c1e9 100644
---- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-+++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-@@ -36,6 +36,10 @@ properties:
-               - starfive,jh7110-clint   # StarFive JH7110
-               - starfive,jh8100-clint   # StarFive JH8100
-           - const: sifive,clint0        # SiFive CLINT v0 IP block
-+      - items:
-+          - {}
-+          - const: sifive,clint2        # SiFive CLINT v2 IP block
-+        description: SiFive CLINT v2 is the HRT that supports the Zicntr
-       - items:
-           - enum:
-               - allwinner,sun20i-d1-clint
-@@ -62,6 +66,22 @@ properties:
-     minItems: 1
-     maxItems: 4095
- 
-+  sifive,fine-ctr-bits:
-+    maximum: 15
-+    description: The width in bits of the fine counter.
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: sifive,clint2
-+then:
-+  required:
-+    - sifive,fine-ctr-bits
-+else:
-+  properties:
-+    sifive,fine-ctr-bits: false
-+
- additionalProperties: false
- 
- required:
+Yeah, we have similar desing in Intel Bay Trail (see pinctrl-baytrail.c) and it
+requires some software driven heuristics on how individual setting may affect
+the global one. But the Q here is is the debounce affects only keypad? Then it
+should be configured via keypad matrix driver. Btw, have you checked
+drivers/input/keyboard/matrix_keypad.c? Is there anything that can be useful
+here?
+
+...
+
+> > > +		if (irq < 0)
+> > > +			return dev_err_probe(dev, irq, "Failed to get IRQ\n");
+> > > +
+> > > +		irq_chip = devm_kzalloc(dev, sizeof(*irq_chip), GFP_KERNEL);
+> > > +		if (!irq_chip)
+> > > +			return -ENOMEM;
+> > > +
+> > > +		irq_chip->name = dev_name(dev);
+> > > +		irq_chip->status_base = MAX7360_REG_GPIOIN;
+> > > +		irq_chip->num_regs = 1;
+> > > +		irq_chip->num_irqs = MAX7360_MAX_GPIO;
+> > > +		irq_chip->irqs = max7360_regmap_irqs;
+> > > +		irq_chip->handle_mask_sync = max7360_handle_mask_sync;
+> > > +		irq_chip->status_is_level = true;
+> > > +		irq_chip->irq_drv_data = regmap;
+> > > +
+> > > +		for (unsigned int i = 0; i < MAX7360_MAX_GPIO; i++) {
+> > > +			regmap_write_bits(regmap, MAX7360_REG_PWMCFG(i),
+> > > +					  MAX7360_PORT_CFG_INTERRUPT_EDGES,
+> > > +					  MAX7360_PORT_CFG_INTERRUPT_EDGES);
+> > > +		}
+> > > +
+> > > +		flags = IRQF_TRIGGER_LOW | IRQF_ONESHOT | IRQF_SHARED;
+> > > +		ret = devm_regmap_add_irq_chip_fwnode(dev, dev_fwnode(dev), regmap, irq, flags, 0,
+> > > +						      irq_chip, &irq_chip_data);
+> >
+> > Right.
+> >
+> > What I mean in previous discussion is to update gpio-regmap to call this from inside.
+> > You need to add irq_chip pointer and irq_chip_data pointer to the regmap configuration
+> > and if they are set (or the first one, I dunno if this is supported by IRQ chip core)
+> > call this function and assign domain. This should be called after GPIO chip is
+> > added, but before IRQ domain attachment.
+> >
+> 
+> Ok, this is a bit more clear to me now. So I came up with something, it
+> will be part of the next iteration, probably during the next week.
+> 
+> This required to add a few additional fields to the gpio_regmap_config
+> structure, specifying the IRQ configuration:
+> 
+> + * @regmap_irq_chip:   (Optional) Pointer on an regmap_irq_chip structure. If
+> + *                     set, a regmap-irq device will be created and the IRQ
+> + *                     domain will be set accordingly.
+> + * @regmap_irq_chip_data: (Optional) Pointer on an regmap_irq_chip_data
+> + *                      structure pointer. If set, it will be populated with a
+> + *                      pointer on allocated regmap_irq data.
+> + * @regmap_irq_irqno   (Optional) The IRQ the device uses to signal interrupts.
+> + * @regmap_irq_flags   (Optional) The IRQF_ flags to use for the interrupt.
+
+Okay, just make sure it's guarded by the same ifdeffery as the similar in the
+GPIO:
+
+#ifdef CONFIG_GPIOLIB_IRQCHIP
+
+...
+
+> > > +
+> > > +		regmap_write(regmap, MAX7360_REG_GPIOOUTM, outconf);
+> > > +	}
+> > > +
+> > > +	/* Add gpio device. */
+> > > +	gpio_config.parent = dev;
+> > > +	gpio_config.regmap = regmap;
+> >
+> > > +	if (gpio_function == MAX7360_GPIO_PORT) {
+> > > +		gpio_config.ngpio = MAX7360_MAX_GPIO;
+> >
+> > Why this case can't be managed also via ngpios property? Maybe at the end of
+> > the day you rather need to have another property to tell where the split is?
+> >
+> > This will help a lot and removes unneeded sharing of ngpios here and there.
+> >
+> > What I read from this code is like you are trying to put _two_in_one_ semantics
+> > on the shoulders of "ngpios".
+> 
+> So as I reworked the keypad columns GPIOs, PORT GPIOs and the COL GPIOs
+> are a bit more similar on this point. So far I now use a constant value
+> assigned in the driver for both, as I believe there is no way the number
+> of GPIOs could be a different. Yet I can easily switch back to a value
+> provided by a device property.
+
+Sounds good as long as ngpios is not overloaded with the additional meanings.
+
 -- 
-2.17.1
+With Best Regards,
+Andy Shevchenko
+
 
 
