@@ -1,149 +1,165 @@
-Return-Path: <devicetree+bounces-157574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6CC3A6134B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 15:04:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEF9EA61366
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 15:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E4683BD8C2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 14:04:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D687C17519D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 14:13:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639021FFC7F;
-	Fri, 14 Mar 2025 14:03:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22BF1FFC4B;
+	Fri, 14 Mar 2025 14:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qeP7m0F8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bSVc8Z0R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B4F1FFC7A
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 14:03:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68581EB3E;
+	Fri, 14 Mar 2025 14:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741961033; cv=none; b=gyrexowUIHGCLn3pno9/u6BMGEwo0DPJLx7DqXje5LrN1osRV06pTuttdzvhJSJu2SpQ/lewuH0RELTsYrAZcR1Zpls1ReMvCU/jwD2auPYu9nMcr0tj9aOFsSheL2Ey73qJZ225fNfiKYaBRiOmuz6EmWEgvRaWv3yfaSI45I4=
+	t=1741961586; cv=none; b=Y3z4s5863nE8mdqi72D02q8QYskhG6g6rWACV3motPw7vBt3tqoeoaNVmYtmyq0W9YXWGpLhfV0xnWSn3OS9D9mDMdCpemhv9B3RTq5iJZWdQmKWViQtjMMsQDC9tDQpYqMAq+Z8q16DKaaHMy6Wivgb572fM8J/P1OY7Siwp8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741961033; c=relaxed/simple;
-	bh=BixFMmu9sTqy8BJKh8iJ1ywxzjkEJgvwb4uK0rEz9Qs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qhiE8sKYU9ZxRJ60ctzmxPcTw6uh06qTdmfN0luKUZOyH3OnLsHtQq8JWO+hPhxRYvnEG+8IXkkF371XRhSWhTpURPgCmspjqdOelPIkEYshC/mjtAJwaFCgH+HsHXCYtLxbM4sduHtviKE/afvXeUPW2NdsA7LnRyEDr905Snk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qeP7m0F8; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43bb6b0b898so20427475e9.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 07:03:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741961030; x=1742565830; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DDupoB9dBc8DfN6WTesxBF7iIJOj9N8IoeENJse5v8Q=;
-        b=qeP7m0F89nY48CDaXhm6SB0ydRZt4Q5kurjKi3qRCTfuGBWzP5C5KvekpcI8f8LmoV
-         XNBee6tGtooWr4hpgS/rHDi1wBZZtg4CzP80oB2wzAWeGdJ7YBY+cwG5f3/WV6s6cn6R
-         ysg85bEvliXLc1ma4NblLevAxFva7S1H4mG4++T5nBy+YM9GZV0GcRnaaFoJh0xU2QcN
-         wobsagaE/qJLKMMR+g3l64zg5WL+ylG6z0VtQ3BMlwTvSODlg4nP6NozKU3wziT1wErH
-         YW+Knz2zNZyxRCe5EnHb5xxlgcU+oX7gr0nmO2Pq+3tcxz7bJFaRGekG+wu91symVLfA
-         +5tQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741961030; x=1742565830;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DDupoB9dBc8DfN6WTesxBF7iIJOj9N8IoeENJse5v8Q=;
-        b=KD/KjVDjES7dW/RldpKCcsZ4iOXjSePAUp9EF0PpBSiSMPxnaoWv58iT8+WMYoZfZf
-         1Db0bgF6YBY6Z7relV4R6I6QWyx9ShfAVYdhssNR+xhNt9+jTdL9xG5t6T/i9kEKCu1D
-         Tfkjwwkps+oCNtii4+zyL6tamZ+1fLKx17QKUuPuWsU+MmlHJukRWN7PtpZ/UzZEp02X
-         g2d6cMPGYM/X5WwLE04I7PsxupEC3cN24apuadQjor5vX78al4TqgUSyUbynihkwlFXv
-         XJYgeIWybc0HuJForZLJH0inkYQO32zLHOAeieF5FzQyIlGvFlLfMjxhQtte2nog9whX
-         qKDg==
-X-Forwarded-Encrypted: i=1; AJvYcCVDr9xhThvyQS4kJTeyyNsAuImnmJygwjQ9sar5/cVj1eYGcHEqKM+TxSdOpFYEXXXdbd8esvi5skxR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZfCLFaIa8RQwqtU9+iy712BOrskaRR84NWJBgePT/YbBwb7nc
-	I6gmnr/am//V/q07ru2qXAqBikxWMMRQJu9yInkR32nSAuoW+dvYm+/lVC29V/M=
-X-Gm-Gg: ASbGncv54TyN+1qywRQAZ5F6kCr/zkQMJ11gm66w08FYD0e1F+TOrLRtVORYMMZo4xl
-	SZjjRa9tzfE4YzxT5JxH8WsrKO+QlvT48qouF0EueLPlpz8Sp+TayHQ8PPyc3Sjo8Pw3keSTswc
-	anAM9TFt+EYDJWO6fmuRsEAaLEggJCBA3urZjN5ckQjLMa5EJfFOFGinVDWW7GQwtDOASm28eGT
-	bQDD/Gq6ZWpMwgGVGp6SGcyop5hDE6amGdXVy03NtXzceKPNOS9Ftm0MuZFQuxSSjy6yCwAcB0w
-	Gq3oDqlfqs7eLpTQ7l6Qo+6xBa+i35da+TudgWUkE1Q=
-X-Google-Smtp-Source: AGHT+IHgPJJb1obTrSTys3+K62ZDhJF/Fy0GpflFQd0zruZg8pn82tMFCsUAsrtNCKhRbgLv89dzDQ==
-X-Received: by 2002:a05:600c:1910:b0:43b:cbe2:ec03 with SMTP id 5b1f17b1804b1-43d1ecd93aemr31086405e9.27.1741961029562;
-        Fri, 14 Mar 2025 07:03:49 -0700 (PDT)
-Received: from hackbox.lan ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d200fae32sm18156455e9.31.2025.03.14.07.03.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Mar 2025 07:03:48 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1741961586; c=relaxed/simple;
+	bh=tv2/YZah4h5uni5BO770OWJaT6m0SKAE40mTAbHFDK8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h5QCBMB2eYuwrLGOKjsyoOyl407YEhWzzxpyoyOe8168kDz3c+BEKwLhU8gTGwl8TmffMnDv4rCoQmvoymRSLOrrSAe9Pl9yMiq55qMBu38EGI+bILM6rGuy3gUQw1+22PHI/OMoN4tZYrdaqGiyr95L3UWAACpz225DoHLSdbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bSVc8Z0R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FF65C4CEEB;
+	Fri, 14 Mar 2025 14:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741961585;
+	bh=tv2/YZah4h5uni5BO770OWJaT6m0SKAE40mTAbHFDK8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bSVc8Z0Rd/kqWGnja6etUX9psQ//jkPbBPi5VFuqeb3fzEcVnv9bYDxkZ/CVIPWjA
+	 CFubRNPB3fR/NoOuo2eJFnnaHZEum+j16m2AtWUC9y7z1bLFs7r7lzRbmSajYPFo5E
+	 YBDc5u3AonaRPHHEedANJBfUPh/yh13vxcmjyezAxsrIb0E/mPrtCROdYxdNNi5ecJ
+	 hbDMsq1imjI4l/ovJArcqKVtoRpYub0w6zTsIcOp5QRn+PDLwnUwNSdoVKey3EGgDG
+	 m1XmteKVCOsgRlLFt8/dCTKFyV/pJBTHf9PgcX4aFOo4ag8VFaSZzqoPRdpD4bcPsq
+	 CK0xQY4GHyPuA==
+Date: Fri, 14 Mar 2025 14:13:00 +0000
+From: Lee Jones <lee@kernel.org>
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Sebastian Reichel <sre@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: x1e78100-t14s: Add OLED variant
-Date: Fri, 14 Mar 2025 16:03:25 +0200
-Message-Id: <20250314140325.4143779-4-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250314140325.4143779-1-abel.vesa@linaro.org>
-References: <20250314140325.4143779-1-abel.vesa@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH 2/2] leds: tps6131x: add support for Texas Instruments
+ TPS6131X flash LED driver
+Message-ID: <20250314141300.GR3890718@google.com>
+References: <20250228-leds-tps6131x-v1-0-d1071d90f9ea@emfend.at>
+ <20250228-leds-tps6131x-v1-2-d1071d90f9ea@emfend.at>
+ <20250310144946.GH8350@google.com>
+ <def0351b-c037-47c8-b395-d64cfca7ae25@emfend.at>
+ <20250314105257.GD3890718@google.com>
+ <8a16c018-8466-4dea-8f1e-e8a65e3ed950@emfend.at>
+ <20250314114551.GL3890718@google.com>
+ <7f9b920f-1851-4ebe-9054-d32de79d3678@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <7f9b920f-1851-4ebe-9054-d32de79d3678@emfend.at>
 
-Since the Lenovo Thinkpad T14s Gen6 is available with an OLED, add
-dedicated a dedicated dts for it.
+On Fri, 14 Mar 2025, Matthias Fend wrote:
 
-This is needed because the backlight is handled differently for OLED
-panels when compared to LCD ones.
+> Hi Lee,
+> 
+> Am 14.03.2025 um 12:45 schrieb Lee Jones:
+> > On Fri, 14 Mar 2025, Matthias Fend wrote:
+> > 
+> > > Hi Lee,
+> > > 
+> > > Am 14.03.2025 um 11:52 schrieb Lee Jones:
+> > > > On Fri, 14 Mar 2025, Matthias Fend wrote:
+> > > > 
+> > > > > Hi Lee,
+> > > > > 
+> > > > > thanks a lot for your feedback!
+> > > > > 
+> > > > > Am 10.03.2025 um 15:49 schrieb Lee Jones:
+> > > > > > On Fri, 28 Feb 2025, Matthias Fend wrote:
+> > > > > > 
+> > > > > > > The TPS61310/TPS61311 is a flash LED driver with I2C interface. Its power
+> > > > > > > stage is capable of supplying a maximum total current of roughly 1500mA.
+> > > > > > > The TPS6131x provides three constant-current sinks, capable of sinking up
+> > > > > > > to 2 × 400mA (LED1 and LED3) and 800mA (LED2) in flash mode. In torch mode
+> > > > > > > each sink (LED1, LED2, LED3) supports currents up to 175mA.
+> > > > > > > 
+> > > > > > > Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+> > > > > > > ---
+> > > > > > >     MAINTAINERS                        |   7 +
+> > > > > > >     drivers/leds/flash/Kconfig         |  11 +
+> > > > > > >     drivers/leds/flash/Makefile        |   1 +
+> > > > > > >     drivers/leds/flash/leds-tps6131x.c | 798 +++++++++++++++++++++++++++++++++++++
+> > > > > > >     4 files changed, 817 insertions(+)
+> > 
+> > [...]
+> > 
+> > > > > > > +static int tps6131x_flash_external_strobe_set(struct v4l2_flash *v4l2_flash, bool enable)
+> > > > > > > +{
+> > > > > > > +	struct led_classdev_flash *fled_cdev = v4l2_flash->fled_cdev;
+> > > > > > > +	struct tps6131x *tps6131x = fled_cdev_to_tps6131x(fled_cdev);
+> > > > > > > +
+> > > > > > > +	guard(mutex)(&tps6131x->lock);
+> > > > > > > +
+> > > > > > /> +	return tps6131x_set_mode(tps6131x, enable ? TPS6131X_MODE_FLASH : TPS6131X_MODE_SHUTDOWN,
+> > > > > > > +				 false);
+> > > > > > > +}
+> > > > > > > +
+> > > > > > > +static const struct v4l2_flash_ops tps6131x_v4l2_flash_ops = {
+> > > > > > > +	.external_strobe_set = tps6131x_flash_external_strobe_set,
+> > > > > > > +};
+> > > > > > > +
+> > > > > > > +static int tps6131x_v4l2_setup(struct tps6131x *tps6131x)
+> > > > > > > +{
+> > > > > > > +	struct v4l2_flash_config v4l2_cfg = { 0 };
+> > > > > > > +	struct led_flash_setting *intensity = &v4l2_cfg.intensity;
+> > > > > > > +
+> > > > > > > +	intensity->min = tps6131x->step_torch_current_ma;
+> > > > > > > +	intensity->max = tps6131x->max_torch_current_ma;
+> > > > > > > +	intensity->step = tps6131x->step_torch_current_ma;
+> > > > > > > +	intensity->val = intensity->min;
+> > > > > > > +
+> > > > > > > +	strscpy(v4l2_cfg.dev_name, tps6131x->fled_cdev.led_cdev.dev->kobj.name,
+> > > > > > 
+> > > > > > tps6131x->client->dev?
+> > > > > 
+> > > > > Do you mean the name should be taken from the I2C device?
+> > > > > The current name, for example, is 'white:flash-0', while the I2C device name
+> > > > > would be '4-0033'. So I think the current version is appropriate, don't you
+> > > > > think?
+> > > > 
+> > > > No, I'm implying that:
+> > > > 
+> > > >     tps6131x->client->dev == tps6131x->fled_cdev.led_cdev.dev
+> > > > 
+> > > > ... and that the former is shorter / neater.
+> > > 
+> > > Hmm. That's interesting. I thought these were two different devices, which
+> > > seems to be actually the case for me. Hence the different names in the kobj.
+> > > Are the devices really supposed to be identical?
+> > 
+> > Interesting.  What are their names?
+> 
+> tps6131x->fled_cdev.led_cdev.dev: 'white:flash-0'
+> tps6131x->client->dev: '4-0033'
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile                    |  1 +
- .../dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts  | 12 ++++++++++++
- 2 files changed, 13 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts
+Presumably this is an I2C address?  What a helpful device name!
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index b54f45b3bec8..df8d63560d06 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -290,6 +290,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-qrd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e001de-devkit.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e78100-lenovo-thinkpad-t14s.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= x1e78100-lenovo-thinkpad-t14s-oled.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-asus-vivobook-s15.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-dell-xps13-9345.dtb
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts
-new file mode 100644
-index 000000000000..be65fafafa73
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2025, Linaro Limited
-+ */
-+
-+#include "x1e78100-lenovo-thinkpad-t14s.dtsi"
-+
-+/ {
-+	model = "Lenovo ThinkPad T14s Gen 6 (OLED)";
-+	compatible = "lenovo,thinkpad-t14s-oled", "lenovo,thinkpad-t14s",
-+		     "qcom,x1e78100", "qcom,x1e80100";
-+};
+Okay, seeing as they are both clearly different, I think you are
+correct.  Scrap this review comment.
+
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
 
